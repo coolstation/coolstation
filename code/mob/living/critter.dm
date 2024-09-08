@@ -870,22 +870,31 @@ ABSTRACT_TYPE(/mob/living/critter)
 	proc/specific_emote_type(var/act)
 		return 1
 
-	update_inhands()
-		var/handcount = 0
-		for (var/datum/handHolder/HH in hands)
-			handcount++
-			var/obj/item/I = HH.item
-			if (HH.show_inhands)
-				if (!I)
-					src.UpdateOverlays(null, "inhands_[handcount]")
-					continue
-				if (!I.inhand_image)
-					I.inhand_image = image(I.inhand_image_icon, "", HH.render_layer)
-				I.inhand_image.icon_state = I.item_state ? "[I.item_state][HH.suffix]" : "[I.icon_state][HH.suffix]"
-				I.inhand_image.pixel_x = HH.offset_x
-				I.inhand_image.pixel_y = HH.offset_y
-				I.inhand_image.layer = HH.render_layer
-				src.UpdateOverlays(I.inhand_image, "inhands_[handcount]")
+/mob/living/critter/update_inhands()
+	var/handcount = 0
+	for (var/datum/handHolder/HH as anything in src.hands)
+		handcount++
+		if (HH.object_for_inhand)
+			var/obj/item/I = new HH.object_for_inhand
+			var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
+			var/image/inhand = image(icon = I.inhand_image_icon, icon_state = "[I.item_state][suffix]",
+									layer = HH.render_layer, pixel_x = HH.offset_x, pixel_y = HH.offset_y)
+			qdel(I)
+			src.UpdateOverlays(inhand, "inhands_[handcount]")
+			continue // If we have inhands we probably can't hold things
+		var/obj/item/I = HH.item
+		if (HH.show_inhands)
+			if (!I)
+				src.UpdateOverlays(null, "inhands_[handcount]")
+				continue
+			if (!I.inhand_image)
+				I.inhand_image = image(I.inhand_image_icon, "", HH.render_layer)
+			var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
+			I.inhand_image.icon_state = I.item_state ? "[I.item_state][suffix]" : "[I.icon_state][suffix]"
+			I.inhand_image.pixel_x = HH.offset_x
+			I.inhand_image.pixel_y = HH.offset_y
+			I.inhand_image.layer = HH.render_layer
+			src.UpdateOverlays(I.inhand_image, "inhands_[handcount]")
 
 	// helper proc for AI
 	proc/empty_hand(var/hand_to_empty)

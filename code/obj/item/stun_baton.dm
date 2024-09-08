@@ -101,6 +101,9 @@
 		if (amount <= 0)
 			return 0
 
+		if (user && istype(user, /mob/living/critter/robotic/securitron))
+			return 1
+
 		if (user && isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			if (R.cell && R.cell.charge >= (src.cost_cyborg * amount))
@@ -122,6 +125,8 @@
 
 	proc/process_charges(var/amount = -1, var/mob/user)
 		if (!src || !istype(src) || amount == 0)
+			return
+		if (user && istype(user, /mob/living/critter/robotic/securitron))
 			return
 		if (user && isrobot(user))
 			var/mob/living/silicon/robot/R = user
@@ -266,6 +271,9 @@
 
 			src.turn_on(user)
 		else
+			if(src.charge_time)
+				user.show_text("[src] can't be powered down manually!", "red")
+				return
 			src.turn_off(user)
 		return
 
@@ -360,6 +368,9 @@
 
 /////////////////////////////////////////////// Subtypes //////////////////////////////////////////////////////
 
+TYPEINFO(/obj/item/baton/mobsecbot)
+	mats = 0 //no
+
 /obj/item/baton/mobsecbot
 	name = "securitron stun baton"
 	desc = "A stun baton that's been modified to be used more effectively by security robots. There's a small parallel port on the bottom of the handle."
@@ -368,11 +379,14 @@
 	cost_normal = 25
 	can_swap_cell = 0
 	rechargable = 0
-	charge_time = 1 SECOND
-	active_time = 4 SECONDS
-	recharge_time = 5 SECONDS
-	cell_type = /obj/item/ammo/power_cell
+	charge_time = 0.6 SECONDS
+	active_time = 3.4 SECONDS
+	recharge_time = 7 SECONDS
+	cell_type = /obj/item/ammo/power_cell/med_minus_power
 	w_class = W_CLASS_SMALL
+
+/obj/item/baton/mobsecbot/beepsky
+	active_time = 4.4 SECONDS
 
 /obj/item/baton/secbot
 	cost_normal = 0
