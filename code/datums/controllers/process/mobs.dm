@@ -12,7 +12,7 @@
 
 	setup()
 		name = "Mob"
-		schedule_interval = 4 SECONDS
+		schedule_interval = 2 SECONDS
 		detailed_count = new
 		src.mobs = global.mobs
 
@@ -39,7 +39,7 @@
 				schedule_interval = 6.5 SECONDS
 				footstep_extrarange = 0
 			else
-				schedule_interval = 4 SECONDS
+				schedule_interval = 2 SECONDS
 				footstep_extrarange = 0
 
 		for(var/X in src.mobs)
