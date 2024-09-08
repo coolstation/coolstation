@@ -688,9 +688,11 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 //needle reuse party lets goooo
 /obj/item/genetics_injector/dna_transfer
 	name = "\improper DNA transfer syringe"
-	desc = "Slurps the DNA straight out of someone's cells and into wherever, which is probably fine. Well, except for those cells."
+	desc = "Slurps the DNA straight out of someone's cells and into wherever, which is probably fine. Well, except for those cells. Sucks to be them."
+	icon_state = "transfer_empty"
 	var/list/gene_group
 	var/DNA_color
+	var/image/fluid_img
 
 	inject_verb_self = "takes a gene sample from"
 	inject_verb_other = "take a gene sample from"
@@ -702,6 +704,15 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 	New()
 		..()
 		gene_group = list()
+		fluid_img = image(src.icon, icon_state = "transfer_fluid_empty")
+
+	disposing()
+		for (var/gene in gene_group)
+			qdel(gene)
+		gene_group = null
+		qdel(fluid_img)
+		fluid_img = null
+		..()
 
 	attackby(obj/item/W, mob/user, params)
 		if (istype(W, /obj/item/device/analyzer/genes))
@@ -725,6 +736,30 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		src.DNA_color = target.bioHolder.DNA_color
 		src.uses--
 		src.update_appearance()
+
+	update_appearance()
+		fluid_img.color = DNA_color
+		if(src.uses < 1) //was full, now empty
+			flick("transfer_in", src)
+			src.icon_state = "transfer_full"
+			fluid_img.icon_state = "transfer_fluid_out"
+			UpdateOverlays(fluid_img, "fluid")
+		else //was empty, now full
+			flick("transfer_out", src)
+			src.icon_state = "transfer_empty"
+			fluid_img.icon_state = "transfer_fluid_in"
+			UpdateOverlays(fluid_img, "fluid")
+
+		SPAWN_DBG(1 SECOND) //fluid animations stop indefinitely, this isn't timing critical
+			if (!src.uses)
+				fluid_img.icon_state = "transfer_fluid_full"
+				UpdateOverlays(fluid_img, "fluid")
+			else
+				fluid_img.icon_state = "transfer_fluid_empty"
+				UpdateOverlays(fluid_img, "fluid")
+
+
+
 //"#1D257E"
 
 /obj/item/storage/box/genetic_syringes

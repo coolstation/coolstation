@@ -37,9 +37,14 @@
 
 	proc/update_appearance()
 		if(src.uses < 1)
-			src.icon_state = "injector_2"
+			flick("injector_2", src)
+			src.icon_state = "injector_0"
 			src.desc = "A [src] that has been used up. It should be recycled or disposed of."
-			src.name = "expended " + src.name
+			//src.name = "expended " + src.name
+		else
+			flick("injector_in", src)
+			src.icon_state = "injector_1"
+			src.desc = initial(src.desc)
 
 	dna_scrambler
 		name = "dna scrambler"
