@@ -233,7 +233,7 @@
 						GB.set_emotion("sad")
 						user.add_karma(-5)
 						if(GB.last_hugged == user)
-							user.unlock_medal("Stone Cold Cop Disliker") // todo:  atonement
+							user.unlock_medal("Stone Cold Cop Disliker",1) // todo:  atonement
 							user.add_karma(-50)
 							GB.speak(pick("Well that's a new low...","After all that? This is how it ends?","You? I thought we were friends..."))
 							GB.last_hugged = null
