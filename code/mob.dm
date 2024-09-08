@@ -103,7 +103,7 @@
 	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins (and Murray) will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
-	var/intent = null
+	var/intent = INTENT_HELP
 	var/shakecamera = 0
 	var/a_intent = "help"
 	var/m_intent = "run"
