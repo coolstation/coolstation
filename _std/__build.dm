@@ -90,7 +90,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CONSTRUCTION		// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-//#define MAP_OVERRIDE_COGMAP 			// Cogmap
+#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_DONUT3 			// Donut3 by Ryumi
@@ -108,7 +108,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_OZYMANDIAS
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
-#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes WIP do not use
 //#define MAP_OVERRIDE_PAMGOC 			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP  	 	// Wrestlemap by Overtone
