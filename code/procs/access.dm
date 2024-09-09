@@ -343,12 +343,13 @@
 		if("Mailcarrier")
 			return list(access_maint_tunnels, access_mail, access_cargo, access_hangar, //this had access_heads for some reason
 						access_mining_shuttle, access_mining_outpost)
+		if("Janitor")
+			return list(access_janitor, access_maint_tunnels, access_cargo, access_hangar, access_medical, access_tech_storage,
+						access_morgue, access_crematorium, access_mining_shuttle, access_mining_outpost, access_external_airlocks)
 
 		///////////////////////////// Civilian
 		if("Chaplain")
 			return list(access_morgue, access_chapel_office, access_crematorium)
-		if("Janitor")
-			return list(access_janitor, access_maint_tunnels, access_medical, access_morgue, access_crematorium)
 		if("Botanist", "Apiculturist")
 			return list(access_maint_tunnels, access_hydro, access_ranch)
 		if("Rancher")
