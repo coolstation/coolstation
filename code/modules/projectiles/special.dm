@@ -204,7 +204,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "buckshot"
 	sname = "buckshot"
 	cost = 1
-	pellets_to_fire = 10
+	pellets_to_fire = 12 //4 per
 	spread_projectile_type = /datum/projectile/bullet/shot_weak
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	var/speed_max = 5
@@ -219,6 +219,18 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.travelled = rand(0,dissipation_variance)
 		FC.launch()
 
+/datum/projectile/special/spreader/buckshot_burst/juicer
+	name = "juicershot"
+	sname = "juicershot"
+	cost = 1
+	pellets_to_fire = 8 //10 per
+	spread_projectile_type = /datum/projectile/bullet/shot_heavy
+	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	var/speed_max = 5
+	var/speed_min = 60
+	var/spread_angle_variance = 15
+	var/dissipation_variance = 32
+
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
 	sname = "rock salt"
@@ -231,7 +243,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	speed_min = 28
 	speed_max = 36
 	dissipation_variance = 64
-	spread_angle_variance = 7.5
+	spread_angle_variance = 3
 	pellets_to_fire = 4
 
 /datum/projectile/special/spreader/buckshot_burst/nails

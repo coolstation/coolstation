@@ -646,7 +646,7 @@ ringtone.dm,58: Cannot read null.name (/datum/ringtone/retkid/ring8): return_tex
 /datum/ringtone/syndie/guns
 	name = "Modern Commando - Realistic Gunfire FX"
 	desc = "BANG BANG! These 100% AUTHENTIC REALISTIC gunfire effects are so realistic you can even hear the bullets careening toward some poor sod's lunch! For licensing information, contact THA VENGE."
-	ringList = list("sound/weapons/ak47shot.ogg",\
+	ringList = list("sound/weapons/modular/soviet-sk58shot.ogg",\
 									"sound/weapons/derringer.ogg",\
 									"sound/weapons/Gunshot.ogg",\
 									"sound/weapons/minigunshot.ogg",\

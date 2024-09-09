@@ -17,6 +17,10 @@ ABSTRACT_TYPE(/datum/projectile/bullet)
 	shot_sound = 'sound/weapons/Gunshot.ogg'
 //How many projectiles should be fired, each will cost the full cost
 	shot_number = 1
+//What multiplier should be applied to the jam-on-fire var on the firing gun?
+	var/jam_mult = 1
+//Multiplier for innate cartridge accuracy
+	var/accuracy_mult = 1
 
 	// caliber list: update as needed
 	// 0.31 - standard pistol/rifle, standard barrel (replaces .22, 9mm, .38, .357, .45, .308, 30-06, 7.62, etc.)
@@ -86,10 +90,11 @@ toxic - poisons
 //pistol weak is generally going to be from NT rounds (.380/9mm equivalent), low powder
 /datum/projectile/bullet/pistol_weak
 	name = "bullet"
-	power = 22
+	power = 30
 	shot_sound = 'sound/weapons/9x19NATO.ogg' //changing from small caliber because all the bullets are kinda the same size
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
+	jam_mult = 0.7
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 	casing = /obj/item/casing/small
 	caliber = 0.31
@@ -99,6 +104,7 @@ toxic - poisons
 	power = 35
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
+	jam_mult = 0.8
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 
 /datum/projectile/bullet/pistol_weak/stunners
@@ -108,6 +114,7 @@ toxic - poisons
 	dissipation_delay = 6 //One more tick before falloff begins
 	damage_type = D_ENERGY // FUCK YOU.
 	hit_type = null
+	jam_mult = 0.9
 	icon_turf_hit = null // stun bullets shouldn't actually enter walls should they?
 
 	/* this is now handled in the projectile parent on_hit for all ks_ratio 0.0 weapons.
@@ -174,8 +181,9 @@ soon it will go away */
 /datum/projectile/bullet/pistol_medium
 	name = "bullet"
 	sname = "execute"
-	power = 35
+	power = 40
 	ks_ratio = 1.0
+	jam_mult = 1
 	implanted = /obj/item/implant/projectile/bullet_pistol_medium
 	caliber = 0.31
 	icon_turf_hit = "bhole-small"
@@ -183,6 +191,7 @@ soon it will go away */
 
 /datum/projectile/bullet/pistol_medium/AP //traitor det revolver
 	power = 35
+	jam_mult = 1.1
 	implanted = /obj/item/implant/projectile/bullet_pistol_medium_ap
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
@@ -202,9 +211,10 @@ soon it will go away */
 //.357 equivalent, Juicer Jr. rounds
 /datum/projectile/bullet/pistol_heavy
 	name = "bullet"
-	power = 60 // okay this can be made worse again now that crit isn't naptime
+	power = 60
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
+	jam_mult = 2
 	implanted = /obj/item/implant/projectile/bullet_pistol_heavy
 	caliber = 0.31
 	icon_turf_hit = "bhole-small"
@@ -214,6 +224,7 @@ soon it will go away */
 	power = 50
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
+	jam_mult = 2.2
 	implanted = /obj/item/implant/projectile/bullet_pistol_heavy_ap
 
 //leaving this for now
@@ -242,16 +253,17 @@ soon it will go away */
 //NT long
 /datum/projectile/bullet/rifle_weak
 	name = "bullet"
-	power = 60 // okay this can be made worse again now that crit isn't naptime
+	power = 40
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
+	jam_mult = 1
 	implanted = /obj/item/implant/projectile/bullet_rifle_weak
 	caliber = 0.31
 	icon_turf_hit = "bhole-small"
 	casing = /obj/item/casing/medium
 
 /datum/projectile/bullet/rifle_weak/AP
-	power = 50
+	power = 35
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
 	implanted = /obj/item/implant/projectile/bullet_rifle_weak
@@ -259,8 +271,9 @@ soon it will go away */
 //Italian long
 /datum/projectile/bullet/rifle_medium
 	name = "bullet"
-	shot_sound = 'sound/weapons/ak47shot.ogg'
-	power = 35
+	//SemiAutoRifleShot.wav by SuperPhat -- https://freesound.org/s/421710/ -- License: Creative Commons 0
+	shot_sound = 'sound/weapons/modular/soviet-sk58shot.ogg'
+	power = 60
 	cost = 1
 	ks_ratio = 1.0
 	damage_type = D_KINETIC
@@ -272,8 +285,9 @@ soon it will go away */
 
 /datum/projectile/bullet/rifle_medium/AP
 	name = "bullet"
-	shot_sound = 'sound/weapons/ak47shot.ogg'  // todo: single shot sound?
-	power = 30
+	//SemiAutoRifleShot.wav by SuperPhat -- https://freesound.org/s/421710/ -- License: Creative Commons 0
+	shot_sound = 'sound/weapons/modular/soviet-sk58shot.ogg'  // todo: single shot sound?
+	power = 50
 	cost = 1
 	ks_ratio = 1.0
 	damage_type = D_PIERCING
@@ -286,7 +300,7 @@ soon it will go away */
 //Juicer BIG
 /datum/projectile/bullet/rifle_heavy
 	name = "bullet"
-	power = 70
+	power = 80
 	icon_state = "sniper_bullet"
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
@@ -319,7 +333,7 @@ soon it will go away */
 
 /datum/projectile/bullet/rifle_heavy/AP
 	name = "bullet"
-	power = 85
+	power = 65
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
 	implanted = /obj/item/implant/projectile/bullet_rifle_heavy
@@ -347,11 +361,13 @@ soon it will go away */
 /* ------------------------------ Shotgun Shit ------------------------------ */
 //First up: Shot (Tiny projectiles fired from one cartridge)
 //NT Shot
-/datum/projectile/bullet/shot_weak // small shot pellets generates by shotguns
+//small shot pellets generates by shotguns, meant to be fired as a group
+//hard but biodegradable plastic
+/datum/projectile/bullet/shot_weak
 	name = "shot"
 	sname = "shot"
 	icon_state = "trace"
-	power = 6
+	power = 4 //fired in a group of 12 (up to 48) with small spread
 	dissipation_rate = 5
 	dissipation_delay = 3
 	damage_type = D_KINETIC
@@ -366,6 +382,7 @@ soon it will go away */
 		damage_type = D_KINETIC
 
 //probably a lawgiver thing but we can adopt this into real separate shell
+//fired as a single projectile
 /datum/projectile/bullet/clownshot
 	name = "clownshot"
 	sname = "clownshot"
@@ -399,16 +416,16 @@ soon it will go away */
 				H.emote("twitch_v")
 				JOB_XP(H, "Clown", 1)
 		return
-//FOSS Shot? EMP type stuff/utility shotgun?
+//FOSS Shot? EMP type stuff/utility shotgun? cryo slugs? etc.
 //come back to this later
 
 //Juicer Shot
 /datum/projectile/bullet/shot_heavy
 	name = "juicy buckshot"
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	power = 70
+	power = 10 //fired in group of 8 shots (max 80) with big spread
 	ks_ratio = 1.0
-	dissipation_delay = 2//2
+	dissipation_delay = 2
 	dissipation_rate = 10
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
@@ -441,19 +458,21 @@ soon it will go away */
 			..()
 
 	weak
-		power = 50 //can have a little throwing, as a treat
+		power = 65 //can have a little throwing, as a treat
 
 	denim
-		power = 80
+		power = 90
 
 		//on_hit override message to player: "J'ow!" "That really jurt!" etc.
 
 //bartender's round
+//meant to
+//let's make this accurate, since mostly it's gonna be fired from snub barrel
 /datum/projectile/bullet/shot_salt
 	name = "rock salt"
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	icon_state = "trace"
-	power = 3
+	power = 4 //in a narrow burst of 4 (20)
 	ks_ratio = 1
 	dissipation_rate = 1
 	dissipation_delay = 2
@@ -470,7 +489,7 @@ soon it will go away */
 			var/mob/living/L = hit
 			if(!ON_COOLDOWN(L, "saltshot_scream", 1 SECOND))
 				L.emote("scream")
-			L.reagents.add_reagent("salt", 10) //watch your sodium intake
+			L.reagents.add_reagent("salt", 4) //watch your sodium intake
 			L.take_eye_damage(P.power / 2)
 			L.change_eye_blurry(P.power, 40)
 			L.setStatus("salted", 15 SECONDS, P.power * 2)
@@ -481,7 +500,7 @@ soon it will go away */
 /datum/projectile/bullet/slug_rubber
 	name = "rubber slug"
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	power = 24
+	power = 30
 	ks_ratio = 0.2
 	dissipation_rate = 4
 	dissipation_delay = 3
@@ -511,7 +530,7 @@ soon it will go away */
 /datum/projectile/bullet/slug_boom
 	name = "explosive slug"
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	power = 25 // the damage should be more from the explosion
+	power = 30 // the damage should be more from the explosion
 	ks_ratio = 1.0
 	dissipation_delay = 6
 	dissipation_rate = 10
@@ -528,7 +547,7 @@ soon it will go away */
 	on_max_range_die(obj/projectile/O)
 		explosion_new(null, get_turf(O), 2)
 
-//Some wacky icecube slug
+//Some wacky icecube slug. let's call this FOSS, eventually
 /datum/projectile/bullet/slug_cold
 	name = "cryogenic slug"
 	shot_sound = 'sound/weapons/shotgunshot.ogg'

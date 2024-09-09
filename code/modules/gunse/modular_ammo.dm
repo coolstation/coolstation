@@ -632,7 +632,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	name = "\improper NT Shot"
 	real_name = "\improper NT Shot"
 	desc = "NT 16mm shotgun shell with medium shot, for heavy barrels."
-	projectile_type = /datum/projectile/bullet/shot_weak
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst
 	stack_type = /obj/item/stackable_ammo/scatter/NT
 	icon_state = "nt_shells"
 	icon_full  = "nt_shells"
@@ -686,9 +686,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
 	projectile_type = /datum/projectile/bullet/shot_heavy
 	stack_type = /obj/item/stackable_ammo/scatter/juicer
-	icon_state = "shells-red"
-	icon_full  = "shells-red"
-	icon_empty = "empty"
+	icon_state = "juicer_shells_red"
+	icon_full  = "juicer_shells_red"
+	icon_empty = "juicer_shells_red-empty"
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
 	cartridge_length = 40 //for big receivers only
@@ -714,9 +714,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
 	projectile_type = /datum/projectile/bullet/shot_heavy/denim
 	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
-	icon_state = "shells"
-	icon_full  = "shells"
-	icon_empty = "empty"
+	icon_state = "juicer_shells_blue"
+	icon_full  = "juicer_shells_blue"
+	icon_empty = "juicer_shells_blue-empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
 
@@ -726,6 +726,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "Unlicensed and handmade short 16mm shotgun shell, full of rock salt. And probably some kind of acid."
 	projectile_type = /datum/projectile/bullet/shot_salt
 	stack_type = /obj/item/stackable_ammo/scatter/bartender
+	icon_state = "shells_blue"
+	icon_full  = "shells_blue"
+	icon_empty = "empty"
+	icon_one   = "shell_blue"
+	icon_shell = "shell_case"
 
 	three
 		name = "\improper Bartender's Buddy (x3)"

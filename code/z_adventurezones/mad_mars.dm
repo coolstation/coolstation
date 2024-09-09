@@ -737,7 +737,7 @@
 					src.visible_message("<span class='combat'><b>[src]</b> rapidly fires at [src.target]!</span>")
 
 
-					playsound(src.loc, 'sound/weapons/ak47shot.ogg', 50, 1)
+					playsound(src.loc, 'sound/weapons/modular/soviet-sk58shot.ogg', 50, 1)
 					var/tturf = get_turf(target)
 					SPAWN_DBG(0.2 SECONDS)
 						Shoot(tturf, src.loc, src)
