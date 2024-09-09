@@ -19,6 +19,9 @@
 		boutput(src, "<span class='alert'>&emsp;<b>\"[message]</b>\"</span>")
 		return
 	src.say(message)
+	#ifdef SECRETS_ENABLED
+	check_say(message, src)
+	#endif
 	if (!dd_hasprefix(message, "*")) // if this is an emote it is logged in emote
 		logTheThing("say", src, null, "SAY: [html_encode(message)] [log_loc(src)]")
 		//logit("say", 0, src, " said ", message)
