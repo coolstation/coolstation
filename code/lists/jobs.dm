@@ -18,6 +18,7 @@ var/list/occupations = list( //determines spawns for jobs and how many slots by 
 	"Quartermaster", //dept head
 //  "Cargo Technician","Cargo Technician","Cargo Technician" //not ready yet
 	"Miner","Miner","Miner",
+	"Janitor",
 	// Medical
 	"Medical Director",
 	"Medical Doctor", "Medical Doctor",
@@ -32,7 +33,6 @@ var/list/occupations = list( //determines spawns for jobs and how many slots by 
 	"Botanist","Botanist",
 	"Bartender",
 	"Chef",
-	"Janitor",
 	"Chaplain",
 //	"Attorney at Space-Law"
 	// Silicon
@@ -57,7 +57,7 @@ var/list/job_mailgroup_list = list(
 	"Engineer" = MGD_STATIONREPAIR,
 	"Mechanic" = MGD_STATIONREPAIR,
 	"Electrician" = MGD_STATIONREPAIR,
-	"Janitor" = MGD_STATIONREPAIR,
+	"Janitor" = MGD_CARGO,
 	"Botanist" = MGD_BOTANY,
 	"Scientist" = MGD_SCIENCE,
 	"Medical Director" = MGD_MEDRESEARCH,

@@ -406,6 +406,14 @@ var/global/mail_types_by_job = list(
 		/obj/item/storage/pill_bottle/antirad = 2,
 		),
 
+	/datum/job/logistics/janitor = list(
+		/obj/item/chem_grenade/cleaner = 5,
+		/obj/item/sponge = 7,
+		/obj/item/spraybottle/cleaner = 6,
+		/obj/item/caution = 5,
+		/obj/item/reagent_containers/glass/bottle/acetone/janitors = 3,
+		/obj/item/mop = 5,
+		),
 
 
 	/datum/job/civilian/chef = list(
@@ -452,14 +460,6 @@ var/global/mail_types_by_job = list(
 	/datum/job/civilian/rancher = list(
 		),
 
-	/datum/job/civilian/janitor = list(
-		/obj/item/chem_grenade/cleaner = 5,
-		/obj/item/sponge = 7,
-		/obj/item/spraybottle/cleaner = 6,
-		/obj/item/caution = 5,
-		/obj/item/reagent_containers/glass/bottle/acetone/janitors = 3,
-		/obj/item/mop = 5,
-		),
 
 	/datum/job/civilian/chaplain = list(
 		/obj/item/storage/bible = 2,
