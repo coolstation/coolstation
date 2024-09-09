@@ -85,13 +85,22 @@ CONTAINS:
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "scalpel"
 
-//temporarily the new tweezers are a scalpel, i'm tired and i don't wanna remake the item as itself + hook up all the shrapnel and implant handling stuff
-//but i wanna put something up before bed
+/* ====================================================== */
+/* ---------------------- Tweezers ---------------------- */
+/* ====================================================== */
 
-/obj/item/scalpel/tweezers
+/obj/item/tweezers
 	name = "medical tweezers"
 	desc = "A surgeon's tool, used to remove embedded objects from within the body."
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "tweezers"
+	inhand_image_icon = 'icons/mob/inhand/hand_medical.dmi'
+	item_state = "scalpel"
+	w_class = W_CLASS_TINY
+
+	attack(mob/living/carbon/M as mob, mob/user as mob)
+		if (!tweezer_surgery(M, user))
+			return ..()
 
 //also god this all feels like it should not be parented to item??? even if just for organizational purposes, so you know where to look
 
@@ -730,11 +739,14 @@ CONTAINS:
 	stamina_damage = 0
 	stamina_cost = 0
 	stamina_crit_chance = 0
+	var/uses = 20
 	var/in_use = 0
 	hide_attack = 2
 
 	//TODO: add an amount of line that gets used up and changes icon from -3 to -0
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+		if (!uses) //it's no use!
+			user.show_text("There's no thread left for [src]!", "red")
 		if (!suture_surgery(M,user))
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -749,6 +761,18 @@ CONTAINS:
 				else
 					user.show_text("[H == user ? "You have" : "[H] has"] no wounds or incisions on [H == user ? "your" : his_or_her(H)] [zone_sel2name[zone]] to close!", "red")
 					H.organHolder.chest.op_stage = 0.0
+					src.uses--
+					switch(src.uses)
+						if(0)
+							icon_state = "suture-0"
+						if(1 to 5)
+							icon_state = "suture-1"
+						if(6 to 10)
+							icon_state = "suture-2"
+						if(11 to 15)
+							icon_state = "suture-3"
+						if(16 to 20)
+							icon_state = "suture-4"
 					src.in_use = 0
 					return
 		else
