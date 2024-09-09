@@ -85,6 +85,16 @@ CONTAINS:
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "scalpel"
 
+//temporarily the new tweezers are a scalpel, i'm tired and i don't wanna remake the item as itself + hook up all the shrapnel and implant handling stuff
+//but i wanna put something up before bed
+
+/obj/item/scalpel/tweezers
+	name = "medical tweezers"
+	desc = "A surgeon's tool, used to remove embedded objects from within the body."
+	icon_state = "tweezers"
+
+//also god this all feels like it should not be parented to item??? even if just for organizational purposes, so you know where to look
+
 /* ====================================================== */
 /* -------------------- Circular Saw -------------------- */
 /* ====================================================== */
@@ -705,7 +715,7 @@ CONTAINS:
 	name = "suture"
 	desc = "A fine, curved needle with a length of absorbable polyglycolide suture thread."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "suture"
+	icon_state = "suture-1"
 	inhand_image_icon = 'icons/mob/inhand/hand_medical.dmi'
 	item_state = "suture"
 	flags = FPRINT | TABLEPASS | CONDUCT
@@ -723,6 +733,7 @@ CONTAINS:
 	var/in_use = 0
 	hide_attack = 2
 
+	//TODO: add an amount of line that gets used up and changes icon from -3 to -0
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (!suture_surgery(M,user))
 			if (ishuman(M))
