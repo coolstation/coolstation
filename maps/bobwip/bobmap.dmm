@@ -522,6 +522,7 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
 "aka" = (
+/obj/rack,
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /turf/floor/shuttlebay,
@@ -3071,8 +3072,8 @@
 	},
 /area/station/hallway/primary/southeast)
 "bqq" = (
-/obj/table/gun_workbench,
 /obj/decal/cleanable/cobweb2,
+/obj/item/gun_exploder,
 /turf/floor/plating,
 /area/station/chapel/sanctuary)
 "bqI" = (
@@ -3118,7 +3119,6 @@
 	dir = 4;
 	name = "combustion feed mix 2 supply valve"
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine,
 /area/station/engine/hotloop)
 "bsu" = (
@@ -9282,6 +9282,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine,
 /area/station/engine/gas)
 "ecM" = (
@@ -11633,7 +11634,6 @@
 /obj/machinery/atmospherics/valve{
 	name = "hot loop gas supply 1 valve"
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine,
 /area/station/engine/hotloop)
 "eZn" = (
@@ -12280,6 +12280,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/ne)
+"fkU" = (
+/obj/table/auto,
+/turf/floor/plating,
+/area/station/quartermaster/cargooffice/gunsmithing)
 "fla" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -14124,7 +14128,6 @@
 /turf/floor/bluewhite,
 /area/station/medical/medbay/surgery)
 "fWs" = (
-/obj/machinery/manufacturer/robotics,
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/white/side,
 /area/station/medical/robotics)
@@ -14408,7 +14411,7 @@
 	density = 1;
 	desc = "A lamp, but it doesn't seem like it's meant for this kind of pool.";
 	icon = 'icons/obj/decoration.dmi';
-	icon_state = "billiardlamp";
+	icon_state = "billiardlamp0";
 	layer = 5.1;
 	name = "billiards lamp"
 	},
@@ -14738,6 +14741,7 @@
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "gjn" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine/caution/south,
 /area/station/engine/gas)
 "gjs" = (
@@ -17262,8 +17266,10 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/ne)
 "hmB" = (
-/turf/floor/engine,
-/area/station/engine/gas)
+/obj/machinery/door/airlock/engineering,
+/obj/access_spawn/cargo,
+/turf/floor/plating,
+/area/station/storage/tools)
 "hmO" = (
 /obj/disposalpipe/segment/mail/bent/east,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
@@ -17732,6 +17738,10 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northeast)
+"hwS" = (
+/obj/rack,
+/turf/floor,
+/area/station/storage/tools)
 "hwT" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
 /turf/floor/plating,
@@ -18459,6 +18469,10 @@
 /obj/wingrille_spawn/reinforced/classic,
 /turf/floor/plating,
 /area/station/medical/dome)
+"hNo" = (
+/obj/item/gun_exploder,
+/turf/floor/plating,
+/area/station/quartermaster/cargooffice/gunsmithing)
 "hNH" = (
 /obj/decal/floatingtiles{
 	dir = 8;
@@ -25597,7 +25611,6 @@
 	dir = 4;
 	name = "cold loop gas supply 2 valve"
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine,
 /area/station/engine/coldloop)
 "kHl" = (
@@ -27066,6 +27079,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
 	},
+/obj/machinery/manufacturer/general,
 /turf/floor,
 /area/station/storage/tools)
 "lmf" = (
@@ -33232,7 +33246,6 @@
 /area/station/science/testchamber)
 "nJR" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/manufacturer/medical,
 /turf/floor/bluewhite,
 /area/station/medical/medbay/surgery)
 "nJW" = (
@@ -33977,8 +33990,8 @@
 /turf/floor,
 /area/station/crew_quarters/stockex)
 "nXu" = (
-/obj/table/gun_workbench,
 /obj/item/paper/book/from_file/pocketguide/gunsmith,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "nXB" = (
@@ -34508,6 +34521,9 @@
 /obj/disposalpipe/segment/ejection,
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
+	},
+/obj/table/surgery_tray{
+	anchored = 1
 	},
 /turf/floor/blue/checker,
 /area/station/medical/research)
@@ -35513,7 +35529,6 @@
 /area/station/medical/morgue)
 "oEk" = (
 /obj/reagent_dispensers/foamtank,
-/obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor,
 /area/station/storage/tools)
 "oEv" = (
@@ -36194,6 +36209,10 @@
 	dir = 4
 	},
 /area/station/engine/engineering)
+"oTb" = (
+/obj/rack,
+/turf/floor,
+/area/station/storage/eeva)
 "oTc" = (
 /obj/machinery/vending/cigarette,
 /turf/floor/grass,
@@ -43589,6 +43608,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor,
 /area/station/storage/tools)
 "rUh" = (
@@ -47915,9 +47935,10 @@
 /area/station/engine/engineering)
 "tFd" = (
 /obj/machinery/door/airlock/maintenance{
+	desc = "WATCH OUT THERES BARTS IN HERE";
 	icon_state = "door_locked";
 	locked = 1;
-	name = "WATCH OUT THERES BARTS IN HERE"
+	name = "BART ROOM DOOR"
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
@@ -49573,6 +49594,7 @@
 /turf/floor/plating/airless/asteroid/lighted,
 /area/space)
 "ukA" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine/caution/corner2{
 	dir = 10
 	},
@@ -51631,7 +51653,6 @@
 	dir = 4;
 	name = "cold loop gas supply 1 valve"
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/engine,
 /area/station/engine/coldloop)
 "vbh" = (
@@ -58418,7 +58439,6 @@
 	dir = 4;
 	name = "combustion mix feed 1 supply valve"
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/engine,
 /area/station/engine/hotloop)
 "xET" = (
@@ -108207,7 +108227,7 @@ sfP
 sfP
 sfP
 sfP
-sfP
+hmB
 sfP
 jDt
 vgN
@@ -109114,7 +109134,7 @@ qls
 bfl
 bfl
 oEk
-sfP
+lpP
 uFu
 vgN
 nBj
@@ -109428,8 +109448,8 @@ lMM
 mAU
 nuw
 tPU
-lUE
-lUE
+hNo
+fkU
 bTH
 rXf
 rXf
@@ -110321,7 +110341,7 @@ sfP
 agb
 eAb
 drr
-bfl
+hwS
 lpP
 pUZ
 vgN
@@ -116714,7 +116734,7 @@ pgx
 ePj
 iBL
 uOi
-hmB
+chE
 sET
 pJJ
 oXr
@@ -120645,7 +120665,7 @@ uAk
 clm
 hQx
 dSL
-vmd
+clm
 sjh
 kmE
 tyO
@@ -121247,8 +121267,8 @@ uAk
 uAk
 uAk
 vmd
-vmd
-vmd
+oTb
+oTb
 vmd
 vVw
 pWY
