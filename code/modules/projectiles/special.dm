@@ -226,10 +226,10 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 8 //10 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	var/speed_max = 5
-	var/speed_min = 60
-	var/spread_angle_variance = 15
-	var/dissipation_variance = 32
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 15
+	dissipation_variance = 32
 
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
