@@ -48,6 +48,27 @@ var/global/map_currently_very_dusty = 1
 var/global/map_currently_very_dusty = 0
 #endif
 
+//should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
+#ifdef SCARCE_MAP
+var/global/map_currently_experiencing_shortages = 1
+#else
+var/global/map_currently_experiencing_shortages = 0
+#endif
+
+//should new spawns and new arrivals start out with all their gear and shit on (default/goon style) or should you start with your pockets and bag more or less empty
+#ifdef BOOTSTRAPPED_MAP
+var/global/map_currently_byog = 1
+#else
+var/global/map_currently_byog = 0
+#endif
+
+//should new spawns and new arrivals start out in their departments, mostly dressed in uniform (default/goon style) or should you start fresh from arrivals/crew quarters in your regular outfits
+#ifdef DEPARTMENTSPAWN_MAP
+var/global/map_previously_abandoned = 0
+#else
+var/global/map_previously_abandoned = 1
+#endif
+
 #ifdef TWITCH_BOT_ALLOWED
 var/global/mob/twitch_mob = 0
 #endif
