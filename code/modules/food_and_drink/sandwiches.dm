@@ -322,6 +322,33 @@
 				boutput(user, "<span class='notice'>You feel that it was too soon for this...</span>")
 			. = ..()
 
+/obj/item/reagent_containers/food/snacks/burger/camembert
+	name = "\improper Camembert burger"
+	desc = "This looks like one of those weird influencer burgers."
+	icon_state = "camburger"
+	amount = 6
+	heal_amt = 1
+	initial_volume = 15
+	initial_reagents = list("cholesterol"=50,"cheese"=50)
+	var/erupted = FALSE
+
+	New()
+		..()
+
+	heal(var/mob/M)
+		if(!erupted)
+			var/turf/T = get_turf(src)
+			T.fluid_react_single("cheese", 500)
+			logTheThing("admin", src, T, "created fluid at [T] : cheese with volume 500 at [log_loc(T)].")
+			message_admins("[key_name(src)] created fluid at [T] : cheese with volume 500 at [log_loc(T)].)")
+
+			boutput(M, "<span class='alert'>oh shit, oh god, what the fuck is this</span>")
+			M.visible_message("<span class='alert'>[src] erupts when [M] takes a bite!</span>")
+			playsound(M.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+			icon_state = "camburger-erupted"
+			erupted = TRUE
+		else
+			..()
 
 /obj/item/reagent_containers/food/snacks/burger/roburger
 	name = "roburger"
