@@ -1067,6 +1067,14 @@
 		..()
 		setProperty("coldprot", 10)
 
+//placeholder sprite in item_suit_gimmick
+/obj/item/clothing/suit/scarf/gooby
+	name = "rancid scarf"
+	desc = "Because nobody needs this. Holy shit what a godawful smell."
+	icon = 'icons/obj/clothing/overcoats/item_suit_gimmick.dmi'
+	wear_image_icon = 'icons/mob/overcoats/worn_suit_gimmick.dmi'
+	icon_state = "GOOBY"
+
 /obj/item/clothing/suit/suspenders
 	name = "suspenders"
 	desc = "An important mime accessory, you don't want your trousers falling down mid-performance, do you?"
