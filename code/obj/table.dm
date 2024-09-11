@@ -15,6 +15,7 @@
 	var/auto = 0
 	var/status = null //1=weak|welded, 2=strong|unwelded
 	var/image/working_image = null
+	///Spawn a drawer when made. After that, this keeps track of whether the drawer is accessible
 	var/has_storage = 0
 	var/obj/item/storage/desk_drawer/desk_drawer = null
 	var/slaps = 0
@@ -152,6 +153,22 @@
 		else
 			src.UpdateOverlays(null, "NWcorner")
 
+		//see if drawer is accessible
+		//Only drawers on south-free tables are visible, and so only those are accessible. It's be weird to click on the lower bit of a table surface and the item going into the drawer.
+		if (src.desk_drawer)
+			if(ST)
+				has_storage = FALSE
+				//Dump otherwise inaccessible contents if someone put a thing into it.
+				//Not bothering to lazy init spawn contents cause that might be weird to someone not expecting anything to come out.
+				if (src.desk_drawer.contents)
+					var/turf/T = get_turf(src)
+					for (var/obj/item/I as anything in src.desk_drawer)
+						I.set_loc(T)
+						I.pixel_y = rand(-8,8)
+						I.pixel_x = rand(-8,8)
+						attach(I)
+			else has_storage = TRUE
+		else has_storage = FALSE
 
 
 	proc/deconstruct() //feel free to burn me alive because im stupid and couldnt figure out how to properly do it- Ze // im helping - haine
@@ -298,6 +315,7 @@
 					boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
 			else
 				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
+			return
 
 		else if (isscrewingtool(W))
 			if (istype(src.desk_drawer) && src.desk_drawer.locked)
@@ -319,23 +337,30 @@
 			B.smash_on_thing(user, src)
 			return
 
-		else if (istype(W, /obj/item/device/key/filing_cabinet) && src.desk_drawer)
-			src.desk_drawer.Attackby(W, user)
-			return
+		else if (has_storage && src.desk_drawer)
+			if (islist(params) && params["icon-y"])
+				if (text2num(params["icon-y"]) <= 8)
+					src.desk_drawer.Attackby(W, user)
+					return
 
-		else if (istype(W) && src.place_on(W, user, params))
+		if (istype(W) && src.place_on(W, user, params))
 			src.attach(W)
 			return
 
 		else
 			return ..()
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user as mob, params, location, control)
 		if (user.is_hulk())
 			user.visible_message("<span class='alert'>[user] destroys the table!</span>")
 			if (prob(40))
 				playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 50, 1)
 			deconstruct()
+		if (has_storage && src.desk_drawer)
+			if (islist(params) && params["icon-y"])
+				if (text2num(params["icon-y"]) <= 8)
+					playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, -2) //needs better sound
+					desk_drawer.MouseDrop(user) //Might seem weird but Attackhand just has user take out the entire drawer
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if (istype(H.w_uniform, /obj/item/clothing/under/misc/lawyer))
@@ -411,7 +436,7 @@
 		return
 
 	MouseDrop(atom/over_object, src_location, over_location)
-		if (usr && usr == over_object && src.desk_drawer)
+		if (usr && usr == over_object && src.desk_drawer && has_storage)
 			return src.desk_drawer.MouseDrop(over_object, src_location, over_location)
 		..()
 
