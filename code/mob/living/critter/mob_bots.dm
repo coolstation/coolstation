@@ -435,13 +435,15 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
 	is_npc = TRUE
 	ai_attacks_neutral = TRUE
+	var/random_name = TRUE
+	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.9
 	var/obj/machinery/camera/camera = null
+	var/no_camera = FALSE
 	var/initial_limb = /obj/item/baton/mobsecbot
 	var/drop_limb_item = FALSE
 	var/net_id
 	var/power = TRUE
-	var/control_freq = FREQ_BOT_CONTROL
 	var/emagged = 0
 	var/emote_cooldown = 7 SECONDS
 	var/arrest_cooldown = 10 SECONDS
@@ -453,12 +455,17 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	var/check_records = TRUE
 	var/is_detaining = FALSE
 	var/report_arrests = TRUE
+	var/patrolling = FALSE
+	var/lockdown = FALSE
 	var/list/datum/contextAction/contexts = list()
 	var/datum/contextLayout/configContextLayout = new /datum/contextLayout/experimentalcircle
 
 /mob/living/critter/robotic/securitron/New()
 	. = ..()
 
+	if(src.real_name == "securitron")
+		src.real_name = "\improper Securitron-" + rand(1,9) + rand(0,9) + rand(0,9)
+		src.name = src.real_name
 	if(src.initial_limb)
 		var/datum/handHolder/HH = hands[1]
 		src.hud.add_object(src.equipped(), HUD_LAYER+2, HH.screenObj.screen_loc)
@@ -479,12 +486,12 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 
 	add_simple_light("secbot", list(255, 255, 255, 0.4 * 255))
 
-	MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", src.net_id, control_freq)
-	MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", src.net_id, FREQ_PDA)
+	MAKE_SENDER_RADIO_PACKET_COMPONENT(src.net_id, "pda", FREQ_PDA)
 
-	src.camera = new /obj/machinery/camera(src)
-	src.camera.c_tag = src.real_name
-	src.camera.network = "Robots"
+	if(!src.no_camera)
+		src.camera = new /obj/machinery/camera(src)
+		src.camera.c_tag = src.real_name
+		src.camera.network = "Robots"
 
 	for(var/actionType in childrentypesof(/datum/contextAction/securitron)) //see context_actions.dm
 		src.contexts += new actionType()
@@ -712,25 +719,10 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 			src.report_arrests = !src.report_arrests
 			src.say("TEN-FOUR. [src.report_arrests ? "REPORTING ARRESTS ON: [FREQ_PDA]" : "LONE RANGER PROTOCOL ENGAGED."]")
 			return src.report_arrests
-
-/mob/living/critter/robotic/securitron/proc/receive_signal(datum/signal/signal)
-	if(!src.power)
-		return
-
-	var/signal_command = signal.data["command"]
-	// process all-bot input
-	if(signal_command=="bot_status")
-		src.send_status()
-
-/mob/living/critter/robotic/securitron/proc/send_status()
-	var/datum/signal/signal = get_free_signal()
-	signal.source = src
-	signal.data["sender"] = src.net_id
-	signal.data["type"] = "secbot"
-	signal.data["name"] = name
-	signal.data["loca"] = get_area(src)
-	signal.data["mode"] = 1
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, control_freq)
+		if ("patrolling")
+			src.patrolling = !src.patrolling
+			src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"]")
+			return src.patrolling
 
 /mob/living/critter/robotic/securitron/valid_target(var/mob/living/C)
 	if (ishuman(C))
@@ -761,10 +753,16 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", threatcount * 1.5 SECONDS)
 		return threatcount //Everything that moves is a crimer!
 
-	if((src.check_contraband)) // bot is set to actively search for contraband
+	if((src.check_contraband) || (ishuman(perp) && src.lockdown)) // bot is set to actively search for contraband or we need id due to lockdown
 		var/obj/item/card/id/perp_id = perp.equipped()
 		if (!istype(perp_id))
 			perp_id = perp.get_id()
+
+		if(src.lockdown)
+			if(!perp_id || !((access_security in perp_id) || (access_heads in perp_id.access)))
+				threatcount = 10
+				EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
+				return threatcount
 
 		//Agent cards lower threat level
 		if(istype(perp_id, /obj/item/card/id/syndicate))
@@ -1031,6 +1029,8 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	if ((BOUNDS_DIST(master, target) > 0) || master == null || target == null || target.hasStatus("handcuffed"))
 		interrupt(INTERRUPT_ALWAYS)
 
+/mob/living/critter/robotic/securitron/autopatrol
+	patrolling = TRUE
 
 /mob/living/critter/robotic/securitron/bowling
 	name = "bowlatron"
@@ -1071,5 +1071,40 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	name = "Officer Beepsky"
 	desc = "It's Officer Beepsky! He's a loose cannon but he gets the job done."
 	initial_limb = /obj/item/baton/mobsecbot/beepsky
+	patrolling = TRUE
 	drop_limb_item = TRUE
 	chase_speed_bonus = 1.3
+
+/mob/living/critter/robotic/securitron/formal
+	name = "Lord Beepingshire"
+	desc = "The most distinguished of security robots."
+	// icon_state = 'like a formal sprite or somethin'
+
+/mob/living/critter/robotic/securitron/haunted
+	name = "Beep-o-Lantern"
+	desc = "A little security robot, apparently carved out of a pumpkin.  He looks...spooky?"
+	icon = 'icons/misc/halloween.dmi'
+
+/mob/living/critter/robotic/securitron/neon
+	name = "Beepsky (Mall Edition)"
+	desc = "This little security robot appears to have been redesigned to appeal to civilians. How colourful!"
+	icon = 'icons/misc/walp_decor.dmi'
+
+/mob/living/critter/robotic/securitron/emagged
+	desc = "A tattered and rusted security bot, held together only by the will of some wretched elder god."
+	health_brute = 5
+	health_burn = 5
+	emagged = 1
+	no_camera = 1
+	var/blow_up = 1
+
+	New()
+		..()
+		src.name = pick("Commissar Beepevich","The Beeper","Murderbot","Killtron","Lawmaker")
+		SPAWN(1 MINUTE)
+			if (src?.blow_up == 1)
+				src.blowthefuckup(0)
+		return
+
+/mob/living/critter/robotic/securitron/emagged/no_selfdestruct
+	blow_up = 0

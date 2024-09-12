@@ -254,8 +254,9 @@
 			signal.data[key] = codes[key]
 
 		if(signal.data["patrol"])
+			signal.data["command"] = "patrol"
 			signal.encryption = "ERR_12845_NT_SECURE_PACKET:"
-			signal.encryption_obfuscation = 90
+			signal.encryption_obfuscation = 99
 			signal.data["auth_code"] = netpass_security
 
 		frequency.post_signal(src, signal)
