@@ -10,7 +10,7 @@
 	// would also be cool to make these work with bees.
 	// it's hip to tuck bees!
 	name = "bee bed"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "beebed"
 	desc = "A soft little bed the general size and shape of a space bee."
 	cando_flags = 0
