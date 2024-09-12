@@ -1266,6 +1266,15 @@
 	cant_take_hat = 1
 	generic = 0
 
+//Cohost's mascot
+/obj/critter/domestic_bee/eggbug
+	name = "eggbug"
+	desc = "someone please think of a funny description for this bean"
+	icon_body = "eggbug"
+	icon_state = "eggbug-wings"
+	sleeping_icon_state = "eggbug-sleep"
+	honey_color = rgb(160,75,113) //on the sprite this is the highlight colour
+
 /obj/critter/domestic_bee/small
 	icon_state = "lilbee-wings"
 	icon_body = "lilbee"

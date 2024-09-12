@@ -1057,4 +1057,14 @@
 				O.show_message("[src] beeps[prob(50) ? " in a comforted manner, and gives [user] the ASCII" : ""].",2)
 		return
 
+//Cohost's mascot
+/mob/living/critter/small_animal/bee/eggbug
+	name = "eggbug"
+	desc = "someone please think of a funny description for this bean"
+	icon_body = "eggbug"
+	icon_state = "eggbug-wings"
+	icon_state_sleep = "eggbug-sleep"
+	honey_color = rgb(160,75,113) //on the sprite this is the highlight colour
+	has_color_overlay = FALSE
+
 #undef ADMIN_BEES_ONLY
