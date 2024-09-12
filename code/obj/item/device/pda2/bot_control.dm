@@ -8,7 +8,6 @@
 	name = "bot control base"
 
 	var/list/botlist = list()		// list of bots
-	var/active 	// the active bot; if null, show bot list
 	var/list/botstatus			// the status signal sent by the bot
 
 	var/control_freq = FREQ_BOT_CONTROL //Just for sending, adjust what the actual pda hooks to for receive
@@ -26,12 +25,38 @@
 		if(key3)
 			signal.data[key3] = value3
 
-		src.post_signal(signal, freq)
+		src.post_signal(signal, conn_id)
 
-	init()
-		//boutput(world, "<h5>Adding [master]@[master.loc]:[master.bot_freq],[master.beacon_freq]")
-		radio_controller.add_object(master, "[master.bot_freq]")
-		radio_controller.add_object(master, "[master.beacon_freq]")
+	on_activated(obj/item/device/pda2/pda)
+		pda.AddComponent(
+			/datum/component/packet_connected/radio, \
+			"bot_beacon",\
+			pda.beacon_freq, \
+			pda.net_id, \
+			null, \
+			FALSE, \
+			null, \
+			FALSE \
+		)
+		pda.AddComponent(
+			/datum/component/packet_connected/radio, \
+			"bot_control",\
+			src.control_freq, \
+			pda.net_id, \
+			null, \
+			FALSE, \
+			null, \
+			FALSE \
+		)
+		RegisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET, PROC_REF(receive_signal))
+
+	on_deactivated(obj/item/device/pda2/pda)
+		qdel(get_radio_connection_by_id(pda, "bot_beacon"))
+		qdel(get_radio_connection_by_id(pda, "bot_control"))
+		UnregisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET)
+
+	proc/receive_signal(obj/item/device/pda2/pda, datum/signal/signal, transmission_method, range, connection_id)
+		return
 
 #define SECACC_MENU_MAIN 1
 #define SECACC_MENU_AREAS 2
@@ -44,6 +69,7 @@
 	var/all_guard = 0
 	var/lockdown = 0
 	var/can_summon_all = 0
+	var/mob/living/critter/robotic/securitron/active 	// the active secbot; if null, show bot list
 
 	return_text()
 		if(..())
@@ -128,12 +154,12 @@
 				if(guardthis)
 					if(!src.all_guard)
 						if(src.lockdown)
-							post_status(control_freq, "command", "lockdown", "active", active, "target", guardthis)
+							post_status("bot_control", "command", "lockdown", "address_1", active.net_id, "target", guardthis)
 							self_text("[active] ordered to lockdown [guardthis].")
 						else
-							post_status(control_freq, "command", "guard", "active", active, "target", guardthis)
+							post_status("bot_control", "command", "guard", "address_1", active.net_id, "target", guardthis)
 							self_text("[active] ordered to guard [guardthis].")
-						post_status(control_freq, "command", "bot_status", "active", active)
+						post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
 					else
 						src.all_guard = 0
 						if (!botlist.len)
@@ -144,27 +170,27 @@
 							var/list/bots = list()
 							for(var/list/mob/living/critter/robotic/securitron/bot in src.botlist)
 								if(src.lockdown)
-									post_status("bot_control", "command", "lockdown", "active", active, "target", guardthis)
+									post_status("bot_control", "command", "lockdown", "address_1", active.net_id, "target", guardthis)
 									self_text("[active] ordered to lockdown [guardthis].")
 								else
-									post_status("bot_control", "command", "guard", "active", active, "target", guardthis)
+									post_status("bot_control", "command", "guard", "address_1", active.net_id, "target", guardthis)
 									self_text("[active] ordered to guard [guardthis].")
 								sleep(2 DECI SECONDS)
 							if(length(bots) >= 1)
 								self_text("[english_list(bots)] ordered to guard [guardthis].")
 
 			if("stop", "go")
-				post_status(control_freq, "command", href_list["op"], "active", active)
-				post_status(control_freq, "command", "bot_status", "active", active)
+				post_status("bot_control", "command", href_list["op"], "address_1", active.net_id)
+				post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
 				if(href_list["op"] == "go")
 					self_text("[active] set to patrol.")
 				else
 					self_text("[active] set to not patrol.")
 
 			if("summon") // not spoofable
-				post_status(control_freq, "command", "summon", "active", active, "target", summon_turf)
-				post_status(control_freq, "command", "bot_status", "active", active)
-				self_text("[active] summoned to [summon_turf]")
+				post_status("bot_control", "command", "summon", "address_1", active.net_id, "target", summon_turf)
+				post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
+				self_text("[active] summoned to [summon_turf.loc].")
 
 			if("summonall") // also not spoofable
 				if (!botlist.len)
@@ -174,8 +200,8 @@
 					// trying this for real - mylie
 					var/list/bots = list()
 					for(var/list/mob/living/critter/robotic/securitron/bot in src.botlist)
-						post_status("bot_control", "command", "summon", "active", active, "target", summon_turf)
-						post_status("bot_control", "command", "bot_status", "active", active)
+						post_status("bot_control", "command", "summon", "address_1", active.net_id, "target", summon_turf)
+						post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
 						self_text("[active] summoned to [summon_turf.loc].")
 						sleep(2 DECI SECONDS)
 					if(length(bots) >= 1)
@@ -185,15 +211,13 @@
 		src.all_guard = 0
 		PDA.updateSelfDialog()
 
-	receive_signal(datum/signal/signal)
-		if(..())
-			return
-
-		if(signal.data["type"] == "secbot")
+	receive_signal(obj/item/device/pda2/pda, datum/signal/signal, transmission_method, range, connection_id)
+		if(signal.data["type"] == "secbot" && !signal.encryption)
 			if(!botlist)
 				botlist = new()
 
-			botlist |= signal.source
+			if(istype(signal.source,/mob/living/critter/robotic/securitron)) // avoid putting random shit in the list
+				botlist |= signal.source
 
 			src.master.updateSelfDialog()
 
@@ -213,7 +237,7 @@
 	name = "MULE Bot Control"
 	size = 16.0
 	var/list/beacons
-	var/list/pdas
+	var/obj/machinery/bot/mulebot/active
 
 	return_text()
 		if(..())
@@ -292,8 +316,7 @@
 
 		var/obj/item/device/pda2/PDA = src.master
 		var/cmd = "command"
-		var/obj/machinery/bot/mulebot/active_mule = active
-		if(active) cmd = "command_[ckey(active_mule.suffix)]"
+		if(active) cmd = "command_[ckey(active.suffix)]"
 
 		switch(href_list["op"])
 
@@ -323,7 +346,7 @@
 				post_status(control_freq, cmd, "bot_status")
 			if("setdest")
 				if(beacons)
-					var/dest = input("Select Bot Destination", "Mulebot [active_mule.suffix] Interlink", active:destination) as null|anything in beacons
+					var/dest = input("Select Bot Destination", "Mulebot [active.suffix] Interlink", active:destination) as null|anything in beacons
 					if(dest)
 						post_status(control_freq, cmd, "target", "destination", dest)
 						post_status(control_freq, cmd, "bot_status")
