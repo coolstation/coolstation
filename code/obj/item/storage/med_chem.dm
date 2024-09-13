@@ -487,8 +487,9 @@
 	make_my_stuff()
 		..()
 		new /obj/item/bandage(src)
+		new /obj/item/bandage(src)
+		new /obj/item/tweezers(src)
 		new /obj/item/storage/pill_bottle/salicylic_acid(src)
-		new /obj/item/storage/pill_bottle/menthol(src)
 
 		if (prob(40))
 			new /obj/item/storage/firstaid/regular(src)
