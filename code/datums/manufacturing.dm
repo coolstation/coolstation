@@ -839,6 +839,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Tool"
 
+/datum/manufacture/tweezers
+	name = "Medical tweezers"
+	item_paths = list("MET-1")
+	item_amounts = list(1)
+	item_outputs = list(/obj/item/tweezers)
+	time = 5 SECONDS
+	create = 1
+	category = "Tool"
+
 /datum/manufacture/circular_saw
 	name = "Circular Saw"
 	item_paths = list("MET-1")
