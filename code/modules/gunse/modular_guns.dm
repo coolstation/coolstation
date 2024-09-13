@@ -774,6 +774,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/shoot_point_blank(var/mob/M as mob, var/mob/user as mob, var/second_shot = 0)
 	..()
+	if (flashbulb_only)
+		if (flash_auto)
+			crank_level--
+		else
+			crank_level = 0
 	current_projectile = null // empty chamber
 	hammer_cocked = FALSE
 	src.update_icon()
