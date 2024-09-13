@@ -101,7 +101,11 @@
 	holder.owner.move_dir = pick(alldirs)
 	holder.owner.process_move()
 	if(prob(1))
-		holder.owner.say("fuck")
+		if(prob(25))
+			if(prob(10))
+				holder.owner.say("fuck")
+			else
+				holder.owner.say(pick("that sure is swell","oh boy","gee whiz","hot dog","hee hee"))
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TARGETED TASK
 // a timed task that also relates to a target and the acquisition of said target
