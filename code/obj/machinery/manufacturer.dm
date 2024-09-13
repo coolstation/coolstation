@@ -2272,6 +2272,7 @@
 		/datum/manufacture/circular_saw,
 		/datum/manufacture/surgical_scissors,
 		/datum/manufacture/hemostat,
+		/datum/manufacture/tweezers,
 		/datum/manufacture/suture,
 		/datum/manufacture/stapler,
 		/datum/manufacture/surgical_spoon,
