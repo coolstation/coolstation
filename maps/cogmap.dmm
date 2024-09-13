@@ -10838,6 +10838,9 @@
 /obj/disposalpipe/junction{
 	icon_state = "pipe-j2"
 	},
+/obj/item/storage/wall/medical{
+	pixel_y = 32
+	},
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -14647,6 +14650,7 @@
 	pixel_x = 2;
 	pixel_y = 1
 	},
+/obj/item/tweezers,
 /turf/floor/bluewhite{
 	dir = 4
 	},
@@ -28432,6 +28436,9 @@
 "btz" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
+	},
+/obj/item/storage/wall/medical{
+	pixel_y = 32
 	},
 /turf/floor/plating,
 /area/station/engine/inner)
@@ -52885,6 +52892,7 @@
 /obj/item/suture{
 	pixel_y = 5
 	},
+/obj/item/tweezers,
 /turf/floor/redwhite{
 	dir = 8
 	},
@@ -54230,6 +54238,9 @@
 	},
 /obj/item/bananapeel{
 	pixel_x = 4
+	},
+/obj/item/storage/wall/medical{
+	pixel_y = 32
 	},
 /turf/floor/red/side{
 	dir = 9
@@ -58410,6 +58421,16 @@
 	},
 /turf/floor/yellow/side,
 /area/station/crew_quarters/info)
+"mzu" = (
+/obj/submachine/chef_oven,
+/obj/landmark{
+	name = "shitty_bill_respawn"
+	},
+/obj/item/storage/wall/medical{
+	pixel_y = 32
+	},
+/turf/floor/specialroom/cafeteria,
+/area/station/crew_quarters/kitchen)
 "mAs" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -60506,6 +60527,12 @@
 /obj/decal/xmas_lights/ephemeral,
 /turf/floor/plating,
 /area/station/engine/core)
+"qzm" = (
+/obj/item/gun_exploder,
+/turf/floor,
+/area/station/storage/auxillary{
+	name = "Tool Storage"
+	})
 "qzy" = (
 /obj/table/auto,
 /obj/item/chem_grenade/firefighting{
@@ -60782,6 +60809,14 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/solar/north)
+"qXw" = (
+/obj/item/storage/wall/medical{
+	pixel_y = 32
+	},
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/station/hallway/primary/south)
 "qXJ" = (
 /obj/machinery/door/airlock/external,
 /obj/access_spawn/engineering,
@@ -63804,6 +63839,12 @@
 /obj/access_spawn/maint,
 /turf/floor/plating,
 /area/station/hallway/primary/east)
+"wzO" = (
+/obj/machinery/vending/gunse,
+/turf/floor,
+/area/station/storage/auxillary{
+	name = "Tool Storage"
+	})
 "wAV" = (
 /obj/cable/yellow{
 	icon_state = "1-2"
@@ -64110,6 +64151,12 @@
 	icon_state = "red2"
 	},
 /area/station/crew_quarters/barber_shop)
+"xua" = (
+/obj/item/storage/wall/medical{
+	pixel_y = 32
+	},
+/turf/floor/grime,
+/area/station/maintenance/east)
 "xuC" = (
 /turf/wall/r_wall,
 /area/station/turret_protected/armory_outside)
@@ -114758,7 +114805,7 @@ acT
 ajb
 aie
 aiZ
-aiW
+mzu
 alg
 amg
 amZ
@@ -116656,7 +116703,7 @@ bPa
 bQs
 bRS
 bIB
-bUA
+qXw
 bWU
 bXX
 bZC
@@ -118719,7 +118766,7 @@ aTJ
 aTJ
 aYU
 aSD
-baA
+xua
 bbA
 aYQ
 bdG
@@ -119298,8 +119345,8 @@ udh
 asB
 atM
 ava
-atM
-atM
+wzO
+qzm
 atM
 aAJ
 aqZ
