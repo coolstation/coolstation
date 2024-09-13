@@ -1301,7 +1301,7 @@ datum
 				if(method == TOUCH)
 					. = 0
 					M.HealDamage("All", volume_passed, 0)
-					// M.HealBleeding(volume_passed) // At least implement your stuff properly first, thanks. Styptic also shouldn't be as good as synthflesh for healing bleeding.
+					M.HealBleeding(max(volume_passed,5)) // At least implement your stuff properly first, thanks. Styptic also shouldn't be as good as synthflesh for healing bleeding.
 
 					/*for(var/A in M.organs)
 						var/obj/item/affecting = null
