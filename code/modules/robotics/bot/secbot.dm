@@ -33,9 +33,9 @@
 /// Clear aggro, revert to guard duty. mode = SECBOT_GUARD_IDLE
 #define KPAGU_RETURN_TO_GUARD		3
 
-#define PATROL_SPEED 6
-#define SUMMON_SPEED 3
-#define ARREST_SPEED 2.5
+#define PATROL_SPEED 12
+#define SUMMON_SPEED 9
+#define ARREST_SPEED 5
 
 #define BATON_INITIAL_DELAY (0.3 SECONDS)
 #define BATON_DELAY_PER_STUN (0.2 SECONDS)
