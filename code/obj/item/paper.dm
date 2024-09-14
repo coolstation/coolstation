@@ -1591,7 +1591,7 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 
 /obj/item/paper/ranch_guide
 	name = "Ranch Field Guide"
-	desc = "Some kinda informative poster. Or is it a pamphlet? Either way, it wants to teach you things. About chickens."
+	desc = "Some kinda informative poster. Or is it a pamphlet? Either way, it's entirely useless. There isn't even a printed word on it."
 	icon_state = "ranch_guide"
 	sizex = 1100
 	sizey = 800
