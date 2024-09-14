@@ -94,7 +94,7 @@
 	name = "oxygen deprivation first aid"
 	icon_state = "O21"
 	item_state = "O21"
-	desc = "A first aid kit that contains three pills and two auto-injectors of salbutamol, which is able to counter injuries caused by suffocation. Also contains a health analyzer to determine the health of the patient."
+	desc = "A first aid kit that contains three pills and two inhalers of salbutamol, which is able to counter injuries caused by suffocation. Also contains a health analyzer to determine the health of the patient."
 	kit_styles = list("O21", "O22", "O23", "O24")
 	spawn_contents = list(/obj/item/reagent_containers/pill/salbutamol = 3,\
 	/obj/item/reagent_containers/emergency_injector/salbutamol = 2,\
@@ -121,7 +121,8 @@
 	spawn_contents = list(/obj/item/reagent_containers/emergency_injector/mannitol = 1,\
 	/obj/item/reagent_containers/emergency_injector/perf = 1,\
 	/obj/item/reagent_containers/emergency_injector/atropine = 1,\
-	/obj/item/reagent_containers/emergency_injector/saline,\
+	/obj/item/reagent_containers/emergency_injector/saline = 1,\
+	/obj/item/reagent_containers/emergency_injector/naloxone = 1,\
 	/obj/item/reagent_containers/emergency_injector/synaptizine = 1,\
 	/obj/item/reagent_containers/emergency_injector/epinephrine = 1,\
 	/obj/item/device/analyzer/healthanalyzer)

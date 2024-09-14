@@ -1,4 +1,5 @@
 //Contains medical reagents / drugs.
+//Dr. Cogwerks did a lot of the Star Trek Space Drug -> Real Drug Conversions
 
 ABSTRACT_TYPE(/datum/reagent/medical)
 
@@ -8,6 +9,9 @@ datum
 			name = "medical thing"
 			viscosity = 0.1
 
+		//seems silly but reading the star trek wiki (lol) this apparently knocked out McCoy and helped with brain healing, so
+		//a brain damage chem that puts you into a coma but fixes your brain damage + a rename may make this pointful
+		//but that's just my opinion buzz buzz buzz - bob
 		medical/lexorin // COGWERKS CHEM REVISION PROJECT. this is a totally pointless reagent
 			name = "lexorin"
 			id = "lexorin"
@@ -39,7 +43,7 @@ datum
 				..()
 				return
 
-
+		//generic antibiotics
 		medical/spaceacillin
 			name = "spaceacillin"
 			id = "spaceacillin"
@@ -60,12 +64,13 @@ datum
 				..()
 				return
 
+		//when we have pain, this will be great to have. for now it's just kinda grify
 		medical/morphine // // COGWERKS CHEM REVISION PROJECT. roll the antihistamine effects into this?
 			name = "morphine"
 			id = "morphine"
 			description = "A strong but highly addictive opiate painkiller with sedative side effects."
 			reagent_state = LIQUID
-			fluid_r = 169
+			fluid_r = 241
 			fluid_g = 251
 			fluid_b = 251
 			transparency = 30
@@ -80,14 +85,14 @@ datum
 				counter = 1
 */
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -3)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
@@ -96,22 +101,51 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				if(!counter) counter = 1
-				M.jitteriness = max(M.jitteriness-25,0)
-				if(M.hasStatus("stimulants"))
-					M.changeStatus("stimulants", -7.5 SECONDS * mult)
+				//don't do shit if there's naloxone in you
+				if(!holder.has_reagent("naloxone"))
+					M.jitteriness = max(M.jitteriness-25,0)
+					if(M.hasStatus("stimulants"))
+						M.changeStatus("stimulants", -7.5 SECONDS * mult)
 
-				switch(counter += 1 * mult)
-					if(1 to 15)
-						if(probmult(7)) M.emote("yawn")
-					if(16 to 35)
-						M.drowsyness  = max(M.drowsyness, 20)
-					if(36 to INFINITY)
-						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
-						M.drowsyness  = max(M.drowsyness, 20)
+					switch(counter += 1 * mult)
+						if(1 to 15)
+							if(probmult(7)) M.emote("yawn")
+						if(16 to 35)
+							M.drowsyness  = max(M.drowsyness, 20)
+						if(36 to INFINITY)
+							M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
+							M.drowsyness  = max(M.drowsyness, 20)
 
 				..()
 				return
 
+		//prevents morphine from working (specifically for stopping overdose condition)
+		medical/naloxone
+			name = "naloxone"
+			id = "naloxone"
+			description = "An opiate antagonist that immediately stops the effects of any opioid present in the blood."
+			reagent_state = LIQUID
+			fluid_r = 241
+			fluid_g = 241
+			fluid_b = 241
+			transparency = 40
+			value = 2
+
+			on_add()
+				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
+					var/mob/M = holder.my_atom
+					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+				return
+
+			on_remove()
+				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
+					var/mob/M = holder.my_atom
+					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -3)
+					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+				return
+
+		//knock people out, sure
 		medical/ether
 			name = "ether"
 			id = "ether"
@@ -162,7 +196,7 @@ datum
 				..()
 				return
 
-
+		//for gas station boner pills
 		medical/bonerjuice //probably moving this to medical
 			name = "siladenafil"
 			id = "bonerjuice"
@@ -246,9 +280,9 @@ datum
 				for(var/datum/ailment_data/disease/virus in M.ailments)
 					if(probmult(25) && istype(virus.master,/datum/ailment/disease/cold))
 						M.cure_disease(virus)
-					if(probmult(25) && istype(virus.master,/datum/ailment/disease/flu))
+					if(probmult(10) && istype(virus.master,/datum/ailment/disease/flu))
 						M.cure_disease(virus)
-					if(probmult(25) && istype(virus.master,/datum/ailment/disease/food_poisoning))
+					if(probmult(10) && istype(virus.master,/datum/ailment/disease/food_poisoning))
 						M.cure_disease(virus)
 				..()
 				return
@@ -278,7 +312,9 @@ datum
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 5 SECONDS * mult))
 						M.druggy ++
 
-
+		//quick body temperature fix
+		//might be good to have this more available in some way
+		//as well as physical implements to do the same thing (they'll work together well)
 		medical/teporone // COGWERKS CHEM REVISION PROJECT. marked for revision
 			name = "teporone"
 			id = "teporone"
@@ -304,6 +340,7 @@ datum
 				..()
 				return
 
+		//aspirin, basic painkiller
 		medical/salicylic_acid
 			name = "salicylic acid"
 			id = "salicylic_acid"
@@ -321,13 +358,10 @@ datum
 				if(!M) M = holder.my_atom
 				if(prob(55))
 					M.HealDamage("All", 2 * mult, 0)
-				if(M.bodytemperature > M.base_body_temp)
-					M.bodytemperature = max(M.base_body_temp, M.bodytemperature-(10 * mult))
-				// I only put this following bit because wiki claims it "attempts to return temperature to normal"
-				// Rather than the previous functionality of cooling down when hot
-				// No need to implement if the wiki is erronous here
-				if(M.bodytemperature < M.base_body_temp)
-					M.bodytemperature = min(M.base_body_temp, M.bodytemperature+(10 * mult))
+				//set it so it only slowly reduces mild fevers from disease and not, you know, burn victims
+				if(M.bodytemperature <= (M.base_body_temp + 5) && M.bodytemperature > M.base_body_temp) //42C/107.6F seems like a fair upper end to fever
+					M.bodytemperature = max(M.base_body_temp, M.bodytemperature-(0.25 * mult))
+				//reduce pain and headache
 				..()
 				return
 
@@ -341,6 +375,9 @@ datum
 					var/mob/M = holder.my_atom
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
+		//hmm. well.
+		//okay. maybe add some salbutamol style effects on the lungs on touch.
+		//vapo-rub style
 		medical/menthol
 			name = "menthol"
 			id = "menthol"
@@ -363,6 +400,10 @@ datum
 				..()
 				return
 
+		//snake oil stuff... IN SPACE
+		//chelates and purges while also doing major damage
+		//quack medicine
+		//need a good proper equivalent (physical device? dialysis?)
 		medical/calomel // COGWERKS CHEM REVISION PROJECT. marked for revision. should be a chelation agent
 			name = "calomel"
 			id = "calomel"
@@ -411,7 +452,7 @@ datum
 					M.take_toxin_damage(2)
 				return  */
 
-
+		//pretty sure the whole purpose is a joke to put in spaced rum (which is itself mostly associated with the hop fucking off the station, making that much easier without a space suit)
 		medical/yobihodazine // COGWERKS CHEM REVISION PROJECT. probably just a magic drug, i have no idea what this is supposed to be
 			name = "yobihodazine"
 			id = "yobihodazine"
@@ -438,6 +479,9 @@ datum
 				..()
 				return
 
+		//genericized and readily-integrated flesh in paste form (chump spackle)
+		//great for healing deep wounds and brute/burn damage
+		//does nothing for tox and little for bleeding
 		medical/synthflesh
 			name = "synthetic flesh"
 			id = "synthflesh"
@@ -457,11 +501,11 @@ datum
 
 				if(method == TOUCH)
 					. = 0
-					M.HealDamage("All", volume_passed * 1.5, volume_passed * 1.5)
+					M.HealDamage("All", volume_passed * 2, volume_passed * 2)
 					if (isliving(M))
 						var/mob/living/H = M
 						if (H.bleeding)
-							repair_bleeding_damage(H, 80, 2)
+							repair_bleeding_damage(H, 20, 1)
 
 					var/silent = 0
 					if (length(paramslist))
@@ -495,7 +539,7 @@ datum
 					else
 						for(var/mob/V in AIviewers(O, null)) V.show_message(text("<span class='alert'>The solution fails to cling to [].</span>", O), 1)*/
 
-
+		//wakeup juice, neural stimulants vs cardiac stimulants
 		medical/synaptizine // COGWERKS CHEM REVISION PROJECT. remove this, make epinephrine (epinephrine) do the same thing
 			name = "synaptizine"
 			id = "synaptizine"
@@ -622,6 +666,8 @@ datum
 						M.dizziness += 5
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 4 SECONDS * mult))
 
+		//quick and dirty stabilizer, works great if you don't have blood to transfuse
+		//also yeah should be good to clean wounds and reduce chances of infection (along with antibiotics)
 		medical/saline // COGWERKS CHEM REVISION PROJECT. magic drug, ought to use plasma or something
 			name = "saline-glucose solution"
 			id = "saline"
@@ -648,6 +694,9 @@ datum
 				..()
 				return
 
+		//this is more of a long term antiradiation drug
+		//need Magic Medicine to treat active radiation
+		//maybe a device also
 		medical/anti_rad // COGWERKS CHEM REVISION PROJECT. replace with potassum iodide
 			name = "potassium iodide"
 			id = "anti_rad"
@@ -677,6 +726,7 @@ datum
 				..()
 				return
 
+		//wake up you bum
 		medical/smelling_salt
 			name = "ammonium bicarbonate"
 			id = "smelling_salt"
@@ -727,6 +777,7 @@ datum
 				..()
 				return
 
+		//eye fix medication
 		medical/oculine // COGWERKS CHEM REVISION PROJECT. probably a magic drug, maybe ought to involve atropine
 			name = "oculine"
 			id = "oculine"
@@ -770,6 +821,8 @@ datum
 				..()
 				return
 
+		//antipsychotic with heavy sedative properties
+		//put someone to sleep and also deal with some space maladies
 		medical/haloperidol // COGWERKS CHEM REVISION PROJECT. ought to be some sort of shitty illegal opiate or hypnotic drug
 			name = "haloperidol"
 			id = "haloperidol"
@@ -837,7 +890,9 @@ datum
 				..()
 				return
 
-		medical/epinephrine // COGWERKS CHEM REVISION PROJECT. Could be Epinephrine instead
+		//adrenaline what perks you up
+		//you ever see pulp fiction?
+		medical/epinephrine
 			name = "epinephrine"
 			id = "epinephrine"
 			description = "Epinephrine is a potent neurotransmitter, used in medical emergencies to halt anaphylactic shock and prevent cardiac arrest."
@@ -904,6 +959,8 @@ datum
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 4 SECONDS * mult))
 					if (effect <= 15) M.emote("collapse")
 
+		//make that blood flow more
+		//for better or worse
 		medical/heparin
 			name = "heparin"
 			id = "heparin"
@@ -958,7 +1015,9 @@ datum
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
 						bleed(M, rand(1,2) * mult, 1 * mult)
 
-		medical/proconvertin // old name for factor VII, which is a protein that causes blood to clot. this stuff is seemingly just used for people with hemophilia but this is ss13 so let's give it to everybody who's bleeding a little, it's fine.
+		// old name for factor VII, which is a protein that causes blood to clot.
+		//this stuff is seemingly just used for people with hemophilia but this is ss13 so let's give it to everybody who's bleeding a little, it's fine.
+		medical/proconvertin
 			name = "proconvertin"
 			id = "proconvertin"
 			description = "A protein that causes blood to begin clotting, which can be useful in cases of uncontrollable bleeding, but it may also cause dangerous blood clots to form."
@@ -980,6 +1039,7 @@ datum
 				..()
 				return
 
+		//grow new blood
 		medical/filgrastim // used to stimulate the body to produce more white blood cells. here, it will make you make more blood. this is good if you are losing a lot of blood and bad if you already have all your blood
 			name = "filgrastim"
 			id = "filgrastim"
@@ -1024,6 +1084,8 @@ datum
 
 			// od effects: coughing up blood, damage to lungs (the alveoli specifically) so some oxy damage/losebreath
 
+		//remove sugar, prevent hyperglycema
+		//that's about it
 		medical/insulin // COGWERKS CHEM REVISION PROJECT. does Medbay have this? should be in the medical vendor
 			name = "insulin"
 			id = "insulin"
@@ -1044,6 +1106,8 @@ datum
 				..()
 				return
 
+		//anti burn/pain relief/topical antibiotic
+		//should reduce infection chance
 		medical/silver_sulfadiazine // COGWERKS CHEM REVISION PROJECT. marked for revision
 			name = "silver sulfadiazine"
 			id = "silver_sulfadiazine"
@@ -1092,7 +1156,9 @@ datum
 						M.take_toxin_damage(volume_passed/2)
 						M.add_karma(0.5)
 
-
+		//deactivates mutations (need to determine what's truly a mutation and what's just normal genetics)
+		//could say this has a limited baseline genetic reference or template that it applies, and anything not covered by the template is ignored
+		//boom
 		medical/mutadone // COGWERKS CHEM REVISION PROJECT. - marked for revision. Magic bullshit chem, ought to be related to mutagen somehow
 			name = "mutadone"
 			id = "mutadone"
@@ -1130,6 +1196,10 @@ datum
 				if (DNA.endurance < 0 && prob(50))
 					DNA.endurance++
 
+		//could probably make this more common and useful for colds
+		//treats low blood pressure under anesthetic, also bronchodilator (epinephrine and ephedrine do this too)
+		//broncodilation could make lungs work better (like the TEG efficiency var maybe), colds and pollutants make it worse
+		//who knows. we'll see
 		medical/ephedrine // COGWERKS CHEM REVISION PROJECT. poor man's epinephrine
 			name = "ephedrine"
 			id = "ephedrine"
@@ -1200,7 +1270,9 @@ datum
 					if (effect <= 15)
 						M.take_toxin_damage(1 * mult)
 
-
+		//good for chelation
+		//bad for education
+		//clears radiation and heals toxin damage
 		medical/penteticacid // COGWERKS CHEM REVISION PROJECT. should be a potent chelation agent, maybe roll this into tribenzocytazine as Pentetic Acid
 			name = "pentetic acid"
 			id = "penteticacid"
@@ -1230,6 +1302,10 @@ datum
 				..()
 				return
 
+		//standard antihistamine/allergic reaction thing
+		//like a less-good but less-drastic epinephrine
+		//makes you sleepier (as opposed to epinephrine adrenalin hit)
+		//hat man
 		medical/antihistamine
 			name = "diphenhydramine"
 			id = "antihistamine"
@@ -1267,9 +1343,15 @@ datum
 					M.setStatus("stunned", max(M.getStatusDuration("stunned"), 3 SECONDS * mult))
 					M.drowsyness += 1
 					M.visible_message("<span class='notice'><b>[M.name]<b> looks a bit dazed.</span>")
+					if(prob(10))
+						boutput(M, "<span class='alert'>You feel like you're being watched by some odd fellow wearing a hat...</span>")
 				..()
 				return
 
+		//basic topical anticoagulant
+		//hemostatic/antihemorrhagic, but not a coagulant
+		//this means: stops bleeding on application by constricting blood vessels but doesn't promote clotting
+		//for now heals brute damage because aside from synthflesh there's not much that deals with deep wounds
 		medical/styptic_powder // // COGWERKS CHEM REVISION PROJECT. marked for revision
 			name = "styptic powder"
 			id = "styptic_powder" // HOW FUCKING LONG WAS THIS MISSPELLED AS stypic_powder AND WHY DID IT TAKE ME TWO YEARS TO NOTICE?! *SCREAM
@@ -1301,7 +1383,7 @@ datum
 				if(method == TOUCH)
 					. = 0
 					M.HealDamage("All", volume_passed, 0)
-					M.HealBleeding(max(volume_passed,5)) // At least implement your stuff properly first, thanks. Styptic also shouldn't be as good as synthflesh for healing bleeding.
+					M.HealBleeding(max(volume_passed,5))
 
 					/*for(var/A in M.organs)
 						var/obj/item/affecting = null
@@ -1312,9 +1394,9 @@ datum
 
 					var/mob/living/L = M
 					if (L.bleeding == 1)
-						repair_bleeding_damage(L, 50, 1)
+						repair_bleeding_damage(L, 80, 1)
 					else
-						repair_bleeding_damage(L, 5, 1)
+						repair_bleeding_damage(L, 40, 1)
 						//H.bleeding = min(H.bleeding, rand(0,5))
 
 					var/silent = 0
@@ -1327,6 +1409,7 @@ datum
 							boutput(M, "<span class='notice'>The styptic powder stings like hell as it closes some of your wounds.</span>")
 							M.emote("scream")
 					M.UpdateDamageIcon()
+				//don't eat this
 				else if(method == INGEST)
 					boutput(M, "<span class='alert'>You feel gross!</span>")
 					if (volume_passed > 0)
@@ -1335,6 +1418,10 @@ datum
 							var/mob/living/L = M
 							L.contract_disease(/datum/ailment/malady/bloodclot,null,null,1)
 
+		//cryo, bacta, whatever
+		//deep immersion, slower but complete fix for all kinds of deep tissue damage
+		//made it slower so you can't just pop people in and out like an assembly line
+		//must stabilize before going in, etc.
 		medical/cryoxadone // COGWERKS CHEM REVISION PROJECT. magic drug, but isn't working right correctly
 			name = "cryoxadone"
 			id = "cryoxadone"
@@ -1364,13 +1451,15 @@ datum
 					if(M.get_oxygen_deprivation())
 						M.take_oxygen_deprivation(-10 * mult)
 					if(M.get_toxin_damage())
-						M.take_toxin_damage(-3 * mult)
+						M.take_toxin_damage(-1 * mult)
+					//this might be a little too magic, but wait until we have an actual braindamage medication to turn this part off
+					//compromise: prevent brain damage from being taken while this is good
 					if (M.get_brain_damage())
-						M.take_brain_damage(-2 * mult)
-					M.HealDamage("All", 12 * mult, 12 * mult)
+						M.take_brain_damage(-1 * mult)
+					M.HealDamage("All", 3 * mult, 3 * mult)
 					M.updatehealth() //I hate this, but we actually need the health on time here.
 					if(M.health > health_before)
-						var/increase = min((M.health - health_before)/37*25,25) //12+12+3+10 = 37 health healed possible, 25 max temp increase possible
+						var/increase = min((M.health - health_before)/17*25,25) //3+3+1+10 = 17 health healed possible, 25 max temp increase possible
 						M.bodytemperature = min(M.bodytemperature+increase,M.base_body_temp)
 
 					if (ishuman(M))
@@ -1380,6 +1469,9 @@ datum
 
 				..()
 
+		//treats bradycardia by increasing the heart rate.
+		//from medical literature i see atropine (0.5mg+) is safer and epinephrine is more dramatic and has more side effects?
+		//this is the opposite from what i tend to see in medbay
 		medical/atropine // COGWERKS CHEM REVISION PROJECT. i dunno what the fuck this would be, probably something bad. maybe atropine?
 			name = "atropine"
 			id = "atropine"
@@ -1441,7 +1533,9 @@ datum
 				..()
 				return
 
-		medical/salbutamol // COGWERKS CHEM REVISION PROJECT. marked for revision. Could be Dexamesathone
+		//while this can be administered by pill and IV in medical settings, usually you see this in inhalers
+		//i've made the autoinjector a multiuse inhaler just to see how that works out
+		medical/salbutamol
 			name = "salbutamol"
 			id = "salbutamol"
 			description = "Salbutamol is a common bronchodilation medication for asthmatics. It may help with other breathing problems as well."
@@ -1482,6 +1576,8 @@ datum
 								H.organHolder.damage_organ(0, 0, severity*mult, "left_kidney")
 				..(severity, M)
 
+		//this is fine, this is what ed harris breathes
+		//might have a good application if we make a sea map, deep sea suits can use this (lest they implode)
 		medical/perfluorodecalin
 			name = "perfluorodecalin"
 			id = "perfluorodecalin"
@@ -1512,6 +1608,9 @@ datum
 				..()
 				return
 
+		//ideally this prevents accumulation of further brain damage instead of healing it
+		//specifically, brain damage from fever and psychic damage or whatever instead of oxygen deprevation (cardiovascular problems)
+		//then we can have some other medication for actually healing brain damage, potentially with synthflesh as a precursor reagent
 		medical/mannitol
 			name = "mannitol"
 			id = "mannitol"
@@ -1530,6 +1629,8 @@ datum
 				..()
 				return
 
+		//treats/neutralizes the poisons (and more or less everything else) but not necessarily the damage
+		//might need an actual anti-tox drug again that heals the damage but does nothing about reagents
 		medical/charcoal
 			name = "charcoal"
 			id = "charcoal"
@@ -1574,7 +1675,9 @@ datum
 				if(P.reagents.has_reagent("radium"))
 					P.reagents.remove_reagent("radium", 2)
 
-		medical/antihol // COGWERKS CHEM REVISION PROJECT. maybe a diuretic or some sort of goofy common hangover cure
+		//Maybe we'll have an official medical reagent, maybe call it something like cambrol
+		//Otherwise make other reagents counteract drunkenness rather than mix into antihol
+		medical/antihol
 			name = "antihol"
 			id = "antihol"
 			description = "A medicine which quickly eliminates alcohol in the body."
@@ -1593,6 +1696,7 @@ datum
 				..()
 				return
 
+		//make u toss ur cookies
 		medical/ipecac
 			name = "space ipecac"
 			id = "ipecac"
@@ -1618,6 +1722,7 @@ datum
 				..()
 				return
 
+		//okay sure, the cure for zombies
 		medical/necrovirus_cure // Necrotic Degeneration
 			name = "necrovirus_cure"
 			id = "necrovirus_cure"

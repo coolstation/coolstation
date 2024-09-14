@@ -17,6 +17,7 @@
 	var/image/fluid_image
 	var/empty = 0
 	var/label = "orange" // colors available as of the moment: orange, red, blue, green, yellow, purple, black, white, big red
+	var/inhaled = FALSE //hey is this an inhaler, well, now context changes
 	hide_attack = 2
 
 	on_reagent_change()
@@ -26,11 +27,12 @@
 		src.underlays = null
 		if (reagents.total_volume)
 			icon_state = "emerg_inj-[label]"
-			var/datum/color/average = reagents.get_average_color()
-			if (!src.fluid_image)
-				src.fluid_image = image(src.icon, "emerg_inj-fluid", -1)
-			src.fluid_image.color = average.to_rgba()
-			src.underlays += src.fluid_image
+			if (!src.inhaled)
+				var/datum/color/average = reagents.get_average_color()
+				if (!src.fluid_image)
+					src.fluid_image = image(src.icon, "emerg_inj-fluid", -1)
+				src.fluid_image.color = average.to_rgba()
+				src.underlays += src.fluid_image
 		else
 			icon_state = "emerg_inj-[label]0"
 		item_state = "emerg_inj-[label]"
@@ -38,16 +40,21 @@
 	attack(mob/M as mob, mob/user as mob)
 		if (iscarbon(M) || ismobcritter(M))
 			if (src.empty || !src.reagents)
-				boutput(user, "<span class='alert'>There's nothing to inject, [src] has already been expended!</span>")
+				boutput(user, "<span class='alert'>There's nothing left in [src]!</span>")
 				return
 			else
 				if (!M.reagents)
 					return ..()
 				logTheThing("combat", user, M, "injects [constructTarget(M,"combat")] with [src] [log_reagents(src)]")
 				src.reagents.trans_to(M, amount_per_transfer_from_this)
-				user.visible_message("<span class='alert'>[user] injects [M == user ? himself_or_herself(user) : M] with [src]!</span>",\
-				"<span class='alert'>You inject [M == user ? "yourself" : M] with [src]!</span>")
-				playsound(M, "sound/items/hypo.ogg", 40, 0)
+				if (inhaled)
+					user.visible_message("<span class='alert'>[user] [M == user ? "inhales" : "makes [M] inhale"] [src]!</span>",\
+					"<span class='alert'>You [M == user ? "" : "make [M]"] inhale [src]!</span>")
+					playsound(M, "sound/effects/spray2.ogg", 40, 0.2)
+				else
+					user.visible_message("<span class='alert'>[user] injects [M == user ? himself_or_herself(user) : M] with [src]!</span>",\
+					"<span class='alert'>You inject [M == user ? "yourself" : M] with [src]!</span>")
+					playsound(M, "sound/items/hypo.ogg", 40, 0)
 				if(!src.reagents.total_volume)
 					src.empty = 1
 				return
@@ -65,9 +72,14 @@
 					return ..()
 				logTheThing("combat", user, null, "injects themself with [src] [log_reagents(src)]")
 				src.reagents.trans_to(user, amount_per_transfer_from_this)
-				user.visible_message("<span class='alert'>[user] injects [himself_or_herself(user)] with [src]!</span>",\
-				"<span class='alert'>You inject yourself with [src]!</span>")
-				playsound(user, "sound/items/hypo.ogg", 40, 0)
+				if (inhaled)
+					user.visible_message("<span class='alert'>[user] inhales [src]!</span>",\
+					"<span class='alert'>You inhale [src]!</span>")
+					playsound(user, "sound/effects/spray2.ogg", 40, 0.2)
+				else
+					user.visible_message("<span class='alert'>[user] injects [himself_or_herself(user)] with [src]!</span>",\
+					"<span class='alert'>You inject yourself with [src]!</span>")
+					playsound(user, "sound/items/hypo.ogg", 40, 0)
 				if(!src.reagents.total_volume)
 					src.empty = 1
 				return
@@ -133,9 +145,13 @@
 	label = "blue"
 
 /obj/item/reagent_containers/emergency_injector/salbutamol
-	name = "emergency auto-injector (salbutamol)"
+	name = "emergency inhaler (salbutamol)"
 	initial_reagents = "salbutamol"
-	label = "blue"
+	label = "blueinh"
+	inhaled = TRUE
+	//multiple smaller honks
+	initial_volume = 40
+	amount_per_transfer_from_this = 5
 
 /obj/item/reagent_containers/emergency_injector/perf
 	name = "emergency auto-injector (perfluorodecalin)"
@@ -186,6 +202,14 @@
 	name = "emergency auto-injector (morphine)"
 	initial_reagents = "morphine"
 	label = "purple"
+
+/obj/item/reagent_containers/emergency_injector/naloxone
+	name = "emergency inhaler (naloxone)"
+	initial_reagents = "naloxone"
+	label = "redinh"
+	inhaled = TRUE
+	initial_volume = 20
+	amount_per_transfer_from_this = 20
 
 /obj/item/reagent_containers/emergency_injector/random
 	name = "emergency auto-injector (???)"

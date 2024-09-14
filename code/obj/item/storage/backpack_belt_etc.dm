@@ -603,7 +603,7 @@
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/five, /obj/item/stackable_ammo/pistol/NT/three)
 
 	support
-		spawn_contents = list(/obj/item/baton, /obj/item/reagent_containers/food/snacks/donut/custom/robust = 2,  /obj/item/reagent_containers/emergency_injector/morphine = 4)
+		spawn_contents = list(/obj/item/baton, /obj/item/reagent_containers/food/snacks/donut/custom/robust = 1,  /obj/item/reagent_containers/emergency_injector/morphine = 3, /obj/item/reagent_containers/emergency_injector/naloxone = 2)
 
 	control
 		spawn_contents = list(/obj/item/gun/modular/NT/long,
