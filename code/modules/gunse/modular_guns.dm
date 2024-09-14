@@ -118,10 +118,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	New()
 		..()
 		make_parts()
-		if (!no_build || parts.len) //need to revisit
-			build_gun()
-		else
+		if (no_build) //need to revisit
 			reset_gun()
+		else
+			build_gun()
+
 
 /obj/item/gun/modular/proc/make_parts()
 	return
@@ -972,35 +973,47 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	real_name = "abstract NT gun"
 	desc = "You're not supposed to see this, call a coder or whatever."
 	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
-	action = "striker"
+	action = "single"
 	gun_DRM = GUN_NANO
 	spread_angle = 7
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "nt_short" //or nt_long
-	barrel_overlay_x = BARREL_OFFSET_SHORT
-	grip_overlay_x = GRIP_OFFSET_SHORT
-	stock_overlay_x = STOCK_OFFSET_SHORT
 	var/electrics_intact = TRUE //the grody autoloading ID locked snitchy smart gun parts that are just begging to be microwaved, emagged, or simply pried and cut out
 
-//short receiver, by itself
+
+ABSTRACT_TYPE(/obj/item/gun/modular/NT/short)
 /obj/item/gun/modular/NT/short
 	name = "\improper NT pistol receiver"
 	real_name = "\improper NT pistol"
 	desc = "A basic, Nanotrasen-licensed single-shot weapon."
+	icon_state = "nt_short" //or nt_long
+	barrel_overlay_x = BARREL_OFFSET_SHORT
+	grip_overlay_x = GRIP_OFFSET_SHORT
+	stock_overlay_x = STOCK_OFFSET_SHORT
+
+	//short receiver, by itself and unbuilt
+	receiver
+		no_build = TRUE
 
 //long receiver, by itself
 //eventually be able to convert between long and short?
+ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 /obj/item/gun/modular/NT/long
 	name = "\improper NT rifle receiver"
 	real_name = "\improper NT rifle"
 	desc = "A mostly reliable, autoloading Nanotrasen-licensed and corporate security-issued weapon."
 	cartridge_length = 40
 	max_ammo_capacity = 2 //built in small loader
+	action = "autoloader"
 	icon_state = "nt_long"
 	grip_overlay_x = GRIP_OFFSET_BULLPUP
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_BULLPUP
 	bullpup_stock = 1 //for the overlay
+
+	//long receiver, by itself and unbuilt
+	receiver
+		no_build = TRUE
 
 	//this operates like a shitty electric motor loading glock or something
 	//"but but don't we need a power cell or something" it's got integrated batteries that'll last a month in the receiver don't worry about it

@@ -1982,8 +1982,8 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 1, cost = PAY_TRADESMAN*1.5)
 		//DIY section
 		//receivers
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short, 2, cost = PAY_TRADESMAN/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/receiver, 2, cost = PAY_TRADESMAN/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/receiver, 2, hidden=1, cost = PAY_TRADESMAN)
 		//partse
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT, 5, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 5, cost = PAY_UNTRAINED*1.1)
