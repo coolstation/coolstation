@@ -71,7 +71,16 @@
 	anchored = 1
 	density = 1
 	directwired = 1
-	processing_tier = PROCESSING_32TH // Uncomment this and line 175 for an experimental optimization
+
+	//2024-9-14: commented this processing_tier out because solar panels need to proc add_avail() at the same frequency as powernets proc reset()
+	//What would happen is solars output would be erratic because different amounts of panels processed over time (in a cycle), so you'd get an input
+	//at the SMES like (for example) 8kW -> 9kW -> 56kW -> 2 kW -> 8kW repeating
+	//and since SMESes don't charge unless given a decently stable input over a few cycles, they wouldn't charge worth anything.
+
+	//BTW I think "line 175" refers to the [sgen *= PROCESSING_TIER_MULTI(src)] line below, but by the time of open source goon it was already pointing elsewhere
+
+	//processing_tier = PROCESSING_32TH // Uncomment this and line 175 for an experimental optimization
+
 	power_usage = 10
 	var/health = 10.0
 	var/id = 1
@@ -181,7 +190,7 @@
 
 	if(adir != ndir)
 		var/old_adir = adir
-		var/max_move = rand(8, 12)
+		var/max_move = rand(0.25, 0.375) * PROCESSING_TIER_MULTI(src) //was between 8,12 when these were on PROCESSING_32TH, this should be equivalent without speeding them up
 		adir = (360 + adir + clamp(ndir - adir, -max_move, max_move)) % 360
 		if(adir != old_adir)
 			use_power(power_usage)

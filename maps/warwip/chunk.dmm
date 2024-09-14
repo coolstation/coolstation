@@ -10948,6 +10948,10 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/solar_control/small_backup1,
 /turf/floor/plating/airless,
 /area/space)
 "kVy" = (
@@ -24312,6 +24316,18 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"yiB" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/solar/small_backup1,
+/obj/cable,
+/turf/floor/airless/solar,
+/area/station/solar/small_backup1)
 "yiU" = (
 /obj/machinery/chem_dispenser/soda,
 /obj/machinery/camera{
@@ -94705,9 +94721,9 @@ wJD
 wJD
 uoQ
 uoQ
-bzW
-wJD
-xxO
+sXw
+vBY
+yiB
 toM
 huZ
 huZ
@@ -95007,7 +95023,7 @@ uoQ
 uoQ
 uoQ
 uoQ
-fDn
+vFh
 huZ
 xxO
 huZ
@@ -95309,7 +95325,7 @@ lIK
 clM
 unr
 oql
-fDn
+vFh
 huZ
 xxO
 huZ

@@ -3275,6 +3275,8 @@ var/global/noir = 0
 						src.owner:show_proc_list(null)
 					if("valiant")
 						valiant_controls?.debug_panel()
+					if("sun_solar") //tired of having to dig the global vars for this fucker
+						src.owner:debug_variables(sun)
 			else
 				alert("You need to be at least a Coder to use debugging secrets.")
 
@@ -4249,6 +4251,7 @@ var/global/noir = 0
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=sun_solar'>Sun</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=world'>World</A>
