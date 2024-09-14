@@ -3135,6 +3135,17 @@
 	dir = 4
 	},
 /area/station/security/brig/north_side)
+"cyf" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/submachine/chef_sink/chem_sink{
+	pixel_y = 8
+	},
+/turf/floor,
+/area/station/medical/medbay/treatment1)
 "cyj" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
@@ -4739,6 +4750,9 @@
 "dyv" = (
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/submachine/chef_sink/chem_sink{
+	pixel_y = 8
 	},
 /turf/floor/grey,
 /area/station/medical/robotics)
@@ -6436,6 +6450,9 @@
 "eOa" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/submachine/chef_sink/chem_sink{
+	pixel_y = 8
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "eOc" = (
@@ -11441,6 +11458,13 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/farmers)
+"iBM" = (
+/obj/submachine/chef_sink/chem_sink{
+	dir = 4;
+	pixel_x = -4
+	},
+/turf/floor/white,
+/area/station/medical/medbay)
 "iCi" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -19426,6 +19450,7 @@
 	},
 /obj/machinery/power/apc/autoname_west,
 /obj/machinery/light/fluorescent,
+/obj/stool/chair/comfy/wheelchair,
 /turf/floor/bluewhite{
 	dir = 10
 	},
@@ -25595,7 +25620,8 @@
 /area/station/engine/engineering)
 "tyT" = (
 /obj/submachine/chef_sink{
-	dir = 4
+	dir = 4;
+	name = "bathroom sink"
 	},
 /turf/floor/sanitary/blue,
 /area/station/medical/medbay/restroom)
@@ -26700,8 +26726,13 @@
 /turf/floor/grey,
 /area/station/chapel/sanctuary)
 "uqK" = (
-/obj/stool/chair/comfy/wheelchair,
 /obj/machinery/light/fluorescent,
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 4;
+	name = "utility sink"
+	},
 /turf/floor/bluewhite{
 	dir = 10
 	},
@@ -65596,7 +65627,7 @@ bwm
 gKU
 bGg
 jXV
-pjb
+iBM
 lRk
 cqC
 cqC
@@ -66811,7 +66842,7 @@ nWt
 csh
 sAz
 sAz
-eij
+cyf
 oHj
 sAz
 cau
