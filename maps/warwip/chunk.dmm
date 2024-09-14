@@ -14302,6 +14302,9 @@
 /area/station/maintenance/disposal)
 "ovY" = (
 /obj/disposalpipe/segment/vertical,
+/obj/machinery/recharger/wall{
+	pixel_x = 28
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "owr" = (
@@ -15621,6 +15624,13 @@
 "pAB" = (
 /turf/space,
 /area/shuttle/cargo/station)
+"pAM" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/recharger/wall{
+	pixel_y = 24
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "pAN" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -72065,7 +72075,7 @@ lLb
 uVq
 dar
 vCW
-cQs
+pAM
 kII
 ifm
 ifm
