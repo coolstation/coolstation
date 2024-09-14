@@ -60,9 +60,9 @@
 /// when pcount is above this number on game load, dont generate lighting surrounding the station because it lags the map to heck
 #define OSHAN_LIGHT_OVERLOAD 18
 /// whenn pcount is >= this number, slow Life() processing a bit
-#define SLOW_LIFE_PLAYERCOUNT 65
+#define SLOW_LIFE_PLAYERCOUNT 30
 /// whenn pcount is >= this number, slow Life() processing a lot
-#define SLOWEST_LIFE_PLAYERCOUNT 85
+#define SLOWEST_LIFE_PLAYERCOUNT 50
 
 //Define clientside tick lag seperately from world.tick_lag
 //'cause smoothness looks good.
