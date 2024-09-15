@@ -944,8 +944,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Efficiently alerts your squadron within miliseconds of target engagement, using cutting edge over-the-airwaves technology"
 	call_on_fire = 1
 	name_addition = "tactical"
-	icon = 'icons/obj/instruments.dmi'
-	icon_state = "bike_horn"
+	icon_state = "alerter"
 
 	on_fire()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)

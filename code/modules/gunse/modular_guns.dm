@@ -652,9 +652,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				else
 					//Electronic, Computer, Hard Drive - 1990s Compaq Hard Drive, Spooling Up, Turning Off.wav by jaegrover -- https://freesound.org/s/262870/ -- License: Creative Commons 0
 					if (crank_channel)
-						playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel, repeat = TRUE)
+						playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
 					else
-						crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), repeat = TRUE, returnchannel = TRUE)
+						crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
 			else
 				//need a good *sproing* noise
 				crank_level = 0
@@ -724,9 +724,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			else //no, still going, but at a new and slower speed
 				//Electronic, Computer, Hard Drive - 1990s Compaq Hard Drive, Spooling Up, Turning Off.wav by jaegrover -- https://freesound.org/s/262870/ -- License: Creative Commons 0
 				if (crank_channel)
-					playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel, repeat = TRUE)
+					playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
 				else
-					crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), repeat = TRUE, returnchannel = TRUE)
+					crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
 		else
 			flashbulb_health = max(0,(flashbulb_health - crank_level - (0.5 * (max(0,max_crank_level - crank_level))))) //subtract cranks from life, cranks over max crank level are cranks and a half for bulb lifetime purposes
 			crank_level = 0 // reset
@@ -926,9 +926,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.65 + (crank_level * 0.02)))
 			//Electronic, Computer, Hard Drive - 1990s Compaq Hard Drive, Spooling Up, Turning Off.wav by jaegrover -- https://freesound.org/s/262870/ -- License: Creative Commons 0
 			if (crank_channel)
-				playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel, repeat = TRUE)
+				playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
 			else
-				crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), repeat = TRUE, returnchannel = TRUE)
+				crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
 			currently_cranking_off = FALSE
 
 			return
