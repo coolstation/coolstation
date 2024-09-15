@@ -997,7 +997,7 @@ obj/trait/pilot
 	icon_state = "jail"
 	points = 0
 	isPositive = 0
-
+/*
 /obj/trait/clericalerror
 	name = "Clerical Error (0)"
 	cleanName = "Clerical Error"
@@ -1006,7 +1006,7 @@ obj/trait/pilot
 	icon_state = "spellingerror"
 	points = 0
 	isPositive = 1
-
+*/
 /obj/trait/chemresist
 	name = "Chem resistant (-2)"
 	cleanName = "Chem resistant"
