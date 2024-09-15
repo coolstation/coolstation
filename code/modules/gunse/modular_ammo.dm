@@ -839,7 +839,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/storage/box/foss_gun_kit
 	name = "Syndicate Gun Kit"
 	icon_state = "foss_gun"
-	spawn_contents = list(/obj/item/gun/modular/foss, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
+	spawn_contents = list(/obj/item/gun/modular/foss/standard, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 	make_my_stuff()
 		..()
 		if (prob(50))
