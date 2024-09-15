@@ -1,3 +1,11 @@
+//here's where all the shit that jobs start with are defined
+//starting gear, access, special handling, etc.
+
+//added two defines for this
+//NO_START_JOBGEAR_MAP: handles gear: if you don't want everyone already loaded up with all their job gear ready to go
+//NO_DEPARTMENT_START_MAP: handles spawn location and uniform: if you don't want everyone spawning directly in departments dressed like they're already at work
+//these can be combined
+
 /datum/job/
 	var/name = null
 	var/list/alias_names = null
@@ -172,10 +180,18 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_card = /obj/item/card/id/gold
 	slot_belt = list(/obj/item/device/pda2/captain)
 	slot_back = list(/obj/item/storage/backpack/captain)
+#ifdef NO_START_JOBGEAR_MAP
+	//no armor, get it from your locker
+	slot_jump = list(/obj/item/clothing/under/rank/captain)
+#elif defined(NO_DEPARTMENT_START_MAP)
+	//start cap in bed
+	slot_jump = list(/obj/item/clothing/under/gimmick/pajamas)
+#else
 	slot_jump = list(/obj/item/clothing/under/rank/captain)
 	slot_suit = list(/obj/item/clothing/suit/armor/captain)
-	slot_foot = list(/obj/item/clothing/shoes/swat)
+#endif
 	slot_head = list(/obj/item/clothing/head/caphat)
+	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
 	slot_ears = list(/obj/item/device/radio/headset/command/captain)
 	slot_poc1 = list(/obj/item/disk/data/floppy/read_only/authentication)
@@ -187,6 +203,13 @@ ABSTRACT_TYPE(/datum/job/command)
 	New()
 		..()
 		src.access = get_all_accesses()
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.show_text("<b>You're the Captain! You're nominally in charge here. Generally, make sure the station is not blowing up and keep up morale. Set a good example! Without you, the whole station would be lost and directionless!</b>", "blue")
+		return
 
 	derelict
 		//name = "NT-SO Commander"
@@ -220,27 +243,29 @@ ABSTRACT_TYPE(/datum/job/command)
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
 
-
-#ifdef SUBMARINE_MAP
-	slot_suit = list(/obj/item/clothing/suit/armor/hopcoat)
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/device/pda2/heads)
 	slot_jump = list(/obj/item/clothing/under/suit/hop)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/command/hop)
 	items_in_backpack = list(/obj/item/device/flash,/obj/item/storage/box/accessimp_kit)
+//starting ready to go
+#ifdef NO_START_JOBGEAR_MAP
+	items_in_backpack = list(/obj/item/device/flash)
 #else
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/device/pda2/heads)
-	slot_jump = list(/obj/item/clothing/under/suit/hop)
-	slot_foot = list(/obj/item/clothing/shoes/brown)
-	slot_ears = list(/obj/item/device/radio/headset/command/hop)
 	items_in_backpack = list(/obj/item/device/flash,/obj/item/storage/box/accessimp_kit)
 #endif
 
 	New()
 		..()
 		src.access = get_access("Head of Personnel")
+		return
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.show_text("<b>You're the Head of Personnel! You're the Captain's number two. Mediate disputes between departments, assist with hiring, firing, basic non-departmental gear, and access changes. Without you, cross-departmental personnel matters would decrease the efficiency of station operations! (That's bad) </b>", "blue")
 		return
 
 /datum/job/command/head_of_security
@@ -259,6 +284,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	recieves_implant = /obj/item/implant/health/security/anti_insurgent
 	items_in_backpack = list(/obj/item/device/flash)
 
+	//hos can spawn with everything, no big deal
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/security/standard)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
@@ -282,6 +308,7 @@ ABSTRACT_TYPE(/datum/job/command)
 		M.traitHolder.addTrait("training_drinker")
 		M.traitHolder.addTrait("training_security")
 		JOB_XP(M, "Head of Security", 1)
+		M.show_text("<b>You're the Head of Security! Make sure the station is safe from damage and crime! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need (and aren't being too hard OR too soft!). Without your deparment, this place would descend into chaos!</b>", "blue")
 		//I took this stuff from the sec equipment vendor we're axing- Bat
 		var/obj/item/storage/belt/A = M.belt
 		SPAWN_DBG(2 DECI SECONDS) //ugh belts do this on spawn and we need to wait
@@ -324,20 +351,24 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/device/pda2/chiefengineer)
-	slot_glov = list(/obj/item/clothing/gloves/yellow)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
-	slot_head = list(/obj/item/clothing/head/helmet/hardhat)
-	slot_eyes = list(/obj/item/clothing/glasses/meson)
 	slot_jump = list(/obj/item/clothing/under/rank/chief_engineer)
 	slot_ears = list(/obj/item/device/radio/headset/command/ce)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/engineering)
 	items_in_backpack = list(/obj/item/device/flash, /obj/item/rcd_ammo/medium)
+#ifdef BOOTSTRAPPED_MAP
+	slot_eyes = list(/obj/item/clothing/glasses/meson)
+	slot_glov = list(/obj/item/clothing/gloves/yellow)
+	slot_head = list(/obj/item/clothing/head/helmet/hardhat)
+#endif
 
 	special_setup(var/mob/living/carbon/human/M)
 		..()
 		if (!M)
 			return
 		M.traitHolder.addTrait("training_engineer")
+		M.show_text("<b>You're the Chief Engineer! Make sure the station is powered and in working order! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need. Without your department, everyone would be suffocating in the dark!</b>", "blue")
+		return
 
 	New()
 		..()
@@ -374,11 +405,13 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_belt = list(/obj/item/device/pda2/research_director)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_jump = list(/obj/item/clothing/under/rank/research_director)
-	slot_suit = list(/obj/item/clothing/suit/labcoat)
-	slot_rhan = list(/obj/item/clipboard/with_pen)
-	slot_eyes = list(/obj/item/clothing/glasses/spectro)
 	slot_ears = list(/obj/item/device/radio/headset/command/rd)
 	items_in_backpack = list(/obj/item/device/flash)
+#ifdef BOOTSTRAPPED_MAP
+	slot_eyes = list(/obj/item/clothing/glasses/spectro)
+	slot_rhan = list(/obj/item/clipboard/with_pen)
+	slot_suit = list(/obj/item/clothing/suit/labcoat)
+#endif
 
 	New()
 		..()
@@ -394,6 +427,7 @@ ABSTRACT_TYPE(/datum/job/command)
 		if (istype(heisenbee) && !heisenbee.beeMom)
 			heisenbee.beeMom = M
 			heisenbee.beeMomCkey = M.ckey
+		M.show_text("<b>You're the Research Director! Make sure the station is properly doing science, especially for export! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need. Your department is the whole reason Nanotrasen is even out here!</b>", "blue")
 
 /datum/job/command/medical_director
 	name = "Medical Director"
@@ -424,6 +458,7 @@ ABSTRACT_TYPE(/datum/job/command)
 		if (!M)
 			return
 		M.traitHolder.addTrait("training_medical")
+		M.show_text("<b>You're the Medical Director! Make sure the station is in good health, or at least not dying! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need. Without your department, everyone would be a goner! You set the tone!</b>", "blue")
 
 /datum/job/command/quartermaster
 	name = "Quartermaster"
@@ -443,6 +478,12 @@ ABSTRACT_TYPE(/datum/job/command)
 		..()
 		src.access = get_access("Quartermaster") //maybe get a little bonus office
 		return
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.show_text("<b>You're the Quartermaster! Make sure the station departments are properly equipped, raw materials and salvage are coming in and going out, and income is up! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need. Without your department, this station grinds to a halt!</b>", "blue")
 
 // Security Jobs
 
@@ -828,11 +869,22 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	limit = 5
 	wages = PAY_TRADESMAN
 	slot_back = list(/obj/item/storage/backpack/withO2)
+//spawn with your tools, all set up and ready
+#ifdef NO_START_JOBGEAR_MAP
 	slot_belt = list(/obj/item/storage/belt/utility/prepared)
+	slot_lhan = list(/obj/item/storage/toolbox/mechanical/engineer_spawn)
 	slot_jump = list(/obj/item/clothing/under/rank/engineer)
 	slot_foot = list(/obj/item/clothing/shoes/orange)
-	slot_lhan = list(/obj/item/storage/toolbox/mechanical/engineer_spawn)
 	slot_glov = list(/obj/item/clothing/gloves/yellow)
+#elif defined(NO_DEPARTMENT_START_MAP)
+//spawned already in your department? go to your goddamn locker you lazybones
+//todo: casual clothes
+	slot_jump = list(/obj/item/clothing/under/rank/engineer)
+	slot_foot = list(/obj/item/clothing/shoes/orange)
+#else
+//fresh from shuttle/quarters
+	slot_belt = list(/obj/item/storage/belt/utility)
+#endif
 	slot_poc1 = list(/obj/item/device/pda2/engine)
 	slot_ears = list(/obj/item/device/radio/headset/engineer)
 	items_in_backpack = list(/obj/item/paper/book/from_file/pocketguide/engineering, /obj/item/old_grenade/oxygen)

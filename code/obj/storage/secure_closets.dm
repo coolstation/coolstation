@@ -45,6 +45,10 @@
 	/obj/item/storage/box/id_kit,
 	/obj/item/storage/box/clothing/captain,
 	/obj/item/clothing/suit/armor/capcoat,
+#ifdef NO_START_JOBGEAR_MAP
+	//you didn't wear your armor into work today, cap
+	/obj/item/clothing/suit/armor/captain,
+#endif
 	/obj/item/clothing/shoes/brown,
 	/obj/item/clothing/suit/armor/vest,
 	/obj/item/clothing/head/helmet/swat,
@@ -74,7 +78,7 @@
 	/obj/item/clothing/suit/armor/vest,
 	/obj/item/clothing/head/helmet/hardhat/security,
 	/obj/item/clothing/glasses/sunglasses/sechud,
-	//obj/item/gun/energy/egun,
+	/obj/item/gun/modular/NT/long/rifle,
 	/obj/item/device/radio/headset/security,
 	/obj/item/clothing/glasses/thermal,
 	/obj/item/stamp/hos,

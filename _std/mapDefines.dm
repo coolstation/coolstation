@@ -44,6 +44,13 @@
 
 #elif defined(MAP_OVERRIDE_BOBMAP)
 
+#elif defined(MAP_OVERRIDE_BOBMAPMINI)
+#define NO_START_JOBGEAR_MAP
+
+#elif defined(MAP_OVERRIDE_DOCKMAP)
+#define NO_START_JOBGEAR_MAP
+#define NO_DEPARTMENT_START_MAP
+
 #elif defined(MAP_OVERRIDE_GEHENNA)
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
