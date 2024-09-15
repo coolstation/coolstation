@@ -106,6 +106,7 @@
 
 //pathologist job
 #define access_pathology 84
+#define access_pathology_research 85
 
 //juicers and other randos
 #define access_juicer 90

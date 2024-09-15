@@ -287,48 +287,51 @@
 
 		///////////////////////////// Medical
 		if("Medical Doctor", "Surgeon")
-			return list(access_robotics, access_medical, access_medical_lockers, access_morgue, access_maint_tunnels) //consider adding access_medlab
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_pathology, access_morgue, access_maint_tunnels) //consider adding access_medlab
 		if("Geneticist")
-			return list(access_medical, access_medical_lockers, access_morgue, access_medlab, access_maint_tunnels)
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_pathology, access_morgue, access_maint_tunnels)
 		if("Pathologist")
 			#ifdef SCIENCE_PATHO_MAP
-			return list(access_tox, access_tox_storage, access_research, access_chemistry, access_pathology)
+			//oh, path in research, i get it
+			return list(access_tox, access_tox_storage, access_research, access_chemistry, access_pathology, access_maint_tunnels)
 			#else
-			return list(access_medical, access_medical_lockers, access_morgue, access_pathology, access_maint_tunnels)
+			//revisit this since i think all our maps have path in medbay and a dual medbay/research non-head starting access might be too much
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_morgue, access_pathology, access_robotics, access_maint_tunnels)
 			#endif
 		if("Roboticist")
-			return list(access_robotics, access_tech_storage, access_medical, access_medical_lockers, access_morgue, access_maint_tunnels)
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_pathology, access_morgue, access_tech_storage, access_maint_tunnels)
 		if("Pharmacist")
-			return list(access_robotics, access_medical, access_medical_lockers, access_chemistry, access_maint_tunnels)
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_pathology, access_morgue, access_chemistry, access_maint_tunnels)
 		if("Nurse")
-			return list(access_medical, access_morgue, access_medical_lockers, access_maint_tunnels)
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_pathology, access_morgue, access_maint_tunnels)
 		if("Receptionist")
-			return list(access_medical, access_medical_lockers, access_maint_tunnels)
+			return list(access_medical, access_medical_lockers, access_medlab, access_robotics, access_pathology, access_morgue, access_maint_tunnels)
 		if("Medical Assistant")
-			return list(access_maint_tunnels, access_tech_storage, access_medical, access_morgue)
+			return list(access_medical, access_medical_lockers, access_tech_storage, access_maint_tunnels)
 
 		///////////////////////////// Science
+		//always felt weird scientists don't get maint, but also whatever
 		if("Scientist")
-			return list(access_tox, access_tox_storage, access_research, access_chemistry)
+			return list(access_research, access_chemistry, access_tox, access_tox_storage)
 		if("Chemist")
-			return list(access_research, access_chemistry, access_maint_tunnels)
+			return list(access_research, access_chemistry, access_tox, access_tox_storage)
 		if("Toxins Researcher")
-			return list(access_research, access_tox, access_tox_storage, access_chemistry)
+			return list(access_research, access_chemistry, access_tox, access_tox_storage)
 		if("Research Assistant")
-			return list(access_maint_tunnels, access_tech_storage, access_research)
+			return list(access_research, access_tech_storage, access_maint_tunnels)
 
 		//////////////////////////// Engineering
 		if("Engineer")
-			return list(access_engineering, access_maint_tunnels, access_external_airlocks, access_engineering_control, access_tech_storage,
-						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power,access_engineering_mechanic)
+			return list(access_engineering, access_engineering_control, access_engineering_storage, access_engineering_engine, access_engineering_power, access_engineering_mechanic,
+						access_engineering_atmos, access_engineering_eva, access_tech_storage, access_construction, access_maint_tunnels, access_external_airlocks)
 		if("Mechanic", "Electrician") //share a room you two
-			return list(access_maint_tunnels, access_external_airlocks, access_engineering_control,
-						access_tech_storage,access_engineering_mechanic,access_engineering_power, access_engineering, access_engineering_storage)
+			return list(access_engineering, access_engineering_control, access_engineering_storage, access_engineering_engine, access_engineering_power, access_engineering_mechanic,
+						access_engineering_atmos, access_engineering_eva, access_tech_storage, access_construction, access_maint_tunnels, access_external_airlocks)
 		if("Atmospheric Technician")
-			return list(access_maint_tunnels, access_external_airlocks, access_construction, access_engineering_control,
-						access_eva, access_engineering, access_engineering_storage, access_engineering_eva, access_engineering_atmos)
+			return list(access_engineering, access_engineering_control, access_engineering_storage, access_engineering_engine, access_engineering_power, access_engineering_mechanic,
+						access_engineering_atmos, access_engineering_eva, access_tech_storage, access_construction, access_maint_tunnels, access_eva, access_external_airlocks)
 		if("Construction Worker")
-			return list(access_engineering,access_maint_tunnels,access_external_airlocks, access_engineering_control,
+			return list(access_engineering,access_maint_tunnels,access_external_airlocks, access_engineering_control, access_construction,
 						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power)
 
 		//////////////////////////// Logistics
@@ -337,12 +340,11 @@
 			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_tech_storage,
 						access_mining_shuttle, access_mining_outpost, access_external_airlocks)
 		if("Miner")
-			return list(access_maint_tunnels, access_external_airlocks,
-						access_engineering_eva, access_mining_shuttle, access_mining,
-						access_mining_outpost, access_hangar, access_cargo)
+			return list(access_maint_tunnels, access_external_airlocks, access_engineering_eva,
+						access_mining_shuttle, access_mining, access_mining_outpost, access_hangar, access_cargo)
 		if("Mailcarrier")
-			return list(access_maint_tunnels, access_mail, access_cargo, access_hangar, //this had access_heads for some reason
-						access_mining_shuttle, access_mining_outpost)
+			return list(access_maint_tunnels, access_mail, access_cargo, access_supply_console, access_hangar, //this had access_heads for some reason
+						access_mining_shuttle, access_mining_outpost, access_external_airlocks)
 		if("Janitor")
 			return list(access_janitor, access_maint_tunnels, access_cargo, access_hangar, access_medical, access_tech_storage,
 						access_morgue, access_crematorium, access_mining_shuttle, access_mining_outpost, access_external_airlocks)
@@ -444,7 +446,9 @@ var/list/access_name_lookup //Generated at round start.
 		if(access_medlab)
 			return "Med-Sci/Genetics"
 		if(access_pathology)
-			return "Pathology"
+			return "Pathology (Medical)"
+		if(access_pathology_research)
+			return "Pathology (Research)"
 		if(access_morgue)
 			return "Morgue"
 		if(access_tox)
@@ -532,7 +536,7 @@ var/list/access_name_lookup //Generated at round start.
 		if(access_hangar)
 			return "Hangar"
 		if(access_carrypermit)
-			return "Firearms Carry Permit"
+			return "Advanced Firearms Carry Permit"
 		if(access_contrabandpermit)
 			return "Handling of Contraband Permit"
 		if(access_medical_director)

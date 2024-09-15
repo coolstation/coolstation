@@ -99,18 +99,23 @@
 	name = "pathology spawn"
 	#ifdef CREATE_PATHOGENS
 	req_access = list(access_pathology)
-	#elif defined(SCIENCE_PATHO_MAP)
-	req_access = list(access_research)
-	#elif defined(MAP_OVERRIDE_DESTINY) // stupid destiny has patho in genetics
+	#elif defined(MAP_OVERRIDE_DESTINY) // destiny has patho in genetics
 	req_access = list(access_medlab)
 	#else
 	req_access = list(access_medical)
 	#endif
-	#ifdef SCIENCE_PATHO_MAP
-	color = RESEARCH
-	#else
 	color = MEDICAL
+
+//no need to fight, just use different access, ya drangus
+//this was only relevant to oshan/manta anyway AND I JUST CHECKED AND IT'S NOT EVEN ON OSHAN??
+/obj/access_spawn/pathology_research
+	name = "research pathology spawn"
+	#ifdef CREATE_PATHOGENS
+	req_access = list(access_pathology_research)
+	#else
+	req_access = list(access_research)
 	#endif
+	color = RESEARCH
 
 /obj/access_spawn/research_director
 	name = "RD access spawn"
