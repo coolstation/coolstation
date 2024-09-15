@@ -37,3 +37,26 @@
 
 		SPAWN_DBG(1 SECOND)
 			set_clothing_icon_dirty()
+
+	//gonna get fucked up by a pack of toobs now
+	was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
+		. = ..()
+
+		M.add_karma(-10)
+
+		src.target = M
+		src.ai_state = AI_ATTACKING
+		src.ai_threatened = world.timeofday
+		src.ai_target = M
+		src.a_intent = INTENT_HARM
+		src.say(pick("Hey that's really not fuckin' cool?","Wow, rude???","What'd I do to you?"))
+		src.ai_set_active(1)
+
+		for (var/mob/living/carbon/human/clubfert/fert in view(5,src))
+			if (get_dist(fert,src) <= 7)
+				if((!fert.ai_active) || prob(25))
+					fert.say(pick("You think you can bring that shit into the club??","What the fuck is in your head, pal?","You fucked up!","That's my buddy, you [pick_string("johnbill.txt", "insults")]!"))
+				fert.target = M
+				fert.ai_set_active(1)
+				fert.a_intent = INTENT_HARM
+	//of course they don't attack because they're fixated on dancing (that's what I get for borrowing Juicer Gene's Geneticist Routine)
