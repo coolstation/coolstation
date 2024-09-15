@@ -12,7 +12,7 @@
 
 	setup()
 		name = "Mob"
-		schedule_interval = 2 SECONDS
+		schedule_interval = 4 SECONDS
 		detailed_count = new
 		src.mobs = global.mobs
 
@@ -33,13 +33,13 @@
 			nextpopcheck = TIME + 4 MINUTES
 			var/clients_num = total_clients()
 			if (clients_num >= SLOWEST_LIFE_PLAYERCOUNT)
-				schedule_interval = 4 SECONDS
+				schedule_interval = 8 SECONDS
 				footstep_extrarange = -10
 			else if (clients_num >= SLOW_LIFE_PLAYERCOUNT)  //hacky lag saving measure
-				schedule_interval = 3 SECONDS
+				schedule_interval = 6 SECONDS
 				footstep_extrarange = 0
 			else
-				schedule_interval = 2 SECONDS
+				schedule_interval = 4 SECONDS
 				footstep_extrarange = 0
 
 		for(var/X in src.mobs)
