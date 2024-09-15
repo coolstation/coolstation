@@ -54,7 +54,7 @@
 	desc = "A stylish red, evil, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on an operative's back."
 	icon_state = "Syndiebackpack"
 	item_state = "Syndiebackpack"
-	spawn_contents = list(/obj/item/storage/box/starter/withO2, /obj/item/gun/modular/foss, /obj/item/storage/box/foss_flashbulbs)
+	spawn_contents = list(/obj/item/storage/box/starter/withO2, /obj/item/gun/modular/foss/standard, /obj/item/storage/box/foss_flashbulbs)
 
 /obj/item/storage/backpack/captain
 	name = "Captain's Backpack"
