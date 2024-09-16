@@ -7,7 +7,7 @@
 	if (!src.holder)
 		boutput(src, "Only administrators may use this command.")
 		return
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has gibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has gibbed [constructTarget(M,"diary")]", "admin")
@@ -38,7 +38,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has partygibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has partygibbed [constructTarget(M,"diary")]", "admin")
@@ -55,7 +55,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has owlgibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has owlgibbed [constructTarget(M,"diary")]", "admin")
@@ -72,7 +72,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has firegibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has firegibbed [constructTarget(M,"diary")]", "admin")
@@ -89,7 +89,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has elecgibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has elecgibbed [constructTarget(M,"diary")]", "admin")
@@ -110,7 +110,7 @@
 		boutput(src, "<span class='alert'>Only humans can be icegibbed.</span>")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has icegibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has icegibbed [constructTarget(M,"diary")]", "admin")
@@ -131,7 +131,7 @@
 		boutput(src, "<span class='alert'>Only humans can be goldgibbed.</span>")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has goldgibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has goldgibbed [constructTarget(M,"diary")]", "admin")
@@ -153,7 +153,7 @@
 		boutput(src, "<span class='alert'>Only humans can be spidergibbed.</span>")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has spidergibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has spidergibbed [constructTarget(M,"diary")]", "admin")
@@ -174,7 +174,7 @@
 		boutput(src, "<span class='alert'>Only humans can be imploded.</span>")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has imploded [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has imploded [constructTarget(M,"diary")]", "admin")
@@ -195,7 +195,7 @@
 		boutput(src, "<span class='alert'>Only humans can be buttgibbed.</span>")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has buttgibbed [constructTarget(M,"admin")]")
 			logTheThing("diary", usr, M, "has buttgibbed [constructTarget(M,"diary")]", "admin")
@@ -213,7 +213,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to gib [M]?", "Confirmation", "Yes", "No") == "Yes")
 		var/duration = input("Input duration in 1/10ths of seconds (10 - 100)", "The Honkening", 30) as num
 		if(!duration) return
 		if(usr.key != M.key && M.client)
@@ -233,7 +233,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to damn [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to damn [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has damned [constructTarget(M,"admin")] to hell")
 			logTheThing("diary", usr, M, "has damned [constructTarget(M,"diary")] to hell", "admin")
@@ -251,7 +251,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to undamn [M]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to undamn [M]?", "Confirmation", "Yes", "No") == "Yes")
 		if(usr.key != M.key && M.client)
 			logTheThing("admin", usr, M, "has undamned [constructTarget(M,"admin")] from hell")
 			logTheThing("diary", usr, M, "has undamned [constructTarget(M,"diary")] from hell", "admin")
@@ -290,7 +290,7 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 	else
-		switch(tgui_alert(src.mob, "Ban [tysontarget]?", "Confirmation", list("Yes", "No")))
+		switch(alert(src.mob, "Ban [tysontarget]?", "Confirmation", "Yes", "No"))
 			if("Yes")
 				var/tysonmins = input(usr,"How long (in minutes)?","Ban time",1440) as num
 				if(!tysonmins)

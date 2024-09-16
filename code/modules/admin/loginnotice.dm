@@ -36,7 +36,7 @@
 	// if there's no new message but there WAS one, we're deleting the current set one
 	if (!new_message && message)
 		if (!player.cloud_put("login_notice", null))
-			tgui_alert(src.owner.mob, "ERROR: Failed to clear login notice to cloud for [target_key].")
+			alert(src.owner.mob, "ERROR: Failed to clear login notice to cloud for [target_key].")
 			return
 		addPlayerNote(target_key, src.owner.ckey + " (AUTO)", "Cleared the previous login notice.")
 		return
@@ -52,7 +52,7 @@
 	// New note saved, usual player notes bookkeeping
 	addPlayerNote(target_key, src.owner.ckey + " (AUTO)", "New login notice set:\n\n[message_text]")
 	message_admins("<span class='internal'>[key_name(src.owner.mob)] added a login notice for <a href='byond://?src=%admin_ref%;action=notes&target=[target_key]'>[target_key]</A>:<br><div style='whitespace: pre-wrap;'>[message_text]</div></span>")
-	tgui_alert(src.owner.mob, "Login notice for '[target_key]' has been set. They should see it next time they connect.")
+	alert(src.owner.mob, "Login notice for '[target_key]' has been set. They should see it next time they connect.")
 
 
 /// Returns 1 if a login message is pending, 0 otherwise
@@ -113,7 +113,7 @@
 	var/message = src.player.cloud_get("login_notice")
 	if (message)
 		if (!player.cloud_put("login_notice", null))
-			tgui_alert(src.mob, "ERROR: Failed to clear login notice for some reason...")
+			alert(src.mob, "ERROR: Failed to clear login notice for some reason...")
 			return
 
 		message_admins("<span class='internal'>[src.ckey] acknowledged their login notice.</span>")

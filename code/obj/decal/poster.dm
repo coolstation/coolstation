@@ -1299,7 +1299,7 @@
 			return
 
 		else
-			if(tgui_alert(usr, "Are you sure you want to clear the banner?", "Confirmation", list("Yes", "No")) == "Yes")
+			if(alert(usr, "Are you sure you want to clear the banner?", "Confirmation", "Yes", "No") == "Yes")
 				clear_banner()
 			else
 				return

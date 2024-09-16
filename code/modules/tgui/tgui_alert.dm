@@ -1,3 +1,8 @@
+
+// DEPRECATED 2024-09-16 WARC
+// DO NOT USE TGUI FOR ANYTHING.
+// SLOWLY BEING EXCISED
+
 /*
  * Copyright 2020 bobbahbrown (https://github.com/bobbahbrown)
  * Licensed under MIT to Goonstation only (https://choosealicense.com/licenses/mit/)
@@ -159,3 +164,4 @@
 		return
 	callback.InvokeAsync(choice)
 	qdel(src)
+

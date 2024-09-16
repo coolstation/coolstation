@@ -2887,7 +2887,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 		boutput(src, "Target is anchored and you probably shouldn't be shipping it!")
 		return
 
-	if (tgui_alert(src.mob, "Are you sure you want to ship [AM]?", "Confirmation", list("Yes", "No")) == "Yes")
+	if (alert(src.mob, "Are you sure you want to ship [AM]?", "Confirmation", "Yes", "No") == "Yes")
 		shippingmarket.receive_crate(AM)
 		logTheThing("admin", usr, AM, "has shipped [AM] to cargo.")
 		logTheThing("diary", usr, AM, "has shipped [AM] to cargo.", "admin")
