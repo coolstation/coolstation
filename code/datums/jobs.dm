@@ -66,7 +66,7 @@
 	var/bio_effects = null
 	var/objective = null
 	var/spawn_miscreant = 0
-	var/rounds_needed_to_play = 0 //0 by default, set to the amount of rounds they should have in order to play this
+	var/rounds_needed_to_play = 0 //0 by default, set to the amount of rounds they should have in order to play this. HOS whitelist overrides cause this is only for sec roles atm
 	var/map_can_autooverride = 1 // if set to 0 map can't change limit on this job automatically (it can still set it manually)
 	//var/do_not_save_gun = 0		// if set to 1, this job will not pull from the gun's persistence cloud nor will it register one at end of round.
 

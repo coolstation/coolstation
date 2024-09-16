@@ -291,7 +291,7 @@ mob/new_player
 			return 0
 		if (JOB.rounds_needed_to_play && (src.client && src.client.player))
 			var/round_num = src.client.player.get_rounds_participated()
-			if (!isnull(round_num) && round_num < JOB.rounds_needed_to_play) //they havent played enough rounds!
+			if (!isnull(round_num) && round_num < JOB.rounds_needed_to_play && !(src.ckey in NT)) //they havent played enough rounds! (if you have HOS whitelisted you can sec)
 				return 0
 		if (JOB.limit < 0 || countJob(JOB.name) < JOB.limit)
 			return 1
