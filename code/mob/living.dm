@@ -181,7 +181,7 @@
 	#define VALID_MOB(M) (!isVRghost(M) && !isghostcritter(M) && !inafterlife(M))
 	src.remove_ailments()
 	if (src.key) statlog_death(src, gibbed)
-	if (src.client && ticker.round_elapsed_ticks >= 12 && VALID_MOB(src))
+	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
 		var/num_players = 0
 		for(var/client/C)
 			if (!C.mob) continue
