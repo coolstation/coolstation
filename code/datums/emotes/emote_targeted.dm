@@ -46,7 +46,9 @@
 				break
 	var/list/target_list = user.get_targets(range, target_type)
 	if(length(target_list))
-		M = tgui_input_list(user, "Pick something to [emote_string]!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
+		M = input(user, "Pick something to [emote_string]!", "EmotiConsole v1.1.3", "CANCEL") in (target_list + "CANCEL")
+		if (M == "CANCEL")
+			M = null // lame but im de-TGUIing on a budget. Warc
 		if (!no_out_of_range && M && !IN_RANGE(get_turf(user), get_turf(M), range))
 			boutput(user, "<span class='emote'><B>[M]</B> is [inaction_phrase]!</span>")
 			return
@@ -372,7 +374,9 @@
 	else //set up a cruddy list to pick from
 		var/list/target_list = user.get_targets(range, "chumps")
 		if(length(target_list))
-			M = tgui_input_list(user, "Pick something to [islist(action_phrase) ? weighted_pick(action_phrase) : action_phrase]!", "EmotiConsole v1.1.3", target_list, (20 SECONDS)) //why 20 seconds?
+			M = input(user, "Pick something to [islist(action_phrase) ? weighted_pick(action_phrase) : action_phrase]!", "EmotiConsole v1.1.3", "CANCEL") in (target_list + "CANCEL")
+			if (M == "CANCEL")
+				M = null // lame but im de-TGUIing on a budget. Warc
 			if (!no_out_of_range && M && (range > 1 && !IN_RANGE(get_turf(user), get_turf(M), range)) || (range == 1 && !in_interact_range(user, M)) )
 				boutput(user, "<span class='emote'><B>[M]</B> is not in [islist(inaction_phrase) ? weighted_pick(inaction_phrase) : inaction_phrase] distance!</span>")
 				return
@@ -405,7 +409,9 @@
 		if(!M)
 			var/list/target_list = user.get_targets(1, "chumps") // Bobby Boblord shakes hands with grody spacemouse!
 			if(length(target_list))
-				M = tgui_input_list(user, "Pick someone with whom to shake hands!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
+				M = input(user, "Pick someone with whom to shake hands!", "EmotiConsole v1.1.3", "CANCEL") in (target_list + "CANCEL")
+				if (M == "CANCEL")
+					M = null // lame but im de-TGUIing on a budget. Warc
 				if (M && !in_interact_range(user, M))
 					boutput(user, "<span class='emote'><B>[M]</B> is out of reach!</span>")
 					return
@@ -434,7 +440,9 @@
 		else
 			var/list/target_list = user.get_targets(1, "chumps") // Funche Arnchlnm slaps shambling abomination across the face!
 			if(length(target_list))
-				M = tgui_input_list(user, "Pick someone to smack!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
+				M = input(user, "Pick someone to smack!", "EmotiConsole v1.1.3", "CANCEL") in (target_list + "CANCEL")
+				if (M == "CANCEL")
+					M = null // lame but im de-TGUIing on a budget. Warc
 				if (M && !in_interact_range(user, M))
 					boutput(user, "<span class='emote'><B>[M]</B> is out of reach!</span>")
 					return
@@ -466,7 +474,9 @@
 		else
 			var/list/target_list = user.get_targets(1, "chumps") // Chrunb Erbrbt and Scales To Lizard highfive!
 			if(length(target_list))
-				M = tgui_input_list(user, "Pick someone to high-five!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
+				M = input(user, "Pick someone to high-five!", "EmotiConsole v1.1.3", "CANCEL") in (target_list + "CANCEL")
+				if (M == "CANCEL")
+					M = null // lame but im de-TGUIing on a budget. Warc
 				if (M && !in_interact_range(user, M))
 					boutput(user, "<span class='emote'><B>[M]</B> is out of reach!</span>")
 					return
