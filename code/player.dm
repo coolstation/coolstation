@@ -35,6 +35,12 @@
 	/// saved data from the cloud (spacebux, volume settings, ...)
 	var/list/clouddata = null
 
+	//  This exists to stop someone filling multiple slots with the same character to try and circumvent not re-using the same character when respawning.
+	//  There's nothing stopping someone from making John Juicer and John Duecer and John Thricer who are definitely separate characters!!
+	//  But at that point there's enough rules lawyering going on to warrant admin intervention. No point worrying in code about that.
+	/// names of characters who this player has already used this round, which kinda should align with slots that have been used
+	var/list/character_names_expended = null
+
 	/// sets up vars, caches player stats, adds by_type list entry for this datum
 	New(key)
 		..()
@@ -48,6 +54,7 @@
 
 		if (src.key) //just a safety check!
 			src.cache_round_stats()
+		character_names_expended = list()
 
 	/// removes by_type list entry for this datum, clears dangling references
 	disposing()

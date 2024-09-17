@@ -153,7 +153,7 @@ mob/new_player
 			if (client) winset(src, "joinmenu.button_cancel", "is-disabled=false;is-visible=true")
 			if (client) winset(src, "joinmenu.button_ready_antag", "is-disabled=true")
 		//show new player disclaimer to new players
-		if (client.player.rounds_participated < 10)
+		if (client?.player.rounds_participated < 10)
 			winshow(client, "pregameBrowser", 1)
 			client << browse(newplayerHTML, "window=pregameBrowser")
 		//show pregameHTML if it's available
@@ -243,10 +243,11 @@ mob/new_player
 
 			if (ticker?.mode)
 				var/mob/living/silicon/S = locate(href_list["SelectedJob"]) in mobs
-				if (S)
+				if (S) //Latejoin cyborgs don't inherit from preferences (at least not that I know), so they're always fine
 					if(jobban_isbanned(src.mind, "Cyborg"))
 						boutput(usr, "<span class='notice'>Sorry, you are banned from playing silicons.</span>")
 						close_spawn_windows()
+						new_player_panel()
 						return
 					var/obj/item/organ/brain/latejoin/latejoin = IsSiliconAvailableForLateJoin(S)
 					if(latejoin)
@@ -260,19 +261,32 @@ mob/new_player
 						close_spawn_windows()
 						boutput(usr, "<span class='notice'>Sorry, that Silicon has already been taken control of.</span>")
 
-				else if (istype(ticker.mode, /datum/game_mode/construction))
-					var/datum/game_mode/construction/C = ticker.mode
-					var/datum/job/JOB = locate(href_list["SelectedJob"]) in C.enabled_jobs
-					AttemptLateSpawn(JOB)
 				else
-					var/list/alljobs = job_controls.staple_jobs | job_controls.special_jobs
-					var/datum/job/JOB = locate(href_list["SelectedJob"]) in alljobs
-					AttemptLateSpawn(JOB)
+					//Doing these checks here instead of before pulling up the latejoin menu itself because of latejoin silicons.
+					if ((client.preferences.real_name in client.player.character_names_expended))
+						if (!(admins_can_reuse_characters && isadmin(src)))
+							boutput(usr, "<b><span class='alert'>You can't spawn in with a character you've already played this round. Make or select another character.</span></b>");
+							//Elsewhere we disallow changing the name of an existing used-up character to avoid "same guy, technically different names".
+							//Which does run into the issue of when someone runs out of characters they made,
+							//the only way to make a new character is complete randomising via the otherwise unlabelled "Reset All" button in the Character Setup
+							//So we'll pretend to be TGUI for a moment and pulse the preferences to do that for them. Saves em getting stuck.
+							client.preferences.ui_act("reset")
+							close_spawn_windows()
+							new_player_panel()
+							return
+					if (istype(ticker.mode, /datum/game_mode/construction))
+						var/datum/game_mode/construction/C = ticker.mode
+						var/datum/job/JOB = locate(href_list["SelectedJob"]) in C.enabled_jobs
+						AttemptLateSpawn(JOB)
+					else
+						var/list/alljobs = job_controls.staple_jobs | job_controls.special_jobs
+						var/datum/job/JOB = locate(href_list["SelectedJob"]) in alljobs
+						AttemptLateSpawn(JOB)
 
 		if(href_list["preferences"])
 			if (!ready)
 				client.preferences.process_link(src, href_list)
-		else if(!href_list["late_join"])
+		else if(!href_list["late_join"] || !href_list["SelectedJob"])
 			new_player_panel()
 
 	proc/IsJobAvailable(var/datum/job/JOB)
@@ -399,6 +413,9 @@ mob/new_player
 				//if they have a ckey, joined before a certain threshold and the shuttle wasnt already on its way
 				if (character.mind.ckey && (ticker.round_elapsed_ticks <= MAX_PARTICIPATE_TIME) && !emergency_shuttle.online)
 					participationRecorder.record(character.mind.ckey)
+
+			character.client.player.character_names_expended |= character.client.preferences.real_name
+
 			SPAWN_DBG(0)
 				qdel(src)
 

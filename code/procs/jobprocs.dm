@@ -446,6 +446,8 @@
 
 		H.Equip_Job_Slots(JOB)
 
+		client.player.character_names_expended |= client.preferences.real_name
+
 	var/possible_new_mob = JOB.special_setup(src, no_special_spawn) //If special_setup creates a new mob for us, it should return the new mob!
 
 	if (possible_new_mob && possible_new_mob != src)

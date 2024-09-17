@@ -62,6 +62,10 @@ var/global
 	force_random_names = 0			// for the pre-roundstart thing
 	force_random_looks = 0			// same as above
 
+	// disables the "you can't respawn with the same character or slot" checks for admins
+	// verbs like respawn-as-self will bypass this entirely.
+	admins_can_reuse_characters = 0
+
 	list/default_mob_static_icons = list() // new mobs grab copies of these for themselves, or if their chosen type doesn't exist in the list, they generate their own and add it
 	list/mob_static_icons = list() // these are the images that are actually seen by ghostdrones instead of whatever mob
 	list/orbicons = list()

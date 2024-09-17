@@ -219,9 +219,12 @@ datum/preferences
 			"skipLobbyMusic" = src.skip_lobby_music
 		)
 
+//disable options on slots that have been played *or* on characters with the same name as a played one.
+#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(src)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
+
 	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 		. = ..()
-		if (.)
+		if (. && action != "reset") //Hack to auto-randomise player if they try rejoining the same round with the same character multiple times
 			return
 
 		var/client/client = ismob(usr) ? usr.client : usr
@@ -271,6 +274,7 @@ datum/preferences
 				return TRUE
 
 			if ("save")
+				NOT_ON_PLAYED_CHARACTERS
 				var/index = params["index"]
 				if (isnull(src.profile_name) || is_blank_string(src.profile_name))
 					alert(usr, "You need to give your profile a name.")
@@ -356,11 +360,13 @@ datum/preferences
 					return TRUE
 
 			if ("update-randomName")
+				NOT_ON_PLAYED_CHARACTERS
 				src.be_random_name = !src.be_random_name
 				src.profile_modified = TRUE
 				return TRUE
 
 			if ("update-nameFirst")
+				NOT_ON_PLAYED_CHARACTERS //load-bearing
 				var/new_name = input(usr, "Please select a first name:", "Character Generation", src.name_first) as null|text
 				if (isnull(new_name))
 					return
@@ -388,6 +394,7 @@ datum/preferences
 					return TRUE
 
 			if ("update-nameMiddle")
+				NOT_ON_PLAYED_CHARACTERS //Strangely not load-bearing
 				var/new_name = input(usr, "Please select a middle name:", "Character Generation", src.name_middle) as null|text
 				if (isnull(new_name))
 					return
@@ -407,6 +414,7 @@ datum/preferences
 				return TRUE
 
 			if ("update-nameLast")
+				NOT_ON_PLAYED_CHARACTERS //load-bearing
 				var/new_name = input(usr, "Please select a last name:", "Character Generation", src.name_last) as null|text
 				if (isnull(new_name))
 					return
@@ -932,6 +940,8 @@ datum/preferences
 				update_preview_icon()
 
 				return TRUE
+
+#undef NOT_ON_PLAYED_CHARACTERS
 
 	proc/preview_sound(var/sound/S)
 		// tgui kinda adds the ability to spam stuff very fast. This just limits people to spam sound previews.
