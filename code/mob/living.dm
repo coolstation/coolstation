@@ -190,7 +190,11 @@
 				num_players++
 
 		if (num_players <= 5 && master_mode != "battle_royale")
-			if (!emergency_shuttle.online && current_state != GAME_STATE_FINISHED && ticker.mode.crew_shortage_enabled)
+			if (config.env == "dev")
+				if (!respawns_enabled)
+					respawns_enabled = TRUE
+					boutput(world, "<B>Respawning has been enabled due to low crew numbers.</B>")
+			else if (!emergency_shuttle.online && current_state != GAME_STATE_FINISHED && ticker.mode.crew_shortage_enabled)
 				emergency_shuttle.incall()
 				boutput(world, "<span class='notice'><B>Alert: The emergency shuttle has been called.</B></span>")
 				boutput(world, "<span class='notice'>- - - <b>Reason:</b> Crew shortages and fatalities.</span>")
