@@ -275,8 +275,9 @@
 			var/turf/throwpoint = get_edge_target_turf(user, get_dir(user, src))
 			if (throwpoint && isturf(throwpoint))
 				user.visible_message("<span class='alert'><b>[user]</b> kicks [src] like the football!</span>")
-				src.throw_at(throwpoint, 15, 5)
+				src.throw_at(throwpoint, 6, 2)
 				sleep(2 SECONDS) //can't believe that just happened! the audacity does not compute! also give it some time to go sailing
+				src.threatlevel = 2
 				src.EngageTarget(user)
 				return
 		var/dat
