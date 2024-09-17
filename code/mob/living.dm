@@ -181,7 +181,7 @@
 	#define VALID_MOB(M) (!isVRghost(M) && !isghostcritter(M) && !inafterlife(M))
 	src.remove_ailments()
 	if (src.key) statlog_death(src, gibbed)
-	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
+	if (src.client && ticker.round_elapsed_ticks >= 12 && VALID_MOB(src))
 		var/num_players = 0
 		for(var/client/C)
 			if (!C.mob) continue
@@ -193,6 +193,8 @@
 			if (config.env == "dev")
 				if (!abandon_allowed)
 					abandon_allowed = TRUE
+					var/blame = pick("a mass causality event.", "the scheming of infiltrators.", "the actions of hostile parties.", "an alien invasion.", "failure to detect and prevent sabotage.", "deferred maintenance of vital station infrastructure.", "a tragic yet also comical series of events.", "questionable hiring standards.", "your own dang fault!", "devine retribution.")
+					command_alert("Centcom has determined an extremely low number of active staff on station, likely due to [blame] In order to rectify the situation, hiring qualifications and screening requirements have been waived for applicants. We hope that new recruits will supplement the station crew shortly.", "Mass Staff Shortage", 'sound/misc/lose.ogg') //forgive me
 					boutput(world, "<B>Respawning has been enabled due to low crew numbers.</B>")
 			else if (!emergency_shuttle.online && current_state != GAME_STATE_FINISHED && ticker.mode.crew_shortage_enabled)
 				emergency_shuttle.incall()
