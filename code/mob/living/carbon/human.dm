@@ -3270,7 +3270,7 @@
 				if (src.footstep == 0)
 					playsound(NewLoc, src.shoes.step_sound, 50, 1, extrarange = footstep_extrarange)
 			else
-				playsound(NewLoc, src.shoes.step_sound, 20, 1, extrarange = footstep_extrarange)
+				playsound(NewLoc, src.shoes.step_sound, 20, 1, extrarange = footstep_extrarange, pitch = 0.9)
 
 		else
 			src.footstep += steps
@@ -3296,7 +3296,7 @@
 						else if (priority < 0)
 							priority = src.shoes ? src.shoes.step_sound : (src.mutantrace && src.mutantrace.step_override ? src.mutantrace.step_override : "step_barefoot")
 
-						playsound(NewLoc, priority, src.m_intent == "run" ? 65 : 40, 1, extrarange = 3)
+						playsound(NewLoc, priority, src.m_intent == "run" ? 65 : 40, 1, extrarange = 3, src.m_intent == "run" ? 1 : 0.9)
 
 	//STEP SOUND HANDLING OVER
 
