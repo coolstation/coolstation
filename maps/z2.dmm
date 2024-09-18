@@ -54392,6 +54392,13 @@
 /obj/machinery/light/small/ceiling/neutral,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"kit" = (
+/obj/decal/icefloor,
+/obj/critter/walrus{
+	desc = "A walrus, in space. How the hell did it get all the way over there?"
+	},
+/turf/floor/arctic/snow,
+/area/upper_arctic/exterior/surface)
 "kkw" = (
 /obj/table,
 /turf/floor/plating/damaged3,
@@ -55812,6 +55819,13 @@
 	},
 /turf/outdoors/grass,
 /area/shuttle/escape/transit/battle_shuttle)
+"oOM" = (
+/obj/table/reinforced{
+	icon_state = "12"
+	},
+/obj/item/card/id/soviet/miner,
+/turf/floor/concrete,
+/area/upper_arctic/fita/quartermaster)
 "oPW" = (
 /obj/lantern{
 	pixel_y = 10
@@ -56743,8 +56757,8 @@
 /turf/floor/arctic/snow,
 /area/upper_arctic/fita/maintenance/hatch)
 "slS" = (
-/obj/critter/walrus{
-	desc = "A walrus, in space. How the hell did it get all the way over there?"
+/mob/living/critter/small_animal/bird/penguin{
+	desc = "Its a penguin. This one looks pretty pokey."
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
@@ -60371,9 +60385,9 @@ wwy
 wwy
 wwy
 wwy
-wwy
-wwy
-wwy
+bKw
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -60658,6 +60672,7 @@ wwy
 bKw
 wwy
 wwy
+bKw
 wwy
 wwy
 wwy
@@ -60671,11 +60686,10 @@ wwy
 wwy
 wwy
 wwy
+bKw
+bKw
 wwy
-wwy
-wwy
-wwy
-wwy
+bKw
 wwy
 wwy
 bKw
@@ -60960,9 +60974,9 @@ wwy
 wwy
 wwy
 wwy
-wwy
-wwy
-wwy
+bKw
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -60973,9 +60987,9 @@ wwy
 hsh
 wwy
 wwy
-wwy
-wwy
-wwy
+bKw
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -61263,9 +61277,9 @@ wwy
 wwy
 wwy
 wwy
-wwy
-wwy
-wwy
+bKw
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -66231,7 +66245,7 @@ gCz
 piP
 riE
 sJy
-uLV
+oOM
 oVn
 xjT
 aLN
@@ -71852,13 +71866,13 @@ wwy
 wwy
 wwy
 hsh
+bKw
+bKw
 wwy
 wwy
 wwy
-wwy
-wwy
-wwy
-wwy
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -72155,11 +72169,11 @@ wwy
 wwy
 wwy
 wwy
+bKw
+bKw
 wwy
-wwy
-wwy
-wwy
-wwy
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -72458,8 +72472,8 @@ wwy
 wwy
 wwy
 wwy
-wwy
-wwy
+bKw
+bKw
 wwy
 wwy
 wwy
@@ -73203,7 +73217,7 @@ ylj
 ylj
 aLN
 tHo
-tHo
+kit
 wqp
 ugn
 aIo
