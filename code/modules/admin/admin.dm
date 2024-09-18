@@ -4788,8 +4788,8 @@ var/global/noir = 0
 		chosen = matches[1]
 	else
 		var/safe_matches = matches - list(/database, /client, /icon, /sound, /savefile)
-		chosen = input(usr, "Select an atom type", "Matches for pattern","CANCEL") in ("CANCEL" + safe_matches)
-		if(!chosen || chosen == "CANCEL") // experimental de-TGUIing - warc
+		chosen = input(usr, "Select an atom type", "Matches for pattern",null) as null|anything in safe_matches
+		if(!chosen) // experimental de-TGUIing - warc
 			return null
 
 	. = chosen
