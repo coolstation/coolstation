@@ -46,9 +46,13 @@
 
 		.switchRemoved {display: block; position: fixed; bottom: 0; right: 170px; padding: 8px; background: #ddd; border-top: 1px solid #bbb; border-left: 1px solid #ccc; border-right: 1px solid #ccc;}
 		.switchRemoved:hover {background: #ccc;}
+
+		/* surrogate iframe for byond ehjax */
+		#surrogate { display: absolute; bottom: 0; right: 0; z-index: -99999999999; width: 1; height: 1; border: none; }
 	</style>
 </head>
 <body>
+	<iframe id="surrogate"></iframe>
 	<div class="header">
 		<a href="" data-start="0" class="refresh" title="Refresh"><i class="icon icon-refresh"></i></a>
 		<strong><span class="results">0 total bans</span> | <span class="sortedBy">By id desc</span></strong>
@@ -98,7 +102,7 @@
 	<script type="text/javascript" src="{{resource("js/errorHandler.js")}}"></script>
 	<script type="text/javascript" language="JavaScript">
 		var triggerError = attachErrorHandler('banPanel', true);
-
+		var surrogate = document.getElementById('surrogate');
 		var ref_src = null /* ref_src */;
 		var CMinutes = null /* cminutes */;
 		var windowName = null /* window_name */;
@@ -242,10 +246,10 @@
 						$('#bansTable tbody').html('<tr><td colspan="7" class="full">JSON is invalid: '+err+'<br/>'+xmlHttp.responseText+'</td></tr>');
 						return;
 					}
-					window.location = '?action=ehjax&window='+windowName+'&proc=getWorldMins'; //Update the cminutes var
+					surrogate.src = '?action=ehjax&window='+windowName+'&proc=getWorldMins'; //Update the cminutes var
 					updateBans(2, bansData);
 				} else { //Local bans db lookup
-					window.location = '?action=ehjax&window='+windowName+'&proc=getBanApiFallback&param[searchCol]='+column+'&param[search]='+term+'&param[sort]='+sort+'&param[order]='+order+'&param[offset]='+offset+'&param[limit]='+pageLimit+'&param[removed]='+viewRemoved;
+					surrogate.src = '?action=ehjax&window='+windowName+'&proc=getBanApiFallback&param[searchCol]='+column+'&param[search]='+term+'&param[sort]='+sort+'&param[order]='+order+'&param[offset]='+offset+'&param[limit]='+pageLimit+'&param[removed]='+viewRemoved;
 				}
 			}
 
@@ -301,7 +305,7 @@
 				$('#bansTable tbody').html('<tr><td colspan="7" class="full">JSON is invalid: '+err+'</td></tr>');
 				return;
 			}
-			window.location = '?action=ehjax&window='+windowName+'&proc=getWorldMins'; //Update the cminutes var
+			surrogate.src = '?action=ehjax&window='+windowName+'&proc=getWorldMins'; //Update the cminutes var
 
 			totalBans = bansData.total;
 			delete bansData.total;
