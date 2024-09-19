@@ -2620,7 +2620,7 @@ proc/message_ghosts(var/message, show_wraith = FALSE)
 
 		// Skip the wraith if show_wraith is off
 		if (iswraith(M))
-			var/mob/living/intangible/wraith/the_wraith = M
+			// var/mob/wraith/the_wraith = M
 			if (!show_wraith)
 				continue
 

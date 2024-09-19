@@ -943,6 +943,7 @@ a.latejoin-card:hover {
 			if(observer?.client)
 				observer.client.loadResources()
 
+			message_ghosts("<b>[observer]</b> is observing.")
 			qdel(src)
 
 	say(message)
