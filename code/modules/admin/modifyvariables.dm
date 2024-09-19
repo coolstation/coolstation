@@ -484,6 +484,35 @@
 			message_admins("[key_name(src)] modified [target]'s [varname] to [target.vars[varname]] on all entities of the same type")
 
 
+
+/datum/targetable/refpicker_alt
+	var/datum/promise/promise = null
+	target_anything = 1
+	targeted = 1
+	check_range = 0
+	can_target_ghosts = 1
+
+	castcheck()
+		if (usr.client && usr.client.holder)
+			return 1
+
+	handleCast(var/atom/selected)
+		promise.fulfill(selected)
+
+/datum/targetable/refpicker_alt/nonadmin
+	castcheck(var/mob/M)
+		return 1
+
+///Gives the target mob a reference picker ability and returns the atom picked. Synchronous.
+/proc/pick_ref(mob/M)
+	var/datum/promise/promise = new
+	var/datum/targetable/refpicker_alt/abil = new
+	abil.promise = promise
+	M.targeting_ability = abil
+	M.update_cursor()
+	return promise.wait_for_value()
+
+
 /client/proc/modify_variables(var/atom/O)
 	var/list/locked = list("vars", "key", "ckey", "client", "holder")
 	admin_only
