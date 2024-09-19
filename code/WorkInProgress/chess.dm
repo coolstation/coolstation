@@ -140,16 +140,19 @@ obj/item/chesspiece
 		for(var/obj/item/chesspiece/C in T)
 			if(C.isking && (chess_color != C.chess_color))
 				src.visible_message("<span class='success'>[src] has captured the enemy Captain. The [chess_color ? "black" : "white" ] commander has defeated the [C.chess_color ? "black" : "white" ] crew.</span>")
+				playsound(C, 'sound/impact_sounds/Metal_Hit_1.ogg', 45)
 				C.gib()
 				chess_in_progress = 0
 			else if(chess_color == C.chess_color)
 				src.visible_message("<span class='alert'>You really ought to fight the enemy pieces, [chess_color ? "black" : "white" ] commander.</span>")
 				return
 			else
+				playsound(C, 'sound/impact_sounds/Metal_Hit_1.ogg', 45)
 				src.visible_message("<span class='notice'><b>[src]</b> has captured <b>[C]</b>.</span>")
 				C.gib()
 		src.visible_message("<span class='notice'>The [chess_color ? "black" : "white" ] commander has moved <b>[src]</b>.</span>")
 		src.set_loc(T)
+		playsound(src, 'sound/impact_sounds/Slap.ogg', 45)
 		//clear en passant data, you had your chance
 		if(chess_enpassant)
 			chess_enpassant.enpassant = null
