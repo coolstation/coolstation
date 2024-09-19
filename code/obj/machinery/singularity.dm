@@ -166,6 +166,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (checkpointC < max(MIN_TO_CONTAIN,(radius*8)))//as radius of a 5x5 should be 2, 16 tiles are needed to hold it in, this allows for 4 failures before the singularity is loose
 			src.active = 1
 			maxradius = INFINITY
+			message_admins("[src] has become loose at [log_loc(src)]")
+			message_ghosts("<b>[src]</b> has become loose at [log_loc(src, ghostjump=TRUE)].")
+
 
 
 /obj/machinery/the_singularity/emp_act()

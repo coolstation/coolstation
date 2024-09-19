@@ -577,6 +577,7 @@
 		boutput(usr, "Sorry, respawn options aren't available during football mode.")
 		return
 	if (usr && istype(usr, /mob/dead/observer))
+		announce_ghost_afterlife(usr.key, "<b>[usr.name]</b> is logging into Ghost VR.")
 		Station_VNet.Enter_Vspace(usr, "ghost magic", LANDMARK_VR_ARCADE)
 
 
@@ -814,6 +815,9 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 	newbody.UpdateOverlays(image('icons/misc/32x64.dmi',"halo"), "halo")
 	newbody.set_clothing_icon_dirty()
 	newbody.set_loc(target_turf)
+
+	announce_ghost_afterlife(src.key, "<b>[src.name]</b> is visiting the Afterlife Bar.")
+	boutput(src, "<h2>You are visiting the Afterlife Bar!</h2>You can still talk to ghosts! Start a message with \"<tt>:d</tt>\" (like \"<tt>:dhello ghosts</tt>\") to talk in deadchat.")
 
 	if (src.mind) //Mind transfer also handles key transfer.
 		src.mind.transfer_to(newbody)

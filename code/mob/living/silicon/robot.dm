@@ -252,6 +252,7 @@
 		setdead(src)
 		borg_death_alert()
 		src.canmove = 0
+		message_ghosts("<b>[src]</b> was destroyed at [log_loc(src, ghostjump=TRUE)].")
 
 		if (src.camera)
 			src.camera.camera_status = 0.0

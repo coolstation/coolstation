@@ -859,3 +859,11 @@ mob/dead/observer/proc/insert_observer(var/atom/target)
 	set_loc(newobs)
 	if (isghostrestrictedz(newobs.z) && !restricted_z_allowed(newobs, get_turf(newobs)) && !(src.client && src.client.holder))
 		newobs.set_loc(pick_landmark(LANDMARK_OBSERVER, locate(150, 150, 1)))
+
+/mob/dead/observer/verb/ghostjump(x as num, y as num, z as num)
+	set name = ".ghostjump"
+	set hidden = TRUE
+
+	var/turf/T = locate(x, y, z)
+	src.set_loc(T)
+

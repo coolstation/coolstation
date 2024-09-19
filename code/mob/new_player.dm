@@ -225,6 +225,7 @@ mob/new_player
 				observer.real_name = observer.name
 			//	observer.Equip_Bank_Purchase(observer.mind.purchased_bank_item)
 
+				message_ghosts("<b>[observer.name]</b> is observing.")
 				src.client.loadResources()
 
 

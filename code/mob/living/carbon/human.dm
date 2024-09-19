@@ -723,6 +723,14 @@
 			remove_insurgent_status(src, "vthrall", "death")
 		else if (src.mind.master)
 			remove_insurgent_status(src, "other_recruit", "death")
+		if (src.mind.ckey && !inafterlife(src))
+			var/turf/where = get_turf(src)
+			var/where_text = "Unknown (?, ?, ?)"
+			if (where)
+				where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
+
+			message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
+
 #ifdef DATALOGGER
 		game_stats.Increment("playerdeaths")
 #endif
