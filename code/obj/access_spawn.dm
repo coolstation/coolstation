@@ -454,6 +454,11 @@
 	req_access = list(access_soviet_command)
 	color = SECURITY
 
+/obj/access_spawn/ghostdrone
+	name = "ghostdrone access spawn"
+	req_access = list(access_ghostdrone)
+	color = MAINTENANCE
+
 #undef MEDICAL
 #undef SECURITY
 #undef MORGUE_BLACK
