@@ -281,6 +281,7 @@ var/list/admin_verbs = list(
 		/client/proc/find_thing,
 		/client/proc/find_one_of,
 		/client/proc/cmd_admin_advview,
+		/client/proc/iddt,
 		/client/proc/cmd_admin_rejuvenate_all,
 		// /proc/possess,
 		// /client/proc/modify_organs,
@@ -331,6 +332,7 @@ var/list/admin_verbs = list(
 		/client/proc/spawn_survival_shit,
 		///client/proc/addpathogens,
 		///client/proc/generate_poster,
+		/client/proc/idkfa,
 
 		//gibs
 		/client/proc/cmd_admin_gib,
