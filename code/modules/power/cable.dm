@@ -59,7 +59,7 @@
 /obj/cable
 	level = 1
 	anchored =1
-	var/tmp/netnum = 0
+	//var/tmp/netnum = 0
 	name = "power cable"
 	desc = "A flexible power cable."
 	icon = 'icons/obj/machines/power_cond.dmi'
@@ -81,6 +81,11 @@
 
 	var/datum/material/insulator = null
 	var/datum/material/conductor = null
+
+	//Are we a branch or dead end in the powernet...
+	var/datum/powernet_graph_node/is_a_node = null
+	//...or part of the connective tissue?
+	var/datum/powernet_graph_link/is_a_link = null
 
 /obj/cable/reinforced
 	name = "reinforced power cable"
@@ -131,8 +136,7 @@
 
 	var/turf/T = src.loc			// hide if turf is not intact
 									// but show if in space
-	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid)) hide(0)
-	else if(level==1) hide(T.intact)
+	if(level==1) hide(T.intact)
 
 	//cableimg = image(src.icon, src.loc, src.icon_state)
 	//cableimg.layer = OBJ_LAYER
@@ -146,6 +150,21 @@
 
 /obj/cable/disposing()		// called when a cable is deleted
 
+	var/node2update
+	if (is_a_link)
+		is_a_link.cables -= src
+		//either node will work
+		node2update = is_a_link.adjacent_nodes[1]
+	else if (is_a_node)
+		node2update = is_a_node
+		is_a_node.physical_node = null
+		is_a_node = null
+	node2update.pnet.cables -= src
+	if (defer_powernet_rebuild)
+		dirty_pnet_nodes |= node2update
+	else
+		node2update.validate()
+	/*
 	if(!defer_powernet_rebuild)	// set if network will be rebuilt manually
 
 		if(netnum && powernets && powernets.len >= netnum)		// make sure cable & powernet data is valid
@@ -156,7 +175,7 @@
 
 		if(netnum && powernets && powernets.len >= netnum) //NEED FOR CLEAN GC IN EXPLOSIONS
 			powernets[netnum].cables -= src
-
+	*/
 	//insulator.owner = null
 	//conductor.owner = null
 
@@ -438,3 +457,5 @@
 		logTheThing("station", user, null, "lays a cable[powered == 1 ? " (powered when connected)" : ""] at [log_loc(src)].")
 
 	return
+
+/obj/cable/proc/node_crawl()

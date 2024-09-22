@@ -11,7 +11,7 @@
 
 /obj/machinery/power/New(var/new_loc)
 	..()
-	if (current_state > GAME_STATE_PREGAME)
+	if (current_state > GAME_STATE_PREGAME) //Any time after game start
 		SPAWN_DBG(0.1 SECONDS) // aaaaaaaaaaaaaaaa
 			src.netnum = 0
 			if(makingpowernets)
@@ -34,7 +34,8 @@
 		src.powernet.data_nodes -= src
 	if(src.directwired) // it can bridge gaps in the powernet :/
 		if(!defer_powernet_rebuild)
-			makepowernets()
+			for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+				node.validate()
 		else
 			defer_powernet_rebuild = 2
 	. = ..()
@@ -184,14 +185,11 @@ var/makingpowernetssince = 0
 	T = get_step(src, d2)
 	. += power_list(T, src, d2, unmarked)
 
-	//var/straight = d1 == turn(d2, 180)
-	for(var/obj/cable/C in src.loc)
-		if(C != src && (C.d1 == d2 || C.d2 == d2 || (d1 && (C.d1 == d1 || C.d2 == d1))) && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a direction
-			/*
-			(straight && C.d1 == 0) || // straight line connects to knots
-			(!d1 && C.d1 == turn(C.d2, 180))) // knots connect to straight lines
-			*/
-			. += C
+	//changed this to only allowed same-tile connections if both sides are knots.
+	if (d1 == 0)
+		for(var/obj/cable/C in src.loc)
+			if(C != src && C.d1 == 0 && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a central knot
+				. += C
 
 /obj/cable/proc/get_connections_one_dir(is_it_d2, unmarked = 0)
 	. = list()	// this will be a list of all connected power objects
@@ -199,14 +197,10 @@ var/makingpowernetssince = 0
 	var/turf/T = get_step(src, d)
 	. += power_list(T, src , d, unmarked)
 
-	//var/straight = d1 == turn(d2, 180)
-	for(var/obj/cable/C in src.loc)
-		if(C != src && (d && (C.d1 == d || C.d2 == d)) && (!unmarked || !C.netnum)) // my turf, sharing a direction
-			/*
-			(straight && C.d1 == 0) || // straight line connects to knots
-			(!d1 && C.d1 == turn(C.d2, 180))) // knots connect to straight lines
-			*/
-			. += C
+	if (d == 0)
+		for(var/obj/cable/C in src.loc)
+			if(C != src && C.d1 == 0 && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a central knot
+				. += C
 
 /obj/machinery/power/proc/get_connections(unmarked = 0)
 
