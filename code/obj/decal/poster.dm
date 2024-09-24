@@ -1212,6 +1212,12 @@
 	imgh = 570
 	img = "images/arts/posters/hypothermia.jpg"
 
+/obj/decal/poster/wallsign/recremation
+	name = "recremation LCD sign"
+	desc = "Recreational cremation promises to be festive, yet solemn."
+	icon = 'icons/obj/decals/posters_64x32.dmi'
+	icon_state= "recremation"
+
 /obj/decal/poster/wallsign/gunsmithing
 	name = "basic firearm maintenance"
 	icon = 'icons/obj/decals/posters.dmi'
