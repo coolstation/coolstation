@@ -1208,6 +1208,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner
 	sound_environment = EAX_HALLWAY
 	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
 #ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
