@@ -86,7 +86,7 @@
 			var/glasses = 0
 			for (var/obj/item/reagent_containers/food/drinks/drinkingglass in view(0, T))
 				glasses++
-			if (glasses < 3)
+			if (glasses < 1)
 				src.targets += T
 
 	process()
