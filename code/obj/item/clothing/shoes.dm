@@ -435,9 +435,9 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 
 	get_desc(var/dist, var/mob/user)
 		if (user.mind && user.mind.assigned_role == "Head of Security")
-			. = "Still fit like a glove! Or a shoe."
+			. = "They really make you look tough and respectable."
 		else
-			. = "Looks like some big shoes to fill!"
+			. = "Must have been all the licking no doubt!"
 		. = ..()
 
 /obj/item/clothing/shoes/swat/knight // so heavy you can't get shoved!
