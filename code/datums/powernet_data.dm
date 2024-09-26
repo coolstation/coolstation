@@ -60,25 +60,77 @@ var/global/list/dirty_pnet_nodes = list()
 	var/dissolve_self = isnull(physical_node)
 	var/list/datum/powernet_graph_node/previous_adjacent_nodes = adjacent_nodes.Copy()
 	for (var/datum/powernet_graph_node/other_node as anything in adjacent_nodes)
+		//set this up for checking if there's powernet breaks later.
+		other_node.netnum = 0
 		var/datum/powernet_graph_link/relevant_link = adjacent_nodes[other_node]
-		var/delete_link = (dissolve_self || !other_node.physical_node) //if directly adjacent nodes, see if one of our cables is ded
+
+		var/delete_link = (dissolve_self || !other_node.physical_node)//if directly adjacent nodes, see if one of our cables is ded
 		//no need to qdel the other node if it's gone in case of explosion cleanup, it'll be on the revalidate list too
 
-		if (istype(relevant_link))
-			if (delete_link || (relevant_link.expected_length > length(relevant_link.cables))) //link borked or one of the end points borked
-				delete_link = TRUE
-				relevant_link.dissolve()
+		//So like, 99,9% of the time two nodes will have one link between them because that's just the sensible way to map powernets
+		//but I realised there are technically valid cable layouts that would put two separate links between the same nodes, neither of which are special.
+		//And so we have to account for the possibility of multiple links, even if it's probably always one. I hate this, but hate isn't a coding standard.
+		//vars for sadness
+		var/how_many_links = 1
+		var/unbroken_links = 1
+		var/list/links
+		if (islist(relevant_link))
+			unbroken_links = how_many_links = length(relevant_link)
+			links = relevant_link
+			relevant_link = links[length(links)]
 
-		if (delete_link) //break list linking
+		do
+		{
+			if (istype(relevant_link))
+				if (delete_link || (relevant_link.expected_length > length(relevant_link.cables))) //link borked or one of the end points borked
+					unbroken_links--
+					relevant_link.dissolve()
+
+			if (--how_many_links > 0)
+				relevant_link = links[how_many_links]
+		}
+		while (how_many_links > 0)
+
+		if (delete_link || unbroken_links == 0) //break list linking
 			other_node.adjacent_nodes -= src
 			adjacent_nodes -= other_node
 
+	//we're now basically a straight run and don't need to be a node anymore (I figured doing it here is easier than in dissolving the link)
+	if (length(adjacent_nodes) == 2) // && !dissolve_self (shouldn't be necessary)
+		dissolve_self = TRUE
+		var/datum/powernet_graph_node/node_one = adjacent_nodes[1]
+		var/datum/powernet_graph_node/node_two = adjacent_nodes[2]
+		var/datum/powernet_graph_link/link_one = adjacent_nodes[node_one]
+		var/datum/powernet_graph_link/link_two = adjacent_nodes[node_two]
+		//merge links into one
+		link_one.cables |= link_two.cables
+		link_one.cables += physical_node
+		physical_node.is_a_node = null
+		physical_node = null
+		for(var/obj/cable/C as anything in link_one.cables)
+			C.is_a_link = link_one
+		link_one.expected_length = length(link_one.cables)
+		link_one.adjacent_nodes = list(node_one, node_two)
+		//kill superfluous link datum
+		link_two.cables = null
+		link_two.adjacent_nodes = null
+		qdel(link_two)
+		//update node graph
+		node_one.adjacent_nodes -= src
+		node_two.adjacent_nodes -= src
+		if (node_two in node_one.adjacent_nodes) //They're already linked, fuck
+			node_one.adjacent_nodes[node_two] |= link_one
+			node_two.adjacent_nodes[node_one] |= link_one
+		else
+			node_one.adjacent_nodes[node_two] = link_one
+			node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
+
 	if (dissolve_self)
 		qdel(src)
-	else
 		//TODO compare what's left of adjacent_nodes versus previous_adjacent_nodes after doing a network propagation ping
 		//Tell the other nodes to split off into other powernets
 
+	//dirty_pnet_nodes -= src
 
 
 
@@ -88,7 +140,7 @@ var/global/list/dirty_pnet_nodes = list()
 /datum/powernet_graph_link
 	//How many cables we had last time we checked
 	var/expected_length = 0
-	//How many cables currently claim to be part of this link
+	///How many cables currently claim to be part of this link. Note that this list isn't ordered WRT physical layout in any way.
 	var/list/obj/cable/cables = list()
 	//Which two nodes are we connecting
 	var/list/datum/powernet_graph_node/adjacent_nodes
