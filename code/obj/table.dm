@@ -18,21 +18,30 @@
 	var/has_storage = 0
 	var/obj/item/storage/desk_drawer/desk_drawer = null
 	var/slaps = 0
+	var/hulk_immune = FALSE
+	/// has a drawer storage
+	var/has_drawer = FALSE
+	/// list of contents to add to storage
+	var/drawer_contents = null
+	/// whether the storage can be accessed or not
+	var/drawer_locked = FALSE
+	/// id for key checks, keys with the same id can lock it
+	var/lock_id = null
+	HELP_MESSAGE_OVERRIDE({""})
 
-
-	New(loc, obj/a_drawer)
+	New(loc)
 		..()
-		if (src.has_storage)
-			if (a_drawer)
-				src.desk_drawer = a_drawer
-				src.desk_drawer.set_loc(src)
-			else
-				src.desk_drawer = new(src)
-		else if (a_drawer)
-			a_drawer.set_loc(get_turf(src))
+		START_TRACKING
+		if (src.has_drawer)
+			src.create_storage(/datum/storage/unholdable, spawn_contents = src.drawer_contents, slots = 13, max_wclass = W_CLASS_SMALL)
 
-		SPAWN_DBG(0)
-			if (src.auto && ispath(src.auto_type) && src.icon_state == "0") // if someone's set up a special icon state don't mess with it
+		#ifdef XMAS
+		if(src.z == Z_LEVEL_STATION && current_state <= GAME_STATE_PREGAME)
+			xmasify()
+		#endif
+
+		SPAWN(0)
+			if (src.auto && src.materialless_icon_state() == "0") // if someone's set up a special icon state don't mess with it
 				src.set_up()
 				SPAWN_DBG(0)
 					for (var/obj/table/T in orange(1,src))
@@ -50,6 +59,22 @@
 		var/area/Ar = get_area(src)
 		if (Ar)
 			Ar.sims_score = min(Ar.sims_score + bonus, 100)
+
+	get_help_message(dist, mob/user)
+		. = ..()
+		. += "You can use a <b>wrench</b> on <span class='harm'>harm</span> intent to disassemble it. \
+		You can also use a <b>screwdriver</b> on <span class='harm'>harm</span> intent to \
+		[(src.has_drawer && src.drawer_locked) ? "pick the drawer's lock." : "adjust the shape of it."]"
+
+
+	proc/xmasify()
+		var/in_cafeteria = istype(get_area(src), /area/station/crew_quarters/cafeteria)
+		if(in_cafeteria && fixed_random(src.x / world.maxx, src.y / world.maxy) <= 0.2)
+			var/obj/item/reagent_containers/food/drinks/eggnog/nog = new(src.loc)
+			nog.layer += 0.1
+		if(fixed_random(src.x / world.maxx, src.y / world.maxy) >= (in_cafeteria ? 0.6 : 0.9))
+			var/obj/item/a_gift/festive/gift = new(src.loc)
+			gift.layer += 0.1
 
 	proc/set_up()
 		if (!ispath(src.auto_type))
@@ -233,35 +258,29 @@
 			qdel(W)
 			return
 
-		else if (istype(W, /obj/item/plank))
-			if (status == 2)
-				if (istype(src, /obj/table/reinforced/bar)) //why must you be so confusing
-					boutput(user, "<span class='notice'>You can't add more than one finish, that's just illogical!</span>")
-					return
-				else if (istype(src, /obj/table/reinforced/auto))
-					boutput(user, "<span class='notice'>Now adding a faux wood finish to \the [src]</span>") //mwah
-					playsound(src.loc, "sound/items/zipper.ogg", 50, 1)
-					if(do_after(user,50))
-						var/obj/table/L = new /obj/table/reinforced/bar/auto(src.loc)
-						L.layer = src.layer - 0.01
-						qdel(W)
-						qdel(src)
-						boutput(user, "<span class='notice'>You have added a faux wood finish to \the [src]</span>")
-					return
-				else
-					boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>")
-			else
-				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>")
+		else if (istype(W,/obj/item/sheet/wood))
+			if (istype(src, /obj/table/reinforced/bar)) //why must you be so confusing
+				return ..()
+			if (status != STATUS_STRONG || !istype(src, /obj/table/reinforced/auto))
+				boutput(user, SPAN_NOTICE("\The [src] is too weak to be modified!"))
+				return
+			if (W.amount < 5)
+				boutput(user, SPAN_NOTICE("You need at least 5 planks to furnish the whole table."))
+				return
+			actions.start(new /datum/action/bar/icon/furnish_table(src,W), user)
 
-		else if (isscrewingtool(W))
-			if (istype(src.desk_drawer) && src.desk_drawer.locked)
+		else if (istype(W, /obj/item/paint_can))
+			return
+
+		else if (isscrewingtool(W) && user.a_intent == INTENT_HARM)
+			if (src.has_drawer && src.drawer_locked)
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_LOCKPICK), user)
 				return
 			else if (src.auto && ispath(src.auto_type))
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_ADJUST), user)
 				return
 
-		else if (iswrenchingtool(W) && !src.status) // shouldn't have status unless it's reinforced, maybe? hopefully?
+		else if (iswrenchingtool(W) && !src.status && user.a_intent == INTENT_HARM) // shouldn't have status unless it's reinforced, maybe? hopefully?
 			if (istype(src, /obj/table/folding))
 				actions.start(new /datum/action/bar/icon/fold_folding_table(src, W), user)
 			else
