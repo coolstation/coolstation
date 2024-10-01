@@ -17,6 +17,9 @@
 	var/connect_diagonal = 0 // 0 = no diagonal sprites, 1 = diagonal only if both adjacent cardinals are present, 2 = always allow diagonals
 	var/d_state = 0
 
+	color // lighter toned walls for easier use of color var
+		icon = 'icons/turf/walls_auto_color.dmi'
+
 	New()
 		..()
 		if (map_setting && ticker)
@@ -136,6 +139,8 @@
 		explosion_resistance = 11
 		desc = "Looks <em>way</em> tougher than a regular wall."
 
+	color
+		icon = 'icons/turf/walls_auto_color.dmi'
 
 	get_desc()
 		switch (src.d_state)
@@ -292,6 +297,55 @@
 		panel_icon = "window-frosted"
 		overlay1 = "bars"
 		overlay2 = "icicle"
+
+/turf/wall/auto/rivet
+	icon = 'icons/turf/walls_rivet.dmi'
+	connects_to = list(/turf/wall/auto/rivet, /turf/wall/auto/rivet/window)
+	var/panel = TRUE
+	var/image/overlay_glass = null
+	var/image/overlay_trim = null
+
+	New()
+		..()
+		if(prob(33)) // add some rust
+			var/image/rust = image(src.icon, pick("rust1","rust2"))
+			rust.appearance_flags = RESET_COLOR
+			src.UpdateOverlays(rust, "rust")
+		if((panel) && (prob(33))) // add a small extra bit for some variation
+			var/image/panel = image(src.icon, pick("panel1","panel2","panel3"))
+			panel.pixel_x = 0 + rand(-3,1)
+			src.UpdateOverlays(panel, "panel")
+		if((overlay_glass != null) && (overlay_trim != null)) // windows in 2 parts, glass and trim
+			var/image/glass = image(src.icon, overlay_glass)
+			var/image/trim = image(src.icon, overlay_trim)
+			glass.appearance_flags = RESET_COLOR
+			trim.appearance_flags = RESET_COLOR
+			trim.color = src.color
+			src.UpdateOverlays(glass, "glass")
+			src.UpdateOverlays(trim, "trim")
+
+	window
+		panel = FALSE
+		opacity = 0
+
+	yellow
+		color = "#eeff00"
+		overlay_glass = "windowsq_glass"
+		overlay_trim = "windowsq_trim"
+
+	window/square
+#ifdef IN_MAP_EDITOR
+		icon_state = "icon_sq"
+#endif
+		overlay_glass = "windowsq_glass"
+		overlay_trim = "windowsq_trim"
+
+	window/porthole
+#ifdef IN_MAP_EDITOR
+		icon_state = "icon_port"
+#endif
+		overlay_glass = "windowp_glass"
+		overlay_trim = "windowp_trim"
 
 /turf/wall/auto/jen
 	icon = 'icons/turf/walls_jen.dmi'
