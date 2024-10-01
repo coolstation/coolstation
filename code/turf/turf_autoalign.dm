@@ -328,11 +328,6 @@
 		panel = FALSE
 		opacity = 0
 
-	yellow
-		color = "#eeff00"
-		overlay_glass = "windowsq_glass"
-		overlay_trim = "windowsq_trim"
-
 	window/square
 #ifdef IN_MAP_EDITOR
 		icon_state = "icon_sq"
