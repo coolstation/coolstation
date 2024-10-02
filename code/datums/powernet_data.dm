@@ -45,7 +45,7 @@ var/global/list/dirty_pnet_nodes = list()
 /datum/powernet_graph_node // not my fault that "nodes" in the context of pnets already means something else
 
 	//which obj/cable or obj/machinery/power we're associated with
-	var/obj/physical_node
+	var/obj/cable/physical_node
 
 	///Our direct neighbours
 	var/list/datum/powernet_graph_node/adjacent_nodes
@@ -58,6 +58,11 @@ var/global/list/dirty_pnet_nodes = list()
 ///Run through our connections and update which ones are still relevant, then
 /datum/powernet_graph_node/proc/validate()
 	var/dissolve_self = isnull(physical_node)
+	if (!length(adjacent_nodes))
+		if (dissolve_self)
+			qdel()
+		return
+
 	var/list/datum/powernet_graph_node/previous_adjacent_nodes = adjacent_nodes.Copy()
 	for (var/datum/powernet_graph_node/other_node as anything in adjacent_nodes)
 		//set this up for checking if there's powernet breaks later.
@@ -130,9 +135,28 @@ var/global/list/dirty_pnet_nodes = list()
 		//TODO compare what's left of adjacent_nodes versus previous_adjacent_nodes after doing a network propagation ping
 		//Tell the other nodes to split off into other powernets
 
-	//dirty_pnet_nodes -= src
+	dirty_pnet_nodes -= src
 
+///From starting_node, crawl the node network and assign new_netnum
+/datum/powernet_graph_node/proc/propagate_netnum(datum/powernet_graph_node/starting_node, new_netnum = 1)
+	var/datum/powernet/PN
+	if(powernets && length(powernets) >= new_netnum)
+		PN = powernets[new_netnum]
+	var/list/visited_nodes = list()
+	var/list/nodes_to_visit = list(starting_node)
 
+	//Could have done this recursively, but that'd require shoveling the visited nodes list around between calls and I don't think that's cheap?
+	while (length(nodes_to_visit))
+		var/datum/powernet_graph_node/a_node = nodes_to_visit[1]
+		//not bothing updating the powernet's cables list cause I want to deprecate that
+		a_node.pnet.all_graph_nodes -= a_node
+		a_node.netnum = new_netnum
+		a_node.pnet = PN
+		PN.all_graph_nodes |= a_node
+
+		visited_nodes |= a_node
+		var/list/new_nodes = Copy(a_node.adjacent_nodes) - visited_nodes
+		nodes_to_visit |= new_nodes
 
 //Stretches of cables with two connections. That is, the parts that aren't dead ends or
 //For navigating the graph we don't need to bother with these, that's the point of abstracting into a graph.
@@ -141,12 +165,25 @@ var/global/list/dirty_pnet_nodes = list()
 	//How many cables we had last time we checked
 	var/expected_length = 0
 	///How many cables currently claim to be part of this link. Note that this list isn't ordered WRT physical layout in any way.
-	var/list/obj/cable/cables = list()
+	var/list/obj/cable/cables
 	//Which two nodes are we connecting
 	var/list/datum/powernet_graph_node/adjacent_nodes
 
 	//links don't have a net number, we'll just grab the number of one of the nodes if needed (should be rare, like mostly people poking wires with multitools).
 	//Less stuff to keep in line.
+
+	New(list/new_cables = null, list/new_nodes = null)
+
+		if (new_cables)
+			cables = new_cables
+			expected_length = length(cables)
+		else cables = list()
+
+		if (length(new_nodes) == 2)
+			adjacent_nodes = new_nodes
+		else adjacent_nodes = list()
+
+		..()
 
 ///
 /datum/powernet_graph_link/proc/dissolve()
