@@ -20,6 +20,9 @@
 	var/image/proj_image = null
 	var/last_proj_update_time = null
 
+	color // lighter toned walls for easier use of color var
+		icon = 'icons/turf/walls_auto_color.dmi'
+
 	New()
 		..()
 		var/obj/plan_marker/wall/P = locate() in src
@@ -427,6 +430,9 @@
 	var/d_state = 0
 	explosion_resistance = 7
 	health = 300
+
+	color
+		icon = 'icons/turf/walls_auto_color.dmi'
 
 	onMaterialChanged()
 		..()
