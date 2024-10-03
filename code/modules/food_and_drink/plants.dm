@@ -83,6 +83,12 @@
 	proc/seasonal_check(obj/item/W as obj, mob/user as mob)
 		return
 
+	on_reagent_change(add)
+		..()
+		if (istype(planttype, /datum/plant/veg)) //not my fault this isn't organised
+			var/fraction = reagents.get_reagent_amount("veg_shortening") / (reagents.maximum_volume ? reagents.maximum_volume : 1)
+			src.SafeScale(1, 1 - (fraction/2))
+
 /obj/item/reagent_containers/food/snacks/plant/bamboo/
 	name = "bamboo shoot"
 	crop_suffix = " shoot"
