@@ -26,8 +26,8 @@ var/global/list/mapNames = list(
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
-	"Bayou Dock-N-Go" = list("id" = "BAYOUBREEZE",	"settings" = "bayoubreeze", 	"playerPickable" = 1),		"MaxPlayersAllowed" = 35),
-	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  		"MinPlayersAllowed" = 20),
+	"Bayou Dock-N-Go" = list("id" = "BAYOUBREEZE",	"settings" = "bayoubreeze", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 35),
+	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
@@ -303,7 +303,6 @@ var/global/list/mapNames = list(
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
-	firelock_style = /obj/machinery/door/firedoor/border
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
