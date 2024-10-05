@@ -35,6 +35,20 @@ var/global/runtime_count = 0
 #endif
 
 
+/client/proc/cmd_do_runtimes()
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	set name = "Do Runtimes"
+	set desc = "Do a single runtime for the logger."
+	set popup_menu = 0
+
+	admin_only
+
+	boutput(src, "doin runtime:)")
+	var/list/will_fail = null
+	will_fail = will_fail.len
+
+
+
 /client/proc/cmd_view_runtimes()
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 	set name = "View Runtimes"

@@ -174,6 +174,7 @@ var/list/admin_verbs = list(
 		/datum/admins/proc/camtest,
 
 		/client/proc/cmd_view_runtimes,
+		/client/proc/cmd_do_runtimes,
 		/client/proc/fix_powernets,
 		/client/proc/main_loop_context,
 		/client/proc/main_loop_tick_detail,
