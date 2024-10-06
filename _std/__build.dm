@@ -113,7 +113,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_PAMGOC 			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP  	 	// Wrestlemap by Overtone
 //#define MAP_OVERRIDE_POD_WARS   		// 500x500 Pod Wars map
-#define MAP_OVERRIDE_BAYOUBREEZE //lowpop scrapping map by Klushy225
+#define MAP_OVERRIDE_BAYOUBREEZE //low to midpop scrapping map by Klushy225
 //////////// GAMEMODE OVERRIDES (intended for ease of debug only. disables saving/loading the mode config therefore probably fucky on live server)
 
 //#define MODE_OVERRIDE_EXTENDED			//No antagonists.
