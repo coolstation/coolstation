@@ -73,8 +73,8 @@
 #elif defined(MAP_OVERRIDE_CHUNK)
 #include "chunk.dm"
 
-#elif defined(MAP_OVERRIDE_BAYOUBREEZE)
-#include "bayoubreeze.dm"
+#elif defined(MAP_OVERRIDE_BAYOUBEND)
+#include "bayoubend.dm"
 
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"

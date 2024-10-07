@@ -57,7 +57,7 @@
 
 #elif defined(MAP_OVERRIDE_CHUNK)
 
-#elif defined(MAP_OVERRIDE_BAYOUBREEZE)
+#elif defined(MAP_OVERRIDE_BAYOUBEND)
 
 #elif defined(MAP_OVERRIDE_SPIRIT)
 
