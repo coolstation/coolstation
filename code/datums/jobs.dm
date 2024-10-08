@@ -869,21 +869,21 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	limit = 5
 	wages = PAY_TRADESMAN
 	slot_back = list(/obj/item/storage/backpack/withO2)
-//spawn with your tools, all set up and ready
-#ifdef NO_START_JOBGEAR_MAP
-	slot_belt = list(/obj/item/storage/belt/utility/prepared)
+#ifndef NO_START_JOBGEAR_MAP
+	//spawn your tools
 	slot_lhan = list(/obj/item/storage/toolbox/mechanical/engineer_spawn)
-	slot_jump = list(/obj/item/clothing/under/rank/engineer)
-	slot_foot = list(/obj/item/clothing/shoes/orange)
 	slot_glov = list(/obj/item/clothing/gloves/yellow)
-#elif defined(NO_DEPARTMENT_START_MAP)
-//spawned already in your department? go to your goddamn locker you lazybones
-//todo: casual clothes
+	slot_belt = list(/obj/item/storage/belt/utility)
+#endif
+#ifndef NO_DEPARTMENT_START_MAP
+	//spawn in dept, go get your shit from your locker, lazybones
 	slot_jump = list(/obj/item/clothing/under/rank/engineer)
 	slot_foot = list(/obj/item/clothing/shoes/orange)
 #else
-//fresh from shuttle/quarters
-	slot_belt = list(/obj/item/storage/belt/utility)
+	//fresh from shuttle/quarters, probably just woke up
+	//todo: casual clothes
+	slot_jump = list(/obj/item/clothing/under/rank/engineer)
+	slot_foot = list(/obj/item/clothing/shoes/orange)
 #endif
 	slot_poc1 = list(/obj/item/device/pda2/engine)
 	slot_ears = list(/obj/item/device/radio/headset/engineer)
