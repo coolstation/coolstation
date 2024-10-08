@@ -3793,6 +3793,12 @@ var/global/noir = 0
 
 			usr.client.cmd_view_runtimes()
 
+		if ("do_runtimes")
+			if (src.level < LEVEL_PA)
+				return alert("You must be at least a Primary Admin to do runtimes.")
+
+			usr.client.cmd_do_runtimes()
+
 		if ("viewantaghistory")
 			if (src.level < LEVEL_SA)
 				return alert("You must be at least a Secondary Admin to view antag history.")
@@ -4295,7 +4301,8 @@ var/global/noir = 0
 				<A href='byond://?src=\ref[src];action=view_logs;type=vehicle_log'>Vehicle Log</A>
 				<A href='byond://?src=\ref[src];action=view_logs;type=vehicle_log_string'><small>(Search)</small></A><br>
 				<hr>
-				<A href='byond://?src=\ref[src];action=view_runtimes'>View Runtimes</A>
+				<A href='byond://?src=\ref[src];action=view_runtimes'>View Runtimes</A><br>
+				<A href='byond://?src=\ref[src];action=do_runtimes'>Do Runtimes</A>
 			"}
 
 	dat += "</div>"

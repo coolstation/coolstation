@@ -287,7 +287,7 @@ mob/new_player
 		if(href_list["preferences"])
 			if (!ready)
 				client.preferences.process_link(src, href_list)
-		else if(!href_list["late_join"] || !href_list["SelectedJob"])
+		else if(!href_list["late_join"] && !href_list["SelectedJob"])
 			new_player_panel()
 
 	proc/IsJobAvailable(var/datum/job/JOB)
