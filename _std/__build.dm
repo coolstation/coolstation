@@ -101,8 +101,8 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_HORIZON			// Horizon by Warcrimes do not use
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_SPIRIT 			// Hastily Repurposed Shopping Mall - Tamber
-//#define MAP_OVERRIDE_ATLAS  			// gannetmap OR IS IT KUBIUSGANNETMAP??
-//#define MAP_OVERRIDE_MANTA  			// manta map
+//#define MAP_OVERRIDE_ATLAS  			// gannetmap
+//#define MAP_OVERRIDE_MANTA  			// boolicker map
 //#define MAP_OVERRIDE_DENSITY
 //#define MAP_OVERRIDE_KONDARU
 //#define MAP_OVERRIDE_OZYMANDIAS
@@ -112,8 +112,8 @@ o+`        `-` ``..-:yooos-..----------..`
 #define MAP_OVERRIDE_CHUNK				// Warcrimes WIP do not use
 //#define MAP_OVERRIDE_PAMGOC 			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP  	 	// Wrestlemap by Overtone
-// #define MAP_OVERRIDE_POD_WARS   		// 500x500 Pod Wars map
-
+//#define MAP_OVERRIDE_POD_WARS   		// 500x500 Pod Wars map
+//#define MAP_OVERRIDE_BAYOUBEND //low to midpop scrapping map by Klushy225
 //////////// GAMEMODE OVERRIDES (intended for ease of debug only. disables saving/loading the mode config therefore probably fucky on live server)
 
 //#define MODE_OVERRIDE_EXTENDED			//No antagonists.

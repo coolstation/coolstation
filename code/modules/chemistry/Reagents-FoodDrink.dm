@@ -2856,6 +2856,17 @@ datum
 				M.reagents.add_reagent("sugar", 2.4 * mult)
 				..()
 
+		fooddrink/shortening //we may have use for this in a cooking rework at some point, but for now I just want to make a joke
+			name = "vegetable shortening"
+			id = "veg_shortening"
+			description = "Solid plant fat, used in making short doughs."
+			reagent_state = SOLID
+			fluid_r = 247
+			fluid_g = 245
+			fluid_b = 225
+			transparency = 250
+			hunger_value = 0.65
+
 		fooddrink/gravy
 			name = "gravy"
 			id = "gravy"

@@ -268,6 +268,13 @@
 /area/prison/cell_block/wards{
 	name = "Penalty Box"
 	})
+"iP" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "jb" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -344,6 +351,14 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/destiny)
+"lo" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4;
+	icon_state = "bdoormid1";
+	id = "qm_incoming"
+	},
+/turf/space,
+/area/space)
 "lw" = (
 /obj/machinery/shuttle/engine/propulsion{
 	icon_state = "alt_propulsion"
@@ -395,6 +410,13 @@
 "mz" = (
 /turf/space,
 /area/shuttle/escape/outpost/cogmap2)
+"mT" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "mX" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
@@ -481,6 +503,13 @@
 	},
 /turf/space,
 /area/shuttle/escape/outpost/destiny)
+"pr" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "pF" = (
 /obj/machinery/sleeper/compact{
 	dir = 4
@@ -717,6 +746,13 @@
 	},
 /turf/space,
 /area/shuttle/escape/outpost/destiny)
+"zY" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "Ae" = (
 /turf/floor/shuttle,
 /area/shuttle/escape/outpost/cogmap)
@@ -749,6 +785,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"AT" = (
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4;
+	id = "qm_outgoing"
+	},
+/turf/floor/caution/northsouth,
+/area/shuttle/cargo/hub)
 "Bt" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/industrial,
@@ -926,6 +969,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"HS" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "HV" = (
 /turf/wall{
 	icon = 'icons/obj/singularity.dmi';
@@ -1184,6 +1234,13 @@
 	},
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap)
+"Pz" = (
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4;
+	id = "qm_incoming"
+	},
+/turf/floor/caution/northsouth,
+/area/shuttle/cargo/hub)
 "PE" = (
 /obj/stool/chair/comfy/shuttle/green{
 	dir = 8
@@ -6639,8 +6696,8 @@ ID
 ZF
 yC
 ID
-VE
-VE
+tH
+iP
 kl
 Ec
 Iz
@@ -6648,8 +6705,8 @@ qO
 Iz
 EB
 PL
-VE
-VE
+Mn
+tH
 ID
 ok
 ZF
@@ -6941,7 +6998,7 @@ ID
 ZF
 ZF
 Cf
-VE
+mT
 VE
 VE
 kl
@@ -6951,7 +7008,7 @@ hA
 PL
 VE
 VE
-VE
+mT
 Cf
 ZF
 ZF
@@ -7243,7 +7300,7 @@ ID
 ZF
 ZF
 Cf
-VE
+mT
 VE
 VE
 VE
@@ -7253,7 +7310,7 @@ PT
 VE
 VE
 VE
-VE
+mT
 Cf
 ZF
 ZF
@@ -7545,6 +7602,7 @@ ID
 ZF
 ZF
 Cf
+mT
 VE
 VE
 VE
@@ -7554,8 +7612,7 @@ VE
 VE
 VE
 VE
-VE
-VE
+mT
 Cf
 ZF
 ZF
@@ -7847,6 +7904,7 @@ ID
 ZF
 ZF
 Cf
+mT
 VE
 VE
 VE
@@ -7856,8 +7914,7 @@ VE
 VE
 VE
 VE
-VE
-VE
+mT
 Cf
 ZF
 ZF
@@ -8149,6 +8206,8 @@ ID
 ZF
 yC
 ID
+wd
+iP
 VE
 VE
 VE
@@ -8156,10 +8215,8 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
+Mn
+wd
 ID
 ok
 ZF
@@ -9653,7 +9710,7 @@ VE
 VE
 VE
 VE
-VE
+mT
 VE
 VE
 VE
@@ -9671,7 +9728,7 @@ ZF
 ID
 VE
 VE
-VE
+mT
 VE
 VE
 VE
@@ -9973,7 +10030,7 @@ ZF
 ID
 VE
 VE
-VE
+mT
 VE
 VE
 pb
@@ -10273,9 +10330,9 @@ Bt
 ZF
 ZF
 ID
-VE
-VE
-VE
+oz
+oz
+HS
 pb
 RV
 Uv
@@ -12085,9 +12142,9 @@ Bt
 ZF
 ZF
 ID
-VE
-VE
-VE
+oz
+oz
+zY
 fX
 RV
 Uv
@@ -12389,7 +12446,7 @@ ZF
 ID
 VE
 VE
-VE
+mT
 VE
 VE
 fX
@@ -12673,7 +12730,7 @@ VE
 VE
 VE
 VE
-VE
+mT
 VE
 VE
 VE
@@ -12691,7 +12748,7 @@ ZF
 ID
 VE
 VE
-VE
+mT
 VE
 VE
 VE
@@ -14193,9 +14250,9 @@ VE
 VE
 VE
 VE
+mT
 VE
-VE
-VE
+mT
 VE
 VE
 VE
@@ -14491,17 +14548,17 @@ ID
 ok
 ZF
 ID
+oz
+oz
+oz
+oz
+HS
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+pr
+oz
+oz
+oz
+oz
 ID
 ZF
 yC
@@ -14787,8 +14844,8 @@ VX
 ZF
 yC
 ID
-VE
-VE
+oz
+oz
 ID
 ZF
 ZF
@@ -15391,8 +15448,8 @@ ZF
 ZF
 DZ
 ID
-VE
-VE
+oz
+oz
 ID
 ZF
 ZF
@@ -15681,7 +15738,7 @@ VE
 VE
 VE
 VE
-VE
+lo
 VE
 ID
 gn
@@ -15995,8 +16052,8 @@ ID
 ID
 ID
 ID
-VE
-VE
+oz
+oz
 ID
 ok
 ZF
@@ -16290,9 +16347,9 @@ VE
 VE
 VE
 hX
-zo
+AT
 Vx
-zo
+Pz
 Vx
 EH
 WB

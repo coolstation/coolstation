@@ -1517,7 +1517,7 @@ var/datum/action_controller/actions
 	onUpdate()
 		..()
 		if (M?.hasStatus("resting") && !M.stat && M.getStatusDuration("burning"))
-			M.update_burning(-1.5)
+			M.update_burning(-3)
 
 			M.set_dir(turn(M.dir,up ? -90 : 90))
 			pixely += up ? 1 : -1
@@ -1551,7 +1551,7 @@ var/datum/action_controller/actions
 		else
 			for (var/mob/O in AIviewers(M))
 				O.show_message("<span class='alert'><B>[M] rolls around on the floor, trying to extinguish the flames.</B></span>", 1, group = "resist")
-		M.update_burning(-1.5)
+		M.update_burning(-2)
 
 		M.unlock_medal("Through the fire and flames", 1)
 		playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, 0 , 0.7)

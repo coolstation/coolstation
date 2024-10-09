@@ -6,7 +6,7 @@
 * It does NOT catch reference bugs
 */
 
-var/global/list/runtimeDetails = new()
+var/global/list/runtimeDetails
 var/global/runtime_count = 0
 
 /world/Error(exception/E)
@@ -15,14 +15,14 @@ var/global/runtime_count = 0
 	runtime_count++
 
 	//Save the runtime into our persistent, uh, "storage"
-	runtimeDetails["[runtimeDetails.len + 1]"] = list(
+	LAZYLISTADD(runtimeDetails, list(list(
 		"name" = !invalid ? E.name : E,
 		"file" = !invalid ? E.file : "",
 		"line" = !invalid ? E.line : "",
 		"desc" = E.desc ? E.desc : "",
 		"seen" = timestamp,
 		"invalid" = invalid
-	)
+	)))
 
 	//Output formatted runtime to the usual error.log
 #ifndef RUNTIME_CHECKING
@@ -33,6 +33,20 @@ var/global/runtime_count = 0
 		if (E.desc)
 			world.log << "[E.desc]"
 #endif
+
+
+/client/proc/cmd_do_runtimes()
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	set name = "Do Runtimes"
+	set desc = "Do a single runtime for the logger."
+	set popup_menu = 0
+
+	admin_only
+
+	boutput(src, "doin runtime:)")
+	var/list/will_fail = null
+	will_fail = will_fail.len
+
 
 
 /client/proc/cmd_view_runtimes()
