@@ -231,6 +231,13 @@
 	},
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/destiny)
+"gU" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "hA" = (
 /turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
@@ -286,6 +293,13 @@
 	icon_state = "wall3_floor2"
 	},
 /area/shuttle/escape/outpost/cogmap)
+"jw" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "jz" = (
 /turf/space,
 /area/shuttle/escape/outpost/cogmap)
@@ -557,6 +571,13 @@
 	icon_state = "wall5"
 	},
 /area/shuttle/escape/outpost/donut2)
+"sv" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "sM" = (
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections{
@@ -921,6 +942,13 @@
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle,
 /area/shuttle/escape/outpost/cogmap)
+"HL" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "HP" = (
 /turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
@@ -1271,6 +1299,13 @@
 	icon_state = "shuttlecock_busted"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"RK" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/space)
 "RL" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/shuttle/engine/heater{
@@ -6639,8 +6674,8 @@ ID
 ZF
 yC
 ID
-VE
-VE
+tH
+RK
 kl
 Ec
 Iz
@@ -6648,8 +6683,8 @@ qO
 Iz
 EB
 PL
-VE
-VE
+Mn
+tH
 ID
 ok
 ZF
@@ -6941,7 +6976,7 @@ ID
 ZF
 ZF
 Cf
-VE
+gU
 VE
 VE
 kl
@@ -6951,7 +6986,7 @@ hA
 PL
 VE
 VE
-VE
+gU
 Cf
 ZF
 ZF
@@ -7243,7 +7278,7 @@ ID
 ZF
 ZF
 Cf
-VE
+gU
 VE
 VE
 VE
@@ -7253,7 +7288,7 @@ PT
 VE
 VE
 VE
-VE
+gU
 Cf
 ZF
 ZF
@@ -7545,6 +7580,7 @@ ID
 ZF
 ZF
 Cf
+gU
 VE
 VE
 VE
@@ -7554,8 +7590,7 @@ VE
 VE
 VE
 VE
-VE
-VE
+gU
 Cf
 ZF
 ZF
@@ -7847,6 +7882,7 @@ ID
 ZF
 ZF
 Cf
+gU
 VE
 VE
 VE
@@ -7856,8 +7892,7 @@ VE
 VE
 VE
 VE
-VE
-VE
+gU
 Cf
 ZF
 ZF
@@ -8149,6 +8184,8 @@ ID
 ZF
 yC
 ID
+wd
+RK
 VE
 VE
 VE
@@ -8156,10 +8193,8 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
+Mn
+wd
 ID
 ok
 ZF
@@ -9653,7 +9688,7 @@ VE
 VE
 VE
 VE
-VE
+gU
 VE
 VE
 VE
@@ -9671,7 +9706,7 @@ ZF
 ID
 VE
 VE
-VE
+gU
 VE
 VE
 VE
@@ -9973,7 +10008,7 @@ ZF
 ID
 VE
 VE
-VE
+gU
 VE
 VE
 pb
@@ -10273,9 +10308,9 @@ Bt
 ZF
 ZF
 ID
-VE
-VE
-VE
+oz
+oz
+HL
 pb
 RV
 Uv
@@ -12085,9 +12120,9 @@ Bt
 ZF
 ZF
 ID
-VE
-VE
-VE
+oz
+oz
+sv
 fX
 RV
 Uv
@@ -12389,7 +12424,7 @@ ZF
 ID
 VE
 VE
-VE
+gU
 VE
 VE
 fX
@@ -12673,7 +12708,7 @@ VE
 VE
 VE
 VE
-VE
+gU
 VE
 VE
 VE
@@ -12691,7 +12726,7 @@ ZF
 ID
 VE
 VE
-VE
+gU
 VE
 VE
 VE
@@ -14193,9 +14228,9 @@ VE
 VE
 VE
 VE
+gU
 VE
-VE
-VE
+gU
 VE
 VE
 VE
@@ -14491,17 +14526,17 @@ ID
 ok
 ZF
 ID
+oz
+oz
+oz
+oz
+HL
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+jw
+oz
+oz
+oz
+oz
 ID
 ZF
 yC
@@ -14787,8 +14822,8 @@ VX
 ZF
 yC
 ID
-VE
-VE
+oz
+oz
 ID
 ZF
 ZF
@@ -15391,8 +15426,8 @@ ZF
 ZF
 DZ
 ID
-VE
-VE
+oz
+oz
 ID
 ZF
 ZF
@@ -15995,8 +16030,8 @@ ID
 ID
 ID
 ID
-VE
-VE
+oz
+oz
 ID
 ok
 ZF
