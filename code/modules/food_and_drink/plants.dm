@@ -1184,16 +1184,16 @@
 	brew_result = "vodka"
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/kitchen/utensil/knife) || istype(W,/obj/item/knife/butcher))
+		if (iscuttingtool(W))
 			if (src.icon_state == "potato")
 				user.visible_message("[user] peels [src].", "You peel [src].")
 				src.icon_state = "potato-peeled"
 				src.desc = "It needs to be cooked."
 			else if (src.icon_state == "potato-peeled")
 				user.visible_message("[user] chops up [src].", "You chop up [src].")
-				new /obj/item/reagent_containers/food/snacks/ingredient/chips(get_turf(src))
+				new /obj/item/reagent_containers/food/snacks/ingredient/chips_thicc(get_turf(src))
 				qdel(src)
-				qdel(src)
+
 		var/obj/item/cable_coil/C = W
 		if (istype(C)) //kubius potato battery: creation operation
 			if (src.icon_state == "potato" && C.use(1))

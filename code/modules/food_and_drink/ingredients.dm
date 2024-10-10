@@ -715,9 +715,27 @@
 	icon_state = "pasta-sheet"
 
 
-/obj/item/reagent_containers/food/snacks/ingredient/chips
+/obj/item/reagent_containers/food/snacks/ingredient/chips_thicc
 	name = "uncooked chips"
-	desc = "Cook them up into some nice fries."
+	desc = "Cook them up into some nice fat fries, or cut them again into shoestrings."
+	icon_state = "pchips_thicc"
+	amount = 6
+	heal_amt = 0
+	food_color = "#FFFF99"
+
+	heal(var/mob/M)
+		boutput(M, "<span class='alert'>Raw potato tastes pretty nasty...</span>") // does it?
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (iscuttingtool(W))
+			user.visible_message("[user] chops up [src].", "You chop up [src].")
+			new /obj/item/reagent_containers/food/snacks/ingredient/chips(get_turf(src))
+			new /obj/item/reagent_containers/food/snacks/ingredient/chips(get_turf(src))
+			qdel(src)
+
+/obj/item/reagent_containers/food/snacks/ingredient/chips
+	name = "uncooked fries"
+	desc = "Cook them up into some nice golden fries."
 	icon_state = "pchips"
 	amount = 6
 	heal_amt = 0

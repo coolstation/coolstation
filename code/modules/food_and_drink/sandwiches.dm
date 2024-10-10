@@ -523,7 +523,7 @@
 	desc = "Lightly salted potato fingers."
 	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
 	icon_state = "fries"
-	amount = 6
+	amount = 5
 	heal_amt = 1
 	initial_volume = 5
 	initial_reagents = list("cholesterol"=1)
@@ -534,6 +534,64 @@
 		if (disappointing)
 			boutput(M, "These taste disappointing. Like a mild, but clear insult to fries.")
 		else ..() //mostly to suppress other "that tasted X" messages, but yeah no benefits from oven fries either
+
+
+/obj/item/reagent_containers/food/snacks/fat_fries //my other favourite sandwich
+	name = "fat fries"
+	desc = "Lightly salted potato thumbs."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "fries_thicc"
+	amount = 6
+	heal_amt = 1
+	initial_volume = 10
+	initial_reagents = list("cholesterol"=1)
+	//TODO: make generic somehow?
+	var/disappointing = FALSE
+
+	heal(var/mob/M)
+		if (disappointing)
+			boutput(M, "These taste disappointing. Like a mild, but clear insult to fries.")
+		else ..() //mostly to suppress other "that tasted X" messages, but yeah no benefits from oven fries either
+
+	on_reagent_change(add)
+		if(add && src.reagents.get_reagent_amount("gravy") >= 5)
+			src.visible_message("[src] gets remarkably saucier.")
+			new /obj/item/reagent_containers/food/snacks/frites_sauce(get_turf(src))
+			qdel(src)
+		..()
+
+/obj/item/reagent_containers/food/snacks/frites_sauce
+	name = "frites sauce"
+	desc = "Des patates frites avec sauce brune."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "fries_gravy"
+	amount = 7
+	heal_amt = 2
+	initial_volume = 10
+	initial_reagents = list("gravy"=5)
+	food_effects = list("food_warm")
+
+	attackby(obj/item/W, mob/user)
+		if(istype(W, /obj/item/reagent_containers/food/snacks/ingredient/cheese))
+			user.visible_message("[user] adds some cheese to [src].", "You add some cheese to [src].")
+			user.u_equip(W)
+			W.dropped()
+			qdel(W)
+			new /obj/item/reagent_containers/food/snacks/poutine(get_turf(src))
+			qdel(src)
+		else
+			..()
+
+/obj/item/reagent_containers/food/snacks/poutine
+	name = "poutine"
+	desc = "Des patates frites avec fromage en grains et sauce brune."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "poutine"
+	amount = 8
+	heal_amt = 3
+	initial_volume = 15
+	initial_reagents = list("gravy"=5,"cheese"=5)
+	food_effects = list("food_warm", "food_hp_up")
 
 /obj/item/reagent_containers/food/snacks/macguffin
 	name = "sausage macguffin"
