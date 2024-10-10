@@ -2152,8 +2152,8 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			src.desc = "A washbear that came from space. Or maybe went to space. Who knows how it got here?"
 
 /obj/item/clothing/head/raccoon
-	name = "coonskin cap"
-	desc = "You'll feel ready to take on anything the wild frontier of space can throw at you with this cap on your head!"
+	name = "raccoonskin cap"
+	desc = "They really wore these, way back then? No wonder Americans never became any sort of world superpower, sheesh."
 	icon_state = "raccoon"
 	item_state = "raccoon"
 
