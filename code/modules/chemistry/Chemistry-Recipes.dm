@@ -469,6 +469,7 @@ datum
 			required_temperature = T0C + 150
 			result_amount = 1
 			mix_phrase = "The paper chars, seperating into a silky black powder."
+			mix_sound = null
 
 		bilk
 			name = "Bilk"
