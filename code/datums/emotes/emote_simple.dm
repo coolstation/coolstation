@@ -63,6 +63,8 @@
 	//slightly different wording ones below
 	blush
 		emote_string = "blushes"
+	squint
+		emote_string = "squints"
 	flinch
 		emote_string = "flinches"
 		enact(mob/living/carbon/human/user, voluntary = 0, param)

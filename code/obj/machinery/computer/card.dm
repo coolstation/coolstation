@@ -17,6 +17,8 @@
 	var/list/research_access_list = list(access_medical, access_tox, access_tox_storage, access_medlab, access_medical_lockers, access_research, access_robotics, access_chemistry, access_pathology)
 	var/list/security_access_list = list(access_security, access_brig, access_forensics_lockers, access_maxsec, access_securitylockers, access_carrypermit, access_contrabandpermit)
 	var/list/command_access_list = list(access_research_director, access_emergency_storage, access_change_ids, access_ai_upload, access_teleporter, access_eva, access_heads, access_captain, access_engineering_chief, access_medical_director, access_head_of_personnel, access_ghostdrone)
+	//associating command office accesses with respective lockers
+	var/list/command_locker_access_list
 	var/list/allowed_access_list
 	req_access = list(access_change_ids)
 	desc = "A computer that allows an authorized user to change the identification of other ID cards."
@@ -29,7 +31,7 @@
 /obj/machinery/computer/card/New()
 	..()
 	src.allowed_access_list = civilian_access_list + engineering_access_list + supply_access_list + research_access_list + command_access_list + security_access_list - access_maxsec
-
+	src.command_locker_access_list = list("[access_research_director]" = access_research_director_locker, "[access_engineering_chief]" = access_chief_engineer_locker, "[access_medical_director]" = access_medical_director_locker, "[access_head_of_personnel]" = access_head_of_personnel_locker, "[access_quartermaster]" = access_quartermaster_locker)
 
 /obj/machinery/computer/card/console_upper
 	icon = 'icons/obj/machines/computerpanel.dmi'
@@ -148,6 +150,13 @@
 						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in command_access_list)
 						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						if ("[access_name_lookup[A]]" in command_locker_access_list)
+							var/access_num_locker = command_locker_access_list["[access_name_lookup[A]]"]
+							if (access_num_locker in src.modify.access)
+								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=0'><font color=\"red\"><i>(Locker)</i></font></a>"
+							else
+								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=1'><i>(Locker)</i></a>"
+
 				else//Click these to add access
 					if (access_name_lookup[A] in civilian_access_list)
 						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
@@ -161,6 +170,12 @@
 						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 					if (access_name_lookup[A] in command_access_list)
 						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						if ("[access_name_lookup[A]]" in command_locker_access_list)
+							var/access_num_locker = command_locker_access_list["[access_name_lookup[A]]"]
+							if (access_num_locker in src.modify.access)
+								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=0'><font color=\"red\"><i>(Locker)</i></font></a>"
+							else
+								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=1'><i>(Locker)</i></a>"
 
 			body += "[jointext(civilian_access, "")]<br>[jointext(engineering_access, "")]<br>[jointext(supply_access, "")]<br>[jointext(research_access, "")]<br>[jointext(security_access, "")]<br>[jointext(command_access, "")]"
 
@@ -255,7 +270,7 @@
 		if(src.authenticated)
 			var/access_type = text2num(href_list["access"])
 			var/access_allowed = text2num(href_list["allowed"])
-			if(access_type in get_all_accesses())
+			if(access_type in (get_all_accesses() + list(access_research_director_locker, access_chief_engineer_locker, access_medical_director_locker, access_head_of_personnel_locker, access_quartermaster_locker)))
 				src.modify.access -= access_type
 				if(access_allowed == 1)
 					src.modify.access += access_type

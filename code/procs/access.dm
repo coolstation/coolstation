@@ -209,7 +209,7 @@
 		if("Head of Personnel")
 			return list(access_security, access_carrypermit, access_contrabandpermit, access_brig, access_forensics_lockers, access_armory,
 						access_tox, access_tox_storage, access_chemistry, access_medical, access_medlab,
-						access_emergency_storage, access_change_ids, access_eva, access_heads, access_head_of_personnel, access_medical_lockers,
+						access_emergency_storage, access_change_ids, access_eva, access_heads, access_head_of_personnel, access_head_of_personnel_locker, access_medical_lockers,
 						access_all_personal_lockers, access_tech_storage, access_maint_tunnels, access_bar, access_janitor,
 						access_crematorium, access_kitchen, access_robotics, access_cargo, access_supply_console,
 						access_research, access_hydro, access_ranch, access_mail, access_ai_upload, access_pathology, access_juicer_crypto)
@@ -229,7 +229,7 @@
 						access_mining, access_pathology)
 #endif
 		if("Research Director")
-			return list(access_research, access_research_director, access_dwaine_superuser,
+			return list(access_research, access_research_director, access_research_director_locker, access_dwaine_superuser,
 						access_tech_storage, access_maint_tunnels, access_heads, access_eva, access_tox,
 						access_tox_storage, access_chemistry, access_teleporter, access_ai_upload
 						#ifdef SCIENCE_PATHO_MAP
@@ -239,7 +239,7 @@
 		if("Medical Director", "Head Surgeon")
 			return list(access_robotics, access_medical, access_morgue,
 						access_maint_tunnels, access_tech_storage, access_medical_lockers,
-						access_medlab, access_heads, access_eva, access_medical_director, access_ai_upload
+						access_medlab, access_heads, access_eva, access_medical_director, access_medical_director_locker, access_ai_upload
 						#ifndef SCIENCE_PATHO_MAP
 						, access_pathology
 						#endif
@@ -248,14 +248,14 @@
 			return list(access_engineering, access_maint_tunnels, access_external_airlocks,
 						access_tech_storage, access_engineering_storage, access_engineering_eva, access_engineering_atmos,
 						access_engineering_power, access_engineering_engine, access_mining_shuttle,
-						access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_mining, access_mining_outpost,
+						access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_chief_engineer_locker, access_mining, access_mining_outpost,
 						access_heads, access_ai_upload, access_construction, access_eva, access_cargo, access_supply_console, access_hangar)
 		if("Head of Mining", "Mining Supervisor")
 			return list(access_engineering, access_maint_tunnels, access_external_airlocks,
 						access_engineering_eva, access_mining_shuttle, access_mining, access_tech_storage,
 						access_mining_outpost, access_hangar, access_heads, access_ai_upload, access_construction, access_eva)
 		if("Quartermaster") //new head, make a QM-exclusive office
-			return list(access_quartermaster, access_engineering_storage, access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining, access_engineering, access_engineering_eva,
+			return list(access_quartermaster, access_quartermaster_locker, access_engineering_storage, access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining, access_engineering, access_engineering_eva,
 						access_mining_shuttle, access_mining_outpost, access_external_airlocks, access_heads, access_construction, access_eva, access_tech_storage)
 
 		///////////////////////////// Security
@@ -384,7 +384,7 @@
 		else
 			return list()
 
-/proc/get_all_accesses()  // not adding the special stuff to this
+/proc/get_all_accesses()  // not adding the special stuff to this, also missing head's lockers on purpose
 	return list(access_security, access_brig, access_forensics_lockers, access_armory,
 	            access_medical, access_medlab, access_morgue, access_securitylockers,
 	            access_tox, access_tox_storage, access_chemistry, access_carrypermit, access_contrabandpermit,
@@ -395,7 +395,7 @@
 	            access_engineering, access_maint_tunnels, access_external_airlocks,
 	            access_tech_storage, access_engineering_storage, access_engineering_eva,
 	            access_engineering_power, access_engineering_engine, access_mining_shuttle,
-	            access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_mining, access_mining_outpost,
+	            access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_quartermaster, access_mining, access_mining_outpost,
 	            access_research, access_research_director, access_dwaine_superuser, access_engineering_atmos, access_hangar, access_medical_director, access_special_club)
 
 /proc/syndicate_spec_ops_access() //syndie spec ops need to get out of the listening post.
@@ -409,7 +409,7 @@
 	            access_engineering, access_maint_tunnels, access_external_airlocks,
 	            access_tech_storage, access_engineering_storage, access_engineering_eva,
 	            access_engineering_power, access_engineering_engine, access_mining_shuttle,
-	            access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_mining, access_mining_outpost,
+	            access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_quartermaster, access_mining, access_mining_outpost,
 	            access_research, access_research_director, access_dwaine_superuser, access_engineering_atmos, access_hangar, access_medical_director, access_special_club, access_syndicate_shuttle)
 
 var/list/access_name_lookup //Generated at round start.

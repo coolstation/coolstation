@@ -64,6 +64,7 @@ var/static/list/human_emotes = list(
 	"contemplate" = /datum/emote/simple_visible/contemplate,
 	"despair" = /datum/emote/simple_visible/despair,
 	"blush" = /datum/emote/simple_visible/blush,
+	"squint" = /datum/emote/simple_visible/squint,
 	"flinch" = /datum/emote/simple_visible/flinch,
 	"blink_r" = /datum/emote/simple_visible/blink_r,
 	"eyebrow" = /datum/emote/simple_visible/eyebrow,
