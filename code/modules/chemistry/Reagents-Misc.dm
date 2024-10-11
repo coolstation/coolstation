@@ -1720,6 +1720,18 @@ datum
 				..()
 				return
 
+		dead_bugs
+			name = "dead bugs"
+			id = "dead_bugs"
+			description = "Bugs, except they're dead. Crunchy!"
+			reagent_state = SOLID
+			fluid_r = 60
+			fluid_g = 10
+			fluid_b = 10
+			transparency = 250
+			value = 2
+			viscosity = 1
+
 		hugs
 			name = "pure hugs"
 			id = "hugs"
