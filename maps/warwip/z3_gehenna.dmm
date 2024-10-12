@@ -25142,7 +25142,10 @@
 /area/station/engine/coldloop)
 "ofB" = (
 /obj/railing/cyan,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /turf/floor,
 /area/station/bridge/captain)
 "ofG" = (

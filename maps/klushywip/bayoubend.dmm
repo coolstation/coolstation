@@ -1409,7 +1409,10 @@
 "lVt" = (/obj/table/wood/auto,/obj/machinery/light/lamp/green{switchon = 1},/obj/item/storage/box/evidence{pixel_y = 8; pixel_x = -4},/obj/item/device/detective_scanner{pixel_y = 6; pixel_x = 9},/turf/floor/carpet/grime,/area/station/security/detectives_office)
 "lVw" = (/obj/table/auto,/obj/item/shaker/salt{pixel_x = -11},/obj/item/kitchen/rollingpin{pixel_x = 4; pixel_y = 2},/obj/item/shaker/pepper,/turf/floor/specialroom/cafeteria,/area/station/crew_quarters/kitchen)
 "lVV" = (/obj/decal/poster/wallsign/poster_beach,/turf/wall,/area/station/crew_quarters/kitchen)
-"lWg" = (/obj/table/wood/auto,/obj/item/card/id/captains_spare{pixel_x = -6; pixel_y = 10},/obj/item/pinpointer/disk{pixel_x = 1; pixel_y = 1},/turf/floor/carpet/arcade,/area/station/bridge/captain)
+"lWg" = (/obj/table/wood/auto,/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	}{pixel_x = -6; pixel_y = 10},/obj/item/pinpointer/disk{pixel_x = 1; pixel_y = 1},/turf/floor/carpet/arcade,/area/station/bridge/captain)
 "lXA" = (/obj/decal/cleanable/ripped_poster,/turf/wall,/area/station/crew_quarters/bathroom)
 "lYK" = (/obj/disposalpipe/segment{dir = 4},/obj/cable{icon_state = "6-8"},/obj/cable{icon_state = "5-8"},/turf/floor/plating/random,/area/station/maintenance/west)
 "lYT" = (/obj/machinery/computer3/generic/med_data,/turf/floor/redwhite{dir = 1},/area/station/medical/medbay/surgery)
