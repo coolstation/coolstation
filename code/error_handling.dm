@@ -15,14 +15,14 @@ var/global/runtime_count = 0
 	runtime_count++
 
 	//Save the runtime into our persistent, uh, "storage"
-	LAZYLISTADD(runtimeDetails, list(
+	runtimeDetails["[runtimeDetails.len + 1]"] =  list(
 		"name" = !invalid ? E.name : E,
 		"file" = !invalid ? E.file : "",
 		"line" = !invalid ? E.line : "",
 		"desc" = E.desc ? E.desc : "",
 		"seen" = timestamp,
 		"invalid" = invalid
-	))
+	)
 
 	//Output formatted runtime to the usual error.log
 #ifndef RUNTIME_CHECKING
