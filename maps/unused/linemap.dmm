@@ -34115,7 +34115,10 @@
 "bAE" = (
 /obj/table/auto,
 /obj/item/pinpointer/disk,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/hand_tele,
 /turf/floor/blue,
 /area/station/bridge/captain)

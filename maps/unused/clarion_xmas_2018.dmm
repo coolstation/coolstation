@@ -30606,7 +30606,10 @@
 	},
 /obj/disposalpipe/segment,
 /obj/table/wood/auto,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/pen/fancy,
 /obj/machinery/light/lamp/green{
 	on = 0;

@@ -23921,7 +23921,10 @@
 /area/station/crew_quarters/captain)
 "biv" = (
 /obj/table/auto,
-/obj/item/card/id/captains_spare{
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	}{
 	pixel_x = 8;
 	pixel_y = 10
 	},

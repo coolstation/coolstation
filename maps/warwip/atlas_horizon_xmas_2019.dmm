@@ -2628,7 +2628,10 @@
 	},
 /area/space)
 "agJ" = (
-/obj/item/card/id/captains_spare/santa,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	}/santa,
 /turf/floor/industrial,
 /area/space)
 "agK" = (
@@ -9790,7 +9793,10 @@
 	pixel_x = -10
 	},
 /obj/table/wood/auto,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/sticker/ribbon/first_place,
 /obj/item/stamp/cap,
 /turf/floor/carpet/arcade,
@@ -28477,7 +28483,10 @@
 	},
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/pen,
 /obj/machinery/light_switch/east,
 /turf/floor/carpet/blue/fancy/innercorner/east,

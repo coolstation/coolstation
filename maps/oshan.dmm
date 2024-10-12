@@ -30507,7 +30507,10 @@
 /area/station/ai_monitored/storage/eva)
 "bxL" = (
 /obj/table/wood/round/auto,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/pinpointer/disk,
 /obj/item/hand_tele,
 /obj/machinery/camera{

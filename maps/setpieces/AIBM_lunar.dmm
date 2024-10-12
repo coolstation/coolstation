@@ -6183,7 +6183,10 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/cable{
 	icon_state = "1-2";
 	tag = "icon-1-2"
@@ -6734,7 +6737,10 @@
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "pA" = (
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "pB" = (

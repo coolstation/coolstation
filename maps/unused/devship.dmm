@@ -9817,7 +9817,10 @@
 	pixel_x = -10
 	},
 /obj/table/wood/auto,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/sticker/ribbon/first_place,
 /obj/item/stamp/cap,
 /turf/floor/carpet/arcade,
