@@ -102,7 +102,7 @@ GAUNTLET CARDS
 /obj/item/card/id/New()
 	..()
 	src.pin = rand(1000,9999)
-	START_TRACKING
+//	START_TRACKING
 
 /obj/item/card/id/disposing()
 	STOP_TRACKING
