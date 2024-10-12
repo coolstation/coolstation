@@ -15,7 +15,7 @@ var/global/runtime_count = 0
 	runtime_count++
 
 	//Save the runtime into our persistent, uh, "storage"
-	runtimeDetails["[runtimeDetails.len + 1]"] =  list(
+	runtimeDetails["[runtimeDetails?.len + 1]"] =  list(
 		"name" = !invalid ? E.name : E,
 		"file" = !invalid ? E.file : "",
 		"line" = !invalid ? E.line : "",
