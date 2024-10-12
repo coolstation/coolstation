@@ -6,7 +6,7 @@
 * It does NOT catch reference bugs
 */
 
-var/global/list/runtimeDetails
+var/global/list/runtimeDetails = new()
 var/global/runtime_count = 0
 
 /world/Error(exception/E)
