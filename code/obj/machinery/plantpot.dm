@@ -1183,6 +1183,8 @@
 				// this loop is for one item each.
 				var/obj/CROP = new itemtype()
 				CROP.set_loc(src)
+				if (istype(CROP, /obj/item/plant/herb/cannabis))
+					weadegrowne++
 				// I bet this will go real well.
 				if(!dont_rename_crop)
 					CROP.name = growing.name
