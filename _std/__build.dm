@@ -90,7 +90,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CONSTRUCTION		// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-#define MAP_OVERRIDE_COGMAP 			// Cogmap
+//#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_DONUT3 			// Donut3 by Ryumi
@@ -99,7 +99,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CHIRON 			// Chiron by Kusibu
 //#define MAP_OVERRIDE_OSHAN  			// Oshan
 //#define MAP_OVERRIDE_HORIZON			// Horizon by Warcrimes do not use
-//#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
+#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_SPIRIT 			// Hastily Repurposed Shopping Mall - Tamber
 //#define MAP_OVERRIDE_ATLAS  			// gannetmap
 //#define MAP_OVERRIDE_MANTA  			// boolicker map
