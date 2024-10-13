@@ -286,9 +286,9 @@
 // shock the user with probability prb
 
 /obj/cable/proc/shock(mob/user, prb)
-
+	var/number = 0
 	if(open_circuit) //This goes before the netnum thing because it's probably 0 in this case
-		var/number = 0
+
 		if (!powernets) return 0
 
 		if (is_a_node)
@@ -315,7 +315,7 @@
 	if(!number)		// unconnected cable is unpowered
 		return 0
 
-	return src.electrocute(user, prb, netnum)
+	return src.electrocute(user, prb, number)
 
 /obj/cable/ex_act(severity)
 	switch (severity)
