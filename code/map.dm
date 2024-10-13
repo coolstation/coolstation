@@ -304,6 +304,14 @@ var/global/list/mapNames = list(
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
 
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_WEST
+	escape_dir = WEST
+
+
 /datum/map_settings/cogmap
 	name = "COGMAP"
 	goonhub_map = "https://goonhub.com/maps/cogmap"

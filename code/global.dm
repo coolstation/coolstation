@@ -289,6 +289,7 @@ var/global
 	researchshuttle_location = 0
 	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
+	shipyardship_location = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0

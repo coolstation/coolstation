@@ -86,6 +86,83 @@
 		dir = WEST
 		pixel_x = -25
 
+/obj/machinery/computer/shipyard_control
+	name = "Shipyard Control"
+	icon_state = "shuttle"
+	machine_registry_idx = MACHINES_SHUTTLECOMPS
+	var/active = 0
+
+
+/obj/machinery/computer/shipyard_control/attack_hand(mob/user as mob)
+	if(..())
+		return
+#ifdef TWITCH_BOT_ALLOWED
+	if (user == twitch_mob)
+		src.send() //hack to make this traversible for twitch
+		return
+#endif
+
+	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a><BR><BR>"
+
+	if(shipyardship_location)
+		dat += "Client Location: Station Shipyard"
+	else
+		dat += "Client Location: Close Approach"
+	dat += "<BR>"
+	if(active)
+		dat += "Moving"
+	else
+		dat += "<a href='byond://?src=\ref[src];send=1'>Call Client</a><BR><BR>"
+
+	user.Browse(dat, "window=shuttle")
+	onclose(user, "shuttle")
+	return
+
+/obj/machinery/computer/shipyard_control/Topic(href, href_list)
+	if(..())
+		return
+	if ((usr.contents.Find(src) || (in_interact_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
+		src.add_dialog(usr)
+
+		if (href_list["send"])
+			src.send()
+
+		if (href_list["close"])
+			src.remove_dialog(usr)
+			usr.Browse(null, "window=shuttle")
+
+	src.add_fingerprint(usr)
+	src.updateUsrDialog()
+	return
+
+/obj/machinery/computer/shipyard_control/proc/send()
+	if(!active)
+		for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
+			active = 1
+			C.visible_message("<span class='alert'>The client ship has been notified of vacancy, and will arrive shortly!</span>")
+		SPAWN_DBG(10 SECONDS)
+			call_client()
+
+/obj/machinery/computer/shipyard_control/proc/call_client()
+	if(shipyardship_location == 0)
+		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
+		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
+		start_location.move_contents_to(end_location)
+		shipyardship_location = 1
+	else
+		if(shipyardship_location == 1)
+			var/area/start_location = locate(/area/shuttle/bayou/shipyard)
+			var/area/end_location = locate(/area/shuttle/bayou/stagearea)
+			start_location.move_contents_to(end_location)
+			miningshuttle_location = 0
+
+	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
+		active = 0
+		C.visible_message("<span class='alert'>The client has moved!</span>")
+
+	return
+
+
 /obj/machinery/computer/mining_shuttle
 	name = "Shuttle Control"
 	icon_state = "shuttle"
