@@ -42518,7 +42518,10 @@
 /obj/table/auto,
 /obj/item/pinpointer/disk,
 /obj/item/hand_tele,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /turf/floor/wood,
 /area/station/crew_quarters/captain)
 "sek" = (

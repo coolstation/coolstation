@@ -16793,7 +16793,10 @@
 	},
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/pen,
 /obj/machinery/light_switch/east,
 /turf/floor/carpet/blue/fancy/innercorner/east,

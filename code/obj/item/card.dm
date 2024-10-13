@@ -102,7 +102,8 @@ GAUNTLET CARDS
 /obj/item/card/id/New()
 	..()
 	src.pin = rand(1000,9999)
-	START_TRACKING
+	SPAWN_DBG(1)//?
+		START_TRACKING
 
 /obj/item/card/id/disposing()
 	STOP_TRACKING
@@ -230,7 +231,7 @@ GAUNTLET CARDS
 
 /obj/item/card/id/captains_spare/explosive
 	pickup(mob/user)
-		boutput(user, "<span class='alert'>The ID-Card explodes.</span>")
+		boutput(user, "<span class='alert'>[src] explodes.</span>")
 		user.transforming = 1
 		var/obj/overlay/O = new/obj/overlay(get_turf(user))
 		O.anchored = 1

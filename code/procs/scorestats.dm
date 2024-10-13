@@ -417,11 +417,11 @@ var/datum/score_tracker/score_tracker
 			else
 				. += "<B>Richest Escapee:</B> [richest_escapee.real_name] : $[richest_total]<BR>"
 		else
-			. += "<B>Richest Escapee:</B> No-Money Nio : $0<BR>"
+			. += "<B>Richest Escapee:</B> Nobody!<BR>"
 		if (most_damaged_escapee)
 			. += "<B>Most Damaged Escapee:</B> [most_damaged_escapee.real_name] : [damage_total]%<BR>"
 		else
-			. += "<B>Most Damaged Escapee:</B> Probably some grody busted cockroach somewhere!<BR>"
+			. += "<B>Most Damaged Escapee:</B> Nobody!<BR>"
 
 		//whocare about pets
 		/*
@@ -444,14 +444,14 @@ var/datum/score_tracker/score_tracker
 		//. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
 		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
-		. += "<B>Weade Growne:</B> dunno yet but soon ok<BR>"
-		. += "<B>Doinks Sparked:</B> dunno yet but soon ok<BR>"
+		. += "<B>Weades Growne:</B> [weadegrowne]<BR>"
+		. += "<B>Doinks Sparked:</B> [doinkssparked]<BR>"
 		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"
 #ifdef DATALOGGER
 		. += "<B>Shots Fired:</B> [game_stats.GetStat("gunfire")]<BR>"
 		. += "<B>Number of times a clown was abused:</B> [game_stats.GetStat("clownabuse")]<BR>"
 		. += "<B><I><span style='color:green;'>im gay :)</B></I> [game_stats.GetStat("gayirl")]</span><BR>"
-		. += "<BR><B>COOL FACT:</B> all the space bees are gay<BR>"
+		. += "<BR><B>COOL FACT:</B> all the [pick("space bees","ferrets","clowns","juicers","robots","fish","cats","rocks","paisanos")] are gay<BR>"
 #endif
 		return jointext(., "")
 

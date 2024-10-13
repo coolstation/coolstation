@@ -3996,7 +3996,10 @@
 	d1 = 2;
 	d2 = 4
 	},
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
@@ -4547,7 +4550,10 @@
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "lE" = (
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "lF" = (

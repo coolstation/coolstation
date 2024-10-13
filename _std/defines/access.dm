@@ -132,3 +132,14 @@
 #define access_soviet_security 108
 #define access_soviet_security_lockers 109
 #define access_soviet_command 110 //or outpost director
+
+//head locker accesses (used on station, we just ran out of space in the low digits)
+//now the captain can still invite themselves into the other heads' rooms, but not rifle through their shit without a token effort
+//which would give heads the chance to go "cap, the hell".
+#define access_chief_engineer_locker 111	//C
+#define access_quartermaster_locker 112		//R
+#define access_medical_director_locker 113	//I
+#define access_research_director_locker 114 //M
+//#define access_head_of_security_locker 115//E
+#define access_head_of_personnel_locker 116	//2DAY (the cap can't find out :3)
+//#define access_captain_locker 117 //not relevant atm, but reserved in case

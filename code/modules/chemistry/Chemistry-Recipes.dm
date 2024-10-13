@@ -469,6 +469,7 @@ datum
 			required_temperature = T0C + 150
 			result_amount = 1
 			mix_phrase = "The paper chars, seperating into a silky black powder."
+			mix_sound = null
 
 		bilk
 			name = "Bilk"
@@ -2400,6 +2401,50 @@ datum
 			mix_sound = 'sound/voice/farts/diarrhea.ogg'
 			result_amount = 1 //density reduced to half...
 			result = "doublepoo"
+
+		heatants
+			name = "Dead Burnt Ants"
+			id = "dbants"
+			required_reagents = list("ants" = 1)
+			min_temperature = T0C + 40
+			required_temperature = T0C + 40
+			mix_phrase = "The ants die from the heat!"
+			mix_sound = null
+			result_amount = 1
+			result = "dead_bugs"
+
+		freezeants
+			name = "Dead Frozen Ants"
+			id = "dfants"
+			required_reagents = list("ants" = 1)
+			required_temperature = T0C + 10
+			max_temperature = T0C + 10
+			mix_phrase = "The ants freeze!"
+			mix_sound = null
+			result_amount = 1
+			result = "dead_bugs"
+
+		heatspiders
+			name = "Dead Burnt Spiders"
+			id = "dbspiders"
+			required_reagents = list("spiders" = 1)
+			min_temperature = T0C + 60
+			required_temperature = T0C + 60
+			mix_phrase = "The spiders die from the heat!"
+			mix_sound = null
+			result_amount = 1
+			result = "dead_bugs"
+
+		freezespiders
+			name = "Dead Frozen Spiders"
+			id = "dfspiders"
+			required_reagents = list("spiders" = 1)
+			required_temperature = T0C - 5
+			max_temperature = T0C - 5
+			mix_phrase = "The spiders freeze!"
+			mix_sound = null
+			result_amount = 1
+			result = "dead_bugs"
 
 		flash_powder
 			name = "Flash Powder"

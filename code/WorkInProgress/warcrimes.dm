@@ -3,6 +3,8 @@
 // Moved these from BBSSS.dm to here because they're global and don't really give that much away (should they be global?)
 var/johnbill_shuttle_fartnasium_active = 1
 var/fartcount = 0
+var/weadegrowne = 0
+var/doinkssparked = 0
 var/clownabuse = 0
 
 /obj/death_button/immersive
