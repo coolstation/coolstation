@@ -155,7 +155,7 @@ var/global/list/dirty_pnet_nodes = list()
 		PN.all_graph_nodes |= a_node
 
 		visited_nodes |= a_node
-		var/list/new_nodes = Copy(a_node.adjacent_nodes) - visited_nodes
+		var/list/new_nodes = a_node.adjacent_nodes.Copy() - visited_nodes
 		nodes_to_visit |= new_nodes
 
 //Stretches of cables with two connections. That is, the parts that aren't dead ends or
