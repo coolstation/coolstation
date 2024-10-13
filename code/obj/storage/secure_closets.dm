@@ -88,7 +88,7 @@
 
 /obj/storage/secure/closet/command/hop
 	name = "\improper Head of Personnel's locker"
-	req_access = list(access_head_of_personnel)
+	req_access = list(access_head_of_personnel_locker)
 	spawn_contents = list(/obj/item/device/flash,
 	/obj/item/storage/box/id_kit,
 	/obj/item/storage/box/clothing/hop,
@@ -101,7 +101,7 @@
 
 /obj/storage/secure/closet/command/research_director
 	name = "\improper Research Director's locker"
-	req_access = list(access_research_director)
+	req_access = list(access_research_director_locker)
 	spawn_contents = list(/obj/item/plant/herb/cannabis/spawnable,
 	/obj/item/device/light/zippo,
 	/obj/item/storage/box/clothing/research_director,
@@ -125,7 +125,7 @@
 
 /obj/storage/secure/closet/command/medical_director
 	name = "\improper Medical Director's locker"
-	req_access = list(access_medical_director)
+	req_access = list(access_medical_director_locker)
 	spawn_contents = list(/obj/item/storage/box/clothing/medical_director,
 	/obj/item/clothing/shoes/brown,
 	/obj/item/gun/implanter,
@@ -153,7 +153,7 @@
 
 /obj/storage/secure/closet/command/quartermaster
 	name = "\improper Quartermaster's locker"
-	req_access = list(access_quartermaster)
+	req_access = list(access_quartermaster_locker)
 	spawn_contents = list(/obj/item/storage/toolbox/mechanical/yellow_tools,
 	/obj/item/storage/box/clothing/qm,
 	/obj/item/device/appraisal,
@@ -169,7 +169,7 @@
 
 /obj/storage/secure/closet/command/chief_engineer
 	name = "\improper Chief Engineer's locker"
-	req_access = list(access_engineering_chief)
+	req_access = list(access_chief_engineer_locker)
 	spawn_contents = list(/obj/item/storage/toolbox/mechanical/yellow_tools,
 	/obj/item/storage/box/clothing/chief_engineer,
 	/obj/item/clothing/gloves/yellow,

@@ -2878,6 +2878,14 @@ datum
 			transparency = 250
 			hunger_value = 0.25
 
+			reaction_obj(var/obj/O, var/volume)
+				if(istype(O,/obj/item/reagent_containers/food/))
+					O.reagents?.add_reagent("gravy", volume)
+					O.visible_message("[O] gets kinds saucy...")
+				else
+					..()
+
+
 		fooddrink/mashedpotatoes
 			name = "mashed potatoes"
 			id = "mashedpotatoes"

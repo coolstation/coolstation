@@ -512,7 +512,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(Varpower == 0)
 			if(src.power <= 0)
 				src.visible_message("<span class='alert'>The [src.name] shuts down due to lack of power!</span>")
-				icon_state = "Field_Gen"
+				icon_state = "Field_Gen_w"
 				src.set_active(0)
 				src.cleanup(1)
 				src.cleanup(2)
@@ -654,12 +654,14 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		state = WELDED
 		src.get_link() //Set up a link, now that we're secure!
 		boutput(user, "You weld the field generator to the floor.")
+		icon_state = "Field_Gen_w"
 	else if(state == WELDED)
 		state = WRENCHED
 		if(src.link) //Clear active link.
 			src.link.master = null
 			src.link = null
 		boutput(user, "You cut the field generator free from the floor.")
+		icon_state = "Field_Gen"
 
 /obj/machinery/field_generator/proc/cleanup(var/NSEW)
 	var/obj/machinery/containment_field/F
@@ -939,7 +941,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(src.active==1)
 				if(alert("Turn off the emitter?",,"Yes","No") == "Yes")
 					src.active = 0
-					icon_state = "Emitter"
+					icon_state = "Emitter_w"
 					boutput(user, "You turn off the emitter.")
 					logTheThing("station", user, null, "deactivated active emitter at [log_loc(src)].")
 					message_admins("[key_name(user)] deactivated active emitter at [log_loc(src)].")
@@ -1050,6 +1052,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		state = WELDED
 		src.get_link()
 		boutput(user, "You weld the emitter to the floor.")
+		icon_state = "Emitter_w"
 		logTheThing("station", user, null, "welds an emitter to the floor at [log_loc(src)].")
 	else if(state == WELDED)
 		state = WRENCHED
@@ -1057,6 +1060,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.link.master = null
 			src.link = null
 		boutput(user, "You cut the emitter free from the floor.")
+		icon_state = "Emitter"
 		logTheThing("station", user, null, "unwelds an emitter from the floor at [log_loc(src)].")
 
 //Send a signal over our link, if possible.

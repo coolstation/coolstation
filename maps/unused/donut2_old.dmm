@@ -15893,7 +15893,10 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /obj/item/pinpointer,
 /obj/item/hand_tele,
 /turf/floor,
@@ -37786,7 +37789,10 @@
 	id = "maze-red";
 	name = "red line belt"
 	},
-/obj/item/card/id/captains_spare,
+/obj/landmark/spawner{
+	icon_state = "x";
+	name = "spare"
+	},
 /turf/floor/plating,
 /area/space)
 "bzo" = (

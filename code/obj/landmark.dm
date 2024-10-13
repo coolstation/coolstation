@@ -176,6 +176,8 @@ var/global/list/job_start_locations = list()
 	var/type_to_spawn = null
 	var/spawnchance = 100
 	var/static/list/name_to_type = list(
+		"spare" = /obj/item/card/id/captains_spare,
+
 		"juicer_gene" = /mob/living/carbon/human/geneticist,
 		"shitty_bill" = /mob/living/carbon/human/biker,
 		"john_bill" = /mob/living/carbon/human/john,

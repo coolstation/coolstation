@@ -1168,6 +1168,15 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	specialOutput(obj/submachine/ourCooker)
 		return new /obj/item/reagent_containers/food/snacks/fries {disappointing = TRUE;} ()
 
+/datum/cookingrecipe/oven/fat_fries
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/chips_thicc
+	cookbonus = 7
+	output = /obj/item/reagent_containers/food/snacks/fat_fries //unused cause of specialOutput
+
+	//There's no after-cooking output alter proc, so
+	specialOutput(obj/submachine/ourCooker)
+		return new /obj/item/reagent_containers/food/snacks/fat_fries {disappointing = TRUE;} ()
+
 
 /datum/cookingrecipe/oven/bakedpotato
 	item1 = /obj/item/reagent_containers/food/snacks/plant/potato
@@ -1911,4 +1920,9 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 /datum/cookingrecipe/fryer/fries
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/chips
 	output = /obj/item/reagent_containers/food/snacks/fries
+	cookbonus = 15
+
+/datum/cookingrecipe/fryer/fat_fries
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/chips_thicc
+	output = /obj/item/reagent_containers/food/snacks/fat_fries
 	cookbonus = 15

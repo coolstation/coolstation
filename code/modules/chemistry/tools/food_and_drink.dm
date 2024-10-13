@@ -29,10 +29,12 @@
 		made_ants = 0
 		..()*/
 
+	//the only table check is for avoiding doing ants so it might be better to rename this (later)
+	//if there's something else that spawns a food that shouldn't be considered on the floor/antsy add it here
 	proc/on_table()
 		if (!isturf(src.loc)) return 0
 		for (var/atom/movable/M in src.loc) //Arguably more elegant than a million locates. I don't think locate works with derived classes.
-			if (istype(M, /obj/table))
+			if (istype(M, /obj/table) || istype(M, /obj/rack) || istype(M, /obj/machinery/vending))
 				return 1
 		return 0
 
