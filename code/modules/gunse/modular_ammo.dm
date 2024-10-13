@@ -851,11 +851,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 
 /datum/projectile/energy_bolt/three
-	power = 10
+	power = 15
 	shot_number = 3
 
 /datum/projectile/energy_bolt/five
-	power = 8
+	power = 10
 	shot_number = 5
 
 /datum/projectile/laser/three

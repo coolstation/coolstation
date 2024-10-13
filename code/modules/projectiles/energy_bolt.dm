@@ -4,7 +4,7 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "taser_projectile"
 //How much of a punch this has, tends to be seconds/damage before any resist
-	power = 20
+	power = 30
 //How much ammo this costs
 	cost = 25
 //How fast the power goes away
