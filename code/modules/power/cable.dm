@@ -340,22 +340,22 @@
 			var/obj/cable/C = connections[1]
 			if (istype(C))
 				if (C.is_a_node)
-					switch(length(C.get_connections))
+					switch(length(C.get_connections()))
 						if (2) //C was a dead end connecting to something else
-						//steal C's node
-						is_a_node = C.is_a_node
-						is_a_node.physical_node = src
-						C.is_a_node = null
+							//steal C's node
+							is_a_node = C.is_a_node
+							is_a_node.physical_node = src
+							C.is_a_node = null
 
-						var/datum/powernet_graph_node/other_node = is_a_node.adjacent_nodes[1]
-						var/datum/powernet_graph_link/our_link = is_a_node.adjacent_nodes[other_node]
+							var/datum/powernet_graph_node/other_node = is_a_node.adjacent_nodes[1]
+							var/datum/powernet_graph_link/our_link = is_a_node.adjacent_nodes[other_node]
 
-						if (!istype(our_link))//make new link consisting only of C
-							C.is_a_link = new(list(C),list(src, other_node))
-						else//add C to existing link
-							our_link.cables |= C
-							our_link.expected_length = length(our_link.cables)
-							C.is_a_link = our_link
+							if (!istype(our_link))//make new link consisting only of C
+								C.is_a_link = new(list(C),list(src, other_node))
+							else//add C to existing link
+								our_link.cables |= C
+								our_link.expected_length = length(our_link.cables)
+								C.is_a_link = our_link
 						else
 							src.is_a_node = new(C.is_a_node.pnet)
 							src.is_a_node.physical_node = src
