@@ -567,6 +567,18 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 		hetcroR
 			name = "Heterochromia: Right"
 			id = "hetcroR"
+		h1
+			name = "Horns Style 1"
+			id = "h1"
+		h2
+			name = "Horns Style 2"
+			id = "h2"
+		h3
+			name = "Horns Style 3"
+			id = "h3"
+		h4
+			name = "Horns Style 4"
+			id = "h4"
 
 proc/select_custom_style(list/datum/customization_style/customization_types, mob/living/carbon/human/user as mob)
 	var/list/datum/customization_style/options = list()
