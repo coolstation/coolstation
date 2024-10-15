@@ -556,7 +556,6 @@ that cannot be itched
 			var/obj/item/device/analyzer/atmospheric/a = src
 			a.analyzer_upgrade = 1
 			a.icon_state = "atmos"
-			a.item_state = "atmosphericnalyzer"
 
 		else
 			boutput(user, "<span class='alert'>That cartridge won't fit in there!</span>")
