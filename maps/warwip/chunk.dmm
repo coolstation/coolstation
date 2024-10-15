@@ -6229,6 +6229,10 @@
 /obj/item/device/reagentscanner,
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
+"fMV" = (
+/obj/machinery/vending/cola/blue,
+/turf/floor,
+/area/station/crew_quarters/lounge)
 "fNd" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -6576,12 +6580,9 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "gft" = (
-/obj/table/auto,
-/obj/item/wrench,
+/obj/machinery/atmospherics/portables_connector/west,
 /obj/disposalpipe/segment/morgue,
-/obj/item/clothing/glasses/spectro{
-	pixel_y = -3
-	},
+/obj/item/wrench,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "ggQ" = (
@@ -10710,7 +10711,7 @@
 /turf/wall,
 /area/station/maintenance/central)
 "kwu" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/southeast,
+/obj/machinery/vending/crash_cart,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "kwx" = (
@@ -11861,7 +11862,8 @@
 /turf/floor/black,
 /area/station/medical/robotics)
 "lBH" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
+/obj/machinery/light/small/ceiling,
+/obj/disposalpipe/segment/horizontal,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "lDl" = (
@@ -18037,7 +18039,7 @@
 /turf/floor/grey,
 /area/station/crew_quarters/quarters_west)
 "rGr" = (
-/obj/machinery/atmospherics/portables_connector/west,
+/obj/machinery/atmospherics/pipe/simple/overfloor/southeast,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "rHk" = (
@@ -20616,6 +20618,7 @@
 "unz" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /obj/disposalpipe/segment/morgue,
+/obj/machinery/meter,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "unB" = (
@@ -20648,6 +20651,11 @@
 /obj/machinery/networked/test_apparatus/electrobox,
 /turf/floor/purple/side,
 /area/station/science/artifact)
+"unY" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
+/turf/floor/white,
+/area/station/medical/medbay/treatment)
 "uoy" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/mail{
@@ -21640,7 +21648,7 @@
 /obj/item/audio_tape{
 	pixel_y = 8
 	},
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/disposalpipe/segment/vertical,
 /turf/floor,
 /area/station/crew_quarters/lounge)
@@ -21955,6 +21963,9 @@
 	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/clothing/glasses/spectro{
+	pixel_y = -3
+	},
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "vxd" = (
@@ -23803,8 +23814,7 @@
 /turf/floor,
 /area/station/engine/singcore)
 "xmp" = (
-/obj/machinery/atmospherics/pipe/manifold/overfloor/south,
-/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "xmJ" = (
@@ -59865,7 +59875,7 @@ vfz
 vfz
 vfz
 vfz
-qMN
+fMV
 bOH
 qMN
 smP
@@ -73725,10 +73735,10 @@ odF
 vjl
 yjQ
 omN
-kwu
-mQY
-rgD
+lrq
 lBH
+lrq
+lrq
 taI
 gnA
 uDi
@@ -74025,11 +74035,11 @@ vtC
 tcn
 qTG
 vjl
-lrq
+kwu
 lrq
 rGr
-mkv
-vgR
+unY
+rgD
 xmp
 dQN
 jVn
