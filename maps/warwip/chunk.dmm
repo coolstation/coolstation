@@ -19302,10 +19302,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
-"sVN" = (
-/obj/disposalpipe/switch_junction/right/west,
-/turf/floor/plating,
-/area/station/maintenance/central)
 "sVQ" = (
 /obj/machinery/light{
 	dir = 8;
@@ -22125,13 +22121,6 @@
 /obj/machinery/disposal,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
-"vDD" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4;
-	icon_state = "pipe-s"
-	},
-/turf/floor/plating,
-/area/station/maintenance/central)
 "vEz" = (
 /obj/item/reagent_containers/glass/wateringcan{
 	pixel_x = 8;
@@ -23933,6 +23922,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/glass/bottle/antitoxin{
+	pixel_y = 7
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "xsP" = (
@@ -24190,6 +24183,7 @@
 	icon_state = "4-8"
 	},
 /obj/storage/closet/office,
+/obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
 /turf/floor/grey,
 /area/station/bridge)
 "xHx" = (
@@ -71043,7 +71037,7 @@ mOp
 mOp
 mOp
 aaP
-sVN
+bDD
 xij
 uzC
 khP
@@ -71345,7 +71339,7 @@ mOp
 mOp
 mOp
 rvw
-vDD
+mAT
 pyu
 jeL
 vDl
@@ -71647,7 +71641,7 @@ mOp
 mOp
 mOp
 aaP
-sVN
+bDD
 uuu
 mkC
 fFf
