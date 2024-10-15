@@ -1034,6 +1034,20 @@
 	},
 /turf/floor/plating,
 /area/station/security/brig)
+"aXq" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/floatingtiles/loose{
+	icon_state = "floattiles5"
+	},
+/obj/window/reinforced{
+	dir = 2
+	},
+/obj/grille/steel/broken,
+/turf/space,
+/area/space)
 "aXD" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -2894,6 +2908,20 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"cHS" = (
+/obj/window/reinforced{
+	dir = 2
+	},
+/obj/window/reinforced{
+	dir = 4;
+	icon_state = "rwindow"
+	},
+/obj/window/reinforced{
+	dir = 1
+	},
+/obj/grille/steel,
+/turf/floor/plating,
+/area/space)
 "cIy" = (
 /obj/securearea{
 	desc = "";
@@ -3430,6 +3458,20 @@
 /obj/decal/xmas_lights/ephemeral,
 /turf/floor/plating,
 /area/station/janitor/supply)
+"dnM" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/floatingtiles/loose{
+	dir = 1
+	},
+/obj/window/reinforced{
+	dir = 2
+	},
+/obj/grille/steel/broken,
+/turf/space,
+/area/space)
 "dnN" = (
 /obj/stool,
 /turf/floor/plating,
@@ -11287,6 +11329,17 @@
 	dir = 1
 	},
 /area/station/chapel/sanctuary)
+"kZX" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/window/reinforced{
+	dir = 2
+	},
+/obj/grille/steel/broken,
+/turf/space,
+/area/space)
 "laO" = (
 /obj/disposalpipe/junction/right/north,
 /obj/decoration/toiletholder{
@@ -12513,6 +12566,14 @@
 	},
 /turf/floor,
 /area/station/science/lab)
+"mqc" = (
+/obj/disposalpipe/switch_junction/right/west,
+/obj/grille/catwalk/jen,
+/obj/window/reinforced{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "mqd" = (
 /obj/machinery/door_control{
 	id = "eva_escape";
@@ -21025,6 +21086,16 @@
 /obj/disposalpipe/junction/left/west,
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"uCz" = (
+/obj/window/reinforced{
+	dir = 2
+	},
+/obj/window/reinforced{
+	dir = 1
+	},
+/obj/grille/steel,
+/turf/floor/plating,
+/area/space)
 "uCI" = (
 /obj/machinery/vending/cola/blue{
 	credit = 12
@@ -23306,6 +23377,20 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor/grey,
 /area/station/bridge)
+"wKn" = (
+/obj/window/reinforced{
+	dir = 2
+	},
+/obj/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
+	},
+/obj/window/reinforced{
+	dir = 1
+	},
+/obj/grille/steel,
+/turf/floor/plating,
+/area/space)
 "wKw" = (
 /turf/floor,
 /area/station/engine/elect)
@@ -24424,6 +24509,17 @@
 /obj/submachine/seed_vendor,
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"xRy" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
+	},
+/obj/grille/catwalk/jen,
+/obj/window/reinforced{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "xRY" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -70442,8 +70538,8 @@ mOp
 mOp
 huZ
 huZ
-aaP
-mAT
+wKn
+xRy
 pyu
 pyu
 pyu
@@ -70744,8 +70840,8 @@ mOp
 mOp
 mOp
 huZ
-aaP
-mAT
+uCz
+xRy
 pyu
 bxE
 ibd
@@ -71046,8 +71142,8 @@ mOp
 mOp
 mOp
 mOp
-aaP
-bDD
+dnM
+mqc
 xij
 uzC
 khP
@@ -71348,8 +71444,8 @@ mOp
 mOp
 mOp
 mOp
-rvw
-mAT
+kZX
+xRy
 pyu
 jeL
 vDl
@@ -71650,8 +71746,8 @@ mOp
 mOp
 mOp
 mOp
-aaP
-bDD
+aXq
+mqc
 uuu
 mkC
 fFf
@@ -71952,8 +72048,8 @@ mOp
 mOp
 mOp
 huZ
-aaP
-mAT
+uCz
+xRy
 pyu
 vwn
 vwn
@@ -72254,8 +72350,8 @@ mOp
 mOp
 huZ
 huZ
-aaP
-mAT
+cHS
+xRy
 tQd
 tMB
 gOd
