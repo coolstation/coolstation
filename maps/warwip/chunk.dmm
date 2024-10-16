@@ -5064,10 +5064,11 @@
 /area/station/engine/engineering)
 "eTB" = (
 /obj/table/reinforced/chemistry/auto,
-/obj/item/device/reagentscanner{
-	pixel_y = 11
-	},
 /obj/item/device/radio/intercom/science,
+/obj/machinery/glass_recycler/chemistry{
+	glass_amt = 5;
+	pixel_y = 8
+	},
 /turf/floor/grey,
 /area/station/science/chemistry)
 "eUr" = (
@@ -19842,7 +19843,11 @@
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "tLj" = (
-/obj/table/reinforced/chemistry/beakers,
+/obj/table/reinforced/chemistry/auto,
+/obj/item/device/reagentscanner{
+	pixel_x = -9;
+	pixel_y = 9
+	},
 /turf/floor/grey,
 /area/station/science/chemistry)
 "tLO" = (
