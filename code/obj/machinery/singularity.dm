@@ -215,6 +215,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/checkloc = get_step(src.get_center(), dir)
 		for (var/dist = 0, dist < max(2,radius+1), dist ++)
 			if (locate(/obj/machinery/containment_field) in checkloc)
+				current_target = null //can't reach
 				return
 			checkloc = get_step(checkloc, dir)
 
