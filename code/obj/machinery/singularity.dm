@@ -107,6 +107,8 @@ Contains:
 	var/radius = 0 //the variable used for all calculations involving size.this is the current size
 	var/maxradius = INFINITY//the maximum size the singularity can grow to
 
+	///If loose, try and move towards this turf. see also proc/pick_target()
+	var/turf/current_target
 
 
 #ifdef SINGULARITY_TIME
@@ -204,7 +206,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		return
 
 	if (selfmove)
-		var/dir = pick(cardinal)
+		if (!current_target || get_dist(src.get_center(), current_target) <= radius) //we're close enough to current target
+			current_target = pick_target()
+
+		//might want to add some jitter to this later
+		var/dir = vector_to_dir(current_target.x - src.x, current_target.y - src.y)//pick(cardinal)
 
 		var/checkloc = get_step(src.get_center(), dir)
 		for (var/dist = 0, dist < max(2,radius+1), dist ++)
@@ -214,6 +220,54 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 		step(src, dir)
 
+///Find a new target turf to get to
+/obj/machinery/the_singularity/proc/pick_target()
+	/*This little algorithm goes as follows:
+	  -get a random X and Y (should be hard to predict?)
+	  -look at every combination of those X and Y offset from our center (for example: [-7, -12], [7, -12], [-7, 12], [7, 12] - all relative coords)
+	  -count how many edible atoms are in a 5x5 on those turfs
+	  -use those counts as weights when picking one of the four options, so going towards "denser" areas is favoured but not garuanteed.
+	*/
+
+	var/turf/center = get_center()
+	if (!istype(center))
+		return
+
+	var/list/weights = list()
+	//highest score we found (if all 4 targets are empty this would )
+	var/max_score = 0
+
+	var/rand_x = rand(0, (radius+1)*3) //since radius 1 singularities can exist, we have to add 1 for them get any decent range.
+	var/rand_y = rand(0, (radius+1)*3)
+
+	if ((rand_x + rand_y) < radius) //try and stop the singulo from picking turfs that are very close by, it was picking too many close targets for my liking.
+		rand_x += rand(1,3) //the effect of this bit will lessen as a singularity gets bigger.
+		rand_y += rand(1,3)
+
+	for (var/turf/T in list(locate(center.x - rand_x, center.y - rand_y, center.z),\
+							locate(center.x + rand_x, center.y - rand_y, center.z),\
+							locate(center.x - rand_x, center.y + rand_y, center.z),\
+							locate(center.x + rand_x, center.y + rand_y, center.z))) //should filter out options out of map bounds
+
+		var/score = 0
+		for (var/turf/T2 in block(locate(T.x - 2, T.y - 2, T.z), locate(T.x + 2, T.y + 2, T.z))) //5x5
+
+			for (var/atom/maybe_food in T2.contents)
+				if (!(maybe_food.event_handler_flags & IMMUNE_SINGULARITY) && !(maybe_food.flags & TECHNICAL_ATOM)) //any food on this turf?
+					score++
+			if (!(T2.event_handler_flags & IMMUNE_SINGULARITY) && !(T2.flags & TECHNICAL_ATOM)) //turfs themselves are food too
+				score++
+
+		max_score = max(max_score, score)
+		weights[T] = score
+
+	if (!length(weights)) //by virtue of our maps being 300*300, this shouldn't happen
+		message_admins("Singularity at [log_loc(src)] failed to find any eligible target turfs")
+		return get_turf(src) //the code expects a turf
+	if (!max_score) //all space, probably
+		return pick(weights) //weighted_pick would always go with the first option if all weights are zero, which would bias towards bottom left
+	else
+		return weighted_pick(weights)
 
 /obj/machinery/the_singularity/ex_act(severity, last_touched)
 	if(!maxboom)

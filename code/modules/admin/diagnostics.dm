@@ -1176,6 +1176,18 @@ proc/debug_map_apc_count(delim,zlim)
 					img.app.desc = theTurf.event.name
 					img.app.color = debug_color_of(theTurf.event.name)
 
+	singulo_targeting
+		name = "singularity target turfs"
+		help = "Shows you which turfs are being targeted for loose singularity movement."
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.alpha = 0
+			if (istype(theTurf))
+				for_by_tcl(Singulo, /obj/machinery/the_singularity)
+					if (Singulo.current_target == theTurf)
+						img.app.desc = "TARGET"
+						img.app.color = "#DD0000"
+						img.app.alpha = 128
+						break
 
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay
