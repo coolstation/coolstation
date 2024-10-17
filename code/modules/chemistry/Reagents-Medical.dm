@@ -104,8 +104,8 @@ datum
 				//don't do shit if there's naloxone in you
 				if(!holder.has_reagent("naloxone"))
 					M.jitteriness = max(M.jitteriness-25,0)
-					if(M.hasStatus("stimulants"))
-						M.changeStatus("stimulants", -7.5 SECONDS * mult)
+					if(holder.has_reagent("omegazine"))
+						holder.remove_reagent("omegazine", 3 * mult)
 
 					switch(counter += 1 * mult)
 						if(1 to 15)
@@ -181,8 +181,8 @@ datum
 				if(!M) M = holder.my_atom
 				if(!counter) counter = 1
 				M.jitteriness = max(M.jitteriness-25,0)
-				if(M.hasStatus("stimulants"))
-					M.changeStatus("stimulants", -7.5 SECONDS * mult)
+				if(holder.has_reagent("omegazine"))
+					holder.remove_reagent("omegazine", 2 * mult)
 
 				switch(counter += 1 * mult)
 					if(1 to 15)
@@ -879,8 +879,8 @@ datum
 					holder.remove_reagent("epinephrine", 5 * mult)
 				if(holder.has_reagent("ephedrine"))
 					holder.remove_reagent("ephedrine", 5 * mult)
-				if(M.hasStatus("stimulants"))
-					M.changeStatus("stimulants", -15 SECONDS * mult)
+				if(holder.has_reagent("omegazine"))
+					holder.remove_reagent("omegazine", 3 * mult)
 				if(probmult(5))
 					for(var/datum/ailment_data/disease/virus in M.ailments)
 						if(istype(virus.master,/datum/ailment/disease/space_madness) || istype(virus.master,/datum/ailment/disease/berserker))

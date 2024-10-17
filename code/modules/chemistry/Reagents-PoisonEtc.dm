@@ -1114,8 +1114,8 @@ datum
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
 				M.jitteriness = max(M.jitteriness-30,0)
-				if(M.hasStatus("stimulants"))
-					M.changeStatus("stimulants", -10 SECONDS * mult)
+				if(holder.has_reagent("omegazine"))
+					holder.remove_reagent("omegazine", 2.5 * mult)
 
 				switch(counter+= (1 * mult))
 					if (1 to 10)
