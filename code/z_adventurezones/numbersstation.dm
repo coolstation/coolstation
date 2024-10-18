@@ -316,7 +316,7 @@ Nanotrasen, Inc.<br>
 
 	proc/get_tens(var/n)
 		if (n >= 20)
-			var/tens = round(n / 10)
+			var/tens = floor(n / 10)
 			switch (tens)
 				if (2)
 					return "twenty"

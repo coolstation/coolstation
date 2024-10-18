@@ -188,8 +188,8 @@
 	proc/pick_deployment_location()
 		var/turf/T = get_turf(src)
 		if (T.density || istype(T, /turf/space) || prob(50))
-			var/nx = T.x + round(rand(-2, 2) + ((150 - T.x) / 37.5))
-			var/ny = T.y + round(rand(-2, 2) + ((150 - T.y) / 37.5))
+			var/nx = T.x + floor(rand(-2, 2) + ((150 - T.x) / 37.5))
+			var/ny = T.y + floor(rand(-2, 2) + ((150 - T.y) / 37.5))
 			var/turf/Q = locate(nx, ny, T.z)
 			if (Q)
 				return Q

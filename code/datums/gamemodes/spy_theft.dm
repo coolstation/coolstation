@@ -153,7 +153,7 @@
 	var/num_spies = 2 //minimum
 
 	if (traitor_scaling)
-		num_spies = max(2, min(round((num_players + randomizer) / 6), spies_possible))
+		num_spies = max(2, min(floor((num_players + randomizer) / 6), spies_possible))
 
 	var/list/possible_spies = get_possible_spies(num_spies)
 

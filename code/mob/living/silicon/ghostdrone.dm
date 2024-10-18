@@ -1083,8 +1083,8 @@
 			UpdateOverlays(null, "hat")
 			src.hat.set_loc(get_turf(src))
 			//get target turf
-			var/x = round(P.xo * 4)
-			var/y = round(P.yo * 4)
+			var/x = floor(P.xo * 4)
+			var/y = floor(P.yo * 4)
 			var/turf/target = get_offset_target_turf(src, x, y)
 
 			src.visible_message("<span class='combat'>[src]'s [src.hat] goes flying!</span>")

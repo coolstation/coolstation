@@ -26,7 +26,7 @@
 		if(player.ready)
 			num_players++
 
-	var/num_wizards = max(1, min(round(num_players / 12), wizards_possible))
+	var/num_wizards = max(1, min(floor(num_players / 12), wizards_possible))
 
 	var/list/possible_wizards = get_possible_wizards(num_wizards)
 

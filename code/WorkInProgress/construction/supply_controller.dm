@@ -54,9 +54,9 @@
 				if (prob(30))
 					current_demand_level = high_demand_level
 				else if (prob(40))
-					current_demand_level = round(current_demand_level / 2)
+					current_demand_level = floor(current_demand_level / 2)
 				else if (prob(40))
-					current_demand_level = round(current_demand_level * ((100 + rand(100)) / 100))
+					current_demand_level = floor(current_demand_level * ((100 + rand(100)) / 100))
 				else
 					current_demand_level = (current_demand_level - high_demand_level)
 		if (current_demand_level > maximum_demand_level)

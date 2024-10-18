@@ -701,7 +701,7 @@
 			. += "<span class='alert'>[src.name] doesn't seem to be responding.</span><br>"
 
 		. += "The cover is [opened ? "open" : "closed"].<br>"
-		. += "The power cell display reads: [ cell ? "[round(cell.percent())]%" : "WARNING: No cell installed."]<br>"
+		. += "The power cell display reads: [ cell ? "[floor(cell.percent())]%" : "WARNING: No cell installed."]<br>"
 
 		if (src.module)
 			. += "[src.name] has a [src.module.name] installed.<br>"

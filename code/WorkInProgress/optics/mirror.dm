@@ -63,7 +63,7 @@
 			icon_state = "mirrorB"
 		else
 			icon_state = "mirrorA"
-		switch(round(angle/2)*2)
+		switch(floor(angle/2)*2)
 			if(0)
 				src.set_dir(1)
 			if(2)
