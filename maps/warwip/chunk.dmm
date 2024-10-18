@@ -3214,8 +3214,10 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/machinery/vending/port_a_nanomed,
 /obj/item/device/radio/intercom/medical{
+	dir = 4
+	},
+/obj/machinery/chem_master{
 	dir = 4
 	},
 /turf/floor/white,
@@ -11991,6 +11993,7 @@
 	dir = 8;
 	icon_state = "rwindow"
 	},
+/obj/machinery/vending/port_a_nanomed,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "lNS" = (
