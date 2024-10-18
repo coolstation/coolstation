@@ -66,7 +66,7 @@
 			next_event_type = pick(event_types)
 			var/minutes = rand(15, 30)
 			next_event_at = ticker.round_elapsed_ticks + minutes * 60 * 10 + rand(0, 59) * 10
-			choose_at = ticker.round_elapsed_ticks + rand(5, round(minutes / 2)) * 60 * 10 + rand(0, 59) * 10
+			choose_at = ticker.round_elapsed_ticks + rand(5, floor(minutes / 2)) * 60 * 10 + rand(0, 59) * 10
 			for (var/datum/construction_event/E in possible_events)
 				if (E.event_type == next_event_type)
 					fallback_event = E
@@ -156,7 +156,7 @@
 	proc/calculate_time_modifier()
 		var/datum/game_mode/construction/C = ticker.mode
 		var/elapsed_time = ticker.round_elapsed_ticks - C.starttime
-		time_modifier = (1 + round(elapsed_time / 36000) * time_scaling)
+		time_modifier = (1 + floor(elapsed_time / 36000) * time_scaling)
 
 /datum/construction_event/nothing
 	duration = 600
@@ -224,9 +224,9 @@
 		time_modifier -= 0.5
 		difficulty_multiplier = time_modifier * player_modifier
 		duration = original_duration * difficulty_multiplier
-		max_attack_force_size = round(original_size * difficulty_multiplier)
-		per_process = max(1, round(max_attack_force_size / 20))
-		max_bosses = round(original_bosses * difficulty_multiplier)
+		max_attack_force_size = floor(original_size * difficulty_multiplier)
+		per_process = max(1, floor(max_attack_force_size / 20))
+		max_bosses = floor(original_bosses * difficulty_multiplier)
 		current_attack_force_size = 0
 		current_delay = 0
 		current_bosses = 0

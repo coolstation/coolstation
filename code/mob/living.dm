@@ -200,7 +200,7 @@
 				emergency_shuttle.incall()
 				boutput(world, "<span class='notice'><B>Alert: The emergency shuttle has been called.</B></span>")
 				boutput(world, "<span class='notice'>- - - <b>Reason:</b> Crew shortages and fatalities.</span>")
-				boutput(world, "<span class='notice'><B>It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.</B></span>")
+				boutput(world, "<span class='notice'><B>It will arrive in [floor(emergency_shuttle.timeleft()/60)] minutes.</B></span>")
 	#undef VALID_MOB
 
 	// Active if XMAS or manually toggled.
@@ -1962,7 +1962,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	var/shock_damage = 0
 	if (wattage > 7500)
-		shock_damage = (max(rand(10,20), round(wattage * 0.00004)))*prot
+		shock_damage = (max(rand(10,20), floor(wattage * 0.00004)))*prot
 	else if (wattage > 5000)
 		shock_damage = 15 * prot
 	else if (wattage > 2500)

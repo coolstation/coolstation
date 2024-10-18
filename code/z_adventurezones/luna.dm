@@ -1766,9 +1766,9 @@ datum/computer/file/embedded_program/maintpanel
 					entry = device_entries[printedCounter+1]
 
 				var/nextEntry
-				printList[round(printedCounter/2) + 2] += (selected_entry == printedCounter) ? ">" : (istype(entry) && entry.active ? "*" : " ")
+				printList[floor(printedCounter/2) + 2] += (selected_entry == printedCounter) ? ">" : (istype(entry) && entry.active ? "*" : " ")
 				if (!istype(entry))
-					printList[round(printedCounter/2) + 2] += "               " //This makes half a display row of spaces.  16 spaces.  2^4 spaces.
+					printList[floor(printedCounter/2) + 2] += "               " //This makes half a display row of spaces.  16 spaces.  2^4 spaces.
 
 					continue
 
@@ -1777,7 +1777,7 @@ datum/computer/file/embedded_program/maintpanel
 				while (length(nextEntry) < 15)
 					nextEntry += " "
 
-				printList[round(printedCounter/2) + 2] += nextEntry
+				printList[floor(printedCounter/2) + 2] += nextEntry
 
 
 			printToDisplay(printList, 0)

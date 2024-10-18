@@ -440,8 +440,8 @@
 		calculateDifficulty()
 
 		//This is kind of a weird formula. Having put it in a graphing program it produces a very slow (imperceptible level-to-level) increase with a jump every 10 levels
-		var/points = 2.5 + (round(current_level * 0.1) * 1.5) + ((current_level % 10) / 20)
-		logTheThing("debug", null, null, "<b>Marquesas/Critter Gauntlet:</b> On level [current_level]. Spending [points] points, composed of 1 base, [round(current_level * 0.1) * 1.5] major and [(current_level % 10) / 20] minor.")
+		var/points = 2.5 + (floor(current_level * 0.1) * 1.5) + ((current_level % 10) / 20)
+		logTheThing("debug", null, null, "<b>Marquesas/Critter Gauntlet:</b> On level [current_level]. Spending [points] points, composed of 1 base, [floor(current_level * 0.1) * 1.5] major and [(current_level % 10) / 20] minor.")
 
 		var/datum/gauntletEvent/candidate = pick(possible_events)
 		if (current_level >= candidate.minimum_level && points > candidate.point_cost && prob(candidate.probability))
@@ -533,7 +533,7 @@
 		//Anyway, the [rand(-10, 10) * 0.1] basically amounts to "plus/minus one critter randomly", except given the flooring after this it's probably biased downwards
 		wave.count *= difficulty / 1.5 + rand(-10, 10) * 0.1
 		//spawn at least 1 thing (note this actually floors the count)
-		wave.count = round(max(1, wave.count))
+		wave.count = floor(max(1, wave.count))
 		//The same maths, except the lower limit is 1/10th health.
 		wave.health_multiplier = max(difficulty / 1.5 + rand(-10, 10) * 0.1, 0.1)
 
@@ -635,7 +635,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 	var/used = 0
 
 	proc/doDrop()
-		var/amount = max(1, rand(round(gauntlet_controller.players * min_percent), round(gauntlet_controller.players * max_percent)))
+		var/amount = max(1, rand(floor(gauntlet_controller.players * min_percent), floor(gauntlet_controller.players * max_percent)))
 		if (max_amount > 0)
 			amount = min(amount, max_amount)
 		for (var/i = 1, i <= amount, i++)
@@ -847,7 +847,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 			var/list/q = gauntlet_controller.spawnturfs.Copy()
 			shuffle_list(q)
 			var/percentage = rand(25, 45) * 0.01
-			q.len = round(q.len * percentage)
+			q.len = floor(q.len * percentage)
 			for (var/turf/T in q)
 				new /obj/structure/woodwall/virtual(T)
 
@@ -1038,7 +1038,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 
 		process()
 			if (D1)
-				if (prob(round(20 * gauntlet_controller.difficulty)))
+				if (prob(floor(20 * gauntlet_controller.difficulty)))
 					var/turf/target = pick(gauntlet_controller.spawnturfs)
 					target.overlays += marker
 

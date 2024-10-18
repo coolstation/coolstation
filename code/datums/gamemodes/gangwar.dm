@@ -55,7 +55,7 @@
 		if (!istype(player)) continue
 		if(player.ready) num_players++
 
-	var/num_teams = max(setup_min_teams, min(round((num_players) / 9), setup_max_teams)) //1 gang per 9 players
+	var/num_teams = max(setup_min_teams, min(floor((num_players) / 9), setup_max_teams)) //1 gang per 9 players
 
 	var/list/leaders_possible = get_possible_leaders(num_teams)
 	if (num_teams > leaders_possible.len)
@@ -265,7 +265,7 @@
 						H.delStatus("ganger")
 
 /datum/game_mode/gang/proc/increase_janktank_price()
-	janktank_price = round(janktank_price*1.1)
+	janktank_price = floor(janktank_price*1.1)
 	for(var/datum/gang/G in gangs)
 		var/datum/gang_item/misc/janktank/JT = locate(/datum/gang_item/misc/janktank) in G.locker.buyable_items
 		JT.price = janktank_price
@@ -578,7 +578,7 @@
 		score += score_drug
 		score += score_event
 
-		return round(score)
+		return floor(score)
 
 	proc/can_be_joined() //basic for now but might be expanded on so I'm making it a proc of its own
 		if(members.len >= ticker.mode:current_max_gang_members)
@@ -834,7 +834,7 @@
 			. += "It is completely destroyed!"
 			return
 
-		switch(round(100*health/max_health))
+		switch(floor(100*health/max_health))
 			if(1 to 25)
 				. += "It is almost destroyed!"
 			if(26 to 50)
@@ -979,8 +979,8 @@
 				boutput(user, "<span class='alert'><b>[src.name] beeps, it don't accept bills larger than $500!<b></span>")
 				return 0
 
-			gang.score_cash += round(S.amount/CASH_DIVISOR)
-			gang.spendable_points += round(S.amount/CASH_DIVISOR)
+			gang.score_cash += floor(S.amount/CASH_DIVISOR)
+			gang.spendable_points += floor(S.amount/CASH_DIVISOR)
 
 		//gun score
 		else if (istype(item, /obj/item/gun))
@@ -988,8 +988,8 @@
 				boutput(user, "<span class='alert'><b>You cant stash toy guns in the locker<b></span>")
 				return 0
 			// var/obj/item/gun/gun = item
-			gang.score_gun += round(300)
-			gang.spendable_points += round(300)
+			gang.score_gun += floor(300)
+			gang.spendable_points += floor(300)
 
 
 		//drug score
@@ -1023,7 +1023,7 @@
 
 		if(istype(O, /obj/item/plant/herb/cannabis) && O.reagents.get_reagent_amount("THC") == 0)
 			score += 7
-		return round(score)
+		return floor(score)
 
 	proc/cash_amount()
 		var/number = 0
@@ -1031,7 +1031,7 @@
 		for(var/obj/item/spacecash/S in contents)
 			number += S.amount
 
-		return round(number)
+		return floor(number)
 
 	proc/gun_amount()
 		var/number = 0
@@ -1039,7 +1039,7 @@
 		for(var/obj/item/gun/G in contents)
 			number ++
 
-		return round(number) //no point rounding it really but fuck it
+		return floor(number) //no point rounding it really but fuck it
 
 	proc/take_damage(var/amount)
 		health = max(0,health-amount)
@@ -1054,7 +1054,7 @@
 		if(health <= 0)
 			break_open()
 			if(istype(ticker.mode,/datum/game_mode/gang))
-				gang.spendable_points = round(gang.spendable_points*0.8)
+				gang.spendable_points = floor(gang.spendable_points*0.8)
 				ticker.mode:broadcast_to_gang("Your locker has been destroyed! Your amount of spendable points has been almost decimated!",src.gang)
 			src.visible_message("<span class='alert'><b>[src.name] bursts open, spilling its contents!<b></span>")
 

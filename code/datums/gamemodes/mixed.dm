@@ -39,7 +39,7 @@
 	var/num_enemies = 1
 
 	if(traitor_scaling)
-		num_enemies = max(1, min(round((num_players + i) / num_enemies_divisor), traitors_possible)) // adjust divisor as needed
+		num_enemies = max(1, min(floor((num_players + i) / num_enemies_divisor), traitors_possible)) // adjust divisor as needed
 
 	var/num_wizards = 0
 	var/num_traitors = 0

@@ -32,7 +32,7 @@
 	var/mob/living/critter/flock/host = src.loc
 	if(istype(host))
 		state["host"] = host.real_name
-		state["health"] = round(host.get_health_percentage()*100)
+		state["health"] = floor(host.get_health_percentage()*100)
 	else
 		state["host"] = null
 		state["health"] = 100
@@ -45,7 +45,7 @@
     <br><span class='bold'>ID:</span> [src.real_name]
     <br><span class='bold'>Flock:</span> [src.flock ? src.flock.name : "none, somehow"]
     <br><span class='bold'>Resources:</span> [src.flock.total_resources()]
-    <br><span class='bold'>System Integrity:</span> [round(src.flock.total_health_percentage()*100)]%
+    <br><span class='bold'>System Integrity:</span> [floor(src.flock.total_health_percentage()*100)]%
     <br><span class='bold'>Cognition:</span> SYNAPTIC PROCESS
     <br>###=-</span></span>"}
   else

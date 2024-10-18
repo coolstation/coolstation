@@ -201,7 +201,7 @@
 	if (spam_flag == 0)
 		spam_flag = 1
 
-		var/usernum = round(input("Select a note to play: 0-12?") as null|num)
+		var/usernum = floor(input("Select a note to play: 0-12?") as null|num)
 		if (isnull(usernum))
 			return
 		if(usernum < 0) usernum = 0

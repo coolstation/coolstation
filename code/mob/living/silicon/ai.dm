@@ -2115,7 +2115,7 @@ proc/get_mobs_trackable_by_AI()
 		return
 
 	if(last_vox + vox_cooldown > world.time)
-		src.show_text("This ability is still on cooldown for [round((vox_cooldown + last_vox - world.time) / 10)] seconds!", "red")
+		src.show_text("This ability is still on cooldown for [floor((vox_cooldown + last_vox - world.time) / 10)] seconds!", "red")
 		return
 
 	vox_reinit_check()
@@ -2151,7 +2151,7 @@ proc/get_mobs_trackable_by_AI()
 		return
 
 	if(last_vox + vox_cooldown > world.time)
-		src.show_text("This ability is still on cooldown for [round((vox_cooldown + last_vox - world.time) / 10)] seconds!", "red")
+		src.show_text("This ability is still on cooldown for [floor((vox_cooldown + last_vox - world.time) / 10)] seconds!", "red")
 		return
 
 	vox_reinit_check()
@@ -2187,7 +2187,7 @@ proc/get_mobs_trackable_by_AI()
 		return
 
 	if(last_announcement + announcement_cooldown > world.time)
-		src.show_text("This ability is still on cooldown for [round((announcement_cooldown + last_announcement - world.time) / 10)] seconds!", "red")
+		src.show_text("This ability is still on cooldown for [floor((announcement_cooldown + last_announcement - world.time) / 10)] seconds!", "red")
 		return
 
 	vox_reinit_check()

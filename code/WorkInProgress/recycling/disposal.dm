@@ -1178,7 +1178,7 @@
 		STOP_TRACKING
 
 	proc/update()
-		var/orderOfLoafitude = max( 0, min( round( log(8, loaf_factor)), MAXIMUM_LOAF_STATE_VALUE ) )
+		var/orderOfLoafitude = max( 0, min( floor( log(8, loaf_factor)), MAXIMUM_LOAF_STATE_VALUE ) )
 		//src.icon_state = "ploaf[orderOfLoafitude]"
 
 		src.w_class = min(orderOfLoafitude+1, 4)

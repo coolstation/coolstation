@@ -129,7 +129,7 @@
 
 		if (istype(user,/mob/living/carbon/human))
 			if (user.client && user.client.tg_layout) //MBC TG OVERRIDE IM SORTY
-				x = 11 - round(master.slots / 2)
+				x = 11 - floor(master.slots / 2)
 				y = 3
 				sx = master.slots + 1
 				sy = 1
@@ -167,12 +167,12 @@
 		for (var/obj/item/I in master.get_contents())
 			if (!(I in src.objects)) // ugh
 				add_object(I, HUD_LAYER+1)
-			var/obj_loc = "[x+(i%sx)],[y-round(i/sx)]" //no pixel coords cause that makes click detection harder above
-			var/final_loc = "[x+(i%sx)],[y-round(i/sx)]:[pixel_y_adjust]"
+			var/obj_loc = "[x+(i%sx)],[y-floor(i/sx)]" //no pixel coords cause that makes click detection harder above
+			var/final_loc = "[x+(i%sx)],[y-floor(i/sx)]:[pixel_y_adjust]"
 			I.screen_loc = final_loc
 			src.obj_locs[obj_loc] = I
 			i++
-		empty_obj_loc =  "[x+(i%sx)],[y-round(i/sx)]:[pixel_y_adjust]"
+		empty_obj_loc =  "[x+(i%sx)],[y-floor(i/sx)]:[pixel_y_adjust]"
 		if(isitem(master))
 			var/obj/item/I = master
 			I.tooltip_rebuild = 1

@@ -618,8 +618,8 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 	var/time_left = min_time_passed - time_elapsed
 	if(time_left > 0)
 		var/time_left_message = ""
-		var/minutes = round(time_left / 600)
-		var/seconds = round((time_left - (minutes * 600))/10)
+		var/minutes = floor(time_left / 600)
+		var/seconds = floor((time_left - (minutes * 600))/10)
 		if(minutes >= 1)
 			time_left_message += "[minutes] minute[minutes == 1 ? "" : "s"] and "
 		time_left_message += "[seconds] second[seconds == 1 ? "" : "s"]"

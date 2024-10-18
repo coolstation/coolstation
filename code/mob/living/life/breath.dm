@@ -267,7 +267,7 @@
 				else
 					owner.emote("gasp")
 			if (O2_pp > 0)
-				var/ratio = round(safe_oxygen_min/(O2_pp + 0.1))
+				var/ratio = floor(safe_oxygen_min/(O2_pp + 0.1))
 				owner.take_oxygen_deprivation(min(5*ratio, 5)) // Don't fuck them up too fast (space only does 7 after all!)
 				oxygen_used = breath.oxygen*ratio/6
 			else

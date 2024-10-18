@@ -379,7 +379,7 @@ mob/new_player
 				battlemode.battle_shuttle_spawn(character.mind)
 			else
 				var/starting_loc = null
-				starting_loc = pick_landmark(LANDMARK_LATEJOIN, locate(round(world.maxx / 2), round(world.maxy / 2), 1))
+				starting_loc = pick_landmark(LANDMARK_LATEJOIN, locate(floor(world.maxx / 2), floor(world.maxy / 2), 1))
 				character.set_loc(starting_loc)
 
 			if (isliving(character))
@@ -675,8 +675,8 @@ a.latejoin-card:hover {
 
 		if(!(LANDMARK_LATEJOIN in landmarks))
 			// the middle of the map is GeNeRaLlY part of the actual station. moreso than 1,1,1 at least
-			var/midx = round(world.maxx / 2)
-			var/midy = round(world.maxy / 2)
+			var/midx = floor(world.maxx / 2)
+			var/midy = floor(world.maxy / 2)
 			boutput(world, "No latejoin landmarks placed, dumping [src] to ([midx], [midy], 1)")
 			src.set_loc(locate(midx,midy,1))
 		else

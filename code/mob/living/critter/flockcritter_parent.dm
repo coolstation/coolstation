@@ -57,7 +57,7 @@
 	state["update"] = "flockcritter"
 	state["ref"] = "\ref[src]"
 	state["name"] = src.name
-	state["health"] = round(src.get_health_percentage()*100)
+	state["health"] = floor(src.get_health_percentage()*100)
 	state["resources"] = src.resources
 	var/area/myArea = get_area(src)
 	if(isarea(myArea))

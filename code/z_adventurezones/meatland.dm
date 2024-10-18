@@ -418,7 +418,7 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 
 		if (exploded_sentence.len > 1)
 			if (prob(50))
-				exploded_sentence.Cut( rand(1, round(exploded_sentence.len / 2)))
+				exploded_sentence.Cut( rand(1, floor(exploded_sentence.len / 2)))
 				exploded_sentence.len = max(5, exploded_sentence.len - rand(1,4))
 
 			else

@@ -100,7 +100,7 @@
 		if(!src.temp) // skip over the price generation if we just haggled badly
 			while(firstnum > 11)
 				firstnum /= 10
-			firstnum = round(firstnum)
+			firstnum = floor(firstnum)
 
 			H.haggleattempts++
 			src.bullshit++
@@ -216,12 +216,12 @@
 		var/middleground = (H.price + askingprice) / 2
 		var/negotiate = abs(H.price-middleground)-1
 		if (buying == 1)
-			H.price =round(middleground + rand(0,negotiate))
+			H.price =floor(middleground + rand(0,negotiate))
 		else
 			if(middleground-H.price <= 0.5)
-				H.price = round(middleground + 1)
+				H.price = floor(middleground + 1)
 			else
-				H.price = round(middleground - rand(0,negotiate))
+				H.price = floor(middleground - rand(0,negotiate))
 
 		src.temp = "<B>New Cost:</B> [H.price] Credits<BR><HR>"
 		H.haggleattempts++

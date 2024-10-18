@@ -39,7 +39,7 @@
 		intent.icon_state = "intent-[master.a_intent]"
 
 	proc/update_health()
-		var/health_num = round((max(master.health,0)/master.max_health)*7)
+		var/health_num = floor((max(master.health,0)/master.max_health)*7)
 		health.icon_state = "health-[health_num]"				//there's 8 icons, that's where 0-7 comes from
 		switch(health_num)
 			if (0)

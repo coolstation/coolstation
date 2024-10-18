@@ -280,11 +280,11 @@
 
 	proc/setNextDroneTime()
 		var/frac = (difficulty * 250) % 100
-		var/whole = round(difficulty / 2)
-		next_level_at = ticker.round_elapsed_ticks + round(max(17,(max(35, 120 - frac) / ((players+1) / 2)) - whole))
+		var/whole = floor(difficulty / 2)
+		next_level_at = ticker.round_elapsed_ticks + floor(max(17,(max(35, 120 - frac) / ((players+1) / 2)) - whole))
 
 	proc/spawnBoss()
-		boss_counter = rand(60, 100) * round((players + 1) / 2)
+		boss_counter = rand(60, 100) * floor((players + 1) / 2)
 		if (!current_bosses.len)
 			boss_count++
 			current_bosses = bosses.Copy()
@@ -544,7 +544,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	proc/add_overlay(value, max_value, r0, g0, b0, r1, g1, b1)
 		var/percentage = value / max_value
-		var/remaining = round(percentage * 100)
+		var/remaining = floor(percentage * 100)
 		var/bars = length(barBits)
 		var/eachBar = 100 / bars
 		var/missingBars = 0
@@ -580,17 +580,17 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 			if (value > 999)
 				value = 999
 			if (value >= 100)
-				var/R2 = round(value / 100)
+				var/R2 = floor(value / 100)
 				var/image/left = image('icons/obj/colosseum.dmi', "[R2]")
 				left.color = textcolor
 				left.pixel_x = -8
 				counter.overlays += left
 			if (value >= 10)
-				var/R1 = round(value / 10) % 10
+				var/R1 = floor(value / 10) % 10
 				var/image/center = image('icons/obj/colosseum.dmi', "[R1]")
 				center.color = textcolor
 				counter.overlays += center
-			var/R0 = round(value % 10)
+			var/R0 = floor(value % 10)
 			var/image/right = image('icons/obj/colosseum.dmi', "[R0]")
 			right.color = textcolor
 			right.pixel_x = 8
@@ -698,13 +698,13 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 				if (value > 999)
 					value = 999
 				if (value >= 100)
-					var/R2 = round(value / 100)
+					var/R2 = floor(value / 100)
 					var/image/left = image('icons/obj/colosseum.dmi', "[R2]")
 					left.color = rgb(rand(128,255), rand(128,255), rand(128,255))
 					left.pixel_x = -8
 					counter.overlays += left
 				if (value >= 10)
-					var/R1 = round(value / 10) % 10
+					var/R1 = floor(value / 10) % 10
 					var/image/center = image('icons/obj/colosseum.dmi', "[R1]")
 					center.color = rgb(rand(128,255), rand(128,255), rand(128,255))
 					counter.overlays += center

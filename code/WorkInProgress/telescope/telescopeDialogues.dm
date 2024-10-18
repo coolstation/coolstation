@@ -18,7 +18,7 @@
 		var/datum/dialogueMaster/telescopeValiant/M = master
 		var/html = ""
 		if(nodeImage != null)
-			html += {"<img class="centerimg" src='[getNodeImage(C)]'><HR><B>[master.dialogueName]</B><br>SIGNAL STRENGTH: <div style="display:inline-block;height:1.5em;width:200px;padding:0;background-color:#545454;float:right;overflow:hidden;margin-bottom:4px;"><div style="height:100%;width:[max(0,round((M.signal/M.maxSignal) * 100))]%;text-align:right;background-color:#6c90a3;padding-right:3px;">[max(0,round((M.signal/M.maxSignal) * 100))]%</div></div><HR>"}
+			html += {"<img class="centerimg" src='[getNodeImage(C)]'><HR><B>[master.dialogueName]</B><br>SIGNAL STRENGTH: <div style="display:inline-block;height:1.5em;width:200px;padding:0;background-color:#545454;float:right;overflow:hidden;margin-bottom:4px;"><div style="height:100%;width:[max(0,floor((M.signal/M.maxSignal) * 100))]%;text-align:right;background-color:#6c90a3;padding-right:3px;">[max(0,floor((M.signal/M.maxSignal) * 100))]%</div></div><HR>"}
 		html += {"<span>[getNodeText(C)]</span>"}
 		return html
 

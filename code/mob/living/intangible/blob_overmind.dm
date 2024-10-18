@@ -140,7 +140,7 @@
 			 * This is a size penalty. Basically if the blob gets too damn big, the crew has some chance of
 			 * fighting it back because it will run out of points.
 			 */
-			src.bio_points_max = BlobPointsBezierApproximation(round(blobs.len / 5)) + bio_points_max_bonus
+			src.bio_points_max = BlobPointsBezierApproximation(floor(blobs.len / 5)) + bio_points_max_bonus
 
 		var/newBioPoints
 		var/mult = (max(tick_spacing, TIME - last_blob_life_tick) / tick_spacing)
@@ -148,7 +148,7 @@
 		if (src.debuff_timestamp)
 			var/genBonus = gen_rate_bonus
 			if (genBonus > 0)
-				genBonus = round(genBonus / 2)
+				genBonus = floor(genBonus / 2)
 
 			//maybe other debuffs here in the future
 
@@ -223,10 +223,10 @@
 		..()
 		stat(null, " ")
 		stat("--Blob--", " ")
-		stat("Bio Points:", "[round(bio_points)]/[bio_points_max]")
+		stat("Bio Points:", "[floor(bio_points)]/[bio_points_max]")
 		//debuff active
 		if (src.debuff_timestamp && gen_rate_bonus > 0)
-			var/genBonus = round(gen_rate_bonus / 2)
+			var/genBonus = floor(gen_rate_bonus / 2)
 			stat("Generation Rate:", "[base_gen_rate + genBonus - gen_rate_used]/[base_gen_rate + gen_rate_bonus] BP <span class='alert'>(WEAKENED)</span>")
 
 		else
@@ -548,7 +548,7 @@
 			// The idea is not that we should be punishing big blobs, rather we should be making progress progressively difficult.
 			points = max(40, 30000 / (t - 417) - 51)
 
-		return round(max(0, points))
+		return floor(max(0, points))
 
 	proc/usePoints(var/amt, var/force = 1)
 		if (bio_points < amt)

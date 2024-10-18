@@ -32,7 +32,7 @@
     <br><span class='bold'>ID:</span> [src.real_name]
     <br><span class='bold'>Flock:</span> [src.flock ? src.flock.name : "none, somehow"]
     <br><span class='bold'>Resources:</span> [src.flock.total_resources()]
-    <br><span class='bold'>System Integrity:</span> [round(src.flock.total_health_percentage()*100)]%
+    <br><span class='bold'>System Integrity:</span> [floor(src.flock.total_health_percentage()*100)]%
     <br><span class='bold'>Cognition:</span> COMPUTATIONAL NEXUS
     <br>###=-</span></span>"}
   else
