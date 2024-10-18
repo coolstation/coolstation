@@ -20782,7 +20782,10 @@
 /turf/wall,
 /area/station/medical/medbooth)
 "lVP" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/dispenser{
+	o2tanks = 10;
+	pltanks = 10
+	},
 /turf/floor,
 /area/station/science/storage)
 "lVS" = (
@@ -78695,7 +78698,7 @@ jje
 jJY
 kwz
 llX
-wso
+jQx
 jQx
 hTf
 hTf
