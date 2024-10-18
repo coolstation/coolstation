@@ -73,7 +73,7 @@ var/global/datum/controller/throwing/throwing_controller = new
 		var/atom/movable/thing = thr.thing
 
 		var/end_throwing = FALSE
-		var/int_speed = round(thr.speed + thr.speed_error)
+		var/int_speed = floor(thr.speed + thr.speed_error)
 		thr.speed_error += thr.speed - int_speed
 		for(var/i in 1 to int_speed)
 			if(!thing || thing.disposed)

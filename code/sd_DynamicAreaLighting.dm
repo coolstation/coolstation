@@ -310,7 +310,7 @@ proc/hsv2rgb(var/list/HSV)
 	if (h == 6)
 		h = 0
 
-	var/i = round(h)
+	var/i = floor(h)
 
 	var/v1 = HSV[3] * (1 - HSV[2])
 	var/v2 = HSV[3] * (1 - HSV[2] * (h - i))
@@ -380,7 +380,7 @@ proc/rgb2hsv(var/list/RGB)
 proc/normalizeRGB(var/r, var/g, var/b)
 	var/coefficient = max(r / 255, g / 255, b / 255)
 	if(coefficient > 1)
-		return list(round(r / coefficient), round(g / coefficient), round(b / coefficient), coefficient)
+		return list(floor(r / coefficient), floor(g / coefficient), floor(b / coefficient), coefficient)
 	return list(r, g, b, coefficient)
 
 proc/distance(var/turf/A, var/turf/B)

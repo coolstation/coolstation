@@ -706,7 +706,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		P.log_leave_time() //get our final playtime for the round (wont cause errors with people who already d/ced bc of smart code)
 		if (!P.current_playtime)
 			continue
-		playtimes["ckeys\[[P.ckey]]"] = round((P.current_playtime / (1 SECOND))) //rounds 1/10th seconds to seconds
+		playtimes["ckeys\[[P.ckey]]"] = floor(P.current_playtime / (1 SECOND)) //rounds 1/10th seconds to seconds
 	try
 		apiHandler.queryAPI("playtime/record-multiple", playtimes)
 	catch(var/exception/e)

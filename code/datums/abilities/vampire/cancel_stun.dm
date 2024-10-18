@@ -61,7 +61,7 @@
 			return 1
 
 		var/greatest_stun = max(3, M.getStatusDuration("stunned"),M.getStatusDuration("weakened"),M.getStatusDuration("paralysis"),M.getStatusDuration("slowed")/4,M.getStatusDuration("disorient")/2)
-		greatest_stun = round(greatest_stun / 10)
+		greatest_stun = floor(greatest_stun / 10)
 
 		M.TakeDamage("All", greatest_stun, 0)
 		M.take_oxygen_deprivation(-5)

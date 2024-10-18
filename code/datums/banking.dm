@@ -404,7 +404,7 @@
 				if (scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>This account is frozen!</span>")
 					return
-				var/amount = round(input(usr, "How much would you like to withdraw?", "Withdrawal", 0) as num)
+				var/amount = floor(input(usr, "How much would you like to withdraw?", "Withdrawal", 0) as num)
 				if( amount < 1)
 					boutput(usr, "<span class='alert'>Invalid amount!</span>")
 					return
@@ -455,7 +455,7 @@
 				boutput(usr, "<span class='alert'><B>No online player with that ckey found!</B></span>")
 
 			if("withdraw_spacebux")
-				var/amount = round(input(usr, "You have [usr.client.persistent_bank] spacebux.\nHow much would you like to withdraw?", "How much?", 0) as num)
+				var/amount = floor(input(usr, "You have [usr.client.persistent_bank] spacebux.\nHow much would you like to withdraw?", "How much?", 0) as num)
 				amount = clamp(amount, 0, 1000000)
 				if(amount <= 0)
 					boutput(usr, "<span class='alert'>No.</span>")
@@ -869,7 +869,7 @@
 				if (scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>This account is frozen!</span>")
 					return
-				var/amount = round(input(usr, "How much would you like to withdraw?", "Withdrawal", 0) as num)
+				var/amount = floor(input(usr, "How much would you like to withdraw?", "Withdrawal", 0) as num)
 				if( amount < 1)
 					boutput(usr, "<span class='alert'>Invalid amount!</span>")
 					return
@@ -920,7 +920,7 @@
 				boutput(usr, "<span class='alert'><B>No online player with that ckey found!</B></span>")
 
 			if("withdraw_spacebux")
-				var/amount = round(input(usr, "You have [usr.client.persistent_bank] spacebux.\nHow much would you like to withdraw?", "How much?", 0) as num)
+				var/amount = floor(input(usr, "You have [usr.client.persistent_bank] spacebux.\nHow much would you like to withdraw?", "How much?", 0) as num)
 				amount = clamp(amount, 0, 1000000)
 				if(amount <= 0)
 					boutput(usr, "<span class='alert'>No.</span>")

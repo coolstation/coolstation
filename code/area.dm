@@ -330,8 +330,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			hasturfs = 1
 		if (!hasturfs)
 			return 0
-		var/midx = round((minx + maxx) / 2)
-		var/midy = round((miny + maxy) / 2)
+		var/midx = floor((minx + maxx) / 2)
+		var/midy = floor((miny + maxy) / 2)
 		var/midz = minz
 		var/turf/R = locate(midx, midy, midz)
 		if (mustbeinside)

@@ -9,7 +9,7 @@
 			if (dmg == 0)
 				M.show_message("<span class='alert'>Nothing to repair on [holder]!")
 				return 0
-			var/amt_req = round(dmg / 5) + 1
+			var/amt_req = floor(dmg / 5) + 1
 			if (amt_req >= C.amount)
 				HealDamage(C.amount * 5)
 				holder.visible_message("<span class='notice'>[M] repairs some wiring on [holder]!</span>")

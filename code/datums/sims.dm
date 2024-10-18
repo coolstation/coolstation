@@ -59,9 +59,9 @@
 	proc/updateHud()
 		var/change = 0
 		if (value > last_life_value)
-			change = min(1 + round((value - last_life_value) / 5), 3)
+			change = min(1 + floor((value - last_life_value) / 5), 3)
 		if (value < last_life_value)
-			change = -min(1 + round((last_life_value - value) / 5), 3)
+			change = -min(1 + floor((last_life_value - value) / 5), 3)
 		if (change)
 			if (!src.image_change)
 				src.image_change = image(src.icon, "change[change]", layer = HUD_LAYER+2)
@@ -72,7 +72,7 @@
 			src.hud.UpdateOverlays(null, "change")
 		//var/a_change = value - last_life_value
 		var/maptext_color = "#ffffff"
-		var/round_value = round(value)
+		var/round_value = floor(value)
 		switch (round_value)
 			if (90 to INFINITY)
 				maptext_color = "#88ff88"
@@ -259,7 +259,7 @@
 				return 1
 
 		onIncrease()
-			protection = round(value / 5)
+			protection = floor(value / 5)
 
 		onLife()
 			if (value < 15 && prob(33))

@@ -174,12 +174,12 @@
 		wageMult = 1.5
 
 	if(wagesystem.jobs[H.job])
-		B.fields["wage"] = round(wagesystem.jobs[H.job] * wageMult)
+		B.fields["wage"] = floor(wagesystem.jobs[H.job] * wageMult)
 	// Otherwise give them a default wage
 	else
 		var/datum/job/J = find_job_in_controller_by_string(G.fields["rank"])
 		if (J?.wages)
-			B.fields["wage"] = round(J.wages * wageMult)
+			B.fields["wage"] = floor(J.wages * wageMult)
 		else
 			B.fields["wage"] = 0
 

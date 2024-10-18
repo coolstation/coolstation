@@ -314,9 +314,9 @@
 
 
 /proc/dstohms(var/ds)
-	var/hours = round(ds / (10 * 60 * 60))
-	var/minutes = round((ds - (hours * 10 * 60 * 60)) / (10 * 60))
-	var/seconds = round((ds - (hours * 10 * 60 * 60) - (minutes * 10 * 60)) / 10)
+	var/hours = floor(ds / (10 * 60 * 60))
+	var/minutes = floor((ds - (hours * 10 * 60 * 60)) / (10 * 60))
+	var/seconds = floor((ds - (hours * 10 * 60 * 60) - (minutes * 10 * 60)) / 10)
 	if (hours < 0)
 		hours = 0
 	if (minutes < 0)

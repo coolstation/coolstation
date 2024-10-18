@@ -977,7 +977,7 @@ var/f_color_selector_handler/F_Color_Selector
 		var/elapsed
 		if (current_state < GAME_STATE_FINISHED)
 			if (current_state <= GAME_STATE_PREGAME) elapsed = "pre"
-			else if (current_state > GAME_STATE_PREGAME) elapsed = round(ticker.round_elapsed_ticks / 10)
+			else if (current_state > GAME_STATE_PREGAME) elapsed = floor(ticker.round_elapsed_ticks / 10)
 		else if (current_state == GAME_STATE_FINISHED) elapsed = "post"
 		else elapsed = "welp"
 		s["elapsed"] = elapsed

@@ -15,7 +15,7 @@
 	var/adj_y = ((height * scale_y) - height) / 2
 
 	src.Scale(scale_x, scale_y)
-	src.Translate(round(adj_x), round(adj_y))
+	src.Translate(floor(adj_x), floor(adj_y))
 	return src
 
 /matrix/proc/Reset()

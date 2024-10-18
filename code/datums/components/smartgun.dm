@@ -192,8 +192,8 @@
 	var/list/ret = list()
 	if(istype(G, /obj/item/gun/kinetic))
 		var/obj/item/gun/kinetic/K = G
-		return round(K.ammo.amount_left * K.current_projectile.cost)
+		return floor(K.ammo.amount_left * K.current_projectile.cost)
 	else if(SEND_SIGNAL(G, COMSIG_CELL_CHECK_CHARGE, ret) & CELL_RETURNED_LIST)
-		return round(ret["charge"] / G.current_projectile.cost)
+		return floor(ret["charge"] / G.current_projectile.cost)
 	else return G.canshoot() * INFINITY //idk, just let it happen
 

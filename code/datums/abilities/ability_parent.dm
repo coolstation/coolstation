@@ -312,7 +312,7 @@
 		if (params["alt"])
 			if (altPower)
 				if(!altPower.cooldowncheck())
-					boutput(owner, "<span class='alert'>That ability is on cooldown for [round((altPower.last_cast - world.time) / 10)] seconds.</span>")
+					boutput(owner, "<span class='alert'>That ability is on cooldown for [floor((altPower.last_cast - world.time) / 10)] seconds.</span>")
 					return 0
 				altPower.handleCast(target, params)
 				return 1
@@ -322,7 +322,7 @@
 		else if (params["ctrl"])
 			if (ctrlPower)
 				if(!ctrlPower.cooldowncheck())
-					boutput(owner, "<span class='alert'>That ability is on cooldown for [round((ctrlPower.last_cast - world.time) / 10)] seconds.</span>")
+					boutput(owner, "<span class='alert'>That ability is on cooldown for [floor((ctrlPower.last_cast - world.time) / 10)] seconds.</span>")
 					return 0
 				ctrlPower.handleCast(target, params)
 				return 1
@@ -332,7 +332,7 @@
 		else if (params["shift"])
 			if (shiftPower)
 				if(!shiftPower.cooldowncheck())
-					boutput(owner, "<span class='alert'>That ability is on cooldown for [round((shiftPower.last_cast - world.time) / 10)] seconds.</span>")
+					boutput(owner, "<span class='alert'>That ability is on cooldown for [floor((shiftPower.last_cast - world.time) / 10)] seconds.</span>")
 					return 0
 				shiftPower.handleCast(target, params)
 				return 1
@@ -370,7 +370,7 @@
 					T.holder.updateButtons()
 					return 1
 				else
-					boutput(owner, "<span class='alert'>That ability is on cooldown for [round((T.last_cast - world.time) / 10)] seconds!</span>")
+					boutput(owner, "<span class='alert'>That ability is on cooldown for [floor((T.last_cast - world.time) / 10)] seconds!</span>")
 					return 1
 		return 0
 
@@ -626,7 +626,7 @@
 
 		var/newcolor = null
 
-		var/on_cooldown = round((owner.last_cast - world.time) / 10)
+		var/on_cooldown = floor((owner.last_cast - world.time) / 10)
 
 		if (owner.pointCost)
 			if (owner.pointCost > owner.holder.points)
@@ -686,7 +686,7 @@
 		abilityHud.remove_object(src.cd_tens)
 		abilityHud.remove_object(src.cd_secs)
 
-		var/on_cooldown = round((owner.last_cast - world.time) / 10)
+		var/on_cooldown = floor((owner.last_cast - world.time) / 10)
 		if (on_cooldown > 0)
 			on_cooldown = min(on_cooldown,99)
 			src.overlays += src.darkener
@@ -764,7 +764,7 @@
 						boutput(user, "<span class='notice'>Cooldown: <strong>[owner.cooldown / 10] seconds</strong></span>")
 				else
 					if (!owner.cooldowncheck())
-						boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [round((owner.last_cast - world.time) / 10)] seconds.</span>")
+						boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [floor((owner.last_cast - world.time) / 10)] seconds.</span>")
 						return
 
 					if (!owner.targeted)
@@ -900,7 +900,7 @@
 				src.holder.locked = 0
 				return 999
 			if (last_cast > world.time)
-				boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [round((last_cast - world.time) / 10)] seconds.</span>")
+				boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [floor((last_cast - world.time) / 10)] seconds.</span>")
 				src.holder.locked = 0
 				return 999
 			if (src.restricted_area_check)

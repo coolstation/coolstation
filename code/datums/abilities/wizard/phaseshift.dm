@@ -299,7 +299,7 @@
 
 		user.glide_size = glide
 
-		owner.remove_stamina(round(STAMINA_COST_SPRINT*stamina_mult))
+		owner.remove_stamina(floor(STAMINA_COST_SPRINT*stamina_mult))
 
 		update_cloak_status()
 

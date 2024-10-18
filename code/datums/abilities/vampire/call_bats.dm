@@ -54,7 +54,7 @@
 					H.bat_orbiters += proj
 
 					proj.launch()
-					proj.special_data["orbit_angle"] = round(i)/create * 360
+					proj.special_data["orbit_angle"] = floor(i)/create * 360
 
 					i++
 

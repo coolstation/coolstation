@@ -550,7 +550,7 @@ var/datum/artifact_controller/artifact_controls
 			var/time = rand(4 SECONDS, 18 SECONDS)
 			if(prob(20))
 				time = rand(50 SECONDS, 70 SECONDS)
-			var/n_balls = rand(1, 4) + round(rarityMod * 3)
+			var/n_balls = rand(1, 4) + floor(rarityMod * 3)
 			for(var/i = 1 to n_balls)
 				var/delay = (i - 1) * time / n_balls
 				SPAWN_DBG(delay)

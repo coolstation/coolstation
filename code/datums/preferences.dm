@@ -479,7 +479,7 @@ datum/preferences
 				var/new_age = input(usr, "Please select type in age: 20-80", "Character Generation", src.age)  as null|num
 
 				if (new_age)
-					src.age = max(min(round(text2num(new_age)), 80), 20)
+					src.age = max(min(floor(text2num(new_age)), 80), 20)
 					src.profile_modified = TRUE
 
 					return TRUE
@@ -503,7 +503,7 @@ datum/preferences
 				else
 					var/new_pin = input(usr, "Please select a PIN between 1000 and 9999", "Character Generation", src.pin)  as null|num
 					if (new_pin)
-						src.pin = max(min(round(text2num(new_pin)), 9999), 1000)
+						src.pin = max(min(floor(text2num(new_pin)), 9999), 1000)
 						src.profile_modified = TRUE
 						return TRUE
 

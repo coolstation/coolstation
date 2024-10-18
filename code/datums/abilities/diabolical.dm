@@ -86,7 +86,7 @@
 			var/pttxt = ""
 			if (pointCost)
 				pttxt = " \[[pointCost]\]"
-			object.name = "[src.name][pttxt] ([round((src.last_cast-world.time)/10)])"
+			object.name = "[src.name][pttxt] ([floor((src.last_cast-world.time)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			var/pttxt = ""

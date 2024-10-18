@@ -29,8 +29,8 @@
 	var/turf/origin = get_turf(owner)
 	while(isnull(T) && turf_search_dist >= 0)
 		T = locate(
-			round(origin.x + cos(angle) * turf_search_dist),
-			round(origin.y + sin(angle) * turf_search_dist),
+			floor(origin.x + cos(angle) * turf_search_dist),
+			floor(origin.y + sin(angle) * turf_search_dist),
 			origin.z
 		)
 		turf_search_dist -= 4
@@ -40,7 +40,7 @@
 	SPAWN_DBG(0)
 		thing.throw_at( \
 			T,
-			round(12 + gen.Rand() * 4),
+			floor(12 + gen.Rand() * 4),
 			thr.speed + (homerun ? 6 : 1) + gen.Rand() * 2,
 			bonus_throwforce = homerun ? 10 : 0
 		)

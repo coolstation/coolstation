@@ -70,14 +70,14 @@
 				saveStat("Map Vote Link:",mapVoteLinkStat)
 
 				if (mapSwitcher.voteCurrentDuration)
-					saveStat("Map Vote Time:", "([round(((mapSwitcher.voteStartedAt + mapSwitcher.voteCurrentDuration + PREGAME_LOBBY_TICKS) - world.time) / 10)] seconds remaining, [map_vote_holder.voters] vote[map_vote_holder.voters != 1 ? "s" : ""])")
+					saveStat("Map Vote Time:", "([floor(((mapSwitcher.voteStartedAt + mapSwitcher.voteCurrentDuration + PREGAME_LOBBY_TICKS) - world.time) / 10)] seconds remaining, [map_vote_holder.voters] vote[map_vote_holder.voters != 1 ? "s" : ""])")
 			else
 				stats["Map Vote Link:"] = 0
 				stats["Map Vote Time:"] = 0
 
 		if (vote_manager?.active_vote)
 			saveStat("Vote Link:",newVoteLinkStat)
-			saveStat("Vote Time:", "([round(((vote_manager.active_vote.vote_started + vote_manager.active_vote.vote_length) - world.time) / 10)] seconds remaining, [vote_manager.active_vote.voted_ckey.len] vote[vote_manager.active_vote.voted_ckey.len != 1 ? "s" : ""])")
+			saveStat("Vote Time:", "([floor(((vote_manager.active_vote.vote_started + vote_manager.active_vote.vote_length) - world.time) / 10)] seconds remaining, [vote_manager.active_vote.voted_ckey.len] vote[vote_manager.active_vote.voted_ckey.len != 1 ? "s" : ""])")
 			stats["Vote Spacer"] = -1
 		else
 			stats["Vote Link:"] = 0
@@ -100,7 +100,7 @@
 
 			else if (ticker.round_elapsed_ticks)
 				stats["Time To Start:"] = 0
-				var/shiftTime = round(ticker.round_elapsed_ticks / 600)
+				var/shiftTime = floor(ticker.round_elapsed_ticks / 600)
 				saveStat("Shift Time:", "[shiftTime] minute[shiftTime == 1 ? "" : "s"]")
 				saveStat("Local Time:", time2text(world.timeofday, "hh:mm"))
 

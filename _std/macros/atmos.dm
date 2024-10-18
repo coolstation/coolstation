@@ -331,11 +331,11 @@ proc/gas_text_color(gas_id)
 #define MOLES_REPORT_PACKET(MIXTURE) (APPLY_TO_GASES(_MOLES_REPORT_PACKET, MIXTURE) "")
 
 // requires var/total_moles = TOTAL_MOLES(MIXTURE) defined beforehand
-#define _CONCENTRATION_REPORT(GAS, _, NAME, MIXTURE, SEP) "[NAME]: [round(MIXTURE.GAS / total_moles * 100)]%[SEP]" +
-#define _UNKNOWN_CONCENTRATION_REPORT(MIXTURE, SEP) (length((MIXTURE).trace_gases) ? "Unknown: [round((total_moles - BASE_GASES_TOTAL_MOLES(MIXTURE)) / total_moles * 100)]%[SEP]": "")
+#define _CONCENTRATION_REPORT(GAS, _, NAME, MIXTURE, SEP) "[NAME]: [floor(MIXTURE.GAS / total_moles * 100)]%[SEP]" +
+#define _UNKNOWN_CONCENTRATION_REPORT(MIXTURE, SEP) (length((MIXTURE).trace_gases) ? "Unknown: [floor((total_moles - BASE_GASES_TOTAL_MOLES(MIXTURE)) / total_moles * 100)]%[SEP]": "")
 #define CONCENTRATION_REPORT(MIXTURE, SEP) (APPLY_TO_GASES(_CONCENTRATION_REPORT, MIXTURE, SEP) _UNKNOWN_CONCENTRATION_REPORT(MIXTURE, SEP))
 
-#define _LIST_CONCENTRATION_REPORT(GAS, _, NAME, MIXTURE, LIST) LIST += "[NAME]: [round(MIXTURE.GAS / total_moles * 100)]%";
-#define _LIST_UNKNOWN_CONCENTRATION_REPORT(MIXTURE, LIST) LIST += (length((MIXTURE).trace_gases) ? "Unknown: [round((total_moles - BASE_GASES_TOTAL_MOLES(MIXTURE)) / total_moles * 100)]%": "")
+#define _LIST_CONCENTRATION_REPORT(GAS, _, NAME, MIXTURE, LIST) LIST += "[NAME]: [floor(MIXTURE.GAS / total_moles * 100)]%";
+#define _LIST_UNKNOWN_CONCENTRATION_REPORT(MIXTURE, LIST) LIST += (length((MIXTURE).trace_gases) ? "Unknown: [floor((total_moles - BASE_GASES_TOTAL_MOLES(MIXTURE)) / total_moles * 100)]%": "")
 #define LIST_CONCENTRATION_REPORT(MIXTURE, LIST) APPLY_TO_GASES(_LIST_CONCENTRATION_REPORT, MIXTURE, LIST) \
 _LIST_UNKNOWN_CONCENTRATION_REPORT(MIXTURE, LIST)

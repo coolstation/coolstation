@@ -43,8 +43,8 @@ var/datum/mechanic_controller/mechanic_controls
 			var/advanced_max = 0
 
 			if(number_of_parts >= 6)
-				advanced_max = round(number_of_parts/6)
-				advanced_chance = round(20*(number_of_parts/6))
+				advanced_max = floor(number_of_parts/6)
+				advanced_chance = floor(20*(number_of_parts/6))
 
 			for(var/tracker = 1, tracker <= number_of_parts, tracker ++)
 				var/part

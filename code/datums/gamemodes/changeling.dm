@@ -23,7 +23,7 @@
 			num_players++
 
 	var/i = rand(5)
-	var/num_changelings = max(1, min(round((num_players + i) / 15), changelings_possible))
+	var/num_changelings = max(1, min(floor((num_players + i) / 15), changelings_possible))
 
 	var/list/possible_changelings = get_possible_changelings(num_changelings)
 

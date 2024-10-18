@@ -507,10 +507,10 @@ var/global/list/atomTooltips = new()
 			iconWidth = iconHeight = iconSize
 
 		if (src.pixel_x)
-			screenX += round(src.pixel_x / iconWidth)
+			screenX += floor(src.pixel_x / iconWidth)
 
 		if (src.pixel_y)
-			screenY += round(src.pixel_y / iconHeight)
+			screenY += floor(src.pixel_y / iconHeight)
 
 	var/list/params = list(
 		"icon-x" = 1,

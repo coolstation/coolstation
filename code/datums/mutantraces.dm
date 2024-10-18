@@ -1765,7 +1765,7 @@
 			mob.abilityHolder = new /datum/abilityHolder/kudzu(mob)
 
 		var/datum/abilityHolder/kudzu/KAH = mob.abilityHolder
-		var/round_mult = max(1, round((mult)))
+		var/round_mult = max(1, floor((mult)))
 		var/turf/T = get_turf(mob)
 		//if on kudzu, get nutrients for later use. If at max nutrients. Then heal self.
 		if (T && T.temp_flags & HAS_KUDZU)

@@ -112,7 +112,7 @@ var/global/datum/languages/languages = new()
 
 	proc/debinarize(var/bits)
 		var/txt = ""
-		var/groups = round(length(bits) / 8)
+		var/groups = floor(length(bits) / 8)
 		for (var/i = 1, i <= groups, i++)
 			var/sum = 0
 			var/cnt = 1

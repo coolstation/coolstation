@@ -26,7 +26,7 @@
 			num_players++
 
 	var/i = rand(-5, 0)
-	var/num_blobs = max(2, min(round((num_players + i) / 20), blobs_possible))
+	var/num_blobs = max(2, min(floor((num_players + i) / 20), blobs_possible))
 
 	var/list/possible_blobs = get_possible_blobs(num_blobs)
 
