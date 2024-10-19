@@ -128,6 +128,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 	var/associated_deployer = null //what kind of turret deployer should this deconstruct to?
 	var/deconstructable = TRUE
 	var/can_toggle_activation = TRUE // whether you can enable or disable the turret with a screwdriver, used for map setpiece turrets
+	var/emagged = FALSE
 
 	New(loc, direction, forensics_id)
 		..()
@@ -153,6 +154,18 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 		processing_items |= src
 		if(active)
 			set_projectile()
+
+		#ifdef LOW_SECURITY
+		START_TRACKING_CAT(TR_CAT_DELETE_ME)
+		#endif
+
+	emag_act(mob/user, obj/item/card/emag/E)
+		if (src.emagged)
+			return
+		src.emagged = TRUE
+		boutput(user, SPAN_ALERT("You short out [src]'s targeting systems."))
+		src.visible_message(SPAN_ALERT(SPAN_BOLD("[src] buzzes oddly!")))
+		playsound(src, "sound/effects/sparks[rand(1, 6)].ogg", 40, 1, extrarange = -10)
 
 	disposing()
 		processing_items.Remove(src)
@@ -294,6 +307,8 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 				user.show_message("<span class='alert'>The activation switch is protected! You can't toggle the power!</span>")
 				return
 
+		else if (istype(W, /obj/item/card/emag)) //emags should be sneaky
+			..()
 		else
 			src.health = src.health - W.force
 			playsound(get_turf(src), "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 25, 1)
@@ -419,10 +434,10 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 			return 0
 		if (istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			if (H.hasStatus(list("resting", "weakened", "stunned", "paralysis"))) // stops it from uselessly firing at people who are already suppressed. It's meant to be a suppression weapon!
-				return 0
-		if (is_friend(C))
-			return 0
+			if (H.hasStatus(list("resting", "knockdown", "stunned", "unconscious"))) // stops it from uselessly firing at people who are already suppressed. It's meant to be a suppression weapon!
+				return FALSE
+		if (is_friend(C) && !src.emagged)
+			return FALSE
 
 		var/angle = get_angle(get_turf(src),get_turf(C))
 
