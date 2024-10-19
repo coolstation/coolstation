@@ -454,7 +454,7 @@
 	name = "Pressure Sensor"
 	icon = 'icons/obj/items/assemblies.dmi'
 	icon_state = "pressure_tester"
-	desc = "Put in a pressure crystal to determine the strength of the explosion."
+	desc = "Put in a pressure crystal to determine the strength of the explosion. Use a prying tool to remove spent crystals."
 	var/obj/item/pressure_crystal/crystal
 	attack_self(mob/user as mob)
 		if(!crystal)
