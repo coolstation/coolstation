@@ -42,6 +42,7 @@
 			if (log_line >= messages.len)
 				if (continuous && length(messages))
 					log_line = 1
+					return 1
 				else
 					return 0
 
