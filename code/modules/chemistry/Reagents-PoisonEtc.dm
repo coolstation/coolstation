@@ -1592,7 +1592,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
-			depletion_rate = 2
+			depletion_rate = 0.9
 			pathogen_nutrition = list("dna_mutagen")
 
 			var/tmp/progress_timer = 1
