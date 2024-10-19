@@ -1318,7 +1318,11 @@
 				uncuffable = 1
 
 			if(ishuman(master.target) && !uncuffable)
-				master.target.handcuffs = new /obj/item/handcuffs/guardbot(master.target)
+				var/obj/item/handcuffs/guardbot/cuffs = new
+				master.target.handcuffs = cuffs
+				cuffs.two_handed = TRUE
+				cuffs.cant_drop = TRUE
+				master.target.put_in_hand(cuffs)
 				master.target.setStatus("handcuffed", duration = INFINITE_STATUS)
 
 			if(!uncuffable)
