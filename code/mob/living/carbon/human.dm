@@ -1380,6 +1380,8 @@
 	if (!usr.stat && canmove_or_pinning && !usr.restrained() && in_interact_range(src, usr) && ticker && usr.can_strip(src))
 		if (href_list["slot"] == "handcuff")
 			actions.start(new/datum/action/bar/icon/handcuffRemovalOther(src), usr)
+		else if ((text2num(href_list["slot"]) == slot_l_hand || text2num(href_list["slot"]) == slot_r_hand) && src.handcuffs)
+			actions.start(new/datum/action/bar/icon/handcuffRemovalOther(src), usr)
 		else if (href_list["slot"] == "internal")
 			actions.start(new/datum/action/bar/icon/internalsOther(src), usr)
 		else if (href_list["item"])
@@ -2536,6 +2538,9 @@
 	..() // For resisting burning and grabs see living.dm
 	// Added this here (Convair880).
 	if (!isalive(src)) //can't resist when dead or unconscious
+		return
+
+	if (actions.hasAction(src, "handcuffs")) //no rerolling the timer
 		return
 
 	if (!src.restrained() && (src.shoes && src.shoes.chained))

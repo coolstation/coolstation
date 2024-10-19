@@ -1048,15 +1048,22 @@ var/datum/action_controller/actions
 
 			logTheThing("combat", ownerMob, target, "handcuffs [constructTarget(target,"combat")] with [cuffs2 ? "[cuffs2]" : "[cuffs]"] at [log_loc(ownerMob)].")
 
-			if (cuffs2 && istype(cuffs2))
-				cuffs2.set_loc(target)
-				target.handcuffs = cuffs2
-			else
-				cuffs.set_loc(target)
-				target.handcuffs = cuffs
 			target.drop_from_slot(target.r_hand)
 			target.drop_from_slot(target.l_hand)
 			target.drop_juggle()
+
+			if (cuffs2 && istype(cuffs2))
+				cuffs2.set_loc(target)
+				target.handcuffs = cuffs2
+				cuffs2.two_handed = TRUE
+				cuffs2.cant_drop = TRUE
+				target.put_in_hand(cuffs2)
+			else
+				cuffs.set_loc(target)
+				target.handcuffs = cuffs
+				cuffs.two_handed = TRUE
+				cuffs.cant_drop = TRUE
+				target.put_in_hand(cuffs)
 			target.setStatus("handcuffed", duration = INFINITE_STATUS)
 			target.update_clothing()
 

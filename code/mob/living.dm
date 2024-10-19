@@ -486,7 +486,10 @@
 
 	if (src.restrained())
 		if (src.hasStatus("handcuffed"))
-			boutput(src, "<span class='alert'>You are handcuffed! Use Resist to attempt removal.</span>")
+			if (target == src.handcuffs) //this is kinda messy but
+				src.resist()
+			else
+				boutput(src, "<span class='alert'>You are handcuffed! Use Resist to attempt removal.</span>")
 		return
 
 	actions.interrupt(src, INTERRUPT_ACT)
