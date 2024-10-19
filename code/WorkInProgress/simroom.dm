@@ -259,6 +259,7 @@
 		src.occupant = M
 		src.con_user = M
 		src.active = 1
+		playsound(src.loc, "sound/machines/sleeper_close.ogg", 50, 1)
 	/*
 	if(src.emagged)
 		boutput(M, "You feel a terrible pain in your head, and everything goes black...")
@@ -344,6 +345,7 @@
 	src.occupant = null
 	src.active = 0
 	src.con_user = null
+	playsound(src.loc, "sound/machines/sleeper_open.ogg", 50, 1)
 	src.update_icon()
 	return
 
@@ -401,6 +403,10 @@
 	if (air_group || (height==0))
 		return 1
 	..()
+
+/obj/machinery/sim/vr_bed/MouseDrop_T(atom/movable/O, mob/user)
+	if (O == user)
+		move_inside(user)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
