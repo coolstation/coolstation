@@ -88,10 +88,10 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Bieber"
 				id = "bieb"
 				gender = MASCULINE | FEMININE
-			bloom
-				name = "Bloom"
-				id = "bloom"
-				gender = MASCULINE | FEMININE
+			//bloom
+			//	name = "Bloom"
+			//	id = "bloom"
+			//	gender = MASCULINE | FEMININE
 			bobcut
 				name = "Bobcut"
 				id = "bobcut"
@@ -150,10 +150,10 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Flat Top"
 				id = "flattop"
 				gender = MASCULINE
-			floof
-				name = "Floof"
-				id = "floof"
-				gender = FEMININE
+			//floof
+			//	name = "Floof"
+			//	id = "floof"
+			//	gender = FEMININE
 			streak
 				name = "Hair Streak"
 				id = "streak"
@@ -189,14 +189,14 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Punky Flip"
 				id = "shortflip"
 				gender = MASCULINE | FEMININE
-			spiky
-				name = "Spiky"
-				id = "spiky"
-				gender = MASCULINE
-			subtlespiky
-				name = "Subtle Spiky"
-				id = "subtlespiky"
-				gender = MASCULINE
+			//spiky
+			//	name = "Spiky"
+			//	id = "spiky"
+			//	gender = MASCULINE
+			//subtlespiky
+			//	name = "Subtle Spiky"
+			//	id = "subtlespiky"
+			//	gender = MASCULINE
 			temsik
 				name = "Temsik"
 				id = "temsik"
@@ -209,14 +209,14 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Trimmed"
 				id = "short"
 				gender = MASCULINE
-			tulip
-				name = "Tulip"
-				id = "tulip"
-				gender = MASCULINE | FEMININE
-			visual
-				name = "Visual"
-				id = "visual"
-				gender = MASCULINE
+			//tulip
+			//	name = "Tulip"
+			//	id = "tulip"
+			//	gender = MASCULINE | FEMININE
+			//visual
+			//	name = "Visual"
+			//	id = "visual"
+			//	gender = MASCULINE
 		long
 			chub2_s
 				name = "Bang: Left"
@@ -224,12 +224,12 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			chub_s
 				name = "Bang: Right"
 				id = "chub_s"
-			twobangs_long
-				name = "Two Bangs: Long"
-				id = "2bangs_long"
-			twobangs_short
-				name = "Two Bangs: Short"
-				id = "2bangs_short"
+			//twobangs_long
+			//	name = "Two Bangs: Long"
+			//	id = "2bangs_long"
+			//twobangs_short
+			//	name = "Two Bangs: Short"
+			//	id = "2bangs_short"
 			bedhead
 				name = "Bedhead"
 				id = "bedhead"
@@ -322,20 +322,20 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Shoulder-Length Mess"
 				id = "slightlymessy_s"
 				gender = FEMININE
-			smoothwave
-				name = "Smooth Waves"
-				id = "smoothwave"
-				gender = FEMININE
-			smoothwave_fade
-				name = "Smooth Waves: Faded"
-				id = "smoothwave_fade"
+			//smoothwave
+			//	name = "Smooth Waves"
+			//	id = "smoothwave"
+			//	gender = FEMININE
+			//smoothwave_fade
+			//	name = "Smooth Waves: Faded"
+			//	id = "smoothwave_fade"
 			mermaid
 				name = "Mermaid"
 				id = "mermaid"
 				gender = FEMININE
-			mermaidfade
-				name = "Mermaid: Faded"
-				id = "mermaidfade"
+			//mermaidfade
+			//	name = "Mermaid: Faded"
+			//	id = "mermaidfade"
 			midb
 				name = "Mid-Back Length"
 				id = "midb"
@@ -392,10 +392,10 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "High Ponytail"
 				id = "spud"
 				gender = FEMININE
-			longtailed
-				name = "Long Mini Tail"
-				id = "longtailed"
-				gender = FEMININE
+			//longtailed
+			//	name = "Long Mini Tail"
+			//	id = "longtailed"
+			//	gender = FEMININE
 			lowpig
 				name = "Low Pigtails"
 				id = "lowpig"
@@ -524,9 +524,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 		longbeard
 			name = "Long Beard"
 			id = "longbeard"
-		longbeardfade
-			name = "Long Beard: Faded"
-			id = "longbeardfade"
+		//longbeardfade
+		//	name = "Long Beard: Faded"
+		//	id = "longbeardfade"
 		motley
 			name = "Motley"
 			id = "motley"
