@@ -8228,6 +8228,17 @@
 /obj/access_spawn/brig,
 /turf/floor,
 /area/station/security/brig)
+"hVg" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/grey/side{
+	dir = 4
+	},
+/area/station/hallway/primary/central)
 "hVO" = (
 /obj/disposalpipe/segment/mail{
 	dir = 8;
@@ -13096,6 +13107,14 @@
 /obj/cable,
 /turf/floor/plating,
 /area/station/storage/eva)
+"mYl" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
+/turf/space,
+/area/station/science/lab)
 "mYK" = (
 /obj/machinery/door/window/northleft,
 /obj/disposalpipe/segment/vertical,
@@ -14399,12 +14418,6 @@
 /turf/floor/plating,
 /area/station/engine/power)
 "opd" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/red/side{
 	dir = 8
@@ -21430,6 +21443,9 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/grey,
 /area/station/bridge)
+"vaD" = (
+/turf/space,
+/area/station/science/lab)
 "vbR" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/floor,
@@ -68836,7 +68852,7 @@ ayu
 oKE
 iVD
 iVD
-iVD
+hVg
 cBO
 fuA
 sOi
@@ -72484,7 +72500,7 @@ cJP
 cJP
 cJP
 cJP
-huZ
+vaD
 huZ
 huZ
 huZ
@@ -73692,7 +73708,7 @@ uIR
 uqD
 hbE
 cJP
-huZ
+mYl
 huZ
 huZ
 huZ
