@@ -1348,7 +1348,7 @@
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.throwing)
-				src.RegisterSignal(L, COMSIG_MOVABLE_THROW_END, PROC_REF(someone_landed_on_us))
+				src.RegisterSignal(L, COMSIG_MOVABLE_THROW_END, PROC_REF(someone_landed_on_us), override = TRUE)
 
 /obj/item/reagent_containers/food/snacks/plant/coconutmeat/
 	name = "coconut meat"
