@@ -1592,7 +1592,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
-			depletion_rate = 0.9
+			depletion_rate = 0.9 //10u should complete the transformation reliably with this, I'm not trusting floats enough to put this at 1 exactly
 			pathogen_nutrition = list("dna_mutagen")
 
 			var/tmp/progress_timer = 1
