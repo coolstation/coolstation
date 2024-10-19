@@ -1784,9 +1784,6 @@ proc/ismasc(datum/customization_style/style)
 var/global/list/hair_details = list("einstein" = /datum/customization_style/hair/short/einalt,\
 	"80s" = /datum/customization_style/hair/long/eightiesfade,\
 	"glammetal" = /datum/customization_style/hair/long/glammetalO,\
-	"mermaid" = /datum/customization_style/hair/long/mermaidfade,\
-	"smoothwave" = /datum/customization_style/hair/long/smoothwave_fade,\
-	"longbeard" = /datum/customization_style/beard/longbeardfade,\
 	"pomp" = /datum/customization_style/hair/short/pompS,\
 	"mohawk" = list(/datum/customization_style/hair/short/mohawkFT, /datum/customization_style/hair/short/mohawkFB, /datum/customization_style/hair/short/mohawkS),\
 	"emo" = /datum/customization_style/hair/short/emoH,\
