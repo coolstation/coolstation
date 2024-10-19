@@ -94,6 +94,7 @@
 			src.stable = 1
 			src.visible_message("<span class='notice'><b>[src] stabilizes and begins to harmlessly dissipate!</b></span>")
 			src.name = "stabilized dark anomaly"
+			icon_state = "space_tear_s"
 			src.desc = "This anomaly seems much calmer than it used to be. That's probably a good thing."
 			// letting it dispose of itself in its new proc in case we can do research on it later or something
 
