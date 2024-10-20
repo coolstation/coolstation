@@ -17,11 +17,11 @@
 	..()
 	src.create_submerged_images()
 
-//nah, i dont care anemore
-///mob/living/carbon/human/update_clothing()
-//	if ( clothing_dirty & (C_SUIT|C_BACK|C_HEAD) )
-//		SPAWN_DBG(0) src.create_submerged_images()
-//	..()
+//yeh, i care again
+/mob/living/carbon/human/update_clothing()
+	if ( clothing_dirty & (C_SUIT|C_BACK|C_HEAD) )
+		SPAWN_DBG(0) src.create_submerged_images()
+	..()
 
 
 /mob/living/proc/create_submerged_images()

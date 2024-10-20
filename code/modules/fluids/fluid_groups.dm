@@ -523,6 +523,10 @@
 					LAGCHECK(LAG_MED)
 					if (O?.submerged_images)
 						F.HasEntered(O,O.loc)
+				for(var/mob/living/M in F.loc)
+					LAGCHECK(LAG_MED)
+					if (M.flags & FLUID_SUBMERGE)
+						F.HasEntered(M,M.loc)
 
 				depth_changed = 1
 
