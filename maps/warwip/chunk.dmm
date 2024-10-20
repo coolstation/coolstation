@@ -1845,9 +1845,7 @@
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
 "bKp" = (
-/obj/landmark/start{
-	name = "Nurse"
-	},
+/obj/iv_stand,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "bKv" = (
@@ -2985,6 +2983,12 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/wall/r_wall,
 /area/station/science/lab)
+"cPT" = (
+/obj/landmark/start{
+	name = "Nurse"
+	},
+/turf/floor/white,
+/area/station/medical/medbay/treatment)
 "cQo" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -18319,7 +18323,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/iv_stand,
+/obj/storage/secure/closet/fridge/blood,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "seo" = (
@@ -73943,7 +73947,7 @@ tcn
 qTG
 vjl
 kwu
-lrq
+cPT
 rGr
 unY
 rgD
