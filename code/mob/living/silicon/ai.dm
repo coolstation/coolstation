@@ -1553,13 +1553,20 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 
 	for (var/mob/living/silicon/hivebot/H in available_ai_shells)
 		if (H.shell && !H.dependent && !isdead(H))
-			bodies += H
+			var/area/A = get_area(H)
+			bodies["[H] ([istype(A, /area/station) ? A.name : "Somewhere"])"] = H
 
 	for (var/mob/living/silicon/robot/R in available_ai_shells)
 		if (R.shell && !R.dependent && !isdead(R))
-			bodies += R
+			var/area/A = get_area(R)
+			bodies["[R] ([istype(A, /area/station) ? A.name : "Somewhere"])"] = R
 
-	var/mob/living/silicon/target_shell = input(usr, "Which body to control?") as null|anything in bodies
+	var/body_pick = input(usr, "Which body to control?") as null|anything in bodies
+
+	if (!body_pick)
+		return
+
+	var/mob/living/silicon/target_shell = bodies[body_pick]
 
 	if (!target_shell || isdead(target_shell) || !(isshell(target_shell) || isrobot(target_shell)))
 		return
