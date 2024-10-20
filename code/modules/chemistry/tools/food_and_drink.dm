@@ -1983,6 +1983,10 @@
 	icon_state = "carafe-sci"
 	item_state = "carafe-sci"
 
+/obj/item/reagent_containers/food/drinks/carafe/command
+	icon_state = "carafe-com"
+	item_state = "carafe-com"
+
 /obj/item/reagent_containers/food/drinks/coconut
 	name = "Coconut"
 	desc = "Must be migrational."

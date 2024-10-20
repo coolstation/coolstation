@@ -291,6 +291,10 @@
 	icon_state = "coffeemaker-sci"
 	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/research
 
+/obj/machinery/coffeemaker/command
+	icon_state = "coffeemaker-com"
+	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/command
+
 
 /* ===================================================== */
 /* ---------------------- Mug Rack --------------------- */
