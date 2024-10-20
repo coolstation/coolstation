@@ -1172,6 +1172,7 @@
 		src.reagents.add_reagent("space_fungus",3)
 		src.reagents.add_reagent("synthflesh",10)
 		START_TRACKING
+		event_handler_flags |= IS_LOAF
 
 	disposing()
 		. = ..()

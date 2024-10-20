@@ -256,6 +256,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			for (var/atom/maybe_food in T2.contents)
 				if (!(maybe_food.event_handler_flags & IMMUNE_SINGULARITY) && !(maybe_food.flags & TECHNICAL_ATOM)) //any food on this turf?
 					score++
+					if(maybe_food.event_handler_flags & IS_LOAF)
+						var/obj/item/reagent_containers/food/snacks/prison_loaf/loaf = maybe_food
+						score += loaf.loaf_factor // let's make the hole crave loaves.
 			if (!(T2.event_handler_flags & IMMUNE_SINGULARITY) && !(T2.flags & TECHNICAL_ATOM)) //turfs themselves are food too
 				score++
 
