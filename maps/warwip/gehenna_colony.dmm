@@ -5245,6 +5245,13 @@
 	dir = 8
 	},
 /area/station/security/brig/north_side)
+"dTp" = (
+/obj/decal/poster/wallsign/framed_award/mdlicense{
+	pixel_y = 24
+	},
+/obj/storage/secure/closet/command/medical_director,
+/turf/floor/carpet/blue/standard/edge/north,
+/area/station/medical/head)
 "dTT" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -6613,14 +6620,13 @@
 /area/station/quartermaster/cargooffice/storefront)
 "eTu" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/power/apc/autoname_north,
 /obj/cable{
+	d1 = 1;
 	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "1-2"
 	},
 /obj/item/clothing/suit/cardboard_box/head_surgeon,
-/obj/item/remote/porter/port_a_nanomed,
-/turf/floor/carpet/blue/standard/edge/nw,
+/turf/floor/carpet/blue/standard/edge/west,
 /area/station/medical/head)
 "eTA" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -7610,6 +7616,9 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
+"fDN" = (
+/turf/wall/r_wall,
+/area/station/medical/head)
 "fDX" = (
 /obj/cable{
 	d2 = 8;
@@ -10847,6 +10856,19 @@
 "idD" = (
 /turf/wall/r_wall,
 /area/station/wc/sec)
+"idK" = (
+/obj/decal/poster/wallsign/hypothermia{
+	desc = "Seems like something the head surgeon would draw.";
+	pixel_y = 32
+	},
+/obj/table/auto,
+/obj/item/remote/porter/port_a_nanomed,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/autoname_east,
+/turf/floor/carpet/blue/standard/edge/ne,
+/area/station/medical/head)
 "idM" = (
 /obj/machinery/chem_master,
 /turf/floor/blue/checker,
@@ -14046,6 +14068,23 @@
 	dir = 4
 	},
 /area/station/medical/medbay/surgery)
+"kxu" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/machinery/computer3/generic/med_data,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/carpet/blue/standard/edge/north,
+/area/station/medical/head)
 "kyg" = (
 /obj/item/device/radio/intercom/science,
 /obj/cable/blue{
@@ -14603,15 +14642,11 @@
 "kTs" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
+	d1 = 1;
 	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "1-2"
 	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/computer3/generic/med_data,
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 1
-	},
-/turf/floor/carpet/blue/standard/edge/north,
+/turf/floor/carpet/blue/standard,
 /area/station/medical/head)
 "kTw" = (
 /obj/disposalpipe/segment/sewage{
@@ -16765,12 +16800,8 @@
 /turf/floor/plating,
 /area/station/maintenance/north)
 "mNF" = (
-/obj/storage/secure/closet/command/medical_director,
-/obj/decal/poster/wallsign/framed_award/mdlicense{
-	pixel_y = 24
-	},
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/carpet/blue/standard/edge/north,
+/turf/floor/carpet/blue/standard,
 /area/station/medical/head)
 "mNI" = (
 /obj/table/reinforced/auto,
@@ -17591,6 +17622,11 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"nzU" = (
+/obj/wingrille_spawn/reinforced,
+/obj/window_blinds/vertical,
+/turf/floor/plating,
+/area/station/medical/head)
 "nAa" = (
 /obj/table/auto,
 /obj/item/storage/box/donkpocket_kit{
@@ -26444,6 +26480,18 @@
 /obj/table/wood/auto,
 /turf/floor/grey,
 /area/station/bridge/customs)
+"uhX" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/table/auto,
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 5
+	},
+/turf/floor/carpet/blue/standard/edge/nw,
+/area/station/medical/head)
 "uie" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/white,
@@ -26971,12 +27019,8 @@
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/decal/poster/wallsign/hypothermia{
-	desc = "Seems like something the head surgeon would draw.";
-	pixel_y = 32
-	},
 /obj/decal/cleanable/dirt,
-/turf/floor/carpet/blue/standard/edge/ne,
+/turf/floor/carpet/blue/standard/edge/east,
 /area/station/medical/head)
 "uCT" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -27681,13 +27725,13 @@
 /turf/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "uXR" = (
-/obj/table/auto,
+/obj/disposalpipe/segment/horizontal,
 /obj/cable,
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/generic/personal{
-	pixel_y = 5
+/obj/machinery/computer/announcement{
+	dir = 4;
+	name = "Hospital Announcement Computer"
 	},
-/obj/disposalpipe/segment/horizontal,
 /turf/floor/carpet/blue/standard/edge/sw,
 /area/station/medical/head)
 "uYd" = (
@@ -71877,8 +71921,8 @@ iiv
 cqC
 cqC
 cqC
-cTg
-cuo
+fDN
+nzU
 ejJ
 tHO
 uWM
@@ -72179,8 +72223,8 @@ iiv
 iiv
 cqC
 cqC
-cqC
 cuo
+uhX
 eTu
 mSE
 uXR
@@ -72481,8 +72525,8 @@ iiv
 iiv
 iiv
 cqC
-cqC
 cuo
+dTp
 mNF
 sUD
 uYd
@@ -72783,8 +72827,8 @@ iiv
 iiv
 iiv
 cqC
-cqC
 cuo
+kxu
 kTs
 eZS
 vaf
@@ -73085,8 +73129,8 @@ iiv
 ljA
 iiv
 cqC
-cqC
 cuo
+idK
 uCS
 iKK
 vdW
@@ -73386,8 +73430,8 @@ iiv
 iiv
 iiv
 iiv
-iiv
 cqC
+cuo
 cuo
 cuo
 cuo
@@ -73688,7 +73732,7 @@ iiv
 iiv
 iiv
 iiv
-iiv
+cqC
 cqC
 cqC
 cqC
