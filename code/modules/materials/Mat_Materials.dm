@@ -41,7 +41,6 @@
 	/// Various flags. See [material_properties.dm]
 	var/material_flags = 0
 	/// In percent of a base value. How much this sells for.
-	var/value = 100
 
 	/// words that go before the name, used in combination
 	var/list/prefixes = list()
@@ -69,56 +68,22 @@
 
 	//var/owner_hasentered_added = FALSE
 
-	proc/getProperty(var/property, var/type = VALUE_CURRENT)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				switch(type)
-					if(VALUE_CURRENT)
-						return properties[P]
-					if(VALUE_MIN)
-						return P.min_value
-					if(VALUE_MAX)
-						return P.max_value
+	proc/getProperty(var/property)
+		if (property in properties)
+			return properties[property]
 		return -1
 
-	proc/removeProperty(var/property)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				P.onRemoved(src)
-				properties.Remove(P)
-				return
-		return
-
-	proc/adjustProperty(var/property, var/value)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				P.changeValue(src, properties[P] + value)
-				return
-		//setProperty(property, value)
-		return
-
 	proc/setProperty(var/property, var/value)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				P.changeValue(src, value)
-				return
+		value = clamp(value,1,100) //there was never a material property that specified another min/max, so everything goes between 1 and 100 thanks
 
-		if(!materialProps.len) //Required so that compile time object materials can have properties.
-			buildMaterialPropertyCache()
+		buildMaterialPropertyCache()
 
-		for(var/datum/material_property/X in materialProps)
-			if(X.id == property)
-				properties.Add(X)
-				X.onAdded(src, value)
-				X.changeValue(src, value)
-
-		return
+		properties[property] = value
+		var/datum/material_property/this_property = materialProps[property]
+		this_property.onAdded(src, value)
 
 	proc/hasProperty(var/property)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				return 1
-		return 0
+		return (property in properties)
 
 	proc/addTrigger(var/list/L, var/datum/materialProc/D)
 		for(var/datum/materialProc/P in L)
@@ -134,16 +99,12 @@
 				L.Remove(P)
 		return
 
-	/// Called when the material fails due to instability.
-	var/list/triggersFail = list()
 	/// Called when exposed to temperatures.
 	var/list/triggersTemp = list()
 	/// Called when exposed to chemicals.
 	var/list/triggersChem = list()
 	/// Called when owning object is picked up.
 	var/list/triggersPickup = list()
-	/// Called when owning object is dropped.
-	var/list/triggersDrop = list()
 	/// Called when exposed to explosions.
 	var/list/triggersExp = list()
 	/// Called when the material is added to an object
@@ -165,12 +126,6 @@
 	/// Called when an obj hits something with this material assigned.
 	var/list/triggersOnHit = list()
 
-
-	proc/triggerOnFail(var/atom/owner)
-		for(var/datum/materialProc/X in triggersFail)
-			X.execute(owner)
-		qdel(owner) //Merged proc/fail into here
-		return
 
 	proc/triggerOnEntered(var/atom/owner, var/atom/entering)
 		for(var/datum/materialProc/X in triggersOnEntered)
@@ -209,11 +164,6 @@
 
 	proc/triggerPickup(var/mob/M, var/obj/item/I)
 		for(var/datum/materialProc/X in triggersPickup)
-			X.execute(M, I)
-		return
-
-	proc/triggerDrop(var/mob/M, var/obj/item/I)
-		for(var/datum/materialProc/X in triggersDrop)
 			X.execute(M, I)
 		return
 
@@ -329,9 +279,6 @@
 	name = "cobryl"
 	desc = "Cobryl is a somewhat valuable metal."
 	color = "#84D5F0"
-	New()
-		value = 175
-		return ..()
 
 /datum/material/metal/bohrum
 	mat_id = "bohrum"
@@ -352,8 +299,6 @@
 	material_flags = MATERIAL_ENERGY | MATERIAL_METAL
 
 	New()
-		value = 200
-
 		setProperty("electrical", 55)
 		setProperty("stability", 30)
 		setProperty("radioactive", 55)
@@ -368,8 +313,6 @@
 	quality = 30
 
 	New()
-		value = 400
-
 		setProperty("density", 5)
 		setProperty("hard", 5)
 		setProperty("reflective", 70)
@@ -385,8 +328,6 @@
 	quality = 30
 
 	New()
-		value = 300
-
 		setProperty("density", 2)
 		setProperty("hard", 2)
 		setProperty("reflective", 55)
@@ -403,8 +344,6 @@
 	quality = 5
 
 	New()
-		value = 250
-
 		setProperty("density", 1)
 		setProperty("hard", 1)
 		setProperty("reflective", 50)
@@ -450,8 +389,6 @@
 	quality = -50
 
 	New()
-		value = 10
-
 		setProperty("density", 1)
 		setProperty("hard", 1)
 		setProperty("stability", 3)
@@ -562,7 +499,6 @@
 		setProperty("radioactive", 75)
 		setProperty("stability", 10)
 
-		addTrigger(triggersFail, new /datum/materialProc/fail_explosive())
 		addTrigger(triggersOnAdd, new /datum/materialProc/erebite_flash())
 		addTrigger(triggersTemp, new /datum/materialProc/erebite_temp())
 		addTrigger(triggersExp, new /datum/materialProc/erebite_exp())
@@ -614,18 +550,15 @@
 	New()
 		switch(gem_tier)
 			if(1)
-				value = 700
 				name = "clear [src.name]"
 				setProperty("density", 75)
 				setProperty("hard", 75)
 				addTrigger(triggersOnAdd, new /datum/materialProc/gold_add())
 			if(2)
-				value = 500
 				name = "flawed [src.name]"
 				setProperty("density", 60)
 				setProperty("hard", 60)
 			if(3)
-				value = 200
 				name = "inferior [src.name]"
 				setProperty("density", 40)
 				setProperty("hard", 40)
@@ -832,7 +765,6 @@
 	quality = 45
 
 	New()
-		value = 1000
 		setProperty("reflective", 90)
 		setProperty("density", 85)
 		setProperty("hard", 85)
@@ -865,7 +797,6 @@
 	alpha = 100
 
 	New()
-		value = 650
 		setProperty("density", 60)
 		setProperty("hard", 60)
 		addTrigger(triggersOnAdd, new /datum/materialProc/enchanted_add())
