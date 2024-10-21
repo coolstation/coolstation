@@ -589,7 +589,7 @@
 		src.Attackhand(user)
 		return
 	else if (ispryingtool(W))
-		if (src.status & BROKEN) //if the vendor is broken
+		if (src.can_fall == 2) //if the vendor is toppled
 			//action bar is defined at the end of these procs
 			actions.start(new /datum/action/bar/icon/right_vendor(src), user)
 			return
