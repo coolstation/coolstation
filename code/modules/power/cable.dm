@@ -59,7 +59,7 @@
 /obj/cable
 	level = 1
 	anchored =1
-	var/tmp/netnum = 0
+	//var/tmp/netnum = 0
 	name = "power cable"
 	desc = "A flexible power cable."
 	icon = 'icons/obj/machines/power_cond.dmi'
@@ -81,6 +81,11 @@
 
 	var/datum/material/insulator = null
 	var/datum/material/conductor = null
+
+	//Are we a branch or dead end in the powernet...
+	var/datum/powernet_graph_node/is_a_node = null
+	//...or part of the connective tissue?
+	var/datum/powernet_graph_link/is_a_link = null
 
 /obj/cable/reinforced
 	name = "reinforced power cable"
@@ -131,8 +136,7 @@
 
 	var/turf/T = src.loc			// hide if turf is not intact
 									// but show if in space
-	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid)) hide(0)
-	else if(level==1) hide(T.intact)
+	if(level==1) hide(T.intact)
 
 	//cableimg = image(src.icon, src.loc, src.icon_state)
 	//cableimg.layer = OBJ_LAYER
@@ -146,6 +150,21 @@
 
 /obj/cable/disposing()		// called when a cable is deleted
 
+	var/datum/powernet_graph_node/node2update
+	if (is_a_link)
+		is_a_link.cables -= src
+		//either node will work
+		node2update = is_a_link.adjacent_nodes[1]
+	else if (is_a_node)
+		node2update = is_a_node
+		is_a_node.physical_node = null
+		is_a_node = null
+	node2update.pnet.cables -= src
+	if (defer_powernet_rebuild)
+		dirty_pnet_nodes |= node2update
+	else
+		node2update.validate()
+	/*
 	if(!defer_powernet_rebuild)	// set if network will be rebuilt manually
 
 		if(netnum && powernets && powernets.len >= netnum)		// make sure cable & powernet data is valid
@@ -156,7 +175,7 @@
 
 		if(netnum && powernets && powernets.len >= netnum) //NEED FOR CLEAN GC IN EXPLOSIONS
 			powernets[netnum].cables -= src
-
+	*/
 	//insulator.owner = null
 	//conductor.owner = null
 
@@ -179,10 +198,13 @@
 
 // returns the powernet this cable belongs to
 /obj/cable/proc/get_powernet()
-	var/datum/powernet/PN			// find the powernet
-	if(netnum && powernets && powernets.len >= netnum)
-		PN = powernets[netnum]
-	return PN
+	if (is_a_node)
+		return is_a_node.pnet
+	else
+		if (is_a_link?.adjacent_nodes)
+			var/datum/powernet_graph_node/N = is_a_link.adjacent_nodes[1]
+			return N.pnet
+		else return 0
 
 /obj/cable/proc/cut(mob/user,turf/T)
 	if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
@@ -266,7 +288,18 @@
 /obj/cable/proc/shock(mob/user, prb)
 
 	if(open_circuit) //This goes before the netnum thing because it's probably 0 in this case
+		var/number = 0
 		if (!powernets) return 0
+
+		if (is_a_node)
+			number = is_a_node.netnum
+		else if (is_a_link?.adjacent_nodes)
+			var/datum/powernet_graph_node/N = is_a_link.adjacent_nodes[1]
+			number = N.netnum
+
+		//The below wouldn't work with the new structure of powernets anyway, but I'm sitting here wondering why they bothered looping all the connections
+		//If these cables are your direct connections you're all on the same fucken powernet anyway.
+		/*
 		var/result = 0 //this is a powernet number
 		var/max_avail = 0 //gotta keep track since we're gonna examine one pnet at a time
 		for(var/obj/cable/C in src.get_connections()) //Find the spiciest connection and use that
@@ -277,9 +310,9 @@
 				if (PN.avail > max_avail)
 					max_avail = PN.avail
 					result = C.netnum
-		return result ? src.electrocute(user, prb, result) : 0
+		return result ? src.electrocute(user, prb, result) : 0*/
 
-	if(!netnum)		// unconnected cable is unpowered
+	if(!number)		// unconnected cable is unpowered
 		return 0
 
 	return src.electrocute(user, prb, netnum)
@@ -296,6 +329,58 @@
 
 /obj/cable/reinforced/ex_act(severity)
 	return //nah
+
+///add new cable into surrounding pnet data structure at runtime
+/obj/cable/proc/integrate()
+	var/connections = get_connections(FALSE)
+	switch(length(connections))
+		if (0) //completely unconnected
+			src.is_a_node = new(new /datum/powernet())
+		if (1) //we're a dead end and should be a node (try and steal our connection's node)
+			var/obj/cable/C = connections[1]
+			if (istype(C))
+				if (C.is_a_node)
+					switch(length(C.get_connections))
+						if (2) //C was a dead end connecting to something else
+						//steal C's node
+						is_a_node = C.is_a_node
+						is_a_node.physical_node = src
+						C.is_a_node = null
+
+						var/datum/powernet_graph_node/other_node = is_a_node.adjacent_nodes[1]
+						var/datum/powernet_graph_link/our_link = is_a_node.adjacent_nodes[other_node]
+
+						if (!istype(our_link))//make new link consisting only of C
+							C.is_a_link = new(list(C),list(src, other_node))
+						else//add C to existing link
+							our_link.cables |= C
+							our_link.expected_length = length(our_link.cables)
+							C.is_a_link = our_link
+						else
+							src.is_a_node = new(C.is_a_node.pnet)
+							src.is_a_node.physical_node = src
+							src.is_a_node.adjacent_nodes[C.is_a_node] = -1
+							C.is_a_node.adjacent_nodes[src.is_a_node] = -1
+							//CRASH("Does this even happen???") //professional of me ;3
+				else //We're making a new junction (two new nodes)
+					var/datum/powernet/powernet = C.get_powernet()
+					C.is_a_node = new(powernet)
+					C.is_a_node.physical_node = C
+					src.is_a_node = new(powernet)
+					src.is_a_node.physical_node = src
+					src.is_a_node.adjacent_nodes[C.is_a_node] = -1
+					C.is_a_node.adjacent_nodes[src.is_a_node] = -1
+
+					var/datum/powernet_graph_link/split_link = C.is_a_link
+					C.is_a_link = null
+					split_link.cables -= C
+					split_link.dissolve()
+
+		if (2) //we're a link but we might
+		else //we're definitely a node
+
+
+
 
 // called when a new cable is created
 // can be 1 of 3 outcomes:
