@@ -1162,6 +1162,7 @@
 	var/loaf_factor = 1
 	var/loaf_recursion = 1
 	var/processing = 0
+	var/orderOfLoafitude = 1
 
 	New()
 		..()
@@ -1179,7 +1180,7 @@
 		STOP_TRACKING
 
 	proc/update()
-		var/orderOfLoafitude = max( 0, min( floor( log(8, loaf_factor)), MAXIMUM_LOAF_STATE_VALUE ) )
+		orderOfLoafitude = max( 0, min( floor( log(8, loaf_factor)), MAXIMUM_LOAF_STATE_VALUE ) )
 		//src.icon_state = "ploaf[orderOfLoafitude]"
 
 		src.w_class = min(orderOfLoafitude+1, 4)
@@ -1299,6 +1300,19 @@
 					if (C.can_flip_bust == 1)
 						boutput(src, "<span class='alert'>[C] [pick("cracks","bends","shakes","groans")].</span>")
 						C.bust_out()
+
+	attackby(obj/item/W, mob/user)
+		if(istool(W,TOOL_SPOONING))
+			boutput(user, "You scoop the dense crumb out of [src], making an attractive pair of loafers.")
+			var/turf/T = get_turf(src)
+			T.fluid_react(src.reagents, src.reagents.total_volume) // why not
+			new /obj/item/clothing/shoes/loaf(T, order = src.orderOfLoafitude)
+			src.dropped()
+			src.unequipped()
+			qdel(src)
+		else
+			..()
+
 
 
 #undef MAXIMUM_LOAF_STATE_VALUE

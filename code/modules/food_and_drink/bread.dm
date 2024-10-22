@@ -44,6 +44,13 @@
 				new slicetype (T)
 				makeslices -= 1
 			qdel (src)
+		if(istool(W,TOOL_SPOONING))
+			boutput(user, "You scoop the crumb out of [src], making an attractive pair of loafers.")
+			var/turf/T = get_turf(src)
+			new /obj/item/clothing/shoes/bread(T)
+			src.dropped()
+			src.unequipped()
+			qdel(src)
 		else ..()
 
 /obj/item/reagent_containers/food/snacks/breadloaf/honeywheat
