@@ -1307,8 +1307,7 @@
 			var/turf/T = get_turf(src)
 			T.fluid_react(src.reagents, src.reagents.total_volume) // why not
 			new /obj/item/clothing/shoes/loaf(T, order = src.orderOfLoafitude)
-			src.dropped()
-			src.unequipped()
+			user.u_equip(src)
 			qdel(src)
 		else
 			..()

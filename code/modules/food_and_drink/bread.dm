@@ -48,8 +48,7 @@
 			boutput(user, "You scoop the crumb out of [src], making an attractive pair of loafers.")
 			var/turf/T = get_turf(src)
 			new /obj/item/clothing/shoes/bread(T)
-			src.dropped()
-			src.unequipped()
+			user.u_equip(src)
 			qdel(src)
 		else ..()
 
