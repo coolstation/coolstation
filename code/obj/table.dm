@@ -1313,3 +1313,13 @@
 	anchored = FALSE
 	parts_type = /obj/item/furniture_parts/table/bin
 	scrapes_floor = TRUE
+
+//Isn't this what we have these bins for?
+/obj/table/schweewa
+	name = "\improper Schweewa trash can"
+	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos."
+	icon = 'icons/obj/items/storage.dmi'
+	icon_state = "schweewabin"
+
+	deconstruct() //There's no bin construction parts but this proc is kinda load bearing it seems
+		qdel(src)
