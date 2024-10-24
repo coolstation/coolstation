@@ -25,7 +25,6 @@
 		STOP_TRACKING
 
 /obj/machinery/door/poddoor/blast/single
-	doordir = "single"
 	icon_state = "bdoorsingle1"
 
 /obj/machinery/door/poddoor/buff/staging
@@ -364,7 +363,6 @@
 /obj/machinery/door/poddoor/blast/pyro
 	icon = 'icons/obj/doors/SL_doors.dmi'
 	icon_state = "bdoorsingle1"
-	doordir = "single"
 
 	// Please keep synchronizied with these lists for easy map changes:
 	// /obj/machinery/door_control (door_control.dm)
@@ -374,7 +372,7 @@
 	podbay_autoclose
 		autoclose = 1
 		icon_state = "bdoormid1"
-		doordir = "mid"
+
 
 		wizard_horizontal
 			name = "external blast door"
@@ -386,11 +384,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		syndicate_horizontal
 			name = "external blast door"
@@ -402,11 +400,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		catering_horizontal
 			name = "pod bay (catering)"
@@ -418,11 +416,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		arrivals_horizontal
 			name = "pod bay (arrivals)"
@@ -434,11 +432,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		escape_horizontal
 			name = "pod bay (escape hallway)"
@@ -450,11 +448,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		mainpod1_horizontal
 			name = "pod bay (main hangar #1)"
@@ -466,11 +464,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		mainpod2_horizontal
 			name = "pod bay (main hangar #2)"
@@ -482,11 +480,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		engineering_horizontal
 			name = "pod bay (engineering)"
@@ -498,11 +496,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		security_horizontal
 			name = "pod bay (security)"
@@ -514,11 +512,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		medsci_horizontal
 			name = "pod bay (medsci)"
@@ -530,11 +528,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		research_horizontal
 			name = "pod bay (research)"
@@ -546,11 +544,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		medbay_horizontal
 			name = "pod bay (medbay)"
@@ -562,11 +560,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		qm_horizontal
 			name = "pod bay (cargo bay)"
@@ -578,11 +576,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		mining_horizontal
 			name = "pod bay (mining)"
@@ -594,11 +592,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		miningoutpost_horizontal
 			name = "pod bay (mining outpost)"
@@ -610,11 +608,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		diner1_horizontal
 			name = "pod bay (space diner #1)"
@@ -626,11 +624,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		diner2_horizontal
 			name = "pod bay (space diner #2)"
@@ -642,11 +640,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		soviet_horizontal
 			name = "pod bay (salyut)"
@@ -658,11 +656,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 		t1d1_horizontal
 			name = "pod bay (team1door1)"
 			id = "hangar_t1d1"
@@ -673,11 +671,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d2_horizontal
 			name = "pod bay (team1door2)"
@@ -689,11 +687,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d3_horizontal
 			name = "pod bay (team1door3)"
@@ -705,11 +703,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d4_horizontal
 			name = "pod bay (team1door4)"
@@ -721,11 +719,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d1_horizontal
 			name = "pod bay (team2door1)"
@@ -737,11 +735,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d2_horizontal
 			name = "pod bay (team2door2)"
@@ -753,11 +751,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d3_horizontal
 			name = "pod bay (team2door3)"
@@ -769,11 +767,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d4_horizontal
 			name = "pod bay (team2door4)"
@@ -785,11 +783,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d1_horizontal
 			name = "pod bay (team1door1)"
@@ -801,11 +799,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d2_horizontal
 			name = "pod bay (team1door2)"
@@ -817,11 +815,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d3_horizontal
 			name = "pod bay (team1door3)"
@@ -833,11 +831,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1d4_horizontal
 			name = "pod bay (team1door4)"
@@ -849,11 +847,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t1condoor_horizontal
 			name = "pod bay (team1 construction door)"
@@ -865,11 +863,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d1_horizontal
 			name = "pod bay (team2door1)"
@@ -881,11 +879,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d2_horizontal
 			name = "pod bay (team2door2)"
@@ -897,11 +895,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d3_horizontal
 			name = "pod bay (team2door3)"
@@ -913,11 +911,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2d4_horizontal
 			name = "pod bay (team2door4)"
@@ -929,11 +927,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 		t2condoor_horizontal
 			name = "pod bay (team2 construction door)"
@@ -945,11 +943,11 @@
 			single_horizontal
 				dir = NORTH
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 			single_vertical
 				dir = EAST
 				icon_state = "bdoorsingle1"
-				doordir = "single"
+
 
 /obj/machinery/door/poddoor/attackby(obj/item/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
@@ -1055,93 +1053,17 @@
 	icon_state = "bdoormid1"
 	desc = "Looks pretty tough. I wouldn't take this door on in a fight."
 	icon_base = "bdoor"
-	var/doordir = "mid"
 
 /obj/machinery/door/poddoor/blast/New()
 	..()
+	//This may seem dumb, and it is. Why not set icon_base directly? I left it like this because it avoids checking all the maps
+	//but this used to be a thing that set var///doordir based on initial iconstate.  which the parent poddoor doesn't have
+	//Which meant that these fuckers copy pasted attackby/open/close procs just to do <src.icon_state = "[icon_base][//doordir]0"> instead of calling the parent.
 	if(icon_state == "[icon_base]mid1")
-		doordir = "mid"
+		icon_base = "[icon_base]mid"
 	if(icon_state == "[icon_base]left1")
-		doordir = "left"
+		icon_base = "[icon_base]left"
 	if(icon_state == "[icon_base]right1")
-		doordir = "right"
+		icon_base = "[icon_base]right"
 	if(icon_state == "[icon_base]single1")
-		doordir = "single"
-
-/obj/machinery/door/poddoor/blast/attackby(obj/item/C as obj, mob/user as mob)
-	src.add_fingerprint(user)
-	if (!ispryingtool(C))
-		return
-	if ((src.density && (status & NOPOWER) && !( src.operating )))
-		SPAWN_DBG( 0 )
-			src.operating = 1
-			flick("[icon_base][doordir]c0", src)
-			src.icon_state = "[icon_base][doordir]0"
-			sleep(1.5 SECONDS)
-			src.set_density(0)
-			if (ignore_light_or_cam_opacity)
-				src.opacity = 0
-			else
-				src.RL_SetOpacity(0)
-			src.operating = 0
-			update_nearby_tiles()
-			return
-	return
-
-/obj/machinery/door/poddoor/blast/bumpopen(mob/user as mob)
-	return 0
-
-/obj/machinery/door/poddoor/blast/open()
-	if (src.operating == 1) //doors can still open when emag-disabled
-		return
-	if (!density)
-		return 0
-	if(!src.operating) //in case of emag
-		src.operating = 1
-	if (linked_forcefield) //mbc : SAVE ME FROM THIS HELL WHERE PARENTS ARENT CALLED
-		linked_forcefield.setactive(1)
-
-	SPAWN_DBG(-1)
-		flick("[icon_base][doordir]c0", src)
-		src.icon_state = "[icon_base][doordir]0"
-		sleep(1 SECOND)
-		src.set_density(0)
-		if (ignore_light_or_cam_opacity)
-			src.opacity = 0
-		else
-			src.RL_SetOpacity(0)
-		update_nearby_tiles()
-
-		if(operating == 1) //emag again
-			src.operating = 0
-		if(autoclose)
-			SPAWN_DBG(15 SECONDS)
-				autoclose()
-	return 1
-
-/obj/machinery/door/poddoor/blast/close()
-	if (src.operating || src.density)
-		return
-	if (linked_forcefield) //mbc : SAVE ME FROM THIS HELL WHERE PARENTS ARENT CALLED
-		linked_forcefield.setactive(0)
-	src.operating = 1
-
-	SPAWN_DBG(0)
-		flick("[icon_base][doordir]c1", src)
-		src.icon_state = "[icon_base][doordir]1"
-		src.set_density(1)
-		if (src.visible)
-			if (ignore_light_or_cam_opacity)
-				src.opacity = 1
-			else
-				src.RL_SetOpacity(1)
-		update_nearby_tiles()
-
-		sleep(1 SECOND)
-		src.operating = 0
-	return
-
-/obj/machinery/door/poddoor/isblocked()
-	if (src.density)
-		return 1
-	return 0
+		icon_base = "[icon_base]single"
