@@ -74,6 +74,15 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/burger/mysteryburger
 	category = "Burgers"
 
+/datum/cookingrecipe/oven/camembert
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
+	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
+	amt3 = 6
+	cookbonus = 14
+	output = /obj/item/reagent_containers/food/snacks/burger/camembert
+	category = "Burgers"
+
 /datum/cookingrecipe/oven/cheeseburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
