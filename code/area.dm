@@ -452,10 +452,16 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			//if ("AI Satellite Core") sound_fx_1 = pick('sound/ambience/station/Station_SpookyAtmosphere1.ogg','sound/ambience/station/Station_SpookyAtmosphere2.ogg') // same as above
 			if ("The Blind Pig") sound_fx_1 = pick('sound/ambience/spooky/TheBlindPig.ogg','sound/ambience/spooky/TheBlindPig2.ogg')
 			if ("M. Fortuna's House of Fortune") sound_fx_1 = 'sound/ambience/spooky/MFortuna.ogg'
+			else
 			#ifdef SUBMARINE_MAP
-			else sound_fx_1 = pick(ambience_submarine)
+				sound_fx_1 = pick(ambience_submarine)
 			#else
-			else sound_fx_1 = pick(ambience_general)
+				sound_fx_1 = pick(ambience_general)
+			#endif
+
+			#ifdef HALLOWEEN
+				if (prob(50))
+					sound_fx_1 = pick(ambience_submarine)
 			#endif
 
 	proc/add_light(var/obj/machinery/light/L)
