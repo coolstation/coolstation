@@ -338,6 +338,7 @@
 		if (user.mind && user.mind.assigned_role == "Captain")
 			if (issnippingtool(W))
 				boutput(user, "<span class='notice'>You carefully and lovingly sculpt your bonsai tree.</span>")
+				global_objective_status["bonsai_tree_pruning"] = SUCCEEDED
 			else
 				boutput(user, "<span class='alert'>Why would you ever destroy your precious bonsai tree?</span>")
 		else if(isitem(W) && (user.mind && user.mind.assigned_role != "Captain"))

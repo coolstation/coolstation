@@ -36,14 +36,20 @@
 		var/obj_count = 1
 		var/assignCount = min(rand(1,3), objectiveTypes.len)
 		while (assignCount && length(objectiveTypes))
-			assignCount--
+
 			var/selectedType = pick(objectiveTypes)
 			var/datum/objective/crew/newObjective = new selectedType
 			objectiveTypes -= newObjective.type
 
+			if (!newObjective.prerequisite()) //objective isn't possible on this map
+				qdel(newObjective)
+				continue
+
+			assignCount--
+
 			newObjective.owner = crewMind
 			crewMind.objectives += newObjective
-			newObjective.setup()
+			newObjective.set_up()
 
 			if (obj_count <= 1)
 				boutput(crewMind.current, "<B>Your OPTIONAL Crew Objectives are as follows:</b>")
@@ -73,7 +79,7 @@
 
 ABSTRACT_TYPE(/datum/objective/crew)
 /datum/objective/crew
-	proc/setup()
+	//there was some stuff here, but no longer
 
 ABSTRACT_TYPE(/datum/objective/crew/captain)
 /datum/objective/crew/captain
@@ -93,6 +99,17 @@ ABSTRACT_TYPE(/datum/objective/crew/captain)
 				return 1
 			else
 				return 0
+	bonsai
+		explanation_text = "Your bonsai tree is in need of some pruning. Try to set aside some time this shift."
+		set_up()
+			INIT_OBJECTIVE("bonsai_tree_pruning")
+		prerequisite()
+			var/area/cap_quarters = locate(/area/station/crew_quarters/captain)
+			return locate(/obj/shrub/captainshrub) in cap_quarters
+		check_completion()
+			//Even if someone wrecks the thing after, that doesn't take away your growth and development as a person caring for other life. :3
+			return (global_objective_status["bonsai_tree_pruning"] == SUCCEEDED)
+
 
 ABSTRACT_TYPE(/datum/objective/crew/headofsecurity)
 /datum/objective/crew/headofsecurity
@@ -196,6 +213,44 @@ ABSTRACT_TYPE(/datum/objective/crew/quartermaster)
 		check_completion()
 			if(wagesystem.shipping_budget > 50000) return 1
 			else return 0
+	all_orders
+		explanation_text = "Fulfil every crew order that comes in."
+		//medal_name = "Tax Hell"
+		set_up()
+			INIT_OBJECTIVE("cargo_no_rejections")
+		check_completion()
+			if (global_objective_status["cargo_no_rejections"] == FAILED) //cargo has outright rejected orders
+				return FALSE
+			if (length(shippingmarket.supply_requests)) //orders left open, unfulfilled
+				return FALSE
+			return TRUE
+
+
+ABSTRACT_TYPE(/datum/objective/crew/cargotechnician)
+/datum/objective/crew/cargotechnician
+	profit
+		explanation_text = "End the round with a budget of over 50,000 credits."
+		medal_name = "Tax Haven"
+		check_completion()
+			if(wagesystem.shipping_budget > 50000) return 1
+			else return 0
+
+
+	all_orders
+		explanation_text = "Fulfil every crew order that comes in."
+		//medal_name = "Tax Hell"
+		set_up()
+			INIT_OBJECTIVE("cargo_no_rejections")
+		check_completion()
+			if (global_objective_status["cargo_no_rejections"] == FAILED) //cargo has outright rejected orders
+				return FALSE
+			if (length(shippingmarket.supply_requests)) //orders left open, unfulfilled
+				return FALSE
+			return TRUE
+
+	//school_trip //Not mirrored to quartermaster cause the QM has the ostensible responsibility not to lose crew.
+	//	explanation_text = "Smuggle a person to NTFC."
+
 
 ABSTRACT_TYPE(/datum/objective/crew/detective)
 /datum/objective/crew/detective

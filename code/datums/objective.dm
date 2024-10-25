@@ -17,6 +17,10 @@ ABSTRACT_TYPE(/datum/objective)
 	proc/set_up()
 		return
 
+	//Return TRUE if prerequisites required for this objective to be possible/make sense (say, the necessary engine type) are available.
+	proc/prerequisite() //(currently only supported by crew objectives cause I'm scared of all the admin stuff around making people antags)
+		return TRUE
+
 ///////////////////////////////////////////////////
 // Regular objectives active in current gameplay //
 ///////////////////////////////////////////////////
