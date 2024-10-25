@@ -333,6 +333,27 @@
 ///add new cable into surrounding pnet data structure at runtime
 /obj/cable/proc/integrate()
 	var/connections = get_connections(FALSE)
+	var/want_a_node = (length(connections) != 2)
+	var/obj/cable/steal_node_from
+	var/powernet_graph_node
+
+	//loose cable with
+	if (!length(connections))
+		src.is_a_node = new(new /datum/powernet())
+		return
+
+	for (var/obj/cable/C in connections)
+		if (want_a_node && !steal_node_from)
+			if (C.get_connections == 2)
+				steal_node_from = C
+
+	//for (var/obj/machinery/power/P in connections)
+		//power_list() in get_connections has already filtered APCs out
+
+
+	if (want_a_node && !steal_node_from)
+
+
 	switch(length(connections))
 		if (0) //completely unconnected
 			src.is_a_node = new(new /datum/powernet())
