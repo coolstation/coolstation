@@ -3352,6 +3352,15 @@ ABSTRACT_TYPE(/area/station/chapel)
 	name = "Chapel"
 	icon_state = "abstract"
 
+	Exited(atom/movable/A)
+		..()
+		if (istype(A, /obj/storage/closet/coffin)) //tried to order this as efficiently as possible
+			if (!A.throwing)
+				return
+			var/mob/living/carbon/human/H = locate() in A
+			if (H && isdead(H))
+				global_objective_status["did_burial"] = SUCCEEDED
+
 /area/station/chapel/sanctuary
 	name = "Chapel"
 	icon_state = "chapel"

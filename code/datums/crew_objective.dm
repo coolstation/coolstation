@@ -315,7 +315,7 @@ ABSTRACT_TYPE(/datum/objective/crew/botanist)
 
 ABSTRACT_TYPE(/datum/objective/crew/chaplain)
 /datum/objective/crew/chaplain
-	funeral
+	nobodies //this one kinda sucks doesn't it? Just completely luck-based
 		explanation_text = "Have no corpses on the station level at the end of the round."
 		medal_name = "Bury the Dead"
 		check_completion()
@@ -323,6 +323,20 @@ ABSTRACT_TYPE(/datum/objective/crew/chaplain)
 				if(H.z == 1 && isdead(H))
 					return 0
 			return 1
+	burial
+		set_up()
+			explanation_text = "Perform a [map_currently_underwater ? "ocean" : "space"] burial for a dead crewmember."
+			INIT_OBJECTIVE("did_burial")
+		prerequisite()
+			return (!map_currently_very_dusty) //Gehenna doesn't have a funeral driver
+		check_completion()
+			return (global_objective_status["did_funeral"] == SUCCEEDED)
+	cremation
+		explanation_text = "Perform a cremation for a dead crewmember."
+		set_up()
+			INIT_OBJECTIVE("did_cremation")
+		check_completion()
+			return (global_objective_status["did_cremation"] == SUCCEEDED)
 
 ABSTRACT_TYPE(/datum/objective/crew/janitor)
 /datum/objective/crew/janitor
