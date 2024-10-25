@@ -85,9 +85,9 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 
 	proc/mult_time_between_events(var/mult=1)
 		time_between_events_lower = floor(mult*time_between_events_lower)
-		time_between_events_upper = floor(mult*time_between_events_lower)
+		time_between_events_upper = floor(mult*time_between_events_upper)
 		time_between_minor_events_lower = floor(mult*time_between_minor_events_lower)
-		time_between_minor_events_upper = floor(mult*time_between_minor_events_lower)
+		time_between_minor_events_upper = floor(mult*time_between_minor_events_upper)
 
 	proc/process()
 		// prevent random events near round end
