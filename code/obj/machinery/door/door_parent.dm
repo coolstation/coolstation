@@ -11,10 +11,12 @@
 	text = "<font color=#D2691E>+"
 	var/secondsElectrified = 0
 	var/visible = 1
+	///This stands for panel open. Could have just written that out.
 	var/p_open = 0
 	var/operating = 0
 	var/operation_time = 10
 	anchored = 1
+	///Attempt to close 15 seconds after opening, UNLESS interrupt_autoclose is set sometime in that interval
 	var/autoclose = 0
 	var/interrupt_autoclose = 0
 	var/last_used = 0
@@ -26,14 +28,18 @@
 	var/brainloss_stumble = 0 // Can a mob stumble into this door if they have enough brain damage? Won't work if you override Bumped() or attackby() and don't check for it separately.
 	var/brainloss_nospam = 1 // In relation to world time.
 	var/crush_delay = 60
-	var/sound_deny = 0
+
 	var/has_crush = 1 //flagged to true when the door has a secret admirer. also if the var == 1 then the door doesn't have the ability to crush items.
 	var/close_trys = 0
 
 	var/health = 400
 	var/health_max = 400
+
 	var/hitsound = "sound/impact_sounds/Generic_Hit_Heavy_1.ogg"
 	var/knocksound = 'sound/impact_sounds/Door_Metal_Knock_1.ogg' //knock knock
+	var/sound_deny = 0
+	//var/close_sound = "sound/machines/blast_door_1.ogg"
+	//var/open_sound = "sound/machines/hydraulic.ogg"
 
 	var/next_timeofday_opened = 0 //high tier jank
 
