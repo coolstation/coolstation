@@ -83,6 +83,12 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			var/datum/random_event/RE = new X
 			special_events += RE
 
+	proc/mult_time_between_events(var/mult=1)
+		time_between_events_lower = floor(mult*time_between_events_lower)
+		time_between_events_upper = floor(mult*time_between_events_lower)
+		time_between_minor_events_lower = floor(mult*time_between_minor_events_lower)
+		time_between_minor_events_upper = floor(mult*time_between_minor_events_lower)
+
 	proc/process()
 		// prevent random events near round end
 		if (emergency_shuttle.location > SHUTTLE_LOC_STATION || current_state == GAME_STATE_FINISHED)

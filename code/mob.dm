@@ -1433,6 +1433,7 @@
 	set name = "Respawn"
 
 	if (!( abandon_allowed ))
+		boutput(usr, "<span class='notice'><B>Nope!</B></span>")
 		return
 
 	if(!isobserver(usr) || !(ticker))

@@ -173,6 +173,8 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
 		src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
 #endif
+		if(abandon_allowed)
+			src.addAbility(/datum/targetable/ghost_observer/respawn)
 		src.addAbility(/datum/targetable/ghost_observer/goto_escape)
 		src.updateButtons()
 

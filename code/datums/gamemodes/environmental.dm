@@ -7,7 +7,7 @@
 	config_tag = "environmental"
 	do_antag_random_spawns = 0
 	latejoin_antag_compatible = 0
-	crew_shortage_enabled = 0 // for testing :)
+	crew_shortage_enabled = 1
 
 /datum/game_mode/environmental/pre_setup()
 	. = ..()

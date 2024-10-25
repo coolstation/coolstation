@@ -50,11 +50,20 @@
 	if (emergency_shuttle.online && emergency_shuttle.direction == 1)
 		return
 	if (shuttle_last_auto_call + (shuttle_initial_auto_call_done ? shuttle_auto_call_time / 2 : shuttle_auto_call_time) <= ticker.round_elapsed_ticks)
-		emergency_shuttle.incall()
-		command_alert("The shuttle has automatically been called for a shift change.  Please recall the shuttle to extend the shift.","Shift Shuttle Update")
 		shuttle_last_auto_call = ticker.round_elapsed_ticks
 		if (!shuttle_initial_auto_call_done)
 			shuttle_initial_auto_call_done = 1
+
+		if (config.env == "dev" || config.env == "pud") // testing something :)
+			command_alert("NanoTrasen Quantum Gravimetrics has detected local space stability has been compromised by extended experimentation. Please exercise caution in continued operation. Remedial crew may be dispatched to account for abnormal conditions.","Shift Temporal Degradation")
+			abandon_allowed = 1
+			boutput(world, "<B>Respawning has been enabled due to long round length.</B>")
+			random_events.mult_time_between_events(0.5) // double the event rate. make it shit.
+			return
+
+		else
+			emergency_shuttle.incall()
+			command_alert("The shuttle has automatically been called for a shift change.  Please recall the shuttle to extend the shift.","Shift Shuttle Update")
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.location == SHUTTLE_LOC_RETURNED)
