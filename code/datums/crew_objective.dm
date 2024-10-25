@@ -832,4 +832,27 @@ ABSTRACT_TYPE(/datum/objective/crew/medicalassistant)
 
 //	cyborg
 
+ABSTRACT_TYPE(/datum/objective/crew/clown)
+/datum/objective/crew/clown
+	//since these are all jokes they probably shouldn't be hugely common
+	prerequisite()
+		if (prob(15))
+			return TRUE
+		return FALSE
+
+	dental
+		explanation_text = "Lose at least a quarter (8) of your teeth by the end of the round." //Likely to require a heal or two from near crit, so hard to get
+		check_completion()
+			. = FALSE
+			if(ishuman(owner.current))
+				var/mob/living/carbon/human/H = owner.current
+				var/obj/item/skull/tooth_holder = H.organHolder?.skull
+				if (istype(tooth_holder))
+					return ((tooth_holder.teeth / initial(tooth_holder.teeth)) <= 0.75)
+
+	be_funny ///Bullying
+		explanation_text = "Actually be funny."
+		check_completion()
+			return FALSE
+
 #endif
