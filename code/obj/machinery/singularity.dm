@@ -97,6 +97,7 @@ Contains:
 	var/maxboom = 0
 	var/has_moved
 	var/active = 0 //determines if the singularity is contained
+	///Roughly how much Shit the singularity has eaten. Also correlates to size when loose now ,see resize()
 	var/energy = 10
 	var/lastT = 0
 	var/Dtime = null
@@ -147,12 +148,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		else
 			src.Wtime = world.time
 
-	if (dieot)
-		if (energy <= 0)//slowly dies over time
-			qdel (src)
-		else
-			energy -= 15
+	if (dieot) //slowly dies over time
+		energy -= 15
 
+	if (energy <= 0) //only relevant to singularities with dieot set atm, but moved it out in case we want for singularities to lose energy later.
+		qdel (src)
+		return
 
 	if (prob(20))//Chance for it to run a special event
 		event()
@@ -311,7 +312,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 #ifdef DATALOGGER
 						game_stats.Increment("clownabuse")
 #endif
-						grow()
+						resize()
 					if ("Lawyer")
 						// Satan.
 						gain = 250
@@ -372,10 +373,25 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else
 		return ..()
 
-/obj/machinery/the_singularity/proc/grow()
-	if(radius<maxradius)
-		radius++
-		SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+/obj/machinery/the_singularity/proc/resize() //also does shrinking as soon as someone else figures out how to get the cocksucking scaling to work
+	var/diameter = 2*radius + 1
+	//at least 50d^2 energy to achieve diameter d, picked kinda arbitrarily so the growth is slow and also increasingly more demanding
+	//(though with increased size a singulo will eat more shit fast as well so IDK it's probably still mildly accelerating)
+	//for a 1x1 through 11x11 (uneven diameters only) this comes out to thresholds of 50/450/1250/2450/4050/6050 energy needed
+	//ATM everything that isn't a mob gives 2 energy, so the singulo shouldn't be growing quickly once it's loose
+	var/godver = 50*(diameter+2)*(diameter+2)
+	//var/godver2 = 50*diameter*diameter
+
+	if (src.energy >= godver) //too small
+		if(radius<maxradius)
+			radius++
+			SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+	/*else if (src.energy < godver2)//too big
+		if (radius == 1)
+			return
+		SafeScale(radius/((radius+0.5)/(radius-0.5)),radius/((radius+0.5)/(radius-0.5)))
+		radius--*/
+
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
@@ -387,8 +403,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /////////////////////////////////////////////Controls which "event" is called
 /obj/machinery/the_singularity/proc/event()
 	var/numb = rand(1,3)
-	if(prob(25))
-		grow()
+	resize()
 	switch (numb)
 		if (1)//Eats the turfs around it
 			BHolerip()
