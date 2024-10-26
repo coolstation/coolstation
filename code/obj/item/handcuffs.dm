@@ -123,9 +123,9 @@
 /obj/item/handcuffs/proc/drop_handcuffs(mob/user)
 	user.handcuffs = null
 	user.delStatus("handcuffed")
-	src.two_handed = FALSE
 	src.cant_drop = FALSE
 	user.drop_item(src)
+	src.two_handed = FALSE
 	user.update_clothing()
 	if (src.strength == 1) // weak cuffs break
 		if (src.material && src.material.mat_id == "silver")
@@ -137,6 +137,7 @@
 		qdel(src)
 
 /obj/item/handcuffs/proc/destroy_handcuffs(mob/user)
+	user.drop_item(src)
 	user.handcuffs = null
 	user.delStatus("handcuffed")
 	user.update_clothing()
