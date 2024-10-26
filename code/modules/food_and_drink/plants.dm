@@ -531,7 +531,7 @@
 			if (iscarbon(M))
 				M.changeStatus("paralysis", 3 SECONDS)
 				M.changeStatus("stunned", 6 SECONDS)
-				M.take_brain_damage(15)
+				//M.take_brain_damage(15)
 			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/melonslice/george
