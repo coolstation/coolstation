@@ -12,7 +12,7 @@ ABSTRACT_TYPE(/datum/objective)
 			src.explanation_text = text
 
 	proc/check_completion()
-		return 1
+		return SUCCEEDED
 
 	proc/set_up()
 		return

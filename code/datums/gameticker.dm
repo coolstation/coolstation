@@ -597,17 +597,23 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		crewMind.all_objs = 1
 		for (var/datum/objective/crew/CO in crewMind.objectives)
 			count++
-			if(CO.check_completion())
-				crewMind.completed_objs++
-				boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='success'><B>Success</B></span>")
-				logTheThing("diary",crewMind,null,"completed objective: [CO.explanation_text]")
-				if (!isnull(CO.medal_name) && !isnull(crewMind.current))
-					crewMind.current.unlock_medal(CO.medal_name, CO.medal_announce)
-			else
-				boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='alert'>Failed</span>")
-				logTheThing("diary",crewMind,null,"failed objective: [CO.explanation_text]. Bummer!")
-				allComplete = 0
-				crewMind.all_objs = 0
+			switch(CO.check_completion())
+				if (SUCCEEDED)
+					crewMind.completed_objs++
+					boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='success'><B>Success</B></span>")
+					logTheThing("diary",crewMind,null,"completed objective: [CO.explanation_text]")
+					if (!isnull(CO.medal_name) && !isnull(crewMind.current))
+						crewMind.current.unlock_medal(CO.medal_name, CO.medal_announce)
+				if (FAILED)
+					boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='alert'>Failed</span>")
+					logTheThing("diary",crewMind,null,"failed objective: [CO.explanation_text]. Bummer!")
+					allComplete = 0
+					crewMind.all_objs = 0
+				if (NO_OPPORTUNITY)
+					crewMind.completed_objs++
+					boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='success'><B>N/A</B></span>")
+					logTheThing("diary",crewMind,null,"uncompletable objective: [CO.explanation_text]")
+					//no medal
 
 		if (allComplete && count)
 			successfulCrew += "[crewMind.current.real_name] ([crewMind.key])"

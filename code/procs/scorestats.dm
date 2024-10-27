@@ -131,7 +131,7 @@ var/datum/score_tracker/score_tracker
 				if (istype(objective, /datum/objective/crew)) continue
 #endif
 				if (istype(objective, /datum/objective/miscreant)) continue
-				if (!objective.check_completion())
+				if (objective.check_completion() == FAILED)
 					traitor_objectives_failed++
 
 		// special case - if there were no antags for w/e reason you get a free pass i guess?

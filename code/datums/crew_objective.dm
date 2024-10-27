@@ -195,6 +195,18 @@ ABSTRACT_TYPE(/datum/objective/crew/chiefengineer)
 		check_completion()
 			return (global_objective_status["engineering_whoopsie"] != FAILED)
 
+	//Requires procuring extra shield units (from cargo) and possibly getting into places engineering doesn't have access to fairly quickly
+	//So less an engineer thing and more a head responsibility thing. Give the CE a reason to commandeer shit for a bit. (maybe share this objective with QM too?)
+	meteor_shielding
+		explanation_text = "Protect the station from a meteor shower."
+		set_up()
+			INIT_OBJECTIVE("meteor_shielding")
+		prerequisite()
+			//there's talk of Gehenna variant of the meteor shower, but nothing yet. (Plus that version might cover the entire map instead of one edge)
+			return !map_currently_very_dusty
+		check_completion() //meteor_shower.dm is where the magic happens
+			return global_objective_status["meteor_shielding"]
+
 ABSTRACT_TYPE(/datum/objective/crew/securityofficer)
 /datum/objective/crew/securityofficer // grabbed the HoS's two antag-related objectives cause they work just fine for regular sec too, so...?
 	/*brig
