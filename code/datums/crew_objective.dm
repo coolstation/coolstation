@@ -185,10 +185,10 @@ ABSTRACT_TYPE(/datum/objective/crew/chiefengineer)
 		set_up()
 			INIT_OBJECTIVE("engineering_whoopsie")
 		prerequisite()
-			for_by_tcl[G, /obj/machinery/the_singularitygen]
+			for_by_tcl(G, /obj/machinery/the_singularitygen)
 				if (G.z == Z_LEVEL_STATION)
 					return TRUE
-			for_by_tcl[S, /obj/machinery/the_singularity] //joined after the thing is already running
+			for_by_tcl(S, /obj/machinery/the_singularity) //joined after the thing is already running
 				if (S.z == Z_LEVEL_STATION && !S.active)
 					return TRUE
 			return FALSE
@@ -393,7 +393,7 @@ ABSTRACT_TYPE(/datum/objective/crew/chef)
 	kitchen_hygiene
 		explanation_text = "Don't get any ants in the kitchen."
 		set_up()
-			INIT_OBJECTIVE["kitchen_ants"]
+			INIT_OBJECTIVE("kitchen_ants")
 		check_completion()
 			return (global_objective_status["kitchen_ants"] != FAILED)
 	//chef objective idea (that needs some manual sorting through for doable foods): make several of X for dinner
@@ -404,12 +404,12 @@ ABSTRACT_TYPE(/datum/objective/crew/engineer)
 	singularity
 		explanation_text = "Don't let the singularity escape containment!"
 		set_up()
-			INIT_OBJECTIVE["engineering_whoopsie"]
+			INIT_OBJECTIVE("engineering_whoopsie")
 		prerequisite()
-			for_by_tcl[G, /obj/machinery/the_singularitygen]
+			for_by_tcl(G, /obj/machinery/the_singularitygen)
 				if (G.z == Z_LEVEL_STATION)
 					return TRUE
-			for_by_tcl[S, /obj/machinery/the_singularity] //joined after the thing is already running
+			for_by_tcl(S, /obj/machinery/the_singularity) //joined after the thing is already running
 				if (S.z == Z_LEVEL_STATION && !S.active)
 					return TRUE
 			return FALSE
