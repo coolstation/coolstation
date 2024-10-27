@@ -101,7 +101,7 @@
 					src.reagents.trans_to(snack,1) //fuck you eat the ants
 				else
 					break
-			if (istype(T.loc, /area/station/crew_quarters/kitchen))
+			if (istype(get_area(src), /area/station/crew_quarters/kitchen))
 				global_objective_status["kitchen_ants"] = FAILED
 
 	get_desc(dist, mob/user)
