@@ -183,7 +183,7 @@ ABSTRACT_TYPE(/datum/objective/crew/chiefengineer)
 	singularity
 		explanation_text = "Don't let the singularity escape containment!"
 		set_up()
-			INIT_OBJECTIVE["engineering_whoopsie"]
+			INIT_OBJECTIVE("engineering_whoopsie")
 		prerequisite()
 			for_by_tcl[G, /obj/machinery/the_singularitygen]
 				if (G.z == Z_LEVEL_STATION)
