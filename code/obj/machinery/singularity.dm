@@ -32,6 +32,14 @@ Contains:
 	mats = 250
 	var/bhole = 0 // it is time. we can trust people to use the singularity For Good - cirr
 
+/obj/machinery/the_singularitygen/New()
+	START_TRACKING
+	..()
+
+/obj/machinery/the_singularitygen/disposing()
+	STOP_TRACKING
+	..()
+
 /obj/machinery/the_singularitygen/process()
 	var/goodgenerators = 0 //ensures that there are 4 generators in place with at least 2 links. note that false positives are very possible and will result in a loose singularity
 	var/smallestdimension = 13//determines the radius of the produced singularity,starts higher than is possible
@@ -169,6 +177,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (checkpointC < max(MIN_TO_CONTAIN,(radius*8)))//as radius of a 5x5 should be 2, 16 tiles are needed to hold it in, this allows for 4 failures before the singularity is loose
 			src.active = 1
 			maxradius = INFINITY
+			if (src.z == Z_LEVEL_STATION)
+				global_objective_status["engineering_whoopsie"] = FAILED
 			message_admins("[src] has become loose at [log_loc(src)]")
 			message_ghosts("<b>[src]</b> has become loose at [log_loc(src, ghostjump=TRUE)].")
 
