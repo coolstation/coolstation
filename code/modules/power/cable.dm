@@ -335,7 +335,7 @@
 	var/connections = get_connections(FALSE)
 	var/want_a_node = (length(connections) != 2)
 	var/obj/cable/steal_node_from
-	var/powernet_graph_node
+	var/datum/powernet
 
 	//loose cable with
 	if (!length(connections))
@@ -343,9 +343,13 @@
 		return
 
 	for (var/obj/cable/C in connections)
-		if (want_a_node && !steal_node_from)
-			if (C.get_connections == 2)
+
+		if (C.get_connections == 2) //has a node but doesn't need one anymore
+			if (want_a_node && !steal_node_from)
 				steal_node_from = C
+			else
+
+		else //should get a node if it doesn't have one
 
 	//for (var/obj/machinery/power/P in connections)
 		//power_list() in get_connections has already filtered APCs out
