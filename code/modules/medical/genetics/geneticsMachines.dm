@@ -503,7 +503,11 @@
 				return
 			var/mob/living/subject = get_scan_subject()
 			src.log_me(subject, "mutation activated", E)
-			if (subject.bioHolder.ActivatePoolEffect(E) && !isnpcmonkey(subject) && subject.client)
+			//	Activator activated gene AND
+			//		Target mob is an actual player
+			//		OR
+			//		There's 3 or less people connected	(so you can test using monkeys on an empty server)
+			if (subject.bioHolder.ActivatePoolEffect(E) && ((total_clients() <= 3) || (!isnpcmonkey(target) && target.client)))
 				activated_bonus(usr)
 			on_ui_interacted(ui.user)
 		if("mutantrace")
