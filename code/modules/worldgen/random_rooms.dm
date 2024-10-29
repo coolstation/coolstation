@@ -73,15 +73,10 @@ proc/buildRandomShips()
 		qdel(src)
 
 	size10x20
-		size = "10x20"
+		size = "30x25"
 	#ifdef IN_MAP_EDITOR
-		icon = 'icons/map-editing/random-ships/10x20.dmi'
-
-	size10x10
-		size = "10x10"
-	#ifdef IN_MAP_EDITOR
-		icon = 'icons/map-editing/random-ships/10x10.dmi'
-
+		icon = 'icons/map-editing/random-rooms/30x25.dmi'
+	#endif
 	/*
 	small_spaceship
 		size = "small_ship"
