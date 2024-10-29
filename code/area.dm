@@ -2492,6 +2492,9 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	name = "Public Garden"
 	icon_state = "park"
 
+/area/station/shipyard
+	name = "Shipyard"
+	icon_state = "fart"
 // some radio jazz
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)
