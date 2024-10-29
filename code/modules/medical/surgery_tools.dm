@@ -186,6 +186,7 @@ CONTAINS:
 	item_state = "scalpel"
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	hit_type = DAMAGE_STAB
+	tool_flags =  TOOL_SPOONING
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 	force = 5.0
 	w_class = W_CLASS_TINY

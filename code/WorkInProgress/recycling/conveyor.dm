@@ -622,4 +622,4 @@
 
 	proc/update_icon()
 		var/ico = clamp(((speedup / speedup_max) * icon_levels), 0, 6)
-		icon_state = "[icon_base][round(ico)]"
+		icon_state = "[icon_base][floor(ico)]"

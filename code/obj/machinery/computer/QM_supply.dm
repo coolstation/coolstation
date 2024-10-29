@@ -768,10 +768,13 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 			if ("remove")
 				shippingmarket.supply_requests -= locate(href_list["what"])
+				global_objective_status["cargo_no_rejections"] = FAILED
 				// todo: fancy "your request got denied, doofus" message?
 				. = {"Request denied."}
 
 			if ("clear")
+				if (length(shippingmarket.supply_requests))
+					global_objective_status["cargo_no_rejections"] = FAILED
 				shippingmarket.supply_requests = null
 				shippingmarket.supply_requests = new/list()
 				// todo: message people that their stuff's been denied?

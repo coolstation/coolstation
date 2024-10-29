@@ -80,12 +80,12 @@ proc/get_moving_lights_stats()
 		else if (line_len<=1.5) { mult_atten = 3 } \
 		else if (line_len<=2.5) { mult_atten = 2 } \
 		switch(dir){ \
-			if (NORTH){ if (round(ly) - src.y < 0){ atten *= mult_atten } }\
+			if (NORTH){ if (floor(ly) - src.y < 0){ atten *= mult_atten } }\
 			if (WEST){ if (ceil(lx) - src.x > 0){ atten *= mult_atten } }\
-			if (EAST){ if (round(lx) - src.x < 0){ atten *= mult_atten } }\
+			if (EAST){ if (floor(lx) - src.x < 0){ atten *= mult_atten } }\
 			if (SOUTH){ if (ceil(ly) - src.y > 0){ atten *= mult_atten } }\
 		}\
-		if (round(line_len) >= radius) { atten *= 0.4 } \
+		if (floor(line_len) >= radius) { atten *= 0.4 } \
 	}\
 	if (atten < RL_Atten_Threshold) { break } \
 	src.turf_persistent.RL_LumR += r*atten ; \
@@ -333,7 +333,7 @@ datum/light
 			src.premul_r = src.r * src.brightness
 			src.premul_g = src.g * src.brightness
 			src.premul_b = src.b * src.brightness
-			src.radius = min(round(sqrt(max((brightness * (RL_Atten_Quadratic - RL_Rad_QuadConstant)) / (-RL_Atten_Constant + RL_Rad_ConstConstant) - src.height**2, 0))), RL_MaxRadius)
+			src.radius = min(floor(sqrt(max((brightness * (RL_Atten_Quadratic - RL_Rad_QuadConstant)) / (-RL_Atten_Constant + RL_Rad_ConstConstant) - src.height**2, 0))), RL_MaxRadius)
 
 		apply()
 			if (!RL_Started)
@@ -492,7 +492,7 @@ datum/light
 			src.premul_r = src.r * src.brightness
 			src.premul_g = src.g * src.brightness
 			src.premul_b = src.b * src.brightness
-			src.radius = min(round(sqrt(max((brightness * (RL_Atten_Quadratic)) / -RL_Atten_Constant - src.height**2, 0))), RL_MaxRadius) * 0.6
+			src.radius = min(floor(sqrt(max((brightness * (RL_Atten_Quadratic)) / -RL_Atten_Constant - src.height**2, 0))), RL_MaxRadius) * 0.6
 
 
 		apply_to(turf/T)

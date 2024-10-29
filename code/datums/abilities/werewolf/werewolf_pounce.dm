@@ -23,7 +23,7 @@
 			return 1
 
 		var/jump_tiles = max_range
-		var/pixel_move = round((8/7)*max_range)
+		var/pixel_move = floor((8/7)*max_range)
 		var/sleep_time = 1
 
 		if (istype(M.loc,/turf))

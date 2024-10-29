@@ -346,7 +346,7 @@
 						maptextc = "#9cbcff"
 
 				temp.maptext_y = 19
-				temp.maptext = "<span style='text-align: center; font-family: \"Small Fonts\"; font-size: 7px; font-weight: bold; -dm-text-outline: 1px black; color: [maptextc];'>[environment.temperature >= (1000 + T0C) ? "ERR" : "[round(environment.temperature - T0C)]'"]</span>"
+				temp.maptext = "<span style='text-align: center; font-family: \"Small Fonts\"; font-size: 7px; font-weight: bold; -dm-text-outline: 1px black; color: [maptextc];'>[environment.temperature >= (1000 + T0C) ? "ERR" : "[floor(environment.temperature - T0C)]'"]</span>"
 
 		update_ability_hotbar()
 			if (!master.client)

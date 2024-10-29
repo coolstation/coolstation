@@ -23,7 +23,7 @@
 		if(player.ready)
 			numPlayers++
 
-	var/numConspirators = max(2, min(round(numPlayers / 5), maxConspirators)) // Selects number of conspirators
+	var/numConspirators = max(2, min(floor(numPlayers / 5), maxConspirators)) // Selects number of conspirators
 
 	var/list/potentialAntags = getPotentialAntags(numConspirators)
 	if (!potentialAntags.len)

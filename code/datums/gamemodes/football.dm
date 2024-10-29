@@ -161,22 +161,22 @@ var/global/list/list/datum/mind/football_players = list("blue" = list(), "red" =
 	proc/update_score_numbers(var/list/obj/decal/big_number/numbers, var/score)
 		if (score >= 100)
 			numbers[1].color = null
-			numbers[1].icon_state = "num[clamp(round(score / 100), 0, 9)]"
+			numbers[1].icon_state = "num[clamp(floor(score / 100), 0, 9)]"
 		if (score >= 10)
 			numbers[2].color = null
-			numbers[2].icon_state = "num[clamp(round(score / 10) % 10, 0, 9)]"
+			numbers[2].icon_state = "num[clamp(floor(score / 10) % 10, 0, 9)]"
 
 		numbers[3].icon_state = "num[clamp(score % 10, 0, 9)]"
 
 
 	proc/update_game_clock()
 
-		var/m = round(time_left / 600)
-		var/s = round(time_left / 10) % 60
+		var/m = floor(time_left / 600)
+		var/s = floor(time_left / 10) % 60
 
-		clock_num[1].icon_state = "num[clamp(round(m / 10), 0, 9)]"
+		clock_num[1].icon_state = "num[clamp(floor(m / 10), 0, 9)]"
 		clock_num[2].icon_state = "num[clamp(m % 10, 0, 9)]"
-		clock_num[3].icon_state = "num[clamp(round(s / 10), 0, 9)]"
+		clock_num[3].icon_state = "num[clamp(floor(s / 10), 0, 9)]"
 		clock_num[4].icon_state = "num[clamp(s % 10, 0, 9)]"
 
 

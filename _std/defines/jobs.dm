@@ -41,3 +41,14 @@
 #define MGA_CRISIS "Crisis Alert"
 #define MGA_RADIO "Radio Alert"
 #define MGA_TRACKING "Tracking Alert"
+
+// Statuses for crew objectives that can be tracked (more or less) globally and during the round.
+#define SUCCEEDED 1
+#define FAILED 0
+#define PENDING -1 //this is worth having
+
+// Circumstances for objective completion weren't available. Counts as success but doesn't award medals. Success & failure can just reuse the above but this is easier to read
+#define NO_OPPORTUNITY -1 //Deliberately the same value as PENDING so you can just do "return global_objective_status[id]" if need be.
+
+/// lil define to avoid accidentally overwriting results that are already logged (mostly in the event of latejoiners)
+#define INIT_OBJECTIVE(id) if (!(id in global_objective_status)) {global_objective_status[id] = PENDING}

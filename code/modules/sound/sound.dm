@@ -688,6 +688,16 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		sound('sound/ambience/station/underwater/sub_ambi7.ogg'),
 		sound('sound/ambience/station/underwater/sub_ambi8.ogg'))
 
+#ifdef HALLOWEEN
+//During halloween there's a chance for general area ambience to pick from this list instead of one of the above
+//I just scrounged stuff we had lying around so none of this is *new*, but not all of it might be used normally (like the basket_noises files)
+/var/global/list/ambience_halloween = list(sound('sound/ambience/spooky/basket_noises6.ogg'),
+	sound('sound/ambience/spooky/Meatzone_BreathingFast.ogg'),
+	sound('sound/ambience/spooky/Hospital_ScaryChimes.ogg'),
+	sound('sound/ambience/industrial/MarsFacility_Glitchy.ogg'))
+//pls add more shit to this there's so few
+#endif
+
 /var/global/list/ambience_power = list(sound('sound/ambience/station/Machinery_PowerStation1.ogg'),sound('sound/ambience/station/Machinery_PowerStation2.ogg'))
 /var/global/list/ambience_computer = list(sound('sound/ambience/station/Machinery_Computers1.ogg'),sound('sound/ambience/station/Machinery_Computers2.ogg'),sound('sound/ambience/station/Machinery_Computers3.ogg'))
 /var/global/list/ambience_atmospherics = list(sound('sound/ambience/loop/Wind_Low.ogg'))

@@ -630,7 +630,7 @@ world/proc/updateCameraVisibility()
 					M << t.aiImage
 
 			donecount++
-			thispct = round(donecount / totalcount)
+			thispct = floor(donecount / totalcount)
 			if (thispct != lastpct)
 				lastpct = thispct
 				game_start_countdown?.update_status("Updating cameras...\n[thispct]%")

@@ -5,11 +5,17 @@
 // - Dummy turfs
 
 //air bridge controllers of the same id will automatically establish and destroy air bridges between each other if told to.
-//air bridges have a width of 3 not including the walls.
 //dont create more than 2 controllers with the same id or stuff will break. And itll be your fault.
 //Also, make sure the bridges can extend in a straight line. Or you're gonna have a really bad time
 
 /* -------------------- Controller -------------------- */
+
+//There's a bunch for loops across the width of the bridge. Since this rounding to deal with both even and uneven width bridges isn't easy to read, in a define it goes. 'w'
+#define FOR_ACROSS_TUNNEL_WIDTH(_iterator) for(var/_iterator = -trunc(tunnel_width/2), _iterator <= trunc((tunnel_width-1)/2), _iterator++)
+//A side effect to how these are coded is it's not consistent which controller establishes or retracts a bridge.
+//Since even-width bridges aren't centered on the controllers, the two controllers would give different offsets with just turn()
+//so this had to be done instead.
+#define TUNNEL_PERPENDICULAR dir & (NORTH|SOUTH) ? EAST : NORTH
 
 /obj/airbridge_controller
 	name = "Airbridge Controller"
@@ -20,7 +26,8 @@
 	anchored = 1
 	density = 0
 
-	var/tunnel_width = 1
+	///Total tunnel width in tiles including walls. Even width biases to negative (a vertically oriented bridge of width 4 goes from x-2 to x+1)
+	var/tunnel_width = 3 //anything less than 3 isn't gonna be useful, unless you want a retracting wall I guess? But with floor lights. :P
 	var/id = "noodles"
 	var/working = 0
 	var/maintaining_bridge = 0
@@ -168,10 +175,10 @@
 
 			for(var/turf/T in path)
 				var/dir = path[T]
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
-					curr = get_steps(T, turn(dir, 90),i)
+				FOR_ACROSS_TUNNEL_WIDTH(i)
+					curr = get_steps(T, TUNNEL_PERPENDICULAR,i)
 					airbridge_area.add_turf(curr)
-					if(abs(i) == tunnel_width) // wall
+					if(i == -trunc(tunnel_width/2) || i == trunc((tunnel_width-1)/2)) // wall
 						animate_turf_slideout(curr, src.wall_turf, dir, slide_delay)
 					else // floor
 						animate_turf_slideout(curr, src.floor_turf, dir, slide_delay)
@@ -179,8 +186,8 @@
 					maintaining_turfs.Add(curr)
 				playsound(T, "sound/effects/airbridge_dpl.ogg", 50, 1)
 				sleep(slide_delay)
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
-					curr = get_steps(T, turn(dir, 90), i)
+				FOR_ACROSS_TUNNEL_WIDTH(i)
+					curr = get_steps(T, TUNNEL_PERPENDICULAR, i)
 					animate_turf_slideout_cleanup(curr)
 
 			for(var/obj/light in my_lights)
@@ -228,14 +235,14 @@
 			for(var/turf/T in path_reverse)
 				var/dir = path[T]
 				var/opdir = turn(dir, 180)
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
-					curr = get_steps(T, turn(dir, 90), i)
+				FOR_ACROSS_TUNNEL_WIDTH(i)
+					curr = get_steps(T, TUNNEL_PERPENDICULAR, i)
 					original_area.add_turf(curr)
 					animate_turf_slidein(curr, src.original_turf, opdir, slide_delay)
 				playsound(T, "sound/effects/airbridge_dpl.ogg", 50, 1)
 				sleep(slide_delay)
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
-					curr = get_steps(T, turn(dir, 90), i)
+				FOR_ACROSS_TUNNEL_WIDTH(i)
+					curr = get_steps(T, TUNNEL_PERPENDICULAR, i)
 					animate_turf_slidein_cleanup(curr)
 
 			for(var/obj/light in src.my_lights)
@@ -497,3 +504,6 @@
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
 	requires_power = FALSE //>:(
+
+#undef FOR_ACROSS_TUNNEL_WIDTH
+#undef TUNNEL_PERPENDICULAR

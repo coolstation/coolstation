@@ -1824,7 +1824,11 @@
 				task.drop_arrest_target()
 				master.set_emotion("sad")
 				return
-			task.arrest_target.handcuffs = new /obj/item/handcuffs/guardbot(task.arrest_target)
+			var/obj/item/handcuffs/guardbot/cuffs = new
+			task.arrest_target.handcuffs = cuffs
+			cuffs.two_handed = TRUE
+			cuffs.cant_drop = TRUE
+			task.arrest_target.put_in_hand(cuffs)
 			task.arrest_target.setStatus("handcuffed", duration = INFINITE_STATUS)
 			boutput(task.arrest_target, "<span class='alert'>[master] gently handcuffs you!  It's like the cuffs are hugging your wrists.</span>")
 			task.arrest_target:set_clothing_icon_dirty()

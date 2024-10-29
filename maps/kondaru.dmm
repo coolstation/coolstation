@@ -24734,7 +24734,6 @@
 "buA" = (
 /obj/machinery/door/poddoor/blast/pyro{
 	autoclose = 1;
-	doordir = "mid";
 	icon_state = "bdoormid1";
 	id = "unlode";
 	name = "mineral unloading door"
@@ -43598,7 +43597,7 @@
 	},
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-	doordir = "single";
+
 	icon_state = "bdoorsingle1";
 	id = "imports_door";
 	name = "Cargo Import"
@@ -50393,7 +50392,7 @@
 	},
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-	doordir = "single";
+
 	icon_state = "bdoorsingle1";
 	id = "mports_door";
 	name = "Cargo Export"
@@ -55884,7 +55883,7 @@
 "sdf" = (
 /obj/airbridge_controller{
 	id = "northconnector";
-	tunnel_width = 2
+	tunnel_width = 5
 	},
 /turf/space,
 /area/space)

@@ -573,6 +573,8 @@
 		icon_state = pick("martian","martianP","martianW","martianSP","mars_bot","welder","petbee","lavacrab","boogie","walrus","owl","goose","swan","gull","parrot","possum","bumblespider","big_spide[pick("","-red","-blue","-green")]")
 		if (icon_state in list("owl","goose","swan","gull"))
 			icon = 'icons/mob/bird.dmi'
+		if (icon_state in list("martian","martianP","martianW","martianSP"))
+			icon = 'icons/mob/critter/martian.dmi'
 		else if (icon_state == "parrot")
 			var/obj/critter/parrot/P
 			if (prob(1) && islist(special_parrot_species))

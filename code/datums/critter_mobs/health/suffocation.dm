@@ -61,7 +61,7 @@
 			if (((oxygen_min > 0 && oxygen_min <= o2_pp) || oxygen_min <= 0) && ((oxygen_max > 0 && oxygen_max >= o2_pp) || oxygen_max <= 0))
 				if (prime_breathing == "o")
 					breathing = 1
-					var/ratio = round(oxygen_min / (o2_pp + 0.1))
+					var/ratio = floor(oxygen_min / (o2_pp + 0.1))
 					var/usage = breath.oxygen*ratio/6
 					breath.oxygen -= usage
 					breath.carbon_dioxide += usage
@@ -75,7 +75,7 @@
 			if (((co2_min > 0 && co2_min <= co2_pp) || co2_min <= 0) && ((co2_max > 0 && co2_max >= co2_pp) || co2_max <= 0))
 				if (prime_breathing == "c")
 					breathing = 1
-					var/ratio = round(co2_min / (co2_pp + 0.1))
+					var/ratio = floor(co2_min / (co2_pp + 0.1))
 					var/usage = breath.carbon_dioxide * ratio / 6
 					breath.oxygen += usage
 					breath.carbon_dioxide -= usage
@@ -89,7 +89,7 @@
 			if (((toxins_min > 0 && toxins_min <= toxins_pp) || toxins_min <= 0) && ((toxins_max > 0 && toxins_max >= toxins_pp) || toxins_max <= 0))
 				if (prime_breathing == "t")
 					breathing = 1
-					var/ratio = round(toxins_min / (toxins_pp + 0.1))
+					var/ratio = floor(toxins_min / (toxins_pp + 0.1))
 					var/usage = breath.toxins * ratio / 6
 					breath.toxins -= usage
 					// well it has to make some SOMETHING.

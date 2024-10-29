@@ -270,6 +270,7 @@
 				boutput(M, "<span class='alert'>\the [owner] melts.</span>")
 			qdel(owner)
 
+	//deprecated in favour of making stimulants (albeit under the new name omegazine) a chem thing again
 	simplehot/stimulants
 		id = "stimulants"
 		name = "Stimulants"

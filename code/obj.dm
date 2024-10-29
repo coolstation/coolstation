@@ -117,8 +117,8 @@
 	onMaterialChanged()
 		..()
 		if(istype(src.material))
-			pressure_resistance = round((material.getProperty("density") + material.getProperty("density")) / 2)
-			throwforce = round(max(material.getProperty("hard"),1) / 8)
+			pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
+			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
 			if(initial(src.opacity) && src.material.alpha <= MATERIAL_ALPHA_OPACITY)
@@ -332,7 +332,7 @@
 			var/obj/item/rods/R = C
 			if (R.change_stack_amount(-2))
 				boutput(user, "<span class='notice'>You assemble a barricade from the lattice and rods.</span>")
-				new /obj/lattice/barricade(src.loc)
+				new /obj/structure/barricade(src.loc)
 				qdel(src)
 		return
 
@@ -424,11 +424,13 @@
 	icon_state = "lattice_grey"
 	icon_base = "lattice_grey"
 
-/obj/lattice/barricade
+/obj/structure/barricade
 	name = "barricade"
 	desc = "A lattice that has been turned into a makeshift barricade."
 	icon_state = "girder"
 	density = 1
+	stops_space_move = 1
+	anchored = 1.0
 	var/strength = 2
 
 	proc/barricade_damage(var/hitstrength)
@@ -489,8 +491,8 @@
 	meteorhit()
 		src.barricade_damage(1)
 
-	autoconnect(propagate = FALSE)
-		return
+	//autoconnect(propagate = FALSE)
+	//	return
 
 /obj/overlay
 	name = "overlay"

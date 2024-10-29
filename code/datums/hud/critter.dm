@@ -452,7 +452,7 @@
 	return
 
 /datum/hud/critter/proc/create_hand_element()
-	var/initial_hand_offset = -round((src.master.hands.len - 1) / 2) // calculates an offset based on even//odd number of hands
+	var/initial_hand_offset = -floor((src.master.hands.len - 1) / 2) // calculates an offset based on even//odd number of hands
 	src.left_offset = initial_hand_offset - 1
 	for (var/i = 1, i <= src.master.hands.len, i++)
 		var/curr = initial_hand_offset + i - 1

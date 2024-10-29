@@ -44,7 +44,7 @@
 			if ("charge")
 				if (master.controller)
 					if (master.cell)
-						var/perc = round(100*master.cell.charge/master.cell.maxcharge)
+						var/perc = floor(100*master.cell.charge/master.cell.maxcharge)
 						boutput(master.controller, "<span class='notice'>Current cell charge level is [perc]%.</span>")
 					else
 						boutput(master.controller, "<span class='alert'>No power cell installed. Only basic systems will be available.</span>")
@@ -58,7 +58,7 @@
 			if (isdead(master))
 				health.icon_state = "dead"
 			else
-				switch(round(100*master.health/master.health_max))
+				switch(floor(100*master.health/master.health_max))
 					if(100 to INFINITY)
 						health.icon_state = "health5"
 					if(75 to 99)
@@ -76,7 +76,7 @@
 			if (!charge)
 				return
 			if (master.cell)
-				switch(round(100*master.cell.charge/master.cell.maxcharge))
+				switch(floor(100*master.cell.charge/master.cell.maxcharge))
 					if(75 to INFINITY)
 						charge.icon_state = "charge4"
 					if(50 to 75)

@@ -36,14 +36,20 @@
 		var/obj_count = 1
 		var/assignCount = min(rand(1,3), objectiveTypes.len)
 		while (assignCount && length(objectiveTypes))
-			assignCount--
+
 			var/selectedType = pick(objectiveTypes)
 			var/datum/objective/crew/newObjective = new selectedType
 			objectiveTypes -= newObjective.type
 
+			if (!newObjective.prerequisite()) //objective isn't possible on this map
+				qdel(newObjective)
+				continue
+
+			assignCount--
+
 			newObjective.owner = crewMind
 			crewMind.objectives += newObjective
-			newObjective.setup()
+			newObjective.set_up()
 
 			if (obj_count <= 1)
 				boutput(crewMind.current, "<B>Your OPTIONAL Crew Objectives are as follows:</b>")
@@ -73,7 +79,7 @@
 
 ABSTRACT_TYPE(/datum/objective/crew)
 /datum/objective/crew
-	proc/setup()
+	//there was some stuff here, but no longer
 
 ABSTRACT_TYPE(/datum/objective/crew/captain)
 /datum/objective/crew/captain
@@ -93,6 +99,17 @@ ABSTRACT_TYPE(/datum/objective/crew/captain)
 				return 1
 			else
 				return 0
+	bonsai
+		explanation_text = "Your bonsai tree is in need of some pruning. Try to set aside some time this shift."
+		set_up()
+			INIT_OBJECTIVE("bonsai_tree_pruning")
+		prerequisite()
+			var/area/cap_quarters = locate(/area/station/crew_quarters/captain)
+			return locate(/obj/shrub/captainshrub) in cap_quarters
+		check_completion()
+			//Even if someone wrecks the thing after, that doesn't take away your growth and development as a person caring for other life. :3
+			return (global_objective_status["bonsai_tree_pruning"] == SUCCEEDED)
+
 
 ABSTRACT_TYPE(/datum/objective/crew/headofsecurity)
 /datum/objective/crew/headofsecurity
@@ -153,11 +170,42 @@ ABSTRACT_TYPE(/datum/objective/crew/chiefengineer)
 	ptl
 		explanation_text = "Earn at least a million credits via the PTL."
 		medal_name = "1.21 Jiggawatts"
+		prerequisite()
+			for(var/obj/machinery/power/pt_laser/P in machine_registry[MACHINES_POWER])
+				return TRUE
+			return FALSE
+
 		check_completion()
 			for(var/obj/machinery/power/pt_laser/P in machine_registry[MACHINES_POWER])
 				if(P.lifetime_earnings >= 1 MEGA)
 					return 1
 			return 0
+	singularity
+		explanation_text = "Don't let the singularity escape containment!"
+		set_up()
+			INIT_OBJECTIVE("engineering_whoopsie")
+		prerequisite()
+			for_by_tcl(G, /obj/machinery/the_singularitygen)
+				if (G.z == Z_LEVEL_STATION)
+					return TRUE
+			for_by_tcl(S, /obj/machinery/the_singularity) //joined after the thing is already running
+				if (S.z == Z_LEVEL_STATION && !S.active)
+					return TRUE
+			return FALSE
+		check_completion()
+			return (global_objective_status["engineering_whoopsie"] != FAILED)
+
+	//Requires procuring extra shield units (from cargo) and possibly getting into places engineering doesn't have access to fairly quickly
+	//So less an engineer thing and more a head responsibility thing. Give the CE a reason to commandeer shit for a bit. (maybe share this objective with QM too?)
+	meteor_shielding
+		explanation_text = "Protect the station from a meteor shower."
+		set_up()
+			INIT_OBJECTIVE("meteor_shielding")
+		prerequisite()
+			//there's talk of Gehenna variant of the meteor shower, but nothing yet. (Plus that version might cover the entire map instead of one edge)
+			return !map_currently_very_dusty
+		check_completion() //meteor_shower.dm is where the magic happens
+			return global_objective_status["meteor_shielding"]
 
 ABSTRACT_TYPE(/datum/objective/crew/securityofficer)
 /datum/objective/crew/securityofficer // grabbed the HoS's two antag-related objectives cause they work just fine for regular sec too, so...?
@@ -196,6 +244,44 @@ ABSTRACT_TYPE(/datum/objective/crew/quartermaster)
 		check_completion()
 			if(wagesystem.shipping_budget > 50000) return 1
 			else return 0
+	all_orders
+		explanation_text = "Fulfil every crew order that comes in."
+		//medal_name = "Tax Hell"
+		set_up()
+			INIT_OBJECTIVE("cargo_no_rejections")
+		check_completion()
+			if (global_objective_status["cargo_no_rejections"] == FAILED) //cargo has outright rejected orders
+				return FALSE
+			if (length(shippingmarket.supply_requests)) //orders left open, unfulfilled
+				return FALSE
+			return TRUE
+
+
+ABSTRACT_TYPE(/datum/objective/crew/cargotechnician)
+/datum/objective/crew/cargotechnician
+	profit
+		explanation_text = "End the round with a budget of over 50,000 credits."
+		medal_name = "Tax Haven"
+		check_completion()
+			if(wagesystem.shipping_budget > 50000) return 1
+			else return 0
+
+
+	all_orders
+		explanation_text = "Fulfil every crew order that comes in."
+		//medal_name = "Tax Hell"
+		set_up()
+			INIT_OBJECTIVE("cargo_no_rejections")
+		check_completion()
+			if (global_objective_status["cargo_no_rejections"] == FAILED) //cargo has outright rejected orders
+				return FALSE
+			if (length(shippingmarket.supply_requests)) //orders left open, unfulfilled
+				return FALSE
+			return TRUE
+
+	//school_trip //Not mirrored to quartermaster cause the QM has the ostensible responsibility not to lose crew.
+	//	explanation_text = "Smuggle a person to NTFC."
+
 
 ABSTRACT_TYPE(/datum/objective/crew/detective)
 /datum/objective/crew/detective
@@ -260,14 +346,29 @@ ABSTRACT_TYPE(/datum/objective/crew/botanist)
 
 ABSTRACT_TYPE(/datum/objective/crew/chaplain)
 /datum/objective/crew/chaplain
-	funeral
+	/*nobodies //this one kinda sucks doesn't it? Just completely luck-based
 		explanation_text = "Have no corpses on the station level at the end of the round."
 		medal_name = "Bury the Dead"
 		check_completion()
 			for(var/mob/living/carbon/human/H in mobs)
 				if(H.z == 1 && isdead(H))
 					return 0
-			return 1
+			return 1*/
+	burial
+		medal_name = "Bury the Dead"
+		set_up()
+			explanation_text = "Perform a [map_currently_underwater ? "ocean" : "space"] burial for a dead crewmember."
+			INIT_OBJECTIVE("did_burial")
+		prerequisite()
+			return (!map_currently_very_dusty) //Gehenna doesn't have a funeral driver
+		check_completion()
+			return (global_objective_status["did_funeral"] == SUCCEEDED)
+	cremation
+		explanation_text = "Perform a cremation for a dead crewmember."
+		set_up()
+			INIT_OBJECTIVE("did_cremation")
+		check_completion()
+			return (global_objective_status["did_cremation"] == SUCCEEDED)
 
 ABSTRACT_TYPE(/datum/objective/crew/janitor)
 /datum/objective/crew/janitor
@@ -299,8 +400,33 @@ ABSTRACT_TYPE(/datum/objective/crew/janitor)
 //	bartender
 
 //	chef
+ABSTRACT_TYPE(/datum/objective/crew/chef)
+/datum/objective/crew/chef
+	kitchen_hygiene
+		explanation_text = "Don't get any ants in the kitchen."
+		set_up()
+			INIT_OBJECTIVE("kitchen_ants")
+		check_completion()
+			return (global_objective_status["kitchen_ants"] != FAILED)
+	//chef objective idea (that needs some manual sorting through for doable foods): make several of X for dinner
 
 //	engineer
+ABSTRACT_TYPE(/datum/objective/crew/engineer)
+/datum/objective/crew/engineer
+	singularity
+		explanation_text = "Don't let the singularity escape containment!"
+		set_up()
+			INIT_OBJECTIVE("engineering_whoopsie")
+		prerequisite()
+			for_by_tcl(G, /obj/machinery/the_singularitygen)
+				if (G.z == Z_LEVEL_STATION)
+					return TRUE
+			for_by_tcl(S, /obj/machinery/the_singularity) //joined after the thing is already running
+				if (S.z == Z_LEVEL_STATION && !S.active)
+					return TRUE
+			return FALSE
+		check_completion()
+			return (global_objective_status["engineering_whoopsie"] != FAILED)
 
 ABSTRACT_TYPE(/datum/objective/crew/miner)
 /datum/objective/crew/miner
@@ -762,5 +888,28 @@ ABSTRACT_TYPE(/datum/objective/crew/medicalassistant)
 
 
 //	cyborg
+
+ABSTRACT_TYPE(/datum/objective/crew/clown)
+/datum/objective/crew/clown
+	//since these are all jokes they probably shouldn't be hugely common
+	prerequisite()
+		if (prob(15))
+			return TRUE
+		return FALSE
+
+	dental
+		explanation_text = "Lose at least a quarter (8) of your teeth by the end of the round." //Likely to require a heal or two from near crit, so hard to get
+		check_completion()
+			. = FALSE
+			if(ishuman(owner.current))
+				var/mob/living/carbon/human/H = owner.current
+				var/obj/item/skull/tooth_holder = H.organHolder?.skull
+				if (istype(tooth_holder))
+					return ((tooth_holder.teeth / initial(tooth_holder.teeth)) <= 0.75)
+
+	be_funny ///Bullying
+		explanation_text = "Actually be funny."
+		check_completion()
+			return FALSE
 
 #endif

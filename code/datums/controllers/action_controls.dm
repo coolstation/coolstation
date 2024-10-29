@@ -659,7 +659,7 @@ var/datum/action_controller/actions
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			if(H.traitHolder.hasTrait("carpenter") || H.traitHolder.hasTrait("training_engineer"))
-				duration = round(duration / 2)
+				duration = floor(duration / 2)
 
 		if(QDELETED(sheet))
 			boutput(owner, "<span class='notice'>You have nothing to build with!</span>")
@@ -1015,7 +1015,7 @@ var/datum/action_controller/actions
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			if(H.traitHolder.hasTrait("training_security"))
-				duration = round(duration / 2)
+				duration = floor(duration / 2)
 
 		for(var/mob/O in AIviewers(owner))
 			O.show_message("<span class='alert'><B>[owner] attempts to handcuff [target]!</B></span>", 1)
@@ -1048,15 +1048,22 @@ var/datum/action_controller/actions
 
 			logTheThing("combat", ownerMob, target, "handcuffs [constructTarget(target,"combat")] with [cuffs2 ? "[cuffs2]" : "[cuffs]"] at [log_loc(ownerMob)].")
 
-			if (cuffs2 && istype(cuffs2))
-				cuffs2.set_loc(target)
-				target.handcuffs = cuffs2
-			else
-				cuffs.set_loc(target)
-				target.handcuffs = cuffs
 			target.drop_from_slot(target.r_hand)
 			target.drop_from_slot(target.l_hand)
 			target.drop_juggle()
+
+			if (cuffs2 && istype(cuffs2))
+				cuffs2.set_loc(target)
+				target.handcuffs = cuffs2
+				cuffs2.two_handed = TRUE
+				cuffs2.cant_drop = TRUE
+				target.put_in_hand(cuffs2)
+			else
+				cuffs.set_loc(target)
+				target.handcuffs = cuffs
+				cuffs.two_handed = TRUE
+				cuffs.cant_drop = TRUE
+				target.put_in_hand(cuffs)
 			target.setStatus("handcuffed", duration = INFINITE_STATUS)
 			target.update_clothing()
 
@@ -1093,7 +1100,7 @@ var/datum/action_controller/actions
 
 		if(target != null && ishuman(target) && target.hasStatus("handcuffed"))
 			var/mob/living/carbon/human/H = target
-			duration = round(duration * H.handcuffs.remove_other_multiplier)
+			duration = floor(duration * H.handcuffs.remove_other_multiplier)
 
 		for(var/mob/O in AIviewers(owner))
 			O.show_message("<span class='alert'><B>[owner] attempts to remove [target]'s handcuffs!</B></span>", 1)
@@ -1121,7 +1128,7 @@ var/datum/action_controller/actions
 		..()
 		if(owner != null && ishuman(owner) && owner.hasStatus("handcuffed"))
 			var/mob/living/carbon/human/H = owner
-			duration = round(duration * H.handcuffs.remove_self_multiplier)
+			duration = floor(duration * H.handcuffs.remove_self_multiplier)
 
 		owner.visible_message("<span class='alert'><B>[owner] attempts to remove the handcuffs!</B></span>")
 
@@ -1663,7 +1670,7 @@ var/datum/action_controller/actions
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			if (H.traitHolder.hasTrait("carpenter") || H.traitHolder.hasTrait("training_engineer"))
-				duration = round(duration / 2)
+				duration = floor(duration / 2)
 
 	onUpdate()
 		..()

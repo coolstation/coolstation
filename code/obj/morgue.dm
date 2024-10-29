@@ -326,6 +326,8 @@
 		if (M == src.connected) continue //no cremating the tray tyvm
 		if (isliving(M))
 			var/mob/living/L = M
+			if (isdead(L) && ishuman(L)) //Doesn't count if they're still alive
+				global_objective_status["did_cremation"] = SUCCEEDED
 			SPAWN_DBG(0)
 				L.changeStatus("stunned", 10 SECONDS)
 

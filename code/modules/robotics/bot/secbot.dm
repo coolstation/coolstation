@@ -33,12 +33,12 @@
 /// Clear aggro, revert to guard duty. mode = SECBOT_GUARD_IDLE
 #define KPAGU_RETURN_TO_GUARD		3
 
-#define PATROL_SPEED 12
-#define SUMMON_SPEED 9
-#define ARREST_SPEED 5
+#define PATROL_SPEED 10
+#define SUMMON_SPEED 8
+#define ARREST_SPEED 3
 
-#define BATON_INITIAL_DELAY (0.3 SECONDS)
-#define BATON_DELAY_PER_STUN (0.2 SECONDS)
+#define BATON_INITIAL_DELAY (0.2 SECONDS)
+#define BATON_DELAY_PER_STUN (0.1 SECONDS)
 
 #define BATON_CHARGE_DURATION (3 SECONDS)
 #define BATON_CHARGE_DURATION_BEEPSKY (6 SECONDS)
@@ -274,6 +274,16 @@
 		if (user.a_intent == INTENT_HARM)
 			var/turf/throwpoint = get_edge_target_turf(user, get_dir(user, src))
 			if (throwpoint && isturf(throwpoint))
+				if (ishuman(user))
+					var/damage = 1
+					var/mob/living/carbon/human/H = user
+					if (H.shoes)
+						damage += H.shoes.kick_bonus
+					else if (H.limbs.r_leg)
+						damage += H.limbs.r_leg.limb_hit_bonus
+					else if (H.limbs.l_leg)
+						damage += H.limbs.l_leg.limb_hit_bonus
+					src.damage_blunt(damage)
 				user.visible_message("<span class='alert'><b>[user]</b> kicks [src] like the football!</span>")
 				src.throw_at(throwpoint, 6, 2)
 				sleep(2 SECONDS) //can't believe that just happened! the audacity does not compute! also give it some time to go sailing
@@ -601,7 +611,7 @@
 			src.target_lastloc = M.loc
 			src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
 		return
-
+/*
 	Move(var/turf/NewLoc, direct)
 		var/oldloc = src.loc
 		..()
@@ -610,7 +620,7 @@
 				if (mode == SECBOT_AGGRO && target)
 					if (IN_RANGE(src, src.target, 1))
 						src.baton_attack(src.target)
-
+*/
 
 	process()
 		. = ..()
@@ -1318,7 +1328,11 @@
 				uncuffable = 1
 
 			if(ishuman(master.target) && !uncuffable)
-				master.target.handcuffs = new /obj/item/handcuffs/guardbot(master.target)
+				var/obj/item/handcuffs/guardbot/cuffs = new
+				master.target.handcuffs = cuffs
+				cuffs.two_handed = TRUE
+				cuffs.cant_drop = TRUE
+				master.target.put_in_hand(cuffs)
 				master.target.setStatus("handcuffed", duration = INFINITE_STATUS)
 
 			if(!uncuffable)

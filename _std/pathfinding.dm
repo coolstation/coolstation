@@ -280,7 +280,8 @@ turf/proc/CardinalTurfsAndSpaceWithAccess(obj/item/card/id/ID)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				. += T
 
-var/static/obj/item/card/id/ALL_ACCESS_CARD = new /obj/item/card/id/captains_spare()
+//init of this bastard now happens in /datum/controller/gameticker/proc/setup()
+var/static/obj/item/card/id/ALL_ACCESS_CARD
 
 /turf/proc/AllDirsTurfsWithAllAccess()
 	return AllDirsTurfsWithAccess(ALL_ACCESS_CARD)

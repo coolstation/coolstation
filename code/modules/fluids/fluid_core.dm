@@ -151,6 +151,19 @@ var/mutable_appearance/fluid_ma
 
 	proc/turf_remove_cleanup(turf/the_turf)
 		the_turf.active_liquid = null
+		//Possibly do this in a process loop somewhere to spread out lag?
+		for(var/atom/A as anything in the_turf)
+			if (A && A.flags & FLUID_SUBMERGE)
+				var/mob/living/M = A
+				var/obj/O = A
+				if (istype(M))
+					src.HasExited(M,M.loc)
+					M.show_submerged_image(0)
+				else if (istype(O))
+					if (O.submerged_images)
+						src.HasExited(O,O.loc)
+						if ((O.submerged_images && length(O.submerged_images)) && (O.is_submerged != 0))
+							O.show_submerged_image(0)
 
 	disposing()
 		src.pooled = 1
@@ -324,19 +337,6 @@ var/mutable_appearance/fluid_ma
 				qdel(src)
 		else
 			qdel(src)
-
-		for(var/atom/A as anything in src.loc)
-			if (A && A.flags & FLUID_SUBMERGE)
-				var/mob/living/M = A
-				var/obj/O = A
-				if (istype(M))
-					src.HasExited(M,M.loc)
-					M.show_submerged_image(0)
-				else if (istype(O))
-					if (O.submerged_images)
-						src.HasExited(O,O.loc)
-						if ((O.submerged_images && length(O.submerged_images)) && (O.is_submerged != 0))
-							O.show_submerged_image(0)
 
 	var/spawned_any = 0
 	proc/update() //returns list of created fluid tiles

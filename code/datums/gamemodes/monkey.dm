@@ -15,7 +15,7 @@
 				players += player
 
 		if (players.len >= 3)
-			var/amount = round((players.len - 1) / 3) + 1
+			var/amount = floor((players.len - 1) / 3) + 1
 			amount = min(4, amount)
 
 			while (amount > 0)

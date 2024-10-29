@@ -177,8 +177,8 @@
 /atom/proc/clean_forensic()
 	if (!src)
 		return
-	if (!(src.flags & FPRINT))
-		return
+	//if (!(src.flags & FPRINT)) // why is this here? we call clean_forensic on lots of stuff thats not fingerprinted.
+	//	return
 	// The first version accidently looped through everything for every atom. Consequently, cleaner grenades caused horrendous lag on my local server. Woops.
 	if (!ismob(src)) // Mobs are a special case.
 		if (isobj(src))

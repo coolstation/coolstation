@@ -224,8 +224,8 @@
 	onAbilityStat() // In the 'Dracula' tab.
 		..()
 		.= list()
-		.["Blood:"] = round(src.points)
-		.["Total:"] = round(src.vamp_blood)
+		.["Blood:"] = floor(src.points)
+		.["Total:"] = floor(src.vamp_blood)
 		return
 
 	onLife(var/mult = 1)
@@ -462,7 +462,7 @@
 			var/pttxt = ""
 			if (pointCost)
 				pttxt = " \[[pointCost]\]"
-			object.name = "[src.name][pttxt] ([round((src.last_cast-world.time)/10)])"
+			object.name = "[src.name][pttxt] ([floor((src.last_cast-world.time)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			var/pttxt = ""

@@ -60,7 +60,7 @@ proc/EndSpacePush(var/atom/movable/A)
 
 							break
 
-					prob_slip = round(prob_slip)
+					prob_slip = floor(prob_slip)
 					if (prob_slip < 5) //next to something, but they might slip off
 						if (prob(prob_slip) )
 							boutput(tmob, "<span class='notice'><B>You slipped!</B></span>")

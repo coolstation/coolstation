@@ -271,10 +271,10 @@
 		update_totals()
 
 	get_desc()
-		return " It's saved a total of [round(total_score)] points, with [round(round_score)] points added today."
+		return " It's saved a total of [floor(total_score)] points, with [floor(round_score)] points added today."
 
 	proc/update_totals()
-		tracker.maptext = "<span class='c vt ps2p sh'>TOTAL [add_lspace(round(total_score), 7)]\nROUND [add_lspace(round(round_score), 7)]</span>"
+		tracker.maptext = "<span class='c vt ps2p sh'>TOTAL [add_lspace(floor(total_score), 7)]\nROUND [add_lspace(floor(round_score), 7)]</span>"
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -343,7 +343,7 @@
 		return M
 
 	proc/update_score(var/obj/maptext_junk/M, var/score)
-		M.maptext = "<span class='ps2p c vm sh'>+[round(score)]</span>"
+		M.maptext = "<span class='ps2p c vm sh'>+[floor(score)]</span>"
 
 	proc/finish_scoring(var/obj/maptext_junk/M)
 		animate(M, time = 2)
@@ -488,7 +488,7 @@
 	. = {"
 		<div style="width: [width + 2]px; border: 1px solid #000000; height: 1.25em; background: black;">
 			<div style="width: [width + 2]px; border: 1px solid #bbbbbb; height: 100%; background: [bar_bg_color]; position: relative;">
-				<div style="position: absolute; top: 2px; bottom: 2px; left: 1px; right: [round(100 - bar_width * 100)]%; background-color: [bar_color];"></div>
+				<div style="position: absolute; top: 2px; bottom: 2px; left: 1px; right: [floor(100 - bar_width * 100)]%; background-color: [bar_color];"></div>
 				<div style="position: absolute; top: -3px; margin-left: -2px; left: 0%; background: #ffffff; height: 4px; border: 1px solid black; width: 1px;"></div>
 				<div style="position: absolute; top: -3px; margin-left: -2px; left: 10%; background: #ffffff; height: 4px; border: 1px solid black; width: 1px;"></div>
 				<div style="position: absolute; top: -3px; margin-left: -2px; left: 20%; background: #ffffff; height: 4px; border: 1px solid black; width: 1px;"></div>
@@ -825,7 +825,7 @@
 			if ("temperature")
 				return "[val - T0C]&deg;C"
 			if ("round")
-				return round(val)
+				return floor(val)
 
 			if ("time")
 				val /= 10
@@ -836,16 +836,16 @@
 				// @TODO: formatting times like this surely has to be a proc somewhere already, right
 				switch (val)
 					if (3600 to INFINITY)
-						return "[sign][round(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
+						return "[sign][floor(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
 					if (0 to 3600)
-						return "[sign][round(val / 60 % 60)]:[add_zero(val % 60, 2)]"
+						return "[sign][floor(val / 60 % 60)]:[add_zero(val % 60, 2)]"
 			if ("fulltime")
 				val /= 10
 				var/sign = ""
 				if (val < 0)
 					val *= -1
 					sign = "-"
-				return "[sign][round(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
+				return "[sign][floor(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
 
 			if ("time2")
 				// some things use centiseconds. some things dont. fart!
@@ -856,22 +856,22 @@
 				// @TODO: formatting times like this surely has to be a proc somewhere already, right
 				switch (val)
 					if (3600 to INFINITY)
-						return "[sign][round(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
+						return "[sign][floor(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
 					if (0 to 3600)
-						return "[sign][round(val / 60 % 60)]:[add_zero(val % 60, 2)]"
+						return "[sign][floor(val / 60 % 60)]:[add_zero(val % 60, 2)]"
 			if ("fulltime2")
 				var/sign = ""
 				if (val < 0)
 					val *= -1
 					sign = "-"
-				return "[sign][round(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
+				return "[sign][floor(val / 3600)]:[add_zero(val / 60 % 60, 2)]:[add_zero(val % 60, 2)]"
 
 			if ("timer")
 				val /= 10
-				return "[round(val)].[val * 10 % 10]"
+				return "[floor(val)].[val * 10 % 10]"
 
 			if ("timer2")
-				return "[round(val / 10)].[val % 10]"
+				return "[floor(val / 10)].[val % 10]"
 
 		return val
 
@@ -1115,7 +1115,7 @@
 				if (0.8 to INFINITY)
 					lagc = "#ff0000; -dm-text-outline: 1px #000000 solid"
 
-			. = "<span style='color: [lagc];'>[round(world.cpu)]% @ [world.tick_lag / 10]s</span>"
+			. = "<span style='color: [lagc];'>[floor(world.cpu)]% @ [world.tick_lag / 10]s</span>"
 
 
 /obj/overlay/zamujasa/football_wave_timer
@@ -1134,7 +1134,7 @@
 		if (num == -1)
 			src.maptext = ""
 		else
-			src.maptext = {"<span class='c pixel sh'>Next spawn wave in\n<span class='vga'>[round(num)]</span> seconds</span>"}
+			src.maptext = {"<span class='c pixel sh'>Next spawn wave in\n<span class='vga'>[floor(num)]</span> seconds</span>"}
 
 
 
@@ -1275,7 +1275,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 			maptext = {"<span class="vb r pixel sh" style="font-size:1.5em;">8</span>"} // pixel font has more symmetric 8, ok?
 			src.transform = infinity_matrix
 			return
-		maptext = {"<span class="vb r xfont sh"[number == 0 ? " style='color: #ff6666;'" : number == -1 ? " style='-ms-transform: rotate(-90deg);'" : ""]>[number == -1 ? "8" : number >= 100000 ? "[round(number / 1000)]K" : round(number)]</span>"}
+		maptext = {"<span class="vb r xfont sh"[number == 0 ? " style='color: #ff6666;'" : number == -1 ? " style='-ms-transform: rotate(-90deg);'" : ""]>[number == -1 ? "8" : number >= 100000 ? "[floor(number / 1000)]K" : floor(number)]</span>"}
 		if(src.transform) src.transform = null
 
 	proc/update_percent(var/current, var/maximum)
@@ -1283,7 +1283,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 			// no dividing by zero
 			src.update_number(current)
 			return
-		maptext = {"<span class="vb r xfont sh"[current == 0 ? " style='color: #ff6666;'" : ""]>[round(current / maximum * 100)]%</span>"}
+		maptext = {"<span class="vb r xfont sh"[current == 0 ? " style='color: #ff6666;'" : ""]>[floor(current / maximum * 100)]%</span>"}
 		if(src.transform) src.transform = null
 
 	proc/hide_count()

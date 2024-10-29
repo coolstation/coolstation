@@ -83,6 +83,12 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			var/datum/random_event/RE = new X
 			special_events += RE
 
+	proc/mult_time_between_events(var/mult=1)
+		time_between_events_lower = floor(mult*time_between_events_lower)
+		time_between_events_upper = floor(mult*time_between_events_upper)
+		time_between_minor_events_lower = floor(mult*time_between_minor_events_lower)
+		time_between_minor_events_upper = floor(mult*time_between_minor_events_upper)
+
 	proc/process()
 		// prevent random events near round end
 		if (emergency_shuttle.location > SHUTTLE_LOC_STATION || current_state == GAME_STATE_FINISHED)
@@ -96,7 +102,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			if(time_to_go < MAJOR_EVENT_FIRST_ADMIN_WARNING)
 				if (!next_picked_major_event) next_picked_major_event = pick_random_event(events)
 				if (!ON_COOLDOWN(src, "major_event_first_warning", MAJOR_EVENT_FIRST_ADMIN_WARNING + 10)) //cooldown slightly longer than eligible period
-					message_admins("<span class='internal'>Random event soon: \An [next_picked_major_event.name] event will occur at around [round(next_major_event / 600)] minutes.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
+					message_admins("<span class='internal'>Random event soon: \An [next_picked_major_event.name] event will occur at around [floor(next_major_event / 600)] minutes.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
 				else if (MAJOR_EVENT_SECOND_ADMIN_WARNING && time_to_go < MAJOR_EVENT_SECOND_ADMIN_WARNING)
 					if (ON_COOLDOWN(src, "major_event_second_warning", MAJOR_EVENT_SECOND_ADMIN_WARNING + 10))
 						message_admins("<span class='internal'>Random event imminent: [next_picked_major_event.name] will start shortly.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
@@ -109,7 +115,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			if(time_to_go < SPAWN_EVENT_ADMIN_WARNING)
 				if (!next_picked_spawn_event) pick_random_spawn_event()
 				if (next_picked_spawn_event && !ON_COOLDOWN(src, "minor_event_first_warning", SPAWN_EVENT_ADMIN_WARNING + 10))
-					message_admins("<span class='internal'>Random spawn event soon: \An [next_picked_spawn_event.name] event will occur at around [round(next_spawn_event / 600)] minutes.<br><a href=\"?src=\ref[src];spawn_interrupt=1;spawn_cycle=[spawn_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];spawn_change=1;spawn_cycle=[spawn_event_cycle_count]\">Change</a></span>")
+					message_admins("<span class='internal'>Random spawn event soon: \An [next_picked_spawn_event.name] event will occur at around [floor(next_spawn_event / 600)] minutes.<br><a href=\"?src=\ref[src];spawn_interrupt=1;spawn_cycle=[spawn_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];spawn_change=1;spawn_cycle=[spawn_event_cycle_count]\">Change</a></span>")
 
 		//MINOR EVENTS
 		if (ticker.round_elapsed_ticks >= next_minor_event)
@@ -119,7 +125,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			if(time_to_go < MINOR_EVENT_ADMIN_WARNING)
 				if (!next_picked_minor_event) next_picked_minor_event = pick_random_event(minor_events)
 				if (!ON_COOLDOWN(src, "minor_event_first_warning", MINOR_EVENT_ADMIN_WARNING + 10))
-					message_admins("<span class='internal'>Minor random event soon: \An [next_picked_minor_event.name] event will occur at around [round(next_minor_event / 600)] minutes.<br><a href=\"?src=\ref[src];minor_interrupt=1;minor_cycle=[minor_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];minor_change=1;minor_cycle=[minor_event_cycle_count]\">Change</a></span>")
+					message_admins("<span class='internal'>Minor random event soon: \An [next_picked_minor_event.name] event will occur at around [floor(next_minor_event / 600)] minutes.<br><a href=\"?src=\ref[src];minor_interrupt=1;minor_cycle=[minor_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];minor_change=1;minor_cycle=[minor_event_cycle_count]\">Change</a></span>")
 
 	proc/event_cycle()
 		event_cycle_count++
@@ -133,7 +139,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 
 		major_event_timer = rand(time_between_events_lower,time_between_events_upper)
 		next_major_event = TIME + major_event_timer
-		message_admins("<span class='internal'>Next event will occur at [round(next_major_event / 600)] minutes into the round.</span>")
+		message_admins("<span class='internal'>Next event will occur at [floor(next_major_event / 600)] minutes into the round.</span>")
 
 	proc/minor_event_cycle()
 		minor_event_cycle_count++
@@ -213,19 +219,19 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 		var/dat = "<html><body><title>Random Events Controller</title>"
 		dat += "<b><u>Random Event Controls</u></b><HR>"
 
-		dat += "Next major event at <a href='byond://?src=\ref[src];ScheduleMajor=1'>[round(next_major_event / 600)] minutes</a> into the round.<br>"
-		dat += "Next minor event at <a href='byond://?src=\ref[src];ScheduleMinor=1'>[round(next_minor_event / 600)] minutes</a> into the round.<br>"
-		dat += "Next spawn event at <a href='byond://?src=\ref[src];ScheduleSpawn=1'>[round(next_spawn_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next major event at <a href='byond://?src=\ref[src];ScheduleMajor=1'>[floor(next_major_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next minor event at <a href='byond://?src=\ref[src];ScheduleMinor=1'>[floor(next_minor_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next spawn event at <a href='byond://?src=\ref[src];ScheduleSpawn=1'>[floor(next_spawn_event / 600)] minutes</a> into the round.<br>"
 
 		dat += "<b><a href='byond://?src=\ref[src];EnableEvents=1'>Random Events Enabled:</a></b> [events_enabled ? "Yes" : "No"]<br>"
 		dat += "<b><a href='byond://?src=\ref[src];EnableMEvents=1'>Minor Events Enabled:</a></b> [minor_events_enabled ? "Yes" : "No"]<br>"
 		dat += "<b><a href='byond://?src=\ref[src];AnnounceEvents=1'>Announce Events to Station:</a></b> [announce_events ? "Yes" : "No"]<br>"
 		dat += "<b><a href='byond://?src=\ref[src];TimeLocks=1'>Time Locking:</a></b> [time_lock ? "Yes" : "No"]<br>"
 		dat += "<b>Minimum Population for Events: <a href='byond://?src=\ref[src];MinPop=1'>[minimum_population] players</a><br>"
-		dat += "<b>Time Between Events:</b> <a href='byond://?src=\ref[src];TimeLower=1'>[round(time_between_events_lower / 600)]m</a> /"
-		dat += " <a href='byond://?src=\ref[src];TimeUpper=1'>[round(time_between_events_upper / 600)]m</a><br>"
-		dat += "<b>Time Between Minor Events:</b> <a href='byond://?src=\ref[src];MTimeLower=1'>[round(time_between_minor_events_lower / 600)]m</a> /"
-		dat += " <a href='byond://?src=\ref[src];MTimeUpper=1'>[round(time_between_minor_events_upper / 600)]m</a>"
+		dat += "<b>Time Between Events:</b> <a href='byond://?src=\ref[src];TimeLower=1'>[floor(time_between_events_lower / 600)]m</a> /"
+		dat += " <a href='byond://?src=\ref[src];TimeUpper=1'>[floor(time_between_events_upper / 600)]m</a><br>"
+		dat += "<b>Time Between Minor Events:</b> <a href='byond://?src=\ref[src];MTimeLower=1'>[floor(time_between_minor_events_lower / 600)]m</a> /"
+		dat += " <a href='byond://?src=\ref[src];MTimeUpper=1'>[floor(time_between_minor_events_upper / 600)]m</a>"
 		dat += "<HR>"
 
 		dat += "<b><u>Normal Random Events</u></b><BR>"

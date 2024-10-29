@@ -554,9 +554,9 @@ The reason I know that is because whoever did that split also didn't clean up th
 /mob/living/carbon/human/shock_cyberheart(var/shockInput)
 	if (!src.organHolder)
 		return
-	var/numHigh = round((1 * shockInput) / 5)
-	var/numMid = round((1 * shockInput) / 10)
-	var/numLow = round((1 * shockInput) / 20)
+	var/numHigh = floor((1 * shockInput) / 5)
+	var/numMid = floor((1 * shockInput) / 10)
+	var/numLow = floor((1 * shockInput) / 20)
 	if (src.organHolder.heart && src.organHolder.heart.robotic && src.organHolder.heart.emagged && !src.organHolder.heart.broken)
 		APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "heart_shock", 5)
 		src.add_stam_mod_max("heart_shock", 20)

@@ -25,7 +25,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 
 	proc/update()
 
-		cur_meter_location = round((points/MAX_POINTS)*145)	//length of meter
+		cur_meter_location = floor((points/MAX_POINTS)*145)	//length of meter
 		if (cur_meter_location != last_meter_location)
 			meter.overlays.Cut()
 			var/icon/IB = new('icons/ui/spooktober_ghost_hud160x32.dmi', "bar")
@@ -173,6 +173,8 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
 		src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
 #endif
+		if(abandon_allowed)
+			src.addAbility(/datum/targetable/ghost_observer/respawn)
 		src.addAbility(/datum/targetable/ghost_observer/goto_escape)
 		src.updateButtons()
 

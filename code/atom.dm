@@ -273,6 +273,10 @@ TYPEINFO(/atom)
 	return 0
 
 /atom/proc/meteorhit(obj/meteor as obj)
+	if (istype(meteor, /obj/newmeteor))
+		if (istype(get_area(src), /area/station))
+			var/obj/newmeteor/M = meteor
+			M.broke_station_shit = TRUE
 	qdel(src)
 	return
 

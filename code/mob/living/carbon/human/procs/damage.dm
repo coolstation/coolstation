@@ -51,7 +51,7 @@
 								src.TakeDamage("chest", 0, (damage/armor_value_bullet), 0, DAMAGE_BURN)
 								if (src.organHolder)//Damage the organ again for more.
 									src.organHolder.damage_organ(0, (damage/armor_value_bullet)*2, 0, target_organ)
-							//implanted.implanted(src, null, min(20, max(0, round(damage / 10) ) ))
+							//implanted.implanted(src, null, min(20, max(0, floor(damage / 10) ) ))
 			if (D_PIERCING)
 				if (armor_value_bullet > 1)
 					if (src.organHolder && prob(50))
@@ -84,7 +84,7 @@
 							src.TakeDamage("chest", 0, (damage/armor_value_bullet), 0, DAMAGE_BURN)
 							if (src.organHolder)//Damage the organ again for more burn.
 								src.organHolder.damage_organ(0, (damage/armor_value_bullet)*2, 0, target_organ)
-						//implanted.implanted(src, null, min(20, max(0, round(damage / 10) ) ))
+						//implanted.implanted(src, null, min(20, max(0, floor(damage / 10) ) ))
 
 			if (D_SLASHING)
 				if (armor_value_bullet > 1)
@@ -181,7 +181,7 @@
 		delib_chance += 20
 
 	if (src.traitHolder && src.traitHolder.hasTrait("explolimbs") || src.getStatusDuration("food_explosion_resist"))
-		delib_chance = round(delib_chance / 2)
+		delib_chance = floor(delib_chance / 2)
 
 	if (prob(delib_chance) && !shielded)
 		src.sever_limb(pick(list("l_arm","r_arm","l_leg","r_leg"))) //max one delimb at once
@@ -194,7 +194,7 @@
 			SPAWN_DBG(1 DECI SECOND)
 				src.gib(1)
 			return
-	src.apply_sonic_stun(0, 0, 0, 0, 0, round(severity*7), round(severity*7), severity*40)
+	src.apply_sonic_stun(0, 0, 0, 0, 0, floor(severity*7), floor(severity*7), severity*40)
 
 	if (prob(b_loss) && !shielded && !reduction)
 		src.changeStatus("paralysis", b_loss DECI SECONDS)
@@ -204,7 +204,7 @@
 	src.UpdateDamageIcon()
 
 	if (epicenter && severity > 4)
-		src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  round(3 * severity), round(severity/2))
+		src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  floor(3 * severity), floor(severity/2))
 
 /mob/living/carbon/human/blob_act(var/power)
 	logTheThing("combat", src, null, "is hit by a blob")

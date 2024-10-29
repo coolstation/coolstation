@@ -15,7 +15,7 @@ proc/dirname_to_dir(dir)
 	return global.dirnames[dir]
 
 /// Given an angle, matches it to the closest direction and returns it.
-#define angle2dir(X) (modulo_angle_to_dir[round((((X%360)+382.5)%360)/45)+1])
+#define angle2dir(X) (modulo_angle_to_dir[floor((((X%360)+382.5)%360)/45)+1])
 
 /**
   * Returns the vector magnitude of an x value and a y value

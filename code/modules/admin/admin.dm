@@ -1510,6 +1510,19 @@ var/global/noir = 0
 				if (A)
 					usr.client.cmd_admin_check_health(A)
 					return
+		if ("makesick")
+			if (src.level >= LEVEL_SA)
+				var/mob/living/M = locate(href_list["target"])
+				if (istype(M))
+					var/list/names = list()
+					for (var/datum/ailment/A as anything in disease_controls.standard_diseases)
+						names += A.name
+					names = sortList(names)
+					var/pick = input("Which ailment?","Sharing is caring") as null|anything in names
+					if (pick)
+						M.contract_disease(null, pick, null, TRUE)
+						message_admins("[key_name(usr)] gave [pick] to [M.real_name].")
+					return
 		if ("addreagent")
 			if(( src.level >= LEVEL_PA ) || ((src.level >= LEVEL_SA) ))
 				var/mob/M = locate(href_list["target"])

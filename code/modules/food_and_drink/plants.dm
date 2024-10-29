@@ -531,7 +531,7 @@
 			if (iscarbon(M))
 				M.changeStatus("paralysis", 3 SECONDS)
 				M.changeStatus("stunned", 6 SECONDS)
-				M.take_brain_damage(15)
+				//M.take_brain_damage(15)
 			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/melonslice/george
@@ -1348,7 +1348,7 @@
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.throwing)
-				src.RegisterSignal(L, COMSIG_MOVABLE_THROW_END, PROC_REF(someone_landed_on_us))
+				src.RegisterSignal(L, COMSIG_MOVABLE_THROW_END, PROC_REF(someone_landed_on_us), override = TRUE)
 
 /obj/item/reagent_containers/food/snacks/plant/coconutmeat/
 	name = "coconut meat"

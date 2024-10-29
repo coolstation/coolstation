@@ -39,7 +39,7 @@
 
 		if (player.ready)
 			num_players++
-	var/num_synds = clamp( round(num_players / 6 ), 1, agents_possible)
+	var/num_synds = clamp( floor(num_players / 6 ), 1, agents_possible)
 
 	possible_syndicates = get_possible_syndicates(num_synds)
 
@@ -319,7 +319,7 @@
 #endif
 			if (istype(objective, /datum/objective/miscreant)) continue
 
-			if (objective.check_completion())
+			if (objective.check_completion() == SUCCEEDED)
 				if (!isnull(objective.medal_name) && !isnull(M.current))
 					M.current.unlock_medal(objective.medal_name, objective.medal_announce)
 
@@ -496,7 +496,7 @@ var/syndicate_name = null
 		var/last_reset_date = world.load_intra_round_value("nukie_last_reset")
 		var/last_reset_text = null
 		if(!isnull(last_reset_date))
-			var/days_passed = round((world.realtime - last_reset_date) / (1 DAY))
+			var/days_passed = floor((world.realtime - last_reset_date) / (1 DAY))
 			last_reset_text = "<h4>(memorial reset [days_passed] days ago)</h4>"
 		src.desc = "<center><h2><b>[shipname] Mission Memorial</b></h2><br> <h3>Successful missions: [wins]<br>\nUnsuccessful missions: [losses]</h3><br>[last_reset_text]</center>"
 

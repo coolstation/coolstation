@@ -50,11 +50,23 @@
 	if (emergency_shuttle.online && emergency_shuttle.direction == 1)
 		return
 	if (shuttle_last_auto_call + (shuttle_initial_auto_call_done ? shuttle_auto_call_time / 2 : shuttle_auto_call_time) <= ticker.round_elapsed_ticks)
-		emergency_shuttle.incall()
-		command_alert("The shuttle has automatically been called for a shift change.  Please recall the shuttle to extend the shift.","Shift Shuttle Update")
 		shuttle_last_auto_call = ticker.round_elapsed_ticks
 		if (!shuttle_initial_auto_call_done)
 			shuttle_initial_auto_call_done = 1
+		var/clients = 0
+		for(var/client/C)
+			clients++
+
+		if ((config.env == "dev" || config.env == "pud")&& clients >= 2) // testing something :)
+			command_alert("NanoTrasen Quantum Gravimetrics has detected local space stability has been compromised by extended experimentation. Please exercise caution in continued operation. Remedial crew may be dispatched to account for abnormal conditions.","Shift Temporal Degradation")
+			abandon_allowed = 1
+			boutput(world, "<B>Respawning has been enabled due to long round length.</B>")
+			random_events.mult_time_between_events(0.5) // double the event rate. make it shit.
+			return
+
+		else
+			emergency_shuttle.incall()
+			command_alert("The shuttle has automatically been called for a shift change.  Please recall the shuttle to extend the shift.","Shift Shuttle Update")
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.location == SHUTTLE_LOC_RETURNED)
@@ -175,15 +187,20 @@
 	#endif
 					if (istype(objective, /datum/objective/miscreant)) continue
 
-					if (objective.check_completion())
-						stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>Success</B></span>"
-						logTheThing("diary",traitor,null,"completed objective: [objective.explanation_text]")
-						if (!isnull(objective.medal_name) && !isnull(traitor.current))
-							traitor.current.unlock_medal(objective.medal_name, objective.medal_announce)
-					else
-						stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='alert'>Failed</span>"
-						logTheThing("diary",traitor,null,"failed objective: [objective.explanation_text]. Womp womp.")
-						traitorwin = 0
+					switch(objective.check_completion())
+						if (SUCCEEDED)
+							stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>Success</B></span>"
+							logTheThing("diary",traitor,null,"completed objective: [objective.explanation_text]")
+							if (!isnull(objective.medal_name) && !isnull(traitor.current))
+								traitor.current.unlock_medal(objective.medal_name, objective.medal_announce)
+						if (FAILED)
+							stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='alert'>Failed</span>"
+							logTheThing("diary",traitor,null,"failed objective: [objective.explanation_text]. Womp womp.")
+							traitorwin = 0
+						if (NO_OPPORTUNITY)
+							stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>N/A</B></span>"
+							logTheThing("diary",traitor,null,"uncompletable objective: [objective.explanation_text]")
+							//no medal
 					count++
 
 			// Please use objective.medal_name for medals that are tied to a specific objective instead of adding them here.

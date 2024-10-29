@@ -104,7 +104,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-	doordir = "right";
 	icon_state = "bdoorright1";
 	id = "hangar_miningoutpost";
 	layer = 4;
@@ -219,14 +218,7 @@
 /area/gas_station)
 "cu" = (
 /obj/machinery/light/fluorescent/auto/warm,
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
-	icon = 'icons/obj/items/storage.dmi';
-	icon_state = "schweewabin";
-	name = "\improper Schweewa trash can"
-	},
+/obj/table/schweewa,
 /turf/floor/airless/engine/caution/east,
 /area/gas_station)
 "cv" = (
@@ -1286,14 +1278,7 @@
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
 	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
-	icon = 'icons/obj/items/storage.dmi';
-	icon_state = "schweewabin";
-	name = "\improper Schweewa trash can"
-	},
+/obj/table/schweewa,
 /turf/floor/airless/engine/caution/corner{
 	dir = 8
 	},
@@ -1816,14 +1801,7 @@
 	},
 /area/noGenerate)
 "kh" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
-	icon = 'icons/obj/items/storage.dmi';
-	icon_state = "schweewabin";
-	name = "\improper Schweewa trash can"
-	},
+/obj/table/schweewa,
 /turf/floor/airless/engine/caution/north,
 /area/gas_station)
 "ki" = (
@@ -2014,14 +1992,7 @@
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
 	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
-	icon = 'icons/obj/items/storage.dmi';
-	icon_state = "schweewabin";
-	name = "\improper Schweewa trash can"
-	},
+/obj/table/schweewa,
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
 "lr" = (
@@ -6270,7 +6241,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-	doordir = "left";
 	icon_state = "bdoorleft1";
 	id = "hangar_miningoutpost";
 	layer = 4;

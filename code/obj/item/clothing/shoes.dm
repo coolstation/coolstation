@@ -63,6 +63,40 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 			src.laces = LACES_CUT
 			tooltip_rebuild = 1
 
+/obj/item/clothing/shoes/bread
+	name = "loafers"
+	icon_state = "bread"
+	desc = "A loaf of bread that's been hollowed out into footwear."
+	laces = LACES_NONE
+	item_state = "b_shoesold"
+
+	//icon_state = "todo"
+	setupProperties()
+		..()
+		setProperty("movespeed", 0.1)// walking in bread isn't particularly fast.
+
+/obj/item/clothing/shoes/loaf
+	name = "loafers"
+	desc = "A disciplinary loaf that's been hollowed out into footwear."
+	icon_state = "loaf"
+	item_state = "b_shoesold"
+	magnetic = 0 // turns on at order 4?
+	var/orderOfLoafitude = 1
+
+	New(var/order = 1)
+		orderOfLoafitude = order
+		//icon_state = "loaf-[order]" // todo
+		if(order >=4)
+			magnetic = 1
+		..()
+
+	setupProperties()
+		..()
+		setProperty("movespeed", orderOfLoafitude) // concrete shoes
+		kick_bonus = orderOfLoafitude*1.25 //yeah we kickin
+		health = orderOfLoafitude*20
+
+
 /obj/item/clothing/shoes/rocket
 	name = "rocket shoes"
 	desc = "A gas tank taped to some shoes. Brilliant. They also look kind of silly."

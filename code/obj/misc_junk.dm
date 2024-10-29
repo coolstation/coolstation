@@ -232,18 +232,45 @@
 	stamina_crit_chance = 5
 
 /obj/item/emeter
-	name = "E-Meter"
+	name = "e-meter"
 	desc = "A device for measuring Body Thetan levels."
 	icon = 'icons/obj/items/device.dmi'
 	icon_state = "emeter"
+	var/list/reading_cache
+
+	New()
+		reading_cache = list()
+		..()
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (ismob(M))
+			var/thetans = 0
+			if (user != M)
+				if (M.name in reading_cache)
+					thetans = reading_cache[M.name]
+				else
+					thetans = rand(1,10)
+					reading_cache[M.name] = thetans
 			user.visible_message("<b>[user]</b> takes a reading with the [src].",\
-			"[M]'s Thetan Level: [user == M ? 0 : rand(1,10)]")
+			"[M]'s Thetan Level: [thetans]")
+			if (thetans > 0)
+				boutput(M, "Dang, that's not good. Maybe you oughta spend some cash on therapy...")
 			return
 		else
 			return ..()
+
+	attackby(obj/item/W, mob/user, params)
+		if (istype(W, /obj/item/spacecash))
+			if (user.name in reading_cache)
+				if (prob(W.amount/100)) //guaranteed at 10k spent
+					reading_cache[user.name] -= 1
+			else //Didn't even get a free reading first? I smell a cash cow~
+				reading_cache[user.name] = rand(11,20)
+			user.visible_message("[src] slurps up [W], never to be seen again...")
+			user.drop_item(W)
+			qdel(W)
+		else
+			..()
 
 /obj/item/hell_horn
 	name = "decrepit instrument"

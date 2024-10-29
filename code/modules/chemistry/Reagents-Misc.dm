@@ -274,7 +274,7 @@ datum
 		omegazine
 			name = "omegazine"
 			id = "omegazine"
-			description = "A dangerous chemical that allows for seemingly superhuman feats for a short time ..."
+			description = "A dangerous chemical that allows for seemingly superhuman feats for a short time."
 			random_chem_blacklisted = 1
 			reagent_state = LIQUID
 			fluid_r = 120

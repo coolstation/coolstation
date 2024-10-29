@@ -173,6 +173,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	//Tell the participation recorder to queue player data while the round starts up
 	participationRecorder.setHold()
 
+	//initiliase this fucker in case we get spies (hard to say at this stage, since they also show up in mixed modes)
+	ALL_ACCESS_CARD = new /obj/item/card/id/captains_spare()
+
 #ifdef RP_MODE
 	looc_allowed = 1
 	boutput(world, "<B>LOOC has been automatically enabled.</B>")
@@ -594,17 +597,23 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		crewMind.all_objs = 1
 		for (var/datum/objective/crew/CO in crewMind.objectives)
 			count++
-			if(CO.check_completion())
-				crewMind.completed_objs++
-				boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='success'><B>Success</B></span>")
-				logTheThing("diary",crewMind,null,"completed objective: [CO.explanation_text]")
-				if (!isnull(CO.medal_name) && !isnull(crewMind.current))
-					crewMind.current.unlock_medal(CO.medal_name, CO.medal_announce)
-			else
-				boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='alert'>Failed</span>")
-				logTheThing("diary",crewMind,null,"failed objective: [CO.explanation_text]. Bummer!")
-				allComplete = 0
-				crewMind.all_objs = 0
+			switch(CO.check_completion())
+				if (SUCCEEDED)
+					crewMind.completed_objs++
+					boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='success'><B>Success</B></span>")
+					logTheThing("diary",crewMind,null,"completed objective: [CO.explanation_text]")
+					if (!isnull(CO.medal_name) && !isnull(crewMind.current))
+						crewMind.current.unlock_medal(CO.medal_name, CO.medal_announce)
+				if (FAILED)
+					boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='alert'>Failed</span>")
+					logTheThing("diary",crewMind,null,"failed objective: [CO.explanation_text]. Bummer!")
+					allComplete = 0
+					crewMind.all_objs = 0
+				if (NO_OPPORTUNITY)
+					crewMind.completed_objs++
+					boutput(crewMind.current, "<B>Objective #[count]</B>: [CO.explanation_text] <span class='success'><B>N/A</B></span>")
+					logTheThing("diary",crewMind,null,"uncompletable objective: [CO.explanation_text]")
+					//no medal
 
 		if (allComplete && count)
 			successfulCrew += "[crewMind.current.real_name] ([crewMind.key])"
@@ -703,7 +712,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		P.log_leave_time() //get our final playtime for the round (wont cause errors with people who already d/ced bc of smart code)
 		if (!P.current_playtime)
 			continue
-		playtimes["ckeys\[[P.ckey]]"] = round((P.current_playtime / (1 SECOND))) //rounds 1/10th seconds to seconds
+		playtimes["ckeys\[[P.ckey]]"] = floor(P.current_playtime / (1 SECOND)) //rounds 1/10th seconds to seconds
 	try
 		apiHandler.queryAPI("playtime/record-multiple", playtimes)
 	catch(var/exception/e)

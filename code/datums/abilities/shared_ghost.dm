@@ -33,6 +33,19 @@
 			var/turf/destination = locate(holder.owner.x, holder.owner.y, Z_LEVEL_DEBRIS)
 			holder.owner.set_loc(destination)
 #endif
+
+/datum/targetable/ghost_observer/respawn
+	name = "Respawn"
+	desc = "Give this living thing another shot?"
+	icon_state = "respawn"
+	targeted = 0
+	cooldown = 0
+
+	cast(atom/target)
+		if(ismob(holder?.owner))
+			holder.owner.abandon_mob()
+
+
 /datum/targetable/ghost_observer/goto_escape
 	name = "Go To Escape"
 	desc = "See what's happening at the exit?"

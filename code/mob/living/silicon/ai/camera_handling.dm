@@ -127,7 +127,7 @@
 		var/obj/machinery/camera/C
 		var/obj/machinery/camera/P
 
-		var/pivot = start + round(abs(end - start) / 2 )
+		var/pivot = start + floor(abs(end - start) / 2 )
 		P = L[pivot]
 		L.Swap(end, pivot)
 		pivot = start

@@ -20,7 +20,7 @@
 	heap[add] = value
 	var/i = length(heap)
 	while (i > 1)
-		var/p = round(i / 2)
+		var/p = floor(i / 2)
 		var/key1 = heap[i]
 		var/key2 = heap[p]
 		if (heap[key1] < heap[key2])

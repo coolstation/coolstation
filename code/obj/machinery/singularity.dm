@@ -32,6 +32,14 @@ Contains:
 	mats = 250
 	var/bhole = 0 // it is time. we can trust people to use the singularity For Good - cirr
 
+/obj/machinery/the_singularitygen/New()
+	START_TRACKING
+	..()
+
+/obj/machinery/the_singularitygen/disposing()
+	STOP_TRACKING
+	..()
+
 /obj/machinery/the_singularitygen/process()
 	var/goodgenerators = 0 //ensures that there are 4 generators in place with at least 2 links. note that false positives are very possible and will result in a loose singularity
 	var/smallestdimension = 13//determines the radius of the produced singularity,starts higher than is possible
@@ -97,6 +105,7 @@ Contains:
 	var/maxboom = 0
 	var/has_moved
 	var/active = 0 //determines if the singularity is contained
+	///Roughly how much Shit the singularity has eaten. Also correlates to size when loose now ,see resize()
 	var/energy = 10
 	var/lastT = 0
 	var/Dtime = null
@@ -107,6 +116,8 @@ Contains:
 	var/radius = 0 //the variable used for all calculations involving size.this is the current size
 	var/maxradius = INFINITY//the maximum size the singularity can grow to
 
+	///If loose, try and move towards this turf. see also proc/pick_target()
+	var/turf/current_target
 
 
 #ifdef SINGULARITY_TIME
@@ -145,12 +156,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		else
 			src.Wtime = world.time
 
-	if (dieot)
-		if (energy <= 0)//slowly dies over time
-			qdel (src)
-		else
-			energy -= 15
+	if (dieot) //slowly dies over time
+		energy -= 15
 
+	if (energy <= 0) //only relevant to singularities with dieot set atm, but moved it out in case we want for singularities to lose energy later.
+		qdel (src)
+		return
 
 	if (prob(20))//Chance for it to run a special event
 		event()
@@ -166,6 +177,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (checkpointC < max(MIN_TO_CONTAIN,(radius*8)))//as radius of a 5x5 should be 2, 16 tiles are needed to hold it in, this allows for 4 failures before the singularity is loose
 			src.active = 1
 			maxradius = INFINITY
+			if (src.z == Z_LEVEL_STATION)
+				global_objective_status["engineering_whoopsie"] = FAILED
 			message_admins("[src] has become loose at [log_loc(src)]")
 			message_ghosts("<b>[src]</b> has become loose at [log_loc(src, ghostjump=TRUE)].")
 
@@ -204,16 +217,72 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		return
 
 	if (selfmove)
-		var/dir = pick(cardinal)
+		if (!current_target || get_dist(src.get_center(), current_target) <= radius) //we're close enough to current target
+			current_target = pick_target()
+
+		//might want to add some jitter to this later
+		var/dir = vector_to_dir(current_target.x - src.x, current_target.y - src.y)//pick(cardinal)
 
 		var/checkloc = get_step(src.get_center(), dir)
 		for (var/dist = 0, dist < max(2,radius+1), dist ++)
 			if (locate(/obj/machinery/containment_field) in checkloc)
+				current_target = null //can't reach
 				return
 			checkloc = get_step(checkloc, dir)
 
 		step(src, dir)
 
+///Find a new target turf to get to
+/obj/machinery/the_singularity/proc/pick_target()
+	/*This little algorithm goes as follows:
+	  -get a random X and Y (should be hard to predict?)
+	  -look at every combination of those X and Y offset from our center (for example: [-7, -12], [7, -12], [-7, 12], [7, 12] - all relative coords)
+	  -count how many edible atoms are in a 5x5 on those turfs
+	  -use those counts as weights when picking one of the four options, so going towards "denser" areas is favoured but not garuanteed.
+	*/
+
+	var/turf/center = get_center()
+	if (!istype(center))
+		return
+
+	var/list/weights = list()
+	//highest score we found (if all 4 targets are empty this would )
+	var/max_score = 0
+
+	var/rand_x = rand(0, (radius+1)*3) //since radius 1 singularities can exist, we have to add 1 for them get any decent range.
+	var/rand_y = rand(0, (radius+1)*3)
+
+	if ((rand_x + rand_y) < radius) //try and stop the singulo from picking turfs that are very close by, it was picking too many close targets for my liking.
+		rand_x += rand(1,3) //the effect of this bit will lessen as a singularity gets bigger.
+		rand_y += rand(1,3)
+
+	for (var/turf/T in list(locate(center.x - rand_x, center.y - rand_y, center.z),\
+							locate(center.x + rand_x, center.y - rand_y, center.z),\
+							locate(center.x - rand_x, center.y + rand_y, center.z),\
+							locate(center.x + rand_x, center.y + rand_y, center.z))) //should filter out options out of map bounds
+
+		var/score = 0
+		for (var/turf/T2 in block(locate(T.x - 2, T.y - 2, T.z), locate(T.x + 2, T.y + 2, T.z))) //5x5
+
+			for (var/atom/maybe_food in T2.contents)
+				if (!(maybe_food.event_handler_flags & IMMUNE_SINGULARITY) && !(maybe_food.flags & TECHNICAL_ATOM)) //any food on this turf?
+					score++
+					if(maybe_food.event_handler_flags & IS_LOAF)
+						var/obj/item/reagent_containers/food/snacks/prison_loaf/loaf = maybe_food
+						score += loaf.loaf_factor // let's make the hole crave loaves.
+			if (!(T2.event_handler_flags & IMMUNE_SINGULARITY) && !(T2.flags & TECHNICAL_ATOM)) //turfs themselves are food too
+				score++
+
+		max_score = max(max_score, score)
+		weights[T] = score
+
+	if (!length(weights)) //by virtue of our maps being 300*300, this shouldn't happen
+		message_admins("Singularity at [log_loc(src)] failed to find any eligible target turfs")
+		return get_turf(src) //the code expects a turf
+	if (!max_score) //all space, probably
+		return pick(weights) //weighted_pick would always go with the first option if all weights are zero, which would bias towards bottom left
+	else
+		return weighted_pick(weights)
 
 /obj/machinery/the_singularity/ex_act(severity, last_touched)
 	if(!maxboom)
@@ -253,7 +322,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 #ifdef DATALOGGER
 						game_stats.Increment("clownabuse")
 #endif
-						grow()
+						resize()
 					if ("Lawyer")
 						// Satan.
 						gain = 250
@@ -314,10 +383,25 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else
 		return ..()
 
-/obj/machinery/the_singularity/proc/grow()
-	if(radius<maxradius)
-		radius++
-		SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+/obj/machinery/the_singularity/proc/resize() //also does shrinking as soon as someone else figures out how to get the cocksucking scaling to work
+	var/diameter = 2*radius + 1
+	//at least 50d^2 energy to achieve diameter d, picked kinda arbitrarily so the growth is slow and also increasingly more demanding
+	//(though with increased size a singulo will eat more shit fast as well so IDK it's probably still mildly accelerating)
+	//for a 1x1 through 11x11 (uneven diameters only) this comes out to thresholds of 50/450/1250/2450/4050/6050 energy needed
+	//ATM everything that isn't a mob gives 2 energy, so the singulo shouldn't be growing quickly once it's loose
+	var/godver = 50*(diameter+2)*(diameter+2)
+	//var/godver2 = 50*diameter*diameter
+
+	if (src.energy >= godver) //too small
+		if(radius<maxradius)
+			radius++
+			SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+	/*else if (src.energy < godver2)//too big
+		if (radius == 1)
+			return
+		SafeScale(radius/((radius+0.5)/(radius-0.5)),radius/((radius+0.5)/(radius-0.5)))
+		radius--*/
+
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
@@ -329,8 +413,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /////////////////////////////////////////////Controls which "event" is called
 /obj/machinery/the_singularity/proc/event()
 	var/numb = rand(1,3)
-	if(prob(25))
-		grow()
+	resize()
 	switch (numb)
 		if (1)//Eats the turfs around it
 			BHolerip()

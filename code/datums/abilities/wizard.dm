@@ -292,7 +292,7 @@
 			src.object = new /atom/movable/screen/ability/topBar/spell()
 		object.icon = src.icon
 		if (src.last_cast > world.time)
-			object.name = "[src.name] ([round((src.last_cast-world.time)/10)])"
+			object.name = "[src.name] ([floor((src.last_cast-world.time)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			object.name = src.name

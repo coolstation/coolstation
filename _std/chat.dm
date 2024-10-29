@@ -63,12 +63,12 @@
 		if (current_state <= GAME_STATE_PREGAME) elapsed = "STARTING"
 		else if (current_state > GAME_STATE_PREGAME)
 			// Number of elapsed seconds
-			var/temp = round(ticker.round_elapsed_ticks / 10)
+			var/temp = floor(ticker.round_elapsed_ticks / 10)
 			// Hours
-			var/hours = round(temp / 3600)
+			var/hours = floor(temp / 3600)
 			temp -= hours * 3600
 			// Minutes
-			var/minutes = round(temp / 60)
+			var/minutes = floor(temp / 60)
 			temp -= minutes * 60
 			// Seconds
 			var/seconds = temp

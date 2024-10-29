@@ -330,8 +330,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			hasturfs = 1
 		if (!hasturfs)
 			return 0
-		var/midx = round((minx + maxx) / 2)
-		var/midy = round((miny + maxy) / 2)
+		var/midx = floor((minx + maxx) / 2)
+		var/midy = floor((miny + maxy) / 2)
 		var/midz = minz
 		var/turf/R = locate(midx, midy, midz)
 		if (mustbeinside)
@@ -452,10 +452,16 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			//if ("AI Satellite Core") sound_fx_1 = pick('sound/ambience/station/Station_SpookyAtmosphere1.ogg','sound/ambience/station/Station_SpookyAtmosphere2.ogg') // same as above
 			if ("The Blind Pig") sound_fx_1 = pick('sound/ambience/spooky/TheBlindPig.ogg','sound/ambience/spooky/TheBlindPig2.ogg')
 			if ("M. Fortuna's House of Fortune") sound_fx_1 = 'sound/ambience/spooky/MFortuna.ogg'
+			else
 			#ifdef SUBMARINE_MAP
-			else sound_fx_1 = pick(ambience_submarine)
+				sound_fx_1 = pick(ambience_submarine)
 			#else
-			else sound_fx_1 = pick(ambience_general)
+				sound_fx_1 = pick(ambience_general)
+			#endif
+
+			#ifdef HALLOWEEN
+				if (prob(50))
+					sound_fx_1 = pick(ambience_submarine)
 			#endif
 
 	proc/add_light(var/obj/machinery/light/L)
@@ -690,6 +696,12 @@ ABSTRACT_TYPE(/area/shuttle)
 	icon_state = "shuttle2"
 
 /area/shuttle/john/grillnasium
+	icon_state = "shuttle"
+
+/area/shuttle/bayou/stagearea
+	icon_state = "shuttle"
+
+/area/shuttle/bayou/shipyard
 	icon_state = "shuttle"
 
 /area/shuttle/shopping/station
@@ -3339,6 +3351,15 @@ ABSTRACT_TYPE(/area/station/chapel)
 /area/station/chapel
 	name = "Chapel"
 	icon_state = "abstract"
+
+	Exited(atom/movable/A)
+		..()
+		if (istype(A, /obj/storage/closet/coffin)) //tried to order this as efficiently as possible
+			if (!A.throwing)
+				return
+			var/mob/living/carbon/human/H = locate() in A
+			if (H && isdead(H))
+				global_objective_status["did_burial"] = SUCCEEDED
 
 /area/station/chapel/sanctuary
 	name = "Chapel"

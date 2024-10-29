@@ -41132,7 +41132,7 @@
 "lTt" = (
 /obj/airbridge_controller{
 	id = "asyshuttle_med";
-	tunnel_width = 2
+	tunnel_width = 5
 	},
 /turf/space,
 /area/space)
@@ -43860,7 +43860,7 @@
 "mLC" = (
 /obj/airbridge_controller{
 	id = "asyshuttle_viro";
-	tunnel_width = 2
+	tunnel_width = 5
 	},
 /turf/space,
 /area/space)
@@ -54116,7 +54116,6 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/blast/pyro/podbay_autoclose{
-	doordir = "single";
 	icon_state = "bdoorsingle1";
 	id = "chapel_driver"
 	},

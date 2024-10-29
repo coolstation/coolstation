@@ -720,6 +720,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	limit = 1 //1 or 2
 	wages = PAY_DOCTORATE
 	slot_head = list(/obj/item/clothing/head/headmirror) //medical doofus hat
+	slot_belt = list(/obj/item/device/pda2/medical)
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_jump = list(/obj/item/clothing/under/rank/medical)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
@@ -727,7 +728,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_lhan = list(/obj/item/storage/firstaid/docbag)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles)
-	slot_poc1 = list(/obj/item/device/pda2/medical)
+	slot_poc1 = list(/obj/item/tweezers)
 	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
 	items_in_backpack = list(/obj/item/clothing/under/scrub/maroon)
 

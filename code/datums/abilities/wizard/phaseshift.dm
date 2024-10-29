@@ -162,7 +162,7 @@
 	//usecloak == check abilityholder
 	new /obj/dummy/spell_batpoof( get_turf(H), H , cloak)
 
-/proc/spell_firepoof(var/mob/H)
+/proc/spell_firepoof(var/mob/H, var/duration = 30)
 	if (!H || !ismob(H))
 		return
 	if (!isturf(H.loc))
@@ -175,10 +175,10 @@
 
 	if (isliving(H))
 		var/mob/living/owner = H
-		if (owner.stamina < STAMINA_SPRINT)
+		if (!(owner.special_sprint & SPRINT_FIRE))
 			return
 
-	new /obj/dummy/spell_batpoof/firepoof( get_turf(H), H , 0)
+	new /obj/dummy/spell_batpoof/firepoof( get_turf(H), H , 0, duration)
 
 /obj/dummy/spell_batpoof
 	name = "bat"
@@ -194,7 +194,7 @@
 	//var/image/overlay_image
 	var/use_cloakofdarkness = 0
 
-	New(loc,ownermob,cloak)
+	New(loc,ownermob,cloak,var/duration = 30)
 		..()
 		src.owner = ownermob
 		src.owner.set_loc(src)
@@ -211,10 +211,14 @@
 		//overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
 		//overlay_image.color = "#333333"
 
-		owner.remove_stamina(5)
+		//owner.remove_stamina(5)
 
 		if (use_cloakofdarkness)
 			processing_items |= src
+
+		SPAWN_DBG(duration)
+			if (src && !src.qdeled)
+				dispel()
 
 		SPAWN_DBG(-1)
 			var/reduc_count = 0
@@ -299,7 +303,7 @@
 
 		user.glide_size = glide
 
-		owner.remove_stamina(round(STAMINA_COST_SPRINT*stamina_mult))
+		owner.remove_stamina(floor(STAMINA_COST_SPRINT*stamina_mult))
 
 		update_cloak_status()
 

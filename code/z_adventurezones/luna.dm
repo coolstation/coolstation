@@ -888,6 +888,10 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 
 /obj/machinery/door/poddoor/blast/lunar/tour
 
+	//These close and open procs try to propagate opening and closing to adjacent doors. That's what the tourDoor bits are for.
+	//I'm not sure why they do that. The only functioning blast doors in the lunar museum are opened with buttons and panels. You're not crowbarring them.
+	//either way I had to get rid of doordir, so these need reworking (but I'd rather doors inherited procs for once)
+	/*
 	isblocked()
 		return (src.density && src.operating == -1)
 
@@ -906,8 +910,8 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 
 		if(!src.operating) //in case of emag
 			src.operating = 1
-		flick("bdoor[doordir]c0", src)
-		src.icon_state = "bdoor[doordir]0"
+		//flick("bdoor[doordir]c0", src)
+		//src.icon_state = "bdoor[doordir]0"
 		SPAWN_DBG(1 SECOND)
 			src.set_density(0)
 			src.RL_SetOpacity(0)
@@ -935,8 +939,8 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 			SPAWN_DBG(0)
 				tourDoor.close(src)
 
-		flick("bdoor[doordir]c1", src)
-		src.icon_state = "bdoor[doordir]1"
+		//flick("bdoor[doordir]c1", src)
+		//src.icon_state = "bdoor[doordir]1"
 		src.set_density(1)
 		if (src.visible)
 			src.RL_SetOpacity(1)
@@ -945,8 +949,8 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 		sleep(1 SECOND)
 		src.operating = 0
 		return
-
-	attackby(obj/item/C as obj, mob/user as mob)
+	*/
+	attackby(obj/item/C as obj, mob/user as mob) //cannot be pried open I guess
 		src.add_fingerprint(user)
 		return
 
@@ -1766,9 +1770,9 @@ datum/computer/file/embedded_program/maintpanel
 					entry = device_entries[printedCounter+1]
 
 				var/nextEntry
-				printList[round(printedCounter/2) + 2] += (selected_entry == printedCounter) ? ">" : (istype(entry) && entry.active ? "*" : " ")
+				printList[floor(printedCounter/2) + 2] += (selected_entry == printedCounter) ? ">" : (istype(entry) && entry.active ? "*" : " ")
 				if (!istype(entry))
-					printList[round(printedCounter/2) + 2] += "               " //This makes half a display row of spaces.  16 spaces.  2^4 spaces.
+					printList[floor(printedCounter/2) + 2] += "               " //This makes half a display row of spaces.  16 spaces.  2^4 spaces.
 
 					continue
 
@@ -1777,7 +1781,7 @@ datum/computer/file/embedded_program/maintpanel
 				while (length(nextEntry) < 15)
 					nextEntry += " "
 
-				printList[round(printedCounter/2) + 2] += nextEntry
+				printList[floor(printedCounter/2) + 2] += nextEntry
 
 
 			printToDisplay(printList, 0)

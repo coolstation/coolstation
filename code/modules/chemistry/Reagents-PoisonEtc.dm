@@ -1114,8 +1114,8 @@ datum
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
 				M.jitteriness = max(M.jitteriness-30,0)
-				if(M.hasStatus("stimulants"))
-					M.changeStatus("stimulants", -10 SECONDS * mult)
+				if(holder.has_reagent("omegazine"))
+					holder.remove_reagent("omegazine", 2.5 * mult)
 
 				switch(counter+= (1 * mult))
 					if (1 to 10)
@@ -1592,7 +1592,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
-			depletion_rate = 2
+			depletion_rate = 0.9 //10u should complete the transformation reliably with this, I'm not trusting floats enough to put this at 1 exactly
 			pathogen_nutrition = list("dna_mutagen")
 
 			var/tmp/progress_timer = 1

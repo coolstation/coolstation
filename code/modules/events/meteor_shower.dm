@@ -21,11 +21,14 @@ var/global/meteor_shower_active = 0
 	var/shower_name = "meteor shower"
 	var/meteor_type = /obj/newmeteor/massive
 #endif
+	var/meteors_shielded_or_missed = 0
+	var/meteors_gone = 0
+	var/last_amount = 20
 
 	event_effect(var/source, var/amount, var/direction, var/delay, var/meteor_type, var/warning_time, var/speed)
 		..()
 		//var/timer = ticker.round_elapsed_ticks / 600
-
+		INIT_OBJECTIVE("meteor_shielding")
 		if (!isnum(direction) || !(direction in valid_directions))
 			direction = pick(valid_directions)
 		wave_direction = direction
@@ -33,6 +36,7 @@ var/global/meteor_shower_active = 0
 		if (!isnum(amount))
 			amount = rand(10,50)
 		meteors_in_wave = amount
+		last_amount = meteors_in_wave //log for medal completion
 
 		if (!isnum(delay) || delay < 1)
 			delay = rand(2,20)
@@ -141,20 +145,13 @@ var/global/meteor_shower_active = 0
 
 				var/turf/pickedstart = locate(start_x, start_y, 1)
 				var/target = locate(targ_x, targ_y, 1)
-				var/obj/newmeteor/M = new meteor_type(pickedstart,target)
+				var/obj/newmeteor/M = new meteor_type(pickedstart,target, src)
 				M.pix_speed = meteor_speed + rand(0 - meteor_speed_variance,meteor_speed_variance)
 				sleep(delay_between_meteors)
 
-			broadcast_controls.broadcast_stop(broadcast)
+			broadcast_controls.broadcast_stop(broadcast) //this bit can shut off early IMO
 			qdel(broadcast)
 
-			meteor_shower_active = 0
-			//resetting custom meteor from event controls/random chance
-			shower_name = initial(shower_name)
-			meteor_type = initial(meteor_type)
-
-			for (var/obj/machinery/shield_generator/S as anything in machine_registry[MACHINES_SHIELDGENERATORS])
-				S.update_icon()
 
 	admin_call(var/source)
 		if (..())
@@ -187,6 +184,32 @@ var/global/meteor_shower_active = 0
 		src.event_effect(source,amtinput,dirinput,delinput,typeinput,timinput,spdinput)
 		return
 
+//Event now
+/datum/random_event/major/meteor_shower/proc/reset_event()
+	meteor_shower_active = 0
+	//resetting custom meteor from event controls/random chance
+	shower_name = initial(shower_name)
+	meteor_type = initial(meteor_type)
+
+	for (var/obj/machinery/shield_generator/S as anything in machine_registry[MACHINES_SHIELDGENERATORS])
+		S.update_icon()
+
+
+	if (!last_amount)
+		return
+	//objective check!
+	//Initially the objective was going to be "More than majority", and I had set this to 0.7 because depending on the map a bunch of meteors will miss the station entirely.
+	//but then in testing I had a from-north meteor shower on Chunk get a natural miss rate of 0.82 (which even for Chunk's size is shit accuracy?!)
+	//so fuck it, I want this medal to be hard.
+	if ((meteors_shielded_or_missed/last_amount) >= 0.9)
+		global_objective_status["meteor_shielding"] = SUCCEEDED
+	else //CE has to defend against at least one for the objective, not multiple
+		if (global_objective_status["meteor_shielding"] != SUCCEEDED)
+			global_objective_status["meteor_shielding"] = FAILED
+	last_amount = 0
+	meteors_gone = 0
+	meteors_shielded_or_missed = 0
+
 ////////////////////////////////////////
 // Defines for the meteors themselves //
 ////////////////////////////////////////
@@ -218,6 +241,8 @@ var/global/meteor_shower_active = 0
 	var/list/oredrops_rare = list(/obj/item/raw_material/rock)
 	var/ore_rarity = 1 //prob(this) to pull from rare list (this is the original value)
 	var/chunk_name = "meteor chunk"
+	var/datum/random_event/major/meteor_shower/our_event = null
+	var/broke_station_shit = FALSE
 
 	//sorry couldn't help it
 	meat
@@ -255,11 +280,12 @@ var/global/meteor_shower_active = 0
 			name = "small shark chunk"
 			desc = "A chunk of shark debris. You might want to stop staring at it and run. Trust me, this came from a shark."
 
-	New(var/atom/my_spawn, var/atom/trg)
+	New(var/atom/my_spawn, var/atom/trg, are_we_an_event_meteor = null)
 		if(!my_spawn || !trg)
 			..()
 			return
 
+		our_event = are_we_an_event_meteor
 		var/matrix/o = matrix()
 		var/matrix/turn = turn(o, 120)
 		animate(src, transform = o * turn, time = 8/3, loop = -1)
@@ -277,6 +303,13 @@ var/global/meteor_shower_active = 0
 	disposing()
 		target = null
 		last_tile = null
+		if (our_event)
+			our_event.meteors_gone++
+			if (!src.broke_station_shit)
+				our_event.meteors_shielded_or_missed++
+			if (our_event.meteors_gone == our_event.last_amount)
+				our_event.reset_event()
+		our_event = null
 		..()
 
 	Bump(atom/A)
@@ -335,6 +368,8 @@ var/global/meteor_shower_active = 0
 			if(!S.density) continue
 			hit_object = 1
 			S.meteorhit(src)
+			if (istype(get_area(S), /area/station))
+				broke_station_shit = TRUE
 
 		for(var/mob/M in range(1,src))
 			if(M == src) continue //Just to make sure
@@ -350,7 +385,7 @@ var/global/meteor_shower_active = 0
 			if (!O.density) continue
 			hit_object = 1
 			hits--
-			O.meteorhit(src)
+			O.meteorhit(src) //<-unless overridden, the station breaking check happens in here
 			if (O && !O.anchored)
 				step(O,get_dir(src,O))
 

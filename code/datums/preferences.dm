@@ -479,7 +479,7 @@ datum/preferences
 				var/new_age = input(usr, "Please select type in age: 20-80", "Character Generation", src.age)  as null|num
 
 				if (new_age)
-					src.age = max(min(round(text2num(new_age)), 80), 20)
+					src.age = max(min(floor(text2num(new_age)), 80), 20)
 					src.profile_modified = TRUE
 
 					return TRUE
@@ -503,7 +503,7 @@ datum/preferences
 				else
 					var/new_pin = input(usr, "Please select a PIN between 1000 and 9999", "Character Generation", src.pin)  as null|num
 					if (new_pin)
-						src.pin = max(min(round(text2num(new_pin)), 9999), 1000)
+						src.pin = max(min(floor(text2num(new_pin)), 9999), 1000)
 						src.profile_modified = TRUE
 						return TRUE
 
@@ -1784,9 +1784,6 @@ proc/ismasc(datum/customization_style/style)
 var/global/list/hair_details = list("einstein" = /datum/customization_style/hair/short/einalt,\
 	"80s" = /datum/customization_style/hair/long/eightiesfade,\
 	"glammetal" = /datum/customization_style/hair/long/glammetalO,\
-	"mermaid" = /datum/customization_style/hair/long/mermaidfade,\
-	"smoothwave" = /datum/customization_style/hair/long/smoothwave_fade,\
-	"longbeard" = /datum/customization_style/beard/longbeardfade,\
 	"pomp" = /datum/customization_style/hair/short/pompS,\
 	"mohawk" = list(/datum/customization_style/hair/short/mohawkFT, /datum/customization_style/hair/short/mohawkFB, /datum/customization_style/hair/short/mohawkS),\
 	"emo" = /datum/customization_style/hair/short/emoH,\

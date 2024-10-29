@@ -56,7 +56,7 @@
 	proc
 		update_charge()
 			if (master.cell)
-				switch(round(100*master.cell.charge/master.cell.maxcharge))
+				switch(floor(100*master.cell.charge/master.cell.maxcharge))
 					if(75 to INFINITY)
 						charge.icon_state = "charge4"
 					if(50 to 75)

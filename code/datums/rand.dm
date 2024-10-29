@@ -31,7 +31,7 @@
 			H = L
 			L = 0
 		if(!isnull(L) && !isnull(H))
-			. = round(xor_randf(L, H+0.99))
+			. = floor(xor_randf(L, H+0.99))
 		else
 			. = xor_randf()
 
@@ -39,7 +39,7 @@
 		. = xor_rand() < (P/100)
 
 	proc/xor_pick(list/L)
-		var/index = round( xor_rand() * length(L) ) + 1
+		var/index = floor( xor_rand() * length(L) ) + 1
 		. = L[index]
 
 	proc/xor_weighted_pick(list/L)

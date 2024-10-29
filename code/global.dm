@@ -289,6 +289,7 @@ var/global
 	researchshuttle_location = 0
 	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
+	shipyardship_location = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
@@ -420,6 +421,9 @@ var/global
 
 	// list of miscreants since mode is irrelevant
 	list/miscreants = list()
+
+	// New idea (as of 2024-10-25): for applicable objectives (global, trackable success/fail state mid-round), update this list so checking at end of round is easy.
+	list/global_objective_status = list()
 
 	// Antag overlays for admin ghosts, Syndieborgs and the like (Convair880).
 	antag_generic = image('icons/mob/antag_overlays.dmi', icon_state = "generic")

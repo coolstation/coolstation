@@ -222,7 +222,7 @@
 
 			else
 				if(!src.setup_freq_locked)
-					var/new_freq = round(text2num(command))
+					var/new_freq = floor(text2num(command))
 					if(new_freq && (new_freq >= 1000 && new_freq <= 1500))
 						src.set_frequency(new_freq)
 
@@ -1015,7 +1015,7 @@
 		var/status_text = "CELL: No cell!"
 		if(istype(checkhost) && checkhost.cell)
 			var/obj/item/cell/cell = checkhost.cell
-			var/charge_percentage = round((cell.charge/cell.maxcharge)*100)
+			var/charge_percentage = floor((cell.charge/cell.maxcharge)*100)
 			status_text = "CELL: [charge_percentage]%"
 
 		return status_text
@@ -1029,7 +1029,7 @@
 		var/readout_color = "#000000"
 		var/readout = "NONE"
 		if(cell)
-			var/charge_percentage = round((cell.charge/cell.maxcharge)*100)
+			var/charge_percentage = floor((cell.charge/cell.maxcharge)*100)
 			switch(charge_percentage)
 				if(0 to 10)
 					readout_color = "#F80000"

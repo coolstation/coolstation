@@ -254,7 +254,7 @@ kText
 
 				if(PAD_BOTH)
 					var/pad
-					for(var/i=1 to round(difference/2))
+					for(var/i=1 to floor(difference/2))
 						pad += padCharacter
 
 					return "[pad][string][pad][difference % 2 ? padCharacter : null]"

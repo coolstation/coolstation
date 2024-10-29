@@ -1380,6 +1380,8 @@
 	if (!usr.stat && canmove_or_pinning && !usr.restrained() && in_interact_range(src, usr) && ticker && usr.can_strip(src))
 		if (href_list["slot"] == "handcuff")
 			actions.start(new/datum/action/bar/icon/handcuffRemovalOther(src), usr)
+		else if ((text2num(href_list["slot"]) == slot_l_hand || text2num(href_list["slot"]) == slot_r_hand) && src.handcuffs)
+			actions.start(new/datum/action/bar/icon/handcuffRemovalOther(src), usr)
 		else if (href_list["slot"] == "internal")
 			actions.start(new/datum/action/bar/icon/internalsOther(src), usr)
 		else if (href_list["item"])
@@ -2538,6 +2540,9 @@
 	if (!isalive(src)) //can't resist when dead or unconscious
 		return
 
+	if (actions.hasAction(src, "handcuffs")) //no rerolling the timer
+		return
+
 	if (!src.restrained() && (src.shoes && src.shoes.chained))
 		var/obj/item/clothing/shoes/SH = src.shoes
 		if (ischangeling(src))
@@ -2569,7 +2574,7 @@
 		else
 			src.last_resist = world.time + 100
 			var/time = 450
-			src.show_text("You attempt to remove your shackles. (This will take around [round(time / 10)] seconds and you need to stand still.)", "red")
+			src.show_text("You attempt to remove your shackles. (This will take around [floor(time / 10)] seconds and you need to stand still.)", "red")
 			actions.start(new/datum/action/bar/private/icon/shackles_removal(time), src)
 
 	if (src.hasStatus("handcuffed"))
@@ -2625,7 +2630,7 @@
 				calcTime = istype(src.handcuffs, /obj/item/handcuffs/guardbot) ? rand(15 SECONDS, 18 SECONDS) : rand(40 SECONDS, 50 SECONDS)
 			if (!src.canmove)
 				calcTime *= 1.5
-			boutput(src, "<span class='alert'>You attempt to remove your handcuffs. (This will take around [round(calcTime / 10)] seconds and you need to stand still)</span>")
+			boutput(src, "<span class='alert'>You attempt to remove your handcuffs. (This will take around [floor(calcTime / 10)] seconds and you need to stand still)</span>")
 			if (src.handcuffs:material) //This is a bit hacky.
 				src.handcuffs:material:triggerOnAttacked(src.handcuffs, src, src, src.handcuffs)
 			actions.start(new/datum/action/bar/private/icon/handcuffRemoval(calcTime), src)

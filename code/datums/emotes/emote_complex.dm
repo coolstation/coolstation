@@ -466,7 +466,7 @@
 /datum/emote/signal/enact(mob/user, voluntary = 0, param)
 	if (user.restrained())
 		return
-	var/t1 = min( max(round(text2num(param)), 1), 10)
+	var/t1 = min( max(floor(text2num(param)), 1), 10)
 	if (isnum(t1))
 		if (t1 <= 5 && (!user.r_hand || !user.l_hand))
 			return list("<B>[user]</B> raises [t1] finger\s.", "<I>raises [t1] finger\s</I>", MESSAGE_VISIBLE)

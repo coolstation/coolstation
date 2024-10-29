@@ -3048,7 +3048,7 @@
 /obj/airbridge_controller{
 	id = "merchant_N";
 	primary_controller = 1;
-	tunnel_width = 1
+	tunnel_width = 3
 	},
 /turf/space,
 /area/station/shield_zone)
@@ -3056,7 +3056,7 @@
 /obj/airbridge_controller{
 	id = "merchant_N";
 	primary_controller = 0;
-	tunnel_width = 1
+	tunnel_width = 3
 	},
 /turf/space,
 /area/space)
@@ -3326,7 +3326,7 @@
 /obj/airbridge_controller{
 	id = "escape";
 	primary_controller = 0;
-	tunnel_width = 3
+	tunnel_width = 7
 	},
 /turf/space,
 /area/space)
@@ -3334,7 +3334,7 @@
 /obj/airbridge_controller{
 	id = "escape";
 	primary_controller = 1;
-	tunnel_width = 3
+	tunnel_width = 7
 	},
 /turf/space,
 /area/station/shield_zone)
@@ -5230,7 +5230,7 @@
 /obj/airbridge_controller{
 	id = "merchant_S";
 	primary_controller = 1;
-	tunnel_width = 1
+	tunnel_width = 3
 	},
 /turf/space,
 /area/station/shield_zone)
@@ -5238,7 +5238,7 @@
 /obj/airbridge_controller{
 	id = "merchant_S";
 	primary_controller = 0;
-	tunnel_width = 1
+	tunnel_width = 3
 	},
 /turf/space,
 /area/space)
@@ -7621,7 +7621,6 @@
 	layer = 4;
 	autoclose = 1;
 	id = "pod_port";
-	doordir = "left"
 	},
 /turf/floor/engine{
 	icon_state = "engine_caution_we"
@@ -7970,7 +7969,7 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-	doordir = "left";
+
 	icon_state = "bdoorleft1";
 	id = "pod_fore";
 	layer = 4;
@@ -8157,7 +8156,6 @@
 	layer = 4;
 	autoclose = 1;
 	id = "pod_port";
-	doordir = "left"
 	},
 /turf/floor/engine{
 	icon_state = "engine_caution_we"
@@ -8542,7 +8540,7 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-	doordir = "right";
+
 	icon_state = "bdoorright1";
 	id = "pod_fore";
 	layer = 4;
@@ -15433,7 +15431,7 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -15841,7 +15839,7 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -15895,7 +15893,7 @@
 /area/station/maintenance/disposal)
 "aBI" = (
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "disposals_vent";
 	layer = 4;
@@ -20719,7 +20717,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "pharmacylock";
 	layer = 4;
@@ -20761,7 +20759,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "pharmacylock";
 	layer = 4;
@@ -20784,7 +20782,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "pharmacylock";
 	layer = 4;
@@ -23927,7 +23925,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "pharmacylock";
 	layer = 4;
@@ -30639,7 +30637,7 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -30688,7 +30686,7 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -31479,7 +31477,7 @@
 	autoclose = 0;
 	density = 1;
 	dir = 1;
-	doordir = "left";
+
 	icon_state = "bdoorleft1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -31520,7 +31518,7 @@
 	autoclose = 0;
 	density = 0;
 	dir = 2;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -32816,7 +32814,7 @@
 	autoclose = 0;
 	density = 1;
 	dir = 1;
-	doordir = "right";
+
 	icon_state = "bdoorright1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -32863,7 +32861,7 @@
 	autoclose = 0;
 	density = 0;
 	dir = 2;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -33643,7 +33641,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -34010,7 +34008,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "chemblast";
 	layer = 5;
@@ -34108,7 +34106,7 @@
 /obj/window_blinds,
 /obj/machinery/door/poddoor/blast{
 	density = 0;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "chemblast";
 	layer = 5;
@@ -35792,7 +35790,7 @@
 /obj/window_blinds,
 /obj/machinery/door/poddoor/blast{
 	density = 0;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "chemblast";
 	layer = 5;
@@ -37841,7 +37839,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;
@@ -38059,7 +38057,7 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "eva_shield";
 	layer = 4;
@@ -38122,7 +38120,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "eva_shield";
 	layer = 4;
@@ -38524,7 +38522,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "chemblast";
 	layer = 5;
@@ -40501,7 +40499,7 @@
 	operating = 1
 	},
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -41517,7 +41515,7 @@
 /area/station/hangar/science)
 "bus" = (
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "artlabgun";
 	layer = 4;
@@ -43993,7 +43991,7 @@
 /obj/airbridge_controller{
 	id = "mining_shuttle";
 	primary_controller = 0;
-	tunnel_width = 1
+	tunnel_width = 3
 	},
 /turf/space,
 /area/space)
@@ -44001,7 +43999,7 @@
 /obj/airbridge_controller{
 	id = "mining_shuttle";
 	primary_controller = 1;
-	tunnel_width = 1
+	tunnel_width = 3
 	},
 /turf/space,
 /area/station/shield_zone)
@@ -44927,7 +44925,7 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -47894,7 +47892,7 @@
 	id = "cargo_out"
 	},
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "cargo_out_inner";
 	layer = 4;
@@ -48710,7 +48708,7 @@
 	id = "cargo_in"
 	},
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "cargo_in_inner";
 	layer = 4;
@@ -48732,7 +48730,7 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft1";
 	id = "cargo_hangar";
 	layer = 4;
@@ -48755,7 +48753,7 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright1";
 	id = "cargo_hangar";
 	layer = 4;
@@ -48917,7 +48915,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -48974,7 +48972,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -48990,7 +48988,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -49043,7 +49041,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -49081,7 +49079,7 @@
 "bJa" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright1";
 	id = "combustion";
 	layer = 4;
@@ -49125,7 +49123,7 @@
 	id = "qm_dock_out"
 	},
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock_out";
 	layer = 4;
@@ -49230,7 +49228,7 @@
 	id = "cargo_in"
 	},
 /obj/machinery/door/poddoor/blast/single{
-	doordir = "noblasts";
+
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock";
 	layer = 4;
@@ -49431,7 +49429,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -49657,7 +49655,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -49790,7 +49788,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "left";
+
 	icon_state = "bdoorleft0";
 	id = "fireshield";
 	layer = 4;
@@ -49843,7 +49841,7 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-	doordir = "right";
+
 	icon_state = "bdoorright0";
 	id = "fireshield";
 	layer = 4;

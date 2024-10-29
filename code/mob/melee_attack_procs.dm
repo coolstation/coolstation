@@ -401,8 +401,8 @@
 		if (H.sims)
 			mult *= H.sims.getMoodActionMultiplier()
 
-	//var/stampart = round(((STAMINA_MAX - target_stamina) / 3) )
-	var/stampart = round(abs((src.health - target.health)/3)) // the more disparity between the oponents, the more likely *either* will land a shove-down!
+	//var/stampart = floor(((STAMINA_MAX - target_stamina) / 3) )
+	var/stampart = floor(abs((src.health - target.health)/3)) // the more disparity between the oponents, the more likely *either* will land a shove-down!
 	if (is_shove)
 		msgs.base_attack_message = "<span class='alert'><B>[src] shoves [target][DISARM_WITH_ITEM_TEXT]!</B></span>"
 		msgs.played_sound = 'sound/impact_sounds/Generic_Shove_1.ogg'
@@ -627,7 +627,7 @@
 				crit_chance += H.gloves.bonus_crit_chance
 			if (H.gloves.stamina_dmg_mult)
 				stamina_damage_mult += H.gloves.stamina_dmg_mult
-		var/healthpart = round(abs((src.health - target.health)/5))
+		var/healthpart = floor(abs((src.health - target.health)/5))
 		var/stampart = (((H.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS))-STAMINA_REGEN)/STAMINA_REGEN) // making stam regen do something???
 		crit_chance += stampart
 		crit_chance += healthpart // rng stuns

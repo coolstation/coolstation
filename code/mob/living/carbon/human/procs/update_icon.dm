@@ -1305,7 +1305,7 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 	src.updatehealth()
 	if (!isdead(src))
 		var/h_color = "#999999"
-		var/h_pct = round((health / (max_health != 0 ? max_health : 1)) * 100)
+		var/h_pct = floor((health / (max_health != 0 ? max_health : 1)) * 100)
 		switch (h_pct)
 			if (50 to INFINITY)
 				h_color	= "rgb([(100 - h_pct) / 50 * 255], 255, [(100 - h_pct) * 0.3])"
@@ -1350,8 +1350,8 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 	var/obj/item/organ/head/HO = organs["head"]
 	var/head_damage = null
 	if (HO && organHolder?.head)
-		var/head_brute = min(3,round(HO.brute_dam/10))
-		var/head_burn = min(3,round(HO.burn_dam/10))
+		var/head_brute = min(3,floor(HO.brute_dam/10))
+		var/head_burn = min(3,floor(HO.burn_dam/10))
 		if (head_brute+head_burn > 0)
 			head_damage = "head[head_brute][head_burn]"
 
