@@ -507,7 +507,7 @@
 			//		Target mob is an actual player
 			//		OR
 			//		There's 3 or less people connected	(so you can test using monkeys on an empty server)
-			if (subject.bioHolder.ActivatePoolEffect(E) && ((total_clients() <= 3) || (!isnpcmonkey(target) && target.client)))
+			if (subject.bioHolder.ActivatePoolEffect(E) && ((total_clients() <= 3) || (!isnpcmonkey(subject) && subject.client)))
 				activated_bonus(usr)
 			on_ui_interacted(ui.user)
 		if("mutantrace")
