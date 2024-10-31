@@ -38,6 +38,29 @@
 				return 1
 		return 0
 
+	proc/is_frozen()
+		var loc_temp = T0C
+		if(istype(src.loc, /turf/space))
+			return TRUE
+		var/turf/T = src.loc
+		loc_temp = T.temperature
+		if(loc_temp < T0C)
+			return TRUE
+		else
+			return FALSE
+
+	proc/is_too_hot()
+		var loc_temp = T0C
+		if(istype(src.loc, /turf/space))
+			return TRUE
+		var/turf/T = src.loc
+		loc_temp = T.temperature
+		if(loc_temp > T45C)
+			return TRUE
+		else
+			return FALSE
+
+
 	proc/heal(var/mob/living/M)
 		var/healing = src.heal_amt
 
@@ -139,7 +162,7 @@
 			create_time = world.time
 			if (!src.pooled && isturf(src.loc) && !on_table())
 				var/area/A = get_area(src)
-				if (A.no_ants || is_frozen(src.loc) || is_too_hot(src.loc)) //or else we'd never ever ever get clean food from hydro
+				if (A.no_ants || is_frozen() || is_too_hot()) //or else we'd never ever ever get clean food from hydro
 					return //that astroturf is thoroughly covered in insecticide
 				if (prob(25))
 					made_ants = 1

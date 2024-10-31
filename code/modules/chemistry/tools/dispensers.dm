@@ -31,22 +31,22 @@
 		if (dist <= 2 && reagents)
 			. += "<br><span class='notice'>[reagents.get_description(user,RC_SCALE)]</span>"
 
-	proc/is_frozen(checked)
+	proc/is_frozen()
 		var loc_temp = T0C
-		if(istype(checked, /turf/space))
+		if(istype(src.loc, /turf/space))
 			return TRUE
-		var/turf/T = checked
+		var/turf/T = src.loc
 		loc_temp = T.temperature
 		if(loc_temp < T0C)
 			return TRUE
 		else
 			return FALSE
 
-	proc/is_too_hot(checked)
+	proc/is_too_hot()
 		var loc_temp = T0C
-		if(istype(checked, /turf/space))
+		if(istype(src.loc, /turf/space))
 			return TRUE
-		var/turf/T = checked
+		var/turf/T = src.loc
 		loc_temp = T.temperature
 		if(loc_temp > T45C)
 			return TRUE
@@ -115,7 +115,7 @@
 		src.Scale(scale, scale)
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
-		if (isturf(src.loc) && !is_frozen(src.loc) && !is_too_hot(src.loc))
+		if (isturf(src.loc) && !is_frozen() && !is_too_hot())
 			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
 				if (!snack.doants)
 					continue //they don't touch the stuff
