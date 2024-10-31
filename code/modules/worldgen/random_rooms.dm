@@ -48,35 +48,6 @@ proc/buildRandomRooms()
 	for_by_tcl(landmark, /obj/landmark/random_room)
 		landmark.apply()
 
-proc/buildRandomShips()
-	shuffle_list(by_type[/obj/landmark/random_ship])
-	for_by_tcl(landmark, /obj/landmark/random_ship)
-
-/obj/landmark/random_ship
-	var/size = null
-	deleted_on_start = FALSE
-	add_to_landmarks = FALSE
-	New()
-		..()
-		START_TRACKING
-
-	disposing()
-		STOP_TRACKING
-		..()
-
-	proc/apply()
-		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(size))
-		if(isnull(ship_prefab))
-			CRASH("No random ship prefab found for size: " + size)
-		ship_prefab.applyTo(src.loc)
-		logTheThing("debug", null, null, "Applied random ship prefab: [room_prefab] to [log_loc(src)]")
-		qdel(src)
-
-	size10x20
-		size = "30x25"
-	#ifdef IN_MAP_EDITOR
-		icon = 'icons/map-editing/random-rooms/30x25.dmi'
-	#endif
 	/*
 	small_spaceship
 		size = "small_ship"

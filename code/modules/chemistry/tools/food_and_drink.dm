@@ -414,7 +414,7 @@
 			(not_food_safe()) //but after griming, let's still roll around and collect whatever nasty gibs and whatnot is still there
 		//bugs also because lol
 		var/obj/reagent_dispensers/cleanable/ants/ants = locate(/obj/reagent_dispensers/cleanable/ants) in T
-		if (ants && !(src.reagents.has_reagent("ants")) && !src.is_frozen()) //no double dipping
+		if (ants && !(src.reagents.has_reagent("ants"))) //no double dipping
 			ants.reagents.trans_to(src, 1)
 		var/obj/reagent_dispensers/cleanable/spiders/spiders = locate(/obj/reagent_dispensers/cleanable/spiders) in T
 		if (spiders && !(src.reagents.has_reagent("spiders")))

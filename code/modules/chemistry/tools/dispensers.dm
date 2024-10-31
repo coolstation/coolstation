@@ -33,9 +33,9 @@
 
 	proc/is_frozen(checked)
 		var loc_temp = T0C
-		if(istype(check.loc, /turf/space))
+		if(istype(checked, /turf/space))
 			return TRUE
-		var/turf/T = checked.loc
+		var/turf/T = checked
 		loc_temp = T.temperature
 		if(loc_temp < T0C)
 			return TRUE
@@ -104,7 +104,7 @@
 		src.Scale(scale, scale)
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
-		if (isturf(src.loc) && !is_frozen(src))
+		if (isturf(src.loc) && !is_frozen(src.loc))
 			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
 				if (!snack.doants)
 					continue //they don't touch the stuff
