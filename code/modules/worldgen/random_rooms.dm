@@ -27,34 +27,13 @@ TYPEINFO(/datum/mapPrefab/random_room)
 		if(probability_regex.Find(filename))
 			src.probability = text2num(probability_regex.group[1])
 
-/datum/mapPrefab/random_ship
-	maxNum = null
-
-	post_init()
-		var/regex/size_regex = regex(@"^(\d+)x(\d+)$")
-		for(var/tag in src.tags)
-			if(size_regex.Find(tag))
-				src.prefabSizeX = text2num(size_regex.group[1])
-				src.prefabSizeY = text2num(size_regex.group[2])
-
-		var/filename = filename_from_path(src.prefabPath)
-		var/regex/probability_regex = regex(@"^.*_(\d+)\.dmm$")
-		if(probability_regex.Find(filename))
-			src.probability = text2num(probability_regex.group[1])
-
 
 proc/buildRandomRooms()
 	shuffle_list(by_type[/obj/landmark/random_room])
 	for_by_tcl(landmark, /obj/landmark/random_room)
 		landmark.apply()
 
-	/*
-	small_spaceship
-		size = "small_ship"
-	#ifdef IN_MAP_EDITOR
-		icon = 'icons/map-editing/random-rooms/small_ship.dmi'
-	#endif
-	*/
+
 /obj/landmark/random_room
 	///actually the name of the folder within assets/maps/random_rooms
 	var/size = null
