@@ -2429,6 +2429,7 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 /area/station/crew_quarters/kitchen/freezer
 		name = "Freezer"
 		icon_state = "blue"
+		no_ants = 1
 
 /area/station/crew_quarters/kitchen/therustykrab
 		name = "The Rusty Krab"

@@ -139,7 +139,7 @@
 			create_time = world.time
 			if (!src.pooled && isturf(src.loc) && !on_table())
 				var/area/A = get_area(src)
-				if (A.no_ants) //or else we'd never ever ever get clean food from hydro
+				if (A.no_ants || is_frozen(src.loc) || is_too_hot(src.loc)) //or else we'd never ever ever get clean food from hydro
 					return //that astroturf is thoroughly covered in insecticide
 				if (prob(25))
 					made_ants = 1
