@@ -31,16 +31,16 @@
 		if (dist <= 2 && reagents)
 			. += "<br><span class='notice'>[reagents.get_description(user,RC_SCALE)]</span>"
 
-	proc/is_frozen()
-		if(var/datum/gas_mixture/enviroment)
-			loc_temp = T0C
-			if(!enviroment)
-				return..()
-			loc_temp = enviroment.temperature
-			if(loc_temp < T0C)
-				return TRUE
-			else
-				return FALSE
+	proc/is_frozen(checked)
+		var loc_temp = T0C
+		if(istype(check.loc, /turf/space))
+			return TRUE
+		var/turf/T = checked.loc
+		loc_temp = T.temperature
+		if(loc_temp < T0C)
+			return TRUE
+		else
+			return FALSE
 
 	proc/smash()
 		var/turf/T = get_turf(src)
@@ -104,7 +104,7 @@
 		src.Scale(scale, scale)
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
-		if (isturf(src.loc) && src.is_frozen())
+		if (isturf(src.loc) && !is_frozen(src))
 			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
 				if (!snack.doants)
 					continue //they don't touch the stuff
