@@ -826,8 +826,18 @@
 		mob.see_in_dark = SEE_DARK_HUMAN + 1
 		mob.see_invisible = 1
 
+	proc/replacement_s(s,next_letter)
+		if(isUpper(s) && !isUpper(next_letter))
+			return capitalize(stutter("ss") + next_letter)
+		if(isUpper(s) && isUpper(next_letter))
+			return stutter("SS") + next_letter
+		if(!isUpper(s))
+			return stutter("ss") + next_letter
+
+
 	say_filter(var/message)
-		return replacetext(message, "s", stutter("ss"))
+		var/static/regex/s_catch = regex(@"(s)(.?)","ig")
+		return s_catch.Replace(message, /datum/mutantrace/lizard/proc/replacement_s)
 
 	disposing()
 		if(ishuman(mob))
