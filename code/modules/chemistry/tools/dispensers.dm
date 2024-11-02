@@ -94,7 +94,7 @@
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
 		if (isturf(src.loc))
-			var/turf/T = src.loc
+			var/turf/T = get_turf(src)
 			if(!T.is_frozen() && !T.is_too_hot())
 				for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
 					if (!snack.doants)
