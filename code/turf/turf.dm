@@ -124,6 +124,30 @@
 
 	proc/selftilenotify()
 
+	proc/is_frozen()
+		var loc_temp = T0C
+		if(isturf(src.loc))
+			var/turf/T = src.loc
+			if(istype(T,/turf/space))
+				return TRUE
+			loc_temp = T.temperature
+			if(loc_temp < T0C)
+				return TRUE
+			else
+				return FALSE
+
+	proc/is_too_hot()
+		var loc_temp = T0C
+		if(isturf(src.loc))
+			var/turf/T = src.loc
+			if(istype(T,/turf/space))
+				return FALSE
+			loc_temp = T.temperature
+			if(loc_temp > T45C)
+				return TRUE
+			else
+				return FALSE
+
 	proc/generate_worldgen()
 
 	proc/inherit_area() //jerko built a thing
