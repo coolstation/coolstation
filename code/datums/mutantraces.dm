@@ -1654,14 +1654,14 @@
 		return "croaks"
 
 	proc/replacement_r(r, blank, next_letter)
-	if(isUpper(r) && !isUpper(next_letter))
-		return capitalize(stutter("rrr") + next_letter)
-	if(isUpper(r) && isUpper(next_letter))
-		return stutter("RRR") + next_letter
-	if(!isUpper(r))
-		return stutter("rr") + next_letter
-	else
-		return stutter("rr") + next_letter
+		if(isUpper(r) && !isUpper(next_letter))
+			return capitalize(stutter("rrr") + next_letter)
+		if(isUpper(r) && isUpper(next_letter))
+			return stutter("RRR") + next_letter
+		if(!isUpper(r))
+			return stutter("rr") + next_letter
+		else
+			return stutter("rr") + next_letter
 
 
 	say_filter(var/message)
