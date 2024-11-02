@@ -319,7 +319,7 @@
 #endif
 			if (istype(objective, /datum/objective/miscreant)) continue
 
-			if (objective.check_completion())
+			if (objective.check_completion() == SUCCEEDED)
 				if (!isnull(objective.medal_name) && !isnull(M.current))
 					M.current.unlock_medal(objective.medal_name, objective.medal_announce)
 

@@ -638,6 +638,9 @@ datum/preferences
 					if ("custom3")
 						current_color = src.AH.customization_third_color
 					if ("underwear")
+						if (src.AH.underwear == "Fig Leaf")
+							alert("You can't recolour a leaf, silly.")
+							return
 						current_color = src.AH.u_color
 				var/new_color = input(usr, "Please select a color.", "Character Generation", current_color) as null|color
 				if (new_color)
@@ -674,6 +677,8 @@ datum/preferences
 							src.AH.customization_third = new_style
 						if ("underwear")
 							src.AH.underwear = new_style
+							if (new_style == "Fig Leaf")
+								src.AH.u_color = "#FFFFFF" //not customisable
 
 					update_preview_icon()
 					src.profile_modified = TRUE
@@ -723,6 +728,8 @@ datum/preferences
 							src.AH.customization_third = new new_style
 						if ("underwear")
 							src.AH.underwear = new_style
+							if (new_style == "Fig Leaf")
+								src.AH.u_color = "#FFFFFF" //not customisable
 
 					update_preview_icon()
 					src.profile_modified = TRUE
@@ -1798,11 +1805,13 @@ var/global/list/feminine_ustyles = list("No Underwear" = "none",\
 	"Bra and Boyshorts" = "braboy",\
 	"Tanktop and Boyshorts" = "tankboy",\
 	"Panties" = "panties",\
-	"Boyshorts" = "boyshort")
+	"Boyshorts" = "boyshort",\
+	"Fig Leaf" = "figleaf")
 var/global/list/masculine_ustyles = list("No Underwear" = "none",\
 	"Briefs" = "briefs",\
 	"Boxers" = "boxers",\
-	"Boyshorts" = "boyshort")
+	"Boyshorts" = "boyshort",\
+	"Fig Leaf" = "figleaf")
 
 var/global/list/male_screams = list("male", "malescream4", "malescream5", "malescream6", "malescream7")
 var/global/list/female_screams = list("female", "femalescream1", "femalescream2", "femalescream3", "femalescream4")
@@ -1960,7 +1969,8 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 				AH.underwear = pick(masculine_ustyles)
 			else
 				AH.underwear = pick(feminine_ustyles)
-		AH.u_color = random_saturated_hex_color()
+		if (AH.underwear != "Fig Leaf")
+			AH.u_color = random_saturated_hex_color()
 
 	if (H && change_blood)
 		H.bioHolder.bloodType = random_blood_type(1)

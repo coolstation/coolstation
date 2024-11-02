@@ -187,15 +187,20 @@
 	#endif
 					if (istype(objective, /datum/objective/miscreant)) continue
 
-					if (objective.check_completion())
-						stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>Success</B></span>"
-						logTheThing("diary",traitor,null,"completed objective: [objective.explanation_text]")
-						if (!isnull(objective.medal_name) && !isnull(traitor.current))
-							traitor.current.unlock_medal(objective.medal_name, objective.medal_announce)
-					else
-						stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='alert'>Failed</span>"
-						logTheThing("diary",traitor,null,"failed objective: [objective.explanation_text]. Womp womp.")
-						traitorwin = 0
+					switch(objective.check_completion())
+						if (SUCCEEDED)
+							stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>Success</B></span>"
+							logTheThing("diary",traitor,null,"completed objective: [objective.explanation_text]")
+							if (!isnull(objective.medal_name) && !isnull(traitor.current))
+								traitor.current.unlock_medal(objective.medal_name, objective.medal_announce)
+						if (FAILED)
+							stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='alert'>Failed</span>"
+							logTheThing("diary",traitor,null,"failed objective: [objective.explanation_text]. Womp womp.")
+							traitorwin = 0
+						if (NO_OPPORTUNITY)
+							stuff_to_output += "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>N/A</B></span>"
+							logTheThing("diary",traitor,null,"uncompletable objective: [objective.explanation_text]")
+							//no medal
 					count++
 
 			// Please use objective.medal_name for medals that are tied to a specific objective instead of adding them here.

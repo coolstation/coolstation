@@ -116,7 +116,7 @@
 				if (istype(objective, /datum/objective/crew)) continue
 #endif
 				message["objective[count]"] = objective.explanation_text
-				if(objective.check_completion())
+				if(objective.check_completion() != FAILED)
 					message["success[count]"] = 1
 				else
 					message["success[count]"] = 0

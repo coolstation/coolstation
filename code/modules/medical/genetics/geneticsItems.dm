@@ -98,8 +98,12 @@
 			for(var/X in target.bioHolder.effectPool)
 				BE = target.bioHolder.effectPool[X]
 				if (BE && BE.id == gene_to_activate)
-					if (target.bioHolder.ActivatePoolEffect(BE,overrideDNA = 1,grant_research = 0) && !isnpcmonkey(target) && target.client)
-						src.expended_properly = 1
+					//	Activator activated gene AND
+					//		Target mob is an actual player
+					//		OR
+					//		There's 3 or less people connected	(so you can test using monkeys on an empty server)
+					if (target.bioHolder.ActivatePoolEffect(BE,overrideDNA = 1,grant_research = 0) && ((total_clients() <= 3) || (!isnpcmonkey(target) && target.client)))
+						src.expended_properly = 1 //counts for materials & chromosomes
 					break
 			src.uses--
 			src.update_appearance()

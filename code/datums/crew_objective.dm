@@ -170,11 +170,42 @@ ABSTRACT_TYPE(/datum/objective/crew/chiefengineer)
 	ptl
 		explanation_text = "Earn at least a million credits via the PTL."
 		medal_name = "1.21 Jiggawatts"
+		prerequisite()
+			for(var/obj/machinery/power/pt_laser/P in machine_registry[MACHINES_POWER])
+				return TRUE
+			return FALSE
+
 		check_completion()
 			for(var/obj/machinery/power/pt_laser/P in machine_registry[MACHINES_POWER])
 				if(P.lifetime_earnings >= 1 MEGA)
 					return 1
 			return 0
+	singularity
+		explanation_text = "Don't let the singularity escape containment!"
+		set_up()
+			INIT_OBJECTIVE("engineering_whoopsie")
+		prerequisite()
+			for_by_tcl(G, /obj/machinery/the_singularitygen)
+				if (G.z == Z_LEVEL_STATION)
+					return TRUE
+			for_by_tcl(S, /obj/machinery/the_singularity) //joined after the thing is already running
+				if (S.z == Z_LEVEL_STATION && !S.active)
+					return TRUE
+			return FALSE
+		check_completion()
+			return (global_objective_status["engineering_whoopsie"] != FAILED)
+
+	//Requires procuring extra shield units (from cargo) and possibly getting into places engineering doesn't have access to fairly quickly
+	//So less an engineer thing and more a head responsibility thing. Give the CE a reason to commandeer shit for a bit. (maybe share this objective with QM too?)
+	meteor_shielding
+		explanation_text = "Protect the station from a meteor shower."
+		set_up()
+			INIT_OBJECTIVE("meteor_shielding")
+		prerequisite()
+			//there's talk of Gehenna variant of the meteor shower, but nothing yet. (Plus that version might cover the entire map instead of one edge)
+			return !map_currently_very_dusty
+		check_completion() //meteor_shower.dm is where the magic happens
+			return global_objective_status["meteor_shielding"]
 
 ABSTRACT_TYPE(/datum/objective/crew/securityofficer)
 /datum/objective/crew/securityofficer // grabbed the HoS's two antag-related objectives cause they work just fine for regular sec too, so...?
@@ -315,15 +346,16 @@ ABSTRACT_TYPE(/datum/objective/crew/botanist)
 
 ABSTRACT_TYPE(/datum/objective/crew/chaplain)
 /datum/objective/crew/chaplain
-	nobodies //this one kinda sucks doesn't it? Just completely luck-based
+	/*nobodies //this one kinda sucks doesn't it? Just completely luck-based
 		explanation_text = "Have no corpses on the station level at the end of the round."
 		medal_name = "Bury the Dead"
 		check_completion()
 			for(var/mob/living/carbon/human/H in mobs)
 				if(H.z == 1 && isdead(H))
 					return 0
-			return 1
+			return 1*/
 	burial
+		medal_name = "Bury the Dead"
 		set_up()
 			explanation_text = "Perform a [map_currently_underwater ? "ocean" : "space"] burial for a dead crewmember."
 			INIT_OBJECTIVE("did_burial")
@@ -368,8 +400,33 @@ ABSTRACT_TYPE(/datum/objective/crew/janitor)
 //	bartender
 
 //	chef
+ABSTRACT_TYPE(/datum/objective/crew/chef)
+/datum/objective/crew/chef
+	kitchen_hygiene
+		explanation_text = "Don't get any ants in the kitchen."
+		set_up()
+			INIT_OBJECTIVE("kitchen_ants")
+		check_completion()
+			return (global_objective_status["kitchen_ants"] != FAILED)
+	//chef objective idea (that needs some manual sorting through for doable foods): make several of X for dinner
 
 //	engineer
+ABSTRACT_TYPE(/datum/objective/crew/engineer)
+/datum/objective/crew/engineer
+	singularity
+		explanation_text = "Don't let the singularity escape containment!"
+		set_up()
+			INIT_OBJECTIVE("engineering_whoopsie")
+		prerequisite()
+			for_by_tcl(G, /obj/machinery/the_singularitygen)
+				if (G.z == Z_LEVEL_STATION)
+					return TRUE
+			for_by_tcl(S, /obj/machinery/the_singularity) //joined after the thing is already running
+				if (S.z == Z_LEVEL_STATION && !S.active)
+					return TRUE
+			return FALSE
+		check_completion()
+			return (global_objective_status["engineering_whoopsie"] != FAILED)
 
 ABSTRACT_TYPE(/datum/objective/crew/miner)
 /datum/objective/crew/miner
