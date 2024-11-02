@@ -1568,7 +1568,7 @@
 	name = "cat"
 	icon = 'icons/mob/cat.dmi'
 	icon_state = "body_m"
-	jerk = 1
+	// jerk = 1 // why the fuck was this 1
 	override_attack = 0
 	firevuln = 1.5 // very flammable catthings
 	race_mutation = /datum/bioEffect/mutantrace/cat
