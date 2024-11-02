@@ -826,17 +826,19 @@
 		mob.see_in_dark = SEE_DARK_HUMAN + 1
 		mob.see_invisible = 1
 
-	proc/replacement_s(s,next_letter)
+	proc/replacement_s(s, blank, next_letter)
 		if(isUpper(s) && !isUpper(next_letter))
 			return capitalize(stutter("ss") + next_letter)
 		if(isUpper(s) && isUpper(next_letter))
 			return stutter("SS") + next_letter
 		if(!isUpper(s))
 			return stutter("ss") + next_letter
+		else
+			return stutter("ss") + next_letter
 
 
 	say_filter(var/message)
-		var/static/regex/s_catch = regex(@"(s)(.?)","ig")
+		var/static/regex/s_catch = regex(@"(s)(.?)","gi")
 		return s_catch.Replace(message, /datum/mutantrace/lizard/proc/replacement_s)
 
 	disposing()
@@ -1651,8 +1653,20 @@
 	say_verb()
 		return "croaks"
 
+	proc/replacement_r(r, blank, next_letter)
+	if(isUpper(r) && !isUpper(next_letter))
+		return capitalize(stutter("rrr") + next_letter)
+	if(isUpper(r) && isUpper(next_letter))
+		return stutter("RRR") + next_letter
+	if(!isUpper(r))
+		return stutter("rr") + next_letter
+	else
+		return stutter("rr") + next_letter
+
+
 	say_filter(var/message)
-		return replacetext(message, "r", stutter("rrr"))
+		var/static/regex/r_catch = regex(@"(r)(.?)","gi")
+		return r_catch.Replace(message, /datum/mutantrace/amphibian/proc/replacement_r)
 
 
 	New(var/mob/living/carbon/human/M)
@@ -1861,9 +1875,31 @@
 			H.traitHolder?.removeTrait("hemophilia")
 		. = ..()
 
+	proc/replacement_m(m, blank, next_letter)
+		if(isUpper(m) && !isUpper(next_letter))
+			return capitalize(stutter("mm") + next_letter)
+		if(isUpper(m) && isUpper(next_letter))
+			return stutter("MM") + next_letter
+		if(!isUpper(m))
+			return stutter("mm") + next_letter
+		else
+			return stutter("mm") + next_letter
+
+	proc/replacement_human(human, blank, plural)
+		var/first = copytext(human,1,2)
+		var/second = copytext(human,2,3)
+		if(isUpper(first) && isUpper(second))
+			return "HUMAN" + capitalize(plural)
+		if(isUpper(first) && !isUpper(second))
+			return "Human" + plural
+		else
+			return "human" + plural
+
 	say_filter(var/message)
-		.= replacetext(message, "cow", "human")
-		.= replacetext(., "m", stutter("mm"))
+		var/static/regex/m_catch = regex(@"(m)(.?)","gi")
+		var/static/regex/human_catch = regex(@"(cow)(s?)","gi")
+		message = human_catch.Replace(message, /datum/mutantrace/cow/proc/replacement_human)
+		return m_catch.Replace(message, /datum/mutantrace/cow/proc/replacement_m)
 
 	proc/release_milk() //copy pasted some piss code, im sorry
 		var/obj/item/storage/toilet/toilet = locate() in mob.loc
