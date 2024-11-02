@@ -96,13 +96,13 @@
 		if (isturf(src.loc))
 			var/turf/T = src.loc
 			if(!T.is_frozen() && !T.is_too_hot())
-			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
-				if (!snack.doants)
-					continue //they don't touch the stuff
-				if (src.reagents.total_volume >= 11) //we can lose up to half, and ants get everywhere
-					src.reagents.trans_to(snack,1) //fuck you eat the ants
-				else
-					break
+				for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+					if (!snack.doants)
+						continue //they don't touch the stuff
+					if (src.reagents.total_volume >= 11) //we can lose up to half, and ants get everywhere
+						src.reagents.trans_to(snack,1) //fuck you eat the ants
+					else
+						break
 			if (istype(get_area(src), /area/station/crew_quarters/kitchen))
 				global_objective_status["kitchen_ants"] = FAILED
 
