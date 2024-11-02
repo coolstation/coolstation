@@ -38,6 +38,8 @@
 				return 1
 		return 0
 
+
+
 	proc/heal(var/mob/living/M)
 		var/healing = src.heal_amt
 
@@ -139,7 +141,8 @@
 			create_time = world.time
 			if (!src.pooled && isturf(src.loc) && !on_table())
 				var/area/A = get_area(src)
-				if (A.no_ants) //or else we'd never ever ever get clean food from hydro
+				var/turf/T = src.loc
+				if (A.no_ants || T.is_frozen() || T.is_too_hot()) //or else we'd never ever ever get clean food from hydro
 					return //that astroturf is thoroughly covered in insecticide
 				if (prob(25))
 					made_ants = 1
