@@ -337,25 +337,45 @@
 	var/obj/cable/steal_node_from
 	var/datum/powernet
 
-	//loose cable with
+	//loose cable with no neighbours
 	if (!length(connections))
 		src.is_a_node = new(new /datum/powernet())
 		return
 
-	for (var/obj/cable/C in connections)
+	if (length(connections = 2))
 
-		if (C.get_connections == 2) //has a node but doesn't need one anymore
-			if (want_a_node && !steal_node_from)
-				steal_node_from = C
-			else
+	//Assumption: the topology of adjacent connections is correct (no nodes that should be links or vice versa, or unincorporated stuff)
+	//Assumption: every connection we found will also find us, one more connection than they had previously.
+	//Thus, anything that has 3 connections now was previously a link and needs to turn into a node
+	//and anything with 2 connections was a node that needs to become a link
+	//everything else was and is a node
+
+	for (var/obj/cable/C in connections)
+		switch(C.get_connections())
+			if (2)
+				if (want_a_node)
+					if (!src.is_a_node)
+						src.is_a_node = C.is_a_node
+						src.is_a_node.physical_node = src
+						//Should be gauranteed that the old node only had one other node connection.
+						var/datum/powernet_graph_node/neighbour_node = src.is_a_node.adjacent_nodes[1]
+						var/datum/powernet_graph_link/maybe_link = src.is_a_node.adjacent_nodes[neighbour_node]
+						if (istype(maybe_link))
+							maybe_link.cables |= C
+							maybe_link.expected_length = length(maybe_link.cables)
+							C.is_a_link = maybe_link
+						else //previously directly connected nodes
+							//we can discount the possibility of
+							maybe_link = new
+				else
+					//So, one thing that can happen is we close a loop of wire
+					//where we'd technically not have any junctions that should be nodes, but nodes are also required for powernets to function.
+					//so in that case we'll just leave the two previous dead ends as nodes.
 
 		else //should get a node if it doesn't have one
 
 	//for (var/obj/machinery/power/P in connections)
 		//power_list() in get_connections has already filtered APCs out
-
-
-	if (want_a_node && !steal_node_from)
 
 
 	switch(length(connections))
