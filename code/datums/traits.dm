@@ -935,7 +935,7 @@ obj/trait/pilot
 	points = 1
 	isPositive = 0
 
-/obj/trait/addictive_personality // you will just take a bite out of an unsliced pizza or a cigarette
+/obj/trait/greedy_beast // you will just take a bite out of an unsliced pizza or a cigarette
 	name = "Greedy Beast (-1)"
 	cleanName = "Greedy Beast"
 	desc = "You don't really have any qualms about how you eat stuff. And sometimes what you eat."
