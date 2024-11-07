@@ -212,6 +212,13 @@
 		else
 			return ..()
 
+/obj/item/clothing/head/butt/skeleton // I know exactly what I'm doing with my life
+	name = "fartilage"
+	desc = "This never came up when we learning about the skeleton in school?"
+	icon_state = "butt-skeleton"
+	toned = FALSE
+	made_from = "bone"
+
 // moving this from plants_crop.dm because SERIOUSLY WHY -- cirr
 /obj/item/clothing/head/butt/synth
 	name = "synthetic butt"

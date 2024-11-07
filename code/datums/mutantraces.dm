@@ -1091,7 +1091,8 @@
 	voice_override = "skelly"
 	mutant_organs = list("tail" = /obj/item/organ/tail/bone,
 	"left_eye" = /obj/item/organ/eye/skeleton,
-	"right_eye" = /obj/item/organ/eye/skeleton)
+	"right_eye" = /obj/item/organ/eye/skeleton,
+	"butt" = /obj/item/clothing/head/butt/skeleton)
 	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_NO_SKINTONE | HAS_NO_EYES | BUILT_FROM_PIECES | HEAD_HAS_OWN_COLORS | WEARS_UNDERPANTS)
 	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/skeleton/right
 	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/skeleton/left
