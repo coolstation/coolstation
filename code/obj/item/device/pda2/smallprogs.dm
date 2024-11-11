@@ -347,7 +347,7 @@ Code:
 				if (bl.z != cl.z)
 					continue
 
-				ldat += "Bucket - <b>\[[bl.x],[bl.y] ([get_area(bl)])\]</b> - Water level: [B.reagents.total_volume]/50<br>"
+				ldat += "Bucket - <b>\[[bl.x],[bl.y] ([get_area(bl)])\]</b> - Water level: [B.reagents.total_volume]/[B.reagents.maximum_volume]<br>"
 
 			if (!ldat)
 				dat += "None"
@@ -367,6 +367,25 @@ Code:
 					continue
 
 				ldat += "Cleanbot - <b>\[[cb.x],[cb.y] ([get_area(cb)])\]</b> - [B.on ? "Online" : "Offline"]<br>"
+
+			if (!ldat)
+				dat += "None"
+			else
+				dat += "[ldat]"
+
+			dat += "<h4>Located Floor Buffers:</h4>"
+
+			ldat = null
+			for_by_tcl(F, /obj/vehicle/floorbuffer)
+				var/turf/fb = get_turf(F)
+
+				if(!fb || !istype(fb))
+					continue
+
+				if (fb.z != cl.z)
+					continue
+
+				ldat += "[F] - <b>\[[fb.x],[fb.y] ([get_area(fb)])\]</b> - Tank level: [F.reagents.total_volume]/[F.reagents.maximum_volume]<br>"
 
 			if (!ldat)
 				dat += "None"
