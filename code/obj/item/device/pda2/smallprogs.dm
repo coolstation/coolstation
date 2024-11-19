@@ -1337,3 +1337,33 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 		src.master.add_fingerprint(usr)
 		src.master.updateSelfDialog()
 		return
+
+/datum/computer/file/pda_program/maintenance_arrears
+	name = "Maintenance Arrears"
+	size = 4
+
+	return_text()
+		if(..())
+			return
+
+		var/dat = src.return_text_header()
+		dat += "<h4>Maintenance Arrears:</h4>"
+
+		for (var/obj/machinery/problem in random_events.maintenance_event.unmaintained_machines)
+			var/turf/T = get_turf(problem)
+			var/area/A = get_area(problem)
+			if (!istype(T))
+				continue //uh
+			dat += "<b>[problem.name]</b><br> [istype(A, /area/station) ? "Located in [A]: [T.x], [T.y]" : "(Location unknown)"]<br>"
+		dat += "<br>"
+
+		dat += "<a href='byond://?src=\ref[src];update=1'>Refresh</a>"
+
+		return dat
+
+	Topic(href, href_list)
+		if(..())
+			return
+		src.master.add_fingerprint(usr)
+		src.master.updateSelfDialog()
+		return

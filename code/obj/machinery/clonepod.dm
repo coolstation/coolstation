@@ -736,6 +736,7 @@
 		src.update_icon()
 		return
 
+	/* Wasn't referenced, I commented it out so I reuse the name for something else.
 	proc/malfunction()
 		if (src.occupant)
 			src.connected_message("Critical Error!", "danger")
@@ -747,6 +748,7 @@
 			SPAWN_DBG(0.5 SECONDS)
 				qdel(src.occupant)
 		return
+	*/
 
 	proc/operating_nominally()
 		return operating && src.meat_level && connected?.gen_analysis //Only operate nominally for non-shit cloners

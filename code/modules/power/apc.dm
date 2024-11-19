@@ -26,6 +26,7 @@ var/zapLimiter = 0
 	object_flags = CAN_REPROGRAM_ACCESS
 	netnum = -1		// set so that APCs aren't found as powernet nodes
 	text = ""
+	machinery_flags = MAY_REQUIRE_MAINT
 	var/area/area
 	var/areastring = null
 	var/autoname_on_spawn = 0 // Area.name
@@ -503,7 +504,12 @@ var/zapLimiter = 0
 
 	else if (wiresexposed && (issnippingtool(W) || ispulsingtool(W)))
 		src.Attackhand(user)
-
+	else if (wiresexposed && istype(W, /obj/item/cable_coil))
+		if (W.amount >= 4)
+			W.change_stack_amount(-4)
+			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+			boutput(user, "<span class='notice'>You replace the wiring inside the APC.</span>")
+			maintenance_resolve()
 	else if (issilicon(user))
 		if (istype(W, /obj/item/robojumper))
 			var/mob/living/silicon/S = user
@@ -1305,6 +1311,10 @@ var/zapLimiter = 0
 			charging = 0
 			chargecount = 0
 
+		//APCs don't call parent but that might be fine in this case?
+		if ((status & MALFUNC))
+			malfunction(1) //also we have no mult fed into process()????
+
 	else // no cell, switch everything off
 
 		charging = 0
@@ -1368,6 +1378,26 @@ var/zapLimiter = 0
 			return 1
 
 	return val
+
+/obj/machinery/power/apc/malfunction(mult)
+	//mess with the channel settings at random
+	switch(rand(1,3))
+		if (1)
+			src.equipment = autoset(equipment, rand(0,2)) //I don't exactly understand the autoset proc but I assume this has to do something
+		if (2)
+			src.lighting = autoset(lighting, rand(0,2))
+		if (3)
+			src.environ = autoset(environ, rand(0,2))
+
+	if (probmult(2)) //small chance of just carking it entirely
+		src.shorted = TRUE //TODO maybe: fix shorting on repair?
+
+//more things that would make sense after wire repairs
+/obj/machinery/power/apc/maintenance_resolve()
+	src.shorted = FALSE
+	if (src.aidisabled == 1)
+		src.aidisabled = 0
+	..()
 
 // damage and destruction acts
 
