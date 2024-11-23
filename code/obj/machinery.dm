@@ -309,7 +309,7 @@
 		//This method likely requires cycling the APC repeatedly and if a player can do that they can just fix the machine probably
 		if (status & MALFUNC)
 			if ((status & NOPOWER) && prob(10)) //IDK if nesting the ifs matters but I want to ensure as little waste
-				maintenance_resolve()
+				malfunction_resolve()
 
 		status &= ~NOPOWER
 	else
@@ -423,13 +423,16 @@
 		A1.machines -= src
 		A2.machines += src
 
-//Several machines already define a malfunction proc previous to the maintenance system existing
+//If you need to set up anything when the machine starts malfunctioning
+/obj/machinery/proc/malfunction_start()
+
+///Do wacky annoying shit
 /obj/machinery/proc/malfunction(mult)
 	//placeholder
 	//src.color = "#FF8888"
 
 //Machine is properly maintained before or after problems arise.
-/obj/machinery/proc/maintenance_resolve()
+/obj/machinery/proc/malfunction_resolve()
 	src.status &= ~MALFUNC
 	random_events.maintenance_event.unmaintained_machines -= src
 	ON_COOLDOWN(src, "maintained", 20 MINUTES) //prevent defects for a while

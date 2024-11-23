@@ -7,8 +7,8 @@ How 2 expand to other machines:
 -Give that machinery type MAY_REQUIRE_MAINT in its machinery_flags
 -Put some interesting behaviour in the malfuction(mult) proc, which is called during process(). Will need power to malfunction.
 -If your machine doesn't call the /obj/machinery process parent, do a check for src.status & MALFUNC somewhere appropriate
--Implement a way of fixing the thing once it's malfunctioning, probably in attackby or something. Call maintenance_resolve() in that spot.
--maintenance_resolve() is also the place to override if your machine needs some kind of cleanup. Call yer parent though!
+-Implement a way of fixing the thing once it's malfunctioning, probably in attackby or something. Call malfunction_resolve() in that spot.
+-malfunction_resolve() is also the place to override if your machine needs some kind of cleanup. Call yer parent though!
 */
 
 
@@ -55,6 +55,7 @@ ABSTRACT_TYPE(/datum/random_event/minor/maintenance)
 					i--
 				continue
 			RIP.status |= MALFUNC
+			RIP.malfunction_start()
 			if (prob(50))
 				elecflash(RIP)
 				RIP.malfunction()

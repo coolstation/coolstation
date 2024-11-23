@@ -509,7 +509,7 @@ var/zapLimiter = 0
 			W.change_stack_amount(-4)
 			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 			boutput(user, "<span class='notice'>You replace the wiring inside the APC.</span>")
-			maintenance_resolve()
+			malfunction_resolve()
 	else if (issilicon(user))
 		if (istype(W, /obj/item/robojumper))
 			var/mob/living/silicon/S = user
@@ -1393,7 +1393,7 @@ var/zapLimiter = 0
 		src.shorted = TRUE //TODO maybe: fix shorting on repair?
 
 //more things that would make sense after wire repairs
-/obj/machinery/power/apc/maintenance_resolve()
+/obj/machinery/power/apc/malfunction_resolve()
 	src.shorted = FALSE
 	if (src.aidisabled == 1)
 		src.aidisabled = 0

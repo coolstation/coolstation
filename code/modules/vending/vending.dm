@@ -582,7 +582,7 @@
 			W.change_stack_amount(-5)
 			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 			boutput(user, "<span class='notice'>You replace the wiring inside the machine.</span>")
-			maintenance_resolve()
+			malfunction_resolve()
 	else if (istype(W, /obj/item/device/t_scanner) || (istype(W, /obj/item/device/pda2) && istype(W:module, /obj/item/device/pda_module/tray)))
 		if (src.seconds_electrified != 0)
 			boutput(user, "<span class='alert'>[bicon(W)] <b>WARNING</b>: Abnormal electrical response received from access panel.</span>")
@@ -1074,7 +1074,7 @@
 		fall(H) //:D
 
 //Since repairing a vending machine involves replacing the wiring...
-/obj/machinery/vending/maintenance_resolve()
+/obj/machinery/vending/malfunction_resolve()
 	src.wires = initial(src.wires)
 	src.extended_inventory = FALSE
 	src.seconds_electrified = 0

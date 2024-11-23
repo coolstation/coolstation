@@ -1017,7 +1017,7 @@
 						W.change_stack_amount(-4)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 						boutput(user, "<span class='notice'>You replace some of the grodier-looking wires.</span>")
-						maintenance_resolve()
+						malfunction_resolve()
 				else
 					if (src.health >= 50)
 						boutput(user, "<span class='alert'>The wiring is fine. You need to weld the external plating to do further repairs.</span>")
