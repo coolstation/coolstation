@@ -601,7 +601,7 @@
 
 			if(M.material && M.material.getProperty("stability") <= 30 && prob((30 - M.material.getProperty("stability")) * 2 ) )
 				M.visible_message("<span class='alert'>[M] [getMatFailString(M.material.material_flags)]!</span>")
-				M.material.triggerOnFail(M)
+				qdel(M)
 			return
 
 		if(components.len > 0)
@@ -713,7 +713,7 @@
 //
 /obj/item/device/matanalyzer
 	icon_state = "matanalyzer"
-	name = "Material analyzer"
+	name = "material analyzer"
 	desc = "This piece of equipment can detect and analyze materials."
 	flags = FPRINT | EXTRADELAY | TABLEPASS | CONDUCT
 	w_class = W_CLASS_SMALL
@@ -728,11 +728,11 @@
 				boutput(user, "<span class='notice'><u>[capitalize(W.material.name)]</u></span>")
 				boutput(user, "<span class='notice'>[W.material.desc]</span>")
 
-				if(W.material.properties.len)
+				if(length(W.material.properties))
 					boutput(user, "<span class='notice'><u>The material is:</u></span>")
-					for(var/datum/material_property/X in W.material.properties)
-						var/value = W.material.properties[X] //Why use getProperty you have the damn property
-						boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
+					for(var/X in W.material.properties)
+						var/datum/material_property/this_property = materialProps[X]
+						boutput(user, "<span class='notice'>• [this_property.getAdjective(W.material.properties[X])] ([W.material.properties[X]])</span>")
 				else
 					boutput(user, "<span class='notice'><u>The material is completely unremarkable.</u></span>")
 		else
