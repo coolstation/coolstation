@@ -1,35 +1,55 @@
 "a" = (/turf/space,/area/space)
+"b" = (/obj/reagent_dispensers/fueltank,/turf/floor/airless/grime,/area/space)
+"c" = (/obj/table/reinforced/auto,/obj/item/reagent_containers/food/snacks/fries,/turf/floor/airless/grime,/area/space)
+"d" = (/obj/table/auto,/obj/item/device/audio_log,/turf/floor/airless/grime,/area/space)
 "g" = (/obj/wingrille_spawn/reinforced,/turf/floor/airless/grime,/area/space)
 "h" = (/obj/decal/poster/wallsign/stencil/right/a,/turf/wall/auto/supernorn,/area/space)
 "i" = (/obj/machinery/shuttle/engine/propulsion{dir = 4; icon_state = "alt_propulsion"},/turf/space,/area/space)
+"j" = (/obj/decal/cleanable/mess/random_litter,/turf/floor/airless/grime,/area/space)
 "l" = (/turf/wall/auto/supernorn,/area/space)
+"m" = (/obj/decoration/bullethole,/turf/wall/auto/supernorn,/area/space)
 "n" = (/turf/floor/airbridge,/area/space)
+"o" = (/obj/computerframe,/turf/floor/airless/grime,/area/space)
 "p" = (/obj/decal/poster/wallsign/stencil/right/n,/turf/wall/auto/supernorn,/area/space)
 "q" = (/obj/decal/poster/wallsign/stencil/right/s,/turf/wall/auto/supernorn,/area/space)
 "s" = (/obj/decal/poster/wallsign/stencil/right/f,/turf/wall/auto/supernorn,/area/space)
 "t" = (/obj/machinery/door/airlock/maintenance,/turf/floor/airless/grime,/area/space)
 "u" = (/obj/machinery/shuttle/engine/heater{dir = 4; icon_state = "alt_heater-R"},/turf/space,/area/space)
+"v" = (/obj/decal/floatingtiles/loose/random,/obj/storage/closet/emergency,/turf/floor/plating/random,/area/space)
+"w" = (/obj/storage/crate/trench_loot/drug,/turf/floor/airless/grime,/area/space)
 "x" = (/obj/machinery/door/airlock/external,/turf/floor/airless/grime,/area/space)
+"y" = (/obj/random_item_spawner/loot_crate,/turf/floor/airless/grime,/area/space)
+"A" = (/obj/decal/floatingtiles/loose/random,/turf/floor/plating/random,/area/space)
+"B" = (/obj/storage/crate{desc = "A small, cuboid object with a hinged top and empty interior. It smells kinda bad and seems to have an odd stain on it."; icon = 'icons/misc/halloween.dmi'; name = "Dented Crate"},/obj/random_item_spawner/junk/maybe_few,/turf/floor/airless/grime,/area/space)
+"D" = (/obj/decoration/vent/vent3,/turf/wall/auto/supernorn,/area/space)
 "E" = (/obj/decal/poster/wallsign/stencil/right/t,/turf/wall/auto/supernorn,/area/space)
+"G" = (/turf/floor/airless/neutral,/area/space)
+"I" = (/obj/decoration/junctionbox,/turf/wall/auto/supernorn,/area/space)
 "K" = (/obj/machinery/shuttle/engine/heater{dir = 4; icon_state = "alt_heater-L"},/turf/space,/area/space)
 "N" = (/obj/decal/poster/wallsign/stencil/right/r,/turf/wall/auto/supernorn,/area/space)
+"O" = (/obj/rack,/obj/item/clothing/head/emerg{pixel_x = 5; pixel_y = 10},/obj/item/clothing/suit/space/emerg{pixel_x = 6},/turf/floor/airless/grime,/area/space)
+"P" = (/obj/decoration/damagedchair,/obj/npc/trader/random,/turf/floor/airless/grime,/area/space)
+"Q" = (/obj/table/folding,/obj/item/reagent_containers/food/drinks/bottle/fancy_beer{pixel_y = 13},/obj/item/cigbutt{pixel_x = 3; pixel_y = 3},/obj/item/cigbutt{pixel_x = -3; pixel_y = -2},/obj/item/decoration/ashtray,/turf/floor/airless/grime,/area/space)
+"R" = (/obj/stool/chair{dir = 4},/mob/living/carbon/human/npc,/turf/floor/airless/grime,/area/space)
 "T" = (/obj/machinery/shuttle/engine/heater{dir = 4; icon_state = "alt_heater-M"},/turf/space,/area/space)
+"U" = (/obj/table/auto,/obj/machinery/phone,/turf/floor/airless/grime,/area/space)
 "V" = (/obj/decal/poster/wallsign/stencil/right/h,/turf/wall/auto/supernorn,/area/space)
 "W" = (/turf/wall/airbridge,/area/space)
 "X" = (/turf/floor/airless/grime,/area/space)
+"Z" = (/obj/storage/closet/emergency,/turf/floor/airless/grime,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaWnnWaaaaaaaaaaaaa
 aaaaaaaaaaaaaWnnWaaaaaaaaaaaaa
 aaaaaaaaaaaaaWnnWaaaaaaaaaaaaa
-aaaaaaaaaaaaalxxlaaaaaaaaaaaaa
+aaaaaaaaaaaaalxxlGaaaaaaaaaaaa
 aaaaaaaaaaaaalXXlaaaaaaaaaaaaa
-aaaaaglglllgllxxllllaaaaaaaaaa
-aaaaggXXXlXXXXXXXXXuiaaaaaaaaa
-aaaagXXXXtXXXXXXXXXTiaaaaaaaaa
-aaaagXXXXlXXXXXXXXXKiaaaaaaaaa
-aaaaggXXXltllltllltllllaaaaaaa
-aaaaaglgllXXXlXXXlXXXXlaaaaaaa
+aaaaagIgmllgllxxllllaaaaaaaaaa
+aaaaggXXZlRQyOXjBvbuiaaaaaaaaa
+aaaagcXXXtXjXXXXXXXTiaaaaaaaaa
+aaaagoPXUlXXwXXAXjXKiaaaaaaaaa
+aaaaggXXdltllltDmltllllaaaaaaa
+aaaaagmgllXXXlXXXlXXXXlaaaaaaa
 aaaaaaaaalXXXlXXXlXXXXlaaaaaaa
 aaaaaaaaalXXXlXXXlXXXXlaaaaaaa
 aaaaaaaaallgpEqgshVNlglaaaaaaa
