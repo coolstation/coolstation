@@ -187,8 +187,8 @@
 			score_tracker.artifacts_correctly_analyzed++
 
 		// send artifact resupply
-		if(prob(modifier*40*pap?.lastAnalysis)) // range from 0% to ~78% for fully researched t4 artifact
-			if(!src.artifact_resupply_amount)
+		if(prob(40*pap?.lastAnalysis)) // make probability solely based on research effectiveness
+			if(src.artifact_resupply_amount)
 				SPAWN_DBG(rand(1,5) MINUTES)
 					// message
 					var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
@@ -204,7 +204,7 @@
 						new /obj/artifact_type_spawner/vurdalak(artcrate)
 					artifact_resupply_amount = 0
 					shippingmarket.receive_crate(artcrate)
-			src.artifact_resupply_amount++
+			src.artifact_resupply_amount++ //only start resupplying after at least two artifacts have been sold
 
 		// sell
 		wagesystem.shipping_budget += price

@@ -11,6 +11,7 @@ var/datum/event_controller/random_events
 #define MAJOR_EVENTS_BEGIN 30 MINUTES
 #define MINOR_EVENTS_BEGIN 10 MINUTES
 #define SPAWN_EVENTS_BEGIN 23 MINUTES
+#define MAINT_EVENTS_BEGIN 15 MINUTES
 
 ABSTRACT_TYPE(/datum/random_event/major/player_spawn)
 ABSTRACT_TYPE(/datum/random_event/major/antag)
@@ -52,6 +53,13 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 	var/datum/random_event/next_picked_minor_event = null
 	var/datum/random_event/next_picked_spawn_event = null
 
+	//parking the maintenance arrears event here so we don't need to keep searching for it
+	var/datum/random_event/minor/maintenance/maintenance_breakdown/maintenance_event = null
+	var/next_maint_event = MAINT_EVENTS_BEGIN
+	var/time_between_maint_events_lower = 400 SECONDS //6m 40s
+	var/time_between_maint_events_upper = 800 SECONDS //13m 20s
+	//To disable the machinery maintenance system, just disable the event itself.
+
 	var/time_lock = 1
 	var/list/special_events = list()
 	var/minimum_population = 5 // Minimum amount of players connected for event to occur
@@ -78,6 +86,8 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 				continue
 			var/datum/random_event/RE = new X
 			minor_events += RE
+			if (istype(RE, /datum/random_event/minor/maintenance/maintenance_breakdown))
+				maintenance_event = RE
 
 		for (var/X in childrentypesof(/datum/random_event/special))
 			var/datum/random_event/RE = new X
@@ -126,6 +136,10 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 				if (!next_picked_minor_event) next_picked_minor_event = pick_random_event(minor_events)
 				if (!ON_COOLDOWN(src, "minor_event_first_warning", MINOR_EVENT_ADMIN_WARNING + 10))
 					message_admins("<span class='internal'>Minor random event soon: \An [next_picked_minor_event.name] event will occur at around [floor(next_minor_event / 600)] minutes.<br><a href=\"?src=\ref[src];minor_interrupt=1;minor_cycle=[minor_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];minor_change=1;minor_cycle=[minor_event_cycle_count]\">Change</a></span>")
+
+		if (ticker.round_elapsed_ticks >= next_maint_event)
+			maintenance_event.event_effect("Routine Lack of Maintenance", rand(1,3))
+			next_maint_event = TIME + rand(time_between_maint_events_lower,time_between_maint_events_upper)
 
 	proc/event_cycle()
 		event_cycle_count++
@@ -222,6 +236,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 		dat += "Next major event at <a href='byond://?src=\ref[src];ScheduleMajor=1'>[floor(next_major_event / 600)] minutes</a> into the round.<br>"
 		dat += "Next minor event at <a href='byond://?src=\ref[src];ScheduleMinor=1'>[floor(next_minor_event / 600)] minutes</a> into the round.<br>"
 		dat += "Next spawn event at <a href='byond://?src=\ref[src];ScheduleSpawn=1'>[floor(next_spawn_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next maintenance event at <a href='byond://?src=\ref[src];ScheduleMaint=1'>[floor(next_maint_event / 600)] minutes</a> into the round.<br>"
 
 		dat += "<b><a href='byond://?src=\ref[src];EnableEvents=1'>Random Events Enabled:</a></b> [events_enabled ? "Yes" : "No"]<br>"
 		dat += "<b><a href='byond://?src=\ref[src];EnableMEvents=1'>Minor Events Enabled:</a></b> [minor_events_enabled ? "Yes" : "No"]<br>"
@@ -430,6 +445,14 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			logTheThing("admin", usr, null, "set next spawn event to occur at [time] minutes")
 			logTheThing("diary", usr, null, "set next spawn event to occur at [time] minutes", "admin")
 
+		else if(href_list["ScheduleMaint"])
+			var/time = input("At how many minutes should the next maintenance event occur?","Random Events") as num
+			next_maint_event = time MINUTES
+
+			message_admins("Admin [key_name(usr)] set next maintenance event to occur at [time] minutes")
+			logTheThing("admin", usr, null, "set next maintenance event to occur at [time] minutes")
+			logTheThing("diary", usr, null, "set next maintenance event to occur at [time] minutes", "admin")
+
 		else if(href_list["EnableEvents"])
 			events_enabled = !events_enabled
 			message_admins("Admin [key_name(usr)] [events_enabled ? "enabled" : "disabled"] random events")
@@ -524,3 +547,4 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 #undef MAJOR_EVENTS_BEGIN
 #undef MINOR_EVENTS_BEGIN
 #undef SPAWN_EVENTS_BEGIN
+#undef MAINT_EVENTS_BEGIN

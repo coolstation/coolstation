@@ -226,6 +226,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	//Equip characters
 	equip_characters()
 
+	if (!random_events.maintenance_event.disabled)
+		//functionally start the maintenance system by populating the unmaintained crap list
+		//2 machines per player at roundstart capped at 30 machines (15 players), plus 5-10 more
+		random_events.force_event("Maintenance Arrears", "Round-Start ", min(2 * length(ticker.minds), 30) + rand(5, 10), TRUE)
+
 	Z_LOG_DEBUG("Game Start", "Animating client colors to normal")
 	for (var/client/C in animateclients)
 		if (C)

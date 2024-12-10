@@ -282,12 +282,12 @@
 			updateicon()
 
 /obj/machinery/power/solar_control/proc/updateicon()
-	if(status & BROKEN && icon_state != "broken")
-		icon_state = "broken"
+	if(status & BROKEN && icon_state != "solarb")
+		icon_state = "solarb"
 		return
 
-	if(status & NOPOWER && icon_state != "c_unpowered")
-		icon_state = "c_unpowered"
+	if(status & NOPOWER && icon_state != "solar0")
+		icon_state = "solar0"
 		return
 
 	if(icon_state != "solar")

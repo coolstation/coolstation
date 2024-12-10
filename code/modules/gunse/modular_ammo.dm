@@ -103,7 +103,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			stack_item(I)*/
 		if(!stack_item(I))
 			if(istype(I, /obj/item/gun/modular/))
-				src.reload(I, user)
+				actions.start(new/datum/action/bar/private/load_ammo(I, src), user)
+				//src.reload(I, user)
 			else
 				..(I, user)
 
@@ -129,7 +130,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 
 	//just realized this needs some checks to handle things like: moved away from ammo, no longer holding gun, etc.
 	//whoops that's current you's and later me's problem
-	proc/reload(var/obj/item/gun/modular/M, mob/user as mob)
+	/*proc/reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(reloading)
 			return
 		if(!istype(M))
@@ -226,7 +227,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 
 			M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
 
-			reloading = FALSE
+			reloading = FALSE*/
 
 /* ------------------------------- Pistol Ammo ------------------------------ */
 ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
@@ -621,11 +622,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_shell = "shell_case"
 	caliber = 0.61
 
-	reload(var/obj/item/gun/modular/M, mob/user as mob)
+	/*reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(!M.scatter)
 			boutput(user, "<span class='notice'>That shell won't fit the breech.</span>")
 			return
-		..()
+		..()*/
 
 //NT's small shotgun shell
 /obj/item/stackable_ammo/scatter/NT
@@ -787,6 +788,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		src.inventory_counter.update_number(src.amount)
 
 
+	/*
 	reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(reloading)
 			return
@@ -814,6 +816,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 					M.flash_process_ammo(user)
 				boutput(user, "<span class='notice'>You finish loading a flashtube into [M].</span>")
 				reloading = FALSE
+				*/
 
 /obj/item/stackable_ammo/flashbulb/better
 	name = "\improper FOSSYN. Cathodic Flash Tube 2.0b"

@@ -179,6 +179,7 @@
 			src.root.add_file( new /datum/computer/file/pda_program/pingtool(src) )
 			src.root.add_file( new /datum/computer/file/pda_program/packet_sniffer(src) )
 			src.root.add_file( new /datum/computer/file/pda_program/packet_sender(src) )
+			src.root.add_file( new /datum/computer/file/pda_program/maintenance_arrears(src))
 			src.root.add_file( new /datum/computer/file/text/diagnostic_readme(src))
 			src.read_only = 1
 
@@ -279,6 +280,7 @@
 		New()
 			..()
 			src.root.add_file( new /datum/computer/file/pda_program/power_checker(src))
+			src.root.add_file( new /datum/computer/file/pda_program/maintenance_arrears(src))
 			src.root.add_file( new /datum/computer/file/pda_program/atmos_alerts(src))
 			src.root.add_file( new /datum/computer/file/pda_program/signaler(src))
 			src.root.add_file( new /datum/computer/file/pda_program/scan/health_scan(src))
@@ -294,6 +296,7 @@
 			..()
 			src.root.add_file( new /datum/computer/file/pda_program/manifest(src))
 			src.root.add_file( new /datum/computer/file/pda_program/power_checker(src))
+			src.root.add_file( new /datum/computer/file/pda_program/maintenance_arrears(src))
 			src.root.add_file( new /datum/computer/file/pda_program/atmos_alerts(src))
 			src.root.add_file( new /datum/computer/file/pda_program/signaler(src))
 			src.root.add_file( new /datum/computer/file/pda_program/scan/health_scan(src))

@@ -176,8 +176,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
-		var/obj/item/stackable_ammo/SA = I
-		SA.reload(src, user)
+		actions.start(new/datum/action/bar/private/load_ammo(src, I), user)
+		//var/obj/item/stackable_ammo/SA = I
+		//SA.reload(src, user)
 		return
 
 	if (istype(I, /obj/item/screwdriver) && src.flashbulb_only)
@@ -282,6 +283,153 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 	else
 		..()
+
+//Replaces /obj/item/stackable_ammo/proc/reload. Now also does distance interrupts and doesn't rely on sleeps
+/datum/action/bar/private/load_ammo
+	duration = 1 SECOND
+	//Notably, can reload while moving
+	interrupt_flags = INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	var/obj/item/stackable_ammo/donor_ammo
+	var/obj/item/gun/modular/target_gun
+	id = "load_ammo"
+
+	New(obj/item/gun/modular/gun, obj/item/stackable_ammo/ammo)
+		if (!istype(gun) || !istype(ammo))
+			interrupt(INTERRUPT_ALWAYS)
+		//fucken flash bulbs
+		/*if (!ammo.projectile_type)
+			interrupt(INTERRUPT_ALWAYS)*/
+		target_gun = gun
+		donor_ammo = ammo
+		..()
+
+	onStart()
+		if (!ismob(owner)) //plenty of assuming this is true will follow (but mostly not needing typecasting)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (target_gun.jammed)
+			boutput(src.owner, "<span class='alert'>This gun is jammed!</span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		//some hardcoded ammo incompatabilities
+		if (istype(donor_ammo, /obj/item/stackable_ammo/scatter) && !target_gun.scatter)
+			boutput(owner, "<span class='notice'>That shell won't fit the breech.</span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		else if (istype(donor_ammo, /obj/item/stackable_ammo/flashbulb) && !target_gun.flashbulb_only)
+			//Note that you can load regular ammo into flashbulb guns.
+			//ATM this just makes the gun complain to the player and clear the round, but I believe there was the intent for firing like that to blow out the lenses
+			boutput(owner, "<span class='notice'>This gun can't use flashtubes.</span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if(!target_gun.ammo_list)
+			target_gun.ammo_list = list()
+
+		target_gun.chamber_checked = FALSE
+		loopStart()
+
+		if (src.state == ACTIONSTATE_DELETE)
+			return
+
+		//Maybe if it's behind all the error checking we won't see the bar come up at all on failure?
+		..()
+
+		boutput(owner, "<span class='notice'>You start loading [istype(donor_ammo, /obj/item/stackable_ammo/flashbulb) ? "a flashtube" : "rounds"] into [target_gun].</span>")
+
+		if (target_gun.flashbulb_only) //Apparently our joke on FOSS standards goes so deep even the real code for them has to be fucking bespoke
+			playsound(target_gun.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
+		else
+			if (target_gun.sound_type)
+				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-startload.ogg", 60, 1)
+			else
+				playsound(target_gun.loc, "sound/weapons/gunload_click.ogg", 60, 1)
+
+	loopStart()
+		if (!donor_ammo || donor_ammo.disposed || !target_gun || target_gun.disposed) //gun or ammo missing
+			interrupt(INTERRUPT_ALWAYS)
+		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_ammo) > 1) //gun or ammo out of range
+			interrupt(INTERRUPT_ALWAYS)
+
+		if(target_gun.current_projectile) //gun might be full
+			if (!target_gun.max_ammo_capacity) //single shot
+				boutput(owner, "<span class='notice'>There's already a cartridge in [target_gun]!</span>")
+				interrupt(INTERRUPT_ALWAYS)
+			else if (length(target_gun.ammo_list) >= target_gun.max_ammo_capacity) //multi shot
+				boutput(owner, "<span class='notice'>You can't load [target_gun] any further!</span>")
+				interrupt(INTERRUPT_ALWAYS)
+
+	onEnd()
+		//one more distance check
+		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_ammo) > 1)
+			interrupt(INTERRUPT_ALWAYS)
+
+		//special handling for flash bulbs, which don't have projectile_type I guess. onStart should have validated the gun and ammo with each other.
+		if (!donor_ammo.projectile_type)
+			if(target_gun.ammo_list.len < target_gun.max_ammo_capacity)
+				target_gun.ammo_list += donor_ammo
+				var/mob/M = owner
+				M.u_equip(donor_ammo)
+				donor_ammo.dropped(owner)
+				donor_ammo.set_loc(target_gun)
+				playsound(target_gun.loc, "sound/items/Screwdriver.ogg", 30, 0.1, 0, 0.8)
+				if(!target_gun.flashbulb_health)
+					target_gun.flash_process_ammo(owner)
+				boutput(owner, "<span class='notice'>You finish loading a flashtube into [target_gun].</span>")
+
+		else //All normal guns
+			//single shot and chamber handling
+			if(!target_gun.current_projectile)
+				boutput(owner, "<span class='notice'>You stuff a cartridge down the barrel of [target_gun]</span>")
+				target_gun.current_projectile = new donor_ammo.projectile_type ()
+				//play the sound here because single shot bypasses cycle_ammo
+				if (target_gun.sound_type)
+					playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-slowcycle.ogg", 60, 1)
+				else
+					playsound(target_gun.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+				target_gun.hammer_cocked = TRUE
+
+			//load the magazine after the chamber
+			else if (length(target_gun.ammo_list) < target_gun.max_ammo_capacity)
+				if (target_gun.sound_type)
+					playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-load[rand(1,2)].ogg", 10, 1)
+				else
+					playsound(target_gun.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+				target_gun.ammo_list += donor_ammo.projectile_type
+
+				//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
+				if (prob(target_gun.jam_frequency_reload)) //jammed just because this thing sucks to load or you're clumsy
+					target_gun.jammed = 2
+					boutput(owner, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+					interrupt(INTERRUPT_ALWAYS)
+
+			donor_ammo.change_stack_amount(-1)
+		eat_twitch(target_gun) //om nom nom
+
+		//update ammo counter
+		if(!target_gun.flashbulb_only) //FOSS guns already do it in flash_process_ammo()
+			if(target_gun.max_ammo_capacity)
+				target_gun.inventory_counter.update_number(length(target_gun.ammo_list) + !!target_gun.current_projectile)
+			else
+				target_gun.inventory_counter.update_number(!!target_gun.current_projectile)
+
+
+		if(!donor_ammo.amount) //probably more useful to tell a single-shot user they ran out of ammo than that they have a full gun.
+			boutput(owner, "<span class='notice'>All the ammo has been loaded.</span>")
+			..()
+		else if (length(target_gun.ammo_list) == target_gun.max_ammo_capacity)
+			boutput(owner, "<span class='notice'>The hold is now fully loaded.</span>")
+			if (target_gun.sound_type)
+				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-stopload.ogg", 30, 1)
+			else
+				playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			..()
+		else if (src.state == ACTIONSTATE_DELETE) //we jammed mid reload
+			..()
+		else
+			onRestart()
+		return
 
 /obj/item/gun/modular/alter_projectile(var/obj/projectile/P)
 	if(P.proj_data.window_pass)
@@ -400,7 +548,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
-		qdel(ammo_list[ammo_list.len])
+			qdel(ammo_list[ammo_list.len]) //please don't qdel typepaths
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 
 		processing_ammo = FALSE
@@ -601,6 +749,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return FALSE
 	if (!istype(src.current_projectile,/datum/projectile/))
 		return FALSE
+
+	//prevents reloading while shooting, among other things
+	actions.interrupt(user, INTERRUPT_ACT)
 
 	if (src.muzzle_flash)
 		if (isturf(user.loc))

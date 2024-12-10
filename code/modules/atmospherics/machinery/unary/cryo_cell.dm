@@ -192,9 +192,10 @@
 				src.on = !src.on
 				build_icon()
 			if(href_list["eject"])
-				beaker:set_loc(src.loc)
-				usr.put_in_hand_or_eject(beaker) // try to eject it into the users hand, if we can
-				beaker = null
+				if (!isAI(usr)) //get your lack of hands off this is a physical operation
+					beaker:set_loc(src.loc)
+					usr.put_in_hand_or_eject(beaker) // try to eject it into the users hand, if we can
+					beaker = null
 			if(href_list["show_beaker_contents"])
 				show_beaker_contents = !show_beaker_contents
 			if (href_list["reagent_scan_active"])

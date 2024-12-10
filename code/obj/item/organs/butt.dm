@@ -28,6 +28,7 @@
 	var/datum/organHolder/holder = null
 	var/sound/sound_fart = null // this is the life I live, making it so you can change the fart sound of your butt (that you can wear on your head) so that you can make artifact butts with weird farts
 	var/made_from = "butt"
+	var/buttbot_path = /obj/machinery/bot/buttbot
 
 	disposing()
 		if (donor?.organs)
@@ -160,9 +161,9 @@
 			qdel(W)
 			qdel(src)
 		else if (istype(W, /obj/item/parts/robot_parts/arm))
-			var/obj/machinery/bot/buttbot/B = new /obj/machinery/bot/buttbot(src, W)
+			var/obj/machinery/bot/buttbot/B = new buttbot_path(src, W)
 			if (src.donor || src.donor_name)
-				B.name = "[src.donor_name ? "[src.donor_name]" : "[src.donor.real_name]"] buttbot"
+				B.name = "[src.donor_name ? "[src.donor_name]" : "[src.donor.real_name]"] [B.name]"
 			user.show_text("You add [W] to [src]. Fantastic.", "blue")
 			B.set_loc(get_turf(src))
 			src.set_loc(B)
@@ -195,25 +196,22 @@
 	toned = 0
 	made_from = "pharosium"
 	sound_fart = "sound/voice/farts/poo2_robot.ogg"
+	buttbot_path = /obj/machinery/bot/buttbot/cyber
 // no this is not done and I dunno when it will be done
 // I am a bad person who accepts bribes of freaky macho butt drawings and then doesn't prioritize the request the bribe was for
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/parts/robot_parts/arm))
-			var/obj/machinery/bot/buttbot/cyber/B = new /obj/machinery/bot/buttbot/cyber(src, W)
-			if (src.donor || src.donor_name)
-				B.name = "[src.donor_name ? "[src.donor_name]" : "[src.donor.real_name]"] robuttbot"
-			user.show_text("You add [W] to [src]. Fantastic.", "blue")
-			B.set_loc(get_turf(src))
-			src.set_loc(B)
-			user.u_equip(src)
-			W.set_loc(B)
-			user.u_equip(W)
-		else
-			return ..()
+/obj/item/clothing/head/butt/skeleton // I know exactly what I'm doing with my life
+	name = "fartilage"
+	desc = "This never came up when we learning about the skeleton in school?"
+	icon_state = "butt-skeleton"
+	toned = FALSE
+	made_from = "bone"
+	buttbot_path = /obj/machinery/bot/buttbot/skeleton
 
 // moving this from plants_crop.dm because SERIOUSLY WHY -- cirr
 /obj/item/clothing/head/butt/synth
 	name = "synthetic butt"
 	desc = "Why would you even grow this. What the fuck is wrong with you?"
 	icon_state = "butt-plant"
+	toned = FALSE
+	buttbot_path = /obj/machinery/bot/buttbot/synth

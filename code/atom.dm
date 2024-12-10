@@ -558,16 +558,16 @@ TYPEINFO(/atom)
 	if(src.loc == usr)
 		return
 
-	// eyebots aint got no arms man, how can they be pulling stuff???????
 	if (!isliving(usr))
 		return
-	if (isshell(usr))
+	// eyebots aint got no arms man, how can they be pulling stuff??????? <- STFU Karen
+	/*if (isshell(usr))
 		if (!ticker)
 			return
 		if (!ticker.mode)
 			return
 		if (!istype(ticker.mode, /datum/game_mode/construction))
-			return
+			return*/
 	// no pulling other mobs for ghostdrones (but they can pull other ghostdrones)
 	else if (isghostdrone(usr) && ismob(src) && !isghostdrone(src))
 		return

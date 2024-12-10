@@ -677,6 +677,7 @@
 //////Martian
 /obj/npc/trader/martian
 	icon_state = "martianP"
+	icon = 'icons/mob/critter/martian.dmi'
 	picture = "martian.png"
 	trader_area = "/area/martian_trader"
 	angrynope = "Not now, human."

@@ -13,6 +13,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
 
+	var/machinery_flags = 0
 	var/status = 0
 	var/power_usage = 0
 	var/power_channel = EQUIP
@@ -36,6 +37,9 @@
 	if (!isnull(initial(machine_registry_idx))) 	// we can use initial() here to skip a lookup from this instance's vars which we know won't contain this.
 		machine_registry[initial(machine_registry_idx)] += src
 
+	if ((src.machinery_flags & MAY_REQUIRE_MAINT) && istype(get_area(src), /area/station))
+		maintenance_eligible_machines |= src
+
 	var/static/machines_counter = 0
 	src.processing_bucket = machines_counter++ & 31 // this is just modulo 32 but faster due to power-of-two memes
 	SubscribeToProcess()
@@ -57,6 +61,10 @@
 		machine_registry[initial(machine_registry_idx)] -= src
 	UnsubscribeProcess()
 
+	if (src.machinery_flags & MAY_REQUIRE_MAINT)
+		maintenance_eligible_machines -= src
+		random_events.maintenance_event.unmaintained_machines -= src
+
 	var/area/A = get_area(src)
 	if(A) A.machines -= src
 	..()
@@ -72,7 +80,7 @@
 * This is typically limited to Borgs and AI things
 */
 /obj/machinery/can_access_remotely(mob/user)
-	if (src.status & REQ_PHYSICAL_ACCESS)
+	if (src.machinery_flags & REQ_PHYSICAL_ACCESS)
 		. = ..()
 	else
 		. = can_access_remotely_default(user)
@@ -94,6 +102,9 @@
 		if (!(status & NOPOWER) && wire_powered)
 			use_power(power_usage, power_channel)
 			power_credit = power_usage
+
+	if ((status & MALFUNC) && !(status & NOPOWER))
+		malfunction(mult)
 
 /obj/machinery/proc/gib(atom/location)
 	if (!location) return
@@ -178,13 +189,13 @@
 	return 0
 
 /obj/machinery/ui_state(mob/user)
-	if(src.status & REQ_PHYSICAL_ACCESS)
+	if(src.machinery_flags & REQ_PHYSICAL_ACCESS)
 		. = tgui_physical_state
 	else
 		. = tgui_default_state
 
 /obj/machinery/ui_status(mob/user, datum/ui_state/state)
-	if(src.status & REQ_PHYSICAL_ACCESS)
+	if(src.machinery_flags & REQ_PHYSICAL_ACCESS)
 		. = min(tgui_broken_state.can_use_topic(src, user),
 						tgui_physical_state.can_use_topic(src, user),
 						tgui_not_incapacitated_state.can_use_topic(src, user)
@@ -293,6 +304,13 @@
 										// by default, check equipment channel & set flag
 										// can override if needed
 	if(powered())
+		//Have you tried turning it off and on again?
+		//BTW if this bit turns out to be too costly feel free to remove it.
+		//This method likely requires cycling the APC repeatedly and if a player can do that they can just fix the machine probably
+		if (status & MALFUNC)
+			if ((status & NOPOWER) && prob(10)) //IDK if nesting the ifs matters but I want to ensure as little waste
+				malfunction_resolve()
+
 		status &= ~NOPOWER
 	else
 
@@ -404,3 +422,19 @@
 	if(A1 && A2 && A1 != A2)
 		A1.machines -= src
 		A2.machines += src
+
+//If you need to set up anything when the machine starts malfunctioning
+/obj/machinery/proc/malfunction_start()
+
+///Do wacky annoying shit
+/obj/machinery/proc/malfunction(mult)
+	//placeholder
+	//src.color = "#FF8888"
+
+//Machine is properly maintained before or after problems arise.
+/obj/machinery/proc/malfunction_resolve()
+	src.status &= ~MALFUNC
+	random_events.maintenance_event.unmaintained_machines -= src
+	ON_COOLDOWN(src, "maintained", 20 MINUTES) //prevent defects for a while
+	//unplaceholder
+	//src.color = "#FFFFFF"

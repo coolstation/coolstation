@@ -347,7 +347,7 @@ Code:
 				if (bl.z != cl.z)
 					continue
 
-				ldat += "Bucket - <b>\[[bl.x],[bl.y] ([get_area(bl)])\]</b> - Water level: [B.reagents.total_volume]/50<br>"
+				ldat += "Bucket - <b>\[[bl.x],[bl.y] ([get_area(bl)])\]</b> - Water level: [B.reagents.total_volume]/[B.reagents.maximum_volume]<br>"
 
 			if (!ldat)
 				dat += "None"
@@ -367,6 +367,25 @@ Code:
 					continue
 
 				ldat += "Cleanbot - <b>\[[cb.x],[cb.y] ([get_area(cb)])\]</b> - [B.on ? "Online" : "Offline"]<br>"
+
+			if (!ldat)
+				dat += "None"
+			else
+				dat += "[ldat]"
+
+			dat += "<h4>Located Floor Buffers:</h4>"
+
+			ldat = null
+			for_by_tcl(F, /obj/vehicle/floorbuffer)
+				var/turf/fb = get_turf(F)
+
+				if(!fb || !istype(fb))
+					continue
+
+				if (fb.z != cl.z)
+					continue
+
+				ldat += "[F] - <b>\[[fb.x],[fb.y] ([get_area(fb)])\]</b> - Tank level: [F.reagents.total_volume]/[F.reagents.maximum_volume]<br>"
 
 			if (!ldat)
 				dat += "None"
@@ -1315,6 +1334,36 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 		if(..())
 			return
 		//We want the refresh to just redraw the thing, which doesn't actually require any special handling :)
+		src.master.add_fingerprint(usr)
+		src.master.updateSelfDialog()
+		return
+
+/datum/computer/file/pda_program/maintenance_arrears
+	name = "Maintenance Arrears"
+	size = 4
+
+	return_text()
+		if(..())
+			return
+
+		var/dat = src.return_text_header()
+		dat += "<h4>Maintenance Arrears:</h4>"
+
+		for (var/obj/machinery/problem in random_events.maintenance_event.unmaintained_machines)
+			var/turf/T = get_turf(problem)
+			var/area/A = get_area(problem)
+			if (!istype(T))
+				continue //uh
+			dat += "<b>[problem.name]</b><br> [istype(A, /area/station) ? "Located in [A]: [T.x], [T.y]" : "(Location unknown)"]<br>"
+		dat += "<br>"
+
+		dat += "<a href='byond://?src=\ref[src];update=1'>Refresh</a>"
+
+		return dat
+
+	Topic(href, href_list)
+		if(..())
+			return
 		src.master.add_fingerprint(usr)
 		src.master.updateSelfDialog()
 		return

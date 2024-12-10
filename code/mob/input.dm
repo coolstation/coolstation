@@ -66,10 +66,12 @@
 		return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
 
 	if (src.move_dir)
+		//SPRINTING REMOVAL - Despite the name, this running var seems to actually be what dictates the speed increase when sprinting
+		//Sadly it's scattered all over this code so I'm leaving it dormant instead of commenting all of it out.
 		var/running = 0
 		var/mob/living/carbon/human/H = src
-		if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
-			running = 1
+		//if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
+		//	running = 1
 		if (H.pushing && get_dir(H,H.pushing) != H.move_dir) //Stop pushing before calculating move_delay if we've changed direction
 			H.pushing = 0
 

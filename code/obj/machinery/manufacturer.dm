@@ -66,6 +66,7 @@
 	event_handler_flags = NO_MOUSEDROP_QOL
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	flags = NOSPLASH
+	machinery_flags = MAY_REQUIRE_MAINT
 	var/health = 100
 	var/mode = "ready"
 	var/error = null
@@ -486,6 +487,12 @@
 			user.Browse(dat, "window=manufact;size=750x500")
 			onclose(user, "manufact")
 			return
+		if (status & MALFUNC) //kinda boring but I can't think of anything better atm it's late
+			dat = "The screen is a garbled, shifting mess. Something is broken here."
+			user.Browse(dat, "window=manufact;size=750x500")
+			onclose(user, "manufact")
+			return
+
 
 		dat += "<div id='products'>"
 
@@ -1005,15 +1012,22 @@
 				user.visible_message("<span class='notice'>[user] loads [C] into the [src].</span>", "<span class='notice'>You load [C] into the [src].</span>")
 				src.load_item(C,user)
 			else
-				if (src.health >= 50)
-					boutput(user, "<span class='alert'>The wiring is fine. You need to weld the external plating to do further repairs.</span>")
+				if (status & MALFUNC)
+					if (W.amount >= 4)
+						W.change_stack_amount(-4)
+						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+						boutput(user, "<span class='notice'>You replace some of the grodier-looking wires.</span>")
+						malfunction_resolve()
 				else
-					C.use(1)
-					src.take_damage(-10)
-					user.visible_message("<b>[user]</b> uses [C] to repair some of [src]'s cabling.")
-					playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 					if (src.health >= 50)
-						boutput(user, "<span class='notice'>The wiring is fully repaired. Now you need to weld the external plating.</span>")
+						boutput(user, "<span class='alert'>The wiring is fine. You need to weld the external plating to do further repairs.</span>")
+					else
+						C.use(1)
+						src.take_damage(-10)
+						user.visible_message("<b>[user]</b> uses [C] to repair some of [src]'s cabling.")
+						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+						if (src.health >= 50)
+							boutput(user, "<span class='notice'>The wiring is fully repaired. Now you need to weld the external plating.</span>")
 
 		else if (iswrenchingtool(W))
 			var/do_action = 0
