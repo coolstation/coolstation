@@ -86,6 +86,12 @@ proc/buildRandomShips()
 		icon = 'icons/map-editing/random-rooms/3x3.dmi'
 	#endif
 
+	cargo5x3
+		size = "5x3"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/5x3.dmi'
+	#endif
+
 	misc3x3
 		size = "3x3"
 	#ifdef IN_MAP_EDITOR
