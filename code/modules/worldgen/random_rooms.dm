@@ -80,6 +80,17 @@ proc/buildRandomShips()
 		icon = 'icons/map-editing/random-rooms/30x25.dmi'
 	#endif
 
+	cargo3x3
+		size = "3x3"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/3x3.dmi'
+	#endif
+
+	misc3x3
+		size = "3x3"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/3x3.dmi'
+	#endif
 	/*
 	small_spaceship
 		size = "small_ship"
