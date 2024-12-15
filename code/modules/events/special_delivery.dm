@@ -18,7 +18,7 @@
 		SPAWN_DBG(1) //apparently map_settings doesn't exist yet
 			if (map_settings.qm_supply_type != "shuttle")
 				src.disabled = TRUE
-			categories = list("garbage" = 100, "fuel" = 100, "atmospherics" = 75, /*"contraband" = 25, "mechanics" = 75, */"ore" = 100, "artifacts" = 100)
+			categories = list("garbage" = 100, "fuel" = 100, "atmospherics" = 75, /*"contraband" = 25, "mechanics" = 75, */"ore" = 100, "artifacts" = 100, "pizza" = 25)
 			RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY, PROC_REF(shuttle_ready))
 
 	admin_call(source)
@@ -62,6 +62,8 @@
 				message += "ores and scrap metal"
 			if ("artifacts")
 				message += pick("alien artifacts", "watchamacallits", "weird crap")
+			if ("pizza") //pizza is kinda rare cause it might end up a bit boring otherwise.
+				message += pick("pizza", "authentic Italian cuisine", "last night's leftovers")
 
 		message += ". Process the shipment as you see fit[cargo_type == "artifacts" ? "." : ", but do not return anything to us."] Please direct any questions or complaints to NanoTrasen Central Logistics Office, Earth."
 		centcom_message = message
@@ -154,6 +156,13 @@
 					shit_in_the_open += artifact
 				artifact.set_loc(null) //when we delete D it'd delete all its contents with it
 			qdel(D)
+		if ("pizza")
+			var/list/pizzae = concrete_typesof(/obj/item/reagent_containers/food/snacks/pizza)
+			for(var/i in 1 to rand(8,24)) //1 to 3 crates worth
+				var/path = pick(pizzae)
+				if (path == /obj/item/reagent_containers/food/snacks/pizza/xmas) //making spacemas pizza rare by needing to roll it twice in a row (1/5th*1/5th)
+					path = pick(pizzae)
+				shit_in_crates += new path
 
 	for (var/obj/big_obj as anything in shit_in_the_open) //mark em now before the crates get added, because we don't want those to get marked.
 		big_obj.object_flags |= SPECIAL_PENALTY_ON_SALE //Doesn't do anything ATM though, shuttle cargo isn't set up to take loose items besides arts (who I didn't penalise)
