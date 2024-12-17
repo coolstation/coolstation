@@ -4,6 +4,7 @@ obj/machinery/atmospherics/filter
 	density = 1
 //
 	name = "Gas filter"
+	generic_decon_module = /obj/item/atmospherics/module/filter
 
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST

@@ -6,6 +6,7 @@
 
 	name = "Air Injector"
 	desc = "Has a valve and pump attached to it"
+	generic_decon_module = /obj/item/atmospherics/module/outlet_injector
 
 	var/on = 0
 	var/injecting = 0

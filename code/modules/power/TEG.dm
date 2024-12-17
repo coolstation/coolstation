@@ -1351,6 +1351,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 
 	name = "Furnace Connector"
 	desc = "Used to connect a furnace to a pipe network."
+	generic_decon_module = /obj/item/atmospherics/module/furnace_connector
 
 	var/current_temperature = T20C
 	var/current_heat_capacity = 3000

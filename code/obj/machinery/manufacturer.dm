@@ -2550,6 +2550,7 @@
 	/datum/manufacture/powercell,
 	/datum/manufacture/powercellC,
 	/datum/manufacture/powercellE,
+	/datum/manufacture/atmos_purger,
 	/datum/manufacture/atmos_module/connector,
 	/datum/manufacture/atmos_module/digital_valve,
 	/datum/manufacture/atmos_module/dp_vent,
