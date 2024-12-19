@@ -639,6 +639,9 @@ obj/machinery/atmospherics/pipe
 			else
 				icon_state = "exposed"
 
+		generic_deconstruct()
+			..(new /obj/item/atmospherics/pipeframe/exchanger_regular_junction/pre_welded(src.loc))
+
 	simple/heat_exchanging
 		icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi'
 		icon_state = "intact"
@@ -672,6 +675,10 @@ obj/machinery/atmospherics/pipe
 
 				icon_state = "[node1_direction|node2_direction]"
 
+		generic_deconstruct()
+			..(new /obj/item/atmospherics/pipeframe/exchanger/pre_welded(src.loc))
+
+
 	tank
 		icon = 'icons/obj/atmospherics/tanks/grey_pipe_tank.dmi'
 		icon_state = "intact"
@@ -683,6 +690,7 @@ obj/machinery/atmospherics/pipe
 		density = 1
 		var/obj/machinery/atmospherics/node1
 		layer = PIPE_OVERCAT
+		generic_decon_time = 10 SECONDS //it's a giant tank what do you expect
 
 		north
 			dir = NORTH

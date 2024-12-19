@@ -42,12 +42,12 @@ obj/machinery/atmospherics
 			if ((isweldingtool(I) && user.find_tool_in_hand(TOOL_SAWING))) //welder with saw off-hand
 				W = I //we need to typecast for the other branch anyway might as well
 				if (W.try_weld(user,0.5))
-					SETUP_GENERIC_ACTIONBAR(user, src, src.generic_decon_time, /obj/machinery/atmospherics/proc/generic_deconstruct, null, 'icons/ui/actions.dmi', "decon", null, null)
+					SETUP_GENERIC_ACTIONBAR(user, src, src.generic_decon_time, PROC_REF(generic_deconstruct), null, 'icons/ui/actions.dmi', "decon", null, null)
 					return
 			else if (istool(I, TOOL_SAWING)) //saw with welder off-hand
 				W = user.find_tool_in_hand(TOOL_WELDING)
 				if (W?.try_weld(user,0.5))
-					SETUP_GENERIC_ACTIONBAR(user, src, src.generic_decon_time, /obj/machinery/atmospherics/proc/generic_deconstruct, null, 'icons/ui/actions.dmi', "decon", null, null)
+					SETUP_GENERIC_ACTIONBAR(user, src, src.generic_decon_time, PROC_REF(generic_deconstruct), null, 'icons/ui/actions.dmi', "decon", null, null)
 					return
 		..()
 
@@ -87,19 +87,20 @@ obj/machinery/atmospherics
 		disconnect(obj/machinery/atmospherics/reference)
 
 		///welder + saw deconstruction
-		generic_deconstruct()
+		generic_deconstruct(obj/item/atmospherics/pipeframe/regular/PF)
 			//this is where you'd have Consequences for piercing a high pressure gas line
-			var/obj/item/atmospherics/pipeframe/regular/pre_welded/PF = new(src.loc) //player's hands are full anyway, may as well drop it
-			if (generic_decon_module) //add module if specified
-				var/obj/item/atmospherics/module/M = new generic_decon_module(PF)
-				PF.gizmo = M
+			if (!PF)
+				PF =  new /obj/item/atmospherics/pipeframe/regular/pre_welded(src.loc) //player's hands are full anyway, may as well drop it
+				if (generic_decon_module) //add module if specified
+					var/obj/item/atmospherics/module/M = new generic_decon_module(PF)
+					PF.gizmo = M
 
-				PF.expected_connections = PF.gizmo.expected_connections
-				PF.name = "[PF.gizmo.assembly_prefix] pipe assembly"
-				PF.orientation_instructions = PF.gizmo.module_instructions
+					PF.expected_connections = PF.gizmo.expected_connections
+					PF.name = "[PF.gizmo.assembly_prefix] pipe assembly"
+					PF.orientation_instructions = PF.gizmo.module_instructions
 
-				var/image/scrumpy = image(PF.gizmo.icon, PF.gizmo.icon_state)
-				PF.UpdateOverlays(scrumpy, "added_gizmo")
+					var/image/scrumpy = image(PF.gizmo.icon, PF.gizmo.icon_state)
+					PF.UpdateOverlays(scrumpy, "added_gizmo")
 			qdel(src)
 
 		sync_node_connections()
