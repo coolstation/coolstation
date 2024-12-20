@@ -44,8 +44,11 @@ TYPEINFO(/datum/mapPrefab/random_ship)
 		if(probability_regex.Find(filename))
 			src.probability = text2num(probability_regex.group[1])
 
-proc/buildRandomShips()
+proc/buildRandomShips() //This is byond a terrible fix which likely doesn't function anyway. A better way to do this would be to create two landmarks, one for the ships and another for the rooms.
 	shuffle_list(by_type[/obj/landmark/random_ship])
+	for_by_tcl(landmark, /obj/landmark/random_ship)
+		landmark.apply()
+	shuffle_list(by_type[/obj/landmark/random_ship]) //this repeates twice, as the first landmark would be the 30x25 which then introduces many other ship landmarks that must be generated
 	for_by_tcl(landmark, /obj/landmark/random_ship)
 		landmark.apply()
 
