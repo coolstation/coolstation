@@ -825,6 +825,7 @@ var/global/noir = 0
 					logTheThing("admin", usr, null, "set the mode as [requestedMode].")
 					logTheThing("diary", usr, null, "set the mode as [requestedMode].", "admin")
 					message_admins("<span class='internal'>[key_name(usr)] set the mode as [requestedMode].</span>")
+					discord_send("[key_name(usr)] set this round's mode as [requestedMode].", -1)
 					world.save_mode(requestedMode)
 					master_mode = requestedMode
 					if(master_mode == "battle_royale")
@@ -849,6 +850,7 @@ var/global/noir = 0
 				logTheThing("admin", usr, null, "set the next round's mode as [newmode].")
 				logTheThing("diary", usr, null, "set the next round's mode as [newmode].", "admin")
 				message_admins("<span class='internal'>[key_name(usr)] set the next round's mode as [newmode].</span>")
+				discord_send("[key_name(usr)] set next round's mode as [requestedMode].", -1)
 				world.save_mode(newmode)
 				if (alert("Declare mode change to all players?","Mode Change","Yes","No") == "Yes")
 					boutput(world, "<span class='notice'><b>The next round's mode will be: [newmode]</b></span>")
