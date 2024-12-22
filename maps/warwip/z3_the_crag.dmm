@@ -982,6 +982,14 @@
 /obj/disposalpipe/segment,
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"mo" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/orangeblack,
+/area/space)
 "mp" = (
 /obj/wingrille_spawn/crystal,
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
@@ -995,6 +1003,11 @@
 	icon_state = "2-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor/plating,
 /area/space)
 "mt" = (
@@ -2016,6 +2029,15 @@
 /obj/cable,
 /turf/floor/red,
 /area/station/security/brig/south_side)
+"yA" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/space)
 "yP" = (
 /obj/decal/fakeobjects/rockpile,
 /turf/floor/sand,
@@ -2213,6 +2235,16 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/space)
+"AN" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/space)
 "AT" = (
 /turf/floor/sand,
 /area/station/security/brig/north_side)
@@ -2345,6 +2377,14 @@
 /obj/table/reinforced/auto,
 /turf/floor/red,
 /area/station/security/main)
+"CI" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/orangeblack,
+/area/space)
 "CJ" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment{
@@ -3333,6 +3373,15 @@
 "Ow" = (
 /turf/floor/darkblue,
 /area/station/bridge)
+"OA" = (
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/turf/floor/plating,
+/area/space)
 "OC" = (
 /obj/cable{
 	d1 = 1;
@@ -3988,6 +4037,14 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/southeast,
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"Ww" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/orangeblack,
+/area/space)
 "Wx" = (
 /turf/floor/plating,
 /area/station/engine/gas)
@@ -58475,7 +58532,7 @@ zy
 uM
 UR
 LN
-Pf
+AN
 Pf
 qY
 Pf
@@ -58777,7 +58834,7 @@ zy
 zy
 UR
 mV
-xD
+yA
 xD
 se
 xD
@@ -59079,7 +59136,7 @@ zy
 zy
 UR
 xD
-xD
+yA
 zl
 dF
 UR
@@ -59381,7 +59438,7 @@ zy
 zy
 UR
 xD
-xD
+yA
 UR
 UR
 UR
@@ -59683,7 +59740,7 @@ zy
 zy
 UR
 xD
-xD
+yA
 SJ
 fh
 fh
@@ -59985,7 +60042,7 @@ uM
 uM
 UR
 xD
-xD
+yA
 SJ
 fh
 fh
@@ -60284,10 +60341,10 @@ fh
 fh
 fh
 fh
-fh
 UR
-os
-os
+CI
+Ww
+mo
 UR
 fh
 fh
@@ -60586,8 +60643,8 @@ fh
 fh
 fh
 fh
-fh
 UR
+OA
 Ni
 nq
 UR
@@ -60888,7 +60945,7 @@ fh
 fh
 fh
 fh
-fh
+UR
 UR
 UR
 UR

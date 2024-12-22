@@ -12719,6 +12719,10 @@
 	},
 /turf/floor/green/side,
 /area/station/hallway/primary/northeast)
+"mAq" = (
+/obj/machinery/portable_reclaimer,
+/turf/floor/black,
+/area/station/hangar/main)
 "mAP" = (
 /obj/rack,
 /obj/item/chair/folded,
@@ -14074,6 +14078,9 @@
 	pixel_x = -1
 	},
 /obj/machinery/defib_mount,
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "nVs" = (
@@ -18236,7 +18243,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/manufacturer/hangar,
 /turf/floor/black,
 /area/station/hangar/main)
 "saK" = (
@@ -20618,13 +20625,13 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	areastring = "Cargo Bay";
-	dir = 1;
-	name = "Cargo Bay APC";
-	pixel_y = 24
-	},
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/power/apc{
+	areastring = "Inner Engineering";
+	dir = 8;
+	name = "Inner Engineering APC";
+	pixel_x = -24
+	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "usS" = (
@@ -21899,9 +21906,9 @@
 	},
 /obj/cable,
 /obj/machinery/power/apc{
-	areastring = "Inner Engineering";
+	areastring = "Cargo Bay";
 	dir = 8;
-	name = "Inner Engineering APC";
+	name = "Cargo Bay APC";
 	pixel_x = -24
 	},
 /turf/floor/plating,
@@ -83324,7 +83331,7 @@ huZ
 huZ
 huA
 mVA
-nFX
+mAq
 nus
 vMg
 tkk
