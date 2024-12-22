@@ -3569,9 +3569,9 @@
 /turf/floor/specialroom/freezer/blue,
 /area/station/crew_quarters/kitchen)
 "dwt" = (
-/obj/machinery/vending/atmospherics,
-/turf/floor/plating,
-/area/station/maintenance/west)
+/obj/machinery/portable_reclaimer,
+/turf/floor/black,
+/area/station/hangar/main)
 "dyl" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/decal/cleanable/dirt/random,
@@ -8273,7 +8273,7 @@
 /turf/floor,
 /area/station/engine/storage)
 "hXB" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/vending/atmospherics,
 /turf/floor,
 /area/station/engine/gas)
 "hXJ" = (
@@ -12719,10 +12719,6 @@
 	},
 /turf/floor/green/side,
 /area/station/hallway/primary/northeast)
-"mAq" = (
-/obj/machinery/portable_reclaimer,
-/turf/floor/black,
-/area/station/hangar/main)
 "mAP" = (
 /obj/rack,
 /obj/item/chair/folded,
@@ -16345,6 +16341,7 @@
 /area/station/hallway/primary/northeast)
 "pZn" = (
 /obj/machinery/atmospherics/portables_connector/east,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor,
 /area/station/engine/gas)
 "qac" = (
@@ -17419,6 +17416,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor,
 /area/station/engine/gas)
 "rdT" = (
@@ -18599,6 +18597,10 @@
 	},
 /turf/floor/carpet/blue/standard/edge/nw,
 /area/station/bridge)
+"suI" = (
+/obj/item/deconstructor,
+/turf/floor,
+/area/station/engine/gas)
 "suM" = (
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
@@ -18606,7 +18608,7 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
-/turf/wall/r_wall,
+/turf/wall,
 /area/station/engine/storage)
 "svw" = (
 /obj/table/reinforced/bar/auto,
@@ -63105,7 +63107,7 @@ iqI
 svt
 qTr
 hXB
-hXB
+suI
 rdL
 xNm
 mMO
@@ -63402,7 +63404,7 @@ aUi
 hli
 hGk
 aUi
-dwt
+icX
 icX
 fBW
 qTr
@@ -83331,7 +83333,7 @@ huZ
 huZ
 huA
 mVA
-mAq
+dwt
 nus
 vMg
 tkk
