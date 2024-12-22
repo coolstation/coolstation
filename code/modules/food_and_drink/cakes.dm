@@ -644,11 +644,12 @@
 		eater.show_text("It's so hard it breaks one of your teeth AND it tastes disgusting! Why would you ever eat this?","red")
 		random_brute_damage(eater, 3)
 		eater.emote("scream")
-		var/mob/living/carbon/human/Ht = target
-		var/obj/item/skull/target_skull = Ht.organHolder?.skull
-		if (target_skull && target_skull.teeth)
-			target_skull.teeth--
-			new /obj/decal/cleanable/tooth(get_turf(target))
+		if(ishuman(eater))
+			var/mob/living/carbon/human/Ht = eater
+			var/obj/item/skull/target_skull = Ht.organHolder?.skull
+			if (target_skull && target_skull.teeth)
+				target_skull.teeth--
+				new /obj/decal/cleanable/tooth(get_turf(eater))
 		return
 
 #endif
