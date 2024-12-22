@@ -100,6 +100,11 @@ Custom Books
 		icon_state = "gunguide"
 		file_path = "strings/books/gun_pocket_guide.txt"
 
+	atmos
+		name = "Atmospherics Pocket Guide"
+		icon_state = "atmos"
+		file_path = "strings/books/atmos_pocket_guide.txt"
+
 /****MatSci and Mining****/
 
 /obj/item/paper/book/from_file/matsci_guide_old

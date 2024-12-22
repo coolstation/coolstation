@@ -1599,6 +1599,10 @@
 /obj/machinery/light_switch/north,
 /turf/floor/carpet/green,
 /area/station/crew_quarters/hop)
+"byz" = (
+/obj/item/deconstructor,
+/turf/floor,
+/area/station/engine/gas)
 "byD" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -4161,6 +4165,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
+/obj/machinery/light_switch/north,
 /turf/floor,
 /area/station/engine/storage)
 "dZc" = (
@@ -18597,10 +18602,6 @@
 	},
 /turf/floor/carpet/blue/standard/edge/nw,
 /area/station/bridge)
-"suI" = (
-/obj/item/deconstructor,
-/turf/floor,
-/area/station/engine/gas)
 "suM" = (
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
@@ -20671,7 +20672,6 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/light_switch/north,
 /turf/floor/orangeblack/side{
 	dir = 8
 	},
@@ -63107,7 +63107,7 @@ iqI
 svt
 qTr
 hXB
-suI
+byz
 rdL
 xNm
 mMO

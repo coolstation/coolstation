@@ -239,6 +239,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		..()
 		if (welded && isnull(gizmo))
 			. += " Add a metal sheet to make a pipebomb frame."
+		if (!welded)
+			. += " You'll have to weld the seam shut first."
 
 	///We might have differing modules attached
 	check_valid_stack(obj/item/atmospherics/pipeframe/regular/O)
@@ -645,6 +647,9 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 
 	create_products() //IDK what half the machines these fuckers build into actually *do* so not all of this may be appropriate stock
 		..()
+		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/atmos, 1)
+		product_list += new/datum/data/vending_product(/obj/item/deconstructor, 2)
+		product_list += new/datum/data/vending_product(/obj/item/weldingtool, 3)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/valve, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/digital_valve, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/manifold_valve, 15)
