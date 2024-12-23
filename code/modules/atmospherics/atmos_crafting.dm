@@ -319,13 +319,13 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		if (!gizmo)
 			switch(orientation) //Like manifold valves, manifolds point in the direction they don't have a connection to
 				if(NORTH + EAST + WEST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, SOUTH)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, SOUTH)
 				if(SOUTH + EAST + WEST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, NORTH)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, NORTH)
 				if(NORTH + SOUTH + WEST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, EAST)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, EAST)
 				if(NORTH + SOUTH + EAST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, WEST)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, WEST)
 				else
 					return ..() //2-connection pipes
 		else
