@@ -1166,7 +1166,7 @@ var/global/list/mapNames = list(
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/space/gehenna/desert
+	shuttle_map_turf = /turf/space/gehenna/desert/beaten
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
