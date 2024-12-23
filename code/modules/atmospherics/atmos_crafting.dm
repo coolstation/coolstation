@@ -630,8 +630,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 /obj/machinery/vending/atmospherics //adapted from the mechcomp one
 	name = "atmospherics module dispenser"
 	desc = "Dispenses parts for building atmospherics equipment."
-	icon_state = "generic"
-	icon_panel = "generic-panel"
+	icon_state = "w_generic"
+	icon_panel = "w_generic-panel"
 	acceptcard = 0
 	pay = 0
 
@@ -647,22 +647,23 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 
 	create_products() //IDK what half the machines these fuckers build into actually *do* so not all of this may be appropriate stock
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/atmos, 1)
+		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/atmos, 2)
 		product_list += new/datum/data/vending_product(/obj/item/deconstructor, 2)
 		product_list += new/datum/data/vending_product(/obj/item/weldingtool, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/fueltank, 3)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/valve, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/digital_valve, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/manifold_valve, 10)
 		//product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/filter, 5)
 		//product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/mixer, 5)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/connector, 8)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/connector, 5)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/pump, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/volume_pump, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/volume_pump, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/dp_vent, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/passive_gate, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/furnace_connector, 5)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/outlet_injector, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/outlet_injector, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_pump, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_scrubber, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/pipeframe/exchanger_regular_junction/pre_welded, 10)
