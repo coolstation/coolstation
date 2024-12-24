@@ -27,12 +27,10 @@ TYPEINFO(/datum/mapPrefab/random_room)
 		if(probability_regex.Find(filename))
 			src.probability = text2num(probability_regex.group[1])
 
-
 proc/buildRandomRooms()
 	shuffle_list(by_type[/obj/landmark/random_room])
 	for_by_tcl(landmark, /obj/landmark/random_room)
 		landmark.apply()
-
 
 /obj/landmark/random_room
 	///actually the name of the folder within assets/maps/random_rooms
