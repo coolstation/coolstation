@@ -7,6 +7,22 @@
 	icon_state = "apc-b"
 	anchored = 1
 
+/obj/decal/fakeobjects/broken_governor
+	name = "busted AI governor"
+	desc = "A big cabinet of electronics that facilitate the AI to manage certain tasks. This one is damaged well beyond repair. Hope it wasn't critical."
+	icon = 'icons/obj/machines/networked.dmi'
+	icon_state = "governor_body-damaged"
+	anchored = 1
+	density = 1
+	var/stripe_colour = "#AA0000"
+	New()
+		..()
+		var/image/stripe = image(src.icon, "governor_stripe")
+		stripe.color = stripe_colour
+		UpdateOverlays(stripe, "stripe")
+		UpdateOverlays(image(src.icon, "governor_guts-smashed", layer = FLOAT_LAYER), "guts")
+		UpdateOverlays(image(src.icon, "governor_glass-shattered", layer = FLOAT_LAYER+1), "glass")
+
 /obj/decal/fakeobjects/firealarm_broken
 	name = "broken fire alarm"
 	desc = "This fire alarm is burnt out, ironically."
