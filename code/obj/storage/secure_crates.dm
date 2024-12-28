@@ -32,10 +32,10 @@
 		req_access = list(access_maxsec)
 
 		tranquilizer
-			name = "tranquilizer crate"
-			spawn_contents = list(/obj/item/gun/kinetic/dart_rifle = 2,\
-			/obj/item/ammo/bullets/tranq_darts = 2,\
-			/obj/item/ammo/bullets/tranq_darts/anti_mutant)
+			name = "tranquilizer crate" //one extra set of darts cause the old rifles came pre-loaded
+			spawn_contents = list(/obj/item/gun/modular/NT/long/rifle = 2,\
+			/obj/item/stackable_ammo/pistol/tranq/five = 3,\
+			/obj/item/stackable_ammo/pistol/anti_mutant/five)
 
 		phaser
 			name = "phaser crate"
