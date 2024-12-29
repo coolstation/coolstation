@@ -1,4 +1,4 @@
-//stole this from vampire. prevents runtimes. IDK why this isn't in the parent.
+//stole this from dracula. prevents runtimes. IDK why this isn't in the parent.
 /atom/movable/screen/ability/topBar/santa
 	clicked(params)
 		var/datum/targetable/santa/spell = owner

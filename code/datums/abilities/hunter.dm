@@ -134,7 +134,7 @@
 								skull_desc = "A trophy taken from a shapeshifting alien! It is an immense honor."
 							else if (isvampire(H))
 								skull_value = 3
-								skull_desc = "A trophy taken from an undead vampire! It brings you great honor."
+								skull_desc = "A trophy taken from an undead dracula! It brings you great honor."
 
 						else
 							if (!isnull(H.mutantrace))

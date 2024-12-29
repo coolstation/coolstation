@@ -743,7 +743,7 @@
 		return
 
 /datum/achievementReward/dioclothes
-	title = "(Skin) Strange Vampire Outfit"
+	title = "(Skin) Strange Dracula Outfit"
 	desc = "Requires that you wear something in your suit slot."
 	required_medal = "Dracula Jr."
 
@@ -769,8 +769,8 @@
 				if (istype(M, /obj/item/clothing/suit/labcoat))
 					var/obj/item/clothing/suit/labcoat/L = M
 					L.coat_style = null
-				M.name = "strange vampire outfit"
-				M.real_name = "strange vampire outfit"
+				M.name = "strange dracula outfit"
+				M.real_name = "strange dracula outfit"
 				M.desc = "How many breads <i>have</i> you eaten in your life? It's a good question. (Base Item: [prev])"
 				H.set_clothing_icon_dirty()
 				return 1

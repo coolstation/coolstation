@@ -97,7 +97,7 @@
 				stuff_to_output += "<B>[traitor_name] was an insurgent!</B>"
 				continue // Objectives are irrelevant for insurgents and thralls.
 			else if (traitor.special_role == ROLE_VAMPTHRALL)
-				stuff_to_output += "<B>[traitor_name] was a vampire's thrall!</B>"
+				stuff_to_output += "<B>[traitor_name] was a dracula's thrall!</B>"
 				continue // Ditto.
 			else
 				if (traitor.late_special_role)
@@ -240,7 +240,7 @@
 					if (string == ROLE_INSURGENT)
 						stuff_to_output += "<B>[traitor_name] was an insurgent!</B>"
 					else if (string == ROLE_VAMPTHRALL)
-						stuff_to_output += "<B>[traitor_name] was a vampire's thrall!</B>"
+						stuff_to_output += "<B>[traitor_name] was a dracula's thrall!</B>"
 					else
 						stuff_to_output += "<B>[traitor_name] was a [string]!</B>"
 		catch(var/exception/e)
