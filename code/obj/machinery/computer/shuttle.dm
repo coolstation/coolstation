@@ -157,7 +157,6 @@
 			var/area/end_location = locate(/area/shuttle/bayou/stagearea)
 			start_location.move_contents_to(end_location)
 			shipyardship_location = 0
-			primeStageArea()
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 		active = 0
