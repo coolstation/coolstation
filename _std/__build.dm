@@ -47,6 +47,8 @@ o+`        `-` ``..-:yooos-..----------..`
 
 //////////// DEBUGGING TOGGLES
 
+//#define IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY 1	//force prevent mob spawner landmarks, so you can test movement or damage or whatever without the GODCOCKING MONKEYS TRIPPING YOUR BREAKPOINTS EVERY 2 MILLISECONDS GOD DAMN
+
 // Delete queue debug toggle
 // This is expensive. don't turn it on on the server unless you want things to be bad and slow
 //#define DELETE_QUEUE_DEBUG
