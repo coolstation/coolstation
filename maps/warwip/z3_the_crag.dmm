@@ -161,17 +161,6 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
-"bp" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor,
-/area/station/security/main)
 "br" = (
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
@@ -719,7 +708,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon8,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "eg" = (
@@ -1338,6 +1327,14 @@
 	dir = 1
 	},
 /area/station/mining/lobby)
+"hu" = (
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/obj/item/device/net_sniffer,
+/turf/floor/plating,
+/area/station/storage/tech)
 "hv" = (
 /obj/decal/poster/wallsign/pool,
 /turf/wall,
@@ -1380,14 +1377,6 @@
 	},
 /turf/floor/plating,
 /area/station/mining/tunnel)
-"hE" = (
-/obj/table/reinforced/auto,
-/obj/decal/cleanable/dirt/random,
-/obj/item/device/radio/intercom/catering{
-	dir = 8
-	},
-/turf/floor/grime,
-/area/station/crew_quarters/catering)
 "hH" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/plating,
@@ -1680,7 +1669,7 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon14,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon14,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "jw" = (
@@ -1697,6 +1686,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/station/security/brig/north_side)
+"jA" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor,
+/area/station/security/main)
 "jB" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -1765,6 +1760,12 @@
 /obj/landmark/drain_exit,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"jU" = (
+/obj/item/device/radio/intercom/brig{
+	dir = 4
+	},
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "jV" = (
 /obj/table/reinforced/auto,
 /turf/floor/orangeblack,
@@ -1861,7 +1862,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon6,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon6,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1907,7 +1908,7 @@
 /area/station/bridge)
 "ld" = (
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon16,
 /obj/disposalpipe/segment/morgue,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
@@ -1953,7 +1954,7 @@
 /area/station/engine/hotloop)
 "ln" = (
 /obj/machinery/bot/secbot/beepsky,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon20_to_1_end,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon20_to_1_end,
 /turf/floor/plating,
 /area/station/security/beepsky)
 "lt" = (
@@ -1982,7 +1983,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon2,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/station/crew_quarters/bathroom{
@@ -2017,7 +2018,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon18,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon18,
 /turf/floor,
 /area/station/security/main)
 "lK" = (
@@ -2226,6 +2227,10 @@
 "mE" = (
 /obj/machinery/light/fluorescent/red,
 /obj/ladder/auto,
+/obj/decal/tile_edge/floorguide/evac,
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 1
+	},
 /turf/floor/orangeblack,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2375,6 +2380,10 @@
 /turf/wall/r_wall,
 /area/station/janitor/office)
 "nq" = (
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/evac,
 /turf/floor/orangeblack,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2382,6 +2391,13 @@
 "nt" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/catering)
+"nz" = (
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal,
+/turf/floor/red/side,
+/area/station/security/brig)
 "nC" = (
 /turf/wall/r_wall,
 /area/station/security/detectives_office)
@@ -2800,13 +2816,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"qq" = (
-/obj/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/disposal,
-/turf/floor/red/side,
-/area/station/security/brig)
 "qs" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/captain,
@@ -2916,7 +2925,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon10,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "rc" = (
@@ -3017,7 +3026,7 @@
 /turf/floor/darkblue,
 /area/station/bridge)
 "rU" = (
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon17,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon17,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
 "rV" = (
@@ -3177,6 +3186,10 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
+"sR" = (
+/obj/storage/secure/closet/command/hop,
+/turf/floor/carpet/green,
+/area/station/bridge/hos)
 "sV" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -3388,7 +3401,7 @@
 /turf/floor/plating,
 /area/station/engine/gas)
 "uf" = (
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon13,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon13,
 /turf/floor/plating,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -3596,6 +3609,12 @@
 /obj/storage/secure/closet/command/captain,
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
+"vq" = (
+/obj/item/device/radio/intercom/cargo{
+	dir = 4
+	},
+/turf/floor/orangeblack,
+/area/station/mining/lobby)
 "vt" = (
 /obj/cable{
 	d2 = 2;
@@ -3622,10 +3641,6 @@
 	},
 /turf/floor/grime,
 /area/station/bridge/customs)
-"vw" = (
-/obj/item/device/radio/intercom/science,
-/turf/floor/grime,
-/area/station/turret_protected/ai)
 "vy" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/carpet/blue/fancy/edge,
@@ -3961,14 +3976,6 @@
 "xy" = (
 /turf/wall,
 /area/station/storage/tech)
-"xz" = (
-/obj/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/data_terminal,
-/obj/item/device/net_sniffer,
-/turf/floor/plating,
-/area/station/storage/tech)
 "xB" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -4207,7 +4214,7 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "yZ" = (
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon4,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon4,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "zb" = (
@@ -4464,7 +4471,7 @@
 "Ae" = (
 /obj/machinery/light/fluorescent/red,
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon3,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon3,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4598,7 +4605,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon11,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "AW" = (
@@ -4646,10 +4653,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
-"Bb" = (
-/obj/machinery/door/airlock/classic,
-/turf/floor/grime,
-/area/station/bridge)
 "Bc" = (
 /obj/decoration/toiletholder{
 	dir = 8
@@ -4690,6 +4693,17 @@
 	},
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"Bq" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor,
+/area/station/security/main)
 "Bs" = (
 /turf/floor/plating,
 /area/station/engine/hotloop)
@@ -4765,7 +4779,7 @@
 /area/station/security/hos)
 "BV" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon19,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon19,
 /turf/floor,
 /area/station/security/brig)
 "BW" = (
@@ -4880,7 +4894,7 @@
 /area/station/mining/tunnel)
 "CD" = (
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon1_start,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon1_start,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4891,7 +4905,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon5,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon5,
 /turf/floor/orangeblack,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4905,9 +4919,6 @@
 /obj/access_spawn/medical,
 /turf/floor/plating,
 /area/station/medical/basement)
-"CO" = (
-/turf/floor/grime,
-/area/station/bridge)
 "CP" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -4934,7 +4945,7 @@
 	icon_state = "2-4"
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon15,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "CT" = (
@@ -5013,12 +5024,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"Ds" = (
-/obj/item/device/radio/intercom/security{
-	dir = 4
-	},
-/turf/floor/carpet/grime,
-/area/station/security/detectives_office)
 "Du" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5186,7 +5191,7 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon12,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Ei" = (
@@ -5501,13 +5506,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"FE" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor,
-/area/station/security/main)
 "FF" = (
 /obj/machinery/door/airlock/classic,
 /obj/disposalpipe/segment,
@@ -5526,6 +5524,9 @@
 	},
 /obj/disposalpipe/segment,
 /turf/floor/darkblue,
+/area/station/bridge)
+"FR" = (
+/turf/floor/grime,
 /area/station/bridge)
 "FT" = (
 /turf/floor,
@@ -5844,12 +5845,6 @@
 "HB" = (
 /turf/wall/asteroid/gehenna/z3,
 /area/gehenna/underground)
-"HC" = (
-/obj/item/device/radio/intercom/AI{
-	broadcasting = 0
-	},
-/turf/floor/grime,
-/area/station/turret_protected/ai)
 "HE" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -5921,10 +5916,6 @@
 "HU" = (
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/bridge)
-"HX" = (
-/obj/storage/secure/closet/command/hop,
-/turf/floor/carpet/green,
-/area/station/bridge/hos)
 "HY" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -5964,15 +5955,14 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"Ik" = (
-/obj/ladder/auto,
-/turf/floor/darkblue,
-/area/station/bridge)
-"Im" = (
-/obj/disposalpipe/segment{
+"Ij" = (
+/obj/item/device/radio/intercom/security{
 	dir = 4
 	},
-/obj/item/device/radio/intercom/security,
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
+"Ik" = (
+/obj/ladder/auto,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Iu" = (
@@ -6332,7 +6322,7 @@
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "Lf" = (
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon7,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon7,
 /turf/floor/orangeblack/side{
 	dir = 5
 	},
@@ -6691,6 +6681,13 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Nf" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor,
+/area/station/security/main)
 "Nh" = (
 /obj/machinery/atmospherics/valve/purge/vertical{
 	name = "exhaust purge valve"
@@ -6719,12 +6716,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/security/main)
-"Ns" = (
-/obj/item/device/radio/intercom/cargo{
-	dir = 4
-	},
-/turf/floor/orangeblack,
-/area/station/mining/lobby)
 "Nu" = (
 /turf/floor/purple/side{
 	dir = 4
@@ -7409,7 +7400,7 @@
 	})
 "Rd" = (
 /obj/grille/catwalk/jen,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon9,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon9,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "Re" = (
@@ -7515,6 +7506,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
+"RK" = (
+/obj/item/device/radio/intercom/security{
+	dir = 1
+	},
+/turf/floor/grime,
+/area/station/security/checkpoint/customs)
 "RM" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/plating,
@@ -7748,6 +7745,10 @@
 /obj/access_spawn/brig,
 /turf/floor/red,
 /area/station/security/brig/north_side)
+"SV" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/grime,
+/area/station/bridge)
 "SX" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
@@ -7950,6 +7951,14 @@
 	},
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"Us" = (
+/obj/item/device/radio/intercom/engineering,
+/turf/floor/grime,
+/area/station/turret_protected/ai)
+"Uw" = (
+/obj/item/device/radio/intercom/science,
+/turf/floor/grime,
+/area/station/turret_protected/ai)
 "Ux" = (
 /obj/cable{
 	d2 = 2;
@@ -7959,6 +7968,14 @@
 /obj/machinery/networked/ai_governor/department_radio,
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
+"Uz" = (
+/obj/table/reinforced/auto,
+/obj/decal/cleanable/dirt/random,
+/obj/item/device/radio/intercom/catering{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/crew_quarters/catering)
 "UA" = (
 /obj/stool/chair/comfy/green{
 	dir = 4
@@ -8151,12 +8168,6 @@
 	},
 /turf/floor/grime,
 /area/station/bridge/customs)
-"VH" = (
-/obj/item/device/radio/intercom/brig{
-	dir = 4
-	},
-/turf/floor/carpet/grime,
-/area/station/security/detectives_office)
 "VK" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 2"
@@ -8410,12 +8421,6 @@
 /obj/disposalpipe/junction/middle/east,
 /turf/floor,
 /area/station/security/brig)
-"Xh" = (
-/obj/item/device/radio/intercom/security{
-	dir = 1
-	},
-/turf/floor/grime,
-/area/station/security/checkpoint/customs)
 "Xj" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/station/crew_quarters/fitness)
@@ -8539,14 +8544,16 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"Yc" = (
-/obj/item/device/radio/intercom/engineering,
-/turf/floor/grime,
-/area/station/turret_protected/ai)
 "Yh" = (
 /obj/table/reinforced/auto,
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"Yi" = (
+/obj/item/device/radio/intercom/AI{
+	broadcasting = 0
+	},
+/turf/floor/grime,
+/area/station/turret_protected/ai)
 "Yk" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/red,
@@ -8612,12 +8619,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
-"YG" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor,
-/area/station/security/main)
 "YI" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/bathroom)
@@ -8760,6 +8761,13 @@
 	},
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"Zr" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/device/radio/intercom/security,
+/turf/floor/darkblue,
+/area/station/bridge)
 "Zz" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -42842,8 +42850,8 @@ Xv
 KV
 nC
 GW
-VH
-Ds
+jU
+Ij
 gY
 xP
 UE
@@ -44945,7 +44953,7 @@ PE
 Ot
 Xw
 nT
-qq
+nz
 KV
 Xv
 Xv
@@ -46153,7 +46161,7 @@ xm
 Pn
 Gw
 VM
-YG
+jA
 xc
 xc
 xc
@@ -46455,7 +46463,7 @@ Yk
 xR
 ck
 am
-FE
+Nf
 Xb
 Xb
 Xb
@@ -46757,7 +46765,7 @@ MN
 OJ
 zo
 lI
-bp
+Bq
 ww
 ww
 ww
@@ -47643,7 +47651,7 @@ cx
 qw
 PD
 fg
-HX
+sR
 cx
 Ow
 oV
@@ -49452,7 +49460,7 @@ ux
 ux
 ux
 ei
-Im
+Zr
 PT
 SQ
 Fy
@@ -50054,7 +50062,7 @@ HB
 HB
 ei
 hY
-CO
+FR
 ei
 EC
 Rv
@@ -50356,8 +50364,8 @@ HB
 HB
 ei
 Ho
-CO
-Bb
+FR
+SV
 Ow
 HU
 jf
@@ -51585,7 +51593,7 @@ xD
 aV
 Ga
 TL
-Xh
+RK
 og
 kU
 rx
@@ -51926,7 +51934,7 @@ HB
 xy
 MK
 LU
-xz
+hu
 LU
 WF
 xy
@@ -53677,7 +53685,7 @@ HB
 HB
 HB
 fh
-vw
+Uw
 KS
 KS
 KS
@@ -54281,7 +54289,7 @@ HB
 HB
 HB
 fh
-HC
+Yi
 KS
 KS
 KS
@@ -54583,7 +54591,7 @@ HB
 HB
 HB
 fh
-Yc
+Us
 YL
 YL
 YL
@@ -64259,7 +64267,7 @@ HB
 HB
 uM
 Yy
-hE
+Uz
 QP
 nt
 Hk
@@ -67296,7 +67304,7 @@ DL
 gl
 jH
 ie
-Ns
+vq
 Pz
 Lf
 QI

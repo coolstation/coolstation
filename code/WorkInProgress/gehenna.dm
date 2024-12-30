@@ -148,6 +148,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	nitrogen = MOLES_N2STANDARD / 2
 
 /turf/space/gehenna/desert
+	pathable = 1 // HARNER GO ACROSS THE SAND YOU OAF
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
