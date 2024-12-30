@@ -57,7 +57,7 @@ proc/primeStageArea()
 		landmark.apply()
 
 /obj/landmark/stagearea_primer
-	var/name = null
+	var/primerid = null
 	deleted_on_start = FALSE
 	add_to_landmarks = FALSE
 
@@ -70,14 +70,14 @@ proc/primeStageArea()
 		..()
 
 	proc/apply()
-		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(name)) //shitty bandaid fix somebody smarter than me please make this preettttieier
+		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(primerid)) //shitty bandaid fix somebody smarter than me please make this preettttieier
 		if(isnull(ship_prefab))
 			CRASH("No prefab primer found!")
 		ship_prefab.applyTo(src.loc)
 		logTheThing("debug", null, null, "Applied primer: [ship_prefab] to [log_loc(src)]")
 
 	primer
-		name = "primer"
+		primerid = "primer"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/30x25.dmi'
 	#endif
