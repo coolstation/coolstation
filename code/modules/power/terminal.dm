@@ -86,8 +86,8 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	var/obj/master = null //It can be any obj that can use receive_signal
 
-	ex_act()
-		if (master)
+	ex_act(severity)
+		if (master && severity>=2)
 			return
 
 		return ..()

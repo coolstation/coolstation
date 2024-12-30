@@ -32,6 +32,7 @@
 "ak" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/door/airlock,
+/obj/access_spawn/janitor,
 /turf/floor/plating,
 /area/station/janitor/office)
 "am" = (
@@ -94,6 +95,7 @@
 "aO" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/access_spawn/brig,
 /turf/floor/red,
 /area/station/security/brig)
 "aV" = (
@@ -128,6 +130,7 @@
 /area/station/engine/combustion_chamber)
 "bg" = (
 /obj/machinery/door/airlock/glass,
+/obj/access_spawn/brig,
 /turf/floor/red,
 /area/station/security/brig/south_side)
 "bi" = (
@@ -158,6 +161,17 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"bp" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor,
+/area/station/security/main)
 "br" = (
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
@@ -573,6 +587,7 @@
 "dA" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/access_spawn/heads,
 /turf/floor/darkblue,
 /area/station/bridge)
 "dB" = (
@@ -1027,6 +1042,7 @@
 "fB" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/door/airlock/security,
+/obj/access_spawn/forensics,
 /turf/floor/plating,
 /area/station/security/detectives_office)
 "fE" = (
@@ -1037,6 +1053,7 @@
 /area/station/janitor/office)
 "fF" = (
 /obj/machinery/door/airlock/glass,
+/obj/access_spawn/bar,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "fH" = (
@@ -1302,6 +1319,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/access_spawn/heads,
 /turf/floor/grime,
 /area/station/bridge/customs)
 "hn" = (
@@ -1311,6 +1329,7 @@
 "ho" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/door/airlock/security,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/main)
 "ht" = (
@@ -1361,6 +1380,14 @@
 	},
 /turf/floor/plating,
 /area/station/mining/tunnel)
+"hE" = (
+/obj/table/reinforced/auto,
+/obj/decal/cleanable/dirt/random,
+/obj/item/device/radio/intercom/catering{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/crew_quarters/catering)
 "hH" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/plating,
@@ -1371,6 +1398,7 @@
 	icon_state = "4-8"
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/engineering_engine,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "hK" = (
@@ -1436,8 +1464,12 @@
 	},
 /area/station/security/main)
 "hY" = (
-/turf/floor/red/side,
-/area/station/security/main)
+/obj/storage/closet/office,
+/obj/machinery/light/fluorescent/harsh{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/bridge)
 "hZ" = (
 /obj/disposalpipe/segment/bent{
 	dir = 8
@@ -1615,6 +1647,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/access_spawn/brig,
 /turf/floor/red,
 /area/station/security/brig)
 "jr" = (
@@ -1637,6 +1670,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/access_spawn/mining,
 /turf/floor/orangeblack/side{
 	dir = 8
 	},
@@ -1669,6 +1703,7 @@
 	dir = 0;
 	name = "autoname - SS13"
 	},
+/obj/item/device/radio/intercom/security,
 /turf/floor/grime,
 /area/station/turret_protected/ai)
 "jC" = (
@@ -1817,6 +1852,7 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/access_spawn/engineering_engine,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "kI" = (
@@ -1859,6 +1895,7 @@
 	pixel_x = 7;
 	pixel_y = 7
 	},
+/obj/item/device/radio/intercom/bridge,
 /turf/floor/carpet/grime,
 /area/station/security/hos)
 "lc" = (
@@ -1907,6 +1944,7 @@
 "lj" = (
 /obj/disposalpipe/segment,
 /obj/machinery/door/airlock/security,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/main)
 "lm" = (
@@ -1930,6 +1968,7 @@
 "lu" = (
 /obj/table/reinforced/auto,
 /obj/item/paper_bin,
+/obj/item/device/radio/intercom/medical,
 /turf/floor/bluewhite{
 	dir = 1
 	},
@@ -2510,6 +2549,7 @@
 /obj/grille/catwalk/bob/twosides{
 	dir = 8
 	},
+/obj/access_spawn/ai_upload,
 /turf/floor/plating,
 /area/station/turret_protected/ai)
 "oM" = (
@@ -2760,6 +2800,13 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"qq" = (
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal,
+/turf/floor/red/side,
+/area/station/security/brig)
 "qs" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/captain,
@@ -2874,6 +2921,10 @@
 /area/station/maintenance/inner/south)
 "rc" = (
 /obj/table/wood/auto,
+/obj/item/device/audio_log,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "ri" = (
@@ -2909,6 +2960,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/access_spawn/head_of_personnel,
 /turf/floor/carpet/green,
 /area/station/bridge/hos)
 "rt" = (
@@ -3041,6 +3093,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/access_spawn/security,
 /turf/floor/plating,
 /area/station/security/beepsky)
 "st" = (
@@ -3073,6 +3126,7 @@
 "sF" = (
 /obj/machinery/door/airlock/security,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/main)
 "sG" = (
@@ -3204,6 +3258,7 @@
 /area/station/engine/coldloop)
 "tv" = (
 /obj/machinery/light/fluorescent/cool/very,
+/obj/storage/secure/closet/command/hos,
 /turf/floor/carpet/grime,
 /area/station/security/hos)
 "tx" = (
@@ -3297,6 +3352,7 @@
 "tV" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/disposalpipe/segment,
+/obj/access_spawn/heads,
 /turf/floor/darkblue,
 /area/station/bridge)
 "tW" = (
@@ -3513,6 +3569,7 @@
 "vd" = (
 /obj/machinery/door/airlock/command,
 /obj/disposalpipe/segment,
+/obj/access_spawn/heads,
 /turf/floor/darkblue,
 /area/station/bridge)
 "vf" = (
@@ -3536,6 +3593,7 @@
 /area/station/bridge)
 "vo" = (
 /obj/disposalpipe/segment/mail/vertical,
+/obj/storage/secure/closet/command/captain,
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
 "vt" = (
@@ -3564,6 +3622,10 @@
 	},
 /turf/floor/grime,
 /area/station/bridge/customs)
+"vw" = (
+/obj/item/device/radio/intercom/science,
+/turf/floor/grime,
+/area/station/turret_protected/ai)
 "vy" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/carpet/blue/fancy/edge,
@@ -3677,6 +3739,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/access_spawn/captain,
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
 "wk" = (
@@ -3805,6 +3868,7 @@
 "wW" = (
 /obj/disposalpipe/segment,
 /obj/machinery/door/airlock/gannets/glass/security/alt,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/main)
 "wY" = (
@@ -3864,6 +3928,7 @@
 /obj/grille/catwalk/bob/twosides{
 	dir = 8
 	},
+/obj/access_spawn/ai_upload,
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
 "xm" = (
@@ -3895,6 +3960,14 @@
 /area/station/engine/coldloop)
 "xy" = (
 /turf/wall,
+/area/station/storage/tech)
+"xz" = (
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/obj/item/device/net_sniffer,
+/turf/floor/plating,
 /area/station/storage/tech)
 "xB" = (
 /obj/wingrille_spawn,
@@ -4434,6 +4507,7 @@
 "Az" = (
 /obj/machinery/door/airlock/security,
 /obj/disposalpipe/segment/sewage,
+/obj/access_spawn/security,
 /turf/floor/darkblue,
 /area/station/security/main)
 "AC" = (
@@ -4445,6 +4519,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/access_spawn/hos,
 /turf/floor/plating,
 /area/station/security/hos)
 "AD" = (
@@ -4571,6 +4646,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"Bb" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/grime,
+/area/station/bridge)
 "Bc" = (
 /obj/decoration/toiletholder{
 	dir = 8
@@ -4668,6 +4747,9 @@
 	dir = 4;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/item/device/radio/intercom/brig{
+	dir = 4
 	},
 /turf/floor/red,
 /area/station/security/brig/north_side)
@@ -4820,8 +4902,12 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/access_spawn/medical,
 /turf/floor/plating,
 /area/station/medical/basement)
+"CO" = (
+/turf/floor/grime,
+/area/station/bridge)
 "CP" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -4902,6 +4988,7 @@
 "Dl" = (
 /obj/machinery/door/airlock/engineering,
 /obj/firedoor_spawn,
+/obj/access_spawn/engineering_engine,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "Dm" = (
@@ -4926,6 +5013,12 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"Ds" = (
+/obj/item/device/radio/intercom/security{
+	dir = 4
+	},
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "Du" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5004,6 +5097,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/device/radio/intercom/bridge,
 /turf/floor/darkblue,
 /area/station/bridge)
 "DR" = (
@@ -5407,6 +5501,13 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"FE" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor,
+/area/station/security/main)
 "FF" = (
 /obj/machinery/door/airlock/classic,
 /obj/disposalpipe/segment,
@@ -5501,6 +5602,7 @@
 "Gp" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/door/airlock/gannets/glass/security/alt,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/main)
 "Gq" = (
@@ -5654,6 +5756,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
 /turf/floor/red/side,
 /area/station/security/main)
 "Hh" = (
@@ -5679,11 +5784,9 @@
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "Ho" = (
-/obj/disposalpipe/segment/bent{
-	dir = 4
-	},
-/turf/floor/red/side,
-/area/station/security/main)
+/obj/storage/closet/law,
+/turf/floor/grime,
+/area/station/bridge)
 "Hq" = (
 /obj/table/reinforced/auto,
 /obj/item/wrench,
@@ -5741,6 +5844,12 @@
 "HB" = (
 /turf/wall/asteroid/gehenna/z3,
 /area/gehenna/underground)
+"HC" = (
+/obj/item/device/radio/intercom/AI{
+	broadcasting = 0
+	},
+/turf/floor/grime,
+/area/station/turret_protected/ai)
 "HE" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -5812,6 +5921,10 @@
 "HU" = (
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/bridge)
+"HX" = (
+/obj/storage/secure/closet/command/hop,
+/turf/floor/carpet/green,
+/area/station/bridge/hos)
 "HY" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -5853,6 +5966,13 @@
 /area/station/engine/hotloop)
 "Ik" = (
 /obj/ladder/auto,
+/turf/floor/darkblue,
+/area/station/bridge)
+"Im" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/device/radio/intercom/security,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Iu" = (
@@ -6111,6 +6231,7 @@
 	})
 "Kp" = (
 /obj/machinery/door/airlock/gannets/glass/engineering/alt,
+/obj/access_spawn/mining,
 /turf/floor/orangeblack/side{
 	dir = 8
 	},
@@ -6472,6 +6593,8 @@
 /area/station/bridge/customs)
 "MH" = (
 /obj/machinery/light_switch/east,
+/obj/table/reinforced/auto,
+/obj/item/storage/box/evidence,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "MJ" = (
@@ -6479,6 +6602,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/access_spawn/mining,
 /turf/floor/orangeblack/side{
 	dir = 4
 	},
@@ -6595,6 +6719,12 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/security/main)
+"Ns" = (
+/obj/item/device/radio/intercom/cargo{
+	dir = 4
+	},
+/turf/floor/orangeblack,
+/area/station/mining/lobby)
 "Nu" = (
 /turf/floor/purple/side{
 	dir = 4
@@ -6947,6 +7077,9 @@
 /obj/item/clothing/glasses/vr/arcade{
 	pixel_y = -5
 	},
+/obj/item/device/radio/intercom/brig{
+	dir = 4
+	},
 /turf/floor/red,
 /area/station/security/brig/south_side)
 "Pp" = (
@@ -7087,11 +7220,13 @@
 /area/station/crew_quarters/fitness)
 "PY" = (
 /obj/machinery/door/airlock/gannets/glass/security/alt,
+/obj/access_spawn/security,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
 "PZ" = (
 /obj/machinery/door/airlock/engineering,
 /obj/grille/catwalk/jen,
+/obj/access_spawn/engineering_engine,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "Qb" = (
@@ -7168,6 +7303,7 @@
 "Qw" = (
 /obj/machinery/door/airlock/command,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/access_spawn/heads,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Qx" = (
@@ -7609,6 +7745,7 @@
 /area/station/maintenance/inner/south)
 "SU" = (
 /obj/machinery/door/airlock/glass,
+/obj/access_spawn/brig,
 /turf/floor/red,
 /area/station/security/brig/north_side)
 "SX" = (
@@ -7637,6 +7774,9 @@
 	dir = 0;
 	name = "autoname - SS13"
 	},
+/obj/item/device/radio/intercom/AI{
+	broadcasting = 0
+	},
 /turf/floor/darkblue,
 /area/station/bridge)
 "Tg" = (
@@ -7661,6 +7801,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/access_spawn/security,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
 "Tt" = (
@@ -7681,6 +7822,7 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/morgue,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/main)
 "TC" = (
@@ -7986,6 +8128,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/access_spawn/janitor,
 /turf/floor/purple/side{
 	dir = 4
 	},
@@ -8008,6 +8151,12 @@
 	},
 /turf/floor/grime,
 /area/station/bridge/customs)
+"VH" = (
+/obj/item/device/radio/intercom/brig{
+	dir = 4
+	},
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "VK" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 2"
@@ -8077,6 +8226,7 @@
 /area/station/maintenance/inner/south)
 "Wl" = (
 /obj/machinery/door/airlock/gannets/glass/engineering/alt,
+/obj/access_spawn/mining,
 /turf/floor/orangeblack/side{
 	dir = 4
 	},
@@ -8099,6 +8249,9 @@
 	dir = 9;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/item/device/radio/intercom/security{
+	dir = 8
 	},
 /turf/floor/red,
 /area/station/security/main)
@@ -8209,6 +8362,9 @@
 /area/station/security/checkpoint/customs)
 "WS" = (
 /obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/security/brig)
 "WV" = (
@@ -8254,6 +8410,12 @@
 /obj/disposalpipe/junction/middle/east,
 /turf/floor,
 /area/station/security/brig)
+"Xh" = (
+/obj/item/device/radio/intercom/security{
+	dir = 1
+	},
+/turf/floor/grime,
+/area/station/security/checkpoint/customs)
 "Xj" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/station/crew_quarters/fitness)
@@ -8377,6 +8539,10 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"Yc" = (
+/obj/item/device/radio/intercom/engineering,
+/turf/floor/grime,
+/area/station/turret_protected/ai)
 "Yh" = (
 /obj/table/reinforced/auto,
 /turf/floor/grime,
@@ -8446,6 +8612,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
+"YG" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor,
+/area/station/security/main)
 "YI" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/bathroom)
@@ -8548,6 +8720,7 @@
 "Zi" = (
 /obj/machinery/door/airlock/security,
 /obj/disposalpipe/segment,
+/obj/access_spawn/security,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
 "Zj" = (
@@ -42669,8 +42842,8 @@ Xv
 KV
 nC
 GW
-xP
-xP
+VH
+Ds
 gY
 xP
 UE
@@ -44772,7 +44945,7 @@ PE
 Ot
 Xw
 nT
-NG
+qq
 KV
 Xv
 Xv
@@ -45678,7 +45851,7 @@ MN
 Sj
 Hh
 VM
-hY
+TP
 QH
 OV
 Cy
@@ -45980,7 +46153,7 @@ xm
 Pn
 Gw
 VM
-xc
+YG
 xc
 xc
 xc
@@ -46282,7 +46455,7 @@ Yk
 xR
 ck
 am
-Xb
+FE
 Xb
 Xb
 Xb
@@ -46584,7 +46757,7 @@ MN
 OJ
 zo
 lI
-ww
+bp
 ww
 ww
 ww
@@ -46886,7 +47059,7 @@ MN
 TE
 Hh
 xc
-Ho
+EI
 KB
 ev
 dj
@@ -47470,7 +47643,7 @@ cx
 qw
 PD
 fg
-fg
+HX
 cx
 Ow
 oV
@@ -49279,7 +49452,7 @@ ux
 ux
 ux
 ei
-DQ
+Im
 PT
 SQ
 Fy
@@ -49577,9 +49750,9 @@ HB
 HB
 HB
 HB
-ux
-ux
-ux
+ei
+ei
+ei
 ei
 lt
 PT
@@ -49879,9 +50052,9 @@ HB
 HB
 HB
 HB
-ux
-ux
-ux
+ei
+hY
+CO
 ei
 EC
 Rv
@@ -50181,10 +50354,10 @@ HB
 HB
 HB
 HB
-ux
-ux
-ux
 ei
+Ho
+CO
+Bb
 Ow
 HU
 jf
@@ -50483,9 +50656,9 @@ HB
 HB
 HB
 HB
-ux
-ux
-ux
+ei
+ei
+ei
 ei
 Pl
 LM
@@ -51412,7 +51585,7 @@ xD
 aV
 Ga
 TL
-TL
+Xh
 og
 kU
 rx
@@ -51753,7 +51926,7 @@ HB
 xy
 MK
 LU
-LU
+xz
 LU
 WF
 xy
@@ -53504,7 +53677,7 @@ HB
 HB
 HB
 fh
-YL
+vw
 KS
 KS
 KS
@@ -54108,7 +54281,7 @@ HB
 HB
 HB
 fh
-YL
+HC
 KS
 KS
 KS
@@ -54410,7 +54583,7 @@ HB
 HB
 HB
 fh
-YL
+Yc
 YL
 YL
 YL
@@ -64086,7 +64259,7 @@ HB
 HB
 uM
 Yy
-QP
+hE
 QP
 nt
 Hk
@@ -67123,7 +67296,7 @@ DL
 gl
 jH
 ie
-Pz
+Ns
 Pz
 Lf
 QI

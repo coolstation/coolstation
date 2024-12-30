@@ -346,15 +346,15 @@
 		if (istype(H.glasses, /obj/item/clothing/glasses/healthgoggles))
 			var/obj/item/clothing/glasses/healthgoggles/G = H.glasses
 			if (G.scan_upgrade && G.health_scan)
-				. += "<br><span class='alert'>Your ProDocs analyze [src]'s vitals.</span><br>[scan_health(src, 0, 0)]"
+				. += "<br><span class='success'>Your ProDocs analyze [src]'s vitals.</span><br>[scan_health(src, 0, 0)]"
 				scan_health_overhead(src, usr)
 			update_medical_record(src)
 		else if (H.organ_istype("left_eye", /obj/item/organ/eye/cyber/prodoc) && H.organ_istype("right_eye", /obj/item/organ/eye/cyber/prodoc)) // two prodoc eyes = scan upgrade because that's cool
-			. += "<br><span class='alert'>Your ProDocs analyze [src]'s vitals.</span><br>[scan_health(src, 0, 0)]"
+			. += "<br><span class='success'>Your ProDocs analyze [src]'s vitals.</span><br>[scan_health(src, 0, 0)]"
 			scan_health_overhead(src, usr)
 			update_medical_record(src)
 		else if (istype(H.head, /obj/item/clothing/head/helmet/space/syndicate/specialist/medic))
-			. += "<br><span class='alert'>Your health monitor analyzes [src]'s vitals.</span><br>[scan_health(src, 0, 0)]"
+			. += "<br><span class='success'>Your health monitor analyzes [src]'s vitals.</span><br>[scan_health(src, 0, 0)]"
 			scan_health_overhead(src, usr)
 			update_medical_record(src)
 
