@@ -48,7 +48,7 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 	shuffle_list(by_type[/obj/landmark/random_ship])
 	for_by_tcl(landmark, /obj/landmark/random_ship)
 		landmark.apply()
-	shuffle_list(by_type[/obj/landmark/random_ship]) //this repeates twice, as the first landmark would be the 30x25 which then introduces many other ship landmarks that must be generated
+	shuffle_list(by_type[/obj/landmark/random_ship]) //this happens twice, as the first landmark would be the 30x25 which then introduces many other ship landmarks that must be generated
 	for_by_tcl(landmark, /obj/landmark/random_ship)
 		landmark.apply()
 
