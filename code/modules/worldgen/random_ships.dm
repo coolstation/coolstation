@@ -71,7 +71,7 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 			CRASH("No random ship prefab found for size: " + size)
 		ship_prefab.applyTo(src.loc)
 		logTheThing("debug", null, null, "Applied random ship prefab: [ship_prefab] to [log_loc(src)]")
-		qdel(src)
+
 
 	size30x25
 		size = "30x25"
