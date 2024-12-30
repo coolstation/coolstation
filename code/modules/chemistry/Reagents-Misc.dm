@@ -832,6 +832,26 @@ datum
 					P.health++
 				P.reagents.remove_any(4)
 
+		bleach
+			name = "bleach"
+			id = "bleach"
+			description = "A caustic chlorine-bearing home cleaner, sodium hypochlorite."
+			reagent_state = LIQUID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 200
+			transparency = 50
+			value = 3
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				M.TakeDamage("chest", 0, 0.5*mult, 0, DAMAGE_BURN)
+				..()
+				return
+
+			on_plant_life(var/obj/machinery/plantpot/P)
+				P.HYPdamageplant("poison",2)
+
 		diethylamine
 			name = "diethylamine"
 			id = "diethylamine"
