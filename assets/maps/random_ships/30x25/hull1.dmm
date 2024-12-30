@@ -7,7 +7,6 @@
 "h" = (/obj/decal/poster/wallsign/stencil/right/a,/turf/wall/auto/supernorn,/area/shuttle/bayou/ship)
 "i" = (/turf/space,/area/shuttle/bayou/ship)
 "j" = (/obj/decal/cleanable/mess/random_litter,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
-"l" = (/obj/decal/cleanable/dirt/random,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "m" = (/obj/decoration/bullethole,/turf/wall/auto/supernorn,/area/shuttle/bayou/ship)
 "n" = (/turf/floor/airbridge,/area/space)
 "o" = (/obj/computerframe,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
@@ -16,10 +15,11 @@
 "s" = (/obj/decal/poster/wallsign/stencil/right/f,/turf/wall/auto/supernorn,/area/shuttle/bayou/ship)
 "t" = (/obj/machinery/door/airlock/maintenance,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "u" = (/obj/machinery/shuttle/engine/heater{dir = 4; icon_state = "alt_heater-R"},/turf/space,/area/shuttle/bayou/ship)
-"v" = (/obj/decal/floatingtiles/loose/random,/obj/storage/closet/emergency,/turf/floor/plating/random,/area/shuttle/bayou/ship)
+"v" = (/obj/decal/floatingtiles/loose/random,/obj/storage/closet/emergency,/obj/machinery/light{dir = 1},/turf/floor/plating/random,/area/shuttle/bayou/ship)
 "w" = (/obj/storage/crate/trench_loot/drug,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "x" = (/obj/machinery/shuttle/engine/propulsion{dir = 4; icon_state = "alt_propulsion"},/turf/space,/area/shuttle/bayou/ship)
-"y" = (/obj/random_item_spawner/loot_crate,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
+"y" = (/obj/random_item_spawner/loot_crate,/obj/machinery/light{dir = 1},/turf/floor/airless/grime,/area/shuttle/bayou/ship)
+"z" = (/obj/decal/cleanable/dirt/random,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "A" = (/obj/decal/floatingtiles/loose/random,/turf/floor/plating/random,/area/shuttle/bayou/ship)
 "B" = (/obj/storage/crate{desc = "A small, cuboid object with a hinged top and empty interior. It smells kinda bad and seems to have an odd stain on it."; icon = 'icons/misc/halloween.dmi'; name = "Dented Crate"},/obj/random_item_spawner/junk/maybe_few,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "D" = (/obj/decoration/vent/vent3,/turf/wall/auto/supernorn,/area/shuttle/bayou/ship)
@@ -37,10 +37,10 @@
 "Q" = (/obj/table/folding,/obj/item/reagent_containers/food/drinks/bottle/fancy_beer{pixel_y = 13},/obj/item/cigbutt{pixel_x = 3; pixel_y = 3},/obj/item/cigbutt{pixel_x = -3; pixel_y = -2},/obj/item/decoration/ashtray,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "R" = (/obj/stool/chair{dir = 4},/mob/living/carbon/human/npc,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "T" = (/obj/machinery/shuttle/engine/heater{dir = 4; icon_state = "alt_heater-M"},/turf/space,/area/shuttle/bayou/ship)
-"U" = (/obj/table/auto,/obj/machinery/phone,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
+"U" = (/obj/table/auto,/obj/machinery/phone,/obj/machinery/light{dir = 4},/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 "V" = (/obj/decal/poster/wallsign/stencil/right/h,/turf/wall/auto/supernorn,/area/shuttle/bayou/ship)
 "W" = (/turf/wall/airbridge,/area/space)
-"Z" = (/obj/storage/closet/emergency,/turf/floor/airless/grime,/area/shuttle/bayou/ship)
+"Z" = (/obj/storage/closet/emergency,/obj/machinery/light{dir = 4},/turf/floor/airless/grime,/area/shuttle/bayou/ship)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaWnnWaaaaaaaaaaaaa
@@ -49,9 +49,9 @@ aaaaaaaaaaaaaWnnWaaaaaaaaaaaaa
 aaaaaaaaaaaaaJeeJaaaaaaaaaaaaa
 aaaaaaaaaaaaaJHHJaaaaaaaaaaaaa
 aaaaagIgmJJgJJeeJJJJJiaaaaaaaa
-aaaaggllZJRQyOHjBvHbuxaaaaaaaa
-aaaagcHHHtHjHHlHHHHHTxaaaaaaaa
-aaaagoPHUJlHwHHAHjlHKxaaaaaaaa
+aaaaggzzZJRQyOHjBvHbuxaaaaaaaa
+aaaagcHHHtHjHHzHHHHHTxaaaaaaaa
+aaaagoPHUJzHwHHAHjzHKxaaaaaaaa
 aaaaggHHdJtJJJtDmJtJJJJJaaaaaa
 aaaaagmgJJHHHJHHHJHHHHHJaaaaaa
 aaaaaaaaaJHHHJHHHJHHHHHJaaaaaa

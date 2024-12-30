@@ -144,8 +144,8 @@
 			call_client()
 
 /obj/machinery/computer/shipyard_control/proc/call_client()
+	buildRandomShips()
 	if(shipyardship_location == 0)
-		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
 		start_location.move_contents_to(end_location)
