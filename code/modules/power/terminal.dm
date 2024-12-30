@@ -87,7 +87,7 @@
 	var/obj/master = null //It can be any obj that can use receive_signal
 
 	ex_act(severity)
-		if (master && severity>=2)
+		if (master && severity<=4)
 			return
 
 		return ..()
