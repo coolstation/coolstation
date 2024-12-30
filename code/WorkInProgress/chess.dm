@@ -325,44 +325,24 @@ obj/item/chesspiece/queen
 		..()
 		icon_state = (chess_color ? "queen_black" : "queen_white")
 
-	validmove(turf/start_pos, turf/end_pos) // we need 4 cases here. two orthogonal, two diagonal.
-		var/minx = min(start_pos.x,end_pos.x)
-		var/miny = min(start_pos.y,end_pos.y)
-		var/maxx = max(start_pos.x,end_pos.x)
-		var/maxy = max(start_pos.y,end_pos.y)
+	validmove(turf/start_pos, turf/end_pos)
+		var/move_direction = get_dir(start_pos, end_pos)
+		if (move_direction in ordinal)
+			//BYOND lumps everything not directly along a cardinal into the nearest ordinal, but a valid diagonal move must have the same x and y displacement
+			if (abs(end_pos.x - start_pos.x) != abs(end_pos.y - start_pos.y))
+				return 0
 
-		if(start_pos.x == end_pos.x) // vertical movement
-			var/i
-			for(i=miny+1, i < maxy, i++)
-				for(var/obj/item/chesspiece/C in locate(start_pos.x,i,src.z))
-					return 0
-			return chess_in_progress
+		var/turf/intermediate = get_step(start_pos, move_direction)
+		while (intermediate != end_pos)
+			for(var/obj/item/chesspiece/C in intermediate)
+				return 0
+			intermediate = get_step(intermediate, move_direction)
+		return chess_in_progress
 
-		else if(start_pos.y == end_pos.y) // horizontal movement
-			var/i
-			for(i=minx+1, i < maxx, i++)
-				for(var/obj/item/chesspiece/C in locate(i,start_pos.y,src.z))
-					return 0
-			return chess_in_progress
-
-		else if((start_pos.x - end_pos.x) == (start_pos.y - end_pos.y)) // coaxial diagonal
-			var/i
-			for(i=1, i < (start_pos.x - end_pos.x), i++)
-				for(var/obj/item/chesspiece/C in locate(minx+i,miny+i,src.z))
-					return 0
-			return chess_in_progress
-
-		else if((start_pos.x - end_pos.x) == -(start_pos.y - end_pos.y)) // the other one
-			var/i
-			for(i=1, i < (start_pos.x - end_pos.x), i++)
-				for(var/obj/item/chesspiece/C in locate(maxx-i,miny+i,src.z))
-					return 0
-			return chess_in_progress
-		else return 0 // none of the 4 directions? too bad okay. Im annotating code that doesnt need notes just because I gotta look busy at work.
 
 obj/item/chesspiece/bishop
 	name = "bishop"
-	desc = "Boneless queen"
+	desc = "These pieces actually rank above the chaplain, there's been a legal case about it and everything."
 
 	black
 		chess_color = 1
@@ -392,7 +372,7 @@ obj/item/chesspiece/bishop
 			return chess_in_progress
 		else return 0 // pee pee poo poo
 
-
+//Horseplay? On *my* space station?
 obj/item/chesspiece/knight
 	name = "knight"
 	desc = "Does anyone actually know why they move like that?"
