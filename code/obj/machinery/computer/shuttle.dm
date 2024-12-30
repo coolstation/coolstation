@@ -150,7 +150,6 @@
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
 		start_location.move_contents_to(end_location)
 		shipyardship_location = 1
-		C.visible_message("<span class='alert'>The client has arrived!</span>")
 	else
 		if(shipyardship_location == 1)
 			var/area/start_location = locate(/area/shuttle/bayou/shipyard)
