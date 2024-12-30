@@ -76,11 +76,11 @@ proc/primeStageArea()
 		ship_prefab.applyTo(src.loc)
 		logTheThing("debug", null, null, "Applied primer: [ship_prefab] to [log_loc(src)]")
 
-		primer
-			name = "primer"
-		#ifdef IN_MAP_EDITOR
-			icon = 'icons/map-editing/random-rooms/30x25.dmi'
-		#endif
+	primer
+		name = "primer"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/30x25.dmi'
+	#endif
 
 /obj/landmark/random_ship
 	var/size = null
