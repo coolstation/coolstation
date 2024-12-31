@@ -2394,3 +2394,9 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	desc = "Some schmuck got this knocked straight out of their head."
 	icon = 'icons/obj/decals/blood.dmi'
 	random_icon_states = list("tooth1", "tooth2", "tooth3", "tooth4")
+
+/obj/decal/cleanable/edge_grit //harming people is what the shard items are for we're here just for flavour
+	name = "glass grit"
+	desc = "A whole lot of tiny shards, too small to be harmful."
+	icon = 'icons/obj/decals/cleanables.dmi'
+	icon_state = "grit_edge"
