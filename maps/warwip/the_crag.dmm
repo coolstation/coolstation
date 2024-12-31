@@ -860,7 +860,7 @@
 /turf/floor,
 /area/station/medical/medbay/treatment)
 "cZ" = (
-/obj/table/reinforced/chemistry/auto,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "da" = (
@@ -2710,14 +2710,6 @@
 /obj/machinery/light,
 /turf/floor/black/grime,
 /area/station/hallway/primary/north)
-"ke" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/table/reinforced/auto,
-/obj/item/crowbar/red,
-/turf/floor,
-/area/station/atmos/department)
 "kf" = (
 /obj/machinery/door/airlock/classic,
 /obj/cable{
@@ -4940,6 +4932,14 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
+"sF" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/table/reinforced/auto,
+/obj/item/crowbar/red,
+/turf/floor,
+/area/station/atmos/department)
 "sG" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -6443,6 +6443,7 @@
 "ya" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment,
+/obj/table/reinforced/chemistry/beakers,
 /turf/floor/purpleblack/corner,
 /area/station/science/chemistry)
 "yb" = (
@@ -7152,8 +7153,8 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "AQ" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/machinery/glass_recycler/chemistry,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "AR" = (
@@ -8659,6 +8660,10 @@
 /obj/machinery/recharge_station,
 /turf/floor,
 /area/station/engine/core)
+"Hv" = (
+/obj/decal/poster/wallsign/medbay,
+/turf/wall,
+/area/station/medical/medbay/lobby)
 "Hw" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -8884,7 +8889,9 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/obj/machinery/door/airlock/gannets/glass/medical,
+/obj/machinery/door/airlock/gannets/glass/medical/alt{
+	id = "mebay"
+	},
 /obj/access_spawn/medical,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
@@ -9060,7 +9067,7 @@
 /area/station/chapel/office)
 "IS" = (
 /obj/disposalpipe/junction/left/east,
-/obj/table/reinforced/chemistry/beakers,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "IT" = (
@@ -9122,6 +9129,17 @@
 "Jc" = (
 /turf/space/gehenna/desert,
 /area/shuttle/merchant_shuttle/right_station/cogmap)
+"Jd" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/machinery/door_control{
+	id = "mebay";
+	name = "Exit";
+	pixel_x = 24
+	},
+/turf/floor/white,
+/area/station/medical/medbay/treatment)
 "Je" = (
 /obj/cable{
 	d2 = 4;
@@ -10267,7 +10285,6 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/table/reinforced/chemistry/auto,
 /obj/item/reagent_containers/dropper/mechanical{
 	pixel_x = 10;
 	pixel_y = 4
@@ -10280,6 +10297,7 @@
 	pixel_y = -3
 	},
 /obj/item/reagent_containers/dropper,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "NG" = (
@@ -12781,7 +12799,9 @@
 /area/station/crew_quarters/kitchen/freezer)
 "Wz" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/door/airlock/gannets/glass/medical,
+/obj/machinery/door/airlock/gannets/glass/medical/alt{
+	id = "mebay"
+	},
 /obj/access_spawn/medical,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
@@ -49750,7 +49770,7 @@ dy
 av
 vm
 Ig
-Sl
+Jd
 Sl
 nr
 xY
@@ -50648,7 +50668,7 @@ AJ
 AJ
 il
 Qk
-AJ
+Hv
 AJ
 AJ
 AJ
@@ -62726,7 +62746,7 @@ Io
 Kz
 Zu
 lh
-ke
+sF
 Zu
 Dn
 hd

@@ -161,6 +161,14 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"bp" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "br" = (
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
@@ -878,12 +886,6 @@
 	},
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
-"eT" = (
-/obj/disposalpipe/segment,
-/obj/grille/catwalk/jen,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "eU" = (
 /obj/machinery/vehicle/tank/minisub/mining,
 /turf/floor/plating/gehenna,
@@ -1089,6 +1091,15 @@
 	},
 /turf/wall,
 /area/station/maintenance/disposal/crusher)
+"fR" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "fT" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds,
@@ -2410,6 +2421,11 @@
 /obj/machinery/disposal,
 /turf/floor/red/side,
 /area/station/security/brig)
+"nA" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "nC" = (
 /turf/wall/r_wall,
 /area/station/security/detectives_office)
@@ -2717,6 +2733,17 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"pJ" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "pL" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -4835,11 +4862,6 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/floor/red/side,
 /area/station/security/brig)
-"Ch" = (
-/obj/grille/catwalk/jen,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "Ci" = (
 /turf/floor/orangeblack/side{
 	dir = 6
@@ -5046,14 +5068,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"Ds" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/grille/catwalk/jen,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "Du" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5610,15 +5624,6 @@
 /obj/item/storage/box/security_starter_kit,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
-"Gh" = (
-/obj/disposalpipe/segment,
-/obj/grille/catwalk/jen,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "Gj" = (
 /obj/disposalpipe/junction/left/east,
 /obj/grille/catwalk/jen,
@@ -6871,17 +6876,6 @@
 	dir = 5
 	},
 /area/station/medical/basement)
-"NW" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/grille/catwalk/jen,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "NY" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -6900,6 +6894,10 @@
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/plating,
 /area/station/engine/gas)
+"Oe" = (
+/obj/decal/poster/wallsign/medbay,
+/turf/wall/r_wall,
+/area/station/medical/basement)
 "Oj" = (
 /obj/submachine/ATM{
 	pixel_x = 32
@@ -7064,6 +7062,12 @@
 "OW" = (
 /turf/floor/plating/gehenna,
 /area/station/mining/tunnel)
+"OY" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "OZ" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/light/small/neutral{
@@ -7261,13 +7265,6 @@
 /obj/stool/chair/comfy/green,
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/bridge)
-"PV" = (
-/obj/decal/cleanable/dirt/random,
-/obj/landmark/start{
-	name = "Clown"
-	},
-/turf/floor/plating/gehenna,
-/area/station/crew_quarters/clown)
 "PX" = (
 /obj/disposalpipe/junction/middle/south,
 /turf/floor/grime,
@@ -8436,6 +8433,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
+"WO" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Clown"
+	},
+/turf/floor/plating/gehenna,
+/area/station/crew_quarters/clown)
 "WS" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment{
@@ -44436,7 +44440,7 @@ Lx
 YI
 JN
 fW
-iA
+Oe
 Wh
 CJ
 Yv
@@ -55008,8 +55012,8 @@ ux
 eh
 CS
 on
-NW
-Ds
+pJ
+bp
 lX
 Wa
 UU
@@ -55024,7 +55028,7 @@ BD
 hK
 mW
 mW
-Ch
+nA
 mW
 mW
 mW
@@ -55311,7 +55315,7 @@ eh
 Eh
 Gj
 qt
-eT
+OY
 Sg
 xd
 ZC
@@ -55326,11 +55330,11 @@ Ef
 Sg
 qt
 Sg
-eT
+OY
 Sg
 Sg
 Sg
-Gh
+fR
 qt
 Sg
 Sg
@@ -64640,7 +64644,7 @@ nt
 jN
 yA
 LW
-PV
+WO
 Vs
 SN
 EM
