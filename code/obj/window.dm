@@ -454,6 +454,7 @@
 		if(reinforcement && limiter.canISpawn(/obj/item/rods))
 			A = new /obj/item/rods(src.loc)
 			A.setMaterial(reinforcement)
+
 		if (src.dir in cardinal)
 			var/obj/grit = new /obj/decal/cleanable/edge_grit (src.loc)
 			grit.set_dir(src.dir)
@@ -463,6 +464,16 @@
 				grit = new /obj/decal/cleanable/edge_grit (T)
 				grit.set_dir(turn(src.dir, 180))
 				grit.color = src.color //don't bother with materials
+		else //full size window woo
+			var/obj/grit = new /obj/decal/cleanable/grit (src.loc)
+			grit.color = src.color //don't bother with materials
+			for (var/direction in cardinal)
+				var/turf/T = get_step(src.loc, direction)
+				if (isfloor(T))
+					if (locate(/obj/window) in T) continue
+					grit = new /obj/decal/cleanable/edge_grit (T)
+					grit.set_dir(turn(direction, 180))
+					grit.color = src.color //don't bother with materials
 
 		playsound(src, src.shattersound, 70, 1)
 		qdel(src)

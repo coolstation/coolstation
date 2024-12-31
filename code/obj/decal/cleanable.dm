@@ -2400,3 +2400,13 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	desc = "A whole lot of tiny shards, too small to be harmful."
 	icon = 'icons/obj/decals/cleanables.dmi'
 	icon_state = "grit_edge"
+
+/obj/decal/cleanable/grit
+	name = "glass grit"
+	desc = "A whole lot of tiny shards, too small to be harmful."
+	icon = 'icons/obj/decals/cleanables.dmi'
+	icon_state = "grit_full"
+
+	small
+		color = "#A3DCFF" //stolen from glass mat
+		random_icon_states = list("grit1", "grit2", "grit3", "grit4")
