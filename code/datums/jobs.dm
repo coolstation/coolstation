@@ -753,7 +753,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
-	slot_poc1 = list(/obj/item/device/pda2/medical)
+	slot_belt = list(/obj/item/device/pda2/medical)
 	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
 	items_in_backpack = list(/obj/item/storage/box/beakerbox, /obj/item/storage/pill_bottle/cyberpunk) //encourage a little drug dealing, why not
 

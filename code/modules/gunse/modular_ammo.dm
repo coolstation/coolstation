@@ -391,7 +391,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 /obj/item/stackable_ammo/pistol/tranq
 	name = "\improper NT Tranq-Will-8-or"
 	real_name = "\improper NT Tranq-Will-8-or"
-	desc = "What the fuck are these even?"
+	desc = "Tranquilizer darts inside bullet cases? What the fuck are these even?"
 	projectile_type = /datum/projectile/bullet/tranq_dart
 	stack_type = /obj/item/stackable_ammo/pistol/tranq
 	ammo_DRM = GUN_NANO
@@ -410,6 +410,47 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 		name = "\improper NT Tranq-Will-8-or (x5)"
 		min_amount = 5
 		max_amount = 5
+
+/obj/item/stackable_ammo/pistol/anti_mutant
+	name = "\improper NT Jean-Nerre-De Boulier dart"
+	real_name = "\improper NT Jean-Nerre-De Boulier dart"
+	desc = "Darts with anti-mutagenic solution, named after the slightly too prominent geneticists who necessitated their invention."
+	projectile_type = /datum/projectile/bullet/tranq_dart/anti_mutant
+	stack_type = /obj/item/stackable_ammo/pistol/anti_mutant
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_white"
+	icon_full  = "nt_white"
+	icon_empty = "nt_empty"
+	icon_one   = "it_what"
+	icon_shell = "white_case"
+
+	three
+		name = "\improper NT Jean-Nerre-De Boulier darts (x3)"
+		min_amount = 3
+		max_amount = 3
+
+	five
+		name = "\improper NT Jean-Nerre-De Boulier darts (x5)"
+		min_amount = 5
+		max_amount = 5
+/*	These also existed as tranq rifle rounds but I don't have a good name for em
+	syndicate
+		name = "\improper  Tranq-Will-8-or"
+		real_name = "\improper NT Tranq-Will-8-or"
+		amount_left = 5
+		max_amount = 5
+		ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate
+		ammo_DRM = GUN_SOVIET //since FOSSies don't use bullets, this was the next best thing I could think of
+
+		pistol
+			sname = ".31.0a Tranqilizer"
+			name = ".31.0a tranquilizer pistol darts"
+			amount_left = 15
+			max_amount = 15
+			caliber = 0.31
+			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
+*/
+
 
 /obj/item/stackable_ammo/pistol/capacitive/
 	name = "\improper NT In-Capacit-8-or"

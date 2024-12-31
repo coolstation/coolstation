@@ -4,6 +4,7 @@
 
 	name = "Air Scrubber"
 	desc = "Has a valve and pump attached to it"
+	generic_decon_module = /obj/item/atmospherics/module/vent_scrubber
 
 	level = 1
 	plane = PLANE_NOSHADOW_BELOW

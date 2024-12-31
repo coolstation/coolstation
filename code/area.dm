@@ -1648,6 +1648,9 @@ ABSTRACT_TYPE(/area/station/atmos)
 /area/station/atmos/highcap_storage
   name = "High-Capacity Atmospherics Storage"
 
+/area/station/atmos/department
+	do_not_irradiate = FALSE //Not in maint on Crag
+
 ABSTRACT_TYPE(/area/station/atmos/hookups)
 /area/station/atmos/hookups
 	sound_environment = EAX_BATHROOM

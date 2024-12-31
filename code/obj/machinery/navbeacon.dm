@@ -465,6 +465,70 @@ Transponder Codes:<UL>"}
 		location = "20"
 		codes_txt = "patrol;next_patrol=1"
 
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce
+	name = "secondary bot patrol navigational beacon"
+
+	beacon1_start
+		location = "1a"
+		codes_txt = "patrol;next_patrol=2a"
+	beacon2
+		location = "2a"
+		codes_txt = "patrol;next_patrol=3a"
+	beacon3
+		location = "3a"
+		codes_txt = "patrol;next_patrol=4a"
+	beacon4
+		location = "4a"
+		codes_txt = "patrol;next_patrol=5a"
+	beacon5
+		location = "5a"
+		codes_txt = "patrol;next_patrol=6a"
+	beacon6
+		location = "6a"
+		codes_txt = "patrol;next_patrol=7a"
+	beacon7
+		location = "7a"
+		codes_txt = "patrol;next_patrol=8a"
+	beacon8
+		location = "8a"
+		codes_txt = "patrol;next_patrol=9a"
+	beacon9
+		location = "9a"
+		codes_txt = "patrol;next_patrol=10a"
+	beacon10
+		location = "10a"
+		codes_txt = "patrol;next_patrol=11a"
+	beacon11
+		location = "11a"
+		codes_txt = "patrol;next_patrol=12a"
+	beacon12
+		location = "12a"
+		codes_txt = "patrol;next_patrol=13a"
+	beacon13
+		location = "13a"
+		codes_txt = "patrol;next_patrol=14a"
+	beacon14
+		location = "14a"
+		codes_txt = "patrol;next_patrol=15a"
+	beacon15
+		location = "15a"
+		codes_txt = "patrol;next_patrol=16a"
+	beacon16
+		location = "16a"
+		codes_txt = "patrol;next_patrol=17a"
+	beacon17
+		location = "17a"
+		codes_txt = "patrol;next_patrol=18a"
+	beacon18
+		location = "18a"
+		codes_txt = "patrol;next_patrol=19a"
+	beacon19
+		location = "19a"
+		codes_txt = "patrol;next_patrol=20a"
+	beacon20_to_1_end
+		location = "20a"
+		codes_txt = "patrol;next_patrol=1a"
+
 // Same deal for MULE delivery beacons (Convair880).
 /obj/machinery/navbeacon/mule
 	name = "MULE delivery beacon"

@@ -189,7 +189,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/lockdownbyai = 0
 	var/last_bump = 0
 	var/net_id = null
-	var/sound_airlock = 'sound/machines/airlock_swoosh_temp.ogg'
+	var/sound_airlock = 'sound/machines/airlock.ogg'
 	var/sound_close_airlock = null
 	sound_deny = 'sound/machines/airlock_deny.ogg'
 	var/sound_deny_temp = 'sound/machines/airlock_deny_temp.ogg'

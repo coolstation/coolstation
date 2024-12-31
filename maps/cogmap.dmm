@@ -26812,10 +26812,10 @@
 /turf/wall/r_wall,
 /area/station/maintenance/east)
 "bpq" = (
-/obj/machinery/shieldgenerator/energy_shield,
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "tile1"
 	},
+/obj/machinery/manufacturer/engineering,
 /turf/floor/grime,
 /area/station/storage/primary)
 "bpr" = (
@@ -35428,6 +35428,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 1
 	},
+/obj/machinery/vending/atmospherics,
 /turf/floor/plating,
 /area/station/engine/elect)
 "bLU" = (
@@ -38168,6 +38169,7 @@
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "tile1"
 	},
+/obj/machinery/shieldgenerator/energy_shield,
 /turf/floor/grime,
 /area/station/storage/primary)
 "bRP" = (
@@ -52843,6 +52845,7 @@
 /obj/item/suture{
 	pixel_y = 5
 	},
+/obj/item/tweezers,
 /obj/item/tweezers,
 /turf/floor/redwhite{
 	dir = 8

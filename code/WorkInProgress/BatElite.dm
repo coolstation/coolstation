@@ -1000,3 +1000,17 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
 		return miningZ
 */
+
+
+/*
+	Supposed to go in datum/admins/Topic under secretsadmin. FSR didn't find the spy market, despite copy pasting that line from else within that same Topic
+					if("cycle_spy_thief")
+						var/datum/game_mode/spy_theft/game = istype(ticker.mode, /datum/game_mode/spy_theft) ? ticker.mode : ticker.mode.spy_market
+						game.spy_market.build_bounty_list()
+						game.spy_market.update_bounty_readouts()
+						logTheThing("admin", usr, null, "Forced a refresh of the spy-thief bounty list.")
+						logTheThing("diary", usr, null, "Forced a refresh of the spy-thief bounty list.", "admin")
+						message_admins("[key_name(usr)] forced a refresh of the spy-thief bounty list.")
+						//hack to refresh the window
+						Topic(null, list("action" = "secretsadmin", "type" = "check_antagonist"))
+*/

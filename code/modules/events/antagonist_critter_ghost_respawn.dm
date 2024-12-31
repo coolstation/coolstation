@@ -100,7 +100,7 @@
 					)
 				)
 			)
-		),
+		),/*
 		list(new /datum/eventSpawnedCritter(
 			critter_types = list(/mob/living/critter/bot/cleanbot/emagged, /mob/living/critter/bot/firebot/emagged),
 			drop_tables = list(
@@ -110,7 +110,7 @@
 					)
 				)
 			)
-		),
+		),*/
 	)
 
 	admin_call(var/source)

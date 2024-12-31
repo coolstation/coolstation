@@ -631,6 +631,7 @@
 /obj/item/reagent_containers/food/snacks/fruit_cake
 	name = "fruitcake"
 	desc = "The most disgusting dessert ever devised. Legend says there's only one of these in the galaxy, passed from location to location by vengeful deities."
+	icon = 'icons/obj/foodNdrink/food_dessert.dmi'
 	icon_state = "cake_fruit"
 	amount = 10
 	heal_amt = 3
@@ -643,6 +644,12 @@
 		eater.show_text("It's so hard it breaks one of your teeth AND it tastes disgusting! Why would you ever eat this?","red")
 		random_brute_damage(eater, 3)
 		eater.emote("scream")
+		if(ishuman(eater))
+			var/mob/living/carbon/human/Ht = eater
+			var/obj/item/skull/target_skull = Ht.organHolder?.skull
+			if (target_skull && target_skull.teeth)
+				target_skull.teeth--
+				new /obj/decal/cleanable/tooth(get_turf(eater))
 		return
 
 #endif

@@ -3569,9 +3569,9 @@
 /turf/floor/specialroom/freezer/blue,
 /area/station/crew_quarters/kitchen)
 "dwt" = (
-/obj/machinery/vending/atmospherics,
-/turf/floor/plating,
-/area/station/maintenance/west)
+/obj/machinery/portable_reclaimer,
+/turf/floor/black,
+/area/station/hangar/main)
 "dyl" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/decal/cleanable/dirt/random,
@@ -4161,6 +4161,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
+/obj/machinery/light_switch/north,
 /turf/floor,
 /area/station/engine/storage)
 "dZc" = (
@@ -4321,6 +4322,10 @@
 	},
 /turf/floor,
 /area/station/science/artifact)
+"efh" = (
+/obj/item/deconstructor,
+/turf/floor,
+/area/station/engine/gas)
 "egR" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable/purple{
@@ -8273,7 +8278,7 @@
 /turf/floor,
 /area/station/engine/storage)
 "hXB" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/vending/atmospherics,
 /turf/floor,
 /area/station/engine/gas)
 "hXJ" = (
@@ -14074,6 +14079,9 @@
 	pixel_x = -1
 	},
 /obj/machinery/defib_mount,
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "nVs" = (
@@ -16338,6 +16346,7 @@
 /area/station/hallway/primary/northeast)
 "pZn" = (
 /obj/machinery/atmospherics/portables_connector/east,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor,
 /area/station/engine/gas)
 "qac" = (
@@ -17412,6 +17421,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor,
 /area/station/engine/gas)
 "rdT" = (
@@ -18236,7 +18246,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/obj/machinery/portable_reclaimer,
+/obj/machinery/manufacturer/hangar,
 /turf/floor/black,
 /area/station/hangar/main)
 "saK" = (
@@ -18599,7 +18609,7 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
-/turf/wall/r_wall,
+/turf/wall,
 /area/station/engine/storage)
 "svw" = (
 /obj/table/reinforced/bar/auto,
@@ -20618,13 +20628,13 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	areastring = "Cargo Bay";
-	dir = 1;
-	name = "Cargo Bay APC";
-	pixel_y = 24
-	},
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/power/apc{
+	areastring = "Inner Engineering";
+	dir = 8;
+	name = "Inner Engineering APC";
+	pixel_x = -24
+	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "usS" = (
@@ -20662,7 +20672,6 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/light_switch/north,
 /turf/floor/orangeblack/side{
 	dir = 8
 	},
@@ -21899,9 +21908,9 @@
 	},
 /obj/cable,
 /obj/machinery/power/apc{
-	areastring = "Inner Engineering";
+	areastring = "Cargo Bay";
 	dir = 8;
-	name = "Inner Engineering APC";
+	name = "Cargo Bay APC";
 	pixel_x = -24
 	},
 /turf/floor/plating,
@@ -63098,7 +63107,7 @@ iqI
 svt
 qTr
 hXB
-hXB
+efh
 rdL
 xNm
 mMO
@@ -63395,7 +63404,7 @@ aUi
 hli
 hGk
 aUi
-dwt
+icX
 icX
 fBW
 qTr
@@ -83324,7 +83333,7 @@ huZ
 huZ
 huA
 mVA
-nFX
+dwt
 nus
 vMg
 tkk

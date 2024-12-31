@@ -7,6 +7,8 @@ obj/machinery/atmospherics/valve
 	initialize_directions = SOUTH|NORTH
 	layer = PIPE_MACHINE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
+	generic_decon_time = 5 SECONDS
+	generic_decon_module = /obj/item/atmospherics/module/valve
 	var/open = 0
 	var/high_risk = 0 //Does this valve have enough grief potential that the admins should be messaged when this is opened?
 	var/obj/machinery/atmospherics/node1
@@ -39,6 +41,7 @@ obj/machinery/atmospherics/valve
 		name = "digital valve"
 		desc = "A digitally controlled valve."
 		icon = 'icons/obj/atmospherics/digital_valve.dmi'
+		generic_decon_module = /obj/item/atmospherics/module/digital_valve
 
 		vertical
 			dir = NORTH
@@ -339,6 +342,7 @@ obj/machinery/atmospherics/valve
 obj/machinery/atmospherics/manifold_valve
 	icon = 'icons/obj/atmospherics/manifold_valve.dmi'
 	icon_state = "manifold_valve0"
+	generic_decon_module = /obj/item/atmospherics/module/manifold_valve
 
 	name = "manifold valve"
 	desc = "A pipe valve"

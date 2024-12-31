@@ -6,6 +6,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 	plane = PLANE_NOSHADOW_BELOW
+	generic_decon_module = /obj/item/atmospherics/module/connector
 	var/obj/machinery/portable_atmospherics/connected_device
 	var/obj/machinery/atmospherics/node
 	var/datum/pipe_network/network

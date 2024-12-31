@@ -111,6 +111,13 @@
 	stop_id 	= "cargo_hub"
 	name		= "NTFC Cargo Hub Dock"
 	target_area = /area/shuttle/cargo/hub
+
+	///Set to FALSE if you need the cargo shuttle to stay at centcomm for something
+	var/departure_free = TRUE
+
+	vehicle_can_depart()
+		return departure_free
+
 	on_arrival()
 		shippingmarket.CSS_at_NTFC = TRUE
 		var/artifact_ducats = 0

@@ -41,13 +41,13 @@ Tank transfer valves aren't incorporated into this, sorry.
 ///This isn't a proper thing but I figured it'd be nice on the object tree to group it all under one parent
 ABSTRACT_TYPE(/obj/item/atmospherics)
 /obj/item/atmospherics
+	icon = 'icons/obj/atmospherics/atmos_parts.dmi'
 
 ///Parent crafting item, the pipe frame end of things. BTW these are stackable watch out
 ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 /obj/item/atmospherics/pipeframe
 	name = "the platonic ideal of atmospheric piping frame"
 	desc = "Small pipes made to exchange heat inside with their environment."
-	icon = 'icons/obj/atmospherics/atmos_parts.dmi'
 	icon_state = "conduit_to-weld"
 	///What does this look like after welding?
 	var/icon_welded
@@ -174,6 +174,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	orientation_instructions = "Straight and corner pieces only, direction does not matter."
 
+	pre_welded
+		welded = TRUE
+		icon_state = "frame_conduit"
+
 
 //The bit that going between normal piping and heat exchangers. Build direction points to the exchanger side
 /obj/item/atmospherics/pipeframe/exchanger_regular_junction
@@ -220,6 +224,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/insulated
 	orientation_instructions = "Regular pipes can be placed in any 2 or 3 connection orientation, the latter making manifolds."
 
+	pre_welded
+		welded = TRUE
+		icon_state = "Pipe_Hollow"
+
 	disposing() //TODO hey what the fuck was I doing here this seems like a terrible plan??
 		if (gizmo?.loc == src) //This is the bullshit that will let us split off of stack of gizmoed frames without spawning a gizmo every time
 			qdel(gizmo) //Basically until we're
@@ -231,6 +239,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		..()
 		if (welded && isnull(gizmo))
 			. += " Add a metal sheet to make a pipebomb frame."
+		if (!welded)
+			. += " You'll have to weld the seam shut first."
 
 	///We might have differing modules attached
 	check_valid_stack(obj/item/atmospherics/pipeframe/regular/O)
@@ -309,13 +319,13 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		if (!gizmo)
 			switch(orientation) //Like manifold valves, manifolds point in the direction they don't have a connection to
 				if(NORTH + EAST + WEST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, SOUTH)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, SOUTH)
 				if(SOUTH + EAST + WEST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, NORTH)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, NORTH)
 				if(NORTH + SOUTH + WEST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, EAST)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, EAST)
 				if(NORTH + SOUTH + EAST)
-					return new /obj/machinery/atmospherics/pipe/manifold(destination, WEST)
+					return new /obj/machinery/atmospherics/pipe/manifold/overfloor(destination, WEST)
 				else
 					return ..() //2-connection pipes
 		else
@@ -620,8 +630,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 /obj/machinery/vending/atmospherics //adapted from the mechcomp one
 	name = "atmospherics module dispenser"
 	desc = "Dispenses parts for building atmospherics equipment."
-	icon_state = "generic"
-	icon_panel = "generic-panel"
+	icon_state = "w_generic"
+	icon_panel = "w_generic-panel"
 	acceptcard = 0
 	pay = 0
 
@@ -637,19 +647,23 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 
 	create_products() //IDK what half the machines these fuckers build into actually *do* so not all of this may be appropriate stock
 		..()
+		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/atmos, 2)
+		product_list += new/datum/data/vending_product(/obj/item/deconstructor, 2)
+		product_list += new/datum/data/vending_product(/obj/item/weldingtool, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/fueltank, 3)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/valve, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/digital_valve, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/manifold_valve, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/filter, 5)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/mixer, 5)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/connector, 8)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/manifold_valve, 10)
+		//product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/filter, 5)
+		//product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/mixer, 5)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/connector, 5)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/pump, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/volume_pump, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/volume_pump, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/dp_vent, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/passive_gate, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/furnace_connector, 5)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/outlet_injector, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/outlet_injector, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_pump, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_scrubber, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/pipeframe/exchanger_regular_junction/pre_welded, 10)
@@ -818,3 +832,62 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		if (istype(target, /obj/machinery/atmospherics))
 			qdel(target)
 		..()
+
+//Gonna steal a lot from the geothermal dowsing rods, but I feel there's not enough overlap to justify making this a subtype
+/obj/item/atmospherics/purger
+	name = "pipeline gas purger"
+	desc = "A machine that attaches to pipes and slowly disintegrates gases inside them"
+	icon_state = "purger_undeployed"
+	w_class = W_CLASS_NORMAL
+	//All of this is just copied from the dowsing rod
+	throwforce = 6
+	force = 6
+	throw_speed = 4
+	throw_range = 5
+	stamina_damage = 30
+	stamina_cost = 15
+	stamina_crit_chance = 1
+	///This many moles will be deleted per item process tick
+	var/moles_per_tick = 2 //For reference, an O2/plasma/CO2/N2O can has ~1,8k moles. N2 has like 6,5k and air cans much more
+	var/deployed = FALSE
+	var/obj/machinery/atmospherics/pipe/currently_attached
+/obj/item/atmospherics/purger/afterattack(obj/machinery/atmospherics/pipe/P, var/mob/user)
+	if (istype(P))
+		user.drop_item()
+		src.set_loc(get_turf(P))
+		src.deploy(P)
+		return
+	..()
+/obj/item/atmospherics/purger/process()
+	..() //Something about timekeeping in here? IDK
+	if ((istype(currently_attached) && !currently_attached.disposed && (src.loc != get_turf(currently_attached)))) //not a valid pipe or we've somehow come off of the pipe
+		undeploy()
+		return
+	var/datum/pipeline/pipeline = currently_attached.parent
+	if (!pipeline)
+		return
+	var/datum/gas_mixture/gas2purge = pipeline.air
+	if (!gas2purge)
+		UpdateOverlays(null, "plasma")
+		return
+	if (gas2purge.remove(moles_per_tick))
+		UpdateOverlays(image(src.icon, "purger_effect"), "plasma")
+	else
+		UpdateOverlays(null, "plasma")
+///Undeploy when moved (including on pickup, I'm pretty sure)
+/obj/item/atmospherics/purger/set_loc(newloc)
+	if (deployed)
+		undeploy()
+	..()
+/obj/item/atmospherics/purger/proc/deploy(obj/machinery/atmospherics/pipe/attach_to)
+	if (istype(attach_to))
+		deployed = TRUE
+		processing_items |= src
+		icon_state = "purger_deployed"
+		currently_attached = attach_to
+/obj/item/atmospherics/purger/proc/undeploy()
+	currently_attached = null
+	processing_items -= src
+	deployed = FALSE
+	icon_state = "purger_undeployed"
+	UpdateOverlays(null, "plasma")

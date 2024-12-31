@@ -564,8 +564,15 @@
 /obj/item/device/pda2/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(uplink,/obj/item/uplink/integrated/pda/spy))
 		var/obj/item/uplink/integrated/pda/spy/U = uplink
-		if (U.try_deliver(C, user))
-			return
+		//workaround to stop uplink from eating a spy's own ID when trying to insert
+		if (istype(C, /obj/item/card/id))
+			var/obj/item/card/id/ID = C
+			if (src.owner != ID.registered)
+				if (U.try_deliver(C, user))
+					return
+		else
+			if (U.try_deliver(C, user))
+				return
 
 	if (istype(C, /obj/item/disk/data/cartridge))
 		user.drop_item()

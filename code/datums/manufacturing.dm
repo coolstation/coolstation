@@ -781,6 +781,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	name = "Volume Pump Module"
 	item_outputs = list(/obj/item/atmospherics/module/volume_pump)
 
+/datum/manufacture/atmos_purger
+	name = "Pipeline Gas Purger"
+	item_paths = list("MET-1", "CON-1")
+	item_amounts = list(10, 6)
+	time = 7 SECONDS
+	create = 1
+	category = "Atmospherics"
+	item_outputs = list(/obj/item/atmospherics/purger)
+
 /******************** Misc **************************/
 
 /datum/manufacture/sds

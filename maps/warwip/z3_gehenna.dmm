@@ -27066,7 +27066,7 @@
 	pixel_y = 7
 	},
 /obj/item/clothing/head/helmet/hardhat,
-/obj/item/debug_atmos_bapper,
+/obj/item/deconstructor,
 /turf/floor/industrial,
 /area/station/engine/storage)
 "pPQ" = (
@@ -33084,6 +33084,10 @@
 	pixel_x = -5;
 	pixel_y = 9
 	},
+/obj/item/deconstructor{
+	pixel_x = -5;
+	pixel_y = -1
+	},
 /turf/floor/industrial,
 /area/station/engine/storage)
 "tyT" = (
@@ -38193,6 +38197,17 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/black/side,
 /area/station/crew_quarters/catering)
+"wtB" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 8;
+	frequency = 1225;
+	icon_state = "intact_on";
+	id = "Hot Loop Gas Supply 2";
+	on = 1;
+	target_pressure = 1000
+	},
+/turf/floor/plating,
+/area/station/engine/inner)
 "wtI" = (
 /obj/disposalpipe/segment/morgue,
 /obj/decal/tile_edge/floorguide/arrow_s{
@@ -100704,7 +100719,7 @@ cNj
 uJY
 svF
 eAc
-peS
+wtB
 peS
 gZu
 gZu

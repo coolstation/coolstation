@@ -3,6 +3,7 @@
 	icon_state = "out"
 	name = "Air Vent"
 	desc = "Has a valve and pump attached to it"
+	generic_decon_module = /obj/item/atmospherics/module/vent_pump
 	level = 1
 	plane = PLANE_NOSHADOW_BELOW
 	layer = PIPE_MACHINE_LAYER

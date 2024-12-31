@@ -9,7 +9,7 @@
 
 //What if we just put all the prefixes in
 #define PREFIX_SILICON "s"
-#define PREFIX_INNER "i"//shared between changeling hivemind and vampire-thrall comms
+#define PREFIX_INNER "i"//shared between changeling hivemind and dracula-thrall comms
 #define PREFIX_WHISPER "w" //commented out atm
 #define PREFIX_RIGHT_HAND "rh"
 #define PREFIX_LEFT_HAND "lh"

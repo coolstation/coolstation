@@ -752,6 +752,12 @@
 		//if (!(src.traitHolder && src.traitHolder.hasTrait("glasscannon")))
 		//	msgs.stamina_self -= STAMINA_HTH_COST
 
+	//awfulworldkid: this is meant to be code to do brain damage on head hits
+	if (def_zone == "head")
+		if(damage >= 6)
+			var/brain = 1 + ((damage - 6) / 10)
+			target.take_brain_damage(brain)
+
 	var/attack_resistance = target.check_attack_resistance()
 	if (attack_resistance)
 		damage = 0

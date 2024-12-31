@@ -323,8 +323,8 @@ that cannot be itched
 			JOB_XP(user, "Clown", 1)
 			return
 
-		user.visible_message("<span class='alert'><b>[user]</b> has analyzed [M]'s vitals.</span>",\
-		"<span class='alert'>You have analyzed [M]'s vitals.</span>")
+		user.visible_message("<span class='success'><b>[user]</b> has analyzed [M]'s vitals.</span>",\
+		"<span class='success'>You have analyzed [M]'s vitals.</span>")
 		boutput(user, scan_health(M, src.reagent_scan, src.disease_detection, src.organ_scan, visible = 1))
 
 		scan_health_overhead(M, user)
@@ -339,8 +339,8 @@ that cannot be itched
 		if (istype(A, /obj/machinery/clonepod))
 			var/obj/machinery/clonepod/P = A
 			if(P.occupant)
-				user.visible_message("<span class='alert'><b>[user]</b> has analyzed [P.occupant]'s vitals.</span>",\
-					"<span class='alert'>You have analyzed [P.occupant]'s vitals.</span>")
+				user.visible_message("<span class='success'><b>[user]</b> has analyzed [P.occupant]'s vitals.</span>",\
+					"<span class='success'>You have analyzed [P.occupant]'s vitals.</span>")
 				boutput(user, scan_health(P.occupant, src.reagent_scan, src.disease_detection, src.organ_scan))
 				update_medical_record(P.occupant)
 				return

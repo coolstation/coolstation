@@ -18,6 +18,7 @@ obj/machinery/atmospherics/binary/volume_pump
 
 	name = "Gas pump"
 	desc = "A pump"
+	generic_decon_module = /obj/item/atmospherics/module/volume_pump
 
 	var/on = 0
 	var/transfer_rate = 200
@@ -120,6 +121,7 @@ obj/machinery/atmospherics/binary/volume_pump
 obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/W, mob/user)
 	if(ispulsingtool(W))
 		ui.show_ui(user)
+	else ..()
 
 datum/pump_ui/volume_pump_ui
 	value_name = "Flow Rate"

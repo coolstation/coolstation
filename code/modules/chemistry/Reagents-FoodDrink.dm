@@ -2039,8 +2039,6 @@ datum
 			viscosity = 0.5
 			minimum_reaction_temperature = -INFINITY
 
-
-
 			reaction_turf(var/turf/T, var/volume)
 				if(volume >= 5 && !(locate(/obj/item/reagent_containers/food/snacks/ingredient/cheese) in T))
 					new /obj/item/reagent_containers/food/snacks/ingredient/cheese(T)
