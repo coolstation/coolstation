@@ -146,7 +146,7 @@
 /obj/machinery/computer/shipyard_control/proc/call_client()
 
 	if(shipyardship_location == 0)
-		clear_area(/area/shuttle/bayou/stagearea)
+		clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
