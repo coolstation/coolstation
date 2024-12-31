@@ -85,15 +85,6 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer/north,
 /turf/floor/grime,
 /area/station/engine/coldloop)
-"aJ" = (
-/obj/disposalpipe/segment,
-/obj/grille/catwalk/jen,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "aN" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/morgue{
@@ -546,10 +537,6 @@
 	dir = 10
 	},
 /area/station/mining/lobby)
-"dn" = (
-/obj/decal/poster/wallsign/medbay,
-/turf/wall/r_wall,
-/area/station/medical/basement)
 "do" = (
 /obj/machinery/atmospherics/portables_connector/west,
 /obj/decal/poster/wallsign/chsl{
@@ -717,6 +704,14 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"ec" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "ed" = (
 /obj/disposalpipe/segment/sewage,
 /obj/cable{
@@ -1119,10 +1114,6 @@
 "ga" = (
 /turf/wall/r_wall,
 /area/station/engine/hotloop)
-"gb" = (
-/obj/machinery/bot/secbot/beepsky,
-/turf/floor/plating,
-/area/station/security/beepsky)
 "gc" = (
 /obj/cable{
 	d1 = 1;
@@ -2745,6 +2736,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
+"pM" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "pO" = (
 /obj/machinery/light/small/red,
 /turf/floor/grey,
@@ -2808,6 +2810,10 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"ql" = (
+/obj/machinery/bot/secbot/beepsky,
+/turf/floor/plating,
+/area/station/security/beepsky)
 "qm" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -3021,14 +3027,12 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
 /turf/floor/plating,
 /area/station/engine/gas)
-"rC" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
+"rA" = (
+/obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
 /obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
@@ -4683,24 +4687,18 @@
 /area/station/security/checkpoint/customs)
 "Ba" = (
 /obj/grille/catwalk/jen,
+/obj/machinery/light/small/neutral{
+	dir = 4
+	},
 /obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "2-8"
 	},
-/obj/machinery/power/apc{
-	areastring = "Waste Crusher";
-	dir = 4;
-	name = "Waste Crusher APC";
-	pixel_x = 24
+/obj/machinery/conveyor/north{
+	name = "garbo belt";
+	operating = 1
 	},
 /turf/floor/plating,
-/area/station/maintenance/disposal)
-"Bb" = (
-/obj/disposalpipe/segment,
-/obj/grille/catwalk/jen,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
+/area/station/maintenance/disposal/crusher)
 "Bc" = (
 /obj/decoration/toiletholder{
 	dir = 8
@@ -6262,6 +6260,15 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
+"Kj" = (
+/obj/machinery/conveyor/north{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/disposalpipe/segment,
+/obj/plasticflaps,
+/turf/floor/plating,
+/area/station/maintenance/disposal/crusher)
 "Km" = (
 /obj/wingrille_spawn,
 /obj/cable{
@@ -6685,6 +6692,11 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/janitor/office)
+"MP" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "MR" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -6700,6 +6712,10 @@
 	},
 /turf/floor/red/side,
 /area/station/security/main)
+"MW" = (
+/obj/decal/poster/wallsign/medbay,
+/turf/wall/r_wall,
+/area/station/medical/basement)
 "MX" = (
 /turf/floor/plating,
 /area/station/mining/lobby)
@@ -6834,6 +6850,12 @@
 	dir = 1
 	},
 /area/station/medical/basement)
+"NM" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "NO" = (
 /obj/disposalpipe/segment/sewage,
 /turf/floor/red/side,
@@ -7064,15 +7086,19 @@
 /area/station/mining/tunnel)
 "OZ" = (
 /obj/grille/catwalk/jen,
-/obj/machinery/light/small/neutral{
-	dir = 4
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 9;
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/power/apc{
+	areastring = "Waste Crusher";
+	dir = 4;
+	name = "Waste Crusher APC";
+	pixel_x = 24
+	},
+/obj/cable,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "Pf" = (
@@ -7328,14 +7354,6 @@
 /obj/decal/cleanable/mess/burrito,
 /turf/floor/carpet/grime,
 /area/station/security/hos)
-"Qs" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/grille/catwalk/jen,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "Qu" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -7995,11 +8013,14 @@
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
 "Ul" = (
+/obj/plasticflaps,
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
 	operating = 1
 	},
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window/southleft{
+	layer = 30
+	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
 "Uq" = (
@@ -8683,11 +8704,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
-"YC" = (
-/obj/grille/catwalk/jen,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "YI" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/bathroom)
@@ -44440,7 +44456,7 @@ Lx
 YI
 JN
 fW
-dn
+MW
 Wh
 CJ
 Yv
@@ -48037,7 +48053,7 @@ xD
 ni
 ni
 Sc
-gb
+ql
 ni
 xQ
 Hh
@@ -55012,8 +55028,8 @@ ux
 eh
 CS
 on
-rC
-Qs
+pM
+ec
 lX
 Wa
 UU
@@ -55028,7 +55044,7 @@ BD
 hK
 mW
 mW
-YC
+MP
 mW
 mW
 mW
@@ -55315,7 +55331,7 @@ eh
 Eh
 Gj
 qt
-Bb
+NM
 Sg
 xd
 ZC
@@ -55330,11 +55346,11 @@ Ef
 Sg
 qt
 Sg
-Bb
+NM
 Sg
 Sg
 Sg
-aJ
+rA
 qt
 Sg
 Sg
@@ -67079,7 +67095,7 @@ Lp
 jH
 lT
 EU
-EU
+Kj
 vX
 EU
 mb
@@ -67387,7 +67403,7 @@ sa
 sa
 sa
 sa
-dh
+sa
 dh
 dh
 dh
