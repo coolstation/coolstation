@@ -101,7 +101,7 @@
 "aV" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
 "aW" = (
@@ -354,7 +354,9 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -876,6 +878,12 @@
 	},
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
+"eT" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "eU" = (
 /obj/machinery/vehicle/tank/minisub/mining,
 /turf/floor/plating/gehenna,
@@ -1585,7 +1593,9 @@
 /area/station/engine/hotloop)
 "iV" = (
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2267,7 +2277,9 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -2769,7 +2781,9 @@
 "qi" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2856,7 +2870,7 @@
 /area/station/engine/hotloop)
 "qD" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/bridge/customs)
 "qF" = (
@@ -3519,10 +3533,11 @@
 /area/station/janitor/office)
 "uJ" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_west{
-	pixel_x = -24
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/cable,
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
 "uK" = (
@@ -3715,10 +3730,10 @@
 /turf/floor/plating,
 /area/transit_vehicle/elevator/com_bot)
 "vW" = (
-/obj/landmark/start{
-	name = "Clown"
+/obj/machinery/power/apc/autoname_west{
+	pixel_x = -24
 	},
-/obj/decal/cleanable/dirt/random,
+/obj/cable,
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
 "vX" = (
@@ -4151,7 +4166,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4818,6 +4835,11 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/floor/red/side,
 /area/station/security/brig)
+"Ch" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "Ci" = (
 /turf/floor/orangeblack/side{
 	dir = 6
@@ -5024,6 +5046,14 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"Ds" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "Du" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5558,7 +5588,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -5578,13 +5610,24 @@
 /obj/item/storage/box/security_starter_kit,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
+"Gh" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "Gj" = (
 /obj/disposalpipe/junction/left/east,
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Gk" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -6257,7 +6300,9 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "KA" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -6669,7 +6714,7 @@
 "Nd" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/bridge/customs)
 "Ne" = (
@@ -6826,6 +6871,17 @@
 	dir = 5
 	},
 /area/station/medical/basement)
+"NW" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "NY" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -7205,6 +7261,13 @@
 /obj/stool/chair/comfy/green,
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/bridge)
+"PV" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Clown"
+	},
+/turf/floor/plating/gehenna,
+/area/station/crew_quarters/clown)
 "PX" = (
 /obj/disposalpipe/junction/middle/south,
 /turf/floor/grime,
@@ -7884,7 +7947,9 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -8368,7 +8433,7 @@
 /area/station/maintenance/disposal)
 "WM" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
 "WS" = (
@@ -54943,8 +55008,8 @@ ux
 eh
 CS
 on
-lX
-lX
+NW
+Ds
 lX
 Wa
 UU
@@ -54959,7 +55024,7 @@ BD
 hK
 mW
 mW
-mW
+Ch
 mW
 mW
 mW
@@ -55246,7 +55311,7 @@ eh
 Eh
 Gj
 qt
-Sg
+eT
 Sg
 xd
 ZC
@@ -55261,11 +55326,11 @@ Ef
 Sg
 qt
 Sg
+eT
 Sg
 Sg
 Sg
-Sg
-Sg
+Gh
 qt
 Sg
 Sg
@@ -64575,7 +64640,7 @@ nt
 jN
 yA
 LW
-Vs
+PV
 Vs
 SN
 EM
