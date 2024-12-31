@@ -1259,7 +1259,7 @@
 		msgs.stamina_crit = 1
 		msgs.played_sound = pick(sounds_punch)
 		if(def_zone == "head" && src.hit_type == DAMAGE_BLUNT)
-			target.take_brain_damage(src.w_class)
+			M.take_brain_damage(src.w_class)
 #endif
 
 	msgs.played_sound = src.hitsound
