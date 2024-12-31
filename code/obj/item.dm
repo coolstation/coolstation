@@ -1258,6 +1258,8 @@
 		M.do_disorient(weakened = rng_stun_weak, stunned = rng_stun_time, disorient = rng_stun_diso)
 		msgs.stamina_crit = 1
 		msgs.played_sound = pick(sounds_punch)
+		if(def_zone == "head" && src.hit_type == DAMAGE_BLUNT)
+			target.take_brain_damage(src.w_class)
 #endif
 
 	msgs.played_sound = src.hitsound
