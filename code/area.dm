@@ -704,6 +704,9 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/bayou/shipyard
 	icon_state = "shuttle"
 
+/area/shuttle/bayou/ship
+	icon_state = "shuttle"
+
 /area/shuttle/shopping/station
 	icon_state = "shuttle"
 
@@ -2496,6 +2499,9 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	name = "Public Garden"
 	icon_state = "park"
 
+/area/station/shipyard
+	name = "Shipyard"
+	icon_state = "fart"
 // some radio jazz
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)
