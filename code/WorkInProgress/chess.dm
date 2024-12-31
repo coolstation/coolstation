@@ -56,6 +56,8 @@ obj/chessbutton
 			logTheThing("diary", user, null, "has reset the chessboard. Hope nobody was playing chess.", "admin")
 			chess_in_progress = 0 //prevent moving pieces while wiping the board
 			chess_enpassant = null
+			for_by_tcl(mark, /obj/decal/chess_mark)
+				qdel(mark)
 			for(var/turf/floor/chess/T in chessboard)
 				T.enpassant = null // almost forgot this, gotte get that sweet GC
 				for(var/obj/item/O in T)
@@ -125,6 +127,31 @@ obj/item/chesspiece
 		else
 			if(istype(Tb,/turf/floor/chess) && validmove(Ta,Tb))
 				chessmove(Tb,user)
+				if (src.loc != Ta) //Trying to capture your own piece is considered a valid move but doesn't go through anyway FFS
+					//show some shit for what move got made thx
+					//var/list/dirs = get_steps_to(Ta, Tb, 0)
+					for_by_tcl(mark, /obj/decal/chess_mark)
+						qdel(mark)
+					var/prev_step = FALSE
+					var/turf/intermediate = Ta
+					do
+						var/a_step = get_dir(intermediate, Tb)
+						var/obj/decal/chess_mark/CM = new(intermediate)
+						CM.dir = a_step
+						if (intermediate == Ta)
+							CM.icon_state = "start"
+						else if (a_step != prev_step) //we turned a goddamn corner cause we're a knight
+							CM.icon_state = "[min(a_step,prev_step)]-[max(a_step,prev_step)]" //do it like cables (except none of the names match I named them based on what the code put out cause fuck it)
+						prev_step = a_step
+						intermediate = get_step(intermediate, a_step)
+					while(intermediate != Tb)
+
+					var/obj/decal/chess_mark/CMend = new(Tb)
+					CMend.icon_state = "end"
+					CMend.dir = prev_step
+
+
+
 			else
 				src.visible_message("<span class='alert'>Invalid move dorkus.</span>") // seems USER here is not actually the mob, but the click proc itself, so im regressing to a visible message for now
 
@@ -393,6 +420,18 @@ obj/item/chesspiece/knight
 			return chess_in_progress
 		else return 0
 
+/obj/decal/chess_mark
+	plane = PLANE_NOSHADOW_BELOW
+	mouse_opacity = 0
+	icon = 'icons/ui/chess_marks.dmi'
+	icon_state = "middle"
+	New()
+		START_TRACKING
+		..()
+
+	disposing()
+		STOP_TRACKING
+		..()
 
 
 

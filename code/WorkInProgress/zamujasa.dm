@@ -46,6 +46,7 @@
 	icon = null
 	plane = PLANE_HUD - 1
 	maptext = ""
+	flags = TECHNICAL_ATOM
 
 
 #ifdef DEBUG_LIGHTING_UPDATES
