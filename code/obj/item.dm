@@ -1258,8 +1258,11 @@
 		M.do_disorient(weakened = rng_stun_weak, stunned = rng_stun_time, disorient = rng_stun_diso)
 		msgs.stamina_crit = 1
 		msgs.played_sound = pick(sounds_punch)
+		//awfulworldkid: location based crit effects
 		if(def_zone == "head" && src.hit_type == DAMAGE_BLUNT)
 			M.take_brain_damage(src.w_class)
+		if((def_zone == "l_leg" || def_zone == "r_leg") && src.hit_type == DAMAGE_BLUNT)
+			M.changeStatus("weakened", (src.w_class / 2) SECONDS)
 #endif
 
 	msgs.played_sound = src.hitsound
