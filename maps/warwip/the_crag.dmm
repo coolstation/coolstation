@@ -518,7 +518,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
 "bX" = (
@@ -532,7 +534,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/med{
 	dir = 4
 	},
 /area/transit_vehicle/elevator/med_top)
@@ -858,7 +860,7 @@
 /turf/floor,
 /area/station/medical/medbay/treatment)
 "cZ" = (
-/obj/table/reinforced/chemistry/auto,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "da" = (
@@ -1149,6 +1151,7 @@
 /area/station/medical/medbay/pharmacy)
 "ej" = (
 /obj/table/reinforced/auto,
+/obj/item/crowbar/red,
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -1783,7 +1786,9 @@
 /area/station/medical/medbay/lobby)
 "gz" = (
 /obj/machinery/light/fluorescent/auto/yellow,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -2069,7 +2074,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/com,
 /area/transit_vehicle/elevator/com_top)
 "hD" = (
 /obj/machinery/light{
@@ -2428,7 +2433,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/purple/side{
 	dir = 1
 	},
@@ -2477,7 +2484,9 @@
 /area/station/hallway/secondary/south)
 "jo" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/blueblack{
 	dir = 4
 	},
@@ -2504,7 +2513,9 @@
 	dir = 4
 	},
 /obj/item/paper_bin,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/blue/side{
 	dir = 8
 	},
@@ -2995,7 +3006,9 @@
 /obj/machinery/light,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/blue/side{
 	dir = 10
 	},
@@ -3041,7 +3054,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/eng{
 	dir = 8
 	},
 /area/transit_vehicle/elevator/eng_top)
@@ -3124,7 +3137,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/med{
 	dir = 8
 	},
 /area/transit_vehicle/elevator/med_top)
@@ -3311,7 +3324,9 @@
 /turf/wall,
 /area/station/crew_quarters/cafeteria)
 "mu" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/purple/side,
 /area/station/science/lobby)
 "mv" = (
@@ -3437,7 +3452,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/black,
 /area/station/science/chemistry)
 "mO" = (
@@ -3604,7 +3619,7 @@
 /area/station/science/artifact)
 "no" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "np" = (
@@ -3783,7 +3798,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 1
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/black,
 /area/station/science/chemistry)
 "nY" = (
@@ -3909,7 +3924,7 @@
 "ow" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -4917,6 +4932,14 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
+"sF" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/table/reinforced/auto,
+/obj/item/crowbar/red,
+/turf/floor,
+/area/station/atmos/department)
 "sG" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -5283,7 +5306,9 @@
 	dir = 4
 	},
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/blueblack{
 	dir = 4
 	},
@@ -5537,7 +5562,9 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "uS" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
 "uT" = (
@@ -5835,7 +5862,9 @@
 /obj/machinery/button/elevator/qm{
 	pixel_y = 32
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -6110,7 +6139,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/qm{
 	dir = 8
 	},
 /area/transit_vehicle/elevator/qm_top)
@@ -6414,6 +6443,7 @@
 "ya" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment,
+/obj/table/reinforced/chemistry/beakers,
 /turf/floor/purpleblack/corner,
 /area/station/science/chemistry)
 "yb" = (
@@ -6710,7 +6740,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor,
 /area/station/science/lab)
 "zs" = (
@@ -6938,7 +6968,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/eng,
 /area/transit_vehicle/elevator/eng_top)
 "Aj" = (
 /turf/floor/purple/corner{
@@ -7123,8 +7153,8 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "AQ" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/machinery/glass_recycler/chemistry,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "AR" = (
@@ -7938,7 +7968,7 @@
 /obj/machinery/light/fluorescent/ceiling,
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -8073,7 +8103,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/eng{
 	dir = 1
 	},
 /area/transit_vehicle/elevator/eng_top)
@@ -8114,7 +8144,9 @@
 	pixel_x = -8;
 	pixel_y = 14
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/black/side{
 	dir = 8
 	},
@@ -8282,7 +8314,7 @@
 /area/station/science/lobby)
 "FW" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -8628,6 +8660,10 @@
 /obj/machinery/recharge_station,
 /turf/floor,
 /area/station/engine/core)
+"Hv" = (
+/obj/decal/poster/wallsign/medbay,
+/turf/wall,
+/area/station/medical/medbay/lobby)
 "Hw" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -8819,7 +8855,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/qm,
 /area/transit_vehicle/elevator/qm_top)
 "Ia" = (
 /obj/disposalpipe/segment/bent{
@@ -8853,7 +8889,9 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/obj/machinery/door/airlock/gannets/glass/medical,
+/obj/machinery/door/airlock/gannets/glass/medical/alt{
+	id = "mebay"
+	},
 /obj/access_spawn/medical,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
@@ -8917,7 +8955,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/com{
 	dir = 1
 	},
 /area/transit_vehicle/elevator/com_top)
@@ -9004,7 +9042,9 @@
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/black/side{
 	dir = 8
 	},
@@ -9027,7 +9067,7 @@
 /area/station/chapel/office)
 "IS" = (
 /obj/disposalpipe/junction/left/east,
-/obj/table/reinforced/chemistry/beakers,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "IT" = (
@@ -9089,6 +9129,17 @@
 "Jc" = (
 /turf/space/gehenna/desert,
 /area/shuttle/merchant_shuttle/right_station/cogmap)
+"Jd" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/machinery/door_control{
+	id = "mebay";
+	name = "Exit";
+	pixel_x = 24
+	},
+/turf/floor/white,
+/area/station/medical/medbay/treatment)
 "Je" = (
 /obj/cable{
 	d2 = 4;
@@ -9240,7 +9291,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/med{
 	dir = 1
 	},
 /area/transit_vehicle/elevator/med_top)
@@ -9799,7 +9850,7 @@
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/green,
 /area/station/medical/research)
 "Mc" = (
@@ -9909,7 +9960,9 @@
 /area/shuttle/merchant_shuttle/left_station/cogmap)
 "Mv" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "Mw" = (
@@ -10102,6 +10155,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/item/crowbar/red,
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -10202,6 +10256,7 @@
 	name = "Combustion Chamber Vent";
 	pixel_x = -24
 	},
+/obj/item/crowbar/red,
 /turf/floor,
 /area/station/science/lab)
 "NC" = (
@@ -10230,7 +10285,6 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/table/reinforced/chemistry/auto,
 /obj/item/reagent_containers/dropper/mechanical{
 	pixel_x = 10;
 	pixel_y = 4
@@ -10243,6 +10297,7 @@
 	pixel_y = -3
 	},
 /obj/item/reagent_containers/dropper,
+/obj/table/reinforced/auto,
 /turf/floor/black,
 /area/station/science/chemistry)
 "NG" = (
@@ -10289,7 +10344,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/qm{
 	dir = 1
 	},
 /area/transit_vehicle/elevator/qm_top)
@@ -10348,7 +10403,9 @@
 /area/station/crew_quarters/bar)
 "Od" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "Of" = (
@@ -10540,7 +10597,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/com{
 	dir = 8
 	},
 /area/transit_vehicle/elevator/com_top)
@@ -10730,7 +10787,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/com{
 	dir = 4
 	},
 /area/transit_vehicle/elevator/com_top)
@@ -11147,7 +11204,9 @@
 /area/station/science/bot_storage)
 "QS" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/blue/side{
 	dir = 8
 	},
@@ -11723,7 +11782,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/qm{
 	dir = 4
 	},
 /area/transit_vehicle/elevator/qm_top)
@@ -11820,7 +11879,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 8
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor,
 /area/station/science/lab)
 "Tm" = (
@@ -12044,7 +12103,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/med,
 /area/transit_vehicle/elevator/med_top)
 "Ud" = (
 /obj/machinery/light/fluorescent{
@@ -12548,7 +12607,7 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/green,
 /area/station/medical/research)
 "VJ" = (
@@ -12740,7 +12799,9 @@
 /area/station/crew_quarters/kitchen/freezer)
 "Wz" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/door/airlock/gannets/glass/medical,
+/obj/machinery/door/airlock/gannets/glass/medical/alt{
+	id = "mebay"
+	},
 /obj/access_spawn/medical,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
@@ -13169,7 +13230,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
+/turf/floor/specialroom/elevator_shaft/eng{
 	dir = 4
 	},
 /area/transit_vehicle/elevator/eng_top)
@@ -13429,7 +13490,9 @@
 /area/station/engine/elect)
 "Ze" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor,
 /area/station/science/lobby)
 "Zf" = (
@@ -49707,7 +49770,7 @@ dy
 av
 vm
 Ig
-Sl
+Jd
 Sl
 nr
 xY
@@ -50605,7 +50668,7 @@ AJ
 AJ
 il
 Qk
-AJ
+Hv
 AJ
 AJ
 AJ
@@ -62683,7 +62746,7 @@ Io
 Kz
 Zu
 lh
-bo
+sF
 Zu
 Dn
 hd

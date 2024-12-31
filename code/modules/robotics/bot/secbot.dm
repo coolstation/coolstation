@@ -1158,7 +1158,7 @@
 			return
 
 		if(signal_beacon == new_destination)	// if the signal_beacon location matches the set destination
-									// the we will navigate there
+									// then we will navigate there
 			destination = new_destination
 			patrol_target = signal.source.loc
 			next_destination = signal.data["next_patrol"]
@@ -1166,6 +1166,8 @@
 
 		// if looking for nearest beacon
 		else if(new_destination == "__nearest__")
+			if(src.z !=signal.source.z)
+				return // STOP TRYING TO LATCH TO BEACONS ON OTHER PLANETS
 			var/dist = get_dist(src,signal.source.loc)
 			if(nearest_beacon)
 

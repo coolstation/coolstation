@@ -1444,6 +1444,7 @@
 
 		T.visible_message("<span class='alert'>[src] shatters!</span>")
 		playsound(T, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
+		new /obj/decal/cleanable/grit/small (src.loc)
 		for (var/i=src.shard_amt, i > 0, i--)
 			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
@@ -1939,6 +1940,7 @@
 			src.reagents.reaction(T)
 		T.visible_message("<span class='alert'>[src] shatters!</span>")
 		playsound(T, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
+		new /obj/decal/cleanable/grit/small (src.loc)
 		for (var/i=src.shard_amt, i > 0, i--)
 			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)

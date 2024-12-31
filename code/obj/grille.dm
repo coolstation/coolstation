@@ -105,6 +105,17 @@
 				if(76 to INFINITY)
 					icon_state = initial(src.icon_state) + "-0"
 
+		//If we're an elevator platform that got borked, see that the things we were "carrying" fall down the shaft
+		//Can't do this in exited() on the elevator shaft because these catwalks already only function as they do
+		//because they're first to exit the turf when an elevator moves.
+		disposing()
+			var/turf/T = src.loc
+			..() //leave T
+			if (istype(T, /turf/floor/specialroom/elevator_shaft))
+				for (var/atom/movable/AM in T)
+					T.Entered(AM)
+
+
 		elevator //''''temporary'''' hack so damage doesn't change its manually-set-by-mapper iconstate
 			name = "elevator platform"
 			desc = "It's bad enough when the grilles are stationary, this feels even WORSE."

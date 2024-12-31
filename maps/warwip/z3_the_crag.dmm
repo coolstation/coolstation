@@ -101,7 +101,7 @@
 "aV" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
 "aW" = (
@@ -354,7 +354,9 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -702,6 +704,14 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"ec" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "ed" = (
 /obj/disposalpipe/segment/sewage,
 /obj/cable{
@@ -1585,7 +1595,9 @@
 /area/station/engine/hotloop)
 "iV" = (
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1707,6 +1719,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon20_to_1_end,
 /turf/floor/plating,
 /area/station/security/beepsky)
 "jD" = (
@@ -1953,10 +1966,12 @@
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "ln" = (
-/obj/machinery/bot/secbot/beepsky,
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon20_to_1_end,
-/turf/floor/plating,
-/area/station/security/beepsky)
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Clown"
+	},
+/turf/floor/plating/gehenna,
+/area/station/crew_quarters/clown)
 "lt" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -2267,7 +2282,9 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -2719,6 +2736,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
+"pM" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "pO" = (
 /obj/machinery/light/small/red,
 /turf/floor/grey,
@@ -2769,7 +2797,9 @@
 "qi" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2780,6 +2810,10 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"ql" = (
+/obj/machinery/bot/secbot/beepsky,
+/turf/floor/plating,
+/area/station/security/beepsky)
 "qm" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -2856,7 +2890,7 @@
 /area/station/engine/hotloop)
 "qD" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/bridge/customs)
 "qF" = (
@@ -2993,6 +3027,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
 /turf/floor/plating,
 /area/station/engine/gas)
+"rA" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "rJ" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/red/standard/edge/south,
@@ -3519,10 +3562,11 @@
 /area/station/janitor/office)
 "uJ" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_west{
-	pixel_x = -24
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/cable,
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
 "uK" = (
@@ -3715,10 +3759,10 @@
 /turf/floor/plating,
 /area/transit_vehicle/elevator/com_bot)
 "vW" = (
-/obj/landmark/start{
-	name = "Clown"
+/obj/machinery/power/apc/autoname_west{
+	pixel_x = -24
 	},
-/obj/decal/cleanable/dirt/random,
+/obj/cable,
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
 "vX" = (
@@ -4151,7 +4195,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4641,18 +4687,18 @@
 /area/station/security/checkpoint/customs)
 "Ba" = (
 /obj/grille/catwalk/jen,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/light/small/neutral{
+	dir = 4
 	},
-/obj/machinery/power/apc{
-	areastring = "Waste Crusher";
-	dir = 4;
-	name = "Waste Crusher APC";
-	pixel_x = 24
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/conveyor/north{
+	name = "garbo belt";
+	operating = 1
 	},
 /turf/floor/plating,
-/area/station/maintenance/disposal)
+/area/station/maintenance/disposal/crusher)
 "Bc" = (
 /obj/decoration/toiletholder{
 	dir = 8
@@ -5558,7 +5604,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -5584,7 +5632,9 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Gk" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -6210,6 +6260,15 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
+"Kj" = (
+/obj/machinery/conveyor/north{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/disposalpipe/segment,
+/obj/plasticflaps,
+/turf/floor/plating,
+/area/station/maintenance/disposal/crusher)
 "Km" = (
 /obj/wingrille_spawn,
 /obj/cable{
@@ -6257,7 +6316,9 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "KA" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -6631,6 +6692,11 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/janitor/office)
+"MP" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "MR" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -6646,6 +6712,10 @@
 	},
 /turf/floor/red/side,
 /area/station/security/main)
+"MW" = (
+/obj/decal/poster/wallsign/medbay,
+/turf/wall/r_wall,
+/area/station/medical/basement)
 "MX" = (
 /turf/floor/plating,
 /area/station/mining/lobby)
@@ -6669,7 +6739,7 @@
 "Nd" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/bridge/customs)
 "Ne" = (
@@ -6780,6 +6850,12 @@
 	dir = 1
 	},
 /area/station/medical/basement)
+"NM" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "NO" = (
 /obj/disposalpipe/segment/sewage,
 /turf/floor/red/side,
@@ -7010,15 +7086,19 @@
 /area/station/mining/tunnel)
 "OZ" = (
 /obj/grille/catwalk/jen,
-/obj/machinery/light/small/neutral{
-	dir = 4
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 9;
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/power/apc{
+	areastring = "Waste Crusher";
+	dir = 4;
+	name = "Waste Crusher APC";
+	pixel_x = 24
+	},
+/obj/cable,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "Pf" = (
@@ -7884,7 +7964,9 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -7931,11 +8013,14 @@
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
 "Ul" = (
+/obj/plasticflaps,
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
 	operating = 1
 	},
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window/southleft{
+	layer = 30
+	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
 "Uq" = (
@@ -8368,7 +8453,7 @@
 /area/station/maintenance/disposal)
 "WM" = (
 /obj/table/reinforced/auto,
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
 "WS" = (
@@ -44371,7 +44456,7 @@ Lx
 YI
 JN
 fW
-iA
+MW
 Wh
 CJ
 Yv
@@ -47968,7 +48053,7 @@ xD
 ni
 ni
 Sc
-Bl
+ql
 ni
 xQ
 Hh
@@ -48572,7 +48657,7 @@ bX
 bX
 bz
 OM
-ln
+Bl
 ni
 mB
 Hh
@@ -54943,8 +55028,8 @@ ux
 eh
 CS
 on
-lX
-lX
+pM
+ec
 lX
 Wa
 UU
@@ -54959,7 +55044,7 @@ BD
 hK
 mW
 mW
-mW
+MP
 mW
 mW
 mW
@@ -55246,7 +55331,7 @@ eh
 Eh
 Gj
 qt
-Sg
+NM
 Sg
 xd
 ZC
@@ -55261,11 +55346,11 @@ Ef
 Sg
 qt
 Sg
+NM
 Sg
 Sg
 Sg
-Sg
-Sg
+rA
 qt
 Sg
 Sg
@@ -64575,7 +64660,7 @@ nt
 jN
 yA
 LW
-Vs
+ln
 Vs
 SN
 EM
@@ -67010,7 +67095,7 @@ Lp
 jH
 lT
 EU
-EU
+Kj
 vX
 EU
 mb
@@ -67318,7 +67403,7 @@ sa
 sa
 sa
 sa
-dh
+sa
 dh
 dh
 dh
