@@ -304,6 +304,7 @@ var/global/list/mapNames = list(
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
 
 	escape_centcom = /area/shuttle/escape/centcom/donut2
 	escape_outpost = /area/shuttle/escape/outpost/donut2
