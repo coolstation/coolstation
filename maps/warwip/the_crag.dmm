@@ -76,6 +76,7 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -1635,6 +1636,7 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -5413,13 +5415,8 @@
 	},
 /area/station/medical/robotics)
 "tP" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/purple/corner{
-	dir = 1
+/turf/floor/purple/side{
+	dir = 9
 	},
 /area/station/science/lobby)
 "tQ" = (
@@ -6661,7 +6658,6 @@
 	pixel_y = 2
 	},
 /obj/decal/poster/wallsign/chsl{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/floor/white,
@@ -6738,9 +6734,14 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/turf/floor/purple/side{
-	dir = 9
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 3
 	},
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/plating,
 /area/station/science/lobby)
 "yU" = (
 /obj/disposalpipe/segment/bent{
@@ -7347,6 +7348,16 @@
 	icon_state = "dither_r";
 	name = "the courtyard"
 	})
+"Ba" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/purple/corner{
+	dir = 1
+	},
+/area/station/science/lobby)
 "Bb" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon20_to_1_end,
 /turf/floor,
@@ -7974,7 +7985,6 @@
 /area/station/chapel/sanctuary)
 "DQ" = (
 /obj/machinery/atmospherics/binary/volume_pump{
-	dir = 2;
 	on = 1;
 	transfer_rate = 1000
 	},
@@ -9000,6 +9010,7 @@
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -11089,7 +11100,6 @@
 	name = "bathroom sink"
 	},
 /obj/decal/poster/wallsign/chsl{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /obj/machinery/light_switch/west,
@@ -12148,6 +12158,7 @@
 	target_z = 3
 	},
 /obj/reagent_dispensers/foamtank,
+/obj/grille/catwalk/jen,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -12398,6 +12409,12 @@
 	dir = 9
 	},
 /area/shuttle/merchant_shuttle/left_station/cogmap)
+"Uv" = (
+/obj/ladder/auto,
+/turf/floor/purple/side{
+	dir = 4
+	},
+/area/station/science/lobby)
 "Ux" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -13401,6 +13418,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
+/obj/table/reinforced/auto,
 /turf/floor/purple/side{
 	dir = 5
 	},
@@ -57565,7 +57583,7 @@ ng
 Kd
 Kd
 yT
-tP
+mG
 aj
 Aj
 DL
@@ -57866,8 +57884,8 @@ ZC
 co
 aR
 ZZ
-NU
-zq
+tP
+Ba
 FT
 YE
 WD
@@ -58774,7 +58792,7 @@ ZZ
 ZZ
 XY
 Sn
-Wh
+Uv
 Wh
 QK
 Jv
