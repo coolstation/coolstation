@@ -139,7 +139,9 @@ var/global/datum/transit_controller/transit_controls = new
 			var/filler_turf_end = text2path(end_location.filler_turf)
 			if (!filler_turf_start)
 				filler_turf_start = "space"
-			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = FALSE, consider_filler_as_empty = (filler_turf_start != filler_turf_end))
+			//need to figure out how to not hardcode the elevators into this
+			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = FALSE, consider_filler_as_empty = (istype(start_location, /area/transit_vehicle/elevator)))
+			//I think this might be kinda superfluous now
 			for (var/turf/P in end_location)
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)

@@ -599,18 +599,17 @@ var/obj/item/dummy/click_dummy = new
 
 		if(T?.loc != A) continue
 
-		if (istype(S, turftoleave))
-			if (!consider_filler_as_empty)
-				T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
-				T.appearance = S.appearance
-				T.set_density(S.density)
-				T.set_dir(S.dir)
+		if (istype(S, turftoleave) && consider_filler_as_empty)
+			var/obj/CATWALK = locate(/obj/grille/catwalk) in S
+			if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
+				continue //There's no platform to carry them up, so don't move any of the contents either
 			else
-				var/obj/CATWALK = locate(/obj/grille/catwalk) in S
-				if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
-					continue //There's no platform to carry them up, so don't move any of the contents either
-				else
-					CATWALK.set_loc(T) //load bearing that these move first
+				CATWALK.set_loc(T) //load bearing that these move first
+		else
+			T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
+			T.appearance = S.appearance
+			T.set_density(S.density)
+			T.set_dir(S.dir)
 
 		for (var/atom/movable/AM as anything in S)
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
