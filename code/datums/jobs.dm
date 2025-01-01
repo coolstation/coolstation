@@ -1024,6 +1024,17 @@ ABSTRACT_TYPE(/datum/job/logistics)
 		if(prob(20))
 			M.bioHolder.AddEffect("dwarf", magical=1)
 
+/datum/job/logistics/scrapper
+	name = "Scrapper"
+	wages = PAY_TRADESMAN
+	limit = 3
+
+	New()
+		..()
+		src.access = get_access("Scrapper")
+		return
+
+
 /datum/job/logistics/mailcarrier
 	name = "Mailcarrier"
 	wages = PAY_TRADESMAN
