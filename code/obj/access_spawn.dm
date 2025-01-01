@@ -322,6 +322,12 @@
 	req_access = list(access_mining)
 	color = CARGO
 
+/obj/access_spawn/scrapping
+
+	name = "scrapping access spwan"
+	req_access = list(access_scrapping)
+	color = CARGO
+
 /obj/access_spawn/mining_outpost
 	name = "mining_outpost access spawn"
 	req_access = list(access_mining_outpost)

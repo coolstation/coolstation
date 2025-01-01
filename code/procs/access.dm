@@ -342,6 +342,10 @@
 		if("Miner")
 			return list(access_maint_tunnels, access_external_airlocks, access_engineering_eva,
 						access_mining_shuttle, access_mining, access_mining_outpost, access_hangar, access_cargo)
+		if("Scrapper")
+			return list(access_maint_tunnels, access_external_airlocks, access_mining_shuttle, access_hangar,
+			access_cargo, access_scrapping, access_tech_storage, access_supply_console)
+
 		if("Mailcarrier")
 			return list(access_maint_tunnels, access_mail, access_cargo, access_supply_console, access_hangar, //this had access_heads for some reason
 						access_mining_shuttle, access_mining_outpost, access_external_airlocks)

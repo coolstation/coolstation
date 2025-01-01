@@ -313,6 +313,11 @@ var/global/list/mapNames = list(
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
 
+	job_limits_override = list(
+		/datum/job/logistics/miner = 0,
+		/datum/job/logistics/scrapper = 3
+	)
+
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
