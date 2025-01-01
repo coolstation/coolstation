@@ -1027,7 +1027,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics/scrapper
 	name = "Scrapper"
 	wages = PAY_TRADESMAN
-	limit = 3
+	limit = 0 //overriden by the bayou bend
 
 	New()
 		..()
