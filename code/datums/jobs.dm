@@ -1029,6 +1029,12 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	wages = PAY_TRADESMAN
 	limit = 0 //overriden by the bayou bend
 
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/device/pda2/scrapping)
+	slot_jump = list(/obj/item/clothing/under/rank/overalls/scrapper)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	slot_ears = list(/obj/item/device/radio/headset/scrapper)
 	New()
 		..()
 		src.access = get_access("Scrapper")
