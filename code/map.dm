@@ -315,7 +315,7 @@ var/global/list/mapNames = list(
 
 	job_limits_override = list(
 		/datum/job/logistics/miner = 0,
-		/datum/job/logistics/scrapper = 0
+		/datum/job/logistics/scrapper = 3
 	)
 
 
