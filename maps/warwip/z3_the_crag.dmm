@@ -446,6 +446,9 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/landmark/spawner{
+	name = "monkeyspawn_horse"
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
 "cG" = (
@@ -1153,6 +1156,12 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"gu" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_rathen"
+	},
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "gv" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -1226,6 +1235,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/reagent_dispensers/foamtank,
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "gN" = (
@@ -1785,6 +1795,15 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"jW" = (
+/obj/table/reinforced/auto,
+/obj/item/extinguisher,
+/obj/item/extinguisher{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "jY" = (
 /obj/cable{
 	d2 = 2;
@@ -2709,6 +2728,17 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"pG" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "pH" = (
 /obj/machinery/light/fluorescent{
 	dir = 4
@@ -5025,6 +5055,10 @@
 /obj/machinery/power/apc/autoname_east{
 	pixel_x = 24
 	},
+/obj/item/extinguisher{
+	pixel_x = 10;
+	pixel_y = 6
+	},
 /turf/floor/plating,
 /area/station/engine/gas)
 "Dd" = (
@@ -5874,6 +5908,14 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/white,
 /area/station/medical/basement)
+"Hw" = (
+/obj/grille/catwalk/jen,
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "Hx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/disposalpipe/segment,
@@ -8404,6 +8446,12 @@
 	},
 /turf/floor,
 /area/station/security/main)
+"WE" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_tanhony"
+	},
+/turf/floor,
+/area/station/crewquarters/cryotron)
 "WF" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -8843,6 +8891,10 @@
 /obj/grille/catwalk/jen,
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
 	},
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
@@ -52917,7 +52969,7 @@ hk
 hk
 hk
 XM
-mW
+Hw
 uq
 HB
 HB
@@ -59283,7 +59335,7 @@ el
 Ll
 CW
 aI
-Yh
+jW
 kC
 HB
 HB
@@ -60483,7 +60535,7 @@ Eq
 Eq
 YT
 Dr
-Bs
+gu
 Sy
 kC
 el
@@ -65591,7 +65643,7 @@ Bj
 Sh
 qd
 UJ
-dB
+pG
 AQ
 Fh
 dh
@@ -67082,7 +67134,7 @@ Ix
 FT
 iB
 aa
-FT
+WE
 DL
 Rx
 jH

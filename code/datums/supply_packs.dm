@@ -1074,15 +1074,30 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 	rad_collector
 		name = "Radiation Collector Crate"
 		desc = "Four collector arrays and one controller, to harvest radiation from the singularity."
-		contents = "4x Collector Arrays, 1x Collector Control, 1x Soldering Iron (Courtesy Item)"
+		contents = "4x Collector Arrays, 2x Collector Control, 1x Soldering Iron (Courtesy Item)"
 		contains = list(/obj/item/electronics/frame/collector_array = 4,
-						/obj/item/electronics/frame/collector_control,
+						/obj/item/electronics/frame/collector_control = 2,
 						/obj/item/electronics/soldering)
 		cost = 15000
 		containertype = /obj/storage/secure/crate
 		containername = "Radiation Array Crate (Cardlocked \[Engineering])"
 		access = access_engineering
 		//hidden = 1
+
+	teg
+		name = "Thermoelectric Generator Kit"
+		desc = "A three-part kit for constructing your very own megawatt-output peltier device."
+		contents = "Thermoelectric Generator, Hot Gas Circulator, Cold Gas Circulator, Instructions (no charge)"
+		contains = list(/obj/item/electronics/frame/teg,
+					/obj/item/electronics/frame/hot_circ,
+					/obj/item/electronics/frame/cold_circ,
+					/obj/item/paper/teg_kit,
+					/obj/item/electronics/soldering)
+		cost = 15000
+		containertype = /obj/storage/secure/crate
+		containername = "Thermoelectric Generator Kit (Cardlocked \[Engineering])"
+		access = access_engineering
+		//hidden = 1 // doesnt actually work yet - warc
 
 //Vending machine servicing
 //Kyle2143 originally

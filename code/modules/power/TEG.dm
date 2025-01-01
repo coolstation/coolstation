@@ -47,6 +47,13 @@
 /// TEG Semiconductor Missing
 #define TEG_SEMI_STATE_MISSING 4
 
+/obj/item/electronics/frame/hot_circ
+	name = "hot gas circulator frame"
+	store_type = /obj/machinery/atmospherics/binary/circulatorTemp
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
+
 /obj/machinery/atmospherics/binary/circulatorTemp
 	name = "hot gas circulator"
 	desc = "It's the gas circulator of a thermoeletric generator."
@@ -413,6 +420,13 @@
 
 		return 1
 
+/obj/item/electronics/frame/cold_circ
+	name = "cold gas circulator frame"
+	store_type = /obj/machinery/atmospherics/binary/circulatorTemp/right
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
+
 /obj/machinery/atmospherics/binary/circulatorTemp/right
 	icon_state = "circ2-off"
 	name = "cold gas circulator"
@@ -531,7 +545,12 @@ datum/pump_ui/circulator_ui
 	get_atom()
 		return our_circ
 
-
+/obj/item/electronics/frame/teg
+	name = "thermoelectric generator frame"
+	store_type = /obj/machinery/power/generatorTemp
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
 
 /obj/machinery/power/generatorTemp
 	name = "generator"
