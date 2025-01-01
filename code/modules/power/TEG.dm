@@ -61,7 +61,7 @@
 	icon_state = "circ1-off"
 	var/obj/machinery/power/generatorTemp/generator = null
 
-	var/side = null // 1=left 2=right
+	var/side = 1 // 1=left 2=right
 	var/last_pressure_delta = 0
 	var/static/list/circulator_preferred_reagents // white list of prefferred reagents where viscocity should be ignored for special value
 	var/lube_cycle = 0 // current state in cycle
@@ -430,6 +430,7 @@
 /obj/machinery/atmospherics/binary/circulatorTemp/right
 	icon_state = "circ2-off"
 	name = "cold gas circulator"
+	side = 2
 
 
 /datum/action/bar/icon/teg_circulator_repair
