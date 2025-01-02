@@ -249,14 +249,14 @@
 						access_tech_storage, access_engineering_storage, access_engineering_eva, access_engineering_atmos,
 						access_engineering_power, access_engineering_engine, access_mining_shuttle,
 						access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_chief_engineer_locker, access_mining, access_mining_outpost,
-						access_heads, access_ai_upload, access_construction, access_eva, access_cargo, access_supply_console, access_hangar)
+						access_heads, access_ai_upload, access_construction, access_eva, access_cargo, access_supply_console, access_hangar,access_scrapping)
 		if("Head of Mining", "Mining Supervisor")
 			return list(access_engineering, access_maint_tunnels, access_external_airlocks,
 						access_engineering_eva, access_mining_shuttle, access_mining, access_tech_storage,
 						access_mining_outpost, access_hangar, access_heads, access_ai_upload, access_construction, access_eva)
 		if("Quartermaster") //new head, make a QM-exclusive office
 			return list(access_quartermaster, access_quartermaster_locker, access_engineering_storage, access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining, access_engineering, access_engineering_eva,
-						access_mining_shuttle, access_mining_outpost, access_external_airlocks, access_heads, access_construction, access_eva, access_tech_storage)
+						access_mining_shuttle, access_mining_outpost, access_external_airlocks, access_heads, access_construction, access_eva, access_tech_storage,access_scrapping)
 
 		///////////////////////////// Security
 		if("Security Officer")
@@ -400,7 +400,7 @@
 	            access_tech_storage, access_engineering_storage, access_engineering_eva,
 	            access_engineering_power, access_engineering_engine, access_mining_shuttle,
 	            access_engineering_control, access_engineering_mechanic, access_engineering_chief, access_quartermaster, access_mining, access_mining_outpost,
-	            access_research, access_research_director, access_dwaine_superuser, access_engineering_atmos, access_hangar, access_medical_director, access_special_club)
+	            access_research, access_research_director, access_dwaine_superuser, access_engineering_atmos, access_scrapping, access_hangar, access_medical_director, access_special_club)
 
 /proc/syndicate_spec_ops_access() //syndie spec ops need to get out of the listening post.
 	return list(access_security, access_brig, access_forensics_lockers, access_armory,

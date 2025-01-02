@@ -66,23 +66,23 @@
 	if (world.time > last_sfx + 5)
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 40, 1,0,0.8)
 		last_sfx = world.time
-	if(!industrial)
-		var/obj/item/scrap/S = new(get_turf(src))
-		S.blood = bblood
-		S.set_components(tm_amt,tg_amt,tw_amt)
-		qdel(AM)
-	else
-		if(tw_amt > tm_amt || tw_amt > tg_amt)
-			var/obj/item/scrap/S = new(get_turf(src))
-			S.blood = bblood
-			S.set_components(tm_amt,tg_amt,tw_amt)
-			qdel(AM)
-		else if(tm_amt >= tg_amt)
-			var/obj/item/raw_material/scrap_metal/S = new(get_turf(src))
-			qdel(AM)
-		else
-			var/obj/item/raw_material/shard/glass/S = new(get_turf(src))
-			qdel(AM)
+
+	var/obj/item/scrap/S = new(get_turf(src))
+	S.blood = bblood
+	S.set_components(tm_amt,tg_amt,tw_amt)
+	qdel(AM)
+	//else
+		//if(tw_amt > tm_amt || tw_amt > tg_amt)
+			//var/obj/item/scrap/S = new(get_turf(src))
+			//S.blood = bblood
+			//S.set_components(tm_amt,tg_amt,tw_amt)
+			//qdel(AM)
+		//else if(tm_amt >= tg_amt)
+			//var/obj/item/raw_material/scrap_metal/S = new(get_turf(src))
+			//qdel(AM)
+		//else
+			//var/obj/item/raw_material/shard/glass/S = new(get_turf(src))
+			//qdel(AM)
 //		step(S,2)
 	return
 
