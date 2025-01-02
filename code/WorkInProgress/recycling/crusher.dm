@@ -18,35 +18,12 @@
 
 	var/industrial = FALSE
 
-	proc/detect_trace_ores() //i literally don't think i could make worse code if I tried
-		var/rarityClass = rand(1,12)
-		switch(rarityClass)
-			if(1,2,3,4,5)
-				return /obj/item/sheet/steel
-			if(6,7,8,9) //rarity tier 1
-				if(prob(20)) return /obj/item/raw_material/mauxite
-				if(prob(20)) return /obj/item/raw_material/pharosium
-				if(prob(20)) return /obj/item/raw_material/molitz
-				if(prob(20)) return /obj/item/raw_material/char
-				if(prob(20)) return /obj/item/raw_material/cobryl
-			if(10,11) //rarity tier 2
-				if(prob(33)) return /obj/item/raw_material/bohrum
-				if(prob(33)) return /obj/item/raw_material/claretine
-				if(prob(33)) return /obj/item/raw_material/martian
-			if(12) //rarity tier 3
-				if(prob(14)) return /obj/item/raw_material/syreline
-				if(prob(14)) return /obj/item/raw_material/cerenkite
-				if(prob(14)) return /obj/item/raw_material/plasmastone
-				if(prob(14)) return /obj/item/raw_material/eldritch
-				if(prob(14)) return /obj/item/raw_material/gold
-				if(prob(14)) return /obj/item/raw_material/miracle
-				if(prob(14)) return /obj/item/raw_material/erebite
-
 /obj/machinery/crusher/Bumped(atom/AM)
 	var/tm_amt = 0
 	var/tg_amt = 0
 	var/tw_amt = 0
 	var/bblood = 0
+
 	if(istype(AM,/obj/item/scrap))
 		var/obj/O = AM
 		O.set_loc(src.loc)
@@ -74,8 +51,11 @@
 		M.gib()
 	else if(isobj(AM))
 		var/obj/B = AM
+		tm_amt += B.m_amt
+		tg_amt += B.g_amt
+		tw_amt += B.w_amt
 		for(var/obj/O in AM.contents)
-			if(isobj(O) && !industrial)
+			if(isobj(O))
 				tm_amt += O.m_amt
 				tg_amt += O.g_amt
 				tw_amt += O.w_amt
@@ -86,18 +66,18 @@
 	if (world.time > last_sfx + 5)
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 40, 1,0,0.8)
 		last_sfx = world.time
-
-	if(industrial)
-		var/obj/item/raw_material/MAT = detect_trace_ores()
-		MAT = new(get_turf(src))
-		MAT.setup_material()
-	var/obj/item/scrap/S = new(get_turf(src))
-	S.blood = bblood
-	S.set_components(tm_amt,tg_amt,tw_amt)
-	S.material = getMaterial("steel")
-	qdel(AM)
+	if(!industrial)
+		var/obj/item/scrap/S = new(get_turf(src))
+		S.blood = bblood
+		S.set_components(tm_amt,tg_amt,tw_amt)
+		qdel(AM)
+	else
+		var/obj/item/sheet/steel/S = new(get_turf(src))
+		S.setMaterial(getMaterial(src))
+		qdel(AM)
 //		step(S,2)
 	return
+
 
 /obj/machinery/crusher/attack_hand(mob/user)
 	if(!user || user.stat || get_dist(user,src)>1 || istype(user, /mob/dead/aieye)) //No unconscious / dead / distant users
