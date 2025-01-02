@@ -17,13 +17,36 @@
 	var/last_sfx = 0
 
 	var/industrial = FALSE
-	var/industiralModifier = 10
+
+	proc/detect_trace_ores() //i literally don't think i could make worse code if I tried
+		var/rarityClass = rand(1,12)
+		switch(rarityClass)
+			if(1,2,3,4,5)
+				return /obj/item/sheet/steel
+			if(6,7,8,9) //rarity tier 1
+				if(prob(20)) return /obj/item/raw_material/mauxite
+				if(prob(20)) return /obj/item/raw_material/pharosium
+				if(prob(20)) return /obj/item/raw_material/molitz
+				if(prob(20)) return /obj/item/raw_material/char
+				if(prob(20)) return /obj/item/raw_material/cobryl
+			if(10,11) //rarity tier 2
+				if(prob(33)) return /obj/item/raw_material/bohrum
+				if(prob(33)) return /obj/item/raw_material/claretine
+				if(prob(33)) return /obj/item/raw_material/martian
+			if(12) //rarity tier 3
+				if(prob(14)) return /obj/item/raw_material/syreline
+				if(prob(14)) return /obj/item/raw_material/cerenkite
+				if(prob(14)) return /obj/item/raw_material/plasmastone
+				if(prob(14)) return /obj/item/raw_material/eldritch
+				if(prob(14)) return /obj/item/raw_material/gold
+				if(prob(14)) return /obj/item/raw_material/miracle
+				if(prob(14)) return /obj/item/raw_material/erebite
+
 /obj/machinery/crusher/Bumped(atom/AM)
 	var/tm_amt = 0
 	var/tg_amt = 0
 	var/tw_amt = 0
 	var/bblood = 0
-	var/modifier = 0
 	if(istype(AM,/obj/item/scrap))
 		var/obj/O = AM
 		O.set_loc(src.loc)
@@ -49,17 +72,10 @@
 			qdel(O)
 		logTheThing("combat", M, null, "is ground up in a crusher at [log_loc(src)].")
 		M.gib()
-	if(industrial)
-		modifier = industrialBonus
 	else if(isobj(AM))
 		var/obj/B = AM
-		tm_amt += B.m_amt + modifier
-		tg_amt += B.g_amt + modifier
-		tw_amt += B.w_amt + modifier
 		for(var/obj/O in AM.contents)
-			if(industrial)
-				modifier = industrialBonus
-			if(isobj(O))
+			if(isobj(O) && !industrial)
 				tm_amt += O.m_amt
 				tg_amt += O.g_amt
 				tw_amt += O.w_amt
@@ -71,12 +87,14 @@
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 40, 1,0,0.8)
 		last_sfx = world.time
 
-	if(tm_amt > 12)
+	if(industrial)
 		var/obj/item/raw_material/MAT = detect_trace_ores()
 		MAT = new(get_turf(src))
+		MAT.setup_material()
 	var/obj/item/scrap/S = new(get_turf(src))
 	S.blood = bblood
 	S.set_components(tm_amt,tg_amt,tw_amt)
+	S.material = getMaterial("steel")
 	qdel(AM)
 //		step(S,2)
 	return
@@ -150,31 +168,6 @@
 		return
 	Bumped(hit_atom)
 
-/obj/machinery/crusher/detect_trace_ores(metalAmt)
-	var/rarityClass = rand(1,7)
-	var/list/possibleOres = list()
-	var/chosen = 0
-	switch(rarityClass)
-		if(1,2,3,4) //rarity tier 1
-			possibleOres += /obj/item/raw_material/mauxite
-			possibleOres += /obj/item/raw_material/pharosium
-			possibleOres += /obj/item/raw_material/molitz
-			possibleOres += /obj/item/raw_material/char
-			possibleOres += /obj/item/raw_material/cobryl
-		if(5,6)
-			possibleOres += /obj/item/raw_material/bohrum
-			possibleOres += /obj/item/raw_material/clarentine
-			possibleOres += /obj/item/raw_material/viscerite
-		if(7)
-			possibleOres += /obj/item/raw_material/syreline
-			possibleOres += /obj/item/raw_material/cerenkite
-			possibleOres += /obj/item/raw_material/plasmastone
-			possibleOres += /obj/item/raw_material/koshmarite
-			possibleOres += /obj/item/raw_material/gold
-			possibleOres += /obj/item/raw_material/miracle
-			possibleOres += /obj/item/raw_material/erebite
-	chosen = rand(1,length(possibleOres))
-	return(possibleOres[chosen])
 
 /obj/machinery/crusher/industrialcrusher
 	name = "Industrial Crusher Unit"
