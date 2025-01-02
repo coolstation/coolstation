@@ -72,9 +72,17 @@
 		S.set_components(tm_amt,tg_amt,tw_amt)
 		qdel(AM)
 	else
-		var/obj/item/sheet/steel/S = new(get_turf(src))
-		S.setMaterial(getMaterial(src))
-		qdel(AM)
+		if(tw_amt > tm_amt || tw_amt > tg_amt)
+			var/obj/item/scrap/S = new(get_turf(src))
+			S.blood = bblood
+			S.set_components(tm_amt,tg_amt,tw_amt)
+			qdel(AM)
+		else if(tm_amt >= tg_amt)
+			var/obj/item/raw_material/scrap_metal/S = new(get_turf(src))
+			qdel(AM)
+		else
+			var/obj/item/raw_material/shard/glass/S = new(get_turf(src))
+			qdel(AM)
 //		step(S,2)
 	return
 
