@@ -5759,9 +5759,9 @@
 /turf/floor/wood/five,
 /area/station/chapel/sanctuary)
 "eZI" = (
-/obj/decal/poster/wallsign/security_left,
+/obj/decal/poster/wallsign/medbay_left,
 /turf/wall,
-/area/station/turret_protected/ai_upload)
+/area/station/hallway/primary/north)
 "eZO" = (
 /obj/machinery/light{
 	dir = 4
@@ -5997,6 +5997,10 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"fhg" = (
+/obj/decal/poster/wallsign/medbay_left,
+/turf/wall,
+/area/station/maintenance/central)
 "fhk" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 1
@@ -17021,6 +17025,10 @@
 	},
 /turf/floor/purplewhite,
 /area/station/science/lobby)
+"ovz" = (
+/obj/decal/poster/wallsign/security_left,
+/turf/wall,
+/area/station/chapel/office)
 "owr" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4;
@@ -62891,7 +62899,7 @@ kpk
 bMQ
 mXL
 fwc
-pEt
+fhg
 pEt
 fDt
 fDt
@@ -68930,7 +68938,7 @@ xMY
 kwC
 ubw
 ezC
-jqn
+eZI
 pyf
 tdn
 tdn
@@ -70134,7 +70142,7 @@ lgk
 lgk
 lgk
 iNY
-lgk
+ovz
 qVp
 iKR
 qBM
@@ -71342,7 +71350,7 @@ vge
 vge
 vge
 vge
-eZI
+vge
 qVp
 iKR
 qBM
