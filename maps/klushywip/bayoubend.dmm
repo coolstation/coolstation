@@ -1399,7 +1399,6 @@
 /turf/floor,
 /area/station/hallway/primary/southwest)
 "boZ" = (
-/obj/machinery/weapon_stand/shotgun_rack,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1408,6 +1407,14 @@
 	dir = 0;
 	name = "autoname - SS13"
 	},
+/obj/table/reinforced/industrial/auto,
+/obj/item/gun/modular/NT/long/shotty{
+	pixel_y = 4
+	},
+/obj/item/gun/modular/NT/long/shotty{
+	pixel_y = -4
+	},
+/obj/item/gun/modular/NT/long/shotty,
 /turf/floor,
 /area/station/security/armory)
 "bpo" = (
@@ -2373,7 +2380,6 @@
 	name = "Warehouse"
 	})
 "caK" = (
-/obj/storage/secure/closet/security/armory,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2381,6 +2387,12 @@
 	c_tag = "autotag";
 	dir = 0;
 	name = "autoname - SS13"
+	},
+/obj/machinery/vending/gunse{
+	acceptcard = 0;
+	desc = "Nanotrasen Official Gunse storage unit.";
+	name = "NanoGunse - Corporate";
+	pay = 0
 	},
 /turf/floor,
 /area/station/security/armory)
@@ -2662,6 +2674,10 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
 /area/station/chapel/funeral_parlor)
+"coh" = (
+/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/turf/floor/orangeblack,
+/area/station/engine/core)
 "coz" = (
 /obj/rack,
 /obj/item/storage/box/glassbox{
@@ -4457,8 +4473,8 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
-	pixel_x = -25;
-	id = "tele"
+	id = "tele";
+	pixel_x = -25
 	},
 /turf/floor/grey/corner,
 /area/station/science/teleporter)
@@ -4614,7 +4630,15 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/showers)
 "edN" = (
-/obj/machinery/weapon_stand/rifle_rack/recharger,
+/obj/table/reinforced/industrial/auto,
+/obj/item/stackable_ammo/scatter/slug_rubber/ten{
+	pixel_y = 8
+	},
+/obj/item/stackable_ammo/scatter/NT/mini/ten,
+/obj/item/stackable_ammo/scatter/NT/ten{
+	pixel_y = -10
+	},
+/obj/item/stackable_ammo/pistol/HP/ten,
 /turf/floor,
 /area/station/security/armory)
 "eek" = (
@@ -8913,6 +8937,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/item/gun_exploder,
 /turf/floor,
 /area/station/security/armory)
 "hzL" = (
@@ -10899,6 +10924,12 @@
 /obj/stool/chair/wooden,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"juV" = (
+/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/turf/floor/yellow/checker{
+	dir = 4
+	},
+/area/station/engine/coldloop)
 "jve" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
@@ -11112,7 +11143,14 @@
 	},
 /area/station/security/main)
 "jEN" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/table/reinforced/industrial/auto,
+/obj/item/stackable_ammo/scatter/juicer/ten{
+	pixel_y = 14
+	},
+/obj/item/stackable_ammo/pistol/tranq/five,
+/obj/item/stackable_ammo/pistol/anti_mutant/five{
+	pixel_y = 8
+	},
 /turf/floor,
 /area/station/security/armory)
 "jGe" = (
@@ -12984,6 +13022,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
+/obj/machinery/portable_atmospherics/canister/sleeping_agent,
 /turf/floor,
 /area/station/security/armory)
 "lgS" = (
@@ -15909,8 +15948,8 @@
 /area/station/hallway/primary/south)
 "nEQ" = (
 /obj/critter/dog/george/shiba{
-	name = "Gnocchi";
-	density = 0
+	density = 0;
+	name = "Gnocchi"
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
@@ -22220,9 +22259,6 @@
 	pixel_y = 5
 	},
 /obj/item/clothing/glasses/thermal{
-	pixel_x = 8
-	},
-/obj/item/clothing/glasses/thermal{
 	pixel_x = 7;
 	pixel_y = -5
 	},
@@ -22239,10 +22275,6 @@
 	pixel_y = 2
 	},
 /obj/item/clothing/glasses/nightvision{
-	pixel_x = -7;
-	pixel_y = -3
-	},
-/obj/item/clothing/glasses/nightvision{
 	pixel_x = -8;
 	pixel_y = -8
 	},
@@ -22252,10 +22284,6 @@
 	},
 /obj/item/clothing/mask/gas/emergency{
 	pixel_x = 3;
-	pixel_y = 11
-	},
-/obj/item/clothing/mask/gas/emergency{
-	pixel_x = -3;
 	pixel_y = 11
 	},
 /obj/item/clothing/mask/gas/emergency{
@@ -26454,28 +26482,14 @@
 "wDz" = (
 /obj/rack,
 /obj/item/clothing/suit/armor/heavy{
-	pixel_x = -13
-	},
-/obj/item/clothing/suit/armor/heavy{
 	pixel_x = -5
 	},
 /obj/item/clothing/head/helmet/riot{
 	pixel_x = -4;
 	pixel_y = 12
 	},
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = -13;
-	pixel_y = 12
-	},
-/obj/item/clothing/suit/armor/EOD{
-	pixel_x = 9
-	},
 /obj/item/clothing/suit/armor/EOD{
 	pixel_x = 1
-	},
-/obj/item/clothing/head/helmet/EOD{
-	pixel_x = 12;
-	pixel_y = 8
 	},
 /obj/item/clothing/head/helmet/EOD{
 	pixel_x = 4;
@@ -26599,6 +26613,7 @@
 /area/station/hydroponics/lobby)
 "wID" = (
 /obj/storage/secure/crate/gear/armory/grenades,
+/obj/item/gun/modular/italian/big_italiano,
 /turf/floor,
 /area/station/security/armory)
 "wIY" = (
@@ -27646,8 +27661,8 @@
 "xDx" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/door/poddoor/blast{
-	id = "tele";
-	dir = 8
+	dir = 8;
+	id = "tele"
 	},
 /turf/floor/plating/random,
 /area/station/science/teleporter)
@@ -54468,7 +54483,7 @@ ipT
 ipT
 dVl
 ckD
-sht
+juV
 sht
 eER
 hOQ
@@ -54780,7 +54795,7 @@ mPk
 kGO
 kNz
 huv
-xxK
+coh
 xxK
 hQW
 vPf
