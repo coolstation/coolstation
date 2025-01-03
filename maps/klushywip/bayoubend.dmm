@@ -339,11 +339,13 @@
 /turf/floor/grime,
 /area/station/security/brig/genpop)
 "apK" = (
-/obj/item/saxophone{
-	pixel_y = 2
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
 	},
 /turf/wall,
-/area/station/crew_quarters/bathroom)
+/area/station/shipyard)
 "apQ" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
@@ -799,6 +801,10 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay)
+"aMT" = (
+/obj/decal/poster/wallsign/gym,
+/turf/wall,
+/area/station/crew_quarters/fitness)
 "aNE" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -1306,7 +1312,7 @@
 /turf/floor,
 /area/station/engine/elect)
 "blw" = (
-/obj/decal/poster/wallsign/security_left,
+/obj/decal/poster/wallsign/medbay_left,
 /turf/wall,
 /area/station/storage/tools)
 "blG" = (
@@ -2638,6 +2644,10 @@
 /obj/storage/secure/crate/weapon/armory/pod_weapons,
 /turf/floor,
 /area/station/security/armory)
+"cmq" = (
+/obj/decal/poster/wallsign/pw_map,
+/turf/wall,
+/area/station/crew_quarters/market)
 "cnt" = (
 /obj/cable{
 	d1 = 1;
@@ -5464,6 +5474,10 @@
 	},
 /turf/space,
 /area/space)
+"eNp" = (
+/obj/decal/poster/wallsign/fuck2,
+/turf/wall,
+/area/station/maintenance/solar/east)
 "eNr" = (
 /obj/decal/poster/wallsign/stencil/right/e,
 /turf/wall/auto/supernorn,
@@ -7051,7 +7065,7 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/showers)
 "gei" = (
-/obj/securearea,
+/obj/decal/poster/wallsign/biohazard,
 /turf/wall/r_wall,
 /area/station/science/lab)
 "gew" = (
@@ -7879,7 +7893,7 @@
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
 "gPB" = (
-/obj/securearea,
+/obj/decal/poster/wallsign/biohazard,
 /turf/wall/r_wall,
 /area/station/science/lobby)
 "gQg" = (
@@ -9535,6 +9549,21 @@
 	dir = 1
 	},
 /area/station/engine/engineering/breakroom)
+"ifg" = (
+/obj/decoration/bullethole{
+	pixel_x = 13;
+	pixel_y = -10
+	},
+/obj/decoration/bullethole{
+	pixel_x = -15;
+	pixel_y = -1
+	},
+/obj/decoration/bullethole{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/turf/wall,
+/area/station/crew_quarters/fitness)
 "ifC" = (
 /turf/floor/circuit/off,
 /area/station/turret_protected/ai)
@@ -10683,6 +10712,10 @@
 	},
 /turf/floor/grey,
 /area/station/medical/robotics)
+"jiZ" = (
+/obj/decal/poster/wallsign/escape,
+/turf/wall,
+/area/station/hallway/secondary/exit)
 "jjf" = (
 /turf/floor/neutral/side{
 	dir = 8
@@ -11999,6 +12032,12 @@
 	dir = 4
 	},
 /area/station/engine/gas)
+"kst" = (
+/obj/decal/poster/wallsign/escape_right,
+/turf/wall,
+/area/station/hallway/primary/north{
+	name = "Judgement Cage"
+	})
 "ksv" = (
 /obj/machinery/light{
 	dir = 8
@@ -13392,6 +13431,16 @@
 "lAc" = (
 /turf/wall/r_wall,
 /area/station/engine/ptl)
+"lBr" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
+	},
+/turf/wall/r_wall,
+/area/station/storage/warehouse{
+	name = "Warehouse"
+	})
 "lBL" = (
 /obj/disposalpipe/segment,
 /turf/floor/bluewhite{
@@ -13955,6 +14004,9 @@
 	pixel_x = 9;
 	pixel_y = 7
 	},
+/obj/machinery/firealarm{
+	pixel_y = -26
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "mbL" = (
@@ -14240,6 +14292,12 @@
 /area/station/engine/ptl)
 "mkQ" = (
 /obj/decal/cleanable/dirt/random,
+/obj/decal/skeleton{
+	desc = "The partially decomposed corpse of some poor chump.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body3";
+	name = "corpse"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "mlg" = (
@@ -14283,6 +14341,10 @@
 	},
 /turf/floor/grey/corner,
 /area/station/crew_quarters/bar)
+"moh" = (
+/obj/decal/poster/wallsign/cafeteria_right,
+/turf/wall,
+/area/station/crew_quarters/market)
 "moi" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -14690,6 +14752,14 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"mHs" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
+	},
+/turf/wall,
+/area/station/maintenance/southeast)
 "mHt" = (
 /turf/floor,
 /area/station/hallway/primary/west)
@@ -15255,6 +15325,13 @@
 /obj/firedoor_spawn,
 /turf/floor/orange,
 /area/station/engine/engineering)
+"ngg" = (
+/obj/decal/poster/wallsign/logistics_right,
+/turf/wall,
+/area/station/quartermaster/cargooffice/storefront{
+	mail_tag = "Conveience Store";
+	name = "Convienence Store"
+	})
 "ngT" = (
 /obj/table/auto,
 /obj/machinery/door/window/northright,
@@ -15294,6 +15371,10 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"niN" = (
+/obj/decal/poster/wallsign/escape_right,
+/turf/wall,
+/area/station/turret_protected/ai_upload)
 "niS" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /obj/cable{
@@ -15401,6 +15482,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/orangeblack,
 /area/station/engine/core)
+"nnj" = (
+/obj/decal/poster/wallsign/pw_map,
+/turf/wall/r_wall,
+/area/station/security/brig/genpop)
 "nnw" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -15547,6 +15632,9 @@
 /obj/item/cigbutt{
 	pixel_x = 3;
 	pixel_y = 3
+	},
+/obj/decoration/clock{
+	pixel_x = -30
 	},
 /turf/floor/grime,
 /area/station/crew_quarters)
@@ -15781,6 +15869,10 @@
 	dir = 4
 	},
 /area/station/crew_quarters/catering)
+"nDh" = (
+/obj/decal/poster/wallsign/escape,
+/turf/wall,
+/area/station/crew_quarters/fitness)
 "nDH" = (
 /obj/decal/floatingtiles/loose/random,
 /turf/floor/plating/random,
@@ -16610,9 +16702,6 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "okZ" = (
-/obj/submachine/ATM{
-	pixel_x = -32
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -17464,6 +17553,14 @@
 	},
 /turf/floor/grime,
 /area/station/maintenance/disposal)
+"oRK" = (
+/obj/decoration/clock{
+	pixel_x = -30
+	},
+/turf/floor/purple/side{
+	dir = 8
+	},
+/area/station/science/artifact)
 "oRR" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/red/checker{
@@ -17871,6 +17968,7 @@
 /obj/cable{
 	icon_state = "1-10"
 	},
+/obj/decoration/ceilingfan,
 /turf/floor/carpet/arcade/half,
 /area/station/crew_quarters/arcade)
 "pjb" = (
@@ -17886,6 +17984,15 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor,
 /turf/floor/white/checker,
 /area/station/medical/medbay)
+"pjn" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 1
+	},
+/obj/decal/pole{
+	pixel_x = -16
+	},
+/turf/floor,
+/area/station/hallway/primary/north)
 "pjI" = (
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment{
@@ -18471,6 +18578,14 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay)
+"pLE" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
+	},
+/turf/wall/r_wall,
+/area/station/engine/core)
 "pMe" = (
 /obj/machinery/disposal/mail{
 	mail_tag = "bridge";
@@ -18749,7 +18864,7 @@
 /turf/floor/carpet/blue/fancy/narrow/ne,
 /area/station/medical/medbay/lobby)
 "pUH" = (
-/obj/decal/poster/wallsign/security_right,
+/obj/decal/poster/wallsign/bunks_right,
 /turf/wall,
 /area/station/science/chemistry)
 "pUK" = (
@@ -20317,6 +20432,10 @@
 	},
 /turf/floor/blue,
 /area/station/medical/medbay)
+"rii" = (
+/obj/decal/poster/wallsign/teamwork,
+/turf/wall,
+/area/station/crew_quarters)
 "rik" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 1;
@@ -20993,6 +21112,10 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
+"rOR" = (
+/obj/decal/poster/wallsign/statistics2,
+/turf/wall/r_wall,
+/area/station/bridge)
 "rQm" = (
 /mob/dead/hhghost,
 /turf/floor/plating/random,
@@ -21521,6 +21644,10 @@
 	},
 /turf/floor,
 /area/station/storage/eva)
+"snd" = (
+/obj/decoration/bullethole,
+/turf/wall,
+/area/station/maintenance/solar/east)
 "snF" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -22156,7 +22283,6 @@
 /turf/floor/grey,
 /area/station/science/teleporter)
 "sME" = (
-/obj/decal/cleanable/ripped_poster,
 /turf/wall,
 /area/station/storage/tools)
 "sMJ" = (
@@ -22324,6 +22450,14 @@
 /obj/machinery/phone/wall,
 /turf/wall,
 /area/station/engine/elect)
+"sWC" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
+	},
+/turf/wall,
+/area/station/hallway/primary/east)
 "sWJ" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
@@ -25146,6 +25280,10 @@
 	dir = 4
 	},
 /area/station/engine/engineering)
+"vwH" = (
+/obj/decal/poster/wallsign/ritossign,
+/turf/wall,
+/area/station/crew_quarters/kitchen)
 "vwI" = (
 /obj/table/reinforced/auto,
 /obj/window/reinforced/west,
@@ -26109,8 +26247,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/firealarm{
-	pixel_y = 26
+/obj/decal/poster/wallsign/bar{
+	pixel_y = 27
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -26188,6 +26326,10 @@
 	dir = 1
 	},
 /area/station/security/main)
+"wyr" = (
+/obj/decal/poster/wallsign/escape_right,
+/turf/wall,
+/area/station/hydroponics/bay)
 "wyT" = (
 /obj/critter/roach,
 /turf/floor/plating/random,
@@ -26532,8 +26674,8 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "wMT" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating/random,
+/obj/decal/poster/wallsign/warning1,
+/turf/wall,
 /area/station/maintenance/disposal/sewage)
 "wOx" = (
 /turf/floor/yellow/corner{
@@ -26546,6 +26688,14 @@
 /obj/firedoor_spawn,
 /turf/floor/plating/random,
 /area/station/chapel/sanctuary)
+"wPs" = (
+/obj/decoration/bullethole,
+/obj/decoration/bullethole{
+	pixel_x = 13;
+	pixel_y = -10
+	},
+/turf/wall,
+/area/station/maintenance/solar/east)
 "wPE" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/cargo,
@@ -27426,6 +27576,14 @@
 "xAX" = (
 /turf/floor/grass/leafy,
 /area/station/medical/research)
+"xBd" = (
+/obj/item/saxophone{
+	pixel_y = 2
+	},
+/turf/floor/carpet/grime{
+	name = "grimmy carpet"
+	},
+/area/station/crew_quarters)
 "xBi" = (
 /obj/lattice{
 	dir = 4;
@@ -27672,6 +27830,14 @@
 /obj/firedoor_spawn,
 /turf/floor/red,
 /area/station/security/equipment)
+"xLG" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
+	},
+/turf/wall,
+/area/station/security/detectives_office)
 "xLU" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -52807,9 +52973,9 @@ ipT
 ipT
 ipT
 ipT
-vPf
+pLE
 fcZ
-vPf
+pLE
 ipT
 ipT
 ipT
@@ -55780,7 +55946,7 @@ dJx
 wkg
 pfQ
 brH
-ptV
+xLG
 mwB
 mwB
 xCw
@@ -56993,7 +57159,7 @@ fsf
 lca
 rJv
 iLp
-rJv
+oRK
 efE
 scG
 cqf
@@ -57887,8 +58053,8 @@ ueB
 ueB
 ueB
 qcc
-ueB
 fZI
+ueB
 ueB
 ueB
 vlm
@@ -59137,10 +59303,10 @@ xkk
 xkk
 qbw
 gso
-xkk
+dTs
 wVB
 wVB
-xkk
+dTs
 rhz
 tjx
 rhz
@@ -59999,7 +60165,7 @@ ghz
 ghz
 jGe
 slA
-apK
+hZo
 kDn
 xsr
 jWq
@@ -60903,7 +61069,7 @@ noG
 dMA
 nUm
 rcD
-rcD
+xBd
 rcD
 nxb
 hau
@@ -61507,7 +61673,7 @@ deT
 lVd
 wkz
 ueB
-ueB
+rii
 ueB
 ueB
 qTy
@@ -61796,10 +61962,10 @@ pVA
 yco
 jwX
 kdt
-emj
+nnj
 rFa
 xJQ
-xJQ
+pjn
 fKq
 uKb
 fKq
@@ -66969,7 +67135,7 @@ wFc
 wFc
 wFc
 wFc
-wFc
+cmq
 oNu
 fgu
 dXU
@@ -67534,7 +67700,7 @@ xMY
 xMY
 xMY
 xMY
-wip
+kst
 kwC
 gVa
 jOa
@@ -68176,7 +68342,7 @@ wFc
 wFc
 wFc
 wFc
-wFc
+moh
 eaK
 oNu
 fgu
@@ -70867,7 +71033,7 @@ qDq
 ila
 smS
 sRX
-pyf
+ifg
 vnN
 dQu
 hsu
@@ -71459,7 +71625,7 @@ sbA
 agl
 lTy
 qeH
-vge
+niN
 qVp
 iKR
 qBM
@@ -72052,7 +72218,7 @@ ipT
 ipT
 mVM
 qIT
-wnp
+mVM
 fKJ
 fKJ
 vge
@@ -72369,7 +72535,7 @@ dTX
 qVp
 iKR
 nFc
-pyf
+aMT
 rJA
 qer
 jtw
@@ -72400,7 +72566,7 @@ lYY
 uYO
 osV
 oxV
-uTA
+ngg
 jve
 jve
 jve
@@ -72671,10 +72837,10 @@ vge
 kwC
 iKR
 tts
-pyf
+nDh
 pyf
 hNy
-pyf
+nDh
 nAP
 nAP
 nAP
@@ -72697,7 +72863,7 @@ ioi
 gsq
 udG
 wmZ
-lYY
+wyr
 aas
 xzr
 fYu
@@ -72740,9 +72906,9 @@ rWo
 gpy
 gpy
 ohs
-hQj
+sWC
 gtF
-seQ
+apK
 pno
 pno
 lwB
@@ -73344,9 +73510,9 @@ mfO
 kaN
 tgF
 tgF
-hQj
+sWC
 seQ
-seQ
+apK
 bMk
 bMk
 bMk
@@ -73879,10 +74045,10 @@ jqn
 sku
 sku
 sku
-npW
+jiZ
 mKi
 fcx
-npW
+jiZ
 gFY
 uFM
 uFM
@@ -75115,7 +75281,7 @@ olD
 xrM
 hvF
 eCo
-aDM
+vwH
 udT
 izD
 qvA
@@ -76664,9 +76830,9 @@ ipT
 ipT
 aRo
 nGu
-aRo
+lBr
 far
-aRo
+lBr
 ipT
 ipT
 ipT
@@ -76946,7 +77112,7 @@ two
 pRY
 nEZ
 pRY
-hBL
+eNp
 eGs
 jlK
 bGy
@@ -77550,7 +77716,7 @@ two
 qUX
 qUX
 njG
-hBL
+wPs
 fck
 dBu
 uMC
@@ -77852,7 +78018,7 @@ two
 pmN
 cxh
 rCd
-hBL
+snd
 hhb
 jlK
 qBG
@@ -78121,7 +78287,7 @@ qRv
 fUT
 cDM
 ajl
-iWk
+rOR
 fdl
 bbA
 bWK
@@ -78763,10 +78929,10 @@ daq
 rch
 kIn
 ipT
-nYF
+mHs
 ezI
 ezI
-nYF
+mHs
 ipT
 ipT
 ipT
