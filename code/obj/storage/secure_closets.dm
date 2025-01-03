@@ -241,8 +241,9 @@
 	/obj/item/clothing/glasses/nightvision = 2,
 	/obj/item/clothing/glasses/sunglasses,
 	/obj/item/clothing/glasses/sunglasses,
-	/obj/item/ammo/bullets/abg,
-	/obj/item/ammo/bullets/abg,)
+	/obj/item/stackable_ammo/pistol/tranq/five = 2,
+	/obj/item/stackable_ammo/pistol/italian/AP/ten,
+	/obj/item/stackable_ammo/scatter/juicer/ten)
 
 /obj/storage/secure/closet/brig
 	name = "\improper Confiscated Items locker"
