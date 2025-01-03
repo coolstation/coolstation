@@ -443,6 +443,12 @@ Custom Books
 	icon_state = "book0"
 	file_path = "strings/books/zoo_diary.txt"
 
+/obj/item/paper/book/from_file/oldwoman
+	name = "In the Sky an Old Woman lives"
+	desc = "There are bites taken out of this! What the hell?!"
+	icon_state = "book0"
+	file_path = "strings/books/oldwoman.txt"
+
 /obj/item/paper/book/ratbook
 	name = "chewed and mangled book"
 	desc = "Huh, what is this?"

@@ -429,6 +429,15 @@ obj/decal/fakeobjects
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
 
+/obj/decal/doormat
+	name = "Doormat"
+	desc = "A cute, muddy doormat"
+	density = 0
+	anchored = 1
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "doormat"
+	layer = OBJ_LAYER
+
 /obj/decal/alienflower
 	name = "strange alien flower"
 	desc = "Is it going to eat you if you get too close?"

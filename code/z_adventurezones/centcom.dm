@@ -41,6 +41,9 @@
 	emarl
 		ckey = ""
 		name = "Office of Emarl"
+	klushy
+		ckey = "klushy225"
+		name = "Office of Klushy"
 	pope
 		ckey = "popecrunch"
 		name = "Office of Popecrunch"
