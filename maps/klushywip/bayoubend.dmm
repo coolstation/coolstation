@@ -15073,7 +15073,6 @@
 /turf/floor,
 /area/station/janitor/office)
 "mUj" = (
-/obj/grille/catwalk/bob/corroded,
 /obj/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -15082,6 +15081,9 @@
 	},
 /obj/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/grille/catwalk/bob/twosides{
+	dir = 8
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 4
@@ -15342,12 +15344,14 @@
 /turf/floor,
 /area/station/hallway/primary/southwest)
 "nfE" = (
-/obj/grille/catwalk/bob/corroded,
 /obj/cable/yellow{
 	icon_state = "1-4"
 	},
 /obj/cable/yellow{
 	icon_state = "2-4"
+	},
+/obj/grille/catwalk/bob/twosides{
+	dir = 8
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 4
