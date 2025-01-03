@@ -75,6 +75,16 @@ proc/params2complexlist(params)
 	var/len = length(params)
 	var/element = null
 	var/a = 1,p_count = 1
+	var/escapee = null
+	//Replace characters escaped with a backslash
+	while(a < len)
+		if(findtext(params,"\\",a,a+1))
+			escapee = params[a+1]
+			escapee = "%[num2hex(text2ascii(escapee), 2)]"
+			params = splicetext(params,a,a+2,escapee)
+			len = length(params)
+		a++
+
 	while(a < len)
 		a++
 		//Found a separator for a parameter-value pair. Store it
