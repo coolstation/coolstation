@@ -2446,6 +2446,10 @@
 /obj/firedoor_spawn,
 /turf/floor/plating/random,
 /area/station/crew_quarters/kitchen/freezer)
+"ccM" = (
+/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/turf/floor/orangeblack,
+/area/station/engine/core)
 "ccY" = (
 /obj/cable{
 	d1 = 1;
@@ -2674,10 +2678,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
 /area/station/chapel/funeral_parlor)
-"coh" = (
-/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
-/turf/floor/orangeblack,
-/area/station/engine/core)
 "coz" = (
 /obj/rack,
 /obj/item/storage/box/glassbox{
@@ -7639,6 +7639,10 @@
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
 "gDE" = (
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
 /turf/floor/orangeblack,
 /area/station/engine/ptl)
 "gDS" = (
@@ -10924,12 +10928,6 @@
 /obj/stool/chair/wooden,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
-"juV" = (
-/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
-/turf/floor/yellow/checker{
-	dir = 4
-	},
-/area/station/engine/coldloop)
 "jve" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
@@ -14417,6 +14415,12 @@
 /obj/window/reinforced/west,
 /turf/floor,
 /area/station/medical/medbay/lobby)
+"mqH" = (
+/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/turf/floor/yellow/checker{
+	dir = 4
+	},
+/area/station/engine/coldloop)
 "mqI" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -54483,7 +54487,7 @@ ipT
 ipT
 dVl
 ckD
-juV
+mqH
 sht
 eER
 hOQ
@@ -54795,7 +54799,7 @@ mPk
 kGO
 kNz
 huv
-coh
+ccM
 xxK
 hQW
 vPf
