@@ -42,7 +42,7 @@
 		ckey = ""
 		name = "Office of Emarl"
 	klushy
-		ckey = "klushy225"
+		ckey = "Klushy225"
 		name = "Office of Klushy"
 	pope
 		ckey = "popecrunch"
