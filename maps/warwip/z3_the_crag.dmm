@@ -101,6 +101,9 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer/north,
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"aL" = (
+/turf/floor,
+/area/station/crew_quarters/arcade)
 "aN" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/morgue{
@@ -593,6 +596,16 @@
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/floor/plating,
 /area/station/engine/gas)
+"dz" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/autoname_west{
+	pixel_x = -24
+	},
+/turf/floor,
+/area/station/crew_quarters/arcade)
 "dA" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/disposalpipe/segment/mail/vertical,
@@ -1175,6 +1188,12 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"gt" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/turf/floor/airless/carpet/arcade,
+/area/station/crew_quarters/arcade)
 "gu" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_rathen"
@@ -1675,6 +1694,13 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/carpet/blue/fancy,
 /area/station/bridge)
+"jg" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
+/area/station/crew_quarters/arcade)
 "jk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1997,6 +2023,9 @@
 	},
 /turf/floor/grey,
 /area/station/teleporter)
+"kT" = (
+/turf/wall,
+/area/gehenna/underground)
 "kU" = (
 /obj/table/wood/auto,
 /obj/item/cigbutt{
@@ -2516,6 +2545,9 @@
 "nC" = (
 /turf/wall/r_wall,
 /area/station/security/detectives_office)
+"nD" = (
+/turf/wall/r_wall,
+/area/station/crew_quarters/arcade)
 "nE" = (
 /obj/cable{
 	d1 = 1;
@@ -3278,6 +3310,13 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
+"sm" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "so" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 1"
@@ -3584,6 +3623,9 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "tZ" = (
@@ -4095,6 +4137,13 @@
 	},
 /turf/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
+"wP" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 1;
+	target_z = 1
+	},
+/turf/floor/plating,
+/area/station/crew_quarters/arcade)
 "wT" = (
 /turf/floor/plating/gehenna,
 /area/station/engine/gas)
@@ -4187,6 +4236,12 @@
 	dir = 1
 	},
 /area/station/mining/lobby)
+"xg" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/crew_quarters/arcade)
 "xh" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -5037,6 +5092,9 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
+"BB" = (
+/turf/floor/airless/carpet/arcade,
+/area/station/crew_quarters/arcade)
 "BD" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment{
@@ -5311,6 +5369,11 @@
 /obj/machinery/light/fluorescent/red,
 /turf/floor/darkblue,
 /area/station/bridge)
+"Dj" = (
+/obj/disposalpipe/segment/sewage,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
+/area/station/crew_quarters/arcade)
 "Dk" = (
 /obj/kitchenspike,
 /obj/decal/cleanable/dirt/random,
@@ -5461,6 +5524,9 @@
 	dir = 1;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
@@ -6166,13 +6232,8 @@
 /turf/floor/white,
 /area/station/medical/basement)
 "Hw" = (
-/obj/grille/catwalk/jen,
-/obj/landmark{
-	icon_state = "x3";
-	name = "peststart"
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
+/turf/wall,
+/area/station/crew_quarters/arcade)
 "Hx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/disposalpipe/segment,
@@ -6194,6 +6255,10 @@
 "HB" = (
 /turf/wall/asteroid/gehenna/z3,
 /area/gehenna/underground)
+"HD" = (
+/obj/machinery/computer/tetris,
+/turf/floor,
+/area/station/crew_quarters/arcade)
 "HE" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -6530,6 +6595,12 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/floor/plating,
 /area/station/engine/gas)
+"JG" = (
+/obj/machinery/sim/vr_bed{
+	dir = 4
+	},
+/turf/floor/airless/carpet/arcade,
+/area/station/crew_quarters/arcade)
 "JL" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -8514,6 +8585,10 @@
 /obj/item/device/radio/intercom/engineering,
 /turf/floor/grime,
 /area/station/turret_protected/ai)
+"Uv" = (
+/obj/machinery/computer/arcade,
+/turf/floor,
+/area/station/crew_quarters/arcade)
 "Uw" = (
 /obj/item/device/radio/intercom/science,
 /turf/floor/grime,
@@ -8777,6 +8852,9 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "2-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Wf" = (
@@ -9028,12 +9106,9 @@
 /turf/floor/plating,
 /area/station/janitor/office)
 "Xq" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 4
-	},
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
-/area/station/maintenance/inner/south)
+/area/station/crew_quarters/arcade)
 "Xt" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -52558,11 +52633,11 @@ uq
 HB
 HB
 HB
-HB
-HB
-HB
-HB
-HB
+Hw
+Hw
+Hw
+Hw
+Hw
 xy
 MK
 LU
@@ -52860,11 +52935,11 @@ uq
 uq
 HB
 HB
-uq
-uq
-HB
-HB
-HB
+Hw
+Uv
+BB
+JG
+JG
 xy
 Me
 zM
@@ -53159,14 +53234,14 @@ NQ
 eh
 lN
 mW
-mW
-mW
-mW
-mW
-uq
-HB
-HB
-HB
+nD
+Hw
+Hw
+Hw
+HD
+BB
+BB
+BB
 xy
 Mm
 kB
@@ -53461,14 +53536,14 @@ NQ
 eh
 wk
 hk
-hk
-hk
-XM
+Dj
+Dj
+wP
 Hw
-uq
-HB
-HB
-HB
+aL
+gt
+BB
+BB
 xy
 pl
 MR
@@ -53763,14 +53838,14 @@ gv
 Db
 Xe
 Op
-mW
-mW
+nD
 Xq
-mW
-uq
+Xq
+dz
+aL
 NI
 NI
-NI
+xh
 xy
 uF
 xy
@@ -54065,11 +54140,11 @@ uq
 eh
 lN
 NQ
-uq
-uq
-uq
-uq
-uq
+nD
+Xq
+jg
+xg
+aL
 NI
 tP
 uf
@@ -54367,11 +54442,11 @@ uq
 eh
 lN
 NQ
-uq
-mW
-mW
-mW
-mW
+nD
+Hw
+Hw
+xg
+Hw
 NI
 Yt
 ac
@@ -54672,7 +54747,7 @@ NQ
 uq
 IU
 ba
-mW
+sm
 mW
 NI
 Yt
@@ -55301,10 +55376,10 @@ ux
 ux
 ux
 HB
-ux
-ux
-ux
-ux
+kT
+kT
+kT
+kT
 HB
 ux
 ux
@@ -55606,7 +55681,7 @@ mW
 mW
 mW
 mW
-ux
+kT
 ux
 ux
 ux
@@ -55908,7 +55983,7 @@ Sg
 qt
 ju
 mW
-ux
+kT
 ux
 ux
 ux
@@ -56210,7 +56285,7 @@ HL
 HL
 NQ
 mW
-ux
+kT
 ux
 ux
 ux
@@ -58324,7 +58399,7 @@ Ll
 kC
 bU
 mW
-HB
+kT
 HB
 HB
 ux
@@ -58626,7 +58701,7 @@ xv
 NZ
 QY
 mW
-HB
+kT
 HB
 HB
 ux
@@ -58928,7 +59003,7 @@ Ud
 kC
 mW
 mW
-HB
+kT
 HB
 HB
 ux
@@ -59228,9 +59303,9 @@ CW
 aI
 fN
 kC
-HB
-HB
-HB
+kT
+kT
+kT
 HB
 HB
 HB
