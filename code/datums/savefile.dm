@@ -169,7 +169,7 @@
 		if (isnull(version) || version < SAVEFILE_VERSION_MIN || version > SAVEFILE_VERSION_MAX)
 			if (!loadFrom)
 				fdel(path)
-			return "Save version unvalid. > [version] <"
+			return "Save version unvalid. > [version],[profileNum],[path],[loadFrom] <"
 
 		// Check if any saved profiles are present
 		var/sanity_check = null
