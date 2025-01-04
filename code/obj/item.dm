@@ -1518,6 +1518,15 @@
 	else
 		. = "<B>[user]</B> [pick("spins", "twirls")] [src] around in [his_or_her(user)] hand."
 
+/obj/item/proc/on_raise_emote(var/mob/living/carbon/human/user as mob)
+	if((user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(40)) || (user.reagents && prob(user.reagents.get_reagent_amount("ethanol") / 3)) || prob(3))
+		. = "<B>[user]</B> raises [src] in the air, and drops it right on the ground.[prob(10) ? " Great job." : null]"
+		user.u_equip(src)
+		src.set_loc(user.loc)
+		JOB_XP(user,"Clown", 1)
+	else
+		. = "<B>[user]</B> raises [src] in the air."
+
 /obj/item/proc/HY_set_species()
 	return
 
