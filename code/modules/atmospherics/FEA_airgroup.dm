@@ -318,13 +318,13 @@
 	// suspended in the above block.
 	if(!group_processing) //Revert to individual processing
 
-		/* WARC TESTING : What if we just did not space fastpath. what then, huh? what the fuck will you do now?
+		// WARC TESTING : What if we just did not space fastpath. what then, huh? what the fuck will you do now?
 		// space fastpath if we didn't revert (avoid regrouping tiles prior to processing individual cells)
-		if (!abort_group && members.len && length_space_border)
+		if (enable_fastpath && !abort_group && members.len && length_space_border)
 			if (space_fastpath(parent_controller))
 				// If the fastpath resulted in the group being zeroed, return early.
 				return
-*/
+
 		var/totalPressure = 0
 		var/maxTemperature = 0
 		for(var/turf/member as anything in members)

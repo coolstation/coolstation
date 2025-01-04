@@ -454,6 +454,7 @@ var/list/admin_verbs = list(
 
 		//gamerunning
 		/datum/admins/proc/pcap,
+		/datum/admins/proc/toggle_fastpath,
 
 		/client/proc/cmd_job_controls,
 		/client/proc/cmd_modify_market_variables,
