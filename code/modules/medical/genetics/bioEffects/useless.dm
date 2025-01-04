@@ -479,6 +479,19 @@
 			return
 		..()
 
+/datum/bioEffect/waddle_walk
+	name = "Waddle Walk"
+	desc = "The subject moves in an abnormal way, perhaps a result of years of wearing silly shoes or something else entirely."
+	id = "waddle_walk"
+	effectType = EFFECT_TYPE_DISABILITY
+	isBad = 1
+	msgGain = "<font face='Comic Sans MS'>You feel like waddling a marathon!!</font>"
+	msgLose = "You can walk normally again."
+	lockProb = 25
+	lockedGaps = 2
+	lockedDiff = 2
+	lockedChars = list("T","A")
+	lockedTries = 3
 
 //////////////////////
 // Combination Only //

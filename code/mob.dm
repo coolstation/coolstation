@@ -2801,7 +2801,7 @@
 		loc = client.player.shamecubed
 		return
 
-	if (waddle_walking)
+	if (waddle_walking || src.bioHolder.HasEffect("waddle_walk"))
 		makeWaddle(src)
 
 	last_move_dir = move_dir
