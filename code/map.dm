@@ -308,12 +308,26 @@ var/global/list/mapNames = list(
 	airlock_style = "fart butt old stuff"
 	firelock_style = /obj/machinery/door/firedoor/border_only
 
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
+
 	escape_centcom = /area/shuttle/escape/centcom/donut2
 	escape_outpost = /area/shuttle/escape/outpost/donut2
 	escape_transit = /area/shuttle/escape/transit/donut2
 	escape_station = /area/shuttle/escape/station/donut2
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"research sector" = list(/area/station/science/lobby),
+		"the logistics bay" = list(/area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the robotics workshop" = list(/area/station/medical/robotics),
+		"the bridge" = list(/area/station/bridge),
+		"the departures wing" = list(/area/station/hallway/secondary/exit),
+		"the chapel" = list(/area/station/chapel/sanctuary),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
+		"the cafeteria" = list(/area/station/crew_quarters/bar))
 
 	job_limits_override = list(
 		/datum/job/logistics/miner = 0,
