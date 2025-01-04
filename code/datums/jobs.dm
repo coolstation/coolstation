@@ -1237,7 +1237,8 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		M.bioHolder.AddEffect("clumsy", magical=1)
 		M.bioHolder.AddEffect("accent_comic", magical=1) //the clown should ALWAYS have the silly voice
-		M.bioHolder.AddEffect("waddle_walk", magical=1)
+		if(prob(5))
+			M.bioHolder.AddEffect("waddle_walk", magical=1)
 
 // AI and Cyborgs
 
