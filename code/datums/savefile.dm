@@ -436,6 +436,7 @@
 
 		var/savefile/save = new
 		save.ImportText( "/", ret["savedata"] )
+		logTheThing("debug", null, null, "<b>cloudsave_load:</b> [ret["savedata"]],[response.body]")
 		return src.savefile_load(user, 1, save)
 
 	cloudsave_save( client/user, var/name )
