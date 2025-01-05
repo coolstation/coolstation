@@ -43,7 +43,19 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 					. += "The laces are cut."
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/tank/air) || istype(W, /obj/item/tank/oxygen) || istype(W, /obj/item/tank/emergency_oxygen) || istype(W, /obj/item/tank/jetpack))
+		if (istype(W, /obj/item/raw_material/shard) && !length(src.contents))
+			if (W.amount > 1)
+				W = W.split_stack(1)
+			else
+				user.u_equip(W)
+			W.set_loc(src)
+			if (ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if (H.shoes == src)
+					RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shoe_debris))
+			boutput(user, "<span class='notice'>You drop [W] into [src].</span>")
+
+		else if (istype(W, /obj/item/tank/air) || istype(W, /obj/item/tank/oxygen) || istype(W, /obj/item/tank/emergency_oxygen) || istype(W, /obj/item/tank/jetpack))
 			var/uses = 0
 
 			if(istype(W, /obj/item/tank/emergency_oxygen)) uses = 2
@@ -58,10 +70,34 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 			qdel(W)
 			qdel(src)
 
-		if (src.laces == LACES_TIED && istool(W, TOOL_CUTTING | TOOL_SNIPPING))
+		else if (src.laces == LACES_TIED && istool(W, TOOL_CUTTING | TOOL_SNIPPING))
 			boutput(user, "You neatly cut the knot and most of the laces away. Problem solved forever!")
 			src.laces = LACES_CUT
 			tooltip_rebuild = 1
+
+		else ..()
+
+	attack_self(mob/user)
+		if (length(src.contents))
+			boutput(user, "<span class='notice'>You shake some stuff out of your [src.name].</span>")
+			for (var/atom/movable/AM as anything in src.contents)
+				AM.set_loc(get_turf(user))
+		else
+			..()
+
+	equipped(mob/user, slot)
+		if (length(src.contents))
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shoe_debris))
+		. = ..()
+
+//this came to me while putting the glass panels on my PC case
+///Currently only shards but I figure if someone wants to do like shoe spiders they can.
+/obj/item/clothing/shoes/proc/shoe_debris(mob/M)
+	if (!istype(M)) return
+	var/obj/item/raw_material/shard/S = locate() in src
+	if (S)
+		boutput(M, "<span class='alert'><B>You step on [S]! Ouch!</B></span>")
+		S.step_on(M)
 
 /obj/item/clothing/shoes/bread
 	name = "loafers"
