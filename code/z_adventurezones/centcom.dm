@@ -10,6 +10,7 @@
 	filler_turf = "/turf/nicegrass/random"
 	is_centcom = 1
 	is_construction_allowed = FALSE
+	is_atmos_simulated = 1 // why dont we try this out btw
 
 //current team
 /area/centcom/offices
