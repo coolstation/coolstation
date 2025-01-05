@@ -17,11 +17,22 @@
 	if(M)
 		M.speech_bubble.icon_state = "typing"
 		UpdateOverlays(M.speech_bubble,"speech_bubble")
+		var/current_time = TIME
+		M.lasttyping = current_time
+		SPAWN_DBG(15 SECONDS)
+			if(M.lasttyping != current_time)
+				return
+			if (M.speech_bubble.icon_state == "typing")
+				M.UpdateOverlays(null, "speech_bubble") //this part right here is Zam's code, not mine
 	var/message = input("","Say") as null|text
 
 	if (message)
 		src.say_verb(message)
 		return
+
+	if (M && M.speech_bubble?.icon_state == "typing")
+		M.lasttyping = null
+		M.UpdateOverlays(null,"speech_bubble")
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
