@@ -8,6 +8,21 @@
 	set name = "Whisper"
 	return src.whisper(message)
 
+/mob/verb/start_say() //more or less what Zamujasa did for goonstation, but tweaked to work with coolstation code, and not quite as expansive
+	set name = "start_say"
+	set hidden = 1
+	var/mob/living/M = null
+	if(istype(src,/mob/living))
+		M = src
+	if(M)
+		M.speech_bubble.icon_state = "typing"
+		UpdateOverlays(M.speech_bubble,"speech_bubble")
+	var/message = input("","Say") as null|text
+
+	if (message)
+		src.say_verb(message)
+		return
+
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	//&& !src.client.holder
