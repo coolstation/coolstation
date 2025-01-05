@@ -19,8 +19,8 @@
 	examine()
 		if (usr.client && src.popup_win)
 			src.show_popup_win(usr)
-			return list() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
-		else
+			return ..() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
+		else			//idk i think we should so im making it happen, ass hole.
 			return ..()
 
 	proc/show_popup_win(var/client/C)
