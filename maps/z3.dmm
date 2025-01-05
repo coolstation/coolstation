@@ -16195,10 +16195,7 @@
 /turf/floor/carpet,
 /area/derelict_ai_sat)
 "aTq" = (
-/obj/securearea{
-	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
-	icon_state = "chsl";
-	name = "CLEAN HANDS SAVE LIVES";
+/obj/decal/poster/wallsign/chsl{
 	pixel_x = -32
 	},
 /turf/floor/white/grime,
@@ -23348,7 +23345,6 @@
 "bnk" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "hangar_spacediner1";
 	layer = 4;
@@ -23663,6 +23659,10 @@
 	},
 /turf/floor/carpet/purple/standard/edge/east,
 /area/juicer/club/outside)
+"caQ" = (
+/mob/living/critter/skeleton,
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "cci" = (
 /obj/item/cigbutt,
 /turf/floor/shuttlebay,
@@ -23828,6 +23828,10 @@
 /obj/machinery/light/runway_light/delay5,
 /turf/space,
 /area/space)
+"dMQ" = (
+/obj/item/paper/book/from_file/diary_of_a_stranded_clergyman,
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "dOj" = (
 /obj/decal/cleanable/dirt/jen,
 /turf/floor/carpet/green/standard/edge/ne,
@@ -23887,6 +23891,16 @@
 	},
 /turf/floor/grime,
 /area/diner/hangar)
+"ecH" = (
+/obj/decal/skeleton{
+	desc = "There are bite marks on the neck.";
+	icon = 'icons/mob/human.dmi';
+	icon_state = "husk_l";
+	name = "dessicated corpse"
+	},
+/obj/item/clothing/under/misc/chaplain,
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "efA" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -24331,6 +24345,15 @@
 	icon_state = "old_rwall"
 	},
 /area/diner/dining)
+"gOa" = (
+/obj/decal/skeleton{
+	desc = "There are bite marks on the neck";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body8";
+	name = "dessicated corpse"
+	},
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "gOI" = (
 /obj/grille/steel,
 /obj/window/reinforced/south,
@@ -24359,7 +24382,6 @@
 "gVq" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "hangar_spacediner2";
 	layer = 4;
@@ -24663,7 +24685,6 @@
 "ifZ" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "hangar_spacediner2";
 	layer = 4;
@@ -25451,6 +25472,10 @@
 	},
 /turf/space,
 /area/diner/jucer_trader)
+"mav" = (
+/obj/item/parts/human_parts/leg/mutant/skeleton/right,
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "maL" = (
 /turf/floor/carpet/purple/fancy/edge/south,
 /area/juicer/club/outside)
@@ -26115,6 +26140,13 @@
 /obj/machinery/door/airlock/glass,
 /turf/floor/grime,
 /area/diner/hallway)
+"qio" = (
+/obj/structure/woodwall{
+	icon_state = "woodwall2";
+	opacity = 0
+	},
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "qmR" = (
 /obj/wingrille_spawn/auto,
 /obj/window_blinds/cog2/left,
@@ -26582,6 +26614,10 @@
 /turf/space{
 	icon_state = "aplaceholder"
 	},
+/area/space)
+"sEp" = (
+/obj/item/gun/modular/italian/italiano,
+/turf/floor/plating/airless/asteroid,
 /area/space)
 "sFo" = (
 /obj/cable{
@@ -27079,6 +27115,10 @@
 	icon_state = "red4"
 	},
 /area/diner/dining)
+"vvV" = (
+/obj/decal/skeleton,
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "vxh" = (
 /obj/machinery/light/fluorescent/purpleish{
 	dir = 1
@@ -27498,6 +27538,10 @@
 	icon_state = "floor6"
 	},
 /area/diner/jucer_trader)
+"xVw" = (
+/obj/structure/woodwall,
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "xXD" = (
 /obj/critter/gunbot/drone/buzzdrone{
 	wanderer = 0
@@ -64101,7 +64145,7 @@ aab
 aab
 aab
 aab
-aac
+caQ
 aab
 aab
 aab
@@ -64404,7 +64448,7 @@ aab
 aab
 aab
 aac
-aac
+sEp
 aab
 aab
 aab
@@ -65005,7 +65049,7 @@ aab
 aab
 aab
 aab
-aac
+vvV
 aab
 aab
 aac
@@ -65306,11 +65350,11 @@ aaa
 aab
 aab
 aab
-aac
+mav
 aac
 aab
 aab
-aac
+xVw
 aab
 aac
 aac
@@ -65608,7 +65652,7 @@ aaa
 aab
 aab
 aab
-aac
+gOa
 aac
 aab
 aab
@@ -65912,7 +65956,7 @@ aab
 aab
 aab
 aac
-aac
+qio
 aac
 aac
 aac
@@ -66820,8 +66864,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+xVw
+aab
 aab
 aab
 aab
@@ -67121,7 +67165,7 @@ aab
 aab
 aab
 aab
-aac
+ecH
 aac
 aab
 aab
@@ -67424,7 +67468,7 @@ aab
 aab
 aab
 aab
-aac
+dMQ
 aab
 aab
 aab

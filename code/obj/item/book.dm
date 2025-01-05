@@ -470,6 +470,12 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 			boutput(wearer, "[voidMessage]")
 		return
 
+/obj/item/paper/book/from_file/diary_of_a_stranded_clergyman
+	name = "grim diary"
+	desc = "It looks eclesiastical."
+	icon_state = "book0"
+	file_path = "strings/books/clergy_diary.txt"
+
 /******************** CUSTOM BOOKS ********************/
 
 /obj/item/paper/book/custom //custom book parent, just to avoid cluttering up normal books
