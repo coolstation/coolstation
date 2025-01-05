@@ -183,9 +183,7 @@
 	if (src.key) statlog_death(src, gibbed)
 	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
 		var/num_players = 0
-		var/clients = 0
 		for(var/client/C)
-			clients++
 			if (!C.mob) continue
 			var/mob/player = C.mob
 			if (!isdead(player) && VALID_MOB(player))
