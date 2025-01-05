@@ -192,7 +192,7 @@
 				num_players++
 
 		if (num_players <= 5 && master_mode != "battle_royale")
-			if ((config.env == "dev" || config.env == "pud") && clients >=5 && !abandon_allowed)
+			if (config.env == "dev" && !abandon_allowed)
 				abandon_allowed = TRUE
 				for(var/client/C)
 					if (!C.mob) continue
