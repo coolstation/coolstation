@@ -1603,6 +1603,8 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		return
 
 /obj/configurable_credit_store/premade
+	limit_total = 1
+
 	New()
 		. = ..()
 		if(istext(type_to_spawn))
@@ -1610,13 +1612,13 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		if (!type_to_spawn)	return
 		setup_premade_shop()
 
-
 	proc/setup_premade_shop()
 		var/atom/movable/AM = new type_to_spawn
 
 		src.appearance = AM.appearance
 		src.name = AM.name
 		src.thing_name = AM.name
+		src.set_density(AM.density)
 
 		src.price_text = new()
 		src.price_text.set_loc(src)
@@ -1639,6 +1641,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		set_up = TRUE
 
 /obj/configurable_credit_store/premade/popcorn
+	limit_total = 0
 	price = 0
 	type_to_spawn = /obj/item/reagent_containers/food/snacks/popcorn
 

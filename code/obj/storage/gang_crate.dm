@@ -13,12 +13,12 @@
 	name = "Gang Crate"
 	desc = "A surprisingly advanced crate, with an improvised system for locking it into place. It's got gang insignia all over it..."
 	is_short = TRUE
-	locked = TRUE
+	locked = FALSE
 	icon_state = "lootcrimegang"
 	icon_closed = "lootcrimegang"
 	icon_opened = "lootcrimeopengang"
 	can_flip_bust = FALSE
-	anchored = ANCHORED
+	anchored = UNANCHORED
 	var/datum/loot_generator/lootMaster
 
 	proc/initialize_loot_master(x,y)
@@ -36,12 +36,7 @@
 			// fill the rest with whatever
 			lootMaster.fill_remaining(src, GIMMICK)
 			..()
-		unlocked
-			locked = FALSE
-			anchored = UNANCHORED
 	guns_and_gear_visualized
-		anchored = UNANCHORED
-		locked = FALSE
 		New()
 			..()
 			initialize_loot_master(4,4)
@@ -65,17 +60,11 @@
 			lootMaster.place_loot_instance(src, 1,2, new /obj/loot_spawner/random/long/striker, FALSE)
 			lootMaster.fill_remaining(src, GANG_CRATE_AMMO, 3)
 			..()
-		unlocked
-			anchored = UNANCHORED
-			locked = FALSE
 	only_gimmicks
 		New()
 			initialize_loot_master(4,3)
 			lootMaster.fill_remaining(src.loc, GIMMICK)
 			..()
-		unlocked
-			anchored = UNANCHORED
-			locked = FALSE
 	only_guns
 		New()
 			initialize_loot_master(4,3)
@@ -101,7 +90,6 @@
 	desc = "A greasy, black duffle bag, this isn't station issue..."
 	icon_state = "gang_dufflebag"
 	item_state = "bowling"
-	var/hidden = TRUE
 	var/open = FALSE
 	level = UNDERFLOOR
 
@@ -141,15 +129,20 @@
 
 	attack_self(mob/user)
 		if (!open)
-			for (var/obj/object as anything in src.contents)
-				object.set_loc(user.loc)
+			src.open(user)
 			playsound(src.loc, 'sound/misc/zipper.ogg', 100, TRUE)
-			boutput(user, "You unzip the duffel bag and its' contents spill out!")
+			boutput(user, "You unzip the duffel bag!")
 			user.drop_item(src)
 			open = TRUE
 			icon_state = "gang_dufflebag_open"
 		else
 			return ..()
+
+	attack_hand(mob/user)
+		if(src.open)
+			src.close()
+		. = ..()
+
 
 	proc/open(mob/user)
 		open = TRUE
@@ -494,7 +487,7 @@
 
 
 
-// LOOT SPAWN_DBGERS
+// LOOT SPAWNERS
 //
 // The non-random base exists for loot you don't want to put in a random pool.
 // In addition, the loot_spawner/specified child allows for definition of an item and size in New(), useful for live use.

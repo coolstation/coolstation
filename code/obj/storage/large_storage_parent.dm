@@ -78,6 +78,9 @@
 						A.set_loc(src)
 
 	disposing()
+		if(src.vis_controller)
+			qdel(src.vis_controller)
+			src.vis_controller = null
 		STOP_TRACKING
 		..()
 
@@ -493,10 +496,7 @@
 			for(var/atom/movable/AM in entangled)
 				AM.set_loc(src.open ? src.loc : src)
 
-		if (user)
-			src.dump_contents(user)
-		else
-			src.dump_contents()
+		src.dump_contents(user)
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
@@ -605,6 +605,8 @@
 			var/start_px = -11
 			var/items = 1
 			for (var/obj/item/I in contents) //Wanna skip mobs, wanna skip non-items
+				if ((I in vis_controller?.vis_items))
+					continue
 				if (items > 8)
 					I.pixel_y = min(0,pixel_y) //try to keep the bottom of the cart sprite free, clicking stuffed crates is a goddamn pain
 				else
