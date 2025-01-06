@@ -1107,6 +1107,7 @@ ABSTRACT_TYPE(/area/adventure)
 
 /area/martian_trader
 	name ="Martian Trade Outpost"
+	icon_state = "yellow"
 	sound_environment = EAX_CAVE
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
