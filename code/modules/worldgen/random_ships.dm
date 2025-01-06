@@ -78,12 +78,14 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 		size = "3x3"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/3x3.dmi'
+		icon_state = "cargo"
 	#endif
 
 	cargo5x3
 		size = "5x3"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/5x3.dmi'
+		icon_state = "cargo"
 	#endif
 
 /obj/landmark/random_ship
