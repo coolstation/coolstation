@@ -4402,7 +4402,7 @@
 /area/station/hangar/sec)
 "dTX" = (
 /obj/machinery/firealarm,
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/turret_protected/ai_upload)
 "dUl" = (
 /obj/fitness/speedbag/clown,
@@ -9191,7 +9191,7 @@
 /area/station/hallway/primary/east)
 "hIz" = (
 /obj/securearea,
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/turret_protected/ai)
 "hID" = (
 /obj/table/glass/auto,
@@ -11657,8 +11657,8 @@
 /turf/floor/carpet/purple/standard/edge/nw,
 /area/station/hydroponics/lobby)
 "jXB" = (
-/turf/wall,
-/area/station/science/bot_storage)
+/turf/wall/r_wall,
+/area/station/turret_protected/ai)
 "jXS" = (
 /obj/decal/cleanable/rust,
 /obj/disposalpipe/segment/sewage{
@@ -14815,8 +14815,9 @@
 /turf/floor/blue/checker,
 /area/station/medical/medbay/cloner)
 "mEe" = (
-/turf/wall,
-/area/station/science/chemistry)
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "mEi" = (
 /obj/stool/chair/blue{
 	dir = 4
@@ -15520,7 +15521,7 @@
 	})
 "niN" = (
 /obj/decal/poster/wallsign/escape_right,
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/turret_protected/ai_upload)
 "niS" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
@@ -18389,7 +18390,7 @@
 /turf/floor/plating/random,
 /area/station/security/detectives_office)
 "ptV" = (
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/security/detectives_office)
 "pur" = (
 /obj/shrub{
@@ -18636,6 +18637,10 @@
 /obj/disposalpipe/segment,
 /turf/floor,
 /area/station/hallway/primary/east)
+"pHg" = (
+/obj/random_item_spawner/junk/one,
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "pHm" = (
 /obj/machinery/door/window/southright,
 /turf/floor/sanitary,
@@ -19060,7 +19065,7 @@
 /area/station/medical/medbay/lobby)
 "pUH" = (
 /obj/decal/poster/wallsign/bunks_right,
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/science/chemistry)
 "pUK" = (
 /obj/disposalpipe/junction{
@@ -25134,7 +25139,7 @@
 	},
 /area/station/security/equipment)
 "vge" = (
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/turret_protected/ai_upload)
 "vgs" = (
 /obj/disposalpipe/segment{
@@ -28051,7 +28056,7 @@
 	icon_state = "space";
 	name = "VACUUM AREA"
 	},
-/turf/wall,
+/turf/wall/r_wall,
 /area/station/security/detectives_office)
 "xLU" = (
 /obj/cable{
@@ -56176,8 +56181,8 @@ xCw
 oQv
 ptV
 ptV
-jXB
-jXB
+gGd
+gGd
 gGd
 gGd
 gGd
@@ -56750,13 +56755,13 @@ ipT
 ipT
 ipT
 kbC
-jPb
-jPb
-jPb
-jPb
-jPb
-jPb
-jPb
+jXB
+jXB
+jXB
+jXB
+jXB
+jXB
+jXB
 tXg
 pZv
 pYC
@@ -57052,13 +57057,13 @@ ipT
 ipT
 ipT
 kbC
-jPb
+jXB
 wAY
 toB
 feb
 qGW
 ifC
-jPb
+jXB
 tXg
 uUF
 oIE
@@ -57354,13 +57359,13 @@ ipT
 cxd
 aTt
 cRG
-jPb
+jXB
 ifC
 qGW
 jML
 qGW
 ifC
-jPb
+jXB
 tXg
 tmI
 tXg
@@ -57656,14 +57661,14 @@ ipT
 qfS
 ipT
 kbC
-jPb
+jXB
 rYG
 qGW
 dpJ
 qGW
 ifC
-jPb
-awX
+jXB
+keq
 awX
 awX
 pRS
@@ -57958,13 +57963,13 @@ ipT
 qfS
 ipT
 kbC
-jPb
+jXB
 ifC
 ifC
 dez
 sRj
 gqg
-jPb
+jXB
 iKZ
 aDY
 usm
@@ -58260,13 +58265,13 @@ ipT
 qfS
 ipT
 kbC
-jPb
-jPb
-jPb
+jXB
+jXB
+jXB
 mvm
-jPb
-jPb
-jPb
+jXB
+jXB
+jXB
 qMi
 oHD
 egF
@@ -58564,9 +58569,9 @@ lVd
 lVd
 jPb
 jPb
-jPb
+jXB
 sSN
-jPb
+jXB
 jPb
 dgp
 qMi
@@ -59466,7 +59471,7 @@ ipT
 ipT
 ipT
 kbC
-lVd
+mEe
 awX
 qMi
 dqt
@@ -59501,7 +59506,7 @@ ixG
 ggn
 pVz
 fbF
-mEe
+fWX
 bkT
 bkT
 bkT
@@ -59803,7 +59808,7 @@ ieg
 pSW
 fps
 ovg
-mEe
+fWX
 sMl
 hdy
 kLV
@@ -60105,7 +60110,7 @@ ixG
 gRt
 mDO
 xyj
-mEe
+fWX
 dFZ
 lQy
 fcB
@@ -60709,7 +60714,7 @@ mcn
 dWm
 cAf
 wug
-mEe
+fWX
 hEN
 lzf
 whm
@@ -61011,7 +61016,7 @@ mcn
 hXV
 aOa
 hXV
-mEe
+fWX
 uwA
 rhr
 oXC
@@ -61313,7 +61318,7 @@ mcn
 uVw
 wuj
 cBE
-mEe
+fWX
 qtc
 oXC
 nzI
@@ -61615,7 +61620,7 @@ mcn
 kBG
 mrA
 jQj
-mEe
+fWX
 fLm
 kOG
 wZQ
@@ -61917,7 +61922,7 @@ mcn
 hXV
 fci
 hXV
-mEe
+fWX
 wcs
 wcs
 wcs
@@ -77944,7 +77949,7 @@ fck
 dBu
 uMC
 lTI
-bce
+pHg
 bce
 ssa
 nYF
