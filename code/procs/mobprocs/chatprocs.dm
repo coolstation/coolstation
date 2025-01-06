@@ -20,9 +20,9 @@
 		var/current_time = TIME
 		M.lasttyping = current_time
 		SPAWN_DBG(15 SECONDS)
-			if(M.lasttyping != current_time)
+			if(M?.lasttyping != current_time)
 				return
-			if (M.speech_bubble.icon_state == "typing")
+			if (M?.speech_bubble.icon_state == "typing" || !isalive(M))
 				M.UpdateOverlays(null, "speech_bubble") //this part right here is Zam's code, not mine
 	var/message = input("","Say") as null|text
 
@@ -37,14 +37,18 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	//&& !src.client.holder
-
+	var/mob/living/M = null
 	if (!message)
 		return
 	if (src.client && url_regex?.Find(message) && !client.holder)
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
 		boutput(src, "<span class='alert'>&emsp;<b>\"[message]</b>\"</span>")
 		return
+	if(istype(src,/mob/living))
+		M = src
 	src.say(message)
+	if (M.speech_bubble.icon_state == "typing")
+		M.UpdateOverlays(null, "speech_bubble")
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
 	#endif
