@@ -337,6 +337,9 @@
 			B.smash_on_thing(user, src)
 			return
 
+		else if (istype(W, /obj/item/lifted_thing))
+			return
+
 		else if (has_storage && src.desk_drawer)
 			if (islist(params) && params["icon-y"])
 				if (text2num(params["icon-y"]) <= 8)

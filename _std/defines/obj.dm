@@ -13,6 +13,8 @@
 #define ROUNDSTART_CLONER_PART (1<<4)
 /// object is spawned as part of the Special Delivery event, so if cargo tries to sell it NT will be angry
 #define SPECIAL_PENALTY_ON_SALE (1<<5)
+/// object isn't an item but can be lifted in two hands via a wrapper item. stuff like appliances and large bins
+#define CAN_BE_LIFTED (1<<6)
 
 /// At which alpha do opague objects become see-through?
 #define MATERIAL_ALPHA_OPACITY 190
