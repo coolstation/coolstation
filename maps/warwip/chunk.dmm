@@ -493,9 +493,6 @@
 /area/station/engine/storage)
 "aAi" = (
 /obj/disposalpipe/segment/bent/north,
-/obj/cable{
-	icon_state = "4-8"
-	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "aAm" = (
@@ -1222,9 +1219,10 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/item/breaker_box,
 /obj/decal/cleanable/dirt,
-/turf/floor/industrial,
+/obj/machinery/power/breaker,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
 /area/station/engine/power)
 "beJ" = (
 /obj/machinery/light/small{
@@ -2831,9 +2829,9 @@
 	},
 /obj/cable,
 /obj/machinery/power/monitor{
+	dir = 8;
 	icon_state = "power";
-	name = "Station Power Grid Monitoring";
-	dir = 8
+	name = "Station Power Grid Monitoring"
 	},
 /turf/floor/grey,
 /area/station/bridge)
@@ -4754,9 +4752,6 @@
 /area/station/crew_quarters/bar)
 "eys" = (
 /obj/decal/cleanable/dirt/random,
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/space_heater,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
@@ -6918,7 +6913,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/turf/floor/industrial,
+/turf/floor/plating,
 /area/station/engine/power)
 "gvC" = (
 /obj/disposalpipe/segment/mail,
@@ -8750,9 +8745,6 @@
 	dir = 1;
 	name = "brig pipe"
 	},
-/obj/cable{
-	icon_state = "4-8"
-	},
 /turf/floor/neutral/side{
 	dir = 6
 	},
@@ -9680,6 +9672,11 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "jmU" = (
@@ -10117,7 +10114,8 @@
 /obj/cable/orange{
 	icon_state = "0-8"
 	},
-/turf/floor/industrial,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
 /area/station/engine/power)
 "jNS" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -11631,9 +11629,6 @@
 /turf/space,
 /area/space)
 "lqy" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
@@ -13541,7 +13536,8 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/turf/floor/industrial,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
 /area/station/engine/power)
 "nqa" = (
 /obj/marker/supplymarker,
@@ -14453,14 +14449,12 @@
 	},
 /area/station/hallway/secondary/exit)
 "omh" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/door/airlock/engineering,
 /obj/access_spawn/engineering_power,
 /obj/disposalpipe/segment/vertical,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/engine/power)
 "omq" = (
@@ -18064,7 +18058,8 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/oil,
-/turf/floor/industrial,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
 /area/station/engine/power)
 "rHk" = (
 /obj/landmark/start{
@@ -18936,7 +18931,8 @@
 /obj/cable/orange{
 	icon_state = "0-8"
 	},
-/turf/floor/industrial,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
 /area/station/engine/power)
 "sHp" = (
 /obj/machinery/light{
@@ -20499,9 +20495,6 @@
 /area/station/mining/refinery)
 "uil" = (
 /obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
 	icon_state = "1-8"
 	},
 /turf/floor/neutral/side,
@@ -20832,7 +20825,8 @@
 /obj/rack,
 /obj/item/storage/firstaid/old,
 /obj/decal/cleanable/cobweb2,
-/turf/floor/industrial,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
 /area/station/engine/power)
 "uwl" = (
 /obj/disposalpipe/segment/mail{
@@ -21232,6 +21226,13 @@
 	},
 /turf/floor,
 /area/station/engine/engineering)
+"uJK" = (
+/obj/machinery/power/apc/autoname_east,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/plating,
+/area/station/maintenance/northwest)
 "uKe" = (
 /obj/machinery/disposal/mail/small/autoname/security/brig/east,
 /obj/disposalpipe/trunk{
@@ -24498,11 +24499,12 @@
 /area/station/science/lab)
 "xQm" = (
 /obj/disposalpipe/segment/bent/south,
+/obj/decal/cleanable/dirt/dirt2,
+/obj/grille/catwalk/jen,
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/decal/cleanable/dirt/dirt2,
-/turf/floor/industrial,
+/turf/floor/plating,
 /area/station/engine/power)
 "xQt" = (
 /obj/disposalpipe/segment/bent/north,
@@ -24869,10 +24871,6 @@
 /turf/floor,
 /area/station/engine/inner)
 "yhi" = (
-/obj/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/autoname_east,
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
@@ -63860,7 +63858,7 @@ edm
 dPt
 dkw
 ggs
-tKK
+anB
 qNI
 xcN
 myM
@@ -64466,8 +64464,8 @@ xQm
 omh
 aAi
 pIY
-ovP
-ovP
+uJK
+qCT
 jmy
 qCT
 qCT
