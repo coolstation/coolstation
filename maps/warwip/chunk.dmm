@@ -50,6 +50,13 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
+"aea" = (
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "afV" = (
 /obj/machinery/power/data_terminal,
 /obj/cable/orange{
@@ -118,10 +125,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northwest)
-"aik" = (
-/obj/decal/poster/wallsign/qm,
-/turf/wall/r_wall,
-/area/station/quartermaster/cargobay)
 "aiL" = (
 /obj/lattice{
 	dir = 9;
@@ -414,6 +417,16 @@
 "auw" = (
 /turf/wall/r_wall,
 /area/station/maintenance/southeast)
+"auB" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/cable/orange{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
 "auD" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1695,12 +1708,6 @@
 /obj/access_spawn/medlab,
 /turf/floor/white,
 /area/station/medical/research)
-"bFQ" = (
-/obj/cable{
-	icon_state = "1-6"
-	},
-/turf/floor,
-/area/station/quartermaster/cargobay)
 "bGb" = (
 /obj/landmark{
 	icon_state = "x3";
@@ -3681,13 +3688,6 @@
 	},
 /turf/floor/carpet/office/other,
 /area/station/crew_quarters/hor)
-"dCq" = (
-/obj/lattice,
-/obj/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/space,
-/area/space)
 "dCr" = (
 /obj/cable{
 	d1 = 1;
@@ -4298,6 +4298,12 @@
 	},
 /turf/floor/grime,
 /area/station/mining/refinery)
+"ees" = (
+/obj/cable{
+	icon_state = "1-6"
+	},
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "eez" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
@@ -4721,13 +4727,6 @@
 /obj/machinery/light/small,
 /turf/floor/carpet/arcade,
 /area/station/crew_quarters/captain)
-"exu" = (
-/obj/disposalpipe/segment/vertical,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor,
-/area/station/quartermaster/cargobay)
 "exx" = (
 /obj/lattice{
 	dir = 5;
@@ -5156,6 +5155,13 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"eVA" = (
+/obj/lattice,
+/obj/cable/orange{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
 "eVG" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5901,6 +5907,15 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor,
 /area/station/security/main)
+"fyK" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/cable/orange{
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
 "fzm" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
@@ -6631,6 +6646,10 @@
 /obj/item/wrench,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"ggs" = (
+/obj/decal/poster/wallsign/hazard_electrical,
+/turf/wall/r_wall,
+/area/station/engine/power)
 "ggQ" = (
 /turf/floor/green,
 /area/station/hydroponics/bay)
@@ -6993,15 +7012,11 @@
 /turf/floor/black,
 /area/station/medical/robotics)
 "gBH" = (
+/obj/wingrille_spawn/reinforced,
 /obj/cable/orange{
-	icon_state = "2-4"
+	icon_state = "4-8"
 	},
-/obj/cable/orange{
-	icon_state = "1-2"
-	},
-/turf/floor/neutral/side{
-	dir = 8
-	},
+/turf/floor/plating,
 /area/station/engine/singcore)
 "gBS" = (
 /obj/cable{
@@ -7367,6 +7382,10 @@
 /obj/item/storage/toolbox/electrical,
 /turf/floor,
 /area/station/engine/storage)
+"gTZ" = (
+/obj/decal/poster/wallsign/hazard_rad,
+/turf/wall/r_wall,
+/area/station/engine/inner)
 "gVI" = (
 /obj/rack,
 /obj/item/mop,
@@ -8031,10 +8050,6 @@
 /obj/decal/xmas_lights/ephemeral,
 /turf/floor/plating,
 /area/station/medical/medbay/cloner)
-"hGX" = (
-/obj/decal/poster/wallsign/hazard_electrical,
-/turf/wall/r_wall,
-/area/station/engine/power)
 "hIo" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -10154,11 +10169,15 @@
 /turf/floor,
 /area/station/engine/elect)
 "jRe" = (
-/obj/wingrille_spawn/reinforced,
 /obj/cable/orange{
-	icon_state = "4-8"
+	icon_state = "2-4"
 	},
-/turf/floor/plating,
+/obj/cable/orange{
+	icon_state = "1-2"
+	},
+/turf/floor/neutral/side{
+	dir = 8
+	},
 /area/station/engine/singcore)
 "jRf" = (
 /obj/lattice{
@@ -10386,6 +10405,10 @@
 "kcP" = (
 /turf/floor/grey,
 /area/station/security/checkpoint/customs)
+"kdS" = (
+/obj/decal/poster/wallsign/hazard_caution,
+/turf/wall/r_wall,
+/area/station/quartermaster/cargobay)
 "keL" = (
 /obj/machinery/crema_switch{
 	id = "crematorium";
@@ -12016,15 +12039,6 @@
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
-"lKb" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/floor/neutral/side,
-/area/station/engine/singcore)
 "lLb" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -12550,15 +12564,6 @@
 	},
 /turf/space,
 /area/space)
-"mph" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/obj/cable/orange{
-	icon_state = "1-2"
-	},
-/turf/space,
-/area/space)
 "mpD" = (
 /obj/machinery/light{
 	dir = 1;
@@ -12633,16 +12638,6 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/quarters_west)
-"msV" = (
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir"
-	},
-/obj/cable/orange{
-	icon_state = "2-8"
-	},
-/turf/space,
-/area/space)
 "mtt" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -13543,6 +13538,9 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/power/apc/autoname_east,
+/obj/cable{
+	icon_state = "0-8"
+	},
 /turf/floor/industrial,
 /area/station/engine/power)
 "nqa" = (
@@ -13670,15 +13668,6 @@
 "nvK" = (
 /turf/wall,
 /area/station/science/chemistry)
-"nwe" = (
-/obj/disposalpipe/segment/vertical,
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/floor,
-/area/station/quartermaster/cargobay)
 "nwg" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -14705,16 +14694,6 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor,
 /area/station/janitor/office)
-"owR" = (
-/obj/lattice{
-	dir = 6;
-	icon_state = "lattice-dir"
-	},
-/obj/cable/orange{
-	icon_state = "2-4"
-	},
-/turf/space,
-/area/space)
 "oxg" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -15015,9 +14994,15 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "oIr" = (
-/obj/machinery/recharge_station,
-/turf/floor/plating,
-/area/station/maintenance/northwest)
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/obj/cable/orange{
+	icon_state = "2-4"
+	},
+/turf/space,
+/area/space)
 "oIH" = (
 /obj/disposalpipe/segment/mail,
 /obj/machinery/door/firedoor/border_only,
@@ -16321,16 +16306,6 @@
 	},
 /turf/floor,
 /area/station/science/lobby)
-"pRK" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/obj/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/space,
-/area/space)
 "pSv" = (
 /obj/wingrille_spawn/reinforced,
 /obj/decal/xmas_lights/ephemeral,
@@ -18216,6 +18191,15 @@
 	},
 /turf/floor/grey,
 /area/station/bridge)
+"rRh" = (
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "rRK" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -19374,6 +19358,10 @@
 	dir = 1
 	},
 /area/station/security/main)
+"sYx" = (
+/obj/decal/poster/wallsign/qm,
+/turf/wall/r_wall,
+/area/station/quartermaster/cargobay)
 "sZq" = (
 /turf/floor/plating,
 /area/station/maintenance/southwest)
@@ -20509,6 +20497,15 @@
 /obj/machinery/manufacturer/gas,
 /turf/floor/plating,
 /area/station/mining/refinery)
+"uil" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/neutral/side,
+/area/station/engine/singcore)
 "uiu" = (
 /obj/cable/purple{
 	icon_state = "4-8"
@@ -21198,9 +21195,11 @@
 	},
 /area/space)
 "uHT" = (
-/obj/decal/poster/wallsign/hazard_caution,
-/turf/wall/r_wall,
-/area/station/quartermaster/cargobay)
+/obj/cable/orange{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/engine/singcore)
 "uHV" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/neutral/side{
@@ -23830,12 +23829,6 @@
 /obj/access_spawn/head_of_personnel,
 /turf/floor/grey,
 /area/station/crew_quarters/hop)
-"xio" = (
-/obj/cable/orange{
-	icon_state = "1-2"
-	},
-/turf/floor,
-/area/station/engine/singcore)
 "xjh" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
@@ -23857,6 +23850,16 @@
 /obj/access_spawn/maint,
 /turf/floor/plating,
 /area/station/science/bot_storage)
+"xlk" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/obj/cable/orange{
+	icon_state = "2-8"
+	},
+/turf/space,
+/area/space)
 "xlm" = (
 /obj/cable/purple{
 	icon_state = "1-8"
@@ -23910,6 +23913,10 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"xmw" = (
+/obj/machinery/recharge_station,
+/turf/floor/plating,
+/area/station/maintenance/northwest)
 "xmJ" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor/white,
@@ -24061,10 +24068,6 @@
 /obj/disposalpipe/junction/middle/east,
 /turf/floor/plating,
 /area/station/maintenance/west)
-"xuO" = (
-/obj/decal/poster/wallsign/hazard_rad,
-/turf/wall/r_wall,
-/area/station/engine/inner)
 "xuQ" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -58732,7 +58735,7 @@ tQd
 tQd
 oLK
 fei
-uHT
+kdS
 oLK
 oLK
 oLK
@@ -59016,14 +59019,14 @@ fqb
 xLP
 izS
 oiH
-xio
-xio
-xio
+uHT
+uHT
+uHT
 gDc
-xio
-xio
-xio
-xio
+uHT
+uHT
+uHT
+uHT
 oqm
 puo
 qLI
@@ -59334,7 +59337,7 @@ ooL
 eZd
 qBz
 imR
-bFQ
+ees
 fuF
 ceG
 eXE
@@ -59619,10 +59622,10 @@ sBc
 fqb
 fqb
 bLO
-jRe
-jRe
-jRe
-jRe
+gBH
+gBH
+gBH
+gBH
 bLO
 bLO
 fqb
@@ -59921,8 +59924,8 @@ sBc
 uBf
 sBc
 jlh
-dCq
-msV
+eVA
+xlk
 dap
 djV
 bOi
@@ -59938,7 +59941,7 @@ nNe
 nNe
 nNe
 oLK
-aik
+sYx
 edn
 vlM
 tEQ
@@ -60223,7 +60226,7 @@ huZ
 huZ
 fDn
 huZ
-pRK
+auB
 huZ
 fDn
 huZ
@@ -60530,7 +60533,7 @@ huZ
 fDn
 huZ
 afV
-mph
+fyK
 xqq
 aNI
 vkq
@@ -61140,7 +61143,7 @@ wLa
 kMV
 kia
 tgQ
-xuO
+gTZ
 mOc
 kvj
 pwi
@@ -61448,8 +61451,8 @@ lSY
 gLt
 bDK
 yha
-exu
-nwe
+aea
+rRh
 jOK
 rVv
 rVv
@@ -61738,7 +61741,7 @@ huZ
 fDn
 huZ
 xWy
-mph
+fyK
 sFi
 aNI
 xGj
@@ -62035,7 +62038,7 @@ huZ
 huZ
 fDn
 huZ
-pRK
+auB
 huZ
 fDn
 huZ
@@ -62337,8 +62340,8 @@ sBc
 sBc
 sBc
 bzW
-dCq
-owR
+eVA
+oIr
 iro
 eGX
 bOi
@@ -62639,10 +62642,10 @@ sBc
 fqb
 fqb
 bLO
-jRe
-jRe
-jRe
-jRe
+gBH
+gBH
+gBH
+gBH
 bLO
 bLO
 fqb
@@ -62948,7 +62951,7 @@ mZJ
 kgp
 mnl
 nQd
-gBH
+jRe
 xAz
 cbD
 gbV
@@ -63244,8 +63247,8 @@ fqb
 bmE
 izS
 xXr
-xio
-xio
+uHT
+uHT
 oEo
 ykZ
 izS
@@ -63253,7 +63256,7 @@ izS
 gLp
 uSH
 eZZ
-lKb
+uil
 qNI
 qNI
 eII
@@ -63856,7 +63859,7 @@ edm
 edm
 dPt
 dkw
-hGX
+ggs
 tKK
 qNI
 xcN
@@ -64762,7 +64765,7 @@ edm
 uvs
 bdT
 npI
-hGX
+ggs
 lqy
 opp
 opp
@@ -65374,7 +65377,7 @@ fDn
 vFh
 fDn
 opp
-oIr
+xmw
 uwp
 cAI
 cAI
