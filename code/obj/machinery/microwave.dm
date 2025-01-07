@@ -104,11 +104,11 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.microwave_state > 0)
 		if (isscrewingtool(O) && src.microwave_state == MW_STATE_BROKEN_2)
 			src.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>")
-			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/repair, list(user), 'icons/obj/items/tools/screwdriver.dmi', "screwdriver", "", null)
+			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/repair, list(user), 'icons/obj/items/tools/tools.dmi', "screwdriver", "", null)
 			return
 		else if (src.microwave_state == MW_STATE_BROKEN_1 && iswrenchingtool(O))
 			src.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>")
-			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/repair, list(user), 'icons/obj/items/tools/wrench.dmi', "wrench", "", null)
+			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/repair, list(user), 'icons/obj/items/tools/tools.dmi', "wrench", "", null)
 			return
 		else
 			boutput(user, "It's broken! It could be fixed with some common tools.")

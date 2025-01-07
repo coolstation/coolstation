@@ -1,8 +1,8 @@
 /obj/item/weldingtool
 	name = "weldingtool"
 	desc = "A tool that, when turned on, uses fuel to emit a concentrated flame, welding metal together or slicing it apart."
-	icon = 'icons/obj/items/tools/weldingtool.dmi'
-	inhand_image_icon = 'icons/mob/inhand/tools/weldingtool.dmi'
+	icon = 'icons/obj/items/tools/tools.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "weldingtool-off"
 	item_state = "weldingtool-off"
 	uses_multiple_icon_states = 1
