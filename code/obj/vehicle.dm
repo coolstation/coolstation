@@ -364,7 +364,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			M.changeStatus("weakened", 5 SECONDS)
 			src.log_me(src.rider, M, "impact")
 		if(prob(10))
-			M.visible_message("<span class='alert'><b>[src]</b> beeps out an automated injury report of [M]'s vitals.</span>")
+			M.visible_message("<span class='success'><b>[src]</b> beeps out an automated injury report of [M]'s vitals.</span>")
 			M.visible_message(scan_health(M, visible = 1))
 		eject_rider(2)
 		in_bump = 0
@@ -638,6 +638,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	throw_dropped_items_overboard = 1
 
 	New()
+		START_TRACKING
 		..()
 		src.create_reagents(1250)
 		if(zamboni)
@@ -649,6 +650,11 @@ ABSTRACT_TYPE(/obj/vehicle)
 		else
 			reagents.add_reagent("cleaner", 1000)
 			//reagents.add_reagent("cleaner", 250) //don't even need this now that we have fluid, probably. If you want it, add it yer self
+
+	disposing()
+		STOP_TRACKING
+		..()
+
 /*
 /obj/ability_button/toggle_buffer
 	name = "Toggle Buff-R-Matic Sprayer"

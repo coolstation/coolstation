@@ -6,6 +6,7 @@ obj/machinery/atmospherics/binary/passive_gate
 //
 	name = "Passive gate"
 	desc = "A one-way air valve that does not require power. Flow rate may be adjusted with tools."
+	generic_decon_module = /obj/item/atmospherics/module/passive_gate
 
 	var/on = 0
 	var/target_pressure = ONE_ATMOSPHERE
@@ -79,6 +80,7 @@ obj/machinery/atmospherics/binary/passive_gate
 obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/W, mob/user)
 	if(ispulsingtool(W) || iswrenchingtool(W)) //pet peeve: why would a passive, non-power-using gate respond to a MULTITOOL
 		ui.show_ui(user)
+	else ..()
 
 datum/pump_ui/passive_gate_ui
 	value_name = "Release Pressure"

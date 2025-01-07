@@ -124,7 +124,8 @@ var/global
 	"Bra and Boyshorts" = "braboy",
 	"Tanktop and Boyshorts" = "tankboy",
 	"Panties" = "panties",
-	"Boyshorts" = "boyshort")
+	"Boyshorts" = "boyshort",
+	"Fig Leaf" = "figleaf")
 
 	list/standard_skintones = list("Albino" = "#FAD7D0",
 	"White" = "#FFCC99",
@@ -280,6 +281,7 @@ var/global
 	suicide_allowed = 1
 	dna_ident = 1
 	abandon_allowed = 1
+	enable_fastpath = 0 // space fastpath default value
 	enter_allowed = 1
 	johnbus_location = 1
 	johnbus_destination = 0

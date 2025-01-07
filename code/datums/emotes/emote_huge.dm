@@ -783,8 +783,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				dab_id?.arm_count++
 			user.limbs.r_leg?.sever()
 			user.limbs.l_leg?.sever()
-			message = "<span class='alert'>[user] does a sick dab on the bible!</span>"
-			user.visible_message("<span class='alert'>An unseen force smites [user]'s' limbs off</B>!</span>")
+			message = "<span class='alert'>[user] does a sick dab on ol' bib!</span>"
+			user.visible_message("<span class='alert'>[user]'s' limbs just kind of fly off for reasons.</B>!</span>")
 			playsound(user.loc,"sound/misc/deepfrieddabs.ogg",50,0, channel=VOLUME_CHANNEL_EMOTE)
 	else
 		user.show_text("You don't know how to do that but you feel deeply ashamed for trying", "red")

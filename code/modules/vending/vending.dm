@@ -60,6 +60,7 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
+	machinery_flags = MAY_REQUIRE_MAINT
 	anchored = 1
 	density = 1
 	mats = 20
@@ -369,7 +370,7 @@
 		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				SPAWN_DBG(0)
-					src.malfunction()
+					src.break_down()
 					return
 				return
 			else if (prob(25))
@@ -384,10 +385,10 @@
 		SPAWN_DBG(0)
 			if (prob(power / 3) && can_fall == 2)
 				for (var/i = 0, i < rand(4,7), i++)
-					src.malfunction()
+					src.break_down()
 				qdel(src)
 			if (prob(50) || can_fall == 2)
-				src.malfunction()
+				src.break_down()
 			else
 				src.fall()
 		return
@@ -576,6 +577,12 @@
 		src.UpdateOverlays(src.panel_open ? src.panel_image : null, "panel")
 		src.generate_HTML(0, 1)
 		return
+	else if (istype(W, /obj/item/cable_coil))
+		if (src.panel_open && W.amount >= 5)
+			W.change_stack_amount(-5)
+			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+			boutput(user, "<span class='notice'>You replace the wiring inside the machine.</span>")
+			malfunction_resolve()
 	else if (istype(W, /obj/item/device/t_scanner) || (istype(W, /obj/item/device/pda2) && istype(W:module, /obj/item/device/pda_module/tray)))
 		if (src.seconds_electrified != 0)
 			boutput(user, "<span class='alert'>[bicon(W)] <b>WARNING</b>: Abnormal electrical response received from access panel.</span>")
@@ -958,8 +965,8 @@
 	src.anchored = 0
 	return
 
-//Oh no we're malfunctioning!  Dump out some product and break.
-/obj/machinery/vending/proc/malfunction()
+//Oh no we're getting roughed up!  Dump out some product and break.
+/obj/machinery/vending/proc/break_down() //was proc/malfunction, renamed to free up the name for a machinery-wide proc (this gets calls by pretty severe things anyway)
 	for(var/datum/data/vending_product/R in src.product_list)
 		if (R.product_amount <= 0) //Try to use a record that actually has something to dump.
 			continue
@@ -974,7 +981,7 @@
 		else
 			continue
 
-		while(R.product_amount>0)
+		while(R.product_amount>0) //and by some we mean literally all of it
 			new dump_path(src.loc)
 			R.product_amount--
 		break
@@ -1052,6 +1059,29 @@
 		return 1
 	return 0
 
+/obj/machinery/vending/malfunction(mult)
+	..()
+	if (probmult(15))
+		elecflash(src)
+	else
+		if (prob(50))//fairly common
+			throw_item()
+	if (probmult(5)) //cause lasting problems :3
+		//so having this list duplicated here is kinda shit but src.vendwires isn't set until something generates the vending machine's HTML
+		cut(pick(list("Violet", "Orange", "Goldenrod", "Green",	"Broun")))
+	if (probmult(1))
+		var/mob/living/carbon/human/H = locate() in orange(1, src)
+		fall(H) //:D
+
+//Since repairing a vending machine involves replacing the wiring...
+/obj/machinery/vending/malfunction_resolve()
+	src.wires = initial(src.wires)
+	src.extended_inventory = FALSE
+	src.seconds_electrified = 0
+	src.shoot_inventory = FALSE
+	src.ai_control_enabled = TRUE
+	src.freezer = initial(src.freezer)
+	..()
 
 /obj/machinery/vending/proc/isWireColorCut(var/wireColor)
 	var/wireFlag = VendWireColorToFlag[wireColor]

@@ -315,7 +315,7 @@
 			pals ++
 			if (prob(40))
 				src.emote("scream")
-		if(aggroed)
+		if(aggroed && !isunconscious(src))
 			walk_towards(src, ai_target, ai_movedelay)
 
 	ai_is_valid_target(mob/M)

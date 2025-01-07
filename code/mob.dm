@@ -120,6 +120,7 @@
 	var/Vnetwork = null
 	var/lastDamageIconUpdate
 	var/say_language = "english"
+	var/lasttyping = null
 	var/literate = 1 // im liturit i kin reed an riet
 
 	var/list/movement_modifiers = list()
@@ -2801,7 +2802,7 @@
 		loc = client.player.shamecubed
 		return
 
-	if (waddle_walking)
+	if (waddle_walking || src.bioHolder.HasEffect("waddle_walk"))
 		makeWaddle(src)
 
 	last_move_dir = move_dir
@@ -2858,7 +2859,7 @@
 			return
 	if (src.mind)
 		if(src.mind.damned)
-			boutput(src, "<span class='alert'>You can never escape.</span>")
+			boutput(src, "<span class='alert'>You can never escape. Should have hit more bones while you could.</span>")
 		else // uhhhhh how did you get here. You didnt sin enough! Go back and try harder!
 			return
 

@@ -10,6 +10,7 @@ obj/machinery/atmospherics/mixer
 	density = 0
 //
 	name = "Gas mixer"
+	generic_decon_module = /obj/item/atmospherics/module/mixer
 
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST

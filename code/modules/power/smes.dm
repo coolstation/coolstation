@@ -44,7 +44,7 @@
 	src.add_fingerprint(user)
 
 	if(isscrewingtool(W))
-		boutput(user, "<span class='alert'>You open the panel on the [src]!</span>")
+		boutput(user, "<span class='alert'>You [opened ? "close" : "open"] the panel on the [src]!</span>")
 		if(src.opened)
 			src.opened = FALSE
 		else

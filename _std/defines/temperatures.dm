@@ -2,6 +2,8 @@
 #define T0C 273.15
 /// 20 degrees celsius. Room temperature.
 #define T20C 293.15
+//45 degrees celcius, balmy and borderline inhospitable
+#define T45C 313.15
 /// -270.3 degrees celsius. Temperature of cosmic background radiation.
 #define TCMB 2.7
 /// 100 degrees celsius. Boiling point of liquid water.

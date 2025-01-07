@@ -143,3 +143,4 @@
 //#define access_head_of_security_locker 115//E
 #define access_head_of_personnel_locker 116	//2DAY (the cap can't find out :3)
 //#define access_captain_locker 117 //not relevant atm, but reserved in case
+#define access_scrapping 118 //for the bayou bend

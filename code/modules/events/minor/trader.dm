@@ -88,8 +88,8 @@
 					showswirl(AM)
 					AM.set_loc(pick_landmark(LANDMARK_LATEJOIN, locate(150, 150, 1)))
 					showswirl(AM)
-				for (var/obj/O in T)
-					get_hiding_jerk(O)
+				// for (var/obj/O in T)
+					// get_hiding_jerk(O)
 
 			for (var/turf/O in end_location)
 				if (istype(O, map_turf))
@@ -103,10 +103,10 @@
 
 			active = 0
 
-/proc/get_hiding_jerk(var/atom/movable/container)
+/* /proc/get_hiding_jerk(var/atom/movable/container)
 	for(var/atom/movable/AM in container)
 		if(AM.contents.len) get_hiding_jerk(AM)
 		if(ismob(AM))
 			var/mob/M = AM
 			boutput(AM, "<span class='alert'><b>Your body is destroyed as the merchant shuttle passes [pick("an eldritch decomposure field", "a life negation ward", "a telekinetic assimilation plant", "a swarm of matter devouring nanomachines", "an angry Greek god", "a burnt-out coder", "a death ray fired millenia ago from a galaxy far, far away")].</b></span>")
-			M.gib()
+			M.gib() */

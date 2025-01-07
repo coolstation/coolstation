@@ -1156,6 +1156,7 @@ obj/decoration/ceilingfan
 	mouse_opacity = 0
 
 /obj/decoration/damagedchair
+	name = "damaged chair"
 	anchored = 2
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "damagedchair"

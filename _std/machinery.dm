@@ -19,14 +19,18 @@
 #define ENVIRON 3 //! Power Channel: Enviroment
 #define TOTAL 4		//! For total power used only
 
-// bitflags for machine stat variable
+// bitflags for machine status variable
 #define BROKEN    (1<<0)		//! Status flag: machine non-functional
 #define NOPOWER   (1<<1)		//! Status flag: no available power
 #define POWEROFF  (1<<2)		//! Status flag: machine shut down, but may still draw a trace amount
 #define MAINT     (1<<3)		//! Status flag: under maintainance
 #define HIGHLOAD  (1<<4)		//! Status flag: using a lot of power
 #define EMP_SHORT (1<<5)		//! Status flag: 1 second long emp duration, avoid stacking emp faster than 1Hz
-#define REQ_PHYSICAL_ACCESS (1<<6) //! Can only be interacted with if adjacent and physical
+#define MALFUNC	  (1<<6)		//! Status flag: machine is malfunctioning
+
+// bitflags for machines that are more permanent than status
+#define REQ_PHYSICAL_ACCESS (1<<0) //! Can only be interacted with if adjacent and physical
+#define MAY_REQUIRE_MAINT	(1<<1) //! Is eligible machinery for the station maintenance mechanic. Machine must spawn on a station area also.
 
 //recharger stuff
 #define CELLRATE 0.002  // multiplier for watts per tick <> cell storage (eg: .002 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
@@ -89,6 +93,8 @@
 
 var/global/list/processing_machines = generate_machinery_processing_buckets()
 var/global/list/machine_registry = generate_machine_registry()
+///All machines that support the station maintenance mechanic
+var/global/list/maintenance_eligible_machines = list()
 
 /proc/generate_machine_registry()
 	. = new /list(MACHINES_REGISTRY_MAX)

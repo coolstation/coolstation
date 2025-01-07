@@ -208,6 +208,7 @@
 
 /obj/machinery/glass_recycler/chemistry //Chemistry doesn't really need all of the drinking glass options and such so I'm limiting it down a notch.
 	name = "chemistry glass recycler"
+	icon_state = "synthesizer-purp"
 
 	attack_hand(mob/user as mob)
 		var/dat = {"<b>Glass Left</b>: [glass_amt]<br>

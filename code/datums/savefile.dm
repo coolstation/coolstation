@@ -150,7 +150,7 @@
 			CRASH("[user] isnt a client. please give me a client. please. i beg you.")
 
 		if (IsGuestKey(user.key))
-			return 0
+			return "Guests cannot load saves."
 
 		var/savefile/F
 		var/path
@@ -159,7 +159,7 @@
 		else
 			path = savefile_path(user)
 			if (!fexists(path))
-				return 0
+				return "Save path does not exist."
 			profileNum = max(1, min(profileNum, SAVEFILE_PROFILES_MAX))
 			F = new /savefile(path, -1)
 
@@ -169,7 +169,7 @@
 		if (isnull(version) || version < SAVEFILE_VERSION_MIN || version > SAVEFILE_VERSION_MAX)
 			if (!loadFrom)
 				fdel(path)
-			return 0
+			return "Save version unvalid. > [version],[profileNum],[path],[loadFrom] <"
 
 		// Check if any saved profiles are present
 		var/sanity_check = null
@@ -181,7 +181,7 @@
 					break
 			if (isnull(sanity_check) && !loadFrom)
 				fdel(path)
-			return 0
+			return "Failed sanity check."
 
 		src.profile_number = profileNum
 		src.profile_modified = 0
@@ -414,7 +414,7 @@
 			return "Failed to retrieve cloud data, try rejoining."
 
 		if (IsGuestKey(user.key))
-			return 0
+			return "Guests cannot load saves."
 
 		if(!config.opengoon_api_endpoint)
 			logTheThing( "debug", src, null, "no cloudsave url set" )
@@ -428,14 +428,15 @@
 
 		if (response.errored || !response.body)
 			logTheThing("debug", null, null, "<b>cloudsave_load:</b> Failed to contact opengoon. u: [user.ckey]")
-			return
+			return "Failed to contact opengoon."
 
 		var/list/ret = json_decode(response.body)
 		if( ret["status"] == "error" )
 			return ret["error"]["error"]
 
 		var/savefile/save = new
-		save.ImportText( "/", ret["savedata"] )
+		save.ImportText( "/", ret["savefile"] )
+	//	logTheThing("debug", null, null, "<b>cloudsave_load:</b> [ret["savefile"]],[response.body]")
 		return src.savefile_load(user, 1, save)
 
 	cloudsave_save( client/user, var/name )

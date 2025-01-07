@@ -3,6 +3,7 @@
 	desc = "A thing for making nice particles with. It's an admin tool so if you see it ingame please adminhelp about it!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "holo_console1"
+	flags = TECHNICAL_ATOM
 	var/datum/particle_maker_var_holder/P = null
 
 	New()

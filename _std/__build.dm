@@ -47,6 +47,8 @@ o+`        `-` ``..-:yooos-..----------..`
 
 //////////// DEBUGGING TOGGLES
 
+//#define IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY 1	//force prevent mob spawner landmarks, so you can test movement or damage or whatever without the GODCOCKING MONKEYS TRIPPING YOUR BREAKPOINTS EVERY 2 MILLISECONDS GOD DAMN
+
 // Delete queue debug toggle
 // This is expensive. don't turn it on on the server unless you want things to be bad and slow
 //#define DELETE_QUEUE_DEBUG
@@ -88,14 +90,15 @@ o+`        `-` ``..-:yooos-..----------..`
 //////////// MAP OVERRIDES
 
 //---------------------- Maps that are being maintained ------------------------------//
-//#define MAP_OVERRIDE_BAYOUBEND //low to midpop scrapping map by Klushy225
+//#define MAP_OVERRIDE_BAYOUBEND 		//low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
 #define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Altas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
 //---------------------- Maps that exist but maybe not up to date --------------------//
-//#define MAP_OVERRIDE_CONSTRUCTION		// Construction mode
+//#define MAP_OVERRIDE_CRAG						// secret :)
+//#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
@@ -114,8 +117,8 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
 //#define MAP_OVERRIDE_PAMGOC 			// Pamgoc
-//#define MAP_OVERRIDE_WRESTLEMAP  	 	// Wrestlemap by Overtone
-//#define MAP_OVERRIDE_POD_WARS   		// 500x500 Pod Wars map
+//#define MAP_OVERRIDE_WRESTLEMAP  	// Wrestlemap by Overtone
+//#define MAP_OVERRIDE_POD_WARS   	// 500x500 Pod Wars map
 
 //////////// GAMEMODE OVERRIDES (intended for ease of debug only. disables saving/loading the mode config therefore probably fucky on live server)
 
@@ -172,7 +175,7 @@ var/global/ci_dm_version_minor = "100"
 #define BUILD_TIME_TIMEZONE_OFFSET -0500
 #define BUILD_TIME_FULL "2009-02-13 18:31:30"
 #define BUILD_TIME_YEAR 2053
-#define BUILD_TIME_MONTH 1
+#define BUILD_TIME_MONTH 12
 #define BUILD_TIME_DAY 24 //SET ME TO 13 TO TEST YOUR ASS_JAM CONTENT!!
 #define BUILD_TIME_HOUR 18
 #define BUILD_TIME_MINUTE 31

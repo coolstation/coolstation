@@ -100,6 +100,11 @@ Custom Books
 		icon_state = "gunguide"
 		file_path = "strings/books/gun_pocket_guide.txt"
 
+	atmos
+		name = "Atmospherics Pocket Guide"
+		icon_state = "atmos"
+		file_path = "strings/books/atmos_pocket_guide.txt"
+
 /****MatSci and Mining****/
 
 /obj/item/paper/book/from_file/matsci_guide_old
@@ -438,6 +443,12 @@ Custom Books
 	icon_state = "book0"
 	file_path = "strings/books/zoo_diary.txt"
 
+/obj/item/paper/book/from_file/oldwoman
+	name = "In the Sky an Old Woman lives"
+	desc = "There are bites taken out of this! What the hell?!"
+	icon_state = "book0"
+	file_path = "strings/books/oldwoman.txt"
+
 /obj/item/paper/book/ratbook
 	name = "chewed and mangled book"
 	desc = "Huh, what is this?"
@@ -458,6 +469,12 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 		if (voidMessage)
 			boutput(wearer, "[voidMessage]")
 		return
+
+/obj/item/paper/book/from_file/diary_of_a_stranded_clergyman
+	name = "grim diary"
+	desc = "It looks eclesiastical."
+	icon_state = "book0"
+	file_path = "strings/books/clergy_diary.txt"
 
 /******************** CUSTOM BOOKS ********************/
 

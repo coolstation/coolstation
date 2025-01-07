@@ -5,6 +5,7 @@ obj/machinery/atmospherics/pipe
 	text = ""
 	layer = PIPE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
+	generic_decon_time = 3 SECONDS
 
 	var/datum/gas_mixture/air_temporary //used when reconstructing a pipeline that broke
 	var/datum/pipeline/parent
@@ -386,8 +387,8 @@ obj/machinery/atmospherics/pipe
 			if(isweldingtool(W))
 
 				if(!ruptured)
-					boutput(user, "<span class='alert'>That isn't damaged!</span>")
-					return
+					//boutput(user, "<span class='alert'>That isn't damaged!</span>")
+					return ..()
 				else if(destroyed)
 					boutput(user, "<span class='alert'>This needs more than just a welder. We need to make a new pipe!</span>")
 					return
@@ -406,6 +407,7 @@ obj/machinery/atmospherics/pipe
 				var/datum/action/bar/icon/callback/action_bar = new /datum/action/bar/icon/callback(user, src, duration, /obj/machinery/atmospherics/pipe/simple/proc/reconstruct_pipe,\
 				list(user, S), W.icon, W.icon_state, "[user] finishes working with \the [src].")
 				actions.start(action_bar, user)
+			else ..()
 
 		proc/repair_pipe()
 			src.ruptured = 0
@@ -637,6 +639,9 @@ obj/machinery/atmospherics/pipe
 			else
 				icon_state = "exposed"
 
+		generic_deconstruct()
+			..(new /obj/item/atmospherics/pipeframe/exchanger_regular_junction/pre_welded(src.loc))
+
 	simple/heat_exchanging
 		icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi'
 		icon_state = "intact"
@@ -670,6 +675,10 @@ obj/machinery/atmospherics/pipe
 
 				icon_state = "[node1_direction|node2_direction]"
 
+		generic_deconstruct()
+			..(new /obj/item/atmospherics/pipeframe/exchanger/pre_welded(src.loc))
+
+
 	tank
 		icon = 'icons/obj/atmospherics/tanks/grey_pipe_tank.dmi'
 		icon_state = "intact"
@@ -681,6 +690,7 @@ obj/machinery/atmospherics/pipe
 		density = 1
 		var/obj/machinery/atmospherics/node1
 		layer = PIPE_OVERCAT
+		generic_decon_time = 10 SECONDS //it's a giant tank what do you expect
 
 		north
 			dir = NORTH
@@ -955,6 +965,7 @@ obj/machinery/atmospherics/pipe
 		volume = 250
 		dir = SOUTH
 		initialize_directions = SOUTH
+		generic_decon_module = /obj/item/atmospherics/module/vent
 		var/obj/machinery/atmospherics/node1
 
 		north

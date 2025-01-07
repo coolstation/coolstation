@@ -551,9 +551,23 @@ var/obj/item/dummy/click_dummy = new
 	proc/to_rgba()
 		return rgb(r,g,b,a)
 
+/proc/clear_area(var/area/A, var/turftospare=null, var/objecttospare=null, var/isOcean=false)
+	// Takes: Area, optional turf type to spare from the purge, optional object to spare, whether or not this is in da ocean
+	var/list/turfs = get_area_turfs(A.type)
+	for(var/turf/S in turfs)
+		if(!isOcean && S != turftospare)
+			S.ReplaceWithSpace()
+		else
+			return //come back later and add OSHAN floors to this, i'm lazy(silly) tho
+		for(var/atom/movable/AM as anything in S)
+			if(!istype(AM,objecttospare))
+				qdel(AM)
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = 0)
-	//Takes: Area. Optional: turf type to leave behind.
+
+/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE)
+	//Takes: Area.
+	//Optional: turf type to leave behind, flag for ignoring fluid puddle objects, and flag to treat source turfs of type turftoleave as "empty" and to not move the turf
+	//(The latter being so we don't put elevator shaft turfs at the bottom of elevators. That wasn't a great time. It might be neat too for simulating shuttles with holes in em though.)
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
 	//       Movement based on lower left corner. Tiles that do not fit
@@ -585,13 +599,18 @@ var/obj/item/dummy/click_dummy = new
 
 		if(T?.loc != A) continue
 
-		T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
-		T.appearance = S.appearance
-		T.set_density(S.density)
-		T.set_dir(S.dir)
+		if (istype(S, turftoleave) && consider_filler_as_empty)
+			var/obj/CATWALK = locate(/obj/grille/catwalk) in S
+			if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
+				continue //There's no platform to carry them up, so don't move any of the contents either
+			else
+				CATWALK.set_loc(T) //load bearing that these move first
+		else
+			T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
+			T.appearance = S.appearance
+			T.set_density(S.density)
+			T.set_dir(S.dir)
 
-	for (var/turf/S in turfs_src)
-		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
 		for (var/atom/movable/AM as anything in S)
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
 			if (ignore_fluid && istype(AM, /obj/fluid)) continue // this previously said "!ignore_fluid" which seems like a mistake? setting ignore_fluid to 1 actually made it move fluids... ~warc

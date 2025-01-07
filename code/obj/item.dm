@@ -1258,6 +1258,11 @@
 		M.do_disorient(weakened = rng_stun_weak, stunned = rng_stun_time, disorient = rng_stun_diso)
 		msgs.stamina_crit = 1
 		msgs.played_sound = pick(sounds_punch)
+		//awfulworldkid: location based crit effects
+		if(def_zone == "head" && src.hit_type == DAMAGE_BLUNT)
+			M.take_brain_damage(src.w_class)
+		if((def_zone == "l_leg" || def_zone == "r_leg") && src.hit_type == DAMAGE_BLUNT)
+			M.changeStatus("weakened", (src.w_class / 2) SECONDS)
 #endif
 
 	msgs.played_sound = src.hitsound
@@ -1512,6 +1517,15 @@
 		JOB_XP(user, "Clown", 1)
 	else
 		. = "<B>[user]</B> [pick("spins", "twirls")] [src] around in [his_or_her(user)] hand."
+
+/obj/item/proc/on_raise_emote(var/mob/living/carbon/human/user as mob)
+	if((user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(40)) || (user.reagents && prob(user.reagents.get_reagent_amount("ethanol") / 3)) || prob(3))
+		. = "<B>[user]</B> raises [src] in the air, and drops it right on the ground.[prob(10) ? " Great job." : null]"
+		user.u_equip(src)
+		src.set_loc(user.loc)
+		JOB_XP(user,"Clown", 1)
+	else
+		. = "<B>[user]</B> raises [src] in the air."
 
 /obj/item/proc/HY_set_species()
 	return

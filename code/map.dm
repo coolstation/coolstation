@@ -24,6 +24,7 @@ var/global/list/mapNames = list(
 	"Donut 2" = 		list("id" = "DONUT2", 		"settings" = "donut2",			"playerPickable" = 1),
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
+	"The Crag"=			list("id" = "CRAG",			"settings" = "crag", 			"playerPickable" = 1),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
@@ -289,6 +290,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
+	goonhub_map = "https://wiki.coolstation.space/wiki/File:Bayoubendmapimage.png"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -300,9 +302,14 @@ var/global/list/mapNames = list(
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
+	qm_supply_type = "shuttle"
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
 
 	escape_centcom = /area/shuttle/escape/centcom/donut2
 	escape_outpost = /area/shuttle/escape/outpost/donut2
@@ -310,6 +317,24 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/donut2
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"research sector" = list(/area/station/science/lobby),
+		"the logistics bay" = list(/area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the robotics workshop" = list(/area/station/medical/robotics),
+		"the bridge" = list(/area/station/bridge),
+		"the departures wing" = list(/area/station/hallway/secondary/exit),
+		"the chapel" = list(/area/station/chapel/sanctuary),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
+		"the cafeteria" = list(/area/station/crew_quarters/bar))
+
+	job_limits_override = list(
+		/datum/job/logistics/miner = 0,
+		/datum/job/logistics/scrapper = 3,
+		/datum/job/civilian/rancher = 0,
+		/datum/job/medical/pathologist = 0
+	)
 
 
 /datum/map_settings/cogmap
@@ -1157,6 +1182,75 @@ var/global/list/mapNames = list(
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
 				c_shuttle.filler_turf = "/turf/floor/industrial"
+
+
+/datum/map_settings/crag
+	name = "CRAG"
+	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
+	auto_walls = 0
+	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	arrivals_type = MAP_SPAWN_CRYO
+	qm_supply_type = "shuttle"
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window/pyro
+	rwindows = /obj/window/auto/reinforced
+	rwindows_thin = /obj/window/reinforced/pyro
+	windows_crystal = /obj/window/auto/crystal
+	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/cogmap2
+	escape_outpost = /area/shuttle/escape/outpost/cogmap2
+	escape_transit = /area/shuttle/escape/transit/cogmap2
+	escape_station = /area/shuttle/escape/station/cogmap2
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the cargo office (QM)" = list(/area/station/quartermaster/office, /area/station/quartermaster/cargooffice/storefront),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
+		"the bar" = list(/area/station/crew_quarters/bar),
+		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
+		"the chapel" = list(/area/station/chapel/sanctuary),
+		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/west, /area/station/maintenance/inner/north, /area/station/maintenance/central, /area/station/maintenance/inner/ne, /area/station/maintenance/outer/east, /area/station/maintenance/south, /area/station/maintenance/inner/nw))
+
+	//job_limits_override = list()
+
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
+			var/area/e_shuttle = locate(/area/shuttle/escape/station)
+			if(e_shuttle)
+				e_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = "/turf/space/gehenna/desert/beaten"
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = "/turf/space/gehenna/desert/beaten"
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"

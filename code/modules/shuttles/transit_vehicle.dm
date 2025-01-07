@@ -11,7 +11,7 @@ ABSTRACT_TYPE(/datum/transit_stop/elevator)
 	/// Display name of the location, used on the terminal
 	var/name = "Call 1-800-CODER"
 	/// Area to use when moving the vehicle.
-	var/target_area
+	var/area/target_area
 	/// The vehicle_id currently parked here.
 	/// if the platform of the elevator or the shuttle starts here, copy it's ID here.
 	var/current_occupant
@@ -139,7 +139,9 @@ var/global/datum/transit_controller/transit_controls = new
 			var/filler_turf_end = text2path(end_location.filler_turf)
 			if (!filler_turf_start)
 				filler_turf_start = "space"
-			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = 0)
+			//need to figure out how to not hardcode the elevators into this
+			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = FALSE, consider_filler_as_empty = (istype(start_location, /area/transit_vehicle/elevator)))
+			//I think this might be kinda superfluous now
 			for (var/turf/P in end_location)
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
@@ -200,7 +202,10 @@ var/global/datum/transit_controller/transit_controls = new
 		return
 
 	Entered(atom/movable/A as mob|obj)
-		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible) || istype(A, /obj/blob))
+		//if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible) || istype(A, /obj/blob))
+		if (A.flags & TECHNICAL_ATOM || istype(A, /obj/blob)) //we can do this better (except the blob one, RIP)
+			return ..()
+		if (locate(/obj/grille/catwalk) in src) //non-turf elevator platform.
 			return ..()
 		var/turf/T = pick_landmark(fall_landmark)
 		var/safe = FALSE
@@ -255,11 +260,12 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 				M.close()
 		sleep(departure_delay)
 		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
-			SPAWN_DBG(1 DECI SECOND)
-				random_brute_damage(M, 30)
-				M.changeStatus("weakened", 5 SECONDS)
-				M.emote("scream")
-				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
+			if (!istype(M.loc, text2path(destination.target_area.filler_turf)) || locate(/obj/grille/catwalk) in M.loc) //once we make catwalks constructable you could play Hole In The Wall 2: Hole In The Ceiling
+				SPAWN_DBG(1 DECI SECOND)
+					random_brute_damage(M, 30)
+					M.changeStatus("weakened", 5 SECONDS)
+					M.emote("scream")
+					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
 
 	arriving(datum/transit_stop/destination)
 		sleep(door_delay)

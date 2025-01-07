@@ -48,10 +48,12 @@ var/global/list/cycling_airlocks = list()
 
 /obj/machinery/door/airlock/proc/toggle_bolt(mob/user)
 	if (src.isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
-		boutput(user, "<span class='alert'>You can't drop the door bolts - The door bolt dropping wire has been cut.</span>")
+		if (user)
+			boutput(user, "<span class='alert'>You can't drop the door bolts - The door bolt dropping wire has been cut.</span>")
 		return
 	if(!src.arePowerSystemsOn() || (status & NOPOWER))
-		boutput(user, "<span class='alert'>The door has no power - you can't raise/lower the door bolts.</span>")
+		if (user)
+			boutput(user, "<span class='alert'>The door has no power - you can't raise/lower the door bolts.</span>")
 		return
 	if(src.locked)
 		src.locked = 0
@@ -152,6 +154,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 
 	deconstruct_flags = DECON_ACCESS | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_SCREWDRIVER | DECON_MULTITOOL
 	object_flags = BOTS_DIRBLOCK | CAN_REPROGRAM_ACCESS
+	//Will move this to a hardened check in New() if we ever get hardened doors on the station itself.
+	machinery_flags = MAY_REQUIRE_MAINT
 
 	var/image/panel_image = null
 	var/panel_icon_state = "panel_open"
@@ -185,7 +189,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/lockdownbyai = 0
 	var/last_bump = 0
 	var/net_id = null
-	var/sound_airlock = 'sound/machines/airlock_swoosh_temp.ogg'
+	var/sound_airlock = 'sound/machines/airlock.ogg'
 	var/sound_close_airlock = null
 	sound_deny = 'sound/machines/airlock_deny.ogg'
 	var/sound_deny_temp = 'sound/machines/airlock_deny_temp.ogg'
@@ -833,6 +837,7 @@ About the new airlock wires panel:
 				src.aiControlDisabled = 2
 			src.updateDialog()
 			tgui_process.update_uis(src)
+			malfunction_resolve()
 			SPAWN_DBG(1 SECOND)
 				if (src.aiControlDisabled == 1)
 					src.aiControlDisabled = 0
@@ -1533,6 +1538,27 @@ About the new airlock wires panel:
 	else
 		..()
 	return
+
+/obj/machinery/door/airlock/malfunction(mult)
+
+	switch(rand(1,8))
+		if(1)
+			toggle_bolt()
+		if(2 to 3)
+			if (density)
+				open()
+			else
+				close()
+		else // 5/8 chance of nothing
+			return
+
+/obj/machinery/door/airlock/malfunction_start()
+	SubscribeToProcess()
+
+/obj/machinery/door/airlock/malfunction_resolve()
+	UnsubscribeProcess()
+	..()
+
 
 // This code allows for airlocks to be controlled externally by setting an id_tag and comm frequency (disables ID access)
 obj/machinery/door/airlock

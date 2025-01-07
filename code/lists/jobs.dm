@@ -18,6 +18,7 @@ var/list/occupations = list( //determines spawns for jobs and how many slots by 
 	"Quartermaster", //dept head
 //  "Cargo Technician","Cargo Technician","Cargo Technician" //not ready yet
 	"Miner","Miner","Miner",
+	"Scrapper",
 	"Janitor",
 	// Medical
 	"Medical Director",

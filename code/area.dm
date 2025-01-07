@@ -704,6 +704,9 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/bayou/shipyard
 	icon_state = "shuttle"
 
+/area/shuttle/bayou/ship
+	icon_state = "shuttle"
+
 /area/shuttle/shopping/station
 	icon_state = "shuttle"
 
@@ -1104,6 +1107,7 @@ ABSTRACT_TYPE(/area/adventure)
 
 /area/martian_trader
 	name ="Martian Trade Outpost"
+	icon_state = "yellow"
 	sound_environment = EAX_CAVE
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
@@ -1644,6 +1648,9 @@ ABSTRACT_TYPE(/area/station/atmos)
 
 /area/station/atmos/highcap_storage
   name = "High-Capacity Atmospherics Storage"
+
+/area/station/atmos/department
+	do_not_irradiate = FALSE //Not in maint on Crag
 
 ABSTRACT_TYPE(/area/station/atmos/hookups)
 /area/station/atmos/hookups
@@ -2429,6 +2436,7 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 /area/station/crew_quarters/kitchen/freezer
 		name = "Freezer"
 		icon_state = "blue"
+		no_ants = 1
 
 /area/station/crew_quarters/kitchen/therustykrab
 		name = "The Rusty Krab"
@@ -2492,6 +2500,9 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	name = "Public Garden"
 	icon_state = "park"
 
+/area/station/shipyard
+	name = "Shipyard"
+	icon_state = "fart"
 // some radio jazz
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)

@@ -7,6 +7,7 @@
 
 	name = "Dual Port Air Vent"
 	desc = "Has a valve and pump attached to it. There are two ports."
+	generic_decon_module = /obj/item/atmospherics/module/dp_vent
 
 	level = 1
 

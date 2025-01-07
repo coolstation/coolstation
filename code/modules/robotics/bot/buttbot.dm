@@ -2,6 +2,7 @@
 #define BUTT_FLESH "Biological"
 #define BUTT_ROBOT "Bionic"
 #define BUTT_PLANT "Botanical"
+#define BUTT_BONE "Bonable" //sorry :P
 #define BUTT_BROKE "Buggy" // Fallback in case it gets a weird-ass butt
 #define BUTTBOT_MOVE_SPEED 10
 /obj/machinery/bot/buttbot
@@ -66,15 +67,23 @@
 
 /obj/machinery/bot/buttbot/cyber
 	name = "robuttbot"
+	desc = "Enshittification in tech usually isn't this literal."
 	icon_state = "cyberbuttbot"
 	default_butt = /obj/item/clothing/head/butt/cyberbutt
 
 /obj/machinery/bot/buttbot/text2speech
 	text2speech = 1
 
-/obj/machinery/bot/buttbot/synth //Opinion: i personally think this should be in the same file as buttbots
-	name = "Organic Buttbot" //TODO: This and synthbutts need to use the new green synthbutt sprites
+/obj/machinery/bot/buttbot/skeleton
+	name = "bonebuttbot"
+	desc = "The clacking of my buttcheeks keeps alerting security."
+	icon_state = "bonebuttbot"
+	default_butt = /obj/item/clothing/head/butt/skeleton
+
+/obj/machinery/bot/buttbot/synth
+	name = "synthbuttbot"
 	desc = "What part of this even makes any sense."
+	icon_state = "synthbuttbot"
 	default_butt = /obj/item/clothing/head/butt/synth
 
 /obj/machinery/bot/buttbot/New(var/_butt, var/_arm)
@@ -100,6 +109,8 @@
 			src.butt_fluff = BUTT_PLANT
 		if(/obj/item/clothing/head/butt/cyberbutt)
 			src.butt_fluff = BUTT_ROBOT
+		if(/obj/item/clothing/head/butt/skeleton)
+			src.butt_fluff = BUTT_BONE
 		else
 			src.butt_fluff = BUTT_FLESH
 
@@ -133,7 +144,7 @@
 				src.robo_expel_fart_gas(0)
 		if(src.buttmobile && prob(80) && !ON_COOLDOWN(global, "butt_scooter", src.scoot_cooldown))
 			src.scoot()
-	if(src.emagged == 1)
+	if(src.emagged)
 		var/message = src.buttifricky()
 		if(prob(2))
 			playsound(src.loc, "sound/misc/extreme_ass.ogg", 35, 1)
@@ -142,7 +153,7 @@
 		if(fartmessage)
 			src.audible_message("[fartmessage]")
 			src.robo_expel_fart_gas(1)
-		if(prob(1)) // small chance to blow its ass out
+		if((src.emagged > 1) && prob(1)) // small chance to blow its ass out
 			src.superfart()
 		if(!moving)
 			src.scoot()
@@ -153,11 +164,16 @@
 /obj/machinery/bot/buttbot/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if(!src.emagged)
 		if(user)
-			user.show_text("You short out the vocal emitter on [src].", "red")
-		src.visible_message("<span class='alert'><B>[src] buzzes oddly!</B></span>")
+			boutput(user, "<span class='alert'>You short out the vocal emitter on [src], among others.</span>")
+		src.visible_message("<span class='alert'><B>[src] gives off a whiff of questionable odor!</B></span>")
 		playsound(src.loc, "sound/misc/extreme_ass.ogg", 35, 1)
 		src.emagged = 1
 		return 1
+	else if (src.emagged < 2)
+		src.emagged = 2
+		src.buttfart = TRUE
+		if(user)
+			boutput(user, "<span class='alert'>Not content with your previous work, you break the limiter on the atmospheric pump.</span>")
 	return 0
 
 /obj/machinery/bot/buttbot/demag(var/mob/user)
@@ -230,7 +246,8 @@
 		src.buttmobile = !src.buttmobile
 
 	if(href_list["butt_fart_toggle"])
-		src.buttfart = !src.buttfart
+		if (src.emagged < 2)
+			src.buttfart = !src.buttfart
 
 	attack_hand(usr)
 
@@ -244,6 +261,8 @@
 			butt_engine = "Battery Utilization Manifold"
 		if(BUTT_PLANT)
 			butt_engine = "Phyto-Active Induction Nodule"
+		if(BUTT_BONE) //Why do we have this whole thing with the defines?
+			butt_engine = "Thermoelectric Ossicle Overdrive Technology" //probably cheating to say Thermoelectric is one word but I have no ideas.
 
 	dat += "<TT><B>[src.butt_fluff] Utility Techno-Tool v4.5.5</B></TT><BR>"
 	dat += "<U><h4>Autonomous Reactive Speech Emitter:</h4></U>"
@@ -354,7 +373,7 @@
 				for (var/obj/item/storage/bible/B in src.loc)
 					go2hell = 1
 					var/turf/oldloc = get_turf(src)
-					src.visible_message("<span class='alert'>[src] blasts its ass all over the bible.<br><b>A mysterious force <u>is not pleased</u>!</b></span>")
+					src.visible_message("<span class='alert'>[src] blasts its ass all over ol' bib.<br><b>Beelzebubs <u>is not pleased</u>!</b></span>")
 					src.set_loc(pick(get_area_turfs(/area/afterlife/hell/hellspawn)))
 					B.burn_possible = FALSE // protect the book
 					SPAWN_DBG(1 SECOND)
@@ -403,7 +422,7 @@
 				src.fart_memory += A
 				break
 			else if(istype(A,/obj/item/storage/bible))
-				src.visible_message("<span class='alert'>[src] farts on the bible.<br><b>A mysterious force smites [src]!</b></span>")
+				src.visible_message("<span class='alert'>[src] farts on ol' bib.<br><b>Something happens!</b></span>")
 				fart_on_other = 1
 				src.fart_memory += A
 				src.gib()
@@ -495,3 +514,11 @@
 #ifdef DATALOGGER
 	game_stats.Increment("botfarts")
 #endif
+
+//undef your shiiiiiit when you're done with iiiiiiit
+#undef BUTT_FLESH
+#undef BUTT_ROBOT
+#undef BUTT_PLANT
+#undef BUTT_BONE
+#undef BUTT_BROKE
+#undef BUTTBOT_MOVE_SPEED

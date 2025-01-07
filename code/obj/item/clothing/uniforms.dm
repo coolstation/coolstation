@@ -550,6 +550,9 @@
 		icon_state = "overalls_yellow"
 		item_state = "overalls_yellow"
 
+	scrapper
+		name = "scrapper's overalls"
+		desc = "Durable overalls with more than a few oil stains."
 
 // Civilian
 

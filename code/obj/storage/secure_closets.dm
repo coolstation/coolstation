@@ -131,9 +131,10 @@
 	/obj/item/gun/implanter,
 	/obj/item/gun/reagent/syringe/NT,
 	/obj/item/reagent_containers/mender/both,
-	/obj/item/gun/kinetic/dart_rifle,
-	/obj/item/ammo/bullets/tranq_darts,
-	/obj/item/ammo/bullets/tranq_darts/anti_mutant,
+	/obj/item/gun/modular/NT/long/rifle,
+	/obj/item/stackable_ammo/pistol/tranq/five,
+	/obj/item/stackable_ammo/pistol/tranq/five,
+	/obj/item/stackable_ammo/pistol/anti_mutant/five,
 	/obj/item/robodefibrillator,
 	/obj/item/clothing/gloves/latex,
 	/obj/item/storage/belt/medical,
@@ -240,8 +241,9 @@
 	/obj/item/clothing/glasses/nightvision = 2,
 	/obj/item/clothing/glasses/sunglasses,
 	/obj/item/clothing/glasses/sunglasses,
-	/obj/item/ammo/bullets/abg,
-	/obj/item/ammo/bullets/abg,)
+	/obj/item/stackable_ammo/pistol/tranq/five = 2,
+	/obj/item/stackable_ammo/pistol/italian/AP/ten,
+	/obj/item/stackable_ammo/scatter/juicer/ten)
 
 /obj/storage/secure/closet/brig
 	name = "\improper Confiscated Items locker"

@@ -124,6 +124,22 @@
 
 	proc/selftilenotify()
 
+	proc/is_frozen()
+		if(istype(src,/turf/space))
+			return TRUE
+		if(temperature < T0C)
+			return TRUE
+		else
+			return FALSE
+
+	proc/is_too_hot()
+		if(istype(src,/turf/space))
+			return FALSE
+		if(temperature > T45C)
+			return TRUE
+		else
+			return FALSE
+
 	proc/generate_worldgen()
 
 	proc/inherit_area() //jerko built a thing
@@ -799,6 +815,8 @@
 	mat_changename = 0
 	mat_changedesc = 0
 	throw_unlimited = 1
+	oxygen = 0
+	nitrogen = 0
 	plane = PLANE_SPACE
 	special_volume_override = 0
 	text = ""

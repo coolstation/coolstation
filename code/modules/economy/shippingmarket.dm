@@ -187,8 +187,8 @@
 			score_tracker.artifacts_correctly_analyzed++
 
 		// send artifact resupply
-		if(prob(modifier*40*pap?.lastAnalysis)) // range from 0% to ~78% for fully researched t4 artifact
-			if(!src.artifact_resupply_amount)
+		if(prob(40*pap?.lastAnalysis)) // make probability solely based on research effectiveness
+			if(src.artifact_resupply_amount)
 				SPAWN_DBG(rand(1,5) MINUTES)
 					// message
 					var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
@@ -204,7 +204,7 @@
 						new /obj/artifact_type_spawner/vurdalak(artcrate)
 					artifact_resupply_amount = 0
 					shippingmarket.receive_crate(artcrate)
-			src.artifact_resupply_amount++
+			src.artifact_resupply_amount++ //only start resupplying after at least two artifacts have been sold
 
 		// sell
 		wagesystem.shipping_budget += price
@@ -236,8 +236,11 @@
 
 		var/duckets = 0  // fuck yeah duckets  ((noun) Cash, money or bills, from "ducats")
 		var/add = 0
-		if (!commodities_list)
+		if (!commodities_list) //general shipping market selling
 			for(var/obj/O in items)
+				if (O.object_flags * SPECIAL_PENALTY_ON_SALE)
+					duckets -= 250 //fuck you
+					continue
 				for (var/C in src.commodities) // Key is type of the commodity
 					var/datum/commodity/CM = commodities[C]
 					if (istype(O, CM.comtype))
@@ -278,7 +281,7 @@
 						if (sell)
 							qdel(O)
 
-		return duckets
+		return max(duckets, 0) //remove max() to allow negative profits (from selling special deliveries back), dunno what happens if cargo's budget goes in the red though
 
 	proc/sell_crate(obj/storage/crate/sell_crate, var/list/commodities_list, notify_PDAs = TRUE)
 		var/obj/item/card/id/scan = sell_crate.scan
@@ -311,7 +314,7 @@
 				transmit_connection.post_signal(null, pdaSignal)
 		else return proceeds
 
-	proc/receive_crate(atom/movable/shipped_thing)
+	proc/receive_crate(atom/movable/shipped_thing, notify_PDAs = TRUE)
 
 		if(map_settings.qm_supply_type == "shuttle")
 			var/turf/free_turf = null
@@ -329,17 +332,21 @@
 					if(!dense)
 						free_turf = T
 						break
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
-			var/datum/signal/pdaSignal = get_free_signal()
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
+
 			if(free_turf)
 				shipped_thing.set_loc(free_turf)
-				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment loaded onto Cargo Shuttle: [shipped_thing.name].")
 
-			else
-				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="<span class='alert'><b>Failed to load shipment: [shipped_thing.name]. Check shuttle status.</b></span>")
+			if (notify_PDAs)
+				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+				var/datum/signal/pdaSignal = get_free_signal()
+				pdaSignal.transmission_method = TRANSMISSION_RADIO
+				if(free_turf)
+					pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment loaded onto Cargo Shuttle: [shipped_thing.name].")
 
-			transmit_connection.post_signal(null, pdaSignal)
+				else
+					pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="<span class='alert'><b>Failed to load shipment: [shipped_thing.name]. Check shuttle status.</b></span>")
+
+				transmit_connection.post_signal(null, pdaSignal)
 			return
 
 
@@ -364,11 +371,12 @@
 
 			shipped_thing.set_loc(spawnpoint)
 
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
-			var/datum/signal/pdaSignal = get_free_signal()
-			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment arriving to Cargo Bay: [shipped_thing.name].")
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			transmit_connection.post_signal(null, pdaSignal)
+			if (notify_PDAs)
+				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+				var/datum/signal/pdaSignal = get_free_signal()
+				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment arriving to Cargo Bay: [shipped_thing.name].")
+				pdaSignal.transmission_method = TRANSMISSION_RADIO
+				transmit_connection.post_signal(null, pdaSignal)
 
 
 

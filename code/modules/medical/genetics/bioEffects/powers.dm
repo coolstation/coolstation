@@ -1008,7 +1008,7 @@
 			if (gib_user)
 				owner.gib()
 
-			// Superfarted on the bible? Off to hell.
+			// Superfarted on ol' bib? Off to hell.
 			for (var/obj/item/storage/bible/B in owner.loc)
 				owner.damn()
 				break

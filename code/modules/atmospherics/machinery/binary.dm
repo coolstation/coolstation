@@ -1,6 +1,7 @@
 obj/machinery/atmospherics/binary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
+	generic_decon_time = 5 SECONDS
 //
 	var/datum/gas_mixture/air1
 	var/datum/gas_mixture/air2

@@ -183,16 +183,14 @@
 	if (src.key) statlog_death(src, gibbed)
 	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
 		var/num_players = 0
-		var/clients = 0
 		for(var/client/C)
-			clients++
 			if (!C.mob) continue
 			var/mob/player = C.mob
 			if (!isdead(player) && VALID_MOB(player))
 				num_players++
 
 		if (num_players <= 5 && master_mode != "battle_royale")
-			if ((config.env == "dev" || config.env == "pud") && clients >=5 && !abandon_allowed)
+			if (config.env == "dev" && !abandon_allowed)
 				abandon_allowed = TRUE
 				for(var/client/C)
 					if (!C.mob) continue
@@ -1708,13 +1706,17 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
-			src.hud.set_sprint(keys & KEY_RUN)
+			m_intent = (m_intent == "walk") ? "run" : "walk"
+			src.hud.update_mintent()
+			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
 
 /mob/living/carbon/human/keys_changed(keys, changed)
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
-			src.hud.set_sprint(keys & KEY_RUN)
+			m_intent = (m_intent == "walk") ? "run" : "walk"
+			src.hud.update_mintent()
+			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
 
 /mob/living/proc/start_sprint()
 	if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
@@ -1728,7 +1730,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			spell_batpoof(src, cloak = 1)
 		if (special_sprint & SPRINT_SNIPER)
 			begin_sniping()
-	else if (src.use_stamina)
+	//SPRINTING REMOVAL
+	//deprecated in favour of making the sprint button temporarily toggle run/walk. This bit seems to be giving you a bit of a boost to start with
+	//look in /mob/proc/process_move() for the sustained speed boost.
+	/*else if (src.use_stamina)
 		if (!next_step_delay && world.time >= next_sprint_boost)
 			if (!HAS_MOB_PROPERTY(src, PROP_CANTMOVE))
 				//if (src.hasStatus("blocking"))
@@ -1746,7 +1751,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				if ((src.loc != last || force_puff) && !HAS_MOB_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS)) //ugly check to prevent stationary sprint weirds
 					sprint_particle(src, last)
 					if (!isFlying)
-						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,extrarange = -4)
+						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,extrarange = -4)*/
 
 // cogwerks - fix for soulguard and revive
 /mob/living/proc/remove_ailments()

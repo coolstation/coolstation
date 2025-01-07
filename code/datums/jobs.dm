@@ -753,7 +753,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
-	slot_poc1 = list(/obj/item/device/pda2/medical)
+	slot_belt = list(/obj/item/device/pda2/medical)
 	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
 	items_in_backpack = list(/obj/item/storage/box/beakerbox, /obj/item/storage/pill_bottle/cyberpunk) //encourage a little drug dealing, why not
 
@@ -1024,6 +1024,23 @@ ABSTRACT_TYPE(/datum/job/logistics)
 		if(prob(20))
 			M.bioHolder.AddEffect("dwarf", magical=1)
 
+/datum/job/logistics/scrapper
+	name = "Scrapper"
+	wages = PAY_TRADESMAN
+	limit = 0 //overriden by the bayou bend
+
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/device/pda2/scrapping)
+	slot_jump = list(/obj/item/clothing/under/rank/orangeoveralls/scrapper)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	slot_ears = list(/obj/item/device/radio/headset/scrapping)
+	New()
+		..()
+		src.access = get_access("Scrapper")
+		return
+
+
 /datum/job/logistics/mailcarrier
 	name = "Mailcarrier"
 	wages = PAY_TRADESMAN
@@ -1219,8 +1236,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		M.AddComponent(/datum/component/death_confetti)
 
 		M.bioHolder.AddEffect("clumsy", magical=1)
-		if (prob(50))
-			M.bioHolder.AddEffect("accent_comic", magical=1)
+		M.bioHolder.AddEffect("accent_comic", magical=1) //the clown should ALWAYS have the silly voice
+		if(prob(5))
+			M.bioHolder.AddEffect("waddle_walk", magical=1)
 
 // AI and Cyborgs
 

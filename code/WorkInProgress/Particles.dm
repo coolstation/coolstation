@@ -16,6 +16,7 @@
 	anchored = 1
 	density = 0
 	opacity = 0
+	flags = TECHNICAL_ATOM
 	layer = EFFECTS_LAYER_BASE
 	animate_movement = NO_STEPS //Stop shifting around recycled particles.
 	event_handler_flags = IMMUNE_MANTA_PUSH

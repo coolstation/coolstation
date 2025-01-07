@@ -2,8 +2,8 @@
 var/global/list/bible_contents = list()
 
 /obj/item/storage/bible
-	name = "bible"
-	desc = "A holy scripture of some sort or another. Someone seems to have hollowed it out for hiding things in."
+	name = "ol' bib"
+	desc = "A facsimile of a xerox of a copy of a daguerrotype of some historical italian text. Someone seems to have hollowed it out for hiding things in."
 	icon_state ="bible"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state ="bible"
@@ -161,14 +161,14 @@ var/global/list/bible_contents = list()
 			return 0
 
 		if (farty_party)
-			user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>The gods seem to approve.</b></span>")
+			user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>The book seems to approve.</b></span>")
 			return 0
 
 		if (user.traitHolder?.hasTrait("atheist"))
-			user.visible_message("<span class='alert'>[user] farts on the bible with particular vindication.<br><b>Against all odds, [user] remains unharmed!</b></span>")
+			user.visible_message("<span class='alert'>[user] farts on ol' bib with particular vindication.<br><b> Weirdo.</b></span>")
 			return 0
 		else
-			user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>A mysterious force smites [user]!</b></span>")
+			user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>[user] decides to dissociate a little!</b></span>")
 			logTheThing("combat", user, null, "farted on [src] at [log_loc(src)] last touched by <b>[src.fingerprintslast ? src.fingerprintslast : "unknown"]</b>.")
 			user.gib()
 			return 0
@@ -194,7 +194,7 @@ var/global/list/bible_contents = list()
 	farty_heresy(mob/user) //fuk u always die
 		if(!user || user.loc != src.loc)
 			return 0
-		user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>A mysterious force smites [user]!</b></span>")
+		user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>[user] just kind of goes away!</b></span>")
 		logTheThing("combat", user, null, "farted on [src] at [log_loc(src)] last touched by <b>[src.fingerprintslast ? src.fingerprintslast : "unknown"]</b>.")
 		user.gib()
 		return 0
@@ -211,9 +211,9 @@ var/global/list/bible_contents = list()
 		if (!farting_allowed)
 			return 0
 		if (farty_party)
-			user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>The gods seem to approve.</b></span>")
+			user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>The book seems to approve.</b></span>")
 			return 0
-		user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>A mysterious force smites [user]!</b></span>")
+		user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>Stuff happens! Vore stuff!</b></span>")
 		user.u_equip(src)
 		src.layer = initial(src.layer)
 		src.set_loc(user.loc)
@@ -231,9 +231,9 @@ var/global/list/bible_contents = list()
 		return 1
 	farty_heresy(var/mob/user)
 		if (farty_party)
-			user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>The gods seem to approve.</b></span>")
+			user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>The book seems to approve.</b></span>")
 			return 0
-		user.visible_message("<span class='alert'>[user] farts on the bible.<br><b>A mysterious force smites [user]!</b></span>")
+		user.visible_message("<span class='alert'>[user] farts on ol' bib.<br><b>The Ol' Book has its day.</b></span>")
 		user.u_equip(src)
 		src.layer = initial(src.layer)
 		src.set_loc(user.loc)

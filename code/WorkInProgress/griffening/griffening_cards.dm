@@ -183,7 +183,7 @@
 				attributes = GRIFFENING_ATTRIBUTE_HANDS | GRIFFENING_ATTRIBUTE_ORGANIC
 				card_data = "Once per turn, Changeling may take on the form and stats of any human in the opponent's discard pile. The selected human is moved to the gibbed pile of the opponent. When opponent successfully uses the effect of 'Flamethrower', 'Incendiary Grenade' or 'Plasma Fire', Changeling is discarded."
 
-			vampire
+			dracula
 				LVL = 5
 				ATK = 25
 				DEF = 25
@@ -257,7 +257,7 @@
 				ATK = 8
 				DEF = 22
 				card_name = "Chaplain"
-				card_data = "The Chaplain is unaffected by the abilities of Wizards and Vampires. Chaplain cannot be sacrificed to play Vampire."
+				card_data = "The Chaplain is unaffected by the abilities of Wizards and Draculas. Chaplain cannot be sacrificed to play Dracula."
 
 			botanist
 				LVL = 3
@@ -908,7 +908,7 @@
 
 		chapel
 			card_name = "Chapel"
-			card_data = "When the Chapel is played, all ethereal mobs and vampires are destroyed. No ethereal mobs or vampires may be played while the Chapel is in play. All wizards lose 30 ATK and 30 DEF. The chaplain gains 20 ATK for each card destroyed while the chapel is in play."
+			card_data = "When the Chapel is played, all ethereal mobs and draculas are destroyed. No ethereal mobs or draculas may be played while the Chapel is in play. All wizards lose 30 ATK and 30 DEF. The chaplain gains 20 ATK for each card destroyed while the chapel is in play."
 			field_icon_state = "chapel"
 
 		syndicate

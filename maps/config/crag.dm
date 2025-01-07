@@ -1,0 +1,8 @@
+#include "..\warwip\the_crag.dmm"
+#include "..\z2.dmm"
+#include "..\warwip\z3_the_crag.dmm"
+#include "z4.dm"
+#include "..\z5.dmm"
+#include "nudebris.dm"
+#include "..\z3.dmm"
+#define MAP_MODE "standard"
