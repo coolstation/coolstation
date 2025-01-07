@@ -71,17 +71,18 @@
 #define ATTACK_SELF_DELAY		 (1<<7)
 
 //tool flags
-#define TOOL_CLAMPING 1
-#define TOOL_CUTTING 2
-#define TOOL_PRYING 4
-#define TOOL_PULSING 8
-#define TOOL_SAWING 16
-#define TOOL_SCREWING 32
-#define TOOL_SNIPPING 64
-#define TOOL_SPOONING 128
-#define TOOL_WELDING 256
-#define TOOL_WRENCHING 512
-#define TOOL_CHOPPING 1024 // for firaxes, does additional damage to doors.
+#define TOOL_CLAMPING (1<<0)
+#define TOOL_CUTTING (1<<1)
+#define TOOL_PRYING (1<<2)
+#define TOOL_PULSING (1<<3)
+#define TOOL_SAWING (1<<4)
+#define TOOL_SCREWING (1<<5)
+#define TOOL_SNIPPING (1<<6)
+#define TOOL_SPOONING (1<<7)
+#define TOOL_WELDING (1<<8)
+#define TOOL_WRENCHING (1<<9)
+#define TOOL_CHOPPING (1<<10) // for firaxes, does additional damage to doors.
+#define TOOL_HAMMERING (1<<11) //the ethical option
 
 //tooltip flags for rebuilding
 
