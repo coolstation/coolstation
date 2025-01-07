@@ -4726,10 +4726,10 @@
 /area/station/crew_quarters/bar)
 "eys" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/space_heater,
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/recharge_station,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "eyZ" = (
@@ -21116,6 +21116,10 @@
 	dir = 4
 	},
 /area/space)
+"uHT" = (
+/obj/machinery/space_heater,
+/turf/floor/plating,
+/area/station/maintenance/northwest)
 "uHV" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/neutral/side{
@@ -64682,7 +64686,7 @@ tKK
 opp
 opp
 ovP
-ovP
+jKw
 cAI
 bdf
 ipf
@@ -64984,7 +64988,7 @@ vFh
 fDn
 opp
 wbY
-ovP
+uHT
 cAI
 xcg
 nIB
@@ -65285,7 +65289,7 @@ fDn
 vFh
 fDn
 opp
-jKw
+ovP
 uwp
 cAI
 cAI
