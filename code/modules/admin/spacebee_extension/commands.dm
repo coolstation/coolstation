@@ -319,6 +319,7 @@
 		shippingmarket.receive_crate(to_send)
 		system.reply("Crate sent.")
 
+/*
 /datum/spacebee_extension_command/logs
 	name = "logs"
 	server_targeting = COMMAND_TARGETING_SINGLE_SERVER
@@ -330,7 +331,7 @@
 		// ircmsg["msg"] = "Logs for this round can be found here: https://mini.xkeeper.net/ss13/admin/log-get.php?id=[config.server_id]&date=[roundLog_date]"
 		ircmsg["msg"] = "Logs for this round can be found here: https://mini.xkeeper.net/ss13/admin/log-viewer.php?server=[config.server_id]&redownload=1&view=[roundLog_date].html"
 		ircbot.export("help", ircmsg)
-
+*/
 /datum/spacebee_extension_command/state_based/confirmation/mob_targeting/rename
 	name = "rename"
 	help_message = "Rename a given ckey's mob."
