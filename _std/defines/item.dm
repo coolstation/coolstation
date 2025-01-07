@@ -81,7 +81,7 @@
 #define TOOL_SPOONING (1<<7)
 #define TOOL_WELDING (1<<8)
 #define TOOL_WRENCHING (1<<9)
-#define TOOL_CHOPPING (1<<10) // for firaxes, does additional damage to doors.
+#define TOOL_CHOPPING (1<<10) // for fireaxes, does additional damage to doors.
 #define TOOL_HAMMERING (1<<11) //the ethical option
 
 //tooltip flags for rebuilding
