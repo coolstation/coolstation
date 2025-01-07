@@ -480,11 +480,15 @@
 /turf/floor,
 /area/station/science/lab)
 "azP" = (
-/obj/machinery/door/airlock/maintenance{
-	icon_state = "door_locked";
-	locked = 1
+/obj/cable,
+/obj/cable{
+	icon_state = "0-2"
 	},
-/obj/access_spawn/heads,
+/obj/machinery/power/data_terminal,
+/obj/table/auto,
+/obj/machinery/networked/storage/scanner{
+	bank_id = "bridge"
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "azT" = (
@@ -2631,6 +2635,16 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
+"cwe" = (
+/obj/table/auto,
+/obj/item/paper_bin{
+	pixel_y = 2
+	},
+/obj/item/pen{
+	pixel_x = -2
+	},
+/turf/floor/grey,
+/area/station/bridge)
 "cwx" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -5567,10 +5581,6 @@
 /area/station/crew_quarters/lounge)
 "fmI" = (
 /obj/table/auto,
-/obj/item/disk/data/floppy/read_only/communications{
-	pixel_x = 7;
-	pixel_y = 3
-	},
 /obj/item/item_box/postit{
 	pixel_x = -5;
 	pixel_y = 6
@@ -5578,6 +5588,10 @@
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
+	},
+/obj/item/disk/data/floppy/read_only/communications{
+	pixel_x = 7;
+	pixel_y = 3
 	},
 /turf/floor/grey,
 /area/station/bridge)
@@ -23422,12 +23436,6 @@
 /area/station/storage/tech)
 "wLs" = (
 /obj/table/wood/auto,
-/obj/item/paper_bin{
-	pixel_y = 2
-	},
-/obj/item/pen{
-	pixel_x = -2
-	},
 /turf/floor/carpet/blue,
 /area/station/bridge)
 "wME" = (
@@ -71748,7 +71756,7 @@ uuu
 mkC
 fFf
 vwn
-xII
+cwe
 kBW
 uQc
 clE
@@ -72351,7 +72359,7 @@ xRy
 nJn
 tMB
 gOd
-nYi
+azP
 rMM
 rff
 pAN
@@ -72952,7 +72960,7 @@ ugj
 atO
 fHu
 veE
-azP
+nJn
 bMk
 dGT
 nuX
