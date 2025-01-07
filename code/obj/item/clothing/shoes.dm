@@ -90,6 +90,11 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 			RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shoe_debris))
 		. = ..()
 
+	unequipped(mob/user)
+		if (length(src.contents))
+			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		. = ..()
+
 //this came to me while putting the glass panels on my PC case
 ///Currently only shards but I figure if someone wants to do like shoe spiders they can.
 /obj/item/clothing/shoes/proc/shoe_debris(mob/M)
