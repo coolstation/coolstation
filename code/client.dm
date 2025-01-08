@@ -617,13 +617,13 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	//wow its the future we can choose between 3 fps values omg
 	if (winget( src, "menu.fps_chunky", "is-checked" ) == "true")
-		tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
+		src.tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
 	else if (winget( src, "menu.fps_creamy", "is-checked" ) == "true")
-		tick_lag = CLIENTSIDE_TICK_LAG_CREAMY
+		src.tick_lag = CLIENTSIDE_TICK_LAG_CREAMY
 	else if (winget( src, "menu.fps_fluid", "is-checked" ) == "true")
 		tick_lag = CLIENTSIDE_TICK_LAG_FLUID
 	else
-		tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
+		src.tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
 
 	//game stuf
 	hand_ghosts = winget( src, "menu.use_hand_ghosts", "is-checked" ) == "true"
