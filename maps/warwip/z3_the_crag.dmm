@@ -575,15 +575,6 @@
 	dir = 1
 	},
 /area/station/medical/basement)
-"dp" = (
-/obj/cable,
-/obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/zeta{
-	dir = 4;
-	setup_os_string = "ZETA_MAINFRAME"
-	},
-/turf/floor,
-/area/station/science/teleporter)
 "dq" = (
 /obj/table/wood/auto,
 /obj/machinery/recharger/wall{
@@ -1178,6 +1169,15 @@
 	dir = 1
 	},
 /area/station/mining/lobby)
+"gn" = (
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
+/turf/floor,
+/area/station/science/teleporter)
 "go" = (
 /obj/cable{
 	icon_state = "0-8"
@@ -1187,6 +1187,17 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"gp" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "gq" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /obj/cable{
@@ -1194,17 +1205,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"gt" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/floor/plating,
-/area/station/crew_quarters/info{
-	name = "Net Cafe"
-	})
 "gu" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_rathen"
@@ -3843,21 +3843,6 @@
 	},
 /turf/floor/grey,
 /area/station/teleporter)
-"uU" = (
-/obj/machinery/light/fluorescent{
-	dir = 8
-	},
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/computer3/terminal/zeta{
-	dir = 4;
-	setup_os_string = "ZETA_MAINFRAME"
-	},
-/turf/floor/plating,
-/area/station/engine/hotloop)
 "uX" = (
 /obj/disposalpipe/junction/right/south,
 /obj/grille/catwalk/jen,
@@ -3959,6 +3944,21 @@
 	},
 /turf/floor/grime,
 /area/station/bridge/customs)
+"vx" = (
+/obj/machinery/light/fluorescent{
+	dir = 8
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "vy" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/carpet/blue/fancy/edge,
@@ -6817,6 +6817,17 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"KX" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "KY" = (
 /obj/machinery/computer/general_alert,
 /turf/floor/grime,
@@ -6834,17 +6845,6 @@
 	dir = 5
 	},
 /area/station/mining/lobby)
-"Lg" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/floor/plating,
-/area/station/engine/hotloop)
 "Lh" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -8811,6 +8811,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/classic,
+/obj/access_spawn/tech_storage,
 /turf/floor/plating,
 /area/station/storage/tech)
 "Vp" = (
@@ -54255,7 +54256,7 @@ nj
 NI
 IQ
 qa
-dp
+gn
 Nm
 pd
 Bo
@@ -54549,7 +54550,7 @@ Yt
 ac
 Rc
 if
-gt
+KX
 cZ
 xh
 le
@@ -57271,7 +57272,7 @@ lY
 Al
 du
 Al
-uU
+vx
 Bs
 Bs
 iM
@@ -57573,7 +57574,7 @@ hT
 hT
 ks
 hT
-Lg
+gp
 hT
 hT
 hT
