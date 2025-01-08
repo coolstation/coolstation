@@ -216,8 +216,10 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 			return 1
 
 		if(prob(1) && !src.stat)
-			SPAWN_DBG(0) src.say(pick("My wife left me.","My wife left me!","MY WIFE LEFT ME.", "I'm not mad about it. STOP SAYING I'M MAD ABOUT IT!", "I'm just really out of steam right now..."))
-
+			if(prob(50))
+				SPAWN_DBG(0) src.say(pick("My wife left me...","My wife left me!","MY WIFE, SHE LEFT ME.", "But, the bathrooms...", "Just wait until the mothers mailing list hears of this...", "They took my programme...", "You remember \"The Tech Storage Guys\" right? I wrote that.", "I'm just thinking about the bathrooms... the pee...", "Why won't my kids call?", "I'm just really out of steam right now..."))
+			else
+				emote(pick["sigh","cry","sob","whimper","pout"])
 	/*
 	attackby(obj/item/W, mob/M)
 		if (istype(W, /obj/item/paper/postcard/owlery))
@@ -341,7 +343,8 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 			src.equip_new_if_possible(/obj/item/clothing/head/merchant_hat, slot_head)
 
 // myke
-
+// what the fuck is this??
+/*
 /mob/living/carbon/human/myke
 	New()
 		..()
@@ -360,7 +363,7 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 			SPAWN_DBG(0) emote(pick("giggle", "laugh"))
 		if(prob(1))
 			SPAWN_DBG(0) src.say(pick("You guys wanna hear me play bass?", stutter("HUFFFF"), "I missed my AA meeting to play Left 4 Dead...", "I got my license suspended AGAIN", "I got fired from [pick("McDonald's", "Boston Market", "Wendy's", "Burger King", "Starbucks", "Menard's")]..."))
-
+*/
 // waldo
 
 // Where's WAL[DO/LY]???
