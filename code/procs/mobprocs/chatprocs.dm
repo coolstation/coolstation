@@ -36,8 +36,7 @@
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
 		boutput(src, "<span class='alert'>&emsp;<b>\"[message]</b>\"</span>")
 		return
-	if(istype(src,/mob/living))
-		M = src
+
 	src.say(message)
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
