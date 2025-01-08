@@ -1,13 +1,9 @@
 /**
  * ORIGINAL RANDOM ROOM TEXT, DUE TO BE REPLACED. THIS WHOLE FILE IS NON FUNCTIONAL
  *
- * Want to add a room that's chosen from a selection of random rooms to your map? This is the place to look for that.
- * Put create a dmm file like assets/maps/WIDTHxHEIGHT/NAME_WEIGHT.dmm (or the appropriate secret folder).
- * WIDTH, HEIGHT are the dimensions of the room.
- * NAME is just what you choose to name it.
- * WEIGHT is the probability weight of the room, 100 is the default if you choose to omit this.
- *
- * Then placing an appropriate landmark on a map will choose a random room from the right folder.
+ * Wanna make a room for a S P A C E S H I P ???? Cool!!!!!! All you have to do is make your prefab, name it
+ * whatever, (has to be either 3x3 or 5x3 for now), and throw it in assets/maps/random_ships/(cargo or room)/size
+ * NOTE: ALL PREFABS HAVE TO HAVE THE CLEAR_AREA AREA, AND ALL CARGO PREFABS MUST HAVE BOTH CLEAR_TURF AND CLEAR_AREA <3
  */
 
 
