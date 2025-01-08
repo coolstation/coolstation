@@ -2418,6 +2418,17 @@
 /obj/firedoor_spawn,
 /turf/floor/plating,
 /area/station/engine/gas)
+"na" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "nb" = (
 /obj/cable{
 	d2 = 4;
@@ -2644,6 +2655,21 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"ou" = (
+/obj/machinery/light/fluorescent{
+	dir = 8
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "ow" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -2926,6 +2952,9 @@
 "qa" = (
 /obj/cable{
 	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
 	},
 /turf/floor,
 /area/station/science/teleporter)
@@ -3247,6 +3276,15 @@
 /obj/machinery/atmospherics/unary/cryo_cell/west,
 /turf/floor/bluewhite,
 /area/station/medical/basement)
+"rX" = (
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
+/turf/floor,
+/area/station/science/teleporter)
 "rY" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -4593,6 +4631,10 @@
 	dir = 4;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/plating,
 /area/station/crew_quarters/info{
@@ -8567,6 +8609,17 @@
 	},
 /turf/floor/grime,
 /area/station/bridge/customs)
+"Ui" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "Uj" = (
 /obj/machinery/drainage,
 /turf/floor,
@@ -9212,6 +9265,11 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
 /turf/floor/plating,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -54194,7 +54252,7 @@ nj
 NI
 IQ
 qa
-Un
+rX
 Nm
 pd
 Bo
@@ -54488,7 +54546,7 @@ Yt
 ac
 Rc
 if
-YR
+Ui
 cZ
 xh
 le
@@ -57210,7 +57268,7 @@ lY
 Al
 du
 Al
-iM
+ou
 Bs
 Bs
 iM
@@ -57512,7 +57570,7 @@ hT
 hT
 ks
 hT
-hT
+na
 hT
 hT
 hT

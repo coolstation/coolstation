@@ -219,7 +219,7 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 			if(prob(50))
 				SPAWN_DBG(0) src.say(pick("My wife left me...","My wife left me!","MY WIFE, SHE LEFT ME.", "But, the bathrooms...", "Just wait until the mothers mailing list hears of this...", "They took my programme...", "You remember \"The Tech Storage Guys\" right? I wrote that.", "I'm just thinking about the bathrooms... the pee...", "Why won't my kids call?", "I'm just really out of steam right now..."))
 			else
-				emote(pick["sigh","cry","sob","whimper","pout"])
+				emote(pick("sigh","cry","sob","whimper","pout"))
 	/*
 	attackby(obj/item/W, mob/M)
 		if (istype(W, /obj/item/paper/postcard/owlery))
