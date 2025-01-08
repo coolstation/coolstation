@@ -55,6 +55,7 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 
 /obj/landmark/random_ship_room
 	var/size = null
+	var/roomclass = null
 	deleted_on_start = FALSE
 	add_to_landmarks = FALSE
 
@@ -67,26 +68,38 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 		..()
 
 	proc/apply()
-		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(size))
+		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(roomclass,size))
 		if(isnull(ship_prefab))
-			CRASH("No random ship prefab found for size: " + size)
+			CRASH("No random ship prefab found for size: " + size + ", and of type: " + roomclass)
 		ship_prefab.applyTo(src.loc)
 		logTheThing("debug", null, null, "Applied random ship prefab: [ship_prefab] to [log_loc(src)]")
 		qdel(src)
 
-	cargo3x3
+	room3x3
 		size = "3x3"
+		roomclass = "room"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/3x3.dmi'
 		icon_state = "cargo"
 	#endif
 
-	cargo5x3
+	room5x3
 		size = "5x3"
+		roomclass = "room"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/5x3.dmi'
 		icon_state = "cargo"
 	#endif
+
+	cargo5x3
+		size = "5x3"
+		roomclass = "cargo"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/5x3.dmi'
+		icon_state = "cargo"
+	#endif
+
+
 
 /obj/landmark/random_ship
 	var/size = null
