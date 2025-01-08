@@ -620,6 +620,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		src.tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
 	else if (winget( src, "menu.fps_creamy", "is-checked" ) == "true")
 		src.tick_lag = CLIENTSIDE_TICK_LAG_CREAMY
+	else if (winget( src, "menu.fps_fluid", "is-checked" ) == "true")
+		tick_lag = CLIENTSIDE_TICK_LAG_FLUID
 	else
 		src.tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
 
