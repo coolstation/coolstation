@@ -71,7 +71,7 @@
 			qdel(src)
 
 	afterattack(atom/target, mob/user, reach, params)
-		if (istype(target, /turf) || istype(target, /obj/table))
+		if ((istype(target, /turf) && !target.density) || istype(target, /obj/table))
 			place_the_thing(target, user)
 		else
 			. = ..()
