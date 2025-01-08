@@ -1073,7 +1073,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 	rad_collector
 		name = "Radiation Collector Crate"
-		desc = "Four collector arrays and one controller, to harvest radiation from the singularity."
+		desc = "Four collector arrays and two controllers, to harvest radiation from the singularity."
 		contents = "4x Collector Arrays, 2x Collector Control, 1x Soldering Iron (Courtesy Item)"
 		contains = list(/obj/item/electronics/frame/collector_array = 4,
 						/obj/item/electronics/frame/collector_control = 2,
