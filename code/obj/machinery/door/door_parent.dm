@@ -603,20 +603,25 @@
 			src.operating = 0
 
 /obj/machinery/door/proc/opened()
-	if(autoclose)
-		sleep(15 SECONDS)
-		if(interrupt_autoclose)
-			interrupt_autoclose = 0
-		else
-			autoclose()
+	INVOKE_ASYNC(src, PROC_REF(autoclose_loop))
+
+/obj/machinery/door/proc/autoclose_loop(last_attempt_failed = FALSE)
+	if(!autoclose)
+		return
+	sleep(last_attempt_failed ? 5 SECONDS : 15 SECONDS)
+	if(interrupt_autoclose)
+		interrupt_autoclose = FALSE
+		return
+	if(!autoclose())
+		autoclose_loop(last_attempt_failed = TRUE)
 
 /obj/machinery/door/proc/closed()
-	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"doorClosed")
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "doorClosed")
 
 /obj/machinery/door/proc/autoclose()
-	if (!density && !operating && !locked)
-		close()
-	else return
+	if (QDELETED(src) || density || operating || locked)
+		return FALSE
+	return close() || FALSE
 
 /obj/machinery/door/proc/knockOnDoor(mob/user)
 	if(world.time >= user.last_door_knock_time) //slow the fuck down cowboy
