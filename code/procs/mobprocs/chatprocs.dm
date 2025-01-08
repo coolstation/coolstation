@@ -17,13 +17,6 @@
 	if(M)
 		M.speech_bubble.icon_state = "typing"
 		UpdateOverlays(M.speech_bubble,"speech_bubble")
-		var/current_time = TIME
-		M.lasttyping = current_time
-		SPAWN_DBG(15 SECONDS)
-			if(M?.lasttyping != current_time)
-				return
-			if (M?.speech_bubble.icon_state == "typing" || !isalive(M))
-				M.UpdateOverlays(null, "speech_bubble") //this part right here is Zam's code, not mine
 	var/message = input("","Say") as null|text
 
 	if (message)
@@ -36,8 +29,7 @@
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	//&& !src.client.holder
-	var/mob/living/M = null
+
 	if (!message)
 		return
 	if (src.client && url_regex?.Find(message) && !client.holder)
@@ -47,8 +39,6 @@
 	if(istype(src,/mob/living))
 		M = src
 	src.say(message)
-	if (M.speech_bubble.icon_state == "typing")
-		M.UpdateOverlays(null, "speech_bubble")
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
 	#endif
