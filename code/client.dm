@@ -615,7 +615,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	use_chui = winget( src, "menu.use_chui", "is-checked" ) == "true"
 	use_chui_custom_frames = winget( src, "menu.use_chui_custom_frames", "is-checked" ) == "true"
 
-	//wow its the future we can choose between 3 fps values omg
+	//wow its the future we can choose between 4 fps values omg
 	if (winget( src, "menu.fps_chunky", "is-checked" ) == "true")
 		tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
 	else if (winget( src, "menu.fps_creamy", "is-checked" ) == "true")
@@ -1390,6 +1390,8 @@ var/global/curr_day = null
 		src.tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
 	else if (winget( src, "menu.fps_creamy", "is-checked" ) == "true")
 		src.tick_lag = CLIENTSIDE_TICK_LAG_CREAMY
+	else if (winget( src, "menu.fps_fluid", "is-checked" ) == "true")
+		src.tick_lag = CLIENTSIDE_TICK_LAG_FLUID
 	else
 		src.tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
 
