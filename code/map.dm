@@ -1120,7 +1120,7 @@ var/global/list/mapNames = list(
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/floor/industrial
+	shuttle_map_turf = /turf/space/gehenna/desert/beaten
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1182,9 +1182,6 @@ var/global/list/mapNames = list(
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
 				c_shuttle.filler_turf = "/turf/floor/industrial"
-			var/area/e_shuttle = locate(/area/shuttle/escape/station)
-			if(e_shuttle)
-				e_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
 			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
 			if(t_shuttle_r)
 				t_shuttle_r.filler_turf = "/turf/space/gehenna/desert/beaten"
@@ -1251,9 +1248,7 @@ var/global/list/mapNames = list(
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
 				c_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
-			var/area/e_shuttle = locate(/area/shuttle/escape/station)
-			if(e_shuttle)
-				e_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
+
 			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
 			if(t_shuttle_r)
 				t_shuttle_r.filler_turf = "/turf/space/gehenna/desert/beaten"
