@@ -4,11 +4,11 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "taser_projectile"
 //How much of a punch this has, tends to be seconds/damage before any resist
-	power = 30
+	power = 40
 //How much ammo this costs
 	cost = 25
 //How fast the power goes away
-	dissipation_rate = 1
+	dissipation_rate = 0.5
 //How many tiles till it starts to lose power
 	dissipation_delay = 2
 	max_range = 12 //how many ticks the projectile can go regardless of falloff
@@ -102,7 +102,7 @@ toxic - poisons
 
 //Used by: guardbuddy taser module, AI turret (stun)
 /datum/projectile/energy_bolt/robust
-	power = 45
+	power = 65
 	dissipation_rate = 6
 
 //Used by: taser gun (volley)
@@ -113,7 +113,7 @@ toxic - poisons
 
 //Unused
 /datum/projectile/energy_bolt/tiny
-	power = 2.5
+	power = 5
 	cost = 10
 	sname = "teeny bolt"
 
@@ -138,7 +138,7 @@ toxic - poisons
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "v_sound"
 //How much of a punch this has, tends to be seconds/damage before any resist
-	power = 50 // 100 was way too fucking long what the HECK
+	power = 75 // 100 was way too fucking long what the HECK
 //How much ammo this costs
 	cost = 25
 //How fast the power goes away
