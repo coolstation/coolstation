@@ -3201,8 +3201,8 @@
 	name = "factory pipe"
 	},
 /turf/wall,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "bSr" = (
 /obj/cable{
@@ -3218,8 +3218,8 @@
 "bSA" = (
 /obj/reagent_dispensers/foamtank,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "bTi" = (
 /obj/disposalpipe/segment/morgue{
@@ -3710,8 +3710,8 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "ckQ" = (
 /obj/disposalpipe/segment/horizontal,
@@ -4845,8 +4845,8 @@
 /obj/ladder/auto,
 /obj/machinery/light/fluorescent/red,
 /turf/floor/yellow,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "cXS" = (
 /obj/disposalpipe/segment/bent/west,
@@ -4885,8 +4885,8 @@
 /obj/machinery/light_switch/north,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "cYF" = (
 /obj/machinery/crusher,
@@ -5131,8 +5131,8 @@
 	},
 /obj/machinery/space_heater,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "dfy" = (
 /obj/lattice,
@@ -5435,10 +5435,10 @@
 /turf/floor/plating,
 /area/station/engine/power)
 "dnN" = (
-/obj/decal/tile_edge/floorguide/arrow_n{
-	pixel_y = 16
-	},
 /obj/decal/tile_edge/floorguide/evac,
+/obj/decal/tile_edge/floorguide/arrow_w{
+	dir = 8
+	},
 /turf/wall/r_wall,
 /area/station/maintenance/central)
 "dnT" = (
@@ -5742,9 +5742,12 @@
 /turf/floor,
 /area/station/mining/refinery)
 "dwP" = (
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 4
+	},
 /turf/wall,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
 	})
 "dwV" = (
 /turf/wall,
@@ -7357,8 +7360,8 @@
 "enf" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "ens" = (
 /obj/disposalpipe/segment/sewage{
@@ -7420,8 +7423,8 @@
 /obj/decal/cleanable/cobweb,
 /obj/storage/closet/radiation,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "eoG" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -7541,8 +7544,8 @@
 	pixel_y = -2
 	},
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "eqK" = (
 /obj/machinery/light/small/floor,
@@ -7620,13 +7623,10 @@
 /turf/floor,
 /area/station/security/processing)
 "esw" = (
-/obj/machinery/light/fluorescent/red{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/obj/decal/tile_edge/floorguide/evac,
+/turf/wall,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
 	})
 "esx" = (
 /obj/disposalpipe/segment/mineral{
@@ -7649,18 +7649,6 @@
 /obj/item/sheet/steel/fullstack,
 /turf/floor/plating,
 /area/station/science/storage)
-"etZ" = (
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 4
-	},
-/obj/decal/tile_edge/floorguide/arrow_e{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor,
-/area/station/maintenance/inner/ne{
-	name = "Northeast Tunnel"
-	})
 "eui" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/machinery/door/airlock/maintenance,
@@ -7882,8 +7870,8 @@
 	name = "factory pipe"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "eCh" = (
 /obj/machinery/light_switch/south,
@@ -8507,8 +8495,8 @@
 "eRl" = (
 /obj/landmark/halloween,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "eRr" = (
 /obj/disposalpipe/segment/cargo,
@@ -8666,8 +8654,8 @@
 	name = "factory pipe"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "eVq" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
@@ -9227,8 +9215,8 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "fnX" = (
 /obj/disposalpipe/segment/cargo{
@@ -9377,8 +9365,8 @@
 	tag = ""
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "fte" = (
 /obj/decal/cleanable/dirt/random,
@@ -9564,8 +9552,8 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/machinery/door/firedoor/border_only,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "fzw" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -11581,8 +11569,8 @@
 "gHl" = (
 /obj/machinery/light/fluorescent,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "gHq" = (
 /obj/cable{
@@ -12676,8 +12664,8 @@
 	dir = 1
 	},
 /turf/floor/yellow,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "hug" = (
 /turf/wall/r_wall,
@@ -13120,8 +13108,8 @@
 "hHq" = (
 /obj/machinery/light/small/warm,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "hHF" = (
 /obj/rack,
@@ -13189,6 +13177,9 @@
 	tag = ""
 	},
 /obj/machinery/light/emergency{
+	dir = 8
+	},
+/obj/decal/tile_edge/floorguide/evac{
 	dir = 8
 	},
 /turf/floor/plating,
@@ -13435,8 +13426,8 @@
 	icon_state = "1-8"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "hQb" = (
 /obj/rack,
@@ -14171,8 +14162,8 @@
 "inK" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "inP" = (
 /obj/ladder/auto,
@@ -15180,8 +15171,8 @@
 	dir = 4
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "iPz" = (
 /obj/cable{
@@ -15634,7 +15625,7 @@
 /turf/floor,
 /area/station/science/artifact)
 "jaa" = (
-/obj/decal/poster/wallsign/escape_right,
+/obj/decal/poster/wallsign/escape_left,
 /turf/wall/r_wall,
 /area/station/quartermaster/refinery)
 "jaz" = (
@@ -16101,6 +16092,7 @@
 	dir = 9;
 	icon_state = "xtra_bigstripe-corner2"
 	},
+/obj/decal/tile_edge/floorguide/evac,
 /turf/floor,
 /area/station/maintenance/south)
 "jor" = (
@@ -16597,10 +16589,6 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/obj/decal/tile_edge/floorguide/arrow_e{
-	dir = 8
-	},
-/obj/decal/tile_edge/floorguide/arrow_e,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -16902,8 +16890,8 @@
 "jNF" = (
 /obj/item/device/radio/beacon,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "jNN" = (
 /obj/disposalpipe/segment/mineral{
@@ -16972,14 +16960,10 @@
 	name = "Sec. Officers Sleeping Quarters"
 	})
 "jPA" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/obj/decal/poster/wallsign/escape_left,
+/turf/wall/r_wall,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
 	})
 "jPG" = (
 /obj/cable{
@@ -17635,8 +17619,8 @@
 "kfW" = (
 /obj/landmark/gps_waypoint,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "kge" = (
 /obj/item/chair/folded/stepladder,
@@ -17810,8 +17794,8 @@
 "kjO" = (
 /obj/ladder/auto,
 /turf/floor/yellow,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "kkm" = (
 /obj/disposalpipe/segment/horizontal,
@@ -18244,8 +18228,8 @@
 "kxr" = (
 /obj/machinery/light/fluorescent/red,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "kxN" = (
 /turf/wall,
@@ -18305,16 +18289,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/storage/warehouse)
-"kzF" = (
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 1
-	},
-/obj/decal/tile_edge/floorguide/arrow_e,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/turf/floor,
-/area/station/maintenance/inner/ne{
-	name = "Northeast Tunnel"
-	})
 "kzL" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/machinery/light/fluorescent/cool/very{
@@ -19608,8 +19582,8 @@
 "lhG" = (
 /obj/decal/poster/wallsign/escape_right,
 /turf/wall,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "lhM" = (
 /obj/disposalpipe/segment/bent/east,
@@ -21573,8 +21547,8 @@
 	dir = 8
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "mvn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -22078,8 +22052,8 @@
 	name = "factory pipe"
 	},
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "mIt" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -22198,8 +22172,8 @@
 "mLu" = (
 /obj/storage/closet/emergency,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "mLy" = (
 /obj/ladder/auto,
@@ -23543,8 +23517,8 @@
 /area/station/bridge/locker)
 "nyN" = (
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "nyR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -23591,8 +23565,8 @@
 "nAx" = (
 /obj/decal/poster/wallsign/medbay_left,
 /turf/wall,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "nAL" = (
 /obj/disposalpipe/segment{
@@ -24070,8 +24044,8 @@
 /area/station/mining/tunnel)
 "nNL" = (
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "nNW" = (
 /obj/wingrille_spawn/crystal,
@@ -24563,8 +24537,8 @@
 	name = "factory pipe"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "odf" = (
 /obj/disposalpipe/segment/horizontal,
@@ -26518,8 +26492,8 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/machinery/door/firedoor/border_only,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "pwB" = (
 /obj/disposalpipe/segment/vertical,
@@ -26571,7 +26545,7 @@
 /turf/floor/black,
 /area/station/science/lab)
 "pyf" = (
-/obj/decal/poster/wallsign/escape_right,
+/obj/decal/poster/wallsign/escape_left,
 /turf/wall,
 /area/station/wc/public)
 "pyn" = (
@@ -26829,6 +26803,7 @@
 /obj/decal/tile_edge/floorguide/medbay{
 	dir = 1
 	},
+/obj/decal/tile_edge/floorguide/evac,
 /turf/floor/bluewhite{
 	dir = 1
 	},
@@ -27236,11 +27211,10 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "pVn" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -27249,8 +27223,8 @@
 	name = "factory pipe"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "pVq" = (
 /obj/decal/cleanable/dirt,
@@ -28720,6 +28694,10 @@
 /obj/disposalpipe/segment{
 	name = "factory pipe"
 	},
+/obj/decal/tile_edge/floorguide/arrow_n{
+	dir = 8
+	},
+/obj/decal/tile_edge/floorguide/evac,
 /turf/wall,
 /area/station/maintenance/outer/ne{
 	name = "Northeast Lower Maintenance"
@@ -31193,8 +31171,8 @@
 "sqo" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "sqs" = (
 /obj/tug_cart,
@@ -32346,10 +32324,9 @@
 /turf/floor/grey,
 /area/station/maintenance/disposal)
 "tbQ" = (
+/obj/decal/poster/wallsign/escape_left,
 /turf/wall/r_wall,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
-	})
+/area/station/maintenance/central)
 "tbS" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -33153,11 +33130,12 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
 "tzD" = (
-/obj/decal/poster/wallsign/escape_right,
-/turf/wall/r_wall,
-/area/station/maintenance/outer/east{
-	name = "East Lower Maintenance"
-	})
+/obj/disposalpipe/segment/food,
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 8
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "tzE" = (
 /turf/floor/black,
 /area/station/crew_quarters/bar)
@@ -33180,8 +33158,8 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "tAk" = (
 /obj/disposalpipe/segment/morgue{
@@ -33341,12 +33319,6 @@
 "tFl" = (
 /turf/wall,
 /area/station/crew_quarters/quartersB)
-"tFm" = (
-/obj/decal/poster/wallsign/escape_right,
-/turf/wall/r_wall,
-/area/station/maintenance/inner/ne{
-	name = "Northeast Tunnel"
-	})
 "tFp" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -33820,8 +33792,8 @@
 "tUV" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "tUY" = (
 /obj/machinery/light_switch/north,
@@ -35729,8 +35701,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "uZK" = (
 /obj/storage/crate/freezer,
@@ -36367,8 +36339,8 @@
 "vsc" = (
 /obj/machinery/door/airlock,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "vse" = (
 /obj/disposalpipe/segment/vertical,
@@ -36573,14 +36545,14 @@
 /obj/item/device/camera_viewer,
 /obj/decal/cleanable/cobweb2,
 /turf/floor/plating,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "vwW" = (
 /obj/storage/closet/fire,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "vwY" = (
 /turf/wall,
@@ -37207,8 +37179,8 @@
 	name = "factory pipe"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "vRS" = (
 /obj/disposalpipe/segment/vertical,
@@ -39687,8 +39659,8 @@
 	dir = 1
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "xwd" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -39731,6 +39703,9 @@
 "xyp" = (
 /obj/decal/tile_edge/floorguide/medbay{
 	dir = 8
+	},
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 4
 	},
 /turf/floor/bluewhite{
 	dir = 1
@@ -40243,6 +40218,10 @@
 /obj/decal/tile_edge/floorguide/qm{
 	dir = 1
 	},
+/obj/decal/tile_edge/floorguide/evac,
+/obj/decal/tile_edge/floorguide/arrow_n{
+	dir = 8
+	},
 /turf/wall/r_wall,
 /area/station/maintenance/inner/ne{
 	name = "Northeast Tunnel"
@@ -40324,8 +40303,8 @@
 "xPF" = (
 /obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "xPN" = (
 /obj/machinery/atmospherics/valve/purge/horizontal{
@@ -40628,8 +40607,8 @@
 	name = "factory pipe"
 	},
 /turf/floor,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
 	})
 "xXZ" = (
 /obj/window/west,
@@ -81967,7 +81946,7 @@ kph
 kph
 gxR
 nFb
-nFb
+dwP
 vWl
 xfC
 luH
@@ -82571,7 +82550,7 @@ gxR
 kph
 kph
 nFb
-nFb
+esw
 vWl
 kCU
 luH
@@ -84988,7 +84967,7 @@ gxR
 gxR
 gxR
 kph
-tjT
+jPA
 hCB
 luH
 mUF
@@ -88954,7 +88933,7 @@ hMC
 niS
 kiQ
 fyJ
-ffQ
+tzD
 nGf
 lzq
 rsf
@@ -90160,7 +90139,7 @@ smZ
 smZ
 smZ
 smZ
-hmU
+tbQ
 wqv
 bUR
 hmU
@@ -104006,11 +103985,11 @@ wSY
 wSY
 wSY
 aXz
-tFm
-etZ
+wSY
+inK
 fUz
-kzF
-tzD
+sqo
+mZK
 cFo
 eCO
 cft
@@ -105214,11 +105193,11 @@ ppe
 wCp
 arF
 eHj
-tbQ
+wSY
 fzf
 ckw
 pvD
-tbQ
+wSY
 kpW
 kPQ
 kPQ
@@ -105516,11 +105495,11 @@ wxj
 vmY
 scT
 mcB
-tbQ
+wSY
 uZw
-jPA
+xJB
 sqo
-tbQ
+wSY
 kpW
 kpW
 kPQ
@@ -105820,9 +105799,9 @@ joU
 fBf
 bSi
 xXW
-jPA
+xJB
 mvm
-dwP
+akf
 kpW
 kpW
 kPQ
@@ -106120,11 +106099,11 @@ ppe
 ppe
 ppe
 srE
-tbQ
+wSY
 vRB
-jPA
+xJB
 kxr
-dwP
+akf
 kpW
 kpW
 kpW
@@ -106422,9 +106401,9 @@ fNt
 bjj
 iIM
 sqs
-tbQ
+wSY
 pVn
-jPA
+xJB
 nyN
 tUV
 kpW
@@ -106724,9 +106703,9 @@ ppe
 nIx
 dGq
 sqs
-tbQ
+wSY
 pVn
-jPA
+xJB
 nyN
 tUV
 kPQ
@@ -107026,9 +107005,9 @@ ppe
 aZv
 dGq
 sqs
-tbQ
+wSY
 pVn
-jPA
+xJB
 nyN
 tUV
 kPQ
@@ -107328,11 +107307,11 @@ fQF
 fQF
 sgX
 iXL
-tbQ
+wSY
 eBQ
-jPA
+xJB
 gHl
-dwP
+akf
 kPQ
 kPQ
 kpW
@@ -107630,9 +107609,9 @@ kJh
 iIM
 dGq
 hOx
-tbQ
+wSY
 pVn
-jPA
+xJB
 nyN
 tUV
 kPQ
@@ -107932,9 +107911,9 @@ egr
 uoc
 cNF
 dip
-tbQ
+wSY
 ocI
-jPA
+xJB
 nyN
 tUV
 kPQ
@@ -108234,9 +108213,9 @@ egr
 qzm
 vMO
 bvP
-tbQ
+wSY
 pVn
-jPA
+xJB
 nyN
 tUV
 kpW
@@ -108536,11 +108515,11 @@ egr
 egr
 egr
 egr
-tbQ
+wSY
 vRB
-jPA
+xJB
 kxr
-dwP
+akf
 kpW
 kpW
 kPQ
@@ -108834,13 +108813,13 @@ rgw
 jaz
 lCS
 wqp
-dwP
+akf
 eoz
 bSA
 mIc
 bSi
 eVb
-jPA
+xJB
 nyN
 tUV
 kpW
@@ -109136,11 +109115,11 @@ pHn
 pHn
 pHn
 pHn
-dwP
+akf
 tAc
 nNL
 hHq
-dwP
+akf
 pVe
 hPT
 nyN
@@ -109438,7 +109417,7 @@ pdO
 pdO
 pdO
 pdO
-dwP
+akf
 fnQ
 eRl
 nNL
@@ -109740,15 +109719,15 @@ pdO
 pdO
 pdO
 pdO
-dwP
+akf
 cYx
 nNL
-dwP
+akf
 nAx
-esw
+rtB
 jNF
 gHl
-dwP
+akf
 kPQ
 kPQ
 kpW
@@ -110042,10 +110021,10 @@ pdO
 pdO
 pdO
 pdO
-dwP
+akf
 dfh
 enf
-dwP
+akf
 mLu
 xPF
 nyN
@@ -110344,10 +110323,10 @@ pdO
 pdO
 pdO
 pdO
-dwP
+akf
 vwS
 eqE
-dwP
+akf
 vwW
 nyN
 nyN
@@ -110646,15 +110625,15 @@ pdO
 pdO
 pdO
 pdO
-dwP
-dwP
-dwP
-dwP
+akf
+akf
+akf
+akf
 lhG
 xvW
 iPj
 iPj
-dwP
+akf
 kPQ
 kPQ
 kPQ
@@ -110952,11 +110931,11 @@ pdO
 pdO
 pdO
 pdO
-dwP
+akf
 htW
 kjO
 cXC
-dwP
+akf
 kPQ
 kPQ
 kPQ
@@ -111254,11 +111233,11 @@ pdO
 pdO
 pdO
 pdO
-dwP
-dwP
-dwP
-dwP
-dwP
+akf
+akf
+akf
+akf
+akf
 pdO
 kPQ
 kPQ
