@@ -650,6 +650,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	//QM Categories by ZeWaka
 	build_qm_categories()
+//	build_qm_suppliers()
 
 	#if SKIP_Z5_SETUP == 0
 	UPDATE_TITLE_STATUS("Building mining level 💣")

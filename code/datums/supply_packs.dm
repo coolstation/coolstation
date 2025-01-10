@@ -41,6 +41,17 @@
 			else
 				misc_supply_cache += new S()
 
+//	QM_SupplierList["NanoTrasen"] = nanotrasen_supply_cache // redundo
+	QM_SupplierList["Juicy Engineering"] = engineering_supply_cache
+	QM_SupplierList["Construction Comrade"] = construction_supply_cache
+	QM_SupplierList["Electronics Libre"] = electronics_supply_cache
+	QM_SupplierList["Giuseppe's Italian Grocery & Massage"] = grocery_supply_cache
+	QM_SupplierList["Hafgan Heavy Industries"] = heavy_supply_cache
+	QM_SupplierList["Vendtech Vending"] = vending_supply_cache
+	QM_SupplierList["ACAB Party Center"] = party_supply_cache
+	QM_SupplierList["Odds & Ends"] = misc_supply_cache
+
+
 //return info for different qm vendors
 //use alone for friendly name
 /proc/qm_vendor_info(var/vendor,var/info)
