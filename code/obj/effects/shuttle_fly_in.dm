@@ -11,6 +11,8 @@
 	New(loc, total_delay)
 		..()
 		var/turf/our_loc = src.loc
+		if (!istype_exact(our_loc, /turf/space))
+			icon_state = "shadow"
 		var/turf/offset_for_sprite_size = locate(our_loc.x - 3, our_loc.y - 1, our_loc.z)
 		if(offset_for_sprite_size)
 			set_loc(offset_for_sprite_size)
