@@ -1160,6 +1160,15 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		icon_state = "messnoodle1"
 		random_icon_states = list("messnoodle1", "messnoodle2")
 
+		attack_hand(mob/user as mob)
+			if (user.lying)
+				user.visible_message("<span class='notice'><b>[user]</b> just kind of eats [src] right off the floor.</span>",\
+				"<span class='notice'>You eat [src] right off the floor.</span>")
+				playsound(user.loc,"sound/items/eatfood.ogg", rand(10, 50), 1)
+				user.reagents.add_reagent("grime", 1)
+				qdel(src)
+				return
+
 	noodles/random_sauce
 		name = "spilled noodles in sauce"
 		icon_state = "messnoodle1sauce"
