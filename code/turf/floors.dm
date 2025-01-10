@@ -524,6 +524,32 @@
 	icon_state = "grimy"
 	permadirty = 1
 
+/turf/floor/carpet/grime2
+	name = "cheap carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grimy2"
+	permadirty = 1
+
+	New()
+		..()
+		src.dir = pick(NORTH, EAST, SOUTH, WEST)
+
+/turf/floor/carpet/grime3
+	name = "cheap carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grimy3"
+	permadirty = 1
+
+/turf/floor/carpet/grime4
+	name = "cheap carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grimy4"
+	permadirty = 1
+
+	New()
+		..()
+		src.dir = pick(NORTH, EAST, SOUTH, WEST)
+
 /turf/floor/carpet/arcade
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "arcade_carpet"
