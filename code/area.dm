@@ -158,6 +158,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	var/obj/machinery/light_area_manager/light_manager = 0
 
+	//list of the density of each tile in the area
+	var/list/densityMap = list()
+
 	/// Local list of obj/machines found in the area
 	var/list/machines = list()
 

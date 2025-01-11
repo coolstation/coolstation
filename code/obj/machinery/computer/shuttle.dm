@@ -91,6 +91,8 @@
 	icon_state = "shuttle"
 	machine_registry_idx = MACHINES_SHUTTLECOMPS
 	var/active = 0
+	var/list/startDensityMap = list()
+	var/list/endDensityMap = list()
 
 
 /obj/machinery/computer/shipyard_control/attack_hand(mob/user as mob)
@@ -146,10 +148,10 @@
 /obj/machinery/computer/shipyard_control/proc/call_client()
 
 	if(shipyardship_location == 0)
-		clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
+		startDensityMap = calculate_density_map(start_location)
 		start_location.move_contents_to(end_location)
 		shipyardship_location = 1
 	else
@@ -157,6 +159,9 @@
 			var/area/start_location = locate(/area/shuttle/bayou/shipyard)
 			var/area/end_location = locate(/area/shuttle/bayou/stagearea)
 			start_location.move_contents_to(end_location)
+			endDensityMap = calculate_density_map(end_location)
+			scrapperPayout(startDensityMap,endDensityMap)
+			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 			shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])

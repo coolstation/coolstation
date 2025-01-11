@@ -551,6 +551,16 @@ var/obj/item/dummy/click_dummy = new
 	proc/to_rgba()
 		return rgb(r,g,b,a)
 
+/proc/calculate_density_map(var/area/A)
+	var/list/appendTo = list()
+	var/list/turfs = get_area_turfs(A.type)
+	for(var/turf/S in turfs)
+		if(S.density)
+			appendTo += S.density
+	return appendTo
+
+
+
 /proc/clear_area(var/area/A, var/turftospare=null, var/objecttospare=null, var/isOcean=false)
 	// Takes: Area, optional turf type to spare from the purge, optional object to spare, whether or not this is in da ocean
 	var/list/turfs = get_area_turfs(A.type)
