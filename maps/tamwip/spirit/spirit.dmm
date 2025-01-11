@@ -384,6 +384,15 @@
 "iY" = (
 /turf/floor/plating,
 /area/space)
+"jh" = (
+/obj/filing_cabinet{
+	pixel_x = 8
+	},
+/obj/filing_cabinet{
+	pixel_x = -8
+	},
+/turf/floor/black/grime,
+/area/space)
 "jp" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8
@@ -876,6 +885,13 @@
 "zz" = (
 /turf/wall/auto/jen/dark2,
 /area/station/crew_quarters/baroffice)
+"zA" = (
+/obj/machinery/door/airlock/pyro/security{
+	dir = 4
+	},
+/obj/firedoor_spawn,
+/turf/floor/black/grime,
+/area/space)
 "zK" = (
 /turf/floor/carpet/red/standard/edge{
 	dir = 4
@@ -885,6 +901,9 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
+"zT" = (
+/turf/floor/black/grime,
+/area/space)
 "Aa" = (
 /turf/wall/auto/shuttle{
 	icon_state = "14"
@@ -931,6 +950,12 @@
 	name = "window"
 	},
 /area/shuttle/arrival/station)
+"Bp" = (
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/desk_stuff/g_clip_bin_pen/few,
+/obj/machinery/door/window/northleft,
+/turf/floor/black/grime,
+/area/space)
 "Br" = (
 /turf/floor/redblack{
 	dir = 4
@@ -1021,6 +1046,10 @@
 /obj/rack,
 /turf/floor/white/grime,
 /area/station/crew_quarters/catering)
+"EX" = (
+/obj/storage/secure/closet/security,
+/turf/floor/black/grime,
+/area/space)
 "EY" = (
 /turf/floor,
 /area/station/hallway/secondary/entry)
@@ -1047,6 +1076,16 @@
 /obj/decal/wreath/ephemeral,
 /turf/wall/auto/reinforced/jen/dark2,
 /area/space)
+"Gq" = (
+/obj/machinery/computer/secure_data{
+	dir = 4
+	},
+/turf/floor/black/grime,
+/area/space)
+"Gs" = (
+/obj/table/reinforced,
+/turf/floor/black/grime,
+/area/space)
 "GJ" = (
 /turf/wall/auto/reinforced/jen/dark2,
 /area/station/engine/engineering)
@@ -1072,6 +1111,10 @@
 "Hd" = (
 /obj/wingrille_spawn/auto,
 /turf/space,
+/area/space)
+"Hk" = (
+/obj/stool/chair,
+/turf/floor/black/grime,
 /area/space)
 "Ho" = (
 /obj/firedoor_spawn,
@@ -1207,6 +1250,12 @@
 	},
 /turf/floor/neutral,
 /area/station/crew_quarters/bar)
+"KF" = (
+/obj/table/reinforced/auto,
+/obj/machinery/door/window/northright,
+/obj/machinery/cashreg,
+/turf/floor/black/grime,
+/area/space)
 "KL" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -33054,7 +33103,7 @@ Kg
 jW
 jW
 jW
-jW
+zA
 jW
 DH
 DH
@@ -33354,9 +33403,9 @@ jt
 jt
 jt
 jW
-pw
-pw
-pw
+EX
+zT
+zT
 jW
 jW
 jW
@@ -33656,10 +33705,10 @@ jt
 jt
 jt
 jW
-pw
-pw
-pw
-pw
+jh
+zT
+zT
+jW
 pw
 pw
 pw
@@ -33958,10 +34007,10 @@ jt
 jt
 jt
 jW
-pw
-pw
-pw
-pw
+Gq
+zT
+zT
+jW
 pw
 pw
 pw
@@ -34259,11 +34308,11 @@ jW
 jt
 jt
 jt
+Bp
+Hk
+zT
+zT
 jW
-pw
-pw
-pw
-pw
 pw
 pw
 pw
@@ -34561,11 +34610,11 @@ jW
 jt
 jt
 jt
+KF
+zT
+zT
+Gs
 jW
-pw
-pw
-pw
-pw
 pw
 pw
 pw
@@ -34864,10 +34913,10 @@ jt
 jt
 jt
 jW
-pw
-pw
-pw
-pw
+jW
+jW
+jW
+jW
 pw
 pw
 pw
