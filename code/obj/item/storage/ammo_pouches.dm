@@ -151,8 +151,9 @@
 	/obj/item/instrument/whistle)
 
 /obj/item/storage/security_pouch/assistant
-	spawn_contents = list(/obj/item/handcuffs = 2,\
-	/obj/item/device/flash = 2,\
+	desc = "A worn and grody pouch dug out of some surplus pile. Wearing this makes you look cool and prepared."
+	spawn_contents = list(/obj/item/device/detective_scanner,\
+	/obj/item/device/ticket_writer,\
 	/obj/item/instrument/whistle,\
 	/obj/item/reagent_containers/food/snacks/donut/custom/frosted)
 

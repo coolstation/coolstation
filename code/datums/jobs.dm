@@ -543,12 +543,12 @@ ABSTRACT_TYPE(/datum/job/security)
 		cant_spawn_as_con = 1
 		wages = PAY_UNTRAINED
 		slot_jump = list(/obj/item/clothing/under/rank/security/assistant)
-		slot_belt = list(/obj/item/storage/belt/security/assistant)
+		slot_belt = list()
 		slot_suit = list()
 		slot_glov = list(/obj/item/clothing/gloves/fingerless)
 		slot_head = list(/obj/item/clothing/head/red)
 		slot_foot = list(/obj/item/clothing/shoes/brown)
-		slot_poc1 = list(/obj/item/instrument/whistle)
+		slot_poc1 = list(/obj/item/storage/security_pouch/assistant)
 		slot_poc2 = list(/obj/item/device/pda2/security)
 		items_in_backpack = list(/obj/item/paper/book/from_file/space_law)
 		rounds_needed_to_play = 5
