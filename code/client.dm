@@ -628,7 +628,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				decoded = text2num(cloud_get("use_chui"))
 				if (!isnull(decoded))
 					use_chui = decoded
-					winset(src, "menu", "use_chui.is-checked=[decoded ? "true" : "false"]")
+					winset(src, "menu", "use_chui.is-checked=[decoded ? "false" : "true"]")
 
 				decoded = text2num(cloud_get("use_chui_custom_frames"))
 				if (!isnull(decoded))
