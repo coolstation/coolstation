@@ -569,7 +569,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 				decoded = text2num(cloud_get("set_wide"))
 				if (!isnull(decoded))
-					winset(src, "menu", "set_wide.is-checked=[decoded ? "true" : "false"]")
+					winset(src, "menu", "set_wide.is-checked=[decoded ? "false" : "true"]")
 
 				decoded = text2num(cloud_get("vert_split"))
 				if (!isnull(decoded))
