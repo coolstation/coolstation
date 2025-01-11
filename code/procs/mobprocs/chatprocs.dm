@@ -17,6 +17,13 @@
 	if(M)
 		M.speech_bubble.icon_state = "typing"
 		UpdateOverlays(M.speech_bubble,"speech_bubble")
+		var/current_time = TIME
+		SPAWN_DBG(7 SECONDS)
+			if (M?.last_typing != current_time)
+				return
+			if (M?.speech_bubble?.icon_state == "typing")
+				M.UpdateOverlays(null, "speech_bubble")
+
 	var/message = input("","Say") as null|text
 
 	if (message)

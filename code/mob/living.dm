@@ -80,6 +80,7 @@
 
 	var/last_heard_name = null
 	var/last_chat_color = null
+	var/last_typing = null
 
 	var/list/random_emotes
 
