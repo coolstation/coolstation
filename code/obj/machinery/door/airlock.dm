@@ -1533,11 +1533,9 @@ About the new airlock wires panel:
 	return 0
 
 /obj/machinery/door/airlock/autoclose()
-	if(!welded)
-		close(0, 1)
-	else
-		..()
-	return
+	if(welded)
+		return FALSE
+	return ..()
 
 /obj/machinery/door/airlock/malfunction(mult)
 

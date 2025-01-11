@@ -452,11 +452,6 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	SPAWN_DBG(0)
 		updateXpRewards()
 
-	//tg controls stuff
-
-	tg_controls = winget( src, "menu.tg_controls", "is-checked" ) == "true"
-	tg_layout = winget( src, "menu.tg_layout", "is-checked" ) == "true"
-
 	SPAWN_DBG(3 SECONDS)
 #ifndef IM_TESTING_SHIT_STOP_BARFING_CHANGELOGS_AT_ME
 		var/is_newbie = 0
@@ -544,8 +539,155 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 						else
 							volumes += old_volumes[i]
 
+				//some more shit that used to get clobbered after you played a tg flavour
+				//set the var and set the corresponding menus to the correct tick values. Sometimes those are load-bearing and sometimes not
+
+
+				decoded = text2num(cloud_get("icon_size")) //Not the var on world, but the icon scaling on the player's window
+				if (!isnull(decoded))
+					if (!(decoded in list(0, 128, 64, 56, 32)))
+						decoded = 0 //reset to stretch to fit
+					winset(src, null, "mapwindow.map.icon-size=[decoded]")
+
+				decoded = text2num(cloud_get("tick_lag")) //FPS
+				if (!isnull(decoded))
+					src.tick_lag = decoded
+					switch(decoded)
+						if(CLIENTSIDE_TICK_LAG_CHUNKY)
+							winset(src, "menu", "fps_chunky.is-checked=true")
+						if(CLIENTSIDE_TICK_LAG_CREAMY)
+							winset(src, "menu", "fps_creamy.is-checked=true")
+						if(CLIENTSIDE_TICK_LAG_FLUID)
+							winset(src, "menu", "fps_fluid.is-checked=true")
+						else //CLIENTSIDE_TICK_LAG_SMOOTH, also reset to default if given garbo value
+							src.tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
+							winset(src, "menu", "fps_smooth.is-checked=true")
+
+				decoded = text2num(cloud_get("zoom_distort"))
+				if (!isnull(decoded))
+					winset(src, "mapwindow.map", "zoom-mode=[decoded ? "distort" : "normal"]")
+
+				decoded = text2num(cloud_get("set_wide"))
+				if (!isnull(decoded))
+					winset(src, "menu", "set_wide.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("vert_split"))
+				if (!isnull(decoded))
+					winset(src, "menu", "horiz_split.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("fullscreen"))
+				if (!isnull(decoded))
+					winset(src, "menu", "fullscreen.is-checked=[decoded ? "true" : "false"]")
+					if (decoded)
+						winset(src, null, "mainwindow.titlebar=false;mainwindow.is-maximized=true")
+
+				decoded = text2num(cloud_get("hide_status_bar"))
+				if (!isnull(decoded))
+					set_widescreen(decoded)
+					winset(src, "menu", "hide_status_bar.is-checked=[decoded ? "true" : "false"]")
+					if (decoded)
+						winset(src, null, "mainwindow.statusbar=false")
+
+				decoded = text2num(cloud_get("hide_menu"))
+				if (!isnull(decoded))
+					set_widescreen(decoded)
+					winset(src, "menu", "hide_menu.is-checked=[decoded ? "true" : "false"]")
+					if (decoded)
+						winset(src, null, "mainwindow.menu='';menub.is-visible = true")
+
+				decoded = text2num(cloud_get("dark_mode"))
+				if (!isnull(decoded))
+					winset(src, "menu", "dark_mode.is-checked=[decoded ? "true" : "false"]") //sync_dark_mode is called later on based on this
+
+				decoded = text2num(cloud_get("set_shadow"))
+				if (!isnull(decoded))
+					//apply_depth_filter() checks for this with winget, and that's called on a 5s SPAWN. It might be fine to leave this as is.
+					winset(src, "menu", "set_shadow.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("set_tint"))
+				if (!isnull(decoded))
+					view_tint = decoded
+					winset(src, "menu", "set_tint.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("tg_controls"))
+				if (!isnull(decoded))
+					tg_controls = decoded
+					winset(src, "menu", "tg_controls.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("tg_layout"))
+				if (!isnull(decoded))
+					tg_layout = decoded
+					winset(src, "menu", "tg_layout.is-checked=[decoded ? "true" : "false"]")
+
+				//come back to this one later, the verb associated with this one hacks onto src.preferences and it seems unfit atm
+				/*decoded = cloud_get("wasd_controls")
+				if (!isnull(decoded))
+					tg_layout = decoded
+					winset(src, "menu", "wasd_controls.is-checked=[decoded ? "true" : "false"]")*/
+
+				decoded = text2num(cloud_get("use_chui"))
+				if (!isnull(decoded))
+					use_chui = decoded
+					winset(src, "menu", "use_chui.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("use_chui_custom_frames"))
+				if (!isnull(decoded))
+					use_chui_custom_frames = decoded
+					winset(src, "menu", "use_chui_custom_frames.is-checked=[decoded ? "true" : "false"]")
+
+				decoded = text2num(cloud_get("hand_ghosts"))
+				if (!isnull(decoded))
+					hand_ghosts = decoded
+					winset(src, "menu", "use_hand_ghosts.is-checked=[decoded ? "true" : "false"]")
+
 				// Show login notice, if one exists
 				src.show_login_notice()
+		else
+			//No cloud shit? Hope you still got the settings from last time. (what used to happen for most of these, it sucked)
+
+			//tg controls stuff
+			tg_controls = winget( src, "menu.tg_controls", "is-checked" ) == "true"
+			tg_layout = winget( src, "menu.tg_layout", "is-checked" ) == "true"
+
+			//blendmode stuff
+
+			var/distort_checked = winget( src, "menu.zoom_distort", "is-checked" ) == "true"
+
+			winset( src, "mapwindow.map", "zoom-mode=[distort_checked ? "distort" : "normal"]" )
+
+			//blendmode end
+
+			//tg controls end
+
+			if(winget(src, "menu.fullscreen", "is-checked") == "true")
+				winset(src, null, "mainwindow.titlebar=false;mainwindow.is-maximized=true")
+
+			if(winget(src, "menu.hide_status_bar", "is-checked") == "true")
+				winset(src, null, "mainwindow.statusbar=false")
+
+			if(winget(src, "menu.hide_menu", "is-checked") == "true")
+				winset(src, null, "mainwindow.menu='';menub.is-visible = true")
+
+			use_chui = winget( src, "menu.use_chui", "is-checked" ) == "true"
+			use_chui_custom_frames = winget( src, "menu.use_chui_custom_frames", "is-checked" ) == "true"
+
+			//wow its the future we can choose between 4 fps values omg
+			if (winget( src, "menu.fps_chunky", "is-checked" ) == "true")
+				tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
+			else if (winget( src, "menu.fps_creamy", "is-checked" ) == "true")
+				tick_lag = CLIENTSIDE_TICK_LAG_CREAMY
+			else if (winget( src, "menu.fps_fluid", "is-checked" ) == "true")
+				tick_lag = CLIENTSIDE_TICK_LAG_FLUID
+			else
+				tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
+
+			//game stuf
+			hand_ghosts = winget( src, "menu.use_hand_ghosts", "is-checked" ) == "true"
+
+			// Set view tint
+			view_tint = winget( src, "menu.set_tint", "is-checked" ) == "true"
+
+			// NON CLOUD SETTINGS END
 
 		src.mob.reset_keymap()
 
@@ -560,6 +702,12 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		do_computerid_test(src) //Will ban yonder fucker in case they are prix
 		check_compid_list(src) 	//Will analyze their computer ID usage patterns for aberrations
 
+
+	// cursed darkmode stuff
+
+	src.sync_dark_mode()
+
+	// cursed darkmode end
 
 	//WIDESCREEN STUFF
 	var/splitter_value = text2num(winget( src, "mainwindow.mainvsplit", "splitter" ))
@@ -586,47 +734,6 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		winset( src, "menu", "horiz_split.is-checked=true" )
 
 	//End widescreen stuff
-
-	//blendmode stuff
-
-	var/distort_checked = winget( src, "menu.zoom_distort", "is-checked" ) == "true"
-
-	winset( src, "mapwindow.map", "zoom-mode=[distort_checked ? "distort" : "normal"]" )
-
-	//blendmode end
-
-	// cursed darkmode stuff
-
-	src.sync_dark_mode()
-
-	if(winget(src, "menu.fullscreen", "is-checked") == "true")
-		winset(src, null, "mainwindow.titlebar=false;mainwindow.is-maximized=true")
-
-	if(winget(src, "menu.hide_status_bar", "is-checked") == "true")
-		winset(src, null, "mainwindow.statusbar=false")
-
-	if(winget(src, "menu.hide_menu", "is-checked") == "true")
-		winset(src, null, "mainwindow.menu='';menub.is-visible = true")
-
-	// cursed darkmode end
-
-	//tg controls end
-
-	use_chui = winget( src, "menu.use_chui", "is-checked" ) == "true"
-	use_chui_custom_frames = winget( src, "menu.use_chui_custom_frames", "is-checked" ) == "true"
-
-	//wow its the future we can choose between 4 fps values omg
-	if (winget( src, "menu.fps_chunky", "is-checked" ) == "true")
-		tick_lag = CLIENTSIDE_TICK_LAG_CHUNKY
-	else if (winget( src, "menu.fps_creamy", "is-checked" ) == "true")
-		tick_lag = CLIENTSIDE_TICK_LAG_CREAMY
-	else if (winget( src, "menu.fps_fluid", "is-checked" ) == "true")
-		tick_lag = CLIENTSIDE_TICK_LAG_FLUID
-	else
-		tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
-
-	//game stuf
-	hand_ghosts = winget( src, "menu.use_hand_ghosts", "is-checked" ) == "true"
 
 	//sound
 	if (winget( src, "menu.speech_sounds", "is-checked" ) == "true")
@@ -659,9 +766,6 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				src << music_sound
 
 	src.reputations = new(src)
-
-	// Set view tint
-	view_tint = winget( src, "menu.set_tint", "is-checked" ) == "true"
 
 	if(src.holder && src.holder.level >= LEVEL_CODER)
 		src.control_freak = 0
@@ -1259,12 +1363,14 @@ var/global/curr_day = null
 	set name ="apply-depth-shadow"
 
 	apply_depth_filter() //see _plane.dm
+	cloud_put("set_shadow", winget(src, "menu.set_shadow", "is-checked") == "true")
 
 /client/verb/apply_view_tint()
 	set hidden = 1
 	set name ="apply-view-tint"
 
 	view_tint = !view_tint
+	cloud_put("set_tint", view_tint)
 
 /client/proc/set_view_size(var/x, var/y)
 	//These maximum values make for a near-fullscreen game view at 32x32 tile size, 1920x1080 monitor resolution.
@@ -1296,6 +1402,7 @@ var/global/curr_day = null
 		winset( src, "menu", "set_wide.is-checked=false" )
 		if (vert_split)
 			winset( src, "mainwindow.mainvsplit", "splitter=[splitter_value ? splitter_value : 50]" )
+	cloud_put("widescreen", widescreen)
 
 /client/verb/set_wide_view()
 	set hidden = 1
@@ -1319,6 +1426,7 @@ var/global/curr_day = null
 		winset( src, "mainwindow.mainvsplit", "is-vert=false" )
 		winset( src, "rpane.rpanewindow", "is-vert=true" )
 		winset( src, "mainwindow.mainvsplit", "[splitter_value ? splitter_value : 70]" )
+	cloud_put("vert_split", vert_split)
 
 /client/verb/set_vertical_split()
 	set hidden = 1
@@ -1338,6 +1446,7 @@ var/global/curr_day = null
 	winset( src, "menu", "tg_controls.is-checked=[tg ? "true" : "false"]" )
 
 	src.mob.reset_keymap()
+	cloud_put("tg_controls", tg_controls)
 
 /client/verb/set_tg_controls()
 	set hidden = 1
@@ -1375,6 +1484,7 @@ var/global/curr_day = null
 		//H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
 		if(H.sims)
 			H.sims.add_hud()
+	cloud_put("tg_layout", tg_layout)
 
 /client/verb/set_tg_layout()
 	set hidden = 1
@@ -1394,6 +1504,7 @@ var/global/curr_day = null
 		src.tick_lag = CLIENTSIDE_TICK_LAG_FLUID
 	else
 		src.tick_lag = CLIENTSIDE_TICK_LAG_SMOOTH
+	cloud_put("tick_lag", src.tick_lag)
 
 
 /client/verb/set_wasd_controls()
@@ -1409,6 +1520,7 @@ var/global/curr_day = null
 		src.use_chui = 0
 	else
 		src.use_chui = 1
+	cloud_put("use_chui", use_chui)
 
 /client/verb/set_chui_custom_frames()
 	set hidden = 1
@@ -1417,6 +1529,7 @@ var/global/curr_day = null
 		src.use_chui_custom_frames = 0
 	else
 		src.use_chui_custom_frames = 1
+	cloud_put("use_chui_custom_frames", use_chui_custom_frames)
 
 
 /client/verb/set_speech_sounds()
@@ -1448,6 +1561,15 @@ var/global/curr_day = null
 	set hidden = 1
 	set name = "set-hand-ghosts"
 	hand_ghosts = winget( src, "menu.use_hand_ghosts", "is-checked" ) == "true"
+	cloud_put("hand_ghosts", hand_ghosts)
+
+///Save some things that skin.dmf doesn't call a verb for (and thus we haven't had opportunity to update) at the end of a round
+/client/proc/save_misc_skin_settings_to_cloud()
+	cloud_put("icon_size", winget(src, "mapwindow.map", "icon-size")) //not a bool, the rest are
+	cloud_put("zoom_distort", winget(src, "menu.zoom_distort", "is-checked" ) == "true")
+	cloud_put("fullscreen", winget(src, "menu.fullscreen", "is-checked") == "true")
+	cloud_put("hide_status_bar", winget(src, "menu.hide_status_bar", "is-checked") == "true")
+	cloud_put("hide_menu", winget(src, "menu.hide_menu", "is-checked") == "true")
 
 //These size helpers are invisible browser windows that help with getting client screen dimensions
 /client/proc/initSizeHelpers()
@@ -1618,6 +1740,7 @@ info.tab-text-color=[_SKIN_TEXT]"
 #define _SKIN_COMMAND_BG "#28294c"
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-dark")
+		cloud_put("dark_mode", 1)
 #undef _SKIN_BG
 #undef _SKIN_INFO_TAB_BG
 #undef _SKIN_INFO_BG
@@ -1631,6 +1754,7 @@ info.tab-text-color=[_SKIN_TEXT]"
 	else
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-default")
+		cloud_put("dark_mode", 0)
 #undef _SKIN_BG
 #undef _SKIN_INFO_TAB_BG
 #undef _SKIN_INFO_BG
