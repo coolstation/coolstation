@@ -285,10 +285,10 @@ ABSTRACT_TYPE(/datum/job/command)
 	items_in_backpack = list(/obj/item/device/flash)
 
 	//hos can spawn with everything, no big deal
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/standard)
+	slot_back = list(/obj/item/storage/backpack/Security)
+	slot_belt = list(/obj/item/gun/modular/NT/short/pistol)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
-	slot_poc2 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
+	slot_poc2 = list(/obj/item/handcuffs) //replaces sec starter kit
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
@@ -503,14 +503,14 @@ ABSTRACT_TYPE(/datum/job/security)
 	cant_spawn_as_con = 1
 	cant_spawn_as_rev = 1
 	receives_badge = 1
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/standard)
+	slot_back = list(/obj/item/storage/backpack/Security)
+	slot_belt = list(/obj/item/gun/modular/NT/short/pistol)
 	slot_jump = list(/obj/item/clothing/under/rank/security)
 	//slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
-	slot_poc1 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
+	slot_poc1 = list(/obj/item/handcuffs) //replaces sec starter kit
 	slot_poc2 = list(/obj/item/device/pda2/security)
 	rounds_needed_to_play = 30 //higher barrier of entry than before but now with a trainee job to get into the rythym of things to compensate
 
