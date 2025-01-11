@@ -645,7 +645,7 @@
 
 /obj/dispenser
 	name = "ziptie dispenser"
-	desc = "A handy dispenser for handcuffs."
+	desc = "A handy dispenser for zipties."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "dispenser_handcuffs"
 	var/amount = 8

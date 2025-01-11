@@ -601,6 +601,10 @@
 		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten)
 
+	enhanced
+		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/handcuffs, /obj/item/device/flash)
+
 	offense
 		spawn_contents = list(/obj/item/gun/modular/NT/long, //energy/wavegun,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/five, /obj/item/stackable_ammo/pistol/NT/three)
