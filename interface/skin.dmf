@@ -1537,18 +1537,6 @@ window "rpane"
 		command = ".winset \"rpanewindow.left=infowindow\""
 		group = "rpanemode"
 		button-type = pushbox
-	elem "notesb"
-		type = BUTTON
-		pos = 70,5
-		size = 60x20
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = "is-checked"
-		text = "Notes"
-		command = ".winset \"rpanewindow.left=noteswindow\""
-		group = "rpanemode"
-		button-type = pushbox
 	elem "menub"
 		type = BUTTON
 		pos = 135,5
@@ -1561,7 +1549,7 @@ window "rpane"
 		command = ".winset \"mainwindow.menu='menu'; hide_menu.is-checked=false; menub.is-visible = false\""
 	elem "mapb"
 		type = BUTTON
-		pos = 315,5
+		pos = 250,5
 		size = 60x20
 		anchor1 = 100,0
 		anchor2 = none
@@ -1654,28 +1642,6 @@ window "infowindow"
 		title = "Info"
 		is-pane = true
 	elem "info"
-		type = INFO
-		pos = 0,0
-		size = 640x498
-		anchor1 = 0,0
-		anchor2 = 100,100
-		is-default = true
-		saved-params = ""
-		highlight-color = #00aa00
-		on-show = ".winset\"rpane.infob.is-visible=true;rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
-		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=false rpane.rpanewindow.pos=0,0 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
-
-window "noteswindow"
-	elem "noteswindow"
-		type = MAIN
-		pos = 372,0
-		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "Info"
-		is-pane = true
-	elem "notes"
 		type = INFO
 		pos = 0,0
 		size = 640x498

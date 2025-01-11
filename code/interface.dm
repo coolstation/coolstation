@@ -53,7 +53,7 @@
 			set hidden = 1
 			src << link("https://wiki.coolstation.space/wiki/Main_Page")
 
-		/* map() //currently no map website interface yet
+		map() //currently no map website interface yet
 			set category = "Commands"
 			set name = "Map"
 			set desc = "Open an interactive map in your browser"
@@ -62,7 +62,6 @@
 				src << link(map_settings.goonhub_map)
 			else
 				src << link("http://goonhub.com/maps/cogmap")
-		*/
 
 		discord() //so why not just replace the missing map button with another more currently useful button
 			set category = "Commands"
