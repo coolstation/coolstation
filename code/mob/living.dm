@@ -946,7 +946,7 @@
 
 	UpdateOverlays(speech_bubble, "speech_bubble")
 	SPAWN_DBG(1.5 SECONDS)
-	if (speech_bubble.icon_state != "typing")
+	if (speech_bubble.icon_state != "typing" || !isalive(src))
 		UpdateOverlays(null, "speech_bubble")
 
 	//Blobchat handling
