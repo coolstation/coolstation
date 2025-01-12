@@ -17,6 +17,13 @@
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
+#define GEHENNA_CO2 5*(sin(GEHENNA_TIME - 90)+ 1)
+#define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
+#define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
+#define GEHENNA_TEMP WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+
+
+
 var/global/gehenna_time = GEHENNA_TIME
 
 //audio
@@ -153,10 +160,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
-	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
-	nitrogen = MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
-	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+	carbon_dioxide = GEHENNA_CO2
+	oxygen = GEHENNA_O2
+	nitrogen = GEHENNA_N2
+	temperature = GEHENNA_TEMP
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
