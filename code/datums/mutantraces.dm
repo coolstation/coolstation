@@ -1583,6 +1583,7 @@
 	icon_state = "body_m"
 	// jerk = 1 // why the fuck was this 1
 	override_attack = 0
+	voice_override = "cat"
 	firevuln = 1.5 // very flammable catthings
 	race_mutation = /datum/bioEffect/mutantrace/cat
 	mutant_organs = list("tail" = /obj/item/organ/tail/cat)
