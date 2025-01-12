@@ -557,9 +557,9 @@ var/obj/item/dummy/click_dummy = new
 	for(var/turf/S in turfs)
 		if(S.density)
 			appendTo += S.density
+		else
+			appendTo += 0
 	return appendTo
-
-
 
 /proc/clear_area(var/area/A, var/turftospare=null, var/objecttospare=null, var/isOcean=false)
 	// Takes: Area, optional turf type to spare from the purge, optional object to spare, whether or not this is in da ocean
