@@ -151,8 +151,10 @@
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
+		startDensityMap = calculate_density_map(start_location)
+		if(prob(60))
+			explode_area(start_location,rand(60,200),rand(1,3))
 		start_location.move_contents_to(end_location)
-		startDensityMap = calculate_density_map(end_location)
 		shipyardship_location = 1
 	else if(shipyardship_location == 1)
 		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
@@ -162,11 +164,10 @@
 			playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
 			gib_area(locate(/area/shuttle/bayou/shipyard))
 		SPAWN_DBG(10 SECONDS)
-			start_location.move_contents_to(end_location)
+			start_location.move_contents_to(end_location, move_ghosts = FALSE)
 			endDensityMap = calculate_density_map(end_location)
 			scrapperPayout(startDensityMap,endDensityMap)
 			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
-			end_location.move_contents_to(start_location) //to stop ghosts from being stuck and spoiling stuffff
 		shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
