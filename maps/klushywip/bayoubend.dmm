@@ -6443,6 +6443,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 4
 	},
@@ -18863,6 +18866,7 @@
 	icon_state = "4-8"
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
 /turf/floor/specialroom/medbay,
 /area/station/medical/medbay/cloner)
 "pOz" = (
@@ -20168,6 +20172,7 @@
 	},
 /obj/access_spawn/medical,
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
 /turf/floor/blue/checker,
 /area/station/medical/medbay/cloner)
 "qNO" = (
@@ -20919,7 +20924,7 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "ryd" = (
-/obj/storage/secure/closet/command/quartermaster,
+/obj/storage/secure/closet/command/chief_engineer,
 /turf/floor/orangeblack,
 /area/station/engine/engineering/ce)
 "ryh" = (
@@ -23607,6 +23612,7 @@
 	icon_state = "1-2"
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "tRR" = (
@@ -24621,6 +24627,7 @@
 	pixel_x = 5;
 	pixel_y = 2
 	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
 /turf/floor/white/checker,
 /area/station/medical/medbay)
 "uIx" = (
