@@ -408,3 +408,23 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	upper = /area/shuttle/sea_elevator/upper/NTFC
 	lower = /area/shuttle/sea_elevator/lower/NTFC
 
+/obj/decal/gehenna/warning
+	name = "warning display"
+	desc = "A warning display with an internal Gehennan clock. It's off, which means it has nothing to warn you about."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "warning-unpowered"
+	anchored = 1
+
+	New()
+		..()
+		if(GEHENNA_CO2>=8 && GEHENNA_TEMP >= 335)
+			src.icon_state = "warning-combined"
+			src.desc = desc = "A warning display with an internal Gehennan clock. It's extremely hazardous outside."
+		else
+			if(GEHENNA_CO2 >= 8)
+				src.icon_state = "warning-internals"
+				src.desc = desc = "A warning display with an internal Gehennan clock. The outside currently contains dangerous concentrations of sleepytime gas."
+			if(GEHENNA_TEMP >= 335)
+				src.icon_state = "warning-hot"
+				src.desc = desc = "A warning display with an internal Gehennan clock. It's gonna be a scorcher!"
+

@@ -4580,6 +4580,11 @@
 /obj/machinery/meter,
 /turf/floor/engine,
 /area/station/engine/core)
+"dwo" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/medical/medbay/lobby)
 "dww" = (
 /obj/decal/stage_edge,
 /obj/decal/cleanable/dirt/random,
@@ -11251,6 +11256,13 @@
 	dir = 4
 	},
 /area/station/bridge)
+"iyL" = (
+/obj/decal/gehenna/warning,
+/turf/wall{
+	name = "column";
+	opacity = 0
+	},
+/area/station/bridge/customs)
 "iyY" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -12512,6 +12524,11 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/floor/plating,
 /area/station/engine/engineering)
+"jxm" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/engine/monitoring)
 "jxR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/grille/catwalk/jen,
@@ -15837,6 +15854,13 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/floor/purple,
 /area/listeningpost)
+"lZy" = (
+/obj/wingrille_spawn,
+/obj/decal/gehenna/warning,
+/turf/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/hallway/secondary/exit)
 "lZF" = (
 /obj/decal/gehennagrass,
 /turf/space/gehenna/desert/beaten,
@@ -21428,6 +21452,11 @@
 	mail_tag = "Cargo Bay Dock";
 	name = "Cargo Bay Dock"
 	})
+"qAG" = (
+/obj/wingrille_spawn,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/quartermaster/cargooffice/storefront)
 "qAJ" = (
 /obj/machinery/disposal/mail/autoname/qm{
 	mail_tag = "gunsmith";
@@ -21492,6 +21521,9 @@
 /turf/floor/grey,
 /area/station/bridge)
 "qCv" = (
+/obj/decal/gehenna/warning{
+	pixel_y = -31
+	},
 /turf/floor/carpet/red/fancy/edge/south,
 /area/station/chapel/sanctuary)
 "qCS" = (
@@ -23060,6 +23092,11 @@
 	},
 /turf/floor/black,
 /area/station/engine/engineering/ce)
+"rOU" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/hallway/secondary/exit)
 "rPt" = (
 /obj/machinery/door/airlock/pyro/external{
 	dir = 8
@@ -28544,6 +28581,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/north)
+"vOW" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/crew_quarters/farmers)
 "vPl" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -68551,7 +68593,7 @@ eLC
 eLC
 eLC
 rAh
-pVZ
+dwo
 qcj
 qcj
 qcj
@@ -71244,7 +71286,7 @@ cPg
 pjn
 wIy
 vJo
-vfh
+iyL
 qNU
 qNU
 axY
@@ -79739,7 +79781,7 @@ wgn
 qPX
 oYK
 dkC
-qPX
+vOW
 iDh
 azT
 qhF
@@ -84562,7 +84604,7 @@ sja
 nIC
 uYF
 mvf
-uYF
+jxm
 tlY
 uYF
 nIC
@@ -93587,7 +93629,7 @@ qiv
 eTq
 njm
 coy
-coy
+qAG
 coy
 wCC
 dGJ
@@ -102049,7 +102091,7 @@ wwc
 eMX
 lOn
 lOn
-eMx
+rOU
 eMx
 qYx
 xfi
@@ -111681,7 +111723,7 @@ xfi
 xfi
 ebd
 fpd
-fpd
+lZy
 uMQ
 pGF
 pCA
