@@ -40,15 +40,20 @@ TYPEINFO(/datum/mapPrefab/random_ship)
 			src.probability = text2num(probability_regex.group[1])
 
 proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space tiles, take ONLY NEW empty tiles into account for better schtuff
-	var/shipworth = 5000
+	var/shipworth = 0
 	var/payoutMod = 0
 
 	var/destroyedMalus = -300
+	var/repairedBonus = 100
 
 	var/step = 1
 	for (var/S in postWork)
-		if(S != preWork[step] && S == 0)
+		if(S != preWork[step] && S == 0) //deducts half points for replacing a wall with a floor
+			payoutMod += destroyedMalus / 2
+		else if(S != preWork[step] && S == 2) //deducts full points for replacing anything with a space tile(destroying)
 			payoutMod += destroyedMalus
+		else if(S == preWork[step]) //rewards points for matching the original design
+			payoutMod += repairedBonus
 		step += 1
 	if(payoutMod != 0)
 		shipworth += payoutMod
