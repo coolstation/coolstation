@@ -25,6 +25,14 @@ const disposalChuteConfigLookup: DisposalChuteConfigLookup = {
     pumpColor: 'good',
     pumpText: 'Ready',
   },
+  [DisposalChuteState.NoTrunk]: {
+    pumpColor: 'bad',
+    pumpText: 'Missing trunk pipe',
+  },
+  [DisposalChuteState.NoTag]: {
+    pumpColor: 'bad',
+    pumpText: 'Missing mail tag',
+  },
 };
 
 export const DisposalChute = (_props, context) => {
@@ -38,11 +46,10 @@ export const DisposalChute = (_props, context) => {
     pressure,
   } = data;
 
-  const disposalChuteConfig = disposalChuteConfigLookup[mode];
   const {
     pumpColor,
     pumpText,
-  } = disposalChuteConfig;
+  } = disposalChuteConfigLookup[mode];
 
   return (
     <Window
@@ -90,6 +97,7 @@ export const DisposalChute = (_props, context) => {
                 icon={destinations ? "envelope" : "trash-alt"}
                 content={flush ? "Flushing" : "Flush"}
                 color={flush ? '' : 'red'}
+                disabled={!canFlush(mode)}
                 onClick={() => act('toggleHandle')}
               />
             }
@@ -164,4 +172,8 @@ const DestinationSearch = (props: DestinationSearchProps, context) => {
       selectedOption={destinationTag}
     />
   );
+};
+
+const canFlush = (state: DisposalChuteState): boolean => {
+  return state === DisposalChuteState.Charging || state === DisposalChuteState.Charged;
 };
