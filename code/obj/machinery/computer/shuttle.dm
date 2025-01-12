@@ -151,18 +151,17 @@
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
-		startDensityMap = calculate_density_map(start_location)
 		start_location.move_contents_to(end_location)
+		startDensityMap = calculate_density_map(end_location)
 		shipyardship_location = 1
-	else
-		if(shipyardship_location == 1)
-			var/area/start_location = locate(/area/shuttle/bayou/shipyard)
-			var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-			start_location.move_contents_to(end_location)
-			endDensityMap = calculate_density_map(end_location)
-			scrapperPayout(startDensityMap,endDensityMap)
-			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
-			shipyardship_location = 0
+	else if(shipyardship_location == 1)
+		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
+		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
+		start_location.move_contents_to(end_location)
+		endDensityMap = calculate_density_map(end_location)
+		scrapperPayout(startDensityMap,endDensityMap)
+		clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
+		shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 		active = 0
