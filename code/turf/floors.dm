@@ -524,6 +524,30 @@
 	icon_state = "grimy"
 	permadirty = 1
 
+/turf/floor/carpet/office/yellow
+	name = "Yellow office carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "yellowoffice"
+	permadirty = 1
+
+/turf/floor/carpet/office/hotdog
+	name = "Hotdog office carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "hotdogoffice"
+	permadirty = 1
+
+/turf/floor/carpet/office
+	name = "Office carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "office"
+	permadirty = 1
+
+/turf/floor/carpet/nicebrown
+	name = "Nice brown carpet"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "nicebrown"
+	permadirty = 1
+
 /turf/floor/carpet/grime2
 	name = "cheap carpet"
 	icon = 'icons/turf/floors.dmi'
