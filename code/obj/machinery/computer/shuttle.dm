@@ -91,6 +91,8 @@
 	icon_state = "shuttle"
 	machine_registry_idx = MACHINES_SHUTTLECOMPS
 	var/active = 0
+	var/list/startDensityMap = list()
+	var/list/endDensityMap = list()
 
 
 /obj/machinery/computer/shipyard_control/attack_hand(mob/user as mob)
@@ -143,21 +145,30 @@
 		SPAWN_DBG(10 SECONDS)
 			call_client()
 
-/obj/machinery/computer/shipyard_control/proc/call_client()
+/obj/machinery/computer/shipyard_control/proc/call_client()  //this proc is a huge mess and will be cleaned up once I stop tacking crap on there.
 
 	if(shipyardship_location == 0)
-		clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
+		startDensityMap = calculate_density_map(start_location)
+		if(prob(60))
+			explode_area(start_location,rand(60,200),rand(1,3))
 		start_location.move_contents_to(end_location)
 		shipyardship_location = 1
-	else
-		if(shipyardship_location == 1)
-			var/area/start_location = locate(/area/shuttle/bayou/shipyard)
-			var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-			start_location.move_contents_to(end_location)
-			shipyardship_location = 0
+	else if(shipyardship_location == 1)
+		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
+		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
+		command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Alert","sound/misc/klaxon.ogg")
+		SPAWN_DBG(5 SECONDS)
+			playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
+			gib_area(locate(/area/shuttle/bayou/shipyard))
+		SPAWN_DBG(10 SECONDS)
+			start_location.move_contents_to(end_location, move_ghosts = FALSE)
+			endDensityMap = calculate_density_map(end_location)
+			scrapperPayout(startDensityMap,endDensityMap)
+			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
+		shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 		active = 0
