@@ -551,6 +551,12 @@ var/obj/item/dummy/click_dummy = new
 	proc/to_rgba()
 		return rgb(r,g,b,a)
 
+/proc/gib_area(var/area/A)
+	var/list/turfs = get_area_turfs(A.type)
+	for(var/turf/S in turfs)
+		for(var/mob/M in S)
+			M.elecgib()
+
 /proc/calculate_density_map(var/area/A)
 	var/list/appendTo = list()
 	var/list/turfs = get_area_turfs(A.type)
@@ -570,7 +576,7 @@ var/obj/item/dummy/click_dummy = new
 		else
 			return //come back later and add OSHAN floors to this, i'm lazy(silly) tho
 		for(var/atom/movable/AM as anything in S)
-			if(!istype(AM,objecttospare))
+			if(!istype(AM,objecttospare) && !istype(AM, /mob/dead/observer))
 				qdel(AM)
 
 

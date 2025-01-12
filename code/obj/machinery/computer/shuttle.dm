@@ -145,7 +145,7 @@
 		SPAWN_DBG(10 SECONDS)
 			call_client()
 
-/obj/machinery/computer/shipyard_control/proc/call_client()
+/obj/machinery/computer/shipyard_control/proc/call_client()  //this proc is a huge mess and will be cleaned up once I stop tacking crap on there.
 
 	if(shipyardship_location == 0)
 		buildRandomShips()
@@ -157,10 +157,16 @@
 	else if(shipyardship_location == 1)
 		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
 		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-		start_location.move_contents_to(end_location)
-		endDensityMap = calculate_density_map(end_location)
-		scrapperPayout(startDensityMap,endDensityMap)
-		clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
+		command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Alert","sound/misc/klaxon.ogg")
+		SPAWN_DBG(5 SECONDS)
+			playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
+			gib_area(locate(/area/shuttle/bayou/shipyard))
+		SPAWN_DBG(10 SECONDS)
+			start_location.move_contents_to(end_location)
+			endDensityMap = calculate_density_map(end_location)
+			scrapperPayout(startDensityMap,endDensityMap)
+			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
+			end_location.move_contents_to(start_location) //to stop ghosts from being stuck and spoiling stuffff
 		shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
