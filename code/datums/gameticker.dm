@@ -507,6 +507,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 				for (var/client/C in clients)
 					roundend_countdown.add_client(C)
+					C.save_misc_skin_settings_to_cloud() //congrats 4 making it to end of round lets save some shit while we have you
 
 				var/roundend_time = 60
 				while (roundend_time >= 0)
