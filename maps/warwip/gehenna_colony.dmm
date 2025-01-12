@@ -638,6 +638,12 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/black,
 /area/station/security/secoffquarters)
+"aAi" = (
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/floor/shuttlebay,
+/area/station/hangar/catering)
 "aAx" = (
 /obj/decal/fakeobjects/lighttube_broken,
 /obj/decal/fakeobjects{
@@ -1015,6 +1021,9 @@
 /area/station/bridge/customs)
 "aLy" = (
 /obj/machinery/light/fluorescent/cool/very,
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
 "aLC" = (
@@ -1264,6 +1273,12 @@
 	dir = 1
 	},
 /area/gehenna)
+"aUm" = (
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/floor,
+/area/station/bridge/customs)
 "aUA" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -5548,6 +5563,12 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/carpet/red/standard/edge/south,
 /area/station/bridge/customs)
+"egn" = (
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/floor/white,
+/area/station/medical/medbay)
 "egp" = (
 /obj/table/reinforced/auto,
 /obj/item/device/transfer_valve{
@@ -5610,6 +5631,14 @@
 	},
 /turf/space/gehenna/desert,
 /area/station/security/brig/north_side)
+"ejp" = (
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
+/turf/floor/red/checker{
+	dir = 4
+	},
+/area/station/security/brig/cell_block_control)
 "eju" = (
 /obj/health_scanner/wall{
 	find_in_range = 0;
@@ -6337,6 +6366,10 @@
 "eLJ" = (
 /obj/decal/cleanable/dirt/random,
 /obj/random_item_spawner/junk/one_or_zero,
+/obj/decal/gehenna/warning{
+	pixel_y = 0;
+	pixel_x = 32
+	},
 /turf/floor/plating,
 /area/station/engine/engineering/ce)
 "eLO" = (
@@ -6382,6 +6415,9 @@
 /area/station/engine/core)
 "eMX" = (
 /obj/storage/closet/emergency,
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "eNe" = (
@@ -7011,6 +7047,13 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay)
+"fok" = (
+/obj/machinery/light/small/floor,
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
+/turf/floor,
+/area/station/hangar/escape)
 "foq" = (
 /obj/machinery/manufacturer/gas,
 /turf/floor,
@@ -7466,6 +7509,18 @@
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
+	})
+"fzF" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/gehenna/warning{
+	pixel_y = 32
+	},
+/turf/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "fzS" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -8009,6 +8064,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
+"fSM" = (
+/obj/machinery/light/fluorescent/warm,
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "fTf" = (
 /obj/cable{
 	d1 = 1;
@@ -8693,6 +8755,9 @@
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/decal/gehenna/warning{
+	pixel_x = -32
 	},
 /turf/floor/yellow/side,
 /area/station/engine/engineering)
@@ -10218,6 +10283,13 @@
 /obj/machinery/light/small/floor,
 /turf/floor,
 /area/station/hallway/secondary/exit)
+"hES" = (
+/obj/decal/gehenna/warning{
+	pixel_y = 0;
+	pixel_x = 32
+	},
+/turf/floor/shuttlebay,
+/area/station/quartermaster/cargobay)
 "hFv" = (
 /obj/machinery/door/unpowered/wood/pyro,
 /turf/floor/carpet/grime,
@@ -12029,6 +12101,12 @@
 /obj/access_spawn/hos,
 /turf/floor/grey,
 /area/station/security/hos)
+"iZB" = (
+/obj/decal/gehenna/warning{
+	pixel_y = 32
+	},
+/turf/floor/black,
+/area/station/chapel/office)
 "iZJ" = (
 /obj/decal/fakeobjects/carcosa/rubble/one,
 /turf/space/gehenna/desert,
@@ -12191,6 +12269,13 @@
 	},
 /turf/floor/grey,
 /area/station/hangar/catering)
+"jgP" = (
+/obj/decal/gehenna/warning{
+	pixel_y = 0;
+	pixel_x = 32
+	},
+/turf/floor,
+/area/station/crew_quarters/farmers)
 "jhh" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/bent/south,
@@ -14211,6 +14296,17 @@
 	},
 /turf/floor/grey,
 /area/station/bridge/customs)
+"kFe" = (
+/obj/storage/cart,
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "kFm" = (
 /obj/cable{
 	d1 = 1;
@@ -14821,6 +14917,9 @@
 "ldH" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
+	},
+/obj/decal/gehenna/warning{
+	pixel_y = 32
 	},
 /turf/floor/plating,
 /area/gehenna)
@@ -15781,6 +15880,18 @@
 /obj/random_item_spawner/junk/one,
 /turf/space/gehenna/desert/beaten,
 /area/pricemaster)
+"lRF" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/decal/gehenna/warning{
+	pixel_y = 0;
+	pixel_x = 32
+	},
+/turf/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "lRH" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/disposalpipe/segment/morgue,
@@ -16209,6 +16320,15 @@
 	},
 /turf/floor/specialroom/freezer/white,
 /area/station/crew_quarters/kitchen/freezer)
+"mrd" = (
+/obj/decal/cleanable/dirt/random,
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/floor/plating{
+	icon_old = "fullblack"
+	},
+/area/station/engine/engineering)
 "mrl" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/item/device/radio/intercom/science{
@@ -16320,6 +16440,12 @@
 	},
 /turf/wall,
 /area/station/security/checkpoint/sec_foyer)
+"mxC" = (
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "myG" = (
 /turf/floor,
 /area/station/security/checkpoint/sec_foyer)
@@ -19404,6 +19530,12 @@
 	dir = 10
 	},
 /area/station/medical/medbay/surgery)
+"oQd" = (
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
+/turf/floor/shuttlebay,
+/area/station/quartermaster/cargobay)
 "oQj" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/black,
@@ -19435,6 +19567,12 @@
 	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"oRi" = (
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/space/gehenna/desert/beaten,
+/area/gehenna)
 "oRk" = (
 /obj/machinery/vending/cigarette,
 /obj/decal/cleanable/dirt/random,
@@ -19852,6 +19990,9 @@
 "piF" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 5
+	},
+/obj/decal/gehenna/warning{
+	pixel_y = -32
 	},
 /turf/floor/grey,
 /area/station/hangar/sec)
@@ -20580,6 +20721,9 @@
 /obj/decal/poster/wallsign/pride/random{
 	pixel_x = -32
 	},
+/obj/decal/gehenna/warning{
+	pixel_y = 32
+	},
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "pMa" = (
@@ -20666,6 +20810,9 @@
 /area/station/engine/engineering)
 "pOI" = (
 /obj/cable,
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
 /turf/floor/grey,
 /area/station/chapel/sanctuary)
 "pOQ" = (
@@ -23224,6 +23371,13 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor,
 /area/station/quartermaster/storage)
+"rLc" = (
+/obj/decal/gehenna/warning{
+	pixel_y = 0;
+	pixel_x = 32
+	},
+/turf/floor/shuttlebay,
+/area/station/hangar/medical)
 "rLi" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -25294,6 +25448,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
+"tpU" = (
+/obj/storage/closet/emergency,
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "tqc" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/cable,
@@ -26751,6 +26912,15 @@
 	dir = 4
 	},
 /area/gehenna/wasteland)
+"uvE" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/decal/gehenna/warning{
+	pixel_x = -32
+	},
+/turf/floor/industrial,
+/area/station/mining/dock)
 "uwb" = (
 /obj/storage/crate/robotics_supplies,
 /turf/floor/grime,
@@ -27004,6 +27174,9 @@
 /area/station/maintenance/northeast)
 "uDU" = (
 /obj/decal/cleanable/dirt/mars,
+/obj/decal/gehenna/warning{
+	pixel_y = -32
+	},
 /turf/floor/plating,
 /area/station/engine/engineering)
 "uEk" = (
@@ -27503,6 +27676,9 @@
 	dir = 10;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/decal/gehenna/warning{
+	pixel_y = -32
 	},
 /turf/floor/grey,
 /area/station/hangar/sec)
@@ -28212,6 +28388,9 @@
 /turf/floor/yellow/side,
 /area/station/engine/engineering)
 "vrH" = (
+/obj/decal/gehenna/warning{
+	pixel_y = 32
+	},
 /turf/floor/stairs/wide{
 	dir = 4
 	},
@@ -30987,6 +31166,9 @@
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/decal/gehenna/warning{
+	pixel_x = -32
 	},
 /turf/floor/yellow/side{
 	dir = 1
@@ -49767,7 +49949,7 @@ cqC
 cqC
 cqC
 qfm
-gKT
+iZB
 qfm
 cqC
 jEb
@@ -60685,7 +60867,7 @@ eLC
 eLC
 xfi
 ojk
-rdH
+rLc
 wTX
 sxG
 wTX
@@ -70327,7 +70509,7 @@ qsF
 pYK
 xrc
 qNU
-qNU
+aUm
 vKf
 nqh
 xdJ
@@ -70684,7 +70866,7 @@ eMq
 eMq
 oMA
 gea
-pjb
+egn
 eMq
 msF
 ord
@@ -74822,7 +75004,7 @@ owT
 owT
 fTB
 eeC
-rRI
+ejp
 ekZ
 rRI
 gUs
@@ -80025,7 +80207,7 @@ iiv
 wgn
 qPX
 dkC
-dkC
+jgP
 qPX
 iDh
 azT
@@ -81256,7 +81438,7 @@ kwB
 dcS
 dic
 dcS
-dcS
+aAi
 pnv
 cqC
 cqC
@@ -85437,7 +85619,7 @@ sFj
 eLC
 eLC
 eLC
-eLC
+oRi
 cGT
 lYG
 lYG
@@ -87229,7 +87411,7 @@ jTv
 rvM
 xmO
 niO
-nJZ
+kFe
 oiX
 wgn
 eLC
@@ -87487,7 +87669,7 @@ lJc
 lJc
 lJc
 aQr
-lJc
+lRF
 bKI
 bEV
 aQr
@@ -88398,7 +88580,7 @@ eLC
 eLC
 bOj
 rtV
-qAC
+fzF
 xzP
 xzP
 xzP
@@ -91418,7 +91600,7 @@ eLC
 eLC
 bOj
 rtV
-qAC
+fzF
 xzP
 xzP
 xzP
@@ -92319,7 +92501,7 @@ eLC
 ybI
 plD
 bCO
-xBf
+uvE
 xBf
 xBf
 bPr
@@ -92667,7 +92849,7 @@ jSu
 jSu
 jSu
 olO
-oNR
+fSM
 wCC
 nNZ
 pMX
@@ -96942,7 +97124,7 @@ dVx
 dVx
 dVx
 dVx
-tfy
+mrd
 cML
 cML
 qMN
@@ -97497,7 +97679,7 @@ hqN
 hqN
 hqN
 hqN
-hqN
+oQd
 oou
 eLC
 eLC
@@ -98705,7 +98887,7 @@ hqN
 hqN
 hqN
 hqN
-hqN
+hES
 oou
 eLC
 eLC
@@ -103242,7 +103424,7 @@ lOn
 lOn
 lOn
 lOn
-eMX
+tpU
 wwc
 raP
 wgn
@@ -111062,7 +111244,7 @@ xfi
 xfi
 ebd
 fpd
-lOn
+mxC
 vZv
 evP
 lLW
@@ -112252,10 +112434,10 @@ tat
 tat
 tat
 tlC
-bKL
+fok
 rNY
 rNY
-bKL
+fok
 tQp
 iiv
 fXe

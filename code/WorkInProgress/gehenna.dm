@@ -17,6 +17,13 @@
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
+#define GEHENNA_CO2 5*(sin(GEHENNA_TIME - 90)+ 1)
+#define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
+#define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
+#define GEHENNA_TEMP WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+
+
+
 var/global/gehenna_time = GEHENNA_TIME
 
 //audio
@@ -26,7 +33,6 @@ var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' 
 // volume curve so wind stuff is loudest in the cold, cold night
 var/global/gehenna_surface_loop_vol = (30 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(60))) //volume meant for outside, min 30 max 90
 var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
-
 // Gehenna shit tho
 /turf/space/gehenna
 	name = "planet gehenna"
@@ -41,12 +47,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	throw_unlimited = 0
 	color = "#ffffff"
 	special_volume_override = -1
-
-
 /turf/wall/asteroid/gehenna
 	fullbright = 0
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
-
 	name = "sulferous rock"
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
@@ -54,13 +57,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	floor_turf = "/turf/space/gehenna/desert"
 	hardness = 1
 	default_ore = /obj/item/raw_material/rock/gehenna
-
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
 	space_overlays()
 		return
-
 	ex_act(severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -70,10 +71,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(3)
 		return
-
 /turf/wall/asteroid/gehenna/z3
 	floor_turf = "/turf/floor/plating/gehenna"
-
 /turf/wall/asteroid/gehenna/z3/fun //for an prefab
 	New()
 		..()
@@ -91,14 +90,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 			src.mining_health = bait.mining_health
 			src.mining_max_health = bait.mining_health
 			src.set_event(locate(/datum/ore/event/cave_in) in mining_controls.events)
-
 /turf/wall/asteroid/gehenna/tough
 	name = "crimson bedrock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
 	hardness = 2
 	turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_TOUGH
-
 	ex_act(severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -108,11 +105,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(1)
 		return
-
 /turf/wall/asteroid/gehenna/tough/z3
 	floor_turf = "/turf/floor/plating/gehenna"
-
-
 /turf/wall/gehenna/
 	fullbright = 0
 	luminosity = 1
@@ -120,7 +114,6 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "looks conveniently impenetrable"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
-
 /turf/floor/plating/gehenna/
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
@@ -130,24 +123,20 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
 	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY
-
 	New()
 		..()
 		src.set_dir(pick(cardinal))
-
 	ex_act(severity) //TODO: cave ins?? people mentioned that repeatedly??
 		return //no plating/lattice thanx
-
 /turf/floor/plating/gehenna/plasma
 	oxygen = MOLES_O2STANDARD * 1.5
 	nitrogen = MOLES_N2STANDARD / 2
 	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
-
 /turf/floor/plating/gehenna/farts
 	farts = MOLES_N2STANDARD / 2
 	nitrogen = MOLES_N2STANDARD / 2
-
 /turf/space/gehenna/desert
+	pathable = 1 // HARNER GO ACROSS THE SAND YOU OAF
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
@@ -156,6 +145,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	oxygen = MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
 	nitrogen = MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+	carbon_dioxide = GEHENNA_CO2
+	oxygen = GEHENNA_O2
+	nitrogen = GEHENNA_N2
+	temperature = GEHENNA_TEMP
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -167,7 +160,6 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	var/light_height = 3
 	var/generateLight = 1
 	var/stone_color
-
 	New()
 		..()
 		if (generateLight)
@@ -182,8 +174,6 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 						break */
 		if(icon_state == "gehenna_beat" || icon_state == "gehenna")
 			src.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-
-
 	make_light()
 		if (!light)
 			light = new
@@ -193,52 +183,40 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
 			light.enable()
-
-
-
 	plating
 		name = "sand-covered plating"
 		desc = "The desert slowly creeps upon everything we build."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_tile"
-
 		thermal
 			name = "sand-covered solar plating"
 			desc = "absorbs the sun's rays, gets real hot."
 			temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(1.5*WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
-
 		podbay
 			icon_state = "gehenna_plating"
-
 	path
 		name = "beaten earth"
 		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_edge"
-
 	corner
 		name = "beaten earth"
 		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_corner"
-
 	beaten
 		name = "beaten earth"
 		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_beat"
-
-
 /area/gehenna
 	requires_power = 0
 	icon_state = "dither_b"
 	name = "the gehennan desert"
-
 /area/gehenna/south // just in case i need a separate area for stuff
 	requires_power = 0
 	icon_state = "dither_g"
 	name = "the gehennan desert"
-
 /area/gehenna/wasteland
 	icon_state = "dither_r"
 	name = "the barren wastes"
@@ -246,12 +224,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	sound_environment = EAX_PLAIN
 	permarads = 1
 	irradiated = 0.3
-
 	New()
 		..()
 		for(var/turf/space/gehenna/desert/T in src)
 			T.temperature = (T.temperature + WASTELAND_MAX_TEMP)/2 // hotter but not maximum.
-
 /area/gehenna/wasteland/stormy
 	name = "the horrid wastes"
 	icon_state = "yellow"
@@ -263,14 +239,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
 	irradiated = 0.5
-
 	New()
 		..()
 		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
 		for(var/turf/space/gehenna/desert/T in src)
 			T.temperature = WASTELAND_MAX_TEMP
-
-
 	Entered(atom/movable/O)
 		..()
 		if (ishuman(O))
@@ -299,17 +272,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 				assholes_to_hurt |= O
 				src.process_some_sand()
 				return
-
-
-
-
-
 	Exited(atom/movable/A)
 		..()
 		if (ismob(A))
 			var/mob/living/jerk = A
 			assholes_to_hurt &= ~jerk
-
 	proc/process_some_sand()
 		if(buffeting_assoles)
 			return
@@ -352,14 +319,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 				else
 					playsound(aipod.loc, 'sound/effects/creaking_metal1.ogg', 100, 1)
 					aipod.ex_act(rand(3))
-
-
-
-
 			sleep(10 SECONDS)
 		buffeting_assoles = FALSE
-
-
 /area/gehenna/underground
 	icon_state = "dither_g"
 	name = "the sulfurous caverns"
@@ -370,28 +331,22 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 0
 	sound_environment = EAX_CAVE
 	is_atmos_simulated = TRUE
-
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"
 	teleport_blocked = 1
-
 /*
 /obj/machinery/computer/sea_elevator/sec
 	upper = /area/shuttle/sea_elevator/upper/sec
 	lower = /area/shuttle/sea_elevator/lower/sec
-
 /obj/machinery/computer/sea_elevator/eng
 	upper = /area/shuttle/sea_elevator/upper/eng
 	lower = /area/shuttle/sea_elevator/lower/eng
-
 /obj/machinery/computer/sea_elevator/med
 	upper = /area/shuttle/sea_elevator/upper/med
 	lower = /area/shuttle/sea_elevator/lower/med
-
 /obj/machinery/computer/sea_elevator/QM
 	upper = /area/shuttle/sea_elevator/upper/QM
 	lower = /area/shuttle/sea_elevator/lower/QM
-
 /obj/machinery/computer/sea_elevator/command
 	upper = /area/shuttle/sea_elevator/upper/command
 	lower = /area/shuttle/sea_elevator/lower/command
@@ -400,3 +355,18 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	upper = /area/shuttle/sea_elevator/upper/NTFC
 	lower = /area/shuttle/sea_elevator/lower/NTFC
 
+/obj/decal/gehenna/warning
+	name = "warning display"
+	desc = "A warning display with an internal Gehennan clock. It's off, which means it has nothing to warn you about."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "warning-unpowered"
+	anchored = 1
+
+	New()
+		..()
+		if(GEHENNA_CO2 >= 8)
+			src.icon_state = "warning-internals"
+			src.desc = desc = "A warning display with an internal Gehennan clock. The outside currently contains dangerous concentrations of sleepytime gas."
+		if(GEHENNA_TEMP >= 340)
+			src.icon_state = "warning-suit"
+			src.desc = desc = "A warning display with an internal Gehennan clock. It's gonna be a scorcher!"
