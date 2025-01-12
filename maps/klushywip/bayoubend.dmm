@@ -6487,6 +6487,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 4
 	},
@@ -18993,6 +18996,7 @@
 	icon_state = "4-8"
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
 /turf/floor/specialroom/medbay,
 /area/station/medical/medbay/cloner)
 "pOz" = (
@@ -20322,6 +20326,7 @@
 	},
 /obj/access_spawn/medical,
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
 /turf/floor/blue/checker,
 /area/station/medical/medbay/cloner)
 "qNO" = (
@@ -23814,6 +23819,7 @@
 	icon_state = "1-2"
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "tRR" = (
@@ -24833,6 +24839,7 @@
 	pixel_x = 5;
 	pixel_y = 2
 	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
 /turf/floor/white/checker,
 /area/station/medical/medbay)
 "uIx" = (
