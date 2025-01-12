@@ -588,14 +588,14 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 				decoded = text2num(cloud_get("hide_status_bar"))
 				if (!isnull(decoded))
-					set_widescreen(decoded)
+					//set_widescreen(decoded)
 					winset(src, "menu", "hide_status_bar.is-checked=[decoded ? "true" : "false"]")
 					if (decoded)
 						winset(src, null, "mainwindow.statusbar=false")
 
 				decoded = text2num(cloud_get("hide_menu"))
 				if (!isnull(decoded))
-					set_widescreen(decoded)
+					//set_widescreen(decoded)
 					winset(src, "menu", "hide_menu.is-checked=[decoded ? "true" : "false"]")
 					if (decoded)
 						winset(src, null, "mainwindow.menu='';menub.is-visible = true")
