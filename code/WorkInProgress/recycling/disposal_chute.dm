@@ -273,6 +273,9 @@
 				src.eject()
 				. = TRUE
 			if("toggleHandle")
+				if(src.mode > DISPOSAL_CHUTE_CHARGED)
+					return FALSE // if we are notrunk/notag, don't allow flush handle to move
+
 				src.flush = !src.flush
 				if (src.flush)
 					if (!src.is_processing)
