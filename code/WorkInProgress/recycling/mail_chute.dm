@@ -1,5 +1,6 @@
-//Mailsystem disposal chute
+#define DISPOSAL_CHUTE_NOTAG 4 // see disposal_chute.dm for full defines list
 
+/// Mailsystem disposal chute
 /obj/machinery/disposal/mail
 	name = "mail chute"
 	icon_state = "mail"
@@ -39,7 +40,7 @@
 				src.mail_tag = "[A.name]" //rudely get mail tag from area.name (might cause issue/slop but it's probably a better fallback? maybe?)
 			else
 				src.name = "unaddressable mail chute"
-				src.mode = 4 //cycling lights to make it obvious (mode is defined in disposal_chute.dm as "DISPOSAL_CHUTE_NOTAG")
+				src.mode = DISPOSAL_CHUTE_NOTAG //cycling lights to make it obvious (mode is defined in disposal_chute.dm)
 				logTheThing("debug", src, null, "has no mailtag!")
 
 		//TODO for later: do a datumized lookup for mailgroups/notifications based on mailtags so those can be set automatically too
@@ -59,6 +60,11 @@
 		radio_controller.remove_object(src, "[frequency]")
 		radio_controller.remove_object(src, "[pdafrequency]")
 		..()
+
+	rechecktrunk()
+		. = ..()
+		if(isnull(src.mail_tag))
+			src.mode = DISPOSAL_CHUTE_NOTAG
 
 	ui_data(mob/user)
 		. = ..()
@@ -1073,3 +1079,5 @@
 				dir = SOUTH
 			west
 				dir = WEST
+
+#undef DISPOSAL_CHUTE_NOTAG
