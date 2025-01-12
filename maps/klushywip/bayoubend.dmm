@@ -693,7 +693,9 @@
 /turf/floor/plating/random,
 /area/station/maintenance/west)
 "aHL" = (
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	mail_tag = "mechanics"
+	},
 /turf/floor,
 /area/station/hallway/primary/south)
 "aIc" = (
@@ -6961,7 +6963,9 @@
 /turf/floor/plating/random,
 /area/station/security/hos)
 "fYu" = (
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	mail_tag = list("cafeteria", "cargo")
+	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -7388,9 +7392,7 @@
 /area/station/turret_protected/ai)
 "grc" = (
 /obj/machinery/manufacturer/uniform,
-/obj/disposalpipe/trunk/mail{
-	dir = 1
-	},
+/obj/disposalpipe/segment/mail/bent/west,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "gso" = (
@@ -8308,9 +8310,9 @@
 /turf/floor/carpet/red/fancy/edge/sw,
 /area/station/security/hos)
 "hac" = (
-/obj/disposalpipe/segment/mail,
 /obj/stool/chair/wooden,
 /obj/decal/cleanable/dirt/random,
+/obj/disposalpipe/segment/mail,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "hau" = (
@@ -9451,7 +9453,9 @@
 	},
 /area/station/engine/engineering)
 "hWc" = (
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	mail_tag = "medbay"
+	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -9661,7 +9665,9 @@
 /turf/floor/circuit/off,
 /area/station/turret_protected/ai)
 "igv" = (
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	mail_tag = "bridge"
+	},
 /turf/floor,
 /area/station/hallway/primary/east)
 "igy" = (
@@ -9798,7 +9804,9 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "imo" = (
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	mail_tag = "security"
+	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -12093,8 +12101,9 @@
 /obj/machinery/disposal/mail{
 	mail_tag = "cargo";
 	mailgroup = "cargo";
-	message = "1";
-	name = "mail chute-'Cargo'"
+	message = 1;
+	name = "mail chute-'Cargo'";
+	autoname = 1
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -12102,6 +12111,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/disposalpipe/trunk/mail/east,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "kqx" = (
@@ -12121,7 +12131,9 @@
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "krI" = (
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	mail_tag = "kitchen"
+	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -18728,6 +18740,10 @@
 	dir = 4
 	},
 /obj/reagent_dispensers/fueltank,
+/obj/disposalpipe/segment/mail{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
 "pKQ" = (
@@ -18785,16 +18801,11 @@
 /turf/floor,
 /area/station/science/artifact)
 "pMe" = (
-/obj/machinery/disposal/mail{
-	mail_tag = "bridge";
-	mailgroup = "command";
-	message = "1";
-	name = "mail chute-'Bridge'"
-	},
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/disposalpipe/trunk/mail,
+/obj/machinery/disposal/mail/autoname/bridge,
 /turf/floor/grey/side{
 	dir = 1
 	},
@@ -19772,7 +19783,9 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/showers)
 "qwX" = (
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	mail_tag = "research"
+	},
 /obj/pathlights/shuttle{
 	dir = 1
 	},
@@ -20751,7 +20764,9 @@
 	},
 /area/station/science/teleporter)
 "rpc" = (
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	mail_tag = "engineering"
+	},
 /obj/cable{
 	icon_state = "1-10"
 	},
@@ -21059,7 +21074,9 @@
 /turf/floor/plating/random,
 /area/station/crew_quarters/catering)
 "rDS" = (
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	mail_tag = "detective"
+	},
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -22546,7 +22563,9 @@
 /turf/floor/plating/random,
 /area/station/construction)
 "sQF" = (
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	mail_tag = "chapel"
+	},
 /turf/floor,
 /area/station/hallway/primary/north)
 "sQN" = (
@@ -25472,7 +25491,9 @@
 /turf/wall,
 /area/station/maintenance/solar/north)
 "vwi" = (
-/obj/disposalpipe/switch_junction/left/north,
+/obj/disposalpipe/switch_junction/left/north{
+	mail_tag = "cafeteria"
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "vwk" = (
@@ -28271,6 +28292,15 @@
 	dir = 5
 	},
 /area/station/medical/medbay/surgery)
+"xYk" = (
+/obj/disposalpipe/switch_junction/right/north{
+	mail_tag = "crew"
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "xYw" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -62810,7 +62840,7 @@ nZk
 eSp
 mHk
 sOj
-rDS
+xYk
 sQN
 nZk
 ubW
