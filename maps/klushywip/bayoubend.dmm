@@ -816,6 +816,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
 /turf/floor,
 /area/station/hallway/primary/south)
 "aOa" = (
@@ -1282,6 +1283,13 @@
 	},
 /turf/floor/carpet/blue,
 /area/station/bridge)
+"bjK" = (
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
+	},
+/turf/floor/grime,
+/area/station/maintenance/disposal)
 "bkT" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
@@ -1696,10 +1704,6 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "bFY" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
-	},
 /obj/disposalpipe/junction{
 	dir = 1;
 	icon_state = "pipe-j2"
@@ -1708,6 +1712,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -3228,6 +3235,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
 /turf/floor,
 /area/station/hallway/primary/south)
 "cOS" = (
@@ -3372,6 +3380,10 @@
 "cUf" = (
 /turf/wall/r_wall,
 /area/station/engine/coldloop)
+"cUF" = (
+/obj/machinery/computer/security/wooden_tv,
+/turf/floor/plating/random,
+/area/station/security/beepsky)
 "cUI" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -3753,11 +3765,18 @@
 /turf/floor/orangeblack,
 /area/station/engine/core)
 "dnw" = (
-/obj/machinery/light{
-	dir = 1
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
 	},
 /turf/floor/plating/random,
-/area/station/hallway/primary/east)
+/area/station/maintenance/west)
 "dnB" = (
 /obj/table/auto,
 /obj/item/clothing/gloves/yellow{
@@ -4758,6 +4777,18 @@
 /obj/machinery/recharger,
 /turf/floor,
 /area/station/security/main)
+"eij" = (
+/obj/disposalpipe/segment,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/west)
 "eiW" = (
 /obj/disposalpipe/segment/bent{
 	dir = 1
@@ -6141,12 +6172,13 @@
 	},
 /area/listeningpost)
 "fnN" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	icon_state = "bulb1"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -7701,6 +7733,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon4,
 /turf/floor,
 /area/station/hallway/primary/north)
 "gDA" = (
@@ -8114,6 +8147,10 @@
 	},
 /turf/space,
 /area/station/maintenance/central)
+"gUP" = (
+/obj/plasticflaps,
+/turf/floor/plating/random,
+/area/station/security/beepsky)
 "gVa" = (
 /obj/disposalpipe/junction{
 	dir = 8;
@@ -8216,6 +8253,16 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters)
+"gWL" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
+/turf/floor,
+/area/station/hallway/primary/east)
 "gXc" = (
 /obj/machinery/camera/television{
 	c_tag = "boxing";
@@ -9808,6 +9855,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon5,
 /turf/floor,
 /area/station/hallway/primary/east)
 "ijr" = (
@@ -10046,11 +10094,12 @@
 	name = "Warehouse"
 	})
 "iBm" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/cable{
 	icon_state = "5-8"
+	},
+/obj/machinery/light/small{
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
@@ -10957,9 +11006,6 @@
 /area/station/engine/engineering)
 "jnV" = (
 /obj/machinery/disposal_pipedispenser,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/floor/plating/random,
 /area/station/maintenance/disposal)
 "jod" = (
@@ -11793,7 +11839,7 @@
 "kah" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
-/area/station/maintenance/northwest)
+/area/station/security/beepsky)
 "kai" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
 /turf/floor/engine/vacuum,
@@ -12363,6 +12409,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon14,
 /turf/floor,
 /area/station/hallway/primary/south)
 "kzX" = (
@@ -12440,6 +12487,13 @@
 	icon_state = "pipe-c"
 	},
 /turf/floor,
+/area/station/hallway/primary/east)
+"kDV" = (
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
+	},
+/turf/floor/plating/random,
 /area/station/hallway/primary/east)
 "kFr" = (
 /obj/decal/poster/wallsign/stencil/right/l,
@@ -12709,6 +12763,7 @@
 "kRw" = (
 /obj/machinery/power/apc/autoname_south,
 /obj/cable,
+/obj/wingrille_spawn/reinforced,
 /turf/floor/grime,
 /area/station/construction)
 "kRz" = (
@@ -13502,6 +13557,14 @@
 /area/station/storage/warehouse{
 	name = "Warehouse"
 	})
+"lug" = (
+/obj/disposalpipe/segment,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon1_start,
+/turf/floor,
+/area/station/hallway/primary/west)
 "luP" = (
 /obj/table/auto,
 /obj/item/saxophone{
@@ -13937,6 +14000,14 @@
 	},
 /turf/floor/carpet/arcade/half,
 /area/station/bridge/captain)
+"lQg" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "red";
+	icon_state = "bedsheet-red"
+	},
+/turf/floor/plating/random,
+/area/station/security/beepsky)
 "lQr" = (
 /obj/disposalpipe/segment,
 /turf/floor/carpet/purple/fancy/narrow/nw,
@@ -14746,6 +14817,10 @@
 /obj/machinery/alarm,
 /turf/wall,
 /area/station/hydroponics/lobby)
+"mxc" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon6,
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "mxg" = (
 /obj/landmark/gps_waypoint,
 /obj/disposalpipe/segment,
@@ -15058,6 +15133,37 @@
 	dir = 5
 	},
 /area/station/security/main)
+"mKz" = (
+/obj/storage/crate{
+	desc = "A private crate that isn't yours.";
+	name = "Beepsky's stuff"
+	},
+/obj/item/diary{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/storage/photo_album/beepsky{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/det_suit/beepsky{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/clothing/shoes/black{
+	desc = "You have no idea how a robot with wheels for locomotion could possibly require these.";
+	name = "Beepsky's Shoes";
+	pixel_x = -9;
+	pixel_y = -7
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/floor/plating,
+/area/station/security/beepsky)
 "mKC" = (
 /obj/table/glass/reinforced/auto,
 /obj/item/reagent_containers/hypospray,
@@ -16091,6 +16197,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
 /turf/floor,
 /area/station/hallway/primary/north)
 "nBM" = (
@@ -16107,6 +16214,7 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/mail,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon19,
 /turf/floor/carpet/blue/fancy/narrow/T_south,
 /area/station/medical/medbay/lobby)
 "nCn" = (
@@ -16202,6 +16310,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon18,
 /turf/floor,
 /area/station/hallway/primary/west)
 "nGe" = (
@@ -17152,6 +17261,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon9,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "osd" = (
@@ -17842,7 +17952,7 @@
 /area/station/security/detectives_office)
 "oQU" = (
 /obj/storage/cart/trash,
-/obj/machinery/light{
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/floor/grime,
@@ -18253,6 +18363,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "piX" = (
@@ -19290,6 +19401,9 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
+"pXy" = (
+/turf/wall,
+/area/station/security/beepsky)
 "pXz" = (
 /obj/machinery/firealarm,
 /turf/wall/r_wall,
@@ -19983,6 +20097,14 @@
 	dir = 8
 	},
 /area/station/crew_quarters/market)
+"qAa" = (
+/obj/disposalpipe/segment,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon20_to_1_end,
+/turf/floor,
+/area/station/hallway/primary/west)
 "qAb" = (
 /obj/table/reinforced/bar/auto,
 /obj/window/reinforced{
@@ -20733,6 +20855,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
 /turf/floor,
 /area/station/hallway/primary/southwest)
 "rhr" = (
@@ -21507,6 +21630,19 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
+"rUz" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon13,
+/turf/floor,
+/area/station/hallway/primary/south)
 "rUE" = (
 /obj/machinery/manufacturer/hangar,
 /obj/decal/cleanable/dirt/random,
@@ -21747,6 +21883,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon17,
 /turf/floor,
 /area/station/hallway/primary/west)
 "sey" = (
@@ -22113,14 +22250,15 @@
 	},
 /area/station/crew_quarters/market)
 "srP" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/sewage{
 	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
@@ -23257,6 +23395,16 @@
 /area/station/storage{
 	name = "Shipyard EVA Storage"
 	})
+"tst" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "tsZ" = (
 /obj/machinery/power/smes{
 	chargelevel = 15000;
@@ -23739,6 +23887,16 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"tMY" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon3,
+/turf/floor,
+/area/station/hallway/primary/north)
 "tOA" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -24168,6 +24326,13 @@
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
+"ueO" = (
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
+/turf/floor,
+/area/station/hallway/primary/east)
 "ufd" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -24268,8 +24433,9 @@
 /turf/floor/orangeblack,
 /area/station/engine/core)
 "uie" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/floor/plating/random,
 /area/station/hallway/primary/south)
@@ -25552,6 +25718,10 @@
 	icon_state = "1-2"
 	},
 /obj/critter/mouse,
+/obj/machinery/light/small{
+	dir = 4;
+	icon_state = "bulb1"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
 "vtj" = (
@@ -25743,6 +25913,12 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
+"vzd" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon7,
+/turf/floor/red/side{
+	dir = 8
+	},
+/area/station/hallway/secondary/exit)
 "vAw" = (
 /obj/grille/catwalk/grey{
 	dir = 5
@@ -26263,6 +26439,10 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
+	},
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "vYy" = (
@@ -26615,6 +26795,10 @@
 	},
 /turf/floor/plating/random,
 /area/station/hallway/secondary/exit)
+"wtB" = (
+/obj/machinery/bot/secbot/beepsky,
+/turf/floor/plating/random,
+/area/station/security/beepsky)
 "wtE" = (
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7";
@@ -28305,6 +28489,9 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/orangeblack,
 /area/station/storage/emergency)
+"xOn" = (
+/turf/wall/r_wall,
+/area/station/security/beepsky)
 "xOD" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -28660,9 +28847,9 @@
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
 "yfb" = (
-/obj/machinery/light{
+/obj/machinery/light/small{
 	dir = 1;
-	icon_state = "tube1"
+	status = 2
 	},
 /turf/floor/plating/random,
 /area/station/hallway/primary/southwest)
@@ -56384,7 +56571,7 @@ wBJ
 rng
 fNh
 vmt
-xre
+bjK
 xre
 xre
 bHi
@@ -56999,7 +57186,7 @@ gpj
 vHG
 aHC
 gSC
-rsd
+eij
 rsd
 uQY
 bFY
@@ -57299,7 +57486,7 @@ sFJ
 mtE
 gpj
 dJx
-iFh
+dnw
 nbb
 dSw
 ttQ
@@ -59087,7 +59274,7 @@ ipT
 ipT
 ipT
 kbC
-lVd
+mEe
 egV
 awX
 ktu
@@ -59386,10 +59573,10 @@ ipT
 qfS
 ipT
 ipT
-ipT
-ipT
-kbC
-lVd
+pXy
+pXy
+pXy
+pXy
 kAb
 lUJ
 aDY
@@ -59688,10 +59875,10 @@ ipT
 qfS
 ipT
 ipT
-ipT
-ipT
-kbC
-mEe
+pXy
+cUF
+wtB
+gUP
 awX
 qMi
 dqt
@@ -59990,9 +60177,9 @@ aTt
 ecz
 aTt
 aTt
-aTt
-aTt
-cRG
+pXy
+lQg
+mKz
 kah
 awX
 vHH
@@ -60054,7 +60241,7 @@ bMk
 bMk
 bMk
 xkk
-mtn
+yfb
 mtn
 xkk
 gpi
@@ -60286,16 +60473,16 @@ ipT
 ipT
 kbC
 yjq
-asc
-asc
+yjq
 asc
 asc
 asc
 asc
 asc
 yjq
-lVd
-lVd
+xOn
+pXy
+pXy
 awX
 qMi
 dqt
@@ -61210,7 +61397,7 @@ iEg
 pEc
 vTn
 dqt
-gGF
+tst
 qMi
 qsP
 rHx
@@ -62720,12 +62907,12 @@ cMv
 eeM
 cMv
 obs
-cMv
+lug
 mhM
 cMv
 cMv
 qPc
-cMv
+qAa
 hQF
 mOi
 cMv
@@ -64570,9 +64757,9 @@ iDO
 hwz
 bMk
 vrk
-seQ
+apK
 gdz
-seQ
+apK
 bMk
 bMk
 xLm
@@ -65471,7 +65658,7 @@ mNI
 jik
 rfw
 oNu
-fgu
+rUz
 dXU
 cai
 nNl
@@ -65780,7 +65967,7 @@ nNl
 nNl
 uie
 nNl
-nNl
+uie
 nNl
 cai
 xLm
@@ -68196,7 +68383,7 @@ nUS
 snc
 qBn
 efu
-aTG
+nmd
 bMk
 bMk
 xLm
@@ -69102,7 +69289,7 @@ xrX
 xrX
 xQd
 xrX
-aTG
+nmd
 bMk
 bMk
 xLm
@@ -70263,7 +70450,7 @@ fER
 aFX
 kcM
 qVp
-iKR
+tMY
 qBM
 vxV
 pyf
@@ -70612,7 +70799,7 @@ meh
 eWw
 tTL
 nOe
-eLe
+mZS
 hKx
 bMk
 hkH
@@ -71832,7 +72019,7 @@ qMK
 sGM
 qMK
 uSP
-dFV
+kDV
 dFV
 plt
 iMt
@@ -72436,7 +72623,7 @@ skq
 kvO
 bTz
 uSP
-dnw
+dFV
 dFV
 woX
 hmz
@@ -72738,7 +72925,7 @@ tex
 iKY
 vCc
 uSP
-dFV
+kDV
 dFV
 sMN
 wGg
@@ -73647,7 +73834,7 @@ cxO
 vcv
 pXq
 mjx
-mjx
+gWL
 mjx
 yiS
 hJx
@@ -73913,7 +74100,7 @@ kDh
 kDh
 baF
 kDh
-kDh
+ueO
 kDh
 qfa
 aXq
@@ -74801,7 +74988,7 @@ asd
 kzX
 oeh
 nGy
-nGy
+vzd
 nGy
 rea
 cEt
@@ -79629,7 +79816,7 @@ ipT
 ipT
 kzX
 iap
-iap
+mxc
 kzX
 ipT
 ipT

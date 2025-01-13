@@ -40,20 +40,18 @@ TYPEINFO(/datum/mapPrefab/random_ship)
 			src.probability = text2num(probability_regex.group[1])
 
 proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space tiles, take ONLY NEW empty tiles into account for better schtuff
-	var/shipworth = 1000
+	var/shipworth = 0
 	var/payoutMod = 0
 
-	var/destroyedMalus = -300
+	var/scrappedBonus = 50
 
 	var/step = 1
 	for (var/S in postWork)
-		if(S != preWork[step] && S == 0) //deducts half points for replacing a wall with a floor
-			payoutMod += destroyedMalus / 2
-		else if(S != preWork[step] && S == 2) //deducts full points for replacing anything with a space tile(destroying)
-			payoutMod += destroyedMalus
+		if(S != preWork[step] && S == 0) //rewards half points for replacing a wall with a floor
+			payoutMod += scrappedBonus / 2
+		else if(S != preWork[step] && S == 2) //rewards full points for replacing anything with a space tile(destroying)
+			payoutMod += scrappedBonus
 		step += 1
-	if(shipworth < 0) //no destorying scrapper bank accounts
-		shipworth = 0
 
 	for(var/datum/data/record/record in data_core.bank)
 		if(record.fields["job"] == "Scrapper")
