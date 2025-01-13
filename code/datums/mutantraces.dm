@@ -1607,7 +1607,7 @@
 	special_hair_3_color = CUST_3*/ //top
 	detail_1_icon = 'icons/mob/cat.dmi'
 	detail_1_state = "chest_detail_altcolor" //counter-shading
-	detail_1_color = null //middle
+	detail_1_color = CUST_2 //middle
 
 	New(mob/living/carbon/human/M)
 		. = ..()
