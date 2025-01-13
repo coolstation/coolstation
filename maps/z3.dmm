@@ -2938,9 +2938,10 @@
 /turf/floor/carpet/arcade,
 /area/diner/arcade)
 "aip" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 8
 	},
 /area/space)
 "aiq" = (
@@ -3982,11 +3983,11 @@
 /turf/floor/plating,
 /area/diner/dining)
 "alf" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
 	},
-/area/space)
+/area/abandonedmedicalship)
 "alg" = (
 /obj/decal/fakeobjects/vacuumtape,
 /obj/cable{
@@ -5126,7 +5127,8 @@
 /area/diner/arcade)
 "anS" = (
 /obj/decal/cleanable/gangtag,
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
@@ -5214,11 +5216,11 @@
 	},
 /area/space)
 "aog" = (
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3"
 	},
-/area/space)
+/area/abandonedship)
 "aoh" = (
 /obj/grille/catwalk/dubious{
 	dir = 9;
@@ -7078,9 +7080,10 @@
 /area/salyut)
 "att" = (
 /obj/decal/cleanable/dirt/dirt4,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 1
 	},
 /area/space)
 "atu" = (
@@ -7120,9 +7123,10 @@
 /area/space)
 "atz" = (
 /obj/decal/cleanable/dirt,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 8
 	},
 /area/space)
 "atA" = (
@@ -9290,14 +9294,16 @@
 	},
 /area/space)
 "aBi" = (
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3_space"
 	},
 /area/space)
 "aBj" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 4
 	},
 /area/space)
 "aBk" = (
@@ -10813,14 +10819,16 @@
 /turf/floor/wood/two,
 /area/radiostation/bedroom)
 "aGB" = (
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3_space"
 	},
 /area/abandonedship)
 "aGC" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 4
 	},
 /area/abandonedship)
 "aGD" = (
@@ -10861,14 +10869,16 @@
 /turf/space,
 /area/space)
 "aGK" = (
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
 "aGL" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 1
 	},
 /area/space)
 "aGM" = (
@@ -10924,7 +10934,10 @@
 /turf/space,
 /area/space)
 "aGX" = (
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/space)
 "aGZ" = (
 /obj/item/raw_material/shard/glass,
@@ -11081,34 +11094,38 @@
 /turf/floor/black,
 /area/radiostation/engineering)
 "aHz" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 2
 	},
-/turf/wall/r_wall,
-/area/space)
+/area/abandonedmedicalship)
 "aHA" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "wall_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 8
 	},
 /area/abandonedship)
 "aHB" = (
-/turf/shuttle/wall{
-	dir = 4
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 8
 	},
-/area/abandonedship)
+/area/general_spaceships)
 "aHC" = (
 /obj/decal/cleanable/blood/splatter,
-/turf/shuttle/wall{
-	dir = 4
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
 	},
 /area/abandonedship)
 "aHD" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 1
 	},
 /area/abandonedship)
 "aHE" = (
@@ -11159,7 +11176,10 @@
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "gibbl2"
 	},
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/abandonedship)
 "aHO" = (
 /obj/decal/floatingtiles{
@@ -11213,10 +11233,13 @@
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "aHU" = (
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/abandonedship)
 "aHV" = (
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aHW" = (
 /obj/item/skull,
@@ -11332,7 +11355,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/wall,
+/turf/wall/s_wall,
 /area/space)
 "aIo" = (
 /obj/decal/cleanable/oil,
@@ -11606,7 +11629,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJh" = (
 /obj/cable{
@@ -11619,7 +11642,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJi" = (
 /obj/cable{
@@ -11632,7 +11655,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJj" = (
 /obj/decal/fakeobjects/shuttleengine{
@@ -11765,7 +11788,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJF" = (
 /obj/cable{
@@ -11773,7 +11796,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJG" = (
 /obj/cable{
@@ -11781,7 +11804,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJH" = (
 /obj/cable{
@@ -11789,11 +11812,13 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aJI" = (
-/turf/shuttle/wall{
-	icon_state = "wall_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 10
 	},
 /area/abandonedship)
 "aJJ" = (
@@ -11801,9 +11826,10 @@
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "aJK" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 4
 	},
 /area/abandonedship)
 "aJL" = (
@@ -12388,9 +12414,10 @@
 	dir = 5;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 1
 	},
 /area/space)
 "aLn" = (
@@ -12458,7 +12485,7 @@
 /obj/decal/cleanable/writing/infrared{
 	words = "WELCOME TO THE NEW DEATH"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aLv" = (
 /obj/cable{
@@ -12471,7 +12498,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aLw" = (
 /obj/cable{
@@ -12479,7 +12506,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aLx" = (
 /obj/lattice{
@@ -12574,7 +12601,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/wall/r_wall,
+/turf/wall/s_wall,
 /area/space)
 "aLK" = (
 /obj/machinery/field_generator,
@@ -12673,7 +12700,10 @@
 /area/abandonedship)
 "aLT" = (
 /obj/machinery/shuttle/engine/heater,
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/abandonedmedicalship)
 "aLU" = (
 /turf/floor/specialroom/cafeteria{
@@ -12794,9 +12824,10 @@
 	dir = 5;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 4
 	},
 /area/space)
 "aMl" = (
@@ -12804,7 +12835,10 @@
 	dir = 5;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/abandonedship)
 "aMm" = (
 /obj/machinery/door/unpowered/shuttle,
@@ -13008,9 +13042,10 @@
 	dir = 4;
 	name = "sensor array"
 	},
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 8
 	},
 /area/space)
 "aMO" = (
@@ -13041,9 +13076,10 @@
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 4
 	},
 /area/space)
 "aMS" = (
@@ -13113,9 +13149,10 @@
 	desc = "You should probably leave it alone.";
 	name = "sensor array"
 	},
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 8
 	},
 /area/space)
 "aNb" = (
@@ -13188,7 +13225,8 @@
 	dir = 9;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3_space"
 	},
 /area/space)
@@ -13197,7 +13235,8 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
@@ -13206,7 +13245,8 @@
 	dir = 8;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
@@ -13392,7 +13432,8 @@
 	dir = 6;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
@@ -13412,7 +13453,8 @@
 	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
@@ -13656,7 +13698,8 @@
 	dir = 10;
 	icon_state = "lattice-dir"
 	},
-/turf/shuttle/wall{
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/space)
@@ -13692,9 +13735,10 @@
 	dir = 1;
 	name = "sensor array"
 	},
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 4
 	},
 /area/space)
 "aOP" = (
@@ -13742,9 +13786,10 @@
 	dir = 1;
 	icon_state = "lattice-dir-b"
 	},
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 8
 	},
 /area/space)
 "aOW" = (
@@ -13827,9 +13872,10 @@
 	dir = 8;
 	name = "sensor array"
 	},
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 4
 	},
 /area/space)
 "aPf" = (
@@ -15826,7 +15872,10 @@
 /area/space)
 "aVb" = (
 /obj/decal/cleanable/oil,
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/space)
 "aVc" = (
 /turf/shuttle/wall{
@@ -15847,9 +15896,10 @@
 	},
 /area/iss)
 "aVi" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 4
 	},
 /area/space)
 "aVj" = (
@@ -17942,11 +17992,11 @@
 /turf/floor/airless/damaged5,
 /area/abandonedship)
 "bbx" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor4"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
 	},
-/turf/shuttle/wall,
-/area/abandonedship)
+/area/general_spaceships)
 "bby" = (
 /obj/stool/bed,
 /obj/machinery/light/small,
@@ -18558,7 +18608,10 @@
 /obj/decal/fakeobjects/shuttleengine{
 	dir = 4
 	},
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
+	},
 /area/abandonedship)
 "bdQ" = (
 /obj/decal/fakeobjects/shuttlethruster{
@@ -18680,8 +18733,11 @@
 /turf/floor/airless/plating/damaged1,
 /area/abandonedship)
 "bej" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/shuttle/wall,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 8
+	},
 /area/abandonedship)
 "bek" = (
 /obj/item/disk/data/tape/nuke,
@@ -19027,8 +19083,9 @@
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "floor4"
 	},
-/turf/shuttle/wall{
-	dir = 4
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall"
 	},
 /area/abandonedship)
 "bfd" = (
@@ -21923,6 +21980,13 @@
 	},
 /turf/floor/black,
 /area/juicer/club/outside)
+"bDt" = (
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 1
+	},
+/area/general_spaceships)
 "bEC" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -22408,6 +22472,13 @@
 /obj/landmark/club_juice_drink,
 /turf/floor/black,
 /area/juicer/club)
+"eGa" = (
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 2
+	},
+/area/general_spaceships)
 "eGG" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -22604,9 +22675,10 @@
 	dir = 4;
 	icon_state = "lattice-broken"
 	},
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 1
 	},
 /area/abandonedship)
 "fyY" = (
@@ -22929,6 +23001,13 @@
 	},
 /turf/floor/airless/plating/catwalk,
 /area/diner/solar)
+"hfu" = (
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 1
+	},
+/area/abandonedship)
 "hfS" = (
 /turf/floor/shuttle{
 	icon_state = "floor2"
@@ -24096,6 +24175,13 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"lUB" = (
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 1
+	},
+/area/space)
 "lWc" = (
 /obj/grille/steel,
 /obj/window/reinforced/east,
@@ -24389,6 +24475,13 @@
 	},
 /turf/floor/shuttlebay,
 /area/diner/hangar)
+"nlh" = (
+/obj/decal/cleanable/oil,
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "nlZ" = (
 /turf/floor/plating/damaged1,
 /area/diner/hangar)
@@ -24829,6 +24922,13 @@
 	},
 /turf/floor/black,
 /area/juicer/club)
+"pFv" = (
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 2
+	},
+/area/abandonedship)
 "pFK" = (
 /obj/decal/poster/wallsign/escape,
 /turf/wall/r_wall{
@@ -25902,9 +26002,10 @@
 	dir = 1;
 	icon_state = "lattice-broken"
 	},
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space";
+	dir = 1
 	},
 /area/space)
 "uQl" = (
@@ -26324,6 +26425,13 @@
 	},
 /turf/floor/plating/airless,
 /area/shuttle/mining/space)
+"xbt" = (
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall_space";
+	dir = 4
+	},
+/area/abandonedmedicalship)
 "xcY" = (
 /turf/floor/carpet/blue,
 /area/prefab/mobius{
@@ -40438,11 +40546,11 @@ aGv
 amK
 aSf
 aSL
-aGv
+aog
 aTl
 amO
 aTG
-aGv
+aog
 aGD
 aaa
 aaa
@@ -40736,15 +40844,15 @@ aGw
 aGv
 aGv
 aGv
-aGv
+aog
 aRM
 aSg
 aSM
 amL
 aTm
 aTm
-aIQ
-aGv
+nlh
+aog
 aGD
 aaa
 aaa
@@ -41038,15 +41146,15 @@ aaz
 aaz
 aaz
 aaz
-aGw
-aGv
+hfu
+aog
 aSh
-aGv
-aIQ
+aog
+nlh
 aTn
 blN
 aTH
-aGw
+hfu
 aGD
 aaa
 aaa
@@ -41930,7 +42038,7 @@ aaa
 aaa
 aaa
 aaa
-aAU
+aip
 aPR
 aBi
 aaa
@@ -47535,7 +47643,7 @@ aaa
 aaa
 alu
 aGK
-aog
+aBi
 apc
 atz
 aGK
@@ -48869,7 +48977,7 @@ aaa
 aaa
 aaa
 aaa
-aAU
+aip
 aNl
 aaa
 aaa
@@ -49813,7 +49921,7 @@ aaa
 aaa
 aaa
 aaa
-aUQ
+lUB
 aVb
 aVi
 aaa
@@ -50329,7 +50437,7 @@ aaa
 aaa
 aaa
 aaa
-aGt
+bej
 aaa
 aaa
 aaa
@@ -50629,9 +50737,9 @@ aaa
 aaa
 aaa
 aaa
-aGt
-aGv
-aGv
+bej
+aog
+aog
 aGB
 aaa
 aaa
@@ -50683,7 +50791,7 @@ aaa
 aaa
 aaa
 aao
-aAU
+aip
 aNw
 aGK
 aOi
@@ -50934,7 +51042,7 @@ aaa
 aAo
 bkE
 exM
-aGv
+aog
 aGD
 aaa
 aaa
@@ -51233,10 +51341,10 @@ aaa
 aaa
 aaa
 aaa
-aGv
+aog
 bla
 vel
-aGv
+aog
 aGD
 aaa
 aaa
@@ -51535,9 +51643,9 @@ aaa
 aaa
 aaa
 aaa
-aGw
-aGv
-aGv
+hfu
+aog
+aog
 aGC
 aaa
 aaa
@@ -51839,7 +51947,7 @@ aaa
 aaa
 aaa
 aaa
-aGw
+hfu
 aaa
 aaa
 aaa
@@ -52501,7 +52609,7 @@ aaa
 aaa
 aaa
 aao
-aAU
+aip
 aGK
 aaa
 aaa
@@ -53073,7 +53181,7 @@ aHN
 aHU
 aHU
 aHU
-aJI
+pFv
 aaa
 aaa
 aaa
@@ -53370,7 +53478,7 @@ aaa
 aaa
 aaa
 aaa
-aHB
+aHU
 aHO
 aIo
 aIM
@@ -53672,7 +53780,7 @@ aaa
 aaa
 aaa
 aaa
-aHB
+aHU
 aHP
 aIp
 aIp
@@ -53974,7 +54082,7 @@ aaa
 aaa
 aaa
 aaa
-aHB
+aHU
 aHQ
 aIq
 aIN
@@ -54276,7 +54384,7 @@ aaa
 aaa
 aaa
 aaa
-aHB
+aHU
 aHR
 aIr
 aIO
@@ -54578,7 +54686,7 @@ aaa
 aaa
 aaa
 aGT
-aHB
+aHU
 aHS
 aIs
 lET
@@ -57859,7 +57967,7 @@ aaa
 aaa
 aaa
 aaa
-aAU
+aip
 aBi
 aaa
 aaa
@@ -59093,7 +59201,7 @@ aac
 aaa
 aaa
 aaa
-aAU
+aip
 aGQ
 aaa
 aaa
@@ -59807,18 +59915,18 @@ aab
 aac
 aHA
 aHU
-bbx
+bfc
 bci
 aHU
 aHU
 aHU
 aHU
 aHU
-bbx
+bfc
 bev
 aHU
 aHU
-aJI
+pFv
 aaa
 aaa
 aaa
@@ -60120,7 +60228,7 @@ beg
 bew
 oTN
 bbW
-aHB
+aHU
 aGD
 aaa
 aaa
@@ -60422,7 +60530,7 @@ rex
 aJz
 aJz
 beT
-aHB
+aHU
 aaa
 aaa
 aaa
@@ -60711,7 +60819,7 @@ aaz
 aac
 aac
 aaa
-aHB
+aHU
 bbv
 bbV
 aJn
@@ -60724,7 +60832,7 @@ beh
 aMo
 xLn
 beU
-aHB
+aHU
 aaa
 aaa
 aaa
@@ -61328,7 +61436,7 @@ bei
 aJn
 beL
 beV
-aHB
+aHU
 aGD
 aaa
 aaa
@@ -61618,7 +61726,7 @@ aaa
 aaa
 aaa
 fwV
-bbx
+bfc
 aHU
 aHU
 aHU
@@ -61626,7 +61734,7 @@ aHN
 aHU
 aHU
 aHU
-bej
+aHC
 aHU
 aHU
 aHU
@@ -62416,10 +62524,10 @@ aab
 aab
 aaa
 aaa
-aGt
+bej
 blp
 bly
-aGt
+bej
 blp
 blJ
 aaa
@@ -62717,12 +62825,12 @@ aab
 aab
 aaa
 aaa
-aGt
-aGv
-aGv
-aGv
-aIQ
-aIQ
+bej
+aog
+aog
+aog
+nlh
+nlh
 aGD
 aaa
 aaa
@@ -62732,12 +62840,12 @@ aaa
 aLl
 aBi
 aaa
-aGt
-aGv
-aGv
+bej
+aog
+aog
 aGB
 aaa
-aAU
+aip
 aLl
 aaa
 aaa
@@ -63019,12 +63127,12 @@ aab
 aaa
 aaa
 aaa
-aGv
+aog
 blg
 blo
 blq
 ajn
-aGv
+aog
 aGD
 aaa
 aaa
@@ -63034,10 +63142,10 @@ aaa
 aLm
 aGK
 aLx
-aGv
+aog
 aLP
 aLW
-aGv
+aog
 aLx
 aGK
 aMj
@@ -63321,12 +63429,12 @@ aab
 aaa
 blt
 aaa
-aGv
+aog
 biO
 aIP
 blF
 blu
-aGv
+aog
 aGD
 aaa
 aaa
@@ -63336,7 +63444,7 @@ aaa
 aaa
 aGL
 aaa
-aIQ
+nlh
 aLQ
 aLW
 aMe
@@ -63623,12 +63731,12 @@ aac
 aaa
 aaa
 aaa
-aGw
-aGv
-aGv
+hfu
+aog
+aog
 ajk
-aGv
-aGv
+aog
+aog
 aGD
 aaa
 aaa
@@ -63638,10 +63746,10 @@ aaa
 aaa
 aaa
 aaa
-aGv
+aog
 aLR
 aLX
-aGv
+aog
 aaa
 aaa
 aaa
@@ -63926,10 +64034,10 @@ aab
 aaa
 aaa
 aaa
-aGw
+hfu
 blv
 blG
-aGw
+hfu
 blv
 blG
 aaa
@@ -63940,10 +64048,10 @@ aaa
 aaa
 aaa
 aaa
-aGv
+aog
 aLS
 aLY
-aGv
+aog
 aaa
 aaa
 aaa
@@ -64242,9 +64350,9 @@ aaa
 aaa
 aaa
 aaa
-aGw
-aIQ
-aGv
+hfu
+nlh
+aog
 aGC
 aaa
 aaa
@@ -66055,7 +66163,7 @@ aaa
 aaa
 aaa
 aaa
-aHV
+aGK
 aaa
 aaa
 aaa
@@ -66961,7 +67069,7 @@ aaa
 aaa
 aaa
 aaa
-aHV
+aGK
 aaa
 aaa
 aaa
@@ -85158,16 +85266,16 @@ aaa
 aaa
 aaa
 aaa
-rZi
-kMa
-kMa
-kMa
+aHB
+bbx
+bbx
+bbx
 sjD
-kMa
-kMa
-kMa
-kMa
-vAg
+bbx
+bbx
+bbx
+bbx
+eGa
 aaa
 aaa
 aaa
@@ -85461,15 +85569,15 @@ aaa
 aaa
 aaa
 qrG
-kMa
-kMa
+bbx
+bbx
 lnk
 lnk
 oSn
-kMa
+bbx
 fUh
 xjv
-kMa
+bbx
 aaa
 aaa
 aaa
@@ -85764,14 +85872,14 @@ aaa
 aaa
 aaa
 qrG
-kMa
+bbx
 lnk
 lnk
 lnk
-kMa
+bbx
 lnk
 vIo
-kMa
+bbx
 aaa
 aaa
 aaa
@@ -86066,14 +86174,14 @@ aaa
 aaa
 aaa
 aaa
-kMa
+bbx
 lnk
 lnk
 lnk
-kMa
+bbx
 sjD
-kMa
-kMa
+bbx
+bbx
 aaa
 aaa
 aaa
@@ -86368,7 +86476,7 @@ aaa
 aaa
 aaa
 aaa
-kMa
+bbx
 lnk
 lnk
 lnk
@@ -86670,11 +86778,11 @@ aaa
 aaa
 aaa
 qrG
-kMa
+bbx
 lnk
 lnk
 lnk
-kMa
+bbx
 cCo
 dwj
 ixA
@@ -86971,12 +87079,12 @@ aaa
 aaa
 aaa
 qrG
-kMa
-kMa
+bbx
+bbx
 lnk
 lnk
 lnk
-kMa
+bbx
 fqe
 gPG
 ixA
@@ -87272,14 +87380,14 @@ aaa
 aaa
 aaa
 aaa
-maY
-kMa
-kMa
-kMa
+bDt
+bbx
+bbx
+bbx
 sjD
-kMa
-kMa
-kMa
+bbx
+bbx
+bbx
 ixA
 ixA
 aaa
@@ -98421,14 +98529,14 @@ aac
 aaa
 aab
 aab
-aHb
-aHb
-aHb
-aHb
-aHb
-aHb
-aHb
-aIb
+alf
+alf
+alf
+alf
+alf
+alf
+alf
+aHz
 aaa
 aaa
 aaa
@@ -98724,7 +98832,7 @@ aac
 aac
 aab
 bmG
-aHb
+alf
 aLj
 aJz
 aLo
@@ -99026,7 +99134,7 @@ aab
 aac
 bmF
 bmH
-aHb
+alf
 aJz
 aLn
 aHo
@@ -99630,7 +99738,7 @@ aab
 aab
 aab
 bmJ
-aHb
+alf
 aJz
 aHo
 aJz
@@ -99932,7 +100040,7 @@ aab
 aab
 aab
 bmK
-aHb
+alf
 aLj
 aLp
 aLs
@@ -100234,13 +100342,13 @@ aac
 aab
 aab
 aab
-aHb
-aHb
+alf
+alf
 aJx
-aHb
-aHb
-aHb
-aKq
+alf
+alf
+alf
+xbt
 aaa
 aaa
 aaa
@@ -109845,8 +109953,8 @@ aaa
 aaa
 aaa
 aaa
-aHz
-aHz
+aIn
+aIn
 aJg
 aJF
 aan
@@ -110145,10 +110253,10 @@ aaa
 aaa
 aaa
 aaa
-aHz
-aHz
 aIn
-aHz
+aIn
+aIn
+aIn
 aJh
 aGO
 aJZ
@@ -110447,10 +110555,10 @@ aaa
 aaa
 aaa
 aaa
-aHz
-aHz
-aHz
-aHz
+aIn
+aIn
+aIn
+aIn
 aJi
 aJG
 aan
@@ -111058,7 +111166,7 @@ aaa
 aaa
 aaa
 aJH
-aHz
+aIn
 arY
 aan
 aLb
@@ -112165,7 +112273,7 @@ aaa
 aaa
 aaa
 aaa
-aGK
+aBi
 ala
 alH
 amc
@@ -112468,9 +112576,9 @@ aaa
 aaa
 aaa
 aGL
-alf
-alf
-alf
+aGK
+aGK
+aGK
 aBj
 aaa
 aaa
