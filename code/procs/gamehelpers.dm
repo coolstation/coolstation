@@ -569,15 +569,21 @@ var/obj/item/dummy/click_dummy = new
 			appendTo += 0
 	return appendTo
 
-/proc/explode_area(var/area/A,var/power,var/number)
+/proc/explode_ship(var/area/A,var/power,var/number)
 	var/list/turfs = get_area_turfs(A.type)
+	var/list/shipTurfs = list()
 	var/bombProb = null
 	var/spawnedBombs = 0
+
+	for(var/turf/S in turfs)
+		if(!istype(S, /turf/space))
+			shipTurfs += S
+
 	bombProb = number / turfs.len
 	while(spawnedBombs < number)
-		for(var/turf/S in turfs)
+		for(var/turf/S in shipTurfs)
 			if(prob(bombProb))
-				explosion_new(null, S, power)
+				explosion_new(A, S, power)
 				spawnedBombs += 1
 
 
