@@ -74,6 +74,12 @@ var/global
 	list/browse_item_clients = list()
 	browse_item_initial_done = 0
 
+	//INTENT: part of approach to show icons next to qm supply categories
+	//stub from when i worked on this like in 2023 or whenever, will revisit i promise
+	//list/browse_supply_pack_icons = list()
+	//list/browse_supply_pack_clients = list()
+	//browse_supply_pack_initial_done = 0
+
 	list/rewardDB = list() //Contains instances of the reward datums
 	list/materialRecipes = list() //Contains instances of the material recipe datums
 	list/materialProps = list() //Contains instances of the material property datums
@@ -281,6 +287,7 @@ var/global
 	suicide_allowed = 1
 	dna_ident = 1
 	abandon_allowed = 1
+	enable_fastpath = 0 // space fastpath default value
 	enter_allowed = 1
 	johnbus_location = 1
 	johnbus_destination = 0

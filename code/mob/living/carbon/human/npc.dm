@@ -562,7 +562,7 @@
 				//throw_equipped = 1
 
 	// eat, drink, splash!
-	/*
+
 	if(istype(src.equipped(), /obj/item/reagent_containers))
 		var/poured = FALSE
 		if(istype(src.equipped(), /obj/item/reagent_containers/glass) || prob(20))
@@ -581,7 +581,7 @@
 			thing.set_loc(src.loc)
 			thing.dropped(src)
 			thing.layer = initial(thing.layer)
-	*/
+
 
 	// draw
 	//What if we leave this in? I don't think monkeys are likely to get crayons without outside help

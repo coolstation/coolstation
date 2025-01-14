@@ -1,8 +1,8 @@
 /obj/item/tool/omnitool
 	name = "omnitool"
 	desc = "Multiple tools in one, like an old-fashioned Swiss army knife. Truly, we are living in the future."
-	icon = 'icons/obj/items/tools/omnitool.dmi'
-	inhand_image_icon = 'icons/mob/inhand/tools/omnitool.dmi'
+	icon = 'icons/obj/items/tools/tools.dmi'
+	inhand_image_icon = 'icons/mob/inhand/tools/omnitool.dmi' //kinda a lot of inhands for one thing, this can stay for now
 	uses_multiple_icon_states = 1
 	var/prefix = "omnitool"
 	var/has_cutting = 0

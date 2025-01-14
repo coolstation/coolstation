@@ -210,3 +210,7 @@
 
 /datum/movement_modifier/shiver
 	additive_slowdown = 2
+
+//carrying a big object
+/datum/movement_modifier/lifting
+	additive_slowdown = 0.5

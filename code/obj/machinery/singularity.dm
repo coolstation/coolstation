@@ -562,7 +562,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	. = ..()
 
 /obj/machinery/field_generator/get_desc()
-	switch(anchored)
+	switch(state)
 		if (WRENCHED)
 			. += "It has been bolted to the floor."
 		if (WELDED)
@@ -999,7 +999,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.net_id = format_net_id("\ref[src]")
 
 /obj/machinery/emitter/get_desc()
-	switch(anchored)
+	switch(state)
 		if (WRENCHED)
 			. += "It has been bolted to the floor."
 		if (WELDED)

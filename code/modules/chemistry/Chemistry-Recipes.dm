@@ -3245,7 +3245,7 @@ datum
 				bust_lights()
 				creepify_station()
 				return
-
+*/
 		bleach
 			name = "Bleach" // cogwerks WIP: could be useful for hobo chemistry, hair bleaching, stubborn stains, being a jerk and turning stuff white
 			id = "bleach"
@@ -3265,13 +3265,11 @@ datum
 			mix_sound = 'sound/misc/fuse.ogg'
 
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				var/location = get_turf(holder.my_atom)
+				var/turf/location = get_turf(holder.my_atom)
 				for(var/mob/M in AIviewers(5, location))
 					boutput(M, "<span class='alert'>The solution boils up into a choking cloud!</span>")
-				src.mustard_gas = new /datum/effects/system/mustard_gas_spread/
-				src.mustard_gas.attach(src)
-				src.mustard_gas.set_up(5, 0, usr.loc)
-				return */
+				location.fluid_react(holder, created_volume, 1)//make it hit the air
+				return
 
 		space_cleaner // COGWERKS CHEM REVISION PROJECT: add ethanol to this recipe
 			name = "Space cleaner"

@@ -72,7 +72,7 @@
 ///////////////////////////
 
 /datum/bioEffect/clumsy
-	name = "Dyspraxia"
+	name = "Clumsy"
 	desc = "Hinders transmissions in the subject's nervous system, causing poor motor skills."
 	id = "clumsy"
 	effectType = EFFECT_TYPE_DISABILITY
@@ -148,7 +148,7 @@
 			L.say(pick(talk_strings))
 
 /datum/bioEffect/shortsighted
-	name = "Diminished Optic Nerves"
+	name = "Shortsighted"
 	desc = "Reduces the subject's ability to see clearly without glasses or other visual aids."
 	id = "bad_eyesight"
 	effectType = EFFECT_TYPE_DISABILITY
@@ -288,7 +288,7 @@
 #define LIMB_IS_ARM 1
 #define LIMB_IS_LEG 2
 /datum/bioEffect/funky_limb
-	name = "Motor Neuron Signal Enhancement" // heh
+	name = "Funky Limbs"
 	desc = "Causes involuntary muscle contractions in limbs, due to a loss of inhibition of motor neurons."
 	id = "funky_limb"
 	effectType = EFFECT_TYPE_DISABILITY

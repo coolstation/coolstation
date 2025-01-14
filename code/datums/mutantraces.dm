@@ -1583,6 +1583,7 @@
 	icon_state = "body_m"
 	// jerk = 1 // why the fuck was this 1
 	override_attack = 0
+	voice_override = "cat"
 	firevuln = 1.5 // very flammable catthings
 	race_mutation = /datum/bioEffect/mutantrace/cat
 	mutant_organs = list("tail" = /obj/item/organ/tail/cat)
@@ -1606,7 +1607,7 @@
 	special_hair_3_color = CUST_3*/ //top
 	detail_1_icon = 'icons/mob/cat.dmi'
 	detail_1_state = "chest_detail_altcolor" //counter-shading
-	detail_1_color = null //middle
+	detail_1_color = CUST_2 //middle
 
 	New(mob/living/carbon/human/M)
 		. = ..()

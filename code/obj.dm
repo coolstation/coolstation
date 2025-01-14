@@ -56,6 +56,14 @@
 			var/turf/T = get_turf(src)
 			T?.UpdateDirBlocks()
 
+	//lifting non-item objects that have CAN_BE_LIFTED
+	MouseDrop(atom/over_object)
+		if (ishuman(over_object) && (src.object_flags & CAN_BE_LIFTED))
+			if (can_reach(over_object, src))
+				new /obj/item/lifted_thing(src, over_object)
+		else
+			..()
+
 	proc/setHealth(var/value)
 		var/prevHealth = _health
 		_health = min(value, _max_health)

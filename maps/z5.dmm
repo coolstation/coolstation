@@ -46,6 +46,21 @@
 	},
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
+"au" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "green";
+	icon_state = "bedsheet-green"
+	},
+/obj/window/cubicle{
+	dir = 2
+	},
+/obj/decal/skeleton,
+/turf/floor,
+/area/abandonedoutpostthing)
+"az" = (
+/turf/wall/asteroid/comet/ice,
+/area/noGenerate)
 "aA" = (
 /obj/grille/classic,
 /turf/floor/plating/airless,
@@ -81,6 +96,9 @@
 /turf/space,
 /turf/wall/asteroid,
 /area/mining/mainasteroid)
+"aV" = (
+/turf/floor,
+/area/abandonedoutpostthing)
 "aX" = (
 /obj/cable{
 	d2 = 8;
@@ -89,6 +107,30 @@
 /obj/machinery/recharge_station,
 /turf/floor/caution/west,
 /area/mining/miningoutpost)
+"aZ" = (
+/obj/grille/catwalk{
+	dir = 5
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4;
+	icon_state = "catwalk_cross"
+	},
+/area/abandonedoutpostthing)
 "bl" = (
 /obj/machinery/light,
 /turf/space,
@@ -97,6 +139,17 @@
 "bq" = (
 /turf/floor/shuttlebay,
 /area/mining/hangar)
+"bt" = (
+/obj/grille/steel,
+/obj/window/crystal/reinforced/east,
+/obj/window/crystal/reinforced/north,
+/obj/window/crystal/reinforced/south,
+/obj/machinery/door/poddoor{
+	id = "patho_lockdown_z3";
+	name = "Lockdown"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "by" = (
 /turf/floor/white,
 /area/gas_station/schweewa)
@@ -118,6 +171,15 @@
 	},
 /turf/space,
 /area/noGenerate)
+"bH" = (
+/obj/machinery/light/fluorescent/worn{
+	dir = 1
+	},
+/obj/submachine/chef_sink/chem_sink{
+	dir = 8
+	},
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "bM" = (
 /obj/grille/classic,
 /turf/wall/asteroid{
@@ -1126,6 +1188,12 @@
 	dir = 1
 	},
 /area/gas_station/schweewa)
+"hh" = (
+/obj/stool/chair/red{
+	dir = 8
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "hi" = (
 /turf/wall/asteroid{
 	dir = 1
@@ -1342,6 +1410,12 @@
 	},
 /turf/space,
 /area/noGenerate)
+"ig" = (
+/obj/critter/zombie/scientist,
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/abandonedoutpostthing)
 "ih" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -1756,6 +1830,11 @@
 /obj/access_spawn/juicer/service,
 /turf/floor/grime,
 /area/gas_station/schweewa)
+"jS" = (
+/obj/critter/zombie/scientist,
+/obj/machinery/telejam/active,
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "jU" = (
 /turf/floor/plating/airless/asteroid,
 /area/mining/mainasteroid)
@@ -1954,6 +2033,12 @@
 	},
 /turf/wall/asteroid,
 /area/mining/mainasteroid)
+"kP" = (
+/obj/stool/chair/green{
+	dir = 4
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "kR" = (
 /obj/table/reinforced/auto,
 /obj/item/shipcomponent/secondary_system/cargo,
@@ -2088,6 +2173,13 @@
 	dir = 1
 	},
 /area/gas_station/schweewa)
+"lP" = (
+/obj/machinery/camera{
+	network = "Pathopost"
+	},
+/obj/critter/zombie/scientist,
+/turf/floor,
+/area/abandonedoutpostthing)
 "lS" = (
 /obj/item/cigbutt,
 /turf/floor{
@@ -2382,6 +2474,10 @@
 /turf/space,
 /turf/wall/asteroid,
 /area/noGenerate)
+"na" = (
+/obj/grille/catwalk,
+/turf/floor/airless/plating/catwalk,
+/area/abandonedoutpostthing)
 "nb" = (
 /turf/space,
 /turf/wall/asteroid{
@@ -2404,6 +2500,14 @@
 	dir = 9
 	},
 /area/noGenerate)
+"nk" = (
+/obj/table/auto,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper,
+/turf/floor/purplewhite{
+	dir = 5
+	},
+/area/abandonedoutpostthing)
 "nl" = (
 /obj/cable{
 	d1 = 2;
@@ -2604,6 +2708,17 @@
 	},
 /turf/floor/plating/airless,
 /area/mining/magnet_control)
+"oO" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "Electrical Substation"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "oQ" = (
 /obj/decal/poster/wallsign/stencil/right/t{
 	pixel_x = 19
@@ -2646,6 +2761,21 @@
 	dir = 10
 	},
 /area/gas_station/schweewa)
+"oW" = (
+/obj/machinery/power/solar,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/airless{
+	icon_state = "solarpanel";
+	name = "solar paneling"
+	},
+/area/noGenerate)
 "oY" = (
 /obj/machinery/vending/snack{
 	acceptcard = 0
@@ -2662,6 +2792,13 @@
 	},
 /turf/floor/plating/airless,
 /area/mining/manufacturing)
+"pc" = (
+/obj/machinery/light/fluorescent/worn{
+	dir = 8
+	},
+/obj/item/clothing/head/plunger,
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "pj" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -2742,9 +2879,24 @@
 /obj/decal/cleanable/mess/chips,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"pJ" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "E APC";
+	pixel_x = 24
+	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "pS" = (
 /turf/wall/r_wall,
 /area/mining/dock)
+"pU" = (
+/turf/wall/asteroid/comet/ice_dense,
+/area/noGenerate)
 "pY" = (
 /obj/machinery/vending/snack,
 /turf/floor/bot,
@@ -2938,6 +3090,9 @@
 	},
 /turf/floor/grime,
 /area/tech_outpost)
+"rA" = (
+/turf/floor/plating/airless/asteroid,
+/area/space)
 "rD" = (
 /obj/decal/cleanable/blood/splatter,
 /obj/item/paper/numbers_note,
@@ -2949,6 +3104,12 @@
 /obj/item/paper/empty_bloody,
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"rI" = (
+/obj/machinery/light/fluorescent/worn{
+	dir = 8
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "rL" = (
 /obj/decal/tile_edge/stripe/big{
 	icon_state = "delivery2"
@@ -2957,6 +3118,14 @@
 /obj/railing/red,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"rO" = (
+/obj/machinery/camera{
+	network = "Pathopost"
+	},
+/turf/floor/purplewhite{
+	dir = 5
+	},
+/area/abandonedoutpostthing)
 "rU" = (
 /obj/machinery/door/airlock/external{
 	name = "Compartment Hatch"
@@ -2978,10 +3147,21 @@
 	icon_state = "floor2"
 	},
 /area/diner/tug)
+"rV" = (
+/obj/table/auto,
+/turf/floor/purplewhite{
+	dir = 4
+	},
+/area/abandonedoutpostthing)
 "si" = (
 /obj/machinery/atmospherics/pipe/tank/toxins/north,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"sk" = (
+/obj/stool/chair,
+/obj/critter/zombie/scientist,
+/turf/floor,
+/area/abandonedoutpostthing)
 "sn" = (
 /obj/stool/chair/couch{
 	dir = 8;
@@ -3009,6 +3189,15 @@
 	icon_state = "wall3dir"
 	},
 /area/diner/tug)
+"ss" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "sy" = (
 /obj/cable{
 	d1 = 4;
@@ -3212,6 +3401,17 @@
 "tL" = (
 /turf/floor/plating/airless,
 /area/mining/magnet_control)
+"tP" = (
+/obj/stool/bed,
+/obj/critter/zombie/scientist,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "yellow";
+	icon_state = "bedsheet-yellow"
+	},
+/turf/floor/purplewhite{
+	dir = 10
+	},
+/area/abandonedoutpostthing)
 "tT" = (
 /obj/table/auto,
 /obj/item/storage/toolbox/electrical,
@@ -3286,6 +3486,23 @@
 /obj/machinery/door/airlock/external,
 /turf/floor/delivery,
 /area/mining/dock)
+"uu" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "green";
+	icon_state = "bedsheet-green"
+	},
+/obj/window/cubicle{
+	dir = 1
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
+"uv" = (
+/obj/machinery/door/airlock/glass/medical{
+	locked = 1
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "uF" = (
 /obj/machinery/light/small{
 	dir = 1;
@@ -3332,6 +3549,16 @@
 	},
 /turf/floor/engine/glow,
 /area/diner/tug)
+"uR" = (
+/obj/machinery/door/airlock/security{
+	name = "Security Station"
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
+"uS" = (
+/obj/item/clothing/under/gimmick/blackstronaut,
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "uW" = (
 /turf/floor/yellow/side{
 	dir = 1
@@ -3347,6 +3574,12 @@
 	dir = 1
 	},
 /area/mining/dock)
+"vc" = (
+/obj/stool/chair/red{
+	dir = 1
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "vf" = (
 /turf/wall/r_wall,
 /area/mining/magnet_control)
@@ -3376,6 +3609,23 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"vq" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/window/cubicle{
+	dir = 10;
+	layer = 29
+	},
+/obj/machinery/door/window/eastleft,
+/obj/decal/skeleton{
+	desc = "Eugh, the stench is horrible!";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body1";
+	name = "decomposed corpse"
+	},
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "vr" = (
 /obj/cable{
 	d1 = 4;
@@ -3547,6 +3797,13 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
+"wp" = (
+/obj/machinery/shower,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "wr" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -3554,6 +3811,12 @@
 /obj/machinery/light/runway_light/delay4,
 /turf/space,
 /area/noGenerate)
+"ws" = (
+/obj/machinery/computer/security{
+	network = "Pathopost"
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "wx" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4;
@@ -3696,10 +3959,26 @@
 	},
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
+"xh" = (
+/obj/machinery/door/poddoor{
+	id = "patho_lockdown_z3";
+	name = "Lockdown"
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "xi" = (
 /obj/item/tile/steel,
 /turf/floor/plating,
 /area/tech_outpost)
+"xj" = (
+/obj/item/storage/toilet,
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
+"xk" = (
+/obj/machinery/power/smes,
+/obj/cable,
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "xm" = (
 /obj/cable{
 	d1 = 4;
@@ -3711,6 +3990,16 @@
 	},
 /turf/floor/damaged2,
 /area/mining/power)
+"xr" = (
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
+	},
+/obj/machinery/camera{
+	network = "Pathopost"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "xw" = (
 /obj/machinery/power/smes,
 /turf/floor/grime,
@@ -3729,6 +4018,14 @@
 	},
 /turf/space,
 /area/gas_station/schweewa)
+"xF" = (
+/obj/stool/chair/green{
+	dir = 4
+	},
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/abandonedoutpostthing)
 "xG" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -3902,6 +4199,14 @@
 	},
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
+"yV" = (
+/obj/stool/chair/green{
+	dir = 8
+	},
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/abandonedoutpostthing)
 "yX" = (
 /obj/machinery/light/fluorescent/auto/warm,
 /obj/decal/tile_edge/check/white{
@@ -3939,6 +4244,12 @@
 	icon_state = "carpetN"
 	},
 /area/tech_outpost)
+"zq" = (
+/obj/machinery/pathogen_manipulator,
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/abandonedoutpostthing)
 "zt" = (
 /obj/decal/cleanable/fungus,
 /turf/wall/r_wall{
@@ -4085,6 +4396,10 @@
 	icon_state = "floor2"
 	},
 /area/diner/tug)
+"AA" = (
+/obj/machinery/door/airlock/glass,
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "AC" = (
 /turf/floor/white/grime,
 /area/gas_station/schweewa)
@@ -4186,6 +4501,11 @@
 	dir = 1
 	},
 /area/gas_station/schweewa)
+"Bl" = (
+/turf/floor/purplewhite{
+	dir = 10
+	},
+/area/abandonedoutpostthing)
 "Bm" = (
 /obj/machinery/r_door_control/podbay/miningoutpost,
 /turf/wall/r_wall,
@@ -4231,6 +4551,18 @@
 	dir = 1
 	},
 /area/gas_station/schweewa)
+"BH" = (
+/obj/stool/bed,
+/obj/decal/skeleton{
+	desc = "Eugh, the stench is horrible!";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body8";
+	name = "decomposed corpse"
+	},
+/turf/floor/purplewhite{
+	dir = 6
+	},
+/area/abandonedoutpostthing)
 "BI" = (
 /obj/machinery/door/airlock,
 /turf/floor/yellow,
@@ -4287,6 +4619,12 @@
 	},
 /turf/floor/plating,
 /area/mining/exit_south)
+"Cj" = (
+/obj/stool/chair/green{
+	dir = 8
+	},
+/turf/floor/purplewhite,
+/area/abandonedoutpostthing)
 "Ck" = (
 /obj/cable{
 	d1 = 1;
@@ -4330,6 +4668,15 @@
 	},
 /turf/floor/caution/north,
 /area/mining/dock)
+"CC" = (
+/obj/grille/catwalk,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/airless/plating/catwalk,
+/area/abandonedoutpostthing)
 "CF" = (
 /obj/storage/secure/closet/engineering/mechanic,
 /turf/floor{
@@ -4363,7 +4710,7 @@
 /obj/disposalpipe/segment/transport{
 	dir = 4
 	},
-/turf/wall/auto/supernorn,
+/turf/wall,
 /area/mining/miningoutpost)
 "CV" = (
 /obj/lattice{
@@ -4411,6 +4758,20 @@
 	},
 /turf/floor/grime,
 /area/mining/miningoutpost)
+"Do" = (
+/obj/grille/catwalk,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/floor/airless/plating/catwalk,
+/area/abandonedoutpostthing)
 "Ds" = (
 /obj/table/auto,
 /turf/floor/redwhite{
@@ -4420,6 +4781,10 @@
 "Dz" = (
 /turf/floor/caution/west,
 /area/mining/hangar)
+"DB" = (
+/obj/storage/secure/closet/fridge,
+/turf/floor,
+/area/abandonedoutpostthing)
 "DD" = (
 /obj/cable{
 	d1 = 1;
@@ -4460,6 +4825,24 @@
 /obj/item/reagent_containers/food/snacks/sandwich/meatball,
 /turf/floor/plating/damaged3,
 /area/mining/exit_south)
+"DN" = (
+/obj/machinery/light/fluorescent/worn{
+	dir = 4
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
+"DO" = (
+/obj/machinery/light/fluorescent/worn,
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "green";
+	icon_state = "bedsheet-green"
+	},
+/obj/window/cubicle{
+	dir = 1
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "DZ" = (
 /obj/machinery/power/apc/autoname_west,
 /obj/cable{
@@ -4561,12 +4944,22 @@
 	icon_state = "catwalk_cross"
 	},
 /area/noGenerate)
+"Fb" = (
+/obj/table/auto,
+/obj/item/reagent_containers/food/snacks/burger/moldy,
+/turf/floor/purplewhite{
+	dir = 9
+	},
+/area/abandonedoutpostthing)
 "Fe" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
 /turf/floor/airless/engine/caution/south,
 /area/gas_station)
+"Ff" = (
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "Fh" = (
 /obj/cable{
 	d1 = 4;
@@ -4618,6 +5011,14 @@
 "FB" = (
 /turf/floor/plating,
 /area/spyshack)
+"FC" = (
+/turf/floor/stairs/medical,
+/area/abandonedoutpostthing)
+"FD" = (
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/abandonedoutpostthing)
 "FG" = (
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
@@ -4754,6 +5155,25 @@
 	},
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
+"GA" = (
+/obj/grille/catwalk,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/airless/plating/catwalk,
+/area/abandonedoutpostthing)
 "GB" = (
 /obj/lattice{
 	dir = 1;
@@ -4800,6 +5220,16 @@
 /obj/item/electronics/soldering,
 /turf/floor/plating,
 /area/tech_outpost)
+"GK" = (
+/obj/machinery/light/fluorescent/worn{
+	dir = 8
+	},
+/obj/stool/chair{
+	dir = 1
+	},
+/obj/critter/zombie/scientist,
+/turf/floor,
+/area/abandonedoutpostthing)
 "GN" = (
 /obj/lattice{
 	dir = 8;
@@ -4816,6 +5246,17 @@
 	icon_state = "old_rwall"
 	},
 /area/tech_outpost)
+"GS" = (
+/obj/machinery/door/airlock/glass/medical{
+	locked = 1
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "GX" = (
 /obj/cable{
 	d1 = 4;
@@ -4829,10 +5270,27 @@
 	},
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"Hf" = (
+/obj/table/auto,
+/obj/item/reagent_containers/food/snacks/burger,
+/turf/floor/purplewhite{
+	dir = 5
+	},
+/area/abandonedoutpostthing)
 "Hg" = (
 /obj/machinery/manufacturer/mechanic,
 /turf/floor/yellow/side,
 /area/tech_outpost)
+"Hh" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	network = "Pathopost";
+	tag = ""
+	},
+/obj/stool/chair,
+/turf/floor,
+/area/abandonedoutpostthing)
 "Hk" = (
 /obj/storage/crate/furnacefuel,
 /turf/floor,
@@ -4904,11 +5362,27 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"HF" = (
+/obj/grille/steel,
+/obj/window/crystal/reinforced/east,
+/obj/window/crystal/reinforced/north,
+/obj/window/crystal/reinforced/south,
+/obj/window/crystal/reinforced/west,
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "HG" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/snacks/omelette,
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
+"HI" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "HM" = (
 /obj/decal/cleanable/mess/random_litter,
 /turf/floor/airless/engine/caution/corner{
@@ -5030,6 +5504,10 @@
 	dir = 6
 	},
 /area/mining/magnet_control)
+"IS" = (
+/obj/critter/zombie/security,
+/turf/floor,
+/area/abandonedoutpostthing)
 "IV" = (
 /obj/table/auto,
 /turf/floor/yellow/side{
@@ -5070,6 +5548,14 @@
 	dir = 4
 	},
 /area/tech_outpost)
+"Jp" = (
+/obj/machinery/computer/pathology{
+	dir = 4
+	},
+/turf/floor/purplewhite{
+	dir = 10
+	},
+/area/abandonedoutpostthing)
 "Jr" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 8
@@ -5145,12 +5631,26 @@
 /obj/item/reagent_containers/food/snacks/ingredient/mud,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"Kj" = (
+/obj/machinery/telejam/active,
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "Km" = (
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
 "Ko" = (
 /turf/floor/delivery,
 /area/mining/exit_south)
+"Kq" = (
+/obj/table/auto,
+/turf/floor,
+/area/abandonedoutpostthing)
+"Ks" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "KA" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/floor/caution/north{
@@ -5232,6 +5732,10 @@
 /turf/space,
 /turf/floor/plating,
 /area/tech_outpost)
+"KV" = (
+/obj/machinery/centrifuge,
+/turf/floor/purplewhite,
+/area/abandonedoutpostthing)
 "KW" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
@@ -5310,6 +5814,20 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/mining/mainasteroid)
+"LS" = (
+/obj/table/auto,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/obj/item/reagent_containers/glass/petridish,
+/turf/floor/purplewhite{
+	dir = 9
+	},
+/area/abandonedoutpostthing)
 "LU" = (
 /obj/decal/tile_edge/check/white{
 	dir = 4;
@@ -5320,9 +5838,25 @@
 	dir = 8
 	},
 /area/gas_station/schweewa)
+"LW" = (
+/obj/machinery/synthomatic,
+/obj/machinery/light,
+/turf/floor/purplewhite,
+/area/abandonedoutpostthing)
 "LX" = (
 /turf/floor,
 /area/mining/exit_south)
+"LY" = (
+/obj/machinery/power/solar,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/airless{
+	icon_state = "solarpanel";
+	name = "solar paneling"
+	},
+/area/noGenerate)
 "LZ" = (
 /obj/access_spawn/mining_outpost,
 /obj/cable{
@@ -5334,6 +5868,12 @@
 "Ma" = (
 /turf/floor/airless/engine/caution/south,
 /area/gas_station)
+"Mf" = (
+/obj/critter/zombie/scientist,
+/turf/floor/purplewhite{
+	dir = 4
+	},
+/area/abandonedoutpostthing)
 "Ml" = (
 /obj/lattice{
 	icon_state = "lattice-broken"
@@ -5350,6 +5890,12 @@
 	icon_state = "floor2"
 	},
 /area/diner/tug)
+"Mz" = (
+/turf/wall/r_wall{
+	icon = 'icons/misc/evilreaverstation.dmi';
+	icon_state = "old_rwall"
+	},
+/area/abandonedoutpostthing)
 "MD" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -5402,6 +5948,14 @@
 	},
 /turf/space,
 /area/noGenerate)
+"MN" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/stairs,
+/area/abandonedoutpostthing)
 "MP" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -5477,6 +6031,13 @@
 	dir = 4
 	},
 /area/gas_station)
+"Ny" = (
+/obj/machinery/shower,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "Nz" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/cashreg,
@@ -5784,6 +6345,9 @@
 	icon_state = "wall3dir"
 	},
 /area/diner/tug)
+"PE" = (
+/turf/wall/asteroid/ice,
+/area/space)
 "PF" = (
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -5801,6 +6365,17 @@
 "PJ" = (
 /turf/floor/airless/engine/caution,
 /area/diner/tug)
+"PM" = (
+/obj/grille/steel,
+/obj/window/crystal/reinforced/north,
+/obj/window/crystal/reinforced/south,
+/obj/window/crystal/reinforced/west,
+/obj/machinery/door/poddoor{
+	id = "patho_lockdown_z3";
+	name = "Lockdown"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "PQ" = (
 /obj/rail{
 	dir = 8;
@@ -5841,6 +6416,18 @@
 	dir = 1
 	},
 /area/tech_outpost)
+"Qf" = (
+/obj/machinery/door/airlock/glass,
+/turf/floor,
+/area/abandonedoutpostthing)
+"Qg" = (
+/obj/machinery/camera{
+	network = "Pathopost"
+	},
+/turf/floor/purplewhite{
+	dir = 9
+	},
+/area/abandonedoutpostthing)
 "Qh" = (
 /turf/floor{
 	dir = 8;
@@ -5876,6 +6463,13 @@
 	},
 /turf/floor/plating,
 /area/noGenerate)
+"Qq" = (
+/obj/machinery/light/fluorescent/worn{
+	dir = 4
+	},
+/obj/critter/zombie/scientist,
+/turf/floor,
+/area/abandonedoutpostthing)
 "Qs" = (
 /obj/rail{
 	dir = 8;
@@ -5988,6 +6582,13 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"Ra" = (
+/obj/table/auto,
+/obj/item/cloner_blueprints_folder,
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/abandonedoutpostthing)
 "Rf" = (
 /obj/machinery/door/poddoor{
 	id = "MINdoorE";
@@ -6002,6 +6603,9 @@
 "Rg" = (
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"Ri" = (
+/turf/wall/asteroid/comet/ice_dense,
+/area/space)
 "Ro" = (
 /obj/lattice{
 	dir = 10;
@@ -6019,6 +6623,18 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
+"Rr" = (
+/obj/machinery/light,
+/turf/floor/purplewhite,
+/area/abandonedoutpostthing)
+"Rx" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/abandonedoutpostthing)
 "Ry" = (
 /obj/grille/catwalk,
 /turf/wall/asteroid,
@@ -6061,6 +6677,11 @@
 	},
 /turf/floor/grime,
 /area/tech_outpost)
+"RY" = (
+/turf/floor/purplewhite{
+	dir = 6
+	},
+/area/abandonedoutpostthing)
 "Sd" = (
 /obj/rack,
 /obj/item/gsbp,
@@ -6113,6 +6734,9 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"Ss" = (
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "Sv" = (
 /turf/floor/airless{
 	icon_state = "solarpanel";
@@ -6128,6 +6752,15 @@
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"SG" = (
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
+"SH" = (
+/obj/machinery/camera{
+	network = "Pathopost"
+	},
+/turf/floor/sanitary,
+/area/abandonedoutpostthing)
 "SI" = (
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
@@ -6135,6 +6768,13 @@
 /obj/machinery/portable_reclaimer,
 /turf/floor/caution/north,
 /area/mining/manufacturing)
+"SM" = (
+/obj/machinery/door_control/oneshot{
+	id = "patho_lockdown_z3";
+	pixel_x = 24
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "SQ" = (
 /obj/machinery/power/furnace{
 	active = 1;
@@ -6143,6 +6783,15 @@
 /obj/cable,
 /turf/floor/plating,
 /area/tech_outpost)
+"SU" = (
+/obj/structure/woodwall{
+	color = "#CCCCCC";
+	icon = 'icons/turf/fake_woodwall.dmi';
+	name = "odd asteroid wall";
+	plane = -105
+	},
+/turf/floor/plating/airless/asteroid,
+/area/noGenerate)
 "SW" = (
 /turf/floor/grime,
 /area/tech_outpost)
@@ -6208,6 +6857,11 @@
 "Tr" = (
 /turf/floor/plating/scorched,
 /area/spyshack)
+"Ts" = (
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/abandonedoutpostthing)
 "Tt" = (
 /turf/floor/caution/north,
 /area/mining/manufacturing)
@@ -6259,6 +6913,34 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
+"TH" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
+"TI" = (
+/turf/floor/purplewhite{
+	dir = 4
+	},
+/area/abandonedoutpostthing)
+"TN" = (
+/obj/decal/skeleton{
+	desc = "Eugh, the stench is horrible!";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body7";
+	name = "decomposed corpse"
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
+"TP" = (
+/obj/stool/chair/green{
+	dir = 8
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "TS" = (
 /obj/lattice{
 	dir = 4;
@@ -6436,6 +7118,14 @@
 /obj/decal/cleanable/fungus,
 /turf/wall,
 /area/mining/exit_east)
+"Vg" = (
+/obj/machinery/camera{
+	network = "Pathopost"
+	},
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/abandonedoutpostthing)
 "Vj" = (
 /obj/lattice{
 	dir = 6;
@@ -6478,6 +7168,21 @@
 	dir = 1
 	},
 /area/gas_station)
+"VE" = (
+/obj/table/auto,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/obj/item/bloodslide,
+/turf/floor/purplewhite{
+	dir = 4
+	},
+/area/abandonedoutpostthing)
 "VG" = (
 /obj/decal/poster/wallsign/stencil/left/n{
 	pixel_x = -7
@@ -6493,6 +7198,9 @@
 	icon_state = "wall3dir"
 	},
 /area/diner/tug)
+"VK" = (
+/turf/wall/asteroid/comet/radioactive,
+/area/noGenerate)
 "VP" = (
 /obj/table/auto,
 /obj/machinery/cell_charger,
@@ -6517,6 +7225,14 @@
 	icon_state = "carpetNW"
 	},
 /area/tech_outpost)
+"VR" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "VT" = (
 /obj/table/wood/auto,
 /obj/item/device/radio/headset,
@@ -6569,6 +7285,12 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/grime,
 /area/mining/exit_west)
+"Wj" = (
+/obj/stool/chair{
+	dir = 1
+	},
+/turf/floor,
+/area/abandonedoutpostthing)
 "Wm" = (
 /obj/cable{
 	d1 = 1;
@@ -6577,6 +7299,14 @@
 	},
 /turf/floor/plating,
 /area/noGenerate)
+"Wp" = (
+/obj/machinery/power/solar_control,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "Wq" = (
 /obj/cable{
 	d1 = 2;
@@ -6589,6 +7319,19 @@
 	},
 /turf/floor/grime,
 /area/mining/exit_west)
+"Wr" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "Wz" = (
 /obj/table/auto,
 /obj/item/clothing/gloves/yellow,
@@ -6688,10 +7431,24 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor/damaged2,
 /area/mining/manufacturing)
+"Xa" = (
+/obj/machinery/power/solar,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/airless{
+	icon_state = "solarpanel";
+	name = "solar paneling"
+	},
+/area/noGenerate)
 "Xe" = (
 /obj/machinery/vehicle/pod_smooth/industrial,
 /turf/floor/shuttlebay,
 /area/mining/hangar)
+"Xi" = (
+/turf/wall/asteroid/comet/ice,
+/area/space)
 "Xk" = (
 /obj/cable{
 	d1 = 4;
@@ -6764,6 +7521,23 @@
 	},
 /turf/floor/airless/engine/caution,
 /area/diner/tug)
+"XL" = (
+/obj/table/auto,
+/obj/item/synthmodule/radiation,
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/abandonedoutpostthing)
+"XM" = (
+/obj/machinery/door/airlock/glass/medical{
+	locked = 1
+	},
+/obj/machinery/door/poddoor{
+	id = "patho_lockdown_z3";
+	name = "Lockdown"
+	},
+/turf/floor/white,
+/area/abandonedoutpostthing)
 "XO" = (
 /obj/railing/red,
 /turf/floor/airless/engine/caution,
@@ -6805,6 +7579,14 @@
 /obj/item/clothing/mask/balaclava,
 /turf/floor/plating,
 /area/spyshack)
+"XW" = (
+/obj/item/synthmodule/synthesizer,
+/obj/storage/crate,
+/obj/item/grinder_upgrade,
+/turf/floor/purplewhite{
+	dir = 6
+	},
+/area/abandonedoutpostthing)
 "Yc" = (
 /turf/wall/asteroid{
 	dir = 6
@@ -6852,6 +7634,15 @@
 	},
 /turf/floor/grime,
 /area/tech_outpost)
+"YJ" = (
+/obj/decal/skeleton{
+	desc = "Eugh, the stench is horrible!";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body3";
+	name = "decomposed corpse"
+	},
+/turf/floor/plating/random,
+/area/abandonedoutpostthing)
 "YQ" = (
 /obj/machinery/light/fluorescent/auto/cool/very,
 /obj/lattice{
@@ -22053,6 +22844,8 @@ aa
 aa
 aa
 aa
+rA
+rA
 aa
 aa
 aa
@@ -22064,6 +22857,16 @@ aa
 aa
 aa
 aa
+rA
+rA
+rA
+aa
+aa
+aa
+aa
+aa
+aa
+cR
 aa
 aa
 aa
@@ -22075,20 +22878,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PE
+PE
 aa
 aa
 aa
@@ -22353,6 +23144,25 @@ aa
 aa
 aa
 aa
+rA
+rp
+rp
+rp
+rA
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+rA
+rA
+rp
+rp
+rp
 aa
 aa
 aa
@@ -22369,29 +23179,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PE
+PE
+PE
+PE
 aa
 aa
 aa
@@ -22652,6 +23443,30 @@ aa
 aa
 aa
 aa
+rp
+aa
+rA
+Ri
+Ri
+Xi
+Xi
+rA
+aa
+aa
+aa
+aa
+aa
+aa
+rA
+rp
+rp
+YB
+SU
+YB
+YB
+rp
+rp
+rp
 aa
 aa
 aa
@@ -22667,33 +23482,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PE
+PE
+PE
 aa
 aa
 aa
@@ -22952,6 +23743,35 @@ aa
 aa
 aa
 aa
+rA
+rp
+YB
+pU
+pU
+pU
+pU
+pU
+az
+Xi
+aa
+aa
+aa
+rA
+rA
+rp
+rp
+YB
+YB
+YB
+SU
+YB
+YB
+YB
+YB
+YB
+rp
+rp
+rp
 aa
 aa
 aa
@@ -22964,39 +23784,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PE
+PE
+PE
+PE
 aa
 aa
 aa
@@ -23254,6 +24045,36 @@ aa
 aa
 aa
 aa
+SI
+YB
+YB
+YB
+pU
+pU
+pU
+pU
+pU
+az
+az
+YB
+SI
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+Rx
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+rp
 aa
 aa
 aa
@@ -23266,38 +24087,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+PE
+PE
 aa
 aa
 aa
@@ -23556,38 +24347,38 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+ab
+YB
+YB
+Rx
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+rp
 aa
 aa
 aa
@@ -23857,43 +24648,43 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+YB
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+YB
+YB
+YB
+YB
+ab
+ab
+ab
+YB
+Rx
+YB
+ab
+YB
+ab
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+rp
+rp
+rp
 aa
 aa
 aa
@@ -24157,47 +24948,47 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+YB
+YB
+Mz
+xj
+pc
+Mz
+au
+rI
+Hh
+Kq
+GK
+uu
+Mz
+YB
+YB
+YB
+YB
+ab
+ab
+ab
+ab
+Rx
+ab
+ab
+ab
+ab
+ab
+ab
+Mz
+Mz
+Mz
+Mz
+Mz
+YB
+YB
+YB
+YB
+rp
+rp
 aa
 aa
 aa
@@ -24459,48 +25250,48 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+YB
+YB
+Mz
+vq
+uS
+Mz
+aV
+aV
+sk
+Kq
+Wj
+aV
+Mz
+YB
+YB
+YB
+ab
+ab
+ab
+LY
+ab
+Rx
+ab
+LY
+ab
+ab
+ab
+ab
+PM
+Fb
+FD
+tP
+Mz
+YB
+YB
+YB
+YB
+YB
+YB
+YB
 aa
 aa
 aa
@@ -24760,49 +25551,49 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+rp
+YB
+YB
+Mz
+SH
+Ss
+Mz
+aV
+aV
+aV
+aV
+aV
+aV
+Mz
+YB
+YB
+ab
+ab
+ab
+ab
+oW
+ab
+Rx
+ab
+oW
+ab
+ab
+ab
+ab
+bt
+yV
+Kj
+Rr
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+YB
 aa
 aa
 aa
@@ -25062,50 +25853,50 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+rp
+YB
+YB
+Mz
+bH
+Ss
+Mz
+au
+DB
+aV
+aV
+DB
+DO
+Mz
+YB
+YB
+YB
+YB
+ab
+ab
+oW
+ab
+Rx
+ab
+oW
+ab
+Mz
+Mz
+Mz
+Mz
+rO
+TI
+RY
+Mz
+LS
+XL
+ig
+zq
+Jp
+Mz
+YB
+rp
 aa
 aa
 aa
@@ -25364,51 +26155,51 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+rp
+YB
+YB
+Mz
+Mz
+AA
+Mz
+Mz
+Mz
+Qf
+Mz
+Mz
+Mz
+Mz
+YB
+YB
+YB
+YB
+YB
+ab
+oW
+ab
+Rx
+ab
+oW
+ab
+Mz
+Ks
+Ny
+Mz
+HF
+uv
+Mz
+Mz
+Vg
+TP
+Ff
+Ff
+Cj
+Mz
+YB
+YB
+rp
 aa
 aa
 aa
@@ -25667,50 +26458,50 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+YB
+YB
+Mz
+aV
+aV
+IS
+aV
+aV
+aV
+aV
+aV
+TH
+GS
+MN
+MN
+MN
+CC
+CC
+CC
+GA
+CC
+aZ
+CC
+Do
+na
+xh
+Kj
+Ff
+uv
+FC
+Ff
+FC
+XM
+Ts
+Ff
+jS
+Ff
+LW
+Mz
+YB
+YB
+rp
 aa
 aa
 aa
@@ -25970,50 +26761,50 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+YB
+YB
+Mz
+aV
+DN
+aV
+aV
+DN
+IS
+aV
+DN
+HI
+Mz
+YB
+YB
+YB
+YB
+ab
+ab
+oW
+ab
+oW
+ab
+oW
+ab
+Mz
+Ks
+wp
+Mz
+HF
+uv
+Mz
+Mz
+Ra
+kP
+Ff
+Ff
+KV
+Mz
+YB
+YB
+rp
+rp
 aa
 aa
 aa
@@ -26273,48 +27064,48 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+YB
+Mz
+Mz
+Mz
+uR
+Mz
+Mz
+Mz
+Mz
+Mz
+oO
+Mz
+YB
+ab
+ab
+ab
+ab
+ab
+oW
+ab
+oW
+ab
+oW
+ab
+Mz
+Mz
+Mz
+Mz
+Qg
+FD
+Bl
+Mz
+nk
+rV
+VE
+Mf
+XW
+Mz
+YB
+YB
+rp
 aa
 aa
 aa
@@ -26574,48 +27365,48 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rA
+rp
+YB
+Mz
+ws
+vc
+aV
+Kq
+Kq
+Mz
+YJ
+SG
+VR
+Mz
+YB
+YB
+ab
+ab
+ab
+ab
+oW
+ab
+oW
+ab
+oW
+ab
+ab
+ab
+ab
+PM
+xF
+Kj
+Rr
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+YB
+rp
 aa
 aa
 aa
@@ -26876,47 +27667,47 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+YB
+YB
+Mz
+lP
+aV
+aV
+hh
+hh
+Mz
+xr
+ss
+Wr
+Mz
+YB
+YB
+YB
+ab
+ab
+ab
+Xa
+ab
+Xa
+ab
+Xa
+ab
+ab
+ab
+ab
+bt
+Hf
+TI
+BH
+Mz
+YB
+YB
+YB
+YB
+YB
+YB
+YB
 aa
 aa
 aa
@@ -27177,47 +27968,47 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+rp
+YB
+YB
+Mz
+aV
+DN
+SM
+Qq
+TN
+Mz
+pJ
+xk
+Wp
+Mz
+YB
+YB
+YB
+YB
+YB
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+YB
+Mz
+Mz
+Mz
+Mz
+Mz
+YB
+YB
+YB
+rp
+rp
+rp
 aa
 aa
 aa
@@ -27480,44 +28271,44 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+rp
+YB
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+Mz
+YB
+YB
+YB
+YB
+YB
+YB
+ab
+YB
+YB
+ab
+YB
+ab
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+rp
+rp
 aa
 aa
 aa
@@ -27784,41 +28575,41 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+YB
+YB
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+YB
+YB
+YB
+YB
+SI
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+rp
+rp
 aa
 aa
 aa
@@ -28087,38 +28878,38 @@ aa
 aa
 aa
 aa
+rp
+rp
+rA
+VK
+VK
+VK
+YB
+YB
+rA
+rp
+rp
+rA
 aa
 aa
 aa
+rp
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+rp
+rp
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+rp
+rp
+rp
 aa
 aa
 aa
@@ -28390,36 +29181,36 @@ aa
 aa
 aa
 aa
+rA
+rA
+rA
+rp
+rA
+rA
+rp
+rA
+rA
+rA
 aa
 aa
 aa
 aa
+rA
+rA
+YB
+YB
+YB
+YB
+YB
+YB
+rA
+rA
+rA
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+rp
 aa
 aa
 aa
@@ -28695,6 +29486,10 @@ aa
 aa
 aa
 aa
+rA
+aa
+rA
+rA
 aa
 aa
 aa
@@ -28706,14 +29501,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+rp
+rA
+rA
 aa
 aa
 aa
@@ -29012,8 +29803,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+rA
+rA
 aa
 aa
 aa
@@ -45836,7 +46627,7 @@ aa
 aa
 aa
 aa
-aa
+rp
 rp
 rp
 aa
@@ -46138,7 +46929,7 @@ aa
 aa
 aa
 aa
-aa
+rp
 rp
 rp
 aa
@@ -46440,7 +47231,7 @@ aa
 aa
 aa
 aa
-aa
+rp
 af
 rp
 aa
@@ -67599,10 +68390,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+rp
+rp
+rp
+rp
 aa
 aa
 aa
@@ -67900,12 +68691,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+rp
+rp
+rp
+rp
+rp
+rp
 aa
 aa
 aa
@@ -68201,14 +68992,14 @@ aa
 aa
 aa
 aa
-aa
 rp
 rp
 rp
+Ri
+Ri
+Ri
 rp
-aa
-aa
-aa
+rp
 aa
 aa
 aa
@@ -68502,15 +69293,15 @@ aa
 aa
 aa
 aa
-aa
-aa
+Xi
 rp
 rp
+Ri
+Ri
+Ri
+Ri
 rp
 rp
-aa
-aa
-aa
 aa
 aa
 aa
@@ -68804,15 +69595,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Xi
+Xi
+rp
+Ri
+Ri
+Ri
+rp
+rp
+rp
 aa
 aa
 aa
@@ -69106,14 +69897,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Xi
+Xi
+PE
+PE
+rp
+rp
+rp
+rp
 aa
 aa
 aa
@@ -69409,12 +70200,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+Xi
+Xi
+PE
+PE
+PE
+PE
 aa
 aa
 aa
@@ -69712,9 +70503,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+Xi
+Xi
+Xi
 aa
 aa
 aa

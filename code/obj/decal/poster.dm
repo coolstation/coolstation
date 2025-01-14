@@ -19,8 +19,8 @@
 	examine()
 		if (usr.client && src.popup_win)
 			src.show_popup_win(usr)
-			return list() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
-		else
+			return ..() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
+		else			//idk i think we should so im making it happen, ass hole.
 			return ..()
 
 	proc/show_popup_win(var/client/C)
@@ -645,6 +645,16 @@
 			imgw = 410
 			imgh = 275
 			img = "images/arts/posters/tiger.png"
+
+		newspaper_gg
+			name = "newspaper clipping"
+			desc = "Whoever pinned this to the wall went to the trouble to cut off all the margins."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "gg"
+			popup_win = 1
+			imgw = 1242
+			imgh = 1755
+			img = "images/arts/posters/gg.png"
 
 		circulatory
 			name = "anatomical poster"

@@ -995,6 +995,21 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 		return
 	return
 
+//pagers/beepers/whatever
+/obj/item/device/radio/pager
+	name = "\improper Pager"
+	icon_state = "signaller"
+	item_state = "signaler"
+	var/code = 30.0
+	w_class = W_CLASS_TINY
+	frequency = FREQ_DEFAULT
+	var/delay = 0
+	var/airlock_wire = null
+	desc = "A device used to receive a basic message on a fixed frequency."
+
+	//receive message, make a sound and vibrate, update description so you have to actually examine it to see
+	//should be able to receive messages from a radio machine specifically designed to send messages, like in medbay reception
+
 //////////////////////////////////////////////////
 /obj/item/device/radio/intercom/loudspeaker
 	name = "Loudspeaker Transmitter"

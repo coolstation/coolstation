@@ -42,6 +42,9 @@
 /obj/item/storage/backpack/withO2
 	spawn_contents = list(/obj/item/storage/box/starter/withO2)
 
+/obj/item/storage/backpack/Security
+	spawn_contents = list(/obj/item/storage/box/starter/withO2, /obj/item/baton, /obj/item/stackable_ammo/pistol/capacitive/ten)
+
 /obj/item/storage/backpack/NT
 	name = "\improper NT backpack"
 	desc = "A stylish blue, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's back."
@@ -597,6 +600,10 @@
 	standard
 		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten)
+
+	enhanced
+		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/handcuffs, /obj/item/device/flash)
 
 	offense
 		spawn_contents = list(/obj/item/gun/modular/NT/long, //energy/wavegun,

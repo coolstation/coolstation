@@ -47,6 +47,13 @@
 /// TEG Semiconductor Missing
 #define TEG_SEMI_STATE_MISSING 4
 
+/obj/item/electronics/frame/hot_circ
+	name = "hot gas circulator frame"
+	store_type = /obj/machinery/atmospherics/binary/circulatorTemp
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
+
 /obj/machinery/atmospherics/binary/circulatorTemp
 	name = "hot gas circulator"
 	desc = "It's the gas circulator of a thermoeletric generator."
@@ -54,7 +61,7 @@
 	icon_state = "circ1-off"
 	var/obj/machinery/power/generatorTemp/generator = null
 
-	var/side = null // 1=left 2=right
+	var/side = 1 // 1=left 2=right
 	var/last_pressure_delta = 0
 	var/static/list/circulator_preferred_reagents // white list of prefferred reagents where viscocity should be ignored for special value
 	var/lube_cycle = 0 // current state in cycle
@@ -413,9 +420,17 @@
 
 		return 1
 
+/obj/item/electronics/frame/cold_circ
+	name = "cold gas circulator frame"
+	store_type = /obj/machinery/atmospherics/binary/circulatorTemp/right
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
+
 /obj/machinery/atmospherics/binary/circulatorTemp/right
 	icon_state = "circ2-off"
 	name = "cold gas circulator"
+	side = 2
 
 
 /datum/action/bar/icon/teg_circulator_repair
@@ -531,7 +546,12 @@ datum/pump_ui/circulator_ui
 	get_atom()
 		return our_circ
 
-
+/obj/item/electronics/frame/teg
+	name = "thermoelectric generator frame"
+	store_type = /obj/machinery/power/generatorTemp
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
 
 /obj/machinery/power/generatorTemp
 	name = "generator"

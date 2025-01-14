@@ -119,11 +119,7 @@
 		enact(mob/user, voluntary = 0, param)
 			if (!user.restrained()) user.add_karma(2)
 			. = ..()
-	raisehand
-		emote_string = "raises a hand"
-		emote_fail_leading = "tries to move"
-		emote_fail_trailing = "arm"
-		pronoun_proc = /proc/his_or_her
+
 	crackknuckles //also knuckles
 		emote_string_leading = "crack"
 		emote_string_trailing = "knuckles"
@@ -421,7 +417,7 @@
 	user.show_text("smile, grin, smirk, frown, scowl, grimace, sulk, pout, nod, nods, blink, drool, shrug, tremble, despair, quiver, shiver, shudder, shake, \
 	think, ponder, clap, wave, salute, flap, aflap, laugh, chuckle, giggle, chortle, guffaw, cough, hiccup, sigh, mumble, grumble, groan, moan, sneeze, \
 	sniff, snore, whimper, yawn, choke, gasp, weep, sob, wail, whine, gurgle, gargle, blush, flinch, blink_r, eyebrow, shakehead, shakebutt, \
-	pale, flipout, rage, shame, raisehand, crackknuckles, stretch, rude, cry, retch, raspberry, tantrum, gesticulate, wgesticulate, smug, \
+	pale, flipout, rage, shame, crackknuckles, stretch, rude, cry, retch, raspberry, tantrum, gesticulate, wgesticulate, smug, \
 	nosepick, flex, facepalm, panic, snap, airquote, twitch, twitch_v, faint, deathgasp, signal, wink, collapse, trip, dance, scream, \
 	burp, fart, monologue, contemplate, custom")
 

@@ -59,6 +59,7 @@ var/list/server_toggles_tab_verbs = list(\
 /datum/admins/proc/toggle_AI,\
 /datum/admins/proc/toggle_soundpref_override,\
 /datum/admins/proc/toggle_respawns,\
+/datum/admins/proc/toggle_fastpath,\
 /datum/admins/proc/adsound,\
 /datum/admins/proc/adspawn,\
 /datum/admins/proc/adrev,\
@@ -577,6 +578,21 @@ var/global/IP_alerts = 1
 	logTheThing("admin", usr, null, "toggled respawn to [abandon_allowed ? "On" : "Off"].")
 	logTheThing("diary", usr, null, "toggled respawn to [abandon_allowed ? "On" : "Off"].", "admin")
 	world.update_status()
+
+/datum/admins/proc/toggle_fastpath()
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
+	set desc="Enable or disable the rapid zeroing of spaced airgroups"
+	set name="Toggle Space Fastpath"
+	NOT_IF_TOGGLES_ARE_OFF
+	enable_fastpath = !( enable_fastpath )
+	if (enable_fastpath)
+		boutput(world, "<B>Hull breaches now vent instantly.</B>")
+	else
+		boutput(world, "<B>Hull breaches now vent slowly.(</B>")
+	message_admins("<span class='internal'>[key_name(usr)] toggled fastpath to [enable_fastpath ? "On" : "Off"].</span>")
+	logTheThing("admin", usr, null, "toggled fastpath to [enable_fastpath ? "On" : "Off"].")
+	logTheThing("diary", usr, null, "toggled fastpath to [enable_fastpath ? "On" : "Off"].", "admin")
+
 
 /client/proc/toggle_pray()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)

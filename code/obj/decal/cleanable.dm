@@ -1160,6 +1160,15 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		icon_state = "messnoodle1"
 		random_icon_states = list("messnoodle1", "messnoodle2")
 
+		attack_hand(mob/user as mob)
+			if (user.lying)
+				user.visible_message("<span class='notice'><b>[user]</b> just kind of eats [src] right off the floor.</span>",\
+				"<span class='notice'>You eat [src] right off the floor.</span>")
+				playsound(user.loc,"sound/items/eatfood.ogg", rand(10, 50), 1)
+				user.reagents.add_reagent("grime", 1)
+				qdel(src)
+				return
+
 	noodles/random_sauce
 		name = "spilled noodles in sauce"
 		icon_state = "messnoodle1sauce"
@@ -2394,3 +2403,19 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	desc = "Some schmuck got this knocked straight out of their head."
 	icon = 'icons/obj/decals/blood.dmi'
 	random_icon_states = list("tooth1", "tooth2", "tooth3", "tooth4")
+
+/obj/decal/cleanable/edge_grit //harming people is what the shard items are for we're here just for flavour
+	name = "glass grit"
+	desc = "A whole lot of tiny shards, too small to be harmful."
+	icon = 'icons/obj/decals/cleanables.dmi'
+	icon_state = "grit_edge"
+
+/obj/decal/cleanable/grit
+	name = "glass grit"
+	desc = "A whole lot of tiny shards, too small to be harmful."
+	icon = 'icons/obj/decals/cleanables.dmi'
+	icon_state = "grit_full"
+
+	small
+		color = "#A3DCFF" //stolen from glass mat
+		random_icon_states = list("grit1", "grit2", "grit3", "grit4")

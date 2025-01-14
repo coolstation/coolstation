@@ -818,6 +818,10 @@
 				if (output_bar_from_item(M, 30, C.conductor.mat_id))
 					qdel(C)
 
+			else if (istype(M, /obj/item/scrap))
+				output_bar_from_item(M, 10)
+				qdel(M)
+
 			else if (istype(M, /obj/item/wizard_crystal))
 				if (output_bar_from_item(M))
 					qdel(M)

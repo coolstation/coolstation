@@ -226,8 +226,8 @@
 
 		return 0
 
-//zero chance to accidentally beat people with the bible
-//this sounds kind of low-impact except 2/5ths of the bible's hits are wasted and give brain damage
+//zero chance to accidentally beat people with ol' bib
+//this sounds kind of low-impact except 2/5ths of ol' bib's hits are wasted and give brain damage
 //so you're getting a 40% increase in efficiency and can't accidentally murder someone who was recently in crit
 
 //*************** DEATH *****************

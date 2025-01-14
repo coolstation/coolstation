@@ -183,16 +183,14 @@
 	if (src.key) statlog_death(src, gibbed)
 	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
 		var/num_players = 0
-		var/clients = 0
 		for(var/client/C)
-			clients++
 			if (!C.mob) continue
 			var/mob/player = C.mob
 			if (!isdead(player) && VALID_MOB(player))
 				num_players++
 
 		if (num_players <= 5 && master_mode != "battle_royale")
-			if ((config.env == "dev" || config.env == "pud") && clients >=5 && !abandon_allowed)
+			if (config.env == "dev" && !abandon_allowed)
 				abandon_allowed = TRUE
 				for(var/client/C)
 					if (!C.mob) continue
@@ -948,6 +946,7 @@
 
 	UpdateOverlays(speech_bubble, "speech_bubble")
 	SPAWN_DBG(1.5 SECONDS)
+	if (speech_bubble.icon_state != "typing" || !isalive(src))
 		UpdateOverlays(null, "speech_bubble")
 
 	//Blobchat handling

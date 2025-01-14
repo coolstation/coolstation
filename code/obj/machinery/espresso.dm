@@ -9,6 +9,7 @@
 	density = 1
 	anchored = 1
 	flags = FPRINT | NOSPLASH
+	object_flags = CAN_BE_LIFTED
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
 	var/cupinside = 0 //true or false
@@ -189,6 +190,7 @@
 	flags = FPRINT | NOSPLASH
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
+	object_flags = CAN_BE_LIFTED
 	var/carafe_name = "coffee carafe"
 	var/image/image_top = null
 	var/image/image_carafe = null

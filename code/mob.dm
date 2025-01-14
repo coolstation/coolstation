@@ -120,6 +120,7 @@
 	var/Vnetwork = null
 	var/lastDamageIconUpdate
 	var/say_language = "english"
+	var/lasttyping = null
 	var/literate = 1 // im liturit i kin reed an riet
 
 	var/list/movement_modifiers = list()
@@ -2801,7 +2802,7 @@
 		loc = client.player.shamecubed
 		return
 
-	if (waddle_walking)
+	if (waddle_walking || src.bioHolder.HasEffect("waddle_walk"))
 		makeWaddle(src)
 
 	last_move_dir = move_dir

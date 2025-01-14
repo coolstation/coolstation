@@ -143,6 +143,17 @@
 	else
 		return list("<B>[user]</B> wiggles [his_or_her(user)] fingers a bit.[prob(10) ? " Weird." : null]", "<I>wiggles [his_or_her(user)] fingers a bit</I>", MESSAGE_VISIBLE)
 
+/datum/emote/raisehand
+	cooldown = 2.5 SECONDS
+/datum/emote/raisehand/enact(mob/user, voluntary = 0, param)
+	if(user.restrained())
+		return list("<B>[user]</B> struggles to move.", "<I>struggles to move</I>", MESSAGE_VISIBLE)
+	var/obj/item/object = user.equipped()
+	if (object)
+		return list(object.on_raise_emote(user), "<I>raises [object]</I>", MESSAGE_VISIBLE)
+	else
+		return list("<B>[user]</B> raises [his_or_her(user)] hand.", "<I>raises [his_or_her(user)] hand</I>", MESSAGE_VISIBLE)
+
 /datum/emote/tip
 /datum/emote/tip/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (user.restrained() || user.stat || !istype(user))

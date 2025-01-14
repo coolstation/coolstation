@@ -650,6 +650,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	//QM Categories by ZeWaka
 	build_qm_categories()
+//	build_qm_suppliers()
 
 	#if SKIP_Z5_SETUP == 0
 	UPDATE_TITLE_STATUS("Building mining level 💣")
@@ -695,6 +696,7 @@ var/f_color_selector_handler/F_Color_Selector
 	D.inialize_prefabs()
 
 	UPDATE_TITLE_STATUS("Ready")
+	boutput(world, "we good 2 go")
 	current_state = GAME_STATE_PREGAME
 	Z_LOG_DEBUG("World/Init", "Now in pre-game state.")
 

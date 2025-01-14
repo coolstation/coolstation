@@ -56,6 +56,8 @@ obj/chessbutton
 			logTheThing("diary", user, null, "has reset the chessboard. Hope nobody was playing chess.", "admin")
 			chess_in_progress = 0 //prevent moving pieces while wiping the board
 			chess_enpassant = null
+			for_by_tcl(mark, /obj/decal/chess_mark)
+				qdel(mark)
 			for(var/turf/floor/chess/T in chessboard)
 				T.enpassant = null // almost forgot this, gotte get that sweet GC
 				for(var/obj/item/O in T)
@@ -125,6 +127,31 @@ obj/item/chesspiece
 		else
 			if(istype(Tb,/turf/floor/chess) && validmove(Ta,Tb))
 				chessmove(Tb,user)
+				if (src.loc != Ta) //Trying to capture your own piece is considered a valid move but doesn't go through anyway FFS
+					//show some shit for what move got made thx
+					//var/list/dirs = get_steps_to(Ta, Tb, 0)
+					for_by_tcl(mark, /obj/decal/chess_mark)
+						qdel(mark)
+					var/prev_step = FALSE
+					var/turf/intermediate = Ta
+					do
+						var/a_step = get_dir(intermediate, Tb)
+						var/obj/decal/chess_mark/CM = new(intermediate)
+						CM.dir = a_step
+						if (intermediate == Ta)
+							CM.icon_state = "start"
+						else if (a_step != prev_step) //we turned a goddamn corner cause we're a knight
+							CM.icon_state = "[min(a_step,prev_step)]-[max(a_step,prev_step)]" //do it like cables (except none of the names match I named them based on what the code put out cause fuck it)
+						prev_step = a_step
+						intermediate = get_step(intermediate, a_step)
+					while(intermediate != Tb)
+
+					var/obj/decal/chess_mark/CMend = new(Tb)
+					CMend.icon_state = "end"
+					CMend.dir = prev_step
+
+
+
 			else
 				src.visible_message("<span class='alert'>Invalid move dorkus.</span>") // seems USER here is not actually the mob, but the click proc itself, so im regressing to a visible message for now
 
@@ -325,44 +352,24 @@ obj/item/chesspiece/queen
 		..()
 		icon_state = (chess_color ? "queen_black" : "queen_white")
 
-	validmove(turf/start_pos, turf/end_pos) // we need 4 cases here. two orthogonal, two diagonal.
-		var/minx = min(start_pos.x,end_pos.x)
-		var/miny = min(start_pos.y,end_pos.y)
-		var/maxx = max(start_pos.x,end_pos.x)
-		var/maxy = max(start_pos.y,end_pos.y)
+	validmove(turf/start_pos, turf/end_pos)
+		var/move_direction = get_dir(start_pos, end_pos)
+		if (move_direction in ordinal)
+			//BYOND lumps everything not directly along a cardinal into the nearest ordinal, but a valid diagonal move must have the same x and y displacement
+			if (abs(end_pos.x - start_pos.x) != abs(end_pos.y - start_pos.y))
+				return 0
 
-		if(start_pos.x == end_pos.x) // vertical movement
-			var/i
-			for(i=miny+1, i < maxy, i++)
-				for(var/obj/item/chesspiece/C in locate(start_pos.x,i,src.z))
-					return 0
-			return chess_in_progress
+		var/turf/intermediate = get_step(start_pos, move_direction)
+		while (intermediate != end_pos)
+			for(var/obj/item/chesspiece/C in intermediate)
+				return 0
+			intermediate = get_step(intermediate, move_direction)
+		return chess_in_progress
 
-		else if(start_pos.y == end_pos.y) // horizontal movement
-			var/i
-			for(i=minx+1, i < maxx, i++)
-				for(var/obj/item/chesspiece/C in locate(i,start_pos.y,src.z))
-					return 0
-			return chess_in_progress
-
-		else if((start_pos.x - end_pos.x) == (start_pos.y - end_pos.y)) // coaxial diagonal
-			var/i
-			for(i=1, i < (start_pos.x - end_pos.x), i++)
-				for(var/obj/item/chesspiece/C in locate(minx+i,miny+i,src.z))
-					return 0
-			return chess_in_progress
-
-		else if((start_pos.x - end_pos.x) == -(start_pos.y - end_pos.y)) // the other one
-			var/i
-			for(i=1, i < (start_pos.x - end_pos.x), i++)
-				for(var/obj/item/chesspiece/C in locate(maxx-i,miny+i,src.z))
-					return 0
-			return chess_in_progress
-		else return 0 // none of the 4 directions? too bad okay. Im annotating code that doesnt need notes just because I gotta look busy at work.
 
 obj/item/chesspiece/bishop
 	name = "bishop"
-	desc = "Boneless queen"
+	desc = "These pieces actually rank above the chaplain, there's been a legal case about it and everything."
 
 	black
 		chess_color = 1
@@ -392,7 +399,7 @@ obj/item/chesspiece/bishop
 			return chess_in_progress
 		else return 0 // pee pee poo poo
 
-
+//Horseplay? On *my* space station?
 obj/item/chesspiece/knight
 	name = "knight"
 	desc = "Does anyone actually know why they move like that?"
@@ -413,6 +420,18 @@ obj/item/chesspiece/knight
 			return chess_in_progress
 		else return 0
 
+/obj/decal/chess_mark
+	plane = PLANE_NOSHADOW_BELOW
+	mouse_opacity = 0
+	icon = 'icons/ui/chess_marks.dmi'
+	icon_state = "middle"
+	New()
+		START_TRACKING
+		..()
+
+	disposing()
+		STOP_TRACKING
+		..()
 
 
 

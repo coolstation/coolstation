@@ -804,6 +804,19 @@ obj/trait/pilot
 
 // NO CATEGORY - Grey Border
 
+/obj/trait/obnoxious
+	name = "Obnoxious (0)"
+	cleanName = "Obnoxious"
+	desc = "Your screams are very loud, and extremely funny."
+	id = "obnoxious"
+	points = 0
+	isPositive = 0
+	onAdd(var/mob/owner)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.sound_list_scream = list('sound/voice/screams/Tom_Scream.ogg')
+		return
+
 /obj/trait/hemo
 	name = "Hemophilia (+1)"
 	cleanName = "Hemophilia"

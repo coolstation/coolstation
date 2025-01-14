@@ -373,7 +373,7 @@
 				for (var/obj/item/storage/bible/B in src.loc)
 					go2hell = 1
 					var/turf/oldloc = get_turf(src)
-					src.visible_message("<span class='alert'>[src] blasts its ass all over the bible.<br><b>A mysterious force <u>is not pleased</u>!</b></span>")
+					src.visible_message("<span class='alert'>[src] blasts its ass all over ol' bib.<br><b>Beelzebubs <u>is not pleased</u>!</b></span>")
 					src.set_loc(pick(get_area_turfs(/area/afterlife/hell/hellspawn)))
 					B.burn_possible = FALSE // protect the book
 					SPAWN_DBG(1 SECOND)
@@ -422,7 +422,7 @@
 				src.fart_memory += A
 				break
 			else if(istype(A,/obj/item/storage/bible))
-				src.visible_message("<span class='alert'>[src] farts on the bible.<br><b>A mysterious force smites [src]!</b></span>")
+				src.visible_message("<span class='alert'>[src] farts on ol' bib.<br><b>Something happens!</b></span>")
 				fart_on_other = 1
 				src.fart_memory += A
 				src.gib()

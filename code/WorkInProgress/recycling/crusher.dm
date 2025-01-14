@@ -16,6 +16,8 @@
 
 	var/last_sfx = 0
 
+	var/industrial = FALSE
+
 /obj/machinery/crusher/Bumped(atom/AM)
 	var/tm_amt = 0
 	var/tg_amt = 0
@@ -69,8 +71,21 @@
 	S.blood = bblood
 	S.set_components(tm_amt,tg_amt,tw_amt)
 	qdel(AM)
+	//else
+		//if(tw_amt > tm_amt || tw_amt > tg_amt)
+			//var/obj/item/scrap/S = new(get_turf(src))
+			//S.blood = bblood
+			//S.set_components(tm_amt,tg_amt,tw_amt)
+			//qdel(AM)
+		//else if(tm_amt >= tg_amt)
+			//var/obj/item/raw_material/scrap_metal/S = new(get_turf(src))
+			//qdel(AM)
+		//else
+			//var/obj/item/raw_material/shard/glass/S = new(get_turf(src))
+			//qdel(AM)
 //		step(S,2)
 	return
+
 
 /obj/machinery/crusher/attack_hand(mob/user)
 	if(!user || user.stat || get_dist(user,src)>1 || istype(user, /mob/dead/aieye)) //No unconscious / dead / distant users
@@ -140,3 +155,14 @@
 	if(istype(hit_atom, /obj/machinery/crusher))
 		return
 	Bumped(hit_atom)
+
+
+/obj/machinery/crusher/industrialcrusher
+	name = "Industrial Crusher Unit"
+	desc = "Efficiently breaks down most matter, reducing it to its base materials."
+	icon = 'icons/obj/scrap.dmi' //make it have like, orange and white tape around it or something idk i'll do it later
+	icon_state = "Crusher_1"
+	mats = 50
+	osha_prob = 90 //How likely it is anyone touching it is to get dragged in
+
+	industrial = TRUE

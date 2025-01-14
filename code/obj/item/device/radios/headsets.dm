@@ -277,6 +277,17 @@
 		)
 	icon_override = "qm"
 
+/obj/item/device/radio/headset/scrapping
+	name = "Scrapping Headset"
+	desc = "A radio headset that is also capable of communicating over the Engineering channel."
+	icon_state = "shipping headset"
+	secure_frequencies = list(
+	"e" = R_FREQ_ENGINEERING)
+	secure_classes = list(
+		"e" = RADIOCL_ENGINEERING
+		)
+
+
 /obj/item/device/radio/headset/mail
 	name = "Mailcarrier's Headset"
 	desc = "A radio headset that is also capable of communicating over the Engineering and Command channels."

@@ -158,6 +158,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	var/obj/machinery/light_area_manager/light_manager = 0
 
+	//list of the density of each tile in the area
+	var/list/densityMap = list()
+
 	/// Local list of obj/machines found in the area
 	var/list/machines = list()
 
@@ -704,6 +707,9 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/bayou/shipyard
 	icon_state = "shuttle"
 
+/area/shuttle/bayou/ship
+	icon_state = "shuttle"
+
 /area/shuttle/shopping/station
 	icon_state = "shuttle"
 
@@ -1104,6 +1110,7 @@ ABSTRACT_TYPE(/area/adventure)
 
 /area/martian_trader
 	name ="Martian Trade Outpost"
+	icon_state = "yellow"
 	sound_environment = EAX_CAVE
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
@@ -2496,6 +2503,9 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	name = "Public Garden"
 	icon_state = "park"
 
+/area/station/shipyard
+	name = "Shipyard"
+	icon_state = "fart"
 // some radio jazz
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)

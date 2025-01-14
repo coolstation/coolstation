@@ -568,7 +568,7 @@
 	if(location == 0) // at bottom
 		var/area/start_location = locate(lower)
 		var/area/end_location = locate(upper)
-		start_location.move_contents_to(end_location, /turf/floor/plating, ignore_fluid = 1)
+		start_location.move_contents_to(end_location, /turf/floor/plating, ignore_fluid = TRUE)
 		location = 1
 	else // at top
 		var/area/start_location = locate(upper)
@@ -579,7 +579,7 @@
 				M.changeStatus("weakened", 5 SECONDS)
 				M.emote("scream")
 				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
-		start_location.move_contents_to(end_location, /turf/floor/specialroom/sea_elevator_shaft, ignore_fluid = 1)
+		start_location.move_contents_to(end_location, /turf/floor/specialroom/sea_elevator_shaft, ignore_fluid = TRUE)
 		location = 0
 
 	for(var/obj/machinery/computer/sea_elevator/C in machine_registry[MACHINES_ELEVATORCOMPS])
