@@ -1108,6 +1108,7 @@
 		if(ishuman(M))
 			M.mob_flags |= IS_BONER
 			M.blood_id = "calcium"
+			all_blood_reagents |= "calcium"
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
 
 	disposing()
@@ -1863,6 +1864,7 @@
 			mob.traitHolder?.addTrait("hemophilia")
 
 			H.blood_id = "milk"
+			all_blood_reagents |= "milk"
 			H.blood_color = "FFFFFF"
 
 

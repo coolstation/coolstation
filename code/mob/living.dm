@@ -132,6 +132,8 @@
 	src.vis_contents += src.chat_text
 	if (can_bleed)
 		src.ensure_bp_list()
+	if (blood_id)
+		all_blood_reagents |= blood_id
 
 //	if (src.use_stamina)
 //		src.stamina_bar = new(src)
