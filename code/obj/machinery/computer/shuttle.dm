@@ -153,7 +153,7 @@
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
 		startDensityMap = calculate_density_map(start_location)
 		if(prob(60))
-			explode_ship(start_location,rand(60,200),rand(1,3))
+			explode_area(start_location,rand(60,260),rand(1,3))
 		SPAWN_DBG(2 SECONDS)
 			start_location.move_contents_to(end_location)
 			shipyardship_location = 1
