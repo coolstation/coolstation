@@ -1264,6 +1264,19 @@ obj/trait/pilot
 			var/mob/living/carbon/C = owner
 			C.poop_amount -= 5
 
+/obj/trait/ling_blood //False positive on ling blood tests
+	name = "Changeling Blood (0)"
+	cleanName = "Changeling Blood"
+	id = "ling_blood"
+	desc = "So there may have been some changeling involvement in your ancestry. Let's not dwell on it."
+	isPositive = FALSE
+
+	onAdd(var/mob/owner)
+		..()
+		if(isliving(owner))
+			var/mob/living/L = owner
+			L.blood_id = "bloodc"
+
 //Infernal Contract Traits
 /obj/trait/hair
 	name = "Wickedly Good Hair"
