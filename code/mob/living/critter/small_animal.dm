@@ -247,6 +247,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 
 /mob/living/critter/small_animal/mouse/mickey
 	name = "Mickey Mouse"
+	real_name = "Mickey Mouse"
 	desc = "Yes look, it is our rat. It is our creation. It is our rodent to do with as we please, and nobody can stop us."
 	icon_state = "mickey"
 	icon_state_dead = "mickey-dead"
