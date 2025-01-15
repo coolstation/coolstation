@@ -291,6 +291,12 @@
 	},
 /turf/floor/grime,
 /area/station/science/lab)
+"amb" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "anc" = (
 /obj/machinery/plantpot{
 	anchored = 1
@@ -303,6 +309,10 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"anF" = (
+/obj/machinery/conveyor/east,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "aob" = (
 /obj/machinery/computer3/terminal/zeta{
 	dir = 4
@@ -932,10 +942,6 @@
 "aTG" = (
 /turf/wall,
 /area/station/storage/eva)
-"aTI" = (
-/obj/machinery/conveyor/north,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "aTX" = (
 /obj/machinery/light/emergency{
 	dir = 4
@@ -1128,6 +1134,10 @@
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor,
 /area/station/hallway/primary/east)
+"baM" = (
+/obj/machinery/conveyor/north,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "bbA" = (
 /turf/floor,
 /area/station/bridge)
@@ -1672,6 +1682,14 @@
 	},
 /turf/floor/carpet/purple,
 /area/station/crew_quarters/hor)
+"bDQ" = (
+/obj/securearea{
+	desc = "";
+	icon_state = "shock";
+	name = "Danger: High Voltage"
+	},
+/turf/wall/asteroid/dark,
+/area/ghostdrone_factory)
 "bEh" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -1994,17 +2012,6 @@
 /obj/machinery/vending/fortune,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
-"bON" = (
-/obj/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/lattice{
-	dir = 5;
-	icon_state = "lattice-dir-b"
-	},
-/turf/space,
-/area/ghostdrone_factory)
 "bPc" = (
 /obj/machinery/vending/monkey,
 /turf/floor/grass,
@@ -2850,14 +2857,6 @@
 	},
 /turf/floor/orange/side,
 /area/station/engine/engineering)
-"cuc" = (
-/obj/securearea{
-	desc = "";
-	icon_state = "shock";
-	name = "Danger: High Voltage"
-	},
-/turf/wall/asteroid/dark,
-/area/ghostdrone_factory)
 "cun" = (
 /obj/securearea,
 /turf/wall/r_wall,
@@ -2880,6 +2879,13 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"cvo" = (
+/obj/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "cvz" = (
 /obj/decal/cleanable/dirt/random,
 /obj/storage/crate,
@@ -4189,13 +4195,6 @@
 /obj/machinery/vending/cigarette,
 /turf/floor,
 /area/station/garden/owlery)
-"dGD" = (
-/obj/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "dIS" = (
 /obj/stool/chair{
 	dir = 4
@@ -4358,10 +4357,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/engine/core)
-"dQl" = (
-/obj/machinery/conveyor/south,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "dQu" = (
 /obj/decal/floatingtiles/loose/random,
 /obj/machinery/camera{
@@ -4697,11 +4692,11 @@
 /turf/floor,
 /area/station/security/armory)
 "eek" = (
-/obj/machinery/mass_driver{
-	dir = 8;
-	id = "garbageout"
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir"
 	},
-/turf/floor/plating/random,
+/turf/space,
 /area/ghostdrone_factory)
 "eeM" = (
 /obj/disposalpipe/junction,
@@ -4713,6 +4708,11 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"eeS" = (
+/obj/table/auto,
+/obj/item/clothing/mask/skull,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "efc" = (
 /obj/machinery/computer/telescope,
 /obj/machinery/camera{
@@ -5191,6 +5191,17 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/security/brig/genpop)
+"evp" = (
+/obj/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/ghostdrone_factory)
 "ewo" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
@@ -5731,8 +5742,9 @@
 /turf/space,
 /area/station/maintenance/central)
 "eVv" = (
+/obj/disposalpipe/segment,
 /obj/lattice{
-	dir = 5;
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
 /turf/space,
@@ -5982,6 +5994,16 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"fdY" = (
+/obj/machinery/light/small/cool/very{
+	dir = 1
+	},
+/obj/storage/crate/wooden,
+/obj/item/wrench,
+/obj/item/storage/box/lightbox/tubes,
+/obj/item/gun_parts/barrel/juicer,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "feb" = (
 /obj/machinery/light{
 	dir = 8;
@@ -6085,6 +6107,14 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"fgT" = (
+/obj/machinery/computer/security{
+	dir = 8
+	},
+/turf/floor/grey/side{
+	dir = 6
+	},
+/area/station/bridge)
 "fhg" = (
 /obj/decal/poster/wallsign/security_left,
 /turf/wall,
@@ -6369,11 +6399,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/science/lab)
-"frX" = (
-/obj/table/auto,
-/obj/item/clothing/mask/skull,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "fsf" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
@@ -6525,6 +6550,11 @@
 	},
 /turf/space,
 /area/space)
+"fyU" = (
+/obj/disposalpipe/segment,
+/obj/lattice,
+/turf/space,
+/area/ghostdrone_factory)
 "fzC" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -6983,6 +7013,13 @@
 /obj/decal/cleanable/mess/random_litter,
 /turf/floor/grime,
 /area/station/construction)
+"fUK" = (
+/obj/machinery/conveyor/north,
+/obj/machinery/light/small/cool/very{
+	dir = 4
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "fUT" = (
 /turf/floor/sanitary/white,
 /area/station/bridge/captain)
@@ -7205,6 +7242,13 @@
 /obj/machinery/door/airlock/external,
 /turf/floor/plating/random,
 /area/station/shipyard)
+"gdK" = (
+/obj/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "gei" = (
 /obj/decal/poster/wallsign/biohazard,
 /turf/wall/r_wall,
@@ -8236,6 +8280,11 @@
 	},
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
+"gVp" = (
+/obj/machinery/floorflusher/industrial,
+/obj/disposalpipe/trunk,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "gVv" = (
 /obj/stool/chair/boxingrope_corner{
 	dir = 10
@@ -8290,14 +8339,6 @@
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
 /turf/floor,
 /area/station/hallway/primary/east)
-"gWQ" = (
-/obj/machinery/computer/security{
-	dir = 8
-	},
-/turf/floor/grey/side{
-	dir = 6
-	},
-/area/station/bridge)
 "gXc" = (
 /obj/machinery/camera/television{
 	c_tag = "boxing";
@@ -8387,6 +8428,16 @@
 	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
+"gYM" = (
+/obj/disposalpipe/broken{
+	dir = 4
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/ghostdrone_factory)
 "gZg" = (
 /obj/machinery/power/monitor,
 /obj/machinery/power/data_terminal,
@@ -8845,11 +8896,6 @@
 	},
 /turf/floor/purplewhite,
 /area/station/science/lobby)
-"hpk" = (
-/obj/machinery/conveyor/east,
-/obj/machinery/ghostdrone_factory/part2,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "hps" = (
 /obj/disposalpipe/junction{
 	dir = 1
@@ -9186,14 +9232,6 @@
 "hBL" = (
 /turf/wall,
 /area/station/maintenance/solar/east)
-"hBU" = (
-/obj/disposalpipe/segment,
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/ghostdrone_factory)
 "hCs" = (
 /obj/machinery/door_control{
 	id = "tegshield";
@@ -10675,10 +10713,6 @@
 	},
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/north)
-"iSy" = (
-/obj/machinery/launcher_loader/west,
-/turf/floor/plating/random,
-/area/ghostdrone_factory)
 "iSH" = (
 /obj/disposalpipe/segment/mail{
 	dir = 1;
@@ -10835,13 +10869,6 @@
 /obj/machinery/recharger,
 /turf/floor/carpet/red/fancy/edge/south,
 /area/station/security/hos)
-"iYa" = (
-/obj/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "iZg" = (
 /obj/machinery/computer3/generic/radio,
 /turf/floor/plating/random,
@@ -11081,6 +11108,10 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
 /turf/floor/engine/vacuum,
 /area/station/science/lab)
+"jpe" = (
+/obj/machinery/launcher_loader/west,
+/turf/floor/plating/random,
+/area/ghostdrone_factory)
 "jpM" = (
 /obj/machinery/light{
 	dir = 8
@@ -11811,20 +11842,6 @@
 	},
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
-"jTp" = (
-/obj/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/lattice,
-/turf/space,
-/area/ghostdrone_factory)
-"jTE" = (
-/obj/machinery/light/small/cool/very{
-	dir = 4
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "jTI" = (
 /obj/landmark{
 	icon_state = "x3";
@@ -12067,6 +12084,10 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
+"kgH" = (
+/obj/machinery/conveyor/south,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "kgR" = (
 /obj/machinery/light{
 	dir = 1
@@ -13214,6 +13235,13 @@
 	},
 /turf/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
+"let" = (
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/ghostdrone_factory)
 "leJ" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -13597,7 +13625,11 @@
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "lsJ" = (
-/turf/wall/asteroid/dark,
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
 /area/ghostdrone_factory)
 "lty" = (
 /obj/machinery/door/airlock/classic,
@@ -14630,14 +14662,10 @@
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
 "mjI" = (
-/obj/disposalpipe/broken{
+/obj/machinery/light/small/cool/very{
 	dir = 4
 	},
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
+/turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "mkl" = (
 /obj/reagent_dispensers/fueltank,
@@ -14861,6 +14889,12 @@
 	},
 /turf/floor/black,
 /area/station/crew_quarters/catering)
+"muU" = (
+/obj/machinery/light/small/cool/very{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "mvm" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/cable{
@@ -15032,13 +15066,6 @@
 	dir = 1
 	},
 /area/station/crew_quarters/catering)
-"mCu" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/ghostdrone_factory)
 "mDD" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -15430,11 +15457,6 @@
 	dir = 4
 	},
 /area/station/engine/coldloop)
-"mSW" = (
-/obj/disposalpipe/segment,
-/obj/lattice,
-/turf/space,
-/area/ghostdrone_factory)
 "mTB" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/disposalpipe/segment,
@@ -15576,16 +15598,6 @@
 	dir = 8
 	},
 /area/station/security/main)
-"mZr" = (
-/obj/machinery/light/small/cool/very{
-	dir = 1
-	},
-/obj/storage/crate/wooden,
-/obj/item/wrench,
-/obj/item/storage/box/lightbox/tubes,
-/obj/item/gun_parts/barrel/juicer,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "mZw" = (
 /obj/lattice{
 	dir = 10;
@@ -15626,11 +15638,6 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor/plating/random,
 /area/station/maintenance/east)
-"nbX" = (
-/obj/machinery/floorflusher/industrial,
-/obj/disposalpipe/trunk,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "nbZ" = (
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7"
@@ -15803,12 +15810,6 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
-"nhI" = (
-/obj/machinery/light/small/cool/very{
-	dir = 4
-	},
-/turf/space,
-/area/space)
 "nij" = (
 /obj/cable/brown{
 	icon_state = "2-4"
@@ -16327,15 +16328,6 @@
 	icon_state = "fred2"
 	},
 /area/listeningpost)
-"nCM" = (
-/obj/machinery/ghost_catcher,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
-"nCU" = (
-/obj/storage/crate/wooden,
-/obj/random_item_spawner/junk/few,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "nCZ" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8;
@@ -16359,13 +16351,6 @@
 	dir = 4
 	},
 /area/station/crew_quarters/catering)
-"nDf" = (
-/obj/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "nDh" = (
 /obj/decal/poster/wallsign/escape,
 /turf/wall,
@@ -17879,6 +17864,10 @@
 	dir = 4
 	},
 /area/station/janitor/office)
+"oIW" = (
+/obj/machinery/ghost_catcher,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "oJs" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/plating/random,
@@ -18950,6 +18939,10 @@
 /area/station/bridge{
 	mail_tag = "Shipyard control"
 	})
+"pFt" = (
+/obj/machinery/conveyor/west,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "pFu" = (
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gibbl1"
@@ -19469,13 +19462,6 @@
 /obj/stool/bed/brig,
 /turf/floor/grime,
 /area/station/security/brig/genpop)
-"pVJ" = (
-/obj/machinery/conveyor/north,
-/obj/machinery/light/small/cool/very{
-	dir = 4
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "pVT" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/specialroom/bar,
@@ -20400,9 +20386,6 @@
 	},
 /area/station/solar/east)
 "qHU" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "qIg" = (
@@ -20619,6 +20602,9 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southwest)
+"qQY" = (
+/turf/floor/plating/random,
+/area/ghostdrone_factory)
 "qRn" = (
 /obj/decal/tile_edge/stripe{
 	icon_state = "delivery2"
@@ -20743,11 +20729,6 @@
 /obj/artifact_spawner,
 /turf/floor/plating/airless/asteroid,
 /area/space)
-"qVD" = (
-/obj/machinery/conveyor/west,
-/obj/machinery/ghostdrone_factory/part3,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "qWy" = (
 /obj/machinery/light{
 	dir = 4
@@ -20775,16 +20756,10 @@
 	},
 /turf/floor/orangeblack,
 /area/station/storage/emergency)
-"qZr" = (
-/obj/disposalpipe/segment{
-	dir = 8
-	},
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir";
-	tag = "icon-lattice-dir (SOUTHWEST)"
-	},
-/turf/space,
+"qZs" = (
+/obj/machinery/conveyor/west,
+/obj/machinery/ghostdrone_factory/part3,
+/turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "qZz" = (
 /obj/table/reinforced/bar/auto,
@@ -20897,6 +20872,13 @@
 /obj/decal/poster/wallsign/poster_hair,
 /turf/wall,
 /area/station/crew_quarters/barber_shop)
+"rdM" = (
+/obj/machinery/ghostdrone_factory,
+/obj/machinery/conveyor/west{
+	id = "ghostdrone"
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "rea" = (
 /turf/floor/red/side{
 	dir = 10
@@ -20979,6 +20961,13 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"rgb" = (
+/obj/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "rgo" = (
 /obj/decal/cleanable/mess/splotch_two,
 /obj/machinery/disposal/small,
@@ -21170,9 +21159,6 @@
 	dir = 4
 	},
 /area/station/crew_quarters/catering)
-"rqD" = (
-/turf/floor/plating/random,
-/area/ghostdrone_factory)
 "rqO" = (
 /obj/cable{
 	d1 = 1;
@@ -21842,6 +21828,11 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
+"rWJ" = (
+/obj/machinery/conveyor/east,
+/obj/machinery/ghostdrone_factory/part2,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "rXa" = (
 /obj/stool/chair/comfy/wheelchair{
 	dir = 8
@@ -22211,6 +22202,13 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
+"smu" = (
+/obj/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "smE" = (
 /obj/table/auto,
 /obj/item/storage/toolbox/electrical{
@@ -22801,6 +22799,17 @@
 /area/station/storage{
 	name = "Shipyard EVA Storage"
 	})
+"sHd" = (
+/obj/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/ghostdrone_factory)
 "sHO" = (
 /turf/wall/asteroid,
 /area/space)
@@ -23441,6 +23450,11 @@
 	dir = 1
 	},
 /area/station/engine/core)
+"tkU" = (
+/obj/disposalpipe/block_sensing_outlet,
+/obj/lattice,
+/turf/space,
+/area/ghostdrone_factory)
 "tll" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 4;
@@ -23827,13 +23841,6 @@
 	dir = 5
 	},
 /area/station/security/main)
-"tBM" = (
-/obj/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "tBV" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
@@ -24548,17 +24555,6 @@
 	},
 /turf/floor/grey/side,
 /area/station/science/teleporter)
-"ugL" = (
-/obj/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/ghostdrone_factory)
 "uhb" = (
 /obj/machinery/chem_master,
 /obj/cable{
@@ -24764,6 +24760,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/security/equipment)
+"uqT" = (
+/obj/storage/crate/wooden,
+/obj/random_item_spawner/junk/few,
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "uqV" = (
 /obj/table/folding,
 /obj/item/reagent_containers/food/snacks/garlicbread{
@@ -25609,6 +25610,17 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/north)
+"veN" = (
+/obj/disposalpipe/segment{
+	dir = 8
+	},
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (SOUTHWEST)"
+	},
+/turf/space,
+/area/ghostdrone_factory)
 "vfh" = (
 /obj/machinery/vending/snack,
 /turf/floor,
@@ -26713,13 +26725,6 @@
 /obj/access_spawn/cargo,
 /turf/floor/grime,
 /area/station/storage/warehouse)
-"wgr" = (
-/obj/machinery/ghostdrone_factory,
-/obj/machinery/conveyor/west{
-	id = "ghostdrone"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "whm" = (
 /obj/stool/chair/office/purple,
 /obj/landmark/start{
@@ -26773,6 +26778,10 @@
 /area/station/hallway/primary/north{
 	name = "Judgement Cage"
 	})
+"wja" = (
+/obj/machinery/drone_recharger/factory,
+/turf/floor/plating/random,
+/area/ghostdrone_factory)
 "wjD" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -27072,10 +27081,6 @@
 "wxg" = (
 /turf/floor/grime,
 /area/station/construction)
-"wxz" = (
-/obj/machinery/drone_recharger/factory,
-/turf/floor/plating/random,
-/area/ghostdrone_factory)
 "wxN" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/carpet/grime,
@@ -27219,7 +27224,7 @@
 	},
 /area/listeningpost)
 "wCT" = (
-/turf/floor/plating/airless/asteroid,
+/turf/wall/asteroid/dark,
 /area/ghostdrone_factory)
 "wDt" = (
 /obj/machinery/light,
@@ -27768,11 +27773,6 @@
 /obj/disposalpipe/trunk/brig,
 /turf/floor/black,
 /area/station/security/brig/solitary)
-"xdk" = (
-/obj/disposalpipe/block_sensing_outlet,
-/obj/lattice,
-/turf/space,
-/area/ghostdrone_factory)
 "xdZ" = (
 /obj/landmark/gps_waypoint,
 /turf/floor,
@@ -27982,13 +27982,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/solar/east)
-"xqj" = (
-/obj/lattice{
-	dir = 9;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/ghostdrone_factory)
 "xqs" = (
 /obj/machinery/atmospherics/pipe/simple{
 	level = 2
@@ -28243,10 +28236,6 @@
 	dir = 1
 	},
 /area/station/medical/robotics)
-"xxy" = (
-/obj/machinery/conveyor/east,
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
 "xxF" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/toolbox/mechanical{
@@ -28749,6 +28738,14 @@
 	dir = 4
 	},
 /area/station/solar/north)
+"xUa" = (
+/obj/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/lattice,
+/turf/space,
+/area/ghostdrone_factory)
 "xUi" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0;
@@ -29104,8 +29101,11 @@
 /turf/wall/r_wall,
 /area/station/hangar/sec)
 "yjO" = (
-/obj/machinery/conveyor/west,
-/turf/floor/plating/airless/asteroid,
+/obj/machinery/mass_driver{
+	dir = 8;
+	id = "garbageout"
+	},
+/turf/floor/plating/random,
 /area/ghostdrone_factory)
 "yjZ" = (
 /obj/shrub{
@@ -79715,7 +79715,7 @@ xjw
 nYz
 iRd
 sFg
-gWQ
+fgT
 iWk
 gUe
 gUe
@@ -102340,7 +102340,7 @@ ipT
 ipT
 sHO
 sHO
-sHO
+fqJ
 ipT
 ipT
 ipT
@@ -106880,8 +106880,8 @@ ipT
 ipT
 ipT
 ipT
-sHO
-sHO
+fqJ
+fqJ
 ipT
 ipT
 ipT
@@ -107183,7 +107183,7 @@ ipT
 ipT
 ipT
 sHO
-sHO
+fqJ
 sHO
 ipT
 ipT
@@ -107799,7 +107799,7 @@ ipT
 ipT
 ipT
 ipT
-nhI
+muU
 ipT
 ipT
 ipT
@@ -108101,8 +108101,8 @@ ipT
 ipT
 ipT
 ipT
-lsJ
 wCT
+qHU
 ipT
 ipT
 ipT
@@ -108402,11 +108402,11 @@ ipT
 ipT
 ipT
 ipT
-lsJ
-lsJ
 wCT
 wCT
-wCT
+qHU
+qHU
+qHU
 ipT
 ipT
 sET
@@ -108703,15 +108703,15 @@ ipT
 ipT
 ipT
 ipT
-lsJ
-lsJ
-lsJ
-nbX
-iYa
-eek
+wCT
+wCT
+wCT
+gVp
+rgb
+yjO
 ipT
 ipT
-mjI
+gYM
 ipT
 ipT
 ipT
@@ -109003,17 +109003,17 @@ ipT
 ipT
 ipT
 ipT
-lsJ
-lsJ
-lsJ
-lsJ
-cuc
-yjO
-qHU
-iSy
-jTE
-mCu
-qZr
+wCT
+wCT
+wCT
+wCT
+bDQ
+pFt
+amb
+jpe
+mjI
+let
+veN
 ipT
 ipT
 ipT
@@ -109305,18 +109305,18 @@ ipT
 ipT
 ipT
 ipT
-lsJ
-mZr
-dQl
-dQl
-xxy
-qVD
-qHU
-lsJ
-lsJ
-lsJ
-qZr
-xqj
+wCT
+fdY
+kgH
+kgH
+anF
+qZs
+amb
+wCT
+wCT
+wCT
+veN
+eek
 ipT
 ipT
 ipT
@@ -109603,22 +109603,22 @@ ipT
 ipT
 ipT
 ipT
-sHO
+fqJ
 ipT
 ipT
 ipT
-lsJ
-lsJ
-yjO
-frX
-dQl
-yjO
+wCT
+wCT
+pFt
+eeS
+kgH
+pFt
+amb
 qHU
 wCT
-lsJ
-cuc
-xdk
-wxz
+bDQ
+tkU
+wja
 ipT
 ipT
 ipT
@@ -109905,22 +109905,22 @@ ipT
 ipT
 ipT
 sHO
-sHO
-sHO
+fqJ
+fqJ
 ipT
 ipT
-lsJ
-lsJ
-yjO
-xxy
-aTI
-dGD
-tBM
 wCT
+wCT
+pFt
+anF
+baM
+gdK
+cvo
+qHU
+wCT
+xUa
+evp
 lsJ
-jTp
-bON
-eVv
 ipT
 ipT
 ipT
@@ -110207,21 +110207,21 @@ ipT
 ipT
 sHO
 sHO
-sHO
-sHO
+fqJ
+fqJ
 ipT
 ipT
 ipT
-lsJ
-yjO
-hpk
-wgr
-qHU
-jTE
-nCU
-lsJ
-qZr
-xqj
+wCT
+pFt
+rWJ
+rdM
+amb
+mjI
+uqT
+wCT
+veN
+eek
 ipT
 ipT
 ipT
@@ -110509,21 +110509,21 @@ ipT
 ipT
 sHO
 sHO
-sHO
-sHO
+fqJ
+fqJ
 ipT
 ipT
 ipT
-lsJ
-yjO
-pVJ
-nCM
-qHU
-lsJ
-lsJ
-lsJ
-xdk
-wxz
+wCT
+pFt
+fUK
+oIW
+amb
+wCT
+wCT
+wCT
+tkU
+wja
 ipT
 ipT
 ipT
@@ -110816,16 +110816,16 @@ sHO
 sHO
 ipT
 ipT
+wCT
+wCT
+wCT
+bDQ
+amb
+wCT
+xUa
+fyU
+evp
 lsJ
-lsJ
-lsJ
-cuc
-qHU
-lsJ
-jTp
-mSW
-bON
-eVv
 ipT
 ipT
 ipT
@@ -111121,17 +111121,17 @@ ipT
 ipT
 ipT
 ipT
-wCT
-nDf
-hBU
-ugL
-rqD
+qHU
+smu
+eVv
+sHd
+qQY
 ipT
 ipT
 ipT
 ipT
 ipT
-sHO
+fqJ
 sHO
 ipT
 ipT
@@ -111427,13 +111427,13 @@ ipT
 ipT
 ipT
 ipT
-eVv
+lsJ
 ipT
 ipT
 ipT
 ipT
 ipT
-sHO
+fqJ
 sHO
 sHO
 ipT
@@ -112036,7 +112036,7 @@ ipT
 ipT
 ipT
 ipT
-sHO
+fqJ
 sHO
 sHO
 ipT
