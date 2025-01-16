@@ -290,6 +290,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
 	goonhub_map = "https://wiki.coolstation.space/wiki/File:Bayoubendmapimage.png"
 
 	windows = /obj/window/auto

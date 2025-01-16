@@ -2747,6 +2747,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 4
 	},
+/obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/blue/side{
 	dir = 1
 	},
@@ -15045,6 +15046,10 @@
 /area/station/medical/medbay/lobby)
 "mqH" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4;
+	layer = 2.9
+	},
 /turf/floor/yellow/checker{
 	dir = 4
 	},
@@ -18675,6 +18680,9 @@
 "pfg" = (
 /obj/cable{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
 	},
 /turf/floor/yellow/checker{
 	dir = 4
@@ -56072,7 +56080,7 @@ ipT
 ipT
 dVl
 xrW
-sht
+eER
 mSJ
 igy
 nKR
