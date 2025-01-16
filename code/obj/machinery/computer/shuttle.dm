@@ -150,8 +150,8 @@
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
 		if(prob(60))
 			explode_area(start_location,rand(60,260),rand(1,3))
+		shipyardship_pre_densitymap = calculate_density_map(start_location)
 		SPAWN_DBG(2 SECONDS)
-			shipyardship_pre_densitymap = calculate_density_map(start_location)
 			start_location.move_contents_to(end_location)
 			shipyardship_location = 1
 
