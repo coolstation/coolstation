@@ -693,7 +693,7 @@
 	dir = 8
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "aHC" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -2417,7 +2417,20 @@
 	pixel_y = 0
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
+"bZH" = (
+/obj/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/hallway/primary/southwest)
 "bZT" = (
 /obj/landmark/gps_waypoint,
 /obj/disposalpipe/segment/sewage{
@@ -3394,7 +3407,7 @@
 	icon_state = "0-4"
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "cQi" = (
 /obj/machinery/floorflusher/industrial,
 /obj/disposalpipe/trunk,
@@ -4442,6 +4455,9 @@
 /area/station/bridge)
 "dPU" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -4771,7 +4787,7 @@
 "ecU" = (
 /obj/machinery/drainage,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "edN" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/stackable_ammo/scatter/slug_rubber/ten{
@@ -5259,7 +5275,7 @@
 	dir = 8
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "eus" = (
 /obj/pathlights/shuttle{
 	dir = 4
@@ -5552,7 +5568,7 @@
 	icon_state = "tube1"
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "eGs" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -5748,7 +5764,7 @@
 /obj/machinery/shower,
 /obj/machinery/drainage,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "eQO" = (
 /obj/machinery/power/apc/autoname_south,
 /obj/cable{
@@ -5818,6 +5834,11 @@
 /obj/machinery/light/emergency{
 	dir = 4
 	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/autoname_east,
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -6627,7 +6648,7 @@
 	dir = 2
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "fAm" = (
 /obj/storage/closet/coffin,
 /obj/decal/cleanable/rust/jen,
@@ -6878,7 +6899,7 @@
 "fKW" = (
 /obj/disposalpipe/junction,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "fKX" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/hor)
@@ -7132,6 +7153,15 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/east)
+"fXI" = (
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor,
+/area/station/hallway/primary/southwest)
 "fXT" = (
 /obj/stool/chair/comfy/blue{
 	dir = 4
@@ -7295,7 +7325,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "gdz" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
@@ -7453,7 +7483,7 @@
 /obj/machinery/door/window/southleft,
 /obj/landmark/gps_waypoint,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "gle" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -7782,7 +7812,7 @@
 	name = "Clem"
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "gyd" = (
 /obj/stool,
 /turf/floor/specialroom/bar,
@@ -9641,7 +9671,7 @@
 	dir = 1
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "hQg" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -10099,6 +10129,9 @@
 	},
 /turf/floor/plating,
 /area/station/chapel/office)
+"ild" = (
+/turf/wall,
+/area/station/crew_quarters/bathroom)
 "ile" = (
 /obj/decal/cleanable/mess/sodacan,
 /obj/stool/chair{
@@ -13794,7 +13827,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "lse" = (
 /obj/storage/closet/emergency,
 /turf/floor/plating/random,
@@ -14238,6 +14271,9 @@
 	},
 /obj/pathlights/shuttle{
 	dir = 1
+	},
+/obj/cable{
+	icon_state = "1-2"
 	},
 /turf/floor,
 /area/station/hallway/primary/southwest)
@@ -15232,6 +15268,14 @@
 /turf/floor/grime,
 /area/station/storage/warehouse{
 	name = "Warehouse"
+	})
+"mAh" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/wood,
+/area/station/crew_quarters/info{
+	name = "Book Nook"
 	})
 "mAy" = (
 /obj/machinery/power/apc/autoname_south,
@@ -17358,7 +17402,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "ogS" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/firedoor_spawn,
@@ -18033,7 +18077,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "oEw" = (
 /obj/lattice,
 /turf/space,
@@ -18756,7 +18800,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "pjd" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor,
 /turf/floor/white/checker,
@@ -19257,7 +19301,7 @@
 "pHm" = (
 /obj/machinery/door/window/southright,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "pHG" = (
 /obj/table/surgery_tray,
 /turf/floor/black,
@@ -19447,7 +19491,7 @@
 	},
 /obj/firedoor_spawn,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "pNu" = (
 /turf/wall/r_wall,
 /area/station/engine/gas)
@@ -20432,7 +20476,7 @@
 	dir = 1
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "qwX" = (
 /obj/disposalpipe/switch_junction/right/north,
 /obj/pathlights/shuttle{
@@ -21291,6 +21335,9 @@
 	dir = 1
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor,
 /area/station/hallway/primary/southwest)
 "rhr" = (
@@ -22751,7 +22798,7 @@
 /obj/machinery/door/window/southright,
 /obj/disposalpipe/junction,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "ssS" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -23735,6 +23782,9 @@
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 4
 	},
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -24334,6 +24384,9 @@
 /area/station/crew_quarters/catering)
 "tIf" = (
 /obj/decal/cleanable/mess/random_litter,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -24379,6 +24432,14 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"tMN" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/wood,
+/area/station/crew_quarters/info{
+	name = "Book Nook"
+	})
 "tMY" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -27329,7 +27390,7 @@
 	},
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/sanitary,
-/area/station/crew_quarters/showers)
+/area/station/crew_quarters/bathroom)
 "wte" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -59943,9 +60004,9 @@ xOD
 ddL
 xOD
 rhk
-wAd
+bZH
 lLL
-rLX
+fXI
 rLX
 rLX
 rLX
@@ -60247,7 +60308,7 @@ pjV
 pjV
 pjV
 eBg
-tJo
+ejC
 tJo
 iJk
 tJo
@@ -61455,7 +61516,7 @@ yfb
 mtn
 vQj
 hgr
-ufA
+tMN
 ufA
 rhz
 bMk
@@ -61757,7 +61818,7 @@ mtn
 mtn
 xkk
 eTH
-ufA
+mAh
 uLi
 pbB
 bMk
@@ -72312,13 +72373,13 @@ jve
 jve
 uTA
 uTA
-wpv
-wpv
-wpv
-wpv
-wpv
-wpv
-wpv
+ild
+ild
+ild
+ild
+ild
+ild
+ild
 uSP
 vIR
 uSP
@@ -72620,7 +72681,7 @@ oEt
 bZu
 aGV
 lrU
-wpv
+ild
 qMK
 sGM
 qMK
@@ -72922,7 +72983,7 @@ ssR
 wsM
 pHm
 lrU
-wpv
+ild
 nRA
 tsh
 xaG
@@ -73224,7 +73285,7 @@ gke
 gcS
 gyb
 lrU
-wpv
+ild
 skq
 kvO
 bTz
@@ -73526,7 +73587,7 @@ hQc
 eur
 eGc
 eQC
-wpv
+ild
 tex
 iKY
 vCc
@@ -73823,12 +73884,12 @@ uTA
 uTA
 uTA
 pNc
-wpv
-wpv
-wpv
-wpv
-wpv
-wpv
+ild
+ild
+ild
+ild
+ild
+ild
 vIR
 axl
 vIR
