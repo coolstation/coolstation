@@ -3275,6 +3275,16 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
+"cNJ" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass,
+/turf/floor,
+/area/station/hallway/primary/north)
 "cOS" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/decoration/ashtray{
@@ -4304,6 +4314,16 @@
 /obj/storage/closet/fire,
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"dMF" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/hallway/primary/north)
 "dMK" = (
 /turf/floor,
 /area/station/mining/refinery{
@@ -17895,6 +17915,13 @@
 /obj/securearea,
 /turf/wall,
 /area/station/storage/eva)
+"oKv" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass,
+/turf/floor,
+/area/station/hallway/primary/north)
 "oLh" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -64608,9 +64635,9 @@ dNZ
 kpk
 kpk
 hlt
-bMQ
-iKR
-fwc
+oKv
+dMF
+cNJ
 pEt
 odh
 fDt
