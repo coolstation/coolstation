@@ -298,6 +298,8 @@ var/global
 	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
 	shipyardship_location = 0
+	shipyardship_pre_densitymap = list()
+	shipyardship_post_densitymap = list()
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
