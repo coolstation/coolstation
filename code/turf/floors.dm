@@ -525,25 +525,25 @@
 	permadirty = 1
 
 /turf/floor/carpet/office/yellow
-	name = "Yellow office carpet"
+	name = "yellow office carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "yellowoffice"
 	permadirty = 1
 
 /turf/floor/carpet/office/hotdog
-	name = "Hotdog office carpet"
+	name = "hotdog office carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "hotdogoffice"
 	permadirty = 1
 
 /turf/floor/carpet/office
-	name = "Office carpet"
+	name = "office carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "office"
 	permadirty = 1
 
 /turf/floor/carpet/nicebrown
-	name = "Nice brown carpet"
+	name = "nice brown carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "nicebrown"
 	permadirty = 1
