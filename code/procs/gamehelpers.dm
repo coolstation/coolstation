@@ -563,8 +563,6 @@ var/obj/item/dummy/click_dummy = new
 	for(var/turf/S in turfs)
 		if(S.density)
 			appendTo += S.density
-		else if(istype(S, /turf/space))
-			appendTo += 2
 		else
 			appendTo += 0
 	return appendTo

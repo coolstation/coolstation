@@ -49,8 +49,6 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 	for (var/S in postWork)
 		if(S != preWork[step] && S == 0) //rewards half points for replacing a wall with a floor
 			payoutMod += scrappedBonus / 2
-		else if(S != preWork[step] && S == 2) //rewards full points for replacing anything with a space tile(destroying)
-			payoutMod += scrappedBonus
 		step += 1
 
 	for(var/datum/data/record/record in data_core.bank)
