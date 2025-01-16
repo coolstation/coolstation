@@ -334,7 +334,7 @@ var/global/list/mapNames = list(
 		/datum/job/logistics/scrapper = 3,
 		/datum/job/civilian/rancher = 0,
 		/datum/job/medical/pathologist = 0,
-		/datum/job/civilian/janitor = 1
+		/datum/job/logistics/janitor = 1
 	)
 
 
