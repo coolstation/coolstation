@@ -706,6 +706,7 @@ ABSTRACT_TYPE(/area/shuttle)
 
 /area/shuttle/bayou/shipyard
 	icon_state = "shuttle"
+	requires_power = 0
 
 /area/shuttle/bayou/ship
 	icon_state = "shuttle"
