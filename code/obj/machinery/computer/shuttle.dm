@@ -158,7 +158,7 @@
 	else if(shipyardship_location == 1)
 		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
 		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-		command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Alert","sound/misc/klaxon.ogg")
+		command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Alert","sound/machines/engine_alert2.ogg")
 		SPAWN_DBG(5 SECONDS)
 			playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
 			gib_area(locate(/area/shuttle/bayou/shipyard))
