@@ -162,9 +162,9 @@
 		SPAWN_DBG(5 SECONDS)
 			playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
 			gib_area(locate(/area/shuttle/bayou/shipyard))
+			shipyardship_post_densitymap = calculate_density_map(start_location)
 		SPAWN_DBG(10 SECONDS)
 			start_location.move_contents_to(end_location, move_ghosts = FALSE)
-			shipyardship_post_densitymap = calculate_density_map(end_location)
 			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
 		shipyardship_location = 0
