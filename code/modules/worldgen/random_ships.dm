@@ -45,7 +45,7 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 
 	var/step = 1
 	for (var/S in postWork)
-		if(S != preWork[step] && S == 0) //rewards half points for replacing a wall with a floor
+		if(S != preWork[step] && S == 0) //rewards points for destroying a wall
 			payout += scrappedBonus
 		step += 1
 
@@ -60,7 +60,20 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 	if(transmit_connection != null)
 		transmit_connection.post_signal(null, pdaSignal)
 
-proc/buildRandomShips() //This is byond a terrible fix which likely doesn't function anyway. A better way to do this would be to create two landmarks, one for the ships and another for the rooms.
+proc/prepShips(var/area/stagearea)
+	if(prob(60))
+		explode_area(stagearea,rand(60,190),rand(1,3))
+	shipyardship_pre_densitymap = calculate_density_map(stagearea)
+
+proc/processShips(var/area/shipyard)
+	command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Control Alert","sound/machines/engine_alert2.ogg")
+	SPAWN_DBG(10 SECONDS)
+		playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
+		gib_area(shipyard)
+		shipyardship_post_densitymap = calculate_density_map(shipyard)
+		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
+
+proc/buildRandomShips()
 	shuffle_list(by_type[/obj/landmark/random_ship])
 	for_by_tcl(landmark, /obj/landmark/random_ship)
 		landmark.apply()

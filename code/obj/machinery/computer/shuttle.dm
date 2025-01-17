@@ -138,7 +138,7 @@
 	if(!active)
 		for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 			active = 1
-			C.visible_message("<span class='alert'>The client ship has been notified of vacancy, and will arrive shortly!</span>")
+			C.visible_message("<span class='alert'>Ship movement in progress, please standby.</span>")
 		SPAWN_DBG(10 SECONDS)
 			call_client()
 
@@ -148,9 +148,7 @@
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
-		if(prob(60))
-			explode_area(start_location,rand(60,190),rand(1,3))
-		shipyardship_pre_densitymap = calculate_density_map(start_location)
+		prepShips(start_location)
 		SPAWN_DBG(2 SECONDS)
 			start_location.move_contents_to(end_location)
 			shipyardship_location = 1
@@ -158,20 +156,15 @@
 	else if(shipyardship_location == 1)
 		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
 		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-		command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Alert","sound/machines/engine_alert2.ogg")
-		SPAWN_DBG(5 SECONDS)
-			playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
-			gib_area(locate(/area/shuttle/bayou/shipyard))
-			shipyardship_post_densitymap = calculate_density_map(start_location)
-			scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
-		SPAWN_DBG(10 SECONDS)
+		processShips(start_location)
+		SPAWN_DBG(15 SECONDS)
 			start_location.move_contents_to(end_location, move_ghosts = FALSE)
 			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
-		shipyardship_location = 0
+			shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 		active = 0
-		C.visible_message("<span class='alert'>The client has moved!</span>")
+		C.visible_message("<span class='alert'>The client is en route!</span>")
 
 	return
 
