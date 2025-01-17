@@ -1995,7 +1995,7 @@
 
 
 	create_products()
-		..()
+		//..()
 		/*
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
@@ -2028,7 +2028,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/stub, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/precision, 2, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/drum, 2, cost = PAY_UNTRAINED/2.5)
+		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/drum, 2, cost = PAY_UNTRAINED/2.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/wire, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
@@ -2043,6 +2043,29 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
 
+	diner
+		name = "Fucile Fusilli"
+		desc = "Un distributore automatico pieno di armi."
+		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN*0.9)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.4)
+
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  2, cost = PAY_UNTRAINED*1.1)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/meatball, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/trans, 2, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/spicy, 5, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/accurate, 5, cost = PAY_UNTRAINED*1.1)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/wizard, 1, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
+
+
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), cost = 15)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), cost = 10)
+
 
 	debug
 		name = "Debug Gunse Vendor"
@@ -2053,7 +2076,7 @@
 				product_list += new/datum/data/vending_product(types, 2)
 			for(var/types in concrete_typesof(/obj/item/gun_parts/))
 				product_list += new/datum/data/vending_product(types, 2)
-			for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
+			for(var/types in concrete_typesof(/obj/item/stackable_ammo/)) // no more ammo? but its right here???
 				product_list += new/datum/data/vending_product(types, 5)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
 
