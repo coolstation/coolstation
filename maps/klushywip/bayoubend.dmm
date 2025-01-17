@@ -1585,6 +1585,20 @@
 	dir = 10
 	},
 /area/station/chapel/funeral_parlor)
+"buc" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/obj/grille/catwalk/grey{
+	dir = 4
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
 "buo" = (
 /obj/disposalpipe/segment,
 /obj/machinery/computer/supplycomp,
@@ -3830,6 +3844,16 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/north)
+"djx" = (
+/obj/lattice,
+/obj/grille/catwalk/grey{
+	dir = 4
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
 "djy" = (
 /obj/cabinet/restrictedmedical,
 /turf/floor/carpet/office/other,
@@ -6260,20 +6284,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/medbay/lobby)
-"fkt" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir";
-	tag = "icon-lattice-dir (EAST)"
-	},
-/obj/grille/catwalk/grey{
-	dir = 4
-	},
-/obj/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/space,
-/area/space)
 "flc" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/floatingtiles/loose/random,
@@ -7718,6 +7728,8 @@
 	})
 "gus" = (
 /obj/storage/closet,
+/obj/item/clothing/head/helmet/welding,
+/obj/item/clothing/head/helmet/welding,
 /turf/floor,
 /area/station/bridge{
 	mail_tag = "Shipyard control"
@@ -9773,17 +9785,6 @@
 	dir = 6
 	},
 /area/station/engine/engineering)
-"hVO" = (
-/obj/lattice,
-/obj/machinery/communications_dish,
-/obj/grille/catwalk/grey{
-	dir = 9
-	},
-/obj/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/space,
-/area/space)
 "hWc" = (
 /obj/disposalpipe/switch_junction/left/east,
 /obj/cable{
@@ -11565,16 +11566,6 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
-"jBv" = (
-/obj/lattice,
-/obj/grille/catwalk/grey{
-	dir = 4
-	},
-/obj/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/space,
-/area/space)
 "jCw" = (
 /turf/space,
 /area/station/solar/north)
@@ -16350,6 +16341,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/item/clothing/head/helmet/welding,
 /turf/floor/plating/random,
 /area/station/maintenance/west)
 "nrL" = (
@@ -18127,6 +18119,17 @@
 /area/station/storage/warehouse{
 	name = "Warehouse"
 	})
+"oFS" = (
+/obj/lattice,
+/obj/machinery/communications_dish,
+/obj/grille/catwalk/grey{
+	dir = 9
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/space,
+/area/space)
 "oGo" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -21279,6 +21282,7 @@
 	dir = 1
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/vending/cola/blue,
 /turf/floor,
 /area/station/hallway/primary/south)
 "rfS" = (
@@ -22505,6 +22509,7 @@
 	pixel_y = 5
 	},
 /obj/item/deconstructor,
+/obj/item/clothing/head/helmet/welding,
 /turf/floor/grime,
 /area/station/storage{
 	name = "Shipyard EVA Storage"
@@ -80494,7 +80499,7 @@ ipT
 ipT
 ipT
 qfS
-fkt
+buc
 qfS
 ipT
 ipT
@@ -80796,7 +80801,7 @@ aTt
 aTt
 aTt
 cRG
-jBv
+djx
 cRG
 aTt
 aTt
@@ -81098,7 +81103,7 @@ ipT
 ipT
 ipT
 qfS
-fkt
+buc
 qfS
 ipT
 ipT
@@ -81400,7 +81405,7 @@ ipT
 ipT
 ipT
 qfS
-fkt
+buc
 jMG
 ipT
 ipT
@@ -81702,7 +81707,7 @@ ipT
 ipT
 ipT
 qfS
-fkt
+buc
 ipT
 ipT
 ipT
@@ -82004,7 +82009,7 @@ ipT
 ipT
 ipT
 qfS
-fkt
+buc
 sET
 ipT
 ipT
@@ -82306,7 +82311,7 @@ ipT
 ipT
 hvp
 cRG
-hVO
+oFS
 cRG
 avl
 ipT
