@@ -2,6 +2,7 @@
  * Wanna make a room for a S P A C E S H I P ???? Cool!!!!!! All you have to do is make your prefab, name it
  * whatever, (has to be either 3x3 or 5x3 for now), and throw it in assets/maps/random_ships/(cargo or room)/size
  * NOTE: ALL PREFABS HAVE TO HAVE THE CLEAR_AREA AREA, AND ALL CARGO PREFABS MUST HAVE BOTH CLEAR_TURF AND CLEAR_AREA <3
+ * oh ya you can make a spaceship too, just throw it in the 30x25 folder same as the rest :3
  */
 
 
