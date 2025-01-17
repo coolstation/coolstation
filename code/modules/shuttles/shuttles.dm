@@ -65,7 +65,7 @@
 
 		sleep(departure_delay)
 		playsound(target, "sound/misc/ground_rumble_big.ogg", 70, 1)
-		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
+		for(var/mob/living/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
 			SPAWN_DBG(1 DECI SECOND)
 				random_brute_damage(M, 60)
 				M.changeStatus("weakened", 5 SECONDS)
