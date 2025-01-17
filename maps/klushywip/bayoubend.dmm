@@ -693,7 +693,7 @@
 	dir = 8
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "aHC" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -2417,20 +2417,7 @@
 	pixel_y = 0
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
-"bZH" = (
-/obj/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/pathlights/shuttle{
-	dir = 1
-	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor,
-/area/station/hallway/primary/southwest)
+/area/station/crew_quarters/showers)
 "bZT" = (
 /obj/landmark/gps_waypoint,
 /obj/disposalpipe/segment/sewage{
@@ -2747,7 +2734,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/blue/side{
 	dir = 1
 	},
@@ -3408,7 +3394,7 @@
 	icon_state = "0-4"
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "cQi" = (
 /obj/machinery/floorflusher/industrial,
 /obj/disposalpipe/trunk,
@@ -4456,9 +4442,6 @@
 /area/station/bridge)
 "dPU" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
-/obj/cable{
-	icon_state = "4-8"
-	},
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -4788,7 +4771,7 @@
 "ecU" = (
 /obj/machinery/drainage,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "edN" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/stackable_ammo/scatter/slug_rubber/ten{
@@ -5276,7 +5259,7 @@
 	dir = 8
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "eus" = (
 /obj/pathlights/shuttle{
 	dir = 4
@@ -5569,7 +5552,7 @@
 	icon_state = "tube1"
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "eGs" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -5765,7 +5748,7 @@
 /obj/machinery/shower,
 /obj/machinery/drainage,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "eQO" = (
 /obj/machinery/power/apc/autoname_south,
 /obj/cable{
@@ -5835,11 +5818,6 @@
 /obj/machinery/light/emergency{
 	dir = 4
 	},
-/obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/autoname_east,
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -6282,6 +6260,20 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/medbay/lobby)
+"fkt" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/obj/grille/catwalk/grey{
+	dir = 4
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
 "flc" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/floatingtiles/loose/random,
@@ -6649,7 +6641,7 @@
 	dir = 2
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "fAm" = (
 /obj/storage/closet/coffin,
 /obj/decal/cleanable/rust/jen,
@@ -6900,7 +6892,7 @@
 "fKW" = (
 /obj/disposalpipe/junction,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "fKX" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/hor)
@@ -7154,15 +7146,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/east)
-"fXI" = (
-/obj/pathlights/shuttle{
-	dir = 1
-	},
-/obj/cable{
-	icon_state = "1-4"
-	},
-/turf/floor,
-/area/station/hallway/primary/southwest)
 "fXT" = (
 /obj/stool/chair/comfy/blue{
 	dir = 4
@@ -7326,7 +7309,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "gdz" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
@@ -7484,7 +7467,7 @@
 /obj/machinery/door/window/southleft,
 /obj/landmark/gps_waypoint,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "gle" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -7813,7 +7796,7 @@
 	name = "Clem"
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "gyd" = (
 /obj/stool,
 /turf/floor/specialroom/bar,
@@ -9672,7 +9655,7 @@
 	dir = 1
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "hQg" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -9790,6 +9773,17 @@
 	dir = 6
 	},
 /area/station/engine/engineering)
+"hVO" = (
+/obj/lattice,
+/obj/machinery/communications_dish,
+/obj/grille/catwalk/grey{
+	dir = 9
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/space,
+/area/space)
 "hWc" = (
 /obj/disposalpipe/switch_junction/left/east,
 /obj/cable{
@@ -10130,9 +10124,6 @@
 	},
 /turf/floor/plating,
 /area/station/chapel/office)
-"ild" = (
-/turf/wall,
-/area/station/crew_quarters/bathroom)
 "ile" = (
 /obj/decal/cleanable/mess/sodacan,
 /obj/stool/chair{
@@ -11574,6 +11565,16 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
+"jBv" = (
+/obj/lattice,
+/obj/grille/catwalk/grey{
+	dir = 4
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
 "jCw" = (
 /turf/space,
 /area/station/solar/north)
@@ -13828,7 +13829,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "lse" = (
 /obj/storage/closet/emergency,
 /turf/floor/plating/random,
@@ -14272,9 +14273,6 @@
 	},
 /obj/pathlights/shuttle{
 	dir = 1
-	},
-/obj/cable{
-	icon_state = "1-2"
 	},
 /turf/floor,
 /area/station/hallway/primary/southwest)
@@ -15046,10 +15044,6 @@
 /area/station/medical/medbay/lobby)
 "mqH" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4;
-	layer = 2.9
-	},
 /turf/floor/yellow/checker{
 	dir = 4
 	},
@@ -15273,14 +15267,6 @@
 /turf/floor/grime,
 /area/station/storage/warehouse{
 	name = "Warehouse"
-	})
-"mAh" = (
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/floor/wood,
-/area/station/crew_quarters/info{
-	name = "Book Nook"
 	})
 "mAy" = (
 /obj/machinery/power/apc/autoname_south,
@@ -17407,7 +17393,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "ogS" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/firedoor_spawn,
@@ -18082,7 +18068,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "oEw" = (
 /obj/lattice,
 /turf/space,
@@ -18681,9 +18667,6 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
 /turf/floor/yellow/checker{
 	dir = 4
 	},
@@ -18808,7 +18791,7 @@
 	dir = 4
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "pjd" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor,
 /turf/floor/white/checker,
@@ -19097,6 +19080,9 @@
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "pvO" = (
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
 "pwF" = (
@@ -19309,7 +19295,7 @@
 "pHm" = (
 /obj/machinery/door/window/southright,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "pHG" = (
 /obj/table/surgery_tray,
 /turf/floor/black,
@@ -19499,7 +19485,7 @@
 	},
 /obj/firedoor_spawn,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "pNu" = (
 /turf/wall/r_wall,
 /area/station/engine/gas)
@@ -20484,7 +20470,7 @@
 	dir = 1
 	},
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "qwX" = (
 /obj/disposalpipe/switch_junction/right/north,
 /obj/pathlights/shuttle{
@@ -21343,9 +21329,6 @@
 	dir = 1
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
-/obj/cable{
-	icon_state = "1-2"
-	},
 /turf/floor,
 /area/station/hallway/primary/southwest)
 "rhr" = (
@@ -22806,7 +22789,7 @@
 /obj/machinery/door/window/southright,
 /obj/disposalpipe/junction,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "ssS" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -23790,9 +23773,6 @@
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 4
 	},
-/obj/cable{
-	icon_state = "4-8"
-	},
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -24392,9 +24372,6 @@
 /area/station/crew_quarters/catering)
 "tIf" = (
 /obj/decal/cleanable/mess/random_litter,
-/obj/cable{
-	icon_state = "4-8"
-	},
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -24440,14 +24417,6 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
-"tMN" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/floor/wood,
-/area/station/crew_quarters/info{
-	name = "Book Nook"
-	})
 "tMY" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -27386,6 +27355,9 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
 "wsJ" = (
@@ -27398,7 +27370,7 @@
 	},
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/sanitary,
-/area/station/crew_quarters/bathroom)
+/area/station/crew_quarters/showers)
 "wte" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -28128,6 +28100,9 @@
 /area/station/engine/engineering)
 "xap" = (
 /obj/machinery/door/airlock/external,
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
 "xat" = (
@@ -29080,6 +29055,9 @@
 /area/station/hallway/primary/east)
 "xKX" = (
 /obj/disposalpipe/segment/mail,
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
 "xLd" = (
@@ -56080,7 +56058,7 @@ ipT
 ipT
 dVl
 xrW
-eER
+sht
 mSJ
 igy
 nKR
@@ -60012,9 +59990,9 @@ xOD
 ddL
 xOD
 rhk
-bZH
+wAd
 lLL
-fXI
+rLX
 rLX
 rLX
 rLX
@@ -60316,7 +60294,7 @@ pjV
 pjV
 pjV
 eBg
-ejC
+tJo
 tJo
 iJk
 tJo
@@ -61524,7 +61502,7 @@ yfb
 mtn
 vQj
 hgr
-tMN
+ufA
 ufA
 rhz
 bMk
@@ -61826,7 +61804,7 @@ mtn
 mtn
 xkk
 eTH
-mAh
+ufA
 uLi
 pbB
 bMk
@@ -72381,13 +72359,13 @@ jve
 jve
 uTA
 uTA
-ild
-ild
-ild
-ild
-ild
-ild
-ild
+wpv
+wpv
+wpv
+wpv
+wpv
+wpv
+wpv
 uSP
 vIR
 uSP
@@ -72689,7 +72667,7 @@ oEt
 bZu
 aGV
 lrU
-ild
+wpv
 qMK
 sGM
 qMK
@@ -72991,7 +72969,7 @@ ssR
 wsM
 pHm
 lrU
-ild
+wpv
 nRA
 tsh
 xaG
@@ -73293,7 +73271,7 @@ gke
 gcS
 gyb
 lrU
-ild
+wpv
 skq
 kvO
 bTz
@@ -73595,7 +73573,7 @@ hQc
 eur
 eGc
 eQC
-ild
+wpv
 tex
 iKY
 vCc
@@ -73892,12 +73870,12 @@ uTA
 uTA
 uTA
 pNc
-ild
-ild
-ild
-ild
-ild
-ild
+wpv
+wpv
+wpv
+wpv
+wpv
+wpv
 vIR
 axl
 vIR
@@ -80516,7 +80494,7 @@ ipT
 ipT
 ipT
 qfS
-ipT
+fkt
 qfS
 ipT
 ipT
@@ -80818,7 +80796,7 @@ aTt
 aTt
 aTt
 cRG
-aTt
+jBv
 cRG
 aTt
 aTt
@@ -81120,7 +81098,7 @@ ipT
 ipT
 ipT
 qfS
-ipT
+fkt
 qfS
 ipT
 ipT
@@ -81422,7 +81400,7 @@ ipT
 ipT
 ipT
 qfS
-ipT
+fkt
 jMG
 ipT
 ipT
@@ -81724,7 +81702,7 @@ ipT
 ipT
 ipT
 qfS
-ipT
+fkt
 ipT
 ipT
 ipT
@@ -82025,9 +82003,9 @@ ipT
 ipT
 ipT
 ipT
-mpS
-ipT
-ipT
+qfS
+fkt
+sET
 ipT
 ipT
 ipT
@@ -82326,11 +82304,11 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
-ipT
-ipT
+hvp
+cRG
+hVO
+cRG
+avl
 ipT
 ipT
 ipT
@@ -82629,9 +82607,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+mpS
+cks
+mpS
 ipT
 ipT
 ipT
@@ -82932,7 +82910,7 @@ ipT
 ipT
 ipT
 ipT
-ipT
+mpS
 ipT
 ipT
 ipT
