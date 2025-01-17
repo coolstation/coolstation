@@ -2544,6 +2544,9 @@
 /area/station/crew_quarters/kitchen/freezer)
 "ccM" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/obj/cable/brown{
+	icon_state = "1-2"
+	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
 "ccY" = (
@@ -9073,13 +9076,7 @@
 	dir = 8
 	},
 /obj/cable{
-	icon_state = "1-8"
-	},
-/obj/cable{
 	icon_state = "1-4"
-	},
-/obj/cable{
-	icon_state = "4-8"
 	},
 /turf/floor,
 /area/station/engine/engineering/breakroom)
@@ -9140,6 +9137,9 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0;
 	dir = 4
+	},
+/obj/cable/brown{
+	icon_state = "1-2"
 	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
@@ -10158,6 +10158,13 @@
 /obj/window/reinforced/north,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"ioA" = (
+/obj/machinery/atmospherics/valve/vertical,
+/obj/cable/brown{
+	icon_state = "4-8"
+	},
+/turf/floor/orangeblack,
+/area/station/engine/core)
 "ipz" = (
 /obj/stool/chair/blue,
 /turf/floor/purplewhite{
@@ -10943,16 +10950,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/power/monitor/smes{
 	dir = 4;
 	name = "Engine Output Monitoring"
 	},
 /obj/machinery/power/data_terminal{
 	layer = 2
+	},
+/obj/cable/brown{
+	icon_state = "0-8"
 	},
 /turf/floor/orangeblack/side{
 	dir = 8
@@ -12854,6 +12860,9 @@
 "kGO" = (
 /obj/cable/brown,
 /obj/machinery/power/generatorTemp,
+/obj/cable/brown{
+	icon_state = "0-2"
+	},
 /turf/floor/engine,
 /area/station/engine/core)
 "kGT" = (
@@ -12999,6 +13008,9 @@
 /area/station/construction)
 "kNz" = (
 /obj/decal/tile_edge/stripe/extra_big,
+/obj/cable/brown{
+	icon_state = "1-2"
+	},
 /turf/floor/engine,
 /area/station/engine/core)
 "kNJ" = (
@@ -14174,6 +14186,13 @@
 "lIk" = (
 /turf/floor/airless/plating/damaged1,
 /area/space)
+"lIW" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable/brown{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/engine/engineering/breakroom)
 "lJi" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -24060,6 +24079,18 @@
 	},
 /turf/floor,
 /area/station/security/equipment)
+"tvI" = (
+/obj/machinery/atmospherics/unary/furnace_connector{
+	dir = 8
+	},
+/obj/machinery/power/furnace/thermo{
+	fuel = 100
+	},
+/obj/cable/brown{
+	icon_state = "4-8"
+	},
+/turf/floor/orangeblack,
+/area/station/engine/core)
 "twk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -25396,6 +25427,9 @@
 "uBG" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /obj/decal/cleanable/dirt/random,
+/obj/cable/brown{
+	icon_state = "4-8"
+	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
 "uCd" = (
@@ -27365,6 +27399,12 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
+"wsd" = (
+/obj/cable/brown{
+	icon_state = "1-4"
+	},
+/turf/floor/orangeblack,
+/area/station/engine/core)
 "wsJ" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/space,
@@ -56074,7 +56114,7 @@ kGO
 kNz
 huv
 ccM
-xxK
+wsd
 hQW
 vPf
 wZn
@@ -56376,7 +56416,7 @@ vft
 nsM
 yln
 upq
-lUQ
+ioA
 vCl
 rik
 hvr
@@ -56980,7 +57020,7 @@ fNx
 gYF
 dni
 uuZ
-uuZ
+tvI
 upz
 vPf
 ktd
@@ -57282,7 +57322,7 @@ shE
 vXe
 vXe
 kht
-kht
+lIW
 kht
 fwO
 fwO
