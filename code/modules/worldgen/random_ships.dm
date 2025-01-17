@@ -42,7 +42,7 @@ TYPEINFO(/datum/mapPrefab/random_ship)
 
 proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space tiles, take ONLY NEW empty tiles into account for better schtuff
 	var/payout = 0
-	var/scrappedBonus = 50
+	var/scrappedBonus = 20
 
 	var/step = 1
 	for (var/S in postWork)
