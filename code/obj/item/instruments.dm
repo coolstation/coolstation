@@ -205,6 +205,7 @@
 	name = "saxophone"
 	desc = "NEVER GONNA DANCE AGAIN, GUILTY FEET HAVE GOT NO RHYTHM"
 	icon = 'icons/obj/instruments.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_instruments.dmi'
 	icon_state = "sax" // temp
 	item_state = "sax"
 	w_class = 3
