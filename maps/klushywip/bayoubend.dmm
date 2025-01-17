@@ -4779,6 +4779,16 @@
 	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
+"eck" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/r_door_control/podbay/arrivals/new_walls/west{
+	id = "hangar_security"s";
+	pixel_x = 24
+	},
+/turf/space,
+/area/space)
 "ecz" = (
 /obj/lattice{
 	dir = 1;
@@ -24303,14 +24313,14 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "tzH" = (
-/obj/machinery/door/airlock/glass/medical{
-	id = null
-	},
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/access_spawn/medical,
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
+/obj/machinery/door/airlock/glass/medical{
+	id = "cloning-exit"
+	},
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "tAk" = (
@@ -25330,6 +25340,12 @@
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/door_control{
+	id = "cloning-exit";
+	name = "Exit";
+	pixel_x = -25;
+	pixel_y = 0
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay)
@@ -27372,12 +27388,14 @@
 /turf/floor/grime,
 /area/station/science/lab)
 "wjP" = (
-/obj/machinery/door/airlock/glass/medical,
-/obj/access_spawn/medical,
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/medical,
+/obj/machinery/door/airlock/glass/medical{
+	id = "cloning-exit"
+	},
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "wkg" = (
@@ -27824,6 +27842,9 @@
 /area/ghostdrone_factory)
 "wDt" = (
 /obj/machinery/light,
+/obj/machinery/r_door_control/podbay/arrivals/new_walls/west{
+	id = "hangar_security"s"
+	},
 /turf/floor/engine,
 /area/station/hangar/sec)
 "wDz" = (
@@ -61015,7 +61036,7 @@ aTt
 aTt
 cRG
 mVx
-aTt
+eck
 aTt
 aTt
 ecz
