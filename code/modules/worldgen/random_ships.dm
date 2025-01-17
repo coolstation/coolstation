@@ -40,24 +40,22 @@ TYPEINFO(/datum/mapPrefab/random_ship)
 			src.probability = text2num(probability_regex.group[1])
 
 proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space tiles, take ONLY NEW empty tiles into account for better schtuff
-	var/shipworth = 0
-	var/payoutMod = 0
-
+	var/payout = 0
 	var/scrappedBonus = 50
 
 	var/step = 1
 	for (var/S in postWork)
 		if(S != preWork[step] && S == 0) //rewards half points for replacing a wall with a floor
-			payoutMod += scrappedBonus / 2
+			payout += scrappedBonus
 		step += 1
 
 	for(var/datum/data/record/record in data_core.bank)
 		if(record.fields["job"] == "Scrapper")
-			record.fields["current_money"] += shipworth
+			record.fields["current_money"] += payout
 
 	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 	var/datum/signal/pdaSignal = get_free_signal()
-	pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SHIPYARD-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING, MGO_MINING), "sender"="00000000", "message"="Notification: Payment of: [shipworth] recieved from client ship.")
+	pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SHIPYARD-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING, MGO_MINING), "sender"="00000000", "message"="Notification: Payment of: [payout] recieved from client ship.")
 	pdaSignal.transmission_method = TRANSMISSION_RADIO
 	if(transmit_connection != null)
 		transmit_connection.post_signal(null, pdaSignal)
