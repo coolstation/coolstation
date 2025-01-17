@@ -1883,7 +1883,7 @@
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
 "bKp" = (
-/obj/iv_stand,
+/obj/machinery/sleeper/port_a_medbay,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "bKv" = (
@@ -16304,6 +16304,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/iv_stand,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "pDf" = (
@@ -19633,7 +19634,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/sleeper/port_a_medbay,
+/obj/storage/closet,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
 "sVz" = (
