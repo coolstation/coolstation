@@ -2923,7 +2923,7 @@
 /turf/floor/grime,
 /area/diner/arcade)
 "ain" = (
-/obj/machinery/vending/gunse,
+/obj/machinery/vending/gunse/diner,
 /turf/floor/carpet/arcade,
 /area/diner/arcade)
 "aio" = (
@@ -2939,9 +2939,9 @@
 /area/diner/arcade)
 "aip" = (
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 8
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aiq" = (
@@ -4878,6 +4878,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
+/obj/item/gun/modular/NT/short/bartender,
 /turf/floor/industrial,
 /area/space)
 "ane" = (
@@ -4938,6 +4939,7 @@
 /area/space)
 "anl" = (
 /obj/storage/crate/internals,
+/obj/item/gun/modular/NT/long/shotty,
 /turf/floor/industrial,
 /area/space)
 "anm" = (
@@ -4953,6 +4955,7 @@
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 4
 	},
+/obj/item/gun/modular/NT/short/bartender,
 /turf/floor/industrial,
 /area/space)
 "ano" = (
@@ -6951,6 +6954,7 @@
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7"
 	},
+/obj/item/gun_parts/barrel/soviet/dense,
 /turf/floor/plating,
 /area/salyut)
 "atc" = (
@@ -7081,9 +7085,9 @@
 "att" = (
 /obj/decal/cleanable/dirt/dirt4,
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 1
+	icon_state = "wall3_space"
 	},
 /area/space)
 "atu" = (
@@ -7124,9 +7128,9 @@
 "atz" = (
 /obj/decal/cleanable/dirt,
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 8
+	icon_state = "wall3_space"
 	},
 /area/space)
 "atA" = (
@@ -9301,9 +9305,9 @@
 /area/space)
 "aBj" = (
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 4
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aBk" = (
@@ -10826,9 +10830,9 @@
 /area/abandonedship)
 "aGC" = (
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 4
+	icon_state = "wall3_space"
 	},
 /area/abandonedship)
 "aGD" = (
@@ -10876,9 +10880,9 @@
 /area/space)
 "aGL" = (
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 1
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aGM" = (
@@ -11096,22 +11100,21 @@
 "aHz" = (
 /turf/wall/s_wall{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 2
+	icon_state = "wall_space"
 	},
 /area/abandonedmedicalship)
 "aHA" = (
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 8
+	icon_state = "wall_space"
 	},
 /area/abandonedship)
 "aHB" = (
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 8
+	icon_state = "wall_space"
 	},
 /area/general_spaceships)
 "aHC" = (
@@ -11123,9 +11126,9 @@
 /area/abandonedship)
 "aHD" = (
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 1
+	icon_state = "wall_space"
 	},
 /area/abandonedship)
 "aHE" = (
@@ -11816,9 +11819,9 @@
 /area/space)
 "aJI" = (
 /turf/wall/s_wall{
+	dir = 10;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 10
+	icon_state = "wall_space"
 	},
 /area/abandonedship)
 "aJJ" = (
@@ -11827,9 +11830,9 @@
 /area/abandonedship)
 "aJK" = (
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 4
+	icon_state = "wall_space"
 	},
 /area/abandonedship)
 "aJL" = (
@@ -12415,9 +12418,9 @@
 	icon_state = "lattice-dir"
 	},
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 1
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aLn" = (
@@ -12825,9 +12828,9 @@
 	icon_state = "lattice-dir"
 	},
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 4
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aMl" = (
@@ -13043,9 +13046,9 @@
 	name = "sensor array"
 	},
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 8
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aMO" = (
@@ -13077,9 +13080,9 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 4
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aMS" = (
@@ -13150,9 +13153,9 @@
 	name = "sensor array"
 	},
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 8
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aNb" = (
@@ -13736,9 +13739,9 @@
 	name = "sensor array"
 	},
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 4
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aOP" = (
@@ -13787,9 +13790,9 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 8
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aOW" = (
@@ -13873,9 +13876,9 @@
 	name = "sensor array"
 	},
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 4
+	icon_state = "wall3_space"
 	},
 /area/space)
 "aPf" = (
@@ -15897,9 +15900,9 @@
 /area/iss)
 "aVi" = (
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 4
+	icon_state = "wall_space"
 	},
 /area/space)
 "aVj" = (
@@ -18734,9 +18737,9 @@
 /area/abandonedship)
 "bej" = (
 /turf/wall/s_wall{
+	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 8
+	icon_state = "wall3_space"
 	},
 /area/abandonedship)
 "bek" = (
@@ -21982,9 +21985,9 @@
 /area/juicer/club/outside)
 "bDt" = (
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 1
+	icon_state = "wall_space"
 	},
 /area/general_spaceships)
 "bEC" = (
@@ -22375,7 +22378,6 @@
 /area/diner/dining)
 "elp" = (
 /obj/machinery/door/poddoor/blast{
-	dir = 2;
 	icon_state = "bdoorleft1";
 	id = "hangar_twins1";
 	layer = 4;
@@ -22475,8 +22477,7 @@
 "eGa" = (
 /turf/wall/s_wall{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 2
+	icon_state = "wall_space"
 	},
 /area/general_spaceships)
 "eGG" = (
@@ -22676,9 +22677,9 @@
 	icon_state = "lattice-broken"
 	},
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 1
+	icon_state = "wall_space"
 	},
 /area/abandonedship)
 "fyY" = (
@@ -22721,6 +22722,13 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"fLj" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/item/stackable_ammo/pistol/zaubertube/three,
+/turf/floor/plating,
+/area/salyut)
 "fRK" = (
 /obj/machinery/door/airlock/classic{
 	icon_state = "door_locked";
@@ -23003,9 +23011,9 @@
 /area/diner/solar)
 "hfu" = (
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 1
+	icon_state = "wall3_space"
 	},
 /area/abandonedship)
 "hfS" = (
@@ -24177,9 +24185,9 @@
 	})
 "lUB" = (
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 1
+	icon_state = "wall_space"
 	},
 /area/space)
 "lWc" = (
@@ -24925,8 +24933,7 @@
 "pFv" = (
 /turf/wall/s_wall{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 2
+	icon_state = "wall_space"
 	},
 /area/abandonedship)
 "pFK" = (
@@ -24936,6 +24943,11 @@
 	icon_state = "old_rwall"
 	},
 /area/diner/dining)
+"pKr" = (
+/obj/decal/cleanable/dirt,
+/obj/item/gun/modular/NT/short/bartender,
+/turf/floor/carpet/grime,
+/area/diner/motel)
 "pKR" = (
 /obj/decal/fakeobjects/tallsmes,
 /turf/floor/scorched,
@@ -25025,6 +25037,12 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"qlP" = (
+/obj/item/stackable_ammo/pistol/zaubertube/five,
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/general_spaceships)
 "qmR" = (
 /obj/wingrille_spawn/auto,
 /obj/window_blinds/cog2/left,
@@ -25404,6 +25422,7 @@
 /obj/item/cigpacket/cigarillo/juicer{
 	pixel_x = 3
 	},
+/obj/item/gun_parts/barrel/NT/shotty,
 /turf/floor/grime,
 /area/juicer/club/back)
 "sjn" = (
@@ -25455,8 +25474,7 @@
 	})
 "ssA" = (
 /obj/stool/chair/comfy/blue{
-	dir = 4;
-	icon_state = "chair_comfy-blue"
+	dir = 4
 	},
 /obj/decal/cleanable/dirt,
 /turf/floor/carpet/blue,
@@ -25576,6 +25594,12 @@
 /obj/window/reinforced/south,
 /turf/floor/plating,
 /area/juicer/club)
+"sIr" = (
+/obj/item/gun/modular/soviet/long/scatter,
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/general_spaceships)
 "sIP" = (
 /obj/submachine/ATM{
 	pixel_x = 32
@@ -25952,8 +25976,7 @@
 	})
 "uxn" = (
 /obj/stool/chair/comfy/blue{
-	dir = 8;
-	icon_state = "chair_comfy-blue"
+	dir = 8
 	},
 /turf/floor/carpet/blue,
 /area/prefab/mobius{
@@ -26003,9 +26026,9 @@
 	icon_state = "lattice-broken"
 	},
 /turf/wall/s_wall{
+	dir = 1;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space";
-	dir = 1
+	icon_state = "wall3_space"
 	},
 /area/space)
 "uQl" = (
@@ -26039,6 +26062,7 @@
 /area/juicer/club/back)
 "uVz" = (
 /obj/table/reinforced/auto,
+/obj/item/gun_parts/stock/NT/drum,
 /turf/floor/grime,
 /area/juicer/club/back)
 "uYC" = (
@@ -26100,6 +26124,31 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"vki" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/decal/tile_edge/line/purple{
+	dir = 4;
+	icon_state = "line1"
+	},
+/obj/decal/tile_edge/line/purple{
+	dir = 8;
+	icon_state = "line1"
+	},
+/obj/item/gun/modular/soviet/long/advanced,
+/turf/floor/plating/random,
+/area/space)
 "vnz" = (
 /obj/grille/catwalk{
 	dir = 6;
@@ -26427,9 +26476,9 @@
 /area/shuttle/mining/space)
 "xbt" = (
 /turf/wall/s_wall{
+	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall_space";
-	dir = 4
+	icon_state = "wall_space"
 	},
 /area/abandonedmedicalship)
 "xcY" = (
@@ -26696,7 +26745,6 @@
 	})
 "ybv" = (
 /obj/machinery/door/poddoor/blast{
-	dir = 2;
 	id = "hangar_twins1";
 	layer = 4;
 	name = "pod bay door"
@@ -73987,7 +74035,7 @@ aaa
 axB
 axA
 ass
-asP
+fLj
 axA
 aAj
 aaa
@@ -79951,7 +79999,7 @@ lbt
 aha
 aph
 ahX
-lbt
+pKr
 anX
 aph
 oNd
@@ -93659,7 +93707,7 @@ aaa
 aaa
 ixA
 rsC
-fqe
+sIr
 fqe
 kMa
 kMa
@@ -93962,7 +94010,7 @@ aaa
 ixA
 dwj
 jrt
-fqe
+qlP
 kMa
 lnk
 lnk
@@ -102913,7 +102961,7 @@ afR
 afZ
 ajQ
 ajX
-alh
+vki
 alh
 alh
 ame
