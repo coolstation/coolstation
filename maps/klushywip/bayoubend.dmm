@@ -14608,8 +14608,8 @@
 	},
 /obj/item/shaker/pepper,
 /obj/item/kitchen/utensil/knife/pizza_cutter{
-	pixel_y = 15;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 15
 	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
@@ -15134,7 +15134,10 @@
 /turf/floor,
 /area/station/medical/medbay/lobby)
 "mqH" = (
-/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4;
+	layer = 2.9
+	},
 /turf/floor/yellow/checker{
 	dir = 4
 	},
@@ -15624,8 +15627,8 @@
 "mKC" = (
 /obj/table/glass/reinforced/auto,
 /obj/machinery/networked/printer{
-	print_id = "Bridge";
-	pixel_y = 5
+	pixel_y = 5;
+	print_id = "Bridge"
 	},
 /obj/cable,
 /turf/floor/carpet/blue/fancy/edge,
@@ -18697,8 +18700,8 @@
 /obj/window/reinforced/south,
 /obj/window/reinforced/east,
 /obj/machinery/networked/printer{
-	print_id = "Bridge";
-	pixel_y = 5
+	pixel_y = 5;
+	print_id = "Bridge"
 	},
 /obj/cable,
 /turf/floor/neutral/side{
@@ -18787,6 +18790,9 @@
 "pfg" = (
 /obj/cable{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
 	},
 /turf/floor/yellow/checker{
 	dir = 4
@@ -22570,6 +22576,7 @@
 /turf/wall,
 /area/station/crew_quarters/bar)
 "sht" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/floor/yellow/checker{
 	dir = 4
 	},
@@ -22833,8 +22840,8 @@
 /area/station/crew_quarters/market)
 "sqb" = (
 /obj/decal/poster/wallsign/stencil/right/r{
-	pixel_y = 21;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 21
 	},
 /obj/decal/poster/wallsign/stencil/right/i{
 	pixel_x = -2
@@ -23407,6 +23414,12 @@
 	dir = 9
 	},
 /area/station/science/chemistry)
+"sMn" = (
+/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/turf/floor/yellow/checker{
+	dir = 4
+	},
+/area/station/engine/coldloop)
 "sMq" = (
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
@@ -28680,12 +28693,12 @@
 /area/station/medical/robotics)
 "xrt" = (
 /obj/decal/poster/wallsign/stencil/right/s{
-	pixel_y = 6;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 6
 	},
 /obj/decal/poster/wallsign/stencil/right/o{
-	pixel_y = 18;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 18
 	},
 /turf/wall,
 /area/station/crew_quarters/kitchen)
@@ -55978,7 +55991,7 @@ ipT
 dVl
 ckD
 mqH
-sht
+sMn
 eER
 hOQ
 yaw
