@@ -286,9 +286,9 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	//hos can spawn with everything, no big deal
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/standard)
+	slot_belt = list(/obj/item/storage/belt/security/enhanced)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
-	slot_poc2 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
+	slot_poc2 = list(/obj/item/instrument/whistle) //replaces sec starter kit
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
@@ -440,7 +440,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/device/pda2/medical_director)
-	slot_lhan = list(/obj/item/storage/firstaid/regular/doctor_spawn)
+	slot_lhan = list(/obj/item/storage/firstaid/regular/mdir)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_jump = list(/obj/item/clothing/under/rank/medical_director)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
@@ -504,13 +504,13 @@ ABSTRACT_TYPE(/datum/job/security)
 	cant_spawn_as_rev = 1
 	receives_badge = 1
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/standard)
+	slot_belt = list(/obj/item/storage/belt/security/enhanced)
 	slot_jump = list(/obj/item/clothing/under/rank/security)
 	//slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
-	slot_poc1 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
+	slot_poc1 = list(/obj/item/instrument/whistle) //replaces sec starter kit
 	slot_poc2 = list(/obj/item/device/pda2/security)
 	rounds_needed_to_play = 30 //higher barrier of entry than before but now with a trainee job to get into the rythym of things to compensate
 
@@ -526,7 +526,7 @@ ABSTRACT_TYPE(/datum/job/security)
 		M.traitHolder.addTrait("training_security")
 		//I took this stuff from the sec equipment vendor we're axing- Bat
 		var/obj/item/storage/belt/A = M.belt
-		if (istype(A,/obj/item/storage/belt/security/standard)) //This kinda stinks but it weeds out assistants who are a secoff subtype fsr????
+		if (istype(A,/obj/item/storage/belt/security/enhanced)) //This kinda stinks but it weeds out assistants who are a secoff subtype fsr????
 			SPAWN_DBG(2 DECI SECONDS) //ugh belts do this on spawn and we need to wait
 				var/list/tracklist = list()
 				for(var/atom/C in A.contents)
@@ -543,7 +543,7 @@ ABSTRACT_TYPE(/datum/job/security)
 		cant_spawn_as_con = 1
 		wages = PAY_UNTRAINED
 		slot_jump = list(/obj/item/clothing/under/rank/security/assistant)
-		slot_belt = list(/obj/item/storage/belt/security/assistant)
+		slot_belt = list()
 		slot_suit = list()
 		slot_glov = list(/obj/item/clothing/gloves/fingerless)
 		slot_head = list(/obj/item/clothing/head/red)
@@ -650,6 +650,8 @@ ABSTRACT_TYPE(/datum/job/research)
 	slot_jump = list(/obj/item/clothing/under/rank/scientist)
 	slot_foot = list(/obj/item/clothing/shoes/white)
 	slot_ears = list(/obj/item/device/radio/headset/research)
+	slot_eyes = list(/obj/item/clothing/glasses/spectro)
+	slot_poc1 = list(/obj/item/reagent_containers/glass/beaker/large = 50, /obj/item/pen/fancy = 25, /obj/item/pen/red = 5, /obj/item/reagent_containers/glass/beaker = 20)
 
 	New()
 		..()
@@ -926,7 +928,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	slot_jump = list(/obj/item/clothing/under/rank/mechanic)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_lhan = list(/obj/item/storage/toolbox/electrical/mechanic_spawn)
-	slot_glov = list(/obj/item/clothing/gloves/yellow)
+	slot_glov = list(/obj/item/clothing/gloves/yellow = 95, /obj/item/clothing/gloves/yellow/unsulated = 5)
 	slot_poc1 = list(/obj/item/device/pda2/mechanic)
 	slot_ears = list(/obj/item/device/radio/headset/engineer)
 
@@ -964,7 +966,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	slot_lhan = list(/obj/item/storage/toolbox/mechanical)
 	slot_poc1 = list(/obj/item/device/analyzer/atmospheric)
 	slot_ears = list(/obj/item/device/radio/headset/engineer)
-	items_in_backpack = list(/obj/item/tank/emergency_oxygen,/obj/item/crowbar)
+	items_in_backpack = list(/obj/item/crowbar, /obj/item/paper/book/from_file/pocketguide/atmos, /obj/item/deconstructor)
 
 	New()
 		..()
@@ -1113,8 +1115,8 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/bartending)
-	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker)
-	items_in_backpack = list(/obj/item/gun/modular/NT/short/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/bartender/five)
+	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker) // bartenders buddy ammo is broken i think
+	items_in_backpack = list(/obj/item/gun/modular/NT/short/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/NT/mini/three)
 
 	New()
 		..()

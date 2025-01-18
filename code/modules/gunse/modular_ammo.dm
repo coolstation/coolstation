@@ -678,6 +678,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	stack_type = /obj/item/stackable_ammo/scatter/NT
 	icon_state = "nt_shells"
 	icon_full  = "nt_shells"
+	icon_empty = "nt_shells-empty"
 
 	three
 		name = "\improper NT Shot (x3)"

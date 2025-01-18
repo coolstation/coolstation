@@ -588,6 +588,16 @@
 	auto
 		auto = 1
 
+/obj/table/clothchecker
+	name = "red checkers table"
+	desc = "mama mia"
+	icon = 'icons/obj/furniture/table_checkercloth.dmi'
+	auto_type = /obj/table/clothchecker/auto
+	parts_type = /obj/item/furniture_parts/table/checkercloth
+
+	auto
+		auto = 1
+
 /obj/table/folding
 	name = "folding table"
 	desc = "A table with a faux wood top designed for quick assembly and toolless disassembly."

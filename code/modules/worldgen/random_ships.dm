@@ -1,18 +1,14 @@
 /**
- * ORIGINAL RANDOM ROOM TEXT, DUE TO BE REPLACED. THIS WHOLE FILE IS NON FUNCTIONAL
- *
- * Want to add a room that's chosen from a selection of random rooms to your map? This is the place to look for that.
- * Put create a dmm file like assets/maps/WIDTHxHEIGHT/NAME_WEIGHT.dmm (or the appropriate secret folder).
- * WIDTH, HEIGHT are the dimensions of the room.
- * NAME is just what you choose to name it.
- * WEIGHT is the probability weight of the room, 100 is the default if you choose to omit this.
- *
- * Then placing an appropriate landmark on a map will choose a random room from the right folder.
+ * Wanna make a room for a S P A C E S H I P ???? Cool!!!!!! All you have to do is make your prefab, name it
+ * whatever, (has to be either 3x3 or 5x3 for now), and throw it in assets/maps/random_ships/(cargo or room)/size
+ * NOTE: ALL PREFABS HAVE TO HAVE THE CLEAR_AREA AREA, AND ALL CARGO PREFABS MUST HAVE BOTH CLEAR_TURF AND CLEAR_AREA <3
+ * oh ya you can make a spaceship too, just throw it in the 30x25 folder same as the rest :3
  */
 
 
 TYPEINFO(/datum/mapPrefab/random_ship)
 	folder = "random_ships"
+
 
 /datum/mapPrefab/random_ship
 	maxNum = 1 // Might be useful to add a way to override if someone ever wants that
@@ -44,7 +40,41 @@ TYPEINFO(/datum/mapPrefab/random_ship)
 		if(probability_regex.Find(filename))
 			src.probability = text2num(probability_regex.group[1])
 
-proc/buildRandomShips() //This is byond a terrible fix which likely doesn't function anyway. A better way to do this would be to create two landmarks, one for the ships and another for the rooms.
+proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space tiles, take ONLY NEW empty tiles into account for better schtuff
+	var/payout = 0
+	var/scrappedBonus = 10
+
+	var/step = 1
+	for (var/S in postWork)
+		if(S != preWork[step] && S == 0) //rewards points for destroying a wall
+			payout += scrappedBonus
+		step += 1
+
+	for(var/datum/data/record/record in data_core.bank)
+		if(record.fields["job"] == "Scrapper")
+			record.fields["current_money"] += payout
+
+	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+	var/datum/signal/pdaSignal = get_free_signal()
+	pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SHIPYARD-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING, MGO_MINING), "sender"="00000000", "message"="Notification: Payment of: [payout] recieved from client ship.")
+	pdaSignal.transmission_method = TRANSMISSION_RADIO
+	if(transmit_connection != null)
+		transmit_connection.post_signal(null, pdaSignal)
+
+proc/prepShips(var/area/stagearea)
+	if(prob(60))
+		explode_area(stagearea,rand(60,190),rand(1,3))
+	shipyardship_pre_densitymap = calculate_density_map(stagearea)
+
+proc/processShips(var/area/shipyard)
+	command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Control Alert","sound/machines/engine_alert2.ogg")
+	SPAWN_DBG(10 SECONDS)
+		playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
+		gib_area(shipyard)
+		shipyardship_post_densitymap = calculate_density_map(shipyard)
+		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
+
+proc/buildRandomShips()
 	shuffle_list(by_type[/obj/landmark/random_ship])
 	for_by_tcl(landmark, /obj/landmark/random_ship)
 		landmark.apply()
@@ -52,9 +82,9 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 	for_by_tcl(landmark, /obj/landmark/random_ship_room)
 		landmark.apply()
 
-
 /obj/landmark/random_ship_room
 	var/size = null
+	var/roomclass = null
 	deleted_on_start = FALSE
 	add_to_landmarks = FALSE
 
@@ -67,26 +97,38 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 		..()
 
 	proc/apply()
-		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(size))
+		var/datum/mapPrefab/random_ship/ship_prefab = pick_map_prefab(/datum/mapPrefab/random_ship, list(roomclass,size))
 		if(isnull(ship_prefab))
-			CRASH("No random ship prefab found for size: " + size)
+			CRASH("No random ship prefab found for size: " + size + ", and of type: " + roomclass)
 		ship_prefab.applyTo(src.loc)
 		logTheThing("debug", null, null, "Applied random ship prefab: [ship_prefab] to [log_loc(src)]")
 		qdel(src)
 
-	cargo3x3
+	room3x3
 		size = "3x3"
+		roomclass = "room"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/3x3.dmi'
 		icon_state = "cargo"
 	#endif
 
-	cargo5x3
+	room5x3
 		size = "5x3"
+		roomclass = "room"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/5x3.dmi'
 		icon_state = "cargo"
 	#endif
+
+	cargo5x3
+		size = "5x3"
+		roomclass = "cargo"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/5x3.dmi'
+		icon_state = "cargo"
+	#endif
+
+
 
 /obj/landmark/random_ship
 	var/size = null
@@ -107,6 +149,7 @@ proc/buildRandomShips() //This is byond a terrible fix which likely doesn't func
 			CRASH("No random ship prefab found for size: " + size)
 		ship_prefab.applyTo(src.loc)
 		logTheThing("debug", null, null, "Applied random ship prefab: [ship_prefab] to [log_loc(src)]")
+
 
 
 	size30x25

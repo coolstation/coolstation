@@ -22,8 +22,10 @@
 			qdel(src)
 			return
 		if (holder.r_hand) //force clear hands
+			holder.r_hand.set_loc(holder.loc)
 			holder.u_equip(holder.r_hand)
 		if (holder.l_hand)
+			holder.l_hand.set_loc(holder.loc)
 			holder.u_equip(holder.l_hand)
 		..()
 
@@ -69,26 +71,23 @@
 			qdel(src)
 
 	afterattack(atom/target, mob/user, reach, params)
-		if (istype(target, /turf) || istype(target, /obj/table))
-			place_the_thing(target)
+		if ((istype(target, /turf) && !target.density) || istype(target, /obj/table))
+			place_the_thing(target, user)
 		else
 			. = ..()
 
 	disposing()
 		if (our_thing) //ah fuck
-			place_the_thing(get_turf(src))
-			if (ismob(src.loc))
-				var/mob/M = src.loc
-				REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/lifting, "lifting")
+			place_the_thing(get_turf(src), ismob(src.loc) ? src.loc : null)
 		. = ..()
 
 	dropped(mob/user)
 		..()
 		if (our_thing)
-			place_the_thing(get_turf(user))
-			REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
+			place_the_thing(get_turf(user), user)
 
-/obj/item/lifted_thing/proc/place_the_thing(atom/target)
+
+/obj/item/lifted_thing/proc/place_the_thing(atom/target, mob/user)
 	if (!target)
 		target = get_turf(src)
 	our_thing.set_loc(get_turf(target))
@@ -96,4 +95,6 @@
 		var/obj/machinery/M = our_thing
 		M.SubscribeToProcess()
 	our_thing = null
+	if (user)
+		REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 	qdel(src)

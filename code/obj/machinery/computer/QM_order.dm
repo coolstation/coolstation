@@ -134,6 +134,20 @@
 
 			src.temp+="</table></div>"
 
+		for (var/p in QM_SupplierList)// build external supplier menu
+			var/categorycolor = random_color()
+			src.temp += {"<div class='categoryGroup' id='[p]' style='border-color:[categorycolor]'>
+											<b class='title' style='background:[categorycolor]'>[p]</b>"}
+			src.temp += "<table border=1>"
+			src.temp += "<tr><th>Item</th><th>Cost (Credits)</th><th>Contents</th></tr>"
+			var/list/supplier = QM_SupplierList[p]
+			for (var/datum/supply_packs/S in supplier)
+				if(S.syndicate || S.hidden) continue
+				src.temp += "<tr><td><a href='byond://?src=\ref[src];doorder=\ref[S]'><b><u>[S.name]</u></b></a></td><td>[S.cost]</td><td>[S.desc]</td></tr>"
+				LAGCHECK(LAG_LOW)
+			src.temp+="</table></div>"
+
+
 		src.temp += "<hr><A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A><br>"
 
 	else if (href_list["doorder"])

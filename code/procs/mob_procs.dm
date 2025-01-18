@@ -230,7 +230,7 @@
 
 	// Target checks.
 	var/mod_animation = 0 // Note: these aren't multipliers.
-	var/mod_weak = 0
+	var/mod_weak = 0		// THEN WHAT THE FUCK ARE THEY?????
 	var/mod_stun = 0
 	var/mod_misstep = 0
 	var/mod_eyeblurry = 0

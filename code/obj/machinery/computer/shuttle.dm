@@ -92,7 +92,6 @@
 	machine_registry_idx = MACHINES_SHUTTLECOMPS
 	var/active = 0
 
-
 /obj/machinery/computer/shipyard_control/attack_hand(mob/user as mob)
 	if(..())
 		return
@@ -139,29 +138,33 @@
 	if(!active)
 		for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 			active = 1
-			C.visible_message("<span class='alert'>The client ship has been notified of vacancy, and will arrive shortly!</span>")
+			C.visible_message("<span class='alert'>Ship movement in progress, please standby.</span>")
 		SPAWN_DBG(10 SECONDS)
 			call_client()
 
-/obj/machinery/computer/shipyard_control/proc/call_client()
+/obj/machinery/computer/shipyard_control/proc/call_client()  //this proc is a huge mess and will be cleaned up once I stop tacking crap on there.
 
 	if(shipyardship_location == 0)
-		clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
-		start_location.move_contents_to(end_location)
-		shipyardship_location = 1
-	else
-		if(shipyardship_location == 1)
-			var/area/start_location = locate(/area/shuttle/bayou/shipyard)
-			var/area/end_location = locate(/area/shuttle/bayou/stagearea)
+		prepShips(start_location)
+		SPAWN_DBG(2 SECONDS)
 			start_location.move_contents_to(end_location)
+			shipyardship_location = 1
+
+	else if(shipyardship_location == 1)
+		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
+		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
+		processShips(start_location)
+		SPAWN_DBG(15 SECONDS)
+			start_location.move_contents_to(end_location, move_ghosts = FALSE)
+			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 			shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
 		active = 0
-		C.visible_message("<span class='alert'>The client has moved!</span>")
+		C.visible_message("<span class='alert'>The client is en route!</span>")
 
 	return
 

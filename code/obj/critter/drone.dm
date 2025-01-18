@@ -102,7 +102,7 @@
 
 		for (var/mob/living/C in view(src.seekrange,src))
 			if (!src.alive) break
-			if (C.health < 0) continue
+			if (C.health < 0 || !C.mind) continue //if the mob doesnt have a mind, probably ignore them? - warc
 			if (C.name == src.attacker) src.attack = 1
 			if (iscarbon(C) && src.atkcarbon) src.attack = 1
 			if (issilicon(C) && src.atksilicon) src.attack = 1

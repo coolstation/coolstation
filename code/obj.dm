@@ -59,7 +59,8 @@
 	//lifting non-item objects that have CAN_BE_LIFTED
 	MouseDrop(atom/over_object)
 		if (ishuman(over_object) && (src.object_flags & CAN_BE_LIFTED))
-			new /obj/item/lifted_thing(src, over_object)
+			if (can_reach(over_object, src))
+				new /obj/item/lifted_thing(src, over_object)
 		else
 			..()
 

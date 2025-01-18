@@ -290,6 +290,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
 	goonhub_map = "https://wiki.coolstation.space/wiki/File:Bayoubendmapimage.png"
 
 	windows = /obj/window/auto
@@ -333,7 +334,8 @@ var/global/list/mapNames = list(
 		/datum/job/logistics/miner = 0,
 		/datum/job/logistics/scrapper = 3,
 		/datum/job/civilian/rancher = 0,
-		/datum/job/medical/pathologist = 0
+		/datum/job/medical/pathologist = 0,
+		/datum/job/logistics/janitor = 1
 	)
 
 
@@ -1120,7 +1122,7 @@ var/global/list/mapNames = list(
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/floor/industrial
+	shuttle_map_turf = /turf/space/gehenna/desert/beaten
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1178,10 +1180,16 @@ var/global/list/mapNames = list(
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
 			var/area/m_shuttle = locate(/area/shuttle/mining/station)
 			if(m_shuttle)
-				m_shuttle.filler_turf = "/turf/floor/industrial"
+				m_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
 				c_shuttle.filler_turf = "/turf/floor/industrial"
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = "/turf/space/gehenna/desert/beaten"
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = "/turf/space/gehenna/desert/beaten"
 
 
 /datum/map_settings/crag
@@ -1242,9 +1250,7 @@ var/global/list/mapNames = list(
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
 				c_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
-			var/area/e_shuttle = locate(/area/shuttle/escape/station)
-			if(e_shuttle)
-				e_shuttle.filler_turf = "/turf/space/gehenna/desert/beaten"
+
 			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
 			if(t_shuttle_r)
 				t_shuttle_r.filler_turf = "/turf/space/gehenna/desert/beaten"

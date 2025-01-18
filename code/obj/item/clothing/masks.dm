@@ -279,6 +279,18 @@
 				spam_flag = 0
 			return 1
 		return 0
+	attack_self(mob/user)
+		. = ..()
+		if(icon_state == "clown")
+			icon_state = "clown_hairless"
+			item_state = "clown_hat_hairless"
+			src.add_fingerprint(user)
+			boutput (user, __red("you chance the style of the [src]."))
+		else
+			icon_state = "clown"
+			item_state = "clown_hat"
+			src.add_fingerprint(user)
+			boutput (user, __red("you chance the style of the [src]."))
 
 /obj/item/clothing/mask/gas/syndie_clown
 	name = "clown wig and mask"

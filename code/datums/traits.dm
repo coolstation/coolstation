@@ -804,6 +804,19 @@ obj/trait/pilot
 
 // NO CATEGORY - Grey Border
 
+/obj/trait/obnoxious
+	name = "Obnoxious (0)"
+	cleanName = "Obnoxious"
+	desc = "Your screams are very loud, and extremely funny."
+	id = "obnoxious"
+	points = 0
+	isPositive = 0
+	onAdd(var/mob/owner)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.sound_list_scream = list('sound/voice/screams/Tom_Scream.ogg')
+		return
+
 /obj/trait/hemo
 	name = "Hemophilia (+1)"
 	cleanName = "Hemophilia"
@@ -1250,6 +1263,19 @@ obj/trait/pilot
 		if(iscarbon(owner))
 			var/mob/living/carbon/C = owner
 			C.poop_amount -= 5
+
+/obj/trait/ling_blood //False positive on ling blood tests
+	name = "Changeling Blood (0)"
+	cleanName = "Changeling Blood"
+	id = "ling_blood"
+	desc = "So there may have been some changeling involvement in your ancestry. Let's not dwell on it."
+	isPositive = FALSE
+
+	onAdd(var/mob/owner)
+		..()
+		if(isliving(owner))
+			var/mob/living/L = owner
+			L.blood_id = "bloodc"
 
 //Infernal Contract Traits
 /obj/trait/hair

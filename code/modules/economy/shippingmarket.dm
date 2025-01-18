@@ -238,8 +238,13 @@
 		var/add = 0
 		if (!commodities_list) //general shipping market selling
 			for(var/obj/O in items)
-				if (O.object_flags * SPECIAL_PENALTY_ON_SALE)
+				if (O.object_flags & SPECIAL_PENALTY_ON_SALE)
 					duckets -= 250 //fuck you
+					continue
+				if (istype(O, /obj/item/spacecash))
+					duckets += 0.9 * O:amount
+					if (sell)
+						qdel(O)
 					continue
 				for (var/C in src.commodities) // Key is type of the commodity
 					var/datum/commodity/CM = commodities[C]
@@ -256,12 +261,14 @@
 								qdel(O)
 						duckets += add
 						break
-					else if (istype(O, /obj/item/spacecash))
-						duckets += 0.9 * O:amount
-						if (sell)
-							qdel(O)
+
 		else // Please excuse this duplicate code, I'm gonna change trader commodity lists into associative ones later I swear
 			for(var/obj/O in items)
+				if (istype(O, /obj/item/spacecash))
+					duckets += O:amount
+					if (sell)
+						qdel(O)
+					continue
 				for (var/datum/commodity/C in commodities_list)
 					if (istype(O, C.comtype))
 						add = C.price
@@ -276,10 +283,7 @@
 								qdel(O)
 						duckets += add
 						break
-					else if (istype(O, /obj/item/spacecash))
-						duckets += O:amount
-						if (sell)
-							qdel(O)
+
 
 		return max(duckets, 0) //remove max() to allow negative profits (from selling special deliveries back), dunno what happens if cargo's budget goes in the red though
 

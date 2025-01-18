@@ -52,6 +52,7 @@
 		src.say(pick("Hey that's really not fuckin' cool?","Wow, rude???","What'd I do to you?"))
 		src.ai_set_active(1)
 
+		/*
 		for (var/mob/living/carbon/human/clubfert/fert in view(5,src))
 			if (get_dist(fert,src) <= 7)
 				if((!fert.ai_active) || prob(25))
@@ -59,4 +60,5 @@
 				fert.target = M
 				fert.ai_set_active(1)
 				fert.a_intent = INTENT_HARM
+		*/
 	//of course they don't attack because they're fixated on dancing (that's what I get for borrowing Juicer Gene's Geneticist Routine)

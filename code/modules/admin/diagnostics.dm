@@ -788,7 +788,7 @@ proc/debug_map_apc_count(delim,zlim)
 
 	blood_owner
 		name = "blood owner"
-		help = {"Shows the real name of the last person to bleed on a thing on a turf. If multiple peeople the tile is red and you need to hover over it to see a list."}
+		help = {"Shows the real name of the last person to bleed on a thing on a turf. If multiple people the tile is red and you need to hover over it to see a list."}
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			var/list/lines = list()
 			var/toucher = null
@@ -805,7 +805,7 @@ proc/debug_map_apc_count(delim,zlim)
 					var/obj/fluid/F = A
 					reagents = F.group.reagents
 				if(reagents)
-					for(var/reag_id in list("blood", "bloodc"))
+					for(var/reag_id in all_blood_reagents)
 						var/datum/reagent/blood/blood = reagents.reagent_list[reag_id]
 						var/datum/bioHolder/bioholder = blood?.data
 						if(istype(bioholder))

@@ -240,7 +240,7 @@ starting with SHITTY BILL
 							say("Got a light, [BILL_PICK("insults")]?")
 
 						if(6)
-							say("Nice [BILL_PICK("deadguy")], [BILL_PICK("insults")].")
+							say("Nice [BILL_PICK("verbs")], [BILL_PICK("insults")].")
 
 						if(7)
 							say("Got any [BILL_PICK("drugs")]?")
