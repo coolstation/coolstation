@@ -115,6 +115,13 @@
 			user.Attackby(src, user)
 		return
 
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
+		..()
+		if (ismob(usr)) //Doctors get to throw patches effectively, just like pipe bombs
+			var/mob/M = usr
+			if(M.traitHolder.hasTrait("training_medical"))
+				good_throw = TRUE
+
 	throw_impact(atom/M, datum/thrown_thing/thr)
 		..()
 		if (src.medical && !borg && !src.in_use && (can_operate_on(M)))
