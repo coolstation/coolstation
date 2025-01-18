@@ -438,6 +438,19 @@ obj/decal/fakeobjects
 	icon_state = "doormat"
 	layer = OBJ_LAYER
 
+/obj/decal/slipmat
+	name = "Anti Slip mat"
+	desc = "A ratty rubber mat that protects you from slipping. Probably."
+	density = 0
+	anchored = 1
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "slipmat"
+	layer = OBJ_LAYER
+
+/obj/decal/slipmat/torn
+	name = "Torn anti slip mat"
+	icon_state = "slipmat_torn"
+
 /obj/decal/alienflower
 	name = "strange alien flower"
 	desc = "Is it going to eat you if you get too close?"
