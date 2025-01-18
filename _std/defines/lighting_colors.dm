@@ -96,11 +96,6 @@ ENUMERATE_FIXTURES(small/ceiling, bulb)
 	name = "frosted red fluorescent light fixture"
 	light_type = /obj/item/light/bulb/emergency
 
-/obj/machinery/light/small/broken //Made at first to replace a decal in cog1's wreckage area
-	name = "shattered light bulb"
-	New()
-		..()
-		current_lamp.light_status = LIGHT_BROKEN
 
 #undef ENUMERATE_FIXTURES
 
