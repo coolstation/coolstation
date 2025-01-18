@@ -75,6 +75,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		sleep(1 SECOND)
 		// Start the countdown as normal, but hold it at 30 seconds until setup is complete
 		if (!game_start_delayed && (pregame_timeleft > 30 || current_state == GAME_STATE_PREGAME))
+			#ifndef I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO
+			if(total_clients() <= 0 && config.env != "dev")
+				continue
+			#endif
 			pregame_timeleft--
 
 			if (pregame_timeleft <= PREGAME_MUSIC_START && !did_lobbymusic) //do this to clients, for all already connected
