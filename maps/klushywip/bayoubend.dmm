@@ -8140,9 +8140,9 @@
 /area/station/science/lobby)
 "gJZ" = (
 /obj/table/reinforced/auto,
-/obj/item/reagent_containers/food/drinks/noodlecup{
-	pixel_x = -5;
-	pixel_y = 8
+/obj/item/device/geiger,
+/obj/item/device/geiger{
+	pixel_y = 9
 	},
 /turf/floor/grime,
 /area/station/mining/refinery{
@@ -9064,8 +9064,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/table/wood/round/auto,
 /obj/item/kitchen/utensil/knife/steak,
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "hos" = (
@@ -13015,11 +13015,11 @@
 /area/station/crew_quarters/kitchen)
 "kLd" = (
 /obj/disposalpipe/segment/mail,
-/obj/table/wood/round/auto,
 /obj/item/plate{
 	pixel_y = 3
 	},
 /obj/random_item_spawner/snacks/one,
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "kLB" = (
@@ -17139,8 +17139,8 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/obj/table/wood/round/auto,
 /obj/item/reagent_containers/food/snacks/garlicbread,
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "nTZ" = (
@@ -18583,8 +18583,8 @@
 	},
 /area/station/bridge)
 "oWR" = (
-/obj/table/wood/round/auto,
 /obj/random_item_spawner/tableware/one_or_zero,
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "oWX" = (
@@ -19020,11 +19020,11 @@
 "pnb" = (
 /obj/decal/cleanable/mess/splotch_four,
 /obj/disposalpipe/segment/mail,
-/obj/table/wood/round/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
 	pixel_x = 7;
 	pixel_y = 1
 	},
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "pno" = (
@@ -21773,8 +21773,8 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/obj/table/wood/round/auto,
 /obj/random_item_spawner/tableware/one_or_zero,
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "rwu" = (
@@ -22303,8 +22303,8 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/obj/table/wood/round/auto,
 /obj/random_item_spawner/tableware/one_or_zero,
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "rVN" = (
@@ -22371,11 +22371,11 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
-/obj/table/wood/round/auto,
 /obj/item/reagent_containers/food/drinks/bottle/beer{
 	pixel_x = -10;
 	pixel_y = 17
 	},
+/obj/table/clothchecker/auto,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/bar)
 "rYG" = (
@@ -28936,6 +28936,10 @@
 /obj/item/storage/toolbox/mechanical{
 	pixel_x = 4;
 	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/noodlecup{
+	pixel_x = -11;
+	pixel_y = 8
 	},
 /turf/floor/orangeblack,
 /area/station/mining/refinery{

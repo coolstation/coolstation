@@ -48,6 +48,12 @@
 	icon = 'icons/obj/furniture/table_clothred.dmi'
 	furniture_type = /obj/table/clothred/auto
 
+/obj/item/furniture_parts/table/checkercloth
+	name = "red event table parts"
+	desc = "A collection of parts that can be used to make a red event table."
+	icon = 'icons/obj/furniture/table_checkercloth.dmi'
+	furniture_type = /obj/table/clothchecker/auto
+
 /obj/item/furniture_parts/table/folding
 	name = "folded folding table"
 	desc = "A collapsed table that can be deployed quickly."
