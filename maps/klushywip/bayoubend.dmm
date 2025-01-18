@@ -5179,7 +5179,6 @@
 /area/space)
 "epM" = (
 /obj/landmark/gps_waypoint,
-/obj/decal/poster/wallsign/pride/italian,
 /turf/floor/bluegreen,
 /area/station/medical/research)
 "eqA" = (
@@ -6691,6 +6690,10 @@
 	},
 /obj/machinery/power/data_terminal{
 	layer = 2
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 4
@@ -18235,6 +18238,9 @@
 /obj/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
 /turf/space,
 /area/space)
 "oGo" = (
@@ -20444,6 +20450,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-4"
 	},
 /turf/floor/carpet/blue,
 /area/station/bridge)
