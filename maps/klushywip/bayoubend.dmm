@@ -304,16 +304,17 @@
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
 "aob" = (
-/obj/machinery/computer3/terminal/zeta{
-	dir = 4
-	},
-/obj/machinery/power/data_terminal{
-	layer = 2
-	},
-/obj/machinery/power/data_terminal{
-	layer = 2
-	},
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
 /turf/floor/grime,
 /area/station/science/artifact)
 "aoI" = (
@@ -8059,7 +8060,17 @@
 /turf/wall/r_wall,
 /area/station/science/bot_storage)
 "gGi" = (
-/obj/machinery/navbeacon/mule/research_north,
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
+/obj/machinery/networked/storage/tape_drive{
+	bank_id = "Control";
+	name = "Databank - Control";
+	setup_drive_type = /obj/item/disk/data/tape/master
+	},
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -13664,7 +13675,8 @@
 /area/station/construction)
 "lfR" = (
 /obj/machinery/computer3/terminal/zeta{
-	dir = 4
+	dir = 4;
+	setup_os_string = "ZETA_MAINFRAME"
 	},
 /obj/machinery/power/data_terminal{
 	layer = 2
@@ -16905,6 +16917,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-8"
 	},
 /turf/floor/purple/side{
 	dir = 4
@@ -21704,13 +21719,17 @@
 "rmE" = (
 /obj/table/auto,
 /obj/machinery/cell_charger,
-/obj/item/cell/supercell/charged{
-	pixel_x = 7;
+/obj/item/disk/data/tape/master/readonly{
+	pixel_x = -7;
 	pixel_y = 13
 	},
 /obj/item/cell/supercell/charged{
-	pixel_x = 7;
+	pixel_x = 5;
 	pixel_y = 13
+	},
+/obj/item/cell/supercell/charged{
+	pixel_x = 5;
+	pixel_y = 6
 	},
 /obj/item/cell/supercell/charged{
 	pixel_x = 5
@@ -26720,6 +26739,9 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/cable{
+	icon_state = "2-8"
+	},
 /turf/floor/grime,
 /area/station/science/artifact)
 "vto" = (
@@ -28807,6 +28829,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/navbeacon/mule/research_north,
 /turf/floor/purple/side{
 	dir = 5
 	},
