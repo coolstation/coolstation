@@ -2507,6 +2507,7 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 /area/station/shipyard
 	name = "Shipyard"
 	icon_state = "fart"
+	requires_power = FALSE //it's almost entirely exterior bits
 // some radio jazz
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)
