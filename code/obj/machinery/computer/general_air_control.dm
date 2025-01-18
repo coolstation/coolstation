@@ -657,6 +657,8 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 		if (radio_connection && signal)
 			radio_connection.post_signal(src, signal)
 
+		updateDialog()
+
 	proc
 		set_frequency(new_frequency)
 			radio_controller.remove_object(src, "[frequency]")
