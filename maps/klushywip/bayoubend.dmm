@@ -314,6 +314,10 @@
 /obj/machinery/power/data_terminal{
 	layer = 2
 	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
 /turf/floor/grime,
 /area/station/science/artifact)
 "aoI" = (
@@ -27207,6 +27211,9 @@
 	},
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/cable{
+	icon_state = "2-8"
 	},
 /turf/floor/grime,
 /area/station/science/artifact)
