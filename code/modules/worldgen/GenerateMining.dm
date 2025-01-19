@@ -48,6 +48,15 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			else
 				src.ReplaceWith(/turf/wall/asteroid, FALSE, TRUE, FALSE, TRUE)
 
+	random_ship_wall //Randomly a wall or scrap wall, so the dingy looking ships can be slightly more varied
+		name = "variable ship hull"
+		icon_state = "wall_ship"
+		place()
+			if (prob(shipyard_scrapwall_prob))
+				src.ReplaceWith(/turf/wall/s_wall, FALSE, FALSE, FALSE, TRUE)
+			else
+				src.ReplaceWith(/turf/wall, FALSE, FALSE, FALSE, TRUE)
+
 	clear //Replaced with map appropriate clear tile for mining level (asteroid floor on oshan, space on other maps)
 		name = "variable clear"
 		icon_state = "clear"

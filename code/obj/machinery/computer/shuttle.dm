@@ -111,7 +111,7 @@
 	if(active)
 		dat += "Moving"
 	else
-		dat += "<a href='byond://?src=\ref[src];send=1'>Call Client</a><BR><BR>"
+		dat += "<a href='byond://?src=\ref[src];send=1'>[shipyardship_location ? "Dismiss Client" : "Call Client"]</a><BR><BR>"
 
 	user.Browse(dat, "window=shuttle")
 	onclose(user, "shuttle")
@@ -144,7 +144,8 @@
 
 /obj/machinery/computer/shipyard_control/proc/call_client()  //this proc is a huge mess and will be cleaned up once I stop tacking crap on there.
 
-	if(shipyardship_location == 0)
+	if(shipyardship_location == 0) //staging area -> station
+		shipyard_scrapwall_prob = rand(30, 50) //would like for this to be higher on exploded ships but no luck atm
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
@@ -153,7 +154,7 @@
 			start_location.move_contents_to(end_location)
 			shipyardship_location = 1
 
-	else if(shipyardship_location == 1)
+	else if(shipyardship_location == 1) //station -> staging area
 		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
 		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
 		processShips(start_location)

@@ -109,7 +109,7 @@ proc/buildRandomShips()
 		roomclass = "room"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/3x3.dmi'
-		icon_state = "cargo"
+		icon_state = "room" //3x3 cargo icon also available, but no rooms yet
 	#endif
 
 	room5x3
@@ -117,7 +117,7 @@ proc/buildRandomShips()
 		roomclass = "room"
 	#ifdef IN_MAP_EDITOR
 		icon = 'icons/map-editing/random-rooms/5x3.dmi'
-		icon_state = "cargo"
+		icon_state = "room"
 	#endif
 
 	cargo5x3
