@@ -306,9 +306,8 @@ obj/machinery/atmospherics/mixer
 				else
 					target_pressure = 0
 
-		if (signal.data["tag"])
-			SPAWN_DBG(0.5 SECONDS)
-				if (src) src.report_status()
+		if (signal.data["tag"] && !QDELETED(src))
+			report_status()
 
 		src.update_icon()
 		return
