@@ -62,20 +62,17 @@
 /obj/machinery/power/seaheater{
 	dir = 4
 	},
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "jI" = (
 /obj/item/storage/wall/emergency{
 	dir = 8
 	},
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "kx" = (
 /obj/item/mine/blast/armed,
 /turf/floor/airless/plating,
-/area/dmm_suite/clear_area)
-"kZ" = (
-/turf/wall,
 /area/dmm_suite/clear_area)
 "lM" = (
 /obj/machinery/shuttle/engine/propulsion{
@@ -110,9 +107,6 @@
 /obj/machinery/light/small/floor,
 /turf/floor/airless/plating,
 /area/dmm_suite/clear_area)
-"pE" = (
-/turf/floor/airbridge,
-/area/dmm_suite/clear_area)
 "pJ" = (
 /obj/stool/chair/comfy/shuttle/brown,
 /turf/floor/airless/yellow,
@@ -143,7 +137,7 @@
 /area/dmm_suite/clear_area)
 "wB" = (
 /obj/decal/poster/wallsign/warning1,
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "xd" = (
 /obj/machinery/light{
@@ -167,10 +161,10 @@
 	dir = 1;
 	icon_state = "alt_heater-L"
 	},
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "yz" = (
-/turf/wall/s_wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "yP" = (
 /obj/stool/chair/comfy/shuttle,
@@ -180,9 +174,6 @@
 "Dq" = (
 /obj/storage/closet/emergency,
 /turf/floor/airless/circuit/red,
-/area/dmm_suite/clear_area)
-"Dz" = (
-/turf/wall/airbridge,
 /area/dmm_suite/clear_area)
 "ES" = (
 /obj/machinery/door/airlock/pyro/security{
@@ -199,7 +190,7 @@
 /area/dmm_suite/clear_area)
 "GO" = (
 /obj/item/storage/wall/emergency,
-/turf/wall/s_wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "Hk" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -234,14 +225,14 @@
 	dir = 1;
 	icon_state = "alt_heater-M"
 	},
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "Ne" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 1;
 	icon_state = "alt_heater-R"
 	},
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "Ni" = (
 /obj/stool/chair/comfy/shuttle,
@@ -470,7 +461,7 @@ nb
 nb
 nb
 nb
-kZ
+yz
 yz
 yz
 yz
@@ -501,14 +492,14 @@ Ne
 Gu
 Gu
 oD
-kZ
+yz
 HX
 xd
 yP
 cS
 cS
 No
-kZ
+yz
 ZC
 yz
 nb
@@ -538,7 +529,7 @@ cS
 ZC
 fM
 yz
-kZ
+yz
 nb
 nb
 nb
@@ -555,7 +546,7 @@ yn
 Gu
 Gu
 Gu
-kZ
+yz
 yc
 cS
 HX
@@ -578,7 +569,7 @@ nb
 nb
 nb
 nb
-kZ
+yz
 LI
 jI
 yz
@@ -626,9 +617,9 @@ nb
 nb
 "}
 (13,1,1) = {"
-Dz
-Dz
-Dz
+nb
+nb
+nb
 nb
 bN
 Mv
@@ -653,9 +644,9 @@ nb
 nb
 "}
 (14,1,1) = {"
-pE
-pE
-pE
+nb
+nb
+nb
 nb
 mG
 yn
@@ -667,7 +658,7 @@ nb
 Hk
 yz
 vV
-kZ
+yz
 yP
 nb
 Ni
@@ -680,9 +671,9 @@ nb
 nb
 "}
 (15,1,1) = {"
-pE
-pE
-pE
+nb
+nb
+nb
 nb
 nb
 yz
@@ -692,7 +683,7 @@ yc
 nb
 nb
 yz
-kZ
+yz
 IK
 LI
 yz
@@ -707,9 +698,9 @@ nb
 nb
 "}
 (16,1,1) = {"
-Dz
-Dz
-Dz
+nb
+nb
+nb
 nb
 nb
 nb
@@ -768,7 +759,7 @@ nb
 nb
 nb
 nb
-kZ
+yz
 nb
 nb
 pV
@@ -780,7 +771,7 @@ IK
 pV
 nb
 nb
-kZ
+yz
 nb
 nb
 nb
@@ -796,8 +787,8 @@ nb
 nb
 nb
 wB
-kZ
-kZ
+yz
+yz
 LI
 mF
 mF
@@ -805,8 +796,8 @@ cI
 gG
 IK
 LI
-kZ
-kZ
+yz
+yz
 wB
 nb
 nb
@@ -879,15 +870,15 @@ nb
 wB
 yz
 Dq
-kZ
+yz
 mF
 mF
 mF
 gG
 tG
-kZ
+yz
 Dq
-kZ
+yz
 wB
 nb
 nb
@@ -912,9 +903,9 @@ mF
 mF
 gG
 Uc
-kZ
-kZ
-kZ
+yz
+yz
+yz
 nb
 nb
 nb
@@ -936,10 +927,10 @@ nb
 yz
 ja
 ja
-kZ
+yz
 ja
 ja
-kZ
+yz
 nb
 nb
 nb

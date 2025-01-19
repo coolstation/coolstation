@@ -1,10 +1,50 @@
-"a" = (/turf/dmm_suite/clear_turf,/area/dmm_suite/clear_area)
-"p" = (/obj/storage/crate/packing,/obj/random_item_spawner/med_kit/one,/obj/random_item_spawner/med_kit/one_or_zero,/turf/dmm_suite/clear_turf,/area/dmm_suite/clear_area)
-"D" = (/obj/storage/crate/packing,/obj/random_item_spawner/medicine/two,/turf/dmm_suite/clear_turf,/area/dmm_suite/clear_area)
-"S" = (/obj/storage/crate/packing,/obj/random_item_spawner/prosthetics,/obj/random_item_spawner/organs/one_to_three,/turf/dmm_suite/clear_turf,/area/dmm_suite/clear_area)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/dmm_suite/clear_turf,
+/area/dmm_suite/clear_area)
+"p" = (
+/obj/storage/crate/packing,
+/obj/random_item_spawner/med_kit/one,
+/obj/random_item_spawner/med_kit/one_or_zero,
+/turf/dmm_suite/clear_turf,
+/area/dmm_suite/clear_area)
+"D" = (
+/obj/storage/crate/packing,
+/obj/random_item_spawner/medicine/two,
+/turf/dmm_suite/clear_turf,
+/area/dmm_suite/clear_area)
+"S" = (
+/obj/storage/crate/packing,
+/obj/random_item_spawner/prosthetics{
+	max_amt2spawn = 5;
+	min_amt2spawn = 2
+	},
+/obj/random_item_spawner/organs/one_to_three,
+/turf/dmm_suite/clear_turf,
+/area/dmm_suite/clear_area)
 
 (1,1,1) = {"
-aSaaa
-aaaaa
-paaDa
+a
+a
+p
+"}
+(2,1,1) = {"
+S
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+D
+"}
+(5,1,1) = {"
+a
+a
+a
 "}
