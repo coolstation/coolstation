@@ -4742,6 +4742,14 @@
 	dir = 5
 	},
 /area/station/science/lobby)
+"dWK" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "garbage"
+	},
+/obj/plasticflaps,
+/turf/floor/plating/random,
+/area/station/maintenance/disposal)
 "dWO" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -5371,13 +5379,6 @@
 	},
 /turf/floor/orange,
 /area/station/engine/engineering)
-"etd" = (
-/obj/wingrille_spawn/reinforced,
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/station/science/artifact)
 "etn" = (
 /turf/floor/yellow/corner{
 	dir = 1
@@ -8574,6 +8575,11 @@
 	},
 /turf/floor/plating/random,
 /area/station/security/beepsky)
+"gUW" = (
+/turf/floor/plating,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "gVa" = (
 /obj/disposalpipe/junction{
 	dir = 8;
@@ -8746,7 +8752,9 @@
 /area/station/hallway/primary/east)
 "gYk" = (
 /obj/machinery/light_switch/east,
-/turf/floor/grime,
+/obj/decal/floatingtiles/loose/random,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating,
 /area/station/mining/refinery{
 	name = "Scrapping"
 	})
@@ -10694,6 +10702,12 @@
 	},
 /turf/floor/grey,
 /area/station/medical/robotics)
+"iBR" = (
+/obj/decal/floatingtiles/loose/random,
+/turf/floor/plating,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "iBS" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -19109,14 +19123,6 @@
 /obj/decal/cleanable/blood,
 /turf/floor/grime,
 /area/listeningpost)
-"oXk" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "garbage"
-	},
-/obj/plasticflaps,
-/turf/floor/plating/random,
-/area/station/maintenance/disposal)
 "oXt" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -19738,11 +19744,6 @@
 /turf/floor/wood,
 /area/station/crew_quarters/barber_shop)
 "puw" = (
-/obj/shrub{
-	dir = 1;
-	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant"
-	},
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
 	d1 = 1;
@@ -19848,6 +19849,13 @@
 	},
 /turf/floor/wood,
 /area/station/crew_quarters/barber_shop)
+"pCh" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/science/artifact)
 "pCO" = (
 /obj/shrub{
 	icon = 'icons/obj/stationobjs.dmi';
@@ -27318,6 +27326,12 @@
 /obj/random_item_spawner/junk/one,
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
+"vpl" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "vpr" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold,
 /obj/table/auto,
@@ -58384,7 +58398,7 @@ bHi
 vMN
 ruh
 dJx
-oXk
+dWK
 pfQ
 brH
 xLG
@@ -59296,7 +59310,7 @@ dnw
 nbb
 dSw
 ttQ
-etd
+pCh
 ttQ
 ttQ
 scG
@@ -74438,7 +74452,7 @@ qhD
 xKR
 dMK
 xJs
-mdh
+vpl
 scD
 kRz
 cdQ
@@ -74740,7 +74754,7 @@ hos
 utg
 wHd
 nta
-mdh
+iBR
 hGK
 dBr
 cdQ
@@ -75042,7 +75056,7 @@ cdQ
 vID
 cdQ
 cdQ
-mdh
+gUW
 vgP
 vgP
 cdQ
@@ -75646,9 +75660,9 @@ yiS
 hJx
 fdw
 gNy
-mdh
-mdh
-mdh
+vpl
+vpl
+gUW
 xzy
 aht
 rtA
@@ -75949,7 +75963,7 @@ kaN
 xaa
 sMN
 uNE
-mdh
+gUW
 gYk
 nfr
 seQ
