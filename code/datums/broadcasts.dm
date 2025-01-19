@@ -249,6 +249,9 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	plane = PLANE_NOSHADOW_ABOVE
 
 	icon_state = "loudspeaker-ceiling"
+	#ifdef IN_MAP_EDITOR
+	alpha = 128
+	#endif
 	color = "#c3bddb"
 	var/image/speakerimage = null
 
