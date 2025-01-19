@@ -57,7 +57,7 @@
 		for(var/client/C)
 			clients++
 
-		if ((config.env == "dev" || config.env == "pud")&& clients >= 2) // testing something :)
+		if ((config.env == "dev")&& clients >= 2) // testing something :)
 			command_alert("NanoTrasen Quantum Gravimetrics has detected local space stability has been compromised by extended experimentation. Please exercise caution in continued operation. Remedial crew may be dispatched to account for abnormal conditions.","Shift Temporal Degradation")
 			abandon_allowed = 1
 			boutput(world, "<B>Respawning has been enabled due to long round length.</B>")
