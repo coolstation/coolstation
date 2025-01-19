@@ -3406,7 +3406,9 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "cNz" = (
-/obj/machinery/conveyor/north,
+/obj/machinery/conveyor/north{
+	id = "ghost"
+	},
 /obj/machinery/light/small/cool/very{
 	dir = 4
 	},
@@ -3848,7 +3850,9 @@
 /turf/wall,
 /area/station/maintenance/solar/north)
 "dfQ" = (
-/obj/machinery/conveyor/north,
+/obj/machinery/conveyor/north{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "dgp" = (
@@ -4297,6 +4301,13 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/grime,
 /area/station/crew_quarters/lounge/starboard)
+"dBI" = (
+/obj/machinery/conveyor_switch{
+	id = "ghost";
+	position = 1
+	},
+/turf/floor/plating/airless/asteroid,
+/area/ghostdrone_factory)
 "dCc" = (
 /obj/storage/crate/freezer{
 	anchored = 1
@@ -8746,8 +8757,10 @@
 /turf/floor/orangeblack,
 /area/station/engine/ptl)
 "gZo" = (
-/obj/machinery/conveyor/west,
 /obj/machinery/ghostdrone_factory/part3,
+/obj/machinery/conveyor/west{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "gZp" = (
@@ -9726,7 +9739,9 @@
 /turf/space,
 /area/space)
 "hIs" = (
-/obj/machinery/conveyor/south,
+/obj/machinery/conveyor/south{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "hIy" = (
@@ -11978,7 +11993,9 @@
 /turf/space,
 /area/space)
 "jKX" = (
-/obj/machinery/conveyor/east,
+/obj/machinery/conveyor/east{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "jLP" = (
@@ -12629,7 +12646,7 @@
 "kiU" = (
 /obj/machinery/ghostdrone_factory,
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "ghost"
 	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
@@ -13020,7 +13037,9 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "kzX" = (
-/obj/machinery/conveyor/west,
+/obj/machinery/conveyor/west{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "kzZ" = (
@@ -13392,8 +13411,10 @@
 	},
 /area/station/engine/engineering/breakroom)
 "kRw" = (
-/obj/machinery/conveyor/east,
 /obj/machinery/ghostdrone_factory/part2,
+/obj/machinery/conveyor/east{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "kRz" = (
@@ -16272,8 +16293,10 @@
 /turf/space,
 /area/space)
 "mZF" = (
-/obj/machinery/conveyor/west,
 /obj/machinery/power/apc/autoname_north,
+/obj/machinery/conveyor/west{
+	id = "ghost"
+	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
 "mZS" = (
@@ -106864,7 +106887,7 @@ riL
 hIs
 kzX
 lOu
-eVv
+dBI
 yjO
 gza
 ukk
