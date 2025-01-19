@@ -19,9 +19,6 @@
 "jI" = (
 /turf/floor/airless/plating/scorched,
 /area/dmm_suite/clear_area)
-"kZ" = (
-/turf/wall,
-/area/dmm_suite/clear_area)
 "lM" = (
 /turf/floor/airless/orange,
 /area/dmm_suite/clear_area)
@@ -89,12 +86,6 @@
 	},
 /turf/space,
 /area/dmm_suite/clear_area)
-"vi" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 8
-	},
-/turf/wall/s_wall,
-/area/dmm_suite/clear_area)
 "xz" = (
 /obj/machinery/vending/grub{
 	anchored = 0
@@ -109,7 +100,7 @@
 /turf/space,
 /area/dmm_suite/clear_area)
 "yz" = (
-/turf/wall/s_wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "zV" = (
 /obj/decal/cleanable/mess/random_litter,
@@ -127,7 +118,7 @@
 /area/dmm_suite/clear_area)
 "DI" = (
 /obj/decal/poster/wallsign/bunks,
-/turf/wall/s_wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "ED" = (
 /obj/decal/cleanable/mess/random_food,
@@ -177,7 +168,7 @@
 /obj/machinery/shuttle/engine/heater{
 	dir = 8
 	},
-/turf/wall,
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "QI" = (
 /obj/lattice{
@@ -377,7 +368,7 @@ nb
 nb
 nb
 nb
-kZ
+yz
 Gu
 Gu
 Gu
@@ -434,8 +425,8 @@ nb
 yz
 ZC
 yz
-kZ
-kZ
+yz
+yz
 nb
 nb
 nb
@@ -531,12 +522,12 @@ Dz
 Dz
 Dz
 Pr
-kZ
-kZ
+yz
+yz
 gc
 tL
 yz
-vi
+Pr
 nb
 nb
 nb
@@ -638,7 +629,7 @@ nb
 nb
 nb
 nb
-kZ
+yz
 pV
 Gu
 Gu
