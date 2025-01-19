@@ -312,6 +312,10 @@ var/global/list/mapNames = list(
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
 	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
 
+	//Bayou's only got the one merchant dock so maybe have go to the same either way?
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_right_station = /area/shuttle/merchant_shuttle/left_station/destiny
+
 	escape_centcom = /area/shuttle/escape/centcom/donut2
 	escape_outpost = /area/shuttle/escape/outpost/donut2
 	escape_transit = /area/shuttle/escape/transit/donut2
