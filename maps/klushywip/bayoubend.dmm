@@ -551,19 +551,6 @@
 /obj/decal/floatingtiles/loose/random,
 /turf/floor/plating/random,
 /area/station/security/brig/genpop)
-"aAQ" = (
-/obj/disposalpipe/loafer{
-	dir = 4
-	},
-/obj/decal/glow{
-	brightness = 3;
-	color_b = 0.35;
-	color_r = 0.35;
-	invisibility = 101;
-	name = "glow - WHITE"
-	},
-/turf/floor/plating/random,
-/area/station/maintenance/northwest)
 "aBD" = (
 /obj/window/reinforced{
 	dir = 8
@@ -4555,6 +4542,25 @@
 	dir = 1
 	},
 /area/station/bridge)
+"dPy" = (
+/obj/decal/glow{
+	brightness = 3;
+	color_b = 0.35;
+	color_r = 0.35;
+	invisibility = 101;
+	name = "glow - WHITE"
+	},
+/obj/computerframe{
+	desc = "It is highly unlikely that this still works.";
+	icon = 'icons/obj/machines/computer.dmi';
+	icon_state = "datamedb";
+	name = "smashed computer"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "dPU" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /obj/cable{
@@ -4655,25 +4661,6 @@
 	},
 /turf/floor/wood,
 /area/station/crew_quarters/barber_shop)
-"dTA" = (
-/obj/decal/glow{
-	brightness = 3;
-	color_b = 0.35;
-	color_r = 0.35;
-	invisibility = 101;
-	name = "glow - WHITE"
-	},
-/obj/computerframe{
-	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/machines/computer.dmi';
-	icon_state = "datamedb";
-	name = "smashed computer"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/floor/plating/random,
-/area/station/maintenance/northwest)
 "dTP" = (
 /obj/machinery/alarm,
 /turf/wall,
@@ -5699,15 +5686,6 @@
 /obj/machinery/firealarm,
 /turf/wall/r_wall,
 /area/station/security/main)
-"eEJ" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/junction{
-	dir = 4
-	},
-/turf/floor/plating/random,
-/area/station/maintenance/northwest)
 "eER" = (
 /obj/machinery/atmospherics/valve{
 	dir = 4
@@ -5869,6 +5847,12 @@
 	},
 /turf/space,
 /area/space)
+"eMH" = (
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/wall/r_wall,
+/area/station/security/brig/genpop)
 "eNp" = (
 /obj/decal/poster/wallsign/fuck2,
 /turf/wall,
@@ -9927,6 +9911,13 @@
 /obj/structure/girder/displaced,
 /turf/floor/airless/plating/damaged3,
 /area/space)
+"hPk" = (
+/obj/disposalpipe/segment/food{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "hPQ" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/plating/random,
@@ -13121,12 +13112,19 @@
 /obj/disposalpipe/trunk/food{
 	dir = 4
 	},
-/obj/machinery/disposal,
 /obj/decal/tile_edge/stripe/big{
 	dir = 10
 	},
 /obj/decal/tile_edge/stripe/big{
 	dir = 5
+	},
+/obj/machinery/floorflusher/industrial,
+/obj/railing/red,
+/obj/railing/red{
+	dir = 4
+	},
+/obj/railing/red{
+	dir = 8
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
@@ -15504,6 +15502,19 @@
 /obj/window/reinforced/west,
 /turf/floor,
 /area/station/medical/medbay/lobby)
+"mqi" = (
+/obj/disposalpipe/loafer{
+	dir = 4
+	},
+/obj/decal/glow{
+	brightness = 3;
+	color_b = 0.35;
+	color_r = 0.35;
+	invisibility = 101;
+	name = "glow - WHITE"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "mqH" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4;
@@ -17035,6 +17046,10 @@
 	},
 /turf/floor/wood/five,
 /area/station/hydroponics/lobby)
+"nyf" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall,
+/area/station/security/beepsky)
 "nyz" = (
 /obj/lattice,
 /obj/lattice,
@@ -20740,13 +20755,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
 /area/station/hallway/primary/east)
-"qfH" = (
-/obj/disposalpipe/segment/food{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/random,
-/area/station/maintenance/northwest)
 "qfI" = (
 /obj/decal/poster/wallsign/poster_octocluwne,
 /turf/wall,
@@ -23082,6 +23090,15 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
+"sbe" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/junction{
+	dir = 4
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "sbA" = (
 /turf/floor/circuit,
 /area/station/turret_protected/ai_upload)
@@ -28058,12 +28075,6 @@
 /obj/machinery/firealarm,
 /turf/wall/r_wall,
 /area/station/engine/ptl)
-"wad" = (
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/wall/r_wall,
-/area/station/security/brig/genpop)
 "wbn" = (
 /obj/machinery/firealarm,
 /turf/wall/r_wall,
@@ -61312,7 +61323,7 @@ ipT
 pXy
 pXy
 pXy
-pXy
+nyf
 kAb
 lUJ
 aDY
@@ -61615,7 +61626,7 @@ pXy
 cUF
 wtB
 gUP
-eEJ
+sbe
 tJl
 dqt
 dqt
@@ -61917,7 +61928,7 @@ pXy
 lQg
 mKz
 kah
-aAQ
+mqi
 vHH
 dqt
 qvf
@@ -62219,7 +62230,7 @@ yjq
 xOn
 pXy
 pXy
-dTA
+dPy
 qMi
 dqt
 taT
@@ -62520,7 +62531,7 @@ xhP
 wDt
 yjq
 ktu
-qfH
+hPk
 bpo
 iBm
 dqt
@@ -63124,7 +63135,7 @@ abm
 wvC
 yjq
 emj
-wad
+eMH
 emj
 vVc
 ixK
@@ -64030,7 +64041,7 @@ fHd
 yjq
 yjq
 aVu
-wad
+eMH
 emj
 vVc
 bMC
