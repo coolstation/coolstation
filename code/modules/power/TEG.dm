@@ -1534,9 +1534,9 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	attack_hand(mob/user)
 		if(status & (BROKEN | NOPOWER))
 			return
-		user << browse(return_text(),"window=computer;can_close=1")
+		user << browse(return_text(),"window=computer_\ref[src];can_close=1")
 		src.add_dialog(user)
-		onclose(user, "computer")
+		onclose(user, "computer_\ref[src]")
 
 	process()
 		..()
