@@ -58,11 +58,21 @@
 "gG" = (
 /turf/floor/airless/black,
 /area/dmm_suite/clear_area)
+"ja" = (
+/obj/machinery/power/seaheater{
+	dir = 4
+	},
+/turf/wall,
+/area/dmm_suite/clear_area)
 "jI" = (
 /obj/item/storage/wall/emergency{
 	dir = 8
 	},
 /turf/wall,
+/area/dmm_suite/clear_area)
+"kx" = (
+/obj/item/mine/blast/armed,
+/turf/floor/airless/plating,
 /area/dmm_suite/clear_area)
 "kZ" = (
 /turf/wall,
@@ -575,7 +585,7 @@ yz
 GO
 cS
 QX
-Gu
+kx
 gc
 yc
 yP
@@ -924,11 +934,11 @@ nb
 nb
 nb
 yz
+ja
+ja
 kZ
-kZ
-kZ
-kZ
-kZ
+ja
+ja
 kZ
 nb
 nb
