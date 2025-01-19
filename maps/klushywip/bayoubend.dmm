@@ -311,9 +311,6 @@
 /obj/machinery/power/data_terminal{
 	layer = 2
 	},
-/obj/machinery/power/data_terminal{
-	layer = 2
-	},
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -2554,7 +2551,7 @@
 	icon_state = "1-2"
 	},
 /turf/floor/plating/random,
-/area/station/solar/north)
+/area/station/maintenance/solar/north)
 "cbJ" = (
 /obj/machinery/abcu,
 /turf/floor/blue,
@@ -5340,6 +5337,13 @@
 	},
 /turf/floor/orange,
 /area/station/engine/engineering)
+"etd" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/science/artifact)
 "etn" = (
 /turf/floor/yellow/corner{
 	dir = 1
@@ -10915,21 +10919,10 @@
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "iLp" = (
-/obj/table/auto,
-/obj/item/device/audio_log{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/audio_tape{
-	pixel_y = 8
-	},
-/obj/item/storage/box/tapebox{
-	pixel_x = -7;
-	pixel_y = 18
-	},
-/obj/item/cargotele{
-	pixel_x = 1;
-	pixel_y = -3
+/obj/disposalpipe/segment,
+/obj/machinery/door_control{
+	id = "eject";
+	pixel_x = -25
 	},
 /turf/floor/purple/side{
 	dir = 8
@@ -11800,6 +11793,9 @@
 	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-4"
 	},
 /turf/floor/grime,
 /area/station/science/lab)
@@ -18873,6 +18869,12 @@
 /obj/decoration/clock{
 	pixel_x = -30
 	},
+/obj/machinery/floorflusher/industrial{
+	id = "eject'"
+	},
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -19010,6 +19012,14 @@
 /obj/decal/cleanable/blood,
 /turf/floor/grime,
 /area/listeningpost)
+"oXk" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "garbage"
+	},
+/obj/plasticflaps,
+/turf/floor/plating/random,
+/area/station/maintenance/disposal)
 "oXt" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -21876,6 +21886,12 @@
 	},
 /obj/item/clothing/glasses/vr/bomb,
 /obj/item/clothing/glasses/vr/bomb,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
 /turf/floor/grime,
 /area/station/science/lab)
 "rew" = (
@@ -22592,6 +22608,25 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/disposalpipe/segment/bent{
+	dir = 2
+	},
+/obj/table/auto,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
+/obj/item/device/audio_log{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/storage/box/tapebox{
+	pixel_x = -7;
+	pixel_y = 18
+	},
+/obj/item/cargotele{
+	pixel_x = 1;
+	pixel_y = -3
 	},
 /turf/floor/purple/side{
 	dir = 8
@@ -26653,7 +26688,6 @@
 /turf/floor/engine/vacuum,
 /area/station/science/lab)
 "uQY" = (
-/obj/disposalpipe/segment,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -26661,6 +26695,9 @@
 	},
 /obj/cable{
 	icon_state = "1-10"
+	},
+/obj/disposalpipe/junction{
+	dir = 1
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -58224,7 +58261,7 @@ bHi
 vMN
 ruh
 dJx
-wkg
+oXk
 pfQ
 brH
 xLG
@@ -59136,7 +59173,7 @@ dnw
 nbb
 dSw
 ttQ
-ttQ
+etd
 ttQ
 ttQ
 scG
