@@ -6,11 +6,16 @@
 /obj/storage/crate/packing,
 /obj/random_item_spawner/med_kit/one,
 /obj/random_item_spawner/med_kit/one_or_zero,
+/obj/random_item_spawner/med_tool,
 /turf/dmm_suite/clear_turf,
 /area/dmm_suite/clear_area)
 "D" = (
 /obj/storage/crate/packing,
 /obj/random_item_spawner/medicine/two,
+/obj/random_item_spawner/med_tool{
+	max_amt2spawn = 4;
+	min_amt2spawn = 2
+	},
 /turf/dmm_suite/clear_turf,
 /area/dmm_suite/clear_area)
 "S" = (
