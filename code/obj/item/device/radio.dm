@@ -1097,6 +1097,10 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 		icon_state = "loudspeaker-ceiling"
 		ceilingmounted = TRUE
 		plane = PLANE_NOSHADOW_ABOVE
+		#ifdef IN_MAP_EDITOR
+		color = "#FFFFFF" //needed for the transparency fsr??
+		alpha = 128
+		#endif
 
 	north
 		dir = NORTH
