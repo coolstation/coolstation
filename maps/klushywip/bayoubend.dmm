@@ -4850,13 +4850,6 @@
 /obj/storage/crate/pizza,
 /obj/storage/crate/pizza,
 /obj/storage/crate/pizza,
-/obj/item/reagent_containers/food/snacks/italian_ice_cup{
-	pixel_x = 10;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/food/snacks/italian_ice_cup{
-	pixel_x = 13
-	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
 "eck" = (
@@ -7939,6 +7932,9 @@
 	},
 /obj/item/plate{
 	pixel_y = 7
+	},
+/obj/item/shaker/pepper{
+	pixel_x = 11
 	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
@@ -14903,14 +14899,20 @@
 /obj/item/shaker/salt{
 	pixel_x = -11
 	},
-/obj/item/kitchen/rollingpin{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/shaker/pepper,
 /obj/item/kitchen/utensil/knife/pizza_cutter{
 	pixel_x = -9;
 	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/snacks/italian_ice_cup{
+	pixel_x = 13
+	},
+/obj/item/reagent_containers/food/snacks/italian_ice_cup{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
@@ -24032,7 +24034,6 @@
 /turf/wall,
 /area/station/storage/tools)
 "sMJ" = (
-/obj/submachine/ice_cream_dispenser,
 /obj/machinery/firealarm{
 	pixel_y = -28
 	},
@@ -24040,6 +24041,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/submachine/italian_ice_dispenser,
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
 "sMN" = (
