@@ -787,9 +787,9 @@
 		if (src.cooldown_override)
 			override_text = "Disable Cooldown Override"
 		dat += "<A href='byond://?src=\ref[src];override_cooldown=1'>[override_text]</A><BR>"
-		dat += "<BR><A href='byond://?action=mach_close&window=computer'>Close</A>"
-		user.Browse(dat, "window=computer;size=300x400")
-		onclose(user, "computer")
+		dat += "<BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A>"
+		user.Browse(dat, "window=computer_\ref[src];size=300x400")
+		onclose(user, "computer_\ref[src]")
 		return null
 
 	Topic(href, href_list)
@@ -836,8 +836,8 @@
 					html += "<A href='byond://?src=\ref[src];activate_selectable=[X]'>[E.name]</A><BR>"
 
 			html += "<BR><A href='byond://?src=\ref[src];back=1'>Back</A><BR>"
-			usr.Browse(html, "window=computer;size=300x400")
-			onclose(usr, "computer")
+			usr.Browse(html, "window=computer_\ref[src];size=300x400")
+			onclose(usr, "computer_\ref[src]")
 			return
 
 		else if (href_list["activate_selectable"])
@@ -924,9 +924,9 @@
 
 			//dat += "<BR><a href='byond://?src=\ref[src];unlink=1'>Disconnect Terminal from Magnet</a>"
 
-			dat += "<BR><A href='byond://?action=mach_close&window=computer'>Close</A>"
-			user.Browse(dat, "window=computer;size=300x400")
-			onclose(user, "computer")
+			dat += "<BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A>"
+			user.Browse(dat, "window=computer_\ref[src];size=300x400")
+			onclose(user, "computer_\ref[src]")
 		return
 
 	Topic(href, href_list)

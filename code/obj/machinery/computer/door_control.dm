@@ -40,9 +40,9 @@
 			boutput(world, "Invalid ID detected on brigdoor ([M.x],[M.y],[M.z]) with id [M.id]")
 	dat += text("<br><A href='byond://?src=\ref[src];openall=1'>Open All</A><br>")
 	dat += text("<A href='byond://?src=\ref[src];closeall=1'>Close All</A><br>")
-	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
-	user.Browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")
+	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
+	user.Browse(dat, "window=computer_\ref[src];size=400x500")
+	onclose(user, "computer_\ref[src]")
 	return
 
 /obj/machinery/computer/door_control/Topic(href, href_list)

@@ -231,9 +231,9 @@
 		var/second = src.time % 60
 		var/minute = (src.time - second) / 60
 		dat += text("<br><HR><br>Timer System: [d2]<br>Time Left: [(minute ? text("[minute]:") : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-5'>-</A> <A href='byond://?src=\ref[src];tp=5'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>")
-		dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
-		user.Browse(dat, "window=computer;size=400x500")
-		onclose(user, "computer")
+		dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
+		user.Browse(dat, "window=computer_\ref[src];size=400x500")
+		onclose(user, "computer_\ref[src]")
 
 		if (G)
 			src.log_in(G.affecting)
@@ -329,9 +329,9 @@
 	var/second = src.time % 60
 	var/minute = (src.time - second) / 60
 	dat += text("<br><HR><br>Timer System: [d2]<br>Time Left: [(minute ? text("[minute]:") : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-5'>-</A> <A href='byond://?src=\ref[src];tp=5'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>")
-	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
-	user.Browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")
+	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
+	user.Browse(dat, "window=computer_\ref[src];size=400x500")
+	onclose(user, "computer_\ref[src]")
 	src.add_fingerprint(user)
 	return
 

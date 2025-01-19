@@ -100,7 +100,7 @@
 	else
 		dat += text("<BR><br><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
 	//*****
-	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
+	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
 	if(istype(src, /obj/machinery/computer/pod/old/swf))
 		dat = "<HTML><BODY><TT><B>Magix IV Shuttle and Teleport Control</B>"
 		//if(!src.TPR)
@@ -108,9 +108,9 @@
 		//else
 			//dat += "<BR><BR><BR>RECHARGING TELEPORT<BR><DD>Please stand by...</DD>"
 		dat += text("<BR><BR><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
-		dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
-	user.Browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")
+		dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
+	user.Browse(dat, "window=computer_\ref[src];size=400x500")
+	onclose(user, "computer_\ref[src]")
 	return
 
 /obj/machinery/computer/pod/process()
@@ -138,7 +138,7 @@
 			//		src.TPR = 0
 			//		src.updateDialog()
 			src.remove_dialog(usr)
-			usr.Browse(null, "window=computer")
+			usr.Browse(null, "window=computer_\ref[src]")
 			usr.teleportscroll(1, 2, src)
 			return
 		if (href_list["power"])
