@@ -6103,6 +6103,10 @@ MAJOR_AST(30)
 	name = "Employee Lounge"
 	icon_state = "red"
 
+/area/centcom/outpost/ritos
+	name = "Rito's Frontier Command"
+	icon_state = "red"
+
 /area/centcom/outpost/maintenance/lower
 	name = "Lower Maintenance Tunnel"
 	icon_state = "dk_yellow"
