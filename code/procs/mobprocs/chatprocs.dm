@@ -11,37 +11,30 @@
 /mob/verb/start_say() //more or less what Zamujasa did for goonstation, but tweaked to work with coolstation code, and not quite as expansive
 	set name = "start_say"
 	set hidden = 1
-	var/mob/living/M = null
-	if(istype(src,/mob/living))
-		M = src
-	if(M)
-		M.speech_bubble.icon_state = "typing"
-		UpdateOverlays(M.speech_bubble,"speech_bubble")
-		SPAWN_DBG(15 SECONDS)
+	var/mob/living/as_living = src
+	if(istype(as_living))
+		as_living.speech_bubble.icon_state = "typing"
+		UpdateOverlays(as_living.speech_bubble,"speech_bubble")
+		/*SPAWN_DBG(15 SECONDS)
 			if (M?.speech_bubble?.icon_state == "typing")
-				M.UpdateOverlays(null, "speech_bubble")
+				M.UpdateOverlays(null, "speech_bubble")*/
 
 	var/message = input("","Say") as null|text
 
-	if (message)
-		src.say_verb(message)
-		return
-
-	if (M && M.speech_bubble?.icon_state == "typing")
-		M.lasttyping = null
-		M.UpdateOverlays(null,"speech_bubble")
+	say_verb(message) // we check the message in say_verb
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
+	UpdateOverlays(null, "speech_bubble")
 
 	if (!message)
 		return
-	if (src.client && url_regex?.Find(message) && !client.holder)
+	if (client && url_regex?.Find(message) && !client.holder)
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
 		boutput(src, "<span class='alert'>&emsp;<b>\"[message]</b>\"</span>")
 		return
 
-	src.say(message)
+	say(message)
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
 	#endif
