@@ -158,12 +158,16 @@
 				obs.see_invisible = src.owner.invisibility
 
 			//Transfer the control from the victim to the hivemind member
+			var/mob/dead/ghost = null
 			if (M.mind)
 				M.mind.transfer_to(obs)
 			else if (M.client)
 				obs.client = M.client
 			else if (M.ghost && !(M.ghost.mind && M.ghost.mind.dnr)) //Heh, death is no escape // (except sometimes when the ghost really doesn't want to come back and has DNR set HHHHEH)
-				var/mob/dead/ghost = M.ghost
+				ghost = M.ghost
+			else if (M.last_client)
+				ghost = find_ghost_by_key(M.last_client.key)
+			if(ghost)
 				ghost.show_text("<span class='red'>You feel yourself torn away from the afterlife and into another consciousness!</span>")
 				if(ghost.mind)
 					ghost.mind.transfer_to(obs)

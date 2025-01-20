@@ -223,7 +223,14 @@
 			subjMind = subject.ghost.mind
 		else if (subject.last_client)
 			var/mob/M = find_ghost_by_key(subject.last_client.key)
-			if (isVRghost(M) || inafterlifebar(M) || isghostcritter(M))
+			if (M)
+				subjMind = M.mind
+			else
+				show_message("Error: Mental interface failure.", "warning")
+				return
+		else if (subject.ghost && subject.ghost.last_client)
+			var/mob/M = find_ghost_by_key(subject.ghost.last_client.key)
+			if (M)
 				subjMind = M.mind
 			else
 				show_message("Error: Mental interface failure.", "warning")
