@@ -180,8 +180,15 @@
 				obs.my_ghost = ghost //Prevent lingering unreferenced ghost
 				//Likely necessary to null the corpse var to keep ling victims uncloneable
 				//Otherwise after you leave the hivemind, my_ghost would restore the corpse <-> ghost link as soon as you observe something else.
-				ghost.corpse = null
-				M.ghost = null
+				if(istype(ghost, /mob/dead/observer)) // fuck corpse not being defined on /mob/dead <- Amen
+					var/mob/dead/observer/O = ghost
+					if(O.corpse)
+						O.corpse = null
+				else if(istype(ghost, /mob/dead/target_observer))
+					var/mob/dead/target_observer/O = ghost
+					if(O.corpse)
+						O.corpse = null
+					M.ghost = null
 			else
 				return
 
