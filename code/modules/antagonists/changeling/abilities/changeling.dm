@@ -177,6 +177,10 @@
 					obs.key = ghost.key
 				else
 					return
+				obs.my_ghost = ghost //Prevent lingering unreferenced ghost
+				//Likely necessary to null the corpse var to keep ling victims uncloneable
+				//Otherwise after you leave the hivemind, my_ghost would restore the corpse <-> ghost link as soon as you observe something else.
+				ghost.corpse = null
 				M.ghost = null
 			else
 				return
