@@ -127,7 +127,7 @@
 	proc/is_frozen()
 		if(istype(src,/turf/space))
 			return TRUE
-		if(temperature < T0C)
+		if(temperature < T0C+2 ) // 2 degrees of grace.
 			return TRUE
 		else
 			return FALSE
