@@ -1,7 +1,0 @@
-#include "..\klushywip\summit.dmm"
-#include "..\klushywip\z2_summit.dmm"
-#include "..\klushywip\z3_summit.dmm"
-#include "z4.dm"
-#include "..\z5.dmm"
-#include "nudebris.dm"
-#define MAP_MODE "standard"
