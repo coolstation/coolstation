@@ -58,7 +58,7 @@ var/list/observers = list()
 		if(istype(M))
 			M.observers -= src
 
-		if (my_ghost)
+		if (my_ghost) //failsafe, normally stop_observing already nulled my_ghost
 			my_ghost.set_loc(get_turf(src))
 		my_ghost = null
 		target = null
@@ -134,56 +134,63 @@ var/list/observers = list()
 				src.attach_hud(hud)
 
 		if (isobj(target))
-			src.RegisterSignal(target, list(COMSIG_PARENT_PRE_DISPOSING), VERB_REF(stop_observing))
+			src.RegisterSignal(target, list(COMSIG_PARENT_PRE_DISPOSING), PROC_REF(stop_observing))
 
 
-	verb
-		stop_observing()
-			set name = "Stop Observing"
-			set category = "Commands"
+//no longer a verb so I can get hivemind observers to use this, instead of their near copy
+/mob/dead/target_observer/proc/stop_observing()
 
-			if (isobj(target))
-				src.UnregisterSignal(target, list(COMSIG_PARENT_PRE_DISPOSING))
+	if (isobj(target))
+		src.UnregisterSignal(target, list(COMSIG_PARENT_PRE_DISPOSING))
 
-			if (!my_ghost)
-				my_ghost = new(src.corpse)
+	if (!my_ghost)
+		my_ghost = new(src.corpse)
 
-				if (!src.corpse)
-					my_ghost.name = src.name
-					my_ghost.real_name = src.real_name
+		if (!src.corpse)
+			my_ghost.name = src.name
+			my_ghost.real_name = src.real_name
 
-			if (corpse)
-				corpse.ghost = my_ghost
-				my_ghost.corpse = corpse
+	if (corpse)
+		corpse.ghost = my_ghost
+		my_ghost.corpse = corpse
 
-			my_ghost.delete_on_logout = my_ghost.delete_on_logout_reset
+	my_ghost.delete_on_logout = my_ghost.delete_on_logout_reset
 
-			if (src.client)
-				src.removeOverlaysClient(src.client)
-				client.mob = my_ghost
+	if (src.client)
+		src.removeOverlaysClient(src.client)
+		client.mob = my_ghost
 
-			if (src.mind)
-				mind.transfer_to(my_ghost)
+	if (src.mind)
+		mind.transfer_to(my_ghost)
 
-			var/ASLoc = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
-			if (target)
-				var/turf/T = get_turf(target)
-				if (T && (!isghostrestrictedz(T.z) || (isghostrestrictedz(T.z) && (restricted_z_allowed(my_ghost, T) || (my_ghost.client && my_ghost.client.holder)))))
-					my_ghost.set_loc(T)
-				else
-					if (ASLoc)
-						my_ghost.set_loc(ASLoc)
-					else
-						my_ghost.z = 1
+	var/ASLoc = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
+	if (target)
+		var/turf/T = get_turf(target)
+		if (T && (!isghostrestrictedz(T.z) || (isghostrestrictedz(T.z) && (restricted_z_allowed(my_ghost, T) || (my_ghost.client && my_ghost.client.holder)))))
+			my_ghost.set_loc(T)
+		else
+			if (ASLoc)
+				my_ghost.set_loc(ASLoc)
 			else
-				if (ASLoc)
-					my_ghost.set_loc(ASLoc)
-				else
-					my_ghost.z = 1
+				my_ghost.z = 1
+	else
+		if (ASLoc)
+			my_ghost.set_loc(ASLoc)
+		else
+			my_ghost.z = 1
 
-			src.my_ghost = null
-			qdel(src)
+	src.my_ghost = null
+	qdel(src)
 
+/mob/dead/target_observer/proc/voluntary_stop_observing() //so hivemind observers can override
+	stop_observing()
+
+//Replacing stop_observing being a verb
+/mob/dead/target_observer/verb/voluntary_leave()
+	set name = "Stop Observing"
+	set category = "Commands"
+
+	voluntary_stop_observing()
 
 /mob/dead/target_observer/verb/ghostjump(x as num, y as num, z as num)
 	set name = ".ghostjump"
