@@ -98,6 +98,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
 //#define MAP_OVERRIDE_CRAG						// secret :)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
+//#define MAP_OVERRIDE_SUMMIT       //klushy WIP - seriously do not use this, will break
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP

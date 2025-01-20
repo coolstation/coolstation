@@ -1635,7 +1635,3 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "postit-writing"
 	info = {"-non-stable battery; keeps popping on use.<br>-design work (not final)<br>-battery capacity??? maybe?<br>Cheers,<br>O"}
 
-/obj/item/paper/tempbayoutesting
-	name = "WIP, Read me!"
-	desc = "A note from the mapmaker herself! Probably because she was too lazy to do something!"
-	info = "Hi! Cargo and Mining are not implemented yet on account of their unique features which are still under development. If you need something, ask me via and AHELP with f1, and I'll get it to you <3"

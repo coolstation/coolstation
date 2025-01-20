@@ -48,6 +48,12 @@ var/global/map_currently_very_dusty = 1
 var/global/map_currently_very_dusty = 0
 #endif
 
+#ifdef SNOW_MAP
+var/global/map_currently_snowy = 1
+#else
+var/global/map_currently_snowy = 0
+#endif
+
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
 #ifdef SCARCE_MAP
 var/global/map_currently_experiencing_shortages = 1

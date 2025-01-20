@@ -549,6 +549,18 @@
 		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/obj/item/raw_material/ice/cubic_ice
+	name = "cubic ice crystal"
+	desc = "A chunk of exotic ice. This is extremely cold."
+	icon_state = "ice"
+	material_name = "Ice"
+	crystal = 1
+	scoopable = 0
+
+	setup_material()
+		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
+		return ..()
+
 /obj/item/raw_material/scrap_metal
 	// this should only be spawned by the game, spawning it otherwise would just be dumb
 	name = "scrap"
