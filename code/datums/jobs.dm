@@ -2515,13 +2515,13 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_mask = list(/obj/item/clothing/mask/breath)
 	slot_card = /obj/item/card/id/command
 	slot_poc1 = list(/obj/item/spacecash/fivehundred)
-	slot_poc2 = list(/obj/item/storage/pouch/bullet_9mm)
-	items_in_backpack = list(/obj/item/gun/energy/ntgun,
+	slot_poc2 = list(/obj/item/rubberduck)
+	items_in_backpack = list(/obj/item/gun/modular/NT/short/pistol,
 							/obj/item/device/pda2/heads,
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/storage/firstaid/regular,
-							/obj/item/storage/pouch/powercell_medium,
-							/obj/item/gun/kinetic/pistol)
+							/obj/item/stackable_ammo/pistol/HP/ten,
+							/obj/item/gun/modular/italian/basic)
 
 	New()
 		..()
@@ -2551,7 +2551,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	recieves_miranda = 1
 	recieves_implant = /obj/item/implant/health
 	slot_back = list(/obj/item/storage/backpack/NT)
-	slot_belt = list(/obj/item/storage/belt/security/ntso) //special secbelt subtype that spawns with the NTSO gear inside
+	slot_belt = list(/obj/item/storage/belt/security) //special secbelt subtype that spawns with the NTSO gear inside
 	slot_jump = list(/obj/item/clothing/under/misc/turds)
 	slot_head = list(/obj/item/clothing/head/NTberet)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
