@@ -35,7 +35,7 @@ var/global/nevicata_time = NEVICATA_TIME
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "nevicata_ice"
 	hardness = 1
-	default_ore = /obj/item/raw_material/rock/nevicata
+	default_ore = /obj/item/raw_material/ice/nevicata
 
 	New()
 		..()
@@ -81,7 +81,7 @@ var/global/nevicata_time = NEVICATA_TIME
 /turf/floor/plating/nevicata/
 	name = "snow"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = 'snow_calm'
+	icon_state = "snow_calm"
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //copy pasted from Gehenna, to prevent tiles from having material prefixes
@@ -162,7 +162,7 @@ var/global/nevicata_time = NEVICATA_TIME
 
 /area/nevicata
 	requires_power = 0
-	icon_sate = "dither_b"
+	icon_state = "dither_b"
 	name = "the nevicatan tundra"
 
 /area/nevicata/wastes

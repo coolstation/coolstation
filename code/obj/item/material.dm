@@ -549,7 +549,7 @@
 		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
 		return ..()
 
-/obj/item/raw_material/ice/cubic_ice
+/obj/item/raw_material/ice/nevicata
 	name = "cubic ice crystal"
 	desc = "A chunk of exotic ice. This is extremely cold."
 	icon_state = "ice"

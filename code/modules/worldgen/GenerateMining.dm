@@ -23,8 +23,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 		else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 			src.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
-		else if (map_currently_snowy && ((src.z == 3) || (src.z == 2) || src.z == 1))
-			src.ReplaceWith(/turf/wall/asteroid/nevicata, FALSE, TRUE, FALSE, TRUE)
+		//else if (map_currently_snowy && ((src.z == 3) || (src.z == 2) || src.z == 1))
+			//src.ReplaceWith(/turf/wall/asteroid/nevicata, FALSE, TRUE, FALSE, TRUE)
 		else
 			src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 
@@ -36,8 +36,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 				src.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
-			else if (map_currently_snowy && ((src.z == 3) || (src.z == 2) || src.z == 1))
-				src.ReplaceWith(/turf/floor/plating/nevicata, FALSE, TRUE, FALSE, TRUE)
+			//else if (map_currently_snowy && ((src.z == 3) || (src.z == 2) || src.z == 1))
+				//src.ReplaceWith(/turf/floor/plating/nevicata, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/floor/plating/airless/asteroid, FALSE, TRUE, FALSE, TRUE)
 
