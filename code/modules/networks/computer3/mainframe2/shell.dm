@@ -494,7 +494,7 @@
 
 				pipetemp = ""
 				var/datum/computer/file/mainframe_program/toRun = signal_program(1, siglist)
-				if (istype(toRun))
+				if (istype(toRun) && !QDELETED(toRun))
 					scriptprocess = toRun.progid
 
 				//qdel(siglist)
