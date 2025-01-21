@@ -661,6 +661,7 @@
 	/obj/item/storage/box/syringes
 	/obj/item/reagent_containers/glass/wateringcan,
 	/obj/item/clothing/mask/chicken,
+	/obj/item/kitchen/food_box/egg_box,
 	/obj/item/paper/ranch_guide)
 
 
