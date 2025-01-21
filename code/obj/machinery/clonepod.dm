@@ -37,7 +37,7 @@
 
 	var/gen_bonus = 1 //Normal generation speed
 	var/speed_bonus = DEFAULT_SPEED_BONUS // Multiplier that can be modified by modules
-	var/auto_mode = 1
+	var/auto_mode = FALSE
 	var/auto_delay = 10
 
 	power_usage = 200
@@ -596,6 +596,20 @@
 			qdel(W)
 			return
 
+		else if (istype(W, /obj/item/cloneModule/auto_start)) // prebaking clones like in the new old days
+			if (auto_mode)
+				boutput(user,"<span class='alert'>There's already a pre-cloner unit on this pod!</span>")
+				return
+			if (operating && attempting)
+				boutput(user,"<span class='alert'>The cloning pod emits a[pick("n angry", " grumpy", "n annoyed", " cheeky")] [pick("boop","bop", "beep", "blorp", "burp")]!</span>")
+				return
+			user.visible_message("[user] installs [W] into [src].", "You install [W] into [src].")
+			logTheThing("combat", src, user, "[user] installed ([W]) to ([src]) at [log_loc(user)].")
+			auto_mode = TRUE
+			user.drop_item()
+			qdel(W)
+			return
+
 		else if (istype(W, /obj/item/cloneModule/insurgent_module)) // Time to re enact the clone wars
 			if (operating && attempting)
 				boutput(user,"<span class='alert'>The cloning pod emits a[pick("n angry", " grumpy", "n annoyed", " cheeky")] [pick("boop","bop", "beep", "blorp", "burp")]!</span>")
@@ -672,7 +686,7 @@
 		add_fingerprint(usr)
 		return
 
-	verb/toggle_auto()
+	/*verb/toggle_auto()
 		set src in oview(1)
 		set name = "Toggle Auto Mode"
 		set category = "Local"
@@ -682,7 +696,7 @@
 		src.auto_mode = 1 - src.auto_mode
 		boutput(usr, "<span class='notice'>\The [src] will [src.auto_mode ? "automatically" : "no longer"] automatically prepare new bodies for clones.</span>")
 		add_fingerprint(usr)
-		return
+		return*/
 
 	proc/go_out(unlock = 0)
 		if (unlock)
