@@ -649,6 +649,21 @@
 	/obj/item/paper/book/from_file/hydroponicsguide,
 	/obj/item/device/appraisal)
 
+/obj/storage/secure/closet/civilian/ranch
+	name = "\improper Ranching supplies locker"
+	req_access = list(access_ranch)
+	icon_state = "secure_green"
+	icon_closed = "secure_green"
+	icon_opened = "secure_green-open"
+	spawn_contents = list(/obj/item/storage/box/clothing/rancher,
+	/obj/item/plantanalyzer,
+	/obj/item/fishing_rod/rancher
+	/obj/item/storage/box/syringes
+	/obj/item/reagent_containers/glass/wateringcan,
+	/obj/item/clothing/mask/chicken,
+	/obj/item/paper/ranch_guide)
+
+
 /obj/storage/secure/closet/civilian/kitchen
 	name = "\improper Catering supplies locker"
 	req_access = list(access_kitchen)
