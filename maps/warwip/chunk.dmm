@@ -541,6 +541,9 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
+"aAm" = (
+/turf/wall/r_wall,
+/area/station/hallway/secondary/construction)
 "aAq" = (
 /obj/item/device/radio/beacon,
 /turf/floor/grey,
@@ -2267,9 +2270,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
-"bXx" = (
-/turf/floor/plating,
-/area/station/hallway/secondary/construction)
 "bXE" = (
 /obj/landmark/start{
 	name = "Botanist"
@@ -2692,6 +2692,10 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"ctG" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/hallway/secondary/construction)
 "ctY" = (
 /obj/wingrille_spawn/reinforced,
 /obj/decal/xmas_lights/ephemeral,
@@ -3341,14 +3345,13 @@
 /turf/wall/r_wall,
 /area/station/science/lab)
 "dbD" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	tag = ""
 	},
-/obj/cable{
-	icon_state = "2-8"
-	},
-/turf/floor/plating,
-/area/station/maintenance/north)
+/turf/floor/white/checker,
+/area/station/medical/staff)
 "dch" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor/specialroom/chapel,
@@ -5644,12 +5647,6 @@
 /obj/window_blinds,
 /turf/floor/plating,
 /area/station/security/quarters)
-"fcN" = (
-/obj/wingrille_spawn/reinforced,
-/obj/decal/garland/ephemeral,
-/obj/decal/poster/wallsign/construction,
-/turf/floor/plating,
-/area/station/hallway/secondary/construction)
 "fdo" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5770,14 +5767,9 @@
 	},
 /area/station/crew_quarters/market)
 "fjd" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
-/turf/floor/neutral/side{
-	dir = 4
-	},
-/area/station/hallway/primary/northeast)
+/obj/storage/secure/closet/civilian/ranch,
+/turf/floor/auto/dirt,
+/area/station/ranch)
 "fjg" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -5887,6 +5879,14 @@
 	dir = 4
 	},
 /area/station/engine/singcore)
+"fob" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "fof" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -7236,10 +7236,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/power)
-"gvC" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/station/hallway/secondary/construction)
 "gvL" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/sanitary,
@@ -8659,7 +8655,12 @@
 /area/station/hallway/primary/central)
 "hVH" = (
 /obj/stool/bed/moveable/hospital,
-/obj/item/clothing/suit/bedsheet/psych,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "captain";
+	desc = "This colorful and somewhat childish bedsheet helps the captain sleep at night.";
+	icon_state = "bedsheet-captain";
+	name = "special bedsheet"
+	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment1)
 "hVO" = (
@@ -9622,6 +9623,13 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/engine/gas)
+"iNG" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/floor/plating,
+/area/station/hallway/secondary/construction)
 "iOd" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8;
@@ -9723,7 +9731,7 @@
 /obj/machinery/power/apc{
 	areastring = "Hydroponics Bay";
 	dir = 4;
-	name = s;
+	name = "Hydroponics Bay APC";
 	pixel_x = 24
 	},
 /turf/floor/plating,
@@ -9884,7 +9892,7 @@
 /area/station/storage/tech)
 "jap" = (
 /obj/stool/bed/moveable/hospital,
-/obj/item/clothing/suit/bedsheet/psych,
+/obj/item/clothing/suit/bedsheet,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment2)
 "jbm" = (
@@ -10488,6 +10496,12 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor,
 /area/station/science/bot_storage)
+"jJp" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/garland/ephemeral,
+/obj/decal/poster/wallsign/construction,
+/turf/floor/plating,
+/area/station/hallway/secondary/construction)
 "jJJ" = (
 /obj/machinery/chem_dispenser/alcohol,
 /turf/floor/grey,
@@ -11249,13 +11263,12 @@
 /turf/floor/carpet/grime4,
 /area/station/science/lobby)
 "kAc" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/railing/orange/reinforced,
+/obj/machinery/plantpot{
+	anchored = 1
 	},
-/turf/floor/plating,
-/area/station/maintenance/central)
+/turf/floor/auto/dirt,
+/area/station/ranch)
 "kAg" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -11506,6 +11519,15 @@
 /obj/item/clothing/under/misc/lawyer,
 /turf/floor/black,
 /area/station/chapel/office)
+"kMR" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "kMV" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/power/collector_control,
@@ -11688,6 +11710,14 @@
 /obj/item/razor_blade,
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
+"kVL" = (
+/obj/storage/secure/closet/animal,
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -1
+	},
+/turf/floor/grass/random,
+/area/station/medical/dome)
 "kVN" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/observatory)
@@ -11812,6 +11842,16 @@
 "lbs" = (
 /turf/wall/r_wall,
 /area/station/science/chemistry)
+"lbz" = (
+/obj/stool/bench/blue/auto,
+/obj/cable,
+/obj/machinery/power/apc{
+	areastring = "Treatment Room 2";
+	name = "Treatment Room 2 APC";
+	pixel_y = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "lbM" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -12062,11 +12102,6 @@
 	},
 /turf/space,
 /area/station/com_dish/comdish)
-"lqa" = (
-/obj/railing/orange/reinforced,
-/obj/machinery/hydro_growlamp,
-/turf/floor/auto/dirt,
-/area/station/ranch)
 "lqd" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
@@ -13325,6 +13360,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
+"mAj" = (
+/obj/machinery/plantpot{
+	anchored = 1
+	},
+/turf/floor/auto/dirt,
+/area/station/ranch)
 "mAP" = (
 /obj/rack,
 /obj/item/chair/folded,
@@ -14496,10 +14537,6 @@
 /obj/landmark/spawner{
 	name = "monkeyspawn_krimpus"
 	},
-/turf/floor/grass,
-/area/station/hydroponics/bay)
-"nEH" = (
-/obj/machinery/hydro_growlamp,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "nFG" = (
@@ -15808,9 +15845,14 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "oOi" = (
-/obj/storage/secure/closet/civilian/ranch,
-/turf/floor/auto/dirt,
-/area/station/ranch)
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "oPb" = (
 /obj/decoration/toiletholder{
 	dir = 8
@@ -16098,6 +16140,13 @@
 	},
 /turf/floor/grey/side,
 /area/station/crew_quarters/bar)
+"paR" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -1
+	},
+/turf/floor/grass/leafy,
+/area/station/ranch)
 "pbm" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/vertical,
@@ -16767,15 +16816,8 @@
 /turf/floor/grey,
 /area/station/bridge)
 "pEz" = (
-/obj/stool/bench/blue/auto,
-/obj/cable,
-/obj/machinery/power/apc{
-	areastring = "Treatment Room 2";
-	name = "Treatment Room 2 APC";
-	pixel_y = -24
-	},
 /turf/floor/plating,
-/area/station/maintenance/north)
+/area/station/hallway/secondary/construction)
 "pEA" = (
 /obj/machinery/light/small/ceiling,
 /obj/disposalpipe/segment/vertical,
@@ -17183,6 +17225,10 @@
 "pYl" = (
 /turf/wall,
 /area/station/hydroponics/bay)
+"pYB" = (
+/obj/machinery/portable_reclaimer,
+/turf/floor/black,
+/area/station/medical/robotics)
 "pZn" = (
 /obj/machinery/atmospherics/portables_connector/east,
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -19669,17 +19715,9 @@
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "szX" = (
-/obj/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "Pathology Research";
-	dir = 4;
-	name = "Pathology APC";
-	pixel_x = 24
-	},
-/turf/floor/plating,
-/area/station/maintenance/north)
+/obj/machinery/light,
+/turf/floor/grass/leafy,
+/area/station/ranch)
 "sAw" = (
 /obj/cable{
 	d1 = 2;
@@ -20175,12 +20213,6 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
-"sUR" = (
-/obj/machinery/plantpot{
-	anchored = 1
-	},
-/turf/floor/auto/dirt,
-/area/station/ranch)
 "sUU" = (
 /obj/machinery/door/airlock,
 /obj/disposalpipe/segment/vertical,
@@ -20385,9 +20417,7 @@
 /area/station/medical/research)
 "tgq" = (
 /obj/railing/orange/reinforced,
-/obj/machinery/plantpot{
-	anchored = 1
-	},
+/obj/machinery/hydro_growlamp,
 /turf/floor/auto/dirt,
 /area/station/ranch)
 "tgM" = (
@@ -20440,11 +20470,10 @@
 /area/station/maintenance/disposal/sewage)
 "thL" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 4
 	},
-/turf/floor/plating,
-/area/station/hallway/secondary/construction)
+/turf/floor/grass/leafy,
+/area/station/ranch)
 "thN" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -20961,6 +20990,18 @@
 /obj/machinery/power/apc/autoname_east,
 /turf/floor,
 /area/station/crew_quarters/lounge)
+"tEK" = (
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "Pathology Research";
+	dir = 4;
+	name = "Pathology APC";
+	pixel_x = 24
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "tEQ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -22208,15 +22249,6 @@
 	dir = 1
 	},
 /area/station/engine/singcore)
-"uIa" = (
-/obj/cable{
-	icon_state = "2-8"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/floor/plating,
-/area/station/maintenance/north)
 "uIc" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
@@ -22386,6 +22418,10 @@
 	dir = 8
 	},
 /area/station/crew_quarters/market)
+"uOS" = (
+/obj/machinery/hydro_growlamp,
+/turf/floor/grass,
+/area/station/hydroponics/bay)
 "uPE" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -22480,9 +22516,6 @@
 /obj/machinery/light,
 /turf/floor/grey,
 /area/station/science/chemistry)
-"uSU" = (
-/turf/wall/r_wall,
-/area/station/hallway/secondary/construction)
 "uTb" = (
 /obj/wingrille_spawn,
 /obj/decal/xmas_lights/ephemeral,
@@ -23572,6 +23605,9 @@
 "vRU" = (
 /obj/cable{
 	icon_state = "5-10"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/floor/neutral/side{
 	dir = 5
@@ -25569,10 +25605,6 @@
 	},
 /turf/floor,
 /area/station/engine/storage)
-"xOj" = (
-/obj/machinery/portable_reclaimer,
-/turf/floor/black,
-/area/station/medical/robotics)
 "xOu" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -73166,8 +73198,8 @@ eoH
 eoH
 eoH
 fxk
-dbD
-pEz
+kMR
+lbz
 eoH
 lsV
 fnr
@@ -73770,7 +73802,7 @@ eoH
 okn
 kAg
 iAw
-uIa
+oOi
 kve
 jPe
 eua
@@ -74072,7 +74104,7 @@ gCD
 mcJ
 qmo
 wcB
-szX
+tEK
 jcX
 qBC
 fqm
@@ -75571,7 +75603,7 @@ dNL
 nRx
 mmr
 dNL
-yjH
+kVL
 nGt
 rxw
 nGt
@@ -76480,7 +76512,7 @@ nVF
 btG
 btG
 nVF
-dQS
+dbD
 rPY
 dQS
 ezJ
@@ -78625,7 +78657,7 @@ nVs
 thB
 jJL
 ujq
-nEH
+uOS
 ujq
 ujq
 jJL
@@ -79262,13 +79294,13 @@ mfQ
 wPC
 sKh
 vAe
-uSU
+aAm
 oey
-uSU
-thL
-bXx
-bXx
-bXx
+aAm
+iNG
+pEz
+pEz
+pEz
 xPp
 huZ
 fDn
@@ -79566,11 +79598,11 @@ elr
 vAe
 qmQ
 jEz
-uSU
+aAm
 oUg
-bXx
-bXx
-bXx
+pEz
+pEz
+pEz
 xPp
 huZ
 fDn
@@ -79869,9 +79901,9 @@ vAe
 xEU
 flb
 hfY
-bXx
-bXx
-bXx
+pEz
+pEz
+pEz
 aEY
 xPp
 huZ
@@ -80105,7 +80137,7 @@ rvw
 wJD
 qMz
 etU
-xOj
+pYB
 mws
 hOc
 smD
@@ -80136,7 +80168,7 @@ fAM
 wRc
 wRc
 wRc
-kAc
+fob
 iAt
 iGM
 vCW
@@ -80170,11 +80202,11 @@ uuD
 vAe
 fmq
 tJt
-uSU
-bXx
-bXx
-bXx
-bXx
+aAm
+pEz
+pEz
+pEz
+pEz
 xPp
 huZ
 fDn
@@ -80469,14 +80501,14 @@ tPm
 muw
 kJu
 gkN
-uSU
-uSU
-uSU
-uSU
+aAm
+aAm
+aAm
+aAm
 lAC
-bXx
-bXx
-bXx
+pEz
+pEz
+pEz
 xPp
 huZ
 fDn
@@ -80771,13 +80803,13 @@ xGg
 vCv
 kJu
 jYV
-fcN
-thL
-bXx
-bXx
-bXx
-bXx
-bXx
+jJp
+iNG
+pEz
+pEz
+pEz
+pEz
+pEz
 aEY
 xPp
 huZ
@@ -81080,7 +81112,7 @@ pGs
 pGs
 pGs
 rri
-bXx
+pEz
 xPp
 huZ
 fDn
@@ -81375,14 +81407,14 @@ tBB
 cIH
 tBB
 wFz
-fcN
-bXx
-bXx
-bXx
+jJp
+pEz
+pEz
+pEz
 qYo
-bXx
+pEz
 nlI
-bXx
+pEz
 xPp
 huZ
 fDn
@@ -81639,7 +81671,7 @@ bso
 eNL
 rCu
 vRU
-fjd
+snS
 snS
 snS
 snS
@@ -81677,15 +81709,15 @@ gkN
 oWE
 aCW
 gkN
-uSU
-gvC
-gvC
-gvC
-uSU
-gvC
+aAm
+ctG
+ctG
+ctG
+aAm
+ctG
 oCh
-gvC
-uSU
+ctG
+aAm
 rvw
 rvw
 wJD
@@ -82243,13 +82275,13 @@ vqS
 vqS
 mIA
 vqS
-oOi
+fjd
 efx
-sUR
-lqa
+mAj
+tgq
 gbn
 hfg
-hfg
+szX
 mVA
 wEs
 grL
@@ -82548,7 +82580,7 @@ vqS
 vlO
 aDO
 efx
-tgq
+kAc
 hfg
 hfg
 hfg
@@ -83451,13 +83483,13 @@ ajW
 oHm
 fQE
 vqS
-hfg
+paR
 hfg
 hfg
 ycq
 hfg
 gbn
-hfg
+thL
 huA
 gbv
 ylr

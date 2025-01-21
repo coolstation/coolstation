@@ -657,8 +657,8 @@
 	icon_opened = "secure_green-open"
 	spawn_contents = list(/obj/item/storage/box/clothing/rancher,
 	/obj/item/plantanalyzer,
-	/obj/item/fishing_rod/rancher
-	/obj/item/storage/box/syringes
+	/obj/item/fishing_rod/rancher,
+	/obj/item/storage/box/syringes,
 	/obj/item/reagent_containers/glass/wateringcan,
 	/obj/item/clothing/mask/chicken,
 	/obj/item/kitchen/food_box/egg_box,
