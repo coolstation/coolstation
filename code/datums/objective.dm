@@ -156,7 +156,7 @@ proc/create_fluff(datum/mind/target)
 	set_up()
 		var/list/items = list("Head of Security\'s beret", "prisoner\'s beret", "DetGadget hat", "horse mask", "authentication disk",
 		"\'freeform\' AI module", "gene power module", "mainframe memory board", "yellow cake", "aurora MKII utility belt", "Head of Security\'s war medal", "Research Director\'s Diploma", "Medical Director\'s Medical License", "Head of Personnel\'s First Bill",
-		"much coveted Gooncode")
+		"extra spicy Coolcode")
 
 		target_name = pick(items)
 		switch(target_name)
@@ -186,14 +186,14 @@ proc/create_fluff(datum/mind/target)
 				steal_target = /obj/item/mdlicense
 			if("Head of Personnel\'s First Bill")
 				steal_target = /obj/item/firstbill
-			if("much coveted Gooncode")
-				steal_target = /obj/item/toy/gooncode
+			if("extra spicy Coolcode")
+				steal_target = /obj/item/toy/coolcode
 			if("horse mask")
 				steal_target = /obj/item/clothing/mask/horse_mask
 #else
 	set_up()
 		var/list/items = list("Head of Security\'s beret", "prisoner\'s beret", "DetGadget hat", "horse mask", "authentication disk",
-		"\'freeform\' AI module", "gene power module", "mainframe memory board", "yellow cake", "aurora MKII utility belt", "much coveted Gooncode", "golden crayon")
+		"\'freeform\' AI module", "gene power module", "mainframe memory board", "yellow cake", "aurora MKII utility belt", "extra spicy Coolcode", "golden crayon")
 
 		target_name = pick(items)
 		switch(target_name)
@@ -215,8 +215,8 @@ proc/create_fluff(datum/mind/target)
 				steal_target = /obj/item/reagent_containers/food/snacks/yellow_cake_uranium_cake
 			if("aurora MKII utility belt")
 				steal_target = /obj/item/storage/belt/utility/prepared/ceshielded
-			if("much coveted Gooncode")
-				steal_target = /obj/item/toy/gooncode
+			if("extra spicy Coolcode")
+				steal_target = /obj/item/toy/coolcode
 			if("horse mask")
 				steal_target = /obj/item/clothing/mask/horse_mask
 			if("golden crayon")
