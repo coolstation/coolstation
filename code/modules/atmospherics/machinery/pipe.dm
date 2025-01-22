@@ -349,6 +349,10 @@ obj/machinery/atmospherics/pipe
 
 		proc/rupture(pressure, destroy=FALSE)
 			var/new_rupture
+			#ifdef DATALOGGER
+			if (!src.ruptured) //new breaks only
+				game_stats.Increment("workplacesafety")
+			#endif
 			if (src.destroyed || destroy)
 				ruptured = 4
 				src.destroyed = TRUE
