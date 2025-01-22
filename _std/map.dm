@@ -21,3 +21,13 @@
 #define BIOME_LOWMEDIUM_HUMIDITY "lowmedium_humidity"
 #define BIOME_HIGHMEDIUM_HUMIDITY "highmedium_humidity"
 #define BIOME_HIGH_HUMIDITY "high_humidity"
+
+var/global/list/station_z_levels = list(1)
+var/global/list/adventure_z_levels = list()
+var/global/list/debris_z_levels = list()
+var/global/list/mining_z_levels = list()
+
+#define STATION_Z station_z_levels
+#define AZONE_Z adventure_z_levels
+#define DEBRIS_Z debris_z_levels
+#define MINING_Z mining_z_levels
