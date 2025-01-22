@@ -632,6 +632,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 						H.show_text("You find some... salvageable... meat.. you guess?", "blue")
 						H.unlock_medal("Sheesh!", 1)
 						new /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat(src.loc)
+					#ifdef DATALOGGER
+					game_stats.Increment("workplacesafety") //It's just not sanitary
+					#endif
 					src.sampled = 1
 			else
 				return ..()

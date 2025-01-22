@@ -349,6 +349,10 @@
 			command_alert("\A [src] has been detonated in [A].", "Attention")
 			explosion_new(src, get_turf(src), src.boom_size)
 			qdel(src)
+#ifdef DATALOGGER
+			if (istype(A, /area/station))
+				game_stats.Increment("workplacesafety")
+#endif
 			return
 		var/datum/game_mode/nuclear/NUKEMODE = ticker?.mode
 		var/turf/nuke_turf = get_turf(src)
@@ -362,10 +366,13 @@
 			area_correct = 1 // this is a dumb hack but its for now ok
 		if ((nuke_turf.z != 1 && !area_correct) && (ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear)))
 			NUKEMODE.the_bomb = null
-			command_alert("A nuclear explosive has been detonated nearby. The station was not in range of the blast.", "Attention")
+			command_alert("A nuclear explosive has been detonated nearby. The [station_or_ship()] was not in range of the blast.", "Attention")
 			explosion(src, src.loc, 20, 30, 40, 50)
 			qdel(src)
 			return
+#ifdef DATALOGGER
+		game_stats.Increment("workplacesafety")
+#endif
 #ifdef MAP_OVERRIDE_GEHENNA
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)

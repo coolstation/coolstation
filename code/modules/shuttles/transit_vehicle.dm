@@ -229,6 +229,9 @@ var/global/datum/transit_controller/transit_controls = new
 					M.changeStatus("weakened", 5 SECONDS)
 					M.emote("scream")
 					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+					#ifdef DATALOGGER
+					game_stats.Increment("workplacesafety")
+					#endif
 			A.set_loc(T)
 			return
 		else ..()
