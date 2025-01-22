@@ -4567,11 +4567,11 @@
 	name = "glow - WHITE"
 	},
 /obj/computerframe{
+	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
-	name = "smashed computer";
-	anchored = 1
+	name = "smashed computer"
 	},
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -5722,8 +5722,8 @@
 /area/station/crew_quarters/fitness)
 "eFg" = (
 /obj/machinery/mass_driver{
-	id = "scorp";
-	dir = 4
+	dir = 4;
+	id = "scorp"
 	},
 /obj/grille/catwalk/bob/side{
 	dir = 6
@@ -6326,8 +6326,8 @@
 	desc = "It's comfortable, but has an aura of unease about it, like somebody's watching you the moment you sit down.";
 	dir = 9;
 	icon_state = "chair_couch-green";
-	name = "tacky green couch";
-	layer = 4
+	layer = 4;
+	name = "tacky green couch"
 	},
 /obj/machinery/light{
 	dir = 8
@@ -8929,7 +8929,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/turf/floor/airless/red/checker,
+/turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
 "hew" = (
 /obj/lattice{
@@ -13983,7 +13983,6 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
 /turf/floor,
 /area/station/security/armory)
 "lgS" = (
@@ -17077,7 +17076,7 @@
 	},
 /area/station/crew_quarters/quarters_west)
 "nxy" = (
-/obj/storage/secure/crate/weapon/armory/phaser,
+/obj/machinery/portable_atmospherics/canister/sleeping_agent,
 /turf/floor,
 /area/station/security/armory)
 "nxL" = (
@@ -21773,8 +21772,8 @@
 	desc = "It's comfortable, but has an aura of unease about it, like somebody's watching you the moment you sit down.";
 	dir = 5;
 	icon_state = "chair_couch-green";
-	name = "tacky green couch";
-	layer = 4
+	layer = 4;
+	name = "tacky green couch"
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
