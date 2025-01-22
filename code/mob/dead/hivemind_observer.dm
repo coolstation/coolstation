@@ -37,6 +37,9 @@
 			return
 		..()
 
+	process_move(keys)
+		return // so we dont eject from the hivemind immediately lol
+
 	proc/try_launch_attack(atom/shoot_target)
 		.= 0
 		if (isabomination(hivemind_owner.owner) && world.time > (last_attack + src.combat_click_delay))
