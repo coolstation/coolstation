@@ -753,6 +753,10 @@
 /obj/item/device/dongle,
 /turf/floor/carpet/grime,
 /area/drone/office)
+"agK" = (
+/obj/storage/crate/freezer,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "agR" = (
 /obj/table/auto,
 /obj/decal/fakeobjects{
@@ -1393,6 +1397,19 @@
 	dir = 1
 	},
 /area/hospital/underground)
+"aol" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "aoo" = (
 /obj/storage/crate/bin{
 	desc = "A large bin, for trash.";
@@ -3242,6 +3259,10 @@
 	icon_state = "panelwall_cap"
 	},
 /area/hospital)
+"aCW" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "aCX" = (
 /obj/decal/fakeobjects/firelock_broken{
 	desc = "A security door used to separate compartments.";
@@ -4424,6 +4445,10 @@
 	},
 /turf/wall/cave,
 /area/crater)
+"aJn" = (
+/obj/item/storage/wall/emergency,
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "aJo" = (
 /obj/decal/cleanable/cobweb,
 /turf/floor/cave,
@@ -5692,7 +5717,7 @@
 /turf/floor/arctic/cliff{
 	dir = 6
 	},
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "aNO" = (
 /obj/lattice{
 	dir = 5;
@@ -6563,7 +6588,7 @@
 /turf/floor/arctic/cliff{
 	dir = 9
 	},
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "aQW" = (
 /obj/map/light/lava,
 /turf/floor/engine,
@@ -10290,15 +10315,8 @@
 	},
 /area/marsoutpost)
 "beh" = (
-/obj/item/paper{
-	desc = "smells like a skunk's ass in hear";
-	icon_state = "paper";
-	info = "oops i'm sorry i ate the ice moon basement but don't worry i'll bring it back soonish";
-	name = "IOU";
-	pixel_x = -2
-	},
-/turf/space,
-/area/space)
+/turf/outdoors/concrete,
+/area/lower_arctic/mining)
 "bel" = (
 /obj/decal/cleanable/dirt,
 /obj/item/raw_material/rock,
@@ -11566,15 +11584,18 @@
 /turf/floor/black,
 /area/afterlife/bar)
 "biX" = (
-/obj/item/paper{
-	desc = "smells like a skunk's ass in hear";
-	icon_state = "paper";
-	info = "say, how do you think those shades down there took the collapse of the channel, anyway?";
-	name = "IOU";
-	pixel_x = -2
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
-/turf/space,
-/area/space)
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
 "biZ" = (
 /turf/floor/setpieces/gauntlet{
 	color = "#F7A8B8";
@@ -26179,7 +26200,7 @@
 /turf/floor/arctic/cliff{
 	dir = 4
 	},
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "bZa" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A large air vent";
@@ -48626,13 +48647,22 @@
 /obj/access_spawn/soviet/private/security,
 /turf/floor/concrete,
 /area/upper_arctic/fita/armory)
+"dlL" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "dlN" = (
 /turf/space/shuttle_transit,
 /area/shuttle/escape/transit/cogmap2)
 "dlO" = (
-/obj/item/storage/wall/emergency,
-/turf/wall/auto/concrete,
-/area/upper_arctic/fita/bathroom)
+/turf/floor/arctic/cliff_outsidecorner{
+	dir = 9
+	},
+/area/upper_arctic/exterior/abyss)
 "dlP" = (
 /obj/item/storage/toilet{
 	dir = 4
@@ -48893,9 +48923,10 @@
 /turf/floor,
 /area/solariumjoke)
 "dnX" = (
-/obj/item/storage/wall/emergency,
-/turf/wall/auto/concrete,
-/area/upper_arctic/fita/crew)
+/turf/floor/arctic/cliff{
+	dir = 1
+	},
+/area/upper_arctic/exterior/abyss)
 "dnY" = (
 /obj/machinery/door/airlock/classic,
 /obj/decal/fakeobjects/pipe{
@@ -49286,6 +49317,20 @@
 	icon_state = "old_rwall"
 	},
 /area/upper_arctic/fita/medsci)
+"dpG" = (
+/obj/machinery/door/airlock/classic,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "dpH" = (
 /turf/space/no_replace,
 /area/swap)
@@ -50677,6 +50722,12 @@
 /obj/decal/cleanable/cobweb,
 /turf/floor,
 /area/meat_derelict/guts)
+"dyk" = (
+/obj/map/light/cyan,
+/turf/floor/engine/caution/corner2{
+	dir = 5
+	},
+/area/lower_arctic/mining)
 "dyl" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -51267,6 +51318,9 @@
 	},
 /turf/floor/grime,
 /area/meat_derelict/entry)
+"dAF" = (
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "dAI" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -52024,6 +52078,12 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/john/owlery)
+"dES" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 1
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "dFc" = (
 /obj/machinery/vending/snack,
 /turf/floor/black,
@@ -52441,6 +52501,18 @@
 /obj/decal/icefloor,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"eeo" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "A Soviet tape drive. Whirring along.";
+	dir = 1;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "tapedrive0";
+	name = "reactor tape drive"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "eeu" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It's a pipe manifold.  A grimy one.";
@@ -52516,6 +52588,18 @@
 /obj/access_spawn/soviet/private/security,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
+"epZ" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	dir = 5;
+	name = "pipe"
+	},
+/obj/machinery/light/small/cool/very{
+	dir = 8
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/east,
+/area/lower_arctic/mining)
 "eqc" = (
 /obj/stool/chair/comfy/shuttle/brown{
 	dir = 4
@@ -52560,6 +52644,9 @@
 "eyM" = (
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/morgue)
+"eyO" = (
+/turf/wall/water/border,
+/area/lower_arctic/septic)
 "ezs" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 5;
@@ -52689,6 +52776,14 @@
 	},
 /turf/floor/engine/caution/west,
 /area/upper_arctic/fita/hall)
+"eJW" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "eLI" = (
 /obj/decal/stage_edge/dojo,
 /obj/decal/fakeobjects{
@@ -52745,6 +52840,20 @@
 	icon_state = "green2"
 	},
 /area/wizard_station)
+"eRT" = (
+/obj/decal/garland,
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
+"eSE" = (
+/obj/grille/catwalk{
+	dir = 5;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark{
+	name = "icecrewelefall"
+	},
+/turf/floor/plating,
+/area/lower_arctic/mining)
 "eTi" = (
 /turf/space/no_replace,
 /area/cordon)
@@ -52787,6 +52896,11 @@
 	opacity = 1
 	},
 /area/adventure/channel)
+"eZm" = (
+/obj/storage/closet/radiation,
+/obj/machinery/light/small/cool/very,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "eZS" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -52943,6 +53057,18 @@
 /obj/item/paper/book/from_file/monster_manual,
 /turf/floor/black,
 /area/crypt/sigma/rd)
+"flg" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "fls" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -52968,6 +53094,22 @@
 /mob/living/critter/small_animal/floateye,
 /turf/wall/void,
 /area/crunch)
+"ftX" = (
+/obj/landmark{
+	name = "icefall"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "fvv" = (
 /obj/window/auto/reinforced,
 /obj/grille/steel,
@@ -53006,6 +53148,16 @@
 	},
 /turf/floor/plating/scorched,
 /area/crunch)
+"fza" = (
+/obj/grille/catwalk{
+	dir = 6;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark{
+	name = "icecrewelefall"
+	},
+/turf/floor/plating,
+/area/lower_arctic/mining)
 "fzo" = (
 /obj/decal/poster/wallsign/cafeteria{
 	pixel_y = -31
@@ -53042,10 +53194,19 @@
 /obj/spacevine,
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/maint)
+"fDG" = (
+/obj/decal/icefloor,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "fFf" = (
 /obj/machinery/light/emergency,
 /turf/floor,
 /area/crunch)
+"fFn" = (
+/turf/floor/arctic/cliff_outsidecorner{
+	dir = 6
+	},
+/area/upper_arctic/exterior/abyss)
 "fGl" = (
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/mining)
@@ -53068,12 +53229,35 @@
 /obj/decal/cleanable/fungus,
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/mining)
+"fJl" = (
+/obj/machinery/light/small/cool/very{
+	dir = 4
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
+"fMe" = (
+/obj/grille/catwalk{
+	dir = 9;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark{
+	name = "icemineelefall"
+	},
+/turf/floor/plating,
+/area/lower_arctic/mining)
 "fNo" = (
 /turf/floor/grass,
 /area/sim/racing_track{
 	icon_state = "green";
 	name = "garrys"
 	})
+"fOm" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/mining)
 "fON" = (
 /turf/floor/vr/fourbit,
 /area/sim/racing_entry)
@@ -53246,6 +53430,11 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"grh" = (
+/obj/item/storage/belt/mining,
+/obj/item/clothing/head/helmet/hardhat,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "gve" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe valve. It seems stuck.";
@@ -53274,6 +53463,18 @@
 	icon_state = "white"
 	},
 /area/sim/chess)
+"gvJ" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "gym" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'Fire Hazard'";
@@ -53295,6 +53496,17 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"gBK" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/obj/item/storage/wall/fire{
+	pixel_y = -32
+	},
+/turf/floor/neutral,
+/area/upper_arctic/fita/hall)
 "gCm" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -53310,6 +53522,21 @@
 "gCz" = (
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/messhall)
+"gFZ" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier.";
+	dir = 1;
+	icon = 'icons/obj/decoration.dmi';
+	icon_state = "junctionbox";
+	layer = 2.1;
+	name = "junction box";
+	pixel_x = -2;
+	pixel_y = 32;
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "gGM" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -53328,6 +53555,35 @@
 /obj/indestructible/shuttle_corner,
 /turf/floor/shuttle,
 /area/shuttle/escape/transit/battle_shuttle)
+"gIR" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects{
+	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier.";
+	icon = 'icons/obj/decoration.dmi';
+	icon_state = "junctionbox3";
+	name = "junction box";
+	pixel_y = 25
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "gIU" = (
 /obj/decal/fakeobjects/thrust{
 	dir = 4
@@ -53335,9 +53591,8 @@
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/east)
 "gJt" = (
-/obj/item/storage/wall/fire,
-/turf/wall/auto/concrete,
-/area/upper_arctic/fita/messhall)
+/turf/floor/arctic/cliff_outsidecorner,
+/area/upper_arctic/exterior/abyss)
 "gKc" = (
 /obj/decal/tile_edge/line/black{
 	dir = 1;
@@ -53346,6 +53601,13 @@
 	},
 /turf/floor/grey,
 /area/afterlife/heaven)
+"gLq" = (
+/obj/storage/closet/radiation,
+/obj/machinery/light/small/cool/very{
+	dir = 1
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "gMG" = (
 /obj/decal/cleanable/cobweb,
 /obj/decal/cleanable/mess/noodles/random_all,
@@ -53367,10 +53629,24 @@
 	},
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/maint)
+"gQJ" = (
+/obj/creepy_sound_trigger,
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 6;
+	name = "pipe"
+	},
+/turf/wall/water/border,
+/area/lower_arctic/septic)
 "gQR" = (
 /obj/machinery/door/airlock/classic,
 /turf/floor/concrete,
 /area/upper_arctic/fita/messhall)
+"gQZ" = (
+/obj/random_item_spawner/junk/one_or_zero,
+/turf/wall/water/border,
+/area/lower_arctic/septic)
 "gUJ" = (
 /obj/securearea{
 	desc = "";
@@ -53435,6 +53711,10 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"gZW" = (
+/obj/item/satchel/mining,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "hao" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -53497,6 +53777,20 @@
 	},
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/viewing)
+"hgI" = (
+/obj/item/clothing/mask/gas/emergency,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
+"hhd" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/corner2{
+	dir = 6
+	},
+/area/lower_arctic/mining)
 "hhB" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -53551,6 +53845,26 @@
 	opacity = 0
 	},
 /area/titlescreen)
+"hos" = (
+/obj/table/reinforced{
+	icon_state = "2"
+	},
+/turf/floor/concrete,
+/area/upper_arctic/fita/quartermaster)
+"hpF" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/machinery/light/small/cool/very,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "hqg" = (
 /obj/decal/cleanable/cobweb2,
 /turf/floor/setpieces/bloodfloor{
@@ -53558,6 +53872,11 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"hro" = (
+/turf/floor/engine/caution/misc{
+	dir = 8
+	},
+/area/lower_arctic/mining)
 "hsb" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -53643,6 +53962,10 @@
 "hCh" = (
 /turf/wall/auto/lead/gray,
 /area/sim/tdome/tdome2)
+"hCj" = (
+/obj/item/clothing/suit/space/santa,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "hEn" = (
 /obj/structure/girder,
 /turf/floor/plating,
@@ -53720,6 +54043,16 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"hXo" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 10;
+	name = "pipe"
+	},
+/obj/random_item_spawner/junk/one_or_zero,
+/turf/wall/water/border,
+/area/lower_arctic/septic)
 "hXw" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4
@@ -53750,11 +54083,15 @@
 	},
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/viewing)
+"iab" = (
+/obj/creepy_sound_trigger,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "iaz" = (
 /turf/floor/arctic/cliff{
 	dir = 5
 	},
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "ibB" = (
 /obj/observable/colosseum,
 /turf/space/no_replace,
@@ -53784,6 +54121,15 @@
 	},
 /turf/floor/carpet/red/standard/edge/nw,
 /area/upper_arctic/fita/messhall)
+"ijh" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 10;
+	name = "pipe"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "ijC" = (
 /obj/machinery/light{
 	dir = 1;
@@ -53791,6 +54137,10 @@
 	},
 /turf/floor/shuttle,
 /area/shuttle/escape/transit/battle_shuttle)
+"ijY" = (
+/obj/disposalpipe/segment/sewage,
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "ikM" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -53809,6 +54159,11 @@
 	icon_state = "fullblack"
 	},
 /area/sim/chess)
+"ikP" = (
+/turf/floor/arctic/cliff_outsidecorner{
+	dir = 10
+	},
+/area/upper_arctic/exterior/abyss)
 "ior" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -53862,6 +54217,52 @@
 /obj/decal/fakeobjects/firealarm_broken,
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
+"ipS" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
+"irf" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 8;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/machinery/light/small/cool/very{
+	dir = 1
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
+"isn" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "isG" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -53974,6 +54375,25 @@
 /obj/machinery/light_switch/auto,
 /turf/floor/yellow/checker,
 /area/upper_arctic/fita/messhall)
+"iIl" = (
+/obj/decal/fakeobjects{
+	desc = "This is doing some kind of thing.";
+	icon = 'icons/obj/machines/nuclear.dmi';
+	icon_state = "enginepoweredworking";
+	name = "nuclear turbine"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
 "iIA" = (
 /obj/decal/tile_edge/line/grey{
 	dir = 8;
@@ -54059,7 +54479,7 @@
 	dir = 1
 	},
 /turf/floor/arctic/cliff,
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "iWp" = (
 /turf/floor/arctic/cliff_outsidecorner{
 	dir = 6
@@ -54106,6 +54526,14 @@
 /obj/storage/secure/closet/security/equipment,
 /turf/floor/carpet/red/standard/edge/ne,
 /area/upper_arctic/fita/director)
+"jcv" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A one meter section of regular pipe.";
+	icon = 'icons/obj/atmospherics/pipes/junction_pipe.dmi';
+	name = "heat exchanger"
+	},
+/turf/wall/water,
+/area/lower_arctic/septic)
 "jcC" = (
 /obj/crevice/meatland,
 /turf/floor/setpieces/bloodfloor{
@@ -54165,6 +54593,11 @@
 	dir = 6
 	},
 /area/gauntlet/viewing)
+"jir" = (
+/obj/critter/spider/ice/baby,
+/obj/item/raw_material/gemstone,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "jlc" = (
 /turf/floor/black,
 /area/sim/racing_track{
@@ -54196,6 +54629,29 @@
 	},
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/west)
+"jtS" = (
+/turf/floor/engine/caution/northsouth,
+/area/lower_arctic/mining)
+"jvW" = (
+/obj/creepy_sound_trigger,
+/turf/wall/asteroid/comet/ice{
+	color = '#99BBBB';
+	desc = "This wall looks a little weaker.";
+	icon = 'icons/turf/walls.dmi';
+	icon_state = "ice1";
+	name = "ice wall"
+	},
+/area/lower_arctic/mining)
+"jxk" = (
+/obj/item/raw_material/gemstone,
+/turf/wall/asteroid/comet/ice{
+	color = '#99BBBB';
+	desc = "This wall looks a little weaker.";
+	icon = 'icons/turf/walls.dmi';
+	icon_state = "ice1";
+	name = "ice wall"
+	},
+/area/lower_arctic/mining)
 "jxX" = (
 /turf/wall/auto/sengoku{
 	icon_state = "1";
@@ -54353,6 +54809,17 @@
 "jPn" = (
 /turf/floor/white,
 /area/crunch)
+"jRB" = (
+/turf/floor/concrete,
+/area/lower_arctic/septic)
+"jSi" = (
+/obj/ladder{
+	icon_state = "ladder_wall";
+	id = "fita-maint";
+	pixel_y = 24
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "jUv" = (
 /turf/space,
 /turf/floor{
@@ -54392,6 +54859,14 @@
 /obj/machinery/light/small/ceiling/neutral,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"kbv" = (
+/turf/floor/arctic/cliff,
+/area/upper_arctic/exterior/abyss)
+"kij" = (
+/obj/item/satchel/mining,
+/obj/item/mining_tools/pick,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "kit" = (
 /obj/decal/icefloor,
 /obj/critter/walrus{
@@ -54474,6 +54949,15 @@
 	icon_state = "wall3dir"
 	},
 /area/wizard_station)
+"kAo" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 9;
+	name = "pipe"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "kAx" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/research)
@@ -54569,6 +55053,23 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/space,
 /area/noGenerate)
+"kLn" = (
+/obj/decal/fakeobjects/core{
+	desc = "Damn, should you even be staring into this right now? Or like, at all?";
+	icon = 'icons/obj/machines/nuclear64x32.dmi';
+	icon_state = "norm1"
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/misc{
+	dir = 8
+	},
+/area/lower_arctic/mining)
+"kLF" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "kLP" = (
 /obj/machinery/smelter{
 	desc = "A huge furnace-like machine used to melt and combine metals or minerals. Doesn't seem to get much use..."
@@ -54616,9 +55117,21 @@
 	icon_state = "fullblack"
 	},
 /area/sim/chess)
+"kOA" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "kOJ" = (
 /turf/floor/carpet/red/standard,
 /area/upper_arctic/fita/director)
+"kON" = (
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "kPv" = (
 /obj/overlay{
 	desc = "";
@@ -54656,6 +55169,11 @@
 /obj/machinery/door/poddoor/buff/staging,
 /turf/floor/setpieces/gauntlet,
 /area/colosseum/staging)
+"kTc" = (
+/turf/floor/arctic/cliff{
+	dir = 10
+	},
+/area/upper_arctic/exterior/abyss)
 "kTy" = (
 /obj/decal/fakeobjects{
 	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier.";
@@ -54710,6 +55228,18 @@
 /obj/item/stackable_ammo/pistol/zaubertube/five,
 /turf/floor/carpet/red/standard/edge/ne,
 /area/upper_arctic/fita/director)
+"leZ" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/mining)
 "lfk" = (
 /obj/decal/fakeobjects{
 	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
@@ -54727,6 +55257,16 @@
 /obj/machinery/light,
 /turf/floor/shuttle,
 /area/shuttle/escape/transit/battle_shuttle)
+"lhy" = (
+/obj/grille/catwalk{
+	dir = 9;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark{
+	name = "icecrewelefall"
+	},
+/turf/floor/plating,
+/area/lower_arctic/mining)
 "lkg" = (
 /obj/table/round/auto,
 /obj/item/storage/box/cookie_tin,
@@ -54833,6 +55373,21 @@
 	icon_state = "track_2"
 	},
 /area/shuttle/escape/transit/battle_shuttle)
+"lzN" = (
+/obj/machinery/light/emergency{
+	dir = 1
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "lzU" = (
 /obj/spacevine,
 /obj/spacevine{
@@ -54858,6 +55413,10 @@
 "lFf" = (
 /turf/floor/engine/caution/south,
 /area/upper_arctic/fita/mining)
+"lGq" = (
+/obj/critter/spider/ice,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "lHO" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -54907,6 +55466,10 @@
 /obj/item/shovel,
 /turf/floor/engine/caution/south,
 /area/upper_arctic/fita/mining)
+"lOJ" = (
+/obj/landmark/artifact,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "lOR" = (
 /turf/wall/auto/concrete/window/porthole,
 /area/upper_arctic/fita/mining)
@@ -55009,6 +55572,16 @@
 /obj/stool/chair,
 /turf/floor/carpet/red/standard/edge/sw,
 /area/upper_arctic/fita/director)
+"mbR" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/obj/decal/icefloor,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "mcq" = (
 /obj/securearea{
 	desc = "";
@@ -55017,6 +55590,28 @@
 	},
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/maint)
+"mfs" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
 "mkr" = (
 /obj/decal/cleanable/oil,
 /turf/floor{
@@ -55027,9 +55622,21 @@
 	icon_state = "blue";
 	name = "garrys dark room"
 	})
+"mle" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "mlg" = (
 /turf/floor/carpet/red/standard/edge/south,
 /area/upper_arctic/fita/director)
+"mlz" = (
+/obj/item/storage/wall/emergency{
+	pixel_x = 32
+	},
+/turf/floor/neutral,
+/area/upper_arctic/fita/hall)
 "mmc" = (
 /turf/floor/chess{
 	icon_state = "white"
@@ -55053,6 +55660,13 @@
 	dir = 1
 	},
 /area/upper_arctic/exterior/surface)
+"mpq" = (
+/obj/disposalpipe/trunk/sewage,
+/obj/disposaloutlet/north{
+	pixel_y = -9
+	},
+/turf/wall/water,
+/area/lower_arctic/septic)
 "mqm" = (
 /obj/magicmirror,
 /turf/shuttle/wall{
@@ -55072,6 +55686,19 @@
 /obj/item/clothing/suit/bedsheet/red,
 /turf/floor/carpet/red/standard/edge/south,
 /area/upper_arctic/fita/director)
+"myN" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 9;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (SOUTHEAST)"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "mzP" = (
 /obj/storage/crate{
 	icon_state = "crateopen";
@@ -55080,6 +55707,10 @@
 /obj/item/ammo/bullets/flare/single,
 /turf/floor/carpet/red/standard/edge/south,
 /area/upper_arctic/fita/director)
+"mzT" = (
+/obj/item/device/guardbot_tool/xmas,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "mBr" = (
 /obj/item/clothing/under/rank/head_of_securityold{
 	stains = "oil-soaked"
@@ -55160,6 +55791,10 @@
 	dir = 1
 	},
 /area/upper_arctic/exterior/surface)
+"mKz" = (
+/obj/storage/closet/radiation,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "mKQ" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/soviet/private/command,
@@ -55180,6 +55815,26 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/carpet/red/standard/edge/sw,
 /area/upper_arctic/fita/messhall)
+"mLS" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/corner2{
+	dir = 10
+	},
+/area/lower_arctic/mining)
 "mLT" = (
 /mob/living/critter/spider/baby,
 /turf/floor/setpieces/bloodfloor{
@@ -55224,6 +55879,12 @@
 	icon_state = "blue2"
 	},
 /area/wizard_station)
+"mZa" = (
+/obj/landmark{
+	name = "icecrewelefall"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "nbB" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'Fire Hazard'";
@@ -55233,6 +55894,10 @@
 	},
 /turf/wall/auto/lead/gray,
 /area/iomoon/base/underground)
+"ndJ" = (
+/obj/critter/spider/ice/baby,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "nfh" = (
 /obj/landmark{
 	name = "battle-royale-spawn"
@@ -55258,6 +55923,14 @@
 	dir = 1
 	},
 /area/crypt/graveyard)
+"ngG" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "njh" = (
 /turf/floor{
 	icon_state = "concrete"
@@ -55285,9 +55958,38 @@
 	},
 /turf/floor/blue/checker,
 /area/wizard_station)
+"noY" = (
+/obj/decal/cleanable/blood/gibs{
+	icon_state = "gib2"
+	},
+/obj/storage/crate,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
+"npf" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 5;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/south,
+/area/lower_arctic/mining)
 "npu" = (
 /turf/wall/auto/lead/gray,
 /area/sim/racing_track)
+"npP" = (
+/obj/wingrille_spawn/auto,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "nrm" = (
 /obj/decal/fakeobjects{
 	desc = "A skull on a leg. Useful, somehow. I guess.";
@@ -55422,6 +56124,22 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"nGp" = (
+/obj/machinery/light/small/cool/very{
+	dir = 4
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 9;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (SOUTHEAST)"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "nGu" = (
 /turf/floor/carpet/red/standard/edge/se,
 /area/upper_arctic/fita/messhall)
@@ -55524,6 +56242,13 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"nXM" = (
+/obj/decal/fakeobjects/tallsmes{
+	desc = "An ultra-high-capacity superconducting magnetic energy storage (SMES) unit, except communist.";
+	icon = 'icons/misc/hospital.dmi'
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "nYQ" = (
 /turf/space,
 /turf/wall/auto/shuttle{
@@ -55541,6 +56266,14 @@
 	dir = 1
 	},
 /area/crypt/graveyard)
+"nZL" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A one meter section of regular pipe.";
+	icon = 'icons/obj/atmospherics/pipes/junction_pipe.dmi';
+	name = "heat exchanger"
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "nZY" = (
 /turf/floor{
 	icon = 'icons/misc/beach2.dmi';
@@ -55570,6 +56303,15 @@
 "obi" = (
 /turf/space,
 /area/shuttle/bayou/stagearea)
+"obw" = (
+/obj/ladder{
+	icon_state = "ladder_wall";
+	id = "fita-septic";
+	pixel_y = 24
+	},
+/obj/creepy_sound_trigger_glacier,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "obN" = (
 /obj/storage/crate,
 /obj/decal/cleanable/dirt/random,
@@ -55637,6 +56379,21 @@
 	},
 /turf/floor/vr/fourbit,
 /area/sim/gunsim)
+"ohR" = (
+/obj/item/device/radio/intercom,
+/obj/stool/bed,
+/obj/decal/cleanable/blood/gibs{
+	icon_state = "gibup1"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
+"oiu" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "oju" = (
 /obj/landmark{
 	name = "lobby_leftside"
@@ -55694,6 +56451,15 @@
 	},
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/storage)
+"opt" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 6;
+	name = "pipe"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "orM" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -55729,6 +56495,15 @@
 "oum" = (
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/rd)
+"ovB" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A one meter section of regular pipe.";
+	icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi';
+	name = "heat exchanger"
+	},
+/obj/random_item_spawner/junk/maybe_few,
+/turf/wall/water,
+/area/lower_arctic/septic)
 "oxR" = (
 /obj/lattice{
 	dir = 1;
@@ -55764,6 +56539,14 @@
 	icon_state = "12"
 	},
 /area/shuttle/escape/transit/battle_shuttle)
+"oBt" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "oBH" = (
 /turf/floor/setpieces/gauntlet{
 	icon_state = "gauntfloorSkulls"
@@ -55855,6 +56638,10 @@
 /obj/decal/poster/wallsign/stencil/right/a,
 /turf/floor/grass/leafy,
 /area/sim/racing_track)
+"oSs" = (
+/obj/item/wrench,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "oTJ" = (
 /obj/item/instrument/large/jukebox,
 /turf/floor/shuttle,
@@ -55918,10 +56705,29 @@
 /area/wizard_station)
 "phO" = (
 /obj/table/reinforced{
-	icon_state = "3"
+	icon_state = "1"
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
+"piy" = (
+/obj/decal/fakeobjects{
+	desc = "What was this thing even supposed to do?";
+	icon = 'icons/obj/machines/nuclear.dmi';
+	icon_state = "neutinjon";
+	name = "nuclear turbine"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution/west,
+/area/lower_arctic/mining)
 "piD" = (
 /obj/decal/cleanable/oil,
 /turf/floor/black,
@@ -55936,11 +56742,37 @@
 	},
 /turf/floor/carpet/red/standard/edge/nw,
 /area/upper_arctic/fita/quartermaster)
+"pjx" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "Looks like it's running along slowly.";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "old_circ1-slow";
+	name = "old gas turbine"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
 "pkE" = (
 /turf/wall/auto/lead/gray,
 /area/sim/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
+"ppc" = (
+/obj/machinery/light/emergency{
+	dir = 1
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "ppi" = (
 /obj/decal/fakeobjects/pipe{
 	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
@@ -55950,6 +56782,10 @@
 /obj/item/material_piece/slag,
 /turf/floor/shuttlebay,
 /area/diner/tug)
+"pql" = (
+/obj/item/crowbar,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "ptv" = (
 /obj/decal/poster/wallsign/escape_left,
 /turf/wall/other,
@@ -55971,6 +56807,11 @@
 	},
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/viewing)
+"pvM" = (
+/obj/table,
+/obj/item/storage/toolbox/mechanical/empty,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "pxk" = (
 /turf/floor{
 	icon_state = "metalfoam"
@@ -55979,6 +56820,23 @@
 	icon_state = "green";
 	name = "garrys"
 	})
+"pxq" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
+"pyi" = (
+/obj/stool/bed,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "pyG" = (
 /obj/machinery/shitty_grill{
 	icon_state = "shittygrill_on"
@@ -55991,6 +56849,15 @@
 "pyK" = (
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/quartermaster)
+"pAr" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A one meter section of regular pipe.";
+	dir = 1;
+	icon = 'icons/obj/atmospherics/pipes/junction_pipe.dmi';
+	name = "heat exchanger"
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "pBA" = (
 /turf/floor/setpieces/iomoon/plating,
 /area/iomoon)
@@ -56023,6 +56890,12 @@
 	},
 /turf/floor/shuttlebay,
 /area/diner/tug)
+"pKn" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "pKT" = (
 /obj/securearea{
 	desc = "It looks pretty dangerous in there.";
@@ -56074,6 +56947,16 @@
 	icon_state = "blue2"
 	},
 /area/wizard_station)
+"pRu" = (
+/obj/grille/catwalk{
+	dir = 10;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark{
+	name = "icecrewelefall"
+	},
+/turf/floor/plating,
+/area/lower_arctic/mining)
 "pTc" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/north)
@@ -56271,6 +57154,21 @@
 	icon_state = "wall3"
 	},
 /area/wizard_station)
+"qrF" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "Some Space Soviet computer. If you had to guess, this manages the autoreactor.";
+	dir = 1;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "sovmachine1";
+	name = "reactor computer"
+	},
+/obj/machinery/light/emergency{
+	dir = 1
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "qsP" = (
 /turf/wall/sengoku_tall,
 /area/dojo)
@@ -56290,6 +57188,12 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"qBl" = (
+/obj/landmark{
+	name = "icefall"
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "qCA" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -56472,15 +57376,10 @@
 /turf/floor/shuttlebay,
 /area/wizard_station)
 "rdK" = (
-/obj/grille/catwalk{
-	dir = 5;
-	icon_state = "catwalk_cross"
+/turf/floor/arctic/cliff{
+	dir = 8
 	},
-/obj/critter/small_bart,
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
-/area/upper_arctic/fita/medsci)
+/area/upper_arctic/exterior/abyss)
 "reB" = (
 /turf/wall/auto/concrete/window/icy_barred,
 /area/upper_arctic/fita/lobby)
@@ -56495,6 +57394,10 @@
 	opacity = 0
 	},
 /area/titlescreen)
+"rhk" = (
+/obj/machinery/light/small/cool/very,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "rhr" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/concrete,
@@ -56514,6 +57417,10 @@
 	},
 /turf/floor/dojo/stone,
 /area/titlescreen)
+"rjX" = (
+/obj/map/light/cyan,
+/turf/floor/engine/caution/north,
+/area/lower_arctic/mining)
 "rkT" = (
 /turf/wall/virtual,
 /area/sim/chess)
@@ -56546,6 +57453,18 @@
 "rtc" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/crew)
+"rtp" = (
+/obj/machinery/light/small/cool/very{
+	dir = 4
+	},
+/turf/floor/engine/caution/northsouth,
+/area/lower_arctic/mining)
+"rtw" = (
+/obj/item/clothing/under/rank/overalls,
+/obj/item/card/id/engineering,
+/obj/item/clothing/shoes/orange,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "run" = (
 /turf/floor/carpet/red/standard/edge/east,
 /area/upper_arctic/fita/quartermaster)
@@ -56584,6 +57503,21 @@
 "rHr" = (
 /turf/wall/auto/lead/gray,
 /area/iomoon/base/underground)
+"rIs" = (
+/obj/item/device/radio/signaler{
+	desc = "Surprising that it still works, seems like it's been lost in the snow for awhile."
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
+"rIO" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "rIS" = (
 /obj/decal/cleanable/generic{
 	name = "rubbish"
@@ -56593,6 +57527,15 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"rJf" = (
+/obj/decal/skeleton{
+	desc = "Uh oh.";
+	icon = 'icons/mob/human.dmi';
+	icon_state = "husk_l";
+	name = "unknown"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "rJt" = (
 /obj/death_button/VR_logout_button{
 	dir = 4;
@@ -56632,6 +57575,10 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"rTI" = (
+/obj/item/rubberduck,
+/turf/wall/water,
+/area/lower_arctic/septic)
 "rUY" = (
 /obj/storage/secure/crate/eng,
 /turf/floor/concrete,
@@ -56645,6 +57592,12 @@
 "rXk" = (
 /turf/floor/dirt,
 /area/sim/racing_track)
+"rXx" = (
+/obj/map/light/cyan,
+/turf/floor/engine/caution/misc{
+	dir = 4
+	},
+/area/lower_arctic/mining)
 "rXy" = (
 /turf/floor/dirt{
 	icon_state = "grasstodirt"
@@ -56677,6 +57630,29 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating/damaged2,
 /area/crunch)
+"saf" = (
+/turf/wall/water,
+/area/lower_arctic/septic)
+"scS" = (
+/obj/decal/fakeobjects{
+	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier.";
+	icon = 'icons/obj/decoration.dmi';
+	icon_state = "junctionbox2";
+	name = "junction box";
+	pixel_y = 28
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "sdh" = (
 /obj/grille/catwalk{
 	dir = 5
@@ -56836,6 +57812,10 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"srf" = (
+/obj/item/raw_material/gemstone,
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "ste" = (
 /obj/machinery/door/airlock/pyro/command{
 	dir = 4;
@@ -56945,6 +57925,18 @@
 	},
 /turf/outdoors/grass,
 /area/shuttle/escape/transit/battle_shuttle)
+"sDa" = (
+/obj/item/mining_tools/pick,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
+"sEn" = (
+/obj/decal/cleanable/blood/gibs{
+	icon_state = "gib4"
+	},
+/obj/item/reagent_containers/emergency_injector/spaceacillin,
+/obj/item/reagent_containers/emergency_injector/pentetic_acid,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "sIF" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -57043,6 +58035,19 @@
 /obj/machinery/light_switch/auto,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"tbv" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/machinery/door/airlock/classic,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "tiF" = (
 /obj/map/light/white,
 /obj/landmark{
@@ -57083,6 +58088,13 @@
 "tpV" = (
 /turf/wall/virtual/reinforced,
 /area/gauntlet/viewing)
+"ttp" = (
+/obj/item/storage/wall/emergency{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/floor/neutral,
+/area/upper_arctic/fita/hall)
 "tuw" = (
 /turf/wall/auto/lead/white{
 	desc = "The outer shell of some large microwave array thing.";
@@ -57113,6 +58125,11 @@
 "txy" = (
 /turf/wall/auto/lead/gray,
 /area/iomoon/caves)
+"txJ" = (
+/obj/item/raw_material/gemstone,
+/obj/critter/spider/ice,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "txL" = (
 /turf/wall/auto/shuttle{
 	icon_state = "15"
@@ -57125,6 +58142,12 @@
 	},
 /turf/space/solariumjoke,
 /area/space/solariumjoke)
+"tzA" = (
+/obj/machinery/light/small/cool/very{
+	dir = 8
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "tAg" = (
 /obj/machinery/light{
 	dir = 4
@@ -57136,6 +58159,13 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"tBS" = (
+/obj/stocking{
+	desc = "The hell is this doing down here?"
+	},
+/obj/decal/garland,
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "tEb" = (
 /turf/space,
 /turf/space/shuttle_transit,
@@ -57162,6 +58192,15 @@
 /obj/decal/lightshaft,
 /turf/floor/carpet/red/fancy/narrow/eastwest,
 /area/titlescreen)
+"tEM" = (
+/turf/wall/asteroid/comet/ice{
+	color = '#99BBBB';
+	desc = "This wall looks a little weaker.";
+	icon = 'icons/turf/walls.dmi';
+	icon_state = "ice1";
+	name = "ice wall"
+	},
+/area/lower_arctic/mining)
 "tFS" = (
 /turf/space,
 /turf/space/shuttle_transit,
@@ -57266,6 +58305,19 @@
 "tYv" = (
 /turf/floor/shuttlebay,
 /area/wizard_station)
+"tYK" = (
+/obj/item/clothing/head/helmet/space/santahat,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
+"uaA" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe that disappears deep into the planet below...";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "trunk";
+	name = "pipe"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "ugn" = (
 /turf/floor/arctic/cliff_outsidecorner{
 	dir = 10
@@ -57347,6 +58399,10 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"urE" = (
+/obj/random_item_spawner/junk/one,
+/turf/wall/water,
+/area/lower_arctic/septic)
 "usD" = (
 /obj/item/paper/book/from_file/space_law,
 /turf/floor/redblack{
@@ -57377,6 +58433,11 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"uud" = (
+/obj/item/screwdriver,
+/obj/item/wirecutters,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "uvf" = (
 /obj/machinery/light/small/iomoon{
 	dir = 8
@@ -57400,6 +58461,11 @@
 /obj/decal/poster/wallsign/stencil/right/o,
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
+"uAO" = (
+/turf/floor/arctic/cliff{
+	dir = 4
+	},
+/area/upper_arctic/exterior/abyss)
 "uAQ" = (
 /obj/landmark/chess{
 	name = "pawn"
@@ -57415,11 +58481,15 @@
 /turf/floor/arctic/cliff{
 	dir = 6
 	},
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "uBs" = (
 /obj/decoration/vent/vent2,
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/lobby)
+"uBK" = (
+/obj/item/satchel/mining,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "uEj" = (
 /obj/landmark{
 	name = "lobby_status"
@@ -57429,6 +58499,34 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"uHO" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/south,
+/area/lower_arctic/mining)
 "uHS" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "Has a valve and pump attached to it";
@@ -57512,6 +58610,12 @@
 /obj/item/storage/wall/cargo,
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/mining)
+"uOu" = (
+/obj/landmark{
+	name = "icefall"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "uOE" = (
 /obj/landmark/chess{
 	name = "b_pawn"
@@ -57639,6 +58743,10 @@
 "vdV" = (
 /turf/floor/caution/west,
 /area/solariumjoke)
+"vgB" = (
+/obj/item/mining_tool/power_pick,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "viL" = (
 /obj/item/paper/book/from_file/guardbot_guide,
 /turf/floor/yellow,
@@ -57722,6 +58830,16 @@
 "voQ" = (
 /turf/floor/void/channel,
 /area/adventure/channel/flingy)
+"vqf" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "Electric heater for circulating fluid in a closed pipe circuit.";
+	dir = 8;
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "heater";
+	name = "electric heater"
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "vsh" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -57762,6 +58880,27 @@
 "vww" = (
 /turf/space,
 /area/space)
+"vym" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
+	icon = 'icons/obj/machines/networked.dmi';
+	icon_state = "generic1";
+	name = "strange machine"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 9;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
 "vyn" = (
 /obj/machinery/door/airlock/classic,
 /obj/decal/fakeobjects/pipe{
@@ -57800,6 +58939,18 @@
 	},
 /turf/floor/specialroom/gym,
 /area/afterlife/bar)
+"vFY" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "Some Space Soviet computer console. It's humming away, doing something. You can't read it, that's for sure.";
+	dir = 8;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "sovcomp2";
+	name = "reactor console"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "vGL" = (
 /obj/machinery/light/small/cool,
 /turf/floor/concrete,
@@ -57808,6 +58959,13 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
+"vIS" = (
+/obj/storage/secure/crate/eng/explosives{
+	desc = "Contains controlled explosives designed for mining use.";
+	locked = 0
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "vJA" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -57870,6 +59028,10 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"vUU" = (
+/obj/decal/icefloor,
+/turf/floor/concrete,
+/area/lower_arctic/septic)
 "vVd" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8;
@@ -57884,6 +59046,9 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"vVr" = (
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "vVw" = (
 /obj/indestructible/shuttle_corner{
 	icon_state = "wall3_trans"
@@ -57893,6 +59058,9 @@
 "vVI" = (
 /turf/floor/void/channel,
 /area/adventure/channel/teleport)
+"vYq" = (
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
 "vYO" = (
 /obj/lattice{
 	dir = 4;
@@ -57903,6 +59071,7 @@
 "vZN" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/soviet/private/cargo,
+/obj/access_spawn/soviet/private/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
 "wdj" = (
@@ -57996,6 +59165,15 @@
 /obj/map/light/graveyard,
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/crew)
+"wmj" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	dir = 9;
+	name = "pipe"
+	},
+/obj/map/light/cyan,
+/turf/floor/engine/caution/west,
+/area/lower_arctic/mining)
 "wmY" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -58057,6 +59235,7 @@
 	name = "pipe"
 	},
 /obj/access_spawn/soviet/private/cargo,
+/obj/access_spawn/soviet/private/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
 "wwy" = (
@@ -58065,6 +59244,25 @@
 "wwG" = (
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/north)
+"wyc" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 5;
+	name = "pipe"
+	},
+/turf/wall/arctic/abyss/ice,
+/area/lower_arctic/mining)
+"wyH" = (
+/obj/landmark{
+	name = "icecrewelefall"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
+"wyJ" = (
+/obj/storage/crate,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "wzw" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8
@@ -58107,6 +59305,15 @@
 /obj/machinery/light/small/ceiling/neutral,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"wDT" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 6;
+	name = "pipe"
+	},
+/turf/wall/water/border,
+/area/lower_arctic/septic)
 "wFS" = (
 /obj/rack,
 /obj/item/clothing/suit/space/emerg,
@@ -58115,6 +59322,19 @@
 /obj/item/tank/air,
 /turf/floor/shuttlebay,
 /area/wizard_station)
+"wJR" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "wKB" = (
 /obj/table/wood/round,
 /obj/item/reagent_containers/food/snacks/soup/queso,
@@ -58133,7 +59353,7 @@
 /turf/floor/arctic/cliff{
 	dir = 8
 	},
-/area/upper_arctic/exterior/surface)
+/area/upper_arctic/exterior/abyss)
 "wRR" = (
 /obj/decal/cleanable/mess/fries,
 /turf/floor/setpieces/bloodfloor{
@@ -58189,6 +59409,14 @@
 "wXY" = (
 /turf/wall/auto/lead/gray,
 /area/iomoon)
+"xai" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	name = "pipe"
+	},
+/turf/outdoors/concrete,
+/area/lower_arctic/septic)
 "xaW" = (
 /obj/machinery/camera{
 	dir = 4
@@ -58205,6 +59433,10 @@
 	},
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/lobby)
+"xdy" = (
+/obj/item/weldingtool,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "xeO" = (
 /obj/grille/catwalk{
 	dir = 6
@@ -58244,6 +59476,13 @@
 	},
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/lobby)
+"xiF" = (
+/obj/map/light/cyan,
+/obj/machinery/light/emergency,
+/turf/floor/engine/caution/corner2{
+	dir = 9
+	},
+/area/lower_arctic/mining)
 "xjy" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -58275,6 +59514,21 @@
 /turf/space,
 /turf/floor/shuttle,
 /area/shuttle/escape/transit/battle_shuttle)
+"xmI" = (
+/obj/item/mining_tool/power_pick,
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 9;
+	name = "pipe"
+	},
+/obj/decal/icefloor,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
+"xng" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "xnF" = (
 /obj/table/wood/auto,
 /obj/item/paper{
@@ -58289,6 +59543,26 @@
 	icon_state = "blue2"
 	},
 /area/wizard_station)
+"xoj" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "Looks like it's running along slowly.";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "old_circ2-slow";
+	name = "nuclear turbine"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/engine/caution,
+/area/lower_arctic/mining)
 "xoE" = (
 /obj/storage/crate,
 /obj/item/storage/box/cablesbox,
@@ -58298,6 +59572,12 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"xpA" = (
+/obj/decal/cleanable/blood/gibs{
+	icon_state = "gibleg"
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "xqR" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -58339,6 +59619,14 @@
 /obj/machinery/light_switch/auto,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"xwp" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A one meter section of regular pipe.";
+	icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi';
+	name = "heat exchanger"
+	},
+/turf/wall/water,
+/area/lower_arctic/septic)
 "xwK" = (
 /turf/wall/virtual,
 /area/gauntlet/viewing)
@@ -58403,6 +59691,15 @@
 	},
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/lobby)
+"xIM" = (
+/obj/decal/fakeobjects/pipe{
+	color = "#777777";
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/turf/wall/water/border,
+/area/lower_arctic/septic)
 "xJx" = (
 /turf/floor/blue/checker{
 	dir = 1
@@ -58472,6 +59769,11 @@
 /obj/map/light/graveyard,
 /turf/floor/void,
 /area/crunch)
+"xUY" = (
+/obj/item/raw_material/gemstone,
+/obj/critter/spider/ice/baby,
+/turf/floor/arctic/snow/ice,
+/area/lower_arctic/mining)
 "xWu" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/soviet/private,
@@ -58530,6 +59832,19 @@
 "yby" = (
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/shuttlepad)
+"ybC" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_conduit.dmi';
+	icon_state = "conduit-large";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/floor/concrete,
+/area/lower_arctic/mining)
 "ybE" = (
 /obj/rail{
 	dir = 9
@@ -59629,14 +60944,14 @@ aIo
 aIo
 aIo
 aIo
-aTF
-boL
-ugn
+dlO
+rdK
+ikP
 aIo
-aTF
-boL
-boL
-ugn
+dlO
+rdK
+rdK
+ikP
 aIo
 aIo
 aIo
@@ -59931,15 +61246,15 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
-vmh
+kbv
 aIo
-mJF
+dnX
 aLN
 aLN
-wqp
-ugn
+kTc
+ikP
 aIo
 aIo
 aIo
@@ -60232,18 +61547,18 @@ aIo
 aIo
 aIo
 aIo
-aTF
+dlO
 aQQ
 aLN
-wqp
-boL
+kTc
+rdK
 aQQ
 aLN
 aLN
 aLN
-wqp
-boL
-ugn
+kTc
+rdK
+ikP
 aIo
 aIo
 aIo
@@ -60512,10 +61827,10 @@ aIo
 aIo
 aIo
 aIo
-aTF
-boL
-boL
-ugn
+dlO
+rdK
+rdK
+ikP
 aIo
 aIo
 aIo
@@ -60534,7 +61849,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -60545,7 +61860,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -60813,22 +62128,22 @@ aIo
 aIo
 aIo
 aIo
-aTF
+dlO
 aQQ
 tHo
 aLN
-wqp
-boL
-boL
-boL
-ugn
+kTc
+rdK
+rdK
+rdK
+ikP
 aIo
-aTF
-boL
-boL
-boL
+dlO
+rdK
+rdK
+rdK
 wOd
-ugn
+ikP
 aKX
 aKX
 aKX
@@ -60836,7 +62151,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -60847,7 +62162,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -61115,7 +62430,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 tHo
 tHo
@@ -61123,22 +62438,22 @@ aLN
 aLN
 aLN
 aLN
-wqp
-boL
+kTc
+rdK
 aQQ
 aLN
 aLN
 aLN
 aLp
-wqp
-ugn
+kTc
+ikP
 aKX
 aKX
 aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 paa
 aLN
 aLN
@@ -61149,7 +62464,7 @@ paa
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -61403,21 +62718,21 @@ aIo
 aIo
 aIo
 aIo
-aTF
-ugn
+dlO
+ikP
 aIo
 aIo
 aIo
 aIo
 aIo
-aTF
-boL
-ugn
+dlO
+rdK
+ikP
 aIo
 aIo
-aTF
-ugn
-mJF
+dlO
+ikP
+dnX
 aLN
 aLN
 aLN
@@ -61433,13 +62748,13 @@ aLN
 aLN
 aLp
 aLN
-wqp
-ugn
+kTc
+ikP
 aKX
 aIo
 aIo
 aIo
-aTF
+dlO
 aQQ
 aLN
 aLN
@@ -61451,7 +62766,7 @@ aLN
 aLN
 aLN
 aNM
-iWp
+fFn
 aIo
 aIo
 aIo
@@ -61700,25 +63015,25 @@ aIo
 aIo
 aIo
 aIo
-aTF
-ugn
+dlO
+ikP
 aIo
 aIo
-aTF
+dlO
 aQQ
-wqp
-boL
-boL
-boL
-boL
-boL
+kTc
+rdK
+rdK
+rdK
+rdK
+rdK
 aQQ
 aLN
-wqp
-boL
-boL
+kTc
+rdK
+rdK
 aQQ
-wqp
+kTc
 aQQ
 aLN
 aLN
@@ -61736,12 +63051,12 @@ aLN
 aLp
 aLN
 aLN
-wqp
-ugn
+kTc
+ikP
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -61752,7 +63067,7 @@ aLN
 aLN
 aLN
 aNM
-iWp
+fFn
 aIo
 aIo
 aIo
@@ -62000,12 +63315,12 @@ axy
 aaa
 aIo
 aIo
-aTF
-boL
+dlO
+rdK
 aQQ
-wqp
-boL
-boL
+kTc
+rdK
+rdK
 aQQ
 aLN
 aLN
@@ -62039,11 +63354,11 @@ aLp
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -62053,7 +63368,7 @@ aLN
 aLN
 nDx
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -62302,7 +63617,7 @@ axy
 aaa
 aIo
 aIo
-mJF
+dnX
 boM
 boM
 boM
@@ -62341,11 +63656,11 @@ aLq
 aNr
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -62355,7 +63670,7 @@ nDx
 nDx
 nDx
 nDx
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -62604,7 +63919,7 @@ axy
 aaa
 aIo
 aIo
-mJF
+dnX
 boM
 boN
 bEN
@@ -62657,7 +63972,7 @@ aRE
 bhv
 bhv
 nDx
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -62906,7 +64221,7 @@ axy
 aaa
 aIo
 aIo
-mJF
+dnX
 boM
 bxg
 bEO
@@ -62959,7 +64274,7 @@ eYz
 qju
 bhv
 nDx
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -63208,7 +64523,7 @@ axy
 aaa
 aIo
 aIo
-mJF
+dnX
 boM
 bEM
 bEO
@@ -63261,7 +64576,7 @@ bhv
 bhv
 vVn
 nDx
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -63510,7 +64825,7 @@ axy
 aaa
 aIo
 aIo
-mJF
+dnX
 boM
 boM
 boM
@@ -63549,11 +64864,11 @@ aLq
 url
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -63563,7 +64878,7 @@ nDx
 nDx
 nDx
 nDx
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -63812,9 +65127,9 @@ axy
 aaa
 aIo
 aIo
-aNi
-bhB
-bhB
+gJt
+uAO
+uAO
 iaz
 bGx
 aLp
@@ -63851,11 +65166,11 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -63865,9 +65180,9 @@ aLN
 nDx
 aLN
 aVj
-wqp
-boL
-ugn
+kTc
+rdK
+ikP
 aIo
 aIo
 aIo
@@ -64117,7 +65432,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 bJd
 aLp
 aLN
@@ -64153,11 +65468,11 @@ aLN
 qur
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
-aNi
+gJt
 iaz
 aLN
 aLN
@@ -64169,7 +65484,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -64419,7 +65734,7 @@ aIo
 aIo
 aIo
 aIo
-aNi
+gJt
 iaz
 aLp
 aLN
@@ -64433,7 +65748,7 @@ cfB
 deJ
 dfh
 dkB
-dkB
+mlz
 dkB
 dkB
 dkB
@@ -64455,12 +65770,12 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
 aKX
-mJF
+dnX
 aLN
 aLN
 aVj
@@ -64471,7 +65786,7 @@ aLN
 tHo
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -64722,7 +66037,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLp
 aLN
 bLr
@@ -64735,7 +66050,7 @@ cib
 deI
 dfk
 bVV
-dlO
+bVV
 bVV
 dro
 dkB
@@ -64757,12 +66072,12 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
 aKX
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -64773,7 +66088,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -65024,7 +66339,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLp
 aLN
 aLN
@@ -65055,16 +66370,16 @@ oVn
 xjT
 aLN
 aNM
-bhB
-bhB
-bhB
-bhB
-iWp
+uAO
+uAO
+uAO
+uAO
+fFn
 aIo
 aIo
 aIo
 aKX
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -65075,7 +66390,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -65326,7 +66641,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLp
 aLN
 aLN
@@ -65356,7 +66671,7 @@ uHS
 vGL
 xjT
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -65366,7 +66681,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 xzB
@@ -65377,8 +66692,8 @@ yby
 yby
 xzB
 aLN
-wqp
-ugn
+kTc
+ikP
 aIo
 aIo
 aIo
@@ -65628,7 +66943,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLp
 aLN
 aLN
@@ -65658,8 +66973,8 @@ oVn
 vHc
 xjT
 aLN
-wqp
-ugn
+kTc
+ikP
 aIo
 aIo
 aIo
@@ -65668,7 +66983,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 tEq
@@ -65680,7 +66995,7 @@ yby
 tEq
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -65930,7 +67245,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLp
 tHo
 aLN
@@ -65954,15 +67269,15 @@ jlt
 mLK
 gCz
 phO
-phO
-phO
+oVn
+hos
 uJX
 vMC
 xjT
 xSt
 aLN
-wqp
-ugn
+kTc
+ikP
 aIo
 aIo
 aIo
@@ -65970,7 +67285,7 @@ aIo
 aIo
 aIo
 aIo
-aNi
+gJt
 iaz
 aLN
 ydK
@@ -65982,7 +67297,7 @@ yby
 ydK
 aLN
 aNM
-iWp
+fFn
 aIo
 aIo
 aIo
@@ -66232,7 +67547,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 bJf
 tHo
 aLN
@@ -66264,7 +67579,7 @@ xjT
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -66273,7 +67588,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 chi
 yby
@@ -66283,9 +67598,9 @@ yby
 yby
 chi
 aLN
-wqp
-boL
-ugn
+kTc
+rdK
+ikP
 aIo
 aIo
 aIo
@@ -66534,7 +67849,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 bJi
 bKa
 bKa
@@ -66566,7 +67881,7 @@ xjT
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -66574,7 +67889,7 @@ aIo
 aIo
 aIo
 aIo
-aTF
+dlO
 aQQ
 aLN
 sME
@@ -66587,7 +67902,7 @@ sME
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -66836,9 +68151,9 @@ aIo
 aIo
 aIo
 aIo
-aNi
-bhB
-bhB
+gJt
+uAO
+uAO
 iaz
 bLu
 bOn
@@ -66868,7 +68183,7 @@ xjT
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -66876,7 +68191,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 xzB
@@ -66889,7 +68204,7 @@ xzB
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -67141,7 +68456,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 bOo
 bTE
@@ -67170,7 +68485,7 @@ pZL
 pZL
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -67178,7 +68493,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 tEq
@@ -67191,7 +68506,7 @@ tEq
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -67442,7 +68757,7 @@ aIo
 aIo
 aIo
 aIo
-aTF
+dlO
 aQQ
 aLN
 bOn
@@ -67472,7 +68787,7 @@ xld
 pZL
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -67480,7 +68795,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 ydK
@@ -67493,7 +68808,7 @@ ydK
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -67744,7 +69059,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bOo
@@ -67755,11 +69070,11 @@ dbr
 deO
 bVZ
 dld
-dnX
+bOn
+ttp
 dkB
-dkB
-dtG
-gJt
+gBK
+gCz
 iGK
 jOf
 jDu
@@ -67774,7 +69089,7 @@ xoE
 pZL
 bMx
 jIV
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -67782,7 +69097,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 chi
@@ -67795,7 +69110,7 @@ chi
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68046,7 +69361,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bOn
@@ -68076,7 +69391,7 @@ xrr
 pZL
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68084,7 +69399,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 sME
@@ -68097,7 +69412,7 @@ sME
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68348,7 +69663,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bOn
@@ -68378,7 +69693,7 @@ xtK
 pZL
 xSt
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68386,7 +69701,7 @@ aIo
 aIo
 aIo
 aIo
-aNi
+gJt
 iaz
 aLN
 xzB
@@ -68399,7 +69714,7 @@ xzB
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68650,7 +69965,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 tHo
 tHo
 aLN
@@ -68680,7 +69995,7 @@ xwe
 pZL
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68689,7 +70004,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 tEq
 yby
@@ -68701,7 +70016,7 @@ tEq
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -68952,7 +70267,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 tHo
 aLN
 bOn
@@ -68982,16 +70297,16 @@ pZL
 pZL
 aLN
 aLN
-wqp
-boL
-boL
-boL
-ugn
+kTc
+rdK
+rdK
+rdK
+ikP
 aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 ydK
 yby
@@ -69003,7 +70318,7 @@ ydK
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -69254,7 +70569,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bOn
@@ -69288,12 +70603,12 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -69305,7 +70620,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -69556,7 +70871,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bOo
@@ -69590,11 +70905,11 @@ aVj
 aLN
 aLN
 aLN
-wqp
-boL
-boL
-ugn
-aTF
+kTc
+rdK
+rdK
+ikP
+dlO
 aQQ
 aLN
 aLN
@@ -69607,7 +70922,7 @@ tHo
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -69857,7 +71172,7 @@ aIo
 aIo
 aIo
 aIo
-aTF
+dlO
 aQQ
 bLt
 bMx
@@ -69895,7 +71210,7 @@ aLN
 aLN
 aLN
 aLN
-wqp
+kTc
 aQQ
 aLN
 aLN
@@ -69909,7 +71224,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -70159,7 +71474,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 tHo
 aLN
 bLu
@@ -70211,7 +71526,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -70461,7 +71776,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -70513,7 +71828,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -70763,7 +72078,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bMB
@@ -70815,7 +72130,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -71065,7 +72380,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bMB
@@ -71117,7 +72432,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -71367,7 +72682,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bMB
@@ -71419,7 +72734,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -71669,7 +72984,7 @@ aIo
 aIo
 aIo
 aIo
-aNi
+gJt
 iaz
 aLN
 bNM
@@ -71721,9 +73036,9 @@ aVj
 aLN
 aLN
 aLN
-wqp
-boL
-ugn
+kTc
+rdK
+ikP
 aIo
 aIo
 aIo
@@ -71972,7 +73287,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 bLu
 bMB
 bPl
@@ -71993,7 +73308,7 @@ hud
 lNW
 oeN
 fGl
-rdK
+egw
 spB
 fGl
 gZx
@@ -72025,7 +73340,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -72274,7 +73589,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 bNM
 bPm
@@ -72302,8 +73617,8 @@ vjc
 wWr
 xAW
 fGl
-vmh
-mJF
+kbv
+dnX
 aLN
 aLN
 aLN
@@ -72327,7 +73642,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -72576,7 +73891,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 bMB
 bQf
@@ -72604,10 +73919,10 @@ fGl
 lOR
 fGl
 fGl
-vmh
-aNi
-bhB
-bhB
+kbv
+gJt
+uAO
+uAO
 iaz
 aLN
 aLN
@@ -72629,7 +73944,7 @@ aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -72878,7 +74193,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 bMB
 bMB
@@ -72895,28 +74210,28 @@ fhN
 dpE
 bMB
 aNM
-iWp
-aNi
-bhB
-bhB
-bhB
-bhB
+fFn
+gJt
+uAO
+uAO
+uAO
+uAO
 bYY
-bhB
-bhB
-bhB
-bhB
-iWp
+uAO
+uAO
+uAO
+uAO
+fFn
 aIo
 aIo
 aIo
-aNi
-bhB
-bhB
-bhB
-bhB
-bhB
-bhB
+gJt
+uAO
+uAO
+uAO
+uAO
+uAO
+uAO
 iaz
 aLN
 aLN
@@ -72930,8 +74245,8 @@ aLN
 aLN
 aLN
 aNM
-bhB
-iWp
+uAO
+fFn
 aIo
 aIo
 aIo
@@ -73180,7 +74495,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 bNR
 bMB
@@ -73219,7 +74534,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -73231,8 +74546,8 @@ ylj
 aLN
 tHo
 kit
-wqp
-ugn
+kTc
+ikP
 aIo
 aIo
 aIo
@@ -73482,7 +74797,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 bMB
@@ -73498,7 +74813,7 @@ dpD
 dpD
 dpD
 bMB
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -73521,7 +74836,7 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
@@ -73534,7 +74849,7 @@ aLN
 tHo
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -73784,15 +75099,15 @@ aIo
 aIo
 aIo
 aIo
-aNi
-bhB
-bhB
-bhB
-bhB
+gJt
+uAO
+uAO
+uAO
+uAO
 bYY
-bhB
-bhB
-bhB
+uAO
+uAO
+uAO
 iaz
 bMB
 bMB
@@ -73800,7 +75115,7 @@ bMB
 bMB
 bMB
 bMB
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -73823,7 +75138,7 @@ aIo
 aIo
 aIo
 aIo
-aNi
+gJt
 iaz
 aLN
 aLN
@@ -73831,12 +75146,12 @@ aLN
 aLN
 aLN
 uBm
-bhB
+uAO
 iaz
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -74095,14 +75410,14 @@ aIo
 aIo
 aIo
 aIo
-aNi
-bhB
-bhB
-bhB
+gJt
+uAO
+uAO
+uAO
 bYY
-bhB
-bhB
-iWp
+uAO
+uAO
+fFn
 aIo
 aIo
 aIo
@@ -74126,19 +75441,19 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -74428,19 +75743,19 @@ ugn
 aIo
 aIo
 aIo
-aNi
-bhB
-bhB
-bhB
-bhB
-bhB
-iWp
+gJt
+uAO
+uAO
+uAO
+uAO
+uAO
+fFn
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -74738,11 +76053,11 @@ aIo
 aIo
 aIo
 aIo
-mJF
+dnX
 aLN
 aLN
 aLN
-vmh
+kbv
 aIo
 aIo
 aIo
@@ -75040,11 +76355,11 @@ aIo
 aIo
 aIo
 aIo
-aNi
-bhB
-bhB
-bhB
-iWp
+gJt
+uAO
+uAO
+uAO
+fFn
 aIo
 aIo
 aIo
@@ -75654,40 +76969,40 @@ aaa
 aaa
 aaa
 aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 wXY
 wXY
@@ -75932,64 +77247,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -76234,64 +77549,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+opt
+xai
+xai
+vqf
+xai
+nZL
+xwp
+xwp
+pAr
+wyc
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -76536,64 +77851,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+obw
+jRB
+eyO
+saf
+saf
+saf
+kON
+kOA
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+srf
+tEM
+vYq
+vYq
+vVr
+srf
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+jxk
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -76838,64 +78153,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+gFZ
+vUU
+wDT
+jcv
+xwp
+xwp
+pAr
+kAo
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vVr
+vVr
+tEM
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+tEM
+vVr
+ndJ
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -77140,64 +78455,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+aJn
+jRB
+hgI
+xIM
+saf
+saf
+saf
+kON
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+srf
+vVr
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -77442,64 +78757,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+aCW
+kON
+rIO
+kON
+kON
+kON
+kON
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+hCj
+vVr
+tEM
+srf
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+tEM
+vVr
+vVr
+vVr
+lGq
+vVr
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vVr
+vVr
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -77744,64 +79059,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+jRB
+jRB
+hXo
+jcv
+ovB
+xwp
+pAr
+oBt
+wyc
+vYq
+vYq
+vYq
+srf
+tYK
+vVr
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+srf
+vYq
+vVr
+vYq
+srf
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+srf
+vYq
+vYq
+vVr
+vVr
+vYq
+vYq
+ndJ
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -78046,64 +79361,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+rtw
+grh
+eyO
+urE
+saf
+mpq
+ijY
+dES
+kOA
+vYq
+vYq
+vYq
+vYq
+vVr
+lGq
+vVr
+vVr
+vYq
+vVr
+vYq
+vYq
+lGq
+tEM
+tEM
+vVr
+vVr
+vVr
+tEM
+vYq
+vYq
+tEM
+vVr
+vVr
+qBl
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+srf
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -78348,64 +79663,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+jRB
+jRB
+gQZ
+rTI
+saf
+saf
+kON
+vYq
+kOA
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vYq
+vVr
+vYq
+vVr
+vYq
+vYq
+srf
+vYq
+tEM
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vVr
+jxk
+vYq
+vYq
+vYq
+tEM
+tEM
+vYq
+vVr
+vYq
+uOu
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -78650,64 +79965,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+jRB
+vUU
+gQJ
+jcv
+ovB
+ovB
+pAr
+oBt
+kAo
+vYq
+vYq
+tEM
+vYq
+vYq
+tEM
+vYq
+vVr
+iab
+vVr
+vYq
+vYq
+vYq
+vYq
+tEM
+vVr
+vYq
+vYq
+vYq
+vYq
+srf
+lGq
+vVr
+vYq
+vYq
+tEM
+tEM
+tEM
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 wXY
@@ -78952,64 +80267,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+kOA
+kON
+kON
+kON
+mbR
+kON
+kON
+kON
+kON
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vYq
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vVr
+srf
+tEM
+tEM
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 wXY
 bpi
@@ -79254,64 +80569,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+iab
+vYq
+ijh
+oBt
+oBt
+oBt
+xmI
+fDG
+fDG
+fDG
+fDG
+fDG
+fDG
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vVr
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -79556,64 +80871,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+tEM
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+qBl
+vYq
+vYq
+vYq
+vYq
+vYq
+srf
+vYq
+lGq
+srf
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -79858,64 +81173,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vYq
+vYq
+beh
+beh
+beh
+beh
+beh
+beh
+beh
+beh
+beh
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+uOu
+vYq
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -80160,64 +81475,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vVr
+vYq
+vYq
+beh
+wyJ
+wyJ
+wyJ
+kij
+agK
+agK
+beh
+tEM
+vYq
+vYq
+vYq
+vVr
+tEM
+tEM
+vVr
+vVr
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -80462,64 +81777,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+beh
+wyJ
+wyJ
+wyJ
+dAF
+agK
+agK
+beh
+vVr
+sDa
+tEM
+tEM
+vVr
+vYq
+vYq
+vYq
+srf
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+srf
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -80764,64 +82079,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+tEM
+vYq
+vYq
+vVr
+vVr
+vVr
+beh
+pvM
+dAF
+dAF
+dAF
+dAF
+dAF
+beh
+vVr
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+srf
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -81066,64 +82381,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+jvW
+vVr
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+beh
+oSs
+uud
+gZW
+dAF
+vgB
+dAF
+dAF
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+mzT
+vYq
+vYq
+vYq
+beh
+beh
+beh
+beh
+beh
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -81368,64 +82683,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+dAF
+dAF
+wyH
+rJf
+dAF
+gZW
+dAF
+dAF
+vVr
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+srf
+vVr
+jir
+vYq
+tEM
+vYq
+beh
+gLq
+mKz
+eZm
+beh
+beh
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -81670,64 +82985,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+dAF
+wyH
+dAF
+dAF
+dAF
+xdy
+dAF
+pql
+vVr
+vYq
+vYq
+vYq
+vYq
+srf
+qBl
+vYq
+vYq
+vYq
+lOJ
+lGq
+vVr
+xUY
+tEM
+vYq
+beh
+gIR
+flg
+flg
+flg
+nXM
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -81972,64 +83287,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+eRT
+uBK
+uBK
+vVr
+sDa
+vYq
+vYq
+vYq
+vYq
+vVr
+beh
+dAF
+dAF
+beh
+npP
+xng
+npP
+beh
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+txJ
+vVr
+lOJ
+vYq
+vYq
+vYq
+beh
+scS
+dAF
+dAF
+dAF
+ybC
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -82274,64 +83589,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+tBS
+vVr
+vVr
+vVr
+vVr
+sDa
+vYq
+vVr
+vVr
+vVr
 beh
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+fMe
+pRu
+beh
+sEn
+xpA
+dAF
+beh
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+srf
+vVr
+vYq
+vYq
+vYq
+beh
+ybC
+beh
+eeo
+dAF
+hpF
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -82576,64 +83891,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+eRT
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vVr
+beh
+eSE
+fza
+beh
+ohR
+noY
+pyi
+beh
+vVr
+vVr
+vVr
+vVr
+vVr
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+beh
+beh
+beh
+ybC
+beh
+qrF
+vFY
+ybC
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 bpd
@@ -82878,64 +84193,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+eRT
+vVr
+beh
+beh
+beh
+beh
+vVr
+vVr
+vYq
+vYq
+vVr
+beh
+beh
+beh
+beh
+beh
+beh
+beh
+beh
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+tEM
+vVr
+vVr
+vVr
+vVr
+tEM
+tEM
+vYq
+beh
+jSi
+beh
+ybC
+beh
+beh
+beh
+ybC
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boF
@@ -83180,64 +84495,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+beh
+lhy
+pRu
+beh
+vVr
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+aol
+gvJ
+gvJ
+gvJ
+leZ
+lzN
+flg
+nGp
+beh
+beh
+beh
+dpG
+beh
+beh
+vYq
+vYq
+vYq
 aaa
 boF
 boF
@@ -83482,64 +84797,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+beh
+eSE
+fza
+beh
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+wJR
+vVr
+vVr
+vYq
+beh
+beh
+beh
+beh
+beh
+tzA
+dAF
+ybC
+rhk
+beh
+vYq
+vYq
+vYq
 aaa
 boF
 boF
@@ -83784,64 +85099,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+tEM
+vVr
+beh
+vVr
+vVr
+beh
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+qBl
+vYq
+vYq
+vYq
+vYq
+vYq
+wJR
+vYq
+vYq
+beh
+beh
+beh
+beh
+beh
+beh
+dAF
+beh
+ybC
+dAF
+beh
+vYq
+vYq
+vYq
 aaa
 boF
 boF
@@ -84086,64 +85401,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+tEM
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+tEM
+vVr
+vYq
+tEM
+vVr
+vVr
+vVr
+mZa
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+srf
+wJR
+uaA
+fOm
+fOm
+fOm
+hhd
+epZ
+dyk
+beh
+ppc
+beh
+ybC
+dAF
+beh
+vYq
+vYq
+vYq
 aaa
 boF
 boF
@@ -84388,64 +85703,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+tEM
+tEM
+vVr
+vVr
+iab
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vVr
+mZa
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+vVr
+srf
+vYq
+vYq
+wJR
+uaA
+fOm
+fOm
+pjx
+npf
+kLn
+rjX
+xng
+fJl
+dAF
+ybC
+rhk
+beh
+vYq
+vYq
+vYq
 aaa
 boF
 bpj
@@ -84690,64 +86005,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+oiu
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vVr
+vVr
+vYq
+vYq
+vYq
+wJR
+uaA
+fOm
+fOm
+xoj
+uHO
+rXx
+rjX
+beh
+beh
+beh
+ybC
+beh
+beh
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -84992,64 +86307,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+rIs
+ngG
+kLF
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+qBl
+vYq
+vYq
+vYq
+vVr
+uOu
+vYq
+vYq
+vYq
+wJR
+uaA
+fOm
+fOm
+fOm
+mLS
+wmj
+xiF
+beh
+tzA
+dAF
+ybC
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -85294,64 +86609,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+tEM
+tEM
+tEM
+tEM
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vYq
+vYq
+dlL
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+tEM
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+vYq
+srf
+vYq
+wJR
+vYq
+vYq
+beh
+beh
+irf
+ipS
+mfs
+tbv
+flg
+flg
+myN
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -85596,64 +86911,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+tEM
+tEM
+tEM
+tEM
+tEM
+vVr
+vYq
+vYq
+pKn
+isn
+mle
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+tEM
+tEM
+tEM
+wJR
+vVr
+sDa
+beh
+beh
+piy
+hro
+piy
+beh
+beh
+beh
+beh
+beh
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -85898,64 +87213,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vIS
+vVr
+tEM
+vYq
+tEM
+tEM
+tEM
+vYq
+tEM
+vVr
+vYq
+vYq
+dlL
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+vVr
+vYq
+vYq
+pxq
+vVr
+vVr
+beh
+beh
+iIl
+jtS
+biX
+beh
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -86200,64 +87515,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vVr
+vVr
+vYq
+vYq
+tEM
+tEM
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+eJW
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+vVr
+vYq
+vVr
+ftX
+vVr
+vYq
+beh
+beh
+vym
+rtp
 biX
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+beh
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -86502,64 +87817,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+tEM
+vYq
+vYq
+vYq
+vVr
+vYq
+vYq
+eJW
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+vVr
+vVr
+pxq
+vYq
+vYq
+vYq
+beh
+beh
+beh
+beh
+beh
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -86804,64 +88119,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+tEM
+vYq
+vYq
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vVr
+pxq
+vYq
+vYq
+vYq
+vYq
+beh
+beh
+beh
+vVr
+tEM
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -87106,64 +88421,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+srf
+vVr
+wJR
+vYq
+vYq
+mzT
+srf
+vYq
+vVr
+vVr
+vVr
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -87408,64 +88723,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+wJR
+vVr
+vVr
+vVr
+vVr
+vVr
+vVr
+vYq
+srf
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -87710,64 +89025,64 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+pxq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
+vYq
 aaa
 boF
 boY
@@ -88012,9 +89327,6 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
 aaa
 aaa
 aaa
@@ -88029,47 +89341,50 @@ aaa
 aaa
 aaa
 aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 boF
 boY
@@ -88314,7 +89629,7 @@ vww
 vww
 vww
 vww
-vww
+aaa
 vww
 vww
 aaa
