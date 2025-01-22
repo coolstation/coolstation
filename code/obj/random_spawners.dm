@@ -1670,6 +1670,12 @@
 	icon_state = "rand_furniture"
 	min_amt2spawn = 8
 	max_amt2spawn = 10
+	rare_chance = 4
+	rare_items2spawn = list(/obj/item/furniture_parts/throne_gold,
+						/obj/item/furniture_parts/table/regal,
+						/obj/item/furniture_parts/table/clothred,
+						/obj/item/furniture_parts/table/checkercloth,
+						/obj/item/furniture_parts/table/flock)
 	items2spawn = list(/obj/item/furniture_parts/IVstand,
 						/obj/item/furniture_parts/surgery_tray,
 						/obj/item/furniture_parts/table/desk,
@@ -1853,3 +1859,17 @@
 	one_to_three
 		min_amt2spawn = 1
 		max_amt2spawn = 3
+
+/obj/random_item_spawner/canisters
+	name = "random canister spawner"
+	amt2spawn = 1
+	rare_chance = 5
+	rare_items2spawn = list(/obj/machinery/portable_atmospherics/canister/farts/filled,
+						/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+						/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+	items2spawn = list(/obj/machinery/portable_atmospherics/canister/nitrogen,
+						/obj/machinery/portable_atmospherics/canister/oxygen,
+						/obj/machinery/portable_atmospherics/canister/toxins,
+						/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+						/obj/machinery/portable_atmospherics/canister/air,
+						/obj/machinery/portable_atmospherics/canister/empty)

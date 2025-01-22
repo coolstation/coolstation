@@ -57,6 +57,7 @@
 					playsound(M, "sound/items/hypo.ogg", 40, 0)
 				if(!src.reagents.total_volume)
 					src.empty = 1
+				JOB_XP(user, "Medical Doctor", 5)
 				return
 		else
 			boutput(user, "<span class='alert'>You can only use [src] on people!</span>")

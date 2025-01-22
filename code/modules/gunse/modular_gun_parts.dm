@@ -486,7 +486,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 3
 
 /obj/item/gun_parts/barrel/juicer
-	name = "\improper BLUNDA Barrel"
+	name = "\improper BLUNDA barrel"
 	desc = "A cheaply-built shotgun barrel. And by cheaply-built I mean someone adapted a broken vuvuzela for a gun."
 	spread_angle =  13 // jesus christ it's a spread machine
 	scatter = 1
@@ -499,7 +499,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	//absolutely needs a quiet fucked up vuvuzela honk
 
 /obj/item/gun_parts/barrel/juicer/chub
-	name = "\improper BUSTIN Barrel"
+	name = "\improper BUSTIN barrel"
 	desc = "Sawn-off shotgun barrel, hot-rodded with paint and donkey grease."
 	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 6
@@ -509,7 +509,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 1
 
 /obj/item/gun_parts/barrel/juicer/ribbed
-	name = "\improper KNOBBIN Barrel"
+	name = "\improper KNOBBIN barrel"
 	desc = "Shotgun barrel: for yuor gun's pleansure."
 	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 4
@@ -520,7 +520,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 2
 
 /obj/item/gun_parts/barrel/juicer/longer
-	name = "\improper SNIPA Barrel"
+	name = "\improper SNIPA barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
 	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle =  4 // accurate?? ish?
@@ -789,7 +789,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_solid"
 
 /obj/item/gun_parts/stock/NT/precision
-	name = "Precision stock"
+	name = "precision stock"
 	desc = "A comfortable NT shoulder stock with cheek rest"
 	spread_angle = -6 // quite better stabilisation
 	max_ammo_capacity = 1 // additional shot in the butt
@@ -940,7 +940,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	// grenade launcher!!
 	// a horn!!
 /obj/item/gun_parts/accessory/horn
-	name = "Tactical Alerter"
+	name = "tactical alerter"
 	desc = "Efficiently alerts your squadron within miliseconds of target engagement, using cutting edge over-the-airwaves technology"
 	call_on_fire = 1
 	name_addition = "tactical"
@@ -957,7 +957,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		qdel(src)
 
 /obj/item/gun_parts/accessory/flashlight
-	name = "Tactical Enbrightener"
+	name = "tactical enbrightener"
 	desc = "No deep operator can be without adequate Night-Vision equipment, or at the very least, a pocket torch taped to their barrel."
 	alt_fire = 1
 	icon_state = "flash"
@@ -1039,7 +1039,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		qdel(src)
 
 /obj/item/gun_parts/accessory/flashlight/NT
-	name = "NT Weaponlight"
+	name = "\improper NT weaponlight"
 	desc = "A little more sensible than taping a handheld flashlight to your barrel. That is, if you're a COP."
 	icon_state = "nt_flash"
 	icon_off = "nt_flash"
@@ -1050,7 +1050,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer
-	name = "HOTT SHOTTS MAG"
+	name = "\improper HOTT SHOTTS MAG"
 	desc = "Holds 3 rounds, and 30,000 followers."
 	max_ammo_capacity = 3
 	jam_frequency_reload = 8
@@ -1059,14 +1059,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_drum"
 
 	four
-		name = "HOTTTER SHOTTTS MAG"
+		name = "\improper HOTTTER SHOTTTS MAG"
 		desc = "Holds 4 rounds, and seems to be made out of some kind of cereal box."
 		icon_state = "juicer_drum-bigger"
 		max_ammo_capacity = 4
 		jam_frequency_reload = 16
 
 	five
-		name = "HOTTTTEST SHOTTTTS MAG"
+		name = "\improper HOTTTTEST SHOTTTTS MAG"
 		desc = "Holds 5 rounds, attracts the ire of haters everywhere you go."
 		icon_state = "juicer_drum-biggest"
 		max_ammo_capacity = 5

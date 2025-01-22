@@ -252,8 +252,8 @@
 	else
 		dat += "<span style=\"color:red\"><B>No compatible attached compressor found.</span>"
 
-	user.Browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")
+	user.Browse(dat, "window=computer_\ref[src];size=400x500")
+	onclose(user, "computer_\ref[src]")
 	return
 
 /obj/machinery/computer/robotics/special_deconstruct(obj/computerframe/frame as obj)
@@ -284,7 +284,7 @@
 						D.close()
 						door_status = 0
 		else if( href_list["close"] )
-			usr.Browse(null, "window=computer")
+			usr.Browse(null, "window=computer_\ref[src]")
 			src.remove_dialog(usr)
 			return
 

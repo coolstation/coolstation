@@ -46,11 +46,10 @@
 			desc = "A chart of nearby moons and Nanotrasen assets around . Not to scale."
 			sizex = 1033
 			sizey = 724
+			rand_pos = 8
 
 			New()
 				..()
-				pixel_x = rand(-8, 8)
-				pixel_y = rand(-8, 8)
 				info = "<html><body style='margin:0px'><img src='[resource("images/charts/AtlasSurvey_PlasmaGiant.png")]'></body></html>"
 
 			examine()

@@ -15,11 +15,10 @@
 
 	sizex = 1040
 	sizey = 705
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:2px'><img src='[resource("images/arts/postcard_Owlery.png")]'></body></html>"
 
 	examine()

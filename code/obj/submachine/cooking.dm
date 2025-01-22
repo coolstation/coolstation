@@ -1314,6 +1314,7 @@ var/list/mixer_recipes = list()
 	anchored = 1
 	mats = 15
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+	object_flags = CAN_BE_LIFTED
 	var/list/recipes = null
 	var/list/to_remove = list()
 	var/allowed = list(/obj/item/reagent_containers/food/, /obj/item/parts/robot_parts/head, /obj/item/clothing/head/butt, /obj/item/organ/brain)

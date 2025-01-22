@@ -158,12 +158,16 @@
 				obs.see_invisible = src.owner.invisibility
 
 			//Transfer the control from the victim to the hivemind member
+			var/mob/dead/ghost = null
 			if (M.mind)
 				M.mind.transfer_to(obs)
 			else if (M.client)
 				obs.client = M.client
 			else if (M.ghost && !(M.ghost.mind && M.ghost.mind.dnr)) //Heh, death is no escape // (except sometimes when the ghost really doesn't want to come back and has DNR set HHHHEH)
-				var/mob/dead/ghost = M.ghost
+				ghost = M.ghost
+			else if (M.last_client)
+				ghost = find_ghost_by_key(M.last_client.key)
+			if(ghost)
 				ghost.show_text("<span class='red'>You feel yourself torn away from the afterlife and into another consciousness!</span>")
 				if(ghost.mind)
 					ghost.mind.transfer_to(obs)
@@ -173,8 +177,19 @@
 					obs.key = ghost.key
 				else
 					return
-				M.ghost = null
-			else
+				obs.my_ghost = ghost //Prevent lingering unreferenced ghost
+				//Likely necessary to null the corpse var to keep ling victims uncloneable
+				//Otherwise after you leave the hivemind, my_ghost would restore the corpse <-> ghost link as soon as you observe something else.
+				if(istype(ghost, /mob/dead/observer)) // fuck corpse not being defined on /mob/dead <- Amen
+					var/mob/dead/observer/O = ghost
+					if(O.corpse)
+						O.corpse = null
+				else if(istype(ghost, /mob/dead/target_observer))
+					var/mob/dead/target_observer/O = ghost
+					if(O.corpse)
+						O.corpse = null
+					M.ghost = null
+			if(!obs.mind)
 				return
 
 			/*

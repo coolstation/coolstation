@@ -337,6 +337,9 @@
 			B.smash_on_thing(user, src)
 			return
 
+		else if (istype(W, /obj/item/lifted_thing))
+			return
+
 		else if (has_storage && src.desk_drawer)
 			if (islist(params) && params["icon-y"])
 				if (text2num(params["icon-y"]) <= 8)
@@ -581,6 +584,16 @@
 	icon = 'icons/obj/furniture/table_clothred.dmi'
 	auto_type = /obj/table/clothred/auto
 	parts_type = /obj/item/furniture_parts/table/clothred
+
+	auto
+		auto = 1
+
+/obj/table/clothchecker
+	name = "red checkers table"
+	desc = "mama mia"
+	icon = 'icons/obj/furniture/table_checkercloth.dmi'
+	auto_type = /obj/table/clothchecker/auto
+	parts_type = /obj/item/furniture_parts/table/checkercloth
 
 	auto
 		auto = 1

@@ -9,6 +9,8 @@ export enum DisposalChuteState {
   Off = 0, // DISPOSAL_CHUTE_OFF
   Charging = 1, // DISPOSAL_CHUTE_CHARGING
   Charged = 2, // DISPOSAL_CHUTE_CHARGED
+  NoTrunk = 3, // DISPOSAL_CHUTE_NOTRUNK
+  NoTag = 4, // DISPOSAL_CHUTE_NOTAG
 }
 
 export interface DisposalChuteConfig {

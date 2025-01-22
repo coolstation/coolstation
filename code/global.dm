@@ -74,6 +74,12 @@ var/global
 	list/browse_item_clients = list()
 	browse_item_initial_done = 0
 
+	//INTENT: part of approach to show icons next to qm supply categories
+	//stub from when i worked on this like in 2023 or whenever, will revisit i promise
+	//list/browse_supply_pack_icons = list()
+	//list/browse_supply_pack_clients = list()
+	//browse_supply_pack_initial_done = 0
+
 	list/rewardDB = list() //Contains instances of the reward datums
 	list/materialRecipes = list() //Contains instances of the material recipe datums
 	list/materialProps = list() //Contains instances of the material property datums
@@ -292,6 +298,9 @@ var/global
 	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
 	shipyardship_location = 0
+	shipyardship_pre_densitymap = list()
+	shipyardship_post_densitymap = list()
+	shipyard_scrapwall_prob = 40
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0

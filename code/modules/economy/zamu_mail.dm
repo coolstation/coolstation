@@ -18,6 +18,7 @@
 	icon_state = "mail-1"
 	item_state = "gift"
 	pressure_resistance = 70
+	rand_pos = 2
 	var/random_icons = TRUE
 	var/spawn_type = null
 	var/tmp/target_dna = null
@@ -225,8 +226,6 @@
 		for(var/j in 1 to 3)
 			color_list[j] = 127 + (color_list[j] / 2) + rand(-10, 10)
 		package.color = rgb(color_list[1], color_list[2], color_list[3])
-		package.pixel_x = rand(-2, 2)
-		package.pixel_y = rand(-2, 2)
 
 		// packages are dna-locked so you can't just swipe everyone's mail like a jerk.
 		package.target_dna = recipient["dna"]
@@ -341,12 +340,12 @@ var/global/mail_types_by_job = list(
 		),
 
 	/datum/job/medical/medical_doctor = list(
-		/obj/item/reagent_containers/mender/brute = 5,
-		/obj/item/reagent_containers/mender/burn = 5,
-		/obj/item/reagent_containers/mender/both = 3,
-		/obj/item/reagent_containers/mender_refill_cartridge/brute = 6,
-		/obj/item/reagent_containers/mender_refill_cartridge/burn = 6,
-		/obj/item/reagent_containers/mender_refill_cartridge/both = 5,
+		/obj/item/reagent_containers/mender/brute = 1,
+		/obj/item/reagent_containers/mender/burn = 1,
+		/obj/item/reagent_containers/mender/both = 1,
+		/obj/item/reagent_containers/mender_refill_cartridge/brute = 1,
+		/obj/item/reagent_containers/mender_refill_cartridge/burn = 1,
+		/obj/item/reagent_containers/mender_refill_cartridge/both = 1,
 		/obj/item/item_box/medical_patches/mini_styptic = 10,
 		/obj/item/item_box/medical_patches/mini_silver_sulf = 10,
 		/obj/item/medical/medicaldiagnosis/stethoscope = 5,
@@ -359,12 +358,12 @@ var/global/mail_types_by_job = list(
 		),
 
 	/datum/job/medical/roboticist = list(
-		/obj/item/reagent_containers/mender/brute = 5,
-		/obj/item/reagent_containers/mender/burn = 5,
-		/obj/item/reagent_containers/mender/both = 3,
-		/obj/item/reagent_containers/mender_refill_cartridge/brute = 6,
-		/obj/item/reagent_containers/mender_refill_cartridge/burn = 6,
-		/obj/item/reagent_containers/mender_refill_cartridge/both = 5,
+		/obj/item/reagent_containers/mender/brute = 1,
+		/obj/item/reagent_containers/mender/burn = 1,
+		/obj/item/reagent_containers/mender/both = 1,
+		/obj/item/reagent_containers/mender_refill_cartridge/brute = 1,
+		/obj/item/reagent_containers/mender_refill_cartridge/burn = 1,
+		/obj/item/reagent_containers/mender_refill_cartridge/both = 1,
 		/obj/item/robot_module = 5,
 		/obj/item/parts/robot_parts/robot_frame = 4,
 		/obj/item/cell/supercell/charged = 3,
@@ -522,7 +521,7 @@ var/global/mail_types_everyone = list(
 	/obj/item/pen/fancy = 2,
 	/obj/item/toy/plush = 3,
 	/obj/item/toy/figure = 3,
-	/obj/item/toy/gooncode = 2,
+	/obj/item/toy/coolcode = 2,
 	/obj/item/toy/cellphone = 3,
 	/obj/item/toy/handheld/robustris = 3,
 	/obj/item/toy/handheld/arcade = 3,

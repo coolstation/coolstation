@@ -25,9 +25,9 @@ obj/machinery/computer/general_air_control
 		frame.circuit.frequency = src.frequency
 
 	attack_hand(mob/user)
-		user.Browse(return_text(),"window=computer")
+		user.Browse(return_text(),"window=computer_\ref[src]")
 		src.add_dialog(user)
-		onclose(user, "computer")
+		onclose(user, "computer_\ref[src]")
 
 	process()
 		..()
@@ -428,9 +428,9 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 
 
 	attack_hand(mob/user)
-		user.Browse(return_text(),"window=computer")
+		user.Browse(return_text(),"window=computer_\ref[src]")
 		src.add_dialog(user)
-		onclose(user, "computer")
+		onclose(user, "computer_\ref[src]")
 
 	process()
 		if(priority_alarms.len)
@@ -509,9 +509,9 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 	attack_hand(mob/user)
 		if(status & (BROKEN | NOPOWER))
 			return
-		user.Browse(return_text(),"window=computer")
+		user.Browse(return_text(),"window=computer_\ref[src]")
 		src.add_dialog(user)
-		onclose(user, "computer")
+		onclose(user, "computer_\ref[src]")
 
 	process()
 		..()
@@ -656,6 +656,8 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 
 		if (radio_connection && signal)
 			radio_connection.post_signal(src, signal)
+
+		updateDialog()
 
 	proc
 		set_frequency(new_frequency)

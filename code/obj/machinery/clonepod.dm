@@ -1,6 +1,7 @@
 #define MEAT_NEEDED_TO_CLONE	16
 #define MAXIMUM_MEAT_LEVEL		100
-#define DEFAULT_MEAT_USED_PER_TICK 0.6
+//up from 0.6, which combined with lower reclaimer worth for corpses should hopefully make run out of biomatter over time when fed only the corpses of the dead
+#define DEFAULT_MEAT_USED_PER_TICK 0.7
 #define DEFAULT_SPEED_BONUS 1
 
 #define MEAT_LOW_LEVEL	MAXIMUM_MEAT_LEVEL * 0.15
@@ -37,7 +38,7 @@
 
 	var/gen_bonus = 1 //Normal generation speed
 	var/speed_bonus = DEFAULT_SPEED_BONUS // Multiplier that can be modified by modules
-	var/auto_mode = 1
+	var/auto_mode = FALSE
 	var/auto_delay = 10
 
 	power_usage = 200
@@ -596,6 +597,20 @@
 			qdel(W)
 			return
 
+		else if (istype(W, /obj/item/cloneModule/auto_start)) // prebaking clones like in the new old days
+			if (auto_mode)
+				boutput(user,"<span class='alert'>There's already a pre-cloner unit on this pod!</span>")
+				return
+			if (operating && attempting)
+				boutput(user,"<span class='alert'>The cloning pod emits a[pick("n angry", " grumpy", "n annoyed", " cheeky")] [pick("boop","bop", "beep", "blorp", "burp")]!</span>")
+				return
+			user.visible_message("[user] installs [W] into [src].", "You install [W] into [src].")
+			logTheThing("combat", src, user, "[user] installed ([W]) to ([src]) at [log_loc(user)].")
+			auto_mode = TRUE
+			user.drop_item()
+			qdel(W)
+			return
+
 		else if (istype(W, /obj/item/cloneModule/insurgent_module)) // Time to re enact the clone wars
 			if (operating && attempting)
 				boutput(user,"<span class='alert'>The cloning pod emits a[pick("n angry", " grumpy", "n annoyed", " cheeky")] [pick("boop","bop", "beep", "blorp", "burp")]!</span>")
@@ -672,7 +687,7 @@
 		add_fingerprint(usr)
 		return
 
-	verb/toggle_auto()
+	/*verb/toggle_auto()
 		set src in oview(1)
 		set name = "Toggle Auto Mode"
 		set category = "Local"
@@ -682,7 +697,7 @@
 		src.auto_mode = 1 - src.auto_mode
 		boutput(usr, "<span class='notice'>\The [src] will [src.auto_mode ? "automatically" : "no longer"] automatically prepare new bodies for clones.</span>")
 		add_fingerprint(usr)
-		return
+		return*/
 
 	proc/go_out(unlock = 0)
 		if (unlock)
@@ -982,27 +997,9 @@
 				qdel(src.occupant)
 			src.occupant = null
 
-			// Old table of cloner values --
-			// grinder used to count down and added either x or x + 2 depending on upgrade
-			// now uses varying amounts of things! i guess!
-			// here is the old code and a table of how the timer was calculated:
-			// var/mult = src.upgraded ? rand(2,4) : rand(4,8)
-			// src.process_timer = (humanOccupant ? 2 : 1)
-			// src.process_timer *= (mult - (2 * decomp))
-			// ------------------------------------------------
-			// process_timer    ____speedy|normal__________
-			// mult>              2   3   4   5   6   7   8  (note: speedy would increase
-			// Decomp stage  0    4   6   8  10  12  14  16   reagent production by * 2)
-			//               1    0   2   4   6   8  10  12
-			//               2   -4  -2   0   2   4   6   8  (slightly decomposed bodies
-			//               3   -8  -6  -4  -2   0   2   4   became worthless with
-			//               4  -12 -10  -8  -6  -4  -2   0   speedy grinder upgrade)
-			// total reagents: process_timer * (speedy ? 2 : 1)
-			// this effectively means/meant that the speedy upgrade was faster,
-			// but otherwise objectively worse if you had decomposed corpses
+			// Removed the old old table of values, cause it was just getting confusing and also this machine hasn't been using that kind of math for over 4 years
 
-			// attempting to rewrite this to be better or at least different, i guess
-			// First, how much are we going to get from this?
+			//this is the new old table
 			//                        rand  human   decomp        total
 			// Human, no decomposure: (5~8) * 2 * (4.5 / 4.5) =  10   ~ 16
 			// Human, stage 1:        (5~8) * 2 * (3.5 / 4.5) =   8.8 ~ 12.4
@@ -1014,7 +1011,32 @@
 			// Monkey, stage 2:       (5~8) * 1 * (2.5 / 4.5) =   2.8 ~  4.4
 			// Monkey, stage 3:       (5~8) * 1 * (1.5 / 4.5) =   1.7 ~  2.7
 			// Monkey, stage 4:       (5~8) * 1 * (0.5 / 4.5) =   0.6 ~  0.9
-			process_total += rand(5, 8) * (humanOccupant ? 2 : 1) * ((4.5 - decomp) / 4.5)
+
+
+			//current values
+			//Halved the random value to also halve the final outcome.
+
+			//I'm under the impression that one unit of process_total equates to about 3u of biomatter (meat_level on the pod)
+			//the process goes:
+			//process_total ~> 2u blood + 2u meat slurry (with some rounding error from calculating process_per_tick and process_timer)
+			//2u blood * 0.5 = 1u meat_level, while 2u meat slurry * 1 = 2u meat_level. Add those and you get 3u meat_level per 1u process_total
+			//(I'm ignoring the 2% of bonus beff because it averages 0.015u meat_level per process_total. It's not substantial in comparison)
+
+			//So: a fresh human will lend 5-8u process_total, which translates to 15-24% biomatter
+			//halved speed across the board too, so it should take about as long as it did before
+
+			//                         rand   human   decomp        total (very rough, I didn't recalc exactly)
+			// Human, no decomposure: (2.5~4) * 2 * (4.5 / 4.5) =   5   ~ 8
+			// Human, stage 1:        (2.5~4) * 2 * (3.5 / 4.5) =   4.4 ~ 6.2
+			// Human, stage 2:        (2.5~4) * 2 * (2.5 / 4.5) =   2.8 ~  7.7
+			// Human, stage 3:        (2.5~4) * 2 * (1.5 / 4.5) =   1.7 ~  2.7
+			// Human, stage 4:        (2.5~4) * 2 * (0.5 / 4.5) =   0.6 ~  0.9
+			// Monkey, no decomposure:(2.5~4) * 1 * (4.5 / 4.5) =   2.5 ~  4       <--- Mob critters also
+			// Monkey, stage 1:       (2.5~4) * 1 * (3.5 / 4.5) =   1.9 ~  3.1
+			// Monkey, stage 2:       (2.5~4) * 1 * (2.5 / 4.5) =   1.4 ~  2.2
+			// Monkey, stage 3:       (2.5~4) * 1 * (1.5 / 4.5) =   0.9 ~  1.4
+			// Monkey, stage 4:       (2.5~4) * 1 * (0.5 / 4.5) =   0.3 ~  0.5
+			process_total += (rand(5, 8)/2) * (humanOccupant ? 2 : 1) * ((4.5 - decomp) / 4.5)
 
 			//DEBUG_MESSAGE("[src] process_timer calced as [src.process_timer] (upgraded [src.upgraded], mult [mult], humanOccupant [humanOccupant])")
 			//DEBUG_MESSAGE("[src] rough end result of cycle: [(src.process_timer * (src.upgraded ? 8 : 4))]u + up to [(src.process_timer * (src.upgraded ? 2 : 1))]u")
@@ -1026,8 +1048,8 @@
 					theMeat.reagents.trans_to(src, src.upgraded ? 10 : 5)
 
 				qdel(theMeat)
-				// Each bit of meat adds 2 units
-				process_total += 2
+				// Each bit of meat adds 1 unit (down from 2u)
+				process_total += 1
 
 			src.meats.len = 0
 
@@ -1041,7 +1063,7 @@
 		// 16 * 0.4 = 6.4 ->   7 ticks
 		// 16 / 7 =            2.2857 per tick
 		// end result is that they produce the same amounts, the upgrade just does it faster
-		src.process_timer = ceil(process_total * (src.upgraded ? 0.4 : 0.8))
+		src.process_timer = ceil(process_total * (src.upgraded ? 0.2 : 0.4))
 		src.process_per_tick = process_total / process_timer
 
 		src.update_icon(1)
@@ -1201,7 +1223,7 @@
 			target.unequip_all()
 			if (length(target.implant))
 				for (var/obj/item/implant/I in target.implant)
-					if (istype(I,/obj/item/implant/projectile))
+					if (istype(I,/obj/item/implant/projectile) || istype(I, /obj/item/implant/cloner))
 						continue
 					var/obj/item/implantcase/newcase = new /obj/item/implantcase(target.loc, usedimplant = I)
 					I.on_remove(target)

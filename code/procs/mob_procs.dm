@@ -134,6 +134,9 @@
 		movedelay = movement_delay_real
 
 	if (movedelay < slip_delay)
+		#ifdef DATALOGGER
+		game_stats.Increment("workplacesafety")
+		#endif
 		var/intensity = (-0.33)+(6.033763-(-0.33))/(1+(movement_delay_real/(0.4))-1.975308)  //y=d+(6.033763-d)/(1+(x/c)-1.975308)
 		var/throw_range = min(round(intensity),50)
 		if (intensity < 1 && intensity > 0 && throw_range <= 0)
@@ -230,7 +233,7 @@
 
 	// Target checks.
 	var/mod_animation = 0 // Note: these aren't multipliers.
-	var/mod_weak = 0
+	var/mod_weak = 0		// THEN WHAT THE FUCK ARE THEY?????
 	var/mod_stun = 0
 	var/mod_misstep = 0
 	var/mod_eyeblurry = 0

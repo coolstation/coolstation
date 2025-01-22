@@ -40,6 +40,55 @@
 				party_supply_cache += new S()
 			else
 				misc_supply_cache += new S()
+//hell mess for later
+//INTENT: create little icons like in the fabs and the vending machines so you can see what you get/visual shorthand
+/*
+		//while we're here, why not pre-build all the icons
+			//see if the datum has some stuff specified manually
+			if (SP.icon && SP.iconstate)
+				getItemIcon(initial(SP))
+			//or if an item is specified or whatever
+				else if (SP.representative_item)
+					getItemIcon(initial(SP.representative_item))
+			//otherwise pick the first thing in the list
+					else if (SP && length(SP.contains) && SP.contains[1])
+						var/obj/I = SP.contains[1]
+						getItemIcon(I)
+			//i will probably pick whatever the hell works
+
+	//while we're here
+	// pre-build all the icons for shit qm can order
+	for (var/datum/supply_packs/SP as anything in concrete_typesof(/datum/supply_packs))
+		getItemIcon(initial(SP))
+		if (SP.item_outputs)
+		var/icon_rsc = getItemIcon(A.item_outputs[1], C = usr.client)
+		user << browse_rsc(browse_supply_pack_icons[icon_rsc], icon_rsc)
+		icon_text = "<img class='icon' src='[icon_rsc]'>"
+
+	var/icon_text = "<img class='icon'>"
+	// @todo probably refactor this since it's copy pasted twice now.
+	if (A.item_outputs)
+		var/icon_rsc = getItemIcon(A.item_outputs[1], C = usr.client)
+		// user << browse_rsc(browse_item_icons[icon_rsc], icon_rsc)
+		icon_text = "<img class='icon' src='[icon_rsc]'>"
+
+	if (istype(A, /datum/manufacture/mechanics))
+		var/datum/manufacture/mechanics/F = A
+		var/icon_rsc = getItemIcon(F.frame_path, C = usr.client)
+		// user << browse_rsc(browse_item_icons[icon_rsc], icon_rsc)
+		icon_text = "<img class='icon' src='[icon_rsc]'>"
+*/
+
+//	QM_SupplierList["NanoTrasen"] = nanotrasen_supply_cache // redundo
+	QM_SupplierList["Juicy Engineering"] = engineering_supply_cache
+	QM_SupplierList["Construction Comrade"] = construction_supply_cache
+	QM_SupplierList["Electronics Libre"] = electronics_supply_cache
+	QM_SupplierList["Giuseppe's Italian Grocery & Massage"] = grocery_supply_cache
+	QM_SupplierList["Hafgan Heavy Industries"] = heavy_supply_cache
+	QM_SupplierList["Vendtech Vending"] = vending_supply_cache
+	QM_SupplierList["ACAB Party Center"] = party_supply_cache
+	QM_SupplierList["Odds & Ends"] = misc_supply_cache
+
 
 //return info for different qm vendors
 //use alone for friendly name
@@ -149,6 +198,8 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	var/desc = null
 	var/contents = null //could I interpret the contains list? sure. will i? fuck no
 	var/list/contains = list()
+	//path here to an object that represents what this supply pack is
+	var/representative_item = null //leave null to pull the first from contains list
 	var/image = null //if you want to explicitly provide an image go ahead, this is mostly for placeholders
 	var/icon = null //but for items, a specified icon and icon_state should take precedence over image
 	var/icon_state = null //when refreshing item lists, look these up and store them in image and reference image from that point on
@@ -223,6 +274,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 	emptycrate
 		name = "Empty Crate"
 		desc = "Absolutely nothing, packed inside a crate. For reuse."
+		icon = 'icons/obj/large_storage.dmi'
+		icon_state = "closed"
 		contents = "Nothing (crate only)"
 		contains = list()
 		cost = 10
@@ -245,6 +298,9 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 			/obj/item/scissors,
 			/obj/item/canvas = 2,
 			/obj/item/stamp = 2)
+		icon = 'icons/obj/items/writing.dmi'
+		icon_state = "paper_bin1"
+		image = null
 		cost = 250
 		containername = "Office Supply Crate"
 
@@ -1073,7 +1129,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 	rad_collector
 		name = "Radiation Collector Crate"
-		desc = "Four collector arrays and one controller, to harvest radiation from the singularity."
+		desc = "Four collector arrays and two controllers, to harvest radiation from the singularity."
 		contents = "4x Collector Arrays, 2x Collector Control, 1x Soldering Iron (Courtesy Item)"
 		contains = list(/obj/item/electronics/frame/collector_array = 4,
 						/obj/item/electronics/frame/collector_control = 2,

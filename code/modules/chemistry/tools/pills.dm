@@ -12,7 +12,7 @@
 	item_state = "pill"
 	rc_flags = RC_SPECTRO		// only spectroscopic analysis
 	flags = NOSPLASH | TABLEPASS
-	rand_pos = 1
+	rand_pos = 8
 	var/random_icon = 0
 	var/image/color_overlay
 	var/color_overlay_alpha = 180

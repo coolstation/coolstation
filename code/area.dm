@@ -158,6 +158,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	var/obj/machinery/light_area_manager/light_manager = 0
 
+	//list of the density of each tile in the area
+	var/list/densityMap = list()
+
 	/// Local list of obj/machines found in the area
 	var/list/machines = list()
 
@@ -703,6 +706,7 @@ ABSTRACT_TYPE(/area/shuttle)
 
 /area/shuttle/bayou/shipyard
 	icon_state = "shuttle"
+	requires_power = 0
 
 /area/shuttle/bayou/ship
 	icon_state = "shuttle"
@@ -2503,6 +2507,7 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 /area/station/shipyard
 	name = "Shipyard"
 	icon_state = "fart"
+	requires_power = FALSE //it's almost entirely exterior bits
 // some radio jazz
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)
@@ -6096,6 +6101,10 @@ MAJOR_AST(30)
 
 /area/centcom/outpost/lounge
 	name = "Employee Lounge"
+	icon_state = "red"
+
+/area/centcom/outpost/ritos
+	name = "Rito's Frontier Command"
 	icon_state = "red"
 
 /area/centcom/outpost/maintenance/lower

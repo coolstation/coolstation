@@ -443,7 +443,7 @@
 		var/mob/dead/target_observer/hivemind_observer/use_mob = eligible[use_mob_name]
 		H.hivemind -= use_mob
 		boutput(use_mob, __red("You have been cut off from the hivemind by [holder.owner.real_name]!"))
-		use_mob.boot()
+		use_mob.stop_observing()
 		boutput(holder.owner, __red("You have silenced [use_mob_name]'s consciousness from your hivemind."))
 		return 0
 

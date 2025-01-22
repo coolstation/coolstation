@@ -27,7 +27,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 10
-	rand_pos = 1
+	rand_pos = 2
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
 	special_grab = /obj/item/grab
 	inventory_counter_enabled = 1
@@ -44,8 +44,6 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 
 	New(loc, length = STARTCOIL)
 		src.amount = length
-		pixel_x = rand(-2,2)
-		pixel_y = rand(-2,2)
 		updateicon()
 		..(loc)
 		if (spawn_conductor_name)

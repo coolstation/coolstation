@@ -551,6 +551,37 @@ var/obj/item/dummy/click_dummy = new
 	proc/to_rgba()
 		return rgb(r,g,b,a)
 
+/proc/gib_area(var/area/A)
+	var/list/turfs = get_area_turfs(A.type)
+	for(var/turf/S in turfs)
+		for(var/mob/M in S)
+			M.elecgib()
+
+/proc/calculate_density_map(var/area/A)
+	var/list/appendTo = list()
+	var/list/turfs = get_area_turfs(A.type)
+	for(var/turf/S in turfs)
+		if(S.density)
+			appendTo += S.density
+		else
+			appendTo += 0
+	return appendTo
+
+/proc/explode_area(var/area/A,var/power,var/number)
+	var/list/turfs = get_area_turfs(A.type)
+	var/bombProb = null
+	var/spawnedBombs = 0
+
+
+	bombProb = number / turfs.len
+	while(spawnedBombs < number)
+		for(var/turf/S in turfs)
+			if(prob(bombProb))
+				explosion_new(A, S, power)
+				spawnedBombs += 1
+
+
+
 /proc/clear_area(var/area/A, var/turftospare=null, var/objecttospare=null, var/isOcean=false)
 	// Takes: Area, optional turf type to spare from the purge, optional object to spare, whether or not this is in da ocean
 	var/list/turfs = get_area_turfs(A.type)
@@ -560,11 +591,11 @@ var/obj/item/dummy/click_dummy = new
 		else
 			return //come back later and add OSHAN floors to this, i'm lazy(silly) tho
 		for(var/atom/movable/AM as anything in S)
-			if(!istype(AM,objecttospare))
+			if(!istype(AM,objecttospare) && !istype(AM, /mob/dead/observer))
 				qdel(AM)
 
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE)
+/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE)
 	//Takes: Area.
 	//Optional: turf type to leave behind, flag for ignoring fluid puddle objects, and flag to treat source turfs of type turftoleave as "empty" and to not move the turf
 	//(The latter being so we don't put elevator shaft turfs at the bottom of elevators. That wasn't a great time. It might be neat too for simulating shuttles with holes in em though.)
@@ -614,6 +645,7 @@ var/obj/item/dummy/click_dummy = new
 		for (var/atom/movable/AM as anything in S)
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
 			if (ignore_fluid && istype(AM, /obj/fluid)) continue // this previously said "!ignore_fluid" which seems like a mistake? setting ignore_fluid to 1 actually made it move fluids... ~warc
+			if (!move_ghosts && istype(AM, /mob/dead/observer)) continue
 			AM.set_loc(T)
 
 		if(turftoleave)

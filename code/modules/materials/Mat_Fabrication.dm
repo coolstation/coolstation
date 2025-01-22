@@ -373,6 +373,7 @@
 	icon = 'icons/obj/electronics.dmi'
 	icon_state = "blueprint"
 	item_state = "sheet"
+	rand_pos = 4
 
 	var/datum/matfab_recipe/recipe = null
 
@@ -383,6 +384,4 @@
 			return 0
 		src.name = "Manufacturer Blueprint: [src.recipe.name]"
 		src.desc = "This blueprint will allow a nanofab unit to build a [src.recipe.name]"
-		src.pixel_x = rand(-4,4)
-		src.pixel_y = rand(-4,4)
 		return 1

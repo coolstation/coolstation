@@ -533,11 +533,7 @@
 	icon_state = "dough-cookie"
 	amount = 1
 	custom_food = 1
-
-	New()
-		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
+	rand_pos = 6
 
 	heal(var/mob/M)
 		if(prob(15))
@@ -555,10 +551,8 @@
 	amount = 1
 	icon_state = "tortillabase"
 	food_color = "#FFFFFF"
-	New()
-		..()
-		src.pixel_x = rand(-8, 8)
-		src.pixel_y = rand(-8, 8)
+	rand_pos = 8
+
 
 /obj/item/reagent_containers/food/snacks/ingredient/pizza1
 	name = "unfinished pizza base"

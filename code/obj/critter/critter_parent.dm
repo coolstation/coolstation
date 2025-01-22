@@ -1010,7 +1010,7 @@
 	var/warm_count = 10 // how many times you gotta warm it before it hatches
 	var/critter_reagent = null
 	var/parent = null
-	rand_pos = 1
+	rand_pos = 8
 
 	New()
 		..()

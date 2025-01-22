@@ -17,7 +17,7 @@
 	var/value = 1
 	var/op_stage = 0.0
 	var/obj/item/device/key/skull/key = null //May randomly contain a key
-	rand_pos = 1
+	rand_pos = 8
 	var/made_from = "bone"
 	var/last_use = 0
 	var/teeth = 32 //normal for an adult human

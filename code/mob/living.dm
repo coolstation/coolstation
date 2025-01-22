@@ -132,6 +132,8 @@
 	src.vis_contents += src.chat_text
 	if (can_bleed)
 		src.ensure_bp_list()
+	if (blood_id)
+		all_blood_reagents |= blood_id
 
 //	if (src.use_stamina)
 //		src.stamina_bar = new(src)
@@ -946,7 +948,8 @@
 
 	UpdateOverlays(speech_bubble, "speech_bubble")
 	SPAWN_DBG(1.5 SECONDS)
-		UpdateOverlays(null, "speech_bubble")
+		if (speech_bubble.icon_state != "typing" || !isalive(src))
+			UpdateOverlays(null, "speech_bubble")
 
 	//Blobchat handling
 	if (src.mob_flags & SPEECH_BLOB)
@@ -2043,6 +2046,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				var/atom/targetTurf = get_edge_target_turf(src, get_dir(src, get_step_away(src, origin)))
 				src.throw_at(targetTurf, 200, 4)
 	shock_cyberheart(shock_damage)
+	#ifdef DATALOGGER
+	game_stats.Increment("workplacesafety") //If your cyberheart fucks it as well it counts as 2 violations, which I think is fine :3
+	#endif
 	TakeDamage(zone, 0, shock_damage, 0, DAMAGE_BURN)
 	boutput(src, "<span class='alert'><B>You feel a [wattage > 7500 ? "powerful" : "slight"] shock course through your body!</B></span>")
 	src.unlock_medal("HIGH VOLTAGE", 1)

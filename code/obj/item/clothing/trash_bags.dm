@@ -9,7 +9,7 @@
 	uses_multiple_icon_states = 1
 	item_state = ""
 	w_class = W_CLASS_TINY
-	rand_pos = 1
+	rand_pos = 8
 	flags = FPRINT | TABLEPASS | NOSPLASH
 	tooltip_flags = REBUILD_DIST
 	body_parts_covered = TORSO

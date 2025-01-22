@@ -17,6 +17,13 @@
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
+#define GEHENNA_CO2 5*(sin(GEHENNA_TIME - 90)+ 1)
+#define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
+#define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
+#define GEHENNA_TEMP WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+
+
+
 var/global/gehenna_time = GEHENNA_TIME
 
 //audio
@@ -153,10 +160,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
-	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
-	nitrogen = MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
-	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+	carbon_dioxide = GEHENNA_CO2
+	oxygen = GEHENNA_O2
+	nitrogen = GEHENNA_N2
+	temperature = GEHENNA_TEMP
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -400,4 +407,24 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 /obj/machinery/computer/sea_elevator/NTFC
 	upper = /area/shuttle/sea_elevator/upper/NTFC
 	lower = /area/shuttle/sea_elevator/lower/NTFC
+
+/obj/decal/gehenna/warning
+	name = "warning display"
+	desc = "A warning display with an internal Gehennan clock. It's off, which means it has nothing to warn you about."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "warning-unpowered"
+	anchored = 1
+
+	New()
+		..()
+		if(GEHENNA_CO2>=8 && GEHENNA_TEMP >= 335)
+			src.icon_state = "warning-combined"
+			src.desc = desc = "A warning display with an internal Gehennan clock. It's extremely hazardous outside."
+		else
+			if(GEHENNA_CO2 >= 8)
+				src.icon_state = "warning-internals"
+				src.desc = desc = "A warning display with an internal Gehennan clock. The outside currently contains dangerous concentrations of sleepytime gas."
+			if(GEHENNA_TEMP >= 335)
+				src.icon_state = "warning-hot"
+				src.desc = desc = "A warning display with an internal Gehennan clock. It's gonna be a scorcher!"
 

@@ -423,7 +423,7 @@
 	name = "garden trowel"
 	desc = "A tool to uproot plants and transfer them to decorative pots"
 	icon = 'icons/obj/hydroponics/items_hydroponics.dmi'
-	inhand_image_icon = 'icons/mob/inhand/tools/screwdriver.dmi'
+	inhand_image_icon = 'icons/obj/items/tools/tools.dmi'
 	icon_state = "trowel"
 
 	flags = FPRINT | TABLEPASS | ONBELT
@@ -439,7 +439,7 @@
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
-	rand_pos = 1
+	rand_pos = 8
 	var/image/plantyboi
 
 	New()

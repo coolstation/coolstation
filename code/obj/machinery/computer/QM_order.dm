@@ -54,10 +54,10 @@
 		dat += {"<A href='byond://?src=\ref[src];viewrequests=1'>View Requests</A><BR>
 		<A href='byond://?src=\ref[src];order=1'>Request Items</A><BR>
 		<A href='byond://?src=\ref[src];buypoints=1'>Purchase Supply Points</A><BR>
-		<A href='byond://?action=mach_close&window=computer'>Close</A>"}
+		<A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A>"}
 		//<A href='byond://?src=\ref[src];vieworders=1'>View Approved Orders</A><BR><BR> This right here never worked anyway.
-	user.Browse(dat, "title=Supply Request Console;window=computer_[src];size=575x450")
-	onclose(user, "computer_[src]")
+	user.Browse(dat, "title=Supply Request Console;window=computer_\ref[src];size=575x450")
+	onclose(user, "computer_\ref[src]")
 	return
 
 /obj/machinery/computer/ordercomp/attackby(var/obj/item/I as obj, mob/user as mob)
@@ -133,6 +133,20 @@
 				LAGCHECK(LAG_LOW)
 
 			src.temp+="</table></div>"
+
+		for (var/p in QM_SupplierList)// build external supplier menu
+			var/categorycolor = random_color()
+			src.temp += {"<div class='categoryGroup' id='[p]' style='border-color:[categorycolor]'>
+											<b class='title' style='background:[categorycolor]'>[p]</b>"}
+			src.temp += "<table border=1>"
+			src.temp += "<tr><th>Item</th><th>Cost (Credits)</th><th>Contents</th></tr>"
+			var/list/supplier = QM_SupplierList[p]
+			for (var/datum/supply_packs/S in supplier)
+				if(S.syndicate || S.hidden) continue
+				src.temp += "<tr><td><a href='byond://?src=\ref[src];doorder=\ref[S]'><b><u>[S.name]</u></b></a></td><td>[S.cost]</td><td>[S.desc]</td></tr>"
+				LAGCHECK(LAG_LOW)
+			src.temp+="</table></div>"
+
 
 		src.temp += "<hr><A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A><br>"
 

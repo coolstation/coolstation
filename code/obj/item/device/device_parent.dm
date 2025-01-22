@@ -4,4 +4,4 @@
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 1
-	rand_pos = 1
+	rand_pos = 8

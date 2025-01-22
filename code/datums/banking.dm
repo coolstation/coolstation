@@ -345,7 +345,7 @@
 						dat += "<BR>Please swipe your card to continue."
 
 
-		if (user.client)
+		/*if (user.client)
 			dat += {"
 			<br><br><br>
 			<div style="color:#666; border: 1px solid #555; padding:5px; margin: 3px; background-color:#efefef;">
@@ -357,10 +357,10 @@
 			<br><a href='byond://?src=\ref[src];operation=transfer_spacebux'>Securely Send Spacebux</a>
 			<br>Deposit Spacebux at any time by inserting a token. It will always go to <strong>your</strong> account!
 			</div>
-			"}
+			"}*/
 
 		dat += "<BR><BR><A HREF='byond://?action=mach_close&window=atm'>Close</A></span>"
-		user.Browse(dat.Join(), "window=atm;size=400x500;title=Automated Teller Machine")
+		user.Browse(dat.Join(), "window=atm;size=400x250;title=Automated Teller Machine")
 		onclose(user, "atm")
 
 
@@ -421,7 +421,7 @@
 					src.accessed_record.fields["current_money"] -= 100
 					boutput(usr, "<span class='alert'>Ticket being dispensed. Good luck!</span>")
 
-					new /obj/item/lotteryTicket(src.loc)
+					usr.put_in_hand_or_drop(new /obj/item/lotteryTicket())
 					wagesystem.start_lottery()
 
 				else
@@ -807,7 +807,7 @@
 						dat += "<BR>Please swipe your card to continue."
 
 
-		if (user.client)
+		/*if (user.client)
 			dat += {"
 			<br><br><br>
 			<div style="color:#666; border: 1px solid #555; padding:5px; margin: 3px; background-color:#efefef;">
@@ -819,10 +819,10 @@
 			<br><a href='byond://?src=\ref[src];operation=transfer_spacebux'>Securely Send Spacebux</a>
 			<br>Deposit Spacebux at any time by inserting a token. It will always go to <strong>your</strong> account!
 			</div>
-			"}
+			"}*/
 
 		dat += "<BR><BR><A HREF='byond://?action=mach_close&window=atm'>Close</A></span>"
-		user.Browse(dat.Join(), "window=atm;size=400x500;title=Automated Teller Machine")
+		user.Browse(dat.Join(), "window=atm;size=400x250;title=Automated Teller Machine")
 		onclose(user, "atm")
 
 	bullet_act(var/obj/projectile/P)
@@ -886,7 +886,7 @@
 					src.accessed_record.fields["current_money"] -= 100
 					boutput(usr, "<span class='alert'>Ticket being dispensed. Good luck!</span>")
 
-					new /obj/item/lotteryTicket(src.loc)
+					usr.put_in_hand_or_drop(new /obj/item/lotteryTicket())
 					wagesystem.start_lottery()
 
 				else

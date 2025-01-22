@@ -1,8 +1,8 @@
 /obj/item/tool
 	name = "tool"
 	desc = "Some sort of tool."
-	icon = 'icons/obj/items/tools/wrench.dmi'
-	inhand_image_icon = 'icons/mob/inhand/tools/wrench.dmi'
+	icon = 'icons/obj/items/tools/tools.dmi'
+	inhand_image_icon = 'icons/obj/items/tools/tools.dmi'
 
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	w_class = W_CLASS_SMALL
@@ -14,7 +14,7 @@
 	stamina_cost = STAMINA_ITEM_COST * 10/9
 	stamina_crit_chance = STAMINA_CRIT_CHANCE * 2/5
 
-	rand_pos = 1
+	rand_pos = 8
 
 	proc/on_use()
 		return 1

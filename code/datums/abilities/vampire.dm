@@ -405,7 +405,7 @@
 				VZ.master = src
 
 			boutput(M, __red("<b>You awaken filled with purpose - you must serve your dracula prime, [owner.real_name]!</B>"))
-			SHOW_INSURGENT_TIPS(M)
+			SHOW_VAMPTHRALL_TIPS(M)
 
 			boutput(owner, __blue("[M] has been revived as your thrall."))
 			logTheThing("combat", owner, M, "enthralled [constructTarget(M,"combat")] at [log_loc(owner)].")

@@ -23,7 +23,7 @@
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 10
-	//rand_pos = 1 Unnessecary atm, see New()
+	rand_pos = 2
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
 	special_grab = /obj/item/grab
 	inventory_counter_enabled = 1
@@ -41,9 +41,6 @@
 		if (set_color in list("blue", "pink", "yellow"))
 			lining_item_color = set_color
 			updateicon()
-		//This can probably be folded into obj/item/rand_pos if we add a var for the offset severity
-		pixel_x = rand(-2,2)
-		pixel_y = rand(-2,2)
 		..(loc)
 		BLOCK_SETUP(BLOCK_ROPE)
 

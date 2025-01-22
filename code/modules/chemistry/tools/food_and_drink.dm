@@ -93,7 +93,7 @@
 	festivity = 0
 	rc_flags = 0
 	edible = 1
-	rand_pos = 1
+	rand_pos = 8
 	var/has_cigs = 0
 	var/grimy = 0
 
@@ -149,6 +149,10 @@
 					processing_items -= src
 					if (!(locate(/obj/reagent_dispensers/cleanable/ants) in src.loc))
 						new/obj/reagent_dispensers/cleanable/ants(src.loc)
+						#ifdef DATALOGGER
+						if (istype(A, /area/station))
+							game_stats.Increment("workplacesafety")
+						#endif
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -463,7 +467,7 @@
 	festivity = 0
 	rc_flags = 0
 	edible = 1
-	rand_pos = 1
+	rand_pos = 8
 	var/poop_value = 0.5
 	var/did_react = 0
 /*
@@ -1692,7 +1696,7 @@
 		qdel(src)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style
-	rand_pos = 1
+	rand_pos = 8
 	New()
 		..()
 		pick_style()
@@ -2065,28 +2069,28 @@
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "bottlecap-red" //eventually i'll
 	w_class = W_CLASS_TINY
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cap/cork
 	name = "cork"
 	desc = "A small cork for a wine bottle."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "cork"
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cap/screwtop
 	name = "bottle cap"
 	desc = "A screw-on cap for a bottle." //this can include bottle caps for sodas probably
 	icon = 'icons/obj/foodNdrink/bottle.dmi' //same as standard cap, will apply offsets to image overlay and just use the same
 	icon_state = "screwtop"
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cap/champcork
 	name = "champagne cork"
 	desc = "A distinctive cork for a champagne bottle."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "champcork"
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/bottleopener
 	name = "bottle opener"

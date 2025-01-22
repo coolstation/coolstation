@@ -275,6 +275,13 @@ menu "menu"
 		command = ""
 		category = "&Display"
 		saved-params = "is-checked"
+	elem "fps_fluid"
+		name = "&Fluid (90fps, higher end PCs)"
+		command = "set-fps"
+		category = "&Framerate"
+		can-check = true
+		group = "fps"
+		saved-params = "is-checked"
 	elem "fps_creamy"
 		name = "&Creamy (67fps, high end PCs)"
 		command = "set-fps"
@@ -1542,13 +1549,23 @@ window "rpane"
 		command = ".winset \"mainwindow.menu='menu'; hide_menu.is-checked=false; menub.is-visible = false\""
 	elem "mapb"
 		type = BUTTON
-		pos = 315,5
+		pos = 250,5
 		size = 60x20
 		anchor1 = 100,0
 		anchor2 = none
 		saved-params = "is-checked"
 		text = "Map"
 		command = "map"
+		group = "rpaneutil"
+	elem "discordb"
+		type = BUTTON
+		pos = 315,5
+		size = 60x20
+		anchor1 = 100,0
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
 		group = "rpaneutil"
 	elem "wikib"
 		type = BUTTON
