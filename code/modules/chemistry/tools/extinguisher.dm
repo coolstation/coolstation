@@ -23,7 +23,7 @@
 	stamina_damage = 25
 	stamina_cost = 20
 	stamina_crit_chance = 35
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 	move_triggered = 1
 

@@ -45,6 +45,7 @@
 	burn_output = 900
 	burn_possible = TRUE
 	health = 10
+	rand_pos = 9
 	var/list/form_startpoints
 	var/list/form_endpoints
 	var/font_css_crap = null
@@ -77,11 +78,7 @@
 	SPAWN_DBG(0)
 		if (src.info && src.icon_state == "paper_blank")
 			icon_state = "paper"
-	if (!src.rand_pos)
-		return
-	else
-		src.pixel_y = rand(-8, 8)
-		src.pixel_x = rand(-9, 9)
+
 /*
 /obj/item/paper/pooled()
 
@@ -1257,7 +1254,7 @@ as it may become compromised.
 	m_amt = 60
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 	var/special_mode = null
 	var/is_reassignable = 1
 	var/assignment = null
@@ -1583,11 +1580,10 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "postcard-mushroom"
 	sizex = 1066
 	sizey = 735
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:2px'><img src='[resource("images/arts/mushroom_station.png")]'></body></html>"
 
 /obj/item/paper/botany_guide
@@ -1596,11 +1592,10 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "botany_guide"
 	sizex = 970
 	sizey = 690
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:2px'><img src='[resource("images/pocket_guides/botanyguide.png")]'></body></html>"
 
 /obj/item/paper/ranch_guide
@@ -1609,11 +1604,10 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "ranch_guide"
 	sizex = 1100
 	sizey = 800
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body><style>img {width: 100%; height: auto;}></style><img src='[resource("images/pocket_guides/ranchguide.png")]'></body></html>"
 
 /obj/item/paper/iou

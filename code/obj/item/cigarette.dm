@@ -27,7 +27,7 @@
 	var/puffrate = 1
 	var/cycle = 4
 	var/numpuffs = 40 //number of times the cig can dispense reagents
-	rand_pos = 1
+	rand_pos = 8
 	use_bloodoverlay = 0
 
 	setupProperties()
@@ -439,7 +439,7 @@
 	hit_type = DAMAGE_BLUNT
 	throw_speed = 0.5
 	w_class = W_CLASS_TINY
-	rand_pos = 1
+	rand_pos = 8
 	var/flavor = null
 
 	New()
@@ -559,7 +559,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
 	stamina_cost = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigpacket/nicofree
 	name = "nicotine-free cigarette packet"
@@ -674,7 +674,7 @@
 	throwforce = 1
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigarbox
 	name = "cigar box"
@@ -691,7 +691,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
 	stamina_cost = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigarbox/New()
 	..()
@@ -755,7 +755,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
 	stamina_cost = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigarbox/gold/update_icon()
 	src.overlays = null
@@ -842,7 +842,7 @@
 	burn_possible = TRUE
 	health = 20
 	var/match_amt = 6 // -1 for infinite
-	rand_pos = 1
+	rand_pos = 8
 
 	get_desc()
 		if (src.match_amt == -1)
@@ -926,7 +926,7 @@
 
 	var/light_mob = 0
 	var/life_timer = 0
-	rand_pos = 1
+	rand_pos = 8
 	var/datum/light/light
 
 	New()

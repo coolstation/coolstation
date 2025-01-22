@@ -105,7 +105,7 @@
 	w_class = W_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/toy/plush/proc/say_something(mob/user as mob)
 	var/message = input("What should [src] say?")

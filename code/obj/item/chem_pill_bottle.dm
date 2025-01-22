@@ -6,7 +6,7 @@
 	stamina_damage = 0
 	stamina_cost = 0
 	stamina_crit_chance = 1
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 	event_handler_flags = NO_MOUSEDROP_QOL | USE_FLUID_ENTER
 	var/pname

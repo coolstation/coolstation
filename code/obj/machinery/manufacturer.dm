@@ -1970,6 +1970,7 @@
 	item_state = "sheet"
 	var/datum/manufacture/blueprint = null
 	var/override_name_desc = 1
+	rand_pos = 4
 
 
 
@@ -1996,9 +1997,6 @@
 		if(src.override_name_desc)
 			src.name = "Manufacturer Blueprint: [src.blueprint.name]"
 			src.desc = "This blueprint will allow a manufacturer unit to build a [src.blueprint.name]"
-
-		src.pixel_x = rand(-4,4)
-		src.pixel_y = rand(-4,4)
 
 		return 1
 

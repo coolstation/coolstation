@@ -382,13 +382,12 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 	heal_amt = 1
 	food_color = "#e50000"
 	initial_volume = 10
+	rand_pos = 6
 
 	New()
 		if (prob(33))
 			src.initial_reagents = "swedium"
 		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
 
 /obj/item/item_box/swedish_bag
 	name = "bag of swedish fisk"

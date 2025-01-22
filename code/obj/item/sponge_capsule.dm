@@ -10,7 +10,7 @@
 	stamina_damage = 0
 	stamina_cost = 0
 	stamina_crit_chance = 1
-	rand_pos = 1
+	rand_pos = 8
 	color = "#FF0000"
 	var/colors = list("#FF0000", "#0000FF", "#00FF00", "#FFFF00")
 	var/obj/critter/animal_to_spawn = null
@@ -94,7 +94,7 @@
 	stamina_damage = 0
 	stamina_cost = 0
 	stamina_crit_chance = 1
-	rand_pos = 1
+	rand_pos = 8
 	var/caps_type = /obj/item/toy/sponge_capsule
 	var/caps_amt = 12 //Number of capsules left in the packet.
 

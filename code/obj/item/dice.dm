@@ -25,7 +25,7 @@ var/list/rollList = list()
 	var/loadnumber
 	var/loadprob
 	var/mob/living/carbon/human/hitmob
-	rand_pos = 1
+	rand_pos = 8
 	var/initialName = "die"
 	var/initialDesc = "A six-sided die."
 

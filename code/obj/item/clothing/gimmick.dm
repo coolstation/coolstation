@@ -1113,7 +1113,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	item_state = "ring"
 	material_prints = "sharp scratches"
 	hide_prints = 0
-	rand_pos = 1
+	rand_pos = 8
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if ((user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(40)) || prob(1)) // honk

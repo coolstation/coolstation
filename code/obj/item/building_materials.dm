@@ -49,7 +49,7 @@ MATERIAL
 	stamina_cost = 23
 	stamina_crit_chance = 10
 	var/datum/material/reinforcement = null
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 
 	New()
@@ -687,7 +687,7 @@ MATERIAL
 	stamina_damage = 20
 	stamina_cost = 16
 	stamina_crit_chance = 30
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 
 	New()

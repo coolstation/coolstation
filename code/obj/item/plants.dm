@@ -8,7 +8,7 @@
 	icon = 'icons/obj/hydroponics/items_hydroponics.dmi'
 	var/brewable = 0 // will hitting a still with it do anything?
 	var/brew_result = null // what will it make if it's brewable?
-	rand_pos = 1
+	rand_pos = 8
 
 	New()
 		..()

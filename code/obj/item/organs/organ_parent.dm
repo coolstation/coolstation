@@ -64,7 +64,7 @@
 	var/decal_done = FALSE // fuckers are tossing these around a lot so I guess they're only gunna make one, ever now
 	var/body_side = null // L_ORGAN/1 for left, R_ORGAN/2 for right
 	var/datum/bone/bones = null
-	rand_pos = 1
+	rand_pos = 8
 
 	var/made_from = "flesh" //Material this organ will produce.
 

@@ -373,11 +373,7 @@
 	food_color = "#CC9966"
 	festivity = 1
 	food_effects = list("food_refreshed")
-
-	New()
-		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
+	rand_pos = 6
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (!frosted && istype(W, /obj/item/reagent_containers/food/snacks/condiment/cream))
@@ -460,11 +456,7 @@
 	heal_amt = 6
 	var/frosted = 0
 	food_effects = list("food_refreshed")
-
-	New()
-		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
+	rand_pos = 6
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (!frosted && istype(W, /obj/item/reagent_containers/food/snacks/condiment/cream))
@@ -2161,11 +2153,7 @@
 	amount = 1
 	heal_amt = 1
 	food_effects = list("food_energized")
-
-	New()
-		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
+	rand_pos = 6
 
 	on_reagent_change()
 		if (src.reagents && src.reagents.total_volume)
@@ -2197,6 +2185,7 @@
 	var/obj/item/wrapped = null
 	var/maximum_wrapped_size = 2
 	food_effects = list("food_energized")
+	rand_pos = 6
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (wrapped)
@@ -2234,11 +2223,6 @@
 
 			src.reagents = W.reagents
 			return
-
-	New()
-		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
 
 	heal(var/mob/M)
 		boutput(M, "<span class='alert'>Ugh, you really should've cooked that first.</span>")
@@ -2447,7 +2431,7 @@
 	heal_amt = 1
 	food_effects = list("food_warm")
 
-	rand_pos = 1
+	rand_pos = 8
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/reagent_containers/food/snacks/ingredient/seaweed))
@@ -2822,5 +2806,5 @@
 	heal_amt = 0
 	initial_volume = 15
 	initial_reagents = list("silicate"=15)
-	rand_pos = TRUE
+	rand_pos = 8
 	doants = FALSE

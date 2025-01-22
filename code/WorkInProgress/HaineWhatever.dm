@@ -209,7 +209,7 @@
 	burn_point = 220
 	burn_output = 300
 	burn_possible = TRUE
-	rand_pos = 1
+	rand_pos = 8
 
 	attack(mob/M as mob, mob/user as mob)
 		src.add_fingerprint(user)
@@ -1588,7 +1588,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	stamina_damage = 25
 	stamina_cost = 15
 	stamina_crit_chance = 5
-	rand_pos = 1
+	rand_pos = 8
 
 	attack(mob/M as mob, mob/user as mob) // big ol hackery here
 		if (M && isvampire(M))

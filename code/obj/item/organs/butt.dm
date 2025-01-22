@@ -21,7 +21,7 @@
 	var/stapled = 0
 	var/allow_staple = 1
 	var/op_stage = 0.0
-	rand_pos = 1
+	rand_pos = 8
 	var/mob/living/carbon/human/donor = null
 	var/donor_name = null
 	var/donor_DNA = null

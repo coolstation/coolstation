@@ -128,7 +128,7 @@
 	w_class = W_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 3
-	rand_pos = 1
+	rand_pos = 8
 	var/prfirst = "very"
 	var/prmiddle = "smelly"
 	var/prlast = "farts"

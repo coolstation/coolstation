@@ -24,7 +24,7 @@
 	stamina_damage = 10
 	stamina_cost = 18
 	stamina_crit_chance = 0
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 	var/capacity = 20
 

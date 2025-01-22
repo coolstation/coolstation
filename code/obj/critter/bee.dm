@@ -1563,7 +1563,7 @@
 	var/bee_name = null
 	var/hatched = 0
 	var/larva_type = null
-	rand_pos = 1
+	rand_pos = 8
 
 	var/tmp/blog = "egg blog|"
 

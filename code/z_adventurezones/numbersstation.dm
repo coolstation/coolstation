@@ -55,11 +55,10 @@ Thanks to our agents inside the organization, we were able to identify two infil
 
 	sizex = 400
 	sizey = 600
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:0px'><img src='[resource("images/bloody_numbers_note.png")]'></body></html>"
 
 	examine()
@@ -183,10 +182,7 @@ Nanotrasen, Inc.<br>
 	desc = "It's blank. Well, other than the blood, anyway."
 	icon_state = "paper_caution_bloody"
 	info = "<i>The paper is full of eraser marks and scratches but there is nothing legible on here.</i>"
-	New()
-		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
+	rand_pos = 8
 
 /obj/item/paper/diner_invoice
 	name = "bloody piece of paper"
@@ -201,11 +197,7 @@ Nanotrasen, Inc.<br>
 <b>Total:</b> 4134 space credits<br>
 <b>Thank</b>... <i>the rest of the invoice is covered in blood and illegible</i>"}
 	icon_state = "paper_caution_bloody"
-
-	New()
-		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
+	rand_pos = 8
 
 /obj/item/onyxphoto
 	name = "photo of onyx key"
