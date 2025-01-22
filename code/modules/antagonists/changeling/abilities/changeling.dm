@@ -189,7 +189,7 @@
 					if(O.corpse)
 						O.corpse = null
 					M.ghost = null
-			else
+			if(!obs.mind)
 				return
 
 			/*
