@@ -1959,6 +1959,9 @@
 		else
 			return src.loc
 
+/obj/machinery/manufacturer/malfunction_hint()
+	return "Open the maintenance hatch and replace the manufacturer's wiring."
+
 // Blueprints
 
 /obj/item/paper/manufacturer_blueprint

@@ -1073,6 +1073,9 @@
 		var/mob/living/carbon/human/H = locate() in orange(1, src)
 		fall(H) //:D
 
+/obj/machinery/vending/malfunction_hint()
+	return "Open the maintenance hatch and replace the machine's wiring."
+
 //Since repairing a vending machine involves replacing the wiring...
 /obj/machinery/vending/malfunction_resolve()
 	src.wires = initial(src.wires)
