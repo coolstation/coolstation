@@ -13498,8 +13498,8 @@
 	dir = 1
 	},
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/printer{
@@ -14933,17 +14933,6 @@
 	},
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
-"lTA" = (
-/obj/access_spawn/cargo,
-/obj/firedoor_spawn,
-/obj/machinery/door/airlock/maintenance,
-/obj/firedoor_spawn,
-/obj/access_spawn/cargo,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor/grime,
-/area/station/storage/warehouse)
 "lTI" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -17126,9 +17115,6 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/firedoor_spawn,
 /obj/access_spawn/cargo,
-/obj/machinery/door/airlock/maintenance,
-/obj/firedoor_spawn,
-/obj/access_spawn/cargo,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -17541,9 +17527,9 @@
 /area/station/solar/north)
 "nQd" = (
 /obj/cable{
-	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/floor,
 /area/station/security/main)
@@ -17938,15 +17924,6 @@
 	dir = 9
 	},
 /area/station/hallway/secondary/exit)
-"oew" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/firedoor_spawn,
-/obj/access_spawn/cargo,
-/obj/machinery/door/airlock/maintenance,
-/obj/firedoor_spawn,
-/obj/access_spawn/cargo,
-/turf/floor/grime,
-/area/station/storage/warehouse)
 "oeB" = (
 /obj/landmark/gps_waypoint,
 /turf/floor,
@@ -21530,8 +21507,8 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/plating/random,
 /area/station/storage/tech)
@@ -28234,8 +28211,6 @@
 	name = "Judgement Cage"
 	})
 "wgp" = (
-/obj/access_spawn/cargo,
-/obj/firedoor_spawn,
 /obj/machinery/door/airlock/maintenance,
 /obj/firedoor_spawn,
 /obj/access_spawn/cargo,
@@ -76883,7 +76858,7 @@ nAc
 tEg
 xae
 xae
-lTA
+nAc
 iLI
 bce
 oFu
@@ -78087,7 +78062,7 @@ ndV
 nNP
 oJs
 bce
-oew
+wgp
 msN
 gKk
 gKk
