@@ -8,28 +8,11 @@
 	set name = "Whisper"
 	return src.whisper(message)
 
-/mob/verb/start_typing()
-	set name = ".starttyping"
-	set hidden = TRUE
-	var/mob/living/M = src
-	if(!istype(M) || !isalive(M))
-		return
-	M.speech_bubble.icon_state = "typing"
-	UpdateOverlays(M.speech_bubble, "speech_bubble")
-	var/start_time = TIME
-	M.last_typing  = start_time
-
-	SPAWN_DBG(15 SECONDS)
-		if(M.last_typing == start_time && src.GetOverlayImage("speech_bubble")?.icon_state == "typing")
-			src.UpdateOverlays(null,"speech_bubble")
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	UpdateOverlays(null, "speech_bubble")
 
 	if (!message)
-		if(src.GetOverlayImage("speech_bubble")?.icon_state == "typing")
-			src.UpdateOverlays(null,"speech_bubble")
 		return
 	if (client && url_regex?.Find(message) && !client.holder)
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
@@ -37,8 +20,6 @@
 		return
 
 	say(message)
-	if(src.GetOverlayImage("speech_bubble")?.icon_state == "typing")
-		src.UpdateOverlays(null,"speech_bubble")
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
 	#endif

@@ -35,8 +35,9 @@
 	var/is_npc = 0
 
 	var/move_laying = null
-	var/static/image/speech_bubble = image('icons/mob/mob.dmi', "speech")
-	var/static/image/sleep_bubble = image('icons/mob/mob.dmi', "sleep")
+	var/static/mutable_appearance/speech_bubble = living_speech_bubble
+	var/static/mutable_appearance/sleep_bubble = mutable_appearance('icons/mob/mob.dmi', "sleep")
+	var/has_typing_indicator = FALSE
 	var/image/static_image = null
 	var/static_type_override = null
 	var/icon/default_static_icon = null // set to an icon and that's what the static will generate from
@@ -124,7 +125,6 @@
 	can_lie = 1
 
 	var/const/singing_prefix = "%"
-	var/last_typing = null
 /mob/living/New()
 	..()
 	vision = new()
@@ -945,11 +945,6 @@
 				message = "[message][stutter(pick("!", "!!", "!!!"))]"
 			if(!src.stuttering && prob(8))
 				message = stutter(message)
-
-	UpdateOverlays(speech_bubble, "speech_bubble")
-	SPAWN_DBG(1.5 SECONDS)
-		if (speech_bubble.icon_state != "typing" || !isalive(src))
-			UpdateOverlays(null, "speech_bubble")
 
 	//Blobchat handling
 	if (src.mob_flags & SPEECH_BLOB)
