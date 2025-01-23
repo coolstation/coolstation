@@ -124,7 +124,7 @@
 	can_lie = 1
 
 	var/const/singing_prefix = "%"
-
+	var/last_typing = null
 /mob/living/New()
 	..()
 	vision = new()

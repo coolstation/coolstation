@@ -8,26 +8,28 @@
 	set name = "Whisper"
 	return src.whisper(message)
 
-/mob/verb/start_say() //more or less what Zamujasa did for goonstation, but tweaked to work with coolstation code, and not quite as expansive
-	set name = "start_say"
-	set hidden = 1
-	var/mob/living/as_living = src
-	if(istype(as_living))
-		as_living.speech_bubble.icon_state = "typing"
-		UpdateOverlays(as_living.speech_bubble,"speech_bubble")
-		/*SPAWN_DBG(15 SECONDS)
-			if (M?.speech_bubble?.icon_state == "typing")
-				M.UpdateOverlays(null, "speech_bubble")*/
+/mob/verb/start_typing()
+	set name = ".starttyping"
+	set hidden = TRUE
+	var/mob/living/M = src
+	if(!istype(M) || !isalive(M))
+		return
+	M.speech_bubble.icon_state = "typing"
+	UpdateOverlays(M.speech_bubble, "speech_bubble")
+	var/start_time = TIME
+	M.last_typing  = start_time
 
-	var/message = input("","Say") as null|text
-
-	say_verb(message) // we check the message in say_verb
+	SPAWN_DBG(15 SECONDS)
+		if(M.last_typing == start_time && src.GetOverlayImage("speech_bubble")?.icon_state == "typing")
+			src.UpdateOverlays(null,"speech_bubble")
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	UpdateOverlays(null, "speech_bubble")
 
 	if (!message)
+		if(src.GetOverlayImage("speech_bubble")?.icon_state == "typing")
+			src.UpdateOverlays(null,"speech_bubble")
 		return
 	if (client && url_regex?.Find(message) && !client.holder)
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
@@ -35,6 +37,8 @@
 		return
 
 	say(message)
+	if(src.GetOverlayImage("speech_bubble")?.icon_state == "typing")
+		src.UpdateOverlays(null,"speech_bubble")
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
 	#endif

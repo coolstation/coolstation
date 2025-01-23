@@ -122,6 +122,9 @@ macro "base_macro"
 		name = "F3"
 		command = "mentorhelp"
 		is-disabled = true
+	elem "startsay"
+		name = "T"
+		command = ".starttyping\nsay"
 	elem
 		name = "Any"
 		command = ".keydown [[*]]"
