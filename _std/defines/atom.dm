@@ -34,11 +34,11 @@
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)
 #define THROW_NORMAL 1
-#define THROW_KNOCKDOWN 32
 #define THROW_CHAIRFLIP 2
 #define THROW_GUNIMPACT 4
 #define THROW_SLIP 8
 #define THROW_SANDWICH 16 //This is for one single item, because I'm pretty sure this would never have been clean.
+#define THROW_KNOCKDOWN 32 //i know what i'm doing
 
 //For serialization purposes
 #define DESERIALIZE_ERROR 0
