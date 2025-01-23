@@ -334,43 +334,89 @@
 /obj/cable/proc/integrate()
 	var/connections = get_connections(FALSE)
 	var/want_a_node = (length(connections) != 2)
-	var/obj/cable/steal_node_from
-	var/datum/powernet
+	var/datum/future_powernet
 
 	//loose cable with no neighbours
 	if (!length(connections))
-		src.is_a_node = new(new /datum/powernet())
+		src.is_a_node = new()
+		src.is_a_node.physical_node = src
+		src.is_a_node.pnet = new /datum/powernet()
 		return
 
-	if (length(connections = 2))
+	//In theory it'd be possible to steal the node datum from a connection that doesn't need it anymore,
+	//but it complicates things a lot and I'm not convinced it'd be any faster.
+	if (length(connections) != 2)
+		src.is_a_node = new() //no pnet yet, we'll be able to get one later
 
 	//Assumption: the topology of adjacent connections is correct (no nodes that should be links or vice versa, or unincorporated stuff)
 	//Assumption: every connection we found will also find us, one more connection than they had previously.
+	//				HOWEVER, their node's adjacent_nodes doesn't know about us yet
 	//Thus, anything that has 3 connections now was previously a link and needs to turn into a node
 	//and anything with 2 connections was a node that needs to become a link
 	//everything else was and is a node
 
 	for (var/obj/cable/C in connections)
+		var/datum/powernet_graph_node/Cs_node = C.is_a_node
 		switch(C.get_connections())
-			if (2)
-				if (want_a_node)
-					if (!src.is_a_node)
-						src.is_a_node = C.is_a_node
-						src.is_a_node.physical_node = src
-						//Should be gauranteed that the old node only had one other node connection.
-						var/datum/powernet_graph_node/neighbour_node = src.is_a_node.adjacent_nodes[1]
-						var/datum/powernet_graph_link/maybe_link = src.is_a_node.adjacent_nodes[neighbour_node]
-						if (istype(maybe_link))
-							maybe_link.cables |= C
-							maybe_link.expected_length = length(maybe_link.cables)
-							C.is_a_link = maybe_link
-						else //previously directly connected nodes
-							//we can discount the possibility of
-							maybe_link = new
+			if (2) //other cable was a dead end, is now a simple connection
+				/*There are 4 possibilities here:
+					-we want to be a node but have none, so we can steal the one C has
+					-we want a node and have one already, so we
+				*/
+
+				if (src.is_a_node) //absorb C into the link between its (now obsolete) node and it's one previous neighbour
+
+					var/datum/powernet_graph_node/neighbour_node = Cs_node.adjacent_nodes[1]
+					var/datum/powernet_graph_link/maybe_link = Cs_node.adjacent_nodes[neighbour_node]
+
+					if (istype(maybe_link))
+						maybe_link.cables |= C
+						maybe_link.expected_length = length(maybe_link.cables)
+
+					else //C was a direct neighbour of its one other node
+						maybe_link = new(list(C), list(src.is_a_node, neighbour_node))
+
+					neighbour_node.adjacent_nodes -= Cs_node
+					neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
+					src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
+
+					qdel(Cs_node)
+					C.is_a_node = null
+					C.is_a_link = maybe_link
+
+
 				else
 					//So, one thing that can happen is we close a loop of wire
 					//where we'd technically not have any junctions that should be nodes, but nodes are also required for powernets to function.
 					//so in that case we'll just leave the two previous dead ends as nodes.
+					var/datum/powernet_graph_node/possible_loop_node = Cs_node.adjacent_nodes[1]
+					if (possible_loop_node.physical_node in connections && length(possible_loop_node.adjacent_nodes) == 1)
+						src.is_a_link = new(list(src), list(Cs_node, possible_loop_node))
+						//list em up, since, well, technically we've given it the topology of two links connecting the same nodes
+						Cs_node.adjacent_nodes[possible_loop_node] = list(Cs_node.adjacent_nodes[possible_loop_node], src.is_a_link)
+						possible_loop_node.adjacent_nodes[Cs_node] = list(possible_loop_node.adjacent_nodes[Cs_node], src.is_a_link)
+							return //we've handled the entire net by now
+					else
+						if (!src.is_a_link)
+							src.is_a_link = Cs_node.adjacent_nodes[possible_loop_node]
+							if (!src.is_a_link)
+								src.is_a_link = new(list(src, C))
+							src.is_a_link.adjacent_nodes += possible_loop_node
+							if (length(src.is_a_link.adjacent_nodes) == 2) //
+
+
+
+
+			if (3) //other cable needs to become a node
+
+
+
+
+
+
+
+
+
 
 		else //should get a node if it doesn't have one
 

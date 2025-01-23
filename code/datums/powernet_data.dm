@@ -55,6 +55,17 @@ var/global/list/dirty_pnet_nodes = list()
 
 	var/netnum = 0
 
+	var/dissolve_when_possible = FALSE
+
+
+//No attempt at fixing lingering references, just nuke. Let's not make this any more complicated.
+/datum/powernet_graph_node/disposing()
+	pnet = null
+	adjacent_nodes = null
+	physical_node = null
+	..()
+
+
 ///Run through our connections and update which ones are still relevant, then
 /datum/powernet_graph_node/proc/validate()
 	var/dissolve_self = isnull(physical_node)
