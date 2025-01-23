@@ -1907,6 +1907,9 @@
 /area/station/medical/medbay/surgery)
 "bHN" = (
 /obj/machinery/vending/security,
+/obj/machinery/alarm{
+	pixel_x = -32
+	},
 /turf/floor/red/side{
 	dir = 9
 	},
@@ -2269,10 +2272,6 @@
 	},
 /turf/floor,
 /area/station/science/artifact)
-"bUO" = (
-/obj/machinery/phone/wall,
-/turf/wall,
-/area/station/quartermaster/cargobay)
 "bUR" = (
 /obj/machinery/door/airlock/external,
 /obj/cable/yellow{
@@ -3846,13 +3845,10 @@
 	},
 /area/station/bridge)
 "dfL" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = ""
-	},
 /obj/machinery/manufacturer/general,
+/obj/machinery/alarm{
+	pixel_y = 32
+	},
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "dfO" = (
@@ -4539,10 +4535,6 @@
 	dir = 5
 	},
 /area/station/engine/engineering/breakroom)
-"dOx" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/quartermaster/cargobay)
 "dOV" = (
 /obj/cable{
 	d1 = 1;
@@ -4678,10 +4670,6 @@
 	},
 /turf/floor/wood,
 /area/station/crew_quarters/barber_shop)
-"dTP" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/security/interrogation)
 "dTQ" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
@@ -4866,11 +4854,16 @@
 /turf/floor/plating/random,
 /area/station/science/lab)
 "ebt" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/storage{
-	name = "Shipyard EVA Storage"
-	})
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor,
+/area/station/engine/engineering/breakroom)
 "ebF" = (
 /obj/disposalpipe/segment/mail,
 /obj/stool/chair/wooden,
@@ -4890,6 +4883,9 @@
 /obj/storage/crate/pizza,
 /obj/storage/crate/pizza,
 /obj/storage/crate/pizza,
+/obj/machinery/alarm{
+	pixel_x = 32
+	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
 "eck" = (
@@ -5714,6 +5710,9 @@
 /area/station/engine/coldloop)
 "eEY" = (
 /obj/machinery/hydro_growlamp,
+/obj/machinery/alarm{
+	pixel_y = -32
+	},
 /turf/floor/wood/five,
 /area/station/hydroponics/lobby)
 "eFc" = (
@@ -6988,10 +6987,6 @@
 	},
 /turf/floor/grime,
 /area/station/security/brig/genpop)
-"fHd" = (
-/obj/machinery/alarm,
-/turf/wall/r_wall,
-/area/station/hangar/sec)
 "fHk" = (
 /obj/decal/poster/wallsign/portrait_scientist,
 /turf/wall,
@@ -7938,6 +7933,9 @@
 /obj/machinery/neosmelter,
 /obj/machinery/light/emergency{
 	dir = 8
+	},
+/obj/machinery/alarm{
+	pixel_x = -32
 	},
 /turf/floor/engine,
 /area/station/storage/warehouse{
@@ -10047,10 +10045,6 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
-"hSF" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/medical/medbay/pharmacy)
 "hSQ" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -10705,6 +10699,9 @@
 /area/station/medical/robotics)
 "iBR" = (
 /obj/decal/floatingtiles/loose/random,
+/obj/machinery/alarm{
+	pixel_y = 32
+	},
 /turf/floor/plating,
 /area/station/mining/refinery{
 	name = "Scrapping"
@@ -11015,6 +11012,9 @@
 /area/station/chapel/office)
 "iMt" = (
 /obj/storage/closet/welding_supply,
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/grime,
 /area/station/mining/refinery{
 	name = "Scrapping"
@@ -11081,6 +11081,9 @@
 	},
 /area/station/crew_quarters/fitness)
 "iNX" = (
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -12179,6 +12182,9 @@
 	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	pixel_x = -32
 	},
 /turf/floor/blue,
 /area/station/medical/medbay)
@@ -13437,6 +13443,9 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/machinery/alarm{
+	pixel_y = 32
+	},
 /turf/floor/black/side{
 	dir = 5
 	},
@@ -13484,14 +13493,19 @@
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
 "kQx" = (
+/obj/table/auto,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "0-2";
+	d2 = 2
+	},
+/obj/machinery/power/data_terminal,
 /obj/machinery/networked/printer{
 	pixel_x = 4;
 	pixel_y = 7;
 	print_id = "Engineering"
-	},
-/obj/table/auto,
-/obj/machinery/light{
-	dir = 1
 	},
 /turf/floor/orangeblack/side{
 	dir = 1
@@ -13924,6 +13938,9 @@
 	dir = 8;
 	id = "cargo";
 	operating = 1
+	},
+/obj/machinery/phone/wall{
+	pixel_y = 32
 	},
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
@@ -15418,6 +15435,9 @@
 /area/ghostdrone_factory)
 "mkl" = (
 /obj/reagent_dispensers/fueltank,
+/obj/machinery/alarm{
+	pixel_x = -32
+	},
 /turf/floor/orangeblack,
 /area/station/mining/refinery{
 	name = "Scrapping"
@@ -15695,10 +15715,6 @@
 	},
 /turf/floor/plating,
 /area/station/security/detectives_office)
-"mwD" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/hydroponics/lobby)
 "mxc" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon6,
 /turf/floor,
@@ -16055,6 +16071,7 @@
 	print_id = "Bridge"
 	},
 /obj/cable,
+/obj/machinery/power/data_terminal,
 /turf/floor/carpet/blue/fancy/edge,
 /area/station/medical/staff)
 "mLf" = (
@@ -16967,12 +16984,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
-"nta" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/mining/refinery{
-	name = "Scrapping"
-	})
 "nuC" = (
 /obj/table/reinforced/auto,
 /obj/item/extinguisher{
@@ -17408,7 +17419,7 @@
 	dir = 4;
 	frequency = 1229;
 	icon_state = "intact_on";
-	id = "Chamber One Inlet";
+	id = "Chamber One Outlet";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -17530,6 +17541,11 @@
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/north)
 "nQd" = (
+/obj/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/floor,
 /area/station/security/main)
 "nQA" = (
@@ -19235,11 +19251,12 @@
 /obj/table/reinforced/auto,
 /obj/window/reinforced/south,
 /obj/window/reinforced/east,
+/obj/cable,
+/obj/machinery/power/data_terminal,
 /obj/machinery/networked/printer{
 	pixel_y = 5;
 	print_id = "Bridge"
 	},
-/obj/cable,
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -19515,12 +19532,6 @@
 	dir = 4
 	},
 /area/station/engine/coldloop)
-"plt" = (
-/obj/machinery/phone/wall,
-/turf/wall,
-/area/station/mining/refinery{
-	name = "Scrapping"
-	})
 "plE" = (
 /obj/decal/cleanable/rust,
 /obj/item/instrument/large/jukebox,
@@ -19668,6 +19679,11 @@
 /obj/disposalpipe/junction,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor,
 /area/station/security/main)
@@ -19926,10 +19942,6 @@
 	dir = 10
 	},
 /area/station/crew_quarters/barber_shop)
-"pEl" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/crew_quarters/catering)
 "pEt" = (
 /turf/wall,
 /area/station/maintenance/central)
@@ -20492,10 +20504,6 @@
 	},
 /turf/floor/wood,
 /area/station/crew_quarters/barber_shop)
-"pVw" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/crew_quarters/kitchen)
 "pVz" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -21355,6 +21363,9 @@
 /area/station/hallway/primary/north)
 "qBX" = (
 /obj/machinery/vending/coffee,
+/obj/machinery/alarm{
+	pixel_x = 32
+	},
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 4
 	},
@@ -21434,12 +21445,6 @@
 "qFH" = (
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
-"qGk" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/storage/warehouse{
-	name = "Warehouse"
-	})
 "qGT" = (
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
@@ -21523,6 +21528,11 @@
 "qKg" = (
 /obj/machinery/computer3/terminal/zeta{
 	setup_os_string = "ZETA_MAINFRAME"
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2";
+	d2 = 2
 	},
 /turf/floor/plating/random,
 /area/station/storage/tech)
@@ -21849,6 +21859,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/carpet/blue,
 /area/station/bridge)
 "qYy" = (
@@ -22549,10 +22560,6 @@
 	},
 /turf/floor/plating,
 /area/station/storage/tech)
-"rCb" = (
-/obj/machinery/alarm,
-/turf/wall,
-/area/station/medical/staff)
 "rCd" = (
 /obj/machinery/power/solar_control/east,
 /obj/cable/yellow{
@@ -22983,6 +22990,9 @@
 "rUE" = (
 /obj/machinery/manufacturer/hangar,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/alarm{
+	pixel_y = 32
+	},
 /turf/floor,
 /area/station/hangar/sec)
 "rVi" = (
@@ -24363,9 +24373,14 @@
 	mail_tag = "Shipyard control"
 	})
 "sVX" = (
-/obj/machinery/phone/wall,
-/turf/wall,
-/area/station/engine/elect)
+/obj/decal/cleanable/dirt/random,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor,
+/area/station/security/main)
 "sWC" = (
 /obj/lattice{
 	dir = 9;
@@ -25620,6 +25635,11 @@
 /obj/machinery/light_switch/west,
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/plating/random,
 /area/station/storage/tech)
@@ -29282,6 +29302,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/alarm{
+	pixel_y = -32
+	},
 /turf/floor/grime,
 /area/station/storage{
 	name = "Shipyard EVA Storage"
@@ -29909,6 +29932,9 @@
 /area/shuttle/merchant_shuttle/left_centcom/destiny)
 "xzc" = (
 /obj/storage/secure/closet/medical/medicine,
+/obj/machinery/alarm{
+	pixel_x = 32
+	},
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
 "xzr" = (
@@ -29925,11 +29951,6 @@
 	})
 "xzD" = (
 /obj/table/reinforced/auto,
-/obj/machinery/networked/printer{
-	pixel_x = 7;
-	pixel_y = 14;
-	print_id = "Bridge"
-	},
 /obj/item/paper_bin{
 	pixel_x = -7;
 	pixel_y = 7
@@ -29942,6 +29963,17 @@
 	},
 /obj/disposalpipe/segment/sewage{
 	dir = 4
+	},
+/obj/cable{
+	d1 = 0;
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/printer{
+	pixel_x = 7;
+	pixel_y = 14;
+	print_id = "Bridge"
 	},
 /turf/floor/red/side{
 	dir = 1
@@ -59953,7 +59985,7 @@ lVf
 kUJ
 tJn
 kQx
-qyq
+ebt
 dAE
 sXm
 kht
@@ -64109,7 +64141,7 @@ kTL
 kTL
 hNj
 yjq
-fHd
+yjq
 yjq
 yjq
 aVu
@@ -65350,7 +65382,7 @@ irP
 pNS
 irP
 nRh
-rCb
+nRh
 aeW
 aeW
 aeW
@@ -67161,7 +67193,7 @@ irP
 irP
 qNE
 cEn
-rCb
+nRh
 mNQ
 nRh
 nRh
@@ -67434,7 +67466,7 @@ iPE
 vlA
 iIc
 xzD
-pKY
+sVX
 lbT
 lHX
 bMQ
@@ -67771,7 +67803,7 @@ hAj
 pEt
 sge
 pEt
-sVX
+jik
 iNX
 aIL
 agx
@@ -68034,7 +68066,7 @@ gEu
 hGC
 hGC
 swE
-dTP
+hGC
 jbZ
 rEn
 rEn
@@ -68367,7 +68399,7 @@ oqi
 hfH
 uhs
 gcQ
-hSF
+uAj
 oSV
 oSV
 oSV
@@ -73237,7 +73269,7 @@ rtl
 tQS
 tQS
 cdQ
-nta
+cdQ
 sMN
 sMN
 sMN
@@ -73840,7 +73872,7 @@ qMK
 uSP
 kDV
 dFV
-plt
+cdQ
 iMt
 hpH
 xVJ
@@ -74139,7 +74171,7 @@ jDi
 nRA
 tsh
 xaG
-ebt
+uSP
 dFV
 dFV
 gZr
@@ -74403,7 +74435,7 @@ kHt
 drU
 sRD
 iHh
-mwD
+eUV
 cPB
 eOG
 kdg
@@ -74752,7 +74784,7 @@ rEX
 hos
 utg
 wHd
-nta
+cdQ
 iBR
 hGK
 dBr
@@ -76259,7 +76291,7 @@ xaa
 aas
 mhA
 mhA
-qGk
+mhA
 mhA
 xJM
 cdQ
@@ -77156,7 +77188,7 @@ klv
 nil
 gJu
 tha
-bce
+ooY
 jdW
 fxW
 tpx
@@ -77458,8 +77490,8 @@ ejf
 nil
 iLX
 nNP
-ooY
-bUO
+bce
+jdW
 lfi
 xvk
 rVi
@@ -78365,7 +78397,7 @@ cvz
 gJu
 nNP
 bce
-dOx
+jdW
 mFZ
 hXa
 lVZ
@@ -78949,7 +78981,7 @@ hWA
 dGg
 dGg
 aDM
-pVw
+aDM
 cUY
 rgo
 ndV
@@ -81061,7 +81093,7 @@ tpt
 aCT
 lQt
 utG
-pEl
+tpt
 lpx
 vxM
 eWd
