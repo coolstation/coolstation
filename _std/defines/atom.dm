@@ -34,6 +34,7 @@
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)
 #define THROW_NORMAL 1
+#define THROW_KNOCKDOWN 3
 #define THROW_CHAIRFLIP 2
 #define THROW_GUNIMPACT 4
 #define THROW_SLIP 8
