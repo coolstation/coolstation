@@ -70,12 +70,10 @@ macro "base_macro"
 		is-disabled = true
 	elem
 		name = "ALT+T"
-		command = ".force_keyup ALT+T\ndsay"
-		is-disabled = true
+		command = "dsay"
 	elem
 		name = "CTRL+T"
-		command = ".force_keyup CTRL+T\nasay"
-		is-disabled = true
+		command = "asay"
 	elem
 		name = "ALT+W"
 		command = ".force_keyup ALT+W\nwhisper"
