@@ -892,7 +892,7 @@
 "aPk" = (
 /obj/critter/mouse,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "aPI" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -1012,7 +1012,7 @@
 	},
 /obj/machinery/power/apc/autoname_north,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "aVh" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -3255,6 +3255,15 @@
 "cEt" = (
 /turf/wall/r_wall,
 /area/station/bridge/customs)
+"cFa" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "cFd" = (
 /obj/table/wood/auto,
 /obj/item/card_box/tarot{
@@ -4137,7 +4146,7 @@
 "dqS" = (
 /obj/reagent_dispensers/foamtank,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "dqY" = (
 /obj/table/auto,
 /obj/item/reagent_containers/food/drinks/bottle/beer{
@@ -4435,7 +4444,7 @@
 /area/station/crew_quarters/quarters_west)
 "dJp" = (
 /turf/wall,
-/area/station/engine/engineering)
+/area/station/engine/engineering/breakroom)
 "dJx" = (
 /turf/wall,
 /area/station/maintenance/disposal)
@@ -5165,6 +5174,9 @@
 	icon_state = "1-2"
 	},
 /obj/pathlights/shuttle,
+/obj/cable{
+	icon_state = "1-4"
+	},
 /turf/floor,
 /area/station/hallway/primary/east)
 "ejX" = (
@@ -6746,7 +6758,7 @@
 	dir = 1
 	},
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "fsU" = (
 /obj/lattice{
 	dir = 8;
@@ -7414,7 +7426,7 @@
 "fWT" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "fWX" = (
 /turf/wall/r_wall,
 /area/station/science/chemistry)
@@ -7513,7 +7525,7 @@
 /obj/access_spawn/engineering_control,
 /obj/firedoor_spawn,
 /turf/floor/orangeblack,
-/area/station/engine/engineering)
+/area/station/engine/engineering/breakroom)
 "fZz" = (
 /obj/decal/cleanable/rust,
 /obj/machinery/light,
@@ -8813,7 +8825,7 @@
 "gXJ" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "gXV" = (
 /obj/machinery/light{
 	dir = 8;
@@ -10586,6 +10598,12 @@
 	},
 /turf/floor/orangeblack,
 /area/station/engine/core)
+"ioK" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/east)
 "ipz" = (
 /obj/stool/chair/blue,
 /turf/floor/purplewhite{
@@ -10697,7 +10715,7 @@
 /area/station/garden/owlery)
 "iwf" = (
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "iwS" = (
 /obj/machinery/light{
 	dir = 8;
@@ -13797,6 +13815,9 @@
 "kXv" = (
 /obj/disposalpipe/segment/mail,
 /obj/pathlights/shuttle,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor,
 /area/station/hallway/primary/east)
 "kXA" = (
@@ -15050,7 +15071,7 @@
 	},
 /obj/firedoor_spawn,
 /turf/floor/orange,
-/area/station/engine/engineering)
+/area/station/engine/core)
 "lTe" = (
 /obj/machinery/light/small/cool/very{
 	dir = 4
@@ -15181,6 +15202,9 @@
 	},
 /turf/floor/carpet/arcade,
 /area/station/bridge/captain)
+"lXq" = (
+/turf/wall,
+/area/station/maintenance/outer/ne)
 "lXu" = (
 /obj/machinery/light_switch/west,
 /turf/floor/plating/random,
@@ -17589,6 +17613,10 @@
 	},
 /turf/floor/engine,
 /area/station/engine/engineering/ce)
+"nMa" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/maintenance/outer/ne)
 "nMg" = (
 /obj/decal/cleanable/rust,
 /turf/floor/white/grime,
@@ -17696,6 +17724,12 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
+"nQG" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "nQN" = (
 /obj/machinery/shower{
 	dir = 8;
@@ -22378,7 +22412,7 @@
 	icon_state = "4-8"
 	},
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "rkR" = (
 /obj/window/reinforced{
 	dir = 2
@@ -23091,7 +23125,7 @@
 "rQm" = (
 /mob/dead/hhghost,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "rQu" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -23507,7 +23541,7 @@
 /obj/access_spawn/engineering_engine,
 /obj/firedoor_spawn,
 /turf/floor/orange,
-/area/station/engine/engineering)
+/area/station/engine/core)
 "shI" = (
 /obj/cable{
 	d1 = 1;
@@ -28612,6 +28646,16 @@
 	dir = 4
 	},
 /area/station/security/main)
+"woG" = (
+/obj/machinery/power/apc/autoname_north{
+	pixel_y = 24
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "woX" = (
 /obj/decal/cleanable/ripped_poster,
 /turf/wall,
@@ -28716,7 +28760,7 @@
 	icon_state = "4-8"
 	},
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "wtB" = (
 /obj/machinery/bot/secbot/beepsky,
 /obj/cable{
@@ -28832,6 +28876,13 @@
 "wxg" = (
 /turf/floor/grime,
 /area/station/construction)
+"wxh" = (
+/obj/firedoor_spawn,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "wxN" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/carpet/grime,
@@ -28866,7 +28917,7 @@
 "wyT" = (
 /obj/critter/roach,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "wyY" = (
 /obj/storage/secure/closet/animal,
 /turf/floor/grass,
@@ -29021,6 +29072,14 @@
 /obj/machinery/recharger/wall,
 /turf/wall/r_wall,
 /area/station/bridge)
+"wEK" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	name = "VACUUM AREA"
+	},
+/turf/wall,
+/area/station/maintenance/outer/ne)
 "wEY" = (
 /obj/item/clothing/under/gimmick/owl{
 	pixel_x = -9;
@@ -29761,7 +29820,7 @@
 /obj/access_spawn/engineering_chief,
 /obj/firedoor_spawn,
 /turf/floor/orangeblack,
-/area/station/engine/engineering/breakroom)
+/area/station/engine/engineering/ce)
 "xlg" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -29786,7 +29845,7 @@
 "xoc" = (
 /obj/random_item_spawner/junk/one,
 /turf/floor/plating/random,
-/area/station/hallway/secondary/exit)
+/area/station/maintenance/outer/ne)
 "xog" = (
 /obj/stool/chair,
 /obj/disposalpipe/segment{
@@ -58700,11 +58759,11 @@ dFq
 mpC
 pNu
 vXe
-tJn
+iEs
 lTb
 shE
-vXe
-vXe
+vPf
+fwO
 kht
 lIW
 kht
@@ -59610,7 +59669,7 @@ lUW
 vgs
 wOx
 xam
-tJn
+kht
 ieT
 qyq
 dAE
@@ -59917,7 +59976,7 @@ ufN
 qyq
 dAE
 sXm
-kht
+gES
 sii
 vhb
 iAm
@@ -60214,12 +60273,12 @@ plX
 vwp
 lVf
 kUJ
-tJn
+kht
 kQx
 ebt
 dAE
 sXm
-kht
+gES
 bUl
 ktN
 vhb
@@ -76159,7 +76218,7 @@ fIM
 fQr
 vum
 qfa
-aas
+ioK
 eus
 kDh
 xBC
@@ -76747,7 +76806,7 @@ hdd
 eJd
 rjB
 iwf
-npW
+lXq
 hql
 wnp
 hql
@@ -76763,7 +76822,7 @@ sku
 sku
 sku
 jiZ
-mKi
+wxh
 fcx
 jiZ
 gFY
@@ -77049,7 +77108,7 @@ eJd
 eJd
 rjB
 iwf
-npW
+lXq
 ipT
 ipT
 ipT
@@ -77065,7 +77124,7 @@ ipT
 ipT
 ipT
 rVz
-iap
+nQG
 asd
 rVz
 oeh
@@ -77351,7 +77410,7 @@ wXa
 xGY
 wte
 iwf
-rVz
+nMa
 ipT
 ipT
 ipT
@@ -77367,7 +77426,7 @@ ipT
 ipT
 ipT
 rVz
-iap
+nQG
 asd
 mKi
 vWm
@@ -77653,7 +77712,7 @@ etJ
 dfO
 aUI
 iwf
-npW
+lXq
 ipT
 ipT
 ipT
@@ -77669,7 +77728,7 @@ ipT
 ipT
 ipT
 rVz
-iap
+nQG
 asd
 mKi
 vWm
@@ -77955,7 +78014,7 @@ xlg
 cUT
 xoc
 xoc
-rVz
+nMa
 ipT
 ipT
 ipT
@@ -77971,7 +78030,7 @@ ipT
 ipT
 ipT
 npW
-ojO
+cFa
 asd
 npW
 lEd
@@ -78257,7 +78316,7 @@ lmL
 dfO
 iwf
 iwf
-npW
+lXq
 ipT
 ipT
 ipT
@@ -78273,7 +78332,7 @@ ipT
 ipT
 ipT
 rVz
-iap
+nQG
 asd
 rVz
 bxR
@@ -78559,7 +78618,7 @@ cUT
 dfO
 iwf
 iwf
-rVz
+nMa
 ipT
 ipT
 ipT
@@ -78575,7 +78634,7 @@ ipT
 ipT
 ipT
 rVz
-iap
+nQG
 asd
 rVz
 xAy
@@ -78858,7 +78917,7 @@ jCw
 jCw
 jCw
 jCw
-npW
+lXq
 iwf
 iwf
 gXJ
@@ -78877,7 +78936,7 @@ ipT
 ipT
 ipT
 rVz
-iap
+nQG
 asd
 npW
 npW
@@ -79160,10 +79219,10 @@ jCw
 jCw
 jCw
 jCw
-rVz
+nMa
 iwf
 wyT
-rVz
+nMa
 ipT
 ipT
 fVn
@@ -79179,7 +79238,7 @@ ipT
 ipT
 ipT
 npW
-iap
+woG
 eXu
 npW
 ipT
@@ -79462,12 +79521,12 @@ nPT
 nPT
 nPT
 nPT
-npW
+lXq
 fsN
 iwf
-npW
-rVz
-uus
+lXq
+nMa
+wEK
 fVn
 fVn
 fVn
@@ -79764,7 +79823,7 @@ jCw
 jCw
 jCw
 jCw
-rVz
+nMa
 iwf
 iwf
 fWT
@@ -80066,12 +80125,12 @@ jCw
 jCw
 jCw
 jCw
-npW
+lXq
 rQm
 aPk
-npW
-rVz
-uus
+lXq
+nMa
+wEK
 fVn
 fVn
 fVn
@@ -80368,10 +80427,10 @@ jCw
 jCw
 jCw
 jCw
-npW
+lXq
 xoc
 iwf
-npW
+lXq
 ipT
 ipT
 fVn
@@ -80670,10 +80729,10 @@ jCw
 jCw
 jCw
 jCw
-rVz
+nMa
 iwf
 iwf
-npW
+lXq
 ipT
 ipT
 fVn
@@ -80972,12 +81031,12 @@ bJj
 bJj
 bJj
 bJj
-npW
+lXq
 fsN
 iwf
-npW
-rVz
-uus
+lXq
+nMa
+wEK
 fVn
 fVn
 fVn
@@ -81274,7 +81333,7 @@ ipT
 ipT
 ipT
 ipT
-rVz
+nMa
 iwf
 iwf
 fWT
@@ -81576,12 +81635,12 @@ ipT
 ipT
 ipT
 ipT
-rVz
+nMa
 dqS
 iwf
-npW
-rVz
-uus
+lXq
+nMa
+wEK
 fVn
 fVn
 fVn
@@ -81878,10 +81937,10 @@ ipT
 ipT
 ipT
 ipT
-npW
-rVz
-rVz
-npW
+lXq
+nMa
+nMa
+lXq
 ipT
 fVn
 fVn
