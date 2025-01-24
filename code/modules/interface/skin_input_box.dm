@@ -39,30 +39,52 @@
 	var/window_innersize = splittext(window_data["inner-size"], "x")
 	var/window_outersize = splittext(window_data["outer-size"], "x")
 	var/titlebarHeight = text2num(window_outersize[2])-text2num(window_innersize[2])
+
+	// 514 numbers
 	//Known titlebar heights for DPI scaling:
 	//win7:  100%-28, 125%-33, 150%-39
 	//win10: 100%-29, 125%-35, 150%-40
+	//win11: 100%-29, 125%-35, 150%-40
+
 	//Known window sizes for DPI scaling: (Win7)
 	//100%: 302x86,  font 7
 	//125%: 402x106, font 8
 	//150%: 503x133, font 8
+
+	// 515 numbers
+	//Known titlebar heights for DPI scaling:
+	//win11: 100%-39, 125%-47, 150%-56
+
 	var/scaling = FALSE
 	//Those are the default values for the window
 	var/window_width  = 202
 	var/window_height = 56
 	var/font_size = 8
 	//The values used here were sampled from BYOND in practice, I couldn't find a formula that would describe them
-	switch(titlebarHeight)
-		if(30 to 37)
-			scaling = 1.25
-			window_width  = 302
-			window_height = 86
-			font_size = 10
-		if(37 to 42)
-			scaling = 1.50
-			window_width  = 403
-			window_height = 103
-			font_size = 12
+	if (byond_version < 515)
+		switch(titlebarHeight)
+			if(30 to 37)
+				scaling = 1.25
+				window_width  = 402
+				window_height = 106
+				font_size = 8
+			if(37 to 42)
+				scaling = 1.5
+				window_width  = 503
+				window_height = 133
+				font_size = 8
+	else
+		switch(titlebarHeight)
+			if(40 to 50)
+				scaling = 1.25
+				window_width  = 402
+				window_height = 106
+				font_size = 8
+			if(50 to INFINITY)
+				scaling = 1.5
+				window_width  = 503
+				window_height = 133
+				font_size = 8
 	if(scaling)
 		winset(src, null, "[id].size=[window_width]x[window_height];[id].input.font-size=[font_size];[id].accept.font-size=[font_size];[id].cancel.font-size=[font_size]")
 	//End window scaling
