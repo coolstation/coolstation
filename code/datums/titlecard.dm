@@ -11,7 +11,7 @@
 
 	var/overlay_image_url = null
 
-	//should make a static fallback for videos....
+	/*/should make a static fallback for videos....
 	#if defined(MAP_OVERRIDE_BOBMAP)
 	var/image_url = "images/titlecards/console.gif"
 	var/video_url = "images/titlecards/console.mp4"
@@ -21,11 +21,11 @@
 	var/image_url = "images/titlecards/console.gif"
 	var/video_url = "images/titlecards/coolstation.mp4"
 	var/is_video = FALSE
-	#else
-	var/image_url = "images/titlecards/classic.gif"
-	var/video_url = null
+	#else*/
+	var/image_url = "images/titlecards/console.gif"
+	var/video_url = "images/titlecards/console.mp4"
 	var/is_video = FALSE
-	#endif
+	//#endif
 
 	#if defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
 	add_html = "<span style=\"position:fixed;bottom:3px;right:3px;color:white;opacity:0.5;font-size:75%;\">Secrets enabled!</span>"

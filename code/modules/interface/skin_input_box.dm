@@ -48,21 +48,21 @@
 	//150%: 503x133, font 8
 	var/scaling = FALSE
 	//Those are the default values for the window
-	var/window_width  = 302
-	var/window_height = 86
-	var/font_size = 7
+	var/window_width  = 202
+	var/window_height = 56
+	var/font_size = 8
 	//The values used here were sampled from BYOND in practice, I couldn't find a formula that would describe them
 	switch(titlebarHeight)
 		if(30 to 37)
 			scaling = 1.25
-			window_width  = 402
-			window_height = 106
-			font_size = 8
+			window_width  = 302
+			window_height = 86
+			font_size = 10
 		if(37 to 42)
 			scaling = 1.50
-			window_width  = 503
-			window_height = 133
-			font_size = 8
+			window_width  = 403
+			window_height = 103
+			font_size = 12
 	if(scaling)
 		winset(src, null, "[id].size=[window_width]x[window_height];[id].input.font-size=[font_size];[id].accept.font-size=[font_size];[id].cancel.font-size=[font_size]")
 	//End window scaling
