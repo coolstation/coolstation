@@ -11099,10 +11099,7 @@
 /area/station/security/detectives_office)
 "iLp" = (
 /obj/disposalpipe/segment,
-/obj/machinery/door_control{
-	id = "eject";
-	pixel_x = -25
-	},
+/obj/railing/purple,
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -19192,12 +19189,10 @@
 /obj/decoration/clock{
 	pixel_x = -30
 	},
-/obj/machinery/floorflusher/industrial{
-	id = "eject'"
-	},
 /obj/disposalpipe/trunk{
 	dir = 1
 	},
+/obj/machinery/floorflusher/industrial,
 /turf/floor/purple/side{
 	dir = 8
 	},
