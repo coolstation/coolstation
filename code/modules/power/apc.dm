@@ -1614,6 +1614,3 @@ var/zapLimiter = 0
 /obj/machinery/power/apc/powered()
 	//Always powered
 	return 1
-
-/obj/machinery/power/apc/how_to_fix_malf()
-	return "To fix, use 4 lengths of wiring to replace malfunctioning wiring <i>while the wires are exposed</i>."

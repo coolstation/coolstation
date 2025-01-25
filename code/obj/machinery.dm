@@ -448,6 +448,3 @@
 	ON_COOLDOWN(src, "maintained", 20 MINUTES) //prevent defects for a while
 	//unplaceholder
 	//src.color = "#FFFFFF"
-
-/// If the machine is malfunctioning this is how you fix it
-/obj/machinery/proc/how_to_fix_malf()

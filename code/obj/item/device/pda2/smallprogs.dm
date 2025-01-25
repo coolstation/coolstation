@@ -1358,7 +1358,7 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 			if(istype(problem, /obj/machinery/door/airlock) && initial(problem.name) != problem.name) // i had to typecheck this because someone thought that making autoname apcs called Autoname N APC is a good idea
 				problem_name += " ([initial(problem.name)])"
 			dat += "<b>[problem_name]</b><br> Located in [area]: [turf.x], [turf.y]<br>"
-			dat += "[problem.how_to_fix_malf()]<br>"
+			dat += "[problem.malfunction_hint()]<br>"
 
 		return dat
 
