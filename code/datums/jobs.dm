@@ -1244,7 +1244,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 // AI and Cyborgs
 
-/datum/job/civilian/AI
+/datum/job/special/AI
 	name = "AI"
 	linkcolor = "#999999"
 	limit = 1
@@ -1264,7 +1264,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 			return
 		return M.AIize()
 
-/datum/job/civilian/cyborg
+/datum/job/special/cyborg
 	name = "Cyborg"
 	linkcolor = "#999999"
 	limit = 8
@@ -2633,7 +2633,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		if (!M)
 			return
 		M.cubeize(INFINITY)
-
+/*
 /datum/job/special/AI
 	name = "AI"
 	linkcolor = "#999999"
@@ -2671,7 +2671,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		if (!M)
 			return
 		return M.Robotize_MK2()
-
+*/
 /datum/job/special/ghostdrone
 	name = "Drone"
 	linkcolor = "#999999"
