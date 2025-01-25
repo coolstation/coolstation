@@ -101,6 +101,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	if (!istype(M)) return
 	var/obj/item/raw_material/shard/S = locate() in src
 	if (S)
+		if(M.getStatusDuration("stunned") || M.getStatusDuration("weakened")) // woop reinvented the dragging exploit
+			return
 		boutput(M, "<span class='alert'><B>You step on [S]! Ouch!</B></span>")
 		S.step_on(M)
 

@@ -104,6 +104,11 @@
 			power_credit = power_usage
 
 	if ((status & MALFUNC) && !(status & NOPOWER))
+		if (prob(30))
+			if (prob(5)) //rarely a big one (1.5% chance total)
+				elecflash(src,radius = 1, power = 2, exclude_center = 0)
+			else
+				elecflash(src)
 		malfunction(mult)
 
 /obj/machinery/proc/gib(atom/location)
@@ -425,6 +430,11 @@
 
 //If you need to set up anything when the machine starts malfunctioning
 /obj/machinery/proc/malfunction_start()
+
+//Return instructions on how to fix the thing if it breaks
+//ATM only for things hooked into maintenance arrears (anything with MAY_REQUIRE_MAINT), but maybe we'll work it into stuff like APC repair too.
+/obj/machinery/proc/malfunction_hint()
+	return "Oh no a codre fucked this up!"
 
 ///Do wacky annoying shit
 /obj/machinery/proc/malfunction(mult)

@@ -110,7 +110,7 @@
 /mob/throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 	..()
 
-	if (src.throwing & THROW_CHAIRFLIP)
+	if (src.throwing & THROW_CHAIRFLIP || src.throwing & THROW_KNOCKDOWN)
 		var/turf/T = locate(src.last_throw_x, src.last_throw_y, src.z)
 		var/dist_traveled = get_dist(hit_atom,T)
 		var/effect_mult = 1

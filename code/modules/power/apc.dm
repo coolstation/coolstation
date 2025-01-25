@@ -1399,6 +1399,9 @@ var/zapLimiter = 0
 		src.aidisabled = 0
 	..()
 
+/obj/machinery/power/apc/malfunction_hint()
+	return "Open the maintenance hatch and replace the APC's wiring."
+
 // damage and destruction acts
 
 /obj/machinery/power/apc/meteorhit(var/obj/O as obj)

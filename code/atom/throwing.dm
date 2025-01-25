@@ -77,7 +77,7 @@
 	reagents?.physical_shock(14)
 	src.throwing = throw_type
 
-	if (src.throwing & (THROW_CHAIRFLIP | THROW_GUNIMPACT | THROW_SLIP))
+	if (src.throwing & (THROW_CHAIRFLIP | THROW_GUNIMPACT | THROW_SLIP | THROW_KNOCKDOWN))
 		if (ismob(src))
 			var/mob/M = src
 			M.force_laydown_standup()

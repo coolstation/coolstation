@@ -263,12 +263,15 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 				M.close()
 		sleep(departure_delay)
 		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
-			if (!istype(M.loc, text2path(destination.target_area.filler_turf)) || locate(/obj/grille/catwalk) in M.loc) //once we make catwalks constructable you could play Hole In The Wall 2: Hole In The Ceiling
-				SPAWN_DBG(1 DECI SECOND)
-					random_brute_damage(M, 30)
-					M.changeStatus("weakened", 5 SECONDS)
-					M.emote("scream")
-					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
+			//if (!istype(M.loc, text2path(destination.target_area.filler_turf)) || locate(/obj/grille/catwalk) in M.loc) //once we make catwalks constructable you could play Hole In The Wall 2: Hole In The Ceiling
+			SPAWN_DBG(1 DECI SECOND) // i dont think that check above was doing what it was meant to.
+				random_brute_damage(M, 30)
+				M.changeStatus("weakened", 5 SECONDS)
+				M.emote("scream")
+				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
+				#ifdef DATALOGGER
+				game_stats.Increment("workplacesafety")
+				#endif
 
 	arriving(datum/transit_stop/destination)
 		sleep(door_delay)
