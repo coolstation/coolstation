@@ -2619,6 +2619,15 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
+"cdB" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "cdO" = (
 /obj/disposalpipe/segment,
 /obj/machinery/camera{
@@ -8362,6 +8371,14 @@
 	},
 /turf/floor/blue/checker,
 /area/station/medical/medbay/cloner)
+"gIF" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/circuit/off,
+/area/station/turret_protected/ai)
 "gIK" = (
 /obj/table/auto,
 /obj/item/kitchen/utensil/knife/cleaver,
@@ -12253,8 +12270,9 @@
 	},
 /area/station/medical/staff)
 "jML" = (
+/obj/machinery/power/data_terminal,
 /obj/cable{
-	icon_state = "4-8"
+	icon_state = "0-8"
 	},
 /obj/landmark/start{
 	name = "AI"
@@ -23389,16 +23407,6 @@
 	},
 /turf/floor/grey,
 /area/station/bridge/customs)
-"sbM" = (
-/obj/wingrille_spawn/reinforced,
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/station/quartermaster/cargooffice/storefront{
-	mail_tag = "Conveience Store";
-	name = "Convienence Store"
-	})
 "sbQ" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/decal/tile_edge/stripe{
@@ -25043,6 +25051,11 @@
 "toB" = (
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
@@ -59915,7 +59928,7 @@ aTt
 cRG
 jXB
 ifC
-qGW
+dez
 jML
 qGW
 lzB
@@ -60217,7 +60230,7 @@ ipT
 kbC
 jXB
 rYG
-qGW
+dez
 dpJ
 qGW
 ifC
@@ -60519,8 +60532,8 @@ ipT
 kbC
 jXB
 ifC
-ifC
-dez
+gIF
+cdB
 sRj
 gqg
 jXB
@@ -75351,7 +75364,7 @@ oxV
 ngg
 jve
 jve
-sbM
+jve
 uTA
 rLR
 tgQ
