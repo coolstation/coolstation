@@ -1346,18 +1346,19 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 		if(..())
 			return
 
-		var/dat = src.return_text_header()
+		var/dat = return_text_header()
 		dat += "<h4>Maintenance Arrears:</h4>"
 
 		for (var/obj/machinery/problem in random_events.maintenance_event.unmaintained_machines)
-			var/turf/T = get_turf(problem)
-			var/area/A = get_area(problem)
-			if (!istype(T))
+			var/turf/turf = get_turf(problem)
+			var/area/area = get_area(problem)
+			if (!istype(turf))
 				continue //uh
-			dat += "<b>[problem.name]</b><br> [istype(A, /area/station) ? "Located in [A]: [T.x], [T.y]" : "(Location unknown)"]<br>"
-		dat += "<br>"
-
-		dat += "<a href='byond://?src=\ref[src];update=1'>Refresh</a>"
+			var/problem_name = problem.name
+			if(istype(problem, /obj/machinery/door/airlock) && initial(problem.name) != problem.name) // i had to typecheck this because someone thought that making autoname apcs called Autoname N APC is a good idea
+				problem_name += " ([initial(problem.name)])"
+			dat += "<b>[problem_name]</b><br> Located in [area]: [turf.x], [turf.y]<br>"
+			dat += "[problem.how_to_fix_malf()]<br>"
 
 		return dat
 

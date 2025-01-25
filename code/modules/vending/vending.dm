@@ -1178,6 +1178,9 @@
 		return 1
 	return 0
 
+/obj/machinery/vending/how_to_fix_malf()
+	return "To fix, use 5 lengths of wiring to replace malfunctioning wiring <i>while the wires are exposed</i>."
+
 /datum/action/bar/icon/right_vendor //This is used when you try to remove someone elses handcuffs.
 	duration = 5 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION

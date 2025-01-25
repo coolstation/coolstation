@@ -1959,6 +1959,9 @@
 		else
 			return src.loc
 
+/obj/machinery/manufacturer/how_to_fix_malf()
+	return "To fix, use 4 lengths of wiring to replace malfunctioning wiring <i>while the wires are exposed</i>."
+
 // Blueprints
 
 /obj/item/paper/manufacturer_blueprint
