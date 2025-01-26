@@ -14595,7 +14595,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/sleeper/compact{
+/obj/machinery/sleeper{
 	dir = 8
 	},
 /turf/floor/bluewhite{
@@ -14603,6 +14603,9 @@
 	},
 /area/station/medical/medbooth)
 "aNg" = (
+/obj/machinery/sleep_console{
+	dir = 8
+	},
 /turf/floor/bluewhite{
 	dir = 1
 	},
@@ -43058,6 +43061,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/sleep_console{
+	dir = 4
+	},
 /turf/floor/bluewhite,
 /area/station/medical/medbay/lobby)
 "cex" = (
@@ -43070,7 +43076,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/sleeper/compact{
+/obj/machinery/sleeper{
 	dir = 4
 	},
 /turf/floor/bluewhite,
@@ -43969,7 +43975,7 @@
 "cgZ" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
-/obj/machinery/sleeper/compact{
+/obj/machinery/sleeper{
 	dir = 4
 	},
 /turf/floor/bluewhite,
@@ -58836,6 +58842,12 @@
 /area/station/storage/auxillary{
 	name = "Tool Storage"
 	})
+"nzc" = (
+/obj/machinery/sleep_console{
+	dir = 4
+	},
+/turf/floor/bluewhite,
+/area/station/medical/medbay/lobby)
 "nzi" = (
 /obj/cable/yellow,
 /obj/machinery/power/solar/west,
@@ -102171,7 +102183,7 @@ cbQ
 cbQ
 cew
 cev
-cCa
+nzc
 cif
 cjt
 ckP
