@@ -61,7 +61,7 @@
 			return
 		var/turf/T2 = pick(get_area_turfs(destination.target_area))
 		//flourish = new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
-		new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
+		new /obj/effects/fly_in/shuttle(T2, src.departure_delay)
 
 		sleep(departure_delay)
 		playsound(target, "sound/misc/ground_rumble_big.ogg", 70, 1)

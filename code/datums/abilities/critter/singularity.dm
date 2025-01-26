@@ -28,11 +28,11 @@
     if (pulse)
       qdel(pulse)
 
-  for (var/mob/M in all_viewers(world.view-1, T))
+  for (var/mob/M in all_viewers(world_view_adjusted(-1), T))
     if (!isliving(M))
       continue
     M.emp_act()
-  for (var/obj/machinery/M in range(world.view-1, T))
+  for (var/obj/machinery/M in range(world_view_adjusted(-1), T))
     M.emp_act()
 
 ////////////////////////////////////////////////////////////////////////////////////////
