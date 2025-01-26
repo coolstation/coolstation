@@ -19,7 +19,7 @@
 			var/obj/machinery/door/firedoor/F = new map_settings.firelock_style(src.loc)
 			F.set_dir(D.dir)
 			F.layer = D.layer + 0.01
-			break
+			return
 		//no doors? probably a line of spawners bridging the hallway
 		for(var/direction in list(NORTH, WEST))
 			var/turf/T = get_step(src, direction)
