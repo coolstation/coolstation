@@ -6670,8 +6670,7 @@
 /area/station/maintenance/outer/north)
 "cWJ" = (
 /obj/machinery/sleep_console{
-	dir = 4;
-	pixel_x = -14
+	dir = 4
 	},
 /turf/floor/bluewhite{
 	dir = 8
@@ -21018,7 +21017,7 @@
 /area/station/crew_quarters/info)
 "iPH" = (
 /obj/machinery/sleeper{
-	dir = 8
+	dir = 4
 	},
 /turf/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -29273,6 +29272,12 @@
 	dir = 9
 	},
 /area/station/hallway/primary/southeast)
+"mfl" = (
+/obj/machinery/sleep_console{
+	dir = 4
+	},
+/turf/floor/blue/checker,
+/area/station/medical/medbay/cloner)
 "mfr" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -35925,11 +35930,10 @@
 	},
 /area/station/medical/robotics)
 "oNK" = (
-/obj/machinery/sleep_console{
-	dir = 4;
-	pixel_x = -14
-	},
 /obj/machinery/light/fluorescent/auto/cool/very,
+/obj/machinery/sleep_console{
+	dir = 4
+	},
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -56565,8 +56569,7 @@
 /area/station/security/main)
 "wWs" = (
 /obj/machinery/sleeper{
-	dir = 4;
-	pixel_x = -14
+	dir = 4
 	},
 /turf/floor/white,
 /area/station/medical/medbay/treatment1)
@@ -97412,7 +97415,7 @@ kVv
 ydA
 ydA
 ydA
-ydA
+mfl
 ydA
 vPC
 icA
