@@ -5209,6 +5209,12 @@
 	dir = 4
 	},
 /area/station/solar/north)
+"ekp" = (
+/obj/machinery/disposal_pipedispenser/mobile{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/maintenance/disposal)
 "ekB" = (
 /obj/machinery/light{
 	dir = 8
@@ -11099,7 +11105,10 @@
 /area/station/security/detectives_office)
 "iLp" = (
 /obj/disposalpipe/segment,
-/obj/railing/purple,
+/obj/machinery/door_control{
+	id = "eject";
+	pixel_x = -25
+	},
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -19189,10 +19198,12 @@
 /obj/decoration/clock{
 	pixel_x = -30
 	},
+/obj/machinery/floorflusher/industrial{
+	id = "eject'"
+	},
 /obj/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/machinery/floorflusher/industrial,
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -23389,16 +23400,6 @@
 	},
 /turf/floor/grey,
 /area/station/bridge/customs)
-"sbM" = (
-/obj/wingrille_spawn/reinforced,
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/station/quartermaster/cargooffice/storefront{
-	mail_tag = "Conveience Store";
-	name = "Convienence Store"
-	})
 "sbQ" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/decal/tile_edge/stripe{
@@ -58418,7 +58419,7 @@ tXg
 dJx
 jnV
 dvV
-xre
+ekp
 xgl
 vpR
 cSH
@@ -75351,7 +75352,7 @@ oxV
 ngg
 jve
 jve
-sbM
+jve
 uTA
 rLR
 tgQ
