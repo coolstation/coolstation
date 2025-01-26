@@ -139,7 +139,7 @@
 					random_brute_damage(M, 20 * effect_mult)
 					M.changeStatus("weakened", 7 SECONDS * effect_mult)
 					M.force_laydown_standup()
-			else
+			else if (THROW_CHAIRFLIP)
 				random_brute_damage(M, 10 * effect_mult)
 				if (!M.hasStatus("weakened"))
 					M.changeStatus("weakened", 4 SECONDS * effect_mult)
@@ -149,6 +149,17 @@
 					src.setStatus("weakened", 3 SECONDS * effect_mult)
 				else
 					src.changeStatus("weakened", 3 SECONDS * effect_mult)
+				src.force_laydown_standup()
+			else
+				random_brute_damage(M, 4 * effect_mult)
+				if (!M.hasStatus("weakened"))
+					M.changeStatus("weakened", 2 SECONDS * effect_mult)
+					M.force_laydown_standup()
+
+				if (src.hasStatus("weakened") && src.getStatusDuration("weakened") < 1 SECONDS * effect_mult)
+					src.setStatus("weakened", 1 SECONDS * effect_mult)
+				else
+					src.changeStatus("weakened", 1 SECONDS * effect_mult)
 				src.force_laydown_standup()
 
 /mob/throw_end(list/params, turf/thrown_from)
