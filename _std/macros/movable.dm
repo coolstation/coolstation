@@ -8,3 +8,20 @@ if(istype(M, /mob/living/carbon/human)){\
 else{\
 	M.anchored = 0;}}\
 while(FALSE)
+
+#define MAKE_DIRECTION_SUBTYPES(path, pixeloffset) ##path/north {\
+	dir = NORTH;\
+	pixel_y = pixeloffset;\
+} \
+##path/south {\
+	dir = SOUTH;\
+	pixel_y = -pixeloffset;\
+} \
+##path/east {\
+	dir = EAST;\
+	pixel_x = pixeloffset;\
+} \
+##path/west {\
+	dir = WEST;\
+	pixel_x = -pixeloffset;\
+}
