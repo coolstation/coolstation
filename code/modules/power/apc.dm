@@ -1583,6 +1583,7 @@ MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 	invisibility = 101
 	anchored = TRUE
 	density = FALSE
+	layer = EFFECTS_LAYER_4 // above all stuff
 
 /obj/apc_helper/New()
 	. = ..()
