@@ -1248,7 +1248,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	name = "AI"
 	linkcolor = "#999999"
 	limit = 1
-	no_late_join = 1
+	//no_late_join = 1
 	high_priority_job = 1
 	allow_traitors = 0
 	cant_spawn_as_rev = 1
@@ -1268,7 +1268,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	name = "Cyborg"
 	linkcolor = "#999999"
 	limit = 8
-	no_late_join = 1
+	//no_late_join = 1
 	allow_traitors = 0
 	cant_spawn_as_rev = 1
 	slot_ears = list()

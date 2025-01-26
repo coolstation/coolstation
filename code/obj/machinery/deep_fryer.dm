@@ -100,6 +100,9 @@ var/list/fryer_recipes
 		src.fryitem = W
 		src.icon_state = "fryer1"
 		if(fucked_up_now_kid)
+			#ifdef DATALOGGER
+			game_stats.Increment("workplacesafety")
+			#endif
 			var/turf/T = get_turf(src)
 			src.visible_message("<span class='alert'>[src] erupts into a disaster of hot oil!</span>")
 			fireflash(T, 2)

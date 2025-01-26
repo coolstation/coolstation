@@ -507,14 +507,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 			if (i == 1)
 				S.icon_state = "health_bar_left"
 				var/sl = barLength - i
-				S.screen_loc = "NORTH+1,[edge]-[sl]"
+				S.screen_loc = "North-1,[edge]-[sl]"
 			else if (i == barLength)
 				S.icon_state = "health_bar_right"
-				S.screen_loc = "NORTH+1,[edge]"
+				S.screen_loc = "North-1,[edge]"
 			else
 				S.icon_state = "health_bar_center"
 				var/sl = barLength - i
-				S.screen_loc = "NORTH+1,[edge]-[sl]"
+				S.screen_loc = "North-1,[edge]-[sl]"
 			barBits += S
 		health_overlay = image('icons/obj/colosseum.dmi', "health")
 
@@ -619,14 +619,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	proc/setWest(var/n)
 		if (n)
-			indicated_icon.screen_loc = "NORTH+1,WEST+[n]"
-		counter.screen_loc = "NORTH+1,WEST+[n+1]"
+			indicated_icon.screen_loc = "North-1,WEST+[n]"
+		counter.screen_loc = "North-1,WEST+[n+1]"
 
 	primary
 		New()
 			..()
-			indicated_icon.screen_loc = "NORTH+1,WEST"
-			counter.screen_loc = "NORTH+1,WEST+1"
+			indicated_icon.screen_loc = "North-1,WEST"
+			counter.screen_loc = "North-1,WEST+1"
 
 		assembleDefault()
 			..()
@@ -641,8 +641,8 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 	secondary
 		New()
 			..()
-			indicated_icon.screen_loc = "NORTH+1,WEST+2"
-			counter.screen_loc = "NORTH+1,WEST+3"
+			indicated_icon.screen_loc = "North-1,WEST+2"
+			counter.screen_loc = "North-1,WEST+3"
 
 		assembleDefault()
 			..()

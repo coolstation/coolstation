@@ -1277,6 +1277,13 @@ obj/trait/pilot
 			var/mob/living/L = owner
 			L.blood_id = "bloodc"
 
+/obj/trait/super_slips
+	name = "Slipping Hazard (+1)"
+	cleanName = "Slipping Hazard"
+	id = "super_slips"
+	desc = "You never were good at managing yourself slipping."
+	points = 1
+
 //Infernal Contract Traits
 /obj/trait/hair
 	name = "Wickedly Good Hair"
