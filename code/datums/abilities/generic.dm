@@ -139,7 +139,7 @@
 					random_brute_damage(M, 20 * effect_mult)
 					M.changeStatus("weakened", 7 SECONDS * effect_mult)
 					M.force_laydown_standup()
-			else if (THROW_CHAIRFLIP)
+			else if (src.throwing & THROW_CHAIRFLIP)
 				random_brute_damage(M, 10 * effect_mult)
 				if (!M.hasStatus("weakened"))
 					M.changeStatus("weakened", 4 SECONDS * effect_mult)
