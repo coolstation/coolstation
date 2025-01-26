@@ -20,6 +20,13 @@
 			F.set_dir(D.dir)
 			F.layer = D.layer + 0.01
 			break
+		//no doors? probably a line of spawners bridging the hallway
+		for(var/direction in list(NORTH, WEST))
+			var/turf/T = get_step(src, direction)
+			if (T.density || (locate(/obj/window) in T) || (locate(/obj/firedoor_spawn) in T) || (locate(/obj/machinery/door/firedoor) in T))
+				var/obj/machinery/door/firedoor/F = new map_settings.firelock_style(src.loc)
+				F.set_dir(turn(direction, 90)) //Chosen test directions bias the doors to be west and south facing. I mostly did that for the latter, because then the writing is the right way up
+				break
 
 /obj/machinery/door/firedoor
 	name = "Firelock"
