@@ -289,8 +289,8 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 500)
-				M.add_stam_mod_max("stims", 500)
+				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
+				M.add_stam_mod_max("stims", 50)
 				M.add_stun_resist_mod("stims", 1000)
 				M.filters += filter(type="displace", icon=icon('icons/effects/distort.dmi', "muscly"), size=0)
 				src.filter = M.filters[length(M.filters)]
