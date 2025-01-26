@@ -834,6 +834,51 @@ datum
 					boutput(M, "<span class='alert'><font face='[pick("Arial", "Georgia", "Impact", "Mucida Console", "Symbol", "Tahoma", "Times New Roman", "Verdana")]' size='[rand(3,6)]'>Holy shit, you start tripping balls!</font></span>")
 				return
 
+		drug/batdrugs
+			name = "bat drugs"
+			id = "batdrugs"
+			description = "Uhhh..."
+			reagent_state = LIQUID
+			fluid_r = 0
+			fluid_g = 0
+			fluid_b = 0
+			transparency = 20
+			viscosity = 0.14
+			thirst_value = -0.1
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				M.druggy = max(M.druggy, 15)
+				if(probmult(11))
+					M.visible_message("<span class='notice'><b>[M.name]</b> screeches!</span>")
+					playsound(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+				if(probmult(9))
+					M.visible_message("<span class='notice'><b>[M.name]</b> squeaks! What the fuck?</span>")
+					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, 2)
+				if(probmult(7))
+					switch(rand(1,2))
+						if(1)
+							var/bats = rand(1,3)
+							for(var/i = 0, i < bats, i++)
+								fake_attackEx(M, 'icons/mob/critter.dmi', "bat-dance", "ghost bat")
+								M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+						if(2)
+							var/scarybats = rand(1,3)
+							for(var/i = 0, i < scarybats, i++)
+								fake_attackEx(M, 'icons/mob/critter.dmi', "scarybat-dance", "wild bat")
+								M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+				if(probmult(20))
+					M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+				..()
+				return
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+				. = ..()
+				if(method == INGEST)
+					M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 50, 1)
+					boutput(M, "<span class='alert'><font face='[pick("Arial", "Georgia", "Impact", "Mucida Console", "Symbol", "Tahoma", "Times New Roman", "Verdana")]' size='[rand(3,6)]'>Holy shit, you start tripping balls!</font></span>")
+				return
+
 		drug/triplemeth
 			name = "triple meth"
 			id = "triplemeth"
