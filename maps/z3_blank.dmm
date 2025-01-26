@@ -6994,7 +6994,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/obj/machinery/power/apc/autoname_north/nopoweralert{
+/obj/machinery/power/apc/autoname/north{
 	environ = 2;
 	equipment = 2;
 	lighting = 2;
@@ -7002,6 +7002,7 @@
 	operating = 0;
 	start_charge = 23
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},

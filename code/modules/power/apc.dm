@@ -71,49 +71,6 @@ var/zapLimiter = 0
 	var/debug = 0
 	mats = 10
 	mechanics_type_override = /obj/machinery/power/apc
-	autoname_north
-		name = "Autoname N APC"
-		dir = NORTH
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
-
-	autoname_east
-		name = "Autoname E APC"
-		dir = EAST
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
-
-	autoname_south
-		name = "Autoname S APC"
-		dir = SOUTH
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
-
-	autoname_west
-		name = "Autoname W APC"
-		dir = WEST
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
 
 	busted //real APC that you want to start busted 4 environmental storytelling (i.e. intending player repair, or because the APC check complains otherwise)
 		start_charge = 4 //no juice left
@@ -1616,11 +1573,13 @@ var/zapLimiter = 0
 	return 1
 
 /obj/machinery/power/apc/autoname
+	icon_state = "apc0" // we dont need the mapping icon for this
 	autoname_on_spawn = 1
 
 MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 
 /obj/apc_helper //we really need a map helper path at this rate
+	icon = 'icons/map-editing/mapeditor.dmi'
 	invisibility = 101
 	anchored = TRUE
 	density = FALSE
@@ -1636,8 +1595,10 @@ MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 	qdel(src)
 
 /obj/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
+	return
 
 /obj/apc_helper/nopoweralert
+	icon_state = "nopoweralert"
 
 /obj/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
