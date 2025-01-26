@@ -1,5 +1,5 @@
-/var/const/OPEN = 1
-/var/const/CLOSED = 2
+#define OPEN 1
+#define CLOSED 2
 
 /obj/firedoor_spawn
 	name = "firedoor spawn"
@@ -270,3 +270,6 @@
 	playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 	return 1
+
+#undef OPEN
+#undef CLOSED
