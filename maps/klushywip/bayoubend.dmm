@@ -3871,6 +3871,9 @@
 	},
 /obj/access_spawn/maint,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
 "deU" = (
@@ -4735,11 +4738,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/floor/wood,
 /area/station/crew_quarters/fitness)
@@ -5744,9 +5742,7 @@
 /obj/table/wood/auto,
 /obj/item/storage/bible,
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "2-8"
 	},
 /turf/floor/carpet/purple/fancy/narrow/T_north,
 /area/station/chapel/sanctuary)
@@ -6297,9 +6293,6 @@
 "fci" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/disposalpipe/segment/mail{
 	dir = 4
 	},
 /obj/cable{
@@ -16280,6 +16273,7 @@
 	},
 /obj/machinery/door/airlock/maintenance,
 /obj/firedoor_spawn,
+/obj/access_spawn/security,
 /turf/floor/plating/random,
 /area/station/hangar/sec)
 "mNf" = (
@@ -20327,6 +20321,10 @@
 	dir = 4
 	},
 /obj/reagent_dispensers/fueltank,
+/obj/disposalpipe/segment/mail{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
 "pKQ" = (
@@ -28525,6 +28523,10 @@
 	pixel_x = 7;
 	pixel_y = -1
 	},
+/obj/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/floor/wood/five,
 /area/station/chapel/sanctuary)
 "wip" = (
@@ -29198,6 +29200,16 @@
 /obj/disposalpipe/segment,
 /turf/floor,
 /area/station/hallway/primary/southwest)
+"wGz" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/quartermaster/cargooffice/storefront{
+	mail_tag = "Conveience Store";
+	name = "Convienence Store"
+	})
 "wGH" = (
 /obj/machinery/vending/computer3,
 /turf/floor/plating/random,
@@ -75364,7 +75376,7 @@ oxV
 ngg
 jve
 jve
-jve
+wGz
 uTA
 rLR
 tgQ
