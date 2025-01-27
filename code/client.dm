@@ -16,7 +16,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	var/stealth = 0
 	var/stealth_hide_fakekey = 0
 	var/alt_key = 0
-	var/flourish = 0
+	var/pizzazz = 0
 	var/pray_l = 0
 	var/fakekey = null
 	var/suicide = 0
