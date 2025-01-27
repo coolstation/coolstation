@@ -2164,17 +2164,6 @@
 	dir = 1
 	},
 /area/space)
-"cca" = (
-/obj/machinery/power/apc/autoname/north,
-/obj/machinery/light/fluorescent/ceiling/cool/very,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/fluorescent/ceiling/cool/very,
-/turf/floor/blue/checker,
-/area/space)
 "ccR" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -2733,7 +2722,10 @@
 /area/space)
 "cPQ" = (
 /obj/storage/crate/rcd,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
+/obj/machinery/light/fluorescent/auto/neutral{
+	dir = 1
+	},
 /turf/floor,
 /area/space)
 "cQF" = (
@@ -2776,7 +2768,7 @@
 /turf/floor/plating,
 /area/space)
 "cTQ" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/yellow/side{
 	dir = 6
 	},
@@ -3117,7 +3109,7 @@
 /turf/floor/plating,
 /area/listeningpost/power)
 "drM" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/red/checker,
 /area/space)
 "drW" = (
@@ -4349,17 +4341,6 @@
 	},
 /turf/floor,
 /area/space)
-"eSA" = (
-/obj/machinery/power/apc/autoname/north{
-	areastring = "Cloning"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/floor/blue/checker,
-/area/space)
 "eTp" = (
 /obj/machinery/computer3/generic/personal,
 /obj/table/auto,
@@ -4593,17 +4574,6 @@
 /turf/floor/red/side{
 	dir = 6
 	},
-/area/space)
-"ffT" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/obj/storage/crate/rcd,
-/obj/machinery/power/apc/autoname/north,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/wall/r_wall,
 /area/space)
 "fgm" = (
 /obj/machinery/camera{
@@ -6190,7 +6160,7 @@
 /turf/floor/red/checker,
 /area/space)
 "gKR" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 9;
 	level = 2
@@ -6386,7 +6356,7 @@
 	},
 /area/space)
 "gXA" = (
-/obj/machinery/power/apc/autoname_north{
+/obj/machinery/power/apc/autoname/north{
 	areastring = "Cloning"
 	},
 /turf/floor/blue/checker,
@@ -7299,19 +7269,6 @@
 "ifk" = (
 /turf/floor/engine/caution/west,
 /area/space)
-"ifv" = (
-/obj/machinery/power/apc/autoname/east,
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 9;
-	level = 2
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/floor/engine,
-/area/space)
 "ifL" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 1;
@@ -7530,6 +7487,7 @@
 /area/listeningpost)
 "iqg" = (
 /obj/machinery/manufacturer/gas,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/yellow/side{
 	dir = 8
 	},
@@ -7562,7 +7520,7 @@
 /turf/floor/grey/blackgrime,
 /area/space)
 "isI" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor,
 /area/space)
 "itj" = (
@@ -8305,7 +8263,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 9
 	},
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/engine,
 /area/space)
 "jlL" = (
@@ -8680,15 +8638,6 @@
 	},
 /obj/storage/closet/welding_supply,
 /turf/floor,
-/area/space)
-"jJX" = (
-/obj/machinery/power/apc/autoname/west,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/wall/r_wall,
 /area/space)
 "jKc" = (
 /obj/machinery/light/emergency,
@@ -9065,6 +9014,7 @@
 /area/space)
 "kmr" = (
 /obj/storage/secure/closet/command/captain,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/wood{
 	icon_state = "wooden"
 	},
@@ -9160,7 +9110,7 @@
 	},
 /area/space)
 "kru" = (
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/engine,
 /area/space)
 "ksL" = (
@@ -9586,17 +9536,6 @@
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/yellow/side{
 	dir = 5
-	},
-/area/space)
-"kMS" = (
-/obj/machinery/power/apc/autoname/east,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/floor/wood{
-	icon_state = "wooden"
 	},
 /area/space)
 "kNN" = (
@@ -10242,7 +10181,7 @@
 	},
 /area/space)
 "lEl" = (
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/yellow/side{
 	dir = 10
 	},
@@ -10430,15 +10369,10 @@
 	},
 /area/space)
 "lVR" = (
-/obj/machinery/power/apc/autoname/east,
 /obj/machinery/light/small/warm{
 	dir = 4
 	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/space)
 "lWi" = (
@@ -11827,7 +11761,7 @@
 /turf/floor/wood/seven,
 /area/space)
 "oVh" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/blue/checker,
 /area/space)
 "oVv" = (
@@ -12281,16 +12215,6 @@
 /area/listeningpost/solars)
 "qwJ" = (
 /obj/machinery/light/emergency,
-/obj/machinery/atmospherics/pipe/simple/insulated/cold{
-	dir = 9
-	},
-/obj/machinery/power/apc/autoname/south,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/emergency,
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
 	},
@@ -12728,15 +12652,6 @@
 	icon_state = "L16"
 	},
 /area/space)
-"rPc" = (
-/obj/machinery/power/apc/autoname/south,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/floor/plating,
-/area/space)
 "rRU" = (
 /obj/machinery/light/emergency,
 /turf/floor/plating,
@@ -12909,7 +12824,6 @@
 	},
 /area/space)
 "stj" = (
-/obj/machinery/power/apc/autoname_east,
 /obj/table/reinforced/auto,
 /obj/machinery/recharger,
 /obj/machinery/light/small/auto,
@@ -13148,15 +13062,6 @@
 	dir = 4
 	},
 /turf/floor/wood/seven,
-/area/space)
-"tdm" = (
-/obj/machinery/power/apc/autoname/east,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/floor/plating,
 /area/space)
 "tdA" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -13757,13 +13662,6 @@
 	icon_state = "wall3_space"
 	},
 /area/abandonedship)
-"uMP" = (
-/obj/machinery/power/apc/autoname_east,
-/obj/machinery/light/small/warm{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/space)
 "uNf" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /obj/machinery/atmospherics/portables_connector{
@@ -13936,12 +13834,6 @@
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "vhP" = (
-/obj/machinery/power/apc/autoname/south,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/small/neutral{
 	dir = 8
 	},
@@ -15088,15 +14980,6 @@
 	dir = 4
 	},
 /turf/floor/red/checker,
-/area/space)
-"xFf" = (
-/obj/machinery/power/apc/autoname/west,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/floor,
 /area/space)
 "xFF" = (
 /turf/shuttle/wall{
@@ -43982,7 +43865,7 @@ mqh
 mrK
 syK
 oWy
-kMS
+yfM
 stj
 syK
 syK
@@ -49369,7 +49252,7 @@ dgw
 oWy
 ykB
 ykB
-jJX
+syK
 gle
 dNT
 qsQ
@@ -52416,8 +52299,8 @@ gHl
 gHl
 oWy
 oVh
-cca
 gXY
+jtC
 gXY
 gXY
 gXY
@@ -56942,7 +56825,7 @@ gXA
 gXY
 gXY
 gXY
-eSA
+gXY
 gXY
 oWy
 ykB
@@ -57826,7 +57709,7 @@ ghV
 oWy
 ykB
 ykB
-ffT
+syK
 cPQ
 ylI
 ylI
@@ -59659,7 +59542,7 @@ xzG
 xzG
 xzG
 syK
-ifv
+gKR
 gIE
 gIE
 gIE
@@ -60583,7 +60466,7 @@ ykB
 ykB
 ykB
 ykB
-rPc
+cTO
 ykB
 wIt
 ylI
@@ -61744,8 +61627,8 @@ ylI
 ylI
 ngC
 dBe
-uMP
-tdm
+ykB
+ykB
 oWy
 pKH
 hEg
@@ -65410,7 +65293,7 @@ gIE
 jzy
 jYy
 gIE
-gIE
+kru
 syK
 syK
 iVb
@@ -67517,7 +67400,7 @@ hyq
 hMY
 hWz
 sYQ
-xFf
+ylI
 iDY
 iYk
 syK
