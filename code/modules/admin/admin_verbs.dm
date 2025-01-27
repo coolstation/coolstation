@@ -148,7 +148,7 @@ var/list/admin_verbs = list(
 		/client/proc/toggle_waddle_walking,
 		/client/proc/admin_toggle_lighting,
 		/client/proc/toggle_death_confetti,
-		/client/proc/toggle_flourish,
+		/client/proc/toggle_pizzazz,
 		/client/proc/toggle_respawn_arena,
 
 		//gamerunning
@@ -1144,7 +1144,7 @@ var/list/fun_images = list()
 	qdel(mymob)
 	H.Equip_Rank("Staff Assistant", 2) //ZeWaka: joined_late is 2 so you don't get announced.
 	H.update_colorful_parts()
-	if (flourish)
+	if (pizzazz)
 		for (var/mob/living/M in oviewers(5, get_turf(H)))
 			M.apply_flash(animation_duration = 30, weak = 5, uncloak_prob = 0, stamina_damage = 250)
 
@@ -1761,7 +1761,7 @@ var/list/fun_images = list()
 	if (istype(src.mob, /mob/dead/observer) || istype(src.mob, /mob/dead/target_observer))
 		out(src, "<span class='alert'>You're already dead, you can't be removed any more than that!</span>")
 		return
-	if (flourish)
+	if (pizzazz)
 		for (var/mob/living/M in oviewers(5, get_turf(src.mob)))
 			M.apply_flash(animation_duration = 30, weak = 5, uncloak_prob = 0, stamina_damage = 250)
 		animate(src.mob, transform = matrix(50, 50, MATRIX_SCALE), time = 15, alpha = 0, easing = CIRCULAR_EASING, flags = EASE_OUT)

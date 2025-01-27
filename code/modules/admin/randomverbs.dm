@@ -553,7 +553,7 @@
 		logTheThing("admin", usr, null, "deleted [O] at ([showCoords(O.x, O.y, O.z)])")
 		logTheThing("diary", usr, null, "deleted [O] at ([showCoords(O.x, O.y, O.z)])", "admin")
 		message_admins("[key_name(usr)] deleted [O] at ([showCoords(O.x, O.y, O.z)])")
-		if (flourish)
+		if (pizzazz)
 			leaving_animation(O)
 		qdel(O)
 		O=null

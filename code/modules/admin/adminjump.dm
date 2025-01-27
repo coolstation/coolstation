@@ -7,7 +7,7 @@
 	admin_only
 
 	if(config.allow_admin_jump)
-		if(flourish)
+		if(pizzazz)
 			shrink_teleport(src.mob)
 		var/list/turfs = get_area_turfs(A, 1)
 		if (length(turfs))
@@ -34,7 +34,7 @@
 		logTheThing("admin", usr, null, "jumped to [showCoords(T.x, T.y, T.z)] in [get_area(T)]")
 		logTheThing("diary", usr, null, "jumped to [showCoords(T.x, T.y, T.z, 1)] in [get_area(T)]", "admin")
 		message_admins("[key_name(usr)] jumped to [showCoords(T.x, T.y, T.z)] in [get_area(T)]")
-		if(flourish)
+		if(pizzazz)
 			shrink_teleport(src.mob)
 
 		usr.set_loc(T)
@@ -59,7 +59,7 @@
 		logTheThing("admin", usr, M, "jumped to [constructTarget(M,"admin")] ([showCoords(M.x, M.y, M.z)] in [get_area(M)])")
 		logTheThing("diary", usr, M, "jumped to [constructTarget(M,"diary")] ([showCoords(M.x, M.y, M.z)] in [get_area(M)])", "admin")
 		message_admins("[key_name(usr)] jumped to [key_name(M)] ([showCoords(M.x, M.y, M.z)] in [get_area(M)])")
-		if(flourish)
+		if(pizzazz)
 			shrink_teleport(src.mob)
 		usr.set_loc(get_turf(M))
 	else
@@ -91,7 +91,7 @@
 		logTheThing("admin", usr, target, "jumped to [constructTarget(target,"admin")] ([showCoords(target.x, target.y, target.z)] in [get_area(target)])")
 		logTheThing("diary", usr, target, "jumped to [constructTarget(target,"diary")] ([showCoords(target.x, target.y, target.z)] in [get_area(target)])", "admin")
 		message_admins("[key_name(usr)] jumped to [key_name(target)] ([showCoords(target.x, target.y, target.z)] in [get_area(target)])")
-		if(flourish)
+		if(pizzazz)
 			shrink_teleport(src.mob)
 		usr.set_loc(target.loc)
 	else
@@ -116,7 +116,7 @@
 			alert("Invalid coordinates")
 			return
 		var/turf/turf = locate(x, y, z)
-		if(flourish)
+		if(pizzazz)
 			shrink_teleport(src.mob)
 		usr.set_loc(turf)
 		logTheThing("admin", usr, null, "jumped to [showCoords(usr.x, usr.y, usr.z)] in [get_area(usr)]")
@@ -317,7 +317,7 @@
 		logTheThing("admin", usr, null, "teleported [target] to their turf ([showCoords(usr.x, usr.y, usr.z)] in [get_area(usr)] from [showCoords(target.x, target.y, target.z)])")
 		logTheThing("diary", usr, null, "teleported [target] to their turf ([showCoords(usr.x, usr.y, usr.z)] in [get_area(usr)] from [showCoords(target.x, target.y, target.z)])", "admin")
 		message_admins("[key_name(usr)] teleported [target] to their turf ([showCoords(usr.x, usr.y, usr.z)] in [get_area(usr)] from [showCoords(target.x, target.y, target.z)])")
-		if(flourish)
+		if(pizzazz)
 			shrink_teleport(target)
 		target:set_loc(get_turf(usr))
 	else
