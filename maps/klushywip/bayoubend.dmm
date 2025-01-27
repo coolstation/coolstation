@@ -8301,8 +8301,13 @@
 /turf/wall/r_wall,
 /area/station/science/bot_storage)
 "gGi" = (
-/obj/machinery/navbeacon/mule/research_north,
 /obj/machinery/light_switch/west,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/radio,
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -17485,6 +17490,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/floor/purple/side{
 	dir = 4
 	},
@@ -22454,15 +22464,16 @@
 /obj/table/auto,
 /obj/machinery/cell_charger,
 /obj/item/cell/supercell/charged{
-	pixel_x = 7;
+	pixel_x = 4;
 	pixel_y = 13
 	},
 /obj/item/cell/supercell/charged{
-	pixel_x = 7;
-	pixel_y = 13
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /obj/item/cell/supercell/charged{
-	pixel_x = 5
+	pixel_x = 4;
+	pixel_y = 0
 	},
 /turf/floor/purple/side{
 	dir = 9
@@ -27396,6 +27407,10 @@
 /obj/machinery/vending/snack,
 /turf/floor,
 /area/station/hallway/primary/north)
+"vfo" = (
+/obj/machinery/vending/pda,
+/turf/floor,
+/area/station/hallway/primary/southwest)
 "vft" = (
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
 /turf/floor/engine,
@@ -29850,6 +29865,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/navbeacon/mule/research_north,
 /turf/floor/purple/side{
 	dir = 5
 	},
@@ -60925,7 +60941,7 @@ sAU
 kht
 wbn
 fwO
-gES
+upX
 gES
 upX
 upX
@@ -62129,9 +62145,9 @@ rhz
 tjx
 rhz
 pbB
-aoI
 nfy
-fQL
+tJo
+vfo
 xkk
 ipT
 ipT
@@ -62431,9 +62447,9 @@ gpi
 tIf
 lJD
 pbB
-qbw
-qbw
-qbw
+aoI
+tJo
+fQL
 xkk
 ipT
 ipT
@@ -62733,10 +62749,10 @@ vBF
 dPU
 ufA
 rhz
-bMk
-bMk
-oQk
-bMk
+qbw
+qbw
+qbw
+xkk
 bMk
 bMk
 vrk
