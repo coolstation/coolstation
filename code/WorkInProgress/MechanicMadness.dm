@@ -1753,7 +1753,7 @@
 			LIGHT_UP_HOUSING
 
 	proc/userSetModel(obj/item/W as obj, mob/user as mob)
-		var/model = tgui_input_list(user, "Set the buffer mode to what?", "Mode Selector", list("FIFO","FILO","ring","random"), buffer_string)
+		var/model = input(user, "Set the buffer mode to what?", "Mode Selector") in list("FIFO","FILO","ring","random")
 		if(!in_interact_range(src, user) || !can_act(user) || isnull(model))
 			return
 		setModel(model)
@@ -1763,7 +1763,7 @@
 
 	//Thanks delay component
 	proc/setDelay(obj/item/W as obj, mob/user as mob)
-		var/inp = tgui_input_number(user, "Enter delay in 10ths of a second:", "Set delay", cooldown_time, 60, 4)
+		var/inp = input(user, "Enter delay in 10ths of a second:", "Set delay", cooldown_time, 60, 4)
 		if(!in_interact_range(src, user) || !can_act(user) || isnull(inp))
 			return
 		inp = min(inp, 60)
@@ -1773,7 +1773,7 @@
 		boutput(user, "Set delay to [inp]")
 
 	proc/setBufferSize(obj/item/W as obj, mob/user as mob)
-		var/inp = tgui_input_number(user,"Set size of signal buffer","Buffer size", buffer_size,buffer_max_size,1)
+		var/inp = input(user,"Set size of signal buffer","Buffer size") as num
 		if(!in_interact_range(src, user) || !can_act(user) || isnull(inp))
 			return
 
