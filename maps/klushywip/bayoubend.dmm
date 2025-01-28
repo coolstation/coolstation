@@ -15023,6 +15023,13 @@
 	},
 /turf/floor/plating/random,
 /area/station/crew_quarters/catering)
+"lQx" = (
+/obj/random_item_spawner/junk/one,
+/obj/landmark{
+	name = "kudzustart"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "lQy" = (
 /obj/stool/chair/office/purple{
 	dir = 8
@@ -17720,6 +17727,15 @@
 	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
+"nPQ" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/outer/ne)
 "nPT" = (
 /obj/grille/catwalk/grey,
 /turf/floor/airless/plating/catwalk,
@@ -26697,6 +26713,16 @@
 "uAj" = (
 /turf/wall,
 /area/station/medical/medbay/pharmacy)
+"uAH" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
+	},
+/obj/landmark{
+	name = "kudzustart"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/east)
 "uAQ" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -30067,6 +30093,9 @@
 /obj/machinery/light/small{
 	dir = 1;
 	status = 2
+	},
+/obj/landmark{
+	name = "blobstart"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
@@ -60274,7 +60303,7 @@ dpJ
 qGW
 ifC
 jXB
-keq
+lQx
 awX
 awX
 pRS
@@ -76862,7 +76891,7 @@ uOD
 bGB
 hdd
 eJd
-rjB
+nPQ
 iwf
 lXq
 hql
@@ -80529,7 +80558,7 @@ rqO
 vRX
 npO
 sAf
-hvF
+uAH
 pvO
 tpt
 iJF
