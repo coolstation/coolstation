@@ -181,7 +181,7 @@
 				// Assign new skull or change value/desc.
 				if (!isnull(skull_type))
 					var/obj/item/skull/new_skull = new skull_type
-					skull_value = new_skull.value // Defined in organ.dm. Copied because there isn't always a need to replace the skull.
+					skull_value = new_skull.trophy_value // Defined in organ.dm. Copied because there isn't always a need to replace the skull.
 
 					if (S.type != new_skull.type)
 						//setup skull AFTER the qdel! otherwise skull gets set to null
@@ -190,16 +190,16 @@
 						new_skull.preddesc = skull_desc
 						new_skull.set_loc(H)
 						H.organHolder.skull = new_skull
-						//DEBUG_MESSAGE("[H]'s skull: [new_skull.type] (V: [new_skull.value], D: [new_skull.preddesc])")
+						//DEBUG_MESSAGE("[H]'s skull: [new_skull.type] (V: [new_skull.trophy_value], D: [new_skull.preddesc])")
 					else
 						qdel(new_skull)
-						S.value = skull_value
+						S.trophy_value = skull_value
 						S.preddesc = skull_desc
-						//DEBUG_MESSAGE("[H]'s skull: [S.type] (V: [S.value], D: [S.preddesc])")
+						//DEBUG_MESSAGE("[H]'s skull: [S.type] (V: [S.trophy_value], D: [S.preddesc])")
 				else
-					S.value = skull_value
+					S.trophy_value = skull_value
 					S.preddesc = skull_desc
-					//DEBUG_MESSAGE("[H]'s skull: [S.type] (V: [S.value], D: [S.preddesc])")
+					//DEBUG_MESSAGE("[H]'s skull: [S.type] (V: [S.trophy_value], D: [S.preddesc])")
 
 	return
 #undef default_skull_value
@@ -219,7 +219,7 @@
 				var/mob/living/carbon/human/H = src
 				if (H.organHolder.skull == S)
 					continue // Your own skull doesn't count, dummy!
-			value += S.value
+			value += S.trophy_value
 	return value
 
 //////////////////////////////////////////// Ability holder /////////////////////////////////////////

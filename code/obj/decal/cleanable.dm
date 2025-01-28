@@ -38,7 +38,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	var/dry_time = 100
 
 	flags = NOSPLASH | FPRINT
-	layer = DECAL_LAYER
+	layer = CLEANABLE_DECAL_LAYER
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	plane = PLANE_NOSHADOW_BELOW
