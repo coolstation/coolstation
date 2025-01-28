@@ -483,8 +483,13 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 ///Where you'd previously chuck turfs directly into area contents, please now call this or atmos might crap out
 /area/proc/add_turf(turf/T) //but that aside why wasn't there a proc for turfs entering areas before?
 	if (!istype(T)) return
+	var/area/old_area = T.loc
+	fill_list_with_lists(old_area.bad_turfs_by_z, T.z)
+	fill_list_with_lists(turfs_by_z, T.z)
+	old_area.bad_turfs_by_z[T.z] += T
+	turfs_by_z[T.z] += T
 	contents += T
-	if (src.is_atmos_simulated && !T.air)
+	if (is_atmos_simulated && !T.air)
 		T.instantiate_air()
 
 /area/space // the base area you SHOULD be using for space/ocean/etc.
