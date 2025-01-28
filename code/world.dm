@@ -82,46 +82,11 @@ var/global/mob/twitch_mob = 0
 		for(var/i in old_len+1 to target_len)
 			target[i] = list()
 
-/area
-	var/list/list/turf/turfs_by_z = list()
-	var/list/list/turf/bad_turfs_by_z = list() //shit we need to remove
-
 /world/proc/rebuild_area_turfs(z) // dont call this
 	for(var/turf/turf as anything in block(locate(1,1,z), locate(world.maxx,world.maxy,z)))
 		var/area/turf_area = turf.loc
 		fill_list_with_lists(turf_area.turfs_by_z, z)
 		turf_area.turfs_by_z[z] += turf
-
-/area/proc/fix_contained_turfs_on_z(z)
-	if (z <= length(bad_turfs_by_z) && z <= length(turfs_by_z))
-		turfs_by_z[z] -= bad_turfs_by_z[z]
-	var/L = length(bad_turfs_by_z)
-	for (var/i = length(bad_turfs_by_z); i != 0; i--)
-		if (i > 0 && length(bad_turfs_by_z[i]))
-			break
-		L = i
-	if (L < length(bad_turfs_by_z))
-		bad_turfs_by_z.len = L
-	if (L >= z)
-		bad_turfs_by_z[z] = list()
-
-/area/proc/fix_contained_turfs()
-	for (var/z in 1 to length(bad_turfs_by_z))
-		fix_contained_turfs_on_z(z)
-	bad_turfs_by_z = list()
-
-/area/proc/get_z_lists()
-	if(length(bad_turfs_by_z))
-		fix_contained_turfs()
-	. = list()
-	for (var/list/turfs as anything in turfs_by_z)
-		if (length(turfs))
-			. += list(turfs)
-
-/area/proc/get_all_turfs()
-	. = list()
-	for (var/list/z_list as anything in get_z_lists())
-		. += z_list
 
 /world/proc/load_mode()
 #ifdef OVERRIDDEN_MODE

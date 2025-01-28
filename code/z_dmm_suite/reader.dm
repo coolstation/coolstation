@@ -213,9 +213,8 @@ dmm_suite
 			if(ispath(atomPath, /area))
 				var/area/old_area = location.loc
 				var/area/new_area = new atomPath(locate(xcrd, ycrd, zcrd))
-				fill_list_with_lists(old_area.bad_turfs_by_z, zcrd)
 				fill_list_with_lists(new_area.turfs_by_z, zcrd)
-				old_area.bad_turfs_by_z[zcrd] += location
+				old_area.turfs_by_z[zcrd] -= location
 				new_area.turfs_by_z[zcrd] += location
 				location.dmm_preloader = null
 			// Handle Underlay Turfs

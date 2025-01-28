@@ -83,6 +83,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/tmp/used_environ = 0
 	var/expandable = 1
 
+	var/list/list/turf/turfs_by_z = list()
+
 	//set a mail tag for areas, for auto-tag and construction purposes
 	//cool to use caps and spaces, no big deal, i think,
 	var/mail_tag = null
@@ -484,13 +486,24 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 /area/proc/add_turf(turf/T) //but that aside why wasn't there a proc for turfs entering areas before?
 	if (!istype(T)) return
 	var/area/old_area = T.loc
-	fill_list_with_lists(old_area.bad_turfs_by_z, T.z)
 	fill_list_with_lists(turfs_by_z, T.z)
-	old_area.bad_turfs_by_z[T.z] += T
+	old_area.turfs_by_z[T.z] -= T
 	turfs_by_z[T.z] += T
 	contents += T
 	if (is_atmos_simulated && !T.air)
 		T.instantiate_air()
+
+
+/area/proc/get_z_lists()
+	. = list()
+	for (var/list/turfs as anything in turfs_by_z)
+		if (length(turfs))
+			. += list(turfs)
+
+/area/proc/get_all_turfs()
+	. = list()
+	for (var/list/z_list as anything in get_z_lists())
+		. += z_list
 
 /area/space // the base area you SHOULD be using for space/ocean/etc.
 	//these are the defaults but just in case someone messes with those
