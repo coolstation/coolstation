@@ -354,16 +354,18 @@
 	var/when_next_ready = 0
 	var/list/particle_list
 	var/mob/owner = null
+	var/process_fast = FALSE //Process will be called at 2.8s intervals instead of 0.4
+
 
 	New()
 		particle_list = new/list()
 		AddComponent(/datum/component/mechanics_holder)
-		processing_items |= src
+		processing_mechanics |= src
 		return ..()
 
 
 	disposing()
-		processing_items.Remove(src)
+		processing_mechanics.Remove(src)
 		clear_owner()
 		..()
 
@@ -1852,9 +1854,9 @@
 			LIGHT_UP_HOUSING
 			flick("[under_floor ? "u":""]comp_buffer1", src)
 			var/transmissionStyle = changesig ? COMSIG_MECHCOMP_TRANSMIT_DEFAULT_MSG : COMSIG_MECHCOMP_TRANSMIT_MSG
-			SPAWN(0) SEND_SIGNAL(src,transmissionStyle,signal)
+			SPAWN_DBG(0) SEND_SIGNAL(src,transmissionStyle,signal)
 
-	update_icon()
+	updateIcon()
 		icon_state = "[under_floor ? "u":""]comp_buffer"
 
 
