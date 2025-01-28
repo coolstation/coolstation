@@ -6114,10 +6114,10 @@
 "aOZ" = (
 /obj/machinery/power/apc{
 	name = "S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	start_charge = 13
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -7492,10 +7492,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -7615,10 +7615,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -8439,10 +8439,10 @@
 /obj/machinery/light,
 /obj/machinery/power/apc{
 	name = "S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	start_charge = 13
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -9316,10 +9316,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -10110,10 +10110,10 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "E APC";
-	noalerts = 1;
 	pixel_x = 24;
 	start_charge = 13
 	},
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -23592,10 +23592,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/apc_helper/nopoweralert,
 /turf/floor/plating/scorched,
 /area/crater)
 "bQx" = (

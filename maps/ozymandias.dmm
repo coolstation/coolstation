@@ -522,7 +522,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/sanitary,
 /area/station/science/restroom)
 "aiP" = (
@@ -734,7 +734,7 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/instrument/whistle,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -1133,7 +1133,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -1222,7 +1222,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/escape{
 	dir = 1
 	},
@@ -1232,7 +1232,7 @@
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "ars" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -1754,7 +1754,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "azu" = (
@@ -2306,7 +2306,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/station/atmos/hookups/southwest)
 "aHv" = (
@@ -2524,7 +2524,7 @@
 /area/station/security/detectives_office)
 "aKy" = (
 /obj/stool/bench/yellow/auto,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2824,7 +2824,7 @@
 	pixel_y = 4
 	},
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/purpleblack,
 /area/station/science/chemistry)
 "aPq" = (
@@ -3611,7 +3611,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/disposalpipe/segment/vertical,
 /turf/floor/orangeblack/side{
 	dir = 8
@@ -4329,7 +4329,7 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "bjy" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -4900,7 +4900,7 @@
 /obj/table/wood/auto,
 /obj/item/reagent_containers/glass/bottle/holywater,
 /obj/item/reagent_containers/glass/bottle/holywater,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -5020,7 +5020,7 @@
 /turf/floor/grey,
 /area/station/engine/engineering/ce)
 "bvA" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -5313,7 +5313,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/white,
 /area/station/medical/medbay/treatment2)
 "bzu" = (
@@ -5991,7 +5991,8 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -6242,7 +6243,7 @@
 /obj/landmark/start{
 	name = "Janitor"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -6288,7 +6289,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey/side{
 	dir = 1
 	},
@@ -7419,7 +7420,8 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west/nopoweralert,
+/obj/machinery/power/apc/autoname/west,
+/obj/apc_helper/nopoweralert,
 /turf/floor/plating/random,
 /area/station/hallway/secondary/construction{
 	name = "The Warrens"
@@ -7816,7 +7818,7 @@
 /turf/floor/grey/side,
 /area/station/medical/staff)
 "ckC" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -8315,7 +8317,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/grime,
 /area/station/storage/warehouse)
@@ -8758,7 +8760,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey/side{
 	dir = 1
 	},
@@ -8943,7 +8945,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/black,
 /area/station/medical/head)
 "cBz" = (
@@ -8951,7 +8953,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/nw)
 "cBR" = (
@@ -9390,7 +9392,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet/red/fancy/edge/ne,
 /area/station/security/secoffquarters)
 "cHY" = (
@@ -9546,7 +9548,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/grey,
 /area/station/security/secwing{
 	do_not_irradiate = 1;
@@ -10545,7 +10547,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grey,
 /area/station/security/interrogation)
 "cXo" = (
@@ -10822,7 +10824,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey/side{
 	dir = 1
 	},
@@ -10981,7 +10983,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/sanitary,
 /area/station/hangar/medical)
 "dej" = (
@@ -11547,7 +11549,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/light{
 	dir = 8;
 	layer = 9.1;
@@ -13076,7 +13078,7 @@
 	dir = 8;
 	pixel_x = -10
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -13414,7 +13416,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet/red/fancy/edge/nw,
 /area/station/security/quarters)
 "dLT" = (
@@ -13904,7 +13906,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/bar)
 "dSz" = (
@@ -14498,7 +14500,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/green/side{
 	dir = 4
 	},
@@ -14883,7 +14885,7 @@
 	pixel_x = 11;
 	pixel_y = 3
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -14936,7 +14938,7 @@
 /obj/item/clothing/suit/bedsheet/cape/red,
 /obj/item/clothing/suit/bedsheet/cape/blue,
 /obj/item/clothing/suit/bedsheet/cape/green,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -15295,7 +15297,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -15772,7 +15774,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/grass,
 /area/station/crew_quarters/market)
 "euj" = (
@@ -15814,7 +15816,7 @@
 /area/station/security/brig/genpop)
 "euA" = (
 /obj/storage/secure/closet/security/forensics,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -15882,7 +15884,7 @@
 /turf/floor/plating,
 /area/station/bridge)
 "evY" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -15911,7 +15913,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/storage/crate/medical,
 /turf/floor/yellow/checker,
 /area/station/routing{
@@ -16237,7 +16239,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/machinery/shieldgenerator/energy_shield,
 /turf/floor/yellow/side{
 	dir = 8
@@ -16745,7 +16747,7 @@
 /obj/machinery/disposal/brig{
 	name = "med-sci checkpoint chute"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -16904,7 +16906,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/east)
 "eKP" = (
@@ -17145,7 +17147,7 @@
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
 /obj/item/tank/jetpack,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -19061,7 +19063,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/light_switch/north{
 	pixel_x = -12
 	},
@@ -21292,7 +21294,7 @@
 	name = "Officers' Lounge"
 	})
 "fXe" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable,
 /turf/floor/plating,
 /area/station/maintenance/west)
@@ -21357,7 +21359,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/black/side,
 /area/station/hangar/main)
 "fYb" = (
@@ -21450,7 +21452,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -23190,7 +23192,7 @@
 /turf/space,
 /area/station/solar/south)
 "gvk" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -23226,7 +23228,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/wood/two,
 /area/station/medical/breakroom)
 "gvs" = (
@@ -23587,7 +23589,7 @@
 /obj/item/clothing/glasses/sunglasses{
 	pixel_x = -3
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -24810,7 +24812,7 @@
 	name = "VR simulation pod";
 	network = "arcadevr"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -25670,7 +25672,7 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -26782,7 +26784,7 @@
 /obj/table/auto,
 /obj/item/paper_bin,
 /obj/item/pen,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -27612,7 +27614,7 @@
 "hBd" = (
 /obj/reagent_dispensers/fueltank,
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/yellow/side,
 /area/station/engine/proto)
 "hBe" = (
@@ -29873,7 +29875,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/yellow/checker,
 /area/station/routing/catering{
 	name = "Catering Router"
@@ -30057,7 +30059,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/disposalpipe/segment/morgue,
 /turf/floor/sanitary/white,
 /area/station/medical/crematorium)
@@ -31476,7 +31478,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/neutral/side{
 	dir = 4
 	},
@@ -32096,7 +32098,7 @@
 /turf/floor/red,
 /area/station/security/main)
 "iOd" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -32946,7 +32948,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 4
 	},
@@ -33017,7 +33019,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/grey/side,
 /area/station/maintenance/solar/west)
 "jdr" = (
@@ -34357,7 +34359,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/caution/westeast,
 /area/station/quartermaster/cargobay)
 "jwz" = (
@@ -35165,7 +35167,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/stool/chair/office{
 	dir = 8
 	},
@@ -35716,7 +35718,7 @@
 "jOb" = (
 /obj/table/wood/auto,
 /obj/machinery/light/lamp,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -36513,7 +36515,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/sanitary/white,
 /area/station/medical/morgue)
 "jYZ" = (
@@ -36601,7 +36603,7 @@
 	dir = 8
 	},
 /obj/cable,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "kae" = (
@@ -36674,7 +36676,7 @@
 	desc = "A human heart, grody. How long has it been in that freezer?";
 	name = "funky ol' heart"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -36726,7 +36728,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/disposalpipe/trunk/morgue,
 /obj/machinery/disposal/morgue,
 /turf/floor/sanitary/white,
@@ -37022,7 +37024,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "kfg" = (
@@ -37385,7 +37387,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/caution/north,
 /area/station/science/lab)
 "kjf" = (
@@ -37933,7 +37935,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/engine,
 /area/station/security/armory)
 "krb" = (
@@ -38677,7 +38679,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/blueblack{
 	dir = 1
 	},
@@ -39373,7 +39375,7 @@
 /turf/floor,
 /area/station/security/processing)
 "kNe" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -39463,7 +39465,7 @@
 	pixel_y = 7
 	},
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/red/checker,
 /area/station/medical/medbooth)
 "kOp" = (
@@ -40174,7 +40176,7 @@
 /turf/floor/sanitary,
 /area/station/medical/crematorium)
 "kYT" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -40292,7 +40294,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/wood,
 /area/station/crew_quarters/info{
 	name = "Book Nook"
@@ -40784,7 +40786,7 @@
 /area/station/crew_quarters/catering)
 "lhi" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/black,
 /area/station/chapel/sanctuary)
 "lhp" = (
@@ -41015,7 +41017,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/storage/closet/janitor,
 /turf/floor/specialroom/arcade,
 /area/station/janitor/office)
@@ -41539,7 +41541,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
@@ -41841,7 +41843,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/white,
 /area/station/medical/cdc)
 "lwP" = (
@@ -42121,7 +42123,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -43021,7 +43023,7 @@
 /area/station/security/brig)
 "lJZ" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/disposalpipe/segment/morgue,
 /turf/floor/neutral/side{
 	dir = 4
@@ -43181,7 +43183,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey/side{
 	dir = 1
 	},
@@ -43463,7 +43465,7 @@
 /turf/floor/engine,
 /area/station/science/lab)
 "lPC" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -43532,7 +43534,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating,
 /area/station/atmos/hookups/east{
 	name = "Command Air Hookups"
@@ -43967,7 +43969,7 @@
 /turf/floor/black/grime,
 /area/station/science/storage)
 "lWl" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -45582,7 +45584,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/yellowblack{
 	dir = 8
 	},
@@ -46184,7 +46186,7 @@
 "myt" = (
 /obj/reagent_dispensers/fueltank,
 /obj/cable,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/orangeblack/side{
 	dir = 6
 	},
@@ -46859,7 +46861,7 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "mIk" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -49596,7 +49598,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/decal/garland/ephemeral{
 	dir = 8;
 	pixel_x = 14
@@ -50409,7 +50411,8 @@
 /area/station/crew_quarters/fitness)
 "nGE" = (
 /obj/machinery/space_heater,
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -50920,7 +50923,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/black,
 /area/station/crew_quarters/catering)
 "nOw" = (
@@ -51333,7 +51336,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/sanitary/white,
 /area/station/bridge/captain)
 "nSQ" = (
@@ -51948,7 +51951,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grey,
 /area/station/crewquarters/cryotron)
 "obp" = (
@@ -52365,7 +52368,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/black,
 /area/station/crew_quarters/cafeteria)
 "ohv" = (
@@ -53005,7 +53008,7 @@
 "ooa" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
 /obj/stool/bench/red/auto,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -53513,7 +53516,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/green/checker,
 /area/station/storage/emergency)
 "ovn" = (
@@ -53705,7 +53708,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor,
 /area/station/hangar/science)
 "oyk" = (
@@ -54050,7 +54053,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/science/gen_storage)
 "oCW" = (
@@ -55563,7 +55566,7 @@
 /area/station/science/teleporter)
 "oZN" = (
 /obj/reagent_dispensers/foamtank,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -55799,7 +55802,7 @@
 /area/station/crew_quarters/sauna)
 "pbP" = (
 /obj/shrub,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -56165,7 +56168,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/blue/checker,
 /area/station/crew_quarters/pool)
 "pjf" = (
@@ -56875,7 +56878,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/arrival{
 	dir = 8
 	},
@@ -57755,7 +57758,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/black,
 /area/station/turret_protected/Zeta)
 "pFN" = (
@@ -58019,7 +58022,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/white,
 /area/station/medical/medbay/treatment1)
 "pJD" = (
@@ -58235,7 +58238,7 @@
 	},
 /area/station/engine/power)
 "pMn" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -58590,7 +58593,7 @@
 /area/station/medical/medbay)
 "pRm" = (
 /obj/storage/closet/radiation,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -59928,7 +59931,7 @@
 /turf/floor/bluewhite,
 /area/station/medical/medbay)
 "qlE" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -60328,7 +60331,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/black,
 /area/station/crew_quarters/hor{
 	name = "Research Director's Office"
@@ -60373,7 +60376,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grass,
 /area/station/medical/dome)
 "qrv" = (
@@ -60985,7 +60988,7 @@
 /area/station/security/armory)
 "qzN" = (
 /obj/random_item_spawner/junk/one_or_zero,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -61306,7 +61309,7 @@
 /turf/floor/grass/leafy,
 /area/station/garden/aviary)
 "qDK" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -62215,7 +62218,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/machinery/door_timer/minibrig2/new_walls/east{
 	pixel_y = -11
 	},
@@ -62391,7 +62394,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/stool/chair,
 /turf/floor/wood/two,
 /area/station/crew_quarters/lounge/backstage)
@@ -63860,7 +63863,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/wood/two,
 /area/station/medical/medbay/lobby)
 "rmq" = (
@@ -63955,7 +63958,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/engine/caution/south,
 /area/station/science/teleporter)
 "rnv" = (
@@ -64099,7 +64102,7 @@
 	},
 /area/station/hallway/secondary/exit)
 "rpB" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -64284,7 +64287,7 @@
 /area/station/medical/dome)
 "rsm" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southeast,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -64484,7 +64487,7 @@
 /area/station/bridge)
 "rvw" = (
 /obj/storage/closet/office,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -65055,7 +65058,7 @@
 /turf/floor/orangeblack/side,
 /area/station/quartermaster/office)
 "rCm" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -65554,7 +65557,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -65597,7 +65600,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/black,
 /area/station/bridge/customs{
 	name = "Bridge Reception"
@@ -66025,7 +66028,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor,
 /area/station/hallway/primary/north)
 "rPp" = (
@@ -66406,7 +66409,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/darkblue/checker,
 /area/station/medical/medbay/treatment)
 "rTV" = (
@@ -66716,7 +66719,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/black,
 /area/station/medical/robotics)
 "rXx" = (
@@ -67436,7 +67439,7 @@
 /turf/floor,
 /area/station/engine/gas)
 "siH" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -68372,7 +68375,7 @@
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -69413,7 +69416,7 @@
 	pixel_y = 6
 	},
 /obj/item/reagent_containers/food/snacks/cookie/chocolate_chip,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -69534,7 +69537,7 @@
 /area/station/engine/engineering)
 "sIB" = (
 /obj/stool/bench/red/auto,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -71808,7 +71811,7 @@
 "tkF" = (
 /obj/machinery/vending/security,
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/black,
 /area/station/bridge)
 "tkG" = (
@@ -72590,7 +72593,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/purple/side{
 	dir = 1
 	},
@@ -72685,7 +72688,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/yellow/checker,
 /area/station/storage/tools)
 "tvg" = (
@@ -72983,7 +72986,7 @@
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice)
 "tyu" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -73546,7 +73549,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/yellow/checker,
 /area/station/routing/airbridge{
 	name = "Vessel Dock Router"
@@ -74776,7 +74779,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/green/checker,
 /area/station/storage/emergency2)
 "tXm" = (
@@ -75381,7 +75384,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/east)
 "ufA" = (
@@ -77061,7 +77064,7 @@
 	},
 /area/station/hallway/primary/north)
 "uAM" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -78471,7 +78474,7 @@
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -79270,7 +79273,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor,
 /area/station/hallway/primary/east)
 "vbS" = (
@@ -79496,7 +79499,8 @@
 	icon_state = "chair_couch-blue";
 	name = "ratty blue couch"
 	},
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -79690,7 +79694,7 @@
 	})
 "vhG" = (
 /obj/machinery/hydro_growlamp,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -79872,7 +79876,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/bluewhite{
 	dir = 4
 	},
@@ -80138,7 +80142,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
 "vnA" = (
@@ -80706,7 +80710,7 @@
 	})
 "vue" = (
 /obj/stool/chair,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -82299,7 +82303,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/station/maintenance/inner/north)
 "vMM" = (
@@ -82311,7 +82315,7 @@
 	},
 /area/station/crew_quarters/jazz)
 "vMS" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -83276,7 +83280,7 @@
 /obj/stool/chair/office/yellow{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -84961,7 +84965,7 @@
 /area/station/medical/medbay/lobby)
 "wvL" = (
 /obj/machinery/manufacturer/mining,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -85488,7 +85492,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/carpet/purple/fancy/edge/ne,
 /area/station/crew_quarters/hor/horprivate)
 "wAM" = (
@@ -85621,7 +85625,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/sanitary,
 /area/station/crew_quarters/toilets{
 	name = "Dockside Restroom"
@@ -85656,7 +85660,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey/blackgrime,
 /area/station/storage/tech)
 "wDA" = (
@@ -85811,7 +85815,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/machinery/atmospherics/unary/cold_sink/freezer{
 	dir = 8
 	},
@@ -85838,7 +85842,7 @@
 "wFj" = (
 /obj/table/wood/auto,
 /obj/item/deconstructor,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -85984,7 +85988,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grass/leafy,
 /area/station/garden/aviary)
 "wGF" = (
@@ -86113,7 +86117,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey,
 /area/station/crew_quarters/quarters{
 	name = "Chapel Reception"
@@ -86451,7 +86455,7 @@
 /area/station/science/teleporter)
 "wNq" = (
 /obj/machinery/portable_atmospherics/pump,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -88627,7 +88631,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/purpleblack{
 	dir = 4
 	},
@@ -89383,7 +89387,7 @@
 /turf/floor/wood,
 /area/station/crew_quarters/sauna)
 "xxF" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -89520,7 +89524,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet/red/fancy/edge/ne,
 /area/station/security/hos)
 "xza" = (
@@ -90314,7 +90318,7 @@
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
 "xID" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -90803,7 +90807,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/caution/south,
 /area/station/atmos/hookups/west)
 "xOn" = (
@@ -91299,7 +91303,7 @@
 /turf/floor/grey,
 /area/station/crew_quarters/catering)
 "xVp" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -91630,7 +91634,7 @@
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "xZz" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},

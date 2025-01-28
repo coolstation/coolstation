@@ -71,49 +71,6 @@ var/zapLimiter = 0
 	var/debug = 0
 	mats = 10
 	mechanics_type_override = /obj/machinery/power/apc
-	autoname_north
-		name = "Autoname N APC"
-		dir = NORTH
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
-
-	autoname_east
-		name = "Autoname E APC"
-		dir = EAST
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
-
-	autoname_south
-		name = "Autoname S APC"
-		dir = SOUTH
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
-
-	autoname_west
-		name = "Autoname W APC"
-		dir = WEST
-		autoname_on_spawn = 1
-
-		nopoweralert
-			noalerts = 1
-		noaicontrol
-			noalerts = 1
-			aidisabled = 1
 
 	busted //real APC that you want to start busted 4 environmental storytelling (i.e. intending player repair, or because the APC check complains otherwise)
 		start_charge = 4 //no juice left
@@ -154,9 +111,9 @@ var/zapLimiter = 0
 
 	tdir = dir		// to fix Vars bug
 	// dir = SOUTH
-
-	pixel_x = (tdir & 3)? 0 : (tdir == 4 ? 24 : -24)
-	pixel_y = (tdir & 3)? (tdir ==1 ? 24 : -24) : 0
+	if(pixel_x == 0 && pixel_y == 0) //auto offset the APCs if they dont have directional variants because i am not remapping every azone APC (actually i could just run updatepaths)
+		pixel_x = (tdir & 3)? 0 : (tdir == 4 ? 24 : -24)
+		pixel_y = (tdir & 3)? (tdir ==1 ? 24 : -24) : 0
 
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)
@@ -1614,3 +1571,42 @@ var/zapLimiter = 0
 /obj/machinery/power/apc/powered()
 	//Always powered
 	return 1
+
+/obj/machinery/power/apc/autoname
+	icon_state = "apc0" // we dont need the mapping icon for this
+	autoname_on_spawn = 1
+
+MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
+
+/obj/apc_helper //we really need a map helper path at this rate
+	icon = 'icons/map-editing/mapeditor.dmi'
+	invisibility = 101
+	anchored = TRUE
+	density = FALSE
+	layer = EFFECTS_LAYER_4 // above all stuff
+
+/obj/apc_helper/New()
+	. = ..()
+	var/obj/machinery/power/apc/apc = locate() in loc
+	if(isnull(apc))
+		stack_trace("apc helper at [x] [y] [z] has not found an apc")
+		qdel(src)
+		return
+	act_on(apc)
+	qdel(src)
+
+/obj/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
+	return
+
+/obj/apc_helper/nopoweralert
+	icon_state = "nopoweralert"
+
+/obj/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
+	apc.noalerts = TRUE
+
+/obj/apc_helper/noaicontrol
+	icon_state = "noaicontrol"
+
+/obj/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
+	apc.noalerts = TRUE
+	apc.aidisabled = TRUE
