@@ -6,8 +6,8 @@
 #define CATWALK_LAYER 		(TURF_LAYER+0.13)
 #define CABLE_LAYER 		(TURF_LAYER+0.14)
 #define CATWALK_OVERPIPE	(TURF_LAYER+0.15)
+#define CLEANABLE_DECAL_LAYER	(TURF_LAYER+0.155) // just about under valves and stuff
 #define PIPE_MACHINE_LAYER 	(TURF_LAYER+0.16)
-#define CLEANABLE_DECAL_LAYER	(TURF_LAYER+0.165) // just about under valves and stuff
 #define PIPE_OVERCAT		(TURF_LAYER+0.17)
 #define DECAL_LAYER 		(TURF_LAYER+0.2)
 #define FLUID_LAYER 		(TURF_LAYER+0.25)
