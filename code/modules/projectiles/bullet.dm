@@ -98,7 +98,7 @@ toxic - poisons
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 	casing = /obj/item/casing/small
 	caliber = 0.31
-	icon_turf_hit = "bhole-small"
+	icon_turf_hit = null //plastic, doesn't leave holes, sure why not
 
 /datum/projectile/bullet/pistol_weak/HP
 	power = 35
@@ -108,6 +108,7 @@ toxic - poisons
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 
 /datum/projectile/bullet/pistol_weak/stunners
+//basically baton rounds in bullet form, does not penetrate or shock, but does knock the wind out of you if hit in chest (hmm, losebreath?) and sometimes disorient, possibly disarm if hit in limb, possibly knockout if hit in head (aim for head, actually hit mob, roll to hit head)
 	name = "stun bullet"
 	power = 20
 	ks_ratio = 0.0
@@ -115,7 +116,7 @@ toxic - poisons
 	damage_type = D_ENERGY // FUCK YOU.
 	hit_type = null
 	jam_mult = 0.9
-	icon_turf_hit = null // stun bullets shouldn't actually enter walls should they?
+	icon_turf_hit = null // stun bullets don't make holes
 
 	/* this is now handled in the projectile parent on_hit for all ks_ratio 0.0 weapons.
 	on_hit(atom/hit) // adding this so these work like taser shots I guess, if this sucks feel free to remove it
@@ -259,13 +260,14 @@ soon it will go away */
 	jam_mult = 1
 	implanted = /obj/item/implant/projectile/bullet_rifle_weak
 	caliber = 0.31
-	icon_turf_hit = "bhole-small"
+	icon_turf_hit = null //also plastic
 	casing = /obj/item/casing/medium
 
 /datum/projectile/bullet/rifle_weak/AP
 	power = 35
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
+	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_weak
 
 //Italian long
