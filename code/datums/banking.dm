@@ -4,6 +4,8 @@
 // THE REASON I SAY THIS IS BECAUSE WE CAN ADD A DATACORE OR SOMETHING THAT CAN BE BLOWN UP
 // AND ALL THE MONEY WILL BE GONE
 
+#define CREDIT_SIGN "$"
+
 /datum/wage_system
 
 	// Stations budget
@@ -492,17 +494,17 @@
 	///I know we already have department job lists but they suck and are brittle and way too general so I made my own here
 	var/static/list/departments = list(
 		"Stationwide" = list(),
-		"Genetics" = list(/datum/job/research/geneticist),
-		"Robotics" = list(/datum/job/research/roboticist),
-		"Cargo" = list(/datum/job/engineering/quartermaster, /datum/job/civilian/mail_courier),
-		"Mining" = list(/datum/job/engineering/miner),
-		"Engineering" = list(/datum/job/engineering/engineer, /datum/job/engineering/technical_assistant, /datum/job/command/chief_engineer),
-		"Research" = list(/datum/job/research/scientist, /datum/job/research/research_assistant, /datum/job/command/research_director),
-		"Catering" = list(/datum/job/civilian/chef, /datum/job/civilian/bartender, /datum/job/special/souschef, /datum/job/daily/waiter),
+		"Genetics" = list(/datum/job/medical/geneticist),
+		"Robotics" = list(/datum/job/medical/roboticist),
+		"Cargo" = list(/datum/job/command/quartermaster, /datum/job/logistics/cargotechnician),
+		"Mining" = list(/datum/job/logistics/miner),
+		"Engineering" = list(/datum/job/engineering/engineer, /datum/job/command/chief_engineer),
+		"Research" = list(/datum/job/research/scientist, /datum/job/command/research_director),
+		"Catering" = list(/datum/job/civilian/chef, /datum/job/civilian/bartender),
 		"Hydroponics" = list(/datum/job/civilian/botanist, /datum/job/civilian/rancher),
 		"Security" = list(/datum/job/security, /datum/job/command/head_of_security),
-		"Medical" = list(/datum/job/research/medical_doctor, /datum/job/research/medical_assistant, /datum/job/command/medical_director),
-		"Civilian" = list(/datum/job/civilian/janitor, /datum/job/civilian/chaplain, /datum/job/civilian/staff_assistant, /datum/job/civilian/clown,\
+		"Medical" = list(/datum/job/medical/medical_doctor, /datum/job/command/medical_director),
+		"Civilian" = list(/datum/job/logistics/janitor, /datum/job/civilian/chaplain, /datum/job/civilian/staff_assistant, /datum/job/civilian/clown,\
 		/datum/job/special) //Who really makes the world go round? At least one of these guys
 							//I can live with the sous chef getting paid in two categories
 							//If you have a special role and you're on the manifest everything is probably normal
@@ -539,7 +541,9 @@
 						if (wagesystem.pay_active) dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Suspend Payroll</A>"
 						else dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Resume Payroll</A>"
 						dat += {"<BR><br><A href='byond://?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
+
 						<BR><br>
+						<A href='byond://?src=\ref[src];bonus=1'>Issue Staff Bonus</A>
 						<BR><br><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
 						<BR><br>"}
 					if(2.0)
@@ -697,8 +701,8 @@
 					if (!department)
 						return
 
-					var/list/datum/db_record/lucky_crew = list()
-					for (var/datum/db_record/record in data_core.bank.records)
+					var/list/datum/data/record/lucky_crew = list()
+					for (var/datum/data/record/record in data_core.bank)
 						if(department == "Stationwide")
 							lucky_crew += record
 							continue
@@ -737,13 +741,13 @@
 						boutput(usr, SPAN_ALERT("Total bonus cost would be [bonus_total][CREDIT_SIGN], payroll budget is only [wagesystem.station_budget][CREDIT_SIGN]!"))
 						return
 
-					logTheThing(LOG_STATION, usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
+					logTheThing("diary", usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
 					src.bonus_rate_limit_time = world.time + (5 MINUTES)
 					if(department == "Stationwide")
 						department = "eligible"
 					command_announcement("[message]<br>Bonus of [bonus][CREDIT_SIGN] issued to all [lowertext(department)] staff.", "Payroll Announcement by [scan.registered] ([scan.assignment])")
 					wagesystem.station_budget = wagesystem.station_budget - bonus_total
-					for(var/datum/db_record/R as anything in lucky_crew)
+					for(var/datum/data/record/R as anything in lucky_crew)
 						if(R["job"] == "Clown")
 							//Tax the clown
 							R["current_money"] = (R["current_money"] + ceil((bonus / 2)))
