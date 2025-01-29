@@ -4664,6 +4664,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/storage/secure/closet/logistics/janitor,
 /obj/item/chair/folded/stepladder,
 /turf/floor,
 /area/station/janitor/office)
@@ -18846,8 +18847,8 @@
 	},
 /area/station/hallway/secondary/northwest)
 "hRa" = (
-/obj/storage/secure/closet/engineering/mining,
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 9
 	},
@@ -19331,7 +19332,7 @@
 /turf/floor,
 /area/station/hangar/qm)
 "icY" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side,
 /area/station/mining/equipment)
 "idI" = (
@@ -30331,8 +30332,8 @@
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
 "muK" = (
-/obj/table/auto/desk,
 /obj/machinery/power/data_terminal,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "muU" = (
@@ -46239,7 +46240,7 @@
 "sMv" = (
 /obj/table/auto/desk,
 /obj/displaycase{
-	displayed = new /obj/item/captaingun
+	displayed = new/obj/item/captaingun
 	},
 /obj/machinery/light/small/auto,
 /turf/floor/wood{
@@ -49055,7 +49056,7 @@
 	},
 /area/station/hallway/secondary/northwest)
 "tQC" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -50585,8 +50586,8 @@
 	},
 /area/station/security/brig/cell_block)
 "uvg" = (
-/obj/storage/secure/closet/engineering/mining,
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 10
 	},
