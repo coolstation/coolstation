@@ -601,36 +601,88 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 				return 1
 
 		if (patient.implant.len > 0)
+
+			var/attempted_implant
+			var/obj/item/implant/candidate_implant
+			var/bullet
+
+			for (var/obj/item/implant/I in patient.implant)
+				//prioritize microbombs
+				if (istype (I, /obj/item/implant/microbomb))
+					//store the highest priority implant for failure message
+					if (!attempted_implant)
+						attempted_implant = I
+					//is it wedged in there good and therefore operable with a scalpel
+					if (!I.loose)
+						//valid tweezing candidate found
+						candidate_implant = I
+						break
+				//then bullets
+				else if (istype (I, /obj/item/implant/projectile/))
+					if (!attempted_implant)
+						attempted_implant = I
+					if (!I.loose)
+						candidate_implant = I
+						bullet = TRUE
+						break
+				//then loose brainwash implants
+				else if (istype (I, /obj/item/implant/insurgent))
+					if(surgeon == patient)
+						//you can't remove your own insurgent implant you dummy
+						continue
+					if (!attempted_implant)
+						attempted_implant = I
+					if (!I.loose)
+						candidate_implant = I
+						break
+				//then regular implants
+				//should be a list popup if there are multiple implants
+				//later, implants would show distinctly on the Operation popup
+				else
+					if (!attempted_implant)
+						attempted_implant = I
+					if (!I.loose)
+						candidate_implant = I
+						break
+
 			playsound(patient, "sound/impact_sounds/Slimy_Cut_1.ogg", 50, 1)
 			patient.tri_message("<span class='alert'><b>[surgeon]</b> cuts into [patient == surgeon ? "[his_or_her(patient)]" : "[patient]'s"] chest with [src]!</span>",\
 			surgeon, "<span class='alert'>You cut into [surgeon == patient ? "your" : "[patient]'s"] chest with [src]!</span>",\
 			patient, "<span class='alert'>[patient == surgeon ? "You cut" : "<b>[surgeon]</b> cuts"] into your chest with [src]!</span>")
 
-			for (var/obj/item/implant/projectile/I in patient.implant)
-				patient.tri_message("<span class='alert'><b>[surgeon]</b> cuts out \an [I] from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
-				surgeon, "<span class='alert'>You cut out \an [I] from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
-				patient, "<span class='alert'>[patient == surgeon ? "You cut" : "<b>[surgeon]</b> cuts"] out \an [I] from you with [src]!</span>")
+			//only futz with implants if there's one that's futzable
+			if (candidate_implant)
+				if (bullet)
+					patient.tri_message("<span class='alert'><b>[surgeon]</b> cuts the damaged tissue around \an [candidate_implant] from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
+					surgeon, "<span class='alert'>You cut the damaged tissue around \an [candidate_implant] from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
+					patient, "<span class='alert'>[patient == surgeon ? "You cut" : "<b>[surgeon]</b> cuts"] \an [candidate_implant] free from your damaged tissue with [src]!</span>")
 
-				I.on_remove(patient)
-				patient.implant.Remove(I)
-				I.set_loc(patient.loc)
-				return 1
+					//doctor note: please leave impacted bullets in someone until they're ready for surgery and blood handling, will cause gushing
+					take_bleeding_damage(patient, surgeon, 1) //regular bleed, no hemostat- bandage.
+					candidate_implant.loose = TRUE
+					return 1
 
-			for (var/obj/item/implant/I in patient.implant)
+				//regular implants
+				else
+					patient.tri_message("<span class='alert'><b>[surgeon]</b> severs an implant's connection from [patient == surgeon ? "[him_or_her(patient)] flesh" : "[patient]'s flesh"] with [src]!</span>",\
+					surgeon, "<span class='alert'>You sever an implant's connection from [surgeon == patient ? "your flesh" : "[patient]'s flesh"] with [src]!</span>",\
+					patient, "<span class='alert'>[patient == surgeon ? "You sever" : "<b>[surgeon]</b> severs"] an implant from your flesh with [src]!</span>")
+					candidate_implant.loose = TRUE
 
-				// This is kinda important (Convair880).
-				if (istype(I, /obj/item/implant/insurgent))
-					if (patient.mind && (patient.mind.special_role == ROLE_INSURGENT))
-						if(surgeon == patient) continue
-						remove_insurgent_status(patient, "nsurgt", "surgery")
-					else if (patient.mind && patient.mind.master)
-						if(surgeon == patient) continue
-						remove_insurgent_status(patient, "other_recruit", "surgery")
+					// This is kinda important (Convair880).
+					if (istype(candidate_implant, /obj/item/implant/insurgent))
+						if (patient.mind && (patient.mind.special_role == ROLE_INSURGENT))
+							remove_insurgent_status(patient, "nsurgt", "surgery")
+						else if (patient.mind && patient.mind.master)
+							remove_insurgent_status(patient, "other_recruit", "surgery")
+					// Disconnect and deactivate implant on sever, but it's still physically inside and inactive until tweezed out
+					// Need to adjust on_remove to make it work
 
-				patient.tri_message("<span class='alert'><b>[surgeon]</b> cuts out an implant from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
-				surgeon, "<span class='alert'>You cut out an implant from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
-				patient, "<span class='alert'>[patient == surgeon ? "You cut" : "<b>[surgeon]</b> cuts"] out an implant from you with [src]!</span>")
+					take_bleeding_damage(patient, surgeon, damage_low, surgery_bleed = 1) //just clamp it, it's fine
+					candidate_implant.loose = TRUE
+					return 1
 
+				/* previous removal - moved to tweezer
 				var/obj/item/implantcase/newcase = new /obj/item/implantcase(patient.loc, usedimplant = I)
 				I.on_remove(patient)
 				patient.implant.Remove(I)
@@ -639,8 +691,8 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 				newcase.UpdateOverlays(wadblood, "blood")
 				newcase.blood_DNA = patient.bioHolder.Uid
 				newcase.blood_type = patient.bioHolder.bloodType
-
 				return 1
+				*/
 
 		/* chest op_stage description
 			cut = scalpel
@@ -889,6 +941,8 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 /* ---------- TWEEZERS ---------- */
 /* ============================= */
 
+//can probably also make forceps for a professional surgery tool, tweezers as emergency medkit/cabinet items
+
 /obj/item/proc/tweezer_surgery(var/mob/living/carbon/human/patient as mob, var/mob/living/surgeon as mob)
 	if (!ishuman(patient))
 		return 0
@@ -913,7 +967,7 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 	//var/surgCheck = surgeryCheck(patient, surgeon)
 
 /* ---------- TWEEZER - BULLET ---------- */
-//eventually do the actual implant/parasite removal with this, but scalpel and maybe saw will be needed to dislodge implants and parasites before they can be actually removed.
+//eventually do the actual implant/parasite removal with this, but scalpel will be needed to dislodge implants before they can be actually removed. maybe saw and scalpel needed to get a parasite out.
 //regular microbomb implants should be a risky but simple removal- chance to set it off immediately, chance to start a countdown, but also chance to fully remove and disable it in one go.
 //syndicate microbombs need to be disarmed before they can be removed at all, maybe with a scalpel to cut a wire and a multitool to collect clues
 
@@ -922,7 +976,9 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 	//id implants in arms, etc.
 	//if (surgeon.zone_sel.selecting == "chest")
 
-	//first priority: loose parasites
+	//(eventual) first priority: loose parasites
+	//needs scalpeling and handling of that in the disease surgery process before i can check it here, otherwise that's cheese to deal with a headspider anywhere without an operating table
+	/*
 	if (patient.ailments.len > 0)
 		var/attempted_parasite_removal = 0
 		for (var/datum/ailment_data/an_ailment in patient.ailments)
@@ -939,63 +995,75 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 			surgeon, "<span class='alert'>You yank out a parasite from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
 			patient, "<span class='alert'>[patient == surgeon ? "You yank" : "<b>[surgeon]</b> yanks"] out a parasite from you with [src]!</span>")
 			return 1
+	*/
 
 	//second priority: chest stuff
 	if (patient.implant.len > 0)
 		var/attempted_implant
 		var/obj/item/implant/candidate_implant
+		var/bullet = FALSE
 		for (var/obj/item/implant/I in patient.implant)
 			//then loose bombs
 			if (istype (I, /obj/item/implant/microbomb))
 				//store the highest priority implant for failure message
-				//if (!attempted_implant)
-				//	attempted_implant = I
+				if (!attempted_implant)
+					attempted_implant = I
 				//can it be tweezed
-				//if (I.loose)
-				//candidate found
-				candidate_implant = I
-				break
+				if (I.loose)
+					//valid tweezing candidate found
+					candidate_implant = I
+					break
 			//then bullets
 			else if (istype (I, /obj/item/implant/projectile/))
-				//if (!attempted_implant)
-				//	attempted_implant = I
-				//if (I.loose)
-				candidate_implant = I
-				break
-			//then loose brainwash implants
-			else if (istype (I, /obj/item/implant/insurgent))
-				//if (!attempted_implant)
-				//	attempted_implant = I
-				//if (I.loose)
-				candidate_implant = I
-				break
-			//then regular implants
-			else
-				//if (!attempted_implant)
-				//	attempted_implant = I
-				//if (I.loose)
+				bullet = TRUE
+				if (!attempted_implant)
+					attempted_implant = I
+				if (I.loose)
+					candidate_implant = I
+
+					break
+			//then loose regular implants (do not attempt to tweeze non-loose implants, they are under the skin and hidden.)
+			//honestly this should only work on a operating table/bed buuuut
+			else if (I.loose)
+				bullet = FALSE
 				candidate_implant = I
 				break
 
 		if (candidate_implant)
-			//if (attempted_implant.loose)
-			playsound(patient, "sound/impact_sounds/Slimy_Cut_1.ogg", 50, 1)
-			patient.tri_message("<span class='alert'><b>[surgeon]</b> pulls out \an [candidate_implant] from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
-			surgeon, "<span class='alert'>You pull out \an [candidate_implant] from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
-			patient, "<span class='alert'>[patient == surgeon ? "You pull" : "<b>[surgeon]</b> pulls"] out \an [candidate_implant] from you with [src]!</span>")
+			if (bullet)
+				playsound(patient, "sound/impact_sounds/Slimy_Cut_1.ogg", 50, 1)
+				patient.tri_message("<span class='alert'><b>[surgeon]</b> pulls out \an [candidate_implant] from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
+				surgeon, "<span class='alert'>You pull out \an [candidate_implant] from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
+				patient, "<span class='alert'>[patient == surgeon ? "You pull" : "<b>[surgeon]</b> pulls"] out \an [candidate_implant] from you with [src]!</span>")
 
+				candidate_implant.on_remove(patient)
+				patient.implant.Remove(candidate_implant)
+				candidate_implant.set_loc(patient.loc)
+				return 1
+
+			patient.tri_message("<span class='alert'><b>[surgeon]</b> tweezes out an implant from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
+			surgeon, "<span class='alert'>You tweeze out an implant from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\
+			patient, "<span class='alert'>[patient == surgeon ? "You tweeze" : "<b>[surgeon]</b> tweezes"] out an implant with [src]!</span>")
+			var/obj/item/implantcase/newcase = new /obj/item/implantcase(patient.loc, usedimplant = candidate_implant)
 			candidate_implant.on_remove(patient)
 			patient.implant.Remove(candidate_implant)
-			candidate_implant.set_loc(patient.loc)
+			var/image/wadblood = image('icons/obj/surgery.dmi', icon_state = "implantpaper-blood")
+			wadblood.color = patient.blood_color
+			newcase.UpdateOverlays(wadblood, "blood")
+			newcase.blood_DNA = patient.bioHolder.Uid
+			newcase.blood_type = patient.bioHolder.bloodType
 			return 1
 
 		else if (attempted_implant)
-			patient.tri_message("<span class='alert'><b>[surgeon]</b> attempts to yank out \an [candidate_implant] from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src], but fails!</span>",\
-			surgeon, "<span class='alert'>You try to pull out \an [candidate_implant] from [surgeon == patient ? "yourself" : "[patient]"] with [src], but it's stuck in there too good!</span>",\
-			patient, "<span class='alert'>[patient == surgeon ? "You attempt to pull" : "<b>[surgeon]</b> attempts to pull"] out \an [candidate_implant] from you with [src], but fails!</span>")
+			patient.tri_message("<span class='alert'><b>[surgeon]</b> attempts to yank out [bullet ? "a projectile" : "an implant"] from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src], but fails!</span>",\
+			surgeon, "<span class='alert'>You try to pull out [bullet ? "a projectile" : "an implant"] from [surgeon == patient ? "yourself" : "[patient]"] with [src], but it's stuck in there too good!</span>",\
+			patient, "<span class='alert'>[patient == surgeon ? "You attempt to pull" : "<b>[surgeon]</b> attempts to pull"] out [bullet ? "a projectile" : "an implant"] from you with [src], but fails!</span>")
+			return 1
 
-	else
+	//don't attack someone with tweezers if your intent is help
+	if (surgeon.a_intent == INTENT_HELP)
 		boutput(surgeon,"<span class='notice'><b>You see nothing to tweeze here.</b></span>")
+		return 1
 
 
 /* ========================= */
