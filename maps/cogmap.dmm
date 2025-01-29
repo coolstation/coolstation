@@ -22984,10 +22984,10 @@
 /turf/wall,
 /area/station/janitor/office)
 "bgv" = (
-/obj/storage/secure/closet/civilian/janitor,
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor/purple/side{
 	dir = 9
 	},
@@ -32597,7 +32597,6 @@
 /area/station/storage/warehouse)
 "bEG" = (
 /obj/disposalpipe/segment/mail,
-/obj/storage/secure/closet/engineering/cargo,
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "bEH" = (
@@ -35608,11 +35607,11 @@
 	name = "Storage Door Control";
 	pixel_x = -26
 	},
-/obj/machinery/portable_reclaimer,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
 /obj/decal/tile_edge/stripe/extra_big,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor,
 /area/station/quartermaster/office)
 "bMu" = (
@@ -35633,6 +35632,7 @@
 	dir = 9
 	},
 /obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/portable_reclaimer,
 /turf/floor,
 /area/station/quartermaster/office)
 "bMv" = (
@@ -40858,7 +40858,7 @@
 	},
 /area/station/mining/staff_room)
 "bYL" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 5
 	},
@@ -41342,7 +41342,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 4
 	},
@@ -41907,10 +41907,10 @@
 /turf/floor/yellow/corner,
 /area/station/mining/staff_room)
 "cbx" = (
-/obj/storage/secure/closet/engineering/mining,
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 6
 	},
@@ -52692,7 +52692,6 @@
 /turf/floor/blue,
 /area/station/turret_protected/ai_upload)
 "cCr" = (
-/obj/storage/secure/closet/civilian/janitor,
 /obj/item/reagent_containers/glass/bottle/cleaner,
 /obj/machinery/camera{
 	c_tag = "autotag";

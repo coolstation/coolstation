@@ -38719,7 +38719,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/storage/secure/closet/engineering/mining,
 /turf/floor/yellow/side{
 	dir = 8
 	},
@@ -38792,7 +38791,7 @@
 /area/station/janitor/office)
 "bzI" = (
 /obj/item/device/radio/intercom,
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor/specialroom/arcade,
 /area/station/janitor/office)
 "bzJ" = (
@@ -39069,7 +39068,6 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/obj/storage/secure/closet/engineering/mining,
 /turf/floor/yellow/side{
 	dir = 8
 	},
@@ -45209,6 +45207,10 @@
 	dir = 4
 	},
 /area/station/janitor/office)
+"hMh" = (
+/obj/storage/secure/closet/logistics/mining,
+/turf/floor/plating/airless,
+/area/space)
 "ijS" = (
 /obj/machinery/power/solar{
 	id = "solar_starboard";
@@ -45379,7 +45381,7 @@
 /area/station/bridge)
 "tKX" = (
 /obj/displaycase{
-	displayed = new /obj/item/captaingun
+	displayed = new/obj/item/captaingun
 	},
 /turf/floor/carpet/arcade,
 /area/station/crew_quarters/captain)
@@ -75028,7 +75030,7 @@ bKJ
 bKN
 rhr
 acM
-acM
+hMh
 bLc
 aaa
 aaa
@@ -75330,7 +75332,7 @@ bKK
 bKO
 acM
 acM
-acM
+hMh
 bLd
 aaa
 aaa
@@ -75632,7 +75634,7 @@ bKJ
 bKN
 acM
 acM
-acM
+hMh
 bLd
 aaa
 aaa

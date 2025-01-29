@@ -25994,7 +25994,7 @@
 "bYq" = (
 /obj/decal/fakeobjects/pipe/heat,
 /obj/decal/cleanable/dirt,
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor/plating/scorched,
 /area/crypt/sigma/storage)
 "bYr" = (
@@ -27010,14 +27010,14 @@
 	pixel_y = 20
 	},
 /obj/item/crowbar,
-/obj/storage/secure/closet/civilian/janitor{
-	locked = 0;
-	spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
-	},
 /obj/item/mop/old,
 /obj/item/sponge,
 /obj/item/chem_grenade/cleaner,
 /obj/item/spraybottle/cleaner/tsunami,
+/obj/storage/secure/closet/logistics/janitor{
+	locked = 0;
+	spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
+	},
 /turf/floor/plating,
 /area/afterlife/bar)
 "cci" = (
@@ -59631,7 +59631,7 @@
 /turf/floor/wood/two,
 /area/afterlife/bar)
 "xAW" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "xCX" = (
@@ -59641,8 +59641,8 @@
 	},
 /area/sim/racing_track)
 "xDi" = (
-/obj/storage/secure/closet/engineering/mining,
 /obj/machinery/light/small/neutral,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "xGt" = (

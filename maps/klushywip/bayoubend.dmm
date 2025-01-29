@@ -9518,6 +9518,10 @@
 /obj/machinery/genetics_scanner,
 /turf/floor/bluegreen,
 /area/station/medical/research)
+"htP" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/plating,
+/area/station/maintenance/outer/ne)
 "htV" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -9986,6 +9990,12 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"hKM" = (
+/obj/machinery/vehicle/escape_pod{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/maintenance/outer/ne)
 "hLj" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor/black/side{
@@ -20035,7 +20045,6 @@
 /turf/wall,
 /area/station/storage/tech)
 "pvc" = (
-/obj/storage/secure/closet/engineering/cargo,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "pvO" = (
@@ -21150,6 +21159,12 @@
 	dir = 1
 	},
 /area/station/science/teleporter)
+"qlb" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/hallway/secondary/exit)
 "qln" = (
 /obj/stool/chair/yellow,
 /turf/floor/yellow,
@@ -21670,6 +21685,12 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"qDP" = (
+/obj/machinery/vehicle/escape_pod{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/hallway/secondary/exit)
 "qDY" = (
 /obj/machinery/vending/standard,
 /obj/decal/cleanable/dirt/random,
@@ -27109,6 +27130,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/east)
+"uPn" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/maintenance/outer/ne)
 "uPt" = (
 /obj/machinery/light,
 /obj/decal/cleanable/rust,
@@ -27199,7 +27226,7 @@
 /turf/floor/wood/five,
 /area/station/chapel/sanctuary)
 "uUF" = (
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor/purple/side{
 	dir = 5
 	},
@@ -30177,6 +30204,7 @@
 /obj/decal/tile_edge/stripe{
 	icon_state = "delivery2"
 	},
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "xvZ" = (
