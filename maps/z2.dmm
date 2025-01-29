@@ -27014,7 +27014,10 @@
 /obj/item/sponge,
 /obj/item/chem_grenade/cleaner,
 /obj/item/spraybottle/cleaner/tsunami,
-/obj/storage/secure/closet/logistics/janitor,
+/obj/storage/secure/closet/logistics/janitor{
+	locked = 0;
+	spawn_contents = spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
+	},
 /turf/floor/plating,
 /area/afterlife/bar)
 "cci" = (
