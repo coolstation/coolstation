@@ -5801,6 +5801,12 @@
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
+"eGk" = (
+/obj/machinery/vehicle/escape_pod{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/maintenance/outer/ne)
 "eGs" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -7611,6 +7617,12 @@
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
 /area/station/shipyard)
+"gdB" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/maintenance/outer/ne)
 "gei" = (
 /obj/decal/poster/wallsign/biohazard,
 /turf/wall/r_wall,
@@ -11634,6 +11646,12 @@
 	},
 /turf/floor/grime,
 /area/station/maintenance/disposal)
+"jgs" = (
+/obj/machinery/vehicle/escape_pod{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/hallway/secondary/exit)
 "jgx" = (
 /obj/cable/yellow{
 	icon_state = "0-8"
@@ -12035,6 +12053,12 @@
 /obj/machinery/manufacturer/glasswares,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
+"jAG" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/hallway/secondary/exit)
 "jAO" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk,
@@ -25348,6 +25372,10 @@
 "two" = (
 /turf/wall,
 /area/station/crew_quarters/baroffice)
+"twL" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating/random,
+/area/station/hallway/secondary/exit)
 "txv" = (
 /obj/rack,
 /obj/item/tank/air{
@@ -27268,6 +27296,10 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/ghostdrone_factory)
+"uXG" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating/random,
+/area/station/maintenance/outer/ne)
 "uXL" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -82020,7 +82052,7 @@ ipT
 ipT
 lXq
 nMa
-nMa
+fWT
 lXq
 ipT
 fVn
@@ -82321,9 +82353,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+uXG
+eGk
+lXq
 ipT
 fVn
 fVn
@@ -82623,9 +82655,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+uXG
+gdB
+lXq
 ipT
 fVn
 fVn
@@ -83547,7 +83579,7 @@ ipT
 ipT
 ipT
 npW
-rVz
+rbu
 rVz
 npW
 ipT
@@ -83848,9 +83880,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+npW
+jgs
+twL
 ipT
 ipT
 ipT
@@ -84150,9 +84182,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+npW
+jAG
+twL
 ipT
 ipT
 ipT
