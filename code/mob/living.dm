@@ -2063,7 +2063,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			enteredtext = copytext(enteredtext, 1, length(enteredtext) - rand(1, 10))
 		var/message = enteredtext + "--" + grunt
 		var/logname = isalive(src) ? "interruptgasp" : "lastgasp"
-		logTheThing(LOG_SAY, src, "[logname] SAY: [html_encode(message)] [log_loc(src)]")
+		logTheThing("say", src, "[logname] SAY: [html_encode(message)] [log_loc(src)]")
 		var/old_stat = src.stat
 		setalive(src) // okay so we need to be temporarily alive for this in case it's happening as we were dying...
 		if (ishuman(src))
