@@ -544,6 +544,7 @@
 
 						<BR><br>
 						<A href='byond://?src=\ref[src];bonus=1'>Issue Staff Bonus</A>
+						<BR><br>
 						<BR><br><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
 						<BR><br>"}
 					if(2.0)
@@ -708,7 +709,7 @@
 							continue
 						for (var/job_type in src.departments[department])
 							for (var/datum/job/child_type as anything in concrete_typesof(job_type))
-								if (record["job"] == child_type::name)
+								if (record.fields["job"] == child_type::name)
 									lucky_crew += record
 									goto next_record //actually almost good goto use case?? (byond doesn't have outer loop break syntax)
 						next_record:
@@ -741,18 +742,18 @@
 						boutput(usr, SPAN_ALERT("Total bonus cost would be [bonus_total][CREDIT_SIGN], payroll budget is only [wagesystem.station_budget][CREDIT_SIGN]!"))
 						return
 
-					logTheThing("diary", usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
+					//logTheThing("diary", usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
 					src.bonus_rate_limit_time = world.time + (5 MINUTES)
 					if(department == "Stationwide")
 						department = "eligible"
 					command_announcement("[message]<br>Bonus of [bonus][CREDIT_SIGN] issued to all [lowertext(department)] staff.", "Payroll Announcement by [scan.registered] ([scan.assignment])")
 					wagesystem.station_budget = wagesystem.station_budget - bonus_total
 					for(var/datum/data/record/R as anything in lucky_crew)
-						if(R["job"] == "Clown")
+						if(R.fields["job"] == "Clown")
 							//Tax the clown
-							R["current_money"] = (R["current_money"] + ceil((bonus / 2)))
+							R.fields["current_money"] = (R.fields["current_money"] + ceil((bonus / 2)))
 						else
-							R["current_money"] = (R["current_money"] + bonus)
+							R.fields["current_money"] = (R.fields["current_money"] + bonus)
 
 
 		src.add_fingerprint(usr)
