@@ -864,7 +864,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 ABSTRACT_TYPE(/datum/job/engineering)
 /datum/job/engineering
-	linkcolor = "#FF9900"
+	linkcolor = "#D6B327"
 	slot_card = /obj/item/card/id/engineering
 
 /datum/job/engineering/engineer
@@ -977,8 +977,8 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics
-	linkcolor = "#D6B327"
-	slot_card = /obj/item/card/id/engineering
+	linkcolor = "#FF9900"
+	slot_card = /obj/item/card/id/logistics
 
 //QM got promoted, look under /job/command/quartermaster
 
