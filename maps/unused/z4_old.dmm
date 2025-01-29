@@ -16,9 +16,7 @@
 /area/shuttle_transit_space/west)
 "af" = (
 /turf/space/shuttle_transit,
-/area/shuttle_transit_space/north
-"ag" = (
-/turf/space/shuttle_transit,
+/area/shuttle_transit_space/north"ag" = (/turf/space/shuttle_transit,
 /area/shuttle/escape/transit/donut2)
 "ah" = (
 /turf/space/shuttle_transit,
@@ -1778,8 +1776,7 @@
 /obj/storage/secure/closet/fridge/kitchen{
 	locked = 0
 	},
-/turf//checker,
-/area/wizard_station)
+/turf//area/wizard_station)
 "fi" = (
 /obj/table/wood/auto,
 /obj/machinery/microwave,
@@ -1903,8 +1900,7 @@
 /turf/e,
 /area/wizard_station)
 "fA" = (
-/turf//checker,
-/area/wizard_station)
+/turf//area/wizard_station)
 "fB" = (
 /obj/table/wood/auto,
 /obj/item/kitchen/utensil/fork,
@@ -2069,9 +2065,7 @@
 /turf/e,
 /area/wizard_station)
 "gb" = (
-/turf//checker{
-	dir = 1
-	},
+/turf/dir = 1},
 /area/wizard_station)
 "gc" = (
 /obj/machinery/door/airlock/external,
@@ -2186,9 +2180,7 @@
 /obj/table/wood/round,
 /obj/item/reagent_containers/food/snacks/soup/queso,
 /obj/item/kitchen/utensil/spoon,
-/turf//checker{
-	dir = 1
-	},
+/turf/dir = 1},
 /area/wizard_station)
 "gs" = (
 /obj/stool/chair/blue{
@@ -2581,9 +2573,6 @@
 	},
 /turf/space,
 /area/space)
-"ht" = (
-/turf/floor/stairs,
-/area/centcom)
 "hu" = (
 /turf/_wall/centcom{
 	tag = "icon-leadwall (EAST)";
@@ -17823,9 +17812,9 @@ fU
 fU
 fU
 hf
-ht
+dI
 hD
-ht
+dI
 hP
 bK
 ib
@@ -19031,9 +19020,9 @@ fU
 fU
 fU
 hf
-ht
+dI
 hD
-ht
+dI
 hP
 bQ
 ib

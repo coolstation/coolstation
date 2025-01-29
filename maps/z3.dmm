@@ -2026,7 +2026,8 @@
 /area/diner/motel/observatory)
 "afT" = (
 /obj/decal/cleanable/cobweb,
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -3143,7 +3144,8 @@
 /turf/floor/airless/plating/damaged2,
 /area/space)
 "aiU" = (
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -3872,7 +3874,8 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west/nopoweralert,
+/obj/machinery/power/apc/autoname/west,
+/obj/apc_helper/nopoweralert,
 /turf/floor/green/checker,
 /area/diner/arcade)
 "akN" = (
@@ -3975,7 +3978,8 @@
 /area/diner/dining)
 "ale" = (
 /obj/decal/cleanable/dirt,
-/obj/machinery/power/apc/autoname_east/nopoweralert,
+/obj/machinery/power/apc/autoname/east,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -5101,7 +5105,8 @@
 /turf/wall/auto/reinforced/supernorn,
 /area/h7/control)
 "anM" = (
-/obj/machinery/power/apc/autoname_east/nopoweralert,
+/obj/machinery/power/apc/autoname/east,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -5327,7 +5332,8 @@
 /turf/wall/auto/supernorn,
 /area/h7/crew)
 "aow" = (
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -6655,10 +6661,10 @@
 	dir = 4;
 	locked = 0;
 	name = "worn E APC";
-	noalerts = 1;
 	pixel_x = 24;
 	start_charge = 13
 	},
+/obj/apc_helper/nopoweralert,
 /turf/floor,
 /area/buddyfactory/mainframe)
 "aso" = (
@@ -13009,10 +13015,10 @@
 	dir = 8;
 	locked = 0;
 	name = "Satellite Main APC";
-	noalerts = 1;
 	pixel_x = -24;
 	req_access_txt = ""
 	},
+/obj/apc_helper/nopoweralert,
 /turf/floor/caution/corner/misc{
 	dir = 10
 	},
@@ -21237,7 +21243,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east/nopoweralert,
+/obj/machinery/power/apc/autoname/east,
+/obj/apc_helper/nopoweralert,
 /turf/floor/black/grime,
 /area/diner/hallway)
 "bkU" = (
@@ -21925,7 +21932,8 @@
 	status = 2
 	},
 /obj/item/storage/pill_bottle/cyberpunk,
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -23467,7 +23475,8 @@
 /obj/table/auto,
 /obj/item/c_tube,
 /obj/item/pen/red,
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -25761,7 +25770,8 @@
 	})
 "tqg" = (
 /obj/grille/catwalk,
-/obj/machinery/power/apc/autoname_north/nopoweralert,
+/obj/machinery/power/apc/autoname/north,
+/obj/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
