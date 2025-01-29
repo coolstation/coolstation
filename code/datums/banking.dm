@@ -741,7 +741,7 @@
 						boutput(usr, SPAN_ALERT("Total bonus cost would be [bonus_total][CREDIT_SIGN], payroll budget is only [wagesystem.station_budget][CREDIT_SIGN]!"))
 						return
 
-					//logTheThing("diary", usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
+					logTheThing("diary", usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
 					src.bonus_rate_limit_time = world.time + (5 MINUTES)
 					if(department == "Stationwide")
 						department = "eligible"
