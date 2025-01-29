@@ -494,20 +494,19 @@
 	///I know we already have department job lists but they suck and are brittle and way too general so I made my own here
 	var/static/list/departments = list(
 		"Stationwide" = list(),
-		"Genetics" = list(/datum/job/medical/geneticist),
-		"Robotics" = list(/datum/job/medical/roboticist),
-		"Cargo" = list(/datum/job/command/quartermaster, /datum/job/logistics/cargotechnician),
-		"Mining" = list(/datum/job/logistics/miner),
-		"Engineering" = list(/datum/job/engineering/engineer, /datum/job/command/chief_engineer),
-		"Research" = list(/datum/job/research/scientist, /datum/job/command/research_director),
-		"Catering" = list(/datum/job/civilian/chef, /datum/job/civilian/bartender),
+		"Logistics" = list(/datum/job/command/quartermaster, /datum/job/logistics),
+		"Engineering" = list(/datum/job/engineering, /datum/job/command/chief_engineer, /datum/job/special/tech_assistant),
+		"Research" = list(/datum/job/research, /datum/job/command/research_director, /datum/job/special/research_assistant),
+		"Catering" = list(/datum/job/civilian/chef, /datum/job/civilian/bartender, /datum/job/special/random/waiter),
 		"Hydroponics" = list(/datum/job/civilian/botanist, /datum/job/civilian/rancher),
 		"Security" = list(/datum/job/security, /datum/job/command/head_of_security),
-		"Medical" = list(/datum/job/medical/medical_doctor, /datum/job/command/medical_director),
+		"Medical" = list(/datum/job/medical, /datum/job/command/medical_director, /datum/job/special/medical_assistant),
+		"Command" = list(/datum/job/command, /datum/job/special/random/director)
 		"Civilian" = list(/datum/job/logistics/janitor, /datum/job/civilian/chaplain, /datum/job/civilian/staff_assistant, /datum/job/civilian/clown,\
 		/datum/job/special) //Who really makes the world go round? At least one of these guys
-							//I can live with the sous chef getting paid in two categories
-							//If you have a special role and you're on the manifest everything is probably normal
+							//Let the janitor be in two categories they deserve it
+							//A couple of special jobs get a double dip too
+							//Remeber only people with bank accounts count don't worry about the syndicate
 	)
 
 	attack_ai(mob/user as mob)
