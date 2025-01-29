@@ -501,7 +501,7 @@
 		"Hydroponics" = list(/datum/job/civilian/botanist, /datum/job/civilian/rancher),
 		"Security" = list(/datum/job/security, /datum/job/command/head_of_security),
 		"Medical" = list(/datum/job/medical, /datum/job/command/medical_director, /datum/job/special/medical_assistant),
-		"Command" = list(/datum/job/command, /datum/job/special/random/director)
+		"Command" = list(/datum/job/command, /datum/job/special/random/director),
 		"Civilian" = list(/datum/job/logistics/janitor, /datum/job/civilian/chaplain, /datum/job/civilian/staff_assistant, /datum/job/civilian/clown,\
 		/datum/job/special) //Who really makes the world go round? At least one of these guys
 							//Let the janitor be in two categories they deserve it
