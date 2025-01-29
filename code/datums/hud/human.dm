@@ -108,7 +108,7 @@
 										"resist" = tg_ui_resist,\
 										"pull" = tg_ui_pulling,\
 										"rest" = tg_ui_rest,\
-										"sprint" = tg_ui_sprint,\
+										"sprint" = 0,\
 										"shoes" = tg_ui_shoes,\
 										"gloves" = tg_ui_gloves,\
 										"id" = tg_ui_id,\
@@ -124,7 +124,7 @@
 										"ability_icon" = "tg_ability-",\
 										"swaphands" = tg_ui_swaphands,\
 										"equip" = tg_ui_equip,\
-										"tg_butts" = tg_ui_extra_buttons,\
+										"tg_butts" = 0,\
 										"ignore_inventory_hide" = list("id"),\
 										"show_bg" = 0,\
 										))
