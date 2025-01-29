@@ -9506,6 +9506,10 @@
 /obj/machinery/genetics_scanner,
 /turf/floor/bluegreen,
 /area/station/medical/research)
+"htP" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/plating,
+/area/station/maintenance/outer/ne)
 "htV" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -9974,6 +9978,12 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"hKM" = (
+/obj/machinery/vehicle/escape_pod{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/maintenance/outer/ne)
 "hLj" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor/black/side{
@@ -21125,6 +21135,12 @@
 	dir = 1
 	},
 /area/station/science/teleporter)
+"qlb" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/hallway/secondary/exit)
 "qln" = (
 /obj/stool/chair/yellow,
 /turf/floor/yellow,
@@ -21645,6 +21661,12 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"qDP" = (
+/obj/machinery/vehicle/escape_pod{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/hallway/secondary/exit)
 "qDY" = (
 /obj/machinery/vending/standard,
 /obj/decal/cleanable/dirt/random,
@@ -27080,6 +27102,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/east)
+"uPn" = (
+/obj/machinery/door/poddoor/blast/pyro{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/maintenance/outer/ne)
 "uPt" = (
 /obj/machinery/light,
 /obj/decal/cleanable/rust,
@@ -82020,7 +82048,7 @@ ipT
 ipT
 lXq
 nMa
-nMa
+htP
 lXq
 ipT
 fVn
@@ -82321,9 +82349,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+nMa
+hKM
+lXq
 ipT
 fVn
 fVn
@@ -82623,9 +82651,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+nMa
+uPn
+lXq
 ipT
 fVn
 fVn
@@ -83547,7 +83575,7 @@ ipT
 ipT
 ipT
 npW
-rVz
+rbu
 rVz
 npW
 ipT
@@ -83848,9 +83876,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+npW
+qDP
+rVz
 ipT
 ipT
 ipT
@@ -84150,9 +84178,9 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
+npW
+qlb
+rVz
 ipT
 ipT
 ipT
