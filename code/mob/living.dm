@@ -2078,29 +2078,46 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 /mob/living/lastgasp(allow_dead=FALSE, grunt=null)
 	set waitfor = FALSE
 	if (!allow_dead && !isalive(src)) return
-	if (src.disposed || !src.client) return // break if it's an npc or a disconnected player
+	if (ON_COOLDOWN(src, "lastgasp", 0.7 SECONDS)) return
+	if (!src.client)
+		return
+	var/client/client = src.client
 	var/found_text = FALSE
-	var/enteredtext = winget(src, "mainwindow.input", "text") // grab the text from the input bar
+	var/enteredtext = winget(client, "mainwindow.input", "text") // grab the text from the input bar
+	if (isnull(client)) return
 	if (length(enteredtext) > 5 && copytext(enteredtext, 1, 6) == "say \"") // check if the player is trying to say something
-		winset(src, "mainwindow.input", "text=\"\"") // clear the player's input bar to register death / unconsciousness
+		winset(client, "mainwindow.input", "text=\"\"") // clear the player's input bar to register death / unconsciousness
 		enteredtext = copytext(enteredtext, 6, 0) // grab the text they were trying to say
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		enteredtext = winget(src, "saywindow.input", "text")
-		if (length(enteredtext))
-			winset(src, "saywindow.input", "text=\"\"")
-			winset(src, "saywindow", "is-visible=false")
-			src.cancel_typing("say")
-			found_text = TRUE
+		for (var/window_type in list("say", "radiosay", "whisper"))
+			enteredtext = winget(client, "[window_type]saywindow.input", "text")
+			if (isnull(client)) return
+			if (length(enteredtext))
+				if (window_type == "radiosay")
+					enteredtext = ";" + enteredtext
+				winset(client, "[window_type]saywindow.input", "text=\"\"")
+				if (isnull(client)) return
+				winset(client, "[window_type]saywindow", "is-visible=false")
+				if (isnull(client)) return
+				src.cancel_typing(window_type)
+				found_text = TRUE
+				break
 	if (found_text)
 		if (length(enteredtext) > 20)
 			enteredtext = copytext(enteredtext, 1, length(enteredtext) - rand(1, 10))
 		var/message = enteredtext + "--" + grunt
 		var/logname = isalive(src) ? "interruptgasp" : "lastgasp"
+		if (!allow_dead && !isalive(src)) return
 		logTheThing("say", src, "[logname] SAY: [html_encode(message)] [log_loc(src)]")
 		var/old_stat = src.stat
 		setalive(src) // okay so we need to be temporarily alive for this in case it's happening as we were dying...
+
+		// break if it's an npc or a disconnected player.
+		// this check needs to be here because waitfor = FALSE means that this proc can run as/after the person is deleted.
+		if (src.disposed || !src.client)
+			return
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.say(message, ignore_stamina_winded = 1) // say the thing they were typing and grunt
