@@ -572,6 +572,7 @@ var/f_color_selector_handler/F_Color_Selector
 		"[R_FREQ_RESEARCH]" = "Research",
 		"[R_FREQ_MEDICAL]" = "Medical",
 		"[R_FREQ_ENGINEERING]" = "Engineering",
+		"[R_FREQ_LOGISTICS]" = "Logistics",
 		"[R_FREQ_COMMAND]" = "Command",
 		"[R_FREQ_SECURITY]" = "Security",
 		"[R_FREQ_CIVILIAN]" = "Civilian",

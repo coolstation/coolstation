@@ -678,7 +678,7 @@
 /obj/storage/secure/closet/logistics/cargo
 	name = "\improper Cargo Tech's locker"
 	req_access = list(access_cargo)
-	spawn_contents = list(/obj/item/storage/box/clothing/qm,
+	spawn_contents = list(/obj/item/storage/box/clothing/ct,
 	/obj/item/pen/fancy,
 	/obj/item/paper_bin,
 	/obj/item/clipboard,
