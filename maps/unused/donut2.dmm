@@ -867,6 +867,7 @@
 /obj/table/auto,
 /obj/item/paper_bin,
 /obj/item/pen,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acl" = (
 /obj/machinery/door_control{
@@ -881,9 +882,11 @@
 	message = "1";
 	name = "mail chute-'Science Teleporter'"
 	},
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acm" = (
 /obj/machinery/lrteleporter,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acn" = (
 /obj/machinery/launcher_loader/north{
@@ -946,6 +949,7 @@
 /obj/machinery/networked/teleconsole{
 	dir = 4
 	},
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acu" = (
 /obj/stool/chair{
@@ -996,6 +1000,7 @@
 /obj/table/auto,
 /obj/item/clothing/head/emerg,
 /obj/item/clothing/suit/space/emerg,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acF" = (
 /obj/lattice{
@@ -1075,16 +1080,19 @@
 /obj/table/auto,
 /obj/item/device/radio/signaler,
 /obj/item/device/radio/signaler,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acM" = (
 /turf/floor/plating/airless,
 /area/space)
 "acP" = (
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acQ" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acR" = (
 /obj/rack,
@@ -1092,6 +1100,7 @@
 /obj/item/tank/air,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acS" = (
 /obj/lattice{
@@ -1103,6 +1112,7 @@
 "acT" = (
 /obj/table/auto,
 /obj/item/extinguisher,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "acU" = (
 /obj/cable{
@@ -1178,11 +1188,13 @@
 "add" = (
 /obj/table/auto,
 /obj/item/storage/box/trackimp_kit2,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adf" = (
 /obj/rack,
 /obj/item/clothing/head/helmet/camera,
 /obj/item/clothing/head/helmet/camera,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adg" = (
 /obj/table/auto,
@@ -1190,6 +1202,7 @@
 /obj/item/device/gps,
 /obj/item/device/gps,
 /obj/item/paper/note_from_mom,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adh" = (
 /obj/cable{
@@ -1200,6 +1213,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adi" = (
 /obj/cable{
@@ -1207,6 +1221,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adj" = (
 /obj/machinery/power/apc{
@@ -1219,9 +1234,11 @@
 	icon_state = "0-8"
 	},
 /obj/item/remote/porter/port_a_sci,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adk" = (
 /obj/storage/closet/port_a_sci,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adl" = (
 /obj/machinery/vending/monkey,
@@ -1329,7 +1346,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adx" = (
 /obj/overlay{
@@ -1457,6 +1474,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adK" = (
 /obj/cable{
@@ -3512,7 +3530,7 @@
 	name = "Teleporter Lab";
 	req_access_txt = "8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "ahO" = (
 /obj/grille/steel,
@@ -3928,7 +3946,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/science/lobby)
@@ -3943,6 +3961,9 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/turf/floor/cautionblack/side{
+	dir = 1
+	},
 /area/station/science/lobby)
 "aiz" = (
 /obj/cable{
@@ -3950,7 +3971,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/science/lobby)
@@ -45019,6 +45040,7 @@
 /obj/item/camera,
 /obj/item/camera,
 /obj/item/camera,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "dao" = (
 /obj/machinery/light/small{
@@ -45058,6 +45080,9 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/medical/robotics)
+"eGU" = (
+/turf/floor/cautionblack,
+/area/station/engine/elect)
 "eYs" = (
 /obj/lattice{
 	dir = 4;
@@ -45070,9 +45095,6 @@
 	},
 /turf/space,
 /area/station/solar/east)
-"geg" = (
-/turf/floor/cautionblack,
-/area/station/engine/elect)
 "gff" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -45273,6 +45295,11 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/white,
 /area/station/ai_monitored/storage/secure)
+"sBR" = (
+/turf/floor/cautionblack/side{
+	dir = 4
+	},
+/area/station/engine/elect)
 "toJ" = (
 /obj/cable{
 	d1 = 4;
@@ -45310,11 +45337,6 @@
 /obj/landmark/gps_waypoint,
 /turf/floor,
 /area/station/hangar/main)
-"vhy" = (
-/turf/floor/cautionblack/side{
-	dir = 4
-	},
-/area/station/engine/elect)
 "vDu" = (
 /obj/cable{
 	d1 = 2;
@@ -68270,8 +68292,8 @@ byc
 byc
 bCg
 bDa
-vhy
-vhy
+sBR
+sBR
 bBD
 bGh
 bDm
@@ -70685,7 +70707,7 @@ bAc
 bAJ
 bBu
 bCi
-geg
+eGU
 bDS
 bEQ
 bBD
