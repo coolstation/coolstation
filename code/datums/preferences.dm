@@ -1780,10 +1780,10 @@ datum/preferences
 	return return_color
 
 proc/isfem(datum/customization_style/style)
-	return !!(initial(style.gender) & FEMININE)
+	return !!(initial(style.gender)) // I have removed the gender. Pray I do not alter it further.
 
 proc/ismasc(datum/customization_style/style)
-	return !!(initial(style.gender) & MASCULINE)
+	return !!(initial(style.gender))
 
 // this is weird but basically: a list of hairstyles and their appropriate detail styles, aka hair_details["80s"] would return the Hairmetal: Faded style
 // further on in the randomize_look() proc we'll see if we've got one of the styles in here and if so, we have a chance to add the detailing
