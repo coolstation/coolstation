@@ -2087,9 +2087,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		enteredtext = winget(src, "saywindow.say-input", "text")
+		enteredtext = winget(src, "saywindow.input", "text")
 		if (length(enteredtext))
-			winset(src, "saywindow.say-input", "text=\"\"")
+			winset(src, "saywindow.input", "text=\"\"")
 			winset(src, "saywindow", "is-visible=false")
 			src.cancel_typing("say")
 			found_text = TRUE
