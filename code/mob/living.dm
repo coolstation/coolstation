@@ -2085,21 +2085,21 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	var/found_text = FALSE
 	var/enteredtext = winget(client, "mainwindow.input", "text") // grab the text from the input bar
 	if (isnull(client)) return
-	if (length(enteredtext) > 5 && copytext(enteredtext, 1, 6) == "say \"") // check if the player is trying to say something
+	if (length(enteredtext) > 5 && copytext(lowertext(enteredtext), 1, 6) == "say \"") // check if the player is trying to say something
 		winset(client, "mainwindow.input", "text=\"\"") // clear the player's input bar to register death / unconsciousness
 		enteredtext = copytext(enteredtext, 6, 0) // grab the text they were trying to say
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		for (var/window_type in list("say", "radiosay", "whisper"))
-			enteredtext = winget(client, "[window_type]saywindow.input", "text")
+		for (var/window_type in list("saywindow", "radiosay", "whisper")) //scafolding for later
+			enteredtext = winget(client, "[window_type].input", "text")
 			if (isnull(client)) return
 			if (length(enteredtext))
 				if (window_type == "radiosay")
 					enteredtext = ";" + enteredtext
-				winset(client, "[window_type]saywindow.input", "text=\"\"")
+				winset(client, "[window_type].input", "text=\"\"")
 				if (isnull(client)) return
-				winset(client, "[window_type]saywindow", "is-visible=false")
+				winset(client, "[window_type]", "is-visible=false")
 				if (isnull(client)) return
 				src.cancel_typing(window_type)
 				found_text = TRUE
