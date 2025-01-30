@@ -23456,16 +23456,18 @@
 	},
 /obj/decal/cleanable/cobweb,
 /obj/table/reinforced/auto,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aVz" = (
 /obj/item/rcd_ammo,
 /obj/table/reinforced/auto,
 /obj/item/wrench/gold,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aVA" = (
 /obj/item/weldingtool,
 /obj/table/reinforced/auto,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aVB" = (
 /obj/cable{
@@ -23771,7 +23773,7 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWf" = (
 /obj/landmark/start{
@@ -23784,6 +23786,7 @@
 	icon_state = "2-8"
 	},
 /obj/item/storage/toolbox/mechanical,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWg" = (
 /obj/machinery/disposal/mail{
@@ -23802,7 +23805,7 @@
 	network = "SS13";
 	tag = ""
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWh" = (
 /obj/stool/bed,
@@ -24009,6 +24012,7 @@
 	},
 /area/station/hallway/primary/east)
 "aWE" = (
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWF" = (
 /obj/cable{
@@ -24016,7 +24020,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWG" = (
 /obj/machinery/light{
@@ -24034,6 +24038,7 @@
 	icon_state = "0-2"
 	},
 /obj/disposalpipe/segment/mail,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWH" = (
 /obj/machinery/door/airlock/command{
@@ -24278,7 +24283,7 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aXi" = (
 /obj/disposalpipe/segment/mail{
@@ -24290,6 +24295,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aXj" = (
 /obj/cable{
@@ -24306,7 +24312,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aXk" = (
 /obj/cable{
@@ -24720,7 +24726,7 @@
 /area/station/hallway/primary/east)
 "aYb" = (
 /obj/storage/secure/closet/command/chief_engineer,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aYc" = (
 /turf/wall,
@@ -25204,7 +25210,7 @@
 	bcolor = "yellow";
 	icon_state = "bedsheet-yellow"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aYS" = (
 /obj/table/auto,
@@ -25215,6 +25221,7 @@
 	pixel_x = -7;
 	pixel_y = 4
 	},
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aYU" = (
 /obj/table/auto,
@@ -45080,9 +45087,6 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/medical/robotics)
-"eGU" = (
-/turf/floor/cautionblack,
-/area/station/engine/elect)
 "eYs" = (
 /obj/lattice{
 	dir = 4;
@@ -45172,6 +45176,11 @@
 	icon_state = "fred2"
 	},
 /area/station/security/detectives_office)
+"jPk" = (
+/turf/floor/cautionblack/side{
+	dir = 4
+	},
+/area/station/engine/elect)
 "knS" = (
 /obj/disposalpipe/segment,
 /obj/machinery/light/small{
@@ -45291,15 +45300,13 @@
 /obj/machinery/light/fluorescent/ceiling,
 /turf/floor/black,
 /area/station/medical/robotics)
+"rDU" = (
+/turf/floor/cautionblack,
+/area/station/engine/elect)
 "slg" = (
 /obj/landmark/gps_waypoint,
 /turf/floor/white,
 /area/station/ai_monitored/storage/secure)
-"sBR" = (
-/turf/floor/cautionblack/side{
-	dir = 4
-	},
-/area/station/engine/elect)
 "toJ" = (
 /obj/cable{
 	d1 = 4;
@@ -68292,8 +68299,8 @@ byc
 byc
 bCg
 bDa
-sBR
-sBR
+jPk
+jPk
 bBD
 bGh
 bDm
@@ -70707,7 +70714,7 @@ bAc
 bAJ
 bBu
 bCi
-eGU
+rDU
 bDS
 bEQ
 bBD
