@@ -213,9 +213,6 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			wavy_bangs
 				name = "Bangs: Wavy"
 				id = "wavy_tail-bangs"
-			wavy_bangs
-				name = "Bangs: Wavy"
-				id = "wavy_tail2-bangs"
 			short_bangs
 				name = "Bangs: Short"
 				id = "short-bangs"
