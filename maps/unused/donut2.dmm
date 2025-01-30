@@ -36041,7 +36041,7 @@
 /turf/wall/r_wall,
 /area/station/storage/autolathe)
 "buz" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/yellow/corner{
 	dir = 8
 	},
 /area/station/hallway/primary/south)
@@ -40394,7 +40394,7 @@
 /area/station/engine/elect)
 "bDi" = (
 /turf/floor/cautionblack/side{
-	dir = 4
+	dir = 1
 	},
 /area/station/engine/elect)
 "bDj" = (
@@ -45070,6 +45070,9 @@
 	},
 /turf/space,
 /area/station/solar/east)
+"geg" = (
+/turf/floor/cautionblack,
+/area/station/engine/elect)
 "gff" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -45266,11 +45269,6 @@
 /obj/machinery/light/fluorescent/ceiling,
 /turf/floor/black,
 /area/station/medical/robotics)
-"rIg" = (
-/turf/floor/cautionblack/side{
-	dir = 1
-	},
-/area/station/engine/elect)
 "slg" = (
 /obj/landmark/gps_waypoint,
 /turf/floor/white,
@@ -45312,6 +45310,11 @@
 /obj/landmark/gps_waypoint,
 /turf/floor,
 /area/station/hangar/main)
+"vhy" = (
+/turf/floor/cautionblack/side{
+	dir = 4
+	},
+/area/station/engine/elect)
 "vDu" = (
 /obj/cable{
 	d1 = 2;
@@ -45391,9 +45394,6 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/wood,
 /area/station/crew_quarters/courtroom)
-"xXT" = (
-/turf/floor/cautionblack,
-/area/station/engine/elect)
 
 (1,1,1) = {"
 aaa
@@ -68270,8 +68270,8 @@ byc
 byc
 bCg
 bDa
-bDi
-bDi
+vhy
+vhy
 bBD
 bGh
 bDm
@@ -70685,7 +70685,7 @@ bAc
 bAJ
 bBu
 bCi
-xXT
+geg
 bDS
 bEQ
 bBD
@@ -71295,7 +71295,7 @@ bDQ
 bDQ
 bDf
 bDf
-rIg
+bDi
 bDP
 bDm
 bGP
@@ -71597,7 +71597,7 @@ bDf
 bDf
 bDf
 bDf
-rIg
+bDi
 bBD
 bIn
 bGP
