@@ -4581,7 +4581,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/breakroom)
@@ -7574,7 +7574,7 @@
 	name = "Gas Mixer Control (Combustion Chamber)"
 	},
 /obj/machinery/light_switch/north,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/engine/engineering/breakroom)
@@ -9234,7 +9234,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/engineering/breakroom)
@@ -9475,7 +9475,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/engine/engineering/breakroom)
@@ -10437,7 +10437,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/engine/engineering/breakroom)
@@ -10522,7 +10522,7 @@
 /obj/machinery/light/emergency{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/engine/engineering/breakroom)
@@ -11441,7 +11441,7 @@
 /obj/cable/brown{
 	icon_state = "0-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/engineering/breakroom)
@@ -13263,7 +13263,7 @@
 	icon_state = "1-2"
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/engineering/breakroom)
@@ -13681,7 +13681,7 @@
 	pixel_y = 7;
 	print_id = "Engineering"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/engine/engineering/breakroom)
@@ -20174,7 +20174,7 @@
 	dir = 4;
 	frequency = 1404
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/engineering/breakroom)
@@ -22636,7 +22636,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/light_switch/north,
+/obj/machinery/light_switch/north{
+	pixel_x = -11
+	},
 /turf/floor/orange/side{
 	dir = 5
 	},
@@ -24744,7 +24746,7 @@
 /area/station/security/main)
 "sXm" = (
 /obj/storage/secure/closet/engineering/engineer,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/engine/engineering/breakroom)
 "sXy" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -26284,7 +26286,7 @@
 /obj/mug_rack{
 	pixel_y = 28
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/engine/engineering/breakroom)
@@ -27035,7 +27037,7 @@
 /obj/item/device/t_scanner{
 	pixel_x = -5
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/engine/engineering/breakroom)
 "uLa" = (
 /obj/machinery/portableowl/attached{
@@ -30259,8 +30261,8 @@
 /obj/machinery/cell_charger{
 	pixel_x = 12
 	},
-/turf/floor/orangeblack/side{
-	dir = 10
+/turf/floor/cautionblack/side{
+	dir = 8
 	},
 /area/station/engine/engineering/breakroom)
 "xwp" = (
