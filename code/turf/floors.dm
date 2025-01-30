@@ -476,7 +476,7 @@
 
 /////////////////////////////////////////
 
-turf/floor/orange
+/turf/floor/orange
 	icon_state = "fullorange"
 
 /turf/floor/orange/side
