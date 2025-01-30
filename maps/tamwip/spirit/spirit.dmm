@@ -161,10 +161,6 @@
 "br" = (
 /turf/wall/auto/jen/dark2,
 /area/station/crew_quarters/catering)
-"bw" = (
-/obj/storage/closet/dresser,
-/turf/floor/carpet/grime4,
-/area/station/crew_quarters/hop)
 "bJ" = (
 /obj/table/wood/auto/desk,
 /obj/random_item_spawner/desk_stuff/maybe_few,
@@ -227,10 +223,6 @@
 "dl" = (
 /turf/floor/neutral,
 /area/station/hallway/secondary/northeast)
-"dp" = (
-/obj/table/auto,
-/turf/floor/neutral,
-/area/station/medical/head)
 "ds" = (
 /turf/floor/grass/random,
 /area/station/hydroponics)
@@ -422,6 +414,13 @@
 /obj/wingrille_spawn/auto,
 /turf/wall/auto/reinforced/jen/dark1,
 /area/space)
+"gJ" = (
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4;
+	name = "Staff Only"
+	},
+/turf/floor/carpet/nicebrown,
+/area/station/crew_quarters)
 "gL" = (
 /obj/machinery/manufacturer/uniform,
 /turf/floor/carpet/grime4,
@@ -728,6 +727,10 @@
 /obj/burning_barrel,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"ls" = (
+/obj/storage/closet,
+/turf/floor/carpet/grime,
+/area/station/crew_quarters)
 "lG" = (
 /obj/potted_plant/potted_plant4,
 /turf/floor/neutral,
@@ -841,6 +844,10 @@
 /obj/random_item_spawner/snacks/one,
 /turf/floor/carpet/red/standard,
 /area/station/crew_quarters/bar)
+"nN" = (
+/obj/table/auto/desk,
+/turf/floor/carpet/grime4,
+/area/station/crew_quarters/hop)
 "nP" = (
 /obj/shrub/random,
 /turf/floor/carpet/grime4,
@@ -949,6 +956,12 @@
 /obj/item/item_box/swedish_bag,
 /turf/floor/white/grime,
 /area/station/crew_quarters/catering)
+"pY" = (
+/obj/machinery/door/airlock/pyro/alt{
+	dir = 4
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters)
 "qb" = (
 /obj/wingrille_spawn/classic,
 /obj/window_blinds/left,
@@ -1053,10 +1066,7 @@
 /turf/floor/carpet/purple/standard/edge/ne,
 /area/station/crew_quarters/lounge)
 "sR" = (
-/obj/machinery/door/airlock/pyro/maintenance{
-	name = "Crew Quarters"
-	},
-/turf/floor/carpet/grime,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters)
 "sZ" = (
 /obj/machinery/door/airlock/pyro/maintenance{
@@ -1250,11 +1260,6 @@
 /obj/stool/bench/wooden/auto,
 /turf/floor/grass/random,
 /area/station/crew_quarters/garden)
-"wb" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/hop,
-/turf/floor/carpet/grime4,
-/area/station/crew_quarters/hop)
 "wc" = (
 /obj/wingrille_spawn/classic,
 /obj/window_blinds/left,
@@ -1294,10 +1299,6 @@
 	},
 /turf/floor/neutral,
 /area/station/medical/medbay/lobby)
-"wL" = (
-/obj/machinery/door/airlock/pyro/command,
-/turf/floor/carpet/nicebrown,
-/area/station/crew_quarters)
 "wM" = (
 /turf/floor/grass/leafy,
 /area/station/crew_quarters/garden)
@@ -1644,13 +1645,6 @@
 /obj/table/auto,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters)
-"EU" = (
-/obj/machinery/door/airlock/pyro/maintenance{
-	dir = 4;
-	name = "Staff Only"
-	},
-/turf/floor/carpet/nicebrown,
-/area/station/crew_quarters)
 "EX" = (
 /obj/storage/secure/closet/security,
 /turf/floor/black/grime,
@@ -1981,6 +1975,10 @@
 /obj/table/auto/desk,
 /turf/floor/black/grime,
 /area/station/security/checkpoint/arrivals)
+"Lk" = (
+/obj/storage/closet/dresser,
+/turf/floor/carpet/grime4,
+/area/station/crew_quarters/hop)
 "Lm" = (
 /obj/storage/secure/closet/fridge,
 /turf/floor/white/grime,
@@ -2049,10 +2047,6 @@
 "MD" = (
 /turf/floor/redblack,
 /area/station/security/checkpoint/arrivals)
-"MJ" = (
-/obj/storage/closet,
-/turf/floor/carpet/grime,
-/area/station/crew_quarters)
 "MO" = (
 /obj/machinery/door/airlock/pyro/classic,
 /turf/floor/neutral,
@@ -2067,6 +2061,11 @@
 /obj/machinery/door/airlock/pyro/command,
 /turf/floor/neutral,
 /area/station/crew_quarters)
+"Ne" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/hop,
+/turf/floor/carpet/grime4,
+/area/station/crew_quarters/hop)
 "Ng" = (
 /obj/wingrille_spawn/auto,
 /turf/wall/auto/reinforced/jen/dark2,
@@ -2245,6 +2244,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"Py" = (
+/obj/machinery/door/airlock/pyro/maintenance{
+	name = "Crew Quarters"
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters)
 "PJ" = (
 /turf/floor/plating,
 /area/station/hallway/secondary/south)
@@ -2324,6 +2329,7 @@
 /turf/floor/neutral,
 /area/station/medical/staff)
 "Rh" = (
+/obj/machinery/door/airlock/pyro/command,
 /turf/floor/carpet/nicebrown,
 /area/station/crew_quarters)
 "Rj" = (
@@ -2374,6 +2380,10 @@
 "Sb" = (
 /turf/wall/auto/jen/dark2,
 /area/station/hallway/secondary/northwest)
+"Sh" = (
+/obj/table/auto,
+/turf/floor/neutral,
+/area/station/medical/head)
 "Sp" = (
 /obj/machinery/computer/card{
 	dir = 8
@@ -2663,12 +2673,6 @@
 	},
 /turf/floor/black/grime,
 /area/station/security/checkpoint/arrivals)
-"WZ" = (
-/obj/machinery/door/airlock/pyro/alt{
-	dir = 4
-	},
-/turf/floor/carpet/grime,
-/area/station/crew_quarters)
 "Xa" = (
 /obj/machinery/door/airlock/pyro/command{
 	dir = 4;
@@ -2778,6 +2782,10 @@
 	dir = 1
 	},
 /area/station/security/checkpoint/arrivals)
+"Yp" = (
+/obj/table/auto,
+/turf/space,
+/area/space)
 "Yv" = (
 /obj/fluid_spawner/polluted_filth/yuck,
 /turf/floor/plating,
@@ -2794,10 +2802,6 @@
 /obj/potted_plant/potted_plant5,
 /turf/floor/neutral,
 /area/station/hallway/secondary/northwest)
-"YI" = (
-/obj/table/auto/desk,
-/turf/floor/carpet/grime4,
-/area/station/crew_quarters/hop)
 "YJ" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4
@@ -24735,11 +24739,11 @@ eB
 Xy
 Xy
 eB
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
 as
 el
 el
@@ -25037,11 +25041,11 @@ eB
 hw
 GH
 eB
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
 uq
 el
 el
@@ -25339,11 +25343,11 @@ hI
 Nk
 Nk
 eB
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
 as
 HN
 DS
@@ -25602,7 +25606,7 @@ pw
 pw
 pw
 pw
-pw
+Yp
 pw
 pw
 pw
@@ -25641,8 +25645,8 @@ Nk
 Nk
 Nk
 eB
-Rh
-Rh
+sR
+sR
 fu
 fu
 fu
@@ -25943,8 +25947,8 @@ Ci
 mA
 Nk
 eB
-Rh
-Rh
+sR
+sR
 fu
 fD
 fD
@@ -26245,8 +26249,8 @@ Bx
 mA
 Nk
 eB
-Rh
-Rh
+sR
+sR
 fu
 fD
 fD
@@ -26547,8 +26551,8 @@ GH
 mA
 Nk
 eB
-Rh
-Rh
+sR
+sR
 fu
 vJ
 fD
@@ -26849,8 +26853,8 @@ Nk
 Nk
 Nk
 eB
-Rh
-Rh
+sR
+sR
 fu
 fD
 fD
@@ -27151,8 +27155,8 @@ GH
 GH
 Ky
 eB
-Rh
-Rh
+sR
+sR
 fu
 fD
 fD
@@ -27453,8 +27457,8 @@ ra
 eB
 eB
 eB
-Rh
-Rh
+sR
+sR
 fu
 fu
 fu
@@ -27742,36 +27746,36 @@ Ou
 hx
 hx
 hx
-dp
+Sh
 TQ
 dR
 dR
-wL
 Rh
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
 Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-wL
 ZT
 ZT
 ZT
@@ -28043,37 +28047,37 @@ fE
 TQ
 uy
 hx
-dp
-dp
+Sh
+Sh
 TQ
 dR
 dR
-wL
 Rh
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
 Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-wL
 ZT
 ZT
 ZT
@@ -28358,8 +28362,8 @@ iO
 Bg
 iO
 iO
-Rh
-Rh
+sR
+sR
 iO
 iO
 iO
@@ -28660,22 +28664,22 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 iO
-MJ
+ls
 kR
 iO
-MJ
+ls
 kR
 iO
-MJ
+ls
 kR
 iO
-MJ
+ls
 kR
 iO
-MJ
+ls
 kR
 iO
 ZT
@@ -28962,8 +28966,8 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 iO
 Un
 kR
@@ -29264,8 +29268,8 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 iO
 ER
 kR
@@ -29566,23 +29570,23 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 iO
 iO
-WZ
+pY
 iO
 iO
-WZ
+pY
 iO
 iO
-WZ
+pY
 iO
 iO
-WZ
+pY
 iO
 iO
-WZ
+pY
 iO
 ZT
 ZT
@@ -29868,8 +29872,8 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 bp
 kR
 kR
@@ -29885,7 +29889,7 @@ kR
 kR
 kR
 kR
-sR
+Py
 ZT
 ZT
 ZT
@@ -30170,8 +30174,8 @@ ei
 Zx
 iO
 iO
-Rh
-Rh
+sR
+sR
 iO
 iO
 iO
@@ -30465,30 +30469,30 @@ dR
 dR
 dR
 bp
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
 MY
 ZT
 ZT
@@ -30767,30 +30771,30 @@ dR
 dR
 dR
 bp
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
+sR
 MY
 ZT
 ZT
@@ -31077,14 +31081,14 @@ Bg
 iO
 iO
 iO
-Rh
-Rh
+sR
+sR
 iO
 iO
 iO
 iO
 iO
-EU
+gJ
 YE
 YE
 cv
@@ -31379,14 +31383,14 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 iO
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
 YE
 RE
 Fg
@@ -31681,14 +31685,14 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 iO
-Rh
-Rh
-Rh
-Rh
-Rh
+sR
+sR
+sR
+sR
+sR
 YE
 Zb
 Fg
@@ -31983,8 +31987,8 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 YE
 YE
 YE
@@ -32285,8 +32289,8 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 YE
 VR
 Fg
@@ -32587,10 +32591,10 @@ kR
 kR
 kR
 iO
-Rh
-Rh
+sR
+sR
 YE
-bw
+Lk
 Fg
 Fg
 Zb
@@ -32889,10 +32893,10 @@ Jv
 aU
 Jv
 Jv
-Rh
-Rh
+sR
+sR
 YE
-wb
+Ne
 Fg
 Fg
 Fg
@@ -33191,10 +33195,10 @@ od
 uC
 Vp
 Jv
-Rh
-Rh
+sR
+sR
 YE
-YI
+nN
 Fg
 YE
 YE
@@ -33493,8 +33497,8 @@ Qt
 Qt
 LZ
 Jv
-Rh
-Rh
+sR
+sR
 YE
 YE
 YE
