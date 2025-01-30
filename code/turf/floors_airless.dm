@@ -413,6 +413,9 @@
 	icon_state = "orangecorner"
 
 //caution sprites weren't even "orange"
+/turf/floor/airless/orange/checker
+	icon_state = "orangechecker"
+
 /turf/floor/airless/orangeblack
 	icon_state = "orangeblack"
 

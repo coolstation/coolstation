@@ -485,6 +485,8 @@ turf/floor/orange
 /turf/floor/orange/corner
 	icon_state = "orangecorner"
 
+/turf/floor/orange/checker
+	icon_state = "orangechecker"
 
 /turf/floor/orangeblack
 	icon_state = "orangeblack"
