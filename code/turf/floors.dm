@@ -502,6 +502,23 @@
 
 /////////////////////////////////////////
 
+/turf/floor/cautionblack
+	icon_state = "fullcaution"
+
+/turf/floor/cautionblack/side
+	icon_state = "caution"
+
+/turf/floor/cautionblack/side/white
+	icon_state = "cautionwhite"
+
+/turf/floor/cautionblack/corner
+	icon_state = "cautioncorner"
+
+/turf/floor/cautionblack/corner/white
+	icon_state = "cautionwhitecorner"
+
+/////////////////////////////////////////
+
 /turf/floor/circuit
 	name = "transduction matrix"
 	desc = "An elaborate, faintly glowing matrix of isolinear circuitry."
