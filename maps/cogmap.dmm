@@ -563,7 +563,7 @@
 /obj/machinery/light/emergency{
 	dir = 8
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
@@ -571,7 +571,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/hallway/secondary/entry)
@@ -580,7 +580,7 @@
 	dir = 8;
 	tag = ""
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/hallway/secondary/entry)
@@ -588,7 +588,7 @@
 /obj/machinery/light/emergency{
 	dir = 4
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
@@ -742,25 +742,25 @@
 /turf/floor,
 /area/station/hallway/secondary/entry)
 "acN" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
 "acO" = (
 /obj/shrub,
 /obj/item/old_grenade/banana,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/hallway/secondary/entry)
 "acP" = (
 /obj/shrub,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/hallway/secondary/entry)
 "acQ" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
@@ -1004,13 +1004,13 @@
 /turf/floor,
 /area/station/hallway/secondary/entry)
 "adq" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
 "adr" = (
 /obj/voting_box,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/hallway/secondary/entry)
@@ -1053,7 +1053,7 @@
 	},
 /area/station/hallway/secondary/entry)
 "adv" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/hallway/secondary/entry)
@@ -1240,7 +1240,7 @@
 /turf/floor/grime,
 /area/station/hallway/secondary/construction2)
 "aec" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
@@ -1262,7 +1262,7 @@
 	},
 /area/station/hallway/secondary/entry)
 "aeg" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/hallway/secondary/entry)
@@ -2078,16 +2078,13 @@
 /turf/floor,
 /area/station/hallway/secondary/entry)
 "agl" = (
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/hallway/secondary/entry)
 "agm" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side,
-/area/station/hallway/secondary/entry)
-"agn" = (
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/secondary/entry)
 "ago" = (
 /turf/floor/yellow/corner{
@@ -2676,8 +2673,8 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
-/turf/floor/orangeblack/corner{
-	dir = 4
+/turf/floor/cautionblack/side{
+	dir = 9
 	},
 /area/station/hallway/secondary/entry)
 "ahS" = (
@@ -2690,7 +2687,7 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
@@ -2701,7 +2698,7 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
@@ -2709,7 +2706,7 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
@@ -2717,8 +2714,8 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
-/turf/floor/orangeblack/corner{
-	dir = 1
+/turf/floor/cautionblack/side{
+	dir = 5
 	},
 /area/station/hallway/secondary/entry)
 "ahZ" = (
@@ -3056,7 +3053,9 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/side{
+	dir = 10
+	},
 /area/station/hallway/secondary/entry)
 "aiP" = (
 /obj/cable{
@@ -3092,7 +3091,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/orangeblack/corner,
+/turf/floor/yellow/corner,
 /area/station/hallway/secondary/entry)
 "aiS" = (
 /obj/cable{
@@ -3102,8 +3101,8 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/floor/yellow/corner{
-	dir = 8
+/turf/floor/cautionblack/side{
+	dir = 6
 	},
 /area/station/hallway/secondary/entry)
 "aiU" = (
@@ -4150,7 +4149,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
@@ -4420,7 +4419,7 @@
 /area/station/security/secwing)
 "amT" = (
 /obj/disposalpipe/segment/mail,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
@@ -5010,7 +5009,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/hallway/secondary/entry)
@@ -24908,16 +24907,6 @@
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
-"bli" = (
-/turf/floor/orangeblack/side{
-	dir = 1
-	},
-/area/station/ai_monitored/storage/eva)
-"blj" = (
-/turf/floor/orangeblack/side{
-	dir = 5
-	},
-/area/station/ai_monitored/storage/eva)
 "blk" = (
 /obj/storage/crate/rcd,
 /obj/machinery/light{
@@ -25083,9 +25072,6 @@
 /turf/floor,
 /area/station/ai_monitored/storage/eva)
 "blL" = (
-/turf/floor/orangeblack/side{
-	dir = 4
-	},
 /area/station/ai_monitored/storage/eva)
 "blM" = (
 /obj/machinery/dispenser{
@@ -26147,9 +26133,6 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
-	dir = 4
-	},
 /area/station/ai_monitored/storage/eva)
 "bnU" = (
 /obj/cable{
@@ -26534,9 +26517,6 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
-	dir = 4
-	},
 /area/station/ai_monitored/storage/eva)
 "boG" = (
 /obj/machinery/door_control{
@@ -26907,9 +26887,6 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side{
-	dir = 4
-	},
 /area/station/ai_monitored/storage/eva)
 "bpC" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -27183,13 +27160,11 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side,
 /area/station/ai_monitored/storage/eva)
 "bqf" = (
-/turf/floor/orangeblack/side{
-	dir = 6
-	},
-/area/station/ai_monitored/storage/eva)
+/obj/xmastree/ephemeral,
+/turf/space,
+/area/space)
 "bqg" = (
 /obj/table/auto,
 /obj/item/sheet/steel{
@@ -29455,9 +29430,6 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
-	dir = 8
-	},
 /area/station/hangar/main)
 "bwy" = (
 /obj/cable{
@@ -29757,9 +29729,6 @@
 /turf/floor/delivery,
 /area/station/hangar/main)
 "bxo" = (
-/turf/floor/orangeblack/side{
-	dir = 8
-	},
 /area/station/hangar/main)
 "bxp" = (
 /obj/table/auto,
@@ -31553,7 +31522,7 @@
 /area/station/storage/warehouse)
 "bBV" = (
 /obj/machinery/bot/secbot,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
@@ -34725,9 +34694,7 @@
 	icon_state = "engineoff";
 	name = "Active Particle Phase Matrix"
 	},
-/turf/floor/orangeblack/side/white{
-	dir = 8
-	},
+/turf/floor/cautionblack/corner/white,
 /area/station/science/teleporter)
 "bKi" = (
 /obj/machinery/lrteleporter,
@@ -34765,8 +34732,8 @@
 /obj/machinery/networked/teleconsole{
 	dir = 8
 	},
-/turf/floor/orangeblack/side/white{
-	dir = 4
+/turf/floor/cautionblack/corner/white{
+	dir = 8
 	},
 /area/station/science/teleporter)
 "bKm" = (
@@ -35249,8 +35216,8 @@
 	dir = 8;
 	tag = ""
 	},
-/turf/floor/orangeblack/side/white{
-	dir = 8
+/turf/floor/cautionblack/side/white{
+	dir = 4
 	},
 /area/station/science/teleporter)
 "bLu" = (
@@ -35275,8 +35242,8 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/turf/floor/orangeblack/side/white{
-	dir = 4
+/turf/floor/cautionblack/side/white{
+	dir = 8
 	},
 /area/station/science/teleporter)
 "bLy" = (
@@ -35870,8 +35837,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side/white{
-	dir = 4
+/turf/floor/cautionblack/side/white{
+	dir = 8
 	},
 /area/station/science/teleporter)
 "bNa" = (
@@ -36647,8 +36614,8 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/floor/orangeblack/side/white{
-	dir = 8
+/turf/floor/cautionblack/corner/white{
+	dir = 4
 	},
 /area/station/science/teleporter)
 "bOz" = (
@@ -36672,8 +36639,8 @@
 	},
 /obj/cable,
 /obj/machinery/power/data_terminal,
-/turf/floor/orangeblack/side/white{
-	dir = 4
+/turf/floor/cautionblack/corner/white{
+	dir = 1
 	},
 /area/station/science/teleporter)
 "bOD" = (
@@ -44712,8 +44679,8 @@
 /area/station/quartermaster/office)
 "ciT" = (
 /obj/landmark/gps_waypoint,
-/turf/floor/orangeblack/side/white{
-	dir = 8
+/turf/floor/cautionblack/side/white{
+	dir = 4
 	},
 /area/station/science/teleporter)
 "ciU" = (
@@ -56273,8 +56240,7 @@
 /turf/floor/plating,
 /area/station/maintenance/solar/north)
 "idr" = (
-/obj/xmastree/ephemeral,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/secondary/entry)
 "iej" = (
 /obj/wingrille_spawn/reinforced,
@@ -102737,7 +102703,7 @@ aOk
 aQo
 blf
 bkz
-bli
+blL
 blK
 bmx
 bmx
@@ -103039,7 +103005,7 @@ bhC
 aQo
 blf
 bky
-blj
+blL
 blL
 blL
 blL
@@ -103047,7 +103013,7 @@ bnT
 boF
 boF
 bpB
-bqf
+blL
 bky
 blf
 adC
@@ -111746,7 +111712,7 @@ adu
 aef
 adq
 adp
-agn
+idr
 aha
 ahU
 aiR
@@ -114154,7 +114120,7 @@ adC
 adC
 adC
 adC
-adC
+bqf
 adC
 adC
 cIx
