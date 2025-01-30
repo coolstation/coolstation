@@ -33,7 +33,6 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			afro
 				name = "Afro"
 				id = "afro"
-				gender = MASCULINE | FEMININE
 			afroHR
 				name = "Afro: Left Half"
 				id = "afroHR"
@@ -79,15 +78,12 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			balding
 				name = "Balding"
 				id = "balding"
-				gender = MASCULINE
 			bangs
 				name = "Bangs"
 				id = "bangs"
-				gender = MASCULINE
 			bieb
 				name = "Bieber"
 				id = "bieb"
-				gender = MASCULINE | FEMININE
 			//bloom
 			//	name = "Bloom"
 			//	id = "bloom"
@@ -95,19 +91,15 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			bobcut
 				name = "Bobcut"
 				id = "bobcut"
-				gender = FEMININE
 			baum_s
 				name = "Bobcut Alt"
 				id = "baum_s"
-				gender = FEMININE
 			bowl
 				name = "Bowl Cut"
 				id = "bowl"
-				gender = MASCULINE
 			cut
 				name = "Buzzcut"
 				id = "cut"
-				gender = MASCULINE
 			clown
 				name = "Clown"
 				id = "clown"
@@ -123,33 +115,27 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			combed_s
 				name = "Combed"
 				id = "combed_s"
-				gender = MASCULINE
 			combedbob_s
 				name = "Combed Bob"
 				id = "combedbob_s"
-				gender = FEMININE
 			chop_short
 				name = "Choppy Short"
 				id = "chop_short"
-				gender = MASCULINE | FEMININE
 			einstein
 				name = "Einstein"
 				id = "einstein"
-				gender = MASCULINE
 			einalt
 				name = "Einstein: Alternating"
 				id = "einalt"
 			emo
 				name = "Emo"
 				id = "emo"
-				gender = MASCULINE | FEMININE
 			emoH
 				name = "Emo: Highlight"
 				id = "emoH"
 			flattop
 				name = "Flat Top"
 				id = "flattop"
-				gender = MASCULINE
 			//floof
 			//	name = "Floof"
 			//	id = "floof"
@@ -160,7 +146,6 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			mohawk
 				name = "Mohawk"
 				id= "mohawk"
-				gender = MASCULINE | FEMININE
 			mohawkFT
 				name = "Mohawk: Fade from End"
 				id = "mohawkFT"
@@ -173,22 +158,18 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			long
 				name = "Mullet"
 				id = "long"
-				gender = MASCULINE | FEMININE
 			part
 				name = "Parted Hair"
 				id = "part"
-				gender = MASCULINE | FEMININE
 			pomp
 				name = "Pompadour"
 				id = "pomp"
-				gender = MASCULINE | FEMININE
 			pompS
 				name = "Pompadour: Greaser Shine"
 				id = "pompS"
 			shortflip
 				name = "Punky Flip"
 				id = "shortflip"
-				gender = MASCULINE | FEMININE
 			//spiky
 			//	name = "Spiky"
 			//	id = "spiky"
@@ -200,15 +181,12 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			temsik
 				name = "Temsik"
 				id = "temsik"
-				gender = MASCULINE
 			tonsure
 				name = "Tonsure"
 				id = "tonsure"
-				gender = MASCULINE
 			short
 				name = "Trimmed"
 				id = "short"
-				gender = MASCULINE
 			//tulip
 			//	name = "Tulip"
 			//	id = "tulip"
@@ -217,6 +195,30 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			//	name = "Visual"
 			//	id = "visual"
 			//	gender = MASCULINE
+			shaved
+				name = "Shaved"
+				id = "shaved"
+			croft_bangs
+				name = "Bangs: Croft"
+				id = "croft-bangs"
+			doublepart_bangs
+				name = "Bangs: Double-Part"
+				id = "doublepart-bangs"
+			long_bangs
+				name = "Bangs: Long"
+				id = "long-bangs"
+			midb_bangs
+				name = "Bangs: Mid-back"
+				id = "midb-bangs"
+			wavy_bangs
+				name = "Bangs: Wavy"
+				id = "wavy_tail-bangs"
+			wavy_bangs
+				name = "Bangs: Wavy"
+				id = "wavy_tail2-bangs"
+			short_bangs
+				name = "Bangs: Short"
+				id = "short-bangs"
 		long
 			chub2_s
 				name = "Bang: Left"
@@ -233,95 +235,75 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			bedhead
 				name = "Bedhead"
 				id = "bedhead"
-				gender = MASCULINE | FEMININE
 			disheveled
 				name = "Disheveled"
 				id = "disheveled"
-				gender = FEMININE
 			doublepart
 				name = "Double-Part"
 				id = "doublepart"
 			shoulders
 				name = "Draped"
 				id = "shoulders"
-				gender = FEMININE
 			dreads
 				name = "Dreadlocks"
 				id = "dreads"
-				gender = MASCULINE
 			dreadsA
 				name = "Dreadlocks: Alternating"
 				id = "dreadsA"
 			fabio
 				name = "Fabio"
 				id = "fabio"
-				gender = FEMININE
 			glammetal
 				name = "Glammetal"
 				id = "glammetal"
-				gender = FEMININE
 			glammetalO
 				name = "Glammetal: Faded"
 				id = "glammetalO"
 			eighties
 				name = "Hairmetal"
 				id = "80s"
-				gender = FEMININE
 			eightiesfade
 				name = "Hairmetal: Faded"
 				id = "80sfade"
 			halfshavedR
 				name = "Half-Shaved: Left"
 				id = "halfshavedR"
-				gender = MASCULINE | FEMININE
 			halfshaved_s
 				name = "Half-Shaved: Long"
 				id = "halfshaved_s"
-				gender = FEMININE
 			halfshavedL
 				name = "Half-Shaved: Right"
 				id = "halfshavedL"
-				gender = MASCULINE | FEMININE
 			kingofrockandroll
 				name = "Kingmetal"
 				id = "king-of-rock-and-roll"
-				gender = MASCULINE
 			froofy_long
 				name = "Long and Froofy"
 				id = "froofy_long"
-				gender = FEMININE
 			longbraid
 				name = "Long Braid"
 				id = "longbraid"
-				gender = FEMININE
 			longsidepart_s
 				name = "Long Flip"
 				id = "longsidepart_s"
-				gender = FEMININE
 			pulledb
 				name = "Pulled Back"
 				id = "pulledb"
-				gender = FEMININE
 			sage
 				name = "Sage"
 				id = "sage"
-				gender = FEMININE
 			scraggly
 				name = "Scraggly"
 				id = "scraggly"
-				gender = MASCULINE
 			pulledf
 				name = "Shoulder Drape"
 				id = "pulledf"
-				gender = FEMININE
 			shoulderl
 				name = "Shoulder-Length"
 				id = "shoulderl"
-				gender = FEMININE
 			slightlymess_s
 				name = "Shoulder-Length Mess"
 				id = "slightlymessy_s"
-				gender = FEMININE
 			//smoothwave
 			//	name = "Smooth Waves"
 			//	id = "smoothwave"
@@ -332,27 +314,22 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			mermaid
 				name = "Mermaid"
 				id = "mermaid"
-				gender = FEMININE
 			//mermaidfade
 			//	name = "Mermaid: Faded"
 			//	id = "mermaidfade"
 			midb
 				name = "Mid-Back Length"
 				id = "midb"
-				gender = MASCULINE | FEMININE
 			bluntbangs_s
 				name = "Mid-Length Curl"
 				id = "bluntbangs_s"
-				gender = FEMININE
 			vlong
 				name = "Very Long"
 				id = "vlong"
-				gender = FEMININE
 
 			untidy
 				name = "Untidy"
 				id = "untidy"
-				gender = MASCULINE | FEMININE
 		hairup
 			afos //if you don't recognise this one, look up A Flock Of Seagulls
 				name = "New Wave"
@@ -360,38 +337,30 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			bun
 				name = "Bun"
 				id = "bun"
-				gender = FEMININE
 			sakura
 				name = "Captor"
 				id = "sakura"
-				gender = FEMININE
 			croft
 				name = "Croft"
 				id = "croft"
-				gender = FEMININE
 			indian
 				name = "Double Braids"
 				id = "indian"
-				gender = FEMININE
 			doublebun
 				name = "Double Buns"
 				id = "doublebun"
-				gender = FEMININE
 			drill
 				name = "Drill"
 				id = "drill"
 			fun_bun
 				name = "Fun Bun"
 				id = "fun_bun"
-				gender = FEMININE
 			charioteers
 				name = "High Flat Top"
 				id = "charioteers"
-				gender = MASCULINE
 			spud
 				name = "High Ponytail"
 				id = "spud"
-				gender = FEMININE
 			//longtailed
 			//	name = "Long Mini Tail"
 			//	id = "longtailed"
@@ -399,35 +368,43 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			lowpig
 				name = "Low Pigtails"
 				id = "lowpig"
-				gender = FEMININE
 			band
 				name = "Low Ponytail"
 				id = "band"
-				gender = FEMININE
 			minipig
 				name = "Mini Pigtails"
 				id = "minipig"
-				gender = MASCULINE | FEMININE
 			pig
 				name = "Pigtails"
 				id = "pig"
-				gender = FEMININE
 			ponytail
 				name = "Ponytail"
 				id = "ponytail"
-				gender = MASCULINE | FEMININE
 			geisha_s
 				name = "Shimada"
 				id = "geisha_s"
-				gender = FEMININE
 			twotail
 				name = "Split-Tails"
 				id = "twotail"
-				gender = MASCULINE
 			wavy_tail
 				name = "Wavy Ponytail"
 				id = "wavy_tail"
-				gender = FEMININE
+			croft_pull // is there a better term than pulled? probably.
+				name = "Pulled: Croft"
+				id = "croft-pull"
+			doublepart_pull
+				name = "Pulled: Double-Part"
+				id = "doublepart-pull"
+			long_pull
+				name = "Pulled: Long"
+				id = "long-pull"
+			midb_pull
+				name = "Pulled: Mid-back"
+				id = "midb-pull"
+			wavy_pull
+				name = "Pulled: Wavy"
+				id = "wavy_tail-pull"
+
 		gimmick
 			afroHA
 				name = "Afro: Alternating Halves"
