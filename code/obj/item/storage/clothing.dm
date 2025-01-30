@@ -61,14 +61,14 @@
 	/obj/item/clothing/under/rank/chief_engineer/fancy,
 	/obj/item/clothing/suit/wintercoat/command)
 
-// Civilian Equipment
+/obj/item/storage/box/clothing/qm
+	name = "\improper Quartermaster's equipment"
+	spawn_contents = list(/obj/item/clothing/under/rank/qm,\
+	/obj/item/clothing/shoes/black,\
+	/obj/item/clothing/gloves/black,\
+	/obj/item/device/pda2/quartermaster)
 
-/obj/item/storage/box/clothing/janitor
-	name = "\improper Janitor's equipment"
-	spawn_contents = list(/obj/item/clothing/under/rank/janitor,\
-	/obj/item/clothing/shoes/brown,\
-	/obj/item/device/radio/headset/civilian,\
-	/obj/item/device/pda2/janitor)
+// Civilian Equipment
 
 /obj/item/storage/box/clothing/botanist
 	name = "\improper Botanist's equipment"
@@ -182,6 +182,31 @@
 	/obj/item/device/radio/headset/research,\
 	/obj/item/device/pda2/toxins)
 
+// Logistics Equipment
+
+/obj/item/storage/box/clothing/miner
+	name = "\improper Miner's equipment"
+	spawn_contents = list(/obj/item/clothing/under/rank/overalls,\
+	/obj/item/clothing/shoes/orange,\
+	/obj/item/clothing/gloves/black,\
+	/obj/item/device/radio/headset/shipping,\
+	/obj/item/device/pda2/mining)
+
+/obj/item/storage/box/clothing/ct
+	name = "\improper Cargo Tech's equipment"
+	spawn_contents = list(/obj/item/clothing/under/rank/cargo,\
+	/obj/item/clothing/shoes/black,\
+	/obj/item/clothing/gloves/black,\
+	/obj/item/device/radio/headset/shipping,\
+	/obj/item/device/pda2/quartermaster)
+
+/obj/item/storage/box/clothing/janitor
+	name = "\improper Janitor's equipment"
+	spawn_contents = list(/obj/item/clothing/under/rank/janitor,\
+	/obj/item/clothing/shoes/brown,\
+	/obj/item/device/radio/headset/shipping,\
+	/obj/item/device/pda2/janitor)
+
 // Engineering Equipment
 
 /obj/item/storage/box/clothing/mechanic
@@ -197,22 +222,6 @@
 	/obj/item/clothing/shoes/orange,\
 	/obj/item/device/radio/headset/engineer,\
 	/obj/item/device/pda2/engine)
-
-/obj/item/storage/box/clothing/miner
-	name = "\improper Miner's equipment"
-	spawn_contents = list(/obj/item/clothing/under/rank/overalls,\
-	/obj/item/clothing/shoes/orange,\
-	/obj/item/clothing/gloves/black,\
-	/obj/item/device/radio/headset/engineer,\
-	/obj/item/device/pda2/mining)
-
-/obj/item/storage/box/clothing/qm
-	name = "\improper Cargo Tech's equipment"
-	spawn_contents = list(/obj/item/clothing/under/rank/cargo,\
-	/obj/item/clothing/shoes/black,\
-	/obj/item/clothing/gloves/black,\
-	/obj/item/device/radio/headset/shipping,\
-	/obj/item/device/pda2/quartermaster)
 
 /obj/item/storage/box/clothing/wedding_dress
 	name = "wedding dress set"
