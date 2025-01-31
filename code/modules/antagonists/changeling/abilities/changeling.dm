@@ -109,11 +109,12 @@
 			boutput(owner, "<span class='notice'>[M] was a changeling! We have absorbed their entire genetic structure!</span>")
 			logTheThing("combat", owner, M, "absorbs [constructTarget(M,"combat")] as a changeling [log_loc(owner)].")
 
-			if (headspider_override != 1) // Headspiders shouldn't be free.
-				src.points += M.dna_to_absorb // 10 regular points for their body...
+			if (isvalidantagmeal(M))
+				if (headspider_override != 1) // Headspiders shouldn't be free.
+					src.points += M.dna_to_absorb // 10 regular points for their body...
 
-			if (O.points > 0) // ...and then grab their DNA stockpile too.
-				src.points = max(0, src.points + O.points)
+				if (O.points > 0) // ...and then grab their DNA stockpile too.
+					src.points = max(0, src.points + O.points)
 
 			src.absorbtions++ // Same principle.
 			for(var/D in O.absorbed_dna)
@@ -135,7 +136,7 @@
 			originalBHolder.CopyOther(M.bioHolder)
 			src.absorbed_dna[M.real_name] = originalBHolder
 
-			if (headspider_override != 1)
+			if (headspider_override != 1 && isvalidantagmeal(M)) //you can munch diner folk but not get free points.
 				src.points += M.dna_to_absorb
 			src.absorbtions++
 		src.insert_into_hivemind(M)
