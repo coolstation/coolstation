@@ -27,6 +27,7 @@
 				"h" = R_FREQ_COMMAND,
 				"g" = R_FREQ_SECURITY,
 				"e" = R_FREQ_ENGINEERING,
+				"l" = R_FREQ_LOGISTICS,
 				"r" = R_FREQ_RESEARCH,
 				"m" = R_FREQ_MEDICAL,
 				"c" = R_FREQ_CIVILIAN,
@@ -35,6 +36,7 @@
 				"h" = RADIOCL_COMMAND,
 				"g" = RADIOCL_SECURITY,
 				"e" = RADIOCL_ENGINEERING,
+				"l" = RADIOC_LOGISTICS,
 				"r" = RADIOCL_RESEARCH,
 				"m" = RADIOCL_MEDICAL,
 				"c" = RADIOCL_CIVILIAN,
@@ -201,6 +203,18 @@
 		)
 	icon_override = "ce"
 
+/obj/item/device/radio/headset/command/qm
+	name = "Quartermaster's Headset"
+	secure_frequencies = list(
+		"h" = R_FREQ_COMMAND,
+		"l" = R_FREQ_LOGISTICS,
+		)
+	secure_classes = list(
+		"h" = RADIOCL_COMMAND,
+		"l" = RADIOCL_LOGISTICS,
+		)
+	icon_override = "qm"
+
 /obj/item/device/radio/headset/security
 	name = "Security Headset"
 	desc = "A radio headset that is also capable of communicating over the Security radio channels."
@@ -257,7 +271,7 @@
 
 /obj/item/device/radio/headset/civilian
 	name = "Civilian Headset"
-	desc = "A radio headset that is also capable of communicating over the Civilian radio channels."
+	desc = "A radio headset that is also capable of communicating over the Civilian radio channel."
 	icon_state = "civ headset"
 	secure_frequencies = list("c" = R_FREQ_CIVILIAN)
 	secure_classes = list(
@@ -265,28 +279,26 @@
 		)
 
 /obj/item/device/radio/headset/shipping
-	name = "Shipping Headset"
-	desc = "A radio headset that is also capable of communicating over the Engineering and Civilian channels."
+	name = "Logistics Headset"
+	desc = "A radio headset that is also capable of communicating over the Logistics channel."
 	icon_state = "shipping headset"
 	secure_frequencies = list(
-	"e" = R_FREQ_ENGINEERING,
-	"c" = R_FREQ_CIVILIAN)
+	"l" = R_FREQ_LOGISTICS)
 	secure_classes = list(
-		"e" = RADIOCL_ENGINEERING,
-		"c" = RADIOCL_CIVILIAN,
+		"l" = RADIOCL_LOGISTICS
 		)
-	icon_override = "qm"
+	icon_override = "log"
 
 /obj/item/device/radio/headset/scrapping
 	name = "Scrapping Headset"
-	desc = "A radio headset that is also capable of communicating over the Engineering channel."
+	desc = "A radio headset that is also capable of communicating over the Logistics channel."
 	icon_state = "shipping headset"
 	secure_frequencies = list(
-	"e" = R_FREQ_ENGINEERING)
+	"l" = R_FREQ_LOGISTICS)
 	secure_classes = list(
-		"e" = RADIOCL_ENGINEERING
+		"l" = RADIOCL_LOGISTICS
 		)
-
+	icon_override = "log"
 
 /obj/item/device/radio/headset/mail
 	name = "Mailcarrier's Headset"
@@ -294,10 +306,10 @@
 	icon_state = "command headset"
 	secure_frequencies = list(
 	"h" = R_FREQ_COMMAND,
-	"e" = R_FREQ_ENGINEERING)
+	"l" = R_FREQ_LOGISTICS)
 	secure_classes = list(
 		"h" = RADIOCL_COMMAND,
-		"e" = RADIOCL_ENGINEERING,
+		"l" = RADIOCL_LOGISTICS,
 		)
 	icon_override = "mail"
 
