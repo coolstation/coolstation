@@ -62,7 +62,9 @@
 		if(affecting)
 			if (affecting.beingBaned)
 				affecting.beingBaned = FALSE
-				affecting.Turn(-90)
+			if (!affecting.lying)
+				affecting.transform = null
+
 			if (state >= GRAB_NECK)
 				if (assailant)
 					affecting.layer = assailant.layer
@@ -180,18 +182,17 @@
 					pxo = -5
 					pyo = -1
 
-			if (src.assailant.l_hand == src && pyo != 0) //change pixel position based on which hand the assailant are grabbing with
+			if (src.assailant.l_hand == src && pyo != 0) //change pixel position 5based on which hand the assailant are grabbing with
 				pxo *= -1
-
+			if(src.affecting.beingBaned)
+				pyo += 10
+				pxo = 0
 			src.assailant.pixel_x = 0
 			src.assailant.pixel_y = 0
-			if (!src.affecting.lying)
-				src.affecting.pixel_x = src.assailant.pixel_x + pxo
-				src.affecting.pixel_y = src.assailant.pixel_y + pyo
+			src.affecting.pixel_x = src.assailant.pixel_x + pxo
+			src.affecting.pixel_y = src.assailant.pixel_y + pyo
 			src.affecting.set_loc(src.assailant.loc)
-			if(src.affecting.beingBaned)
-				src.affecting.pixel_y = 10
-				src.affecting.pixel_x = 0
+
 			src.affecting.layer = src.assailant.layer + (src.assailant.dir == NORTH ? -0.1 : 0.1)
 			src.affecting.set_dir(src.assailant.dir)
 

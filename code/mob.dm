@@ -42,7 +42,9 @@
 
 	var/list/mob/dead/target_observer/observers = list()
 
+	//var/matrix/preBaneMatrix = matrix()
 	var/beingBaned = FALSE
+	var/gotBent = FALSE
 	var/emote_allowed = 1
 	var/last_emote_time = 0
 	var/last_emote_wait = 0
@@ -837,6 +839,7 @@
 	if (src.client)
 		src.client.mouse_pointer_icon = cursor
 
+
 /mob/proc/overhead_throw() //this is a beefy proc that can be trimmed down
 	if (client)
 		var/obj/item/grab/grabHand = null
@@ -845,14 +848,16 @@
 				grabHand = src.l_hand
 			else if(istype(src.r_hand,/obj/item/grab))
 				grabHand = src.r_hand
-			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW))
+			//grabHand.affecting.preBaneMatrix = grabHand.affecting.transform
+			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW)) //the agressive grab state is skipped. Don't ask me why.
 				if(!grabHand.affecting.lying)
-					grabHand.affecting.Turn(90)
-					grabHand.affecting.beingBaned = TRUE
+					grabHand.affecting.Turn(90) //So we don't turn spacemen upside down
+					grabHand.affecting.gotBent = TRUE
+				grabHand.affecting.beingBaned = TRUE //beingbaned!
 				grabHand.set_affected_loc()
 			else if(grabHand.state == GRAB_NECK)
 				grabHand.affecting.beingBaned = FALSE
-				grabHand.affecting.Turn(-90)
+				grabHand.affecting.transform = null
 				grabHand.set_affected_loc()
 
 
