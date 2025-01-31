@@ -1267,9 +1267,10 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 	var/y = -1
 	var/z = -1
 
-	return_text()
-		if(..())
-			return
+	return_text(filthy_cheating_bypass = FALSE) //"Hey what if I patched the GPS program through the maintenance database?" I asked, not knowing that every part of PDA code hates that idea
+		if(!filthy_cheating_bypass)
+			if(..())
+				return
 
 		var/dat = src.return_text_header()
 		dat += "<h4>Space GPS: Pocket Edition</h4>"
@@ -1298,7 +1299,8 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 
 	Topic(href, href_list)
 		if(..())
-			return
+			if (!istype(master?.active_program, /datum/computer/file/pda_program/maintenance_arrears)) //update location even when we're not loaded cause hack
+				return
 
 		if (href_list["getloc"])
 			var/turf/T = get_turf(usr)
@@ -1341,20 +1343,32 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 /datum/computer/file/pda_program/maintenance_arrears
 	name = "Maintenance Arrears"
 	size = 4
+	var/datum/computer/file/pda_program/gps/pda_gps
+
+	disposing()
+		pda_gps = null
+		..()
 
 	return_text()
 		if(..())
 			return
 
-		var/dat = src.return_text_header()
+		//filthy cheating - piggyback off the PDA's internal GPS program so folks don't have to swap between two programs constantly
+		pda_gps = locate(/datum/computer/file/pda_program/gps) in master?.hd.root.contents
+		var/dat = src.return_text_header() //the GPS prog won't supply the header even with the bypass
+		if (pda_gps)
+			pda_gps.master = master
+			dat = pda_gps.return_text(filthy_cheating_bypass = TRUE)
+			dat += "<br><hr>"
 		dat += "<h4>Maintenance Arrears:</h4>"
 
 		for (var/obj/machinery/problem in random_events.maintenance_event.unmaintained_machines)
+			var/cleanish_name = (istype(problem, /obj/machinery/power/apc) ? problem.name : initial (problem.name))
 			var/turf/T = get_turf(problem)
 			var/area/A = get_area(problem)
 			if (!istype(T))
 				continue //uh
-			dat += "<b>[problem.name]</b><br> [istype(A, /area/station) ? "Located in [A]: [T.x], [T.y]" : "(Location unknown)"]<br>"
+			dat += "<b>[cleanish_name]</b><br> [istype(A, /area/station) ? "Located in [A]: [T.x], [T.y]" : "(Location unknown)"]<br>"
 		dat += "<br>"
 
 		dat += "<a href='byond://?src=\ref[src];update=1'>Refresh</a>"

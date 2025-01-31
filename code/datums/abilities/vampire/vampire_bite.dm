@@ -63,7 +63,7 @@
 		boutput(M, __red("Drink monkey blood?! That's disgusting!"))
 		return 0
 
-	if (!target.mind && !target.ghost && !target.last_client) // this thing had never been a player. It's an NPC.
+	if (!isvalidantagmeal(target)) // this thing had never been a player. It's an NPC.
 		boutput(M, __red("This is beneath you. Find a worthy offering."))
 		return 0
 

@@ -399,7 +399,7 @@
 /obj/item/electronics/scanner
 	name = "device analyzer"
 	icon_state = "deviceana"
-	desc = "Used for scanning certain items for use with the ruckingenur kit."
+	desc = "Used for diagnosing problems with station equipment and making backup scans. These scans can then be used with the ruckingenur kit to produce schematics for replacing equipment."
 	force = 2
 	hit_type = DAMAGE_BLUNT
 	throwforce = 5
@@ -412,6 +412,18 @@
 		is_syndicate = 1
 
 /obj/item/electronics/scanner/afterattack(var/obj/O, mob/user as mob)
+	//Maintenance arrears
+	//
+	if (istype(O, /obj/machinery))
+		var/obj/machinery/M = O
+		var/hint = M.malfunction_hint()
+		if (hint)
+			animate_scanning(O, "#FF6633")
+			user.visible_message("<b>[user]</b> has scanned the [O].")
+			boutput(user, "<br><span class='alert'>Maintenance analysis: <b>[M] is not functioning properly.</span></b>")
+			src.audible_message("<span class='notice'>NanoTrasen maintenance guide advises: <i>[hint]</i></span>")
+			return
+
 	if(istype(O,/obj/machinery/rkit) || istype(O, /obj/item/electronics/frame))
 		return
 	if(istype(O,/obj/))

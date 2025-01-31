@@ -369,6 +369,8 @@ var/zapLimiter = 0
 							src.terminal.master = src
 							src.terminal.set_dir(initial(src.dir))
 
+					malfunction_resolve() //freebie, they did unfuck the whole thing so it probably fixed whatever was wrong before the APC blew up.
+
 					status &= ~BROKEN //Clear broken flag
 					icon_state = initial(src.icon_state)
 					operating = 1
@@ -1357,7 +1359,23 @@ var/zapLimiter = 0
 	..()
 
 /obj/machinery/power/apc/malfunction_hint()
-	return "Open the maintenance hatch and replace the APC's wiring."
+	//You can already examine APCs to get the next step, but we'll have a more formally worded repeat here
+	if(status & BROKEN)
+		switch(repair_status)
+			if(0)
+				return "<br>First, unscrew and disconnect the control board.</br>"
+			if(1)
+				return "<br>Next, replace the autotransformer's wiring.</br>"
+			if(2)
+				return "<br>Next, tune the autotransformer using a wrench.</br>"
+			if(3)
+				return "<br>Next, reset the control board with a multitool.</br>"
+			if(4)
+				return "<br>Finally, reconnect the control board with a screwdriver.</br>"
+
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the APC's wiring."
+	return FALSE
 
 // damage and destruction acts
 
