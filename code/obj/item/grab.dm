@@ -60,6 +60,9 @@
 					assailant.hand = !assailant.hand
 
 		if(affecting)
+			if (affecting.beingBaned)
+				affecting.beingBaned = FALSE
+				affecting.Turn(-90)
 			if (state >= GRAB_NECK)
 				if (assailant)
 					affecting.layer = assailant.layer
@@ -85,7 +88,6 @@
 			if (affecting.grabbed_by)
 				affecting.grabbed_by -= src
 			affecting = null
-
 		UnregisterSignal(assailant, COMSIG_ATOM_HITBY_PROJ)
 		assailant = null
 		..()
@@ -130,7 +132,6 @@
 			I.process_grab(mult)
 
 		update_icon()
-		set_affected_loc(FALSE)
 
 
 	attack(atom/target, mob/user)
@@ -188,16 +189,13 @@
 				src.affecting.pixel_x = src.assailant.pixel_x + pxo
 				src.affecting.pixel_y = src.assailant.pixel_y + pyo
 			src.affecting.set_loc(src.assailant.loc)
+			if(src.affecting.beingBaned)
+				src.affecting.pixel_y = 10
+				src.affecting.pixel_x = 0
 			src.affecting.layer = src.assailant.layer + (src.assailant.dir == NORTH ? -0.1 : 0.1)
 			src.affecting.set_dir(src.assailant.dir)
 
 			src.affecting.set_density(0)
-
-		if(src.assailant.client && src.assailant.client.check_key(KEY_THROW))
-			if(src.affecting.pixel_y < 10)
-				src.affecting.pixel_y += 10
-			else if(src.affecting/pixel_y >= 10)
-				src.affecting.pixel_y = 10
 
 
 	attack_self(mob/user)
@@ -332,8 +330,6 @@
 		if(!assailant || !affecting)
 			qdel(src)
 			return 1
-		else
-			set_affected_loc(FALSE)
 
 		if (isitem(src.loc))
 			if(!assailant.is_in_hands(src.loc))
