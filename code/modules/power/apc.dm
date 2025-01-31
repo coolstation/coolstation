@@ -1578,14 +1578,11 @@ var/zapLimiter = 0
 
 MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 
-/obj/apc_helper //we really need a map helper path at this rate
+/obj/map/apc_helper //we really need a map helper path at this rate <- guess what there is binch
 	icon = 'icons/map-editing/mapeditor.dmi'
-	invisibility = 101
-	anchored = TRUE
-	density = FALSE
 	layer = EFFECTS_LAYER_4 // above all stuff
 
-/obj/apc_helper/New()
+/obj/map/apc_helper/New()
 	. = ..()
 	var/obj/machinery/power/apc/apc = locate() in loc
 	if(isnull(apc))
@@ -1595,18 +1592,18 @@ MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 	act_on(apc)
 	qdel(src)
 
-/obj/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
 	return
 
-/obj/apc_helper/nopoweralert
+/obj/map/apc_helper/nopoweralert
 	icon_state = "nopoweralert"
 
-/obj/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
 
-/obj/apc_helper/noaicontrol
+/obj/map/apc_helper/noaicontrol
 	icon_state = "noaicontrol"
 
-/obj/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
 	apc.aidisabled = TRUE

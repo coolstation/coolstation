@@ -3674,6 +3674,15 @@
 /obj/decal/poster/wallsign/poster_clown,
 /turf/wall,
 /area/station/crew_quarters/fitness)
+"cVy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "cVQ" = (
 /obj/machinery/dispenser{
 	o2tanks = 5;
@@ -7094,6 +7103,9 @@
 /area/station/chapel/sanctuary)
 "fHn" = (
 /obj/critter/mouse,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
 "fHt" = (
@@ -7307,6 +7319,11 @@
 /obj/machinery/light_switch/south,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"fOD" = (
+/obj/machinery/power/apc/autoname/south,
+/obj/cable,
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "fOK" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/wall/r_wall,
@@ -19470,8 +19487,8 @@
 /area/station/maintenance/west)
 "oYw" = (
 /obj/decal/poster/wallsign/poster_clown{
-	pixel_y = -23;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -23
 	},
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
@@ -78323,9 +78340,9 @@ fet
 eRL
 bOC
 ndV
-nNP
+cVy
 fHn
-bce
+fOD
 gJu
 jxf
 gKk
