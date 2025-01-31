@@ -117,6 +117,7 @@
 			//if(H) H.remove_stamina(STAMINA_REGEN * 0.5 * mult)
 			src.affecting.set_density(0)
 
+
 		if (src.state == GRAB_KILL)
 			src.affecting.losebreath++
 			//if (src.affecting.paralysis < 2)
@@ -129,6 +130,8 @@
 			I.process_grab(mult)
 
 		update_icon()
+		set_affected_loc(FALSE)
+
 
 	attack(atom/target, mob/user)
 		if (check())
@@ -155,38 +158,47 @@
 			else
 				if(prob(33)) H.losebreath += (0.2 * mult)
 
-	proc/set_affected_loc()
-		if (!isturf(src.assailant.loc))
-			return
+	proc/set_affected_loc(var/pullTo = TRUE)
+		if(pullTo)
+			if (!isturf(src.assailant.loc))
+				return
 
-		actions.interrupt(src.affecting, INTERRUPT_ALWAYS)
+			actions.interrupt(src.affecting, INTERRUPT_ALWAYS)
 
-		var/pxo = 0
-		var/pyo = 0
-		switch(src.assailant.dir)
-			if (EAST)
-				pxo = 8
-			if (WEST)
-				pxo = -8
-			if (NORTH)
-				pxo = 5
-				pyo = 2
-			if (SOUTH)
-				pxo = -5
-				pyo = -1
+			var/pxo = 0
+			var/pyo = 0
+			switch(src.assailant.dir)
+				if (EAST)
+					pxo = 8
+				if (WEST)
+					pxo = -8
+				if (NORTH)
+					pxo = 5
+					pyo = 2
+				if (SOUTH)
+					pxo = -5
+					pyo = -1
 
-		if (src.assailant.l_hand == src && pyo != 0) //change pixel position based on which hand the assailant are grabbing with
-			pxo *= -1
+			if (src.assailant.l_hand == src && pyo != 0) //change pixel position based on which hand the assailant are grabbing with
+				pxo *= -1
 
-		src.assailant.pixel_x = 0
-		src.assailant.pixel_y = 0
-		if (!src.affecting.lying)
-			src.affecting.pixel_x = src.assailant.pixel_x + pxo
-			src.affecting.pixel_y = src.assailant.pixel_y + pyo
-		src.affecting.set_loc(src.assailant.loc)
-		src.affecting.layer = src.assailant.layer + (src.assailant.dir == NORTH ? -0.1 : 0.1)
-		src.affecting.set_dir(src.assailant.dir)
-		src.affecting.set_density(0)
+			src.assailant.pixel_x = 0
+			src.assailant.pixel_y = 0
+			if (!src.affecting.lying)
+				src.affecting.pixel_x = src.assailant.pixel_x + pxo
+				src.affecting.pixel_y = src.assailant.pixel_y + pyo
+			src.affecting.set_loc(src.assailant.loc)
+			src.affecting.layer = src.assailant.layer + (src.assailant.dir == NORTH ? -0.1 : 0.1)
+			src.affecting.set_dir(src.assailant.dir)
+
+			src.affecting.set_density(0)
+
+		if(src.assailant.client && src.assailant.client.check_key(KEY_THROW))
+			if(src.affecting.pixel_y < 10)
+				src.affecting.pixel_y += 10
+			else if(src.affecting/pixel_y >= 10)
+				src.affecting.pixel_y = 10
+
 
 	attack_self(mob/user)
 		if (!user)
@@ -320,6 +332,8 @@
 		if(!assailant || !affecting)
 			qdel(src)
 			return 1
+		else
+			set_affected_loc(FALSE)
 
 		if (isitem(src.loc))
 			if(!assailant.is_in_hands(src.loc))
