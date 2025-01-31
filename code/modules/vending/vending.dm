@@ -1074,7 +1074,14 @@
 		fall(H) //:D
 
 /obj/machinery/vending/malfunction_hint()
-	return "Open the maintenance hatch and replace the machine's wiring."
+	if (can_fall == 2)
+		return "Pry the machine back on its feet with a crowbar." //duh
+	else if (src.status & BROKEN) //toppled machines count as BROKEN but can be fixed. This is broken glass dead monkeys levels of fucked.
+		return "Machine is beyond repair. Replace with a new unit."
+
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the machine's wiring."
+	return FALSE
 
 //Since repairing a vending machine involves replacing the wiring...
 /obj/machinery/vending/malfunction_resolve()

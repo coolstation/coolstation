@@ -1560,7 +1560,9 @@ About the new airlock wires panel:
 	..()
 
 /obj/machinery/door/airlock/malfunction_hint()
-	return "Reset the control unit by pulsing a reset code through the AI control wire."
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Reset the control unit by pulsing a reset code through the AI control wire."
+	return FALSE
 
 // This code allows for airlocks to be controlled externally by setting an id_tag and comm frequency (disables ID access)
 obj/machinery/door/airlock
