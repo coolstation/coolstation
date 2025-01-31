@@ -855,10 +855,11 @@
 					grabHand.affecting.gotBent = TRUE
 				grabHand.affecting.beingBaned = TRUE //beingbaned!
 				grabHand.set_affected_loc()
-			else if(grabHand.state == GRAB_NECK)
+			else
 				grabHand.affecting.beingBaned = FALSE
 				grabHand.affecting.transform = null
 				grabHand.set_affected_loc()
+
 
 
 /mob/proc/update_cursor()
