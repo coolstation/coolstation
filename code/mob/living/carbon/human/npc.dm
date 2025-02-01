@@ -45,6 +45,8 @@
 		cry_grief(mob/M)
 			if(!M)
 				return
+			if(isdead(src)) //hush
+				return
 			src.target = M
 			src.ai_state = AI_ATTACKING
 			src.ai_threatened = world.timeofday
