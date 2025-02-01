@@ -46,8 +46,8 @@
 		else
 			src.move_dir = 0
 
-		if(!src.dir_locked) //in order to not turn around and good fuckin ruin the emote animation
-			src.set_dir(src.move_dir)
+		if(!dir_locked && isliving(src) && stat == 0) //in order to not turn around and good fuckin ruin the emote animation
+			set_dir(move_dir)
 	if (changed & (KEY_THROW|KEY_PULL|KEY_POINT|KEY_EXAMINE|KEY_BOLT|KEY_OPEN|KEY_SHOCK)) // bleh
 		src.overhead_throw()
 		src.update_cursor()
