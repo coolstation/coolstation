@@ -751,7 +751,8 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 /mob/proc/heard_say(var/mob/other)
 	return
 
-/mob/proc/lastgasp()
+/mob/proc/lastgasp(allow_dead=FALSE)
+	set waitfor = FALSE
 	return
 
 /mob/proc/item_attack_message(var/mob/T, var/obj/item/S, var/d_zone, var/devastating = 0, var/armor_blocked = 0)
