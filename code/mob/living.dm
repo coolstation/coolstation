@@ -2073,3 +2073,54 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			return copytext(message, 2)
 	src.singing = 0
 	. =  message
+
+
+/mob/living/lastgasp(allow_dead=FALSE, grunt=null)
+	set waitfor = FALSE
+	if (!allow_dead && !isalive(src)) return
+	if (ON_COOLDOWN(src, "lastgasp", 0.7 SECONDS)) return
+	if (!src.client)
+		return
+	var/client/client = src.client
+	var/found_text = FALSE
+	var/enteredtext = winget(client, "mainwindow.input", "text") // grab the text from the input bar
+	if (isnull(client)) return
+	if (length(enteredtext) > 5 && copytext(lowertext(enteredtext), 1, 6) == "say \"") // check if the player is trying to say something
+		winset(client, "mainwindow.input", "text=\"\"") // clear the player's input bar to register death / unconsciousness
+		enteredtext = copytext(enteredtext, 6, 0) // grab the text they were trying to say
+		if (length(enteredtext))
+			found_text = TRUE
+	if (!found_text)
+		for (var/window_type in list("saywindow", "radiosay", "whisper")) //scafolding for later
+			enteredtext = winget(client, "[window_type].input", "text")
+			if (isnull(client)) return
+			if (length(enteredtext))
+				if (window_type == "radiosay")
+					enteredtext = ";" + enteredtext
+				winset(client, "[window_type].input", "text=\"\"")
+				if (isnull(client)) return
+				winset(client, "[window_type]", "is-visible=false")
+				if (isnull(client)) return
+				src.cancel_typing(window_type)
+				found_text = TRUE
+				break
+	if (found_text)
+		if (length(enteredtext) > 20)
+			enteredtext = copytext(enteredtext, 1, length(enteredtext) - rand(1, 10))
+		var/message = enteredtext + "--" + grunt
+		var/logname = isalive(src) ? "interruptgasp" : "lastgasp"
+		if (!allow_dead && !isalive(src)) return
+		logTheThing("say", src, "[logname] SAY: [html_encode(message)] [log_loc(src)]")
+		var/old_stat = src.stat
+		setalive(src) // okay so we need to be temporarily alive for this in case it's happening as we were dying...
+
+		// break if it's an npc or a disconnected player.
+		// this check needs to be here because waitfor = FALSE means that this proc can run as/after the person is deleted.
+		if (src.disposed || !src.client)
+			return
+		if (ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.say(message, ignore_stamina_winded = 1) // say the thing they were typing and grunt
+		else
+			src.say(message)
+		src.stat = old_stat // back to being dead 😌
