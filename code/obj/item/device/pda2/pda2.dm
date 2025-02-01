@@ -211,8 +211,15 @@
 	quartermaster
 		icon_state = "pda-q"
 		setup_default_cartridge = /obj/item/disk/data/cartridge/quartermaster
+		mailgroups = list(MGD_CARGO,MGD_COMMAND,MGD_PARTY)
+		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_SALES, MGA_SHIPPING, MGA_CARGOREQUEST)
+
+	cargo_tech
+		icon_state = "pda-l"
+		setup_default_cartridge = /obj/item/disk/data/cartridge/cargo_tech
 		mailgroups = list(MGD_CARGO,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_SALES, MGA_SHIPPING, MGA_CARGOREQUEST)
+
 
 	clown
 		icon_state = "pda-clown"
@@ -233,7 +240,7 @@
 						JOB_XP(M, "Clown", 1)
 
 	janitor
-		icon_state = "pda-j"
+		icon_state = "pda-l"
 		setup_default_cartridge = /obj/item/disk/data/cartridge/janitor
 		mailgroups = list(MGO_JANITOR,MGD_STATIONREPAIR,MGD_PARTY)
 
@@ -253,12 +260,12 @@
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_ENGINE, MGA_CRISIS)
 
 	mining
-		icon_state = "pda-e"
+		icon_state = "pda-l"
 		mailgroups = list(MGO_MINING,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_SALES)
 
 	scrapping
-		icon_state = "pda-e"
+		icon_state = "pda-l"
 		mailgroups = list(MGO_MINING, MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_SALES)
 

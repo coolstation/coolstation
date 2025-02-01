@@ -4,6 +4,8 @@
 // THE REASON I SAY THIS IS BECAUSE WE CAN ADD A DATACORE OR SOMETHING THAT CAN BE BLOWN UP
 // AND ALL THE MONEY WILL BE GONE
 
+#define CREDIT_SIGN "$"
+
 /datum/wage_system
 
 	// Stations budget
@@ -488,6 +490,24 @@
 	var/printing = null
 	var/can_change_id = 0
 	var/payroll_rate_limit_time = 0 //for preventing coammand message spam
+	var/static/bonus_rate_limit_time = 0 //prevent bonus spam because these have an annoucement
+	///I know we already have department job lists but they suck and are brittle and way too general so I made my own here
+	var/static/list/departments = list(
+		"Stationwide" = list(),
+		"Logistics" = list(/datum/job/command/quartermaster, /datum/job/logistics),
+		"Engineering" = list(/datum/job/engineering, /datum/job/command/chief_engineer, /datum/job/special/tech_assistant),
+		"Research" = list(/datum/job/research, /datum/job/command/research_director, /datum/job/special/research_assistant),
+		"Catering" = list(/datum/job/civilian/chef, /datum/job/civilian/bartender, /datum/job/special/random/waiter),
+		"Hydroponics" = list(/datum/job/civilian/botanist, /datum/job/civilian/rancher),
+		"Security" = list(/datum/job/security, /datum/job/command/head_of_security),
+		"Medical" = list(/datum/job/medical, /datum/job/command/medical_director, /datum/job/special/medical_assistant),
+		"Command" = list(/datum/job/command, /datum/job/special/random/director),
+		"Civilian" = list(/datum/job/logistics/janitor, /datum/job/civilian/chaplain, /datum/job/civilian/staff_assistant, /datum/job/civilian/clown,\
+		/datum/job/special) //Who really makes the world go round? At least one of these guys
+							//Let the janitor be in two categories they deserve it
+							//A couple of special jobs get a double dip too
+							//Remeber only people with bank accounts count don't worry about the syndicate
+	)
 
 	attack_ai(mob/user as mob)
 		return src.Attackhand(user)
@@ -520,6 +540,9 @@
 						if (wagesystem.pay_active) dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Suspend Payroll</A>"
 						else dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Resume Payroll</A>"
 						dat += {"<BR><br><A href='byond://?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
+
+						<BR><br>
+						<A href='byond://?src=\ref[src];bonus=1'>Issue Staff Bonus</A>
 						<BR><br>
 						<BR><br><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
 						<BR><br>"}
@@ -670,6 +693,67 @@
 					if (transto == "Payroll") wagesystem.station_budget += amount
 					if (transto == "Shipping") wagesystem.shipping_budget += amount
 					if (transto == "Research") wagesystem.research_budget += amount
+				else if(href_list["bonus"])
+					if(!(world.time >= src.bonus_rate_limit_time))
+						boutput(usr, SPAN_ALERT("NT Regulations forbid issuing multiple staff incentives within five minutes."))
+						return
+					var/department = input(usr, "Which department should receive the bonus?", "Choose department") in src.departments | null
+					if (!department)
+						return
+
+					var/list/datum/data/record/lucky_crew = list()
+					for (var/datum/data/record/record in data_core.bank)
+						if(department == "Stationwide")
+							lucky_crew += record
+							continue
+						for (var/job_type in src.departments[department])
+							for (var/datum/job/child_type as anything in concrete_typesof(job_type))
+								if (record.fields["job"] == child_type::name)
+									lucky_crew += record
+									goto next_record //actually almost good goto use case?? (byond doesn't have outer loop break syntax)
+						next_record:
+
+					if(length(lucky_crew) == 0)
+						boutput(usr, SPAN_ALERT("There are no eligble crew in this department."))
+						return
+
+					var/bonus = input(usr, "How many credits should we issue to each staff member?", "Issue Bonus", 100) as null|num
+					if(isnull(bonus)) return
+					bonus = ceil(clamp(bonus, 1, 999999))
+
+					var/bonus_total = (length(lucky_crew) * bonus)
+					if ( bonus_total > wagesystem.station_budget)
+						//Let the user know the budget is too small before they set the reason if we can
+						boutput(usr, SPAN_ALERT("Total bonus cost would be [bonus_total][CREDIT_SIGN], payroll budget is only [wagesystem.station_budget][CREDIT_SIGN]!"))
+						return
+
+					var/message = input(usr, "What is the reason for this staff bonus?", "Bonus Reason") as text
+					if(isnull(message) || message == "")
+						boutput(usr, SPAN_ALERT("NT Regulations require that the reason for issuing a staff bonus be recorded."))
+						return
+
+					//Something ain't right  if we enter either of these but it could be a coincidence
+					//Maybe someone stole the budget under our feet, or payroll was issued
+					if(isnull(bonus) || isnull(bonus_total))
+						//No you really shouldn't be here
+						return
+					if(bonus_total > wagesystem.station_budget)
+						boutput(usr, SPAN_ALERT("Total bonus cost would be [bonus_total][CREDIT_SIGN], payroll budget is only [wagesystem.station_budget][CREDIT_SIGN]!"))
+						return
+
+					logTheThing("diary", usr, "issued a bonus of [bonus][CREDIT_SIGN] ([bonus_total][CREDIT_SIGN] total) to department [department].")
+					src.bonus_rate_limit_time = world.time + (5 MINUTES)
+					if(department == "Stationwide")
+						department = "eligible"
+					command_announcement("[message]<br>Bonus of [bonus][CREDIT_SIGN] issued to all [lowertext(department)] staff.", "Payroll Announcement by [scan.registered] ([scan.assignment])")
+					wagesystem.station_budget = wagesystem.station_budget - bonus_total
+					for(var/datum/data/record/R as anything in lucky_crew)
+						if(R.fields["job"] == "Clown")
+							//Tax the clown
+							R.fields["current_money"] = (R.fields["current_money"] + ceil((bonus / 2)))
+						else
+							R.fields["current_money"] = (R.fields["current_money"] + bonus)
+
 
 		src.add_fingerprint(usr)
 		src.updateUsrDialog()

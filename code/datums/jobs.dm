@@ -470,7 +470,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_jump = list(/obj/item/clothing/under/rank/qm)
 	slot_belt = list(/obj/item/device/pda2/quartermaster)
-	slot_ears = list(/obj/item/device/radio/headset/shipping)
+	slot_ears = list(/obj/item/device/radio/headset/command/qm)
 	//slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster) // probably doesnt need the pocket guide?
 	slot_poc2 = list(/obj/item/device/appraisal)
 
@@ -864,7 +864,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 ABSTRACT_TYPE(/datum/job/engineering)
 /datum/job/engineering
-	linkcolor = "#FF9900"
+	linkcolor = "#D6B327"
 	slot_card = /obj/item/card/id/engineering
 
 /datum/job/engineering/engineer
@@ -977,8 +977,8 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics
-	linkcolor = "#D6B327"
-	slot_card = /obj/item/card/id/engineering
+	linkcolor = "#FF9900"
+	slot_card = /obj/item/card/id/logistics
 
 //QM got promoted, look under /job/command/quartermaster
 
@@ -989,7 +989,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_jump = list(/obj/item/clothing/under/rank/cargo)
-	slot_belt = list(/obj/item/device/pda2/quartermaster)
+	slot_belt = list(/obj/item/device/pda2/cargo_tech)
 	slot_ears = list(/obj/item/device/radio/headset/shipping)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
 	slot_poc2 = list(/obj/item/device/appraisal)
@@ -1009,7 +1009,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	slot_jump = list(/obj/item/clothing/under/rank/overalls)
 	slot_foot = list(/obj/item/clothing/shoes/orange)
 	slot_glov = list(/obj/item/clothing/gloves/black)
-	slot_ears = list(/obj/item/device/radio/headset/engineer)
+	slot_ears = list(/obj/item/device/radio/headset/shipping)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/mining)
 	items_in_backpack = list(/obj/item/crowbar)
 
@@ -1248,7 +1248,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	name = "AI"
 	linkcolor = "#999999"
 	limit = 1
-	no_late_join = 1
+	//no_late_join = 1
 	high_priority_job = 1
 	allow_traitors = 0
 	cant_spawn_as_rev = 1
@@ -1268,7 +1268,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	name = "Cyborg"
 	linkcolor = "#999999"
 	limit = 8
-	no_late_join = 1
+	//no_late_join = 1
 	allow_traitors = 0
 	cant_spawn_as_rev = 1
 	slot_ears = list()

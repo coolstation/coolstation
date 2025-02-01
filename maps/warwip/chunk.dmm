@@ -1220,7 +1220,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/orangeblack/side{
 	dir = 4
 	},
@@ -1857,7 +1857,7 @@
 /area/station/engine/inner)
 "bJT" = (
 /obj/stool/bed/brig,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -2635,7 +2635,7 @@
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "cum" = (
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /obj/cable/purple{
 	icon_state = "0-8"
 	},
@@ -3315,8 +3315,8 @@
 /area/station/medical/medbay/lobby)
 "dgk" = (
 /obj/grille/catwalk/jen,
-/obj/storage/secure/closet/engineering/mining,
 /obj/decal/cleanable/dirt/random,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "dgG" = (
@@ -4139,7 +4139,7 @@
 /obj/cable/purple{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/grey,
 /area/station/science/chemistry)
 "dUC" = (
@@ -4264,7 +4264,7 @@
 	tag = ""
 	},
 /turf/floor/plating/airless,
-/area/space)
+/area/station/solar/small_backup1)
 "dZP" = (
 /obj/machinery/manufacturer/general,
 /obj/grille/catwalk/jen,
@@ -5210,7 +5210,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 0;
@@ -5349,7 +5349,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor,
 /area/station/storage/tech)
 "eYH" = (
@@ -5429,7 +5429,7 @@
 	icon_state = "0-2"
 	},
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -5796,7 +5796,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "fsZ" = (
@@ -7097,7 +7097,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "gAH" = (
@@ -7265,7 +7265,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating,
 /area/station/hallway/primary/southeast)
 "gIk" = (
@@ -8945,7 +8945,7 @@
 /turf/space,
 /area/station/turret_protected/ai)
 "ixr" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9555,7 +9555,7 @@
 	icon_state = "0-4"
 	},
 /turf/floor/plating/airless,
-/area/space)
+/area/station/solar/small_backup1)
 "iVD" = (
 /turf/floor/grey/side{
 	dir = 4
@@ -10388,7 +10388,7 @@
 /area/station/hallway/primary/southeast)
 "jUC" = (
 /obj/stool/bench/auto,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -11394,7 +11394,7 @@
 	},
 /obj/machinery/power/solar_control/small_backup1,
 /turf/floor/plating/airless,
-/area/space)
+/area/station/solar/small_backup1)
 "kVy" = (
 /obj/storage/crate/freezer,
 /obj/disposalpipe/segment/ejection{
@@ -11899,7 +11899,7 @@
 /turf/floor,
 /area/station/hallway/primary/central)
 "lsV" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -12066,7 +12066,7 @@
 /obj/machinery/light/small/red{
 	dir = 1
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -12990,7 +12990,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "1-8"
 	},
@@ -13784,7 +13784,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -13952,7 +13952,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/rack,
 /obj/item/extinguisher,
 /turf/floor/grey,
@@ -13978,11 +13978,11 @@
 /area/station/hallway/primary/central)
 "nyP" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor,
 /area/station/crew_quarters/showers)
 "nzf" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 8;
@@ -14007,7 +14007,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/grille/catwalk/jen,
 /obj/machinery/light/small{
 	dir = 4
@@ -14487,6 +14487,7 @@
 	dir = 8
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "nXR" = (
@@ -14887,7 +14888,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -15038,7 +15039,7 @@
 /area/station/crew_quarters/kitchen)
 "ozd" = (
 /obj/storage/secure/closet/personal,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_west)
 "ozf" = (
@@ -15522,7 +15523,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "oUK" = (
@@ -17448,7 +17449,7 @@
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "qPh" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -17846,7 +17847,7 @@
 /turf/floor/plating/airless,
 /area/station/com_dish/comdish)
 "rdL" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -17972,7 +17973,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
@@ -18637,7 +18638,7 @@
 /obj/cable/purple{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/carpet/grime4,
 /area/station/science/lobby)
 "rXf" = (
@@ -19524,7 +19525,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grime,
 /area/station/mining/refinery)
 "sSa" = (
@@ -19651,8 +19652,8 @@
 	icon_state = "tube1";
 	tag = ""
 	},
-/obj/storage/secure/closet/engineering/cargo,
 /obj/decal/cleanable/dirt/random,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "sVY" = (
@@ -19890,7 +19891,7 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "tjK" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -20210,7 +20211,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/janitor/supply)
@@ -20324,7 +20325,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "tEK" = (
@@ -20619,7 +20620,7 @@
 /obj/cable/purple{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
 "tXy" = (
@@ -21089,7 +21090,7 @@
 /turf/floor,
 /area/station/science/lab)
 "usq" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable,
 /obj/table/auto,
 /obj/item/reagent_containers/food/drinks/bottle/wine{
@@ -21165,7 +21166,7 @@
 /area/station/science/bot_storage)
 "uuZ" = (
 /obj/machinery/portable_reclaimer,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -21591,7 +21592,7 @@
 /turf/floor,
 /area/station/engine/engineering)
 "uJK" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -22065,7 +22066,7 @@
 	icon_state = "0-4"
 	},
 /obj/marker/supplymarker,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -22305,7 +22306,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/grey,
 /area/station/security/checkpoint/customs)
 "vtl" = (
@@ -22433,7 +22434,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "vyo" = (
@@ -22612,7 +22613,7 @@
 /obj/landmark/start{
 	name = "Research Director"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/machinery/light,
 /obj/blind_switch/area/south,
 /turf/floor/carpet/office/other,
@@ -23282,7 +23283,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor,
 /area/station/engine/engineering)
 "wjZ" = (

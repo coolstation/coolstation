@@ -1959,6 +1959,11 @@
 		else
 			return src.loc
 
+/obj/machinery/manufacturer/malfunction_hint()
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the manufacturer's wiring."
+	return FALSE
+
 // Blueprints
 
 /obj/item/paper/manufacturer_blueprint

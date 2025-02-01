@@ -1006,6 +1006,7 @@
 /mob/living/carbon/human/throw_item(atom/target, list/params)
 	..()
 	var/turf/thrown_from = get_turf(src)
+	var/knockitdown = null
 	src.throw_mode_off()
 	if (src.stat)
 		return
@@ -1066,8 +1067,9 @@
 			M.inertia_dir = get_dir(src,target)
 
 		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
-
-		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from)
+		if(istype(I,/mob/living/carbon/human) || istype(I,/obj/machinery/microwave)) //todo: expand this into a reference list for other things that would knock you down if you fucking threw them
+			knockitdown = THROW_KNOCKDOWN
+		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=knockitdown)
 		if(yeet)
 			new/obj/effect/supplyexplosion(I.loc)
 
@@ -1734,10 +1736,7 @@
 			M.show_message(rendered, 2)
 
 	//mbc FUCK why doesn't this have any parent to call
-	speech_bubble.icon_state = "speech"
-	UpdateOverlays(speech_bubble, "speech_bubble")
-	SPAWN_DBG(1.5 SECONDS)
-		UpdateOverlays(null, "speech_bubble")
+
 
 /mob/living/carbon/human/var/const
 	slot_back = 1

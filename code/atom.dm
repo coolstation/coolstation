@@ -1027,3 +1027,15 @@ TYPEINFO(/atom)
 	message_admins("[key_name(usr)] rotated [target] by [rot] degrees")
 	target.Turn(rot)
 	return
+
+/// For an unanchored movable atom
+#define UNANCHORED 0
+/// For an atom that can't be moved by player actions
+#define ANCHORED 1
+/// For an atom that's always immovable, even by stuff like black holes and gravity artifacts.
+#define ANCHORED_ALWAYS 2
+
+/// The atom is below the floor tiles.
+#define UNDERFLOOR 1
+/// The atom is above the floor tiles.
+#define OVERFLOOR 2

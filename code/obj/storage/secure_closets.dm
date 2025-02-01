@@ -589,33 +589,9 @@
 	/obj/item/clothing/glasses/meson,
 	/obj/item/pen/infrared,
 	/obj/item/clothing/head/helmet/welding,
-	/obj/item/clothing/suit/hi_vis)
+	/obj/item/clothing/suit/hi_vis,
+	/obj/item/electronics/scanner)
 
-/obj/storage/secure/closet/engineering/mining
-	name = "\improper Miner's locker"
-	req_access = list(access_mining)
-	spawn_contents = list(/obj/item/storage/box/clothing/miner,
-	/obj/item/clothing/suit/wintercoat/engineering,
-	/obj/item/breaching_charge/mining/light = 3,
-	/obj/item/satchel/mining = 2,
-	/obj/item/oreprospector,
-	/obj/item/ore_scoop,
-	/obj/item/mining_tool/power_pick,
-	/obj/item/clothing/glasses/meson,
-	/obj/item/storage/belt/mining,
-	/obj/item/device/geiger,
-	/obj/item/device/appraisal)
-
-/obj/storage/secure/closet/engineering/cargo
-	name = "\improper Cargo Tech's locker"
-	req_access = list(access_cargo)
-	spawn_contents = list(/obj/item/storage/box/clothing/qm,
-	/obj/item/pen/fancy,
-	/obj/item/paper_bin,
-	/obj/item/clipboard,
-	/obj/item/hand_labeler,
-	/obj/item/cargotele,
-	/obj/item/device/appraisal)
 
 /* ==================== */
 /* ----- Civilian ----- */
@@ -623,18 +599,6 @@
 
 /obj/storage/secure/closet/civilian
 	name = "civilian locker"
-
-/obj/storage/secure/closet/civilian/janitor
-	name = "\improper Custodial supplies locker"
-	req_access = list(access_janitor)
-	spawn_contents = list(/obj/item/storage/box/clothing/janitor,\
-	/obj/item/reagent_containers/glass/bottle/cleaner = 2,\
-	/obj/item/reagent_containers/glass/bottle/acetone/janitors = 1,\
-	/obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1,\
-	/obj/item/device/light/flashlight,\
-	/obj/item/caution = 4,
-	/obj/item/clothing/gloves/long,
-	/obj/item/handheld_vacuum)
 
 /obj/storage/secure/closet/civilian/hydro
 	name = "\improper Botanical supplies locker"
@@ -688,6 +652,55 @@
 	/obj/item/clothing/shoes/sandal,\
 	/obj/item/clothing/suit/flockcultist,\
 	/obj/item/storage/box/holywaterkit)
+
+/* ==================== */
+/* ----- Logistics ----- */
+/* ==================== */
+
+/obj/storage/secure/closet/logistics
+	name = "\improper Logistics locker"
+	icon_state = "secure_oj"
+	icon_closed = "secure_oj"
+	icon_opened = "secure_oj-open"
+	req_access = list(access_engineering)
+
+/obj/storage/secure/closet/logistics/janitor
+	name = "\improper Custodial supplies locker"
+	req_access = list(access_janitor)
+	spawn_contents = list(/obj/item/storage/box/clothing/janitor,\
+	/obj/item/reagent_containers/glass/bottle/cleaner = 2,\
+	/obj/item/reagent_containers/glass/bottle/acetone/janitors = 1,\
+	/obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1,\
+	/obj/item/device/light/flashlight,\
+	/obj/item/caution = 4,
+	/obj/item/clothing/gloves/long,
+	/obj/item/handheld_vacuum)
+
+/obj/storage/secure/closet/logistics/cargo
+	name = "\improper Cargo Tech's locker"
+	req_access = list(access_cargo)
+	spawn_contents = list(/obj/item/storage/box/clothing/ct,
+	/obj/item/pen/fancy,
+	/obj/item/paper_bin,
+	/obj/item/clipboard,
+	/obj/item/hand_labeler,
+	/obj/item/cargotele,
+	/obj/item/device/appraisal)
+
+/obj/storage/secure/closet/logistics/mining
+	name = "\improper Miner's locker"
+	req_access = list(access_mining)
+	spawn_contents = list(/obj/item/storage/box/clothing/miner,
+	/obj/item/clothing/suit/wintercoat/engineering,
+	/obj/item/breaching_charge/mining/light = 3,
+	/obj/item/satchel/mining = 2,
+	/obj/item/oreprospector,
+	/obj/item/ore_scoop,
+	/obj/item/mining_tool/power_pick,
+	/obj/item/clothing/glasses/meson,
+	/obj/item/storage/belt/mining,
+	/obj/item/device/geiger,
+	/obj/item/device/appraisal)
 
 /* =================== */
 /* ----- Fridges ----- */

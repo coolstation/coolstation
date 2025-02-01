@@ -4294,7 +4294,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "pod_fore";
 	layer = 4;
@@ -4437,7 +4436,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "pod_fore";
 	layer = 4;
@@ -6153,10 +6151,10 @@
 	areastring = "East Crew Quarters";
 	dir = 8;
 	name = "East Crew Quarters APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -7576,7 +7574,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -10071,7 +10068,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;
@@ -10895,7 +10891,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -13075,7 +13070,7 @@
 	icon_state = "line1";
 	dir = 8
 	},
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /obj/disposalpipe/segment/mail,
 /obj/machinery/light_switch/west,
 /turf/floor,
@@ -16456,7 +16451,6 @@
 	autoclose = 0;
 	density = 1;
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -16503,7 +16497,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 2;
-
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -17245,7 +17238,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "eva_shield";
 	layer = 4;
@@ -18336,7 +18328,6 @@
 	autoclose = 0;
 	density = 1;
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -18388,7 +18379,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 2;
-
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -19730,7 +19720,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -19775,7 +19764,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -20512,7 +20500,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "atmos_shield";
 	layer = 4;
@@ -20743,7 +20730,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "eva_shield";
 	layer = 4;
@@ -20858,7 +20844,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "atmos_shield";
 	layer = 4;
@@ -22051,7 +22036,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "eva_shield";
 	layer = 4;
@@ -24533,7 +24517,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "eva_shield";
 	layer = 4;
@@ -25546,7 +25529,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "atmos_shield";
 	layer = 4;
@@ -25848,7 +25830,6 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -27695,7 +27676,6 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -28474,7 +28454,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "atmos_shield";
 	layer = 4;
@@ -32001,7 +31980,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "test_chamber";
 	layer = 4;
@@ -32034,7 +32012,6 @@
 	id = "disposals_vent"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_vent";
 	layer = 4;
@@ -35491,7 +35468,7 @@
 	},
 /area/station/crew_quarters/sauna)
 "bhP" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "line2";
 	dir = 9
@@ -35507,7 +35484,7 @@
 /turf/floor,
 /area/station/mining/staff_room)
 "bhQ" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "line1";
 	dir = 1
@@ -35790,7 +35767,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "test_chamber";
 	layer = 4;
@@ -38131,7 +38107,7 @@
 	icon_state = "line2";
 	dir = 9
 	},
-/obj/storage/secure/closet/engineering/cargo,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor,
 /area/station/quartermaster/office)
 "bmc" = (
@@ -38255,7 +38231,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "test_chamber";
 	layer = 4;
@@ -38784,7 +38759,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -38827,7 +38801,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -40326,7 +40299,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "cargo_out_inner";
 	layer = 4;
@@ -40341,7 +40313,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "cargo_in_inner";
 	layer = 4;
@@ -40562,10 +40533,10 @@
 	areastring = null;
 	dir = 8;
 	name = "Armory APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -40695,7 +40666,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -42225,7 +42195,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock";
 	layer = 4;
@@ -42778,7 +42747,6 @@
 	id = "qm_dock_out"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock_out";
 	layer = 4;
@@ -43525,7 +43493,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorleft1";
 	id = "pod_port";
 	layer = 4;
@@ -43552,7 +43519,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "pod_port";
 	layer = 4;
@@ -43683,7 +43649,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -43965,7 +43930,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorleft1";
 	id = "pod_star";
 	layer = 4;
@@ -43992,7 +43956,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "pod_star";
 	layer = 4;
@@ -44714,7 +44677,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "fireshield";
 	layer = 4;
@@ -44745,7 +44707,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "fireshield";
 	layer = 4;
@@ -45699,7 +45660,6 @@
 "byN" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "combustion";
 	layer = 4;
@@ -46651,10 +46611,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/marker/supplymarker,
 /turf/floor/grey/side{
 	dir = 4
@@ -46894,7 +46854,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "test_chamber";
 	layer = 4;
@@ -47089,7 +47048,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;
@@ -47113,7 +47071,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -47160,7 +47117,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;

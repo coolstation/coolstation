@@ -3699,7 +3699,7 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "ahj" = (
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor,
 /area/station/janitor/office)
 "ahk" = (
@@ -33099,10 +33099,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -35602,11 +35602,11 @@
 	dir = 1;
 	locked = 0;
 	name = "Worn APC";
-	noalerts = 1;
 	operating = 0;
 	pixel_y = 24;
 	start_charge = 40
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/circuit,
 /area/space)
 "bov" = (

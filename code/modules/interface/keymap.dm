@@ -35,6 +35,12 @@
 			else
 				src.keys[new_key] = act
 
+	proc/on_update(client/cl)
+		var/say_keybind = src.action_to_keybind("say")
+		if(say_keybind)
+			winset(cl, "base_macro.startsay", "name=[say_keybind]")
+
+
 	///Checks the input key and converts it to a usable format
 	///Wants input in the format "CTRL+F", as an example.
 	proc/parse_keybind(keybind)
@@ -83,6 +89,14 @@
 		ASSERT(bound_key) //If we didn't get a bound key something hecked the heck up.
 
 		return uppertext("[modifier_string][bound_key]")
+
+	proc/action_to_keybind(action)
+		for(var/key_string in keys)
+			var/action_string = keys[key_string]
+			if(action_string == action)
+				return unparse_keybind(key_string)
+		return null
+
 
 	///Intermediate proc to check if an action is a bitflag or not before parsing it.
 	proc/parse_action(action)

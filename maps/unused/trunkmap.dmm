@@ -2816,7 +2816,7 @@
 /turf/floor,
 /area/station/mining/staff_room)
 "aiw" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/light{
 	dir = 4;
 	tag = "icon-tube1 (EAST)"
@@ -3106,7 +3106,7 @@
 /turf/floor,
 /area/station/mining/staff_room)
 "ajv" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor,
 /area/station/mining/staff_room)
 "ajw" = (
@@ -5529,7 +5529,7 @@
 	},
 /area/station/janitor/office)
 "aqX" = (
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /obj/machinery/camera{
 	c_tag = "Custodial Closet";
 	dir = 1
@@ -15846,7 +15846,7 @@
 /turf/floor,
 /area/station/engine/engineering)
 "bam" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -15953,9 +15953,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -24139,9 +24139,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/marker/supplymarker,
 /turf/floor/grey/side{
 	dir = 4
@@ -25910,9 +25910,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor,
 /area/station/hangar/main)
 "bCF" = (

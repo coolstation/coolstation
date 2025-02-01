@@ -2857,7 +2857,7 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "agt" = (
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor,
 /area/station/janitor/office)
 "agu" = (
@@ -29623,10 +29623,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/marker/supplymarker,
 /turf/floor/grey/side{
 	dir = 4

@@ -4839,7 +4839,7 @@ var/global/noir = 0
 					A = new chosen(usr.loc)
 				else
 					A = new chosen(get_turf(usr))
-				if (client.flourish)
+				if (client.pizzazz)
 					spawn_animation1(A)
 			logTheThing("admin", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
 			logTheThing("diary", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z, 1)])", "admin")

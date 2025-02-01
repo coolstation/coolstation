@@ -33301,9 +33301,6 @@
 	},
 /turf/floor/grass,
 /area/racing_track)
-"bla" = (
-/turf/wall,
-/area/space)
 "blb" = (
 /turf/floor/damaged1,
 /area/racing_track)
@@ -45552,12 +45549,12 @@
 	dir = 8;
 	locked = 0;
 	name = "Worn APC";
-	noalerts = 1;
 	operating = 0;
 	pixel_x = -24;
 	pixel_y = 0;
 	start_charge = 40
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/airless/black,
 /area/wreckage/bridge)
 "bMx" = (
@@ -47874,11 +47871,11 @@
 	equipment = 0;
 	lighting = 0;
 	name = "Remote W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0;
 	setup_networkapc = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	tag = "icon-0-2";
 	icon_state = "0-2"
@@ -48257,11 +48254,11 @@
 	equipment = 0;
 	lighting = 0;
 	name = "Remote W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0;
 	setup_networkapc = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/orangeblack/side{
 	dir = 8
 	},
@@ -49592,10 +49589,10 @@
 	lighting = 0;
 	locked = 1;
 	name = "Remote S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	setup_networkapc = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/grime,
 /area/h7)
 "bUI" = (
@@ -50658,11 +50655,11 @@
 	equipment = 0;
 	lighting = 0;
 	name = "Remote W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0;
 	setup_networkapc = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor,
 /area/h7/lab)
 "bWU" = (
@@ -53054,10 +53051,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -56287,11 +56284,11 @@
 	dir = 1;
 	locked = 0;
 	name = "Worn APC";
-	noalerts = 1;
 	operating = 0;
 	pixel_y = 24;
 	start_charge = 40
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/circuit,
 /area/ab_res{
 	name = "Research Outpost Zeta"
@@ -118600,20 +118597,20 @@ aaa
 aaa
 aaa
 aaa
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
 bly
 aaa
 aaa
@@ -118827,7 +118824,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -118841,7 +118838,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -119054,7 +119051,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -119068,7 +119065,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -119281,21 +119278,21 @@ aaa
 aaa
 aaa
 aaa
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
 aaa
 aaa
-bla
-aaa
-aaa
-aaa
+aET
 aaa
 aaa
 aaa
 aaa
-bla
+aaa
+aaa
+aaa
+aET
 aaa
 aaa
 aaa
@@ -119508,21 +119505,21 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
-bla
-bla
-bla
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
+aET
+aET
+aET
 aaa
 aaa
 aaa
@@ -119735,21 +119732,21 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
-aaa
-aaa
-aaa
+aET
 aaa
 aaa
 aaa
 aaa
-bla
+aaa
+aaa
+aaa
+aET
 aaa
 aaa
 aaa
@@ -119962,21 +119959,21 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
-bla
-bla
-bla
-aaa
-aaa
-aaa
+aET
+aET
+aET
+aET
 aaa
 aaa
 aaa
 aaa
-bla
+aaa
+aaa
+aaa
+aET
 aaa
 aaa
 aaa
@@ -120189,7 +120186,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -120203,7 +120200,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -120416,21 +120413,21 @@ aaa
 aaa
 aaa
 aaa
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
 aaa
 aaa
-bla
+aET
 aaa
-bla
-aaa
-aaa
+aET
 aaa
 aaa
 aaa
-bla
+aaa
+aaa
+aET
 aaa
 aaa
 aaa
@@ -120643,21 +120640,21 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
-bla
-aaa
-aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
+aaa
+aaa
+aET
 aaa
 aaa
 aaa
@@ -120870,21 +120867,21 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
 aaa
-bla
-aaa
-aaa
-bla
+aET
 aaa
 aaa
-bla
+aET
+aaa
+aaa
+aET
 aaa
 aaa
 aaa
@@ -121097,21 +121094,21 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
 aaa
-bla
-bla
-bla
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
+aET
+aET
+aET
 aaa
 aaa
 aaa
@@ -121324,7 +121321,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -121338,7 +121335,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -121551,7 +121548,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -121565,7 +121562,7 @@ aaa
 aaa
 aaa
 aaa
-bla
+aET
 aaa
 aaa
 aaa
@@ -121778,21 +121775,21 @@ aaa
 aaa
 aaa
 aaa
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
-bla
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
+aET
 aaa
 aaa
 aaa

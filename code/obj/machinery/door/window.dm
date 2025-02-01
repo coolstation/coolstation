@@ -235,6 +235,14 @@
 		set waitfor = 0
 		playsound(src.loc, pick(sounds_shatter), 50, 1)
 		new /obj/item/raw_material/shard/glass(src.loc)
+		var/obj/grit = new /obj/decal/cleanable/edge_grit (src.loc)
+		grit.set_dir(src.dir)
+		grit.color = "#A3DCFF" //interior doors don't get recoloured from the glass material, so hardcoding for now
+		var/turf/T = get_step(src.loc, src.dir)
+		if (isfloor(T))
+			grit = new /obj/decal/cleanable/edge_grit (T)
+			grit.set_dir(turn(src.dir, 180))
+			grit.color = "#A3DCFF"
 		qdel(src)
 
 

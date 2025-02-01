@@ -1,4 +1,110 @@
 
+(t)sat feb 01 25
+(u)patricia
+(p)383
+(e)|
+(+)Backslashes may now be used to escape characters when sending network packets with mechcomp, wireless and wired. Also affects the signal splitter. Escaping keys with parenthesis now also works when using ; as the separator.
+(+)Wifi, powernet, and signal splitter components now process signals consistently- including backslash escapes and wrapping the keys in parenthesis.
+(u)patricia
+(p)384
+(e)|
+(+)GPS coordinates in packets are now in x=, y= format compatible with signal splitters
+(u)patricia
+(p)385
+(e)|
+(+)Control units now output signals and execute programs at a more consistent rate
+(u)patricia
+(p)386
+(e)|
+(*)Adds a counting component to the mechanics vendor. Thanks Xkeeper0!
+(u)patricia
+(p)391
+(e)|
+(*)Chat boxes can now be interrupted by death or violence! Thanks Pali!
+(u)patricia
+(p)401
+(e)|
+(+)The signal splitter component can now correctly parse powernet packets with special characters
+(t)fri jan 31 25
+(u)BatElite
+(*)Some QOL and documentation for maintenance system. Engineering pocket guide now has a brief summary of the thing.
+(+)Changelings don't get DNA from non-players anymore, but retain the identity.
+(t)fri jan 31 25
+(u)Cheekybrdy
+(p)393
+(e)|
+(*)QM PDAs have typical command features now.
+(t)thu jan 30 25
+(u)Cheekybrdy
+(p)390
+(e)|
+(*)QM has a deticated headset, and their department now has a deticated channel
+(u)Arborinus
+(p)389
+(e)|
+(*)A new hairstyle, and new styles based on existing hair, without bangs and only the bangs! Mix and match today!
+(+)New hairstyles: Shaved, Bangs and Pulled for the following: Croft, Double Part, Long, Mid-back, Wavy, Short
+(t)wed jan 29 25
+(u)CodeDude
+(p)380
+(e)|
+(*)Logistics department jobs now have deticated locker sprites
+(u)Cheekybrdy
+(p)381
+(e)|
+(+)Logistics department crew now have IDs minted the appropriate colours.
+(u)patricia
+(p)378
+(e)|
+(*)The HoP bank computer can now issue bonuses to department staff, or stationwide!
+(t)tue jan 28 25
+(u)ReginaldHJ
+(*)Implants and nastier projectiles now require scalpel to loosen and tweezer to remove.
+(*)Common Nanotrasen pistol rounds and darts can be tweezed out as-is without surgery.
+(*)Removal will cause bleeding, so get your bandages ready.
+(+)Fixed some issues and unintended behavior with tweezers (no more instant free pulling out implants while standing)
+(t)tue jan 28 25
+(u) warc
+(*) draculas can no longer "suck off" NPCs
+(u)jimmyl
+(p)367
+(e)|
+(+)made dirt layer under pipes (and other atmos stuff)
+(t)mon jan 27 25
+(u)patricia
+(p)374
+(e)|
+(*)Adds a buffering mechcomp component to the mechanics vendor, throw it in before cooldown stuff like wifi!
+(u)jimmyl
+(p)372
+(e)|
+(+)added the pda cartridge vendor and mainframe radio to bayou bend
+(t)sun jan 26 25
+(u)jimmyl
+(p)370
+(e)|
+(+)adds a mobile disposals pipe layer to bayou bend
+(t)sat jan 25 25
+(u)coolstation
+(*) you may now latejoin as silicon any time
+(t)fri jan 24 25
+(u)BatElite
+(*)Ported my slipping hazard trait over. :3
+(t)thu jan 23 25
+(u)klushy
+(*)you can now throw people at.. other people to knock them down.
+(+)ports beestation's typing indicators.
+(u)jimmyl
+(p)365
+(e)|
+(+)connects all printers to network on bayou bend and makes wall phones and air alarms only accessible from inside the room
+(u)BatElite
+(*)Malfunctioning shit now sparks occasionally. If you don't know how to fix a malfunctioning thing, use a t-ray scanner for instructions.
+(t)wed jan 22 25
+(u)jimmyl
+(p)364
+(e)|
+(+)dj flexx may no longer be stolen
 (t)tue jan 21 25
 (u)BatElite
 (*)Experimental change: the cloner is a little more hungry for biomatter and the reclaimer gives less. You'll have to source additional biomatter to keep it going. Let us know if it sucks or not (and why)

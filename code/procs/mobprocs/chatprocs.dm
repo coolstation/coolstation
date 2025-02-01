@@ -8,24 +8,9 @@
 	set name = "Whisper"
 	return src.whisper(message)
 
-/mob/verb/start_say() //more or less what Zamujasa did for goonstation, but tweaked to work with coolstation code, and not quite as expansive
-	set name = "start_say"
-	set hidden = 1
-	var/mob/living/as_living = src
-	if(istype(as_living))
-		as_living.speech_bubble.icon_state = "typing"
-		UpdateOverlays(as_living.speech_bubble,"speech_bubble")
-		/*SPAWN_DBG(15 SECONDS)
-			if (M?.speech_bubble?.icon_state == "typing")
-				M.UpdateOverlays(null, "speech_bubble")*/
-
-	var/message = input("","Say") as null|text
-
-	say_verb(message) // we check the message in say_verb
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	UpdateOverlays(null, "speech_bubble")
 
 	if (!message)
 		return
@@ -766,7 +751,8 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 /mob/proc/heard_say(var/mob/other)
 	return
 
-/mob/proc/lastgasp()
+/mob/proc/lastgasp(allow_dead=FALSE)
+	set waitfor = FALSE
 	return
 
 /mob/proc/item_attack_message(var/mob/T, var/obj/item/S, var/d_zone, var/devastating = 0, var/armor_blocked = 0)

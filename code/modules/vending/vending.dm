@@ -1073,6 +1073,16 @@
 		var/mob/living/carbon/human/H = locate() in orange(1, src)
 		fall(H) //:D
 
+/obj/machinery/vending/malfunction_hint()
+	if (can_fall == 2)
+		return "Pry the machine back on its feet with a crowbar." //duh
+	else if (src.status & BROKEN) //toppled machines count as BROKEN but can be fixed. This is broken glass dead monkeys levels of fucked.
+		return "Machine is beyond repair. Replace with a new unit."
+
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the machine's wiring."
+	return FALSE
+
 //Since repairing a vending machine involves replacing the wiring...
 /obj/machinery/vending/malfunction_resolve()
 	src.wires = initial(src.wires)
@@ -1650,6 +1660,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/andcomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/association, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/math, 30)
+		product_list += new/datum/data/vending_product(/obj/item/mechanics/counter, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/trigger/button, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/trigger/buttonPanel, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/mc14500, 30)
@@ -1676,6 +1687,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/regreplace, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/relaycomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/selectcomp, 30)
+		product_list += new/datum/data/vending_product(/obj/item/mechanics/buffercomp, 30)
 		product_list += new/datum/data/vending_product(/obj/disposalconstruct/mechanics_sensor, 10)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/sigbuilder, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/sigcheckcomp, 30)

@@ -521,10 +521,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/plating/scorched,
 /area/crater)
 "cJ" = (
@@ -1078,10 +1078,10 @@
 "fX" = (
 /obj/machinery/power/apc{
 	name = "S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	start_charge = 13
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -2021,9 +2021,6 @@
 "mq" = (
 /turf/wall/auto/lead/blue,
 /area/crater)
-"mr" = (
-/turf/wall/cave,
-/area/crater)
 "ms" = (
 /obj/machinery/plantpot,
 /obj/machinery/light{
@@ -2197,10 +2194,10 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "E APC";
-	noalerts = 1;
 	pixel_x = 24;
 	start_charge = 13
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -2878,12 +2875,6 @@
 	},
 /turf/floor,
 /area/space)
-"rF" = (
-/obj/railing/cyan{
-	dir = 8
-	},
-/turf/space/fluid/cenote,
-/area/crater)
 "rJ" = (
 /turf/floor/neutral/side{
 	dir = 4
@@ -3671,10 +3662,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -4490,9 +4481,6 @@
 	dir = 4
 	},
 /area/space)
-"Bs" = (
-/turf/space/fluid/cenote,
-/area/crater)
 "Bt" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -5446,9 +5434,6 @@
 	name = "strange stairs"
 	},
 /area/crater/cave/lower)
-"He" = (
-/turf/floor/cave,
-/area/crater)
 "Hi" = (
 /obj/graveyard/lightning_trigger,
 /obj/map/light/graveyard,
@@ -5735,10 +5720,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -6061,9 +6046,6 @@
 /obj/machinery/door/airlock/glass,
 /turf/floor,
 /area/space)
-"Ld" = (
-/turf/floor/cave,
-/area/crater)
 "Lf" = (
 /obj/stone{
 	dir = 10
@@ -6476,10 +6458,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -6961,7 +6943,7 @@
 "Rd" = (
 /obj/decal/fakeobjects/pipe/heat,
 /obj/decal/cleanable/dirt,
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor/plating/scorched,
 /area/crypt/sigma/storage)
 "Rg" = (
@@ -7645,9 +7627,6 @@
 	},
 /turf/floor/dirt,
 /area/catacombs)
-"Vv" = (
-/turf/space/fluid/cenote,
-/area/crater)
 "Vz" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
@@ -7707,9 +7686,6 @@
 	},
 /turf/floor/white/grime,
 /area/crypt/sigma/kitchen)
-"VM" = (
-/turf/space/fluid/cenote,
-/area/crater)
 "VS" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor/delivery,
@@ -7822,9 +7798,6 @@
 	},
 /turf/floor/setpieces/swampgrass,
 /area/space)
-"Wy" = (
-/turf/space/fluid/cenote,
-/area/crater)
 "Wz" = (
 /turf/floor,
 /area/crater/biodome/research)
@@ -8293,10 +8266,10 @@
 /obj/machinery/light,
 /obj/machinery/power/apc{
 	name = "S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	start_charge = 13
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -76277,8 +76250,8 @@ wf
 ia
 ia
 ia
-Bs
-Bs
+jE
+jE
 ia
 ia
 ia
@@ -76557,12 +76530,12 @@ Xv
 Xv
 Xv
 aA
-Ld
+FZ
 Dt
 ia
 ia
-Ld
-Ld
+FZ
+FZ
 aA
 aA
 aA
@@ -76578,10 +76551,10 @@ aA
 ia
 ia
 WR
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
 ia
 ia
 ia
@@ -76857,13 +76830,13 @@ aA
 CU
 Xv
 aA
-Ld
+FZ
 aA
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
 Cp
-Ld
+FZ
 Tf
 ia
 ia
@@ -76882,9 +76855,9 @@ KX
 qg
 va
 ot
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 ia
 ia
@@ -77158,15 +77131,15 @@ aA
 aA
 aA
 wA
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
 sJ
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
 ia
 ia
 ZA
@@ -77182,11 +77155,11 @@ ZA
 ia
 ia
 WR
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
 MG
 ia
 ia
@@ -77460,8 +77433,8 @@ aA
 aA
 aA
 aA
-Ld
-Ld
+FZ
+FZ
 ia
 cv
 cv
@@ -77484,14 +77457,14 @@ ZA
 zo
 Ez
 nf
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
 MG
 zI
-Ld
+FZ
 ia
 ia
 LE
@@ -77761,12 +77734,12 @@ aA
 aA
 aA
 aA
-Ld
-Ld
+FZ
+FZ
 ia
 ia
-Bs
-Bs
+jE
+jE
 FB
 Az
 NG
@@ -77789,11 +77762,11 @@ Jp
 Ez
 nf
 Yo
-Bs
-Bs
+jE
+jE
 ia
-Ld
-Ld
+FZ
+FZ
 sJ
 ia
 ia
@@ -78061,13 +78034,13 @@ LE
 LE
 aA
 aA
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
 ia
 ia
-Bs
-Bs
+jE
+jE
 FB
 Az
 Jk
@@ -78092,7 +78065,7 @@ GO
 Jp
 nf
 Yo
-Bs
+jE
 ia
 ia
 cv
@@ -78364,12 +78337,12 @@ LE
 aA
 ia
 ia
-Ld
-Ld
+FZ
+FZ
 ia
-Bs
-Bs
-Bs
+jE
+jE
+jE
 Az
 Jk
 Db
@@ -78394,13 +78367,13 @@ Vr
 Vr
 Jp
 nf
-Bs
-Bs
+jE
+jE
 ra
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
 ia
 ia
 LE
@@ -78665,12 +78638,12 @@ LE
 LE
 aA
 ia
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
 Rn
-Bs
-Bs
+jE
+jE
 ra
 KV
 TT
@@ -78696,14 +78669,14 @@ Vr
 Is
 Vr
 ZU
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
+jE
+jE
+jE
 ia
 ia
 LE
@@ -78968,11 +78941,11 @@ LE
 aA
 ia
 ia
-Ld
-Ld
+FZ
+FZ
 Rn
-Bs
-Bs
+jE
+jE
 Az
 Jk
 LN
@@ -78999,13 +78972,13 @@ Vr
 Vr
 Jp
 nf
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
+jE
+jE
 ia
 ia
 LE
@@ -79270,11 +79243,11 @@ LE
 aA
 aA
 ia
-Ld
+FZ
 ia
 ia
-Bs
-Bs
+jE
+jE
 KV
 yI
 Aq
@@ -79301,14 +79274,14 @@ tD
 Vr
 yg
 ZU
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
+jE
+jE
+jE
 ia
 LE
 LE
@@ -79572,10 +79545,10 @@ LE
 aA
 aA
 ia
-Ld
+FZ
 Rn
-Bs
-Bs
+jE
+jE
 FB
 PF
 pK
@@ -79603,14 +79576,14 @@ Xx
 Vr
 xx
 ag
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
+jE
+jE
+jE
 ia
 LE
 LE
@@ -79874,10 +79847,10 @@ LE
 aA
 aA
 ia
-Ld
+FZ
 Rn
-Bs
-Bs
+jE
+jE
 ZM
 Il
 fu
@@ -79910,9 +79883,9 @@ uZ
 uZ
 uZ
 Yo
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -80179,7 +80152,7 @@ Xv
 Xv
 ia
 ia
-Bs
+jE
 ZM
 Il
 jP
@@ -80212,9 +80185,9 @@ Ry
 Ry
 Ry
 LZ
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -80481,7 +80454,7 @@ Xv
 Xv
 ia
 ia
-Bs
+jE
 Ay
 ZD
 mO
@@ -80514,8 +80487,8 @@ Fy
 Fy
 Ry
 Ry
-Bs
-Bs
+jE
+jE
 ia
 ia
 LE
@@ -80783,8 +80756,8 @@ vE
 ia
 ia
 WR
-Bs
-Bs
+jE
+jE
 KV
 ms
 xd
@@ -80816,9 +80789,9 @@ Sb
 Sb
 Sb
 Ry
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -81118,10 +81091,10 @@ Sb
 ad
 Sb
 Ry
-Bs
-Bs
-Bs
-mr
+jE
+jE
+jE
+ia
 LE
 LE
 LE
@@ -81387,8 +81360,8 @@ Xv
 ia
 ia
 WR
-Bs
-Bs
+jE
+jE
 KV
 mO
 Hz
@@ -81420,9 +81393,9 @@ Sb
 Sb
 Sb
 Ry
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -81688,8 +81661,8 @@ aA
 jG
 ia
 ia
-Bs
-Bs
+jE
+jE
 FB
 zB
 tH
@@ -81722,9 +81695,9 @@ vu
 xw
 Ry
 Ry
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -81990,8 +81963,8 @@ aA
 ru
 Xv
 Rn
-Bs
-Bs
+jE
+jE
 ZM
 Il
 Ag
@@ -82024,9 +81997,9 @@ Ry
 vl
 Ry
 LZ
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -82292,8 +82265,8 @@ aA
 aA
 ia
 Rn
-Bs
-Bs
+jE
+jE
 ZM
 Il
 lj
@@ -82326,9 +82299,9 @@ Ry
 yZ
 Ry
 LZ
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -82594,8 +82567,8 @@ aA
 ia
 ia
 Rn
-Bs
-Bs
+jE
+jE
 Ay
 ZD
 pK
@@ -82628,8 +82601,8 @@ Ry
 Ze
 Ry
 uP
-Bs
-Bs
+jE
+jE
 ia
 ia
 LE
@@ -82896,9 +82869,9 @@ aA
 ia
 JE
 Rn
-Bs
-Vv
-Bs
+jE
+jE
+jE
 KV
 nM
 Db
@@ -82930,8 +82903,8 @@ bO
 bO
 NB
 qI
-Bs
-Bs
+jE
+jE
 ia
 ia
 LE
@@ -83198,9 +83171,9 @@ aA
 ia
 ia
 WR
-Bs
-Bs
-Bs
+jE
+jE
+jE
 IS
 ri
 Db
@@ -83232,8 +83205,8 @@ bO
 bO
 NB
 qI
-Bs
-Bs
+jE
+jE
 ia
 ia
 LE
@@ -83502,8 +83475,8 @@ KX
 qg
 eG
 cp
-Bs
-Bs
+jE
+jE
 KV
 Cg
 Db
@@ -83534,9 +83507,9 @@ NB
 NB
 NB
 qI
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 LE
 LE
@@ -83802,9 +83775,9 @@ aA
 ia
 ia
 WR
-Bs
-Bs
-Bs
+jE
+jE
+jE
 QQ
 IS
 ri
@@ -83830,14 +83803,14 @@ Vr
 Is
 eo
 GC
-Bs
+jE
 Jq
 Dh
 Kl
 MO
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 ia
 LE
@@ -84104,10 +84077,10 @@ aA
 ia
 ia
 ia
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
 Ay
 IS
 ri
@@ -84132,14 +84105,14 @@ in
 eo
 GC
 uP
-Bs
+jE
 Jq
 GB
 Kl
 qI
-Bs
 jE
-Bs
+jE
+jE
 ia
 ia
 LE
@@ -84406,11 +84379,11 @@ aA
 aA
 ia
 wH
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
 Ay
 IS
 NG
@@ -84433,15 +84406,15 @@ eo
 Ez
 GC
 uP
-Bs
-Wy
+jE
+jE
 Jq
 GB
 Kl
 qI
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 ia
 LE
@@ -84709,13 +84682,13 @@ aA
 aA
 ia
 VW
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-VM
+jE
+jE
+jE
+jE
+jE
+jE
+jE
 IS
 NG
 WL
@@ -84732,18 +84705,18 @@ zH
 zo
 Ez
 GC
-Bs
+jE
 Jq
-Bs
-Bs
-Bs
+jE
+jE
+jE
 Jq
 GB
 Kl
 qI
-Bs
-Bs
-Bs
+jE
+jE
+jE
 ia
 ia
 ia
@@ -85012,14 +84985,14 @@ ia
 ia
 ia
 ia
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
+jE
+jE
+jE
 ZM
 zH
 xe
@@ -85032,7 +85005,7 @@ vi
 kt
 zH
 LZ
-Bs
+jE
 YG
 YG
 Bt
@@ -85312,15 +85285,15 @@ aA
 aA
 ia
 Kb
-Ld
+FZ
 ia
 ia
-Bs
+jE
 ra
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
 ia
 ia
 zH
@@ -85614,8 +85587,8 @@ aA
 aA
 ia
 Kb
-He
-Ld
+FZ
+FZ
 ia
 mU
 mU
@@ -85632,26 +85605,26 @@ di
 ia
 ia
 WR
-Bs
-Bs
+jE
+jE
 YG
 Wl
 xj
 Kl
-rF
-rF
-rF
+pM
+pM
+pM
 Bt
-rF
-rF
-rF
-rF
-rF
-rF
-rF
+pM
+pM
+pM
+pM
+pM
+pM
+pM
 pM
 ia
-Ld
+FZ
 ia
 aA
 aA
@@ -85916,21 +85889,21 @@ aA
 aA
 ia
 Kb
-Ld
+FZ
 JE
-Ld
-Ld
-Ld
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
 ia
 ia
 ia
 Tf
 Ll
-Ld
+FZ
 ia
 KX
 qg
@@ -85940,20 +85913,20 @@ dE
 rS
 rS
 Sk
-Bs
+jE
 ra
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+jE
+jE
+jE
+jE
+jE
+jE
 ia
 ia
 mU
 mU
 ia
-Ld
+FZ
 ia
 aA
 aA
@@ -86218,21 +86191,21 @@ aA
 aA
 ia
 Kb
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
 ia
 ia
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
 ia
 ia
 ia
 Ll
-Ld
+FZ
 ia
 ia
 WR
@@ -86241,21 +86214,21 @@ qR
 xX
 RU
 ia
-rF
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+pM
+jE
+jE
+jE
+jE
+jE
+jE
 ia
 ia
 ia
-Ld
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
+FZ
 aA
 aA
 aA
@@ -86521,18 +86494,18 @@ aA
 ia
 YH
 FZ
-Ld
-Ld
+FZ
+FZ
 ia
 ia
 ia
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
 ia
 ia
-Ld
+FZ
 Ll
 mq
 mq
@@ -86545,16 +86518,16 @@ ia
 ia
 ia
 ia
-Bs
-Bs
+jE
+jE
 ia
 mU
 mU
 ia
 Pj
 wk
-Ld
-Ld
+FZ
+FZ
 aA
 aA
 Xv
@@ -86828,13 +86801,13 @@ ia
 ia
 ia
 Tf
-Ld
+FZ
 ia
 ia
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
 Lj
 EC
 hL
@@ -87133,11 +87106,11 @@ Tf
 bY
 ia
 ia
-Ld
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
+FZ
 mq
 cI
 bO
@@ -87145,8 +87118,8 @@ xG
 oo
 bO
 bO
-Ld
-Ld
+FZ
+FZ
 ia
 ia
 ia
@@ -87430,16 +87403,16 @@ Xv
 ko
 aA
 jA
-Ld
+FZ
 sJ
 ia
 ia
 fI
-Ld
+FZ
 sJ
 ia
 xP
-Ld
+FZ
 mq
 hk
 eY
@@ -87447,9 +87420,9 @@ mq
 KK
 bO
 bO
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
 ia
 aA
 aA
@@ -87731,8 +87704,8 @@ Mm
 Xv
 aA
 aA
-Ld
-Ld
+FZ
+FZ
 AN
 GN
 ia
@@ -87741,16 +87714,16 @@ aA
 aA
 aA
 aA
-Ld
+FZ
 mq
 mq
 mq
 mq
-Ld
+FZ
 zi
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
 ia
 ia
 aA
@@ -88043,12 +88016,12 @@ aA
 aA
 aA
 aA
-Ld
-Ld
-Ld
-Ld
-Ld
-Ld
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
 aA
 aA
 aA

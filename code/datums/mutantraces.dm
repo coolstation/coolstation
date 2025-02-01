@@ -1133,8 +1133,6 @@
 
 /datum/mutantrace/abomination
 	name = "abomination"
-	mutant_folder = 'icons/mob/abomination.dmi'
-	icon = 'icons/mob/abomination.dmi'
 	icon_state = "abomination"
 	human_compatible = 0
 	uses_human_clothes = 0
@@ -1154,8 +1152,8 @@
 	New(var/mob/living/carbon/human/M)
 		emote_overrides = abomination_emotes
 		if(ruff_tuff_and_ultrabuff && ishuman(M))
-			M.add_stam_mod_max("abomination", 1000)
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "abomination", 1000)
+			M.add_stam_mod_max("abomination", 100)
+			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "abomination", 100)
 			M.add_stun_resist_mod("abomination", 1000)
 			APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, src)
 		last_drain = world.time

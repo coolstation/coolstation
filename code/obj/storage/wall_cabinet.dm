@@ -202,7 +202,7 @@
 	name = "cargo equipment"
 	icon_state = "minimining"
 	pixel_x = -32
-	spawn_contents = list(/obj/item/storage/box/clothing/qm,
+	spawn_contents = list(/obj/item/storage/box/clothing/ct,
 	/obj/item/pen/fancy,
 	/obj/item/paper_bin,
 	/obj/item/clipboard,

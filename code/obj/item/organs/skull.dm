@@ -14,7 +14,7 @@
 	var/donor_name = null
 	var/datum/organHolder/holder = null
 	//var/owner_job = null
-	var/value = 1
+	var/trophy_value = 1
 	var/op_stage = 0.0
 	var/obj/item/device/key/skull/key = null //May randomly contain a key
 	rand_pos = 8
@@ -44,7 +44,7 @@
 	examine() // For the hunter-specific objective (Convair880).
 		. = ..()
 		if (ishunter(usr))
-			. += "[src.preddesc]\nThis trophy has a value of [src.value]."
+			. += "[src.preddesc]\nThis trophy has a value of [src.trophy_value]."
 
 	attack(var/mob/living/carbon/M as mob, var/mob/user as mob)
 		/* Override so we can check to see if we want to reinsert a skull into a corpse/body */
@@ -191,37 +191,37 @@
 	name = "strange skull"
 	desc = "This thing is weird."
 	icon_state = "skullP"
-	value = 5
+	trophy_value = 5
 
 /obj/item/skull/odd // Changelings.
 	name = "odd skull"
 	desc = "What the hell was wrong with this person's FACE?! Were they even human?!"
 	icon_state = "skullA"
-	value = 4
+	trophy_value = 4
 	made_from = "viscerite"
 
 /obj/item/skull/peculiar // Wizards.
 	name = "peculiar skull"
 	desc = "You feel extremely uncomfortable near this thing."
 	icon_state = "skull_strange"
-	value = 3
+	trophy_value = 3
 
 /obj/item/skull/crystal // Omnitraitors.
 	name = "crystal skull"
 	desc = "Does this mean there's an alien race with crystal bones somewhere?"
 	icon_state = "skull_crystal"
-	value = 10
+	trophy_value = 10
 	made_from = "molitz"
 
 /obj/item/skull/gold // Macho man.
 	name = "golden skull"
 	desc = "Is this thing solid gold, or just gold-plated? Yeesh."
 	icon_state = "skull_gold"
-	value = 7
+	trophy_value = 7
 	made_from = "gold"
 
 /obj/item/skull/noface // Cluwnes.
 	name = "faceless skull"
 	desc = "Fuck that's creepy."
 	icon_state = "skull_noface"
-	value = -1
+	trophy_value = -1

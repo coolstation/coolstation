@@ -1127,9 +1127,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/plating,
 /area/tech_outpost)
 "gT" = (
@@ -1440,7 +1440,8 @@
 "ij" = (
 /obj/disposalpipe/segment/bent/west,
 /obj/grille/catwalk/jen,
-/obj/machinery/power/apc/autoname_east/nopoweralert,
+/obj/machinery/power/apc/autoname/east,
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -1557,7 +1558,7 @@
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "iE" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/black,
 /area/mining/quarters)
 "iF" = (
@@ -1590,7 +1591,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor,
 /area/mining/quarters)
 "iN" = (
@@ -1622,7 +1623,7 @@
 /area/mining/exit_east)
 "ja" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor,
 /area/mining/magnet_control)
 "jb" = (
@@ -1851,7 +1852,7 @@
 "jZ" = (
 /obj/machinery/light,
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor,
 /area/mining/exit_east)
 "kc" = (
@@ -2109,7 +2110,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grime,
 /area/mining/comms)
 "lB" = (
@@ -2286,7 +2287,7 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/shipcomponent/secondary_system/orescoop,
 /obj/item/shipcomponent/communications/mining,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/orangeblack/side{
 	dir = 1
 	},
@@ -2961,7 +2962,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grime,
 /area/mining/miningoutpost)
 "qA" = (
@@ -3569,7 +3570,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -4332,7 +4333,7 @@
 /area/tech_outpost)
 "zY" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/delivery,
 /area/mining/power)
 "Ad" = (
@@ -4844,7 +4845,7 @@
 /turf/floor,
 /area/abandonedoutpostthing)
 "DZ" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -6236,7 +6237,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating/damaged3,
 /area/mining/exit_south)
 "OQ" = (
@@ -6244,7 +6245,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/door_control{
 	id = "MINdoorE";
 	name = "East Door Switch";
@@ -7692,7 +7693,7 @@
 /area/mining/exit_west)
 "Zf" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -7802,7 +7803,8 @@
 /turf/floor,
 /area/mining/exit_south)
 "ZP" = (
-/obj/machinery/power/apc/autoname_east/nopoweralert,
+/obj/machinery/power/apc/autoname/east,
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"

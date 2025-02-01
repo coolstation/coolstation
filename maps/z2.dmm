@@ -6114,10 +6114,10 @@
 "aOZ" = (
 /obj/machinery/power/apc{
 	name = "S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	start_charge = 13
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -7492,10 +7492,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -7615,10 +7615,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -8439,10 +8439,10 @@
 /obj/machinery/light,
 /obj/machinery/power/apc{
 	name = "S APC";
-	noalerts = 1;
 	pixel_y = -24;
 	start_charge = 13
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -9316,10 +9316,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -10110,10 +10110,10 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "E APC";
-	noalerts = 1;
 	pixel_x = 24;
 	start_charge = 13
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -12805,13 +12805,6 @@
 	},
 /turf/floor/wood/three,
 /area/afterlife/heaven/hydroponics)
-"bmZ" = (
-/obj/tombstone{
-	desc = "In memory of Stephanie Mir, who vanished in pursuit of answers.";
-	dir = 6
-	},
-/turf/floor/grass/random,
-/area/afterlife/heaven)
 "bna" = (
 /obj/stone{
 	dir = 6
@@ -12971,13 +12964,6 @@
 	},
 /turf/floor/white/grime,
 /area/marsoutpost)
-"bnr" = (
-/obj/tombstone{
-	desc = "Here lies Jeni Denton. Insisted she was a dragon, and ended up being slain like one.";
-	dir = 8
-	},
-/turf/floor/grass/random,
-/area/afterlife/heaven)
 "bns" = (
 /turf/floor/setpieces/iomoon/crust{
 	dir = 10;
@@ -21278,20 +21264,6 @@
 	},
 /turf/floor/wood/three,
 /area/afterlife/heaven/hydroponics)
-"bJt" = (
-/obj/tombstone{
-	desc = "You can't quite make out what this one says.";
-	dir = 1
-	},
-/turf/floor/grass/random,
-/area/afterlife/heaven)
-"bJu" = (
-/obj/tombstone{
-	desc = "Here lies Emily Geon Claire. (The other 416 graves are in storage.)";
-	dir = 4
-	},
-/turf/floor/grass/random,
-/area/afterlife/heaven)
 "bJv" = (
 /obj/map/light/graveyard,
 /obj/shrub{
@@ -22462,17 +22434,8 @@
 /obj/reagent_dispensers/watertank/big,
 /turf/floor/grass/random,
 /area/afterlife/heaven/hydroponics)
-"bNd" = (
-/obj/tombstone{
-	desc = "Here lies Drago Kitterson. ...There seems to be some sort of mohawk etched into the tombstone?";
-	dir = 10
-	},
-/turf/floor/grass/random,
-/area/afterlife/heaven)
 "bNe" = (
-/obj/tombstone{
-	desc = "In memory of Ada O'Hara, who one day vanished without a trace."
-	},
+/obj/item/storage/toilet,
 /turf/floor/grass/random,
 /area/afterlife/heaven)
 "bNf" = (
@@ -23629,10 +23592,10 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 12
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/plating/scorched,
 /area/crater)
 "bQx" = (
@@ -26031,7 +25994,7 @@
 "bYq" = (
 /obj/decal/fakeobjects/pipe/heat,
 /obj/decal/cleanable/dirt,
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor/plating/scorched,
 /area/crypt/sigma/storage)
 "bYr" = (
@@ -27047,14 +27010,14 @@
 	pixel_y = 20
 	},
 /obj/item/crowbar,
-/obj/storage/secure/closet/civilian/janitor{
-	locked = 0;
-	spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
-	},
 /obj/item/mop/old,
 /obj/item/sponge,
 /obj/item/chem_grenade/cleaner,
 /obj/item/spraybottle/cleaner/tsunami,
+/obj/storage/secure/closet/logistics/janitor{
+	locked = 0;
+	spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
+	},
 /turf/floor/plating,
 /area/afterlife/bar)
 "cci" = (
@@ -59668,7 +59631,7 @@
 /turf/floor/wood/two,
 /area/afterlife/bar)
 "xAW" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "xCX" = (
@@ -59678,8 +59641,8 @@
 	},
 /area/sim/racing_track)
 "xDi" = (
-/obj/storage/secure/closet/engineering/mining,
 /obj/machinery/light/small/neutral,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "xGt" = (
@@ -139068,13 +139031,13 @@ aaa
 aES
 bjd
 tPH
-bmZ
+bNe
 vjH
 tPH
-bJt
+bNe
 vjH
 tPH
-bNd
+bNe
 vjH
 tPH
 tPH
@@ -139370,10 +139333,10 @@ aaa
 aES
 bjd
 tPH
-bnr
+bNe
 vjH
 tPH
-bJu
+bNe
 vjH
 tPH
 bNe

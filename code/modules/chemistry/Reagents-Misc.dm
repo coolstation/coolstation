@@ -288,8 +288,8 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 500)
-					M.add_stam_mod_max("omegazine", 500)
+					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
+					M.add_stam_mod_max("omegazine", 50)
 				..()
 
 			on_remove()

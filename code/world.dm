@@ -572,6 +572,7 @@ var/f_color_selector_handler/F_Color_Selector
 		"[R_FREQ_RESEARCH]" = "Research",
 		"[R_FREQ_MEDICAL]" = "Medical",
 		"[R_FREQ_ENGINEERING]" = "Engineering",
+		"[R_FREQ_LOGISTICS]" = "Logistics",
 		"[R_FREQ_COMMAND]" = "Command",
 		"[R_FREQ_SECURITY]" = "Security",
 		"[R_FREQ_CIVILIAN]" = "Civilian",
@@ -1791,3 +1792,12 @@ var/opt_inactive = null
 /world/Del()
 	disable_auxtools_debugger()
 	. = ..()
+
+///returns (world.view - adjument) but also works for turning "21x15" into "20x14" and so on
+/proc/world_view_adjusted(adjustment)
+	if (isnum(world.view))
+		return world.view + adjustment
+	else
+		var/list/parts = splittext(world.view, "x")
+		return "[text2num(parts[1]) + adjustment]x[text2num(parts[2]) + adjustment]"
+

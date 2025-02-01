@@ -63,16 +63,15 @@
 			return
 
 		if(src.occupant)
-			if(!isdead(occupant))
-				if (!ishuman(occupant))
-					src.go_out() // stop turning into cyborgs thanks
-				if (occupant.health < occupant.max_health || occupant.bioHolder.HasEffect("premature_clone"))
+			if (!ishuman(occupant))
+				src.go_out() // stop turning into cyborgs thanks
+			if (occupant.health < occupant.max_health || occupant.bioHolder.HasEffect("premature_clone"))
 
-					process_occupant()
-				else
-					if(occupant.mind)
-						src.go_out()
-						playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
+				process_occupant()
+			else
+				if(occupant.mind)
+					src.go_out()
+					playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
 
 		if(air_contents)
 			ARCHIVED(temperature) = air_contents.temperature

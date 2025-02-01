@@ -27,6 +27,7 @@ THROWING DARTS
 	var/death_triggered = 0
 	var/online = 0
 	var/instant = 1
+	var/loose = FALSE //is this deeply embedded or can it simply be tweezed out (loosen with scalpel)
 
 	//For PDA/signal alert stuff on implants
 	var/uses_radio = 0
@@ -820,11 +821,13 @@ THROWING DARTS
 
 	bullet_pistol_weak
 		name = "8mm Short round"
-		desc = "Standard bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
+		desc = "Standard plastic bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
+		loose = TRUE
 
 	bullet_rifle_weak
 		name = "8mm Long round"
 		desc = "Honestly the exact same thing as the pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
+		loose = TRUE
 
 	bullet_rifle_weak_ap
 		name = "8mm Long AP round"
@@ -857,23 +860,27 @@ THROWING DARTS
 	staple
 		name = "staple"
 		desc = "Well that's not very nice."
+		loose = TRUE
 
 	shrapnel
 		name = "shrapnel"
 		icon = 'icons/obj/scrap.dmi'
 		desc = "A bunch of jagged shards of metal."
 		icon_state = "2metal2" //4u
+		loose = TRUE
 
 	dart
 		name = "dart"
 		icon = 'icons/obj/chemical.dmi'
 		desc = "A small hollow dart."
 		icon_state = "syringeproj"
+		loose = TRUE
 
 	flintlock
 		name= "flintlock round"
 		desc = "Rather unperfect round ball. Looks very old."
 		icon_state = "flintlockbullet"
+		loose = TRUE
 
 /obj/item/implant/projectile/implanted(mob/living/carbon/C, var/mob/I, var/bleed_time = 60)
 	SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, C)
@@ -1695,6 +1702,7 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "dart"
 	throw_spin = 0
+	loose = TRUE
 
 	throw_impact(atom/M, datum/thrown_thing/thr)
 		..()
@@ -1720,6 +1728,7 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 	icon_state = "lawndart"
 	throw_spin = 0
 	throw_speed = 3
+	loose = TRUE
 
 	throw_impact(atom/M, datum/thrown_thing/thr)
 		..()

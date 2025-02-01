@@ -539,7 +539,7 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(2 SECONDS)
 				if (pulse) qdel(pulse)
 
-			for (var/turf/tile in range(world.view-1, T))
+			for (var/turf/tile in range(world_view_adjusted(-1), T))
 				for (var/atom/O in tile.contents)
 					var/area/t = get_area(O)
 					if(t?.sanctuary) continue

@@ -603,7 +603,7 @@
 	pixel_x = 10
 	},
 /obj/machinery/computer/stockexchange,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -1076,10 +1076,9 @@
 	pixel_y = 3;
 	switchon = 1
 	},
-/obj/machinery/power/apc/autoname_west{
+/obj/machinery/power/apc/autoname/west{
 	areastring = "Crew Quarters M01";
-	cell_type = 1000;
-	name = "Crew Quarters M01 APC"
+	cell_type = 1000
 	},
 /obj/cable{
 	icon_state = "0-2"
@@ -2335,7 +2334,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/carpet{
 	dir = 9;
 	icon_state = "green2"
@@ -3337,7 +3336,7 @@
 	pixel_y = 3;
 	switchon = 1
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -4530,7 +4529,7 @@
 	pixel_y = 3;
 	switchon = 1
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -6598,7 +6597,6 @@
 "alN" = (
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
-
 	icon_state = "bdoorright1";
 	id = "pod_port";
 	layer = 4;
@@ -6951,7 +6949,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "pod_fore";
 	layer = 4;
@@ -7148,7 +7145,6 @@
 "amy" = (
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
-
 	icon_state = "bdoorleft1";
 	id = "pod_port";
 	layer = 4;
@@ -7524,7 +7520,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "pod_fore";
 	layer = 4;
@@ -10185,7 +10180,8 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_south/noaicontrol,
+/obj/machinery/power/apc/autoname/south,
+/obj/map/apc_helper/noaicontrol,
 /turf/floor/plating,
 /area/station/chapel/funeral_parlor)
 "ass" = (
@@ -10639,7 +10635,7 @@
 	icon_state = "0-2"
 	},
 /obj/storage/secure/closet/civilian/chaplain,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet/grime,
 /area/station/chapel/office{
 	name = "Chaplain's Office"
@@ -11335,7 +11331,7 @@
 /turf/floor/grass/leafy,
 /area/station/ranch)
 "avp" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -12560,7 +12556,7 @@
 /area/station/hydroponics/bay)
 "ayn" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/green/side{
 	dir = 10
 	},
@@ -12891,7 +12887,7 @@
 	},
 /area/station/janitor/office)
 "azg" = (
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 6;
@@ -13643,7 +13639,6 @@
 	},
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -14027,7 +14022,6 @@
 	},
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -14082,7 +14076,6 @@
 /area/station/maintenance/disposal)
 "aBI" = (
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_vent";
 	layer = 4;
@@ -15559,7 +15552,7 @@
 /area/station/maintenance/west)
 "aFg" = (
 /obj/decal/cleanable/dirt,
-/obj/machinery/power/apc/autoname_east{
+/obj/machinery/power/apc/autoname/east{
 	areastring = "Cargo Dock"
 	},
 /obj/cable{
@@ -18477,7 +18470,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "pharmacylock";
 	layer = 4;
@@ -18520,7 +18512,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "pharmacylock";
 	layer = 4;
@@ -18545,7 +18536,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "pharmacylock";
 	layer = 4;
@@ -18608,7 +18598,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "pharmacylock";
 	layer = 4;
@@ -21124,7 +21113,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -21143,7 +21131,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;
@@ -21216,7 +21203,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "eva_shield";
 	layer = 4;
@@ -21998,9 +21984,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/machinery/light_switch/south{
 	pixel_x = -8;
 	pixel_y = 28
@@ -22260,7 +22246,7 @@
 "aTi" = (
 /obj/cable,
 /obj/reagent_dispensers/foamtank,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/caution/corner/sw,
 /area/station/science/lab)
 "aTj" = (
@@ -24600,9 +24586,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	dir = 0;
@@ -26401,7 +26387,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -26419,7 +26404,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -26949,7 +26933,6 @@
 /obj/wingrille_spawn/auto,
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -26987,7 +26970,6 @@
 	},
 /obj/machinery/door/poddoor/blast{
 	density = 0;
-
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -27783,7 +27765,6 @@
 /obj/wingrille_spawn/auto,
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -28542,7 +28523,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "chemblast";
 	layer = 5;
@@ -28641,7 +28621,6 @@
 	},
 /obj/machinery/door/poddoor/blast{
 	density = 0;
-
 	icon_state = "bdoorright0";
 	id = "chemblast";
 	layer = 5;
@@ -29732,7 +29711,6 @@
 	},
 /obj/machinery/door/poddoor/blast{
 	density = 0;
-
 	icon_state = "bdoorleft0";
 	id = "chemblast";
 	layer = 5;
@@ -30510,7 +30488,8 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north/noaicontrol,
+/obj/machinery/power/apc/autoname/north,
+/obj/map/apc_helper/noaicontrol,
 /obj/submachine/chef_sink,
 /turf/floor/black,
 /area/station/medical/robotics)
@@ -31833,7 +31812,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "chemblast";
 	layer = 5;
@@ -33658,7 +33636,6 @@
 	operating = 1
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -34626,7 +34603,6 @@
 /area/station/hangar/science)
 "btW" = (
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "artlabgun";
 	layer = 4;
@@ -35556,9 +35532,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	dir = 0;
@@ -35977,7 +35953,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "eva_shield";
 	layer = 4;
@@ -36690,7 +36665,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -36746,7 +36720,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -36760,7 +36733,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -36808,7 +36780,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -37488,7 +37459,6 @@
 	id = "cargo_out"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "cargo_out_inner";
 	layer = 4;
@@ -37506,7 +37476,6 @@
 	id = "cargo_in"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "cargo_in_inner";
 	layer = 4;
@@ -37930,7 +37899,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -39195,7 +39163,6 @@
 	id = "qm_dock_out"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock_out";
 	layer = 4;
@@ -39215,7 +39182,6 @@
 	id = "cargo_in"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock";
 	layer = 4;
@@ -40310,7 +40276,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -40359,7 +40324,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -40642,7 +40606,7 @@
 	dir = 4;
 	pixel_x = -5
 	},
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/item/device/radio/intercom/cargo,
 /turf/floor/yellow/side{
 	dir = 9
@@ -40656,7 +40620,7 @@
 	dir = 1;
 	pixel_y = 21
 	},
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -40675,7 +40639,7 @@
 	dir = 0;
 	icon_state = "0-4"
 	},
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -41744,7 +41708,6 @@
 "bIC" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "combustion";
 	layer = 4;
@@ -42037,7 +42000,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorleft1";
 	id = "cargo_hangar";
 	layer = 4;
@@ -42107,7 +42069,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "cargo_hangar";
 	layer = 4;
@@ -42425,7 +42386,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north/noaicontrol,
+/obj/machinery/power/apc/autoname/north,
+/obj/map/apc_helper/noaicontrol,
 /turf/floor/caution/west,
 /area/listeningpost/power)
 "bKk" = (
@@ -42993,7 +42955,8 @@
 	icon_state = "0-4"
 	},
 /obj/marker/supplymarker,
-/obj/machinery/power/apc/autoname_west/noaicontrol,
+/obj/machinery/power/apc/autoname/west,
+/obj/map/apc_helper/noaicontrol,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -44506,7 +44469,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/power/apc/autoname_north{
+/obj/machinery/power/apc/autoname/north{
 	areastring = "Research Dock"
 	},
 /obj/cable{
@@ -44565,7 +44528,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/manufacturer/general,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/orangeblack/side{
 	dir = 8
 	},
@@ -44925,7 +44888,7 @@
 	},
 /area/station/security/main)
 "dXn" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable,
 /turf/floor/purple/side{
 	dir = 8
@@ -45055,7 +45018,7 @@
 	name = "autoname - SS13";
 	pixel_y = 21
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -45088,7 +45051,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "esY" = (
@@ -45280,9 +45243,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Armory APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -45304,7 +45267,7 @@
 	name = "autoname  - SS13";
 	pixel_y = 21
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -45485,7 +45448,6 @@
 /obj/cable,
 /obj/machinery/door/poddoor/blast{
 	density = 0;
-
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -45846,7 +45808,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple2"
@@ -46370,7 +46332,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/storage/auxillary)
 "hLm" = (
@@ -46540,7 +46502,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/orangeblack/side/white{
 	dir = 5
 	},
@@ -47036,9 +46998,8 @@
 /obj/stool/chair/office/blue{
 	dir = 8
 	},
-/obj/machinery/power/apc/autoname_north{
-	areastring = "Aviary";
-	name = "Aviary APC"
+/obj/machinery/power/apc/autoname/north{
+	areastring = "Aviary"
 	},
 /turf/floor/black,
 /area/station/hallway/secondary/entry{
@@ -47249,7 +47210,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/redblack{
 	dir = 5
 	},
@@ -47503,7 +47464,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -48268,7 +48229,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple2"
@@ -48284,7 +48245,7 @@
 /area/station/science/artifact)
 "mJe" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -48771,7 +48732,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "pharmacylock";
 	layer = 4;
@@ -48908,7 +48868,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/engine/gas)
 "ozN" = (
@@ -49146,7 +49106,7 @@
 /area/station/crew_quarters/fitness)
 "ptz" = (
 /obj/machinery/vending/standard,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -49569,7 +49529,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue2"
@@ -49754,7 +49714,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen2"
@@ -49822,7 +49782,7 @@
 /obj/item/storage/toolbox/emergency,
 /obj/item/device/light/flashlight,
 /obj/random_item_spawner/med_kit,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -50451,7 +50411,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "fireshield";
 	layer = 4;
@@ -50620,7 +50579,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/blue/checker,
 /area/station/crew_quarters/pool)
 "tRj" = (
@@ -51031,7 +50990,7 @@
 /turf/floor/engine,
 /area/station/engine/combustion_chamber)
 "uQM" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -51138,9 +51097,9 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable,
 /turf/floor/grass/random,
 /area/station/medical/research{
@@ -51382,7 +51341,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred2"
@@ -51395,7 +51354,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor,
 /area/station/science/artifact)
 "vNG" = (
@@ -51406,7 +51365,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/carpet{
 	dir = 8;
 	icon_state = "purple4"
@@ -51677,7 +51636,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "fireshield";
 	layer = 4;
@@ -51735,7 +51693,7 @@
 	icon_state = "x3";
 	name = "peststart"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-8"
 	},

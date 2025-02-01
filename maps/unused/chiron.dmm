@@ -9566,12 +9566,12 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	operating = 1;
 	pixel_x = -24;
 	pixel_y = 0;
 	start_charge = 90
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable,
 /turf/floor,
 /area/station/crew_quarters/market{
@@ -9999,10 +9999,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/caution/east{
 	dir = 8
 	},
@@ -10047,10 +10047,10 @@
 	areastring = "Owlery";
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4";
@@ -11710,10 +11710,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -12728,10 +12728,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -15373,7 +15373,6 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -15481,10 +15480,10 @@
 	areastring = "East Crew Quarters";
 	dir = 8;
 	name = "East Crew Quarters APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -18721,7 +18720,7 @@
 /turf/floor/plating,
 /area/station/mining/refinery)
 "aLD" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
@@ -19151,7 +19150,7 @@
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "aMv" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -22470,11 +22469,11 @@
 	areastring = "West Primary Hallway";
 	dir = 2;
 	name = "West Primary Hallway APC";
-	noalerts = 1;
 	operating = 1;
 	pixel_y = -24;
 	start_charge = 90
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -24388,7 +24387,7 @@
 	},
 /area/station/engine/elect)
 "aWt" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/grime,
 /area/station/mining/staff_room)
 "aWu" = (
@@ -25192,12 +25191,12 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "E APC";
-	noalerts = 1;
 	operating = 1;
 	pixel_x = 24;
 	pixel_y = 0;
 	start_charge = 90
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable,
 /turf/floor/sanitary,
 /area/station/medical/morgue)
@@ -30074,10 +30073,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/carpet{
 	icon_state = "fgreen2";
 	dir = 9
@@ -31718,10 +31717,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4";
@@ -33140,10 +33139,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/marker/supplymarker,
 /turf/floor/grey/side{
 	dir = 4
