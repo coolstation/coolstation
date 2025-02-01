@@ -1,6 +1,11 @@
 
 (t)sat feb 01 25
 (u)patricia
+(p)383
+(e)|
+(+)Backslashes may now be used to escape characters when sending network packets with mechcomp, wireless and wired. Also affects the signal splitter. Escaping keys with parenthesis now also works when using ; as the separator.
+(+)Wifi, powernet, and signal splitter components now process signals consistently- including backslash escapes and wrapping the keys in parenthesis.
+(u)patricia
 (p)384
 (e)|
 (+)GPS coordinates in packets are now in x=, y= format compatible with signal splitters
