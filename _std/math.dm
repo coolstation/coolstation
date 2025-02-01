@@ -36,6 +36,13 @@
 /// NaN isn't a number, damn it. Infinity is a problem too.
 #define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) ) //By ike709
 
+/// Parses a number except for NaNs and infinities
+proc/text2num_safe(x)
+	. = text2num(x)
+	if(isnum_safe(.))
+		return
+	return null
+
 //bit math helpers
 
 /**
