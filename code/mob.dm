@@ -857,8 +857,7 @@
 				grabHand.set_affected_loc()
 			else
 				grabHand.affecting.beingBaned = FALSE
-				if(!grabHand.affecting.lying)
-					grabHand.affecting.transform = null
+				grabHand.affecting.transform = null
 				grabHand.set_affected_loc()
 
 
