@@ -201,7 +201,7 @@
 	targeted = 0
 	target_anything = 0
 	human_only = 0
-	pointCost = 6
+	pointCost = 5// was 6
 	can_use_in_container = 1
 	dont_lock_holder = 0
 
