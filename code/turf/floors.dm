@@ -336,23 +336,6 @@
 
 /////////////////////////////////////////
 
-/turf/floor/cautionblack
-	icon_state = "fullcaution"
-
-/turf/floor/cautionblack/side
-	icon_state = "caution"
-
-/turf/floor/cautionblack/side/white
-	icon_state = "cautionwhite"
-
-/turf/floor/cautionblack/corner
-	icon_state = "cautioncorner"
-
-/turf/floor/cautionblack/corner/white
-	icon_state = "cautionwhitecorner"
-
-/////////////////////////////////////////
-
 /turf/floor/bluegreen
 	icon_state = "blugreenfull"
 
@@ -501,20 +484,19 @@
 	icon_state = "orangewhitecorner"
 
 /////////////////////////////////////////
-
 /turf/floor/cautionblack
-	icon_state = "fullcaution"
+	icon_state = "fullcaution" //icon state was unused
 
-/turf/floor/cautionblack/side
+/turf/floor/orangeblack/side
 	icon_state = "caution"
 
-/turf/floor/cautionblack/side/white
+/turf/floor/orangeblack/side/white
 	icon_state = "cautionwhite"
 
-/turf/floor/cautionblack/corner
+/turf/floor/orangeblack/corner
 	icon_state = "cautioncorner"
 
-/turf/floor/cautionblack/corner/white
+/turf/floor/orangeblack/corner/white
 	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
