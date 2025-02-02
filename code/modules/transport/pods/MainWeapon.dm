@@ -171,7 +171,7 @@
 	name = "Svet-Oruzhiye Mk.4"
 	weapon_score = 0.6
 	current_projectile = new/datum/projectile/laser/glitter
-	firerate = 5
+	firerate = 10
 	icon_state = "strelka"
 	muzzle_flash = "muzzle_flash_laser"
 
