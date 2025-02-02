@@ -4731,8 +4731,8 @@
 	dir = 4
 	},
 /obj/decoration/toiletholder{
-	pixel_y = 23;
-	dir = 8
+	dir = 8;
+	pixel_y = 23
 	},
 /turf/floor/sanitary/white,
 /area/station/security/brig/genpop)
@@ -16116,8 +16116,8 @@
 	pixel_y = 6
 	},
 /obj/item/clothing/gloves/ring/gold{
-	pixel_y = 11;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = 11
 	},
 /turf/floor/black,
 /area/station/bridge{
@@ -18128,6 +18128,10 @@
 /obj/item/instrument/large/piano{
 	anchored = 0;
 	name = "old piano"
+	},
+/obj/decal/poster/wallsign/pope_portrait{
+	pixel_x = 0;
+	pixel_y = 32
 	},
 /turf/floor/black,
 /area/station/chapel/office)
