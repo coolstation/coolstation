@@ -153,8 +153,6 @@
 							/obj/item/raw_material/claretine,/obj/item/raw_material/cerenkite)
 							item_amounts += 40
 						if(6)
-							items += /obj/item/radio_tape/advertisement/cargonia
-							item_amounts += 1
 							items += /obj/item/clothing/under/rank/cargo
 							item_amounts += 1
 							items += /obj/decal/skeleton
