@@ -195,7 +195,7 @@
 							items += pick(/obj/item/gun/energy/teleport,/obj/item/gun/energy/laser_gun/pred)
 							item_amounts += 1
 						if(2 to 6)
-							items += /obj/item/gun/energy/phaser_gun
+							items += /obj/item/shipcomponent/mainweapon/disruptor
 							item_amounts += 1
 							items += /obj/item/storage/firstaid/crit
 							item_amounts += 1

@@ -498,7 +498,9 @@
 					S.setup(src)
 			if (6)
 				for (var/i=2, i>0, i--)
-					new /obj/item/gun/energy/laser_gun(src)
+					//new /obj/item/gun/energy/laser_gun(src)
+					new /obj/item/gun/modular/soviet/short/basic(src)
+					new /obj/item/stackable_ammo/pistol/zaubertube/three(src)
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
 					S.setup(src)
@@ -532,10 +534,13 @@
 				/obj/item/raw_material/miracle,\
 				/obj/item/raw_material/uqill,\
 				/obj/item/rcd = /obj/item/rcd_ammo/big,\
-				/obj/item/gun/kinetic/riotgun = /obj/item/ammo/bullets/abg,\
-				/obj/item/gun/energy/taser_gun,\
-				/obj/item/gun/energy/phaser_gun,\
-				/obj/item/gun/energy/laser_gun,\
+				/obj/item/gun/modular/soviet/short/basic,\
+				/obj/item/gun/modular/soviet/short/covert,\
+				/obj/item/stackable_ammo/pistol/zaubertube/three,\
+				//obj/item/gun/kinetic/riotgun = /obj/item/ammo/bullets/abg,
+				//obj/item/gun/energy/taser_gun,
+				//obj/item/gun/energy/phaser_gun,
+				//obj/item/gun/energy/laser_gun,
 				/obj/item/device/key/random,\
 				/obj/item/paper/IOU)
 
