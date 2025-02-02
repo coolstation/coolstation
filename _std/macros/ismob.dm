@@ -50,4 +50,4 @@
 #define issmokeimmune(x) (!isliving(x) || isintangible(x) || issilicon(x) || ((x?.wear_mask && (x.wear_mask.c_flags & BLOCKSMOKE || (x.wear_mask.c_flags & MASKINTERNALS && x.internal))) || ischangeling(x) || HAS_MOB_PROPERTY(x, PROP_REBREATHING) || HAS_MOB_PROPERTY(x, PROP_BREATHLESS) || isdead(x)))
 
 /// Returns true if this mob ever had a player attached, so it counts for antags that directly prey on crew.
-#define isvalidantagmeal(x) (x.mind || x.ghost || x.last_client)
+#define isvalidantagmeal(x) (x.mind?.key || x.ghost || x.last_client)
