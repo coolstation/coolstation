@@ -198,7 +198,7 @@
 	/obj/item/clothing/shoes/black,\
 	/obj/item/clothing/gloves/black,\
 	/obj/item/device/radio/headset/shipping,\
-	/obj/item/device/pda2/quartermaster)
+	/obj/item/device/pda2/cargo_tech)
 
 /obj/item/storage/box/clothing/janitor
 	name = "\improper Janitor's equipment"

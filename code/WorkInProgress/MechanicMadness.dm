@@ -1208,7 +1208,7 @@
 	proc/split(var/datum/mechanicsMessage/input)
 		if(level == 2) return
 		LIGHT_UP_HOUSING
-		var/list/converted = params2list(input.signal)
+		var/list/converted = params2complexlist(input.signal)
 		if(length(converted))
 			if(triggerSignal in converted)
 				input.signal = converted[triggerSignal]
@@ -1988,7 +1988,7 @@
 	proc/send(var/datum/mechanicsMessage/input)
 		if(level == 2) return
 		LIGHT_UP_HOUSING
-		var/list/converted = params2list(input.signal)
+		var/list/converted = params2complexlist(input.signal)
 		if(!length(converted) || ON_COOLDOWN(src, SEND_COOLDOWN_ID, src.cooldown_time)) return
 
 		var/datum/signal/sendsig = get_free_signal()
@@ -3219,6 +3219,105 @@
 				return
 		if(. == .)
 			SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"[.]")
+
+
+
+/obj/item/mechanics/counter
+	name = "Counting Component"
+	desc = "Count things! Adds (change) to the current value and outputs it when triggered. You can change the amount to change by, the starting value, and reset it as well."
+	icon_state = "comp_arith"
+	var/startingValue = 0
+	var/currentValue = 0
+	var/change = 1
+
+	var/mode = "rng"
+	get_desc()
+		. = ..() // Please don't remove this again, thanks.
+		. += "<br><span class='notice'>Current value: [currentValue] | Changes by [(change >= 0 ? "+" : "-")][change] | Starting value: [startingValue]</span>"
+	secure()
+		icon_state = "comp_arith1"
+	loosen()
+		icon_state = "comp_arith"
+	New()
+		..()
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Reset", PROC_REF(resetCounter))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Set Value", PROC_REF(setCurrentValue))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Set Change", PROC_REF(setChange))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Set Starting Value", PROC_REF(setStartingValue))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Set Change", PROC_REF(setChange))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Count", PROC_REF(doCounting))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Immediately Change By", PROC_REF(doImmediateChange))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_CONFIG,"Set Starting Value", PROC_REF(setStartingValueManually))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_CONFIG,"Set Change", PROC_REF(setChangeManually))
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_CONFIG,"Set Current Value", PROC_REF(setCurrentValueManually))
+
+	proc/setStartingValueManually(obj/item/W as obj, mob/user as mob)
+		var/input = input("Set starting value to what?", "Starting value", startingValue) as num
+		if(!in_interact_range(src, user) || user.stat || isnull(input))
+			return 0
+		startingValue = input
+		tooltip_rebuild = 1
+		return 1
+
+	proc/setChangeManually(obj/item/W as obj, mob/user as mob)
+		var/input = input("Set Change to what?", "Change", change) as num
+		if(!in_interact_range(src, user) || user.stat || isnull(input))
+			return 0
+		change = input
+		tooltip_rebuild = 1
+		return 1
+
+	proc/setCurrentValueManually(obj/item/W as obj, mob/user as mob)
+		var/input = input("Set current value to what?", "Current value", currentValue) as num
+		if(!in_interact_range(src, user) || user.stat || isnull(input))
+			return 0
+		currentValue = input
+		tooltip_rebuild = 1
+		return 1
+
+
+	proc/setStartingValue(var/datum/mechanicsMessage/input)
+		if(level == 2) return
+		LIGHT_UP_HOUSING
+		if (!isnull(text2num_safe(input.signal)))
+			startingValue = text2num_safe(input.signal)
+			tooltip_rebuild = 1
+	proc/setChange(var/datum/mechanicsMessage/input)
+		if(level == 2) return
+		LIGHT_UP_HOUSING
+		if (!isnull(text2num_safe(input.signal)))
+			change = text2num_safe(input.signal)
+			tooltip_rebuild = 1
+	proc/resetCounter(var/datum/mechanicsMessage/input)
+		// reset does not send the value
+		if(level == 2) return
+		LIGHT_UP_HOUSING
+		currentValue = startingValue
+		tooltip_rebuild = 1
+		. = currentValue
+	proc/setCurrentValue(var/datum/mechanicsMessage/input)
+		// setCurrentValue sends the signal with the current value
+		if(level == 2) return
+		LIGHT_UP_HOUSING
+		if (!isnull(text2num_safe(input.signal)))
+			currentValue = text2num_safe(input.signal)
+			tooltip_rebuild = 1
+			. = currentValue
+			SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"[.]")
+
+	proc/doImmediateChange(var/datum/mechanicsMessage/input)
+		if(level == 2) return
+		if (!isnull(text2num_safe(input.signal)))
+			LIGHT_UP_HOUSING
+			currentValue += text2num_safe(input.signal)
+			. = currentValue
+			SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"[.]")
+
+	proc/doCounting()
+		currentValue += change
+		. = currentValue
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"[.]")
+
 
 /obj/item/mechanics/association
 	name = "Association Component"

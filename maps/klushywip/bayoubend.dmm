@@ -3673,6 +3673,15 @@
 /obj/decal/poster/wallsign/poster_clown,
 /turf/wall,
 /area/station/crew_quarters/fitness)
+"cVy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "cVQ" = (
 /obj/machinery/dispenser{
 	o2tanks = 5;
@@ -4698,6 +4707,10 @@
 	},
 /obj/disposalpipe/trunk/sewage{
 	dir = 4
+	},
+/obj/decoration/toiletholder{
+	pixel_y = 23;
+	dir = 8
 	},
 /turf/floor/sanitary/white,
 /area/station/security/brig/genpop)
@@ -7086,6 +7099,9 @@
 /area/station/chapel/sanctuary)
 "fHn" = (
 /obj/critter/mouse,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
 "fHt" = (
@@ -7299,6 +7315,11 @@
 /obj/machinery/light_switch/south,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"fOD" = (
+/obj/machinery/power/apc/autoname/south,
+/obj/cable,
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "fOK" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/wall/r_wall,
@@ -11133,6 +11154,12 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/item/clothing/gloves/latex/random,
+/obj/item/clothing/gloves/latex/random,
+/obj/item/body_bag,
+/obj/item/body_bag,
+/obj/item/storage/box/evidence,
+/obj/item/storage/box/evidence,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "iLI" = (
@@ -12138,14 +12165,11 @@
 /area/ghostdrone_factory)
 "jGe" = (
 /obj/machinery/power/apc/autoname/south,
-/obj/rack,
-/obj/item/sponge{
-	name = "loofah"
-	},
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/submachine/laundry_machine,
 /turf/floor/sanitary/white,
 /area/station/crew_quarters/showers)
 "jGP" = (
@@ -16147,7 +16171,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/storage/secure/closet/command/quartermaster,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "mGj" = (
@@ -17431,7 +17455,7 @@
 /turf/floor/plating/random,
 /area/space)
 "nDK" = (
-/obj/item/storage/wall/clothingrack/hatrack/hatrack_3,
+/obj/machinery/clothingbooth,
 /turf/floor/white/grime,
 /area/station/quartermaster/cargooffice/storefront{
 	mail_tag = "Conveience Store";
@@ -18250,6 +18274,9 @@
 /obj/disposalpipe/trunk/sewage{
 	dir = 4
 	},
+/obj/decoration/toiletholder{
+	pixel_y = 23
+	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
 "ogS" = (
@@ -18953,6 +18980,9 @@
 /obj/disposalpipe/trunk/sewage{
 	dir = 4
 	},
+/obj/decoration/toiletholder{
+	pixel_y = 23
+	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
 "oEw" = (
@@ -19433,6 +19463,14 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating/random,
 /area/station/maintenance/west)
+"oYw" = (
+/obj/decal/poster/wallsign/poster_clown{
+	pixel_x = 4;
+	pixel_y = -23
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/station/hallway/primary/southeast)
 "oYE" = (
 /obj/disposalpipe/segment{
 	dir = 2;
@@ -21955,6 +21993,12 @@
 /obj/decal/poster/wallsign/poster_nt,
 /turf/wall,
 /area/station/hallway/primary/south)
+"qPS" = (
+/obj/item/clothing/gloves/latex/blue{
+	pixel_y = -6
+	},
+/turf/wall,
+/area/station/medical/staff)
 "qQA" = (
 /obj/stool,
 /turf/floor/plating/random,
@@ -23632,6 +23676,26 @@
 /obj/firedoor_spawn,
 /turf/floor/plating/random,
 /area/station/maintenance/central)
+"sgy" = (
+/obj/machinery/door/window/eastleft,
+/obj/item/storage/toilet{
+	dir = 4
+	},
+/obj/window/cubicle{
+	dir = 2
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/disposalpipe/trunk/sewage{
+	dir = 4
+	},
+/obj/decoration/toiletholder/empty{
+	pixel_y = 23
+	},
+/turf/floor/sanitary,
+/area/station/crew_quarters/bathroom)
 "shm" = (
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/southleft,
@@ -30232,7 +30296,6 @@
 /obj/decal/tile_edge/stripe{
 	icon_state = "delivery2"
 	},
-/obj/storage/secure/closet/logistics/cargo,
 /turf/floor/orangeblack,
 /area/station/quartermaster/cargobay)
 "xvZ" = (
@@ -65844,7 +65907,7 @@ irP
 irP
 pNS
 irP
-nRh
+qPS
 nRh
 aeW
 aeW
@@ -74322,7 +74385,7 @@ eCw
 jzS
 dxO
 uTA
-oEt
+sgy
 ofX
 oEt
 bZu
@@ -78246,9 +78309,9 @@ fet
 eRL
 bOC
 ndV
-nNP
+cVy
 fHn
-bce
+fOD
 gJu
 jxf
 gKk

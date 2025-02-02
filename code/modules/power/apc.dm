@@ -369,6 +369,8 @@ var/zapLimiter = 0
 							src.terminal.master = src
 							src.terminal.set_dir(initial(src.dir))
 
+					malfunction_resolve() //freebie, they did unfuck the whole thing so it probably fixed whatever was wrong before the APC blew up.
+
 					status &= ~BROKEN //Clear broken flag
 					icon_state = initial(src.icon_state)
 					operating = 1
@@ -1357,7 +1359,23 @@ var/zapLimiter = 0
 	..()
 
 /obj/machinery/power/apc/malfunction_hint()
-	return "Open the maintenance hatch and replace the APC's wiring."
+	//You can already examine APCs to get the next step, but we'll have a more formally worded repeat here
+	if(status & BROKEN)
+		switch(repair_status)
+			if(0)
+				return "<br>First, unscrew and disconnect the control board.</br>"
+			if(1)
+				return "<br>Next, replace the autotransformer's wiring.</br>"
+			if(2)
+				return "<br>Next, tune the autotransformer using a wrench.</br>"
+			if(3)
+				return "<br>Next, reset the control board with a multitool.</br>"
+			if(4)
+				return "<br>Finally, reconnect the control board with a screwdriver.</br>"
+
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the APC's wiring."
+	return FALSE
 
 // damage and destruction acts
 
@@ -1578,14 +1596,11 @@ var/zapLimiter = 0
 
 MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 
-/obj/apc_helper //we really need a map helper path at this rate
+/obj/map/apc_helper //we really need a map helper path at this rate <- guess what there is binch
 	icon = 'icons/map-editing/mapeditor.dmi'
-	invisibility = 101
-	anchored = TRUE
-	density = FALSE
 	layer = EFFECTS_LAYER_4 // above all stuff
 
-/obj/apc_helper/New()
+/obj/map/apc_helper/New()
 	. = ..()
 	var/obj/machinery/power/apc/apc = locate() in loc
 	if(isnull(apc))
@@ -1595,18 +1610,18 @@ MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 	act_on(apc)
 	qdel(src)
 
-/obj/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
 	return
 
-/obj/apc_helper/nopoweralert
+/obj/map/apc_helper/nopoweralert
 	icon_state = "nopoweralert"
 
-/obj/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
 
-/obj/apc_helper/noaicontrol
+/obj/map/apc_helper/noaicontrol
 	icon_state = "noaicontrol"
 
-/obj/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
 	apc.aidisabled = TRUE

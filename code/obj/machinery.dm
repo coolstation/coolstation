@@ -432,9 +432,9 @@
 /obj/machinery/proc/malfunction_start()
 
 //Return instructions on how to fix the thing if it breaks
-//ATM only for things hooked into maintenance arrears (anything with MAY_REQUIRE_MAINT), but maybe we'll work it into stuff like APC repair too.
+//If the machine is hooked into maintenance arrears (MAY_REQUIRE_MAINT) it should have one of these, but if your machine breaks in other ways it'd be good to put that here too.
 /obj/machinery/proc/malfunction_hint()
-	return "Oh no a codre fucked this up!"
+	return FALSE
 
 ///Do wacky annoying shit
 /obj/machinery/proc/malfunction(mult)
