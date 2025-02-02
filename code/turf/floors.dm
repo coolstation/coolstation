@@ -476,7 +476,7 @@
 
 /////////////////////////////////////////
 
-turf/floor/orange
+/turf/floor/orange
 	icon_state = "fullorange"
 
 /turf/floor/orange/side
@@ -499,6 +499,23 @@ turf/floor/orange
 
 /turf/floor/orangewhite/corner
 	icon_state = "orangewhitecorner"
+
+/////////////////////////////////////////
+
+/turf/floor/cautionblack
+	icon_state = "fullcaution"
+
+/turf/floor/cautionblack/side
+	icon_state = "caution"
+
+/turf/floor/cautionblack/side/white
+	icon_state = "cautionwhite"
+
+/turf/floor/cautionblack/corner
+	icon_state = "cautioncorner"
+
+/turf/floor/cautionblack/corner/white
+	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
 
