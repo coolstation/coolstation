@@ -414,6 +414,7 @@
 
 /turf/floor/airless/orangeblack
 	icon_state = "fullcaution"
+
 /turf/floor/airless/orange/checker
 	icon_state = "orangechecker"
 
