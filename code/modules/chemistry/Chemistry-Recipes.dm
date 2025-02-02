@@ -2229,6 +2229,17 @@ datum
 			mix_phrase = "The mixture rapidly turns into a dense pink liquid."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
+		pentobarbital // New Losebreath Toxin for Lings
+			name = "Pentobarbital"
+			id = "Pentobarbital"
+			result = "pentobarbital"
+			required_reagents = list("perfluorodecalin" = 1, "urine" = 1, "carbon" = 1, "acetic_acid" = 1)
+			//required_temperature = T0C + 100
+			// take something vaguely losebreathy, urea, and alkylate it???
+			result_amount = 2
+			mix_phrase = "The mixture forms a salt which rapidly precipitates."
+			//mix_sound = 'sound/misc/drinkfizz.ogg'
+
 		styptic_powder // COGWERKS CHEM REVISION PROJECT: no idea, probably a magic drug
 			name = "Styptic Powder"
 			id = "styptic_powder"

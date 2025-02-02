@@ -840,12 +840,13 @@
 		/obj/item/cell/erebite/charged)
 
 	weapons
-		spawn_contents = list(/obj/item/gun/energy/phaser_gun,
-		/obj/item/old_grenade/stinger = 2,
-		/obj/item/ammo/power_cell/med_power)
+		spawn_contents = list(/obj/item/gun/modular/soviet/short/covert,
+		/obj/item/stackable_ammo/pistol/zaubertube/five,
+		/obj/item/old_grenade/stinger = 2,)
 
 	weapons2
-		spawn_contents = list(/obj/item/gun/energy/laser_gun,
+		spawn_contents = list(/obj/item/gun/modular/soviet/long/advanced,
+		/obj/item/stackable_ammo/pistol/zaubertube/five,
 		/obj/item/chem_grenade/cryo = 4)
 
 	weapons3
@@ -853,8 +854,8 @@
 		/obj/item/chem_grenade/shock = 2)
 
 	weapons4
-		spawn_contents = list(/obj/item/gun/kinetic/zipgun,
-		/obj/item/ammo/bullets/a38 = 2)
+		spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,
+		/obj/item/stackable_ammo/pistol/italian/AP/ten)
 
 	cargonia
 		spawn_contents = list(/obj/item/radio_tape/advertisement/cargonia,

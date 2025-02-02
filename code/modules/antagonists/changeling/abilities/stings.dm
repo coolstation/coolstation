@@ -75,6 +75,21 @@
 		venom_id = "capulettium"
 		inject_amount = 20
 
+	pento
+		name = "Pentobarbital Sting"
+		desc = "That'll shut 'em up."
+		icon_state = "stingneuro"
+		inject_amount = 20
+		venom_id = "pentobarbital"
+
+	bio
+		name = "Mutagenic Sting"
+		desc = "That'll mix 'em up."
+		icon_state = "stingbio"
+		inject_amount = 5
+		venom_id = "mutagen"
+
+
 	lsd
 		name = "Hallucinogenic Sting"
 		desc = "Transfer some LSD into your target."

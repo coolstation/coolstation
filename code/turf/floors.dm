@@ -21,6 +21,7 @@
 	//Stuff for the floor & wall planner undo mode that initial() doesn't resolve.
 	var/roundstart_icon_state
 	var/roundstart_dir
+	allows_vehicles = 0
 
 	New()
 		..()
