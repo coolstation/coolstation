@@ -235,6 +235,70 @@
 /turf/floor/airless/darkblue/checker/other
 	icon_state = "blue-dblue2"
 
+/turf/floor/airless/darkblue/side
+	icon_state = "dblue"
+
+/turf/floor/airless/darkblue/corner
+	icon_state = "dbluecorner"
+
+/turf/floor/airless/darkblue/checker
+	icon_state = "dbluechecker"
+
+/turf/floor/airless/darkblueblack
+	icon_state = "dblueblack"
+
+/turf/floor/airless/darkblueblack/corner
+	icon_state = "dblueblackcorner"
+
+/turf/floor/airless/darkbluewhite
+	icon_state = "dbluewhite"
+
+/turf/floor/airless/darkbluewhite/corner
+	icon_state = "dbluewhitecorner"
+
+/////////////////////////////////////////
+
+/turf/floor/airless/darkpurple
+	icon_state = "fulldpurple"
+
+/turf/floor/airless/darkpurple/side
+	icon_state = "dpurple"
+
+/turf/floor/airless/darkpurple/corner
+	icon_state = "dpurplecorner"
+
+/turf/floor/airless/darkpurple/checker
+	icon_state = "dpurplechecker"
+
+/turf/floor/airless/darkpurpleblack
+	icon_state = "dpurpleblack"
+
+/turf/floor/airless/darkpurpleblack/corner
+	icon_state = "dpurpleblackcorner"
+
+/turf/floor/airless/darkpurplewhite
+	icon_state = "dpurplewhite"
+
+/turf/floor/airless/darkpurplewhite/corner
+	icon_state = "dpurplewhitecorner"
+
+/////////////////////////////////////////
+
+/turf/floor/airless/orangeblack
+	icon_state = "fullcaution"
+
+/turf/floor/airless/orangeblack/side
+	icon_state = "caution"
+
+/turf/floor/airless/orangeblack/side/white
+	icon_state = "cautionwhite"
+
+/turf/floor/airless/orangeblack/corner
+	icon_state = "cautioncorner"
+
+/turf/floor/airless/orangeblack/corner/white
+	icon_state = "cautionwhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/airless/bluegreen
@@ -331,6 +395,12 @@
 /turf/floor/airless/yellowblack/corner
 	icon_state = "yellowblackcorner"
 
+/turf/floor/airless/yellowwhite
+	icon_state = "yellowwhite"
+
+/turf/floor/airless/yellowwhite/corner
+	icon_state = "yellowwhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/airless/orange
@@ -342,15 +412,23 @@
 /turf/floor/airless/orange/corner
 	icon_state = "orangecorner"
 
-
 /turf/floor/airless/orangeblack
 	icon_state = "fullcaution"
+
+/turf/floor/airless/orange/checker
+	icon_state = "orangechecker"
 
 /turf/floor/airless/orangeblack/side
 	icon_state = "caution"
 
 /turf/floor/airless/orangeblack/side/white
 	icon_state = "cautionwhite"
+
+/turf/floor/airless/orangeblack
+	icon_state = "fullcaution"
+
+/turf/floor/airless/orangewhite
+	icon_state = "orangewhite"
 
 /turf/floor/airless/orangeblack/corner
 	icon_state = "cautioncorner"
