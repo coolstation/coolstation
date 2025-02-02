@@ -416,17 +416,23 @@
 /turf/floor/airless/orange/checker
 	icon_state = "orangechecker"
 
+/turf/floor/airless/orangeblack/side
+	icon_state = "caution"
+
+/turf/floor/airless/orangeblack/side/white
+	icon_state = "cautionwhite"
+
 /turf/floor/airless/orangeblack
-	icon_state = "orangeblack"
+	icon_state = "fullcaution"
 
 /turf/floor/airless/orangewhite
 	icon_state = "orangewhite"
 
 /turf/floor/airless/orangeblack/corner
-	icon_state = "orangeblackcorner"
+	icon_state = "cautioncorner"
 
-/turf/floor/airless/orangewhite/corner
-	icon_state = "orangewhitecorner"
+/turf/floor/airless/orangewhite/corner/white
+	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
 
