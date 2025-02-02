@@ -413,6 +413,8 @@
 	icon_state = "orangecorner"
 
 //caution sprites weren't even "orange"
+/turf/floor/airless/orangeblack
+	icon_state = "fullcaution"
 /turf/floor/airless/orange/checker
 	icon_state = "orangechecker"
 
@@ -431,7 +433,7 @@
 /turf/floor/airless/orangeblack/corner
 	icon_state = "cautioncorner"
 
-/turf/floor/airless/orangewhite/corner/white
+/turf/floor/airless/orangeblack/corner/white
 	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
