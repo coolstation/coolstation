@@ -192,7 +192,7 @@
 					picker = rand(1,10)
 					switch(picker)
 						if(1)
-							items += pick(/obj/item/gun/energy/teleport,/obj/item/gun/energy/laser_gun/pred)
+							items += pick(/obj/item/gun/modular/juicer/blunder,/obj/item/gun/modular/juicer/long, /obj/item/gun/modular/juicer/ribbed)
 							item_amounts += 1
 						if(2 to 6)
 							items += /obj/item/shipcomponent/mainweapon/disruptor
