@@ -22,8 +22,10 @@
 #ifdef RP_MODE
 	C.addAbility(/datum/targetable/changeling/sting/capulettium)
 #else
-	C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
+	//C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
+	C.addAbility(/datum/targetable/changeling/sting/pento)
 #endif
+	C.addAbility(/datum/targetable/changeling/sting/bio)
 	C.addAbility(/datum/targetable/changeling/sting/lsd)
 	C.addAbility(/datum/targetable/changeling/sting/dna)
 	C.addAbility(/datum/targetable/changeling/transform)
