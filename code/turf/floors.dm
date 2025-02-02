@@ -472,6 +472,9 @@
 	icon_state = "orangechecker"
 
 /turf/floor/orangeblack
+	icon_state = "fullcaution"
+
+/turf/floor/orangeblack/real
 	icon_state = "orangeblack"
 
 /turf/floor/orangewhite

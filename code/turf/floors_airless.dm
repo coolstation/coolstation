@@ -287,16 +287,16 @@
 /turf/floor/airless/cautionblack
 	icon_state = "fullcaution"
 
-/turf/floor/airless/cautionblack/side
+/turf/floor/airless/orangeblack/side
 	icon_state = "caution"
 
-/turf/floor/airless/cautionblack/side/white
+/turf/floor/airless/orangeblack/side/white
 	icon_state = "cautionwhite"
 
-/turf/floor/airless/cautionblack/corner
+/turf/floor/airless/orangeblack/corner
 	icon_state = "cautioncorner"
 
-/turf/floor/airless/cautionblack/corner/white
+/turf/floor/airless/orangeblack/corner/white
 	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
