@@ -240,10 +240,6 @@ proc/create_fluff(datum/mind/target)
 
 	set_up()
 		var/list/items = list(
-		"tasers",\
-		"phasers",\
-		"eguns",\
-		"riot shotguns",\
 		"identification cards",\
 		"insulated gloves",\
 		"stun batons",\
@@ -259,18 +255,6 @@ proc/create_fluff(datum/mind/target)
 
 		target_name = pick(items)
 		switch (target_name)
-			if ("tasers")
-				multigrab_target = /obj/item/gun/energy/taser_gun
-				multigrab_num = rand(2, 5)
-			if ("phasers")
-				multigrab_target = /obj/item/gun/energy/phaser_gun
-				multigrab_num = rand(2, 5)
-			if ("eguns")
-				multigrab_target = /obj/item/gun/energy/egun
-				multigrab_num = rand(2, 5)
-			if ("riot shotguns")
-				multigrab_target = /obj/item/gun/kinetic/riotgun
-				multigrab_num = rand(2, 3)
 			if ("identification cards")
 				multigrab_target = /obj/item/card/id
 				multigrab_num = rand(5, 10)

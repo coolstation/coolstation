@@ -377,6 +377,13 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southwest)
+"aqd" = (
+/obj/storage/secure/closet/command,
+/obj/item/clothing/head/that/gold,
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "aqs" = (
 /obj/machinery/light,
 /obj/cable{
@@ -460,6 +467,7 @@
 	tag = ""
 	},
 /obj/machinery/portable_atmospherics/canister/air/large,
+/turf/floor/cautionblack,
 /turf/floor/cautionblack,
 /area/station/storage/emergency)
 "ava" = (
@@ -2750,6 +2758,15 @@
 	dir = 1
 	},
 /area/station/crew_quarters/catering)
+"chE" = (
+/obj/machinery/mass_driver{
+	dir = 4;
+	id = "scorp"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
 "chF" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -3992,6 +4009,11 @@
 /obj/cabinet/restrictedmedical,
 /turf/floor/carpet/office/other,
 /area/station/medical/head)
+"djS" = (
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "dli" = (
 /turf/floor/black/side,
 /area/station/crew_quarters/catering)
@@ -4710,8 +4732,8 @@
 	dir = 4
 	},
 /obj/decoration/toiletholder{
-	pixel_y = 23;
-	dir = 8
+	dir = 8;
+	pixel_y = 23
 	},
 /turf/floor/sanitary/white,
 /area/station/security/brig/genpop)
@@ -5168,18 +5190,11 @@
 /turf/floor,
 /area/station/hallway/primary/southwest)
 "ejT" = (
-/obj/table/wood/auto,
-/obj/item/stamp/hop{
-	pixel_x = 7;
-	pixel_y = 13
-	},
 /obj/deskclutter{
 	pixel_y = 6
 	},
-/obj/item/pen/crayon/golden{
-	pixel_x = -13
-	},
 /obj/blind_switch/area/north,
+/obj/table/wood/auto,
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
 "ejV" = (
@@ -5810,7 +5825,7 @@
 	dir = 10;
 	icon_state = "lattice-dir"
 	},
-/obj/railing/yellow,
+/obj/railing/yellow/reinforced,
 /turf/space,
 /area/station/shipyard)
 "eGc" = (
@@ -6037,8 +6052,10 @@
 /area/station/crew_quarters/bathroom)
 "eQO" = (
 /obj/machinery/power/apc/autoname/south,
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/hop,
 /obj/cable{
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
@@ -8677,12 +8694,15 @@
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "gUe" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window_blinds/cog2/left{
-	dir = 8
+/obj/machinery/door/airlock/command,
+/obj/access_spawn/head_of_personnel,
+/obj/cable{
+	icon_state = "4-8"
 	},
-/turf/floor/plating,
-/area/station/crew_quarters/heads)
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "gUi" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -9513,6 +9533,12 @@
 	dir = 1
 	},
 /area/station/engine/engineering/breakroom)
+"hrx" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/bridge{
+	name = "Vault"
+	})
 "hrH" = (
 /obj/stool/chair/yellow{
 	dir = 8
@@ -11634,6 +11660,19 @@
 /obj/firedoor_spawn,
 /turf/floor/red,
 /area/station/security/main)
+"jck" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "scrapping"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
 "jcW" = (
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 10
@@ -11859,6 +11898,16 @@
 	},
 /turf/floor/grime,
 /area/station/science/teleporter)
+"jqf" = (
+/obj/machinery/power/apc/autoname/south,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "jqn" = (
 /turf/wall,
 /area/station/hallway/primary/north)
@@ -12047,6 +12096,15 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/research)
+"jxP" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "jzm" = (
 /obj/machinery/light{
 	dir = 8;
@@ -12996,6 +13054,19 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"kkQ" = (
+/obj/table/reinforced/auto,
+/obj/item/spacecash/hundred,
+/obj/item/spacecash/hundred{
+	pixel_y = 11
+	},
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "klc" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -13085,8 +13156,8 @@
 	pixel_x = 4;
 	pixel_y = 15
 	},
-/obj/access_spawn/head_of_personnel,
 /obj/firedoor_spawn,
+/obj/access_spawn/heads,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "knY" = (
@@ -13302,13 +13373,13 @@
 /area/listeningpost)
 "kxQ" = (
 /obj/machinery/door/airlock/command,
-/obj/access_spawn/head_of_personnel,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/firedoor_spawn,
+/obj/access_spawn/heads,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "kyK" = (
@@ -16039,6 +16110,20 @@
 /obj/firedoor_spawn,
 /turf/floor/plating/random,
 /area/station/medical/robotics)
+"mym" = (
+/obj/table/reinforced/auto,
+/obj/item/goldbar,
+/obj/item/goldbar{
+	pixel_y = 6
+	},
+/obj/item/clothing/gloves/ring/gold{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "mzA" = (
 /obj/rack,
 /obj/item/storage/toolbox/mechanical{
@@ -16902,6 +16987,18 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"nhW" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "scrapping"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/station/shipyard)
 "nij" = (
 /obj/cable/brown{
 	icon_state = "2-4"
@@ -17124,8 +17221,9 @@
 /turf/wall,
 /area/station/hallway/secondary/exit)
 "nqe" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/hop,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
 "nqk" = (
@@ -18031,6 +18129,10 @@
 /obj/item/instrument/large/piano{
 	anchored = 0;
 	name = "old piano"
+	},
+/obj/decal/poster/wallsign/pope_portrait{
+	pixel_x = 0;
+	pixel_y = 32
 	},
 /turf/floor/black,
 /area/station/chapel/office)
@@ -20738,6 +20840,19 @@
 /obj/critter/mouse,
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"pRV" = (
+/obj/machinery/launcher_loader/east{
+	id = "scorp"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (SOUTHWEST)"
+	},
+/turf/space,
+/area/station/shipyard)
 "pRY" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -21802,8 +21917,14 @@
 	name = "Convienence Store"
 	})
 "qFH" = (
-/turf/floor/carpet/green,
-/area/station/crew_quarters/heads)
+/obj/machinery/launcher_loader/west{
+	dir = 2;
+	id = "schrott"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
 "qGT" = (
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
@@ -22852,6 +22973,18 @@
 /obj/storage/secure/closet/command/chief_engineer,
 /turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
+"ryg" = (
+/obj/table/reinforced/auto,
+/obj/item/spacecash/fivehundred{
+	pixel_y = 20
+	},
+/obj/item/spacecash/bag{
+	pixel_y = 5
+	},
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "ryh" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -23035,21 +23168,15 @@
 /obj/storage/crate{
 	name = "Controlled Demolition Crate"
 	},
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
-/obj/item/pipebomb/bomb/engineering,
+/obj/item/pipebomb/bomb,
 /obj/item/breaching_charge/thermite,
 /obj/item/breaching_charge/thermite,
 /obj/item/breaching_charge/thermite,
+/obj/item/pipebomb/bomb,
+/obj/item/pipebomb/bomb,
+/obj/item/pipebomb/bomb,
+/obj/item/pipebomb/bomb,
+/obj/item/pipebomb/bomb,
 /turf/floor,
 /area/station/mining/refinery{
 	name = "Scrapping"
@@ -25165,6 +25292,15 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
+"thc" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "scrapping"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
 "thR" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/brig,
@@ -25491,6 +25627,19 @@
 	},
 /turf/floor,
 /area/station/security/equipment)
+"tvG" = (
+/obj/storage/secure/closet/command,
+/obj/item/goldbar{
+	pixel_y = 6
+	},
+/obj/item/goldbar{
+	pixel_y = 6
+	},
+/obj/item/wrench/gold,
+/turf/floor/black,
+/area/station/bridge{
+	name = "Vault"
+	})
 "tvI" = (
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 8
@@ -25695,6 +25844,11 @@
 	},
 /turf/floor/grey,
 /area/station/science/storage)
+"tDB" = (
+/turf/wall/r_wall,
+/area/station/bridge{
+	name = "Vault"
+	})
 "tDT" = (
 /obj/disposalpipe/segment/mail,
 /obj/cable{
@@ -29458,7 +29612,7 @@
 /obj/decal/cleanable/cobweb2,
 /obj/item/pipebomb/bomb,
 /obj/item/pipebomb/bomb,
-/turf/floor/cautionblack,
+/turf/floor/orangeblack,
 /area/station/mining/refinery{
 	name = "Scrapping"
 	})
@@ -29628,6 +29782,14 @@
 	},
 /turf/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
+"wRn" = (
+/obj/machinery/mass_driver{
+	id = "schrott"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
 "wRT" = (
 /obj/storage/cart,
 /obj/decal/cleanable/dirt/random,
@@ -30140,6 +30302,23 @@
 	},
 /turf/floor/carpet/red/fancy/edge/north,
 /area/station/security/hos)
+"xlH" = (
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
+"xnM" = (
+/obj/table/wood/auto,
+/obj/item/pen/crayon/golden{
+	pixel_x = 4;
+	pixel_y = 11
+	},
+/obj/item/stamp/hop{
+	pixel_x = 7;
+	pixel_y = 13
+	},
+/turf/floor/carpet/green,
+/area/station/crew_quarters/heads)
 "xnN" = (
 /turf/floor/blue/side,
 /area/station/bridge/customs)
@@ -31168,6 +31347,15 @@
 /obj/machinery/atmospherics/valve/vertical,
 /turf/floor,
 /area/station/engine/coldloop)
+"yaU" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "scrapping"
+	},
+/obj/grille/catwalk/bob/fourcorners,
+/obj/lattice,
+/turf/space,
+/area/station/shipyard)
 "ybP" = (
 /obj/cable{
 	d1 = 1;
@@ -63298,10 +63486,10 @@ hgr
 tqO
 ufA
 rhz
-bMk
-bMk
-oQk
-bMk
+yaU
+thc
+jck
+nhW
 bMk
 bMk
 vrk
@@ -63600,18 +63788,18 @@ eTH
 ufA
 uLi
 pbB
-bMk
-bMk
-oQk
+qFH
+wRn
+hbl
 bMk
 bMk
 bMk
 vrk
 bMk
 bMk
-bMk
-bMk
-ipT
+sDz
+yaU
+cxd
 ipT
 ipT
 ipT
@@ -63902,18 +64090,18 @@ pbB
 rhz
 pbB
 pbB
-pno
-pno
+uXY
+uXY
 uXY
 pno
 pno
 pno
 uXY
-cvN
-bMk
-bMk
-bMk
-ipT
+pno
+pno
+xlH
+pRV
+cxd
 ipT
 ipT
 ipT
@@ -64213,9 +64401,9 @@ xLm
 xLm
 xLm
 xLm
-bMk
-bMk
-ipT
+xlH
+chE
+cxd
 ipT
 ipT
 ipT
@@ -74784,8 +74972,8 @@ rtl
 pno
 pno
 uXY
-uHi
-bMk
+pOJ
+pOJ
 ipT
 ipT
 ipT
@@ -81377,8 +81565,8 @@ kNo
 osx
 iWk
 yez
-qFH
-qFH
+sbS
+nqe
 sAf
 wWv
 xap
@@ -81679,7 +81867,7 @@ kNo
 qvz
 iWk
 ejT
-sbS
+xnM
 nqe
 sAf
 jek
@@ -81979,11 +82167,11 @@ nYz
 iRd
 sFg
 qiS
-iWk
+tDB
+hrx
+hrx
 gUe
-gUe
-gUe
-sAf
+tDB
 lOU
 xap
 tpt
@@ -82281,11 +82469,11 @@ eek
 eek
 eek
 eek
-iWk
-ipT
-ipT
-ipT
-ipT
+tDB
+tvG
+jxP
+jqf
+tDB
 eMh
 buc
 eMh
@@ -82583,11 +82771,11 @@ ipT
 ipT
 ipT
 ipT
-iWk
-aTt
-aTt
-aTt
-aTt
+hrx
+mym
+djS
+djS
+hrx
 jBz
 djx
 jBz
@@ -82885,11 +83073,11 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
-ipT
-ipT
+tDB
+kkQ
+ryg
+aqd
+tDB
 eMh
 buc
 eMh
@@ -83187,11 +83375,11 @@ ipT
 ipT
 ipT
 ipT
-ipT
-ipT
-ipT
-ipT
-ipT
+tDB
+tDB
+hrx
+tDB
+tDB
 eMh
 buc
 fsU

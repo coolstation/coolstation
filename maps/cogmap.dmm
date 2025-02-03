@@ -600,7 +600,12 @@
 /turf/space,
 /area/space)
 "acn" = (
-/obj/machinery/weapon_stand/shotgun_rack,
+/obj/machinery/vending/gunse{
+	acceptcard = 0;
+	desc = "Nanotrasen Official Gunse storage unit.";
+	name = "NanoGunse - Corporate";
+	pay = 0
+	},
 /turf/floor/black,
 /area/station/security/armory)
 "aco" = (
@@ -13015,7 +13020,7 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "aIY" = (
-/obj/submachine/weapon_vendor/security,
+/obj/item/gun_exploder,
 /turf/floor,
 /area/station/security/main)
 "aIZ" = (
@@ -17243,12 +17248,9 @@
 /turf/floor/wood,
 /area/station/crew_quarters/pool)
 "aTr" = (
-/obj/machinery/weapon_stand/taser_rack/recharger/empty,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
+/obj/item/gun_exploder,
 /turf/floor,
-/area/station/security/main)
+/area/station/crew_quarters/supplylobby)
 "aTs" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -19202,6 +19204,9 @@
 /obj/item/pen/fancy{
 	pixel_x = 5;
 	pixel_y = 5
+	},
+/obj/decal/poster/wallsign/pope_portrait{
+	pixel_x = 32
 	},
 /turf/floor/carpet{
 	dir = 4;
@@ -39920,6 +39925,7 @@
 /obj/machinery/light/emergency{
 	dir = 8
 	},
+/obj/machinery/vending/gunse,
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -43738,7 +43744,7 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "cgr" = (
-/obj/submachine/weapon_vendor/security,
+/obj/machinery/vending/security,
 /turf/floor/red,
 /area/station/security/checkpoint/cargo)
 "cgs" = (
@@ -54881,7 +54887,6 @@
 /turf/floor/plating,
 /area/station/crew_quarters/cafeteria)
 "fAd" = (
-/obj/machinery/weapon_stand/rifle_rack/recharger,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -55223,10 +55228,10 @@
 /turf/floor/plating,
 /area/station/maintenance/east)
 "fWA" = (
-/obj/storage/secure/crate/weapon/armory/pod_weapons,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
+/obj/item/gun_exploder,
 /turf/floor,
 /area/station/security/armory)
 "fWI" = (
@@ -62213,7 +62218,6 @@
 /turf/floor/plating,
 /area/station/maintenance/west)
 "tzN" = (
-/obj/storage/secure/crate/weapon/armory/phaser,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
@@ -93348,7 +93352,7 @@ aDR
 awM
 aGy
 aHC
-aTr
+aHC
 aHC
 aLq
 aME
@@ -121502,7 +121506,7 @@ bSe
 bTA
 bUV
 bUU
-bUU
+aTr
 bFP
 bMe
 rLu

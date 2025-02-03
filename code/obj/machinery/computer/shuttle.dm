@@ -150,7 +150,7 @@
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
 		prepShips(start_location)
-		SPAWN_DBG(2 SECONDS)
+		SPAWN_DBG(3 SECONDS)
 			start_location.move_contents_to(end_location)
 			shipyardship_location = 1
 
