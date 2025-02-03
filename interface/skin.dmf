@@ -127,7 +127,7 @@ macro "base_macro"
 		command = ".winset \"command=\".start_typing say\";command=.init_say;saywindow.is-visible=true;saywindow.input.focus=true\""
 	elem "radiosay"
 		name = ";"
-		command = ".winset \"command=.init_radiosay;radiosaywindow.background-color=#fcba03;radiosaywindow.is-visible=true;radiosaywindow.input.focus=true\""
+		command = ".winset \"command=\".start_typing say\";command=.init_radiosay;radiosaywindow.background-color=#fcba03;radiosaywindow.is-visible=true;radiosaywindow.input.focus=true\""
 	elem
 		name = "Any"
 		command = ".keydown [[*]]"

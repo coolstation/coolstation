@@ -120,7 +120,7 @@
 ///Presets for standard windows
 var/list/input_window_presets =  list(
 	"say" = list("saywindow", "say \\\"text\\\"", ".say", ".cancel_typing say"),
-	"radiosay" = list("radiosaywindow", "main channel radio", "say_main_radio", null),
+	"radiosay" = list("radiosaywindow", "main channel radio", "say_main_radio", ".cancel_typing say"),
 	"me"  = list("mewindow",  "me (text)",        ".me",  ".cancel_typing me"),
 	"radiochannelsay" = list("radiochannelsaywindow", "radio channel radio", "say_channel_radio", null)
 )
