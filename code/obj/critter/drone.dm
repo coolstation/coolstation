@@ -452,7 +452,7 @@
 		maxhealth = 250
 		score = 50
 		dead_state = "drone2-dead"
-		droploot = /obj/item/gun/energy/phaser_gun
+		droploot = /obj/item/shipcomponent/mainweapon/disruptor
 		projectile_type = /datum/projectile/disruptor/high
 		current_projectile = new/datum/projectile/disruptor/high
 		attack_cooldown = 40

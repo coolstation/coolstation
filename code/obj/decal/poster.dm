@@ -652,9 +652,19 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "gg"
 			popup_win = 1
-			imgw = 1242
-			imgh = 1755
+			imgw = 1252
+			imgh = 1765
 			img = "images/arts/posters/gg.png"
+
+		pope_portrait
+			name = "portrait of the Pope"
+			desc = "An official press photo of His Eminence Nosferatu IV, put out by the Space Holy See."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "pope"
+			popup_win = 1
+			imgw = 199
+			imgh = 262
+			img = "images/arts/posters/pope.jpg"
 
 		circulatory
 			name = "anatomical poster"
@@ -662,8 +672,8 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "circulatory"
 			popup_win = 1
-			imgw = 265
-			imgh = 564
+			imgw = 275
+			imgh = 574
 			img = "images/arts/posters/circulatory.jpg"
 
 		poster_beach

@@ -1264,6 +1264,15 @@ obj/trait/pilot
 			var/mob/living/carbon/C = owner
 			C.poop_amount -= 5
 
+/obj/trait/mononym
+	name = "Mononym (-1)"
+	cleanName = "Mononym"
+	id = "mononym"
+	icon_state = "spellingerror"
+	desc = "Like Cher, Madonna, Gooby, Prince."
+	points = -1
+	isPositive = 1
+
 /obj/trait/ling_blood //False positive on ling blood tests
 	name = "Changeling Blood (0)"
 	cleanName = "Changeling Blood"

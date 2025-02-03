@@ -64,7 +64,7 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 proc/prepShips(var/area/stagearea)
 	if(prob(60))
 		explode_area(stagearea,rand(60,190),rand(1,3))
-	SPAWN_DBG(3 SECONDS)
+	SPAWN_DBG(1 SECONDS)
 		shipyardship_pre_densitymap = calculate_density_map(stagearea)
 
 proc/processShips(var/area/shipyard)

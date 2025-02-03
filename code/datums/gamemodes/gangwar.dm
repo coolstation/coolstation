@@ -812,11 +812,11 @@
 			new/datum/gang_item/ninja/throwing_knife,
 			new/datum/gang_item/ninja/shuriken,
 			new/datum/gang_item/ninja/sneaking_suit,
-			new/datum/gang_item/space/phaser_gun,
-			new/datum/gang_item/space/laser_gun,
+			//new/datum/gang_item/space/phaser_gun,
+			//new/datum/gang_item/space/laser_gun,
 
-			new/datum/gang_item/country_western/colt_saa,
-			new/datum/gang_item/country_western/colt_45_bullet,
+		//	new/datum/gang_item/country_western/colt_saa,
+		//	new/datum/gang_item/country_western/colt_45_bullet,
 
 			new/datum/gang_item/space/discount_csaber,
 			// new/datum/gang_item/space/csaber,
