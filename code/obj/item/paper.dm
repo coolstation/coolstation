@@ -660,7 +660,7 @@ as it may become compromised.
 				<li>Step Two: Lay down a conductor beneath the center of the planned position of the generator. See diagram.</li>
 				<br><img src='[resource("images/pocket_guides/1by3.png")]'>
 				<li>Step Three: Deploy the Hot Gas Circulator on the left side of the 1x3 area, and the Cold Gas Circulator on the right side.</li>
-				<li>Step Four: Deploy the Thermoelectric generator over the conductor, between the two Circulators. The order is critical. </li>
+				<li>Step Four: Deploy the Thermoelectric generator over the conductor, between the two Circulators. The order is not critical. </li>
 				<li>Step Five: Construct necessary plumbing and supporting hardware. Note that gas flows from north to south through Gas Circulators.</li></ul>
 				<br><img src='[resource("images/pocket_guides/teg.png")]'><br>
 				<b>ABSOLUTELY NO WARRANTY, EXPRESS OR IMPLIED, IS PROVIDED, AS-IS, LLC, NO COPYRIGHT INTENDED, I DO NOT CREATE JOINDER.</b>"}
