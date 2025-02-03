@@ -67,6 +67,14 @@
 		. = ..()
 		STOP_TRACKING
 
+	was_built_from_frame(mob/user, newly_built)
+		#ifdef Z3_IS_A_STATION_LEVEL
+		external_drain = !(src.z in list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS))
+		#else
+		external_drain = !(src.z == Z_LEVEL_STATION)
+		#endif
+		..()
+
 	process()
 		if (!my_turf)
 			my_turf = get_turf(src)
