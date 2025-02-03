@@ -867,7 +867,7 @@
 /obj/table/auto,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 9
 	},
 /area/station/science/teleporter)
@@ -884,13 +884,13 @@
 	message = "1";
 	name = "mail chute-'Science Teleporter'"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
 "acm" = (
 /obj/machinery/lrteleporter,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 5
 	},
 /area/station/science/teleporter)
@@ -955,7 +955,7 @@
 /obj/machinery/networked/teleconsole{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 8
 	},
 /area/station/science/teleporter)
@@ -967,7 +967,7 @@
 /turf/floor/white,
 /area/station/science/teleporter)
 "acv" = (
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -1010,7 +1010,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 8
 	},
 /area/station/science/teleporter)
@@ -1018,7 +1018,7 @@
 /turf/floor/white,
 /area/station/science/teleporter)
 "acD" = (
-/turf/floor/orangeblack/corner/white{
+/turf/floor/cautionwhite/corner{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -1026,7 +1026,7 @@
 /obj/table/auto,
 /obj/item/clothing/head/emerg,
 /obj/item/clothing/suit/space/emerg,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 5
 	},
 /area/station/science/teleporter)
@@ -1108,7 +1108,7 @@
 /obj/table/auto,
 /obj/item/device/radio/signaler,
 /obj/item/device/radio/signaler,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -1116,7 +1116,7 @@
 /turf/floor/plating/airless,
 /area/space)
 "acN" = (
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 9
 	},
 /area/station/science/teleporter)
@@ -1124,12 +1124,12 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
 "acP" = (
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -1137,7 +1137,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/corner/white{
+/turf/floor/cautionwhite/corner{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -1147,7 +1147,7 @@
 /obj/item/tank/air,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -1161,7 +1161,7 @@
 "acT" = (
 /obj/table/auto,
 /obj/item/extinguisher,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 8
 	},
 /area/station/science/teleporter)
@@ -1239,7 +1239,7 @@
 "add" = (
 /obj/table/auto,
 /obj/item/storage/box/trackimp_kit2,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 10
 	},
 /area/station/science/teleporter)
@@ -1247,7 +1247,7 @@
 /obj/rack,
 /obj/item/clothing/head/helmet/camera,
 /obj/item/clothing/head/helmet/camera,
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "adg" = (
 /obj/table/auto,
@@ -1255,7 +1255,7 @@
 /obj/item/device/gps,
 /obj/item/device/gps,
 /obj/item/paper/note_from_mom,
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "adh" = (
 /obj/cable{
@@ -1266,7 +1266,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "adi" = (
 /obj/cable{
@@ -1274,7 +1274,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "adj" = (
 /obj/machinery/power/apc{
@@ -1287,11 +1287,11 @@
 	icon_state = "0-8"
 	},
 /obj/item/remote/porter/port_a_sci,
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "adk" = (
 /obj/storage/closet/port_a_sci,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 6
 	},
 /area/station/science/teleporter)
@@ -1401,7 +1401,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "adx" = (
 /obj/overlay{
@@ -1529,7 +1529,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -3335,7 +3335,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "ahr" = (
 /obj/machinery/embedded_controller/radio/airlock_controller{
@@ -3595,7 +3595,7 @@
 	name = "Teleporter Lab";
 	req_access_txt = "8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "ahO" = (
 /obj/grille/steel,
@@ -4011,7 +4011,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/science/lobby)
@@ -4026,7 +4026,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/science/lobby)
@@ -4036,7 +4036,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/science/lobby)
@@ -8648,7 +8648,7 @@
 /turf/floor,
 /area/station/quartermaster/office)
 "arf" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -8840,7 +8840,7 @@
 /obj/landmark/start{
 	name = "Quartermaster"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -10706,7 +10706,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -11821,7 +11821,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -15415,7 +15415,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/hallway/primary/north)
 "aFH" = (
 /turf/wall/r_wall,
@@ -15778,7 +15778,7 @@
 /area/station/hallway/primary/north)
 "aGw" = (
 /obj/disposalpipe/segment/mail,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -15831,7 +15831,7 @@
 	},
 /obj/item/storage/belt/utility,
 /obj/item/device/gps,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/ai_monitored/storage/eva)
@@ -15841,7 +15841,7 @@
 /obj/item/device/prox_sensor,
 /obj/item/device/radio,
 /obj/item/device/t_scanner,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/ai_monitored/storage/eva)
@@ -15858,7 +15858,7 @@
 	pixel_y = 25
 	},
 /obj/item/storage/pill_bottle/silver_sulfadiazine,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/ai_monitored/storage/eva)
@@ -15881,7 +15881,7 @@
 	name = "Astronaut Pen"
 	},
 /obj/item/disk/data/floppy/read_only/communications,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/ai_monitored/storage/eva)
@@ -16335,7 +16335,7 @@
 /obj/item/extinguisher{
 	pixel_y = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -16366,7 +16366,7 @@
 /turf/floor,
 /area/station/ai_monitored/storage/eva)
 "aHv" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -16741,7 +16741,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -16780,7 +16780,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -17109,7 +17109,7 @@
 	mail_tag = "crew";
 	name = "crew quarters mail router"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -17125,7 +17125,7 @@
 /obj/item/extinguisher{
 	pixel_y = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -17175,7 +17175,7 @@
 	c_tag = "EVA";
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -17429,10 +17429,10 @@
 	name = "E.V.A.";
 	req_access_txt = "18"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/ai_monitored/storage/eva)
 "aJH" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -17462,7 +17462,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -17846,7 +17846,7 @@
 /obj/item/device/light/flashlight,
 /obj/item/device/light/flashlight,
 /obj/item/screwdriver,
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/ai_monitored/storage/eva)
 "aKB" = (
 /obj/rack,
@@ -17854,7 +17854,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/ai_monitored/storage/eva)
@@ -18137,7 +18137,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -18146,7 +18146,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/ai_monitored/storage/eva)
@@ -18156,7 +18156,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/ai_monitored/storage/eva)
 "aLh" = (
 /obj/rack,
@@ -18164,7 +18164,7 @@
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
 /obj/item/crowbar,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/ai_monitored/storage/eva)
@@ -18641,7 +18641,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -23518,7 +23518,7 @@
 	},
 /obj/decal/cleanable/cobweb,
 /obj/table/reinforced/auto,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -23526,12 +23526,12 @@
 /obj/item/rcd_ammo,
 /obj/table/reinforced/auto,
 /obj/item/wrench/gold,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aVA" = (
 /obj/item/weldingtool,
 /obj/table/reinforced/auto,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -23839,7 +23839,7 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWf" = (
 /obj/landmark/start{
@@ -23852,7 +23852,7 @@
 	icon_state = "2-8"
 	},
 /obj/item/storage/toolbox/mechanical,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -23873,7 +23873,7 @@
 	network = "SS13";
 	tag = ""
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWh" = (
 /obj/stool/bed,
@@ -24080,7 +24080,7 @@
 	},
 /area/station/hallway/primary/east)
 "aWE" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -24090,7 +24090,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aWG" = (
 /obj/machinery/light{
@@ -24108,7 +24108,7 @@
 	icon_state = "0-2"
 	},
 /obj/disposalpipe/segment/mail,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -24355,7 +24355,7 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aXi" = (
 /obj/disposalpipe/segment/mail{
@@ -24367,7 +24367,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -24386,7 +24386,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aXk" = (
 /obj/cable{
@@ -24800,7 +24800,7 @@
 /area/station/hallway/primary/east)
 "aYb" = (
 /obj/storage/secure/closet/command/chief_engineer,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aYc" = (
 /turf/wall,
@@ -25284,7 +25284,7 @@
 	bcolor = "yellow";
 	icon_state = "bedsheet-yellow"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aYS" = (
 /obj/table/auto,
@@ -25295,7 +25295,7 @@
 	pixel_x = -7;
 	pixel_y = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering/ce)
@@ -36145,7 +36145,7 @@
 /turf/wall/r_wall,
 /area/station/storage/autolathe)
 "buz" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/hallway/primary/south)
@@ -38041,7 +38041,7 @@
 	pixel_x = 24;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/engine/engineering)
@@ -39314,7 +39314,7 @@
 /area/station/hallway/primary/south)
 "bAN" = (
 /obj/machinery/light,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/hallway/primary/south)
@@ -40023,7 +40023,7 @@
 /obj/disposalpipe/trunk/mail{
 	dir = 1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bCk" = (
 /obj/cable{
@@ -40039,20 +40039,20 @@
 	dir = 1;
 	icon_state = "office_chair_yellow"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bCl" = (
 /obj/disposalpipe/segment{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bCm" = (
 /obj/disposalpipe/junction{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bCn" = (
 /obj/disposalpipe/segment{
@@ -40449,7 +40449,7 @@
 	charge = 100;
 	maxcharge = 15000
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bDb" = (
 /obj/machinery/rkit,
@@ -40495,7 +40495,7 @@
 /turf/floor/yellow,
 /area/station/engine/elect)
 "bDi" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bDj" = (
 /obj/cable{
@@ -40827,7 +40827,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bDT" = (
 /obj/disposalpipe/segment{
@@ -41397,7 +41397,7 @@
 /obj/item/storage/box/lightbox/tubes,
 /obj/item/storage/box/lightbox/tubes,
 /obj/item/device/multitool,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bER" = (
 /obj/disposalpipe/segment,
@@ -42647,11 +42647,11 @@
 /obj/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bHt" = (
 /obj/machinery/vending/mechanics,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bHu" = (
 /obj/cable{
@@ -45115,7 +45115,7 @@
 /obj/item/camera,
 /obj/item/camera,
 /obj/item/camera,
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "dao" = (
 /obj/machinery/light/small{
