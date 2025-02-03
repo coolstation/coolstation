@@ -31,20 +31,20 @@
 	set name = "say_radio"
 	set hidden = 1
 
-/mob/verb/say_main_radio()
+/mob/verb/say_main_radio(msg as text)
 	set name = "say_main_radio"
 	set hidden = 1
 
-/mob/living/say_main_radio()
+/mob/living/say_main_radio(msg as text)
 	set name = "say_main_radio"
+	set desc = "Speaking on the main radio frequency"
 	set hidden = 1
-	var/text = input("", "Speaking on the main radio frequency") as null|text
 	if (client.preferences.auto_capitalization)
 		var/i = 1
-		while (copytext(text, i, i+1) == " ")
+		while (copytext(msg, i, i+1) == " ")
 			i++
-		text = capitalize(copytext(text, i))
-	src.say_verb(";" +text)
+		msg = capitalize(copytext(msg, i))
+	src.say_verb(";" + msg)
 
 /mob/living/say_radio()
 	set name = "say_radio"

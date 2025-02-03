@@ -116,10 +116,13 @@
 		//Show the window and focus on the textbox
 		winshow(src, id, TRUE)
 		winset(src, "[id].input", "focus=true")
+
 ///Presets for standard windows
 var/list/input_window_presets =  list(
 	"say" = list("saywindow", "say \\\"text\\\"", ".say", ".cancel_typing say"),
+	"radiosay" = list("radiosaywindow", "main channel radio", "say_main_radio", null),
 	"me"  = list("mewindow",  "me (text)",        ".me",  ".cancel_typing me"),
+	"radiochannelsay" = list("radiochannelsaywindow", "radio channel radio", "say_channel_radio", null)
 )
 /client/proc/create_preset_input_window(name, force=FALSE, show=TRUE)
 	var/arglist = input_window_presets[name]
@@ -129,6 +132,12 @@ var/list/input_window_presets =  list(
 	set name = ".init_say"
 	set hidden = TRUE
 	create_preset_input_window("say")
+
+/client/verb/init_radiosay()
+	set name = ".init_radiosay"
+	set hidden = TRUE
+	create_preset_input_window("radiosay")
+
 /client/verb/init_me()
 	set name = ".init_me"
 	set hidden = TRUE
