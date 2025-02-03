@@ -719,24 +719,21 @@
 	w_class = W_CLASS_SMALL
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		if(get_dist(src, target) <= world.view)
-			animate_scanning(target, "#597B6D")
-			var/atom/W = target
-			if(!W.material)
-				boutput(user, "<span class='alert'>No significant material found in \the [target].</span>")
-			else
-				boutput(user, "<span class='notice'><u>[capitalize(W.material.name)]</u></span>")
-				boutput(user, "<span class='notice'>[W.material.desc]</span>")
-
-				if(W.material.properties.len)
-					boutput(user, "<span class='notice'><u>The material is:</u></span>")
-					for(var/datum/material_property/X in W.material.properties)
-						var/value = W.material.properties[X] //Why use getProperty you have the damn property
-						boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
-				else
-					boutput(user, "<span class='notice'><u>The material is completely unremarkable.</u></span>")
+		if (!istype(target)) return
+		animate_scanning(target, "#597B6D")
+		if(!target.material)
+			boutput(user, "<span class='alert'>No significant material found in \the [target].</span>")
 		else
-			boutput(user, "<span class='alert'>[target] is too far away.</span>")
+			boutput(user, "<span class='notice'><u>[capitalize(target.material.name)]</u></span>")
+			boutput(user, "<span class='notice'>[target.material.desc]</span>")
+
+			if(length(target.material.properties))
+				boutput(user, "<span class='notice'><u>The material is:</u></span>")
+				for(var/datum/material_property/X in target.material.properties)
+					var/value = target.material.properties[X] //Why use getProperty you have the damn property
+					boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
+			else
+				boutput(user, "<span class='notice'><u>The material is completely unremarkable.</u></span>")
 		return
 
 /obj/item/slag_shovel

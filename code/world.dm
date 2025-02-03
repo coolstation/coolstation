@@ -1793,7 +1793,7 @@ var/opt_inactive = null
 	disable_auxtools_debugger()
 	. = ..()
 
-///returns (world.view - adjument) but also works for turning "21x15" into "20x14" and so on
+///returns (world.view + adjument) but also works for turning "21x15" into "20x14" and so on
 /proc/world_view_adjusted(adjustment)
 	if (isnum(world.view))
 		return world.view + adjustment
