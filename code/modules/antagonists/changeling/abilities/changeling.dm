@@ -105,6 +105,7 @@
 		if (M)
 			var/datum/bioHolder/originalBHolder = new/datum/bioHolder(M)
 			originalBHolder.CopyOther(M.bioHolder)
+			originalBHolder.ownerName = M.real_name
 			absorbed_dna = list("[M.name]" = originalBHolder)
 
 	proc/addDna(var/mob/living/carbon/human/M, var/headspider_override = 0)
@@ -139,7 +140,7 @@
 			tailsnake, strangles people and attaches themselves to peoples butts and makes it hard to do stuff */
 
 		else
-			var/datum/bioHolder/originalBHolder = new/datum/bioHolder(M)
+			var/datum/bioHolder/originalBHolder = new/datum/bioHolder() //not calling with M to avoid lingering reference to the mob
 			originalBHolder.CopyOther(M.bioHolder)
 			src.absorbed_dna[M.real_name] = originalBHolder
 

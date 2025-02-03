@@ -162,6 +162,10 @@
 			target.vamp_beingbitten = 0
 		if(owner && ownerMob && target && get_dist(owner, target) <= 1 && devour)
 			var/datum/abilityHolder/changeling/C = devour.holder
+			//replacement fix for https://github.com/goonstation/goonstation/issues/1735 that doesn't involve spawns
+			//bioholder init order and name assignment are both such a fuck atm that I genuinely couldn't find a more appropriate place for this
+			//changeling dna sting needs ownerName set to work properly, but with the spawn that was in bioholder/New() previously it ended up getting overwritten with "Unknown"
+			target.bioHolder?.ownerName = target.real_name
 			if (istype(C))
 				C.addDna(target)
 			boutput(ownerMob, "<span class='notice'>We have absorbed [target]!</span>")
