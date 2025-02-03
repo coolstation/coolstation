@@ -354,13 +354,13 @@
 /turf/floor/cautionblack/side
 	icon_state = "caution"
 
-/turf/floor/cautionblack/side/white
+/turf/floor/cautionwhite/side
 	icon_state = "cautionwhite"
 
 /turf/floor/cautionblack/corner
 	icon_state = "cautioncorner"
 
-/turf/floor/cautionblack/corner/white
+/turf/floor/cautionwhite/corner
 	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
