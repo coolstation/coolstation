@@ -237,6 +237,23 @@
 
 /////////////////////////////////////////
 
+/turf/floor/airless/cautionblack
+	icon_state = "fullcaution"
+
+/turf/floor/airless/cautionblack/side
+	icon_state = "caution"
+
+/turf/floor/airless/cautionwhite/side
+	icon_state = "cautionwhite"
+
+/turf/floor/airless/cautionblack/corner
+	icon_state = "cautioncorner"
+
+/turf/floor/airless/cautionwhite/corner
+	icon_state = "cautionwhitecorner"
+
+/////////////////////////////////////////
+
 /turf/floor/airless/bluegreen
 	icon_state = "blugreenfull"
 
