@@ -1,48 +1,726 @@
-"a" = (/turf/space,/area/space)
-"b" = (/turf/floor/plating{icon_state = "panelscorched"},/area/noGenerate)
-"c" = (/obj/decal/cleanable/mud/drip/low,/turf/floor/plating/gehenna/farts,/area/noGenerate)
-"d" = (/obj/critter/spirit,/turf/floor/plating/gehenna/farts,/area/noGenerate)
-"f" = (/mob/living/critter/plasmaspore,/turf/floor/plating/gehenna/plasma,/area/noGenerate)
-"g" = (/obj/lattice{dir = 4; icon_state = "lattice-dir"},/turf/floor/plating{icon_state = "platingdmg1"},/area/noGenerate)
-"h" = (/turf/floor/plating/gehenna,/area/noGenerate)
-"i" = (/obj/item/raw_material/shard/glass,/turf/floor/damaged5,/area/noGenerate)
-"k" = (/obj/item/tile/steel{pixel_x = -3; pixel_y = -5},/turf/floor/plating/gehenna/farts,/area/noGenerate)
-"l" = (/obj/fluid_spawner/polluted_filth,/turf/floor/plating/gehenna/farts,/area/noGenerate)
-"n" = (/turf/floor/scorched2,/area/noGenerate)
-"p" = (/obj/lattice,/turf/floor/plating/gehenna,/area/noGenerate)
-"q" = (/obj/item/raw_material/plasmastone,/turf/floor/plating/gehenna/plasma,/area/noGenerate)
-"t" = (/turf/wall/asteroid/gehenna/tough/z3,/area/space)
-"u" = (/turf/floor/damaged5,/area/noGenerate)
-"v" = (/obj/item/tile/steel{pixel_x = -3; pixel_y = -5},/turf/floor/plating/gehenna,/area/noGenerate)
-"w" = (/obj/critter/rockworm,/turf/floor/plating/gehenna,/area/noGenerate)
-"y" = (/obj/item/raw_material/shard/glass,/turf/floor/plating/gehenna,/area/noGenerate)
-"A" = (/turf/floor/plating/gehenna/farts,/area/noGenerate)
-"C" = (/obj/decal/cleanable/mud/drip/low,/turf/floor/plating/gehenna,/area/noGenerate)
-"D" = (/turf/wall/r_wall,/area/noGenerate)
-"F" = (/obj/item/raw_material/shard/glass,/turf/floor/scorched2,/area/noGenerate)
-"J" = (/obj/item/raw_material/shard/glass,/turf/floor/plating{icon_state = "platingdmg1"},/area/noGenerate)
-"L" = (/obj/critter/spirit,/turf/floor/plating/gehenna/plasma,/area/noGenerate)
-"M" = (/obj/lattice{icon_state = "lattice-dir"},/turf/floor/plating{icon_state = "platingdmg3"},/area/noGenerate)
-"P" = (/turf/floor/plating/gehenna/plasma,/area/noGenerate)
-"Q" = (/turf/wall/asteroid/gehenna/tough/z3,/area/noGenerate)
-"S" = (/turf/wall,/area/noGenerate)
-"V" = (/obj/lattice,/turf/floor/plating{icon_state = "panelscorched"},/area/noGenerate)
-"Z" = (/turf/floor/plating/gehenna,/area/space)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/space,
+/area/space)
+"b" = (
+/turf/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/noGenerate)
+"c" = (
+/obj/decal/cleanable/mud/drip/low,
+/turf/floor/plating/gehenna/farts,
+/area/noGenerate)
+"d" = (
+/obj/critter/spirit,
+/turf/floor/plating/gehenna/farts,
+/area/noGenerate)
+"f" = (
+/mob/living/critter/plasmaspore,
+/turf/floor/plating/gehenna/plasma,
+/area/noGenerate)
+"g" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/noGenerate)
+"h" = (
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"i" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/damaged5,
+/area/noGenerate)
+"k" = (
+/obj/item/tile/steel{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/turf/floor/plating/gehenna/farts,
+/area/noGenerate)
+"l" = (
+/obj/fluid_spawner/polluted_filth,
+/turf/floor/plating/gehenna/farts,
+/area/noGenerate)
+"n" = (
+/turf/floor/scorched2,
+/area/noGenerate)
+"p" = (
+/obj/lattice,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"q" = (
+/obj/item/raw_material/plasmastone,
+/turf/floor/plating/gehenna/plasma,
+/area/noGenerate)
+"t" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/space)
+"u" = (
+/turf/floor/damaged5,
+/area/noGenerate)
+"v" = (
+/obj/item/tile/steel{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"w" = (
+/obj/critter/rockworm,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"y" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"A" = (
+/turf/floor/plating/gehenna/farts,
+/area/noGenerate)
+"C" = (
+/obj/decal/cleanable/mud/drip/low,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"D" = (
+/turf/wall/r_wall,
+/area/noGenerate)
+"F" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/scorched2,
+/area/noGenerate)
+"J" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/noGenerate)
+"L" = (
+/obj/critter/spirit,
+/turf/floor/plating/gehenna/plasma,
+/area/noGenerate)
+"M" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/noGenerate)
+"P" = (
+/turf/floor/plating/gehenna/plasma,
+/area/noGenerate)
+"Q" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/noGenerate)
+"S" = (
+/turf/wall,
+/area/noGenerate)
+"V" = (
+/obj/lattice,
+/turf/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/noGenerate)
+"Z" = (
+/turf/floor/plating/gehenna,
+/area/space)
 
 (1,1,1) = {"
-ZZDaaaaaaaaaaaaQQQQaaaaaaaaaaaQQQQQ
-ZZhhhDaaaaaaaaQQfPQQaaQQQQaaDQQAAAQ
-aZhhhhDaaaaShSQPPPPQQQQfPQaaQQAAAAQ
-aahhhhhhaaSpQQQQPPPPPPPPPQDQQDAAAQQ
-ttSShhhhhhQwhQQQQQQqPLPPQQQQAlAAQQa
-tttSahhFhhhhhQhQQQQQQPPQQQDkAAQQQaa
-atttaaaSShhhhvQhhbQQQQQQQAAAAQQaaaa
-aZtZaaaaaaaSShhhhhbuQQQQQAcQQQaaaaa
-aZttDDaaQQQQQuJhhhQCvnViQQQQQQaaaaa
-aaZZttDaAAAAQQQgJMyhhhhhChhQQSSaaaa
-aaaZZtttSSkAAAQQQnSahhhhhQhhhhSaaaa
-aaaaZZZtQSSAAdAQQQSSSaQQvhwhhhhZaaa
-aaaaaaZZttttAAAAAQQQaaDQQQQhhhhZZZa
-aaaaaaaaZZattttAAAQQaaaaaDQDDZZZZZZ
-aaaaaaaaaaaattttaaaaaaaaaaaaaaaaZZZ
+Z
+Z
+a
+a
+t
+t
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+Z
+Z
+Z
+a
+t
+t
+t
+Z
+Z
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+D
+h
+h
+h
+S
+t
+t
+t
+t
+Z
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+h
+h
+h
+S
+S
+t
+Z
+t
+Z
+Z
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+h
+h
+h
+h
+a
+a
+a
+D
+t
+Z
+Z
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+D
+h
+h
+h
+h
+a
+a
+D
+t
+t
+Z
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+D
+h
+h
+h
+a
+a
+a
+D
+t
+Z
+Z
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+h
+h
+F
+S
+a
+a
+a
+t
+t
+Z
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+h
+h
+S
+a
+Q
+A
+S
+Q
+t
+Z
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+h
+h
+h
+a
+Q
+A
+S
+S
+t
+Z
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+S
+Q
+h
+h
+a
+Q
+A
+k
+S
+t
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+S
+p
+w
+h
+h
+S
+Q
+A
+A
+A
+t
+t
+a
+"}
+(13,1,1) = {"
+a
+a
+h
+Q
+h
+h
+h
+S
+Q
+Q
+A
+A
+A
+t
+t
+"}
+(14,1,1) = {"
+a
+a
+S
+Q
+Q
+Q
+v
+h
+u
+Q
+A
+d
+A
+t
+t
+"}
+(15,1,1) = {"
+a
+Q
+Q
+Q
+Q
+h
+Q
+h
+J
+Q
+Q
+A
+A
+t
+t
+"}
+(16,1,1) = {"
+Q
+Q
+P
+Q
+Q
+Q
+h
+h
+h
+g
+Q
+Q
+A
+A
+t
+"}
+(17,1,1) = {"
+Q
+f
+P
+P
+Q
+Q
+h
+h
+h
+J
+Q
+Q
+A
+A
+a
+"}
+(18,1,1) = {"
+Q
+P
+P
+P
+Q
+Q
+b
+h
+h
+M
+n
+Q
+Q
+A
+a
+"}
+(19,1,1) = {"
+Q
+Q
+P
+P
+Q
+Q
+Q
+b
+Q
+y
+S
+S
+Q
+Q
+a
+"}
+(20,1,1) = {"
+a
+Q
+Q
+P
+q
+Q
+Q
+u
+C
+h
+a
+S
+Q
+Q
+a
+"}
+(21,1,1) = {"
+a
+a
+Q
+P
+P
+Q
+Q
+Q
+v
+h
+h
+S
+a
+a
+a
+"}
+(22,1,1) = {"
+a
+a
+Q
+P
+L
+P
+Q
+Q
+n
+h
+h
+a
+a
+a
+a
+"}
+(23,1,1) = {"
+a
+Q
+Q
+P
+P
+P
+Q
+Q
+V
+h
+h
+Q
+D
+a
+a
+"}
+(24,1,1) = {"
+a
+Q
+f
+P
+P
+Q
+Q
+Q
+i
+h
+h
+Q
+Q
+a
+a
+"}
+(25,1,1) = {"
+a
+Q
+P
+P
+Q
+Q
+Q
+Q
+Q
+C
+h
+v
+Q
+a
+a
+"}
+(26,1,1) = {"
+a
+Q
+Q
+Q
+Q
+Q
+A
+A
+Q
+h
+Q
+h
+Q
+D
+a
+"}
+(27,1,1) = {"
+a
+a
+a
+D
+Q
+D
+A
+c
+Q
+h
+h
+w
+Q
+Q
+a
+"}
+(28,1,1) = {"
+a
+a
+a
+Q
+Q
+k
+A
+Q
+Q
+Q
+h
+h
+h
+D
+a
+"}
+(29,1,1) = {"
+a
+D
+Q
+Q
+A
+A
+A
+Q
+Q
+Q
+h
+h
+h
+D
+a
+"}
+(30,1,1) = {"
+a
+Q
+Q
+D
+l
+A
+Q
+Q
+Q
+S
+h
+h
+h
+Z
+a
+"}
+(31,1,1) = {"
+Q
+Q
+A
+A
+A
+Q
+Q
+a
+a
+S
+S
+h
+h
+Z
+a
+"}
+(32,1,1) = {"
+Q
+A
+A
+A
+A
+Q
+a
+a
+a
+a
+a
+Z
+Z
+Z
+a
+"}
+(33,1,1) = {"
+Q
+A
+A
+A
+Q
+Q
+a
+a
+a
+a
+a
+a
+Z
+Z
+Z
+"}
+(34,1,1) = {"
+Q
+A
+A
+Q
+Q
+a
+a
+a
+a
+a
+a
+a
+Z
+Z
+Z
+"}
+(35,1,1) = {"
+Q
+Q
+Q
+Q
+a
+a
+a
+a
+a
+a
+a
+a
+a
+Z
+Z
 "}
