@@ -79,7 +79,7 @@
 		name = "Pentobarbital Sting"
 		desc = "That'll shut 'em up."
 		icon_state = "stingneuro"
-		inject_amount = 20
+		inject_amount = 18 //was 20
 		venom_id = "pentobarbital"
 
 	bio

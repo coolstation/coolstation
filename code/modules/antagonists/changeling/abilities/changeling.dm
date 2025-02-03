@@ -25,7 +25,7 @@
 	//C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
 	C.addAbility(/datum/targetable/changeling/sting/pento)
 #endif
-	C.addAbility(/datum/targetable/changeling/sting/bio)
+	//C.addAbility(/datum/targetable/changeling/sting/bio)
 	C.addAbility(/datum/targetable/changeling/sting/lsd)
 	//C.addAbility(/datum/targetable/changeling/sting/dna)
 	//C.addAbility(/datum/targetable/changeling/transform)
@@ -149,6 +149,7 @@
 		src.insert_into_hivemind(M)
 		switch(src.absorbtions)
 			if(1)
+				src.addAbility(/datum/targetable/changeling/sting/bio)
 				src.addAbility(/datum/targetable/changeling/sting/dna)
 				src.addAbility(/datum/targetable/changeling/transform)
 				src.addAbility(/datum/targetable/changeling/hivesay)
@@ -158,13 +159,14 @@
 				src.addAbility(/datum/targetable/changeling/regeneration)
 				src.addAbility(/datum/targetable/changeling/stasis)
 				src.addAbility(/datum/targetable/changeling/monkey)
-				src.addAbility(/datum/targetable/changeling/morph_arm)
-
 			if(3)
+				src.addAbility(/datum/targetable/changeling/morph_arm)
 				src.addAbility(/datum/targetable/changeling/handspider)
 				src.addAbility(/datum/targetable/changeling/eyespider)
+			if(4)
 				src.addAbility(/datum/targetable/changeling/legworm)
 				src.addAbility(/datum/targetable/changeling/buttcrab)
+
 
 	//Insert a mob into the hivemind by creating a hivemind_observer for them and transferring Mind
 	proc/insert_into_hivemind(var/mob/victim, var/restore_name=0)
