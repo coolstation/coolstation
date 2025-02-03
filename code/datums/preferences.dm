@@ -1642,7 +1642,12 @@ datum/preferences
 					character.bioHolder.bloodType = blType
 
 		//character.real_name = real_name
-		if((character.traitHolder && character.traitHolder.hasTrait("mononym"))||(traitPreferences.traits_selected & "mononym"))
+		var/mononym = 0
+		for(var/ID in traitPreferences.traits_selected)
+			if(ID == "mononym")
+				mononym = 1
+				break
+		if(mononym)
 			src.real_name = src.name_first
 		else
 			src.real_name = src.name_first + " " + src.name_last
