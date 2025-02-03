@@ -120,10 +120,10 @@
 				if (O.points > 0) // ...and then grab their DNA stockpile too.
 					src.points = max(0, src.points + O.points)
 
-			src.absorbtions++ // Same principle.
-			for(var/D in O.absorbed_dna)
-				src.absorbed_dna[D] = O.absorbed_dna[D]
 				src.absorbtions++
+				for(var/D in O.absorbed_dna)
+					src.absorbed_dna[D] = O.absorbed_dna[D] //We don't have NPC lings eating players atm so this is fine
+					src.absorbtions++
 
 			O.absorbed_dna = list()
 			O.points = 0
@@ -145,7 +145,7 @@
 
 			if (headspider_override != 1 && isvalidantagmeal(M)) //you can munch diner folk but not get free points.
 				src.points += M.dna_to_absorb
-			src.absorbtions++
+				src.absorbtions++
 		src.insert_into_hivemind(M)
 		switch(src.absorbtions)
 			if(1)
