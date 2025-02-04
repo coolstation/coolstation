@@ -18,14 +18,15 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 /datum/customization_style
 	var/name = null
 	var/id = null
-	var/gender = 0
+	//var/gender = 0
 	/// Which mob icon layer this should go on (under or over glasses)
 	var/default_layer = MOB_HAIR_LAYER1 //Under by default, more direct subtypes where that makes sense
+	var/good_for_randomization = TRUE
 
 	none
 		name = "None"
 		id = "none"
-		gender = MASCULINE
+		//gender = MASCULINE
 	hair
 		default_layer = MOB_HAIR_LAYER2
 
@@ -34,47 +35,61 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Afro"
 				id = "afro"
 			afroHR
-				name = "Afro: Left Half"
-				id = "afroHR"
-			afroHL
 				name = "Afro: Right Half"
+				id = "afroHR"
+				good_for_randomization = FALSE
+			afroHL
+				name = "Afro: Left Half"
 				id = "afroHL"
+				good_for_randomization = FALSE
 			afroST
 				name = "Afro: Top"
 				id = "afroST"
+				good_for_randomization = FALSE
 			afroSM
 				name = "Afro: Middle Band"
 				id = "afroSM"
+				good_for_randomization = FALSE
 			afroSB
 				name = "Afro: Bottom"
 				id = "afroSB"
+				good_for_randomization = FALSE
 			afroSL
 				name = "Afro: Left Side"
 				id = "afroSL"
+				good_for_randomization = FALSE
 			afroSR
 				name = "Afro: Right Side"
 				id = "afroSR"
+				good_for_randomization = FALSE
 			afroSC
 				name = "Afro: Center Streak"
 				id = "afroSC"
+				good_for_randomization = FALSE
 			afroCNE
 				name = "Afro: NE Corner"
 				id = "afroCNE"
+				good_for_randomization = FALSE
 			afroCNW
 				name = "Afro: NW Corner"
 				id = "afroCNW"
+				good_for_randomization = FALSE
 			afroCSE
 				name = "Afro: SE Corner"
 				id = "afroCSE"
+				good_for_randomization = FALSE
 			afroCSW
 				name = "Afro: SW Corner"
 				id = "afroCSW"
+				good_for_randomization = FALSE
 			afroSV
 				name = "Afro: Tall Stripes"
 				id = "afroSV"
+				good_for_randomization = FALSE
 			afroSH
 				name = "Afro: Long Stripes"
 				id = "afroSH"
+				good_for_randomization = FALSE
 			balding
 				name = "Balding"
 				id = "balding"
@@ -106,12 +121,15 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			clownT
 				name = "Clown: Top"
 				id = "clownT"
+				good_for_randomization = FALSE
 			clownM
 				name = "Clown: Middle Band"
 				id = "clownM"
+				good_for_randomization = FALSE
 			clownB
 				name = "Clown: Bottom"
 				id = "clownB"
+				good_for_randomization = FALSE
 			combed_s
 				name = "Combed"
 				id = "combed_s"
@@ -133,6 +151,7 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			emoH
 				name = "Emo: Highlight"
 				id = "emoH"
+				good_for_randomization = FALSE
 			flattop
 				name = "Flat Top"
 				id = "flattop"
@@ -149,12 +168,15 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			mohawkFT
 				name = "Mohawk: Fade from End"
 				id = "mohawkFT"
+				good_for_randomization = FALSE
 			mohawkFB
 				name = "Mohawk: Fade from Root"
 				id = "mohawkFB"
+				good_for_randomization = FALSE
 			mohawkS
 				name = "Mohawk: Stripes"
 				id = "mohawkS"
+				good_for_randomization = FALSE
 			long
 				name = "Mullet"
 				id = "long"
@@ -167,6 +189,7 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			pompS
 				name = "Pompadour: Greaser Shine"
 				id = "pompS"
+				good_for_randomization = FALSE
 			shortflip
 				name = "Punky Flip"
 				id = "shortflip"
@@ -201,28 +224,36 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			croft_bangs
 				name = "Bangs: Croft"
 				id = "croft-bangs"
+				good_for_randomization = FALSE
 			doublepart_bangs
 				name = "Bangs: Double-Part"
 				id = "doublepart-bangs"
+				good_for_randomization = FALSE
 			long_bangs
 				name = "Bangs: Long"
 				id = "long-bangs"
+				good_for_randomization = FALSE
 			midb_bangs
 				name = "Bangs: Mid-back"
 				id = "midb-bangs"
+				good_for_randomization = FALSE
 			wavy_bangs
 				name = "Bangs: Wavy"
 				id = "wavy_tail-bangs"
+				good_for_randomization = FALSE
 			short_bangs
 				name = "Bangs: Short"
 				id = "short-bangs"
+				good_for_randomization = FALSE
 		long
 			chub2_s
 				name = "Bang: Left"
 				id = "chub2_s"
+				good_for_randomization = FALSE
 			chub_s
 				name = "Bang: Right"
 				id = "chub_s"
+				good_for_randomization = FALSE
 			//twobangs_long
 			//	name = "Two Bangs: Long"
 			//	id = "2bangs_long"
@@ -256,12 +287,14 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			glammetalO
 				name = "Glammetal: Faded"
 				id = "glammetalO"
+				good_for_randomization = FALSE
 			eighties
 				name = "Hairmetal"
 				id = "80s"
 			eightiesfade
 				name = "Hairmetal: Faded"
 				id = "80sfade"
+				good_for_randomization = FALSE
 			halfshavedR
 				name = "Half-Shaved: Left"
 				id = "halfshavedR"
@@ -403,6 +436,8 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				id = "wavy_tail-pull"
 
 		gimmick
+			good_for_randomization = FALSE
+
 			afroHA
 				name = "Afro: Alternating Halves"
 				id = "afroHA"
@@ -516,6 +551,7 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 		trampstains
 			name = "Tramp: Beard Stains"
 			id = "trampstains"
+			good_for_randomization = FALSE
 	sideburns
 		elvis
 			name = "Elvis"

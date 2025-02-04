@@ -1,58 +1,821 @@
-"a" = (/turf/space,/area/allowGenerate/caves)
-"b" = (/obj/decal/cleanable/dirt/random,/turf/floor/grey/blackgrime/other,/area/noGenerate)
-"c" = (/turf/wall/asteroid/gehenna/tough/z3,/area/allowGenerate/caves)
-"d" = (/obj/storage/crate/loot_crate,/obj/decal/cleanable/dirt/random,/turf/floor/plating,/area/noGenerate)
-"e" = (/obj/decal/cleanable/dirt/random,/obj/decal/skeleton,/obj/item/screwdriver,/turf/floor/plating,/area/noGenerate)
-"g" = (/turf/floor/stairs/wide{dir = 1},/area/noGenerate)
-"h" = (/obj/decal/cleanable/dirt/random,/turf/floor/plating,/area/noGenerate)
-"i" = (/obj/machinery/light/fluorescent/cool/very,/obj/decal/cleanable/dirt/random,/obj/storage/crate/loot,/turf/floor/plating,/area/noGenerate)
-"l" = (/obj/decal/cleanable/dirt/random,/obj/item/furniture_parts/table/regal,/turf/floor/plating,/area/noGenerate)
-"m" = (/obj/machinery/door/airlock/gannets/maintenance,/obj/access_spawn/syndie_shuttle,/turf/floor,/area/noGenerate)
-"n" = (/obj/machinery/light/small/reddish,/turf/floor/plating/gehenna,/area/noGenerate)
-"o" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/decal/cleanable/dirt/random,/obj/storage/crate/trench_loot,/turf/floor,/area/noGenerate)
-"p" = (/turf/wall,/area/noGenerate)
-"q" = (/turf/floor/plating/gehenna,/area/allowGenerate/caves)
-"s" = (/obj/decal/cleanable/dirt/random,/obj/storage/crate/loot,/turf/floor,/area/noGenerate)
-"u" = (/turf/floor/stairs/wide/other,/area/noGenerate)
-"v" = (/obj/decal/cleanable/dirt/random,/obj/table/folding,/turf/floor/plating,/area/noGenerate)
-"w" = (/obj/machinery/light/fluorescent/cool/very,/obj/decal/cleanable/dirt/random,/turf/floor/plating,/area/noGenerate)
-"x" = (/obj/item/raw_material/scrap_metal,/obj/decal/cleanable/dirt/random,/turf/floor,/area/noGenerate)
-"y" = (/obj/machinery/door/airlock/gannets/maintenance,/obj/access_spawn/security,/turf/floor,/area/noGenerate)
-"z" = (/turf/floor/plating/gehenna,/area/noGenerate)
-"A" = (/obj/machinery/light/small/reddish{dir = 1},/turf/floor/plating/gehenna,/area/noGenerate)
-"B" = (/obj/decal/cleanable/dirt/random,/turf/floor/grey/blackgrime,/area/noGenerate)
-"E" = (/turf/floor/stairs/wide/other{dir = 1},/area/noGenerate)
-"G" = (/obj/wingrille_spawn/bulletproof,/turf/floor/plating,/area/noGenerate)
-"I" = (/turf/floor/stairs/wide,/area/noGenerate)
-"J" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/decal/cleanable/dirt/random,/obj/storage/crate/loot,/turf/floor,/area/noGenerate)
-"N" = (/obj/decal/cleanable/dirt/random,/obj/storage/crate/trench_loot,/turf/floor,/area/noGenerate)
-"O" = (/obj/storage/crate/furnacefuel,/obj/decal/cleanable/dirt/random,/turf/floor,/area/noGenerate)
-"Q" = (/obj/storage/crate/loot_crate,/turf/floor/plating,/area/noGenerate)
-"R" = (/obj/item/scrap,/obj/decal/cleanable/dirt/random,/turf/floor,/area/noGenerate)
-"S" = (/obj/storage/crate/trench_loot/ore2,/obj/decal/cleanable/dirt/random,/turf/floor,/area/noGenerate)
-"T" = (/obj/decal/cleanable/dirt/random,/turf/floor,/area/noGenerate)
-"V" = (/turf/wall/asteroid/gehenna/tough/z3,/area/noGenerate)
-"Y" = (/turf/space,/area/noGenerate)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/space,
+/area/allowGenerate/caves)
+"b" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey/blackgrime/other,
+/area/noGenerate)
+"c" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/allowGenerate/caves)
+"d" = (
+/obj/storage/crate/loot_crate,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating,
+/area/noGenerate)
+"e" = (
+/obj/decal/cleanable/dirt/random,
+/obj/decal/skeleton,
+/obj/item/screwdriver,
+/turf/floor/plating,
+/area/noGenerate)
+"g" = (
+/turf/floor/stairs/wide{
+	dir = 1
+	},
+/area/noGenerate)
+"h" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating,
+/area/noGenerate)
+"i" = (
+/obj/machinery/light/fluorescent/cool/very,
+/obj/decal/cleanable/dirt/random,
+/obj/storage/crate/loot,
+/turf/floor/plating,
+/area/noGenerate)
+"l" = (
+/obj/decal/cleanable/dirt/random,
+/obj/item/furniture_parts/table/regal,
+/turf/floor/plating,
+/area/noGenerate)
+"m" = (
+/obj/machinery/door/airlock/gannets/maintenance,
+/obj/access_spawn/syndie_shuttle,
+/turf/floor,
+/area/noGenerate)
+"n" = (
+/obj/machinery/light/small/reddish,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"o" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/storage/crate/trench_loot,
+/turf/floor,
+/area/noGenerate)
+"p" = (
+/turf/wall,
+/area/noGenerate)
+"q" = (
+/turf/floor/plating/gehenna,
+/area/allowGenerate/caves)
+"s" = (
+/obj/decal/cleanable/dirt/random,
+/obj/storage/crate/loot,
+/turf/floor,
+/area/noGenerate)
+"u" = (
+/turf/floor/stairs/wide/other,
+/area/noGenerate)
+"v" = (
+/obj/decal/cleanable/dirt/random,
+/obj/table/folding,
+/turf/floor/plating,
+/area/noGenerate)
+"w" = (
+/obj/machinery/light/fluorescent/cool/very,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating,
+/area/noGenerate)
+"x" = (
+/obj/item/raw_material/scrap_metal,
+/obj/decal/cleanable/dirt/random,
+/turf/floor,
+/area/noGenerate)
+"y" = (
+/obj/machinery/door/airlock/gannets/maintenance,
+/obj/access_spawn/security,
+/turf/floor,
+/area/noGenerate)
+"z" = (
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"A" = (
+/obj/machinery/light/small/reddish{
+	dir = 1
+	},
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"B" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey/blackgrime,
+/area/noGenerate)
+"E" = (
+/turf/floor/stairs/wide/other{
+	dir = 1
+	},
+/area/noGenerate)
+"G" = (
+/obj/wingrille_spawn/bulletproof,
+/turf/floor/plating,
+/area/noGenerate)
+"I" = (
+/turf/floor/stairs/wide,
+/area/noGenerate)
+"J" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/storage/crate/loot,
+/turf/floor,
+/area/noGenerate)
+"N" = (
+/obj/decal/cleanable/dirt/random,
+/obj/storage/crate/trench_loot,
+/turf/floor,
+/area/noGenerate)
+"O" = (
+/obj/storage/crate/furnacefuel,
+/obj/decal/cleanable/dirt/random,
+/turf/floor,
+/area/noGenerate)
+"Q" = (
+/obj/storage/crate/loot_crate,
+/turf/floor/plating,
+/area/noGenerate)
+"R" = (
+/obj/item/scrap,
+/obj/decal/cleanable/dirt/random,
+/turf/floor,
+/area/noGenerate)
+"S" = (
+/obj/storage/crate/trench_loot/ore2,
+/obj/decal/cleanable/dirt/random,
+/turf/floor,
+/area/noGenerate)
+"T" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor,
+/area/noGenerate)
+"V" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/noGenerate)
+"Y" = (
+/turf/space,
+/area/noGenerate)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaacccccccccccqq
-aaaaaaaaaaaaaacccccccccccqqqqq
-aaaaaaaaaaccccccccccccqqqqqqcc
-aaaaaaaaacccccccccccqqqqqqcccc
-aaaaaaaaccccccccccqqqqqqcccccc
-aaaaaaacccccccqqqqqqqqccccccca
-aaaaaVVVVVVzzzzzzzzzzVVccccaaa
-cccaaVVVpVnzpzzpznzpVVVccccaaa
-cccccVVVpppppEgpppppVVVcccaaaa
-qccccVpppsoNpbBpsJSpppVccaaaaa
-qccccVVpxTTTGBbGRTeOpVVccaaaaa
-qqcccVVphhRTybBmThROpVVccaaaaa
-qqqqcVVpvhhTGBbGTxTOpVVccaaaaa
-cqqqcVpppdiQpbBphwlpppVccaaaaa
-ccqqqzzzpppppIupppppVVVccaaaaa
-cccqqzzzpzAzpzzpzAzpVVVcaaaaaa
-cccaaYzzzzzzzzzzzzzVVVVcaaaaaa
-ccaaaaaaqqqqqqqqqqqccccaaaaaaa
-caaaaaaaaaaaqqqqcccccccaaaaaaa
-aaaaaaaaaaaaaqqcccccccaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+c
+c
+q
+q
+q
+q
+c
+c
+c
+c
+c
+c
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+c
+c
+c
+c
+q
+q
+q
+c
+c
+c
+c
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+c
+c
+c
+c
+c
+q
+q
+q
+c
+c
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+c
+c
+c
+c
+q
+q
+q
+q
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+c
+c
+c
+c
+c
+c
+q
+q
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+V
+V
+V
+V
+V
+V
+V
+V
+z
+z
+Y
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+V
+V
+V
+p
+V
+V
+V
+p
+z
+z
+z
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+c
+V
+V
+V
+p
+p
+p
+p
+p
+z
+z
+z
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+c
+c
+V
+p
+p
+p
+x
+h
+v
+p
+p
+p
+z
+q
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+c
+c
+c
+V
+V
+p
+s
+T
+h
+h
+d
+p
+z
+z
+q
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+c
+c
+c
+c
+V
+n
+p
+o
+T
+R
+h
+i
+p
+A
+z
+q
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+c
+c
+c
+c
+z
+z
+p
+N
+T
+T
+T
+Q
+p
+z
+z
+q
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+c
+c
+c
+c
+z
+p
+p
+p
+G
+y
+G
+p
+p
+p
+z
+q
+q
+a
+"}
+(14,1,1) = {"
+a
+a
+c
+c
+c
+c
+z
+z
+E
+b
+B
+b
+B
+b
+I
+z
+z
+q
+q
+q
+"}
+(15,1,1) = {"
+a
+c
+c
+c
+c
+q
+z
+z
+g
+B
+b
+B
+b
+B
+u
+z
+z
+q
+q
+q
+"}
+(16,1,1) = {"
+a
+c
+c
+c
+c
+q
+z
+p
+p
+p
+G
+m
+G
+p
+p
+p
+z
+q
+q
+c
+"}
+(17,1,1) = {"
+a
+c
+c
+c
+c
+q
+z
+z
+p
+s
+R
+T
+T
+h
+p
+z
+z
+q
+c
+c
+"}
+(18,1,1) = {"
+c
+c
+c
+c
+c
+q
+z
+n
+p
+J
+T
+h
+x
+w
+p
+A
+z
+q
+c
+c
+"}
+(19,1,1) = {"
+c
+c
+c
+c
+q
+q
+z
+z
+p
+S
+e
+R
+T
+l
+p
+z
+z
+q
+c
+c
+"}
+(20,1,1) = {"
+c
+c
+c
+c
+q
+q
+z
+p
+p
+p
+O
+O
+O
+p
+p
+p
+V
+c
+c
+c
+"}
+(21,1,1) = {"
+c
+c
+c
+q
+q
+q
+z
+V
+V
+p
+p
+p
+p
+p
+V
+V
+V
+c
+c
+c
+"}
+(22,1,1) = {"
+c
+c
+c
+q
+q
+q
+V
+V
+V
+p
+V
+V
+V
+p
+V
+V
+V
+c
+c
+c
+"}
+(23,1,1) = {"
+c
+c
+q
+q
+q
+c
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+c
+c
+a
+"}
+(24,1,1) = {"
+c
+c
+q
+q
+q
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+a
+a
+a
+"}
+(25,1,1) = {"
+c
+c
+q
+q
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+a
+a
+a
+a
+a
+"}
+(26,1,1) = {"
+c
+q
+q
+q
+c
+c
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(27,1,1) = {"
+c
+q
+q
+c
+c
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(28,1,1) = {"
+c
+q
+q
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(29,1,1) = {"
+q
+q
+c
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(30,1,1) = {"
+q
+q
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

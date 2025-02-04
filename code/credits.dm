@@ -16,6 +16,7 @@ client/verb/credits()
 			<p>
 		<h3>Sound effect sources:</h3>
 			<li><b>metal_clang1 and metal_clang2:</b> Modified from "Doors: Church: Interior - Church Door: Interior, unbolted, open and close with scrape." - bbc.co.uk – © copyright 2024 BBC</li>
+			<li><b>airlock_bolted and airlock_unbolted:</b> Modified from "Doors: Church: Interior - Church Door: Interior, Slams, bolts lock door." - bbc.co.uk – © copyright 2025 BBC</li>
 			<li><b>lever_heavy:</b> Modified from "Dial 999 - Ambulance hand brake applied." - bbc.co.uk – © copyright 2024 BBC</li>
 			<li><b>blast_door_1 through blast_door_9:</b> Modified from custom_scifi_mechanical_blast_door_impact_sounds_02_08162024 by Artninja -- https://freesound.org/s/751406/ -- License: Attribution 4.0</li>
 		<p>

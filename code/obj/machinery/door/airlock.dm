@@ -57,10 +57,12 @@ var/global/list/cycling_airlocks = list()
 		return
 	if(src.locked)
 		src.locked = 0
+		playsound(src, 'sound/machines/airlock_unbolted.ogg', 40)
 		update_icon()
 	else
 		logTheThing("station",user,null,"[user] has bolted a door at [log_loc(src)].")
 		src.locked = 1
+		playsound(src, 'sound/machines/airlock_bolted.ogg', 40)
 		update_icon()
 
 /obj/machinery/door/airlock/proc/shock_perm(mob/user)
@@ -812,12 +814,14 @@ About the new airlock wires panel:
 			//raises them if they are down (only if power's on)
 			if (!src.locked)
 				src.locked = 1
+				playsound(src, 'sound/machines/airlock_bolted.ogg', 40)
 				logTheThing("station",usr,null,"[usr] has bolted a door at [log_loc(src)].")
 				boutput(usr, "You hear a click from the bottom of the door.")
 				tgui_process.update_uis(src)
 			else
 				if(src.arePowerSystemsOn()) //only can raise bolts if power's on
 					src.locked = 0
+					playsound(src, 'sound/machines/airlock_unbolted.ogg', 40)
 				boutput(usr, "You hear a click from inside the door.")
 			update_icon()
 			SPAWN_DBG(1 DECI SECOND)
@@ -932,6 +936,7 @@ About the new airlock wires panel:
 			//Cutting this wire also drops the door bolts, and mending it does not raise them. (This is what happens now, except there are a lot more wires going to door bolts at present)
 			if (src.locked!=1)
 				src.locked = 1
+				playsound(src, 'sound/machines/airlock_bolted.ogg', 40)
 				logTheThing("station",usr,null,"[usr] has bolted a door at [log_loc(src)].")
 			update_icon()
 
@@ -1666,13 +1671,17 @@ obj/machinery/door/airlock
 					send_status(,senderid)
 
 			if("unlock")
-				locked = 0
-				update_icon()
+				if (locked)
+					locked = 0
+					playsound(src, 'sound/machines/airlock_unbolted.ogg', 40)
+					update_icon()
 				send_status(,senderid)
 
 			if("lock")
-				locked = 1
-				update_icon()
+				if (!locked)
+					playsound(src, 'sound/machines/airlock_bolted.ogg', 40)
+					locked = 1
+					update_icon()
 				send_status()
 
 			if("secure_open")
@@ -1684,6 +1693,7 @@ obj/machinery/door/airlock
 					open(1)
 
 					locked = 1
+					playsound(src, 'sound/machines/airlock_bolted.ogg', 40)
 					update_icon()
 					sleep(src.operation_time)
 					send_status(,senderid)
@@ -1694,6 +1704,7 @@ obj/machinery/door/airlock
 					close(1)
 
 					locked = 1
+					playsound(src, 'sound/machines/airlock_bolted.ogg', 40)
 					sleep(0.5 SECONDS)
 					update_icon()
 					sleep(src.operation_time)

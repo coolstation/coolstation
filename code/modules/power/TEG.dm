@@ -675,15 +675,9 @@ datum/pump_ui/circulator_ui
 		light.attach(src)
 
 		SPAWN_DBG(0.5 SECONDS)
-			src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
-			src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
-			if(!src.circ1 || !src.circ2)
-				src.status |= BROKEN
 
-			src.circ1?.generator = src
-			src.circ1?.side = LEFT_CIRCULATOR
-			src.circ2?.generator = src
-			src.circ2?.side = RIGHT_CIRCULATOR
+			check_circs()
+
 			src.transformation_mngr.generator = src
 
 			//furnaces
@@ -696,6 +690,19 @@ datum/pump_ui/circulator_ui
 				semiconductor = new(src)
 
 			updateicon()
+
+	proc/check_circs()
+		src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
+		src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
+		if(!src.circ1 || !src.circ2)
+			src.status |= BROKEN
+		else
+			src.status &= ~BROKEN
+
+		src.circ1?.generator = src
+		src.circ1?.side = LEFT_CIRCULATOR
+		src.circ2?.generator = src
+		src.circ2?.side = RIGHT_CIRCULATOR
 
 	disposing()
 		src.circ1?.generator = null
@@ -802,6 +809,7 @@ datum/pump_ui/circulator_ui
 
 	process(mult)
 		if(!src.circ1 || !src.circ2)
+			check_circs()
 			return
 
 		var/datum/gas_mixture/hot_air = src.circ1.return_transfer_air()

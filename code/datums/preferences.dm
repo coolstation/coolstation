@@ -1642,7 +1642,15 @@ datum/preferences
 					character.bioHolder.bloodType = blType
 
 		//character.real_name = real_name
-		src.real_name = src.name_first + " " + src.name_last
+		var/mononym = 0
+		for(var/ID in traitPreferences.traits_selected)
+			if(ID == "mononym")
+				mononym = 1
+				break
+		if(mononym)
+			src.real_name = src.name_first
+		else
+			src.real_name = src.name_first + " " + src.name_last
 		character.real_name = src.real_name
 
 		//Wire: Not everything has a bioholder you morons
@@ -1779,11 +1787,18 @@ datum/preferences
 	//DEBUG_MESSAGE("EYE final: [return_color]")
 	return return_color
 
+/* //these are unused and also broken anyway. RIP bozo
 proc/isfem(datum/customization_style/style)
 	return !!(initial(style.gender)) // I have removed the gender. Pray I do not alter it further.
 
 proc/ismasc(datum/customization_style/style)
 	return !!(initial(style.gender))
+*/
+
+//It turns out that gendering all the hairstyles was what kept people from getting, like, a third of an afro for their random hair.
+proc/is_randomized_appropriate(datum/customization_style/style)
+	return !!(initial(style.good_for_randomization) == TRUE)
+
 
 // this is weird but basically: a list of hairstyles and their appropriate detail styles, aka hair_details["80s"] would return the Hairmetal: Faded style
 // further on in the randomize_look() proc we'll see if we've got one of the styles in here and if so, we have a chance to add the detailing
@@ -1902,26 +1917,14 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 
 	var/has_second = 0
 	var/type_first
-	if (AH.gender == MALE)
-		if (prob(5)) // small chance to have a hairstyle more geared to the other gender
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/isfem))
-			AH.customization_first = new type_first
-		else // otherwise just use one standard to the current gender
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/ismasc))
-			AH.customization_first = new type_first
 
+	type_first = pick(filtered_concrete_typesof(/datum/customization_style/hair, /proc/is_randomized_appropriate))
+	AH.customization_first = new type_first
+	if (AH.gender == MALE)
 		if (prob(33)) // since we're a guy, a chance for facial hair
 			var/type_second = pick(concrete_typesof(/datum/customization_style/beard) + concrete_typesof(/datum/customization_style/moustache))
 			AH.customization_second = new type_second
 			has_second = 1 // so the detail check doesn't do anything - we already got a secondary thing!!
-
-	else // if FEMALE
-		if (prob(8)) // same as above for guys, just reversed and with a slightly higher chance since it's ~more appropriate~ for ladies to have guy haircuts than vice versa  :I
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/ismasc))
-			AH.customization_first = new type_first
-		else // ss13 is coded with gender stereotypes IN ITS VERY CORE
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/isfem))
-			AH.customization_first = new type_first
 
 	if (!has_second)
 		var/hair_detail = hair_details[AH.customization_first.name] // check for detail styles for our chosen style
