@@ -776,6 +776,7 @@ var/mutable_appearance/fluid_ma
 					var/atom/target = get_edge_target_turf(src, src.dir)
 					src.throw_at(target, 30, 1, throw_type = THROW_SLIP)
 					random_brute_damage(src, 10)
+			src.lastgasp()
 
 
 

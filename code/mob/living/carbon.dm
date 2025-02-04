@@ -38,6 +38,7 @@
 							T.wet = 0
 							return
 						if (src.slip())
+							src.lastgasp()
 							boutput(src, "<span class='notice'>You slipped on the wet floor!</span>")
 							src.unlock_medal("I just cleaned that!", 1)
 						else
@@ -46,6 +47,7 @@
 					if (2) //lube
 						src.pulling = null
 						src.changeStatus("weakened", 3.5 SECONDS)
+						src.lastgasp()
 						boutput(src, "<span class='notice'>You slipped on the floor!</span>")
 						playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
 						var/atom/target = get_edge_target_turf(src, src.dir)
@@ -54,10 +56,13 @@
 						src.pulling = null
 						src.changeStatus("weakened", 6 SECONDS)
 						playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
+						src.lastgasp()
 						boutput(src, "<span class='notice'>You slipped on the floor!</span>")
 						var/atom/target = get_edge_target_turf(src, src.dir)
 						src.throw_at(target, 30, 1, throw_type = THROW_SLIP)
 						random_brute_damage(src, 10)
+
+
 
 /mob/living/carbon/relaymove(var/mob/user, direction)
 	if(user in src.stomach_contents)
