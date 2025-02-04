@@ -85,8 +85,7 @@ var/global/mob/twitch_mob = 0
 /world/proc/rebuild_area_turfs(z) // dont call this
 	for(var/turf/turf as anything in block(locate(1,1,z), locate(world.maxx,world.maxy,z)))
 		var/area/turf_area = turf.loc
-		fill_list_with_lists(turf_area.turfs_by_z, z)
-		turf_area.turfs_by_z[z] += turf
+		turf_area.turfs += turf
 
 /world/proc/load_mode()
 #ifdef OVERRIDDEN_MODE

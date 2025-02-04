@@ -452,7 +452,7 @@ var/obj/item/dummy/click_dummy = new
 	for(var/area/R in world)
 		LAGCHECK(LAG_LOW)
 		if(istype(R, areatype))
-			for (var/turf/T in R.get_all_turfs())
+			for (var/turf/T as anything in R.turfs)
 				. += R
 				break
 
@@ -472,7 +472,7 @@ var/obj/item/dummy/click_dummy = new
 	for(var/area/R in world)
 		LAGCHECK(LAG_LOW)
 		if(istype(R, areatype))
-			for (var/turf/T in R.get_all_turfs())
+			for (var/turf/T as anything in R.turfs)
 				if(!is_blocked_turf(T))
 					R.spyturf = T
 					. += R
@@ -493,7 +493,7 @@ var/obj/item/dummy/click_dummy = new
 	. = new/list()
 	var/list/areas = get_areas(areatype)
 	for(var/area/R in areas)
-		for(var/turf/T in R.get_all_turfs())
+		for(var/turf/T as anything in R.turfs)
 			if(floors_only && (!isfloor(T) || is_blocked_turf(T)))
 				continue
 			. += T
