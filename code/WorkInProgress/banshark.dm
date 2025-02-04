@@ -27,7 +27,7 @@
 			var/turf/pickedstart = locate(startx, starty, sharktarget.z)
 			var/obj/banshark/Q = new /obj/banshark(pickedstart)
 			Q.sharktarget2 = sharktarget
-			Q.caller = usr
+			Q.call_source = usr
 			Q.data = data
 			Q.timelimit = time
 			Q.sharkspeed = speed
@@ -70,7 +70,7 @@
 	var/turf/pickedstart = locate(startx, starty, sharktarget.z)
 	var/obj/gibshark/Q = new /obj/gibshark(pickedstart)
 	Q.sharktarget2 = sharktarget
-	Q.caller = usr
+	Q.call_source = usr
 	Q.sharkspeed = speed
 //				boutput(sharktarget, "<span class='alert'><BIG><B>You have been banned by [usr.client.ckey].<br>Reason: [reason].</B></BIG></span>")
 //				boutput(sharktarget, "<span class='alert'>This is a temporary ban, it will be removed in [sharkmins] minutes.</span>")
@@ -89,7 +89,7 @@
 	anchored = 0
 	var/mob/sharktarget2 = null
 	var/data = null
-	var/caller = null
+	var/call_source = null
 	var/sharkcantreach = 0
 	var/timelimit = 6
 	var/sharkspeed = 1
@@ -139,11 +139,11 @@
 			playsound(src.loc, 'sound/items/eatfood.ogg', 30, 1, -2)
 			sharktarget2.gib()
 			boutput(sharktarget2, "<span class='alert'><BIG><B>You have been eaten by the banshark!</B></BIG></span>")
-			logTheThing("admin", caller:client, sharktarget2, "has been eaten by the banshark!")
+			logTheThing("admin", call_source:client, sharktarget2, "has been eaten by the banshark!")
 			message_admins("<span class='internal'>[sharktarget2.ckey] has been eaten by the banshark!</span>")
 		else
 			boutput(sharktarget2, "<span class='alert'><BIG><B>You can escape the banshark, but not the ban!</B></BIG></span>")
-			logTheThing("admin", caller:client, data["ckey"], "has evaded the shark by ceasing to exist!  Banning them anyway.")
+			logTheThing("admin", call_source:client, data["ckey"], "has evaded the shark by ceasing to exist!  Banning them anyway.")
 			message_admins("<span class='internal'>data["ckey"] has evaded the shark by ceasing to exist!  Banning them anyway.</span>")
 		addBan(data)
 		playsound(src.loc, pick('sound/voice/burp_alien.ogg'), 50, 0)
@@ -159,7 +159,7 @@
 	anchored = 0
 	var/mob/sharktarget2 = null
 	var/sharkspeed = 1
-	var/mob/caller = null
+	var/mob/call_source = null
 
 	New()
 		SPAWN_DBG(0) process()
@@ -196,9 +196,9 @@
 				O.show_message("<span class='alert'><B>[src]</B> gibs [sharktarget2] in one bite!</span>", 1)
 			playsound(src.loc, 'sound/items/eatfood.ogg', 30, 1, -2)
 			if(sharktarget2?.client)
-				logTheThing("admin", caller:client, sharktarget2, "sharkgibbed [constructTarget(sharktarget2,"admin")]")
-				logTheThing("diary", caller:client, sharktarget2, "sharkgibbed [constructTarget(sharktarget2,"diary")]", "admin")
-				message_admins("<span class='internal'>[caller?.client?.ckey] has sharkgibbed [sharktarget2.ckey].</span>")
+				logTheThing("admin", call_source:client, sharktarget2, "sharkgibbed [constructTarget(sharktarget2,"admin")]")
+				logTheThing("diary", call_source:client, sharktarget2, "sharkgibbed [constructTarget(sharktarget2,"diary")]", "admin")
+				message_admins("<span class='internal'>[call_source?.client?.ckey] has sharkgibbed [sharktarget2.ckey].</span>")
 				sharktarget2.gib()
 			sleep(0.5 SECONDS)
 			playsound(src.loc, pick('sound/voice/burp_alien.ogg'), 50, 0)

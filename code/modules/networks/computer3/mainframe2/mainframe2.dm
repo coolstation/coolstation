@@ -463,7 +463,7 @@
 			src.set_density(0)
 
 	proc
-		run_program(datum/computer/file/mainframe_program/program, var/datum/mainframe2_user_data/user, var/datum/computer/file/mainframe_program/caller, var/runparams, var/allow_fork=0)
+		run_program(datum/computer/file/mainframe_program/program, var/datum/mainframe2_user_data/user, var/datum/computer/file/mainframe_program/call_source, var/runparams, var/allow_fork=0)
 			if(!hd || !program || (!program.holder && program.needs_holder))
 				return 0
 
@@ -533,11 +533,11 @@
 				program.useracc = user
 				user.current_prog = program
 
-			if (caller)
+			if (call_source)
 				if (!program.useracc)
-					program.useracc = caller.useracc
-				program.parent_task = caller
-				program.parent_id = caller.progid
+					program.useracc = call_source.useracc
+				program.parent_task = call_source
+				program.parent_id = call_source.progid
 
 			program.initialize(runparams)
 			//program.initialized = 1
@@ -582,15 +582,15 @@
 			theFile.dispose()
 			return 1
 
-		relay_progsignal(var/datum/computer/file/mainframe_program/caller, var/progid, var/list/data = null, var/datum/computer/file/file)
-			if (progid < 1 || progid > src.processing.len || !caller)
+		relay_progsignal(var/datum/computer/file/mainframe_program/call_source, var/progid, var/list/data = null, var/datum/computer/file/file)
+			if (progid < 1 || progid > src.processing.len || !call_source)
 				return ESIG_GENERIC
 
 			var/datum/computer/file/mainframe_program/P = src.processing[progid]
 			if(!istype(P))
 				return ESIG_GENERIC
 
-			var/callID = src.processing.Find(caller)
+			var/callID = src.processing.Find(call_source)
 			return P.receive_progsignal(callID, data, file)
 
 		set_broken()

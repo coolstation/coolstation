@@ -2506,9 +2506,10 @@ proc/check_whitelist(var/atom/TA, var/list/whitelist, var/mob/user as mob, var/c
 /**
 	* Linear interpolation
 	*/
+#if DM_VERSION <= 515 //byond implements their own in 516
 /proc/lerp(var/a, var/b, var/t)
 		return a * (1 - t) + b * t
-
+#endif
 /**
 	* Returns the passed decisecond-format time in the form of a text string
 	*/

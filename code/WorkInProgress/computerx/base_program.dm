@@ -23,10 +23,10 @@
 		executable = 0
 		var/tmp/setup_string = null
 
-		os_call(var/call_params, var/datum/computer/file/terminal_program/caller, var/datum/computer/file/file)
+		os_call(var/call_params, var/datum/computer/file/terminal_program/call_source, var/datum/computer/file/file)
 			if(!master || master.status & (NOPOWER|BROKEN))
 				return 1
-			if(!caller || !call_params)
+			if(!call_source || !call_params)
 				return 1
 
 			return 0
