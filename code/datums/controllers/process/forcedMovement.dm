@@ -63,6 +63,7 @@ proc/EndSpacePush(var/atom/movable/A)
 					prob_slip = floor(prob_slip)
 					if (prob_slip < 5) //next to something, but they might slip off
 						if (prob(prob_slip) )
+							tmob.lastgasp()
 							boutput(tmob, "<span class='notice'><B>You slipped!</B></span>")
 							tmob.inertia_dir = tmob.last_move
 							step(tmob, tmob.inertia_dir)
