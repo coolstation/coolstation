@@ -843,11 +843,11 @@
 /mob/proc/overhead_throw() //this is a beefy proc that can be trimmed down
 	if (client)
 		var/obj/item/grab/grabHand = null
-		if(istype(src.l_hand | src.r_hand, /obj/item/grab))
-			if(istype(src.l_hand,/obj/item/grab))
-				grabHand = src.l_hand
-			else if(istype(src.r_hand,/obj/item/grab))
-				grabHand = src.r_hand
+		if(istype(src.l_hand,/obj/item/grab))
+			grabHand = src.l_hand
+		else if(istype(src.r_hand,/obj/item/grab))
+			grabHand = src.r_hand
+		if(grabHand)
 			//grabHand.affecting.preBaneMatrix = grabHand.affecting.transform
 			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW)) //the agressive grab state is skipped. Don't ask me why.
 				if(!grabHand.affecting.lying)
