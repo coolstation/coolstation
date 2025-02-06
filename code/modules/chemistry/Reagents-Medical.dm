@@ -1608,6 +1608,43 @@ datum
 				..()
 				return
 
+		//what??? Medical??? Why yes, it's an anticonvulsant you see!
+		medical/pentobarbital
+			name = "pentobarbital"
+			id = "pentobarbital"
+			description = "This antiquated barbiturate still sees seldom use as an anticonvulsant, and to aid brain swelling. Larger doses carry the danger of arrested respiration."
+			reagent_state = LIQUID
+			fluid_r = 240
+			fluid_g = 250
+			fluid_b = 255
+			transparency = 40
+			value = 4 // 1 1 1 1
+			overdose = 10
+
+			on_mob_life(var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				M.take_brain_damage(-1 * mult)
+
+				M.jitteriness = max(M.jitteriness-5,0)
+				M.do_disorient(disorient = src.volume)
+
+				if(probmult(5))
+					M.drowsyness = max(M.drowsyness, src.volume)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), rand(1,src.volume)))
+					for(var/datum/ailment_data/disease/virus in M.ailments)
+						if(istype(virus.master,/datum/ailment/disease/space_madness) || istype(virus.master,/datum/ailment/disease/berserker))
+							M.cure_disease(virus)
+
+				if(probmult(10)) M.emote("drool")
+				..()
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				M.losebreath = max(5, M.losebreath)
+
+				if (severity >= 2 && probmult(20))
+					M.drowsyness = max(M.drowsyness, src.volume)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), src.volume))
+
 		//ideally this prevents accumulation of further brain damage instead of healing it
 		//specifically, brain damage from fever and psychic damage or whatever instead of oxygen deprevation (cardiovascular problems)
 		//then we can have some other medication for actually healing brain damage, potentially with synthflesh as a precursor reagent

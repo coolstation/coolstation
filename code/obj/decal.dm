@@ -501,6 +501,7 @@ obj/decal/fakeobjects
 			return
 
 		if (M.slip(0))
+			M.lastgasp()
 			boutput(M, "<span class='alert'>You slipped on [src]!</span>")
 			if (prob(5))
 				M.TakeDamage("head", 5, 0, 0, DAMAGE_BLUNT)

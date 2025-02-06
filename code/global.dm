@@ -65,7 +65,7 @@ var/global
 
 	// disables the "you can't respawn with the same character or slot" checks for admins
 	// verbs like respawn-as-self will bypass this entirely.
-	admins_can_reuse_characters = 0
+	admins_can_reuse_characters = 1
 
 	list/default_mob_static_icons = list() // new mobs grab copies of these for themselves, or if their chosen type doesn't exist in the list, they generate their own and add it
 	list/mob_static_icons = list() // these are the images that are actually seen by ghostdrones instead of whatever mob
@@ -288,7 +288,7 @@ var/global
 	suicide_allowed = 1
 	dna_ident = 1
 	abandon_allowed = 1
-	enable_fastpath = 0 // space fastpath default value
+	enable_fastpath = 1 // space fastpath default value
 	enter_allowed = 1
 	johnbus_location = 1
 	johnbus_destination = 0

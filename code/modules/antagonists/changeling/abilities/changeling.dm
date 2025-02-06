@@ -14,27 +14,31 @@
 	C.addAbility(/datum/targetable/changeling/absorb)
 	C.addAbility(/datum/targetable/changeling/devour)
 	C.addAbility(/datum/targetable/changeling/mimic_voice)
-	C.addAbility(/datum/targetable/changeling/monkey)
-	C.addAbility(/datum/targetable/changeling/regeneration)
+	//C.addAbility(/datum/targetable/changeling/monkey)
+	//C.addAbility(/datum/targetable/changeling/regeneration)
 	C.addAbility(/datum/targetable/changeling/scream)
 	C.addAbility(/datum/targetable/changeling/spit)
-	C.addAbility(/datum/targetable/changeling/stasis)
+	//C.addAbility(/datum/targetable/changeling/stasis)
 #ifdef RP_MODE
 	C.addAbility(/datum/targetable/changeling/sting/capulettium)
 #else
-	C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
+	//C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
+	C.addAbility(/datum/targetable/changeling/sting/pento)
 #endif
+	//C.addAbility(/datum/targetable/changeling/sting/bio)
 	C.addAbility(/datum/targetable/changeling/sting/lsd)
-	C.addAbility(/datum/targetable/changeling/sting/dna)
-	C.addAbility(/datum/targetable/changeling/transform)
-	C.addAbility(/datum/targetable/changeling/morph_arm)
-	C.addAbility(/datum/targetable/changeling/handspider)
-	C.addAbility(/datum/targetable/changeling/eyespider)
-	C.addAbility(/datum/targetable/changeling/legworm)
-	C.addAbility(/datum/targetable/changeling/buttcrab)
-	C.addAbility(/datum/targetable/changeling/hivesay)
-	C.addAbility(/datum/targetable/changeling/boot)
-	C.addAbility(/datum/targetable/changeling/give_control)
+	//C.addAbility(/datum/targetable/changeling/sting/dna)
+	//C.addAbility(/datum/targetable/changeling/transform)
+
+	//C.addAbility(/datum/targetable/changeling/morph_arm)
+	//C.addAbility(/datum/targetable/changeling/handspider)
+	//C.addAbility(/datum/targetable/changeling/eyespider)
+	//C.addAbility(/datum/targetable/changeling/legworm)
+	//C.addAbility(/datum/targetable/changeling/buttcrab)
+
+	//C.addAbility(/datum/targetable/changeling/hivesay)
+	//C.addAbility(/datum/targetable/changeling/boot)
+	//C.addAbility(/datum/targetable/changeling/give_control)
 
 	if (src.mind)
 		src.mind.is_changeling = C
@@ -101,6 +105,7 @@
 		if (M)
 			var/datum/bioHolder/originalBHolder = new/datum/bioHolder(M)
 			originalBHolder.CopyOther(M.bioHolder)
+			originalBHolder.ownerName = M.real_name
 			absorbed_dna = list("[M.name]" = originalBHolder)
 
 	proc/addDna(var/mob/living/carbon/human/M, var/headspider_override = 0)
@@ -116,10 +121,10 @@
 				if (O.points > 0) // ...and then grab their DNA stockpile too.
 					src.points = max(0, src.points + O.points)
 
-			src.absorbtions++ // Same principle.
-			for(var/D in O.absorbed_dna)
-				src.absorbed_dna[D] = O.absorbed_dna[D]
 				src.absorbtions++
+				for(var/D in O.absorbed_dna)
+					src.absorbed_dna[D] = O.absorbed_dna[D] //We don't have NPC lings eating players atm so this is fine
+					src.absorbtions++
 
 			O.absorbed_dna = list()
 			O.points = 0
@@ -128,18 +133,41 @@
 				src.insert_into_hivemind(H)
 			O.hivemind = list()
 
+
+
+
 		/* LAGG NOTE:
 			tailsnake, strangles people and attaches themselves to peoples butts and makes it hard to do stuff */
 
 		else
-			var/datum/bioHolder/originalBHolder = new/datum/bioHolder(M)
+			var/datum/bioHolder/originalBHolder = new/datum/bioHolder() //not calling with M to avoid lingering reference to the mob
 			originalBHolder.CopyOther(M.bioHolder)
 			src.absorbed_dna[M.real_name] = originalBHolder
 
 			if (headspider_override != 1 && isvalidantagmeal(M)) //you can munch diner folk but not get free points.
 				src.points += M.dna_to_absorb
-			src.absorbtions++
+				src.absorbtions++
 		src.insert_into_hivemind(M)
+
+		if(src.absorbtions >= 1)
+			src.addAbility(/datum/targetable/changeling/sting/bio)
+			src.addAbility(/datum/targetable/changeling/sting/dna)
+			src.addAbility(/datum/targetable/changeling/transform)
+			src.addAbility(/datum/targetable/changeling/hivesay)
+			src.addAbility(/datum/targetable/changeling/boot)
+			src.addAbility(/datum/targetable/changeling/give_control)
+		if(src.absorbtions >= 2)
+			src.addAbility(/datum/targetable/changeling/regeneration)
+			src.addAbility(/datum/targetable/changeling/stasis)
+			src.addAbility(/datum/targetable/changeling/monkey)
+		if(src.absorbtions >= 3)
+			src.addAbility(/datum/targetable/changeling/morph_arm)
+			src.addAbility(/datum/targetable/changeling/handspider)
+			src.addAbility(/datum/targetable/changeling/eyespider)
+		if(src.absorbtions >= 4)
+			src.addAbility(/datum/targetable/changeling/legworm)
+			src.addAbility(/datum/targetable/changeling/buttcrab)
+
 
 	//Insert a mob into the hivemind by creating a hivemind_observer for them and transferring Mind
 	proc/insert_into_hivemind(var/mob/victim, var/restore_name=0)

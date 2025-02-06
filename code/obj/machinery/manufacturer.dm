@@ -1012,7 +1012,7 @@
 				user.visible_message("<span class='notice'>[user] loads [C] into the [src].</span>", "<span class='notice'>You load [C] into the [src].</span>")
 				src.load_item(C,user)
 			else
-				if (status & MALFUNC)
+				if (src in random_events.maintenance_event.unmaintained_machines)
 					if (W.amount >= 4)
 						W.change_stack_amount(-4)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)

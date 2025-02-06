@@ -21,6 +21,7 @@
 	//Stuff for the floor & wall planner undo mode that initial() doesn't resolve.
 	var/roundstart_icon_state
 	var/roundstart_dir
+	allows_vehicles = 0
 
 	New()
 		..()
@@ -313,6 +314,27 @@
 /turf/floor/darkblue/checker/other
 	icon_state = "blue-dblue2"
 
+/turf/floor/darkblue/side
+	icon_state = "dblue"
+
+/turf/floor/darkblue/corner
+	icon_state = "dbluecorner"
+
+/turf/floor/darkblue/checker
+	icon_state = "dbluechecker"
+
+/turf/floor/darkblueblack
+	icon_state = "dblueblack"
+
+/turf/floor/darkblueblack/corner
+	icon_state = "dblueblackcorner"
+
+/turf/floor/darkbluewhite
+	icon_state = "dbluewhite"
+
+/turf/floor/darkbluewhite/corner
+	icon_state = "dbluewhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/bluegreen
@@ -323,6 +345,23 @@
 
 /turf/floor/bluegreen/corner
 	icon_state = "blugreencorner"
+
+/////////////////////////////////////////
+
+/turf/floor/cautionblack
+	icon_state = "fullcaution"
+
+/turf/floor/cautionblack/side
+	icon_state = "caution"
+
+/turf/floor/cautionwhite/side
+	icon_state = "cautionwhite"
+
+/turf/floor/cautionblack/corner
+	icon_state = "cautioncorner"
+
+/turf/floor/cautionwhite/corner
+	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
 
@@ -392,6 +431,21 @@
 /turf/floor/darkpurple/side
 	icon_state = "dpurple"
 
+/turf/floor/darkpurple/checker
+	icon_state = "dpurplechecker"
+
+/turf/floor/darkpurpleblack
+	icon_state = "dpurpleblack"
+
+/turf/floor/darkpurpleblack/corner
+	icon_state = "dpurpleblackcorner"
+
+/turf/floor/darkpurplewhite
+	icon_state = "dpurplewhite"
+
+/turf/floor/darkpurplewhite/corner
+	icon_state = "dpurplewhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/yellow
@@ -415,6 +469,12 @@
 /turf/floor/yellowblack/corner
 	icon_state = "yellowblackcorner"
 
+/turf/floor/yellowwhite
+	icon_state = "yellowwhite"
+
+/turf/floor/yellowwhite/corner
+	icon_state = "yellowwhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/orange
@@ -426,21 +486,20 @@
 /turf/floor/orange/corner
 	icon_state = "orangecorner"
 
+/turf/floor/orange/checker
+	icon_state = "orangechecker"
 
 /turf/floor/orangeblack
-	icon_state = "fullcaution"
+	icon_state = "orangeblack"
 
-/turf/floor/orangeblack/side
-	icon_state = "caution"
-
-/turf/floor/orangeblack/side/white
-	icon_state = "cautionwhite"
+/turf/floor/orangewhite
+	icon_state = "orangewhite"
 
 /turf/floor/orangeblack/corner
-	icon_state = "cautioncorner"
+	icon_state = "orangeblackcorner"
 
-/turf/floor/orangeblack/corner/white
-	icon_state = "cautionwhitecorner"
+/turf/floor/orangewhite/corner
+	icon_state = "orangewhitecorner"
 
 /////////////////////////////////////////
 
