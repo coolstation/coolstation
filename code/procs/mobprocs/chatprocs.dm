@@ -48,7 +48,7 @@
 
 /mob/proc/open_radio_input(token as text, title as text, color)
 	winset(client, "radiochannelsaywindow", "background-color=\"[color]\"")
-	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\";macro=persist_radiosaywindow_macro")
+	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
 	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\"[token] \"")
 	winset(client, "radiochannelsaywindow", "is-visible=true")
 	winset(client, "radiochannelsaywindow.input", "focus=true")
@@ -148,7 +148,7 @@
 			token = ":s"
 		else
 			token = ":" + R.secure_frequencies[choice_index - 1]
-			color = default_frequency_color(headset_channel_lookup["R.secure_frequencies[choice_index - 1]"])
+			color = default_frequency_color(R.secure_frequencies[R.secure_frequencies[choice_index - 1]])
 
 		open_radio_input(token, choice, color)
 
