@@ -140,7 +140,7 @@
 		if (!choice)
 			return
 
-		var/color
+		var/color = "#aaaa55"
 		var/choice_index = choices.Find(choice)
 		if (choice_index == 1)
 			token = ";"
