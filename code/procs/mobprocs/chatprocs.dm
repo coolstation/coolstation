@@ -46,6 +46,30 @@
 		msg = capitalize(copytext(msg, i))
 	src.say_verb(";" + msg)
 
+/mob/proc/open_radio_input(token as text, title as text)
+	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
+	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\" [token]\"")
+	winset(client, "radiochannelsaywindow", "is-visible=true")
+	winset(client, "radiochannelsaywindow.input", "focus=true")
+
+/mob/verb/say_radio_channel(msg as text)
+	set name = "say_radio_channel"
+	set hidden = 1
+
+/mob/living/say_radio_channel(msg as text)
+	set name = "say_radio_channel"
+	set desc = "Speaking on radio channel"
+	set hidden = 1
+	winset(client, "radiochannelsaywindow", "is-visible=false")
+	//Don't know why I need this here
+	cancel_typing("radiochannelsay")
+	if (client.preferences.auto_capitalization)
+		var/i = 1
+		while (copytext(msg, i, i+1) == " ")
+			i++
+		msg = capitalize(copytext(msg, i))
+	src.say_verb(msg)
+
 /mob/living/say_radio()
 	set name = "say_radio"
 	set hidden = 1
@@ -55,6 +79,7 @@
 		var/list/choices = list()
 		var/list/channels = list()
 		var/list/radios = list(A.radio1, A.radio2, A.radio3)
+
 		for (var/i = 1, i <= radios.len, i++)
 			var/obj/item/device/radio/R = radios[i]
 			var/channel_name
@@ -89,13 +114,8 @@
 		var/token = channels[choice]
 		if (!token)
 			boutput(src, "Somehow '[choice]' didn't match anything. Welp. Probably busted.")
-		var/text = input("", "Speaking over [choice] ([token])") as null|text
-		if (text)
+		open_radio_input(token, choice)
 
-			if(src?.client?.preferences.auto_capitalization)
-				text = capitalize(text)
-
-			src.say_verb(token + " " + text)
 
 	else if (src.ears && istype(src.ears, /obj/item/device/radio))
 		var/obj/item/device/radio/R = src.ears
@@ -127,13 +147,8 @@
 		else
 			token = ":" + R.secure_frequencies[choice_index - 1]
 
-		var/text = input("", "Speaking to [choice] frequency") as null|text
-		if (client.preferences.auto_capitalization)
-			var/i = 1
-			while (copytext(text, i, i+1) == " ")
-				i++
-			text = capitalize(copytext(text, i))
-		src.say_verb(token + " " + text)
+		open_radio_input(token, choice)
+
 	else
 		boutput(src, "<span class='notice'>You must put a headset on your ear slot to speak on the radio.</span>")
 

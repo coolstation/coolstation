@@ -2089,7 +2089,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		for (var/window_type in list("saywindow", "radiosaywindow", "whisper")) //scafolding for later
+		for (var/window_type in list("saywindow", "radiosaywindow", "radiochannelsaywindow")) //scafolding for later
 			enteredtext = winget(client, "[window_type].input", "text")
 			if (isnull(client)) return
 			if (length(enteredtext))
