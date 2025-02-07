@@ -211,9 +211,10 @@ dmm_suite
 			// Handle Areas (not created every time)
 			var /atom/instance
 			if(ispath(atomPath, /area))
-				//instance = locate(atomPath)
-				//instance.contents.Add(locate(xcrd, ycrd, zcrd))
-				new atomPath(locate(xcrd, ycrd, zcrd))
+				var/area/old_area = location.loc
+				var/area/new_area = new atomPath(locate(xcrd, ycrd, zcrd))
+				old_area.turfs -= location
+				new_area.turfs += location
 				location.dmm_preloader = null
 			// Handle Underlay Turfs
 			else if(istype(atomPath, /mutable_appearance))

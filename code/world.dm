@@ -75,6 +75,18 @@ var/global/map_previously_abandoned = 0
 var/global/mob/twitch_mob = 0
 #endif
 
+/proc/fill_list_with_lists(list/target, target_len)
+	var/old_len = length(target)
+	if(old_len < target_len)
+		target.len = target_len
+		for(var/i in old_len+1 to target_len)
+			target[i] = list()
+
+/world/proc/rebuild_area_turfs(z) // dont call this
+	for(var/turf/turf as anything in block(locate(1,1,z), locate(world.maxx,world.maxy,z)))
+		var/area/turf_area = turf.loc
+		turf_area.turfs += turf
+
 /world/proc/load_mode()
 #ifdef OVERRIDDEN_MODE
 	master_mode = OVERRIDDEN_MODE
@@ -563,6 +575,10 @@ var/f_color_selector_handler/F_Color_Selector
 
 	Z_LOG_DEBUG("World/Init", "Mining setup...")
 	mining_controls.setup_mining_landmarks()
+
+	Z_LOG_DEBUG("World/Init", "Creating initial area turf lists")
+	for(var/z = 1 to world.maxz)
+		rebuild_area_turfs(z)
 
 	createRenderSourceHolder()
 
