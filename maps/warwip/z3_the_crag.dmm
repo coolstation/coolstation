@@ -1502,6 +1502,10 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"hz" = (
+/obj/machinery/recharge_station,
+/turf/floor/plating,
+/area/station/maintenance/inner/south)
 "hA" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/light_switch/west,
@@ -1849,7 +1853,6 @@
 /obj/machinery/light/fluorescent{
 	dir = 1
 	},
-/obj/machinery/recharge_station,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "jt" = (
@@ -2384,6 +2387,12 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
+"me" = (
+/obj/machinery/drone_recharger,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "mg" = (
 /obj/machinery/light/fluorescent,
 /turf/floor/plating,
@@ -9390,6 +9399,12 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor,
 /area/station/security/main)
+"VP" = (
+/obj/machinery/recharge_station,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "VR" = (
 /obj/fitness/speedbag/wizard,
 /obj/decal/cleanable/dirt/random,
@@ -10075,6 +10090,13 @@
 /obj/item/device/radio/intercom/security,
 /turf/floor/darkblue,
 /area/station/bridge)
+"Zt" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/drone_recharger,
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "Zz" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -59563,7 +59585,7 @@ ZH
 se
 xD
 XT
-BX
+me
 BX
 XT
 ux
@@ -60193,7 +60215,7 @@ uq
 dz
 dz
 dz
-dz
+hz
 eh
 lN
 NQ
@@ -60771,7 +60793,7 @@ ZH
 se
 xD
 XT
-BX
+VP
 BX
 XT
 HB
@@ -61408,7 +61430,7 @@ NQ
 ga
 Au
 ga
-Dr
+Zt
 TC
 Bs
 Fl

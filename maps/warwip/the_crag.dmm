@@ -2747,6 +2747,10 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"jp" = (
+/obj/machinery/recharge_station,
+/turf/floor/plating,
+/area/station/maintenance/southeast)
 "jq" = (
 /obj/disposalpipe/switch_junction/left/south,
 /obj/machinery/light{
@@ -4582,6 +4586,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/north)
+"pB" = (
+/obj/machinery/drone_recharger,
+/turf/floor/plating,
+/area/station/maintenance/west)
 "pD" = (
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
 /obj/machinery/light/fluorescent/ceiling,
@@ -9314,6 +9322,10 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor,
 /area/station/hallway/primary/southwest)
+"Hf" = (
+/obj/machinery/drone_recharger,
+/turf/floor/plating,
+/area/station/maintenance/southeast)
 "Hg" = (
 /obj/cable{
 	d1 = 1;
@@ -9394,9 +9406,13 @@
 /turf/floor/plating,
 /area/station/maintenance/west)
 "Hu" = (
-/obj/machinery/recharge_station,
-/turf/floor,
-/area/station/engine/core)
+/obj/disposalpipe/segment/bent{
+	dir = 2
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/drone_recharger,
+/turf/floor/plating,
+/area/station/maintenance/north)
 "Hv" = (
 /obj/decal/poster/wallsign/medbay,
 /turf/wall,
@@ -10733,6 +10749,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
@@ -47239,7 +47259,7 @@ lC
 rD
 In
 pa
-Ka
+pB
 oz
 VP
 VP
@@ -62339,7 +62359,7 @@ Kt
 Qj
 Qj
 Kt
-rE
+Hf
 hd
 rE
 rE
@@ -63547,7 +63567,7 @@ NE
 rX
 rX
 NE
-Hu
+hh
 Yv
 bT
 wy
@@ -67155,7 +67175,7 @@ tk
 pr
 IF
 WZ
-Dd
+jp
 hd
 NK
 Ro
@@ -69225,7 +69245,7 @@ fg
 fg
 fg
 xf
-et
+Hu
 mq
 mq
 mq
