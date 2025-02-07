@@ -1302,6 +1302,10 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 			if (!istype(master?.active_program, /datum/computer/file/pda_program/maintenance_arrears)) //update location even when we're not loaded cause hack
 				return
 
+		if (href_list["quit"]) //IDK why it sends the quit in the maint arrears program to the space gps that's not the program that makes the header ffs
+			src.master.unload_active_program()
+			return 1
+
 		if (href_list["getloc"])
 			var/turf/T = get_turf(usr)
 			src.x = T.x
