@@ -345,6 +345,9 @@
 "bR" = (
 /obj/table/wood/auto,
 /obj/item/storage/pill_bottle/hairgrownium,
+/obj/machinery/light/small/neutral{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
 "bT" = (
@@ -1154,9 +1157,6 @@
 /area/station/security/detectives_office)
 "fC" = (
 /obj/stool/chair/comfy/barber_chair,
-/obj/machinery/light/small/neutral{
-	dir = 1
-	},
 /obj/decal/cleanable/dirt,
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
@@ -8969,6 +8969,13 @@
 	},
 /turf/floor/purple,
 /area/station/janitor/office)
+"Tl" = (
+/obj/machinery/atmospherics/portables_connector/west,
+/obj/machinery/light/fluorescent{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "Tq" = (
 /obj/machinery/door/airlock/security,
 /obj/cable{
@@ -64150,7 +64157,7 @@ ga
 ga
 ga
 rK
-rK
+Tl
 Bs
 ga
 ga
