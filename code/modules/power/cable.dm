@@ -395,15 +395,29 @@
 						//list em up, since, well, technically we've given it the topology of two links connecting the same nodes
 						Cs_node.adjacent_nodes[possible_loop_node] = list(Cs_node.adjacent_nodes[possible_loop_node], src.is_a_link)
 						possible_loop_node.adjacent_nodes[Cs_node] = list(possible_loop_node.adjacent_nodes[Cs_node], src.is_a_link)
-							return //we've handled the entire net by now
-					else
+						return //we've handled the entire net by now
+
+					else //not a loop
 						if (!src.is_a_link)
 							src.is_a_link = Cs_node.adjacent_nodes[possible_loop_node]
 							if (!src.is_a_link)
 								src.is_a_link = new(list(src, C))
 							src.is_a_link.adjacent_nodes += possible_loop_node
-							if (length(src.is_a_link.adjacent_nodes) == 2) //
 
+						else
+
+							if (length(src.is_a_link.adjacent_nodes))
+								var/datum/powernet_graph_node/previous_node = src.is_a_link.adjacent_nodes[1]
+								previous_node.adjacent_nodes[possible_loop_node] = src.is_a_link
+								possible_loop_node.adjacent_nodes[previous_node] = src.is_a_link
+							src.is_a_link.adjacent_nodes += possible_loop_node
+
+						possible_loop_node.adjacent_nodes -= Cs_node
+						qdel(Cs_node)
+						C.is_a_node = null
+
+						if (length(src.is_a_link.adjacent_nodes) == 2) //
+							return
 
 
 
@@ -424,51 +438,6 @@
 		//power_list() in get_connections has already filtered APCs out
 
 
-	switch(length(connections))
-		if (0) //completely unconnected
-			src.is_a_node = new(new /datum/powernet())
-		if (1) //we're a dead end and should be a node (try and steal our connection's node)
-			var/obj/cable/C = connections[1]
-			if (istype(C))
-				if (C.is_a_node)
-					switch(length(C.get_connections()))
-						if (2) //C was a dead end connecting to something else
-							//steal C's node
-							is_a_node = C.is_a_node
-							is_a_node.physical_node = src
-							C.is_a_node = null
-
-							var/datum/powernet_graph_node/other_node = is_a_node.adjacent_nodes[1]
-							var/datum/powernet_graph_link/our_link = is_a_node.adjacent_nodes[other_node]
-
-							if (!istype(our_link))//make new link consisting only of C
-								C.is_a_link = new(list(C),list(src, other_node))
-							else//add C to existing link
-								our_link.cables |= C
-								our_link.expected_length = length(our_link.cables)
-								C.is_a_link = our_link
-						else
-							src.is_a_node = new(C.is_a_node.pnet)
-							src.is_a_node.physical_node = src
-							src.is_a_node.adjacent_nodes[C.is_a_node] = -1
-							C.is_a_node.adjacent_nodes[src.is_a_node] = -1
-							//CRASH("Does this even happen???") //professional of me ;3
-				else //We're making a new junction (two new nodes)
-					var/datum/powernet/powernet = C.get_powernet()
-					C.is_a_node = new(powernet)
-					C.is_a_node.physical_node = C
-					src.is_a_node = new(powernet)
-					src.is_a_node.physical_node = src
-					src.is_a_node.adjacent_nodes[C.is_a_node] = -1
-					C.is_a_node.adjacent_nodes[src.is_a_node] = -1
-
-					var/datum/powernet_graph_link/split_link = C.is_a_link
-					C.is_a_link = null
-					split_link.cables -= C
-					split_link.dissolve()
-
-		if (2) //we're a link but we might
-		else //we're definitely a node
 
 
 
