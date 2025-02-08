@@ -2444,6 +2444,12 @@
 /obj/ladder/auto,
 /turf/floor/delivery/caution,
 /area/station/engine/core)
+"io" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna)
 "ip" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -5375,7 +5381,7 @@
 /turf/floor,
 /area/station/medical/robotics)
 "sJ" = (
-/obj/machinery/vending/monkey,
+/obj/machinery/vending/grub,
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
 "sK" = (
@@ -6031,6 +6037,17 @@
 	},
 /turf/floor,
 /area/station/crew_quarters/cafeteria)
+"uX" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/communications_dish{
+	tag = "MAIN_DISH_SS13"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna)
 "uY" = (
 /obj/table/reinforced/auto,
 /obj/item/hand_labeler,
@@ -6549,6 +6566,9 @@
 	icon_state = "2-4"
 	},
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/maintenance/north)
 "wN" = (
@@ -12995,6 +13015,14 @@
 	mail_tag = "Cargo Bay Dock";
 	name = "Cargo Bay Dock"
 	})
+"TI" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "TJ" = (
 /obj/disposalpipe/segment/morgue,
 /turf/floor/blue,
@@ -14139,6 +14167,13 @@
 	dir = 4
 	},
 /area/station/medical/medbay/treatment)
+"XC" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/maintenance/north)
 "XD" = (
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
@@ -59874,12 +59909,12 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
+Cl
+Cl
+Cl
+Cl
+Cl
+Cl
 fg
 fg
 xf
@@ -60176,12 +60211,12 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
+Cl
+Cl
+Cl
+Cl
+Cl
+Cl
 fg
 fg
 xf
@@ -60478,14 +60513,14 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
+Cl
+Cl
+XN
+XN
+XN
+XN
+XN
+XN
 xf
 Le
 Nn
@@ -60780,16 +60815,16 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-xf
-pj
+Cl
+Cl
+XN
+uX
+io
+io
+io
+io
+XC
+TI
 wM
 Ik
 zM
@@ -61082,14 +61117,14 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
+Cl
+Cl
+XN
+XN
+XN
+XN
+XN
+XN
 xf
 pj
 oR
@@ -61384,12 +61419,12 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
+Cl
+Cl
+Cl
+Cl
+Cl
+Cl
 fg
 fg
 xf
@@ -61686,12 +61721,12 @@ fg
 fg
 fg
 fg
-fg
-fg
-fg
-fg
-fg
-fg
+Cl
+Cl
+Cl
+Cl
+Cl
+Cl
 fg
 fg
 xf
