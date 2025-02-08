@@ -3706,6 +3706,12 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
+"tc" = (
+/obj/machinery/vending/standard,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "te" = (
 /obj/machinery/power/apc/autoname/north{
 	pixel_y = 24
@@ -6051,12 +6057,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
-"EG" = (
-/obj/machinery/vending/standard,
-/turf/floor/plating,
-/area/station/maintenance/inner/north{
-	name = "North Tunnel"
-	})
 "EH" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -6927,6 +6927,12 @@
 	},
 /turf/floor,
 /area/station/science/teleporter)
+"IR" = (
+/obj/machinery/manufacturer/glasswares,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "IU" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
@@ -7301,12 +7307,6 @@
 "Lx" = (
 /turf/wall,
 /area/station/crew_quarters/bathroom)
-"Ly" = (
-/obj/machinery/manufacturer/glasswares,
-/turf/floor/plating,
-/area/station/maintenance/inner/north{
-	name = "North Tunnel"
-	})
 "Lz" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -59607,7 +59607,7 @@ xD
 XT
 me
 BX
-Ly
+IR
 XT
 ux
 ux
@@ -59909,7 +59909,7 @@ xD
 BX
 BX
 BX
-EG
+tc
 XT
 HB
 ux
