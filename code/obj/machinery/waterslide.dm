@@ -25,8 +25,13 @@
 		fluidtank = new/obj/item/reagent_containers/food/drinks/fueltank/chlorine/mostly_water(src)
 
 	disposing()
+		active = FALSE
+		fluidtank.dispose()
 		for(var/obj/item/reagent_containers/waterslide/slide_tile in deployed_path)
 			slide_tile.dispose()
+
+		deployed_path = null
+		fluidtank = null
 
 		..()
 
@@ -82,12 +87,14 @@
 			var/obj/item/reagent_containers/waterslide/slide_section = new/obj/item/reagent_containers/waterslide(F)
 			slide_section.dir = src.dir
 			deployed_path += slide_section
+			if(deployed_path.len == steps)
+				var/obj/item/reagent_containers/waterslide/last = deployed_path[deployed_path.len]
+				last.icon_state = "waterslide-end"
 
 		if(deployed_path.len)
 			current_step = 1
 			active = TRUE
-			var/image/end = image(src.icon, "waterslide-end")
-			end.dir = turn(src.dir, 180)
+			var/image/end = image(src.icon, "waterslide-end", dir=turn(src.dir, 180))
 			src.underlays += end
 			SPAWN_DBG(0) process()
 
@@ -95,6 +102,35 @@
 		active = FALSE
 		for(var/obj/item/reagent_containers/waterslide/slide_tile in deployed_path)
 			slide_tile.dispose()
+
+		deployed_path = null
+		fluidtank = null
+
+/obj/machinery/waterslide_pump/attack_hand(mob/user as mob)
+	var/dat
+
+	dat += "<TT><B>Bringing Hours of Wet N' Wild Fun To Your Station!</B></TT><BR>"
+	dat += "<U><h4>Slide deployed:</h4></U>"
+	dat += "<A href='byond://?src=\ref[src];active_toggle=1'>[src.active ? "True" : "False"]</A><BR><BR>"
+
+	user.Browse("<HEAD><TITLE>Waterslide Pump</TITLE></HEAD>[dat]", "window=waterslide")
+	onclose(user, "waterslide")
+	return
+
+/obj/machinery/waterslide_pump/Topic(href, href_list)
+	if(!IN_RANGE(usr, src, 1))
+		boutput(usr, "You're too far away from [src], get closer.")
+		return
+
+	if(href_list["active_toggle"])
+		switch(active)
+			if(TRUE)
+				remove_slide()
+			if(FALSE)
+				establish_slide()
+
+
+	attack_hand(usr)
 
 /obj/item/reagent_containers/waterslide
 	name = "water slide"
@@ -128,7 +164,7 @@
 	HasEntered(AM as mob|obj)
 		if (iscarbon(AM))
 			var/mob/M =	AM
-			if (src.reagents)
+			if (src.reagents.total_volume)
 				src.reagents.reaction(M, TOUCH)
 				if(prob(25)) // the liquid splashes out as a puddle
 					playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
@@ -137,15 +173,34 @@
 					src.reagents.trans_to(T, 5)
 				src.reagents.clear_reagents()
 
-				var/atom/target = get_edge_target_turf(M, M.dir) // copied from space lube
-				var/distance = 8
-				// if(M.dir != src.dir || M.dir != turn(src.dir, 180))
-				// 	distance = 1
-				if(!M.hasStatus("weakened")) // prevents spam and makes em 'slow down' kinda more realistically
-					M.pulling = null
-					M.changeStatus("weakened", 3 SECONDS)
-					boutput(M, "<span class='notice'>You slipped on [src]!</span>")
-					playsound(src.loc, "sound/misc/slip.ogg", 50, 1, -3)
-					M.throw_at(target, distance, 2, throw_type = THROW_SLIP)
+				if(M.dir == src.dir || M.dir == turn(src.dir, 180))
+					if(!M.hasStatus("weakened"))
+						//Find distance from mob to the furthest water slide tile. Too complicated for something so silly? Maybe...
+						var/distance = 1
+						var/direction = M.dir ? M.dir == src.dir : turn(M.dir, 180)
+						var/turf/T = get_step(src,direction)
+						var/search = 1
+						while((get_dist(src,T) < 15) && (search < 15)) // 15 may be too absurd?
+							T = get_step(T,src.dir)
+							search ++
+						var/list/affected_turfs = getline(src, T)
+
+						var/turf/currentturf
+						var/turf/previousturf
+
+						for(var/turf/F in affected_turfs)
+							if(previousturf && LinkBlocked(previousturf, currentturf))
+								break
+							if(locate(/obj/item/reagent_containers/waterslide) in F)
+								distance ++
+
+						// Actually slip the mob, copied from space lube
+						var/atom/target = get_edge_target_turf(M, M.dir)
+						M.pulling = null
+						M.changeStatus("weakened", 3 SECONDS)
+						boutput(M, "<span class='notice'>You slipped on [src]!</span>")
+						playsound(src.loc, "sound/misc/slip.ogg", 50, 1, -3)
+						M.throw_at(target, distance, 2, throw_type = THROW_SLIP)
 				else
-					M.throw_at(target, 1, 1, throw_type = THROW_SLIP)
+					if (M.slip(ignore_actual_delay = 1))
+						return
