@@ -35,10 +35,15 @@
 	set name = "say_main_radio"
 	set hidden = 1
 
-/mob/living/say_main_radio(msg as text)
+/mob/say_main_radio(msg as text)
 	set name = "say_main_radio"
 	set desc = "Speaking on the main radio frequency"
 	set hidden = 1
+	cancel_typing("radiochannelsay")
+	var/client/client = src.client
+	if(isAI(src) && !src.client)
+	//AI eye is sending the message
+		client = usr.client
 	if (client.preferences.auto_capitalization)
 		var/i = 1
 		while (copytext(msg, i, i+1) == " ")
@@ -47,6 +52,11 @@
 	src.say_verb(";" + msg)
 
 /mob/proc/open_radio_input(token as text, title as text, color)
+	if(!color)
+		color ="#aaaa55"
+	var/client/client = src.client
+	if(isAI(src) && !src.client)
+		client = usr.client
 	winset(client, "radiochannelsaywindow", "background-color=\"[color]\"")
 	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
 	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\"[token] \"")
@@ -57,12 +67,16 @@
 	set name = "say_radio_channel"
 	set hidden = 1
 
-/mob/living/say_radio_channel(msg as text)
+/mob/say_radio_channel(msg as text)
 	set name = "say_radio_channel"
 	set desc = "Speaking on radio channel"
 	set hidden = 1
+	var/client/client = src.client
+	//AI eye is sending the message
+	if(isAI(src) && !src.client)
+		client = usr.client
 	winset(client, "radiochannelsaywindow", "is-visible=false")
-	//Don't know why I need this here
+	//Don't usr why I need this here
 	cancel_typing("radiochannelsay")
 	if (client.preferences.auto_capitalization)
 		var/i = 1
@@ -79,6 +93,7 @@
 		var/mob/living/silicon/ai/A = src
 		var/list/choices = list()
 		var/list/channels = list()
+		var/list/frequencies = list()
 		var/list/radios = list(A.radio1, A.radio2, A.radio3)
 
 		for (var/i = 1, i <= radios.len, i++)
@@ -90,13 +105,14 @@
 				// Honestly this should probably be fixed in some other way, but, effort.
 				channel_name = "[format_frequency(R.frequency)] - " + (headset_channel_lookup["[R.frequency]"] ? headset_channel_lookup["[R.frequency]"] : "(Unknown)")
 				choices += channel_name
+				frequencies[channel_name] = R.frequency
 				channels[channel_name] = ":[i]"
 
 			if (istype(R.secure_frequencies) && length(R.secure_frequencies))
 				for (var/sayToken in R.secure_frequencies)
 					channel_name = "[format_frequency(R.secure_frequencies[sayToken])] - " + (headset_channel_lookup["[R.secure_frequencies[sayToken]]"] ? headset_channel_lookup["[R.secure_frequencies[sayToken]]"] : "(Unknown)")
-
 					choices += channel_name
+					frequencies[channel_name] = R.secure_frequencies[sayToken]
 					channels[channel_name] = ":[i][sayToken]"
 
 		if (A.robot_talk_understand)
@@ -115,7 +131,10 @@
 		var/token = channels[choice]
 		if (!token)
 			boutput(src, "Somehow '[choice]' didn't match anything. Welp. Probably busted.")
-		open_radio_input(token, choice)
+
+		var/choice_index = choices.Find(choice)
+		var/color = default_frequency_color(frequencies[frequencies[choice_index]])
+		open_radio_input(token, choice, color)
 
 
 	else if (src.ears && istype(src.ears, /obj/item/device/radio))

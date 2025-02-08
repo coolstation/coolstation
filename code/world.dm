@@ -570,6 +570,7 @@ var/f_color_selector_handler/F_Color_Selector
 	// cope with a list initializer that contains "[constant]" keys
 	headset_channel_lookup = list(
 		"[R_FREQ_RESEARCH]" = "Research",
+		"[R_FREQ_INTERCOM_AI]" = "AI Intercom", // For the AI's radio channel picker
 		"[R_FREQ_MEDICAL]" = "Medical",
 		"[R_FREQ_ENGINEERING]" = "Engineering",
 		"[R_FREQ_LOGISTICS]" = "Logistics",
