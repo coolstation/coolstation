@@ -677,6 +677,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/item/robodefibrillator/mounted,
 /turf/floor/blue/side{
 	dir = 9
 	},
@@ -1947,6 +1948,14 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor,
 /area/station/medical/medbay/lobby)
+"gx" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "gz" = (
 /obj/machinery/light/fluorescent/auto/yellow,
 /obj/machinery/door/firedoor/border_only{
@@ -2444,12 +2453,6 @@
 /obj/ladder/auto,
 /turf/floor/delivery/caution,
 /area/station/engine/core)
-"io" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/space/gehenna/desert/plating,
-/area/gehenna)
 "ip" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -2763,6 +2766,7 @@
 	dir = 4
 	},
 /obj/table/reinforced/auto,
+/obj/item/robodefibrillator/mounted,
 /turf/floor/bluewhite{
 	dir = 4
 	},
@@ -6037,17 +6041,6 @@
 	},
 /turf/floor,
 /area/station/crew_quarters/cafeteria)
-"uX" = (
-/obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/communications_dish{
-	tag = "MAIN_DISH_SS13"
-	},
-/turf/space/gehenna/desert/plating,
-/area/gehenna)
 "uY" = (
 /obj/table/reinforced/auto,
 /obj/item/hand_labeler,
@@ -6362,6 +6355,13 @@
 /obj/submachine/cargopad/hydroponic,
 /turf/floor/green,
 /area/station/hydroponics/lobby)
+"wf" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/maintenance/north)
 "wg" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -7980,6 +7980,17 @@
 	mail_tag = "Cargo Bay";
 	name = "Cargo Bay"
 	})
+"BK" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/communications_dish{
+	tag = "MAIN_DISH_SS13"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna)
 "BL" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -8085,6 +8096,12 @@
 	})
 "Cl" = (
 /turf/space/gehenna/desert,
+/area/gehenna)
+"Cm" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/space/gehenna/desert/plating,
 /area/gehenna)
 "Co" = (
 /obj/machinery/light/small/red{
@@ -9784,6 +9801,7 @@
 "IE" = (
 /obj/disposalpipe/segment/morgue,
 /obj/storage/secure/closet/medical/uniforms,
+/obj/item/robodefibrillator/makeshift,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "IF" = (
@@ -13015,14 +13033,6 @@
 	mail_tag = "Cargo Bay Dock";
 	name = "Cargo Bay Dock"
 	})
-"TI" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/grille/catwalk/jen,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor/plating,
-/area/station/maintenance/north)
 "TJ" = (
 /obj/disposalpipe/segment/morgue,
 /turf/floor/blue,
@@ -14167,13 +14177,6 @@
 	dir = 4
 	},
 /area/station/medical/medbay/treatment)
-"XC" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/station/maintenance/north)
 "XD" = (
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
@@ -60818,13 +60821,13 @@ fg
 Cl
 Cl
 XN
-uX
-io
-io
-io
-io
-XC
-TI
+BK
+Cm
+Cm
+Cm
+Cm
+wf
+gx
 wM
 Ik
 zM

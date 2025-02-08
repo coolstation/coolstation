@@ -191,7 +191,7 @@
 				rigger = user
 		S.reagents.clear_reagents()
 
-/*	else if (istype(W, /obj/item/cable_coil))
+	else if (istype(W, /obj/item/cable_coil))
 		var/obj/item/cable_coil/C = W
 		if (C.amount < 4)
 			user.show_text("You need at least 4 pieces of cable to attach it to [src].", "red")
@@ -202,7 +202,7 @@
 			user.show_text("You attach some of the cable to [src].[prob(20) ? " That seems safe." : null]", "blue")
 			new /obj/item/robodefibrillator/makeshift(get_turf(src), src)
 			user.u_equip(src)
-*/
+
 	else
 		return ..()
 
