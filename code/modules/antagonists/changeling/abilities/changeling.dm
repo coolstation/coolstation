@@ -18,7 +18,7 @@
 	//C.addAbility(/datum/targetable/changeling/regeneration)
 	C.addAbility(/datum/targetable/changeling/scream)
 	C.addAbility(/datum/targetable/changeling/spit)
-	//C.addAbility(/datum/targetable/changeling/stasis)
+	C.addAbility(/datum/targetable/changeling/stasis)
 #ifdef RP_MODE
 	C.addAbility(/datum/targetable/changeling/sting/capulettium)
 #else
@@ -149,22 +149,22 @@
 				src.absorbtions++
 		src.insert_into_hivemind(M)
 
-		if(src.absorbtions >= 1)
+		if(src.absorbtions == 1)
 			src.addAbility(/datum/targetable/changeling/sting/bio)
 			src.addAbility(/datum/targetable/changeling/sting/dna)
 			src.addAbility(/datum/targetable/changeling/transform)
 			src.addAbility(/datum/targetable/changeling/hivesay)
 			src.addAbility(/datum/targetable/changeling/boot)
 			src.addAbility(/datum/targetable/changeling/give_control)
-		if(src.absorbtions >= 2)
+		if(src.absorbtions == 2)
 			src.addAbility(/datum/targetable/changeling/regeneration)
-			src.addAbility(/datum/targetable/changeling/stasis)
+			//src.addAbility(/datum/targetable/changeling/stasis)
 			src.addAbility(/datum/targetable/changeling/monkey)
-		if(src.absorbtions >= 3)
+		if(src.absorbtions == 3)
 			src.addAbility(/datum/targetable/changeling/morph_arm)
 			src.addAbility(/datum/targetable/changeling/handspider)
 			src.addAbility(/datum/targetable/changeling/eyespider)
-		if(src.absorbtions >= 4)
+		if(src.absorbtions == 4)
 			src.addAbility(/datum/targetable/changeling/legworm)
 			src.addAbility(/datum/targetable/changeling/buttcrab)
 

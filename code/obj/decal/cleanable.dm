@@ -2068,6 +2068,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		if (M.slip(ignore_actual_delay = 1))
 
 			boutput(M, "<span class='notice'>You slipped on [src]!</span>")
+			M.lastgasp()
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if (H.sims)

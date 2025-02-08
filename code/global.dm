@@ -288,7 +288,7 @@ var/global
 	suicide_allowed = 1
 	dna_ident = 1
 	abandon_allowed = 1
-	enable_fastpath = 0 // space fastpath default value
+	enable_fastpath = 1 // space fastpath default value
 	enter_allowed = 1
 	johnbus_location = 1
 	johnbus_destination = 0
