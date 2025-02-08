@@ -1948,14 +1948,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor,
 /area/station/medical/medbay/lobby)
-"gx" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/grille/catwalk/jen,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor/plating,
-/area/station/maintenance/north)
 "gz" = (
 /obj/machinery/light/fluorescent/auto/yellow,
 /obj/machinery/door/firedoor/border_only{
@@ -3083,6 +3075,13 @@
 	},
 /turf/space/gehenna/desert/plating,
 /area/gehenna)
+"kv" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/maintenance/north)
 "kx" = (
 /obj/machinery/light/small/neutral{
 	dir = 4
@@ -4887,6 +4886,12 @@
 /obj/disposalpipe/segment,
 /turf/floor/stairs,
 /area/station/engine/storage)
+"qJ" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna)
 "qL" = (
 /obj/disposalpipe/segment/bent{
 	dir = 8
@@ -6355,13 +6360,6 @@
 /obj/submachine/cargopad/hydroponic,
 /turf/floor/green,
 /area/station/hydroponics/lobby)
-"wf" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/station/maintenance/north)
 "wg" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -7980,17 +7978,6 @@
 	mail_tag = "Cargo Bay";
 	name = "Cargo Bay"
 	})
-"BK" = (
-/obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/communications_dish{
-	tag = "MAIN_DISH_SS13"
-	},
-/turf/space/gehenna/desert/plating,
-/area/gehenna)
 "BL" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -8096,12 +8083,6 @@
 	})
 "Cl" = (
 /turf/space/gehenna/desert,
-/area/gehenna)
-"Cm" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/space/gehenna/desert/plating,
 /area/gehenna)
 "Co" = (
 /obj/machinery/light/small/red{
@@ -14441,6 +14422,17 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/hallway/secondary/south)
+"Yz" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/communications_dish{
+	tag = "MAIN_DISH_SS13"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna)
 "YA" = (
 /obj/machinery/door_control/podbay/catering/new_walls/south,
 /turf/floor/grass,
@@ -14495,6 +14487,14 @@
 /obj/item/pen,
 /turf/floor,
 /area/station/hallway/secondary/south)
+"YJ" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "YK" = (
 /obj/disposalpipe/segment,
 /obj/machinery/light/fluorescent{
@@ -60821,13 +60821,13 @@ fg
 Cl
 Cl
 XN
-BK
-Cm
-Cm
-Cm
-Cm
-wf
-gx
+Yz
+qJ
+qJ
+qJ
+qJ
+kv
+YJ
 wM
 Ik
 zM
