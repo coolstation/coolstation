@@ -634,6 +634,13 @@
 "dh" = (
 /turf/wall,
 /area/station/maintenance/disposal)
+"di" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
+/obj/stool/chair/comfy/wheelchair{
+	dir = 4
+	},
+/turf/floor/bluewhite,
+/area/station/medical/basement)
 "dj" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment,
@@ -4926,9 +4933,6 @@
 /turf/floor/sand,
 /area/station/security/brig/north_side)
 "yQ" = (
-/obj/stool/chair/comfy/wheelchair{
-	dir = 4
-	},
 /obj/machinery/light_switch/west,
 /turf/floor/bluewhite{
 	dir = 8
@@ -7233,6 +7237,13 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
+"Ki" = (
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/morgue,
+/turf/floor/blue/checker,
+/area/station/medical/basement)
 "Kj" = (
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
@@ -7843,10 +7854,9 @@
 /turf/floor/grime,
 /area/station/crew_quarters/bathroom)
 "NB" = (
-/obj/disposalpipe/trunk{
+/obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/obj/machinery/disposal/morgue,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -10005,6 +10015,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
+"XN" = (
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal,
+/turf/floor/blue/checker,
+/area/station/medical/basement)
 "XR" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor/bluewhite,
@@ -10413,10 +10430,9 @@
 /turf/wall/r_wall,
 /area/station/security/brig)
 "ZN" = (
-/obj/disposalpipe/trunk{
+/obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/disposal,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -43529,10 +43545,10 @@ ux
 ux
 ux
 HB
-HB
-ux
-ux
-ux
+iA
+iA
+iA
+iA
 ux
 ux
 ux
@@ -43832,8 +43848,8 @@ nC
 iA
 iA
 iA
-iA
-iA
+Ki
+XN
 iA
 iA
 iA
@@ -44439,7 +44455,7 @@ no
 xp
 Hu
 Lz
-gD
+di
 cr
 iA
 ux
