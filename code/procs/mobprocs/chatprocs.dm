@@ -52,6 +52,18 @@
 	src.say_verb(";" + msg)
 
 /mob/proc/open_radio_input(token as text, title as text, color)
+	//Some of the radio channels are way too bright
+	var/list/colorOverrides = list(
+		RADIOC_SECURITY = "#ac2e2e",
+		RADIOC_RESEARCH = "#9e6fdd",
+		RADIOC_STANDARD = "#aaaa55",
+		RADIOC_CIVILIAN = "#8d2d7a",
+		RADIOC_OTHER = "#aaaa55"
+
+	)
+	if(color in colorOverrides)
+		color = colorOverrides[color]
+
 	if(!color)
 		color ="#aaaa55"
 	var/client/client = src.client
