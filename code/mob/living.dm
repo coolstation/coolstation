@@ -2095,6 +2095,12 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			if (length(enteredtext))
 				if (window_type == "radiosaywindow")
 					enteredtext = ";" + enteredtext
+				if (window_type == "radiochannelsaywindow")
+					var/prefix = winget(client, "[window_type].input", "command")
+					//Find the radio prefix that open_radio_input set in the command
+					var/regex/R = new(@":([^\s]*)", "g")
+					R.Find(prefix)
+					enteredtext = R.match + enteredtext
 				winset(client, "[window_type].input", "text=\"\"")
 				if (isnull(client)) return
 				winset(client, "[window_type]", "is-visible=false")
