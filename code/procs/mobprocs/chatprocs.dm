@@ -72,6 +72,7 @@
 	winset(client, "radiochannelsaywindow", "background-color=\"[color]\"")
 	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
 	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\"[token] \"")
+	winset(client, "radiochannelsaywindow.accept", "command=\"say_radio_channel \\\"[token] \"")
 	winset(client, "radiochannelsaywindow", "is-visible=true")
 	winset(client, "radiochannelsaywindow.input", "focus=true")
 
