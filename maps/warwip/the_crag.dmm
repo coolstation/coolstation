@@ -166,6 +166,18 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/medbay/lobby)
+"aG" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 2;
+	frequency = 1229;
+	icon_state = "intact_on";
+	id = "chamber 1 extraction";
+	name = "Gas pump - Ext 1";
+	on = 1;
+	target_pressure = 1000
+	},
+/turf/floor,
+/area/station/science/lab)
 "aI" = (
 /obj/stool/chair{
 	dir = 8
@@ -628,9 +640,11 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "ce" = (
-/obj/wingrille_spawn/reinforced,
-/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
-/turf/floor/plating,
+/obj/machinery/atmospherics/binary/volume_pump{
+	on = 1;
+	transfer_rate = 1000
+	},
+/turf/floor,
 /area/station/science/lab)
 "cf" = (
 /obj/machinery/firealarm{
@@ -2042,10 +2056,6 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
-"gI" = (
-/obj/disposalpipe/segment/morgue,
-/turf/floor/carpet/blue/standard/edge/se,
-/area/station/medical/head)
 "gJ" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -2734,7 +2744,7 @@
 /turf/floor,
 /area/station/atmos/department)
 "jh" = (
-/obj/machinery/atmospherics/valve/purge/vertical,
+/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor,
 /area/station/science/lab)
 "ji" = (
@@ -2771,6 +2781,11 @@
 /obj/machinery/vending/snack_freezer,
 /turf/floor,
 /area/station/hallway/secondary/south)
+"jn" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
+/turf/floor/plating,
+/area/station/science/lab)
 "jo" = (
 /obj/table/reinforced/auto,
 /obj/machinery/door/firedoor/border_only{
@@ -5362,9 +5377,6 @@
 	mail_tag = "Cargo Bay Dock";
 	name = "Cargo Bay Dock"
 	})
-"so" = (
-/turf/floor/carpet/blue/standard/edge/south,
-/area/station/medical/head)
 "sp" = (
 /obj/machinery/light/fluorescent/ceiling,
 /obj/disposalpipe/segment{
@@ -5444,12 +5456,6 @@
 	icon_state = "floor"
 	},
 /area/station/crew_quarters/cafeteria)
-"sD" = (
-/obj/iv_stand,
-/turf/floor/bluewhite{
-	dir = 8
-	},
-/area/station/medical/medbay/treatment)
 "sE" = (
 /obj/machinery/door/airlock/pyro/external,
 /obj/airlock_cycle_linker{
@@ -6174,6 +6180,10 @@
 /obj/machinery/manufacturer/medical,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
+"ve" = (
+/obj/machinery/atmospherics/portables_connector/north,
+/turf/floor,
+/area/station/science/lab)
 "vh" = (
 /turf/wall,
 /area/station/quartermaster/cargooffice/storefront)
@@ -6294,7 +6304,15 @@
 /turf/floor/yellow/checker,
 /area/station/engine/engineering/ce)
 "vB" = (
-/obj/machinery/atmospherics/portables_connector/north,
+/obj/machinery/atmospherics/binary/pump{
+	dir = 2;
+	frequency = 1229;
+	icon_state = "intact_on";
+	id = "chamber 2 extraction";
+	name = "Gas pump - Ext 2";
+	on = 1;
+	target_pressure = 1000
+	},
 /turf/floor,
 /area/station/science/lab)
 "vC" = (
@@ -9392,10 +9410,7 @@
 /turf/floor,
 /area/station/hallway/secondary/south)
 "GL" = (
-/obj/machinery/atmospherics/binary/volume_pump{
-	on = 1;
-	transfer_rate = 1000
-	},
+/obj/machinery/atmospherics/valve/purge/vertical,
 /turf/floor,
 /area/station/science/lab)
 "GM" = (
@@ -10016,6 +10031,12 @@
 /obj/cable,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
+"IK" = (
+/obj/iv_stand,
+/turf/floor/bluewhite{
+	dir = 8
+	},
+/area/station/medical/medbay/treatment)
 "IL" = (
 /obj/ladder/auto,
 /obj/machinery/firealarm{
@@ -10643,17 +10664,8 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "KW" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 8;
-	frequency = 1229;
-	icon_state = "intact_on";
-	id = "chamber 1 extraction";
-	name = "Gas pump - Ext 1";
-	on = 1;
-	target_pressure = 1000
-	},
-/turf/floor,
-/area/station/science/lab)
+/turf/floor/carpet/blue/standard/edge/south,
+/area/station/medical/head)
 "KX" = (
 /obj/disposalpipe/segment/sewage,
 /turf/floor,
@@ -12025,17 +12037,9 @@
 /turf/floor/carpet/grime,
 /area/station/science/research_director)
 "Py" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 4;
-	frequency = 1229;
-	icon_state = "intact_on";
-	id = "chamber 2 extraction";
-	name = "Gas pump - Ext 2";
-	on = 1;
-	target_pressure = 1000
-	},
-/turf/floor,
-/area/station/science/lab)
+/obj/disposalpipe/segment/morgue,
+/turf/floor/carpet/blue/standard/edge/se,
+/area/station/medical/head)
 "Pz" = (
 /turf/space/gehenna/desert/corner{
 	dir = 1
@@ -47271,7 +47275,7 @@ Pr
 rd
 Jt
 Yp
-so
+KW
 Vu
 eB
 Xn
@@ -47573,7 +47577,7 @@ lx
 Gm
 Jt
 HN
-gI
+Py
 TJ
 Zy
 IE
@@ -48789,8 +48793,8 @@ uA
 RJ
 ye
 uA
-sD
-sD
+IK
+IK
 oX
 Br
 Cj
@@ -59682,11 +59686,11 @@ AB
 Tl
 nv
 xj
-Py
+xj
 NA
 Jv
 Jv
-Cl
+Jv
 Cl
 Cl
 Cl
@@ -59986,9 +59990,9 @@ Cg
 vN
 Ry
 vB
+ve
 CD
 XN
-Cl
 Cl
 Cl
 Cl
@@ -60289,8 +60293,8 @@ xo
 jh
 GL
 ce
+jn
 cR
-Cl
 Cl
 Cl
 Cl
@@ -60589,10 +60593,10 @@ jH
 YZ
 vN
 OP
-vB
+aG
+ve
 CD
 XN
-Cl
 Cl
 Cl
 Cl
@@ -60890,11 +60894,11 @@ AB
 zr
 LE
 xj
-KW
+xj
 YT
 Jv
 Jv
-Cl
+Jv
 Cl
 Cl
 Cl
