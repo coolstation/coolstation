@@ -446,8 +446,6 @@
 			src.toggle_point_mode()
 		if ("say_radio")
 			src.say_radio()
-		if ("say_main_radio")
-			src.say_radio()
 		else
 			. = ..()
 
@@ -2091,12 +2089,18 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		for (var/window_type in list("saywindow", "radiosay", "whisper")) //scafolding for later
+		for (var/window_type in list("saywindow", "radiosaywindow", "radiochannelsaywindow")) //scafolding for later
 			enteredtext = winget(client, "[window_type].input", "text")
 			if (isnull(client)) return
 			if (length(enteredtext))
-				if (window_type == "radiosay")
+				if (window_type == "radiosaywindow")
 					enteredtext = ";" + enteredtext
+				if (window_type == "radiochannelsaywindow")
+					var/prefix = winget(client, "[window_type].input", "command")
+					//Find the radio prefix that open_radio_input set in the command
+					var/regex/R = new(@":([^\s]*)", "g")
+					R.Find(prefix)
+					enteredtext = "[R.match ? R.match : ";"]"  + enteredtext
 				winset(client, "[window_type].input", "text=\"\"")
 				if (isnull(client)) return
 				winset(client, "[window_type]", "is-visible=false")

@@ -2187,8 +2187,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname/north{
-	pixel_y = 24
+/obj/machinery/power/data_terminal,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
 	},
 /turf/floor,
 /area/station/science/lobby)
@@ -2370,6 +2371,19 @@
 	dir = 10
 	},
 /area/shuttle/escape/station/cogmap2)
+"hS" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "hT" = (
 /obj/table/reinforced/auto,
 /obj/item/deconstructor,
@@ -2926,6 +2940,13 @@
 /obj/kitchenspike,
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
+"jN" = (
+/obj/cable,
+/obj/machinery/power/apc/autoname/west{
+	pixel_x = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/sw)
 "jO" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -6895,6 +6916,18 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
+"xB" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "South Secondary Hallway";
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/floor/plating,
+/area/station/maintenance/southeast)
 "xC" = (
 /obj/table/round/auto,
 /turf/space/gehenna/desert/plating,
@@ -9610,6 +9643,11 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/sw)
 "HD" = (
@@ -9954,6 +9992,10 @@
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/power/apc/autoname/east{
+	pixel_x = 24
+	},
+/obj/cable,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "IL" = (
@@ -10223,6 +10265,11 @@
 "JE" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "JF" = (
@@ -51416,7 +51463,7 @@ wN
 Df
 Df
 HB
-kn
+jN
 Ml
 hF
 Cl
@@ -62588,7 +62635,7 @@ Dn
 Sm
 hd
 rE
-rE
+xB
 rE
 rE
 aN
@@ -62890,7 +62937,7 @@ Dn
 GF
 FO
 lV
-lV
+cd
 ll
 lV
 DK
@@ -64035,7 +64082,7 @@ fg
 fg
 xf
 EB
-zG
+hS
 JE
 IJ
 rj
