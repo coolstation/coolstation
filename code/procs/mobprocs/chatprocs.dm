@@ -76,7 +76,7 @@
 	winset(client, "radiochannelsaywindow", "is-visible=true")
 	winset(client, "radiochannelsaywindow.input", "focus=true")
 
-	spawn(3 SECONDS)
+	SPAWN_DBG(3 SECONDS)
 		//The channel selector sends us the Return+UP when we press enter so we have to turn this off
 		//But let's turn it back on after a moment so we won't usually be affected by latency just to close the window
 		winset(client, "radiochannelsaywindow_macro_returnup", "is-disabled=false" )
