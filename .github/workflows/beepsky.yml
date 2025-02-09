@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          sudo apt install libgit2-1.1
+          sudo apt install libgit2-dev
           pip3 install setuptools
           tools/ci/install_build_tools.sh
           tools/ci/install_spaceman_dmm.sh dreamchecker
