@@ -14,7 +14,7 @@ jobs:
 
   runtime:
     name: Runtime Checker
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     strategy:
       fail-fast: false
@@ -161,7 +161,7 @@ jobs:
 
   unit_test:
     name: Unit Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     steps:
       - uses: actions/checkout@v2
