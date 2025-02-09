@@ -72,7 +72,7 @@
 	winset(client, "radiochannelsaywindow", "background-color=\"[color]\"")
 	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
 	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\"[token] \"")
-	winset(client, "radiochannelsaywindow.accept", "command=\"say_radio_channel \\\"[token] \"")
+	winset(client, "radiochannelsaywindow.accept", "command=\".winset \\\"command=\\\"say_radio_channel \\\\\\\"[token]\[\[radiochannelsaywindow.input.text as escaped\]\]\\\";radiochannelsaywindow.is-visible=false\\\";radiochannelsaywindow.input.text=\\\"\\\"\"")
 	winset(client, "radiochannelsaywindow", "is-visible=true")
 	winset(client, "radiochannelsaywindow.input", "focus=true")
 
