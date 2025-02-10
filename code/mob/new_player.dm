@@ -329,15 +329,16 @@ mob/new_player
 		return 0
 
 
-	proc/AttemptLateSpawn(var/datum/job/JOB, force=0)
+	proc/AttemptLateSpawn(var/datum/job/JOB, force=0, var/loc_override = null)
 		if (!JOB)
 			return
 		if (JOB && (force || IsJobAvailable(JOB)))
 			var/mob/character = create_character(JOB, JOB.allow_traitors)
 			if (isnull(character))
 				return
-
-			if(istype(ticker.mode, /datum/game_mode/football))
+			if(loc_override)
+				character.set_loc(loc_override)
+			else if(istype(ticker.mode, /datum/game_mode/football))
 				var/datum/game_mode/football/F = ticker.mode
 				F.init_player(character, 0, 1)/*
 			else if(istype(ticker.mode, /datum/game_mode/pod_wars))
