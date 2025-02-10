@@ -2664,6 +2664,10 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
 /turf/floor/plating,
 /area/station/maintenance/north)
 "iV" = (
@@ -3812,6 +3816,7 @@
 /area/station/chapel/sanctuary)
 "mK" = (
 /obj/machinery/light_switch/west,
+/obj/storage/closet,
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "mL" = (
@@ -10713,9 +10718,8 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/landmark{
-	icon_state = "x3";
-	name = "peststart"
+/obj/storage/closet{
+	name = "rancher's supply closet"
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)

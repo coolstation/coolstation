@@ -1728,6 +1728,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/storage/closet/wardrobe/orange,
 /turf/floor,
 /area/station/security/brig)
 "ip" = (
@@ -3471,6 +3472,10 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/bathroom)
+"rk" = (
+/obj/storage/secure/closet/brig,
+/turf/floor/red/side,
+/area/station/security/brig)
 "rp" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -3863,6 +3868,7 @@
 "tz" = (
 /obj/machinery/light/fluorescent/warm,
 /obj/storage/secure/closet/security/forensics,
+/obj/item/device/prisoner_scanner,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "tC" = (
@@ -4027,6 +4033,11 @@
 /obj/item/storage/box/revimp_kit{
 	pixel_x = -5;
 	pixel_y = 4
+	},
+/obj/item/ammo/bullets/smoke,
+/obj/item/gun/kinetic/riot40mm{
+	pixel_x = -4;
+	pixel_y = 10
 	},
 /turf/floor/grime,
 /area/station/security/secoffquarters)
@@ -4758,6 +4769,7 @@
 	},
 /obj/item_dispenser/wallmounted/handcuffs,
 /obj/table/reinforced/auto,
+/obj/item/device/prisoner_scanner,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -5299,6 +5311,18 @@
 /obj/access_spawn/security,
 /turf/floor/darkblue,
 /area/station/security/main)
+"AB" = (
+/obj/table/wood/auto,
+/obj/item/device/detective_scanner,
+/obj/item/hand_labeler,
+/obj/item/spraybottle/detective,
+/obj/item/storage/box/evidence,
+/obj/item/storage/box/evidence,
+/obj/item/storage/secure/ssafe{
+	pixel_y = -30
+	},
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "AC" = (
 /obj/machinery/door/airlock/command,
 /obj/cable{
@@ -5644,6 +5668,7 @@
 /obj/machinery/recharger/wall{
 	pixel_y = 24
 	},
+/obj/item/storage/box/body_bag,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
 "Cl" = (
@@ -7475,6 +7500,7 @@
 /obj/machinery/power/apc/autoname/west{
 	pixel_x = -24
 	},
+/obj/storage/closet/wardrobe/orange,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -7670,6 +7696,7 @@
 /obj/machinery/light_switch/east,
 /obj/table/reinforced/auto,
 /obj/item/storage/box/evidence,
+/obj/item/device/detective_scanner,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "MJ" = (
@@ -8541,6 +8568,10 @@
 /obj/table/wood/auto,
 /turf/floor/darkblue,
 /area/station/bridge)
+"Qq" = (
+/obj/storage/closet/wardrobe/red/security_gimmick,
+/turf/floor/grime,
+/area/station/security/secoffquarters)
 "Qr" = (
 /obj/stool/bed,
 /obj/decal/cleanable/dirt/random,
@@ -8626,6 +8657,12 @@
 	dir = 8
 	},
 /obj/storage/cart/forensic,
+/obj/item/spraybottle/detective,
+/obj/item/storage/box/evidence,
+/obj/item/device/detective_scanner,
+/obj/item/clothing/gloves/latex/blue,
+/obj/item/clothing/gloves/latex/blue,
+/obj/item/storage/box/body_bag,
 /turf/floor/red,
 /area/station/security/main)
 "QI" = (
@@ -10415,6 +10452,30 @@
 	},
 /obj/storage/closet/coffin/nt,
 /obj/item/bat,
+/obj/item/clothing/suit/det_suit/beepsky{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/diary{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/storage/photo_album/beepsky{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/black{
+	desc = "You have no idea how a robot with wheels for locomotion could possibly require these.";
+	name = "Beepsky's Shoes";
+	pixel_x = -9;
+	pixel_y = -7
+	},
 /turf/floor/plating,
 /area/station/security/beepsky)
 "ZK" = (
@@ -44731,7 +44792,7 @@ PE
 LE
 io
 Fk
-NG
+rk
 KV
 KV
 zV
@@ -44745,7 +44806,7 @@ Vf
 Jt
 kb
 Va
-xP
+AB
 nC
 UO
 UO
@@ -50776,7 +50837,7 @@ AU
 Cj
 Ft
 Ft
-cy
+Qq
 AU
 ux
 ux
@@ -51078,7 +51139,7 @@ AU
 Pm
 Ft
 Ft
-cy
+Qq
 AU
 ux
 ux
