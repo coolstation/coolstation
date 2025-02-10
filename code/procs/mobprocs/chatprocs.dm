@@ -6,6 +6,7 @@
 
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
+	cancel_typing("whisperwindow")
 	return src.whisper(message)
 
 

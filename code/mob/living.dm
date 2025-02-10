@@ -2081,6 +2081,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		return
 	var/client/client = src.client
 	var/found_text = FALSE
+	var/whisper = FALSE
 	var/enteredtext = winget(client, "mainwindow.input", "text") // grab the text from the input bar
 	if (isnull(client)) return
 	if (length(enteredtext) > 5 && copytext(lowertext(enteredtext), 1, 6) == "say \"") // check if the player is trying to say something
@@ -2089,7 +2090,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		for (var/window_type in list("saywindow", "radiosaywindow", "radiochannelsaywindow")) //scafolding for later
+		for (var/window_type in list("saywindow", "radiosaywindow", "radiochannelsaywindow", "whisperwindow")) //scafolding for later
 			enteredtext = winget(client, "[window_type].input", "text")
 			if (isnull(client)) return
 			if (length(enteredtext))
@@ -2101,6 +2102,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 					var/regex/R = new(@":([^\s]*)", "g")
 					R.Find(prefix)
 					enteredtext = "[R.match ? R.match : ";"]"  + enteredtext
+				if(window_type == "whisperwindow")
+					whisper = TRUE
 				winset(client, "[window_type].input", "text=\"\"")
 				if (isnull(client)) return
 				winset(client, "[window_type]", "is-visible=false")
@@ -2124,7 +2127,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			return
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
-			H.say(message, ignore_stamina_winded = 1) // say the thing they were typing and grunt
+			whisper ? H.whisper(message, forced=TRUE) : H.say(message, ignore_stamina_winded = 1)
 		else
-			src.say(message)
+			whisper ? src.whisper(message) : src.say(message)
 		src.stat = old_stat // back to being dead 😌
