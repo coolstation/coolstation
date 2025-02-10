@@ -144,7 +144,9 @@
 				var/turf/T = src.loc
 				if (A.no_ants || T.is_frozen() || T.is_too_hot()) //or else we'd never ever ever get clean food from hydro
 					return //that astroturf is thoroughly covered in insecticide
-				if (prob(25))
+				if (prob(25)) //maybe give up
+					processing_items -= src
+				else if (prob(10)) //maybe do ants
 					made_ants = 1
 					processing_items -= src
 					if (!(locate(/obj/reagent_dispensers/cleanable/ants) in src.loc))
@@ -1137,6 +1139,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
 	fluid_underlay_shows_volume = TRUE
 	cap_type = "cap"
+	value = 20
 
 
 /* ========================================================== */
@@ -1159,6 +1162,7 @@
 	initial_volume = 50
 	var/smashed = 0
 	shard_amt = 1
+	value = 5
 
 	var/image/fluid_image
 	var/image/image_ice
