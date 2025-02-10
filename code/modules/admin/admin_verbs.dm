@@ -1097,11 +1097,12 @@ var/list/fun_images = list()
 
 	var/mob/living/carbon/human/M = src.mob
 	if (!M) return
+	var/loc = M.loc
 	var/list/jobs = job_controls.staple_jobs + job_controls.special_jobs + job_controls.hidden_jobs
 	var/datum/job/job = input(usr,"Select job to respawn [M] as:","Respawn As",null) as null|anything in jobs
 	if(!job) return
 	var/mob/new_player/newM = usr.client.respawn_target(M)
-	newM.AttemptLateSpawn(job, force=1)
+	newM.AttemptLateSpawn(job, force=1, loc_override=loc)
 
 /client/proc/respawn_as(var/client/cli in clients)
 	set name = "Respawn As Existing Player"
