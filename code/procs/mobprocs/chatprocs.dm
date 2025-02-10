@@ -2,6 +2,7 @@
 	return
 
 /mob/proc/whisper(message, forced=FALSE)
+	cancel_typing("whisper")
 	return
 
 /mob/verb/whisper_verb(message as text)
