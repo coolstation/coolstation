@@ -93,9 +93,9 @@
 	icon = 'icons/obj/furniture/bench_orange.dmi'
 	furniture_type = /obj/stool/bench/orange/auto
 
-/obj/item/furniture_parts/bench/navy
+/obj/item/furniture_parts/bench/dblue
 	icon = 'icons/obj/furniture/bench_navy.dmi'
-	furniture_type = /obj/stool/bench/navy/auto
+	furniture_type = /obj/stool/bench/dblue/auto
 
 /obj/item/furniture_parts/bench/wooden
 	name = "wooden bench parts"
