@@ -373,9 +373,9 @@
 	icon = 'icons/obj/furniture/bench_navy.dmi'
 	parts_type = /obj/item/furniture_parts/bench/dblue
 
-/obj/stool/bench/orange/auto
+/obj/stool/bench/dblue/auto
 	auto = 1
-	auto_path = /obj/stool/bench/orange/auto
+	auto_path = /obj/stool/bench/dblue/auto
 
 /* ---------- Wooden ---------- */
 
