@@ -896,11 +896,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 
 /datum/projectile/energy_bolt/three
-	power = 15
+	power = 20
 	shot_number = 3
 
 /datum/projectile/energy_bolt/five
-	power = 10
+	power = 15
 	shot_number = 5
 
 /datum/projectile/laser/three
@@ -911,7 +911,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /datum/projectile/laser/flashbulb
 	name = "open-source laser"
 	icon_state = "laser1"
-	power = 15
+	power = 25
 	cost = 50
 	dissipation_delay = 5
 	brightness = 0
@@ -926,7 +926,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/two
 	icon_state = "laser2"
-	power = 25
+	power = 40
 	shot_pitch = 0.95
 	//orange
 	color_red = 0.9
@@ -937,7 +937,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/three
 	icon_state = "laser3"
-	power = 35
+	power = 50
 	shot_pitch = 0.90
 	//yellow
 	color_red = 0.9
@@ -958,7 +958,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/four
 	icon_state = "laser4"
-	power = 45
+	power = 60
 	shot_pitch = 0.85
 	//cyan
 	color_red = 0
@@ -980,7 +980,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/five //bringing it back
 	icon_state = "laser5"
-	power = 60
+	power = 75
 	shot_pitch = 0.75
 	//near-ultraviolet
 	color_red = 0.25
