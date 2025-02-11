@@ -627,6 +627,14 @@ CONTAINS:
 		src.cell = newcell
 		newcell.set_loc(src)
 
+	attackby(obj/item/W, mob/user, params)
+		if(istool(W, TOOL_CUTTING))
+			boutput(user, "You cut the cables off the cell.")
+			user.put_in_hand_or_drop(src.cell)
+			qdel(src)
+		else return ..()
+
+
 
 
 

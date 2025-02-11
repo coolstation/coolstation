@@ -92,6 +92,7 @@ var/list/admin_verbs = list(
 		/client/proc/respawn_as_self, //take your existing slot and make a new self right where your ghost is
 #ifdef SECRETS_ENABLED
 		/client/proc/respawn_as_adminsona,
+		/client/proc/respawn_as_job,
 		/client/proc/toggle_adminsona_serious,
 #endif
 
@@ -257,6 +258,7 @@ var/list/admin_verbs = list(
 		/client/proc/respawn_as_self,
 		/client/proc/respawn_heavenly,
 		/client/proc/respawn_demonically,
+		/client/proc/respawn_as_job,
 #ifdef SECRETS_ENABLED
 		/client/proc/respawn_as_adminsona,
 		/client/proc/toggle_adminsona_serious,
@@ -1060,6 +1062,7 @@ var/list/fun_images = list()
 	boutput(src, "<b>Last touched by:</b> [key_name(O.fingerprintslast)].")
 	return
 
+
 /client/proc/respawn_heavenly()
 	set name = "Respawn As Self (Heavenly)"
 	set desc = "Respawn yourself (currently loaded character) from the heavens"
@@ -1085,6 +1088,21 @@ var/list/fun_images = list()
 	var/mob/living/carbon/human/M = src.mob
 	M.bioHolder.AddEffect("hell_fire", magical = 1)
 	demonic_spawn(M)
+
+/client/proc/respawn_as_job(var/client/client in clients)
+	set name = "Respawn As Job"
+	set desc = "Respawn yourself as a given job. Instantly. Right where you stand."
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	set popup_menu = 0
+
+	var/mob/living/carbon/human/M = src.mob
+	if (!M) return
+	var/loc = M.loc
+	var/list/jobs = job_controls.staple_jobs + job_controls.special_jobs + job_controls.hidden_jobs
+	var/datum/job/job = input(usr,"Select job to respawn [M] as:","Respawn As",null) as null|anything in jobs
+	if(!job) return
+	var/mob/new_player/newM = usr.client.respawn_target(M)
+	newM.AttemptLateSpawn(job, force=1, loc_override=loc)
 
 /client/proc/respawn_as(var/client/cli in clients)
 	set name = "Respawn As Existing Player"

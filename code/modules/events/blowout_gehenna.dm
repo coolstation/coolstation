@@ -2,7 +2,7 @@
 	name = "Radioactive Blowout (Gehenna)"
 	required_elapsed_round_time = 20 MINUTES
 	var/space_color = "#ff4646"
-#ifndef MAP_OVERRIDE_GEHENNA
+#ifndef DESERT_MAP
 	disabled = TRUE
 #endif
 

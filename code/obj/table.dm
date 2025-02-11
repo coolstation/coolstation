@@ -317,15 +317,15 @@
 				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
 			return
 
-		else if (isscrewingtool(W))
-			if (istype(src.desk_drawer) && src.desk_drawer.locked)
+		else if (isscrewingtool(W) && user.a_intent == INTENT_HARM)
+			if (src.desk_drawer && src.desk_drawer.locked)
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_LOCKPICK), user)
 				return
 			else if (src.auto && ispath(src.auto_type))
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_ADJUST), user)
 				return
 
-		else if (iswrenchingtool(W) && !src.status) // shouldn't have status unless it's reinforced, maybe? hopefully?
+		else if (iswrenchingtool(W) && !src.status && user.a_intent == INTENT_HARM) // shouldn't have status unless it's reinforced, maybe? hopefully?
 			if (istype(src, /obj/table/folding))
 				actions.start(new /datum/action/bar/icon/fold_folding_table(src, W), user)
 			else

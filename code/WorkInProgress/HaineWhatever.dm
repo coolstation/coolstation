@@ -522,7 +522,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	color = "#484857" // black
 	var/pip_color = "#FFFFFF" // only set to other colors by white 50c chips atm but may as well make it a var because ~variety~
 	var/image/image_pip = null
-	var/value = 1
+	var/chipvalue = 1
 	force = 2.0
 	throwforce = 2.0
 	throw_speed = 1
@@ -581,36 +581,36 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 
 /obj/item/dice/coin/poker_chip/v5
 	color = "#DC0E18" // red
-	value = 5
+	chipvalue = 5
 
 /obj/item/dice/coin/poker_chip/v10
 	color = "#30BA67" // green
-	value = 10
+	chipvalue = 10
 
 /obj/item/dice/coin/poker_chip/v25
 	color = "#3153CE" // blue
-	value = 25
+	chipvalue = 25
 
 /obj/item/dice/coin/poker_chip/v50
 	color = "#FFFFFF" // white
 	pip_color = "#3153CE" // blue
-	value = 50
+	chipvalue = 50
 
 /obj/item/dice/coin/poker_chip/v100
 	color = "#FF7BD2" // pink
-	value = 100
+	chipvalue = 100
 
 /obj/item/dice/coin/poker_chip/v250
 	color = "#E78B2E" // orange
-	value = 250
+	chipvalue = 250
 
 /obj/item/dice/coin/poker_chip/v500
 	color = "#BE3ED6" // purple
-	value = 500
+	chipvalue = 500
 
 /obj/item/dice/coin/poker_chip/v1000
 	color = "#4BE1DD" // aqua
-	value = 1000
+	chipvalue = 1000
 
 /*
                     +---------------+
