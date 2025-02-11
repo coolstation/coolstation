@@ -408,31 +408,37 @@
 
 							if (length(src.is_a_link.adjacent_nodes))
 								var/datum/powernet_graph_node/previous_node = src.is_a_link.adjacent_nodes[1]
-								previous_node.adjacent_nodes[possible_loop_node] = src.is_a_link
-								possible_loop_node.adjacent_nodes[previous_node] = src.is_a_link
+								if (possible_loop_node in previous_node.adjacent_nodes)
+									var/fucken_existing_connections1 = previous_node.adjacent_nodes[possible_loop_node]
+									var/fucken_existing_connections2 = possible_loop_node.adjacent_nodes[previous_node]
+									if (islist(fucken_existing_connections1)) //gonna assume that if 1 is a list then 2 is too, and vice versa
+										previous_node.adjacent_nodes[possible_loop_node] += src.is_a_link
+										possible_loop_node.adjacent_nodes[previous_node] += src.is_a_link
+									else
+										previous_node.adjacent_nodes[possible_loop_node] = list(fucken_existing_connections1 ,src.is_a_link)
+										possible_loop_node.adjacent_nodes[previous_node] = list(fucken_existing_connections2 ,src.is_a_link)
+								else
+									previous_node.adjacent_nodes[possible_loop_node] = src.is_a_link
+									possible_loop_node.adjacent_nodes[previous_node] = src.is_a_link
 							src.is_a_link.adjacent_nodes += possible_loop_node
 
 						possible_loop_node.adjacent_nodes -= Cs_node
 						qdel(Cs_node)
 						C.is_a_node = null
 
-						if (length(src.is_a_link.adjacent_nodes) == 2) //
-							return
-
-
-
 			if (3) //other cable needs to become a node
+				var/datum/powernet_graph_link/Cs_link = C.is_a_link
+				C.
+				if (src.is_a_node)
+					for(var/datum/powernet_graph_node/new_)
+				else
+
+			else //other cable stays a node
 
 
 
+get_step()
 
-
-
-
-
-
-
-		else //should get a node if it doesn't have one
 
 	//for (var/obj/machinery/power/P in connections)
 		//power_list() in get_connections has already filtered APCs out
