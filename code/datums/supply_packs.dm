@@ -1142,7 +1142,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 	teg
 		name = "Thermoelectric Generator Kit"
-		desc = "A three-part kit for constructing your very own megawatt-output peltier device."
+		desc = "A three-part kit for constructing your very own megawatt-output peltier device. Furnaces sold seperately."
 		contents = "Thermoelectric Generator, Hot Gas Circulator, Cold Gas Circulator, Instructions (no charge)"
 		contains = list(/obj/item/electronics/frame/teg,
 					/obj/item/electronics/frame/hot_circ,
@@ -1154,6 +1154,16 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		containername = "Thermoelectric Generator Kit (Cardlocked \[Engineering])"
 		access = access_engineering
 		//hidden = 1 // doesnt actually work yet - warc
+	teg_furnaces
+		name = "Thermoelctric Furnace Pack"
+		desc = "A set of three atmospheric furnaces for heating megawatt class peltier devices."
+		contents = "Thermoelectric Furnace Frame x3"
+		contains = list(/obj/item/electronics/frame/teg_furnace,
+					/obj/item/electronics/frame/teg_furnace,
+					/obj/item/electronics/frame/teg_furnace)
+		cost = 5000
+		containertype = /obj/storage/crate
+		containername = "Thermoelectric Furnace Pack"
 
 //Vending machine servicing
 //Kyle2143 originally
