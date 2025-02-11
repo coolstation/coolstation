@@ -1859,6 +1859,15 @@ datum
 					C.reagents.add_reagent("cyanide", (0.4 * created_volume) / length(mobs_affected))
 				return
 
+		hemotoxin
+			name = "hemotoxin"
+			id = "hemotoxin"
+			result = "hemotoxin"
+			required_reagents = list("acetone" = 1, "pacid" = 1, "phosphorus" = 2, "sulfur" = 1)
+			mix_phrase = "The substance condenses into a sickly yellow liquid."
+			required_temperature = T0C + 130
+			result_amount = 2 // 40% yield
+
 		sarin // oh god why am i adding this
 			name = "Sarin"
 			id = "sarin"
