@@ -795,7 +795,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 /datum/job/medical/roboticist
 	name = "Roboticist"
 	limit = 2
-	wages = 200
+	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/medical/robotics)
 	slot_jump = list(/obj/item/clothing/under/rank/roboticist)
 	slot_foot = list(/obj/item/clothing/shoes/black)
