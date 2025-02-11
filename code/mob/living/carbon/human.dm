@@ -1018,7 +1018,9 @@
 
 	var/obj/item/I = src.equipped()
 
-	if (!I || !isitem(I) || I.cant_drop) return
+	if (!I || !isitem(I) || I.cant_drop)
+		src.slidekick(target)
+		return
 
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
@@ -1083,6 +1085,91 @@
 				G.shoot()
 
 		src.next_click = world.time + src.combat_click_delay
+
+// allows slidekicking without blocking being a thing
+/mob/living/carbon/human/proc/slidekick(atom/target)
+	if (src.next_click > world.time)
+		return
+	src.next_click = world.time + src.combat_click_delay
+	if (isturf(src.loc) && target)
+		var/turf/T = src.loc
+		var/target_dir = get_dir(src,target)
+		var/did_any_dive_hit = FALSE
+		if(!target_dir)
+			target_dir = src.dir
+		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
+		if (!(T.turf_flags & CAN_BE_SPACE_SAMPLE) && !(src.lying) && can_act(src) && target_dir)
+			if (!HAS_MOB_PROPERTY(src, PROB_SLIDEKICK_TURBO))
+				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
+				src.force_laydown_standup()
+			else
+				src.changeStatus("turbosliding", (0.1 + 0.1 * slidekick_range) SECONDS)
+				src.force_laydown_standup()
+		SPAWN_DBG(0)
+			for (var/v in 1 to slidekick_range)
+				var/turf/target_turf = get_step(src,target_dir)
+				if (!target_turf)
+					target_turf = T
+				step_to(src,target_turf)
+
+				if(get_turf(src) == target_turf)
+					var/mob/living/dive_attack_hit = null
+					for (var/mob/living/L in target_turf)
+						if (src == L) continue
+						dive_attack_hit = L
+						did_any_dive_hit = TRUE
+						break
+
+					var/damage = rand(1,2)
+					if (src.shoes)
+						damage += src.shoes.kick_bonus
+					else if (src.limbs.r_leg)
+						damage += src.limbs.r_leg.limb_hit_bonus
+					else if (src.limbs.l_leg)
+						damage += src.limbs.l_leg.limb_hit_bonus
+
+					for (var/obj/machinery/bot/secbot/secbot in target_turf) // punt that beepsky
+						src.visible_message("<span class='alert'><b>[src]</b> kicks [secbot] like the football!</span>")
+						var/atom/throw_target = get_edge_target_turf(secbot, target_dir)
+						secbot.throw_at(throw_target, 6, 2)
+						SPAWN_DBG(2 SECONDS) //can't believe that just happened! the audacity does not compute! also give it some time to go sailing
+							secbot.threatlevel = 2
+							secbot.EngageTarget(src)
+
+					if (dive_attack_hit)
+						dive_attack_hit.was_harmed(src, special = "slidekick")
+						dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
+						playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
+						for (var/mob/O in AIviewers(src))
+							O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)
+						logTheThing("combat", src, dive_attack_hit, "slides into [dive_attack_hit] at [log_loc(dive_attack_hit)].")
+
+					var/item_num_to_throw = 0
+					if (ishuman(src))
+						item_num_to_throw += !!src.limbs.r_leg
+						item_num_to_throw += !!src.limbs.l_leg
+
+					if (item_num_to_throw)
+						for (var/obj/item/itm in target_turf) // We want to kick items only
+							if (itm.w_class >= W_CLASS_HUGE)
+								continue
+
+							var/atom/throw_target = get_edge_target_turf(itm, target_dir)
+							if (throw_target)
+								item_num_to_throw--
+								playsound(itm, "swing_hit", 50, 1)
+								itm.throw_at(throw_target, W_CLASS_HUGE - itm.w_class, (1 / itm.w_class) + 0.8) // Range: 1-4, Speed: 1-2
+
+							if (!item_num_to_throw)
+								break
+
+				if (v < slidekick_range)
+					sleep(0.1 SECONDS)
+
+			if(!did_any_dive_hit)
+				for (var/mob/O in AIviewers(src))
+					O.show_message("<span class='alert'><B>[src] slides to the ground!</B></span>", 1, group = "resist")
+	return
 
 /mob/living/carbon/human/click(atom/target, list/params)
 	if (src.client)
@@ -3362,7 +3449,7 @@
 		src.drop_juggle()
 
 
-/mob/living/carbon/human/special_movedelay_mod(delay,space_movement,aquatic_movement)
+/mob/living/carbon/human/special_movedelay_mod(delay,space_movement,aquatic_movement,lying_multiplier)
 	.= delay
 	var/missing_legs = 0
 	var/missing_arms = 0
@@ -3371,13 +3458,13 @@
 		if (!src.limbs.r_leg) missing_legs++
 		if (!src.limbs.l_arm) missing_arms++
 		if (!src.limbs.r_arm) missing_arms++
-	if (src.lying)
-		missing_legs = 2
 	else if (src.shoes && src.shoes.chained)
 		missing_legs = 2
 
 	if (missing_legs == 2)
 		. += 14 - ((2-missing_arms) * 2) // each missing leg adds 7 of movement delay. Each functional arm reduces this by 2.
+	else if (src.lying)
+		. += (14 - ((2-missing_arms) * 2)) * lying_multiplier
 	else
 		. += 7*missing_legs
 

@@ -1098,6 +1098,27 @@
 				var/mob/living/carbon/human/H = L
 				H.hud.update_resting()
 
+	turbosliding
+		id = "turbosliding"
+		name = "Turbosliding"
+		desc = "You are performing an incredibly sick slide."
+		visible = 0
+		unique = 1
+		maxDuration = 5 SECONDS // if you think this needs to be longer, please reconsider
+		movement_modifier = /datum/movement_modifier/turbosliding
+		var/mob/living/L
+
+		onAdd(optional=null)
+			. = ..()
+			if (isliving(owner))
+				L = owner
+			else
+				owner.delStatus("turbosliding")
+
+		onRemove()
+			. = ..()
+			L.force_laydown_standup()
+
 	ganger
 		id = "ganger"
 		name = "Gang Member"
