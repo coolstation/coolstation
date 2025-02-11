@@ -691,7 +691,7 @@
 		src.goods_sell += new /datum/commodity/ore/cerenkite(src)
 		src.goods_sell += new /datum/commodity/ore/telecrystal(src)
 
-		src.goods_buy += new /datum/commodity/laser_gun(src)
+		//src.goods_buy += new /datum/commodity/laser_gun(src) //replace with a soviet laser maybe
 		src.goods_buy += new /datum/commodity/relics/skull(src)
 		src.goods_buy += new /datum/commodity/relics/relic(src)
 		src.goods_buy += new /datum/commodity/relics/gnome(src)
