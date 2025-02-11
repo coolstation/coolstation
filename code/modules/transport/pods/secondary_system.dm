@@ -23,6 +23,7 @@
 	power_used = 250
 	hud_state = "cloak"
 	f_active = 1
+	value = 500000
 	var/image/shield = null
 
 	Use(mob/user as mob)

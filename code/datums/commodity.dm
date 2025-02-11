@@ -200,8 +200,8 @@
 	comname = "Uqill Bar"
 	comtype = /obj/item/material_piece/uqill
 	onmarket = 0
-	price = 750
-	baseprice = 750
+	price = 1000
+	baseprice = 1000
 	upperfluc = 1000
 	lowerfluc = -500
 
@@ -236,8 +236,8 @@
 	comname = "Koshmarite"
 	comtype = /obj/item/raw_material/eldritch
 	onmarket = 1
-	price = 100
-	baseprice = 100
+	price = 120
+	baseprice = 120
 	upperfluc = 100
 	lowerfluc = -50
 /datum/commodity/mat_bar/koshmarite
@@ -278,8 +278,8 @@
 	comname = "Bohrum Bar"
 	comtype = /obj/item/material_piece/bohrum
 	onmarket = 0
-	price = 200
-	baseprice = 200
+	price = 250
+	baseprice = 250
 	upperfluc = 200
 	lowerfluc = -100
 
@@ -312,8 +312,8 @@
 	comname = "Erebite Bar"
 	comtype = /obj/item/material_piece/erebite
 	onmarket = 0
-	price = 650
-	baseprice = 650
+	price = 850
+	baseprice = 850
 	upperfluc = 200
 	lowerfluc = -200
 
@@ -346,8 +346,8 @@
 	comname = "Plasmastone Bar"
 	comtype = /obj/item/material_piece/plasmastone
 	onmarket = 0
-	price = 550
-	baseprice = 550
+	price = 750
+	baseprice = 750
 	upperfluc = 200
 	lowerfluc = -200
 
@@ -363,10 +363,20 @@
 	comname = "Syreline Bar"
 	comtype = /obj/item/material_piece/syreline
 	onmarket = 0
-	price = 800
-	baseprice = 800
+	price = 1000
+	baseprice = 1000
 	upperfluc = 1000
 	lowerfluc = -300
+
+/datum/commodity/ore/gemstone //are you kidding me? is this how i find out gems, with no use other than selling, weren't even on the market????
+	comname = "Various Gemstones"
+	comtype = /obj/item/raw_material/gemstone
+	onmarket = 1
+	price = 1000
+	baseprice = 1000
+	upperfluc = 1000
+	lowerfluc = -500
+	onmarket = 1
 
 /datum/commodity/ore/gold
 	comname = "Gold Nugget"
@@ -387,6 +397,7 @@
 	upperfluc = 50000
 	lowerfluc = -25000
 
+/*
 /datum/commodity/laser_gun
 	comname = "Laser Gun"
 	comtype =  /obj/item/gun/energy/laser_gun
@@ -396,6 +407,7 @@
 	baseprice = 2000
 	upperfluc = 1000
 	lowerfluc = -1000
+*/
 
 /datum/commodity/pen
 	comname = "Pen"
@@ -412,50 +424,50 @@
 	comtype = /obj/item/device/guardbot_tool/medicator
 	desc = "A 'Medicator' syringe launcher module for PR-6S Guardbuddies. These things are actually outlawed on Earth."
 	onmarket = 0
-	price = 75
-	baseprice = 75
-	upperfluc = 20
-	lowerfluc = -20
+	price = 500
+	baseprice = 500
+	upperfluc = 150
+	lowerfluc = -150
 
 /datum/commodity/guardbot_smoker
 	comname = "Smoker Tool Module"
 	comtype = /obj/item/device/guardbot_tool/smoker
 	desc = "A riot-control gas module for PR-6S Guardbuddies."
 	onmarket = 0
-	price = 250
-	baseprice = 250
-	upperfluc = 40
-	lowerfluc = -40
+	price = 500
+	baseprice = 500
+	upperfluc = 200
+	lowerfluc = -200
 
 /datum/commodity/guardbot_flash
 	comname = "Flash Tool Module"
 	comtype = /obj/item/device/guardbot_tool/flash
 	desc = "A flash module for PR-6S Guardbuddies."
 	onmarket = 0
-	price = 75
-	baseprice = 75
-	upperfluc = 20
-	lowerfluc = -20
+	price = 250
+	baseprice = 250
+	upperfluc = 60
+	lowerfluc = -60
 
 /datum/commodity/guardbot_taser
 	comname = "Taser Tool Module"
 	comtype = /obj/item/device/guardbot_tool/taser
 	desc = "A taser module for PR-6S Guardbuddies."
 	onmarket = 0
-	price = 175
-	baseprice = 75
-	upperfluc = 20
-	lowerfluc = -20
+	price = 400
+	baseprice = 400
+	upperfluc = 150
+	lowerfluc = -150
 
 /datum/commodity/guardbot_kit
 	comname = "Guardbot Construction Kit"
 	comtype = /obj/item/storage/box/guardbot_kit
 	desc = "A useful kit for building guardbuddies. All you need is a module!"
 	onmarket = 0
-	price = 100
-	baseprice = 100
-	upperfluc = 50
-	lowerfluc = -50
+	price = 400
+	baseprice = 400
+	upperfluc = 200
+	lowerfluc = -200
 
 /datum/commodity/boogiebot
 	comname = "Boogiebot"

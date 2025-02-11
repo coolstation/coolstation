@@ -662,6 +662,7 @@
 	icon_dynamic = 0
 	icon_empty = "40mmR-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
+	value = 100000
 
 	single
 		amount_left = 1
