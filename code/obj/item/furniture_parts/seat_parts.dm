@@ -85,6 +85,18 @@
 	icon = 'icons/obj/furniture/bench_yellow.dmi'
 	furniture_type = /obj/stool/bench/yellow/auto
 
+/obj/item/furniture_parts/bench/purple
+	icon = 'icons/obj/furniture/bench_purple.dmi'
+	furniture_type = /obj/stool/bench/purple/auto
+
+/obj/item/furniture_parts/bench/orange
+	icon = 'icons/obj/furniture/bench_orange.dmi'
+	furniture_type = /obj/stool/bench/orange/auto
+
+/obj/item/furniture_parts/bench/navy
+	icon = 'icons/obj/furniture/bench_navy.dmi'
+	furniture_type = /obj/stool/bench/navy/auto
+
 /obj/item/furniture_parts/bench/wooden
 	name = "wooden bench parts"
 	desc = "A collection of parts that can be used to make a wooden bench."
@@ -164,6 +176,14 @@
 	icon_state = "ochair_parts-p"
 	furniture_type = /obj/stool/chair/office/purple
 
+/obj/item/furniture_parts/office_chair/lblue
+	icon_state = "ochair_parts-lb"
+	furniture_type = /obj/stool/chair/office/lblue
+
+/obj/item/furniture_parts/office_chair/orange
+	icon_state = "ochair_parts-o"
+	furniture_type = /obj/stool/chair/office/orange
+
 /obj/item/furniture_parts/comfy_chair
 	name = "comfy chair parts"
 	desc = "A collection of parts that can be used to make a comfy chair."
@@ -193,6 +213,14 @@
 /obj/item/furniture_parts/comfy_chair/purple
 	icon_state = "comf_chair_parts-p"
 	furniture_type = /obj/stool/chair/comfy/purple
+
+/obj/item/furniture_parts/comfy_chair/lblue
+	icon_state = "comf_chair_parts-lb"
+	furniture_type = /obj/stool/chair/comfy/lblue
+
+/obj/item/furniture_parts/comfy_chair/orange
+	icon_state = "comf_chair_parts-o"
+	furniture_type = /obj/stool/chair/comfy/orange
 
 /obj/item/furniture_parts/throne_gold
 	name = "golden throne parts"

@@ -347,6 +347,36 @@
 	auto = 1
 	auto_path = /obj/stool/bench/yellow/auto
 
+/* ---------- Purple ---------- */
+
+/obj/stool/bench/purple
+	icon = 'icons/obj/furniture/bench_purple.dmi'
+	parts_type = /obj/item/furniture_parts/bench/purple
+
+/obj/stool/bench/purple/auto
+	auto = 1
+	auto_path = /obj/stool/bench/purple/auto
+
+/* ---------- Orange ---------- */
+
+/obj/stool/bench/orange
+	icon = 'icons/obj/furniture/bench_orange.dmi'
+	parts_type = /obj/item/furniture_parts/bench/orange
+
+/obj/stool/bench/orange/auto
+	auto = 1
+	auto_path = /obj/stool/bench/orange/auto
+
+/* ---------- Dark Blue (Navy) ---------- */
+
+/obj/stool/bench/dblue
+	icon = 'icons/obj/furniture/bench_navy.dmi'
+	parts_type = /obj/item/furniture_parts/bench/dblue
+
+/obj/stool/bench/orange/auto
+	auto = 1
+	auto_path = /obj/stool/bench/orange/auto
+
 /* ---------- Wooden ---------- */
 
 /obj/stool/bench/wooden
