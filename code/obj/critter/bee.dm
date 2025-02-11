@@ -1564,6 +1564,7 @@
 	var/hatched = 0
 	var/larva_type = null
 	rand_pos = 8
+	value = 75
 
 	var/tmp/blog = "egg blog|"
 
@@ -1823,6 +1824,7 @@
 	heal_amt = 1
 	doants = 0
 	initial_volume = 50
+	value = 50
 
 	New()
 		..()

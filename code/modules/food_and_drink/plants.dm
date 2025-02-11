@@ -11,6 +11,7 @@
 	var/crop_prefix = ""	// Prefix for crop name when harvested ("rainbow" melon)
 	var/crop_suffix = ""	// Suffix for crop name when harvested (bamboo "shoot")
 	food_effects = list("food_cold", "food_disease_resist")
+	value = 50 //base commodity price
 
 	var/made_reagents = 0
 
@@ -96,6 +97,7 @@
 	icon_state = "shoot"
 	food_color = "#B7B675"
 	amount = 1
+	value = 10
 
 /obj/item/reagent_containers/food/snacks/plant/tomato/
 	name = "tomato"
@@ -108,6 +110,7 @@
 	force = 0
 	plant_reagent = "juice_tomato"
 	validforhat = 1
+	value = 25
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)
@@ -122,7 +125,9 @@
 /obj/item/reagent_containers/food/snacks/plant/tomato/incendiary
 	name = "tomato"
 	crop_prefix = "seething "
-	desc = "You say tomato, I toolbox you."
+	desc = "You say tomato, I blow your ass up."
+	value = 25
+	alt_value = 50
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)
@@ -152,6 +157,7 @@
 	heal_amt = 1
 	throwforce = 0
 	force = 0
+	value = 75
 	make_reagents()
 		..()
 		reagents.add_reagent("nicotine",15)
@@ -199,6 +205,7 @@
 	food_color = "#FFFFFF"
 	plant_reagent = "ethanol"
 	brew_result = "ethanol"
+	value = 75
 
 /obj/item/reagent_containers/food/snacks/plant/soy
 	name = "soybean pod"
@@ -248,6 +255,7 @@
 	food_color = "#bdbd35"
 	plant_reagent = "ammonia"
 	brew_result = "ammonia"
+	value = 75
 
 /obj/item/reagent_containers/food/snacks/plant/soylent
 	name = "soylent chartreuse"
@@ -260,6 +268,7 @@
 	throwforce = 0
 	force = 0
 	food_color = "#BBF33D"
+	value = 100 //very popular in the frontier
 
 /obj/item/reagent_containers/food/snacks/plant/orange/
 	name = "orange"
@@ -316,6 +325,7 @@
 	name = "blood orange"
 	desc = "Juicy."
 	plant_reagent = "bloodc"
+	value = 75
 
 /obj/item/reagent_containers/food/snacks/plant/orange/wedge
 	name = "orange wedge"
@@ -325,6 +335,7 @@
 	w_class = W_CLASS_TINY
 	amount = 1
 	validforhat = 0
+	value = 5
 
 	make_reagents()
 		..()
@@ -342,6 +353,7 @@
 	icon_state = "orange-clockwork"
 	validforhat = 0
 	tooltip_flags = REBUILD_ALWAYS
+	value = 75
 
 	get_desc()
 		. += "[pick("The time is", "It's", "It's currently", "It reads", "It says")] [o_clock_time()]."
@@ -380,6 +392,7 @@
 	heal_amt = 2
 	food_color = "#AAFFAA"
 	brew_result = "white_wine"
+	value = 60
 
 /obj/item/reagent_containers/food/snacks/plant/grapefruit/
 	name = "grapefruit"
@@ -481,6 +494,7 @@
 	heal_amt = 2
 	food_color = "#7FFF00"
 	food_effects = list("food_cold", "food_refreshed")
+	value = 7
 
 /obj/item/reagent_containers/food/snacks/plant/melon/george
 	name = "rainbow melon"
@@ -491,6 +505,7 @@
 	w_class = W_CLASS_NORMAL
 	edible = 0
 	initial_volume = 60
+	value = 75
 
 	make_reagents()
 		..()
@@ -544,6 +559,7 @@
 	heal_amt = 2
 	plant_reagent = "george_melonium"
 	initial_volume = 30
+	value = 10
 
 	make_reagents()
 		..()
@@ -559,6 +575,7 @@
 	w_class = W_CLASS_NORMAL
 	force = 5
 	throw_speed = 1
+	value = 75
 
 	proc/damage(var/mob/hitMob, damMin, damMax, var/mob/living/carbon/human/user)
 		if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing/under/gimmick/bowling))
@@ -676,6 +693,7 @@
 	food_color = "#00CED1"
 	plant_reagent = "cryostylane"
 	initial_volume = 100
+	value = 75
 
 	make_reagents()
 		..()
@@ -700,6 +718,7 @@
 	food_color = "#FFFF00"
 	plant_reagent = "ghostchilijuice"
 	initial_volume = 30
+	value = 75
 
 	make_reagents()
 		..()
@@ -781,6 +800,7 @@
 	brew_result = list("cider","rotting") //bad
 	food_color = "#3FB929"
 	initial_volume = 30
+	value = -20
 
 	make_reagents()
 		..()
@@ -882,6 +902,7 @@
 	plant_reagent = "capulettium"
 	initial_volume = 100
 	doants = FALSE //ants have standards
+	value = -50 //fuck your bullshit apple
 
 	make_reagents()
 		..()
@@ -895,6 +916,7 @@
 	desc = "An apple on a stick."
 	icon_state = "apple-stick"
 	validforhat = 0
+	value = 60
 
 /obj/item/reagent_containers/food/snacks/plant/apple/stick/sour
 	name = "sour apple on a stick"
@@ -913,6 +935,7 @@
 	desc = "A bullshit apple on a stick."
 	icon_state = "apple-poison-stick"
 	doants = FALSE
+	value = -50
 
 	make_reagents()
 		..()
@@ -1059,6 +1082,7 @@
 	amount = 1
 	initial_volume = 6
 	validforhat = 0
+	value = 7
 
 	make_reagents()
 		..()
@@ -1112,6 +1136,7 @@
 	amount = 1
 	initial_volume = 6
 	validforhat = 0
+	value = 7
 
 	make_reagents()
 		..()
@@ -1133,6 +1158,8 @@
 	food_color = "#008000"
 	plant_reagent = "toxic_slurry"
 	initial_volume = 50
+	value = -50
+	alt_value = 50
 
 /obj/item/reagent_containers/food/snacks/plant/slurryfruit/omega
 	name = "omega slurrypod"
@@ -1142,6 +1169,8 @@
 	amount = 1
 	heal_amt = -1
 	initial_volume = 50
+	value = -500
+	alt_value = 150
 
 	make_reagents()
 		..()
@@ -1257,6 +1286,7 @@
 	food_color = "#B923EB"
 	amount = 1
 	food_effects = list("food_bad_breath")
+	value = 5
 
 /obj/item/reagent_containers/food/snacks/plant/garlic
 	name = "garlic"
@@ -1359,6 +1389,7 @@
 	heal_amt = 2
 	food_color = "#4D2600"
 	food_effects = list("food_refreshed","food_cold")
+	value = 7
 
 	make_reagents()
 		..()
@@ -1403,6 +1434,7 @@
 	heal_amt = 2
 	food_color = "#F8D016"
 	food_effects = list("food_refreshed","food_cold")
+	value = 7
 
 	make_reagents()
 		..()
@@ -1448,6 +1480,7 @@
 	heal_amt = 2
 	food_color = "#FF00FF"
 	validforhat = 1
+	value = 60
 
 // Weird alien fruit
 
@@ -1463,6 +1496,8 @@
 	food_color = "#9865c5"
 	initial_volume = 25
 	food_effects = list("food_sweaty","food_bad_breath")
+	value = -10
+	alt_value = 20
 
 	make_reagents()
 		..()
@@ -1474,6 +1509,8 @@
 	icon_state = "yuckorange"
 	food_color = "#ff9900"
 	initial_volume = 30
+	value = -10
+	alt_value = 50
 
 	make_reagents()
 		..()
@@ -1491,6 +1528,7 @@
 	food_color = "#ccccff"
 	validforhat = 1
 	var/datum/light/light
+	value = 150
 
 	spawnable
 		make_reagents()

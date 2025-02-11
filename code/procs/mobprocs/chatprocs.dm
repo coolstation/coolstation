@@ -6,6 +6,7 @@
 
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
+	cancel_typing("whisperwindow")
 	return src.whisper(message)
 
 
@@ -31,20 +32,77 @@
 	set name = "say_radio"
 	set hidden = 1
 
-/mob/verb/say_main_radio()
+/mob/verb/say_main_radio(msg as text)
 	set name = "say_main_radio"
 	set hidden = 1
 
-/mob/living/say_main_radio()
+/mob/say_main_radio(msg as text)
 	set name = "say_main_radio"
+	set desc = "Speaking on the main radio frequency"
 	set hidden = 1
-	var/text = input("", "Speaking on the main radio frequency") as null|text
+	cancel_typing("radiochannelsay")
+	var/client/client = src.client
+	if(isAI(src) && !src.client)
+	//AI eye is sending the message
+		client = usr.client
 	if (client.preferences.auto_capitalization)
 		var/i = 1
-		while (copytext(text, i, i+1) == " ")
+		while (copytext(msg, i, i+1) == " ")
 			i++
-		text = capitalize(copytext(text, i))
-	src.say_verb(";" +text)
+		msg = capitalize(copytext(msg, i))
+	src.say_verb(";" + msg)
+
+/mob/proc/open_radio_input(token as text, title as text, color)
+	//Some of the radio channels are way too bright
+	var/list/colorOverrides = list(
+		RADIOC_SECURITY = "#ac2e2e",
+		RADIOC_RESEARCH = "#9e6fdd",
+		RADIOC_STANDARD = "#aaaa55",
+		RADIOC_CIVILIAN = "#8d2d7a",
+		RADIOC_OTHER = "#aaaa55"
+
+	)
+	if(color in colorOverrides)
+		color = colorOverrides[color]
+
+	if(!color)
+		color ="#aaaa55"
+	var/client/client = src.client
+	if(isAI(src) && !src.client)
+		client = usr.client
+	winset(client, "radiochannelsaywindow", "background-color=\"[color]\"")
+	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
+	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\"[token] \"")
+	winset(client, "radiochannelsaywindow.accept", "command=\".winset \\\"command=\\\"say_radio_channel \\\\\\\"[token]\[\[radiochannelsaywindow.input.text as escaped\]\]\\\";radiochannelsaywindow.is-visible=false\\\";radiochannelsaywindow.input.text=\\\"\\\"\"")
+	winset(client, "radiochannelsaywindow", "is-visible=true")
+	winset(client, "radiochannelsaywindow.input", "focus=true")
+
+	SPAWN_DBG(3 SECONDS)
+		//The channel selector sends us the Return+UP when we press enter so we have to turn this off
+		//But let's turn it back on after a moment so we won't usually be affected by latency just to close the window
+		winset(client, "radiochannelsaywindow_macro_returnup", "is-disabled=false" )
+
+/mob/verb/say_radio_channel(msg as text)
+	set name = "say_radio_channel"
+	set hidden = 1
+
+/mob/say_radio_channel(msg as text)
+	set name = "say_radio_channel"
+	set desc = "Speaking on radio channel"
+	set hidden = 1
+	var/client/client = src.client
+	//AI eye is sending the message
+	if(isAI(src) && !src.client)
+		client = usr.client
+	winset(client, "radiochannelsaywindow", "is-visible=false")
+	//Don't usr why I need this here
+	cancel_typing("radiochannelsay")
+	if (client.preferences.auto_capitalization)
+		var/i = 1
+		while (copytext(msg, i, i+1) == " ")
+			i++
+		msg = capitalize(copytext(msg, i))
+	src.say_verb(msg)
 
 /mob/living/say_radio()
 	set name = "say_radio"
@@ -54,7 +112,9 @@
 		var/mob/living/silicon/ai/A = src
 		var/list/choices = list()
 		var/list/channels = list()
+		var/list/frequencies = list()
 		var/list/radios = list(A.radio1, A.radio2, A.radio3)
+
 		for (var/i = 1, i <= radios.len, i++)
 			var/obj/item/device/radio/R = radios[i]
 			var/channel_name
@@ -64,13 +124,14 @@
 				// Honestly this should probably be fixed in some other way, but, effort.
 				channel_name = "[format_frequency(R.frequency)] - " + (headset_channel_lookup["[R.frequency]"] ? headset_channel_lookup["[R.frequency]"] : "(Unknown)")
 				choices += channel_name
+				frequencies[channel_name] = R.frequency
 				channels[channel_name] = ":[i]"
 
 			if (istype(R.secure_frequencies) && length(R.secure_frequencies))
 				for (var/sayToken in R.secure_frequencies)
 					channel_name = "[format_frequency(R.secure_frequencies[sayToken])] - " + (headset_channel_lookup["[R.secure_frequencies[sayToken]]"] ? headset_channel_lookup["[R.secure_frequencies[sayToken]]"] : "(Unknown)")
-
 					choices += channel_name
+					frequencies[channel_name] = R.secure_frequencies[sayToken]
 					channels[channel_name] = ":[i][sayToken]"
 
 		if (A.robot_talk_understand)
@@ -89,13 +150,11 @@
 		var/token = channels[choice]
 		if (!token)
 			boutput(src, "Somehow '[choice]' didn't match anything. Welp. Probably busted.")
-		var/text = input("", "Speaking over [choice] ([token])") as null|text
-		if (text)
 
-			if(src?.client?.preferences.auto_capitalization)
-				text = capitalize(text)
+		var/choice_index = choices.Find(choice)
+		var/color = default_frequency_color(frequencies[frequencies[choice_index]])
+		open_radio_input(token, choice, color)
 
-			src.say_verb(token + " " + text)
 
 	else if (src.ears && istype(src.ears, /obj/item/device/radio))
 		var/obj/item/device/radio/R = src.ears
@@ -119,6 +178,7 @@
 		if (!choice)
 			return
 
+		var/color = "#aaaa55"
 		var/choice_index = choices.Find(choice)
 		if (choice_index == 1)
 			token = ";"
@@ -126,14 +186,10 @@
 			token = ":s"
 		else
 			token = ":" + R.secure_frequencies[choice_index - 1]
+			color = default_frequency_color(R.secure_frequencies[R.secure_frequencies[choice_index - 1]])
 
-		var/text = input("", "Speaking to [choice] frequency") as null|text
-		if (client.preferences.auto_capitalization)
-			var/i = 1
-			while (copytext(text, i, i+1) == " ")
-				i++
-			text = capitalize(copytext(text, i))
-		src.say_verb(token + " " + text)
+		open_radio_input(token, choice, color)
+
 	else
 		boutput(src, "<span class='notice'>You must put a headset on your ear slot to speak on the radio.</span>")
 

@@ -1,4 +1,4 @@
-/client/proc/create_input_window(id, title, accept_verb, cancel_verb, force=FALSE, show=TRUE)
+/client/proc/create_input_window(id, title, accept_verb, cancel_verb, force=FALSE, show=TRUE, background_color=null)
 	if(winexists(src, id))
 		if(force)
 			//Delete all clientside objects that are part of the window
@@ -31,6 +31,8 @@
 		winset(src, "[id].cancel", "command=\".winset \\\"[id].is-visible=false\\\";[id].input.text=\\\"\\\"\"")
 		winset(src, "[id]_macro_return", "parent=persist_[id]_macro;name=Return;command=\".winset \\\"[id].is-visible=false\\\"\"")
 		winset(src, "[id]_macro_escape", "parent=persist_[id]_macro;name=Escape;command=\".winset \\\"[id].is-visible=false\\\";[id].input.text=\\\"\\\"\"")
+	if(background_color)
+		winset(src, "[id]", "background-color=\"[background_color]\"")
 	//Window scaling!
 	//BYOND doesn't scale the window by DPI scaling, so it'll appear too big/too small with DPI scaling other than the one it was based on
 	//This code uses the title bar to figure out what DPI scaling is being used and resize the window based on that
@@ -116,23 +118,47 @@
 		//Show the window and focus on the textbox
 		winshow(src, id, TRUE)
 		winset(src, "[id].input", "focus=true")
+
 ///Presets for standard windows
 var/list/input_window_presets =  list(
-	"say" = list("saywindow", "say \\\"text\\\"", ".say", ".cancel_typing say"),
+	"say" = list("saywindow", "say \\\"text\\\"", ".say", ".cancel_typing say", "#dfd6d6"),
+	"radiosay" = list("radiosaywindow", "main channel radio", "say_main_radio", ".cancel_typing say"),
+	"whisper" = list("whisperwindow", "whisper (text)", "whisper", ".cancel_typing whisper", "#dfd6d6"),
 	"me"  = list("mewindow",  "me (text)",        ".me",  ".cancel_typing me"),
+	"radiochannelsay" = list("radiochannelsaywindow", "radio channel radio", "say_radio_channel", ".cancel_typing radiochannelsay")
 )
 /client/proc/create_preset_input_window(name, force=FALSE, show=TRUE)
 	var/arglist = input_window_presets[name]
-	create_input_window(arglist[1], arglist[2], arglist[3], arglist[4], force=force, show=show)
+	var/color = null
+	if(length(arglist) >= 5)
+		color = arglist[5]
+	create_input_window(arglist[1], arglist[2], arglist[3], arglist[4], background_color=color, force=force, show=show)
 //Those verbs are used by the hotkeys to ensure the window is created when you try to use it
 /client/verb/init_say()
 	set name = ".init_say"
 	set hidden = TRUE
 	create_preset_input_window("say")
+
+/client/verb/init_radiosay()
+	set name = ".init_radiosay"
+	set hidden = TRUE
+	create_preset_input_window("radiosay")
+
+/client/verb/init_radiochannelsay()
+	set name = ".init_radiochannelsay"
+	set hidden = TRUE
+	create_preset_input_window("radiochannelsay")
+
 /client/verb/init_me()
 	set name = ".init_me"
 	set hidden = TRUE
 	create_preset_input_window("me")
+
+/client/verb/init_whisper()
+	set name = ".init_whisper"
+	set hidden = TRUE
+	create_preset_input_window("whisper")
+
 //Verb available to the user in case something in the window breaks
 /client/verb/fix_chatbox()
 	set name = "Fix chatbox"
@@ -144,5 +170,8 @@ var/list/input_window_presets =  list(
 /client/New()
 	. = ..()
 	if(src) //In case the client was deleted while New was running
+		create_preset_input_window("whisper", show=FALSE)
+		create_preset_input_window("radiosay", show=FALSE)
+		create_preset_input_window("radiochannelsay", show=FALSE)
 		create_preset_input_window("say", show=FALSE)
 		create_preset_input_window("me", show=FALSE)

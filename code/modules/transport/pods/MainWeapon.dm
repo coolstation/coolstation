@@ -2,6 +2,7 @@
 /obj/item/shipcomponent/mainweapon
 	name = "Class-A Light Phaser"
 	desc = "A simple phaser designed for scout vehicles."
+	value = 5000
 	var/r_gunner = 0
 	var/mob/gunner = null
 	var/datum/projectile/current_projectile = new/datum/projectile/laser/light/pod
@@ -103,6 +104,7 @@
 	appearanceString = "pod_weapon_cutter_on"
 	firerate = 12
 	icon_state = "plasma-cutter"
+	value = 10000
 
 ///Weakens asteroid turfs. Can't actually mine on its own I'm pretty sure
 /obj/item/shipcomponent/mainweapon/bad_mining
@@ -113,6 +115,7 @@
 	appearanceString = "pod_weapon_ltlaser"
 	firerate = 7
 	icon_state = "mining-phaser"
+	value = 2500
 
 ///Starts on sec subs and the gimmicky policecars, not on sec pods but their podbay tends to have some
 /obj/item/shipcomponent/mainweapon/taser
@@ -155,6 +158,7 @@
 	current_projectile = new/datum/projectile/laser/pod
 	icon_state = "mk-2-scout"
 	muzzle_flash = "muzzle_flash_laser"
+	value = 25000
 
 /obj/item/shipcomponent/mainweapon/laser/short //Pod wars variant
 	name = "Mk.2 CQ Laser"
@@ -174,6 +178,7 @@
 	firerate = 10
 	icon_state = "strelka"
 	muzzle_flash = "muzzle_flash_laser"
+	value = 75000
 
 ///Armory gear and martian derelict I think
 /obj/item/shipcomponent/mainweapon/disruptor_light
@@ -183,6 +188,7 @@
 	current_projectile = new/datum/projectile/disruptor
 	icon_state = "disruptor-l"
 	muzzle_flash = "muzzle_flash_plaser"
+	value = 30000
 
 ///Unused outside of lucky-ass random pod spawns, notably jank but capable of punching through rwalls
 /obj/item/shipcomponent/mainweapon/precursor
@@ -192,6 +198,7 @@
 	current_projectile = new/datum/projectile/laser/precursor/sphere
 	appearanceString = "pod_weapon_precursor"
 	firerate = 25
+	value = 150000
 
 ///Listening post gear
 /obj/item/shipcomponent/mainweapon/gun
@@ -203,6 +210,7 @@
 	firerate = 10
 	icon_state = "spes"
 	muzzle_flash = "muzzle_flash"
+	value = 45000
 
 ///Diner vendor gear, spicy!
 /obj/item/shipcomponent/mainweapon/laser_ass // hehhh
@@ -214,6 +222,7 @@
 	current_projectile = new/datum/projectile/laser/asslaser
 	icon_state = "assult-laser"
 	muzzle_flash = "muzzle_flash_laser"
+	value = 120000
 
 ///Melee range mining, obnoxious sound, weirdly expensive to make but some maps have them lying around
 /obj/item/shipcomponent/mainweapon/rockdrills
@@ -225,6 +234,7 @@
 	appearanceString = "pod_weapon_drills"
 	firerate = 10
 	icon_state = "rock-drill"
+	value = 5000
 
 ///Some on Z2 apparently, so basically unused
 /obj/item/shipcomponent/mainweapon/disruptor
@@ -236,6 +246,7 @@
 	appearanceString = "pod_weapon_cbeam_off"
 	firerate = 25
 	icon_state = "disruptor-h"
+	value = 15000
 
 ///Listening post or lucky-ass spawns.
 /obj/item/shipcomponent/mainweapon/artillery
@@ -251,6 +262,7 @@
 	firerate = 100
 	icon_state = "grenade-launcher"
 	muzzle_flash = "muzzle_flash_launch"
+	value = 250000 //reduce this by however much money is left
 
 ///The UFO is an admin gimmick, has 2 firing modes.
 /obj/item/shipcomponent/mainweapon/UFO
@@ -404,6 +416,7 @@
 	var/image/purge
 	icon = 'icons/misc/retribution/SWORD_loot.dmi'
 	icon_state= "SPS_empty"
+	value = 250000 //sure
 
 	Fire(var/mob/user,var/shot_dir_override = -1)
 		if(!core_inserted)

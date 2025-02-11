@@ -96,7 +96,6 @@ var/list/action_names = list(
 ///Used for literal input of actions
 var/list/action_verbs = list(
 	"say_radio" = "say_radio",
-	"say_main_radio" = "say_main_radio",
 	"emote" = "say *customv",
 	"salute" = "me_hotkey salute",
 	"burp" = "me_hotkey burp",
@@ -113,7 +112,6 @@ var/list/action_verbs = list(
 	"wave" = "me_hotkey wave",
 	"flip" = "me_hotkey flip",
 	"scream" = "me_hotkey scream",
-	"whisper" = "whisper",
 	"wink" = "me_hotkey wink",
 	"flex" = "me_hotkey flex",
 	"yawn" = "me_hotkey yawn",
