@@ -51,6 +51,10 @@ MATERIAL
 	var/datum/material/reinforcement = null
 	rand_pos = 8
 	inventory_counter_enabled = 1
+	value = 7 //for now. 7 is about what the base commodity market calls for. adding this value in as-is while i start to migrate commodity pricing over to a multiplier-and-offset model rather than a strict price for all that goes up and down.
+	// TODO: holy fuck we've never touched sheet in hand construction since ever, maybe we should reconsider?
+	//also re: construction but 1 mauxite/molitz per sheet is a really long throwback. changing out the economy makes me feel like these full sheets are more... an 8x8 sheet.
+	//this also relegates them to walls specifically, ideally with a cart to make it easier. we'd want to make constructing objects out of metal not come from fukken... origami'ing a sheet of metal bigger than you are into a chair somehow. fabricators or stampers or whatever, buddy!!!!
 
 	New()
 		..()

@@ -1946,6 +1946,7 @@
 		is_gun = 1
 		is_stun = 1 //Can be both nonlethal and lethal
 		is_lethal = 1 //Depends on reagent load.
+		value = 500
 		var/datum/projectile/current_projectile = new /datum/projectile/syringe
 		var/stun_reagent = "haloperidol"
 		var/kill_reagent = "cyanide"
@@ -1998,6 +1999,7 @@
 		tool_id = "SMOKE"
 		is_stun = 1
 		is_lethal = 1
+		value = 500
 		var/stun_reagent = "ketamine"
 		var/kill_reagent = "neurotoxin"
 
@@ -2032,6 +2034,7 @@
 		tool_id = "TASER"
 		is_stun = 1
 		is_gun = 1
+		value = 400
 		var/datum/projectile/current_projectile = new/datum/projectile/energy_bolt/robust
 
 		// Updated for new projectile code (Convair880).
@@ -2067,6 +2070,7 @@
 		icon_state = "tool_flash"
 		is_stun = 1
 		tool_id = "FLASH"
+		value = 250
 
 		bot_attack(var/atom/target as mob|obj, obj/machinery/bot/guardbot/user, ranged=0, lethal=0)
 			if(..()) return
@@ -2098,6 +2102,7 @@
 		is_gun = 1
 		is_stun = 1 //Can be both nonlethal and lethal
 		is_lethal = 1
+		value = 700
 
 		bot_attack(var/atom/target as mob|obj, obj/machinery/bot/guardbot/user, ranged=0, lethal=0)
 			if(..())
@@ -2179,6 +2184,14 @@
 		desc = "A miniature fabricator designed to fit inside a PR-6S Guardbuddy and provide for it an inexhaustible supply of kinetic ammunition, at the expense of the bot's built-in battery charge. When attached, this device welds itself to the bot, and if it detects a weapon in the bot's grip, it'll weld itself to that as well."
 		icon_state = "press_forbidden"
 		tool_id = "AMMOFAB - if you see this, please tell Superlagg their thing broke =0"
+		value = 1000
+
+	sense //meant as an apology quest for the Stone Cold Cop Disliker medal. no code yet but it soon will be
+		name = "SenseBuddy taste-and-smell sensor kit prototype"
+		desc = "A prototype miniature sensor array and translation package designed to fit inside a PR-6S Guardbuddy and provide for it the sensation of taste and smell. This never went into production as PR-6S units tested with this module immediately neglected all duties to harass the hospitality staff for every kind of food they could come up with (all of them)."
+		icon_state = "press_forbidden"
+		tool_id = "YUMMYBOT - if you see this, please tell Bobskunk their thing broke =0"
+		value = 5000
 
 //Task Datums
 /datum/computer/file/guardbot_task //Computer datum so it can be transmitted over radio
