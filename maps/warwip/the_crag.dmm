@@ -785,7 +785,10 @@
 	name = "Cargo Bay Dock"
 	})
 "cB" = (
-/obj/submachine/cargopad/qm,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -1032,6 +1035,9 @@
 	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
+"dn" = (
+/turf/floor/shuttlebay,
+/area/station/engine/storage)
 "do" = (
 /turf/space/gehenna/desert/path{
 	dir = 4
@@ -1085,6 +1091,9 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/floor/industrial,
 /area/station/engine/storage)
 "dw" = (
@@ -1126,6 +1135,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
+"dB" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/shuttlebay,
+/area/station/engine/storage)
 "dC" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -2656,7 +2671,7 @@
 /area/station/medical/head)
 "iT" = (
 /obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/engineering_horizontal,
-/turf/floor/plating,
+/turf/floor/shuttlebay,
 /area/station/engine/storage)
 "iU" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -3391,6 +3406,10 @@
 	dir = 4
 	},
 /obj/machinery/disposal/mail/autoname/qm,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -4014,6 +4033,15 @@
 "np" = (
 /turf/floor/stairs,
 /area/station/chapel/funeral_parlor)
+"nq" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	mail_tag = "Cargo Bay";
+	name = "Cargo Bay"
+	})
 "nr" = (
 /obj/disposalpipe/segment/bent{
 	dir = 8
@@ -4179,7 +4207,7 @@
 /area/station/crew_quarters/kitchen)
 "nU" = (
 /obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/qm_horizontal,
-/turf/floor/plating,
+/turf/floor/shuttlebay,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
 	mail_tag = "Cargo Bay";
@@ -5179,6 +5207,17 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/chapel/sanctuary)
+"rz" = (
+/obj/disposalpipe/segment/bent{
+	dir = 8
+	},
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	mail_tag = "Cargo Bay";
+	name = "Cargo Bay"
+	})
 "rA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/northwest,
 /turf/floor/cautionblack,
@@ -5237,6 +5276,15 @@
 	mail_tag = "Cargo Bay Dock";
 	name = "Cargo Bay Dock"
 	})
+"rK" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/industrial,
+/area/station/engine/storage)
 "rM" = (
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
@@ -5269,6 +5317,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/north)
+"rU" = (
+/turf/floor/shuttlebay,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	mail_tag = "Cargo Bay";
+	name = "Cargo Bay"
+	})
 "rV" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -5548,6 +5603,14 @@
 	dir = 8
 	},
 /area/station/hallway/primary/south)
+"sU" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	mail_tag = "Cargo Bay";
+	name = "Cargo Bay"
+	})
 "sV" = (
 /obj/landmark/start{
 	name = "Medical Doctor"
@@ -5640,6 +5703,17 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/science/research_director)
+"tj" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/floor/industrial,
+/area/station/engine/storage)
 "tk" = (
 /obj/machinery/light{
 	dir = 1
@@ -6347,7 +6421,7 @@
 	dir = 4
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon3,
-/turf/floor/industrial,
+/turf/floor/shuttlebay,
 /area/station/engine/storage)
 "vG" = (
 /obj/cable{
@@ -7545,6 +7619,16 @@
 /area/station/hydroponics/bay{
 	mail_tag = "Hydroponics";
 	name = "Hydroponics"
+	})
+"zN" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/shuttlebay,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	mail_tag = "Cargo Bay";
+	name = "Cargo Bay"
 	})
 "zP" = (
 /obj/machinery/vending/cola/red,
@@ -10375,6 +10459,9 @@
 /obj/item/paper_bin,
 /obj/item/pen/fancy,
 /obj/item/pen/red,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -11457,6 +11544,9 @@
 /area/station/crew_quarters/quarters_east)
 "Nz" = (
 /obj/disposalpipe/segment,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/floor/industrial,
 /area/station/engine/storage)
 "NA" = (
@@ -11755,6 +11845,7 @@
 /area/station/maintenance/north)
 "OA" = (
 /obj/disposalpipe/segment,
+/obj/submachine/cargopad/qm,
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -11888,6 +11979,10 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -12830,7 +12925,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 2
 	},
-/turf/floor/industrial,
+/turf/floor/shuttlebay,
 /area/station/engine/storage)
 "Sl" = (
 /obj/disposalpipe/segment{
@@ -12953,7 +13048,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/floor,
+/turf/floor/shuttlebay,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
 	mail_tag = "Cargo Bay";
@@ -13392,6 +13487,20 @@
 	name = "Exhaust";
 	requires_power = 0
 	})
+"Ua" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/turf/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	mail_tag = "Cargo Bay";
+	name = "Cargo Bay"
+	})
 "Ub" = (
 /obj/disposalpipe/segment/morgue,
 /obj/stool/chair{
@@ -13431,6 +13540,18 @@
 /obj/disposalpipe/segment,
 /turf/floor,
 /area/station/hallway/primary/north)
+"Ug" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/industrial,
+/area/station/engine/storage)
 "Uh" = (
 /turf/space/gehenna/desert/corner{
 	dir = 1
@@ -13835,7 +13956,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor,
+/turf/floor/shuttlebay,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
 	mail_tag = "Cargo Bay";
@@ -15076,6 +15197,9 @@
 	dir = 1
 	},
 /obj/machinery/vehicle/tank/minisub/engineer,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
 /turf/floor/industrial,
 /area/station/engine/storage)
 "ZR" = (
@@ -68411,8 +68535,8 @@ TE
 TE
 WZ
 ZO
-pr
-IF
+rK
+Ug
 WZ
 Ct
 ZX
@@ -68700,8 +68824,8 @@ rr
 Pc
 oc
 nj
-Eh
-Mc
+nq
+zN
 SD
 nU
 GP
@@ -68712,9 +68836,9 @@ GP
 GP
 GP
 iT
-XT
-pr
-IF
+dn
+dB
+tj
 WZ
 Ct
 hd
@@ -69002,9 +69126,9 @@ fo
 Pc
 ip
 mV
-tl
-Mc
-Pc
+rz
+zN
+rU
 nU
 GP
 GP
@@ -69014,7 +69138,7 @@ GP
 GP
 GP
 iT
-XT
+dn
 vF
 dv
 tJ
@@ -69304,9 +69428,9 @@ fo
 yb
 Eh
 nj
-Pc
+sU
 Vp
-Pc
+rU
 nU
 GP
 GP
@@ -69316,7 +69440,7 @@ GP
 GP
 GP
 iT
-XT
+dn
 Sj
 Nz
 qI
@@ -69607,7 +69731,7 @@ Pc
 Eh
 nj
 cB
-Mc
+Ua
 OW
 UU
 yx
