@@ -978,7 +978,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	freshfish
 		name = "'Fresh' Frozen Fish"
 		desc = "Assorted not so fresh fish for the kitchen."
-		contents = "x20 Assorted Frozen Fish"
+		contents = "x15 Assorted Frozen Fish"
 		contains = list(/obj/item/fish/salmon = 4,
 						/obj/item/fish/bass = 4,
 						/obj/item/fish/carp = 5,
