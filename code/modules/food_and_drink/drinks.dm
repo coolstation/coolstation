@@ -58,7 +58,7 @@
 	initial_volume = 50
 	initial_reagents = list("antihol"=20,"juice_lime"=20)
 
-/obj/item/reagent_containers/food/drinks/bottle/soda/spooky
+/obj/item/reagent_containers/food/drinks/bottle/soda/spooky //might be worth making seasonal sodas just because it'd be funny
 	name = "Spooky Dan's Runoff Cola"
 	desc = "A spoooky cola for Halloween!  Rumors that Runoff Cola contains actual industrial runoff are unsubstantiated."
 	label = "spooky"
@@ -94,6 +94,8 @@
 	labeled = 1
 	initial_volume = 50
 	initial_reagents = list("iodine"=5,"water"=45)
+	value = 5
+	alt_value = 50
 
 /obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza
 	name = "Soft Soft Pizza"
@@ -111,6 +113,7 @@
 	labeled = 1
 	initial_volume = 50
 	initial_reagents = list("cola"=20)
+	value = 25
 
 	New()
 		switch(rand(1,16))
@@ -423,7 +426,8 @@
 	name = "Creaca's Space Soy Milk"
 	desc = "A bottle of fresh space soy milk from happy, free-roaming space soybean plants. The plant pots just float around untethered."
 
-obj/item/reagent_containers/food/drinks/covfefe
+//originally by LuigiThirty but man I can't countenance a covfefe joke at all in this day and age
+obj/item/reagent_containers/food/drinks/pseudocoffee
 	name = "Wired Dan's Kafe Kick!"
 	desc = "Some kind of ersatz drink that can't legally be called coffee. Actually, it's mostly water and whatever they could get cheap that day. Wait, wasn't this banned by the FDA?"
 	icon_state = "coffee"
@@ -433,7 +437,7 @@ obj/item/reagent_containers/food/drinks/covfefe
 	New()
 		..()
 		if(prob(1)) // hi im cirr i fuck with peoples' patches hurr
-			name = "Wired Dan's Chilled Covfefe"
+			name = "Wired Dan's Chilled Cofefefe"
 			reagents.add_reagent("cryostylane", 5)
 		reagents.add_reagent("water", 25)
 		reagents.add_reagent("UGHFCS", 5)
