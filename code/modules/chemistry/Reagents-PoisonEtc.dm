@@ -298,6 +298,53 @@ datum
 				return
 
 
+		harmful/tetrodotoxin
+			name = "tetrodotoxin"
+			id = "tetrodotoxin"
+			description = "An extremely dangerous neurotoxin which paralyses the respiratory system, most commonly found in incorrectly prepared pufferfish."
+			reagent_state = LIQUID
+			fluid_r = 255
+			fluid_g = 180
+			fluid_b = 240
+			transparency = 10
+			depletion_rate = 0.1
+			penetrates_skin = 1
+			touch_modifier = 0.25
+			var/counter = 1
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+
+				switch(src.counter+= (mult))
+					if (10 to 25) // Small signs of trouble
+						if (prob(18))
+							M.change_misstep_chance(15 * mult)
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							boutput(M, "<span class='notice'><b>You feel a [pick("sudden palpitation", "numbness", "tingling")] in your chest.</b>")
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							M.emote(pick("twitch","drool","tremble"))
+							M.change_eye_blurry(2, 2)
+					if (25 to 45) // Effects ramp up, breathlessness, early paralysis signs and heartache
+						M.change_eye_blurry(5, 5)
+						M.stuttering = max(M.stuttering, 5)
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 10 SECONDS))
+						if (prob(30))
+							M.losebreath = max(5, M.losebreath + (5 * mult))
+						if (prob(20))
+							boutput(M, "<span class='alert'><b>Your [pick("senses go numb", "head spins", "body feels stiff")].</b>")
+							M.change_misstep_chance(15 * mult)
+					if (45 to INFINITY) // Heart effects kick in
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 40 SECONDS))
+						M.change_eye_blurry(15, 15)
+						M.losebreath = max(5, M.losebreath + (5 * mult))
+						if(isliving(M))
+							var/mob/living/L = M
+							L.contract_disease(/datum/ailment/malady/flatline, null, null, 1)
+				..()
+				return
+
 		harmful/curare
 			name = "curare"
 			id = "curare"
@@ -741,6 +788,51 @@ datum
 					var/obj/blob/lipid/L = new /obj/blob/lipid(B.loc)
 					L.setOvermind(B.overmind)
 					qdel(B)
+
+		harmful/hemotoxin
+			name = "hemotoxin"
+			id = "hemotoxin"
+			description = "A dangerous compound that disolves blood cells and causes massive bleeding."
+			reagent_state = LIQUID
+			fluid_r = 210
+			fluid_g = 180
+			fluid_b = 25
+			transparency = 100
+			depletion_rate = 0.2
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+				random_brute_damage(M, mult)
+
+				if (isliving(M))
+					var/mob/living/H = M
+					if(H.blood_volume > 300)        //slows down your bleeding when you have less blood to bleed
+						H.blood_volume -= 5 * mult
+					else
+						H.blood_volume -= 3 * mult
+				if (probmult(6))
+					M.visible_message(pick("<span class='alert'><B>[M]</B>'s [pick("eyes", "arms", "legs")] bleed!",\
+											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
+											"<span class='alert'><B>[M]</B>'s [pick("chest", "face", "whole body")] bleeds!"))
+					playsound(M, 'sound/impact_sounds/Slimy_Splat_1.ogg', 30, TRUE) //some bloody effects
+					make_cleanable(/obj/decal/cleanable/blood/splatter,M.loc)
+				else if (probmult(20))
+					make_cleanable(/obj/decal/cleanable/blood/splatter,M.loc) //some extra bloody effects
+				if (probmult(10))
+					M.make_jittery(50)
+					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
+					boutput(M, "<span class='alert'><b>Your body hurts so much.</b>")
+					if (!isdead(M))
+						M.emote(pick("cry", "tremble", "scream"))
+				if (probmult(10))
+					M.change_eye_blurry(6, 6)
+					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
+					boutput(M, "<span class='alert'><b>Everything starts hurting.</b>")
+					if (!isdead(M))
+						M.emote(pick("shake", "tremble", "shudder"))
+
+				..()
+				return
 
 		harmful/itching
 			name = "itching powder"

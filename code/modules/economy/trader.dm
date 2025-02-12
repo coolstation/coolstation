@@ -774,6 +774,7 @@
 				src.goods_sell += new /datum/commodity/drugs/lsd(src)
 				src.goods_sell += new /datum/commodity/drug/lsd_bee(src)
 				src.goods_sell += new /datum/commodity/relics/bootlegfirework(src)
+				src.goods_sell += new /datum/commodity/diner/pufferfish(src)
 				src.goods_sell += new /datum/commodity/pills/uranium(src)
 
 				src.goods_buy += new /datum/commodity/drugs/shrooms(src)
