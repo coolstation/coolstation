@@ -715,6 +715,12 @@
 	desc = "Sometimes you drink on the job, sometimes drinking is the job."
 	id = "training_drinker"
 
+/obj/trait/job/chef
+	name = "Kitchen Training"
+	cleanName = "Kitchen Training"
+	desc = "You've spent years in the chef academy."
+	id = "training_chef"
+
 // scientist scream gimmick, unrelated to training but putting it here anyway
 /obj/trait/job/scienceteam
 	name = "Member of the Science Team"

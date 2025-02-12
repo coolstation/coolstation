@@ -91,6 +91,34 @@
 		food_color = "#FFECB7"
 		real_name = "small fish"
 
+/obj/item/reagent_containers/food/snacks/ingredient/meat/fugu
+	name = "fugu"
+	desc = "Thin slices of pufferfish fillet, looks kind of plain. Hopefully properly prepared."
+	icon_state = "fugu"
+	amount = 3
+	food_color = "#e3e3e3"
+	real_name = "fugu"
+	food_effects = list("food_hp_up","food_energized")
+	value = 100 // Expensive
+	var/properly_made = FALSE
+
+	heal(var/mob/M)
+		if (!properly_made)
+			M.reagents.add_reagent("tetrodotoxin", 5) // Eating this might be a baad idea
+		return
+
+	wellmade
+		value = 1200 // Very Expensive TM
+		properly_made = TRUE
+
+/obj/item/reagent_containers/food/snacks/ingredient/meat/puffer_liver
+	name = "pufferfish liver"
+	desc = "The most toxic part of pufferfish."
+	icon_state = "pufferfish-liver"
+	amount = 1
+	initial_volume = 20
+	initial_reagents = list("tetrodotoxin"=20)
+
 /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
 	name = "synthmeat"
 	desc = "Synthetic meat grown in hydroponics."
