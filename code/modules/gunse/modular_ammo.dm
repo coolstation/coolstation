@@ -48,6 +48,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.amount = max(amt,default_amount) //take higher
 		..(loc)
 		src.update_stack_appearance()
+
+	//All the ammo has 3/5/10 variants that need to stack onto the parent type
+	//But then also you get subtypes that shouldn't, so the istype checks the normal version of this pro does don't work (for example, NT mini shot shouldn't stack onto regular NT shot)
+	//luckily, since all ammo (at time of writing anyway) has stack_type set we can just compare those directly
+	check_valid_stack(obj/item/I)
+		if (src.stack_type)
+			if(src.stack_type == I.stack_type)
+				return TRUE
+		return FALSE
+
 	/*
 	proc/setup(var/atom/L, var/amt = 1 as num)
 	set_loc(L)
@@ -251,7 +261,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	real_name = "NT pistol round"
 	desc = "NT's standard 8mm Short firearms cartridge. The same caliber everyone else copies."
 	projectile_type = /datum/projectile/bullet/pistol_weak
-	stack_type = /obj/item/stackable_ammo/pistol
+	stack_type = /obj/item/stackable_ammo/pistol/NT
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -279,7 +289,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	real_name = "NT HP pistol round"
 	desc = "NT's 8mm Short firearms cartridge, with a hollow point for hunting and pest control. Not permitted for use on crew members."
 	projectile_type = /datum/projectile/bullet/pistol_weak
-	stack_type = /obj/item/stackable_ammo/pistol
+	stack_type = /obj/item/stackable_ammo/pistol/HP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -308,7 +318,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	real_name = "Italian pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
-	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
+	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
 	icon_full  = "italian"
