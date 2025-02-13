@@ -298,6 +298,53 @@ datum
 				return
 
 
+		harmful/tetrodotoxin
+			name = "tetrodotoxin"
+			id = "tetrodotoxin"
+			description = "An extremely dangerous neurotoxin which paralyses the respiratory system, most commonly found in incorrectly prepared pufferfish."
+			reagent_state = LIQUID
+			fluid_r = 255
+			fluid_g = 180
+			fluid_b = 240
+			transparency = 10
+			depletion_rate = 0.1
+			penetrates_skin = 1
+			touch_modifier = 0.25
+			var/counter = 1
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+
+				switch(src.counter+= (mult))
+					if (10 to 25) // Small signs of trouble
+						if (prob(18))
+							M.change_misstep_chance(15 * mult)
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							boutput(M, "<span class='notice'><b>You feel a [pick("sudden palpitation", "numbness", "tingling")] in your chest.</b>")
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							M.emote(pick("twitch","drool","tremble"))
+							M.change_eye_blurry(2, 2)
+					if (25 to 45) // Effects ramp up, breathlessness, early paralysis signs and heartache
+						M.change_eye_blurry(5, 5)
+						M.stuttering = max(M.stuttering, 5)
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 10 SECONDS))
+						if (prob(30))
+							M.losebreath = max(5, M.losebreath + (5 * mult))
+						if (prob(20))
+							boutput(M, "<span class='alert'><b>Your [pick("senses go numb", "head spins", "body feels stiff")].</b>")
+							M.change_misstep_chance(15 * mult)
+					if (45 to INFINITY) // Heart effects kick in
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 40 SECONDS))
+						M.change_eye_blurry(15, 15)
+						M.losebreath = max(5, M.losebreath + (5 * mult))
+						if(isliving(M))
+							var/mob/living/L = M
+							L.contract_disease(/datum/ailment/malady/flatline, null, null, 1)
+				..()
+				return
+
 		harmful/curare
 			name = "curare"
 			id = "curare"
