@@ -62,8 +62,8 @@ var opts = {
 };
 
 var themes = { // "css-class": "Option name"
-    'theme-default': 'Windows 3.1 (default)',
-    'theme-dark': 'Dark',
+    'theme-default': 'Windows 3.1',
+    'theme-dark': 'Coolstation (default)',
 }
 
 //Polyfill for fucking date now because of course IE8 and below don't support it

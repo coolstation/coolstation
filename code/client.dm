@@ -1731,11 +1731,11 @@ info.tab-text-color=[_SKIN_TEXT]"
 /client/verb/sync_dark_mode()
 	set hidden=1
 	if(winget(src, "menu.dark_mode", "is-checked") == "true")
-#define _SKIN_BG "#28292c"
-#define _SKIN_INFO_TAB_BG "#28292c"
-#define _SKIN_INFO_BG "#28292c"
-#define _SKIN_TEXT "#d3d4d5"
-#define _SKIN_COMMAND_BG "#28294c"
+#define _SKIN_BG "#3b3b3b" //Main chrome
+#define _SKIN_INFO_TAB_BG "#3b3b3b" //Tab chrome
+#define _SKIN_INFO_BG "#32241e"
+#define _SKIN_TEXT "#dad8b6"
+#define _SKIN_COMMAND_BG "#32241e"
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-dark")
 		cloud_put("dark_mode", 1)
@@ -1744,8 +1744,8 @@ info.tab-text-color=[_SKIN_TEXT]"
 #undef _SKIN_INFO_BG
 #undef _SKIN_TEXT
 #undef _SKIN_COMMAND_BG
-#define _SKIN_BG "none"
-#define _SKIN_INFO_TAB_BG "#f0f0f0"
+#define _SKIN_BG "#dfdfdf"
+#define _SKIN_INFO_TAB_BG "#dfdfdf"
 #define _SKIN_INFO_BG "#ffffff"
 #define _SKIN_TEXT "none"
 #define _SKIN_COMMAND_BG "#d3b5b5"
