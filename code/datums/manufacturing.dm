@@ -548,6 +548,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/datum/manufacture/chemicalcan
+	name = "Chemical Cannister"
+	item_paths = list("MET-2")
+	item_amounts = list(10)
+	item_outputs = list(/obj/item/reagent_containers/food/drinks/chemicalcan)
+	time = 10 SECONDS
+	create = 1
+	category = "Machinery"
+
 //// cogwerks - gas extraction stuff
 
 /datum/manufacture/air_can/large
