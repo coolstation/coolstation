@@ -1099,7 +1099,7 @@
 		if(!target_dir)
 			target_dir = src.dir
 		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
-		if (!(T.turf_flags & CAN_BE_SPACE_SAMPLE) && target_dir)
+		if (!T.throw_unlimited && target_dir)
 			src.next_click = world.time + src.combat_click_delay
 			if (!HAS_MOB_PROPERTY(src, PROB_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
@@ -1164,6 +1164,10 @@
 
 								if (!item_num_to_throw)
 									break
+
+					if (target_turf.throw_unlimited) // oh shit here i go slippin
+						src.throw_at(get_edge_target_turf(src, target_dir),1,1)
+						break
 
 					if (v < slidekick_range)
 						sleep(0.1 SECONDS)
