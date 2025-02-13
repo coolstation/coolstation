@@ -345,6 +345,20 @@ h1.alert, h2.alert {color: #000000;}
 	margin-right: 10px;
 }
 
+/*Overrides for the charcoal theme*/
+body.charcoal-override { background-color: #1b1d1b !important; color: #d3d4d5 !important; }
+body.charcoal-override #ping {background: #282828 !important;}
+body.charcoal-override #options a:hover {background: #282828 !important;}
+body.charcoal-override #options .toggle {background: #282828 !important;}
+body.charcoal-override {
+		scrollbar-face-color: rgb(46, 46, 46) !important;
+		scrollbar-shadow-color: #4d4d4d !important;
+		scrollbar-3dlight-color: rgb(46, 46, 46) !important;
+		scrollbar-darkshadow-color: rgb(46, 46, 46) !important;
+		scrollbar-track-color: rgb(46, 46, 46) !important;
+		scrollbar-arrow-color: #808080 !important;
+}
+
 /* a very cool minimally saturated theme
 players prefer darker themes, so it is*/
 body.theme-dark { background-color: #3b3122; color: #dad8b6; }
