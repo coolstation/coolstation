@@ -944,7 +944,7 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 				src.body_standing.overlays += human_image
 				human_image.color = chest_color_before
 
-				human_image.icon_state = "groin_[gender_t]"
+				human_image.icon_state = "groin_[gender_t][src.organHolder.butt ? "" : "_buttless"]"
 				src.body_standing.overlays += human_image
 
 				// all this shit goes on the torso anyway
