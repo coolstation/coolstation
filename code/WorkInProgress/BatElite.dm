@@ -835,6 +835,18 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		out += "[gene.name] ([gene.stability_loss])<br>"
 	return out
 
+/obj/item/clothing/under/gimmick/chaps/prophetic
+	desc = "These are more literal than most."
+
+	equipped(mob/user, slot)
+		..()
+		if (isliving(user))
+			var/mob/living/L = user
+			var/obj/item/clothing/head/butt/myButt = L.organHolder?.drop_organ("butt")
+			if (myButt)
+				qdel(myButt)
+				L.playsound_local(src, 'sound/impact_sounds/Flesh_Tear_1.ogg', 50, TRUE)
+				boutput(L, "<span class='alert'><b>WOE, THINE BUTTE IS LOST!!</b></span>")
 
 /*
 /obj/spawn_all_the_dragon_shit

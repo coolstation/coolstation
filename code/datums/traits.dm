@@ -1275,7 +1275,7 @@ obj/trait/pilot
 	cleanName = "Mononym"
 	id = "mononym"
 	icon_state = "spellingerror"
-	desc = "Like Cher, Madonna, Gooby, Prince."
+	desc = "Like Cher, Madonna, Gooby, Prince. Uses the first name slot."
 	points = -1
 	isPositive = 1
 

@@ -94,6 +94,7 @@ img.emoji {
 	background: #ddd;
 	height: 30px;
 	padding: 8px 0 2px 0;
+	margin-top: 1px
 }
 #ping i {display: block; text-align: center;}
 #ping .ms {
@@ -115,7 +116,6 @@ img.emoji {
 	color: #333;
 	text-decoration: none;
     line-height: 28px;
-    border-top: 1px solid #b4b4b4;
 }
 #options a:hover {background: #ccc;}
 #options .toggle {
@@ -345,9 +345,10 @@ h1.alert, h2.alert {color: #000000;}
 	margin-right: 10px;
 }
 
-/* bog-standard dark theme with easy, unsaturated colors */
-body.theme-dark { background-color: #23272a; color: #dfdfcf; }
-body.theme-dark .regular { color: #dfdfcf; }
+/* a very cool minimally saturated theme
+players prefer darker themes, so it is*/
+body.theme-dark { background-color: #3b3122; color: #dad8b6; }
+body.theme-dark .regular { color: #dad8b6; }
 body.theme-dark .mhelp {color: #e75ae0;}
 body.theme-dark .ahelp {color:  #ffa135;}
 body.theme-dark .notice { color: #7996ff; }
@@ -362,14 +363,14 @@ body.theme-dark .ooc {color: #688eff;}
 body.theme-dark .looc {color: #92a9ee;}
 body.theme-dark .adminooc {color: #be6e53;}
 body.theme-dark .adminlooc {color: #ce8c76;}
-body.theme-dark .mentorooc {color: #a653ff;}
-body.theme-dark .mentorlooc {color: #be81ff;}
+body.theme-dark .mentorooc {color: #862ce6;}
+body.theme-dark .mentorlooc {color: #610cbb;}
 body.theme-dark .medal {color: #caca20;}
 body.theme-dark .motd {color: rgb(190, 190, 190);}
 body.theme-dark .motd h1, body.theme-dark .motd h2, body.theme-dark .motd h3, body.theme-dark .motd h4, body.theme-dark .motd h5, body.theme-dark .motd h6 {color: rgb(255, 255, 255);}
 body.theme-dark .motd a, body.theme-dark .motd a:link, body.theme-dark .motd a:visited {color: rgb(100, 100, 255);}
 body.theme-dark .motd a:active, body.theme-dark .motd a:hover {color: rgb(48, 48, 223);}
-body.theme-dark .internal.boldnshit {color: rgb(95, 95, 253);}
+body.theme-dark .internal.boldnshit {color: rgb(73, 152, 226);}
 body.theme-dark .green {color: #3fcc3f;}
 body.theme-dark .radio {color: #3fcc3f;}
 body.theme-dark .contextMenu {background-color: rgb(48, 48, 48);}
@@ -401,21 +402,21 @@ body.theme-dark #newMessages {
 	color: rgb(221, 221, 221);
 }
 body.theme-dark #newMessages:hover {background: rgb(83, 83, 83);}
-body.theme-dark #ping {background: #34393d;}
+body.theme-dark #ping {background: #9a8469;}
 body.theme-dark #options a {
 	background: #34393d;
 	color: rgb(189, 189, 189);
     border-top: 1px solid #505050;}
-body.theme-dark #options a:hover {background: #34393d;}
-body.theme-dark #options .toggle {background: #34393d;}
+body.theme-dark #options a:hover {background: #9a8469;}
+body.theme-dark #options .toggle {background: #9a8469;}
 body.theme-dark  {
-	scrollbar-face-color: rgb(46, 46, 46);
-	scrollbar-shadow-color: #4d4d4d;
+	scrollbar-face-color: #9a8469;
+	scrollbar-shadow-color: #ebe5a0;
 	scrollbar-highlight-color: #4d4d4d;
-	scrollbar-3dlight-color: rgb(46, 46, 46);
-	scrollbar-darkshadow-color: rgb(46, 46, 46);
-	scrollbar-track-color: rgb(46, 46, 46);
-	scrollbar-arrow-color: #808080;
+	scrollbar-3dlight-color: #dad8b6;
+	scrollbar-darkshadow-color: #6d6617;
+	scrollbar-track-color: #dad8b6;
+	scrollbar-arrow-color: #6d6617;
 }
 
 body.theme-dark .admin {color: #ecc300;}
