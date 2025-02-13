@@ -32,3 +32,7 @@
 	initial_reagents = "chlorine"
 	icon_state = "bottlecl"
 	name = "Pool Chlorine"
+
+	mostly_water // sacrilege, I know
+		name = "Pool Water"
+		initial_reagents = list("water"=390,"chlorine"=10)
