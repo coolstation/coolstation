@@ -1733,9 +1733,9 @@ info.tab-text-color=[_SKIN_TEXT]"
 	if(winget(src, "menu.dark_mode", "is-checked") == "true")
 #define _SKIN_BG "#3b3b3b" //Main chrome
 #define _SKIN_INFO_TAB_BG "#3b3b3b" //Tab chrome
-#define _SKIN_INFO_BG "#32241e"
+#define _SKIN_INFO_BG "#3b3122"
 #define _SKIN_TEXT "#dad8b6"
-#define _SKIN_COMMAND_BG "#32241e"
+#define _SKIN_COMMAND_BG "#3b3122"
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-dark")
 		cloud_put("dark_mode", 1)
