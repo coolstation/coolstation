@@ -1172,48 +1172,47 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 	//"but but don't we need a power cell or something" it's got integrated batteries that'll last a month in the receiver don't worry about it
 	//point and click, but if that's too slow, then toss it in a microwave or something. built in a way that if electronics fail, manual control is unlocked
 	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
-		if (!src.hammer_cocked && !src.processing_ammo) //single action striker bullshit
-			src.hammer_cocked = TRUE
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-			return
-		if(electrics_intact && !src.processing_ammo)
-			if (jammed)
-				sleep(30) //just long enough to be a pain
-				if(src.jammed == 2) //stuck
-					src.jammed = 0
-					src.hammer_cocked = TRUE
-					boutput(user, "<span class='notice'>The NT smartloader forces the stuck casing out of [src]</span>")
-				else //misfire
-					if(prob(10)) //unlucky, dump the round
-						src.current_projectile = null
-						src.jammed = 0
-						boutput(user, "<span class='notice'>The NT smartloader forces the dud round out of [src]</span>") //drop a dud
-					else
+		if(electrics_intact) //handholding nonsense if electronics are intact
+			if (!src.processing_ammo)
+				if (jammed)
+					boutput(user, "<span class='notice'>The NT smartloader beeps, 'Jam Detected in [src]!'</span>")
+					sleep(30) //just long enough to be a pain
+					if(src.jammed == 2) //stuck
 						src.jammed = 0
 						src.hammer_cocked = TRUE
-						boutput(user, "<span class='notice'>The NT smartloader re-cocks the hammer on [src]</span>")
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				return
+						boutput(user, "The NT smartloader forces the stuck casing out of [src]")
+					else //misfire
+						if(prob(10)) //unlucky, dump the round
+							src.current_projectile = null
+							src.jammed = 0
+							boutput(user, "The NT smartloader forces the dud round out of [src]") //drop a dud
+						else
+							src.jammed = 0
+							src.hammer_cocked = TRUE
+							boutput(user, "The NT smartloader re-cocks the hammer on [src]")
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					return
+		else //fall back to manual single action striker
 			if (!src.hammer_cocked)
-				boutput(user, "<span class='notice'>Nothing happened when you pulled the trigger on [src]!</span>")
-				sleep(10)
 				src.hammer_cocked = TRUE
-				boutput(user, "The NT smartloader re-cocks the hammer on [src]")
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 				return
 		..()
-		if(!current_projectile)
-			sleep(20)
-			if(ammo_list.len)
-				playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
-				process_ammo() //attempt autoload beep boop
-			else
-				playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
-		if (jammed) //and again, because sometimes it jams on load
-			sleep(30) //just long enough to be a pain
-			src.jammed = 0
-			src.hammer_cocked = TRUE
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		if(electrics_intact)
+			if(!current_projectile)
+				sleep(20)
+				if(ammo_list.len)
+					playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
+					process_ammo() //attempt autoload beep boop
+				else
+					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
+			if (jammed) //and again, because sometimes it jams on load
+				boutput(user, "<span class='notice'>The NT smartloader beeps, 'Jam Detected in [src]!'</span>")
+				sleep(30) //just long enough to be a pain
+				src.jammed = 0
+				src.hammer_cocked = TRUE
+				boutput(user, "The NT smartloader reseats the round in [src]")
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
 	//cycle weapon + update counter
 	attack_self(mob/user)
