@@ -497,6 +497,9 @@ datum/projectile
 		disruption = 0           // planned thing to deal with pod electronics / etc
 		zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
 		caliber = null
+		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
+		fiddlyness = 1			 // How hard is this to handle when there's a jam or misfire
+		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
 
 		datum/material/material = null
 
