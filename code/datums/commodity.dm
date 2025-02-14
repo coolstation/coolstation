@@ -1494,6 +1494,15 @@
 	upperfluc = 5
 	lowerfluc = -5
 
+/datum/commodity/diner/pufferfish
+	comname = "Pufferfish"
+	desc = "We totally have a lincense to sell these. It's not illegal at all and completely safe."
+	comtype = /obj/item/fish/pufferfish
+	price = 900
+	baseprice = 900
+	upperfluc = 250
+	lowerfluc = -250
+
 /datum/commodity/diner/slurrypie
 	comname = "Slurry Pie"
 	desc = "More descriptive than you might think."

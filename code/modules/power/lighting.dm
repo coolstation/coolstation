@@ -686,6 +686,7 @@
 					current_lamp.light_status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+				current_lamp.update()
 				on = 0
 				light.disable()
 			else
@@ -1565,3 +1566,4 @@
 		..()
 		SPAWN_DBG(1)
 			current_lamp.light_status = LIGHT_BROKEN
+			current_lamp.update()

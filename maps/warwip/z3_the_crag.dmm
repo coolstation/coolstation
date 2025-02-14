@@ -422,6 +422,9 @@
 /area/station/bridge/captain)
 "cj" = (
 /obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/rum_spaced{
+	pixel_y = 8
+	},
 /turf/floor/carpet/green,
 /area/station/bridge/hos)
 "ck" = (
@@ -1148,7 +1151,7 @@
 /turf/floor/grey/blackgrime,
 /area/station/turret_protected/ai)
 "fw" = (
-/obj/table/wood/auto,
+/obj/table/wood/auto/desk,
 /obj/cable{
 	icon_state = "2-8"
 	},
@@ -1402,6 +1405,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/item/card/id/captains_spare,
 /turf/floor/marble,
 /area/station/bridge/captain)
 "gQ" = (
@@ -2684,6 +2688,9 @@
 /area/station/medical/basement)
 "nc" = (
 /obj/table/wood/auto,
+/obj/shrub/captainshrub{
+	pixel_y = 10
+	},
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
 "nd" = (
@@ -3268,13 +3275,13 @@
 /turf/floor/grime,
 /area/station/security/brig/north_side)
 "qo" = (
-/obj/table/wood/auto,
+/obj/table/wood/auto/desk,
 /obj/cable{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/item/reagent_containers/food/drinks/rum_spaced,
+/obj/item/spacecash/fivehundred,
 /turf/floor/carpet/green,
 /area/station/bridge/hos)
 "qp" = (
@@ -6826,6 +6833,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
+/obj/critter/cat/jones,
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
 "HJ" = (
