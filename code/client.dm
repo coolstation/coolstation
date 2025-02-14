@@ -181,7 +181,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	src.player = make_player(key)
 	src.player.client = src
 
-	if (!isnewplayer(src.mob) && !isnull(src.mob)) //playtime logging stuff
+	if (!isnewplayer(src.mob) && !isnull(src.mob))
+		src.mob.setup_radio_box() //playtime logging stuff
 		src.player.log_join_time()
 
 	Z_LOG_DEBUG("Client/New", "[src.ckey] - Player set ([player])")
