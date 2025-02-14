@@ -1172,6 +1172,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 	//point and click, but if that's too slow, then toss it in a microwave or something. built in a way that if electronics fail, manual control is unlocked
 	shoot()
 		if (!hammer_cocked) //single action striker bullshit
+			src.hammer_cocked = TRUE
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 			return
 		..()
 		if(electrics_intact)
