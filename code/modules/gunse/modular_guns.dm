@@ -1680,7 +1680,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 					sleep(10) //heavy double action
 					//process_ammo() //need to rewrite this for revolver imo, right now bypassing it to do something quick and dirty
 					hammer_cocked = TRUE
-					playsound(target_gun.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 					..()
 					currently_firing = FALSE
 		else
