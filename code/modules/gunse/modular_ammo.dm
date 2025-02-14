@@ -705,7 +705,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		min_amount = 10
 		max_amount = 10
 
-//NT's EXTRA small shotgun shell
+//NT's EXTRA skinny shotgun shell, which works in regular light barrels! wow!
 /obj/item/stackable_ammo/scatter/NT/mini
 	name = "\improper NT Mini Shot"
 	real_name = "\improper NT Mini Shot"
@@ -737,7 +737,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	name = "\improper Juicer Hot Pocketz"
 	real_name = "\improper Juicer Hot Pocketz"
 	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
-	projectile_type = /datum/projectile/bullet/shot_heavy
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer
 	stack_type = /obj/item/stackable_ammo/scatter/juicer
 	icon_state = "juicer_shells_red"
 	icon_full  = "juicer_shells_red"
@@ -765,7 +765,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	name = "\improper Juicer JAMMO"
 	real_name = "\improper Juicer JAMMO"
 	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
-	projectile_type = /datum/projectile/bullet/shot_heavy/denim
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
 	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
 	icon_state = "juicer_shells_blue"
 	icon_full  = "juicer_shells_blue"
@@ -773,14 +773,29 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
 
+	three
+		name = "\improper Juicer JAMMO (x3)"
+		min_amount = 3
+		max_amount = 3
+
+	five
+		name = "\improper Juicer JAMMO (x5)"
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		name = "\improper Juicer JAMMO (x10)"
+		min_amount = 10
+		max_amount = 10
+
 /obj/item/stackable_ammo/scatter/bartender
 	name = "\improper Bartender's Buddy"
 	real_name = "\improper Bartender's Buddy"
 	desc = "Unlicensed and handmade short 16mm shotgun shell, full of rock salt. And probably some kind of acid."
 	projectile_type = /datum/projectile/bullet/shot_salt
 	stack_type = /obj/item/stackable_ammo/scatter/bartender
-	icon_state = "shells_blue"
-	icon_full  = "shells_blue"
+	icon_state = "shells"
+	icon_full  = "shells"
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"

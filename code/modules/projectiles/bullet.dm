@@ -373,15 +373,13 @@ soon it will go away */
 	dissipation_rate = 5
 	dissipation_delay = 3
 	damage_type = D_KINETIC
+	hit_ground_chance = 50
 
 	mini //for maintenance pest control
 		name = "ratshot"
 		sname = "ratshot"
-		icon_state = "trace"
 		power = 3
-		dissipation_rate = 5
-		dissipation_delay = 3
-		damage_type = D_KINETIC
+		hit_ground_chance = 75
 
 //probably a lawgiver thing but we can adopt this into real separate shell
 //fired as a single projectile
@@ -433,7 +431,7 @@ soon it will go away */
 	hit_type = DAMAGE_BLUNT
 	caliber = 0.62 // roughly
 	icon_turf_hit = "bhole"
-	hit_ground_chance = 100
+	hit_ground_chance = 60
 	implanted = /obj/item/implant/projectile/shot_buck
 	casing = /obj/item/casing/shotgun/red
 
@@ -460,10 +458,12 @@ soon it will go away */
 			..()
 
 	weak
-		power = 65 //can have a little throwing, as a treat
+		power = 8 //can have a little throwing, as a treat
+		hit_ground_chance = 50
 
 	denim
-		power = 90
+		power = 12
+		hit_ground_chance = 80 //dirty
 
 		//on_hit override message to player: "J'ow!" "That really jurt!" etc.
 

@@ -133,7 +133,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	goes_through_walls = 1
 
 // Mildly crazy shit
-//Parent type
+//Parent type (is this abstract??? maybe it should be abstract)
 /datum/projectile/special/spreader
 	name = "spread shot"
 	sname = "spread shot"
@@ -218,7 +218,32 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.internal_speed = rand(speed_min,speed_max)
 		FC.travelled = rand(0,dissipation_variance)
 		FC.launch()
+//NT shot is plastic
+/datum/projectile/special/spreader/buckshot_burst/nt
+	name = "buckshot"
+	sname = "buckshot"
+	cost = 1
+	pellets_to_fire = 10
+	spread_projectile_type = /datum/projectile/bullet/shot_weak
+	casing = /obj/item/casing/shotgun/blue
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 10
+	dissipation_variance = 20
 
+/datum/projectile/special/spreader/buckshot_burst/nt/short
+	name = "ratshot"
+	sname = "ratshot"
+	cost = 1
+	pellets_to_fire = 5
+	spread_projectile_type = /datum/projectile/bullet/shot_weak/mini
+	casing = /obj/item/casing/shotgun/blue
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 5
+	dissipation_variance = 20
+
+//Juicer shot is not
 /datum/projectile/special/spreader/buckshot_burst/juicer
 	name = "juicershot"
 	sname = "juicershot"
@@ -229,6 +254,18 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	speed_max = 5
 	speed_min = 60
 	spread_angle_variance = 15
+	dissipation_variance = 32
+
+/datum/projectile/special/spreader/buckshot_burst/juicer/denim
+	name = "juicershot"
+	sname = "juicershot"
+	cost = 1
+	pellets_to_fire = 8 //10 per
+	spread_projectile_type = /datum/projectile/bullet/shot_heavy
+	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 20
 	dissipation_variance = 32
 
 /datum/projectile/special/spreader/buckshot_burst/salt
