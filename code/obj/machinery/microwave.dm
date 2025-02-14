@@ -297,7 +297,7 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 						src.cook(MW_COOK_EGG)
 					else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
 						for(var/obj/item/gun_parts/P in src.contents)
-							if(prob(49) && istype(A, /obj/item/gun/modular/NT/long)) // slightly less than half a chance to fry the annoying smartloader in NT long receivers
+							if(prob(49) && istype(P, /obj/item/gun/modular/NT/long)) // slightly less than half a chance to fry the annoying smartloader in NT long receivers
 								var/obj/item/gun/modular/NT/long/ntl = P
 								ntl.electrics_intact = FALSE
 							if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
