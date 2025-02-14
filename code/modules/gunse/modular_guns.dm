@@ -701,7 +701,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
 	else
-		process_ammo(user)
+		if(!src.processing_ammo)
+			process_ammo(user)
 		if(src.max_ammo_capacity)
 			// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
 			src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
@@ -1116,7 +1117,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 //standard stupid breech load
 //Ammo: standard/small and also primarily stun
 //magazine: none by default, ammo is stored behind/in the stock (the grip holds the very large battery for the light and the loader)
-//eventually: convert long stock to short stock and vice versa via swappable kit (with NT and soviet receivers)
+//eventually: convert long receiver to short receiver and vice versa via swappable kit (with NT and soviet receivers)
 
 ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT
@@ -1168,18 +1169,57 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 
 	//this operates like a shitty electric motor loading glock or something
 	//"but but don't we need a power cell or something" it's got integrated batteries that'll last a month in the receiver don't worry about it
+	//point and click, but if that's too slow, then toss it in a microwave or something. built in a way that if electronics fail, manual control is unlocked
 	shoot()
 		if (!hammer_cocked) //single action striker bullshit
 			return
 		..()
-		if(electrics_intact && !jammed)
-			sleep(20) //just long enough to be a pain
-			if(!current_projectile && !jammed)
+		if(electrics_intact)
+			if (jammed)
+				sleep(30) //just long enough to be a pain
+				if(src.jammed == 2) //stuck
+					boutput(user, "<span class='notice'>The NT smartloader forces the stuck casing out of [src]</span>")
+				else //misfire
+					if(prob(10)) //unlucky, dump the round
+						src.jammed = 0
+						src.current_projectile = null
+						boutput(user, "<span class='notice'>The NT smartloader forces the dud round out of [src]</span>") //drop a dud
+					else //just hit it again it'll work for sure
+						src.jammed = 0
+						src.hammer_cocked = TRUE
+						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+						boutput(user, "<span class='notice'>The NT smartloader re-cocks the hammer on [src]</span>") //good 2 go
+			if(!current_projectile)
+				sleep(20)
 				if(ammo_list.len)
 					playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
 					process_ammo() //attempt autoload beep boop
 				else
 					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
+
+	//cycle weapon + update counter
+	attack_self(mob/user)
+		if(electrics_intact) //can't do anything unless the gun does it, unless you microwave it or emag it (or eventually do some parts surgery on it)
+			return
+		else
+			if(src.processing_ammo)
+				return //hold your dang horses
+			process_ammo(user)
+			if(src.max_ammo_capacity)
+				// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
+				src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
+			else
+				src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
+		buildTooltipContent()
+
+	emag_act(var/mob/user, var/obj/item/card/emag/E)
+		if (!electrics_intact)
+			return 0
+		if (user)
+			user.show_text("[src]'s 'smart' autoloading capabilities have been disabled.", "red")
+		src.electrics_intact = FALSE
+		//do a thing here to turn off the lights
+		return 1
 
 //a built and usable pistol
 /obj/item/gun/modular/NT/short/pistol
