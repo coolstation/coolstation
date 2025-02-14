@@ -703,10 +703,9 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		check_compid_list(src) 	//Will analyze their computer ID usage patterns for aberrations
 
 
-	// cursed darkmode stuff
+	// cursed theme stuff
 
-	src.sync_dark_mode()
-	src.sync_charcoal_mode()
+	src.sync_themes()
 
 	// cursed darkmode end
 
@@ -1728,6 +1727,12 @@ saybutton.background-color=[_SKIN_COMMAND_BG];\
 saybutton.text-color=[_SKIN_TEXT];\
 info.tab-background-color=[_SKIN_INFO_TAB_BG];\
 info.tab-text-color=[_SKIN_TEXT]"
+
+/client/proc/sync_themes()
+	if(winget(src, "menu.charcoal_mode", "is-checked") == "true")
+		src.sync_charcoal_mode()
+	if(winget(src, "menu.dark_mode", "is-checked") == "true")
+		src.sync_dark_mode()
 
 /client/verb/sync_charcoal_mode()
 	set hidden=1
