@@ -21,6 +21,8 @@ ABSTRACT_TYPE(/datum/projectile/bullet)
 	var/jam_mult = 1
 //Multiplier for innate cartridge accuracy
 	var/accuracy_mult = 1
+//Amount of fouling to do per shot (50 shots of NT ammo until it starts to get rough and need cleaning, 100 shots before it really has problems. Other shots are much dirtier)
+	var/dirtiness = 1
 
 	// caliber list: update as needed
 	// 0.31 - standard pistol/rifle, standard barrel (replaces .22, 9mm, .38, .357, .45, .308, 30-06, 7.62, etc.)
@@ -212,7 +214,7 @@ soon it will go away */
 //.357 equivalent, Juicer Jr. rounds
 /datum/projectile/bullet/pistol_heavy
 	name = "bullet"
-	power = 60
+	power = 30
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
 	jam_mult = 2
@@ -222,7 +224,7 @@ soon it will go away */
 	casing = /obj/item/casing/medium
 
 /datum/projectile/bullet/pistol_heavy/AP
-	power = 50
+	power = 40
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
 	jam_mult = 2.2

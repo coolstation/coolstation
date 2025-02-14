@@ -200,6 +200,14 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.launch()
 		current_angle += angle_adjust_per_pellet
 
+/datum/projectile/special/spreader/uniform_burst/juicer_jr
+	name = "juicer jr tandem shot"
+	sname = "juicer jr tandem shot"
+	cost = 1
+	pellets_to_fire = 2
+	spread_projectile_type /datum/projectile/bullet/pistol_heavy //60 (30x2)
+	spread_angle = 10
+
 /datum/projectile/special/spreader/buckshot_burst
 	name = "buckshot"
 	sname = "buckshot"
