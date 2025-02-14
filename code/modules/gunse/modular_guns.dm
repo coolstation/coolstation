@@ -1181,12 +1181,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 					src.jammed = 0
 				else //misfire
 					if(prob(10)) //unlucky, dump the round
-						src.jammed = 0
 						src.current_projectile = null
-					else //just hit it again it'll work for sure
-						src.jammed = 0
+					else //just try again
 						src.hammer_cocked = TRUE
-						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					src.jammed = 0
+
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 			if(!current_projectile)
 				sleep(20)
 				if(ammo_list.len)
@@ -1194,6 +1194,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 					process_ammo() //attempt autoload beep boop
 				else
 					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
+			if (jammed) //and again, because sometimes it jams on load
+				sleep(30) //just long enough to be a pain
+				src.jammed = 0
+				src.hammer_cocked = TRUE
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
 	//cycle weapon + update counter
 	attack_self(mob/user)
