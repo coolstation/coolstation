@@ -107,7 +107,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//var/misfire_frequency = 1 //base % chance to fire wrong in some way
 	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately (but will after a delay, whether held or not)
 	//var/catastrophic_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user. probably not fun to have to find a screwdriver or rod and poke it out so forget that
-	var/jammed = 0 //got something stuck and unable to fire? for now: 1 for didn't go off, 2 for stuck, 3 for whatever
+	var/jammed = 0 //got something stuck and unable to fire? for now: 1 for didn't go off, 2 for stuck, 3 for whatever TODO: MAKE DEFINES SO THESE AREN'T MAGIC NUMBERS I CAN'T KEEP TRACK OF BECAUSE I'M A REAL BIG IDIOT
 	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
 
 	var/sound_type = null //bespoke set of loading and cycling noises
@@ -777,6 +777,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			user.show_text("The cartridge fails to go off!", "red")
 			playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
 			//check chance to have a worse misfire
+			chamber_checked = FALSE
+			hammer_cocked = FALSE
+			return
 
 	//jam flashbulb gun's
 	else
@@ -815,6 +818,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				user.show_text("A wire comes loose as [src] misfires and drops its charge!", "red")
 			else
 				user.show_text("The flashtube shorts out and dies!", "red")
+			chamber_checked = FALSE
+			hammer_cocked = FALSE
+			return //stop
 			//maybe a chance to force a shot if this is done while cranking rather than attempting to fire
 
 	var/spread = is_dual_wield*10
@@ -1175,6 +1181,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 		if(electrics_intact) //handholding nonsense if electronics are intact
 			if (!src.processing_ammo)
 				if (jammed)
+					src.processing_ammo = TRUE
 					boutput(user, "<span class='notice'>The NT smartloader beeps, 'Jam Detected in [src]!'</span>")
 					sleep(30) //just long enough to be a pain
 					if(src.jammed == 2) //stuck
@@ -1191,7 +1198,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 							src.hammer_cocked = TRUE
 							boutput(user, "The NT smartloader re-cocks the hammer on [src]")
 					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					src.processing_ammo = FALSE
 					return
+				if (!current_projectile)
+					return //kill spam click on unloaded chamber (this causes beepboops all over)
 		else //fall back to manual single action striker
 			if (!src.hammer_cocked)
 				src.hammer_cocked = TRUE
@@ -1199,6 +1209,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 				return
 		..()
 		if(electrics_intact)
+			if (jammed == 2 && !src.processing_ammo) //and again, because sometimes it jams a casing on eject
+				src.processing_ammo = TRUE
+				boutput(user, "<span class='notice'>The NT smartloader beeps, 'Jam Detected in [src]!'</span>")
+				sleep(30) //just long enough to be a pain
+				src.jammed = 0
+				boutput(user, "The NT smartloader ejects the stuck casing from [src]")
+				src.processing_ammo = FALSE
 			if(!current_projectile)
 				sleep(20)
 				if(ammo_list.len)
@@ -1206,13 +1223,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 					process_ammo() //attempt autoload beep boop
 				else
 					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
-			if (jammed) //and again, because sometimes it jams on load
-				boutput(user, "<span class='notice'>The NT smartloader beeps, 'Jam Detected in [src]!'</span>")
-				sleep(30) //just long enough to be a pain
+			if (jammed && !src.processing_ammo)
+				src.processing_ammo = TRUE
+				sleep(30)
 				src.jammed = 0
-				src.hammer_cocked = TRUE
-				boutput(user, "The NT smartloader reseats the round in [src]")
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+				boutput(user, "The NT smartloader automatically reseats the round in [src]") //possibly the only advantage of smart loader easymode 4 babies
+				src.processing_ammo = FALSE
+			src.hammer_cocked = TRUE
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
 	//cycle weapon + update counter
 	attack_self(mob/user)
