@@ -256,6 +256,13 @@ var/list/headset_channel_lookup
 	var/ai_sender = 0
 	var/eqjobname
 
+	//If we're trying to talk on a secure channel update the channel input box for last sent channel hotkey
+	if(secure && !isnull(src.secure_frequencies[secure]))
+		var/color = default_frequency_color(src.secure_frequencies[secure])
+		var/title = "[format_frequency(src.secure_frequencies[secure])] - "\
+		+ (headset_channel_lookup["[src.secure_frequencies[secure]]"] ? headset_channel_lookup["[src.secure_frequencies[secure]]"] : "(Unknown)")
+		M.open_radio_input(":[secure]", title, color, open_window=FALSE)
+
 	if (iscarbon(M))
 		if (hasvar(M, "wear_id"))
 			if (M:wear_id)
