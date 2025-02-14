@@ -81,7 +81,6 @@
 	+ (headset_channel_lookup["[first_freq]"] ? headset_channel_lookup["[first_freq]"] : "(Unknown)")
 	open_radio_input("[":" + s_freqs[1] ]", title, color, open_window=FALSE)
 
-
 /mob/proc/open_radio_input(token as text, title as text, color, open_window=TRUE)
 	//Some of the radio channels are way too bright
 	var/list/colorOverrides = list(
