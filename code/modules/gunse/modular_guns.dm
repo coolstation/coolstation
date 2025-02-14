@@ -1663,6 +1663,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	jam_frequency_fire = 3
 	jam_frequency_reload = 3
+	var/currently_firing = 1 //this double action pull is slow
 
 	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//If we're doing a double action thing here where it automatically resets and is ready to fire the next shot?
@@ -1670,8 +1671,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
 		//if (!src.hammer_cocked) then delay and set hammer_cocked
-		if (src.hammer_cocked)
-			..()
+		if (src.current_projectile)
+			if (hammer_cocked) //single action
+				..() //fire
+			else
+				if (!currently_firing)
+					currently_firing = TRUE
+					sleep(10) //heavy double action
+					//process_ammo() //need to rewrite this for revolver imo, right now bypassing it to do something quick and dirty
+					hammer_cocked = TRUE
+					playsound(target_gun.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					..()
+					currently_firing = FALSE
 		else
 			sleep(10) //heavy double action
 			//check if still held by same person
