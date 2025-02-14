@@ -52,6 +52,36 @@
 		msg = capitalize(copytext(msg, i))
 	src.say_verb(";" + msg)
 
+/mob/proc/setup_radio_box()
+	if(isnull(src.client) || !src.ears || !istype(src.ears, /obj/item/device/radio))
+		return
+
+	var/prefix = winget(client, "radiochannelsaywindow.input", "command")
+	var/obj/item/device/radio/headset = src.ears
+	var/list/s_freqs = headset.secure_frequencies
+	var/regex/R = new(@":([^\s]*)", "g")
+	R.Find(prefix)
+
+	//Box has been set up with a channel we have
+	if(R.match in s_freqs || R.match == ":" || R.match == ";")
+		return
+
+	//No secure channels
+	if(!(istype(s_freqs) && length(s_freqs)))
+		var/color = default_frequency_color(R_FREQ_DEFAULT)
+		var/title = "[format_frequency(R_FREQ_DEFAULT)] - "\
+		+ (headset_channel_lookup["[R_FREQ_DEFAULT]"])
+		open_radio_input(";", title, color, open_window=FALSE)
+		return
+
+	//Last case- the window isn't setup with a secure channel, but we have them
+	var/first_freq = s_freqs[s_freqs[1]]
+	var/color = default_frequency_color(first_freq)
+	var/title = "[format_frequency(first_freq)] - "\
+	+ (headset_channel_lookup["[first_freq]"] ? headset_channel_lookup["[first_freq]"] : "(Unknown)")
+	open_radio_input("[":" + s_freqs[1] ]", title, color, open_window=FALSE)
+
+
 /mob/proc/open_radio_input(token as text, title as text, color, open_window=TRUE)
 	//Some of the radio channels are way too bright
 	var/list/colorOverrides = list(
