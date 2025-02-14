@@ -1150,6 +1150,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/short)
 //long receiver, by itself
 //eventually be able to convert between long and short?
 ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
+
 /obj/item/gun/modular/NT/long
 	name = "\improper NT rifle receiver"
 	real_name = "\improper NT rifle"
@@ -1170,43 +1171,59 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 	//this operates like a shitty electric motor loading glock or something
 	//"but but don't we need a power cell or something" it's got integrated batteries that'll last a month in the receiver don't worry about it
 	//point and click, but if that's too slow, then toss it in a microwave or something. built in a way that if electronics fail, manual control is unlocked
-	shoot()
-		if (!hammer_cocked) //single action striker bullshit
+	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
+		if (!src.hammer_cocked && !src.processing_ammo) //single action striker bullshit
 			src.hammer_cocked = TRUE
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 			return
-		..()
-		if(electrics_intact)
+		if(electrics_intact && !src.processing_ammo)
 			if (jammed)
 				sleep(30) //just long enough to be a pain
 				if(src.jammed == 2) //stuck
 					src.jammed = 0
+					src.hammer_cocked = TRUE
+					boutput(user, "<span class='notice'>The NT smartloader forces the stuck casing out of [src]</span>")
 				else //misfire
 					if(prob(10)) //unlucky, dump the round
 						src.current_projectile = null
-					else //just try again
+						src.jammed = 0
+						boutput(user, "<span class='notice'>The NT smartloader forces the dud round out of [src]</span>") //drop a dud
+					else
+						src.jammed = 0
 						src.hammer_cocked = TRUE
-					src.jammed = 0
-
-					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-			if(!current_projectile)
-				sleep(20)
-				if(ammo_list.len)
-					playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
-					process_ammo() //attempt autoload beep boop
-				else
-					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
-			if (jammed) //and again, because sometimes it jams on load
-				sleep(30) //just long enough to be a pain
-				src.jammed = 0
-				src.hammer_cocked = TRUE
+						boutput(user, "<span class='notice'>The NT smartloader re-cocks the hammer on [src]</span>")
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+				return
+			if (!src.hammer_cocked)
+				sleep(10)
+				src.hammer_cocked = TRUE
+				boutput(user, "<span class='notice'>The NT smartloader re-cocks the hammer on [src]</span>")
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+				return
+		..()
+		if(!current_projectile)
+			sleep(20)
+			if(ammo_list.len)
+				playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
+				process_ammo() //attempt autoload beep boop
+			else
+				playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
+		if (jammed) //and again, because sometimes it jams on load
+			sleep(30) //just long enough to be a pain
+			src.jammed = 0
+			src.hammer_cocked = TRUE
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
 	//cycle weapon + update counter
 	attack_self(mob/user)
 		if(electrics_intact) //can't do anything unless the gun does it, unless you microwave it or emag it (or eventually do some parts surgery on it)
+			if(src.max_ammo_capacity)
+				src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
+			else
+				src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
+			buildTooltipContent()
 			return
-		else
+		else //operate it like any other firearm
 			if(src.processing_ammo)
 				return //hold your dang horses
 			process_ammo(user)
@@ -1388,6 +1405,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	stock_overlay_x = STOCK_OFFSET_LONG
 	//foregrip_offset_x = 15 //put it on the pump
 
+//just the receiver
 /obj/item/gun/modular/juicer/receiver
 
 /obj/item/gun/modular/juicer/basic
@@ -1606,7 +1624,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	jam_frequency_fire = 3
 	jam_frequency_reload = 3
 
-	shoot()
+	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//If we're doing a double action thing here where it automatically resets and is ready to fire the next shot?
 		//Maybe a short sleep, that's the tradeoff for not having to click it every time... I'm not putting it in until I sort out more
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
