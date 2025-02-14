@@ -1178,17 +1178,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 			if (jammed)
 				sleep(30) //just long enough to be a pain
 				if(src.jammed == 2) //stuck
-					boutput(user, "<span class='notice'>The NT smartloader forces the stuck casing out of [src]</span>")
+					src.jammed = 0
 				else //misfire
 					if(prob(10)) //unlucky, dump the round
 						src.jammed = 0
 						src.current_projectile = null
-						boutput(user, "<span class='notice'>The NT smartloader forces the dud round out of [src]</span>") //drop a dud
 					else //just hit it again it'll work for sure
 						src.jammed = 0
 						src.hammer_cocked = TRUE
 						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-						boutput(user, "<span class='notice'>The NT smartloader re-cocks the hammer on [src]</span>") //good 2 go
 			if(!current_projectile)
 				sleep(20)
 				if(ammo_list.len)
