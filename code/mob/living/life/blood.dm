@@ -196,6 +196,8 @@
 					var/extreme = pick("", "kinda ", "a little ", "sorta ", "a bit ")
 					var/feeling = pick("ill", "sick", "numb", "cold", "dizzy", "out of it", "confused", "off-balance", "tingly", "faint")
 					boutput(owner, "<span class='alert'><b>You feel [extreme][feeling]!</b></span>")
+				if (prob(5))
+					owner.contract_disease(/datum/ailment/malady/shock, null, null, 1)
 				if (probmult(12))
 					owner.change_eye_blurry(6, 6)
 					owner.stuttering = max(owner.stuttering, 15)
