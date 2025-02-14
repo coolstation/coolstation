@@ -759,10 +759,7 @@ datum
 
 				if (isliving(M))
 					var/mob/living/H = M
-					if(H.blood_volume > 300)        //slows down your bleeding when you have less blood to bleed
-						H.blood_volume -= 5 * mult
-					else
-						H.blood_volume -= 3 * mult
+					H.blood_volume -= 3 * mult
 				if (probmult(6))
 					M.visible_message(pick("<span class='alert'><B>[M]</B>'s [pick("eyes", "arms", "legs")] bleed!",\
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
