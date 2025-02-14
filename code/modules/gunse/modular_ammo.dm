@@ -248,7 +248,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	cartridge_length = 20
 	caliber = 0.31
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -309,6 +308,34 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 
 	ten
 		name = "NT HP pistol round (x10)"
+		min_amount = 10
+		max_amount = 10
+
+/obj/item/stackable_ammo/pistol/ratshot
+	name = "NT ratshot pistol round"
+	real_name = "NT ratshot pistol round"
+	desc = "NT's 8mm Short firearms cartridge, filled with a tiny amount of shot for pest control. Not permitted for use on crew members."
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/nt/short
+	stack_type = /obj/item/stackable_ammo/pistol/ratshot
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_brass"
+	icon_full  = "nt_brass"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_brass"
+	icon_shell = "brass_case"
+
+	three
+		name = "NT ratshot pistol round (x3)"
+		min_amount = 3
+		max_amount = 3
+
+	five
+		name = "NT ratshot pistol round (x5)"
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		name = "NT ratshot pistol round (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -374,7 +401,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	name = "\improper Juicer Jr. round"
 	real_name = "Juicer Jr. round"
 	desc = "Precision-manufactured Juicer pistol rounds in exactly 4x20 millimeter. Except two of them are taped together to fit in a standard barrel."
-	projectile_type = /datum/projectile/bullet/pistol_heavy //use a special two-bullet/half-damage projectile here
+	projectile_type = /datum/projectile/special/spreader/uniform_burst/juicer_jr //use a special two-bullet/half-damage projectile here, see if this works
 	stack_type = /obj/item/stackable_ammo/pistol/juicer
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "juicer_jr"
@@ -736,7 +763,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/juicer
 	name = "\improper Juicer Hot Pocketz"
 	real_name = "\improper Juicer Hot Pocketz"
-	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
+	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels, but won't fit in pistol receivers."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer
 	stack_type = /obj/item/stackable_ammo/scatter/juicer
 	icon_state = "juicer_shells_red"
@@ -764,7 +791,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/juicer/denim
 	name = "\improper Juicer JAMMO"
 	real_name = "\improper Juicer JAMMO"
-	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
+	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels and long receivers."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
 	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
 	icon_state = "juicer_shells_blue"
