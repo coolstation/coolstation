@@ -604,44 +604,44 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					chamber_checked = 1
 			return (current_projectile?1:0)
 
-	switch(jammed)
-		if(JAM_FIRE) //problem on fire, either dud round or light strike
-			if(prob(current_projectile.dud_freq)) //unlucky, dump the round
-				src.jammed = FALSE
-				src.current_projectile = null
-				//come up with a good sound for this
-				boutput(user, "<span class='notice'>You pry the dud round out of [src]</span>") //drop a dud
-				return 0
-			else //just hit it again it'll work for sure
-				src.jammed = FALSE
-				src.hammer_cocked = TRUE
-				if (sound_type)
-					playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+		switch(jammed)
+			if(JAM_FIRE) //problem on fire, either dud round or light strike
+				if(prob(current_projectile.dud_freq)) //unlucky, dump the round
+					src.jammed = FALSE
+					src.current_projectile = null
+					//come up with a good sound for this
+					boutput(user, "<span class='notice'>You pry the dud round out of [src]</span>") //drop a dud
+					return 0
+				else //just hit it again it'll work for sure
+					src.jammed = FALSE
+					src.hammer_cocked = TRUE
+					if (sound_type)
+						playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+					else
+						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg.ogg", 40, 1)
+					boutput(user, "<span class='notice'>You re-cock the hammer on [src], ready to fire again.</span>") //good 2 go
+					return 1
+			if(JAM_CYCLE) //failure to eject, that sorta thing
+				if(prob(fiddlyness))
+					//come up with a good sound for this
+					boutput(user, "<span class='notice'>You fail to pull the stuck casing out of [src].</span>") //good 2 go
+					return 0
+				else //just hit it again it'll work for sure
+					src.jammed = FALSE
+					boutput(user, "<span class='notice'>You pry the stuck casing out of [src].</span>") //drop a shell or a damaged cartridge
+					return 0
+			if(JAM_LOAD)
+				if(prob(fiddlyness))
+					boutput(user, "<span class='notice'>You fail to pull the stuck round out of [src].</span>") //good 2 go
+					return 0
 				else
-					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg.ogg", 40, 1)
-				boutput(user, "<span class='notice'>You re-cock the hammer on [src], ready to fire again.</span>") //good 2 go
-				return 1
-		if(JAM_CYCLE) //failure to eject, that sorta thing
-			if(prob(fiddlyness))
-				//come up with a good sound for this
-				boutput(user, "<span class='notice'>You fail to pull the stuck casing out of [src].</span>") //good 2 go
-				return 0
-			else //just hit it again it'll work for sure
-				src.jammed = FALSE
-				boutput(user, "<span class='notice'>You pry the stuck casing out of [src].</span>") //drop a shell or a damaged cartridge
-				return 0
-		if(JAM_LOAD)
-			if(prob(fiddlyness))
-				boutput(user, "<span class='notice'>You fail to pull the stuck round out of [src].</span>") //good 2 go
-				return 0
-			else
-				src.jammed = FALSE
-				//come up with a good sound for this
-				src.current_projectile = null
-				boutput(user, "<span class='notice'>You pry the stuck round out of [src].</span>") //drop a shell or a damaged cartridge
-				return 0
-		//if(4) //squib, real bad time
-		//if(5) //hangfire, figure out how to handle
+					src.jammed = FALSE
+					//come up with a good sound for this
+					src.current_projectile = null
+					boutput(user, "<span class='notice'>You pry the stuck round out of [src].</span>") //drop a shell or a damaged cartridge
+					return 0
+			//if(4) //squib, real bad time
+			//if(5) //hangfire, figure out how to handle
 
 	if(!ammo_list.len) // empty!
 		if (!hammer_cocked)
@@ -931,7 +931,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.inventory_counter.update_number(crank_level)
 
 	if(prob(jam_frequency_reload))
-		jammed = JAM_LOAD
+		jammed = JAM_CYCLE
 		if (flashbulb_only)
 			boutput(user,"<span class='alert'><b>The dynamo gets stuck!</b></span>") //slammed forward too fast or whatever
 		else
@@ -1227,6 +1227,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 				if(ammo_list.len)
 					playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
 					process_ammo() //attempt autoload beep boop
+					if(!current_projectile && ammo_list.len) //motherfucker loaded a dud somehow (I really need to separate out jam handling from processing ammo)
+						boutput(user, "The NT smartloader fumbles a round in [src]")
+						playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
+						sleep(20)
+						process_ammo() //load it again
 				else
 					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
 			if (jammed && !src.processing_ammo)
@@ -1264,6 +1269,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 			return 0
 		if (user)
 			user.show_text("[src]'s 'smart' autoloading capabilities have been disabled.", "red")
+			//also remove safety locks, if these ever exist
 		src.electrics_intact = FALSE
 		//do a thing here to turn off the lights
 		return 1
