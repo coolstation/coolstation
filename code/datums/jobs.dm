@@ -314,7 +314,7 @@ ABSTRACT_TYPE(/datum/job/command)
 		SPAWN_DBG(2 DECI SECONDS) //ugh belts do this on spawn and we need to wait
 			var/list/tracklist = list()
 			for(var/atom/C in A.contents)
-				if (istype(C,/obj/item/gun/energy/taser_gun) || istype(C,/obj/item/baton))
+				if (istype(C,/obj/item/baton))
 					tracklist += C
 
 			if (length(tracklist))
@@ -530,7 +530,7 @@ ABSTRACT_TYPE(/datum/job/security)
 			SPAWN_DBG(2 DECI SECONDS) //ugh belts do this on spawn and we need to wait
 				var/list/tracklist = list()
 				for(var/atom/C in A.contents)
-					if (istype(C,/obj/item/gun/energy/taser_gun) || istype(C,/obj/item/baton))
+					if (istype(C,/obj/item/baton))
 						tracklist += C
 
 				if (length(tracklist))
