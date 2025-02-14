@@ -1195,9 +1195,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 				return
 			if (!src.hammer_cocked)
+				boutput(user, "<span class='notice'>Nothing happened when you pulled the trigger on [src]!</span>")
 				sleep(10)
 				src.hammer_cocked = TRUE
-				boutput(user, "<span class='notice'>The NT smartloader re-cocks the hammer on [src]</span>")
+				boutput(user, "The NT smartloader re-cocks the hammer on [src]")
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 				return
 		..()
@@ -1217,6 +1218,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 	//cycle weapon + update counter
 	attack_self(mob/user)
 		if(electrics_intact) //can't do anything unless the gun does it, unless you microwave it or emag it (or eventually do some parts surgery on it)
+			boutput(user, "The intact NT smartloader prevents you from interacting with [src]'s action beyond reloading and shooting.")
 			if(src.max_ammo_capacity)
 				src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
 			else
