@@ -2011,7 +2011,7 @@
 		/*
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
@@ -2048,7 +2048,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
 		//hidden
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
