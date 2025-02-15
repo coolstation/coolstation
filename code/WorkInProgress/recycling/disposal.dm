@@ -196,6 +196,7 @@
 		user.changeStatus("paralysis", 4 SECONDS)
 		user.changeStatus("weakened", 4 SECONDS)
 		src.visible_message("<span class='alert'><b>[P]</b> emits a loud thump and rattles a bit.</span>")
+		user.take_brain_damage(prob(50))
 
 		animate_storage_thump(P)
 
