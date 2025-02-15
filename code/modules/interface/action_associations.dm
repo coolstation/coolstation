@@ -41,6 +41,7 @@ var/list/action_names = list(
 	"say" = "Say",
 	"say_radio" = "Say Radio",
 	"say_main_radio" = "Say Main Radio",
+	"say_last_channel" = "Say Last Channel",
 	"dsay" = "Dead Say",
 	"asay" = "Admin Say",
 	"whisper" = "Whisper",
@@ -132,9 +133,12 @@ var/list/action_verbs = list(
 	"Admin Interact" = "admin_interact"
 )
 
+//Macro names as in skin.dmf elements
 var/list/action_macros = list(
 	"say" = "startsay",
 	"say_main_radio" = "radiosay",
+	"whisper" = "whisper",
+	"say_last_channel" = "radiolastsay"
 )
 
 ///Used to translate bitflags of hotkeys into human-readable names
