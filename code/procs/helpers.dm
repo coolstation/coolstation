@@ -457,6 +457,9 @@ proc/get_angle(atom/a, atom/b)
 	else if (dd_hasprefix(message, ":"))
 		prefix = copytext(message, 1, 3)
 		message = copytext(message, 3)
+	else if (dd_hasprefix(message, ";;"))
+		prefix = ";"
+		message = copytext(message, 3)
 	else if (dd_hasprefix(message, ";"))
 		prefix = ";"
 		message = copytext(message, 2)
