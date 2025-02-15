@@ -1389,6 +1389,22 @@ datum
 				..()
 				return
 
+		yes_powder
+			name = "powder that makes you say yes"
+			id = "yes_powder"
+			description = "...what?"
+			reagent_state = SOLID
+			fluid_r = 200
+			fluid_g = 200
+			fluid_b = 200
+			transparency = 0
+
+			on_add()
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					M.say("yes")
+				..()
+
 		denatured_enzyme
 			name = "denatured enzyme"
 			id = "denatured_enzyme"
