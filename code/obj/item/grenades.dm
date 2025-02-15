@@ -363,18 +363,6 @@ PIPE BOMBS + CONSTRUCTION
 			qdel(src)
 		return
 
-/obj/item/old_grenade/smoke/mustard
-	name = "mustard gas grenade"
-	var/datum/effects/system/mustard_gas_spread/mustard_gas
-	icon_state = "mustard"
-	icon_state_armed = "mustard1"
-
-	New()
-		..()
-		if (usr?.loc) //Wire: Fix for Cannot read null.loc
-			src.mustard_gas = new /datum/effects/system/mustard_gas_spread/
-			src.mustard_gas.attach(src)
-			src.mustard_gas.set_up(5, 0, usr.loc)
 
 /obj/item/old_grenade/stinger
 	name = "stinger grenade"
