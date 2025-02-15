@@ -110,13 +110,6 @@
 		else //must be a string
 			return key_string_to_desc(action)
 
-	///Returns keybind for a given action
-	proc/action_to_keybind(action)
-		for(var/key_string in keys)
-			var/action_string = keys[key_string]
-			if(action_string == action)
-				return unparse_keybind(key_string)
-		return null
 
 	///Converts from code-readable action names to human-readable
 	///Example: "l_arm" to "Target Left Arm"
