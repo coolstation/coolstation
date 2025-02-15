@@ -325,40 +325,18 @@ PIPE BOMBS + CONSTRUCTION
 	prime()
 		var/turf/T = ..()
 		if (T)
-			var/obj/item/old_grenade/smoke/mustard/M = null
-			if (istype(src, /obj/item/old_grenade/smoke/mustard))
-				M = src
 			playsound(T, "sound/effects/smoke.ogg", 50, 1, -3)
-
 			SPAWN_DBG(0)
 				if (src)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
 
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						qdel(M)
-					else
-						qdel(src)
+					src.smoke.start()
+					qdel(src)
 		else
 			qdel(src)
 		return
