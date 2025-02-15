@@ -457,7 +457,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			return
 
 		if(barrel && lensing)
-			src.jammed = 1
+			src.jammed = JAM_FIRE
 			barrel.lensing = 0
 			barrel.spread_angle += 5
 			barrel.desc += " The internal lenses have been destroyed."
@@ -1665,6 +1665,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	jam_frequency_reload = 3
 	var/currently_firing = 1 //this double action pull is slow
 
+	//ideally we have two lists
+	//one for projectiles
+	//one for projectile status
+	//index goes 1, advances one until max, then resets to 1
+	//shot is ready to fire if 1, fired sets shot to 0, jammed (misfire) set to 2
+	//load and fire in that order, every time
+	//spin cylinder by clickdragging onto itself if not cocked
+	//decock on load?
+
 	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//If we're doing a double action thing here where it automatically resets and is ready to fire the next shot?
 		//Maybe a short sleep, that's the tradeoff for not having to click it every time... I'm not putting it in until I sort out more
@@ -1688,6 +1697,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			//check if still held by same person
 			process_ammo()
 			..()
+
+	//fuuuuck
+	//HOWEVER this will be integral to fanning the hammer, as long as you attackself within like, a few secs of firing, you'll chain fire approximately where you were
+	attack_self(mob/user)
+		if(!src.processing_ammo && !src.currently_firing)
+			process_ammo(user)
+		if(src.max_ammo_capacity)
+			// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
+			src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
+		else
+			src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
+		if(!hammer_cocked && !src.currently_firing) //for italian revolver purposes, doesn't process_ammo like normal
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+			boutput(user,"<span><b>You cock the hammer.</b></span>")
+			hammer_cocked = 1
+		buildTooltipContent()
 
 /obj/item/gun/modular/italian/basic
 	name = "basic Italian revolver"
