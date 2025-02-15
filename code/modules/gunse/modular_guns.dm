@@ -573,6 +573,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(src.max_ammo_capacity == 0 && !jammed) //single shot handling
 		if(chamber_checked && accessory && accessory_alt)
 			accessory.alt_fire()
+			return //nothing else to do here
 		else
 			boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
 			if(!chamber_checked)
