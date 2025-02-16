@@ -24,6 +24,46 @@ datum
 			hunger_value = -0.1
 			bladder_value = -0.1
 			thirst_value = -0.05
+			var/static/list/halluc_attackers = list(
+				new /image('icons/mob/critter.dmi',"death") = list("death","the bell guy","GO METS!"),
+				new /image('icons/mob/critter.dmi', "cluwnespider_queen") = list("your mother","fat fuck","horrible green crab"),
+				new /image('icons/mob/genetics.dmi', "psyche") = list("stranger","why why why"),
+				new /image('icons/mob/human.dmi', "husk") = list("mom","dad","burn please burn"),
+				new /image('icons/mob/human.dmi', "fire3") = list("no no NO","????","best friends!!!"),
+				new /image('icons/mob/human.dmi', "eaten") = list("grampa","the thing you refuse to remember you did"),
+				new /image('icons/mob/human.dmi', "decomp3") = list("yourself","me","us","mom","dad"),
+			)
+			var/static/list/halluc_overrides = list(
+				new /image('icons/mob/critter.dmi',"death"),
+				new /image('icons/mob/human.dmi', "husk"),
+				new /image('icons/mob/human.dmi', "fire3"),
+				new /image('icons/mob/human.dmi', "eaten"),
+				new /image('icons/mob/critter.dmi',"brullbar"),
+			)
+			var/static/list/halluc_sounds = list(
+				'sound/vox/poo-vox.ogg',
+				new /datum/hallucinated_sound("clownstep", min_count = 10, max_count = 20, delay = 0.1 SECONDS),
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 50, min_count = 2, max_count = 5, delay = 0.2 SECONDS),
+				'sound/voice/creepyshriek.ogg',
+				new /datum/hallucinated_sound('sound/musical_instruments/Bell_Huge_1.ogg', min_count = 2, max_count = 4, delay = 1.2 SECONDS),
+				'sound/machines/airlock_deny.ogg',
+				'sound/machines/airlock_pry.ogg',
+				'sound/musical_instruments/Bikehorn_1.ogg',
+				'sound/misc/talk/radio.ogg',
+				'sound/misc/talk/radio_ai.ogg',
+				'sound/weapons/DSRXPLOD.ogg',
+				'sound/weapons/flintlock.ogg',
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', pitch = 0.4),
+				'sound/items/hypo.ogg',
+				'sound/voice/cluwnelaugh1.ogg',
+				'sound/voice/cluwnelaugh2.ogg',
+				'sound/voice/cluwnelaugh3.ogg',
+				'sound/items/geiger/geiger-3-2.ogg',
+				'sound/items/geiger/geiger-5-3.ogg',
+				'sound/machines/ArtifactEld1.ogg',
+				'sound/machines/ArtifactEld2.ogg',
+				'sound/effects/heartbeat.ogg',
+			)
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -61,49 +101,23 @@ datum
 					M.change_misstep_chance(10 * mult)
 				// a really shitty form of traitor stimulants - you'll be tough to take down but nearly uncontrollable anyways and you won't heal the way stims do
 
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=25)
+				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=critter_image_list, target_list=list(/mob/living/carbon/human), range=7, image_prob=30, image_time=20, override=TRUE)
 
 				if(check < 8)
 					M.reagents.add_reagent(pick("methamphetamine", "crank", "neurotoxin"), rand(1,5))
 					M.visible_message("<span class='alert'><b>[M.name]</b> scratches at something under their skin!</span>")
 					random_brute_damage(M, 5 * mult)
 				else if (check < 16)
-					switch(rand(1,2))
-						if(1)
-							if(prob(20))
-								fake_attackEx(M, 'icons/mob/critter.dmi', "death", "death")
-								boutput(M, "<span class='alert'><b>OH GOD LOOK OUT!!!</b>!</span>")
-								M.emote("scream")
-								M.playsound_local(M.loc, 'sound/musical_instruments/Bell_Huge_1.ogg', 50, 1)
-							else if(prob(50))
-								fake_attackEx(M, 'icons/mob/critter.dmi', "mimicface", "smiling thing")
-								boutput(M, "<span class='alert'><b>The smiling thing</b> laughs!</span>")
-								M.playsound_local(M.loc, pick("sound/voice/cluwnelaugh1.ogg", "sound/voice/cluwnelaugh2.ogg", "sound/voice/cluwnelaugh3.ogg"), 35, 1)
-							else
-								M.playsound_local(M.loc, pick('sound/machines/ArtifactEld1.ogg', 'sound/machines/ArtifactEld2.ogg'), 50, 1)
-								boutput(M, "<span class='alert'><b>You hear something strange behind you...</b></span>")
-								var/ants = rand(1,3)
-								for(var/i = 0, i < ants, i++)
-									fake_attackEx(M, 'icons/mob/genetics.dmi', "psyche", "stranger")
-						if(2)
-							var/halluc_state = null
-							var/halluc_name = null
-							switch(rand(1,5))
-								if(1)
-									halluc_state = "husk"
-									halluc_name = pick("dad", "mom")
-								if(2)
-									halluc_state = "fire3"
-									halluc_name = pick("vision of your future", "dad", "mom")
-								if(3)
-									halluc_state = "eaten"
-									halluc_name = pick("???", "bad bad BAD")
-								if(4)
-									halluc_state = "decomp3"
-									halluc_name = pick("result of your poor life decisions", "grampa")
-								if(5)
-									halluc_state = "fire2"
-									halluc_name = pick("mom", "dad", "why are they burning WHY")
-							fake_attackEx(M, 'icons/mob/human.dmi', halluc_state, halluc_name)
+					var/image/imagekey = pick(halluc_attackers)
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=rand(10,15), max_attackers=rand(1,3))
+					if(prob(20))
+						boutput(M, "<span class='alert'><b>OH GOD LOOK OUT!!!</b>!</span>")
+						M.emote("scream")
+					else if(prob(50))
+						boutput(M, "<span class='alert'><b>The smiling thing</b> laughs!</span>")
+					else
+						boutput(M, "<span class='alert'><b>You hear something strange behind you...</b></span>")
 				else if(check < 24)
 					boutput(M, "<span class='alert'><b>They're coming for you!</b></span>")
 				else if(check < 28)
