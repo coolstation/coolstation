@@ -1,13 +1,14 @@
-TYPEINFO(/datum/component/hallucination/trippy_colors)
+/*TYPEINFO(/datum/component/hallucination/trippy_colors)
 	initialization_args = list(
 		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
-	)
+	)*/
 
 TYPEINFO(/datum/component/hallucination/random_sound)
 	initialization_args = list(
 		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
 		ARG_INFO("sound_list", "Build New List", "List of sounds that the mob can hallucinate appearing."),
 		ARG_INFO("sound_prob", "num", "probability of a sound being played per mob life tick", 10),
+		ARG_INFO("min_distance", "num", "minimum distance to the mob the sound will play from", 0),
 	)
 
 TYPEINFO(/datum/component/hallucination/random_image)
@@ -36,6 +37,7 @@ TYPEINFO(/datum/component/hallucination/random_image_override)
 		ARG_INFO("image_prob", "num", "probability of an image being displayed per mob life tick", 10),
 		ARG_INFO("image_time", "num", "seconds the displayed image hangs around", 20),
 		ARG_INFO("override", "boolean", "Does this hallucination replace the target's icon?", TRUE),
+		ARG_INFO("visible_creation", "boolean", "Should the displayed image appear in line of sight?", TRUE),
 	)
 
 
@@ -114,13 +116,15 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 /datum/component/hallucination/random_sound
 	var/list/sound_list
 	var/sound_prob = 10
+	var/min_distance = 0
 
-	Initialize(timeout=30, sound_list=null, sound_prob=10)
+	Initialize(timeout=30, sound_list=null, sound_prob=10, min_distance=0)
 		.=..()
 		if(. == COMPONENT_INCOMPATIBLE || length(sound_list) == 0)
 			return .
 		src.sound_list = sound_list
 		src.sound_prob = sound_prob
+		src.min_distance = min_distance
 
 
 	do_mob_tick(mob, mult)
@@ -128,7 +132,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			var/atom/origin = parent_mob.loc
 			var/turf/mob_turf = get_turf(parent_mob)
 			if (mob_turf)
-				origin = locate(mob_turf.x + rand(-10,10), mob_turf.y + rand(-10,10), mob_turf.z)
+				origin = locate(mob_turf.x + pick(rand(-10,-src.min_distance),rand(src.min_distance,10)), mob_turf.y + pick(rand(-10,-src.min_distance),rand(src.min_distance,10)), mob_turf.z)
 			//wacky loosely typed code ahead
 			var/datum/hallucinated_sound/chosen = pick(src.sound_list)
 			if (istype(chosen)) //it's a datum
@@ -286,8 +290,9 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	var/list/target_list
 	var/range = 5
 	var/override = TRUE
+	var/visible_creation = TRUE
 
-	Initialize(timeout=30, image_list=null, target_list=null, range=5, image_prob=10, image_time=20 SECONDS, override=TRUE)
+	Initialize(timeout=30, image_list=null, target_list=null, range=5, image_prob=10, image_time=20 SECONDS, override=TRUE, visible_creation=TRUE)
 		. = ..()
 		if(. == COMPONENT_INCOMPATIBLE || length(image_list) == 0 || length(target_list) == 0)
 			return .
@@ -297,16 +302,23 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		src.range = range
 		src.target_list = target_list
 		src.override = override
+		src.visible_creation = visible_creation
 
 
 	do_mob_tick(mob,mult)
 		if(probmult(image_prob))
 			//pick a non dense turf in view
 			var/list/atom/potentials = list()
-			for(var/atom/A in oview(parent_mob, range))
-				for(var/type in src.target_list)
-					if(istype(A, type))
-						potentials += A
+			if(src.visible_creation)
+				for(var/atom/A in oview(parent_mob, src.range))
+					for(var/type in src.target_list)
+						if(istype(A, type))
+							potentials += A
+			else
+				for(var/atom/A in (orange(parent_mob, src.range) - oview(parent_mob, src.range)))
+					for(var/type in src.target_list)
+						if(istype(A, type))
+							potentials += A
 			if(!length(potentials)) return
 			var/atom/halluc_loc = pick(potentials)
 			var/image/halluc = new /image()
@@ -349,20 +361,23 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	var/delay
 	///Pitch to play it at
 	var/pitch
+	///Volume to play it at
+	var/volume
 
-	New(path, min_count = 1, max_count = 1, delay = 0, pitch = 1)
+	New(path, min_count = 1, max_count = 1, delay = 0, pitch = 1, volume = 100)
 		..()
 		src.path = path
 		src.min_count = min_count
 		src.max_count = max_count
 		src.delay = delay
 		src.pitch = pitch
+		src.volume = volume
 
 	///Play the sound to a mob from a location
 	proc/play(var/mob/mob, var/atom/location)
 		SPAWN_DBG(0)
 			for (var/i = 1 to rand(src.min_count, src.max_count))
-				mob.playsound_local(location, src.path, 100, 1, pitch = src.pitch)
+				mob.playsound_local(location, src.path, src.volume, 1, pitch = src.pitch)
 				sleep(src.delay)
 
 /obj/fake_attacker

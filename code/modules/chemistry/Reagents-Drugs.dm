@@ -292,6 +292,7 @@ datum
 				'sound/weapons/armbomb.ogg',
 				new /datum/hallucinated_sound('sound/weapons/Gunshot.ogg', min_count = 1, max_count = 3, delay = 0.4 SECONDS),
 				new /datum/hallucinated_sound('sound/impact_sounds/Energy_Hit_3.ogg', min_count = 2, max_count = 4, delay = COMBAT_CLICK_DELAY),
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 50, min_count = 2, max_count = 5, delay = 0.2 SECONDS),
 				'sound/voice/creepyshriek.ogg',
 				new /datum/hallucinated_sound('sound/impact_sounds/Metal_Hit_1.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
 				'sound/machines/airlock_swoosh_temp.ogg',
@@ -306,7 +307,6 @@ datum
 				new /datum/hallucinated_sound('sound/machines/click.ogg', min_count = 1, max_count = 4, delay = 0.4 SECONDS), //silenced pistol sound
 				new /datum/hallucinated_sound('sound/effects/glare.ogg', pitch = 0.8), //vamp glare is pitched down for... reasons
 				'sound/effects/poff.ogg',
-				new /datum/hallucinated_sound('sound/effects/electric_shock_short.ogg', min_count = 3, max_count = 10, delay = 1 SECOND, pitch = 0.8), //arcfiend drain
 				'sound/items/hypo.ogg',
 				'sound/items/sticker.ogg',
 			)
@@ -871,6 +871,11 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			var/static/list/bat_halluc = list(
+				new /image('icons/mob/critter.dmi',"bat-dance") = list("ghost bat"),
+				new /image('icons/mob/critter.dmi', "scarybat-dance") = list("wild bat"),
+			)
+			var/static/list/bat_sounds = list('sound/voice/animal/batsqueak.ogg')
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -881,20 +886,10 @@ datum
 				if(probmult(9))
 					M.visible_message("<span class='notice'><b>[M.name]</b> squeaks! What the fuck?</span>")
 					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, 2)
-				if(probmult(7))
-					switch(rand(1,2))
-						if(1)
-							var/bats = rand(1,3)
-							for(var/i = 0, i < bats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "bat-dance", "ghost bat")
-								M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
-						if(2)
-							var/scarybats = rand(1,3)
-							for(var/i = 0, i < scarybats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "scarybat-dance", "wild bat")
-								M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
-				if(probmult(20))
-					M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+
+				var/image/imagekey = pick(bat_halluc)
+				M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=bat_halluc[imagekey], attacker_prob=7, max_attackers=3)
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.bat_sounds, sound_prob=20)
 				..()
 				return
 
