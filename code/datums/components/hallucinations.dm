@@ -500,8 +500,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 					my_target.playsound_local(my_target.loc, "sound/impact_sounds/Generic_Hit_[rand(1, 3)].ogg", 40, 1)
 				my_target.show_message("<span class='alert'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></span>", 1)
 				if (prob(20)) my_target.change_eye_blurry(3)
-				if (prob(33))
-					if (!locate(/obj/overlay) in my_target.loc)
+				if (prob(10))
+					if (!locate(/obj/overlay/fake) in my_target.loc)
 						fake_blood(my_target)
 			else
 				if (narrator_mode)
@@ -509,8 +509,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 				else
 					my_target.playsound_local(my_target.loc, pick(sounds_punch), 40, 1)
 				my_target.show_message("<span class='alert'><B>[src.name] has punched [my_target]!</B></span>", 1)
-				if (prob(33))
-					if (!locate(/obj/overlay) in my_target.loc)
+				if (prob(10))
+					if (!locate(/obj/overlay/fake) in my_target.loc)
 						fake_blood(my_target)
 			attack_twitch(src)
 
@@ -519,7 +519,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		src.process()
 
 /proc/fake_blood(var/mob/target)
-	var/obj/overlay/O = new/obj/overlay(target.loc)
+	var/obj/overlay/fake/O = new/obj/overlay/fake(target.loc)
+	O.plane = PLANE_NOSHADOW_BELOW
 	O.name = "blood"
 	var/image/I = image('icons/obj/decals/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	target << I
