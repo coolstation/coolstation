@@ -385,7 +385,7 @@
 				if (G.type == /area/colosseum)
 					colosseum = G
 					break
-			if (!colloseum) return //unit teeeests
+			if (!colosseum) return //unit teeeests
 			var/minx = 300
 			var/miny = 300
 			var/maxx = 0
