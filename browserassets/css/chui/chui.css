@@ -79,7 +79,7 @@ table {
 	right: 15px;
 }
 #titlebar a:hover {
-	color: #58B4DC;
+	color: #ebe5a0;
 }
 /* TITLEBAR END */
 
@@ -98,7 +98,6 @@ table {
 	left: 20px;
 	width: 27px;
 	height: 3px;
-	background: url('borderSlants.png') no-repeat;
 }
 #cornerWrap .corner {
 	position: absolute;
@@ -125,15 +124,14 @@ table {
 	left: 0;
 	word-wrap: break-word;
 	overflow: hidden;
-	border-top: 3px solid #58B4DC;
+	border-top: 3px solid #ebe5a0;
 	border-left: 3px solid #21272c;
 	border-right: 3px solid #21272c;
 	border-bottom: 3px solid #21272c;
-	background: #3e464e url('scanLine.png');
+	background: #9a8469;
 }
 #content .innerContent { /* also has: .nano-content */
 	padding: 15px 15px 15px 15px;
-	background: url('topShadow.png') repeat-x;
 }
 /* CONTENT AREA END */
 
@@ -243,7 +241,7 @@ table {
 	transition: .2s;
 }
 .nano > .nano-pane > .nano-slider {
-	background: #58B4DC;
+	background: #ebe5a0;
 	position: relative;
 	margin: 0;
 }
@@ -260,9 +258,9 @@ table {
 .well {
 	background-color: #21272c;
 	border-top: 1px solid #131619;
-	border-left: 1px solid #181c20;
-	border-right: 1px solid #363b40;
-	border-bottom: 1px solid #4a4f53;
+	border-left: 1px solid #322716;
+	border-right: 1px solid #9a8469;
+	border-bottom: 1px solid #dad8b6;
 	padding: 10px;
 }
 
@@ -274,7 +272,7 @@ table {
 	padding: 0 15px;
 	margin: 8px 2px 8px 0;
 	line-height: 21px; /* height of self + 1 - difference between .button:before and .button:after heights */
-	background: #788492;
+	background: #ebe5a0;
 	text-align: center;
 	font-size: 11px;
 	font-weight: bold;
@@ -282,8 +280,8 @@ table {
 	text-decoration: none;
 	color: #fff;
 	border: 0;
-	border-left: 1px solid #909da7;
-	border-right: 1px solid #909da7;
+	border-left: 1px solid #ebe5a0;
+	border-right: 1px solid #ebe5a0;
 	overflow: visible;
 	cursor: pointer;
 	box-sizing: border-box;
@@ -292,8 +290,8 @@ table {
 	border-color: transparent;
 }
 .button:active {
-	border-left-color: #788492;
-	border-right-color: #788492;
+	border-left-color: #ebe5a0;
+	border-right-color: #ebe5a0;
 }
 /* Right vertical shadow */
 .button:before {
@@ -303,11 +301,11 @@ table {
 	bottom: 0;
 	right: -3px; /* minus width of self - .button border-right width */
 	width: 2px;
-	background: #252a2f;
+	background: #322716;
 }
 .button:active:before {
 	top: -8px; /* height of .button .top + .button border-top width */
-	background: #4f555c;
+	background: #9a8469;
 }
 .button:after {}
 /* Left vertical shadow (active only) */
@@ -327,13 +325,13 @@ table {
 	top: -8px; /* minus height of self - border-top width of self */
 	left: 7px; /* width of .button .top:before - .button border-left width */
 	right: -1px; /* .button border-right width */
-	background: #788492;
-	border-top: 1px solid #909da7;
-	border-right: 1px solid #909da7;
+	background: #ebe5a0;
+	border-top: 1px solid #ebe5a0;
+	border-right: 1px solid #ebe5a0;
 }
 .button:active .top {
-	border-top-color: #788492;
-	border-right-color: #788492;
+	border-top-color: #ebe5a0;
+	border-right-color: #ebe5a0;
 }
 /* Top left corner */
 .button .top:before {
@@ -365,16 +363,16 @@ table {
 	bottom: -5px; /* height of self */
 	left: -1px; /* .button border-left width */
 	right: 5px; /* width of .button .bottom:after width - (.button width + .button:before width) */
-	background: #788492;
-	border-bottom: 1px solid #909da7;
-	border-left: 1px solid #909da7;
+	background: #ebe5a0;
+	border-bottom: 1px solid #ebe5a0;
+	border-left: 1px solid #ebe5a0;
 }
 .button:hover .bottom, .button:active .bottom {
 	height: 4px;
-	border-bottom: 2px solid #58B4DC;
+	border-bottom: 2px solid #ebe5a0;
 }
 .button:active .bottom {
-	border-left-color: #788492;
+	border-left-color: #ebe5a0;
 }
 /* Bottom horiz shadow */
 .button .bottom:before {
@@ -384,7 +382,7 @@ table {
 	left: 5px;
 	right: 0;
 	height: 2px;
-	background: #252a2f;
+	background: #1c211e;
 }
 .button:hover .bottom:before {
 	bottom: -4px;
@@ -392,7 +390,7 @@ table {
 .button:active .bottom:before {
 	bottom: -4px;
 	left: -1px;
-	background: #4f555c;
+	background: #9a8469;
 }
 /* Bottom right corner */
 .button .bottom:after {
@@ -431,8 +429,8 @@ table {
 
 /* Dark
 BG: #21272c
-Border: #3f4b54
-Highlight: #58B4DC
+Border: #9a8469
+Highlight: #ebe5a0
 Text: #fff
 */
 .dark.button,
@@ -443,10 +441,10 @@ Text: #fff
 .dark.button:active .bottom {border-left-color: #21272c;}
 .dark.button,
 .dark.button .top,
-.dark.button .bottom {border-color: #3f4b54;}
+.dark.button .bottom {border-color: #9a8469;}
 
 .dark.button:hover .bottom,
-.dark.button:active .bottom {border-bottom-color: #58B4DC;}
+.dark.button:active .bottom {border-bottom-color: #ebe5a0;}
 
 .dark.button .top:before {background-image: url('btn-standard-tl.gif');}
 .dark.button:active .top:before {background-image: url('btn-standard-active-tl.gif');}
