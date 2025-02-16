@@ -854,12 +854,12 @@ var/list/special_pa_observing_verbs = list(
 				new_key = copytext(new_key, 1, 26)
 			src.owner:fakekey = new_key
 			//Set the ooc window colors to regular colors
-		owner.create_preset_input_window("looc", show=FALSE)
-		owner.create_preset_input_window("ooc", show=FALSE)
+		owner.create_preset_input_window("looc", show=FALSE, force=TRUE)
+		owner.create_preset_input_window("ooc", show=FALSE, force=TRUE)
 	else
 		//Back to admin colors
-		owner.create_preset_input_window("alooc", show=FALSE)
-		owner.create_preset_input_window("aooc", show=FALSE)
+		owner.create_preset_input_window("alooc", show=FALSE, force=TRUE)
+		owner.create_preset_input_window("aooc", show=FALSE, force=TRUE)
 		src.owner:fakekey = null
 		src.owner:stealth_hide_fakekey = 0
 		if (src.auto_alt_key)
