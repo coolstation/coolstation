@@ -85,8 +85,8 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/shotgun
 	name = "Gun: Modular Shotgun"
-	item = /obj/item/storage/box/shotgun
-	cost = 5
+	item = /obj/item/storage/box/shotgun/juicer
+	cost = 6
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)

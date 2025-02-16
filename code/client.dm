@@ -181,7 +181,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	src.player = make_player(key)
 	src.player.client = src
 
-	if (!isnewplayer(src.mob) && !isnull(src.mob)) //playtime logging stuff
+	if (!isnewplayer(src.mob) && !isnull(src.mob))
+		src.mob.setup_radio_box() //playtime logging stuff
 		src.player.log_join_time()
 
 	Z_LOG_DEBUG("Client/New", "[src.ckey] - Player set ([player])")
@@ -703,9 +704,9 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		check_compid_list(src) 	//Will analyze their computer ID usage patterns for aberrations
 
 
-	// cursed darkmode stuff
+	// cursed theme stuff
 
-	src.sync_dark_mode()
+	src.sync_themes()
 
 	// cursed darkmode end
 
@@ -1728,14 +1729,54 @@ saybutton.text-color=[_SKIN_TEXT];\
 info.tab-background-color=[_SKIN_INFO_TAB_BG];\
 info.tab-text-color=[_SKIN_TEXT]"
 
+/client/proc/sync_themes()
+	if(winget(src, "menu.charcoal_mode", "is-checked") == "true")
+		src.sync_charcoal_mode()
+	if(winget(src, "menu.dark_mode", "is-checked") == "true")
+		src.sync_dark_mode()
+
+/client/verb/sync_charcoal_mode()
+	set hidden=1
+	if(winget(src, "menu.charcoal_mode", "is-checked") == "true")
+		winset(src, "menu.dark_mode", "is-checked=false")
+#define _SKIN_BG "#282828" //Main chrome
+#define _SKIN_INFO_TAB_BG "#282828" //Tab chrome
+#define _SKIN_INFO_BG "#1b1d1b"
+#define _SKIN_TEXT "#d3d4d5"
+#define _SKIN_COMMAND_BG "#1b1d1b"
+		winset(src, null, SKIN_TEMPLATE)
+		chatOutput.changeTheme("theme-dark charcoal-override")
+		cloud_put("dark_mode", 1)
+#undef _SKIN_BG
+#undef _SKIN_INFO_TAB_BG
+#undef _SKIN_INFO_BG
+#undef _SKIN_TEXT
+#undef _SKIN_COMMAND_BG
+#define _SKIN_BG "#dfdfdf"
+#define _SKIN_INFO_TAB_BG "#dfdfdf"
+#define _SKIN_INFO_BG "#ffffff"
+#define _SKIN_TEXT "none"
+#define _SKIN_COMMAND_BG "#d3b5b5"
+	else
+		winset(src, null, SKIN_TEMPLATE)
+		chatOutput.changeTheme("theme-default")
+		cloud_put("dark_mode", 0)
+#undef _SKIN_BG
+#undef _SKIN_INFO_TAB_BG
+#undef _SKIN_INFO_BG
+#undef _SKIN_TEXT
+#undef _SKIN_COMMAND_BG
+
+
 /client/verb/sync_dark_mode()
 	set hidden=1
 	if(winget(src, "menu.dark_mode", "is-checked") == "true")
-#define _SKIN_BG "#28292c"
-#define _SKIN_INFO_TAB_BG "#28292c"
-#define _SKIN_INFO_BG "#28292c"
-#define _SKIN_TEXT "#d3d4d5"
-#define _SKIN_COMMAND_BG "#28294c"
+		winset(src, "menu.charcoal_mode", "is-checked=false")
+#define _SKIN_BG "#3b3b3b" //Main chrome
+#define _SKIN_INFO_TAB_BG "#3b3b3b" //Tab chrome
+#define _SKIN_INFO_BG "#3b3122"
+#define _SKIN_TEXT "#dad8b6"
+#define _SKIN_COMMAND_BG "#3b3122"
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-dark")
 		cloud_put("dark_mode", 1)
@@ -1744,8 +1785,8 @@ info.tab-text-color=[_SKIN_TEXT]"
 #undef _SKIN_INFO_BG
 #undef _SKIN_TEXT
 #undef _SKIN_COMMAND_BG
-#define _SKIN_BG "none"
-#define _SKIN_INFO_TAB_BG "#f0f0f0"
+#define _SKIN_BG "#dfdfdf"
+#define _SKIN_INFO_TAB_BG "#dfdfdf"
 #define _SKIN_INFO_BG "#ffffff"
 #define _SKIN_TEXT "none"
 #define _SKIN_COMMAND_BG "#d3b5b5"

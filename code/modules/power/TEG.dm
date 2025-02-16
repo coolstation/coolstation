@@ -545,7 +545,12 @@ datum/pump_ui/circulator_ui
 
 	get_atom()
 		return our_circ
-
+/obj/item/electronics/frame/teg_furnace
+	name = "thermoelctric furnace frame"
+	store_type = /obj/machinery/power/furnace/thermo
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
 /obj/item/electronics/frame/teg
 	name = "thermoelectric generator frame"
 	store_type = /obj/machinery/power/generatorTemp

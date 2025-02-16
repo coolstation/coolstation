@@ -13,6 +13,7 @@
 	/// Robot limbs shouldn't get replaced through mutant race changes
 	limb_is_unnatural = TRUE
 	kind_of_limb = (LIMB_ROBOT)
+	value = 65 //base commodity price
 
 	decomp_affected = 0
 	var/robot_movement_modifier
@@ -274,6 +275,7 @@
 	max_health = 225
 	weight = 0.2
 	kind_of_limb = (LIMB_ROBOT | LIMB_HEAVY) // shush
+	value = 100
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W,/obj/item/sheet) && (src.type == /obj/item/parts/robot_parts/head/sturdy))
@@ -329,6 +331,7 @@
 	max_health = 350
 	weight = 0.4
 	kind_of_limb = (LIMB_ROBOT | LIMB_HEAVIER)
+	value = 150
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isweldingtool(W))
@@ -359,6 +362,7 @@
 	max_health = 50
 	robot_movement_modifier = /datum/movement_modifier/robot_part/head
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	value = 50
 
 /obj/item/parts/robot_parts/head/antique
 	name = "antique cyborg head"
@@ -368,6 +372,7 @@
 	max_health = 150
 	visible_eyes = 0
 	robot_movement_modifier = /datum/movement_modifier/robot_part/head
+	value = 250
 
 /obj/item/parts/robot_parts/head/screen
 	name = "cyborg screen head"
@@ -376,6 +381,7 @@
 	icon_state = "head-screen"
 	max_health = 90
 	var/list/expressions = list("happy", "veryhappy", "neutral", "sad", "angry", "curious", "surprised", "unsure", "content", "tired", "cheeky")
+	value = 200
 
 /obj/item/parts/robot_parts/chest
 	name = "standard cyborg chest"
@@ -386,6 +392,7 @@
 	max_health = 250
 	var/wires = 0
 	var/obj/item/cell/cell = null
+	value = 150
 
 	examine()
 		. = ..()
@@ -466,6 +473,7 @@
 	icon_state = "body-light"
 	max_health = 75
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT) // hush
+	value = 100
 
 /obj/item/parts/robot_parts/arm
 	name = "placeholder item (don't use this!)"
@@ -595,6 +603,7 @@
 	max_health = 175
 	weight = 0.4
 	kind_of_limb = (LIMB_ROBOT | LIMB_HEAVIER)
+	value = 100
 
 /obj/item/parts/robot_parts/arm/left/light
 	name = "light cyborg left arm"
@@ -604,6 +613,7 @@
 	handlistPart = "armL-light"
 	robot_movement_modifier = /datum/movement_modifier/robot_part/arm_left
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	value = 50
 
 /obj/item/parts/robot_parts/arm/right
 	name = "standard cyborg right arm"
@@ -667,6 +677,7 @@
 	max_health = 175
 	weight = 0.4
 	kind_of_limb = (LIMB_ROBOT | LIMB_HEAVIER)
+	value = 100
 
 /obj/item/parts/robot_parts/arm/right/light
 	name = "light cyborg right arm"
@@ -676,6 +687,7 @@
 	handlistPart = "armR-light"
 	robot_movement_modifier = /datum/movement_modifier/robot_part/arm_right
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	value = 50
 
 /obj/item/parts/robot_parts/leg
 	name = "placeholder item (don't use this!)"
@@ -781,6 +793,7 @@
 	max_health = 25
 	robot_movement_modifier = /datum/movement_modifier/robotleg_left
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	value = 50
 
 /obj/item/parts/robot_parts/leg/left/treads
 	name = "left cyborg tread"
@@ -794,6 +807,7 @@
 	movement_modifier = /datum/movement_modifier/robottread_left
 	robot_movement_modifier = /datum/movement_modifier/robot_part/tread_left
 	kind_of_limb = (LIMB_ROBOT | LIMB_TREADS)
+	value = 120
 
 /obj/item/parts/robot_parts/leg/right
 	name = "standard cyborg right leg"
@@ -812,6 +826,7 @@
 	max_health = 25
 	robot_movement_modifier = /datum/movement_modifier/robotleg_right
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	value = 50
 
 /obj/item/parts/robot_parts/leg/right/treads
 	name = "right cyborg tread"
@@ -825,6 +840,7 @@
 	movement_modifier = /datum/movement_modifier/robottread_right
 	robot_movement_modifier = /datum/movement_modifier/robot_part/tread_right
 	kind_of_limb = (LIMB_ROBOT | LIMB_TREADS)
+	value = 120
 
 /obj/item/parts/robot_parts/leg/left/thruster
 	name = "left thruster assembly"
@@ -836,6 +852,7 @@
 	step_image_state = null //It's flying so no need for this.
 	robot_movement_modifier = /datum/movement_modifier/robot_part/thruster_left
 	kind_of_limb = (LIMB_ROBOT | LIMB_TREADS | LIMB_LIGHT)
+	value = 150
 
 /obj/item/parts/robot_parts/leg/right/thruster
 	name = "right thruster assembly"
@@ -847,6 +864,7 @@
 	step_image_state = null //It's flying so no need for this.
 	robot_movement_modifier = /datum/movement_modifier/robot_part/thruster_right
 	kind_of_limb = (LIMB_ROBOT | LIMB_TREADS | LIMB_LIGHT)
+	value = 150
 
 /obj/item/parts/robot_parts/robot_frame
 	name = "robot frame"

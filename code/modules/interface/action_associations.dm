@@ -41,6 +41,7 @@ var/list/action_names = list(
 	"say" = "Say",
 	"say_radio" = "Say Radio",
 	"say_main_radio" = "Say Main Radio",
+	"say_last_channel" = "Say Last Channel",
 	"dsay" = "Dead Say",
 	"asay" = "Admin Say",
 	"whisper" = "Whisper",
@@ -96,7 +97,6 @@ var/list/action_names = list(
 ///Used for literal input of actions
 var/list/action_verbs = list(
 	"say_radio" = "say_radio",
-	"say_main_radio" = "say_main_radio",
 	"emote" = "say *customv",
 	"salute" = "me_hotkey salute",
 	"burp" = "me_hotkey burp",
@@ -113,7 +113,6 @@ var/list/action_verbs = list(
 	"wave" = "me_hotkey wave",
 	"flip" = "me_hotkey flip",
 	"scream" = "me_hotkey scream",
-	"whisper" = "whisper",
 	"wink" = "me_hotkey wink",
 	"flex" = "me_hotkey flex",
 	"yawn" = "me_hotkey yawn",
@@ -123,8 +122,6 @@ var/list/action_verbs = list(
 	"pickup" = "pick-up",
 	"ooc" = "ooc",
 	"looc" = "looc",
-	"dsay" = "dsay",
-	"asay" = "asay",
 	"adminhelp" = "adminhelp",
 	"mentorhelp" = "mentorhelp",
 	"autoscreenshot" = ".autoscreenshot",
@@ -134,6 +131,14 @@ var/list/action_verbs = list(
 	"mainfocus" = ".winset \"mainwindow.input.focus=false;mapwindow.map.focus=true;mainwindow.input.text=\"\"\"",
 	//"lazyfocus" = ".winset \\\"mainwindow.input.focus=true\\\"",
 	"Admin Interact" = "admin_interact"
+)
+
+//Macro names as in skin.dmf elements
+var/list/action_macros = list(
+	"say" = "startsay",
+	"say_main_radio" = "radiosay",
+	"whisper" = "whisper",
+	"say_last_channel" = "radiolastsay"
 )
 
 ///Used to translate bitflags of hotkeys into human-readable names

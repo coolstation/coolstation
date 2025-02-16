@@ -41,6 +41,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/datum/projectile/projectile_type = null
 	var/ammo_DRM = null
 	var/reloading = 0
+	var/fiddlyness = 0
 
 
 	New(var/atom/loc, var/amt = 1 as num)
@@ -48,6 +49,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.amount = max(amt,default_amount) //take higher
 		..(loc)
 		src.update_stack_appearance()
+
+	//All the ammo has 3/5/10 variants that need to stack onto the parent type
+	//But then also you get subtypes that shouldn't, so the istype checks the normal version of this pro does don't work (for example, NT mini shot shouldn't stack onto regular NT shot)
+	//luckily, since all ammo (at time of writing anyway) has stack_type set we can just compare those directly
+	check_valid_stack(obj/item/I)
+		if (src.stack_type)
+			if(src.stack_type == I.stack_type)
+				return TRUE
+		return FALSE
+
 	/*
 	proc/setup(var/atom/L, var/amt = 1 as num)
 	set_loc(L)
@@ -238,7 +249,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	cartridge_length = 20
 	caliber = 0.31
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -251,7 +261,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	real_name = "NT pistol round"
 	desc = "NT's standard 8mm Short firearms cartridge. The same caliber everyone else copies."
 	projectile_type = /datum/projectile/bullet/pistol_weak
-	stack_type = /obj/item/stackable_ammo/pistol
+	stack_type = /obj/item/stackable_ammo/pistol/NT
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -279,13 +289,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	real_name = "NT HP pistol round"
 	desc = "NT's 8mm Short firearms cartridge, with a hollow point for hunting and pest control. Not permitted for use on crew members."
 	projectile_type = /datum/projectile/bullet/pistol_weak
-	stack_type = /obj/item/stackable_ammo/pistol
+	stack_type = /obj/item/stackable_ammo/pistol/HP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 5
 
 	three
 		name = "NT HP pistol round (x3)"
@@ -302,19 +313,49 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 		min_amount = 10
 		max_amount = 10
 
+/obj/item/stackable_ammo/pistol/ratshot
+	name = "NT ratshot pistol round"
+	real_name = "NT ratshot pistol round"
+	desc = "NT's 8mm Short firearms cartridge, filled with a tiny amount of shot for pest control. Not permitted for use on crew members."
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/nt/short
+	stack_type = /obj/item/stackable_ammo/pistol/ratshot
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_brass"
+	icon_full  = "nt_brass"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_brass"
+	icon_shell = "brass_case"
+	fiddlyness = 10
+
+	three
+		name = "NT ratshot pistol round (x3)"
+		min_amount = 3
+		max_amount = 3
+
+	five
+		name = "NT ratshot pistol round (x5)"
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		name = "NT ratshot pistol round (x10)"
+		min_amount = 10
+		max_amount = 10
+
 //making these paper for now (paper will be used for custom rounds)
 /obj/item/stackable_ammo/pistol/italian
 	name = "Italian pistol round"
 	real_name = "Italian pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
-	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
+	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
 	icon_full  = "italian"
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
+	fiddlyness = 25
 
 	three
 		name = "Italian pistol round (x3)"
@@ -344,6 +385,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
+	fiddlyness = 30
 
 	three
 		name = "Italian AP pistol round (x3)"
@@ -364,7 +406,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	name = "\improper Juicer Jr. round"
 	real_name = "Juicer Jr. round"
 	desc = "Precision-manufactured Juicer pistol rounds in exactly 4x20 millimeter. Except two of them are taped together to fit in a standard barrel."
-	projectile_type = /datum/projectile/bullet/pistol_heavy //use a special two-bullet/half-damage projectile here
+	projectile_type = /datum/projectile/special/spreader/uniform_burst/juicer_jr //use a special two-bullet/half-damage projectile here, see if this works
 	stack_type = /obj/item/stackable_ammo/pistol/juicer
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "juicer_jr"
@@ -372,6 +414,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "juicer_jr-empty"
 	icon_one   = "bullet_juicer_jr"
 	icon_shell = "juicer_jr_case"
+	fiddlyness = 50
 
 	three
 		name = "Juicer Jr. round (x3)"
@@ -400,6 +443,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "it_what"
 	icon_shell = "white_case"
+	fiddlyness = 20
 
 	three
 		name = "\improper NT Tranq-Will-8-or (x3)"
@@ -423,6 +467,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "it_what"
 	icon_shell = "white_case"
+	fiddlyness = 15
 
 	three
 		name = "\improper NT Jean-Nerre-De Boulier darts (x3)"
@@ -486,6 +531,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/rad_bolt
 	stack_type = /obj/item/stackable_ammo/pistol/radbow
 	desc = "Stealthy projectiles that cause insidious radiation poisoning. Fits in just about anything."
+	fiddlyness = 25
 
 	three
 		name = "\improper Syndicate Radioactive Darts (x3)"
@@ -514,6 +560,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "soviet-empty"
 	icon_one   = "zauber_tube"
 	icon_shell = "zauber_spent"
+	fiddlyness = 15
 
 	three
 		name = "\improper Soviet zaubertubes (x3)"
@@ -548,6 +595,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 5
 
 	three
 		name = "\improper NT rifle ammo (x3)"
@@ -576,6 +624,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "soviet-empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 10
 
 	three
 		name = "\improper Soviet surplus ammo (x3)"
@@ -604,6 +653,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "juicer_big-empty"
 	icon_one   = "bullet_juicer_big"
 	icon_shell = "juicer_big_case"
+	fiddlyness = 20
 
 	three
 		name = "\improper Juicer BIG rounds (x3)"
@@ -633,6 +683,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "nt_stun_empty"
 	icon_one   = "bullet_nerf"
 	icon_shell = "nerf_case"
+	fiddlyness = 10
 
 	three
 		name = "\improper NT In-Capacit-8-or MAX (x3)"
@@ -679,6 +730,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_state = "nt_shells"
 	icon_full  = "nt_shells"
 	icon_empty = "nt_shells-empty"
+	fiddlyness = 10
 
 	three
 		name = "\improper NT Shot (x3)"
@@ -695,7 +747,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		min_amount = 10
 		max_amount = 10
 
-//NT's EXTRA small shotgun shell
+//NT's EXTRA skinny shotgun shell, which works in regular light barrels! wow!
 /obj/item/stackable_ammo/scatter/NT/mini
 	name = "\improper NT Mini Shot"
 	real_name = "\improper NT Mini Shot"
@@ -704,6 +756,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	stack_type = /obj/item/stackable_ammo/scatter/NT/mini
 	icon_one   = "shell_mini_blue"
 	icon_shell = "shell_mini_case"
+	fiddlyness = 15
 
 	three
 		name = "\improper NT Mini Shot (x3)"
@@ -726,8 +779,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/juicer
 	name = "\improper Juicer Hot Pocketz"
 	real_name = "\improper Juicer Hot Pocketz"
-	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
-	projectile_type = /datum/projectile/bullet/shot_heavy
+	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels, but won't fit in pistol receivers."
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer
 	stack_type = /obj/item/stackable_ammo/scatter/juicer
 	icon_state = "juicer_shells_red"
 	icon_full  = "juicer_shells_red"
@@ -735,6 +788,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
 	cartridge_length = 40 //for big receivers only
+	fiddlyness = 30
 
 	three
 		name = "\improper Juicer Hot Pocketz (x3)"
@@ -754,14 +808,30 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/juicer/denim
 	name = "\improper Juicer JAMMO"
 	real_name = "\improper Juicer JAMMO"
-	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
-	projectile_type = /datum/projectile/bullet/shot_heavy/denim
+	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels and long receivers."
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
 	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
 	icon_state = "juicer_shells_blue"
 	icon_full  = "juicer_shells_blue"
 	icon_empty = "juicer_shells_blue-empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
+	fiddlyness = 50
+
+	three
+		name = "\improper Juicer JAMMO (x3)"
+		min_amount = 3
+		max_amount = 3
+
+	five
+		name = "\improper Juicer JAMMO (x5)"
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		name = "\improper Juicer JAMMO (x10)"
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/scatter/bartender
 	name = "\improper Bartender's Buddy"
@@ -769,11 +839,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "Unlicensed and handmade short 16mm shotgun shell, full of rock salt. And probably some kind of acid."
 	projectile_type = /datum/projectile/bullet/shot_salt
 	stack_type = /obj/item/stackable_ammo/scatter/bartender
-	icon_state = "shells_blue"
-	icon_full  = "shells_blue"
+	icon_state = "shells"
+	icon_full  = "shells"
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
+	fiddlyness = 10
 
 	three
 		name = "\improper Bartender's Buddy (x3)"
@@ -796,6 +867,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/slug_rubber
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
+	fiddlyness = 10
 
 	three
 		name = "NT rubber slug (x3)"
@@ -867,6 +939,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	max_health = 25
 	min_health = 20
 	icon_state = "bulb_good"
+	fiddlyness = 15
 
 /obj/item/storage/box/foss_flashbulbs
 	name = "box of FOSSYN flashtubes"
@@ -896,11 +969,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 
 /datum/projectile/energy_bolt/three
-	power = 15
+	power = 20
 	shot_number = 3
 
 /datum/projectile/energy_bolt/five
-	power = 10
+	power = 15
 	shot_number = 5
 
 /datum/projectile/laser/three
@@ -911,7 +984,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /datum/projectile/laser/flashbulb
 	name = "open-source laser"
 	icon_state = "laser1"
-	power = 15
+	power = 25
 	cost = 50
 	dissipation_delay = 5
 	brightness = 0
@@ -926,7 +999,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/two
 	icon_state = "laser2"
-	power = 25
+	power = 40
 	shot_pitch = 0.95
 	//orange
 	color_red = 0.9
@@ -937,7 +1010,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/three
 	icon_state = "laser3"
-	power = 35
+	power = 50
 	shot_pitch = 0.90
 	//yellow
 	color_red = 0.9
@@ -958,7 +1031,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/four
 	icon_state = "laser4"
-	power = 45
+	power = 60
 	shot_pitch = 0.85
 	//cyan
 	color_red = 0
@@ -980,7 +1053,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb/five //bringing it back
 	icon_state = "laser5"
-	power = 60
+	power = 75
 	shot_pitch = 0.75
 	//near-ultraviolet
 	color_red = 0.25

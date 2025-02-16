@@ -446,8 +446,6 @@
 			src.toggle_point_mode()
 		if ("say_radio")
 			src.say_radio()
-		if ("say_main_radio")
-			src.say_radio()
 		else
 			. = ..()
 
@@ -821,7 +819,7 @@
 							message = copytext(message, 3)
 
 				else
-					if (ishuman(src) || ismobcritter(src) || isrobot(src)) // this is shit
+					if (ishuman(src) || ismobcritter(src) || isrobot(src) || isshell(src)) // this is shit
 						message_mode = "secure headset"
 						secure_headset_mode = lowertext(copytext(message,2,3))
 					message = copytext(message, 3)
@@ -1591,6 +1589,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	var/aquatic_movement = 0
 	var/space_movement = 0
 	var/mob_pull_multiplier = 1
+	var/lying_multiplier = 1
 
 	var/datum/movement_modifier/modifier
 	for(var/type_or_instance in src.movement_modifiers)
@@ -1612,6 +1611,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		aquatic_movement += modifier.aquatic_movement
 		space_movement += modifier.space_movement
 		mob_pull_multiplier *= modifier.mob_pull_multiplier
+		lying_multiplier *= modifier.lying_multiplier
 
 		if (modifier.maximum_slowdown < maximum_slowdown)
 			maximum_slowdown = modifier.maximum_slowdown
@@ -1630,7 +1630,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (health_deficiency >= 30)
 		. += (health_deficiency / 35)
 
-	.= src.special_movedelay_mod(.,space_movement,aquatic_movement)
+	.= src.special_movedelay_mod(.,space_movement,aquatic_movement,lying_multiplier)
 
 	. = min(., maximum_slowdown)
 
@@ -1694,10 +1694,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 //this lets subtypes of living alter their movement delay WITHIN that big proc above - not before or after (which would fuck up the numbers greatly)
 //note : subtypes should not call this parent
-/mob/living/proc/special_movedelay_mod(delay,space_movement,aquatic_movement)
+/mob/living/proc/special_movedelay_mod(delay,space_movement,aquatic_movement,lying_multiplier)
 	.= delay
 	if (src.lying)
-		. += 14
+		. += 14 * lying_multiplier
 
 
 /mob/living/critter/keys_changed(keys, changed)
@@ -2083,6 +2083,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		return
 	var/client/client = src.client
 	var/found_text = FALSE
+	var/whisper = FALSE
 	var/enteredtext = winget(client, "mainwindow.input", "text") // grab the text from the input bar
 	if (isnull(client)) return
 	if (length(enteredtext) > 5 && copytext(lowertext(enteredtext), 1, 6) == "say \"") // check if the player is trying to say something
@@ -2091,12 +2092,20 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		if (length(enteredtext))
 			found_text = TRUE
 	if (!found_text)
-		for (var/window_type in list("saywindow", "radiosay", "whisper")) //scafolding for later
+		for (var/window_type in list("saywindow", "radiosaywindow", "radiochannelsaywindow", "whisperwindow")) //scafolding for later
 			enteredtext = winget(client, "[window_type].input", "text")
 			if (isnull(client)) return
 			if (length(enteredtext))
-				if (window_type == "radiosay")
+				if (window_type == "radiosaywindow")
 					enteredtext = ";" + enteredtext
+				if (window_type == "radiochannelsaywindow")
+					var/prefix = winget(client, "[window_type].input", "command")
+					//Find the radio prefix that open_radio_input set in the command
+					var/regex/R = new(@":([^\s]*)", "g")
+					R.Find(prefix)
+					enteredtext = "[R.match ? R.match : ";"]"  + enteredtext
+				if(window_type == "whisperwindow")
+					whisper = TRUE
 				winset(client, "[window_type].input", "text=\"\"")
 				if (isnull(client)) return
 				winset(client, "[window_type]", "is-visible=false")
@@ -2120,7 +2129,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			return
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
-			H.say(message, ignore_stamina_winded = 1) // say the thing they were typing and grunt
+			whisper ? H.whisper(message, forced=TRUE) : H.say(message, ignore_stamina_winded = 1)
 		else
-			src.say(message)
+			whisper ? src.whisper(message) : src.say(message)
 		src.stat = old_stat // back to being dead 😌

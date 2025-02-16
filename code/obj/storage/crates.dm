@@ -48,7 +48,7 @@
 		desc = "Contents vary from sugar-shockers to pure poison."
 		spawn_contents = list(/obj/item/reagent_containers/food/drinks/noodlecup = 2,
 		/obj/item/reagent_containers/food/drinks/peach = 2,
-		/obj/item/reagent_containers/food/drinks/covfefe = 2,
+		/obj/item/reagent_containers/food/drinks/pseudocoffee = 2,
 		/obj/item/reagent_containers/food/drinks/bottle/soda/spooky = 2,
 		/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2 = 2,
 		/obj/item/reagent_containers/food/drinks/bottle/soda/gingerale = 2,

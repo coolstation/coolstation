@@ -325,56 +325,22 @@ PIPE BOMBS + CONSTRUCTION
 	prime()
 		var/turf/T = ..()
 		if (T)
-			var/obj/item/old_grenade/smoke/mustard/M = null
-			if (istype(src, /obj/item/old_grenade/smoke/mustard))
-				M = src
 			playsound(T, "sound/effects/smoke.ogg", 50, 1, -3)
-
 			SPAWN_DBG(0)
 				if (src)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
 
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						qdel(M)
-					else
-						qdel(src)
+					src.smoke.start()
+					qdel(src)
 		else
 			qdel(src)
 		return
 
-/obj/item/old_grenade/smoke/mustard
-	name = "mustard gas grenade"
-	var/datum/effects/system/mustard_gas_spread/mustard_gas
-	icon_state = "mustard"
-	icon_state_armed = "mustard1"
-
-	New()
-		..()
-		if (usr?.loc) //Wire: Fix for Cannot read null.loc
-			src.mustard_gas = new /datum/effects/system/mustard_gas_spread/
-			src.mustard_gas.attach(src)
-			src.mustard_gas.set_up(5, 0, usr.loc)
 
 /obj/item/old_grenade/stinger
 	name = "stinger grenade"

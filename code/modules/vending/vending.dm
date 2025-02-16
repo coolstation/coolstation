@@ -1257,7 +1257,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/xmas, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/chickensoup, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/weightloss_shake, 10, cost=PAY_TRADESMAN/2)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/covfefe, 10, cost=PAY_TRADESMAN, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/pseudocoffee, 10, cost=PAY_TRADESMAN, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola, rand(1, 6), cost=PAY_UNTRAINED/5, hidden=1)
 
 /obj/machinery/vending/snack
@@ -2011,7 +2011,7 @@
 		/*
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
@@ -2048,7 +2048,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
 		//hidden
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)

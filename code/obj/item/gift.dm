@@ -140,7 +140,6 @@
 
 	dangerous
 		giftpaths = list(/obj/item/device/flash,
-						/obj/item/gun/energy/taser_gun,
 						/obj/item/sword,
 						/obj/item/axe,
 						/obj/item/knife/butcher,
@@ -231,6 +230,7 @@ var/global/list/generic_gift_paths = list(/obj/item/basketball,
 	/obj/item/old_grenade/banana/cheese_sandwich,
 	/obj/item/old_grenade/banana/banana_corndog,
 	/obj/item/gimmickbomb/butt,
+	/obj/item/saxophone,
 	/obj/item/instrument/bikehorn,
 	/obj/item/instrument/bikehorn/dramatic,
 	/obj/item/instrument/bikehorn/airhorn,

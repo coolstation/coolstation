@@ -4,7 +4,11 @@
 	var/m_amt = 0	// metal
 	var/g_amt = 0	// glass
 	var/w_amt = 0	// waster amounts
+	//quality of an item, more is better, less is worse. for items where this is meaningful, the scale is -100 to 100, with 0 holding no meaning or prefix: bog standard.
+	//however not everything goes by this scale so this stays at 1 (at least for now?)
 	var/quality = 1
+	var/value = 0 // intrinsic value of this thingy for calculating prices and such, particularly for sale
+	var/alt_value = null // override value presented to player if not null for certain cases (decirprevo bottled water, things juicers sell, illegal goods, etc) but sales to standard traders and NT cargo fulfillment will always go by src.value
 	var/adaptable = 0
 
 	var/is_syndicate = 0
@@ -13,6 +17,7 @@
 
 	var/mechanics_type_override = null //Fix for children of scannable items being reproduced in mechanics
 	var/artifact = null
+	var/cannot_be_stored = FALSE
 	var/move_triggered = 0
 	var/object_flags = 0
 
@@ -129,6 +134,8 @@
 			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
+			//TODO: positive quality modifiers max out at 3x at 100, negative quality modifiers max out at 0.10x at -100, and 0 is just 1x
+			//then value = src.value * quality_modifier
 			if(initial(src.opacity) && src.material.alpha <= MATERIAL_ALPHA_OPACITY)
 				RL_SetOpacity(0)
 			else if(initial(src.opacity) && !src.opacity && src.material.alpha > MATERIAL_ALPHA_OPACITY)
@@ -177,6 +184,8 @@
 		O.name = name
 		O.quality = quality
 		O.icon = icon
+		O.value = value
+		O.alt_value = alt_value
 		O.icon_state = icon_state
 		O.set_dir(src.dir)
 		O.desc = desc
@@ -601,6 +610,7 @@
 	user.changeStatus("paralysis", 4 SECONDS)
 	user.changeStatus("weakened", 4 SECONDS)
 	src.visible_message("<span class='alert'><b>[src]</b> emits a loud thump and rattles a bit.</span>")
+	user.take_brain_damage(prob(50))
 
 	animate_storage_thump(src)
 
