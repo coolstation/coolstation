@@ -1934,8 +1934,10 @@ obj/item/clothing/gloves/concussive
 		for (var/turf/wall/asteroid/A in range(src.expl_flash,src))
 			if(get_dist(src,A) <= src.expl_heavy)
 				A.damage_asteroid(4)
+				continue
 			if(get_dist(src,A) <= src.expl_light)
 				A.damage_asteroid(3)
+				continue
 			if(get_dist(src,A) <= src.expl_flash)
 				A.damage_asteroid(2)
 
@@ -2394,10 +2396,11 @@ var/global/list/cargopads = list()
 	inventory_counter_enabled = 1
 
 	borg
-		New()
+		//this satchel wasn't added to the module so it'd just get lost in wherever the hell
+		/*New()
 			..()
 			var/obj/item/satchel/mining/large/S = new /obj/item/satchel/mining/large(src)
-			satchel = S
+			satchel = S*/
 
 	//attack_self can just dump on the floor as usual for all I care, but let me unload the dang satchel directly thanks
 	attack_hand(mob/user)
@@ -2423,7 +2426,8 @@ var/global/list/cargopads = list()
 			inventory_counter.update_number(satchel.curitems)
 			if (old_satchel)
 				user.visible_message("[user] swaps [src]'s [old_satchel.name] for [S].", "You swap [src]'s' [old_satchel] for [S].")
-				user.put_in_hand_or_drop(old_satchel)
+				if (!issilicon(user))
+					user.put_in_hand_or_drop(old_satchel)
 			else
 				user.visible_message("[user] inserts [S] into [src].", "You insert [S] into [src].")
 		else
