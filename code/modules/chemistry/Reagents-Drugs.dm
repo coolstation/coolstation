@@ -294,7 +294,6 @@ datum
 				new /datum/hallucinated_sound('sound/impact_sounds/Energy_Hit_3.ogg', min_count = 2, max_count = 4, delay = COMBAT_CLICK_DELAY),
 				'sound/voice/creepyshriek.ogg',
 				new /datum/hallucinated_sound('sound/impact_sounds/Metal_Hit_1.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
-				new /datum/hallucinated_sound('sound/machines/airlock_bolt.ogg', min_count = 1, max_count = 3, delay = 0.3 SECONDS),
 				'sound/machines/airlock_swoosh_temp.ogg',
 				'sound/machines/airlock_deny.ogg',
 				'sound/machines/airlock_pry.ogg',
@@ -304,7 +303,6 @@ datum
 				'sound/misc/talk/radio2.ogg',
 				'sound/misc/talk/radio_ai.ogg',
 				'sound/weapons/laser_f.ogg',
-				'sound/items/security_alert.ogg', //hehehehe
 				new /datum/hallucinated_sound('sound/machines/click.ogg', min_count = 1, max_count = 4, delay = 0.4 SECONDS), //silenced pistol sound
 				new /datum/hallucinated_sound('sound/effects/glare.ogg', pitch = 0.8), //vamp glare is pitched down for... reasons
 				'sound/effects/poff.ogg',
@@ -334,18 +332,18 @@ datum
 				new /image('icons/mob/monkey.dmi', "seamonkey"),
 			)
 			var/static/list/critter_image_list = list(
-				new /image('icons/effects/hallucinations.dmi', "spider"),
-				new /image('icons/effects/hallucinations.dmi', "dragon"),
-				new /image('icons/effects/hallucinations.dmi', "pig"),
-				new /image('icons/effects/hallucinations.dmi', "slime"),
-				new /image('icons/misc/critter.dmi', "martianW"),
+				new /image('icons/mob/hallucinations.dmi', "spider"),
+				new /image('icons/mob/hallucinations.dmi', "dragon"),
+				new /image('icons/mob/hallucinations.dmi', "pig"),
+				new /image('icons/mob/hallucinations.dmi', "slime"),
+				new /image('icons/mob/critter.dmi', "martianW"),
 			)
 			var/static/list/monkey_names = strings("names/monkey.txt")
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				//pretty colors
-				M.AddComponent(/datum/component/hallucination/trippy_colors, timeout=10)
+				//M.AddComponent(/datum/component/hallucination/trippy_colors, timeout=10)
 
 				//get attacked
 				if(prob(60)) //monkey mode
@@ -391,11 +389,11 @@ datum
 			value = 5
 			thirst_value = -0.03
 			var/static/list/bee_halluc = list(
-				new /image('icons/misc/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
-				new /image('icons/misc/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
-				new /image('icons/misc/bee.dmi',"bigbee-angry") = list("very angry bee", "extremely angry bee", "GIANT FRICKEN BEE"),
-				new /image('icons/misc/bee.dmi',"lichbee-wings") = list("evil bee", "demon bee", "YOU CAN'T BZZZZ FOREVER"),
-				new /image('icons/misc/bee.dmi',"voorbees-wings") = list("killer bee", "murder bee", "bad news bee", "RUN"),
+				new /image('icons/mob/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
+				new /image('icons/mob/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
+				new /image('icons/mob/bee.dmi',"bigbee-angry") = list("very angry bee", "extremely angry bee", "GIANT FRICKEN BEE"),
+				new /image('icons/mob/bee.dmi',"lichbee-wings") = list("evil bee", "demon bee", "YOU CAN'T BZZZZ FOREVER"),
+				new /image('icons/mob/bee.dmi',"voorbees-wings") = list("killer bee", "murder bee", "bad news bee", "RUN"),
 			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -834,8 +832,8 @@ datum
 			viscosity = 0.14
 			thirst_value = -0.1
 			var/static/list/cat_halluc = list(
-				new /image('icons/misc/critter.dmi',"cat-ghost") = list("ghost cat"),
-				new /image('icons/misc/critter.dmi', "cat1-wild") = list("wild cat"),
+				new /image('icons/mob/critter.dmi',"cat-ghost") = list("ghost cat"),
+				new /image('icons/mob/critter.dmi', "cat1-wild") = list("wild cat"),
 			)
 			var/static/list/cat_sounds = list('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg')
 

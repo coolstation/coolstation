@@ -3402,9 +3402,9 @@ datum
 			bladder_value = -2
 			stun_resist = 100
 			var/static/list/od_halluc = list(
-				new /image('icons/effects/hallucinations.dmi', "orange") = list("orange"),
-				new /image('icons/effects/hallucinations.dmi', "lime") = list("lime"),
-				new /image('icons/effects/hallucinations.dmi', "lemon") = list("lemon"),
+				new /image('icons/mob/hallucinations.dmi', "orange") = list("orange"),
+				new /image('icons/mob/hallucinations.dmi', "lime") = list("lime"),
+				new /image('icons/mob/hallucinations.dmi', "lemon") = list("lemon"),
 			)
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -3488,7 +3488,7 @@ datum
 					M.make_dizzy(33 * mult)
 
 					M.take_brain_damage(9 * mult)
-										M.emote("scream")
+					M.emote("scream")
 
 
 					var/image/imagekey = pick(od_halluc)

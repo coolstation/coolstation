@@ -1,41 +1,41 @@
 TYPEINFO(/datum/component/hallucination/trippy_colors)
 	initialization_args = list(
-		ARG_INFO("timeout", DATA_INPUT_NUM, "how long this hallucination lasts in seconds. -1 for permanent", 30),
+		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
 	)
 
 TYPEINFO(/datum/component/hallucination/random_sound)
 	initialization_args = list(
-		ARG_INFO("timeout", DATA_INPUT_NUM, "how long this hallucination lasts in seconds. -1 for permanent", 30),
-		ARG_INFO("sound_list", DATA_INPUT_LIST_BUILD, "List of sounds that the mob can hallucinate appearing."),
-		ARG_INFO("sound_prob", DATA_INPUT_NUM, "probability of a sound being played per mob life tick", 10),
+		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
+		ARG_INFO("sound_list", "Build New List", "List of sounds that the mob can hallucinate appearing."),
+		ARG_INFO("sound_prob", "num", "probability of a sound being played per mob life tick", 10),
 	)
 
 TYPEINFO(/datum/component/hallucination/random_image)
 	initialization_args = list(
-		ARG_INFO("timeout", DATA_INPUT_NUM, "how long this hallucination lasts in seconds. -1 for permanent", 30),
-		ARG_INFO("image_list", DATA_INPUT_LIST_BUILD, "List of images that the mob can hallucinate appearing"),
-		ARG_INFO("image_prob", DATA_INPUT_NUM, "probability of an image being displayed per mob life tick", 10),
-		ARG_INFO("image_time", DATA_INPUT_NUM, "seconds the displayed image hangs around", 20),
+		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
+		ARG_INFO("image_list", "Build New List", "List of images that the mob can hallucinate appearing"),
+		ARG_INFO("image_prob", "num", "probability of an image being displayed per mob life tick", 10),
+		ARG_INFO("image_time", "num", "seconds the displayed image hangs around", 20),
 	)
 
 TYPEINFO(/datum/component/hallucination/fake_attack)
 	initialization_args = list(
-		ARG_INFO("timeout", DATA_INPUT_NUM, "how long this hallucination lasts in seconds. -1 for permanent", 30),
-		ARG_INFO("image_list", DATA_INPUT_LIST_BUILD, "List of images that the mob can hallucinate attacking, leave null for default"),
-		ARG_INFO("name_list", DATA_INPUT_LIST_BUILD, "List of names that the mob can hallucinate attacking, leave null for default"),
-		ARG_INFO("attacker_prob", DATA_INPUT_NUM, "probability of an attacker being spawned per mob life tick", 10),
-		ARG_INFO("max_attackers", DATA_INPUT_NUM, "number of attackers that can be active at one time", 5),
+		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
+		ARG_INFO("image_list", "Build New List", "List of images that the mob can hallucinate attacking, leave null for default"),
+		ARG_INFO("name_list", "Build New List", "List of names that the mob can hallucinate attacking, leave null for default"),
+		ARG_INFO("attacker_prob", "num", "probability of an attacker being spawned per mob life tick", 10),
+		ARG_INFO("max_attackers", "num", "number of attackers that can be active at one time", 5),
 	)
 
 TYPEINFO(/datum/component/hallucination/random_image_override)
 	initialization_args = list(
-		ARG_INFO("timeout", DATA_INPUT_NUM, "how long this hallucination lasts in seconds. -1 for permanent", 30),
-		ARG_INFO("image_list", DATA_INPUT_LIST_BUILD, "List of images that the mob can hallucinate attached to things"),
-		ARG_INFO("target_list", DATA_INPUT_LIST_BUILD, "List of target types that the mob can hallucinate images attached to in range"),
-		ARG_INFO("range", DATA_INPUT_NUM, "distance from mob to search for target types", 5),
-		ARG_INFO("image_prob", DATA_INPUT_NUM, "probability of an image being displayed per mob life tick", 10),
-		ARG_INFO("image_time", DATA_INPUT_NUM, "seconds the displayed image hangs around", 20),
-		ARG_INFO("override", DATA_INPUT_BOOL, "Does this hallucination replace the target's icon?", TRUE),
+		ARG_INFO("timeout", "num", "how long this hallucination lasts in seconds. -1 for permanent", 30),
+		ARG_INFO("image_list", "Build New List", "List of images that the mob can hallucinate attached to things"),
+		ARG_INFO("target_list", "Build New List", "List of target types that the mob can hallucinate images attached to in range"),
+		ARG_INFO("range", "num", "distance from mob to search for target types", 5),
+		ARG_INFO("image_prob", "num", "probability of an image being displayed per mob life tick", 10),
+		ARG_INFO("image_time", "num", "seconds the displayed image hangs around", 20),
+		ARG_INFO("override", "boolean", "Does this hallucination replace the target's icon?", TRUE),
 	)
 
 
@@ -80,8 +80,10 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 //#########################################################
 
 
+///MYLIE TO DO - requires color update to 20 channel for complete porting
+
 /// Trippy colors - apply an RGB swap to client's vision
-/datum/component/hallucination/trippy_colors
+/*/datum/component/hallucination/trippy_colors
 	var/current_color_pattern = 0
 	var/pattern1 = list(0,0,1,0, 1,0,0,0, 0,1,0,0, 0,0,0,1, 0,0,0,0)
 	var/pattern2 = list(0,1,0,0, 0,0,1,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)
@@ -101,6 +103,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		UnregisterSignal(parent, COMSIG_LIVING_LIFE_TICK)
 		if(parent_mob?.client)
 			animate(parent_mob.client, color = null, time = 2 SECONDS, easing = SINE_EASING)
+*/
 
 
 //#########################################################
@@ -176,7 +179,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			halluc.appearance = copyfrom.appearance
 			halluc.loc = halluc_loc
 			parent_mob.client?.images += halluc
-			SPAWN(src.image_time SECONDS)
+			SPAWN_DBG(src.image_time SECONDS)
 				qdel(halluc)
 		. = ..()
 
@@ -203,7 +206,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	var/attacker_prob = 10
 	var/max_attackers = 5
 	var/attacker_list = list()
-	
+
 	Initialize(timeout=30, image_list=null, name_list=null, attacker_prob=10, max_attackers=5)
 		.=..()
 		if(. == COMPONENT_INCOMPATIBLE)
@@ -283,7 +286,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	var/list/target_list
 	var/range = 5
 	var/override = TRUE
-	
+
 	Initialize(timeout=30, image_list=null, target_list=null, range=5, image_prob=10, image_time=20 SECONDS, override=TRUE)
 		. = ..()
 		if(. == COMPONENT_INCOMPATIBLE || length(image_list) == 0 || length(target_list) == 0)
@@ -312,7 +315,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			halluc.loc = halluc_loc
 			halluc.override = src.override
 			parent_mob.client?.images += halluc
-			SPAWN(src.image_time SECONDS)
+			SPAWN_DBG(src.image_time SECONDS)
 				qdel(halluc)
 		. = ..()
 
@@ -357,7 +360,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 
 	///Play the sound to a mob from a location
 	proc/play(var/mob/mob, var/atom/location)
-		SPAWN(0)
+		SPAWN_DBG(0)
 			for (var/i = 1 to rand(src.min_count, src.max_count))
 				mob.playsound_local(location, src.path, 100, 1, pitch = src.pitch)
 				sleep(src.delay)
@@ -365,7 +368,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 /obj/fake_attacker
 	icon = null
 	icon_state = null
-	var/fake_icon = 'icons/misc/critter.dmi'
+	var/fake_icon = 'icons/mob/critter.dmi'
 	var/fake_icon_state = ""
 	name = ""
 	desc = ""
@@ -382,7 +385,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		return src.fake_icon_state
 
 	pig
-		fake_icon = 'icons/effects/hallucinations.dmi'
+		fake_icon = 'icons/mob/hallucinations.dmi'
 		fake_icon_state = "pig"
 		get_name()
 			return pick("pig", "DAT FUKKEN PIG")
@@ -391,12 +394,12 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		get_name()
 			return pick("giant black widow", "aw look a spider", "OH FUCK A SPIDER")
 	slime
-		fake_icon = 'icons/effects/hallucinations.dmi'
+		fake_icon = 'icons/mob/hallucinations.dmi'
 		fake_icon_state = "slime"
 		get_name()
 			return pick("red slime", "some gooey thing", "ANGRY CRIMSON POO")
 	shambler
-		fake_icon = 'icons/effects/hallucinations.dmi'
+		fake_icon = 'icons/mob/hallucinations.dmi'
 		fake_icon_state = "shambler"
 		get_name()
 			return pick("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
@@ -455,7 +458,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 
 /obj/fake_attacker/New(location, target)
 	..()
-	SPAWN(30 SECONDS)
+	SPAWN_DBG(30 SECONDS)
 		qdel(src)
 	src.name = src.get_name()
 	src.my_target = target
@@ -496,15 +499,15 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			attack_twitch(src)
 
 	if (src.should_attack && prob(10)) step_away(src,my_target,2)
-	SPAWN(0.3 SECONDS)
+	SPAWN_DBG(0.3 SECONDS)
 		src.process()
 
 /proc/fake_blood(var/mob/target)
 	var/obj/overlay/O = new/obj/overlay(target.loc)
 	O.name = "blood"
-	var/image/I = image('icons/obj/decals/blood/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
+	var/image/I = image('icons/obj/decals/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	target << I
-	SPAWN(30 SECONDS)
+	SPAWN_DBG(30 SECONDS)
 		qdel(O)
 
 /proc/fake_attack(var/mob/target)
