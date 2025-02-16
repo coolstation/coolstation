@@ -102,7 +102,7 @@ datum
 				// a really shitty form of traitor stimulants - you'll be tough to take down but nearly uncontrollable anyways and you won't heal the way stims do
 
 				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=25)
-				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=critter_image_list, target_list=list(/mob/living/carbon/human), range=7, image_prob=30, image_time=20, override=TRUE)
+				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=halluc_overrides, target_list=list(/mob/living/carbon/human), range=7, image_prob=30, image_time=20, override=TRUE)
 
 				if(check < 8)
 					M.reagents.add_reagent(pick("methamphetamine", "crank", "neurotoxin"), rand(1,5))
