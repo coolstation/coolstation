@@ -99,6 +99,9 @@ datum
 				M.druggy = max(M.druggy, 15)
 				if(check < 20)
 					M.change_misstep_chance(10 * mult)
+
+					var/image/imagekey = pick(halluc_attackers)
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=rand(10,15), max_attackers=rand(1,3))
 				// a really shitty form of traitor stimulants - you'll be tough to take down but nearly uncontrollable anyways and you won't heal the way stims do
 
 				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=25)
@@ -109,8 +112,6 @@ datum
 					M.visible_message("<span class='alert'><b>[M.name]</b> scratches at something under their skin!</span>")
 					random_brute_damage(M, 5 * mult)
 				else if (check < 16)
-					var/image/imagekey = pick(halluc_attackers)
-					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=rand(10,15), max_attackers=rand(1,3))
 					if(prob(20))
 						boutput(M, "<span class='alert'><b>OH GOD LOOK OUT!!!</b>!</span>")
 						M.emote("scream")
