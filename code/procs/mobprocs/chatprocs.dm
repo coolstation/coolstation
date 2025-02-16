@@ -845,11 +845,13 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 		if(armor_blocked)
 			return "<span class='alert'><B>[src] attacks [T] in the [d_zone] with [S], but [T]'s armor blocks it!</B></span>"
 		else
+			T.lastgasp()
 			return "<span class='alert'><B>[src] attacks [T] in the [d_zone] with [S][devastating ? " and lands a devastating hit!" : "!"]</B></span>"
 	else
 		if(armor_blocked)
 			return "<span class='alert'><B>[src] attacks [T] with [S], but [T]'s armor blocks it!</B></span>"
 		else
+			T.lastgasp()
 			return "<span class='alert'><B>[src] attacks [T] with [S] [devastating ? "and lands a devastating hit!" : "!"]</B></span>"
 
 /mob/proc/get_age_pitch_for_talk()
