@@ -21,6 +21,31 @@
 		new /image('icons/mob/hallucinations.dmi',"slime") = list("red slime","\proper some gooey thing","\improper ANGRY CRIMSON POO"),
 		new /image('icons/mob/hallucinations.dmi',"shambler") = list("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
 	)
+	var/static/list/halluc_sounds = list(
+		"punch",
+		'sound/vox/poo-vox.ogg',
+		new /datum/hallucinated_sound("clownstep", min_count = 1, max_count = 6, delay = 0.4 SECONDS),
+		'sound/weapons/armbomb.ogg',
+		new /datum/hallucinated_sound('sound/weapons/Gunshot.ogg', min_count = 1, max_count = 3, delay = 0.4 SECONDS),
+		new /datum/hallucinated_sound('sound/impact_sounds/Energy_Hit_3.ogg', min_count = 2, max_count = 4, delay = COMBAT_CLICK_DELAY),
+		new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 50, min_count = 2, max_count = 5, delay = 0.2 SECONDS),
+		'sound/voice/creepyshriek.ogg',
+		new /datum/hallucinated_sound('sound/impact_sounds/Metal_Hit_1.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
+		'sound/machines/airlock_swoosh_temp.ogg',
+		'sound/machines/airlock_deny.ogg',
+		'sound/machines/airlock_pry.ogg',
+		new /datum/hallucinated_sound('sound/weapons/flash.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
+		'sound/musical_instruments/Bikehorn_1.ogg',
+		'sound/misc/talk/radio.ogg',
+		'sound/misc/talk/radio2.ogg',
+		'sound/misc/talk/radio_ai.ogg',
+		'sound/weapons/laser_f.ogg',
+		new /datum/hallucinated_sound('sound/machines/click.ogg', min_count = 1, max_count = 4, delay = 0.4 SECONDS), //silenced pistol sound
+		new /datum/hallucinated_sound('sound/effects/glare.ogg', pitch = 0.8), //vamp glare is pitched down for... reasons
+		'sound/effects/poff.ogg',
+		'sound/items/hypo.ogg',
+		'sound/items/sticker.ogg',
+	)
 
 /datum/ailment/disease/space_madness/stage_act(var/mob/living/affected_mob,var/datum/ailment_data/D)
 	if (..())
@@ -48,15 +73,15 @@
 				switch(rand(1,2))
 					if(1)
 						if(prob(50))
-							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=2)
+							affected_mob.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=2)
 						else
-							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=2)
+							affected_mob.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=2)
 					if(2)
 						var/image/imagekey = pick(halluc_attackers)
-						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=2)
+						affected_mob.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=2)
 
 			if(prob(9))
-				affected_mob.playsound_local(affected_mob.loc, pick("explosion", "punch", 'sound/vox/poo-vox.ogg', "clownstep", 'sound/weapons/armbomb.ogg', 'sound/weapons/Gunshot.ogg'), 50, 1)
+				affected_mob.AddComponent(/datum/component/hallucination/random_sound, timeout=20, sound_list=src.halluc_sounds, sound_prob=5)
 
 			if (prob(8))
 				for (var/mob/living/M in view(7,affected_mob))
@@ -69,14 +94,15 @@
 				switch(rand(1,2))
 					if(1)
 						if(prob(50))
-							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=2)
+							affected_mob.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=2)
 						else
-							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=2)
+							affected_mob.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=2)
 					if(2)
 						var/image/imagekey = pick(halluc_attackers)
-						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=2)
+						affected_mob.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=2)
+
 			if(prob(9))
-				affected_mob.playsound_local(affected_mob.loc, pick("explosion", "punch", 'sound/vox/poo-vox.ogg', "clownstep", 'sound/weapons/armbomb.ogg', 'sound/weapons/Gunshot.ogg'), 50, 1)
+				affected_mob.AddComponent(/datum/component/hallucination/random_sound, timeout=20, sound_list=src.halluc_sounds, sound_prob=5)
 
 			if (prob(8))
 				for (var/mob/living/M in view(7,affected_mob))
