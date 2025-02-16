@@ -184,9 +184,8 @@
 	departing(datum/transit_stop/destination)
 		shippingmarket.CSS_at_NTFC = FALSE
 		var/turf/target
-		for(var/turf/T in locate(src.current_location.target_area))
-			target = T
-			break
+		var/area/A = locate(src.current_location.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/effects/ship_charge.ogg", 70, 1)
 		else
@@ -203,9 +202,8 @@
 
 	arriving(datum/transit_stop/destination)
 		var/turf/target
-		for(var/turf/T in locate(destination.target_area))
-			target = T
-			break
+		var/area/A = locate(destination.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/machines/hiss.ogg", 50, 1)
 			SPAWN_DBG(1 DECI SECOND)
