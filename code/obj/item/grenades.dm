@@ -1618,6 +1618,7 @@ PIPE BOMBS + CONSTRUCTION
 	var/rcd = 0
 	var/plasma = 0
 	var/rcd_mat = "steel"
+	var/fuze = 5 // how many seconds
 	//if it contains reagents, those will be splashed on the floor
 
 	var/list/throw_objs = new /list()
@@ -1631,9 +1632,9 @@ PIPE BOMBS + CONSTRUCTION
 		logTheThing("combat", user, null, "arms a pipe bomb (power [strength]) in [user.loc.loc] ([showCoords(user.x, user.y, user.z)])")
 
 		if (sound_effect)
-			SPAWN_DBG(4 SECONDS) //you can use a sound effect to hold a bomb in hand and throw it at the very last moment!
+			SPAWN_DBG((max(fuze-1,1)) SECONDS) //you can use a sound effect to hold a bomb in hand and throw it at the very last moment!
 				playsound(src, sound_effect, 50, 1)
-		SPAWN_DBG(5 SECONDS)
+		SPAWN_DBG(fuze SECONDS)
 			do_explode()
 
 	ex_act(severity)
