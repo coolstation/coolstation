@@ -3,29 +3,51 @@
 /obj/machinery/waterslide_pump
 	name = "water slide pump"
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "waterslide-pump"
+	icon_state = "waterslidepump"
 	desc = "A pump and hose attached to a big roll of plastic."
 	density = 0 // Being able to step through this makes the 'sliding' part more intuitive
-	anchored = 1
 
 	var/active = FALSE
+	var/deployed = FALSE
 
 	var/steps = 7
 	var/max_steps = 15
 	var/min_steps = 1
 	var/current_step = 1
 
-	var/list/deployed_path = new/list()
+	var/list/deployed_path = null
 
-	var/obj/item/fluidtank = null
+	var/obj/item/reagent_containers/fluidtank = null
 
 	New()
 		..()
 
 		fluidtank = new/obj/item/reagent_containers/food/drinks/fueltank/chlorine/mostly_water(src)
+		update_icon()
+
+	proc/update_icon()
+		var/image/under = image(src.icon, "waterslidepump-under", dir=src.dir) // very hacky way to show dir on the icon
+		var/image/endpiece = image(src.icon, "waterslide-end", dir=turn(src.dir, 180))
+		src.ClearAllOverlays()
+		if(deployed)
+			src.underlays += under
+			src.underlays += endpiece
+			src.ClearSpecificOverlays("pump")
+			src.ClearSpecificOverlays("roll")
+			if(active)
+				icon_state = "waterslidepump-active"
+			else
+				icon_state = "waterslidepump"
+		else
+			src.underlays = null
+			src.UpdateOverlays(image(src.icon, "waterslidepump"), "pump")
+			src.UpdateOverlays(image(src.icon, "waterslidepump-roll"), "roll")
+			icon_state = "waterslidepump-under"
+
 
 	disposing()
 		active = FALSE
+		deployed = FALSE
 		fluidtank.dispose()
 		for(var/obj/item/reagent_containers/waterslide/slide_tile in deployed_path)
 			slide_tile.dispose()
@@ -36,27 +58,33 @@
 		..()
 
 	process()
-		if(active)
+		if(active && deployed)
 			if(current_step > deployed_path.len)
 				current_step = 1
 			if(!fluidtank || fluidtank.reagents.total_volume <= 0)
+				current_step = 1
+				src.visible_message("<span class='alert'>\The [src] makes a grumpy noise and shuts down!</span>")
+				playsound(src, "sound/machines/buzz-sigh.ogg", 50)
 				active = FALSE
+				update_icon()
 				return
-			var/obj/item/reagent_containers/waterslide/section = deployed_path[current_step]
 
+			var/obj/item/reagent_containers/waterslide/section = deployed_path[current_step]
 			if(section.reagents.total_volume <= 0)
+
 				fluidtank.reagents.trans_to(section,5)
 			if(src.fluidtank.reagents.total_volume <= 0)
-				active = FALSE
 				current_step = 1
+				src.visible_message("<span class='alert'>\The [src] makes a grumpy noise and shuts down!</span>")
+				playsound(src, "sound/machines/buzz-sigh.ogg", 50)
+				update_icon()
+				active = FALSE
 				return
 
 			current_step += 1
 
-			SPAWN_DBG(2 SECONDS) src.process()
-		return
-
 	proc/establish_slide()
+		deployed_path = new/list()
 		var/turf/T = get_step(src,src.dir)
 		var/range_slide = 1
 		while((get_dist(src,T) < steps) && (range_slide < max_steps)) // copied from fireburp code
@@ -66,6 +94,9 @@
 
 		var/turf/currentturf
 		var/turf/previousturf
+
+		if(affected_turfs.len <= 0)
+			return
 
 		for(var/turf/F in affected_turfs)
 			previousturf = currentturf
@@ -93,25 +124,53 @@
 
 		if(deployed_path.len)
 			current_step = 1
-			active = TRUE
-			var/image/end = image(src.icon, "waterslide-end", dir=turn(src.dir, 180))
-			src.underlays += end
+			deployed = TRUE
+			anchored = 1
+			update_icon()
 			SPAWN_DBG(0) process()
+			src.updateUsrDialog()
 
 	proc/remove_slide()
-		active = FALSE
+		deployed = FALSE
+		anchored = 0
+		update_icon()
 		for(var/obj/item/reagent_containers/waterslide/slide_tile in deployed_path)
 			slide_tile.dispose()
 
 		deployed_path = null
-		fluidtank = null
+		src.updateUsrDialog()
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/glass/) || istype(W, /obj/item/reagent_containers/food/drinks/))
+			if(src.fluidtank)
+				boutput(user, "There is already a fluid tank loaded.")
+				return
+			else
+				user.drop_item()
+				W.set_loc(src)
+				src.fluidtank = W
+				boutput(user, "<span class='alert'>You load [W] into [src].</span>")
+			src.updateUsrDialog()
 
 /obj/machinery/waterslide_pump/attack_hand(mob/user as mob)
 	var/dat
 
 	dat += "<TT><B>Bringing Hours of Wet N' Wild Fun To Your Station!</B></TT><BR>"
+
+	dat += "<U><h4>Fluid tank:</h4></U>"
+	if(!fluidtank)
+		dat += "Please insert fluid tank.<BR>"
+	else if (!fluidtank.reagents.total_volume)
+		dat += "Fluid tank is empty. "
+		dat += "<A href='byond://?src=\ref[src];eject=1'>Eject fluid tank</A><BR>"
+	else
+		dat += "<A href='byond://?src=\ref[src];eject=1'>Eject fluid tank</A><BR>"
+	dat += "<U><h4>Pump active:</h4></U>"
+	dat += "<A href='byond://?src=\ref[src];active_toggle=1'>[src.active ? "True" : "False"]</A><BR>"
 	dat += "<U><h4>Slide deployed:</h4></U>"
-	dat += "<A href='byond://?src=\ref[src];active_toggle=1'>[src.active ? "True" : "False"]</A><BR><BR>"
+	dat += "<A href='byond://?src=\ref[src];deploy_toggle=1'>[src.deployed ? "True" : "False"]</A><BR>"
+	dat += "<U><h4>Slide length:</h4></U>"
+	dat += "<A href='byond://?src=\ref[src];op=set_range'>[steps] tiles</A><BR>"
 
 	user.Browse("<HEAD><TITLE>Waterslide Pump</TITLE></HEAD>[dat]", "window=waterslide")
 	onclose(user, "waterslide")
@@ -122,13 +181,36 @@
 		boutput(usr, "You're too far away from [src], get closer.")
 		return
 
+	if (href_list["eject"])
+		fluidtank.set_loc(src.loc)
+		usr.put_in_hand_or_eject(fluidtank)
+		fluidtank = null
+
 	if(href_list["active_toggle"])
-		switch(active)
+		if(deployed)
+			active = !active
+			update_icon()
+		else
+			boutput(usr, "You need to deploy the slide first.")
+
+
+	if(href_list["deploy_toggle"])
+		if(active)
+			boutput(usr, "You need to turn off [src] first.")
+			return
+		switch(deployed)
 			if(TRUE)
 				remove_slide()
 			if(FALSE)
 				establish_slide()
+				usr.pulling = null
+		update_icon()
 
+	if(href_list["set_range"])
+		var/value = input(usr,"Value:","") as num
+		//var/value = input(usr, "Slide Range (1 - [max_steps]): ", "Enter Target Range", src.steps) as num
+		if (!isnum(value)) return
+		steps = clamp(value, min_steps, max_steps)
 
 	attack_hand(usr)
 
@@ -177,7 +259,7 @@
 					if(!M.hasStatus("weakened"))
 						//Find distance from mob to the furthest water slide tile. Too complicated for something so silly? Maybe...
 						var/distance = 1
-						var/direction = M.dir ? M.dir == src.dir : turn(M.dir, 180)
+						var/direction = src.dir ? M.dir == src.dir : turn(src.dir, 180)
 						var/turf/T = get_step(src,direction)
 						var/search = 1
 						while((get_dist(src,T) < 15) && (search < 15)) // 15 may be too absurd?
