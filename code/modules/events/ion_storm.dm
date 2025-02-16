@@ -145,6 +145,20 @@
 			if(!isdead(M) && M.see_in_dark != 0)
 				boutput(M, "<span class='alert'><b>PROGRAM EXCEPTION AT 0x30FC50B</b></span>")
 				boutput(M, "<span class='alert'><b>Law ROM data corrupted. Attempting to restore...</b></span>")
+		for (var/mob/living/silicon/S in global.mobs)
+			if (isrobot(S))
+				var/mob/living/silicon/robot/R = S
+				if (R.emagged)
+					boutput(R, "<span class='alert'>Erroneous law data detected. Ignoring.</span>")
+				else
+					R << sound('sound/misc/lawnotify.ogg', volume=100, wait=0)
+					ticker.centralized_ai_laws.show_laws(R)
+			else if (isghostdrone(S))
+				continue
+			else
+				S << sound('sound/misc/lawnotify.ogg', volume=100, wait=0)
+				ticker.centralized_ai_laws.show_laws(S)
+
 		//Robots get all hallucinatey
 		for (var/mob/living/L in global.mobs)
 			if (issilicon(L) || isAIeye(L))
