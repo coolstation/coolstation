@@ -200,7 +200,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
-			light.enable()
+			light?.enable()
 
 
 
