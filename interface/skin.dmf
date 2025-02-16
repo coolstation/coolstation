@@ -18,8 +18,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "ooc"
 		name = "ALT+C"
-		command = ".force_keyup ALT+C\nooc"
-		is-disabled = true
+		command = ".winset \"command=.init_ooc;oocwindow.is-visible=true;oocwindow.input.focus=true\""
 	elem "dance"
 		name = "CTRL+D"
 		command = "say \"*dance\""
@@ -42,8 +41,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "looc"
 		name = "ALT+L"
-		command = ".force_keyup ALT+L\nlooc"
-		is-disabled = true
+		command = ".winset \"command=.init_looc;loocwindow.is-visible=true;loocwindow.input.focus=true\""
 	elem "laugh"
 		name = "CTRL+L"
 		command = "say \"*laugh\""

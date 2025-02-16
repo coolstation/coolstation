@@ -125,7 +125,9 @@ var/list/input_window_presets =  list(
 	"radiosay" = list("radiosaywindow", "main channel radio", "say_main_radio", ".cancel_typing say"),
 	"whisper" = list("whisperwindow", "whisper (text)", "whisper", ".cancel_typing whisper", "#dfd6d6"),
 	"me"  = list("mewindow",  "me (text)",        ".me",  ".cancel_typing me"),
-	"radiochannelsay" = list("radiochannelsaywindow", "radio channel radio", "say_radio_channel", ".cancel_typing radiochannelsay")
+	"radiochannelsay" = list("radiochannelsaywindow", "radio channel radio", "say_radio_channel", ".cancel_typing radiochannelsay"),
+	"ooc" = list("oocwindow", "OOC", "ooc", null, "#688eff"),
+	"looc" = list("loocwindow", "LOOC", "looc", null, "#92a9ee")
 )
 /client/proc/create_preset_input_window(name, force=FALSE, show=TRUE)
 	var/arglist = input_window_presets[name]
@@ -159,6 +161,16 @@ var/list/input_window_presets =  list(
 	set hidden = TRUE
 	create_preset_input_window("whisper")
 
+/client/verb/init_looc()
+	set name = ".init_looc"
+	set hidden = TRUE
+	create_preset_input_window("looc")
+
+/client/verb/init_ooc()
+	set name = ".init_ooc"
+	set hidden = TRUE
+	create_preset_input_window("ooc")
+
 //Verb available to the user in case something in the window breaks
 /client/verb/fix_chatbox()
 	set name = "Fix chatbox"
@@ -170,6 +182,8 @@ var/list/input_window_presets =  list(
 /client/New()
 	. = ..()
 	if(src) //In case the client was deleted while New was running
+		create_preset_input_window("looc", show=FALSE)
+		create_preset_input_window("ooc", show=FALSE)
 		create_preset_input_window("whisper", show=FALSE)
 		create_preset_input_window("radiosay", show=FALSE)
 		create_preset_input_window("radiochannelsay", show=FALSE)
