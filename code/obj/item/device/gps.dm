@@ -59,7 +59,7 @@
 		}
 		.buttons a {
 			display: inline-flex;
-			background: #58B4DC;
+			background: #6d6617;
 			width: calc(50% - 7px);
 			text-transform: uppercase;
 			text-decoration: none;
@@ -73,14 +73,14 @@
 			width: calc(100% - 7px);
 		}
 		.buttons a:hover {
-			background: #6BC7E8;
+			background: #9a8469;
 		}
 		.buttons.gps a {
 			display: block;
 			width: calc(100% - 7px);
   			text-transform: none;
-			border-top: 1px solid #58B4DC;
-			background: #21272C;
+			border-top: 1px solid #3b3122;
+			background: #1c211e;
 			padding: 3px;
 			margin: 0 0 1px 0;
 			font-size: 11px;
@@ -90,7 +90,7 @@
 			background: #2C2121;
 		}
 		.gps.group {
-			background: #58B4DC;
+			background: #3b3122;
 			margin: 0;
 			font-size: 12px;
 		}
