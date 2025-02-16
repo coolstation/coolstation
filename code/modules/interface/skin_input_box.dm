@@ -127,7 +127,11 @@ var/list/input_window_presets =  list(
 	"me"  = list("mewindow",  "me (text)",        ".me",  ".cancel_typing me"),
 	"radiochannelsay" = list("radiochannelsaywindow", "radio channel radio", "say_radio_channel", ".cancel_typing radiochannelsay"),
 	"ooc" = list("oocwindow", "OOC", "ooc", null, "#688eff"),
-	"looc" = list("loocwindow", "LOOC", "looc", null, "#92a9ee")
+	"looc" = list("loocwindow", "LOOC", "looc", null, "#92a9ee"),
+	"mooc" = list("oocwindow", "OOC", "ooc", null, "#30b9a0"), //For mentors lord help me
+	"mlooc" = list("loocwindow", "LOOC", "looc", null, "#68afa2"),
+	"aooc" = list("oocwindow", "OOC", "ooc", null, "#f78de7"), //Admins need presets too!!
+	"alooc" = list("loocwindow", "LOOC", "looc", null, "#dd9ef6")
 )
 /client/proc/create_preset_input_window(name, force=FALSE, show=TRUE)
 	var/arglist = input_window_presets[name]
@@ -164,12 +168,23 @@ var/list/input_window_presets =  list(
 /client/verb/init_looc()
 	set name = ".init_looc"
 	set hidden = TRUE
-	create_preset_input_window("looc")
+	if(src.is_mentor())
+		create_preset_input_window("mlooc", show=FALSE)
+	else if(src?.holder && !src.stealth)
+		create_preset_input_window("alooc", show=FALSE)
+	else
+		create_preset_input_window("looc", show=FALSE)
 
 /client/verb/init_ooc()
 	set name = ".init_ooc"
 	set hidden = TRUE
-	create_preset_input_window("ooc")
+	if(src.is_mentor())
+		create_preset_input_window("mooc", show=FALSE)
+		//Admin check
+	else if(src?.holder && !src.stealth)
+		create_preset_input_window("aooc", show=FALSE)
+	else
+		create_preset_input_window("ooc", show=FALSE)
 
 //Verb available to the user in case something in the window breaks
 /client/verb/fix_chatbox()
@@ -178,12 +193,23 @@ var/list/input_window_presets =  list(
 	if(!preset)
 		return
 	create_preset_input_window(preset, force=TRUE)
+
 //Create the windows for say and me ahead of time
 /client/New()
 	. = ..()
 	if(src) //In case the client was deleted while New was running
-		create_preset_input_window("looc", show=FALSE)
-		create_preset_input_window("ooc", show=FALSE)
+		//Mentor OOC boxes have different colors
+		if(src.is_mentor())
+			create_preset_input_window("mlooc", show=FALSE)
+			create_preset_input_window("mooc", show=FALSE)
+		else if(src?.holder && !src.stealth)
+			create_preset_input_window("alooc", show=FALSE)
+			create_preset_input_window("aooc", show=FALSE)
+		else
+			create_preset_input_window("looc", show=FALSE)
+			create_preset_input_window("ooc", show=FALSE)
+
+
 		create_preset_input_window("whisper", show=FALSE)
 		create_preset_input_window("radiosay", show=FALSE)
 		create_preset_input_window("radiochannelsay", show=FALSE)
