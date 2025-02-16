@@ -7,6 +7,9 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Security Officer"
+	},
 /turf/floor,
 /area/station/security/main)
 "aaP" = (
@@ -5243,7 +5246,7 @@
 	},
 /area/station/hallway/primary/southeast)
 "eXh" = (
-/obj/storage/secure/closet/security/equipment,
+/obj/storage/secure/closet/security/forensics,
 /turf/floor/grey,
 /area/station/security/quarters)
 "eXC" = (
@@ -11296,7 +11299,7 @@
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "kXo" = (
-/obj/rack,
+/obj/storage/closet/wardrobe/orange,
 /turf/floor/red/side,
 /area/station/security/main)
 "kXH" = (
@@ -18043,6 +18046,12 @@
 /obj/table/auto/desk,
 /turf/floor/sanitary/white,
 /area/station/medical/crematorium)
+"ryz" = (
+/obj/landmark/start{
+	name = "Security Officer"
+	},
+/turf/floor/grey,
+/area/station/security/checkpoint/customs)
 "ryU" = (
 /turf/floor/carpet{
 	dir = 4;
@@ -23488,11 +23497,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/red,
-/obj/landmark/start{
-	name = "Security Officer"
-	},
+/obj/storage/closet/wardrobe/red/security_gimmick,
 /turf/floor/grey,
 /area/station/security/quarters)
 "wIU" = (
@@ -67057,7 +67062,7 @@ bQJ
 bQJ
 kpA
 hPe
-kcP
+ryz
 ezw
 oZx
 qVA
