@@ -7,6 +7,20 @@
 	reagentcure = list("haloperidol")
 	associated_reagent = "loose_screws"
 	affected_species = list("Human")
+	var/static/list/monkey_images = list(
+		new /image('icons/mob/monkey.dmi', "monkey"),
+		new /image('icons/mob/monkey.dmi', "fire3"),
+		new /image('icons/mob/monkey.dmi', "skeleton"),
+		new /image('icons/mob/monkey.dmi', "seamonkey"),
+	)
+	var/static/list/monkey_names = strings("names/monkey.txt")
+	var/static/list/halluc_attackers = list(
+		new /image('icons/mob/hallucinations.dmi',"pig") = list("pig","DAT FUKKEN PIG"),
+		new /image('icons/mob/hallucinations.dmi',"spider") = list("giant black widow","queen bitch spider", "OH FUCK A SPIDER"),
+		new /image('icons/mob/hallucinations.dmi',"dragon") = list("dragon","Lord Cinderbottom","SOME FUKKEN LIZARD THAT BREATHES FIRE"),
+		new /image('icons/mob/hallucinations.dmi',"slime") = list("red slime","\proper some gooey thing","\improper ANGRY CRIMSON POO"),
+		new /image('icons/mob/hallucinations.dmi',"shambler") = list("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
+	)
 
 /datum/ailment/disease/space_madness/stage_act(var/mob/living/affected_mob,var/datum/ailment_data/D)
 	if (..())
@@ -34,31 +48,13 @@
 				switch(rand(1,2))
 					if(1)
 						if(prob(50))
-							fake_attack(affected_mob)
+							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=2)
 						else
-							var/monkeys = rand(1,3)
-							for(var/i = 0, i < monkeys, i++)
-								fake_attackEx(affected_mob, 'icons/mob/monkey.dmi', "monkey_hallucination", pick_string_autokey("names/monkey.txt"))
+							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=2)
 					if(2)
-						var/halluc_state = null
-						var/halluc_name = null
-						switch(rand(1,5))
-							if(1)
-								halluc_state = "pig"
-								halluc_name = pick("pig", "DAT FUKKEN PIG")
-							if(2)
-								halluc_state = "spider"
-								halluc_name = pick("giant black widow", "queen bitch spider", "OH FUCK A SPIDER")
-							if(3)
-								halluc_state = "dragon"
-								halluc_name = pick("dragon", "Lord Cinderbottom", "SOME FUKKEN LIZARD THAT BREATHES FIRE")
-							if(4)
-								halluc_state = "slime"
-								halluc_name = pick("red slime", "\proper some gooey thing", "\improper ANGRY CRIMSON POO")
-							if(5)
-								halluc_state = "shambler"
-								halluc_name = pick("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
-						fake_attackEx(affected_mob, 'icons/mob/hallucinations.dmi', halluc_state, halluc_name)
+						var/image/imagekey = pick(halluc_attackers)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=2)
+
 			if(prob(9))
 				affected_mob.playsound_local(affected_mob.loc, pick("explosion", "punch", 'sound/vox/poo-vox.ogg', "clownstep", 'sound/weapons/armbomb.ogg', 'sound/weapons/Gunshot.ogg'), 50, 1)
 
@@ -73,31 +69,12 @@
 				switch(rand(1,2))
 					if(1)
 						if(prob(50))
-							fake_attack(affected_mob)
+							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=2)
 						else
-							var/monkeys = rand(1,3)
-							for(var/i = 0, i < monkeys, i++)
-								fake_attackEx(affected_mob, 'icons/mob/monkey.dmi', "monkey_hallucination", pick_string_autokey("names/monkey.txt"))
+							M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=2)
 					if(2)
-						var/halluc_state = null
-						var/halluc_name = null
-						switch(rand(1,5))
-							if(1)
-								halluc_state = "pig"
-								halluc_name = pick("pig", "DAT FUKKEN PIG")
-							if(2)
-								halluc_state = "spider"
-								halluc_name = pick("giant black widow", "queen bitch spider", "OH FUCK A SPIDER")
-							if(3)
-								halluc_state = "dragon"
-								halluc_name = pick("dragon", "Lord Cinderbottom", "SOME FUKKEN LIZARD THAT BREATHES FIRE")
-							if(4)
-								halluc_state = "slime"
-								halluc_name = pick("red slime", "\proper some gooey thing", "\improper ANGRY CRIMSON POO")
-							if(5)
-								halluc_state = "shambler"
-								halluc_name = pick("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
-						fake_attackEx(affected_mob, 'icons/mob/hallucinations.dmi', halluc_state, halluc_name)
+						var/image/imagekey = pick(halluc_attackers)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=2)
 			if(prob(9))
 				affected_mob.playsound_local(affected_mob.loc, pick("explosion", "punch", 'sound/vox/poo-vox.ogg', "clownstep", 'sound/weapons/armbomb.ogg', 'sound/weapons/Gunshot.ogg'), 50, 1)
 
