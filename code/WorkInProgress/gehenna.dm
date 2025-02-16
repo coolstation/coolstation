@@ -241,6 +241,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	icon_state = "dither_b"
 	name = "the gehennan desert"
+	is_construction_allowed = TRUE
 
 /area/gehenna/south // just in case i need a separate area for stuff
 	requires_power = 0
