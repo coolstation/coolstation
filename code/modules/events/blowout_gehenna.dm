@@ -36,7 +36,7 @@
 				if (!A.irradiated)
 					A.irradiated = TRUE
 				A.icon_state = "bluenew" //gonna tryturf/ed cherenkov flavour
-				for (var/turf/T in A)
+				for (var/turf/T in A.turfs)
 					//Might be interesting for folks to scour the desert for artifacts after, the odds of spawning are lower cause it spawned kinda a lot in testing
 					if (rand(0,1000) < 3 && (istype(T,/turf/floor) || istype(T, /turf/space/gehenna/desert)))
 						Artifact_Spawn(T)

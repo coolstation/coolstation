@@ -389,7 +389,7 @@
 			var/miny = 300
 			var/maxx = 0
 			var/maxy = 0
-			for (var/turf/T in colosseum)
+			for (var/turf/T in colosseum.turfs)
 				if (!T.density)
 					spawnturfs += T
 					if (T.x < minx)

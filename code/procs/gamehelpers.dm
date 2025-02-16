@@ -492,11 +492,15 @@ var/obj/item/dummy/click_dummy = new
 
 	. = new/list()
 	var/list/areas = get_areas(areatype)
-	for(var/area/R in areas)
-		for(var/turf/T as anything in R.turfs)
-			if(floors_only && (!isfloor(T) || is_blocked_turf(T)))
-				continue
-			. += T
+	if (floors_only)
+		for(var/area/R in areas)
+			for(var/turf/T as anything in R.turfs)
+				if(!isfloor(T) || is_blocked_turf(T))
+					continue
+				. += T
+	else
+		for(var/area/R in areas)
+			. += R.turfs
 
 /proc/get_area_all_atoms(var/areatype)
 	//Takes: Area type as text string or as typepath OR an instance of the area.
