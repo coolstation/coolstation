@@ -1169,7 +1169,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		access = access_engineering
 		//hidden = 1 // doesnt actually work yet - warc
 	teg_furnaces
-		name = "Thermoelctric Furnace Pack"
+		name = "Thermoelectric Furnace Pack"
 		desc = "A set of three atmospheric furnaces for heating megawatt class peltier devices."
 		contents = "Thermoelectric Furnace Frame x3"
 		contains = list(/obj/item/electronics/frame/teg_furnace,
