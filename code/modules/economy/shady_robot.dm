@@ -132,7 +132,7 @@
 		var/turf/target = null
 		var/list/locs = list()
 
-		for(var/turf/T in A)
+		for(var/turf/T in A.turfs)
 			var/dense = 0
 			if(T.density)
 				dense = 1

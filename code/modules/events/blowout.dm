@@ -46,7 +46,7 @@
 					if (!A.irradiated)
 						A.irradiated = TRUE
 						A.icon_state = "blowout"
-					for (var/turf/T in A)
+					for (var/turf/T in A.turfs)
 						if (rand(0,1000) < 5 && istype(T,/turf/floor))
 							Artifact_Spawn(T)
 

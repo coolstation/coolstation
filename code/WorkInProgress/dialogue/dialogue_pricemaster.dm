@@ -48,6 +48,10 @@
 	////////////////////////////////////////////////////
 	/////////Proc for haggling with pricemaster////////
 	//////////////////////////////////////////////////
+	spawncrate(var/list/custom)
+		usr?.unlock_medal("EVERYTHING IS FOR SALE")
+		..(custom)
+
 	haggle(var/askingprice, var/buying, var/datum/commodity/H)
 		src.temp = null
 		var/master_price = 0

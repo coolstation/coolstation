@@ -41,6 +41,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/datum/projectile/projectile_type = null
 	var/ammo_DRM = null
 	var/reloading = 0
+	var/fiddlyness = 0
 
 
 	New(var/atom/loc, var/amt = 1 as num)
@@ -295,6 +296,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 5
 
 	three
 		name = "NT HP pistol round (x3)"
@@ -323,6 +325,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 10
 
 	three
 		name = "NT ratshot pistol round (x3)"
@@ -352,6 +355,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
+	fiddlyness = 25
 
 	three
 		name = "Italian pistol round (x3)"
@@ -381,6 +385,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
+	fiddlyness = 30
 
 	three
 		name = "Italian AP pistol round (x3)"
@@ -409,6 +414,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "juicer_jr-empty"
 	icon_one   = "bullet_juicer_jr"
 	icon_shell = "juicer_jr_case"
+	fiddlyness = 50
 
 	three
 		name = "Juicer Jr. round (x3)"
@@ -437,6 +443,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "it_what"
 	icon_shell = "white_case"
+	fiddlyness = 20
 
 	three
 		name = "\improper NT Tranq-Will-8-or (x3)"
@@ -460,6 +467,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "it_what"
 	icon_shell = "white_case"
+	fiddlyness = 15
 
 	three
 		name = "\improper NT Jean-Nerre-De Boulier darts (x3)"
@@ -523,6 +531,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/rad_bolt
 	stack_type = /obj/item/stackable_ammo/pistol/radbow
 	desc = "Stealthy projectiles that cause insidious radiation poisoning. Fits in just about anything."
+	fiddlyness = 25
 
 	three
 		name = "\improper Syndicate Radioactive Darts (x3)"
@@ -551,6 +560,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "soviet-empty"
 	icon_one   = "zauber_tube"
 	icon_shell = "zauber_spent"
+	fiddlyness = 15
 
 	three
 		name = "\improper Soviet zaubertubes (x3)"
@@ -585,6 +595,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 5
 
 	three
 		name = "\improper NT rifle ammo (x3)"
@@ -613,6 +624,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "soviet-empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+	fiddlyness = 10
 
 	three
 		name = "\improper Soviet surplus ammo (x3)"
@@ -641,6 +653,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "juicer_big-empty"
 	icon_one   = "bullet_juicer_big"
 	icon_shell = "juicer_big_case"
+	fiddlyness = 20
 
 	three
 		name = "\improper Juicer BIG rounds (x3)"
@@ -670,6 +683,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "nt_stun_empty"
 	icon_one   = "bullet_nerf"
 	icon_shell = "nerf_case"
+	fiddlyness = 10
 
 	three
 		name = "\improper NT In-Capacit-8-or MAX (x3)"
@@ -716,6 +730,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_state = "nt_shells"
 	icon_full  = "nt_shells"
 	icon_empty = "nt_shells-empty"
+	fiddlyness = 10
 
 	three
 		name = "\improper NT Shot (x3)"
@@ -741,6 +756,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	stack_type = /obj/item/stackable_ammo/scatter/NT/mini
 	icon_one   = "shell_mini_blue"
 	icon_shell = "shell_mini_case"
+	fiddlyness = 15
 
 	three
 		name = "\improper NT Mini Shot (x3)"
@@ -772,6 +788,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
 	cartridge_length = 40 //for big receivers only
+	fiddlyness = 30
 
 	three
 		name = "\improper Juicer Hot Pocketz (x3)"
@@ -799,6 +816,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_empty = "juicer_shells_blue-empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
+	fiddlyness = 50
 
 	three
 		name = "\improper Juicer JAMMO (x3)"
@@ -826,6 +844,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
+	fiddlyness = 10
 
 	three
 		name = "\improper Bartender's Buddy (x3)"
@@ -848,6 +867,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/slug_rubber
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
+	fiddlyness = 10
 
 	three
 		name = "NT rubber slug (x3)"
@@ -919,6 +939,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	max_health = 25
 	min_health = 20
 	icon_state = "bulb_good"
+	fiddlyness = 15
 
 /obj/item/storage/box/foss_flashbulbs
 	name = "box of FOSSYN flashtubes"
