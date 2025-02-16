@@ -482,7 +482,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		image.override = TRUE
 		target << image
 	step_away(src,my_target,2)
-	process()
+	SPAWN_DBG(0.3 SECONDS)
+		process()
 
 /obj/fake_attacker/proc/process()
 	if (!my_target)
