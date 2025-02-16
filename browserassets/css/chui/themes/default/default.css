@@ -270,7 +270,7 @@ a {color: #3b3122;}
 	height: 22px;
 	padding: 0 15px;
 	margin: 8px 2px 8px 0;
-	line-height: 21px; /* height of self + 1 - difference between .button:before and .button:after heights */
+	line-height: 22px; /* height of self + 1 - difference between .button:before and .button:after heights */
 	background: #3b3122;
 	text-align: center;
 	font-size: 11px;
@@ -278,9 +278,8 @@ a {color: #3b3122;}
 	text-transform: uppercase;
 	text-decoration: none;
 	color: #fff;
-	border: 0;
-	border-left: 1px solid #3b3122;
-	border-right: 1px solid #3b3122;
+	border-bottom: 2px solid #6d6617;
+	border-right: 2px solid #6d6617;
 	overflow: visible;
 	cursor: pointer;
 	box-sizing: border-box;
@@ -296,138 +295,18 @@ a {color: #3b3122;}
 	border-left-color: #ebe5a0;
 	border-right-color: #ebe5a0;
 }
-/* Right vertical shadow */
-.button:before {
-	content: " ";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: -3px; /* minus width of self - .button border-right width */
-	width: 2px;
-	background: #1c211e;
-}
-.button:active:before {
-	top: -8px; /* height of .button .top + .button border-top width */
-	background: #dad8b6;
-}
-.button:after {
-
-}
-/* Left vertical shadow (active only) */
-.button:active:after {
-	content: " ";
-	position: absolute;
-	top: 0;
-	bottom: -5px; /* height of .button .bottom */
-	left: -1px;
-	width: 2px;
-	background: #322716;
-}
-/* Top area */
-.button .top {
-	position: absolute;
-	height: 7px;
-	top: -8px; /* minus height of self - border-top width of self */
-	left: 7px; /* width of .button .top:before - .button border-left width */
-	right: -1px; /* .button border-right width */
-	background: #ebe5a0;
-	border-top: 1px solid #ebe5a0;
-	border-right: 1px solid #ebe5a0;
-}
-.button:active .top {
-	border-top-color: #ebe5a0;
-	border-right-color: #ebe5a0;
-}
-/* Top left corner */
-.button .top:before {
-	content: " ";
-	position: absolute;
-	top: -1px;
-	left: -8px; /* width of self */
-	width: 8px;
-	height: 8px;
-	background: url({{resource("images/chui/themes/default/buttons/btn-contrast-tl.gif")}}) no-repeat left top;
-}
-.button:active .top:before {
-	background-image: url({{resource("images/chui/themes/default/buttons/btn-contrast-active-tl.gif")}});
-}
-/* Top horiz shadow (active only) */
-.button:active .top:after {
-	content: " ";
-	position: absolute;
-	top: -1px;
-	left: 0;
-	right: -1px;
-	height: 2px;
-	background: #322716;
-}
-/* Bottom area */
-.button .bottom {
-	position: absolute;
-	height: 5px;
-	bottom: -5px; /* height of self */
-	left: -1px; /* .button border-left width */
-	right: 5px; /* width of .button .bottom:after width - (.button width + .button:before width) */
-	background: #ebe5a0;
-	border-bottom: 1px solid #ebe5a0;
-	border-left: 1px solid #ebe5a0;
-}
-.button:hover .bottom, .button:active .bottom {
-	height: 4px;
-	border-bottom: 2px solid #dad8b6;
-}
-.button:active .bottom {
-	border-left-color: #ebe5a0;
-}
-/* Bottom horiz shadow */
-.button .bottom:before {
-	content: " ";
-	position: absolute;
-	bottom: -3px; /* minus height of self -  .button .bottom border-bottom width */
-	left: 5px;
-	right: 0;
-	height: 2px;
-	background: #1c211e;
-}
-.button:hover .bottom:before {
-	bottom: -4px;
-}
-.button:active .bottom:before {
-	bottom: -4px;
-	left: -1px;
-	background: #dad8b6;
-}
-/* Bottom right corner */
-.button .bottom:after {
-	content: " ";
-	position: absolute;
-	bottom: -3px; /* minus height of .button .bottom:before height -  .button .bottom border-bottom width */
-	right: -8px; /* minus width of self */
-	width: 8px;
-	height: 8px;
-	background: url({{resource("images/chui/themes/default/buttons/btn-contrast-br.gif")}}) no-repeat left top;
-}
-.button:hover .bottom:after {
-	bottom: -4px;
-	background-image: url({{resource("images/chui/themes/default/buttons/btn-contrast-hover-br.gif")}});
-}
-.button:active .bottom:after {
-	bottom: -4px;
-	background-image: url({{resource("images/chui/themes/default/buttons/btn-contrast-active-br.gif")}});
-}
-
 
 /* Alt button styles */
 
 .small.button {
 	padding: 0 5px;
-	height: 12px;
-	line-height: 11px;
+	height: 27px;
+	line-height: 27px;
 	font-size: 10px;
 }
 .medium.button {
-	height: 12px;
-	line-height: 11px;
+	height: 25px;
+	line-height: 25px;
 }
 .full.button {
 	display: block;
@@ -456,11 +335,6 @@ Text: #fff
 .dark.button:hover .bottom,
 .dark.button:active .bottom {border-bottom-color: #dad8b6;}
 
-.dark.button .top:before {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-tl.gif")}});}
-.dark.button:active .top:before {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-active-tl.gif")}});}
-.dark.button .bottom:after {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-br.gif")}});}
-.dark.button:hover .bottom:after {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-hover-br.gif")}});}
-.dark.button:active .bottom:after {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-active-br.gif")}});}
 
 
 /*************************

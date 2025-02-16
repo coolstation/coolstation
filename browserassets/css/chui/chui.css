@@ -341,11 +341,8 @@ table {
 	left: -8px; /* width of self */
 	width: 8px;
 	height: 8px;
-	background: url('btn-contrast-tl.gif') no-repeat left top;
 }
-.button:active .top:before {
-	background-image: url('btn-contrast-active-tl.gif');
-}
+
 /* Top horiz shadow (active only) */
 .button:active .top:after {
 	content: " ";
@@ -400,15 +397,12 @@ table {
 	right: -8px; /* minus width of self */
 	width: 8px;
 	height: 8px;
-	background: url('btn-contrast-br.gif') no-repeat left top;
 }
 .button:hover .bottom:after {
 	bottom: -4px;
-	background-image: url('btn-contrast-hover-br.gif');
 }
 .button:active .bottom:after {
 	bottom: -4px;
-	background-image: url('btn-contrast-active-br.gif');
 }
 
 /* Alt button styles */
@@ -446,11 +440,6 @@ Text: #fff
 .dark.button:hover .bottom,
 .dark.button:active .bottom {border-bottom-color: #ebe5a0;}
 
-.dark.button .top:before {background-image: url('btn-standard-tl.gif');}
-.dark.button:active .top:before {background-image: url('btn-standard-active-tl.gif');}
-.dark.button .bottom:after {background-image: url('btn-standard-br.gif');}
-.dark.button:hover .bottom:after {background-image: url('btn-standard-hover-br.gif');}
-.dark.button:active .bottom:after {background-image: url('btn-standard-active-br.gif');}
 
 
 /*************************
