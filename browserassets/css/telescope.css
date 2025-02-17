@@ -22,7 +22,7 @@ body
 
 .cellButtons {
     position: relative;
-    display: table-cell; 
+    display: table-cell;
     vertical-align: top;
     min-width: 271px; /*Magic number that ... makes it look properly inside byond/IE/chui*/
 }
@@ -34,10 +34,10 @@ body
     left: 0;
     height: 431px; /*Max size of canvas/image*/
     min-width: 252px; /*This number is this number because fuck if i know. It just looks right.*/
-    border: 4px solid #111111;
+    border: 4px solid #6d6617;
     overflow-x: hidden;
     overflow-y: scroll;
-    text-align: left;
+    text-align: center;
 }
 
 .divFooter {
@@ -47,7 +47,7 @@ body
     text-align: center;
     border-style: solid none solid none;
     border-width: 4px;
-    border-color: #111111;
+    border-color: #6d6617;
     margin: 4px 0 0 0;
 }
 
@@ -74,16 +74,17 @@ body
 	padding: 0 5px;
 	margin: 5px 5px;
 	line-height: 2.5em;
-	background: transparent;
+	background: #3b3122;
     text-align: center;
     text-decoration: none;
 	font-size: 11px;
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #fff;
-    border-bottom: 2px solid #909da7;
-    border-left: 2px solid #909da7;
-    border-right: 2px solid #909da7;
+	margin: 8px 2px 8px 0;
+    border-bottom: 2px solid #6d6617;
+    border-right: 2px solid #6d6617;
+	box-sizing: border-box;
 	overflow: visible;
 	cursor: pointer;
 	box-sizing: border-box;
@@ -96,8 +97,6 @@ body
     height: 2.5em;
 	bottom: -5px;
 	right: -5px;
-    border-bottom: 2px solid #0f0f0f;
-    border-right: 2px solid #0f0f0f;
 }
 
 .telescopeButton:hover {
@@ -114,7 +113,7 @@ body
     font-size: 14px;
     margin-left: 5px;
   }
-  
+
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
@@ -127,7 +126,7 @@ body
     position: absolute;
     z-index: 1;
     top: -5px;
-    right: 105%; 
+    right: 105%;
     font-size: 12px;
   }
 
