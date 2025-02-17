@@ -18,7 +18,10 @@ table {
 	*border-collapse: expression('separate', cellSpacing = '0px');
 }
 
-a {color: #3b3122;}
+a {
+	color: #3b3122;
+	font-weight: bold;
+}
 
 /* TITLEBAR START */
 #titlebar {

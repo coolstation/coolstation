@@ -53,7 +53,7 @@
 		src.add_dialog(user)
 		var/HTML = {"<style type="text/css">
 		.desc {
-			background: #21272C;
+			background: #1c211e;
 			width: calc(100% - 5px);
 			padding: 2px;
 		}
