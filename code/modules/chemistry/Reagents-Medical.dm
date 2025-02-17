@@ -207,6 +207,8 @@ datum
 			transparency = 100
 			addiction_prob = 20
 			overdose = 35
+			var/static/list/halluc_skeleton = list(new /image('icons/mob/human.dmi',"skeleton"))
+			var/static/list/sex_garfield = list(new /image('icons/obj/vehicles/vehicles.dmi', "sex"))
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (prob(5))
@@ -245,9 +247,9 @@ datum
 					M.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
 				if (prob(5))
 					if(prob(95))
-						fake_attackEx(M, 'icons/mob/human.dmi', "skeleton", (pick("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected")))
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=halluc_skeleton, name_list=list("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected"), attacker_prob=15, max_attackers=1)
 					else
-						fake_attackEx(M, 'icons/obj/vehicles/vehicles.dmi', "sex", "sex garfield")
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=sex_garfield, name_list=list("sex garfield"), attacker_prob=100, max_attackers=1)
 				return
 
 			on_remove()
