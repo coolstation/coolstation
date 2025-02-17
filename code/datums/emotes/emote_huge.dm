@@ -248,8 +248,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				else if(!firepower)
 					if(prob(10) && istype(user.loc, /turf/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
 						message = "<b>[user]</B> farts. The fart freezes in MID-AIR!!!"
-						new/obj/item/material_piece/fart(user.loc)
-						var/obj/item/material_piece/fart/F = new /obj/item/material_piece/fart
+						new/obj/item/material_piece/frozenfart(user.loc)
+						var/obj/item/material_piece/frozenfart/F = new /obj/item/material_piece/frozenfart
 						F.set_loc(user.loc)
 
 			if (ishuman(user))

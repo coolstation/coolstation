@@ -501,8 +501,8 @@
 	if(T && T == src.loc)
 		if(prob(10) && istype(src.loc, /turf/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
 			. = "<b>[src]</B> farts. The fart freezes in MID-AIR!!!"
-			new/obj/item/material_piece/fart(src.loc)
-			var/obj/item/material_piece/fart/F = new()
+			new/obj/item/material_piece/frozenfart(src.loc)
+			var/obj/item/material_piece/frozenfart/F = new()
 			F.set_loc(src.loc)
 	fartcount++
 	if(fartcount == 69 || fartcount == 420)

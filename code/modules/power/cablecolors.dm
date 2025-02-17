@@ -17,6 +17,7 @@
 /obj/cable/_color/insulator_default = ""+#_color+"rubber";\
 /datum/material/fabric/synthrubber/_color;\
 /datum/material/fabric/synthrubber/_color/mat_id = ""+#_color+"rubber";\
+/datum/material/fabric/synthrubber/_color/bar_type = /obj/item/material_piece/block/rubber/_color;\
 /datum/material/fabric/synthrubber/_color/name = ""+#_color+"rubber";\
 /datum/material/fabric/synthrubber/_color/desc = ""+"A type of synthetic rubber. This one is "+#_color+".";\
 /datum/material/fabric/synthrubber/_color/color = _hexcolor;\
