@@ -208,7 +208,6 @@
 
 	if(href_list["set_range"])
 		var/value = input(usr,"Value:","") as null|num
-		//var/value = input(usr, "Slide Range (1 - [max_steps]): ", "Enter Target Range", src.steps) as num
 		if (!isnum(value)) return
 		steps = clamp(value, min_steps, max_steps)
 
