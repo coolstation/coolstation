@@ -16,7 +16,7 @@
 // 350 twilight.s
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
-#define WASTELAND_MAX_TEMP 350
+#define WASTELAND_MAX_TEMP 375
 #define GEHENNA_CO2 5*(sin(GEHENNA_TIME - 90)+ 1)
 #define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
 #define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
