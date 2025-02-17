@@ -88,6 +88,7 @@ var/global/list/material_cache = list()
 			src.color = mat1.color
 
 	src.material = mat1
+	mat1.triggerOnAdd(src)
 	src.onMaterialChanged()
 
 /// Returns a string for when a material fail or breaks depending on its material flags.

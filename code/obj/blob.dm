@@ -305,9 +305,7 @@
 		return
 
 	proc/create_chunk(var/turf/T)
-		var/obj/item/material_piece/wad/BC = new()
-		BC.set_loc(T)
-		BC.setMaterial(material)
+		var/obj/item/material_piece/blob/BC = new(T)
 		BC.name = "chunk of blob"
 
 	proc/take_damage(var/amount,var/damage_mult = 1,var/damtype = "brute",var/mob/user)

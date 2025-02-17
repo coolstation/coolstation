@@ -9,12 +9,8 @@
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
-	var/metal = 0  // what grade of metal is it?
-	var/conductor = 0
-	var/dense = 0
-	var/crystal = 0
-	var/powersource = 0
 	var/scoopable = 1
+	var/default_material = "rock"
 	var/wiggle = 6 // how much we want the sprite to be deviated fron center
 
 	max_stack = INFINITY
@@ -39,6 +35,7 @@
 		name = initial(name)
 */
 	proc/setup_material()
+		src.setMaterial(getMaterial(src.default_material), appearance = FALSE, setname = FALSE)
 		.= 0
 
 	update_stack_appearance()
@@ -171,6 +168,7 @@
 	name = "rock"
 	desc = "It's plain old space rock. Pretty worthless!"
 	icon_state = "rock1"
+	default_material = "rock"
 	force = 8
 	throwforce = 10
 	scoopable = 0
@@ -180,82 +178,61 @@
 	setup_material()
 		..()
 		src.icon_state = pick("rock1","rock2","rock3")
-		src.setMaterial(getMaterial("rock"), appearance = FALSE, setname = FALSE)
 
 /obj/item/raw_material/rock/gehenna //what if we weren't mining gray all day down there
 	name = "desert rock"
 	desc = "It's plain old desert rock. Pretty worthless!"
+	default_material = "rock_gehenna"
 
 	setup_material()
 		..()
 		src.icon_state = pick("geh-rock1","geh-rock2","geh-rock3")
-		src.setMaterial(getMaterial("rock_gehenna"), appearance = FALSE, setname = FALSE)
 
 /obj/item/raw_material/mauxite
 	name = "mauxite ore"
 	desc = "A chunk of Mauxite, a sturdy common metal."
 	icon_state = "mauxite"
+	default_material = "mauxite"
 	material_name = "Mauxite"
-	metal = 2
 	value = 70 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("mauxite"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/molitz
 	name = "molitz crystal"
 	desc = "A crystal of Molitz, a common crystalline substance."
 	icon_state = "molitz"
+	default_material = "molitz"
 	material_name = "Molitz"
-	crystal = 1
 	value = 70 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/molitz_beta
 	name = "molitz crystal"
 	desc = "An unusual crystal of Molitz."
 	icon_state = "molitz"
+	default_material = "molitz_b"
 	material_name = "Molitz Beta"
-	crystal = 1
 	value = 300 //listen if it's rare then fuck it, crank it
-
-	setup_material()
-		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/pharosium
 	name = "pharosium ore"
 	desc = "A chunk of Pharosium, a conductive metal."
 	icon_state = "pharosium"
+	default_material = "pharosium"
 	material_name = "Pharosium"
-	metal = 1
-	conductor = 1
 	value = 70 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("pharosium"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/cobryl // relate this to precursors
 	name = "cobryl ore"
 	desc = "A chunk of Cobryl, a somewhat valuable metal."
 	icon_state = "cobryl"
+	default_material = "cobryl"
 	material_name = "Cobryl"
-	metal = 1
 	value = 200 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("cobryl"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/char
 	name = "char ore"
 	desc = "A heap of Char, a fossil energy source similar to coal."
 	icon_state = "char"
+	default_material = "char"
 	material_name = "Char"
 	//cogwerks - burn vars
 	burn_point = 450
@@ -264,29 +241,20 @@
 	health = 20
 	value = 35 //base commodity price
 
-	setup_material()
-		src.setMaterial(getMaterial("char"), appearance = FALSE, setname = FALSE)
-		return ..()
-
 /obj/item/raw_material/claretine // relate this to wizardry somehow
 	name = "claretine ore"
 	desc = "A heap of Claretine, a highly conductive salt."
 	icon_state = "claretine"
+	default_material = "claretine"
 	material_name = "Claretine"
-	conductor = 2
 	value = 350 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("claretine"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/bohrum
 	name = "bohrum ore"
 	desc = "A chunk of Bohrum, a heavy and highly durable metal."
 	icon_state = "bohrum"
+	default_material = "bohrum"
 	material_name = "Bohrum"
-	metal = 3
-	dense = 1
 	value = 350 //base commodity price
 
 	setup_material()
@@ -297,26 +265,18 @@
 	name = "syreline ore"
 	desc = "A chunk of Syreline, an extremely valuable and coveted metal."
 	icon_state = "syreline"
+	default_material = "syreline"
 	material_name = "Syreline"
-	metal = 1
 	value = 800 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("syreline"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/erebite
 	name = "erebite ore"
 	desc = "A chunk of Erebite, an extremely volatile high-energy mineral."
 	icon_state = "erebite"
+	default_material = "erebite"
 	var/exploded = 0
 	material_name = "Erebite"
-	powersource = 2
 	value = 650 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("erebite"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 	ex_act(severity)
 		if(exploded)
@@ -367,41 +327,31 @@
 	name = "cerenkite ore"
 	desc = "A chunk of Cerenkite, a highly radioactive mineral."
 	icon_state = "cerenkite"
+	default_material = "cerenkite"
 	material_name = "Cerenkite"
-	metal = 1
-	powersource = 1
 	value = 480 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("cerenkite"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/plasmastone
 	name = "plasmastone"
 	desc = "A piece of plasma in its solid state."
 	icon_state = "plasmastone"
+	default_material = "plasmastone"
 	material_name = "Plasmastone"
 	//cogwerks - burn vars
 	burn_point = 1000
 	burn_output = 10000
 	burn_possible = TRUE
 	health = 40
-	powersource = 1
-	crystal = 1
 	value = 550 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("plasmastone"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/gemstone
 	name = "gem"
 	desc = "A gemstone. It's definitely pretty valuable!"
 	icon_state = "gem"
+	default_material = "onyx"
 	material_name = "Gem"
 	force = 1
 	throwforce = 3
-	crystal = 1
 	value = 1000
 
 	setup_material()
@@ -425,38 +375,25 @@
 	name = "uqill nugget"
 	desc = "A nugget of Uqill, a rare and very dense stone."
 	icon_state = "uqill"
+	default_material = "uqill"
 	material_name = "Uqill"
-	dense = 2
 	value = 750 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("uqill"), appearance = FALSE, setname = FALSE)
-		return ..()
-
 
 /obj/item/raw_material/fibrilith
 	name = "fibrilith chunk"
 	desc = "A compressed chunk of Fibrilith, an odd mineral known for its high tensile strength."
 	icon_state = "fibrilith"
+	default_material = "fibrilith"
 	material_name = "Fibrilith"
 	value = 25 //sure why not TODO: figure out relative costs for cotton etc.
-
-	setup_material()
-		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/telecrystal
 	name = "telecrystal"
 	desc = "A large unprocessed telecrystal, a gemstone with space-warping properties."
 	icon_state = "telecrystal"
+	default_material = "telecrystal"
 	material_name = "Telecrystal"
-	crystal = 1
-	powersource = 2
 	value = 1000 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("telecrystal"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 	attack(mob/M as mob, mob/user as mob, def_zone)//spyguy apologizes in advance -- not somepotato i promise
 		if(M == user)
@@ -480,53 +417,39 @@
 		name = "Blue Telecrystal"
 		desc = "[desc] It's all shiny and blue now."
 
-
 /obj/item/raw_material/miracle
 	name = "miracle matter"
 	desc = "Miracle Matter is a bizarre substance known to metamorphosise into other minerals when processed."
 	icon_state = "miracle"
+	default_material = "miracle"
 	material_name = "Miracle Matter"
 	value = 400 //still give you a decent offer even if you can make more by changing it, i guess!
-
-	setup_material()
-		src.setMaterial(getMaterial("miracle"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/starstone
 	name = "starstone"
 	desc = "An extremely rare jewel. Highly prized by collectors and lithovores."
 	icon_state = "starstone"
+	default_material = "starstone"
 	material_name = "Starstone"
-	crystal = 1
 	//TODO: value (only gragg really pays a lot for it but it has ~unique properties~ that changed its utility away from purely moneymaking. come back to this later)
-
-	setup_material()
-		src.setMaterial(getMaterial("starstone"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/eldritch
 	name = "koshmarite ore"
 	desc = "An unusual dense pulsating stone. You feel uneasy just looking at it."
 	icon_state = "eldritch"
+	default_material = "koshmarite"
 	material_name = "Koshmarite"
-	crystal = 1
-	dense = 2
 	value = 750 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("koshmarite"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/martian
 	name = "viscerite lump"
 	desc = "A disgusting flesh-like material. Ugh. What the hell is this?"
 	icon_state = "martian"
+	default_material = "viscerite"
 	material_name = "Viscerite"
-	dense = 2
 	value = 100 //base commodity price
 
 	setup_material()
-		src.setMaterial(getMaterial("viscerite"), appearance = FALSE, setname = FALSE)
 		src.create_reagents(25)
 		src.reagents.add_reagent("synthflesh", 25)
 		return ..()
@@ -537,43 +460,32 @@
 	desc = "A chunk of pure gold. Damn son."
 	icon_state = "gold"
 	material_name = "Gold"
-	dense = 2
 	value = 3500 //base commodity price
-
-	setup_material()
-		src.setMaterial(getMaterial("gold"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 // Misc building material
 
 /obj/item/raw_material/fabric
-	name = "fabric sheet"
-	desc = "Some spun cloth. Useful if you want to make clothing."
+	name = "fibrilith sheet"
+	desc = "Some spun fibrilith. Useful if you want to make clothing."
 	icon_state = "fabric"
-	material_name = "Fabric"
+	default_material = "fibrilith"
+	material_name = "Fibrilith"
 	scoopable = 0
 	value = 15 //seems fair
-
-	setup_material()
-		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/cotton/
 	name = "cotton wad"
 	desc = "It's a big puffy white thing. Most likely not a cloud though."
 	icon_state = "cotton"
+	default_material = "cotton"
 	value = 10 //seems fair
-
-	setup_material()
-		src.setMaterial(getMaterial("cotton"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 /obj/item/raw_material/ice
 	name = "ice chunk"
 	desc = "A chunk of ice. It's pretty cold."
 	icon_state = "ice"
+	default_material = "ice"
 	material_name = "Ice"
-	crystal = 1
 	scoopable = 0
 	value = 0 //don't get anything for it, don't get anything against for it. (market event: ice shortage for a BIG PARTY might put this on the map)
 
@@ -684,118 +596,573 @@
 	affecting.take_damage(force, 0)
 	H.UpdateDamageIcon()
 
-
 /obj/item/raw_material/chitin
 	name = "chitin chunk"
 	desc = "A chunk of chitin."
 	icon_state = "chitin"
+	default_material = "chitin"
 	material_name = "Chitin"
-	metal = 3
-	dense = 1
 	value = 10 //oh, sending us your bug trash huh
-
-	setup_material()
-		src.setMaterial(getMaterial("chitin"), appearance = FALSE, setname = FALSE)
-		return ..()
 
 // bars, tied into the new material system
 
+/// Processed material piece
+/obj/item/material_piece
+	//weird name for an ingot but whatever. let's call this a bundle of 25 units.
+	name = "bar"
+	desc = "Some sort of processed material bar."
+	icon = 'icons/obj/items/materials.dmi'
+	icon_state = "bar"
+	max_stack = INFINITY
+	stack_type = /obj/item/material_piece
+	value = 70 //base commodity price
+	/// required to get the material right
+	var/default_material = null
+
+	New()
+		..()
+		setup_material()
+/*
+	unpooled()
+		..()
+		if (istext(default_material))
+			var/datum/material/M = getMaterial(default_material)
+			src.setMaterial(M)
+		setup_material()
+
+	pooled()
+		..()
+*/
+	proc/setup_material()
+		src.setMaterial(getMaterial(src.default_material), appearance = TRUE, setname = FALSE)
+		.=0
+
+	update_stack_appearance()
+		if(material)
+			name = "[amount] [initial(src.name)][amount > 1 ? "s":""]"
+		return
+
+	split_stack(var/toRemove)
+		if(toRemove >= amount || toRemove < 1) return 0
+		var/obj/item/material_piece/P = new src.type()
+		P.set_loc(src.loc)
+		P.setMaterial(src.material, TRUE, FALSE)
+		src.change_stack_amount(-toRemove)
+		P.change_stack_amount(toRemove - P.amount)
+		return P
+
+	attack_hand(mob/user as mob)
+		if(user.is_in_hands(src) && src.amount > 1)
+			var/splitnum = round(input("How many material pieces do you want to take from the stack?","Stack of [src.amount]",1) as num)
+			if (splitnum >= amount || splitnum < 1)
+				boutput(user, "<span class='alert'>Invalid entry, try again.</span>")
+				return
+			var/obj/item/material_piece/new_stack = split_stack(splitnum)
+			user.put_in_hand_or_drop(new_stack)
+			new_stack.add_fingerprint(user)
+		else
+			..(user)
+
+	attackby(obj/item/W, mob/user)
+		if(W.type == src.type)
+			stack_item(W)
+			if(!user.is_in_hands(src))
+				user.put_in_hand(src)
+			boutput(user, "<span class='notice'>You add the material to the stack. It now has [src.amount] pieces.</span>")
+
+	MouseDrop(over_object, src_location, over_location) //src dragged onto over_object
+		if (isobserver(usr))
+			boutput(usr, "<span class='alert'>Quit that! You're dead!</span>")
+			return
+
+		if(!istype(over_object, /atom/movable/screen/hud))
+			if (get_dist(usr,src) > 1)
+				boutput(usr, "<span class='alert'>You're too far away from it to do that.</span>")
+				return
+			if (get_dist(usr,over_object) > 1)
+				boutput(usr, "<span class='alert'>You're too far away from it to do that.</span>")
+				return
+
+		if (istype(over_object,/obj/item/material_piece)) //piece to piece, doesnt matter if in hand or not.
+			var/obj/item/targetObject = over_object
+			if(targetObject.stack_item(src))
+				usr.visible_message("<span class='notice'>[usr.name] stacks \the [src]!</span>")
+		else if(isturf(over_object)) //piece to turf. piece loc doesnt matter.
+			if(src.amount > 1) //split stack.
+				usr.visible_message("<span class='notice'>[usr.name] splits the stack of [src]!</span>")
+				var/toSplit = round(amount / 2)
+				var/atom/movable/splitStack = split_stack(toSplit)
+				if(splitStack)
+					splitStack.set_loc(over_object)
+			else
+				if(isturf(src.loc))
+					src.set_loc(over_object)
+				for(var/obj/item/I in view(1,usr))
+					if (!I || I == src)
+						continue
+					if (!src.check_valid_stack(I))
+						continue
+					src.stack_item(I)
+				usr.visible_message("<span class='notice'>[usr.name] stacks \the [src]!</span>")
+		else if(istype(over_object, /atom/movable/screen/hud))
+			var/atom/movable/screen/hud/H = over_object
+			var/mob/living/carbon/human/dude = usr
+			switch(H.id)
+				if("lhand")
+					if(dude.l_hand)
+						if(dude.l_hand == src) return
+						else if (istype(dude.l_hand, /obj/item/material_piece))
+							var/obj/item/material_piece/DP = dude.l_hand
+							DP.stack_item(src)
+							usr.visible_message("<span class='notice'>[usr.name] stacks \the [DP]!</span>")
+					else if(amount > 1)
+						var/toSplit = round(amount / 2)
+						var/atom/movable/splitStack = split_stack(toSplit)
+						if(splitStack)
+							usr.visible_message("<span class='notice'>[usr.name] splits the stack of [src]!</span>")
+							splitStack.set_loc(dude)
+							dude.put_in_hand(splitStack, 1)
+				if("rhand")
+					if(dude.r_hand)
+						if(dude.r_hand == src) return
+						else if (istype(dude.r_hand, /obj/item/material_piece))
+							var/obj/item/material_piece/DP = dude.r_hand
+							DP.stack_item(src)
+							usr.visible_message("<span class='notice'>[usr.name] stacks \the [DP]!</span>")
+					else if(amount > 1)
+						var/toSplit = round(amount / 2)
+						var/atom/movable/splitStack = split_stack(toSplit)
+						if(splitStack)
+							usr.visible_message("<span class='notice'>[usr.name] splits the stack of [src]!</span>")
+							splitStack.set_loc(dude)
+							dude.put_in_hand(splitStack, 0)
+		else
+			..()
+
+	cloth
+		// fabric
+		icon_state = "fabric"
+		name = "fabric"
+		desc = "A weave of some kind."
+		var/in_use = 0
+
+		attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+			if (user.a_intent == INTENT_GRAB)
+				return ..()
+			if (src.in_use)
+				return ..()
+			if (ishuman(M))
+				var/mob/living/carbon/human/H = M
+				var/zone = user.zone_sel.selecting
+				var/surgery_status = H.get_surgery_status(zone)
+				if (surgery_status && H.organHolder)
+					actions.start(new /datum/action/bar/icon/medical_suture_bandage(H, src, 15, zone, surgery_status, rand(1,4), "bandag"), user)
+					src.in_use = 1
+				else if (H.bleeding)
+					actions.start(new /datum/action/bar/icon/medical_suture_bandage(H, src, 20, zone, 0, rand(2,4), "bandag"), user)
+					src.in_use = 1
+				else
+					user.show_text("[H == user ? "You have" : "[H] has"] no wounds or incisions on [H == user ? "your" : his_or_her(H)] [zone_sel2name[zone]] to bandage!", "red")
+					src.in_use = 0
+					return
+			else
+				return ..()
+
+		afterattack(turf/A, mob/user)
+			if(locate(/obj/decal/poster/banner, A))
+				return
+			else if(istype(A, /turf/wall/))
+				var/obj/decal/poster/banner/B = new(A)
+				if (src.material) B.setMaterial(src.material, TRUE, TRUE)
+				logTheThing("station", user, null, "Hangs up a banner (<b>Material:</b> [B.material && B.material.mat_id ? "[B.material.mat_id]" : "*UNKNOWN*"]) in [A] at [log_loc(user)].")
+				src.change_stack_amount(-1)
+				user.visible_message("<span class='notice'>[user] hangs up a [B.name] in [A]!.</span>", "<span class='notice'>You hang up a [B.name] in [A]!</span>")
+
+/obj/item/material_piece/wad // LOAD BEARING WAD!? SERIOUSLY!?
+		// organic
+		icon_state = "wad"
+		name = "clump"
+		desc = "A clump of some kind of material."
+
+/obj/item/material_piece/frozenfart
+	icon_state = "fart"
+	name = "frozen fart"
+	desc = "Remarkable! The cold temperatures in the freezer have frozen the fart in mid-air."
+	default_material = "frozenfart"
+	amount = 5
+	value = -10
+	alt_value = 50
+
+/obj/item/material_piece/rock
+	name = "rock brick"
+	desc = "A processed brick of rock, a common material."
+	default_material = "rock"
+	value = -1
+
+/obj/item/material_piece/rock/gehenna
+	name = "gehennan rock brick"
+	desc = "A processed brick of sulfurous rock, a common material."
+	default_material = "rock_gehenna"
+	value = -1
+
+/obj/item/material_piece/steel
+	name = "steel bar"
+	desc = "A processed bar of steel, a common alloy."
+	default_material = "steel"
+	value = 100 //legacy iron carbon earth material
+
+/obj/item/material_piece/electrum
+	name = "electrum bar"
+	desc = "A processed bar of electrum, a rare alloy."
+	default_material = "electrum"
+	value = 2000 //this stuffs useful
+
+/obj/item/material_piece/hamburgris
+	name = "hamburgris clump"
+	desc = "A big clump of petrified mince, with a horriffic smell."
+	default_material = "hamburgris"
+	icon_state = "slag"
+	value = -500 //horrifying
+	alt_value = 5000
+
+/obj/item/material_piece/glass
+	name = "glass block"
+	desc = "A cut block of glass, a common crystalline substance."
+	default_material = "glass"
+	icon_state = "block"
+	value = 100 //legacy silica earth material
+
+/obj/item/material_piece/silver
+	name = "silver bar"
+	desc = "A processed bar of silver, a lustrous metal."
+	default_material = "silver"
+	value = 500 //legacy earth material
+
+/obj/item/material_piece/copper
+	name = "copper bar"
+	desc = "A processed bar of copper, a conductive metal."
+	default_material = "copper"
+	value = 100 //legacy earth material
+
+/obj/item/material_piece/iridiumalloy
+	icon_state = "iridium"
+	name = "iridium alloy plate"
+	desc = "A chunk of some sort of iridium alloy plating."
+	default_material = "iridiumalloy"
+	amount = 5
+	value = 1000 //seems cool
+
+/obj/item/material_piece/spacelag
+	icon_state = "spacelag"
+	name = "spacelag bar"
+	desc = "Yep. There it is. You've done it. I hope you're happy now."
+	default_material = "spacelag"
+	amount = 1
+	value = -500 //cause a stutter when selling if possible, just because it's funny
+
+/obj/item/material_piece/slag
+	icon_state = "slag"
+	name = "slag"
+	desc = "By-product of smelting"
+	default_material = "slag"
+	value = -10 //heavy trash
+
+/obj/item/material_piece/rubber/latex
+	name = "latex sheet"
+	desc = "A sheet of latex."
+	icon_state = "latex"
+	default_material = "latex"
+	value = 20 //maybe
+
+	setup_material()
+		src.create_reagents(10)
+		reagents.add_reagent("rubber", 10)
+		return ..()
+
+/obj/item/material_piece/organic/wood
+	name = "wooden log"
+	desc = "Years of genetic engineering mean timber always comes in mostly perfectly shaped cylindrical logs."
+	icon_state = "log"
+	default_material = "wood"
+	value = 100 //somewhat rare in space
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if ((istool(W, TOOL_CUTTING | TOOL_SAWING)))
+			user.visible_message("[user] cuts a plank from the [src].", "You cut a plank from the [src].")
+			var/obj/item/plankobj = new /obj/item/plank(user.loc)
+			plankobj.setMaterial(getMaterial("wood"), appearance = 0, setname = 0)
+			if (src.amount > 1)
+				change_stack_amount(-1)
+			else
+				qdel (src)
+		else
+			..()
+
+/obj/item/material_piece/organic/bamboo
+	name = "bamboo stalk"
+	desc = "Keep away from Space Pandas."
+	icon_state = "bamboo"
+	default_material = "bamboo"
+	value = 20 //cheap material
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if ((istool(W, TOOL_CUTTING | TOOL_SAWING)))
+			user.visible_message("[user] carefully extracts a shoot from [src].", "You carefully cut a shoot from [src].")
+			new /obj/item/reagent_containers/food/snacks/plant/bamboo/(user.loc)
+			if (src.amount > 1)
+				change_stack_amount(-1)
+			else
+				qdel (src)
+		else
+			..()
+
+/obj/item/material_piece/cloth/spidersilk
+	name = "space spider silk"
+	desc = "space silk produced by space dwelling space spiders. space."
+	icon_state = "spidersilk"
+	default_material = "spidersilk"
+	value = 200 //luxury
+
+/obj/item/material_piece/cloth/leather
+	name = "leather"
+	desc = "leather made from the skin of some sort of space critter."
+	icon_state = "leather"
+	default_material = "leather"
+	value = 150 //cool
+
+/obj/item/material_piece/cloth/synthleather
+	name = "synthleather"
+	desc = "A type of artificial leather."
+	icon_state = "synthleather"
+	default_material = "synthleather"
+	value = 100 //less cool
+
+/obj/item/material_piece/cloth/cottonfabric
+	name = "cotton fabric"
+	desc = "A type of natural fabric."
+	icon_state = "fabric"
+	default_material = "cotton"
+	value = 20 //processed
+
+/obj/item/material_piece/cloth/brullbarhide
+	name = "brullbar hide"
+	desc = "The hide of a brüllbär"
+	icon_state = "brullbarhide"
+	default_material = "brullbarhide"
+	value = 500 //way cool
+
+/obj/item/material_piece/cloth/kingbrullbarhide
+	name = "king brüllbär hide"
+	desc = "The hide of a king brüllbär"
+	icon_state = "brullbarhide"
+	default_material = "kingbrullbarhide"
+	value = 5000 //holy shit man
+
+/obj/item/material_piece/cloth/carbon
+	name = "carbon nano fibre fabric"
+	desc = "carbon based hi-tech material."
+	icon_state = "carbonfibre"
+	default_material = "carbonfibre"
+	value = 200
+
+/obj/item/material_piece/cloth/dyneema
+	name = "dyneema fabric"
+	desc = "carbon nanofibres and space spider silk!"
+	icon_state = "dyneema"
+	default_material = "dyneema"
+	value = 500 //whatever
+
+/obj/item/material_piece/cloth/hauntium
+	name = "hauntium fabric"
+	desc = "This cloth seems almost alive."
+	default_material = "hauntium"
+	value = 300
+	icon_state = "dyneema"
+
+/obj/item/material_piece/cloth/beewool
+	name = "bee wool"
+	desc = "Some bee wool."
+	icon_state = "beewool"
+	default_material = "beewool"
+	value = 75
+
+/obj/item/material_piece/soulsteel
+	name = "soulsteel bar"
+	desc = "A bar of soulsteel. Metal made from souls."
+	icon_state = "soulsteel"
+	default_material = "soulsteel"
+	value = 500 //curse you
+
+/obj/item/material_piece/bone
+	name = "bits of bone"
+	desc = "some bits and pieces of bones."
+	icon_state = "scrap3"
+	default_material = "bone"
+	value = -10 //trash at best, crime at worst
+
+/obj/item/material_piece/gnesis
+	name = "gnesis wafer"
+	desc = "A warm, pulsing block of weird alien computer crystal stuff."
+	icon_state = "gnesis"
+	default_material = "gnesis"
+	value = 100 //weird but commonish
+
+/obj/item/material_piece/gnesisglass
+	name = "gnesisglass wafer"
+	desc = "A shimmering, transclucent block of weird alien computer crystal stuff."
+	icon_state = "gnesisglass"
+	default_material = "gnesisglass"
+	value = 100 //sure
+
+/obj/item/material_piece/coral
+	name = "coral"
+	desc = "A piece of coral. Nice!"
+	icon_state = "coral"
+	default_material = "coral"
+	value = 150 //space tourists love that shit
+
+/obj/item/material_piece/neutronium
+	name = "neutronium bar"
+	desc = "Neutrons condensed into a solid form."
+	default_material = "neutronium"
+	value = 5000 //i guess? i don't know how often this comes up
+
+/obj/item/material_piece/negativematter
+	name = "negative matter bar"
+	desc = "Negative matter condensed into a solid form."
+	default_material = "negativematter"
+	value = 5000 //i guess? i don't know how often this comes up
+
 /obj/item/material_piece/mauxite
-	desc = "A processed bar of Mauxite, a sturdy common metal."
+	name = "mauxite bar"
+	desc = "A processed bar of mauxite, a sturdy common metal."
 	default_material = "mauxite"
-	icon_state = "mauxite-bar"
 	value = 100 //more than raw
 
 /obj/item/material_piece/molitz
-	desc = "A cut block of Molitz, a common crystalline substance."
+	name = "molitz block"
+	desc = "A cut block of molitz, a common crystalline substance."
 	default_material = "molitz"
-	icon_state = "molitz-bar"
+	icon_state = "block"
 	value = 100 //more than raw
 
+/obj/item/material_piece/molitz_beta
+	name = "molitz block"
+	desc = "An unusually colored block of molitz, a common crystalline substance."
+	default_material = "molitz_beta"
+	icon_state = "block"
+	value = 300 //same as raw
+
 /obj/item/material_piece/pharosium
-	desc = "A processed bar of Pharosium, a conductive metal."
+	name = "pharosium bar"
+	desc = "A processed bar of pharosium, a conductive metal."
 	default_material = "pharosium"
-	icon_state = "pharosium-bar"
 	value = 100 //more than raw
 
 /obj/item/material_piece/cobryl
-	desc = "A processed bar of Cobryl, a somewhat valuable metal."
+	name = "cobryl bar"
+	desc = "A processed bar of cobryl, a somewhat valuable metal."
 	default_material = "cobryl"
-	icon_state = "cobryl-bar"
 	value = 300 //more than raw, it's just fancy blue space silver
 
 /obj/item/material_piece/claretine
-	desc = "A compressed Claretine, a highly conductive salt."
+	name = "claretine block"
+	desc = "A compressed block of claretine, a highly conductive salt."
 	default_material = "claretine"
-	icon_state = "claretine-bar"
+	icon_state = "block"
 	value = 100 //more than raw
 
 /obj/item/material_piece/bohrum
-	desc = "A processed bar of Bohrum, a heavy and highly durable metal."
+	name = "bohrum bar"
+	desc = "A processed bar of bohrum, a heavy and highly durable metal."
 	default_material = "bohrum"
-	icon_state = "bohrum-bar"
 	value = 250 //processed and ready for use
 
 /obj/item/material_piece/syreline
-	desc = "A processed bar of Syreline, an extremely valuable and coveted metal."
+	name = "syreline bar"
+	desc = "A processed bar of syreline, an extremely valuable and coveted metal."
 	default_material = "syreline"
-	icon_state = "syreline-bar"
 	value = 1000 //more than raw, it's just fancy yellow space platinum
 
 /obj/item/material_piece/plasmastone
-	desc = "A cut block of Plasmastone."
+	name = "plasmastone block"
+	desc = "A cut block of plasmastone."
 	default_material = "plasmastone"
-	icon_state = "plasmastone-bar"
+	icon_state = "block"
 	value = 750 //shaped and purified? yeah makes sense to me for a boost
 
+/obj/item/material_piece/plasmasteel
+	name = "plasmasteel bar"
+	desc = "A processed bar of plasmasteel, a space age alloy."
+	default_material = "plasmasteel"
+	value = 800 //nice useful stuff
+
+/obj/item/material_piece/plasmaglass
+	name = "plasmaglass block"
+	desc = "A processed block of plasmaglass, a space age transparent alloy."
+	default_material = "plasmaglass"
+	value = 800 //nice useful stuff
+
+/obj/item/material_piece/gemstone
+	name = "cracked gemstone"
+	desc = "The processor fucked this gemstone up pretty bad."
+	default_material = "gemstone"
+	icon_state = "block"
+	value = 10 //ngl i just dont wanna implement 20 gemstone types
 
 /obj/item/material_piece/uqill
-	desc = "A cut block of Uqill. It is quite heavy."
+	name = "uqill block"
+	desc = "A cut block of uqill. It is quite heavy."
 	default_material = "uqill"
-	icon_state = "uqill-bar"
+	icon_state = "block"
 	value = 1000 //slightly better price
 
 /obj/item/material_piece/koshmarite
+	name = "koshmarite block"
 	desc = "A cut block of an unusual dense stone. It seems similar to obsidian."
 	default_material = "koshmarite"
-	icon_state = "eldritch-bar"
+	icon_state = "block"
 	value = 120 //slightly better price
 
 /obj/item/material_piece/viscerite
+	name = "viscerite block"
 	desc = "A cut block of a disgusting flesh-like material. Grody."
 	default_material = "viscerite"
-	icon_state = "martian-bar"
+	icon_state = "block"
 	value = 100 //same amount, different shape, it's just goop
 
 /obj/item/material_piece/char
-	desc = "A cut block of Char."
+	name = "char"
+	desc = "Compressed and processed char."
 	default_material = "char"
 	icon_state = "wad"
-	color = "#221122"
 	value = 50 //processed for better incineration? maybe make this a bonus for furnaces
 
 /obj/item/material_piece/telecrystal
-	desc = "A cut block of Telecrystal."
+	name = "telecrystal block"
+	desc = "A cut block of telecrystal."
 	default_material = "telecrystal"
-	icon_state = "martian-bar" //excuse me
+	icon_state = "block"
 	value = 1000 //for now, i feel like it'd take a lot of telecrystal to make a whole bar, maybe. and that it's not particularly worth anything until inscribed or whatever.
 
 /obj/item/material_piece/fibrilith
-	desc = "A cut block of Fibrilith."
+	desc = "A cut block of fibrilith."
 	default_material = "fibrilith"
-	icon_state = "martian-bar"
+	icon_state = "block"
 	value = 40 //more than raw
 
 /obj/item/material_piece/cerenkite
-	desc = "A cut block of Cerenkite."
+	name = "cerenkite block"
+	desc = "A cut block of highly radioactive cerenkite."
+	icon_state = "block"
 	default_material = "cerenkite"
-	icon_state = "martian-bar"
 	value = 650 //more than raw
 
 /obj/item/material_piece/erebite
-	desc = "A cut block of Erebite."
+	name = "erebite block"
+	desc = "A cut block of highly radioactive and dangerously volatile erebite."
+	icon_state = "block"
 	default_material = "erebite"
-	icon_state = "martian-bar"
 	value = 850 //more than raw
 
 /obj/item/material_piece/gold
@@ -805,10 +1172,120 @@
 	value = 35000 //base commodity price
 
 /obj/item/material_piece/ice
+	name = "ice cube"
 	desc = "Uh. What's the point in this? Is someone planning to make an igloo?"
 	default_material = "ice"
+	icon_state = "block"
 	value = 0
 	alt_value = 50
+
+/obj/item/material_piece/butt
+	name = "butt cube"
+	desc = "You feel a compulsion to throw this into the nearest trash compactor."
+	default_material = "butt"
+	icon_state = "block"
+	value = -50
+
+/obj/item/material_piece/flesh
+	name = "flesh"
+	desc = "Processed flesh. Absolutely horrible."
+	default_material = "flesh"
+	icon_state = "wad"
+	value = 0 // i... i dunno
+
+
+/obj/item/material_piece/flesh/grody
+	name = "disgusting pulp"
+	desc = "You would throw this in the crusher, but it looks like it already went through."
+	default_material = "grodyflesh"
+	value = -500 // definitely a crime
+
+/obj/item/material_piece/miracle
+	name = "miracle matter block"
+	desc = "A cut block of miracle matter. Probably less magical now."
+	default_material = "miracle"
+	icon_state = "block"
+	value = 300 // the scientists maybe want it untouched
+
+/obj/item/material_piece/starstone
+	name = "starstone cube"
+	desc = "A compacted crystalline block of starstone. Definitely not magical, but more marketable."
+	default_material = "starstone"
+	icon_state = "block"
+	value = 5000 // surely this is fine
+
+/obj/item/material_piece/blob
+	name = "blob of blob"
+	desc = "The living flesh of the terrifying giant space amoeba."
+	default_material = "blob"
+	icon_state = "wad"
+	value = -150 // they have to pay biohazard cleanup now!
+
+/obj/item/material_piece/cardboard
+	name = "cardboard slab"
+	desc = "A slab of uncorrugated cardboard."
+	default_material = "cardboard"
+	value = 0
+
+/obj/item/material_piece/chitin
+	name = "chitin chunk"
+	desc = "A chunk of grody squished up chitin."
+	default_material = "chitin"
+	icon_state = "wad"
+	value = 10
+
+/obj/item/material_piece/beeswax
+	name = "beeswax bar"
+	desc = "A bar of solid beeswax. It isn't scented yet."
+	default_material = "beeswax"
+	value = 100 //candles!
+
+/obj/item/material_piece/honey
+	name = "industrial honey"
+	desc = "Industrial grade honey. It's spherical."
+	default_material = "honey"
+	icon_state = "sphere"
+	value = 100
+
+/obj/item/material_piece/pizza
+	name = "cubed pizza"
+	desc = "Pizza compressed into a cube shape. Oh god."
+	default_material = "pizza"
+	icon_state = "block"
+	value = 100
+
+/obj/item/material_piece/cloth/ectofibre
+	name = "ectofibre cloth"
+	desc = "What even is this... oh, it's ectofibre."
+	default_material = "ectofibre"
+	value = 50 // scary!
+
+/obj/item/material_piece/block/rubber
+	name = "synthrubber block"
+	desc = "A block of red rubber."
+	default_material = "synthrubber"
+	icon_state = "block"
+	value = 20
+
+	setup_material()
+		src.create_reagents(5)
+		reagents.add_reagent("rubber", 5)
+		return ..()
+
+
+/obj/item/material_piece/block/rubber/synthblubber
+	name = "synthblubber block"
+	desc = "A block of synthblubber. Probably."
+	default_material = "synthblubber"
+	icon_state = "block"
+	value = 50
+
+/obj/item/material_piece/ectoplasm
+	name = "ectoplasm ball"
+	desc = "A ball of purified ectoplasm."
+	default_material = "honey"
+	icon_state = "sphere"
+	value = 25
 
 // Material-related Machinery
 
@@ -933,7 +1410,7 @@
 		var/output_location = src.get_output_location()
 
 		var/obj/item/material_piece/BAR = new MAT.bar_type()
-		BAR.setMaterial(MAT)
+		BAR.setMaterial(MAT, TRUE, FALSE)
 		BAR.change_stack_amount(amount - 1)
 
 		if (istype(output_location, /obj/machinery/manufacturer))

@@ -403,9 +403,9 @@
 						RE?.apply_to_obj(piece)
 						first_part = null
 						second_part = null
-						boutput(usr, "<span class='notice'>You make [amt] [piece].</span>")
+						boutput(usr, "<span class='notice'>You make [piece].</span>")
 					else
-						boutput(usr, "<span class='notice'>You don't make anything good.</span>")
+						boutput(usr, "<span class='notice'>You don't make anything worth anything.</span>")
 
 		else if(href_list["eject"])
 			var/obj/item/L = locate(href_list["eject"]) in src
@@ -427,9 +427,11 @@
 
 	proc/updateResultName()
 		if(first_part && second_part)
-			resultName = getInterpolatedName(first_part.material.name, second_part.material.name, 0.5)
-		else
-			resultName = "???"
+			var/datum/material_recipe/RE = matchesMaterialRecipe(list(first_part.material.mat_id,second_part.material.mat_id))
+			if(RE && RE.name)
+				resultName = RE.name
+				return
+		resultName = "???"
 
 	proc/addMaterial(var/obj/item/W, var/mob/user)
 		for(var/obj/item/A in src)
@@ -473,14 +475,9 @@
 		user.unequip_all()
 		user.set_loc(src)
 
-		var/datum/material/M = new /datum/material/organic/flesh {desc="A disgusting wad of flesh."; color="#881111";} ()
-		M.name = "[user.real_name] flesh"
-
-		var/obj/item/material_piece/wad/dummyItem = new()
-		dummyItem.set_loc(src)
-		dummyItem.setMaterial(M)
-		dummyItem.change_stack_amount(5)
-		addMaterial(dummyItem, user)
+		var/obj/item/material_piece/flesh/grody/M = new /obj/item/material_piece/flesh/grody(src)
+		M.change_stack_amount(5)
+		M.name = "highly processed [user.real_name]"
 		user.remove()
 
 	ex_act(severity)

@@ -246,6 +246,7 @@
 
 /datum/material/metal/rock
 	mat_id = "rock"
+	bar_type = /obj/item/material_piece/rock
 	name = "rock"
 	desc = "Near useless asteroid rock with some traces of random metals."
 	color = "#ACACAC"
@@ -259,11 +260,13 @@
 
 /datum/material/metal/rock/gehenna
 	mat_id = "rock_gehenna"
+	bar_type = /obj/item/material_piece/rock/gehenna
 	name = "desert rock"
 	color = "#DCB040"
 
 /datum/material/metal/electrum
 	mat_id = "electrum"
+	bar_type = /obj/item/material_piece/electrum
 	name = "electrum"
 	desc = "Highly conductive alloy of gold and silver."
 	color = "#44ACAC"
@@ -277,6 +280,7 @@
 
 /datum/material/metal/steel
 	mat_id = "steel"
+	bar_type = /obj/item/material_piece/steel
 	name = "steel"
 	desc = "Terrestrial steel from Earth."
 	New()
@@ -286,6 +290,7 @@
 
 /datum/material/metal/mauxite
 	mat_id = "mauxite"
+	bar_type = /obj/item/material_piece/mauxite
 	name = "mauxite"
 	desc = "Mauxite is a sturdy common metal."
 	color = "#574846"
@@ -296,6 +301,7 @@
 
 /datum/material/metal/copper
 	mat_id = "copper"
+	bar_type = /obj/item/material_piece/copper
 	name = "copper"
 	desc = "Copper is a terrestrial conductive metal from proto-Dan mines. It is inferior to pharosium."
 	color = "#B87333" //the hex value known as copper in RGB colorspace
@@ -308,6 +314,7 @@
 
 /datum/material/metal/pharosium
 	mat_id = "pharosium"
+	bar_type = /obj/item/material_piece/pharosium
 	name = "pharosium"
 	desc = "Pharosium is a conductive metal."
 	color = "#E39362"
@@ -320,6 +327,7 @@
 
 /datum/material/metal/cobryl
 	mat_id = "cobryl"
+	bar_type = /obj/item/material_piece/cobryl
 	name = "cobryl"
 	desc = "Cobryl is a somewhat valuable metal."
 	color = "#84D5F0"
@@ -329,6 +337,7 @@
 
 /datum/material/metal/bohrum
 	mat_id = "bohrum"
+	bar_type = /obj/item/material_piece/bohrum
 	name = "bohrum"
 	desc = "Bohrum is a heavy and highly durable metal."
 	color = "#3D692D"
@@ -340,6 +349,7 @@
 
 /datum/material/metal/cerenkite
 	mat_id = "cerenkite"
+	bar_type = /obj/item/material_piece/cerenkite
 	name = "cerenkite"
 	desc = "Cerenkite is a highly radioactive metal."
 	color = "#CDBDFF"
@@ -356,6 +366,7 @@
 
 /datum/material/metal/syreline
 	mat_id = "syreline"
+	bar_type = /obj/item/material_piece/syreline
 	name = "syreline"
 	desc = "Syreline is an extremely valuable and coveted metal."
 	color = "#FAF5D4"
@@ -373,6 +384,7 @@
 
 /datum/material/metal/gold
 	mat_id = "gold"
+	bar_type = /obj/item/material_piece/gold
 	name = "gold"
 	desc = "A somewhat valuable and conductive metal."
 	color = "#F5BE18"
@@ -391,6 +403,7 @@
 
 /datum/material/metal/silver
 	mat_id = "silver"
+	bar_type = /obj/item/material_piece/silver
 	name = "silver"
 	desc = "A slightly valuable and conductive metal."
 	color = "#C1D1D2"
@@ -407,6 +420,7 @@
 
 /datum/material/metal/plasmasteel //This should have inverted plasmaglass stats
 	mat_id = "plasmasteel"
+	bar_type = /obj/item/material_piece/plasmasteel
 	name = "plasma steel"
 	desc = "A plasmastone/steel alloy. Very dense but quite soft."
 	color = "#937d99"
@@ -419,6 +433,7 @@
 
 /datum/material/metal/neutronium
 	mat_id = "neutronium"
+	bar_type = /obj/item/material_piece/neutronium
 	name = "neutronium"
 	desc = "Neutrons condensed into a solid form."
 	color = "#043e9b"
@@ -438,6 +453,7 @@
 
 /datum/material/metal/slag
 	mat_id = "slag"
+	bar_type = /obj/item/material_piece/slag
 	name = "slag"
 	desc = "A by-product left over after material has been processed."
 	color = "#26170F"
@@ -454,6 +470,7 @@
 
 /datum/material/metal/spacelag
 	mat_id = "spacelag"
+	bar_type = /obj/item/material_piece/spacelag
 	name = "spacelag"
 	desc = "*BUFFERING*"
 	color = "#0F0A08"
@@ -466,6 +483,7 @@
 
 /datum/material/metal/iridiumalloy
 	mat_id = "iridiumalloy"
+	bar_type = /obj/item/material_piece/iridiumalloy
 	name = "iridium alloy"
 	desc = "Some sort of advanced iridium alloy."
 	color = "#756596"
@@ -480,6 +498,7 @@
 //GIVE THIS STATS AND SPECIAL EFFECTS.
 /datum/material/metal/soulsteel
 	mat_id = "soulsteel"
+	bar_type = /obj/item/material_piece/soulsteel
 	name = "soulsteel"
 	desc = "A metal imbued with souls. Creepy."
 	color = "#73DFF0"
@@ -497,6 +516,7 @@
 
 /datum/material/crystal/glass
 	mat_id = "glass"
+	bar_type = /obj/item/material_piece/glass
 	name = "glass"
 	desc = "Terrestrial glass. Inferior to Molitz."
 	color = "#A3DCFF"
@@ -504,6 +524,7 @@
 
 /datum/material/crystal/molitz
 	mat_id = "molitz"
+	bar_type = /obj/item/material_piece/molitz
 	name = "molitz"
 	desc = "Molitz is a common crystalline substance."
 	color = "#FFFFFF"
@@ -519,6 +540,7 @@
 
 	beta
 		mat_id = "molitz_b"
+		bar_type = /obj/item/material_piece/molitz_beta
 		name = "molitz beta"
 		color = "#ff2288"
 		desc = "A rare form of Molitz. When heated produces a powerful plasma fire catalyst."
@@ -531,6 +553,7 @@
 
 /datum/material/crystal/claretine
 	mat_id = "claretine"
+	bar_type = /obj/item/material_piece/claretine
 	name = "claretine"
 	desc = "Claretine is a highly conductive salt."
 	color = "#C2280A"
@@ -543,6 +566,7 @@
 
 /datum/material/crystal/erebite
 	mat_id = "erebite"
+	bar_type = /obj/item/material_piece/erebite
 	name = "erebite"
 	desc = "Erebite is an extremely volatile high-energy mineral."
 	color = "#FF3700"
@@ -566,6 +590,7 @@
 
 /datum/material/crystal/plasmastone
 	mat_id = "plasmastone"
+	bar_type = /obj/item/material_piece/plasmastone
 	name = "plasmastone"
 	desc = "Plasma in its solid state."
 	color = "#A114FF"
@@ -585,6 +610,7 @@
 
 /datum/material/crystal/plasmaglass
 	mat_id = "plasmaglass"
+	bar_type = /obj/item/material_piece/plasmaglass
 	name = "plasma glass"
 	desc = "Crystallized plasma that has been rendered inert. Very hard and prone to making extremely sharp edges."
 	color = "#A114FF"
@@ -597,8 +623,9 @@
 
 /datum/material/crystal/gemstone
 	mat_id = "quartz"
+	bar_type = /obj/item/material_piece/gemstone
 	name = "quartz"
-	desc = "Quartz is somewhat valuable but not paticularly useful."
+	desc = "Quartz is somewhat valuable but not particularly useful."
 	color = "#BBBBBB"
 	quality = 50
 	alpha = 100
@@ -740,6 +767,7 @@
 
 /datum/material/crystal/uqill //Ancients
 	mat_id = "uqill"
+	bar_type = /obj/item/material_piece/uqill
 	name = "uqill"
 	desc = "Uqill is a rare and very dense stone."
 	color = "#0F0A08"
@@ -761,6 +789,7 @@
 // hi it me cirr im doing dumb
 /datum/material/crystal/gnesis //Feather
 	mat_id = "gnesis"
+	bar_type = /obj/item/material_piece/gnesis
 	name = "gnesis"
 	desc = "A rare complex crystalline matrix with a lazily shifting internal structure. Not to be confused with gneiss, a metamorphic rock."
 	color = "#1bdebd"
@@ -768,6 +797,7 @@
 
 	transparent
 		mat_id = "gnesisglass"
+		bar_type = /obj/item/material_piece/gnesisglass
 		name = "transclucent gnesis"
 		desc = "A rare complex crystalline matrix with a lazily shifting internal structure. The layers are arranged to let light through."
 		color = "#ffffff"
@@ -783,6 +813,7 @@
 
 /datum/material/crystal/telecrystal
 	mat_id = "telecrystal"
+	bar_type = /obj/item/material_piece/telecrystal
 	name = "telecrystal"
 	desc = "Telecrystal is a gemstone with space-warping properties."
 	color = "#4C14F5"
@@ -801,6 +832,7 @@
 
 /datum/material/crystal/miracle
 	mat_id = "miracle"
+	bar_type = /obj/item/material_piece/miracle
 	name = "miraclium"
 	desc = "Miraclium is a bizarre substance that can have a wide variety of effects."
 	color = "#FFFFFF"
@@ -818,6 +850,7 @@
 
 /datum/material/crystal/starstone
 	mat_id = "starstone"
+	bar_type = /obj/item/material_piece/starstone
 	name = "starstone"
 	desc = "An extremely rare jewel."
 	color = "#B5E0FF"
@@ -836,6 +869,7 @@
 
 /datum/material/crystal/ice
 	mat_id = "ice"
+	bar_type = /obj/item/material_piece/ice
 	name = "ice"
 	desc = "The frozen state of water."
 	color = "#E8F2FF"
@@ -854,6 +888,7 @@
 		return ..()
 
 /datum/material/crystal/wizard
+	bar_type = /obj/item/material_piece/gemstone
 	quality = 50
 	alpha = 100
 
@@ -905,6 +940,7 @@
 
 /datum/material/organic/blob
 	mat_id = "blob"
+	bar_type = /obj/item/material_piece/blob
 	name = "blob"
 	desc = "The material of the feared giant space amobea."
 	color = "#44cc44"
@@ -928,6 +964,7 @@
 
 /datum/material/organic/flesh
 	mat_id = "flesh"
+	bar_type = /obj/item/material_piece/flesh
 	name = "flesh"
 	desc = "Meat from a carbon-based lifeform."
 	color = "#574846"
@@ -944,11 +981,20 @@
 
 	butt
 		mat_id = "butt"
+		bar_type = /obj/item/material_piece/butt
 		name = "butt"
 		desc = "...it's butt flesh. Why is this here. Why do you somehow know it's butt flesh. Fuck."
 
+	grody
+		mat_id = "grodyflesh"
+		bar_type = /obj/item/material_piece/flesh/grody
+		name = "flesh"
+		desc = "Pulped flesh from something full of blood and guts."
+		color = "#881111"
+
 /datum/material/organic/char
 	mat_id = "char"
+	bar_type = /obj/item/material_piece/char
 	name = "char"
 	desc = "Char is a fossil energy source similar to coal."
 	color = "#555555"
@@ -961,6 +1007,7 @@
 
 /datum/material/organic/koshmarite
 	mat_id = "koshmarite"
+	bar_type = /obj/item/material_piece/koshmarite
 	name = "koshmarite"
 	desc = "An unusual dense pulsating stone. You feel uneasy just looking at it."
 	color = "#600066"
@@ -975,6 +1022,7 @@
 
 /datum/material/organic/viscerite
 	mat_id = "viscerite"
+	bar_type = /obj/item/material_piece/viscerite
 	name = "viscerite"
 	desc = "A disgusting flesh-like material. Ugh. What the hell is this?"
 	color = "#D04FFF"
@@ -993,6 +1041,7 @@
 
 /datum/material/organic/bone
 	mat_id = "bone"
+	bar_type = /obj/item/material_piece/bone
 	name = "bone"
 	desc = "Bone is pretty spooky stuff."
 	color = "#DDDDDD"
@@ -1005,6 +1054,7 @@
 
 /datum/material/organic/wood
 	mat_id = "wood"
+	bar_type = /obj/item/material_piece/organic/wood
 	name = "wood"
 	desc = "Wood from some sort of tree."
 	color = "#331f16"
@@ -1020,6 +1070,7 @@
 
 /datum/material/organic/bamboo
 	mat_id = "bamboo"
+	bar_type = /obj/item/material_piece/organic/bamboo
 	name = "bamboo"
 	desc = "Bamboo is a giant woody grass."
 	color = "#544c24"
@@ -1035,6 +1086,7 @@
 
 /datum/material/organic/cardboard
 	mat_id = "cardboard"
+	bar_type = /obj/item/material_piece/cardboard
 	name = "cardboard"
 	desc = "Perfect for making boxes."
 	color = "#d3b173"
@@ -1050,6 +1102,7 @@
 
 /datum/material/organic/chitin
 	mat_id = "chitin"
+	bar_type = /obj/item/material_piece/chitin
 	name = "chitin"
 	desc = "Chitin is an organic material found in the exoskeletons of insects."
 	color = "#118800"
@@ -1062,6 +1115,7 @@
 
 /datum/material/organic/beeswax
 	mat_id = "beeswax"
+	bar_type = /obj/item/material_piece/beeswax
 	name = "beeswax"
 	desc = "An organic material consisting of pollen and space-bee secretions.  Mind your own."
 	color = "#C8BB62"
@@ -1074,6 +1128,7 @@
 
 /datum/material/organic/honey
 	mat_id = "honey"
+	bar_type = /obj/item/material_piece/honey
 	name = "honey"
 	desc = ""
 	color = "#f1da10"
@@ -1091,6 +1146,7 @@
 
 /datum/material/organic/frozenfart
 	mat_id = "frozenfart"
+	bar_type = /obj/item/material_piece/frozenfart
 	name = "frozen fart"
 	desc = "A semi-solid state of farts originally proposed to exist by Dr. Prof. Wonk in 2016."
 	color = "#003300"
@@ -1106,6 +1162,7 @@
 
 /datum/material/organic/hamburgris
 	mat_id = "hamburgris"
+	bar_type = /obj/item/material_piece/hamburgris
 	name = "hamburgris"
 	desc = "Ancient medium ground chuck, petrified by the ages into a sturdy composite. Or worse."
 	color = "#816962"
@@ -1124,6 +1181,7 @@
 
 /datum/material/organic/pizza
 	mat_id = "pizza"
+	bar_type = /obj/item/material_piece/pizza
 	name = "pizza"
 	desc = "It's pepperoni pizza. Some would say the best kind of pizza"
 	color = "#FFFFFF"
@@ -1139,6 +1197,7 @@
 
 /datum/material/organic/coral
 	mat_id = "coral"
+	bar_type = /obj/item/material_piece/coral
 	name = "coral"
 	desc = "Coral harvested from the sea floor."
 	color = "#990099"
@@ -1166,6 +1225,7 @@
 
 /datum/material/fabric/latex
 	mat_id = "latex"
+	bar_type = /obj/item/material_piece/rubber/latex
 	name = "latex"
 	desc = "A type of synthetic rubber. Conducts electricity poorly."
 	color = "#DDDDDD" //"#FF0000" idgaf ok I want red cables back. no haine, this stuff isnt red.
@@ -1180,6 +1240,7 @@
 
 /datum/material/fabric/synthrubber
 	mat_id = "synthrubber"
+	bar_type = /obj/item/material_piece/block/rubber
 	name = "synthrubber"
 	desc = "A type of synthetic rubber. Quite garish, really."
 	color = "#FF0000" //But this is red okay.
@@ -1194,6 +1255,7 @@
 
 /datum/material/fabric/synthblubber //it had to be done
 	mat_id = "synthblubber"
+	bar_type = /obj/item/material_piece/block/rubber/synthblubber
 	name = "synthblubber"
 	desc = "A type of synthetic blubber. Hold on. Blubber?!"
 	color = "#1EA082"
@@ -1208,6 +1270,7 @@
 
 /datum/material/fabric/cloth/leather
 	mat_id = "leather"
+	bar_type = /obj/item/material_piece/cloth/leather
 	name = "leather"
 	desc = "Leather is a flexible material derived from processed animal skins."
 	color = "#8A3B11"
@@ -1222,6 +1285,7 @@
 
 /datum/material/fabric/cloth/synthleather
 	mat_id = "synthleather"
+	bar_type = /obj/item/material_piece/cloth/synthleather
 	name = "synthleather"
 	desc = "Synthleather is an artificial leather."
 	color = "#BB3B11"
@@ -1236,6 +1300,7 @@
 
 /datum/material/fabric/cloth/brullbarhide
 	mat_id = "brullbarhide"
+	bar_type = /obj/item/material_piece/cloth/brullbarhide
 	name = "brullbar hide"
 	desc = "The hide of a fearsome brüllbär!"
 	color = "#CCCCCC"
@@ -1250,6 +1315,7 @@
 
 /datum/material/fabric/cloth/brullbarhide/king
 	mat_id = "kingbrullbarhide"
+	bar_type = /obj/item/material_piece/cloth/kingbrullbarhide
 	name = "king brüllbär hide"
 	desc = "The hide of a terrifying brüllbär king!!!"
 	color = "#EFEEEE"
@@ -1264,6 +1330,7 @@
 
 /datum/material/fabric/cloth/cotton
 	mat_id = "cotton"
+	bar_type = /obj/item/material_piece/cloth/cottonfabric
 	name = "cotton"
 	desc = "Cotton is a soft and fluffy material obtained from certain plants."
 	color = "#FFFFFF"
@@ -1279,6 +1346,7 @@
 
 /datum/material/fabric/cloth/fibrilith
 	mat_id = "fibrilith"
+	bar_type = /obj/item/material_piece/fibrilith
 	name = "fibrilith"
 	desc = "Fibrilith is an odd fibrous crystal known for its high tensile strength. Seems a bit similar to asbestos."
 	color = "#E0FFF6"
@@ -1299,6 +1367,7 @@
 
 /datum/material/fabric/cloth/spidersilk
 	mat_id = "spidersilk"
+	bar_type = /obj/item/material_piece/cloth/spidersilk
 	name = "spider silk"
 	desc = "Spider silk is a protein fiber spun by space spiders."
 	color = "#CCCCCC"
@@ -1314,6 +1383,7 @@
 
 /datum/material/fabric/cloth/carbonfibre
 	mat_id = "carbonfibre"
+	bar_type = /obj/item/material_piece/cloth/carbon
 	name = "carbon nanofiber"
 	desc = "Carbon Nanofibers are highly graphitic carbon nanomaterials with excellent mechanical properties, electrical conductivity and thermal conductivity."
 	color = "#333333"
@@ -1330,6 +1400,7 @@
 
 /datum/material/fabric/cloth/hauntium
 	mat_id = "hauntium"
+	bar_type = /obj/item/material_piece/cloth/hauntium
 	name = "hauntium"
 	desc = "A silky smooth fabric that almost seems alive."
 	color = "#8c87b2"
@@ -1348,6 +1419,7 @@
 
 /datum/material/fabric/cloth/ectofibre
 	mat_id = "ectofibre"
+	bar_type = /obj/item/material_piece/cloth/ectofibre
 	name = "ectofibre"
 	desc = "Ectoplasmic fibres. Sort of transparent. Seems to be rather strong yet flexible."
 	color = "#ffffff"
@@ -1366,6 +1438,7 @@
 
 /datum/material/fabric/cloth/dyneema
 	mat_id = "dyneema"
+	bar_type = /obj/item/material_piece/cloth/dyneema
 	name = "dyneema"
 	desc = "A blend of carbon nanofibres and space spider silk. Highly versatile."
 	color = "#333333"
@@ -1382,6 +1455,7 @@
 
 /datum/material/fabric/cloth/beewool
 	mat_id = "beewool"
+	bar_type = /obj/item/material_piece/cloth/beewool
 	name = "bee wool"
 	desc = "Wool of adorable furry space bees."
 	color = "#ffcc00"
@@ -1402,6 +1476,7 @@
 
 /datum/material/energy/ectoplasm
 	mat_id = "ectoplasm"
+	bar_type = /obj/item/material_piece/ectoplasm
 	name = "ectoplasm"
 	desc = "Ghostly residue. Not terribly useful on it's own."
 	color = "#ccffcc"
@@ -1415,6 +1490,7 @@
 
 /datum/material/energy/negativematter
 	mat_id = "negativematter"
+	bar_type = /obj/item/material_piece/negativematter
 	name = "negative matter"
 	desc = "It seems to repel matter."
 	color = list(-1, 0, 0, 0, -1, 0, 0, 0, -1, 1, 1, 1)

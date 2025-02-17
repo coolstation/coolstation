@@ -348,10 +348,10 @@
   . = V.amount * src.meatValue
 
 /datum/martianMeatValue/refinedviscerite
-  meatPath = /obj/item/material_piece/wad
+  meatPath = /obj/item/material_piece/
   meatValue = 3
 
-/datum/martianMeatValue/refinedviscerite/getValue(var/obj/item/material_piece/wad/W)
+/datum/martianMeatValue/refinedviscerite/getValue(var/obj/item/material_piece/W)
   if(!W)
     return 0
   // is this wad made of viscerite?
