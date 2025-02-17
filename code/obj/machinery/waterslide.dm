@@ -170,7 +170,7 @@
 	dat += "<U><h4>Slide deployed:</h4></U>"
 	dat += "<A href='byond://?src=\ref[src];deploy_toggle=1'>[src.deployed ? "True" : "False"]</A><BR>"
 	dat += "<U><h4>Slide length:</h4></U>"
-	dat += "<A href='byond://?src=\ref[src];op=set_range'>[steps] tiles</A><BR>"
+	dat += "<A href='byond://?src=\ref[src];set_range=1'>[steps] tiles</A><BR>"
 
 	user.Browse("<HEAD><TITLE>Waterslide Pump</TITLE></HEAD>[dat]", "window=waterslide")
 	onclose(user, "waterslide")
@@ -207,7 +207,7 @@
 		update_icon()
 
 	if(href_list["set_range"])
-		var/value = input(usr,"Value:","") as num
+		var/value = input(usr,"Value:","") as null|num
 		//var/value = input(usr, "Slide Range (1 - [max_steps]): ", "Enter Target Range", src.steps) as num
 		if (!isnum(value)) return
 		steps = clamp(value, min_steps, max_steps)
