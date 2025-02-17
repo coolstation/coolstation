@@ -225,6 +225,16 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"bn" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/button/elevator/eng{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "br" = (
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
@@ -2521,9 +2531,6 @@
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
 "mw" = (
-/obj/machinery/button/elevator/eng{
-	pixel_x = 32
-	},
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
@@ -3882,6 +3889,13 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"tL" = (
+/obj/machinery/button/elevator/qm{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "tM" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -4432,9 +4446,6 @@
 "wn" = (
 /obj/table/reinforced/auto,
 /obj/random_item_spawner/tools_w_igloves/maybe_few,
-/obj/machinery/button/elevator/qm{
-	pixel_x = -32
-	},
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "wo" = (
@@ -63189,7 +63200,7 @@ pH
 Bs
 Bs
 mw
-IB
+bn
 IB
 Vq
 Bs
@@ -66785,7 +66796,7 @@ Pz
 Pz
 gK
 wn
-Pz
+tL
 Pz
 EX
 gh
