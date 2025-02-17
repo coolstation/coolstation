@@ -688,9 +688,6 @@
 /turf/floor,
 /area/station/science/artifact)
 "cm" = (
-/obj/machinery/button/elevator/med{
-	pixel_x = -32
-	},
 /obj/machinery/light{
 	dir = 8;
 	tag = null
@@ -6108,6 +6105,10 @@
 "uu" = (
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/machinery/button/elevator/med{
+	pixel_x = -32;
+	pixel_y = 32
 	},
 /turf/floor/blue/side{
 	dir = 8
