@@ -53,7 +53,7 @@
 	requirements = list("plasmastone", "glass")
 
 /datum/material_recipe/plasmaglass_molitz
-	name = "plasmaglass from molitz"
+	name = "plasmaglass"
 	result_id = "plasmaglass"
 	requirements = list("plasmastone", "molitz")
 
