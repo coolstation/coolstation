@@ -120,8 +120,6 @@ var/list/action_verbs = list(
 	"poo" = "me_hotkey poo",
 	"piss" = "me_hotkey piss",
 	"pickup" = "pick-up",
-	"ooc" = "ooc",
-	"looc" = "looc",
 	"adminhelp" = "adminhelp",
 	"mentorhelp" = "mentorhelp",
 	"autoscreenshot" = ".autoscreenshot",
@@ -138,7 +136,9 @@ var/list/action_macros = list(
 	"say" = "startsay",
 	"say_main_radio" = "radiosay",
 	"whisper" = "whisper",
-	"say_last_channel" = "radiolastsay"
+	"say_last_channel" = "radiolastsay",
+	"ooc" = "ooc",
+	"looc" = "looc"
 )
 
 ///Used to translate bitflags of hotkeys into human-readable names

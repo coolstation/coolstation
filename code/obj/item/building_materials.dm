@@ -1158,12 +1158,13 @@ MATERIAL
 				W.icon_old = "floor"
 			W.to_plating()
 
-		if(ismob(usr) && !istype(src.material, /datum/material/metal/steel))
-			logTheThing("station", usr, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(S)].")
-		if(src.material)
-			W.setMaterial(src.material)
-		src.change_stack_amount(-1)
-		return TRUE
+			if(ismob(usr) && !istype(src.material, /datum/material/metal/steel))
+				logTheThing("station", usr, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(S)].")
+			if(src.material)
+				W.setMaterial(src.material)
+			src.change_stack_amount(-1)
+			return TRUE
+		return FALSE
 #endif
 
 /obj/item/tile/steel

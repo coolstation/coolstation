@@ -836,6 +836,8 @@ var/list/special_pa_observing_verbs = list(
 	else
 		src.owner:stealth = !(src.owner:stealth)
 
+
+
 	if (src.owner:stealth)
 		if (!new_key)
 			new_key = input(usr, "Enter your desired display name.", "Fake Key", src.owner:key) as null|text
@@ -851,7 +853,13 @@ var/list/special_pa_observing_verbs = list(
 			if (length(new_key) >= 26)
 				new_key = copytext(new_key, 1, 26)
 			src.owner:fakekey = new_key
+			//Set the ooc window colors to regular colors
+		owner.create_preset_input_window("looc", show=FALSE, force=TRUE)
+		owner.create_preset_input_window("ooc", show=FALSE, force=TRUE)
 	else
+		//Back to admin colors
+		owner.create_preset_input_window("alooc", show=FALSE, force=TRUE)
+		owner.create_preset_input_window("aooc", show=FALSE, force=TRUE)
 		src.owner:fakekey = null
 		src.owner:stealth_hide_fakekey = 0
 		if (src.auto_alt_key)

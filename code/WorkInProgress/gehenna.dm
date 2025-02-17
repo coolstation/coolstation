@@ -16,7 +16,7 @@
 // 350 twilight.s
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
-#define WASTELAND_MAX_TEMP 350
+#define WASTELAND_MAX_TEMP 375
 #define GEHENNA_CO2 5*(sin(GEHENNA_TIME - 90)+ 1)
 #define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
 #define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
@@ -200,7 +200,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
-			light.enable()
+			light?.enable()
 
 
 
@@ -241,6 +241,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	icon_state = "dither_b"
 	name = "the gehennan desert"
+	is_construction_allowed = TRUE
 
 /area/gehenna/south // just in case i need a separate area for stuff
 	requires_power = 0
