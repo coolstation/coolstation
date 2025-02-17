@@ -557,6 +557,25 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/datum/manufacture/tripod
+	name = "Tripod"
+	item_paths = list("MET-1")
+	item_names = list("Metal")
+	item_amounts = list(10)
+	item_outputs = list(/obj/item/tripod)
+	time = 15 SECONDS
+	create = 1
+	category = "Machinery"
+
+/datum/manufacture/tripod_bulb
+	name = "Tripod Light Bulb"
+	item_paths = list("CRY-1","CON-1")
+	item_amounts = list(5,2)
+	item_outputs = list(/obj/item/tripod_bulb/light)
+	time = 5 SECONDS
+	create = 1
+	category = "Resource"
+
 //// cogwerks - gas extraction stuff
 
 /datum/manufacture/air_can/large

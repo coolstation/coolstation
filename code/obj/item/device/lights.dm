@@ -52,29 +52,19 @@
 	mats = 2
 	var/emagged = 0
 	var/broken = 0
-	col_r = 0.9
-	col_g = 0.8
-	col_b = 0.7
 	light_type = null
 	brightness = 4.6
 	var/light_mode = 0
+	var/obj/item/light/bulb/bulb
 
 	var/datum/component/holdertargeting/simple_light/light_dim
-	New(loc, R = initial(col_r), G = initial(col_g), B = initial(col_b))
+	var/datum/component/holdertargeting/medium_directional_light/light_good
+	New(loc, R = initial(col_r), G = initial(col_g), B = initial(col_b), bulb_type = /obj/item/light/bulb/warm)
 		..()
-		col_r = R
-		col_g = G
-		col_b = B
-		light_dim = src.AddComponent(/datum/component/holdertargeting/simple_light, col_r * 255, col_g * 255, col_b  * 255, 100)
+		src.bulb = new bulb_type(src)
+		light_dim = src.AddComponent(/datum/component/holdertargeting/simple_light, src.bulb.color_r * 255, src.bulb.color_g * 255, src.bulb.color_b  * 255, 100)
+		light_good = src.AddComponent(/datum/component/holdertargeting/medium_directional_light, src.bulb.color_r * 255, src.bulb.color_g * 255, src.bulb.color_b  * 255, 210)
 		light_dim.update(0)
-
-	var/datum/component/holdertargeting/simple_light/light_good
-	New(loc, R = initial(col_r), G = initial(col_g), B = initial(col_b))
-		..()
-		col_r = R
-		col_g = G
-		col_b = B
-		light_good = src.AddComponent(/datum/component/holdertargeting/medium_directional_light/, col_r * 255, col_g * 255, col_b  * 255, 210)
 		light_good.update(0)
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
@@ -98,20 +88,30 @@
 	attack_self(mob/user)
 		src.toggle(user)
 
+	attackby(obj/item/W, mob/user, params)
+		if(istype(W, /obj/item/light/bulb/))
+			boutput(user, "<span class='notice'>You change the bulb in [src].</span>")
+			turn_off()
+			user.u_equip(W)
+			W.set_loc(src)
+			user.put_in_hand_or_drop(src.bulb)
+			src.bulb = W
+			return
+		..()
+
 	proc/toggle(var/mob/user)
 		if (src.broken)
 			name = "broken flashlight"
 			return
 		playsound(src, "sound/items/penclick.ogg", 30, 1)
-		if(light_mode == 3) // if on the third mode, turn off
-			set_icon_state(src.icon_off)
-			src.on = 0
-			light_mode = 0
-			light_good.update(0)
-			var/obj/ability_button/flashlight_toggle/button = locate() in ability_buttons
-			button?.icon_state = "off"
+		if(!src.bulb || src.bulb.light_status != LIGHT_OK) // if no working bulb, turn off
+			boutput(user, "<span class='notice'>[src] needs a working bulb.</span>")
+			turn_off()
 			return
-		if (src.emagged) // Burn them all!
+		if(light_mode == 3) // if on the third mode, turn off
+			turn_off()
+			return
+		if (src.emagged && src.bulb && src.bulb.light_status == LIGHT_OK) // Burn them all!
 			user.apply_flash(60, 2, 0, 0, rand(2, 8), rand(1, 15), 0, 25, 100, stamina_damage = 70, disorient_time = 10)
 			for (var/mob/M in oviewers(2, get_turf(src)))
 				if (in_cone_of_vision(user, M)) // If the mob is in the direction we're looking
@@ -120,11 +120,10 @@
 						target.apply_flash(60, 8, 0, 0, rand(2, 8), rand(1, 15), 0, 30, 100, stamina_damage = 190, disorient_time = 50)
 						logTheThing("combat", user, target, "flashes [constructTarget(target,"combat")] with an emagged flashlight.")
 			user.visible_message("<span class='alert'>The [src] in [user]'s hand bursts with a blinding flash!</span>", "<span class='alert'>The bulb in your hand explodes with a blinding flash!</span>")
-			on = 0
-			light_dim.update(0)
-			light_good.update(0)
+			turn_off()
 			icon_state = "flightbroken"
 			name = "broken flashlight"
+			src.bulb.light_status = LIGHT_BROKEN
 			src.broken = 1
 			return
 		else
@@ -132,25 +131,31 @@
 				set_icon_state(src.icon_on)
 				light_mode = 1
 				src.on = 1
+				light_dim.set_color(src.bulb.color_r * 255, src.bulb.color_g * 255, src.bulb.color_b  * 255)
 				light_dim.update(1)
-			else if(light_mode == 1) // red mode
+			else if(light_mode == 1) // red mode - lets just assume a red lens clicks on or somethin
 				set_icon_state("flight2")
 				light_mode = 2
 				light_dim.update(0)
-				light_good.r = 290
-				light_good.g = 10
-				light_good.b = 10
+				light_good.set_color(src.bulb.color_r * 290, src.bulb.color_g * 10, src.bulb.color_b  * 10)
 				light_good.update(1)
 			else if(light_mode == 2) // actual flashlight mode
-				light_good.update(0)
-				light_good.r = src.col_r * 255
-				light_good.g = src.col_g * 255
-				light_good.b = src.col_b * 255
+				light_good.set_color(src.bulb.color_r * 255, src.bulb.color_g * 255, src.bulb.color_b  * 255)
 				light_good.update(1)
 				set_icon_state(src.icon_on)
 				light_mode = 3
 		var/obj/ability_button/flashlight_toggle/button = locate() in ability_buttons
 		button?.icon_state = "on"
+
+	proc/turn_off()
+		set_icon_state(src.icon_off)
+		src.on = 0
+		light_mode = 0
+		light_dim.update(0)
+		light_good.update(0)
+		var/obj/ability_button/flashlight_toggle/button = locate() in ability_buttons
+		button?.icon_state = "off"
+		return
 
 /obj/item/device/light/flashlight/abilities = list(/obj/ability_button/flashlight_toggle)
 
