@@ -24,7 +24,7 @@
 /obj/item/material_piece/block/rubber/_color;\
 /obj/item/material_piece/block/rubber/_color/name = ""+#_color+"rubber block";\
 /obj/item/material_piece/block/rubber/_color/desc = "A block of "+#_color+" synthetic rubber.";\
-/obj/item/material_piece/block/rubber/_color/default_material = /datum/material/fabric/synthrubber/_color;\
+/obj/item/material_piece/block/rubber/_color/default_material = ""+#_color+"rubber";\
 /obj/item/storage/box/cablesbox/_color;\
 /obj/item/storage/box/cablesbox/_color/name = ""+"electrical cables storage ("+#_color+")";\
 /obj/item/storage/box/cablesbox/_color/spawn_contents = list(/obj/item/cable_coil/_color = 7);\
