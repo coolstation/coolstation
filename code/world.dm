@@ -437,6 +437,7 @@ var/f_color_selector_handler/F_Color_Selector
 		Z_LOG_DEBUG("Preload", "  /datum/material_recipe")
 		for(var/A in childrentypesof(/datum/material_recipe)) //Caching material recipes.
 			var/datum/material_recipe/R = new A()
+			R.requirements = sortList(R.requirements)
 			materialRecipes.Add(R)
 
 		Z_LOG_DEBUG("Preload", "  /datum/achievementReward")

@@ -238,6 +238,7 @@
 	dense
 		density = 1
 
+/*
 // Aiming bow action.
 /datum/action/bar/aim
 	duration = -1
@@ -774,3 +775,4 @@
 			user.u_equip(I)
 			loaded = I
 			I.set_loc(src)
+*/

@@ -60,9 +60,8 @@
 			color = "#5BCEFA"
 			organ_color = "#F5A9B8"
 
-		my_material = copyMaterial(getMaterial("blob"))
-		my_material.color = src.color
-		initial_material = copyMaterial(getMaterial("blob"))
+		my_material = getMaterial("blob")
+		initial_material = my_material
 
 		src.nucleus_overlay = image('icons/mob/blob.dmi', null, "reflective_overlay")
 		src.nucleus_overlay.alpha = 0
@@ -232,9 +231,8 @@
 		src.upgrade_id = 1
 		src.lipids = new()
 		src.nuclei = new()
-		src.my_material = copyMaterial(getMaterial("blob"))
-		src.my_material.color = src.color
-		src.initial_material = copyMaterial(getMaterial("blob"))
+		src.my_material = getMaterial("blob")
+		src.initial_material = src.my_material
 		src.debuff_timestamp = 0
 		src.starter_buff = 1
 
@@ -840,7 +838,7 @@
 /datum/targetable/blob/reinforce
 	name = "Reinforce Blob"
 	icon_state = "blob-reinforce"
-	desc = "Reinforce the selected blob bit with a material deposit on the same tile. Blob bits with reinforcements may be more durable or more heat resistant, or otherwise may bear special properties depending on the properties of the material. A single blob bit can be repeatedly reinforced to push its properties closer to that of the reinforcing material."
+	desc = "Reinforce the selected blob bit with a material deposit on the same tile. Blob bits with reinforcements may be more durable or more heat resistant, or otherwise may bear special properties depending on the properties of the material."
 	pointCost = 2
 	cooldown = 2 SECONDS
 
@@ -878,7 +876,7 @@
 		B.visible_message("<span class='alert'><b>[B] reinforces using [reinforcing]!</b></span>")
 
 
-		B.setMaterial(getInterpolatedMaterial(B.material, reinforcing.material, 0.17))
+		B.setMaterial(B.material)
 		qdel(reinforcing)
 
 		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobreinforce[rand(1, 2)].ogg", 50, 1)
@@ -1540,7 +1538,7 @@
 			taking = 0
 			return 1
 		var/datum/material/to_merge = mats[max_id]
-		src.blob_holder.my_material = getInterpolatedMaterial(src.blob_holder.my_material, to_merge, 0.17)
+		src.blob_holder.my_material = to_merge
 		for (var/obj/O in deposits)
 			qdel(O)
 		boutput(usr, "<span class='notice'>Applying upgrade to the blob...</span>")

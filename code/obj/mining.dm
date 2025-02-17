@@ -1387,7 +1387,6 @@
 						MAT.material.quality = newQual
 						MAT.quality = newQual
 					else
-						MAT.material.quality = src.quality
 						MAT.quality = src.quality
 
 				MAT.name = getOreQualityName(MAT.quality) + " [MAT.name]"

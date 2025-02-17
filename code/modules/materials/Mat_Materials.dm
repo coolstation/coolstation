@@ -20,23 +20,17 @@
 
 	/// used to retrieve instances of these base materials from the cache.
 	var/mat_id = "ohshitium"
-	/// Name of the material, used for combination and scanning
+	/// Name of the material, used for scanning
 	var/name = "Youshouldneverseemeium"
 	/// Description of the material, used for scanning
-	var/desc = "This is a custom material."
+	var/desc = "This material needs a description."
+	/// The type of bar associated with this material
+	var/obj/item/bar_type = /obj/item/material_piece
 
 	/// Holds the parent materials.
 	var/list/parent_materials = list()
 	/// List of all the various [/datum/material_property] that apply.
 	var/list/properties = list()
-
-	/// Compound generation
-	var/generation = 0
-
-	/// Can this be mixed with other materials?
-	var/canMix = 1
-	/// Can this only be used after being combined with another material?
-	var/mixOnly = 0
 
 	/// Various flags. See [material_properties.dm]
 	var/material_flags = 0
@@ -473,7 +467,6 @@
 /datum/material/metal/iridiumalloy
 	mat_id = "iridiumalloy"
 	name = "iridium alloy"
-	canMix = 1 //Can not be easily modified.
 	desc = "Some sort of advanced iridium alloy."
 	color = "#756596"
 	material_flags = MATERIAL_METAL | MATERIAL_CRYSTAL

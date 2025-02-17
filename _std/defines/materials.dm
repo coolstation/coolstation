@@ -18,7 +18,6 @@
 #define MATERIAL_RUBBER 32
 
 // Gonna leave a bit of space between the categories and this one in case we want more categories, organisation!
-/// This material is altered from (infusion) or interpolated from other materials (nanocrucible)
 #define MATERIAL_NONSTANDARD 256 // unused atm but
 
 /// Global static list of rarity color associations

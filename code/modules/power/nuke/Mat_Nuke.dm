@@ -12,6 +12,7 @@
 		products: list of byproducts created when parent reagent undergoes fission. requires products_r
 		products_r: percentage at which the above byproducts are created. 1-to-1, must match index of above. requires products
 */
+
 datum
 	material
 		fissile
@@ -139,42 +140,3 @@ datum
 /obj/item/material_piece/kremfuel_o
 	desc = "dev ore kremfuel"
 	default_material = "kmetal"
-
-
-/* -- P R O C S -- */
-
-/proc/merge_mat_nuke(var/datum/material/Out, var/datum/material/fissile/FP, var/datum/material/fissile/SP) {
-	var/datum/material/fissile/Ret = copyMaterialNuke(Out)
-
-	DEBUG_MESSAGE_VARDBG("asdf_pre", Ret)
-
-	Ret.epv = (FP.epv + SP.epv) * 0.5
-	Ret.hpe = (FP.hpe + SP.hpe) * 0.5
-	Ret.absorb = (FP.absorb + SP.absorb) * 0.5
-	Ret.k_factor = (FP.k_factor + SP.k_factor) * 0.5
-
-	DEBUG_MESSAGE_VARDBG("asdf", Ret)
-
-	return Ret
-}
-
-/proc/copyMaterialNuke(var/datum/material/base)
-	if(!base || !istype(base, /datum/material))
-		var/datum/material/fissile/M = new/datum/material/fissile()
-		return M
-	else
-		var/datum/material/fissile/M = new/datum/material/fissile()
-		M.properties = mergeProperties(base.properties)
-		for(var/X in base.vars)
-			if(X == "type" || X == "parent_type" || X == "tag" || X == "vars" || X == "properties") continue
-
-			if(X in triggerVars)
-				M.vars[X] = getFusedTriggers(base.vars[X], list(), M) //Pass in an empty list to basically copy the first one.
-			else
-				if(M.vars.Find(X))
-					if(istype(base.vars[X],/list))
-						var/list/oldList = base.vars[X]
-						M.vars[X] = oldList.Copy()
-					else
-						M.vars[X] = base.vars[X]
-		return M

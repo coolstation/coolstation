@@ -43,7 +43,7 @@
 
 			//Check for exploitable inputs and divide the result accordingly
 			var/div_factor = 1
-			var/second_mat = null
+			var/datum/material/second_mat = null
 			if (istype(X, /obj/item/sheet))
 				div_factor = 10
 
@@ -68,10 +68,8 @@
 					exists_nearby.change_stack_amount(out_amount)
 					mat_id = exists_nearby.material.mat_id
 				else
-					var/newType = getProcessedMaterialForm(X.material)
-					var/obj/item/material_piece/P = new newType
+					var/obj/item/material_piece/P = new X.material.bar_type
 					P.set_loc(get_output_location())
-					P.setMaterial(X.material)
 					P.change_stack_amount(out_amount - P.amount)
 					mat_id = P.material.mat_id
 
@@ -92,10 +90,8 @@
 						second_exists_nearby.change_stack_amount(out_amount)
 						second_mat_id = second_exists_nearby.material.mat_id
 					else
-						var/newType = getProcessedMaterialForm(second_mat)
-						var/obj/item/material_piece/PC = new newType
+						var/obj/item/material_piece/PC = new second_mat.bar_type
 						PC.set_loc(get_output_location())
-						PC.setMaterial(second_mat)
 						PC.change_stack_amount(out_amount - PC.amount)
 						second_mat_id = PC.material.mat_id
 
@@ -200,14 +196,6 @@
 				boutput(usr, "<span class='alert'>You can't use a non-functioning manufacturer as an output target.</span>")
 			else
 				src.output_location = M
-				boutput(usr, "<span class='notice'>You set the processor to output to [over_object]!</span>")
-
-		else if (istype(over_object, /obj/machinery/nanofab))
-			var/obj/machinery/nanofab/N = over_object
-			if (N.status & BROKEN || N.status & NOPOWER)
-				boutput(usr, "<span class='alert'>You can't use a non-functioning nano-fabricator as an output target.</span>")
-			else
-				src.output_location = N
 				boutput(usr, "<span class='notice'>You set the processor to output to [over_object]!</span>")
 
 		else if (istype(over_object,/obj/table/) && istype(over_object,/obj/rack/))
@@ -389,41 +377,35 @@
 				amt = max(0, amt)
 				if(amt && isnum(amt) && FP && FP.amount >= amt && SP && SP.amount >= amt && (FP in src) && (SP in src))
 					flick("smelter1",src)
-					var/datum/material/merged = getFusedMaterial(FP.material, SP.material)
-					var/datum/material_recipe/RE = matchesMaterialRecipe(merged)
-					var/newtype = getProcessedMaterialForm(merged)
-					var/apply_material = 1
-					var/output_item = 0
-
+					var/datum/material_recipe/RE = matchesMaterialRecipe(list(FP.material.mat_id,SP.material.mat_id))
 					if(RE)
-						if(!RE.result_id && !RE.result_item)
-							RE.apply_to(merged)
-						else if(RE.result_item)
-							newtype = RE.result_item
-							apply_material = 0
-							output_item = 1
-						else if(RE.result_id)
-							merged = getMaterial(RE.result_id)
+						var/newtype
+						var/output_item = 0
+						var/datum/material/output_material
 
-					var/obj/item/piece = new newtype(src)
+						if(RE)
+							if(RE.result_item)
+								newtype = RE.result_item
+								output_item = 1
+							else if(RE.result_id)
+								output_material = getMaterial(RE.result_id)
+								newtype = output_material.bar_type
 
-					if(istype(FP.material, /datum/material/fissile) && istype(SP.material, /datum/material/fissile))
-						merged = merge_mat_nuke(merged, FP.material, SP.material)
+						var/obj/item/piece = new newtype(src)
 
-					if(apply_material)
-						piece.setMaterial(merged)
-
-					piece.change_stack_amount(amt - piece.amount)
-					FP.change_stack_amount(-amt)
-					SP.change_stack_amount(-amt)
-					if(!output_item)
-						addMaterial(piece, usr)
+						piece.change_stack_amount(amt - piece.amount)
+						FP.change_stack_amount(-amt)
+						SP.change_stack_amount(-amt)
+						if(!output_item)
+							addMaterial(piece, usr)
+						else
+							piece.set_loc(get_turf(src))
+						RE?.apply_to_obj(piece)
+						first_part = null
+						second_part = null
+						boutput(usr, "<span class='notice'>You make [amt] [piece].</span>")
 					else
-						piece.set_loc(get_turf(src))
-					RE?.apply_to_obj(piece)
-					first_part = null
-					second_part = null
-					boutput(usr, "<span class='notice'>You make [amt] [piece].</span>")
+						boutput(usr, "<span class='notice'>You don't make anything good.</span>")
 
 		else if(href_list["eject"])
 			var/obj/item/L = locate(href_list["eject"]) in src
@@ -474,10 +456,6 @@
 			return
 
 		if(W.material != null)
-			if(!W.material.canMix)
-				boutput(user, "<span class='alert'>This material can not be used in \the [src].</span>")
-				return
-
 			user.visible_message("<span class='notice'>[user] puts \the [W] in \the [src].</span>")
 			if( istype(W, /obj/item/material_piece) || istype(W, /obj/item/raw_material) )
 				addMaterial(W, user)
@@ -532,6 +510,7 @@
 	ex_act(severity)
 		return
 
+/* ANCIENT
 /obj/machinery/smelter
 	name = "Arc Smelter"
 	desc = "A huge furnace-like machine used to melt and combine metals or minerals."
@@ -709,6 +688,7 @@
 
 	ex_act(severity) // bloo bloo we blew it up and nobody gets to have fun
 		return
+*/
 
 //
 /obj/item/device/matanalyzer

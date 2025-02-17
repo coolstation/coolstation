@@ -98,7 +98,7 @@
 			blob_holder.blobs -= src
 		if (AH)
 			blob_holder = AH
-			setMaterial(copyMaterial(AH.my_material))
+			setMaterial(AH.my_material)
 			color = blob_holder.color
 			original_color = blob_holder.color
 			blob_holder.blobs |= src
@@ -307,7 +307,7 @@
 	proc/create_chunk(var/turf/T)
 		var/obj/item/material_piece/wad/BC = new()
 		BC.set_loc(T)
-		BC.setMaterial(copyMaterial(material))
+		BC.setMaterial(material)
 		BC.name = "chunk of blob"
 
 	proc/take_damage(var/amount,var/damage_mult = 1,var/damtype = "brute",var/mob/user)
@@ -1320,7 +1320,7 @@
 	New(nloc, mat, blob)
 		..(nloc)
 		src.blob_holder = blob
-		setMaterial(copyMaterial(mat))
+		setMaterial(mat)
 		pixel_x = rand(-12, 12)
 		pixel_y = rand(-12, 12)
 

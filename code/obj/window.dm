@@ -109,7 +109,7 @@
 			else
 				opacity = 0
 
-			name = "[getQualityName(material.quality)] [material.name] " + name
+			name = "[material.name] " + name
 
 		if (istype(reinforcement))
 			if(reinforcement.hasProperty("density"))

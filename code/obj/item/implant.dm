@@ -1750,6 +1750,6 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 
 	on_remove(mob/M)
 		..()
-		new /obj/item/coil/small/(get_turf(M)) //the cycle of violence carries on
+		//new /obj/item/coil/small/(get_turf(M)) //the cycle of violence carries on
 		SPAWN_DBG(0)
 			qdel(src)

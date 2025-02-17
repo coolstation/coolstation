@@ -39,25 +39,6 @@
 			if(material.hasProperty("reflective")) focal_strength = 80 + initial(focal_strength) - (material.hasProperty("reflective") ? material.getProperty("reflective") : 15)
 		return
 
-/obj/item/coil
-	desc = "A coil. Not really useful without additional components."
-	icon = 'icons/obj/items/items.dmi'
-	amount = 1
-
-	small
-		name = "small coil"
-		icon_state = "small_coil"
-		throwforce = 3
-		force = 3
-		w_class = W_CLASS_TINY
-
-	large
-		name = "large coil"
-		icon_state = "large_coil"
-		throwforce = 5
-		force = 5
-		w_class = W_CLASS_SMALL
-
 /obj/item/gnomechompski
 	name = "Gnome Chompski"
 	desc = "what"

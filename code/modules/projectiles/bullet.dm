@@ -1485,5 +1485,5 @@ toxic - poisons
 				on_max_range_die(P)
 		..()
 
-	on_max_range_die(obj/projectile/O)
-		new /obj/item/coil/small/(get_turf(O))
+	//on_max_range_die(obj/projectile/O)
+	//	new /obj/item/coil/small/(get_turf(O))
