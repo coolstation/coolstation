@@ -33,6 +33,10 @@
 	icon_state = "bottlecl"
 	name = "Pool Chlorine"
 
+	mostly_water // sacrilege, I know
+		name = "Pool Water"
+		initial_reagents = list("water"=390,"chlorine"=10)
+
 /obj/item/reagent_containers/food/drinks/chemicalcan
 	name = "chemical cannister"
 	desc = "For storing medical chemicals and less savory things."
