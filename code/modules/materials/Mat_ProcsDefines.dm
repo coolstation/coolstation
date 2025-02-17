@@ -124,10 +124,8 @@ var/global/list/material_cache = list()
 /// Checks if a list of material ids matches a recipe and returns the recipe if a match is found. returns null if nothing matches it.
 /proc/matchesMaterialRecipe(var/list/mat_ids)
 	var/list/sorted_ids = sortList(mat_ids)
-	boutput(world,"[sorted_ids] trying to match:")
 	for(var/datum/material_recipe/R in materialRecipes)
-		boutput(world,"[R.requirements] in recipe")
-		if(R.requirements == sorted_ids) return R
+		if(R.requirements ~= sorted_ids) return R
 	return null
 
 /// Yes hello apparently we need a proc for this because theres a million types of different wires and cables.
