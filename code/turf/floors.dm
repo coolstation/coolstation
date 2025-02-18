@@ -1969,7 +1969,7 @@ DEFINE_FLOORS(techfloor/green,
 
 /turf/floor/ReplaceWith(what, keep_old_material, handle_air, handle_dir, force)
 	var/obj/effects/hidden_contents_holder/old_hidden_contents = src.hidden_contents //we have to do this because src will be the new turf after the replace due to byond
-	var/turf/floor/newfloor = ..()
+	var/turf/floor/plating/newfloor = ..()
 	if (istype(newfloor))
 		newfloor.hidden_contents = old_hidden_contents
 	else
