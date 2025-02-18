@@ -1554,7 +1554,14 @@ DEFINE_FLOORS(techfloor/green,
 /turf/floor/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
 	icon_old = icon_state
 	name_old = name
+	var/obj/effects/hidden_contents_holder/old_hidden_contents = src.hidden_contents //we have to do this because src will be the new turf after the replace due to byond
 	. = ..()
+	var/turf/floor/plating/newfloor = .
+	if (istype(newfloor))
+		newfloor.hidden_contents = old_hidden_contents
+	else
+		qdel(old_hidden_contents)
+
 
 /turf/floor/proc/update_icon()
 
@@ -1966,14 +1973,6 @@ DEFINE_FLOORS(techfloor/green,
 				var/obj/item/cable_coil/C = I
 				if((get_dist(user,F)<2) && (get_dist(user,src)<2))
 					C.move_callback(user, F, src)
-
-/turf/floor/ReplaceWith(what, keep_old_material, handle_air, handle_dir, force)
-	var/obj/effects/hidden_contents_holder/old_hidden_contents = src.hidden_contents //we have to do this because src will be the new turf after the replace due to byond
-	var/turf/floor/plating/newfloor = ..()
-	if (istype(newfloor))
-		newfloor.hidden_contents = old_hidden_contents
-	else
-		qdel(old_hidden_contents)
 
 /turf/floor/restore_tile()
 	..()
