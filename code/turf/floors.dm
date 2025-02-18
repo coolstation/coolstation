@@ -21,9 +21,6 @@
 	//Stuff for the floor & wall planner undo mode that initial() doesn't resolve.
 	var/roundstart_icon_state
 	var/roundstart_dir
-	///Things that are hidden "in" this turf that are revealed when it is pried up.
-	///Kept in a hidden object on the turf so that `get_turf` works as normal. Yes this is crime, fight me I have a possum.
-	var/obj/effects/hidden_contents_holder/hidden_contents = null
 	allows_vehicles = 0
 
 	New()
@@ -1554,14 +1551,7 @@ DEFINE_FLOORS(techfloor/green,
 /turf/floor/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
 	icon_old = icon_state
 	name_old = name
-	var/obj/effects/hidden_contents_holder/old_hidden_contents = src.hidden_contents //we have to do this because src will be the new turf after the replace due to byond
 	. = ..()
-	var/turf/floor/plating/newfloor = .
-	if (istype(newfloor))
-		newfloor.hidden_contents = old_hidden_contents
-	else
-		qdel(old_hidden_contents)
-
 
 /turf/floor/proc/update_icon()
 
@@ -1731,12 +1721,12 @@ DEFINE_FLOORS(techfloor/green,
 
 /turf/floor/levelupdate()
 	..()
-	if (!src.intact && src.hidden_contents)
-		for(var/atom/movable/AM as anything in src.hidden_contents)
+	if (!src.intact && src.turf_persistent.hidden_contents)
+		for(var/atom/movable/AM as anything in src.turf_persistent.hidden_contents)
 			AM.set_loc(src)
 			SEND_SIGNAL(AM, COMSIG_MOVABLE_FLOOR_REVEALED, src)
-		qdel(src.hidden_contents) //it's an obj, see the definition for crime justification
-		src.hidden_contents = null
+		qdel(src.turf_persistent.hidden_contents) //it's an obj, see the definition for crime justification
+		src.turf_persistent.hidden_contents = null
 
 
 /turf/floor/attackby(obj/item/C as obj, mob/user as mob, params)
@@ -1959,9 +1949,9 @@ DEFINE_FLOORS(techfloor/green,
 
 
 /turf/floor/proc/hide_inside(atom/movable/AM)
-	if (!src.hidden_contents)
-		src.hidden_contents = new(src)
-	AM.set_loc(src.hidden_contents)
+	if (!src.turf_persistent.hidden_contents)
+		src.turf_persistent.hidden_contents = new(src)
+	AM.set_loc(src.turf_persistent.hidden_contents)
 
 /turf/floor/MouseDrop_T(atom/A, mob/user as mob)
 	..(A,user)
