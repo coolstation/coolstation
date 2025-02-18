@@ -82,7 +82,8 @@
 #define COMSIG_MOVABLE_SET_LOC "mov_set_loc"
 /// when an AM ends throw (thing, /datum/thrown_thing)
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
-
+/// when an AM is revealed from under a floor tile (turf revealed from)
+#define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
 // ---- item signals ----
 
 /// When an item is equipped (user, slot)
