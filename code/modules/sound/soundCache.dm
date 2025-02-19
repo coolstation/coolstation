@@ -811,7 +811,6 @@ var/global/list/soundCache = list(
  	"sound/misc/milk_horn_far.ogg" = 'sound/misc/milk_horn_far.ogg',\
  	"sound/misc/molly_revived.ogg" = 'sound/misc/molly_revived.ogg',\
  	"sound/misc/NewRound.ogg" = 'sound/misc/NewRound.ogg',\
- 	"sound/misc/NewRound10.ogg" = 'sound/misc/NewRound10.ogg',\
  	"sound/misc/NewRound2.ogg" = 'sound/misc/NewRound2.ogg',\
  	"sound/misc/NewRound3.ogg" = 'sound/misc/NewRound3.ogg',\
  	"sound/misc/NewRound4.ogg" = 'sound/misc/NewRound4.ogg',\
