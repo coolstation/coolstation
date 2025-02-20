@@ -29,6 +29,10 @@
 #define COMPONENT_NOTRANSFER 2
 
 
+/// arginfo handling TODO: document
+#define ARG_INFO(name, type, desc, default...)\
+	list(name, type, desc, ##default)
+
 // How multiple components of the exact same type are handled in the same datum
 
 /// old component is deleted (default)
@@ -78,7 +82,8 @@
 #define COMSIG_MOVABLE_SET_LOC "mov_set_loc"
 /// when an AM ends throw (thing, /datum/thrown_thing)
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
-
+/// when an AM is revealed from under a floor tile (turf revealed from)
+#define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
 // ---- item signals ----
 
 /// When an item is equipped (user, slot)

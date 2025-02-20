@@ -3401,7 +3401,11 @@ datum
 			thirst_value = -2
 			bladder_value = -2
 			stun_resist = 100
-
+			var/static/list/od_halluc = list(
+				new /image('icons/mob/hallucinations.dmi', "orange") = list("orange"),
+				new /image('icons/mob/hallucinations.dmi', "lime") = list("lime"),
+				new /image('icons/mob/hallucinations.dmi', "lemon") = list("lemon"),
+			)
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -3486,10 +3490,9 @@ datum
 					M.take_brain_damage(9 * mult)
 					M.emote("scream")
 
-					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "orange", "orange")
-					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "lime", "lime")
-					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "lemon", "lemon")
 
+					var/image/imagekey = pick(od_halluc)
+					M.AddComponent(/datum/component/hallucination/fake_attack, 10, list(imagekey), od_halluc[imagekey], 25, 5)
 					if(probmult(15)) boutput("<span class='alert'><B>FRUIT IN MY EYES!!!</B></span>")
 
 					if(probmult(25))
