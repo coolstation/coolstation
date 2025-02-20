@@ -15,7 +15,7 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 	padding: 0;
-	*border-collapse: expression('separate', cellSpacing = '0px');
+	border-collapse: expression('separate', cellSpacing = '0px');
 }
 
 a {
@@ -93,7 +93,7 @@ a {
 	z-index: 999;
 	bottom: 0;
 }
-}
+
 #cornerWrap .corner.br {
 	width: 24px;
 	height: 30px;
@@ -377,7 +377,7 @@ a.manulink:active {border:none 0px; font-family: "Arial", sans-serif; color: whi
 /* Clearfix */
 .cf:before, .cf:after { content: " "; display: table;}
 .cf:after {clear: both;}
-.cf {*zoom: 1;}
+.cf {zoom: 1;}
 
 .tight {
 	padding: 0px;
