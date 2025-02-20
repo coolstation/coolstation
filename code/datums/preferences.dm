@@ -1177,8 +1177,10 @@ datum/preferences
 		position: relative;
 		padding: 0 1.2em;
 		border: 1px solid rgba(128, 128, 128, 0.5);
+		background: white;
 		}
 	.jobtable td a {
+		font-weight: normal;
 		text-decoration: none;
 		}
 	.jobtable td div a.job {

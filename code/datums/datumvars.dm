@@ -260,6 +260,7 @@
 		body {
 			font-family: Verdana, sans-serif;
 			font-size: 9pt;
+			color: black !important;
 		}
 		a {
 			text-decoration: none;
@@ -305,7 +306,7 @@
 		.refresh_controls {
 			display:block;
 			position:fixed;
-			right:0;
+			right: 20px;
 		}
 </style>"}
 

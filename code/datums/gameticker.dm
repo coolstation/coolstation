@@ -529,7 +529,25 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
-					ircbot.event("roundend")
+					// Put together a package of score data that we can hand off to the discord bot
+					var/list/roundend_score = list(
+						"map" = getMapNameFromID(map_setting),
+						"survival" = score_tracker.score_crew_survival_rate,
+						"sec_scr"  = score_tracker.final_score_sec,
+						"eng_scr"  = score_tracker.final_score_eng,
+						"civ_scr"  = score_tracker.final_score_civ,
+						"res_scr"  = score_tracker.final_score_res,
+						"grade"    = score_tracker.grade,
+						"m_damaged" = score_tracker.most_damaged_escapee,
+						"r_escaped" = score_tracker.richest_escapee,
+						"r_total"  = score_tracker.richest_total,
+						"beepsky"  = score_tracker.beepsky_alive,
+						"farts"    = fartcount,
+						"wead"     = weadegrowne,
+						"doinks"   = doinkssparked,
+						"clowns"   = clownabuse
+						)
+					ircbot.event("roundend", list("score" = roundend_score))
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 
