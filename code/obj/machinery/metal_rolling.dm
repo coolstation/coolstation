@@ -207,9 +207,8 @@
 			processed_something = TRUE
 			break
 
-		/*if(processed_something)
-			SPAWN_DBG(rand(0, 3))
-				playsound(src.loc, pick('','',''), 50, 1)*/
+		if(processed_something)
+			playsound(src.loc, 'sound/machines/hot_loop_process_1.ogg', 50, 1)
 
 
 	/// mylie note - this proc will be revamped with keyed list materials to remove the required field
