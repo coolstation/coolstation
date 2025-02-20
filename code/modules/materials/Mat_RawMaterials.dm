@@ -189,6 +189,15 @@
 				src.change_stack_amount(-1)
 				user.visible_message("<span class='notice'>[user] hangs up a [B.name] in [A]!.</span>", "<span class='notice'>You hang up a [B.name] in [A]!</span>")
 
+/obj/item/material_piece/flesh
+	name = "flesh clump"
+	desc = "Unrecognizable homogenous meat."
+	icon_state = "wad"
+	value = -50 //this is bad stuff
+	setup_material()
+		src.setMaterial(getMaterial("flesh"), appearance = 0, setname = 0)
+		..()
+
 /obj/item/material_piece/fart
 	icon_state = "fart"
 	name = "frozen fart"
