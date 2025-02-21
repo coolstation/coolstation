@@ -230,11 +230,18 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		if(probmult(attacker_prob))
 			var/obj/fake_attacker/F
 			var/image/halluc
+			var/mob/attack_target = parent_mob
 			if(isnull(image_list)) //if not specified, let's do a 50/50 of critters or humans
 				var/list/possible_clones = new/list()
+				var/list/possible_targets = new/list()
 				for(var/mob/living/carbon/human/H in mobs)
+					if (get_dist(H,parent_mob) < 10)
+						possible_targets += H
 					if (H.stat || H.lying || H.dir == NORTH) continue
 					possible_clones += H
+				possible_targets = possible_targets - parent_mob
+				if(prob(60) && length(possible_targets))
+					attack_target = pick(possible_targets)
 				if(prob(50) && length(possible_clones)) //try for a human fake attacker
 					var/mob/living/carbon/human/clone = null
 					var/clone_weapon = null
@@ -245,7 +252,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 					else if (clone.r_hand)
 						clone_weapon = clone.r_hand.name
 
-					F = new/obj/fake_attacker(parent_mob.loc, parent_mob)
+					F = new/obj/fake_attacker(attack_target.loc, attack_target, parent_mob)
 
 					F.name = clone.name
 					F.weapon_name = clone_weapon
@@ -253,10 +260,16 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 					parent_mob.client?.images += halluc
 				else //try for a predefined critter fake attacker
 					var/faketype = pick(concrete_typesof(/obj/fake_attacker) - /obj/fake_attacker) //all but the base type
-					F = new faketype(parent_mob.loc, parent_mob)
+					F = new faketype(attack_target.loc, attack_target, parent_mob)
 
 			else //image list isn't null, so create a fake attacker with that image
-				F = new /obj/fake_attacker(parent_mob.loc, parent_mob)
+				if(prob(60))
+					var/list/possible_targets = new/list()
+					for(var/mob/living/carbon/human/H in orange(8,parent_mob))
+						possible_targets += H
+					if(length(possible_targets))
+						attack_target = pick(possible_targets)
+				F = new /obj/fake_attacker(attack_target.loc, attack_target, parent_mob)
 				F.name = "attacker"
 				halluc = image(pick(image_list), F)
 				parent_mob.client?.images += halluc
@@ -390,7 +403,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	density = 0
 	anchored = ANCHORED
 	opacity = 0
-	var/mob/living/carbon/human/my_target = null
+	var/mob/my_target = null
+	var/mob/hallucinator = null
 	var/weapon_name = null
 	///Does this hallucination constantly whack you
 	var/should_attack = TRUE
@@ -404,10 +418,10 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		fake_icon_state = "pig"
 		get_name()
 			return pick("pig", "DAT FUKKEN PIG")
-	spider
+	/*spider
 		fake_icon_state = "big_spide"
 		get_name()
-			return pick("giant black widow", "aw look a spider", "OH FUCK A SPIDER")
+			return pick("giant black widow", "aw look a spider", "OH FUCK A SPIDER")*/
 	slime
 		fake_icon = 'icons/mob/hallucinations.dmi'
 		fake_icon_state = "slime"
@@ -433,50 +447,80 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		get_name()
 			return pick("bat", "batty", "the roundest possible bat", "the giant bat that makes all of the rules")
 	snake
-		fake_icon_state = "rattlesnake"
+		fake_icon_state = "snake_green"
 		get_name()
 			return pick("snek", "WHY DID IT HAVE TO BE SNAKES?!", "rattlesnake", "OH SHIT A SNAKE")
-	scorpion
+	/*scorpion
 		fake_icon_state = "spacescorpion"
 		get_name()
-			return "space scorpion"
+			return "space scorpion"*/
 	aberration
 		fake_icon_state = "aberration"
 		should_attack = FALSE
 		get_name()
 			return "transposed particle field"
-	capybara
-		fake_icon_state = "capybara"
-		should_attack = FALSE
 	frog
 		fake_icon_state = "frog"
 		should_attack = FALSE
 
 	disposing()
 		my_target = null
+		hallucinator = null
 		. = ..()
 
-/obj/fake_attacker/attackby()
-	step_away(src,my_target,2)
-	for(var/mob/M in oviewers(world.view,my_target))
-		boutput(M, "<span class='alert'><B>[my_target] flails around wildly.</B></span>")
-	my_target.show_message("<span class='alert'><B>[src] has been attacked by [my_target] </B></span>", 1) //Lazy.
+/obj/fake_attacker/attack_hand(mob/M, params)
+	src.Attackby(null, M, params)
+
+/obj/fake_attacker/attackby(obj/item/W, mob/M, params, is_special)
+	if(M != src.hallucinator)
+		return
+	M.a_intent = INTENT_HARM // not gonna be nice to the hallucinations... or the people beneath
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.check_for_intent_trigger()
+		H.hud.update_intent()
+	for(var/mob/living/crossfire in get_turf(src))
+		if(W)
+			crossfire.Attackby(W, M, params, is_special)
+		else
+			crossfire.Attackhand(M, params)
+		return
+	M.lastattacked = src
+	for(var/mob/witness in oviewers(world.view,hallucinator))
+		boutput(witness, SPAN_ALERT("<B>[hallucinator] flails around wildly[W ? " with [W]" : ""].</B>"))
+	if(W)
+		if (!W.hide_attack)
+			attack_particle(M,src)
+			attack_twitch(M)
+		boutput(M,"<span class='combat'><B>[M] hits [src] with [W]!</B></span>")
+		if((W.hit_type == DAMAGE_CUT || W.hit_type == DAMAGE_STAB) && prob(50))
+			fake_blood(M,src.loc)
+	else
+		attack_particle(M,src)
+		attack_twitch(M)
+		if (narrator_mode)
+			M.playsound_local(M.loc, 'sound/vox/hit.ogg', 50, 1, -1)
+		else
+			M.playsound_local(M.loc, pick(sounds_punch), 50, 1, -1)
+		boutput(M,"<span class='alert'><B>[M] [M.punchMessage] [src]!</B></span>")
+
 
 /obj/fake_attacker/Crossed(atom/movable/M)
 	..()
-	if (M == my_target)
-		step_away(src,my_target,2)
+	if (M == hallucinator)
+		step_away(src,hallucinator,2)
 		if (prob(30))
-			for(var/mob/O in oviewers(world.view , my_target))
-				boutput(O, "<span class='alert'><B>[my_target] stumbles around.</B></span>")
+			for(var/mob/witness in oviewers(world.view, hallucinator))
+				boutput(witness, "<span class='alert'><B>[hallucinator] stumbles around.</B></span>")
 
 
-/obj/fake_attacker/New(location, target)
+/obj/fake_attacker/New(location, target, hallucinator)
 	..()
 	SPAWN_DBG(30 SECONDS)
 		qdel(src)
 	src.name = src.get_name()
 	src.my_target = target
+	src.hallucinator = hallucinator ? hallucinator : src.my_target
 	if (src.fake_icon && src.fake_icon_state)
 		var/image/image = image(icon = src.fake_icon, loc = src, icon_state = src.fake_icon_state)
 		image.override = TRUE
@@ -490,44 +534,47 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		qdel(src)
 		return
 	if (BOUNDS_DIST(src, my_target) > 0)
-		step_towards(src,my_target)
+		if(prob(85)) // outrun your nightmares
+			step_towards(src,my_target)
 	else
-		if (src.should_attack && prob(70) && !ON_COOLDOWN(src, "fake_attack_cooldown", 1 SECOND))
+		if (src.should_attack && prob(70) && !ON_COOLDOWN(src, "fake_attack_cooldown", rand(1 SECOND, 2 SECONDS)))
 			if (weapon_name)
 				if (narrator_mode)
-					my_target.playsound_local(my_target.loc, 'sound/vox/weapon.ogg', 40, 0)
+					hallucinator.playsound_local(my_target.loc, 'sound/vox/weapon.ogg', 40, 0)
 				else
-					my_target.playsound_local(my_target.loc, "sound/impact_sounds/Generic_Hit_[rand(1, 3)].ogg", 40, 1)
-				my_target.show_message("<span class='alert'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></span>", 1)
-				if (prob(20)) my_target.change_eye_blurry(3)
+					hallucinator.playsound_local(my_target.loc, "sound/impact_sounds/Generic_Hit_[rand(1, 3)].ogg", 40, 1)
+				hallucinator.show_message("<span class='alert'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></span>", 1)
 				if (prob(10))
 					if (!locate(/obj/overlay/fake) in my_target.loc)
-						fake_blood(my_target)
+						fake_blood(hallucinator,my_target.loc)
 			else
 				if (narrator_mode)
-					my_target.playsound_local(my_target.loc, 'sound/vox/hit.ogg', 40, 0)
+					hallucinator.playsound_local(my_target.loc, 'sound/vox/hit.ogg', 40, 0)
 				else
-					my_target.playsound_local(my_target.loc, pick(sounds_punch), 40, 1)
-				my_target.show_message("<span class='alert'><B>[src.name] has punched [my_target]!</B></span>", 1)
-				if (prob(10))
-					if (!locate(/obj/overlay/fake) in my_target.loc)
-						fake_blood(my_target)
+					hallucinator.playsound_local(my_target.loc, pick(sounds_punch), 40, 1)
+				hallucinator.show_message("<span class='alert'><B>[src.name] has punched [my_target]!</B></span>", 1)
 			attack_twitch(src)
 
-	if (src.should_attack && prob(10)) step_away(src,my_target,2)
+	if (src.should_attack && prob(5)) step_away(src,my_target,2)
 	SPAWN_DBG(0.3 SECONDS)
 		src.process()
 
-/proc/fake_blood(var/mob/target)
-	var/obj/overlay/fake/O = new/obj/overlay/fake(target.loc)
+/proc/fake_blood(var/mob/target,var/location,var/fake_blood_color)
+	var/obj/overlay/fake/O = new/obj/overlay/fake(location ? location : target.loc)
 	O.plane = PLANE_NOSHADOW_BELOW
 	O.name = "blood"
+	if (!fake_blood_color)
+		fake_blood_color = DEFAULT_BLOOD_COLOR
+		var/mob/living/L = target
+		if (istype(L))
+			fake_blood_color = L.blood_color
 	var/image/I = image('icons/obj/decals/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
+	I.color = fake_blood_color
 	target << I
 	SPAWN_DBG(30 SECONDS)
 		qdel(O)
 
-/proc/fake_attack(var/mob/target)
+/proc/fake_attack(var/mob/target,var/mob/hallucinator)
 	var/list/possible_clones = new/list()
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null
@@ -544,7 +591,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	else if (clone.r_hand)
 		clone_weapon = clone.r_hand.name
 
-	var/obj/fake_attacker/F = new/obj/fake_attacker(target.loc, target)
+	var/obj/fake_attacker/F = new/obj/fake_attacker(target.loc, target, hallucinator)
 
 	F.name = clone.name
 	F.weapon_name = clone_weapon
