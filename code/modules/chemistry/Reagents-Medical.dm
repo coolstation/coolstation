@@ -123,8 +123,8 @@ datum
 						M.drowsyness  = max(M.drowsyness, 20)
 						holder.remove_reagent("morphine", 0.2 * mult) //morphine gets flushed faster while you are KO'd
 
-						if(probmult(25))
-							M.take_oxygen_deprivation(12)
+						if(probmult(35))
+							M.take_oxygen_deprivation(15)
 							M.take_toxin_damage(2)
 
 				..()
