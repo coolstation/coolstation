@@ -413,6 +413,7 @@ datum
 			fluid_b = 160
 			transparency = 222
 			minimum_reaction_temperature = T0C + 100
+			reacts_with_fire = TRUE
 			var/reacted_to_temp = 0 // prevent infinite loop in a fluid
 /*
 			pooled()

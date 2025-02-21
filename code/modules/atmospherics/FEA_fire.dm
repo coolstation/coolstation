@@ -31,6 +31,15 @@
 	if (!air_contents)
 		return 0
 
+	if (src.reagents)
+		src.reagents.temperature_reagents(exposed_temperature, exposed_volume, 350, 300, 1)
+
+	if (src.active_liquid && src.active_liquid.group && exposed_temperature  >= 550)
+		src.active_liquid.group.reagents.open_flame_reaction()
+
+	if (src.active_airborne_liquid && src.active_airborne_liquid.group && exposed_temperature  >= 550)
+		src.active_airborne_liquid.group.reagents.open_flame_reaction()
+
 	if (active_hotspot)
 		if (locate(/obj/fire_foam) in src)
 			active_hotspot.dispose() // have to call this now to force the lighting cleanup

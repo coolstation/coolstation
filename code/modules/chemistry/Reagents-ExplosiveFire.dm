@@ -93,6 +93,7 @@ datum
 			minimum_reaction_temperature = T0C + 100
 			var/temp_reacted = 0
 			penetrates_skin = 1
+			reacts_with_fire = TRUE
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!temp_reacted)
@@ -658,6 +659,7 @@ datum
 			minimum_reaction_temperature = T0C + 200
 			depletion_rate = 0.6
 			heat_capacity = 5
+			reacts_with_fire = TRUE
 
 			var/max_radius = 7
 			var/min_radius = 0

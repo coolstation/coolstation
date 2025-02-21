@@ -113,6 +113,13 @@ datum
 				if(current_reagent && src.total_temperature >= current_reagent.minimum_reaction_temperature)
 					current_reagent.reaction_temperature(src.total_temperature, 100)
 
+		/// Exposes reagents to open flames
+		proc/open_flame_reaction()
+			for (var/reagent_id in reagent_list)
+				var/datum/reagent/reagent = reagent_list[reagent_id]
+				if (reagent.reacts_with_fire == TRUE)
+					reagent.open_fire_react()
+
 		proc/temperature_reagents(exposed_temperature, exposed_volume = 100, exposed_heat_capacity = 100, change_cap = 15, change_min = 0.0000001,loud = 0)
 			///This is what you use to change the temp of a reagent holder.
 			///Do not manually change the reagent unless you know what youre doing.

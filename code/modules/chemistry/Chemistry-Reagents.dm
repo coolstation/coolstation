@@ -50,6 +50,7 @@ datum
 		var/minimum_reaction_temperature = INFINITY // Minimum temperature for reaction_temperature() to occur, use -INFINITY to bypass this check
 		var/random_chem_blacklisted = 0 // will not appear in random chem sources oddcigs/artifacts/etc
 		var/boiling_point = T0C + 100
+		var/reacts_with_fire = FALSE // if contact with open flames does something to this chem
 		var/can_crack = 0 // used by organic chems
 
 		New()
@@ -105,6 +106,9 @@ datum
 
 		proc/reaction_temperature(exposed_temperature, exposed_volume) //By default we do nothing.
 			return
+
+		proc/open_fire_react(exposed_volume)
+			reaction_temperature() // By default, do the same as when it's heated up.
 
 		//reaction_mob, reaction_obj reaction_turf and reaction_blob all return 1 by default. Children procs should override return value with 0.
 		// This is for fluid interactions : returning 0 means 'this reaction consumed fluid'

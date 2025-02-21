@@ -1177,6 +1177,7 @@ datum
 			value = 3 // 1c + 1c + 1c
 			viscosity = 0.13
 			minimum_reaction_temperature = T0C + 200
+			reacts_with_fire = TRUE
 			var/min_req_fluid = 0.25 //at least 1/4 of the fluid needs to be oil for it to ignite
 
 			reaction_temperature(exposed_temperature, exposed_volume)
