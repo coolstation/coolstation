@@ -252,7 +252,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 					else if (clone.r_hand)
 						clone_weapon = clone.r_hand.name
 
-					F = new/obj/fake_attacker(attack_target.loc, attack_target, parent_mob)
+					F = new /obj/fake_attacker(attack_target.loc, attack_target, parent_mob)
 
 					F.name = clone.name
 					F.weapon_name = clone_weapon
@@ -404,7 +404,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	anchored = ANCHORED
 	opacity = 0
 	var/mob/my_target = null
-	var/mob/hallucinator = null
+	var/mob/my_hallucinator = null
 	var/weapon_name = null
 	///Does this hallucination constantly whack you
 	var/should_attack = TRUE
@@ -465,14 +465,14 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 
 	disposing()
 		my_target = null
-		hallucinator = null
+		my_hallucinator = null
 		. = ..()
 
 /obj/fake_attacker/attack_hand(mob/M, params)
 	src.Attackby(null, M, params)
 
 /obj/fake_attacker/attackby(obj/item/W, mob/M, params, is_special)
-	if(M != src.hallucinator)
+	if(M != src.my_hallucinator)
 		return
 	M.a_intent = INTENT_HARM // not gonna be nice to the hallucinations... or the people beneath
 	if(ishuman(M))
@@ -486,8 +486,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			crossfire.Attackhand(M, params)
 		return
 	M.lastattacked = src
-	for(var/mob/witness in oviewers(world.view,hallucinator))
-		boutput(witness, SPAN_ALERT("<B>[hallucinator] flails around wildly[W ? " with [W]" : ""].</B>"))
+	for(var/mob/witness in oviewers(world.view,my_hallucinator))
+		boutput(witness, SPAN_ALERT("<B>[my_hallucinator] flails around wildly[W ? " with [W]" : ""].</B>"))
 	if(W)
 		if (!W.hide_attack)
 			attack_particle(M,src)
@@ -507,11 +507,11 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 
 /obj/fake_attacker/Crossed(atom/movable/M)
 	..()
-	if (M == hallucinator)
-		step_away(src,hallucinator,2)
+	if (M == my_hallucinator)
+		step_away(src,my_hallucinator,2)
 		if (prob(30))
-			for(var/mob/witness in oviewers(world.view, hallucinator))
-				boutput(witness, "<span class='alert'><B>[hallucinator] stumbles around.</B></span>")
+			for(var/mob/witness in oviewers(world.view, my_hallucinator))
+				boutput(witness, "<span class='alert'><B>[my_hallucinator] stumbles around.</B></span>")
 
 
 /obj/fake_attacker/New(location, target, hallucinator)
@@ -520,17 +520,17 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		qdel(src)
 	src.name = src.get_name()
 	src.my_target = target
-	src.hallucinator = hallucinator ? hallucinator : src.my_target
+	src.my_hallucinator = hallucinator ? hallucinator : src.my_target
 	if (src.fake_icon && src.fake_icon_state)
 		var/image/image = image(icon = src.fake_icon, loc = src, icon_state = src.fake_icon_state)
 		image.override = TRUE
-		hallucinator << image
+		src.my_hallucinator << image
 	step_away(src,my_target,2)
 	SPAWN_DBG(0.3 SECONDS)
 		process()
 
 /obj/fake_attacker/proc/process()
-	if (!my_target || !hallucinator)
+	if (!my_target || !my_hallucinator)
 		qdel(src)
 		return
 	if (BOUNDS_DIST(src, my_target) > 0)
@@ -540,19 +540,19 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		if (src.should_attack && prob(70) && !ON_COOLDOWN(src, "fake_attack_cooldown", rand(1 SECOND, 2 SECONDS)))
 			if (weapon_name)
 				if (narrator_mode)
-					hallucinator.playsound_local(my_target.loc, 'sound/vox/weapon.ogg', 40, 0)
+					my_hallucinator.playsound_local(my_target.loc, 'sound/vox/weapon.ogg', 40, 0)
 				else
-					hallucinator.playsound_local(my_target.loc, "sound/impact_sounds/Generic_Hit_[rand(1, 3)].ogg", 40, 1)
-				hallucinator.show_message("<span class='alert'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></span>", 1)
+					my_hallucinator.playsound_local(my_target.loc, "sound/impact_sounds/Generic_Hit_[rand(1, 3)].ogg", 40, 1)
+				my_hallucinator.show_message("<span class='alert'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></span>", 1)
 				if (prob(10))
 					if (!locate(/obj/overlay/fake) in my_target.loc)
-						fake_blood(hallucinator,my_target.loc)
+						fake_blood(my_hallucinator,my_target.loc)
 			else
 				if (narrator_mode)
-					hallucinator.playsound_local(my_target.loc, 'sound/vox/hit.ogg', 40, 0)
+					my_hallucinator.playsound_local(my_target.loc, 'sound/vox/hit.ogg', 40, 0)
 				else
-					hallucinator.playsound_local(my_target.loc, pick(sounds_punch), 40, 1)
-				hallucinator.show_message("<span class='alert'><B>[src.name] has punched [my_target]!</B></span>", 1)
+					my_hallucinator.playsound_local(my_target.loc, pick(sounds_punch), 40, 1)
+				my_hallucinator.show_message("<span class='alert'><B>[src.name] has punched [my_target]!</B></span>", 1)
 			attack_twitch(src)
 
 	if (src.should_attack && prob(5)) step_away(src,my_target,2)
