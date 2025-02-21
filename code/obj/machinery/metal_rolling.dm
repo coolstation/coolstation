@@ -7,7 +7,6 @@
 	mats = 40
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	processing_tier = PROCESSING_HALF
-	p_class = 5 // the funny
 	var/emagged = FALSE
 	var/sound_loop_channel = 150 // works i hope
 
@@ -178,7 +177,7 @@
 
 		// when looping sounds works in 516, get back to this
 		//playsound(src.loc, 'sound/machines/hot_roller_loop.ogg', 50, 0, forcechannel = src.sound_loop_channel, repeat = TRUE)
-		playsound(src.loc, 'sound/machines/hot_roller_loop_temp.ogg', 50, 0, forcechannel = src.sound_loop_channel)
+		playsound(src.loc, 'sound/machines/hot_roller_loop_temp.ogg', 50, 0)
 
 		var/processed_something = FALSE
 
