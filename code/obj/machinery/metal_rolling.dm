@@ -1,12 +1,13 @@
 /obj/machinery/hot_roller
 	name = "hot roller"
 	desc = "Heats and squishes blocks of material."
-	icon_state = "hot_roller_on"
+	icon_state = "hot_roller_off"
 	density = 1
 	anchored = 1
 	mats = 40
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	processing_tier = PROCESSING_HALF
+	p_class = 5 // the funny
 	var/emagged = FALSE
 	var/sound_loop_channel = 150 // works i hope
 
@@ -19,7 +20,7 @@
 			src.emagged = TRUE
 			if (user && ismob(user))
 				src.add_fingerprint(user)
-				boutput(user, "<span class='alert'>You short out [src]'s safety interlock!</span>")
+				boutput(user, "<span class='alert bold'>You short out [src]'s safety interlock!</span>")
 				src.audible_message("<span class='alert'><B>[src] clunks strangely!</B></span>")
 			logTheThing("station", user, null, "emagged a [src.name] at [log_loc(src)].")
 			return 1
@@ -61,14 +62,31 @@
 		if (src.current_processing_tier)
 			user.visible_message("<span class='notice'>[user] shuts down the [src].</span>", "<span class='notice'>You slam the brake and shut down [src].</span>")
 			UnsubscribeProcess()
+			icon_state = "hot_roller_off"
 		else
-			user.visible_message("<span class='notice'>[user] shuts down the [src].</span>", "<span class='notice'>You slap a button and start up [src].</span>")
+			user.visible_message("<span class='notice'>[user] starts up the [src].</span>", "<span class='notice'>You slap a button and start up [src].</span>")
 			SubscribeToProcess()
+			icon_state = "hot_roller_on"
 
 	Bumped(atom/movable/AM)
-		var/approach_dir = get_dir(src,AM)
-
 		. = ..()
+		try_pull_in(AM)
+
+	Move(NewLoc,Dir)
+		. = ..()
+		if (.)
+			for(var/atom/movable/AM in src.loc)
+				try_pull_in(AM,Dir)
+
+	proc/try_pull_in(var/atom/movable/AM,var/approach_dir)
+		if(AM.anchored)
+			return
+
+		if(!approach_dir)
+			approach_dir = get_dir(src,AM)
+
+		if(!src.current_processing_tier)
+			return
 
 		if(world.timeofday - AM.last_bumped <= 60)
 			return
@@ -79,9 +97,6 @@
 		else if(approach_dir!=src.dir)
 			return
 
-		if(!src.current_processing_tier)
-			return
-
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.lying || (L.flags & TABLEPASS))
@@ -90,7 +105,10 @@
 		if(!(AM.flags & TABLEPASS))
 			return
 
-		src.visible_message("<span class='alert'>[AM] gets pulled into [src]!</span>","<span class='alert'>You hear something crunch!</span>","hot_roller")
+		if(!isitem(AM))
+			return
+
+		src.visible_message("<span class='alert bold'>[AM] gets pulled into [src]!</span>","<span class='alert'>You hear something crunch!</span>","hot_roller")
 
 		if (istype(AM, /obj/item/material_piece) && AM.material)
 			for(var/obj/item/material_piece/I in src.contents)
@@ -152,6 +170,8 @@
 		..()
 
 		if(status & (NOPOWER|BROKEN))
+			icon_state = "hot_roller_off"
+			UnsubscribeProcess()
 			return 0
 
 		use_power(500)
@@ -209,7 +229,6 @@
 
 		if(processed_something)
 			playsound(src.loc, 'sound/machines/hot_loop_process_1.ogg', 50, 1)
-
 
 	/// mylie note - this proc will be revamped with keyed list materials to remove the required field
 	proc/create_sheets(var/obj/item/I,var/required)
