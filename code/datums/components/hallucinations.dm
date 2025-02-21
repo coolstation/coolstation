@@ -524,13 +524,13 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	if (src.fake_icon && src.fake_icon_state)
 		var/image/image = image(icon = src.fake_icon, loc = src, icon_state = src.fake_icon_state)
 		image.override = TRUE
-		target << image
+		hallucinator << image
 	step_away(src,my_target,2)
 	SPAWN_DBG(0.3 SECONDS)
 		process()
 
 /obj/fake_attacker/proc/process()
-	if (!my_target)
+	if (!my_target || !hallucinator)
 		qdel(src)
 		return
 	if (BOUNDS_DIST(src, my_target) > 0)
@@ -597,5 +597,5 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	F.weapon_name = clone_weapon
 
 	var/image/O = image(clone,F)
-	target << O
+	hallucinator << O
 
