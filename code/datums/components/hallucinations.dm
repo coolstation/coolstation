@@ -474,6 +474,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 /obj/fake_attacker/attackby(obj/item/W, mob/M, params, is_special)
 	if(M != src.my_hallucinator)
 		return
+	if(M.next_click > world.time)
+		return
 	M.a_intent = INTENT_HARM // not gonna be nice to the hallucinations... or the people beneath
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
