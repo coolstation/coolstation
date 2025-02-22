@@ -124,6 +124,8 @@
 	var/net_id = null
 
 	var/datum/action/action_bar = null
+	//We'll probably have to handle having multiple appendices the moment there's more than one type, but not now. uwu
+	var/obj/machinery/manufacturer_attachment/appendix = null
 
 #define WIRE_EXTEND 1
 #define WIRE_POWER 2
@@ -156,6 +158,8 @@
 	disposing()
 		STOP_TRACKING
 		manuf_controls.manufacturing_units -= src
+		src.appendix?.belongs_to = null
+		src.appendix = null
 		src.work_display = null
 		src.activity_display = null
 		src.panel_sprite = null
@@ -2458,13 +2462,105 @@
 	icon_base = "atmos"
 	accept_blueprints = 0
 	available = list(
-	/datum/manufacture/atmos_can,
-	/datum/manufacture/air_can/large,
-	/datum/manufacture/o2_can,
-	/datum/manufacture/co2_can,
-	/datum/manufacture/n2_can,
-	/datum/manufacture/plasma_can,
-	/datum/manufacture/agent_b_can)
+	/datum/manufacture/atmos_can)
+
+	var/refill = FALSE
+
+	New()
+		..()
+		//Due to our refill shenanigans these have to be instantiated per extractor
+		available += new /datum/manufacture/gas_extract/air_can/large()
+		available += new /datum/manufacture/gas_extract/o2_can()
+		available += new /datum/manufacture/gas_extract/co2_can()
+		available += new /datum/manufacture/gas_extract/n2_can()
+		available += new /datum/manufacture/gas_extract/plasma_can()
+		available += new /datum/manufacture/gas_extract/agent_b_can()
+
+	//override to allow the thing to refill canisters :)
+	check_enough_materials(datum/manufacture/M)
+		if (src.refill)
+			var/obj/machinery/manufacturer_attachment/canister_port/port = src.appendix
+			if (!istype(port))
+				adjust_recipes(FALSE)
+			else if (!istype(port.attached_can))
+				adjust_recipes(FALSE)
+		return ..()
+
+
+	//crimes ahead
+	dispense_product(var/product,var/datum/manufacture/M)
+		if (refill) //LOAD 'ER UP
+			var/obj/machinery/manufacturer_attachment/canister_port/port = src.appendix
+			var/obj/machinery/portable_atmospherics/canister/target_can = port.attached_can
+			if (!istype(target_can))
+				CRASH("Gas extractor set to refill a non-existent can. What the fuck?")
+			if (!istype(M, /datum/manufacture/atmos_can)) //would be empty anyway
+
+				if (ispath(M.item_outputs[1], /obj/machinery/portable_atmospherics/canister))
+					var/type_of_gas = M.item_outputs[1]
+					var/obj/machinery/portable_atmospherics/canister/initial_trick = M.item_outputs[1]
+					var/fill_factor = initial(initial_trick.filled)
+					var/volume_factor = initial(initial_trick.volume)
+
+					//this is reversed from canister.dm. It also sucks but uhh it'll do
+					//I should probably have just chucked this in a proc on the manufacture datums or something.
+					//but the goal is they dump in as much gas as the equivalent canister starts with
+					var/prev_moles = TOTAL_MOLES(target_can.air_contents)
+					var/prev_temp = target_can.air_contents.temperature
+					var/added_temp = (type_of_gas == /obj/machinery/portable_atmospherics/canister/nitrogen ? 80 : T20C)
+					var/added_moles = (target_can.maximum_pressure*fill_factor)*volume_factor/(R_IDEAL_GAS_EQUATION*added_temp)
+
+					switch(type_of_gas)
+						if(/obj/machinery/portable_atmospherics/canister/toxins)
+
+							target_can.air_contents.toxins 	+= added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/oxygen)
+							target_can.air_contents.oxygen 	+= added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/sleeping_agent)
+							var/datum/gas/oxygen_agent_b/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
+							trace_gas.moles += added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+							var/datum/gas/oxygen_agent_b/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
+							trace_gas.moles += added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/nitrogen)
+							target_can.air_contents.nitrogen += added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/carbon_dioxide)
+							target_can.air_contents.carbon_dioxide 	+= added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/air/large)
+							added_moles = 0 //inefficient but it works for all the others so
+							var/newO2 = (O2STANDARD*target_can.maximum_pressure*fill_factor)*volume_factor/(R_IDEAL_GAS_EQUATION*T20C)
+							var/newN2 = (N2STANDARD*target_can.maximum_pressure*fill_factor)*volume_factor/(R_IDEAL_GAS_EQUATION*T20C)
+							added_moles += newO2
+							added_moles += newN2
+							target_can.air_contents.oxygen 			+= newO2
+							target_can.air_contents.nitrogen 		+= newN2
+
+					//average out temperatures
+					//this should probably account for specific heat but that's something for another day. I just don't want it to add hot gas to hot gas
+					target_can.air_contents.temperature = (prev_moles/(prev_moles + added_moles))*prev_temp + (added_moles/(prev_moles + added_moles))*added_temp
+
+					target_can.update_icon()
+					playsound(src.loc, 'sound/machines/hiss.ogg', 50, 1)
+					return
+		..()
+
+/obj/machinery/manufacturer/gas/proc/adjust_recipes(now_refill = TRUE)
+	if (src.refill == now_refill)
+		return
+	src.refill = now_refill
+	if (src.refill)
+		for(var/datum/manufacture/gas_extract/GE in src.available)
+			GE.toggle_refill()
+	else
+		for(var/datum/manufacture/gas_extract/GE in src.available)
+			GE.toggle_canister()
+	src.updateUsrDialog()
 
 // a blank manufacturer for mechanics
 
@@ -2694,3 +2790,86 @@
 			var/datum/manufacture/I = new P
 			if (I && length(I.item_outputs) && I.item_outputs[1])
 				getItemIcon(I.item_outputs[1])
+
+//shit that bolts on to a manufacturer :)
+ABSTRACT_TYPE(/obj/machinery/manufacturer_attachment)
+/obj/machinery/manufacturer_attachment
+	name = "manufacturer appendix"
+	desc = "Just like the human one, this thing might just bork and take the rest of the machine down with it!"
+	icon = 'icons/obj/machines/manufacturer.dmi'
+	var/obj/machinery/manufacturer/belongs_to
+
+	New()
+		..()
+		UnsubscribeProcess()
+		SPAWN_DBG(0)
+			belongs_to = locate() in get_step(src, src.dir)
+			if (belongs_to)
+				belongs_to.appendix = src
+
+	disposing()
+		var/obj/machinery/manufacturer/gas/G = belongs_to
+		if (istype(G))
+			G.refill = FALSE
+		src.belongs_to?.appendix = null
+		src.belongs_to = null
+		..()
+
+
+/obj/machinery/manufacturer_attachment/canister_port
+	name = "gas extractor canister port"
+	desc = "Attach an empty canister to this port to have the gas extractor it's attached to (re)fill it."
+	icon_state = "attach_canister"
+	var/obj/machinery/portable_atmospherics/canister/attached_can
+	plane = PLANE_NOSHADOW_BELOW
+
+	New()
+		..()
+
+		switch(src.dir)
+			if (NORTH)
+				//For the most part we can just scoot over the port to make it look attached to the manufacturer,
+				//but because the port is on the lower edge of the sprite and we'd need at least 5px of displacement up to overlap the machine convincingly,
+				//which would pull the port halfway into the canister that's meant to be on top of it.
+				var/image/I = image(src.icon, "attach_canister-B", layer = FLOAT_LAYER)
+				I.plane = PLANE_DEFAULT
+				I.pixel_y = 32
+				UpdateOverlays(I, "extra bit")
+			if (SOUTH)
+				pixel_y = -6
+			if (EAST)
+				pixel_x = 4
+			if (WEST)
+				pixel_x = -4
+
+	attackby(obj/item/I, mob/user)
+		if (iswrenchingtool(I))
+			if (attached_can)
+				detach_can()
+			else
+				attached_can = locate(/obj/machinery/portable_atmospherics/canister) in src.loc
+				attach_can()
+		..()
+
+	disposing()
+		detach_can()
+		..()
+
+/obj/machinery/manufacturer_attachment/canister_port/proc/attach_can()
+	if (attached_can)
+		attached_can.UpdateOverlays(image(attached_can.icon, icon_state = "shitty_connector_placeholder"), "connecty_grip")
+		attached_can.anchored = 1
+		src.RegisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING), PROC_REF(detach_can))
+		var/obj/machinery/manufacturer/gas/G = belongs_to
+		if (istype(G))
+			G.adjust_recipes(TRUE)
+
+/obj/machinery/manufacturer_attachment/canister_port/proc/detach_can()
+	if (attached_can)
+		attached_can.anchored = 0
+		src.UnregisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING))
+		attached_can.UpdateOverlays(null, "connecty_grip")
+		attached_can = null
+		var/obj/machinery/manufacturer/gas/G = belongs_to
+		if (istype(G))
+			G.adjust_recipes(FALSE)

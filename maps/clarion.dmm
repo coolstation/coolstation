@@ -44285,6 +44285,9 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 1
+	},
 /turf/floor/plating,
 /area/station/engine/gas)
 "cfB" = (
@@ -49563,6 +49566,15 @@
 	},
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"qPQ" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
+	},
+/turf/floor,
+/area/station/quartermaster/storage)
 "qSy" = (
 /turf/floor/caution/north,
 /area/station/security/main)
@@ -87407,7 +87419,7 @@ buG
 bvN
 buJ
 buG
-bAq
+qPQ
 buG
 bCO
 bDY

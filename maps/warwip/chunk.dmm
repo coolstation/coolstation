@@ -57,6 +57,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
+	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "afV" = (
@@ -11947,6 +11950,15 @@
 /obj/machinery/light_switch/north,
 /turf/floor/black,
 /area/station/medical/robotics)
+"lAZ" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
+	},
+/turf/floor/grime,
+/area/station/mining/refinery)
 "lBH" = (
 /obj/machinery/light/small/ceiling,
 /obj/disposalpipe/segment/horizontal,
@@ -66749,7 +66761,7 @@ ald
 aTP
 iqN
 dIW
-edT
+lAZ
 edT
 edT
 tGn
