@@ -500,6 +500,8 @@
 	proc/compost_body(var/mob/user,var/mob/living/target)
 		if(!target || !user)
 			return
+		src.add_fingerprint(target)
+		src.add_blood(target)
 		target.set_loc(src)
 		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 3) // hilariously easy to hear someone being shoveled into a compost tank
 		if(ishuman(target))
