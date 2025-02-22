@@ -499,7 +499,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		else
 			M.playsound_local(M.loc, W.hitsound, 50, 1)
 		if((W.hit_type == DAMAGE_CUT || W.hit_type == DAMAGE_STAB) && prob(50))
-			fake_blood(M,src.loc)
+			if (!locate(/obj/overlay/fake) in src.loc)
+				fake_blood(M,src.loc)
 	else
 		attack_particle(M,src,TRUE)
 		attack_twitch(M)
