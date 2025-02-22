@@ -362,13 +362,13 @@ datum
 			)
 			var/static/list/monkey_names = strings("names/monkey.txt")
 			var/static/list/halluc_images = list(
-				image(icon = 'icons/obj/scrap.dmi', icon_state = "Crusher_1"),
-				image(icon = 'icons/misc/mechanicsExpansion.dmi', icon_state = "comp_flush"),
-				image(icon = 'icons/obj/foodNdrink/food_produce.dmi', icon_state = "banana-peel"),
-				image(icon = 'icons/obj/items/weapons.dmi', icon_state = "mine_radiation_armed"),
-				image(icon = 'icons/obj/decals/urine.dmi', icon_state = "floor1"),
-				image(icon = 'icons/obj/decals/cleanables.dmi', icon_state = "messnoodle2meatball"),
-				image(icon = 'icons/obj/foodNdrink/kitchen.dmi', icon_state = "cleaver")
+				new /image(icon = 'icons/obj/scrap.dmi', icon_state = "Crusher_1"),
+				new /image(icon = 'icons/misc/mechanicsExpansion.dmi', icon_state = "comp_flush"),
+				new /image(icon = 'icons/obj/foodNdrink/food_produce.dmi', icon_state = "banana-peel"),
+				new /image(icon = 'icons/obj/items/weapons.dmi', icon_state = "mine_radiation_armed"),
+				new /image(icon = 'icons/obj/decals/urine.dmi', icon_state = "floor1"),
+				new /image(icon = 'icons/obj/decals/cleanables.dmi', icon_state = "messnoodle2meatball"),
+				new /image(icon = 'icons/obj/foodNdrink/kitchen.dmi', icon_state = "cleaver")
 			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
