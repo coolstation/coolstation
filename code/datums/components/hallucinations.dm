@@ -403,6 +403,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	density = 0
 	anchored = ANCHORED
 	opacity = 0
+	flags = USEDELAY
 	var/mob/my_target = null
 	var/mob/my_hallucinator = null
 	var/weapon_name = null
@@ -474,8 +475,6 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 /obj/fake_attacker/attackby(obj/item/W, mob/M, params, is_special)
 	if(M != src.my_hallucinator)
 		return
-	if(M.next_click > world.time)
-		return
 	M.a_intent = INTENT_HARM // not gonna be nice to the hallucinations... or the people beneath
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -487,8 +486,6 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		else
 			crossfire.Attackhand(M, params)
 		return
-	M.lastattacked = src
-	M.next_click = world.time + (W ? max(W.click_delay,M.combat_click_delay) : M.combat_click_delay)
 	for(var/mob/witness in oviewers(world.view,my_hallucinator))
 		boutput(witness, SPAN_ALERT("<B>[my_hallucinator] flails around wildly[W ? " with [W]" : ""].</B>"))
 	if(W)
