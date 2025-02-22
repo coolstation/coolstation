@@ -2135,7 +2135,9 @@
 		/datum/manufacture/shoes,
 		/datum/manufacture/breathmask,
 		/datum/manufacture/fluidcanister,
+#ifndef NO_EASY_BEAKERS
 		/datum/manufacture/chemicalcan,
+#endif
 		/datum/manufacture/patch)
 	hidden = list(/datum/manufacture/RCDammo,
 		/datum/manufacture/RCDammomedium,
