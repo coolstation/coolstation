@@ -389,10 +389,10 @@ datum
 				//TRUST NOTHING
 				M.AddComponent(/datum/component/hallucination/random_image_override,\
 					timeout=15,\
-					image_list=src.halluc_images,\
+					image_list=halluc_images,\
 					target_list=list(/turf/floor),\
 					range=7,\
-					image_prob=8,\
+					image_prob=20,\
 					image_time=30,\
 					override=FALSE,\
 					visible_creation = FALSE,\
