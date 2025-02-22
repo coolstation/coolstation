@@ -341,7 +341,7 @@ datum
 				"The universe itself",
 			)
 			var/static/list/monkey_images = list(
-				new /image('icons/mob/monkey.dmi', "monkey"),
+				new /image('icons/mob/monkey.dmi', "monkey_hallucination"),
 				new /image('icons/mob/monkey.dmi', "fire3"),
 				new /image('icons/mob/monkey.dmi', "skeleton"),
 				new /image('icons/mob/monkey.dmi', "seamonkey"),
@@ -351,6 +351,10 @@ datum
 				new /image('icons/mob/hallucinations.dmi', "dragon"),
 				new /image('icons/mob/hallucinations.dmi', "pig"),
 				new /image('icons/mob/hallucinations.dmi', "slime"),
+				new /image('icons/mob/monkey.dmi', "monkey_hallucination"),
+				new /image('icons/mob/monkey.dmi', "fire3"),
+				new /image('icons/mob/monkey.dmi', "skeleton"),
+				new /image('icons/mob/monkey.dmi', "seamonkey"),
 				new /image('icons/mob/critter.dmi', "spacebee"),
 				new /image('icons/mob/critter.dmi', "eyespider"),
 				new /image('icons/mob/critter.dmi', "skeleton"),
