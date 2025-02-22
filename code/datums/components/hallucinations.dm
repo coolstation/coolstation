@@ -490,6 +490,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	M.lastattacked = src
 	for(var/mob/witness in oviewers(world.view,my_hallucinator))
 		boutput(witness, SPAN_ALERT("<B>[my_hallucinator] flails around wildly[W ? " with [W]" : ""].</B>"))
+	M.changeStatus("staggered",5 SECONDS)
 	if(W)
 		if (!W.hide_attack)
 			attack_particle(M,src,TRUE)
