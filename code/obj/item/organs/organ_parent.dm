@@ -22,7 +22,7 @@
 	stamina_damage = 5
 	stamina_cost = 5
 	edible = 1	// currently overridden by material settings
-	var/well_known = FALSE // do connoisseurs know this organ? 20% chance to be set to TRUE in New(), if not already true from mapping
+	var/well_known = FALSE // do connoisseurs know this organ? 35% chance to be set to TRUE in New(), if not already true from mapping
 	var/mob/living/carbon/human/donor = null // if I can't use "owner" I can at least use this
 	/// Whoever had this organ first, the original owner
 	var/mob/living/carbon/human/donor_original = null // So people'll know if a lizard's wearing someone else's tail
@@ -115,7 +115,7 @@
 		if(usr?.traitHolder.hasTrait("organ_connoisseur"))
 			if (well_known)
 				. += "<br>You know this one well, it belongs to [src.donor_name]."
-			. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to reuse!"]."
+			. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to reuse!"]"
 
 	New(loc, datum/organHolder/nholder)
 		..()
@@ -123,7 +123,7 @@
 			src.holder = nholder
 			src.donor = nholder.donor
 		if (src.donor)
-			src.well_known = src.well_known || prob(30)
+			src.well_known = src.well_known || prob(35)
 			src.donor_original = src.donor
 			if (src.donor.bioHolder)
 				src.donor_AH = src.donor.bioHolder.mobAppearance
