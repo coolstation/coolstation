@@ -197,6 +197,7 @@
 	var/base_x = 0
 	var/base_y = 0
 
+
 	New()
 		..()
 		max_uses = rand(0, 5)
@@ -214,17 +215,9 @@
 		if (destroyed) return ..()
 
 		user.lastattacked = src
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, -1)
 
-		var/wiggle = 6
-
-		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
-			while (wiggle > 0)
-				wiggle--
-				animate(src, pixel_x = rand(src.base_x-3,src.base_x+3), pixel_y = rand(src.base_y-3,src.base_y+3), time = 2, easing = EASE_IN)
-				sleep(0.1 SECONDS)
-
-		animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+		//BUSH ANIMATION!!!!
+		src.shake_bush()
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
 			var/something = null
@@ -256,6 +249,21 @@
 						L.changeStatus("stunned", 2 SECONDS)
 
 		interact_particle(user,src)
+
+//BUSH ANIMATION!!!!
+	proc/shake_bush()
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, -1)
+
+		var/wiggle = 6
+
+		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
+			while (wiggle > 0)
+				wiggle--
+				animate(src, pixel_x = rand(src.base_x-3,src.base_x+3), pixel_y = rand(src.base_y-3,src.base_y+3), time = 2, easing = EASE_IN)
+				sleep(0.1 SECONDS)
+
+		animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+
 
 	Crossed(atom/movable/AM)
 		. = ..()
@@ -299,6 +307,16 @@
 	pixel_y = -16
 	bound_width = 64
 	bound_height = 64
+	event_handler_flags = USE_HASENTERED
+
+	//check if somebody walked in and its russlin' time
+	HasEntered(AM as mob|obj)
+		if (ishuman(AM))
+
+			src.shake_bush()
+
+		..()
+		return
 
 /obj/shrub/big/big2
 	icon_state = "fern2"

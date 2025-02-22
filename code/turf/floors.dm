@@ -815,6 +815,17 @@ DEFINE_FLOORS(marble/border_wb,
 
 /////////////////////////////////////////
 
+/turf/floor/planter
+	icon_state = "PlanterCenter"
+
+/turf/floor/planter/edges
+	icon_state = "PlanterEdges"
+
+/turf/floor/planter/strips
+	icon_state = "PlanterStrips"
+
+/////////////////////////////////////////
+
 /turf/floor/delivery
 	icon_state = "delivery"
 
