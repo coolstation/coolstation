@@ -968,7 +968,7 @@ obj/trait/pilot
 	cleanName = "Organ Connoisseur"
 	desc = "You know far more about the valuable innards of your coworkers than you should."
 	id = "organ_connoisseur"
-	icon_state = "greedybeast"
+	icon_state = "organ"
 	points = -1
 	isPositive = 1
 
