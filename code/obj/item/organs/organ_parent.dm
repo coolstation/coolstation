@@ -113,7 +113,7 @@
 	get_desc()
 		. = ..()
 		if(usr?.traitHolder.hasTrait("organ_connoisseur"))
-			if (well_known)
+			if (src.donor_name && well_known)
 				. += "<br>You know this one well, it belongs to [src.donor_name]."
 			. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to reuse!"]"
 
