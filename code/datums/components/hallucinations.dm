@@ -235,7 +235,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 				var/list/possible_clones = new/list()
 				var/list/possible_targets = new/list()
 				for(var/mob/living/carbon/human/H in mobs)
-					if (get_dist(H,parent_mob) < 10)
+					if (GET_DIST(H,parent_mob) < 10)
 						possible_targets += H
 					if (H.stat || H.lying || H.dir == NORTH) continue
 					possible_clones += H
@@ -486,6 +486,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		else
 			crossfire.Attackhand(M, params)
 		return
+	M.lastattacked = src
 	for(var/mob/witness in oviewers(world.view,my_hallucinator))
 		boutput(witness, SPAN_ALERT("<B>[my_hallucinator] flails around wildly[W ? " with [W]" : ""].</B>"))
 	if(W)
@@ -493,7 +494,10 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			attack_particle(M,src,TRUE)
 			attack_twitch(M)
 		boutput(M,"<span class='combat'><B>[M] hits [src] with [W]!</B></span>")
-		M.playsound_local(M.loc, W.hitsound, 50, 1)
+		if (narrator_mode)
+			my_hallucinator.playsound_local(my_target.loc, 'sound/vox/weapon.ogg', 40, 1)
+		else
+			M.playsound_local(M.loc, W.hitsound, 50, 1)
 		if((W.hit_type == DAMAGE_CUT || W.hit_type == DAMAGE_STAB) && prob(50))
 			fake_blood(M,src.loc)
 	else
