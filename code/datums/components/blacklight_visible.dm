@@ -1,7 +1,7 @@
 TYPEINFO(/datum/component/blacklight_visible)
 	initialization_args = list(
-		ARG_INFO("glow_icon", "string", "The icon of the glow.", null),
-		ARG_INFO("glow_icon_state", "string", "The icon state of the glow.", null),
+		ARG_INFO("glow_icon", "text", "The icon of the glow.", null),
+		ARG_INFO("glow_icon_state", "text", "The icon state of the glow.", null),
 	)
 
 /datum/component/blacklight_visible
