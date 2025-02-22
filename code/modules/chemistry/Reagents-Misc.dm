@@ -1167,7 +1167,7 @@ datum
 		oil
 			name = "oil"
 			id = "oil"
-			description = "A decent lubricant for machines. High in benzene, naptha and other hydrocarbons."
+			description = "A decent lubricant for machines. High in benzene, naphtha and other hydrocarbons."
 			reagent_state = LIQUID
 			fluid_r = 0
 			fluid_g = 0
@@ -1176,24 +1176,39 @@ datum
 			hygiene_value = -1.5
 			value = 3 // 1c + 1c + 1c
 			viscosity = 0.13
+			flammable = TRUE
+			combusts_on_fire_contact = TRUE
+			burn_speed = 0.25 // Oil is a slow burner
+			burn_temperature = 600 + T0C
+			burn_volatility = 3
 			minimum_reaction_temperature = T0C + 200
-			var/min_req_fluid = 0.25 //at least 1/4 of the fluid needs to be oil for it to ignite
+			var/smoke_counter = 0
 
 			reaction_temperature(exposed_temperature, exposed_volume)
-				if (!src.reacting && (holder && !holder.has_reagent("chlorine"))) // need this to be higher to make propylene possible
-					src.reacting = 1
+				if(holder && !holder.is_combusting)
+					holder.start_combusting()
+
+			do_burn(reacting_volume)
+				if (istype(holder,/datum/reagents/fluid_group))
 					var/list/covered = holder.covered_turf()
-					if (covered.len < 4 || (volume / holder.total_volume) > min_req_fluid)
-						for(var/turf/location in covered)
-							fireflash(location, min(max(0,volume/40),8))
-							if (covered.len < 4 || prob(10))
-								location.visible_message("<b>The oil burns!</b>")
-								var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
-								smoke.set_up(1, 0, location)
-								smoke.start()
-					if (holder)
-						holder.add_reagent("ash", round(src.volume/2), null)
-						holder.del_reagent(id)
+					if (prob(5 + smoke_counter) && src.volume >= 20)
+						var/turf/location = pick(covered)
+						var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
+						smoke.set_up(max(round(length(covered)/3), 1), 0, location)
+						smoke.start()
+						smoke_counter = 0
+						holder.add_reagent("ash", reacting_volume, null)
+					else
+						smoke_counter += reacting_volume * 4
+				if (holder.my_atom && holder.my_atom.is_open_container())
+					if (prob(5 + smoke_counter) && src.volume >= 20)
+						var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
+						smoke.set_up(1, 0, holder.my_atom)
+						smoke.start()
+						smoke_counter = 0
+						holder.add_reagent("ash", reacting_volume, null)
+					else
+						smoke_counter += reacting_volume * 4
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1201,39 +1216,36 @@ datum
 					if (method == TOUCH)
 						if (isrobot(M))
 							var/mob/living/silicon/robot/R = M
-							R.add_oil(volume * 2)
-							boutput(R, "<span class='notice'>Your joints and servos begin to run more smoothly.</span>")
-						else boutput(M, "<span class='alert'>You feel greasy and gross.</span>")
-
+							R.changeStatus("freshly_oiled", (volume * 5)) // You need at least 30u to get max duration
+							boutput(R, SPAN_NOTICE("Your joints and servos begin to run more smoothly."))
+						else if (ishuman(M))
+							boutput(M, "<span class='alert'>You feel greasy and gross.</span>")
 				return
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/T = target
+				var/turf/floor/T = target
 				if (istype(T)) //Wire: fix for Undefined variable /turf/space/var/wet (&& T.wet)
-					if (T.wet >= 2) return
-					var/wet = image('icons/effects/water.dmi',"wet_floor")
+					if (T.wet >= 2 || holder?.is_combusting) return ..()
+					var/image/wet = image('icons/effects/water.dmi',"wet_floor")
+					wet.blend_mode = BLEND_ADD
+					wet.alpha = 60
 					T.UpdateOverlays(wet, "wet_overlay")
 					T.wet = 2
-					if (!locate(/obj/decal/cleanable/oil) in T)
-						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+					if (!locate(/obj/decal/cleanable/oil) in T && volume <= 5)
+						playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 50, TRUE)
 						switch(volume)
 							if (0 to 0.5)
 								if (prob(volume * 10))
 									make_cleanable(/obj/decal/cleanable/oil/streak,T)
-							if (5 to 19)
+							if (5 to 12)
 								make_cleanable(/obj/decal/cleanable/oil/streak,T)
-							if (20 to INFINITY)
+							if (12 to 20)
 								make_cleanable(/obj/decal/cleanable/oil,T)
+							if (20 to INFINITY)
+								..()
 					SPAWN_DBG(20 SECONDS)
 						T.wet = 0
 						T.UpdateOverlays(null, "wet_overlay")
-
-				return
-
-			on_mob_life(var/mob/M, var/mult = 1)
-				//if (prob(4)) // it's motor oil, you goof
-					//M.reagents.add_reagent("cholesterol", rand(1,3))
-				return
 
 		capulettium
 			name = "capulettium"

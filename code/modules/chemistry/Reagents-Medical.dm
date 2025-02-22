@@ -159,12 +159,15 @@ datum
 			addiction_min = 15
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
+			flammable = TRUE
+			combusts_on_fire_contact = TRUE
+			burn_speed = 12
+			burn_temperature = 2200
+			burn_volatility = 15 // Very Dangerous
+			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
+			var/temp_reacted = 0
 			value = 5
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -194,6 +197,12 @@ datum
 						M.drowsyness  = max(M.drowsyness, 20)
 
 				..()
+				return
+
+			reaction_temperature(exposed_temperature, exposed_volume)
+				if (!holder || ismob(holder?.my_atom) && volume < 50) // We don't want this stuff exploding inside people..
+					return
+				holder.start_combusting()
 				return
 
 		//for gas station boner pills
