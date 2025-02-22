@@ -392,7 +392,7 @@ datum
 					image_list=src.halluc_images,\
 					target_list=list(/turf/floor),\
 					range=7,\
-					image_prob=2,\
+					image_prob=8,\
 					image_time=30,\
 					override=FALSE,\
 					visible_creation = FALSE,\
