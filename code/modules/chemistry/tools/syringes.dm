@@ -166,16 +166,10 @@
 							random_brute_damage(target, 5)
 							playsound(user,"sound/impact_sounds/Generic_Stab_1.ogg",50,1)
 
-							if (!do_mob(user, target, 5)) // Much quicker on harm intent
-								if (user && ismob(user))
-									user.show_text("You were interrupted!", "red")
-									user.u_equip(src) // Causes you to drop your syringe
-									src.set_loc(target.loc)
-								return
 							if (!src.reagents || !src.reagents.total_volume)
 								user.show_text("[src] doesn't contain any reagents.", "red")
 								user.u_equip(src)
-								src.set_loc(target.loc)
+								src.set_loc(target.loc) // Causes you to drop your syringe
 								return
 
 							user.u_equip(src)
