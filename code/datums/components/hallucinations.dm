@@ -557,7 +557,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	if (BOUNDS_DIST(src, my_target) > 0)
 		if(prob(80)) // outrun your nightmares
 			step_towards(src,my_target)
-		elseif(prob(80))
+		else if(prob(80))
 			step_rand(src)
 	else
 		if (src.should_attack && prob(70) && isturf(my_target.loc) && !ON_COOLDOWN(src, "fake_attack_cooldown", rand(1 SECOND, 2 SECONDS)))
