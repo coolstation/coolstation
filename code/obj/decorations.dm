@@ -300,6 +300,12 @@
 	bound_width = 64
 	bound_height = 64
 
+/obj/shrub/big/big2
+	icon_state = "fern2"
+
+/obj/shrub/big/big3
+	icon_state = "fern3"
+
 //It'll show up on multitools
 /obj/shrub/syndicateplant
 	var/net_id
