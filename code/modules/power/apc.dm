@@ -32,7 +32,11 @@ var/zapLimiter = 0
 	var/autoname_on_spawn = 0 // Area.name
 	var/obj/item/cell/cell
 	var/start_charge = 90				// initial cell charge %
-	var/cell_type = 2500				// 0=no cell, 1=regular, 2=high-cap (x5) <- old, now it's just 0=no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
+#ifdef POWER_IS_CRAPPY
+	var/cell_type = 1250
+#else
+	var/cell_type = 2500 // 0=no cell, 1=regular, 2=high-cap (x5) <- old, now it's just 0=no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
+#endif
 	var/opened = 0
 	var/circuit_disabled = 0
 	var/shorted = 0
