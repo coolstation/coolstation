@@ -2910,8 +2910,8 @@
 		return null
 	var/obj/item/clothing/head/wig/W = new(src)
 	var/actuallyHasHair = 0
-	W.name = "[real_name]'s hair"
-	W.real_name = "[real_name]'s hair" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
+	W.name = "natural wig"
+	W.real_name = "natural wig" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
 	W.icon = 'icons/mob/human_hair.dmi'
 	W.icon_state = "bald" // Let's give the actual hair a chance to shine
 /* commenting this out and making it an overlay to fix issues with colors stacking

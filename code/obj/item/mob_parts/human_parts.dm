@@ -84,11 +84,12 @@
 			src.setMaterial(getMaterial("bone"), appearance = 0, setname = 0)
 
 			src.add_fingerprint(holder)
+			/*
 			//https://forum.ss13.co/showthread.php?tid=1774
 			// zam note - removing this again.
 			SPAWN_DBG(2 SECONDS)
 				if (new_holder && istype(new_holder))
-					name = "[new_holder.real_name]'s [initial(name)]"
+					name = "[new_holder.real_name]'s [initial(name)]"*/
 		if (src.skintoned)
 			if (holder_ahol)
 				colorize_limb_icon()
