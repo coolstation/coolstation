@@ -628,6 +628,9 @@
 	if (istype(target, /obj/decal/point))
 		return
 
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
+
 	var/obj/item/gun/G = src.equipped()
 	if(!istype(G) || !ismob(target))
 		src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
