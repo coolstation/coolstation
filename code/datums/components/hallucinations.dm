@@ -253,7 +253,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 					else if (clone.r_hand)
 						clone_weapon = clone.r_hand.name
 
-					F = new /obj/fake_attacker(attack_target.loc, attack_target, parent_mob)
+					F = new /obj/fake_attacker(get_turf(attack_target), attack_target, parent_mob)
 
 					F.name = clone.name
 					F.weapon_name = clone_weapon
@@ -261,7 +261,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 					parent_mob.client?.images += halluc
 				else //try for a predefined critter fake attacker
 					var/faketype = pick(concrete_typesof(/obj/fake_attacker) - /obj/fake_attacker) //all but the base type
-					F = new faketype(attack_target.loc, attack_target, parent_mob)
+					F = new faketype(get_turf(attack_target), attack_target, parent_mob)
 
 			else //image list isn't null, so create a fake attacker with that image
 				if(prob(60))
@@ -270,7 +270,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 						possible_targets += H
 					if(length(possible_targets))
 						attack_target = pick(possible_targets)
-				F = new /obj/fake_attacker(attack_target.loc, attack_target, parent_mob)
+				F = new /obj/fake_attacker(get_turf(attack_target), attack_target, parent_mob)
 				F.name = "attacker"
 				halluc = image(pick(image_list), F)
 				parent_mob.client?.images += halluc
