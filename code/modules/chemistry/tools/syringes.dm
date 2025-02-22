@@ -159,20 +159,43 @@
 
 				if (iscarbon(target) || ismobcritter(target))
 					if (target != user)
-						for (var/mob/O in AIviewers(world.view, user))
-							O.show_message(text("<span class='alert'><B>[] is trying to inject []!</B></span>", user, target), 1)
-						logTheThing("combat", user, target, "tries to inject [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
+						if (user.a_intent == "harm")
+							for (var/mob/O in AIviewers(world.view, user))
+								O.show_message(text("<span class='alert'><B>[] jabs [] with a syringe!</B></span>", user, target), 1)
+							logTheThing("combat", user, target, "jabs [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
+							random_brute_damage(target, 5)
+							playsound(user,"sound/impact_sounds/Generic_Stab_1.ogg",50,1)
 
-						if (!do_mob(user, target))
-							if (user && ismob(user))
-								user.show_text("You were interrupted!", "red")
-							return
-						if (!src.reagents || !src.reagents.total_volume)
-							user.show_text("[src] doesn't contain any reagents.", "red")
-							return
+							if (!do_mob(user, target, 5)) // Much quicker on harm intent
+								if (user && ismob(user))
+									user.show_text("You were interrupted!", "red")
+									user.u_equip(src) // Causes you to drop your syringe
+									src.set_loc(target.loc)
+								return
+							if (!src.reagents || !src.reagents.total_volume)
+								user.show_text("[src] doesn't contain any reagents.", "red")
+								user.u_equip(src)
+								src.set_loc(target.loc)
+								return
 
-						for (var/mob/O in AIviewers(world.view, user))
-							O.show_message(text("<span class='alert'>[] injects [] with the syringe!</span>", user, target), 1)
+							user.u_equip(src)
+							src.set_loc(target.loc)
+
+						else
+							for (var/mob/O in AIviewers(world.view, user))
+								O.show_message(text("<span class='alert'><B>[] is trying to inject []!</B></span>", user, target), 1)
+							logTheThing("combat", user, target, "tries to inject [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
+
+							if (!do_mob(user, target))
+								if (user && ismob(user))
+									user.show_text("You were interrupted!", "red")
+								return
+							if (!src.reagents || !src.reagents.total_volume)
+								user.show_text("[src] doesn't contain any reagents.", "red")
+								return
+
+							for (var/mob/O in AIviewers(world.view, user))
+								O.show_message(text("<span class='alert'>[] injects [] with the syringe!</span>", user, target), 1)
 
 					src.reagents.reaction(target, INGEST, src.amount_per_transfer_from_this)
 
