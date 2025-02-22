@@ -485,6 +485,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			crossfire.Attackby(W, M, params, is_special)
 		else
 			crossfire.Attackhand(M, params)
+		M.lastattacked = src
 		return
 	M.lastattacked = src
 	for(var/mob/witness in oviewers(world.view,my_hallucinator))
@@ -543,7 +544,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		if(prob(85)) // outrun your nightmares
 			step_towards(src,my_target)
 	else
-		if (src.should_attack && prob(70) && !ON_COOLDOWN(src, "fake_attack_cooldown", rand(1 SECOND, 2 SECONDS)))
+		if (src.should_attack && prob(70) && isturf(my_target.loc) && !ON_COOLDOWN(src, "fake_attack_cooldown", rand(1 SECOND, 2 SECONDS)))
 			if (weapon_name)
 				if (narrator_mode)
 					my_hallucinator.playsound_local(my_target.loc, 'sound/vox/weapon.ogg', 40, 0)
