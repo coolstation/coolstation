@@ -417,7 +417,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	var/weapon_name = null
 	///Does this hallucination constantly whack you
 	var/should_attack = TRUE
-	event_handler_flags = USE_FLUID_ENTER
+	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 
 	proc/get_name()
 		return src.fake_icon_state
@@ -520,6 +520,12 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			M.playsound_local(M.loc, pick(sounds_punch), 50, 1, -1)
 		boutput(M,"<span class='alert'><B>[M] [M.punchMessage] [src]!</B></span>")
 
+/obj/fake_attacker/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if (istype(mover,/obj/fake_attacker))
+		var/obj/fake_attacker/other_fake = mover
+		if ((src.my_hallucinator == other_fake.my_hallucinator))
+			return 0
+	return 1
 
 /obj/fake_attacker/Crossed(atom/movable/M)
 	..()
@@ -528,7 +534,6 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		if (prob(30))
 			for(var/mob/witness in oviewers(world.view, my_hallucinator))
 				boutput(witness, "<span class='alert'><B>[my_hallucinator] stumbles around.</B></span>")
-
 
 /obj/fake_attacker/New(location, target, hallucinator)
 	..()

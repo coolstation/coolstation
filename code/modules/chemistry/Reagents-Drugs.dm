@@ -377,8 +377,8 @@ datum
 				//M.AddComponent(/datum/component/hallucination/trippy_colors, timeout=10)
 				M.druggy = max(M.druggy, 15)
 
-				if(probmult(33)) //get attacked
-					if(prob(60)) //monkey mode
+				if(probmult(25)) //get attacked
+					if(prob(50)) //monkey mode
 						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=15, max_attackers=3)
 					else
 						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=80, max_attackers=1)
