@@ -361,6 +361,15 @@ datum
 				new /image('icons/mob/critter.dmi', "fly"),
 			)
 			var/static/list/monkey_names = strings("names/monkey.txt")
+			var/static/list/halluc_images = list(
+				image(icon = 'icons/obj/scrap.dmi', icon_state = "Crusher_1"),
+				image(icon = 'icons/misc/mechanicsExpansion.dmi', icon_state = "comp_flush"),
+				image(icon = 'icons/obj/foodNdrink/food_produce.dmi', icon_state = "banana-peel"),
+				image(icon = 'icons/obj/items/weapons.dmi', icon_state = "mine_radiation_armed"),
+				image(icon = 'icons/obj/decals/urine.dmi', icon_state = "floor1"),
+				image(icon = 'icons/obj/decals/cleanables.dmi', icon_state = "messnoodle2meatball"),
+				image(icon = 'icons/obj/foodNdrink/kitchen.dmi', icon_state = "cleaver")
+			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -376,6 +385,19 @@ datum
 
 				//THE VOICES GET LOUDER
 				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=10)
+
+				//TRUST NOTHING
+				M.AddComponent(/datum/component/hallucination/random_image_override,\
+					timeout=15,\
+					image_list=src.halluc_images,\
+					target_list=list(/turf/floor),\
+					range=7,\
+					image_prob=2,\
+					image_time=30,\
+					override=FALSE,\
+					visible_creation = FALSE,\
+					pixel_variance = 6\
+				)
 
 				if(probmult(8)) //display a random chat message
 					M.playsound_local(M.loc, pick(src.speech_sounds, 100, 1))

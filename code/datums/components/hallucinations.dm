@@ -38,6 +38,7 @@ TYPEINFO(/datum/component/hallucination/random_image_override)
 		ARG_INFO("image_time", "num", "seconds the displayed image hangs around", 20),
 		ARG_INFO("override", "boolean", "Does this hallucination replace the target's icon?", TRUE),
 		ARG_INFO("visible_creation", "boolean", "Should the displayed image appear in line of sight?", TRUE),
+		ARG_INFO("pixel_variance", "num", "How much pixel_x and pixel_y can this image have?", 0),
 	)
 
 
@@ -304,8 +305,9 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 	var/range = 5
 	var/override = TRUE
 	var/visible_creation = TRUE
+	var/pixel_variance = 0
 
-	Initialize(timeout=30, image_list=null, target_list=null, range=5, image_prob=10, image_time=20 SECONDS, override=TRUE, visible_creation=TRUE)
+	Initialize(timeout=30, image_list=null, target_list=null, range=5, image_prob=10, image_time=20 SECONDS, override=TRUE, visible_creation=TRUE, pixel_variance=0)
 		. = ..()
 		if(. == COMPONENT_INCOMPATIBLE || length(image_list) == 0 || length(target_list) == 0)
 			return .
@@ -316,6 +318,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		src.target_list = target_list
 		src.override = override
 		src.visible_creation = visible_creation
+		src.pixel_variance = pixel_variance
 
 
 	do_mob_tick(mob,mult)
@@ -339,12 +342,15 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			halluc.appearance = copyfrom.appearance
 			halluc.loc = halluc_loc
 			halluc.override = src.override
+			if(src.pixel_variance)
+				halluc.pixel_x = rand(-src.pixel_variance,src.pixel_variance)
+				halluc.pixel_y = rand(-src.pixel_variance,src.pixel_variance)
 			parent_mob.client?.images += halluc
 			SPAWN_DBG(src.image_time SECONDS)
 				qdel(halluc)
 		. = ..()
 
-	CheckDupeComponent(timeout, image_list, target_list, range, image_prob, image_time, override)
+	CheckDupeComponent(timeout, image_list, target_list, range, image_prob, image_time, override, visible_creation, pixel_variance)
 		if(image_list ~= src.image_list && src.target_list ~= target_list) //this is the same hallucination, just update timeout and prob, time
 			if(timeout == -1)
 				src.ttl = timeout
@@ -354,6 +360,8 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			src.image_prob = image_prob
 			src.image_time = image_time
 			src.override = override
+			src.visible_creation = visible_creation
+			src.pixel_variance = pixel_variance
 			return TRUE //no duplicate
 		else
 			return FALSE //create a new hallucination
