@@ -124,7 +124,7 @@ datum
 						holder.remove_reagent("morphine", 0.2 * mult) //morphine gets flushed faster while you are KO'd
 
 						if(probmult(35) && counter > 70)
-							M.losebreath += (10)
+							M.losebreath += (5)
 							M.take_toxin_damage(2)
 
 				..()
