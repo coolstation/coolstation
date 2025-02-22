@@ -541,6 +541,9 @@ datum
 		proc/process_reactions()
 			defer_reactions = 1
 			deferred_reaction_checks = 0
+			if (src.is_combusting) // Processes all sorts of burning things
+				burning_chems()
+
 			for(var/datum/chemical_reaction/C in src.active_reactions)
 				if (C.result_amount <= 0)
 					src.active_reactions -= C
