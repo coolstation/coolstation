@@ -541,8 +541,6 @@ datum
 		proc/process_reactions()
 			defer_reactions = 1
 			deferred_reaction_checks = 0
-			if (src.is_combusting) // Processes all sorts of burning things
-				burning_chems()
 
 			for(var/datum/chemical_reaction/C in src.active_reactions)
 				if (C.result_amount <= 0)
@@ -583,6 +581,9 @@ datum
 			else if (!active_reactions.len && processing_reactions)
 				processing_reactions = 0
 				active_reagent_holders -= src
+
+			if (src.is_combusting) // Processes all sorts of burning things
+				burning_chems()
 
 		proc/isolate_reagent(var/reagent)
 			for(var/current_id in reagent_list)
@@ -741,6 +742,7 @@ datum
 					O.visible_message(SPAN_ALERT("[bicon(src.my_atom)] \The [O] explodes!"), SPAN_ALERT("You hear a loud bang!"))
 					if (!O.shatter_chemically(projectiles = TRUE))
 						src.clear_reagents()
+						return TRUE
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]

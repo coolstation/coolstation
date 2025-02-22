@@ -217,6 +217,6 @@
 	//var/is_airborne = istype(FG, /datum/fluid_group/airborne)
 	for (var/reagent_id in FG.reagent_list)
 		var/datum/reagent/reagent = FG.reagent_list[reagent_id]
-		if (reagent.combusts_on_fire_contact == TRUE)
+		if (reagent.combusts_on_fire_contact)
 			FG.start_combusting()
 			return
