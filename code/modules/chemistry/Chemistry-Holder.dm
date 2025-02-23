@@ -13,6 +13,8 @@
 
 var/list/datum/reagents/active_reagent_holders = list()
 
+var/list/datum/reagents/combusting_reagent_holders = list()
+
 proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 	if(H.wear_mask)
 		boutput(H, "<span class='alert'>Your mask protects you from the [what_liquid] liquid!</span>")
@@ -529,8 +531,8 @@ datum
 							continue
 						active_reactions += C
 
-			if (!active_reactions.len && !src.is_combusting)
-				if (processing_reactions)
+			if (!active_reactions.len)
+				if (processing_reactions && !src.is_combusting)
 					processing_reactions = 0
 					active_reagent_holders -= src
 			else if (!processing_reactions)
@@ -580,11 +582,7 @@ datum
 				src.handle_reactions()
 			else if (!active_reactions.len && processing_reactions)
 				processing_reactions = 0
-				if(!src.is_combusting)
-					active_reagent_holders -= src
-
-			if (src.is_combusting) // Processes all sorts of burning things
-				burning_chems()
+				active_reagent_holders -= src
 
 		proc/isolate_reagent(var/reagent)
 			for(var/current_id in reagent_list)
@@ -616,6 +614,19 @@ datum
 
 			return 1
 
+		proc/test_chem_burning() // Handles logic to shut down combustion
+			if (composite_volatility > 0.5)
+				return
+			is_combusting = FALSE
+			combusting_reagent_holders -= src
+
+		proc/start_combusting() // Starts combustion
+			if (!src.is_combusting)
+				if(src.my_atom)
+					src.my_atom.visible_message("<span class='alert'>The mixture in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
+				combusting_reagent_holders += src
+			src.is_combusting = TRUE
+
 		proc/pressurized_open()
 			if (src.combustible_volume)
 				src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays pressurized flames everywhere!</span>",blind_message = "<span class='alert'>You hear a fiery hiss!", group = "pressure_venting_\ref[src]")
@@ -624,7 +635,7 @@ datum
 				src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 15)
 			src.combustible_pressure = 0
 
-		proc/burning_chems(mult = 1) //Handles any chem that burns
+		proc/process_combustion(mult = 1) //Handles any chem that burns
 			// Smoke and pools burning
 			if (istype(src,/datum/reagents/fluid_group))
 				var/covered_area = 0
@@ -724,13 +735,13 @@ datum
 
 				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 10, change_cap = 300, change_min = 1)
 
-				src.combustible_pressure += burn_volatility / 150
+				src.combustible_pressure += burn_volatility / 30 // ten seconds MINIMUM to explode
 
 				if(ismob(src.my_atom))
 					var/mob/M = src.my_atom
-					if(!ON_COOLDOWN(M, "pressure_damage", (rand(40, 60) - burn_volatility) DECI SECONDS))
-						random_burn_damage(M,rand(1,3))
-						random_brute_damage(M,ceil(src.combustible_pressure / 5))
+					if(!ON_COOLDOWN(M, "pressure_damage", (50 - burn_volatility) DECI SECONDS))
+						random_burn_damage(M,rand(1,ceil(burn_volatility / 7)))
+						random_brute_damage(M,rand(1,ceil(src.combustible_pressure / 4)))
 
 				if (src.combustible_pressure >= 0.1) // inform people
 					if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_rattle", (rand(35, 50) - burn_volatility) DECI SECONDS))
@@ -810,16 +821,6 @@ datum
 				del_reagent(current_id)
 
 			return 0
-
-		proc/test_chem_burning() // Handles logic to shut down combustion
-			if (composite_volatility <= 0.5)
-				is_combusting = FALSE
-				return
-
-		proc/start_combusting()
-			if (!src.is_combusting && src.my_atom)
-				src.my_atom.visible_message("<span class='alert'>The mixture in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
-			src.is_combusting = TRUE
 
 		proc/grenade_effects(var/obj/grenade, var/atom/A)
 			for (var/id in src.reagent_list)

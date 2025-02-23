@@ -56,6 +56,7 @@ datum
 				if (!holder) //Wire: Fix for Cannot read null.total_temperature
 					return
 				if(holder.total_temperature <= T0C - 50) return
+				holder.start_combusting()
 				if(!M) M = holder.my_atom
 				var/mob/living/L = M
 				if(istype(L))
@@ -117,9 +118,12 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				var/mob/living/L = M
 				var/datum/statusEffect/simpledot/burning/burn = L.hasStatus("burning")
-				if(istype(L) && (burn) || src.holder.is_combusting)
-					L.changeStatus("burning", src.volume / 2 SECONDS)
-					burn.counter += src.volume / 2
+				if(istype(L))
+					if(!burn && src.holder.is_combusting)
+						burn = L.changeStatus("burning", 2 SECONDS)
+					if(burn)
+						L.changeStatus("burning", src.volume / 2 SECONDS)
+						burn.counter += src.volume / 2
 				..()
 				return
 
