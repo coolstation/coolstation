@@ -195,11 +195,11 @@ datum
 					holder.remove_reagent("omegazine", 2 * mult)
 
 				switch(counter += 1 * mult)
-					if(3 to 17)
+					if(3 to 14)
 						if(probmult(10))
 							M.emote(pick("yawn", "giggle", "laugh"))
 							M.drowsyness  = max(M.drowsyness, 8)
-					if(17 to INFINITY)
+					if(14 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
 						M.drowsyness  = max(M.drowsyness, 20)
 
