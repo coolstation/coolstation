@@ -214,9 +214,12 @@
 
 /// Exposes reagents to open flames
 /proc/open_flame_reaction(datum/reagents/FG)
-	//var/is_airborne = istype(FG, /datum/fluid_group/airborne)
+	var/is_airborne = istype(FG, /datum/fluid_group/airborne)
 	for (var/reagent_id in FG.reagent_list)
 		var/datum/reagent/reagent = FG.reagent_list[reagent_id]
 		if (reagent.combusts_on_fire_contact)
+			FG.start_combusting()
+			return
+		if (is_airborne && reagent.combusts_on_gaseous_fire_contact)
 			FG.start_combusting()
 			return

@@ -279,3 +279,28 @@
 
 	ex_act()
 		return
+
+/obj/hotspot/fireflash
+	process(list/turf/possible_spread)
+		if (just_spawned)
+			just_spawned = 0
+			return 0
+
+		var/turf/floor/location = loc
+		if (!istype(location) || (locate(/obj/fire_foam) in location))
+			qdel(src)
+			return 0
+
+		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
+			qdel(src)
+			return 0
+
+		for (var/mob/living/L in loc)
+			L.update_burning(min(max(temperature / 60, 5),33))
+
+		if (volume > (CELL_VOLUME * 0.4))
+			icon_state = "2"
+		else
+			icon_state = "1"
+
+		return 1

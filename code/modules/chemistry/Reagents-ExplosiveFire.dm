@@ -21,18 +21,19 @@ datum
 			viscosity = 0.7
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 3
+			burn_speed = 2
 			burn_temperature = 2500
 			burn_volatility = 10
 			minimum_reaction_temperature = T0C - 50
 			var/mob_burning = 33
 
 			reaction_turf(var/turf/T, var/volume)
+				. = ..()
 				if (holder && holder.total_temperature >= minimum_reaction_temperature)
 					holder.start_combusting()
-				. = ..()
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting && istype(holder,/datum/reagents/fluid_group))
 					holder.start_combusting()
 
@@ -73,7 +74,7 @@ datum
 			dispersal = 4
 			transparency = 255
 			mob_burning = 15
-			burn_speed = 1.75
+			burn_speed = 1.5
 			burn_temperature = 1500
 			burn_volatility = 6
 			minimum_reaction_temperature = T0C
@@ -98,6 +99,7 @@ datum
 			penetrates_skin = 1
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting)
 					holder.start_combusting()
 
@@ -115,10 +117,9 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				var/mob/living/L = M
 				var/datum/statusEffect/simpledot/burning/burn = L.hasStatus("burning")
-				if(istype(L) && burn)
-					L.changeStatus("burning", 2 * src.volume SECONDS)
-					burn.counter += 10 * src.volume
-					holder?.del_reagent(src.id)
+				if(istype(L) && (burn) || src.holder.is_combusting)
+					L.changeStatus("burning", src.volume / 2 SECONDS)
+					burn.counter += src.volume / 2
 				..()
 				return
 
@@ -162,6 +163,7 @@ datum
 			minimum_reaction_temperature = T0C+600
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting)
 					holder.start_combusting()
 
@@ -183,8 +185,8 @@ datum
 				if (T.material && T.material.mat_id == "steel")
 					//T.visible_message("<span class='alert'>[T] melts!</span>")
 					T.ex_act(OLD_EX_HEAVY)
-				holder.start_combusting()
 				. = ..()
+				holder.start_combusting()
 
 		combustible/thermite
 			name = "thermite"
@@ -408,15 +410,16 @@ datum
 			combusts_on_fire_contact = TRUE
 			burn_speed = 3
 			burn_temperature = 3500
-			burn_volatility = 9
+			burn_volatility = 14
 			minimum_reaction_temperature = -INFINITY
 
 			reaction_turf(var/turf/T, var/volume)
+				. = ..()
 				if (holder && holder.total_temperature)
 					holder.start_combusting()
-				. = ..()
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting && istype(holder,/datum/reagents/fluid_group))
 					holder.start_combusting()
 
@@ -459,7 +462,7 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 
 				var/mob/living/L = M
-				if(istype(L) && L.getStatusDuration("burning"))
+				if(istype(L) && (L.getStatusDuration("burning") || src.holder.is_combusting))
 					L.changeStatus("burning", 10 SECONDS * mult)
 				..()
 
@@ -477,18 +480,19 @@ datum
 			volatility = 4
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 3
+			burn_speed = 2.5
 			burn_temperature = 9000
 			burn_volatility = 20
 			minimum_reaction_temperature = -INFINITY
 
 
 			reaction_turf(var/turf/T, var/volume)
+				. = ..()
 				if (holder && holder.total_temperature)
 					holder.start_combusting()
-				. = ..()
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting && !istype(holder.my_atom,/obj/item/reagent_containers/glass/wateringcan/artifact))
 					holder.start_combusting()
 
@@ -659,6 +663,7 @@ datum
 			var/smoke_counter = 0
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting)
 					holder.start_combusting()
 

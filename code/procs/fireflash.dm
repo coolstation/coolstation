@@ -7,13 +7,16 @@
 	var/list/hotspots = new/list()
 	for(var/turf/T in range(radius,get_turf(center)))
 		if(istype(T, /turf/space) || T.loc:sanctuary) continue
-		if(locate(/obj/hotspot) in T) continue
 		if(!ignoreUnreachable && !can_line(get_turf(center), T, radius+1)) continue
 		for(var/obj/spacevine/V in T) qdel(V)
 //		for(var/obj/kudzu_marker/M in T) qdel(M)
 //		for(var/obj/alien/weeds/V in T) qdel(V)
 
-		var/obj/hotspot/h = new()
+		var/obj/hotspot/fireflash/existing_hotspot = locate(/obj/hotspot/fireflash) in T
+
+		if (existing_hotspot && !existing_hotspot.just_spawned)
+			qdel(existing_hotspot)
+		var/obj/hotspot/fireflash/h = new()
 		h.temperature = temp
 		h.volume = 400
 		h.set_real_color()
@@ -63,7 +66,7 @@
 						C.check_health()
 				LAGCHECK(LAG_REALTIME)
 
-	SPAWN_DBG(4.5 SECONDS)
+	SPAWN_DBG(2 SECONDS)
 		for (var/obj/hotspot/A as anything in hotspots)
 			if (!A.pooled)
 				qdel(A)
@@ -97,21 +100,22 @@
 		if (!ff_cansee(Ce, T))
 			continue
 
-		var/obj/hotspot/existing_hotspot = locate(/obj/hotspot) in T
-		var/prev_temp = 0
-		var/need_expose = 0
+		var/obj/hotspot/fireflash/existing_hotspot = locate(/obj/hotspot/fireflash) in T
+		//var/prev_temp = 0
+		//var/need_expose = 0
 		var/expose_temp = 0
-		if (!existing_hotspot)
-			var/obj/hotspot/h = new()
-			need_expose = 1
-			h.temperature = temp - dist * falloff
-			expose_temp = h.temperature
-			h.volume = 400
-			h.set_loc(T)
-			T.active_hotspot = h
-			hotspots += h
-			existing_hotspot = h
-		else if (existing_hotspot.temperature < temp - dist * falloff)
+		if (existing_hotspot)
+			if(existing_hotspot.just_spawned)
+				continue
+			qdel(existing_hotspot)
+		var/obj/hotspot/fireflash/h = new()
+		h.temperature = temp - dist * falloff
+		expose_temp = h.temperature
+		h.volume = 400
+		h.set_loc(T)
+		T.active_hotspot = h
+		hotspots += h
+		/*else if (existing_hotspot.temperature < temp - dist * falloff)
 			expose_temp = (temp - dist * falloff) - existing_hotspot.temperature
 			prev_temp = existing_hotspot.temperature
 			if (expose_temp > prev_temp * 3)
@@ -119,8 +123,8 @@
 			existing_hotspot.temperature = temp - dist * falloff
 
 		affected[T] = existing_hotspot.temperature
-		if (need_expose && expose_temp)
-			T.hotspot_expose(expose_temp, existing_hotspot.volume)
+		if (expose_temp)
+			T.hotspot_expose(expose_temp, existing_hotspot.volume)*/
 /* // experimental thing to let temporary hotspots affect atmos
 			existing_hotspot.perform_exposure()
 */
@@ -162,8 +166,8 @@
 		for(var/obj/hotspot/A in hotspots)
 			A.set_real_color() // enable light
 
-	SPAWN_DBG(4.5 SECONDS)
-		for(var/obj/hotspot/A in hotspots)
+	SPAWN_DBG(2 SECONDS)
+		for(var/obj/hotspot/fireflash/A in hotspots)
 			if (!A.pooled)
 				qdel(A)
 			//LAGCHECK(LAG_REALTIME)  //MBC : maybe caused lighting bug?

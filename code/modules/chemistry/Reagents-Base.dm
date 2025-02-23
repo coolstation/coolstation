@@ -136,7 +136,7 @@ datum
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
 			overdose = 100 // ethanol poisoning
 			flammable = TRUE
-			combusts_on_fire_contact = TRUE
+			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
 			burn_temperature = 900
 			burn_volatility = 4
@@ -425,6 +425,7 @@ datum
 			minimum_reaction_temperature = T0C + 100
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting)
 					holder.start_combusting()
 

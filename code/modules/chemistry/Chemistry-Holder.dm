@@ -580,7 +580,8 @@ datum
 				src.handle_reactions()
 			else if (!active_reactions.len && processing_reactions)
 				processing_reactions = 0
-				active_reagent_holders -= src
+				if(!src.is_combusting)
+					active_reagent_holders -= src
 
 			if (src.is_combusting) // Processes all sorts of burning things
 				burning_chems()
@@ -617,7 +618,7 @@ datum
 
 		proc/pressurized_open()
 			if (src.combustible_volume)
-				src.my_atom.visible_message(SPAN_ALERT("[src.my_atom] sprays pressurized flames everywhere!"), SPAN_ALERT("You hear a fiery hiss!"), "pressure_venting_\ref[src]")
+				src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays pressurized flames everywhere!</span>",blind_message = "<span class='alert'>You hear a fiery hiss!", group = "pressure_venting_\ref[src]")
 				var/fireflash_size = clamp(src.combustible_pressure * src.composite_volatility / 50, 0, 4)
 				fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, 0)
 				src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 15)
@@ -631,18 +632,18 @@ datum
 					covered_area += 1
 
 				var/continue_burn = FALSE
-				var/burn_volatility = src.composite_volatility *  clamp(src.combustible_volume / (40 * max(1, covered_area)), 0, 1)
+				var/burn_volatility = src.composite_volatility *  clamp(src.combustible_volume / (40 * max(1, covered_area)), 0.3, 1)
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
 
 				switch (burn_volatility)
 					if (0 to 6)
 						for (var/turf/T in src.covered_turf())
-							tfireflash(T, 0, src.composite_combust_temp)
+							fireflash_s(T, 0, src.composite_combust_temp)
 					if (6 to 15)
 						burn_speed *= 1.25
 						for (var/turf/T in src.covered_turf())
-							tfireflash(T, 0, src.composite_combust_temp, 0)
+							fireflash_s(T, 0, src.composite_combust_temp, 0)
 						if (prob(burn_volatility * 5) && length(src.covered_turf())) // from 30 to 75% chance
 							var/turf/chosen_turf = pick(src.covered_turf()) // chance to cause an additional, brighter fireball
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, 0)
@@ -661,9 +662,9 @@ datum
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
 					if (reagent.flammable)
 						var/amount_to_remove = (burn_speed * mult * covered_area) * (reagent.volume / src.combustible_volume)
-						reagent.do_burn(amount_to_remove)
+						reagent.do_burn(min(amount_to_remove,reagent.volume))
 						src.remove_reagent(reagent_id, amount_to_remove)
-						if(src.has_reagent(reagent_id,1))
+						if(src.has_reagent(reagent_id))
 							continue_burn = TRUE
 
 				src.is_combusting = continue_burn
@@ -674,24 +675,23 @@ datum
 				if(combustible_pressure)
 					src.pressurized_open()
 				var/continue_burn = FALSE
-				var/burn_volatility = src.composite_volatility * clamp((src.combustible_volume ** 0.25) / 3, 0, 1.25)
+				var/burn_volatility = src.composite_volatility * clamp((src.combustible_volume ** 0.25) / 3, 0.35, 1.25)
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
+				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
 				switch(burn_volatility)
 					if (0 to 2) // Safe to handle, flames contained inside
-						src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
 						// Some sort of indication that something is burning goes here
 					if (2 to 5) // Unsafe, leaking flames
-						tfireflash(get_turf(src.my_atom), 0, src.composite_combust_temp)
+						fireflash_s(get_turf(src.my_atom), 0, src.composite_combust_temp)
 					if (5 to 14) // Very spicy fire that maybe breaks stuff
-						burn_speed *= 3
+						burn_speed *= 2
 						var/fireflash_size = clamp(((burn_volatility - 5) / 3), 0, 2)
 						fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, 0)
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
 					if (14 to INFINITY) // splatter chems and break
-						burn_speed *= 20
 						var/turf/T = get_turf(src.my_atom)
 						var/explosion_size = clamp(((burn_volatility - 5) / 3), 0, 4)
 						fireflash_sm(T, explosion_size, src.composite_combust_temp, 0)
@@ -707,9 +707,9 @@ datum
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
 					if (reagent.flammable)
 						var/amount_to_remove = (burn_speed * mult) * (reagent.volume / src.combustible_volume)
-						reagent.do_burn(amount_to_remove)
+						reagent.do_burn(min(amount_to_remove,reagent.volume))
 						src.remove_reagent(reagent_id, amount_to_remove)
-						if(src.has_reagent(reagent_id,1))
+						if(src.has_reagent(reagent_id))
 							continue_burn = TRUE
 
 				src.is_combusting = continue_burn
@@ -718,29 +718,35 @@ datum
 			// Closed containers burning
 			if (src.my_atom)
 				var/continue_burn = FALSE
-				var/burn_volatility = src.composite_volatility * clamp((src.combustible_volume ** 0.25) / 3, 0, 1.25)
+				var/burn_volatility = src.composite_volatility * clamp((src.combustible_volume ** 0.25) / 3, 0.35, 1.2)
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
 
 				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 10, change_cap = 300, change_min = 1)
 
-				src.combustible_pressure += burn_volatility / 45
+				src.combustible_pressure += burn_volatility / 150
+
+				if(ismob(src.my_atom))
+					var/mob/M = src.my_atom
+					if(!ON_COOLDOWN(M, "pressure_damage", (rand(40, 60) - burn_volatility) DECI SECONDS))
+						random_burn_damage(M,rand(1,3))
+						random_brute_damage(M,ceil(src.combustible_pressure / 5))
 
 				if (src.combustible_pressure >= 0.1) // inform people
 					if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_rattle", (rand(35, 50) - burn_volatility) DECI SECONDS))
 						animate_storage_thump(my_atom,ceil(src.combustible_pressure))
 
-				if (src.combustible_pressure >= 3) // drain pressure, even when unrealistic
+				if (src.combustible_pressure >= 3) // drain pressure
 					if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
 						fireflash(get_turf(src.my_atom), max(round(src.combustible_pressure) / 3 - 2, 0), src.composite_combust_temp, 0)
-						src.my_atom.visible_message(SPAN_ALERT("[src.my_atom] vents flames violently!"), SPAN_ALERT("You hear a fiery hiss!"), "pressure_venting_\ref[src]")
+						src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 						src.combustible_pressure *= 0.9
-						src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 20)
+						src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
 
 				if (src.combustible_pressure >= 10) // kaboom
 					var/turf/T = get_turf(my_atom)
 					var/explosion_size = clamp((burn_volatility) / 3 * min((combustible_volume ** 0.33) / 10, 1), 1, 8)
-					src.my_atom.visible_message(SPAN_ALERT("[src.my_atom] explodes!"), SPAN_ALERT("You hear a loud bang!"))
+					src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 					explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
 					fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
 					if (isobj(my_atom))
@@ -754,9 +760,9 @@ datum
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
 					if (reagent.flammable)
 						var/amount_to_remove = (burn_speed * mult) / 2 * (reagent.volume / src.combustible_volume)
-						reagent.do_burn(amount_to_remove)
+						reagent.do_burn(min(amount_to_remove,reagent.volume))
 						src.remove_reagent(reagent_id, amount_to_remove)
-						if(src.has_reagent(reagent_id,1))
+						if(src.has_reagent(reagent_id))
 							continue_burn = TRUE
 
 				src.is_combusting = continue_burn
@@ -789,9 +795,7 @@ datum
 			if(combustible_volume)
 				composite_combust_speed = composite_combust_speed / combustible_volume
 				composite_combust_temp = composite_combust_temp / combustible_volume
-				composite_volatility = composite_volatility / combustible_volume
-			else
-				is_combusting = FALSE
+				composite_volatility = composite_volatility / total_volume
 
 			if (is_combusting)
 				test_chem_burning()
@@ -808,14 +812,14 @@ datum
 			return 0
 
 		proc/test_chem_burning() // Handles logic to shut down combustion
-			if (combustible_volume <= (total_volume/5))
+			if (composite_volatility <= 0.5)
 				is_combusting = FALSE
 				return
 
 		proc/start_combusting()
-			if (!src.is_combusting)
-				src.my_atom.visible_message(SPAN_ALERT("The mixture in [src.my_atom] begins burning!"),SPAN_ALERT("You hear flames roar to life!"))
-				src.is_combusting = TRUE
+			if (!src.is_combusting && src.my_atom)
+				src.my_atom.visible_message("<span class='alert'>The mixture in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
+			src.is_combusting = TRUE
 
 		proc/grenade_effects(var/obj/grenade, var/atom/A)
 			for (var/id in src.reagent_list)

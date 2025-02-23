@@ -624,6 +624,7 @@ datum
 			fluid_b = 175
 			transparency = 200
 			value = 3 // 1 1 1
+			burn_volatility = -10 // yes
 			viscosity = 0.14
 
 			reaction_turf(var/turf/target, var/volume)
@@ -1185,6 +1186,7 @@ datum
 			var/smoke_counter = 0
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
 				if(holder && !holder.is_combusting)
 					holder.start_combusting()
 
