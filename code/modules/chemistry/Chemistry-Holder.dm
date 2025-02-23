@@ -743,6 +743,7 @@ datum
 					if(!ON_COOLDOWN(M, "pressure_damage", (50 - burn_volatility) DECI SECONDS))
 						random_burn_damage(M,rand(1,ceil(burn_volatility / 7)))
 						random_brute_damage(M,rand(1,ceil(src.combustible_pressure / 4)))
+						boutput(M,"<span class='alert'>Your insides burn!</span>","pressure_damage")
 
 					if (src.combustible_pressure >= 0.1) // inform people
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_smoke_1", (rand(30, 60) - burn_volatility) DECI SECONDS))
@@ -750,7 +751,7 @@ datum
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
-						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 8, 0.25, 2), 1, 8)
+						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 6, 0.25, 1.25), 1, 7)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
 						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
@@ -770,7 +771,7 @@ datum
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
-						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 8, 0.25, 2), 1, 8)
+						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 10, 0.25, 1.25), 1, 8)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
 						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
