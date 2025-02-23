@@ -458,11 +458,11 @@ mob/new_player
 				slots += (i <= c ? "<div class='latejoin-card latejoin-full' style='border-color: [J.linkcolor]; background-color: [J.linkcolor];' title='Slot filled.'>[(i == 1 && c > shown) ? "+[c - maxslots]" : "&times;"]</div>" : "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' class='latejoin-card' style='border-color: [J.linkcolor];' title='Join the round as [J.name].'>&#x2713;&#xFE0E;</a>")
 
 			return {"
-				<tr class=latejoin-buttons><td class='latejoin-link'>
+				<tbody class='latejoin-buttons'><tr class=latejoin-buttons><td class='latejoin-link'>
 					[(limit == -1 || c < limit) ? "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' style='color: [J.linkcolor];' title='Join the round as [J.name].'>[J.name]</a>" : "<span style='color: [J.linkcolor];' title='This job is full.'>[J.name]</span>"]
 					</td>
 					<td class='latejoin-cards'>[jointext(slots, " ")]</td>
-				</tr>
+				</tr></tbody>
 				"}
 
 		return
@@ -490,6 +490,7 @@ mob/new_player
 	white-space: nowrap;
 	min-width: 12em;
 	text-align: left;
+	border-bottom: 1px solid rgba(217, 217, 217, 1);
 	}
 .latejoin td {
 	padding: 0.1em;
@@ -497,14 +498,12 @@ mob/new_player
 .latejoin-link {
 	max-width: 12em;
 	padding: 0.2em 0;
+	border-bottom: 1px solid rgba(217, 217, 217, 1);
 	}
 .latejoin-link > * {
 	display: block;
 	text-align: right;
 	padding-right: 1em;
-	}
-.latejoin-link > a {
-	font-weight: bold;
 	}
 
 .latejoin-link span {
