@@ -221,6 +221,7 @@
 		var/success = ( ..() )
 		if (!(can_blow_smoke && success)) return
 
+		open_flame_reaction(user.reagents)
 		particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(user.loc, user.dir))
 
 		//var/datum/reagents/smokeContents = new/datum/reagents/(src.reagents.maximum_volume)

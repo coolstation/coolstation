@@ -63,7 +63,7 @@
 						C.check_health()
 				LAGCHECK(LAG_REALTIME)
 
-	SPAWN_DBG(4 SECONDS)
+	SPAWN_DBG(4.5 SECONDS)
 		for (var/obj/hotspot/A as anything in hotspots)
 			if (!A.pooled)
 				qdel(A)
@@ -162,7 +162,7 @@
 		for(var/obj/hotspot/A in hotspots)
 			A.set_real_color() // enable light
 
-	SPAWN_DBG(4 SECONDS)
+	SPAWN_DBG(4.5 SECONDS)
 		for(var/obj/hotspot/A in hotspots)
 			if (!A.pooled)
 				qdel(A)

@@ -137,7 +137,7 @@ datum
 			overdose = 100 // ethanol poisoning
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 8
+			burn_speed = 3
 			burn_temperature = 900
 			burn_volatility = 4
 			thirst_value = -0.02
@@ -414,7 +414,7 @@ datum
 			reagent_state = LIQUID
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 6
+			burn_speed = 2
 			burn_temperature = 2700
 			burn_volatility = 8
 

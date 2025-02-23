@@ -21,7 +21,7 @@ datum
 			viscosity = 0.7
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 8
+			burn_speed = 3
 			burn_temperature = 2500
 			burn_volatility = 10
 			minimum_reaction_temperature = T0C - 50
@@ -73,7 +73,7 @@ datum
 			dispersal = 4
 			transparency = 255
 			mob_burning = 15
-			burn_speed = 3
+			burn_speed = 1.75
 			burn_temperature = 1500
 			burn_volatility = 6
 			minimum_reaction_temperature = T0C
@@ -90,7 +90,7 @@ datum
 			viscosity = 0.8
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 0.75
+			burn_speed = 0.35
 			burn_temperature = 1200
 			burn_volatility = 2
 			minimum_reaction_temperature = T0C + 100
@@ -129,7 +129,7 @@ datum
 				name = "syndicate napalm"
 				id = "syndicate_napalm"
 				description = "Extra sticky, extra burny"
-				burn_speed = 0.5
+				burn_speed = 0.25
 				burn_temperature = 1800
 				burn_volatility = 3
 
@@ -156,7 +156,7 @@ datum
 			volatility = 2
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 2
+			burn_speed = 0.5
 			burn_temperature = 5000
 			burn_volatility = 14
 			minimum_reaction_temperature = T0C+600
@@ -406,7 +406,7 @@ datum
 			viscosity = 0.5
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 6
+			burn_speed = 3
 			burn_temperature = 3500
 			burn_volatility = 9
 			minimum_reaction_temperature = -INFINITY

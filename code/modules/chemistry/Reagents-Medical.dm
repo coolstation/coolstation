@@ -161,7 +161,7 @@ datum
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			flammable = TRUE
 			combusts_on_fire_contact = TRUE
-			burn_speed = 12
+			burn_speed = 4
 			burn_temperature = 2200
 			burn_volatility = 15 // Very Dangerous
 			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
