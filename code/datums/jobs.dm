@@ -159,7 +159,7 @@
 
 ABSTRACT_TYPE(/datum/job/command)
 /datum/job/command
-	linkcolor = "#00CC00"
+	linkcolor = "#7ca6d6"
 	slot_card = /obj/item/card/id/command
 	map_can_autooverride = 0
 	//do_not_save_gun = 1
@@ -489,7 +489,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 ABSTRACT_TYPE(/datum/job/security)
 /datum/job/security
-	linkcolor = "#FF0000"
+	linkcolor = "#e43535"
 	slot_card = /obj/item/card/id/security
 	recieves_miranda = 1
 	//do_not_save_gun = 1
@@ -669,7 +669,7 @@ ABSTRACT_TYPE(/datum/job/research)
 
 ABSTRACT_TYPE(/datum/job/medical)
 /datum/job/medical
-	linkcolor = "#9900FF" //still the nerd department (medsci)
+	linkcolor = "#bf83e2" //still the nerd department (medsci)
 	slot_card = /obj/item/card/id/research
 
 /datum/job/medical/medical_doctor
@@ -871,7 +871,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 ABSTRACT_TYPE(/datum/job/engineering)
 /datum/job/engineering
-	linkcolor = "#D6B327"
+	linkcolor = "#dda448"
 	slot_card = /obj/item/card/id/engineering
 
 /datum/job/engineering/engineer
@@ -984,7 +984,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics
-	linkcolor = "#FF9900"
+	linkcolor = "#D17E22"
 	slot_card = /obj/item/card/id/logistics
 
 //QM got promoted, look under /job/command/quartermaster
