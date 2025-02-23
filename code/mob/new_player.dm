@@ -480,6 +480,12 @@ mob/new_player
 [header_thing_chui_toggle]
 <style type='text/css'>
 
+.latejoin {
+    border: 2px solid #6d6617;
+    border-style: groove;
+	margin-bottom: 15px;
+}
+
 .table.latejoin {
 	border-spacing: 0 2px;
 }
@@ -566,7 +572,7 @@ a.latejoin-card:hover {
 				dat += LateJoinLink(J)
 			dat += "</table>"
 
-			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Research</th></tr>"}
+			dat += {"<table class='latejoin'></tr><tr><th colspan='2'>Research</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "research")
 					dat += LateJoinLink(J)
@@ -579,7 +585,7 @@ a.latejoin-card:hover {
 			dat += "</table>"
 
 			//dat += {"<td valign="top"><table>"}
-			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Engineering</th></tr>"}
+			dat += {"<table class='latejoin'><tr></tr><tr><th colspan='2'>Engineering</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "engineering")
 					dat += LateJoinLink(J)
@@ -588,7 +594,7 @@ a.latejoin-card:hover {
 				dat += LateJoinLink(J)
 			dat += "</table>"
 
-			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Logistics</th></tr>"}
+			dat += {"<table class='latejoin'><tr></tr><tr><th colspan='2'>Logistics</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "logistics")
 					dat += LateJoinLink(J)
@@ -608,7 +614,7 @@ a.latejoin-card:hover {
 				dat += LateJoinLink(J)
 			dat += "</table>"
 
-			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Civilian</th></tr>"}
+			dat += {"<table class='latejoin'></tr><tr><th colspan='2'>Civilian</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "civilian")
 					dat += LateJoinLink(J)
@@ -625,7 +631,7 @@ a.latejoin-card:hover {
 			dat += "</table>"
 			// is this ever actually off? ?????
 			if (job_controls.allow_special_jobs)
-				dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Special Jobs</th></tr>"}
+				dat += {"<table class='latejoin'><tr></tr><tr><th colspan='2'>Special Jobs</th></tr>"}
 				for(var/datum/job/special/J in job_controls.special_jobs)
 					if (IsJobAvailable(J) && !J.no_late_join)
 						dat += LateJoinLink(J)
@@ -668,7 +674,7 @@ a.latejoin-card:hover {
 					dat += "</td></tr>"
 		dat += "</table></div>"
 
-		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=637x716", true)
+		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=646x748", true)
 		//if(!bank_menu)
 		//	bank_menu = new
 		//bank_menu.Subscribe( usr.client )
