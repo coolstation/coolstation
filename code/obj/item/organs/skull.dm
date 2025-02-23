@@ -98,6 +98,15 @@
 			qdel(src)
 			return
 
+		if (istype(W, /obj/item/device/analyzer/healthanalyzer))
+			animate_scanning(src, "#0AEFEF")
+			var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "name", src.donor_name)
+			if(MR)
+				boutput(user, "<span style='color:purple'><b>Dental records on file</b> -  [MR.fields["name"]]</span>")
+			else
+				boutput(user, "<span style='color:purple'><b>No dental match found</b></span>")
+			return
+
 		if (istool(W, TOOL_SAWING))
 			user.visible_message("<span class='notice'>[user] hollows out [src].</span>")
 			var/obj/item/clothing/mask/skull/smask = new /obj/item/clothing/mask/skull
@@ -133,7 +142,7 @@
 
 	get_desc()
 		. = ..()
-		if(src.donor_name && usr?.traitHolder.hasTrait("organ_connoisseur"))
+		if(src.donor_name && usr.traitHolder && (usr.traitHolder.hasTrait("organ_connoisseur") ||  usr.traitHolder.hasTrait("training_medical")))
 			. += "<br>Judging by the mandible and teeth, it belongs to [src.donor_name]."
 
 	proc/can_attach_organ(var/mob/living/carbon/M as mob, var/mob/user as mob)

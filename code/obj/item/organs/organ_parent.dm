@@ -88,13 +88,19 @@
 			var/obj/item/device/analyzer/healthanalyzer/HA = W
 
 			if(HA.organ_scan)
-				boutput(user, "<br><span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
+				animate_scanning(src, "#0AEFEF")
+				boutput(user, "<span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
+				var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.donor_DNA)
+				if(MR)
+					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]] ])</span>")
+				else
+					boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
 				return
 			if (HA.organ_upgrade && !HA.organ_scan)
-				boutput(user, "<br><span style='color:purple'><b>You need to turn on the organ scan function to get a reading.</span>")
+				boutput(user, "<span style='color:purple'><b>You need to turn on the organ scan function to get a reading.</span>")
 				return
 			else
-				boutput(user, "<br><span style='color:purple'><b>This device is not equipped to scan organs.</span>")
+				boutput(user, "<span style='color:purple'><b>This device is not equipped to scan organs.</span>")
 				return
 
 		else
@@ -112,10 +118,15 @@
 
 	get_desc()
 		. = ..()
-		if(usr?.traitHolder.hasTrait("organ_connoisseur"))
-			if (src.donor_name && well_known)
-				. += "<br>You know this one well, it belongs to [src.donor_name]."
-			. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to reuse!"]"
+		if(usr.traitHolder)
+			if(usr.traitHolder.hasTrait("organ_connoisseur"))
+				if (src.donor_name && well_known)
+					. += "<br>You know this one well, it belongs to [src.donor_name]."
+				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to sell."]"
+			else if(usr.traitHolder.hasTrait("training_medical"))
+				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days." : "Seems good enough to reuse!"]"
+			else if(usr.traitHolder.hasTrait("training_chef"))
+				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "Looking all mashed up." : "Seems good enough to eat!"]"
 
 	New(loc, datum/organHolder/nholder)
 		..()
