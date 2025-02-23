@@ -18,6 +18,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 /datum/emote/fart/bio/return_cooldown(mob/user, voluntary = 0)
 	var/tempcooldown = cooldown
 	if(user && user.reagents)
+		if(user.reagents.combustible_pressure)
+			tempcooldown = 4*tempcooldown // farting out fire is hard
 		if(user.reagents.has_reagent("egg"))
 			tempcooldown = 0.9*tempcooldown
 		if(user.reagents.has_reagent("fartonium"))
@@ -33,6 +35,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 	var/oxyplasmafart = 0
 	var/message = null
 	var/m_type
+	var/firepower = 0
 	if (farting_allowed && (!user.reagents || !user.reagents.has_reagent("anti_fart")))
 		if (!user.get_organ("butt"))
 			m_type = MESSAGE_VISIBLE
@@ -49,8 +52,10 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			else
 				message = "<B>[user]</B> grunts for a moment. Nothing happens."
 		else
+			if(user.reagents && user.reagents.combustible_pressure)
+				firepower = ceil(user.reagents.combustible_pressure) // 1 to 10
 			m_type = MESSAGE_AUDIBLE
-			var/fart_loudness = 50
+			var/fart_loudness = 50 + firepower * 2
 
 			if(user.reagents.has_reagent("egg"))
 				fart_loudness += 5
@@ -82,6 +87,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						M = A
 						if (M == user || !M.lying)
 							continue
+						if(firepower >= 3)
+							M.changeStatus("burning",firepower * 3 SECONDS)
 						message = "<span class='alert'><B>[user]</B> farts in [M]'s face!</span>"
 						if (ishuman(user))
 							var/mob/living/carbon/human/H = user
@@ -185,8 +192,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					continue
 				F.fart_along() // chance for mart to fart
 
-
-
 			if (user.bioHolder)
 				var/toxic = user.bioHolder.HasEffect("toxic_farts")
 				if (toxic)
@@ -210,14 +215,31 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 			var/turf/T = get_turf(user)
 			if (T && T == user.loc)
+				switch(firepower)
+					if(1 to 3)
+						message = "<B>[user]</B> lets out a tiny flaming fart!"
+						fireflash_s(T,0,user.reagents.composite_combust_temp)
+					if(3 to 10)
+						message = "<B>[user]</B> lets out a powerful flaming fart!"
+						random_burn_damage(user, firepower)
+						fireflash_s(T,floor(firepower / 2) - 1,user.reagents.composite_combust_temp)
+						user.reagents.combustible_pressure *= 0.7
+					if(10 to INFINITY) // perfectly timed
+						logTheThing("bombing", user, user, "farts perfectly and causes a power 16 explosion at [showCoords(user.x, user.y, user.z)]")
+						message = "<B>[user]</B> vents that ass like a fucking shuttle thruster!"
+						user.throw_at(get_edge_cheap(user, user.dir),rand(15,20),4)
+						fireflash_s(T,3,user.reagents.composite_combust_temp)
+						user.reagents.combustible_pressure *= 0.1
+						SPAWN_DBG(0.2 SECONDS)
+							explosion_new(user, T, 16) // if this isnt funny i dont know what is
 				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
-					if (user.getStatusDuration("food_space_farts"))
+					if ((firepower > 2 && firepower < 10) || user.getStatusDuration("food_space_farts"))
 						user.inertia_dir = user.dir
 						step(user, user.inertia_dir)
 						SPAWN_DBG(1 DECI SECOND)
 							user.inertia_dir = user.dir
 							step(user, user.inertia_dir)
-				else
+				else if(!firepower)
 					if(prob(10) && istype(user.loc, /turf/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
 						message = "<b>[user]</B> farts. The fart freezes in MID-AIR!!!"
 						new/obj/item/material_piece/fart(user.loc)

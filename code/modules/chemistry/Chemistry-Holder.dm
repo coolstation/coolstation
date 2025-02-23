@@ -743,29 +743,40 @@ datum
 						random_burn_damage(M,rand(1,ceil(burn_volatility / 7)))
 						random_brute_damage(M,rand(1,ceil(src.combustible_pressure / 4)))
 
-				if (src.combustible_pressure >= 0.1) // inform people
-					if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_rattle", (rand(35, 50) - burn_volatility) DECI SECONDS))
-						animate_storage_thump(my_atom,ceil(src.combustible_pressure))
+					if (src.combustible_pressure >= 0.1) // inform people
+						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_smoke_1", (rand(30, 60) - burn_volatility) DECI SECONDS))
+							particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(M.loc, M.dir))
 
-				if (src.combustible_pressure >= 3) // drain pressure
-					if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
-						fireflash(get_turf(src.my_atom), max(round(src.combustible_pressure) / 3 - 2, 0), src.composite_combust_temp, 0)
-						src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
-						src.combustible_pressure *= 0.9
-						src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
-
-				if (src.combustible_pressure >= 10) // kaboom
-					var/turf/T = get_turf(my_atom)
-					var/explosion_size = clamp((burn_volatility) / 3 * min((combustible_volume ** 0.33) / 10, 1), 1, 8)
-					src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
-					explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-					fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
-					if (isobj(my_atom))
-						var/obj/O = my_atom
-						if (!O.shatter_chemically(projectiles = TRUE))
-							src.clear_reagents()
-					else
+					if (src.combustible_pressure >= 10) // kaboom
+						var/turf/T = get_turf(my_atom)
+						var/explosion_size = clamp((burn_volatility) / 3 * min((combustible_volume ** 0.33) / 10, 1), 1, 8)
+						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
+						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
 						burn_speed = INFINITY
+
+				else
+					if (src.combustible_pressure >= 0.1) // inform people
+						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_rattle", (rand(35, 50) - burn_volatility) DECI SECONDS))
+							animate_storage_thump(my_atom,ceil(src.combustible_pressure))
+
+					if (src.combustible_pressure >= 3) // drain pressure
+						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
+							fireflash(get_turf(src.my_atom), max(round(src.combustible_pressure) / 3 - 2, 0), src.composite_combust_temp, 0)
+							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
+							src.combustible_pressure *= 0.9
+							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
+
+					if (src.combustible_pressure >= 10) // kaboom
+						var/turf/T = get_turf(my_atom)
+						var/explosion_size = clamp((burn_volatility) / 3 * min((combustible_volume ** 0.33) / 10, 1), 1, 8)
+						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
+						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
+						if (isobj(my_atom))
+							var/obj/O = my_atom
+							if (!O.shatter_chemically(projectiles = TRUE))
+								src.clear_reagents()
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
