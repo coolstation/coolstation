@@ -24,6 +24,8 @@
 		else
 			for(var/atom/item in src) //I hate having to add this here too but too many things use hotspot_expose. This might cause lag on large fires.
 				item.temperature_expose(null, exposed_temperature, exposed_volume)
+				if(item.reagents && item.is_open_container())
+					open_flame_reaction(item.reagents)
 
 
 

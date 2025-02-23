@@ -221,7 +221,6 @@
 		var/success = ( ..() )
 		if (!(can_blow_smoke && success)) return
 
-		open_flame_reaction(user.reagents)
 		particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(user.loc, user.dir))
 
 		//var/datum/reagents/smokeContents = new/datum/reagents/(src.reagents.maximum_volume)
@@ -290,6 +289,7 @@
 					if(H.traitHolder && H.traitHolder.hasTrait("smoker") || !((src in H.get_equipped_items()) || ((H.l_store==src||H.r_store==src) && !(H.wear_mask && (H.wear_mask.c_flags & BLOCKSMOKE || (H.wear_mask.c_flags & MASKINTERNALS && H.internal))))))
 						src.reagents.remove_any(puffrate)
 					else
+						open_flame_reaction(M.reagents)
 						if(H.bodytemperature < H.base_body_temp)
 							H.bodytemperature += 1
 						if (prob(1))
@@ -946,10 +946,10 @@
 
 	dropped(mob/user)
 		..()
-		if (isturf(src.loc) && src.on > 0)
+		/*if (isturf(src.loc) && src.on > 0)
 			user.visible_message("<span class='alert'><b>[user]</b> calmly drops and treads on the lit [src.name], putting it out instantly.</span>")
 			src.put_out(user)
-			return
+			return*/
 		SPAWN_DBG(0)
 			if (src.loc != user)
 				light.attach(src)
@@ -1095,6 +1095,7 @@
 				if (fella.wear_mask && istype(fella.wear_mask, /obj/item/clothing/mask/cigarette))
 					var/obj/item/clothing/mask/cigarette/smoke = fella.wear_mask // aaaaaaa
 					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with [src].</span>")
+					open_flame_reaction(fella.reagents)
 					fella.set_clothing_icon_dirty()
 					return
 				else if (fella.bleeding || (fella.butt_op_stage == 4 && user.zone_sel.selecting == "chest"))

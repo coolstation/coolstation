@@ -218,14 +218,14 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				switch(firepower)
 					if(10 to INFINITY) // perfectly timed
 						logTheThing("bombing", user, user, "farts perfectly and causes a power 16 explosion at [showCoords(user.x, user.y, user.z)]")
-						message = "<B>[user]</B> vents that ass like a fucking shuttle thruster!"
+						message = "<span class='alert'><b>[user] vents that ass like a fucking shuttle thruster!</b></span>"
 						user.throw_at(get_edge_cheap(user, user.dir),rand(15,20),4)
 						fireflash_s(T,3,user.reagents.composite_combust_temp)
 						user.reagents.combustible_pressure *= 0.1
 						SPAWN_DBG(0.2 SECONDS)
 							explosion_new(user, T, 16) // if this isnt funny i dont know what is
 					if(3 to 10)
-						message = "<B>[user]</B> lets out a powerful flaming fart!"
+						message = "<span class='alert'><b>[user]</b> lets out a powerful flaming fart!</span>"
 						fireflash_s(T,floor(firepower / 2) - 1,user.reagents.composite_combust_temp)
 						user.reagents.combustible_pressure *= 0.7
 					if(1 to 3)

@@ -750,7 +750,7 @@ datum
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
-						var/explosion_size = clamp((burn_volatility) / 3 * min((combustible_volume ** 0.33) / 10, 1), 1, 8)
+						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 8, 0.25, 2), 1, 8)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
 						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
@@ -763,14 +763,14 @@ datum
 
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
-							fireflash(get_turf(src.my_atom), max(round(src.combustible_pressure) / 3 - 2, 0), src.composite_combust_temp, 0)
+							fireflash_s(get_turf(src.my_atom), max(round(src.combustible_pressure) / 3 - 2, 0), src.composite_combust_temp, 0)
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
 							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
-						var/explosion_size = clamp((burn_volatility) / 3 * min((combustible_volume ** 0.33) / 10, 1), 1, 8)
+						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 8, 0.25, 2), 1, 8)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
 						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
