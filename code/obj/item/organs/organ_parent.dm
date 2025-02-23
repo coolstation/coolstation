@@ -92,7 +92,7 @@
 				boutput(user, "<span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
 				var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.donor_DNA)
 				if(MR)
-					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]] ])</span>")
+					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]])</span>")
 				else
 					boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
 				return
