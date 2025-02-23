@@ -49,8 +49,6 @@
 				src.donor = nholder.donor
 			if (src.donor)
 				src.donor_name = src.donor.real_name
-				src.name = "[src.donor_name]'s [initial(src.name)]"
-				src.real_name = "[src.donor_name]'s [initial(src.name)]" // Gotta do this somewhere!
 				src.donor_DNA = src.donor.bioHolder ? src.donor.bioHolder.Uid : null
 				if (src.toned && src.donor.bioHolder) //NO RACIALLY INSENSITIVE ASSHATS ALLOWED
 					src.s_tone = src.donor.bioHolder.mobAppearance.s_tone
@@ -162,8 +160,6 @@
 			qdel(src)
 		else if (istype(W, /obj/item/parts/robot_parts/arm))
 			var/obj/machinery/bot/buttbot/B = new buttbot_path(src, W)
-			if (src.donor || src.donor_name)
-				B.name = "[src.donor_name ? "[src.donor_name]" : "[src.donor.real_name]"] [B.name]"
 			user.show_text("You add [W] to [src]. Fantastic.", "blue")
 			B.set_loc(get_turf(src))
 			src.set_loc(B)
