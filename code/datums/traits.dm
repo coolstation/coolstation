@@ -1337,3 +1337,35 @@ obj/trait/pilot
 		if(ishuman(owner) && prob(10))
 			var/mob/living/carbon/human/H = owner
 			randomize_mob_limbs(H)
+
+
+// Accessibility
+/obj/trait/spider_filter
+	name = "Arachnophobia Filter (0)"
+	cleanName = "Arachnophobia Filter"
+	desc = "Accessibility: PIDER"
+	id = "acc_arachnophobia"
+	icon_state = "acc_arachnophobia"
+	points = 0
+	isPositive = 0
+
+	onAdd(mob/owner)
+		OTHER_START_TRACKING_CAT(owner, TR_CAT_SPIDER_FILTER_MOBS)
+		if(owner.client)
+			src.turnOn(owner)
+		src.RegisterSignal(owner, COMSIG_MOB_LOGIN, PROC_REF(turnOn))
+		src.RegisterSignal(owner, COMSIG_MOB_LOGOUT, PROC_REF(turnOff))
+
+	proc/turnOn(mob/owner)
+		for(var/image/I as anything in global.spider_filter_images)
+			owner.client.images += I
+
+	onRemove(mob/owner)
+		OTHER_STOP_TRACKING_CAT(owner, TR_CAT_SPIDER_FILTER_MOBS)
+		if(owner.client)
+			src.turnOff(owner)
+		src.UnregisterSignal(owner, list(COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT))
+
+	proc/turnOff(mob/owner)
+		for(var/image/I as anything in global.spider_filter_images)
+			owner.last_client.images -= I
