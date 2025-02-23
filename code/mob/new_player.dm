@@ -564,9 +564,9 @@ a.latejoin-card:hover {
 					dat += LateJoinLink(J)
 			for(var/datum/job/security/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
-			//dat += "</table></td>"
+			dat += "</table>"
 
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Research</th></tr>"}
+			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Research</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "research")
 					dat += LateJoinLink(J)
@@ -576,27 +576,28 @@ a.latejoin-card:hover {
 			for(var/datum/job/medical/J in job_controls.staple_jobs)
 				if (J.department == "research")
 					dat += LateJoinLink(J)
-			//dat += "</table></td>"
+			dat += "</table>"
 
 			//dat += {"<td valign="top"><table>"}
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Engineering</th></tr>"}
+			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Engineering</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "engineering")
 					dat += LateJoinLink(J)
 					break
 			for(var/datum/job/engineering/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
+			dat += "</table>"
 
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Logistics</th></tr>"}
+			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Logistics</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "logistics")
 					dat += LateJoinLink(J)
 					break
 			for(var/datum/job/logistics/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
-
+			dat += "</table>"
 			//start of next column
-			dat += {"</table></div><div class='fuck'><table class='latejoin'><tr><th colspan='2'>Medical</th></tr>"}
+			dat += {"</div><div class='fuck'><table class='latejoin'><tr><th colspan='2'>Medical</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "medical")
 					dat += LateJoinLink(J)
@@ -605,7 +606,9 @@ a.latejoin-card:hover {
 				if (J.department == "research")
 					continue// this is so we can stick genetics and pathology under research without changing *anything* else:)
 				dat += LateJoinLink(J)
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Civilian</th></tr>"}
+			dat += "</table>"
+
+			dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Civilian</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "civilian")
 					dat += LateJoinLink(J)
@@ -614,16 +617,15 @@ a.latejoin-card:hover {
 				dat += LateJoinLink(J)
 			for(var/datum/job/daily/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
-
 			// not showing if it's an ai or cyborg is the worst fuckin shit so: FIXED
 			for(var/mob/living/silicon/S in mobs)
 				if (IsSiliconAvailableForLateJoin(S))
 					dat += {"<tr class='latejoin-link'><td colspan='2' class='latejoin-link'><a href='byond://?src=\ref[src];SelectedJob=\ref[S]'>[S.name] ([istype(S, /mob/living/silicon/ai) ? "AI" : "Cyborg"])</a></td></tr>"}
 
+			dat += "</table>"
 			// is this ever actually off? ?????
 			if (job_controls.allow_special_jobs)
-				dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Special Jobs</th></tr>"}
-
+				dat += {"<table class='latejoin'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Special Jobs</th></tr>"}
 				for(var/datum/job/special/J in job_controls.special_jobs)
 					if (IsJobAvailable(J) && !J.no_late_join)
 						dat += LateJoinLink(J)
@@ -631,8 +633,9 @@ a.latejoin-card:hover {
 				for(var/datum/job/created/J in job_controls.special_jobs)
 					if (IsJobAvailable(J) && !J.no_late_join)
 						dat += LateJoinLink(J)
+				dat += "</table>"
 
-			dat += "</table></div>"
+			dat += "</div>"
 
 		else if(istype(ticker.mode,/datum/game_mode/battle_royale))
 			//ahahaha you get no choices im going to just shove you in the game now good luck
