@@ -598,7 +598,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				if (sound_type)
 					playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
 				else
-					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg.ogg", 40, 1)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
 				boutput(user, "You re-cock the hammer on [src], ready to fire again.") //good 2 go
 				return 1
 		if(JAM_CYCLE) //failure to eject, that sorta thing

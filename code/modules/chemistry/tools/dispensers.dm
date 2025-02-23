@@ -427,31 +427,36 @@
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istool(W, TOOL_SCREWING | TOOL_WRENCHING))
-			if(!src.anchored)
-				user.visible_message("<b>[user]</b> secures the [src] to the floor!")
-				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 1
-			else
-				user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
-				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 0
-			return
-		var/load = 1
-		if (istype(W,/obj/item/reagent_containers/food/snacks/plant/)) src.reagents.add_reagent("poo", 20)
-		else if (istype(W,/obj/item/reagent_containers/food/snacks/mushroom/)) src.reagents.add_reagent("poo", 25)
-		else if (istype(W,/obj/item/seed/)) src.reagents.add_reagent("poo", 2)
-		else if (istype(W,/obj/item/plant/)) src.reagents.add_reagent("poo", 15)
-		else load = 0
+		if (istype(W, /obj/item/grab))
+			var/obj/item/grab/grab = W
+			var/mob/target = grab.affecting
+			src.try_compost_body(user,target)
+		else
+			if(istool(W, TOOL_SCREWING | TOOL_WRENCHING))
+				if(!src.anchored)
+					user.visible_message("<b>[user]</b> secures the [src] to the floor!")
+					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
+					src.anchored = 1
+				else
+					user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
+					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
+					src.anchored = 0
+				return
+			var/load = 1
+			if (istype(W,/obj/item/reagent_containers/food/snacks/plant/)) src.reagents.add_reagent("poo", 20)
+			else if (istype(W,/obj/item/reagent_containers/food/snacks/mushroom/)) src.reagents.add_reagent("poo", 25)
+			else if (istype(W,/obj/item/seed/)) src.reagents.add_reagent("poo", 2)
+			else if (istype(W,/obj/item/plant/)) src.reagents.add_reagent("poo", 15)
+			else load = 0
 
-		if(load)
-			boutput(user, "<span class='notice'>[src] mulches up [W].</span>")
-			playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
-			user.u_equip(W)
-			W.dropped()
-			qdel( W )
-			return
-		else ..()
+			if(load)
+				boutput(user, "<span class='notice'>[src] mulches up [W].</span>")
+				playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
+				user.u_equip(W)
+				W.dropped()
+				qdel( W )
+				return
+			else ..()
 
 	MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 		if (!isliving(user))
@@ -463,6 +468,8 @@
 		if (get_dist(O,src) > 1 || get_dist(O,user) > 1)
 			boutput(user, "<span class='alert'>[O] is too far away to load into [src]!</span>")
 			return
+		if (isliving(O))
+			src.try_compost_body(user,O)
 		if (istype(O, /obj/item/reagent_containers/food/snacks/plant/) || istype(O, /obj/item/reagent_containers/food/snacks/mushroom/) || istype(O, /obj/item/seed/) || istype(O, /obj/item/plant/))
 			user.visible_message("<span class='notice'>[user] begins quickly stuffing [O] into [src]!</span>")
 			var/itemtype = O.type
@@ -486,6 +493,39 @@
 				sleep(0.3 SECONDS)
 			boutput(user, "<span class='notice'>You finish stuffing [O] into [src]!</span>")
 		else ..()
+
+	proc/try_compost_body(var/mob/user,var/mob/living/target)
+		if (src.reagents.total_volume >= src.reagents.maximum_volume)
+			boutput(user, "<span class='alert'>[src] is full!</span>")
+			return
+		if(!isdead(target))
+			user.visible_message("<span class='alert'>[target] won't compost very well when they're still alive and kicking!</span>")
+			return
+		if(target?.buckled || target?.anchored)
+			user.visible_message("<span class='alert'>[target] is stuck to something and can't be shoved into [src]!</span>")
+			return
+		user.visible_message("<span class='alert'>[user] starts to shove [target] into [src]!</span>")
+		logTheThing("combat", user, target, "attempted to force [constructTarget(target,"combat")] into a compost tank at [log_loc(src)].")
+		SETUP_GENERIC_ACTIONBAR(user, src, 6 SECONDS, /obj/reagent_dispensers/compostbin/proc/compost_body, list(user, target), src.icon, src.icon_state,\
+			"<span class='alert'>[user] finishes stuffing [target]'s corpse into [src]!</span>", INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION)
+		return
+
+	proc/compost_body(var/mob/user,var/mob/living/target)
+		if(!target || !user)
+			return
+		src.add_fingerprint(target)
+		src.add_blood(target)
+		target.set_loc(src)
+		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 3) // hilariously easy to hear someone being shoveled into a compost tank
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			src.reagents.add_reagent(H.blood_id, floor((rand() * 0.2 + 0.2) * H.blood_volume))
+			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.blood_volume))
+		else
+			src.reagents.add_reagent("poo", 75)
+		if (target.mind)
+			target.ghostize()
+		qdel(target)
 
 /obj/reagent_dispensers/still
 	name = "still"

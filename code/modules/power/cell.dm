@@ -13,7 +13,11 @@
 	w_class = W_CLASS_NORMAL
 	pressure_resistance = 80
 	var/charge = 0	// note %age conveted to actual charge in New
+#ifdef POWER_IS_CRAPPY
+	var/maxcharge = 3250
+#else
 	var/maxcharge = 7500
+#endif
 	m_amt = 700
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible for the explosion
@@ -31,13 +35,21 @@
 		..()
 
 /obj/item/cell/supercell
+#ifdef POWER_IS_CRAPPY
+	maxcharge = 7500
+#else
 	maxcharge = 15000
+#endif
 
 /obj/item/cell/erebite
 	name = "erebite power cell"
 	desc = "A small battery/generator unit powered by the unstable mineral Erebite. Do not expose to high temperatures or fire."
 	icon_state = "erebcell"
+#ifdef POWER_IS_CRAPPY
+	maxcharge = 7500
+#else
 	maxcharge = 15000
+#endif
 	genrate = 10
 	specialicon = 1
 
@@ -45,7 +57,11 @@
 	name = "cerenkite power cell"
 	desc = "A small battery/generator unit powered by the radioactive mineral Cerenkite."
 	icon_state = "cerecell"
+#ifdef POWER_IS_CRAPPY
+	maxcharge = 7500
+#else
 	maxcharge = 15000
+#endif
 	genrate = 2
 	specialicon = 1
 
@@ -80,16 +96,32 @@
 		return
 
 /obj/item/cell/charged
+#ifdef POWER_IS_CRAPPY
+	charge = 3250
+#else
 	charge = 7500
+#endif
 
 /obj/item/cell/supercell/charged
+#ifdef POWER_IS_CRAPPY
+	charge = 7500
+#else
 	charge = 15000
+#endif
 
 /obj/item/cell/erebite/charged
+#ifdef POWER_IS_CRAPPY
+	charge = 7500
+#else
 	charge = 15000
+#endif
 
 /obj/item/cell/cerenkite/charged
+#ifdef POWER_IS_CRAPPY
+	charge = 7500
+#else
 	charge = 15000
+#endif
 
 /obj/item/cell/shell_cell/charged
 	charge = 4000

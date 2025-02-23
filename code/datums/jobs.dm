@@ -1293,6 +1293,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 // Special Cases
 
+/datum/job/special
+	linkcolor = "#46afb9" //For the job screen
+
 /datum/job/special/station_builder
 	// Used for Construction game mode, where you build the station
 	name = "Station Builder"
