@@ -173,6 +173,15 @@ CONTAINS:
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "saw"
 
+/obj/item/circular_saw/grody
+	name = "nasty old bonesaw"
+	icon_state = "saw_grody"
+	desc = "A rusty old bonesaw, caked in blood. You're liable to give someone sepsis if you try using this old thing."
+
+	attack(mob/living/carbon/M as mob, mob/user as mob)
+		src.reagents.add_reagent("MRSA", src.reagents.maximum_volume - src.reagents.total_volume)
+		return ..()
+
 /* =========================================================== */
 /* -------------------- Enucleation Spoon -------------------- */
 /* =========================================================== */
