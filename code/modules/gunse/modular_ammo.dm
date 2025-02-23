@@ -617,6 +617,16 @@ THE_USUAL_FLAVOURS(scatter/bartender, "\improper Bartender's Buddy")
 	fiddlyness = 10
 THE_USUAL_FLAVOURS(scatter/slug_rubber, "\improper NT rubber slug")
 
+//silly idea, I figure would be crafted ammo and not bought (though for the moment they are bought I haven't decided on a crafting method)
+/obj/item/stackable_ammo/coil
+	name = "coil slug round"
+	real_name = "coil slug round"
+	desc = "A metal coil packed into a bullet cartridge. This seems both stupid and cruel."
+	projectile_type = /datum/projectile/bullet/coil
+	stack_type = /obj/item/stackable_ammo/coil
+	fiddlyness = 5
+THE_USUAL_FLAVOURS(coil, "coil slug round")
+
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. Cathodic Flash Tube 1.4"
 	real_name = "\improper FOSSYN. Cathodic Flash Tube 1.4"
