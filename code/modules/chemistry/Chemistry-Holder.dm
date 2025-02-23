@@ -618,6 +618,7 @@ datum
 			if (composite_volatility > 0.5)
 				return
 			is_combusting = FALSE
+			combustible_pressure = 0
 			combusting_reagent_holders -= src
 
 		proc/start_combusting() // Starts combustion

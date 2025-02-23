@@ -216,14 +216,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			var/turf/T = get_turf(user)
 			if (T && T == user.loc)
 				switch(firepower)
-					if(1 to 3)
-						message = "<B>[user]</B> lets out a tiny flaming fart!"
-						fireflash_s(T,0,user.reagents.composite_combust_temp)
-					if(3 to 10)
-						message = "<B>[user]</B> lets out a powerful flaming fart!"
-						random_burn_damage(user, firepower)
-						fireflash_s(T,floor(firepower / 2) - 1,user.reagents.composite_combust_temp)
-						user.reagents.combustible_pressure *= 0.7
 					if(10 to INFINITY) // perfectly timed
 						logTheThing("bombing", user, user, "farts perfectly and causes a power 16 explosion at [showCoords(user.x, user.y, user.z)]")
 						message = "<B>[user]</B> vents that ass like a fucking shuttle thruster!"
@@ -232,6 +224,14 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						user.reagents.combustible_pressure *= 0.1
 						SPAWN_DBG(0.2 SECONDS)
 							explosion_new(user, T, 16) // if this isnt funny i dont know what is
+					if(3 to 10)
+						message = "<B>[user]</B> lets out a powerful flaming fart!"
+						fireflash_s(T,floor(firepower / 2) - 1,user.reagents.composite_combust_temp)
+						user.reagents.combustible_pressure *= 0.7
+					if(1 to 3)
+						message = "<B>[user]</B> lets out a tiny flaming fart!"
+						fireflash_s(T,0,user.reagents.composite_combust_temp)
+
 				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
 					if ((firepower > 2 && firepower < 10) || user.getStatusDuration("food_space_farts"))
 						user.inertia_dir = user.dir
