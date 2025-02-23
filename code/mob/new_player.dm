@@ -458,7 +458,7 @@ mob/new_player
 				slots += (i <= c ? "<div class='latejoin-card latejoin-full' style='border-color: [J.linkcolor]; background-color: [J.linkcolor];' title='Slot filled.'>[(i == 1 && c > shown) ? "+[c - maxslots]" : "&times;"]</div>" : "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' class='latejoin-card' style='border-color: [J.linkcolor];' title='Join the round as [J.name].'>&#x2713;&#xFE0E;</a>")
 
 			return {"
-				<tr><td class='latejoin-link'>
+				<tr class=latejoin-buttons><td class='latejoin-link'>
 					[(limit == -1 || c < limit) ? "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' style='color: [J.linkcolor];' title='Join the round as [J.name].'>[J.name]</a>" : "<span style='color: [J.linkcolor];' title='This job is full.'>[J.name]</span>"]
 					</td>
 					<td class='latejoin-cards'>[jointext(slots, " ")]</td>
@@ -469,8 +469,9 @@ mob/new_player
 
 	proc/LateChoices()
 		// shut up
-		var/header_thing_chui_toggle = (usr.client && !usr.client.use_chui) ? {"
+		var/header_thing_chui_toggle = true ? {"
 		<title>Select a Job</title>
+		<window>
 		<style type='text/css'>
 			body { background: #222; color: white; font-family: Tahoma, sans-serif; }
 		</style>"} : ""
@@ -478,6 +479,13 @@ mob/new_player
 		var/dat = {"
 [header_thing_chui_toggle]
 <style type='text/css'>
+
+.table.latejoin {
+	border-spacing: 0 2px;
+}
+.latejoin-buttons {
+	background: rgba(248, 248, 248, 1);
+}
 .latejoin-cards {
 	white-space: nowrap;
 	min-width: 12em;
@@ -497,9 +505,6 @@ mob/new_player
 	}
 .latejoin-link > a {
 	font-weight: bold;
-	}
-.latejoin-link a:hover {
-	background-color: #555;
 	}
 
 .latejoin-link span {
@@ -530,12 +535,11 @@ a.latejoin-card {
 	}
 
 a.latejoin-card:hover {
-	color: black;
 	box-shadow: 0 0 6px 2px white;
 	}
 
 .latejoin th {
-	background: #555;
+	background: #3b3122;
 	padding: 0.3em;
 	margin-top: 0.5em;
 }
@@ -544,11 +548,12 @@ a.latejoin-card:hover {
 	display: inline-block;
 	vertical-align: top;
 	margin: 0 1em;
+	line-height: 1.2;
 }
 </style>
-<h2 style='text-align: center; margin: 0 0 0.3em 0; font-size: 150%;'>You are joining a round in progress.</h2>
-<h3 style='text-align: center; margin: 0 0 0.5em 0; font-size: 120%;'>Please choose from one of the remaining open positions.</h3>
-<div style='text-align: center;'>
+<h2>You are joining a round in progress.</h2>
+<h3>Please choose from one of the remaining open positions.</h3>
+<div>
 "}
 
 		// deal with it
@@ -614,7 +619,7 @@ a.latejoin-card:hover {
 			// not showing if it's an ai or cyborg is the worst fuckin shit so: FIXED
 			for(var/mob/living/silicon/S in mobs)
 				if (IsSiliconAvailableForLateJoin(S))
-					dat += {"<tr><td colspan='2' class='latejoin-link'><a href='byond://?src=\ref[src];SelectedJob=\ref[S]' style='color: #c4c4c4; text-align: center;'>[S.name] ([istype(S, /mob/living/silicon/ai) ? "AI" : "Cyborg"])</a></td></tr>"}
+					dat += {"<tr class='latejoin-link'><td colspan='2' class='latejoin-link'><a href='byond://?src=\ref[src];SelectedJob=\ref[S]'>[S.name] ([istype(S, /mob/living/silicon/ai) ? "AI" : "Cyborg"])</a></td></tr>"}
 
 			// is this ever actually off? ?????
 			if (job_controls.allow_special_jobs)
@@ -656,12 +661,12 @@ a.latejoin-card:hover {
 				C.enabled_jobs += D
 			for (var/datum/job/J in C.enabled_jobs)
 				if (IsJobAvailable(J) && !J.no_late_join)
-					dat += "<tr><td style='width:100%'>"
+					dat += "<tr><td>"
 					dat += {"<a href='byond://?src=\ref[src];SelectedJob=\ref[J]'><font color=[J.linkcolor]>[J.name]</font></a> ([countJob(J.name)][J.limit == -1 ? "" : "/[J.limit]"])<br>"}
 					dat += "</td></tr>"
 		dat += "</table></div>"
 
-		src.Browse(dat, "window=latechoices;size=800x777")
+		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=637x716", true)
 		//if(!bank_menu)
 		//	bank_menu = new
 		//bank_menu.Subscribe( usr.client )
