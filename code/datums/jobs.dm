@@ -159,7 +159,7 @@
 
 ABSTRACT_TYPE(/datum/job/command)
 /datum/job/command
-	linkcolor = "#507096"
+	linkcolor = "#12E193"
 	slot_card = /obj/item/card/id/command
 	map_can_autooverride = 0
 	//do_not_save_gun = 1
