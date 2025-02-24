@@ -674,7 +674,7 @@ a.latejoin-card:hover {
 					dat += "</td></tr>"
 		dat += "</table></div>"
 
-		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=646x748", true)
+		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=660x748", true)
 		//if(!bank_menu)
 		//	bank_menu = new
 		//bank_menu.Subscribe( usr.client )
