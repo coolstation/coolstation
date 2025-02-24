@@ -86,7 +86,7 @@
 						return
 
 					if (target != user)
-						logTheThing(LOG_COMBAT, user, "tries to draw 5 units of reagents from [constructTarget(target, "combat")] [log_reagents(target)] with a [src] [log_reagents(src)] at [log_loc(user)].")
+						logTheThing("combat", user, "tries to draw 5 units of reagents from [constructTarget(target, "combat")] [log_reagents(target)] with a [src] [log_reagents(src)] at [log_loc(user)].")
 						user.visible_message("<span class='alert'><B>[user] is trying to draw blood from [target]!</B></span>")
 						actions.start(new/datum/action/bar/icon/syringe(target, src, src.icon, src.icon_state), user)
 					else
@@ -206,14 +206,14 @@
 				transfer_blood(target, src, src.amount_per_transfer_from_this)
 				user.visible_message("<span class='alert'>[user.name] draws blood from [target == user ? himself_or_herself(user) : target.name] with [src]!</span>",\
 				"<span class='notice'>You fill [src] with [src.amount_per_transfer_from_this] units of [target == user ? "your own" : target.name + "'s"] blood.</span>")
-				logTheThing(LOG_COMBAT, user, "draws 5 units of reagents from [constructTarget(target,"combat")] [log_reagents(target)] with a syringe [log_reagents(src)] at [log_loc(user)].")
+				logTheThing("combat", user, "draws 5 units of reagents from [constructTarget(target,"combat")] [log_reagents(target)] with a syringe [log_reagents(src)] at [log_loc(user)].")
 
 			if(S_INJECT)
 				src.reagents.reaction(target, INGEST, src.amount_per_transfer_from_this)
 				src.reagents.trans_to(target, src.amount_per_transfer_from_this)
 				user.visible_message("<span class='alert'>[user.name] injects [target == user ? himself_or_herself(user) : target.name] with [src]!</span>",\
 				"<span class='notice'>You inject [target == user ? "yourself" : target.name] with [src]!</span>")
-				logTheThing(LOG_COMBAT, user, "injects [constructTarget(target,"combat")] with a [src.name] [log_reagents(src)] at [log_loc(user)].")
+				logTheThing("combat", user, "injects [constructTarget(target,"combat")] with a [src.name] [log_reagents(src)] at [log_loc(user)].")
 
 		user.update_inhands()
 

@@ -1503,7 +1503,9 @@ var/datum/action_controller/actions
 	onEnd()
 		..()
 		if(!isnull(S))
-			user.u_equip(S)
+			if(ismob(owner))
+				var/mob/M = owner
+				M.u_equip(S)
 			S.set_loc(target.loc)
 
 /datum/action/bar/private/spy_steal //Used when a spy tries to steal a large object
