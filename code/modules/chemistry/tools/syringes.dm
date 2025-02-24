@@ -137,15 +137,33 @@
 					return
 
 				if (iscarbon(target) || ismobcritter(target))
-					if (!src.reagents || !src.reagents.total_volume)
-						user.show_text("[src] doesn't contain any reagents.", "red")
-						return
-
 					if (target != user)
-						logTheThing("combat", user, target, "tries to inject [constructTarget(target,"combat")] with a [src] [log_reagents(src)] at [log_loc(user)].")
-						user.visible_message("<span class='alert'><B>[user] is trying to inject [target] with [src]!</B></span>")
-						actions.start(new/datum/action/bar/icon/syringe(target, src, src.icon, src.icon_state), user)
+						if (user.a_intent == INTENT_HARM)
+							logTheThing("combat", user, target, "jabs [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
+							random_brute_damage(target, 5)
+							playsound(user,"sound/impact_sounds/Generic_Stab_1.ogg",50,1)
+							user.visible_message("<span class='alert'><B>[user] jabs [target] with [src]!</B></span>", "<span class='alert'>You jab at [target] with [src]!</span>")
+
+							if(!src.reagents || !src.reagents.total_volume)
+								user.show_text("[src] doesn't contain any reagents.", "red")
+								user.u_equip(src)
+								src.set_loc(target.loc) // Causes you to drop your syringe
+								return
+
+							actions.start(new/datum/action/bar/icon/syringe/jab(target, src, src.icon, src.icon_state), user)
+
+						else
+							if(!src.reagents || !src.reagents.total_volume)
+								user.show_text("[src] doesn't contain any reagents.", "red")
+								return
+
+							logTheThing("combat", user, target, "tries to inject [constructTarget(target,"combat")] with a [src] [log_reagents(src)] at [log_loc(user)].")
+							user.visible_message("<span class='alert'><B>[user] is trying to inject [target] with [src]!</B></span>")
+							actions.start(new/datum/action/bar/icon/syringe(target, src, src.icon, src.icon_state), user)
 					else
+						if(!src.reagents || !src.reagents.total_volume)
+							user.show_text("[src] doesn't contain any reagents.", "red")
+							return
 						syringe_action(user, target)
 					return
 
