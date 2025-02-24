@@ -496,11 +496,11 @@
 	food_effects = list("food_cold", "food_refreshed")
 	value = 7
 
-/obj/item/reagent_containers/food/snacks/plant/melon/george
+/obj/item/reagent_containers/food/snacks/plant/melon/rainbow
 	name = "rainbow melon"
 	crop_prefix = "rainbow "
-	desc = "Sometime in the year 2472 these melons were required to have their name legally changed to protect the not-so-innocent. Also for tax evasion reasons."
-	icon_state = "george-melon"
+	desc = "Just one of those weird melons that do weird melony things, you've seen 'em around."
+	icon_state = "rainbow-melon"
 	throwforce = 0
 	w_class = W_CLASS_NORMAL
 	edible = 0
@@ -509,7 +509,7 @@
 
 	make_reagents()
 		..()
-		reagents.add_reagent("george_melonium",50)
+		reagents.add_reagent("rainbow_melonium",50)
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (iscuttingtool(W))
@@ -542,7 +542,7 @@
 			var/mob/M = hit_atom
 			hit_atom.visible_message("<span class='alert'>[src] explodes from the sheer force of the blow!</span>")
 			playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 100, 1)
-			random_brute_damage(M, 10)//armour won't save you from George Melons
+			random_brute_damage(M, 10)//armour won't save you from Rainbow Melons
 			if (iscarbon(M))
 				M.changeStatus("paralysis", 3 SECONDS)
 				M.changeStatus("stunned", 6 SECONDS)
@@ -551,19 +551,19 @@
 
 /obj/item/reagent_containers/food/snacks/plant/melonslice/george
 	name = "rainbow melon slice"
-	desc = "A slice of a particularly special melon. Previously went by a different name but then it got married or something THIS IS HOW MELON NAMES WORK OKAY"
-	icon_state = "george-melon-slice"
+	desc = "A slice of a particularly special melon."
+	icon_state = "rainbow-melon-slice"
 	throwforce = 5
 	w_class = W_CLASS_TINY
 	amount = 1
 	heal_amt = 2
-	plant_reagent = "george_melonium"
+	plant_reagent = "rainbow_melonium"
 	initial_volume = 30
 	value = 10
 
 	make_reagents()
 		..()
-		reagents.add_reagent("george_melonium",25)
+		reagents.add_reagent("rainbow_melonium",25)
 
 /obj/item/reagent_containers/food/snacks/plant/melon/bowling
 	name = "bowling melon"

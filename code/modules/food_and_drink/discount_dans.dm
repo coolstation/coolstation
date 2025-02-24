@@ -501,7 +501,7 @@
 				src.initial_reagents["UGHFCS"] = 2
 				src.initial_reagents["coffee"] = 4
 				src.initial_reagents["egg"] = 4
-				src.initial_reagents["george_melonium"] = 1 //IT'S OUTTA THE PARK
+				src.initial_reagents["rainbow_melonium"] = 1 //IT'S OUTTA THE PARK
 
 			if (5)
 				src.name = "Corporal Dan's Tee Vee Dinner - Last Meal Flavor" //Your last meal, or else!

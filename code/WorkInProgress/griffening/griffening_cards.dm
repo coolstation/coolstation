@@ -341,25 +341,25 @@
 			randomized_stats = TRUE
 			attributes = GRIFFENING_ATTRIBUTE_NONE
 
-			george_melons
+			small_bart
 				heart
-					card_name = "Heart of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Heart of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
 				brain
-					card_name = "Brain of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Brain of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
 				skull
-					card_name = "Skull of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Skull of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
 				limbs
-					card_name = "Limbs of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Limbs of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
-				card_name = "George Melons"
-				card_data = "This card can only be played if the player holds 'Heart of George Melons', 'Brain of George Melons', 'Skull of George Melons' and 'Limbs of George Melons' in his or her hands. When George Melons is played, the player instantly wins."
+				card_name = "Small Bart"
+				card_data = "This card can only be played if the player holds 'Heart of Small Bart', 'Brain of Small Bart', 'Skull of Small Bart' and 'Limbs of Small Bart' in his or her hands. When Small Bart is played, the player instantly wins."
 
 			beepsky
 				card_name = "Officer Beepsky"

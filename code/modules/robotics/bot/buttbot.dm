@@ -474,7 +474,7 @@
 			if(18) . = "<B>[src]</B> farts up a storm."
 			if(19) . = "<B>[src]</B> farts. It smells like Soylent Surprise!"
 			if(20) . = "<B>[src]</B> farts. It smells like pizza!"
-			if(21) . = "<B>[src]</B> farts. It smells like George Melons' perfume!"
+			if(21) . = "<B>[src]</B> farts. It smells like Small Bart's perfume!"
 			if(22) . = "<B>[src]</B> farts. It smells like the kitchen!"
 			if(23) . = "<B>[src]</B> farts. It smells like medbay in here now!"
 			if(24) . = "<B>[src]</B> farts. It smells like the bridge in here now!"

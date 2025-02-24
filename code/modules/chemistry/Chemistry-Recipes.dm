@@ -3889,7 +3889,7 @@ datum
 			name = "Liquified Space Rubber"
 			id = "flubber"
 			result = "flubber"
-			required_reagents = list("rubber" = 2, "george_melonium" = 1, "sorium" = 1, "superlube" = 1, "radium" = 1)
+			required_reagents = list("rubber" = 2, "rainbow_melonium" = 1, "sorium" = 1, "superlube" = 1, "radium" = 1)
 			result_amount = 5
 			mix_phrase = "The mixture congeals and starts to vibrate <b>powerfully!</b>"
 			mix_sound = 'sound/misc/boing/6.ogg'

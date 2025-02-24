@@ -477,13 +477,6 @@
 				boutput(user, "<span class='notice'>You scribble on the mask until it's filled in.</span>")
 				src.color = P.font_color
 
-/obj/item/clothing/mask/melons
-	name = "flimsy 'George Melons' mask"
-	desc = "Haven't seen that fellow in a while."
-	icon_state = "melons"
-	item_state = "melons"
-	see_face = 0.0
-
 /obj/item/clothing/mask/wrestling
 	name = "wrestling mask"
 	desc = "A mask that will greatly enhance your wrestling prowess! Not, like, <i>physically</i>, but mentally. In your heart. In your soul. Something like that."
