@@ -116,6 +116,13 @@ a {
 #content .innerContent { /* also has: .nano-content */
 	padding: 15px 15px 15px 15px; background-repeat: repeat-x;
 }
+
+.contentFlex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: -13px;
+}
 /* CONTENT AREA END */
 
 /* RESIZE AREAS START */

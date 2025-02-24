@@ -471,7 +471,7 @@ mob/new_player
 		// shut up
 		var/header_thing_chui_toggle = true ? {"
 		<title>Select a Job</title>
-		<window>
+		<div class='contentFlex'><window>
 		<style type='text/css'>
 			body { background: #222; color: white; font-family: Tahoma, sans-serif; }
 		</style>"} : ""
@@ -549,10 +549,11 @@ a.latejoin-card:hover {
 	margin-top: 0.5em;
 }
 .fuck {
-	max-width: 48%;
+	max-width: calc(50% - 12px);
 	display: inline-block;
 	vertical-align: top;
-	margin: 0 1em;
+	margin: calc(12vw - 70px);
+	margin-bottom: 0px;
 	line-height: 1.2;
 }
 </style>
@@ -672,9 +673,9 @@ a.latejoin-card:hover {
 					dat += "<tr><td>"
 					dat += {"<a href='byond://?src=\ref[src];SelectedJob=\ref[J]'><font color=[J.linkcolor]>[J.name]</font></a> ([countJob(J.name)][J.limit == -1 ? "" : "/[J.limit]"])<br>"}
 					dat += "</td></tr>"
-		dat += "</table></div>"
+		dat += "</table></div></window></div>"
 
-		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=660x748", true)
+		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=655x755", true)
 		//if(!bank_menu)
 		//	bank_menu = new
 		//bank_menu.Subscribe( usr.client )
