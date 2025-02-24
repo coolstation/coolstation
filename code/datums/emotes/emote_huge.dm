@@ -149,7 +149,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					if (18) message = "<B>[user]</B> farts up a storm."
 					if (19) message = "<B>[user]</B> farts. It smells like Soylent Surprise!"
 					if (20) message = "<B>[user]</B> farts. It smells like pizza!"
-					if (21) message = "<B>[user]</B> farts. It smells like Small Bart's perfume!"
+					if (21) message = "<B>[user]</B> farts. It smells like Shitty Bill's perfume!"
 					if (22) message = "<B>[user]</B> farts. It smells like the kitchen!"
 					if (23) message = "<B>[user]</B> farts. It smells like medbay in here now!"
 					if (24) message = "<B>[user]</B> farts. It smells like the bridge in here now!"
