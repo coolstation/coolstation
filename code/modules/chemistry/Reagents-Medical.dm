@@ -127,6 +127,11 @@ datum
 							M.losebreath += (5)
 							M.take_toxin_damage(2)
 
+				if (ishuman(M))
+					if (counter > 10 && counter < 60 && probmult(10)) // Has a chance to stop shock
+						var/mob/living/carbon/human/H = M
+						H.cure_disease_by_path(/datum/ailment/malady/shock)
+
 				..()
 				return
 
