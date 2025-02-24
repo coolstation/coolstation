@@ -1453,7 +1453,7 @@ var/datum/action_controller/actions
 
 
 /datum/action/bar/icon/syringe
-	duration = 2 SECONDS
+	duration = 1 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ATTACKED
 	var/mob/mob_owner
 	var/mob/target
@@ -1495,18 +1495,6 @@ var/datum/action_controller/actions
 			return
 		if (!isnull(S))
 			S.syringe_action(owner, target)
-
-/datum/action/bar/icon/syringe/jab
-	duration = 0.2 SECONDS
-	interrupt_flags = INTERRUPT_STUNNED | INTERRUPT_ATTACKED
-
-	onEnd()
-		..()
-		if(!isnull(S))
-			if(ismob(owner))
-				var/mob/M = owner
-				M.u_equip(S)
-			S.set_loc(target.loc)
 
 /datum/action/bar/private/spy_steal //Used when a spy tries to steal a large object
 	duration = 30

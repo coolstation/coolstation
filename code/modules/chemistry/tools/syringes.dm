@@ -141,6 +141,7 @@
 						if (user.a_intent == INTENT_HARM)
 							logTheThing("combat", user, target, "jabs [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
 							random_brute_damage(target, 5)
+							attack_particle(user, target)
 							playsound(user,"sound/impact_sounds/Generic_Stab_1.ogg",50,1)
 							user.visible_message("<span class='alert'><B>[user] jabs [target] with [src]!</B></span>", "<span class='alert'>You jab at [target] with [src]!</span>")
 
@@ -150,7 +151,7 @@
 								src.set_loc(target.loc) // Causes you to drop your syringe
 								return
 
-							actions.start(new/datum/action/bar/icon/syringe/jab(target, src, src.icon, src.icon_state), user)
+							syringe_action(user, target)
 
 						else
 							if(!src.reagents || !src.reagents.total_volume)
