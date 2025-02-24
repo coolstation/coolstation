@@ -231,6 +231,11 @@ a {
   border-left-color: #9a8469;
   border-bottom-color: #9a8469;
 }
+.nano-content.scrollbar-visible {
+    padding-right: 28px !important;
+}
+
+
 .nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
   visibility : visible\9; /* Target only IE7 and IE8 with this hack */
   opacity    : 1;
