@@ -30,7 +30,7 @@
 			sleep(1 SECONDS)
 			user.say_verb("Walk down the right back alley in [station_name(1)], and you can find anything.")
 		else if (istype(user.loc.loc, /area/station/hydroponics))
-			user.say_verb("A gang of space farmers growing psilocybin mushrooms, cannabis, and of course those goddamned george melons.")
+			user.say_verb("A gang of space farmers growing psilocybin mushrooms, cannabis, and of course those goddamned rainbow melons.")
 			sleep(1 SECONDS)
 			user.say_verb("A shady bunch, whose wiles had earned them the trust of many.")
 			sleep(0.8 SECONDS)

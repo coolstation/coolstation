@@ -1360,8 +1360,8 @@
 	onmarket = 0
 
 /datum/commodity/produce/special/gmelon
-	comname = "George Melon"
-	comtype = /obj/item/reagent_containers/food/snacks/plant/melon/george
+	comname = "Rainbow Melon"
+	comtype = /obj/item/reagent_containers/food/snacks/plant/melon/rainbow
 	price = 170
 	baseprice = 170
 	upperfluc = 100
