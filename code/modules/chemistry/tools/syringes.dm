@@ -82,7 +82,7 @@
 						return
 
 					if (reagents.total_volume >= reagents.maximum_volume)
-						boutput(user, "<span class='alert'>The syringe is full.</span>")
+						boutput(user, "<span class='alert'>[src] is full.</span>")
 						return
 
 					if (target != user)
@@ -98,7 +98,7 @@
 					return
 
 				if (reagents.total_volume >= reagents.maximum_volume)
-					boutput(user, "<span class='alert'>The syringe is full.</span>")
+					boutput(user, "<span class='alert'>[src] is full.</span>")
 					return
 
 				if (target.is_open_container() != 1 && !istype(target,/obj/reagent_dispensers))
@@ -108,12 +108,12 @@
 				target.reagents.trans_to(src, 5)
 				user.update_inhands()
 
-				boutput(user, "<span class='notice'>You fill the syringe with 5 units of the solution.</span>")
+				boutput(user, "<span class='notice'>You fill [src] with 5 units of the solution.</span>")
 
 			if (S_INJECT)
 				// drsingh for Cannot read null.total_volume
 				if (!reagents || !reagents.total_volume)
-					boutput(user, "<span class='alert'>The Syringe is empty.</span>")
+					boutput(user, "<span class='alert'>[src] is empty.</span>")
 					return
 
 				if (istype(target, /obj/item/bloodslide))
@@ -145,13 +145,9 @@
 							playsound(user,"sound/impact_sounds/Generic_Stab_1.ogg",50,1)
 							user.visible_message("<span class='alert'><B>[user] jabs [target] with [src]!</B></span>", "<span class='alert'>You jab at [target] with [src]!</span>")
 
-							if(!src.reagents || !src.reagents.total_volume)
-								user.show_text("[src] doesn't contain any reagents.", "red")
-								user.u_equip(src)
-								src.set_loc(target.loc) // Causes you to drop your syringe
-								return
-
 							syringe_action(user, target)
+							user.u_equip(src)
+							src.set_loc(target.loc)
 
 						else
 							if(!src.reagents || !src.reagents.total_volume)
