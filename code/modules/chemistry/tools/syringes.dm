@@ -85,33 +85,12 @@
 						boutput(user, "<span class='alert'>The syringe is full.</span>")
 						return
 
-					var/mob/living/carbon/human/H = target
 					if (target != user)
-						L.visible_message("<span class='alert'><B>[user] is trying to draw blood from [L]!</B></span>")
-
-						if (!do_mob(user, L))
-							if (user && ismob(user))
-								user.show_text("You were interrupted!", "red")
-							return
-						if (!L.blood_id)
-							user.show_text("You can't draw blood from this mob.", "red")
-							return
-						if (reagents.total_volume >= reagents.maximum_volume)
-							boutput(user, "<span class='alert'>The syringe is full.</span>")
-							return
-
-					// Vampires can't use this trick to inflate their blood count, because they can't get more than ~30% of it back.
-					// Also ignore that second container of blood entirely if it's a vampire (Convair880).
-					if (istype(H))
-						if ((isvampire(H) && (H.get_vampire_blood() <= 0)) || (!isvampire(H) && !H.blood_volume))
-							user.show_text("[H]'s veins appear to be completely dry!", "red")
-							return
-					target.visible_message("<span class='alert'>[user] draws blood from [H]!</span>")
-
-					transfer_blood(target, src)
-					user.update_inhands()
-
-					boutput(user, "<span class='notice'>You fill the syringe with 5 units of [target]'s blood.</span>")
+						logTheThing(LOG_COMBAT, user, "tries to draw 5 units of reagents from [constructTarget(target, "combat")] [log_reagents(target)] with a [src] [log_reagents(src)] at [log_loc(user)].")
+						user.visible_message("<span class='alert'><B>[user] is trying to draw blood from [target]!</B></span>")
+						actions.start(new/datum/action/bar/icon/syringe(target, src, src.icon, src.icon_state), user)
+					else
+						syringe_action(user, target)
 					return
 
 				if (!target.reagents.total_volume)
@@ -159,39 +138,34 @@
 
 				if (iscarbon(target) || ismobcritter(target))
 					if (target != user)
-						if (user.a_intent == "harm")
-							for (var/mob/O in AIviewers(world.view, user))
-								O.show_message(text("<span class='alert'><B>[] jabs [] with a syringe!</B></span>", user, target), 1)
+						if (user.a_intent == INTENT_HARM)
 							logTheThing("combat", user, target, "jabs [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
 							random_brute_damage(target, 5)
 							playsound(user,"sound/impact_sounds/Generic_Stab_1.ogg",50,1)
+							user.visible_message("<span class='alert'><B>[user] jabs [target] with [src]!</B></span>", "<span class='alert'>You jab at [target] with [src]!</span>")
 
-							if (!src.reagents || !src.reagents.total_volume)
+							if(!src.reagents || !src.reagents.total_volume)
 								user.show_text("[src] doesn't contain any reagents.", "red")
 								user.u_equip(src)
 								src.set_loc(target.loc) // Causes you to drop your syringe
 								return
 
-							user.u_equip(src)
-							src.set_loc(target.loc)
+							actions.start(new/datum/action/bar/icon/syringe/jab(target, src, src.icon, src.icon_state), user)
 
 						else
-							for (var/mob/O in AIviewers(world.view, user))
-								O.show_message(text("<span class='alert'><B>[] is trying to inject []!</B></span>", user, target), 1)
-							logTheThing("combat", user, target, "tries to inject [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
-
-							if (!do_mob(user, target))
-								if (user && ismob(user))
-									user.show_text("You were interrupted!", "red")
-								return
-							if (!src.reagents || !src.reagents.total_volume)
+							if(!src.reagents || !src.reagents.total_volume)
 								user.show_text("[src] doesn't contain any reagents.", "red")
 								return
 
-							for (var/mob/O in AIviewers(world.view, user))
-								O.show_message(text("<span class='alert'>[] injects [] with the syringe!</span>", user, target), 1)
-
-					src.reagents.reaction(target, INGEST, src.amount_per_transfer_from_this)
+							logTheThing("combat", user, target, "tries to inject [constructTarget(target,"combat")] with a [src] [log_reagents(src)] at [log_loc(user)].")
+							user.visible_message("<span class='alert'><B>[user] is trying to inject [target] with [src]!</B></span>")
+							actions.start(new/datum/action/bar/icon/syringe(target, src, src.icon, src.icon_state), user)
+					else
+						if(!src.reagents || !src.reagents.total_volume)
+							user.show_text("[src] doesn't contain any reagents.", "red")
+							return
+						syringe_action(user, target)
+					return
 
 				if (istype(target,/obj/item/reagent_containers/patch))
 					var/obj/item/reagent_containers/patch/P = target
@@ -201,25 +175,47 @@
 						boutput(user, "<span class='alert'>You break [P]'s tamper-proof seal!</span>")
 						P.medical = 0
 
-				SPAWN_DBG(0.5 SECONDS)
-					if (src?.reagents && target?.reagents)
-						logTheThing("combat", user, target, "injects [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
-						// Convair880: Seems more efficient than separate calls. I believe this shouldn't clutter up the logs, as the number of targets you can inject is limited.
-						// Also wraps up injecting food (advertised in the 'Tip of the Day' list) and transferring chems to other containers (i.e. brought in line with beakers and droppers).
+				if (src?.reagents && target?.reagents)
+					logTheThing("combat", user, target, "injects [constructTarget(target,"combat")] with a [src.name] [log_reagents(src)] at [log_loc(user)].")
+					// Convair880: Seems more efficient than separate calls. I believe this shouldn't clutter up the logs, as the number of targets you can inject is limited.
+					// Also wraps up injecting food (advertised in the 'Tip of the Day' list) and transferring chems to other containers (i.e. brought in line with beakers and droppers).
+					src.reagents.trans_to(target, src.amount_per_transfer_from_this)
+					user.update_inhands()
 
-						src.reagents.trans_to(target, 5)
-						user.update_inhands()
+					if (istype(target,/obj/item/reagent_containers/patch))
+						//patch auto-naming thing
+						var/patch_name = ""
+						for (var/reagent_id in target.reagents.reagent_list)
+							patch_name += "[reagent_id]-"
+						patch_name += "patch"
+						target.name = patch_name
 
-						if (istype(target,/obj/item/reagent_containers/patch))
-							//patch auto-naming thing
-							var/patch_name = ""
-							for (var/reagent_id in target.reagents.reagent_list)
-								patch_name += "[reagent_id]-"
-							patch_name += "patch"
-							target.name = patch_name
-
-						boutput(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
 		return
+
+	proc/syringe_action(mob/user, mob/target)
+		switch(src.mode)
+			if(S_DRAW)
+				// Vampires can't use this trick to inflate their blood count, because they can't get more than ~30% of it back.
+				// Also ignore that second container of blood entirely if it's a vampire (Convair880).
+				var/mob/living/carbon/human/H = target
+				if (istype(H))
+					if ((isvampire(H) && (H.get_vampire_blood() <= 0)) || (!isvampire(H) && (H.blood_volume + H.reagents.total_volume == 0)))
+						user.show_text("[H]'s veins appear to be completely dry!", "red")
+						return
+
+				transfer_blood(target, src, src.amount_per_transfer_from_this)
+				user.visible_message("<span class='alert'>[user.name] draws blood from [target == user ? himself_or_herself(user) : target.name] with [src]!</span>",\
+				"<span class='notice'>You fill [src] with [src.amount_per_transfer_from_this] units of [target == user ? "your own" : target.name + "'s"] blood.</span>")
+				logTheThing(LOG_COMBAT, user, "draws 5 units of reagents from [constructTarget(target,"combat")] [log_reagents(target)] with a syringe [log_reagents(src)] at [log_loc(user)].")
+
+			if(S_INJECT)
+				src.reagents.reaction(target, INGEST, src.amount_per_transfer_from_this)
+				src.reagents.trans_to(target, src.amount_per_transfer_from_this)
+				user.visible_message("<span class='alert'>[user.name] injects [target == user ? himself_or_herself(user) : target.name] with [src]!</span>",\
+				"<span class='notice'>You inject [target == user ? "yourself" : target.name] with [src]!</span>")
+				logTheThing(LOG_COMBAT, user, "injects [constructTarget(target,"combat")] with a [src.name] [log_reagents(src)] at [log_loc(user)].")
+
+		user.update_inhands()
 
 /* =================================================== */
 /* -------------------- Sub-Types -------------------- */

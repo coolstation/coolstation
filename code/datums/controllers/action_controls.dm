@@ -1452,6 +1452,60 @@ var/datum/action_controller/actions
 			mop.clean(target, owner)
 
 
+/datum/action/bar/icon/syringe
+	duration = 2 SECONDS
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ATTACKED
+	var/mob/mob_owner
+	var/mob/target
+	var/obj/item/reagent_containers/syringe/S
+
+	New(var/mob/target, var/item, var/icon, var/icon_state)
+		..()
+		src.target = target
+		if (istype(item, /obj/item/reagent_containers/syringe))
+			S = item
+		else
+			logTheThing("debug", src, null, "/datum/action/bar/icon/syringe called with invalid type [item].")
+		src.icon = icon
+		src.icon_state = icon_state
+
+
+	onStart()
+		if (!ismob(owner))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		src.mob_owner = owner
+
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		..()
+
+	onUpdate()
+		..()
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onEnd()
+		..()
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!isnull(S))
+			S.syringe_action(owner, target)
+
+/datum/action/bar/icon/syringe/jab
+	duration = 0.2 SECONDS
+	interrupt_flags = INTERRUPT_STUNNED | INTERRUPT_ATTACKED
+
+	onEnd()
+		..()
+		if(!isnull(S))
+			user.u_equip(S)
+			S.set_loc(target.loc)
+
 /datum/action/bar/private/spy_steal //Used when a spy tries to steal a large object
 	duration = 30
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
