@@ -44,6 +44,10 @@ chui/theme
 		if( params["css"] )
 			generated += "<link rel='stylesheet' type='text/css' href='[resource("css/font-awesome.css")]'>"
 
+		if( params["precontent"] )
+			var/precontent = params["precontent"]
+			generated += precontent
+
 			for( var/key in params["css"] )
 				generated += "<link rel='stylesheet' type='text/css' href='[resource(key)]'>"
 
