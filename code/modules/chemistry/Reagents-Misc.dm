@@ -646,6 +646,16 @@ datum
 								T.assume_air(lowertemp)
 					qdel(hotspot)
 
+				if (target.active_liquid?.reagents?.is_combusting)
+					target.active_liquid.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
+					if(target.active_liquid.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+						target.active_liquid.reagents.stop_combusting()
+
+				if (target.active_airborne_liquid?.reagents?.is_combusting)
+					target.active_airborne_liquid.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
+					if(target.active_liquid.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+						target.active_liquid.reagents.stop_combusting()
+
 				var/obj/fire_foam/F = (locate(/obj/fire_foam) in target)
 				if (!F)
 					F = new()

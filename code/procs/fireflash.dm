@@ -180,7 +180,8 @@
 var/list/obj/hotspot/fireflash/fireflashes = list()
 
 /obj/hotspot/fireflash
-	plane = PLANE_NOSHADOW_BELOW
+	layer = FIREFLASH_LAYER
+	plane = PLANE_DEFAULT
 	var/time_to_die
 	cleanup_active = FALSE
 

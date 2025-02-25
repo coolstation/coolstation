@@ -26,11 +26,13 @@
 			M.drop_item()
 			if (prob(25))
 				M.changeStatus("stunned", 1 SECOND)
-			M.lose_breath(1)
-			M.emote("cough")
+			if(!ON_COOLDOWN(M, "bad_smoke_cough", 0.2 SECONDS))
+				if(M.losebreath < 15)
+					M.lose_breath(3)
+				M.emote("cough")
 	return
 
-/obj/effects/bad_smoke/HasEntered(mob/living/carbon/M as mob )
+/obj/effects/bad_smoke/HasEntered(mob/living/carbon/M as mob)
 	..()
 	if(iscarbon(M))
 		if (issmokeimmune(M))
@@ -41,6 +43,7 @@
 				M.changeStatus("stunned", 1 SECOND)
 			M.take_oxygen_deprivation(1)
 			if(!ON_COOLDOWN(M, "bad_smoke_cough", 0.2 SECONDS))
-				M.lose_breath(3)
+				if(M.losebreath < 15)
+					M.lose_breath(3)
 				M.emote("cough")
 	return
