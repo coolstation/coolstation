@@ -431,11 +431,12 @@
 		..()
 		var/obj/item/reagent_containers/glass/B1 = new(src)
 		var/obj/item/reagent_containers/glass/B2 = new(src)
-		B1.reagents.add_reagent("infernite", 25)
+		B1.reagents.add_reagent("infernite", 10)
 		B1.reagents.add_reagent("sugar",10)
 
 		B2.reagents.add_reagent("phosphorus", 10)
 		B2.reagents.add_reagent("potassium", 10)
+		B2.reagents.add_reagent("phlogiston", 10)
 		beakers += B1
 		beakers += B2
 
