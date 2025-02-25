@@ -1221,9 +1221,9 @@ datum
 					if (method == TOUCH)
 						if (isrobot(M))
 							var/mob/living/silicon/robot/R = M
-							R.changeStatus("freshly_oiled", (volume * 5)) // You need at least 30u to get max duration
-							boutput(R, SPAN_NOTICE("Your joints and servos begin to run more smoothly."))
-						else if (ishuman(M))
+							R.add_oil(volume * 2)
+							boutput(R, "<span class='notice'>Your joints and servos begin to run more smoothly.</span>")
+						else
 							boutput(M, "<span class='alert'>You feel greasy and gross.</span>")
 				return
 
@@ -1239,7 +1239,7 @@ datum
 					if (!locate(/obj/decal/cleanable/oil) in T && volume <= 20)
 						playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 50, TRUE)
 						switch(volume)
-							if (0 to 0.5)
+							if (0 to 5)
 								if (prob(volume * 10))
 									make_cleanable(/obj/decal/cleanable/oil/streak,T)
 							if (5 to 12)
