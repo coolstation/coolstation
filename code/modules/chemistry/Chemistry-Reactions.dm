@@ -213,10 +213,9 @@
 		M.apply_flash(anim_dur, stunned, stunned, 0, eye_blurry, eye_damage, stamina_damage = stam_damage)
 
 /// Exposes reagents to open flames
-/proc/open_flame_reaction(datum/reagents/FG)
+/proc/open_flame_reaction(datum/reagents/FG, is_airborne)
 	if(FG.is_combusting)
 		return
-	var/is_airborne = istype(FG, /datum/fluid_group/airborne)
 	for (var/reagent_id in FG.reagent_list)
 		var/datum/reagent/reagent = FG.reagent_list[reagent_id]
 		if (reagent.combusts_on_fire_contact)

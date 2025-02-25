@@ -14,7 +14,7 @@
 	if (src.active_liquid && src.active_liquid.group)
 		open_flame_reaction(src.active_liquid.group.reagents)
 	if (src.active_airborne_liquid && src.active_airborne_liquid.group)
-		open_flame_reaction(src.active_airborne_liquid.group.reagents)
+		open_flame_reaction(src.active_airborne_liquid.group.reagents, TRUE)
 	if(!ON_COOLDOWN(src, "hotspot_expose_to_atoms__1", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__2", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__3", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__4", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__5", 1 SECOND))
 		if (electric) //mbc : i'm putting electric zaps on here because eleczaps ALWAYS happen alongside hotspot expose and i dont want to loop all atoms twice
 			for (var/atom/item in src) //I hate having to add this here too but too many things use hotspot_expose. This might cause lag on large fires.
@@ -26,8 +26,6 @@
 				item.temperature_expose(null, exposed_temperature, exposed_volume)
 				if(item.reagents && item.is_open_container())
 					open_flame_reaction(item.reagents)
-
-
 
 /turf/hotspot_expose(exposed_temperature, exposed_volume, set_own_hotspot, electric = 0)
 	. = ..()
@@ -281,28 +279,3 @@
 
 	ex_act()
 		return
-
-/obj/hotspot/fireflash
-	process(list/turf/possible_spread)
-		if (just_spawned)
-			just_spawned = 0
-			return 0
-
-		var/turf/floor/location = loc
-		if (!istype(location) || (locate(/obj/fire_foam) in location))
-			qdel(src)
-			return 0
-
-		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
-			qdel(src)
-			return 0
-
-		for (var/mob/living/L in loc)
-			L.update_burning(min(max(temperature / 60, 5),33))
-
-		if (volume > (CELL_VOLUME * 0.4))
-			icon_state = "2"
-		else
-			icon_state = "1"
-
-		return 1

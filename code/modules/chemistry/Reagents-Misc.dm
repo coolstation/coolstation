@@ -932,6 +932,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			value = 3 // 1c + 1c + 1c
+			burn_volatility = -6
 
 		ectoplasm
 			name = "ectoplasm"

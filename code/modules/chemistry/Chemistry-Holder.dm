@@ -381,6 +381,7 @@ datum
 				return amount
 
 			if (update_target_reagents)
+				target_reagents.is_combusting = src.is_combusting
 				target_reagents.update_total()
 				target_reagents.handle_reactions()
 				if(src.is_combusting)
@@ -626,13 +627,37 @@ datum
 				if(src.my_atom)
 					src.my_atom.visible_message("<span class='alert'>The mixture in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
 				combusting_reagent_holders += src
+
+				var/turf/T = get_turf(src.my_atom)
+				var/mob/our_user = null
+				var/our_fingerprints = null
+
+				// Sadly, we don't automatically get a mob reference under most circumstances.
+				// If there's an existing lookup proc and/or better solution, I haven't found it yet.
+				// If everything else fails, maybe there are fingerprints on the container for us to check though?
+				if (my_atom)
+					if (ismob(my_atom)) // Our mob, the container.
+						our_user = my_atom
+					else if (my_atom && (ismob(my_atom.loc))) // Backpacks etc.
+						our_user = my_atom.loc
+					else
+						our_user = usr
+						if (my_atom.fingerprintslast) // Our container. You don't necessarily have to pick it up to transfer stuff.
+							our_fingerprints = my_atom.fingerprintslast
+						else if (my_atom.loc.fingerprintslast) // Backpacks etc.
+							our_fingerprints = my_atom.loc.fingerprintslast
+				if (our_user && ismob(our_user))
+					logTheThing("combat", our_user, null, "Combustion started ([my_atom ? log_reagents(my_atom) : log_reagents(src)]) at [T ? "[log_loc(T)]" : "null"].")
+				else
+					logTheThing("combat", our_user, null, "Combustion started ([my_atom ? log_reagents(my_atom) : log_reagents(src)]) at [T ? "[log_loc(T)]" : "null"].[our_fingerprints ? " Container last touched by: [our_fingerprints]." : ""]")
+
 			src.is_combusting = TRUE
 
 		proc/pressurized_open()
 			if (src.combustible_volume)
 				src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays pressurized flames everywhere!</span>",blind_message = "<span class='alert'>You hear a fiery hiss!", group = "pressure_venting_\ref[src]")
 				var/fireflash_size = clamp(src.combustible_pressure * src.composite_volatility / 50, 0, 4)
-				fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, 0)
+				fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_speed / (2 * fireflash_size))
 				src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 15)
 			src.combustible_pressure = 0
 
@@ -655,17 +680,17 @@ datum
 					if (6 to 15)
 						burn_speed *= 1.25
 						for (var/turf/T in src.covered_turf())
-							fireflash_s(T, 0, src.composite_combust_temp, 0)
+							fireflash_s(T, 0, src.composite_combust_temp)
 						if (prob(burn_volatility * 5) && length(src.covered_turf())) // from 30 to 75% chance
 							var/turf/chosen_turf = pick(src.covered_turf()) // chance to cause an additional, brighter fireball
-							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, 0)
+							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 					if (15 to INFINITY)
 						burn_speed *= 2
 						for (var/turf/T in src.covered_turf())
 							fireflash_sm(T, 0, src.composite_combust_temp, 0)
 						if (prob((burn_volatility) * 2 + 40) && length(src.covered_turf())) // from 70 to 100% chance
 							var/turf/chosen_turf = pick(src.covered_turf()) // chance to cause an additional, brighter fireball
-							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, 0)
+							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 							if (prob(50))
 								chosen_turf = pick(src.covered_turf()) // and 50% after that to cause an additional small explosion
 								explosion(chosen_turf, chosen_turf, -1,-1,(burn_volatility - 14)/6, (burn_volatility - 14)/3)
@@ -688,6 +713,8 @@ datum
 					src.pressurized_open()
 				var/continue_burn = FALSE
 				var/burn_volatility = src.composite_volatility * clamp((src.combustible_volume ** 0.25) / 3, 0.35, 1.25)
+				if(src.total_temperature > (T0C + 700))
+					burn_volatility += src.total_temperature / (T0C + 700) - 1
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
 				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
@@ -699,14 +726,14 @@ datum
 					if (5 to 14) // Very spicy fire that maybe breaks stuff
 						burn_speed *= 2
 						var/fireflash_size = clamp(((burn_volatility - 5) / 3), 0, 2)
-						fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, 0)
+						fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size))
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
 					if (14 to INFINITY) // splatter chems and break
 						var/turf/T = get_turf(src.my_atom)
 						var/explosion_size = clamp(((burn_volatility - 5) / 3), 0, 4)
-						fireflash_sm(T, explosion_size, src.composite_combust_temp, 0)
+						fireflash_sm(T, explosion_size, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size))
 						explosion_size = clamp(((burn_volatility - 14) * (combustible_volume ** 0.33) / 3), 0, 6)
 						explosion(src.my_atom, T, -1,-1,explosion_size/2,explosion_size)
 						if (istype(src.my_atom, /obj))
@@ -752,9 +779,9 @@ datum
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
 						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 6, 0.25, 1.25), 1, 7)
-						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
+						M.visible_message("<span class='alert'><b>[M]</b> explodes!</span>",self_message = "<span class='combat bold'>You explode!<span class='alert'>", blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size))
 						burn_speed = INFINITY
 
 				else
@@ -764,7 +791,8 @@ datum
 
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
-							fireflash_s(get_turf(src.my_atom), max(round(src.combustible_pressure) / 3 - 2, 0), src.composite_combust_temp, 0)
+							var/fireflash_size = max(round(src.combustible_pressure) / 3 - 2, 0)
+							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (3 * fireflash_size))
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
 							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
@@ -774,7 +802,7 @@ datum
 						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 10, 0.25, 1.25), 1, 8)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, 0)
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size))
 						if (isobj(my_atom))
 							var/obj/O = my_atom
 							if (!O.shatter_chemically(projectiles = TRUE))

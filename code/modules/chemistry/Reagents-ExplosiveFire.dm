@@ -651,9 +651,9 @@ datum
 			description = "A highly flammable blend of basic hydrocarbons, mostly Acetylene. Useful for both welding and organic chemistry, and can be fortified into a heavier oil."
 			reagent_state = LIQUID
 			volatility = 1
-			fluid_r = 0
-			fluid_g = 0
-			fluid_b = 0
+			fluid_r = 175
+			fluid_g = 130
+			fluid_b = 20
 			transparency = 230
 			viscosity = 0.2
 			minimum_reaction_temperature = T0C + 200
@@ -674,14 +674,14 @@ datum
 			do_burn(reacting_volume)
 				if (istype(holder,/datum/reagents/fluid_group))
 					var/list/covered = holder.covered_turf()
-					if (prob(5 + smoke_counter))
+					if (length(covered) && prob(5 + smoke_counter))
 						var/turf/location = pick(covered)
 						var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
 						smoke.set_up(max(round(length(covered)/3), 1), 0, location)
 						smoke.start()
 						smoke_counter = 0
 					else
-						smoke_counter += reacting_volume * 2
+						smoke_counter += reacting_volume
 				if (holder.my_atom && holder.my_atom.is_open_container())
 					if (prob(5 + smoke_counter) && src.volume >= 20)
 						var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
