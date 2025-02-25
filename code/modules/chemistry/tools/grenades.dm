@@ -442,7 +442,7 @@
 
 /obj/item/chem_grenade/very_incendiary
 	name = "high range incendiary grenade"
-	desc = "A rather volatile grenade that creates a large fire."
+	desc = "A variant of the incendiary grenade that creates a larger but less intense fire."
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "incendiary-highrange"
 	icon_state_armed = "incendiary-highrange1"
