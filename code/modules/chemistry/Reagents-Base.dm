@@ -333,6 +333,10 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			flammable_influence = TRUE
+			burn_speed = 3
+			burn_temperature = 3000
+			burn_volatility = 4
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 10)
@@ -757,6 +761,9 @@ datum
 			minimum_reaction_temperature = -INFINITY
 			target_organs = list("left_kidney", "right_kidney")
 			heat_capacity = 400
+			reagent_state = LIQUID
+			flammable_influence = TRUE
+			burn_volatility = -5
 #ifdef UNDERWATER_MAP
 			block_slippy = 1
 			description = "A little strange. Not like any water you've seen. But definitely OSHA approved."

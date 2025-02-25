@@ -625,11 +625,15 @@ datum
 			transparency = 200
 			value = 3 // 1 1 1
 			flammable_influence = TRUE
-			burn_volatility = -10 // yes
+			burn_volatility = -20 // yes
 			viscosity = 0.14
 
 			reaction_turf(var/turf/target, var/volume)
-				var/obj/hotspot = (locate(/obj/hotspot) in target)
+				var/obj/hotspot/fireflash/fireflash = (locate(/obj/hotspot/fireflash) in target)
+				if(fireflash)
+					qdel(fireflash)
+
+				var/obj/hotspot/hotspot = target.active_hotspot
 				if (hotspot)
 					if(issimulatedturf(target))
 						var/turf/T = target
@@ -653,6 +657,10 @@ datum
 
 			reaction_obj(var/obj/item/O, var/volume)
 				if (istype(O))
+					if (O.reagents && O.reagents.is_combusting)
+						O.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
+						if(O.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+							O.reagents.stop_combusting()
 					if (O.burning)
 						O.combust_ended()
 				return

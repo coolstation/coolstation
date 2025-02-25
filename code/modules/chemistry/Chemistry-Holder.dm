@@ -622,14 +622,16 @@ datum
 
 		proc/stop_combusting()
 			if(src.is_combusting)
+				if(src.my_atom)
+					src.my_atom.visible_message("<span class='notice'>[src.my_atom] stops burning!</span>")
 				src.is_combusting = FALSE
 				src.combustible_pressure = 0
 				combusting_reagent_holders -= src
 
 		proc/start_combusting() // Starts combustion
-			if (!src.is_combusting)
+			if (!src.is_combusting && src.composite_volatility > 0.5)
 				if(src.my_atom)
-					src.my_atom.visible_message("<span class='alert'>The mixture in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
+					src.my_atom.visible_message("<span class='alert'>The chemicals in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
 				combusting_reagent_holders += src
 				src.is_combusting = TRUE
 				src.process_combustion() // one free to get the party started fast
@@ -668,9 +670,7 @@ datum
 		proc/process_combustion(mult = 1) //Handles any chem that burns
 			// Smoke and pools burning
 			if (istype(src,/datum/reagents/fluid_group))
-				var/covered_area = 0
-				for (var/turf/T in src.covered_turf())
-					covered_area += 1
+				var/covered_area = length(src.covered_turf())
 
 				var/continue_burn = FALSE
 				var/burn_volatility = src.composite_volatility *  clamp(src.combustible_volume / (40 * max(1, covered_area)), 0.3, 1)
