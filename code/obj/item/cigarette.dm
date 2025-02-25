@@ -1146,8 +1146,8 @@
 
 	New()
 		..()
-		src.create_reagents(100)
-		reagents.add_reagent("fuel", 100)
+		src.create_reagents(10)
+		reagents.add_reagent("fuel", 10)
 
 		src.setItemSpecial(/datum/item_special/flame)
 		return
@@ -1266,7 +1266,7 @@
 					src.deactivate(null)
 				return
 			if (!infinite_fuel && reagents.get_reagent_amount("fuel"))
-				reagents.remove_reagent("fuel", 1)
+				reagents.remove_reagent("fuel", 0.2)
 			var/turf/location = src.loc
 			if (ismob(location))
 				var/mob/M = location
@@ -1290,7 +1290,7 @@
 
 	firesource_interact()
 		if (!infinite_fuel && reagents.get_reagent_amount("fuel"))
-			reagents.remove_reagent("fuel", 1)
+			reagents.remove_reagent("fuel", 0.4)
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
