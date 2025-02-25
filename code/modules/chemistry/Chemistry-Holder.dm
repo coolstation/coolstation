@@ -722,8 +722,14 @@ datum
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
 				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
+
 				if (!ON_COOLDOWN(my_atom, "internal_fire_1", (ceil((11 - src.combustible_pressure) / 2) SECONDS)))
 					particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, src.combustible_pressure))
+
+				if (!ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
+					src.trans_to(src.my_atom.loc,src.combustible_volume * burn_volatility / 200)
+					src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays burning chemicals!</span>", blind_message = "<span class='alert'>You hear a hissing splatter!</span>", group = "splatter_chem_fire_\ref[src]")
+
 				switch(burn_volatility)
 					if (2 to 5) // Unsafe, leaking flames
 						fireflash_s(get_turf(src.my_atom), 0, src.composite_combust_temp)
