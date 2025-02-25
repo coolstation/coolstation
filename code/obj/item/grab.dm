@@ -862,7 +862,7 @@
 
 	New()
 		..()
-		src.create_reagents(10)
+		src.create_reagents(30)
 
 	disposing()
 		..()
@@ -871,9 +871,8 @@
 
 	process_grab(var/mult = 1)
 		..()
-		if (src.chokehold && src.reagents && src.reagents.total_volume > 0 && chokehold.state == GRAB_KILL && iscarbon(src.chokehold.affecting))
-			src.reagents.reaction(chokehold.affecting, INGEST, 0.5 * mult)
-			src.reagents.trans_to(chokehold.affecting, 0.5 * mult)
+		if (src.chokehold && src.reagents && src.reagents.total_volume > 0 && chokehold.state >= GRAB_AGGRESSIVE && iscarbon(src.chokehold.affecting))
+			src.reagents.trans_to(chokehold.affecting, 2 * mult)
 
 	is_open_container()
 		.= 1
