@@ -415,10 +415,11 @@ datum
 			burn_speed = 3
 			burn_temperature = 3500
 			burn_volatility = 14
+			minimum_reaction_temperature = -INFINITY
 
 			reaction_turf(var/turf/T, var/volume)
 				. = ..()
-				if (holder && holder.total_temperature)
+				if (holder && holder.total_temperature >= minimum_reaction_temperature)
 					holder.start_combusting()
 
 			reaction_temperature(exposed_temperature, exposed_volume)

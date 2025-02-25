@@ -23,6 +23,7 @@
 			hotspot.set_loc(T)
 
 		hotspot.volume = 400
+		hotspot.set_real_color()
 		T.hotspot_expose(hotspot.temperature, hotspot.volume)
 
 /*// experimental thing to let temporary hotspots affect atmos
@@ -103,6 +104,7 @@
 			hotspot.set_loc(T)
 
 		hotspot.volume = 400
+		hotspot.set_real_color()
 		T.hotspot_expose(hotspot.temperature, hotspot.volume)
 
 		/*else if (existing_hotspot.temperature < temp - dist * falloff)

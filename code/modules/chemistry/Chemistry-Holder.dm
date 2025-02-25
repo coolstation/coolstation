@@ -726,14 +726,14 @@ datum
 					if (5 to 14) // Very spicy fire that maybe breaks stuff
 						burn_speed *= 2
 						var/fireflash_size = clamp(((burn_volatility - 5) / 3), 0, 2)
-						fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size))
+						fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1))
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
 					if (14 to INFINITY) // splatter chems and break
 						var/turf/T = get_turf(src.my_atom)
 						var/explosion_size = clamp(((burn_volatility - 5) / 3), 0, 4)
-						fireflash_sm(T, explosion_size, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size))
+						fireflash_sm(T, explosion_size, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size + 1))
 						explosion_size = clamp(((burn_volatility - 14) * (combustible_volume ** 0.33) / 3), 0, 6)
 						explosion(src.my_atom, T, -1,-1,explosion_size/2,explosion_size)
 						if (istype(src.my_atom, /obj))
@@ -781,7 +781,7 @@ datum
 						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 6, 0.25, 1.25), 1, 7)
 						M.visible_message("<span class='alert'><b>[M]</b> explodes!</span>",self_message = "<span class='combat bold'>You explode!<span class='alert'>", blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size))
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1))
 						burn_speed = INFINITY
 
 				else
@@ -792,7 +792,7 @@ datum
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
 							var/fireflash_size = max(round(src.combustible_pressure) / 3 - 2, 0)
-							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (3 * fireflash_size))
+							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1))
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
 							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
@@ -802,7 +802,7 @@ datum
 						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 10, 0.25, 1.25), 1, 8)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size))
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1))
 						if (isobj(my_atom))
 							var/obj/O = my_atom
 							if (!O.shatter_chemically(projectiles = TRUE))
