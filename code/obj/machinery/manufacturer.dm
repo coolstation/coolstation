@@ -127,6 +127,14 @@
 	//We'll probably have to handle having multiple appendices the moment there's more than one type, but not now. uwu
 	var/obj/machinery/manufacturer_attachment/appendix = null
 
+#define PC_BROWSER_RESOURCE(x) resource(x, null)
+#define PC_CSS_TAGGER(x) ("<link rel=\"stylesheet\" href=\"" + x + "\">")
+#define PC_CSS_RESOURCE(x) PC_BROWSER_RESOURCE(x + ".css\">")
+#define PC_CHUI_CSS(x) PC_CSS_RESOURCE(x + "-chui")
+#define PC_UNSTYLED_CSS(x) PC_CSS_RESOURCE(x + "-html")
+#define PC_USER_PREF_CSS(x) (user.client && !user.client.use_chui) ? PC_CSS_TAGGER(PC_UNSTYLED_CSS(x)) : PC_CSS_TAGGER(PC_CHUI_CSS(x))
+
+
 #define WIRE_EXTEND 1
 #define WIRE_POWER 2
 #define WIRE_MALF 3
@@ -318,126 +326,7 @@
 
 		var/HTML = {"
 		<title>[src.name]</title>
-		<style type='text/css'>
 
-			/* will probaby break chui, dont care */
-			body { background: #222; color: white; font-family: Tahoma, sans-serif; }
-			a { color: #88f; }
-
-			.l { text-align: left; } .r { text-align: right; } .c { text-align: center; }
-			.buttonlink { background: #66c; min-width: 1.1em; height: 1.2em; padding: 0.2em 0.2em; margin-bottom: 2px; border-radius: 4px; font-size: 90%; color: white; text-decoration: none; display: inline-block; vertical-align: middle; }
-			thead { background: #555555; }
-
-			table {
-				border-collapse: collapse;
-				width: 100%;
-				}
-			td, th { padding: 0.2em; 0.5em; }
-			.outline td, .outline th {
-				border: 1px solid #666;
-			}
-
-			img, a img {
-				border: 0;
-				}
-
-			#info {
-				position: absolute;
-				right: 0.5em;
-				top: 0;
-				width: 25%;
-				padding: 0.5em;
-				}
-
-			#products {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 73%;
-				padding: 0.25em;
-			}
-
-			.queue, .product {
-				position: relative;
-				display: inline-block;
-				width: 12em;
-				padding: 0.25em 0.5em;
-				border-radius: 5px;
-				margin: 0.5em;
-				background: #555;
-				box-shadow: 3px 3px 0 2px #000;
-				}
-
-			.queue {
-				vertical-align: middle;
-				clear: both;
-				}
-			.queue .icon {
-				float: left;
-				margin: 0.2em;
-				}
-			.product {
-				vertical-align: top;
-				text-align: center;
-				}
-			.product .time {
-				position: absolute;
-				bottom: 0.3em;
-				right: 0.3em;
-				}
-			.product .mats {
-				position: absolute;
-				bottom: 0.3em;
-				left: 0.3em;
-				}
-			.product .icon {
-				display: block;
-				height: 64px;
-				width: 64px;
-				margin: 0.2em auto 0.5em auto;
-				-ms-interpolation-mode: nearest-neighbor; /* pixels go cronch */
-				}
-			.product.disabled {
-				background: #333;
-				color: #aaa;
-			}
-			.required {
-				display: none;
-				}
-
-			.product:hover {
-				cursor: pointer;
-				background: #666;
-			}
-			.product:hover .required {
-				display: block;
-				position: absolute;
-				left: 0;
-				right: 0;
-				}
-			.product .delete {
-				color: #c44;
-				background: #222;
-				padding: 0.25em 0.5em;
-				border-radius: 10px;
-				}
-			.required div {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				background: #333;
-				border: 1px solid #888888;
-				padding: 0.25em 0.5em;
-				margin: 0.25em 0.5em;
-				font-size: 80%;
-				text-align: left;
-				border-radius: 5px;
-				}
-			.mat-missing {
-				color: #f66;
-			}
-		</style>
 		<script type="text/javascript">
 			function product(ref) {
 				window.location = "?src=\ref[src];disp=" + ref;
@@ -594,7 +483,7 @@
 		dat += build_control_panel(user)
 
 
-		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600")
+		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600;precontent=[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]")
 		onclose(user, "manufact")
 
 		interact_particle(user,src)
