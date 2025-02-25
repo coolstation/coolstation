@@ -159,7 +159,7 @@ datum
 			addiction_min = 15
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 4
 			burn_temperature = 2200

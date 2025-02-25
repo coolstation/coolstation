@@ -19,7 +19,7 @@ datum
 			transparency = 175
 			hygiene_value = 1 // with purging fire
 			viscosity = 0.7
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2
 			burn_temperature = 2500
@@ -90,7 +90,7 @@ datum
 			fluid_g = 100
 			transparency = 150
 			viscosity = 0.8
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 0.35
 			burn_temperature = 1200
@@ -159,7 +159,7 @@ datum
 			transparency = 255
 			viscosity = 0.4
 			volatility = 2
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 0.5
 			burn_temperature = 5000
@@ -410,12 +410,11 @@ datum
 			dispersal = 2
 			hygiene_value = 2 // with purging fire
 			viscosity = 0.5
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 3
 			burn_temperature = 3500
 			burn_volatility = 14
-			minimum_reaction_temperature = -INFINITY
 
 			reaction_turf(var/turf/T, var/volume)
 				. = ..()
@@ -482,7 +481,7 @@ datum
 			depletion_rate = 1.2
 			viscosity = 0.6
 			volatility = 4
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2.5
 			burn_temperature = 9000
@@ -659,7 +658,7 @@ datum
 			minimum_reaction_temperature = T0C + 200
 			depletion_rate = 0.6
 			heat_capacity = 5
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 1
 			burn_temperature = 1300

@@ -135,7 +135,7 @@ datum
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
 			overdose = 100 // ethanol poisoning
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
 			burn_temperature = 900
@@ -412,7 +412,7 @@ datum
 			id = "plasma"
 			description = "The liquid phase of an unusual extraterrestrial compound."
 			reagent_state = LIQUID
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2
 			burn_temperature = 2700

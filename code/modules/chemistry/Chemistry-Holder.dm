@@ -627,6 +627,8 @@ datum
 				if(src.my_atom)
 					src.my_atom.visible_message("<span class='alert'>The mixture in [src.my_atom] begins burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
 				combusting_reagent_holders += src
+				src.is_combusting = TRUE
+				src.process_combustion() // one free to get the party started fast
 
 				var/turf/T = get_turf(src.my_atom)
 				var/mob/our_user = null
@@ -650,8 +652,6 @@ datum
 					logTheThing("combat", our_user, null, "Combustion started ([my_atom ? log_reagents(my_atom) : log_reagents(src)]) at [T ? "[log_loc(T)]" : "null"].")
 				else
 					logTheThing("combat", our_user, null, "Combustion started ([my_atom ? log_reagents(my_atom) : log_reagents(src)]) at [T ? "[log_loc(T)]" : "null"].[our_fingerprints ? " Container last touched by: [our_fingerprints]." : ""]")
-
-			src.is_combusting = TRUE
 
 		proc/pressurized_open()
 			if (src.combustible_volume)
@@ -697,7 +697,7 @@ datum
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
-					if (reagent.flammable)
+					if (reagent.flammable_influence)
 						var/amount_to_remove = (burn_speed * mult * covered_area) * (reagent.volume / src.combustible_volume)
 						reagent.do_burn(min(amount_to_remove,reagent.volume))
 						src.remove_reagent(reagent_id, amount_to_remove)
@@ -744,7 +744,7 @@ datum
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
-					if (reagent.flammable)
+					if (reagent.flammable_influence)
 						var/amount_to_remove = (burn_speed * mult) * (reagent.volume / src.combustible_volume)
 						reagent.do_burn(min(amount_to_remove,reagent.volume))
 						src.remove_reagent(reagent_id, amount_to_remove)
@@ -810,7 +810,7 @@ datum
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
-					if (reagent.flammable)
+					if (reagent.flammable_influence)
 						var/amount_to_remove = (burn_speed * mult) / 2 * (reagent.volume / src.combustible_volume)
 						reagent.do_burn(min(amount_to_remove,reagent.volume))
 						src.remove_reagent(reagent_id, amount_to_remove)
@@ -838,7 +838,7 @@ datum
 						current_reagent.volume = max(round(current_reagent.volume, 0.001), 0.001)
 						composite_heat_capacity = total_volume/(total_volume+current_reagent.volume)*composite_heat_capacity + current_reagent.volume/(total_volume+current_reagent.volume)*current_reagent.heat_capacity
 						total_volume += current_reagent.volume
-						if (current_reagent.flammable)
+						if (current_reagent.flammable_influence)
 							combustible_volume += current_reagent.volume
 							composite_combust_speed += current_reagent.burn_speed * current_reagent.volume
 							composite_combust_temp += current_reagent.burn_temperature * current_reagent.volume

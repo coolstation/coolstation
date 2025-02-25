@@ -98,6 +98,7 @@
 	var/just_spawned = 1
 	var/bypassing = 0
 	var/catalyst_active = FALSE
+	var/cleanup_active = TRUE
 
 	New()
 		..()
@@ -111,7 +112,8 @@
 	disposing()
 		STOP_TRACKING
 		light.disable(queued_run = 1)
-		if (loc)
+		qdel(light)
+		if (cleanup_active && loc)
 			loc:active_hotspot = null
 		..()
 /*
@@ -238,14 +240,17 @@
 
 		var/turf/floor/location = loc
 		if (!istype(location) || (locate(/obj/fire_foam) in location))
+			src.dispose()
 			qdel(src)
 			return 0
 
 		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
+			src.dispose()
 			qdel(src)
 			return 0
 
 		if (!location.air || location.air.toxins < 0.5 || location.air.oxygen < 0.5)
+			src.dispose()
 			qdel(src)
 			return 0
 

@@ -624,6 +624,7 @@ datum
 			fluid_b = 175
 			transparency = 200
 			value = 3 // 1 1 1
+			flammable_influence = TRUE
 			burn_volatility = -10 // yes
 			viscosity = 0.14
 
@@ -932,6 +933,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			value = 3 // 1c + 1c + 1c
+			flammable_influence = TRUE
 			burn_volatility = -6
 
 		ectoplasm
@@ -1178,7 +1180,7 @@ datum
 			hygiene_value = -1.5
 			value = 3 // 1c + 1c + 1c
 			viscosity = 0.13
-			flammable = TRUE
+			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 0.25 // Oil is a slow burner
 			burn_temperature = 600 + T0C
@@ -1234,7 +1236,7 @@ datum
 					wet.alpha = 60
 					T.UpdateOverlays(wet, "wet_overlay")
 					T.wet = 2
-					if (!locate(/obj/decal/cleanable/oil) in T && volume <= 5)
+					if (!locate(/obj/decal/cleanable/oil) in T && volume <= 20)
 						playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 50, TRUE)
 						switch(volume)
 							if (0 to 0.5)

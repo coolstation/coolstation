@@ -23,7 +23,6 @@
 			hotspot.set_loc(T)
 
 		hotspot.volume = 400
-		hotspot.set_real_color()
 		T.hotspot_expose(hotspot.temperature, hotspot.volume)
 
 /*// experimental thing to let temporary hotspots affect atmos
@@ -104,7 +103,6 @@
 			hotspot.set_loc(T)
 
 		hotspot.volume = 400
-		hotspot.set_real_color()
 		T.hotspot_expose(hotspot.temperature, hotspot.volume)
 
 		/*else if (existing_hotspot.temperature < temp - dist * falloff)
@@ -181,6 +179,7 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 
 /obj/hotspot/fireflash
 	var/time_to_die
+	cleanup_active = FALSE
 
 	New(var/time_to_live = 1.5 SECONDS)
 		..()
@@ -193,15 +192,18 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 			return 0
 
 		if(world.time > src.time_to_die)
+			src.dispose()
 			qdel(src)
 			return 0
 
 		var/turf/floor/location = loc
 		if (!istype(location) || (locate(/obj/fire_foam) in location))
+			src.dispose()
 			qdel(src)
 			return 0
 
 		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
+			src.dispose()
 			qdel(src)
 			return 0
 
