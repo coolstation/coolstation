@@ -618,9 +618,13 @@ datum
 		proc/test_chem_burning() // Handles logic to shut down combustion
 			if (composite_volatility > 0.5)
 				return
-			is_combusting = FALSE
-			combustible_pressure = 0
-			combusting_reagent_holders -= src
+			src.stop_combusting()
+
+		proc/stop_combusting()
+			if(src.is_combusting)
+				src.is_combusting = FALSE
+				src.combustible_pressure = 0
+				combusting_reagent_holders -= src
 
 		proc/start_combusting() // Starts combustion
 			if (!src.is_combusting)
@@ -718,9 +722,9 @@ datum
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
 				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
+				if (!ON_COOLDOWN(my_atom, "internal_fire_1", (ceil((11 - src.combustible_pressure) / 2) SECONDS)))
+					particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, src.combustible_pressure))
 				switch(burn_volatility)
-					if (0 to 2) // Safe to handle, flames contained inside
-						// Some sort of indication that something is burning goes here
 					if (2 to 5) // Unsafe, leaking flames
 						fireflash_s(get_turf(src.my_atom), 0, src.composite_combust_temp)
 					if (5 to 14) // Very spicy fire that maybe breaks stuff
@@ -774,7 +778,9 @@ datum
 
 					if (src.combustible_pressure >= 0.1) // inform people
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_smoke_1", (rand(30, 60) - burn_volatility) DECI SECONDS))
-							particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(M.loc, M.dir))
+							particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(M, M.dir))
+						if (!ON_COOLDOWN(my_atom, "internal_fire_1", (ceil((11 - src.combustible_pressure) / 2) SECONDS)))
+							particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(M, src.composite_combust_temp, src.combustible_pressure))
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
@@ -788,6 +794,8 @@ datum
 					if (src.combustible_pressure >= 0.1) // inform people
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_rattle", (rand(35, 50) - burn_volatility) DECI SECONDS))
 							animate_storage_thump(my_atom,ceil(src.combustible_pressure))
+						if (!ON_COOLDOWN(my_atom, "internal_fire_1", (ceil((11 - src.combustible_pressure) / 2) SECONDS)))
+							particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, src.combustible_pressure))
 
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))

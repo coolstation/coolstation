@@ -245,7 +245,7 @@
 	src.change_misstep_chance(-INFINITY)
 	if (src.reagents)
 		src.reagents.clear_reagents()
-		src.reagents.is_combusting = FALSE
+		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)
