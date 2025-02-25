@@ -21,11 +21,12 @@
 	. = ..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		if (issmokeimmune(M))
+			return
 		else
 			M.drop_item()
 			if (prob(25))
 				M.changeStatus("stunned", 1 SECOND)
-			M.take_oxygen_deprivation(1)
+			M.lose_breath(1)
 			M.emote("cough")
 	return
 
@@ -40,5 +41,6 @@
 				M.changeStatus("stunned", 1 SECOND)
 			M.take_oxygen_deprivation(1)
 			if(!ON_COOLDOWN(M, "bad_smoke_cough", 0.2 SECONDS))
+				M.lose_breath(3)
 				M.emote("cough")
 	return

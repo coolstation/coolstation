@@ -411,21 +411,29 @@ datum
 			hygiene_value = 2 // with purging fire
 			viscosity = 0.5
 			flammable_influence = TRUE
-			combusts_on_fire_contact = TRUE
 			burn_speed = 3
 			burn_temperature = 3500
 			burn_volatility = 14
-			minimum_reaction_temperature = -INFINITY
 
 			reaction_turf(var/turf/T, var/volume)
-				. = ..()
-				if (holder && holder.total_temperature >= minimum_reaction_temperature)
-					holder.start_combusting()
+				var/datum/reagents/old_holder = src.holder //mbc pls, ZeWaka fix: null.holder
+				//if(!T.reagents) T.create_reagents(50)
+				//T.reagents.add_reagent("infernite", 5, null)
+				var/list/covered = old_holder.covered_turf()
+				if(length(covered) > 9)
+					volume = volume/length(covered)
+				if (volume < 3)
+					return
 
-			reaction_temperature(exposed_temperature, exposed_volume)
-				. = ..()
-				if(holder && !holder.is_combusting && istype(holder,/datum/reagents/fluid_group))
-					holder.start_combusting()
+				var/fail = 0
+				if (length(covered)>4)
+					fail = 1
+					if (prob(volume+6))
+						fail = 0
+
+				if (!fail)
+					var/radius = min((volume - 3) * 0.15, 2)
+					fireflash_sm(T, radius, src.burn_temperature + volume * 500, 350)
 
 			reaction_obj(var/obj/O, var/volume)
 				var/datum/reagents/old_holder = src.holder //mbc pls, ZeWaka fix: null.holder
@@ -676,17 +684,27 @@ datum
 					var/list/covered = holder.covered_turf()
 					if (length(covered) && prob(5 + smoke_counter))
 						var/turf/location = pick(covered)
-						var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
-						smoke.set_up(max(round(length(covered)/3), 1), 0, location)
-						smoke.start()
+						if(prob(40))
+							var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
+							smoke.set_up(max(round(length(covered)/3), 1), 0, location)
+							smoke.start()
+						else
+							var/datum/effects/system/harmless_smoke_spread/smoke = new /datum/effects/system/harmless_smoke_spread()
+							smoke.set_up(max(round(length(covered)/3), 1), 0, location)
+							smoke.start()
 						smoke_counter = 0
 					else
 						smoke_counter += reacting_volume
 				if (holder.my_atom && holder.my_atom.is_open_container())
 					if (prob(5 + smoke_counter) && src.volume >= 20)
-						var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
-						smoke.set_up(1, 0, holder.my_atom)
-						smoke.start()
+						if(prob(40))
+							var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
+							smoke.set_up(1, 0, holder.my_atom.loc)
+							smoke.start()
+						else
+							var/datum/effects/system/harmless_smoke_spread/smoke = new /datum/effects/system/harmless_smoke_spread()
+							smoke.set_up(1, 0, holder.my_atom.loc)
+							smoke.start()
 						smoke_counter = 0
 					else
 						smoke_counter += reacting_volume * 2

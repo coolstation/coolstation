@@ -2755,6 +2755,11 @@ datum
 			fluid_b = 220
 			transparency = 150
 			viscosity = 0.3
+			flammable_influence = TRUE
+			combusts_on_gaseous_fire_contact = TRUE
+			burn_speed = 1
+			burn_temperature = 1200
+			burn_volatility = 4
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -2778,6 +2783,11 @@ datum
 			transparency = 175
 			depletion_rate = 0.2
 			viscosity = 0.8
+			flammable_influence = TRUE
+			combusts_on_fire_contact = TRUE
+			burn_speed = 1
+			burn_temperature = 1000
+			burn_volatility = 6
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
