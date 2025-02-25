@@ -381,11 +381,10 @@ datum
 				return amount
 
 			if (update_target_reagents)
-				target_reagents.is_combusting = src.is_combusting
 				target_reagents.update_total()
 				target_reagents.handle_reactions()
 				if(src.is_combusting)
-					target_reagents.is_combusting = TRUE
+					target_reagents.start_combusting()
 
 
 			return amount
@@ -708,7 +707,8 @@ datum
 						if(src.has_reagent(reagent_id))
 							continue_burn = TRUE
 
-				src.is_combusting = continue_burn
+				if(!continue_burn)
+					src.stop_combusting()
 				return
 
 			// Open containers burning
@@ -761,7 +761,8 @@ datum
 						if(src.has_reagent(reagent_id))
 							continue_burn = TRUE
 
-				src.is_combusting = continue_burn
+				if(!continue_burn)
+					src.stop_combusting()
 				return
 
 			// Closed containers burning
@@ -831,9 +832,8 @@ datum
 						if(src.has_reagent(reagent_id))
 							continue_burn = TRUE
 
-				src.is_combusting = continue_burn
-				if(!continue_burn) // not sure about this, honestly
-					src.combustible_pressure = 0
+				if(!continue_burn)
+					src.stop_combusting()
 				return
 
 		proc/update_total()
