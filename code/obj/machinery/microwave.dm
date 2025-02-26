@@ -16,6 +16,7 @@
 	icon_state = "mw"
 	density = 1
 	anchored = 1
+	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	/// Current number of eggs inside the microwave
 	var/egg_amount = 0

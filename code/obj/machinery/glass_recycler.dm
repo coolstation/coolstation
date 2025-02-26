@@ -9,6 +9,7 @@
 	density = 0
 	var/glass_amt = 0
 	mats = 10
+	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | TABLEPASS
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
 	object_flags = CAN_BE_LIFTED
 	throw_speed = 2

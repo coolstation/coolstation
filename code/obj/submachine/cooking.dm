@@ -1313,6 +1313,7 @@ var/list/mixer_recipes = list()
 	density = 1
 	anchored = 1
 	mats = 15
+	flags = FPRINT | FLUID_SUBMERGE | TABLEPASS
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
 	object_flags = CAN_BE_LIFTED
 	var/list/recipes = null

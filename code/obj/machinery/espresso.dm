@@ -8,7 +8,7 @@
 	icon_state = "espresso_machine"
 	density = 1
 	anchored = 1
-	flags = FPRINT | NOSPLASH
+	flags = FPRINT | NOSPLASH | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
@@ -201,7 +201,7 @@
 	icon_state = "coffeemaker-eng"
 	density = 1
 	anchored = 1
-	flags = FPRINT | NOSPLASH
+	flags = FPRINT | NOSPLASH | TABLEPASS
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
 	object_flags = CAN_BE_LIFTED
