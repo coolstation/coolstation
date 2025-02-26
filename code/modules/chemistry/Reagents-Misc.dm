@@ -665,14 +665,15 @@ datum
 							qdel(F)
 				return
 
-			reaction_obj(var/obj/item/O, var/volume)
-				if (istype(O))
-					if (O.reagents && O.reagents.is_combusting)
-						O.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
-						if(O.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-							O.reagents.stop_combusting()
-					if (O.burning)
-						O.combust_ended()
+			reaction_obj(var/obj/O, var/volume)
+				if (O.reagents && O.reagents.is_combusting)
+					O.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
+					if(O.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+						O.reagents.stop_combusting()
+				if(isitem(O))
+					var/obj/item/I = O
+					if (I.burning)
+						I.combust_ended()
 				return
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)

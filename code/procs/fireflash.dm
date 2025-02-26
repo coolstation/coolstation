@@ -14,6 +14,11 @@
 //		for(var/obj/alien/weeds/V in T) qdel(V)
 
 		var/obj/hotspot/fireflash/hotspot = locate(/obj/hotspot/fireflash) in T
+		if (locate(/obj/fire_foam) in T)
+			if(hotspot)
+				hotspot.dispose()
+				qdel(hotspot)
+			continue
 		if (hotspot)
 			hotspot.time_to_die = world.time + FIREFLASH_HOTSPOT_TIME
 			hotspot.temperature = max(hotspot.temperature,temp)
@@ -95,6 +100,11 @@
 
 		var/falloff_affected_temp = temp - dist * falloff
 		var/obj/hotspot/fireflash/hotspot = locate(/obj/hotspot/fireflash) in T
+		if (locate(/obj/fire_foam) in T)
+			if(hotspot)
+				hotspot.dispose()
+				qdel(hotspot)
+			continue
 		if (hotspot)
 			hotspot.time_to_die = world.time + FIREFLASH_HOTSPOT_TIME
 			hotspot.temperature = max(hotspot.temperature,falloff_affected_temp)
