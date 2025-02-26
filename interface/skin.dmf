@@ -18,8 +18,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "ooc"
 		name = "ALT+C"
-		command = ".force_keyup ALT+C\nooc"
-		is-disabled = true
+		command = ".winset \"command=.init_ooc;oocwindow.is-visible=true;oocwindow.input.focus=true\""
 	elem "dance"
 		name = "CTRL+D"
 		command = "say \"*dance\""
@@ -42,8 +41,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "looc"
 		name = "ALT+L"
-		command = ".force_keyup ALT+L\nlooc"
-		is-disabled = true
+		command = ".winset \"command=.init_looc;loocwindow.is-visible=true;loocwindow.input.focus=true\""
 	elem "laugh"
 		name = "CTRL+L"
 		command = "say \"*laugh\""
@@ -130,6 +128,9 @@ macro "base_macro"
 	elem "radiochannelsay"
 		name = "Y"
 		command = ".winset \"command=\".start_typing radiochannelsay\";command=.init_radiochannelsay;radiochannelsaywindow_macro_returnup.is-disabled=true\""
+	elem "radiolastsay"
+		name = "\["
+		command = ".winset \"command=\".start_typing radiochannelsay\";command=.init_radiochannelsay;radiochannelsaywindow.is-visible=true;radiochannelsaywindow.input.focus=true\""
 	elem
 		name = "Any"
 		command = ".keydown [[*]]"
@@ -324,12 +325,19 @@ menu "menu"
 		can-check = true
 		saved-params = "is-checked"
 	elem "dark_mode"
-		name = "&Dark mode"
+		name = "&Cools tation Broun"
 		command = "sync-dark-mode"
-		category = "&Window"
+		category = "&Skins"
 		can-check = true
 		saved-params = "is-checked"
 		is-checked = true
+	elem "charcoal_mode"
+		name = "&Charcoal"
+		command = "sync-charcoal-mode"
+		category = "&Skins"
+		can-check = true
+		saved-params = "is-checked"
+		is-checked = false
 	elem "hide_status_bar"
 		name = "&Hide status bar"
 		command = ".winset \"hide_status_bar.is-checked=true?mainwindow.statusbar=false:mainwindow.statusbar=true\""

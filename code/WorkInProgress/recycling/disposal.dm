@@ -196,6 +196,7 @@
 		user.changeStatus("paralysis", 4 SECONDS)
 		user.changeStatus("weakened", 4 SECONDS)
 		src.visible_message("<span class='alert'><b>[P]</b> emits a loud thump and rattles a bit.</span>")
+		user.take_brain_damage(prob(50))
 
 		animate_storage_thump(P)
 
@@ -1253,7 +1254,7 @@
 				src.force = 88
 				src.throwforce = 88
 				src.throw_range = 2
-				src.reagents.add_reagent("george_melonium",25)
+				src.reagents.add_reagent("rainbow_melonium",25)
 
 			if (9)
 				src.name = "degenerate loaf"
@@ -1262,7 +1263,7 @@
 				src.force = 110
 				src.throwforce = 110
 				src.throw_range = 1
-				src.reagents.add_reagent("george_melonium",50)
+				src.reagents.add_reagent("rainbow_melonium",50)
 
 			if (10)
 				src.name = "strangelet loaf"
@@ -1271,7 +1272,7 @@
 				src.force = 220
 				src.throwforce = 220
 				src.throw_range = 0
-				src.reagents.add_reagent("george_melonium",100)
+				src.reagents.add_reagent("rainbow_melonium",100)
 
 				if (!src.processing)
 					src.processing = 1

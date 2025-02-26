@@ -32,3 +32,43 @@
 	initial_reagents = "chlorine"
 	icon_state = "bottlecl"
 	name = "Pool Chlorine"
+
+	mostly_water // sacrilege, I know
+		name = "Pool Water"
+		initial_reagents = list("water"=390,"chlorine"=10)
+
+/obj/item/reagent_containers/food/drinks/chemicalcan
+	name = "chemical cannister"
+	desc = "For storing medical chemicals and less savory things."
+	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "chemtank"
+	item_state = "chemtank"
+	initial_volume = 1000
+	flags = OPENCONTAINER
+	w_class = W_CLASS_HUGE
+	incompatible_with_chem_dispensers = 1
+	throw_speed = 1
+	throw_range = 3
+	throwforce = 15
+	can_chug = FALSE
+	two_handed = TRUE
+	p_class = 2
+	cannot_be_stored = TRUE
+	c_flags = EQUIPPED_WHILE_HELD
+
+
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		..()
+		playsound(hit_atom.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
+		if(ismob(hit_atom))
+			var/mob/living/L = hit_atom
+			L.changeStatus("weakened", 2 SECONDS)
+			L.force_laydown_standup()
+
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
+			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+		..()
+		if(ismob(usr))
+			var/mob/living/L = usr
+			L.changeStatus("stunned", 2 SECONDS)

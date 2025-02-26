@@ -7,6 +7,9 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Security Officer"
+	},
 /turf/floor,
 /area/station/security/main)
 "aaP" = (
@@ -53,6 +56,9 @@
 /obj/disposalpipe/segment/vertical,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
 	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
@@ -652,6 +658,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
+/obj/machinery/networked/radio,
 /turf/floor/bot,
 /area/station/storage/tech)
 "aFI" = (
@@ -5242,7 +5249,7 @@
 	},
 /area/station/hallway/primary/southeast)
 "eXh" = (
-/obj/storage/secure/closet/security/equipment,
+/obj/storage/secure/closet/security/forensics,
 /turf/floor/grey,
 /area/station/security/quarters)
 "eXC" = (
@@ -11295,7 +11302,7 @@
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "kXo" = (
-/obj/rack,
+/obj/storage/closet/wardrobe/orange,
 /turf/floor/red/side,
 /area/station/security/main)
 "kXH" = (
@@ -11943,6 +11950,15 @@
 /obj/machinery/light_switch/north,
 /turf/floor/black,
 /area/station/medical/robotics)
+"lAZ" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
+	},
+/turf/floor/grime,
+/area/station/mining/refinery)
 "lBH" = (
 /obj/machinery/light/small/ceiling,
 /obj/disposalpipe/segment/horizontal,
@@ -18042,6 +18058,12 @@
 /obj/table/auto/desk,
 /turf/floor/sanitary/white,
 /area/station/medical/crematorium)
+"ryz" = (
+/obj/landmark/start{
+	name = "Security Officer"
+	},
+/turf/floor/grey,
+/area/station/security/checkpoint/customs)
 "ryU" = (
 /turf/floor/carpet{
 	dir = 4;
@@ -23487,11 +23509,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/red,
-/obj/landmark/start{
-	name = "Security Officer"
-	},
+/obj/storage/closet/wardrobe/red/security_gimmick,
 /turf/floor/grey,
 /area/station/security/quarters)
 "wIU" = (
@@ -66743,7 +66761,7 @@ ald
 aTP
 iqN
 dIW
-edT
+lAZ
 edT
 edT
 tGn
@@ -67056,7 +67074,7 @@ bQJ
 bQJ
 kpA
 hPe
-kcP
+ryz
 ezw
 oZx
 qVA

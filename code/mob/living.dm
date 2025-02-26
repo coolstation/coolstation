@@ -628,11 +628,14 @@
 	if (istype(target, /obj/decal/point))
 		return
 
-	var/obj/item/gun/G = src.equipped()
-	if(!istype(G) || !ismob(target))
-		src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
 	else
-		src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
+		var/obj/item/gun/G = src.equipped()
+		if(!istype(G) || !ismob(target))
+			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+		else
+			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
 
 	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
 
@@ -1589,6 +1592,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	var/aquatic_movement = 0
 	var/space_movement = 0
 	var/mob_pull_multiplier = 1
+	var/lying_multiplier = 1
 
 	var/datum/movement_modifier/modifier
 	for(var/type_or_instance in src.movement_modifiers)
@@ -1610,6 +1614,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		aquatic_movement += modifier.aquatic_movement
 		space_movement += modifier.space_movement
 		mob_pull_multiplier *= modifier.mob_pull_multiplier
+		lying_multiplier *= modifier.lying_multiplier
 
 		if (modifier.maximum_slowdown < maximum_slowdown)
 			maximum_slowdown = modifier.maximum_slowdown
@@ -1628,7 +1633,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (health_deficiency >= 30)
 		. += (health_deficiency / 35)
 
-	.= src.special_movedelay_mod(.,space_movement,aquatic_movement)
+	.= src.special_movedelay_mod(.,space_movement,aquatic_movement,lying_multiplier)
 
 	. = min(., maximum_slowdown)
 
@@ -1692,10 +1697,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 //this lets subtypes of living alter their movement delay WITHIN that big proc above - not before or after (which would fuck up the numbers greatly)
 //note : subtypes should not call this parent
-/mob/living/proc/special_movedelay_mod(delay,space_movement,aquatic_movement)
+/mob/living/proc/special_movedelay_mod(delay,space_movement,aquatic_movement,lying_multiplier)
 	.= delay
 	if (src.lying)
-		. += 14
+		. += 14 * lying_multiplier
 
 
 /mob/living/critter/keys_changed(keys, changed)

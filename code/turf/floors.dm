@@ -815,6 +815,17 @@ DEFINE_FLOORS(marble/border_wb,
 
 /////////////////////////////////////////
 
+/turf/floor/planter
+	icon_state = "PlanterCenter"
+
+/turf/floor/planter/edges
+	icon_state = "PlanterEdges"
+
+/turf/floor/planter/strips
+	icon_state = "PlanterStrips"
+
+/////////////////////////////////////////
+
 /turf/floor/delivery
 	icon_state = "delivery"
 
@@ -1486,21 +1497,15 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		boutput(user, "Your attack bounces off the foamed metal floor.")
 
-/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/CanPass(atom/movable/mover, turf/target)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		if (!( locate(/obj/machinery/mass_driver, src) ))
 			return 0
 	return ..()
 
-/turf/shuttle/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/shuttle/CanPass(atom/movable/mover, turf/target)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		return 0
-	return ..()
-
-/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
-		if (!( locate(/obj/machinery/mass_driver, src) ))
-			return 0
 	return ..()
 
 /turf/floor/burn_down()
@@ -1718,6 +1723,16 @@ DEFINE_FLOORS(techfloor/green,
 
 	to_plating()
 	playsound(src, "sound/items/Crowbar.ogg", 80, 1)
+
+/turf/floor/levelupdate()
+	..()
+	if (!src.intact && src.turf_persistent.hidden_contents)
+		for(var/atom/movable/AM as anything in src.turf_persistent.hidden_contents)
+			AM.set_loc(src)
+			SEND_SIGNAL(AM, COMSIG_MOVABLE_FLOOR_REVEALED, src)
+		qdel(src.turf_persistent.hidden_contents) //it's an obj, see the definition for crime justification
+		src.turf_persistent.hidden_contents = null
+
 
 /turf/floor/attackby(obj/item/C as obj, mob/user as mob, params)
 
@@ -1937,6 +1952,12 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		return attack_hand(user)
 
+
+/turf/floor/proc/hide_inside(atom/movable/AM)
+	if (!src.turf_persistent.hidden_contents)
+		src.turf_persistent.hidden_contents = new(src)
+	AM.set_loc(src.turf_persistent.hidden_contents)
+
 /turf/floor/MouseDrop_T(atom/A, mob/user as mob)
 	..(A,user)
 	if(istype(A,/turf/floor))
@@ -1947,6 +1968,27 @@ DEFINE_FLOORS(techfloor/green,
 				var/obj/item/cable_coil/C = I
 				if((get_dist(user,F)<2) && (get_dist(user,src)<2))
 					C.move_callback(user, F, src)
+
+/turf/floor/restore_tile()
+	..()
+	for (var/obj/item/item in src.contents)
+		if (item.w_class <= W_CLASS_TINY && !item.anchored) //I wonder if this will cause problems
+			src.hide_inside(item)
+
+///CRIME
+/obj/effects/hidden_contents_holder
+	name = ""
+	desc = ""
+	icon = null
+	anchored = ANCHORED_ALWAYS
+	invisibility = INVIS_ALWAYS
+	alpha = 0
+
+	set_loc(newloc)
+		if (!isnull(newloc))
+			return
+		. = ..()
+
 
 ////////////////////////////////////////////ADVENTURE SIMULATED FLOORS////////////////////////
 DEFINE_FLOORS_SIMMED_UNSIMMED(racing,

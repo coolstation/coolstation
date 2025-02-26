@@ -298,6 +298,53 @@ datum
 				return
 
 
+		harmful/tetrodotoxin
+			name = "tetrodotoxin"
+			id = "tetrodotoxin"
+			description = "An extremely dangerous neurotoxin which paralyses the respiratory system, most commonly found in incorrectly prepared pufferfish."
+			reagent_state = LIQUID
+			fluid_r = 255
+			fluid_g = 180
+			fluid_b = 240
+			transparency = 10
+			depletion_rate = 0.1
+			penetrates_skin = 1
+			touch_modifier = 0.25
+			var/counter = 1
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+
+				switch(src.counter+= (mult))
+					if (10 to 25) // Small signs of trouble
+						if (prob(18))
+							M.change_misstep_chance(15 * mult)
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							boutput(M, "<span class='notice'><b>You feel a [pick("sudden palpitation", "numbness", "tingling")] in your chest.</b>")
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							M.emote(pick("twitch","drool","tremble"))
+							M.change_eye_blurry(2, 2)
+					if (25 to 45) // Effects ramp up, breathlessness, early paralysis signs and heartache
+						M.change_eye_blurry(5, 5)
+						M.stuttering = max(M.stuttering, 5)
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 10 SECONDS))
+						if (prob(30))
+							M.losebreath = max(5, M.losebreath + (5 * mult))
+						if (prob(20))
+							boutput(M, "<span class='alert'><b>Your [pick("senses go numb", "head spins", "body feels stiff")].</b>")
+							M.change_misstep_chance(15 * mult)
+					if (45 to INFINITY) // Heart effects kick in
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 40 SECONDS))
+						M.change_eye_blurry(15, 15)
+						M.losebreath = max(5, M.losebreath + (5 * mult))
+						if(isliving(M))
+							var/mob/living/L = M
+							L.contract_disease(/datum/ailment/malady/flatline, null, null, 1)
+				..()
+				return
+
 		harmful/curare
 			name = "curare"
 			id = "curare"
@@ -759,10 +806,7 @@ datum
 
 				if (isliving(M))
 					var/mob/living/H = M
-					if(H.blood_volume > 300)        //slows down your bleeding when you have less blood to bleed
-						H.blood_volume -= 5 * mult
-					else
-						H.blood_volume -= 3 * mult
+					H.blood_volume -= 3 * mult
 				if (probmult(6))
 					M.visible_message(pick("<span class='alert'><B>[M]</B>'s [pick("eyes", "arms", "legs")] bleed!",\
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
@@ -1284,6 +1328,66 @@ datum
 				else
 					if (prob(10)) M.take_brain_damage(1 * mult) // let's slow down a bit after 80
 				M.take_toxin_damage(1 * mult)
+				..(M, mult)
+				return
+
+		harmful/vertigo
+			name = "vertigo"
+			id = "vertigo"
+			description = "A debilitating compound that affects muscular function, causing dizzyness and ataxia, purified from neurotoxin."
+			reagent_state = LIQUID
+			fluid_r = 140
+			fluid_g = 145
+			fluid_b = 135
+			depletion_rate = 0.2
+			var/counter = 1
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+				if (!counter) counter = 1
+				switch(counter += (1 * mult))
+					if (1 to 5)
+						return //evil evil evil make them think it's neurotoxin
+					if (5 to 10)
+						M.make_dizzy(1 * mult)
+						M.change_misstep_chance(10 * mult)
+						if (probmult(20)) M.emote("drool")
+					if (10 to 18)
+						M.setStatus("drowsy", 8 SECONDS)
+						M.make_dizzy(1 * mult)
+						M.change_misstep_chance(15 * mult)
+						if (probmult(35)) M.emote("drool")
+					if (18 to INFINITY) // This is the point at which neuro would have KO'd you
+						M.setStatus("drowsy", 8 SECONDS)
+						M.make_dizzy(1 * mult)
+						M.change_eye_blurry(6, 6)
+						M.stuttering += rand(3,6) * mult
+						M.change_misstep_chance(20 * mult)
+						if(M.hasStatus("paralysis"))
+							..()                      //will not cause emotes and puking if you are already downed by capulettium
+							return					  //for preserving the death diguise
+						if(probmult(15))
+							if(!M.hasStatus("slowed"))
+								M.setStatus("slowed", 2 SECONDS)
+							boutput(M, pick("<span class='alert'>You feel extremely dizzy!</span>",\
+											"<span class='alert'>You feel like everything is spinning!</span>",\
+											"<span class='alert'>Your [pick("arms", "legs")] quiver!</span>",\
+											"<span class='alert'>Your feel a numbness through your [pick("hands", "fingers")]..</span>",\
+											"<span class='alert'>Your vision [pick("gets all blurry", "goes fuzzy")]!</span>",\
+											"<span class='alert'>You feel very sick!</span>"))
+							if(prob(10)) //no need for probmult in here as it's already behind a probmult statement
+								M.vomit() //so dizzy you puke
+								M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>",\
+													"<span class='alert'>You puke all over yourself!</span>")
+						else if(probmult(9))
+							boutput(M, pick("<span class='alert'>You feel like the words are getting caught up in your mouth!</span>",\
+											"<span class='alert'>You can't utter a single word!</span>",\
+											"<span class='alert'>Your [pick("face","chest")] feels numb...</span>",\
+											"<span class='alert'>You can't feel your [pick("mouth","tongue","throat")]!</span>"))
+							M.losebreath += (5)
+							M.emote(pick("gasp", "choke"))
+						else if (probmult(40)) M.emote(pick("twitch", "tremble", "drool", "drool", "twitch_v"))
+				M.jitteriness = max(M.jitteriness-30,0)
 				..(M, mult)
 				return
 

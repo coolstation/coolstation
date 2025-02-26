@@ -385,11 +385,12 @@
 				if (G.type == /area/colosseum)
 					colosseum = G
 					break
+			if (!colosseum) return //unit teeeests
 			var/minx = 300
 			var/miny = 300
 			var/maxx = 0
 			var/maxy = 0
-			for (var/turf/T in colosseum)
+			for (var/turf/T in colosseum.turfs)
 				if (!T.density)
 					spawnturfs += T
 					if (T.x < minx)
@@ -476,7 +477,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	src.debug_variables(colosseum_controller)
 
-/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/machinery/colosseum_putt))
 		return 0
 	return ..()
@@ -487,7 +488,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 	icon_state = "gauntfloorPod"
 	event_handler_flags = USE_CANPASS
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/machinery/colosseum_putt))
 			return 1
 		return ..()

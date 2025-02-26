@@ -1,19 +1,58 @@
 // Commodities
+
+// Quick block of defines
+// Price Trends
+#define TREND_CRASH -3
+#define TREND_FALL -2
+#define TREND_SLOW -1
+#define TREND_STAGNANT 0
+#define TREND_STIR 1
+#define TREND_RISE 2
+#define TREND_BOOM 3
+#define TREND_RAND 7
+// Supply State
+#define SUPPLY_BARE_SHELVES -3
+#define SUPPLY_SHORTAGE -2
+#define SUPPLY_SLIM -1
+#define SUPPLY_NEUTRAL 0
+#define SUPPLY_SURPLUS 1
+#define SUPPLY_OVERSUPPLY 2
+#define SUPPLY_PILING_UP 3
+#define SUPPLY_RAND 7
+// Basic Cargo Defines (Maybe these go with the shuttle or sell area)
+//#define CARGO_TRASH = -1
+//#define CARGO_MINOR_FINE = -10
+//#define CARGO_MEDIUM_FINE = -100
+//#define CARGO_MAJOR_FINE = -500
+//#define CARGO_SHUTTLE_FEE = -250
+
 /datum/commodity/
 	var/comname = "commodity" // Name of the item on the market
 	var/comtype = null // Type Path of the item on the market
+	//old fixed commodities
 	var/price = 0 // Current selling price for this commodity
 	var/baseprice = 0 // Baseline selling price for this commodity
-	var/onmarket = 0 // Whether this item is currently being accepted for sale on the shipping market
-	var/indemand = 0 // Whether this item is currently being bought at a high price on the market
+	var/onmarket = FALSE // Whether this item is currently being accepted for sale on the shipping market
+	var/indemand = FALSE // Whether this item is currently being bought at a high price on the market
 	var/upperfluc = 0 // Highest this item's price can raise in one shift
 	var/lowerfluc = 0 // Lowest this item's price can drop in one shift (negative numbers only)
+	//wip for percentages and intrinsic value of item
+	var/value_multiplier = 1 // WIP Testing for doing a mult-based market instead of fixed prices
+	var/upperrange = 1.5 // How much higher this commodity can go beyond baseline (for now, an item in-demand will just set price to double this mult)
+	var/lowerrange = 0.6 // How much lower this commodity can go beyond baseline
+	var/volatility = 0.2 // How much can it swing either way in one market shift
+	//even wippier wip: future events for the market
+	var/boomrange = 2.0 // How much higher can the market exceed normal range when demand surges, as a mult to the mult (ends eventually, whether the event finishes, or a certain number of units is sold)
+	var/crashrange = 0.3 // How much lower can the market exceed normal range when demand crashes as a mult to the mult (ends eventually, whether the event finishes, or a certain number of units is bought)
+	var/trending = TREND_RAND // TREND_CRASH, TREND_FALL, TREND_SLOW, TREND_STAGNANT, TREND_STIR, TREND_RISE, TREND_BOOM, TREND_RAND // determine direction and magnitude of price changes, follows supply with one market cycle delay. if rand/reset, pick between -1 and 1
+	var/supply = SUPPLY_RAND // SUPPLY_BARE_SHELVES, SUPPLY_SHORTAGE, SUPPLY_SHORTAGE, SUPPLY_NEUTRAL, SUPPLY_SURPLUS, SUPPLY_OVERSUPPLY, SUPPLY_PILING_UP, SUPPLY_RAND // combat dumping. if rand/reset, pick -1 and 1
 	var/desc = "item" //Description for item
 	var/desc_buy = "There are several buyers interested in acquiring this item." //Description for player selling
 	var/desc_buy_demand = "This item is in high demand." //Descripition for player selling when in high demand
-	var/hidden = 0 //Sometimes traders won't say if they will buy something
+	var/hidden = FALSE //Sometimes traders won't say outright if they will buy something (but they will)
 	var/haggleattempts = 0
 	var/amount = -1 // Used for QM traders - how much of a thing they have for sale, unlim if -1
+	var/restock = FALSE // QM Traders and others: do they have a chance to restock?
 	///if true, subtypes of this item will be accepted by NPC traders
 	var/subtype_valid = FALSE
 	// if its in the shopping cart, this is how many you're buying instead
@@ -42,7 +81,6 @@
 	baseprice = 25
 	upperfluc = 15
 	lowerfluc = -15
-	onmarket = 1
 
 /datum/commodity/robotics
 	comname = "Robot Parts"
@@ -54,6 +92,7 @@
 	baseprice = 65
 	upperfluc = 30
 	lowerfluc = -30
+	volatility = 0.4
 
 /datum/commodity/produce
 	comname = "Fresh Produce"
@@ -101,7 +140,6 @@
 	baseprice = 7
 	upperfluc = 3
 	lowerfluc = -3
-/// pathology
 
 /datum/commodity/mat_bar
 	comname = "Material Bar"
@@ -109,7 +147,7 @@
 	desc = "A Material Bar of some type."
 	desc_buy = "The Promethus Consortium is currently gathering resources for a research project and is willing to buy this item"
 	desc_buy_demand = "The colony on Regus X has had their main power reactor break down and need this item for repairs"
-	onmarket = 1
+	onmarket = 0
 	price = 70
 	baseprice = 70
 	upperfluc = 30
@@ -130,33 +168,41 @@
 /datum/commodity/ore/mauxite
 	comname = "Mauxite"
 	comtype = /obj/item/raw_material/mauxite
+	desc = "Sturdy metal with a unique structure, replacing steel for local construction."
 	onmarket = 1
 /datum/commodity/mat_bar/mauxite
-	comname = "Mauxite Bar"
+	comname = "Refined Mauxite Bar"
 	comtype = /obj/item/material_piece/mauxite
-	onmarket = 0
+	desc = "Pure mauxite that has been refined for manufacturing and fabrication."
+	onmarket = 1
 
 /datum/commodity/ore/pharosium
 	comname = "Pharosium"
 	comtype = /obj/item/raw_material/pharosium
+	desc = "Conductive metal with a unique structure, replacing copper for local wiring and electronics."
 	onmarket = 1
+
 /datum/commodity/mat_bar/pharosium
-	comname = "Pharosium Bar"
+	comname = "Refined Pharosium Bar"
 	comtype = /obj/item/material_piece/pharosium
-	onmarket = 0
+	desc = "Pure pharosium that has been refined for manufacturing and fabrication."
+	onmarket = 1
 
 /datum/commodity/ore/char
 	comname = "Char"
 	comtype = /obj/item/raw_material/char
+	desc = "Carbon-dense mineral that burns like coal, despite not coming from any sort of plant or animal matter. Still a mystery."
 	onmarket = 1
 	price = 35
 	baseprice = 35
 	upperfluc = 50
 	lowerfluc = -25
+
 /datum/commodity/mat_bar/char
-	comname = "Char Bar"
+	comname = "Compressed Char Bar"
 	comtype = /obj/item/material_piece/char
-	onmarket = 0
+	desc = "Char that has been processed for manufacturing or as a better-burning furnace fuel."
+	onmarket = 1
 	price = 35
 	baseprice = 35
 	upperfluc = 50
@@ -165,11 +211,14 @@
 /datum/commodity/ore/molitz
 	comname = "Molitz"
 	comtype = /obj/item/raw_material/molitz
+	desc = "Crystalline mineral with a unique structure, used for local construction of windows and lenses in lieu of silica."
 	onmarket = 1
+
 /datum/commodity/mat_bar/molitz
-	comname = "Molitz Bar"
+	comname = "Processed Molitz Bar"
 	comtype = /obj/item/material_piece/molitz
-	onmarket = 0
+	desc = "Molitz that has been processed for manufacturing and fabrication."
+	onmarket = 1
 
 /datum/commodity/ore/cobryl
 	comname = "Cobryl"
@@ -179,10 +228,11 @@
 	baseprice = 200
 	upperfluc = 200
 	lowerfluc = -100
+
 /datum/commodity/mat_bar/cobryl
-	comname = "Cobryl Bar"
+	comname = "Refined Cobryl Bar"
 	comtype = /obj/item/material_piece/cobryl
-	onmarket = 0
+	onmarket = 1
 	price = 200
 	baseprice = 200
 	upperfluc = 200
@@ -191,15 +241,18 @@
 /datum/commodity/ore/uqill
 	comname = "Uqill"
 	comtype = /obj/item/raw_material/uqill
+	desc = "An incredibly dense, rare mineral with extreme durability and piercing properties."
 	onmarket = 1
 	price = 750
 	baseprice = 750
 	upperfluc = 1000
 	lowerfluc = -500
+
 /datum/commodity/mat_bar/uqill
-	comname = "Uqill Bar"
+	comname = "Processed Uqill Bar"
 	comtype = /obj/item/material_piece/uqill
-	onmarket = 0
+	desc = "Uqill that has been processed for manufacturing and fabrication."
+	onmarket = 1
 	price = 1000
 	baseprice = 1000
 	upperfluc = 1000
@@ -214,10 +267,12 @@
 	baseprice = 1000
 	upperfluc = 1000
 	lowerfluc = -500
+
 /datum/commodity/mat_bar/telecrystal
-	comname = "Telecrystal Block"
+	comname = "Processed Telecrystal Block"
 	comtype = /obj/item/material_piece/telecrystal
-	onmarket = 0
+	desc = "A processed but unscribed block of telecrystal, ready for manufacturing and practical application."
+	onmarket = 1
 	price = 1000
 	baseprice = 1000
 	upperfluc = 1000
@@ -226,11 +281,14 @@
 /datum/commodity/ore/fibrilith // why is this worth a ton of money?? dropping the value to further upset QMs
 	comname = "Fibrilith"
 	comtype = /obj/item/raw_material/fibrilith
+	desc = "A modestly fire-resistent and completely safe mineral with wool-like properties, used in lieu of cotton for fabric fabrication. Itchy. Tasty."
 	onmarket = 1
+
 /datum/commodity/mat_bar/fibrilith
-	comname = "Fibrilith Block"
+	comname = "Compressed Fibrilith Block"
 	comtype = /obj/item/material_piece/fibrilith
-	onmarket = 0
+	desc = "Fibrilith that has been processed and compacted for manufacturing and fabrication."
+	onmarket = 1
 
 /datum/commodity/ore/koshmarite
 	comname = "Koshmarite"
@@ -240,8 +298,9 @@
 	baseprice = 120
 	upperfluc = 100
 	lowerfluc = -50
+
 /datum/commodity/mat_bar/koshmarite
-	comname = "Koshmarite Block"
+	comname = "Compressed Koshmarite Block"
 	comtype = /obj/item/material_piece/koshmarite
 	onmarket = 0
 	price = 100
@@ -258,7 +317,7 @@
 	upperfluc = 100
 	lowerfluc = -50
 /datum/commodity/mat_bar/viscerite
-	comname = "Viscerite Block"
+	comname = "Compressed Viscerite Block"
 	comtype = /obj/item/material_piece/viscerite
 	onmarket = 0
 	price = 100
@@ -269,13 +328,15 @@
 /datum/commodity/ore/bohrum
 	comname = "Bohrum"
 	comtype = /obj/item/raw_material/bohrum
+	desc = "Dense and robust metal with a unique structure, used for advanced metallurgical construction."
 	onmarket = 1
 	price = 200
 	baseprice = 200
 	upperfluc = 200
 	lowerfluc = -100
+
 /datum/commodity/mat_bar/bohrum
-	comname = "Bohrum Bar"
+	comname = "Refined Bohrum Bar"
 	comtype = /obj/item/material_piece/bohrum
 	onmarket = 0
 	price = 250
@@ -286,13 +347,15 @@
 /datum/commodity/ore/claretine
 	comname = "Claretine"
 	comtype = /obj/item/raw_material/claretine
+	desc = "Conductive salt with a unique structure, with strong conductive (and in some cases superconductive) properties. For advanced or high-voltage application."
 	onmarket = 1
 	price = 350
 	baseprice = 350
 	upperfluc = 200
 	lowerfluc = -200
+
 /datum/commodity/mat_bar/claretine
-	comname = "Claretine Bar"
+	comname = "Refined Claretine Bar"
 	comtype = /obj/item/material_piece/claretine
 	onmarket = 0
 	price = 350
@@ -308,8 +371,9 @@
 	baseprice = 650
 	upperfluc = 200
 	lowerfluc = -200
+
 /datum/commodity/mat_bar/erebite
-	comname = "Erebite Bar"
+	comname = "Processed Erebite Bar"
 	comtype = /obj/item/material_piece/erebite
 	onmarket = 0
 	price = 850
@@ -326,7 +390,7 @@
 	upperfluc = 200
 	lowerfluc = -200
 /datum/commodity/mat_bar/cerenkite
-	comname = "Cerenkite Bar"
+	comname = "Refined Cerenkite Bar"
 	comtype = /obj/item/material_piece/cerenkite
 	onmarket = 0
 	price = 650
@@ -343,7 +407,7 @@
 	upperfluc = 200
 	lowerfluc = -200
 /datum/commodity/mat_bar/plasmastone
-	comname = "Plasmastone Bar"
+	comname = "Processed Plasmastone Bar"
 	comtype = /obj/item/material_piece/plasmastone
 	onmarket = 0
 	price = 750
@@ -360,7 +424,7 @@
 	upperfluc = 1000
 	lowerfluc = -300
 /datum/commodity/mat_bar/syreline
-	comname = "Syreline Bar"
+	comname = "Refined Syreline Bar"
 	comtype = /obj/item/material_piece/syreline
 	onmarket = 0
 	price = 1000
@@ -389,7 +453,7 @@
 	onmarket = 1
 
 /datum/commodity/goldbar
-	comname = "Gold Bullion"
+	comname = "Pure Gold Bullion"
 	comtype = /obj/item/material_piece/gold
 	onmarket = 1
 	price = 35000
@@ -944,6 +1008,7 @@
 	upperfluc = 5000
 	lowerfluc = -3000
 
+/*
 /datum/commodity/contraband/egun
 	comname = "Energy Gun"
 	comtype = /obj/item/gun/energy/egun
@@ -952,6 +1017,7 @@
 	baseprice = 7000
 	upperfluc = 4000
 	lowerfluc = -1000
+*/
 
 //// purchase stuff
 
@@ -1062,7 +1128,7 @@
 	baseprice = 15000
 	upperfluc = 2500
 	lowerfluc = -2500
-
+/*
 /datum/commodity/contraband/eguncell_highcap
 	comname = "High-Capacity Power Cell"
 	comtype = /obj/item/ammo/power_cell/high_power
@@ -1071,6 +1137,7 @@
 	baseprice = 10000
 	upperfluc = 2500
 	lowerfluc = -2500
+	*/
 
 /datum/commodity/contraband/spy_sticker_kit
 	comname = "Spy Sticker Kit"
@@ -1293,8 +1360,8 @@
 	onmarket = 0
 
 /datum/commodity/produce/special/gmelon
-	comname = "George Melon"
-	comtype = /obj/item/reagent_containers/food/snacks/plant/melon/george
+	comname = "Rainbow Melon"
+	comtype = /obj/item/reagent_containers/food/snacks/plant/melon/rainbow
 	price = 170
 	baseprice = 170
 	upperfluc = 100
@@ -1493,6 +1560,15 @@
 	baseprice = 15
 	upperfluc = 5
 	lowerfluc = -5
+
+/datum/commodity/diner/pufferfish
+	comname = "Pufferfish"
+	desc = "We totally have a lincense to sell these. It's not illegal at all and completely safe."
+	comtype = /obj/item/fish/pufferfish
+	price = 900
+	baseprice = 900
+	upperfluc = 250
+	lowerfluc = -250
 
 /datum/commodity/diner/slurrypie
 	comname = "Slurry Pie"

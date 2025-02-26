@@ -464,7 +464,7 @@
 /obj/item/ammo/bullets/a12
 	sname = "Juicer HOT POCKETS Buckshot"
 	name = "Juicer HOT POCKETS ammo box"
-	ammo_type = new/datum/projectile/bullet/shot_heavy
+	ammo_type = new/datum/projectile/special/spreader/buckshot_burst/juicer
 	icon_state = "12"
 	amount_left = 8.0
 	max_amount = 8.0
@@ -474,7 +474,7 @@
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	weak //for nuke ops engineer (probably going away)
-		ammo_type = new/datum/projectile/bullet/shot_heavy/weak
+		ammo_type = new/datum/projectile/special/spreader/buckshot_burst/juicer
 
 //need to figure out where we're using this, maybe this is a feature of sawn off barrels
 /obj/item/ammo/bullets/buckshot_burst // real spread shotgun ammo

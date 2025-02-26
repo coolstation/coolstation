@@ -92,7 +92,7 @@ ABSTRACT_TYPE(/datum/plant/fruit)
 	genome = 19
 	assoc_reagents = list("juice_watermelon", "water")
 	nectarlevel = 15
-	mutations = list(/datum/plantmutation/melon/george, /datum/plantmutation/melon/bowling)
+	mutations = list(/datum/plantmutation/melon/rainbow, /datum/plantmutation/melon/bowling)
 	commuts = list(/datum/plant_gene_strain/immortal,/datum/plant_gene_strain/seedless)
 	special_proc = 1 // my sincerest apologies for this, it's there only for a dumb effect on the bowling melons
 

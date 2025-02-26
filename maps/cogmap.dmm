@@ -55702,6 +55702,12 @@
 /obj/decal/garland/ephemeral,
 /turf/floor/delivery,
 /area/station/engine/hotloop)
+"gMq" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "gOr" = (
 /obj/decal/wreath/ephemeral,
 /turf/wall/r_wall,
@@ -64267,6 +64273,12 @@
 /obj/decal/wreath/ephemeral,
 /turf/wall,
 /area/station/hallway/secondary/entry)
+"xHu" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/quartermaster/refinery)
 "xHE" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -115150,7 +115162,7 @@ vlS
 bwc
 bEy
 bFh
-bGO
+gMq
 bGM
 bHA
 bIz
@@ -129966,7 +129978,7 @@ bXr
 bXr
 bXr
 cbB
-cdX
+xHu
 cdW
 bWm
 gDG

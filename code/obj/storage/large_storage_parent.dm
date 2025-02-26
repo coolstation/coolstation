@@ -428,10 +428,8 @@
 	alter_health()
 		. = get_turf(src)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		. = open
-		if (air_group || (height==0))
-			return 1
 		if (src.is_short)
 			return 0
 
@@ -470,7 +468,7 @@
 			return 0
 		if (istype(A, /obj/decal/skeleton)) // uuuuuuugh
 			return 1
-		if (isobj(A) && ((A.density && !istype(A, /obj/critter)) || A:anchored || A == src || istype(A, /obj/decal) || istype(A, /atom/movable/screen) || istype(A, /obj/storage)))
+		if (isobj(A) && ((A.density && !istype(A, /obj/critter)) || A:anchored || A:cannot_be_stored || A == src || istype(A, /obj/decal) || istype(A, /atom/movable/screen) || istype(A, /obj/storage)))
 			return 0
 
 	var/obj/storage/entangled

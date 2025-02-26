@@ -83,29 +83,31 @@
 			return 0
 
 	attack_hand(mob/user as mob)
-		var/dat = {"<b>Glass Left</b>: [glass_amt]<br>
-					<A href='byond://?src=\ref[src];type=beaker'>Beaker</A><br>
-					<A href='byond://?src=\ref[src];type=largebeaker'>Large Beaker</A><br>
-					<A href='byond://?src=\ref[src];type=bottle'>Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=vial'>Vial</A><br>
-					<A href='byond://?src=\ref[src];type=flute'>Champagne Flute</A><br>
-					<A href='byond://?src=\ref[src];type=cocktail'>Cocktail Glass</A><br>
-					<A href='byond://?src=\ref[src];type=drinkbottle'>Drink Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=tallbottle'>Tall Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=longbottle'>Long Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=rectangularbottle'>Rectangular Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=squarebottle'>Square Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=masculinebottle'>Wide Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=drinking'>Drinking Glass</A><br>
-					<A href='byond://?src=\ref[src];type=oldf'>Old Fashioned Glass</A><br>
-					<A href='byond://?src=\ref[src];type=pitcher'>Pitcher</A><br>
-					<A href='byond://?src=\ref[src];type=round'>Round Glass</A><br>
-					<A href='byond://?src=\ref[src];type=shot'>Shot Glass</A><br>
-					<A href='byond://?src=\ref[src];type=wine'>Wine Glass</A><br>
-					<A href='byond://?src=\ref[src];type=bowl'>Bowl</A><br>
-					<A href='byond://?src=\ref[src];type=plate'>Plate</A><br>
-					<HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>
-					<BR><BR><A href='byond://?action=mach_close&window=glass'>Close</A>"}
+		var/dat = {"<b>Glass Left</b>: [glass_amt]<br>"}
+#ifndef NO_EASY_BEAKERS
+		dat += {"<A href='byond://?src=\ref[src];type=beaker'>Beaker</A><br>
+				<A href='byond://?src=\ref[src];type=largebeaker'>Large Beaker</A><br>"}
+#endif
+		dat += {"<A href='byond://?src=\ref[src];type=bottle'>Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=vial'>Vial</A><br>
+				<A href='byond://?src=\ref[src];type=flute'>Champagne Flute</A><br>
+				<A href='byond://?src=\ref[src];type=cocktail'>Cocktail Glass</A><br>
+				<A href='byond://?src=\ref[src];type=drinkbottle'>Drink Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=tallbottle'>Tall Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=longbottle'>Long Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=rectangularbottle'>Rectangular Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=squarebottle'>Square Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=masculinebottle'>Wide Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=drinking'>Drinking Glass</A><br>
+				<A href='byond://?src=\ref[src];type=oldf'>Old Fashioned Glass</A><br>
+				<A href='byond://?src=\ref[src];type=pitcher'>Pitcher</A><br>
+				<A href='byond://?src=\ref[src];type=round'>Round Glass</A><br>
+				<A href='byond://?src=\ref[src];type=shot'>Shot Glass</A><br>
+				<A href='byond://?src=\ref[src];type=wine'>Wine Glass</A><br>
+				<A href='byond://?src=\ref[src];type=bowl'>Bowl</A><br>
+				<A href='byond://?src=\ref[src];type=plate'>Plate</A><br>
+				<HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>
+				<BR><BR><A href='byond://?action=mach_close&window=glass'>Close</A>"}
 		//user.Browse(dat, "window=glass;size=220x240")
 		user.Browse(dat, "window=glass;size=220x360;title=Recycler")
 		onclose(user, "glass")
@@ -212,14 +214,16 @@
 	icon_state = "synthesizer-purp"
 
 	attack_hand(mob/user as mob)
-		var/dat = {"<b>Glass Left</b>: [glass_amt]<br>
-					<A href='byond://?src=\ref[src];type=beaker'>Beaker</A><br>
-					<A href='byond://?src=\ref[src];type=largebeaker'>Large Beaker</A><br>
-					<A href='byond://?src=\ref[src];type=bottle'>Bottle</A><br>
-					<A href='byond://?src=\ref[src];type=vial'>Vial</A><br>
-					<A href='byond://?src=\ref[src];type=flask'>Flask</A>
-					<HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>
-					<BR><BR><A href='byond://?action=mach_close&window=glass'>Close</A>"}
+		var/dat = {"<b>Glass Left</b>: [glass_amt]<br>"}
+#ifndef NO_EASY_BEAKERS
+		dat += {"<A href='byond://?src=\ref[src];type=beaker'>Beaker</A><br>
+				<A href='byond://?src=\ref[src];type=largebeaker'>Large Beaker</A><br>"}
+#endif
+		dat +=	{"<A href='byond://?src=\ref[src];type=bottle'>Bottle</A><br>
+				<A href='byond://?src=\ref[src];type=vial'>Vial</A><br>
+				<A href='byond://?src=\ref[src];type=flask'>Flask</A>
+				<HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>
+				<BR><BR><A href='byond://?action=mach_close&window=glass'>Close</A>"}
 		//user << browse(dat, "window=glass;size=220x240")
 		user.Browse(dat, "window=glass;size=220x360;title=Recycler")
 		onclose(user, "glass")

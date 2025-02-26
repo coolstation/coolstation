@@ -1440,7 +1440,6 @@
 						/obj/item/clothing/mask/mmyers,
 						/obj/item/clothing/mask/mime,
 						/obj/item/clothing/mask/moustache,
-						/obj/item/clothing/mask/melons,
 						/obj/item/clothing/mask/wrestling,
 						/obj/item/clothing/mask/wrestling/black,
 						/obj/item/clothing/mask/wrestling/green,

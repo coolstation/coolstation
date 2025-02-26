@@ -24093,6 +24093,12 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"jWD" = (
+/obj/machinery/manufacturer_attachment/canister_port,
+/turf/floor/yellow/side{
+	dir = 4
+	},
+/area/station/mining/lobby)
 "jWE" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -38881,6 +38887,12 @@
 	dir = 9
 	},
 /area/station/science/lobby)
+"pQC" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor,
+/area/station/engine/gas)
 "pQP" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -116490,7 +116502,7 @@ mpM
 kFi
 kFi
 tHQ
-kFi
+pQC
 kFi
 kFi
 qDC
@@ -118873,7 +118885,7 @@ kux
 eMF
 nsq
 ffM
-kux
+jWD
 rIu
 sgw
 kux

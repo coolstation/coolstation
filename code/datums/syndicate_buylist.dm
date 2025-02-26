@@ -85,8 +85,8 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/shotgun
 	name = "Gun: Modular Shotgun"
-	item = /obj/item/storage/box/shotgun
-	cost = 5
+	item = /obj/item/storage/box/shotgun/juicer
+	cost = 6
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
@@ -1131,6 +1131,7 @@ This is basically useless for anyone but miners.
 	desc = "Maybe paint a really insulting picture of your foe? To be honest, we have no idea what is even in these or where they came from, a huge crate of them just showed up at our warehouse around a month ago. We're sure it's something very handy, though!"
 	job = list("Chaplain")
 	vr_allowed = 0
+	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/chemicompiler
@@ -1167,7 +1168,7 @@ This is basically useless for anyone but miners.
 /datum/syndicate_buylist/traitor/bowling
 	name = "Bowling Kit"
 	item = /obj/item/storage/bowling
-	cost = 0 //7
+	cost = 7
 	desc = "Comes with several bowling balls and a suit. You won't be able to pluck up the courage to throw them very hard without wearing the suit!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 

@@ -181,7 +181,7 @@
 			if(sigreturn & PROJ_ATOM_PASSTHROUGH || (pierces_left != 0 && first && !(sigreturn & PROJ_ATOM_CANNOT_PASS))) //try to hit other targets on the tile
 				for (var/mob/X in T.contents)
 					if(!(X in src.hitlist))
-						if (!X.CanPass(src, get_step(src, X.dir), 1, 0))
+						if (!X.CanPass(src, get_step(src, X.dir)))
 							src.collide(X, first = 0)
 					if(QDELETED(src))
 						return
@@ -203,7 +203,7 @@
 			if(first && (sigreturn & PROJ_OBJ_HIT_OTHER_OBJS))
 				for (var/obj/X in T.contents)
 					if(!(X in src.hitlist))
-						if (!X.CanPass(src, get_step(src, X.dir), 1, 0))
+						if (!X.CanPass(src, get_step(src, X.dir)))
 							src.collide(X, first = 0)
 					if(QDELETED(src))
 						return
@@ -321,7 +321,7 @@
 	Crossed(var/atom/movable/A)
 		if (!istype(A))
 			return // can't happen will happen
-		if (!A.CanPass(src, get_step(src, A.dir), 1, 0))
+		if (!A.CanPass(src, get_step(src, A.dir)))
 			src.collide(A)
 
 		if (collide_with_other_projectiles && A.type == src.type)
@@ -334,7 +334,7 @@
 		for(var/thing as mob|obj|turf|area in T)
 			var/atom/A = thing
 			if (A == src) continue
-			if (!A.CanPass(src, get_step(src, A.dir), 1, 0))
+			if (!A.CanPass(src, get_step(src, A.dir)))
 				src.collide(A)
 
 			if (collide_with_other_projectiles && A.type == src.type)
@@ -497,6 +497,9 @@ datum/projectile
 		disruption = 0           // planned thing to deal with pod electronics / etc
 		zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
 		caliber = null
+		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
+		fiddlyness = 1			 // How hard is this to handle when there's a jam or misfire
+		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
 
 		datum/material/material = null
 

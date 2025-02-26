@@ -250,9 +250,8 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 
 	departing(datum/transit_stop/destination)
 		var/turf/target
-		for(var/turf/T in locate(src.current_location.target_area))
-			target = T
-			break
+		var/area/A = locate(src.current_location.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/machines/elevator_move.ogg", 100, 0)
 		else

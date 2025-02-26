@@ -24,8 +24,7 @@
 
 	var/robot_talk_understand = 0
 
-	var/list/obj/hallucination/hallucinations = null //can probably be on human
-
+	var/respect_view_tint_settings = FALSE
 	var/list/active_color_matrix = list()
 	var/list/color_matrices = list()
 
@@ -245,7 +244,6 @@
 /mob/New(loc, datum/appearanceHolder/AH_passthru)	// I swear Adhara is the reason half my code even comes close to working
 	src.AH_we_spawned_with = AH_passthru
 	src.loc = loc
-	hallucinations = new
 	organs = new
 	grabbed_by = new
 	resistances = new
@@ -389,7 +387,6 @@
 	client = null
 	internals = null
 	energy_shield = null
-	hallucinations = null
 	buckled = null
 	handcuffs = null
 	l_hand = null
@@ -1516,9 +1513,7 @@
 	set category = "Commands"
 	set name = "Toggle Ceiling Visibility"
 
-/mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (air_group || (height==0)) return 1
-
+/mob/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/projectile))
 		return !projCanHit(mover:proj_data)
 

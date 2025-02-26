@@ -58,6 +58,7 @@
 			M.setStatus("weakened", 5 SECONDS)
 			container.visible_message("<span class='alert'><b>[M.loc]</b> emits a loud thump and rattles a bit.</span>")
 			playsound(M.loc, "sound/effects/bang.ogg", 50, 1)
+			M.take_brain_damage(prob(50))
 			var/wiggle = 6
 			while(wiggle > 0)
 				wiggle--

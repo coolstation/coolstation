@@ -1,6 +1,3 @@
-TYPEINFO(/atom)
-	var/admin_spawnable = TRUE
-
 /**
   * The base type for nearly all physical objects in SS13
 	*
@@ -41,6 +38,9 @@ TYPEINFO(/atom)
 
 	proc/RawClick(location,control,params)
 		return
+
+	/// If atmos should be blocked by this - special behaviours handled in gas_cross() overrides
+	var/gas_impermeable = FALSE
 
 /* -------------------- name stuff -------------------- */
 	/*

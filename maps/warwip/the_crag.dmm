@@ -688,9 +688,6 @@
 /turf/floor,
 /area/station/science/artifact)
 "cm" = (
-/obj/machinery/button/elevator/med{
-	pixel_x = -32
-	},
 /obj/machinery/light{
 	dir = 8;
 	tag = null
@@ -6109,6 +6106,10 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/button/elevator/med{
+	pixel_x = -32;
+	pixel_y = 32
+	},
 /turf/floor/blue/side{
 	dir = 8
 	},
@@ -10838,6 +10839,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
+"Ll" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/radio,
+/turf/floor/plating,
+/area/station/science/gen_storage)
 "Lm" = (
 /obj/stool/chair{
 	dir = 8
@@ -56782,7 +56792,7 @@ MH
 aj
 Aa
 jE
-fZ
+Ll
 tw
 gm
 jE

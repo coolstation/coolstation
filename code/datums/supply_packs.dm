@@ -975,6 +975,20 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 		containertype = /obj/storage/crate/freezer
 		containername = "Meat, Eggs & Dairy Crate"
 
+	freshfish
+		name = "'Fresh' Frozen Fish"
+		desc = "Assorted not so fresh fish for the kitchen."
+		contents = "x15 Assorted Frozen Fish"
+		contains = list(/obj/item/fish/salmon = 4,
+						/obj/item/fish/bass = 4,
+						/obj/item/fish/carp = 5,
+						/obj/item/fish/pufferfish = 2,
+						/obj/item/raw_material/ice = 5)
+		cost = 1000
+		containertype = /obj/storage/crate/freezer
+		containername = "Frozen Fish Crate"
+
+
 	dryfoods
 		name = "Dry Goods Crate"
 		desc = "Dry goods like flour, sugar, pasta and oatmeal as bases for the kitchen."
@@ -1155,9 +1169,9 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		access = access_engineering
 		//hidden = 1 // doesnt actually work yet - warc
 	teg_furnaces
-		name = "Thermoelctric Furnace Pack"
-		desc = "A set of three atmospheric furnaces for heating megawatt class peltier devices."
-		contents = "Thermoelectric Furnace Frame x3"
+		name = "Thermoelectric Furnace Pack"
+		desc = "A set of three atmospheric furnaces for heating megawatt-class peltier devices."
+		contents = "3x Thermoelectric Furnace Frame"
 		contains = list(/obj/item/electronics/frame/teg_furnace,
 					/obj/item/electronics/frame/teg_furnace,
 					/obj/item/electronics/frame/teg_furnace)

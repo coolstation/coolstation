@@ -19,7 +19,7 @@
 				src.throw_impact(A, thr)
 				. = TRUE
 			if(isobj(A))
-				if(!A.CanPass(src, src.loc, 1.5))
+				if(!A.CanPass(src, src.loc))
 					src.throw_impact(A, thr)
 					. = TRUE
 

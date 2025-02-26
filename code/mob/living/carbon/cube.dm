@@ -131,6 +131,7 @@
 							container.visible_message("<span class='alert'><b>[container]</b> emits a loud thump and rattles a bit.</span>")
 							playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
 							animate_shake(container)
+							src.take_brain_damage(prob(50))
 							if (prob(33))
 								if (istype(container, /obj/storage))
 									var/obj/storage/C = container

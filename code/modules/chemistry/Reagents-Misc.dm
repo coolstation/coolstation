@@ -1389,6 +1389,22 @@ datum
 				..()
 				return
 
+		yes_powder
+			name = "powder that makes you say yes"
+			id = "yes_powder"
+			description = "...what?"
+			reagent_state = SOLID
+			fluid_r = 200
+			fluid_g = 200
+			fluid_b = 200
+			transparency = 0
+
+			on_add()
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					M.say("yes")
+				..()
+
 		denatured_enzyme
 			name = "denatured enzyme"
 			id = "denatured_enzyme"
@@ -3460,6 +3476,10 @@ datum
 			var/music_given_to = null
 			var/the_bioeffect_you_had_before_it_was_affected_by_yee = null
 			var/the_mutantrace_you_were_before_yee_overwrote_it = null
+			var/static/list/halluc_attackers = list(
+				new /image('icons/mob/hallucinations.dmi',"bop-bop") = list("bop-bop"),
+				new /image('icons/mob/hallucinations.dmi',"yee") = list("yee"),
+			)
 
 			disposing()
 				if (src.music_given_to)
@@ -3525,10 +3545,9 @@ datum
 				if (probmult(20))
 					M.visible_message("<span class='emote'><b>[M]</b> yees.</span>")
 					playsound(M, "sound/misc/yee.ogg", 50, 1)
-				if (probmult(8))
-					fake_attackEx(M, 'icons/mob/hallucinations.dmi', "bop-bop", "bop-bop")
-				if (probmult(8))
-					fake_attackEx(M, 'icons/mob/hallucinations.dmi', "yee", "yee")
+				if (probmult(16))
+					var/image/imagekey = pick(halluc_attackers)
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=20, max_attackers=1)
 				..()
 				return
 

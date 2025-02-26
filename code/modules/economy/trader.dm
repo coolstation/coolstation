@@ -774,6 +774,7 @@
 				src.goods_sell += new /datum/commodity/drugs/lsd(src)
 				src.goods_sell += new /datum/commodity/drug/lsd_bee(src)
 				src.goods_sell += new /datum/commodity/relics/bootlegfirework(src)
+				src.goods_sell += new /datum/commodity/diner/pufferfish(src)
 				src.goods_sell += new /datum/commodity/pills/uranium(src)
 
 				src.goods_buy += new /datum/commodity/drugs/shrooms(src)
@@ -820,7 +821,7 @@
 				src.goods_sell += new /datum/commodity/contraband/swatmask(src)
 				src.goods_sell += new /datum/commodity/contraband/spy_sticker_kit(src)
 				src.goods_sell += new /datum/commodity/contraband/flare(src)
-				src.goods_sell += new /datum/commodity/contraband/eguncell_highcap(src)
+				//src.goods_sell += new /datum/commodity/contraband/eguncell_highcap(src)
 				src.goods_sell += new /datum/commodity/podparts/cloak(src)
 				src.goods_sell += new /datum/commodity/podparts/redarmor(src)
 				src.goods_sell += new /datum/commodity/podparts/ballistic(src)
@@ -830,7 +831,7 @@
 				src.goods_sell += new /datum/commodity/HEtorpedo(src)
 #endif
 
-				src.goods_buy += new /datum/commodity/contraband/egun(src)
+				//src.goods_buy += new /datum/commodity/contraband/egun(src)
 				src.goods_buy += new /datum/commodity/contraband/secheadset(src)
 				src.goods_buy += new /datum/commodity/contraband/hosberet(src)
 				src.goods_buy += new /datum/commodity/contraband/spareid(src)
