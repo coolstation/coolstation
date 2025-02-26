@@ -1,3 +1,7 @@
+//BIG WIP DO NOT YET USE
+
+
+
 //Objects that set up the ids (and names) of various machines and buttons at roundstart, so you don't have to varedit them (but you can if you want)
 //The main benefit of doing it this way is that you only have to varedit the one instance you can colour code,
 //and it should be a little clearer what's linked to what in the map editor.
@@ -24,6 +28,9 @@
 
 /obj/map/machinery_link
 	name = "machinery linker"
+	icon_state = "machinery_link"
+	alpha = 100
+	plane = PLANE_HUD
 	//The vars all start with underscores so they're up top in strongDMM
 	var/_id = null
 	var/_freq = 0
@@ -69,21 +76,30 @@
 					var/obj/machinery/computer/C = O
 					if (_id)
 						C.id = _id
-					if (_freq)
-						C.frequency = _freq
 
 					if (istype(C, /obj/machinery/computer/atmosphere/mixercontrol)) //ugh
 						var/obj/machinery/computer/atmosphere/mixercontrol/MC = C
 						if (_atmos_mixer_id)
 							MC.mixerid = _atmos_mixer_id
+						if (_freq)
+							MC.set_frequency(_freq)
+					if (istype(C, /obj/machinery/computer/airbr))
+						var/obj/machinery/computer/airbr/BC = C
+						BC.links = list()
+						BC.get_links()
+					if (istype(C, /obj/machinery/computer/atmosphere/pumpcontrol)) //Fucking cocksucking computers ever heard of fucking inheriting procs
+						var/obj/machinery/computer/atmosphere/pumpcontrol/PC = C
+						if (_freq)
+							PC.set_frequency(_freq)
 					continue
 				if (istype(O, /obj/machinery/atmospherics/binary/pump))
 					var/obj/machinery/atmospherics/binary/pump/P = O
 					if (_id)
 						P.id = _id
 					if (_freq)
-						P.frequency = _freq
+						P.set_frequency(_freq)
 					P.on = _atmos_on
+					P.update_icon()
 					continue
 				if (istype(O, /obj/machinery/atmospherics/mixer))
 					var/obj/machinery/atmospherics/mixer/MX = O
@@ -92,12 +108,13 @@
 					if (_atmos_mixer_id)
 						MX.id_tag = _atmos_mixer_id
 					if (_freq)
-						MX.frequency = _freq
+						MX.set_frequency(_freq)
 					MX.on = _atmos_on
 					continue
 				if (istype(O, /obj/machinery/atmospherics/unary/outlet_injector))
 					var/obj/machinery/atmospherics/unary/outlet_injector/OI = O
 					OI.on = _atmos_on
+					OI.update_icon()
 					continue
 				if (istype(O, /obj/crematorium))
 					var/obj/crematorium/C = O
