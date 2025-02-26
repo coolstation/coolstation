@@ -17,6 +17,9 @@
 	density = 1
 	anchored = 1
 	object_flags = CAN_BE_LIFTED
+	throw_speed = 2
+	throw_range = 3
+	throwforce = 15
 	/// Current number of eggs inside the microwave
 	var/egg_amount = 0
 	/// Current amount of flour inside the microwave
@@ -56,6 +59,22 @@
 	mats = 12
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH
 	var/emagged = FALSE
+
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		..()
+		playsound(hit_atom.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
+		if(ismob(hit_atom))
+			var/mob/living/L = hit_atom
+			L.changeStatus("weakened", 1.5 SECONDS)
+			L.force_laydown_standup()
+
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
+			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+		..()
+		if(ismob(usr))
+			var/mob/living/L = usr
+			L.changeStatus("weakened", 2 SECONDS)
+			L.force_laydown_standup()
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (src.emagged)

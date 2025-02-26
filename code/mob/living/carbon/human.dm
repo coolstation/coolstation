@@ -1006,7 +1006,7 @@
 /mob/living/carbon/human/throw_item(atom/target, list/params)
 	..()
 	var/turf/thrown_from = get_turf(src)
-	var/knockitdown = null
+	var/how_to_throw = THROW_NORMAL
 	src.throw_mode_off()
 	if (src.stat)
 		return
@@ -1026,6 +1026,11 @@
 		var/obj/item/grab/G = I
 		I = G.handle_throw(src, target)
 		if (!I) return
+
+	if (istype(I, /obj/item/lifted_thing))
+		var/obj/item/lifted_thing/LT = I
+		I = LT.our_thing
+		LT.place_the_thing(get_turf(src), src)
 
 	I.set_loc(src.loc)
 
@@ -1069,9 +1074,9 @@
 			M.inertia_dir = get_dir(src,target)
 
 		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
-		if(istype(I,/mob/living/carbon/human) || istype(I,/obj/machinery/microwave)) //todo: expand this into a reference list for other things that would knock you down if you fucking threw them
-			knockitdown = THROW_KNOCKDOWN
-		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=knockitdown)
+		if(istype(I,/mob/living/carbon/human))
+			how_to_throw = THROW_KNOCKDOWN
+		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
 		if(yeet)
 			new/obj/effect/supplyexplosion(I.loc)
 
