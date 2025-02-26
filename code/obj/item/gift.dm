@@ -225,7 +225,6 @@
 var/global/list/generic_gift_paths = list(/obj/item/basketball,
 	/obj/item/football,
 	/obj/item/clothing/head/cakehat,
-	/obj/item/clothing/mask/melons,
 	/obj/item/old_grenade/banana,
 	/obj/item/old_grenade/banana/cheese_sandwich,
 	/obj/item/old_grenade/banana/banana_corndog,

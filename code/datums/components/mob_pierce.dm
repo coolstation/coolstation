@@ -6,8 +6,8 @@
 	RegisterSignal(parent, list(COMSIG_PROJ_COLLIDE), .proc/update_pierces)
 
 /datum/component/gaseous_projectile/proc/update_pierces(var/obj/projectile/P, var/atom/hit)
-	if(!hit.opacity)
-		return PROJ_ATOM_PASSTHROUGH
+	var/turf/T = get_turf(hit)
+	return PROJ_ATOM_PASSTHROUGH * !!T.gas_cross(get_turf(P))
 
 /datum/component/gaseous_projectile/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_PROJ_COLLIDE)

@@ -304,11 +304,6 @@
 		src.UpdateOverlays(src.image_lid, "lid")
 		return
 
-	CanPass(atom/movable/O as mob|obj, target as turf, height=0, air_group=0)
-		if (air_group || (height==0))
-			return 1
-		..()
-
 	ex_act(severity)
 		switch (severity)
 			if (OLD_EX_SEVERITY_1)

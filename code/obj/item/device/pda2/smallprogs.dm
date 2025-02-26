@@ -855,7 +855,7 @@ Code:
 			signal.data["command"] = "text_message"
 			signal.data["message"] = "BOOM"
 			signal.data["batt_adjust"] = netpass_syndicate
-			signal.data["sender_name"] = pick("George Melons","Farmer Jeff","Jones","The Space King")
+			signal.data["sender_name"] = pick("Small Bart","Farmer Jeff","Jones","The Space King")
 			signal.data["sender"] = src.master.net_id
 			signal.data["address_1"] = target_id
 			src.post_signal(signal)

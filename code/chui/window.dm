@@ -124,10 +124,10 @@ chui/window
 
 
 	//See /client/proc/Browse instead.
-	proc/bbrowse( client/who, var/body, var/options, var/forceChui )
+	proc/bbrowse( client/who, var/body, var/options, var/forceChui, var/forceHTML )
 		var/list/config = params2list( options )
 
-		if (!forceChui && !who.use_chui && !config["override_setting"])	//"override_setting=1"
+		if ((!forceChui && !who.use_chui && !config["override_setting"]) || forceHTML)	//"override_setting=1"
 			// hello, yes, this is evil. but it works. feel free to replace with something non-evil that works. --pali
 			// Zamu here - using this as a good time to inject "make most nonchui popups suck less ass" code.
 			// This is still really gross, but I'm still working on improving that.
@@ -333,6 +333,6 @@ chui/window
 client/proc/Browse( var/html, var/opts, var/forceChui )
 	chui.staticinst.bbrowse( src, html, opts, forceChui )
 
-mob/proc/Browse( var/html, var/opts, var/forceChui )
+mob/proc/Browse( var/html, var/opts, var/forceChui, var/forceHTML )
 	if( src.client )
-		chui.staticinst.bbrowse( src.client, html, opts, forceChui )
+		chui.staticinst.bbrowse( src.client, html, opts, forceChui, forceHTML )

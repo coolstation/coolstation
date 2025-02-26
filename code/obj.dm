@@ -144,6 +144,9 @@
 	disposing()
 		for(var/mob/M in src.contents)
 			M.set_loc(src.loc)
+		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
+			var/turf/T = get_turf(src)
+			T?.UpdateDirBlocks()
 		tag = null
 		mats = null
 		if (artifact && !isnum(artifact))
