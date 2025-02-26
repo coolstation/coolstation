@@ -1828,9 +1828,9 @@ datum
 				if(volume >= 5 && !(locate(/obj/item/reagent_containers/food/snacks/breadslice) in T))
 					new /obj/item/reagent_containers/food/snacks/breadslice(T)
 
-		fooddrink/george_melonium
-			name = "george melonium"
-			id = "george_melonium"
+		fooddrink/rainbow_melonium
+			name = "rainbow melonium"
+			id = "rainbow_melonium"
 			description = "A robust and mysterious substance."
 			reagent_state = LIQUID
 			fluid_r = 0

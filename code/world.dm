@@ -71,6 +71,20 @@ var/global/map_previously_abandoned = 1
 var/global/map_previously_abandoned = 0
 #endif
 
+//if the availability of specific chemical containers is determined by map placement and not printing or recycling new ones
+#ifdef NO_EASY_BEAKERS
+var/global/map_scarce_beakers = 1
+#else
+var/global/map_scarce_beakers = 0
+#endif
+
+//should certain types of power generation be worse, and should power storage have less capacity
+#ifdef POWER_IS_CRAPPY
+var/global/map_crappy_power = 1
+#else
+var/global/map_crappy_power = 0
+#endif
+
 #ifdef TWITCH_BOT_ALLOWED
 var/global/mob/twitch_mob = 0
 #endif

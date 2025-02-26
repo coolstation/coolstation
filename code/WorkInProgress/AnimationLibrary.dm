@@ -188,7 +188,7 @@
 ///obj/attackby(var/obj/item/I as obj, mob/user as mob)
 //	attack_particle(user,src)
 //	..()
-/proc/attack_particle(var/mob/M, var/atom/target)
+/proc/attack_particle(var/mob/M, var/atom/target, var/hidden = FALSE)
 	if (!M || !target || !M.attack_particle) return
 	var/diff_x = target.x - M.x
 	var/diff_y = target.y - M.y
@@ -211,6 +211,12 @@
 
 	M.attack_particle.alpha = 180
 	M.attack_particle.loc = M.loc
+	var/image/fake
+	if(hidden)
+		fake = image(M.attack_particle.icon,M.attack_particle,M.attack_particle.icon_state)
+		M.attack_particle.icon = 'icons/mob/mob.dmi'
+		M.attack_particle.icon_state = "blank"
+		M << fake
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -230,6 +236,7 @@
 	SPAWN_DBG(0.5 SECONDS)
 		//animate(M.attack_particle, alpha = 0, time = 2, flags = ANIMATION_PARALLEL)
 		M.attack_particle?.alpha = 0
+		qdel(fake)
 
 /mob/var/last_interact_particle = 0
 

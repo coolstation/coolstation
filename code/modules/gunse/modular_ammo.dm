@@ -1,5 +1,20 @@
 /*This is where my header text would go IF I HAD ANY!!!*/
 
+//shorten up this file a bit by making all the 3/5/10 subtypes this way
+#define THE_USUAL_FLAVOURS(_path, _name)\
+/obj/item/stackable_ammo/_path/three;\
+/obj/item/stackable_ammo/_path/three/name = _name+" (x3)";\
+/obj/item/stackable_ammo/_path/three/min_amount = 3;\
+/obj/item/stackable_ammo/_path/three/max_amount = 3;\
+/obj/item/stackable_ammo/_path/five;\
+/obj/item/stackable_ammo/_path/five/name = _name+" (x5)";\
+/obj/item/stackable_ammo/_path/five/min_amount = 5;\
+/obj/item/stackable_ammo/_path/five/max_amount = 5;\
+/obj/item/stackable_ammo/_path/ten;\
+/obj/item/stackable_ammo/_path/ten/name = _name+" (x10)";\
+/obj/item/stackable_ammo/_path/ten/min_amount = 10;\
+/obj/item/stackable_ammo/_path/ten/max_amount = 10
+
 #define default_max_amount 1
 #define default_min_amount 1
 
@@ -245,7 +260,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 /obj/item/stackable_ammo/pistol/
 	name = "abstract pistol round"
 	real_name = "abstract pistol round"
-	desc = "abstract bullet do not instantiate"
+	desc = "abstract bullet do not instantiate" //Do you think abstract bullets would be good for killing mimes?
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
@@ -257,8 +272,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_shell = "brass_case"
 
 /obj/item/stackable_ammo/pistol/NT
-	name = "NT pistol round"
-	real_name = "NT pistol round"
+	name = "\improper NT pistol round"
+	real_name = "\improper NT pistol round"
 	desc = "NT's standard 8mm Short firearms cartridge. The same caliber everyone else copies."
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol/NT
@@ -268,25 +283,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
-
-	three
-		name = "NT pistol round (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "NT pistol round (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "NT pistol round (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/NT, "\improper NT pistol round")
 
 /obj/item/stackable_ammo/pistol/HP
-	name = "NT HP pistol round"
-	real_name = "NT HP pistol round"
+	name = "\improper NT HP pistol round"
+	real_name = "\improper NT HP pistol round"
 	desc = "NT's 8mm Short firearms cartridge, with a hollow point for hunting and pest control. Not permitted for use on crew members."
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol/HP
@@ -297,25 +298,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	fiddlyness = 5
-
-	three
-		name = "NT HP pistol round (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "NT HP pistol round (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "NT HP pistol round (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/HP, "\improper NT HP pistol round")
 
 /obj/item/stackable_ammo/pistol/ratshot
-	name = "NT ratshot pistol round"
-	real_name = "NT ratshot pistol round"
+	name = "\improper NT ratshot pistol round"
+	real_name = "\improper NT ratshot pistol round"
 	desc = "NT's 8mm Short firearms cartridge, filled with a tiny amount of shot for pest control. Not permitted for use on crew members."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/nt/short
 	stack_type = /obj/item/stackable_ammo/pistol/ratshot
@@ -326,26 +313,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	fiddlyness = 10
-
-	three
-		name = "NT ratshot pistol round (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "NT ratshot pistol round (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "NT ratshot pistol round (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 
 //making these paper for now (paper will be used for custom rounds)
 /obj/item/stackable_ammo/pistol/italian
-	name = "Italian pistol round"
-	real_name = "Italian pistol round"
+	name = "\improper Italian pistol round"
+	real_name = "\improper Italian pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian
@@ -356,26 +329,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
 	fiddlyness = 25
-
-	three
-		name = "Italian pistol round (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "Italian pistol round (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "Italian pistol round (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 
 //rename to pistol/italian/ap
 /obj/item/stackable_ammo/pistol/italian/AP
 	name = "\improper Italian AP pistol round"
-	real_name = "Italian AP pistol round"
+	real_name = "\improper Italian AP pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, with an AP core. The same caliber everyone else copies. Still in paper..."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
@@ -386,25 +345,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
 	fiddlyness = 30
-
-	three
-		name = "Italian AP pistol round (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "Italian AP pistol round (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "Italian AP pistol round (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 
 /obj/item/stackable_ammo/pistol/juicer
 	name = "\improper Juicer Jr. round"
-	real_name = "Juicer Jr. round"
+	real_name = "\improper Juicer Jr. round"
 	desc = "Precision-manufactured Juicer pistol rounds in exactly 4x20 millimeter. Except two of them are taped together to fit in a standard barrel."
 	projectile_type = /datum/projectile/special/spreader/uniform_burst/juicer_jr //use a special two-bullet/half-damage projectile here, see if this works
 	stack_type = /obj/item/stackable_ammo/pistol/juicer
@@ -415,21 +360,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "bullet_juicer_jr"
 	icon_shell = "juicer_jr_case"
 	fiddlyness = 50
-
-	three
-		name = "Juicer Jr. round (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "Juicer Jr. round (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "Juicer Jr. round (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/juicer, "\improper Juicer Jr. round")
 
 /obj/item/stackable_ammo/pistol/tranq
 	name = "\improper NT Tranq-Will-8-or"
@@ -444,16 +375,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "it_what"
 	icon_shell = "white_case"
 	fiddlyness = 20
-
-	three
-		name = "\improper NT Tranq-Will-8-or (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper NT Tranq-Will-8-or (x5)"
-		min_amount = 5
-		max_amount = 5
+THE_USUAL_FLAVOURS(pistol/tranq, "\improper NT Tranq-Will-8-or")
 
 /obj/item/stackable_ammo/pistol/anti_mutant
 	name = "\improper NT Jean-Nerre-De Boulier dart"
@@ -468,16 +390,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "it_what"
 	icon_shell = "white_case"
 	fiddlyness = 15
+THE_USUAL_FLAVOURS(pistol/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart")
 
-	three
-		name = "\improper NT Jean-Nerre-De Boulier darts (x3)"
-		min_amount = 3
-		max_amount = 3
 
-	five
-		name = "\improper NT Jean-Nerre-De Boulier darts (x5)"
-		min_amount = 5
-		max_amount = 5
 /*	These also existed as tranq rifle rounds but I don't have a good name for em
 	syndicate
 		name = "\improper  Tranq-Will-8-or"
@@ -509,21 +424,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_empty = "nt_stun_empty"
 	icon_one   = "bullet_nerf"
 	icon_shell = "nerf_case"
-
-	three
-		name = "\improper NT In-Capacit-8-or (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper NT In-Capacit-8-or (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper NT In-Capacit-8-or (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/capacitive, "\improper NT In-Capacit-8-or")
 
 /obj/item/stackable_ammo/pistol/radbow
 	name = "\improper Syndicate Radioactive Darts"
@@ -532,21 +433,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	stack_type = /obj/item/stackable_ammo/pistol/radbow
 	desc = "Stealthy projectiles that cause insidious radiation poisoning. Fits in just about anything."
 	fiddlyness = 25
-
-	three
-		name = "\improper Syndicate Radioactive Darts (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Syndicate Radioactive Darts (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Syndicate Radioactive Darts (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/radbow, "\improper Syndicate Radioactive Darts")
 
 /obj/item/stackable_ammo/pistol/zaubertube/
 	name = "\improper Soviet zaubertubes"
@@ -561,21 +448,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_one   = "zauber_tube"
 	icon_shell = "zauber_spent"
 	fiddlyness = 15
-
-	three
-		name = "\improper Soviet zaubertubes (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Soviet zaubertubes (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Soviet zaubertubes (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(pistol/zaubertube, "\improper Soviet zaubertubes")
 
 //rifle shit
 ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
@@ -596,21 +469,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	fiddlyness = 5
-
-	three
-		name = "\improper NT rifle ammo (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper NT rifle ammo (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper NT rifle ammo (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle ammo")
 
 /obj/item/stackable_ammo/rifle/soviet
 	name = "\improper Soviet surplus ammo"
@@ -625,21 +484,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	fiddlyness = 10
-
-	three
-		name = "\improper Soviet surplus ammo (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Soviet surplus ammo (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Soviet surplus ammo (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus ammo")
 
 /obj/item/stackable_ammo/rifle/juicer
 	name = "\improper Juicer BIG rounds"
@@ -654,21 +499,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_one   = "bullet_juicer_big"
 	icon_shell = "juicer_big_case"
 	fiddlyness = 20
-
-	three
-		name = "\improper Juicer BIG rounds (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Juicer BIG rounds (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Juicer BIG rounds (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 
 //make a single shot
 /obj/item/stackable_ammo/rifle/capacitive/burst
@@ -684,21 +515,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_one   = "bullet_nerf"
 	icon_shell = "nerf_case"
 	fiddlyness = 10
-
-	three
-		name = "\improper NT In-Capacit-8-or MAX (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper NT In-Capacit-8-or MAX (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper NT In-Capacit-8-or MAX (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(rifle/capacitive/burst, "\improper NT In-Capacit-8-or MAX")
 
 
 //smoothbore shit
@@ -731,21 +548,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_full  = "nt_shells"
 	icon_empty = "nt_shells-empty"
 	fiddlyness = 10
-
-	three
-		name = "\improper NT Shot (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper NT Shot (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper NT Shot (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(scatter/NT, "\improper NT Shot")
 
 //NT's EXTRA skinny shotgun shell, which works in regular light barrels! wow!
 /obj/item/stackable_ammo/scatter/NT/mini
@@ -757,21 +560,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_one   = "shell_mini_blue"
 	icon_shell = "shell_mini_case"
 	fiddlyness = 15
-
-	three
-		name = "\improper NT Mini Shot (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper NT Mini Shot (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper NT Mini Shot (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 
 //thinking FOSS might make some stupid shotgun shells. for later
 
@@ -789,21 +578,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_shell = "shell_red_case"
 	cartridge_length = 40 //for big receivers only
 	fiddlyness = 30
-
-	three
-		name = "\improper Juicer Hot Pocketz (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Juicer Hot Pocketz (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Juicer Hot Pocketz (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(scatter/juicer, "\improper Juicer Hot Pocketz")
 
 /obj/item/stackable_ammo/scatter/juicer/denim
 	name = "\improper Juicer JAMMO"
@@ -817,26 +592,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
 	fiddlyness = 50
-
-	three
-		name = "\improper Juicer JAMMO (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Juicer JAMMO (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Juicer JAMMO (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(scatter/juicer/denim, "\improper Juicer JAMMO")
 
 /obj/item/stackable_ammo/scatter/bartender
 	name = "\improper Bartender's Buddy"
 	real_name = "\improper Bartender's Buddy"
-	desc = "Unlicensed and handmade short 16mm shotgun shell, full of rock salt. And probably some kind of acid."
+	desc = "Unlicensed and handmade short 16mm shotgun shell, full of rock salt. And probably some kind of acid. Fuck Bart."
 	projectile_type = /datum/projectile/bullet/shot_salt
 	stack_type = /obj/item/stackable_ammo/scatter/bartender
 	icon_state = "shells"
@@ -845,48 +606,30 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
 	fiddlyness = 10
-
-	three
-		name = "\improper Bartender's Buddy (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "\improper Bartender's Buddy (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "\improper Bartender's Buddy (x10)"
-		min_amount = 10
-		max_amount = 10
+THE_USUAL_FLAVOURS(scatter/bartender, "\improper Bartender's Buddy")
 
 /obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
-	name = "NT rubber slug"
-	real_name = "NT rubber slug"
+	name = "\improper NT rubber slug"
+	real_name = "\improper NT rubber slug"
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/slug_rubber
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
 	fiddlyness = 10
+THE_USUAL_FLAVOURS(scatter/slug_rubber, "\improper NT rubber slug")
 
-	three
-		name = "NT rubber slug (x3)"
-		min_amount = 3
-		max_amount = 3
-
-	five
-		name = "NT rubber slug (x5)"
-		min_amount = 5
-		max_amount = 5
-
-	ten
-		name = "NT rubber slug (x10)"
-		min_amount = 10
-		max_amount = 10
+//silly idea, I figure would be crafted ammo and not bought (though for the moment they are bought I haven't decided on a crafting method)
+/obj/item/stackable_ammo/coil
+	name = "coil slug round"
+	real_name = "coil slug round"
+	desc = "A metal coil packed into a bullet cartridge. This seems both stupid and cruel."
+	projectile_type = /datum/projectile/bullet/coil
+	stack_type = /obj/item/stackable_ammo/coil
+	fiddlyness = 5
+THE_USUAL_FLAVOURS(coil, "coil slug round")
 
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. Cathodic Flash Tube 1.4"
-	real_name = "FOSSYN. Cathodic Flash Tube 1.4"
+	real_name = "\improper FOSSYN. Cathodic Flash Tube 1.4"
 	desc = "A modest glass tube filled with ionic gas, and two opposing electrodes."
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "bulb"
@@ -934,7 +677,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /obj/item/stackable_ammo/flashbulb/better
 	name = "\improper FOSSYN. Cathodic Flash Tube 2.0b"
-	real_name = "FOSSYN. Cathodic Flash Tube 2.0b"
+	real_name = "\improper FOSSYN. Cathodic Flash Tube 2.0b"
 	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
 	max_health = 25
 	min_health = 20
@@ -1075,3 +818,4 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 #undef default_max_amount
 #undef default_min_amount
+#undef THE_USUAL_FLAVOURS

@@ -262,6 +262,7 @@ datum
 			fluid_g = 70
 			fluid_b = 0
 			transparency = 255
+			minimum_to_infect = 1.5
 			disease = /datum/ailment/disease/infection
 
 		disease/necrovirus // Necrotic Degeneration

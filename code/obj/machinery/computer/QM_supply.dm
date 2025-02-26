@@ -194,7 +194,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	post_signal("supply")
 	var/HTML
 
-	var/header_thing_chui_toggle = (user.client && !user.client.use_chui) ? {"
+	var/header_thing_chui_toggle = true ? {"
 		<style type='text/css'>
 			body {
 				font-family: Verdana, sans-serif;
@@ -421,7 +421,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	// which as [src] turns into ... location = '.chui onclose Quartermaster's Console'
 	// which as you can probably guess is a syntax error. i have no idea why this only started
 	// happening halfway into this but: chui!!!!!!!!!!!!!!!!!!
-	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;")
+	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;", FALSE, TRUE)
 	onclose(user, "qmComputer_\ref[src]")
 	return
 
