@@ -17,9 +17,6 @@
 	density = 1
 	anchored = 1
 	object_flags = CAN_BE_LIFTED
-	throw_speed = 2
-	throw_range = 3
-	throwforce = 15
 	/// Current number of eggs inside the microwave
 	var/egg_amount = 0
 	/// Current amount of flour inside the microwave
@@ -59,6 +56,9 @@
 	mats = 12
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH
 	var/emagged = FALSE
+	throw_speed = 2
+	throw_range = 3
+	throwforce = 15
 
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		..()
