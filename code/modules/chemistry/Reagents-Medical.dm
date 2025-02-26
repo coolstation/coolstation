@@ -80,7 +80,6 @@ datum
 			depletion_rate = 0.2
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-			var/max_volume = 0 // The max amount that's been in you since you've taken it
 
 			on_add()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
@@ -104,11 +103,6 @@ datum
 					..()
 					return
 
-				if (M.reagents.get_reagent_amount("morphine") > max_volume)
-					max_volume = M.reagents.get_reagent_amount("morphine")
-					if (max_volume > overdose) // Separates the KO-y part of morphine from the heal-y
-						if (counter < 35) counter = 35
-
 				M.jitteriness = max(M.jitteriness-25,0)
 				if(holder.has_reagent("omegazine"))
 					holder.remove_reagent("omegazine", 3 * mult)
@@ -127,11 +121,13 @@ datum
 							M.losebreath += (5)
 							M.take_toxin_damage(2)
 
-				if (ishuman(M))
-					if (counter > 10 && counter < 60 && probmult(10)) // Has a chance to stop shock
-						var/mob/living/carbon/human/H = M
-						H.cure_disease_by_path(/datum/ailment/malady/shock)
+				..()
+				return
 
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				if (counter < 35) // OD makes morphine act significantly faster
+					counter = 35
 				..()
 				return
 
