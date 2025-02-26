@@ -293,7 +293,7 @@ obj/machinery/atmospherics/pipe
 				var/environment_temperature = 0
 
 				if(issimulatedturf(loc))
-					if(loc:blocks_air)
+					if(loc:gas_impermeable)
 						environment_temperature = loc:temperature
 					else
 						var/datum/gas_mixture/environment = loc.return_air()
