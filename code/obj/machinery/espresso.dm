@@ -26,9 +26,9 @@
 		UnsubscribeProcess()
 		src.update()
 
-	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
-		..()
-		playsound(hit_atom.loc, 'sound/impact_sounds/Metal_Clang_2.ogg', 50, 1)
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Clang_2.ogg', 50, 1)
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
 			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
@@ -222,13 +222,17 @@
 			src.my_carafe = new src.default_carafe (src)
 		src.update()
 
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Clang_3.ogg', 50, 1)
+
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		..()
-		playsound(hit_atom.loc, 'sound/impact_sounds/Metal_Clang_3.ogg', 50, 1)
 		if(src.my_carafe)
 			src.my_carafe.set_loc(get_turf(src))
-			src.my_carafe.throw_at(hit_atom)
+			src.my_carafe.throw_at(hit_atom, 2, 5)
 			src.my_carafe = null
+			src.update()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
 			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)

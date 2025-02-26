@@ -19,9 +19,12 @@
 		..()
 		UnsubscribeProcess()
 
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
+
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		..()
-		playsound(hit_atom.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
 		if(ismob(hit_atom))
 			var/mob/living/L = hit_atom
 			L.changeStatus("weakened", 1 SECOND)
