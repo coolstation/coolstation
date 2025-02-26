@@ -776,8 +776,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROB_SLIDEKICK_TURBO, src)
+		APPLY_MOB_PROPERTY(user, PROP_SLIDEKICK_TURBO, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROB_SLIDEKICK_TURBO, src)
+		REMOVE_MOB_PROPERTY(user, PROP_SLIDEKICK_TURBO, src)

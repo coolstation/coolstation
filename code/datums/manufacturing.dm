@@ -540,7 +540,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	category = "Machinery"
 
 /datum/manufacture/chemicalcan
-	name = "Chemical Cannister"
+	name = "Chemical Canister"
 	item_paths = list("MET-2")
 	item_amounts = list(10)
 	item_outputs = list(/obj/item/reagent_containers/food/drinks/chemicalcan)
