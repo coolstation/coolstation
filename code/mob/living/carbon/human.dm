@@ -1106,7 +1106,7 @@
 		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
 			src.next_click = world.time + src.combat_click_delay
-			if (!HAS_MOB_PROPERTY(src, PROB_SLIDEKICK_TURBO))
+			if (!HAS_MOB_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
 			else
@@ -3627,3 +3627,13 @@
 
 	else
 		boutput(src, "<span class='alert'><B>You're not a cluwne for some reason! That's a bug!!! </B></span>")
+
+///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
+/mob/living/carbon/human/MouseDrop_T(atom/dropped, mob/dropping_user)
+	if(isobj(dropped))
+		var/obj/O = dropped
+		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
+			if (can_reach(src, O))
+				new /obj/item/lifted_thing(O, src)
+			return
+	..()
