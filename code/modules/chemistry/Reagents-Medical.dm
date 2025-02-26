@@ -76,18 +76,15 @@ datum
 			transparency = 30
 			addiction_prob = 10//50
 			addiction_min = 15
-			overdose = 20
+			overdose = 15
+			depletion_rate = 0.2
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+
 			on_add()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -3)
+					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -102,22 +99,38 @@ datum
 				if(!M) M = holder.my_atom
 				if(!counter) counter = 1
 				//don't do shit if there's naloxone in you
-				if(!holder.has_reagent("naloxone"))
-					M.jitteriness = max(M.jitteriness-25,0)
-					if(holder.has_reagent("omegazine"))
-						holder.remove_reagent("omegazine", 3 * mult)
+				if(holder.has_reagent("naloxone"))
+					..()
+					return
 
-					switch(counter += 1 * mult)
-						if(1 to 15)
-							if(probmult(7)) M.emote("yawn")
-						if(16 to 35)
-							M.drowsyness  = max(M.drowsyness, 20)
-						if(36 to INFINITY)
-							M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
-							M.drowsyness  = max(M.drowsyness, 20)
+				M.jitteriness = max(M.jitteriness-25,0)
+				if(holder.has_reagent("omegazine"))
+					holder.remove_reagent("omegazine", 3 * mult)
+
+				switch(counter += 1 * mult)
+					if(1 to 40)
+						if(probmult(5)) M.emote("yawn")
+					if(40 to 60)
+						if(probmult(25)) M.drowsyness  = max(M.drowsyness, 5)
+					if(60 to INFINITY)
+						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
+						M.drowsyness  = max(M.drowsyness, 20)
+						holder.remove_reagent("morphine", 0.2 * mult) //morphine gets flushed faster while you are KO'd
+
+						if(probmult(35) && counter > 70)
+							M.losebreath += (5)
+							M.take_toxin_damage(2)
 
 				..()
 				return
+
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				if (counter < 35) // OD makes morphine act significantly faster
+					counter = 35
+				..()
+				return
+
 
 		//prevents morphine from working (specifically for stopping overdose condition)
 		medical/naloxone
@@ -141,7 +154,7 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -3)
+					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -157,14 +170,11 @@ datum
 			transparency = 30
 			addiction_prob = 10//50
 			addiction_min = 15
-			overdose = 20
+			overdose = 30
+			depletion_rate = 0.6
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -181,20 +191,31 @@ datum
 				if(!M) M = holder.my_atom
 				if(!counter) counter = 1
 				M.jitteriness = max(M.jitteriness-25,0)
+				M.stuttering += rand(3,5)
 				if(holder.has_reagent("omegazine"))
 					holder.remove_reagent("omegazine", 2 * mult)
 
 				switch(counter += 1 * mult)
-					if(1 to 15)
-						if(probmult(7)) M.emote("yawn")
-					if(16 to 35)
-						M.drowsyness  = max(M.drowsyness, 20)
-					if(36 to INFINITY)
+					if(3 to 14)
+						if(probmult(10))
+							M.emote(pick("yawn", "giggle", "laugh"))
+							M.drowsyness  = max(M.drowsyness, 8)
+					if(14 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
 						M.drowsyness  = max(M.drowsyness, 20)
 
 				..()
 				return
+
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				M.take_brain_damage(0.5 * mult)
+				M.take_toxin_damage(0.5 * mult)
+				holder.remove_reagent("ether", mult)
+				if(probmult(20))
+					M.emote(pick("shudder","shiver","drool"))
+					boutput(M, "<span class='alert'>You feel very sick!</span>")
 
 		//for gas station boner pills
 		medical/bonerjuice //probably moving this to medical

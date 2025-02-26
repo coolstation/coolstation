@@ -110,7 +110,7 @@
 	info = "The patient is in shock."
 	max_stages = 3
 	cure = "Saline Solution"
-	reagentcure = list("saline")
+	reagentcure = list("saline", "morphine")
 	recureprob = 10
 	affected_species = list("Human","Monkey")
 	stage_prob = 6
