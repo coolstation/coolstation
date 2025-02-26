@@ -126,6 +126,13 @@ proc/build_syndi_buylist_cache()
 	desc = "A pouch of assorted special-ops grenades."
 	blockedmode = list(/datum/game_mode/revolution)
 
+/datum/syndicate_buylist/utility/turbopunkskates
+	name = "Turbopunk Skates"
+	item = /obj/item/clothing/shoes/turbopunk
+	cost = 2
+	desc = "These rollerskates include super-lubricated bearings, perform combat slides just like ACTION MOVIE."
+	blockedmode = list(/datum/game_mode/revolution)
+
 /datum/syndicate_buylist/utility/voicechanger
 	name = "Voice Changer"
 	item = /obj/item/voice_changer
