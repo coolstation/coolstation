@@ -94,8 +94,11 @@
 					continue
 				if (istype(O, /obj/machinery/atmospherics/binary/pump))
 					var/obj/machinery/atmospherics/binary/pump/P = O
-					if (_id)
-						P.id = _id
+					if (!P.id)
+						if (P.name != initial(P.name))
+							P.id = P.name
+					//if (_id)
+					//	P.id = _id
 					if (_freq)
 						P.set_frequency(_freq)
 					P.on = _atmos_on
