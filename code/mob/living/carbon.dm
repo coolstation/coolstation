@@ -245,6 +245,7 @@
 	src.change_misstep_chance(-INFINITY)
 	if (src.reagents)
 		src.reagents.clear_reagents()
+		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)
@@ -291,6 +292,20 @@
 		return
 
 	src.oxyloss = max(0,src.oxyloss + amount)
+	return
+
+/mob/living/carbon/lose_breath(var/amount)
+	if (..())
+		return
+
+	if (!losebreath && amount < 0)
+		return
+
+	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+		src.losebreath = 0
+		return
+
+	src.losebreath = max(0,src.losebreath + amount)
 	return
 
 /mob/living/carbon/get_brain_damage()

@@ -173,6 +173,12 @@ datum
 			overdose = 30
 			depletion_rate = 0.6
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
+			flammable_influence = TRUE
+			combusts_on_gaseous_fire_contact = TRUE
+			burn_speed = 4
+			burn_temperature = 2200
+			burn_volatility = 15 // Very Dangerous
+			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
 			value = 5
 
 			on_add()
@@ -205,6 +211,12 @@ datum
 						M.drowsyness  = max(M.drowsyness, 20)
 
 				..()
+				return
+
+			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
+				if(holder && !holder.is_combusting)
+					holder.start_combusting()
 				return
 
 			do_overdose(var/severity, var/mob/living/M, var/mult = 1)

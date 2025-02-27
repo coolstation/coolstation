@@ -421,7 +421,7 @@
 
 /obj/item/chem_grenade/incendiary
 	name = "incendiary grenade"
-	desc = "A rather volatile grenade that creates a small fire."
+	desc = "A rather volatile grenade that creates a nasty fire."
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "incendiary"
 	icon_state_armed = "incendiary1"
@@ -430,12 +430,19 @@
 	New()
 		..()
 		var/obj/item/reagent_containers/glass/B1 = new(src)
-		B1.reagents.add_reagent("infernite", 20)
+		var/obj/item/reagent_containers/glass/B2 = new(src)
+		B1.reagents.add_reagent("infernite", 10)
+		B1.reagents.add_reagent("sugar",10)
+
+		B2.reagents.add_reagent("phosphorus", 10)
+		B2.reagents.add_reagent("potassium", 10)
+		B2.reagents.add_reagent("phlogiston", 10)
 		beakers += B1
+		beakers += B2
 
 /obj/item/chem_grenade/very_incendiary
 	name = "high range incendiary grenade"
-	desc = "A rather volatile grenade that creates a large fire."
+	desc = "A variant of the incendiary grenade that creates a larger but less intense fire."
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "incendiary-highrange"
 	icon_state_armed = "incendiary-highrange1"
@@ -444,8 +451,14 @@
 	New()
 		..()
 		var/obj/item/reagent_containers/glass/B1 = new(src)
-		B1.reagents.add_reagent("firedust", 20)
+		var/obj/item/reagent_containers/glass/B2 = new(src)
+		B1.reagents.add_reagent("phlogiston", 25)
+		B1.reagents.add_reagent("sugar",25)
+
+		B2.reagents.add_reagent("phosphorus", 25)
+		B2.reagents.add_reagent("potassium", 25)
 		beakers += B1
+		beakers += B2
 
 /obj/item/chem_grenade/very_incendiary/vr
 	icon = 'icons/effects/VR.dmi'
