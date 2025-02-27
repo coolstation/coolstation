@@ -1148,12 +1148,9 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/datum/reagents/copied = new/datum/reagents(amt_to_emit)
 		copied = chemR.copy_to(copied, amt_to_emit/chemR.total_volume, copy_temperature = 1)
 
-		if(!T.reagents) // first get the turf
-			T.create_reagents(100)
-		copied.copy_to(T.reagents, 1, copy_temperature = 1)
-		copied.reaction(T, TOUCH, 0, 0)
+		copied.reaction(T, TOUCH, copied.total_volume, 1)
 		if(O.special_data["IS_LIT"]) // Heat if needed
-			T.reagents?.set_reagent_temp(O.special_data["burn_temp"], TRUE)
+			T.hotspot_expose(O.special_data["burn_temp"], 150)
 		for(var/atom/A in T.contents) // then all the stuff in the turf
 			if(istype(A, /obj/overlay) || istype(A, /obj/projectile))
 				continue
