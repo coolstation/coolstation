@@ -8,8 +8,7 @@ var/global/list/image/spider_filter_images
 	SHOULD_CALL_PARENT(1)
 	..()
 
-//	src.filter_image = image('icons/effects/spider_filter.dmi', null, "pider")
-	src.filter_image = image('icons/obj/foodNdrink/food_meals.dmi', null, "hburger")
+	src.filter_image = image('icons/effects/spider_filter.dmi', null, "pider")
 	src.filter_image.override = 1
 
 	if(isnull(global.spider_filter_images))
