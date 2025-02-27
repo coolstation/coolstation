@@ -125,7 +125,7 @@
 				// ... also set suit/uniform to bottomless? I dunno
 			else
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")
-				H.wiped = 0 //+1 trait idea: nothin' but net
+			H.wiped = 0 //+1 trait idea: nothin' but net
 			if(H.w_uniform)
 				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 5)
 			else
