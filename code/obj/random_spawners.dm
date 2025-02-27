@@ -1606,6 +1606,7 @@
 						/obj/item/clothing/shoes/flippers,
 						/obj/item/clothing/shoes/fuzzy,
 						/obj/item/clothing/shoes/gogo,
+						/obj/item/clothing/shoes/turbopunk,
 						/obj/item/clothing/shoes/heels,
 						/obj/item/clothing/shoes/macho,
 						/obj/item/clothing/shoes/mj_shoes,
