@@ -343,6 +343,11 @@
 		[PC_IFDEF("account")]
 			<B>Current Funds</B>: [PC_TAG("account")] Credits<br>
 		[PC_ENDIF("account")]
+		<HR><B>Ores Available for Purchase:</B><br><small>
+		[PC_TAG("ore-list")]
+		</small><HR>
+
+		[PC_TAG("control-panel")]
 		"}
 
 		var/contentlist = list("title" = src.name)
@@ -467,23 +472,23 @@
 			if (account)
 				PC_ENABLE_IFDEF(HTML, "account")
 				contentlist["account"] += account.fields["current_money"]
-		dat+= src.temp
-		dat += "<HR><B>Ores Available for Purchase:</B><br><small>"
+		//dat+= src.temp
+		//dat += ""
 		for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
 			if(S.broken)
 				continue
-			dat += "<B>[S.name] at [get_area(S)]:</B><br>"
+			contentlist["ore-list"] += "<B>[S.name] at [get_area(S)]:</B><br>"
 			var/list/ores = S.ores
 			for(var/ore in ores)
 				var/datum/ore_cloud_data/OCD = ores[ore]
 				if(!OCD.for_sale || !OCD.amount)
 					continue
 				var/taxes = round(max(rockbox_globals.rockbox_client_fee_min,abs(OCD.price*rockbox_globals.rockbox_client_fee_pct/100)),0.01) //transaction taxes for the station budget
-				dat += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
+				contentlist["ore-list"] += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
 
-		dat += "</small><HR>"
+		//dat += ""
 
-		dat += build_control_panel(user)
+		contentlist["control-panel"] += build_control_panel(user)
 
 		PC_REMOVE_UNUSED_IFDEF(HTML)
 		PC_FILL_TAG_LIST(HTML, contentlist)
