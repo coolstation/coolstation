@@ -22,7 +22,7 @@ Contents:
 		. = ..()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 33,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = LANDMARK_FALL_ICE_CREW_ELE)
 
 	ex_act(severity)
@@ -39,7 +39,7 @@ Contents:
 		. = ..()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 33,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = LANDMARK_FALL_ICE_MINE_ELE)
 
 	ex_act(severity)
@@ -112,7 +112,7 @@ Contents:
 		. = ..()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 50,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = LANDMARK_FALL_ICE)
 
 /turf/floor/arctic/cliff

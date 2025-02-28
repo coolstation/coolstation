@@ -134,8 +134,9 @@ var/global/datum/controller/throwing/throwing_controller = new
 			thing.throwing = 0
 			thing.throw_unlimited = 0
 
-			thing.throw_impact(get_turf(thing), thr)
-
+			var/turf/T = get_turf(thing)
+			thing.throw_impact(T, thr)
+			SEND_SIGNAL(T, COMSIG_TURF_LANDIN_THROWN, thr)
 			thing.throwforce -= thr.bonus_throwforce
 
 			if(thr.target != thr.return_target && thing.throw_return)

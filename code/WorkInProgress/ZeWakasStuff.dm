@@ -217,7 +217,7 @@
 		. = ..()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 50,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = LANDMARK_FALL_GREEK)
 
 // Misc Stuff

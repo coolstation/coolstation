@@ -147,7 +147,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 50,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = src.landmarktarget)
 
 		SPAWN_DBG(0.5 SECONDS)

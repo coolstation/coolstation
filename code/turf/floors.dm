@@ -2138,7 +2138,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 			. = ..()
 			src.AddComponent(/datum/component/pitfall/target_landmark,\
 				BruteDamageMax = 50,\
-				FallTime = 0 SECONDS,\
+				HangTime = 0 SECONDS,\
 				TargetLandmark = src.falltarget)
 
 		shaft
@@ -2183,7 +2183,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 				. = ..()
 				src.AddComponent(/datum/component/pitfall/target_landmark,\
 					BruteDamageMax = 50,\
-					FallTime = 0 SECONDS,\
+					HangTime = 0 SECONDS,\
 					TargetLandmark = LANDMARK_FALL_DEEP)
 
 	hivefloor

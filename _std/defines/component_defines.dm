@@ -80,6 +80,8 @@
 
 /// when a turf is replaced by another turf (what)
 #define COMSIG_TURF_REPLACED "turf_replaced"
+/// when a movable lands in a turf (thing, /datum/thrown_thing)
+#define COMSIG_TURF_LANDIN_THROWN "turf_landin"
 
 // ---- atom/movable signals ----
 

@@ -302,7 +302,7 @@
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_area,\
 			BruteDamageMax = 6,\
-			FallTime = 0.3 SECONDS,\
+			HangTime = 0.3 SECONDS,\
 			TargetArea = /area/trench_landing)
 	// fullbright = 1
 
@@ -332,7 +332,7 @@
 	initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_coordinates,\
 			BruteDamageMax = 6,\
-			FallTime = 0.3 SECONDS,\
+			HangTime = 0.3 SECONDS,\
 			TargetZ = 5,\
 			LandingRange = 8)
 
@@ -425,7 +425,7 @@
 		..()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 25,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = LANDMARK_FALL_SEA)
 
 		var/turf/n = get_step(src,NORTH)
@@ -461,22 +461,6 @@
 
 	ex_act(severity)
 		return
-
-	Entered(atom/movable/A as mob|obj)
-		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
-			return ..()
-		var/turf/T = pick_landmark(LANDMARK_FALL_SEA)
-		if (isturf(T))
-			visible_message("<span class='alert'>[A] falls down [src]!</span>")
-			if (ismob(A))
-				var/mob/M = A
-				random_brute_damage(M, 25)
-				M.changeStatus("weakened", 5 SECONDS)
-				M.emote("scream")
-				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
-			A.set_loc(T)
-			return
-		else ..()
 
 /obj/machinery/computer/sea_elevator
 	name = "Elevator Control"

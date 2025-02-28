@@ -1518,7 +1518,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	New()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 50,\
-			FallTime = 0 SECONDS,\
+			HangTime = 0 SECONDS,\
 			TargetLandmark = src.falltarget)
 		..()
 
