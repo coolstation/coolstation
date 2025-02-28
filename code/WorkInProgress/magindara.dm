@@ -28,7 +28,6 @@
 		..()
 		if (generateLight)
 			src.make_light()
-		src.initialise_component()
 
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_coordinates,\

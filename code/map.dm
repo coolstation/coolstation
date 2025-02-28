@@ -1081,6 +1081,11 @@ var/global/list/mapNames = list(
 
 	valid_nuke_targets = list("the medbay" = list(/area/station/medical/staff, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ))
 
+	init()
+		..()
+		for(var/turf/space/magindara/pitfall_turf)
+			pitfall_turf.initialise_component()
+
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"
 	walls = /turf/wall/auto/supernorn
