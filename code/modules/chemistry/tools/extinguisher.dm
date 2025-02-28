@@ -181,7 +181,8 @@
 				var/turf/my_target = pick(the_targets)
 				W.spray_at(my_target, R, try_connect_fluid = 1)
 
-		if (istype(user.loc, /turf/space))
+		var/turf/my_turf = get_turf(src)
+		if (my_turf.throw_unlimited)
 			user.inertia_dir = get_dir(target, user)
 			step(user, user.inertia_dir)
 		else if( user.buckled && !user.buckled.anchored )

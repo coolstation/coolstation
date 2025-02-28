@@ -164,6 +164,11 @@
 /area/station/maintenance/central)
 "eZ" = (
 /obj/machinery/door/airlock/external,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "fq" = (
@@ -221,6 +226,11 @@
 	dir = 9
 	},
 /obj/disposalpipe/segment/morgue/bent/north,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "hx" = (
@@ -434,6 +444,11 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/morgue/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "lV" = (
@@ -570,6 +585,11 @@
 	dir = 6
 	},
 /obj/disposalpipe/segment/sewage/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "nU" = (
@@ -845,12 +865,19 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/glass/bucket{
-	pixel_x = -8;
-	pixel_y = 2
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/stool/chair/moveable{
+	dir = 4
 	},
 /obj/item/fishing_rod{
 	pixel_y = -6;
-	pixel_x = -6
+	pixel_x = 2
+	},
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
 	},
 /turf/space/magindara,
 /area/station/maintenance/central)
@@ -922,6 +949,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"xc" = (
+/obj/railing/reinforced{
+	dir = 1
+	},
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "xh" = (
 /obj/table/auto,
 /obj/item/storage/toolbox{
@@ -1093,6 +1129,17 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"AO" = (
+/obj/railing/reinforced{
+	dir = 1
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/disposalpipe/segment/sewage/horizontal,
+/turf/space/magindara,
+/area/magindara)
 "AR" = (
 /obj/health_scanner/floor{
 	dir = 4;
@@ -1158,12 +1205,12 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer{
-	pixel_y = 2;
-	pixel_x = 4
+	pixel_y = -4;
+	pixel_x = 12
 	},
-/obj/item/reagent_containers/food/drinks/bottle/beer{
-	pixel_y = 2;
-	pixel_x = 4
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
 	},
 /turf/space/magindara,
 /area/station/maintenance/central)
@@ -1324,6 +1371,13 @@
 /obj/stool/chair,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
+"FN" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "FU" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2/left,
@@ -1331,6 +1385,9 @@
 /area/station/medical/medbay/surgery)
 "Gf" = (
 /obj/grille/catwalk,
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "Gk" = (
@@ -1545,6 +1602,17 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"Mg" = (
+/obj/railing/reinforced{
+	dir = 1
+	},
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "MJ" = (
 /obj/cable{
 	d1 = 1;
@@ -1612,6 +1680,7 @@
 /obj/grille/catwalk/cross{
 	dir = 9
 	},
+/obj/lattice,
 /turf/space/magindara,
 /area/station/maintenance/central)
 "NM" = (
@@ -1694,6 +1763,11 @@
 "Pu" = (
 /obj/grille/catwalk,
 /obj/disposalpipe/segment/sewage/bent/east,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "PH" = (
@@ -1738,6 +1812,14 @@
 /obj/disposalpipe/segment/sewage/bent/east,
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
+"Rh" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/turf/space/magindara,
+/area/magindara)
 "Ro" = (
 /obj/lattice,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -1871,6 +1953,7 @@
 /obj/grille/catwalk{
 	dir = 6
 	},
+/obj/lattice,
 /turf/space/magindara,
 /area/station/maintenance/central)
 "Uy" = (
@@ -2008,6 +2091,11 @@
 /obj/grille/catwalk{
 	dir = 8
 	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "Xy" = (
@@ -2057,6 +2145,11 @@
 	dir = 6
 	},
 /obj/disposalpipe/segment/sewage/bent/north,
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "Yj" = (
@@ -41314,7 +41407,7 @@ Uw
 Fi
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -41616,7 +41709,7 @@ Xs
 Fi
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -41918,7 +42011,7 @@ Xs
 Fi
 SO
 SO
-SO
+OX
 SO
 SO
 SO
@@ -42220,7 +42313,7 @@ Xs
 Fi
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -42522,7 +42615,7 @@ Xs
 Fi
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -42821,10 +42914,10 @@ Cx
 SO
 IJ
 Ch
-Fi
-SO
-SO
-SO
+xc
+OX
+VL
+FN
 SO
 SO
 SO
@@ -43126,7 +43219,7 @@ uC
 Fi
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -43418,17 +43511,17 @@ Iy
 Iy
 By
 cs
-mF
+Et
 mF
 tC
 Cx
 SO
 SO
-ln
 SO
 SO
 SO
 SO
+OX
 SO
 SO
 SO
@@ -43720,7 +43813,7 @@ Ft
 Eb
 pW
 cs
-mF
+Et
 mF
 tC
 Cx
@@ -45531,7 +45624,7 @@ SO
 ky
 KU
 lK
-MY
+Mg
 SO
 SO
 SO
@@ -45833,7 +45926,7 @@ SO
 SO
 IJ
 lK
-MY
+AO
 SO
 SO
 SO
