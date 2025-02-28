@@ -82,7 +82,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
-			AM.event_handler_flags |= IMMUNE_PITFALL // this prevents falling down for each hole you cross while coyote timing
 			SPAWN_DBG(src.HangTime)
 				if (!QDELETED(AM))
 					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
@@ -240,7 +239,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	/// If truthy, try to find a spot around the target to land on in range(x).
 	var/LandingRange = 4
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 8)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 4)
 		..()
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
@@ -261,9 +260,8 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		for(var/turf/space/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
 			src.TargetList += T
 			return TRUE
-		if(!length(src.TargetList))
-			for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
-				if(!T.density)
-					src.TargetList += T
-					return TRUE
+		for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
+			if(!T.density)
+				src.TargetList += T
+				return TRUE
 		return FALSE
