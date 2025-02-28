@@ -8,6 +8,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 /datum/component/pitfall
 	/// the maximum amount of brute damage applied. This is used in random_brute_damage()
 	var/BruteDamageMax = 0
+	/// do anchored things fall down?
+	var/AnchoredAllowed = TRUE
 	/// How long it takes for a thing to fall into the pit. 0 is instant, but usually you'd have a couple deciseconds where something can be flung across. Should use time defines.
 	var/HangTime = 0.3 SECONDS
 	/// How long it takes to plummet down as an animation
@@ -15,7 +17,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	/// The smallest to make someone who falls as a scalar, ideally correlated with FallTime but if it's really funny you don't have to
 	var/DepthScale = 0.3
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3)
 		. = ..()
 		if (!istype(src.parent, /turf))
 			return COMPONENT_INCOMPATIBLE
@@ -23,6 +25,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall))
 		RegisterSignal(src.parent, COMSIG_ATTACKBY, PROC_REF(update_targets))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
+		src.AnchoredAllowed = AnchoredAllowed
 		src.BruteDamageMax	= BruteDamageMax
 		src.HangTime		= HangTime
 
@@ -52,7 +55,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
-		if (AM.anchored >= ANCHORED_ALWAYS || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
+		if (AM.anchored > src.AnchoredAllowed || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
 			return
 		if (ismob(AM))
 			var/mob/M = AM
@@ -146,6 +149,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 TYPEINFO(/datum/component/pitfall/target_landmark)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
+		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
 		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
@@ -157,7 +161,7 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	/// The landmark that the fall sends you to. Should be a landmark define.
 	var/TargetLandmark = ""
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetLandmark = "")
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetLandmark = "")
 		..()
 		src.TargetLandmark = TargetLandmark
 		if (!src.TargetLandmark)
@@ -170,6 +174,7 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 TYPEINFO(/datum/component/pitfall/target_area)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
+		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
 		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
@@ -181,7 +186,7 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	/// The area path that the target falls into. For area targeting
 	var/TargetArea = null
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetArea = null)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetArea = null)
 		..()
 		src.TargetArea = TargetArea
 		if (!src.TargetArea || !ispath(src.TargetArea, /area))
@@ -194,11 +199,12 @@ TYPEINFO(/datum/component/pitfall/target_area)
 TYPEINFO(/datum/component/pitfall/target_coordinates)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
+		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
 		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetZ", "num", "The z level that the target falls into.", 5),
-		ARG_INFO("LandingRange", "num", "If true, try to find a spot around the target to land on in range (x). Only for 'direct drops'.", 0),
+		ARG_INFO("LandingRange", "num", "If true, try to find a spot around the target to land on in range (x). Only for 'direct drops'.", 4),
 	)
 
 /// a pitfall which targets a coordinate. At the moment only supports targeting a z level and picking a range around current coordinates.
@@ -208,32 +214,31 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	/// The z level that the target falls into if not via area or landmark.
 	var/TargetZ = 5
 	/// If truthy, try to find a spot around the target to land on in range(x).
-	var/LandingRange = 8
+	var/LandingRange = 4
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 8)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 4)
 		..()
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
 		if (!src.TargetZ || !src.LandingRange)
 			return COMPONENT_INCOMPATIBLE
 		src.update_targets()
-		if (!src.TargetList || !length(src.TargetList))
-			return COMPONENT_INCOMPATIBLE
 
 	try_fall(signalsender, var/atom/movable/AM)
 		if (..())
 			if (!src.TargetList || !length(src.TargetList))
-				src.update_targets()
+				if (!src.update_targets())
+					RemoveComponent()
 			src.fall_to(pick(src.TargetList), AM, src.BruteDamageMax)
-
 
 	update_targets()
 		src.TargetList = list()
 		for(var/turf/space/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
 			src.TargetList += T
-			break
+			return TRUE
 		if(!length(src.TargetList))
 			for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
 				if(!T.density)
 					src.TargetList += T
-					break
+					return TRUE
+		return FALSE

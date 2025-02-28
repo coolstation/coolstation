@@ -2,6 +2,6 @@
 #include "..\z2.dmm"
 #include "..\z3.dmm"
 #include "z4.dm"
-#include "..\z5.dmm"
+#include "..\z5_trench.dmm"
 #include "nudebris.dm"
 #define MAP_MODE "standard"
