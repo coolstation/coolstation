@@ -1,5 +1,5 @@
 /turf/space/magindara
-	name = "\improper ocean below"
+	name = "\proper the ocean below"
 	desc = "The deep ocean of Magindara far below, whipped with waves and frigid cold."
 	icon = 'icons/turf/water.dmi'
 	icon_state = "magindara_ocean"
@@ -17,10 +17,10 @@
 	temperature = T20C
 
 	var/datum/light/point/light = null
-	var/light_r = 0.6
+	var/light_r = 0.55
 	var/light_g = 0.4
-	var/light_b = 1.0
-	var/light_brightness = 1.25
+	var/light_b = 0.6
+	var/light_brightness = 1.1
 	var/light_height = 3
 	var/generateLight = 1
 
@@ -33,8 +33,9 @@
 		src.AddComponent(/datum/component/pitfall/target_coordinates,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = FALSE,\
-			HangTime = 0.25 SECONDS,\
+			HangTime = 0.3 SECONDS,\
 			FallTime = 1.2 SECONDS,\
+			DepthScale = 0.5,\
 		)
 
 	make_light()

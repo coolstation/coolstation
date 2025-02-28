@@ -64,6 +64,7 @@
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 
 #elif defined(MAP_OVERRIDE_PERDUTA)
+#define ABOVEWATER_MAP
 
 #elif defined(MAP_OVERRIDE_SPIRIT)
 

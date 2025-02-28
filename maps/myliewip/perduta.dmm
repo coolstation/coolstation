@@ -160,6 +160,9 @@
 "eY" = (
 /obj/grille/catwalk,
 /obj/disposalpipe/segment/morgue,
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "eZ" = (
@@ -231,6 +234,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/lattice,
 /turf/space/magindara,
 /area/station/maintenance/central)
 "hx" = (
@@ -416,6 +420,10 @@
 	dir = 5
 	},
 /obj/disposalpipe/segment/morgue,
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "kJ" = (
@@ -448,6 +456,10 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
 	},
 /turf/space/magindara,
 /area/station/maintenance/central)
@@ -589,6 +601,9 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/lattice{
+	icon_state = "lattice-dir"
 	},
 /turf/space/magindara,
 /area/station/maintenance/central)
@@ -1284,6 +1299,9 @@
 	dir = 1
 	},
 /obj/disposalpipe/junction/middle/west,
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
 /turf/space/magindara,
 /area/station/maintenance/central)
 "DN" = (
@@ -1768,6 +1786,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/lattice,
 /turf/space/magindara,
 /area/station/maintenance/central)
 "PH" = (
@@ -1904,6 +1923,19 @@
 "TC" = (
 /turf/wall,
 /area/station/medical/medbay/treatment)
+"TE" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/disposalpipe/segment/morgue/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/lattice,
+/turf/space/magindara,
+/area/station/maintenance/central)
 "TI" = (
 /obj/lattice{
 	dir = 5;
@@ -37481,9 +37513,9 @@ hf
 hf
 hf
 hf
-mF
-mF
-mF
+tC
+tC
+tC
 tC
 VG
 ik
@@ -37782,11 +37814,11 @@ Vb
 TC
 ik
 ik
-VG
-VG
-VG
-VG
-VG
+ik
+ik
+ik
+ik
+ik
 ik
 ik
 ik
@@ -38092,9 +38124,9 @@ ik
 ik
 ik
 ik
-ik
 VG
-SO
+VG
+mF
 SO
 SO
 SO
@@ -38393,10 +38425,10 @@ ik
 ik
 ik
 ik
-ik
 VG
 VG
-SO
+mF
+mF
 SO
 SO
 SO
@@ -38690,15 +38722,15 @@ ik
 ik
 ik
 ik
-ik
-ik
-ik
-ik
-ik
 VG
 VG
-SO
-SO
+VG
+VG
+VG
+VG
+mF
+mF
+mF
 SO
 SO
 SO
@@ -38992,15 +39024,15 @@ yM
 ik
 ik
 ik
-ik
-ik
-ik
-ik
 VG
-VG
-SO
-SO
-SO
+mF
+mF
+mF
+mF
+mF
+mF
+mF
+mF
 SO
 SO
 SO
@@ -39294,15 +39326,15 @@ ik
 ik
 ik
 ik
-ik
-ik
-ik
 VG
-VG
-SO
-SO
-SO
-SO
+mF
+mF
+mF
+mF
+mF
+mF
+mF
+mF
 SO
 SO
 SO
@@ -39596,15 +39628,15 @@ ik
 ik
 ik
 ik
-ik
-ik
 VG
-VG
-SO
-SO
-SO
-SO
-SO
+mF
+mF
+mF
+mF
+mF
+mF
+mF
+mF
 SO
 SO
 SO
@@ -39899,14 +39931,14 @@ ik
 ik
 ik
 VG
-VG
-VG
-SO
-SO
-SO
-SO
-SO
-SO
+mF
+mF
+mF
+mF
+mF
+mF
+mF
+mF
 SO
 SO
 SO
@@ -45623,7 +45655,7 @@ SO
 SO
 ky
 KU
-lK
+TE
 Mg
 SO
 SO

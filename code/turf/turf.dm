@@ -517,6 +517,15 @@
 		if(old_loc)
 			old_loc.contents -= src.loc
 	*/
+	if ((map_currently_abovewater && what == "Space")  && (src.z == 1 || src.z == 5))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Above Ocean"
+			keep_old_material = 0
+
 	if ((map_currently_underwater && what == "Space")  && (src.z == 1 || src.z == 5))
 		var/area/area = src.loc
 		if(istype(area, /area/shuttle/))
@@ -552,6 +561,10 @@
 			new_turf = new /turf/space(src, src.turf_persistent)
 
 	else switch(what)
+		if ("Above Ocean")
+			new_turf = new /turf/space/magindara(src, src.turf_persistent)
+			var/turf/space/magindara/new_pitfall = new_turf
+			new_pitfall.initialise_component()
 		if ("Desert")
 			if(src.z==3)
 				new_turf = new /turf/floor/plating/gehenna(src, src.turf_persistent)

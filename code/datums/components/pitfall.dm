@@ -69,9 +69,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			SPAWN_DBG(src.HangTime)
 				if (!QDELETED(AM))
 					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
-					if(AM.event_handler_flags & IMMUNE_PITFALL || (locate(/obj/lattice) in pitfall.parent) || (locate(/obj/grille/catwalk) in pitfall.parent))
+					if(!pitfall || AM.event_handler_flags & IMMUNE_PITFALL || (locate(/obj/lattice) in pitfall.parent) || (locate(/obj/grille/catwalk) in pitfall.parent))
 						return // doublefall prevention
-					pitfall?.try_fall(signalsender, AM)
+					pitfall.try_fall(signalsender, AM)
 					AM.event_handler_flags |= IMMUNE_PITFALL
 		else
 			src.try_fall(signalsender, AM)
