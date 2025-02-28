@@ -15,7 +15,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	/// The smallest to make someone who falls as a scalar, ideally correlated with FallTime but if it's really funny you don't have to
 	var/DepthScale = 0.3
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS)
+	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3)
 		. = ..()
 		if (!istype(src.parent, /turf))
 			return COMPONENT_INCOMPATIBLE
@@ -157,7 +157,7 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	/// The landmark that the fall sends you to. Should be a landmark define.
 	var/TargetLandmark = ""
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, TargetLandmark = "")
+	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetLandmark = "")
 		..()
 		src.TargetLandmark = TargetLandmark
 		if (!src.TargetLandmark)
@@ -181,7 +181,7 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	/// The area path that the target falls into. For area targeting
 	var/TargetArea = null
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, TargetArea = null)
+	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetArea = null)
 		..()
 		src.TargetArea = TargetArea
 		if (!src.TargetArea || !ispath(src.TargetArea, /area))
@@ -210,13 +210,15 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	/// If truthy, try to find a spot around the target to land on in range(x).
 	var/LandingRange = 8
 
-	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, TargetZ = 5, LandingRange = 8)
+	Initialize(BruteDamageMax = 50, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 8)
 		..()
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
 		if (!src.TargetZ || !src.LandingRange)
 			return COMPONENT_INCOMPATIBLE
 		src.update_targets()
+		if (!src.TargetList || !length(src.TargetList))
+			return COMPONENT_INCOMPATIBLE
 
 	try_fall(signalsender, var/atom/movable/AM)
 		if (..())
@@ -227,22 +229,11 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 
 	update_targets()
 		src.TargetList = list()
-		// since oshan and nadir allow for digging up and down, this code is specific to those maps
-		// so it checks for space fluid turfs as valid targets.
-		for(var/turf/space/fluid/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
+		for(var/turf/space/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
 			src.TargetList += T
 			break
-		// this part is for checking linked sea ladders downward.
-		if(length(src.TargetList))
-			var/needlink = TRUE
-			var/turf/space/fluid/picked_turf = pick(src.TargetList)
-
-			for(var/turf/space/fluid/T in range(5, picked_turf))
-				if(T.linked_hole)
-					needlink = FALSE
+		if(!length(src.TargetList))
+			for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
+				if(!T.density)
+					src.TargetList += T
 					break
-			// if there is no existing connection, link up
-			if(needlink)
-				if(!picked_turf.linked_hole)
-					picked_turf.linked_hole = src.typecasted_parent()
-					src.typecasted_parent().add_simple_light("trenchhole", list(120, 120, 120, 120))
