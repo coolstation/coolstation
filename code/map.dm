@@ -34,6 +34,7 @@ var/global/list/mapNames = list(
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
+	"Perduta Oil Spar" = list("id" = "PERDUTA",	"settings" = "perduta", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	//"1 pamgoC" = 		list("id" = "PAMGOC", 		"settings" = "pamgoc", 			"playerPickable" = ASS_JAM),
 	//"Kondaru" = 		list("id" = "KONDARU", 		"settings" = "kondaru", 		"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
 	//"Ozymandias" = 	list("id" = "OZYMANDIAS", 	"settings" = "ozymandias", 		"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
@@ -129,8 +130,10 @@ var/global/list/mapNames = list(
 		"the robotics lab" = list(/area/station/medical/robotics))
 //		"the public pool" = list(/area/station/crew_quarters/pool))
 
-	var/job_limits_from_landmarks = FALSE /// if TRUE each job with a landmark will get as many slots as many landmarks there are (jobs without a landmark left on default)
-	var/list/job_limits_override = list() /// assoc list of the form `job_type=limit` to override other job settings, works on gimmick jobs too
+	/// if TRUE each job with a landmark will get as many slots as many landmarks there are (jobs without a landmark left on default)
+	var/job_limits_from_landmarks = FALSE
+	/// assoc list of the form `job_type=limit` to override other job settings, works on gimmick jobs too
+	var/list/job_limits_override = list()
 
 	proc/init() /// Map-specific initialization, feel free to override for your map!
 		// map limits
@@ -1035,6 +1038,48 @@ var/global/list/mapNames = list(
 		"the crew quarters" = list(/area/station/crew_quarters/quartersA),
 		"the mining staff room" = list(/area/station/mining/staff_room))
 		//"the radio lab" = list(/area/station/crew_quarters/radio))
+
+/datum/map_settings/perduta
+	name = "PERDUTA"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
+	goonhub_map = ""
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	/*
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
+
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_right_station = /area/shuttle/merchant_shuttle/left_station/destiny
+	*/
+
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_WEST
+	escape_dir = WEST
+
+	valid_nuke_targets = list("the medbay" = list(/area/station/medical/staff, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ))
 
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"

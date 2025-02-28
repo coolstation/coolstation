@@ -49,7 +49,7 @@
 	icon = 'icons/effects/96x96.dmi' // changed from worlds.dmi
 	icon_state = "tree" // changed from 0.0
 	anchored = 1
-	layer = EFFECTS_LAYER_UNDER_3
+	layer = EFFECTS_LAYER_UNDER_2
 	pixel_x = -20
 	density = 1
 	opacity = 0 // this causes some of the super ugly lighting issues too
@@ -183,7 +183,7 @@
 	icon_state = "shrub"
 	anchored = 1
 	density = 0
-	layer = EFFECTS_LAYER_UNDER_1
+	layer = EFFECTS_LAYER_UNDER_3
 	flags = FLUID_SUBMERGE
 	text = "<font color=#5c5>s"
 	var/health = 50

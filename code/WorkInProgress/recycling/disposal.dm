@@ -574,60 +574,252 @@
 		desc = "An underfloor brig pipe. Bripe."
 		color = PIPEC_BRIG
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	ejection
 		name = "ejection pipe"
 		desc = "An underfloor ejection pipe."
 		color = PIPEC_EJECTION
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	morgue
 		name = "morgue pipe"
 		desc = "An underfloor morgue pipe, for dead people."
 		color = PIPEC_MORGUE
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	quarantine
 		name = "quarantine pipe"
 		desc = "An underfloor quarantine pipe."
 		color = PIPEC_QUARANTINE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	genetics
 		name = "genetics pipe"
 		desc = "An underfloor genetics pipe, for dead people."
 		color = PIPEC_GENETICS
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	crematorium
 		name = "crematorium pipe"
 		desc = "An underfloor crematorium pipe, for dead people."
 		color = PIPEC_CREMATORIUM
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	food
 		name = "food pipe"
 		desc = "An underfloor food pipe lined with non-stick, probably-food-safe materials."
 		color = PIPEC_FOOD
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	produce
 		name = "produce pipe"
 		desc = "An underfloor produce pipe."
 		color = PIPEC_PRODUCE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	transport
 		name = "transport pipe"
 		desc = "An underfloor transport pipe."
 		color = PIPEC_TRANSPORT
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	mineral
 		name = "mineral pipe"
 		desc = "An underfloor mineral pipe."
 		color = PIPEC_MINERAL
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	cargo
 		name = "cargo pipe"
 		desc = "An underfloor cargo pipe."
 		color = PIPEC_CARGO
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	sewage // sewer
 		name = "sewer pipe"
 		desc = "... we have those?"
 		color = PIPEC_SEWAGE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	New()
 		..()
