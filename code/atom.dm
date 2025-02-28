@@ -296,6 +296,13 @@
 /atom/proc/HasExited(atom/movable/AM as mob|obj, atom/NewLoc)
 	return
 
+/atom/Entered(atom/movable/AM)
+	SHOULD_CALL_PARENT(TRUE)
+	#ifdef SPACEMAN_DMM //im cargo culter
+	..()
+	#endif
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM)
+
 /atom/proc/ProximityLeave(atom/movable/AM as mob|obj)
 	return
 

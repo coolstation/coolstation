@@ -166,6 +166,11 @@ var/global/datum/transit_controller/transit_controls = new
 	New()
 		..()
 
+		src.AddComponent(/datum/component/pitfall/target_landmark,\
+			BruteDamageMax = 25,\
+			HangTime = 0 SECONDS,\
+			TargetLandmark = fall_landmark)
+
 		var/area_type = get_area(src)
 		var/turf/n = get_step(src,NORTH)
 		var/turf/e = get_step(src,EAST)
@@ -200,43 +205,6 @@ var/global/datum/transit_controller/transit_controls = new
 
 	ex_act(severity)
 		return
-
-	Entered(atom/movable/A as mob|obj)
-		//if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible) || istype(A, /obj/blob))
-		if (A.flags & TECHNICAL_ATOM || istype(A, /obj/blob)) //we can do this better (except the blob one, RIP)
-			return ..()
-		if (locate(/obj/grille/catwalk) in src) //non-turf elevator platform.
-			return ..()
-		var/turf/T = pick_landmark(fall_landmark)
-		var/safe = FALSE
-		if (isturf(T))
-			visible_message("<span class='alert'>[A] falls down [src]!</span>")
-			if (ismob(A))
-				var/mob/M = A
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
-						safe = TRUE
-					if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
-						safe = TRUE
-					if (H.back && (H.back.c_flags & IS_JETPACK))
-						safe = TRUE
-
-				if(safe)
-					visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
-				else
-					random_brute_damage(M, 25)
-					M.changeStatus("weakened", 5 SECONDS)
-					M.emote("scream")
-					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
-					#ifdef DATALOGGER
-					game_stats.Increment("workplacesafety")
-					#endif
-			A.set_loc(T)
-			return
-		else ..()
-
-
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator

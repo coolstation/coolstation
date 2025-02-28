@@ -30,6 +30,7 @@
 #define NO_MOUSEDROP_QOL 4096 //overrides the click drag mousedrop pickup QOL kinda stuff
 #define HASENTERED_MAT_PROP 8192 // if the USE_HASENTERED flag is a material property, so we know when to flush it.
 #define IS_LOAF 16384 // its a loaf. used by the singularity.
+#define IMMUNE_PITFALL 32768 // it doesnt fall down elevators, holes, etc
 //TBD the rest
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)

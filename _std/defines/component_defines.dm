@@ -73,6 +73,15 @@
 #define COMSIG_ATOM_EXAMINE "atom_examine"
 /// when something happens that should trigger an icon update. Or something.
 #define COMSIG_UPDATE_ICON "atom_update_icon"
+/// When something enters the contents of this atom (i.e. Entered())
+#define COMSIG_ATOM_ENTERED "atom_entered"
+
+// ---- turf signals ----
+
+/// when a turf is replaced by another turf (what)
+#define COMSIG_TURF_REPLACED "turf_replaced"
+/// when a movable lands in a turf (thing, /datum/thrown_thing)
+#define COMSIG_TURF_LANDIN_THROWN "turf_landin"
 
 // ---- atom/movable signals ----
 
