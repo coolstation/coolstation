@@ -8,7 +8,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 /datum/component/pitfall
 	/// the maximum amount of brute damage applied. This is used in random_brute_damage()
 	var/BruteDamageMax = 0
-	/// do anchored things fall down?
+	/// Can anchored movables fall down this pit?
 	var/AnchoredAllowed = TRUE
 	/// How long it takes for a thing to fall into the pit. 0 is instant, but usually you'd have a couple deciseconds where something can be flung across. Should use time defines.
 	var/HangTime = 0.3 SECONDS
@@ -27,7 +27,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
 		src.AnchoredAllowed = AnchoredAllowed
 		src.BruteDamageMax	= BruteDamageMax
+		src.AnchoredAllowed = AnchoredAllowed
 		src.HangTime		= HangTime
+		src.FallTime		= FallTime
 		src.DepthScale		= DepthScale
 
 	UnregisterFromParent()
@@ -59,7 +61,20 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if (AM.anchored > src.AnchoredAllowed || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
 			return
 		if (ismob(AM))
+			if (ishuman(AM) && src.typecasted_parent().active_liquid?.last_depth_level >= 3) // TO DO: make jetpacks just apply PROB_ATOM_FLOATING
+				var/mob/living/carbon/human/H = AM
+				if (H.back && H.back.c_flags & IS_JETPACK)
+					if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
+						var/obj/item/tank/jetpack/J = H.back
+						if(J.allow_thrust(0.01, H))
+							return
+			if (isliving(AM))
+				var/mob/living/peep = AM
+				if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
+					peep.attempt_swim() //should do nothing if they're already swimming I think?
 			var/mob/M = AM
+			if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+				return
 			if (M.client?.flying || isobserver(AM) || isintangible(AM) || istype(AM, /mob/wraith))
 				return
 
@@ -67,6 +82,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
+			AM.event_handler_flags |= IMMUNE_PITFALL // this prevents falling down for each hole you cross while coyote timing
 			SPAWN_DBG(src.HangTime)
 				if (!QDELETED(AM))
 					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
@@ -97,13 +113,22 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			animate_fall(AM,src.FallTime,src.DepthScale)
 			var/old_anchored = AM.anchored
 			var/old_density = AM.density
+			var/mob/M
 			if(ismob(AM))
-				var/mob/M = AM
-				M.changeStatus("stunned",src.FallTime + 2 DECI SECONDS)
+				M = AM
+				if(M.mind && M.mind.assigned_role == "Clown")
+					playsound(M, "sound/effects/slidewhistlefall.ogg", 50, 0)
+#ifdef DATALOGGER
+					game_stats.Increment("clownabuse")
+#endif
+				M.emote("scream")
+				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
 			AM.anchored = 1
 			AM.density = 0
 			SPAWN_DBG(src.FallTime)
 				if (!QDELETED(AM))
+					if(M)
+						REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
 					AM.anchored = old_anchored
 					AM.density = old_density
 					src.actually_fall(T, AM, brutedamage)
@@ -136,7 +161,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					else
 						M.changeStatus("weakened", 2 SECONDS)
 					playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
-					M.emote("scream")
 					#ifdef DATALOGGER
 					game_stats.Increment("workplacesafety")
 					#endif
@@ -216,7 +240,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	/// If truthy, try to find a spot around the target to land on in range(x).
 	var/LandingRange = 4
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 4)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 8)
 		..()
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
@@ -227,8 +251,9 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	try_fall(signalsender, var/atom/movable/AM)
 		if (..())
 			if (!src.TargetList || !length(src.TargetList))
-				if (!src.update_targets())
+				if(!src.update_targets())
 					RemoveComponent()
+					return
 			src.fall_to(pick(src.TargetList), AM, src.BruteDamageMax)
 
 	update_targets()
