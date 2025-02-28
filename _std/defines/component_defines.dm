@@ -76,6 +76,11 @@
 /// When something enters the contents of this atom (i.e. Entered())
 #define COMSIG_ATOM_ENTERED "atom_entered"
 
+// ---- turf signals ----
+
+/// when a turf is replaced by another turf (what)
+#define COMSIG_TURF_REPLACED "turf_replaced"
+
 // ---- atom/movable signals ----
 
 /// when an AM moves (thing, previous_loc, direction)
