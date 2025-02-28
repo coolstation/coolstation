@@ -29,6 +29,7 @@
 		if (generateLight)
 			src.make_light()
 
+	/// Adds the pitfall, handled in map setup on Perduta. If you wanna spawn this turf, call this soon after!
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_coordinates,\
 			BruteDamageMax = 6,\
