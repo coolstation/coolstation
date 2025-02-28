@@ -135,6 +135,11 @@ datum
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
 			overdose = 100 // ethanol poisoning
+			flammable_influence = TRUE
+			combusts_on_gaseous_fire_contact = TRUE
+			burn_speed = 3
+			burn_temperature = 900
+			burn_volatility = 4
 			thirst_value = -0.02
 			bladder_value = -0.2
 			hygiene_value = 1
@@ -328,6 +333,10 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			flammable_influence = TRUE
+			burn_speed = 3
+			burn_temperature = 3000
+			burn_volatility = 4
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 10)
@@ -407,27 +416,22 @@ datum
 			id = "plasma"
 			description = "The liquid phase of an unusual extraterrestrial compound."
 			reagent_state = LIQUID
+			flammable_influence = TRUE
+			combusts_on_fire_contact = TRUE
+			burn_speed = 2
+			burn_temperature = 2700
+			burn_volatility = 8
 
 			fluid_r = 130
 			fluid_g = 40
 			fluid_b = 160
 			transparency = 222
 			minimum_reaction_temperature = T0C + 100
-			var/reacted_to_temp = 0 // prevent infinite loop in a fluid
-/*
-			pooled()
-				..()
-				reacted_to_temp = 0
-*/
+
 			reaction_temperature(exposed_temperature, exposed_volume)
-				if(!reacted_to_temp)
-					reacted_to_temp = 1
-					if(holder)
-						var/list/covered = holder.covered_turf()
-						for(var/turf/t in covered)
-							SPAWN_DBG(1 DECI SECOND) fireflash(t, min(max(0,((volume/covered.len)/15)),6))
-				if(holder)
-					holder.del_reagent(id)
+				. = ..()
+				if(holder && !holder.is_combusting)
+					holder.start_combusting()
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -441,7 +445,7 @@ datum
 				. = ..()
 				if(method == TOUCH)
 					var/mob/living/L = M
-					if(istype(L) && L.getStatusDuration("burning"))
+					if(istype(L) && L.getStatusDuration("burning") || holder?.is_combusting)
 						L.changeStatus("burning", 30 SECONDS)
 				return 1
 
@@ -757,6 +761,9 @@ datum
 			minimum_reaction_temperature = -INFINITY
 			target_organs = list("left_kidney", "right_kidney")
 			heat_capacity = 400
+			reagent_state = LIQUID
+			flammable_influence = TRUE
+			burn_volatility = -5
 #ifdef UNDERWATER_MAP
 			block_slippy = 1
 			description = "A little strange. Not like any water you've seen. But definitely OSHA approved."

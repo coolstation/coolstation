@@ -38,7 +38,7 @@
 		initial_reagents = list("water"=390,"chlorine"=10)
 
 /obj/item/reagent_containers/food/drinks/chemicalcan
-	name = "chemical cannister"
+	name = "chemical canister"
 	desc = "For storing medical chemicals and less savory things."
 	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
 	icon = 'icons/obj/objects.dmi'
@@ -48,8 +48,8 @@
 	flags = OPENCONTAINER
 	w_class = W_CLASS_HUGE
 	incompatible_with_chem_dispensers = 1
-	throw_speed = 1
-	throw_range = 3
+	throw_speed = 0.33
+	throw_range = 20
 	throwforce = 15
 	can_chug = FALSE
 	two_handed = TRUE
@@ -63,7 +63,7 @@
 		playsound(hit_atom.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
 		if(ismob(hit_atom))
 			var/mob/living/L = hit_atom
-			L.changeStatus("weakened", 2 SECONDS)
+			L.changeStatus("weakened", 1.5 SECONDS)
 			L.force_laydown_standup()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
@@ -71,4 +71,21 @@
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr
-			L.changeStatus("stunned", 2 SECONDS)
+			L.changeStatus("weakened", 2 SECONDS)
+			L.force_laydown_standup()
+
+	shatter_chemically(var/projectiles = FALSE) //needs sound probably definitely for sure
+		visible_message(SPAN_ALERT("The <B>[src.name]</B> breaks open!"), SPAN_ALERT("You hear a loud bang!"))
+		if(projectiles)
+			var/datum/projectile/special/spreader/uniform_burst/circle/circle = new /datum/projectile/special/spreader/uniform_burst/circle/(get_turf(src))
+			circle.shot_sound = null //no grenade sound ty
+			circle.spread_projectile_type = /datum/projectile/bullet/shrapnel
+			circle.pellet_shot_volume = 0
+			circle.pellets_to_fire = 12
+			shoot_projectile_ST_pixel_spread(get_turf(src), circle, get_step(src, NORTH))
+		var/turf/T = get_turf(src)
+		if(T)
+			T.fluid_react(src.reagents, min(src.reagents.total_volume,10000))
+		src.reagents.clear_reagents()
+		qdel(src)
+		return TRUE
