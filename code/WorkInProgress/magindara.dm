@@ -34,8 +34,8 @@
 		src.AddComponent(/datum/component/pitfall/target_coordinates,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = FALSE,\
-			HangTime = 0.6 SECONDS,\
-			FallTime = 1.5 SECONDS,\
+			HangTime = 0.25 SECONDS,\
+			FallTime = 1.2 SECONDS,\
 		)
 
 	make_light()
