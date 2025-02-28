@@ -31,11 +31,11 @@
 		src.initialise_component()
 
 	proc/initialise_component()
-		src.AddComponent(/datum/component/pitfall/target_area,\
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
 			BruteDamageMax = 6,\
 			HangTime = 0.6 SECONDS,\
 			FallTime = 1.5 SECONDS,\
-			TargetArea = /area/station/medical/medbay/lobby)
+		)
 
 	make_light()
 		if (!light)
