@@ -28,6 +28,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		src.AnchoredAllowed = AnchoredAllowed
 		src.BruteDamageMax	= BruteDamageMax
 		src.HangTime		= HangTime
+		src.DepthScale		= DepthScale
 
 	UnregisterFromParent()
 		. = ..()
