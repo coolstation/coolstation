@@ -26,3 +26,24 @@ var/global/list/image/spider_filter_images
 		M.client?.images -= src.filter_image
 	qdel(src.filter_image)
 	. = ..()
+
+// todo: persist this pref?
+/mob/verb/hide_spiders()
+	set desc = "Replace spiders with a text 'SPIDER' icon"
+	set name = "Toggle Hide Spiders"
+
+	var/client/client = src.client
+
+	if(!client)
+		return
+
+	if(!client.hidden_spiders)
+		client.hidden_spiders = TRUE
+		for(var/image/I as anything in global.spider_filter_images)
+			src.client.images += I
+		boutput(src, "<span class='notice'>Spiders <b>Hidden</b>. They can still hurt you.</span>")
+	else
+		client.hidden_spiders = FALSE
+		for(var/image/I as anything in global.spider_filter_images)
+			src.client.images -= I
+		boutput(src, "<span class='notice'>Spiders <b>Unhidden</b>.</span>")
