@@ -81,7 +81,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
-			AM.event_handler_flags |= IMMUNE_PITFALL // this prevents falling down for each hole you cross while coyote timing
 			SPAWN_DBG(src.HangTime)
 				if (!QDELETED(AM))
 					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
@@ -224,7 +223,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetZ", "num", "The z level that the target falls into.", 5),
-		ARG_INFO("LandingRange", "num", "If true, try to find a spot around the target to land on in range (x). Only for 'direct drops'.", 0),
+		ARG_INFO("LandingRange", "num", "If true, try to find a spot around the target to land on in range (x). Only for 'direct drops'.", 4),
 	)
 
 /// a pitfall which targets a coordinate. At the moment only supports targeting a z level and picking a range around current coordinates.
@@ -234,9 +233,9 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	/// The z level that the target falls into if not via area or landmark.
 	var/TargetZ = 5
 	/// If truthy, try to find a spot around the target to land on in range(x).
-	var/LandingRange = 8
+	var/LandingRange = 4
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 8)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 4)
 		..()
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
@@ -257,9 +256,8 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		for(var/turf/space/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
 			src.TargetList += T
 			return TRUE
-		if(!length(src.TargetList))
-			for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
-				if(!T.density)
-					src.TargetList += T
-					return TRUE
+		for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
+			if(!T.density)
+				src.TargetList += T
+				return TRUE
 		return FALSE
