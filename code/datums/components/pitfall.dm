@@ -1,10 +1,6 @@
 /**
  * These are ALL TURFS. They should STAY TURFS.
  * similar but not quite the same as /datum/component/teleport_on_enter
- *
- * Here is a note preserved from the initial commit, referring to the icemoon abyss pitfall
- * 	// this is the code for falling from abyss into ice caves
- *	// could maybe use an animation, or better text. perhaps a slide whistle ogg?
  **/
 
 ABSTRACT_TYPE(/datum/component/pitfall)
@@ -33,6 +29,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	UnregisterFromParent()
 		. = ..()
 		UnregisterSignal(src.parent, COMSIG_ATOM_ENTERED)
+		UnregisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN)
 		UnregisterSignal(src.parent, COMSIG_ATTACKBY)
 		UnregisterSignal(src.parent, COMSIG_TURF_REPLACED)
 
@@ -55,7 +52,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
-		if (AM.anchored || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
+		if (AM.anchored >= ANCHORED_ALWAYS || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
 			return
 		if (ismob(AM))
 			var/mob/M = AM
