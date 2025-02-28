@@ -61,14 +61,6 @@
 			var/turf/T = get_turf(src)
 			T?.UpdateDirBlocks()
 
-	//lifting non-item objects that have CAN_BE_LIFTED
-	MouseDrop(atom/over_object)
-		if (ishuman(over_object) && (src.object_flags & CAN_BE_LIFTED))
-			if (can_reach(over_object, src))
-				new /obj/item/lifted_thing(src, over_object)
-		else
-			..()
-
 	proc/setHealth(var/value)
 		var/prevHealth = _health
 		_health = min(value, _max_health)
@@ -144,6 +136,9 @@
 	disposing()
 		for(var/mob/M in src.contents)
 			M.set_loc(src.loc)
+		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
+			var/turf/T = get_turf(src)
+			T?.UpdateDirBlocks()
 		tag = null
 		mats = null
 		if (artifact && !isnum(artifact))
@@ -241,6 +236,9 @@
 			return null
 
 	proc/initialize()
+
+	proc/shatter_chemically(var/projectiles = TRUE) //!shatter effect, caused by chemicals inside object, should return TRUE if object actually shatters
+		return FALSE
 
 	attackby(obj/item/I as obj, mob/user as mob)
 // grabsmash

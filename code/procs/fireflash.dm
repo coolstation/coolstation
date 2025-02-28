@@ -1,27 +1,36 @@
+#define FIREFLASH_HOTSPOT_TIME 2 SECONDS
+
 /proc/fireflash(atom/center, radius, ignoreUnreachable)
 	tfireflash(center, radius, rand(2800,3200), ignoreUnreachable)
 
 /proc/tfireflash(atom/center, radius, temp, ignoreUnreachable)
 	if (locate(/obj/blob/firewall) in center)
 		return
-	var/list/hotspots = new/list()
 	for(var/turf/T in range(radius,get_turf(center)))
 		if(istype(T, /turf/space) || T.loc:sanctuary) continue
-		if(locate(/obj/hotspot) in T) continue
 		if(!ignoreUnreachable && !can_line(get_turf(center), T, radius+1)) continue
 		for(var/obj/spacevine/V in T) qdel(V)
 //		for(var/obj/kudzu_marker/M in T) qdel(M)
 //		for(var/obj/alien/weeds/V in T) qdel(V)
 
-		var/obj/hotspot/h = new()
-		h.temperature = temp
-		h.volume = 400
-		h.set_real_color()
-		h.set_loc(T)
-		T.active_hotspot = h
-		hotspots += h
+		var/obj/hotspot/fireflash/hotspot = locate(/obj/hotspot/fireflash) in T
+		if (locate(/obj/fire_foam) in T)
+			if(hotspot)
+				hotspot.dispose()
+				qdel(hotspot)
+			continue
+		if (hotspot)
+			hotspot.time_to_die = world.time + FIREFLASH_HOTSPOT_TIME
+			hotspot.temperature = max(hotspot.temperature,temp)
+		else
+			hotspot = new(FIREFLASH_HOTSPOT_TIME)
+			hotspot.temperature = temp
+			hotspot.set_loc(T)
 
-		T.hotspot_expose(h.temperature, h.volume)
+		hotspot.volume = 400
+		hotspot.set_real_color()
+		T.hotspot_expose(hotspot.temperature, hotspot.volume)
+
 /*// experimental thing to let temporary hotspots affect atmos
 		h.perform_exposure()
 */
@@ -63,13 +72,6 @@
 						C.check_health()
 				LAGCHECK(LAG_REALTIME)
 
-	SPAWN_DBG(3 SECONDS)
-		for (var/obj/hotspot/A as anything in hotspots)
-			if (!A.pooled)
-				qdel(A)
-			//LAGCHECK(LAG_REALTIME)  //MBC : maybe caused lighting bug?
-		hotspots.len = 0
-
 /proc/fireflash_s(atom/center, radius, temp, falloff)
 	if (locate(/obj/blob/firewall) in center)
 		return list()
@@ -78,7 +80,6 @@
 	var/list/open = list()
 	var/list/affected = list()
 	var/list/closed = list()
-	var/list/hotspots = list()
 	var/turf/Ce = get_turf(center)
 	var/max_dist = radius
 	if (falloff)
@@ -97,21 +98,26 @@
 		if (!ff_cansee(Ce, T))
 			continue
 
-		var/obj/hotspot/existing_hotspot = locate(/obj/hotspot) in T
-		var/prev_temp = 0
-		var/need_expose = 0
-		var/expose_temp = 0
-		if (!existing_hotspot)
-			var/obj/hotspot/h = new()
-			need_expose = 1
-			h.temperature = temp - dist * falloff
-			expose_temp = h.temperature
-			h.volume = 400
-			h.set_loc(T)
-			T.active_hotspot = h
-			hotspots += h
-			existing_hotspot = h
-		else if (existing_hotspot.temperature < temp - dist * falloff)
+		var/falloff_affected_temp = temp - dist * falloff
+		var/obj/hotspot/fireflash/hotspot = locate(/obj/hotspot/fireflash) in T
+		if (locate(/obj/fire_foam) in T)
+			if(hotspot)
+				hotspot.dispose()
+				qdel(hotspot)
+			continue
+		if (hotspot)
+			hotspot.time_to_die = world.time + FIREFLASH_HOTSPOT_TIME
+			hotspot.temperature = max(hotspot.temperature,falloff_affected_temp)
+		else
+			hotspot = new(FIREFLASH_HOTSPOT_TIME)
+			hotspot.temperature = falloff_affected_temp
+			hotspot.set_loc(T)
+
+		hotspot.volume = 400
+		hotspot.set_real_color()
+		T.hotspot_expose(hotspot.temperature, hotspot.volume)
+
+		/*else if (existing_hotspot.temperature < temp - dist * falloff)
 			expose_temp = (temp - dist * falloff) - existing_hotspot.temperature
 			prev_temp = existing_hotspot.temperature
 			if (expose_temp > prev_temp * 3)
@@ -119,15 +125,15 @@
 			existing_hotspot.temperature = temp - dist * falloff
 
 		affected[T] = existing_hotspot.temperature
-		if (need_expose && expose_temp)
-			T.hotspot_expose(expose_temp, existing_hotspot.volume)
+		if (expose_temp)
+			T.hotspot_expose(expose_temp, existing_hotspot.volume)*/
 /* // experimental thing to let temporary hotspots affect atmos
 			existing_hotspot.perform_exposure()
 */
 		if(istype(T, /turf/floor)) T:burn_tile()
 		for (var/mob/living/L in T)
-			L.update_burning(min(55, max(0, expose_temp - 100 / 550)))
-			L.bodytemperature = (2 * L.bodytemperature + temp) / 3
+			L.update_burning(min(55, max(0, falloff_affected_temp - 100 / 550)))
+			L.bodytemperature = (2 * L.bodytemperature + falloff_affected_temp) / 3
 		SPAWN_DBG(0)
 			for (var/obj/critter/C in T)
 				C.health -= (30 * C.firevuln)
@@ -158,17 +164,6 @@
 
 		LAGCHECK(LAG_REALTIME)
 
-	SPAWN_DBG(1 DECI SECOND) // dumb lighting hotfix
-		for(var/obj/hotspot/A in hotspots)
-			A.set_real_color() // enable light
-
-	SPAWN_DBG(3 SECONDS)
-		for(var/obj/hotspot/A in hotspots)
-			if (!A.pooled)
-				qdel(A)
-			//LAGCHECK(LAG_REALTIME)  //MBC : maybe caused lighting bug?
-		hotspots.len = 0
-
 	return affected
 
 
@@ -191,3 +186,51 @@
 		LAGCHECK(LAG_REALTIME)
 
 	return affected
+
+var/list/obj/hotspot/fireflash/fireflashes = list()
+
+/obj/hotspot/fireflash
+	layer = FIREFLASH_LAYER
+	plane = PLANE_DEFAULT
+	var/time_to_die
+	cleanup_active = FALSE
+
+	New(var/time_to_live = 1.5 SECONDS)
+		..()
+		src.time_to_die = world.time + time_to_live
+		fireflashes += src
+
+	process(list/turf/possible_spread)
+		if (just_spawned)
+			just_spawned = 0
+			return 0
+
+		if(world.time > src.time_to_die)
+			src.dispose()
+			qdel(src)
+			return 0
+
+		var/turf/floor/location = loc
+		if (!istype(location) || (locate(/obj/fire_foam) in location))
+			src.dispose()
+			qdel(src)
+			return 0
+
+		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
+			src.dispose()
+			qdel(src)
+			return 0
+
+		for (var/mob/living/L in loc)
+			L.update_burning(min(max(temperature / 60, 5),33))
+
+		if (volume > (CELL_VOLUME * 0.4))
+			icon_state = "2"
+		else
+			icon_state = "1"
+
+		return 1
+
+	disposing()
+		fireflashes -= src
+		..()

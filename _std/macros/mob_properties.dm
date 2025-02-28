@@ -212,7 +212,8 @@ To remove:
 #define PROP_ENCHANT_ARMOR(x) x("enchant_armor", APPLY_MOB_PROPERTY_SUM, REMOVE_MOB_PROPERTY_SUM)
 #define PROP_STAMINA_REGEN_BONUS(x) x("stamina_regen", APPLY_MOB_PROPERTY_SUM, REMOVE_MOB_PROPERTY_SUM)
 #define PROP_SLIDEKICK_BONUS(x) x("slidekick_bonus", APPLY_MOB_PROPERTY_MAX, REMOVE_MOB_PROPERTY_MAX)
-#define PROB_SLIDEKICK_TURBO(x) x("slidekick_turbo", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
+#define PROP_SLIDEKICK_TURBO(x) x("slidekick_turbo", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
+#define PROP_LIFT_ANYTHING(x) x("lift_anything", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
 //movement properties
 //Look I stole this from goon because swimming needs it, they made em atom instead of mob properties :v
 //Maybe we should too at some point
