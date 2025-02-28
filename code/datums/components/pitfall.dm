@@ -96,18 +96,13 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			animate_fall(AM,src.FallTime,src.DepthScale)
 			var/old_anchored = AM.anchored
 			var/old_density = AM.density
-			var/old_canmove
-			var/mob/M
 			if(ismob(AM))
-				M = AM
-				old_canmove = M.canmove
-				M.canmove = 0
+				var/mob/M = AM
+				M.changeStatus("stunned",src.FallTime + 2 DECI SECONDS)
 			AM.anchored = 1
 			AM.density = 0
 			SPAWN_DBG(src.FallTime)
 				if (!QDELETED(AM))
-					if(M)
-						M.canmove = old_canmove
 					AM.anchored = old_anchored
 					AM.density = old_density
 					src.actually_fall(T, AM, brutedamage)
