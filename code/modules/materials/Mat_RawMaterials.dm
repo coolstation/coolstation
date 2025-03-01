@@ -367,6 +367,11 @@
 		src.setMaterial(getMaterial("cotton"), appearance = 0, setname = 0)
 		..()
 
+	randomcolor
+		New()
+			..()
+			src.color = random_saturated_hex_color()
+
 /obj/item/material_piece/cloth/brullbarhide
 	name = "brullbar hide"
 	desc = "The hide of a brüllbär"
@@ -434,7 +439,8 @@
 /obj/item/material_piece/bone
 	name = "bits of bone"
 	desc = "some bits and pieces of bones."
-	icon_state = "scrap3"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone"
 	value = -10 //trash at best, crime at worst
 	setup_material()
 		src.setMaterial(getMaterial("bone"), appearance = 0, setname = 0)
