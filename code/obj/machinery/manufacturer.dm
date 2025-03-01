@@ -317,38 +317,9 @@
 					return
 
 		src.add_dialog(user)
-
-		var/HTML = {"
-
-		<title>[PC_TAG("title")]</title>
-
-		<script type="text/javascript">
-			function product(ref) {
-				window.location = "?src=[PC_REFTAG];disp=" + ref;
-			}
-
-			function delete_product(ref) {
-				window.location = "?src=[PC_REFTAG];delete=1;disp=" + ref;
-			}
-		</script>
-
-		<div id='products'>
-		[PC_TAG("products")]
-		</div><div id='info'>
-		[PC_TAG("mat-list")]
-		<A href='byond://?src=[PC_REFTAG];search=1'>(Search: \"[PC_TAG("search")]\")</A><BR>
-		<A href='byond://?src=[PC_REFTAG];category=1'>(Filter: \"[PC_TAG("search-category")]\")</A>
-		<!-- This is not re-formatted yet just b/c i don't wanna mess with it*/ -->
-		<HR><B>Scanned Card:</B> <A href='byond://?src=[PC_REFTAG];card=1'>([PC_TAG("scan")])</A><BR>
-		[PC_IFDEF("account")]
-			<B>Current Funds</B>: [PC_TAG("account")] Credits<br>
-		[PC_ENDIF("account")]
-		<HR><B>Ores Available for Purchase:</B><br><small>
-		[PC_TAG("ore-list")]
-		</small><HR>
-
-		[PC_TAG("control-panel")]
-		"}
+		var/datum/pcui_template/manufacturer/mantemp = new
+		mantemp.setup(src, user)
+		var/HTML = mantemp.template
 
 		var/contentlist = list("title" = src.name)
 
@@ -472,8 +443,7 @@
 			if (account)
 				PC_ENABLE_IFDEF(HTML, "account")
 				contentlist["account"] += account.fields["current_money"]
-		//dat+= src.temp
-		//dat += ""
+
 		for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
 			if(S.broken)
 				continue
@@ -486,13 +456,10 @@
 				var/taxes = round(max(rockbox_globals.rockbox_client_fee_min,abs(OCD.price*rockbox_globals.rockbox_client_fee_pct/100)),0.01) //transaction taxes for the station budget
 				contentlist["ore-list"] += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
 
-		//dat += ""
-
 		contentlist["control-panel"] += build_control_panel(user)
 
-		PC_REMOVE_UNUSED_IFDEF(HTML)
-		PC_FILL_TAG_LIST(HTML, contentlist)
-		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600", headerhtml = "[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]")
+		PC_RENDER(HTML, contentlist)
+		user.Browse(HTML, "window=manufact;size=1111x600", headerhtml = "[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]")
 		onclose(user, "manufact")
 
 		interact_particle(user,src)

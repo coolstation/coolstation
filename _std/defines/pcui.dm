@@ -31,6 +31,11 @@
 //Also it doesn't make sense
 #define PC_ENABLE_IFDEF(target, tag) while(PC_CHECK_FOR_IFDEF(target, tag)) PC_ENABLE_FIRST_IFDEF(target, tag)
 
+//let there be light
+
+#define PC_RENDER(target, taglist) PC_REMOVE_UNUSED_IFDEF(HTML) ; PC_FILL_TAG_LIST(target, taglist)
+
+#define PC_BROWSE(target, window)
 
 //Internal, make sure you understand what these do if you mess with them
 
