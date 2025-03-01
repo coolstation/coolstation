@@ -89,7 +89,10 @@ var/global/datum/controller/throwing/throwing_controller = new
 							) || \
 							T?.throw_unlimited || \
 							thing.throw_unlimited || \
-							thing.event_handler_flags & IS_PITFALLING
+							(
+								(thing.event_handler_flags & IS_PITFALLING) && \
+								!(thing.event_handler_flags & IN_COYOTE_TIME)
+							)
 						)
 					))
 				end_throwing = TRUE
