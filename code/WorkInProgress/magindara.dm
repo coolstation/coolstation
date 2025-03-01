@@ -80,3 +80,10 @@
 	icon_state = "pink"
 	name = "the magindaran sea"
 	is_construction_allowed = TRUE
+
+proc/change_magindaran_fog(fog_alpha)
+	if(!map_currently_abovewater)
+		return FALSE
+	var/turf/space/magindara/sample = locate(/turf/space/magindara)
+	sample.update_fog(fog_alpha)
+	return TRUE
