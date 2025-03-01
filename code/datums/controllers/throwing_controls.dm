@@ -127,7 +127,7 @@ var/global/datum/controller/throwing/throwing_controller = new
 					thr.end_throw_callback = null
 			if(!thing || thing.disposed)
 				continue
-			if(!(thing.event_handler_flags & IS_PITFALLING))
+			if(!(thing.event_handler_flags & IS_PITFALLING) || (thing.event_handler_flags & IN_COYOTE_TIME))
 				animate(thing)
 
 			thing.throw_end(thr.params, thrown_from=thr.thrown_from)
