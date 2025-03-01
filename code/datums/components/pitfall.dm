@@ -160,7 +160,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						safe = TRUE
 					if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
 						safe = TRUE
-					if (H.back && (H.back.c_flags & IS_JETPACK))
+					if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 						safe = TRUE
 				if(safe)
 					M.visible_message("<span class='notice'>[AM] lands gently on the ground.</span>")
