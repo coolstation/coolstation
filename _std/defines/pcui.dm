@@ -18,20 +18,14 @@
 //Docutment tags
 #define PC_TAG(x) "<div class=\"template\" id=\"[x]\"></div>"
 
+//Helper for \ref[src] in templates
 #define PC_REFTAG "<div class=\"template\" id=\"srcref\"></div>"
 
+//Begin and end ifdef
 #define PC_IFDEF(x) "<div class=\"template_ifdef\" id=\"[x]\"></div>"
 
 #define PC_ENDIF(x) "<div class=\"template_endif\" id=\"[x]\"></div>"
 
-#define PC_FILL_TAGS(target, tag, replacement)\
-	target = (replacetext(target, "<div class=\"template\" id=\"[tag]\"></div>", replacement))
-
-
-#define PC_FILL_TAG_LIST(target, list)\
-	target = replacetext(target, "<div class=\"template\" id=\"srcref\"></div>", "\ref[src]");\
-	for(var/p in list)\
-		PC_FILL_TAGS(target, p, list[p])
 
 //Do not nest ifdefs with the same ID, we're using regex
 //Also it doesn't make sense
@@ -56,3 +50,13 @@
 #define PC_CHECK_FOR_IFDEF(target, tag) PC_FIND_IFDEF_START(target, tag) && PC_FIND_IFDEF_START_OF_END(target, tag)
 
 #define PC_GET_IFDEF_STRING(target, tag) copytext(target, PC_FIND_IFDEF_END_OF_START(target, tag), PC_FIND_IFDEF_START_OF_END(target,tag))
+
+//Tag rendering
+#define PC_FILL_TAGS(target, tag, replacement)\
+	target = (replacetext(target, "<div class=\"template\" id=\"[tag]\"></div>", replacement))
+
+
+#define PC_FILL_TAG_LIST(target, list)\
+	target = replacetext(target, "<div class=\"template\" id=\"srcref\"></div>", "\ref[src]");\
+	for(var/p in list)\
+		PC_FILL_TAGS(target, p, list[p])

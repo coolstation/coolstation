@@ -124,7 +124,7 @@ chui/window
 
 
 	//See /client/proc/Browse instead.
-	proc/bbrowse( client/who, var/body, var/options, var/forceChui, var/forceHTML )
+	proc/bbrowse( client/who, var/body, var/options, var/forceChui, var/forceHTML, var/headerhtml = null )
 		var/list/config = params2list( options )
 
 		if ((!forceChui && !who.use_chui && !config["override_setting"]) || forceHTML)	//"override_setting=1"
@@ -137,6 +137,7 @@ chui/window
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	[headerhtml]
 	<style type='text/css'>
 		body {
 			font-family: Tahoma, Arial, sans-serif;
@@ -154,7 +155,6 @@ chui/window
 		window.addEventListener("scroll", updateScroll);
 		window.addEventListener("load", function() {document.documentElement.scrollTop = document.body.scrollTop = window.name;});
 	</script>
-	[precontent]
 </head>
 <body>
 "} + body
@@ -181,7 +181,7 @@ chui/window
 
 		// use_chui_custom_frames allows enabling the standard Windows UI,
 		// which allows people an out if chui decides to go berzerk
-		var/list/built = list( "js" = list(), "css" = list(), "title" = (title || ""), data = datah, "precontent" = precontent )//todo, better this.
+		var/list/built = list( "js" = list(), "css" = list(), "title" = (title || ""), data = datah, "headerhtml" = headerhtml )//todo, better this.
 		who << browse( theme.generateHeader(built) + theme.generateBody( body, built ) + theme.generateFooter(), who.use_chui_custom_frames ? "titlebar=0;can_close=0;can_resize=0;can_scroll=0;border=0;[options]" : "titlebar=1;can_close=1;can_resize=1;can_scroll=1;border=1;[options]")
 		//winset( who, "\ref[src]", "on-close=\".chui-close \ref[src]\"" )
 		//theme.streamToClient( who )
@@ -334,6 +334,6 @@ chui/window
 client/proc/Browse( var/html, var/opts, var/forceChui )
 	chui.staticinst.bbrowse( src, html, opts, forceChui )
 
-mob/proc/Browse( var/html, var/opts, var/forceChui, var/forceHTML )
+mob/proc/Browse( var/html, var/opts, var/forceChui, var/forceHTML, var/headerhtml = null)
 	if( src.client )
-		chui.staticinst.bbrowse( src.client, html, opts, forceChui, forceHTML )
+		chui.staticinst.bbrowse( src.client, html, opts, forceChui, forceHTML, headerhtml )

@@ -492,7 +492,7 @@
 
 		PC_REMOVE_UNUSED_IFDEF(HTML)
 		PC_FILL_TAG_LIST(HTML, contentlist)
-		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600;precontent=[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]")
+		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600", headerhtml = "[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]")
 		onclose(user, "manufact")
 
 		interact_particle(user,src)
