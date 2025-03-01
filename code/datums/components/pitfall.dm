@@ -190,7 +190,7 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
 		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
-		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetLandmark", "text", "The landmark that the fall sends you to.", "")
@@ -215,7 +215,7 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
 		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
-		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetArea", "num", "The area typepath that the target falls into. If null, then it drops onto the same coordinates.", null)
@@ -240,7 +240,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
 		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
-		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetZ", "num", "The z level that the target falls into.", 5),
