@@ -51,22 +51,11 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/start_fall(var/signalsender, var/atom/movable/AM)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
-		if (AM.throwing) // throw em on over, why dont ya
-			return
-		if (AM.event_handler_flags & IMMUNE_PITFALL)
-			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
 		if (AM.anchored > src.AnchoredAllowed || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
 			return
 		if (ismob(AM))
-			if (ishuman(AM) && src.typecasted_parent().active_liquid?.last_depth_level >= 3) // TO DO: make jetpacks just apply PROB_ATOM_FLOATING
-				var/mob/living/carbon/human/H = AM
-				if (H.back && H.back.c_flags & IS_JETPACK)
-					if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
-						var/obj/item/tank/jetpack/J = H.back
-						if(J.allow_thrust(0.01, H))
-							return
 			if (isliving(AM))
 				var/mob/living/peep = AM
 				if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
@@ -94,7 +83,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		return TRUE
 		// child procs will then use fall_to after calling this
 
-	/// a proc that makes a movable atom 'A' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
+	/// a proc that makes a movable atom 'AM' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
 	proc/fall_to(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
 		SHOULD_NOT_OVERRIDE(TRUE)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
@@ -120,13 +109,15 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
 			AM.anchored = 1
 			AM.density = 0
-			SPAWN_DBG(src.FallTime)
-				if (!QDELETED(AM))
-					if(M)
-						REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-					AM.anchored = old_anchored
-					AM.density = old_density
-					src.actually_fall(T, AM, brutedamage)
+			if(!(AM.event_handler_flags & IS_PITFALLING))
+				AM.event_handler_flags |= IS_PITFALLING
+				SPAWN_DBG(src.FallTime)
+					if (!QDELETED(AM))
+						if(M)
+							REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+						AM.anchored = old_anchored
+						AM.density = old_density
+						src.actually_fall(T, AM, brutedamage)
 		else
 			src.actually_fall(T, AM, brutedamage)
 
@@ -159,8 +150,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					#ifdef DATALOGGER
 					game_stats.Increment("workplacesafety")
 					#endif
+			AM.event_handler_flags &= ~IS_PITFALLING
 			AM.set_loc(T)
-			AM.event_handler_flags &= ~IMMUNE_PITFALL
 			return
 
 // ====================== SUBTYPES OF PITFALL ======================
