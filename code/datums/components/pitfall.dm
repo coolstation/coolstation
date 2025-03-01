@@ -181,6 +181,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			AM.event_handler_flags &= ~IS_PITFALLING
 			AM.set_loc(T)
 			AM.throwing = 0
+			animate(AM)
 			return
 
 // ====================== SUBTYPES OF PITFALL ======================
