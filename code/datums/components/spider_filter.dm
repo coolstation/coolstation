@@ -15,8 +15,13 @@ var/global/list/image/spider_filter_images
 		global.spider_filter_images = list()
 
 	global.spider_filter_images += src.filter_image
-	for(var/mob/M as anything in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
-		M.client?.images += src.filter_image
+	for(var/thing as anything in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
+		if(ismob(thing))
+			var/mob/M = thing
+			M?.client?.images += src.filter_image
+		if(isclient(thing))
+			var/client/C = thing
+			C?.images += src.filter_image
 
 	src.filter_image.loc = parent
 
@@ -39,11 +44,13 @@ var/global/list/image/spider_filter_images
 
 	if(!client.hidden_spiders)
 		client.hidden_spiders = TRUE
+		OTHER_START_TRACKING_CAT(client, TR_CAT_SPIDER_FILTER_MOBS)
 		for(var/image/I as anything in global.spider_filter_images)
 			src.client.images += I
 		boutput(src, "<span class='notice'>Spiders <b>Hidden</b>. They can still hurt you.</span>")
 	else
 		client.hidden_spiders = FALSE
+		OTHER_STOP_TRACKING_CAT(client, TR_CAT_SPIDER_FILTER_MOBS)
 		for(var/image/I as anything in global.spider_filter_images)
 			src.client.images -= I
 		boutput(src, "<span class='notice'>Spiders <b>Unhidden</b>.</span>")
