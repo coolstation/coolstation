@@ -231,3 +231,6 @@
 	desc = "Fuck that's creepy."
 	icon_state = "skull_noface"
 	trophy_value = -1
+
+/obj/item/skull/classic // Misoneists.
+	icon_state = "skull_old"
