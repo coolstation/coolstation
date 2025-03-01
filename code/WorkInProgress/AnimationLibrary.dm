@@ -1557,10 +1557,7 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 //Weeee!
 /proc/animate_fall(var/atom/movable/AM, var/time = 2 SECONDS, var/min_scale = 0.3)
 	var/matrix/shrink = matrix()
-	var/matrix/M = matrix(AM.transform)
 	shrink.Scale(min_scale,min_scale * 0.9)
 	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
 	SPAWN_DBG(0)
 		animate(AM, transform = shrink, time = time, pixel_y = AM.pixel_y - y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
-		animate(transform = M, pixel_y = AM.pixel_y + y_shift)
-

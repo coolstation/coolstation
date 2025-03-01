@@ -493,17 +493,29 @@
 		return // this should in turn fire off its own slew of move calls, so don't do anything here
 
 	 // if updating pitfall checks, UPDATE THIS TO MATCH
-	if ((src.event_handler_flags & IS_PITFALLING) && !(src.event_handler_flags & IN_COYOTE_TIME))
+	if (src.event_handler_flags & IS_PITFALLING)
 		var/turf/T = NewLoc
-		if(!istype(T))
-			return
-		var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
-		if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
-			return
-		if (ismob(src))
-			var/mob/M = src
-			if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+		if(src.event_handler_flags & IN_COYOTE_TIME)
+			if(!istype(T))
+				src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+			else
+				var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
+				if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
+					src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+				else if (ismob(src))
+					var/mob/M = src
+					if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+						src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+		else
+			if(!istype(T))
 				return
+			var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
+			if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
+				return
+			if (ismob(src))
+				var/mob/M = src
+				if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+					return
 
 	var/atom/A = src.loc
 	. = ..()

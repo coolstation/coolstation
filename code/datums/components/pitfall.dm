@@ -22,7 +22,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if (!istype(src.parent, /turf))
 			return COMPONENT_INCOMPATIBLE
 		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
-		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall))
+		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
 		RegisterSignal(src.parent, COMSIG_ATTACKBY, PROC_REF(update_targets))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
 		src.BruteDamageMax	= BruteDamageMax
@@ -47,11 +47,13 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/update_targets()
 		return
 
-	/// called when movable atom AM enters a pitfall turf. Mainly checks.
-	proc/start_fall(var/signalsender, var/atom/movable/AM)
+	/// checks if an atom can fall in.
+	proc/test_fall(var/atom/movable/AM,var/no_thrown=FALSE)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
 		if(AM.event_handler_flags & IS_PITFALLING)
+			return
+		if(no_thrown && AM.throwing)
 			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
@@ -70,11 +72,18 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		return_if_overlay_or_effect(AM)
 
+		return TRUE
+
+	/// called when movable atom AM enters a pitfall turf.
+	proc/start_fall(var/signalsender, var/atom/movable/AM)
+		if(!src.test_fall(AM,TRUE))
+			return
+
 		AM.event_handler_flags |= IS_PITFALLING
 
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
-			if(!(AM.event_handler_flags & IN_COYOTE_TIME)) // MYLIE TODO: refactor this into a property after converting mob_prop to atom_prop
+			if(!(AM.event_handler_flags & IN_COYOTE_TIME)) // maybe refactor this into a property after converting mob_prop to atom_prop
 				AM.event_handler_flags |= IN_COYOTE_TIME
 				SPAWN_DBG(src.HangTime)
 					if (!QDELETED(AM))
@@ -89,6 +98,17 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						pit.try_fall(signalsender, AM)
 		else
 			src.try_fall(signalsender, AM)
+
+	/// called when movable atom AM lands from a throw into a pitfall turf.
+	proc/start_fall_no_coyote(var/signalsender, var/atom/movable/AM)
+		if(!src.test_fall(AM,FALSE))
+			return 0
+
+		AM.event_handler_flags |= IS_PITFALLING
+		AM.event_handler_flags &= ~IN_COYOTE_TIME
+
+		src.try_fall(signalsender, AM)
+		return 1
 
 	/// called when it's time for movable atom AM to actually fall into the pit
 	proc/try_fall(var/signalsender, var/atom/movable/AM)
@@ -108,8 +128,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
 			animate_fall(AM,src.FallTime,src.DepthScale)
-			var/old_anchored = AM.anchored
-			var/old_density = AM.density
 			var/mob/M
 			if(ismob(AM))
 				M = AM
@@ -120,13 +138,12 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 #endif
 				M.emote("scream")
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-				M.anchored = 1
+			var/old_density = AM.density // dont block other fools from falling in
 			AM.density = 0
 			SPAWN_DBG(src.FallTime)
 				if (!QDELETED(AM))
 					if(M)
 						REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-					AM.anchored = old_anchored
 					AM.density = old_density
 					src.actually_fall(T, AM, brutedamage)
 		else
@@ -163,6 +180,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					#endif
 			AM.event_handler_flags &= ~IS_PITFALLING
 			AM.set_loc(T)
+			AM.throwing = 0
+			animate(AM)
 			return
 
 // ====================== SUBTYPES OF PITFALL ======================
