@@ -51,6 +51,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/start_fall(var/signalsender, var/atom/movable/AM)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
+		if(AM.event_handler_flags & IS_PITFALLING)
+			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
 		if (AM.anchored > src.AnchoredAllowed || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
@@ -92,6 +94,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if(current_state <= GAME_STATE_WORLD_NEW)
 			CRASH("[identify_object(AM)] fell into [src.typecasted_parent()] at [src.typecasted_parent().x],[src.typecasted_parent().y],[src.typecasted_parent().z] ([src.typecasted_parent().loc] [src.typecasted_parent().loc.type]) during world initialization")
 		#endif
+		if(AM.event_handler_flags & IS_PITFALLING)
+			return
+		AM.event_handler_flags |= IS_PITFALLING
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
 			animate_fall(AM,src.FallTime,src.DepthScale)
@@ -109,15 +114,13 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
 			AM.anchored = 1
 			AM.density = 0
-			if(!(AM.event_handler_flags & IS_PITFALLING))
-				AM.event_handler_flags |= IS_PITFALLING
-				SPAWN_DBG(src.FallTime)
-					if (!QDELETED(AM))
-						if(M)
-							REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-						AM.anchored = old_anchored
-						AM.density = old_density
-						src.actually_fall(T, AM, brutedamage)
+			SPAWN_DBG(src.FallTime)
+				if (!QDELETED(AM))
+					if(M)
+						REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+					AM.anchored = old_anchored
+					AM.density = old_density
+					src.actually_fall(T, AM, brutedamage)
 		else
 			src.actually_fall(T, AM, brutedamage)
 
