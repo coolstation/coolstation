@@ -74,10 +74,19 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
-			SPAWN_DBG(src.HangTime)
-				if (!QDELETED(AM))
-					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
-					pitfall?.try_fall(signalsender, AM)
+			if(!(AM.event_handler_flags & IN_COYOTE_TIME)) // MYLIE TODO: refactor this into a property after converting mob_prop to atom_prop
+				AM.event_handler_flags |= IN_COYOTE_TIME
+				SPAWN_DBG(src.HangTime)
+					if (!QDELETED(AM))
+						AM.event_handler_flags &= ~IN_COYOTE_TIME
+						var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
+						if(!pit || AM.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in AM.loc) || (locate(/obj/grille/catwalk) in AM.loc))
+							return
+						if (ismob(AM))
+							var/mob/M = AM
+							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+								return
+						pit.try_fall(signalsender, AM)
 		else
 			src.try_fall(signalsender, AM)
 
@@ -111,7 +120,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 #endif
 				M.emote("scream")
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-			AM.anchored = 1
+				M.anchored = 1
 			AM.density = 0
 			SPAWN_DBG(src.FallTime)
 				if (!QDELETED(AM))
