@@ -18,6 +18,10 @@
 	var/venom1 = "venom"
 	var/flailing = 0
 
+	New()
+		..()
+		AddComponent(/datum/component/spider_filter_item)
+
 	CritterAttack(mob/M)
 		..()
 		if(iscarbon(M) && M.reagents)
@@ -106,6 +110,7 @@
 		if (!icon_state && !babyspider)
 			icon_state = pick("big_spide", "big_spide-red", "big_spide-green", "big_spide-blue")
 			src.dead_state = "[src.icon_state]-dead"
+		AddComponent(/datum/component/spider_filter_item)
 
 	CritterDeath()
 		if(!src.alive) return
