@@ -1562,5 +1562,5 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
 	SPAWN_DBG(0)
 		animate(AM, transform = shrink, time = time, pixel_y = AM.pixel_y - y_shift, easing = LINEAR_EASING)
-		animate(transform = M, pixel_y = AM.pixel_y + y_shift)
+		animate()
 
