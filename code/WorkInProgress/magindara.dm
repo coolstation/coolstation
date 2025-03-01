@@ -29,6 +29,10 @@
 		..()
 		if (generateLight)
 			src.make_light()
+		if(!magindara_fog)
+			magindara_fog = new
+			magindara_fog.alpha = 128
+		vis_contents += magindara_fog
 
 	/// Adds the pitfall, handled in map setup on Perduta. If you wanna spawn this turf, call this soon after!
 	proc/initialise_component()
@@ -51,21 +55,14 @@
 			light?.enable()
 
 	update_icon(starlight_alpha=128) // dumb and bad
-		update_fog(starlight_alpha)
 		return
 
 	proc/update_fog(fog_alpha=128)
-		if(fog_alpha)
-			if(!magindara_fog)
-				magindara_fog = new
+		if(!magindara_fog)
+			magindara_fog = new
 
-			magindara_fog.alpha = fog_alpha
-			vis_contents += magindara_fog
-		else
-			if(magindara_fog in vis_contents)
-				vis_contents -= magindara_fog
+		magindara_fog.alpha = fog_alpha
 
-/// BAD BAD BAD
 /obj/overlay/magindara_fog
 	name = "thick smog"
 	desc = "The atmosphere of Magindara, just barely shy of chokingly thick smog."
@@ -81,9 +78,29 @@
 	name = "the magindaran sea"
 	is_construction_allowed = TRUE
 
-proc/change_magindaran_fog(fog_alpha)
+proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 	if(!map_currently_abovewater)
 		return FALSE
 	var/turf/space/magindara/sample = locate(/turf/space/magindara)
+	if(!sample)
+		return FALSE
 	sample.update_fog(fog_alpha)
+	if(rain_alpha)
+		var/image/weather = image('icons/turf/water.dmi',"fast_rain", layer = EFFECTS_LAYER_BASE)
+		weather.alpha = rain_alpha
+		weather.appearance_flags = RESET_COLOR | RESET_ALPHA
+		weather.plane = PLANE_NOSHADOW_ABOVE
+		sample.magindara_fog.UpdateOverlays(weather, "weather_rain")
+	else
+		sample.magindara_fog.UpdateOverlays(null, "weather_rain")
 	return TRUE
+
+/client/proc/change_magindaran_weather()
+	set name = "Change Magindaran Weather"
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
+	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "0") as num
+
+	update_magindaran_weather(fog_alpha, rain_alpha)

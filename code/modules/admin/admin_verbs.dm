@@ -67,6 +67,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_remove_all_labels,
 		/client/proc/game_panel,
 		/client/proc/game_panel_but_called_secrets,
+		/client/proc/change_magindaran_weather, // mylie note - maybe move somewhere else?
 		//client/proc/admin_force_ambience,
 
 		//toggles
