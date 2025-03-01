@@ -408,6 +408,9 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		fake_icon_state = "big_spide"
 		get_name()
 			return pick("giant black widow", "aw look a spider", "OH FUCK A SPIDER")
+		New()
+			..()
+			AddComponent(/datum/component/spider_filter_item)
 	slime
 		fake_icon = 'icons/mob/hallucinations.dmi'
 		fake_icon_state = "slime"
