@@ -437,7 +437,7 @@
 
 /atom/movable/Move(NewLoc, direct)
 
-	if (src.event_handler_flags & IS_PITFALLING) // if updating pitfall checks, UPDATE THIS- it makes sure you dont move out of a pit while falling
+	if (src.throwing && (src.event_handler_flags & IS_PITFALLING)) // if updating pitfall checks, UPDATE THIS TO MATCH
 		var/turf/T = NewLoc
 		if(!istype(T))
 			return FALSE
