@@ -70,6 +70,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		return_if_overlay_or_effect(AM)
 
+		AM.event_handler_flags |= IS_PITFALLING
+
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
 			SPAWN_DBG(src.HangTime)
@@ -94,9 +96,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if(current_state <= GAME_STATE_WORLD_NEW)
 			CRASH("[identify_object(AM)] fell into [src.typecasted_parent()] at [src.typecasted_parent().x],[src.typecasted_parent().y],[src.typecasted_parent().z] ([src.typecasted_parent().loc] [src.typecasted_parent().loc.type]) during world initialization")
 		#endif
-		if(AM.event_handler_flags & IS_PITFALLING)
-			return
-		AM.event_handler_flags |= IS_PITFALLING
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
 			animate_fall(AM,src.FallTime,src.DepthScale)
