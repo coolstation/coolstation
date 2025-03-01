@@ -341,7 +341,7 @@
 				qdel(src)
 				return 1
 
-		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1) )
+		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || assailant.loc != affecting.loc && GET_DIST(assailant, affecting) > 1) )
 			qdel(src)
 			return 1
 
