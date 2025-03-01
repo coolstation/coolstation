@@ -25,7 +25,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall))
 		RegisterSignal(src.parent, COMSIG_ATTACKBY, PROC_REF(update_targets))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
-		src.AnchoredAllowed = AnchoredAllowed
 		src.BruteDamageMax	= BruteDamageMax
 		src.AnchoredAllowed = AnchoredAllowed
 		src.HangTime		= HangTime
@@ -52,22 +51,13 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/start_fall(var/signalsender, var/atom/movable/AM)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
-		if (AM.throwing) // throw em on over, why dont ya
-			return
-		if (AM.event_handler_flags & IMMUNE_PITFALL)
+		if(AM.event_handler_flags & IS_PITFALLING)
 			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
 		if (AM.anchored > src.AnchoredAllowed || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
 			return
 		if (ismob(AM))
-			if (ishuman(AM) && src.typecasted_parent().active_liquid?.last_depth_level >= 3) // TO DO: make jetpacks just apply PROB_ATOM_FLOATING
-				var/mob/living/carbon/human/H = AM
-				if (H.back && H.back.c_flags & IS_JETPACK)
-					if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
-						var/obj/item/tank/jetpack/J = H.back
-						if(J.allow_thrust(0.01, H))
-							return
 			if (isliving(AM))
 				var/mob/living/peep = AM
 				if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
@@ -85,10 +75,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			SPAWN_DBG(src.HangTime)
 				if (!QDELETED(AM))
 					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
-					if(!pitfall || AM.event_handler_flags & IMMUNE_PITFALL || (locate(/obj/lattice) in pitfall.parent) || (locate(/obj/grille/catwalk) in pitfall.parent))
-						return // doublefall prevention
-					pitfall.try_fall(signalsender, AM)
-					AM.event_handler_flags |= IMMUNE_PITFALL
+					pitfall?.try_fall(signalsender, AM)
 		else
 			src.try_fall(signalsender, AM)
 
@@ -98,7 +85,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		return TRUE
 		// child procs will then use fall_to after calling this
 
-	/// a proc that makes a movable atom 'A' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
+	/// a proc that makes a movable atom 'AM' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
 	proc/fall_to(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
 		SHOULD_NOT_OVERRIDE(TRUE)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
@@ -107,6 +94,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if(current_state <= GAME_STATE_WORLD_NEW)
 			CRASH("[identify_object(AM)] fell into [src.typecasted_parent()] at [src.typecasted_parent().x],[src.typecasted_parent().y],[src.typecasted_parent().z] ([src.typecasted_parent().loc] [src.typecasted_parent().loc.type]) during world initialization")
 		#endif
+		if(AM.event_handler_flags & IS_PITFALLING)
+			return
+		AM.event_handler_flags |= IS_PITFALLING
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
 			animate_fall(AM,src.FallTime,src.DepthScale)
@@ -163,8 +153,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					#ifdef DATALOGGER
 					game_stats.Increment("workplacesafety")
 					#endif
+			AM.event_handler_flags &= ~IS_PITFALLING
 			AM.set_loc(T)
-			AM.event_handler_flags &= ~IMMUNE_PITFALL
 			return
 
 // ====================== SUBTYPES OF PITFALL ======================

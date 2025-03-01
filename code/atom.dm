@@ -437,6 +437,17 @@
 
 /atom/movable/Move(NewLoc, direct)
 
+	if (src.event_handler_flags & IS_PITFALLING) // if updating pitfall checks, UPDATE THIS- it makes sure you dont move out of a pit while falling
+		var/turf/T = NewLoc
+		if(!istype(T))
+			return FALSE
+		var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
+		if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
+			return FALSE
+		if (ismob(src))
+			var/mob/M = src
+			if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+				return FALSE
 
 	//mbc disabled for now, i dont think this does too much for visuals i cant hit 40fps anyway argh i cant even tell
 	//tile glide smoothing:

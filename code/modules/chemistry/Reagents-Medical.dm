@@ -170,7 +170,7 @@ datum
 			transparency = 30
 			addiction_prob = 10//50
 			addiction_min = 15
-			overdose = 30
+			overdose = 20
 			depletion_rate = 0.6
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			flammable_influence = TRUE
@@ -208,6 +208,7 @@ datum
 							M.drowsyness  = max(M.drowsyness, 8)
 					if(14 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
+						holder.remove_reagent("ether", 0.4 * mult)
 						M.drowsyness  = max(M.drowsyness, 20)
 
 				..()

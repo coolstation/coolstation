@@ -88,7 +88,8 @@ var/global/datum/controller/throwing/throwing_controller = new
 								thr.dist_travelled < thr.range
 							) || \
 							T?.throw_unlimited || \
-							thing.throw_unlimited
+							thing.throw_unlimited || \
+							thing.event_handler_flags & IS_PITFALLING
 						)
 					))
 				end_throwing = TRUE

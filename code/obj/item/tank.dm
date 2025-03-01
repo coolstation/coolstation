@@ -367,19 +367,40 @@ Contains:
 		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
 		return
 
+	unequipped(mob/user)
+		if(src.on)
+			src.toggle()
+		. = ..()
+
+	process()
+		if(ismob(src.loc))
+			var/mob/M = src.loc
+			if(src.allow_thrust(0.02,M))
+				return 1
+		return 0
+
 	proc/toggle()
 		src.on = !( src.on )
 		src.icon_state = text("jetpack[]", src.on)
 		if(src.on)
 			boutput(usr, "<span class='notice'>The jetpack is now on</span>")
+			processing_items |= src
+			if(src.process())
+				var/mob/M = src.loc // process can't return true otherwise
+				APPLY_MOB_PROPERTY(M, PROP_ATOM_FLOATING, src)
 		else
 			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
+			processing_items.Remove(src)
+			if(ismob(src.loc))
+				var/mob/M = src.loc
+				REMOVE_MOB_PROPERTY(M, PROP_ATOM_FLOATING, src)
 		return
 
 	proc/allow_thrust(num, mob/user as mob)
 		if (!( src.on ))
 			return 0
 		if ((num < 0.01 || TOTAL_MOLES(src.air_contents) < num))
+			src.toggle()
 			return 0
 
 		var/datum/gas_mixture/G = src.air_contents.remove(num)
@@ -396,6 +417,7 @@ Contains:
 			if (G.oxygen >= 0.0075)
 				return 0.5
 			else
+				src.toggle()
 				return 0
 
 /obj/item/tank/jetpack/abilities = list(/obj/ability_button/jetpack_toggle, /obj/ability_button/tank_valve_toggle)
