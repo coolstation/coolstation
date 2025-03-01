@@ -16,6 +16,7 @@
 	nitrogen = MOLES_N2STANDARD
 	temperature = T20C
 
+	var/static/obj/overlay/magindara_fog/magindara_fog
 	var/datum/light/point/light = null
 	var/light_r = 0.55
 	var/light_g = 0.4
@@ -48,6 +49,32 @@
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
 			light?.enable()
+
+	update_icon(starlight_alpha=128) // dumb and bad
+		update_fog(starlight_alpha)
+		return
+
+	proc/update_fog(fog_alpha=128)
+		if(fog_alpha)
+			if(!magindara_fog)
+				magindara_fog = new
+
+			magindara_fog.alpha = fog_alpha
+			vis_contents += magindara_fog
+		else
+			if(magindara_fog in vis_contents)
+				vis_contents -= magindara_fog
+
+/// BAD BAD BAD
+/obj/overlay/magindara_fog
+	name = "thick smog"
+	desc = "The atmosphere of Magindara, just barely shy of chokingly thick smog."
+	icon = 'icons/effects/tile_effects.dmi'
+	icon_state = "densefog"
+	appearance_flags = RESET_COLOR | RESET_TRANSFORM | RESET_ALPHA | KEEP_APART
+	layer = EFFECTS_LAYER_4
+	plane = PLANE_NOSHADOW_ABOVE
+	mouse_opacity = FALSE
 
 /area/magindara
 	icon_state = "pink"

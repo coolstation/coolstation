@@ -856,7 +856,7 @@
 	desc = "Looks normal."
 
 /turf/space/proc/update_icon(starlight_alpha=255)
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna) && !istype(src, /turf/space/magindara))
+	if(!isnull(space_color) && !istype(src, /turf/space/fluid) && !istype(src, /turf/space/gehenna))
 		src.color = space_color
 
 	if(fullbright)
