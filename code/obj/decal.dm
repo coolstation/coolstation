@@ -602,11 +602,13 @@ obj/decal/fakeobjects
 	var/height = 8
 	var/shake_intensity = 10
 	var/strike_time = 1 SECOND
+	var/volume = 50
 
 	New()
 		..()
 		src.pixel_y =  abs(src.height * 32)
-		playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
+		if(src.volume)
+			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
 		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8), flags = ANIMATION_PARALLEL)
 		animate(time = src.strike_time / 8, transform = matrix(1,src.height,MATRIX_SCALE))
 		animate_ripple(src,8,shake_intensity,0.2)
@@ -615,3 +617,13 @@ obj/decal/fakeobjects
 
 	ex_act(severity) // cant have lightning blowing itself up
 		return
+
+// possible usecase for lightning preflash
+/obj/decal/lightning/stepper
+	name = "ionized stepper"
+	desc = "The prequel to a shock of lightning. These only exist for a moment, so it's crazy you saw this!"
+	height = 6
+	shake_intensity = 5
+	strike_time = 2 DECI SECONDS
+	volume = 0
+	alpha = 128
