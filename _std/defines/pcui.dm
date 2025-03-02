@@ -1,5 +1,6 @@
 //Patricia's Cool UI defines
 
+//Resource helpers
 #define PC_BROWSER_RESOURCE(x) resource(x, null)
 #define PC_CSS_TAGGER(x) ("<link rel=\"stylesheet\" href=\"" + x + "\">")
 #define PC_CSS_RESOURCE(x) PC_BROWSER_RESOURCE(x + ".css\">")
@@ -22,22 +23,27 @@
 #define PC_REFTAG "<div class=\"template\" id=\"srcref\"></div>"
 
 //Begin and end ifdef
+//Do not nest ifdefs with the same ID
 #define PC_IFDEF(x) "<div class=\"template_ifdef\" id=\"[x]\"></div>"
 
 #define PC_ENDIF(x) "<div class=\"template_endif\" id=\"[x]\"></div>"
 
-
-//Do not nest ifdefs with the same ID, we're using regex
-//Also it doesn't make sense
-#define PC_ENABLE_IFDEF(target, tag) while(PC_CHECK_FOR_IFDEF(target, tag)) PC_ENABLE_FIRST_IFDEF(target, tag)
+#define PC_ENABLE_IFDEF(target, tag) while(PC_CHECK_FOR_IFDEF(target.template, tag)) PC_ENABLE_FIRST_IFDEF(target.template, tag)
 
 //let there be light
 
-#define PC_RENDER(target, taglist) PC_REMOVE_UNUSED_IFDEF(HTML) ; PC_FILL_TAG_LIST(target, taglist)
+#define PC_RENDER(target) PC_REMOVE_UNUSED_IFDEF(target.template) ; PC_FILL_TAG_LIST(target.template, target.tags)
 
-#define PC_BROWSE(target, window)
+#define PC_BROWSE(target) user.Browse(target.template, "window=[target.window];size=[target.size]", headerhtml = target.header)
+
+//misc
+
+#define PC_LOAD(template, name) var/datum/pcui_template/template/name = new ; name.setup(user)
+//Clear render
+#define PC_RESET(target) target.setup(user)
 
 //Internal, make sure you understand what these do if you mess with them
+//These don't even take a template they mostly take HTML and a tag string
 
 //Ifdefs
 #define PC_REMOVE_UNUSED_IFDEF(target) target = regex("<div class=\"template_ifdef\" id=\".*?\">(.|\n)*?<div class=\"template_endif\" id=\".*?\"><\\/div>", "g").Replace(target)

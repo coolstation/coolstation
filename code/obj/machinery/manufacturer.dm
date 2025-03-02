@@ -316,12 +316,12 @@
 				if (src.manuf_zap(user, 33))
 					return
 
+		//Main screen
 		src.add_dialog(user)
-		var/datum/pcui_template/manufacturer/mantemp = new
-		mantemp.setup(src, user)
-		var/HTML = mantemp.template
 
-		var/contentlist = list("title" = src.name)
+		PC_LOAD(manufacturer, mainscreen)
+
+		mainscreen.tags["title"] += src.name
 
 		var/list/dat = list()
 		var/delete_allowed = src.allowed(usr)
@@ -420,7 +420,7 @@
 				<span class='mat[mats_used[A.item_paths[i]] ? "" : "-missing"]'>[A.item_amounts[i]] [mat_name]</span>
 				"}
 
-			contentlist["products"] += {"
+			mainscreen.tags["products"] += {"
 		<div class='product[can_be_made ? "" : " disabled"]' onclick='product("\ref[A]");'>
 			<strong>[A.name]</strong>
 			<div class='required'><div>[material_text.Join("<br>")]</div></div>
@@ -431,35 +431,35 @@
 		</div>"}
 
 
-		contentlist["mat-list"] += build_material_list(user)
+		mainscreen.tags["mat-list"] += build_material_list(user)
 		//Search
-		contentlist["search"] += istext(src.search) ? html_encode(src.search) : "----"
-		contentlist["search-category"] += istext(src.category) ? html_encode(src.category) : "----"
+		mainscreen.tags["search"] += istext(src.search) ? html_encode(src.search) : "----"
+		mainscreen.tags["search-category"] += istext(src.category) ? html_encode(src.category) : "----"
 		// This is not re-formatted yet just b/c i don't wanna mess with it
-		contentlist["scan"] = src.scan
+		mainscreen.tags["scan"] = src.scan
 		if(scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
-				PC_ENABLE_IFDEF(HTML, "account")
-				contentlist["account"] += account.fields["current_money"]
+				PC_ENABLE_IFDEF(mainscreen, "account")
+				mainscreen.tags["account"] += account.fields["current_money"]
 
 		for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
 			if(S.broken)
 				continue
-			contentlist["ore-list"] += "<B>[S.name] at [get_area(S)]:</B><br>"
+			mainscreen.tags["ore-list"] += "<B>[S.name] at [get_area(S)]:</B><br>"
 			var/list/ores = S.ores
 			for(var/ore in ores)
 				var/datum/ore_cloud_data/OCD = ores[ore]
 				if(!OCD.for_sale || !OCD.amount)
 					continue
 				var/taxes = round(max(rockbox_globals.rockbox_client_fee_min,abs(OCD.price*rockbox_globals.rockbox_client_fee_pct/100)),0.01) //transaction taxes for the station budget
-				contentlist["ore-list"] += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
+				mainscreen.tags["ore-list"] += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
 
-		contentlist["control-panel"] += build_control_panel(user)
+		mainscreen.tags["control-panel"] += build_control_panel(user)
 
-		PC_RENDER(HTML, contentlist)
-		user.Browse(HTML, "window=manufact;size=1111x600", headerhtml = "[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]")
+		PC_RENDER(mainscreen)
+		PC_BROWSE(mainscreen)
 		onclose(user, "manufact")
 
 		interact_particle(user,src)

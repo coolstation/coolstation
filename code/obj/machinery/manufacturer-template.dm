@@ -1,20 +1,21 @@
 /datum/pcui_template
 
+	//Keep your HTML here
+	var/HTML = ""
+
+	var/tags = list()
 	var/name = ""
 	var/template = ""
 	var/header = ""
 	var/window = ""
 	var/size = "800x600"
 
-/datum/pcui_template/proc/setup(var/src, var/mob/user as mob)
+/datum/pcui_template/proc/setup(var/mob/user as mob)
 	return
-
-/datum/pcui_template/proc/getTemplate()
-	return template
 
 /datum/pcui_template/manufacturer
 
-	setup(var/src, var/mob/user as mob)
+	setup(var/mob/user as mob)
 		name = "mainscreen"
 		header = "[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]"
 		size = "1111x600"
