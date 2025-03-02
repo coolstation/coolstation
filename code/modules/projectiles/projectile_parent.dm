@@ -20,8 +20,6 @@
 	var/max_range = PROJ_INFINITE_RANGE //max range
 	var/initial_power = 20 // local copy of power for determining power when hitting things
 	var/implanted = null
-	var/forensic_ID = null
-	var/atom/shooter = null // Who/what fired this?
 	/// The mob/thing that fired this projectile
 	var/atom/shooter = null
 	/// Mob-typed copy of `shooter` var to save time on casts later

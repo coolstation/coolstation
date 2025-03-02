@@ -37,7 +37,7 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 		src.spawn_turret(user.dir)
 		user.u_equip(src)
 		src.set_loc(get_turf(user))
-		logTheThing(LOG_STATION, user, "deploys the [src] turret at [log_loc(user)].")
+		logTheThing("diary", user, null, "deploys the [src] turret at [log_loc(user)].")
 		qdel(src)
 
 	proc/spawn_turret(var/direct)
@@ -64,14 +64,6 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 	quick_deploy_fuel = 2
 	associated_turret = /obj/deployable_turret/syndicate
 
-	New()
-		..()
-		START_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
-
-	disposing()
-		STOP_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
-		..()
-
 /obj/item/turret_deployer/riot
 	name = "N.A.R.C.S. Deployer"
 	desc = "A Nanotrasen Automatic Riot Control System Deployer. Use it in your hand to deploy."
@@ -86,7 +78,7 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 /obj/item/turret_deployer/outpost
 	name = "Perimeter Turret Deployer"
 	desc = "A standard issue perimeter security turret deployer used on the frontier. Use it in your hand to deploy."
-	turret_health = 125
+	health = 125
 	icon_state = "op_deployer"
 	w_class = W_CLASS_BULKY
 	icon_tag = "op"
@@ -202,7 +194,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 		current_projectile.shot_delay = 10/fire_rate
 
 	proc/shoot(target)
-		SPAWN(0)
+		SPAWN_DBG(0)
 			var/list/casing_turfs
 			var/turf/picked_turf
 			if (src.current_projectile.casing)
@@ -219,7 +211,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 					var/obj/item/casing/turret_casing = new src.current_projectile.casing(picked_turf, src.forensic_ID)
 					// prevent infinite casing stacks
 					if (length(picked_turf.contents) > 10)
-						SPAWN(30 SECONDS)
+						SPAWN_DBG(30 SECONDS)
 							if (!QDELETED(turret_casing) && get_turf(turret_casing) == picked_turf)
 								qdel(turret_casing)
 				sleep(src.current_projectile.shot_delay)
@@ -247,7 +239,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 			SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, .proc/toggle_anchored, null, W.icon, W.icon_state, \
 			  src.anchored ? "[user] unwelds the turret from the floor." : "[user] welds the turret to the floor.", \
 			  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
-			logTheThing(LOG_STATION, user, "[src.anchored ? "unwelds" : "welds"] the [src] turret [src.anchored ? "from" : "to"] the floor at [log_loc(src)]")
+			logTheThing("diary", user, "[src.anchored ? "unwelds" : "welds"] the [src] turret [src.anchored ? "from" : "to"] the floor at [log_loc(src)]")
 
 		else if (isweldingtool(W) && (src.active))
 			if (src.health >= max_health)
@@ -261,7 +253,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, .proc/repair, null, W.icon, W.icon_state, \
 			  "[user] repairs some of the turret's damage.", \
 			  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
-			logTheThing(LOG_STATION, user, "repairs the [src] turret with a welding tool at [log_loc(user)]")
+			logTheThing("diary", user, "repairs the [src] turret with a welding tool at [log_loc(user)]")
 
 		else if  (iswrenchingtool(W))
 
@@ -274,7 +266,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 				A.my_turret = src
 				A.user_turf = get_turf(user)
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-				logTheThing(LOG_STATION, user, "reorients the [src] turret (at [log_loc(src)]) to face a new direction.")
+				logTheThing("diary", user, "reorients the [src] turret (at [log_loc(src)]) to face a new direction.")
 
 			else
 				user.show_message("You begin to disassemble the turret.")
@@ -282,7 +274,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 				SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, .proc/spawn_deployer, null, W.icon, W.icon_state, \
 				  "[user] disassembles the turret.", \
 				  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
-				logTheThing(LOG_STATION, user, "undeploys the [src] turret at [log_loc(user)].")
+				logTheThing("diary", user, "undeploys the [src] turret at [log_loc(user)].")
 
 		else if (isscrewingtool(W))
 
@@ -301,7 +293,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 				SETUP_GENERIC_ACTIONBAR(user, src, 1 SECOND, PROC_REF(toggle_activated), null, W.icon, W.icon_state, \
 			 	 "[user] powers the turret [src.active ? "off" : "on"].", \
 			 	 INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
-				logTheThing(LOG_STATION, user, "powers the [src] turret [src.active ? "off" : "on"] at [log_loc(src)].")
+				logTheThing("diary", user, "powers the [src] turret [src.active ? "off" : "on"] at [log_loc(src)].")
 
 			else
 				user.show_message("<span class='alert'>The activation switch is protected! You can't toggle the power!</span>")
@@ -384,7 +376,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 
 	proc/spawn_deployer()
 		var/obj/item/turret_deployer/deployer = new src.associated_deployer(src.loc, src.forensic_ID)
-		deployer.turret_health = src.health // NO FREE REPAIRS, ASSHOLES
+		deployer.health = src.health // NO FREE REPAIRS
 		deployer.damage_words = src.damage_words
 		deployer.quick_deploy_fuel = src.quick_deploy_fuel
 		deployer.tooltip_rebuild = 1
@@ -492,20 +484,6 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) // needs to do in multiple steps because byond takes shortcuts
 		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) // :argh:
 
-	get_help_message(dist, mob/user)
-		if (!src.deconstructable || !src.can_toggle_activation)
-			return
-		. = {"Activation/maintenance:
-		1. Use a <b>welding tool</b> to secure it.
-		2. Use a <b>screwdriver</b> to turn it on.
-		3. (Optional) Click it with a <b>wrench</b> and then click a location to rotate the turret in that direction.
-		4. (Optional) While it's on, use a <b>welding tool</b> to repair any damage.
-
-		Disassembly:
-		1. Use a <b>screwdriver</b> to turn it off.
-		2. Use a <b>welding tool</b> to unsecure it.
-		3. Use a <b>wrench</b> to disassemble it."}
-
 /obj/deployable_turret/proc/admincmd_shoot()
 	set name = "Shoot"
 	var/atom/target = pick_ref(usr)
@@ -520,20 +498,12 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 /obj/deployable_turret/syndicate
 	name = "NAS-T"
 	desc = "A Nuclear Agent Sentry Turret."
-	projectile_type = /datum/projectile/bullet/ak47
+	projectile_type = /datum/projectile/bullet/rifle_medium
 	icon_tag = "st"
 	associated_deployer = /obj/item/turret_deployer/syndicate
 
-	New(loc, direction)
-		START_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
-		..()
-
-	disposing()
-		STOP_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
-		..()
-
 	is_friend(var/mob/living/C)
-		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/gunbot/syndicate) //dumb lazy
+		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/gunbot/) //dumb lazy
 
 /obj/deployable_turret/syndicate/active
 	anchored = 1
@@ -548,7 +518,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 	health = 125
 	max_health = 125
 	range = 5
-	projectile_type = /datum/projectile/bullet/abg
+	projectile_type = /datum/projectile/bullet/slug_rubber
 	burst_size = 1
 	fire_rate = 1
 	angle_arc_size = 60
@@ -575,7 +545,7 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 	health = 125
 	max_health = 125
 	range = 7
-	projectile_type = /datum/projectile/bullet/revolver_38/lb
+	projectile_type = /datum/projectile/bullet/pistol_medium
 	burst_size = 2
 	fire_rate = 1
 	angle_arc_size = 90
