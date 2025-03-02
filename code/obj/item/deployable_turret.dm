@@ -89,7 +89,6 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 /////////////////////////////
 ABSTRACT_TYPE(/obj/deployable_turret)
 /obj/deployable_turret
-
 	name = "fucked up abstract turret that should never exist"
 	desc = "why did you do this"
 	icon = 'icons/obj/deployableturret.dmi'
@@ -119,6 +118,9 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	var/associated_deployer = null //what kind of turret deployer should this deconstruct to?
 	var/deconstructable = TRUE
 	var/can_toggle_activation = TRUE // whether you can enable or disable the turret with a screwdriver, used for map setpiece turrets
+	var/sweep_angle = 0 // if nonzero, the turret will sweep side to side between +sweep_angle and -sweep_angle
+	var/sweep_speed = 0 // how many degrees the turret rotates per processing tick
+	var/sweep_current = 0 // tracks current angle of sweep
 	var/emagged = FALSE
 
 	New(loc, direction, forensics_id)
@@ -219,14 +221,24 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	proc/process()
 		if(src.active)
 			if(!src.target && !src.seek_target()) //attempt to set the target if no target
+				src.sweep()
 				return
 			if(!src.target_valid(src.target)) //check valid target
 				src.icon_state = "[src.icon_tag]_idle"
 				src.target = null
+				src.sweep()
 				return
 			else //GUN THEM DOWN
 				if(src.target)
 					src.shoot(target)
+
+	proc/sweep()
+		if(!src.sweep_angle)
+			return
+		src.sweep_current = clamp(src.sweep_current + src.sweep_speed,-src.sweep_angle,src.sweep_angle)
+		if(abs(src.sweep_current) == src.sweep_angle)
+			src.sweep_speed *= -1
+		src.set_angle(src.external_angle + src.sweep_speed)
 
 	attackby(obj/item/W, mob/user)
 		user.lastattacked = src
@@ -425,7 +437,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			return 0
 		if (istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			if (H.hasStatus(list("resting", "knockdown", "stunned", "unconscious"))) // stops it from uselessly firing at people who are already suppressed. It's meant to be a suppression weapon!
+			if (H.hasStatus(list("knockdown", "stunned", "unconscious"))) // stops it from uselessly firing at people who are already suppressed. It's meant to be a suppression weapon!
 				return FALSE
 		if (is_friend(C) && !src.emagged)
 			return FALSE
@@ -606,6 +618,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 			SPAWN_DBG(0)
 				src.my_turret.set_angle(get_angle(my_turret,target))
+				src.my_turret.sweep_current = 0
 
 			return 0
 
