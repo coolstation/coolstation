@@ -3,7 +3,7 @@
 //Resource helpers
 #define PC_BROWSER_RESOURCE(x) resource(x, null)
 #define PC_CSS_TAGGER(x) ("<link rel=\"stylesheet\" href=\"" + x + "\">")
-#define PC_CSS_RESOURCE(x) PC_BROWSER_RESOURCE(x + ".css\">")
+#define PC_CSS_RESOURCE(x) PC_BROWSER_RESOURCE(x + ".css")
 #define PC_CHUI_CSS(x) PC_CSS_RESOURCE(x + "-pcui")
 #define PC_UNSTYLED_CSS(x) PC_CSS_RESOURCE(x + "-html")
 
