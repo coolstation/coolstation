@@ -3,9 +3,12 @@
 
 	setup(var/mob/user as mob)
 		name = "mainscreen"
-		header = "[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]"
-		size = "1111x600"
 		window = "manufact"
+		size = "1111x600"
+		header = {"
+		[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]
+		"}
+
 		template = {"
 
 			<title>[PC_TAG("title")]</title>
