@@ -1677,14 +1677,14 @@
 			if (queue_num == 1)
 				// if (istype(A,/datum/manufacture/) && src.speed != 0 && timeleft != 0)
 				// 	time_number = round(src.timeleft / src.speed)
-				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='buttonlink'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='buttonlink'>&#57914; Resume</a>") + "<br>"
+				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='queuelinks'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='queuelinks'>Resume</a>") + "<br>"
 			else
 				pause_link = ""
 
 			time_number = A.time && src.speed ? round(A.time / src.speed / 10, 0.1) : "??"
 
 			if (src.mode != "working" || queue_num != 1)
-				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='buttonlink'>&#128465; Remove</a>"
+				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='queuelinks'>&#128465; Remove</a>"
 			else
 				// shut up
 				remove_link = "&#8987; Working..."

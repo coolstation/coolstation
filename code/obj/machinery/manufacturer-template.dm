@@ -4,7 +4,7 @@
 	setup(var/mob/user as mob)
 		name = "mainscreen"
 		window = "manufact"
-		size = "1111x600"
+		size = "870x700"
 		header = {"
 		[PC_USER_PREF_CSS("css/chui/manufacturer/manufacturer")]
 		"}
@@ -34,8 +34,10 @@
 			[PC_IFDEF("account")]
 				<B>Current Funds</B>: [PC_TAG("account")] Credits<br>
 			[PC_ENDIF("account")]
-			<HR><B>Ores Available for Purchase:</B><br><small>
-			[PC_TAG("ore-list")]
+			[PC_IFDEF("rockbox")]
+				<HR><B>Ores Available for Purchase:</B><br><small>
+				[PC_TAG("ore-list")]
+			[PC_ENDIF("rockbox")]
 			</small><HR>
 
 			[PC_TAG("control-panel")]

@@ -21,31 +21,33 @@ img, a img {
 	}
 
 #info {
-	position: absolute;
 	right: 0.5em;
-	top: 0;
-	width: 25%;
+	top: 0px;
+	width: 32%;
 	padding: 0.5em;
-	}
+	float: right;
+	margin-top: 0.25em;
+}
+
 
 #products {
 	position: absolute;
-	left: 0;
-	top: 0;
-	width: 73%;
 	padding: 0.25em;
+	margin-right: 34%
 }
+
 
 .queue, .product {
 	position: relative;
 	display: inline-block;
 	width: 12em;
-	padding: 0.25em 0.5em;
-	border-radius: 5px;
+	padding: 0.25em 0.0em;
 	margin: 0.5em;
 	background: #555;
-	box-shadow: 3px 3px 0 2px #000;
-	}
+	border: groove;
+	border-color: black;
+}
+
 
 .queue {
 	vertical-align: middle;

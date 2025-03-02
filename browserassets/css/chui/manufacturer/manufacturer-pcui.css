@@ -1,39 +1,42 @@
 
-/* will probaby break chui, dont care */
 body { background: #222; color: white; font-family: Tahoma, sans-serif; }
 a { color: #88f; }
 
 .l { text-align: left; } .r { text-align: right; } .c { text-align: center; }
 .buttonlink { background: #66c; min-width: 1.1em; height: 1.2em; padding: 0.2em 0.2em; margin-bottom: 2px; border-radius: 4px; font-size: 90%; color: white; text-decoration: none; display: inline-block; vertical-align: middle; }
-thead { background: #555555; }
+
+thead {
+    background: #6d6617;
+    border: groove 2px;
+    border-color: #9a8469;
+}
+
 
 table {
 	border-collapse: collapse;
 	width: 100%;
 	}
-td, th { padding: 0.2em 0.5em; }
-.outline td, .outline th {
-	border: 1px solid #666;
-}
+td, th { padding: 0.2em 0.5em 0em; }
 
 img, a img {
 	border: 0;
 	}
 
+
 #info {
-	position: absolute;
-	right: 0.5em;
-	top: 0;
-	width: 25%;
+	width: 30%;
 	padding: 0.5em;
-	}
+	float: right;
+	background: #3b3122;
+	border-style: groove;
+	border-color: #6d6617;
+	margin-top: 0.5em;
+}
+
 
 #products {
 	position: absolute;
-	left: 0;
-	top: 0;
-	width: 73%;
-	padding: 0.25em;
+	width: 66%;
 }
 
 .queue, .product {
@@ -76,17 +79,19 @@ img, a img {
 	margin: 0.2em auto 0.5em auto;
 	-ms-interpolation-mode: nearest-neighbor; /* pixels go cronch */
 	}
+
 .product.disabled {
-	background: #333;
-	color: #aaa;
+    color: #aaa;
+    opacity: 0.65;
 }
+
 .required {
 	display: none;
 	}
 
 .product:hover {
 	cursor: pointer;
-	background: #666;
+	opacity 0.85;
 }
 .product:hover .required {
 	display: block;
