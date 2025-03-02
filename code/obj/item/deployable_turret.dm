@@ -597,13 +597,16 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		var/mob/M = usr
 
 		if (istype(M))
+			if(!is_friend(M) && !src.emagged)
+				boutput(M, "<span class='alert'>You can't modify the aim of this turret without being authorized!</span>")
+				return
 
 			if(!iswrenchingtool(M.equipped()))
-				boutput(M, "<span class='alert'>You need to be holding a wrench or similar to modify the turret's facing.</span>")
+				boutput(M, "<span class='alert'>You need to be holding a wrench or similar to modify the turret's aim.</span>")
 				return
 
 			if (!my_turret.deconstructable)
-				boutput(M, "<span class='alert'>You can't modify this turret's facing- it's bolted in place!</span>")
+				boutput(M, "<span class='alert'>You can't modify this turret's aim- it's bolted in place!</span>")
 				return
 
 			if(!(get_turf(usr) == src.user_turf))
