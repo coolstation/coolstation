@@ -371,8 +371,6 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 		var/percent_damage = src.health/src.max_health * 100
 		switch(percent_damage)
-			if(100)
-				damage_words = "totally undamaged!"
 			if(90 to 100)
 				damage_words = "mostly undamaged!"
 			if(75 to 89)
