@@ -88,15 +88,17 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						AM.event_handler_flags &= ~IN_COYOTE_TIME
 						var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
 						if(!pit || AM.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in AM.loc) || (locate(/obj/grille/catwalk) in AM.loc))
+							AM.event_handler_flags &= ~IS_PITFALLING
 							return
 						if (ismob(AM))
 							var/mob/M = AM
 							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+								AM.event_handler_flags &= ~IS_PITFALLING
 								return
 						if(!pit.try_fall(signalsender, AM))
 							(AM.event_handler_flags &= ~IS_PITFALLING)
-		else
-			src.try_fall(signalsender, AM)
+		else if(!src.try_fall(signalsender, AM))
+			(AM.event_handler_flags &= ~IS_PITFALLING)
 
 	/// called when movable atom AM lands from a throw into a pitfall turf.
 	proc/start_fall_no_coyote(var/signalsender, var/atom/movable/AM)
