@@ -1,5 +1,5 @@
 //Datum for pcui templates
-//See chui.dm defines
+//See pcui.dm defines
 /datum/pcui_template
 
 	//Keep your HTML here
