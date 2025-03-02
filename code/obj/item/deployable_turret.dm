@@ -371,6 +371,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 		var/percent_damage = src.health/src.max_health * 100
 		switch(percent_damage)
+			if(100)
+				damage_words = "totally undamaged!"
 			if(90 to 100)
 				damage_words = "mostly undamaged!"
 			if(75 to 89)
@@ -525,6 +527,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	icon_tag = "nt"
 	quick_deploy_fuel = 0
 	associated_deployer = /obj/item/turret_deployer/riot
+	sweep_angle = 25
+	sweep_speed = 5
 
 	is_friend(var/mob/living/C)
 		var/obj/item/card/id/I = C.get_id()
