@@ -27,8 +27,13 @@ var/global/list/image/spider_filter_images
 
 /datum/component/spider_filter_item/disposing()
 	global.spider_filter_images -= src.filter_image
-	for(var/mob/M as anything in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
-		M.client?.images -= src.filter_image
+	for(var/thing as anything in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
+		if(ismob(thing))
+			var/mob/M = thing
+			M.client?.images -= src.filter_image
+		if(isclient(thing))
+			var/client/C = thing
+			C?.images -= src.filter_image
 	qdel(src.filter_image)
 	. = ..()
 
