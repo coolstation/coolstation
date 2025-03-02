@@ -1053,7 +1053,6 @@ proc/generate_space_color()
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
 			T.build(src)
 			return
-	..()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
