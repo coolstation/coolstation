@@ -600,7 +600,7 @@ obj/decal/fakeobjects
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_SELFILLUM
 	var/height = 8
-	var/shake_intensity = 5
+	var/shake_intensity = 10
 	var/strike_time = 1 SECOND
 
 	New()

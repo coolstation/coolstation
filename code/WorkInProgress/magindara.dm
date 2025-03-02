@@ -150,8 +150,9 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 			return
 		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
 		new /obj/decal/lightning(target)
-		for(var/mob/living/L in orange(2, target)) // an extra throw just to be mean
-			L.throw_at(get_edge_cheap(get_turf(target), get_dir(target, get_turf(L))), floor(power / 3), ceil(power / 5))
 		explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
+		for(var/mob/living/L in orange(2, target)) // some more mean effects
+			L.changeStatus("disorient",min(5 * power,30 SECONDS))
+			L.change_misstep_chance(min(power, 30))
 
 
