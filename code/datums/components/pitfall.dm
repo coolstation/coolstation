@@ -23,7 +23,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			return COMPONENT_INCOMPATIBLE
 		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
 		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
-		RegisterSignal(src.parent, COMSIG_ATTACKBY, PROC_REF(update_targets))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
 		src.BruteDamageMax	= BruteDamageMax
 		src.AnchoredAllowed = AnchoredAllowed
@@ -35,7 +34,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		. = ..()
 		UnregisterSignal(src.parent, COMSIG_ATOM_ENTERED)
 		UnregisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN)
-		UnregisterSignal(src.parent, COMSIG_ATTACKBY)
 		UnregisterSignal(src.parent, COMSIG_TURF_REPLACED)
 
 	/// returns the .parent but typecasted as a turf
@@ -95,7 +93,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							var/mob/M = AM
 							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 								return
-						pit.try_fall(signalsender, AM)
+						if(!pit.try_fall(signalsender, AM))
+							(AM.event_handler_flags &= ~IS_PITFALLING)
 		else
 			src.try_fall(signalsender, AM)
 
@@ -210,6 +209,8 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	try_fall(signalsender, var/atom/movable/AM)
 		if (..())
 			src.fall_to(pick_landmark(src.TargetLandmark), AM, src.BruteDamageMax)
+			return TRUE
+		return FALSE
 
 TYPEINFO(/datum/component/pitfall/target_area)
 	initialization_args = list(
@@ -235,6 +236,8 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	try_fall(signalsender, var/atom/movable/AM)
 		if (..())
 			src.fall_to(pick(get_area_turfs(src.TargetArea)), AM, src.BruteDamageMax)
+			return TRUE
+		return FALSE
 
 TYPEINFO(/datum/component/pitfall/target_coordinates)
 	initialization_args = list(
@@ -269,8 +272,10 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 			if (!src.TargetList || !length(src.TargetList))
 				if(!src.update_targets())
 					RemoveComponent()
-					return
+					return FALSE
 			src.fall_to(pick(src.TargetList), AM, src.BruteDamageMax)
+			return TRUE
+		return FALSE
 
 	update_targets()
 		src.TargetList = list()

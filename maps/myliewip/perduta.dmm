@@ -72,6 +72,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"ch" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/magindara,
+/area/magindara)
 "cm" = (
 /obj/railing/reinforced{
 	dir = 4
@@ -356,6 +363,22 @@
 "ik" = (
 /turf/floor,
 /area/station/hallway/primary/southwest)
+"ip" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/disposalpipe/segment/morgue/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "is" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /obj/disposalpipe/segment/bent/south,
@@ -797,6 +820,10 @@
 /obj/landmark/start/latejoin,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
+"ph" = (
+/obj/machinery/door/airlock/external,
+/turf/floor,
+/area/magindara)
 "po" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2/right{
@@ -941,6 +968,12 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
+"rP" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/magindara,
+/area/magindara)
 "rZ" = (
 /obj/stool/chair/office/green{
 	dir = 4
@@ -954,6 +987,14 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"sp" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/turf/space/magindara,
+/area/magindara)
 "sH" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/green/side,
@@ -1351,12 +1392,16 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer{
-	pixel_y = -4;
-	pixel_x = 12
+	pixel_y = -6;
+	pixel_x = 6
 	},
 /obj/lattice{
 	dir = 8;
 	icon_state = "lattice-dir"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_y = -4;
+	pixel_x = -5
 	},
 /turf/space/magindara,
 /area/station/maintenance/central)
@@ -1929,6 +1974,13 @@
 "Or" = (
 /turf/floor/blue/corner,
 /area/station/hallway/primary/west)
+"Ot" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "OI" = (
 /obj/machinery/atmospherics/unary/cryo_cell{
 	dir = 2
@@ -2144,6 +2196,19 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/medbay/lobby)
+"Tq" = (
+/obj/table/wood{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/steak_h{
+	pixel_y = 8
+	},
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "Tr" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/disposalpipe/segment/vertical,
@@ -45345,9 +45410,9 @@ Yc
 Ez
 Ez
 Ez
-SO
-SO
-SO
+Ez
+OX
+Sh
 OX
 FX
 FX
@@ -45631,7 +45696,7 @@ SO
 SO
 SO
 SO
-SO
+Ot
 SO
 SO
 IJ
@@ -45647,14 +45712,14 @@ bJ
 TZ
 TZ
 TZ
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+TZ
+ph
+FX
+ph
+FX
+FX
+FX
+OX
 SO
 SO
 SO
@@ -45932,9 +45997,9 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
+rP
+OX
+VL
 ky
 KU
 TE
@@ -45949,14 +46014,14 @@ kY
 ln
 ln
 ln
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+ln
+OX
+Sh
+OX
+FX
+FX
+FX
+OX
 SO
 SO
 SO
@@ -46235,7 +46300,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 SO
 SO
 IJ
@@ -46530,14 +46595,14 @@ SO
 SO
 SO
 SO
+ch
+Tq
+sp
 SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
+Rh
 SO
 SO
 IJ
@@ -46832,19 +46897,19 @@ SO
 SO
 SO
 SO
+Rh
+SO
+Rh
 SO
 SO
 SO
 SO
+Rh
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+IJ
+ip
+MY
 SO
 Vr
 Wf
@@ -47133,20 +47198,20 @@ SO
 SO
 SO
 SO
+OX
+OX
+OX
+OX
+OX
+OX
+OX
+OX
+OX
+OX
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+IJ
+ip
+MY
 SO
 IJ
 af
@@ -47435,20 +47500,20 @@ SO
 SO
 SO
 SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+OX
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+IJ
+ip
+MY
 SO
 IJ
 af
@@ -47737,16 +47802,16 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+OX
 SO
 SO
 SO
@@ -48039,16 +48104,16 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+OX
 SO
 SO
 SO
@@ -48341,16 +48406,16 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+OX
 SO
 SO
 SO
@@ -48644,15 +48709,15 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+OX
 SO
 SO
 SO
@@ -48954,7 +49019,7 @@ SO
 SO
 SO
 SO
-SO
+OX
 SO
 SO
 SO
@@ -49256,7 +49321,7 @@ SO
 SO
 SO
 SO
-SO
+OX
 SO
 SO
 SO
@@ -49558,7 +49623,7 @@ SO
 SO
 SO
 SO
-SO
+OX
 SO
 SO
 SO
@@ -49860,7 +49925,7 @@ SO
 SO
 SO
 SO
-SO
+OX
 SO
 SO
 SO

@@ -1027,18 +1027,21 @@ proc/generate_space_color()
 	if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
 		boutput(user, "<span class='alert'>You can't build here.</span>")
 		return
-	var/obj/item/rods/R = C
-	if (istype(R))
-		//no more stacking lattices thx
+	if (istype(C, /obj/item/rods))
+		var/obj/item/rods/R = C
 		var/obj/lattice/lat = locate() in src
 		if (lat)
+			boutput(user, "<span class='alert'>There's already a lattice there.</span>")
 			return //lat.Attackby(R, user)
-		else if (R.change_stack_amount(-1))
-			boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
+		else if (R.change_stack_amount(-2))
+			boutput(user, "<span class='notice'>You build a support lattice!</span>")
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-			ReplaceWithLattice()
-			if (R.material)
-				src.setMaterial(C.material)
+			lat = new(src)
+			if(R.material)
+				lat.setMaterial(R.material)
+			return
+		else
+			boutput(user, "<span class='alert'>You need two rods to build a lattice.</span>")
 			return
 
 	if (istype(C, /obj/item/tile))
@@ -1049,6 +1052,8 @@ proc/generate_space_color()
 				qdel(L)
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
 			T.build(src)
+			return
+	..()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
