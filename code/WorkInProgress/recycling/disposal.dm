@@ -449,8 +449,9 @@
 
 
 	// pipe affected by explosion
-	ex_act(severity)
-
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				broken(0)
@@ -2113,7 +2114,9 @@
 	var/datum/radio_frequency/radio_connection
 	throw_speed = 1
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				qdel(src)

@@ -115,22 +115,23 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 
 	var/power = input(usr, "Please enter the power:","Power", "10") as num
 	var/warning_time = input(usr, "Please enter the warning time (deciseconds):","Warning Time", "60") as num
-	var/warning_sparks = input(usr, "Please enter the number of warning sparks:","Warning Soarks", "9") as num
+	var/warning_sparks = input(usr, "Please enter the number of warning sparks:","Warning Sparks", "9") as num
+	var/is_turf_safe = input(usr, "Is this lightning safe for turfs? BE CAREFUL:","Turf Safe", "1") as num
 	var/turf/T = get_turf(src.mob)
 
 	if(power)
-		logTheThing("admin", src, null, "created lightning (power [power], warning [warning_time]) at [log_loc(T)].")
-		logTheThing("diary", src, null, "created an explosion (power [power], warning [warning_time]) at [log_loc(T)].", "admin")
+		logTheThing("admin", src, null, "created[is_turf_safe ? "" : " turf destroying"] lightning (power [power], warning [warning_time]) at [log_loc(T)].")
+		logTheThing("diary", src, null, "created[is_turf_safe ? "" : " turf destroying"] lightning (power [power], warning [warning_time]) at [log_loc(T)].", "admin")
 
-		lightning_strike(T, power, warning_time, warning_sparks)
+		lightning_strike(T, power, warning_time, warning_sparks, is_turf_safe)
 
-/proc/lightning_strike(var/turf/target, var/power = 10, var/warning_time = 6 SECONDS, var/warning_sparks = 9)
+/proc/lightning_strike(var/turf/target, var/power = 10, var/warning_time = 6 SECONDS, var/warning_sparks = 9, var/is_turf_safe = TRUE)
 	if(!target || !power)
 		return
 	if(!istype(target))
 		target = get_turf(target)
-	logTheThing("bombing", null, null, "Lightning with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.")
-	logTheThing("diary", src, null, "Lightning with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.")
+	logTheThing("bombing", null, null, "Lightning[is_turf_safe ? "" : " (turf destroying)"] with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.")
+	logTheThing("diary", null, null, "Lightning[is_turf_safe ? "" : " (turf destroying)"] with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.", "combat")
 	SPAWN_DBG(0)
 		var/sleep_time = ceil(warning_time / (warning_sparks + 1))
 		if(warning_sparks && warning_time)
@@ -148,5 +149,7 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 		if(QDELETED(target))
 			return
 		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
-		explosion_new(target, target, power, turf_safe = TRUE, no_effects = TRUE)
+		explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
+		for(var/mob/living/L in orange(2, target)) // an extra throw just to be mean
+			L.throw_at(get_edge_cheap(get_turf(target), get_dir(target, get_turf(L))), floor(power / 3), ceil(power / 5))
 

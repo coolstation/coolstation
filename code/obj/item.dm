@@ -994,7 +994,7 @@
 /obj/item/dummy/blob_act(var/power)
 	return
 
-/obj/item/ex_act(severity, last_touched, epicenter)
+/obj/item/ex_act(severity, last_touched, epicenter, turf_safe)
 	switch(severity)
 		if (OLD_EX_SEVERITY_2)
 			if (src.material)

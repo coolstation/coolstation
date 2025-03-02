@@ -75,7 +75,7 @@ var/datum/explosion_controller/explosions
 			for (var/obj/O in T)
 				if(istype(O, /obj/overlay))
 					continue
-				O.ex_act(p, last_touched, center)
+				O.ex_act(p, last_touched, center, !queued_turfs[T])
 				if (istype(O, /obj/cable)) // this is hacky, newcables should relieve the need for this
 					needrebuild = 1
 
@@ -106,6 +106,7 @@ var/datum/explosion_controller/explosions
 		LAGCHECK(LAG_HIGH)
 
 		queued_turfs.len = 0
+		queued_turf_safe.len = 0
 		queued_turfs_blame.len = 0
 		queued_turfs_center.len = 0
 		defer_powernet_rebuild = 0
@@ -181,13 +182,14 @@ var/datum/explosion_controller/explosions
 	proc/explode()
 		logMe(power)
 
-		for(var/client/C in clients)
-			if(C.mob && (C.mob.z == epicenter.z) && power > 15)
-				shake_camera(C.mob, 8, 24) // remove if this is too laggy
-
-				playsound(C.mob, explosions.distant_sound, 100, 0)
-
 		if(!src.no_effects)
+			if(power > 15)
+				for(var/client/C in clients)
+					if(C.mob && (C.mob.z == epicenter.z))
+						shake_camera(C.mob, 8, 24) // remove if this is too laggy
+
+						playsound(C.mob, explosions.distant_sound, 100, 0)
+
 			playsound(epicenter.loc, "explosion", 100, 1, round(power, 1) )
 			if(power > 10)
 				var/datum/effects/system/explosion/E = new/datum/effects/system/explosion()
