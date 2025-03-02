@@ -88,7 +88,6 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 //       Turret Code       //
 /////////////////////////////
 ABSTRACT_TYPE(/obj/deployable_turret)
-ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_reaim)
 /obj/deployable_turret
 
 	name = "fucked up abstract turret that should never exist"
@@ -483,17 +482,6 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 		animate(src, transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) //blatant code theft from throw_at proc
 		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) // needs to do in multiple steps because byond takes shortcuts
 		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) // :argh:
-
-/obj/deployable_turret/proc/admincmd_shoot()
-	set name = "Shoot"
-	var/atom/target = pick_ref(usr)
-	playsound(src.loc, 'sound/vox/woofsound.ogg', 40, 1)
-	src.shoot(target)
-
-/obj/deployable_turret/proc/admincmd_reaim()
-	set name = "Re-aim"
-	var/atom/target = pick_ref(usr)
-	src.set_angle(get_angle(src, get_turf(target)))
 
 /obj/deployable_turret/syndicate
 	name = "NAS-T"
