@@ -1,18 +1,4 @@
-/datum/pcui_template
-
-	//Keep your HTML here
-	var/HTML = ""
-
-	var/tags = list()
-	var/name = ""
-	var/template = ""
-	var/header = ""
-	var/window = ""
-	var/size = "800x600"
-
-/datum/pcui_template/proc/setup(var/mob/user as mob)
-	return
-
+//Main screen for the manuacturer
 /datum/pcui_template/manufacturer
 
 	setup(var/mob/user as mob)
