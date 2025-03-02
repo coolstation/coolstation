@@ -320,6 +320,7 @@ var/list/admin_verbs = list(
 		/datum/admins/proc/enable_pixelexplosion,
 		/datum/admins/proc/disable_pixelexplosion,
 
+		/client/proc/strike_lightning_here,
 		/client/proc/sega_bass_fishing,
 		/client/proc/cmd_customgrenade,
 		/client/proc/open_dj_panel,

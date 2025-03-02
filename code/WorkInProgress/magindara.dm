@@ -103,4 +103,50 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
 	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "0") as num
 
+	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha].")
+	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha].", "admin")
+
 	update_magindaran_weather(fog_alpha, rain_alpha)
+
+/client/proc/strike_lightning_here()
+	set name = "Strike Lightning Here"
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	admin_only
+
+	var/power = input(usr, "Please enter the power:","Power", "10") as num
+	var/warning_time = input(usr, "Please enter the warning time (deciseconds):","Warning Time", "60") as num
+	var/warning_sparks = input(usr, "Please enter the number of warning sparks:","Warning Soarks", "9") as num
+	var/turf/T = get_turf(src.mob)
+
+	if(power)
+		logTheThing("admin", src, null, "created lightning (power [power], warning [warning_time]) at [log_loc(T)].")
+		logTheThing("diary", src, null, "created an explosion (power [power], warning [warning_time]) at [log_loc(T)].", "admin")
+
+		lightning_strike(T, power, warning_time, warning_sparks)
+
+/proc/lightning_strike(var/turf/target, var/power = 10, var/warning_time = 6 SECONDS, var/warning_sparks = 9)
+	if(!target || !power)
+		return
+	if(!istype(target))
+		target = get_turf(target)
+	logTheThing("bombing", null, null, "Lightning with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.")
+	logTheThing("diary", src, null, "Lightning with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.")
+	SPAWN_DBG(0)
+		var/sleep_time = ceil(warning_time / (warning_sparks + 1))
+		if(warning_sparks && warning_time)
+			var/spark_volume = max(50 - 5 * warning_sparks, 20)
+			for(var/i in 1 to warning_sparks)
+				if(QDELETED(target))
+					return
+				var/datum/effects/system/spark_spread/E = new()
+				E.set_up(6,0,target)
+				E.start()
+				sleep(sleep_time)
+				playsound(target, "sound/effects/sparks[rand(1,6)].ogg", spark_volume, 1)
+				spark_volume = min(spark_volume + 5 * warning_sparks, 65)
+		sleep(sleep_time)
+		if(QDELETED(target))
+			return
+		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
+		explosion_new(target, target, power, turf_safe = TRUE, no_effects = TRUE)
+
