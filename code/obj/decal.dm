@@ -591,3 +591,27 @@ obj/decal/fakeobjects
 	density = 0
 	opacity = 0
 	anchored = 1
+
+/obj/decal/lightning
+	name = "lightning"
+	desc = "An incredibly dangerous arc of atmospheric charge."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "lightning1"
+	layer = NOLIGHT_EFFECTS_LAYER_BASE
+	plane = PLANE_SELFILLUM
+	var/height = 8
+	var/shake_intensity = 5
+	var/strike_time = 1 SECOND
+
+	New()
+		..()
+		src.pixel_y =  abs(src.height * 32)
+		playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
+		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8), flags = ANIMATION_PARALLEL)
+		animate(time = src.strike_time / 8, transform = matrix(1,src.height,MATRIX_SCALE))
+		animate_ripple(src,8,shake_intensity,0.2)
+		SPAWN_DBG(strike_time)
+			qdel(src)
+
+	ex_act(severity) // cant have lightning blowing itself up
+		return

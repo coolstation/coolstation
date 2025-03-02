@@ -143,13 +143,15 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 				E.set_up(6,0,target)
 				E.start()
 				sleep(sleep_time)
-				playsound(target, "sound/effects/sparks[rand(1,6)].ogg", spark_volume, 1)
+				playsound(target, pick(sounds_sparks), spark_volume, 1)
 				spark_volume = min(spark_volume + 5 * warning_sparks, 65)
 		sleep(sleep_time)
 		if(QDELETED(target))
 			return
 		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
-		explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
+		new /obj/decal/lightning(target)
 		for(var/mob/living/L in orange(2, target)) // an extra throw just to be mean
 			L.throw_at(get_edge_cheap(get_turf(target), get_dir(target, get_turf(L))), floor(power / 3), ceil(power / 5))
+		explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
+
 
