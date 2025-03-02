@@ -77,6 +77,10 @@
 	dir = 6;
 	icon_state = "lattice-dir-b"
 	},
+/obj/item/reagent_containers/food/snacks/steak_h{
+	pixel_y = -20;
+	pixel_x = -2
+	},
 /turf/space/magindara,
 /area/magindara)
 "cm" = (
@@ -2199,9 +2203,6 @@
 "Tq" = (
 /obj/table/wood{
 	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/snacks/steak_h{
-	pixel_y = 8
 	},
 /obj/lattice{
 	dir = 2;
