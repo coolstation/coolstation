@@ -39,6 +39,9 @@
 	proc/RawClick(location,control,params)
 		return
 
+	/// If atmos should be blocked by this - special behaviours handled in gas_cross() overrides
+	var/gas_impermeable = FALSE
+
 /* -------------------- name stuff -------------------- */
 	/*
 	to change names: either add or remove something with the appropriate proc(s) and then call atom.UpdateName()
@@ -292,6 +295,13 @@
 //atom.event_handler_flags & USE_HASENTERED MUST EVALUATE AS TRUE OR THIS PROC WONT BE CALLED EITHER
 /atom/proc/HasExited(atom/movable/AM as mob|obj, atom/NewLoc)
 	return
+
+/atom/Entered(atom/movable/AM)
+	SHOULD_CALL_PARENT(TRUE)
+	#ifdef SPACEMAN_DMM //im cargo culter
+	..()
+	#endif
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM)
 
 /atom/proc/ProximityLeave(atom/movable/AM as mob|obj)
 	return

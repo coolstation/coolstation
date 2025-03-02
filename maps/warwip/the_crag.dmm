@@ -844,6 +844,11 @@
 /obj/storage/closet/fire,
 /turf/floor/plating,
 /area/station/maintenance/west)
+"cI" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/shrub/big,
+/turf/floor/planter/strips,
+/area/station/hallway/primary/southwest)
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
 /turf/floor,
@@ -1966,6 +1971,13 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/north)
+"gq" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/shrub/big/big3,
+/turf/floor/planter/strips{
+	dir = 4
+	},
+/area/station/hallway/primary/southwest)
 "gr" = (
 /obj/machinery/door/airlock/command,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -3577,7 +3589,8 @@
 /turf/floor/plating,
 /area/station/hallway/primary/north)
 "lU" = (
-/turf/floor/green/side,
+/obj/shrub/big,
+/turf/floor/planter/strips,
 /area/station/hallway/primary/north)
 "lV" = (
 /obj/cable{
@@ -5156,8 +5169,10 @@
 /turf/floor,
 /area/station/engine/core)
 "rt" = (
-/obj/machinery/light,
-/turf/floor/green/side,
+/obj/shrub/big,
+/turf/floor/planter/strips{
+	dir = 1
+	},
 /area/station/hallway/primary/north)
 "ru" = (
 /obj/table/wood/round/auto,
@@ -5888,7 +5903,10 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/floor,
+/obj/shrub/big/big3,
+/turf/floor/planter/strips{
+	dir = 8
+	},
 /area/station/hallway/primary/south)
 "tI" = (
 /obj/machinery/camera{
@@ -5927,6 +5945,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/cautionblack,
 /area/station/engine/core)
+"tN" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/shrub/big/big2,
+/turf/floor/planter/strips{
+	dir = 10
+	},
+/area/station/hallway/primary/south)
 "tO" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment{
@@ -6076,12 +6103,15 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
-"uo" = (
-/obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/catering_horizontal{
-	autoclose = 0;
-	name = "Hydroponics Terrace"
+"un" = (
+/obj/shrub/big/big2,
+/turf/floor/planter/strips{
+	dir = 1
 	},
-/turf/floor/plating,
+/area/station/hallway/primary/north)
+"uo" = (
+/obj/shrub/random,
+/turf/floor/planter/strips,
 /area/station/hallway/primary/north)
 "ur" = (
 /obj/machinery/manufacturer/qm,
@@ -6979,6 +7009,12 @@
 /obj/item/tweezers,
 /turf/floor/cautionblack,
 /area/station/quartermaster/cargooffice/storefront)
+"xu" = (
+/obj/shrub/random,
+/turf/floor/planter/strips{
+	dir = 1
+	},
+/area/station/hallway/primary/north)
 "xv" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -7460,6 +7496,15 @@
 	dir = 4
 	},
 /area/shuttle/merchant_shuttle/left_station/cogmap)
+"zl" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/shrub/random,
+/turf/floor/planter/strips{
+	dir = 6
+	},
+/area/station/hallway/primary/south)
 "zm" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -8941,6 +8986,13 @@
 	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
+"EE" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/shrub/random,
+/turf/floor/planter/strips{
+	dir = 1
+	},
+/area/station/hallway/primary/southwest)
 "EF" = (
 /turf/floor/specialroom/chapel{
 	dir = 9
@@ -10590,6 +10642,12 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor,
 /area/station/engine/core)
+"Kn" = (
+/obj/shrub/random,
+/turf/floor/planter/strips{
+	dir = 4
+	},
+/area/station/hallway/primary/north)
 "Ko" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/black,
@@ -11733,6 +11791,12 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"Oe" = (
+/obj/shrub/big/big3,
+/turf/floor/planter/strips{
+	dir = 4
+	},
+/area/station/hallway/primary/north)
 "Of" = (
 /obj/ladder/auto,
 /turf/floor/cautionblack,
@@ -12539,6 +12603,15 @@
 	dir = 1
 	},
 /area/station/science/lobby)
+"QO" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/shrub/big,
+/turf/floor/planter/strips{
+	dir = 6
+	},
+/area/station/hallway/primary/south)
 "QR" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -14672,6 +14745,14 @@
 "XN" = (
 /turf/space/gehenna/desert/plating,
 /area/gehenna)
+"XO" = (
+/obj/shrub{
+	dir = 1
+	},
+/turf/floor/planter/strips{
+	dir = 4
+	},
+/area/station/hallway/primary/north)
 "XP" = (
 /obj/disposalpipe/junction/right/east,
 /turf/floor,
@@ -51930,9 +52011,9 @@ mh
 SU
 He
 SU
-SU
-SU
-SU
+cI
+EE
+gq
 wU
 AJ
 HV
@@ -58277,7 +58358,7 @@ Rj
 Rj
 AY
 VZ
-GN
+zl
 Oi
 Na
 VZ
@@ -58579,7 +58660,7 @@ Rj
 Rj
 AY
 VZ
-GN
+QO
 Oi
 Na
 tg
@@ -58881,7 +58962,7 @@ Rj
 Rj
 AY
 VZ
-GN
+zl
 Oi
 Na
 OG
@@ -59183,7 +59264,7 @@ Rj
 Rj
 AY
 VZ
-GN
+tN
 Oi
 Na
 EH
@@ -59760,11 +59841,11 @@ zM
 su
 Uf
 XP
-rt
+Ot
 JD
-AY
-AY
-AY
+lS
+lS
+lS
 AY
 Rj
 Rj
@@ -60062,11 +60143,11 @@ Ej
 ME
 OF
 oY
-lU
+OF
 uo
-GP
-GP
-GP
+rt
+Kn
+lS
 AY
 Rj
 Rj
@@ -60364,11 +60445,11 @@ Ej
 ME
 OF
 oY
-lU
-uo
-GP
-GP
-GP
+OF
+OF
+OF
+OF
+lS
 AY
 Rj
 Rj
@@ -60666,11 +60747,11 @@ JX
 ME
 OF
 oY
+OF
 lU
-uo
-GP
-GP
-GP
+un
+XO
+lS
 AY
 Rj
 Rj
@@ -60968,11 +61049,11 @@ Ej
 rT
 OF
 oY
-lU
-uo
-GP
-GP
-GP
+OF
+OF
+OF
+OF
+lS
 AY
 Rj
 Rj
@@ -61270,11 +61351,11 @@ Ej
 ir
 gp
 oY
+OF
 lU
-uo
-GP
-GP
-GP
+xu
+Oe
+lS
 AY
 Rj
 Rj
@@ -61572,11 +61653,11 @@ hG
 hG
 xU
 oY
-rt
+Ot
 JD
-AY
-AY
-AY
+lS
+lS
+lS
 AY
 Rj
 Rj

@@ -8,7 +8,7 @@
 	icon_state = "espresso_machine"
 	density = 1
 	anchored = 1
-	flags = FPRINT | NOSPLASH
+	flags = FPRINT | NOSPLASH | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
@@ -17,11 +17,25 @@
 	var/cup_name = "espresso cup"
 	var/image/image_top = null
 	var/image/image_cup = null
+	throw_speed = 2.5
+	throw_range = 7
+	throwforce = 10
 
 	New()
 		..()
 		UnsubscribeProcess()
 		src.update()
+
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Clang_2.ogg', 50, 1)
+
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
+			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+		..()
+		if(ismob(usr))
+			var/mob/living/L = usr
+			L.changeStatus("staggered", 5 SECONDS)
 
 	attackby(var/obj/item/W as obj, var/mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/drinks/espressocup))
@@ -187,7 +201,7 @@
 	icon_state = "coffeemaker-eng"
 	density = 1
 	anchored = 1
-	flags = FPRINT | NOSPLASH
+	flags = FPRINT | NOSPLASH | TABLEPASS
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
 	object_flags = CAN_BE_LIFTED
@@ -197,6 +211,9 @@
 	var/obj/item/reagent_containers/food/drinks/carafe/my_carafe
 	var/default_carafe = /obj/item/reagent_containers/food/drinks/carafe
 	var/image/fluid_image
+	throw_speed = 2
+	throw_range = 6
+	throwforce = 10
 
 	New()
 		..()
@@ -204,6 +221,25 @@
 		if (ispath(src.default_carafe))
 			src.my_carafe = new src.default_carafe (src)
 		src.update()
+
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Clang_3.ogg', 50, 1)
+
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		..()
+		if(src.my_carafe)
+			src.my_carafe.set_loc(get_turf(src))
+			src.my_carafe.throw_at(hit_atom, 2, 5)
+			src.my_carafe = null
+			src.update()
+
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
+			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+		..()
+		if(ismob(usr))
+			var/mob/living/L = usr
+			L.changeStatus("staggered", 5 SECONDS)
 
 	attackby(var/obj/item/W as obj, var/mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/drinks/carafe))

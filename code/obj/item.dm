@@ -552,10 +552,11 @@
 				the_dir = turn(the_dir,45) */
 
 /obj/item/temperature_expose(datum/gas_mixture/air, temperature, volume)
+	var/turf/T = get_turf(src)
 	if (src.burn_possible && !src.burning)
 		if ((temperature > T0C + src.burn_point) && prob(5))
 			var/obj/item/firesource = null
-			for (var/obj/item/I in get_turf(src))
+			for (var/obj/item/I in T)
 				if (I.firesource)
 					firesource = I
 					break

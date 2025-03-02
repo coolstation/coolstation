@@ -1570,3 +1570,28 @@ soon it will go away */
 
 	on_hit(atom/hit)
 		hit.UpdateOverlays(image('icons/misc/frogs.dmi', "icon_state" = "getout"), "getout") //its like im trying to intentionally torture players
+
+//we can have coilguns in TYOOL 2053, just not like that :)
+/datum/projectile/bullet/coil
+	name = "coil"
+	icon_state = "coil"
+	power = 25 //lowish damage, but easy to spray & pray
+	shot_sound = 'sound/misc/boing/1.ogg' //comedy
+	damage_type = D_KINETIC
+	hit_type = DAMAGE_CUT
+	jam_mult = 1
+	implanted = /obj/item/implant/projectile/coil
+	casing = null
+	icon_turf_hit = null
+	dud_freq = 4
+	max_range = 100
+	dissipation_rate = 0.2 //slow to lose energy even with ricochets :3
+
+	on_hit(atom/hit, direction, obj/projectile/P)
+		if(!ismob(hit))
+			if (!shoot_reflected_bounce(P, hit, 8, PROJ_RAPID_HEADON_BOUNCE))
+				on_max_range_die(P)
+		..()
+
+	on_max_range_die(obj/projectile/O)
+		new /obj/item/coil/small/(get_turf(O))

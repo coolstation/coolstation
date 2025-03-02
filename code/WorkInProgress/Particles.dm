@@ -998,6 +998,34 @@ var/matrix/MS0101 = matrix(0.1, 0, 0, 0, 0.1, 0)
 
 			MatrixInit()
 
+/datum/particleType/internal_combustion_fire
+	name = "internal_combustion_fire"
+	icon = 'icons/effects/particles.dmi'
+	icon_state = "fire_mote1"
+
+	MatrixInit()
+		first = matrix()
+		second = matrix()
+
+	Apply(var/obj/particle/par)
+		if(..())
+			par.plane = PLANE_SELFILLUM
+			par.icon_state = "fire_mote[rand(1,3)]"
+			par.pixel_x += rand(-10,10)
+			par.pixel_y += rand(-4,12)
+
+			first.Turn(rand(-20, 20))
+			par.transform = first
+
+			second = first
+			second.Scale(0.5,0.5)
+			second.Turn(rand(-10, 10))
+
+			animate(par, color = "#1d0202", transform = second, time = rand(15,25), pixel_x = par.pixel_x + rand(-6,6), pixel_y = par.pixel_y + rand(15,25), alpha = 50)
+			animate(par, color = "#707070", time = rand(5,10), pixel_y = par.pixel_y + 3, alpha = 1)
+
+			MatrixInit()
+
 // --------------------------------------------------------------------------------------------------------------------------------------
 // Each particle system datum represents one effect happening in the world.
 
@@ -1594,3 +1622,53 @@ var/matrix/MS0101 = matrix(0.1, 0, 0, 0, 0.1, 0)
 	New(var/atom/location = null)
 		..(location, "glow_stick_dance", 9.9, "#66ff33")
 		SpawnParticle()
+
+/datum/particleSystem/internal_combustion_fire
+	var/sleep_time = 1
+
+	New(var/atom/location = null, var/combustion_temp, var/combustion_pressure)
+		var/input = combustion_temp / 100
+
+		var/red
+		if (input <= 66)
+			red = 255
+		else
+			red = input - 60
+			red = 329.698727446 * (red ** -0.1332047592)
+		red = clamp(red, 0, 255)
+
+		var/green
+		if (input <= 66)
+			green = max(0.001, input)
+			green = 99.4708025861 * log(green) - 161.1195681661
+		else
+			green = input - 60
+			green = 288.1221695283 * (green ** -0.0755148492)
+		green = clamp(green, 0, 255)
+
+		var/blue
+		if (input >= 66)
+			blue = 255
+		else
+			if (input <= 19)
+				blue = 0
+			else
+				blue = input - 10
+				blue = 138.5177312231 * log(blue) - 305.0447927307
+		blue = clamp(blue, 0, 255)
+
+		..(location, "internal_combustion_fire", 35, rgb(red, green, blue))
+		src.sleep_time = ceil((11 - combustion_pressure) / 20)
+		SpawnParticle()
+
+	Init()
+		sleepCounter = 10
+
+	Run()
+		if (..())
+			if (sleepCounter > 0)
+				sleepCounter--
+				SpawnParticle()
+				Sleep(src.sleep_time)
+			else
+				Die()

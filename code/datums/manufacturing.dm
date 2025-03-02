@@ -530,15 +530,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 		S.amount = 2
 		S.inventory_counter.update_number(S.amount)
 
-/datum/manufacture/atmos_can
-	name = "Portable Gas Canister"
-	item_paths = list("MET-2")
-	item_amounts = list(3)
-	item_outputs = list(/obj/machinery/portable_atmospherics/canister)
-	time = 10 SECONDS
-	create = 1
-	category = "Machinery"
-
 /datum/manufacture/fluidcanister
 	name = "Fluid Canister"
 	item_paths = list("MET-2")
@@ -549,7 +540,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	category = "Machinery"
 
 /datum/manufacture/chemicalcan
-	name = "Chemical Cannister"
+	name = "Chemical Canister"
 	item_paths = list("MET-2")
 	item_amounts = list(10)
 	item_outputs = list(/obj/item/reagent_containers/food/drinks/chemicalcan)
@@ -578,8 +569,32 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 //// cogwerks - gas extraction stuff
 
-/datum/manufacture/air_can/large
-	name = "High-Volume Air Canister"
+/datum/manufacture/atmos_can
+	name = "Portable Gas Canister"
+	item_paths = list("MET-2")
+	item_amounts = list(3)
+	item_outputs = list(/obj/machinery/portable_atmospherics/canister)
+	time = 10 SECONDS
+	create = 1
+	category = "Machinery"
+
+/datum/manufacture/gas_extract
+	New()
+		..()
+		src.name = initial(src.name) + " Canister"
+
+/datum/manufacture/gas_extract/proc/toggle_refill()
+	src.name = initial(src.name) + " Refill"
+	src.item_amounts.Cut(1,2)
+	src.item_paths -= "MET-2"
+
+/datum/manufacture/gas_extract/proc/toggle_canister()
+	src.name = initial(src.name) + " Canister"
+	src.item_paths.Insert(1,"MET-2")
+	src.item_amounts.Insert(1, 3)
+
+/datum/manufacture/gas_extract/air_can/large
+	name = "High-Volume Air"
 	item_paths = list("MET-2","molitz","viscerite")
 	item_amounts = list(3,10,30)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/air/large)
@@ -587,8 +602,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/co2_can
-	name = "CO2 Canister"
+/datum/manufacture/gas_extract/co2_can
+	name = "CO2"
 	item_paths = list("MET-2","char")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/carbon_dioxide)
@@ -596,8 +611,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/o2_can
-	name = "O2 Canister"
+/datum/manufacture/gas_extract/o2_can
+	name = "O2"
 	item_paths = list("MET-2","molitz")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/oxygen)
@@ -605,8 +620,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/plasma_can
-	name = "Plasma Canister"
+/datum/manufacture/gas_extract/plasma_can
+	name = "Plasma"
 	item_paths = list("MET-2","plasmastone")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/toxins)
@@ -614,8 +629,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/agent_b_can
-	name = "Agent B Canister"
+/datum/manufacture/gas_extract/agent_b_can
+	name = "Agent B"
 	item_paths = list("MET-2","molitz_b")
 	item_amounts = list(3,15)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
@@ -623,8 +638,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/n2_can
-	name = "N2 Canister"
+/datum/manufacture/gas_extract/n2_can
+	name = "N2"
 	item_paths = list("MET-2","viscerite")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
@@ -632,8 +647,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/n2o_can
-	name = "N2O Canister"
+/datum/manufacture/gas_extract/n2o_can
+	name = "N2O"
 	item_paths = list("MET-2","koshmarite")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/sleeping_agent)

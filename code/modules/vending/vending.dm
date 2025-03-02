@@ -2054,6 +2054,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
 
 	diner
 		name = "Fucile Fusilli"

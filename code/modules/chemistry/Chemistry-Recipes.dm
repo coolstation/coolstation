@@ -2290,6 +2290,16 @@ datum
 					C.reagents.add_reagent("neurotoxin",((0.5 * created_volume) / length(mobs_affected))) // ~HEH~
 				return
 
+		vertigo
+			name = "vertigo"
+			id = "vertigo"
+			result = "vertigo"
+			required_reagents = list("acid" = 1, "neurotoxin" = 2, "acetone" = 1)
+			result_amount = 2
+			required_temperature = T0C + 450
+			mix_phrase = "The neurotoxin breaks down, bubbling violently."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+
 		mutadone // // COGWERKS CHEM REVISION PROJECT: magic bullshit drug, make it involve mutagen
 			name = "Mutadone"
 			id = "mutadone"
@@ -3879,7 +3889,7 @@ datum
 			name = "Liquified Space Rubber"
 			id = "flubber"
 			result = "flubber"
-			required_reagents = list("rubber" = 2, "george_melonium" = 1, "sorium" = 1, "superlube" = 1, "radium" = 1)
+			required_reagents = list("rubber" = 2, "rainbow_melonium" = 1, "sorium" = 1, "superlube" = 1, "radium" = 1)
 			result_amount = 5
 			mix_phrase = "The mixture congeals and starts to vibrate <b>powerfully!</b>"
 			mix_sound = 'sound/misc/boing/6.ogg'

@@ -15,7 +15,7 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 	padding: 0;
-	*border-collapse: expression('separate', cellSpacing = '0px');
+	border-collapse: expression('separate', cellSpacing = '0px');
 }
 
 a {
@@ -30,34 +30,17 @@ a {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	height: 40px;
 	background: #322716;
-	border-top: 3px solid #322716;
-	border-left: 3px solid #322716;
-	border-right: 3px solid #322716;
-}
-#titlebar .corner {
-	position: absolute;
-	top: -3px; /* #titlebar border-top width */
-}
-#titlebar .corner.tl {
-	left: -3px; /* #titlebar border-left width */
-	width: 23px;
-	height: 23px;
-	background: url({{resource("images/chui/themes/default/tl.gif")}});
-}
-#titlebar .corner.tr {
-	right: -3px; /* #titlebar border-right width */
-	width: 6px;
-	height: 6px;
-	background: url({{resource("images/chui/themes/default/tr.gif")}});
+	border-top: 3px solid #9a8469;
+	border-left: 3px solid #9a8469;
+	border-right: 3px solid #9a8469;
+	border-style: ridge;
 }
 #titlebar h1 {
 	margin: 0;
-	padding: 12px 75px 0 20px; /* right: width of .actions plus padding */
-	color: #fcfcfc;
-	font-size: 14px;
-	text-transform: uppercase;
+	color: #dad8b6;
+	font-size: 16px;
+	font-family: "Trebuchet MS", sans-serif;
 }
 #titlebar a {
 	display: block;
@@ -65,20 +48,24 @@ a {
 	text-decoration: none;
 	color: white;
 	width: 35px;
-	height: 40px;
-	line-height: 40px;
-	font-size: 14px;
-  text-align: center;
+	height: 26px;
+	line-height: 28px;
+	font-size: 16px;
+  	text-align: center;
+
+
 }
 #titlebar .min {
-	top: 0;
-  right: 41px;
-  line-height: 42px;
+	top: -1px;
+	right: 26px;
+	font-size: 15px;
+	color: #dad8b6;
 }
 #titlebar .close {
-	top: 0;
-  right: 6px;
-  font-size: 15px;
+	color: #dad8b6;
+	top: -2px;
+	right: 6px;
+	font-size: 15px;
 }
 #titlebar a:hover {
 	color: #dad8b6;
@@ -88,7 +75,7 @@ a {
 /* CONTENT AREA START */
 #cornerWrap {
 	position: absolute;
-	top: 43px; /* #titlebar height (plus titlebar vertical borders) */
+	top: 28px; /* #titlebar height (plus titlebar vertical borders) */
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -97,7 +84,6 @@ a {
 	position: absolute;
 	z-index: 999;
 	top: 0;
-	left: 20px;
 	width: 27px;
 	height: 3px;
 	background-repeat: no-repeat;
@@ -107,17 +93,10 @@ a {
 	z-index: 999;
 	bottom: 0;
 }
-#cornerWrap .corner.bl {
-	left: 0;
-	width: 6px;
-	height: 6px;
-	background: url({{resource("images/chui/themes/default/bl.gif")}});
-}
+
 #cornerWrap .corner.br {
-	right: 0;
 	width: 24px;
-	height: 24px;
-	background: url({{resource("images/chui/themes/default/br.gif")}});
+	height: 30px;
 }
 #content {
 	position: absolute;
@@ -127,14 +106,22 @@ a {
 	left: 0;
 	word-wrap: break-word;
 	overflow: hidden;
-	border-top: 3px solid #dad8b6;
-	border-left: 3px solid #322716;
-	border-right: 3px solid #322716;
+	border-top: 3px solid #9a8469;
+	border-left: 3px solid #9a8469;
+	border-right: 3px solid #9a8469;
 	border-bottom: 3px solid #322716;
 	background: #9a8469;
+	border-style: none ridge ridge ridge;
 }
 #content .innerContent { /* also has: .nano-content */
 	padding: 15px 15px 15px 15px; background-repeat: repeat-x;
+}
+
+.contentFlex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: -13px;
 }
 /* CONTENT AREA END */
 
@@ -232,10 +219,10 @@ a {
 .nano > .nano-pane {
   background : #322716;
   position   : absolute;
-  width      : 10px;
+  width      : 14px;
   right      : 0;
   top        : 0;
-  bottom     : 17px; /* #resizeArea height + padding */
+  bottom     : 0px;
   visibility : hidden\9; /* Target only IE7 and IE8 with this hack */
   opacity    : 0.75;
   -webkit-transition    : .2s;
@@ -247,7 +234,15 @@ a {
   background: #dad8b6;
   position              : relative;
   margin                : 0;
+  border-style: outset;
+  border-left-color: #9a8469;
+  border-bottom-color: #9a8469;
 }
+.nano-content.scrollbar-visible {
+    padding-right: 28px !important;
+}
+
+
 .nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
   visibility : visible\9; /* Target only IE7 and IE8 with this hack */
   opacity    : 1;
@@ -394,7 +389,7 @@ a.manulink:active {border:none 0px; font-family: "Arial", sans-serif; color: whi
 /* Clearfix */
 .cf:before, .cf:after { content: " "; display: table;}
 .cf:after {clear: both;}
-.cf {*zoom: 1;}
+.cf {zoom: 1;}
 
 .tight {
 	padding: 0px;

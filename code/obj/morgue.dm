@@ -6,6 +6,7 @@
 	var/obj/m_tray/connected = null
 	anchored = 1.0
 	dir = EAST
+	var/list/spawn_contents = list()
 
 	disposing()
 		src.connected?.connected = null
@@ -16,6 +17,60 @@
 			for (var/atom/movable/AM in contents)
 				AM.set_loc(T)
 		. = ..()
+
+	New()
+		..()
+		SPAWN_DBG(1 DECI SECOND)
+			src.make_my_stuff()
+
+	proc/make_my_stuff() // copying from large_storage_parent.dm
+		. = 1
+		if (!islist(src.spawn_contents))
+			return 0
+
+		for (var/thing in src.spawn_contents)
+			var/amt = 1
+			if (!ispath(thing))
+				continue
+			if (isnum(spawn_contents[thing])) //Instead of duplicate entries in the list, let's make them associative
+				amt = abs(spawn_contents[thing])
+			do new thing(src)	//Two lines! I TOLD YOU I COULD DO IT!!!
+			while (--amt > 0)
+
+	with_bodybag
+		icon_state = "morgue2"
+		spawn_contents = list(/obj/item/body_bag/deployed)
+
+		corpse
+			spawn_contents = list(/obj/item/body_bag/deployed/corpse)
+
+		morgue_patient // the body will be embalmed, in a patient gown, possibly missing organs
+			spawn_contents = list(/obj/item/body_bag/deployed/corpse/morgue)
+
+		random_materials
+			New()
+				..()
+				switch(rand(1,10))
+					if(1 to 6) // Basic materials
+						spawn_contents = list(pick(/obj/item/body_bag/deployed/bone, /obj/item/body_bag/deployed/cloth, /obj/item/body_bag/deployed/spidersilk, /obj/item/body_bag/deployed/bohrum))
+					if(7 to 10) // A body with more rare stuff
+						spawn_contents = list(pick(/obj/item/body_bag/deployed/corpse/martian, /obj/item/body_bag/deployed/corpse/miner, /obj/item/body_bag/deployed/corpse/fancy))
+
+	random_graverob // chance for phat lewt! woah!!
+		icon_state = "morgue2"
+		New()
+			..()
+			switch(rand(1,10))
+				if(1 to 5) // just a basic patient
+					spawn_contents = list(/obj/item/body_bag/deployed/corpse/morgue)
+				if(6 to 9) // material-focused
+					switch(rand(1,10))
+						if(1 to 6) // Basic materials
+							spawn_contents = list(pick(/obj/item/body_bag/deployed/bone, /obj/item/body_bag/deployed/cloth, /obj/item/body_bag/deployed/spidersilk, /obj/item/body_bag/deployed/bohrum))
+						if(7 to 10) // A body with more rare stuff
+							spawn_contents = list(pick(/obj/item/body_bag/deployed/corpse/martian, /obj/item/body_bag/deployed/corpse/miner, /obj/item/body_bag/deployed/corpse/fancy))
+				if(10) // gimmicky stuff goes here
+					spawn_contents = list(pick(/obj/item/body_bag/deployed/corpse/clown, /obj/item/body_bag/deployed/blood))
 
 /obj/morgue/proc/update()
 	if (src.connected.loc != src)
@@ -136,7 +191,7 @@
 		src.connected = null
 		. = ..()
 
-/obj/m_tray/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/m_tray/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/item/dummy))
 		return 1
 	else
@@ -382,7 +437,7 @@
 		src.connected = null
 		. = ..()
 
-/obj/c_tray/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/c_tray/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/item/dummy))
 		return 1
 	else

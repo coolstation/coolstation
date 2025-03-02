@@ -124,6 +124,17 @@
 			if (!isnull(C.det) && C.anchored)
 				boutput(user, "<span class='alert'>The detonating mechanism blocks you from modifying the anchors on the [src.name].</span>")
 				return
+			var/obj/machinery/manufacturer_attachment/canister_port/manufacturer_port = locate() in src.loc
+			if (manufacturer_port)
+				if (manufacturer_port.attached_can == src)
+					boutput(user, "<span class='notice'>You disconnect [name] to the port.</span>")
+					manufacturer_port.detach_can()
+				else
+					manufacturer_port.attached_can = src
+					boutput(user, "<span class='notice'>You disconnect [name] to the port.</span>")
+					manufacturer_port.attach_can()
+				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				return
 		if(connected_port)
 			logTheThing("station", user, null, "has disconnected \the [src] [log_atmos(src)] from the port at [log_loc(src)].")
 			disconnect()

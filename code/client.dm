@@ -598,10 +598,6 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 					if (decoded)
 						winset(src, null, "mainwindow.menu='';menub.is-visible = true")
 
-				decoded = text2num(cloud_get("dark_mode"))
-				if (!isnull(decoded))
-					winset(src, "menu", "dark_mode.is-checked=[decoded ? "true" : "false"]") //sync_dark_mode is called later on based on this
-
 				decoded = text2num(cloud_get("set_shadow"))
 				if (!isnull(decoded))
 					//apply_depth_filter() checks for this with winget, and that's called on a 5s SPAWN. It might be fine to leave this as is.
@@ -1748,7 +1744,6 @@ info.tab-text-color=[_SKIN_TEXT]"
 #define _SKIN_COMMAND_BG "#1b1d1b"
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-dark charcoal-override")
-		cloud_put("dark_mode", 1)
 #undef _SKIN_BG
 #undef _SKIN_INFO_TAB_BG
 #undef _SKIN_INFO_BG
@@ -1762,7 +1757,6 @@ info.tab-text-color=[_SKIN_TEXT]"
 	else
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-default")
-		cloud_put("dark_mode", 0)
 #undef _SKIN_BG
 #undef _SKIN_INFO_TAB_BG
 #undef _SKIN_INFO_BG
@@ -1781,7 +1775,6 @@ info.tab-text-color=[_SKIN_TEXT]"
 #define _SKIN_COMMAND_BG "#3b3122"
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-dark")
-		cloud_put("dark_mode", 1)
 #undef _SKIN_BG
 #undef _SKIN_INFO_TAB_BG
 #undef _SKIN_INFO_BG
@@ -1795,7 +1788,6 @@ info.tab-text-color=[_SKIN_TEXT]"
 	else
 		winset(src, null, SKIN_TEMPLATE)
 		chatOutput.changeTheme("theme-default")
-		cloud_put("dark_mode", 0)
 #undef _SKIN_BG
 #undef _SKIN_INFO_TAB_BG
 #undef _SKIN_INFO_BG

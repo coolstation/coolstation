@@ -189,6 +189,15 @@
 				src.change_stack_amount(-1)
 				user.visible_message("<span class='notice'>[user] hangs up a [B.name] in [A]!.</span>", "<span class='notice'>You hang up a [B.name] in [A]!</span>")
 
+/obj/item/material_piece/flesh
+	name = "flesh clump"
+	desc = "Unrecognizable homogenous meat."
+	icon_state = "wad"
+	value = -50 //this is bad stuff
+	setup_material()
+		src.setMaterial(getMaterial("flesh"), appearance = 0, setname = 0)
+		..()
+
 /obj/item/material_piece/fart
 	icon_state = "fart"
 	name = "frozen fart"
@@ -358,6 +367,11 @@
 		src.setMaterial(getMaterial("cotton"), appearance = 0, setname = 0)
 		..()
 
+	randomcolor
+		New()
+			..()
+			src.color = random_saturated_hex_color()
+
 /obj/item/material_piece/cloth/brullbarhide
 	name = "brullbar hide"
 	desc = "The hide of a brüllbär"
@@ -425,7 +439,8 @@
 /obj/item/material_piece/bone
 	name = "bits of bone"
 	desc = "some bits and pieces of bones."
-	icon_state = "scrap3"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "bone"
 	value = -10 //trash at best, crime at worst
 	setup_material()
 		src.setMaterial(getMaterial("bone"), appearance = 0, setname = 0)

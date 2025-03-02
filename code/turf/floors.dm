@@ -815,6 +815,17 @@ DEFINE_FLOORS(marble/border_wb,
 
 /////////////////////////////////////////
 
+/turf/floor/planter
+	icon_state = "PlanterCenter"
+
+/turf/floor/planter/edges
+	icon_state = "PlanterEdges"
+
+/turf/floor/planter/strips
+	icon_state = "PlanterStrips"
+
+/////////////////////////////////////////
+
 /turf/floor/delivery
 	icon_state = "delivery"
 
@@ -1486,21 +1497,15 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		boutput(user, "Your attack bounces off the foamed metal floor.")
 
-/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/CanPass(atom/movable/mover, turf/target)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		if (!( locate(/obj/machinery/mass_driver, src) ))
 			return 0
 	return ..()
 
-/turf/shuttle/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/shuttle/CanPass(atom/movable/mover, turf/target)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		return 0
-	return ..()
-
-/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
-		if (!( locate(/obj/machinery/mass_driver, src) ))
-			return 0
 	return ..()
 
 /turf/floor/burn_down()
@@ -2118,35 +2123,6 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	icon_state = "gauntwall"
 // --------------------------------------------
 
-/turf/proc/fall_to(var/turf/T, var/atom/movable/A)
-	var/safe = FALSE
-	if(istype(A, /obj/overlay/tile_effect)) //Ok enough light falling places. Fak.
-		return
-	if (isturf(T))
-		visible_message("<span class='alert'>[A] falls into [src]!</span>")
-		if (ismob(A))
-			var/mob/M = A
-			if(!M.stat && ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H.gender == MALE) playsound(H.loc, "sound/voice/screams/male_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-				else playsound(H.loc, "sound/voice/screams/female_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-				if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
-					safe = TRUE
-				if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
-					safe = TRUE
-				if (H.back && (H.back.c_flags & IS_JETPACK))
-					safe = TRUE
-
-			if(safe)
-				visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
-			else
-				random_brute_damage(M, 50)
-				M.changeStatus("paralysis", 7 SECONDS)
-				SPAWN_DBG(0)
-					playsound(M.loc, pick('sound/impact_sounds/Slimy_Splat_1.ogg', 'sound/impact_sounds/Flesh_Break_1.ogg'), 75, 1)
-		A.set_loc(T)
-		return
-
 /turf/floor/setpieces
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
@@ -2156,39 +2132,27 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		name = "broken staircase"
 		desc = "You can't see the bottom."
 		icon_state = "black"
-		var/target_landmark = LANDMARK_FALL_ANCIENT
+		var/falltarget = LANDMARK_FALL_ANCIENT
 
-		Entered(atom/A as mob|obj)
-			if (isobserver(A) || (istype(A, /obj/critter) && A:flying))
-				return ..()
-
-			var/turf/T = pick_landmark(target_landmark)
-			if(T)
-				fall_to(T, A)
-				return
-			else ..()
+		New()
+			. = ..()
+			src.AddComponent(/datum/component/pitfall/target_landmark,\
+				BruteDamageMax = 50,\
+				HangTime = 0 SECONDS,\
+				TargetLandmark = src.falltarget)
 
 		shaft
 			name = "Elevator Shaft"
-			target_landmark = LANDMARK_FALL_BIO_ELE
+			falltarget = LANDMARK_FALL_BIO_ELE
 
 			Entered(atom/A as mob|obj)
 				if (istype(A, /mob) && !istype(A, /mob/dead))
 					bioele_accident()
-				return ..()
+				..()
 
 		hole_xy
 			name = "deep pit"
-			target_landmark = LANDMARK_FALL_DEBUG
-			Entered(atom/A as mob|obj)
-				if (isobserver(A) || (istype(A, /obj/critter) && A:flying))
-					return ..()
-
-				if(warptarget)
-					fall_to(warptarget, A)
-					return
-				else ..()
-
+			falltarget = LANDMARK_FALL_DEBUG
 
 	bloodfloor
 		name = "bloody floor"
@@ -2215,15 +2179,12 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 			desc = "You can't see the bottom."
 			icon_state = "deeps"
 
-			Entered(atom/A as mob|obj)
-				if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
-					return ..()
-
-				var/turf/T = pick_landmark(LANDMARK_FALL_DEEP)
-				if(T)
-					fall_to(T, A)
-					return
-				else ..()
+			New()
+				. = ..()
+				src.AddComponent(/datum/component/pitfall/target_landmark,\
+					BruteDamageMax = 50,\
+					HangTime = 0 SECONDS,\
+					TargetLandmark = LANDMARK_FALL_DEEP)
 
 	hivefloor
 		name = "hive floor"
