@@ -94,6 +94,9 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		return
 
 	MouseDrop(atom/over_object as obj)
+		if (!src.is_open_container())
+			boutput(usr, "<span class='alert'>The [src] is closed!</span>")
+			return ..()
 		if (!can_mousedrop)
 			boutput(usr, "<span class='alert'>Nope.</span>")
 			return
