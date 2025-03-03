@@ -471,6 +471,8 @@
 			set_dir(SOUTHEAST)
 		else if (s && w)
 			set_dir(NORTHEAST)
+		else
+			src.icon_state = "shaft_single"
 
 		if (propagate)
 			n?.calculate_direction(FALSE)
