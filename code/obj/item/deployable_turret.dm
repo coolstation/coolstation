@@ -232,7 +232,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 								qdel(turret_casing)
 				sleep(src.current_projectile.shot_delay)
 			set_angle(angle_of_rest)
-			if(src.nonstop && target_valid(target))
+			if(src.nonstop && target_valid(target, FALSE))
 				shoot(target)
 			else
 				src.firing = FALSE
@@ -445,7 +445,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 		return src.target
 
-	proc/target_valid(var/mob/living/C)
+	proc/target_valid(var/mob/living/C, var/check_angle = TRUE)
 		var/distance = get_dist(get_turf(C),get_turf(src))
 
 		if(distance > src.range)
@@ -476,6 +476,9 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 				return 0
 			if (T.density == 1)
 				return 0
+
+		if(!check_angle)
+			return 1
 
 		angle = angle < 0 ? angle+360 : angle // make angles positive
 		angle = angle - src.external_angle
@@ -513,7 +516,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		if (abs(ang) > 180) // stops funky turret moving where it flips the long way around
 			ang = ang > 0 ? ang - 360 : ang + 360
 
-		var/time = ang / 54 // magic number so that a 180 degree turn takes 1 second, and all others are faster
+		var/time = max(ang / 54,1) // 54 is a magic number so that a 180 degree turn takes 1 second, and all others are faster
 		var/matrix/transform_original = src.transform
 		animate(src, transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = 0) //blatant code theft from throw_at proc
 		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = 0) // needs to do in multiple steps because byond takes shortcuts
@@ -605,12 +608,12 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
 	burst_size = 2
 	fire_rate = 1.5
-	angle_arc_size = 60
+	angle_arc_size = 75
 	icon_tag = "op"
 	quick_deploy_fuel = 0
 	associated_deployer = /obj/item/turret_deployer/juicer
-	sweep_angle = 60
-	sweep_speed = 10
+	sweep_angle = 75
+	sweep_speed = 25
 	nonstop = TRUE
 	throw_spin = FALSE
 

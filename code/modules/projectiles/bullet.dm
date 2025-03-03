@@ -511,10 +511,9 @@ soon it will go away */
 	scrap
 		name = "juicer scrap"
 		icon_state = "buckshotscrap"
-		power = 5 //fired in big group of 12 shots (max 60) with huge spread
-		hit_type = DAMAGE_STAB
-		dissipation_delay = 2
-		dissipation_rate = 2
+		power = 6 //fired in group of 6 shots (max 36) with some spread
+		dissipation_delay = 4
+		dissipation_rate = 4
 		hit_ground_chance = 40
 
 //bartender's round

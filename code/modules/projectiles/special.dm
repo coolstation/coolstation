@@ -269,7 +269,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "juicershot"
 	sname = "juicershot"
 	cost = 1
-	pellets_to_fire = 8 //10 per
+	pellets_to_fire = 8 //12 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy/denim
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	speed_max = 5
@@ -281,12 +281,12 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "juicerscrap"
 	sname = "juicer scrap"
 	cost = 1
-	pellets_to_fire = 12
+	pellets_to_fire = 6 // 6 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy/scrap
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	speed_max = 55
-	speed_min = 40
-	spread_angle_variance = 30
+	speed_max = 12
+	speed_min = 36
+	spread_angle_variance = 15
 	dissipation_variance = 64
 
 /datum/projectile/special/spreader/buckshot_burst/salt
