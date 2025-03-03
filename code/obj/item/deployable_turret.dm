@@ -42,7 +42,7 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 
 	proc/spawn_turret(var/direct)
 		var/obj/deployable_turret/turret = new src.associated_turret(src.loc, direct)
-		turret.health = src.health // NO FREE REPAIRS, ASSHOLES
+		turret.health = src.health // NO FREE REPAIRS
 		turret.damage_words = src.damage_words
 		turret.quick_deploy_fuel = src.quick_deploy_fuel
 		return turret
@@ -83,6 +83,15 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 	w_class = W_CLASS_BULKY
 	icon_tag = "op"
 	associated_turret = /obj/deployable_turret/outpost
+
+/obj/item/turret_deployer/juicer
+	name = "HOT DAWG DPLOYERE"
+	desc = "This dude FUCKS. Let the dawg out by using it in your hand!"
+	health = 150
+	icon_state = "op_deployer"
+	w_class = W_CLASS_BULKY
+	icon_tag = "op"
+	associated_turret = /obj/deployable_turret/juicer
 
 /////////////////////////////
 //       Turret Code       //
@@ -196,6 +205,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 	proc/shoot(target)
 		SPAWN_DBG(0)
+			var/angle_of_rest = src.external_angle
 			var/list/casing_turfs
 			var/turf/picked_turf
 			if (src.current_projectile.casing)
@@ -205,18 +215,24 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 					if (T && !T.density)
 						casing_turfs += T
 			for(var/i in 1 to src.current_projectile.shot_number) //loop animation until finished
+				set_angle(get_angle(src,target))
+				src.on_shoot()
 				flick("[src.icon_tag]_fire",src)
 				muzzle_flash_any(src, 0, "muzzle_flash")
 				if (src.current_projectile.casing)
 					picked_turf = pick(casing_turfs)
 					var/obj/item/casing/turret_casing = new src.current_projectile.casing(picked_turf, src.forensic_ID)
 					// prevent infinite casing stacks
-					if (length(picked_turf.contents) > 10)
+					if (length(picked_turf.contents) > 6)
 						SPAWN_DBG(30 SECONDS)
 							if (!QDELETED(turret_casing) && get_turf(turret_casing) == picked_turf)
 								qdel(turret_casing)
 				sleep(src.current_projectile.shot_delay)
+			set_angle(angle_of_rest)
 		shoot_projectile_ST_pixel_spread(src, current_projectile, target, 0, 0 , spread)
+
+	proc/on_shoot()
+		return
 
 	proc/process()
 		if(src.active)
@@ -268,7 +284,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 		else if  (iswrenchingtool(W))
 
-			if(src.anchored)
+			if(src.active || src.anchored)
 
 				user.show_message("<span class='notice'>Click where you want to aim the turret!</span>")
 				var/datum/targetable/deployable_turret_aim/A = new()
@@ -289,9 +305,9 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 		else if (isscrewingtool(W))
 
-			if(src.can_toggle_activation == TRUE)
+			if(src.can_toggle_activation == TRUE || !src.is_friend(user))
 
-				if(!src.anchored)
+				if(!src.anchored && !src.active)
 					user.show_message("<span class='notice'>The turret is too unstable to fire! Secure it to the ground with a welding tool first!</span>")
 					return
 
@@ -490,10 +506,11 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		if (abs(ang) > 180) // stops funky turret moving where it flips the long way around
 			ang = ang > 0 ? ang - 360 : ang + 360
 
+		var/time = ang / 54 // magic number so that a 180 degree turn takes 1 second, and all others are faster
 		var/matrix/transform_original = src.transform
-		animate(src, transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) //blatant code theft from throw_at proc
-		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) // needs to do in multiple steps because byond takes shortcuts
-		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = 10/3, loop = 0) // :argh:
+		animate(src, transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = 0) //blatant code theft from throw_at proc
+		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = 0) // needs to do in multiple steps because byond takes shortcuts
+		animate(transform = matrix(transform_original, ang/3, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = 0) // :argh:
 
 /obj/deployable_turret/syndicate
 	name = "NAS-T"
@@ -572,6 +589,76 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	west
 		dir=WEST
 
+/obj/deployable_turret/juicer
+	name = "HOT DAWG Turret"
+	desc = "Oh shit, someone welded a shotgun to an office chair and wired it up!"
+	health = 150
+	max_health = 150
+	range = 4
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
+	burst_size = 7
+	fire_rate = 1
+	angle_arc_size = 60
+	icon_tag = "op"
+	quick_deploy_fuel = 0
+	associated_deployer = /obj/item/turret_deployer/juicer
+	sweep_angle = 60
+	sweep_speed = 10
+	throw_spin = FALSE
+
+	is_friend(var/mob/living/C)
+		if(isnpcmonkey(C))
+			return TRUE
+		var/obj/item/card/id/I = C.get_id()
+		if(!istype(I))
+			return FALSE
+		. = (access_juicer in I.access)
+
+	on_shoot() // silly sliding!
+		var/slide_x = src.pixel_x + sin(src.internal_angle) * (rand(4,6) - 4 * src.anchored)
+		var/slide_y = src.pixel_y + cos(src.internal_angle) * (rand(4,6) - 4 * src.anchored)
+		if(slide_x > 16)
+			if(!step(src, EAST))
+				slide_x -= 30
+			else
+				pixel_x = pixel_x % 32 - 16
+		else if(slide_x < -16)
+			if(!step(src, WEST))
+				slide_x += 30
+			else
+				pixel_x = pixel_x % 32 + 16
+		if(slide_y > 16)
+			if(!step(src, NORTH))
+				slide_y -= 30
+			else
+				pixel_y = pixel_y % 32 - 16
+		else if(slide_y < -16)
+			if(!step(src, SOUTH))
+				slide_y += 30
+			else
+				pixel_y = pixel_y % 32 + 16
+		animate(src, pixel_x = slide_x, pixel_y = slide_y, time = 0.2 SECONDS, flags = ANIMATION_PARALLEL)
+		if(src.anchored == ANCHORED && prob(10))
+			src.visible_message("<span class='combat bold'>\The [src] snaps a brake!</span>")
+			src.toggle_anchored()
+		return
+
+/obj/deployable_turret/juicer/active
+	anchored = ANCHORED
+
+	New(loc)
+		..(src.loc, src.dir)
+		src.toggle_activated()
+
+	north
+		dir=NORTH
+	south
+		dir=SOUTH
+	east
+		dir=EAST
+	west
+		dir=WEST
+
 /////////////////////////////
 //   Turret Ability Stuff  //
 /////////////////////////////
@@ -597,7 +684,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		var/mob/M = usr
 
 		if (istype(M))
-			if(!is_friend(M) && !src.emagged)
+			if(!my_turret.is_friend(M) && !my_turret.emagged)
 				boutput(M, "<span class='alert'>You can't modify the aim of this turret without being authorized!</span>")
 				return
 

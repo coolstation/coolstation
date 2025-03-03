@@ -259,6 +259,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 8 //10 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	casing = /obj/item/casing/shotgun/red
 	speed_max = 5
 	speed_min = 60
 	spread_angle_variance = 15
