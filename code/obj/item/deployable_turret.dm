@@ -131,6 +131,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	var/sweep_speed = 0 // how many degrees the turret rotates per processing tick
 	var/sweep_current = 0 // tracks current angle of sweep
 	var/emagged = FALSE
+	var/firing = FALSE // so guns dont stack shooting
+	var/nonstop = FALSE // try to reacquire the same target when done shooting
 
 	New(loc, direction, forensics_id)
 		..()
@@ -205,6 +207,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 	proc/shoot(target)
 		SPAWN_DBG(0)
+			src.firing = TRUE
 			var/angle_of_rest = src.external_angle
 			var/list/casing_turfs
 			var/turf/picked_turf
@@ -229,13 +232,17 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 								qdel(turret_casing)
 				sleep(src.current_projectile.shot_delay)
 			set_angle(angle_of_rest)
+			if(src.nonstop && target_valid(target))
+				shoot(target)
+			else
+				src.firing = FALSE
 		shoot_projectile_ST_pixel_spread(src, current_projectile, target, 0, 0 , spread)
 
 	proc/on_shoot()
 		return
 
 	proc/process()
-		if(src.active)
+		if(src.active && !src.firing)
 			if(!src.target && !src.seek_target()) //attempt to set the target if no target
 				src.sweep()
 				return
@@ -453,7 +460,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			return 0
 		if (istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			if (H.hasStatus(list("knockdown", "stunned", "unconscious"))) // stops it from uselessly firing at people who are already suppressed. It's meant to be a suppression weapon!
+			if (H.hasStatus(list("weakened", "stunned", "paralysis"))) // stops it from uselessly firing at people who are already suppressed. It's meant to be a suppression weapon!
 				return FALSE
 		if (is_friend(C) && !src.emagged)
 			return FALSE
@@ -595,20 +602,19 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 150
 	max_health = 150
 	range = 4
-	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
-	burst_size = 7
-	fire_rate = 1
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
+	burst_size = 2
+	fire_rate = 1.5
 	angle_arc_size = 60
 	icon_tag = "op"
 	quick_deploy_fuel = 0
 	associated_deployer = /obj/item/turret_deployer/juicer
 	sweep_angle = 60
 	sweep_speed = 10
+	nonstop = TRUE
 	throw_spin = FALSE
 
 	is_friend(var/mob/living/C)
-		if(isnpcmonkey(C))
-			return TRUE
 		var/obj/item/card/id/I = C.get_id()
 		if(!istype(I))
 			return FALSE
@@ -617,42 +623,36 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	/// this thing is somehow the most dangerous part of the turret
 	on_shoot()
 		var/slide_angle = src.internal_angle + rand(-20,20)
-		var/slide_x = src.pixel_x + sin(slide_angle) * (rand(4,6) - 4 * src.anchored)
-		var/slide_y = src.pixel_y + cos(slide_angle) * (rand(4,6) - 4 * src.anchored)
+		var/slide_x = src.pixel_x + sin(slide_angle) * (rand(4,16) - 8 * src.anchored)
+		var/slide_y = src.pixel_y + cos(slide_angle) * (rand(4,16) - 8 * src.anchored)
 		if(slide_x > 16)
 			if(!step(src, EAST))
 				for(var/mob/living/L in get_step(src, EAST))
 					L.throw_at(get_edge_cheap(src, EAST), 2, 1)
-				slide_x -= rand(22,30)
+				slide_x -= rand(10,20)
 			else
-				pixel_x = pixel_x % 32 - 16
-				slide_x = pixel_x
+				slide_x = pixel_x % 32 - 16
 		else if(slide_x < -16)
 			if(!step(src, WEST))
 				for(var/mob/living/L in get_step(src, WEST))
 					L.throw_at(get_edge_cheap(src, WEST), 2, 1)
-				slide_x += rand(22,30)
+				slide_x += rand(10,20)
 			else
-				pixel_x = pixel_x % 32 + 16
-				slide_x = pixel_x
-				animate(src, pixel_x = slide_x)
+				slide_x = pixel_x % 32 + 16
 		if(slide_y > 16)
 			if(!step(src, NORTH))
 				for(var/mob/living/L in get_step(src, NORTH))
 					L.throw_at(get_edge_cheap(src, NORTH), 2, 1)
-				slide_y -= rand(22,30)
+				slide_y -= rand(10,20)
 			else
-				pixel_y = pixel_y % 32 - 16
-				slide_y = pixel_y
+				slide_y = pixel_y % 32 - 16
 		else if(slide_y < -16)
 			if(!step(src, SOUTH))
 				for(var/mob/living/L in get_step(src, SOUTH))
 					L.throw_at(get_edge_cheap(src, SOUTH), 2, 1)
-				slide_y += rand(22,30)
+				slide_y += rand(10,20)
 			else
-				pixel_y = pixel_y % 32 + 16
-				slide_y = pixel_y
-				animate(src, pixel_y = slide_y)
+				slide_y = pixel_y % 32 + 16
 		animate(src, pixel_x = slide_x, pixel_y = slide_y, time = 0.2 SECONDS, flags = ANIMATION_PARALLEL)
 		if(src.anchored == ANCHORED && prob(10))
 			src.visible_message("<span class='combat bold'>\The [src] snaps a brake!</span>")
@@ -738,7 +738,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	name = "paper- 'Nuclear Agent Sentry Turret Manual'"
 	info = {"<h4>Nuclear Agent Sentry Turret Manual</h4>
 	Congratulations, on your purchase of a Nuclear Agent Sentry Turret!<br>
-	This a turret that fires at non-syndicate threats in a 30 degree arc.<br>
+	This a turret that fires at non-syndicate threats in a 45 degree arc.<br>
 	Press its deploy button while it is your hand to deploy it.<br>
 	The turret will start out facing the direction you are facing.<br>
 	If the turret is unsecured, wrenching it will disassemble it.<br>
