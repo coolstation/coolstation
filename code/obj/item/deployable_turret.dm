@@ -604,7 +604,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	desc = "Oh shit, someone welded a shotgun to an office chair and wired it up!"
 	health = 150
 	max_health = 150
-	range = 4
+	range = 6
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
 	burst_size = 2
 	fire_rate = 1.5
@@ -657,7 +657,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			else
 				slide_y = pixel_y % 32 + 16
 		animate(src, pixel_x = slide_x, pixel_y = slide_y, time = 0.2 SECONDS, flags = ANIMATION_PARALLEL)
-		if(src.anchored == ANCHORED && prob(10))
+		if(src.anchored == ANCHORED && prob(15))
 			src.visible_message("<span class='combat bold'>\The [src] snaps a brake!</span>")
 			src.toggle_anchored()
 		return
