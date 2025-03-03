@@ -614,29 +614,45 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			return FALSE
 		. = (access_juicer in I.access)
 
-	on_shoot() // silly sliding!
-		var/slide_x = src.pixel_x + sin(src.internal_angle) * (rand(4,6) - 4 * src.anchored)
-		var/slide_y = src.pixel_y + cos(src.internal_angle) * (rand(4,6) - 4 * src.anchored)
+	/// this thing is somehow the most dangerous part of the turret
+	on_shoot()
+		var/slide_angle = src.internal_angle + rand(-20,20)
+		var/slide_x = src.pixel_x + sin(slide_angle) * (rand(4,6) - 4 * src.anchored)
+		var/slide_y = src.pixel_y + cos(slide_angle) * (rand(4,6) - 4 * src.anchored)
 		if(slide_x > 16)
 			if(!step(src, EAST))
-				slide_x -= 30
+				for(var/mob/living/L in get_step(src, EAST))
+					L.throw_at(get_edge_cheap(src, EAST), 2, 1)
+				slide_x -= rand(22,30)
 			else
 				pixel_x = pixel_x % 32 - 16
+				slide_x = pixel_x
 		else if(slide_x < -16)
 			if(!step(src, WEST))
-				slide_x += 30
+				for(var/mob/living/L in get_step(src, WEST))
+					L.throw_at(get_edge_cheap(src, WEST), 2, 1)
+				slide_x += rand(22,30)
 			else
 				pixel_x = pixel_x % 32 + 16
+				slide_x = pixel_x
+				animate(src, pixel_x = slide_x)
 		if(slide_y > 16)
 			if(!step(src, NORTH))
-				slide_y -= 30
+				for(var/mob/living/L in get_step(src, NORTH))
+					L.throw_at(get_edge_cheap(src, NORTH), 2, 1)
+				slide_y -= rand(22,30)
 			else
 				pixel_y = pixel_y % 32 - 16
+				slide_y = pixel_y
 		else if(slide_y < -16)
 			if(!step(src, SOUTH))
-				slide_y += 30
+				for(var/mob/living/L in get_step(src, SOUTH))
+					L.throw_at(get_edge_cheap(src, SOUTH), 2, 1)
+				slide_y += rand(22,30)
 			else
 				pixel_y = pixel_y % 32 + 16
+				slide_y = pixel_y
+				animate(src, pixel_y = slide_y)
 		animate(src, pixel_x = slide_x, pixel_y = slide_y, time = 0.2 SECONDS, flags = ANIMATION_PARALLEL)
 		if(src.anchored == ANCHORED && prob(10))
 			src.visible_message("<span class='combat bold'>\The [src] snaps a brake!</span>")
