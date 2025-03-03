@@ -215,10 +215,10 @@ var/global/datum/transit_controller/transit_controls = new
 			set_dir(SOUTHWEST)
 
 		if (propagate)
-			n.calculate_direction(FALSE)
-			e.calculate_direction(FALSE)
-			w.calculate_direction(FALSE)
-			s.calculate_direction(FALSE)
+			n?.calculate_direction(FALSE)
+			e?.calculate_direction(FALSE)
+			w?.calculate_direction(FALSE)
+			s?.calculate_direction(FALSE)
 
 	ex_act(severity)
 		return
