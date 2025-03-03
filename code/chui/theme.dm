@@ -47,6 +47,9 @@ chui/theme
 			for( var/key in params["css"] )
 				generated += "<link rel='stylesheet' type='text/css' href='[resource(key)]'>"
 
+		if( params["headerhtml"])
+			generated += params["headerhtml"]
+
 		if( params["title"] )
 			generated += "<title>[html_encode(params["title"])]</title>"
 

@@ -127,6 +127,8 @@
 	//We'll probably have to handle having multiple appendices the moment there's more than one type, but not now. uwu
 	var/obj/machinery/manufacturer_attachment/appendix = null
 
+
+
 #define WIRE_EXTEND 1
 #define WIRE_POWER 2
 #define WIRE_MALF 3
@@ -314,141 +316,12 @@
 				if (src.manuf_zap(user, 33))
 					return
 
+		//Main screen
 		src.add_dialog(user)
 
-		var/HTML = {"
-		<title>[src.name]</title>
-		<style type='text/css'>
+		PC_LOAD(manufacturer, mainscreen)
 
-			/* will probaby break chui, dont care */
-			body { background: #222; color: white; font-family: Tahoma, sans-serif; }
-			a { color: #88f; }
-
-			.l { text-align: left; } .r { text-align: right; } .c { text-align: center; }
-			.buttonlink { background: #66c; min-width: 1.1em; height: 1.2em; padding: 0.2em 0.2em; margin-bottom: 2px; border-radius: 4px; font-size: 90%; color: white; text-decoration: none; display: inline-block; vertical-align: middle; }
-			thead { background: #555555; }
-
-			table {
-				border-collapse: collapse;
-				width: 100%;
-				}
-			td, th { padding: 0.2em; 0.5em; }
-			.outline td, .outline th {
-				border: 1px solid #666;
-			}
-
-			img, a img {
-				border: 0;
-				}
-
-			#info {
-				position: absolute;
-				right: 0.5em;
-				top: 0;
-				width: 25%;
-				padding: 0.5em;
-				}
-
-			#products {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 73%;
-				padding: 0.25em;
-			}
-
-			.queue, .product {
-				position: relative;
-				display: inline-block;
-				width: 12em;
-				padding: 0.25em 0.5em;
-				border-radius: 5px;
-				margin: 0.5em;
-				background: #555;
-				box-shadow: 3px 3px 0 2px #000;
-				}
-
-			.queue {
-				vertical-align: middle;
-				clear: both;
-				}
-			.queue .icon {
-				float: left;
-				margin: 0.2em;
-				}
-			.product {
-				vertical-align: top;
-				text-align: center;
-				}
-			.product .time {
-				position: absolute;
-				bottom: 0.3em;
-				right: 0.3em;
-				}
-			.product .mats {
-				position: absolute;
-				bottom: 0.3em;
-				left: 0.3em;
-				}
-			.product .icon {
-				display: block;
-				height: 64px;
-				width: 64px;
-				margin: 0.2em auto 0.5em auto;
-				-ms-interpolation-mode: nearest-neighbor; /* pixels go cronch */
-				}
-			.product.disabled {
-				background: #333;
-				color: #aaa;
-			}
-			.required {
-				display: none;
-				}
-
-			.product:hover {
-				cursor: pointer;
-				background: #666;
-			}
-			.product:hover .required {
-				display: block;
-				position: absolute;
-				left: 0;
-				right: 0;
-				}
-			.product .delete {
-				color: #c44;
-				background: #222;
-				padding: 0.25em 0.5em;
-				border-radius: 10px;
-				}
-			.required div {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				background: #333;
-				border: 1px solid #888888;
-				padding: 0.25em 0.5em;
-				margin: 0.25em 0.5em;
-				font-size: 80%;
-				text-align: left;
-				border-radius: 5px;
-				}
-			.mat-missing {
-				color: #f66;
-			}
-		</style>
-		<script type="text/javascript">
-			function product(ref) {
-				window.location = "?src=\ref[src];disp=" + ref;
-			}
-
-			function delete_product(ref) {
-				window.location = "?src=\ref[src];delete=1;disp=" + ref;
-			}
-		</script>
-		"}
-
+		mainscreen.tags["title"] += src.name
 
 		var/list/dat = list()
 		var/delete_allowed = src.allowed(usr)
@@ -496,10 +369,6 @@
 			user.Browse(dat, "window=manufact;size=750x500")
 			onclose(user, "manufact")
 			return
-
-
-		dat += "<div id='products'>"
-
 
 
 		// Get the list of stuff we can print ...
@@ -551,7 +420,7 @@
 				<span class='mat[mats_used[A.item_paths[i]] ? "" : "-missing"]'>[A.item_amounts[i]] [mat_name]</span>
 				"}
 
-			dat += {"
+			mainscreen.tags["products"] += {"
 		<div class='product[can_be_made ? "" : " disabled"]' onclick='product("\ref[A]");'>
 			<strong>[A.name]</strong>
 			<div class='required'><div>[material_text.Join("<br>")]</div></div>
@@ -562,39 +431,35 @@
 		</div>"}
 
 
-		dat += "</div><div id='info'>"
-		dat += build_material_list(user)
+		mainscreen.tags["mat-list"] += build_material_list(user)
 		//Search
-		dat += " <A href='byond://?src=\ref[src];search=1'>(Search: \"[istext(src.search) ? html_encode(src.search) : "----"]\")</A><BR>"
-		//Filter
-		dat += " <A href='byond://?src=\ref[src];category=1'>(Filter: \"[istext(src.category) ? html_encode(src.category) : "----"]\")</A>"
+		mainscreen.tags["search"] += istext(src.search) ? html_encode(src.search) : "----"
+		mainscreen.tags["search-category"] += istext(src.category) ? html_encode(src.category) : "----"
 		// This is not re-formatted yet just b/c i don't wanna mess with it
-		dat +="<HR><B>Scanned Card:</B> <A href='byond://?src=\ref[src];card=1'>([src.scan])</A><BR>"
+		mainscreen.tags["scan"] = src.scan
 		if(scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
-				dat+="<B>Current Funds</B>: [account.fields["current_money"]] Credits<br>"
-		dat+= src.temp
-		dat += "<HR><B>Ores Available for Purchase:</B><br><small>"
+				PC_ENABLE_IFDEF(mainscreen, "account")
+				mainscreen.tags["account"] += account.fields["current_money"]
+
 		for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
 			if(S.broken)
 				continue
-			dat += "<B>[S.name] at [get_area(S)]:</B><br>"
+			mainscreen.tags["ore-list"] += "<B>[S.name] at [get_area(S)]:</B><br>"
 			var/list/ores = S.ores
 			for(var/ore in ores)
 				var/datum/ore_cloud_data/OCD = ores[ore]
 				if(!OCD.for_sale || !OCD.amount)
 					continue
 				var/taxes = round(max(rockbox_globals.rockbox_client_fee_min,abs(OCD.price*rockbox_globals.rockbox_client_fee_pct/100)),0.01) //transaction taxes for the station budget
-				dat += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
+				mainscreen.tags["ore-list"] += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
 
-		dat += "</small><HR>"
+		mainscreen.tags["control-panel"] += build_control_panel(user)
 
-		dat += build_control_panel(user)
-
-
-		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600")
+		PC_RENDER(mainscreen)
+		PC_BROWSE(mainscreen)
 		onclose(user, "manufact")
 
 		interact_particle(user,src)
@@ -1812,14 +1677,14 @@
 			if (queue_num == 1)
 				// if (istype(A,/datum/manufacture/) && src.speed != 0 && timeleft != 0)
 				// 	time_number = round(src.timeleft / src.speed)
-				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='buttonlink'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='buttonlink'>&#57914; Resume</a>") + "<br>"
+				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='queuelinks'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='queuelinks'>Resume</a>") + "<br>"
 			else
 				pause_link = ""
 
 			time_number = A.time && src.speed ? round(A.time / src.speed / 10, 0.1) : "??"
 
 			if (src.mode != "working" || queue_num != 1)
-				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='buttonlink'>&#128465; Remove</a>"
+				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='queuelinks'>&#128465; Remove</a>"
 			else
 				// shut up
 				remove_link = "&#8987; Working..."
