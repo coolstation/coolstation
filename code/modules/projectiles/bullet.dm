@@ -305,6 +305,13 @@ soon it will go away */
 	dud_freq = 3
 	fouling = 8
 
+//slow rifle round, initially for AMS turret
+/datum/projectile/bullet/rifle_medium/slow
+	projectile_speed = 20
+	dissipation_delay = 1
+	dissipation_rate = 4
+
+
 /datum/projectile/bullet/rifle_medium/AP
 	name = "bullet"
 	//SemiAutoRifleShot.wav by SuperPhat -- https://freesound.org/s/421710/ -- License: Creative Commons 0
