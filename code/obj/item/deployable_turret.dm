@@ -626,8 +626,9 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	/// this thing is somehow the most dangerous part of the turret
 	on_shoot()
 		var/slide_angle = src.external_angle + rand(-20,20)
-		var/slide_x = src.pixel_x - sin(slide_angle) * (rand(4,16) - 8 * src.anchored)
-		var/slide_y = src.pixel_y - cos(slide_angle) * (rand(4,16) - 8 * src.anchored)
+		var/scalar = rand(4,16) - 8 * src.anchored
+		var/slide_x = src.pixel_x - sin(slide_angle) * scalar
+		var/slide_y = src.pixel_y - cos(slide_angle) * scalar
 		if(slide_x > 16)
 			if(!step(src, EAST))
 				for(var/mob/living/L in get_step(src, EAST))
