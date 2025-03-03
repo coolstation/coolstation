@@ -161,6 +161,7 @@ var/global/datum/transit_controller/transit_controls = new
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "moon_shaft"
+	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 
 	New()
