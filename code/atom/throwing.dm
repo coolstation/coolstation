@@ -100,13 +100,11 @@
 	var/target_true_x = targets_turf.x
 	var/target_true_y = targets_turf.y
 	if(islist(params))
-		if(istext(params["icon-x"]))
-			params["icon-x"] = text2num(params["icon-x"])
+		params["icon-x"] = text2num(params["icon-x"])
 		if(params["icon-x"] > 32)
 			target_true_x += floor(params["icon-x"] / 32)
 			params["icon-x"] = params["icon-x"] % 32
-		if(istext(params["icon-y"]))
-			params["icon-y"] = text2num(params["icon-y"])
+		params["icon-y"] = text2num(params["icon-y"])
 		if(params["icon-y"] > 32)
 			target_true_y += floor(params["icon-y"] / 32)
 			params["icon-y"] = params["icon-y"] % 32
