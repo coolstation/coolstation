@@ -425,7 +425,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 			if (!isnull(C) && src.target_valid(C))
 				src.target_list += C
-				var/distance = get_dist(C.loc,src.loc)
+				var/distance = GET_DIST(C.loc,src.loc)
 				src.target_list[C] = distance
 
 			else
@@ -446,7 +446,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		return src.target
 
 	proc/target_valid(var/mob/living/C, var/check_angle = TRUE)
-		var/distance = get_dist(get_turf(C),get_turf(src))
+		var/distance = GET_DIST(get_turf(C),get_turf(src))
 
 		if(distance > src.range)
 			return 0
@@ -625,9 +625,9 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 	/// this thing is somehow the most dangerous part of the turret
 	on_shoot()
-		var/slide_angle = src.internal_angle + rand(-20,20)
-		var/slide_x = src.pixel_x + sin(slide_angle) * (rand(4,16) - 8 * src.anchored)
-		var/slide_y = src.pixel_y + cos(slide_angle) * (rand(4,16) - 8 * src.anchored)
+		var/slide_angle = src.external_angle + rand(-20,20)
+		var/slide_x = src.pixel_x - sin(slide_angle) * (rand(4,16) - 8 * src.anchored)
+		var/slide_y = src.pixel_y - cos(slide_angle) * (rand(4,16) - 8 * src.anchored)
 		if(slide_x > 16)
 			if(!step(src, EAST))
 				for(var/mob/living/L in get_step(src, EAST))
