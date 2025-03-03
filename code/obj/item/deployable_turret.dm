@@ -604,7 +604,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	desc = "Oh shit, someone welded a shotgun to an office chair and wired it up!"
 	health = 150
 	max_health = 150
-	range = 6
+	range = 5
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
 	burst_size = 2
 	fire_rate = 1.5
@@ -677,6 +677,11 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		dir=EAST
 	west
 		dir=WEST
+
+/obj/deployable_turret/juicer/active/fullrotation
+	sweep_angle = 360
+	sweep_speed = 120
+	angle_arc_size = 180
 
 /////////////////////////////
 //   Turret Ability Stuff  //
