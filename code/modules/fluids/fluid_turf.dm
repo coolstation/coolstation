@@ -431,10 +431,10 @@
 
 	proc/calculate_direction(var/propagate = FALSE)
 		var/area_type = get_area(src)
-		var/turf/n = get_step(src,NORTH)
-		var/turf/e = get_step(src,EAST)
-		var/turf/w = get_step(src,WEST)
-		var/turf/s = get_step(src,SOUTH)
+		var/turf/floor/specialroom/sea_elevator_shaft/n = get_step(src,NORTH)
+		var/turf/floor/specialroom/sea_elevator_shaft/e = get_step(src,EAST)
+		var/turf/floor/specialroom/sea_elevator_shaft/w = get_step(src,WEST)
+		var/turf/floor/specialroom/sea_elevator_shaft/s = get_step(src,SOUTH)
 
 		if (!istype(get_area(n), area_type))
 			n = null
@@ -443,6 +443,14 @@
 		if (!istype(get_area(w), area_type))
 			w = null
 		if (!istype(get_area(s), area_type))
+			s = null
+		if (!istype(n))
+			n = null
+		if (!istype(e))
+			e = null
+		if (!istype(w))
+			w = null
+		if (!istype(s))
 			s = null
 
 		if (n && e && w && s)
@@ -469,7 +477,6 @@
 			e.calculate_direction(FALSE)
 			w.calculate_direction(FALSE)
 			s.calculate_direction(FALSE)
-
 
 	ex_act(severity)
 		return
