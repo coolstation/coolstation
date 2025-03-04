@@ -56,6 +56,10 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 			turret.quick_deploy()
 			qdel(src)
 
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr=null)
+
+		..()
+
 /obj/item/turret_deployer/syndicate
 	name = "NAS-T Deployer"
 	desc = "A Nuclear Agent Sentry Turret Deployer. Use it in your hand to deploy."
@@ -67,7 +71,7 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 /obj/item/turret_deployer/riot
 	name = "N.A.R.C.S. Deployer"
 	desc = "A Nanotrasen Automatic Riot Control System Deployer. Use it in your hand to deploy."
-	icon_state = "st_deployer"
+	icon_state = "nt_deployer"
 	w_class = W_CLASS_BULKY
 	health = 125
 	icon_tag = "nt"
@@ -92,6 +96,16 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 	w_class = W_CLASS_BULKY
 	icon_tag = "op"
 	associated_turret = /obj/deployable_turret/juicer
+
+/obj/item/turret_deployer/ams
+	name = "AMS Antipersonnel Turret Deployer"
+	desc = "A deadly rifle-chambered turret produced by a warware mercantile conglomerate. Use in hand or throw to deploy."
+	health = 120
+	quick_deploy_fuel = 1
+	icon_state = "st_deployer"
+	w_class = W_CLASS_BULKY
+	icon_tag = "st"
+	associated_turret = /obj/deployable_turret/ams
 
 /////////////////////////////
 //       Turret Code       //
@@ -119,8 +133,6 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	var/angle_arc_size = 45
 	var/active = 0 // are we gonna shoot some peeps?
 	var/damage_words = "mostly undamaged!"
-	var/waiting = 0 // tracks whether or not the turret is waiting
-	var/shooting = 0 // tracks whether we're currently in the process of shooting someone
 	var/icon_tag = null //tag for icons to get correct states on activating/deactivating. 'st' for syndicate, 'nt' for NT
 	var/quick_deploy_fuel = 2 // number of quick deploys the turret has left
 	var/spread = 0
@@ -205,10 +217,10 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		current_projectile.shot_number = burst_size
 		current_projectile.shot_delay = 10/fire_rate
 
-	proc/shoot(target)
+	proc/shoot(target, angle_of_rest)
 		SPAWN_DBG(0)
 			src.firing = TRUE
-			var/angle_of_rest = src.external_angle
+			angle_of_rest = angle_of_rest ? angle_of_rest : src.external_angle
 			var/list/casing_turfs
 			var/turf/picked_turf
 			if (src.current_projectile.casing)
@@ -231,10 +243,10 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 							if (!QDELETED(turret_casing) && get_turf(turret_casing) == picked_turf)
 								qdel(turret_casing)
 				sleep(src.current_projectile.shot_delay)
-			set_angle(angle_of_rest)
 			if(src.nonstop && target_valid(target, FALSE))
-				shoot(target)
+				shoot(target, angle_of_rest)
 			else
+				set_angle(angle_of_rest)
 				src.firing = FALSE
 		shoot_projectile_ST_pixel_spread(src, current_projectile, target, 0, 0 , spread)
 
@@ -356,9 +368,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	proc/toggle_activated()
 		if (src.active)
 			src.icon_state = "[src.icon_tag]_off"
-			src.active = 0
-			src.shooting = 0
-			src.waiting = 0
+			src.active = FALSE
+			src.firing = FALSE
 			src.target = null
 		else
 			src.set_projectile()
@@ -386,9 +397,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 
 	proc/check_health()
 		if(src.health <= 0)
-			src.active = 0
-			src.shooting = 0
-			src.waiting = 0
+			src.active = FALSE
+			src.firing = FALSE
 			src.target = null
 			src.die()
 
@@ -615,7 +625,6 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	sweep_angle = 75
 	sweep_speed = 25
 	nonstop = TRUE
-	throw_spin = FALSE
 
 	is_friend(var/mob/living/C)
 		var/obj/item/card/id/I = C.get_id()
@@ -661,7 +670,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		if(src.anchored == ANCHORED && prob(15))
 			src.visible_message("<span class='combat bold'>\The [src] snaps a brake!</span>")
 			src.toggle_anchored()
-		return
+		..()
 
 /obj/deployable_turret/juicer/active
 	anchored = ANCHORED
@@ -683,6 +692,50 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	sweep_angle = 360
 	sweep_speed = 120
 	angle_arc_size = 180
+
+/obj/deployable_turret/ams
+	name = "AMS Antipersonnel Turret"
+	desc = "A vicious turret with multiple sensor arrays and massive range. The side is emblazoned with a crossed sword and pickaxe."
+	health = 120
+	max_health = 120
+	range = 12
+	projectile_type = /datum/projectile/bullet/rifle_medium/slow
+	spread = 3
+	burst_size = 1
+	fire_rate = 2
+	angle_arc_size = 270
+	icon_tag = "st"
+	quick_deploy_fuel = 0
+	associated_deployer = /obj/item/turret_deployer/ams
+	sweep_angle = 90
+	sweep_speed = 10
+	nonstop = TRUE
+
+	on_shoot()
+		var/datum/lineResult/lasersight = drawLine(src, src.target, "red_laser", getCrossed = 0)
+		lasersight.lineImage.appearance_flags |= RESET_TRANSFORM
+		lasersight.lineImage.alpha = 196
+		lasersight.lineImage.plane = PLANE_SELFILLUM
+		lasersight.lineImage.blend_mode = BLEND_ADD
+		addGlobalImage(lasersight.lineImage, "ams_turret_[src.forensic_ID]")
+		animate(lasersight.lineImage, alpha = 0, time = 0.2 SECONDS)
+		..()
+
+/obj/deployable_turret/ams/active
+	anchored = ANCHORED
+
+	New(loc)
+		..(src.loc, src.dir)
+		src.toggle_activated()
+
+	north
+		dir=NORTH
+	south
+		dir=SOUTH
+	east
+		dir=EAST
+	west
+		dir=WEST
 
 /////////////////////////////
 //   Turret Ability Stuff  //
