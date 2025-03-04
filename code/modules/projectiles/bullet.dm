@@ -508,6 +508,14 @@ soon it will go away */
 
 		//on_hit override message to player: "J'ow!" "That really jurt!" etc.
 
+	scrap
+		name = "juicer scrap"
+		icon_state = "buckshotscrap"
+		power = 6 //fired in group of 6 shots (max 36) with some spread
+		dissipation_delay = 4
+		dissipation_rate = 4
+		hit_ground_chance = 40
+
 //bartender's round
 //meant to
 //let's make this accurate, since mostly it's gonna be fired from snub barrel
