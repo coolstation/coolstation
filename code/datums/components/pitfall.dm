@@ -150,7 +150,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 #endif
 				M.emote("scream")
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-			animate_fall(AM,src.FallTime,src.DepthScale)
+			animate_fall(AM,fall_time,src.DepthScale)
 			var/old_density = AM.density // dont block other fools from falling in
 			AM.density = 0
 			SPAWN_DBG(fall_time)
