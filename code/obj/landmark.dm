@@ -6,6 +6,15 @@ proc/pick_landmark(name, default=null)
 		return default
 	return pick(landmarks[name])
 
+/// please do not use except for live testing and admin shenanigans
+proc/add_landmark(var/turf/T, var/name, var/data = null)
+	if(!istype(T) || !name)
+		return FALSE
+	if(!(name in landmarks))
+		landmarks[name] = list()
+	landmarks[name][T] = data
+	return TRUE
+
 /obj/landmark
 	name = "landmark"
 	icon = 'icons/ui/screen1.dmi'
