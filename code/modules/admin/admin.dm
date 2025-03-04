@@ -4851,7 +4851,7 @@ var/global/noir = 0
 //I keep making temporary objects for spawning all children of Thing
 /datum/admins/proc/spawn_atom_typesof(var/object as text)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
-	set desc="(atom path) Spawn an atom"
+	set desc="(atom path) Spawn concrete types of path"
 	set name="Spawn Typesof"
 	if(!object)
 		return
