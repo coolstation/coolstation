@@ -28,19 +28,21 @@ proc/create_two_layer_sinkhole(var/turf/center, var/size = 3, var/delay = 2 SECO
 	if (!center.density)
 		var/turf/below = locate(center.x,center.y,target_z)
 		if(!below.density)
-			center = center.ReplaceWith(/turf/floor/specialroom/two_layer_sinkhole)
+			center = center.ReplaceWith(/turf/floor/specialroom/two_layer_sinkhole, keep_old_material = FALSE)
 			center.AddComponent(/datum/component/pitfall/target_coordinates,\
 				BruteDamageMax = 20,\
 				HangTime = 0.3 SECONDS,\
 				TargetZ = target_z,\
 				LandingRange = 0)
+			var/turf/floor/specialroom/two_layer_sinkhole/central_sinkhole = center
+			central_sinkhole.calculate_direction(FALSE)
 
 	SPAWN_DBG(delay)
 		playsound(center, "sound/misc/ground_rumble_big.ogg", 50, 1)
+		var/list/turf/floor/specialroom/two_layer_sinkhole/affected_turfs = list(center)
 		while (current_range < size - 1)
 			current_range++
 			var/total_distance = 0
-			var/list/turf/floor/specialroom/two_layer_sinkhole/affected_circle = list()
 			for (var/turf/S in orange(current_range,center))
 				if (S.density)
 					continue
@@ -52,13 +54,13 @@ proc/create_two_layer_sinkhole(var/turf/center, var/size = 3, var/delay = 2 SECO
 				var/turf/below = locate(S.x,S.y,target_z)
 				if(below.density)
 					continue // to do, make this better
-				var/turf/sinkhole = S.ReplaceWith(/turf/floor/specialroom/two_layer_sinkhole)
+				var/turf/sinkhole = S.ReplaceWith(/turf/floor/specialroom/two_layer_sinkhole, keep_old_material = FALSE)
 				sinkhole.AddComponent(/datum/component/pitfall/target_coordinates,\
 					BruteDamageMax = 25,\
 					HangTime = 0.2 SECONDS,\
 					TargetZ = target_z)
-				affected_circle += sinkhole
-			for (var/turf/floor/specialroom/two_layer_sinkhole/sinkhole in affected_circle)
+				affected_turfs += sinkhole
+			for (var/turf/floor/specialroom/two_layer_sinkhole/sinkhole in affected_turfs)
 				sinkhole.calculate_direction(FALSE)
 			sleep(delay)
 	return TRUE
