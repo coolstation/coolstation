@@ -202,8 +202,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						if(brutedamage && !keep_falling)
 							random_brute_damage(M, brutedamage)
 							if (brutedamage >= 1000)
-								for(var/mob/living/L in T)
-									random_brute_damage(L,40)
 								M.visible_message("<span class='alert bold'>[M] splatters onto [T] at mach fuck!</span>", "<span class='alert bold'>You splatter onto [T] at mach fuck!</span>")
 								M.gib()
 								return
