@@ -133,10 +133,16 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		#endif
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
-			animate_fall(AM,src.FallTime,src.DepthScale)
 			var/mob/M
+			var/fall_time = src.FallTime
 			if(ismob(AM))
 				M = AM
+				if (M.grabbed_by)
+					for (var/obj/item/grab/G in M.grabbed_by)
+						if (G.state >= GRAB_AGGRESSIVE && G.assailant)
+							G.assailant.visible_message("<span class='combat'>[G.assailant] powerbombs [M] down [src.parent]!</span>","<span class='combat'>You powerbomb [M] down [src.parent]!</span>")
+							fall_time = max(fall_time - 0.2 SECONDS, 0)
+							break
 				if(M.mind && M.mind.assigned_role == "Clown")
 					playsound(M, "sound/effects/slidewhistlefall.ogg", 50, 0)
 #ifdef DATALOGGER
@@ -144,9 +150,10 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 #endif
 				M.emote("scream")
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+			animate_fall(AM,src.FallTime,src.DepthScale)
 			var/old_density = AM.density // dont block other fools from falling in
 			AM.density = 0
-			SPAWN_DBG(src.FallTime)
+			SPAWN_DBG(fall_time)
 				if (!QDELETED(AM))
 					src.actually_fall(T, AM, brutedamage, old_density)
 		else
@@ -187,31 +194,32 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					else
 						var/did_hit_mob
 						for(var/atom/landed_on in T)
-							if(landed_on == AM)
+							if(landed_on.event_handler_flags & IS_PITFALLING)
 								continue
 							if(landed_on.density)
 								AM.throw_impact(landed_on, null)
 							if(isliving(landed_on))
 								var/mob/living/L = landed_on
-								M.show_message("<span class='combat'>You smash into [L] as you land!</span>")
+								M.show_message("<span class='alert'>You use [L] to cushion your fall!</span>")
 								L.visible_message("<span class='combat'>[M] crashes down onto [L]!</span>", "<span class='combat'>[M] crashes down onto you!</span>")
 								did_hit_mob = TRUE
-								random_brute_damage(L, brutedamage / 4)
+								random_brute_damage(L, brutedamage / 3)
 								if (brutedamage >= 20)
 									L.changeStatus("weakened", 2 SECONDS)
 						if(brutedamage && !keep_falling)
-							random_brute_damage(M, brutedamage)
-							if (brutedamage >= 1000)
+							var/damage_dealt = did_hit_mob ? brutedamage * 2 / 3 : brutedamage
+							random_brute_damage(M, damage_dealt)
+							if (damage_dealt >= 1000)
 								M.visible_message("<span class='alert bold'>[M] splatters onto [T] at mach fuck!</span>", "<span class='alert bold'>You splatter onto [T] at mach fuck!</span>")
 								M.gib()
 								return
-							else if (brutedamage >= 50)
+							else if (damage_dealt >= 50)
 								M.changeStatus("paralysis", 7 SECONDS)
-							else if (brutedamage >= 30)
+							else if (damage_dealt >= 30)
 								M.changeStatus("weakened", 10 SECONDS)
-							else if (brutedamage >= 20)
+							else if (damage_dealt >= 20)
 								M.changeStatus("weakened", 5 SECONDS)
-							else if (brutedamage >= 5)
+							else if (damage_dealt >= 5)
 								M.changeStatus("weakened", 2 SECONDS)
 							M.force_laydown_standup()
 							playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
