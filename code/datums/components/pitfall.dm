@@ -41,6 +41,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
 		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
+		for(var/atom/movable/AM in src.typecasted_parent())
+			src.start_fall(AM,AM)
 
 	UnregisterFromParent()
 		. = ..()
