@@ -155,14 +155,18 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
 		if (isturf(T))
-			var/more_falling = T.GetComponent(/datum/component/pitfall) ? TRUE : FALSE
-			if(AM.loc == T)
-				T.Entered(AM, T)
-			else
-				AM.set_loc(T)
+			var/datum/component/pitfall/next_pit = T.GetComponent(/datum/component/pitfall)
+			var/keep_falling = TRUE
+			if(!next_pit || AM.anchored > next_pit.AnchoredAllowed || (locate(/obj/lattice) in next_pit.typecasted_parent()) || (locate(/obj/grille/catwalk) in next_pit.typecasted_parent()))
+				keep_falling = FALSE
+			else if(next_pit == src && (src.FallTime < 0.3 SECONDS || brutedamage > 1500)) // a couple limits on infinite falls, for server's sake
+				keep_falling = FALSE
+			AM.set_loc(T)
 			if (ismob(AM))
 				var/mob/M = AM
 				var/safe = FALSE
+				if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+					keep_falling = FALSE
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
 					if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
@@ -172,23 +176,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 						safe = TRUE
 				if(safe)
-					M.visible_message("<span class='notice'>[AM] [more_falling ? "glides down through" : "lands gently on"] [T].</span>","<span class='notice'>You [more_falling ? "glide down through" : "land gently on"] [T].</span>")
+					M.visible_message("<span class='notice'>[AM] [keep_falling ? "glides down through" : "lands gently on"] [T].</span>","<span class='notice'>You [keep_falling ? "glide down through" : "land gently on"] [T].</span>")
 				else
-					if(brutedamage)
-						random_brute_damage(M, brutedamage)
-						if (brutedamage >= 50)
-							M.changeStatus("paralysis", 7 SECONDS)
-						else if (brutedamage >= 30)
-							M.changeStatus("stunned", 10 SECONDS)
-						else if (brutedamage >= 20)
-							M.changeStatus("weakened", 5 SECONDS)
-						else if (brutedamage >= 5)
-							M.changeStatus("weakened", 2 SECONDS)
-						M.force_laydown_standup()
-						playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
-						#ifdef DATALOGGER
-						game_stats.Increment("workplacesafety")
-						#endif
 					var/did_hit_mob
 					for(var/atom/landed_on in T)
 						if(landed_on == AM)
@@ -203,8 +192,29 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							random_brute_damage(L, brutedamage / 4)
 							if (brutedamage >= 20)
 								L.changeStatus("weakened", 2 SECONDS)
+					if(brutedamage && !keep_falling)
+						random_brute_damage(M, brutedamage)
+						if (brutedamage >= 1500)
+							for(var/mob/living/L in T)
+								random_brute_damage(L,40)
+							M.visible_message("<span class='alert bold'>[M] splatters onto [T] at mach fuck!</span>", "<span class='alert bold'>You splatter onto [T] at mach fuck!</span>")
+							M.gib()
+							return
+						else if (brutedamage >= 50)
+							M.changeStatus("paralysis", 7 SECONDS)
+						else if (brutedamage >= 30)
+							M.changeStatus("stunned", 10 SECONDS)
+						else if (brutedamage >= 20)
+							M.changeStatus("weakened", 5 SECONDS)
+						else if (brutedamage >= 5)
+							M.changeStatus("weakened", 2 SECONDS)
+						M.force_laydown_standup()
+						playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
+						#ifdef DATALOGGER
+						game_stats.Increment("workplacesafety")
+						#endif
 					if(!did_hit_mob)
-						M.visible_message("<span class='alert'>[M] [more_falling ? "tumbles through" : "slams down into"] [T]!</span>", "<span class='alert'>You [more_falling ? "tumble through" : "slam down into"] [T]!</span>")
+						M.visible_message("<span class='alert'>[M] [keep_falling ? "tumbles through" : "slams down into"] [T]!</span>", "<span class='alert'>You [keep_falling ? "tumble through" : "slam down into"] [T]!</span>")
 			else
 				for(var/mob/living/L in T)
 					L.visible_message("<span class='alert'>[AM] crashes down onto [L]!</span>", "<span class='alert'>[AM] crashes down onto you!</span>")
@@ -212,7 +222,10 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			T.hitby(AM, null)
 			AM.throwing = 0
 			animate(AM)
-			AM.event_handler_flags &= ~IS_PITFALLING
+			if(keep_falling)
+				next_pit.start_fall(next_pit.get_turf_to_fall(AM),AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
+			else
+				AM.event_handler_flags &= ~IS_PITFALLING
 			return
 		else
 			AM.event_handler_flags &= ~IS_PITFALLING
