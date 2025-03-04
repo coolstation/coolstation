@@ -1403,6 +1403,57 @@
 	partlistPart = "foot_right"
 	step_image_state = "footprintsR"
 
+
+
+//// BIRD LIMBS ////
+//////  PARENT  //////
+
+/obj/item/parts/human_parts/arm/mutant/bird
+	icon = 'icons/mob/birdperson.dmi'
+	partIcon = 'icons/mob/birdperson.dmi'
+	skintoned = 1
+
+/obj/item/parts/human_parts/leg/mutant/bird
+	icon = 'icons/mob/birdperson.dmi'
+	partIcon = 'icons/mob/birdperson.dmi'
+	skintoned = 1
+
+////// ACTUAL BIRD LIMBS //////
+/obj/item/parts/human_parts/arm/mutant/bird/left
+	name = "left bird arm"
+	desc = "A bird's left arm."
+	icon_state = "arm_left"
+	slot = "l_arm"
+	side = "left"
+	handlistPart = "hand_left"
+
+/obj/item/parts/human_parts/arm/mutant/bird/right
+	name = "right bird arm"
+	desc = "A bird's right arm."
+	icon_state = "arm_right"
+	slot = "r_arm"
+	side = "right"
+	handlistPart = "hand_right"
+
+/obj/item/parts/human_parts/leg/mutant/bird/left
+	name = "left bird leg"
+	desc = "A bird's left leg."
+	icon_state = "leg_left"
+	slot = "l_leg"
+	side = "left"
+	partlistPart = "foot_left"
+	step_image_state = "footprintsL"
+
+/obj/item/parts/human_parts/leg/mutant/bird/right
+	name = "right bird leg"
+	desc = "A bird's right leg."
+	icon_state = "leg_right"
+	slot = "r_leg"
+	side = "right"
+	partlistPart = "foot_right"
+	step_image_state = "footprintsR"
+
+
 //// AMPHIBIAN LIMBS ////
 //////  PARENT  //////
 

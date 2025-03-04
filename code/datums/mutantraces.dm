@@ -1957,7 +1957,7 @@
 
 /datum/mutantrace/bird
 	name = "Bird"
-	icon_state = "bird_m"
+	icon_state = "body_m"
 	human_compatible = 1
 	override_attack = 0
 	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | SKINTONE_USES_PREF_COLOR_1 | HAS_SPECIAL_HAIR | TORSO_HAS_SKINTONE | WEARS_UNDERPANTS)
@@ -1975,9 +1975,9 @@
 	special_hair_2_state = "head_detail_fluff"
 	special_hair_2_color = CUST_3 //the top color
 
-	detail_1_icon = 'icons/mob/birdperson.dmi'
-	detail_1_state = "head_detail_beak"
-	detail_1_color = CUST_3 //the top color, subject to change to its own color
+	special_hair_3_icon = 'icons/mob/birdperson.dmi'
+	special_hair_2_state = "head_detail_beak"
+	special_hair_2_color = CUST_3 //the top color, subject to change to its own color
 
 	detail_1_icon = 'icons/mob/birdperson.dmi'
 	detail_1_state = "chest_detail_fluff"
@@ -1988,13 +1988,11 @@
 	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/right
 	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/left
 	race_mutation = /datum/bioEffect/mutantrace/bird
-	clothing_icon_override = 'icons/mob/bird_clothes.dmi'
 	color_channel_names = list("Base Feathers", "Alternate Color", "Beak and Fluff")
 	dna_mutagen_banned = FALSE
 
 	New(var/mob/living/carbon/human/H)
 		..()
-		emote_overrides = bird_emotes
 		if(ishuman(H)) //likely going to add a special trait or something for our bird friends
 			H.mob_flags |= SHOULD_HAVE_A_TAIL
 

@@ -202,7 +202,7 @@
 	colorful = 1
 	multipart_icon = 1
 
-/obj/item/organ/tail/feather
+/obj/item/organ/tail/feathers
 	name = "bird tail"
 	desc = "A ruffle of feathers."
 	icon_state = "tail-bird"
