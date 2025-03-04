@@ -4848,6 +4848,39 @@ var/global/noir = 0
 		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)
 		return
 
+//I keep making temporary objects for spawning all children of Thing
+/datum/admins/proc/spawn_atom_typesof(var/object as text)
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+	set desc="(atom path) Spawn concrete types of path"
+	set name="Spawn Typesof"
+	if(!object)
+		return
+
+	var/client/client = usr.client
+
+	if (client.holder.level >= LEVEL_PA)
+		var/chosen = get_one_match(object, use_concrete_types = FALSE)
+
+		if (chosen)
+			if (ispath(chosen, /turf))
+				alert("You cant use this command with turfs!", null, null, null, null, null) //Possible expansion: replace turfs in a spiral around the user
+				return
+			else
+				for(var/childpath in concrete_typesof(chosen, FALSE))
+					var/atom/movable/A
+					if (client.holder.spawn_in_loc)
+						A = new childpath(usr.loc)
+					else
+						A = new childpath(get_turf(usr))
+					if (client.pizzazz)
+						spawn_animation1(A)
+			logTheThing("admin", usr, null, "spawned all concrete types of [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
+			logTheThing("admin", usr, null, "spawned all concrete types of [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
+
+	else
+		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)
+		return
+
 /datum/admins/proc/heavenly_spawn_obj(var/obj/object as text)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set desc="(object path) Spawn an object. But all fancy-like"
