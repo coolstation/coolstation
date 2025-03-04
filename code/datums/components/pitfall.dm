@@ -155,8 +155,13 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			AM.density = 0
 			SPAWN_DBG(fall_time)
 				if (!QDELETED(AM))
+					if(M)
+						M.lastgasp()
 					src.actually_fall(T, AM, brutedamage, old_density)
 		else
+			if(ismob(AM))
+				var/mob/M = AM
+				M.lastgasp()
 			src.actually_fall(T, AM, brutedamage)
 
 	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50, reset_density = 0)
@@ -204,6 +209,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 								L.visible_message("<span class='combat'>[M] crashes down onto [L]!</span>", "<span class='combat'>[M] crashes down onto you!</span>")
 								did_hit_mob = TRUE
 								random_brute_damage(L, brutedamage / 3)
+								L.lastgasp()
 								if (brutedamage >= 20)
 									L.changeStatus("weakened", 2 SECONDS)
 						if(brutedamage && !keep_falling)
