@@ -22,7 +22,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if (!istype(src.parent, /turf))
 			return COMPONENT_INCOMPATIBLE
 		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
-		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall))
+		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
 		RegisterSignal(src.parent, COMSIG_ATTACKBY, PROC_REF(update_targets))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
 		src.BruteDamageMax	= BruteDamageMax
@@ -47,26 +47,19 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/update_targets()
 		return
 
-	/// called when movable atom AM enters a pitfall turf. Mainly checks.
-	proc/start_fall(var/signalsender, var/atom/movable/AM)
+	/// checks if an atom can fall in.
+	proc/test_fall(var/atom/movable/AM,var/no_thrown=FALSE)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
-		if (AM.throwing) // throw em on over, why dont ya
+		if(AM.event_handler_flags & IS_PITFALLING)
 			return
-		if (AM.event_handler_flags & IMMUNE_PITFALL)
+		if(no_thrown && AM.throwing)
 			return
 		if (AM.flags & TECHNICAL_ATOM || istype(AM, /obj/blob)) //we can do this better (except the blob one, RIP)
 			return
 		if (AM.anchored > src.AnchoredAllowed || (locate(/obj/lattice) in src.parent) || (locate(/obj/grille/catwalk) in src.parent))
 			return
 		if (ismob(AM))
-			if (ishuman(AM) && src.typecasted_parent().active_liquid?.last_depth_level >= 3) // TO DO: make jetpacks just apply PROB_ATOM_FLOATING
-				var/mob/living/carbon/human/H = AM
-				if (H.back && H.back.c_flags & IS_JETPACK)
-					if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
-						var/obj/item/tank/jetpack/J = H.back
-						if(J.allow_thrust(0.01, H))
-							return
 			if (isliving(AM))
 				var/mob/living/peep = AM
 				if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
@@ -79,14 +72,43 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 		return_if_overlay_or_effect(AM)
 
+		return TRUE
+
+	/// called when movable atom AM enters a pitfall turf.
+	proc/start_fall(var/signalsender, var/atom/movable/AM)
+		if(!src.test_fall(AM,TRUE))
+			return
+
+		AM.event_handler_flags |= IS_PITFALLING
+
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
-			SPAWN_DBG(src.HangTime)
-				if (!QDELETED(AM))
-					var/datum/component/pitfall/pitfall = AM.loc.GetComponent(/datum/component/pitfall)
-					pitfall?.try_fall(signalsender, AM)
+			if(!(AM.event_handler_flags & IN_COYOTE_TIME)) // maybe refactor this into a property after converting mob_prop to atom_prop
+				AM.event_handler_flags |= IN_COYOTE_TIME
+				SPAWN_DBG(src.HangTime)
+					if (!QDELETED(AM))
+						AM.event_handler_flags &= ~IN_COYOTE_TIME
+						var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
+						if(!pit || AM.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in AM.loc) || (locate(/obj/grille/catwalk) in AM.loc))
+							return
+						if (ismob(AM))
+							var/mob/M = AM
+							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+								return
+						pit.try_fall(signalsender, AM)
 		else
 			src.try_fall(signalsender, AM)
+
+	/// called when movable atom AM lands from a throw into a pitfall turf.
+	proc/start_fall_no_coyote(var/signalsender, var/atom/movable/AM)
+		if(!src.test_fall(AM,FALSE))
+			return 0
+
+		AM.event_handler_flags |= IS_PITFALLING
+		AM.event_handler_flags &= ~IN_COYOTE_TIME
+
+		src.try_fall(signalsender, AM)
+		return 1
 
 	/// called when it's time for movable atom AM to actually fall into the pit
 	proc/try_fall(var/signalsender, var/atom/movable/AM)
@@ -94,7 +116,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		return TRUE
 		// child procs will then use fall_to after calling this
 
-	/// a proc that makes a movable atom 'A' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
+	/// a proc that makes a movable atom 'AM' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
 	proc/fall_to(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
 		SHOULD_NOT_OVERRIDE(TRUE)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
@@ -106,8 +128,6 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
 			animate_fall(AM,src.FallTime,src.DepthScale)
-			var/old_anchored = AM.anchored
-			var/old_density = AM.density
 			var/mob/M
 			if(ismob(AM))
 				M = AM
@@ -118,13 +138,12 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 #endif
 				M.emote("scream")
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-			AM.anchored = 1
+			var/old_density = AM.density // dont block other fools from falling in
 			AM.density = 0
 			SPAWN_DBG(src.FallTime)
 				if (!QDELETED(AM))
 					if(M)
 						REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-					AM.anchored = old_anchored
 					AM.density = old_density
 					src.actually_fall(T, AM, brutedamage)
 		else
@@ -141,7 +160,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						safe = TRUE
 					if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
 						safe = TRUE
-					if (H.back && (H.back.c_flags & IS_JETPACK))
+					if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 						safe = TRUE
 				if(safe)
 					M.visible_message("<span class='notice'>[AM] lands gently on the ground.</span>")
@@ -159,8 +178,10 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					#ifdef DATALOGGER
 					game_stats.Increment("workplacesafety")
 					#endif
+			AM.event_handler_flags &= ~IS_PITFALLING
 			AM.set_loc(T)
-			AM.event_handler_flags &= ~IMMUNE_PITFALL
+			AM.throwing = 0
+			animate(AM)
 			return
 
 // ====================== SUBTYPES OF PITFALL ======================
@@ -169,7 +190,7 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
 		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
-		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetLandmark", "text", "The landmark that the fall sends you to.", "")
@@ -194,7 +215,7 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
 		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
-		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetArea", "num", "The area typepath that the target falls into. If null, then it drops onto the same coordinates.", null)
@@ -219,7 +240,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
 		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
-		ARG_INFO("HangTime", "num", "How long it takes for a thing to fall into the pit.", 0.3 SECONDS),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
 		ARG_INFO("TargetZ", "num", "The z level that the target falls into.", 5),
