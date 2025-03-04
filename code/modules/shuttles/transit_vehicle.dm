@@ -161,21 +161,23 @@ var/global/datum/transit_controller/transit_controls = new
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "moon_shaft"
+	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 
 	New()
 		..()
-
+		src.calculate_direction(TRUE)
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 25,\
 			HangTime = 0 SECONDS,\
 			TargetLandmark = fall_landmark)
 
+	proc/calculate_direction(var/propagate = FALSE)
 		var/area_type = get_area(src)
-		var/turf/n = get_step(src,NORTH)
-		var/turf/e = get_step(src,EAST)
-		var/turf/w = get_step(src,WEST)
-		var/turf/s = get_step(src,SOUTH)
+		var/turf/floor/specialroom/elevator_shaft/n = get_step(src,NORTH)
+		var/turf/floor/specialroom/elevator_shaft/e = get_step(src,EAST)
+		var/turf/floor/specialroom/elevator_shaft/w = get_step(src,WEST)
+		var/turf/floor/specialroom/elevator_shaft/s = get_step(src,SOUTH)
 
 		if (!istype(get_area(n), area_type))
 			n = null
@@ -185,23 +187,41 @@ var/global/datum/transit_controller/transit_controls = new
 			w = null
 		if (!istype(get_area(s), area_type))
 			s = null
+		if (!istype(n))
+			n = null
+		if (!istype(e))
+			e = null
+		if (!istype(w))
+			w = null
+		if (!istype(s))
+			s = null
 
-		if (e && s)
-			set_dir(SOUTH)
-			e.set_dir(NORTH)
-			s.set_dir(WEST)
-		else if (e && n)
-			set_dir(WEST)
-			e.set_dir(EAST)
-			n.set_dir(SOUTH)
-		else if (w && s)
+		if (n && e && w && s)
+			src.icon_state = "shaft_center"
+		else if (e && w && s)
 			set_dir(NORTH)
-			w.set_dir(SOUTH)
-			s.set_dir(EAST)
-		else if (w && n)
+		else if (n && e && w)
+			set_dir(SOUTH)
+		else if (n && w && s)
 			set_dir(EAST)
-			w.set_dir(WEST)
-			n.set_dir(NORTH)
+		else if (n && e && s)
+			set_dir(WEST)
+		else if (n && e)
+			set_dir(SOUTHWEST)
+		else if (e && s)
+			set_dir(NORTHWEST)
+		else if (n && w)
+			set_dir(SOUTHEAST)
+		else if (s && w)
+			set_dir(NORTHEAST)
+		else
+			src.icon_state = "shaft_single"
+
+		if (propagate)
+			n?.calculate_direction(FALSE)
+			e?.calculate_direction(FALSE)
+			w?.calculate_direction(FALSE)
+			s?.calculate_direction(FALSE)
 
 	ex_act(severity)
 		return

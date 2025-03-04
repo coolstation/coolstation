@@ -111,6 +111,17 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		src.try_fall(signalsender, AM)
 		return 1
 
+	/// called when movable atom AM lands from a throw into a pitfall turf.
+	proc/start_fall_no_coyote(var/signalsender, var/atom/movable/AM)
+		if(!src.test_fall(AM,FALSE))
+			return 0
+
+		AM.event_handler_flags |= IS_PITFALLING
+		AM.event_handler_flags &= ~IN_COYOTE_TIME
+
+		src.try_fall(signalsender, AM)
+		return 1
+
 	/// called when it's time for movable atom AM to actually fall into the pit
 	proc/try_fall(var/signalsender, var/atom/movable/AM)
 		SHOULD_CALL_PARENT(TRUE)

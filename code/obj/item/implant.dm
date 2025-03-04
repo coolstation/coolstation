@@ -801,7 +801,6 @@ THROWING DARTS
 	icon_state = "bullet"
 	desc = "A spent bullet."
 	var/bleed_timer = 0
-	var/forensic_ID = null // match a bullet to a gun holy heckkkkk
 
 	bullet_pistol_heavy
 		name = "Juicer Jr. round"

@@ -182,6 +182,15 @@
 		name = "pink jumpsuit"
 		icon_state = "pink"
 		item_state = "pink"
+
+	random
+		New()
+			..()
+			name = "jumpsuit" // not gonna go through making sure the name is 'proper'
+			var/color = pick("black","grey","white","darkred","red","lightred","orange","brown","lightbrown","yellow","yellowgreen","lightgreen","green","aqua","lightblue","blue","darkblue","purple","lightpurple","magenta","pink")
+			icon_state = color
+			item_state = color
+
 //PRIDE
 /obj/item/clothing/under/pride
 	name = "LGBT pride jumpsuit"
