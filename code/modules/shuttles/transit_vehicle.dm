@@ -233,7 +233,7 @@ var/global/datum/transit_controller/transit_controls = new
 /turf/floor/specialroom/elevator_shaft/straight_down
 	var/target_z = 3
 
-	proc/initialise_component()
+	initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_coordinates,\
 			BruteDamageMax = 25,\
 			HangTime = 0 SECONDS,\
