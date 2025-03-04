@@ -18,6 +18,7 @@
 #define HEAD_VIRTUAL 16
 #define HEAD_FLASHY 17
 #define HEAD_FERT 18
+#define HEAD_BIRD 19
 
 //tail defines
 #define TAIL_NONE 0

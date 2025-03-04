@@ -1193,6 +1193,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/cat
 
+/obj/trait/bird
+	name = "Avian (0) \[Species\]"
+	cleanName = "Avian"
+	icon_state = "birdT"
+	desc = "Bird up."
+	id = "bird"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/bird
+
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"

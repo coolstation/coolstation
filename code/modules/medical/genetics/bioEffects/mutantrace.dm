@@ -138,6 +138,16 @@
 	msgLose = "Your udders fall off!"
 	icon_state  = "cow"
 
+/datum/bioEffect/mutantrace/bird
+	name = 'Avian Genetics'
+	desc = "The subject birds up."
+	id = "bird"
+	mutantrace_option = "Bird"
+	mutantrace_option = /datum/mutantrace/bird
+	msgGain = "You feel the need to collect sticks and yell swears at tourists."
+	msgLose = "Your beautiful feathers start to fall out!"
+	icon_state = "bird"
+
 /datum/bioEffect/mutantrace/fert
 	name = "Musteline Genetics"
 	desc = "The subject gets \'slinky and stinky\', whatever that means."

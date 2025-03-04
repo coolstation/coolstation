@@ -1938,6 +1938,7 @@
 			bleed(mob, 10, 3, T)
 			T.react_all_cleanables()
 
+
 /datum/mutantrace/chicken
 	name = "Chicken"
 	icon_state = "chicken_m"
@@ -1953,6 +1954,65 @@
 	New()
 		..()
 		emote_overrides = chicken_emotes
+
+/datum/mutantrace/bird
+	name = "Bird"
+	icon_state = "bird_m"
+	human_compatible = 1
+	override_attack = 0
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | SKINTONE_USES_PREF_COLOR_1 | HAS_SPECIAL_HAIR | TORSO_HAS_SKINTONE | WEARS_UNDERPANTS)
+	voice_override = "bird"
+	special_head = HEAD_BIRD
+	special_head_state = "head"
+	mutant_organs = list("tail" = /obj/item/organ/tail/feathers) //todo: add wings
+	mutant_folder = 'icons/mob/birdperson.dmi'
+
+	special_hair_1_icon = 'icons/mob/birdperson.dmi'
+	special_hair_1_state = "head_detail"
+	special_hair_1_color = CUST_2 //the middle color
+
+	special_hair_2_icon = 'icons/mob/birdperson.dmi'
+	special_hair_2_state = "head_detail_fluff"
+	special_hair_2_color = CUST_3 //the top color
+
+	detail_1_icon = 'icons/mob/birdperson.dmi'
+	detail_1_state = "head_detail_beak"
+	detail_1_color = CUST_3 //the top color, subject to change to its own color
+
+	detail_1_icon = 'icons/mob/birdperson.dmi'
+	detail_1_state = "chest_detail_fluff"
+	detail_1_color = CUST_3 //the top color, subject to change to its own color
+
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/left
+	race_mutation = /datum/bioEffect/mutantrace/bird
+	clothing_icon_override = 'icons/mob/bird_clothes.dmi'
+	color_channel_names = list("Base Feathers", "Alternate Color", "Beak and Fluff")
+	dna_mutagen_banned = FALSE
+
+	New(var/mob/living/carbon/human/H)
+		..()
+		emote_overrides = bird_emotes
+		if(ishuman(H)) //likely going to add a special trait or something for our bird friends
+			H.mob_flags |= SHOULD_HAVE_A_TAIL
+
+			H.update_face()
+			H.update_body()
+			H.update_clothing()
+
+	sight_modifier() //birds are better at seeing stuff, right
+		mob.see_in_dark = SEE_DARK_HUMAN + 1
+		mob.see_invisible = 1
+
+	disposing()
+		if(ishuman(mob))
+			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
+		. = ..()
+
+		say_verb()
+		return "squaks"
 
 /datum/mutantrace/fert
 	name = "ferret"
