@@ -266,6 +266,7 @@ var/list/admin_verbs = list(
 
 		//atom management
 		/datum/admins/proc/spawn_atom,
+		/datum/admins/proc/spawn_atom_typesof,
 		/datum/admins/proc/heavenly_spawn_obj,
 		/datum/admins/proc/supplydrop_spawn_obj,
 		/datum/admins/proc/demonically_spawn_obj,
