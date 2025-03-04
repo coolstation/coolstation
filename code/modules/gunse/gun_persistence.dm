@@ -147,6 +147,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "anvil"
 	w_class = W_CLASS_BULKY
+	throw_spin = FALSE
 
 	portable
 		density = 0

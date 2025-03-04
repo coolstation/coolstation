@@ -225,7 +225,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			AM.throwing = 0
 			animate(AM)
 			if(keep_falling)
-				next_pit.start_fall(next_pit.get_turf_to_fall(AM),AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
+				next_pit.fall_to(next_pit.get_turf_to_fall(AM),AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
 			else
 				AM.event_handler_flags &= ~IS_PITFALLING
 			return
