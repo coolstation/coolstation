@@ -190,6 +190,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Pompadour: Greaser Shine"
 				id = "pompS"
 				good_for_randomization = FALSE
+			poofyFlapper
+				name = "Poofy Flapper"
+				id = "poofy_flapper"
 			shortflip
 				name = "Punky Flip"
 				id = "shortflip"
