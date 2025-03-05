@@ -55,7 +55,9 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 
 	//parking the maintenance arrears event here so we don't need to keep searching for it
 	var/datum/random_event/minor/maintenance/maintenance_breakdown/maintenance_event = null
-	var/next_maint_event = MAINT_EVENTS_BEGIN
+
+	//Effectively disabling extra maint events for the moment, see how that works out. They can still be pulled at random as a minor event.
+	var/next_maint_event = 120 MINUTES//MAINT_EVENTS_BEGIN
 	var/time_between_maint_events_lower = 400 SECONDS //6m 40s
 	var/time_between_maint_events_upper = 800 SECONDS //13m 20s
 	//To disable the machinery maintenance system, just disable the event itself.
