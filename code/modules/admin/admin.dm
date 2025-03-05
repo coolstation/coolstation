@@ -1181,7 +1181,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cat","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","bird","Ghostdrone","Flubber","Cat","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1201,6 +1201,9 @@ var/global/noir = 0
 						. = 1
 					if("Skeleton")
 						H.set_mutantrace(/datum/mutantrace/skeleton)
+						. = 1
+					if("Bird")
+						H.set_mutantrace(/datum/mutantrace/bird)
 						. = 1
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
@@ -2410,7 +2413,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert","Bird")
 						if (!which)
 							return
 						switch(which)
@@ -2432,6 +2435,8 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/cow)
 							if ("Fert")
 								H.set_mutantrace(/datum/mutantrace/fert)
+							if ("Bird")
+								H.set_mutantrace(/datum/mutantrace/bird)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
@@ -2458,6 +2463,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/cow)
 								if ("Fert")
 									H.set_mutantrace(/datum/mutantrace/fert)
+								if ("Bird")
+									H.set_mutantrace(/datum/mutantrace/bird)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")

@@ -139,7 +139,7 @@
 	icon_state  = "cow"
 
 /datum/bioEffect/mutantrace/bird
-	name = 'Avian Genetics'
+	name = "Avian Genetics"
 	desc = "The subject birds up."
 	id = "bird"
 	mutantrace_option = "Bird"
