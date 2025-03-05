@@ -141,9 +141,9 @@
 /datum/bioEffect/mutantrace/birb
 	name = "Avian Genetics"
 	desc = "The subject birds up."
-	id = "bird"
-	mutantrace_option = "Bird"
-	mutantrace_option = /datum/mutantrace/birb
+	id = "birb"
+	mutantrace_option = "Birb"
+	mutantrace_path = /datum/mutantrace/birb
 	msgGain = "You feel the need to collect sticks and yell swears at tourists."
 	msgLose = "Your beautiful feathers start to fall out!"
 	icon_state = "bird"

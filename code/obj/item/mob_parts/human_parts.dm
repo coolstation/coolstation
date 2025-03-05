@@ -2236,3 +2236,56 @@
 	side = "right"
 	partlistPart = "foot_right"
 	step_image_state = "footprintsR"
+
+
+
+//// BIRB LIMBS ////
+///// PARENT  /////
+
+/obj/item/parts/human_parts/arm/mutant/birb
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_1
+
+/obj/item/parts/human_parts/leg/mutant/birb
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_1
+
+//// LIMBS ////
+/obj/item/parts/human_parts/arm/mutant/birb/left
+	name = "left birb arm"
+	desc = "A birb's left arm."
+	icon_state = "arm_left"
+	slot = "l_arm"
+	side = "left"
+	handlistPart = "hand_left"
+
+
+/obj/item/parts/human_parts/arm/mutant/birb/right
+	name = "right birb arm"
+	desc = "A birb's right arm."
+	icon_state = "arm_right"
+	slot = "r_arm"
+	side = "right"
+	handlistPart = "hand_right"
+
+/obj/item/parts/human_parts/leg/mutant/birb/left
+	name = "left birb leg"
+	desc = "A birb's left leg. CAW!"
+	icon_state = "leg_left"
+	slot = "l_leg"
+	side = "left"
+	partlistPart = "foot_left"
+	step_image_state = "footprintsL"
+
+/obj/item/parts/human_parts/leg/mutant/birb/right
+	name = "right birb leg"
+	desc = "A birb's right leg."
+	icon_state = "leg_right"
+	slot = "r_leg"
+	side = "right"
+	partlistPart = "foot_right"
+	step_image_state = "footprintsR"

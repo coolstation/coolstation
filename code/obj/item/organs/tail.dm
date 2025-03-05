@@ -205,7 +205,7 @@
 /obj/item/organ/tail/feathers
 	name = "bird tail"
 	desc = "A ruffle of feathers."
-	icon_state = "tail-bird"
+	icon_state = "tail-lizard"
 	organ_image_icon = 'icons/mob/birb.dmi'
 	tail_num = TAIL_BIRD
 	organ_image_under_suit_1 = "bird_under_suit"
