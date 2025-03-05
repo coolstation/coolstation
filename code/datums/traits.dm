@@ -1192,7 +1192,7 @@ obj/trait/pilot
 	isPositive = 0
 	category = "species"
 	mutantRace = /datum/mutantrace/cat
-
+/*
 /obj/trait/bird
 	name = "Avian (0) \[Species\]"
 	cleanName = "Avian"
@@ -1203,7 +1203,7 @@ obj/trait/pilot
 	isPositive = 0
 	category = "species"
 	mutantRace = /datum/mutantrace/bird
-
+*/
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"
