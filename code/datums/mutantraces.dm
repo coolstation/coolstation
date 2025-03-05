@@ -1964,9 +1964,10 @@
 	override_attack = 0
 	voice_override = "bird"
 	race_mutation = /datum/bioEffect/mutantrace/birb
-	mutant_organs = list("tail" = /obj/item/organ/tail/feathers)
+	//mutant_organs = list("tail" = /obj/item/organ/tail/feathers)
 	mutant_folder = 'icons/mob/birb.dmi'
-	special_head = HEAD_BIRD
+	//special_head = HEAD_BIRD
+	//special_head_state = "head"
 	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/right
 	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/left
 	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/right
