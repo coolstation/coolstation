@@ -104,7 +104,8 @@
 /obj/item/instrument/large
 	w_class = W_CLASS_GIGANTIC
 	p_class = 2 // if they're anchored you can't move them anyway so this should default to making them easy to move
-	throwforce = 40
+	throw_range = 4
+	throwforce = 25
 	density = 1
 	anchored = 1
 	desc_verb = list("plays", "performs", "composes", "arranges")
@@ -154,6 +155,13 @@
 		sounds_instrument += list("sound/musical_instruments/piano/furelise.ogg","sound/musical_instruments/piano/gymno.ogg","sound/musical_instruments/piano/lune.ogg","sound/musical_instruments/piano/nachtmusik1.ogg","sound/musical_instruments/piano/nachtmusik2.ogg")
 		..()
 
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		. = ..()
+		if(src.event_handler_flags & IS_PITFALLING && isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			L.changeStatus("paralysis", 2 SECONDS)
+			random_brute_damage(L, 20)
+			playsound(L, "sound/machines/blast_door_9.ogg", 60, 1, 5)
 
 /* -------------------- Grand Piano -------------------- */
 

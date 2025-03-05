@@ -32,6 +32,11 @@
 			var/obj/ladder/L = target
 			L.climb(src)
 			return
+		if (isturf(target) && !ON_COOLDOWN(src, "GHOST_PITFALL_SEARCHING", 2 SECONDS))
+			var/datum/component/pitfall/pit = target.GetComponent(/datum/component/pitfall)
+			if(pit)
+				src.set_loc(pit.get_turf_to_fall(src))
+
 		src.examine_verb(target)
 
 /mob/dead/process_move(keys)
