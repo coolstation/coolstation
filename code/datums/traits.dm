@@ -1202,7 +1202,7 @@ obj/trait/pilot
 	points = 0
 	isPositive = 0
 	category = "species"
-	mutantRace = /datum/mutantrace/bird
+	mutantRace = /datum/mutantrace/birb
 
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
@@ -1262,7 +1262,7 @@ obj/trait/pilot
 		if(ishuman(owner))
 			//skeleton, monkey, and human (null) are rarer
 			//also possible are squid and cat
-			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat)
+			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat, prob(100); /datum/mutantrace/birb)
 			if (our_pick)
 				var/mob/living/carbon/human/H = owner
 				H.set_mutantrace(our_pick)

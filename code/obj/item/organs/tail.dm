@@ -206,7 +206,7 @@
 	name = "bird tail"
 	desc = "A ruffle of feathers."
 	icon_state = "tail-bird"
-	organ_image_icon = 'icons/mob/birdperson.dmi'
+	organ_image_icon = 'icons/mob/birb.dmi'
 	tail_num = TAIL_BIRD
 	organ_image_under_suit_1 = "bird_under_suit"
 	organ_image_under_suit_2 = null

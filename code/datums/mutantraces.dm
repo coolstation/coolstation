@@ -1957,61 +1957,57 @@
 		..()
 		emote_overrides = chicken_emotes
 
-
-/datum/mutantrace/bird
-	name = "bird"
-	icon = 'icons/mob/birdperson.dmi'
+/datum/mutantrace/birb
+	name = "Birb"
+	icon = 'icons/mob/birb.dmi'
 	icon_state = "body_m"
 	override_attack = 0
-	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | SKINTONE_USES_PREF_COLOR_1 | HAS_SPECIAL_HAIR | TORSO_HAS_SKINTONE | WEARS_UNDERPANTS)
 	voice_override = "bird"
-	special_head = HEAD_BIRD
-	special_head_state = "head"
+	race_mutation = /datum/bioEffect/mutantrace/birb
 	mutant_organs = list("tail" = /obj/item/organ/tail/feathers)
-	mutant_folder = 'icons/mob/birdperson.dmi'
-
-	special_hair_1_icon ='icons/mob/birdperson.dmi'
-	special_hair_1_state = "head_detail"
-	special_hair_1_color = CUST_2 //da middle color
-
-	special_hair_2_icon = 'icons/mob/birdperson.dmi'
-	special_hair_2_state = "head_detail_fluff"
-	special_hair_2_color = CUST_3 //the top color
-
-	special_hair_3_icon = 'icons/mob/birdperson.dmi'
-	special_hair_3_state = "head_detail_beak"
-	special_hair_3_color = SKIN_TONE //the skin color. It'll get its own eventually
-
-	detail_1_icon = 'icons/mob/birdperson.dmi'
-	detail_1_state = "chest_detail_fluff"
-	detail_1_color = CUST_2 //the top color, subject to change to its own color
-
+	mutant_folder = 'icons/mob/birb.dmi'
+	special_head = HEAD_BIRD
 	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/right
 	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/left
 	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/right
 	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/left
-
-	race_mutation = /datum/bioEffect/mutantrace/bird
-
-	color_channel_names = list("Base Feathers", "Alternate Color", "Beak and Fluff")
-
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | HAS_SPECIAL_HAIR | BUILT_FROM_PIECES | FIX_COLORS | TORSO_HAS_SKINTONE | SKINTONE_USES_PREF_COLOR_1 | HAS_EXTRA_DETAILS | WEARS_UNDERPANTS)
 	dna_mutagen_banned = FALSE
 
-	New(var/mob/living/carbon/human/H)
-		..()
-		if(ishuman(H))
-			H.mob_flags |= SHOULD_HAVE_A_TAIL
-			H.update_face()
-			H.update_body()
-			H.update_clothing()
+	special_hair_1_icon = 'icons/mob/birb.dmi'
+	special_hair_1_state = "head_detail"
+	special_hair_1_color = CUST_2
+
+	special_hair_2_icon = 'icons/mob/birb.dmi'
+	special_hair_2_state = "head_detail_fluff"
+	special_hair_2_color = CUST_3
+
+	special_hair_3_icon = 'icons/mob/birb.dmi'
+	special_hair_3_state = "head_detail_beak"
+	special_hair_3_color = SKIN_TONE
+
+	detail_1_icon = 'icons/mob/birb.dmi'
+	detail_1_state = "chest_detail_fluff"
+	detail_1_color = CUST_2 //middle
+
+	New(mob/living/carbon/human/M)
+		. = ..()
+		if(ishuman(M))
+			M.mob_flags |= SHOULD_HAVE_A_TAIL
+
+	say_verb()
+		return "squaks"
+
+	sight_modifier()
+		mob.see_in_dark = SEE_DARK_HUMAN + 1
+		mob.see_invisible = 1
 
 	disposing()
 		if(ishuman(mob))
 			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
 		. = ..()
 
-	say_verb()
-		return "squaks"
+
 
 
 /datum/mutantrace/fert

@@ -1409,13 +1409,13 @@
 //////  PARENT  //////
 
 /obj/item/parts/human_parts/arm/mutant/bird
-	icon = 'icons/mob/birdperson.dmi'
-	partIcon = 'icons/mob/birdperson.dmi'
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
 	skintoned = 1
 
 /obj/item/parts/human_parts/leg/mutant/bird
-	icon = 'icons/mob/birdperson.dmi'
-	partIcon = 'icons/mob/birdperson.dmi'
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
 	skintoned = 1
 
 ////// ACTUAL BIRD LIMBS //////

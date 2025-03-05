@@ -1203,7 +1203,7 @@ var/global/noir = 0
 						H.set_mutantrace(/datum/mutantrace/skeleton)
 						. = 1
 					if("Bird")
-						H.set_mutantrace(/datum/mutantrace/bird)
+						H.set_mutantrace(/datum/mutantrace/birb)
 						. = 1
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
@@ -2436,7 +2436,7 @@ var/global/noir = 0
 							if ("Fert")
 								H.set_mutantrace(/datum/mutantrace/fert)
 							if ("Bird")
-								H.set_mutantrace(/datum/mutantrace/bird)
+								H.set_mutantrace(/datum/mutantrace/birb)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
@@ -2464,7 +2464,7 @@ var/global/noir = 0
 								if ("Fert")
 									H.set_mutantrace(/datum/mutantrace/fert)
 								if ("Bird")
-									H.set_mutantrace(/datum/mutantrace/bird)
+									H.set_mutantrace(/datum/mutantrace/birb)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
