@@ -190,6 +190,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Pompadour: Greaser Shine"
 				id = "pompS"
 				good_for_randomization = FALSE
+			poofyFlapper
+				name = "Poofy Flapper"
+				id = "poofy_flapper"
 			shortflip
 				name = "Punky Flip"
 				id = "shortflip"
@@ -589,6 +592,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 		h4
 			name = "Horns Style 4"
 			id = "h4"
+		feather1
+			name = "Feathers Style 1"
+			id = "feather1"
 
 proc/select_custom_style(list/datum/customization_style/customization_types, mob/living/carbon/human/user as mob)
 	var/list/datum/customization_style/options = list()
