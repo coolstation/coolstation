@@ -1980,10 +1980,6 @@
 	special_hair_2_state = "head_detail"
 	special_hair_2_color = CUST_2
 
-	special_hair_1_icon = 'icons/mob/birb.dmi'
-	special_hair_1_state = "head_detail_fluff"
-	special_hair_1_color = CUST_3
-
 	special_hair_3_icon = 'icons/mob/birb.dmi'
 	special_hair_3_state = "head_detail_beak"
 	special_hair_3_color = SKIN_TONE
