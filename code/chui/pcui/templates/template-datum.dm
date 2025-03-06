@@ -2,9 +2,6 @@
 //See pcui.dm defines
 /datum/pcui_template
 
-	//Keep your HTML here
-	var/HTML = ""
-
 	var/tags = list()
 	var/name = ""
 	var/template = ""

@@ -1,7 +1,7 @@
 /client/proc/Jump(var/area/A in world)
 	set desc = "Area to jump to"
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set name = "Jump"
+	set name = "doomed"
 	set popup_menu = 0
 
 	admin_only
@@ -20,6 +20,7 @@
 		message_admins("[key_name(usr)] jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
 	else
 		alert("Admin jumping disabled")
+
 
 /client/proc/jumptoturf(var/turf/T in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)

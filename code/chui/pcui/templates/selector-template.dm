@@ -43,7 +43,7 @@
         <div class="leftfloater">
             <table id="dir">
                 <tr>
-                    <td>
+          	    <td>
                         <input type="radio" name="one_direction" id="dir-9" value="9"><label for="dir-9">&nwarr;</label>
                     </td>
                     <td>
@@ -98,7 +98,7 @@
 		[PC_ENDIF("spawner")]
 		[PC_IFDEF("inputstyle")]
 			<div style="float: right; margin: 0.5em 1em; text-align: right;">
-				<input type="submit" value="Okay">
+				<input type="submit" value="Submit">
 			</div>
 			<div style="float: left; margin: 0.5em 1em; text-align: right;">
 				<input type="submit" value="Cancel">
@@ -234,6 +234,12 @@ function updateSearchSubstring() {
 /datum/pcui_template/selector/inputstyle
 	setup(var/mob/user as mob)
 		..()
+		tags = list("title" = "Jump to Area",\
+			"action" = "jump_list",\
+			"filter-text" = "Select a location",\
+			"placeholder" = "Bar",\
+			"searchfunc" = "updateSearchSubstring()"
+		)
 		window = "inputselection"
 		size = "365x330"
 		header = {"

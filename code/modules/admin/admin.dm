@@ -4142,11 +4142,6 @@ var/global/noir = 0
 		PC_LOAD(selector/inputstyle, jumpscreen)
 		var/objectjs = jointext(getUniqueAreas(), ";")
 		jumpscreen.tags["object-paths"] = objectjs
-		jumpscreen.tags["title"] = "Jump to Area"
-		jumpscreen.tags["action"] = "jump_list"
-		jumpscreen.tags["filter-text"] = "Select a location"
-		jumpscreen.tags["placeholder"] = "Bar"
-		jumpscreen.tags["searchfunc"] = "updateSearchSubstring()"
 		PC_RENDER(jumpscreen)
 		PC_BROWSE(jumpscreen)
 
