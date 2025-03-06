@@ -127,6 +127,10 @@ var/global/noir = 0
 		return
 	switch(href_list["action"])
 		if ("jump_list")
+			if (src.level < LEVEL_PA)
+				return
+			if(adminClient.pizzazz)
+				shrink_teleport(usr)
 			var/area/A = global.unique_areas_with_turfs[href_list["type"]]
 			var/list/turfs = get_area_turfs(A, 1)
 			if (length(turfs))
