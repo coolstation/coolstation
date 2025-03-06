@@ -22,6 +22,9 @@
 //Helper for \ref[src] in templates
 #define PC_REFTAG "<div class=\"template\" id=\"srcref\"></div>"
 
+//Close the window on cl
+#define PC_CLOSE_ONCLICK "onclick=\"location.href='byond://winset?inputselection.is-visible=false';\""
+
 //Begin and end ifdef
 //Do not nest ifdefs with the same ID
 #define PC_IFDEF(x) "<div class=\"template_ifdef\" id=\"[x]\"></div>"
