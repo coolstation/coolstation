@@ -4124,46 +4124,38 @@ var/global/noir = 0
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_commandos'>Spawn a force of commandos</A><BR>
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_turds'>Spawn a T.U.R.D.S. attack force</A><BR>
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
-/var/create_mob_html = null
-/datum/admins/proc/create_mob(var/mob/user)
-		set background = 1
-		PC_LOAD_OR_OPEN(selector/object_spawner/mobspawn, mobscreen)
-		var/mobjs = jointext(typesof(/mob), ";")
-		mobscreen.tags["object-paths"] = mobjs
-		PC_RENDER(mobscreen)
-		PC_BROWSE(mobscreen)
-
-
 /datum/admins/proc/jump_to(var/mob/user)
 	if(config.allow_admin_jump)
 		set background = 1
 		PC_LOAD_OR_OPEN(selector/inputstyle, jumpscreen)
-		var/objectjs = jointext(getUniqueAreas(), ";")
-		jumpscreen.tags["object-paths"] = objectjs
+		var/jumpjs = jointext(getUniqueAreas(), ";")
+		jumpscreen.tags["object-paths"] = jumpjs
 		PC_RENDER(jumpscreen)
 		PC_BROWSE(jumpscreen)
 
+/datum/admins/proc/create_mob(var/mob/user)
+	set background = 1
+	PC_LOAD_OR_OPEN(selector/object_spawner/mobspawn, mobscreen)
+	var/mobjs = jointext(typesof(/mob), ";")
+	mobscreen.tags["object-paths"] = mobjs
+	PC_RENDER(mobscreen)
+	PC_BROWSE(mobscreen)
 
 /datum/admins/proc/create_object(var/mob/user)
 	set background = 1
 	PC_LOAD_OR_OPEN(selector/object_spawner, selectionscreen)
-	var/objectjs = null
-	objectjs = jointext(typesof(/obj), ";")
+	var/objectjs = jointext(typesof(/obj), ";")
 	selectionscreen.tags["object-paths"] = objectjs
-
 	PC_RENDER(selectionscreen)
 	PC_BROWSE(selectionscreen)
 
-/var/create_turf_html = null
 /datum/admins/proc/create_turf(var/mob/user)
 	set background = 1
-	if (!create_turf_html)
-		var/turfjs = null
-		turfjs = jointext(typesof(/turf), ";")
-		create_turf_html = grabResource("html/admin/create_object.html")
-		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
-
-	if (user) user.Browse(replacetext(create_turf_html, "/* ref src */", "\ref[src]"), "window=create_turf;size=530x550")
+	PC_LOAD_OR_OPEN(selector/object_spawner/turfspawn, turfscreen)
+	var/turfjs = jointext(typesof(/turf), ";")
+	turfscreen.tags["object-paths"] = turfjs
+	PC_RENDER(turfscreen)
+	PC_BROWSE(turfscreen)
 
 /datum/admins/proc/Game()
 	if (!usr) // somehoooow
