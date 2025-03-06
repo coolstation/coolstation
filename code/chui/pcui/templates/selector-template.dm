@@ -219,6 +219,12 @@ function updateSearchSubstring() {
     }
 
     document.spawner.filter.addEventListener("input", [PC_TAG("searchfunc")], false);
+	window.addEventListener('focus', focusShift, false)
+
+	function focusShift() {
+	    document.spawner.filter.focus();
+		console.log("shifted");
+	}
 
     function updateCoords() {
         var x = document.getElementById("coords-x").value;
