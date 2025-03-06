@@ -10,13 +10,12 @@
 /world
 	mob = /mob/new_player
 
-	#ifdef MOVING_SUB_MAP //Defined in the map-specific .dm configuration file.
-	turf = /turf/space/fluid/manta
-	#elif defined(UNDERWATER_MAP)
+
+#ifdef UNDERWATER_MAP
 	turf = /turf/space/fluid
-	#else
+#else
 	turf = /turf/space
-	#endif
+#endif
 
 	area = /area/space
 
@@ -731,11 +730,6 @@ var/f_color_selector_handler/F_Color_Selector
 	boutput(world, "we good 2 go")
 	current_state = GAME_STATE_PREGAME
 	Z_LOG_DEBUG("World/Init", "Now in pre-game state.")
-
-#ifdef MOVING_SUB_MAP
-	Z_LOG_DEBUG("World/Init", "Making Manta start moving...")
-	mantaSetMove(moving=1, doShake=0)
-#endif
 
 	//Please delete this once broadcasting code has been proven to work and integrated into shit
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")

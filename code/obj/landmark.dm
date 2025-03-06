@@ -354,8 +354,6 @@ var/global/list/job_start_locations = list()
 		name = LANDMARK_SHUTTLE_COG2
 	sealab
 		name = LANDMARK_SHUTTLE_SEALAB
-	manta
-		name = LANDMARK_SHUTTLE_MANTA
 	donut2
 		name = LANDMARK_SHUTTLE_DONUT2
 	donut3

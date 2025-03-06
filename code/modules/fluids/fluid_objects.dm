@@ -176,8 +176,6 @@
 
 	var/datum/reagents/R
 
-	event_handler_flags = IMMUNE_MANTA_PUSH
-
 	New()
 		..()
 		SPAWN_DBG(delay)
