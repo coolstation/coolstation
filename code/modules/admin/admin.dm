@@ -4126,20 +4126,18 @@ var/global/noir = 0
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
 /var/create_mob_html = null
 /datum/admins/proc/create_mob(var/mob/user)
-	set background = 1
-	if (!create_mob_html)
-		var/mobjs = null
-		mobjs = jointext(typesof(/mob), ";")
-		create_mob_html = grabResource("html/admin/create_object.html")
-		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
-
-	if (user) user.Browse(replacetext(create_mob_html, "/* ref src */", "\ref[src]"), "window=create_mob;size=530x550")
+		set background = 1
+		PC_LOAD_OR_OPEN(selector/object_spawner/mobspawn, mobscreen)
+		var/mobjs = jointext(typesof(/mob), ";")
+		mobscreen.tags["object-paths"] = mobjs
+		PC_RENDER(mobscreen)
+		PC_BROWSE(mobscreen)
 
 
 /datum/admins/proc/jump_to(var/mob/user)
 	if(config.allow_admin_jump)
 		set background = 1
-		PC_LOAD(selector/inputstyle, jumpscreen)
+		PC_LOAD_OR_OPEN(selector/inputstyle, jumpscreen)
 		var/objectjs = jointext(getUniqueAreas(), ";")
 		jumpscreen.tags["object-paths"] = objectjs
 		PC_RENDER(jumpscreen)
@@ -4148,7 +4146,7 @@ var/global/noir = 0
 
 /datum/admins/proc/create_object(var/mob/user)
 	set background = 1
-	PC_LOAD(selector/object_spawner, selectionscreen)
+	PC_LOAD_OR_OPEN(selector/object_spawner, selectionscreen)
 	var/objectjs = null
 	objectjs = jointext(typesof(/obj), ";")
 	selectionscreen.tags["object-paths"] = objectjs

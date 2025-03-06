@@ -283,3 +283,13 @@ function updateSearchSubstring() {
 		"placeholder" = "arm/left")
 
 		PC_ENABLE_IFDEF(src, "spawner")
+
+
+/datum/pcui_template/selector/object_spawner/mobspawn
+
+	setup()
+		..()
+		tags["title"] = "Spawn Mob"
+		tags["placeholder"] = "pig"
+		tags["window"] = "create-mob"
+		tags["filter-text"] = "Filter mob types:"

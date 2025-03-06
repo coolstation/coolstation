@@ -41,7 +41,15 @@
 
 //misc
 
+//Load a template into variable name
 #define PC_LOAD(template, name) var/datum/pcui_template/template/name = new ; name.setup(user)
+
+//Reopen the window if it's already rendered on the client
+#define PC_LOAD_OR_OPEN(template, variable) var/datum/pcui_template/template/variable = new ;\
+	variable.setup(user);\
+	if(winget(user.client, "[variable.window]", "is-visible")) {winset(user.client, "[variable.window]", "is-visible=true;focus=true") ; return}
+
+
 //Clear render
 #define PC_RESET(target) target.setup(user)
 

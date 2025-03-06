@@ -321,7 +321,7 @@ chui/window
 			if (targetDatum)
 				targetDatum.Topic("close=1", params2list("close=1"), targetDatum)
 
-		src << browse( null, "window=[window]" )//Might not be a standard chui window but we'll play along.
+		winset(src, "[window]", "is-visible=false")
 		if(src?.mob)
 			//boutput(world, "[src] was [src.mob.machine], setting to null")
 			if (istype(win) && win.theAtom && isobj(win.theAtom))
