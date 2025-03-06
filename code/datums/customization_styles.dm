@@ -248,6 +248,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Bangs: Short"
 				id = "short-bangs"
 				good_for_randomization = FALSE
+			juicer
+				name = "Juicer"
+				id = "juicer"
 		long
 			chub2_s
 				name = "Bang: Left"
