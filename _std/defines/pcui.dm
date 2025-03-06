@@ -37,7 +37,7 @@
 
 #define PC_RENDER(target) PC_REMOVE_UNUSED_IFDEF(target.template) ; PC_FILL_TAG_LIST(target.template, target.tags)
 
-#define PC_BROWSE(target) user.Browse(target.template, "window=[target.window];size=[target.size]", headerhtml = target.header)
+#define PC_BROWSE(target) user.Browse(target.template, "window=[target.window];size=[target.size]", headerhtml = target.header, forceChui = target.force_chui)
 
 //misc
 

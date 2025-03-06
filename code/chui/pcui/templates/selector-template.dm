@@ -5,6 +5,7 @@
 		name = "selection panel"
 		window = "create-object"
 		size = "530x480"
+		force_chui = TRUE
 		//Injected into the existing head element
 		header = {"
 		 <style type="text/css">
