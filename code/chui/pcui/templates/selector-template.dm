@@ -226,6 +226,13 @@ function updateSearchSubstring() {
 	    document.spawner.filter.focus();
 	}
 
+	document.getElementById('[PC_TAG("action")]').addEventListener('dblclick', function(event) {
+        if (event.keyCode === 13 || event.which === 13) {
+            document.spawner.submit(); // Submit the form
+            event.preventDefault(); // Prevent default behavior (e.g., newline)
+        }
+    });
+
 	document.getElementById('[PC_TAG("action")]').addEventListener('keydown', function(event) {
         if (event.keyCode === 13 || event.which === 13) {
             document.spawner.submit(); // Submit the form
