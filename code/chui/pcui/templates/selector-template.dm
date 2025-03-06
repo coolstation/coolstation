@@ -208,7 +208,7 @@ function updateSearchSubstring() {
 
     function submitFirst(event) {
         if (event.keyCode === 13 || event.which === 13) {
-            if ([PC_TAG("searchfunc")]) {
+            if ([PC_TAG("searchfunc")]()) {
                 if (event.stopPropagation) event.stopPropagation();
                 else event.cancelBubble = true;
 
@@ -219,12 +219,19 @@ function updateSearchSubstring() {
     }
 
     document.spawner.filter.addEventListener("input", [PC_TAG("searchfunc")], false);
+
 	window.addEventListener('focus', focusShift, false)
 
 	function focusShift() {
 	    document.spawner.filter.focus();
-		console.log("shifted");
 	}
+
+	document.getElementById('[PC_TAG("action")]').addEventListener('keydown', function(event) {
+        if (event.keyCode === 13 || event.which === 13) {
+            document.spawner.submit(); // Submit the form
+            event.preventDefault(); // Prevent default behavior (e.g., newline)
+        }
+    });
 
     function updateCoords() {
         var x = document.getElementById("coords-x").value;
@@ -244,7 +251,7 @@ function updateSearchSubstring() {
 			"action" = "jump_list",\
 			"filter-text" = "Select a location",\
 			"placeholder" = "Bar",\
-			"searchfunc" = "updateSearchSubstring()"
+			"searchfunc" = "updateSearchSubstring"
 		)
 		window = "inputselection"
 		size = "365x330"
@@ -282,7 +289,7 @@ function updateSearchSubstring() {
 
 	setup()
 		..()
-		tags = list("searchfunc" = "updateSearch()",\
+		tags = list("searchfunc" = "updateSearch",\
 		"title" = "Create Object",\
 		"filter-text" = "Filter object types:",\
 		"action" = "object_list",\
@@ -299,3 +306,12 @@ function updateSearchSubstring() {
 		tags["placeholder"] = "pig"
 		tags["window"] = "create-mob"
 		tags["filter-text"] = "Filter mob types:"
+
+/datum/pcui_template/selector/object_spawner/turfspawn
+
+	setup()
+		..()
+		tags["title"] = "Spawn Turf"
+		tags["placeholder"] = "steel"
+		tags["window"] = "create-turf"
+		tags["filter-text"] = "Filter turf types:"
