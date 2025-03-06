@@ -94,6 +94,8 @@ var/global
 	list/random_pod_codes = list() // if /obj/random_pod_spawner exists on the map, this will be filled with refs to the pods they make, and people joining up will have a chance to start with the unlock code in their memory
 
 	list/spacePushList = list()
+	/// Every location with a unique name for the jump verb
+	list/unique_areas_with_turfs = list()
 	/// All the accessible areas on the station in one convenient place
 	list/station_areas = list()
 	/// The station_areas list is up to date. If something changes an area, make sure to set this to 0
@@ -533,6 +535,18 @@ var/global
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
+/proc/getUniqueAreas()
+	if(length(unique_areas_with_turfs))
+		return unique_areas_with_turfs
+
+	var/list/areanames = list()
+	for (var/area/A in get_areas_with_turfs(/area))
+		if(A.name in areanames || !A.name)
+			continue
+		areanames |= A.name
+		unique_areas_with_turfs[A.name] = A
+	unique_areas_with_turfs = sortList(unique_areas_with_turfs)
+	return unique_areas_with_turfs
 
 /proc/addGlobalRenderSource(var/image/I, var/key)
 	if(I && length(key) && !globalRenderSources[key])
@@ -545,6 +559,7 @@ var/global
 	return
 
 /proc/removeGlobalRenderSource(var/key)
+	set background = 1
 	if(length(key) && globalRenderSources[key])
 		globalRenderSources[key].loc = null
 		removeGlobalImage("[key]-renderSourceImage")
