@@ -202,6 +202,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		SPAWN_DBG(0.1)
 			light?.enable()
 
+	wackalope
+		name = "cool and exciting new sand"
+		desc = "this sand is a work in progress and it's so good"
+		New()
+			..()
+			icon_state = "gehenna_[x % 2][y % 2]"
 
 
 	plating

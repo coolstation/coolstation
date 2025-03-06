@@ -28,6 +28,9 @@
 	var/_health = 100
 	var/_max_health = 100
 
+	/// if gun/bullet related, forensic profile of it
+	var/forensic_ID = null
+
 	New()
 		. = ..()
 		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
@@ -514,7 +517,6 @@
 	anchored = TRUE
 	mat_changename = 0
 	mat_changedesc = 0
-	event_handler_flags = IMMUNE_MANTA_PUSH
 	density = 0
 	flags = TECHNICAL_ATOM //This doesn't need the FPRINT that's on /atom right?
 
@@ -626,3 +628,12 @@
 			src.throw_at(get_edge_target_turf(src,get_dir(AM, src)), 10, 1)
 		else if(AM.throwforce >= 80 && !isrestrictedz(src.z))
 			src.meteorhit(AM)
+
+/// creates an id profile for any forenics purpose. override as needed
+/obj/proc/CreateID()
+	. = ""
+
+	do
+		for(var/i = 1 to 10) // 20 characters are way too fuckin' long for anyone to care about
+			. += "[pick(numbersAndLetters)]"
+	while(. in forensic_IDs)

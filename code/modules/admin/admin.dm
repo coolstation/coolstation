@@ -1187,7 +1187,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cat","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","bird","Ghostdrone","Flubber","Cat","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1207,6 +1207,9 @@ var/global/noir = 0
 						. = 1
 					if("Skeleton")
 						H.set_mutantrace(/datum/mutantrace/skeleton)
+						. = 1
+					if("Bird")
+						H.set_mutantrace(/datum/mutantrace/birb)
 						. = 1
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
@@ -2416,7 +2419,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert","Bird")
 						if (!which)
 							return
 						switch(which)
@@ -2438,6 +2441,8 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/cow)
 							if ("Fert")
 								H.set_mutantrace(/datum/mutantrace/fert)
+							if ("Bird")
+								H.set_mutantrace(/datum/mutantrace/birb)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
@@ -2464,6 +2469,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/cow)
 								if ("Fert")
 									H.set_mutantrace(/datum/mutantrace/fert)
+								if ("Bird")
+									H.set_mutantrace(/datum/mutantrace/birb)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
@@ -4849,6 +4856,39 @@ var/global/noir = 0
 					spawn_animation1(A)
 			logTheThing("admin", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
 			logTheThing("diary", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z, 1)])", "admin")
+
+	else
+		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)
+		return
+
+//I keep making temporary objects for spawning all children of Thing
+/datum/admins/proc/spawn_atom_typesof(var/object as text)
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+	set desc="(atom path) Spawn concrete types of path"
+	set name="Spawn Typesof"
+	if(!object)
+		return
+
+	var/client/client = usr.client
+
+	if (client.holder.level >= LEVEL_PA)
+		var/chosen = get_one_match(object, use_concrete_types = FALSE)
+
+		if (chosen)
+			if (ispath(chosen, /turf))
+				alert("You cant use this command with turfs!", null, null, null, null, null) //Possible expansion: replace turfs in a spiral around the user
+				return
+			else
+				for(var/childpath in concrete_typesof(chosen, FALSE))
+					var/atom/movable/A
+					if (client.holder.spawn_in_loc)
+						A = new childpath(usr.loc)
+					else
+						A = new childpath(get_turf(usr))
+					if (client.pizzazz)
+						spawn_animation1(A)
+			logTheThing("admin", usr, null, "spawned all concrete types of [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
+			logTheThing("admin", usr, null, "spawned all concrete types of [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
 
 	else
 		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)

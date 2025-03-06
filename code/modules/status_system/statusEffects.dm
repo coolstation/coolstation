@@ -1697,7 +1697,7 @@
 		//No atom properties around these parts :V
 		var/mob/ffs = owner
 		animate_swim(owner)
-		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors
+		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
 		APPLY_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		..()
 
