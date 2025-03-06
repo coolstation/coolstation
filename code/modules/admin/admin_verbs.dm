@@ -130,7 +130,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_show_player_compids,
 
 		//movement
-		/client/proc/Jump,
+		/client/proc/jump_to_area,
 		/client/proc/jumptomob,
 		/client/proc/jtm,
 		/client/proc/jumptokey,
@@ -788,6 +788,13 @@ var/list/special_pa_observing_verbs = list(
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	if (src.holder)
 		src.holder.create_object(usr)
+	return
+
+/client/proc/jump_to_area()
+	set name = "Jump"
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	if (src.holder)
+		src.holder.jump_to(usr)
 	return
 
 /client/proc/create_mob()
