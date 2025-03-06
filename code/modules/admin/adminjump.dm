@@ -1,27 +1,3 @@
-/client/proc/Jump(var/area/A in world)
-	set desc = "Area to jump to"
-	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set name = "doomed"
-	set popup_menu = 0
-
-	admin_only
-
-	if(config.allow_admin_jump)
-		if(pizzazz)
-			shrink_teleport(src.mob)
-		var/list/turfs = get_area_turfs(A, 1)
-		if (length(turfs))
-			usr.set_loc(pick(turfs))
-		else
-			boutput(src, "Can't jump there, zero turfs in that area.")
-			return
-		logTheThing("admin", usr, null, "jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
-		logTheThing("diary", usr, null, "jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
-		message_admins("[key_name(usr)] jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
-	else
-		alert("Admin jumping disabled")
-
-
 /client/proc/jumptoturf(var/turf/T in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "Jump To Turf"
