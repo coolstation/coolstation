@@ -1868,10 +1868,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/special/random/radioshowhost
 	name = "Radio Show Host"
 	wages = PAY_TRADESMAN
-#ifdef MAP_OVERRIDE_MANTA
-	limit = 0
-	special_spawn_location = 0
-#elif defined(MAP_OVERRIDE_OSHAN)
+#ifdef MAP_OVERRIDE_OSHAN
 	limit = 1
 	special_spawn_location = 0
 #else

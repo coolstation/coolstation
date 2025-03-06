@@ -5,9 +5,8 @@
 #define SPAWN_PLANTS 2
 #define SPAWN_FISH 4
 #define SPAWN_LOOT 8
-#define SPAWN_PLANTSMANTA 16
-#define SPAWN_TRILOBITE 32
-#define SPAWN_HALLU 64
+#define SPAWN_TRILOBITE 16
+#define SPAWN_HALLU 32
 
 
 /turf/proc/make_light() //dummyproc so we can inherit
@@ -170,13 +169,6 @@
 			if (prob(8))
 				var/obj/plant = pick( src.z == 5 ? childrentypesof(/obj/sea_plant) : (childrentypesof(/obj/sea_plant) - /obj/sea_plant/anemone/lit) )
 				var/obj/sea_plant/P = new plant(src)
-				//mbc : bleh init() happens BFORRE this, most likely
-				P.initialize()
-
-		if (spawningFlags & SPAWN_PLANTSMANTA)
-			if (prob(8))
-				var/obj/plant = pick( src.z == 5 ? childrentypesof(/obj/sea_plant_manta) : (childrentypesof(/obj/sea_plant_manta) - /obj/sea_plant_manta/anemone/lit) )
-				var/obj/sea_plant_manta/P = new plant(src)
 				//mbc : bleh init() happens BFORRE this, most likely
 				P.initialize()
 
@@ -404,17 +396,6 @@
 /turf/space/fluid/fullbright
 	fullbright = 1
 
-//Manta
-/turf/space/fluid/manta
-	luminosity = 1
-	generateLight = 0
-	spawningFlags = SPAWN_PLANTSMANTA
-	turf_flags = CAN_BE_SPACE_SAMPLE | MANTA_PUSH
-
-//Manta
-/turf/space/fluid/manta/nospawn
-	spawningFlags = null
-
 /turf/floor/specialroom/sea_elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
@@ -567,4 +548,3 @@
 #undef SPAWN_DECOR
 #undef SPAWN_PLANTS
 #undef SPAWN_FISH
-#undef SPAWN_PLANTSMANTA

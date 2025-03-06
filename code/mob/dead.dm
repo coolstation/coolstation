@@ -1,6 +1,6 @@
 /mob/dead
 	stat = 2
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_CANPASS
 
 // dead
 

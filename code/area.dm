@@ -458,11 +458,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			if ("The Blind Pig") sound_fx_1 = pick('sound/ambience/spooky/TheBlindPig.ogg','sound/ambience/spooky/TheBlindPig2.ogg')
 			if ("M. Fortuna's House of Fortune") sound_fx_1 = 'sound/ambience/spooky/MFortuna.ogg'
 			else
-			#ifdef SUBMARINE_MAP
-				sound_fx_1 = pick(ambience_submarine)
-			#else
 				sound_fx_1 = pick(ambience_general)
-			#endif
 
 			#ifdef HALLOWEEN
 				if (prob(50))
@@ -1177,9 +1173,6 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Derelict Space Station"
 	icon_state = "derelict"
 	is_atmos_simulated = TRUE
-#ifdef SUBMARINE_MAP
-	force_fullbright = 1
-#endif
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
 #endif
@@ -1632,19 +1625,12 @@ ABSTRACT_TYPE(/area/station)
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/tmp/initial_structure_value = 0
 	no_ants = 0
-#ifdef MOVING_SUB_MAP
-	filler_turf = "/turf/space/fluid/manta"
-
-	New()
-		..()
-		initial_structure_value = calculate_structure_value()
-#else
 	filler_turf = null
 
 	New()
 		..()
 		initial_structure_value = calculate_structure_value()
-#endif
+
 ABSTRACT_TYPE(/area/station/atmos)
 /area/station/atmos
 	name = "Atmospherics"
@@ -2195,10 +2181,6 @@ ABSTRACT_TYPE(/area/station/mining)
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
 	mail_tag = "Bridge"
-#ifdef SUBMARINE_MAP //we can probably dump this
-	sound_group = "bridge"
-	sound_loop_1 = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
-#endif
 
 /area/station/bridge/united_command //currently only on atlas - ET
 	name = "United Command"
@@ -3083,21 +3065,6 @@ ABSTRACT_TYPE(/area/station/security)
 	mail_tag = "Detective's Office"
 	sound_environment = EAX_LIVINGROOM
 	workplace = 1
-
-/area/station/security/detectives_office_manta
-	name = "Detective's Office"
-	icon_state = "detective"
-	mail_tag = "Detective's Office"
-	sound_environment = EAX_FOREST
-	workplace = 1
-	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_1_vol = 30
-	sound_group = "detective"
-
-/area/station/security/detectives_office_manta/detectives_bedroom
-		name = "Detective's Bedroom"
-		icon_state = "red"
-		workplace = 0
 
 /area/station/security/hos
 	name = "Head of Security's Office"
@@ -4565,10 +4532,6 @@ area/station/hallway/starboardupperhallway
 	name = "Bridge"
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
-#ifdef SUBMARINE_MAP
-	sound_group = "bridge"
-	sound_loop_1 = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
-#endif
 
 /area/station2/captain //Three below this one are because Manta uses specific ambience on the bridge
 	name = "Captain's Office"

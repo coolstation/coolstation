@@ -4,15 +4,14 @@
 
 //temp_flags lol for atoms and im gonna be constantly adding and removing these
 //this doesn't entirely make sense, cause some other flags are temporary too! ok im runnign otu OF FUCKING SPACE
-#define SPACE_PUSHING 1 //used for removing us from mantapush list when we get deleted
-#define MANTA_PUSHING 2	//used for removing us from spacepush list when we get beleted
-#define HAS_PARTICLESYSTEM 4 			//atom has a particlesystem right now - used for clean gc to clear refs to itself etc blah
-#define HAS_PARTICLESYSTEM_TARGET 8 	//atom is a particlesystem target - " "
-#define HAS_BAD_SMOKE 16 				//atom has a bad smoke pointing to it right now - used for clean gc to clear refs to itself etc blah
-#define IS_LIMB_ITEM 32 				//im a limb
-#define HAS_KUDZU 64					//if a turf has kudzu.
-#define HAS_NBGG 128					//if a turf has NBGG.
-#define BEING_CRUSHERED 256				//if an atom/movable is in the crusher (so conveyors don't push it around)
+#define SPACE_PUSHING 1 				//used for removing us from spacepush list when we get deleted
+#define HAS_PARTICLESYSTEM 2 			//atom has a particlesystem right now - used for clean gc to clear refs to itself etc blah
+#define HAS_PARTICLESYSTEM_TARGET 4 	//atom is a particlesystem target - " "
+#define HAS_BAD_SMOKE 8 				//atom has a bad smoke pointing to it right now - used for clean gc to clear refs to itself etc blah
+#define IS_LIMB_ITEM 16 				//im a limb
+#define HAS_KUDZU 32					//if a turf has kudzu.
+#define HAS_NBGG 64						//if a turf has NBGG.
+#define BEING_CRUSHERED 128				//if an atom/movable is in the crusher (so conveyors don't push it around)
 
 //event_handler_flags
 #define USE_PROXIMITY 1 	//Atom implements HasProximity() call in some way.
@@ -22,16 +21,15 @@
 #define USE_HASENTERED 16	//Atom implements HasEntered() call in some way.
 #define USE_CHECKEXIT 32	//Atom implements CheckExit() call in some way.
 #define USE_CANPASS 64		//Atom implements CanPass() call in some way. (doesnt affect turfs, put this on mobs or objs)
-#define IMMUNE_MANTA_PUSH 128			//cannot be pushed by MANTAwaters
-#define IMMUNE_SINGULARITY 256
-#define IMMUNE_SINGULARITY_INACTIVE 512
-#define IS_TRINKET 1024 		//used for trinkets GC
-#define IS_FARTABLE 2048
-#define NO_MOUSEDROP_QOL 4096 //overrides the click drag mousedrop pickup QOL kinda stuff
-#define HASENTERED_MAT_PROP 8192 // if the USE_HASENTERED flag is a material property, so we know when to flush it.
-#define IS_LOAF 16384 // its a loaf. used by the singularity.
-#define IS_PITFALLING 32768 // its currently falling down an elevator, hole, etc
-#define IN_COYOTE_TIME 65536 // its coyote timing OVER a pitfall - to be replaced by atom property
+#define IMMUNE_SINGULARITY 128
+#define IMMUNE_SINGULARITY_INACTIVE 256
+#define IS_TRINKET 512 		//used for trinkets GC
+#define IS_FARTABLE 1024
+#define NO_MOUSEDROP_QOL 2048 //overrides the click drag mousedrop pickup QOL kinda stuff
+#define HASENTERED_MAT_PROP 4096 // if the USE_HASENTERED flag is a material property, so we know when to flush it.
+#define IS_LOAF 8192 // its a loaf. used by the singularity.
+#define IS_PITFALLING 16384 // its currently falling down an elevator, hole, etc
+#define IN_COYOTE_TIME 32768 // its coyote timing OVER a pitfall - to be replaced by atom property
 //TBD the rest
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)
