@@ -533,10 +533,8 @@ var/global
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
-/proc/getUniqueAreas()
-	if(length(unique_areas_with_turfs))
-		return unique_areas_with_turfs
-
+/proc/updateAreaLists()
+	//Admin jump list
 	for (var/area/A in get_areas_with_turfs(/area))
 		if(!A.name)
 			continue
@@ -544,6 +542,34 @@ var/global
 			continue
 		unique_areas_with_turfs[A.name] += list(A)
 	unique_areas_with_turfs = sortList(unique_areas_with_turfs)
+
+	//Battle royale list
+	var/list/L = list()
+	var/list/areas = concrete_typesof(/area/station)
+	for(var/A in areas)
+		var/area/station/instance = locate(A)
+		for(var/turf/T in instance)
+			if(!isfloor(T) && is_blocked_turf(T) && istype(T,/area/sim/test_area) && T.z == 1)
+				continue
+			L[instance.name] = instance
+	station_areas = L
+
+	area_list_is_up_to_date = 1
+
+//returns a list of all areas on a station
+proc/get_accessible_station_areas()
+	if(station_areas && area_list_is_up_to_date) // In case someone makes a new area
+		return station_areas
+
+	updateAreaLists()
+	return station_areas
+
+//returns all useable areas for admin jump as an associative list of lists
+/proc/getUniqueAreas()
+	if(length(unique_areas_with_turfs) && area_list_is_up_to_date)
+		return unique_areas_with_turfs
+
+	updateAreaLists()
 	return unique_areas_with_turfs
 
 /proc/addGlobalRenderSource(var/image/I, var/key)
