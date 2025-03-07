@@ -660,12 +660,7 @@
 		security
 			id = "hangar_security"
 			access_type = 2
-			#ifdef MAP_OVERRIDE_MANTA
-			access_type_secondary = 2
-			#else
 			access_type_secondary = null
-			#endif
-
 
 			new_walls
 				north

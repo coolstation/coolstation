@@ -1,7 +1,12 @@
 /**
- * These are ALL TURFS. They should STAY TURFS.
- * similar but not quite the same as /datum/component/teleport_on_enter
+ * MYLIE NOTE:
+ * For some reason I'm still figuring out, if any component returns COMPONENT_INCOMPATIBLE during preloading, it will runtime forever.
+ * What this means is if you start seeing runtimes about bad indexes and null parents, you may have a pitfall returning COMPONENT_INCOMPATIBLE.
+ * The current reasons for this are: anything but a turf having a pitfall, or the children types not having their needed target specification.
  **/
+
+// Use this to check if anything is mapped onto a pit when it shouldn't be
+//#define CHECK_PITFALL_INITIALIZATION
 
 ABSTRACT_TYPE(/datum/component/pitfall)
 /// A component for turfs which make movable atoms "fall down a pit"
@@ -21,14 +26,23 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		. = ..()
 		if (!istype(src.parent, /turf))
 			return COMPONENT_INCOMPATIBLE
-		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
-		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
-		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
 		src.BruteDamageMax	= BruteDamageMax
 		src.AnchoredAllowed = AnchoredAllowed
 		src.HangTime		= HangTime
 		src.FallTime		= FallTime
 		src.DepthScale		= DepthScale
+
+	PostTransfer()
+		if (!istype(src.parent, /turf))
+			return COMPONENT_INCOMPATIBLE
+
+	RegisterWithParent()
+		. = ..()
+		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
+		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
+		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
+		for(var/atom/movable/AM in src.typecasted_parent())
+			src.start_fall(AM,AM)
 
 	UnregisterFromParent()
 		. = ..()
@@ -41,9 +55,10 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RETURN_TYPE(/turf)
 		. = src.parent
 
-	/// updates targets for area/coordinate targeting. is overridden added to in child types.
-	proc/update_targets()
-		return
+	/// returns the turf to drop a movable AM to. Must be overridden by all children, or they will output to themself. Overriding could filter or deny ghosts passage.
+	proc/get_turf_to_fall(var/atom/movable/AM)
+		RETURN_TYPE(/turf)
+		return src.parent
 
 	/// checks if an atom can fall in.
 	proc/test_fall(var/atom/movable/AM,var/no_thrown=FALSE)
@@ -95,9 +110,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 								AM.event_handler_flags &= ~IS_PITFALLING
 								return
-						if(!pit.try_fall(signalsender, AM))
+						if(!pit.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax))
 							(AM.event_handler_flags &= ~IS_PITFALLING)
-		else if(!src.try_fall(signalsender, AM))
+		else if(!src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax))
 			(AM.event_handler_flags &= ~IS_PITFALLING)
 
 	/// called when movable atom AM lands from a throw into a pitfall turf.
@@ -108,30 +123,29 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		AM.event_handler_flags |= IS_PITFALLING
 		AM.event_handler_flags &= ~IN_COYOTE_TIME
 
-		src.try_fall(signalsender, AM)
+		src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
 		return 1
-
-	/// called when it's time for movable atom AM to actually fall into the pit
-	proc/try_fall(var/signalsender, var/atom/movable/AM)
-		SHOULD_CALL_PARENT(TRUE)
-		return TRUE
-		// child procs will then use fall_to after calling this
 
 	/// a proc that makes a movable atom 'AM' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
 	proc/fall_to(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
-		SHOULD_NOT_OVERRIDE(TRUE)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
 			return
-		#ifdef CHECK_MORE_RUNTIMES
+		#ifdef CHECK_PITFALL_INITIALIZATION
 		if(current_state <= GAME_STATE_WORLD_NEW)
 			CRASH("[identify_object(AM)] fell into [src.typecasted_parent()] at [src.typecasted_parent().x],[src.typecasted_parent().y],[src.typecasted_parent().z] ([src.typecasted_parent().loc] [src.typecasted_parent().loc.type]) during world initialization")
 		#endif
 		src.typecasted_parent().visible_message(SPAN_ALERT("[AM] falls into [src.typecasted_parent()]!"))
 		if(src.FallTime)
-			animate_fall(AM,src.FallTime,src.DepthScale)
 			var/mob/M
+			var/fall_time = src.FallTime
 			if(ismob(AM))
 				M = AM
+				if (M.grabbed_by)
+					for (var/obj/item/grab/G in M.grabbed_by)
+						if (G.state >= GRAB_AGGRESSIVE && G.assailant)
+							G.assailant.visible_message("<span class='combat'>[G.assailant] powerbombs [M] down [src.parent]!</span>","<span class='combat'>You powerbomb [M] down [src.parent]!</span>")
+							fall_time = max(fall_time - 0.2 SECONDS, 0)
+							break
 				if(M.mind && M.mind.assigned_role == "Clown")
 					playsound(M, "sound/effects/slidewhistlefall.ogg", 50, 0)
 #ifdef DATALOGGER
@@ -139,51 +153,107 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 #endif
 				M.emote("scream")
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+			animate_fall(AM,fall_time,src.DepthScale)
 			var/old_density = AM.density // dont block other fools from falling in
 			AM.density = 0
-			SPAWN_DBG(src.FallTime)
+			SPAWN_DBG(fall_time)
 				if (!QDELETED(AM))
 					if(M)
-						REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-					AM.density = old_density
-					src.actually_fall(T, AM, brutedamage)
+						M.lastgasp()
+					src.actually_fall(T, AM, brutedamage, old_density)
 		else
+			if(ismob(AM))
+				var/mob/M = AM
+				M.lastgasp()
 			src.actually_fall(T, AM, brutedamage)
 
-	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
+	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50, reset_density = 0)
 		if (isturf(T))
-			if (ismob(AM))
-				var/mob/M = AM
-				var/safe = FALSE
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
-						safe = TRUE
-					if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
-						safe = TRUE
-					if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
-						safe = TRUE
-				if(safe)
-					M.visible_message("<span class='notice'>[AM] lands gently on the ground.</span>")
-				else
-					random_brute_damage(M, brutedamage)
-					if (brutedamage >= 50)
-						M.changeStatus("paralysis", 7 SECONDS)
-					else if (brutedamage >= 30)
-						M.changeStatus("stunned", 10 SECONDS)
-					else if (brutedamage >= 20)
-						M.changeStatus("weakened", 5 SECONDS)
-					else
-						M.changeStatus("weakened", 2 SECONDS)
-					playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
-					#ifdef DATALOGGER
-					game_stats.Increment("workplacesafety")
-					#endif
-			AM.event_handler_flags &= ~IS_PITFALLING
+			var/datum/component/pitfall/next_pit = T.GetComponent(/datum/component/pitfall)
+			var/keep_falling = TRUE
+			if(!next_pit || AM.anchored > next_pit.AnchoredAllowed || (locate(/obj/lattice) in next_pit.typecasted_parent()) || (locate(/obj/grille/catwalk) in next_pit.typecasted_parent()))
+				keep_falling = FALSE
+			else if(next_pit == src && (src.FallTime < 0.3 SECONDS || brutedamage >= 1000)) // a couple limits on infinite falls, for server's sake
+				keep_falling = FALSE
 			AM.set_loc(T)
-			AM.throwing = 0
-			animate(AM)
-			return
+			AM.pixel_y = AM.pixel_y + 320
+			animate(AM, pixel_y = AM.pixel_y - 320, time = 0.3 SECONDS)
+			SPAWN_DBG(0.3 SECONDS)
+				if(QDELETED(AM) || !T)
+					return
+				if(reset_density)
+					AM.density = reset_density
+				if (ismob(AM))
+					var/mob/M = AM
+					var/safe = FALSE
+					REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+					if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+						keep_falling = FALSE
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
+							safe = TRUE
+						if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
+							safe = TRUE
+						if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+							safe = TRUE
+					if(safe)
+						M.visible_message("<span class='notice'>[AM] [keep_falling ? "glides down through" : "lands gently on"] [T].</span>","<span class='notice'>You [keep_falling ? "glide down through" : "land gently on"] [T].</span>")
+					else
+						var/did_hit_mob
+						for(var/atom/landed_on in T)
+							if(landed_on.event_handler_flags & IS_PITFALLING)
+								continue
+							if(landed_on.density)
+								AM.throw_impact(landed_on, null)
+							if(isliving(landed_on))
+								var/mob/living/L = landed_on
+								M.show_message("<span class='alert'>You use [L] to cushion your fall!</span>")
+								L.visible_message("<span class='combat'>[M] crashes down onto [L]!</span>", "<span class='combat'>[M] crashes down onto you!</span>")
+								did_hit_mob = TRUE
+								random_brute_damage(L, brutedamage / 3)
+								L.lastgasp()
+								if (brutedamage >= 20)
+									L.changeStatus("weakened", 2 SECONDS)
+						if(brutedamage && !keep_falling)
+							var/damage_dealt = did_hit_mob ? brutedamage * 2 / 3 : brutedamage
+							random_brute_damage(M, damage_dealt)
+							if (damage_dealt >= 1000)
+								M.visible_message("<span class='alert bold'>[M] splatters onto [T] at mach fuck!</span>", "<span class='alert bold'>You splatter onto [T] at mach fuck!</span>")
+								M.gib()
+								return
+							else if (damage_dealt >= 50)
+								M.changeStatus("paralysis", 7 SECONDS)
+							else if (damage_dealt >= 30)
+								M.changeStatus("weakened", 10 SECONDS)
+							else if (damage_dealt >= 20)
+								M.changeStatus("weakened", 5 SECONDS)
+							else if (damage_dealt >= 5)
+								M.changeStatus("weakened", 2 SECONDS)
+							M.force_laydown_standup()
+							playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
+							#ifdef DATALOGGER
+							game_stats.Increment("workplacesafety")
+							#endif
+						if(!did_hit_mob)
+							M.visible_message("<span class='alert'>[M] [keep_falling ? "tumbles through" : "slams down into"] [T]!</span>", "<span class='alert'>You [keep_falling ? "tumble through" : "slam down into"] [T]!</span>")
+				else
+					for(var/mob/living/L in T)
+						L.visible_message("<span class='alert'>[AM] crashes down onto [L]!</span>", "<span class='alert'>[AM] crashes down onto you!</span>")
+						AM.throw_impact(L, null)
+				T.hitby(AM, null)
+				AM.throwing = 0
+				animate(AM)
+				if(keep_falling)
+					next_pit.fall_to(next_pit.get_turf_to_fall(AM),AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
+				else
+					AM.event_handler_flags &= ~IS_PITFALLING
+				return
+		else
+			AM.event_handler_flags &= ~IS_PITFALLING
+			if(ismob(AM))
+				var/mob/M = AM
+				M.show_message("<span class='alert bold'>That pit is MAJORLY fucked up! Tell a coder!</span>")
 
 // ====================== SUBTYPES OF PITFALL ======================
 
@@ -203,14 +273,13 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	var/TargetLandmark = ""
 
 	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetLandmark = "")
+		if (!TargetLandmark)
+			return COMPONENT_INCOMPATIBLE
 		..()
 		src.TargetLandmark = TargetLandmark
-		if (!src.TargetLandmark)
-			return COMPONENT_INCOMPATIBLE
 
-	try_fall(signalsender, var/atom/movable/AM)
-		if (..())
-			src.fall_to(pick_landmark(src.TargetLandmark), AM, src.BruteDamageMax)
+	get_turf_to_fall(atom/movable/AM)
+		return pick_landmark(src.TargetLandmark)
 			return TRUE
 		return FALSE
 
@@ -230,43 +299,50 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	var/TargetArea = null
 
 	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetArea = null)
+		if (!TargetArea || !ispath(TargetArea, /area))
+			return COMPONENT_INCOMPATIBLE
 		..()
 		src.TargetArea = TargetArea
-		if (!src.TargetArea || !ispath(src.TargetArea, /area))
-			return COMPONENT_INCOMPATIBLE
 
-	try_fall(signalsender, var/atom/movable/AM)
-		if (..())
-			src.fall_to(pick(get_area_turfs(src.TargetArea)), AM, src.BruteDamageMax)
+	get_turf_to_fall(atom/movable/AM)
+		return pick(get_area_turfs(src.TargetArea))
 			return TRUE
 		return FALSE
 
 TYPEINFO(/datum/component/pitfall/target_coordinates)
 	initialization_args = list(
 		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
-		ARG_INFO("AnchoredAllowed", "boolean", "Can anchored movables fall down this pit?", TRUE),
+		ARG_INFO("AnchoredAllowed", "num", "Can anchored movables fall down this pit?", TRUE),
 		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
-		ARG_INFO("TargetZ", "num", "The z level that the target falls into.", 5),
-		ARG_INFO("LandingRange", "num", "If true, try to find a spot around the target to land on in range (x). Only for 'direct drops'.", 4),
+		ARG_INFO("OffsetX", "num", "The X offset added to the pitfall turf's X.", 0),
+		ARG_INFO("OffsetY", "num", "The Y offset added to the pitfall turf's Y.", 0),
+		ARG_INFO("TargetZ", "num", "The Z level that the target falls into. Must be set.", 0),
+		ARG_INFO("LandingRange", "num", "Try to find a spot around the target to land on in range (x).", 3),
 	)
 
 /// a pitfall which targets a coordinate. At the moment only supports targeting a z level and picking a range around current coordinates.
 /datum/component/pitfall/target_coordinates
 	/// a list of targets for the fall to pick from
 	var/list/TargetList = list()
-	/// The z level that the target falls into if not via area or landmark.
-	var/TargetZ = 5
-	/// If truthy, try to find a spot around the target to land on in range(x).
-	var/LandingRange = 4
+	/// The X offset added to the pitfall turfs X to find the target.
+	var/OffsetX = 0
+	/// The Y offset added to the pitfall turfs Y to find the target.
+	var/OffsetY = 0
+	/// The Z level that the target falls into. Must be set, to prevent accidental space-elevator-shafts.
+	var/TargetZ = 0
+	/// Try to find a non-dense spot around the target to land on in range(x).
+	var/LandingRange = 3
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetZ = 5, LandingRange = 4)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, OffsetX = 0, OffsetY = 0, TargetZ = 0, LandingRange = 3)
+		if (!TargetZ)
+			return COMPONENT_INCOMPATIBLE
 		..()
+		src.OffsetX			= OffsetX
+		src.OffsetY			= OffsetY
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
-		if (!src.TargetZ || !src.LandingRange)
-			return COMPONENT_INCOMPATIBLE
 		src.update_targets()
 
 	try_fall(signalsender, var/atom/movable/AM)
@@ -279,13 +355,14 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 			return TRUE
 		return FALSE
 
-	update_targets()
+	proc/update_targets() // prefers non-dense turf, only chooses the closest turf. If you want multiple possibilities, make a child.
 		src.TargetList = list()
-		for(var/turf/space/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
-			src.TargetList += T
-			return TRUE
-		for(var/turf/floor/T in range(src.LandingRange, locate(src.typecasted_parent().x, src.typecasted_parent().y , src.TargetZ)))
-			if(!T.density)
-				src.TargetList += T
-				return TRUE
-		return FALSE
+		if(src.LandingRange)
+			for(var/turf/T in range(src.LandingRange, locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)))
+				if(!T.density)
+					src.TargetList += T
+					return TRUE
+		src.TargetList += locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)
+		if(!length(src.TargetList))
+			return FALSE
+		return TRUE

@@ -890,11 +890,6 @@
 		icon_state = "darkvoid"
 		name = "void"
 		desc = "Yep, this is fine."
-	if(buzztile == null && prob(1) && prob(1) && src.z == 1) //Dumb shit to trick nerds.
-		buzztile = src
-		icon_state = "wiggle"
-		src.desc = "There appears to be a spatial disturbance in this area of space."
-		new/obj/item/device/key/random(src)
 
 	update_icon()
 

@@ -9,7 +9,6 @@
 	blinded = 0
 	anchored = 1
 	alpha = 180
-	event_handler_flags = IMMUNE_MANTA_PUSH
 	var/obj/machinery/playerzoldorf/homebooth
 	var/mob/originalmob
 

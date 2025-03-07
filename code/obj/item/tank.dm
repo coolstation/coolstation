@@ -289,65 +289,6 @@ Contains:
 		return
 
 ////////////////////////////////////////////////////////////
-
-#if defined(MAP_OVERRIDE_MANTA)
-/obj/item/tank/jetpack
-	name = "Jetpack (Oxygen)"
-	icon_state = "jetpack_mag0"
-	uses_multiple_icon_states = 1
-	var/on = 0.0
-	w_class = W_CLASS_BULKY
-	item_state = "jetpack_mag"
-	mats = 16
-	force = 8
-	stamina_damage = 55
-	stamina_cost = 30
-	desc = "A jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
-	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine
-	c_flags = IS_JETPACK
-
-	New()
-		..()
-		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
-		return
-
-	proc/toggle()
-		src.on = !( src.on )
-		src.icon_state = text("jetpack_mag[]", src.on)
-		if(src.on)
-			boutput(usr, "<span class='notice'>The jetpack is now on</span>")
-		else
-			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
-		return
-
-	proc/allow_thrust(num, mob/user as mob)
-		if (MagneticTether != 1)
-			return 0
-
-		if (!( src.on ))
-			return 0
-		if ((num < 0.01 || TOTAL_MOLES(src.air_contents) < num))
-			return 0
-
-		var/datum/gas_mixture/G = src.air_contents.remove(num)
-
-		if (G.oxygen >= 0.01)
-			return 1
-		if (G.toxins > 0.001)
-			if (user)
-				var/d = G.toxins / 2
-				d = min(abs(user.health + 100), d, 25)
-				user.TakeDamage("chest", 0, d)
-			return (G.oxygen >= 0.0075 ? 0.5 : 0)
-		else
-			if (G.oxygen >= 0.0075)
-				return 0.5
-			else
-				return 0
-
-/obj/item/tank/jetpack/abilities = list(/obj/ability_button/jetpack_toggle, /obj/ability_button/tank_valve_toggle)
-
-#else
 /obj/item/tank/jetpack
 	name = "Jetpack (Oxygen)"
 	icon_state = "jetpack0"
@@ -421,7 +362,6 @@ Contains:
 				return 0
 
 /obj/item/tank/jetpack/abilities = list(/obj/ability_button/jetpack_toggle, /obj/ability_button/tank_valve_toggle)
-#endif
 
 ////////////////////////////////////////////////////////////
 
