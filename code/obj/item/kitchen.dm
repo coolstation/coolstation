@@ -730,12 +730,18 @@ TRAYS
 	var/max_food = 2
 	var/list/throw_targets = list()
 	var/throw_dist = 3
+	var/stackable = TRUE
+	var/is_plate = TRUE
+	var/obj/item/plate/plate_stacked
 	tooltip_flags = REBUILD_DIST
 	var/hit_sound = "sound/items/plate_tap.ogg"
 
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_BOOK)
+
+	proc/update_icon()
+		return
 
 	/// Attempts to add an item to the plate, if there's space. Returns TRUE if food is successfully added.
 	proc/add_contents(obj/item/food, mob/user, click_params)
@@ -750,7 +756,7 @@ TRAYS
 			var/obj/item/plate/not_really_food = food
 			. = src.stackable && not_really_food.stackable // . is TRUE if we can stack the other plate on this plate, FALSE otherwise
 
-		if (length(src.foods_inside) == max_food && src.is_plate)
+		if (length(src.ordered_contents) == max_food && src.is_plate)
 			boutput(user, "<span class='alert'>There's no more space on \the [src]!</span>")
 			return
 			                                    // anything that isn't a plate may as well hold anything that fits the "plate"
@@ -769,7 +775,7 @@ TRAYS
 		if (istype(food, /obj/item/plate/))
 			src.plate_stacked = TRUE
 		else
-			src.foods_inside += food
+			src.ordered_contents += food
 
 		src.place_on(food, user, click_params) // this handles pixel positioning
 		food.set_loc(src)
@@ -777,10 +783,10 @@ TRAYS
 		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 		food.event_handler_flags |= NO_MOUSEDROP_QOL
-		RegisterSignal(food, COMSIG_ATOM_MOUSEDROP, .proc/indirect_pickup)
+		//RegisterSignal(food, COMSIG_ATOM_MOUSEDROP, .proc/indirect_pickup)
 		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, .proc/remove_contents)
 		RegisterSignal(food, COMSIG_ATTACKHAND, .proc/remove_contents)
-		src.UpdateIcon()
+		src.update_icon()
 		boutput(user, "You put [food] [src.is_plate ? "on" : "in"] \the [src].")
 
 	/// Removes a piece of food from the plate.
@@ -790,15 +796,14 @@ TRAYS
 		food.appearance_flags = initial(food.appearance_flags)
 		food.vis_flags = initial(food.vis_flags)
 		food.event_handler_flags = initial(food.event_handler_flags)
-		UnregisterSignal(food, COMSIG_ATOM_MOUSEDROP)
+		//UnregisterSignal(food, COMSIG_ATOM_MOUSEDROP)
 		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
 		UnregisterSignal(food, COMSIG_ATTACKHAND)
 		if (istype(food, /obj/item/plate/))
 			src.plate_stacked = FALSE
 		else
-			src.foods_inside -= food
-
-		src.UpdateIcon()
+			src.ordered_contents -= food
+		src.update_icon()
 
 	/// Used to pick the plate up by click dragging some food to you, in case the plate is covered by big foods
 	proc/indirect_pickup(var/food, mob/user, atom/over_object)
@@ -814,7 +819,7 @@ TRAYS
 			if (istype(food, /obj/item/plate))
 				var/obj/item/plate/not_food = food
 				SPAWN_DBG(0.1 SECONDS) // This is rude but I want a small delay in smashing nested plates. More satisfying
-					not_food?.shatter(depth)
+					not_food?.shit_goes_everywhere(depth)
 			else
 				food.throw_at(get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist)), 5, 1)
 
@@ -1038,6 +1043,8 @@ TRAYS
 	max_food = 30
 	throw_dist = 5
 	two_handed = 1 //decomment this line when porting over please
+	is_plate = FALSE
+	stackable = FALSE
 	var/health_desc = null
 	var/y_counter = 0
 	var/y_mod = 0

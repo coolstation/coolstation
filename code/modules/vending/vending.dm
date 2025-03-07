@@ -2679,7 +2679,6 @@
 		if(!target)
 			return null
 
-		var/randtopping = pick("plain", "meatball", "mushroom", "pepperoni")
 		var/obj/item/reagent_containers/food/snacks/ingredient/pizza_base/P  = new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base(src.loc) //It's raw :)
 		P.quality = 0.6
 		P.heal_amt = 2

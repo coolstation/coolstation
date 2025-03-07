@@ -49,7 +49,6 @@
 			src.cheese_image = SafeGetOverlayImage("cheese", 'icons/obj/foodNdrink/food_ingredient.dmi', "pizzacheese[src.cheesy]")
 		UpdateOverlays(src.sauce_image, "sauce", TRUE)
 		UpdateOverlays(src.cheese_image, "cheese", TRUE)
-		..()
 
 	attackby(obj/item/W, mob/user, params)
 		if (!src.reagents.total_volume && !length(src.contents) && !src.cheesy && (iscuttingtool(W) || issnippingtool(W) || ischoppingtool(W))) // make tortillas if untouched
@@ -101,7 +100,7 @@
 			topping.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 			topping.event_handler_flags |= NO_MOUSEDROP_QOL
 			src.vis_contents += topping
-			RegisterSignal(topping, COMSIG_ATOM_MOUSEDROP, PROC_REF(indirect_pickup))
+			//RegisterSignal(topping, COMSIG_ATOM_MOUSEDROP, PROC_REF(indirect_pickup))
 			RegisterSignal(topping, COMSIG_ATTACKHAND, PROC_REF(remove_topping))
 			src.update_icon()
 		else
@@ -116,7 +115,7 @@
 		topping.appearance_flags = initial(topping.appearance_flags)
 		topping.vis_flags = initial(topping.vis_flags)
 		topping.event_handler_flags = initial(topping.event_handler_flags)
-		UnregisterSignal(topping, COMSIG_ATOM_MOUSEDROP)
+		//UnregisterSignal(topping, COMSIG_ATOM_MOUSEDROP)
 		UnregisterSignal(topping, COMSIG_ATTACKHAND)
 
 		src.update_icon()
@@ -352,7 +351,6 @@
 			pizza_slice.cheesy = src.cheesy
 			pizza_slice.update_icon()
 			pizza_slice.heal_amt = src.heal_amt
-			pizza_slice.
 			pizza_slice.food_effects = src.food_effects
 			pizza_slice.reagents.maximum_volume = max(10, amount_to_transfer)
 			src.reagents.trans_to(pizza_slice, amount_to_transfer)
