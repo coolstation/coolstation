@@ -303,6 +303,11 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_top_id = "qmdum_top"
 	stop_bottom_id = "qmdum_bot"
 
+/obj/machinery/button/elevator/robo
+	vehicle_id = "robo_elevator"
+	stop_top_id = "robo_top"
+	stop_bottom_id = "robo_bot"
+
       //|\\
      // | \\
     //  |  \\
@@ -413,6 +418,17 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	name = "Space Elevator"
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/plating"
+
+/area/transit_vehicle/elevator/robo_top
+	name = "Robotics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/robo_bot
+	name = "Robotics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/cautionblack"
+
 
 /turf/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM
