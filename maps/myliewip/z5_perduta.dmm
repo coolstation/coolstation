@@ -10,6 +10,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/window/crystal/reinforced/south,
 /turf/floor/plating,
 /area/station/medical/robotics)
 "d" = (
@@ -104,7 +105,7 @@
 /area/station/medical/robotics)
 "A" = (
 /turf/floor/cautionblack,
-/area/station/medical/robotics)
+/area/transit_vehicle/elevator/robo_bot)
 "B" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -167,6 +168,9 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
+/obj/machinery/button/elevator/robo{
+	pixel_x = 24
+	},
 /turf/floor/plating,
 /area/station/medical/robotics)
 "M" = (
@@ -192,18 +196,19 @@
 /turf/floor/plating,
 /area/station/medical/robotics)
 "O" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
 	},
-/obj/window/crystal/reinforced/north,
-/obj/window/crystal/reinforced/south,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4
+	},
 /obj/grille/catwalk/bob/inner{
 	dir = 4
 	},
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
@@ -236,6 +241,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/window/crystal/reinforced/north,
 /obj/machinery/networked/ai_governor/viewports,
 /turf/floor/plating,
 /area/station/medical/robotics)

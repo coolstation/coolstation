@@ -2643,7 +2643,7 @@
 	icon_state = "shaft_single";
 	name = "cyborg descent shaft"
 	},
-/area/station/medical/robotics)
+/area/transit_vehicle/elevator/robo_top)
 "Dy" = (
 /obj/railing/reinforced{
 	dir = 1
@@ -3331,6 +3331,9 @@
 	},
 /obj/decal/tile_edge/stripe/big,
 /obj/window/reinforced/south,
+/obj/machinery/button/elevator/robo{
+	pixel_y = 28
+	},
 /turf/floor/grey/side,
 /area/station/medical/robotics)
 "KT" = (

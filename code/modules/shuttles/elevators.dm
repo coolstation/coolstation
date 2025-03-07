@@ -429,7 +429,6 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/cautionblack"
 
-
 /turf/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM
 /turf/floor/specialroom/elevator_shaft/med
