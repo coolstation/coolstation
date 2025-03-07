@@ -1846,7 +1846,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/risotto
 
-/datum/cookingrecipe/cheesewheel
+/datum/cookingrecipe/oven/cheesewheel
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	amt1 = 4
 	cookbonus = 14
