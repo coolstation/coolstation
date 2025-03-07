@@ -129,12 +129,18 @@ var/global/noir = 0
 		if ("jump_list")
 			if (src.level < LEVEL_PA)
 				return
+			if(!config.allow_admin_jump)
+				alert("Admin jumping disabled")
+				return
 			for(var/area/A in global.unique_areas_with_turfs[href_list["type"]])
 				var/list/turfs = get_area_turfs(A, 1)
 				if (length(turfs))
 					if(adminClient.pizzazz)
 						shrink_teleport(usr)
 					usr.set_loc(pick(turfs))
+					logTheThing("admin", usr, null, "jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
+					logTheThing("diary", usr, null, "jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
+					message_admins("[key_name(usr)] jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
 					return
 			boutput(usr, "Can't jump there, zero active turfs in that area.")
 		if ("ah_mute")//gguhHUhguHUGH
