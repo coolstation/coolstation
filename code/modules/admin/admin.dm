@@ -140,14 +140,12 @@ var/global/noir = 0
 				if (length(turfs))
 					jumptargets += pick(turfs)
 			if(length(jumptargets))
-				var/area/targetArea = jumptargets[1]
-				var/name = targetArea.name
 				if(adminClient.pizzazz)
 					shrink_teleport(usr)
 				usr.set_loc(pick(jumptargets))
-				logTheThing("admin", usr, null, "jumped to [name] ([showCoords(usr.x, usr.y, usr.z)])")
-				logTheThing("diary", usr, null, "jumped to [name] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
-				message_admins("[key_name(usr)] jumped to [name] ([showCoords(usr.x, usr.y, usr.z)])")
+				logTheThing("admin", usr, null, "jumped to [href_list["type"]] ([showCoords(usr.x, usr.y, usr.z)])")
+				logTheThing("diary", usr, null, "jumped to [href_list["type"]] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
+				message_admins("[key_name(usr)] jumped to [href_list["type"]] ([showCoords(usr.x, usr.y, usr.z)])")
 
 				return
 			boutput(usr, "Can't jump there, zero active turfs in that area.")
