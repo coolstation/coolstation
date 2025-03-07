@@ -458,7 +458,7 @@
 	pixel_x = -2
 	},
 /obj/item/sticker/rainbow,
-/obj/neon_lining,
+/obj/window/crystal/reinforced/south,
 /turf/floor/carpet/clowncarpet/border{
 	dir = 1
 	},
@@ -470,7 +470,6 @@
 /turf/floor/darkpurple,
 /area/station/janitor/office)
 "fA" = (
-/obj/window/crystal/reinforced/north,
 /obj/fluid_spawner/shortdelay{
 	amount = 500
 	},
@@ -483,6 +482,7 @@
 	pixel_x = -15
 	},
 /mob/living/critter/aquatic/fish/clown,
+/obj/neon_lining,
 /turf/floor/sand,
 /area/station/crew_quarters/clown)
 "fD" = (
@@ -3403,7 +3403,10 @@
 	},
 /obj/item/paper/book/from_file/the_trial,
 /obj/decal/cleanable/mess/random_food,
-/obj/neon_lining,
+/obj/window/crystal/reinforced/south,
+/obj/neon_lining{
+	dir = 8
+	},
 /turf/floor/carpet/clowncarpet/innercorner{
 	dir = 4
 	},
@@ -4240,13 +4243,16 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "PX" = (
-/obj/machinery/light/fluorescent/purple{
-	dir = 1
-	},
 /obj/npc/trader/exclown,
 /obj/decal/poster/wallsign/poster_tiger{
 	pixel_y = 29;
 	pixel_x = 3
+	},
+/obj/neon_lining{
+	dir = 8
+	},
+/obj/neon_lining{
+	dir = 10
 	},
 /turf/floor/carpet/clowncarpet/innercorner,
 /area/station/crew_quarters/clown)
@@ -4295,9 +4301,12 @@
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "Qq" = (
-/obj/window/crystal/reinforced/north,
 /obj/sea_plant/anemone/lit,
 /obj/item/reagent_containers/food/snacks/sandwich/grubmeat,
+/obj/neon_lining{
+	dir = 8
+	},
+/obj/neon_lining,
 /turf/floor/sand,
 /area/station/crew_quarters/clown)
 "Qs" = (
@@ -4407,8 +4416,6 @@
 	},
 /area/station/medical/robotics)
 "Rk" = (
-/obj/window/crystal/reinforced/north,
-/obj/window/crystal/reinforced/east,
 /obj/sea_plant/branching,
 /obj/item/old_grenade/banana{
 	pixel_y = 5;
@@ -4416,6 +4423,7 @@
 	},
 /obj/item/device/light/glowstick/green_on,
 /obj/disposalpipe/segment/bent/north,
+/obj/neon_lining,
 /turf/floor/sand,
 /area/station/crew_quarters/clown)
 "Ro" = (
@@ -4489,6 +4497,9 @@
 	},
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/gay,
+/obj/neon_lining{
+	dir = 10
+	},
 /turf/floor/carpet/clowncarpet/border,
 /area/station/crew_quarters/clown)
 "Se" = (
@@ -4927,6 +4938,9 @@
 	},
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk/south,
+/obj/neon_lining{
+	dir = 10
+	},
 /turf/floor/carpet/clowncarpet/innercorner{
 	dir = 8
 	},
@@ -5035,10 +5049,10 @@
 	pixel_y = 7
 	},
 /obj/disposalpipe/segment/vertical,
-/obj/neon_lining,
 /obj/railing/reinforced{
 	dir = 4
 	},
+/obj/window/crystal/reinforced/south,
 /turf/floor/carpet/clowncarpet/innercorner{
 	dir = 9
 	},
@@ -5092,6 +5106,7 @@
 	icon_state = "lattice-dir";
 	tag = "icon-lattice-dir (EAST)"
 	},
+/obj/window/crystal/reinforced/west,
 /turf/space/magindara,
 /area/station/crew_quarters/clown)
 "XS" = (
