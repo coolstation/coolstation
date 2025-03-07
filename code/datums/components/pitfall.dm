@@ -280,8 +280,6 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 
 	get_turf_to_fall(atom/movable/AM)
 		return pick_landmark(src.TargetLandmark)
-			return TRUE
-		return FALSE
 
 TYPEINFO(/datum/component/pitfall/target_area)
 	initialization_args = list(
@@ -306,8 +304,6 @@ TYPEINFO(/datum/component/pitfall/target_area)
 
 	get_turf_to_fall(atom/movable/AM)
 		return pick(get_area_turfs(src.TargetArea))
-			return TRUE
-		return FALSE
 
 TYPEINFO(/datum/component/pitfall/target_coordinates)
 	initialization_args = list(
@@ -345,15 +341,13 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		src.LandingRange	= LandingRange
 		src.update_targets()
 
-	try_fall(signalsender, var/atom/movable/AM)
-		if (..())
-			if (!src.TargetList || !length(src.TargetList))
-				if(!src.update_targets())
-					RemoveComponent()
-					return FALSE
-			src.fall_to(pick(src.TargetList), AM, src.BruteDamageMax)
-			return TRUE
-		return FALSE
+	get_turf_to_fall(atom/movable/AM)
+		. = ..()
+		if (!src.TargetList || !length(src.TargetList))
+			if(!src.update_targets())
+				RemoveComponent()
+				return src.parent
+		return pick(src.TargetList)
 
 	proc/update_targets() // prefers non-dense turf, only chooses the closest turf. If you want multiple possibilities, make a child.
 		src.TargetList = list()

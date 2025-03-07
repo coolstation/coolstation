@@ -42,7 +42,7 @@
 			HangTime = 0.3 SECONDS,\
 			FallTime = 1.2 SECONDS,\
 			DepthScale = 0.5,\
-		)
+			TargetZ = 5)
 
 	make_light()
 		if (!light)

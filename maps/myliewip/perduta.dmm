@@ -10,12 +10,6 @@
 	},
 /turf/space/magindara,
 /area/magindara)
-"ai" = (
-/obj/cable{
-	icon_state = "5-8"
-	},
-/turf/floor/plating,
-/area/station/maintenance/central)
 "ap" = (
 /turf/floor/blue/side,
 /area/station/hallway/primary/west)
@@ -129,6 +123,13 @@
 /obj/storage/closet,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/item/clothing/under/patient_gown,
+/obj/item/clothing/under/patient_gown{
+	pixel_x = -4
+	},
+/obj/item/clothing/under/patient_gown{
+	pixel_x = 6
 	},
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
@@ -651,6 +652,11 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"kD" = (
+/obj/table/auto,
+/obj/item/storage/firstaid/brain,
+/turf/floor/bluegreen,
+/area/station/medical/medbay/cloner)
 "kH" = (
 /obj/grille/catwalk/cross{
 	dir = 5
@@ -1212,7 +1218,12 @@
 /area/station/medical/robotics)
 "qT" = (
 /obj/cable{
-	icon_state = "1-10"
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -1326,6 +1337,11 @@
 "sJ" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
+	},
+/obj/submachine/chef_sink/chem_sink{
+	dir = 4;
+	pixel_y = -1;
+	pixel_x = -5
 	},
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
@@ -2164,6 +2180,9 @@
 /area/station/medical/morgue)
 "FA" = (
 /obj/table/auto,
+/obj/item/clothing/under/patient_gown{
+	pixel_x = -4
+	},
 /turf/floor/sanitary/blue,
 /area/station/medical/medbay/cloner)
 "FB" = (
@@ -2497,6 +2516,15 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"Kr" = (
+/obj/shrub/random{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/floor/planter/strips{
+	dir = 8
+	},
+/area/station/hallway/primary/southwest)
 "KL" = (
 /obj/machinery/optable{
 	id = "OR1"
@@ -2590,6 +2618,14 @@
 "LD" = (
 /turf/floor/grey/side,
 /area/station/medical/robotics)
+"LP" = (
+/obj/shrub/big/big2{
+	pixel_y = -11
+	},
+/turf/floor/planter/strips{
+	dir = 10
+	},
+/area/station/hallway/primary/southwest)
 "LZ" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -2821,6 +2857,12 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"OM" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "OV" = (
 /obj/machinery/door/window/westleft,
 /obj/machinery/drainage,
@@ -2863,6 +2905,11 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"Pf" = (
+/turf/floor/blue/corner{
+	dir = 4
+	},
+/area/station/hallway/primary/west)
 "Pm" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2{
@@ -35890,7 +35937,7 @@ SO
 HP
 hO
 cw
-nJ
+Or
 Jh
 Jh
 Jh
@@ -36192,7 +36239,7 @@ zE
 hO
 pp
 nJ
-nJ
+ap
 tX
 sJ
 QQ
@@ -36494,7 +36541,7 @@ kv
 kv
 nJ
 nJ
-nJ
+ap
 fh
 rv
 ZQ
@@ -36789,14 +36836,14 @@ nJ
 nJ
 nJ
 nJ
-nJ
-nJ
-nJ
-nJ
+Or
+qI
+qI
+Pf
 nJ
 HF
-nJ
-nJ
+Or
+RI
 Nm
 Xz
 Ie
@@ -40127,9 +40174,9 @@ VG
 jm
 VG
 Ub
-mF
-mF
-Bv
+OM
+MJ
+lY
 tC
 tC
 SO
@@ -40429,10 +40476,10 @@ fF
 gg
 mF
 mF
+Bv
 mF
-ai
 tC
-SO
+tC
 SO
 SO
 SO
@@ -41033,7 +41080,7 @@ St
 Kh
 tC
 tC
-mF
+Bv
 tC
 tC
 SO
@@ -41319,7 +41366,7 @@ UC
 YL
 UO
 Qj
-xX
+kD
 xX
 xX
 Fs
@@ -41634,7 +41681,7 @@ Xq
 Xq
 PZ
 ik
-ik
+Kr
 VG
 mF
 mF
@@ -41936,7 +41983,7 @@ ik
 ik
 ik
 ik
-ik
+LP
 VG
 mF
 mF
