@@ -260,7 +260,7 @@ function updateSearchSubstring() {
 			"searchfunc" = "updateSearchSubstring"
 		)
 		window = "inputselection"
-		size = "365x330"
+		size = "365x320"
 		header = {"
 		 <style type="text/css">
 		* { box-sizing: border-box; }

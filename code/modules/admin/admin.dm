@@ -136,6 +136,7 @@ var/global/noir = 0
 						shrink_teleport(usr)
 					usr.set_loc(pick(turfs))
 					return
+			boutput(usr, "Can't jump there, zero active turfs in that area.")
 		if ("ah_mute")//gguhHUhguHUGH
 			if (src.level >= LEVEL_PA)
 				var/client/C = locate(href_list["target"])
