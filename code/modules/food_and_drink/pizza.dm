@@ -354,11 +354,11 @@
 			pizza_slice.food_effects = src.food_effects
 			pizza_slice.reagents.maximum_volume = max(10, amount_to_transfer)
 			src.reagents.trans_to(pizza_slice, amount_to_transfer)
+			if(src.material)
+				pizza_slice.setMaterial(src.material)
 			pizza_slice.name = "slice of " + src.name
 			pizza_slice.desc = src.desc
 			pizza_slice.sharpened = src.sharpened
-			if(src.material)
-				pizza_slice.setMaterial(src.material)
 			pizza_slice.quality = src.quality
 			. += pizza_slice
 			makeslices--
