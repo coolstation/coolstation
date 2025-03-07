@@ -132,16 +132,23 @@ var/global/noir = 0
 			if(!config.allow_admin_jump)
 				alert("Admin jumping disabled")
 				return
+			var/list/jumptargets = list()
+			//Find a turf for every area with the given name
+			//Then pick one of thosse turfs to teleport to
 			for(var/area/A in global.unique_areas_with_turfs[href_list["type"]])
 				var/list/turfs = get_area_turfs(A, 1)
 				if (length(turfs))
-					if(adminClient.pizzazz)
-						shrink_teleport(usr)
-					usr.set_loc(pick(turfs))
-					logTheThing("admin", usr, null, "jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
-					logTheThing("diary", usr, null, "jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
-					message_admins("[key_name(usr)] jumped to [A] ([showCoords(usr.x, usr.y, usr.z)])")
-					return
+					jumptargets += pick(turfs)
+			if(length(jumptargets))
+				var/name = jumptargets[1].name
+				if(adminClient.pizzazz)
+					shrink_teleport(usr)
+				usr.set_loc(pick(jumptargets))
+				logTheThing("admin", usr, null, "jumped to [name] ([showCoords(usr.x, usr.y, usr.z)])")
+				logTheThing("diary", usr, null, "jumped to [name] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
+				message_admins("[key_name(usr)] jumped to [name] ([showCoords(usr.x, usr.y, usr.z)])")
+
+				return
 			boutput(usr, "Can't jump there, zero active turfs in that area.")
 		if ("ah_mute")//gguhHUhguHUGH
 			if (src.level >= LEVEL_PA)
