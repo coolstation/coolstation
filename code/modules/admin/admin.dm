@@ -4148,8 +4148,7 @@ var/global/noir = 0
 	if(!config.allow_admin_jump)
 		boutput(user, "Admin jumping disabled")
 		return
-
-	PC_LOAD_OR_OPEN(selector/inputstyle, jumpscreen)
+	PC_LOAD_OR_OPEN_CONDITIONAL(selector/inputstyle, jumpscreen, area_list_is_up_to_date)
 	var/jumpjs = jointext(getUniqueAreas(), ";")
 	jumpscreen.tags["object-paths"] = jumpjs
 	PC_RENDER(jumpscreen)

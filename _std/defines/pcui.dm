@@ -49,6 +49,11 @@
 	variable.setup(user);\
 	if(winget(user.client, "[variable.window]", "is-visible")) {winset(user.client, "[variable.window]", "is-visible=true;input.browser.focus=true") ; return}
 
+//Reopen if condition is true otherwise load template
+#define PC_LOAD_OR_OPEN_CONDITIONAL(template, variable, condition); var/datum/pcui_template/template/variable = new ;\
+	variable.setup(user);\
+	if (condition && winget(user.client, "[variable.window]", "is-visible")){\
+		winset(user.client, "[variable.window]", "is-visible=true;input.browser.focus=true") ; return};\
 
 //Clear render
 #define PC_RESET(target) target.setup(user)
