@@ -437,7 +437,7 @@
 			user.put_in_hand_or_drop(D)
 			qdel(W)
 			qdel(src)
-		else if (istype(W, /obj/item/kitchen/rollingpin))
+		else if (istype(W, /obj/item/kitchen/rollingpin) || istype(W, /obj/item/rods))
 			boutput(user, "<span class='notice'>You flatten out the dough.</span>")
 			if (prob(25))
 				JOB_XP(user, "Chef", 1)
