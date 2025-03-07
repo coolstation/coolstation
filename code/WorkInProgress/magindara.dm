@@ -1,5 +1,5 @@
 /turf/space/magindara
-	name = "\proper the ocean below"
+	name = "\improper the ocean below"
 	desc = "The deep ocean of Magindara far below, whipped with waves and frigid cold."
 	icon = 'icons/turf/water.dmi'
 	icon_state = "magindara_ocean"
@@ -75,8 +75,14 @@
 
 /area/magindara
 	icon_state = "pink"
-	name = "the magindaran sea"
+	name = "\proper Magindaran sea"
 	is_construction_allowed = TRUE
+
+/area/station/catwalk/simulated //todo: make this an abstract type later
+	icon_state = "yellow"
+	name = "Maintenance Catwalk"
+	force_fullbright = FALSE
+	requires_power = TRUE
 
 proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 	if(!map_currently_abovewater)
@@ -154,5 +160,3 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 		for(var/mob/living/L in orange(2, target)) // some more mean effects
 			L.changeStatus("disorient",min(5 * power,30 SECONDS))
 			L.change_misstep_chance(min(power, 30))
-
-
