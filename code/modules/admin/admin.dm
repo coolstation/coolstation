@@ -140,7 +140,8 @@ var/global/noir = 0
 				if (length(turfs))
 					jumptargets += pick(turfs)
 			if(length(jumptargets))
-				var/name = jumptargets[1].name
+				var/area/targetArea = jumptargets[1]
+				var/name = targetArea.name
 				if(adminClient.pizzazz)
 					shrink_teleport(usr)
 				usr.set_loc(pick(jumptargets))
