@@ -4144,13 +4144,16 @@ var/global/noir = 0
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_turds'>Spawn a T.U.R.D.S. attack force</A><BR>
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
 /datum/admins/proc/jump_to(var/mob/user)
-	if(config.allow_admin_jump)
-		set background = 1
-		PC_LOAD_OR_OPEN(selector/inputstyle, jumpscreen)
-		var/jumpjs = jointext(getUniqueAreas(), ";")
-		jumpscreen.tags["object-paths"] = jumpjs
-		PC_RENDER(jumpscreen)
-		PC_BROWSE(jumpscreen)
+	set background = 1
+	if(!config.allow_admin_jump)
+		boutput(user, "Admin jumping disabled")
+		return
+
+	PC_LOAD_OR_OPEN(selector/inputstyle, jumpscreen)
+	var/jumpjs = jointext(getUniqueAreas(), ";")
+	jumpscreen.tags["object-paths"] = jumpjs
+	PC_RENDER(jumpscreen)
+	PC_BROWSE(jumpscreen)
 
 /datum/admins/proc/create_mob(var/mob/user)
 	set background = 1
