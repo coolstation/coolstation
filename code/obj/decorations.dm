@@ -1280,12 +1280,6 @@ obj/decoration/ceilingfan
 		..()
 		BLOCK_SETUP(BLOCK_SOFT)
 
-	attackby(obj/item/W, mob/user, params)
-		if(iswrenchingtool(W))
-			actions.start(new /datum/action/bar/icon/anchor_or_unanchor(src, W, duration=2 SECONDS), user)
-			return
-		. = ..()
-
 	get_desc()
 		if (islist(src.proj_impacts) && length(src.proj_impacts))
 			var/shots_taken = 0
