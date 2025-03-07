@@ -537,14 +537,12 @@ var/global
 	if(length(unique_areas_with_turfs))
 		return unique_areas_with_turfs
 
-	var/list/areanames = list()
 	for (var/area/A in get_areas_with_turfs(/area))
-		if(A.name in areanames || !A.name)
+		if(!A.name)
 			continue
 		if(!length(A.name))
 			continue
-		areanames |= A.name
-		unique_areas_with_turfs[A.name] = A
+		unique_areas_with_turfs[A.name] += list(A)
 	unique_areas_with_turfs = sortList(unique_areas_with_turfs)
 	return unique_areas_with_turfs
 

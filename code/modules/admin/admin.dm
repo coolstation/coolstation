@@ -129,12 +129,13 @@ var/global/noir = 0
 		if ("jump_list")
 			if (src.level < LEVEL_PA)
 				return
-			if(adminClient.pizzazz)
-				shrink_teleport(usr)
-			var/area/A = global.unique_areas_with_turfs[href_list["type"]]
-			var/list/turfs = get_area_turfs(A, 1)
-			if (length(turfs))
-				usr.set_loc(pick(turfs))
+			for(var/area/A in global.unique_areas_with_turfs[href_list["type"]])
+				var/list/turfs = get_area_turfs(A, 1)
+				if (length(turfs))
+					if(adminClient.pizzazz)
+						shrink_teleport(usr)
+					usr.set_loc(pick(turfs))
+					return
 		if ("ah_mute")//gguhHUhguHUGH
 			if (src.level >= LEVEL_PA)
 				var/client/C = locate(href_list["target"])
