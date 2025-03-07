@@ -12,16 +12,16 @@
 #define INTERRUPT_ACTION 16
 
 /// Action has not been started yet.
-#define ACTIONSTATE_STOPPED 1
+#define ACTIONSTATE_STOPPED (1<<0)
 /// Action is in progress
-#define ACTIONSTATE_RUNNING 2
+#define ACTIONSTATE_RUNNING (1<<1)
 /// Action was interrupted
-#define ACTIONSTATE_INTERRUPTED 4
+#define ACTIONSTATE_INTERRUPTED (1<<2)
 /// Action ended succesfully
-#define ACTIONSTATE_ENDED 8
+#define ACTIONSTATE_ENDED (1<<3)
 /// Action is ready to be deleted.
-#define ACTIONSTATE_DELETE 16
+#define ACTIONSTATE_DELETE (1<<4)
 /// Will finish action after next process.
-#define ACTIONSTATE_FINISH 32
+#define ACTIONSTATE_FINISH (1<<5)
 /// Will not finish unless interrupted.
-#define ACTIONSTATE_INFINITE 64
+#define ACTIONSTATE_INFINITE (1<<6)
