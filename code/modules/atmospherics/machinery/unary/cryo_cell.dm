@@ -300,14 +300,14 @@
 	proc/shock_icon()
 		var/fake_overlay = new /obj/shock_overlay(src.loc)
 		src.vis_contents += fake_overlay
-		SPAWN(1 SECOND)
+		SPAWN_DBG(1 SECOND)
 			src.vis_contents -= fake_overlay
 			qdel(fake_overlay)
 			if(!src.defib)
 				src.UpdateOverlays(null, "defib")
 				return
 			src.UpdateOverlays(src.SafeGetOverlayImage("defib", 'icons/obj/Cryogenic2.dmi', "defib-off", 2, pixel_y=-32), "defib")
-		SPAWN(src.defib.charge_time)
+		SPAWN_DBG(src.defib.charge_time)
 			if(!src.defib)
 				src.UpdateOverlays(null, "defib")
 				return
