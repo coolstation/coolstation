@@ -158,6 +158,16 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	target_area = /area/transit_vehicle/elevator/ntfc_bot
 	current_occupant = "ntfc_elevator"
 
+/datum/transit_stop/elevator/robo_top
+	stop_id 	= "robo_top"
+	name		= "Cyborg Descent Chute"
+	target_area = /area/transit_vehicle/elevator/robo_top
+
+/datum/transit_stop/elevator/robo_bot
+	stop_id 	= "robo_bot"
+	name		= "Cyborg Ascent Chute"
+	target_area = /area/transit_vehicle/elevator/robo_bot
+
 /*
 /datum/transit_stop/elevator/
 	stop_id 	= ""
@@ -215,6 +225,10 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /datum/transit_vehicle/elevator/ntfc
 	vehicle_id = "ntfc_elevator"
 	stop_ids = list("ntfc_top","ntfc_mid","ntfc_bot")
+
+/datum/transit_vehicle/elevator/robo
+	vehicle_id = "robo_elevator"
+	stop_ids = list("robo_top","robo_bot")
 
 // computers
 
