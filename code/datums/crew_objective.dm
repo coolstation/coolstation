@@ -410,6 +410,39 @@ ABSTRACT_TYPE(/datum/objective/crew/chef)
 			return (global_objective_status["kitchen_ants"] != FAILED)
 	//chef objective idea (that needs some manual sorting through for doable foods): make several of X for dinner
 
+#define PIZZA_OBJ_COUNT 3
+/datum/objective/crew/chef/pizza
+	var/choices[PIZZA_OBJ_COUNT]
+	var/completed = FALSE
+	var/static/list/good_food_toppings = concrete_typesof(/obj/item/reagent_containers/food/snacks/ingredient) - concrete_typesof(/obj/item/reagent_containers/food/snacks/ingredient/egg/critter) + concrete_typesof(/obj/item/reagent_containers/food/snacks/plant)
+	set_up()
+		..()
+		var/list/names[PIZZA_OBJ_COUNT]
+		var/current_rolls = 0
+		var/max_rolls = 30
+		for(var/i = 1, i <= PIZZA_OBJ_COUNT, i++)
+			choices[i] = pick(good_food_toppings)
+			var/choiceType = choices[i]
+			var/obj/item/reagent_containers/food/snacks/instance =  new choiceType
+			if(instance.custom_food && instance.w_class <= W_CLASS_SMALL)
+				names[i] = instance.name
+			else
+				i--
+			current_rolls++
+			if (current_rolls > max_rolls)
+				stack_trace("Failed to generate a pizza objective for chef. Aborting.")
+				return
+		explanation_text = "Create a custom pizza with "
+		for (var/ingredient in names)
+			if (ingredient != names[PIZZA_OBJ_COUNT])
+				explanation_text += "[ingredient], "
+			else
+				explanation_text += "and [ingredient] "
+		explanation_text += "toppings."
+	check_completion()
+		return completed
+
+
 //	engineer
 ABSTRACT_TYPE(/datum/objective/crew/engineer)
 /datum/objective/crew/engineer
