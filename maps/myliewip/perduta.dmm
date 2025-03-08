@@ -373,14 +373,6 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
 /area/station/maintenance/central)
-"dV" = (
-/obj/decal/tile_edge/stripe{
-	dir = 1
-	},
-/obj/table/wood/auto,
-/obj/machinery/door/window/northright,
-/turf/floor/carpet/grime2,
-/area/station/hydroponics/lobby)
 "dX" = (
 /obj/disposalpipe/junction/middle/west,
 /turf/floor/white/checker,
@@ -1094,11 +1086,16 @@
 "lk" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = -12;
+	pixel_x = -4;
 	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/large{
-	pixel_y = 7
+	pixel_y = -1;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/glass/water_pipe{
+	pixel_x = 4;
+	pixel_y = 5
 	},
 /turf/floor/wood/eight,
 /area/station/hydroponics/lobby)
@@ -2065,7 +2062,6 @@
 /obj/table/wood/auto{
 	pixel_y = 0
 	},
-/obj/window/reinforced/north,
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
 "th" = (
@@ -2962,8 +2958,6 @@
 	dir = 5
 	},
 /obj/table/wood/auto,
-/obj/item/reagent_containers/glass/water_pipe,
-/obj/window/reinforced/north,
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
 "BI" = (
@@ -3161,6 +3155,7 @@
 	},
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	icon_state = "shaft_single";
+	areastring = nulls;
 	name = "cyborg descent chute"
 	},
 /area/transit_vehicle/elevator/robo_top)
@@ -3576,7 +3571,6 @@
 	dir = 1
 	},
 /obj/table/wood/auto,
-/obj/machinery/door/window/northleft,
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
 "He" = (
@@ -49140,7 +49134,7 @@ am
 ik
 ik
 aC
-dV
+Hb
 zd
 UF
 uA
