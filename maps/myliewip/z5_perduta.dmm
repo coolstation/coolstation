@@ -1,15 +1,18 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ae" = (
-/obj/machinery/button/elevator/hydro{
-	pixel_x = 32
-	},
-/turf/floor/plating,
-/area/transit_vehicle/elevator/hydro_bot)
+"aN" = (
+/obj/table/wood/auto,
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "bb" = (
 /turf/wall,
 /area/station/maintenance/central)
 "bF" = (
 /turf/floor/stairs/wide/green/other,
+/area/station/hydroponics/bay)
+"bK" = (
+/obj/disposalpipe/segment/vertical,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
 /area/station/hydroponics/bay)
 "bT" = (
 /turf/floor/darkpurpleblack/corner{
@@ -22,6 +25,11 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"cH" = (
+/obj/machinery/light/small/floor,
+/obj/machinery/hydro_mister,
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "cK" = (
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
@@ -63,6 +71,10 @@
 "ee" = (
 /turf/floor/stairs/wide/middle,
 /area/station/hydroponics/bay)
+"eD" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/hydroponics/bay)
 "eF" = (
 /obj/machinery/networked/ai_governor/airlocks,
 /obj/window/crystal/reinforced/east,
@@ -86,6 +98,10 @@
 "fs" = (
 /turf/floor/cautionblack,
 /area/transit_vehicle/elevator/robo_bot)
+"gH" = (
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "hk" = (
 /obj/cable{
 	d1 = 4;
@@ -265,7 +281,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/disposalpipe/segment/horizontal,
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
 	},
@@ -327,8 +342,8 @@
 	},
 /area/space)
 "qD" = (
-/obj/machinery/disposal/small/west,
-/obj/disposalpipe/trunk/south,
+/obj/disposalpipe/trunk/north,
+/obj/machinery/disposal,
 /turf/floor/green/side{
 	dir = 8
 	},
@@ -337,12 +352,20 @@
 /obj/railing{
 	dir = 8
 	},
+/obj/machinery/hydro_growlamp,
 /obj/railing,
 /turf/floor,
+/area/station/hydroponics/bay)
+"ri" = (
+/turf/wall/r_wall,
 /area/station/hydroponics/bay)
 "rq" = (
 /turf/floor/engine,
 /area/station/medical/robotics)
+"sA" = (
+/obj/submachine/seed_vendor,
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "ty" = (
 /obj/cable{
 	d1 = 1;
@@ -396,10 +419,10 @@
 /turf/floor/engine,
 /area/station/medical/robotics)
 "xU" = (
+/obj/submachine/seed_vendor,
 /obj/railing{
 	dir = 4
 	},
-/obj/machinery/vending/hydroponics,
 /turf/floor/green/side{
 	dir = 8
 	},
@@ -433,23 +456,17 @@
 /area/station/hydroponics/bay)
 "Ak" = (
 /obj/decal/tile_edge/stripe/big,
-/obj/disposalpipe/segment/vertical,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/bent/west,
 /turf/floor/plating,
 /area/station/maintenance/central)
-"Ay" = (
-/obj/disposalpipe/segment/bent/north,
-/turf/floor/green,
-/area/station/hydroponics/bay)
-"AY" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/maint,
-/obj/disposalpipe/segment/vertical,
-/turf/floor/cautionblack,
+"Bx" = (
+/obj/machinery/vending/hydroponics,
+/turf/floor/grass/random,
 /area/station/hydroponics/bay)
 "BR" = (
 /obj/decal/tile_edge/stripe/corner/big2{
@@ -471,6 +488,7 @@
 	d1 = 4;
 	d2 = 9
 	},
+/obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Ck" = (
@@ -555,13 +573,6 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
-"GL" = (
-/obj/disposalpipe/segment/bent/west,
-/obj/decal/tile_edge/stripe/big{
-	dir = 1
-	},
-/turf/floor/green,
-/area/station/hydroponics/bay)
 "GN" = (
 /obj/stool/chair/office/green{
 	dir = 1
@@ -686,6 +697,10 @@
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
 /area/station/hydroponics/bay)
+"Mj" = (
+/obj/machinery/button/elevator/hydro,
+/turf/wall,
+/area/station/hydroponics/bay)
 "Mt" = (
 /obj/cable{
 	d1 = 6;
@@ -798,10 +813,6 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
-"Ue" = (
-/obj/disposalpipe/segment/vertical,
-/turf/floor/plating,
-/area/transit_vehicle/elevator/hydro_bot)
 "Uv" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -827,6 +838,7 @@
 /obj/railing{
 	dir = 4
 	},
+/obj/machinery/hydro_growlamp,
 /obj/railing,
 /turf/floor,
 /area/station/hydroponics/bay)
@@ -836,6 +848,7 @@
 	dir = 4;
 	layer = 9.1
 	},
+/obj/disposalpipe/segment/vertical,
 /turf/floor/green/side{
 	dir = 8
 	},
@@ -866,6 +879,7 @@
 	},
 /area/space)
 "Zn" = (
+/obj/disposalpipe/segment/vertical,
 /turf/floor/green/side{
 	dir = 8
 	},
@@ -41796,8 +41810,8 @@ hY
 hY
 hY
 hY
-hY
-hY
+xq
+xq
 hY
 hY
 hY
@@ -42098,13 +42112,13 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+Qp
+ri
+ri
+LN
+LN
+ri
+ri
 hY
 hY
 hY
@@ -42401,16 +42415,16 @@ bb
 VP
 bb
 Qp
+aN
+aN
+cK
+cK
+IE
+ri
 LN
 LN
-LN
-LN
-LN
-LN
-LN
-LN
-LN
-LN
+ri
+ri
 hY
 hY
 hY
@@ -42705,15 +42719,15 @@ mY
 Qp
 Hb
 cK
-IE
+cK
+cK
+cK
 cK
 cK
 cK
 IE
-cK
-cK
-LN
-LN
+ri
+ri
 hY
 hY
 hY
@@ -43007,15 +43021,15 @@ mY
 Qp
 lD
 cK
-JC
-cL
-JC
 cK
-JC
 cL
 cK
 cK
-LN
+cK
+cL
+cK
+cK
+ri
 hY
 hY
 hY
@@ -43309,13 +43323,13 @@ mY
 Qp
 Qp
 cK
-cK
-cK
-cK
-cK
-cK
-cK
 JC
+JC
+JC
+JC
+JC
+cK
+cK
 cK
 LN
 hY
@@ -43616,7 +43630,7 @@ Si
 Si
 Si
 rc
-cK
+JC
 cK
 UU
 LN
@@ -43911,15 +43925,15 @@ bb
 bb
 kw
 KI
-mY
-Qp
+gH
+bK
 Wa
 Zn
 qD
-Ay
+hP
 xm
-cK
 JC
+cK
 cK
 LN
 hY
@@ -44516,16 +44530,16 @@ hY
 bb
 dm
 Ak
-AY
-Ue
-Ue
+Fc
+Ip
+Ip
 zq
-GL
+VE
 ee
 cK
 cK
 cK
-LN
+ri
 hY
 hY
 hY
@@ -44820,14 +44834,14 @@ Et
 vz
 Fc
 Ip
-ae
+Ip
 IZ
 VE
 ee
 cK
 cK
 cK
-LN
+ri
 hY
 hY
 hY
@@ -45123,7 +45137,7 @@ BR
 Xj
 Qp
 Qp
-Qp
+Mj
 Ae
 bF
 cK
@@ -45422,14 +45436,14 @@ bb
 nL
 ph
 mY
-Qp
+eD
 jQ
 GN
 Pv
 hP
 xm
-cK
 JC
+cK
 cK
 LN
 hY
@@ -45730,7 +45744,7 @@ Ed
 Ed
 Ed
 VV
-cK
+JC
 cK
 UU
 LN
@@ -46027,13 +46041,13 @@ mY
 Qp
 Qp
 cK
-cK
-cK
-cK
-cK
-cK
-cK
 JC
+JC
+JC
+JC
+JC
+cK
+cK
 cK
 LN
 hY
@@ -46327,17 +46341,17 @@ bb
 qu
 mY
 Qp
-cL
+cH
 cK
-JC
-cL
-JC
 cK
-JC
 cL
 cK
 cK
-LN
+cK
+cL
+cK
+cK
+ri
 hY
 hY
 hY
@@ -46629,17 +46643,17 @@ bb
 hk
 mY
 Qp
+sA
+cK
+pZ
+cK
 cK
 cK
 pZ
 cK
 cK
-cK
-pZ
-cK
-cK
-LN
-LN
+ri
+ri
 hY
 hY
 hY
@@ -46931,16 +46945,16 @@ bb
 VP
 bb
 Qp
+Bx
+cK
+cK
+cK
+cK
+ri
 LN
 LN
-LN
-LN
-LN
-LN
-LN
-LN
-LN
-LN
+ri
+ri
 hY
 hY
 hY
@@ -47232,13 +47246,13 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+Qp
+ri
+ri
+LN
+LN
+ri
+ri
 hY
 hY
 hY
@@ -47534,8 +47548,8 @@ hY
 hY
 hY
 hY
-hY
-hY
+xq
+xq
 hY
 hY
 hY

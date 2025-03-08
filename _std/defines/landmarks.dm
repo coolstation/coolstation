@@ -94,7 +94,6 @@
 #define LANDMARK_FALL_COM "comfall"//Command elevator shaft
 #define LANDMARK_FALL_ENG "engfall"//Engineering elevator shaft
 #define LANDMARK_FALL_SEC "secfall"//Security elevator shaft
-#define LANDMARK_FALL_HYDRO "hydrofall" //Botany elevator shaft
 #define LANDMARK_FALL_DUM "dumfall"//aeeeee eem stoock!!
 #define LANDMARK_FALL_QMDUM "qmdumfall"//looks normal
 #define LANDMARK_FALL_NTFC "ntfcfall" /// ????????

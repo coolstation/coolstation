@@ -162,6 +162,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_id 	= "robo_top"
 	name		= "Cyborg Descent Chute"
 	target_area = /area/transit_vehicle/elevator/robo_top
+	current_occupant = "robo_elevator"
 
 /datum/transit_stop/elevator/robo_bot
 	stop_id 	= "robo_bot"
@@ -172,10 +173,11 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_id = "hydro_top"
 	name = "Botany Lobby"
 	target_area = /area/transit_vehicle/elevator/hydro_top
+	current_occupant = "hydro_elevator"
 
 /datum/transit_stop/elevator/hydro_bot
 	stop_id = "hydro_bot"
-	name = "Hydroponics"
+	name = "Hydroponics Bay"
 	target_area = /area/transit_vehicle/elevator/hydro_bot
 
 /*
@@ -455,7 +457,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/robo_top
 	name = "Robotics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down/z_five"
 
 /area/transit_vehicle/elevator/robo_bot
 	name = "Robotics Elevator"
@@ -465,7 +467,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/hydro_top
 	name = "Hydroponics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down/z_five"
 
 /area/transit_vehicle/elevator/hydro_bot
 	name = "Hydroponics Elevator"
@@ -490,7 +492,5 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	fall_landmark = LANDMARK_FALL_NTFC
 /turf/floor/specialroom/elevator_shaft/ntfc
 	fall_landmark = LANDMARK_FALL_NTFCM
-/turf/floor/specialroom/elevator_shaft/hydro
-	fall_landmark = LANDMARK_FALL_HYDRO
 
 #undef MAKE_STANDARD_TWO_STOP_ELEVATOR

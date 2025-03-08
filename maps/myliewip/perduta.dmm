@@ -95,7 +95,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 5
 	},
 /area/station/janitor/office)
@@ -365,7 +365,7 @@
 /turf/wall,
 /area/station/medical/medbay/lobby)
 "dK" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 4
 	},
 /area/station/hallway/primary/west)
@@ -393,7 +393,7 @@
 	dir = 10;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 1
 	},
 /area/station/janitor/office)
@@ -404,7 +404,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/airless/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 4
 	},
 /area/station/medical/robotics)
@@ -1045,7 +1045,7 @@
 /turf/floor/plating,
 /area/station/medical/robotics)
 "kX" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 1
 	},
 /area/station/hallway/primary/west)
@@ -1938,14 +1938,13 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/obj/machinery/hydro_mister,
 /obj/neon_lining{
 	dir = 1
 	},
 /obj/neon_lining{
 	dir = 5
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 5
 	},
 /area/transit_vehicle/elevator/hydro_top)
@@ -2049,7 +2048,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 6
 	},
 /area/station/janitor/office)
@@ -2200,6 +2199,10 @@
 /obj/decal/cleanable/rust,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"uA" = (
+/obj/machinery/button/elevator/hydro,
+/turf/wall,
+/area/station/hydroponics/lobby)
 "uB" = (
 /obj/grille/catwalk/cross{
 	dir = 9
@@ -2412,7 +2415,7 @@
 	dir = 5;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 4
 	},
 /area/station/janitor/office)
@@ -2425,7 +2428,7 @@
 /area/station/catwalk/simulated)
 "wM" = (
 /obj/disposalpipe/segment/sewage/horizontal,
-/turf/floor/airless/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 4
 	},
 /area/station/medical/robotics)
@@ -2453,7 +2456,7 @@
 	dir = 6;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five,
 /area/station/janitor/office)
 "wT" = (
 /obj/cable{
@@ -2527,7 +2530,7 @@
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
 "xB" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 6
 	},
 /area/station/hallway/primary/west)
@@ -2758,6 +2761,9 @@
 	icon_state = "bigstripe-edge2";
 	dir = 8
 	},
+/obj/landmark/start{
+	name = "Botanist"
+	},
 /turf/floor/carpet/office/hotdog,
 /area/station/hydroponics/lobby)
 "zL" = (
@@ -2926,7 +2932,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 10
 	},
 /area/station/janitor/office)
@@ -2995,7 +3001,7 @@
 /turf/space/magindara,
 /area/magindara)
 "Cd" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 8
 	},
 /area/station/hallway/primary/west)
@@ -3140,7 +3146,7 @@
 	dir = 9;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 8
 	},
 /area/station/janitor/office)
@@ -3159,9 +3165,10 @@
 /obj/landmark/start{
 	name = "Cyborg"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	icon_state = "shaft_single";
-	name = "cyborg descent shaft"
+	areastring = nulls;
+	name = "cyborg descent chute"
 	},
 /area/transit_vehicle/elevator/robo_top)
 "Dy" = (
@@ -3795,10 +3802,10 @@
 /obj/neon_lining{
 	dir = 1
 	},
-/obj/machinery/button/elevator/hydro{
-	pixel_y = 32
+/obj/neon_lining{
+	dir = 8
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 9
 	},
 /area/transit_vehicle/elevator/hydro_top)
@@ -3856,7 +3863,10 @@
 	dir = 10
 	},
 /obj/neon_lining,
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/obj/neon_lining{
+	dir = 8
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 10
 	},
 /area/transit_vehicle/elevator/hydro_top)
@@ -3984,7 +3994,7 @@
 /obj/neon_lining{
 	dir = 5
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 6
 	},
 /area/transit_vehicle/elevator/hydro_top)
@@ -4087,7 +4097,8 @@
 /area/magindara)
 "LH" = (
 /obj/grille/catwalk/elevator,
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
 	icon_state = "shaft_center"
 	},
 /area/station/janitor/office)
@@ -4095,7 +4106,7 @@
 /obj/railing/reinforced{
 	dir = 1
 	},
-/turf/floor/airless/stairs/dark{
+/turf/floor/stairs/dark{
 	dir = 8
 	},
 /area/station/maintenance/central)
@@ -4172,7 +4183,7 @@
 /turf/space/magindara,
 /area/magindara)
 "Mk" = (
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five,
 /area/station/hallway/primary/west)
 "Mp" = (
 /obj/decal/poster/wallsign/warning3,
@@ -4187,7 +4198,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 9
 	},
 /area/station/janitor/office)
@@ -4559,7 +4570,8 @@
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "PD" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
 	icon_state = "shaft_center"
 	},
 /area/station/hallway/primary/west)
@@ -5188,7 +5200,7 @@
 /turf/floor/plating,
 /area/station/medical/medbay/cloner)
 "UV" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 5
 	},
 /area/station/hallway/primary/west)
@@ -5369,7 +5381,7 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "Ws" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 9
 	},
 /area/station/hallway/primary/west)
@@ -5576,7 +5588,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/turf/floor/airless/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 4
 	},
 /area/station/medical/robotics)
@@ -5689,7 +5701,7 @@
 /turf/floor/plating,
 /area/station/medical/research)
 "Za" = (
-/turf/floor/specialroom/elevator_shaft/straight_down{
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 10
 	},
 /area/station/hallway/primary/west)
@@ -49132,7 +49144,7 @@ aC
 dV
 zd
 UF
-bZ
+uA
 fC
 fC
 bZ
