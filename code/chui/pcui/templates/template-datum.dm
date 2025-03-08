@@ -2,15 +2,14 @@
 //See pcui.dm defines
 /datum/pcui_template
 
-	//Keep your HTML here
-	var/HTML = ""
-
 	var/tags = list()
 	var/name = ""
 	var/template = ""
 	var/header = null
 	var/window = ""
 	var/size = ""
+	//force fancy window borders etc
+	var/force_chui = FALSE
 
 /datum/pcui_template/proc/setup(var/mob/user as mob)
 	name = "example pcui template"
