@@ -19,12 +19,9 @@
 /turf/floor/blue/side,
 /area/station/hallway/primary/west)
 "aq" = (
-/obj/stool/chair/couch/blue{
-	dir = 8;
-	name = "weed smoking couch"
-	},
-/obj/landmark/start{
-	name = "Botanist"
+/obj/machinery/chem_master{
+	pixel_y = 0;
+	pixel_x = -9
 	},
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
@@ -2373,8 +2370,9 @@
 /turf/space/magindara,
 /area/magindara)
 "wj" = (
-/obj/stool/chair/green{
-	dir = 4
+/obj/stool/chair/couch/blue{
+	dir = 8;
+	name = "weed smoking couch"
 	},
 /obj/landmark/start{
 	name = "Botanist"
@@ -2677,6 +2675,9 @@
 	},
 /area/station/medical/medbay/lobby)
 "zd" = (
+/turf/floor/carpet/grime2,
+/area/station/hydroponics/lobby)
+"zm" = (
 /obj/stool/chair/couch/blue{
 	dir = 4;
 	name = "weed smoking couch"
@@ -2685,16 +2686,8 @@
 	pixel_y = -2;
 	pixel_x = -5
 	},
-/turf/floor/carpet/grime2,
-/area/station/hydroponics/lobby)
-"zm" = (
-/obj/submachine/seed_manipulator{
-	dir = 8;
-	pixel_y = -1;
-	pixel_x = 5
-	},
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
 	},
 /turf/floor/carpet/purple/standard/edge{
 	dir = 5
@@ -3072,6 +3065,7 @@
 /obj/decal/tile_edge/stripe{
 	dir = 8
 	},
+/obj/submachine/chem_extractor,
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
 "CH" = (
@@ -5501,6 +5495,12 @@
 "Xs" = (
 /obj/decal/tile_edge/stripe{
 	dir = 10
+	},
+/obj/stool/chair/green{
+	dir = 1
+	},
+/obj/landmark/start{
+	name = "Botanist"
 	},
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
