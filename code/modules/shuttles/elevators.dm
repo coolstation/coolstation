@@ -490,5 +490,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	fall_landmark = LANDMARK_FALL_NTFC
 /turf/floor/specialroom/elevator_shaft/ntfc
 	fall_landmark = LANDMARK_FALL_NTFCM
+/turf/floor/specialroom/elevator_shaft/hydro
+	fall_landmark = LANDMARK_FALL_HYDRO
 
 #undef MAKE_STANDARD_TWO_STOP_ELEVATOR
