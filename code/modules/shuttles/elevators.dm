@@ -168,6 +168,16 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	name		= "Cyborg Ascent Chute"
 	target_area = /area/transit_vehicle/elevator/robo_bot
 
+/datum/transit_stop/elevator/hydro_top
+	stop_id = "hydro_top"
+	name = "Botany Lobby"
+	target_area = /area/transit_vehicle/elevator/hydro_top
+
+/datum/transit_stop/elevator/hydro_bot
+	stop_id = "hydro_bot"
+	name = "Hydroponics"
+	target_area = /area/transit_vehicle/elevator/hydro_bot
+
 /*
 /datum/transit_stop/elevator/
 	stop_id 	= ""
@@ -229,6 +239,10 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /datum/transit_vehicle/elevator/robo
 	vehicle_id = "robo_elevator"
 	stop_ids = list("robo_top","robo_bot")
+
+/datum/transit_vehicle/elevator/hydro
+	vehicle_id = "hydro_elevator"
+	stop_ids = list("hydro_top","hydro_bot")
 
 // computers
 
