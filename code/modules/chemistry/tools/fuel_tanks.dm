@@ -89,8 +89,9 @@
 				user.visible_message("<span class='notice'>[user] wrenches open the [src]'s lid.</span>")
 		..()
 
-	shatter_chemically(var/projectiles = FALSE) //needs sound probably definitely for sure
+	shatter_chemically(var/projectiles = FALSE)
 		visible_message(SPAN_ALERT("The <B>[src.name]</B> breaks open!"), SPAN_ALERT("You hear a loud bang!"))
+		playsound(src, 'sound/effects/ExplosionFirey.ogg', 100, 1)
 		if(projectiles)
 			var/datum/projectile/special/spreader/uniform_burst/circle/circle = new /datum/projectile/special/spreader/uniform_burst/circle/(get_turf(src))
 			circle.shot_sound = null //no grenade sound ty
