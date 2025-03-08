@@ -151,8 +151,8 @@ chui/window
 		// Keeps the scroll position of a window when it reloads / updates.
 		// Not really ideal in cases where the window changes contents, but better than nothing.
 		function updateScroll() {window.name = document.documentElement.scrollTop || document.body.scrollTop;}
-		window.addEventListener("beforeunload", updateScroll);
 		window.addEventListener("scroll", updateScroll);
+		document.addEventListener("visibilitychange", updateScroll);
 		window.addEventListener("load", function() {document.documentElement.scrollTop = document.body.scrollTop = window.name;});
 	</script>
 </head>
@@ -321,7 +321,7 @@ chui/window
 			if (targetDatum)
 				targetDatum.Topic("close=1", params2list("close=1"), targetDatum)
 
-		src << browse( null, "window=[window]" )//Might not be a standard chui window but we'll play along.
+		winset(src, "[window]", "is-visible=false")
 		if(src?.mob)
 			//boutput(world, "[src] was [src.mob.machine], setting to null")
 			if (istype(win) && win.theAtom && isobj(win.theAtom))

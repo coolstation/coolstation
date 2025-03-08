@@ -22,6 +22,9 @@
 //Helper for \ref[src] in templates
 #define PC_REFTAG "<div class=\"template\" id=\"srcref\"></div>"
 
+//Close the window on cl
+#define PC_CLOSE_ONCLICK "onclick=\"location.href='byond://winset?inputselection.is-visible=false';\""
+
 //Begin and end ifdef
 //Do not nest ifdefs with the same ID
 #define PC_IFDEF(x) "<div class=\"template_ifdef\" id=\"[x]\"></div>"
@@ -34,11 +37,24 @@
 
 #define PC_RENDER(target) PC_REMOVE_UNUSED_IFDEF(target.template) ; PC_FILL_TAG_LIST(target.template, target.tags)
 
-#define PC_BROWSE(target) user.Browse(target.template, "window=[target.window];size=[target.size]", headerhtml = target.header)
+#define PC_BROWSE(target) user.Browse(target.template, "window=[target.window];size=[target.size]", headerhtml = target.header, forceChui = target.force_chui)
 
 //misc
 
+//Load a template into variable name
 #define PC_LOAD(template, name) var/datum/pcui_template/template/name = new ; name.setup(user)
+
+//Reopen the window if it's already rendered on the client
+#define PC_LOAD_OR_OPEN(template, variable) var/datum/pcui_template/template/variable = new ;\
+	variable.setup(user);\
+	if(winget(user.client, "[variable.window]", "is-visible")) {winset(user.client, "[variable.window]", "is-visible=true;input.browser.focus=true") ; return}
+
+//Reopen if condition is true otherwise load template
+#define PC_LOAD_OR_OPEN_CONDITIONAL(template, variable, condition); var/datum/pcui_template/template/variable = new ;\
+	variable.setup(user);\
+	if (condition && winget(user.client, "[variable.window]", "is-visible")){\
+		winset(user.client, "[variable.window]", "is-visible=true;input.browser.focus=true") ; return};\
+
 //Clear render
 #define PC_RESET(target) target.setup(user)
 
