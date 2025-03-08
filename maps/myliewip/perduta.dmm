@@ -1096,6 +1096,13 @@
 /area/station/medical/research)
 "lk" = (
 /obj/table/wood/auto,
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -12;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 7
+	},
 /turf/floor/wood/eight,
 /area/station/hydroponics/lobby)
 "ln" = (
@@ -1941,7 +1948,11 @@
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 5
 	},
-/area/station/hydroponics/lobby)
+/area/transit_vehicle/elevator/hydro_top)
+"sh" = (
+/obj/machinery/vending/cigarette/noknobs,
+/turf/floor,
+/area/station/hallway/primary/southwest)
 "sk" = (
 /obj/storage/closet,
 /obj/decal/poster/wallsign/biohazard{
@@ -3784,10 +3795,13 @@
 /obj/neon_lining{
 	dir = 1
 	},
+/obj/machinery/button/elevator/hydro{
+	pixel_y = 32
+	},
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 9
 	},
-/area/station/hydroponics/lobby)
+/area/transit_vehicle/elevator/hydro_top)
 "Jr" = (
 /turf/wall,
 /area/station/medical/medbay/cloner)
@@ -3845,7 +3859,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 10
 	},
-/area/station/hydroponics/lobby)
+/area/transit_vehicle/elevator/hydro_top)
 "JP" = (
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
@@ -3973,7 +3987,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 6
 	},
-/area/station/hydroponics/lobby)
+/area/transit_vehicle/elevator/hydro_top)
 "Lb" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -46998,7 +47012,7 @@ OX
 VL
 VL
 VG
-ik
+sh
 ik
 ik
 cD

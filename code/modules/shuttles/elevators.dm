@@ -336,6 +336,11 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_top_id = "robo_top"
 	stop_bottom_id = "robo_bot"
 
+/obj/machinery/button/elevator/hydro
+	vehicle_id = "hydro_elevator"
+	stop_top_id = "hydro_top"
+	stop_bottom_id = "hydro_bot"
+
       //|\\
      // | \\
     //  |  \\
@@ -456,6 +461,16 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	name = "Robotics Elevator"
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/cautionblack"
+
+/area/transit_vehicle/elevator/hydro_top
+	name = "Hydroponics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/hydro_bot
+	name = "Hydroponics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/plating"
 
 /turf/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM

@@ -1,4 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ae" = (
+/obj/machinery/button/elevator/hydro{
+	pixel_x = 32
+	},
+/turf/floor/plating,
+/area/transit_vehicle/elevator/hydro_bot)
+"bb" = (
+/turf/wall,
+/area/station/maintenance/central)
+"bF" = (
+/turf/floor/stairs/wide/green/other,
+/area/station/hydroponics/bay)
 "bT" = (
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
@@ -10,6 +22,13 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"cK" = (
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
+"cL" = (
+/obj/machinery/light/small/floor,
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "cT" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 5
@@ -20,6 +39,15 @@
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/darkpurple,
 /area/space)
+"dg" = (
+/obj/storage/closet/fire,
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/plating,
+/area/station/maintenance/central)
+"dm" = (
+/obj/disposalpipe/junction/right/west,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "du" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -28,6 +56,13 @@
 	dir = 8
 	},
 /area/space)
+"dF" = (
+/obj/disposalpipe/segment/bent/south,
+/turf/floor/plating,
+/area/station/maintenance/central)
+"ee" = (
+/turf/floor/stairs/wide/middle,
+/area/station/hydroponics/bay)
 "eF" = (
 /obj/machinery/networked/ai_governor/airlocks,
 /obj/window/crystal/reinforced/east,
@@ -51,6 +86,18 @@
 "fs" = (
 /turf/floor/cautionblack,
 /area/transit_vehicle/elevator/robo_bot)
+"hk" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "hD" = (
 /obj/grille/catwalk/elevator{
 	dir = 9
@@ -67,6 +114,9 @@
 	dir = 5
 	},
 /area/space)
+"hP" = (
+/turf/floor/green,
+/area/station/hydroponics/bay)
 "hY" = (
 /turf/space/fluid/trench,
 /area/space)
@@ -116,6 +166,55 @@
 /obj/decal/poster/wallsign/hazard_exheat,
 /turf/wall/r_wall,
 /area/station/medical/robotics)
+"jQ" = (
+/obj/submachine/seed_manipulator{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/floor/green/side{
+	dir = 4
+	},
+/area/station/hydroponics/bay)
+"kw" = (
+/obj/disposalpipe/segment/bent/south,
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"kR" = (
+/obj/cable{
+	d1 = 6;
+	d2 = 9;
+	icon_state = "6-9"
+	},
+/obj/disposalpipe/segment/bent/north,
+/turf/floor/plating,
+/area/station/maintenance/central)
+"lD" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/glass/compostbag{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/glass/compostbag{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1
+	},
+/obj/machinery/light/small/floor,
+/obj/item/satchel/hydro{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "mk" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
@@ -131,6 +230,9 @@
 	dir = 8
 	},
 /area/space)
+"mY" = (
+/turf/floor/plating,
+/area/station/maintenance/central)
 "nn" = (
 /obj/decal/tile_edge/stripe/big,
 /obj/window/reinforced/south,
@@ -139,6 +241,13 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"nL" = (
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "nO" = (
 /obj/cable{
 	d1 = 1;
@@ -156,6 +265,30 @@
 	dir = 4
 	},
 /area/space)
+"oj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/disposalpipe/segment/horizontal,
+/obj/decal/tile_edge/stripe/corner/big2{
+	dir = 5
+	},
+/turf/floor/green,
+/area/station/hydroponics/bay)
+"ph" = (
+/obj/cable{
+	icon_state = "5-10";
+	d1 = 5;
+	d2 = 10
+	},
+/obj/cable{
+	icon_state = "4-10";
+	d1 = 4;
+	d2 = 10
+	},
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "py" = (
 /turf/floor/darkpurpleblack/corner,
 /area/space)
@@ -164,6 +297,13 @@
 	dir = 4
 	},
 /area/space)
+"pZ" = (
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1
+	},
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "qf" = (
 /obj/grille/catwalk/elevator{
 	dir = 5;
@@ -173,6 +313,15 @@
 	dir = 4
 	},
 /area/space)
+"qu" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "qA" = (
 /obj/grille/catwalk/elevator{
 	dir = 5
@@ -181,6 +330,20 @@
 	dir = 5
 	},
 /area/space)
+"qD" = (
+/obj/machinery/disposal/small/west,
+/obj/disposalpipe/trunk/south,
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/hydroponics/bay)
+"rc" = (
+/obj/railing{
+	dir = 8
+	},
+/obj/railing,
+/turf/floor,
+/area/station/hydroponics/bay)
 "rq" = (
 /turf/floor/engine,
 /area/station/medical/robotics)
@@ -208,6 +371,19 @@
 "uX" = (
 /turf/wall/r_wall,
 /area/station/medical/robotics)
+"vz" = (
+/obj/decal/tile_edge/stripe/big,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"xm" = (
+/obj/railing,
+/turf/floor,
+/area/station/hydroponics/bay)
 "xq" = (
 /turf/wall/r_wall,
 /area/space)
@@ -223,6 +399,87 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"xU" = (
+/obj/railing{
+	dir = 4
+	},
+/obj/machinery/vending/hydroponics,
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/hydroponics/bay)
+"zq" = (
+/obj/machinery/door/airlock/glass,
+/obj/access_spawn/hydro,
+/obj/disposalpipe/segment/vertical,
+/turf/floor/cautionblack,
+/area/station/hydroponics/bay)
+"zs" = (
+/obj/machinery/power/apc{
+	areastring = "Hydroponics Bay";
+	name = "Hydroponics APC";
+	pixel_y = -24
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"Ae" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe/corner/big2{
+	dir = 9
+	},
+/turf/floor/green,
+/area/station/hydroponics/bay)
+"Ak" = (
+/obj/decal/tile_edge/stripe/big,
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"Ay" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/floor/green,
+/area/station/hydroponics/bay)
+"AY" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/maint,
+/obj/disposalpipe/segment/vertical,
+/turf/floor/cautionblack,
+/area/station/hydroponics/bay)
+"BR" = (
+/obj/decal/tile_edge/stripe/corner/big2{
+	dir = 10
+	},
+/obj/cable{
+	d1 = 5;
+	d2 = 8;
+	icon_state = "5-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"Cc" = (
+/obj/decal/tile_edge/stripe/corner/big2{
+	dir = 6
+	},
+/obj/cable{
+	icon_state = "4-9";
+	d1 = 4;
+	d2 = 9
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"Ck" = (
+/turf/floor/stairs/wide/green,
+/area/station/hydroponics/bay)
 "Da" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -231,6 +488,15 @@
 	dir = 9
 	},
 /area/space)
+"Dz" = (
+/obj/cable{
+	icon_state = "5-10";
+	d1 = 5;
+	d2 = 10
+	},
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "DK" = (
 /obj/window/crystal/reinforced/east,
 /obj/machinery/power/data_terminal,
@@ -242,6 +508,14 @@
 /obj/machinery/networked/ai_governor/viewports,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"Ed" = (
+/obj/railing{
+	dir = 4
+	},
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/hydroponics/bay)
 "Er" = (
 /obj/grille/catwalk/elevator{
 	dir = 10
@@ -250,12 +524,30 @@
 	dir = 10
 	},
 /area/space)
+"Et" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/central)
+"Fc" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/maint,
+/turf/floor/cautionblack,
+/area/station/hydroponics/bay)
 "FP" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/darkpurpleblack{
 	dir = 10
 	},
 /area/space)
+"Gf" = (
+/obj/cable{
+	icon_state = "4-10";
+	d1 = 4;
+	d2 = 10
+	},
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "Gu" = (
 /obj/cable{
 	d1 = 4;
@@ -267,6 +559,21 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"GL" = (
+/obj/disposalpipe/segment/bent/west,
+/obj/decal/tile_edge/stripe/big{
+	dir = 1
+	},
+/turf/floor/green,
+/area/station/hydroponics/bay)
+"GN" = (
+/obj/stool/chair/office/green{
+	dir = 1
+	},
+/turf/floor/green/side{
+	dir = 4
+	},
+/area/station/hydroponics/bay)
 "GR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -284,6 +591,18 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"Hb" = (
+/obj/table/wood/auto,
+/obj/item/paper_bin{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/paper_bin{
+	pixel_y = 4;
+	pixel_x = 9
+	},
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "HX" = (
 /turf/wall,
 /area/space)
@@ -297,6 +616,16 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"Ip" = (
+/turf/floor/plating,
+/area/transit_vehicle/elevator/hydro_bot)
+"IE" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
 "IR" = (
 /obj/cable{
 	d1 = 4;
@@ -319,6 +648,11 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"IZ" = (
+/obj/machinery/door/airlock/glass,
+/obj/access_spawn/hydro,
+/turf/floor/cautionblack,
+/area/station/hydroponics/bay)
 "Jd" = (
 /obj/machinery/networked/ai_governor/APCs,
 /obj/window/crystal/reinforced/east,
@@ -329,6 +663,21 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"JC" = (
+/obj/machinery/plantpot{
+	anchored = 1
+	},
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
+"KI" = (
+/obj/disposalpipe/segment/bent/north,
+/obj/cable{
+	d1 = 6;
+	d2 = 9;
+	icon_state = "6-9"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "KK" = (
 /obj/grille/catwalk/elevator{
 	dir = 6
@@ -337,6 +686,19 @@
 	dir = 6
 	},
 /area/space)
+"LN" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/floor/plating,
+/area/station/hydroponics/bay)
+"Mt" = (
+/obj/cable{
+	d1 = 6;
+	d2 = 8;
+	icon_state = "6-8"
+	},
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "MA" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 9
@@ -369,6 +731,11 @@
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/engine,
 /area/station/medical/robotics)
+"Pv" = (
+/turf/floor/green/side{
+	dir = 4
+	},
+/area/station/hydroponics/bay)
 "PB" = (
 /obj/grille/catwalk/elevator{
 	dir = 10;
@@ -378,6 +745,18 @@
 	dir = 1
 	},
 /area/space)
+"Qk" = (
+/obj/reagent_dispensers/watertank/big,
+/obj/railing{
+	dir = 8
+	},
+/turf/floor/green/side{
+	dir = 4
+	},
+/area/station/hydroponics/bay)
+"Qp" = (
+/turf/wall,
+/area/station/hydroponics/bay)
 "QG" = (
 /obj/window/crystal/reinforced/east,
 /obj/machinery/power/data_terminal,
@@ -404,6 +783,14 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"Si" = (
+/obj/railing{
+	dir = 8
+	},
+/turf/floor/green/side{
+	dir = 4
+	},
+/area/station/hydroponics/bay)
 "Ti" = (
 /obj/cable{
 	d1 = 2;
@@ -415,12 +802,52 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"Ue" = (
+/obj/disposalpipe/segment/vertical,
+/turf/floor/plating,
+/area/transit_vehicle/elevator/hydro_bot)
 "Uv" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"UU" = (
+/obj/machinery/light,
+/turf/floor/grass/random,
+/area/station/hydroponics/bay)
+"VE" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 1
+	},
+/turf/floor/green,
+/area/station/hydroponics/bay)
+"VP" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/maint,
+/turf/floor/plating,
+/area/station/maintenance/central)
+"VV" = (
+/obj/railing{
+	dir = 4
+	},
+/obj/railing,
+/turf/floor,
+/area/station/hydroponics/bay)
+"Wa" = (
+/obj/reagent_dispensers/compostbin,
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1
+	},
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/hydroponics/bay)
+"Xj" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall,
+/area/station/hydroponics/bay)
 "XP" = (
 /turf/floor/darkpurpleblack{
 	dir = 1
@@ -442,6 +869,11 @@
 	dir = 8
 	},
 /area/space)
+"Zn" = (
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/hydroponics/bay)
 
 (1,1,1) = {"
 hY
@@ -41969,20 +42401,20 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+VP
+bb
+Qp
+LN
+LN
+LN
+LN
+LN
+LN
+LN
+LN
+LN
+LN
 hY
 hY
 hY
@@ -42271,21 +42703,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+hk
+mY
+Qp
+Hb
+cK
+IE
+cK
+cK
+cK
+IE
+cK
+cK
+LN
+LN
 hY
 hY
 hY
@@ -42573,21 +43005,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+qu
+mY
+Qp
+lD
+cK
+JC
+cL
+JC
+cK
+JC
+cL
+cK
+cK
+LN
 hY
 hY
 hY
@@ -42875,21 +43307,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+Mt
+mY
+Qp
+Qp
+cK
+cK
+cK
+cK
+cK
+cK
+cK
+JC
+cK
+LN
 hY
 hY
 hY
@@ -43177,21 +43609,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+dF
+kR
+mY
+Qp
+Qp
+Qk
+Si
+Si
+Si
+rc
+cK
+cK
+UU
+LN
 hY
 hY
 hY
@@ -43479,21 +43911,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+bb
+kw
+KI
+mY
+Qp
+Wa
+Zn
+qD
+Ay
+xm
+cK
+JC
+cK
+LN
 hY
 hY
 hY
@@ -43782,20 +44214,20 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+bb
+Et
+Cc
+Xj
+Qp
+Qp
+Qp
+oj
+Ck
+cK
+cL
+cK
+LN
 hY
 hY
 hY
@@ -44085,19 +44517,19 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+dm
+Ak
+AY
+Ue
+Ue
+zq
+GL
+ee
+cK
+cK
+cK
+LN
 hY
 hY
 hY
@@ -44387,19 +44819,19 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+Et
+vz
+Fc
+Ip
+ae
+IZ
+VE
+ee
+cK
+cK
+cK
+LN
 hY
 hY
 hY
@@ -44688,20 +45120,20 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+bb
+Et
+BR
+Xj
+Qp
+Qp
+Qp
+Ae
+bF
+cK
+cL
+cK
+LN
 hY
 hY
 hY
@@ -44989,21 +45421,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+bb
+nL
+ph
+mY
+Qp
+jQ
+GN
+Pv
+hP
+xm
+cK
+JC
+cK
+LN
 hY
 hY
 hY
@@ -45291,21 +45723,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+dg
+Dz
+zs
+Qp
+Qp
+xU
+Ed
+Ed
+Ed
+VV
+cK
+cK
+UU
+LN
 hY
 hY
 hY
@@ -45593,21 +46025,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+Gf
+mY
+Qp
+Qp
+cK
+cK
+cK
+cK
+cK
+cK
+cK
+JC
+cK
+LN
 hY
 hY
 hY
@@ -45895,21 +46327,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+qu
+mY
+Qp
+cL
+cK
+JC
+cL
+JC
+cK
+JC
+cL
+cK
+cK
+LN
 hY
 hY
 hY
@@ -46197,21 +46629,21 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+hk
+mY
+Qp
+cK
+cK
+pZ
+cK
+cK
+cK
+pZ
+cK
+cK
+LN
+LN
 hY
 hY
 hY
@@ -46499,20 +46931,20 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+bb
+VP
+bb
+Qp
+LN
+LN
+LN
+LN
+LN
+LN
+LN
+LN
+LN
+LN
 hY
 hY
 hY
