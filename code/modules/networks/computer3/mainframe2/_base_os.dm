@@ -5,17 +5,17 @@
 
 //Progsignal errors
 #define ESIG_SUCCESS 0
-#define ESIG_GENERIC 1
-#define ESIG_NOTARGET 2
-#define ESIG_BADCOMMAND 4
-#define ESIG_NOUSR 8
-#define ESIG_IOERR 16
-#define ESIG_NOFILE 32
-#define ESIG_NOWRITE 64
-#define ESIG_USR1 128
-#define ESIG_USR2 256
-#define ESIG_USR3 512
-#define ESIG_USR4 1024
+#define ESIG_GENERIC (1<<0)
+#define ESIG_NOTARGET (1<<1)
+#define ESIG_BADCOMMAND (1<<2)
+#define ESIG_NOUSR (1<<3)
+#define ESIG_IOERR (1<<4)
+#define ESIG_NOFILE (1<<5)
+#define ESIG_NOWRITE (1<<6)
+#define ESIG_USR1 (1<<7)
+#define ESIG_USR2 (1<<8)
+#define ESIG_USR3 (1<<9)
+#define ESIG_USR4 (1<<10)
 
 #define ESIG_DATABIT 32768
 
