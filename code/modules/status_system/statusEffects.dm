@@ -1767,3 +1767,43 @@
 				var/obj/hallucinated_item/O = new /obj/hallucinated_item(pick(turf_line), H, item_inst)
 				var/image/hallucinated_image = image(item_inst, O)
 				H << hallucinated_image
+
+///When a mob is currently chiropracted
+/datum/statusEffect/chiropracted
+	id = "chiropracted"
+	name = "Chiropracted"
+	desc = "Your spine has been aligned"
+	var/filter
+	var/image/upperbody
+	var/image/lowerbody
+
+	onAdd(optional)
+		..()
+		if (!ismob(owner)) return
+		owner.render_target = "*\ref[owner]"
+		upperbody = image(null, owner)
+		upperbody.render_source = owner.render_target
+		upperbody.filters += filter(type="alpha", icon=icon('icons/mob/humanmasks.dmi', "upperbody"))
+		upperbody.appearance_flags = KEEP_APART
+		lowerbody = image(null, owner)
+		lowerbody.render_source = owner.render_target
+		lowerbody.filters += filter(type="alpha", icon=icon('icons/mob/humanmasks.dmi', "lowerbody"))
+		lowerbody.appearance_flags = KEEP_APART
+		world << lowerbody
+		world << upperbody
+		lowerbody.plane = PLANE_DEFAULT
+		upperbody.plane = PLANE_DEFAULT
+		switch(rand(1,2))
+			if(1)
+				animate(upperbody, transform = turn(upperbody.transform, 90), pixel_y = -3, pixel_x = 3, 5, 1, CIRCULAR_EASING)
+			if(2)
+				animate(upperbody, transform = turn(upperbody.transform, -90), pixel_y = -3, pixel_x = -3, 5, 1, CIRCULAR_EASING)
+
+	onRemove()
+		..()
+		if (!ismob(owner)) return
+		animate(upperbody, transform = null, pixel_y = 0, pixel_x = 0, 4, 1, CIRCULAR_EASING)
+		sleep(0.5 SECONDS)
+		qdel(upperbody)
+		qdel(lowerbody)
+		owner.render_target = "\ref[owner]"
