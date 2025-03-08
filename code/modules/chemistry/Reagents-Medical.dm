@@ -85,6 +85,7 @@ datum
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -92,6 +93,7 @@ datum
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -389,9 +391,13 @@ datum
 			overdose = 25
 			depletion_rate = 0.1
 			value = 11 // 5c + 3c + 1c + 1c + 1c
+			var/fake_health = -10
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				if(src.fake_health < 45)
+					src.fake_health += mult
+				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
 				if(prob(55))
 					M.HealDamage("All", 2 * mult, 0)
 				//set it so it only slowly reduces mild fevers from disease and not, you know, burn victims
@@ -407,8 +413,10 @@ datum
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 			on_remove()
+				src.fake_health = -10
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 		//hmm. well.
