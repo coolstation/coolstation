@@ -25,6 +25,15 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"cc" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/space)
+"cj" = (
+/turf/floor/darkpurpleblack{
+	dir = 5
+	},
+/area/space)
 "cH" = (
 /obj/machinery/light/small/floor,
 /obj/machinery/hydro_mister,
@@ -106,6 +115,12 @@
 	dir = 10
 	},
 /area/space)
+"gD" = (
+/obj/storage/closet/janitor,
+/turf/floor/darkpurpleblack{
+	dir = 10
+	},
+/area/space)
 "gH" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/plating,
@@ -159,6 +174,12 @@
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	icon_state = "shaft_center"
 	},
+/area/space)
+"iY" = (
+/obj/decal/tile_edge/stripe/corner/big{
+	dir = 10
+	},
+/turf/floor/cautionblack,
 /area/space)
 "js" = (
 /obj/machinery/power/data_terminal/cable_tray{
@@ -246,6 +267,10 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"kU" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/cautionblack,
+/area/space)
 "lD" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/glass/compostbag{
@@ -263,6 +288,12 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"mb" = (
+/obj/mopbucket,
+/turf/floor/darkpurpleblack/corner{
+	dir = 4
+	},
+/area/space)
 "mk" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
@@ -277,6 +308,10 @@
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 8
 	},
+/area/space)
+"ms" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/black,
 /area/space)
 "mF" = (
 /obj/lattice{
@@ -329,6 +364,12 @@
 	},
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"oB" = (
+/obj/reagent_dispensers/watertank/big,
+/turf/floor/darkpurpleblack{
+	dir = 9
+	},
+/area/space)
 "pa" = (
 /obj/vehicle/floorbuffer{
 	dir = 4
@@ -450,6 +491,10 @@
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
 	},
+/obj/decal/tile_edge/floorguide/arrow_w{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/floor/darkpurple,
 /area/space)
 "th" = (
@@ -458,6 +503,15 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/trench,
+/area/space)
+"tr" = (
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 8;
+	name = "utility sink"
+	},
+/turf/floor/black,
 /area/space)
 "ty" = (
 /obj/cable{
@@ -485,6 +539,11 @@
 	dir = 1
 	},
 /area/space)
+"uK" = (
+/turf/floor/darkpurpleblack{
+	dir = 6
+	},
+/area/space)
 "uX" = (
 /turf/wall/r_wall,
 /area/station/medical/robotics)
@@ -510,6 +569,42 @@
 "xq" = (
 /turf/wall/r_wall,
 /area/space)
+"xt" = (
+/turf/floor/darkpurple{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/area/space)
+"xw" = (
+/obj/rack,
+/obj/item/spraybottle/cleaner{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/spraybottle/cleaner{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/spraybottle/cleaner{
+	pixel_x = 10;
+	pixel_y = -1
+	},
+/obj/item/chem_grenade/cleaner{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/chem_grenade/cleaner{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/chem_grenade/cleaner{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/turf/floor/darkpurpleblack/corner{
+	dir = 1
+	},
+/area/space)
 "xP" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -531,6 +626,12 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"yH" = (
+/obj/decal/tile_edge/stripe/corner/big{
+	dir = 5
+	},
+/turf/floor/cautionblack,
+/area/space)
 "zg" = (
 /obj/storage/closet/emergency,
 /turf/floor/cautionblack,
@@ -587,6 +688,7 @@
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
 "BI" = (
+/obj/storage/closet/wardrobe/specialty_janitor,
 /turf/floor/darkpurpleblack{
 	dir = 4
 	},
@@ -614,6 +716,12 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"Cf" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 1
+	},
+/turf/floor/cautionblack,
+/area/space)
 "Ck" = (
 /turf/floor/stairs/wide/green,
 /area/station/hydroponics/bay)
@@ -752,6 +860,22 @@
 "HX" = (
 /turf/wall,
 /area/space)
+"If" = (
+/obj/rack,
+/obj/item/storage/box/clothing/janitor{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/bottle/acetone/janitors{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/acid/large{
+	pixel_y = 1;
+	pixel_x = -6
+	},
+/turf/floor/black,
+/area/space)
 "Il" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -815,6 +939,10 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"Ke" = (
+/obj/machinery/vending/janitor,
+/turf/floor/black,
+/area/space)
 "KI" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/cable{
@@ -874,6 +1002,10 @@
 /area/station/medical/robotics)
 "MT" = (
 /obj/decal/cleanable/blood/tracks,
+/obj/item/crowbar/red{
+	pixel_x = 9;
+	pixel_y = 14
+	},
 /turf/floor/black,
 /area/space)
 "NK" = (
@@ -958,6 +1090,10 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"RA" = (
+/obj/decal/poster/wallsign/danger_highvolt,
+/turf/wall/r_wall,
+/area/station/medical/robotics)
 "RC" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 10
@@ -1007,12 +1143,21 @@
 /obj/machinery/light,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"Vr" = (
+/obj/decal/tile_edge/stripe/big,
+/turf/floor/cautionblack,
+/area/space)
 "VE" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
 	},
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"VG" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/black,
+/turf/floor/black,
+/area/space)
 "VP" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
@@ -35366,7 +35511,7 @@ hY
 hY
 hY
 uX
-uX
+RA
 nn
 fs
 js
@@ -40162,11 +40307,11 @@ hY
 HX
 HX
 HX
-Mi
+VG
 eN
-ha
+xt
 XP
-Mi
+VG
 HX
 HX
 HX
@@ -40462,15 +40607,15 @@ hY
 kM
 hY
 HX
-tA
+gD
+cj
+uK
 ha
 ha
 ha
-ha
-ha
-ha
-ha
-qC
+cj
+uK
+oB
 HX
 hY
 kM
@@ -40772,7 +40917,7 @@ pa
 ha
 ha
 qC
-ub
+xw
 HX
 hY
 kM
@@ -41074,7 +41219,7 @@ ha
 tA
 pH
 Mi
-Mi
+If
 HX
 hY
 HX
@@ -41370,11 +41515,11 @@ hY
 HX
 Eg
 HX
-Mi
+Ke
 ub
 ha
-pH
-Mi
+mb
+tr
 HX
 HX
 HX
@@ -41970,8 +42115,8 @@ hY
 hY
 hY
 kM
-hY
-hY
+HX
+HX
 HX
 HX
 mk
@@ -41981,8 +42126,8 @@ Pi
 Zb
 HX
 HX
-hY
-hY
+HX
+HX
 kM
 hY
 hY
@@ -42272,9 +42417,9 @@ hY
 hY
 hY
 kM
-hY
-hY
-HX
+cc
+Vr
+ms
 py
 fo
 hD
@@ -42282,9 +42427,9 @@ mm
 Er
 hG
 bT
-HX
-hY
-hY
+ms
+Cf
+cc
 kM
 hY
 hY
@@ -42574,9 +42719,9 @@ hY
 hY
 hY
 kM
-hY
-hY
-HX
+cc
+iY
+cc
 eN
 cZ
 PB
@@ -42584,9 +42729,9 @@ ia
 NN
 xP
 XP
-HX
-hY
-hY
+cc
+yH
+cc
 kM
 hY
 hY
@@ -42876,9 +43021,9 @@ hY
 hY
 hY
 kM
-hY
-hY
-HX
+kU
+Cf
+cc
 pH
 FP
 qA
@@ -42886,9 +43031,9 @@ qf
 KK
 Da
 ub
-HX
-hY
-hY
+cc
+Vr
+kU
 kM
 hY
 hY
@@ -43178,8 +43323,8 @@ hY
 hY
 hY
 kM
-hY
-hY
+HX
+HX
 HX
 HX
 og
@@ -43189,8 +43334,8 @@ du
 XT
 HX
 HX
-hY
-hY
+HX
+HX
 kM
 hY
 hY
