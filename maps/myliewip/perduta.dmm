@@ -38,6 +38,16 @@
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
+"au" = (
+/obj/grille/catwalk/cross{
+	dir = 10
+	},
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "aC" = (
 /turf/floor/green/side,
 /area/station/hallway/primary/southwest)
@@ -599,7 +609,7 @@
 "gk" = (
 /obj/lattice,
 /obj/grille/catwalk{
-	dir = 10
+	dir = 4
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
@@ -2118,13 +2128,6 @@
 "tC" = (
 /turf/wall,
 /area/station/maintenance/central)
-"tE" = (
-/obj/lattice,
-/obj/grille/catwalk{
-	dir = 5
-	},
-/turf/space/magindara,
-/area/station/catwalk/simulated)
 "tM" = (
 /obj/table/round,
 /turf/floor,
@@ -3664,6 +3667,13 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"HR" = (
+/obj/lattice,
+/obj/grille/catwalk{
+	dir = 9
+	},
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "HU" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/wall/false_wall,
@@ -3780,6 +3790,11 @@
 /turf/floor/carpet/darkcarpet/border{
 	dir = 10
 	},
+/area/station/hydroponics/lobby)
+"Jp" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/maint,
+/turf/floor/cautionblack,
 /area/station/hydroponics/lobby)
 "Jq" = (
 /obj/grille/catwalk/elevator{
@@ -5213,6 +5228,9 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor,
 /area/station/hallway/primary/west)
+"UZ" = (
+/turf/floor/grass/random,
+/area/magindara)
 "Vb" = (
 /obj/machinery/light,
 /obj/table/auto,
@@ -5413,6 +5431,12 @@
 /obj/machinery/light,
 /turf/floor,
 /area/station/hallway/primary/west)
+"WS" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/turf/space/magindara,
+/area/magindara)
 "WW" = (
 /obj/table/reinforced/auto,
 /obj/firedoor_spawn,
@@ -5440,9 +5464,6 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "Xl" = (
-/obj/machinery/plantpot{
-	anchored = 1
-	},
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
 	},
@@ -5759,6 +5780,9 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"ZH" = (
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "ZN" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2/left{
@@ -47033,7 +47057,7 @@ SO
 SO
 SO
 NL
-tE
+MX
 QX
 SO
 SO
@@ -47637,7 +47661,7 @@ SO
 SO
 SO
 Ze
-yZ
+HR
 Bm
 SO
 SO
@@ -47933,7 +47957,7 @@ qE
 bZ
 bZ
 bZ
-SO
+OX
 SO
 SO
 SO
@@ -48234,11 +48258,11 @@ SD
 Jo
 cE
 Um
-QI
-SO
-SO
-SO
-SO
+VQ
+UZ
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -48536,12 +48560,12 @@ Fh
 Fj
 cE
 DG
-QI
-SO
-SO
-SO
-SO
-SO
+VQ
+UZ
+UZ
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -48838,13 +48862,13 @@ ee
 Pv
 mP
 Xl
-QI
-SO
-SO
-SO
-SO
-SO
-SO
+VQ
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -49141,12 +49165,12 @@ fC
 fC
 bZ
 bZ
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -49443,12 +49467,12 @@ Jq
 JO
 bZ
 SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -49745,12 +49769,12 @@ sg
 KV
 bZ
 SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -50044,15 +50068,15 @@ bZ
 gd
 bZ
 bZ
+Jp
 bZ
-bZ
 SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -50346,15 +50370,15 @@ Bw
 ag
 bt
 bZ
+yZ
+au
+Gn
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -50648,15 +50672,15 @@ Iz
 zJ
 lk
 QI
+ZH
+WS
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -50950,15 +50974,15 @@ qL
 xG
 Le
 VQ
+ZH
+WS
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+UZ
+UZ
+UZ
 SO
 SO
 SO
@@ -51252,8 +51276,8 @@ uE
 br
 ag
 bZ
-SO
-SO
+ZH
+WS
 SO
 SO
 SO
@@ -51554,8 +51578,8 @@ bZ
 bZ
 Vw
 bZ
-SO
-SO
+ZH
+WS
 SO
 SO
 SO
