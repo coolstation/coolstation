@@ -318,9 +318,9 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		ARG_INFO("LandingRange", "num", "Try to find a spot around the target to land on in range (x).", 3),
 	)
 
-/// a pitfall which targets a coordinate. At the moment only supports targeting a z level and picking a range around current coordinates.
+/// A pitfall which targets a coordinate. Supports targeting a z level and picking a range around current coordinates plus optional offsets.
 /datum/component/pitfall/target_coordinates
-	/// a list of targets for the fall to pick from
+	/// A list of targets for the fall to pick from.
 	var/list/TargetList = list()
 	/// The X offset added to the pitfall turfs X to find the target.
 	var/OffsetX = 0
@@ -354,6 +354,32 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		if(src.LandingRange)
 			for(var/turf/T in range(src.LandingRange, locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)))
 				if(!T.density)
+					src.TargetList += T
+					return TRUE
+		src.TargetList += locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)
+		if(!length(src.TargetList))
+			return FALSE
+		return TRUE
+
+TYPEINFO(/datum/component/pitfall/target_coordinates/nonstation)
+	initialization_args = list(
+		ARG_INFO("BruteDamageMax", "num", "The maximum amount of random brute damage applied by the fall.", 0),
+		ARG_INFO("AnchoredAllowed", "num", "Can anchored movables fall down this pit?", TRUE),
+		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
+		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
+		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
+		ARG_INFO("OffsetX", "num", "The X offset added to the pitfall turf's X.", 0),
+		ARG_INFO("OffsetY", "num", "The Y offset added to the pitfall turf's Y.", 0),
+		ARG_INFO("TargetZ", "num", "The Z level that the target falls into. Must be set.", 0),
+		ARG_INFO("LandingRange", "num", "Try to find a spot around the target to land on in range (x).", 3),
+	)
+/// Pitfall component which avoids targeting station defined areas if possible. Used primarily for the Magindaran sea.
+/datum/component/pitfall/target_coordinates/nonstation
+	update_targets()
+		src.TargetList = list()
+		if(src.LandingRange)
+			for(var/turf/T in range(src.LandingRange, locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)))
+				if(!T.density && !istype(get_area(T), /area/station))
 					src.TargetList += T
 					return TRUE
 		src.TargetList += locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)

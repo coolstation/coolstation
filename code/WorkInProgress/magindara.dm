@@ -36,7 +36,7 @@
 
 	/// Adds the pitfall, handled in map setup on Perduta. If you wanna spawn this turf, call this soon after!
 	proc/initialise_component()
-		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = FALSE,\
 			HangTime = 0.3 SECONDS,\
