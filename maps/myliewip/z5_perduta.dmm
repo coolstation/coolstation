@@ -13,6 +13,21 @@
 "bb" = (
 /turf/wall,
 /area/station/maintenance/central)
+"br" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
+	},
+/obj/machinery/cargo_router{
+	default_direction = 4
+	},
+/obj/machinery/conveyor/west{
+	id = "crusherbelt"
+	},
+/obj/machinery/light/fluorescent/blacklight{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "bF" = (
 /turf/floor/stairs/wide/green/other,
 /area/station/hydroponics/bay)
@@ -61,11 +76,6 @@
 /area/station/medical/robotics)
 "cZ" = (
 /obj/decal/tile_edge/stripe/big,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/floor/darkpurple,
 /area/station/janitor/office)
 "dg" = (
@@ -120,9 +130,9 @@
 "fo" = (
 /obj/decal/tile_edge/stripe/big,
 /obj/cable{
-	d1 = 4;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "1-8"
 	},
 /turf/floor/darkpurpleblack{
 	dir = 6
@@ -131,14 +141,22 @@
 "fs" = (
 /turf/floor/cautionblack,
 /area/transit_vehicle/elevator/robo_bot)
+"fQ" = (
+/obj/cable{
+	icon_state = "1-10";
+	d1 = 1;
+	d2 = 10
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "gp" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
 	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/door_control{
+	pixel_x = 32;
+	id = "crusher";
+	name = "Crusher Door Control"
 	},
 /turf/floor/darkpurpleblack{
 	dir = 10
@@ -157,6 +175,12 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"gW" = (
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "ha" = (
 /turf/floor/darkpurple,
 /area/station/janitor/office)
@@ -196,6 +220,14 @@
 "hP" = (
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"hR" = (
+/obj/cable{
+	icon_state = "2-5";
+	d1 = 2;
+	d2 = 5
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "hY" = (
 /turf/space/fluid/trench,
 /area/space)
@@ -203,23 +235,41 @@
 /obj/grille/catwalk/elevator,
 /turf/floor/plating,
 /area/space)
+"ic" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/black,
+/area/station/maintenance/disposal)
 "iY" = (
 /obj/decal/tile_edge/stripe/corner/big{
 	dir = 10
 	},
 /obj/machinery/drainage/big/off_station,
 /obj/machinery/light/small/ceiling/red,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/cautionblack,
 /area/station/janitor/office)
+"jb" = (
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "js" = (
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 1;
 	id = "robotics"
 	},
 /obj/structure/girder/riser,
-/obj/cable{
-	icon_state = "0-8"
-	},
 /obj/machinery/button/elevator/robo{
 	pixel_x = 24
 	},
@@ -247,6 +297,10 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"jK" = (
+/turf/floor/black,
+/turf/wall,
+/area/station/maintenance/disposal)
 "jN" = (
 /obj/decal/poster/wallsign/hazard_exheat,
 /turf/wall/r_wall,
@@ -400,14 +454,13 @@
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
 	},
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/light{
 	dir = 1;
 	icon_state = "tube1"
+	},
+/obj/machinery/conveyor_switch{
+	id = "crusherbelt";
+	position = 1
 	},
 /turf/floor/darkpurpleblack/corner{
 	dir = 4
@@ -465,6 +518,11 @@
 /turf/space/fluid/trench,
 /area/magindara)
 "py" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/darkpurpleblack/corner,
 /area/station/janitor/office)
 "pH" = (
@@ -534,6 +592,10 @@
 "ri" = (
 /turf/wall/r_wall,
 /area/station/hydroponics/bay)
+"rn" = (
+/obj/wingrille_spawn,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "rq" = (
 /turf/floor/engine,
 /area/station/medical/robotics)
@@ -541,6 +603,14 @@
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"rA" = (
+/obj/cable{
+	d1 = 6;
+	d2 = 8;
+	icon_state = "6-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "rS" = (
 /obj/lattice{
 	dir = 6;
@@ -552,6 +622,18 @@
 /obj/submachine/seed_vendor,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"sV" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "sX" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -674,11 +756,6 @@
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
 	},
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/floor/darkpurple,
 /area/station/janitor/office)
 "xm" = (
@@ -734,6 +811,12 @@
 /obj/machinery/light/small/ceiling/red,
 /turf/floor/cautionblack,
 /area/station/janitor/office)
+"yQ" = (
+/obj/machinery/conveyor/north{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "zg" = (
 /obj/storage/closet/emergency,
 /turf/floor/cautionblack,
@@ -756,6 +839,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"zA" = (
+/obj/wingrille_spawn,
+/turf/floor/black,
+/area/station/maintenance/disposal)
 "zO" = (
 /obj/machinery/door/airlock/external,
 /obj/access_spawn/maint,
@@ -885,6 +972,15 @@
 /obj/machinery/networked/ai_governor/viewports,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"DZ" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/conveyor/north{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Ed" = (
 /obj/railing{
 	dir = 4
@@ -914,11 +1010,6 @@
 /area/station/hydroponics/bay)
 "FP" = (
 /obj/decal/tile_edge/stripe/big,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/floor/darkpurpleblack{
 	dir = 10
 	},
@@ -933,7 +1024,18 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Gl" = (
-/turf/floor/black,
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
+"Gs" = (
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/obj/machinery/crusher,
+/turf/floor/plating,
 /area/station/maintenance/disposal)
 "Gu" = (
 /obj/cable{
@@ -954,6 +1056,15 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"GO" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/conveyor/west{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "GR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -983,6 +1094,17 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"Hh" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 1
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "HX" = (
 /turf/wall,
 /area/magindara)
@@ -1019,6 +1141,18 @@
 "Ip" = (
 /turf/floor/plating,
 /area/transit_vehicle/elevator/hydro_bot)
+"Iv" = (
+/obj/machinery/light/fluorescent/blacklight{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
+	},
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "IE" = (
 /obj/machinery/light{
 	dir = 8;
@@ -1063,6 +1197,21 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"Jj" = (
+/obj/cable{
+	d1 = 5;
+	d2 = 8;
+	icon_state = "5-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
+"Jr" = (
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/obj/machinery/drainage/big/off_station,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "JC" = (
 /obj/machinery/plantpot{
 	anchored = 1
@@ -1077,6 +1226,12 @@
 /obj/storage/closet/janitor,
 /turf/floor/black,
 /area/station/janitor/office)
+"KB" = (
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "KI" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/cable{
@@ -1142,6 +1297,15 @@
 	},
 /turf/floor/black,
 /area/station/janitor/office)
+"Nt" = (
+/obj/machinery/door/airlock/external,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "NG" = (
 /obj/machinery/light/small/red{
 	dir = 4
@@ -1180,6 +1344,14 @@
 	dir = 5
 	},
 /area/station/janitor/office)
+"Ps" = (
+/obj/machinery/door/poddoor/pyro{
+	dir = 4;
+	id = "crusherlauncher";
+	name = "Waste Ejection"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Pu" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/engine,
@@ -1189,6 +1361,15 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"Px" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "PB" = (
 /obj/grille/catwalk/elevator{
 	dir = 10;
@@ -1197,11 +1378,14 @@
 /turf/floor/plating,
 /area/space)
 "PW" = (
-/obj/machinery/light{
-	dir = 8;
-	tag = null
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
 	},
-/turf/floor/black,
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/obj/machinery/light/fluorescent/blacklight,
+/turf/floor/plating,
 /area/station/maintenance/disposal)
 "Qk" = (
 /obj/reagent_dispensers/watertank/big,
@@ -1215,6 +1399,14 @@
 "Qp" = (
 /turf/wall,
 /area/station/hydroponics/bay)
+"QE" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "QG" = (
 /obj/window/crystal/reinforced/east,
 /obj/machinery/power/data_terminal,
@@ -1225,6 +1417,18 @@
 /obj/machinery/networked/ai_governor/cameras,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"QI" = (
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/obj/plasticflaps,
+/obj/machinery/door/poddoor/pyro{
+	dir = 4;
+	id = "crusher";
+	name = "Crusher Door"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Rd" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
@@ -1245,6 +1449,12 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"RK" = (
+/obj/machinery/launcher_loader/south{
+	id = "crusherlauncher"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Si" = (
 /obj/railing{
 	dir = 8
@@ -1253,6 +1463,14 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"SS" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 9;
+	icon_state = "2-9"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Ti" = (
 /obj/cable{
 	d1 = 2;
@@ -1264,11 +1482,28 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"TD" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "TO" = (
 /obj/decal/cleanable/blood/gibs/body,
 /obj/decal/cleanable/blood,
 /obj/machinery/vending/paint/broken,
 /turf/floor/black,
+/area/station/janitor/office)
+"TZ" = (
+/obj/decal/tile_edge/stripe/big,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/cautionblack,
 /area/station/janitor/office)
 "Uv" = (
 /obj/decal/tile_edge/stripe/big{
@@ -1284,6 +1519,14 @@
 	dir = 6
 	},
 /area/station/janitor/office)
+"UR" = (
+/obj/cable{
+	icon_state = "4-10";
+	d1 = 4;
+	d2 = 10
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "UU" = (
 /obj/machinery/light,
 /turf/floor/grass/random,
@@ -1327,10 +1570,32 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"Wk" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	pixel_y = -24;
+	name = "Crusher Pit APC";
+	areastring = "Waste Disposal"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Wq" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/cautionblack,
 /area/station/maintenance/central)
+"WL" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/obj/machinery/conveyor/north{
+	id = "crusherbelt"
+	},
+/obj/machinery/light/fluorescent/blacklight,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Xj" = (
 /obj/decal/poster/wallsign/warning3,
 /turf/wall,
@@ -1356,6 +1621,13 @@
 	dir = 1
 	},
 /area/station/janitor/office)
+"XX" = (
+/obj/machinery/mass_driver{
+	dir = 4;
+	id = "crusherlauncher"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Yn" = (
 /obj/rack,
 /obj/item/storage/box/clothing/janitor{
@@ -42589,8 +42861,8 @@ BX
 BX
 kM
 cc
-Vr
-kU
+TZ
+Nt
 py
 fo
 hD
@@ -43190,10 +43462,10 @@ hY
 BX
 BX
 BX
-BX
-kM
-kU
-Cf
+hR
+sV
+Nt
+Hh
 cc
 pH
 FP
@@ -43491,7 +43763,7 @@ BX
 BX
 BX
 BX
-BX
+UR
 BX
 kM
 gB
@@ -43793,18 +44065,18 @@ BX
 BX
 BX
 BX
-BX
+QE
 NG
 HX
 hv
 hv
 XI
 pY
+zA
+jK
+ic
 pY
-pY
-Gl
-pY
-pY
+zA
 pY
 XI
 hv
@@ -44095,17 +44367,17 @@ BX
 BX
 CP
 hv
-hv
+jb
 HX
 xq
 BX
 BX
-BX
+Wk
 pY
-PW
-Gl
-Gl
-Gl
+Iv
+Px
+Px
+Px
 PW
 pY
 BX
@@ -44397,17 +44669,17 @@ BX
 BX
 BX
 BX
-BX
+rA
 ex
 HX
 BX
 BX
-BX
+Jj
 pY
-Gl
-Gl
-Gl
-Gl
+GO
+KB
+KB
+gW
 Gl
 pY
 BX
@@ -44700,16 +44972,16 @@ BX
 BX
 BX
 BX
-BX
-kM
-BX
-BX
+SS
+sV
+TD
+fQ
 BX
 pY
-Gl
-Gl
-Gl
-Gl
+GO
+yQ
+yQ
+yQ
 Gl
 pY
 BX
@@ -45008,11 +45280,11 @@ BX
 BX
 BX
 pY
-Gl
-Gl
-Gl
-Gl
-Gl
+br
+DZ
+DZ
+DZ
+WL
 pY
 BX
 BX
@@ -45310,10 +45582,10 @@ BX
 BX
 BX
 pY
-pY
-Gl
-Gl
-Gl
+QI
+rn
+rn
+rn
 pY
 pY
 BX
@@ -45611,11 +45883,11 @@ BX
 BX
 BX
 BX
-BX
 pY
-Gl
-Gl
-Gl
+Jr
+Gs
+RK
+XX
 pY
 BX
 BX
@@ -45913,11 +46185,11 @@ BX
 BX
 BX
 BX
-BX
 pY
 pY
 pY
 pY
+Ps
 pY
 BX
 BX
