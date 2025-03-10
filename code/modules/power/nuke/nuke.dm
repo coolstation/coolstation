@@ -129,7 +129,7 @@
 
 			for(var/j = 1, j <= 9, j++)
 				html += "<td id=\"[i]-[j]\">"
-				html += "<a href=\"?src=\ref[src];cell=1;r=[i];c=[j]\">"
+				html += "<a href=\"byond://?src=\ref[src];cell=1;r=[i];c=[j]\">"
 
 				if(fuel_array[i][j] == null)
 					html += "..."

@@ -7,7 +7,7 @@ window.onerror = function(msg, url, line, col, error) {
 		extra += !error ? '' : ' | error: ' + error;
 		extra += !navigator.userAgent ? '' : ' | user agent: ' + navigator.userAgent;
 		var debugLine = 'Error: ' + msg + ' | url: ' + url + ' | line: ' + line + extra;
-		window.location = '?action=ehjax&type=datum&datum=chatOutput&proc=debug&param[error]='+escaper(debugLine);
+		window.location = 'byond://?action=ehjax&type=datum&datum=chatOutput&proc=debug&param[error]='+escaper(debugLine);
 	}
 	return true;
 };
@@ -138,7 +138,7 @@ $(function() {
 	$('body').on('click', '#titlebar .actions a', function(e) {
 		var type = $(this).attr('class');
 		if (type == 'min') {
-		} 
+		}
 		else if (type == 'close') {
 			//Fix for closing popups once lost connection. Also improves feeling of responsiveness.
 			window.location = 'byond://winset?'+chui.window+'.is-visible=false';

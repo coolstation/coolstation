@@ -1889,28 +1889,28 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 							<tr>
 								<td>
-									<a href="?src=\ref[src];action=timer;tp=-30">
+									<a href="byond://?src=\ref[src];action=timer;tp=-30">
 										<div class="button timer_b">
 											--
 										</div>
 									</a>
 								</td>
 								<td>
-									<a href="?src=\ref[src];action=timer;tp=-1">
+									<a href="byond://?src=\ref[src];action=timer;tp=-1">
 										<div class="button timer_b">
 											-
 										</div>
 									</a>
 								</td>
 								<td>
-									<a href="?src=\ref[src];action=timer;tp=1">
+									<a href="byond://?src=\ref[src];action=timer;tp=1">
 										<div class="button timer_b">
 											+
 										</div>
 									</a>
 								</td>
 								<td>
-									<a href="?src=\ref[src];action=timer;tp=30">
+									<a href="byond://?src=\ref[src];action=timer;tp=30">
 										<div class="button timer_b">
 											++
 										</div>
@@ -1919,14 +1919,14 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 							</tr>
 							<tr>
 								<td colspan=2>
-									<a href="?src=\ref[src];action=trigger;spec=abort">
+									<a href="byond://?src=\ref[src];action=trigger;spec=abort">
 										<div class="button" id="abort">
 											Abort
 										</div>
 									</a>
 								</td>
 								<td colspan=2>
-									<a href="?src=\ref[src];action=trigger;spec=prime">
+									<a href="byond://?src=\ref[src];action=trigger;spec=prime">
 										<div class="button" id="prime">
 											Prime
 										</div>
