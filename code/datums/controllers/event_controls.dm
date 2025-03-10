@@ -114,10 +114,10 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			if(time_to_go < MAJOR_EVENT_FIRST_ADMIN_WARNING)
 				if (!next_picked_major_event) next_picked_major_event = pick_random_event(events)
 				if (!ON_COOLDOWN(src, "major_event_first_warning", MAJOR_EVENT_FIRST_ADMIN_WARNING + 10)) //cooldown slightly longer than eligible period
-					message_admins("<span class='internal'>Random event soon: \An [next_picked_major_event.name] event will occur at around [floor(next_major_event / 600)] minutes.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
+					message_admins("<span class='internal'>Random event soon: \An [next_picked_major_event.name] event will occur at around [floor(next_major_event / 600)] minutes.<br><a href=\"byond://?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"byond://?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
 				else if (MAJOR_EVENT_SECOND_ADMIN_WARNING && time_to_go < MAJOR_EVENT_SECOND_ADMIN_WARNING)
 					if (ON_COOLDOWN(src, "major_event_second_warning", MAJOR_EVENT_SECOND_ADMIN_WARNING + 10))
-						message_admins("<span class='internal'>Random event imminent: [next_picked_major_event.name] will start shortly.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
+						message_admins("<span class='internal'>Random event imminent: [next_picked_major_event.name] will start shortly.<br><a href=\"byond://?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"byond://?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
 
 		//SPAWN EVENTS
 		if (ticker.round_elapsed_ticks >= next_spawn_event)
@@ -127,7 +127,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			if(time_to_go < SPAWN_EVENT_ADMIN_WARNING)
 				if (!next_picked_spawn_event) pick_random_spawn_event()
 				if (next_picked_spawn_event && !ON_COOLDOWN(src, "minor_event_first_warning", SPAWN_EVENT_ADMIN_WARNING + 10))
-					message_admins("<span class='internal'>Random spawn event soon: \An [next_picked_spawn_event.name] event will occur at around [floor(next_spawn_event / 600)] minutes.<br><a href=\"?src=\ref[src];spawn_interrupt=1;spawn_cycle=[spawn_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];spawn_change=1;spawn_cycle=[spawn_event_cycle_count]\">Change</a></span>")
+					message_admins("<span class='internal'>Random spawn event soon: \An [next_picked_spawn_event.name] event will occur at around [floor(next_spawn_event / 600)] minutes.<br><a href=\"byond://?src=\ref[src];spawn_interrupt=1;spawn_cycle=[spawn_event_cycle_count]\">Cancel</a> - <a href=\"byond://?src=\ref[src];spawn_change=1;spawn_cycle=[spawn_event_cycle_count]\">Change</a></span>")
 
 		//MINOR EVENTS
 		if (ticker.round_elapsed_ticks >= next_minor_event)
@@ -137,7 +137,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			if(time_to_go < MINOR_EVENT_ADMIN_WARNING)
 				if (!next_picked_minor_event) next_picked_minor_event = pick_random_event(minor_events)
 				if (!ON_COOLDOWN(src, "minor_event_first_warning", MINOR_EVENT_ADMIN_WARNING + 10))
-					message_admins("<span class='internal'>Minor random event soon: \An [next_picked_minor_event.name] event will occur at around [floor(next_minor_event / 600)] minutes.<br><a href=\"?src=\ref[src];minor_interrupt=1;minor_cycle=[minor_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];minor_change=1;minor_cycle=[minor_event_cycle_count]\">Change</a></span>")
+					message_admins("<span class='internal'>Minor random event soon: \An [next_picked_minor_event.name] event will occur at around [floor(next_minor_event / 600)] minutes.<br><a href=\"byond://?src=\ref[src];minor_interrupt=1;minor_cycle=[minor_event_cycle_count]\">Cancel</a> - <a href=\"byond://?src=\ref[src];minor_change=1;minor_cycle=[minor_event_cycle_count]\">Change</a></span>")
 
 		if (ticker.round_elapsed_ticks >= next_maint_event)
 			maintenance_event.event_effect("Routine Lack of Maintenance", rand(1,3))

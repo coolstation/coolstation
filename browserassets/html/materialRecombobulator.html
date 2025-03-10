@@ -20,12 +20,12 @@
 			z-index: 200;
 			position: absolute;
 			top: 12px;
-			right: 10px; 
+			right: 10px;
 			width: 60px;
 		}
 		#tabs-4 {
-			padding: 0; 
-			margin: 0; 
+			padding: 0;
+			margin: 0;
 			border: 0;
 		}
 	</style>
@@ -67,7 +67,7 @@
 
    		function callByond(action, data)
 		{
-	        var newLoc = '?src=' + ref + ';jscall=' + action + ';' + data.join(';');
+	        var newLoc = 'byond://?src=' + ref + ';jscall=' + action + ';' + data.join(';');
 	        window.location = newLoc;
 		}
 
@@ -112,7 +112,7 @@
 			});
 
 			$( "#dialog" ).dialog({autoOpen: false, modal: true});
-				
+
 			tabs = $( "#tabs" ).tabs({
 				activate: function( event, ui )
 				{

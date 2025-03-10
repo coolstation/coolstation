@@ -657,10 +657,10 @@ input:checked + div { display: block; }
 	var/working = 0
 	var/time = 5
 	var/heat = "Low"
-	var/list/recipes = null
+	var/static/list/recipes = null
 	//var/allowed = list(/obj/item/reagent_containers/food/, /obj/item/parts/robot_parts/head, /obj/item/clothing/head/butt, /obj/item/organ/brain/obj/item)
 	var/allowed = list(/obj/item)
-	var/tmp/recipe_html = null
+	var/static/recipe_html = null
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!emagged)
@@ -795,12 +795,13 @@ table#cooktime a#start {
 	//        oven checks through the recipe list will make it pick the simple recipe and finish the cooking proc
 	//        before it even gets to the more complex recipe, wasting the ingredients that would have gone to the
 	//        more complicated one and pissing off the chef by giving something different than what he wanted!
-		build_oven_recipes()
-		src.recipes = oven_recipes
 		if (!src.recipes)
 			src.recipes = list()
+			build_oven_recipes()
+			src.recipes = oven_recipes
 
-		src.recipe_html = create_oven_recipe_html(src)
+		if(!src.recipe_html)
+			src.recipe_html = create_oven_recipe_html(src)
 
 	Topic(href, href_list)
 		if ((get_dist(src, usr) > 1 && (!issilicon(usr) && !isAI(usr))) || !isliving(usr) || iswraith(usr) || isintangible(usr))

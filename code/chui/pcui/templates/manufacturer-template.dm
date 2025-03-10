@@ -15,11 +15,11 @@
 
 			<script type="text/javascript">
 				function product(ref) {
-					window.location = "?src=[PC_REFTAG];disp=" + ref;
+					window.location = "byond://?src=[PC_REFTAG];disp=" + ref;
 				}
 
 				function delete_product(ref) {
-					window.location = "?src=[PC_REFTAG];delete=1;disp=" + ref;
+					window.location = "byond://?src=[PC_REFTAG];delete=1;disp=" + ref;
 				}
 			</script>
 
