@@ -106,7 +106,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 5
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "bq" = (
 /obj/stool/bench/red/auto,
 /obj/machinery/light{
@@ -411,7 +411,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 1
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "ec" = (
 /obj/railing,
 /obj/cable{
@@ -918,6 +918,7 @@
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
 	},
+/obj/machinery/light,
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
 	},
@@ -2165,7 +2166,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 6
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "sZ" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
@@ -2518,7 +2519,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 4
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "wE" = (
 /obj/lattice{
 	dir = 9;
@@ -2557,7 +2558,7 @@
 /area/station/medical/robotics)
 "wS" = (
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five,
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "wW" = (
 /obj/decal/poster/wallsign/poster_clown,
 /turf/wall,
@@ -2818,6 +2819,9 @@
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/floor/darkpurpleblack/corner{
 	dir = 4
 	},
@@ -3062,7 +3066,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 10
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "Bw" = (
 /obj/storage/secure/closet/civilian/hydro,
 /obj/machinery/light{
@@ -3129,6 +3133,9 @@
 "BL" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/floor/darkpurpleblack/corner,
 /area/station/janitor/office)
@@ -3285,7 +3292,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 8
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "Du" = (
 /obj/machinery/computer/operating{
 	id = "OR1"
@@ -3610,6 +3617,7 @@
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 9
 	},
+/obj/machinery/light,
 /turf/floor/darkpurpleblack/corner{
 	dir = 1
 	},
@@ -4256,7 +4264,7 @@
 	dir = 5;
 	icon_state = "shaft_center"
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "LJ" = (
 /obj/railing/reinforced{
 	dir = 1
@@ -4353,7 +4361,7 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 9
 	},
-/area/station/janitor/office)
+/area/transit_vehicle/elevator/jani_top)
 "Mu" = (
 /obj/stool/bar,
 /obj/decal/tile_edge/stripe/extra_big{

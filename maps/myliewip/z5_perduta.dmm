@@ -208,7 +208,7 @@
 	dir = 9
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "hG" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -233,8 +233,10 @@
 /area/space)
 "ia" = (
 /obj/grille/catwalk/elevator,
+/obj/structure/girder/reinforced,
+/obj/machinery/button/elevator/jani,
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "ic" = (
 /obj/machinery/door/airlock/classic,
 /turf/floor/black,
@@ -401,7 +403,7 @@
 	icon_state = "catwalk"
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "mF" = (
 /obj/lattice{
 	dir = 10;
@@ -546,7 +548,7 @@
 	icon_state = "catwalk"
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "qu" = (
 /obj/cable{
 	d1 = 4;
@@ -561,7 +563,7 @@
 	dir = 5
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "qC" = (
 /turf/floor/darkpurpleblack{
 	dir = 9
@@ -998,7 +1000,7 @@
 	dir = 10
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "Et" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
@@ -1246,7 +1248,7 @@
 	dir = 6
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "LH" = (
 /obj/lattice{
 	dir = 6;
@@ -1322,7 +1324,7 @@
 	icon_state = "catwalk"
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "OM" = (
 /turf/wall/false_wall{
 	name = "conspicuously inconspicuous wall";
@@ -1376,7 +1378,7 @@
 	icon_state = "catwalk"
 	},
 /turf/floor/plating,
-/area/space)
+/area/transit_vehicle/elevator/jani_bot)
 "PW" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10
@@ -1544,6 +1546,9 @@
 "VG" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/black,
+/obj/landmark/start{
+	name = "Janitor"
+	},
 /turf/floor/black,
 /area/station/janitor/office)
 "VP" = (
