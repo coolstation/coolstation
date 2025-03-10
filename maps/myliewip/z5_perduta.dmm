@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aA" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "aN" = (
 /obj/table/wood/auto,
 /turf/floor/grass/random,
@@ -6,6 +13,21 @@
 "bb" = (
 /turf/wall,
 /area/station/maintenance/central)
+"br" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
+	},
+/obj/machinery/cargo_router{
+	default_direction = 4
+	},
+/obj/machinery/conveyor/west{
+	id = "crusherbelt"
+	},
+/obj/machinery/light/fluorescent/blacklight{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "bF" = (
 /turf/floor/stairs/wide/green/other,
 /area/station/hydroponics/bay)
@@ -18,13 +40,22 @@
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
 	},
-/area/space)
+/area/station/janitor/office)
 "ca" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 6
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"cc" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/janitor/office)
+"cj" = (
+/turf/floor/darkpurpleblack{
+	dir = 5
+	},
+/area/station/janitor/office)
 "cH" = (
 /obj/machinery/light/small/floor,
 /obj/machinery/hydro_mister,
@@ -46,7 +77,7 @@
 "cZ" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/darkpurple,
-/area/space)
+/area/station/janitor/office)
 "dg" = (
 /obj/storage/closet/fire,
 /obj/disposalpipe/segment/bent/east,
@@ -63,7 +94,7 @@
 /turf/floor/darkpurpleblack{
 	dir = 9
 	},
-/area/space)
+/area/station/janitor/office)
 "dF" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/plating,
@@ -71,6 +102,13 @@
 "ee" = (
 /turf/floor/stairs/wide/middle,
 /area/station/hydroponics/bay)
+"ex" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "eD" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -88,31 +126,64 @@
 /area/station/medical/robotics)
 "eN" = (
 /turf/floor/darkpurpleblack,
-/area/space)
+/area/station/janitor/office)
 "fo" = (
 /obj/decal/tile_edge/stripe/big,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/floor/darkpurpleblack{
 	dir = 6
 	},
-/area/space)
+/area/station/janitor/office)
 "fs" = (
 /turf/floor/cautionblack,
 /area/transit_vehicle/elevator/robo_bot)
+"fQ" = (
+/obj/cable{
+	icon_state = "1-10";
+	d1 = 1;
+	d2 = 10
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "gp" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
 	},
+/obj/machinery/door_control{
+	pixel_x = 32;
+	id = "crusher";
+	name = "Crusher Door Control"
+	},
 /turf/floor/darkpurpleblack{
 	dir = 10
 	},
-/area/space)
+/area/station/janitor/office)
+"gB" = (
+/turf/wall,
+/area/station/janitor/office)
+"gD" = (
+/obj/machinery/vending/janitor,
+/turf/floor/darkpurpleblack{
+	dir = 10
+	},
+/area/station/janitor/office)
 "gH" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"gW" = (
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "ha" = (
 /turf/floor/darkpurple,
-/area/space)
+/area/station/janitor/office)
 "hk" = (
 /obj/cable{
 	d1 = 4;
@@ -131,14 +202,12 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "hD" = (
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 9
-	},
+/turf/floor/plating,
 /area/space)
 "hG" = (
 /obj/decal/tile_edge/stripe/big{
@@ -147,28 +216,60 @@
 /turf/floor/darkpurpleblack{
 	dir = 5
 	},
-/area/space)
+/area/station/janitor/office)
 "hP" = (
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"hR" = (
+/obj/cable{
+	icon_state = "2-5";
+	d1 = 2;
+	d2 = 5
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "hY" = (
 /turf/space/fluid/trench,
 /area/space)
 "ia" = (
 /obj/grille/catwalk/elevator,
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	icon_state = "shaft_center"
-	},
+/turf/floor/plating,
 /area/space)
+"ic" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/black,
+/area/station/maintenance/disposal)
+"iY" = (
+/obj/decal/tile_edge/stripe/corner/big{
+	dir = 10
+	},
+/obj/machinery/drainage/big/off_station,
+/obj/machinery/light/small/ceiling/red,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
+"jb" = (
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "js" = (
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 1;
 	id = "robotics"
 	},
 /obj/structure/girder/riser,
-/obj/cable{
-	icon_state = "0-8"
-	},
 /obj/machinery/button/elevator/robo{
 	pixel_x = 24
 	},
@@ -196,6 +297,10 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"jK" = (
+/turf/floor/black,
+/turf/wall,
+/area/station/maintenance/disposal)
 "jN" = (
 /obj/decal/poster/wallsign/hazard_exheat,
 /turf/wall/r_wall,
@@ -217,12 +322,15 @@
 	dir = 5;
 	icon_state = "lattice-dir-b"
 	},
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "kr" = (
 /obj/decal/cleanable/blood/drip/high,
 /turf/wall,
-/area/space)
+/area/station/janitor/office)
 "kw" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/light/small/red{
@@ -236,7 +344,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "kR" = (
 /obj/cable{
 	d1 = 6;
@@ -246,6 +354,10 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"kU" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "lD" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/glass/compostbag{
@@ -267,24 +379,39 @@
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
 	},
+/obj/machinery/power/apc{
+	dir = 8;
+	pixel_x = -24;
+	areastring = "Janitor's Office";
+	name = "Janicave APC"
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
 /turf/floor/darkpurpleblack/corner,
-/area/space)
+/area/station/janitor/office)
 "mm" = (
 /obj/grille/catwalk/elevator{
 	dir = 9;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 8
-	},
+/turf/floor/plating,
 /area/space)
 "mF" = (
 /obj/lattice{
 	dir = 10;
 	icon_state = "lattice-dir-b"
 	},
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "mY" = (
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -312,14 +439,33 @@
 /obj/grille/catwalk/bob/inner,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"oc" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "og" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
 	},
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/machinery/conveyor_switch{
+	id = "crusherbelt";
+	position = 1
+	},
 /turf/floor/darkpurpleblack/corner{
 	dir = 4
 	},
-/area/space)
+/area/station/janitor/office)
 "oj" = (
 /obj/machinery/light{
 	dir = 1
@@ -329,12 +475,26 @@
 	},
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"oB" = (
+/obj/stool/chair/couch{
+	dir = 9;
+	layer = 29
+	},
+/obj/decal/cleanable/mess/chips{
+	pixel_x = -2;
+	pixel_y = 11
+	},
+/turf/floor/darkpurpleblack{
+	dir = 9
+	},
+/area/station/janitor/office)
 "pa" = (
 /obj/vehicle/floorbuffer{
 	dir = 4
 	},
+/obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/darkpurple,
-/area/space)
+/area/station/janitor/office)
 "ph" = (
 /obj/cable{
 	icon_state = "5-10";
@@ -356,15 +516,23 @@
 	tag = "icon-lattice-dir-b (NORTHWEST)"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "py" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/darkpurpleblack/corner,
-/area/space)
+/area/station/janitor/office)
 "pH" = (
 /turf/floor/darkpurpleblack/corner{
 	dir = 4
 	},
-/area/space)
+/area/station/janitor/office)
+"pY" = (
+/turf/wall,
+/area/station/maintenance/disposal)
 "pZ" = (
 /obj/machinery/light{
 	dir = 4;
@@ -377,9 +545,7 @@
 	dir = 5;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 4
-	},
+/turf/floor/plating,
 /area/space)
 "qu" = (
 /obj/cable{
@@ -394,15 +560,13 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 5
-	},
+/turf/floor/plating,
 /area/space)
 "qC" = (
 /turf/floor/darkpurpleblack{
 	dir = 9
 	},
-/area/space)
+/area/station/janitor/office)
 "qD" = (
 /obj/disposalpipe/trunk/north,
 /obj/machinery/disposal,
@@ -416,7 +580,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "rc" = (
 /obj/railing{
 	dir = 8
@@ -428,6 +592,10 @@
 "ri" = (
 /turf/wall/r_wall,
 /area/station/hydroponics/bay)
+"rn" = (
+/obj/wingrille_spawn,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "rq" = (
 /turf/floor/engine,
 /area/station/medical/robotics)
@@ -435,30 +603,68 @@
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"rA" = (
+/obj/cable{
+	d1 = 6;
+	d2 = 8;
+	icon_state = "6-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "rS" = (
 /obj/lattice{
 	dir = 6;
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "sA" = (
 /obj/submachine/seed_vendor,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"sV" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "sX" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
 	},
+/obj/decal/tile_edge/floorguide/arrow_w{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/floor/darkpurple,
-/area/space)
+/area/station/janitor/office)
 "th" = (
 /obj/lattice{
 	dir = 1;
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
+"tr" = (
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1
+	},
+/obj/reagent_dispensers/watertank/big,
+/turf/floor/black,
+/area/station/janitor/office)
+"tu" = (
+/obj/machinery/computer/security/wooden_tv,
+/turf/floor/darkpurpleblack{
+	dir = 6
+	},
+/area/station/janitor/office)
 "ty" = (
 /obj/cable{
 	d1 = 1;
@@ -479,12 +685,61 @@
 /turf/floor/darkpurpleblack{
 	dir = 10
 	},
-/area/space)
+/area/station/janitor/office)
 "ub" = (
 /turf/floor/darkpurpleblack/corner{
 	dir = 1
 	},
-/area/space)
+/area/station/janitor/office)
+"uB" = (
+/obj/rack,
+/obj/item/spraybottle/cleaner{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/spraybottle/cleaner{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/spraybottle/cleaner{
+	pixel_x = 10;
+	pixel_y = -3
+	},
+/obj/item/chem_grenade/cleaner{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/obj/item/chem_grenade/cleaner{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/item/chem_grenade/cleaner{
+	pixel_x = 0;
+	pixel_y = -2
+	},
+/obj/item/caution{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/caution{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/obj/item/caution{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/caution{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/turf/floor/darkpurple,
+/area/station/janitor/office)
+"uK" = (
+/turf/floor/darkpurpleblack{
+	dir = 6
+	},
+/area/station/janitor/office)
 "uX" = (
 /turf/wall/r_wall,
 /area/station/medical/robotics)
@@ -502,20 +757,37 @@
 	dir = 8
 	},
 /turf/floor/darkpurple,
-/area/space)
+/area/station/janitor/office)
 "xm" = (
 /obj/railing,
 /turf/floor,
 /area/station/hydroponics/bay)
 "xq" = (
 /turf/wall/r_wall,
-/area/space)
+/area/magindara)
+"xt" = (
+/turf/floor/darkpurple{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/area/station/janitor/office)
+"xw" = (
+/obj/machinery/light,
+/obj/stool/chair/couch{
+	dir = 5;
+	layer = 29
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/darkpurpleblack/corner{
+	dir = 1
+	},
+/area/station/janitor/office)
 "xP" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
 	},
 /turf/floor/darkpurple,
-/area/space)
+/area/station/janitor/office)
 "xT" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
@@ -531,6 +803,20 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"yH" = (
+/obj/decal/tile_edge/stripe/corner/big{
+	dir = 5
+	},
+/obj/machinery/drainage/big/off_station,
+/obj/machinery/light/small/ceiling/red,
+/turf/floor/cautionblack,
+/area/station/janitor/office)
+"yQ" = (
+/obj/machinery/conveyor/north{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "zg" = (
 /obj/storage/closet/emergency,
 /turf/floor/cautionblack,
@@ -553,6 +839,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"zA" = (
+/obj/wingrille_spawn,
+/turf/floor/black,
+/area/station/maintenance/disposal)
 "zO" = (
 /obj/machinery/door/airlock/external,
 /obj/access_spawn/maint,
@@ -586,11 +876,27 @@
 /obj/machinery/vending/hydroponics,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"By" = (
+/obj/random_item_spawner/junk/one_or_zero,
+/turf/floor/darkpurpleblack/corner{
+	dir = 4
+	},
+/area/station/janitor/office)
 "BI" = (
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 4;
+	name = "utility sink"
+	},
+/obj/machinery/light{
+	dir = 8;
+	tag = null
+	},
 /turf/floor/darkpurpleblack{
 	dir = 4
 	},
-/area/space)
+/area/station/janitor/office)
 "BR" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
@@ -602,6 +908,9 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"BX" = (
+/turf/space/fluid/trench,
+/area/magindara)
 "Cc" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
@@ -614,6 +923,12 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"Cf" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 1
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "Ck" = (
 /turf/floor/stairs/wide/green,
 /area/station/hydroponics/bay)
@@ -622,7 +937,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "Da" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -630,7 +945,7 @@
 /turf/floor/darkpurpleblack{
 	dir = 9
 	},
-/area/space)
+/area/station/janitor/office)
 "Dw" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/door/airlock/external,
@@ -657,6 +972,15 @@
 /obj/machinery/networked/ai_governor/viewports,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"DZ" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/conveyor/north{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Ed" = (
 /obj/railing{
 	dir = 4
@@ -668,14 +992,12 @@
 "Eg" = (
 /obj/decal/cleanable/blood/splatter/extra,
 /turf/wall,
-/area/space)
+/area/station/janitor/office)
 "Er" = (
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 10
-	},
+/turf/floor/plating,
 /area/space)
 "Et" = (
 /obj/disposalpipe/segment/horizontal,
@@ -691,7 +1013,7 @@
 /turf/floor/darkpurpleblack{
 	dir = 10
 	},
-/area/space)
+/area/station/janitor/office)
 "Gf" = (
 /obj/cable{
 	icon_state = "4-10";
@@ -701,6 +1023,20 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"Gl" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
+"Gs" = (
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/obj/machinery/crusher,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Gu" = (
 /obj/cable{
 	d1 = 4;
@@ -720,6 +1056,15 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"GO" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/conveyor/west{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "GR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -749,9 +1094,40 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"Hh" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 1
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "HX" = (
 /turf/wall,
-/area/space)
+/area/magindara)
+"If" = (
+/obj/table/folding,
+/obj/item/reagent_containers/food/snacks/chips{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vintage{
+	pixel_x = -7;
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/snacks/chips{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/turf/floor/black,
+/area/station/janitor/office)
 "Il" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -765,6 +1141,18 @@
 "Ip" = (
 /turf/floor/plating,
 /area/transit_vehicle/elevator/hydro_bot)
+"Iv" = (
+/obj/machinery/light/fluorescent/blacklight{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
+	},
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "IE" = (
 /obj/machinery/light{
 	dir = 8;
@@ -809,12 +1197,41 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"Jj" = (
+/obj/cable{
+	d1 = 5;
+	d2 = 8;
+	icon_state = "5-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
+"Jr" = (
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/obj/machinery/drainage/big/off_station,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "JC" = (
 /obj/machinery/plantpot{
 	anchored = 1
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"Ke" = (
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1
+	},
+/obj/storage/closet/janitor,
+/turf/floor/black,
+/area/station/janitor/office)
+"KB" = (
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "KI" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/cable{
@@ -828,9 +1245,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 6
-	},
+/turf/floor/plating,
 /area/space)
 "LH" = (
 /obj/lattice{
@@ -838,7 +1253,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "LN" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
@@ -849,10 +1264,12 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "Mi" = (
+/obj/decal/cleanable/dirt/random,
+/obj/mopbucket,
 /turf/floor/black,
-/area/space)
+/area/station/janitor/office)
 "Mj" = (
 /obj/machinery/button/elevator/hydro,
 /turf/wall,
@@ -874,8 +1291,27 @@
 /area/station/medical/robotics)
 "MT" = (
 /obj/decal/cleanable/blood/tracks,
+/obj/item/crowbar/red{
+	pixel_x = 9;
+	pixel_y = 14
+	},
 /turf/floor/black,
-/area/space)
+/area/station/janitor/office)
+"Nt" = (
+/obj/machinery/door/airlock/external,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
+"NG" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "NK" = (
 /obj/machinery/drainage/big/off_station,
 /turf/floor/cautionblack,
@@ -885,14 +1321,14 @@
 	dir = 6;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/plating,
 /area/space)
 "OM" = (
 /turf/wall/false_wall{
 	name = "conspicuously inconspicuous wall";
 	desc = "This wall couldn't be more ordinary if it tried."
 	},
-/area/space)
+/area/station/janitor/office)
 "OS" = (
 /obj/machinery/recharge_station,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -907,7 +1343,15 @@
 /turf/floor/darkpurpleblack{
 	dir = 5
 	},
-/area/space)
+/area/station/janitor/office)
+"Ps" = (
+/obj/machinery/door/poddoor/pyro{
+	dir = 4;
+	id = "crusherlauncher";
+	name = "Waste Ejection"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Pu" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/engine,
@@ -917,15 +1361,32 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"Px" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/machinery/conveyor/south{
+	id = "crusherbelt"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "PB" = (
 /obj/grille/catwalk/elevator{
 	dir = 10;
 	icon_state = "catwalk"
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down{
-	dir = 1
-	},
+/turf/floor/plating,
 /area/space)
+"PW" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/obj/machinery/light/fluorescent/blacklight,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Qk" = (
 /obj/reagent_dispensers/watertank/big,
 /obj/railing{
@@ -938,6 +1399,14 @@
 "Qp" = (
 /turf/wall,
 /area/station/hydroponics/bay)
+"QE" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "QG" = (
 /obj/window/crystal/reinforced/east,
 /obj/machinery/power/data_terminal,
@@ -948,6 +1417,18 @@
 /obj/machinery/networked/ai_governor/cameras,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"QI" = (
+/obj/machinery/conveyor/east{
+	id = "crusherbelt"
+	},
+/obj/plasticflaps,
+/obj/machinery/door/poddoor/pyro{
+	dir = 4;
+	id = "crusher";
+	name = "Crusher Door"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Rd" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
@@ -958,12 +1439,22 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"RA" = (
+/obj/decal/poster/wallsign/danger_highvolt,
+/turf/wall/r_wall,
+/area/station/medical/robotics)
 "RC" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 10
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"RK" = (
+/obj/machinery/launcher_loader/south{
+	id = "crusherlauncher"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Si" = (
 /obj/railing{
 	dir = 8
@@ -972,6 +1463,14 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"SS" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 9;
+	icon_state = "2-9"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Ti" = (
 /obj/cable{
 	d1 = 2;
@@ -983,12 +1482,29 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"TD" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "TO" = (
-/obj/machinery/vending/paint/broken,
 /obj/decal/cleanable/blood/gibs/body,
 /obj/decal/cleanable/blood,
+/obj/machinery/vending/paint/broken,
 /turf/floor/black,
-/area/space)
+/area/station/janitor/office)
+"TZ" = (
+/obj/decal/tile_edge/stripe/big,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "Uv" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -1002,17 +1518,34 @@
 /turf/floor/darkpurpleblack{
 	dir = 6
 	},
-/area/space)
+/area/station/janitor/office)
+"UR" = (
+/obj/cable{
+	icon_state = "4-10";
+	d1 = 4;
+	d2 = 10
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "UU" = (
 /obj/machinery/light,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"Vr" = (
+/obj/decal/tile_edge/stripe/big,
+/turf/floor/cautionblack,
+/area/station/janitor/office)
 "VE" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
 	},
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"VG" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/black,
+/turf/floor/black,
+/area/station/janitor/office)
 "VP" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
@@ -1037,10 +1570,32 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"Wk" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	pixel_y = -24;
+	name = "Crusher Pit APC";
+	areastring = "Waste Disposal"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Wq" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/cautionblack,
 /area/station/maintenance/central)
+"WL" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/obj/machinery/conveyor/north{
+	id = "crusherbelt"
+	},
+/obj/machinery/light/fluorescent/blacklight,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "Xj" = (
 /obj/decal/poster/wallsign/warning3,
 /turf/wall,
@@ -1051,34 +1606,67 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
-/area/space)
+/area/magindara)
 "XP" = (
 /turf/floor/darkpurpleblack{
 	dir = 1
 	},
-/area/space)
+/area/station/janitor/office)
 "XT" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 9
 	},
+/obj/machinery/light,
 /turf/floor/darkpurpleblack/corner{
 	dir = 1
 	},
-/area/space)
+/area/station/janitor/office)
+"XX" = (
+/obj/machinery/mass_driver{
+	dir = 4;
+	id = "crusherlauncher"
+	},
+/turf/floor/plating,
+/area/station/maintenance/disposal)
+"Yn" = (
+/obj/rack,
+/obj/item/storage/box/clothing/janitor{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/bottle/acetone/janitors{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/acid/large{
+	pixel_y = 1;
+	pixel_x = -6
+	},
+/turf/floor/darkpurple,
+/area/station/janitor/office)
 "YN" = (
 /obj/decal/cleanable/blood/gibs/core,
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/item/paint_can{
+	pixel_x = 9;
+	pixel_y = -11
+	},
 /turf/floor/darkpurpleblack/corner{
 	dir = 4
 	},
-/area/space)
+/area/station/janitor/office)
 "Zb" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
 	},
+/obj/machinery/light,
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
 	},
-/area/space)
+/area/station/janitor/office)
 "Zn" = (
 /obj/disposalpipe/segment/vertical,
 /turf/floor/green/side{
@@ -35366,7 +35954,7 @@ hY
 hY
 hY
 uX
-uX
+RA
 nn
 fs
 js
@@ -38653,11 +39241,11 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -38950,16 +39538,16 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -39252,17 +39840,17 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -39550,24 +40138,24 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-HX
-HX
-HX
-HX
-HX
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+gB
+gB
+gB
+gB
+gB
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -39852,26 +40440,26 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-HX
-HX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+gB
+gB
 eN
 BI
 XP
-HX
-HX
-hY
-hY
-hY
-hY
-hY
-hY
+gB
+gB
+BX
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -40151,30 +40739,30 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
 qV
-hY
-HX
-HX
-HX
-Mi
+BX
+gB
+gB
+gB
+VG
 eN
-ha
+xt
 XP
-Mi
-HX
-HX
-HX
-hY
+VG
+gB
+gB
+gB
+BX
 qV
-hY
-hY
-hY
+BX
+BX
+BX
 hY
 hY
 hY
@@ -40452,31 +41040,31 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 kM
-hY
-HX
-tA
+BX
+gB
+gD
+cj
+uK
 ha
 ha
 ha
-ha
-ha
-ha
-ha
-qC
-HX
-hY
+cj
+tu
+oB
+gB
+BX
 kM
-hY
-hY
-hY
+BX
+BX
+BX
 hY
 hY
 hY
@@ -40754,32 +41342,32 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 kM
-hY
-HX
+BX
+gB
 YN
 tA
 ha
-ha
+Yn
 pa
-ha
+uB
 ha
 qC
-ub
-HX
-hY
+xw
+gB
+BX
 kM
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -41055,16 +41643,16 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 rS
 HX
-hY
+BX
 kr
 TO
 MT
@@ -41072,17 +41660,17 @@ ub
 qC
 ha
 tA
-pH
+By
 Mi
-Mi
-HX
-hY
+If
+gB
+BX
 HX
 pt
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -41358,34 +41946,34 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
+BX
+BX
+BX
 CP
 hv
 hv
 HX
 xq
-hY
-HX
+BX
+gB
 Eg
-HX
-Mi
+gB
+Ke
 ub
 ha
 pH
-Mi
-HX
-HX
-HX
-hY
+tr
+gB
+gB
+gB
+BX
 xq
 HX
 hv
 hv
 th
-hY
-hY
+BX
+BX
 hY
 hY
 hY
@@ -41661,33 +42249,33 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 mF
 HX
 hv
 hv
 LH
-HX
-HX
-HX
+gB
+gB
+gB
 OM
-HX
-HX
-HX
+gB
+gB
+gB
 LH
 hv
 hv
 HX
 ka
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -41964,31 +42552,31 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 kM
-hY
-hY
-HX
-HX
+gB
+gB
+gB
+gB
 mk
 UP
 sX
 Pi
 Zb
-HX
-HX
-hY
-hY
+gB
+gB
+gB
+gB
 kM
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -42267,14 +42855,14 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
 kM
-hY
-hY
-HX
+cc
+TZ
+Nt
 py
 fo
 hD
@@ -42282,15 +42870,15 @@ mm
 Er
 hG
 bT
-HX
-hY
-hY
+kU
+Cf
+cc
 kM
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -42570,13 +43158,13 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
+BX
+BX
+BX
 kM
-hY
-hY
-HX
+cc
+iY
+cc
 eN
 cZ
 PB
@@ -42584,15 +43172,15 @@ ia
 NN
 xP
 XP
-HX
-hY
-hY
+cc
+yH
+cc
 kM
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -42871,14 +43459,14 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-kM
-hY
-hY
-HX
+BX
+BX
+BX
+hR
+sV
+Nt
+Hh
+cc
 pH
 FP
 qA
@@ -42886,14 +43474,14 @@ qf
 KK
 Da
 ub
-HX
-hY
-hY
+cc
+Vr
+kU
 kM
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -43171,32 +43759,32 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+UR
+BX
 kM
-hY
-hY
-HX
-HX
+gB
+gB
+gB
+gB
 og
 gp
 ws
 du
 XT
-HX
-HX
-hY
-hY
+gB
+gB
+gB
+gB
 kM
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -43473,33 +44061,33 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+QE
+NG
 HX
 hv
 hv
 XI
-HX
-HX
-HX
-Mi
-HX
-HX
-HX
+pY
+zA
+jK
+ic
+pY
+zA
+pY
 XI
 hv
 hv
 HX
-pt
-hY
-hY
-hY
-hY
-hY
+oc
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -43774,34 +44362,34 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
+BX
+BX
+BX
 CP
 hv
-hv
+jb
 HX
 xq
-hY
-hY
-hY
-HX
-Mi
-Mi
-Mi
-Mi
-Mi
-HX
-hY
-hY
-hY
+BX
+BX
+Wk
+pY
+Iv
+Px
+Px
+Px
+PW
+pY
+BX
+BX
+BX
 xq
 HX
 hv
 hv
 th
-hY
-hY
+BX
+BX
 hY
 hY
 hY
@@ -44076,34 +44664,34 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-mF
+BX
+BX
+BX
+BX
+BX
+rA
+ex
 HX
-hY
-hY
-hY
+BX
+BX
+Jj
+pY
+GO
+KB
+KB
+gW
+Gl
+pY
+BX
+BX
+BX
 HX
-Mi
-Mi
-Mi
-Mi
-Mi
-HX
-hY
-hY
-hY
-HX
-ka
-hY
-hY
-hY
-hY
-hY
+aA
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -44380,31 +44968,31 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+SS
+sV
+TD
+fQ
+BX
+pY
+GO
+yQ
+yQ
+yQ
+Gl
+pY
+BX
+BX
+BX
 kM
-hY
-hY
-hY
-HX
-Mi
-Mi
-Mi
-Mi
-Mi
-HX
-hY
-hY
-hY
-kM
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -44682,30 +45270,30 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
 kM
-hY
-hY
-hY
-HX
-Mi
-Mi
-Mi
-Mi
-Mi
-HX
-hY
-hY
-hY
+BX
+BX
+BX
+pY
+br
+DZ
+DZ
+DZ
+WL
+pY
+BX
+BX
+BX
 kM
+BX
+BX
 hY
-hY
-hY
-hY
+BX
 hY
 hY
 hY
@@ -44985,27 +45573,27 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
 Mc
-hY
-hY
-hY
-HX
-HX
-Mi
-Mi
-Mi
-HX
-HX
-hY
-hY
-hY
+BX
+BX
+BX
+pY
+QI
+rn
+rn
+rn
+pY
+pY
+BX
+BX
+BX
 Mc
-hY
-hY
+BX
+BX
 hY
 hY
 hY
@@ -45287,26 +45875,26 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-HX
-Mi
-Mi
-Mi
-HX
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+pY
+Jr
+Gs
+RK
+XX
+pY
+BX
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -45589,23 +46177,23 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-HX
-HX
-HX
-HX
-HX
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+pY
+pY
+pY
+pY
+Ps
+pY
+BX
+BX
+BX
 hY
 hY
 hY
@@ -45894,18 +46482,18 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY
@@ -46197,16 +46785,16 @@ hY
 hY
 hY
 hY
+BX
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+BX
+BX
+BX
+BX
+BX
+BX
+BX
 hY
 hY
 hY

@@ -42,6 +42,11 @@
 /obj/decal/poster/wallsign/security,
 /turf/wall,
 /area/station/security/checkpoint/medical)
+"aK" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 1
+	},
+/area/station/janitor/office)
 "aM" = (
 /obj/railing/reinforced,
 /turf/space/magindara,
@@ -102,14 +107,6 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
-"bo" = (
-/obj/grille/catwalk/elevator{
-	dir = 5
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 5
-	},
-/area/station/janitor/office)
 "bq" = (
 /obj/stool/bench/red/auto,
 /obj/machinery/light{
@@ -349,6 +346,11 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"ds" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 9
+	},
+/area/station/janitor/office)
 "dt" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -410,15 +412,6 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
 /area/station/maintenance/central)
-"dZ" = (
-/obj/grille/catwalk/elevator{
-	dir = 10;
-	icon_state = "catwalk"
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 1
-	},
-/area/station/janitor/office)
 "ec" = (
 /obj/railing,
 /obj/cable{
@@ -1054,6 +1047,11 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"kp" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 4
+	},
+/area/station/janitor/office)
 "kt" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -2168,14 +2166,6 @@
 	},
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
-"sY" = (
-/obj/grille/catwalk/elevator{
-	dir = 6
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 6
-	},
-/area/station/janitor/office)
 "sZ" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
@@ -2524,15 +2514,6 @@
 	dir = 8
 	},
 /area/station/medical/robotics)
-"wB" = (
-/obj/grille/catwalk/elevator{
-	dir = 5;
-	icon_state = "catwalk"
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 4
-	},
-/area/station/janitor/office)
 "wE" = (
 /obj/lattice{
 	dir = 9;
@@ -2569,13 +2550,6 @@
 /obj/storage/secure/closet/medical/anesthetic,
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
-"wS" = (
-/obj/grille/catwalk/elevator{
-	dir = 6;
-	icon_state = "catwalk"
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five,
-/area/station/janitor/office)
 "wW" = (
 /obj/decal/poster/wallsign/poster_clown,
 /turf/wall,
@@ -2993,6 +2967,11 @@
 	dir = 8
 	},
 /area/station/medical/medbay/lobby)
+"AV" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5
+	},
+/area/station/janitor/office)
 "AW" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -3076,14 +3055,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
-"Bv" = (
-/obj/grille/catwalk/elevator{
-	dir = 10
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 10
-	},
-/area/station/janitor/office)
 "Bw" = (
 /obj/storage/secure/closet/civilian/hydro,
 /obj/machinery/light{
@@ -3302,15 +3273,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
-"Dh" = (
-/obj/grille/catwalk/elevator{
-	dir = 9;
-	icon_state = "catwalk"
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 8
-	},
-/area/station/janitor/office)
 "Du" = (
 /obj/machinery/computer/operating{
 	id = "OR1"
@@ -3831,6 +3793,11 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"If" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 10
+	},
+/area/station/janitor/office)
 "Ij" = (
 /turf/floor/carpet/blue/fancy/edge/sw,
 /area/station/medical/staff)
@@ -4148,6 +4115,12 @@
 	dir = 6
 	},
 /area/transit_vehicle/elevator/hydro_top)
+"KY" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/station/janitor/office)
 "Lb" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -4276,13 +4249,6 @@
 	},
 /turf/space/magindara,
 /area/magindara)
-"LH" = (
-/obj/grille/catwalk/elevator,
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 5;
-	icon_state = "shaft_center"
-	},
-/area/station/janitor/office)
 "LJ" = (
 /obj/railing/reinforced{
 	dir = 1
@@ -4375,14 +4341,6 @@
 	dir = 4
 	},
 /area/station/hallway/primary/southwest)
-"Mt" = (
-/obj/grille/catwalk/elevator{
-	dir = 9
-	},
-/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
-	dir = 9
-	},
-/area/station/janitor/office)
 "Mu" = (
 /obj/stool/bar,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -4892,6 +4850,11 @@
 "Qt" = (
 /turf/floor/green/corner,
 /area/station/hallway/primary/southwest)
+"Qy" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 6
+	},
+/area/station/janitor/office)
 "QH" = (
 /obj/storage/secure/closet/medical/medkit,
 /turf/floor/white/checker,
@@ -5111,6 +5074,11 @@
 	},
 /turf/floor/carpet/clowncarpet/border,
 /area/station/crew_quarters/clown)
+"Sc" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 8
+	},
+/area/station/janitor/office)
 "Se" = (
 /obj/storage/closet/emergency,
 /obj/machinery/light,
@@ -6023,6 +5991,9 @@
 "ZH" = (
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"ZK" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five,
+/area/station/janitor/office)
 "ZN" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2/left{
@@ -47240,9 +47211,9 @@ HZ
 HZ
 yC
 jJ
-Mt
-Dh
-Bv
+ds
+Sc
+If
 qa
 gr
 HZ
@@ -47542,9 +47513,9 @@ Hk
 mO
 zL
 OG
-dZ
-LH
-wS
+aK
+KY
+ZK
 fy
 GY
 mO
@@ -47844,9 +47815,9 @@ HZ
 HZ
 ic
 zY
-bo
-wB
-sY
+AV
+kp
+Qy
 Ep
 RE
 HZ
