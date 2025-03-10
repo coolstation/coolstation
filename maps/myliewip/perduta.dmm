@@ -26,7 +26,7 @@
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
 "ar" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northeast,
 /obj/table/auto,
 /obj/item/storage/box/ic_cones{
 	pixel_x = -3;
@@ -145,15 +145,15 @@
 /turf/wall,
 /area/station/medical/medbay/restroom)
 "bX" = (
-/obj/cable{
-	icon_state = "0-2";
-	d2 = 2
-	},
 /obj/machinery/power/apc{
 	areastring = "Medbay Staff Area";
 	dir = 1;
 	name = "Medbay Staff Room APC";
 	pixel_y = 24
+	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -385,6 +385,11 @@
 /area/station/maintenance/central)
 "dX" = (
 /obj/disposalpipe/junction/middle/west,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
 "dZ" = (
@@ -435,12 +440,7 @@
 /turf/space/magindara,
 /area/magindara)
 "ez" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "eK" = (
@@ -625,6 +625,15 @@
 	dir = 8
 	},
 /area/station/janitor/office)
+"gt" = (
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/bluegreen,
+/area/station/medical/medbay/cloner)
 "gw" = (
 /obj/machinery/vending/cigarette/noknobs,
 /turf/floor/carpet/grime,
@@ -636,6 +645,19 @@
 "gT" = (
 /turf/wall,
 /area/station/crew_quarters/clown)
+"gV" = (
+/obj/machinery/power/apc{
+	areastring = "Kitchen";
+	dir = 4;
+	name = "Kitchen APC";
+	pixel_x = 24
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "ha" = (
 /obj/machinery/vending/medical,
 /turf/floor/white/checker,
@@ -658,11 +680,11 @@
 	name = "Central Maintenance APC";
 	pixel_y = 24
 	},
-/obj/cable{
-	icon_state = "0-2";
-	d2 = 2
-	},
 /obj/random_item_spawner/junk/one,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "hf" = (
@@ -861,11 +883,11 @@
 	name = "Operating Theater APC";
 	pixel_y = 24
 	},
-/obj/cable{
-	icon_state = "0-2";
-	d2 = 2
-	},
 /obj/storage/crate/robotics_supplies_borg,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "iX" = (
@@ -1170,6 +1192,8 @@
 	icon_state = "1-2"
 	},
 /obj/cable{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/floor/grey/side{
@@ -1205,6 +1229,15 @@
 	dir = 1
 	},
 /area/station/medical/research)
+"ma" = (
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/white/checker,
+/area/station/medical/medbay/treatment)
 "me" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -1402,8 +1435,8 @@
 	pixel_x = -24
 	},
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -1528,6 +1561,10 @@
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
 	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "oO" = (
@@ -1550,11 +1587,6 @@
 /area/station/medical/medbay/treatment)
 "oS" = (
 /obj/machinery/atmospherics/pipe/simple/junction/east,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
 "oT" = (
@@ -1692,6 +1724,8 @@
 "pQ" = (
 /obj/disposalpipe/segment/sewage/bent/east,
 /obj/cable{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/floor/grey/side{
@@ -1753,6 +1787,10 @@
 	dir = 8;
 	name = "Medbay Restroom APC";
 	pixel_x = -24
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/floor/plating,
 /area/magindara)
@@ -1854,6 +1892,10 @@
 /obj/machinery/light{
 	dir = 8;
 	tag = null
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
@@ -1979,11 +2021,6 @@
 	name = "Kitchen APC";
 	pixel_x = 24
 	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/decal/cleanable/blood,
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
 "st" = (
@@ -2456,13 +2493,15 @@
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five,
 /area/station/janitor/office)
 "wT" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
 	},
 /obj/window/reinforced/east,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/grey,
 /area/station/medical/robotics)
 "wW" = (
@@ -3090,9 +3129,6 @@
 /area/station/medical/medbay/treatment)
 "CV" = (
 /obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
@@ -3430,10 +3466,6 @@
 	name = "Pancopticon APC";
 	pixel_y = 24
 	},
-/obj/cable{
-	icon_state = "0-2";
-	d2 = 2
-	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Gg" = (
@@ -3527,18 +3559,13 @@
 	pixel_y = 24
 	},
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "GS" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/southeast,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "GY" = (
@@ -3653,6 +3680,7 @@
 	id = "robotics"
 	},
 /obj/cable{
+	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/floor/industrial,
@@ -3683,8 +3711,8 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/generic/med_data,
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/white,
 /area/station/medical/staff)
@@ -3943,19 +3971,6 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/medical/medbay/surgery)
-"KM" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/floor/plating,
-/area/station/maintenance/central)
 "KO" = (
 /obj/machinery/light{
 	dir = 1
@@ -4278,6 +4293,10 @@
 	id = "OR1";
 	dir = 4
 	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
 "Nf" = (
@@ -4405,10 +4424,6 @@
 	pixel_y = 24;
 	dir = 1
 	},
-/obj/cable{
-	icon_state = "0-2";
-	d2 = 2
-	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Ok" = (
@@ -4524,6 +4539,11 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
@@ -4916,14 +4936,8 @@
 /turf/floor/plating,
 /area/magindara)
 "Sm" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /obj/access_spawn/maint,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/floor/plating,
 /area/station/crew_quarters/kitchen/freezer)
 "St" = (
@@ -5022,6 +5036,11 @@
 "Tr" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "TB" = (
@@ -5668,8 +5687,8 @@
 	pixel_x = 24
 	},
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -5734,7 +5753,7 @@
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "Zi" = (
-/obj/machinery/atmospherics/pipe/manifold/north,
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -42815,7 +42834,7 @@ qV
 tw
 mF
 xf
-MJ
+cC
 Cu
 mF
 Pa
@@ -43099,10 +43118,10 @@ hD
 HL
 Pn
 Pd
-Kp
+ma
 dX
 Tr
-vn
+gt
 vn
 vn
 Md
@@ -43117,8 +43136,8 @@ yv
 FY
 St
 Kh
-mF
-KM
+gV
+Et
 GS
 up
 tC
@@ -49466,7 +49485,7 @@ bZ
 Jq
 JO
 bZ
-SO
+Vq
 Vq
 Vq
 Vq
@@ -49768,7 +49787,7 @@ OE
 sg
 KV
 bZ
-SO
+Vq
 Vq
 Vq
 Vq
@@ -50070,7 +50089,7 @@ bZ
 bZ
 Jp
 bZ
-SO
+Vq
 Vq
 Vq
 Vq
@@ -50372,8 +50391,8 @@ bt
 bZ
 yZ
 au
-Gn
-SO
+Vq
+Vq
 Vq
 Vq
 UZ
@@ -50674,8 +50693,8 @@ lk
 QI
 ZH
 WS
-SO
-SO
+Vq
+Vq
 Vq
 Vq
 UZ
@@ -50976,8 +50995,8 @@ Le
 VQ
 ZH
 WS
-SO
-SO
+Vq
+Vq
 Vq
 Vq
 UZ
