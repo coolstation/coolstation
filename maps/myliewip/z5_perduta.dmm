@@ -61,7 +61,7 @@
 	dir = 8
 	},
 /turf/floor/darkpurpleblack{
-	dir = 8
+	dir = 9
 	},
 /area/space)
 "dF" = (
@@ -98,10 +98,21 @@
 "fs" = (
 /turf/floor/cautionblack,
 /area/transit_vehicle/elevator/robo_bot)
+"gp" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 8
+	},
+/turf/floor/darkpurpleblack{
+	dir = 10
+	},
+/area/space)
 "gH" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"ha" = (
+/turf/floor/darkpurple,
+/area/space)
 "hk" = (
 /obj/cable{
 	d1 = 4;
@@ -114,6 +125,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"hv" = (
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "hD" = (
 /obj/grille/catwalk/elevator{
 	dir = 9
@@ -194,6 +212,17 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"ka" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
+/area/space)
+"kr" = (
+/obj/decal/cleanable/blood/drip/high,
+/turf/wall,
+/area/space)
 "kw" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/light/small/red{
@@ -201,6 +230,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"kM" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "kR" = (
 /obj/cable{
 	d1 = 6;
@@ -241,6 +277,13 @@
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 8
 	},
+/area/space)
+"mF" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
 /area/space)
 "mY" = (
 /turf/floor/plating,
@@ -286,6 +329,12 @@
 	},
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"pa" = (
+/obj/vehicle/floorbuffer{
+	dir = 4
+	},
+/turf/floor/darkpurple,
+/area/space)
 "ph" = (
 /obj/cable{
 	icon_state = "5-10";
@@ -300,6 +349,14 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"pt" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "py" = (
 /turf/floor/darkpurpleblack/corner,
 /area/space)
@@ -341,6 +398,11 @@
 	dir = 5
 	},
 /area/space)
+"qC" = (
+/turf/floor/darkpurpleblack{
+	dir = 9
+	},
+/area/space)
 "qD" = (
 /obj/disposalpipe/trunk/north,
 /obj/machinery/disposal,
@@ -348,6 +410,13 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"qV" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "rc" = (
 /obj/railing{
 	dir = 8
@@ -362,10 +431,34 @@
 "rq" = (
 /turf/floor/engine,
 /area/station/medical/robotics)
+"rx" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/floor/plating,
+/area/station/maintenance/central)
+"rS" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "sA" = (
 /obj/submachine/seed_vendor,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"sX" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 4
+	},
+/turf/floor/darkpurple,
+/area/space)
+"th" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "ty" = (
 /obj/cable{
 	d1 = 1;
@@ -382,6 +475,11 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"tA" = (
+/turf/floor/darkpurpleblack{
+	dir = 10
+	},
+/area/space)
 "ub" = (
 /turf/floor/darkpurpleblack/corner{
 	dir = 1
@@ -399,6 +497,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"ws" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 8
+	},
+/turf/floor/darkpurple,
+/area/space)
 "xm" = (
 /obj/railing,
 /turf/floor,
@@ -427,6 +531,10 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"zg" = (
+/obj/storage/closet/emergency,
+/turf/floor/cautionblack,
+/area/station/maintenance/central)
 "zq" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/hydro,
@@ -443,6 +551,12 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"zO" = (
+/obj/machinery/door/airlock/external,
+/obj/access_spawn/maint,
+/obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Ae" = (
@@ -464,10 +578,19 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"AW" = (
+/obj/disposalpipe/segment/vertical,
+/turf/floor/cautionblack,
+/area/station/maintenance/central)
 "Bx" = (
 /obj/machinery/vending/hydroponics,
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
+"BI" = (
+/turf/floor/darkpurpleblack{
+	dir = 4
+	},
+/area/space)
 "BR" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
@@ -494,6 +617,12 @@
 "Ck" = (
 /turf/floor/stairs/wide/green,
 /area/station/hydroponics/bay)
+"CP" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "Da" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -502,6 +631,12 @@
 	dir = 9
 	},
 /area/space)
+"Dw" = (
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/door/airlock/external,
+/obj/access_spawn/maint,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "Dz" = (
 /obj/cable{
 	icon_state = "5-10";
@@ -530,6 +665,10 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"Eg" = (
+/obj/decal/cleanable/blood/splatter/extra,
+/turf/wall,
+/area/space)
 "Er" = (
 /obj/grille/catwalk/elevator{
 	dir = 10
@@ -693,10 +832,27 @@
 	dir = 6
 	},
 /area/space)
+"LH" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "LN" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
 /area/station/hydroponics/bay)
+"Mc" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/space)
+"Mi" = (
+/turf/floor/black,
+/area/space)
 "Mj" = (
 /obj/machinery/button/elevator/hydro,
 /turf/wall,
@@ -716,12 +872,26 @@
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"MT" = (
+/obj/decal/cleanable/blood/tracks,
+/turf/floor/black,
+/area/space)
+"NK" = (
+/obj/machinery/drainage/big/off_station,
+/turf/floor/cautionblack,
+/area/station/maintenance/central)
 "NN" = (
 /obj/grille/catwalk/elevator{
 	dir = 6;
 	icon_state = "catwalk"
 	},
 /turf/floor/specialroom/elevator_shaft/straight_down,
+/area/space)
+"OM" = (
+/turf/wall/false_wall{
+	name = "conspicuously inconspicuous wall";
+	desc = "This wall couldn't be more ordinary if it tried."
+	},
 /area/space)
 "OS" = (
 /obj/machinery/recharge_station,
@@ -735,7 +905,7 @@
 	dir = 4
 	},
 /turf/floor/darkpurpleblack{
-	dir = 4
+	dir = 5
 	},
 /area/space)
 "Pu" = (
@@ -813,12 +983,26 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
+"TO" = (
+/obj/machinery/vending/paint/broken,
+/obj/decal/cleanable/blood/gibs/body,
+/obj/decal/cleanable/blood,
+/turf/floor/black,
+/area/space)
 "Uv" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
+"UP" = (
+/obj/decal/tile_edge/stripe/big{
+	dir = 4
+	},
+/turf/floor/darkpurpleblack{
+	dir = 6
+	},
+/area/space)
 "UU" = (
 /obj/machinery/light,
 /turf/floor/grass/random,
@@ -853,10 +1037,21 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"Wq" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/floor/cautionblack,
+/area/station/maintenance/central)
 "Xj" = (
 /obj/decal/poster/wallsign/warning3,
 /turf/wall,
 /area/station/hydroponics/bay)
+"XI" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/space)
 "XP" = (
 /turf/floor/darkpurpleblack{
 	dir = 1
@@ -868,6 +1063,12 @@
 	},
 /turf/floor/darkpurpleblack/corner{
 	dir = 1
+	},
+/area/space)
+"YN" = (
+/obj/decal/cleanable/blood/gibs/core,
+/turf/floor/darkpurpleblack/corner{
+	dir = 4
 	},
 /area/space)
 "Zb" = (
@@ -884,6 +1085,14 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"ZQ" = (
+/obj/disposalpipe/segment/vertical,
+/turf/space/fluid/trench,
+/area/space)
+"ZX" = (
+/obj/machinery/light,
+/turf/space/fluid/trench,
+/area/space)
 
 (1,1,1) = {"
 hY
@@ -39349,11 +39558,11 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+HX
+HX
+HX
+HX
+HX
 hY
 hY
 hY
@@ -39650,13 +39859,13 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+HX
+HX
+eN
+BI
+XP
+HX
+HX
 hY
 hY
 hY
@@ -39948,21 +40157,21 @@ hY
 hY
 hY
 hY
+qV
 hY
+HX
+HX
+HX
+Mi
+eN
+ha
+XP
+Mi
+HX
+HX
+HX
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+qV
 hY
 hY
 hY
@@ -40250,21 +40459,21 @@ hY
 hY
 hY
 hY
+kM
 hY
+HX
+tA
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+qC
+HX
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+kM
 hY
 hY
 hY
@@ -40552,21 +40761,21 @@ hY
 hY
 hY
 hY
+kM
 hY
+HX
+YN
+tA
+ha
+ha
+pa
+ha
+ha
+qC
+ub
+HX
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+kM
 hY
 hY
 hY
@@ -40853,23 +41062,23 @@ hY
 hY
 hY
 hY
-hY
+rS
 HX
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+kr
+TO
+MT
+ub
+qC
+ha
+tA
+pH
+Mi
+Mi
 HX
 hY
+HX
+pt
 hY
 hY
 hY
@@ -41152,29 +41361,29 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
+CP
+hv
+hv
 HX
 xq
-HX
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
 hY
 HX
+Eg
+HX
+Mi
+ub
+ha
+pH
+Mi
+HX
+HX
+HX
+hY
 xq
 HX
-hY
-hY
-hY
+hv
+hv
+th
 hY
 hY
 hY
@@ -41457,22 +41666,23 @@ hY
 hY
 hY
 hY
-hY
+mF
 HX
-hY
-hY
-hY
+hv
+hv
+LH
 HX
-hY
-hY
-hY
-hY
-hY
 HX
-hY
-hY
-hY
 HX
+OM
+HX
+HX
+HX
+LH
+hv
+hv
+HX
+ka
 hY
 hY
 hY
@@ -41503,11 +41713,10 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+bb
+bb
+bb
+bb
 hY
 hY
 hY
@@ -41760,20 +41969,21 @@ hY
 hY
 hY
 hY
-hY
+kM
 hY
 hY
 HX
 HX
 mk
-Pi
-Pi
+UP
+sX
 Pi
 Zb
 HX
 HX
 hY
 hY
+kM
 hY
 hY
 hY
@@ -41804,12 +42014,11 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
+ZX
+rx
+NK
+zg
+bb
 ri
 ri
 hY
@@ -42062,10 +42271,10 @@ hY
 hY
 hY
 hY
+kM
 hY
 hY
-hY
-hY
+HX
 py
 fo
 hD
@@ -42073,6 +42282,10 @@ mm
 Er
 hG
 bT
+HX
+hY
+hY
+kM
 hY
 hY
 hY
@@ -42098,20 +42311,16 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+ZQ
+ZQ
+ZQ
+ZQ
+ZQ
+ZQ
+Dw
+AW
+Wq
+bb
 Qp
 ri
 ri
@@ -42364,10 +42573,10 @@ hY
 hY
 hY
 hY
+kM
 hY
 hY
-hY
-hY
+HX
 eN
 cZ
 PB
@@ -42375,11 +42584,10 @@ ia
 NN
 xP
 XP
+HX
 hY
 hY
-hY
-hY
-hY
+kM
 hY
 hY
 hY
@@ -42412,7 +42620,8 @@ hY
 hY
 hY
 bb
-VP
+bb
+zO
 bb
 Qp
 aN
@@ -42666,10 +42875,10 @@ hY
 hY
 hY
 hY
+kM
 hY
 hY
-hY
-hY
+HX
 pH
 FP
 qA
@@ -42677,10 +42886,10 @@ qf
 KK
 Da
 ub
+HX
 hY
 hY
-hY
-hY
+kM
 hY
 hY
 hY
@@ -42968,21 +43177,21 @@ hY
 hY
 hY
 hY
-hY
+kM
 hY
 hY
 HX
 HX
 og
-du
-du
+gp
+ws
 du
 XT
 HX
 HX
 hY
 hY
-hY
+kM
 hY
 hY
 hY
@@ -43271,21 +43480,21 @@ hY
 hY
 hY
 HX
-hY
-hY
-hY
+hv
+hv
+XI
 HX
-hY
-hY
-hY
-hY
-hY
 HX
-hY
-hY
-hY
 HX
-hY
+Mi
+HX
+HX
+HX
+XI
+hv
+hv
+HX
+pt
 hY
 hY
 hY
@@ -43568,29 +43777,29 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
+CP
+hv
+hv
 HX
 xq
-HX
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
 hY
 hY
 hY
 HX
+Mi
+Mi
+Mi
+Mi
+Mi
+HX
+hY
+hY
+hY
 xq
 HX
-hY
-hY
-hY
+hv
+hv
+th
 hY
 hY
 hY
@@ -43873,23 +44082,23 @@ hY
 hY
 hY
 hY
-hY
+mF
 HX
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+HX
+Mi
+Mi
+Mi
+Mi
+Mi
+HX
 hY
 hY
 hY
 HX
-hY
+ka
 hY
 hY
 hY
@@ -44176,21 +44385,21 @@ hY
 hY
 hY
 hY
+kM
 hY
 hY
 hY
+HX
+Mi
+Mi
+Mi
+Mi
+Mi
+HX
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+kM
 hY
 hY
 hY
@@ -44478,21 +44687,21 @@ hY
 hY
 hY
 hY
+kM
 hY
 hY
 hY
+HX
+Mi
+Mi
+Mi
+Mi
+Mi
+HX
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+kM
 hY
 hY
 hY
@@ -44780,21 +44989,21 @@ hY
 hY
 hY
 hY
+Mc
 hY
 hY
 hY
+HX
+HX
+Mi
+Mi
+Mi
+HX
+HX
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
-hY
+Mc
 hY
 hY
 hY
@@ -45087,11 +45296,11 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+HX
+Mi
+Mi
+Mi
+HX
 hY
 hY
 hY
@@ -45389,11 +45598,11 @@ hY
 hY
 hY
 hY
-hY
-hY
-hY
-hY
-hY
+HX
+HX
+HX
+HX
+HX
 hY
 hY
 hY
