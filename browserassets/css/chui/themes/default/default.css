@@ -23,6 +23,20 @@ a {
 	font-weight: bold;
 }
 
+::-webkit-scrollbar-track {
+    border-style: outset;
+    border-left-color: #9a8469;
+    border-right-color: #9a8469;
+    background: #322716;
+}
+
+::-webkit-scrollbar-thumb {
+    border-style: outset;
+    background: #dad8b6;
+    border-left-color: #9a8469;
+    border-bottom-color: #9a8469;
+}
+
 /* TITLEBAR START */
 #titlebar {
 	position: absolute;
