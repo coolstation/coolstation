@@ -159,7 +159,7 @@
 
 ABSTRACT_TYPE(/datum/job/command)
 /datum/job/command
-	linkcolor = "#12E193"
+	linkcolor = "#128352"
 	slot_card = /obj/item/card/id/command
 	map_can_autooverride = 0
 	//do_not_save_gun = 1
@@ -613,7 +613,7 @@ ABSTRACT_TYPE(/datum/job/security)
 
 ABSTRACT_TYPE(/datum/job/research)
 /datum/job/research
-	linkcolor = "#bf83e2"
+	linkcolor = "#A645D1"
 	slot_card = /obj/item/card/id/research
 
 /datum/job/research/scientist
@@ -669,7 +669,7 @@ ABSTRACT_TYPE(/datum/job/research)
 
 ABSTRACT_TYPE(/datum/job/medical)
 /datum/job/medical
-	linkcolor = "#357EC7" //still the nerd department (medsci)
+	linkcolor = "#3577AD" //still the nerd department (medsci)
 	slot_card = /obj/item/card/id/research
 
 /datum/job/medical/medical_doctor
@@ -822,7 +822,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	name = "Geneticist"
 	limit = 2
 	department = "research"
-	linkcolor = "#bf83e2"
+	linkcolor = "#A645D1"
 	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/genetics)
 	slot_jump = list(/obj/item/clothing/under/rank/geneticist)
@@ -872,7 +872,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 ABSTRACT_TYPE(/datum/job/engineering)
 /datum/job/engineering
-	linkcolor = "#dda448"
+	linkcolor = "#ac5f06"
 	slot_card = /obj/item/card/id/engineering
 
 /datum/job/engineering/engineer
@@ -985,7 +985,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics
-	linkcolor = "#D17E22"
+	linkcolor = "#7B750F"
 	slot_card = /obj/item/card/id/logistics
 
 //QM got promoted, look under /job/command/quartermaster
@@ -1086,7 +1086,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 
 ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/civilian
-	linkcolor = "#0099FF"
+	linkcolor = "#0873d2"
 	slot_card = /obj/item/card/id/civilian
 
 /datum/job/civilian/chef
@@ -1255,7 +1255,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/civilian/AI
 	name = "AI"
-	linkcolor = "#999999"
+	linkcolor = "#7B7070"
 	limit = 1
 	//no_late_join = 1
 	high_priority_job = 1
@@ -1275,7 +1275,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/civilian/cyborg
 	name = "Cyborg"
-	linkcolor = "#999999"
+	linkcolor = "#7B7070"
 	limit = 8
 	//no_late_join = 1
 	allow_traitors = 0
@@ -1333,7 +1333,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/head_surgeon
 	name = "Head Surgeon"
-	linkcolor = "#357EC7"
+	linkcolor = "#3577AD"
 	limit = 0
 	wages = PAY_IMPORTANT
 	cant_spawn_as_rev = 1
@@ -1417,7 +1417,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/toxins_researcher
 	name = "Toxins Researcher"
-	linkcolor = "#bf83e2"
+	linkcolor = "#A645D1"
 	limit = 0
 	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/toxins)
@@ -1434,7 +1434,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/research_assistant
 	name = "Research Assistant"
-	linkcolor = "#bf83e2"
+	linkcolor = "#A645D1"
 	limit = 0
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
@@ -1448,7 +1448,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/medical_assistant
 	name = "Medical Assistant"
-	linkcolor = "#bf83e2"
+	linkcolor = "#A645D1"
 	limit = 0
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
@@ -1462,7 +1462,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/tech_assistant
 	name = "Technical Assistant"
-	linkcolor = "#dda448"
+	linkcolor = "#ac5f06"
 	limit = 0
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
@@ -2591,7 +2591,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	name = "Head of Mining"
 	limit = 0
 	wages = PAY_IMPORTANT
-	linkcolor = "#D17E22"
+	linkcolor = "#7B750F"
 	cant_spawn_as_rev = 1
 	slot_card = /obj/item/card/id/command
 	slot_belt = list(/obj/item/device/pda2/mining)
