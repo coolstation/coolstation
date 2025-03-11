@@ -864,8 +864,7 @@ var/f_color_selector_handler/F_Color_Selector
 /world/proc/update_status()
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
-	//we start off with an animated bee gif because, well, this is who we are.
-	var/s = "<img src=\"https://coolstation.space/cool_assets/meatvendor.gif\"/>"
+	var/s = "<b>516</b> Ready! "
 
 	if (config?.server_name)
 		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
