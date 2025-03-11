@@ -103,8 +103,8 @@ $fg-map: colors.$fg-map !default;
 
 .Tabs--horizontal {
   .Tab {
-    border-top: (1em / 6) solid transparent;
-    border-bottom: (1em / 6) solid transparent;
+    border-top: math.div(1em, 6) solid transparent;
+    border-bottom: math.div(1em, 6)  solid transparent;
     border-top-left-radius: 0.25em;
     border-top-right-radius: 0.25em;
   }
@@ -117,8 +117,8 @@ $fg-map: colors.$fg-map !default;
 .Tabs--vertical {
   .Tab {
     min-height: 2em;
-    border-left: (1em / 6) solid transparent;
-    border-right: (1em / 6) solid transparent;
+    border-left: math.div(1em, 6)  solid transparent;
+    border-right: math.div(1em, 6)  solid transparent;
     border-top-left-radius: 0.25em;
     border-bottom-left-radius: 0.25em;
   }

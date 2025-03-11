@@ -1372,7 +1372,7 @@ var/datum/flock/testflock
 	admin_only
 
 	winset(src, null, "browser-options=devtools,find")
-	boutput(src, "<B>WebView2 Devtools enabled.</B>")
+	boutput(src, "<B>WebView2 Devtools enabled, right click a window to inspect it.</B>")
 
 #undef ARG_INFO_NAME
 #undef ARG_INFO_TYPE

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-<title>TGUI</title>
+<title id="hidden-title-for-testing">TGUI</title>
 <meta charset="utf-8">
 
 <!-- Inlined metadata -->
-<meta name="windowId" id="tgui:windowId" content="[tgui:windowId]">
-<meta name="strictMode" id="tgui:strictMode" content="[tgui:strictMode]">
+<meta id="tgui:windowId" content="[tgui:windowId]">
+<meta id="tgui:strictMode" content="[tgui:strictMode]">
 
 <!-- Early setup -->
 <script>
@@ -43,6 +43,8 @@ var parseMetaTag = function (name) {
 
   Byond.styleSheet = "tgui:stylesheet"
 
+	window.__windowId__ = Byond.windowId;
+
   // Blink engine version
   Byond.BLINK = (function () {
     var groups = navigator.userAgent.match(/Chrome\/(\d+)\./);
@@ -51,7 +53,7 @@ var parseMetaTag = function (name) {
   })();
 
   // Basic checks to detect whether this page runs in BYOND
-  var isByond = (Byond.BLINK !== null || window.cef_to_byond)
+  var isByond = (Byond.BLINK !== null)
     && location.hostname === '127.0.0.1'
     && location.search !== '?external';
     //As of BYOND 515 the path doesn't seem to include tmp dir anymore if you're trying to open tgui in external browser and looking why it doesn't work
@@ -100,15 +102,11 @@ var parseMetaTag = function (name) {
       }
     }
 
-    // If we're a Chromium client, just use the fancy method
-    if (window.cef_to_byond) {
-      cef_to_byond('byond://' + url);
-      return;
-    }
-
     // Perform a standard call via location.href
     if (url.length < 2048) {
       location.href = 'byond://' + url;
+			var testTitle = document.getElementById('hidden-title-for-testing');
+			testTitle['textContent'] = url;
       return;
     }
     // Send an HTTP request to DreamSeeker's HTTP server.
@@ -304,6 +302,7 @@ var parseMetaTag = function (name) {
     if (type === 'css') {
       var node = document.createElement('link');
       node.type = 'text/css';
+			node.crossOrigin = 'anonymous';
       node.rel = 'stylesheet';
       node.href = url;
       // Temporarily set media to something inapplicable

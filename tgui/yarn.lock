@@ -3660,7 +3660,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.16.1":
+"core-js@npm:^3.8.3":
   version: 3.41.0
   resolution: "core-js@npm:3.41.0"
   checksum: 10c0/a29ed0b7fe81acf49d04ce5c17a1947166b1c15197327a5d12f95bbe84b46d60c3c13de701d808f41da06fa316285f3f55ce5903abc8d5642afc1eac4457afc8
@@ -8212,7 +8212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.13.9":
+"regenerator-runtime@npm:^0.13.7":
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 10c0/12b069dc774001fbb0014f6a28f11c09ebfe3c0d984d88c9bced77fdb6fedbacbca434d24da9ae9371bfbf23f754869307fb51a4c98a8b8b18e5ef748677ca24
@@ -9373,7 +9373,7 @@ __metadata:
     glob: "npm:^7.1.7"
     source-map: "npm:^0.7.3"
     stacktrace-parser: "npm:^0.1.10"
-    ws: "npm:^7.5.3"
+    ws: "npm:^7.4.3"
   languageName: unknown
   linkType: soft
 
@@ -9394,9 +9394,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tgui-polyfill@workspace:packages/tgui-polyfill"
   dependencies:
-    core-js: "npm:^3.16.1"
-    regenerator-runtime: "npm:^0.13.9"
-    unfetch: "npm:^4.2.0"
+    core-js: "npm:^3.8.3"
+    regenerator-runtime: "npm:^0.13.7"
+    unfetch: "npm:^5.0.0"
   languageName: unknown
   linkType: soft
 
@@ -9708,10 +9708,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unfetch@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "unfetch@npm:4.2.0"
-  checksum: 10c0/a5c0a896a6f09f278b868075aea65652ad185db30e827cb7df45826fe5ab850124bf9c44c4dafca4bf0c55a0844b17031e8243467fcc38dd7a7d435007151f1b
+"unfetch@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "unfetch@npm:5.0.0"
+  checksum: 10c0/ccbbf648a384d57aeaf3bd4972761327a6cf60c84a3edb8e2f9d18aed0df6214576fc8fcd444ea87672e8e32f4a74590bc5c07756f053f57f492c6d8363045c9
   languageName: node
   linkType: hard
 
@@ -10259,7 +10259,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^7.3.1, ws@npm:^7.4.6, ws@npm:^7.5.3":
+"ws@npm:^7.3.1, ws@npm:^7.4.3, ws@npm:^7.4.6":
   version: 7.5.10
   resolution: "ws@npm:7.5.10"
   peerDependencies:
