@@ -273,6 +273,7 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
       var node = document.createElement('link');
       node.type = 'text/css';
       node.rel = 'stylesheet';
+			node.crossOrigin = 'anonymous';
       // IE8: Prefer non-https protocols
       node.href = Byond.IS_LTE_IE9
         ? url.replace('https://', 'http://')
@@ -383,11 +384,6 @@ window.__updateQueue__ = [];
 window.update = function (message) {
   window.__updateQueue__.push(message);
 };
-Byond.topic({
-  tgui: 1,
-  window_id: window.__windowId__,
-  type: 'ready',
-});
 
 // Necessary polyfill to make Webpack code splitting work on IE8
 if (!Function.prototype.bind) (function () {
@@ -563,6 +559,14 @@ Copyright 2046-2053 Thinktronic Systems, LTD.
     <div>Please enable Javascript and restart the game.</div>
   </div>
 </noscript>
+
+<script>
+Byond.topic({
+  tgui: 1,
+  window_id: window.__windowId__,
+  type: 'ready',
+});
+</script>
 
 </body>
 </html>

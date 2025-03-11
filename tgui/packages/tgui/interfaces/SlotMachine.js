@@ -4,7 +4,9 @@
  */
 
 import { useBackend } from '../backend';
-import { BlockQuote, Button, Icon, NoticeBox, NumberInput, Stack } from '../components';
+import { Box } from './Box';
+import { Divider } from './Divider';
+import { BlockQuote, Button, Icon, NoticeBox, NumberInput } from '../components';
 import { Window } from '../layouts';
 
 export const SlotMachine = (props, context) => {

@@ -54,7 +54,7 @@ const StackItem = (props: StackItemProps) => {
 Stack.Item = StackItem;
 
  type StackDividerProps = FlexItemProps & {
-   hidden?: boolean;
+   readonly hidden?: boolean;
  };
 
 const StackDivider = (props: StackDividerProps) => {
