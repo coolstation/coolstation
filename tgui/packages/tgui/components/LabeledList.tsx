@@ -34,7 +34,7 @@ type LabeledListItemProps = {
   /** @deprecated */
   readonly content?: any,
   readonly children?: InfernoNode;
-  verticalAlign?: string;
+  readonly verticalAlign?: string;
 };
 
 const LabeledListItem = (props: LabeledListItemProps) => {

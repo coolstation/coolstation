@@ -9,8 +9,8 @@ import { RefObject } from 'inferno';
 import { computeFlexClassName, computeFlexItemClassName, computeFlexItemProps, computeFlexProps, FlexItemProps, FlexProps } from './Flex';
 
  type StackProps = FlexProps & {
-   vertical?: boolean;
-   fill?: boolean;
+   readonly vertical?: boolean;
+   readonly fill?: boolean;
  };
 
 export const Stack = (props: StackProps) => {
@@ -33,7 +33,7 @@ export const Stack = (props: StackProps) => {
 };
 
  type StackItemProps = FlexProps & {
-   innerRef?: RefObject<HTMLDivElement>;
+   readonly innerRef?: RefObject<HTMLDivElement>;
  };
 
 const StackItem = (props: StackItemProps) => {

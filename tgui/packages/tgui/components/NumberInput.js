@@ -167,9 +167,7 @@ export class NumberInput extends Component {
     }
     // IE8: Use an "unselectable" prop because "user-select" doesn't work.
     const renderContentElement = value => (
-      <div
-        className="NumberInput__content"
-        unselectable={Byond.IS_LTE_IE8}>
+      <div className="NumberInput__content">
         {value + (unit ? ' ' + unit : '')}
       </div>
     );
