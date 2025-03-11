@@ -24,6 +24,7 @@ $purple: #b066c8 !default;
 $pink: #e060a8 !default;
 $brown: #a5673f !default;
 $grey: #767676 !default;
+$light-grey: #aaa !default;
 
 $primary: #5e7da1 !default;
 $good: #71AA4C !default;
@@ -60,6 +61,7 @@ $_gen_map: (
   'pink': $pink,
   'brown': $brown,
   'grey': $grey,
+  'light-grey': $light-grey,
   'good': $good,
   'average': $average,
   'bad': $bad,
@@ -73,14 +75,14 @@ $bg-map-keys: map.keys($_gen_map) !default;
 
 $fg-map: ();
 @each $color-name in $fg-map-keys {
-  $fg-map: map-merge($fg-map, (
+  $fg-map: map.merge($fg-map, (
     $color-name: fg(map.get($_gen_map, $color-name)),
   ));
 }
 
 $bg-map: ();
 @each $color-name in $bg-map-keys {
-  $bg-map: map-merge($bg-map, (
+  $bg-map: map.merge($bg-map, (
     $color-name: bg(map.get($_gen_map, $color-name)),
   ));
 }

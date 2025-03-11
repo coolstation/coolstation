@@ -10,7 +10,7 @@ import { Box, unit } from './Box';
 import { Divider } from './Divider';
 
 type LabeledListProps = {
-  children?: any;
+  readonly children?: any;
 };
 
 export const LabeledList = (props: LabeledListProps) => {
@@ -25,15 +25,16 @@ export const LabeledList = (props: LabeledListProps) => {
 LabeledList.defaultHooks = pureComponentHooks;
 
 type LabeledListItemProps = {
-  className?: string | BooleanLike;
-  label?: string | BooleanLike;
-  labelColor?: string | BooleanLike;
-  color?: string | BooleanLike;
-  textAlign?: string | BooleanLike;
-  buttons?: InfernoNode,
+  readonly className?: string | BooleanLike;
+  readonly label?: string | BooleanLike;
+  readonly labelColor?: string | BooleanLike;
+  readonly color?: string | BooleanLike;
+  readonly textAlign?: string | BooleanLike;
+  readonly buttons?: InfernoNode,
   /** @deprecated */
-  content?: any,
-  children?: InfernoNode;
+  readonly content?: any,
+  readonly children?: InfernoNode;
+  readonly verticalAlign?: string;
 };
 
 const LabeledListItem = (props: LabeledListItemProps) => {
@@ -46,6 +47,7 @@ const LabeledListItem = (props: LabeledListItemProps) => {
     buttons,
     content,
     children,
+    verticalAlign = "baseline",
   } = props;
   return (
     <tr
@@ -59,7 +61,8 @@ const LabeledListItem = (props: LabeledListItemProps) => {
         className={classes([
           'LabeledList__cell',
           'LabeledList__label',
-        ])}>
+        ])}
+        verticalAlign={verticalAlign}>
         {label ? label + ':' : null}
       </Box>
       <Box
@@ -70,7 +73,8 @@ const LabeledListItem = (props: LabeledListItemProps) => {
           'LabeledList__cell',
           'LabeledList__content',
         ])}
-        colSpan={buttons ? undefined : 2}>
+        colSpan={buttons ? undefined : 2}
+        verticalAlign={verticalAlign}>
         {content}
         {children}
       </Box>
@@ -86,7 +90,7 @@ const LabeledListItem = (props: LabeledListItemProps) => {
 LabeledListItem.defaultHooks = pureComponentHooks;
 
 type LabeledListDividerProps = {
-  size?: number;
+  readonly size?: number;
 };
 
 const LabeledListDivider = (props: LabeledListDividerProps) => {
