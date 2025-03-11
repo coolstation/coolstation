@@ -13,6 +13,9 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_antag_popups,
 		/client/proc/admin_changelog, //changelog, i might rename this
 
+		//minor debugging
+		/client/proc/debug_webview_devtools,
+
 		//quickly make a thing without buildmode (thanks delari)
 		/client/proc/create_obj,
 		/client/proc/create_mob,

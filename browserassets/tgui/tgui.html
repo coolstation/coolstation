@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
+<title>TGUI</title>
 <meta charset="utf-8">
 
 <!-- Inlined metadata -->
-<meta id="tgui:windowId" content="[tgui:windowId]">
-<meta id="tgui:strictMode" content="[tgui:strictMode]">
+<meta name="windowId" id="tgui:windowId" content="[tgui:windowId]">
+<meta name="strictMode" id="tgui:strictMode" content="[tgui:strictMode]">
 
 <!-- Early setup -->
-<script type="text/javascript">
-// Read window id into a global
-window.__windowId__ = document
-  .getElementById('tgui:windowId')
-  .getAttribute('content');
-if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
-  window.__windowId__ = null;
-}
+<script>
+var parseMetaTag = function (name) {
+	var content = document.getElementById(name).getAttribute('content');
+	if (content === '[' + name + ']') {
+		return null;
+	}
+	return content;
+};
 
 (function () {
   // Utility functions
@@ -601,15 +602,15 @@ blink {
                `\\|{/ ^ _)-%(%%%%)%%;%%%
            .'^^^^^^^  /`    %%)%%%%)%%%'
   jgs     //\   ) ,  /       '%%%%(%%'
-    ,  _.'/  `\<-- \<
+    ,  _.'/  `\&lt;-- \&lt;
      `^^^`     ^^   ^^
  </div>
- <marquee class="FatalError__header">
+ <div class="FatalError__header">
  A fatal exception has occurred in the damn TGUI.
  The current application will be terminated.
  Fax a copy of the following stack trace to
  someone cool at https://github.com/coolstation/coolstation.
- </marquee>
+ </div>
  <div id="FatalError__stack" class="FatalError__stack"></div>
  <div class="FatalError__footer">
  Mylie Wuz Here 2053
