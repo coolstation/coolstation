@@ -1,3 +1,5 @@
+var/obj/overlay/magindara_fog/magindara_global_fog = new
+
 /turf/space/magindara
 	name = "\improper the ocean below"
 	desc = "The deep ocean of Magindara far below, whipped with waves and frigid cold."
@@ -12,11 +14,11 @@
 	throw_unlimited = 0
 	color = "#ffffff"
 	special_volume_override = -1
+	turf_flags = MINE_MAP_PRESENTS_EMPTY
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	temperature = T20C
 
-	var/static/obj/overlay/magindara_fog/magindara_fog
 	var/datum/light/point/light = null
 	var/light_r = 0.55
 	var/light_g = 0.4
@@ -29,10 +31,10 @@
 		..()
 		if (generateLight)
 			src.make_light()
-		if(!magindara_fog)
-			magindara_fog = new
-			magindara_fog.alpha = 128
-		vis_contents += magindara_fog
+		vis_contents += magindara_global_fog
+		var/obj/decal/magindara_skylight/skylight = locate() in src
+		if(skylight)
+			qdel(skylight)
 
 	/// Adds the pitfall, handled in map setup on Perduta. If you wanna spawn this turf, call this soon after!
 	proc/initialise_component()
@@ -54,15 +56,6 @@
 		SPAWN_DBG(0.1)
 			light?.enable()
 
-	update_icon(starlight_alpha=128) // dumb and bad
-		return
-
-	proc/update_fog(fog_alpha=128)
-		if(!magindara_fog)
-			magindara_fog = new
-
-		magindara_fog.alpha = fog_alpha
-
 /obj/overlay/magindara_fog
 	name = "thick smog"
 	desc = "The atmosphere of Magindara, just barely shy of chokingly thick smog."
@@ -72,6 +65,31 @@
 	layer = EFFECTS_LAYER_4
 	plane = PLANE_NOSHADOW_ABOVE
 	mouse_opacity = FALSE
+	alpha = 128
+
+/obj/decal/magindara_skylight
+	name = null
+	desc = "hidden decal to show the light and fog of Magindara on any turf"
+	anchored = 2
+	var/datum/light/point/light = null
+	var/light_r = 0.55
+	var/light_g = 0.4
+	var/light_b = 0.6
+	var/light_brightness = 1.1
+	var/light_height = 3
+	var/generateLight = 1
+
+	New()
+		..()
+		if (!light)
+			light = new
+			light.attach(src)
+		light.set_brightness(light_brightness)
+		light.set_color(light_r, light_g, light_b)
+		light.set_height(light_height)
+		SPAWN_DBG(0.1)
+			light?.enable()
+		vis_contents += magindara_global_fog
 
 /area/magindara
 	icon_state = "pink"
@@ -87,18 +105,15 @@
 proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
 	if(!map_currently_abovewater)
 		return FALSE
-	var/turf/space/magindara/sample = locate(/turf/space/magindara)
-	if(!sample)
-		return FALSE
-	sample.update_fog(fog_alpha)
+	magindara_global_fog.alpha = fog_alpha
 	if(rain_alpha)
 		var/image/weather = image('icons/turf/water.dmi',"fast_rain", layer = EFFECTS_LAYER_BASE)
 		weather.alpha = rain_alpha
 		weather.appearance_flags = RESET_COLOR | RESET_ALPHA
 		weather.plane = PLANE_NOSHADOW_ABOVE
-		sample.magindara_fog.UpdateOverlays(weather, "weather_rain")
+		magindara_global_fog.UpdateOverlays(weather, "weather_rain")
 	else
-		sample.magindara_fog.UpdateOverlays(null, "weather_rain")
+		magindara_global_fog.UpdateOverlays(null, "weather_rain")
 	return TRUE
 
 /client/proc/change_magindaran_weather()
