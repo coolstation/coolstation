@@ -44,7 +44,6 @@ var/datum/explosion_controller/explosions
 		exploding = 1
 		RL_Suspend()
 
-		var/needrebuild = 0
 		var/p
 		var/last_touched
 		var/center
@@ -67,8 +66,6 @@ var/datum/explosion_controller/explosions
 				if(istype(O, /obj/overlay))
 					continue
 				O.ex_act(p, last_touched, center)
-				if (istype(O, /obj/cable)) // this is hacky, newcables should relieve the need for this
-					needrebuild = 1
 
 		LAGCHECK(LAG_HIGH)
 

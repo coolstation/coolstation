@@ -339,7 +339,6 @@
 ///add new cable into surrounding pnet data structure at runtime
 /obj/cable/proc/integrate()
 	var/connections = get_connections(FALSE)
-	var/want_a_node = (length(connections) != 2)
 	var/datum/powernet/future_powernet
 
 	//loose cable with no neighbours
