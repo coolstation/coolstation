@@ -2316,6 +2316,12 @@ var/list/fun_images = list()
 
 	src.update_cursor()
 
+//Let admins use ghostjump links as non ghost mobs, I guess.
+/mob/verb/ghostjump(x as num, y as num, z as num)
+	set name = ".ghostjump"
+	set hidden = TRUE
+	src.client?.jumptocoord(x,y,z)
+
 
 /client/proc/vpn_whitelist_add(vpnckey as text)
 	set name = "VPN whitelist add"
