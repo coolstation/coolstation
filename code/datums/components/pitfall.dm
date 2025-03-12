@@ -110,10 +110,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 								AM.event_handler_flags &= ~IS_PITFALLING
 								return
-						if(!pit.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax))
-							(AM.event_handler_flags &= ~IS_PITFALLING)
-		else if(!src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax))
-			(AM.event_handler_flags &= ~IS_PITFALLING)
+						pit.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
+		else
+			src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
 
 	/// called when movable atom AM lands from a throw into a pitfall turf.
 	proc/start_fall_no_coyote(var/signalsender, var/atom/movable/AM)
@@ -251,6 +250,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				return
 		else
 			AM.event_handler_flags &= ~IS_PITFALLING
+			AM.event_handler_flags &= ~IN_COYOTE_TIME
 			if(ismob(AM))
 				var/mob/M = AM
 				M.show_message("<span class='alert bold'>That pit is MAJORLY fucked up! Tell a coder!</span>")
