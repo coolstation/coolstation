@@ -17,8 +17,8 @@
 			if(makingpowernets)
 				return // TODO queue instead
 			for(var/obj/cable/C in src.get_connections())
-				if(src.netnum == 0 && C.netnum != 0)
-					src.netnum = C.netnum
+				if(src.netnum == 0)
+					src.netnum = C.get_netnumber()
 				else if(C.netnum != 0 && C.netnum != src.netnum) // could be a join instead but this won't happen often so screw it
 					makepowernets()
 					return

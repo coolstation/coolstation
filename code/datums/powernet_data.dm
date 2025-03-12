@@ -149,7 +149,7 @@ var/global/list/dirty_pnet_nodes = list()
 	dirty_pnet_nodes -= src
 
 ///From starting_node, crawl the node network and assign new_netnum
-/datum/powernet_graph_node/proc/propagate_netnum(datum/powernet_graph_node/starting_node, new_netnum = 1)
+/datum/powernet_graph_node/proc/propagate_netnum(datum/powernet_graph_node/starting_node, new_netnum = 1, early_end_at_matching_netnum = FALSE)
 	var/datum/powernet/PN
 	if(powernets && length(powernets) >= new_netnum)
 		PN = powernets[new_netnum]
@@ -159,13 +159,18 @@ var/global/list/dirty_pnet_nodes = list()
 	//Could have done this recursively, but that'd require shoveling the visited nodes list around between calls and I don't think that's cheap?
 	while (length(nodes_to_visit))
 		var/datum/powernet_graph_node/a_node = nodes_to_visit[1]
+		visited_nodes |= a_node
+
+		//If we're just doing a local update (merging 2 nets or whatever) and there's no reason to assume the net as a whole is compromised
+		if (a_node.netnum == new_netnum && early_end_at_matching_netnum)
+			continue
+
 		//not bothing updating the powernet's cables list cause I want to deprecate that
 		a_node.pnet.all_graph_nodes -= a_node
 		a_node.netnum = new_netnum
 		a_node.pnet = PN
 		PN.all_graph_nodes |= a_node
 
-		visited_nodes |= a_node
 		var/list/new_nodes = a_node.adjacent_nodes.Copy() - visited_nodes
 		nodes_to_visit |= new_nodes
 
@@ -198,3 +203,7 @@ var/global/list/dirty_pnet_nodes = list()
 
 ///
 /datum/powernet_graph_link/proc/dissolve()
+	while(length(cables))
+		var/obj/cable/C = cables[1]
+		cables -= C.link_dissolve_crawl(src)
+	qdel(src)

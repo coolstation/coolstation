@@ -115,7 +115,7 @@
 	if(level == 1)
 		invisibility = i ? 101 : 0
 	updateicon()
-
+/*
 /obj/cable/conduit/disposing()		// called when a cable is deleted
 
 	if(!defer_powernet_rebuild)	// set if network will be rebuilt manually
@@ -128,7 +128,7 @@
 
 		if(netnum && powernets && powernets.len >= netnum) //NEED FOR CLEAN GC IN EXPLOSIONS
 			powernets[netnum].cables -= src
-
+*/
 	//insulator.owner = null
 	//conductor.owner = null
 
@@ -145,13 +145,13 @@
 		PN = powernets[netnum]
 	return PN
 	*/
-
+/*
 /obj/cable/conduit/update_network()
 	return
 
 	//don't do this yet
 
-/*
+
 /obj/cable/conduit/update_network()
 	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
 		return

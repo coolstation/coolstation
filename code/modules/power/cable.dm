@@ -47,7 +47,7 @@
 		NC.iconmod = coil.iconmod
 		NC.add_fingerprint()
 		NC.updateicon()
-		NC.update_network()
+		NC.integrate()//update_network()
 		coil.use(1)
 		return
 	else
@@ -196,15 +196,6 @@
 	//	cableimg.icon_state = icon_state
 	//	cableimg.alpha = invisibility ? 128 : 255
 
-// returns the powernet this cable belongs to
-/obj/cable/proc/get_powernet()
-	if (is_a_node)
-		return is_a_node.pnet
-	else
-		if (is_a_link?.adjacent_nodes)
-			var/datum/powernet_graph_node/N = is_a_link.adjacent_nodes[1]
-			return N.pnet
-		else return 0
 
 /obj/cable/proc/cut(mob/user,turf/T)
 	if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
@@ -330,11 +321,26 @@
 /obj/cable/reinforced/ex_act(severity)
 	return //nah
 
+//(should probably deprecate for get_powernet, since most applications of this end up looking up the powernet themselves anyway)
+// returns the netnumber powernet this cable belongs to
+/obj/cable/proc/get_netnumber()
+	var/datum/powernet_graph_node/polled_node = src.is_a_node
+	if (src.is_a_link)
+		polled_node = src.is_a_link.adjacent_nodes[1]
+	return polled_node.netnum
+
+// returns the powernet this cable belongs to
+/obj/cable/proc/get_powernet()
+	var/datum/powernet_graph_node/polled_node = src.is_a_node
+	if (src.is_a_link)
+		polled_node = src.is_a_link.adjacent_nodes[1]
+	return polled_node.pnet
+
 ///add new cable into surrounding pnet data structure at runtime
 /obj/cable/proc/integrate()
 	var/connections = get_connections(FALSE)
 	var/want_a_node = (length(connections) != 2)
-	var/datum/future_powernet
+	var/datum/powernet/future_powernet
 
 	//loose cable with no neighbours
 	if (!length(connections))
@@ -355,6 +361,141 @@
 	//and anything with 2 connections was a node that needs to become a link
 	//everything else was and is a node
 
+	var/list/datum/powernet_graph_link/links2kill = list()
+	var/list/datum/powernet_graph_node/nodes2kill = list()
+	var/list/datum/powernet_graph_node/nodes2link = list()
+
+
+	for (var/obj/cable/C in connections)
+		if (C.is_a_node)
+			if (!future_powernet)
+				future_powernet = C.is_a_node.pnet
+			else
+				if (future_powernet.number > C.is_a_node.pnet.number)
+					future_powernet = C.is_a_node.pnet //select for smallest numbered pnet
+
+		switch(C.get_connections())
+			if (3) //other cable was a link, needs to become a node
+				links2kill += C.is_a_link
+			if (2) //other cable was a dead end, is now a simple connection
+				nodes2kill += C.is_a_node
+			else   //other cable stays a node
+				nodes2link += C.is_a_node
+
+	if (!src.is_a_node) //edge case time
+		//So, one thing that can happen is we close a loop of wire
+		//where we'd technically not have any junctions that should be nodes, but nodes are also required for powernets to function.
+		//so in that case we'll just leave the two previous dead ends as nodes.
+		var/datum/powernet_graph_node/possible_loop_node_1 = nodes2kill[1]
+		var/datum/powernet_graph_node/possible_loop_node_2 = nodes2kill[2]
+		if (length(possible_loop_node_1.adjacent_nodes) == 1 && length(possible_loop_node_2.adjacent_nodes) == 1)
+			if (possible_loop_node_2 in possible_loop_node_1.adjacent_nodes)
+				src.is_a_link = new(list(src), list(possible_loop_node_1, possible_loop_node_2))
+				//list em up, since, well, technically we've given it the topology of two links connecting the same nodes
+				possible_loop_node_1.adjacent_nodes[possible_loop_node_2] = list(possible_loop_node_1.adjacent_nodes[possible_loop_node_2], src.is_a_link)
+				possible_loop_node_2.adjacent_nodes[possible_loop_node_1] = list(possible_loop_node_2.adjacent_nodes[possible_loop_node_1], src.is_a_link)
+				return //we've handled the entire net by now
+
+	//normal handling now
+
+	//first, we let ex-links sort themselves out
+	//we might end up assigned a link through all this, and if not then this will sort out part of our node connections.
+	for(var/datum/powernet_graph_link/dead_link as anything in links2kill)
+		dead_link.dissolve()
+
+	if (src.is_a_node)
+		//these are going from 1->2 connections, so by definition they only had one adjacent node
+		for (var/datum/powernet_graph_node/dead_node as anything in nodes2kill)
+			var/datum/powernet_graph_node/neighbour_node = dead_node.adjacent_nodes[1]
+			var/datum/powernet_graph_link/maybe_link = dead_node.adjacent_nodes[neighbour_node]
+			if (istype(maybe_link))	//use existing link
+				dead_node.physical_node.is_a_link = maybe_link
+				maybe_link.cables += dead_node.physical_node
+				maybe_link.expected_length = length(maybe_link.cables)
+			else //make a new link
+				dead_node.physical_node.is_a_link = new(list(dead_node.physical_node), list(src.is_a_node, neighbour_node))
+
+			neighbour_node.adjacent_nodes -= dead_node
+			dead_node.physical_node.is_a_node = null
+			qdel(dead_node)
+			neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
+			src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
+
+		for (var/datum/powernet_graph_node/directly_adjacent_node as anything in nodes2link) //just add each other's refs
+			directly_adjacent_node.adjacent_nodes += src.is_a_node
+			src.is_a_node.adjacent_nodes += directly_adjacent_node
+
+		src.is_a_node.propagate_netnum(src.is_a_node, future_powernet.number, early_end_at_matching_netnum = TRUE)
+
+
+
+	else //we are a link
+
+		//dead end 2 link
+		for (var/datum/powernet_graph_node/dead_node as anything in nodes2kill)
+			var/datum/powernet_graph_node/neighbour_node = dead_node.adjacent_nodes[1]
+			var/datum/powernet_graph_link/maybe_link = dead_node.adjacent_nodes[neighbour_node]
+
+			neighbour_node.adjacent_nodes -= dead_node
+
+			if (istype(maybe_link))	//use existing link
+				if (src.is_a_link) //ah dang it, we gotta merge
+					src.is_a_link.cables += maybe_link.cables
+					src.is_a_link.cables += dead_node.physical_node
+					dead_node.physical_node.is_a_link = src.is_a_link
+					src.is_a_link.adjacent_nodes += neighbour_node
+				else //let's add both of us to it
+					src.is_a_link = maybe_link
+					dead_node.physical_node.is_a_link = maybe_link
+					maybe_link.cables += list(dead_node.physical_node, src)
+			else //make a new link
+				if (src.is_a_link)
+					src.is_a_link.cables += dead_node.physical_node
+					dead_node.physical_node.is_a_link = src.is_a_link
+				else
+					src.is_a_link = new(list(src, dead_node.physical_node), list(neighbour_node))
+					dead_node.physical_node.is_a_link = src.is_a_link
+
+
+			dead_node.physical_node.is_a_node = null
+			qdel(dead_node)
+			neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
+			src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
+
+		//All that's left is direct neighbouring nodes. If we're not part of a link yet, there's no way we'd get assigned one anymore.
+		if (!src.is_a_link)
+			src.is_a_link = new(list(src))
+
+		for (var/datum/powernet_graph_node/directly_adjacent_node as anything in nodes2link)
+			src.is_a_link.adjacent_nodes += directly_adjacent_node
+
+		//cleanup to make sure our linked nodes know of each other, not gauranteed yet
+		var/datum/powernet_graph_node/linked_node_1 = src.is_a_link.adjacent_nodes[1]
+		var/datum/powernet_graph_node/linked_node_2 = src.is_a_link.adjacent_nodes[2]
+		//I'm sorry this looks like this, it's, yeah
+		if (!(linked_node_2 in linked_node_1.adjacent_nodes))
+			linked_node_1.adjacent_nodes[linked_node_2] = src.is_a_link
+		else //node 1 knows of 2, but not via our link aaaa
+			var/datum/powernet_graph_link/maybe_us_node_1 = linked_node_1.adjacent_nodes[linked_node_2]
+			if (islist(maybe_us_node_1)) //and it's a fucking list AAAAA
+				linked_node_1.adjacent_nodes[linked_node_2] += src.is_a_link
+			else if (maybe_us_node_1 != src.is_a_link)
+				linked_node_1.adjacent_nodes[linked_node_2] = list(maybe_us_node_1, src.is_a_link)
+
+		if (!(linked_node_1 in linked_node_2.adjacent_nodes))
+			linked_node_2.adjacent_nodes[linked_node_1] = src.is_a_link
+		else //node 2 knows of 1, but not via our link aaaa
+			var/datum/powernet_graph_link/maybe_us_node_2 = linked_node_2.adjacent_nodes[linked_node_1]
+			if (islist(maybe_us_node_2)) //and it's a fucking list AAAAA
+				linked_node_2.adjacent_nodes[linked_node_1] += src.is_a_link
+			else if (maybe_us_node_2 != src.is_a_link)
+				linked_node_2.adjacent_nodes[linked_node_1] = list(maybe_us_node_2, src.is_a_link)
+
+		src.is_a_link.expected_length = length(src.is_a_link.cables)
+
+		linked_node_1.propagate_netnum(linked_node_1, future_powernet.number, early_end_at_matching_netnum = TRUE)
+
+	/*
 	for (var/obj/cable/C in connections)
 		var/datum/powernet_graph_node/Cs_node = C.is_a_node
 		switch(C.get_connections())
@@ -428,13 +569,18 @@
 
 			if (3) //other cable needs to become a node
 				var/datum/powernet_graph_link/Cs_link = C.is_a_link
-				C.
+				C.is_a_link = null
+				C.is_a_node = new()
+				C.is_a_node.physical_node = C
 				if (src.is_a_node)
-					for(var/datum/powernet_graph_node/new_)
+					src.is_a_node.adjacent_nodes += C.is_a_node
+					C.is_a_node.adjacent_nodes += src.is_a_node
+					//C.is_a_node.pnet = src.is_a_node.pnet
+					//C.is_a_node.netnum = src.is_a_node.netnum
 				else
 
 			else //other cable stays a node
-
+*/
 
 
 get_step()
@@ -454,7 +600,7 @@ get_step()
 // 2. Joins to end or bridges loop of a single network (may also connect isolated machine) -> add to old network
 // 3. Bridges gap between 2 networks -> merge the networks (must rebuild lists also) (currently just calls makepowernets. welp)
 
-
+/*
 
 /obj/cable/proc/update_network()
 	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
@@ -569,7 +715,7 @@ get_step()
 
 	if(request_rebuild)
 		makepowernets()
-
+*/
 	//powernets are really in need of a renovation.  makepowernets() is called way too much and is really intensive on the server ok.
 
 // Some non-traitors love to hotwire the engine (Convair880).
