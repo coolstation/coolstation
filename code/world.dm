@@ -871,8 +871,8 @@ var/f_color_selector_handler/F_Color_Selector
 	else
 		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The hotdog SS13 experience. (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
-	s += "[pick("Goon's only active downstream!","Italian as hell!","Italian as hell?","ACTION ROLEPLAY!","Smells great!","Smells bad!")]<br>"
+	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "[pick("Goon's <b>only</b> active downstream!","Italian as <b>hell</b>[pick("!","?")]","Style: <b>ACTION ROLEPLAY!</b>","Smells <b>[pick("great","bad")]</b>!","<br>Mouthfeel: <b>[pick("crunchy","chewy","moist","wet")]</b>","No ERP! 18+!")]<br>"
 	s += "Version: <b>516</b><br>"
 
 	if (map_settings)
@@ -902,8 +902,6 @@ var/f_color_selector_handler/F_Color_Selector
 
 	if(features)
 		s += "[jointext(features, ", ")]"
-	if(length(s) > 234) //255 byte limit, otherwise skip
-		s += "<br>Mouthfeel: [pick("crunchy","chewy","moist","wet")]"
 
 	/* does this help? I do not know */
 	if (src.status != s)
