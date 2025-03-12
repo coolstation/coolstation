@@ -72,9 +72,12 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	mouse_opacity = FALSE
 	alpha = 128
 
-/obj/decal/magindara_skylight
+	ex_act(severity)
+		return
+
+/obj/overlay/magindara_skylight
 	name = null
-	desc = "hidden decal to show the light and fog of Magindara on any turf"
+	desc = "hidden decal to show the light and weather of Magindara on any turf"
 	anchored = 2
 	var/datum/light/point/light = null
 	var/light_r = 0.55
@@ -100,6 +103,9 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 			for (var/i in 1 to 4)
 				magindara_global_fog += new /obj/overlay/magindara_fog
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
+
+	ex_act(severity)
+		return
 
 /area/magindara
 	icon_state = "pink"
