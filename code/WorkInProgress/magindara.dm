@@ -32,10 +32,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		if (generateLight)
 			src.make_light()
 		if(!magindara_global_fog)
-			magindara_global_fog = list()
-		if(!length(magindara_global_fog))
-			for (var/i in 1 to 4)
-				magindara_global_fog += new /obj/overlay/magindara_fog
+			update_magindaran_weather()
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
 		var/obj/overlay/magindara_skylight/skylight = locate() in src
 		if(skylight)
@@ -98,10 +95,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		SPAWN_DBG(0.1)
 			light?.enable()
 		if(!magindara_global_fog)
-			magindara_global_fog = list()
-		if(!length(magindara_global_fog))
-			for (var/i in 1 to 4)
-				magindara_global_fog += new /obj/overlay/magindara_fog
+			update_magindaran_weather()
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
 
 	ex_act(severity)
@@ -118,7 +112,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	force_fullbright = FALSE
 	requires_power = TRUE
 
-proc/update_magindaran_weather(fog_alpha=128,rain_alpha=40,rain_color="#ac85eb")
+proc/update_magindaran_weather(fog_alpha=128,rain_alpha=60,rain_color="#bea2eb")
 	if(!magindara_global_fog)
 		magindara_global_fog = list()
 	if(!length(magindara_global_fog))
@@ -142,8 +136,8 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=40,rain_color="#ac85eb")
 	admin_only
 
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
-	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "0") as num
-	var/rain_color = input(usr, "Please enter the rain color:","Rain Color", "#4e2492") as color
+	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "60") as num
+	var/rain_color = input(usr, "Please enter the rain color:","Rain Color", "#bea2eb") as color
 
 	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha] [rain_color].")
 	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha] [rain_color].", "admin")
