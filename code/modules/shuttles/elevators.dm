@@ -332,7 +332,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/qm"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/qm_bot
 	name = "Quartermaster's Elevator"
@@ -342,7 +342,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/med_top
 	name = "Hospital Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/med"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/med_bot
 	name = "Hospital Elevator"
@@ -352,7 +352,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/eng_top
 	name = "Engineering Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/eng"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/eng_bot
 	name = "Engineering Elevator"
@@ -362,7 +362,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/com_top
 	name = "Command Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/com"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/com_bot
 	name = "Command Elevator"
@@ -372,7 +372,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/sec_top
 	name = "Security Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/sec"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/sec_bot
 	name = "Security Elevator"
@@ -382,7 +382,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/dum_top
 	name = "Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/dum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/dum_bot
 	name = "Dumbwaiter"
@@ -392,7 +392,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qmdum_top
 	name = "Cargo Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/qmdum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/qmdum_bot
 	name = "Cargo Dumbwaiter"
