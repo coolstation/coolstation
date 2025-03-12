@@ -82,7 +82,6 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	var/light_b = 0.6
 	var/light_brightness = 1.1
 	var/light_height = 3
-	var/generateLight = 1
 
 	New()
 		..()
