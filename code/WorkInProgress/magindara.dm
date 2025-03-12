@@ -117,7 +117,7 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0,rain_color="#4e2492")
 		magindara_global_fog = list()
 	if(!length(magindara_global_fog))
 		for (var/i in 1 to 4)
-			magindara_global_fog[i] = new
+			magindara_global_fog += new /obj/overlay/magindara_fog
 	for (var/i in 1 to 4)
 		magindara_global_fog[i].alpha = fog_alpha
 		if(rain_alpha)
@@ -129,7 +129,6 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0,rain_color="#4e2492")
 			magindara_global_fog[i].UpdateOverlays(weather, "weather_rain")
 		else
 			magindara_global_fog[i].UpdateOverlays(null, "weather_rain")
-		return TRUE
 
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
@@ -138,11 +137,12 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0,rain_color="#4e2492")
 
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
 	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "0") as num
+	var/rain_color = input(usr, "Please enter the rain color:","Rain Color", "#4e2492") as color
 
-	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha].")
-	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha].", "admin")
+	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha] [rain_color].")
+	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha] [rain_color].", "admin")
 
-	update_magindaran_weather(fog_alpha, rain_alpha)
+	update_magindaran_weather(fog_alpha, rain_alpha, rain_color)
 
 /client/proc/strike_lightning_here()
 	set name = "Strike Lightning Here"
