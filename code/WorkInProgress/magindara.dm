@@ -37,7 +37,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 			for (var/i in 1 to 4)
 				magindara_global_fog += new /obj/overlay/magindara_fog
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
-		var/obj/decal/magindara_skylight/skylight = locate() in src
+		var/obj/overlay/magindara_skylight/skylight = locate() in src
 		if(skylight)
 			qdel(skylight)
 
