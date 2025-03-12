@@ -1,4 +1,4 @@
-var/obj/overlay/magindara_fog/magindara_global_fog = new
+var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 /turf/space/magindara
 	name = "\improper the ocean below"
@@ -31,7 +31,12 @@ var/obj/overlay/magindara_fog/magindara_global_fog = new
 		..()
 		if (generateLight)
 			src.make_light()
-		vis_contents += magindara_global_fog
+		if(!magindara_global_fog)
+			magindara_global_fog = list()
+		if(!length(magindara_global_fog))
+			for (var/i in 1 to 4)
+				magindara_global_fog += new /obj/overlay/magindara_fog
+		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
 		var/obj/decal/magindara_skylight/skylight = locate() in src
 		if(skylight)
 			qdel(skylight)
@@ -89,7 +94,12 @@ var/obj/overlay/magindara_fog/magindara_global_fog = new
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
 			light?.enable()
-		vis_contents += magindara_global_fog
+		if(!magindara_global_fog)
+			magindara_global_fog = list()
+		if(!length(magindara_global_fog))
+			for (var/i in 1 to 4)
+				magindara_global_fog += new /obj/overlay/magindara_fog
+		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
 
 /area/magindara
 	icon_state = "pink"
@@ -102,19 +112,24 @@ var/obj/overlay/magindara_fog/magindara_global_fog = new
 	force_fullbright = FALSE
 	requires_power = TRUE
 
-proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0)
-	if(!map_currently_abovewater)
-		return FALSE
-	magindara_global_fog.alpha = fog_alpha
-	if(rain_alpha)
-		var/image/weather = image('icons/turf/water.dmi',"fast_rain", layer = EFFECTS_LAYER_BASE)
-		weather.alpha = rain_alpha
-		weather.appearance_flags = RESET_COLOR | RESET_ALPHA
-		weather.plane = PLANE_NOSHADOW_ABOVE
-		magindara_global_fog.UpdateOverlays(weather, "weather_rain")
-	else
-		magindara_global_fog.UpdateOverlays(null, "weather_rain")
-	return TRUE
+proc/update_magindaran_weather(fog_alpha=128,rain_alpha=0,rain_color="#4e2492")
+	if(!magindara_global_fog)
+		magindara_global_fog = list()
+	if(!length(magindara_global_fog))
+		for (var/i in 1 to 4)
+			magindara_global_fog[i] = new
+	for (var/i in 1 to 4)
+		magindara_global_fog[i].alpha = fog_alpha
+		if(rain_alpha)
+			var/image/weather = image('icons/turf/water.dmi',"bigrain[i]", layer = EFFECTS_LAYER_BASE)
+			weather.alpha = rain_alpha
+			weather.color = rain_color
+			weather.appearance_flags = RESET_COLOR | RESET_ALPHA
+			weather.plane = PLANE_NOSHADOW_ABOVE
+			magindara_global_fog[i].UpdateOverlays(weather, "weather_rain")
+		else
+			magindara_global_fog[i].UpdateOverlays(null, "weather_rain")
+		return TRUE
 
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
