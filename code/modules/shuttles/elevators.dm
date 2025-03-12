@@ -36,10 +36,6 @@ ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
 /area/transit_vehicle/elevator/__id/bot/name = _areaname;\
 /area/transit_vehicle/elevator/__id/bot/icon_state = _area_sprite;\
 /area/transit_vehicle/elevator/__id/bot/filler_turf = "/turf/floor/plating";\
-/turf/floor/specialroom/elevator_shaft/__id;\
-/turf/floor/specialroom/elevator_shaft/__id/fall_landmark = ""+#__id+"fall";\
-/obj/landmark/elevator_fall/__id;\
-/obj/landmark/elevator_fall/__id/name =""+#__id+"fall"
 //I'm not sure if the double underscore in __id ended up necessary but too much effort to change
 
 //Example usage
@@ -414,20 +410,6 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/plating"
 
-/turf/floor/specialroom/elevator_shaft/qm
-	fall_landmark = LANDMARK_FALL_QM
-/turf/floor/specialroom/elevator_shaft/med
-	fall_landmark = LANDMARK_FALL_MED
-/turf/floor/specialroom/elevator_shaft/eng
-	fall_landmark = LANDMARK_FALL_ENG
-/turf/floor/specialroom/elevator_shaft/com
-	fall_landmark = LANDMARK_FALL_COM
-/turf/floor/specialroom/elevator_shaft/sec
-	fall_landmark = LANDMARK_FALL_SEC
-/turf/floor/specialroom/elevator_shaft/dum
-	fall_landmark = LANDMARK_FALL_DUM
-/turf/floor/specialroom/elevator_shaft/qmdum
-	fall_landmark = LANDMARK_FALL_QMDUM
 /turf/floor/specialroom/elevator_shaft/ntfcm
 	fall_landmark = LANDMARK_FALL_NTFC
 /turf/floor/specialroom/elevator_shaft/ntfc
