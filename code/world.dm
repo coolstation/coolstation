@@ -864,14 +864,15 @@ var/f_color_selector_handler/F_Color_Selector
 /world/proc/update_status()
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
-	var/s = "<b>516</b> Ready! "
+	var/s = "<b>"
 
 	if (config?.server_name)
-		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
+		s += "<a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
 	else
-		s += "<b>SERVER NAME HERE</b> &#8212; "
+		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The hotdog SS13 experience.&#8212; (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "The hotdog SS13 experience. (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "[pick("Goon's only active downstream!","Italian as hell!","Italian as hell?","ACTION ROLEPLAY!","Smells great!","Smells bad!")]"
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
@@ -879,6 +880,8 @@ var/f_color_selector_handler/F_Color_Selector
 		s += "Map: <b>[map_name]</b><br>"
 
 	var/list/features = list()
+	features += "Version: <b>516</b>"
+	features += "Mouthfeel: [pick("crunchy","chewy","wet")]"
 
 	if (!ticker)
 		features += "<b>STARTING</b>"
@@ -892,7 +895,7 @@ var/f_color_selector_handler/F_Color_Selector
 		features += "closed"
 
 	if (abandon_allowed)
-		features += "respawn allowed"
+		features += "Respawn Allowed"
 
 #if ASS_JAM
 	features += "Ass Jam"
