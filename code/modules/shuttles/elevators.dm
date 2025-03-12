@@ -31,7 +31,7 @@ ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
 /area/transit_vehicle/elevator/__id/top;\
 /area/transit_vehicle/elevator/__id/top/name = _areaname;\
 /area/transit_vehicle/elevator/__id/top/icon_state = _area_sprite;\
-/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/"+#__id+"";\
+/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down";\
 /area/transit_vehicle/elevator/__id/bot;\
 /area/transit_vehicle/elevator/__id/bot/name = _areaname;\
 /area/transit_vehicle/elevator/__id/bot/icon_state = _area_sprite;\
