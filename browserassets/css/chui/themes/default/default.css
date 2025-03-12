@@ -22,6 +22,23 @@ a {
 	color: #3b3122;
 	font-weight: bold;
 }
+::-webkit-scrollbar {
+	background: #322716;
+	width: 14px;
+}
+::-webkit-scrollbar-track {
+    border-style: outset;
+    border-left-color: #9a8469;
+    border-right-color: #9a8469;
+    background: #322716;
+}
+
+::-webkit-scrollbar-thumb {
+    border-style: outset;
+    background: #dad8b6;
+    border-left-color: #9a8469;
+    border-bottom-color: #9a8469;
+}
 
 :focus-visible {
 	outline: 1px solid black;
