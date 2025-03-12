@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Divider, Flex, LabeledList, NumberInput, ProgressBar, Section } from '../components';
+import { Button, Divider, LabeledList, NumberInput, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 import { PortableBasicInfo } from './common/PortableAtmos';
 

@@ -1,5 +1,5 @@
 import { useBackend, useSharedState } from '../../backend';
-import { Box, Input, LabeledList, Section, Stack, Table } from '../../components';
+import { Input, LabeledList, Section, Stack, Table } from '../../components';
 import { Window } from '../../layouts';
 import { PowerMonitorApcGlobal, PowerMonitorApcTableHeader, PowerMonitorApcTableRows } from './Apc';
 import { PowerMonitorSmesGlobal, PowerMonitorSmesTableHeader, PowerMonitorSmesTableRows } from './Smes';

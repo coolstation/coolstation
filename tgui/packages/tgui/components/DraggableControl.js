@@ -55,7 +55,6 @@ export class DraggableControl extends Component {
       if (editing) {
         return;
       }
-      document.body.style['pointer-events'] = 'none';
       this.ref = e.target;
       this.setState({
         dragging: false,
@@ -75,6 +74,7 @@ export class DraggableControl extends Component {
           onDrag(e, value);
         }
       }, this.props.updateRate || DEFAULT_UPDATE_RATE);
+      document.setPointerCapture(e.pointerId);
       document.addEventListener('mousemove', this.handleDragMove);
       document.addEventListener('mouseup', this.handleDragEnd);
     };
@@ -127,7 +127,6 @@ export class DraggableControl extends Component {
         value,
         internalValue,
       } = this.state;
-      document.body.style['pointer-events'] = 'auto';
       clearTimeout(this.timer);
       clearInterval(this.dragInterval);
       this.setState({
@@ -135,6 +134,7 @@ export class DraggableControl extends Component {
         editing: !dragging,
         origin: null,
       });
+      document.releasePointerCapture(e.pointerId);
       document.removeEventListener('mousemove', this.handleDragMove);
       document.removeEventListener('mouseup', this.handleDragEnd);
       if (dragging) {
