@@ -259,6 +259,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 8 //10 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	casing = /obj/item/casing/shotgun/red
 	speed_max = 5
 	speed_min = 60
 	spread_angle_variance = 15
@@ -268,13 +269,25 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "juicershot"
 	sname = "juicershot"
 	cost = 1
-	pellets_to_fire = 8 //10 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy
+	pellets_to_fire = 8 //12 per
+	spread_projectile_type = /datum/projectile/bullet/shot_heavy/denim
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	speed_max = 5
 	speed_min = 60
 	spread_angle_variance = 20
 	dissipation_variance = 32
+
+/datum/projectile/special/spreader/buckshot_burst/juicer/scrap
+	name = "juicerscrap"
+	sname = "juicer scrap"
+	cost = 1
+	pellets_to_fire = 6 // 6 per
+	spread_projectile_type = /datum/projectile/bullet/shot_heavy/scrap
+	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	speed_max = 12
+	speed_min = 36
+	spread_angle_variance = 15
+	dissipation_variance = 64
 
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
@@ -1148,12 +1161,9 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/datum/reagents/copied = new/datum/reagents(amt_to_emit)
 		copied = chemR.copy_to(copied, amt_to_emit/chemR.total_volume, copy_temperature = 1)
 
-		if(!T.reagents) // first get the turf
-			T.create_reagents(100)
-		copied.copy_to(T.reagents, 1, copy_temperature = 1)
-		copied.reaction(T, TOUCH, 0, 0)
+		copied.reaction(T, TOUCH, copied.total_volume, 1)
 		if(O.special_data["IS_LIT"]) // Heat if needed
-			T.reagents?.set_reagent_temp(O.special_data["burn_temp"], TRUE)
+			T.hotspot_expose(O.special_data["burn_temp"], 150)
 		for(var/atom/A in T.contents) // then all the stuff in the turf
 			if(istype(A, /obj/overlay) || istype(A, /obj/projectile))
 				continue

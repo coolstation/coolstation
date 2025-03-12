@@ -15,6 +15,16 @@
 	var/original_fprints = null
 	var/show_on_examine = 0
 
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/device/analyzer/healthanalyzer))
+			animate_scanning(src, "#0AEFEF")
+			var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.original_DNA)
+			if(MR)
+				boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]] ])</span>")
+			else
+				boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
+			return
+
 	take_damage(brute, burn, tox, damage_type, disallow_limb_loss)
 		if (brute <= 0 && burn <= 0)// && tox <= 0)
 			return 0
@@ -84,11 +94,12 @@
 			src.setMaterial(getMaterial("bone"), appearance = 0, setname = 0)
 
 			src.add_fingerprint(holder)
+			/*
 			//https://forum.ss13.co/showthread.php?tid=1774
 			// zam note - removing this again.
 			SPAWN_DBG(2 SECONDS)
 				if (new_holder && istype(new_holder))
-					name = "[new_holder.real_name]'s [initial(name)]"
+					name = "[new_holder.real_name]'s [initial(name)]"*/
 		if (src.skintoned)
 			if (holder_ahol)
 				colorize_limb_icon()
@@ -1392,6 +1403,57 @@
 	partlistPart = "foot_right"
 	step_image_state = "footprintsR"
 
+
+
+//// BIRD LIMBS ////
+//////  PARENT  //////
+
+/obj/item/parts/human_parts/arm/mutant/bird
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
+	skintoned = 1
+
+/obj/item/parts/human_parts/leg/mutant/bird
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
+	skintoned = 1
+
+////// ACTUAL BIRD LIMBS //////
+/obj/item/parts/human_parts/arm/mutant/bird/left
+	name = "left bird arm"
+	desc = "A bird's left arm."
+	icon_state = "arm_left"
+	slot = "l_arm"
+	side = "left"
+	handlistPart = "hand_left"
+
+/obj/item/parts/human_parts/arm/mutant/bird/right
+	name = "right bird arm"
+	desc = "A bird's right arm."
+	icon_state = "arm_right"
+	slot = "r_arm"
+	side = "right"
+	handlistPart = "hand_right"
+
+/obj/item/parts/human_parts/leg/mutant/bird/left
+	name = "left bird leg"
+	desc = "A bird's left leg."
+	icon_state = "leg_left"
+	slot = "l_leg"
+	side = "left"
+	partlistPart = "foot_left"
+	step_image_state = "footprintsL"
+
+/obj/item/parts/human_parts/leg/mutant/bird/right
+	name = "right bird leg"
+	desc = "A bird's right leg."
+	icon_state = "leg_right"
+	slot = "r_leg"
+	side = "right"
+	partlistPart = "foot_right"
+	step_image_state = "footprintsR"
+
+
 //// AMPHIBIAN LIMBS ////
 //////  PARENT  //////
 
@@ -2169,6 +2231,59 @@
 /obj/item/parts/human_parts/leg/mutant/fert/right
 	name = "right ferret leg"
 	desc = "A ferret's right leg. Smells fine."
+	icon_state = "leg_right"
+	slot = "r_leg"
+	side = "right"
+	partlistPart = "foot_right"
+	step_image_state = "footprintsR"
+
+
+
+//// BIRB LIMBS ////
+///// PARENT  /////
+
+/obj/item/parts/human_parts/arm/mutant/birb
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_1
+
+/obj/item/parts/human_parts/leg/mutant/birb
+	icon = 'icons/mob/birb.dmi'
+	partIcon = 'icons/mob/birb.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_1
+
+//// LIMBS ////
+/obj/item/parts/human_parts/arm/mutant/birb/left
+	name = "left birb arm"
+	desc = "A birb's left arm."
+	icon_state = "arm_left"
+	slot = "l_arm"
+	side = "left"
+	handlistPart = "hand_left"
+
+
+/obj/item/parts/human_parts/arm/mutant/birb/right
+	name = "right birb arm"
+	desc = "A birb's right arm."
+	icon_state = "arm_right"
+	slot = "r_arm"
+	side = "right"
+	handlistPart = "hand_right"
+
+/obj/item/parts/human_parts/leg/mutant/birb/left
+	name = "left birb leg"
+	desc = "A birb's left leg. CAW!"
+	icon_state = "leg_left"
+	slot = "l_leg"
+	side = "left"
+	partlistPart = "foot_left"
+	step_image_state = "footprintsL"
+
+/obj/item/parts/human_parts/leg/mutant/birb/right
+	name = "right birb leg"
+	desc = "A birb's right leg."
 	icon_state = "leg_right"
 	slot = "r_leg"
 	side = "right"

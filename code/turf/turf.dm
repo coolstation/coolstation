@@ -476,7 +476,7 @@
 		return
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
-
+	SEND_SIGNAL(src, COMSIG_TURF_REPLACED, what)
 	if (!can_replace_with_stuff && !force) //(for unsimmed turfs)
 		return //..(what, keep_old_material = keep_old_material, handle_air = handle_air)
 
@@ -877,11 +877,6 @@
 		icon_state = "darkvoid"
 		name = "void"
 		desc = "Yep, this is fine."
-	if(buzztile == null && prob(1) && prob(1) && src.z == 1) //Dumb shit to trick nerds.
-		buzztile = src
-		icon_state = "wiggle"
-		src.desc = "There appears to be a spatial disturbance in this area of space."
-		new/obj/item/device/key/random(src)
 
 	update_icon()
 

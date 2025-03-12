@@ -259,7 +259,7 @@
 	return
 
 /obj/machinery/disposal_pipedispenser/mobile
-	name = "Disposal Pipe Dispenser Cart"
+	name = "disposal pipe dispenser cart"
 	desc = "A tool for removing some of the tedium from pipe-laying."
 	anchored = 0
 	icon_state = "fab-mobile"
@@ -281,6 +281,7 @@
 			else if(src.removing_pipe)
 				if(!new_loc.intact)
 					for(var/obj/disposalpipe/pipe in old_loc)
+						if (istype(pipe, /obj/disposalpipe/loafer)) continue //I guess
 						qdel(pipe)
 			prev_dir = direction // might want to actually do this even when old_loc == loc but idk, it sucks with attempted diagonal movement
 

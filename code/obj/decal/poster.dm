@@ -775,7 +775,7 @@
 
 		mantaposter
 			name = "NSS Manta poster"
-			desc = "Pre-eliminary signing up for Nanotrasen's newest military vessel NSS Manta has now begun. Reach out to your head of personnel or a local Nanotrasen recruiting officer to find out more about new job oppurtunities aboard NSS Manta! "
+			desc = "The NSS Manta was a piece of shit and sunk!"
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "mantaposter"
 

@@ -71,7 +71,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		UnregisterFromParent()
 		qdel(src)
 
-/datum/component/hallucination/CheckDupeComponent(timeout)
+/datum/component/hallucination/CheckDupeComponent(datum/component/C, timeout)
 	if(timeout == -1)
 		src.ttl = timeout
 	else if(src.ttl != -1)
@@ -142,7 +142,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 				parent_mob.playsound_local(origin, chosen, 100, 1)
 		. = ..()
 
-	CheckDupeComponent(timeout, sound_list, sound_prob)
+	CheckDupeComponent(datum/component/C, timeout, sound_list, sound_prob)
 		if(sound_list ~= src.sound_list) //this is the same hallucination, just update timeout and prob
 			if(timeout == -1)
 				src.ttl = timeout
@@ -188,7 +188,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 				qdel(halluc)
 		. = ..()
 
-	CheckDupeComponent(timeout, image_list, image_prob, image_time)
+	CheckDupeComponent(datum/component/C, timeout, image_list, image_prob, image_time)
 		if(image_list ~= src.image_list) //this is the same hallucination, just update timeout and prob, time
 			if(timeout == -1)
 				src.ttl = timeout
@@ -280,7 +280,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			src.attacker_list += F
 		..()
 
-	CheckDupeComponent(timeout, image_list, name_list, attacker_prob, max_attackers)
+	CheckDupeComponent(datum/component/C, timeout, image_list, name_list, attacker_prob, max_attackers)
 		if(image_list ~= src.image_list && name_list ~= src.name_list) //this is the same hallucination, just update timeout and prob
 			if(timeout == -1)
 				src.ttl = timeout
@@ -326,12 +326,12 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 			//pick a non dense turf in view
 			var/list/atom/potentials = list()
 			if(src.visible_creation)
-				for(var/atom/A in oview(parent_mob, src.range))
+				for(var/atom/A in orange(src.range, parent_mob))
 					for(var/type in src.target_list)
 						if(istype(A, type))
 							potentials += A
 			else
-				for(var/atom/A in (orange(parent_mob, src.range) - oview(parent_mob, src.range)))
+				for(var/atom/A in (orange(src.range, parent_mob) - oview(src.range, parent_mob)))
 					for(var/type in src.target_list)
 						if(istype(A, type))
 							potentials += A
@@ -350,7 +350,7 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 				qdel(halluc)
 		. = ..()
 
-	CheckDupeComponent(timeout, image_list, target_list, range, image_prob, image_time, override, visible_creation, pixel_variance)
+	CheckDupeComponent(datum/component/C, timeout, image_list, target_list, range, image_prob, image_time, override, visible_creation, pixel_variance)
 		if(image_list ~= src.image_list && src.target_list ~= target_list) //this is the same hallucination, just update timeout and prob, time
 			if(timeout == -1)
 				src.ttl = timeout
@@ -427,10 +427,13 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		fake_icon_state = "pig"
 		get_name()
 			return pick("pig", "DAT FUKKEN PIG")
-	/*spider
+	spider
 		fake_icon_state = "big_spide"
 		get_name()
-			return pick("giant black widow", "aw look a spider", "OH FUCK A SPIDER")*/
+			return pick("giant black widow", "aw look a spider", "OH FUCK A SPIDER")
+		New()
+			..()
+			AddComponent(/datum/component/spider_filter_item)
 	slime
 		fake_icon = 'icons/mob/hallucinations.dmi'
 		fake_icon_state = "slime"
@@ -623,4 +626,3 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 
 	var/image/O = image(clone,F)
 	hallucinator << O
-

@@ -54,7 +54,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 			. += "It seems to have some wires attached to it.[src.max_uses > 0 ? " There are [src.uses]/[src.max_uses] charges left!" : ""]"
 
 	// reworked this proc a bit so it can't run more than 5 times, just in case
-	proc/CreateID()
+	CreateID()
 		var/newID = null
 		for (var/i=5, i>0, i--)
 			newID = GenID()
@@ -552,4 +552,18 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	item_state = "water_wings"
 	hide_prints = 0
 
+/obj/item/clothing/gloves/powerlifter
+	desc = "You feel stronger just looking at these things. You could lift a train!"
+	name = "lifting gloves"
+	icon_state = "swat_syndie"
+	item_state = "swat_syndie"
+	material_prints = "muscle fibers"
+
+	equipped(mob/user, slot)
+		. = ..()
+		APPLY_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+
+	unequipped(mob/user)
+		. = ..()
+		REMOVE_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 

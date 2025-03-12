@@ -304,12 +304,12 @@
 #undef MAP_COLORS_DESERT
 
 //phenomena flags
-#define PH_QUAKE_WEAK 1
-#define PH_QUAKE 2
-#define PH_FIRE_WEAK 4
-#define PH_FIRE 8
-#define PH_EX_WEAK 16
-#define PH_EX 32
+#define PH_QUAKE_WEAK (1<<0)
+#define PH_QUAKE (1<<1)
+#define PH_FIRE_WEAK (1<<2)
+#define PH_FIRE (1<<3)
+#define PH_EX_WEAK (1<<4)
+#define PH_EX (1<<5)
 
 /datum/sea_hotspot
 	var/static/heat_dropoff_per_dist_unit = 0.1 // possible todo : a quad curve

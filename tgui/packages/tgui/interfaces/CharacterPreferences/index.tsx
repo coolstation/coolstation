@@ -1,6 +1,6 @@
 import { KEY_LEFT, KEY_RIGHT } from 'common/keycodes';
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, ByondUi, LabeledList, Section, Stack, Tabs, Tooltip } from '../../components';
+import { Box, Button, ByondUi, LabeledList, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
 import { CharacterTab } from './CharacterTab';
 import { GameSettingsTab } from './GameSettingsTab';
@@ -166,8 +166,8 @@ const SavesAndProfile = (_props: any, context: any) => {
 };
 
 type ProfileProps = {
-  index: number;
-  profile: CharacterPreferencesProfile;
+  readonly index: number;
+  readonly profile: CharacterPreferencesProfile;
 };
 
 const Profile = (props: ProfileProps, context: any) => {

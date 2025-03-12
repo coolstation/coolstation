@@ -1489,6 +1489,30 @@
 		min_amt2spawn = 5
 		max_amt2spawn = 7
 
+/obj/random_item_spawner/pizza
+	name = "random pizza spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 1
+	items2spawn = list(/obj/item/reagent_containers/food/snacks/pizza/cargo/cheese,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/pepperoni,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/mushroom)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
+
+/obj/random_item_spawner/cola
+	name = "random cola spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 2
+	items2spawn = list(/obj/item/reagent_containers/food/drinks/cola,
+						/obj/item/reagent_containers/food/drinks/cola/random,
+						/obj/item/reagent_containers/food/drinks/peach,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/orange,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/grones)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
+
 /obj/random_item_spawner/hat
 	name = "random hat spawner"
 	icon_state = "rand_hat"
@@ -1606,6 +1630,7 @@
 						/obj/item/clothing/shoes/flippers,
 						/obj/item/clothing/shoes/fuzzy,
 						/obj/item/clothing/shoes/gogo,
+						/obj/item/clothing/shoes/turbopunk,
 						/obj/item/clothing/shoes/heels,
 						/obj/item/clothing/shoes/macho,
 						/obj/item/clothing/shoes/mj_shoes,

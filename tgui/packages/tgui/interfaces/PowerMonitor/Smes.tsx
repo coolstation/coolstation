@@ -63,7 +63,7 @@ export const PowerMonitorSmesTableHeader = (props, context) => {
 };
 
 type PowerMonitorSmesTableRowsProps = {
-  search: string;
+  readonly search: string;
 };
 
 export const PowerMonitorSmesTableRows = (props: PowerMonitorSmesTableRowsProps, context) => {
@@ -80,8 +80,8 @@ export const PowerMonitorSmesTableRows = (props: PowerMonitorSmesTableRowsProps,
 };
 
 type PowerMonitorSmesTableRowProps = {
-  unit: PowerMonitorSmesItemData;
-  search: string;
+  readonly unit: PowerMonitorSmesItemData;
+  readonly search: string;
 };
 
 const PowerMonitorSmesTableRow = (props: PowerMonitorSmesTableRowProps, context) => {

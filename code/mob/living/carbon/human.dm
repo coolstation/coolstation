@@ -583,7 +583,7 @@
 		I.former_implantee = null
 	..()
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed, deathgasp = TRUE, decompose = TRUE)
 	if (ticker.mode)
 		ticker.mode.on_human_death(src)
 	if(src.mind && src.mind.damned) // Ha you arent getting out of hell that easy.
@@ -694,7 +694,8 @@
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			NORMAL BUSINESS
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	emote("deathgasp") //let the world KNOW WE ARE DEAD
+	if(deathgasp)
+		emote("deathgasp") //let the world KNOW WE ARE DEAD
 
 	if (!src.mutantrace || inafterlife(src)) // wow fucking racist
 		modify_christmas_cheer(-7)
@@ -713,30 +714,33 @@
 		var/obj/item/clothing/suit/armor/suicide_bomb/A = src.wear_suit
 		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/item/clothing/suit/armor/suicide_bomb, trigger), src)
 
-	src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
-
-	if (src.mind) // I think this is kinda important (Convair880).
-		src.mind.register_death()
-		if (src.mind.special_role == ROLE_INSURGENT)
-			remove_insurgent_status(src, "nsurgt", "death")
-		else if (src.mind.special_role == ROLE_VAMPTHRALL)
-			remove_insurgent_status(src, "vthrall", "death")
-		else if (src.mind.master)
-			remove_insurgent_status(src, "other_recruit", "death")
-		if (src.mind.ckey && !inafterlife(src))
-			var/turf/where = get_turf(src)
-			var/where_text = "Unknown (?, ?, ?)"
-			if (where)
-				where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
-
-			message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
-
-#ifdef DATALOGGER
-		game_stats.Increment("playerdeaths")
-#endif
+	if(decompose)
+		src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
 
 	logTheThing("combat", src, null, "dies [log_health(src)] at [log_loc(src)].")
-	//src.icon_state = "dead"
+		//src.icon_state = "dead"
+
+	if (!src.mind) // I think this is kinda important (Convair880).
+		return ..(gibbed)
+
+	src.mind.register_death()
+	if (src.mind.special_role == ROLE_INSURGENT)
+		remove_insurgent_status(src, "nsurgt", "death")
+	else if (src.mind.special_role == ROLE_VAMPTHRALL)
+		remove_insurgent_status(src, "vthrall", "death")
+	else if (src.mind.master)
+		remove_insurgent_status(src, "other_recruit", "death")
+	if (src.mind.ckey && !inafterlife(src))
+		var/turf/where = get_turf(src)
+		var/where_text = "Unknown (?, ?, ?)"
+		if (where)
+			where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
+
+		message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
+
+#ifdef DATALOGGER
+	game_stats.Increment("playerdeaths")
+#endif
 
 	if (!src.suiciding)
 		if (emergency_shuttle?.location == SHUTTLE_LOC_STATION)
@@ -1006,7 +1010,7 @@
 /mob/living/carbon/human/throw_item(atom/target, list/params)
 	..()
 	var/turf/thrown_from = get_turf(src)
-	var/knockitdown = null
+	var/how_to_throw = THROW_NORMAL
 	src.throw_mode_off()
 	if (src.stat)
 		return
@@ -1026,6 +1030,11 @@
 		var/obj/item/grab/G = I
 		I = G.handle_throw(src, target)
 		if (!I) return
+
+	if (istype(I, /obj/item/lifted_thing))
+		var/obj/item/lifted_thing/LT = I
+		I = LT.our_thing
+		LT.place_the_thing(get_turf(src), src)
 
 	I.set_loc(src.loc)
 
@@ -1069,9 +1078,9 @@
 			M.inertia_dir = get_dir(src,target)
 
 		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
-		if(istype(I,/mob/living/carbon/human) || istype(I,/obj/machinery/microwave)) //todo: expand this into a reference list for other things that would knock you down if you fucking threw them
-			knockitdown = THROW_KNOCKDOWN
-		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=knockitdown)
+		if(istype(I,/mob/living/carbon/human))
+			how_to_throw = THROW_KNOCKDOWN
+		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
 		if(yeet)
 			new/obj/effect/supplyexplosion(I.loc)
 
@@ -1101,7 +1110,7 @@
 		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
 			src.next_click = world.time + src.combat_click_delay
-			if (!HAS_MOB_PROPERTY(src, PROB_SLIDEKICK_TURBO))
+			if (!HAS_MOB_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
 			else
@@ -2910,8 +2919,8 @@
 		return null
 	var/obj/item/clothing/head/wig/W = new(src)
 	var/actuallyHasHair = 0
-	W.name = "[real_name]'s hair"
-	W.real_name = "[real_name]'s hair" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
+	W.name = "natural wig"
+	W.real_name = "natural wig" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
 	W.icon = 'icons/mob/human_hair.dmi'
 	W.icon_state = "bald" // Let's give the actual hair a chance to shine
 /* commenting this out and making it an overlay to fix issues with colors stacking
@@ -3622,3 +3631,13 @@
 
 	else
 		boutput(src, "<span class='alert'><B>You're not a cluwne for some reason! That's a bug!!! </B></span>")
+
+///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
+/mob/living/carbon/human/MouseDrop_T(atom/dropped, mob/dropping_user)
+	if(isobj(dropped))
+		var/obj/O = dropped
+		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
+			if (can_reach(src, O))
+				new /obj/item/lifted_thing(O, src)
+			return
+	..()

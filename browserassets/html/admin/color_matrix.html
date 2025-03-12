@@ -209,7 +209,7 @@
   function randomizeAllValues(range, isAdditive, rgbOnly) {
     var randVal = 0;
     Array.prototype.slice.call(
-      document.getElementsByTagName("input")).forEach(function (el) {        
+      document.getElementsByTagName("input")).forEach(function (el) {
         var id = el.id;
         // if only rgb only, only elements with "a" somewhere in their id related to alpha
         if(rgbOnly && id.indexOf("a") !== -1)
@@ -268,7 +268,7 @@
     var matrixData = matrixList.join(',');
     var doAnimation = document.getElementById("doAnimation").checked;
     var forAll = document.getElementById("forAll").checked;
-    var newLoc = "?src=" + ref + ";animate=" + (doAnimation ? "y" : "n") + ";matrix=" + matrixData + ";forAll=" + (forAll?"y":"n");
+    var newLoc = "byond://?src=" + ref + ";animate=" + (doAnimation ? "y" : "n") + ";matrix=" + matrixData + ";forAll=" + (forAll?"y":"n");
     window.location = newLoc;
   }
 

@@ -4,7 +4,7 @@
 
 html, body {margin: 0; padding: 0; height: 100%; position: relative;}
 body {
-	background-color: #ff00e4;
+	background-color: transparent;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 1.4;
@@ -22,6 +22,30 @@ a {
 	color: #3b3122;
 	font-weight: bold;
 }
+::-webkit-scrollbar {
+	background: #322716;
+	width: 14px;
+}
+::-webkit-scrollbar-track {
+    border-style: outset;
+    border-left-color: #9a8469;
+    border-right-color: #9a8469;
+    background: #322716;
+}
+
+::-webkit-scrollbar-thumb {
+    border-style: outset;
+    background: #dad8b6;
+    border-left-color: #9a8469;
+    border-bottom-color: #9a8469;
+}
+
+:focus-visible {
+	outline: 1px solid black;
+	border-radius: 0px;
+	border-style: solid;
+	border-width: 1px;
+  }
 
 /* TITLEBAR START */
 #titlebar {

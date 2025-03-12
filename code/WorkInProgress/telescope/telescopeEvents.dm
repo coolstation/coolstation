@@ -1,12 +1,12 @@
-#define TAG_ORE 1
-#define TAG_WRECKAGE 2
-#define TAG_PLANET 4
-#define TAG_ANOMALY 8
-#define TAG_SPACE 16
-#define TAG_NPC 32
-#define TAG_TELEPORT_LOC 64
-#define TAG_CRUISER_LOC 128
-#define TAG_MAGNET_LOC 256
+#define TAG_ORE (1<<0)
+#define TAG_WRECKAGE (1<<1)
+#define TAG_PLANET (1<<2)
+#define TAG_ANOMALY (1<<3)
+#define TAG_SPACE (1<<4)
+#define TAG_NPC (1<<5)
+#define TAG_TELEPORT_LOC (1<<6)
+#define TAG_CRUISER_LOC (1<<7)
+#define TAG_MAGNET_LOC (1<<8)
 
 /datum/telescope_event
 	var/name = ""			   //Name which is shown after discovery

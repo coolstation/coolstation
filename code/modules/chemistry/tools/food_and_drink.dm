@@ -650,6 +650,9 @@
 
 	//bleck, i dont like this at all. (Copied from chemistry-tools reagent_containers/glass/ definition w minor adjustments)
 	afterattack(obj/target, mob/user , flag)
+		if (!src.is_open_container())
+			boutput(usr, "<span class='alert'>The [src] is closed!</span>")
+			return ..()
 		user.lastattacked = target
 		if (istype(target, /obj/fluid)) // fluid handling : If src is empty, fill from fluid. otherwise add to the fluid.
 			var/obj/fluid/F = target
@@ -1955,6 +1958,11 @@
 		qdel(src)
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
+		if(isliving(A))
+			var/mob/living/L = A
+			L.show_message("<span class='alert'>The carafe smashes in your face!</B></span>")
+			L.changeStatus("weakened", 0.5 SECONDS)
+			L.force_laydown_standup()
 		var/turf/T = get_turf(A)
 		..()
 		src.smash(T)

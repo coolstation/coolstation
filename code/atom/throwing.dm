@@ -40,12 +40,13 @@
 		return
 
 	src.material?.triggerOnAttack(src, src, hit_atom)
-	hit_atom.material?.triggerOnHit(hit_atom, src, null, 2)
-	for(var/atom/A in hit_atom)
-		A.material?.triggerOnAttacked(A, src, hit_atom, src)
 
 	if(!hit_atom)
 		return
+
+	hit_atom.material?.triggerOnHit(hit_atom, src, null, 2)
+	for(var/atom/A in hit_atom)
+		A.material?.triggerOnAttacked(A, src, hit_atom, src)
 
 	reagents?.physical_shock(20)
 	if(SEND_SIGNAL(hit_atom, COMSIG_ATOM_HITBY_THROWN, src, thr))

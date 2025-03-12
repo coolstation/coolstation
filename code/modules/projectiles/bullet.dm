@@ -305,6 +305,13 @@ soon it will go away */
 	dud_freq = 3
 	fouling = 8
 
+//slow rifle round, initially for AMS turret
+/datum/projectile/bullet/rifle_medium/slow
+	projectile_speed = 20
+	dissipation_delay = 1
+	dissipation_rate = 4
+
+
 /datum/projectile/bullet/rifle_medium/AP
 	name = "bullet"
 	//SemiAutoRifleShot.wav by SuperPhat -- https://freesound.org/s/421710/ -- License: Creative Commons 0
@@ -507,6 +514,14 @@ soon it will go away */
 		hit_ground_chance = 80 //dirty
 
 		//on_hit override message to player: "J'ow!" "That really jurt!" etc.
+
+	scrap
+		name = "juicer scrap"
+		icon_state = "buckshotscrap"
+		power = 6 //fired in group of 6 shots (max 36) with some spread
+		dissipation_delay = 4
+		dissipation_rate = 4
+		hit_ground_chance = 40
 
 //bartender's round
 //meant to

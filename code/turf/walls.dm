@@ -313,7 +313,7 @@
 
 	boutput(user, "<span class='notice'>You hit the [src.name] but nothing happens!</span>")
 	playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1)
-	interact_particle(user,src)
+	interact_particle(user,src,TRUE)
 	return
 
 //shitty little thing because we can't use a generic actionbar for wall murder atm
