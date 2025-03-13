@@ -419,6 +419,7 @@
 	icon_state = "railing-cool"
 	layer = MOB_LAYER + 0.1
 	reinforced_suffix = ""
+	color = "#9b9593"
 
 	railing_break()
 		qdel(src)
@@ -427,7 +428,16 @@
 		SPAWN_DBG(3 DECI SECONDS)
 		if (dir == EAST)
 			pixel_x = 5
-		if (dir == WEST)
+			pixel_y = 0
+			layer = MOB_LAYER + 0.1
+		else if (dir == WEST)
 			pixel_x = -5
+			pixel_y = 0
+			layer = MOB_LAYER + 0.1
 		else
 			pixel_x = 0
+			if (dir == NORTH)
+				layer = MOB_LAYER + 0.011
+			else
+				layer = MOB_LAYER + 0.09
+				pixel_y = -2
