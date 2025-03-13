@@ -20,16 +20,8 @@
 		SPAWN_DBG(3 DECI SECONDS)
 		if (dir == SOUTH)
 			layer = MOB_LAYER + 0.1
-			pixel_x = 0
-		else if (dir == NORTH)
-			layer = OBJ_LAYER - 0.1
-			pixel_x = 0
 		else
 			layer = OBJ_LAYER
-			if (dir == EAST)
-				pixel_x = 5
-			if (dir == WEST)
-				pixel_x = -5
 
 	proc/railing_is_broken(obj/railing/The_Railing)
 		if(The_Railing.broken)
@@ -425,7 +417,17 @@
 /obj/railing/cool
 	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "railing-cool"
+	layer = MOB_LAYER + 0.1
 	reinforced_suffix = ""
 
 	railing_break()
 		qdel(src)
+
+	layerify()
+		SPAWN_DBG(3 DECI SECONDS)
+		if (dir == EAST)
+			pixel_x = 5
+		if (dir == WEST)
+			pixel_x = -5
+		else
+			pixel_x = 0
