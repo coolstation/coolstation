@@ -214,22 +214,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 						rock.color = src.color
 
 		if (generateLight)
-			src.make_light() /*
-			generateLight = 0
-			if (z != 3) //nono z3
-				for (var/dir in alldirs)
-					var/turf/T = get_step(src,dir)
-					if (istype(T, /turf/simulated))
-						generateLight = 1
-						src.make_light()
-						break */
-		/*if(icon_state == "gehenna_beat" || icon_state == "gehenna")
-			src.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)*/
+			src.make_light()
 
 	proc/create_rocks()
 		rocks = list()
 		for(var/i in 1 to 18)
-			rocks += image('icons/turf/rock_overlays.dmi',"[i]")
+			rocks += image('icons/turf/gehenna_overlays.dmi',"rock[i]")
 
 	make_light()
 		if (!light)
@@ -265,28 +255,64 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
-		icon_state = "gehenna_edge"
+		icon_state = "gehenna"
 		rock_mult = 20
-		doublesize = FALSE
+		doublesize = TRUE
 		big_rock_chance = 0
+		var/static/list/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in alldirs)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i)
 
 	corner
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
-		icon_state = "gehenna_corner"
+		icon_state = "gehenna"
 		rock_mult = 20
-		doublesize = FALSE
+		doublesize = TRUE
 		big_rock_chance = 0
+		var/static/list/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in alldirs)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i)
 
 	beaten
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
-		icon_state = "gehenna_beat"
+		icon_state = "gehenna"
 		rock_mult = 20
-		doublesize = FALSE
+		doublesize = TRUE
 		big_rock_chance = 0
+		var/static/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[pick(cardinal)]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in cardinal)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i)
 
 /area/gehenna
 	requires_power = 0
