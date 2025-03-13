@@ -5,17 +5,17 @@
 
 //Progsignal errors
 #define ESIG_SUCCESS 0
-#define ESIG_GENERIC 1
-#define ESIG_NOTARGET 2
-#define ESIG_BADCOMMAND 4
-#define ESIG_NOUSR 8
-#define ESIG_IOERR 16
-#define ESIG_NOFILE 32
-#define ESIG_NOWRITE 64
-#define ESIG_USR1 128
-#define ESIG_USR2 256
-#define ESIG_USR3 512
-#define ESIG_USR4 1024
+#define ESIG_GENERIC (1<<0)
+#define ESIG_NOTARGET (1<<1)
+#define ESIG_BADCOMMAND (1<<2)
+#define ESIG_NOUSR (1<<3)
+#define ESIG_IOERR (1<<4)
+#define ESIG_NOFILE (1<<5)
+#define ESIG_NOWRITE (1<<6)
+#define ESIG_USR1 (1<<7)
+#define ESIG_USR2 (1<<8)
+#define ESIG_USR3 (1<<9)
+#define ESIG_USR4 (1<<10)
 
 #define ESIG_DATABIT 32768
 
@@ -284,34 +284,34 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller || !data["name"])
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster || !data["name"])
 					return ESIG_GENERIC
 
 				if (data["name"] == "TEMP" && data["data"])
-					return (login_temp_user(data["data"], null, caller)) ? ESIG_GENERIC : ESIG_SUCCESS
+					return (login_temp_user(data["data"], null, callster)) ? ESIG_GENERIC : ESIG_SUCCESS
 
 				else
-					if (!caller.useracc)
+					if (!callster.useracc)
 						return ESIG_NOUSR
 
-					if (login_user(caller.useracc, data["name"], (data["sysop"] == 1), (data["service"] != 1)))
+					if (login_user(callster.useracc, data["name"], (data["sysop"] == 1), (data["service"] != 1)))
 						return ESIG_GENERIC
 
 				return ESIG_SUCCESS
 
-			if (DWAINE_COMMAND_UGROUP) //Manipulate the group of the caller's user account to ["group"]
+			if (DWAINE_COMMAND_UGROUP) //Manipulate the group of the callster's user account to ["group"]
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller || !isnum(data["group"]))
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster || !isnum(data["group"]))
 					return ESIG_GENERIC
 
-				if (!caller.useracc || !caller.useracc.user_file)
+				if (!callster.useracc || !callster.useracc.user_file)
 					return ESIG_NOUSR
 
-				caller.useracc.user_file.fields["group"] = min(255, max(data["group"], 0))
+				callster.useracc.user_file.fields["group"] = min(255, max(data["group"], 0))
 				return ESIG_SUCCESS
 
 			if (DWAINE_COMMAND_ULIST) //List current users.
@@ -361,14 +361,14 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				else if (!istype(target.user_file))
 					return ESIG_NOTARGET
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller || !caller.useracc)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster || !callster.useracc)
 					return ESIG_NOUSR
 
-				if (caller.useracc == target)
+				if (callster.useracc == target)
 					return ESIG_NOTARGET
 
-				var/senderName = caller.useracc.user_name
+				var/senderName = callster.useracc.user_name
 				if (!senderName)
 					return ESIG_NOUSR
 
@@ -533,15 +533,15 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 
 				var/pass_user = (data["passusr"] == 1)
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster)
 					return ESIG_GENERIC
 
 				var/datum/computer/file/mainframe_program/task_model = parse_file_directory(data["path"], src.holder.root, 0)
 				if (!task_model || !task_model.executable)
 					return ESIG_NOTARGET
 
-				task_model = src.master.run_program(task_model, (pass_user ? caller.useracc : null), caller, data["args"])
+				task_model = src.master.run_program(task_model, (pass_user ? callster.useracc : null), callster, data["args"])
 				if (!task_model)
 					return ESIG_GENERIC
 
@@ -551,11 +551,11 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/fork = src.master.run_program(caller, null, caller, data["args"], 1)
+				var/datum/computer/file/mainframe_program/fork = src.master.run_program(callster, null, callster, data["args"], 1)
 				if (!fork)
 					return ESIG_GENERIC
 
@@ -569,22 +569,22 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!isnum(target_id) || target_id < 0 || target_id > master.processing.len)
 					return ESIG_NOTARGET
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster)
 					return ESIG_GENERIC
 
 				var/datum/computer/file/mainframe_program/target_task = master.processing[target_id]
 				if (!target_task)
 					return ESIG_SUCCESS
 
-				if (target_task.parent_task != caller)
+				if (target_task.parent_task != callster)
 					return ESIG_GENERIC
 
 				var/datum/mainframe2_user_data/target_user = target_task.useracc
 
-				if (target_user && (!caller.useracc || target_user.current_prog == target_task))
-					target_user.current_prog = caller
-					caller.useracc = target_user
+				if (target_user && (!callster.useracc || target_user.current_prog == target_task))
+					target_user.current_prog = callster
+					callster.useracc = target_user
 
 				target_task.handle_quit()
 
@@ -594,15 +594,15 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!callster)
 					return ESIG_GENERIC
 
 				. = list()
 
 				for (var/x = 1, x <= master.processing.len, x++)
 					var/datum/computer/file/mainframe_program/MP = master.processing[x]
-					if (MP && MP.parent_task == caller)
+					if (MP && MP.parent_task == callster)
 						.[x] = MP
 					else
 						.[x] = null
@@ -614,11 +614,11 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!data["path"] || !caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!data["path"] || !callster)
 					return ESIG_NOTARGET
 
-				. = parse_datum_directory(data["path"], src.holder.root, 0, caller.useracc)
+				. = parse_datum_directory(data["path"], src.holder.root, 0, callster.useracc)
 				if (.)
 					//boutput(world, "F is [F.name], a [istype(F, /datum/computer/file) ? "FILE" : "FOLDER"]")
 					return .
@@ -630,11 +630,11 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!data["path"] || !caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!data["path"] || !callster)
 					return ESIG_NOTARGET
 
-				var/datum/mainframe2_user_data/the_user = caller.useracc
+				var/datum/mainframe2_user_data/the_user = callster.useracc
 
 				var/datum/computer/F = parse_datum_directory(data["path"], src.holder.root, 0, the_user)
 				if (F && (F.holding_folder != master.runfolder && F != master.runfolder && F != src.holder.root) && (!the_user || check_mode_permission(F, the_user)))
@@ -652,18 +652,18 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!data["path"] || !caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!data["path"] || !callster)
 					return ESIG_NOTARGET
 
 				if (!isnum(data["permission"]))
 					return ESIG_GENERIC
 
-				var/datum/computer/target_datum = parse_datum_directory(data["path"], src.holder.root, 0, caller.useracc)
+				var/datum/computer/target_datum = parse_datum_directory(data["path"], src.holder.root, 0, callster.useracc)
 				if (!istype(target_datum))
 					return ESIG_NOFILE
 
-				if (caller.useracc && !check_mode_permission(target_datum, caller.useracc))
+				if (callster.useracc && !check_mode_permission(target_datum, callster.useracc))
 					return ESIG_GENERIC
 
 				change_metadata(target_datum, "permission", data["permission"])
@@ -674,18 +674,18 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!data["path"] || !caller)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!data["path"] || !callster)
 					return ESIG_NOTARGET
 
 				if (!isnum(data["group"]) && !data["owner"])
 					return ESIG_GENERIC
 
-				var/datum/computer/target_datum = parse_datum_directory(data["path"], src.holder.root, 0, caller.useracc)
+				var/datum/computer/target_datum = parse_datum_directory(data["path"], src.holder.root, 0, callster.useracc)
 				if (!istype(target_datum))
 					return ESIG_NOFILE
 
-				if (caller.useracc && !check_mode_permission(target_datum, caller.useracc))
+				if (callster.useracc && !check_mode_permission(target_datum, callster.useracc))
 					return ESIG_GENERIC
 
 				if (data["owner"])
@@ -700,14 +700,14 @@ var/global/list/generic_exit_list = list("command"=DWAINE_COMMAND_EXIT)
 				if (!sendid)
 					return ESIG_GENERIC
 
-				var/datum/computer/file/mainframe_program/caller = master.processing[sendid]
-				if (!data["path"] || !caller || !file)
+				var/datum/computer/file/mainframe_program/callster = master.processing[sendid]
+				if (!data["path"] || !callster || !file)
 					return ESIG_NOTARGET
 
 				if (is_name_invalid(file.name))
 					return ESIG_GENERIC
 
-				var/datum/mainframe2_user_data/the_user = caller.useracc
+				var/datum/mainframe2_user_data/the_user = callster.useracc
 				var/create_path = (data["mkdir"] == 1)
 
 				var/datum/computer/folder/destination = parse_directory(data["path"], src.holder.root, create_path, the_user)

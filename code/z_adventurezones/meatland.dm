@@ -1079,7 +1079,7 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 			}
 		}
 
-		document.getElementById("enterkey").setAttribute("href","?src=\ref[src];enter=" + currentVal + ";");
+		document.getElementById("enterkey").setAttribute("href","byond://?src=\ref[src];enter=" + currentVal + ";");
 	}
 
 	function keypadIn(num)

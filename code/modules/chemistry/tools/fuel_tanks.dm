@@ -8,7 +8,7 @@
 // assemblies and the like in case you're worried about the availability of 400 units beakers (Convair880).
 /obj/item/reagent_containers/food/drinks/fueltank
 	name = "fuel tank"
-	desc = "A specialized anti-static tank for holding flammable compounds"
+	desc = "A specialized anti-static tank for holding flammable compounds."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "bottlefuel"
 	w_class = W_CLASS_NORMAL
@@ -39,10 +39,11 @@
 
 /obj/item/reagent_containers/food/drinks/chemicalcan
 	name = "chemical canister"
-	desc = "For storing medical chemicals and less savory things."
+	desc = "For storing medical chemicals and less savory things. The lid can be opened or closed with a wrench."
 	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "chemtank"
+	var/base_icon_state = "chemtank"
+	icon_state = "chemtank-closed"
 	item_state = "chemtank"
 	initial_volume = 1000
 	flags = OPENCONTAINER
@@ -57,6 +58,9 @@
 	cannot_be_stored = TRUE
 	c_flags = EQUIPPED_WHILE_HELD
 
+	New()
+		..()
+		src.set_icon_state(base_icon_state + (src.is_open_container() ? "-open" : "-closed"))
 
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		..()
@@ -74,8 +78,20 @@
 			L.changeStatus("weakened", 2 SECONDS)
 			L.force_laydown_standup()
 
-	shatter_chemically(var/projectiles = FALSE) //needs sound probably definitely for sure
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (iswrenchingtool(W))
+			playsound(src, "sound/items/Ratchet.ogg", 50, 1)
+			src.flags ^= OPENCONTAINER
+			src.set_icon_state(base_icon_state + (src.is_open_container() ? "-open" : "-closed"))
+			if (src.is_open_container())
+				user.visible_message("<span class='notice'>[user] wrenches close the [src]'s lid.</span>")
+			else
+				user.visible_message("<span class='notice'>[user] wrenches open the [src]'s lid.</span>")
+		..()
+
+	shatter_chemically(var/projectiles = FALSE)
 		visible_message(SPAN_ALERT("The <B>[src.name]</B> breaks open!"), SPAN_ALERT("You hear a loud bang!"))
+		playsound(src, 'sound/effects/ExplosionFirey.ogg', 100, 1)
 		if(projectiles)
 			var/datum/projectile/special/spreader/uniform_burst/circle/circle = new /datum/projectile/special/spreader/uniform_burst/circle/(get_turf(src))
 			circle.shot_sound = null //no grenade sound ty

@@ -1450,7 +1450,7 @@ proc/get_adjacent_floor(atom/W, mob/user, px, py)
 	else if(ghostjump)
 		text += "<a href='byond://winset?command=.ghostjump [x] [y] [z]' title='Jump to Coords'>[x],[y],[z]</a>"
 	else
-		text += "<a href='?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
+		text += "<a href='byond://?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
 	return text
 
 // hi I'm haine -throws more crap onto the pile-
@@ -2508,11 +2508,11 @@ proc/check_whitelist(var/atom/TA, var/list/whitelist, var/mob/user as mob, var/c
 
 /**
 	* Linear interpolation
-	*/
+	*
 /proc/lerp(var/a, var/b, var/t)
 		return a * (1 - t) + b * t
 
-/**
+
 	* Returns the passed decisecond-format time in the form of a text string
 	*/
 proc/time_to_text(var/time)

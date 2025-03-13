@@ -107,7 +107,7 @@
 
 	var/subtle_href = null
 	if(src.holder && M.client)
-		subtle_href = "?src=\ref[src.holder];action=subtlemsg&targetckey=[M.client.ckey]"
+		subtle_href = "byond://?src=\ref[src.holder];action=subtlemsg&targetckey=[M.client.ckey]"
 	message_admins("<span class='internal'><b>SubtleMessage: [key_name(src.mob)] <i class='icon-arrow-right'></i> [key_name(Mclient.mob, custom_href=subtle_href)] : [msg]</b></span>")
 
 /client/proc/cmd_admin_plain_message(mob/M as mob in world)
@@ -1453,7 +1453,7 @@
 		"}
 
 
-	var/refresh_url = "?src=\ref[src.holder];action=checkreagent_refresh;target=\ref[target];origin=reagent_report"
+	var/refresh_url = "byond://?src=\ref[src.holder];action=checkreagent_refresh;target=\ref[target];origin=reagent_report"
 	var/final_report = {"
 	<style type='text/css'>
 		* {

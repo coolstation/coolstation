@@ -85,6 +85,7 @@ datum
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -92,6 +93,7 @@ datum
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -170,7 +172,7 @@ datum
 			transparency = 30
 			addiction_prob = 10//50
 			addiction_min = 15
-			overdose = 30
+			overdose = 20
 			depletion_rate = 0.6
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			flammable_influence = TRUE
@@ -208,6 +210,7 @@ datum
 							M.drowsyness  = max(M.drowsyness, 8)
 					if(14 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
+						holder.remove_reagent("ether", 0.4 * mult)
 						M.drowsyness  = max(M.drowsyness, 20)
 
 				..()
@@ -388,9 +391,13 @@ datum
 			overdose = 25
 			depletion_rate = 0.1
 			value = 11 // 5c + 3c + 1c + 1c + 1c
+			var/fake_health = -10
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				if(src.fake_health < 45)
+					src.fake_health += mult
+				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
 				if(prob(55))
 					M.HealDamage("All", 2 * mult, 0)
 				//set it so it only slowly reduces mild fevers from disease and not, you know, burn victims
@@ -406,8 +413,10 @@ datum
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 			on_remove()
+				src.fake_health = -10
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 		//hmm. well.

@@ -111,11 +111,11 @@ var tooltip = {
 	hide: function() {
 		tooltip.removeDelays();
 		animatePopup.stop();
-		window.location = '?src=' + window.tooltipRef + ';action=hide;force=1';
+		window.location = 'byond://?src=' + window.tooltipRef + ';action=hide;force=1';
 	},
 
 	log: function(text) {
-		window.location = '?src=' + window.tooltipRef + ';action=log&msg='+escaper(text);
+		window.location = 'byond://?src=' + window.tooltipRef + ';action=log&msg='+escaper(text);
 	},
 
 	debugLog: function(text) {
@@ -221,9 +221,9 @@ var tooltip = {
 		if (tooltip.options.hasOwnProperty('special')) {
 			if (tooltip.options.special === 'pod') {
 				top--; //Pods do some weird funky shit with view and well just trust me that this is needed
-			} 
+			}
 		}
-		
+
 		var yloc = top;
 
 		//Handle manually set offsets (whether to adjust the tooltip along an axis by a pixel amount)
@@ -286,7 +286,7 @@ var tooltip = {
 				alignment = 'top';
 				posY = (posY - docHeight) - realIconSizeY - (tooltip.padding * 2);
 				if (yloc<=1){
-					posY = posY - (realIconSizeY)
+					posY = posY - (realIconSizeY);
 				}
 			}
 			if ($.inArray('right', tooltip.params.flags) !== -1) { //TOOLTIP_RIGHT
@@ -415,11 +415,12 @@ var tooltip = {
 };
 
 //WE READY YO
-$(window).on('load', function() {
+$(window).one('load', function() {
 	if (tooltip.loaded === false) {
 		tooltip.loaded = true;
+
 		tooltip.debugLog('JS loaded, calling topic show');
-		window.location = '?src=' + window.tooltipRef + ';action=show';
+		window.location = 'byond://?src=' + window.tooltipRef + ';action=show';
 
 		tooltip.$docBody = $('body');
 		tooltip.$wrap = $('#wrap');

@@ -583,7 +583,7 @@
 		I.former_implantee = null
 	..()
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed, deathgasp = TRUE, decompose = TRUE)
 	if (ticker.mode)
 		ticker.mode.on_human_death(src)
 	if(src.mind && src.mind.damned) // Ha you arent getting out of hell that easy.
@@ -694,7 +694,8 @@
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			NORMAL BUSINESS
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	emote("deathgasp") //let the world KNOW WE ARE DEAD
+	if(deathgasp)
+		emote("deathgasp") //let the world KNOW WE ARE DEAD
 
 	if (!src.mutantrace || inafterlife(src)) // wow fucking racist
 		modify_christmas_cheer(-7)
@@ -713,30 +714,33 @@
 		var/obj/item/clothing/suit/armor/suicide_bomb/A = src.wear_suit
 		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/item/clothing/suit/armor/suicide_bomb, trigger), src)
 
-	src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
-
-	if (src.mind) // I think this is kinda important (Convair880).
-		src.mind.register_death()
-		if (src.mind.special_role == ROLE_INSURGENT)
-			remove_insurgent_status(src, "nsurgt", "death")
-		else if (src.mind.special_role == ROLE_VAMPTHRALL)
-			remove_insurgent_status(src, "vthrall", "death")
-		else if (src.mind.master)
-			remove_insurgent_status(src, "other_recruit", "death")
-		if (src.mind.ckey && !inafterlife(src))
-			var/turf/where = get_turf(src)
-			var/where_text = "Unknown (?, ?, ?)"
-			if (where)
-				where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
-
-			message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
-
-#ifdef DATALOGGER
-		game_stats.Increment("playerdeaths")
-#endif
+	if(decompose)
+		src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
 
 	logTheThing("combat", src, null, "dies [log_health(src)] at [log_loc(src)].")
-	//src.icon_state = "dead"
+		//src.icon_state = "dead"
+
+	if (!src.mind) // I think this is kinda important (Convair880).
+		return ..(gibbed)
+
+	src.mind.register_death()
+	if (src.mind.special_role == ROLE_INSURGENT)
+		remove_insurgent_status(src, "nsurgt", "death")
+	else if (src.mind.special_role == ROLE_VAMPTHRALL)
+		remove_insurgent_status(src, "vthrall", "death")
+	else if (src.mind.master)
+		remove_insurgent_status(src, "other_recruit", "death")
+	if (src.mind.ckey && !inafterlife(src))
+		var/turf/where = get_turf(src)
+		var/where_text = "Unknown (?, ?, ?)"
+		if (where)
+			where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
+
+		message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
+
+#ifdef DATALOGGER
+	game_stats.Increment("playerdeaths")
+#endif
 
 	if (!src.suiciding)
 		if (emergency_shuttle?.location == SHUTTLE_LOC_STATION)
