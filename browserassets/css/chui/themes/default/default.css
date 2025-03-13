@@ -9,6 +9,7 @@ body {
 	font-size: 12px;
 	line-height: 1.4;
 	color: #fcfcfc;
+	overflow: hidden;
 }
 table {
 	width: 100%;
@@ -137,7 +138,7 @@ a {
 	border-style: none ridge ridge ridge;
 }
 #content .innerContent { /* also has: .not-nano-content */
-	padding: 15px 15px 15px 15px; background-repeat: repeat-x;
+	padding: 10px 10px 10px 10px; background-repeat: repeat-x;
 }
 
 .contentFlex {
@@ -224,7 +225,8 @@ a {
 /* CUSTOM SCROLLBARS START */
 .not-nano > .not-nano-content {
   position      : absolute;
-  overflow-y	: scroll;
+  overflow-y	: auto;
+  overflow-x    : hidden;
   top           : 0;
   right         : 0;
   bottom        : 0;
