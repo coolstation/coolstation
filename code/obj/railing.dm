@@ -427,17 +427,18 @@
 	layerify()
 		SPAWN_DBG(3 DECI SECONDS)
 		if (dir == EAST)
-			pixel_x = 5
+			pixel_x = 4
 			pixel_y = 0
 			layer = MOB_LAYER + 0.1
 		else if (dir == WEST)
-			pixel_x = -5
+			pixel_x = -4
 			pixel_y = 0
 			layer = MOB_LAYER + 0.1
 		else
 			pixel_x = 0
 			if (dir == NORTH)
-				layer = MOB_LAYER + 0.011
+				layer = MOB_LAYER + 0.11
+				pixel_y = -1
 			else
 				layer = MOB_LAYER + 0.09
 				pixel_y = -2
