@@ -963,6 +963,15 @@ obj/trait/pilot
 	points = -1
 	isPositive = 0
 
+/obj/trait/organ_connoisseur
+	name = "Organ Connoisseur (-1)"
+	cleanName = "Organ Connoisseur"
+	desc = "You know far more about the valuable innards of your coworkers than you should."
+	id = "organ_connoisseur"
+	icon_state = "organ"
+	points = -1
+	isPositive = 1
+
 /obj/trait/clown_disbelief
 	name = "Clown Disbelief (0)"
 	cleanName = "Clown Disbelief"

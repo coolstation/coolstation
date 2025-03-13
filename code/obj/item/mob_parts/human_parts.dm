@@ -15,6 +15,16 @@
 	var/original_fprints = null
 	var/show_on_examine = 0
 
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/device/analyzer/healthanalyzer))
+			animate_scanning(src, "#0AEFEF")
+			var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.original_DNA)
+			if(MR)
+				boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]] ])</span>")
+			else
+				boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
+			return
+
 	take_damage(brute, burn, tox, damage_type, disallow_limb_loss)
 		if (brute <= 0 && burn <= 0)// && tox <= 0)
 			return 0
@@ -84,11 +94,12 @@
 			src.setMaterial(getMaterial("bone"), appearance = 0, setname = 0)
 
 			src.add_fingerprint(holder)
+			/*
 			//https://forum.ss13.co/showthread.php?tid=1774
 			// zam note - removing this again.
 			SPAWN_DBG(2 SECONDS)
 				if (new_holder && istype(new_holder))
-					name = "[new_holder.real_name]'s [initial(name)]"
+					name = "[new_holder.real_name]'s [initial(name)]"*/
 		if (src.skintoned)
 			if (holder_ahol)
 				colorize_limb_icon()

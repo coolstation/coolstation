@@ -95,7 +95,7 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
-	if(ON_COOLDOWN(src, "poo", 10 MINUTES))
+	if(ON_COOLDOWN(src, "poo", 20 MINUTES))
 		boutput(src, "You don't feel ready to go.")
 		return
 	SPAWN_DBG(0.1 SECOND)
@@ -125,7 +125,7 @@
 				// ... also set suit/uniform to bottomless? I dunno
 			else
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")
-				H.wiped = 0 //+1 trait idea: nothin' but net
+			H.wiped = 0 //+1 trait idea: nothin' but net
 			if(H.w_uniform)
 				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 5)
 			else
@@ -245,6 +245,7 @@
 	src.change_misstep_chance(-INFINITY)
 	if (src.reagents)
 		src.reagents.clear_reagents()
+		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)
@@ -291,6 +292,20 @@
 		return
 
 	src.oxyloss = max(0,src.oxyloss + amount)
+	return
+
+/mob/living/carbon/lose_breath(var/amount)
+	if (..())
+		return
+
+	if (!losebreath && amount < 0)
+		return
+
+	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+		src.losebreath = 0
+		return
+
+	src.losebreath = max(0,src.losebreath + amount)
 	return
 
 /mob/living/carbon/get_brain_damage()

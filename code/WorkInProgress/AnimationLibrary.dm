@@ -240,7 +240,7 @@
 
 /mob/var/last_interact_particle = 0
 
-/proc/interact_particle(var/mob/M, var/atom/movable/target)
+/proc/interact_particle(var/mob/M, var/atom/movable/target, var/turf = FALSE)
 	if (!M || !target) return
 	if (world.time <= M.last_interact_particle + M.combat_click_delay) return
 	var/diff_x = target.x - M.x
@@ -277,7 +277,10 @@
 		//animate(transform = t_size, time = 6, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
 
 		animate(M.attack_particle, transform = t_size, time = 6, easing = BOUNCE_EASING)
-		animate(pixel_x = (diff_x*32) + target.pixel_x + (target.bound_width * 0.5 - 16), pixel_y = (diff_y*32) + target.pixel_y + (target.bound_height * 0.5 - 16), time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
+		if(turf)
+			animate(pixel_x = (diff_x*32) + target.pixel_x, pixel_y = (diff_y*32) + target.pixel_y, time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
+		else
+			animate(pixel_x = (diff_x*32) + target.pixel_x + (target.bound_width * 0.5 - 16), pixel_y = (diff_y*32) + target.pixel_y + (target.bound_height * 0.5 - 16), time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
 		sleep(0.5 SECONDS)
 		//animate(M.attack_particle, alpha = 0, time = 2, flags = ANIMATION_PARALLEL)
 		M.attack_particle.alpha = 0
