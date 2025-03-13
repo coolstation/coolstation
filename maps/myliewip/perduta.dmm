@@ -402,7 +402,6 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "ec" = (
-/obj/railing,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -808,6 +807,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/railing/cool{
+	dir = 1
+	},
 /turf/floor/grey/corner,
 /area/station/medical/robotics)
 "hx" = (
@@ -846,6 +848,9 @@
 /area/station/hallway/primary/west)
 "hI" = (
 /obj/disposalpipe/segment/horizontal,
+/obj/railing/cool{
+	dir = 8
+	},
 /turf/floor/blackwhite{
 	dir = 6
 	},
@@ -1211,7 +1216,6 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/railing,
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
 "lj" = (
@@ -1719,6 +1723,10 @@
 /obj/grille/catwalk{
 	dir = 8
 	},
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/railing/cool,
 /turf/floor/specialroom/clown,
 /area/station/crew_quarters/clown)
 "oF" = (
@@ -3081,10 +3089,10 @@
 	dir = 9
 	},
 /obj/railing/cool{
-	dir = 8
+	dir = 1
 	},
 /obj/railing/cool{
-	dir = 1
+	dir = 8
 	},
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
@@ -3506,7 +3514,6 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
 	},
-/obj/railing,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -3680,6 +3687,9 @@
 	},
 /obj/grille/catwalk/cross{
 	dir = 6
+	},
+/obj/railing/cool{
+	dir = 4
 	},
 /obj/railing/cool,
 /turf/space/magindara,
@@ -4433,6 +4443,9 @@
 	},
 /area/station/hallway/primary/southwest)
 "LD" = (
+/obj/railing/cool{
+	dir = 1
+	},
 /turf/floor/grey/side,
 /area/station/medical/robotics)
 "LE" = (
@@ -4680,6 +4693,9 @@
 	tag = "icon-lattice-dir (EAST)"
 	},
 /obj/railing/cool,
+/obj/railing/cool{
+	dir = 4
+	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "NJ" = (
@@ -4766,6 +4782,9 @@
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
 "OK" = (
+/obj/railing/cool{
+	dir = 8
+	},
 /turf/floor/blackwhite/corner{
 	dir = 8
 	},
@@ -5391,6 +5410,9 @@
 	pixel_x = 9
 	},
 /obj/item/clothing/suit/scarf,
+/obj/railing/cool{
+	dir = 8
+	},
 /turf/floor/blackwhite/corner{
 	dir = 1
 	},
@@ -5805,6 +5827,9 @@
 /obj/neon_lining{
 	dir = 1
 	},
+/obj/railing/cool{
+	dir = 4
+	},
 /turf/floor/carpet/clowncarpet/innercorner{
 	dir = 8
 	},
@@ -5935,6 +5960,9 @@
 	},
 /obj/disposalpipe/segment/vertical,
 /obj/window/crystal/reinforced/south,
+/obj/railing/cool{
+	dir = 4
+	},
 /turf/floor/carpet/clowncarpet/innercorner{
 	dir = 9
 	},
@@ -46827,7 +46855,7 @@ OX
 Vq
 Vq
 mF
-mF
+il
 cs
 Xd
 Yo

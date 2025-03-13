@@ -111,7 +111,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	force_fullbright = FALSE
 	requires_power = TRUE
 
-proc/update_magindaran_weather(fog_alpha=128,rain_alpha=60,rain_color="#bea2eb")
+proc/update_magindaran_weather(fog_alpha=128,fog_color="#ffffff",rain_alpha=60,rain_color="#bea2eb")
 	if(!magindara_global_fog)
 		magindara_global_fog = list()
 	if(!length(magindara_global_fog))
@@ -119,6 +119,7 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=60,rain_color="#bea2eb")
 			magindara_global_fog += new /obj/overlay/magindara_fog
 	for (var/i in 1 to 4)
 		magindara_global_fog[i].alpha = fog_alpha
+		magindara_global_fog[i].color = fog_color
 		if(rain_alpha)
 			var/image/weather = image('icons/turf/water.dmi',"bigrain[i]", layer = EFFECTS_LAYER_BASE)
 			weather.alpha = rain_alpha
@@ -135,13 +136,14 @@ proc/update_magindaran_weather(fog_alpha=128,rain_alpha=60,rain_color="#bea2eb")
 	admin_only
 
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
+	var/fog_color = input(usr, "Please enter the fog tint:","Fog Tint", "#ffffff") as color
 	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "60") as num
 	var/rain_color = input(usr, "Please enter the rain color:","Rain Color", "#bea2eb") as color
 
-	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha] [rain_color].")
-	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] and rain [rain_alpha] [rain_color].", "admin")
+	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] [fog_color] and rain [rain_alpha] [rain_color].")
+	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] [fog_color] and rain [rain_alpha] [rain_color].", "admin")
 
-	update_magindaran_weather(fog_alpha, rain_alpha, rain_color)
+	update_magindaran_weather(fog_alpha, fog_color, rain_alpha, rain_color)
 
 /client/proc/strike_lightning_here()
 	set name = "Strike Lightning Here"
