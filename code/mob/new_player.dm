@@ -52,7 +52,7 @@ mob/new_player
 		src.set_loc(pick_landmark(LANDMARK_NEW_PLAYER, locate(1,1,1)))
 		src.sight |= SEE_TURFS
 
-
+		winset(client, null, "browser-options=devtools,find")
 		// byond members get a special join message :]
 		if (src.client?.IsByondMember())
 			var/list/msgs_which_are_gifs = list(8, 9, 10) //not all of these are normal jpgs
@@ -468,6 +468,7 @@ mob/new_player
 		return
 
 	proc/LateChoices()
+		winset(client, null, "browser-options=devtools,find")
 		// shut up
 		var/header_thing_chui_toggle = true ? {"
 		<title>Select a Job</title>
