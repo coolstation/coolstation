@@ -1,6 +1,6 @@
 /obj/railing
 	name = "railing"
-	desc = "Two sets of bars shooting onward with the sole goal of blocking you off. They can't stop you from vaulting over them though!"
+	desc = "A set of bars shooting onward with the sole goal of blocking you off. They can't stop you from vaulting over them though!"
 	anchored = 1
 	density = 1
 	icon = 'icons/obj/objects.dmi'
@@ -14,13 +14,22 @@
 	custom_suicide = 1
 	var/broken = 0
 	var/is_reinforced = 0
+	var/reinforced_suffix = "-reinforced"
 
 	proc/layerify()
 		SPAWN_DBG(3 DECI SECONDS)
 		if (dir == SOUTH)
 			layer = MOB_LAYER + 0.1
+			pixel_x = 0
+		else if (dir == NORTH)
+			layer = OBJ_LAYER - 0.1
+			pixel_x = 0
 		else
 			layer = OBJ_LAYER
+			if (dir == EAST)
+				pixel_x = 5
+			if (dir == WEST)
+				pixel_x = -5
 
 	proc/railing_is_broken(obj/railing/The_Railing)
 		if(The_Railing.broken)
@@ -124,7 +133,7 @@
 		else if (issnippingtool(W))
 			if(src.is_reinforced)
 				user.show_text("You cut off the reinforcement on [src].", "blue")
-				src.icon_state = "railing"
+				src.icon_state = initial(src.icon_state)
 				src.is_reinforced = 0
 				var/obj/item/rods/R = new /obj/item/rods(get_turf(src))
 				R.amount = 1
@@ -141,7 +150,7 @@
 				if(R.change_stack_amount(-1))
 					user.show_text("You reinforce [src] with the rods.", "blue")
 					src.is_reinforced = 1
-					src.icon_state = "railing-reinforced"
+					src.icon_state = "railing[src.reinforced_suffix]"
 			else
 				user.show_text("[src] is already reinforced!", "red")
 
@@ -413,3 +422,10 @@
 			O.show_text("[owner] [verbens] [the_railing].", "red", group = "[owner]-tool_on_railing")
 			logTheThing("station", ownerMob, the_railing, "[verbens] [the_railing].")
 
+/obj/railing/cool
+	icon = 'icons/obj/large/32x48.dmi'
+	icon_state = "railing-cool"
+	reinforced_suffix = ""
+
+	railing_break()
+		qdel(src)
