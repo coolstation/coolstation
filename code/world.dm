@@ -872,14 +872,15 @@ var/f_color_selector_handler/F_Color_Selector
 /world/proc/update_status()
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
-	var/s = "<b>516</b> Ready! "
+	var/s = "<b>"
 
 	if (config?.server_name)
-		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
+		s += "<a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
 	else
-		s += "<b>SERVER NAME HERE</b> &#8212; "
+		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The hotdog SS13 experience.&#8212; (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. Now 516! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "[pick("Goon's <b>only</b> active downstream!","Italian: <b>[pick("as hell","kinda","not really","yes","no","very")]</b>","Style: [pick("Action","<b>ACTION</b>")] [pick("Roleplay","<b>ROLEPLAY</b>")]","Style: [pick("Roleplay","<b>ROLEPLAY</b>")] [pick("Action","<b>ACTION</b>")]","Smells: <b>[pick("Great","Bad")]</b>!","<br>Mouthfeel: <b>[pick("crunchy","chewy","moist","wet")]</b>","No ERP! 18+ Only!")]<br>"
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
@@ -897,10 +898,10 @@ var/f_color_selector_handler/F_Color_Selector
 			features += "Mode: <b>[master_mode]</b>"
 
 	if (!enter_allowed)
-		features += "closed"
+		features += "Closed"
 
 	if (abandon_allowed)
-		features += "respawn allowed"
+		features += "Respawn Allowed"
 
 #if ASS_JAM
 	features += "Ass Jam"
