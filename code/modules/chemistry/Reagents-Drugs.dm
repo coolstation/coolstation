@@ -811,16 +811,29 @@ datum
 			overdose = 20
 			hunger_value = -0.1
 			thirst_value = -0.09
+			var/fake_health = 40
+
+			on_remove()
+				src.fake_health = 40
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil")
+				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness -= 40
-				if(prob(25)) M.take_brain_damage(1 * mult)
-				if(probmult(15)) M.emote(pick("smile", "grin", "yawn", "laugh", "drool"))
+				src.fake_health += mult
+				if(prob(25))
+					M.take_brain_damage(1 * mult)
+					src.fake_health += 3 * mult
+				if(probmult(15))
+					M.emote(pick("smile", "grin", "yawn", "laugh", "drool"))
 				if(prob(10))
 					boutput(M, "<span class='notice'><b>You feel pretty chill.</b></span>")
 					M.bodytemperature -= 1 * mult
 					M.emote("smile")
+					src.fake_health += 3 * mult
 				if(prob(5))
 					boutput(M, "<span class='alert'><b>You feel too chill!</b></span>")
 					M.emote(pick("yawn", "drool"))
@@ -831,11 +844,13 @@ datum
 				if(prob(2))
 					boutput(M, "<span class='alert'><b>Your skin feels all rough and dry.</b></span>")
 					random_brute_damage(M, 2 * mult)
+				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil", src.fake_health)
 				..()
 				return
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				var/effect = ..(severity, M)
+				src.fake_health += severity * 4
 				if (severity == 1)
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M.name]</b> looks dazed!</span>")

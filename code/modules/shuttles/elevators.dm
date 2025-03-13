@@ -31,15 +31,11 @@ ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
 /area/transit_vehicle/elevator/__id/top;\
 /area/transit_vehicle/elevator/__id/top/name = _areaname;\
 /area/transit_vehicle/elevator/__id/top/icon_state = _area_sprite;\
-/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/"+#__id+"";\
+/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down";\
 /area/transit_vehicle/elevator/__id/bot;\
 /area/transit_vehicle/elevator/__id/bot/name = _areaname;\
 /area/transit_vehicle/elevator/__id/bot/icon_state = _area_sprite;\
 /area/transit_vehicle/elevator/__id/bot/filler_turf = "/turf/floor/plating";\
-/turf/floor/specialroom/elevator_shaft/__id;\
-/turf/floor/specialroom/elevator_shaft/__id/fall_landmark = ""+#__id+"fall";\
-/obj/landmark/elevator_fall/__id;\
-/obj/landmark/elevator_fall/__id/name =""+#__id+"fall"
 //I'm not sure if the double underscore in __id ended up necessary but too much effort to change
 
 //Example usage
@@ -332,7 +328,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/qm"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/qm_bot
 	name = "Quartermaster's Elevator"
@@ -342,7 +338,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/med_top
 	name = "Hospital Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/med"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/med_bot
 	name = "Hospital Elevator"
@@ -352,7 +348,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/eng_top
 	name = "Engineering Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/eng"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/eng_bot
 	name = "Engineering Elevator"
@@ -362,7 +358,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/com_top
 	name = "Command Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/com"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/com_bot
 	name = "Command Elevator"
@@ -372,7 +368,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/sec_top
 	name = "Security Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/sec"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/sec_bot
 	name = "Security Elevator"
@@ -382,7 +378,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/dum_top
 	name = "Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/dum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/dum_bot
 	name = "Dumbwaiter"
@@ -392,7 +388,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qmdum_top
 	name = "Cargo Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/qmdum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/qmdum_bot
 	name = "Cargo Dumbwaiter"
@@ -414,20 +410,6 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/plating"
 
-/turf/floor/specialroom/elevator_shaft/qm
-	fall_landmark = LANDMARK_FALL_QM
-/turf/floor/specialroom/elevator_shaft/med
-	fall_landmark = LANDMARK_FALL_MED
-/turf/floor/specialroom/elevator_shaft/eng
-	fall_landmark = LANDMARK_FALL_ENG
-/turf/floor/specialroom/elevator_shaft/com
-	fall_landmark = LANDMARK_FALL_COM
-/turf/floor/specialroom/elevator_shaft/sec
-	fall_landmark = LANDMARK_FALL_SEC
-/turf/floor/specialroom/elevator_shaft/dum
-	fall_landmark = LANDMARK_FALL_DUM
-/turf/floor/specialroom/elevator_shaft/qmdum
-	fall_landmark = LANDMARK_FALL_QMDUM
 /turf/floor/specialroom/elevator_shaft/ntfcm
 	fall_landmark = LANDMARK_FALL_NTFC
 /turf/floor/specialroom/elevator_shaft/ntfc

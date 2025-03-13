@@ -2404,11 +2404,6 @@ Returns:
 	ex_act()
 		return
 
-/proc/gobuzz()
-	if(buzztile)
-		usr.set_loc(buzztile)
-	return
-
 /obj/item/beamtest
 	desc = "beamtest thingamobob"
 	name = "beamtest thingamobob"

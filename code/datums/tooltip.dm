@@ -66,7 +66,7 @@ Notes:
 
 #ifdef TOOLTIP_DEBUG
 /proc/tooltipDebugOut(who, msg)
-	out(who, "<span style='font-size: 0.85em'>\[[time2text(world.realtime, "hh:mm:ss")]\] <strong>(TOOLTIP DEBUG | DM)</strong> [msg]</span>")
+	out(who, "<span style='font-size: 0.85em'>\[[time2text(TIME, "hh:mm:ss")]\] <strong>(TOOLTIP DEBUG | DM)</strong> [msg]</span>")
 #endif
 
 var/global/list/atomTooltips = new()
@@ -256,7 +256,7 @@ var/global/list/atomTooltips = new()
 	Topic(href, href_list[])
 		switch (href_list["action"])
 			if ("log")
-				out(src.owner, "<span style='font-size: 0.85em'>\[[time2text(world.realtime, "hh:mm:ss")]\] <strong>(TOOLTIP DEBUG | JS)</strong> [href_list["msg"]]</span>")
+				out(src.owner, "<span style='font-size: 0.85em'>\[[time2text(TIME, "hh:mm:ss")]\] <strong>(TOOLTIP DEBUG | JS)</strong> [href_list["msg"]]</span>")
 			if ("show")
 				src.show2(src.savedOptions)
 			if ("hide")
@@ -270,7 +270,7 @@ var/global/list/atomTooltips = new()
 			src.screenProperties = src.owner.screenSizeHelper.getData()
 
 			if (src.isClone)
-				src.uid = "[world.timeofday][rand(1,10000)]"
+				src.uid = "[TIME][rand(1,10000)]"
 				var/newWindow = "[src.window][src.uid]"
 				winclone(src.owner, newWindow, src.window)
 				src.window = newWindow
@@ -286,7 +286,7 @@ var/global/list/atomTooltips = new()
 
 			//Create the window, and set options on the browser control (while at the same time forcing focus back to the map)
 			src.owner << browse(fileText, "window=[src.window];titlebar=0;can_close=0;can_resize=0;can-minimize=0;border=0;size=1,1;")
-			winset(src.owner, null, "mapwindow.map.focus=true;[src.window].alpha=0;[src.window].pos=0,0;[src.window].background-color=[transparentColor];[src.window].transparent-color=[transparentColor];")
+			winset(src.owner, null, "mapwindow.map.focus=true;[src.window].alpha=0;[src.window].pos=0,0;[src.window].background-color=transparent;")
 			return 1
 		return 0
 

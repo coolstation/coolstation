@@ -49,9 +49,6 @@
 #elif defined(MAP_OVERRIDE_ATLAS)
 #include "atlas.dm"
 
-#elif defined(MAP_OVERRIDE_MANTA)
-#include "manta.dm"
-
 #elif defined(MAP_OVERRIDE_KONDARU)
 #include "kondaru.dm"
 

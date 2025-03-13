@@ -22,7 +22,6 @@
 #define LANDMARK_SHUTTLE_COG1 "shuttle-cog1"
 #define LANDMARK_SHUTTLE_COG2 "shuttle-cog2"
 #define LANDMARK_SHUTTLE_SEALAB "shuttle-sealab"
-#define LANDMARK_SHUTTLE_MANTA "shuttle-manta"
 #define LANDMARK_SHUTTLE_DONUT2 "shuttle-donut2"
 #define LANDMARK_SHUTTLE_DONUT3 "shuttle-donut3"
 #define LANDMARK_SHUTTLE_DESTINY "shuttle-destiny"
@@ -90,13 +89,6 @@
 #define LANDMARK_FALL_MOON_MUSEUM "moonfall_museum" // Lunar museum elevator shaft
 #define LANDMARK_FALL_SEA "seafall" // Oshan trench elevator
 #define LANDMARK_FALL_SPACEMAS "spacemasfall" // Merry Spacemas!
-#define LANDMARK_FALL_QM  "qmfall" //QM elevator shaft
-#define LANDMARK_FALL_MED "medfall"//Hospital elevator shaft
-#define LANDMARK_FALL_COM "comfall"//Command elevator shaft
-#define LANDMARK_FALL_ENG "engfall"//Engineering elevator shaft
-#define LANDMARK_FALL_SEC "secfall"//Security elevator shaft
-#define LANDMARK_FALL_DUM "dumfall"//aeeeee eem stoock!!
-#define LANDMARK_FALL_QMDUM "qmdumfall"//looks normal
 #define LANDMARK_FALL_NTFC "ntfcfall" /// ????????
 #define LANDMARK_FALL_NTFCM "ntfcfallm" //// CMON
 

@@ -220,17 +220,6 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeX = 8
 		prefabSizeY = 8
 
-#ifdef SUBMARINE_MAP
-	mantahole
-		required = 1
-		underwater = 1
-		maxNum = 1
-		probability = 100
-		prefabPath = "assets/maps/prefabs/prefab_water_mantahole.dmm"
-		prefabSizeX = 10
-		prefabSizeY = 10
-#endif
-
 #if defined(MAP_OVERRIDE_OSHAN)
 	elevator
 		required = 1
@@ -431,16 +420,6 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		maxNum = 1
 		probability = 35
 		prefabPath = "assets/maps/prefabs/prefab_water_miner.dmm"
-		prefabSizeX = 21
-		prefabSizeY = 15
-#endif
-
-#if defined(MAP_OVERRIDE_MANTA)
-	sea_miner
-		underwater = 1
-		maxNum = 1
-		required = 1
-		prefabPath = "assets/maps/prefabs/prefab_water_miner_manta.dmm"
 		prefabSizeX = 21
 		prefabSizeY = 15
 #endif

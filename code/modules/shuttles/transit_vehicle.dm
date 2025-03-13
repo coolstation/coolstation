@@ -167,6 +167,9 @@ var/global/datum/transit_controller/transit_controls = new
 	New()
 		..()
 		src.calculate_direction(TRUE)
+		src.initialise_component()
+
+	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 25,\
 			HangTime = 0 SECONDS,\
@@ -225,6 +228,18 @@ var/global/datum/transit_controller/transit_controls = new
 
 	ex_act(severity)
 		return
+
+
+/turf/floor/specialroom/elevator_shaft/straight_down
+	var/target_z = 3
+
+	initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+			BruteDamageMax = 25,\
+			HangTime = 0 SECONDS,\
+			TargetZ = target_z,\
+			LandingRange = 0)
+
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator

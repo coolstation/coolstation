@@ -10,13 +10,12 @@
 /world
 	mob = /mob/new_player
 
-	#ifdef MOVING_SUB_MAP //Defined in the map-specific .dm configuration file.
-	turf = /turf/space/fluid/manta
-	#elif defined(UNDERWATER_MAP)
+
+#ifdef UNDERWATER_MAP
 	turf = /turf/space/fluid
-	#else
+#else
 	turf = /turf/space
-	#endif
+#endif
 
 	area = /area/space
 
@@ -221,26 +220,6 @@ var/global/mob/twitch_mob = 0
 			bypassCapCkeys += line
 			logDiary("WHITELIST: [line]")
 
-// dsingh for faster create panel loads
-/world/proc/precache_create_txt()
-	set background = 1
-	if (!create_mob_html)
-		var/mobjs = null
-		mobjs = jointext(typesof(/mob), ";")
-		create_mob_html = grabResource("html/admin/create_object.html")
-		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
-
-	if (!create_object_html)
-		var/objectjs = null
-		objectjs = jointext(typesof(/obj), ";")
-		create_object_html = grabResource("html/admin/create_object.html")
-		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
-
-	if (!create_turf_html)
-		var/turfjs = null
-		turfjs = jointext(typesof(/turf), ";")
-		create_turf_html = grabResource("html/admin/create_object.html")
-		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
 
 var/f_color_selector_handler/F_Color_Selector
 
@@ -573,7 +552,6 @@ var/f_color_selector_handler/F_Color_Selector
 		if (config.server_name != null && config.server_suffix && world.port > 0)
 			config.server_name += " #[serverKey]"
 
-		precache_create_txt()
 
 	Z_LOG_DEBUG("World/Init", "Loading mode...")
 	src.load_mode()
@@ -732,11 +710,6 @@ var/f_color_selector_handler/F_Color_Selector
 	current_state = GAME_STATE_PREGAME
 	Z_LOG_DEBUG("World/Init", "Now in pre-game state.")
 
-#ifdef MOVING_SUB_MAP
-	Z_LOG_DEBUG("World/Init", "Making Manta start moving...")
-	mantaSetMove(moving=1, doShake=0)
-#endif
-
 	//Please delete this once broadcasting code has been proven to work and integrated into shit
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
 	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
@@ -891,15 +864,15 @@ var/f_color_selector_handler/F_Color_Selector
 /world/proc/update_status()
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
-	//we start off with an animated bee gif because, well, this is who we are.
-	var/s = "<img src=\"https://coolstation.space/cool_assets/meatvendor.gif\"/>"
+	var/s = "<b>"
 
 	if (config?.server_name)
-		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
+		s += "<a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
 	else
-		s += "<b>SERVER NAME HERE</b> &#8212; "
+		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The hotdog SS13 experience.&#8212; (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. Now 516! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "[pick("Goon's <b>only</b> active downstream!","Italian: <b>[pick("as hell","kinda","not really","yes","no","very")]</b>","Style: [pick("Action","<b>ACTION</b>")] [pick("Roleplay","<b>ROLEPLAY</b>")]","Style: [pick("Roleplay","<b>ROLEPLAY</b>")] [pick("Action","<b>ACTION</b>")]","Smells: <b>[pick("Great","Bad")]</b>!","<br>Mouthfeel: <b>[pick("crunchy","chewy","moist","wet")]</b>","No ERP! 18+ Only!")]<br>"
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
@@ -917,10 +890,10 @@ var/f_color_selector_handler/F_Color_Selector
 			features += "Mode: <b>[master_mode]</b>"
 
 	if (!enter_allowed)
-		features += "closed"
+		features += "Closed"
 
 	if (abandon_allowed)
-		features += "respawn allowed"
+		features += "Respawn Allowed"
 
 #if ASS_JAM
 	features += "Ass Jam"

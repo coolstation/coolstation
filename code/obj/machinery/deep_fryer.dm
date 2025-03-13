@@ -182,7 +182,7 @@ var/list/fryer_recipes
 
 		src.reagents.trans_to(src.fryitem, 2)
 
-		if (src.cooktime < 60)
+		if (src.cooktime <= 60)
 
 			if (src.cooktime >= 30 && src.cooktime_prev < 30)
 				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)

@@ -1738,7 +1738,7 @@
 
 /obj/machinery/vehicle/tank/minisub
 	body_type = "minisub"
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_FLUID_ENTER
 
 	New()
 		..()

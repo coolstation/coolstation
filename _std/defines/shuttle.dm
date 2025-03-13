@@ -22,6 +22,5 @@
 #define SHUTTLE_WEST   	 "donut2"
 #define SHUTTLE_DONUT3   "donut3"
 #define SHUTTLE_OSHAN    "oshan"
-#define SHUTTLE_MANTA    "manta"
 #define SHUTTLE_NORTH    "destiny"
 #define SHUTTLE_NODEF    "nodef"
