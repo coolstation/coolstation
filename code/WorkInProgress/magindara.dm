@@ -191,3 +191,28 @@ proc/update_magindaran_weather(fog_alpha=128,fog_color="#ffffff",rain_alpha=60,r
 		for(var/mob/living/L in orange(2, target)) // some more mean effects
 			L.changeStatus("disorient",min(5 * power,30 SECONDS))
 			L.change_misstep_chance(min(power, 30))
+
+/obj/item/device/weather_remote
+	name = "weather control remote"
+	icon = 'icons/obj/items/device.dmi'
+	icon_state = "bomb_remote"
+	item_state = "electronic"
+	desc = "A haphazard assembly of wires, nixie tubes, and 3D printed PCBs which <i>allegedly</i> links up to a weather control satellite in orbit around Magindara."
+
+	var/charges = 3
+
+/obj/item/device/weather_remote/attack_self(mob/user as mob)
+
+	//src.add_dialog(user) //how the fuck do you make a ui - we're adding this later, we can just use an item for now
+
+	if(charges >= 1)
+		var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
+		var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "60") as num
+
+		update_magindaran_weather(fog_alpha, "#ffffff", rain_alpha, "#bea2eb")
+		boutput(user, "<span class='notice'>The [src] beeps, and something flashes in the clouds far above.</span>")
+		src.charges -= 1
+
+	else
+		boutput(user, "<span class='notice'>The [src] beeps, but nothing seems to happen.</span>")
+
