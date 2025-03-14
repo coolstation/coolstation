@@ -92,11 +92,10 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		if(!src.test_fall(AM,TRUE))
 			return
 
-		AM.event_handler_flags |= IS_PITFALLING
-
 		// if the fall has coyote time, then delay it
 		if (src.HangTime)
 			if(!(AM.event_handler_flags & IN_COYOTE_TIME)) // maybe refactor this into a property after converting mob_prop to atom_prop
+				AM.event_handler_flags |= IS_PITFALLING
 				AM.event_handler_flags |= IN_COYOTE_TIME
 				SPAWN_DBG(src.HangTime)
 					if (!QDELETED(AM))
@@ -110,6 +109,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 								return
 						pit.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
 		else
+			AM.event_handler_flags |= IS_PITFALLING
 			src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
 
 	/// called when movable atom AM lands from a throw into a pitfall turf.
@@ -170,7 +170,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			var/keep_falling = TRUE
 			if(!next_pit || AM.anchored > next_pit.AnchoredAllowed || (locate(/obj/lattice) in next_pit.typecasted_parent()) || (locate(/obj/grille/catwalk) in next_pit.typecasted_parent()))
 				keep_falling = FALSE
-			else if(next_pit == src && (src.FallTime < 0.3 SECONDS || brutedamage >= 1000)) // a couple limits on infinite falls, for server's sake
+			else if(next_pit == src && (src.FallTime < 0.3 SECONDS)) // a limit on infinite falls, for server's sake
 				keep_falling = FALSE
 			AM.set_loc(T)
 			AM.pixel_y = AM.pixel_y + 320
