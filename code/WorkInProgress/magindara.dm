@@ -77,11 +77,15 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	desc = "An absolute downpour."
 	icon = 'icons/turf/water.dmi'
 	icon_state = "bigrain1"
-	color = "#bea2eb"
-	alpha = 60
 	appearance_flags = RESET_COLOR | RESET_ALPHA
 	layer = EFFECTS_LAYER_3
 	plane = PLANE_NOSHADOW_ABOVE
+	mouse_opacity = FALSE
+	color = "#bea2eb"
+	alpha = 60
+
+	ex_act(severity)
+		return
 
 /obj/overlay/magindara_skylight
 	name = null
