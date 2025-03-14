@@ -14,7 +14,7 @@ var/list/admin_verbs = list(
 		/client/proc/admin_changelog, //changelog, i might rename this
 
 		//minor debugging
-		/client/proc/debug_webview_devtools,
+		/client/proc/enable_webview_devtools,
 
 		//quickly make a thing without buildmode (thanks delari)
 		/client/proc/create_obj,
@@ -511,6 +511,9 @@ var/list/admin_verbs = list(
 		// /client/proc/remove_camera_paths_verb,
 		// /client/proc/dbg_itemspecial,
 		// /client/proc/dbg_objectprop,
+
+		//big debugging
+		/client/proc/grant_webview_devtools,
 
 		//toggles
 		/datum/admins/proc/toggle_bone_system,
