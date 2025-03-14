@@ -111,39 +111,39 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	force_fullbright = FALSE
 	requires_power = TRUE
 
-proc/update_magindaran_weather(fog_alpha=128,fog_color="#ffffff",rain_alpha=60,rain_color="#bea2eb")
+proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color="#ffffff",rain_alpha=60,rain_color="#bea2eb")
 	if(!magindara_global_fog)
 		magindara_global_fog = list()
 	if(!length(magindara_global_fog))
 		for (var/i in 1 to 4)
 			magindara_global_fog += new /obj/overlay/magindara_fog
 	for (var/i in 1 to 4)
-		magindara_global_fog[i].alpha = fog_alpha
-		magindara_global_fog[i].color = fog_color
-		if(rain_alpha)
-			var/image/weather = image('icons/turf/water.dmi',"bigrain[i]", layer = EFFECTS_LAYER_BASE)
-			weather.alpha = rain_alpha
-			weather.color = rain_color
+		animate(magindara_global_fog[i], time = change_time, alpha = fog_alpha, color = fog_color)
+		var/image/weather = magindara_global_fog[i].GetOverlayImage(magindara_global_fog[i])
+		if(!weather)
+			weather = image('icons/turf/water.dmi',"bigrain[i]", layer = EFFECTS_LAYER_BASE)
+			weather.color = "#bea2eb"
+			weather.alpha = 60
 			weather.appearance_flags = RESET_COLOR | RESET_ALPHA
 			weather.plane = PLANE_NOSHADOW_ABOVE
-			magindara_global_fog[i].UpdateOverlays(weather, "weather_rain")
-		else
-			magindara_global_fog[i].UpdateOverlays(null, "weather_rain")
+		animate(weather, time = change_time, alpha = rain_alpha, color = rain_color)
+		magindara_global_fog[i].UpdateOverlays(weather, "weather_rain")
 
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 	admin_only
 
+	var/change_time = input(usr, "Please enter the animation time in deciseconds:","Animation Time", "50") as num
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
 	var/fog_color = input(usr, "Please enter the fog tint:","Fog Tint", "#ffffff") as color
 	var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "60") as num
 	var/rain_color = input(usr, "Please enter the rain color:","Rain Color", "#bea2eb") as color
 
-	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] [fog_color] and rain [rain_alpha] [rain_color].")
-	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] [fog_color] and rain [rain_alpha] [rain_color].", "admin")
+	logTheThing("admin", usr, null, "changed Magindara's weather to fog [fog_alpha] [fog_color] and rain [rain_alpha] [rain_color] over [change_time / 10] seconds.")
+	logTheThing("diary", usr, null, "changed Magindara's weather to fog [fog_alpha] [fog_color] and rain [rain_alpha] [rain_color] over [change_time / 10] seconds.", "admin")
 
-	update_magindaran_weather(fog_alpha, fog_color, rain_alpha, rain_color)
+	update_magindaran_weather(change_time, fog_alpha, fog_color, rain_alpha, rain_color)
 
 /client/proc/strike_lightning_here()
 	set name = "Strike Lightning Here"
