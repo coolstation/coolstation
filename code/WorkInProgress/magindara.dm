@@ -60,7 +60,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 /obj/overlay/magindara_fog
 	name = "thick smog"
-	desc = "The atmosphere of Magindara, just barely shy of chokingly thick smog."
+	desc = "Just barely shy of chokingly thick."
 	icon = 'icons/effects/tile_effects.dmi'
 	icon_state = "densefog"
 	appearance_flags = RESET_COLOR | RESET_TRANSFORM | RESET_ALPHA | KEEP_APART
@@ -71,6 +71,17 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 	ex_act(severity)
 		return
+
+/obj/overlay/heavy_rain
+	name = "heavy rain"
+	desc = "An absolute downpour."
+	icon = 'icons/turf/water.dmi'
+	icon_state = "bigrain1"
+	color = "#bea2eb"
+	alpha = 60
+	appearance_flags = RESET_COLOR | RESET_ALPHA
+	layer = EFFECTS_LAYER_3
+	plane = PLANE_NOSHADOW_ABOVE
 
 /obj/overlay/magindara_skylight
 	name = null
@@ -118,16 +129,12 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		for (var/i in 1 to 4)
 			magindara_global_fog += new /obj/overlay/magindara_fog
 	for (var/i in 1 to 4)
+		var/obj/overlay/heavy_rain/rain = locate() in magindara_global_fog[i].vis_contents
+		if(!rain)
+			rain = new
+			rain.icon_state = "bigrain[i]"
 		animate(magindara_global_fog[i], time = change_time, alpha = fog_alpha, color = fog_color)
-		var/image/weather = magindara_global_fog[i].GetOverlayImage(magindara_global_fog[i])
-		if(!weather)
-			weather = image('icons/turf/water.dmi',"bigrain[i]", layer = EFFECTS_LAYER_BASE)
-			weather.color = "#bea2eb"
-			weather.alpha = 60
-			weather.appearance_flags = RESET_COLOR | RESET_ALPHA
-			weather.plane = PLANE_NOSHADOW_ABOVE
-		animate(weather, time = change_time, alpha = rain_alpha, color = rain_color)
-		magindara_global_fog[i].UpdateOverlays(weather, "weather_rain")
+		animate(rain, time = change_time, alpha = rain_alpha, color = rain_color)
 
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
