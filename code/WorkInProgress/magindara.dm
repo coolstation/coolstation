@@ -217,7 +217,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 	get_desc()
 		. = ..()
 		if(charges >= 1)
-			. += " There's a nixie tube, glowing dimly with the number <b>[charges]</b>."
+			. += " There's a nixie tube sticking out of the side, glowing dimly with the number <b>[charges]</b>."
 		else
 			. += " The nixie tube is extinguished."
 
