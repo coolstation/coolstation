@@ -212,6 +212,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 	desc = "A haphazard assembly of wires, antennas, and 3D printed PCBs which <i>allegedly</i> links up to a weather control satellite in orbit around Magindara. Allegedly."
 
 	var/charges = 3 //how many times can we change the weather with this remote?
+	var/italian = FALSE //admin only
 
 	get_desc()
 		. = ..()
@@ -220,6 +221,13 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		else
 			. += " The nixie tube is extinguished."
 
+/obj/item/device/weather_remote/italian
+	name = "italian weather control remote"
+	desc = "...this is just a colander on a stick, what the hell?"
+
+	charges = INFINITY
+	italian = TRUE
+
 /obj/item/device/weather_remote/attack_self(mob/user as mob)
 	..()
 
@@ -227,16 +235,27 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 	if(charges >= 1)
 		if(!magindara_global_fog)
 			update_magindaran_weather()
+
+		var/obj/overlay/heavy_rain/rain = locate() in magindara_global_fog[1].vis_contents
 		var/fog_alpha = input(usr, "Please enter the fog alpha. Max 220:","Fog Alpha", "128") as num
 		var/rain_alpha = input(usr, "Please enter the rain alpha. Max 220:","Rain Alpha", "60") as num
+		var/fog_color = magindara_global_fog[1].color
+		var/rain_color = rain.color
+
 		fog_alpha = clamp(fog_alpha, 0, 220)
 		rain_alpha = clamp(rain_alpha, 0, 220) // i don't want some wiseguy giving us -1 fog
 
-		var/obj/overlay/heavy_rain/rain = locate() in magindara_global_fog[1].vis_contents
+		if(italian)
+			fog_color = input(usr, "Please enter the fog tint:","Fog Tint", fog_color) as color
+			rain_color = input(usr, "Please enter the rain color:","Rain Color", rain_color) as color
 
 		if(alert(user, "Confirm?", "Magindaran Weather Control", "Yes", "No") == "Yes")
-			update_magindaran_weather(30 SECONDS, fog_alpha, magindara_global_fog[1].color, rain.alpha, rain.color)
-			boutput(user, "<span class='notice'>The [src] beeps, and something flashes in the clouds far above.</span>")
+			update_magindaran_weather(30 SECONDS, fog_alpha, fog_color, rain_alpha, rain_color)
+			if(!italian)
+				boutput(user, "<span class='notice'>The [src] beeps, and something flashes in the clouds far above.</span>")
+			else
+				boutput(user, "<span class='notice'>The [src] sort of... wiggles.</span>")
+
 			src.charges -= 1
 			src.tooltip_rebuild = TRUE
 
