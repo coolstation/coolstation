@@ -133,6 +133,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		if(!rain)
 			rain = new
 			rain.icon_state = "bigrain[i]"
+			magindara_global_fog[i].vis_contents += rain
 		animate(magindara_global_fog[i], time = change_time, alpha = fog_alpha, color = fog_color)
 		animate(rain, time = change_time, alpha = rain_alpha, color = rain_color)
 
@@ -227,8 +228,10 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		fog_alpha = clamp(fog_alpha, 0, 220)
 		rain_alpha = clamp(rain_alpha, 0, 220) // i don't want some wiseguy giving us -1 fog
 
+		var/obj/overlay/heavy_rain/rain = locate() in magindara_global_fog[1].vis_contents
+
 		if(alert(user, "Confirm?", "Magindaran Weather Control", "Yes", "No") == "Yes")
-			update_magindaran_weather(30 SECONDS, fog_alpha, magindara_global_fog[1].color, rain_alpha, magindara_global_fog[1].GetOverlayImage("weather_rain").color)
+			update_magindaran_weather(30 SECONDS, fog_alpha, magindara_global_fog[1].color, rain.alpha, rain.color)
 			boutput(user, "<span class='notice'>The [src] beeps, and something flashes in the clouds far above.</span>")
 			src.charges -= 1
 			src.tooltip_rebuild = TRUE
