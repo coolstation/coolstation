@@ -119,7 +119,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 			magindara_global_fog += new /obj/overlay/magindara_fog
 	for (var/i in 1 to 4)
 		animate(magindara_global_fog[i], time = change_time, alpha = fog_alpha, color = fog_color)
-		var/image/weather = magindara_global_fog[i].GetOverlayImage(magindara_global_fog[i])
+		var/image/weather = magindara_global_fog[i].GetOverlayImage("weather_rain")
 		if(!weather)
 			weather = image('icons/turf/water.dmi',"bigrain[i]", layer = EFFECTS_LAYER_BASE)
 			weather.color = "#bea2eb"
@@ -197,21 +197,34 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 	icon = 'icons/obj/items/device.dmi'
 	icon_state = "bomb_remote"
 	item_state = "electronic"
-	desc = "A haphazard assembly of wires, nixie tubes, and 3D printed PCBs which <i>allegedly</i> links up to a weather control satellite in orbit around Magindara."
+	desc = "A haphazard assembly of wires, antennas, and 3D printed PCBs which <i>allegedly</i> links up to a weather control satellite in orbit around Magindara. Allegedly."
 
-	var/charges = 3
+	var/charges = 3 //how many times can we change the weather with this remote?
+
+	get_desc()
+		. = ..()
+		if(charges >= 1)
+			. += " There's a nixie tube, glowing dimly with the number <b>[charges]</b>."
+		else
+			. += " The nixie tube is extinguished."
 
 /obj/item/device/weather_remote/attack_self(mob/user as mob)
+	..()
 
-	//src.add_dialog(user) //how the fuck do you make a ui - we're adding this later, we can just use an item for now
-
+	//src.add_dialog(user) //how the fuck do you make a ui - we're adding this later, we can just use popup inputs for now
 	if(charges >= 1)
-		var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
-		var/rain_alpha = input(usr, "Please enter the rain alpha:","Rain Alpha", "60") as num
+		if(!magindara_global_fog)
+			update_magindaran_weather()
+		var/fog_alpha = input(usr, "Please enter the fog alpha. Max 220:","Fog Alpha", "128") as num
+		var/rain_alpha = input(usr, "Please enter the rain alpha. Max 220:","Rain Alpha", "60") as num
+		fog_alpha = clamp(fog_alpha, 0, 220)
+		rain_alpha = clamp(rain_alpha, 0, 220) // i don't want some wiseguy giving us -1 fog
 
-		update_magindaran_weather(fog_alpha, "#ffffff", rain_alpha, "#bea2eb")
-		boutput(user, "<span class='notice'>The [src] beeps, and something flashes in the clouds far above.</span>")
-		src.charges -= 1
+		if(alert(user, "Confirm?", "Magindaran Weather Control", "Yes", "No") == "Yes")
+			update_magindaran_weather(30 SECONDS, fog_alpha, magindara_global_fog[1].color, rain_alpha, magindara_global_fog[1].GetOverlayImage("weather_rain").color)
+			boutput(user, "<span class='notice'>The [src] beeps, and something flashes in the clouds far above.</span>")
+			src.charges -= 1
+			src.tooltip_rebuild = TRUE
 
 	else
 		boutput(user, "<span class='notice'>The [src] beeps, but nothing seems to happen.</span>")
