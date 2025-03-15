@@ -112,7 +112,9 @@
 	return path
 
 
-//Converts placeholder tags to filepaths appropriate for local-hosting offline (absolute, no subdirs)
+//Converts placeholder tags to filepaths appropriate for local-hosting offline
+//These paths are absolute but partenthesis separated-
+//The local "server" cache does not support subdirectories
 /proc/parseAssetLinks(file, path)
 	if (!file) return 0
 
