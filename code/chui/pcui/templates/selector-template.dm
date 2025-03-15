@@ -102,7 +102,7 @@
 				<input type="submit" value="Submit">
 			</div>
 			<div style="float: left; margin: 0.5em 1em; text-align: right;">
-				<input type="submit" value="Cancel" [PC_CLOSE_ONCLICK]>
+				<input type="button" value="Cancel" [PC_CLOSE_ONCLICK]>
 			</div>
 		[PC_ENDIF("inputstyle")]
 
