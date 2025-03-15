@@ -32,7 +32,7 @@
 	var/uses_handwriting = 0
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 	var/in_use = 0
 	var/color_name = "black"
 	var/clicknoise = 1
@@ -680,7 +680,7 @@
 	var/label = null
 	var/labels_left = 10
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
-	rand_pos = 1
+	rand_pos = 8
 
 	get_desc()
 		if (!src.label || !length(src.label))
@@ -1056,18 +1056,12 @@
 	burn_possible = TRUE
 	health = 10
 	w_class = W_CLASS_TINY
+	rand_pos = 9
 
 	var/offset = 1
 
 	var/list/obj/item/paper/pages = new/list()
 
-	New()
-		..()
-		if (!offset)
-			return
-		else
-			src.pixel_y = rand(-8, 8)
-			src.pixel_x = rand(-9, 9)
 
 	proc/give_title(var/mob/user)
 		var/n_name = input(user, "What would you like to label the booklet?", "Booklet Labelling", null) as null|text //stolen from paper.dm

@@ -24,8 +24,7 @@
 
 	var/robot_talk_understand = 0
 
-	var/list/obj/hallucination/hallucinations = null //can probably be on human
-
+	var/respect_view_tint_settings = FALSE
 	var/list/active_color_matrix = list()
 	var/list/color_matrices = list()
 
@@ -42,6 +41,9 @@
 
 	var/list/mob/dead/target_observer/observers = list()
 
+	//var/matrix/preBaneMatrix = matrix()
+	var/beingBaned = FALSE
+	var/gotBent = FALSE
 	var/emote_allowed = 1
 	var/last_emote_time = 0
 	var/last_emote_wait = 0
@@ -120,7 +122,6 @@
 	var/Vnetwork = null
 	var/lastDamageIconUpdate
 	var/say_language = "english"
-	var/lasttyping = null
 	var/literate = 1 // im liturit i kin reed an riet
 
 	var/list/movement_modifiers = list()
@@ -243,7 +244,6 @@
 /mob/New(loc, datum/appearanceHolder/AH_passthru)	// I swear Adhara is the reason half my code even comes close to working
 	src.AH_we_spawned_with = AH_passthru
 	src.loc = loc
-	hallucinations = new
 	organs = new
 	grabbed_by = new
 	resistances = new
@@ -387,7 +387,6 @@
 	client = null
 	internals = null
 	energy_shield = null
-	hallucinations = null
 	buckled = null
 	handcuffs = null
 	l_hand = null
@@ -836,6 +835,26 @@
 	src.cursor = cursor
 	if (src.client)
 		src.client.mouse_pointer_icon = cursor
+
+
+/mob/proc/overhead_throw() //this is a beefy proc that can be trimmed down
+	if (client)
+		var/obj/item/grab/grabHand = find_type_in_hand(/obj/item/grab)
+		if(istype(grabHand))
+			//grabHand.affecting.preBaneMatrix = grabHand.affecting.transform
+			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW)) //the agressive grab state is skipped. Don't ask me why.
+				if(!grabHand.affecting.lying)
+					grabHand.affecting.Turn(90) //So we don't turn spacemen upside down
+					grabHand.affecting.gotBent = TRUE
+				grabHand.affecting.beingBaned = TRUE //beingbaned!
+				grabHand.set_affected_loc()
+			else
+				grabHand.affecting.beingBaned = FALSE
+				if(!grabHand.affecting.lying)
+					grabHand.affecting.transform = null
+				grabHand.set_affected_loc()
+
+
 
 /mob/proc/update_cursor()
 	if (client)
@@ -1494,9 +1513,7 @@
 	set category = "Commands"
 	set name = "Toggle Ceiling Visibility"
 
-/mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (air_group || (height==0)) return 1
-
+/mob/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/projectile))
 		return !projCanHit(mover:proj_data)
 

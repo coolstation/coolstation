@@ -38,7 +38,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	var/dry_time = 100
 
 	flags = NOSPLASH | FPRINT
-	layer = DECAL_LAYER
+	layer = CLEANABLE_DECAL_LAYER
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	plane = PLANE_NOSHADOW_BELOW
@@ -632,6 +632,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 						H.show_text("You find some... salvageable... meat.. you guess?", "blue")
 						H.unlock_medal("Sheesh!", 1)
 						new /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat(src.loc)
+					#ifdef DATALOGGER
+					game_stats.Increment("workplacesafety") //It's just not sanitary
+					#endif
 					src.sampled = 1
 			else
 				return ..()
@@ -1159,6 +1162,15 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		name = "spilled plain noodles"
 		icon_state = "messnoodle1"
 		random_icon_states = list("messnoodle1", "messnoodle2")
+
+		attack_hand(mob/user as mob)
+			if (user.lying)
+				user.visible_message("<span class='notice'><b>[user]</b> just kind of eats [src] right off the floor.</span>",\
+				"<span class='notice'>You eat [src] right off the floor.</span>")
+				playsound(user.loc,"sound/items/eatfood.ogg", rand(10, 50), 1)
+				user.reagents.add_reagent("grime", 1)
+				qdel(src)
+				return
 
 	noodles/random_sauce
 		name = "spilled noodles in sauce"
@@ -2056,6 +2068,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		if (M.slip(ignore_actual_delay = 1))
 
 			boutput(M, "<span class='notice'>You slipped on [src]!</span>")
+			M.lastgasp()
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if (H.sims)

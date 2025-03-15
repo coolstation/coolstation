@@ -170,7 +170,7 @@
 				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -3)
 				owner.add_stam_mod_max("hypotension", -15)
 
-			if (1 to 374) // very low (90/60)
+			if (1 to 370) // very low (90/60)
 				owner.take_oxygen_deprivation(0.8 * mult)
 				owner.take_brain_damage(0.8 * mult)
 				owner.losebreath += (0.8 * mult)
@@ -189,8 +189,8 @@
 				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -2)
 				owner.add_stam_mod_max("hypotension", -10)
 
-			if (375 to 414) // low (100/65)
-				if (prob(2))
+			if (370 to 415) // low (100/65)
+				if (prob(3))
 					owner.emote(pick("pale", "shudder", "shiver"))
 				if (prob(5))
 					var/extreme = pick("", "kinda ", "a little ", "sorta ", "a bit ")
@@ -198,6 +198,9 @@
 					boutput(owner, "<span class='alert'><b>You feel [extreme][feeling]!</b></span>")
 				if (prob(5))
 					owner.contract_disease(/datum/ailment/malady/shock, null, null, 1)
+				if (probmult(12))
+					owner.change_eye_blurry(6, 6)
+					owner.stuttering = max(owner.stuttering, 15)
 				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -1)
 				owner.add_stam_mod_max("hypotension", -5)
 

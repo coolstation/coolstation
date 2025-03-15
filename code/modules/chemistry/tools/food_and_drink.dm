@@ -93,7 +93,7 @@
 	festivity = 0
 	rc_flags = 0
 	edible = 1
-	rand_pos = 1
+	rand_pos = 8
 	var/has_cigs = 0
 	var/grimy = 0
 
@@ -144,11 +144,17 @@
 				var/turf/T = src.loc
 				if (A.no_ants || T.is_frozen() || T.is_too_hot()) //or else we'd never ever ever get clean food from hydro
 					return //that astroturf is thoroughly covered in insecticide
-				if (prob(25))
+				if (prob(25)) //maybe give up
+					processing_items -= src
+				else if (prob(10)) //maybe do ants
 					made_ants = 1
 					processing_items -= src
 					if (!(locate(/obj/reagent_dispensers/cleanable/ants) in src.loc))
 						new/obj/reagent_dispensers/cleanable/ants(src.loc)
+						#ifdef DATALOGGER
+						if (istype(A, /area/station))
+							game_stats.Increment("workplacesafety")
+						#endif
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -463,7 +469,7 @@
 	festivity = 0
 	rc_flags = 0
 	edible = 1
-	rand_pos = 1
+	rand_pos = 8
 	var/poop_value = 0.5
 	var/did_react = 0
 /*
@@ -644,6 +650,9 @@
 
 	//bleck, i dont like this at all. (Copied from chemistry-tools reagent_containers/glass/ definition w minor adjustments)
 	afterattack(obj/target, mob/user , flag)
+		if (!src.is_open_container())
+			boutput(usr, "<span class='alert'>The [src] is closed!</span>")
+			return ..()
 		user.lastattacked = target
 		if (istype(target, /obj/fluid)) // fluid handling : If src is empty, fill from fluid. otherwise add to the fluid.
 			var/obj/fluid/F = target
@@ -1133,6 +1142,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
 	fluid_underlay_shows_volume = TRUE
 	cap_type = "cap"
+	value = 20
 
 
 /* ========================================================== */
@@ -1155,6 +1165,7 @@
 	initial_volume = 50
 	var/smashed = 0
 	shard_amt = 1
+	value = 5
 
 	var/image/fluid_image
 	var/image/image_ice
@@ -1692,7 +1703,7 @@
 		qdel(src)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style
-	rand_pos = 1
+	rand_pos = 8
 	New()
 		..()
 		pick_style()
@@ -1947,6 +1958,11 @@
 		qdel(src)
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
+		if(isliving(A))
+			var/mob/living/L = A
+			L.show_message("<span class='alert'>The carafe smashes in your face!</B></span>")
+			L.changeStatus("weakened", 0.5 SECONDS)
+			L.force_laydown_standup()
 		var/turf/T = get_turf(A)
 		..()
 		src.smash(T)
@@ -2065,28 +2081,28 @@
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "bottlecap-red" //eventually i'll
 	w_class = W_CLASS_TINY
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cap/cork
 	name = "cork"
 	desc = "A small cork for a wine bottle."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "cork"
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cap/screwtop
 	name = "bottle cap"
 	desc = "A screw-on cap for a bottle." //this can include bottle caps for sodas probably
 	icon = 'icons/obj/foodNdrink/bottle.dmi' //same as standard cap, will apply offsets to image overlay and just use the same
 	icon_state = "screwtop"
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cap/champcork
 	name = "champagne cork"
 	desc = "A distinctive cork for a champagne bottle."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "champcork"
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/bottleopener
 	name = "bottle opener"

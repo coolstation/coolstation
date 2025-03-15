@@ -715,6 +715,12 @@
 	desc = "Sometimes you drink on the job, sometimes drinking is the job."
 	id = "training_drinker"
 
+/obj/trait/job/chef
+	name = "Kitchen Training"
+	cleanName = "Kitchen Training"
+	desc = "You've spent years in the chef academy."
+	id = "training_chef"
+
 // scientist scream gimmick, unrelated to training but putting it here anyway
 /obj/trait/job/scienceteam
 	name = "Member of the Science Team"
@@ -803,6 +809,19 @@ obj/trait/pilot
 	isPositive = 0
 
 // NO CATEGORY - Grey Border
+
+/obj/trait/obnoxious
+	name = "Obnoxious (0)"
+	cleanName = "Obnoxious"
+	desc = "Your screams are very loud, and extremely funny."
+	id = "obnoxious"
+	points = 0
+	isPositive = 0
+	onAdd(var/mob/owner)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.sound_list_scream = list('sound/voice/screams/Tom_Scream.ogg')
+		return
 
 /obj/trait/hemo
 	name = "Hemophilia (+1)"
@@ -943,6 +962,15 @@ obj/trait/pilot
 	icon_state = "greedybeast"
 	points = -1
 	isPositive = 0
+
+/obj/trait/organ_connoisseur
+	name = "Organ Connoisseur (-1)"
+	cleanName = "Organ Connoisseur"
+	desc = "You know far more about the valuable innards of your coworkers than you should."
+	id = "organ_connoisseur"
+	icon_state = "organ"
+	points = -1
+	isPositive = 1
 
 /obj/trait/clown_disbelief
 	name = "Clown Disbelief (0)"
@@ -1165,6 +1193,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/cat
 
+/obj/trait/bird
+	name = "Avian (0) \[Species\]"
+	cleanName = "Avian"
+	icon_state = "birdT"
+	desc = "Bird up."
+	id = "bird"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/birb
+
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"
@@ -1223,7 +1262,7 @@ obj/trait/pilot
 		if(ishuman(owner))
 			//skeleton, monkey, and human (null) are rarer
 			//also possible are squid and cat
-			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat)
+			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat, prob(100); /datum/mutantrace/birb)
 			if (our_pick)
 				var/mob/living/carbon/human/H = owner
 				H.set_mutantrace(our_pick)
@@ -1250,6 +1289,35 @@ obj/trait/pilot
 		if(iscarbon(owner))
 			var/mob/living/carbon/C = owner
 			C.poop_amount -= 5
+
+/obj/trait/mononym
+	name = "Mononym (-1)"
+	cleanName = "Mononym"
+	id = "mononym"
+	icon_state = "spellingerror"
+	desc = "Like Cher, Madonna, Gooby, Prince. Uses the first name slot."
+	points = -1
+	isPositive = 1
+
+/obj/trait/ling_blood //False positive on ling blood tests
+	name = "Changeling Blood (0)"
+	cleanName = "Changeling Blood"
+	id = "ling_blood"
+	desc = "So there may have been some changeling involvement in your ancestry. Let's not dwell on it."
+	isPositive = FALSE
+
+	onAdd(var/mob/owner)
+		..()
+		if(isliving(owner))
+			var/mob/living/L = owner
+			L.blood_id = "bloodc"
+
+/obj/trait/super_slips
+	name = "Slipping Hazard (+1)"
+	cleanName = "Slipping Hazard"
+	id = "super_slips"
+	desc = "You never were good at managing yourself slipping."
+	points = 1
 
 //Infernal Contract Traits
 /obj/trait/hair

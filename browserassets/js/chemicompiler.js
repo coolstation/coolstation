@@ -40,7 +40,7 @@
                 params.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k]));
             }
         }
-        var newLoc = '?src=' + ref + ';action=' + action + ';' + params.join(';');
+        var newLoc = 'byond://?src=' + ref + ';action=' + action + ';' + params.join(';');
 
         window.location = newLoc;
     }
@@ -72,27 +72,27 @@
         }
         setMode("execute");
     }
-    
+
     function setMode(newMode) {
         if (newMode === mode) {
             return;
         }
-        
+
         if (newMode == 'execute') {
             $('#butt-save').removeClass("active");
             $('#butt-load').removeClass("active");
         }
-        
+
         if (newMode == 'load') {
             $('#butt-save').removeClass("active");
             $('#butt-load').addClass("active");
         }
-        
+
         if (newMode == 'save') {
             $('#butt-load').removeClass("active");
             $('#butt-save').addClass("active");
         }
-        
+
         mode = newMode;
     }
 

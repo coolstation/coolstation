@@ -583,7 +583,7 @@
 		I.former_implantee = null
 	..()
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed, deathgasp = TRUE, decompose = TRUE)
 	if (ticker.mode)
 		ticker.mode.on_human_death(src)
 	if(src.mind && src.mind.damned) // Ha you arent getting out of hell that easy.
@@ -649,7 +649,7 @@
 				spider.hivemind_owner = 0
 			for (var/mob/dead/target_observer/hivemind_observer/obs in C.hivemind)
 				boutput(obs, __red("Your telepathic link to your master has been destroyed!"))
-				obs.boot()
+				obs.stop_observing()
 			if (C.hivemind.len > 0)
 				boutput(src, "Contact with the hivemind has been lost.")
 			C.hivemind = list()
@@ -694,7 +694,8 @@
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			NORMAL BUSINESS
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	emote("deathgasp") //let the world KNOW WE ARE DEAD
+	if(deathgasp)
+		emote("deathgasp") //let the world KNOW WE ARE DEAD
 
 	if (!src.mutantrace || inafterlife(src)) // wow fucking racist
 		modify_christmas_cheer(-7)
@@ -713,30 +714,33 @@
 		var/obj/item/clothing/suit/armor/suicide_bomb/A = src.wear_suit
 		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/item/clothing/suit/armor/suicide_bomb, trigger), src)
 
-	src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
-
-	if (src.mind) // I think this is kinda important (Convair880).
-		src.mind.register_death()
-		if (src.mind.special_role == ROLE_INSURGENT)
-			remove_insurgent_status(src, "nsurgt", "death")
-		else if (src.mind.special_role == ROLE_VAMPTHRALL)
-			remove_insurgent_status(src, "vthrall", "death")
-		else if (src.mind.master)
-			remove_insurgent_status(src, "other_recruit", "death")
-		if (src.mind.ckey && !inafterlife(src))
-			var/turf/where = get_turf(src)
-			var/where_text = "Unknown (?, ?, ?)"
-			if (where)
-				where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
-
-			message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
-
-#ifdef DATALOGGER
-		game_stats.Increment("playerdeaths")
-#endif
+	if(decompose)
+		src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
 
 	logTheThing("combat", src, null, "dies [log_health(src)] at [log_loc(src)].")
-	//src.icon_state = "dead"
+		//src.icon_state = "dead"
+
+	if (!src.mind) // I think this is kinda important (Convair880).
+		return ..(gibbed)
+
+	src.mind.register_death()
+	if (src.mind.special_role == ROLE_INSURGENT)
+		remove_insurgent_status(src, "nsurgt", "death")
+	else if (src.mind.special_role == ROLE_VAMPTHRALL)
+		remove_insurgent_status(src, "vthrall", "death")
+	else if (src.mind.master)
+		remove_insurgent_status(src, "other_recruit", "death")
+	if (src.mind.ckey && !inafterlife(src))
+		var/turf/where = get_turf(src)
+		var/where_text = "Unknown (?, ?, ?)"
+		if (where)
+			where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
+
+		message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
+
+#ifdef DATALOGGER
+	game_stats.Increment("playerdeaths")
+#endif
 
 	if (!src.suiciding)
 		if (emergency_shuttle?.location == SHUTTLE_LOC_STATION)
@@ -1006,6 +1010,7 @@
 /mob/living/carbon/human/throw_item(atom/target, list/params)
 	..()
 	var/turf/thrown_from = get_turf(src)
+	var/how_to_throw = THROW_NORMAL
 	src.throw_mode_off()
 	if (src.stat)
 		return
@@ -1017,12 +1022,19 @@
 
 	var/obj/item/I = src.equipped()
 
-	if (!I || !isitem(I) || I.cant_drop) return
+	if (!I || !isitem(I) || I.cant_drop)
+		src.slidekick(target)
+		return
 
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		I = G.handle_throw(src, target)
 		if (!I) return
+
+	if (istype(I, /obj/item/lifted_thing))
+		var/obj/item/lifted_thing/LT = I
+		I = LT.our_thing
+		LT.place_the_thing(get_turf(src), src)
 
 	I.set_loc(src.loc)
 
@@ -1066,8 +1078,9 @@
 			M.inertia_dir = get_dir(src,target)
 
 		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
-
-		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from)
+		if(istype(I,/mob/living/carbon/human))
+			how_to_throw = THROW_KNOCKDOWN
+		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
 		if(yeet)
 			new/obj/effect/supplyexplosion(I.loc)
 
@@ -1081,6 +1094,97 @@
 				G.shoot()
 
 		src.next_click = world.time + src.combat_click_delay
+
+// allows slidekicking without blocking being a thing
+/mob/living/carbon/human/proc/slidekick(atom/target)
+	if (src.next_click > world.time)
+		return
+	if (src.lying || !src.canmove || !can_act(src))
+		return
+	if (isturf(src.loc) && target)
+		var/turf/T = src.loc
+		var/target_dir = get_dir(src,target)
+		var/did_any_dive_hit = FALSE
+		if(!target_dir)
+			target_dir = src.dir
+		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
+		if (!T.throw_unlimited && target_dir)
+			src.next_click = world.time + src.combat_click_delay
+			if (!HAS_MOB_PROPERTY(src, PROP_SLIDEKICK_TURBO))
+				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
+				src.force_laydown_standup()
+			else
+				src.changeStatus("turbosliding", (0.1 + 0.1 * slidekick_range) SECONDS)
+				src.force_laydown_standup()
+			SPAWN_DBG(0)
+				for (var/v in 1 to slidekick_range)
+					var/turf/target_turf = get_step(src,target_dir)
+					if (!target_turf)
+						target_turf = T
+					step_to(src,target_turf)
+
+					if(get_turf(src) == target_turf)
+						var/mob/living/dive_attack_hit = null
+						for (var/mob/living/L in target_turf)
+							if (src == L) continue
+							dive_attack_hit = L
+							did_any_dive_hit = TRUE
+							break
+
+						var/damage = rand(1,2)
+						if (src.shoes)
+							damage += src.shoes.kick_bonus
+						else if (src.limbs.r_leg)
+							damage += src.limbs.r_leg.limb_hit_bonus
+						else if (src.limbs.l_leg)
+							damage += src.limbs.l_leg.limb_hit_bonus
+
+						for (var/obj/machinery/bot/secbot/secbot in target_turf) // punt that beepsky
+							src.visible_message("<span class='alert'><b>[src]</b> kicks [secbot] like the football!</span>")
+							var/atom/throw_target = get_edge_target_turf(secbot, target_dir)
+							secbot.throw_at(throw_target, 6, 2)
+							SPAWN_DBG(2 SECONDS) //can't believe that just happened! the audacity does not compute! also give it some time to go sailing
+								secbot.threatlevel = 2
+								secbot.EngageTarget(src)
+
+						if (dive_attack_hit)
+							dive_attack_hit.was_harmed(src, special = "slidekick")
+							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
+							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
+							for (var/mob/O in AIviewers(src))
+								O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)
+							logTheThing("combat", src, dive_attack_hit, "slides into [dive_attack_hit] at [log_loc(dive_attack_hit)].")
+
+						var/item_num_to_throw = 0
+						if (ishuman(src))
+							item_num_to_throw += !!src.limbs.r_leg
+							item_num_to_throw += !!src.limbs.l_leg
+
+						if (item_num_to_throw)
+							for (var/obj/item/itm in target_turf) // We want to kick items only
+								if (itm.w_class >= W_CLASS_HUGE)
+									continue
+
+								var/atom/throw_target = get_edge_target_turf(itm, target_dir)
+								if (throw_target)
+									item_num_to_throw--
+									playsound(itm, "swing_hit", 50, 1)
+									itm.throw_at(throw_target, W_CLASS_HUGE - itm.w_class, (1 / itm.w_class) + 0.8) // Range: 1-4, Speed: 1-2
+
+								if (!item_num_to_throw)
+									break
+
+					if (target_turf.throw_unlimited) // oh shit here i go slippin
+						src.throw_at(get_edge_target_turf(src, target_dir),1,1)
+						break
+
+					if (v < slidekick_range)
+						sleep(0.1 SECONDS)
+
+				if(!did_any_dive_hit)
+					for (var/mob/O in AIviewers(src))
+						O.show_message("<span class='alert'><B>[src] slides to the ground!</B></span>", 1, group = "resist")
+	return
 
 /mob/living/carbon/human/click(atom/target, list/params)
 	if (src.client)
@@ -1734,10 +1838,7 @@
 			M.show_message(rendered, 2)
 
 	//mbc FUCK why doesn't this have any parent to call
-	speech_bubble.icon_state = "speech"
-	UpdateOverlays(speech_bubble, "speech_bubble")
-	SPAWN_DBG(1.5 SECONDS)
-		UpdateOverlays(null, "speech_bubble")
+
 
 /mob/living/carbon/human/var/const
 	slot_back = 1
@@ -2212,6 +2313,8 @@
 		hud.add_other_object(src.r_store,hud.layouts[hud.layout_style]["storage2"])
 
 /mob/living/carbon/human/proc/can_equip(obj/item/I, slot)
+	if(src.hasStatus("handcuffed") && I == src.equipped())//handcuff cheese
+		return 0
 	switch (slot)
 		if (slot_l_store, slot_r_store)
 			if (I.w_class <= W_CLASS_SMALL && src.w_uniform)
@@ -2816,8 +2919,8 @@
 		return null
 	var/obj/item/clothing/head/wig/W = new(src)
 	var/actuallyHasHair = 0
-	W.name = "[real_name]'s hair"
-	W.real_name = "[real_name]'s hair" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
+	W.name = "natural wig"
+	W.real_name = "natural wig" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
 	W.icon = 'icons/mob/human_hair.dmi'
 	W.icon_state = "bald" // Let's give the actual hair a chance to shine
 /* commenting this out and making it an overlay to fix issues with colors stacking
@@ -3363,7 +3466,7 @@
 		src.drop_juggle()
 
 
-/mob/living/carbon/human/special_movedelay_mod(delay,space_movement,aquatic_movement)
+/mob/living/carbon/human/special_movedelay_mod(delay,space_movement,aquatic_movement,lying_multiplier)
 	.= delay
 	var/missing_legs = 0
 	var/missing_arms = 0
@@ -3372,13 +3475,13 @@
 		if (!src.limbs.r_leg) missing_legs++
 		if (!src.limbs.l_arm) missing_arms++
 		if (!src.limbs.r_arm) missing_arms++
-	if (src.lying)
-		missing_legs = 2
 	else if (src.shoes && src.shoes.chained)
 		missing_legs = 2
 
 	if (missing_legs == 2)
 		. += 14 - ((2-missing_arms) * 2) // each missing leg adds 7 of movement delay. Each functional arm reduces this by 2.
+	else if (src.lying)
+		. += (14 - ((2-missing_arms) * 2)) * lying_multiplier
 	else
 		. += 7*missing_legs
 
@@ -3528,3 +3631,13 @@
 
 	else
 		boutput(src, "<span class='alert'><B>You're not a cluwne for some reason! That's a bug!!! </B></span>")
+
+///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
+/mob/living/carbon/human/MouseDrop_T(atom/dropped, mob/dropping_user)
+	if(isobj(dropped))
+		var/obj/O = dropped
+		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
+			if (can_reach(src, O))
+				new /obj/item/lifted_thing(O, src)
+			return
+	..()

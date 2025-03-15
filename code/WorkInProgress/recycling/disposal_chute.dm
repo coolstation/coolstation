@@ -65,7 +65,8 @@
 			air_contents = null
 		..()
 
-	proc/rechecktrunk() //not called by anything, yet, but if you build/dismantle a trunk, toggle power, or have some sort of explosion act on it, it should try to poke this
+	/// Called when toggling power on in ui_act and when flushing
+	proc/rechecktrunk()
 		trunk = locate() in src.loc
 		if(!trunk)
 			mode = DISPOSAL_CHUTE_NOTRUNK
@@ -272,6 +273,9 @@
 				src.eject()
 				. = TRUE
 			if("toggleHandle")
+				if(src.mode > DISPOSAL_CHUTE_CHARGED)
+					return FALSE // if we are notrunk/notag, don't allow flush handle to move
+
 				src.flush = !src.flush
 				if (src.flush)
 					if (!src.is_processing)
@@ -290,6 +294,8 @@
 						mode = DISPOSAL_CHUTE_CHARGED
 					else
 						mode = DISPOSAL_CHUTE_CHARGING
+
+					rechecktrunk()  // check if we still have a trunk below us
 				update()
 				. = TRUE
 

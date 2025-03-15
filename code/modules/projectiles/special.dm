@@ -133,7 +133,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	goes_through_walls = 1
 
 // Mildly crazy shit
-//Parent type
+//Parent type (is this abstract??? maybe it should be abstract)
 /datum/projectile/special/spreader
 	name = "spread shot"
 	sname = "spread shot"
@@ -200,6 +200,14 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.launch()
 		current_angle += angle_adjust_per_pellet
 
+/datum/projectile/special/spreader/uniform_burst/juicer_jr
+	name = "juicer jr tandem shot"
+	sname = "juicer jr tandem shot"
+	cost = 1
+	pellets_to_fire = 2
+	spread_projectile_type = /datum/projectile/bullet/pistol_heavy //60 (30x2)
+	spread_angle = 10
+
 /datum/projectile/special/spreader/buckshot_burst
 	name = "buckshot"
 	sname = "buckshot"
@@ -218,7 +226,32 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.internal_speed = rand(speed_min,speed_max)
 		FC.travelled = rand(0,dissipation_variance)
 		FC.launch()
+//NT shot is plastic
+/datum/projectile/special/spreader/buckshot_burst/nt
+	name = "buckshot"
+	sname = "buckshot"
+	cost = 1
+	pellets_to_fire = 10
+	spread_projectile_type = /datum/projectile/bullet/shot_weak
+	casing = /obj/item/casing/shotgun/blue
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 10
+	dissipation_variance = 20
 
+/datum/projectile/special/spreader/buckshot_burst/nt/short
+	name = "ratshot"
+	sname = "ratshot"
+	cost = 1
+	pellets_to_fire = 5
+	spread_projectile_type = /datum/projectile/bullet/shot_weak/mini
+	casing = /obj/item/casing/shotgun/blue
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 5
+	dissipation_variance = 20
+
+//Juicer shot is not
 /datum/projectile/special/spreader/buckshot_burst/juicer
 	name = "juicershot"
 	sname = "juicershot"
@@ -226,10 +259,35 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 8 //10 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	casing = /obj/item/casing/shotgun/red
 	speed_max = 5
 	speed_min = 60
 	spread_angle_variance = 15
 	dissipation_variance = 32
+
+/datum/projectile/special/spreader/buckshot_burst/juicer/denim
+	name = "juicershot"
+	sname = "juicershot"
+	cost = 1
+	pellets_to_fire = 8 //12 per
+	spread_projectile_type = /datum/projectile/bullet/shot_heavy/denim
+	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	speed_max = 5
+	speed_min = 60
+	spread_angle_variance = 20
+	dissipation_variance = 32
+
+/datum/projectile/special/spreader/buckshot_burst/juicer/scrap
+	name = "juicerscrap"
+	sname = "juicer scrap"
+	cost = 1
+	pellets_to_fire = 6 // 6 per
+	spread_projectile_type = /datum/projectile/bullet/shot_heavy/scrap
+	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	speed_max = 12
+	speed_min = 36
+	spread_angle_variance = 15
+	dissipation_variance = 64
 
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
@@ -1103,12 +1161,9 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/datum/reagents/copied = new/datum/reagents(amt_to_emit)
 		copied = chemR.copy_to(copied, amt_to_emit/chemR.total_volume, copy_temperature = 1)
 
-		if(!T.reagents) // first get the turf
-			T.create_reagents(100)
-		copied.copy_to(T.reagents, 1, copy_temperature = 1)
-		copied.reaction(T, TOUCH, 0, 0)
+		copied.reaction(T, TOUCH, copied.total_volume, 1)
 		if(O.special_data["IS_LIT"]) // Heat if needed
-			T.reagents?.set_reagent_temp(O.special_data["burn_temp"], TRUE)
+			T.hotspot_expose(O.special_data["burn_temp"], 150)
 		for(var/atom/A in T.contents) // then all the stuff in the turf
 			if(istype(A, /obj/overlay) || istype(A, /obj/projectile))
 				continue
@@ -1128,7 +1183,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		if(length(O.special_data))
 			O.internal_speed = src.projectile_speed * O.special_data["speed_mult"]
 			src.color_icon = O.special_data["proj_color"]
-		O.AddComponent(/datum/component/pierce_non_opaque) // Pierce anything that doesn't block LoS - if you can see it you can burn it
+		O.AddComponent(/datum/component/gaseous_projectile) // Pierce anything that doesn't block LoS - if you can see it you can burn it
 
 	on_hit(atom/hit, angle, var/obj/projectile/O)
 		var/turf/T = get_turf(hit)

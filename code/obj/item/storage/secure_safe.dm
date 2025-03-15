@@ -168,7 +168,7 @@
 			}
 		}
 
-		document.getElementById("enterkey").setAttribute("href","?src=\ref[src];enter=" + currentVal + ";");
+		document.getElementById("enterkey").setAttribute("href","byond://?src=\ref[src];enter=" + currentVal + ";");
 	}
 
 	function keypadIn(num)
@@ -498,13 +498,15 @@
 					S.setup(src)
 			if (6)
 				for (var/i=2, i>0, i--)
-					new /obj/item/gun/energy/laser_gun(src)
+					//new /obj/item/gun/energy/laser_gun(src)
+					new /obj/item/gun/modular/soviet/short/basic(src)
+					new /obj/item/stackable_ammo/pistol/zaubertube/three(src)
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
 					S.setup(src)
 			if (7)
-				new /obj/item/gun/kinetic/riotgun(src)
-				new /obj/item/ammo/bullets/abg(src)
+				new /obj/item/gun/modular/NT/long/shotty(src)
+				new /obj/item/stackable_ammo/scatter/slug_rubber/five(src)
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
 					S.setup(src)
@@ -532,10 +534,13 @@
 				/obj/item/raw_material/miracle,\
 				/obj/item/raw_material/uqill,\
 				/obj/item/rcd = /obj/item/rcd_ammo/big,\
-				/obj/item/gun/kinetic/riotgun = /obj/item/ammo/bullets/abg,\
-				/obj/item/gun/energy/taser_gun,\
-				/obj/item/gun/energy/phaser_gun,\
-				/obj/item/gun/energy/laser_gun,\
+				/obj/item/gun/modular/soviet/short/basic,\
+				/obj/item/gun/modular/soviet/short/covert,\
+				/obj/item/stackable_ammo/pistol/zaubertube/three,\
+				//obj/item/gun/kinetic/riotgun = /obj/item/ammo/bullets/abg,
+				//obj/item/gun/energy/taser_gun,
+				//obj/item/gun/energy/phaser_gun,
+				//obj/item/gun/energy/laser_gun,
 				/obj/item/device/key/random,\
 				/obj/item/paper/IOU)
 
@@ -630,8 +635,8 @@
 			if (1)
 				new /obj/item/storage/pill_bottle/cyberpunk(src)
 				new /obj/item/storage/pill_bottle/ipecac(src)
-				new /obj/item/gun/kinetic/pistol/empty(src)
-				new /obj/item/ammo/bullets/bullet_9mm/five_shots(src)
+				new /obj/item/gun/modular/italian/basic(src)
+				new /obj/item/stackable_ammo/pistol/NT/five(src)
 				new /obj/item/paper/orangeroomsafe(src)
 			if (2)
 				new /obj/item/storage/pill_bottle/bathsalts(src)
@@ -678,8 +683,8 @@
 				var/obj/item/spacecash/random/tourist/S = new()
 				S.setup(src)
 			if (3)
-				new /obj/item/gun/kinetic/riotgun(src)
-				new /obj/item/ammo/bullets/abg(src)
+				new /obj/item/gun/modular/NT/long/shotty(src)
+				new /obj/item/stackable_ammo/scatter/slug_rubber/ten(src)
 			if (4)
 				new /obj/item/paper/freeze(src)
 
@@ -704,7 +709,7 @@
 /obj/item/storage/secure/ssafe/icemoon
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/gun/kinetic/revolver,
+	spawn_contents = list(/obj/item/gun/modular/italian/italiano,
 	/obj/item/chilly_orb, // a thing to confuse people
 	/obj/item/spacecash/thousand = 3)
 
@@ -719,7 +724,7 @@
 	configure_mode = 0
 	random_code = 1
 	spawn_contents = list(/obj/item/spacecash/thousand,\
-	/obj/item/gun/energy/raygun,\
+	/obj/item/gun/modular/soviet/short/basic,\
 	/obj/item/paper/shooting_range_note2)
 
 /obj/item/storage/secure/ssafe/marsvault
@@ -840,7 +845,7 @@
 						}
 					}
 
-					document.getElementById("enterkey").setAttribute("href","?src=\ref[src];enter=" + currentVal + ";");
+					document.getElementById("enterkey").setAttribute("href","byond://?src=\ref[src];enter=" + currentVal + ";");
 				}
 
 				function keypadIn(num)

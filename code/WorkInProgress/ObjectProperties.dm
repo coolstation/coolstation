@@ -520,7 +520,15 @@ to say if there's demand for that.
 
 	ASSOCIATE_MOB_PROPERTY(PROP_EXPLOPROT)
 
-
+/datum/objectProperty/equipment/slidekick_bonus
+	name = "Slidekick Bonus"
+	id = "slidekick_bonus"
+	desc = "Increases the tiles moved when slidekicking."
+	tooltipImg = "movement.png"
+	defaultValue = 0
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "+[propVal] tiles"
+	ASSOCIATE_MOB_PROPERTY(PROP_SLIDEKICK_BONUS)
 
 /datum/objectProperty/equipment/reflection // force increases as you attack players.
 	name = "Reflection"

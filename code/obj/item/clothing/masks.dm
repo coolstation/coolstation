@@ -279,6 +279,18 @@
 				spam_flag = 0
 			return 1
 		return 0
+	attack_self(mob/user)
+		. = ..()
+		if(icon_state == "clown")
+			icon_state = "clown_hairless"
+			item_state = "clown_hat_hairless"
+			src.add_fingerprint(user)
+			boutput (user, __red("you chance the style of the [src]."))
+		else
+			icon_state = "clown"
+			item_state = "clown_hat"
+			src.add_fingerprint(user)
+			boutput (user, __red("you chance the style of the [src]."))
 
 /obj/item/clothing/mask/gas/syndie_clown
 	name = "clown wig and mask"
@@ -464,13 +476,6 @@
 			if (P.font_color)
 				boutput(user, "<span class='notice'>You scribble on the mask until it's filled in.</span>")
 				src.color = P.font_color
-
-/obj/item/clothing/mask/melons
-	name = "flimsy 'George Melons' mask"
-	desc = "Haven't seen that fellow in a while."
-	icon_state = "melons"
-	item_state = "melons"
-	see_face = 0.0
 
 /obj/item/clothing/mask/wrestling
 	name = "wrestling mask"

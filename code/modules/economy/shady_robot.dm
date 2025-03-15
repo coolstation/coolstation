@@ -91,7 +91,7 @@
 
 	var/num_common_products = 13 //how many of these to pick for sale
 
-	var/list/rare_products = list(/datum/commodity/contraband/radiojammer,/datum/commodity/contraband/stealthstorage,/datum/commodity/medical/injectorbelt,/datum/commodity/medical/injectormask,/datum/commodity/junk/voltron,/datum/commodity/laser_gun,/datum/commodity/relics/crown,/datum/commodity/contraband/egun,/datum/commodity/relics/armor,/datum/commodity/contraband/spareid,/datum/commodity/contraband/voicechanger,/datum/commodity/contraband/chamsuit,/datum/commodity/contraband/dnascram)
+	var/list/rare_products = list(/datum/commodity/contraband/radiojammer,/datum/commodity/contraband/stealthstorage,/datum/commodity/medical/injectorbelt,/datum/commodity/medical/injectormask,/datum/commodity/junk/voltron,/datum/commodity/relics/crown,/datum/commodity/relics/armor,/datum/commodity/contraband/spareid,/datum/commodity/contraband/voicechanger,/datum/commodity/contraband/chamsuit,/datum/commodity/contraband/dnascram)
 	var/num_rare_products = 2 //how many of these to pick for sale
 
 	New()
@@ -132,7 +132,7 @@
 		var/turf/target = null
 		var/list/locs = list()
 
-		for(var/turf/T in A)
+		for(var/turf/T in A.turfs)
 			var/dense = 0
 			if(T.density)
 				dense = 1

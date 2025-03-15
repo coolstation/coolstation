@@ -27,15 +27,8 @@
 
 		. = src.say_hive(message, hivemind_owner)
 
-	stop_observing()
-		set hidden = 1
-
-	//Alias ghostize() to boot() so that the player is correctly kicked out of the changeling.
-	ghostize()
-		boot()
 
 	disposing()
-		observers -= src
 		hivemind_owner?.hivemind -= src
 		..()
 
@@ -43,6 +36,9 @@
 		if (try_launch_attack(target))
 			return
 		..()
+
+	process_move(keys)
+		return // so we dont eject from the hivemind immediately lol
 
 	proc/try_launch_attack(atom/shoot_target)
 		.= 0
@@ -53,45 +49,6 @@
 				last_attack = world.time
 				playsound(src, 'sound/weapons/flaregun.ogg', 30, 0.1, 0, 2.6)
 				.= 1
-
-	proc/boot()
-		var/mob/dead/observer/my_ghost = new(src.corpse)
-
-		if (!src.corpse)
-			my_ghost.name = src.name
-			my_ghost.real_name = src.real_name
-
-		if (corpse)
-			corpse.ghost = my_ghost
-			my_ghost.corpse = corpse
-
-		my_ghost.delete_on_logout = my_ghost.delete_on_logout_reset
-
-		if (src.client)
-			src.removeOverlaysClient(src.client)
-			client.mob = my_ghost
-
-		if (src.mind)
-			mind.transfer_to(my_ghost)
-
-		var/ASLoc = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
-		if (target)
-			var/turf/T = get_turf(target)
-			if (T && (!isghostrestrictedz(T.z) || isghostrestrictedz(T.z) && (restricted_z_allowed(my_ghost, T) || my_ghost.client && my_ghost.client.holder)))
-				my_ghost.set_loc(T)
-			else
-				if (ASLoc)
-					my_ghost.set_loc(ASLoc)
-				else
-					my_ghost.z = 1
-		else
-			if (ASLoc)
-				my_ghost.set_loc(ASLoc)
-			else
-				my_ghost.z = 1
-
-		observers -= src
-		qdel(src)
 
 	proc/set_owner(var/datum/abilityHolder/changeling/new_owner)
 		if(!istype(new_owner)) return 0
@@ -121,15 +78,22 @@
 		if(hivemind_owner.return_control_to_master())
 			qdel(src)
 
-/mob/dead/target_observer/hivemind_observer/verb/exit_hivemind()
+
+/mob/dead/target_observer/hivemind_observer/voluntary_leave()
+	set hidden = 1
+
+//Same thing, different name, since I can't rename verbs on subtypes?
+/mob/dead/target_observer/hivemind_observer/verb/alt_voluntary_leave()
 	set name = "Exit Hivemind"
 	set category = "Commands"
 	usr = src
 
+	voluntary_stop_observing()
+
+/mob/dead/target_observer/hivemind_observer/voluntary_stop_observing()
 	if(world.time >= can_exit_hivemind_time && hivemind_owner && hivemind_owner.master != src)
 		hivemind_owner.hivemind -= src
 		boutput(src, __red("You have parted with the hivemind."))
-		src.boot()
+		src.stop_observing()
 	else
 		boutput(src, __red("You are not able to part from the hivemind at this time. You will be able to leave in [(can_exit_hivemind_time/10 - world.time/10)] seconds."))
-

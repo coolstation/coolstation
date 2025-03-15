@@ -747,6 +747,7 @@
 		if(armor_blocked)
 			msgs.base_attack_message = "<span class='alert'><B>[src] [src.punchMessage] [target], but [target]'s armor blocks it!</B></span>"
 		else
+			target.lastgasp()
 			msgs.base_attack_message = "<span class='alert'><B>[src] [src.punchMessage] [target][msgs.stamina_crit ? " and lands a devastating hit!" : "!"]</B></span>"
 
 		//if (!(src.traitHolder && src.traitHolder.hasTrait("glasscannon")))

@@ -101,6 +101,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	if (!istype(M)) return
 	var/obj/item/raw_material/shard/S = locate() in src
 	if (S)
+		if(M.getStatusDuration("stunned") || M.getStatusDuration("weakened")) // woop reinvented the dragging exploit
+			return
 		boutput(M, "<span class='alert'><B>You step on [S]! Ouch!</B></span>")
 		S.step_on(M)
 
@@ -759,3 +761,23 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 /obj/item/clothing/shoes/work_boots
 	name = "work boots"
 	icon_state = "work_boots"
+
+/obj/item/clothing/shoes/turbopunk
+	name = "turbopunk rollerskates"
+	desc = "Nothing remains of straight laces."
+	icon_state = "rollerskates"
+	step_sound = "step_rubberboot"
+	step_priority = STEP_PRIORITY_LOW
+	compatible_species = list("cow", "human")
+
+	setupProperties()
+		..()
+		setProperty("slidekick_bonus", 5)
+
+	equipped(mob/user, slot)
+		. = ..()
+		APPLY_MOB_PROPERTY(user, PROP_SLIDEKICK_TURBO, src)
+
+	unequipped(mob/user)
+		. = ..()
+		REMOVE_MOB_PROPERTY(user, PROP_SLIDEKICK_TURBO, src)

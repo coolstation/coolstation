@@ -20,6 +20,10 @@
 
 var/global/haine_blood_debug = 0
 
+//Every reagent that a mob has had for a blood_id, so that if we need to search for bloodborne DNA we can iterate only over the relevant ids
+//Since a good deal of blood ids are jokes, this is populated on mob spawn (and mutantrace application).
+var/global/list/all_blood_reagents = list("blood", "bloodc") //prepopulated with the two reagents that most relevant code assumes as blood
+
 /client/proc/haine_blood_debug()
 	set desc = "Toggle blood debug messages."
 	set name = "Haine Blood Debug"
@@ -493,6 +497,7 @@ this is already used where it needs to be used, you can probably ignore it.
 	var/blood_to_transfer = (amount - min(reagents_to_transfer, some_idiot.reagents.total_volume))
 
 	var/datum/bioHolder/bloodHolder = null
+	var/add_dna = TRUE
 
 	if (isvampire(some_idiot) && (some_idiot.get_vampire_blood() < blood_to_transfer))
 		blood_to_transfer = some_idiot.get_vampire_blood()
@@ -501,7 +506,13 @@ this is already used where it needs to be used, you can probably ignore it.
 	if (!isvampire(some_idiot) && (some_idiot.blood_volume < blood_to_transfer))
 		blood_to_transfer = some_idiot.blood_volume
 
-	if (!A.reagents.get_reagent("bloodc") && !A.reagents.get_reagent("blood")) // if it doesn't have blood with blood bioholder data already, only then create this
+	for (var/an_blood in all_blood_reagents) //oof ouch owie I'm sorry
+		var/datum/reagent/blood/cheating = A.reagents.reagent_list[an_blood]
+		if (cheating && istype(cheating.data, /datum/bioHolder))
+			add_dna = FALSE
+			break
+
+	if (add_dna) // if it doesn't have blood with blood bioholder data already, only then create this
 		bloodHolder = new/datum/bioHolder(null)
 		bloodHolder.CopyOther(some_idiot.bioHolder)
 		bloodHolder.ownerName = some_idiot.real_name

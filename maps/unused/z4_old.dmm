@@ -16,9 +16,7 @@
 /area/shuttle_transit_space/west)
 "af" = (
 /turf/space/shuttle_transit,
-/area/shuttle_transit_space/north
-"ag" = (
-/turf/space/shuttle_transit,
+/area/shuttle_transit_space/north"ag" = (/turf/space/shuttle_transit,
 /area/shuttle/escape/transit/donut2)
 "ah" = (
 /turf/space/shuttle_transit,
@@ -631,12 +629,12 @@
 	icon_state = "tube1";
 	tag = ""
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/centcom)
 "bY" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/centcom)
@@ -662,12 +660,12 @@
 	},
 /area/centcom)
 "ce" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/centcom)
 "cf" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/centcom)
@@ -676,7 +674,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/centcom)
@@ -706,12 +704,12 @@
 	},
 /area/shuttle/merchant_shuttle/right_centcom/destiny)
 "cl" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/centcom)
 "cm" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/centcom)
@@ -723,10 +721,10 @@
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom/cogmap)
 "cp" = (
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/centcom)
 "cq" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/centcom)
@@ -741,7 +739,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/centcom)
@@ -756,7 +754,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/centcom)
@@ -1101,7 +1099,7 @@
 /turf/space,
 /area/space)
 "dw" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/centcom)
@@ -1129,7 +1127,7 @@
 	},
 /area/centcom)
 "dA" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/centcom)
@@ -1138,7 +1136,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/centcom)
@@ -1151,16 +1149,16 @@
 	icon_state = "tube1";
 	tag = ""
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/centcom)
 "dE" = (
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/centcom)
 "dF" = (
 /obj/machinery/light,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/centcom)
 "dG" = (
 /turf/wall{
@@ -1778,14 +1776,11 @@
 /obj/storage/secure/closet/fridge/kitchen{
 	locked = 0
 	},
-/turf//checker,
-/area/wizard_station)
-"fi" = (
-/obj/table/wood/auto,
 /obj/machinery/microwave,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/turf/"fi" = (/obj/table/wood/auto,
 /turf/e,
 /area/wizard_station)
 "fj" = (
@@ -1903,15 +1898,12 @@
 /turf/e,
 /area/wizard_station)
 "fA" = (
-/turf//checker,
-/area/wizard_station)
-"fB" = (
-/obj/table/wood/auto,
 /obj/item/kitchen/utensil/fork,
 /obj/item/kitchen/utensil/knife,
 /obj/item/kitchen/utensil/spoon,
 /obj/item/reagent_containers/food/drinks/tea/mugwort,
 /obj/item/reagent_containers/food/drinks/tea/mugwort,
+/turf/"fB" = (/obj/table/wood/auto,
 /turf/e,
 /area/wizard_station)
 "fC" = (
@@ -2069,9 +2061,7 @@
 /turf/e,
 /area/wizard_station)
 "gb" = (
-/turf//checker{
-	dir = 1
-	},
+/turf/dir = 1},
 /area/wizard_station)
 "gc" = (
 /obj/machinery/door/airlock/external,
@@ -2186,9 +2176,7 @@
 /obj/table/wood/round,
 /obj/item/reagent_containers/food/snacks/soup/queso,
 /obj/item/kitchen/utensil/spoon,
-/turf//checker{
-	dir = 1
-	},
+/turf/dir = 1},
 /area/wizard_station)
 "gs" = (
 /obj/stool/chair/blue{
@@ -2306,7 +2294,7 @@
 /area/wizard_station)
 "gH" = (
 /obj/machinery/light,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/centcom)
@@ -2581,9 +2569,6 @@
 	},
 /turf/space,
 /area/space)
-"ht" = (
-/turf/floor/stairs,
-/area/centcom)
 "hu" = (
 /turf/_wall/centcom{
 	tag = "icon-leadwall (EAST)";
@@ -3172,7 +3157,7 @@
 	icon_state = "tube1";
 	tag = ""
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/centcom)
@@ -3813,7 +3798,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/centcom)
@@ -17823,9 +17808,9 @@ fU
 fU
 fU
 hf
-ht
+dI
 hD
-ht
+dI
 hP
 bK
 ib
@@ -19031,9 +19016,9 @@ fU
 fU
 fU
 hf
-ht
+dI
 hD
-ht
+dI
 hP
 bQ
 ib

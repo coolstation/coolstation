@@ -610,6 +610,10 @@ proc/is_teleportation_allowed(var/turf/T)
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/networked/telepad, processbadeffect), effect)
 
 	proc/processbadeffect(var/effect)
+		#ifdef DATALOGGER
+		if (!(effect in list("", "minorsummon", "getrandom", "buzz"))) //filter out some ones that won't harm anyone
+			game_stats.Increment("workplacesafety")
+		#endif
 		switch(effect)
 			if("")
 				return
@@ -921,7 +925,7 @@ proc/is_teleportation_allowed(var/turf/T)
 				return
 
 			if("term_message","term_file")
-				var/message = signal.data["data"]
+				var/message = strip_html(signal.data["data"])
 				if (message)
 					message = replacetext(message, "|n", "<br>")
 

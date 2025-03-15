@@ -128,8 +128,30 @@
 
 	New()
 		..()
-		inserted_lamp = new light_type()
-		current_lamp = inserted_lamp
+		light = new
+		light.set_brightness(brightness)
+		light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
+		light.set_height(2.4)
+		light.attach(src)
+		SPAWN_DBG(1 DECI SECOND)
+			update()
+
+		if(current_state <= GAME_STATE_WORLD_INIT) //close to map
+			SPAWN_DBG(0)
+				//attempt to get a lamp off the floor, as a mapper alternative to using
+				//lamp items are reasonably well colour coded, but all the fixtures use the same sprites.
+				//May be visually easier to debug a map, IDK.
+				inserted_lamp = locate(/obj/item/light) in src.loc
+				if (istype(inserted_lamp, allowed_type)) //also catches null
+					insert(null, inserted_lamp) // a lil backwards going by names but shh
+				else
+					inserted_lamp = new light_type()
+					current_lamp = inserted_lamp
+		else
+			inserted_lamp = new light_type()
+			current_lamp = inserted_lamp
+
+
 		if (src.loc.z == 1 ||(map_currently_very_dusty && src.loc.z == 3))
 			stationLights += src
 
@@ -539,7 +561,8 @@
 	brightness = 1
 	New()
 		..()
-		current_lamp.breakprob = 6.25
+		SPAWN_DBG(1)
+			current_lamp.breakprob = 6.25
 
 // the desk lamp
 /obj/machinery/light/lamp
@@ -597,16 +620,6 @@
 	ceilingmounted = TRUE
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
 
-// create a new lighting fixture
-/obj/machinery/light/New()
-	..()
-	light = new
-	light.set_brightness(brightness)
-	light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
-	light.set_height(2.4)
-	light.attach(src)
-	SPAWN_DBG(1 DECI SECOND)
-		update()
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update()
@@ -673,6 +686,7 @@
 					current_lamp.light_status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+				current_lamp.update()
 				on = 0
 				light.disable()
 			else
@@ -721,7 +735,8 @@
 		return
 	if (inserted_lamp)
 		qdel(inserted_lamp)
-	boutput(user, "You insert a [newlamp.name].")
+	if (user)
+		boutput(user, "You insert a [newlamp.name].")
 	inserted_lamp = newlamp
 	current_lamp = inserted_lamp
 	current_lamp.set_loc(null)
@@ -1303,8 +1318,8 @@
 	reddish
 		name = "reddish light bulb"
 		desc = "Fancy."
-		icon_state = "tube-red"
-		base_state = "tube-red"
+		icon_state = "bulb-red"
+		base_state = "bulb-red"
 		color_r = 0.98
 		color_g = 0.75
 		color_b = 0.5
@@ -1544,3 +1559,11 @@
 		return C
 	else
 		return ..()
+
+/obj/machinery/light/small/broken //Made at first to replace a decal in cog1's wreckage area
+	name = "shattered light bulb"
+	New()
+		..()
+		SPAWN_DBG(1)
+			current_lamp.light_status = LIGHT_BROKEN
+			current_lamp.update()

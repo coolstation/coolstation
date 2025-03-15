@@ -102,7 +102,7 @@
 
 		for (var/mob/living/C in view(src.seekrange,src))
 			if (!src.alive) break
-			if (C.health < 0) continue
+			if (C.health < 0 || !C.mind) continue //if the mob doesnt have a mind, probably ignore them? - warc
 			if (C.name == src.attacker) src.attack = 1
 			if (iscarbon(C) && src.atkcarbon) src.attack = 1
 			if (issilicon(C) && src.atksilicon) src.attack = 1
@@ -452,7 +452,7 @@
 		maxhealth = 250
 		score = 50
 		dead_state = "drone2-dead"
-		droploot = /obj/item/gun/energy/phaser_gun
+		droploot = /obj/item/shipcomponent/mainweapon/disruptor
 		projectile_type = /datum/projectile/disruptor/high
 		current_projectile = new/datum/projectile/disruptor/high
 		attack_cooldown = 40
@@ -681,7 +681,6 @@
 			projectile_type = /datum/projectile/laser/drill/saw_teeth
 			current_projectile = new/datum/projectile/laser/drill/saw_teeth
 			smashes_shit = 0
-			event_handler_flags = IMMUNE_MANTA_PUSH
 			//TODO : TEENSY REDRAW TO ICON TO MAKE IT A LITTLE MORE ROBOTTY
 
 			New()
@@ -714,7 +713,6 @@
 		current_projectile = new/datum/projectile/bullet/lmg/weak
 		attack_cooldown = 20
 		projectile_spread = 13
-		event_handler_flags = IMMUNE_MANTA_PUSH
 
 		New()
 			..()

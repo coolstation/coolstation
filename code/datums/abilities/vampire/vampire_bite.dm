@@ -63,6 +63,10 @@
 		boutput(M, __red("Drink monkey blood?! That's disgusting!"))
 		return 0
 
+	if (!isvalidantagmeal(target)) // this thing had never been a player. It's an NPC.
+		boutput(M, __red("This is beneath you. Find a worthy offering."))
+		return 0
+
 	if (!holder.can_take_blood_from(target))
 		return 0
 

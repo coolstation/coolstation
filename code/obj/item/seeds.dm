@@ -14,7 +14,7 @@
 	var/generation = 0 // Keeps track of how many times a plant has been bred from the initial seed.
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 
 	New(var/loc,var/do_color = 1)
 		..()

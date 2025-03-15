@@ -14,27 +14,31 @@
 	C.addAbility(/datum/targetable/changeling/absorb)
 	C.addAbility(/datum/targetable/changeling/devour)
 	C.addAbility(/datum/targetable/changeling/mimic_voice)
-	C.addAbility(/datum/targetable/changeling/monkey)
-	C.addAbility(/datum/targetable/changeling/regeneration)
+	//C.addAbility(/datum/targetable/changeling/monkey)
+	//C.addAbility(/datum/targetable/changeling/regeneration)
 	C.addAbility(/datum/targetable/changeling/scream)
 	C.addAbility(/datum/targetable/changeling/spit)
 	C.addAbility(/datum/targetable/changeling/stasis)
 #ifdef RP_MODE
 	C.addAbility(/datum/targetable/changeling/sting/capulettium)
 #else
-	C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
+	//C.addAbility(/datum/targetable/changeling/sting/neurotoxin)
+	C.addAbility(/datum/targetable/changeling/sting/pento)
 #endif
+	//C.addAbility(/datum/targetable/changeling/sting/bio)
 	C.addAbility(/datum/targetable/changeling/sting/lsd)
-	C.addAbility(/datum/targetable/changeling/sting/dna)
-	C.addAbility(/datum/targetable/changeling/transform)
-	C.addAbility(/datum/targetable/changeling/morph_arm)
-	C.addAbility(/datum/targetable/changeling/handspider)
-	C.addAbility(/datum/targetable/changeling/eyespider)
-	C.addAbility(/datum/targetable/changeling/legworm)
-	C.addAbility(/datum/targetable/changeling/buttcrab)
-	C.addAbility(/datum/targetable/changeling/hivesay)
-	C.addAbility(/datum/targetable/changeling/boot)
-	C.addAbility(/datum/targetable/changeling/give_control)
+	//C.addAbility(/datum/targetable/changeling/sting/dna)
+	//C.addAbility(/datum/targetable/changeling/transform)
+
+	//C.addAbility(/datum/targetable/changeling/morph_arm)
+	//C.addAbility(/datum/targetable/changeling/handspider)
+	//C.addAbility(/datum/targetable/changeling/eyespider)
+	//C.addAbility(/datum/targetable/changeling/legworm)
+	//C.addAbility(/datum/targetable/changeling/buttcrab)
+
+	//C.addAbility(/datum/targetable/changeling/hivesay)
+	//C.addAbility(/datum/targetable/changeling/boot)
+	//C.addAbility(/datum/targetable/changeling/give_control)
 
 	if (src.mind)
 		src.mind.is_changeling = C
@@ -101,6 +105,7 @@
 		if (M)
 			var/datum/bioHolder/originalBHolder = new/datum/bioHolder(M)
 			originalBHolder.CopyOther(M.bioHolder)
+			originalBHolder.ownerName = M.real_name
 			absorbed_dna = list("[M.name]" = originalBHolder)
 
 	proc/addDna(var/mob/living/carbon/human/M, var/headspider_override = 0)
@@ -109,16 +114,17 @@
 			boutput(owner, "<span class='notice'>[M] was a changeling! We have absorbed their entire genetic structure!</span>")
 			logTheThing("combat", owner, M, "absorbs [constructTarget(M,"combat")] as a changeling [log_loc(owner)].")
 
-			if (headspider_override != 1) // Headspiders shouldn't be free.
-				src.points += M.dna_to_absorb // 10 regular points for their body...
+			if (isvalidantagmeal(M))
+				if (headspider_override != 1) // Headspiders shouldn't be free.
+					src.points += M.dna_to_absorb // 10 regular points for their body...
 
-			if (O.points > 0) // ...and then grab their DNA stockpile too.
-				src.points = max(0, src.points + O.points)
+				if (O.points > 0) // ...and then grab their DNA stockpile too.
+					src.points = max(0, src.points + O.points)
 
-			src.absorbtions++ // Same principle.
-			for(var/D in O.absorbed_dna)
-				src.absorbed_dna[D] = O.absorbed_dna[D]
 				src.absorbtions++
+				for(var/D in O.absorbed_dna)
+					src.absorbed_dna[D] = O.absorbed_dna[D] //We don't have NPC lings eating players atm so this is fine
+					src.absorbtions++
 
 			O.absorbed_dna = list()
 			O.points = 0
@@ -127,18 +133,41 @@
 				src.insert_into_hivemind(H)
 			O.hivemind = list()
 
+
+
+
 		/* LAGG NOTE:
 			tailsnake, strangles people and attaches themselves to peoples butts and makes it hard to do stuff */
 
 		else
-			var/datum/bioHolder/originalBHolder = new/datum/bioHolder(M)
+			var/datum/bioHolder/originalBHolder = new/datum/bioHolder() //not calling with M to avoid lingering reference to the mob
 			originalBHolder.CopyOther(M.bioHolder)
 			src.absorbed_dna[M.real_name] = originalBHolder
 
-			if (headspider_override != 1)
+			if (headspider_override != 1 && isvalidantagmeal(M)) //you can munch diner folk but not get free points.
 				src.points += M.dna_to_absorb
-			src.absorbtions++
+				src.absorbtions++
 		src.insert_into_hivemind(M)
+
+		if(src.absorbtions == 1)
+			src.addAbility(/datum/targetable/changeling/sting/bio)
+			src.addAbility(/datum/targetable/changeling/sting/dna)
+			src.addAbility(/datum/targetable/changeling/transform)
+			src.addAbility(/datum/targetable/changeling/hivesay)
+			src.addAbility(/datum/targetable/changeling/boot)
+			src.addAbility(/datum/targetable/changeling/give_control)
+		if(src.absorbtions == 2)
+			src.addAbility(/datum/targetable/changeling/regeneration)
+			//src.addAbility(/datum/targetable/changeling/stasis)
+			src.addAbility(/datum/targetable/changeling/monkey)
+		if(src.absorbtions == 3)
+			src.addAbility(/datum/targetable/changeling/morph_arm)
+			src.addAbility(/datum/targetable/changeling/handspider)
+			src.addAbility(/datum/targetable/changeling/eyespider)
+		if(src.absorbtions == 4)
+			src.addAbility(/datum/targetable/changeling/legworm)
+			src.addAbility(/datum/targetable/changeling/buttcrab)
+
 
 	//Insert a mob into the hivemind by creating a hivemind_observer for them and transferring Mind
 	proc/insert_into_hivemind(var/mob/victim, var/restore_name=0)
@@ -158,12 +187,16 @@
 				obs.see_invisible = src.owner.invisibility
 
 			//Transfer the control from the victim to the hivemind member
+			var/mob/dead/ghost = null
 			if (M.mind)
 				M.mind.transfer_to(obs)
 			else if (M.client)
 				obs.client = M.client
 			else if (M.ghost && !(M.ghost.mind && M.ghost.mind.dnr)) //Heh, death is no escape // (except sometimes when the ghost really doesn't want to come back and has DNR set HHHHEH)
-				var/mob/dead/ghost = M.ghost
+				ghost = M.ghost
+			else if (M.last_client)
+				ghost = find_ghost_by_key(M.last_client.key)
+			if(ghost)
 				ghost.show_text("<span class='red'>You feel yourself torn away from the afterlife and into another consciousness!</span>")
 				if(ghost.mind)
 					ghost.mind.transfer_to(obs)
@@ -173,8 +206,19 @@
 					obs.key = ghost.key
 				else
 					return
-				M.ghost = null
-			else
+				obs.my_ghost = ghost //Prevent lingering unreferenced ghost
+				//Likely necessary to null the corpse var to keep ling victims uncloneable
+				//Otherwise after you leave the hivemind, my_ghost would restore the corpse <-> ghost link as soon as you observe something else.
+				if(istype(ghost, /mob/dead/observer)) // fuck corpse not being defined on /mob/dead <- Amen
+					var/mob/dead/observer/O = ghost
+					if(O.corpse)
+						O.corpse = null
+				else if(istype(ghost, /mob/dead/target_observer))
+					var/mob/dead/target_observer/O = ghost
+					if(O.corpse)
+						O.corpse = null
+					M.ghost = null
+			if(!obs.mind)
 				return
 
 			/*

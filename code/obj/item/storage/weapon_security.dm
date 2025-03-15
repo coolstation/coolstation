@@ -101,6 +101,17 @@
 	/obj/item/stackable_ammo/rifle/capacitive/burst/ten,\
 	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
 
+//TODO: grunge up the case
+/obj/item/storage/box/shotgun/juicer
+	name = "juicer shotgun box"
+	icon_state = "hard_case"
+	desc = "A box containing a high-powered juicer shotgun and some ammo."
+	spawn_contents = list(/obj/item/gun/modular/juicer/blunder,\
+	/obj/item/stackable_ammo/scatter/juicer/ten,\
+	/obj/item/stackable_ammo/scatter/juicer/denim/three,\
+	/obj/item/stackable_ammo/rifle/capacitive/burst/five,\
+	/obj/item/stackable_ammo/scatter/slug_rubber/five)
+
 /obj/item/storage/box/revolver_ammo
 	name = "revolver ammo box"
 	icon_state = "revolver"

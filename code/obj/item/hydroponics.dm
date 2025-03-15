@@ -439,7 +439,7 @@
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
-	rand_pos = 1
+	rand_pos = 8
 	var/image/plantyboi
 
 	New()

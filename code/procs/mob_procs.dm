@@ -134,7 +134,12 @@
 		movedelay = movement_delay_real
 
 	if (movedelay < slip_delay)
+		#ifdef DATALOGGER
+		game_stats.Increment("workplacesafety")
+		#endif
 		var/intensity = (-0.33)+(6.033763-(-0.33))/(1+(movement_delay_real/(0.4))-1.975308)  //y=d+(6.033763-d)/(1+(x/c)-1.975308)
+		if (traitHolder && traitHolder.hasTrait("super_slips"))
+			intensity = max(intensity, 12) //the 12 is copied from the range of lube slips because that's what I'm trying to emulate
 		var/throw_range = min(round(intensity),50)
 		if (intensity < 1 && intensity > 0 && throw_range <= 0)
 			throw_range = max(throw_range,1)
@@ -147,6 +152,7 @@
 			playsound(src.loc, "sound/misc/slip_big.ogg", 50, 1, -3)
 		src.pulling = null
 
+		lastgasp()
 		var/turf/T = get_ranged_target_turf(src, src.last_move_dir, throw_range)
 		src.throw_at(T, intensity, 2, list("stun"=clamp(1.1 SECONDS * intensity, 1 SECOND, 5 SECONDS)), src.loc, throw_type = THROW_SLIP)
 		.= 1

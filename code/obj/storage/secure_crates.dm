@@ -39,12 +39,13 @@
 
 		phaser
 			name = "phaser crate"
-			spawn_contents = list(/obj/item/gun/energy/phaser_gun = 4)
+			spawn_contents = list(/obj/item/gun/modular/NT/long/rifle = 4,\
+			/obj/item/stackable_ammo/rifle/capacitive/burst/ten = 4)
 
 		shotgun
 			name = "shotgun crate"
-			spawn_contents = list(/obj/item/gun/kinetic/riotgun = 4,\
-			/obj/item/ammo/bullets/abg = 4)
+			spawn_contents = list(/obj/item/gun/modular/NT/long/shotty = 4,\
+			/obj/item/stackable_ammo/scatter/NT/ten = 4)
 
 		pod_weapons
 			name = "pod weapons crate"

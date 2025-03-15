@@ -112,7 +112,7 @@
 		close()
 		return 1
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/P = mover
 			if (P.proj_data.window_pass)
@@ -129,6 +129,12 @@
 			return !density
 		else
 			return 1
+
+	gas_cross(turf/target)
+		if(get_dir(loc, target) == dir)
+			return !density
+		else
+			return TRUE
 
 	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 		if (istype(mover, /obj/projectile))
@@ -235,6 +241,14 @@
 		set waitfor = 0
 		playsound(src.loc, pick(sounds_shatter), 50, 1)
 		new /obj/item/raw_material/shard/glass(src.loc)
+		var/obj/grit = new /obj/decal/cleanable/edge_grit (src.loc)
+		grit.set_dir(src.dir)
+		grit.color = "#A3DCFF" //interior doors don't get recoloured from the glass material, so hardcoding for now
+		var/turf/T = get_step(src.loc, src.dir)
+		if (isfloor(T))
+			grit = new /obj/decal/cleanable/edge_grit (T)
+			grit.set_dir(turn(src.dir, 180))
+			grit.color = "#A3DCFF"
 		qdel(src)
 
 

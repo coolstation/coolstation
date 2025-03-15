@@ -104,7 +104,8 @@
 /obj/item/instrument/large
 	w_class = W_CLASS_GIGANTIC
 	p_class = 2 // if they're anchored you can't move them anyway so this should default to making them easy to move
-	throwforce = 40
+	throw_range = 4
+	throwforce = 25
 	density = 1
 	anchored = 1
 	desc_verb = list("plays", "performs", "composes", "arranges")
@@ -154,6 +155,13 @@
 		sounds_instrument += list("sound/musical_instruments/piano/furelise.ogg","sound/musical_instruments/piano/gymno.ogg","sound/musical_instruments/piano/lune.ogg","sound/musical_instruments/piano/nachtmusik1.ogg","sound/musical_instruments/piano/nachtmusik2.ogg")
 		..()
 
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		. = ..()
+		if(src.event_handler_flags & IS_PITFALLING && isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			L.changeStatus("paralysis", 2 SECONDS)
+			random_brute_damage(L, 20)
+			playsound(L, "sound/machines/blast_door_9.ogg", 60, 1, 5)
 
 /* -------------------- Grand Piano -------------------- */
 
@@ -205,6 +213,7 @@
 	name = "saxophone"
 	desc = "NEVER GONNA DANCE AGAIN, GUILTY FEET HAVE GOT NO RHYTHM"
 	icon = 'icons/obj/instruments.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_instruments.dmi'
 	icon_state = "sax" // temp
 	item_state = "sax"
 	w_class = 3
@@ -233,6 +242,29 @@
 		spawn(100)
 			spam_flag = 0
 	return
+
+/* -------------------- BAD SAXO -------------------- */
+/obj/item/saxophone/bad
+	desc = "You have no idea how to play this instrument <i>at all</i>."
+	sounds_sax = list('sound/musical_instruments/sax/saxbad-01.ogg', 'sound/musical_instruments/sax/saxbad-02.ogg','sound/musical_instruments/sax/saxbad-03.ogg','sound/musical_instruments/sax/saxbad-04.ogg','sound/musical_instruments/sax/saxbad-05.ogg','sound/musical_instruments/sax/saxbad-06.ogg','sound/musical_instruments/sax/saxbad-07.ogg')
+
+/obj/item/saxophone/bad/attack_self(mob/user as mob)
+	if (spam_flag == 0)
+		spam_flag = 1
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (H.sims)
+				H.sims.affectMotive("fun", 10) //bad on purpose is the most fun but maybe it should make everyone hearing it have less fun
+		user.visible_message("<B>[user]</B> [pick("honks","squeals","toots","gurgles","wails")] out a [pick("horrid", "ear-splitting", "embarrassing","ill-advised","fumbling","atonal","mistaken","bad","tasteless","amateur","possibly avant-garde")] [pick("affront","series of notes","noise","agony","flatulation","musical atrocity","experiment","accident")] on [his_or_her(user)] saxophone!")
+		playsound(get_turf(src), pick(src.sounds_sax), 50, 1)
+		for (var/obj/critter/dog/george/G in range(user,6))
+			if (prob(100))
+				G.howl()
+		src.add_fingerprint(user)
+		spawn(30)
+			spam_flag = 0
+	return
+
 /* -------------------- Saxophone -------------------- */
 
 /obj/item/instrument/saxophone

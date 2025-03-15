@@ -329,15 +329,16 @@ mob/new_player
 		return 0
 
 
-	proc/AttemptLateSpawn(var/datum/job/JOB, force=0)
+	proc/AttemptLateSpawn(var/datum/job/JOB, force=0, var/loc_override = null)
 		if (!JOB)
 			return
 		if (JOB && (force || IsJobAvailable(JOB)))
 			var/mob/character = create_character(JOB, JOB.allow_traitors)
 			if (isnull(character))
 				return
-
-			if(istype(ticker.mode, /datum/game_mode/football))
+			if(loc_override)
+				character.set_loc(loc_override)
+			else if(istype(ticker.mode, /datum/game_mode/football))
 				var/datum/game_mode/football/F = ticker.mode
 				F.init_player(character, 0, 1)/*
 			else if(istype(ticker.mode, /datum/game_mode/pod_wars))
@@ -457,19 +458,20 @@ mob/new_player
 				slots += (i <= c ? "<div class='latejoin-card latejoin-full' style='border-color: [J.linkcolor]; background-color: [J.linkcolor];' title='Slot filled.'>[(i == 1 && c > shown) ? "+[c - maxslots]" : "&times;"]</div>" : "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' class='latejoin-card' style='border-color: [J.linkcolor];' title='Join the round as [J.name].'>&#x2713;&#xFE0E;</a>")
 
 			return {"
-				<tr><td class='latejoin-link'>
+				<tbody class='latejoin-buttons'><tr class=latejoin-buttons><td class='latejoin-link'>
 					[(limit == -1 || c < limit) ? "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' style='color: [J.linkcolor];' title='Join the round as [J.name].'>[J.name]</a>" : "<span style='color: [J.linkcolor];' title='This job is full.'>[J.name]</span>"]
 					</td>
 					<td class='latejoin-cards'>[jointext(slots, " ")]</td>
-				</tr>
+				</tr></tbody>
 				"}
 
 		return
 
 	proc/LateChoices()
 		// shut up
-		var/header_thing_chui_toggle = (usr.client && !usr.client.use_chui) ? {"
+		var/header_thing_chui_toggle = true ? {"
 		<title>Select a Job</title>
+		<div class='contentFlex'><window>
 		<style type='text/css'>
 			body { background: #222; color: white; font-family: Tahoma, sans-serif; }
 		</style>"} : ""
@@ -477,10 +479,24 @@ mob/new_player
 		var/dat = {"
 [header_thing_chui_toggle]
 <style type='text/css'>
+
+.latejoin {
+    border: 2px solid #6d6617;
+    border-style: groove;
+	margin-bottom: 15px;
+}
+
+.table.latejoin {
+	border-spacing: 0 2px;
+}
+.latejoin-buttons {
+	background: rgba(248, 248, 248, 1);
+}
 .latejoin-cards {
 	white-space: nowrap;
 	min-width: 12em;
 	text-align: left;
+	border-bottom: 1px solid rgba(217, 217, 217, 1);
 	}
 .latejoin td {
 	padding: 0.1em;
@@ -488,17 +504,12 @@ mob/new_player
 .latejoin-link {
 	max-width: 12em;
 	padding: 0.2em 0;
+	border-bottom: 1px solid rgba(217, 217, 217, 1);
 	}
 .latejoin-link > * {
 	display: block;
 	text-align: right;
 	padding-right: 1em;
-	}
-.latejoin-link > a {
-	font-weight: bold;
-	}
-.latejoin-link a:hover {
-	background-color: #555;
 	}
 
 .latejoin-link span {
@@ -529,25 +540,26 @@ a.latejoin-card {
 	}
 
 a.latejoin-card:hover {
-	color: black;
 	box-shadow: 0 0 6px 2px white;
 	}
 
 .latejoin th {
-	background: #555;
+	background: #3b3122;
 	padding: 0.3em;
 	margin-top: 0.5em;
 }
 .fuck {
-	max-width: 48%;
+	max-width: calc(50% - 12px);
 	display: inline-block;
 	vertical-align: top;
-	margin: 0 1em;
+	margin: calc(12vw - 70px);
+	margin-bottom: 0px;
+	line-height: 1.2;
 }
 </style>
-<h2 style='text-align: center; margin: 0 0 0.3em 0; font-size: 150%;'>You are joining a round in progress.</h2>
-<h3 style='text-align: center; margin: 0 0 0.5em 0; font-size: 120%;'>Please choose from one of the remaining open positions.</h3>
-<div style='text-align: center;'>
+<h2>You are joining a round in progress.</h2>
+<h3>Please choose from one of the remaining open positions.</h3>
+<div>
 "}
 
 		// deal with it
@@ -559,9 +571,9 @@ a.latejoin-card:hover {
 					dat += LateJoinLink(J)
 			for(var/datum/job/security/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
-			//dat += "</table></td>"
+			dat += "</table>"
 
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Research</th></tr>"}
+			dat += {"<table class='latejoin'></tr><tr><th colspan='2'>Research</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "research")
 					dat += LateJoinLink(J)
@@ -571,27 +583,28 @@ a.latejoin-card:hover {
 			for(var/datum/job/medical/J in job_controls.staple_jobs)
 				if (J.department == "research")
 					dat += LateJoinLink(J)
-			//dat += "</table></td>"
+			dat += "</table>"
 
 			//dat += {"<td valign="top"><table>"}
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Engineering</th></tr>"}
+			dat += {"<table class='latejoin'><tr></tr><tr><th colspan='2'>Engineering</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "engineering")
 					dat += LateJoinLink(J)
 					break
 			for(var/datum/job/engineering/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
+			dat += "</table>"
 
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Logistics</th></tr>"}
+			dat += {"<table class='latejoin'><tr></tr><tr><th colspan='2'>Logistics</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "logistics")
 					dat += LateJoinLink(J)
 					break
 			for(var/datum/job/logistics/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
-
+			dat += "</table>"
 			//start of next column
-			dat += {"</table></div><div class='fuck'><table class='latejoin'><tr><th colspan='2'>Medical</th></tr>"}
+			dat += {"</div><div class='fuck'><table class='latejoin'><tr><th colspan='2'>Medical</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "medical")
 					dat += LateJoinLink(J)
@@ -600,7 +613,9 @@ a.latejoin-card:hover {
 				if (J.department == "research")
 					continue// this is so we can stick genetics and pathology under research without changing *anything* else:)
 				dat += LateJoinLink(J)
-			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Civilian</th></tr>"}
+			dat += "</table>"
+
+			dat += {"<table class='latejoin'></tr><tr><th colspan='2'>Civilian</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
 				if (J.department == "civilian")
 					dat += LateJoinLink(J)
@@ -609,16 +624,15 @@ a.latejoin-card:hover {
 				dat += LateJoinLink(J)
 			for(var/datum/job/daily/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
-
 			// not showing if it's an ai or cyborg is the worst fuckin shit so: FIXED
 			for(var/mob/living/silicon/S in mobs)
 				if (IsSiliconAvailableForLateJoin(S))
-					dat += {"<tr><td colspan='2' class='latejoin-link'><a href='byond://?src=\ref[src];SelectedJob=\ref[S]' style='color: #c4c4c4; text-align: center;'>[S.name] ([istype(S, /mob/living/silicon/ai) ? "AI" : "Cyborg"])</a></td></tr>"}
+					dat += {"<tr class='latejoin-link'><td colspan='2' class='latejoin-link'><a href='byond://?src=\ref[src];SelectedJob=\ref[S]'>[S.name] ([istype(S, /mob/living/silicon/ai) ? "AI" : "Cyborg"])</a></td></tr>"}
 
+			dat += "</table>"
 			// is this ever actually off? ?????
 			if (job_controls.allow_special_jobs)
-				dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Special Jobs</th></tr>"}
-
+				dat += {"<table class='latejoin'><tr></tr><tr><th colspan='2'>Special Jobs</th></tr>"}
 				for(var/datum/job/special/J in job_controls.special_jobs)
 					if (IsJobAvailable(J) && !J.no_late_join)
 						dat += LateJoinLink(J)
@@ -626,8 +640,9 @@ a.latejoin-card:hover {
 				for(var/datum/job/created/J in job_controls.special_jobs)
 					if (IsJobAvailable(J) && !J.no_late_join)
 						dat += LateJoinLink(J)
+				dat += "</table>"
 
-			dat += "</table></div>"
+			dat += "</div>"
 
 		else if(istype(ticker.mode,/datum/game_mode/battle_royale))
 			//ahahaha you get no choices im going to just shove you in the game now good luck
@@ -655,12 +670,12 @@ a.latejoin-card:hover {
 				C.enabled_jobs += D
 			for (var/datum/job/J in C.enabled_jobs)
 				if (IsJobAvailable(J) && !J.no_late_join)
-					dat += "<tr><td style='width:100%'>"
+					dat += "<tr><td>"
 					dat += {"<a href='byond://?src=\ref[src];SelectedJob=\ref[J]'><font color=[J.linkcolor]>[J.name]</font></a> ([countJob(J.name)][J.limit == -1 ? "" : "/[J.limit]"])<br>"}
 					dat += "</td></tr>"
-		dat += "</table></div>"
+		dat += "</table></div></window></div>"
 
-		src.Browse(dat, "window=latechoices;size=800x777")
+		src.Browse(dat, "window=latechoices;title=Joining a round in progress;size=655x755", true)
 		//if(!bank_menu)
 		//	bank_menu = new
 		//bank_menu.Subscribe( usr.client )

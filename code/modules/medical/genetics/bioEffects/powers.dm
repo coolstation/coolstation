@@ -331,6 +331,7 @@
 			owner.changeStatus("weakened", 5 SECONDS)
 			container.visible_message("<span class='alert'><b>[owner.loc]</b> emits a loud thump and rattles a bit.</span>")
 			playsound(owner.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
+			owner.take_brain_damage(prob(50))
 			SPAWN_DBG(0)
 				var/wiggle = 6
 				while(wiggle > 0)
@@ -390,6 +391,7 @@
 			owner.changeStatus("weakened", 5 SECONDS)
 			container.visible_message("<span class='alert'><b>[owner.loc]</b> emits a loud thump and rattles a bit.</span>")
 			playsound(owner.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
+			owner.take_brain_damage(prob(50))
 			SPAWN_DBG(0)
 				var/wiggle = 6
 				while(wiggle > 0)

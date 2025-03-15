@@ -1073,6 +1073,16 @@
 		var/mob/living/carbon/human/H = locate() in orange(1, src)
 		fall(H) //:D
 
+/obj/machinery/vending/malfunction_hint()
+	if (can_fall == 2)
+		return "Pry the machine back on its feet with a crowbar." //duh
+	else if (src.status & BROKEN) //toppled machines count as BROKEN but can be fixed. This is broken glass dead monkeys levels of fucked.
+		return "Machine is beyond repair. Replace with a new unit."
+
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the machine's wiring."
+	return FALSE
+
 //Since repairing a vending machine involves replacing the wiring...
 /obj/machinery/vending/malfunction_resolve()
 	src.wires = initial(src.wires)
@@ -1247,7 +1257,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/xmas, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/chickensoup, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/weightloss_shake, 10, cost=PAY_TRADESMAN/2)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/covfefe, 10, cost=PAY_TRADESMAN, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/pseudocoffee, 10, cost=PAY_TRADESMAN, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola, rand(1, 6), cost=PAY_UNTRAINED/5, hidden=1)
 
 /obj/machinery/vending/snack
@@ -1650,6 +1660,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/andcomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/association, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/math, 30)
+		product_list += new/datum/data/vending_product(/obj/item/mechanics/counter, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/trigger/button, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/trigger/buttonPanel, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/mc14500, 30)
@@ -1676,6 +1687,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/regreplace, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/relaycomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/selectcomp, 30)
+		product_list += new/datum/data/vending_product(/obj/item/mechanics/buffercomp, 30)
 		product_list += new/datum/data/vending_product(/obj/disposalconstruct/mechanics_sensor, 10)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/sigbuilder, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/sigcheckcomp, 30)
@@ -1995,11 +2007,11 @@
 
 
 	create_products()
-		..()
+		//..()
 		/*
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
@@ -2028,7 +2040,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/stub, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/precision, 2, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/drum, 2, cost = PAY_UNTRAINED/2.5)
+		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/drum, 2, cost = PAY_UNTRAINED/2.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/wire, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
@@ -2036,12 +2048,36 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
 		//hidden
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
+
+	diner
+		name = "Fucile Fusilli"
+		desc = "Un distributore automatico pieno di armi."
+		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN*0.9)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.4)
+
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  2, cost = PAY_UNTRAINED*1.1)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/meatball, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/trans, 2, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/spicy, 5, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/accurate, 5, cost = PAY_UNTRAINED*1.1)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/wizard, 1, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
+
+
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), cost = 15)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), cost = 10)
 
 
 	debug
@@ -2053,7 +2089,7 @@
 				product_list += new/datum/data/vending_product(types, 2)
 			for(var/types in concrete_typesof(/obj/item/gun_parts/))
 				product_list += new/datum/data/vending_product(types, 2)
-			for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
+			for(var/types in concrete_typesof(/obj/item/stackable_ammo/)) // no more ammo? but its right here???
 				product_list += new/datum/data/vending_product(types, 5)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
 
@@ -2597,24 +2633,22 @@
 					updateUsrDialog()
 					sleep(20 SECONDS)
 					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, -1)
-					var/obj/item/reagent_containers/food/snacks/pizza/P = new /obj/item/reagent_containers/food/snacks/pizza(src.loc)
-					P.quality = 0.6
-					P.heal_amt = 2
-					P.sharpened = src.sharpen
-					P.desc = "A typical [piztopping] pizza."
-					P.name = "[piztopping] pizza"
-					//sleep(0.2) do we need to
-					if(piztopping != "plain")
+					var/obj/item/reagent_containers/food/snacks/pizza/P
+					if(emagged)
+						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
+					else
 						switch(piztopping)
-							if("meatball") P.topping_color ="#663300"
-							if("mushroom") P.topping_color ="#CFCFCF"
-							if("pepperoni") P.topping_color ="#C90E0E"
-						P.topping = 1
-						P.add_topping(0)
-
+							if("plain")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/cheese(src.loc)
+							if("meatball")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/meatball(src.loc)
+							if("mushroom")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/mushroom(src.loc)
+							if("pepperoni")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni(src.loc)
 					if (src.sharpen)
 						var/list/slices = P.make_slices()
-						for(var/obj/item/reagent_containers/food/snacks/pizza/slice in slices)
+						for(var/obj/item/reagent_containers/food/snacks/pizzaslice/slice in slices)
 							slice.throw_at(usr, 16, 3)
 
 					if (!(status & (NOPOWER|BROKEN)))
@@ -2645,23 +2679,9 @@
 		if(!target)
 			return null
 
-		var/randtopping = pick("plain", "meatball", "mushroom", "pepperoni")
-		var/obj/item/reagent_containers/food/snacks/ingredient/pizza3/P  = new /obj/item/reagent_containers/food/snacks/ingredient/pizza3(src.loc) //It's raw :)
+		var/obj/item/reagent_containers/food/snacks/ingredient/pizza_base/P  = new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base(src.loc) //It's raw :)
 		P.quality = 0.6
 		P.heal_amt = 2
-
-		if(randtopping != "plain")
-			switch(randtopping)
-				if("meatball") P.topping_color ="#663300"
-				if("mushroom") P.topping_color ="#CFCFCF"
-				if("pepperoni") P.topping_color ="#C90E0E"
-			P.name = "uncooked [randtopping] pizza"
-			P.desc = "A pizza with [randtopping] toppings. You need to bake it..."
-			P.num = 1
-			P.topping = 1
-			P.toppings += randtopping
-			P.toppingstext = copytext(html_encode(english_list(P.toppings)), 1, 512)
-			P.add_topping(P.num)
 
 		P.throw_at(target, 16, 3)
 		src.visible_message("<span class='alert'><b>[src] launches [P.name] at [target.name]!</b></span>")

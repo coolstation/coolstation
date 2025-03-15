@@ -125,17 +125,6 @@ datum
 			transparency = 150
 			disease = /datum/ailment/disease/gbs
 
-		disease/banana_peel // Jungle Fever
-			name = "banana peel"
-			id = "banana peel"
-			description = "Banana peel crushed up to a liquid."
-			reagent_state = LIQUID
-			fluid_r = 255
-			fluid_g = 255
-			fluid_b = 0
-			transparency = 150
-			disease = /datum/ailment/disease/jungle_fever
-
 		disease/liquid_plasma // Plasmatoid
 			name = "liquid plasma"
 			id = "liquid plasma"
@@ -273,6 +262,7 @@ datum
 			fluid_g = 70
 			fluid_b = 0
 			transparency = 255
+			minimum_to_infect = 1.5
 			disease = /datum/ailment/disease/infection
 
 		disease/necrovirus // Necrotic Degeneration

@@ -85,8 +85,8 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/shotgun
 	name = "Gun: Modular Shotgun"
-	item = /obj/item/storage/box/shotgun
-	cost = 5
+	item = /obj/item/storage/box/shotgun/juicer
+	cost = 6
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
@@ -124,6 +124,13 @@ proc/build_syndi_buylist_cache()
 	item = /obj/item/storage/tactical_grenade_pouch
 	cost = 2
 	desc = "A pouch of assorted special-ops grenades."
+	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/utility/turbopunkskates
+	name = "Turbopunk Skates"
+	item = /obj/item/clothing/shoes/turbopunk
+	cost = 2
+	desc = "These rollerskates include super-lubricated bearings, perform combat slides just like ACTION MOVIE."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/utility/voicechanger
@@ -950,7 +957,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/gun/energy/laser_gun/pred
 	cost = 6
 	desc = "An experimental laser design with a self-charging cerenkite battery."
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+	blockedmode = list(/datum/game_mode/spy_theft ,/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/surplus/breachingT
 	name = "Thermite Breaching Charge"
@@ -971,14 +978,14 @@ This is basically useless for anyone but miners.
 	item = /obj/item/storage/box/flaregun // Gave this thing a box of spare ammo. Having only one shot was kinda lackluster (Convair880).
 	cost = 2
 	desc = "A signal flaregun for emergency use. Or for setting jerks on fire"
-	blockedmode = list(/datum/game_mode/spy)
+	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy)
 
 /datum/syndicate_buylist/surplus/rifle
 	name = "Old Hunting Rifle"
 	item = /obj/item/gun/kinetic/hunting_rifle
 	cost = 7
 	desc = "An old hunting rifle, comes with only four bullets. Use them wisely."
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/surplus/bananagrenades
 	name = "Banana Grenades"
@@ -1131,6 +1138,7 @@ This is basically useless for anyone but miners.
 	desc = "Maybe paint a really insulting picture of your foe? To be honest, we have no idea what is even in these or where they came from, a huge crate of them just showed up at our warehouse around a month ago. We're sure it's something very handy, though!"
 	job = list("Chaplain")
 	vr_allowed = 0
+	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/chemicompiler
@@ -1167,7 +1175,7 @@ This is basically useless for anyone but miners.
 /datum/syndicate_buylist/traitor/bowling
 	name = "Bowling Kit"
 	item = /obj/item/storage/bowling
-	cost = 0 //7
+	cost = 7
 	desc = "Comes with several bowling balls and a suit. You won't be able to pluck up the courage to throw them very hard without wearing the suit!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 

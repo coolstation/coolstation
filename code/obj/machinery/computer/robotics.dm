@@ -102,8 +102,8 @@
 					dat += "<A href='byond://?src=\ref[src];gib=2;bot=\ref[R]'>Cancel</A><BR>"
 			dat += "*----------*<BR>"
 
-	user.Browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")
+	user.Browse(dat, "window=computer_\ref[src];size=400x500")
+	onclose(user, "computer_\ref[src]")
 	return
 
 /obj/machinery/computer/robotics/Topic(href, href_list)

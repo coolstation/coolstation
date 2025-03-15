@@ -108,6 +108,7 @@
 	temperature = 10+T0C
 
 	Entered(var/mob/M)
+		. = ..()
 		if (istype(M,/mob/dead) || istype(M,/mob/wraith) || istype(M,/mob/living/intangible) || istype(M, /obj/lattice))
 			return
 		if(!ismob(M))
@@ -644,26 +645,26 @@
 	layer = EFFECTS_LAYER_BASE
 
 /obj/dispenser
-	name = "handcuff dispenser"
-	desc = "A handy dispenser for handcuffs."
+	name = "ziptie dispenser"
+	desc = "A handy dispenser for zipties."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "dispenser_handcuffs"
-	var/amount = 3
+	var/amount = 8
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/handcuffs))
+		if (istype(W, /obj/item/handcuffs/guardbot))
 			user.u_equip(W)
 			qdel(W)
 			src.amount++
-			boutput(user, "<span class='notice'>You put a pair of handcuffs in the [src]. [amount] left in the dispenser.</span>")
+			boutput(user, "<span class='notice'>You put a pair of zipties in the [src]. [amount] left in the dispenser.</span>")
 		return
 
 	attack_hand(mob/user as mob)
 		add_fingerprint(user)
 		if (src.amount >= 1)
 			src.amount--
-			user.put_in_hand_or_drop(new/obj/item/handcuffs, user.hand)
-			boutput(user, "<span class='alert'>You take a pair of handcuffs from the [src]. [amount] left in the dispenser.</span>")
+			user.put_in_hand_or_drop(new/obj/item/handcuffs/guardbot, user.hand)
+			boutput(user, "<span class='alert'>You take a pair of zipties from the [src]. [amount] left in the dispenser.</span>")
 			if (src.amount <= 0)
 				src.icon_state = "dispenser_handcuffs"
 		else

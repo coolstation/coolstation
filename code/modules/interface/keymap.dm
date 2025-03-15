@@ -35,12 +35,23 @@
 			else
 				src.keys[new_key] = act
 
+	proc/on_update(client/cl)
+		var/list/winset_commands = list()
+		for(var/action in global.action_macros)
+			var/macro_id = global.action_macros[action]
+			var/keybind = src.action_to_keybind(action)
+			if(keybind)
+				winset_commands += "base_macro.[macro_id].name=[keybind]"
+		winset(cl, null, jointext(winset_commands, ";"))
+
 	///Checks the input key and converts it to a usable format
 	///Wants input in the format "CTRL+F", as an example.
 	proc/parse_keybind(keybind)
 		var/req_modifier = 0 //The modifier(s) associated with this key
 		var/bound_key //The final key that should be bound
 		var/list/keys = splittext(keybind, "+")
+		if(keybind == "+")
+			keys = list("+")
 
 		if(keys.len > 1)
 			//We have multiple keys (modifiers + normal ones)
@@ -84,12 +95,21 @@
 
 		return uppertext("[modifier_string][bound_key]")
 
+	proc/action_to_keybind(action)
+		for(var/key_string in keys)
+			var/action_string = keys[key_string]
+			if(action_string == action)
+				return unparse_keybind(key_string)
+		return null
+
+
 	///Intermediate proc to check if an action is a bitflag or not before parsing it.
 	proc/parse_action(action)
 		if (isnum(action)) //for bitflag actions (KEY_BOLT)
 			return key_bitflag_to_stringdesc(num2text(action))
 		else //must be a string
 			return key_string_to_desc(action)
+
 
 	///Converts from code-readable action names to human-readable
 	///Example: "l_arm" to "Target Left Arm"

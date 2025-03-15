@@ -4,6 +4,9 @@
 	icon = 'icons/obj/items/materials.dmi'
 	force = 4
 	throwforce = 6
+	value = 70 //base commodity price
+	burn_type = 1
+
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
 	var/metal = 0  // what grade of metal is it?
@@ -12,8 +15,8 @@
 	var/crystal = 0
 	var/powersource = 0
 	var/scoopable = 1
-	burn_type = 1
 	var/wiggle = 6 // how much we want the sprite to be deviated fron center
+
 	max_stack = INFINITY
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
@@ -171,6 +174,8 @@
 	force = 8
 	throwforce = 10
 	scoopable = 0
+	value = -1 //less than worthless, counts as trash (except for an override for Gragg)
+	alt_value = 1 //but if you want to buy rocks I'm sure someone might sell that for a dollar
 
 	setup_material()
 		..()
@@ -192,6 +197,7 @@
 	icon_state = "mauxite"
 	material_name = "Mauxite"
 	metal = 2
+	value = 70 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("mauxite"), appearance = FALSE, setname = FALSE)
@@ -203,6 +209,7 @@
 	icon_state = "molitz"
 	material_name = "Molitz"
 	crystal = 1
+	value = 70 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE)
@@ -214,6 +221,7 @@
 	icon_state = "molitz"
 	material_name = "Molitz Beta"
 	crystal = 1
+	value = 300 //listen if it's rare then fuck it, crank it
 
 	setup_material()
 		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE)
@@ -226,6 +234,7 @@
 	material_name = "Pharosium"
 	metal = 1
 	conductor = 1
+	value = 70 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("pharosium"), appearance = FALSE, setname = FALSE)
@@ -237,6 +246,7 @@
 	icon_state = "cobryl"
 	material_name = "Cobryl"
 	metal = 1
+	value = 200 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("cobryl"), appearance = FALSE, setname = FALSE)
@@ -252,6 +262,7 @@
 	burn_output = 1600
 	burn_possible = TRUE
 	health = 20
+	value = 35 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("char"), appearance = FALSE, setname = FALSE)
@@ -263,6 +274,7 @@
 	icon_state = "claretine"
 	material_name = "Claretine"
 	conductor = 2
+	value = 350 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("claretine"), appearance = FALSE, setname = FALSE)
@@ -275,6 +287,7 @@
 	material_name = "Bohrum"
 	metal = 3
 	dense = 1
+	value = 350 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("bohrum"), appearance = FALSE, setname = FALSE)
@@ -286,6 +299,7 @@
 	icon_state = "syreline"
 	material_name = "Syreline"
 	metal = 1
+	value = 800 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("syreline"), appearance = FALSE, setname = FALSE)
@@ -298,6 +312,7 @@
 	var/exploded = 0
 	material_name = "Erebite"
 	powersource = 2
+	value = 650 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("erebite"), appearance = FALSE, setname = FALSE)
@@ -355,6 +370,7 @@
 	material_name = "Cerenkite"
 	metal = 1
 	powersource = 1
+	value = 480 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("cerenkite"), appearance = FALSE, setname = FALSE)
@@ -372,6 +388,7 @@
 	health = 40
 	powersource = 1
 	crystal = 1
+	value = 550 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("plasmastone"), appearance = FALSE, setname = FALSE)
@@ -379,12 +396,13 @@
 
 /obj/item/raw_material/gemstone
 	name = "gem"
-	desc = "A gemstone. It's probably pretty valuable!"
+	desc = "A gemstone. It's definitely pretty valuable!"
 	icon_state = "gem"
 	material_name = "Gem"
 	force = 1
 	throwforce = 3
 	crystal = 1
+	value = 1000
 
 	setup_material()
 		..()
@@ -393,10 +411,12 @@
 		switch(picker)
 			if(1 to 10)
 				picklist = list("diamond","ruby","topaz","emerald","sapphire","amethyst")
+				value = 1500
 			if(11 to 40)
 				picklist = list("jasper","garnet","peridot","malachite","lapislazuli","alexandrite")
 			else
 				picklist = list("onyx","rosequartz","citrine","jade","aquamarine","iolite")
+				value = 500
 
 		var/datum/material/M = getMaterial(pick(picklist))
 		src.setMaterial(M, appearance = TRUE, setname = TRUE)// why was this set to not update the name/appearance??
@@ -407,6 +427,7 @@
 	icon_state = "uqill"
 	material_name = "Uqill"
 	dense = 2
+	value = 750 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("uqill"), appearance = FALSE, setname = FALSE)
@@ -418,6 +439,7 @@
 	desc = "A compressed chunk of Fibrilith, an odd mineral known for its high tensile strength."
 	icon_state = "fibrilith"
 	material_name = "Fibrilith"
+	value = 25 //sure why not TODO: figure out relative costs for cotton etc.
 
 	setup_material()
 		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE)
@@ -430,6 +452,7 @@
 	material_name = "Telecrystal"
 	crystal = 1
 	powersource = 2
+	value = 1000 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("telecrystal"), appearance = FALSE, setname = FALSE)
@@ -463,6 +486,7 @@
 	desc = "Miracle Matter is a bizarre substance known to metamorphosise into other minerals when processed."
 	icon_state = "miracle"
 	material_name = "Miracle Matter"
+	value = 400 //still give you a decent offer even if you can make more by changing it, i guess!
 
 	setup_material()
 		src.setMaterial(getMaterial("miracle"), appearance = FALSE, setname = FALSE)
@@ -474,6 +498,7 @@
 	icon_state = "starstone"
 	material_name = "Starstone"
 	crystal = 1
+	//TODO: value (only gragg really pays a lot for it but it has ~unique properties~ that changed its utility away from purely moneymaking. come back to this later)
 
 	setup_material()
 		src.setMaterial(getMaterial("starstone"), appearance = FALSE, setname = FALSE)
@@ -486,6 +511,7 @@
 	material_name = "Koshmarite"
 	crystal = 1
 	dense = 2
+	value = 750 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("koshmarite"), appearance = FALSE, setname = FALSE)
@@ -497,6 +523,7 @@
 	icon_state = "martian"
 	material_name = "Viscerite"
 	dense = 2
+	value = 100 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("viscerite"), appearance = FALSE, setname = FALSE)
@@ -504,12 +531,14 @@
 		src.reagents.add_reagent("synthflesh", 25)
 		return ..()
 
+//handwave: actual gold is still rare and has unique properties, cobryl/syreline are similarly precious but actually common and don't do the same stuff, so they just look pretty
 /obj/item/raw_material/gold
 	name = "gold nugget"
 	desc = "A chunk of pure gold. Damn son."
 	icon_state = "gold"
 	material_name = "Gold"
 	dense = 2
+	value = 3500 //base commodity price
 
 	setup_material()
 		src.setMaterial(getMaterial("gold"), appearance = FALSE, setname = FALSE)
@@ -523,6 +552,7 @@
 	icon_state = "fabric"
 	material_name = "Fabric"
 	scoopable = 0
+	value = 15 //seems fair
 
 	setup_material()
 		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE)
@@ -532,6 +562,7 @@
 	name = "cotton wad"
 	desc = "It's a big puffy white thing. Most likely not a cloud though."
 	icon_state = "cotton"
+	value = 10 //seems fair
 
 	setup_material()
 		src.setMaterial(getMaterial("cotton"), appearance = FALSE, setname = FALSE)
@@ -544,6 +575,7 @@
 	material_name = "Ice"
 	crystal = 1
 	scoopable = 0
+	value = 0 //don't get anything for it, don't get anything against for it. (market event: ice shortage for a BIG PARTY might put this on the map)
 
 	setup_material()
 		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
@@ -555,6 +587,7 @@
 	desc = "Some twisted and ruined metal. It could probably be smelted down into something more useful."
 	icon_state = "scrap"
 	burn_possible = FALSE
+	value = 10
 
 	New()
 		..()
@@ -580,6 +613,7 @@
 	stamina_cost = 5
 	stamina_crit_chance = 35
 	burn_possible = FALSE
+	value = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	var/sound_stepped = 'sound/impact_sounds/Glass_Shards_Hit_1.ogg'
 
@@ -641,6 +675,9 @@
 			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
+	#ifdef DATALOGGER
+	game_stats.Increment("workplacesafety")
+	#endif
 	H.changeStatus("weakened", 3 SECONDS)
 	H.force_laydown_standup()
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
@@ -655,6 +692,7 @@
 	material_name = "Chitin"
 	metal = 3
 	dense = 1
+	value = 10 //oh, sending us your bug trash huh
 
 	setup_material()
 		src.setMaterial(getMaterial("chitin"), appearance = FALSE, setname = FALSE)
@@ -666,91 +704,111 @@
 	desc = "A processed bar of Mauxite, a sturdy common metal."
 	default_material = "mauxite"
 	icon_state = "mauxite-bar"
+	value = 100 //more than raw
 
 /obj/item/material_piece/molitz
 	desc = "A cut block of Molitz, a common crystalline substance."
 	default_material = "molitz"
 	icon_state = "molitz-bar"
+	value = 100 //more than raw
 
 /obj/item/material_piece/pharosium
 	desc = "A processed bar of Pharosium, a conductive metal."
 	default_material = "pharosium"
 	icon_state = "pharosium-bar"
+	value = 100 //more than raw
 
 /obj/item/material_piece/cobryl
 	desc = "A processed bar of Cobryl, a somewhat valuable metal."
 	default_material = "cobryl"
 	icon_state = "cobryl-bar"
+	value = 300 //more than raw, it's just fancy blue space silver
 
 /obj/item/material_piece/claretine
 	desc = "A compressed Claretine, a highly conductive salt."
 	default_material = "claretine"
 	icon_state = "claretine-bar"
+	value = 100 //more than raw
 
 /obj/item/material_piece/bohrum
 	desc = "A processed bar of Bohrum, a heavy and highly durable metal."
 	default_material = "bohrum"
 	icon_state = "bohrum-bar"
+	value = 250 //processed and ready for use
 
 /obj/item/material_piece/syreline
 	desc = "A processed bar of Syreline, an extremely valuable and coveted metal."
 	default_material = "syreline"
 	icon_state = "syreline-bar"
+	value = 1000 //more than raw, it's just fancy yellow space platinum
 
 /obj/item/material_piece/plasmastone
 	desc = "A cut block of Plasmastone."
 	default_material = "plasmastone"
 	icon_state = "plasmastone-bar"
+	value = 750 //shaped and purified? yeah makes sense to me for a boost
+
 
 /obj/item/material_piece/uqill
 	desc = "A cut block of Uqill. It is quite heavy."
 	default_material = "uqill"
 	icon_state = "uqill-bar"
+	value = 1000 //slightly better price
 
 /obj/item/material_piece/koshmarite
 	desc = "A cut block of an unusual dense stone. It seems similar to obsidian."
 	default_material = "koshmarite"
 	icon_state = "eldritch-bar"
+	value = 120 //slightly better price
 
 /obj/item/material_piece/viscerite
 	desc = "A cut block of a disgusting flesh-like material. Grody."
 	default_material = "viscerite"
 	icon_state = "martian-bar"
+	value = 100 //same amount, different shape, it's just goop
 
 /obj/item/material_piece/char
 	desc = "A cut block of Char."
 	default_material = "char"
 	icon_state = "wad"
 	color = "#221122"
+	value = 50 //processed for better incineration? maybe make this a bonus for furnaces
 
 /obj/item/material_piece/telecrystal
 	desc = "A cut block of Telecrystal."
 	default_material = "telecrystal"
-	icon_state = "martian-bar"
+	icon_state = "martian-bar" //excuse me
+	value = 1000 //for now, i feel like it'd take a lot of telecrystal to make a whole bar, maybe. and that it's not particularly worth anything until inscribed or whatever.
 
 /obj/item/material_piece/fibrilith
 	desc = "A cut block of Fibrilith."
 	default_material = "fibrilith"
 	icon_state = "martian-bar"
+	value = 40 //more than raw
 
 /obj/item/material_piece/cerenkite
 	desc = "A cut block of Cerenkite."
 	default_material = "cerenkite"
 	icon_state = "martian-bar"
+	value = 650 //more than raw
 
 /obj/item/material_piece/erebite
 	desc = "A cut block of Erebite."
 	default_material = "erebite"
 	icon_state = "martian-bar"
+	value = 850 //more than raw
 
 /obj/item/material_piece/gold
 	name = "stamped bullion"
 	desc = "Oh wow! This stuff's got to be worth a lot of money!"
 	default_material = "gold"
+	value = 35000 //base commodity price
 
 /obj/item/material_piece/ice
 	desc = "Uh. What's the point in this? Is someone planning to make an igloo?"
 	default_material = "ice"
+	value = 0
+	alt_value = 50
 
 // Material-related Machinery
 

@@ -223,7 +223,14 @@
 			subjMind = subject.ghost.mind
 		else if (subject.last_client)
 			var/mob/M = find_ghost_by_key(subject.last_client.key)
-			if (isVRghost(M) || inafterlifebar(M) || isghostcritter(M))
+			if (M)
+				subjMind = M.mind
+			else
+				show_message("Error: Mental interface failure.", "warning")
+				return
+		else if (subject.ghost && subject.ghost.last_client)
+			var/mob/M = find_ghost_by_key(subject.ghost.last_client.key)
+			if (M)
 				subjMind = M.mind
 			else
 				show_message("Error: Mental interface failure.", "warning")
@@ -568,11 +575,6 @@ proc/find_ghost_by_key(var/find_key)
 			locked = 0
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			bo(occupant, "<span class='notice'>\The [src] unlocks!</span>")
-
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if (air_group || (height==0))
-			return 1
-		..()
 
 	// Meat grinder functionality.
 	proc/find_pods()

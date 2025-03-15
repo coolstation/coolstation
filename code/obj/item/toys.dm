@@ -117,43 +117,63 @@
 			playsound(M, "sound/misc/boing/[rand(1,6)].ogg", 20, 1)
 			M.say("[pick("Wow", "Gosh dangit", "Aw heck", "Oh gosh", "Damnit")], [L], [pick("why are you so", "it's totally unfair that you're so", "how come you're so", "tell me your secrets to being so")] [pick("cool", "smart", "worldly", "funny", "wise", "drop dead hilarious", "incredibly likeable", "beloved by everyone", "straight up amazing", "devilishly handsome")]!")
 
-/obj/item/toy/gooncode
-	name = "gooncode hard disk drive"
-	desc = "The prized, sought after spaghetti and pooballs code, and the only known cure to apiphobia. Conveniently on a fancy hard drive that connects to PDAs. \
-	The most stealable thing in the universe."
+//We at cool don't have the historical context that made the gooncode's joke work, so I reworked it a bit.
+/obj/item/toy/coolcode
+	name = "coolcode hard disk drive"
+	desc = "With this beautiful exemplar of open source software, you too can be coder! Just use your PDA and make your dream come true!"
 	icon = 'icons/obj/cloning.dmi' // sprite is an altered harddisk
-	icon_state = "gooncode"
+	icon_state = "gooncode" //I don't care
 	flags = SUPPRESSATTACK
 	throwforce = 3
 	w_class = W_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 3
-	rand_pos = 1
-	var/cooldown = 0
-	var/stationfirst = "go"
-	var/stationlast = "on"
+	rand_pos = 8
 	var/prfirst = "very"
 	var/prmiddle = "smelly"
 	var/prlast = "farts"
 
-/obj/item/toy/gooncode/attackby(obj/item/I, mob/user)
+/obj/item/toy/coolcode/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/device/pda2))
-		if(cooldown > world.time)
-			return
-		else
-			stationfirst = pick("tee", "bee", "fart", "yoo", "poo", "gee", "ma", "honk", "badmin", "terry", "rubber", "fruity", "war", "de")
-			stationlast = pick("gee", "bee", "butt", "goo", "pee", "se", "cho", "clown", "bus", "bugger", "frugal", "illegal", "crime", "row")
-			prfirst = pick("high", "cool", "beloved", "crappy", "interesting", "worthless", "random", "horribly coded", "butt", "low", "extremely", "soul", "outdated")
-			prmiddle = pick("octane", "spooky", "quality", "secret", "crap", "chatty", "butt", "energetic", "diarrhea inducing", "confusing", "magical", "relative pathed", "stealing", "ridiculous")
-			prlast = pick("functions", "bugfixes", "features", "items", "weapons", "the entire goddamn chat", "antagonist", "job", "sprites", "butts", "artifacts", "cars")
+		if(!ON_COOLDOWN(src, "magnum_opus", 4 SECONDS))
+			switch(rand(1,3))
+				if(1) //balance patches
+					if (prob(50)) //We're saltily hacking into the code of whatever we got killed by last round.
+						prfirst = pick("Balanced", "Nerfed", "Adjusted", "Balance pass on", "Fixes")
+						//Now for what we've done to it
+						prlast = pick("halving all the stats, if not worse", "gating it behind 40 minutes of mining gameplay",\
+								"commenting it out", "adding 30-second actionbars", "moving it to the end of an azone", "making it replace one of your arms",\
+								"giving it a 2% chance to spawn", "adding several layers of obtuse bullshit", "adding station-wide notifications",\
+								"giving sec more guns")
+
+					else //We're giving our favourite blorbo some love. Too much love.
+						prfirst = pick("Balanced", "Buffed", "Improves", "Corrects", "Adds to", "Fixes")
+						prlast = pick("making head-specific variants", "adding AoE stuns", "giving it to every department", "making it do half the station's jobs",\
+								"bridging the one obstacle that balanced it in the first place", "adding it to every vending machine for free")
+
+					prmiddle = pick("Grigoris", "draculas", "changelings", "genetics", "gunse", "fartin'", "toxins", "explosions", "pipebombs", "cloner", "antags", "medbay", "N2O", "pathology", "traitors", "nukies", "HoS", "HoP", "captain", "insuls", "multitools", "crowbars", "AI", "silicons", "RP")
+					I.audible_message("<i>New pull request opened on Coolstation: <span class='emote'>\"[prfirst] [prmiddle] by [prlast].\"</i></span>")
+				if(2) //ports
+					prfirst = pick("Ports", "Re-invents", "Adds", "Brings over", "Implements")
+					prmiddle = pick("a multi-department overhaul", "70 fluff chems", "NT-flavoured space marines", "something that didn't even work out where I got it from",\
+							"ERP", "a -get this!- cult based antag", "magical clown powers", "an undercooked combat rework")
+					prlast = pick("it exists on another codebase already", "it'd make me overpowered", "Goon wouldn't let me", "it makes this place more like other codebases",\
+							"trust me bro", "it came to me in a dream", "I can't RP without it")
+					I.audible_message("<i>New pull request opened on Coolstation: <span class='emote'>\"[prfirst] [prmiddle] because [prlast].\"</i></span>")
+				if(3) //mapping changes
+					prfirst = pick("Adds a ranch to", "Adds 14 more internal walls to medbay on", "Deletes cargo from", "Puts a new engine on",\
+							"Turns security into an impenetrable fortress on", "Adds a public armory to", "QOL for medbay that basically eats all surrounding maint for",\
+							"Remaps literally everything but within the same footprint on", "Replaces the bar with a pool on", "Replaces the pool with a bar on",\
+							"Adds giant mining magnet to", "Just completely fucks up")
+					prlast = pick("Chunk", "Gehenna", "Bayou", "Bayou Bay", "Cog1", "Cogmap1", "Donut2", "Bobmap", "Crag") //mostly maps that see use, even if sporadic
+					I.audible_message("<i>New pull request opened on Coolstation: <span class='emote'>\"[prfirst] [prlast].\"</i></span>")
 			playsound(loc, 'sound/machines/ding.ogg', 75, 1)
-			user.visible_message("<span class='alert'><B>[user] uploads the Gooncode to their PDA.</B></span>")
-			I.audible_message("<i>New pull request opened on [stationfirst][stationlast]station: <span class='emote'>\"Ports [prfirst] [prmiddle] [prlast] from Goonstation.\"</i></span>")
-			cooldown = world.time + 40
+			user.visible_message("<span class='alert'><B>[user] contributes to Coolstation with their PDA.</B></span>")
+
 			return
 	return ..()
 
-/obj/item/toy/gooncode/attack()
+/obj/item/toy/coolcode/attack()
 	return
 
 /obj/item/toy/cellphone

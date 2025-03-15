@@ -9,7 +9,6 @@
 	blinded = 0
 	anchored = 1
 	alpha = 180
-	event_handler_flags = IMMUNE_MANTA_PUSH
 	var/obj/machinery/playerzoldorf/homebooth
 	var/mob/originalmob
 
@@ -37,7 +36,7 @@
 	click(atom/target)
 		src.examine_verb(target)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		return 1
 
 	say_understands(var/other)

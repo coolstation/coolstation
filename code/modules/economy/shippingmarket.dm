@@ -68,19 +68,24 @@
 		if(timeleft)
 			return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
-	proc/market_shift()
+	proc/market_shift() //at present, discrete prices (old, currently used) have no relation to the multiplier prices (new, not yet implemented)
 		var/time_since_previous = (TIME - last_market_update)
 		last_market_update = world.timeofday
 		for (var/type in src.commodities)
 			var/datum/commodity/C = src.commodities[type]
-			C.indemand = 0
 			// Clear current in-demand products so we can set new ones later
+			C.indemand = FALSE
+
 			if (prob(90))
 				C.price += rand(C.lowerfluc,C.upperfluc)
+				//New price mult
+				//C.value_multiplier += rand(C.lowerrange,C.upperrange)
 				// Most of the time price fluctuates normally
 			else
 				var/multiplier = rand(2,4)
 				C.price += rand(C.lowerfluc * multiplier,C.upperfluc * multiplier)
+				//New price mult
+				//C.value_multiplier += rand(C.lowerrange * multiplier,C.upperrange * multiplier)
 				// Sometimes it goes apeshit though!
 			if (C.price < 0)
 				C.price = 0
@@ -235,33 +240,52 @@
 		// dumping the contents out would be good
 
 		var/duckets = 0  // fuck yeah duckets  ((noun) Cash, money or bills, from "ducats")
+		//var/fees = 0 (i.e. radioactive handling for desired radioactive material that isn't in leaded crates, trash disposal)
+		//var/fines = 0 (i.e. contraband, sicko shit, stuff confiscated)
 		var/add = 0
 		if (!commodities_list) //general shipping market selling
 			for(var/obj/O in items)
-				if (O.object_flags * SPECIAL_PENALTY_ON_SALE)
+				if (O.object_flags & SPECIAL_PENALTY_ON_SALE)
 					duckets -= 250 //fuck you
+					continue
+				if (istype(O, /obj/item/spacecash))
+					duckets += 0.9 * O:amount
+					if (sell)
+						qdel(O)
 					continue
 				for (var/C in src.commodities) // Key is type of the commodity
 					var/datum/commodity/CM = commodities[C]
 					if (istype(O, CM.comtype))
+						/*
+						if (O.value) //TODO: make the object's intrinsic value into the primary calculation
+							add = O.value
+							if (CM.value_multiplier)
+								add *= CM.value_multiplier
+							else
+								add *= 0.7 //30% cut
+						else //here as failsafe scaffolding in case i forgot to add a value somewhere, this will be removed
+						*/
 						add = CM.price
 						if (CM.indemand)
 							add *= shippingmarket.demand_multiplier
 						if (istype(O, /obj/item/raw_material) || istype(O, /obj/item/sheet) || istype(O, /obj/item/material_piece) || istype(O, /obj/item/plant) || istype(O, /obj/item/reagent_containers/food/snacks/plant))
-							add *= O:amount // TODO: fix for snacks
+							add *= O:amount // TODO: fix for snacks BOBTHOUGHTS: just set snack value to -1 if opened and add that to shipping fees/fines? like, gross
 							if (sell)
 								qdel(O)
 						else
 							if (sell)
 								qdel(O)
+						//TODO: if (duckets < 0) then penalty += add else
 						duckets += add
 						break
-					else if (istype(O, /obj/item/spacecash))
-						duckets += 0.9 * O:amount
-						if (sell)
-							qdel(O)
+
 		else // Please excuse this duplicate code, I'm gonna change trader commodity lists into associative ones later I swear
 			for(var/obj/O in items)
+				if (istype(O, /obj/item/spacecash))
+					duckets += O:amount
+					if (sell)
+						qdel(O)
+					continue
 				for (var/datum/commodity/C in commodities_list)
 					if (istype(O, C.comtype))
 						add = C.price
@@ -276,10 +300,7 @@
 								qdel(O)
 						duckets += add
 						break
-					else if (istype(O, /obj/item/spacecash))
-						duckets += O:amount
-						if (sell)
-							qdel(O)
+
 
 		return max(duckets, 0) //remove max() to allow negative profits (from selling special deliveries back), dunno what happens if cargo's budget goes in the red though
 

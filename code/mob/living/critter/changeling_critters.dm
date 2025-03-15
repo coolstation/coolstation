@@ -476,7 +476,7 @@
 				else
 					hivemind_owner.owner.visible_message(text("<span class='alert'><B>[src] climbs on to [hivemind_owner.owner] and attaches itself to their leg stump!</B></span>"))
 
-		var/dna_gain = 6 //spend dna
+		var/dna_gain = 5 //spend dna
 		if (isdead(src))	//if the legworm is dead, the changeling can only gain half of what was spent
 			dna_gain = dna_gain / 2
 		boutput(hivemind_owner.owner, __blue("A legworm has returned to your body! You gain <B>[dna_gain]</B> DNA points from the leg!"))
@@ -662,7 +662,7 @@
 			spider.hivemind_owner = 0
 		for (var/mob/dead/target_observer/hivemind_observer/obs in C.hivemind)
 			boutput(obs, __red("Your telepathic link to your master has been destroyed!"))
-			obs.boot()
+			obs.stop_observing()
 		if (C.hivemind.len > 0)
 			boutput(src, "Contact with the hivemind has been lost.")
 		C.hivemind = list()

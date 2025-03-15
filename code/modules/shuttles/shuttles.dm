@@ -61,11 +61,11 @@
 			return
 		var/turf/T2 = pick(get_area_turfs(destination.target_area))
 		//flourish = new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
-		new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
+		new /obj/effects/fly_in/shuttle(T2, src.departure_delay)
 
 		sleep(departure_delay)
 		playsound(target, "sound/misc/ground_rumble_big.ogg", 70, 1)
-		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
+		for(var/mob/living/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
 			SPAWN_DBG(1 DECI SECOND)
 				random_brute_damage(M, 60)
 				M.changeStatus("weakened", 5 SECONDS)
@@ -184,9 +184,8 @@
 	departing(datum/transit_stop/destination)
 		shippingmarket.CSS_at_NTFC = FALSE
 		var/turf/target
-		for(var/turf/T in locate(src.current_location.target_area))
-			target = T
-			break
+		var/area/A = locate(src.current_location.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/effects/ship_charge.ogg", 70, 1)
 		else
@@ -203,9 +202,8 @@
 
 	arriving(datum/transit_stop/destination)
 		var/turf/target
-		for(var/turf/T in locate(destination.target_area))
-			target = T
-			break
+		var/area/A = locate(destination.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/machines/hiss.ogg", 50, 1)
 			SPAWN_DBG(1 DECI SECOND)

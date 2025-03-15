@@ -16,6 +16,7 @@
 	icon_state = "mw"
 	density = 1
 	anchored = 1
+	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	/// Current number of eggs inside the microwave
 	var/egg_amount = 0
@@ -56,6 +57,28 @@
 	mats = 12
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH
 	var/emagged = FALSE
+	throw_speed = 2
+	throw_range = 3
+	throwforce = 15
+
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
+
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		..()
+		if(ismob(hit_atom))
+			var/mob/living/L = hit_atom
+			L.changeStatus("weakened", 1.5 SECONDS)
+			L.force_laydown_standup()
+
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
+			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+		..()
+		if(ismob(usr))
+			var/mob/living/L = usr
+			L.changeStatus("weakened", 2 SECONDS)
+			L.force_laydown_standup()
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (src.emagged)
@@ -297,6 +320,9 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 						src.cook(MW_COOK_EGG)
 					else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
 						for(var/obj/item/gun_parts/P in src.contents)
+							if(prob(49) && istype(P, /obj/item/gun/modular/NT/long)) // slightly less than half a chance to fry the annoying smartloader in NT long receivers
+								var/obj/item/gun/modular/NT/long/ntl = P
+								ntl.electrics_intact = FALSE
 							if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
 								P.part_DRM = pick(GUN_FOSS,GUN_ITALIAN,GUN_JUICE,GUN_NANO,GUN_SOVIET)
 								src.visible_message("<span class='notice'>[P] lets off a few sparks.</span>")

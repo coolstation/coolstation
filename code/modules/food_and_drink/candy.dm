@@ -275,7 +275,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 
 				//if there's perfected dracula serum or whatever in this, you may never know. put your faith in thos beans
 				if(prob(50))
-					flavor = pick("egg", "vomit", "snot", "poo", "urine", "whizz", "earwax", "wet dog", "belly-button lint", "sweat", "congealed farts", "mold", "armpits", "elbow grease", "sour milk", "WD-40", "slime", "blob", "gym sock", "pants", "brussels sprouts", "feet", "litter box", "durian fruit", "asbestos", "corpse flower", "corpse", "cow dung", "rot", "tar", "ham", "gooncode", "quark-gluon plasma", "bee", "heat death")
+					flavor = pick("egg", "vomit", "snot", "poo", "urine", "whizz", "earwax", "wet dog", "belly-button lint", "sweat", "congealed farts", "mold", "armpits", "elbow grease", "sour milk", "WD-40", "slime", "blob", "gym sock", "pants", "brussels sprouts", "feet", "litter box", "durian fruit", "asbestos", "corpse flower", "corpse", "cow dung", "rot", "tar", "ham", "coolcode", "quark-gluon plasma", "bee", "heat death")
 					phrase = pick("Oh god", "Jeez", "Ugh", "Blecch", "Holy crap that's awful", "What the hell?", "*HURP*", "Phoo")
 					tastesbad = 1
 				else
@@ -382,13 +382,12 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 	heal_amt = 1
 	food_color = "#e50000"
 	initial_volume = 10
+	rand_pos = 6
 
 	New()
 		if (prob(33))
 			src.initial_reagents = "swedium"
 		..()
-		src.pixel_x = rand(-6, 6)
-		src.pixel_y = rand(-6, 6)
 
 /obj/item/item_box/swedish_bag
 	name = "bag of swedish fisk"

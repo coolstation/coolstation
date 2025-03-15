@@ -126,12 +126,36 @@ var/global/noir = 0
 		//alert("You must define an action! Yell at Wire if you see this.")
 		return
 	switch(href_list["action"])
+		if ("jump_list")
+			if (src.level < LEVEL_PA)
+				return
+			if(!config.allow_admin_jump)
+				alert("Admin jumping disabled")
+				return
+			var/list/jumptargets = list()
+			//Find a turf for every area with the given name
+			//Then pick one of thosse turfs to teleport to
+			for(var/area/A in global.unique_areas_with_turfs[href_list["type"]])
+				var/list/turfs = get_area_turfs(A, 1)
+				if (length(turfs))
+					jumptargets += pick(turfs)
+			if(length(jumptargets))
+				if(adminClient.pizzazz)
+					shrink_teleport(usr)
+				usr.set_loc(pick(jumptargets))
+				logTheThing("admin", usr, null, "jumped to [href_list["type"]] ([showCoords(usr.x, usr.y, usr.z)])")
+				logTheThing("diary", usr, null, "jumped to [href_list["type"]] ([showCoords(usr.x, usr.y, usr.z)])", "admin")
+				message_admins("[key_name(usr)] jumped to [href_list["type"]] ([showCoords(usr.x, usr.y, usr.z)])")
+
+				return
+			boutput(usr, "Can't jump there, zero active turfs in that area.")
 		if ("ah_mute")//gguhHUhguHUGH
 			if (src.level >= LEVEL_PA)
 				var/client/C = locate(href_list["target"])
 				if(istype(C))
 					C.cloud_put("adminhelp_banner", usr.client.key)
 					src.show_chatbans(C)
+
 		if ("ah_unmute")//guHGUHGUGHGUHG
 			if (src.level >= LEVEL_PA)
 				var/client/C = locate(href_list["target"])
@@ -1181,7 +1205,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cat","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","bird","Ghostdrone","Flubber","Cat","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1201,6 +1225,9 @@ var/global/noir = 0
 						. = 1
 					if("Skeleton")
 						H.set_mutantrace(/datum/mutantrace/skeleton)
+						. = 1
+					if("Bird")
+						H.set_mutantrace(/datum/mutantrace/birb)
 						. = 1
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
@@ -2410,7 +2437,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert","Bird")
 						if (!which)
 							return
 						switch(which)
@@ -2432,6 +2459,8 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/cow)
 							if ("Fert")
 								H.set_mutantrace(/datum/mutantrace/fert)
+							if ("Bird")
+								H.set_mutantrace(/datum/mutantrace/birb)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
@@ -2458,6 +2487,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/cow)
 								if ("Fert")
 									H.set_mutantrace(/datum/mutantrace/fert)
+								if ("Bird")
+									H.set_mutantrace(/datum/mutantrace/birb)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
@@ -4118,38 +4149,40 @@ var/global/noir = 0
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_commandos'>Spawn a force of commandos</A><BR>
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_turds'>Spawn a T.U.R.D.S. attack force</A><BR>
 	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
-/var/create_mob_html = null
+/datum/admins/proc/jump_to(var/mob/user)
+	set background = 1
+	if(!config.allow_admin_jump)
+		boutput(user, "Admin jumping disabled")
+		return
+	PC_LOAD_OR_OPEN_CONDITIONAL(selector/inputstyle, jumpscreen, area_list_is_up_to_date)
+	var/jumpjs = jointext(getUniqueAreas(), ";")
+	jumpscreen.tags["object-paths"] = jumpjs
+	PC_RENDER(jumpscreen)
+	PC_BROWSE(jumpscreen)
+
 /datum/admins/proc/create_mob(var/mob/user)
 	set background = 1
-	if (!create_mob_html)
-		var/mobjs = null
-		mobjs = jointext(typesof(/mob), ";")
-		create_mob_html = grabResource("html/admin/create_object.html")
-		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
+	PC_LOAD_OR_OPEN(selector/object_spawner/mobspawn, mobscreen)
+	var/mobjs = jointext(typesof(/mob), ";")
+	mobscreen.tags["object-paths"] = mobjs
+	PC_RENDER(mobscreen)
+	PC_BROWSE(mobscreen)
 
-	if (user) user.Browse(replacetext(create_mob_html, "/* ref src */", "\ref[src]"), "window=create_mob;size=530x550")
-
-/var/create_object_html = null
 /datum/admins/proc/create_object(var/mob/user)
 	set background = 1
-	if (!create_object_html)
-		var/objectjs = null
-		objectjs = jointext(typesof(/obj), ";")
-		create_object_html = grabResource("html/admin/create_object.html")
-		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
+	PC_LOAD_OR_OPEN(selector/object_spawner, selectionscreen)
+	var/objectjs = jointext(typesof(/obj), ";")
+	selectionscreen.tags["object-paths"] = objectjs
+	PC_RENDER(selectionscreen)
+	PC_BROWSE(selectionscreen)
 
-	if (user) user.Browse(replacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=530x550")
-
-/var/create_turf_html = null
 /datum/admins/proc/create_turf(var/mob/user)
 	set background = 1
-	if (!create_turf_html)
-		var/turfjs = null
-		turfjs = jointext(typesof(/turf), ";")
-		create_turf_html = grabResource("html/admin/create_object.html")
-		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
-
-	if (user) user.Browse(replacetext(create_turf_html, "/* ref src */", "\ref[src]"), "window=create_turf;size=530x550")
+	PC_LOAD_OR_OPEN(selector/object_spawner/turfspawn, turfscreen)
+	var/turfjs = jointext(typesof(/turf), ";")
+	turfscreen.tags["object-paths"] = turfjs
+	PC_RENDER(turfscreen)
+	PC_BROWSE(turfscreen)
 
 /datum/admins/proc/Game()
 	if (!usr) // somehoooow
@@ -4839,10 +4872,43 @@ var/global/noir = 0
 					A = new chosen(usr.loc)
 				else
 					A = new chosen(get_turf(usr))
-				if (client.flourish)
+				if (client.pizzazz)
 					spawn_animation1(A)
 			logTheThing("admin", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
 			logTheThing("diary", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z, 1)])", "admin")
+
+	else
+		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)
+		return
+
+//I keep making temporary objects for spawning all children of Thing
+/datum/admins/proc/spawn_atom_typesof(var/object as text)
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+	set desc="(atom path) Spawn concrete types of path"
+	set name="Spawn Typesof"
+	if(!object)
+		return
+
+	var/client/client = usr.client
+
+	if (client.holder.level >= LEVEL_PA)
+		var/chosen = get_one_match(object, use_concrete_types = FALSE)
+
+		if (chosen)
+			if (ispath(chosen, /turf))
+				alert("You cant use this command with turfs!", null, null, null, null, null) //Possible expansion: replace turfs in a spiral around the user
+				return
+			else
+				for(var/childpath in concrete_typesof(chosen, FALSE))
+					var/atom/movable/A
+					if (client.holder.spawn_in_loc)
+						A = new childpath(usr.loc)
+					else
+						A = new childpath(get_turf(usr))
+					if (client.pizzazz)
+						spawn_animation1(A)
+			logTheThing("admin", usr, null, "spawned all concrete types of [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
+			logTheThing("admin", usr, null, "spawned all concrete types of [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
 
 	else
 		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)

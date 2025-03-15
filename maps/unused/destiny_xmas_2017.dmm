@@ -642,7 +642,7 @@
 	icon_state = "0-8"
 	},
 /obj/item/device/radio/intercom/security{
-
+	
 	},
 /obj/machinery/light/emergency{
 	icon_state = "ebulb1";
@@ -4294,7 +4294,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "pod_fore";
 	layer = 4;
@@ -4437,7 +4436,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "pod_fore";
 	layer = 4;
@@ -6153,10 +6151,10 @@
 	areastring = "East Crew Quarters";
 	dir = 8;
 	name = "East Crew Quarters APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -7576,7 +7574,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -9259,7 +9256,7 @@
 	id = "crematorium"
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /turf/floor/black,
 /area/station/medical/crematorium)
@@ -9275,7 +9272,7 @@
 "aqn" = (
 /obj/storage/closet/coffin,
 /obj/item/device/radio/intercom/security{
-
+	
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -10071,7 +10068,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;
@@ -10202,7 +10198,7 @@
 	pixel_x = 6
 	},
 /obj/item/device/radio/intercom/catering{
-
+	
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -10895,7 +10891,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -13075,7 +13070,7 @@
 	icon_state = "line1";
 	dir = 8
 	},
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /obj/disposalpipe/segment/mail,
 /obj/machinery/light_switch/west,
 /turf/floor,
@@ -13908,7 +13903,7 @@
 	icon_state = "line3"
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -16456,7 +16451,6 @@
 	autoclose = 0;
 	density = 1;
 	dir = 1;
-
 	icon_state = "bdoorleft1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -16503,7 +16497,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 2;
-
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -16530,7 +16523,7 @@
 /obj/decal/poster/wallsign/poster_sol{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 9
 	},
 /area/station/science/teleporter)
@@ -16558,7 +16551,7 @@
 /obj/landmark/start{
 	name = "Scientist"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 5
 	},
 /area/station/science/teleporter)
@@ -17245,7 +17238,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "eva_shield";
 	layer = 4;
@@ -17439,7 +17431,7 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 8
 	},
 /area/station/science/teleporter)
@@ -17452,7 +17444,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -17772,7 +17764,7 @@
 /area/station/medical/robotics)
 "aFk" = (
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /turf/floor/stairs{
 	dir = 8;
@@ -18336,7 +18328,6 @@
 	autoclose = 0;
 	density = 1;
 	dir = 1;
-
 	icon_state = "bdoorright1";
 	id = "scienceteleporter2";
 	layer = 4;
@@ -18388,7 +18379,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 2;
-
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -18410,7 +18400,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 10
 	},
 /area/station/science/teleporter)
@@ -18422,7 +18412,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 6
 	},
 /area/station/science/teleporter)
@@ -18966,7 +18956,7 @@
 /obj/shrub,
 /obj/item/cigpacket,
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /obj/machinery/light/emergency{
 	dir = 8
@@ -19005,7 +18995,7 @@
 	d2 = 2
 	},
 /obj/item/device/radio/intercom/science{
-
+	
 	},
 /obj/item/reagent_containers/food/drinks/eggnog,
 /turf/floor/white/checker,
@@ -19689,7 +19679,7 @@
 	dir = 10
 	},
 /obj/machinery/portable_atmospherics/canister/air/large,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/atmos/highcap_storage)
@@ -19730,7 +19720,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -19775,7 +19764,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "scienceteleporter";
 	layer = 4;
@@ -19950,7 +19938,7 @@
 	dir = 1
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /obj/machinery/meter,
 /turf/floor/red,
@@ -20512,7 +20500,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "atmos_shield";
 	layer = 4;
@@ -20743,7 +20730,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "eva_shield";
 	layer = 4;
@@ -20858,7 +20844,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "atmos_shield";
 	layer = 4;
@@ -20910,7 +20895,7 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/stamp,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 9
 	},
 /area/station/science/teleporter)
@@ -20919,7 +20904,7 @@
 	icon_state = "line3"
 	},
 /obj/storage/crate/adventure,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -20936,7 +20921,7 @@
 	pixel_y = 32
 	},
 /obj/disposalpipe/trunk,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -20959,7 +20944,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -20970,7 +20955,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -20980,7 +20965,7 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/east,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 5
 	},
 /area/station/science/teleporter)
@@ -22051,7 +22036,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "eva_shield";
 	layer = 4;
@@ -22348,7 +22332,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 8
 	},
 /area/station/science/teleporter)
@@ -22389,7 +22373,7 @@
 	icon_state = "camera";
 	name = "autoname - SS13"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -22749,7 +22733,7 @@
 	name = "autoname - SS13"
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /obj/machinery/autoclave,
 /turf/floor/purplewhite/corner{
@@ -23418,7 +23402,7 @@
 /obj/item/device/radio/intercom/engineering{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aNL" = (
 /obj/machinery/disposal/mail/small{
@@ -23477,7 +23461,7 @@
 /obj/blind_switch/area{
 	pixel_x = 24
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aNP" = (
 /obj/disposalpipe/junction{
@@ -23529,7 +23513,7 @@
 /obj/item/tank/air,
 /obj/item/clothing/mask/breath,
 /obj/item/device/light/flashlight,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 10
 	},
 /area/station/science/teleporter)
@@ -23541,7 +23525,7 @@
 	dir = 4
 	},
 /obj/machinery/space_heater,
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aNU" = (
 /obj/decal/tile_edge/line/white{
@@ -23556,13 +23540,13 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aNV" = (
 /obj/decal/tile_edge/line/white{
 	icon_state = "line3"
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aNW" = (
 /obj/decal/tile_edge/line/white{
@@ -23570,7 +23554,7 @@
 	},
 /obj/reagent_dispensers/foamtank,
 /obj/item/extinguisher,
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aNX" = (
 /obj/decal/tile_edge/line/white{
@@ -23583,7 +23567,7 @@
 /obj/item/tank/air,
 /obj/item/clothing/mask/breath,
 /obj/item/device/light/flashlight,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 6
 	},
 /area/station/science/teleporter)
@@ -23637,7 +23621,7 @@
 	d2 = 8
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /turf/floor/purple,
 /area/station/science/research_director{
@@ -23692,7 +23676,7 @@
 	network = "Zeta"
 	},
 /obj/item/device/radio/intercom/science{
-
+	
 	},
 /turf/floor/purple,
 /area/station/science/research_director{
@@ -24475,7 +24459,7 @@
 	dir = 4;
 	broadcasting = 0
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aPt" = (
 /obj/stool/chair/comfy{
@@ -24525,7 +24509,7 @@
 /turf/floor/yellow,
 /area/station/engine/engineering/ce)
 "aPw" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aPx" = (
 /obj/wingrille_spawn/reinforced,
@@ -24533,7 +24517,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "eva_shield";
 	layer = 4;
@@ -24588,14 +24571,14 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "aPC" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/science/teleporter)
 "aPD" = (
 /obj/disposalpipe/segment/mail{
@@ -25496,7 +25479,7 @@
 /obj/item/device/radio/intercom/cargo{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aRg" = (
 /obj/table/reinforced/auto,
@@ -25538,7 +25521,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aRk" = (
 /obj/wingrille_spawn/reinforced,
@@ -25546,7 +25529,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "atmos_shield";
 	layer = 4;
@@ -25566,7 +25548,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 9
 	},
 /area/station/science/teleporter)
@@ -25574,7 +25556,7 @@
 /obj/decal/tile_edge/line/white{
 	icon_state = "line3"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -25587,7 +25569,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 1
 	},
 /area/station/science/teleporter)
@@ -25607,7 +25589,7 @@
 /obj/noticeboard{
 	pixel_y = 28
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 5
 	},
 /area/station/science/teleporter)
@@ -25848,7 +25830,6 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -26438,7 +26419,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aSN" = (
 /obj/cable{
@@ -26483,7 +26464,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aSR" = (
 /obj/machinery/door/firedoor/border_only,
@@ -26553,7 +26534,7 @@
 	name = "autoname - SS13";
 	network = "SS13"
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 8
 	},
 /area/station/science/teleporter)
@@ -26588,7 +26569,7 @@
 /obj/item/storage/box/trackimp_kit2,
 /obj/item/hand_labeler,
 /obj/item/storage/firstaid/regular,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 4
 	},
 /area/station/science/teleporter)
@@ -27296,7 +27277,7 @@
 	layer = 3.5;
 	pixel_y = -24
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering/ce)
 "aUj" = (
 /obj/disposalpipe/segment,
@@ -27329,7 +27310,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 10
 	},
 /area/station/science/teleporter)
@@ -27345,7 +27326,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aUn" = (
 /obj/decal/tile_edge/line/white{
@@ -27364,7 +27345,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aUo" = (
 /obj/decal/tile_edge/line/white{
@@ -27373,7 +27354,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack/side/white,
+/turf/floor/cautionwhite/side,
 /area/station/science/teleporter)
 "aUp" = (
 /obj/decal/tile_edge/line/white{
@@ -27394,7 +27375,7 @@
 /obj/item/device/gps,
 /obj/item/device/gps,
 /obj/item/device/gps,
-/turf/floor/orangeblack/side/white{
+/turf/floor/cautionwhite/side{
 	dir = 6
 	},
 /area/station/science/teleporter)
@@ -27663,7 +27644,7 @@
 	pltanks = 15
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /turf/floor/plating/random,
 /area/station/science/storage)
@@ -27695,7 +27676,6 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -27820,7 +27800,7 @@
 /obj/stool/bed/moveable,
 /obj/item/clothing/suit/bedsheet,
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /obj/landmark/start{
 	name = "Geneticist"
@@ -28474,7 +28454,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "atmos_shield";
 	layer = 4;
@@ -32001,7 +31980,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "test_chamber";
 	layer = 4;
@@ -32034,7 +32012,6 @@
 	id = "disposals_vent"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_vent";
 	layer = 4;
@@ -32143,7 +32120,7 @@
 	d2 = 8
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /turf/floor/bluewhite/corner{
 	dir = 4
@@ -32436,7 +32413,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/intercom/brig{
-
+	
 	},
 /obj/decal/tile_edge/line/red{
 	icon_state = "line1";
@@ -32850,7 +32827,7 @@
 	pixel_y = 24;
 	text = "NF"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bdw" = (
 /obj/disposalpipe/segment/mail{
@@ -33108,7 +33085,7 @@
 	d2 = 4
 	},
 /obj/item/device/radio/intercom/science{
-
+	
 	},
 /turf/floor/engine,
 /area/station/science/testchamber)
@@ -33806,7 +33783,7 @@
 	dir = 2
 	},
 /obj/machinery/light,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bfg" = (
 /obj/cable{
@@ -35491,7 +35468,7 @@
 	},
 /area/station/crew_quarters/sauna)
 "bhP" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "line2";
 	dir = 9
@@ -35507,7 +35484,7 @@
 /turf/floor,
 /area/station/mining/staff_room)
 "bhQ" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "line1";
 	dir = 1
@@ -35625,7 +35602,7 @@
 	icon_state = "line2";
 	dir = 9
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bhZ" = (
 /obj/cable{
@@ -35648,7 +35625,7 @@
 	icon_state = "line1";
 	dir = 1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bia" = (
 /obj/cable{
@@ -35665,7 +35642,7 @@
 	icon_state = "line1";
 	dir = 1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bib" = (
 /obj/cable{
@@ -35681,7 +35658,7 @@
 	icon_state = "line2";
 	dir = 5
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bic" = (
 /turf/wall/auto/gannets,
@@ -35790,7 +35767,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "test_chamber";
 	layer = 4;
@@ -36420,20 +36396,20 @@
 	icon_state = "line1";
 	dir = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bjt" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bju" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bjv" = (
 /obj/machinery/light{
@@ -36463,7 +36439,7 @@
 	icon_state = "line1";
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bjw" = (
 /obj/decal/tile_edge/line/black{
@@ -37341,7 +37317,7 @@
 	icon_state = "line2";
 	dir = 10
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bkP" = (
 /obj/decal/tile_edge/line/yellow{
@@ -37351,14 +37327,14 @@
 	dir = 1;
 	layer = 3.1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bkQ" = (
 /obj/disposalpipe/segment,
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "line1"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bkR" = (
 /obj/cable{
@@ -37375,7 +37351,7 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/east,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bkS" = (
 /obj/table/reinforced/auto,
@@ -37396,7 +37372,7 @@
 /obj/item/electronics/soldering,
 /obj/item/electronics/soldering,
 /obj/machinery/light,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bkT" = (
 /obj/table/reinforced/auto,
@@ -37412,7 +37388,7 @@
 /obj/item/device/t_scanner,
 /obj/item/device/t_scanner,
 /obj/item/device/t_scanner,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/elect)
 "bkU" = (
 /obj/machinery/firealarm{
@@ -38104,7 +38080,7 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -38131,7 +38107,7 @@
 	icon_state = "line2";
 	dir = 9
 	},
-/obj/storage/secure/closet/engineering/cargo,
+/obj/storage/secure/closet/logistics/cargo,
 /turf/floor,
 /area/station/quartermaster/office)
 "bmc" = (
@@ -38255,7 +38231,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "test_chamber";
 	layer = 4;
@@ -38784,7 +38759,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -38827,7 +38801,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "mining2qm_sec_door";
 	layer = 4;
@@ -39065,7 +39038,7 @@
 	d2 = 8
 	},
 /obj/item/device/radio/intercom/medical{
-
+	
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -39966,7 +39939,7 @@
 	},
 /obj/machinery/light_switch/west,
 /obj/item/device/radio/intercom/engineering{
-
+	
 	},
 /obj/machinery/meter,
 /turf/floor/engine{
@@ -40326,7 +40299,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "cargo_out_inner";
 	layer = 4;
@@ -40341,7 +40313,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "cargo_in_inner";
 	layer = 4;
@@ -40562,10 +40533,10 @@
 	areastring = null;
 	dir = 8;
 	name = "Armory APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -40695,7 +40666,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "engineshield";
 	layer = 4;
@@ -40968,7 +40938,7 @@
 	network = "SS13"
 	},
 /obj/item/device/radio/intercom/cargo{
-
+	
 	},
 /obj/item/device/radio/beacon,
 /turf/floor/black,
@@ -42225,7 +42195,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock";
 	layer = 4;
@@ -42778,7 +42747,6 @@
 	id = "qm_dock_out"
 	},
 /obj/machinery/door/poddoor/blast/single{
-
 	icon_state = "bdoornoblasts1";
 	id = "qm_dock_out";
 	layer = 4;
@@ -43525,7 +43493,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorleft1";
 	id = "pod_port";
 	layer = 4;
@@ -43552,7 +43519,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "pod_port";
 	layer = 4;
@@ -43683,7 +43649,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "engineshield";
 	layer = 4;
@@ -43965,7 +43930,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorleft1";
 	id = "pod_star";
 	layer = 4;
@@ -43992,7 +43956,6 @@
 /obj/machinery/door/poddoor/blast{
 	autoclose = 1;
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "pod_star";
 	layer = 4;
@@ -44714,7 +44677,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "fireshield";
 	layer = 4;
@@ -44745,7 +44707,6 @@
 /obj/machinery/door/poddoor/blast{
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorright0";
 	id = "fireshield";
 	layer = 4;
@@ -44828,7 +44789,7 @@
 	icon_state = "0-8"
 	},
 /obj/item/device/radio/intercom/engineering{
-
+	
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/east)
@@ -45003,7 +44964,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/item/device/radio/intercom/engineering{
-
+	
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -45699,7 +45660,6 @@
 "byN" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "combustion";
 	layer = 4;
@@ -46651,10 +46611,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/marker/supplymarker,
 /turf/floor/grey/side{
 	dir = 4
@@ -46894,7 +46854,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 4;
-
 	icon_state = "bdoorleft0";
 	id = "test_chamber";
 	layer = 4;
@@ -47089,7 +47048,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;
@@ -47113,7 +47071,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorleft0";
 	id = "lockdown";
 	layer = 4;
@@ -47160,7 +47117,6 @@
 	autoclose = 0;
 	density = 0;
 	dir = 1;
-
 	icon_state = "bdoorright0";
 	id = "lockdown";
 	layer = 4;

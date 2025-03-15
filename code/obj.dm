@@ -4,7 +4,11 @@
 	var/m_amt = 0	// metal
 	var/g_amt = 0	// glass
 	var/w_amt = 0	// waster amounts
+	//quality of an item, more is better, less is worse. for items where this is meaningful, the scale is -100 to 100, with 0 holding no meaning or prefix: bog standard.
+	//however not everything goes by this scale so this stays at 1 (at least for now?)
 	var/quality = 1
+	var/value = 0 // intrinsic value of this thingy for calculating prices and such, particularly for sale
+	var/alt_value = null // override value presented to player if not null for certain cases (decirprevo bottled water, things juicers sell, illegal goods, etc) but sales to standard traders and NT cargo fulfillment will always go by src.value
 	var/adaptable = 0
 
 	var/is_syndicate = 0
@@ -13,6 +17,7 @@
 
 	var/mechanics_type_override = null //Fix for children of scannable items being reproduced in mechanics
 	var/artifact = null
+	var/cannot_be_stored = FALSE
 	var/move_triggered = 0
 	var/object_flags = 0
 
@@ -22,6 +27,9 @@
 
 	var/_health = 100
 	var/_max_health = 100
+
+	/// if gun/bullet related, forensic profile of it
+	var/forensic_ID = null
 
 	New()
 		. = ..()
@@ -55,14 +63,6 @@
 		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
 			var/turf/T = get_turf(src)
 			T?.UpdateDirBlocks()
-
-	//lifting non-item objects that have CAN_BE_LIFTED
-	MouseDrop(atom/over_object)
-		if (ishuman(over_object) && (src.object_flags & CAN_BE_LIFTED))
-			if (can_reach(over_object, src))
-				new /obj/item/lifted_thing(src, over_object)
-		else
-			..()
 
 	proc/setHealth(var/value)
 		var/prevHealth = _health
@@ -129,6 +129,8 @@
 			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
+			//TODO: positive quality modifiers max out at 3x at 100, negative quality modifiers max out at 0.10x at -100, and 0 is just 1x
+			//then value = src.value * quality_modifier
 			if(initial(src.opacity) && src.material.alpha <= MATERIAL_ALPHA_OPACITY)
 				RL_SetOpacity(0)
 			else if(initial(src.opacity) && !src.opacity && src.material.alpha > MATERIAL_ALPHA_OPACITY)
@@ -137,6 +139,9 @@
 	disposing()
 		for(var/mob/M in src.contents)
 			M.set_loc(src.loc)
+		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
+			var/turf/T = get_turf(src)
+			T?.UpdateDirBlocks()
 		tag = null
 		mats = null
 		if (artifact && !isnum(artifact))
@@ -177,6 +182,8 @@
 		O.name = name
 		O.quality = quality
 		O.icon = icon
+		O.value = value
+		O.alt_value = alt_value
 		O.icon_state = icon_state
 		O.set_dir(src.dir)
 		O.desc = desc
@@ -232,6 +239,9 @@
 			return null
 
 	proc/initialize()
+
+	proc/shatter_chemically(var/projectiles = TRUE) //!shatter effect, caused by chemicals inside object, should return TRUE if object actually shatters
+		return FALSE
 
 	attackby(obj/item/I as obj, mob/user as mob)
 // grabsmash
@@ -507,7 +517,6 @@
 	anchored = TRUE
 	mat_changename = 0
 	mat_changedesc = 0
-	event_handler_flags = IMMUNE_MANTA_PUSH
 	density = 0
 	flags = TECHNICAL_ATOM //This doesn't need the FPRINT that's on /atom right?
 
@@ -529,6 +538,8 @@
 	track_blood()
 		src.tracked_blood = null
 		return
+
+/obj/overlay/fake
 
 /obj/overlay/self_deleting
 	New(newloc, deleteTimer)
@@ -601,6 +612,7 @@
 	user.changeStatus("paralysis", 4 SECONDS)
 	user.changeStatus("weakened", 4 SECONDS)
 	src.visible_message("<span class='alert'><b>[src]</b> emits a loud thump and rattles a bit.</span>")
+	user.take_brain_damage(prob(50))
 
 	animate_storage_thump(src)
 
@@ -616,3 +628,12 @@
 			src.throw_at(get_edge_target_turf(src,get_dir(AM, src)), 10, 1)
 		else if(AM.throwforce >= 80 && !isrestrictedz(src.z))
 			src.meteorhit(AM)
+
+/// creates an id profile for any forenics purpose. override as needed
+/obj/proc/CreateID()
+	. = ""
+
+	do
+		for(var/i = 1 to 10) // 20 characters are way too fuckin' long for anyone to care about
+			. += "[pick(numbersAndLetters)]"
+	while(. in forensic_IDs)

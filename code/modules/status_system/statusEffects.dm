@@ -289,8 +289,8 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 500)
-				M.add_stam_mod_max("stims", 500)
+				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
+				M.add_stam_mod_max("stims", 50)
 				M.add_stun_resist_mod("stims", 1000)
 				M.filters += filter(type="displace", icon=icon('icons/effects/distort.dmi', "muscly"), size=0)
 				src.filter = M.filters[length(M.filters)]
@@ -1098,6 +1098,27 @@
 				var/mob/living/carbon/human/H = L
 				H.hud.update_resting()
 
+	turbosliding
+		id = "turbosliding"
+		name = "Turbosliding"
+		desc = "You are performing an incredibly sick slide."
+		visible = 0
+		unique = 1
+		maxDuration = 5 SECONDS // if you think this needs to be longer, please reconsider
+		movement_modifier = /datum/movement_modifier/turbosliding
+		var/mob/living/L
+
+		onAdd(optional=null)
+			. = ..()
+			if (isliving(owner))
+				L = owner
+			else
+				owner.delStatus("turbosliding")
+
+		onRemove()
+			. = ..()
+			L.force_laydown_standup()
+
 	ganger
 		id = "ganger"
 		name = "Gang Member"
@@ -1676,7 +1697,7 @@
 		//No atom properties around these parts :V
 		var/mob/ffs = owner
 		animate_swim(owner)
-		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors
+		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
 		APPLY_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		..()
 

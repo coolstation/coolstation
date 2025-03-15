@@ -293,7 +293,7 @@ obj/machinery/atmospherics/pipe
 				var/environment_temperature = 0
 
 				if(issimulatedturf(loc))
-					if(loc:blocks_air)
+					if(loc:gas_impermeable)
 						environment_temperature = loc:temperature
 					else
 						var/datum/gas_mixture/environment = loc.return_air()
@@ -349,6 +349,10 @@ obj/machinery/atmospherics/pipe
 
 		proc/rupture(pressure, destroy=FALSE)
 			var/new_rupture
+			#ifdef DATALOGGER
+			if (!src.ruptured) //new breaks only
+				game_stats.Increment("workplacesafety")
+			#endif
 			if (src.destroyed || destroy)
 				ruptured = 4
 				src.destroyed = TRUE

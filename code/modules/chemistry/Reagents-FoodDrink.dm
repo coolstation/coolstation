@@ -1828,9 +1828,9 @@ datum
 				if(volume >= 5 && !(locate(/obj/item/reagent_containers/food/snacks/breadslice) in T))
 					new /obj/item/reagent_containers/food/snacks/breadslice(T)
 
-		fooddrink/george_melonium
-			name = "george melonium"
-			id = "george_melonium"
+		fooddrink/rainbow_melonium
+			name = "rainbow melonium"
+			id = "rainbow_melonium"
 			description = "A robust and mysterious substance."
 			reagent_state = LIQUID
 			fluid_r = 0
@@ -2755,6 +2755,11 @@ datum
 			fluid_b = 220
 			transparency = 150
 			viscosity = 0.3
+			flammable_influence = TRUE
+			combusts_on_gaseous_fire_contact = TRUE
+			burn_speed = 1
+			burn_temperature = 1200
+			burn_volatility = 4
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -2778,6 +2783,11 @@ datum
 			transparency = 175
 			depletion_rate = 0.2
 			viscosity = 0.8
+			flammable_influence = TRUE
+			combusts_on_fire_contact = TRUE
+			burn_speed = 1
+			burn_temperature = 1000
+			burn_volatility = 6
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -3401,7 +3411,11 @@ datum
 			thirst_value = -2
 			bladder_value = -2
 			stun_resist = 100
-
+			var/static/list/od_halluc = list(
+				new /image('icons/mob/hallucinations.dmi', "orange") = list("orange"),
+				new /image('icons/mob/hallucinations.dmi', "lime") = list("lime"),
+				new /image('icons/mob/hallucinations.dmi', "lemon") = list("lemon"),
+			)
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -3486,10 +3500,9 @@ datum
 					M.take_brain_damage(9 * mult)
 					M.emote("scream")
 
-					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "orange", "orange")
-					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "lime", "lime")
-					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "lemon", "lemon")
 
+					var/image/imagekey = pick(od_halluc)
+					M.AddComponent(/datum/component/hallucination/fake_attack, 10, list(imagekey), od_halluc[imagekey], 25, 5)
 					if(probmult(15)) boutput("<span class='alert'><B>FRUIT IN MY EYES!!!</B></span>")
 
 					if(probmult(25))

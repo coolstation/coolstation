@@ -214,7 +214,7 @@
 	},
 /area/space)
 "aI" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/staffhall)
 "aJ" = (
 /obj/machinery/door/airlock{
@@ -282,13 +282,13 @@
 	name = "grimy vent";
 	tag = ""
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/staffhall)
 "aQ" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "u_guilty"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/staffhall)
 "aR" = (
 /turf/floor/stairs/quilty{
@@ -332,7 +332,7 @@
 /obj/decal/cleanable/blood/tracks{
 	dir = 9
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/staffhall)
 "aX" = (
 /turf/floor/black,
@@ -394,7 +394,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/staffhall)
 "bi" = (
 /turf/wall/auto/reinforced,
@@ -430,7 +430,7 @@
 "bn" = (
 /obj/machinery/door/airlock/pyro/external,
 /obj/decal/cleanable/blood/tracks,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/staffhall)
 "bo" = (
 /obj/grille/catwalk{
@@ -1917,10 +1917,10 @@
 	areastring = "Owl Maitenance";
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4";
@@ -2736,10 +2736,10 @@
 	areastring = "Owlery Arrivals";
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -3606,10 +3606,10 @@
 	areastring = "Office Wing";
 	dir = 1;
 	name = "N APC";
-	noalerts = 1;
 	pixel_y = 24;
 	start_charge = 1
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -4209,7 +4209,7 @@
 /turf/floor/white,
 /area/owlery/owleryhall)
 "jQ" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/Owlopen)
 "jR" = (
 /obj/decal/cleanable/rust,
@@ -4731,7 +4731,7 @@
 	name = "grimy vent";
 	tag = ""
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/owlery/Owlopen)
 "kX" = (
 /turf/floor/airless/stairs/quilty,
@@ -9701,7 +9701,7 @@
 	name = "table"
 	},
 /obj/item/device/radio/intercom/adventure/syndcommand{
-
+	
 	},
 /turf/floor/black,
 /area/owlery/office)
@@ -10187,12 +10187,6 @@
 	dir = 1
 	},
 /obj/structure/woodwall,
-/turf/floor/yellowblack{
-	icon_state = "yellowblack";
-	dir = 1
-	},
-/area/owlery/gangzone)
-"wD" = (
 /turf/floor/yellowblack{
 	icon_state = "yellowblack";
 	dir = 1
@@ -27020,7 +27014,7 @@ uS
 qm
 nz
 wo
-wD
+qI
 qZ
 xg
 xB

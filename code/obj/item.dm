@@ -117,6 +117,7 @@
 	var/limb_hit_bonus = 0 // attack bonus for when you have this item as a limb and hit someone with it
 	var/can_hold_items = 0 //when used as an arm, can it hold things?
 
+	//Magnitude of random pixel x and y offsets (-rand_pos to +rand_pos)
 	var/rand_pos = 0
 	var/obj/item/holding = null
 	var/rarity = ITEM_RARITY_COMMON // Just a little thing to indicate item rarity. RPG fluff.
@@ -289,9 +290,9 @@
 	inhand_image = image(inhand_image_icon)
 	if (src.rand_pos)
 		if (!src.pixel_x) // just in case
-			src.pixel_x = rand(-8,8)
+			src.pixel_x = rand(-rand_pos,rand_pos)
 		if (!src.pixel_y) // same as above
-			src.pixel_y = rand(-8,8)
+			src.pixel_y = rand(-rand_pos,rand_pos)
 	src.setItemSpecial(/datum/item_special/simple)
 
 	if (inventory_counter_enabled)
@@ -551,10 +552,11 @@
 				the_dir = turn(the_dir,45) */
 
 /obj/item/temperature_expose(datum/gas_mixture/air, temperature, volume)
+	var/turf/T = get_turf(src)
 	if (src.burn_possible && !src.burning)
 		if ((temperature > T0C + src.burn_point) && prob(5))
 			var/obj/item/firesource = null
-			for (var/obj/item/I in get_turf(src))
+			for (var/obj/item/I in T)
 				if (I.firesource)
 					firesource = I
 					break

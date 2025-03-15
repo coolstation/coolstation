@@ -11,7 +11,7 @@
 	stamina_cost = 0
 	stamina_crit_chance = 0
 	//mat_changename = 0
-	rand_pos = 1
+	rand_pos = 8
 	//var/patreon_prob = 9
 	var/rare_prob = 12
 	var/datum/figure_info/info = null
@@ -718,7 +718,7 @@ ABSTRACT_TYPE(/datum/figure_info/patreon)
 	item_amount = 1
 	max_item_amount = 1
 	//reusable = 0
-	rand_pos = 1
+	rand_pos = 8
 	var/ccolor = "y"
 	var/image/cap_image = null
 	var/itemstate = "cap-fig"

@@ -19,7 +19,7 @@
 				src.throw_impact(A, thr)
 				. = TRUE
 			if(isobj(A))
-				if(!A.CanPass(src, src.loc, 1.5))
+				if(!A.CanPass(src, src.loc))
 					src.throw_impact(A, thr)
 					. = TRUE
 
@@ -40,12 +40,13 @@
 		return
 
 	src.material?.triggerOnAttack(src, src, hit_atom)
-	hit_atom.material?.triggerOnHit(hit_atom, src, null, 2)
-	for(var/atom/A in hit_atom)
-		A.material?.triggerOnAttacked(A, src, hit_atom, src)
 
 	if(!hit_atom)
 		return
+
+	hit_atom.material?.triggerOnHit(hit_atom, src, null, 2)
+	for(var/atom/A in hit_atom)
+		A.material?.triggerOnAttacked(A, src, hit_atom, src)
 
 	reagents?.physical_shock(20)
 	if(SEND_SIGNAL(hit_atom, COMSIG_ATOM_HITBY_THROWN, src, thr))
@@ -77,7 +78,7 @@
 	reagents?.physical_shock(14)
 	src.throwing = throw_type
 
-	if (src.throwing & (THROW_CHAIRFLIP | THROW_GUNIMPACT | THROW_SLIP))
+	if (src.throwing & (THROW_CHAIRFLIP | THROW_GUNIMPACT | THROW_SLIP | THROW_KNOCKDOWN))
 		if (ismob(src))
 			var/mob/M = src
 			M.force_laydown_standup()

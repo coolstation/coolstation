@@ -194,7 +194,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	post_signal("supply")
 	var/HTML
 
-	var/header_thing_chui_toggle = (user.client && !user.client.use_chui) ? {"
+	var/header_thing_chui_toggle = true ? {"
 		<style type='text/css'>
 			body {
 				font-family: Verdana, sans-serif;
@@ -421,7 +421,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	// which as [src] turns into ... location = '.chui onclose Quartermaster's Console'
 	// which as you can probably guess is a syntax error. i have no idea why this only started
 	// happening halfway into this but: chui!!!!!!!!!!!!!!!!!!
-	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;")
+	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;", FALSE, TRUE)
 	onclose(user, "qmComputer_\ref[src]")
 	return
 
@@ -429,7 +429,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 // part of it is that there's no real good way to genericize this yet,
 // and part of it is that chui already sort of kind of eh maybe does it
 /obj/machinery/computer/supplycomp/proc/topicLink(action, subaction, var/list/extra)
-	return "?src=\ref[src]&action=[action][subaction ? "&subaction=[subaction]" : ""]&[extra && islist(extra) ? list2params(extra) : ""]"
+	return "byond://?src=\ref[src]&action=[action][subaction ? "&subaction=[subaction]" : ""]&[extra && islist(extra) ? list2params(extra) : ""]"
 
 
 /obj/machinery/computer/supplycomp/proc/set_cdc()
@@ -537,7 +537,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 						if (S.category == foundCategory)
 							ordershit += {"
 								<tr class='row[rownum % 2]'>
-									<th class='noborder itemtop'><a href='byond://?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name]</a></td>
+									<th class='noborder itemtop'><a href='byond://?src=\ref[src];action=buy;subaction=nextmenu_order;what=\ref[S]'>[S.name]</a></td>
 									<th class='noborder itemtop' style='text-align: right;'>[S.cost]</td>
 								</tr>
 								<tr class='row[rownum % 2]'>
@@ -553,58 +553,6 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 				return .
 
 
-			if ("buy")
-				// Handles purchasing items...
-
-				if(istype(locate(href_list["what"]), /datum/supply_order))
-					//If this is a supply order we came from the request approval form
-					var/datum/supply_order/O = locate(href_list["what"])
-					var/datum/supply_packs/P = O.object
-					shippingmarket.supply_requests -= O
-					if(wagesystem.shipping_budget >= P.cost)
-						wagesystem.shipping_budget -= P.cost
-						O.object = P
-						O.orderedby = usr.name
-						O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
-						var/obj/storage/S = O.create(usr)
-						shippingmarket.receive_crate(S)
-						logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
-						shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
-						. = {"<strong>Thanks for your order.</strong>"}
-					else
-						. = {"<strong>Insufficient funds in shipping budget.</strong>"}
-				else
-					//Comes from the orderform
-
-					var/datum/supply_order/O = new/datum/supply_order ()
-					var/datum/supply_packs/P = locate(href_list["what"])
-					if(P)
-
-						// The order computer has no emagged / other ability to display hidden or syndicate packs.
-						// It follows that someone's being clever if trying to order either of these items
-						if((P.syndicate && !src.hacked) || P.hidden)
-							// Get that jerk
-							if (usr in range(1))
-								//Check that whoever's doing this is nearby - otherwise they could gib any old scrub
-								trigger_anti_cheat(usr, "tried to href exploit order packs on [src]")
-
-							return
-
-						if(wagesystem.shipping_budget >= P.cost)
-							wagesystem.shipping_budget -= P.cost
-							O.object = P
-							O.orderedby = usr.name
-							O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
-							var/obj/storage/S = O.create(usr)
-							shippingmarket.receive_crate(S)
-							logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
-							shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
-							. = {"<strong>Thanks for your order.</strong>"}
-						else
-							. = {"<strong>Insufficient funds in shipping budget.</strong>"}
-
-
-				return . + .("list")
 
 	//from third party vendors
 	//departments will have ordering consoles that are limited to their department and maybe takeout
@@ -669,14 +617,14 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 							ordershit += {"
 							<tr class='row[rownum % 2]'>
 								<td class='noborder itemtop' style='width: 50%;'>
-									<a href='byond://?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
+									<a href='byond://?src=\ref[src];action=buy;vendor=[vendor];subaction=nextmenu_order_vendors;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
 									[S.desc]
 								</td>
 							"}
 						else //alternate so it's nice on the right side
 							ordershit += {"
 								<td class='noborder itemtop' style='width: 50%;'>
-									<a href='byond://?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
+									<a href='byond://?src=\ref[src];action=buy;vendor=[vendor];subaction=nextmenu_order_vendors;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
 									[S.desc]
 								</td>
 							</tr>
@@ -694,55 +642,6 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 					return .
 
 
-			if ("buy")
-				// Handles purchasing items...
-
-				if(istype(locate(href_list["what"]), /datum/supply_order))
-					//If this is a supply order we came from the request approval form
-					var/datum/supply_order/O = locate(href_list["what"])
-					var/datum/supply_packs/P = O.object
-					shippingmarket.supply_requests -= O
-					if(wagesystem.shipping_budget >= P.cost)
-						wagesystem.shipping_budget -= P.cost
-						O.object = P
-						O.orderedby = usr.name
-						O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
-						var/obj/storage/S = O.create(usr)
-						shippingmarket.receive_crate(S)
-						logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
-						shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
-						. = {"<strong>Thanks for your order.</strong>"}
-					else
-						. = {"<strong>Insufficient funds in shipping budget.</strong>"}
-				else
-					//Comes from the orderform
-
-					var/datum/supply_order/O = new/datum/supply_order ()
-					var/datum/supply_packs/P = locate(href_list["what"])
-					if(P)
-
-						// The order computer has no emagged / other ability to display hidden or syndicate packs.
-						// It follows that someone's being clever if trying to order either of these items
-						if((P.syndicate && !src.hacked) || P.hidden)
-							// Get that jerk
-							if (usr in range(1))
-								//Check that whoever's doing this is nearby - otherwise they could gib any old scrub
-								trigger_anti_cheat(usr, "tried to href exploit order packs on [src]")
-
-							return
-
-						if(wagesystem.shipping_budget >= P.cost)
-							wagesystem.shipping_budget -= P.cost
-							O.object = P
-							O.orderedby = usr.name
-							O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
-							var/obj/storage/S = O.create(usr)
-							shippingmarket.receive_crate(S)
-							logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
-							shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
-							. = {"<strong>Thanks for your order.</strong>"}
-						else
-							. = {"<strong>Insufficient funds in shipping budget.</strong>"}
 
 
 				return . + .("list", list("vendor" = vendor))
@@ -761,7 +660,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 			if (null, "list")
 				. = "<h2>Current Requests</h2><br><a href='[topicLink("requests", "clear")]'>Clear all</a><br><ul>"
 				for(var/datum/supply_order/SO in shippingmarket.supply_requests)
-					. += "<li>[SO.object.name], requested by [SO.orderedby] from [SO.console_location]. Price: [SO.object.cost] <a href='[topicLink("order", "buy", list(what = "\ref[SO]"))]'>Approve</a> <a href='[topicLink("requests", "remove", list(what = "\ref[SO]"))]'>Deny</a></li>"
+					. += "<li>[SO.object.name], requested by [SO.orderedby] from [SO.console_location]. Price: [SO.object.cost] <a href='[topicLink("buy", "nextmenu_order", list(what = "\ref[SO]"))]'>Approve</a> <a href='[topicLink("requests", "remove", list(what = "\ref[SO]"))]'>Deny</a></li>"
 
 				. += {"</ul>"}
 				return .
@@ -821,6 +720,65 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 		return
 
+/// Handles purchasing items...
+/obj/machinery/computer/supplycomp/proc/buy(subaction, href_list) //Split off for dedupe and so we van redirect better
+	if(istype(locate(href_list["what"]), /datum/supply_order))
+		//If this is a supply order we came from the request approval form
+		var/datum/supply_order/O = locate(href_list["what"])
+		var/datum/supply_packs/P = O.object
+		shippingmarket.supply_requests -= O
+		if(wagesystem.shipping_budget >= P.cost)
+			wagesystem.shipping_budget -= P.cost
+			O.object = P
+			O.orderedby = usr.name
+			O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
+			var/obj/storage/S = O.create(usr)
+			shippingmarket.receive_crate(S)
+			logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
+			shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
+			. = {"<strong>Thanks for your order.</strong>"}
+		else
+			. = {"<strong>Insufficient funds in shipping budget.</strong>"}
+		if (length(shippingmarket.supply_requests))
+			return . += requests("list") //send em back to the request list if there's anything left there
+
+	else
+		//Comes from the orderform
+
+		var/datum/supply_order/O = new/datum/supply_order ()
+		var/datum/supply_packs/P = locate(href_list["what"])
+		if(P)
+
+			// The order computer has no emagged / other ability to display hidden or syndicate packs.
+			// It follows that someone's being clever if trying to order either of these items
+			if((P.syndicate && !src.hacked) || P.hidden)
+				// Get that jerk
+				if (usr in range(1))
+					//Check that whoever's doing this is nearby - otherwise they could gib any old scrub
+					trigger_anti_cheat(usr, "tried to href exploit order packs on [src]")
+
+				return
+
+			if(wagesystem.shipping_budget >= P.cost)
+				wagesystem.shipping_budget -= P.cost
+				O.object = P
+				O.orderedby = usr.name
+				O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
+				var/obj/storage/S = O.create(usr)
+				shippingmarket.receive_crate(S)
+				logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
+				shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
+				. = {"<strong>Thanks for your order.</strong>"}
+			else
+				. = {"<strong>Insufficient funds in shipping budget.</strong>"}
+
+	switch (subaction)
+		if ("nextmenu_order")
+			return . += order_menu("list", href_list)
+		if ("nextmenu_order_vendors")
+			return . += order_vendors("list", href_list)
+
+
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(..())
@@ -832,6 +790,9 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	var/subaction = (href_list["subaction"] ? href_list["subaction"] : null)
 
 	switch (href_list["action"])
+		if ("buy")
+			src.temp = buy(subaction, href_list)
+
 		if ("order")
 			src.temp = order_menu(subaction, href_list)
 

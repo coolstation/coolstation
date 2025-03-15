@@ -95,8 +95,8 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
-#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-//#define MAP_OVERRIDE_CRAG						// secret :)
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
+#define MAP_OVERRIDE_CRAG						// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
@@ -110,7 +110,6 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_HORIZON			// Horizon by Warcrimes do not use
 //#define MAP_OVERRIDE_SPIRIT 			// Hastily Repurposed Shopping Mall - Tamber
 //#define MAP_OVERRIDE_ATLAS  			// gannetmap
-//#define MAP_OVERRIDE_MANTA  			// bootlicker map
 //#define MAP_OVERRIDE_DENSITY			// Urs' tiny map to troll players (we still have it I guess)
 //#define MAP_OVERRIDE_KONDARU
 //#define MAP_OVERRIDE_OZYMANDIAS

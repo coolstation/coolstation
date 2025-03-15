@@ -1440,7 +1440,6 @@
 						/obj/item/clothing/mask/mmyers,
 						/obj/item/clothing/mask/mime,
 						/obj/item/clothing/mask/moustache,
-						/obj/item/clothing/mask/melons,
 						/obj/item/clothing/mask/wrestling,
 						/obj/item/clothing/mask/wrestling/black,
 						/obj/item/clothing/mask/wrestling/green,
@@ -1489,6 +1488,30 @@
 	lots
 		min_amt2spawn = 5
 		max_amt2spawn = 7
+
+/obj/random_item_spawner/pizza
+	name = "random pizza spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 1
+	items2spawn = list(/obj/item/reagent_containers/food/snacks/pizza/cargo/cheese,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/pepperoni,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/mushroom)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
+
+/obj/random_item_spawner/cola
+	name = "random cola spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 2
+	items2spawn = list(/obj/item/reagent_containers/food/drinks/cola,
+						/obj/item/reagent_containers/food/drinks/cola/random,
+						/obj/item/reagent_containers/food/drinks/peach,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/orange,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/grones)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
 
 /obj/random_item_spawner/hat
 	name = "random hat spawner"
@@ -1607,6 +1630,7 @@
 						/obj/item/clothing/shoes/flippers,
 						/obj/item/clothing/shoes/fuzzy,
 						/obj/item/clothing/shoes/gogo,
+						/obj/item/clothing/shoes/turbopunk,
 						/obj/item/clothing/shoes/heels,
 						/obj/item/clothing/shoes/macho,
 						/obj/item/clothing/shoes/mj_shoes,
@@ -1670,6 +1694,12 @@
 	icon_state = "rand_furniture"
 	min_amt2spawn = 8
 	max_amt2spawn = 10
+	rare_chance = 4
+	rare_items2spawn = list(/obj/item/furniture_parts/throne_gold,
+						/obj/item/furniture_parts/table/regal,
+						/obj/item/furniture_parts/table/clothred,
+						/obj/item/furniture_parts/table/checkercloth,
+						/obj/item/furniture_parts/table/flock)
 	items2spawn = list(/obj/item/furniture_parts/IVstand,
 						/obj/item/furniture_parts/surgery_tray,
 						/obj/item/furniture_parts/table/desk,
@@ -1853,3 +1883,17 @@
 	one_to_three
 		min_amt2spawn = 1
 		max_amt2spawn = 3
+
+/obj/random_item_spawner/canisters
+	name = "random canister spawner"
+	amt2spawn = 1
+	rare_chance = 5
+	rare_items2spawn = list(/obj/machinery/portable_atmospherics/canister/farts/filled,
+						/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+						/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+	items2spawn = list(/obj/machinery/portable_atmospherics/canister/nitrogen,
+						/obj/machinery/portable_atmospherics/canister/oxygen,
+						/obj/machinery/portable_atmospherics/canister/toxins,
+						/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+						/obj/machinery/portable_atmospherics/canister/air,
+						/obj/machinery/portable_atmospherics/canister/empty)

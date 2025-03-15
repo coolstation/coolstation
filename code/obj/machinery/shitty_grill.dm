@@ -206,7 +206,7 @@
 
 			src.cooktime++
 
-		if (src.cooktime < 60)
+		if (src.cooktime <= 60)
 			if (src.cooktime == 30)
 				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
 				src.visible_message("<span class='notice'>[src] emits a delicious smell!</span>")

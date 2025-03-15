@@ -35,8 +35,9 @@
 	var/is_npc = 0
 
 	var/move_laying = null
-	var/static/image/speech_bubble = image('icons/mob/mob.dmi', "speech")
-	var/static/image/sleep_bubble = image('icons/mob/mob.dmi', "sleep")
+	var/static/mutable_appearance/speech_bubble = living_speech_bubble
+	var/static/mutable_appearance/sleep_bubble = mutable_appearance('icons/mob/mob.dmi', "sleep")
+	var/has_typing_indicator = FALSE
 	var/image/static_image = null
 	var/static_type_override = null
 	var/icon/default_static_icon = null // set to an icon and that's what the static will generate from
@@ -124,7 +125,6 @@
 	can_lie = 1
 
 	var/const/singing_prefix = "%"
-
 /mob/living/New()
 	..()
 	vision = new()
@@ -132,6 +132,8 @@
 	src.vis_contents += src.chat_text
 	if (can_bleed)
 		src.ensure_bp_list()
+	if (blood_id)
+		all_blood_reagents |= blood_id
 
 //	if (src.use_stamina)
 //		src.stamina_bar = new(src)
@@ -444,8 +446,6 @@
 			src.toggle_point_mode()
 		if ("say_radio")
 			src.say_radio()
-		if ("say_main_radio")
-			src.say_radio()
 		else
 			. = ..()
 
@@ -628,11 +628,14 @@
 	if (istype(target, /obj/decal/point))
 		return
 
-	var/obj/item/gun/G = src.equipped()
-	if(!istype(G) || !ismob(target))
-		src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
 	else
-		src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
+		var/obj/item/gun/G = src.equipped()
+		if(!istype(G) || !ismob(target))
+			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+		else
+			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
 
 	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
 
@@ -815,11 +818,14 @@
 								secure_headset_mode = lowertext(copytext(message,3,end)) //why did i do this to the players
 							message = copytext(message, end)
 
-						else
+						else // Chances are they're using a regular radio prefix instead of a 2 letter one
+							if (!lowertext(copytext(message,2,3) == " ")) // (This makes the :3 prefixes obsolete but fuck em they mess players up)
+								message_mode = "monitor"
+								secure_headset_mode = lowertext(copytext(message,2,3))
 							message = copytext(message, 3)
 
 				else
-					if (ishuman(src) || ismobcritter(src) || isrobot(src)) // this is shit
+					if (ishuman(src) || ismobcritter(src) || isrobot(src) || isshell(src)) // this is shit
 						message_mode = "secure headset"
 						secure_headset_mode = lowertext(copytext(message,2,3))
 					message = copytext(message, 3)
@@ -943,11 +949,6 @@
 				message = "[message][stutter(pick("!", "!!", "!!!"))]"
 			if(!src.stuttering && prob(8))
 				message = stutter(message)
-
-	UpdateOverlays(speech_bubble, "speech_bubble")
-	SPAWN_DBG(1.5 SECONDS)
-	if (speech_bubble.icon_state != "typing")
-		UpdateOverlays(null, "speech_bubble")
 
 	//Blobchat handling
 	if (src.mob_flags & SPEECH_BLOB)
@@ -1585,7 +1586,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	. += base_speed
 	. += movement_delay_modifier
-	. *= (1.1 - (max(src.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
+	. *= (1.1 - (min(src.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
 
 	var/multiplier = 1 // applied before running multiplier
 	var/health_deficiency_adjustment = 0
@@ -1594,6 +1595,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	var/aquatic_movement = 0
 	var/space_movement = 0
 	var/mob_pull_multiplier = 1
+	var/lying_multiplier = 1
 
 	var/datum/movement_modifier/modifier
 	for(var/type_or_instance in src.movement_modifiers)
@@ -1615,6 +1617,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		aquatic_movement += modifier.aquatic_movement
 		space_movement += modifier.space_movement
 		mob_pull_multiplier *= modifier.mob_pull_multiplier
+		lying_multiplier *= modifier.lying_multiplier
 
 		if (modifier.maximum_slowdown < maximum_slowdown)
 			maximum_slowdown = modifier.maximum_slowdown
@@ -1633,7 +1636,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (health_deficiency >= 30)
 		. += (health_deficiency / 35)
 
-	.= src.special_movedelay_mod(.,space_movement,aquatic_movement)
+	.= src.special_movedelay_mod(.,space_movement,aquatic_movement,lying_multiplier)
 
 	. = min(., maximum_slowdown)
 
@@ -1697,10 +1700,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 //this lets subtypes of living alter their movement delay WITHIN that big proc above - not before or after (which would fuck up the numbers greatly)
 //note : subtypes should not call this parent
-/mob/living/proc/special_movedelay_mod(delay,space_movement,aquatic_movement)
+/mob/living/proc/special_movedelay_mod(delay,space_movement,aquatic_movement,lying_multiplier)
 	.= delay
 	if (src.lying)
-		. += 14
+		. += 14 * lying_multiplier
 
 
 /mob/living/critter/keys_changed(keys, changed)
@@ -2044,6 +2047,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				var/atom/targetTurf = get_edge_target_turf(src, get_dir(src, get_step_away(src, origin)))
 				src.throw_at(targetTurf, 200, 4)
 	shock_cyberheart(shock_damage)
+	#ifdef DATALOGGER
+	game_stats.Increment("workplacesafety") //If your cyberheart fucks it as well it counts as 2 violations, which I think is fine :3
+	#endif
 	TakeDamage(zone, 0, shock_damage, 0, DAMAGE_BURN)
 	boutput(src, "<span class='alert'><B>You feel a [wattage > 7500 ? "powerful" : "slight"] shock course through your body!</B></span>")
 	src.unlock_medal("HIGH VOLTAGE", 1)
@@ -2073,3 +2079,63 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			return copytext(message, 2)
 	src.singing = 0
 	. =  message
+
+
+/mob/living/lastgasp(allow_dead=FALSE, grunt=null)
+	set waitfor = FALSE
+	if (!allow_dead && !isalive(src)) return
+	if (ON_COOLDOWN(src, "lastgasp", 0.7 SECONDS)) return
+	if (!src.client)
+		return
+	var/client/client = src.client
+	var/found_text = FALSE
+	var/whisper = FALSE
+	var/enteredtext = winget(client, "mainwindow.input", "text") // grab the text from the input bar
+	if (isnull(client)) return
+	if (length(enteredtext) > 5 && copytext(lowertext(enteredtext), 1, 6) == "say \"") // check if the player is trying to say something
+		winset(client, "mainwindow.input", "text=\"\"") // clear the player's input bar to register death / unconsciousness
+		enteredtext = copytext(enteredtext, 6, 0) // grab the text they were trying to say
+		if (length(enteredtext))
+			found_text = TRUE
+	if (!found_text)
+		for (var/window_type in list("saywindow", "radiosaywindow", "radiochannelsaywindow", "whisperwindow")) //scafolding for later
+			enteredtext = winget(client, "[window_type].input", "text")
+			if (isnull(client)) return
+			if (length(enteredtext))
+				if (window_type == "radiosaywindow")
+					enteredtext = ";" + enteredtext
+				if (window_type == "radiochannelsaywindow")
+					var/prefix = winget(client, "[window_type].input", "command")
+					//Find the radio prefix that open_radio_input set in the command
+					var/regex/R = new(@":([^\s]*)", "g")
+					R.Find(prefix)
+					enteredtext = "[R.match ? R.match : ";"]"  + enteredtext
+				if(window_type == "whisperwindow")
+					whisper = TRUE
+				winset(client, "[window_type].input", "text=\"\"")
+				if (isnull(client)) return
+				winset(client, "[window_type]", "is-visible=false")
+				if (isnull(client)) return
+				src.cancel_typing(window_type)
+				found_text = TRUE
+				break
+	if (found_text)
+		if (length(enteredtext) > 20)
+			enteredtext = copytext(enteredtext, 1, length(enteredtext) - rand(1, 10))
+		var/message = enteredtext + "--" + grunt
+		var/logname = isalive(src) ? "interruptgasp" : "lastgasp"
+		if (!allow_dead && !isalive(src)) return
+		logTheThing("say", src, "[logname] SAY: [html_encode(message)] [log_loc(src)]")
+		var/old_stat = src.stat
+		setalive(src) // okay so we need to be temporarily alive for this in case it's happening as we were dying...
+
+		// break if it's an npc or a disconnected player.
+		// this check needs to be here because waitfor = FALSE means that this proc can run as/after the person is deleted.
+		if (src.disposed || !src.client)
+			return
+		if (ishuman(src))
+			var/mob/living/carbon/human/H = src
+			whisper ? H.whisper(message, forced=TRUE) : H.say(message, ignore_stamina_winded = 1)
+		else
+			whisper ? src.whisper(message) : src.say(message)
+		src.stat = old_stat // back to being dead 😌

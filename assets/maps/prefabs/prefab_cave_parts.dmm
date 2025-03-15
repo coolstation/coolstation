@@ -1,56 +1,791 @@
-"a" = (/turf/space,/area/space)
-"d" = (/turf/wall/asteroid/gehenna/tough/z3,/area/noGenerate)
-"k" = (/obj/lattice,/obj/grille/steel/broken,/turf/floor/plating/random,/area/noGenerate)
-"l" = (/obj/item/clothing/glasses/sunglasses/tanning,/turf/floor/plating/random,/area/noGenerate)
-"o" = (/obj/lattice,/turf/floor/plating/gehenna,/area/noGenerate)
-"r" = (/turf/wall/r_wall,/area/noGenerate)
-"t" = (/obj/item/parts/human_parts/leg/mutant/skeleton/left,/turf/floor/plating/gehenna,/area/noGenerate)
-"u" = (/obj/item/inner_tube,/turf/floor/plating/gehenna,/area/noGenerate)
-"v" = (/obj/grille/steel,/turf/floor/plating/random,/area/noGenerate)
-"x" = (/obj/decal/poster/wallsign/stencil/left/o,/obj/decal/poster/wallsign/stencil/right/l,/turf/wall/r_wall,/area/noGenerate)
-"y" = (/obj/decal/skeleton,/turf/floor/plating/gehenna,/area/noGenerate)
-"A" = (/obj/grille/steel/broken,/turf/floor/plating/random,/area/noGenerate)
-"C" = (/turf/floor/plating/gehenna,/area/space)
-"D" = (/obj/lattice,/obj/item/clothing/suit/space/emerg,/turf/floor/plating/random,/area/noGenerate)
-"E" = (/turf/floor/plating/random,/area/noGenerate)
-"F" = (/obj/item/reagent_containers/food/drinks/fueltank/chlorine,/turf/floor/plating/random,/area/noGenerate)
-"J" = (/obj/lattice,/obj/grille/steel/broken,/turf/floor/plating/gehenna,/area/noGenerate)
-"K" = (/obj/decal/poster/wallsign/stencil/left/p,/obj/decal/poster/wallsign/stencil/right/o,/turf/wall/r_wall,/area/noGenerate)
-"L" = (/obj/item/clothing/under/towel,/turf/floor/plating/random,/area/noGenerate)
-"N" = (/obj/grille/steel,/turf/floor/plating/gehenna,/area/noGenerate)
-"O" = (/obj/item/bandage,/turf/floor/plating/gehenna,/area/noGenerate)
-"P" = (/obj/critter/spirit,/turf/floor/plating/gehenna,/area/noGenerate)
-"Q" = (/turf/floor/plating/gehenna,/area/noGenerate)
-"V" = (/turf/wall/asteroid/gehenna/tough/z3,/area/space)
-"W" = (/obj/lattice,/obj/item/wirecutters,/turf/floor/plating/random,/area/noGenerate)
-"X" = (/obj/item/material_piece/bone{name = "grody bone"},/obj/grille/steel/broken,/turf/floor/plating/random,/area/noGenerate)
-"Y" = (/obj/item/parts/human_parts/arm/mutant/skeleton/left,/turf/floor/plating/random,/area/noGenerate)
-"Z" = (/obj/lattice,/turf/floor/plating/random,/area/noGenerate)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/space,
+/area/space)
+"d" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/noGenerate)
+"k" = (
+/obj/lattice,
+/obj/grille/steel/broken,
+/turf/floor/plating/random,
+/area/noGenerate)
+"l" = (
+/obj/item/clothing/glasses/sunglasses/tanning,
+/turf/floor/plating/random,
+/area/noGenerate)
+"o" = (
+/obj/lattice,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"r" = (
+/turf/wall/r_wall,
+/area/noGenerate)
+"t" = (
+/obj/item/parts/human_parts/leg/mutant/skeleton/left,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"u" = (
+/obj/item/inner_tube,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"v" = (
+/obj/grille/steel,
+/turf/floor/plating/random,
+/area/noGenerate)
+"x" = (
+/obj/decal/poster/wallsign/stencil/left/o,
+/obj/decal/poster/wallsign/stencil/right/l,
+/turf/wall/r_wall,
+/area/noGenerate)
+"y" = (
+/obj/decal/skeleton,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"A" = (
+/obj/grille/steel/broken,
+/turf/floor/plating/random,
+/area/noGenerate)
+"C" = (
+/turf/floor/plating/gehenna,
+/area/space)
+"D" = (
+/obj/lattice,
+/obj/item/clothing/suit/space/emerg,
+/turf/floor/plating/random,
+/area/noGenerate)
+"E" = (
+/turf/floor/plating/random,
+/area/noGenerate)
+"F" = (
+/obj/item/reagent_containers/food/drinks/fueltank/chlorine,
+/turf/floor/plating/random,
+/area/noGenerate)
+"J" = (
+/obj/lattice,
+/obj/grille/steel/broken,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"K" = (
+/obj/decal/poster/wallsign/stencil/left/p,
+/obj/decal/poster/wallsign/stencil/right/o,
+/turf/wall/r_wall,
+/area/noGenerate)
+"L" = (
+/obj/item/clothing/under/towel,
+/turf/floor/plating/random,
+/area/noGenerate)
+"N" = (
+/obj/grille/steel,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"O" = (
+/obj/item/bandage,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"P" = (
+/obj/critter/spirit,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"Q" = (
+/turf/floor/plating/gehenna,
+/area/noGenerate)
+"V" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/space)
+"W" = (
+/obj/lattice,
+/obj/item/wirecutters,
+/turf/floor/plating/random,
+/area/noGenerate)
+"X" = (
+/obj/item/material_piece/bone{
+	name = "grody bone"
+	},
+/obj/grille/steel/broken,
+/turf/floor/plating/random,
+/area/noGenerate)
+"Y" = (
+/obj/item/parts/human_parts/arm/mutant/skeleton/left,
+/turf/floor/plating/random,
+/area/noGenerate)
+"Z" = (
+/obj/lattice,
+/turf/floor/plating/random,
+/area/noGenerate)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaa
-aaCaaaaaaaaaaaaaaaaaCaaaa
-aCCCaaaaaaaaaaaaaaaaCCaaa
-aaCCCCCaaaaaaQQaaaaaCCaaa
-aaaCCCQQQQQQQQQraaarQCaaa
-aaaaCQQQQQQQQQQQQaaNQQaaa
-aaaaaQQQQQQVrQQQQQQNQEQaa
-aaaaaEQQQVVVVVVVQQQQQQFCa
-aaaaaQQQVVVVVVVVVVQQZYQCC
-aaaaQQQQVVVVQVVVVVQoWQQCC
-aaaaQQQQaVVVQuVVVVVvQQQaa
-aaaaQQQaaVVNQoVVVVrAQQaaa
-aaaaQQQaarNyPJVVVVrNQaaaa
-aaaaQQQarrOoQVVVVraQQaaaa
-aaaQQQQrroQQVVVVKxaQQaaaa
-aaQQQQQrQQQQVVrrlaaQQaaaa
-aaQQQQQQQQtVVrraaaaQQraaa
-aaaaQQQQQXVVrrLaaarQQQaaa
-aaaarQQQQDkoZEaaaaQQQQaaa
-aaaadQQQQQQoQaaaaQQQQQaaa
-aaaaddQQQQQQQQQQQQQQQaaaa
-aaQQQddrQQQQQQQQQQQaaaaaa
-aaQQQrraaaaaaaaCCaaaaaaaa
-aarQQraaaaaaaaCCCaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+C
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+C
+C
+C
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+Q
+Q
+a
+a
+a
+a
+Q
+Q
+r
+a
+"}
+(4,1,1) = {"
+a
+a
+C
+C
+C
+a
+a
+a
+a
+a
+a
+a
+a
+a
+Q
+Q
+Q
+a
+a
+a
+a
+Q
+Q
+Q
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+C
+C
+C
+a
+a
+a
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+r
+d
+d
+Q
+Q
+Q
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+C
+C
+Q
+Q
+E
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+d
+d
+r
+r
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+C
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+d
+r
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+a
+a
+a
+r
+r
+Q
+Q
+Q
+Q
+Q
+r
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+Q
+Q
+Q
+Q
+V
+V
+a
+a
+a
+r
+r
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+Q
+Q
+Q
+V
+V
+V
+V
+V
+r
+r
+o
+Q
+Q
+X
+D
+Q
+Q
+Q
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+Q
+Q
+Q
+V
+V
+V
+V
+V
+N
+O
+Q
+Q
+t
+V
+k
+Q
+Q
+Q
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+Q
+Q
+V
+V
+V
+V
+V
+N
+y
+o
+Q
+Q
+V
+V
+o
+o
+Q
+Q
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+Q
+Q
+r
+V
+V
+Q
+Q
+Q
+P
+Q
+V
+V
+V
+r
+Z
+Q
+Q
+Q
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+Q
+Q
+Q
+Q
+V
+V
+V
+u
+o
+J
+V
+V
+V
+r
+r
+E
+a
+Q
+Q
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+Q
+Q
+Q
+Q
+V
+V
+V
+V
+V
+V
+V
+V
+r
+r
+L
+a
+a
+Q
+Q
+a
+C
+a
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+r
+Q
+Q
+V
+V
+V
+V
+V
+V
+V
+V
+r
+a
+a
+a
+a
+Q
+Q
+C
+C
+a
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+a
+Q
+Q
+Q
+V
+V
+V
+V
+V
+V
+K
+l
+a
+a
+a
+a
+Q
+Q
+C
+C
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+a
+Q
+Q
+V
+V
+V
+V
+V
+r
+x
+a
+a
+a
+a
+Q
+Q
+Q
+a
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+a
+a
+a
+a
+Q
+Q
+Q
+Q
+V
+r
+r
+a
+a
+a
+a
+r
+Q
+Q
+Q
+Q
+a
+a
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+r
+N
+N
+Q
+Q
+o
+v
+A
+N
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+a
+a
+a
+a
+"}
+(21,1,1) = {"
+a
+C
+C
+C
+Q
+Q
+Q
+Q
+Z
+W
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+a
+a
+a
+a
+"}
+(22,1,1) = {"
+a
+a
+C
+C
+C
+Q
+E
+Q
+Y
+Q
+Q
+Q
+a
+a
+a
+a
+r
+Q
+Q
+Q
+a
+a
+a
+a
+a
+"}
+(23,1,1) = {"
+a
+a
+a
+a
+a
+a
+Q
+F
+Q
+Q
+Q
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(24,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+C
+C
+C
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(25,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+C
+C
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

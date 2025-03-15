@@ -13,10 +13,6 @@ var/list/prefab_shuttles = list()
 				for(var/prefab_type in concrete_typesof(/datum/prefab_shuttle/cog2))
 					var/datum/prefab_shuttle/D = new prefab_type()
 					prefab_shuttles.Add(D)
-			if(/area/shuttle/escape/centcom/manta)
-				for(var/prefab_type in concrete_typesof(/datum/prefab_shuttle/manta))
-					var/datum/prefab_shuttle/D = new prefab_type()
-					prefab_shuttles.Add(D)
 			if(/area/shuttle/escape/centcom/sealab)
 				for(var/prefab_type in concrete_typesof(/datum/prefab_shuttle/sealab))
 					var/datum/prefab_shuttle/D = new prefab_type()
@@ -67,15 +63,6 @@ var/list/prefab_shuttles = list()
 		prefab_path = "assets/maps/shuttles/cog2/cog2-disaster.dmm"
 	royal
 		prefab_path = "assets/maps/shuttles/cog2/cog2-royal.dmm"
-
-/datum/prefab_shuttle/manta
-	prefab_path = "assets/maps/shuttles/manta/manta_default.dmm"
-	landmark = LANDMARK_SHUTTLE_MANTA
-
-	disaster
-		prefab_path = "assets/maps/shuttles/manta/manta_disaster.dmm"
-	royal
-		prefab_path = "assets/maps/shuttles/manta/manta_royal.dmm"
 
 /datum/prefab_shuttle/sealab
 	prefab_path = "assets/maps/shuttles/sealab/oshan_default.dmm"

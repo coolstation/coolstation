@@ -90,7 +90,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 		add_health_holder(/datum/healthHolder/toxin)
 		add_health_holder(/datum/healthHolder/brain)
 
-	CanPass(atom/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/mover, turf/target)
 		if (!src.density && istype(mover, /obj/projectile))
 			return prob(50)
 		else
@@ -247,6 +247,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 
 /mob/living/critter/small_animal/mouse/mickey
 	name = "Mickey Mouse"
+	real_name = "Mickey Mouse"
 	desc = "Yes look, it is our rat. It is our creation. It is our rodent to do with as we please, and nobody can stop us."
 	icon_state = "mickey"
 	icon_state_dead = "mickey-dead"
@@ -569,17 +570,17 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 			return ..()
 		message = reverse_text(message)
 		..(message)*/
-	visible_message(var/msg, var/self, var/blind, var/group)
-		msg = "<span style='-ms-transform: rotate(180deg)'>[msg]</span>"
-		if(self)
-			self = "<span style='-ms-transform: rotate(180deg)'>[self]</span>"
-		if(blind)
-			blind = "<span style='-ms-transform: rotate(180deg)'>[blind]</span>"
-		return ..(msg,self,blind,group)
+	visible_message(var/message, var/self_message, var/blind_message, var/group)
+		message = "<span style='-ms-transform: rotate(180deg)'>[message]</span>"
+		if(self_message)
+			self_message = "<span style='-ms-transform: rotate(180deg)'>[self_message]</span>"
+		if(blind_message)
+			blind_message = "<span style='-ms-transform: rotate(180deg)'>[blind_message]</span>"
+		return ..(message,self_message,blind_message,group)
 
-	audible_message(var/msg)
-		msg = "<span style='-ms-transform: rotate(180deg)'>[msg]</span>"
-		return ..(msg)
+	audible_message(var/message)
+		message = "<span style='-ms-transform: rotate(180deg)'>[message]</span>"
+		return ..(message)
 
 
 
@@ -2709,7 +2710,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 				boutput(src, "[M] already has a rat in [his_or_her(M)] pocket.")
 			return
 		if(voluntary && M != src.last_poked) // if we poked that person it means we implicitly agree
-			boutput(M, "You extend your hand to the mouse, waiting for it to accept.")
+			boutput(M, "You extend your hand to the rat, waiting for it to accept.")
 			if (ON_COOLDOWN(src, "mentor rat pickup popup", 3 SECONDS))
 				return
 			if (alert(src, "[M] wants to pick you up and put you in their pocket. Is that okay with you?", "Hop in the pocket", "Yes", "No") != "Yes")
@@ -2721,7 +2722,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			M.visible_message("[M] picks up \the [src] and puts it in [his_or_her(M)] pocket.", "You pick up \the [src] and put it in your pocket.")
 		else
 			M.visible_message("\The [src] jumps into [M]'s pocket.", "\The [src] jumps into your pocket.")
-		boutput(M, "You can click on the status effect in the top right to kick the mouse out.")
+		boutput(M, "You can click on the status effect in the top right to kick the rat out.")
 		boutput(src, "<span style='color:red; font-size:1.5em'><b>You are now in someone's pocket and can talk to them and click on their screen to ping in the place where you're ctrl+clicking. This is a feature meant for teaching and helping players. Do not abuse it by using it to just chat with your friends!</b></span>")
 		var/mob/dead/target_observer/mentor_mouse_observer/obs = new(M, src.is_admin)
 		obs.set_observe_target(M)
@@ -2764,7 +2765,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if ("dance")
 				if (src.emote_check(voluntary, 50))
 					animate_bouncy(src) // bouncy!
-					return "<span class='emote'><b>[src]</b> [pick("bounces","dances","boogies","frolics","prances","hops")] around with [pick("joy","fervor","excitement","vigor","happiness")]!</span>"
+					return "<span class='emote'><b>[src]</b> [pick("bounces","dances","boogies","frolics","prances","hops","yiffs")] around with [pick("joy","fervor","excitement","vigor","happiness","turgidity")]!</span>"
 		return ..()
 
 	specific_emote_type(var/act)

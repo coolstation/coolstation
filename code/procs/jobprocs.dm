@@ -363,9 +363,11 @@
 	// Ears
 	if (JOB.slot_ears && length(JOB.slot_ears) > 1)
 		H.equip_new_if_possible(weighted_pick(JOB.slot_ears), H.slot_ears)
+		H.setup_radio_box()
 	else if (length(JOB.slot_ears))
 		if (!(H.traitHolder && H.traitHolder.hasTrait("allears") && ispath(JOB.slot_ears[1],/obj/item/device/radio/headset)))
 			H.equip_new_if_possible(JOB.slot_ears[1], H.slot_ears)
+			H.setup_radio_box()
 	// Mask
 	if (JOB.slot_mask && length(JOB.slot_mask) > 1)
 		H.equip_new_if_possible(weighted_pick(JOB.slot_mask), H.slot_wear_mask)

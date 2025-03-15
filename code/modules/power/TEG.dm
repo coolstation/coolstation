@@ -545,7 +545,12 @@ datum/pump_ui/circulator_ui
 
 	get_atom()
 		return our_circ
-
+/obj/item/electronics/frame/teg_furnace
+	name = "thermoelectric furnace frame"
+	store_type = /obj/machinery/power/furnace/thermo
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
 /obj/item/electronics/frame/teg
 	name = "thermoelectric generator frame"
 	store_type = /obj/machinery/power/generatorTemp
@@ -675,15 +680,9 @@ datum/pump_ui/circulator_ui
 		light.attach(src)
 
 		SPAWN_DBG(0.5 SECONDS)
-			src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
-			src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
-			if(!src.circ1 || !src.circ2)
-				src.status |= BROKEN
 
-			src.circ1?.generator = src
-			src.circ1?.side = LEFT_CIRCULATOR
-			src.circ2?.generator = src
-			src.circ2?.side = RIGHT_CIRCULATOR
+			check_circs()
+
 			src.transformation_mngr.generator = src
 
 			//furnaces
@@ -696,6 +695,19 @@ datum/pump_ui/circulator_ui
 				semiconductor = new(src)
 
 			updateicon()
+
+	proc/check_circs()
+		src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
+		src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
+		if(!src.circ1 || !src.circ2)
+			src.status |= BROKEN
+		else
+			src.status &= ~BROKEN
+
+		src.circ1?.generator = src
+		src.circ1?.side = LEFT_CIRCULATOR
+		src.circ2?.generator = src
+		src.circ2?.side = RIGHT_CIRCULATOR
 
 	disposing()
 		src.circ1?.generator = null
@@ -802,6 +814,7 @@ datum/pump_ui/circulator_ui
 
 	process(mult)
 		if(!src.circ1 || !src.circ2)
+			check_circs()
 			return
 
 		var/datum/gas_mixture/hot_air = src.circ1.return_transfer_air()
@@ -1534,9 +1547,9 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	attack_hand(mob/user)
 		if(status & (BROKEN | NOPOWER))
 			return
-		user << browse(return_text(),"window=computer;can_close=1")
+		user << browse(return_text(),"window=computer_\ref[src];can_close=1")
 		src.add_dialog(user)
-		onclose(user, "computer")
+		onclose(user, "computer_\ref[src]")
 
 	process()
 		..()

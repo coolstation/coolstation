@@ -23,7 +23,7 @@
 	stamina_damage = 25
 	stamina_cost = 20
 	stamina_crit_chance = 35
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 	move_triggered = 1
 
@@ -70,6 +70,20 @@
 		return
 	..()
 */
+
+/obj/item/extinguisher/shatter_chemically(var/projectiles = FALSE) //needs sound probably definitely for sure
+	for(var/mob/M in AIviewers(src))
+		boutput(M, SPAN_ALERT("The <B>[src.name]</B> breaks open!"))
+	if(projectiles)
+		var/datum/projectile/special/spreader/uniform_burst/circle/circle = new /datum/projectile/special/spreader/uniform_burst/circle/(get_turf(src))
+		circle.shot_sound = null //no grenade sound ty
+		circle.spread_projectile_type = /datum/projectile/bullet/shrapnel
+		circle.pellet_shot_volume = 0
+		circle.pellets_to_fire = 10
+		shoot_projectile_ST_pixel_spread(get_turf(src), circle, get_step(src, NORTH))
+	src.reagents.reaction(get_turf(src), TOUCH, src.reagents.total_volume)
+	qdel(src)
+	return TRUE
 
 /obj/item/extinguisher/pixelaction(atom/target, params, mob/user, reach)
 	..()

@@ -15,13 +15,12 @@
 	var/overlay_key
 	var/atom/attached
 	var/list/random_icons = list()
+	rand_pos = 8
 
 	New()
 		..()
 		if (islist(src.random_icons) && length(src.random_icons))
 			src.icon_state = pick(src.random_icons)
-		pixel_y = rand(-8, 8)
-		pixel_x = rand(-8, 8)
 
 	afterattack(var/atom/A as mob|obj|turf, var/mob/user as mob, reach, params)
 		if (!A)

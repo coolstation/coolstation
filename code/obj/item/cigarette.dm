@@ -27,7 +27,7 @@
 	var/puffrate = 1
 	var/cycle = 4
 	var/numpuffs = 40 //number of times the cig can dispense reagents
-	rand_pos = 1
+	rand_pos = 8
 	use_bloodoverlay = 0
 
 	setupProperties()
@@ -289,6 +289,7 @@
 					if(H.traitHolder && H.traitHolder.hasTrait("smoker") || !((src in H.get_equipped_items()) || ((H.l_store==src||H.r_store==src) && !(H.wear_mask && (H.wear_mask.c_flags & BLOCKSMOKE || (H.wear_mask.c_flags & MASKINTERNALS && H.internal))))))
 						src.reagents.remove_any(puffrate)
 					else
+						open_flame_reaction(M.reagents)
 						if(H.bodytemperature < H.base_body_temp)
 							H.bodytemperature += 1
 						if (prob(1))
@@ -439,7 +440,7 @@
 	hit_type = DAMAGE_BLUNT
 	throw_speed = 0.5
 	w_class = W_CLASS_TINY
-	rand_pos = 1
+	rand_pos = 8
 	var/flavor = null
 
 	New()
@@ -559,7 +560,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
 	stamina_cost = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigpacket/nicofree
 	name = "nicotine-free cigarette packet"
@@ -674,7 +675,7 @@
 	throwforce = 1
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigarbox
 	name = "cigar box"
@@ -691,7 +692,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
 	stamina_cost = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigarbox/New()
 	..()
@@ -755,7 +756,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
 	stamina_cost = 3
-	rand_pos = 1
+	rand_pos = 8
 
 /obj/item/cigarbox/gold/update_icon()
 	src.overlays = null
@@ -842,7 +843,7 @@
 	burn_possible = TRUE
 	health = 20
 	var/match_amt = 6 // -1 for infinite
-	rand_pos = 1
+	rand_pos = 8
 
 	get_desc()
 		if (src.match_amt == -1)
@@ -926,7 +927,7 @@
 
 	var/light_mob = 0
 	var/life_timer = 0
-	rand_pos = 1
+	rand_pos = 8
 	var/datum/light/light
 
 	New()
@@ -945,10 +946,10 @@
 
 	dropped(mob/user)
 		..()
-		if (isturf(src.loc) && src.on > 0)
+		/*if (isturf(src.loc) && src.on > 0)
 			user.visible_message("<span class='alert'><b>[user]</b> calmly drops and treads on the lit [src.name], putting it out instantly.</span>")
 			src.put_out(user)
-			return
+			return*/
 		SPAWN_DBG(0)
 			if (src.loc != user)
 				light.attach(src)
@@ -1094,6 +1095,7 @@
 				if (fella.wear_mask && istype(fella.wear_mask, /obj/item/clothing/mask/cigarette))
 					var/obj/item/clothing/mask/cigarette/smoke = fella.wear_mask // aaaaaaa
 					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with [src].</span>")
+					open_flame_reaction(fella.reagents)
 					fella.set_clothing_icon_dirty()
 					return
 				else if (fella.bleeding || (fella.butt_op_stage == 4 && user.zone_sel.selecting == "chest"))
@@ -1144,8 +1146,8 @@
 
 	New()
 		..()
-		src.create_reagents(100)
-		reagents.add_reagent("fuel", 100)
+		src.create_reagents(10)
+		reagents.add_reagent("fuel", 10)
 
 		src.setItemSpecial(/datum/item_special/flame)
 		return
@@ -1264,7 +1266,7 @@
 					src.deactivate(null)
 				return
 			if (!infinite_fuel && reagents.get_reagent_amount("fuel"))
-				reagents.remove_reagent("fuel", 1)
+				reagents.remove_reagent("fuel", 0.2)
 			var/turf/location = src.loc
 			if (ismob(location))
 				var/mob/M = location
@@ -1288,7 +1290,7 @@
 
 	firesource_interact()
 		if (!infinite_fuel && reagents.get_reagent_amount("fuel"))
-			reagents.remove_reagent("fuel", 1)
+			reagents.remove_reagent("fuel", 0.4)
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)

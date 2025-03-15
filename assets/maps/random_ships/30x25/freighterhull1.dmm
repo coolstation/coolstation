@@ -10,9 +10,23 @@
 	},
 /turf/space,
 /area/dmm_suite/clear_area)
-"cS" = (
-/obj/landmark/random_ship_room/cargo5x3,
+"cC" = (
+/obj/random_item_spawner/hat/maybe_few,
 /turf/floor/engine,
+/area/dmm_suite/clear_area)
+"cS" = (
+/obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/furniture_parts/one_or_zero,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"dp" = (
+/obj/random_item_spawner/buddytool/one_or_zero,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"fh" = (
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/desk_stuff/maybe_few,
+/turf/floor/grime,
 /area/dmm_suite/clear_area)
 "fM" = (
 /obj/computer3frame,
@@ -26,11 +40,13 @@
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
 "gc" = (
-/obj/wingrille_spawn/auto,
-/obj/window_blinds/cog2/middle{
-	dir = 8
-	},
+/obj/wingrille_spawn/classic,
+/obj/window_blinds,
 /turf/floor/plating,
+/area/dmm_suite/clear_area)
+"gj" = (
+/obj/random_item_spawner/dressup/one,
+/turf/floor/engine,
 /area/dmm_suite/clear_area)
 "gG" = (
 /obj/stool/bed,
@@ -40,12 +56,27 @@
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
-"kZ" = (
-/turf/wall/auto/supernorn,
+"ho" = (
+/obj/machinery/light/small,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"jY" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/floor/grime,
 /area/dmm_suite/clear_area)
 "lM" = (
 /obj/stool/chair/wooden{
 	dir = 1
+	},
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"lO" = (
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
@@ -69,6 +100,12 @@
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
+"op" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/floor/plating/random,
+/area/dmm_suite/clear_area)
 "oD" = (
 /turf/floor/plating/random,
 /area/dmm_suite/clear_area)
@@ -76,20 +113,31 @@
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-L"
 	},
-/turf/wall/auto/supernorn,
+/obj/wingrille_spawn/classic,
+/turf/floor/plating,
 /area/dmm_suite/clear_area)
 "pE" = (
 /turf/floor/airbridge,
 /area/dmm_suite/clear_area)
 "pJ" = (
-/obj/wingrille_spawn/auto,
-/obj/window_blinds/cog2/right,
+/obj/wingrille_spawn/classic,
+/obj/window_blinds/right,
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "pV" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4
 	},
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"qn" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"qQ" = (
+/obj/decal/cleanable/dirt/random,
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
 "qX" = (
@@ -99,13 +147,27 @@
 "ue" = (
 /obj/table/wood/auto,
 /obj/machinery/microwave,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "xd" = (
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-M"
 	},
-/turf/wall/auto/supernorn,
+/obj/wingrille_spawn/classic,
+/turf/floor/plating,
+/area/dmm_suite/clear_area)
+"xv" = (
+/obj/machinery/light,
+/obj/random_item_spawner/shoe,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"xA" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
 /area/dmm_suite/clear_area)
 "xZ" = (
 /obj/window/cubicle{
@@ -131,7 +193,11 @@
 	dir = 1;
 	icon_state = "alt_heater-M"
 	},
-/turf/wall/auto/supernorn,
+/obj/wingrille_spawn/classic,
+/turf/floor/plating,
+/area/dmm_suite/clear_area)
+"yz" = (
+/turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "yP" = (
 /obj/machinery/shuttle/engine/propulsion{
@@ -152,8 +218,19 @@
 /obj/stool/chair/wooden,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
+"Fj" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/floor/plating/random,
+/area/dmm_suite/clear_area)
+"FW" = (
+/obj/random_item_spawner/furniture_parts/one_or_zero,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
 "Gu" = (
 /obj/table/reinforced/auto,
+/obj/random_item_spawner/desk_stuff/one_or_zero,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "Hk" = (
@@ -165,7 +242,8 @@
 	dir = 1;
 	icon_state = "alt_heater-L"
 	},
-/turf/wall/auto/supernorn,
+/obj/wingrille_spawn/classic,
+/turf/floor/plating,
 /area/dmm_suite/clear_area)
 "Me" = (
 /obj/machinery/door/poddoor/blast{
@@ -179,10 +257,11 @@
 	dir = 1;
 	icon_state = "alt_heater-R"
 	},
-/turf/wall/auto/supernorn,
+/obj/wingrille_spawn/classic,
+/turf/floor/plating,
 /area/dmm_suite/clear_area)
 "Ne" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "Ni" = (
@@ -203,6 +282,13 @@
 /obj/item/card_group/plain,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
+"OE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/random_item_spawner/junk/one,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
 "QI" = (
 /obj/table/reinforced/auto,
 /obj/item/device/radio/intercom/loudspeaker{
@@ -210,10 +296,43 @@
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
+"RD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"Tt" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating/random,
+/area/dmm_suite/clear_area)
 "Up" = (
-/obj/wingrille_spawn/auto,
-/obj/window_blinds/cog2/left,
+/obj/wingrille_spawn/classic,
+/obj/window_blinds/left,
 /turf/floor/plating,
+/area/dmm_suite/clear_area)
+"UV" = (
+/obj/landmark/random_ship_room/room3x3,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating/random,
+/area/dmm_suite/clear_area)
+"WH" = (
+/obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/junk/one,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"Yd" = (
+/obj/machinery/light/small,
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"Yg" = (
+/obj/random_item_spawner/junk/one,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
+"Zr" = (
+/obj/machinery/light,
+/obj/random_item_spawner/junk/one,
+/turf/floor/engine,
 /area/dmm_suite/clear_area)
 "Zt" = (
 /obj/stool/chair/comfy/shuttle/green,
@@ -223,7 +342,8 @@
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-R"
 	},
-/turf/wall/auto/supernorn,
+/obj/wingrille_spawn/classic,
+/turf/floor/plating,
 /area/dmm_suite/clear_area)
 
 (1,1,1) = {"
@@ -289,11 +409,11 @@ nb
 nb
 nb
 nb
-kZ
-kZ
-kZ
-kZ
-kZ
+yz
+yz
+yz
+yz
+yz
 nb
 nb
 nb
@@ -311,13 +431,13 @@ nb
 nb
 nb
 nb
-kZ
-kZ
-kZ
-kZ
-kZ
-kZ
-oD
+yz
+yz
+yz
+yz
+yz
+yz
+Tt
 oD
 Hk
 pm
@@ -339,13 +459,13 @@ nb
 nb
 Ne
 Ne
+RD
 mG
 mG
-mG
-mG
+RD
 bn
 oD
-oD
+Tt
 oD
 xd
 yP
@@ -370,9 +490,9 @@ mF
 mG
 Zt
 QI
-kZ
-oD
-oD
+yz
+Tt
+Fj
 oD
 ZC
 yP
@@ -396,12 +516,12 @@ Gu
 mG
 mG
 mG
-Gu
-kZ
-kZ
-kZ
-kZ
-kZ
+fh
+yz
+yz
+yz
+yz
+yz
 nb
 nb
 nb
@@ -424,14 +544,14 @@ mG
 mG
 mG
 mG
-kZ
+yz
 Ni
+WH
 Ni
-cS
-kZ
-kZ
-kZ
-kZ
+yz
+yz
+yz
+yz
 nb
 nb
 nb
@@ -446,19 +566,19 @@ nb
 nb
 nb
 nb
-kZ
-kZ
-kZ
+yz
+yz
+yz
 Dq
 Dq
-kZ
+yz
+qQ
 Ni
 Ni
-Ni
-Ni
-Ni
+FW
+FW
 cS
-kZ
+yz
 nb
 nb
 nb
@@ -477,15 +597,15 @@ nb
 bN
 Mv
 mG
-mG
-kZ
+Yd
+yz
+qn
+qQ
 Ni
 Ni
 Ni
 Ni
-Ni
-Ni
-kZ
+yz
 nb
 nb
 nb
@@ -505,14 +625,14 @@ nb
 yn
 Ni
 Ni
-kZ
+yz
+gj
 Ni
 Ni
+WH
 Ni
-Ni
-Ni
-Ni
-kZ
+xv
+yz
 nb
 nb
 nb
@@ -531,9 +651,9 @@ nb
 bN
 HX
 mG
-mG
-kZ
-Ni
+xA
+yz
+Yg
 Ni
 Ni
 Ni
@@ -554,13 +674,13 @@ nb
 Dz
 Dz
 Dz
-kZ
-kZ
-kZ
+yz
+yz
+yz
 mG
-mG
-kZ
-Ni
+ho
+yz
+qQ
 Ni
 Ni
 Ni
@@ -609,7 +729,7 @@ pE
 pE
 pE
 qX
-mG
+lO
 qX
 mG
 mG
@@ -619,7 +739,7 @@ Ni
 Ni
 Ni
 Ni
-Ni
+qQ
 pV
 nb
 nb
@@ -635,18 +755,18 @@ nb
 Dz
 Dz
 Dz
-kZ
-kZ
-kZ
+yz
+yz
+yz
 mG
-mG
-kZ
+Yd
+yz
 Ni
 Ni
+qQ
 Ni
 Ni
-Ni
-cS
+Yg
 pV
 nb
 nb
@@ -668,9 +788,9 @@ Mv
 mG
 mG
 Ne
+qQ
 Ni
 Ni
-cS
 Ni
 Ni
 Ni
@@ -694,14 +814,14 @@ nb
 yn
 Ni
 Ni
-kZ
+yz
+Ni
+Yg
 Ni
 Ni
 Ni
-Ni
-Ni
-Ni
-kZ
+Zr
+yz
 nb
 nb
 nb
@@ -720,15 +840,15 @@ nb
 bN
 HX
 mG
-mG
-kZ
+ho
+yz
+OE
+qQ
+Ni
+dp
 Ni
 Ni
-Ni
-Ni
-Ni
-Ni
-kZ
+yz
 nb
 nb
 nb
@@ -743,19 +863,19 @@ nb
 nb
 nb
 nb
-kZ
-kZ
-kZ
+yz
+yz
+yz
 Dq
 Dq
-kZ
+yz
+qQ
 Ni
 Ni
-Ni
-Ni
-Ni
-Ni
-kZ
+qQ
+Yg
+WH
+yz
 nb
 nb
 nb
@@ -769,20 +889,20 @@ nb
 (21,1,1) = {"
 nb
 nb
-kZ
-kZ
+yz
+yz
 No
 xZ
 mG
 mG
-kZ
-Ni
-Ni
-Ni
-kZ
-kZ
-kZ
-kZ
+yz
+cC
+qQ
+qQ
+yz
+yz
+yz
+yz
 nb
 nb
 nb
@@ -802,11 +922,11 @@ mG
 mG
 mG
 mG
-kZ
-kZ
-kZ
-kZ
-kZ
+yz
+yz
+yz
+yz
+yz
 nb
 nb
 nb
@@ -829,10 +949,10 @@ mG
 ES
 Oh
 lM
-kZ
+yz
 oD
-oD
-Hk
+op
+UV
 pm
 yP
 nb
@@ -850,12 +970,12 @@ nb
 (24,1,1) = {"
 nb
 nb
-kZ
-kZ
+yz
+yz
 ue
 mG
 mG
-mG
+jY
 bn
 oD
 oD
@@ -878,12 +998,12 @@ nb
 nb
 nb
 nb
-kZ
-kZ
+yz
+yz
 gc
-kZ
-kZ
-kZ
+yz
+yz
+yz
 oD
 oD
 oD
@@ -910,11 +1030,11 @@ nb
 nb
 nb
 nb
-kZ
-kZ
-kZ
-kZ
-kZ
+yz
+yz
+yz
+yz
+yz
 nb
 nb
 nb

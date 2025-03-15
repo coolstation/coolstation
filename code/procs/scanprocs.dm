@@ -73,6 +73,7 @@
 		var/mob/living/L = M
 
 		if (blood_system)
+			//Pressure
 			var/bp_col
 			switch (L.blood_pressure["total"])
 				if (-INFINITY to 374) // very low (90/60)
@@ -89,6 +90,22 @@
 				blood_data = "Blood Pressure: <span class='alert'>NO PULSE</span>"
 			else
 				blood_data = "Blood Pressure: <span style='color:[bp_col]'>[L.blood_pressure["rendered"]] ([L.blood_pressure["status"]])</span>"
+
+			//Type
+			//the confusion between the actual blood type of blood and the blood type for forensics makes me want to find a better way to handle both
+			/*
+			this broke compile because i need to address the bioholder correctly so commenting out until i or someone else gets back to it
+			if (istype(L,/mob/living/carbon/human))
+				var/mob/living/carbon/human/H = L
+				if (!H.bioholder.bloodType || !H.blood_pressure)
+					blood_data += " | Blood Type: <span class='alert'>Unknown</span>"
+				else if (isvampire(H))
+					blood_data += " | Blood Type: AB+" //universal recipient, har har
+				else
+					blood_data += " | Blood Type: [H.bioholder?.bloodType]"
+			*/
+
+			//Amount
 			if (verbose_reagent_info)
 				if (isvampire(L)) // Added a pair of vampire checks here (Convair880).
 					blood_data += " | Blood level: <span style='color:#138015'>500 units</span>"
@@ -104,7 +121,6 @@
 						blood_data += " | <span class='alert'><B>Bleeding wounds detected</B></span>"
 					if (7 to INFINITY)
 						blood_data += " | <span class='alert'><B>Major bleeding wounds detected</B></span>"
-
 
 			var/bad_stuff = 0
 			if (L.implant && L.implant.len > 0)
@@ -551,20 +567,10 @@
 			if (G.glove_ID)
 				glove_data += "[G.glove_ID] [G.material_prints ? "([G.material_prints])" : null]"
 
-		if (istype(A, /obj/item/casing/))
-			var/obj/item/casing/C = A
-			if(C.forensic_ID)
-				forensic_data += "<br><span class='notice'>Forensic profile of [C]:</span> [C.forensic_ID]"
-
-		if (istype(A, /obj/item/implant/projectile))
-			var/obj/item/implant/projectile/P = A
-			if(P.forensic_ID)
-				forensic_data += "<br><span class='notice'>Forensic profile of [P]:</span> [P.forensic_ID]"
-
-		if (istype(A, /obj/item/gun))
-			var/obj/item/gun/G = A
-			if(G.forensic_ID)
-				forensic_data += "<br><span class='notice'>Forensic profile of [G]:</span> [G.forensic_ID]"
+		if (istype(A, /obj))
+			var/obj/O = A
+			if(O.forensic_ID)
+				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [O]:")] [O.forensic_ID]"
 
 		if (istype(A, /turf/wall))
 			var/turf/wall/W = A

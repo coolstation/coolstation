@@ -124,7 +124,7 @@
 	dir = 4;
 	icon_state = "line2"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space)
 "hk" = (
 /turf/floor/carpet{
@@ -6994,7 +6994,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/obj/machinery/power/apc/autoname_north/nopoweralert{
+/obj/machinery/power/apc/autoname/north{
 	environ = 2;
 	equipment = 2;
 	lighting = 2;
@@ -7002,6 +7002,7 @@
 	operating = 0;
 	start_charge = 23
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},

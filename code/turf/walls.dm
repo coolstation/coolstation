@@ -9,7 +9,7 @@
 #endif
 	opacity = 1
 	density = 1
-	blocks_air = 1
+	gas_impermeable = 1
 	pathable = 1
 	flags = ALWAYS_SOLID_FLUID
 	text = "<font color=#aaa>#"
@@ -208,7 +208,13 @@
 					A.setMaterial(src.material)
 				else
 					A.setMaterial(getMaterial("steel"))
-
+	if (istype(src, /turf/wall/s_wall))
+		var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
+		B.set_loc(src)
+		if (src.material)
+			B.setMaterial(src.material)
+		else
+			B.setMaterial(getMaterial("steel"))
 	else
 		if (!devastated)
 			playsound(src, "sound/items/Welder.ogg", 100, 1)
@@ -307,7 +313,7 @@
 
 	boutput(user, "<span class='notice'>You hit the [src.name] but nothing happens!</span>")
 	playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1)
-	interact_particle(user,src)
+	interact_particle(user,src,TRUE)
 	return
 
 //shitty little thing because we can't use a generic actionbar for wall murder atm
@@ -617,3 +623,89 @@
 /turf/wall/meteorhit(obj/M as obj)
 	dismantle_wall()
 	return 0
+
+/turf/wall/s_wall
+	name = "scrap wall"
+	desc = "Take a welder to it and the metal would slough right off the frame."
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "s_wall"
+	opacity = 1
+	density = 1
+	pathable = 0
+	var/d_state = 0
+	health = 50
+
+	color
+		icon = 'icons/turf/walls_auto_color.dmi'
+
+	onMaterialChanged()
+		..()
+		if(istype(src.material))
+			health = material.hasProperty("density") ? round(material.getProperty("density") * 1.5) : health
+			if(src.material.material_flags & MATERIAL_CRYSTAL)
+				health /= 2
+		return
+/turf/wall/s_wall/attackby(obj/item/W as obj, mob/user as mob, params)
+	if(istype(W, /obj/item/spray_paint) || istype(W, /obj/item/gang_flyer))
+		return
+
+	if (istype(W, /obj/item/pen))
+		var/obj/item/pen/P = W
+		P.write_on_turf(src, user, params)
+		return
+
+	else if (istype(W, /obj/item/light_parts))
+		src.attach_light_fixture_parts(user, W) // Made this a proc to avoid duplicate code (Convair880).
+		return
+
+	else if (isweldingtool(W) && isconstructionturf(src))
+		var/turf/T = user.loc
+		if (!( istype(T, /turf) ))
+			return
+
+		//cmon man let's not burn a fucken quarter of a welder's fuel *per wall*
+		if(!W:try_weld(user, 2, burn_eyes = 1))
+			return
+
+		boutput(user, "<span class='notice'>Now disassembling the wall.</span>")
+		actions.start(new /datum/action/bar/wall_decon_crud(src, W), user)
+		/*SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/wall/proc/weld_action,\
+			list(W, user), W.icon, W.icon_state, "[user] finishes disassembling the outer wall plating.", null)*/
+
+//Spooky halloween key
+	else if(istype(W,/obj/item/device/key/haunted))
+		//Okay, create a temporary false wall.
+		if(W:last_use && ((W:last_use + 300) >= world.time))
+			boutput(user, "<span class='alert'>The key won't fit in all the way!</span>")
+			return
+		user.visible_message("<span class='alert'>[user] inserts [W] into [src]!</span>","<span class='alert'>The key seems to phase into the wall.</span>")
+		W:last_use = world.time
+		blink(src)
+		new /turf/wall/false_wall/temp(src)
+		return
+
+//grabsmash
+	else if (istype(W, /obj/item/grab/))
+		var/obj/item/grab/G = W
+		if  (!grab_smash(G, user))
+			return ..(W, user)
+		else return
+
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
+
+	else
+		if(src.material)
+			src.material.triggerOnHit(src, W, user, 1)
+			var/fail = 0
+			if(src.material.hasProperty("stability") && src.material.getProperty("stability") < 15) fail = 1
+			if(src.material.quality < 0) if(prob(abs(src.material.quality))) fail = 1
+
+			if(fail)
+				user.visible_message("<span class='alert'>You hit the wall and it [getMatFailString(src.material.material_flags)]!</span>","<span class='alert'>[user] hits the wall and it [getMatFailString(src.material.material_flags)]!</span>")
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1)
+				del(src)
+				return
+
+		src.take_hit(W)
+		//return attack_hand(user)

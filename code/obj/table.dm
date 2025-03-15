@@ -317,15 +317,15 @@
 				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
 			return
 
-		else if (isscrewingtool(W))
-			if (istype(src.desk_drawer) && src.desk_drawer.locked)
+		else if (isscrewingtool(W) && user.a_intent == INTENT_HARM)
+			if (src.desk_drawer && src.desk_drawer.locked)
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_LOCKPICK), user)
 				return
 			else if (src.auto && ispath(src.auto_type))
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_ADJUST), user)
 				return
 
-		else if (iswrenchingtool(W) && !src.status) // shouldn't have status unless it's reinforced, maybe? hopefully?
+		else if (iswrenchingtool(W) && !src.status && user.a_intent == INTENT_HARM) // shouldn't have status unless it's reinforced, maybe? hopefully?
 			if (istype(src, /obj/table/folding))
 				actions.start(new /datum/action/bar/icon/fold_folding_table(src, W), user)
 			else
@@ -391,9 +391,7 @@
 			anchored = !anchored
 		return
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(air_group || (height==0)) return 1
-
+	CanPass(atom/movable/mover, turf/target)
 		if (!src.density || (mover.flags & TABLEPASS || istype(mover, /obj/newmeteor)) )
 			return 1
 		else
@@ -584,6 +582,16 @@
 	icon = 'icons/obj/furniture/table_clothred.dmi'
 	auto_type = /obj/table/clothred/auto
 	parts_type = /obj/item/furniture_parts/table/clothred
+
+	auto
+		auto = 1
+
+/obj/table/clothchecker
+	name = "red checkers table"
+	desc = "mama mia"
+	icon = 'icons/obj/furniture/table_checkercloth.dmi'
+	auto_type = /obj/table/clothchecker/auto
+	parts_type = /obj/item/furniture_parts/table/checkercloth
 
 	auto
 		auto = 1
@@ -1014,7 +1022,7 @@
 		if (ismob(AM))
 			var/mob/M = AM
 			if ((prob(src.reinforced ? 60 : 80)))
-				logTheThing("combat", thr.user, M, "throws [constructTarget(M,"combat")] into a glass table, breaking it")
+				logTheThing("combat", thr?.user, M, "throws [constructTarget(M,"combat")] into a glass table, breaking it")
 				src.visible_message("<span class='alert'>[M] smashes through [src]!</span>")
 				playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 50, 1)
 				src.smash()

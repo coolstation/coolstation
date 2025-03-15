@@ -18,14 +18,15 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 /datum/customization_style
 	var/name = null
 	var/id = null
-	var/gender = 0
+	//var/gender = 0
 	/// Which mob icon layer this should go on (under or over glasses)
 	var/default_layer = MOB_HAIR_LAYER1 //Under by default, more direct subtypes where that makes sense
+	var/good_for_randomization = TRUE
 
 	none
 		name = "None"
 		id = "none"
-		gender = MASCULINE
+		//gender = MASCULINE
 	hair
 		default_layer = MOB_HAIR_LAYER2
 
@@ -33,61 +34,71 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			afro
 				name = "Afro"
 				id = "afro"
-				gender = MASCULINE | FEMININE
 			afroHR
-				name = "Afro: Left Half"
-				id = "afroHR"
-			afroHL
 				name = "Afro: Right Half"
+				id = "afroHR"
+				good_for_randomization = FALSE
+			afroHL
+				name = "Afro: Left Half"
 				id = "afroHL"
+				good_for_randomization = FALSE
 			afroST
 				name = "Afro: Top"
 				id = "afroST"
+				good_for_randomization = FALSE
 			afroSM
 				name = "Afro: Middle Band"
 				id = "afroSM"
+				good_for_randomization = FALSE
 			afroSB
 				name = "Afro: Bottom"
 				id = "afroSB"
+				good_for_randomization = FALSE
 			afroSL
 				name = "Afro: Left Side"
 				id = "afroSL"
+				good_for_randomization = FALSE
 			afroSR
 				name = "Afro: Right Side"
 				id = "afroSR"
+				good_for_randomization = FALSE
 			afroSC
 				name = "Afro: Center Streak"
 				id = "afroSC"
+				good_for_randomization = FALSE
 			afroCNE
 				name = "Afro: NE Corner"
 				id = "afroCNE"
+				good_for_randomization = FALSE
 			afroCNW
 				name = "Afro: NW Corner"
 				id = "afroCNW"
+				good_for_randomization = FALSE
 			afroCSE
 				name = "Afro: SE Corner"
 				id = "afroCSE"
+				good_for_randomization = FALSE
 			afroCSW
 				name = "Afro: SW Corner"
 				id = "afroCSW"
+				good_for_randomization = FALSE
 			afroSV
 				name = "Afro: Tall Stripes"
 				id = "afroSV"
+				good_for_randomization = FALSE
 			afroSH
 				name = "Afro: Long Stripes"
 				id = "afroSH"
+				good_for_randomization = FALSE
 			balding
 				name = "Balding"
 				id = "balding"
-				gender = MASCULINE
 			bangs
 				name = "Bangs"
 				id = "bangs"
-				gender = MASCULINE
 			bieb
 				name = "Bieber"
 				id = "bieb"
-				gender = MASCULINE | FEMININE
 			//bloom
 			//	name = "Bloom"
 			//	id = "bloom"
@@ -95,61 +106,55 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			bobcut
 				name = "Bobcut"
 				id = "bobcut"
-				gender = FEMININE
 			baum_s
 				name = "Bobcut Alt"
 				id = "baum_s"
-				gender = FEMININE
 			bowl
 				name = "Bowl Cut"
 				id = "bowl"
-				gender = MASCULINE
 			cut
 				name = "Buzzcut"
 				id = "cut"
-				gender = MASCULINE
 			clown
 				name = "Clown"
 				id = "clown"
 			clownT
 				name = "Clown: Top"
 				id = "clownT"
+				good_for_randomization = FALSE
 			clownM
 				name = "Clown: Middle Band"
 				id = "clownM"
+				good_for_randomization = FALSE
 			clownB
 				name = "Clown: Bottom"
 				id = "clownB"
+				good_for_randomization = FALSE
 			combed_s
 				name = "Combed"
 				id = "combed_s"
-				gender = MASCULINE
 			combedbob_s
 				name = "Combed Bob"
 				id = "combedbob_s"
-				gender = FEMININE
 			chop_short
 				name = "Choppy Short"
 				id = "chop_short"
-				gender = MASCULINE | FEMININE
 			einstein
 				name = "Einstein"
 				id = "einstein"
-				gender = MASCULINE
 			einalt
 				name = "Einstein: Alternating"
 				id = "einalt"
 			emo
 				name = "Emo"
 				id = "emo"
-				gender = MASCULINE | FEMININE
 			emoH
 				name = "Emo: Highlight"
 				id = "emoH"
+				good_for_randomization = FALSE
 			flattop
 				name = "Flat Top"
 				id = "flattop"
-				gender = MASCULINE
 			//floof
 			//	name = "Floof"
 			//	id = "floof"
@@ -160,35 +165,37 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			mohawk
 				name = "Mohawk"
 				id= "mohawk"
-				gender = MASCULINE | FEMININE
 			mohawkFT
 				name = "Mohawk: Fade from End"
 				id = "mohawkFT"
+				good_for_randomization = FALSE
 			mohawkFB
 				name = "Mohawk: Fade from Root"
 				id = "mohawkFB"
+				good_for_randomization = FALSE
 			mohawkS
 				name = "Mohawk: Stripes"
 				id = "mohawkS"
+				good_for_randomization = FALSE
 			long
 				name = "Mullet"
 				id = "long"
-				gender = MASCULINE | FEMININE
 			part
 				name = "Parted Hair"
 				id = "part"
-				gender = MASCULINE | FEMININE
 			pomp
 				name = "Pompadour"
 				id = "pomp"
-				gender = MASCULINE | FEMININE
 			pompS
 				name = "Pompadour: Greaser Shine"
 				id = "pompS"
+				good_for_randomization = FALSE
+			poofyFlapper
+				name = "Poofy Flapper"
+				id = "poofy_flapper"
 			shortflip
 				name = "Punky Flip"
 				id = "shortflip"
-				gender = MASCULINE | FEMININE
 			//spiky
 			//	name = "Spiky"
 			//	id = "spiky"
@@ -200,15 +207,12 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			temsik
 				name = "Temsik"
 				id = "temsik"
-				gender = MASCULINE
 			tonsure
 				name = "Tonsure"
 				id = "tonsure"
-				gender = MASCULINE
 			short
 				name = "Trimmed"
 				id = "short"
-				gender = MASCULINE
 			//tulip
 			//	name = "Tulip"
 			//	id = "tulip"
@@ -217,13 +221,45 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			//	name = "Visual"
 			//	id = "visual"
 			//	gender = MASCULINE
+			shaved
+				name = "Shaved"
+				id = "shaved"
+			croft_bangs
+				name = "Bangs: Croft"
+				id = "croft-bangs"
+				good_for_randomization = FALSE
+			doublepart_bangs
+				name = "Bangs: Double-Part"
+				id = "doublepart-bangs"
+				good_for_randomization = FALSE
+			long_bangs
+				name = "Bangs: Long"
+				id = "long-bangs"
+				good_for_randomization = FALSE
+			midb_bangs
+				name = "Bangs: Mid-back"
+				id = "midb-bangs"
+				good_for_randomization = FALSE
+			wavy_bangs
+				name = "Bangs: Wavy"
+				id = "wavy_tail-bangs"
+				good_for_randomization = FALSE
+			short_bangs
+				name = "Bangs: Short"
+				id = "short-bangs"
+				good_for_randomization = FALSE
+			juicer
+				name = "Juicer"
+				id = "juicer"
 		long
 			chub2_s
 				name = "Bang: Left"
 				id = "chub2_s"
+				good_for_randomization = FALSE
 			chub_s
 				name = "Bang: Right"
 				id = "chub_s"
+				good_for_randomization = FALSE
 			//twobangs_long
 			//	name = "Two Bangs: Long"
 			//	id = "2bangs_long"
@@ -233,95 +269,77 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			bedhead
 				name = "Bedhead"
 				id = "bedhead"
-				gender = MASCULINE | FEMININE
 			disheveled
 				name = "Disheveled"
 				id = "disheveled"
-				gender = FEMININE
 			doublepart
 				name = "Double-Part"
 				id = "doublepart"
 			shoulders
 				name = "Draped"
 				id = "shoulders"
-				gender = FEMININE
 			dreads
 				name = "Dreadlocks"
 				id = "dreads"
-				gender = MASCULINE
 			dreadsA
 				name = "Dreadlocks: Alternating"
 				id = "dreadsA"
 			fabio
 				name = "Fabio"
 				id = "fabio"
-				gender = FEMININE
 			glammetal
 				name = "Glammetal"
 				id = "glammetal"
-				gender = FEMININE
 			glammetalO
 				name = "Glammetal: Faded"
 				id = "glammetalO"
+				good_for_randomization = FALSE
 			eighties
 				name = "Hairmetal"
 				id = "80s"
-				gender = FEMININE
 			eightiesfade
 				name = "Hairmetal: Faded"
 				id = "80sfade"
+				good_for_randomization = FALSE
 			halfshavedR
 				name = "Half-Shaved: Left"
 				id = "halfshavedR"
-				gender = MASCULINE | FEMININE
 			halfshaved_s
 				name = "Half-Shaved: Long"
 				id = "halfshaved_s"
-				gender = FEMININE
 			halfshavedL
 				name = "Half-Shaved: Right"
 				id = "halfshavedL"
-				gender = MASCULINE | FEMININE
 			kingofrockandroll
 				name = "Kingmetal"
 				id = "king-of-rock-and-roll"
-				gender = MASCULINE
 			froofy_long
 				name = "Long and Froofy"
 				id = "froofy_long"
-				gender = FEMININE
 			longbraid
 				name = "Long Braid"
 				id = "longbraid"
-				gender = FEMININE
 			longsidepart_s
 				name = "Long Flip"
 				id = "longsidepart_s"
-				gender = FEMININE
 			pulledb
 				name = "Pulled Back"
 				id = "pulledb"
-				gender = FEMININE
 			sage
 				name = "Sage"
 				id = "sage"
-				gender = FEMININE
 			scraggly
 				name = "Scraggly"
 				id = "scraggly"
-				gender = MASCULINE
 			pulledf
 				name = "Shoulder Drape"
 				id = "pulledf"
-				gender = FEMININE
 			shoulderl
 				name = "Shoulder-Length"
 				id = "shoulderl"
-				gender = FEMININE
 			slightlymess_s
 				name = "Shoulder-Length Mess"
 				id = "slightlymessy_s"
-				gender = FEMININE
 			//smoothwave
 			//	name = "Smooth Waves"
 			//	id = "smoothwave"
@@ -332,27 +350,22 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			mermaid
 				name = "Mermaid"
 				id = "mermaid"
-				gender = FEMININE
 			//mermaidfade
 			//	name = "Mermaid: Faded"
 			//	id = "mermaidfade"
 			midb
 				name = "Mid-Back Length"
 				id = "midb"
-				gender = MASCULINE | FEMININE
 			bluntbangs_s
 				name = "Mid-Length Curl"
 				id = "bluntbangs_s"
-				gender = FEMININE
 			vlong
 				name = "Very Long"
 				id = "vlong"
-				gender = FEMININE
 
 			untidy
 				name = "Untidy"
 				id = "untidy"
-				gender = MASCULINE | FEMININE
 		hairup
 			afos //if you don't recognise this one, look up A Flock Of Seagulls
 				name = "New Wave"
@@ -360,38 +373,30 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			bun
 				name = "Bun"
 				id = "bun"
-				gender = FEMININE
 			sakura
 				name = "Captor"
 				id = "sakura"
-				gender = FEMININE
 			croft
 				name = "Croft"
 				id = "croft"
-				gender = FEMININE
 			indian
 				name = "Double Braids"
 				id = "indian"
-				gender = FEMININE
 			doublebun
 				name = "Double Buns"
 				id = "doublebun"
-				gender = FEMININE
 			drill
 				name = "Drill"
 				id = "drill"
 			fun_bun
 				name = "Fun Bun"
 				id = "fun_bun"
-				gender = FEMININE
 			charioteers
 				name = "High Flat Top"
 				id = "charioteers"
-				gender = MASCULINE
 			spud
 				name = "High Ponytail"
 				id = "spud"
-				gender = FEMININE
 			//longtailed
 			//	name = "Long Mini Tail"
 			//	id = "longtailed"
@@ -399,36 +404,46 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 			lowpig
 				name = "Low Pigtails"
 				id = "lowpig"
-				gender = FEMININE
 			band
 				name = "Low Ponytail"
 				id = "band"
-				gender = FEMININE
 			minipig
 				name = "Mini Pigtails"
 				id = "minipig"
-				gender = MASCULINE | FEMININE
 			pig
 				name = "Pigtails"
 				id = "pig"
-				gender = FEMININE
 			ponytail
 				name = "Ponytail"
 				id = "ponytail"
-				gender = MASCULINE | FEMININE
 			geisha_s
 				name = "Shimada"
 				id = "geisha_s"
-				gender = FEMININE
 			twotail
 				name = "Split-Tails"
 				id = "twotail"
-				gender = MASCULINE
 			wavy_tail
 				name = "Wavy Ponytail"
 				id = "wavy_tail"
-				gender = FEMININE
+			croft_pull // is there a better term than pulled? probably.
+				name = "Pulled: Croft"
+				id = "croft-pull"
+			doublepart_pull
+				name = "Pulled: Double-Part"
+				id = "doublepart-pull"
+			long_pull
+				name = "Pulled: Long"
+				id = "long-pull"
+			midb_pull
+				name = "Pulled: Mid-back"
+				id = "midb-pull"
+			wavy_pull
+				name = "Pulled: Wavy"
+				id = "wavy_tail-pull"
+
 		gimmick
+			good_for_randomization = FALSE
+
 			afroHA
 				name = "Afro: Alternating Halves"
 				id = "afroHA"
@@ -542,6 +557,7 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 		trampstains
 			name = "Tramp: Beard Stains"
 			id = "trampstains"
+			good_for_randomization = FALSE
 	sideburns
 		elvis
 			name = "Elvis"
@@ -579,6 +595,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 		h4
 			name = "Horns Style 4"
 			id = "h4"
+		feather1
+			name = "Feathers Style 1"
+			id = "feather1"
 
 proc/select_custom_style(list/datum/customization_style/customization_types, mob/living/carbon/human/user as mob)
 	var/list/datum/customization_style/options = list()

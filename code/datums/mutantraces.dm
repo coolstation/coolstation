@@ -857,6 +857,8 @@
 	say_verb()
 		return "hisses"
 
+
+
 /datum/mutantrace/zombie
 	name = "zombie"
 	icon_state = "zombie"
@@ -1108,6 +1110,7 @@
 		if(ishuman(M))
 			M.mob_flags |= IS_BONER
 			M.blood_id = "calcium"
+			all_blood_reagents |= "calcium"
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
 
 	disposing()
@@ -1132,8 +1135,6 @@
 
 /datum/mutantrace/abomination
 	name = "abomination"
-	mutant_folder = 'icons/mob/abomination.dmi'
-	icon = 'icons/mob/abomination.dmi'
 	icon_state = "abomination"
 	human_compatible = 0
 	uses_human_clothes = 0
@@ -1153,8 +1154,8 @@
 	New(var/mob/living/carbon/human/M)
 		emote_overrides = abomination_emotes
 		if(ruff_tuff_and_ultrabuff && ishuman(M))
-			M.add_stam_mod_max("abomination", 1000)
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "abomination", 1000)
+			M.add_stam_mod_max("abomination", 100)
+			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "abomination", 100)
 			M.add_stun_resist_mod("abomination", 1000)
 			APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, src)
 		last_drain = world.time
@@ -1583,6 +1584,7 @@
 	icon_state = "body_m"
 	// jerk = 1 // why the fuck was this 1
 	override_attack = 0
+	voice_override = "cat"
 	firevuln = 1.5 // very flammable catthings
 	race_mutation = /datum/bioEffect/mutantrace/cat
 	mutant_organs = list("tail" = /obj/item/organ/tail/cat)
@@ -1606,7 +1608,7 @@
 	special_hair_3_color = CUST_3*/ //top
 	detail_1_icon = 'icons/mob/cat.dmi'
 	detail_1_state = "chest_detail_altcolor" //counter-shading
-	detail_1_color = null //middle
+	detail_1_color = CUST_2 //middle
 
 	New(mob/living/carbon/human/M)
 		. = ..()
@@ -1862,6 +1864,7 @@
 			mob.traitHolder?.addTrait("hemophilia")
 
 			H.blood_id = "milk"
+			all_blood_reagents |= "milk"
 			H.blood_color = "FFFFFF"
 
 
@@ -1937,6 +1940,7 @@
 			bleed(mob, 10, 3, T)
 			T.react_all_cleanables()
 
+
 /datum/mutantrace/chicken
 	name = "Chicken"
 	icon_state = "chicken_m"
@@ -1952,6 +1956,57 @@
 	New()
 		..()
 		emote_overrides = chicken_emotes
+
+/datum/mutantrace/birb
+	name = "Birb"
+	icon = 'icons/mob/birb.dmi'
+	icon_state = "body_m"
+	override_attack = 0
+	voice_override = "bird"
+	race_mutation = /datum/bioEffect/mutantrace/birb
+	mutant_organs = list("tail" = /obj/item/organ/tail/feathers)
+	mutant_folder = 'icons/mob/birb.dmi'
+	special_head = HEAD_BIRD
+	special_head_state = "head"
+	eye_state = "eyes_bird"
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/bird/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/bird/left
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | HAS_SPECIAL_HAIR | BUILT_FROM_PIECES | FIX_COLORS | TORSO_HAS_SKINTONE | SKINTONE_USES_PREF_COLOR_1 | HAS_EXTRA_DETAILS | WEARS_UNDERPANTS)
+	dna_mutagen_banned = FALSE
+
+	special_hair_2_icon = 'icons/mob/birb.dmi'
+	special_hair_2_state = "head_detail"
+	special_hair_2_color = CUST_2
+
+	special_hair_3_icon = 'icons/mob/birb.dmi'
+	special_hair_3_state = "head_detail_beak"
+	special_hair_3_color = SKIN_TONE
+
+	detail_1_icon = 'icons/mob/birb.dmi'
+	detail_1_state = "chest_detail_fluff"
+	detail_1_color = CUST_2
+
+	New(mob/living/carbon/human/M)
+		. = ..()
+		if(ishuman(M))
+			M.mob_flags |= SHOULD_HAVE_A_TAIL
+
+	say_verb()
+		return "squawks"
+
+	sight_modifier()
+		mob.see_in_dark = SEE_DARK_HUMAN + 1
+		mob.see_invisible = 1
+
+	disposing()
+		if(ishuman(mob))
+			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
+		. = ..()
+
+
+
 
 /datum/mutantrace/fert
 	name = "ferret"

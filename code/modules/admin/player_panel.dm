@@ -8,7 +8,7 @@
 	return
 
 /datum/admins/proc/playeropt_link(mob/M, action)
-	return "?src=\ref[src];action=[action];targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts"
+	return "byond://?src=\ref[src];action=[action];targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts"
 /datum/admins/proc/playeropt(mob/M)
 	if (!ismob(M))
 		alert("Mob not found - can't auto-refresh the panel. (May have been banned / deleted)")
@@ -27,6 +27,9 @@
 	[header_thing_chui_toggle]
 	<title>[M.name] ([M.key ? M.key : "NO CKEY"]) Options</title>
 	<style>
+		body {
+			color: black !important;
+		}
 		a {
 			text-decoration: none;
 		}
@@ -34,6 +37,7 @@
 			margin-bottom: 8px;
 			padding: 1px;
 			border: 1px solid black;
+			background: white;
 		}
 		.optionGroup h2 {
 			display: block;
@@ -66,6 +70,7 @@
 			position: fixed;
 			padding: 0.2em 0.5em;
 			border-bottom: 1px solid black;
+			background: #dad8b6;
 		}
 
 		#topOpts {

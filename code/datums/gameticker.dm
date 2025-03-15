@@ -40,7 +40,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg')
 	var/picked_music = null
 
 
@@ -75,6 +75,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		sleep(1 SECOND)
 		// Start the countdown as normal, but hold it at 30 seconds until setup is complete
 		if (!game_start_delayed && (pregame_timeleft > 30 || current_state == GAME_STATE_PREGAME))
+			#ifndef I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO
+			if(total_clients() <= 0)
+				continue
+			#endif
 			pregame_timeleft--
 
 			if (pregame_timeleft <= PREGAME_MUSIC_START && !did_lobbymusic) //do this to clients, for all already connected
@@ -507,8 +511,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 				for (var/client/C in clients)
 					roundend_countdown.add_client(C)
+					C.save_misc_skin_settings_to_cloud() //congrats 4 making it to end of round lets save some shit while we have you
 
-				var/roundend_time = 60
+				var/roundend_time = 90
 				while (roundend_time >= 0)
 					roundend_countdown.update_time(roundend_time)
 					sleep(1 SECONDS)
@@ -524,7 +529,25 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
-					ircbot.event("roundend")
+					// Put together a package of score data that we can hand off to the discord bot
+					var/list/roundend_score = list(
+						"map" = getMapNameFromID(map_setting),
+						"survival" = score_tracker.score_crew_survival_rate,
+						"sec_scr"  = score_tracker.final_score_sec,
+						"eng_scr"  = score_tracker.final_score_eng,
+						"civ_scr"  = score_tracker.final_score_civ,
+						"res_scr"  = score_tracker.final_score_res,
+						"grade"    = score_tracker.grade,
+						"m_damaged" = score_tracker.most_damaged_escapee,
+						"r_escaped" = score_tracker.richest_escapee,
+						"r_total"  = score_tracker.richest_total,
+						"beepsky"  = score_tracker.beepsky_alive,
+						"farts"    = fartcount,
+						"wead"     = weadegrowne,
+						"doinks"   = doinkssparked,
+						"clowns"   = clownabuse
+						)
+					ircbot.event("roundend", list("score" = roundend_score))
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 

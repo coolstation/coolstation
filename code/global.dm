@@ -31,8 +31,6 @@ var/global
 
 	datum/datacore/data_core = null
 
-	turf/buzztile = null
-
 	atom/movable/screen/renderSourceHolder
 	obj/overlay/zamujasa/round_start_countdown/game_start_countdown	// Countdown clock for round start
 	list/globalImages = list() //List of images that are always shown to all players. Management procs at the bottom of the file.
@@ -43,6 +41,7 @@ var/global
 	list/mobs = list()
 	list/ai_mobs = list()
 	list/processing_items = list()
+	list/processing_mechanics = list()
 	list/health_update_queue = list()
 	list/processing_fluid_groups = list()
 	list/processing_fluid_spreads = list()
@@ -64,7 +63,7 @@ var/global
 
 	// disables the "you can't respawn with the same character or slot" checks for admins
 	// verbs like respawn-as-self will bypass this entirely.
-	admins_can_reuse_characters = 0
+	admins_can_reuse_characters = 1
 
 	list/default_mob_static_icons = list() // new mobs grab copies of these for themselves, or if their chosen type doesn't exist in the list, they generate their own and add it
 	list/mob_static_icons = list() // these are the images that are actually seen by ghostdrones instead of whatever mob
@@ -73,6 +72,12 @@ var/global
 	list/browse_item_icons = list()
 	list/browse_item_clients = list()
 	browse_item_initial_done = 0
+
+	//INTENT: part of approach to show icons next to qm supply categories
+	//stub from when i worked on this like in 2023 or whenever, will revisit i promise
+	//list/browse_supply_pack_icons = list()
+	//list/browse_supply_pack_clients = list()
+	//browse_supply_pack_initial_done = 0
 
 	list/rewardDB = list() //Contains instances of the reward datums
 	list/materialRecipes = list() //Contains instances of the material recipe datums
@@ -87,6 +92,8 @@ var/global
 	list/random_pod_codes = list() // if /obj/random_pod_spawner exists on the map, this will be filled with refs to the pods they make, and people joining up will have a chance to start with the unlock code in their memory
 
 	list/spacePushList = list()
+	/// Every location with a unique name for the jump verb
+	list/unique_areas_with_turfs = list()
 	/// All the accessible areas on the station in one convenient place
 	list/station_areas = list()
 	/// The station_areas list is up to date. If something changes an area, make sure to set this to 0
@@ -263,7 +270,7 @@ var/global
 	game_end_delayed = 0
 	game_end_delayer = null
 	ooc_allowed = 1
-	looc_allowed = 0
+	looc_allowed = 1
 	dooc_allowed = 1
 	player_capa = 0
 	player_cap = 55
@@ -281,7 +288,7 @@ var/global
 	suicide_allowed = 1
 	dna_ident = 1
 	abandon_allowed = 1
-	enable_fastpath = 0 // space fastpath default value
+	enable_fastpath = 1 // space fastpath default value
 	enter_allowed = 1
 	johnbus_location = 1
 	johnbus_destination = 0
@@ -292,6 +299,9 @@ var/global
 	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
 	shipyardship_location = 0
+	shipyardship_pre_densitymap = list()
+	shipyardship_post_densitymap = list()
+	shipyard_scrapwall_prob = 40
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
@@ -523,6 +533,44 @@ var/global
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
+/proc/updateAreaLists()
+	//Admin jump list
+	for (var/area/A in get_areas_with_turfs(/area))
+		if(!A.name)
+			continue
+		if(!length(A.name))
+			continue
+		unique_areas_with_turfs[A.name] += list(A)
+	unique_areas_with_turfs = sortList(unique_areas_with_turfs)
+
+	//Battle royale list
+	var/list/L = list()
+	var/list/areas = concrete_typesof(/area/station)
+	for(var/A in areas)
+		var/area/station/instance = locate(A)
+		for(var/turf/T in instance)
+			if(!isfloor(T) && is_blocked_turf(T) && istype(T,/area/sim/test_area) && T.z == 1)
+				continue
+			L[instance.name] = instance
+	station_areas = L
+
+	area_list_is_up_to_date = 1
+
+//returns a list of all areas on a station
+proc/get_accessible_station_areas()
+	if(station_areas && area_list_is_up_to_date) // In case someone makes a new area
+		return station_areas
+
+	updateAreaLists()
+	return station_areas
+
+//returns all useable areas for admin jump as an associative list of lists
+/proc/getUniqueAreas()
+	if(length(unique_areas_with_turfs) && area_list_is_up_to_date)
+		return unique_areas_with_turfs
+
+	updateAreaLists()
+	return unique_areas_with_turfs
 
 /proc/addGlobalRenderSource(var/image/I, var/key)
 	if(I && length(key) && !globalRenderSources[key])
@@ -535,6 +583,7 @@ var/global
 	return
 
 /proc/removeGlobalRenderSource(var/key)
+	set background = 1
 	if(length(key) && globalRenderSources[key])
 		globalRenderSources[key].loc = null
 		removeGlobalImage("[key]-renderSourceImage")

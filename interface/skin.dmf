@@ -1,3 +1,5 @@
+macro "input_box_macro"
+
 macro "base_macro"
 	elem
 		name = "Tab"
@@ -16,8 +18,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "ooc"
 		name = "ALT+C"
-		command = ".force_keyup ALT+C\nooc"
-		is-disabled = true
+		command = ".winset \"command=.init_ooc;oocwindow.is-visible=true;oocwindow.input.focus=true\""
 	elem "dance"
 		name = "CTRL+D"
 		command = "say \"*dance\""
@@ -40,8 +41,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "looc"
 		name = "ALT+L"
-		command = ".force_keyup ALT+L\nlooc"
-		is-disabled = true
+		command = ".winset \"command=.init_looc;loocwindow.is-visible=true;loocwindow.input.focus=true\""
 	elem "laugh"
 		name = "CTRL+L"
 		command = "say \"*laugh\""
@@ -68,16 +68,10 @@ macro "base_macro"
 		is-disabled = true
 	elem
 		name = "ALT+T"
-		command = ".force_keyup ALT+T\ndsay"
-		is-disabled = true
+		command = "dsay"
 	elem
 		name = "CTRL+T"
-		command = ".force_keyup CTRL+T\nasay"
-		is-disabled = true
-	elem
-		name = "ALT+W"
-		command = ".force_keyup ALT+W\nwhisper"
-		is-disabled = true
+		command = "asay"
 	elem "wink"
 		name = "CTRL+W"
 		command = "say \"*wink\""
@@ -122,6 +116,21 @@ macro "base_macro"
 		name = "F3"
 		command = "mentorhelp"
 		is-disabled = true
+	elem "startsay"
+		name = "T"
+		command = ".winset \"command=\".start_typing say\";command=.init_say;saywindow.is-visible=true;saywindow.input.focus=true\""
+	elem "whisper"
+		name = "ALT+W"
+		command = ".winset \"command=\".start_typing whisper\";command=.init_whisper;whisperwindow.is-visible=true;whisperwindow.input.focus=true\""
+	elem "radiosay"
+		name = ";"
+		command = ".winset \"command=\".start_typing say\";command=.init_radiosay;radiosaywindow.is-visible=true;radiosaywindow.input.focus=true\""
+	elem "radiochannelsay"
+		name = "Y"
+		command = ".winset \"command=\".start_typing radiochannelsay\";command=.init_radiochannelsay;radiochannelsaywindow_macro_returnup.is-disabled=true\""
+	elem "radiolastsay"
+		name = "\["
+		command = ".winset \"command=\".start_typing radiochannelsay\";command=.init_radiochannelsay;radiochannelsaywindow.is-visible=true;radiochannelsaywindow.input.focus=true\""
 	elem
 		name = "Any"
 		command = ".keydown [[*]]"
@@ -316,12 +325,19 @@ menu "menu"
 		can-check = true
 		saved-params = "is-checked"
 	elem "dark_mode"
-		name = "&Dark mode"
+		name = "&Cools tation Broun"
 		command = "sync-dark-mode"
-		category = "&Window"
+		category = "&Skins"
 		can-check = true
 		saved-params = "is-checked"
 		is-checked = true
+	elem "charcoal_mode"
+		name = "&Charcoal"
+		command = "sync-charcoal-mode"
+		category = "&Skins"
+		can-check = true
+		saved-params = "is-checked"
+		is-checked = false
 	elem "hide_status_bar"
 		name = "&Hide status bar"
 		command = ".winset \"hide_status_bar.is-checked=true?mainwindow.statusbar=false:mainwindow.statusbar=true\""
@@ -815,7 +831,7 @@ window "mainwindow"
 		size = 5x18
 		anchor1 = 0,100
 		anchor2 = none
-		background-color = #d3b5b5
+		background-color = #685bdc
 		saved-params = ""
 		text = ""
 	elem "input"
@@ -825,7 +841,8 @@ window "mainwindow"
 		anchor1 = 0,100
 		anchor2 = 100,100
 		font-size = 10
-		background-color = #d3b5b5
+		background-color = #0f5f4f
+		text-color = #ffffff
 		font-family = "Consolas"
 		is-default = true
 		saved-params = "command"
@@ -1549,13 +1566,23 @@ window "rpane"
 		command = ".winset \"mainwindow.menu='menu'; hide_menu.is-checked=false; menub.is-visible = false\""
 	elem "mapb"
 		type = BUTTON
-		pos = 315,5
+		pos = 250,5
 		size = 60x20
 		anchor1 = 100,0
 		anchor2 = none
 		saved-params = "is-checked"
 		text = "Map"
 		command = "map"
+		group = "rpaneutil"
+	elem "discordb"
+		type = BUTTON
+		pos = 315,5
+		size = 60x20
+		anchor1 = 100,0
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
 		group = "rpaneutil"
 	elem "wikib"
 		type = BUTTON
@@ -1642,6 +1669,53 @@ window "infowindow"
 		highlight-color = #00aa00
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=false rpane.rpanewindow.pos=0,0 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
+
+window "input_box"
+	elem "input_box"
+		type = MAIN
+		pos = 759,487
+		size = 302x86
+		anchor1 = 50,50
+		anchor2 = 50,50
+		background-color = #aaaa55
+		is-visible = false
+		saved-params = ""
+		statusbar = false
+		can-minimize = false
+		can-resize = false
+		outer-size = 308x114
+		inner-size = 302x86
+	elem "input"
+		type = INPUT
+		pos = 11,17
+		size = 281x23
+		anchor1 = 4,20
+		anchor2 = 96,47
+		font-size = 7
+		border = sunken
+		saved-params = ""
+	elem "accept"
+		type = BUTTON
+		pos = 52,52
+		size = 75x23
+		anchor1 = 17,60
+		anchor2 = 42,87
+		font-size = 7
+		background-color = none
+		saved-params = ""
+		text = "OK"
+		command = ""
+	elem "cancel"
+		type = BUTTON
+		pos = 179,52
+		size = 75x23
+		anchor1 = 59,60
+		anchor2 = 84,87
+		font-size = 7
+		background-color = none
+		saved-params = ""
+		text = "Cancel"
+		command = ""
 
 window "traitssetup"
 	elem "traitssetup"

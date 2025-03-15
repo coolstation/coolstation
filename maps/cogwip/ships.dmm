@@ -1054,11 +1054,6 @@
 	},
 /turf/floor/shuttle,
 /area/space)
-"de" = (
-/turf/floor/shuttle{
-	icon_state = "floor4"
-	},
-/area/space)
 "df" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -1241,12 +1236,6 @@
 	icon_state = "floor4"
 	},
 /area/space)
-"dE" = (
-/obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	icon_state = "floor4"
-	},
-/area/space)
 "dF" = (
 /turf/wall/auto/shuttle{
 	icon_state = "5"
@@ -1314,14 +1303,6 @@
 	},
 /turf/wall/auto/shuttle{
 	icon_state = "13"
-	},
-/area/space)
-"dP" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/turf/floor/shuttle{
-	icon_state = "floor2"
 	},
 /area/space)
 "dQ" = (
@@ -1420,11 +1401,6 @@
 	icon_state = "floor2"
 	},
 /area/space)
-"ee" = (
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/space)
 "ef" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 1;
@@ -1468,12 +1444,6 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/shuttle{
 	icon_state = "floor3"
-	},
-/area/space)
-"el" = (
-/obj/stool/chair/comfy/shuttle/red,
-/turf/floor/shuttle{
-	icon_state = "floor4"
 	},
 /area/space)
 "em" = (
@@ -1557,12 +1527,6 @@
 	dir = 6
 	},
 /turf/space,
-/area/space)
-"eD" = (
-/obj/stool/chair/comfy/shuttle/brown,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
 /area/space)
 "eE" = (
 /obj/grille/steel,
@@ -2020,26 +1984,8 @@
 	},
 /turf/floor/blue,
 /area/space)
-"fQ" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/space)
 "fR" = (
 /obj/decal/fakeobjects/teleport_pad,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/space)
-"fS" = (
-/obj/indestructible/shuttle_corner{
-	dir = 2;
-	icon_state = "wall3_trans"
-	},
 /turf/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -2161,12 +2107,6 @@
 /area/space)
 "gj" = (
 /obj/storage/crate/xmas,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/space)
-"gk" = (
-/obj/machinery/door/airlock/external,
 /turf/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -2767,7 +2707,7 @@
 /turf/floor/setpieces/oldfloor,
 /area/space)
 "hP" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space)
 "hQ" = (
 /obj/machinery/vending/coffee,
@@ -2933,9 +2873,6 @@
 /turf/wall/setpieces/leadwindow{
 	icon_state = "leadwindow_2"
 	},
-/area/space)
-"iq" = (
-/turf/floor,
 /area/space)
 "ir" = (
 /turf/floor/stairs{
@@ -3380,9 +3317,6 @@
 	},
 /turf/floor/shuttlebay,
 /area/space)
-"jv" = (
-/turf/floor/shuttlebay,
-/area/space)
 "jw" = (
 /obj/machinery/vehicle/miniputt,
 /obj/machinery/light_switch/north{
@@ -3476,9 +3410,6 @@
 /area/space)
 "jJ" = (
 /turf/floor/plating/airless/shuttlebay,
-/area/space)
-"jK" = (
-/turf/floor/caution/west,
 /area/space)
 "jL" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -6535,15 +6466,6 @@
 	},
 /turf/shuttle/wall,
 /area/space)
-"rB" = (
-/obj/window/reinforced/west,
-/obj/window/reinforced/east,
-/obj/grille/steel,
-/obj/decal/fakeobjects/shuttleengine{
-	dir = 4
-	},
-/turf/floor/shuttlebay,
-/area/space)
 "rC" = (
 /obj/lattice{
 	dir = 1;
@@ -6920,16 +6842,6 @@
 /turf/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/space)
-"sk" = (
-/obj/decal/fakeobjects/pipe{
-	desc = "It won't budge.";
-	dir = 4;
-	icon = 'icons/obj/pipe-item.dmi';
-	icon_state = "valve";
-	name = "rusted valve"
-	},
-/turf/floor/shuttlebay,
 /area/space)
 "sl" = (
 /obj/decal/tile_edge/line/blue{
@@ -7513,9 +7425,6 @@
 "tF" = (
 /turf/floor/darkpurple,
 /area/space)
-"tG" = (
-/turf/floor/black,
-/area/space)
 "tH" = (
 /turf/floor/darkblue,
 /area/space)
@@ -7649,7 +7558,6 @@
 "ua" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-
 	icon_state = "bdoorleft1";
 	id = "hangar_syndicate";
 	name = "external blast door"
@@ -7670,7 +7578,6 @@
 "uc" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-
 	icon_state = "bdoorright1";
 	id = "hangar_syndicate";
 	name = "external blast door"
@@ -8345,7 +8252,7 @@
 /turf/floor/darkpurple,
 /area/space)
 "vB" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -8733,10 +8640,6 @@
 /turf/shuttle/wall{
 	icon_state = "wall3"
 	},
-/area/space)
-"wD" = (
-/obj/machinery/door/airlock/pyro/classic,
-/turf/floor/black,
 /area/space)
 "wE" = (
 /obj/machinery/light{
@@ -9502,10 +9405,6 @@
 	icon_state = "plant";
 	tag = "icon-plant (NORTH)"
 	},
-/turf/floor/black,
-/area/space)
-"yl" = (
-/obj/reagent_dispensers/watertank/fountain,
 /turf/floor/black,
 /area/space)
 "ym" = (
@@ -10386,9 +10285,6 @@
 	dir = 1;
 	icon_state = "yellowblack"
 	},
-/area/space)
-"Az" = (
-/turf/floor/carpet/grime,
 /area/space)
 "AA" = (
 /obj/lattice,
@@ -11445,7 +11341,7 @@ aa
 aa
 eW
 ai
-fQ
+dL
 gm
 gu
 ai
@@ -11587,7 +11483,7 @@ aa
 aa
 aa
 eW
-fQ
+dL
 ga
 gj
 gu
@@ -11600,7 +11496,7 @@ cF
 cG
 cG
 cG
-gk
+dr
 aa
 aa
 aa
@@ -11752,7 +11648,7 @@ cF
 ga
 cG
 cG
-gk
+dr
 aa
 aa
 aa
@@ -11763,9 +11659,9 @@ aa
 aa
 aa
 ea
-ee
-ee
-ee
+cG
+cG
+cG
 sa
 aa
 aa
@@ -11891,7 +11787,7 @@ aa
 aa
 aa
 fG
-fS
+dV
 cG
 cG
 gv
@@ -11901,7 +11797,7 @@ aa
 aa
 eX
 ai
-fS
+dV
 fR
 gv
 ai
@@ -11915,7 +11811,7 @@ aa
 aa
 aa
 aW
-ee
+cG
 rG
 sb
 aW
@@ -12141,9 +12037,9 @@ vL
 vY
 vY
 tF
-wD
-tG
-tG
+wh
+aA
+aA
 ai
 xt
 xG
@@ -12598,7 +12494,7 @@ vY
 vY
 ww
 ai
-tG
+aA
 wR
 ai
 xv
@@ -12652,7 +12548,7 @@ aa
 eW
 an
 at
-gk
+dr
 ai
 gC
 lg
@@ -12749,8 +12645,8 @@ vL
 vY
 vY
 tF
-wD
-tG
+wh
+aA
 xb
 ai
 xv
@@ -12802,7 +12698,7 @@ aa
 aa
 aa
 ai
-fQ
+dL
 cG
 cG
 fR
@@ -13106,7 +13002,7 @@ aa
 aa
 aa
 ai
-fS
+dV
 cG
 cG
 fR
@@ -13121,7 +13017,7 @@ aa
 ap
 eq
 eO
-jv
+fM
 ln
 mr
 ap
@@ -13260,7 +13156,7 @@ aa
 eX
 an
 at
-gk
+dr
 ai
 gC
 lg
@@ -13273,7 +13169,7 @@ aa
 aW
 eu
 gt
-jv
+fM
 ln
 sY
 aW
@@ -13355,7 +13251,7 @@ ai
 vA
 vN
 tF
-tG
+aA
 vW
 wE
 wT
@@ -13495,7 +13391,7 @@ tl
 tv
 tv
 tO
-tG
+aA
 ue
 uo
 uo
@@ -13516,7 +13412,7 @@ wU
 wU
 wU
 xZ
-yl
+hs
 ai
 yD
 yO
@@ -13729,7 +13625,7 @@ aa
 aa
 aW
 eK
-jv
+fM
 lq
 aW
 aa
@@ -13797,7 +13693,7 @@ nY
 th
 tn
 tx
-tG
+aA
 tO
 tU
 ug
@@ -13868,7 +13764,7 @@ aa
 cC
 gP
 ai
-gk
+dr
 an
 at
 gc
@@ -14018,7 +13914,7 @@ aa
 aa
 aa
 ap
-fQ
+dL
 fR
 cG
 cG
@@ -14033,7 +13929,7 @@ aa
 aa
 aq
 eM
-jv
+fM
 mc
 aq
 aa
@@ -14103,7 +13999,7 @@ tl
 tz
 tz
 tO
-tG
+aA
 uh
 us
 us
@@ -14267,7 +14163,7 @@ ai
 vC
 vT
 tH
-tG
+aA
 vW
 tW
 wV
@@ -14279,7 +14175,7 @@ vW
 yo
 ai
 yF
-tG
+aA
 wR
 ai
 aa
@@ -14322,7 +14218,7 @@ aa
 aa
 aa
 aq
-fS
+dV
 fR
 cG
 cG
@@ -14476,7 +14372,7 @@ aa
 cC
 gP
 ai
-gk
+dr
 an
 at
 gs
@@ -14585,7 +14481,7 @@ yu
 ai
 yQ
 wR
-tG
+aA
 th
 zn
 lw
@@ -14730,9 +14626,9 @@ tH
 xh
 ai
 xA
-tG
-tG
-tG
+aA
+aA
+aA
 yv
 ai
 yR
@@ -14882,9 +14778,9 @@ vF
 xi
 ai
 xB
-tG
+aA
 ye
-tG
+aA
 yw
 ai
 ai
@@ -14957,7 +14853,7 @@ nr
 aW
 rx
 rU
-sk
+qB
 nu
 ly
 aa
@@ -15034,9 +14930,9 @@ vF
 xj
 ai
 xC
-tG
+aA
 yf
-tG
+aA
 yx
 ai
 yS
@@ -15186,9 +15082,9 @@ vF
 xk
 ai
 xD
-tG
+aA
 yg
-tG
+aA
 yy
 ai
 yT
@@ -15338,9 +15234,9 @@ vF
 xl
 ai
 xA
-tG
-tG
-tG
+aA
+aA
+aA
 yv
 ai
 yU
@@ -15411,9 +15307,9 @@ aa
 aa
 aa
 of
-rB
-rB
-rB
+qS
+qS
+qS
 lP
 aa
 aa
@@ -15791,7 +15687,7 @@ wg
 wg
 wg
 wW
-tG
+aA
 ai
 rC
 rC
@@ -15988,8 +15884,8 @@ aa
 bY
 ef
 ej
-el
-el
+bD
+bD
 ch
 cn
 cU
@@ -16140,8 +16036,8 @@ aa
 ci
 eg
 ej
-el
-de
+bD
+aE
 dD
 cn
 cU
@@ -16161,7 +16057,7 @@ aa
 lK
 dw
 ed
-ee
+cG
 eU
 lc
 aa
@@ -16292,8 +16188,8 @@ aa
 cj
 eh
 ej
-el
-el
+bD
+bD
 ch
 cn
 cU
@@ -16312,10 +16208,10 @@ aa
 aa
 ai
 dL
-ee
-eD
-eD
-eD
+cG
+er
+er
+er
 ai
 aa
 aa
@@ -16463,10 +16359,10 @@ aa
 aa
 aa
 dr
-dP
-ee
-ee
-ee
+ac
+cG
+cG
+cG
 ld
 lv
 mt
@@ -16616,10 +16512,10 @@ aa
 aa
 ai
 dV
-ee
-eD
+cG
+er
 eV
-eD
+er
 ai
 aa
 aa
@@ -16738,9 +16634,9 @@ dk
 cn
 cn
 dD
-de
-de
-de
+aE
+aE
+aE
 dR
 lg
 aa
@@ -16768,7 +16664,7 @@ aa
 aa
 lK
 dw
-ee
+cG
 ed
 fE
 le
@@ -18721,7 +18617,7 @@ cz
 dU
 ch
 dA
-de
+aE
 dA
 ch
 cD
@@ -18739,7 +18635,7 @@ dt
 ch
 dA
 dA
-de
+aE
 dA
 dA
 ch
@@ -18890,9 +18786,9 @@ cY
 cA
 ch
 cV
-de
-dE
-de
+aE
+aF
+aE
 cV
 bZ
 bV
@@ -20683,7 +20579,7 @@ cz
 cp
 ch
 cV
-de
+aE
 cV
 ch
 bT
@@ -22363,9 +22259,9 @@ ih
 aa
 aa
 gO
-jv
-jv
-jv
+fM
+fM
+fM
 gO
 yA
 aa
@@ -22384,7 +22280,7 @@ gX
 hm
 hj
 hX
-iq
+ik
 iF
 hj
 jh
@@ -22536,7 +22432,7 @@ gX
 hm
 hj
 hY
-iq
+ik
 iG
 hj
 jh
@@ -22668,7 +22564,7 @@ jf
 jk
 gO
 jx
-jK
+iW
 jW
 hA
 km
@@ -22688,7 +22584,7 @@ hi
 ht
 hy
 hJ
-iq
+ik
 hi
 hy
 ht
@@ -23316,7 +23212,7 @@ sI
 sl
 sl
 sU
-ee
+cG
 ai
 tb
 aa
@@ -23468,7 +23364,7 @@ sF
 sN
 sP
 sV
-ee
+cG
 tc
 ai
 aa
@@ -23620,8 +23516,8 @@ sJ
 sO
 sQ
 sV
-ee
-ee
+cG
+cG
 sM
 aa
 aa
@@ -23764,7 +23660,7 @@ aa
 aa
 aa
 ai
-ee
+cG
 pP
 sy
 sy
@@ -23772,7 +23668,7 @@ sK
 sK
 sR
 sW
-ee
+cG
 td
 sM
 ti
@@ -23924,7 +23820,7 @@ sz
 sm
 sS
 sV
-ee
+cG
 ed
 sM
 aa
@@ -24076,7 +23972,7 @@ sL
 sN
 sT
 sV
-ee
+cG
 te
 ai
 aa
@@ -24228,7 +24124,7 @@ sG
 sG
 sG
 sX
-ee
+cG
 ai
 tf
 aa
@@ -24797,7 +24693,7 @@ aa
 gO
 jG
 jS
-jv
+fM
 gO
 sn
 aa
@@ -26525,7 +26421,7 @@ bS
 ca
 Ac
 Ac
-Az
+jm
 AD
 cQ
 co
@@ -26675,19 +26571,19 @@ aa
 bS
 cT
 ca
-Az
-Az
-Az
-Az
+jm
+jm
+jm
+jm
 AE
 Aj
 Am
 Ap
 AE
-Az
-Az
-Az
-Az
+jm
+jm
+jm
+jm
 bZ
 cT
 bU

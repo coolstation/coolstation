@@ -5,7 +5,7 @@
 	icon_state = "ghost"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH | USE_FLUID_ENTER //maybe?
+	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER //maybe?
 	density = 0
 	canmove = 1
 	blinded = 0
@@ -144,7 +144,7 @@
 
 
 //#ifdef HALLOWEEN
-/mob/dead/observer/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/mob/dead/observer/CanPass(atom/movable/mover, turf/target)
 	if (src.icon_state != "doubleghost" && istype(mover, /obj/projectile))
 		var/obj/projectile/proj = mover
 		if (proj.proj_data?.hits_ghosts)
@@ -835,7 +835,7 @@
 
 	insert_observer(creatures[eye_name])
 
-mob/dead/observer/proc/insert_observer(var/atom/target)
+/mob/dead/observer/proc/insert_observer(var/atom/target)
 	var/mob/dead/target_observer/newobs = new()
 	newobs.attach_hud(hud)
 	newobs.set_observe_target(target)
@@ -852,6 +852,7 @@ mob/dead/observer/proc/insert_observer(var/atom/target)
 		newobs.see_invisible = target.invisibility
 	if (src.corpse)
 		corpse.ghost = newobs
+		newobs.corpse = corpse //prevent stale corpse.ghost = target_observer reference when target_observer returns the client to this ghost
 	if (src.mind)
 		mind.transfer_to(newobs)
 	else if (src.client) //Wire: Fix for Cannot modify null.mob.
@@ -860,10 +861,7 @@ mob/dead/observer/proc/insert_observer(var/atom/target)
 	if (isghostrestrictedz(newobs.z) && !restricted_z_allowed(newobs, get_turf(newobs)) && !(src.client && src.client.holder))
 		newobs.set_loc(pick_landmark(LANDMARK_OBSERVER, locate(150, 150, 1)))
 
-/mob/dead/observer/verb/ghostjump(x as num, y as num, z as num)
-	set name = ".ghostjump"
-	set hidden = TRUE
-
+/mob/dead/observer/ghostjump(x as num, y as num, z as num)
 	var/turf/T = locate(x, y, z)
 	src.set_loc(T)
 

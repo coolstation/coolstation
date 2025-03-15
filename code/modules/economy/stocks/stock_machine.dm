@@ -141,8 +141,8 @@
 			dat += "<a href='byond://?src=\ref[src];archive=\ref[S]' class='[news ? "updated" : "default"]'>(A)</a> <a href='byond://?src=\ref[src];viewhistory=\ref[S]'>(H)</a></td></tr>"
 
 	dat += "</body></html>"
-	user.Browse(dat, "window=computer;size=600x400")
-	onclose(user, "computer")
+	user.Browse(dat, "window=computer_\ref[src];size=600x400")
+	onclose(user, "computer_\ref[src]")
 	return
 
 /obj/machinery/computer/stockexchange/attackby(obj/item/I as obj, user as mob)

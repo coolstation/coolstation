@@ -7,12 +7,10 @@
 #define IS_TYPE_SIMULATED (1<<2)
 /// can atmos use this tile as a space sample?
 #define CAN_BE_SPACE_SAMPLE (1<<3)
-/// turf is pushy. for manta
-#define MANTA_PUSH (1<<4)
 /// fluid move gear suffers no penalty on these turfs
-#define FLUID_MOVE (1<<5)
+#define FLUID_MOVE (1<<4)
 /// space move gear suffers no penalty on these turfs
-#define SPACE_MOVE (1<<6)
+#define SPACE_MOVE (1<<5)
 
 //N.B. these flags currently have precedence over area checks on the mining maps. By default, turfs are coloured "other" on the maps (unless in a station area)
 /// turf is coloured solid on the mining map
