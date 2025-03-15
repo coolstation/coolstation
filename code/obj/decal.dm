@@ -592,14 +592,6 @@ obj/decal/fakeobjects
 	opacity = 0
 	anchored = 1
 
-
-// gehenna.dm
-/datum/rock_color
-    var/g = 0
-    var/b = 0
-
-
-
 /obj/decal/landing_gear_prints_gehenna
 	name = null
 	desc = null
