@@ -360,7 +360,7 @@
 	//and anything with 2 connections was a node that needs to become a link
 	//everything else was and is a node
 
-	var/list/datum/powernet_graph_link/links2kill = list()
+	var/list/cables_with_links2kill = list()
 	var/list/datum/powernet_graph_node/nodes2kill = list()
 	var/list/datum/powernet_graph_node/nodes2link = list()
 
@@ -375,7 +375,7 @@
 
 		switch(C.get_connections())
 			if (3) //other cable was a link, needs to become a node
-				links2kill += C.is_a_link
+				cables_with_links2kill += C
 			if (2) //other cable was a dead end, is now a simple connection
 				nodes2kill += C.is_a_node
 			else   //other cable stays a node
@@ -399,8 +399,15 @@
 
 	//first, we let ex-links sort themselves out
 	//we might end up assigned a link through all this, and if not then this will sort out part of our node connections.
-	for(var/datum/powernet_graph_link/dead_link as anything in links2kill)
+	for(var/obj/cable/new_physical_node as anything in cables_with_links2kill)
+		var/datum/powernet_graph_link/dead_link = new_physical_node.is_a_link
+		dead_link.cables -= new_physical_node
 		dead_link.dissolve()
+		new_physical_node.is_a_node = new()
+		new_physical_node.is_a_node.physical_node = new_physical_node
+		if (src.is_a_node)
+			src.is_a_node.adjacent_nodes += new_physical_node.is_a_node
+			new_physical_node.is_a_node.adjacent_nodes += src.is_a_node
 
 	if (src.is_a_node)
 		//these are going from 1->2 connections, so by definition they only had one adjacent node
@@ -581,14 +588,11 @@
 			else //other cable stays a node
 */
 
-
-get_step()
-
-
-	//for (var/obj/machinery/power/P in connections)
-		//power_list() in get_connections has already filtered APCs out
-
-
+/obj/cable/proc/link_dissolve_crawl(datum/powernet_graph_link/dead_link)
+	if (!src.is_a_link)
+		return src
+	if (dead_link != src.is_a_link)
+		return src
 
 
 

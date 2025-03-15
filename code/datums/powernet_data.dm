@@ -201,8 +201,22 @@ var/global/list/dirty_pnet_nodes = list()
 
 		..()
 
-///
+///split up
 /datum/powernet_graph_link/proc/dissolve()
+	//Should note that when a cable inside a link becomes a node because a new connection appeared
+	//That cable is already removed in cable/proc/integrate. The assumption is that all cables we call link_dissolve_crawl are still links.
+	//That is to avoid recursion.
+
+	//break links between nodes
+	var/datum/powernet_graph_node/node_1 = adjacent_nodes[1]
+	var/datum/powernet_graph_node/node_2 = adjacent_nodes[2]
+	if (islist(node_1.adjacent_nodes[node_2]))
+		node_1.adjacent_nodes[node_2] -= src
+		node_2.adjacent_nodes[node_1] -= src
+	else
+		node_1.adjacent_nodes -= node_2
+		node_2.adjacent_nodes -= node_1
+	//let all the cables sort themselves out
 	while(length(cables))
 		var/obj/cable/C = cables[1]
 		cables -= C.link_dissolve_crawl(src)
