@@ -592,6 +592,32 @@ obj/decal/fakeobjects
 	opacity = 0
 	anchored = 1
 
+
+// gehenna.dm
+/datum/rock_color
+    var/g = 0
+    var/b = 0
+
+
+
+/obj/decal/landing_gear_prints_gehenna
+	name = null
+	desc = null
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "landing_gear_gehenna"
+	anchored = 1
+	density = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+
+
 /obj/decal/cragrock
 	name = "\improper Gehennan rock spikes"
 	desc = "Painfully sharp shards of sulfurous rock."
