@@ -124,8 +124,7 @@
 				blob_anim_image.icon_state = anim_overlay
 				UpdateOverlays(blob_anim_image,"anim_overlay")
 			if ( blob_holder.hat && istype(src,/obj/blob/nucleus))
-				blob_holder.hat.pixel_y = 5 //hat needs to match position of perspective nucleus
-				UpdateOverlays(blob_holder.hat,"hat")
+				src.vis_contents += blob_holder.hat
 
 	proc/onAttach(var/datum/abilityHolder/blob/AH)
 		if (istype(AH))
@@ -1234,12 +1233,13 @@
 
 /obj/blob/firewall
 	name = "fire-resistant membrane"
-	desc = "This blob is encased in a fireproof membrane."
+	desc = "This blob is encased in a fireproof and gas impermeable membrane."
 	state_overlay = "firewall"
 	opacity = 1
 	special_icon = 1
 	armor = 1
 	can_absorb = 0
+	gas_impermeable = TRUE
 
 	take_damage(amount, mult, damtype, mob/user)
 		if (damtype == "burn")

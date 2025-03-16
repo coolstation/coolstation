@@ -19,7 +19,7 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 	name = "Blob tutorial"
 	var/tutorial_area_type = null
 	var/area/tutorial_area = null
-	var/mob/living/intangible/blob_overmind/bowner = null
+	var/datum/abilityHolder/blob/blob_holder = null
 	var/turf/initial_turf = null
 
 	New()
@@ -46,17 +46,21 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 			qdel(src)
 			return
 		if (..())
-			bowner = owner
-			bowner.sight &= ~SEE_TURFS
-			bowner.sight &= ~SEE_MOBS
-			bowner.sight &= ~SEE_OBJS
+			blob_holder = owner // HACKY
+			owner = blob_holder.owner
+			owner.sight &= ~SEE_TURFS
+			owner.sight &= ~SEE_MOBS
+			owner.sight &= ~SEE_OBJS
 			owner.set_loc(initial_turf)
-			bowner.blob_holder.addAbility(/datum/targetable/blob/tutorial_exit)
+			blob_holder.addAbility(/datum/targetable/blob/tutorial_exit)
 
 	Finish()
 		if (..())
-			bowner.blob_holder.reset()
-			qdel(src)
+			blob_holder.reset()
+			for(var/turf/T in landmarks[LANDMARK_OBSERVER])
+				owner.set_loc(T)
+				qdel(src)
+				return
 
 	disposing()
 		if (tutorial_area_type)
@@ -301,8 +305,8 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 				T = get_step(T, NORTH)
 			spread_max_y = T.y
 
-			MT.bowner.blob_holder.points_max_bonus = 50
-			MT.bowner.blob_holder.gen_rate_bonus = 9
+			MT.blob_holder.points_max_bonus = 50
+			MT.blob_holder.gen_rate_bonus = 9
 
 			T.UpdateOverlays(marker,"marker")
 			TT = T
@@ -446,7 +450,7 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 		SetUp()
 			..()
 			var/datum/tutorial_base/blob/MT = tutorial
-			MT.bowner.blob_holder.evo_points = 500
+			MT.blob_holder.evo_points = 500
 
 		PerformAction(var/action, var/context)
 			if (action == "upgrade-digest" || action == "upgrade-reflective" || action == "upgrade-launcher" || action == "upgrade-replicator")
@@ -459,11 +463,11 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 
 		TearDown()
 			var/datum/tutorial_base/blob/MT = tutorial
-			MT.bowner.blob_holder.evo_points = 0
+			MT.blob_holder.evo_points = 0
 
 		MayAdvance()
 			var/datum/tutorial_base/blob/MT = tutorial
-			return MT.bowner.blob_holder.getAbility(/datum/targetable/blob/build/launcher) && MT.bowner.blob_holder.getAbility(/datum/targetable/blob/replicator) && MT.bowner.blob_holder.getAbility(/datum/targetable/blob/devour_item) && MT.bowner.blob_holder.getAbility(/datum/targetable/blob/build/reflective)
+			return MT.blob_holder.getAbility(/datum/targetable/blob/build/launcher) && MT.blob_holder.getAbility(/datum/targetable/blob/replicator) && MT.blob_holder.getAbility(/datum/targetable/blob/devour_item) && MT.blob_holder.getAbility(/datum/targetable/blob/build/reflective)
 
 	digestation
 		name = "Getting rid of items"

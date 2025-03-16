@@ -41,6 +41,7 @@
 	var/next_pity_point = 100
 	var/debuff_timestamp = 0
 	var/debuff_duration = 1200 //deciseconds. 1200 = 2 minutes
+	var/starter_buff = 1
 	var/obj/item/clothing/head/hat = null
 
 	New()
@@ -83,10 +84,6 @@
 			 * fighting it back because it will run out of points.
 			 */
 			src.points_max = src.BlobPointsBezierApproximation(floor(length(src.blobs) / 5)) + src.points_max_bonus
-
-		if (tutorial)
-			if (!tutorial.PerformSilentAction("life", null))
-				return
 
 		src.generatePoints(mult)
 
@@ -239,6 +236,7 @@
 		src.my_material.color = src.color
 		src.initial_material = copyMaterial(getMaterial("blob"))
 		src.debuff_timestamp = 0
+		src.starter_buff = 1
 
 		for(var/datum/targetable/B in src.abilities)
 			src.removeAbilityInstance(B)
@@ -254,13 +252,14 @@
 		src.addAbility(/datum/targetable/blob/help)
 
 	proc/setHat( var/obj/item/clothing/head/new_hat )
-		hat.pixel_y = 15
-		hat.pixel_x = 0
-		hat.appearance_flags |= RESET_ALPHA
+		new_hat.pixel_y = 15
+		new_hat.pixel_x = 0
+		new_hat.appearance_flags |= KEEP_APART & RESET_ALPHA
+		new_hat.plane = PLANE_SELFILLUM + 1
 		for( var/obj/blob/b in nuclei )
 			if(src.hat)
-				b.overlays -= src.hat
-			b.overlays += new_hat
+				b.vis_contents -= src.hat
+			b.vis_contents += new_hat
 		if( src.hat )
 			qdel(src.hat)
 		src.hat = new_hat
@@ -487,8 +486,9 @@
 	name = "Spread"
 	icon_state = "blob-spread"
 	desc = "This spends two biomass to spread to the desired tile. Blobs must be placed cardinally adjacent to other blobs."
-	pointCost = 2
+	pointCost = 0
 	cooldown = 2 SECONDS
+	var/pointCostPostStarterBuff = 2
 
 	cast(var/atom/target)
 		if (..())
@@ -551,6 +551,14 @@
 				spreadability -= R
 
 		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
+		if (src.blob_holder.starter_buff)
+			if (length(src.blob_holder.blobs) >= 40)
+				boutput(src.blob_holder.owner, SPAN_ALERT("You've grown large enough to lose your starter bonus! Good luck!"))
+				src.blob_holder.starter_buff = 0
+				pointCost = src.pointCostPostStarterBuff
+			else
+				pointCost = 0
+				cooldown = 6
 
 /datum/targetable/blob/promote_nucleus
 	name = "Promote to Nucleus"
@@ -1053,6 +1061,7 @@
 							new /obj/material_deposit(Bleb.loc, I.material, src.holder)
 
 					var/list/aggregated = recursive_reagents(I)
+					qdel(I)
 					if (aggregated.len)
 						if (Bleb.type != /obj/blob)
 							Bleb = null
@@ -1325,6 +1334,7 @@
 
 /datum/targetable/blob/evolution
 	targeted = FALSE
+	special_screen_loc = "SOUTH,WEST"
 	var/evo_point_cost = 0
 	var/repeatable = 0
 	var/scaling_cost_mult = 1
@@ -1356,7 +1366,7 @@
 		if (repeatable > 0)
 			repeatable--
 		if (repeatable == 0)
-			src.holder.removeAbility(src)
+			src.holder.removeAbilityInstance(src)
 		if (prob(80))
 			src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobup1.ogg", 50, 1)
 		else if (prob(50))

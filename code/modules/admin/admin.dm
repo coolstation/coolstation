@@ -1868,8 +1868,8 @@ var/global/noir = 0
 								B.name = newname
 			else if (how_much == "Just the Power")
 				M.add_ability_holder(/datum/abilityHolder/blob)
-				message_admins("[key_name(src)] gave [key_name(M)] blob powers.")
-				logTheThing("admin", src, M, "gave [constructTarget(M,"admin")] blob powers.")
+				message_admins("[key_name(usr)] gave [key_name(M)] blob powers.")
+				logTheThing("admin", usr, M, "gave [constructTarget(M,"admin")] blob powers.")
 				if (M.mind)
 					M.show_message(SPAN_ALERT("You've been struck by a stray Higgs Blobson! You feel the need to spread the Blob across the station!"))
 					M.mind.special_role = "blob"
