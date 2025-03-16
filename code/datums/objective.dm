@@ -731,11 +731,9 @@ proc/create_fluff(datum/mind/target)
 		if (!owner.current)
 			return 0
 
-		var/mob/living/intangible/blob_overmind/O = owner.current
-		if (!istype(O))
-			return 0
+		var/datum/abilityHolder/blob/blob_holder = owner.current.get_ability_holder(/datum/abilityHolder/blob)
 
-		if (length(O.blob_holder.blobs) >= blobtiletarget)
+		if (length(blob_holder.blobs) >= blobtiletarget)
 			return 1
 
 /datum/objective/specialist/wraith

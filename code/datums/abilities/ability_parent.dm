@@ -101,7 +101,7 @@
 		//note that the composite holder reads in x_occupied and y_occupied. that's important for positioning over multiple holders.
 		if (composite_owner && !called_by_owner)
 			composite_owner.updateButtons()
-			return
+			return 1
 
 		x_occupied = 0
 		y_occupied = 0
@@ -398,6 +398,12 @@
 
 /atom/movable/screen/ability
 	var/datum/targetable/owner
+	var/static/image/ctrl_highlight = image('icons/ui/spell_buttons.dmi',"ctrl")
+	var/static/image/shift_highlight = image('icons/ui/spell_buttons.dmi',"shift")
+	var/static/image/alt_highlight = image('icons/ui/spell_buttons.dmi',"alt")
+	var/static/image/cooldown = image('icons/ui/spell_buttons.dmi',"cooldown")
+	var/static/image/darkener = image('icons/ui/spell_buttons.dmi',"darkener")
+
 	var/static/image/binding = image('icons/ui/spell_buttons.dmi',"binding")
 	//*screams*
 	var/static/image/one = image('icons/ui/spell_buttons.dmi',"1")
@@ -528,11 +534,6 @@
 
 
 /atom/movable/screen/ability/topBar
-	var/static/image/ctrl_highlight = image('icons/ui/spell_buttons.dmi',"ctrl")
-	var/static/image/shift_highlight = image('icons/ui/spell_buttons.dmi',"shift")
-	var/static/image/alt_highlight = image('icons/ui/spell_buttons.dmi',"alt")
-	var/static/image/cooldown = image('icons/ui/spell_buttons.dmi',"cooldown")
-	var/static/image/darkener = image('icons/ui/spell_buttons.dmi',"darkener")
 
 	var/atom/movable/screen/pseudo_overlay/cd_tens
 	var/atom/movable/screen/pseudo_overlay/cd_secs

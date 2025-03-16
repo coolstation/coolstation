@@ -72,10 +72,6 @@
 			SPAWN_DBG(0)
 				qdel(src)
 
-	Stat()
-		..()
-		src.blob_holder.Stat()
-
 	Login()
 		..()
 		client.show_popup_menus = 0
@@ -113,7 +109,7 @@
 			return 0.75 + movement_delay_modifier
 
 	click(atom/target, params)
-		if(!src.targeting_ability && isturf(target))
+		if(!src.targeting_ability && !(params && (params["shift"] || params["ctrl"] || params["alt"])) && isturf(target))
 			var/turf/T = target
 			if (T && (!isghostrestrictedz(T.z) || (isghostrestrictedz(T.z) && restricted_z_allowed(src, T)) || src.blob_holder.tutorial || (src.client && src.client.holder)))
 				if (src.blob_holder.tutorial)
@@ -128,6 +124,8 @@
 					src.set_loc(OS)
 				else
 					src.z = 1
+		else
+			..()
 
 	say_understands() return 1
 	can_use_hands()	return 0

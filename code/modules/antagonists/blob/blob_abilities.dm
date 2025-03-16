@@ -88,6 +88,8 @@
 			if (!tutorial.PerformSilentAction("life", null))
 				return
 
+		src.generatePoints(mult)
+
 		if (length(blobs) >= next_evo_point)
 			next_evo_point += initial(next_evo_point)
 			evo_points++
@@ -177,6 +179,36 @@
 			//maybe other debuffs here in the future
 
 		src.points = clamp((src.points + (regenRate + genBonus - gen_rate_used) * mult), 0, src.points_max) //these are rounded in point displays
+
+
+	updateButtons(called_by_owner, start_x, start_y)
+		if(..())
+			return
+		if (src.shiftPower)
+			src.shiftPower.object.overlays += src.shiftPower.object.shift_highlight
+		if (src.ctrlPower)
+			src.ctrlPower.object.overlays += src.ctrlPower.object.ctrl_highlight
+		if (src.altPower)
+			src.altPower.object.overlays += src.altPower.object.alt_highlight
+		if (viewing_upgrades)
+			var/pos_x = 0
+			var/pos_y = 14
+
+			for(var/datum/targetable/blob/evolution/B in src.abilities)
+				if (!istype(B.object))
+					continue
+				B.object.overlays = list()
+				B.object.invisibility = 0
+				B.object.screen_loc = "WEST+[pos_x]:9,NORTH-[pos_y]"
+				pos_x++
+				if(pos_x > 3)
+					pos_x = 0
+					pos_y--
+				if(!B.check_requirements())
+					B.object.overlays += B.object.darkener
+		else
+			for(var/datum/targetable/blob/evolution/B in src.abilities)
+				B.object.invisibility = 101
 
 	proc/reset()
 		src.attack_power = initial(src.attack_power)
@@ -322,14 +354,14 @@
 	preferred_holder_type = /datum/abilityHolder/blob
 	var/datum/abilityHolder/blob/blob_holder
 
-	New()
-		..()
-		src.blob_holder = src.holder.owner.get_ability_holder(/datum/abilityHolder/blob)
+	onAttach(datum/abilityHolder/H)
+		. = ..()
+		src.blob_holder = H
 
 /datum/targetable/blob/plant_nucleus
 	name = "Deploy"
 	icon_state = "blob-nucleus"
-	desc = "This will place the first blob at the target or on your tile (if middle clicked). You can only do this once. Once placed, a small amount of blob tiles will spawn around it."
+	desc = "This will place your first nucleus at the target. You can only do this once. Once placed, a small amount of blob tiles will spawn around it."
 	targeted = 1
 
 	cast(var/atom/target)
@@ -1292,6 +1324,7 @@
 		src.holder.updateButtons()
 
 /datum/targetable/blob/evolution
+	targeted = FALSE
 	var/evo_point_cost = 0
 	var/repeatable = 0
 	var/scaling_cost_mult = 1
@@ -1299,9 +1332,13 @@
 	var/evolution_flags = 0
 	var/id = "upgrade"
 
+	cast()
+		if(src.check_requirements())
+			src.take_upgrade()
+			src.deduct_evo_points()
+
 	proc/check_requirements()
 		if (src.blob_holder.evo_points < evo_point_cost)
-			//boutput(owner, "<span class='alert'>You need [pointCost] bio-points to take this upgrade.</span>")
 			return 0
 		return 1
 

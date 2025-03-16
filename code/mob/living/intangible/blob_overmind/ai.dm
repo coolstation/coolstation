@@ -263,7 +263,7 @@
 
 			if (fireres_up)
 				if (fireres_up.check_requirements())
-					fireres_up.take_upgrade()
+					fireres_up.cast()
 					fireres_up = null
 					logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took fire resistance upgrade.")
 
@@ -349,11 +349,11 @@
 					spread_up = null
 				if (gen_up)
 					if (gen_up.check_requirements())
-						gen_up.take_upgrade()
+						gen_up.cast()
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took generation rate upgrade while expanding.")
 				if (spread_up)
 					if (spread_up.check_requirements())
-						spread_up.take_upgrade()
+						spread_up.cast()
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took spread upgrade while expanding.")
 				if(length(open) + length(open_low) + length(open_medium) == 0 && length(closed) > 0)
 					destroying = pick(closed)
