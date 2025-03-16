@@ -37,7 +37,7 @@
 		if (!istype(new_center)) return
 		if (!can_drift) return
 
-		//if the storm would go off the edge of the map, qdel it and place a new one somewhere on the opposite side, within random variance.
+		//if the storm would go off the edge of the map, qdel it and place a new one somewhere on the opposite side, within some random variance.
 		if (new_center.x >= world.maxx || new_center.x <= 1 || new_center.y >= world.maxy || new_center.y <= 1)
 			var/datum/storm_cell/new_storm = new
 			storm_list += new_storm
