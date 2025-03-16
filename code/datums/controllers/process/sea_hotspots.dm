@@ -41,3 +41,4 @@
 		else
 			controller = 0
 			global.storm_controller.clear()
+#endif
