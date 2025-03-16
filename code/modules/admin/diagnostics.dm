@@ -715,6 +715,15 @@ proc/debug_map_apc_count(delim,zlim)
 			if(val)
 				img.app.overlays = list(src.makeText(round(val), RESET_ALPHA))
 
+	perduta_storms
+		name = "Perduta storms"
+		help = {"Storm overlay. Colour corresponds to lightning strike chance."}
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			. = ..()
+			var/val = storm_controller.probe_turf(theTurf)
+			img.app.color = hsv2rgb((75 + (val * 100)), 100, 50)
+			img.app.overlays = list(src.makeText(round(val, 0.01), RESET_ALPHA))
+
 	trace_gases // also known as Fart-o-Vision
 		name = "trace gases active"
 		GetInfo(turf/theTurf, image/debugoverlay/img)

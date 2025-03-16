@@ -21,6 +21,14 @@
 				S.drift_count = 0
 				S.move_center_to(get_step(S.center.turf(), S.drift_dir))
 
+	proc/probe_turf(var/turf/T)
+		.= 0
+		for (var/datum/storm_cell/S in storm_list)
+			var/turf/T2 = S.center.turf()
+			var/dist = GET_DIST(T, T2)
+
+			. += (-9 * sin(45.84 * dist)) / (1.5 * (dist + 1))
+
 	proc/clear()
 		storm_list.len = 0
 
