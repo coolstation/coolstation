@@ -599,15 +599,30 @@ obj/decal/fakeobjects
 	icon_state = "landing_gear_gehenna"
 	anchored = 1
 	density = 0
+	mouse_opacity = 0
 	plane = PLANE_NOSHADOW_BELOW
 	layer = TURF_LAYER - 0.1
 	//Grabs turf color set in gehenna.dm for sand
-
 	New()
 		..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
+/obj/decal/beaten_edge_thin
+	name = null
+	desc = null
+	icon = 'icons/turf/gehenna_overlays.dmi'
+	icon_state = "beaten_edge_thin"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
 
 
 /obj/decal/cragrock
