@@ -46,8 +46,9 @@
 	New()
 		..()
 #ifdef Z3_IS_A_STATION_LEVEL
-		src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
-		src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
+		if(isintangible(src.owner))
+			src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
+			src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
 #endif
 		src.addAbility(/datum/targetable/blob/plant_nucleus)
 		src.addAbility(/datum/targetable/blob/set_color)
@@ -211,8 +212,9 @@
 			src.removeAbilityInstance(B)
 
 #ifdef Z3_IS_A_STATION_LEVEL
-		src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
-		src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
+		if(isintangible(src.owner))
+			src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
+			src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
 #endif
 		src.addAbility(/datum/targetable/blob/plant_nucleus)
 		src.addAbility(/datum/targetable/blob/set_color)
