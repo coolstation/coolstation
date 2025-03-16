@@ -721,7 +721,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			. = ..()
 			var/val = storm_controller.probe_turf(theTurf)
-			img.app.color = hsv2rgb((75 + (val * 100)), 100, 50)
+			img.app.color = hsv2rgb((max(0 , 75 + (val * 100))), 100, 50)
 			img.app.overlays = list(src.makeText(round(val, 0.01), RESET_ALPHA))
 
 	trace_gases // also known as Fart-o-Vision

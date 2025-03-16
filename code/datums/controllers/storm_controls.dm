@@ -1,6 +1,6 @@
 /datum/storm_controller
 	var/list/storm_list = list()
-	var/storms_to_create = 10
+	var/storms_to_create = 5
 
 	New()
 		..()
@@ -25,9 +25,9 @@
 		.= 0
 		for (var/datum/storm_cell/S in storm_list)
 			var/turf/T2 = S.center.turf()
-			var/dist = GET_DIST(T, T2)
+			var/dist = GET_EUCLIDEAN_DIST(T, T2) + 1
 
-			. += (-9 * sin(45.84 * dist)) / (1.5 * (dist + 1))
+			. += (-9 * sin(45.84 * dist)) / (1.5 * dist)
 
 	proc/clear()
 		storm_list.len = 0
@@ -59,4 +59,7 @@
 
 		center.change(new_center.x,new_center.y,new_center.z)
 
+	disposing()
+		storm_controller.storm_list -= src
+		..()
 
