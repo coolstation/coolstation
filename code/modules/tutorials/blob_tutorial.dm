@@ -401,6 +401,8 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 			var/tz = MT.initial_turf.z
 			target = locate(tx + 3, ty + 3, tz)
 			target.UpdateOverlays(marker,"marker")
+			if(!istype(MT.owner,/mob/living/intangible/blob_overmind))
+				finished = 1
 
 		PerformAction(var/action, var/context)
 			if (action == "clickmove" && context == target)
