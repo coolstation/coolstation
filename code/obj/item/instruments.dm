@@ -242,6 +242,29 @@
 		spawn(100)
 			spam_flag = 0
 	return
+
+/* -------------------- BAD SAXO -------------------- */
+/obj/item/saxophone/bad
+	desc = "You have no idea how to play this instrument <i>at all</i>."
+	sounds_sax = list('sound/musical_instruments/sax/saxbad-01.ogg', 'sound/musical_instruments/sax/saxbad-02.ogg','sound/musical_instruments/sax/saxbad-03.ogg','sound/musical_instruments/sax/saxbad-04.ogg','sound/musical_instruments/sax/saxbad-05.ogg','sound/musical_instruments/sax/saxbad-06.ogg','sound/musical_instruments/sax/saxbad-07.ogg')
+
+/obj/item/saxophone/bad/attack_self(mob/user as mob)
+	if (spam_flag == 0)
+		spam_flag = 1
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (H.sims)
+				H.sims.affectMotive("fun", 10) //bad on purpose is the most fun but maybe it should make everyone hearing it have less fun
+		user.visible_message("<B>[user]</B> [pick("honks","squeals","toots","gurgles","wails")] out a [pick("horrid", "ear-splitting", "embarrassing","ill-advised","fumbling","atonal","mistaken","bad","tasteless","amateur","possibly avant-garde")] [pick("affront","series of notes","noise","agony","flatulation","musical atrocity","experiment","accident")] on [his_or_her(user)] saxophone!")
+		playsound(get_turf(src), pick(src.sounds_sax), 50, 1)
+		for (var/obj/critter/dog/george/G in range(user,6))
+			if (prob(100))
+				G.howl()
+		src.add_fingerprint(user)
+		spawn(30)
+			spam_flag = 0
+	return
+
 /* -------------------- Saxophone -------------------- */
 
 /obj/item/instrument/saxophone

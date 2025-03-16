@@ -12,9 +12,9 @@
 	else
 		if (findtext(file, "{{resource")) //Got here via the dumb regex proc (local only)
 			file = group
+
 		if (findtext(file, "/"))
-			var/list/parts = splittext(file, "/")
-			file = parts[parts.len]
+			file = "browserassets-" + replacetext(file, "/", "-")
 		. = file
 
 
@@ -112,7 +112,9 @@
 	return path
 
 
-//Converts placeholder tags to filepaths appropriate for local-hosting offline (absolute, no subdirs)
+//Converts placeholder tags to filepaths appropriate for local-hosting offline
+//These paths are absolute but partenthesis separated-
+//The local "server" cache does not support subdirectories
 /proc/parseAssetLinks(file, path)
 	if (!file) return 0
 
@@ -164,11 +166,11 @@
 			if (copytext(newPath, -1) != "/" && fexists(newPath)) //"server" already has this file? apparently that causes ~problems~
 				fdel(newPath)
 			if (text2file(parsedFile, newPath)) //make a new file with the parsed text because byond fucking sucks at sending text as anything besides html
-				src << browse_rsc(file(newPath), r)
+				src << browse_rsc(file(newPath), replacetext(r, "/", "-"))
 			else
 				world.log << "RESOURCE ERROR: Failed to convert text in '[r]' to a temporary file"
 		else //file is binary just throw it at the client as is
-			src << browse_rsc(fileRef, r)
+			src << browse_rsc(fileRef, replacetext(r, "/", "-"))
 	return 1
 
 

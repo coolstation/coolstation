@@ -9,10 +9,12 @@
 	)
 
 /// Normal base window tgui assets
+/// Now uses full pathnames separated by dashes
+/// Should help improve local/live consistency
 /datum/asset/basic/tgui
 	local_assets = list(
-		"tgui.bundle.js",
-		"tgui.bundle.css"
+		"browserassets-tgui-tgui.bundle.js",
+		"browserassets-tgui-tgui.bundle.css"
 	)
 
 	init()
@@ -25,8 +27,8 @@
 /// tgui panel specific assets
 /datum/asset/basic/tgui_panel
 	local_assets = list(
-		"tgui-panel.bundle.js",
-		"tgui-panel.bundle.css"
+		"browserassets-tgui-tgui-panel.bundle.js",
+		"browserassets-tgui-tgui-panel.bundle.css"
 	)
 
 	init()
@@ -39,11 +41,11 @@
 /// Fontawesome assets
 /datum/asset/basic/fontawesome
 	local_assets = list(
-		"all.min.css",
-		"fa-regular-400.eot",
-		"fa-regular-400.woff",
-		"fa-solid-900.eot",
-		"fa-solid-900.woff"
+		"browserassets-css-tgui-all.min.css",
+		"browserassets-css-fonts-fa-regular-400.eot",
+		"browserassets-css-fonts-fa-regular-400.woff",
+		"browserassets-css-fonts-fa-solid-900.eot",
+		"browserassets-css-fonts-fa-solid-900.woff"
 	)
 
 	url_map = list(

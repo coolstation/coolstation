@@ -102,7 +102,7 @@
 				<input type="submit" value="Submit">
 			</div>
 			<div style="float: left; margin: 0.5em 1em; text-align: right;">
-				<input type="submit" value="Cancel" [PC_CLOSE_ONCLICK]>
+				<input type="button" value="Cancel" [PC_CLOSE_ONCLICK]>
 			</div>
 		[PC_ENDIF("inputstyle")]
 
@@ -310,8 +310,8 @@ function updateSearchSubstring() {
 		..()
 		tags["title"] = "Spawn Mob"
 		tags["placeholder"] = "pig"
-		tags["window"] = "create-mob"
 		tags["filter-text"] = "Filter mob types:"
+		window = "create-mob"
 
 /datum/pcui_template/selector/object_spawner/turfspawn
 
@@ -319,5 +319,5 @@ function updateSearchSubstring() {
 		..()
 		tags["title"] = "Spawn Turf"
 		tags["placeholder"] = "steel"
-		tags["window"] = "create-turf"
 		tags["filter-text"] = "Filter turf types:"
+		window = "create-turf"
