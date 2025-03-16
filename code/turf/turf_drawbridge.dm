@@ -27,6 +27,38 @@
 	icon_state = "airbridge"
 	name = "airbridge floor"
 
+	classic
+		icon = 'icons/turf/construction_floors.dmi' // this dmi has a few of the older ones still
+		icon_state = "shuttle"
+
+		white
+			icon_state = "shuttle-white"
+
+		yellow
+			icon_state = "shuttle-yellow"
+
+		red
+			icon_state = "shuttle-red"
+
+		purple
+			icon_state = "shuttle-purple"
+
+		green
+			icon_state = "shuttle-green"
+
 /turf/wall/airbridge
 	icon_state = "airbridge"
 	name = "airbridge wall"
+
+	classic
+		icon = 'icons/turf/construction_walls.dmi'
+		icon_state = "shuttle"
+
+		gray
+			icon_state = "shuttle-gray"
+
+		orange
+			icon_state = "shuttle-orange"
+
+		green
+			icon_state = "shuttle-green"
