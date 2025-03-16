@@ -687,7 +687,7 @@
 			return 1
 		return 0
 
-	was_harmed(var/obj/blob/B, var/mob/M)
+	was_harmed(var/obj/blob/B, var/mob/M, special, intent)
 		..()
 		if (!prob(max(1, min(100, (2000 - 100 * GET_DIST(M, src)) / 13))))
 			return
