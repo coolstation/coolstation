@@ -1448,11 +1448,11 @@ DEFINE_FLOORS(techfloor/green,
 		plate_mat = getMaterial("blob")
 		. = ..()
 
-	proc/setOvermind(var/mob/living/intangible/blob_overmind/O)
+	proc/setHolder(var/datum/abilityHolder/blob/AH)
 		if (!material)
 			setMaterial(getMaterial("blob"))
-		material.color = O.color
-		color = O.color
+		material.color = AH.color
+		color = AH.color
 
 	attackby(var/obj/item/W, var/mob/user)
 		if (isweldingtool(W))

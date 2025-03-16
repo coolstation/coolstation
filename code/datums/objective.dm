@@ -735,7 +735,7 @@ proc/create_fluff(datum/mind/target)
 		if (!istype(O))
 			return 0
 
-		if (O.blobs.len >= blobtiletarget)
+		if (length(O.blob_holder.blobs) >= blobtiletarget)
 			return 1
 
 /datum/objective/specialist/wraith

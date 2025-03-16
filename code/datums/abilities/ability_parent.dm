@@ -762,6 +762,7 @@
 						boutput(user, "<span class='notice'>Cost: <strong>[owner.pointCost]</strong></span>")
 					if (owner.cooldown)
 						boutput(user, "<span class='notice'>Cooldown: <strong>[owner.cooldown / 10] seconds</strong></span>")
+					owner.extra_help(user)
 				else
 					if (!owner.cooldowncheck())
 						boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [floor((owner.last_cast - world.time) / 10)] seconds.</span>")
@@ -862,6 +863,9 @@
 		..()
 
 	proc
+		extra_help(mob/user)
+			return
+
 		handleCast(atom/target, params)
 			var/result = tryCast(target, params)
 			if (result && result != 999)

@@ -2169,7 +2169,7 @@ var/global/list/allowed_restricted_z_areas
 
 	if (M && isblob(M))
 		var/mob/living/intangible/blob_overmind/B = M
-		if (B.tutorial)
+		if (B.blob_holder.tutorial)
 			return TRUE
 
 	var/area/A

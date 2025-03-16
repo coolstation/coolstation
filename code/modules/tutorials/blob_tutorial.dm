@@ -51,36 +51,11 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 			bowner.sight &= ~SEE_MOBS
 			bowner.sight &= ~SEE_OBJS
 			owner.set_loc(initial_turf)
-			bowner.add_ability(/datum/blob_ability/tutorial_exit)
+			bowner.blob_holder.addAbility(/datum/targetable/blob/tutorial_exit)
 
 	Finish()
 		if (..())
-			bowner.set_loc(pick_landmark(LANDMARK_OBSERVER))
-			bowner.bio_points_max_bonus = initial(bowner.bio_points_max_bonus)
-			bowner.started = 0
-			for (var/obj/blob/B in bowner.blobs)
-				qdel(B)
-			bowner.evo_points = initial(bowner.evo_points)
-			bowner.next_evo_point = initial(bowner.next_evo_point)
-			bowner.gen_rate_bonus = initial(bowner.gen_rate_bonus)
-			bowner.abilities = list()
-			bowner.upgrades = list()
-			bowner.available_upgrades = list()
-			bowner.add_ability(/datum/blob_ability/plant_nucleus)
-			bowner.add_ability(/datum/blob_ability/set_color)
-			bowner.add_ability(/datum/blob_ability/tutorial)
-			bowner.add_ability(/datum/blob_ability/help)
-			bowner.shift_power = null
-			bowner.ctrl_power = null
-			bowner.alt_power = null
-			bowner.update_buttons()
-			bowner.bio_points = initial(bowner.bio_points)
-			bowner.bio_points_max = initial(bowner.bio_points_max)
-			bowner.lipids = list()
-			bowner.nuclei = list()
-			bowner.tutorial = null
-			bowner.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
-			bowner.starter_buff = 1
+			bowner.blob_holder.reset()
 			qdel(src)
 
 	disposing()
@@ -326,8 +301,8 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 				T = get_step(T, NORTH)
 			spread_max_y = T.y
 
-			MT.bowner.bio_points_max_bonus = 50
-			MT.bowner.gen_rate_bonus = 9
+			MT.bowner.blob_holder.points_max_bonus = 50
+			MT.bowner.blob_holder.gen_rate_bonus = 9
 
 			T.UpdateOverlays(marker,"marker")
 			TT = T
@@ -471,7 +446,7 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 		SetUp()
 			..()
 			var/datum/tutorial_base/blob/MT = tutorial
-			MT.bowner.evo_points = 500
+			MT.bowner.blob_holder.evo_points = 500
 
 		PerformAction(var/action, var/context)
 			if (action == "upgrade-digest" || action == "upgrade-reflective" || action == "upgrade-launcher" || action == "upgrade-replicator")
@@ -484,11 +459,11 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 
 		TearDown()
 			var/datum/tutorial_base/blob/MT = tutorial
-			MT.bowner.evo_points = 0
+			MT.bowner.blob_holder.evo_points = 0
 
 		MayAdvance()
 			var/datum/tutorial_base/blob/MT = tutorial
-			return MT.bowner.has_upgrade(/datum/blob_upgrade/launcher) && MT.bowner.has_upgrade(/datum/blob_upgrade/replicator) && MT.bowner.has_upgrade(/datum/blob_upgrade/devour_item) && MT.bowner.has_upgrade(/datum/blob_upgrade/reflective)
+			return MT.bowner.blob_holder.getAbility(/datum/targetable/blob/build/launcher) && MT.bowner.blob_holder.getAbility(/datum/targetable/blob/replicator) && MT.bowner.blob_holder.getAbility(/datum/targetable/blob/devour_item) && MT.bowner.blob_holder.getAbility(/datum/targetable/blob/build/reflective)
 
 	digestation
 		name = "Getting rid of items"
@@ -758,8 +733,8 @@ proc/AddBlobSteps(var/datum/tutorial_base/blob/T)
 
 /mob/living/intangible/blob_overmind/verb/help_my_tutorial_is_being_a_massive_shit()
 	set name = "EMERGENCY TUTORIAL STOP"
-	if (!tutorial)
+	if (!src.blob_holder.tutorial)
 		boutput(src, "<span class='alert'>You're not in a tutorial, doofus. It's real. IT'S ALL REAL.</span>")
 		return
-	src.tutorial.Finish()
-	src.tutorial = null
+	src.blob_holder.tutorial.Finish()
+	src.blob_holder.tutorial = null

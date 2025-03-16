@@ -1841,7 +1841,8 @@ var/global/noir = 0
 				return
 			var/mob/M = locate(href_list["target"])
 			if (!M) return
-			if (alert("Make [M] a blob?", "Make Blob", "Yes", "No") == "Yes")
+			var/how_much = alert("Make [M] a blob?", "Make Blob", "All the Way", "Just the Power", "No")
+			if (how_much == "All the Way")
 				var/mob/B = M.blobize()
 				if (B)
 					if (B.mind)
@@ -1865,6 +1866,18 @@ var/global/noir = 0
 								newname = strip_html(newname) + " the Blob"
 								B.real_name = newname
 								B.name = newname
+			else if (how_much == "Just the Power")
+				M.add_ability_holder(/datum/abilityHolder/blob)
+				if (M.mind)
+					M.mind.special_role = "blob"
+					ticker.mode.bestow_objective(M,/datum/objective/specialist/blob)
+					var/i = 1
+					for (var/datum/objective/Obj in M.mind.objectives)
+						boutput(M, "<b>Objective #[i]</b>: [Obj.explanation_text]")
+						i++
+					ticker.mode.Agimmicks += M.mind
+					M.antagonist_overlay_refresh(1, 0)
+
 
 		if ("makemacho")
 			if( src.level < LEVEL_PA )
