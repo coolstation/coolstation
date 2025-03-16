@@ -608,6 +608,25 @@
 		else if(src.operating)
 			src.operating = 0
 
+/obj/machinery/door/proc/force_close()
+	src.operating = 1
+	close_trys = 0
+	SPAWN_DBG(-1)
+		src.update_icon(1)
+		src.set_density(1)
+		src.update_nearby_tiles()
+
+		if(src.visible)
+			if (ignore_light_or_cam_opacity)
+				src.opacity = 1
+			else
+				src.RL_SetOpacity(1)
+
+		src.closed()
+
+		if(src.operating)
+			src.operating = 0
+
 /obj/machinery/door/proc/opened()
 	if(autoclose)
 		sleep(15 SECONDS)
