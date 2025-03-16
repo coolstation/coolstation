@@ -403,6 +403,7 @@ var/global/list/blob_tutorial_areas = list(/area/blob/tutorial_zone_1, /area/blo
 			target.UpdateOverlays(marker,"marker")
 			if(!istype(MT.owner,/mob/living/intangible/blob_overmind))
 				finished = 1
+				MT.Advance()
 
 		PerformAction(var/action, var/context)
 			if (action == "clickmove" && context == target)
