@@ -49,6 +49,7 @@ var/global
 	list/processing_fluid_turfs = list()
 	list/warping_mobs = list()
 	datum/hotspot_controller/hotspot_controller = new
+	datum/storm_controller/storm_controller = new
 		//items that ask to be called every cycle
 
 	list/muted_keys = list()
