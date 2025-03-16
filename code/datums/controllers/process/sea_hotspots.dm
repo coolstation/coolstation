@@ -28,7 +28,7 @@
 
 	setup()
 		name = "Storm Cell Process"
-		schedule_interval = 1 MINUTE
+		schedule_interval = 10 SECONDS
 		controller = global.storm_controller
 
 	copyStateFrom(datum/controller/process/target)
@@ -40,5 +40,5 @@
 			controller.process()
 		else
 			controller = 0
-			global.storm_controller.clear()
+			global.storm_controller.remove_storm_cells(INFINITY)
 #endif
