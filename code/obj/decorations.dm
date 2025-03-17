@@ -311,21 +311,21 @@
 
 	//check if somebody walked in and its russlin' time
 	HasEntered(atom/movable/AM as mob|obj)
-		if (ishuman(AM)) //if its a human (includes monkeys)
 
-			if(isnpc(AM)) //if its a monkey (a type of human NPC)
-				src.shake_bush(10)
+		if(!(ishuman(AM) || AM.throwing))
+			return
 
-			else //Only players will trigger this
-				src.shake_bush(50)
+		if(isnpc(AM)) //if its a monkey (a type of human NPC)
+			src.shake_bush(10)
+			return
 
-		else if (AM.throwing) //if its a thrown item and not a human/monke
+		if (AM.throwing) //if its a thrown item and not a human/monke
 			src.shake_bush(20)
-
-		..()
-		return
-
+			return
 		//humans are much louder than thrown items and mobs
+		//Only players will trigger this
+		src.shake_bush(50)
+		..()
 
 /obj/shrub/big/big2
 	icon_state = "fern2"
