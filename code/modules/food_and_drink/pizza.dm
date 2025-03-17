@@ -10,13 +10,11 @@
 	var/image/cheese_image = null
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 	appearance_flags = KEEP_TOGETHER | PIXEL_SCALE | LONG_GLIDE
-	w_class = W_CLASS_NORMAL
+	w_class = W_CLASS_BULKY
 
-	var/max_topping_size = W_CLASS_SMALL
-	/// How much w_class fits on the pizza
-	var/max_topping_space = 10
-	/// How much w_class remains
-	var/topping_space_left = 10
+	var/max_topping_size = W_CLASS_NORMAL
+	/// How much w_class of toppings fits on the pizza
+	var/topping_space_left = 20
 	/// How much to scale toppings by
 	var/topping_scale = 0.5
 	/// how many times this dough was flourished
@@ -95,7 +93,7 @@
 			boutput(user, SPAN_NOTICE("You add \the [topping] to \the [src]."))
 			src.topping_space_left -= topping.w_class
 			topping.set_loc(src)
-			topping.transform = matrix(matrix(src.transform, src.topping_scale, src.topping_scale, MATRIX_SCALE), rand(-180,180), MATRIX_ROTATE)
+			topping.transform = matrix(matrix(src.topping_scale, src.topping_scale, MATRIX_SCALE), rand(-180,180), MATRIX_ROTATE)
 			topping.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 			topping.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 			topping.event_handler_flags |= NO_MOUSEDROP_QOL
@@ -158,6 +156,8 @@
 
 	proc/bake_pizza(var/matter_eater_fake_bake = FALSE)
 		var/obj/item/reagent_containers/food/snacks/pizza/baked_pizza = new(src.loc)
+
+		baked_pizza.transform = src.transform
 
 		//locate a potential chef
 		var/mob/living/carbon/human/baker
@@ -284,6 +284,17 @@
 
 		return baked_pizza
 
+/obj/item/reagent_containers/food/snacks/ingredient/pizza_base/bubsian
+	name = "bubsian pizza dough"
+	max_topping_size = W_CLASS_BUBSIAN
+	topping_space_left = 1000
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+	New()
+		..()
+		src.transform = matrix(2, 2, MATRIX_SCALE)
+
+
 /obj/item/reagent_containers/food/snacks/pizza
 	name = "pizza"
 	desc = "A sauceless, cheeseless pizza."
@@ -347,6 +358,7 @@
 		. = list()
 		while (makeslices > 0)
 			var/obj/item/reagent_containers/food/snacks/pizzaslice/pizza_slice = new src.slice_product(T)
+			pizza_slice.transform = src.transform
 			pizza_slice.sauce_color = src.sauce_color
 			pizza_slice.cheesy = src.cheesy
 			pizza_slice.update_icon()
