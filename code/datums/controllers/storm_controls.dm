@@ -109,7 +109,8 @@
 	var/potential = -6
 	var/potential_bonus = 0
 	var/falloff = 5
-	var/initial_speed = 0.4
+	var/initial_speed = 0.6
+	var/central_pull = 0.2
 
 	var/datum/hotspot_point/center = new //going to reuse hotspot points since its there and does what i need it to
 
@@ -127,13 +128,12 @@
 
 		//if the storm would go too far off the edge of the map, put it sorta on the opposite side, and shake up the variables a bit.
 		if (x >= world.maxx * 2 || x <= -world.maxx || y >= world.maxy * 2 || y <= -world.maxy)
-			x = x % (world.maxx * 3) - world.maxx
-			y = y % (world.maxy * 3) - world.maxy
-			src.drift_x += src.drift_x * rand(-2,2) / 10
-			src.drift_y += src.drift_y * rand(-2,2) / 10
-			if((src.drift_x ** 2 + src.drift_y ** 2) < (src.initial_speed / 2)) // if it stalls out, beeline for the center of the station instead
-				src.drift_x = (src.center.x - (world.maxx / 2)) / (-world.maxx / 4)
-				src.drift_y = (src.center.y - (world.maxy / 2)) / (-world.maxy / 4)
+			x = (x + world.maxx) % (world.maxx * 3) - world.maxx
+			y = (y + world.maxy) % (world.maxy * 3) - world.maxy
+			src.drift_x += src.drift_x * (rand() * 0.4 - 0.3) // the storm slows down, usually (-30% to +10% speed change, averaging -10%)
+			src.drift_y += src.drift_y * (rand() * 0.4 - 0.3) // so it will lose some of its initial random inclination
+			src.drift_x += (src.center.x - world.maxx * 0.5) / (world.maxx * -1.5) * src.central_pull // but this bit pushes towards world center
+			src.drift_y += (src.center.y - world.maxy * 0.5) / (world.maxy * -1.5) * src.central_pull // as such storms grow more "aggressive" over round
 
 		center.change(x,y,z)
 		return TRUE
