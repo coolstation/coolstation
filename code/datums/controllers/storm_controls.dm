@@ -13,6 +13,8 @@
 		..()
 
 		src.create_storm_cells(storms_to_create)
+		for(var/datum/storm_cell/S in storm_list) // slow down the storm early on
+			S.potential_bonus -= 15 / length(storm_list)
 
 	proc/create_storm_cells(var/amt)
 		var/datum/storm_cell/new_storm
@@ -34,10 +36,12 @@
 			src.lightning_tally = 0
 			src.pending_strike_attempts = min(src.pending_strike_attempts + 1, src.max_pending_attempts)
 			var/list/client/lightning_targets = clients
-			while(lightning_targets.len)
+			while(!lightning_struck)
 				var/client/target = pick(lightning_targets)
 				if(!target.mob || !isliving(target.mob))
 					lightning_targets -= target
+					if(!lightning_targets.len)
+						break
 					continue
 				var/turf/T = get_turf(target.mob)
 				for(var/i = 1, i <= src.pending_strike_attempts, i++)

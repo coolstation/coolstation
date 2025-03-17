@@ -42,10 +42,10 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
-			AnchoredAllowed = FALSE,\
+			AnchoredAllowed = TRUE,\
 			HangTime = 0.3 SECONDS,\
 			FallTime = 1.2 SECONDS,\
-			DepthScale = 0.5,\
+			DepthScale = 0.4,\
 			TargetZ = 5)
 
 	make_light()
