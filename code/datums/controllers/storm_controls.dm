@@ -5,7 +5,7 @@
 #else
 	var/storm_to_create = 0
 #endif
-	var/lightning_tally = -60
+	var/lightning_tally = -60 // brief period of safety
 	var/pending_strike_attempts = 1
 	var/max_pending_attempts = 3
 
@@ -34,7 +34,6 @@
 		if(prob(ceil(lightning_tally)))
 			src.lightning_tally = 0
 			src.pending_strike_attempts = min(src.pending_strike_attempts + 1, src.max_pending_attempts)
-			var/total_strikes = ceil(lightning_targets / 15)
 			var/list/client/lightning_targets
 			for(var/client/target in global.clients)
 				if(!target.mob || !isliving(target.mob))
@@ -42,8 +41,10 @@
 				lightning_targets += target
 			if(!length(lightning_targets))
 				return
+			var/total_strikes = ceil(lightning_targets / 15)
 			while(lightning_attempts < total_strikes)
 				lightning_attempts++
+				var/client/target = pick(lightning_targets)
 				var/turf/T = get_turf(target.mob)
 				for(var/i = 1, i <= src.pending_strike_attempts, i++)
 					var/turf/target_turf = locate(T.x + rand(-10,10), T.y + rand(-7,7), T.z)
