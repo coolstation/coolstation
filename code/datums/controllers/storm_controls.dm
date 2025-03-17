@@ -8,18 +8,37 @@
 	var/lightning_tally = -60 // brief period of safety
 	var/pending_strike_attempts = 1
 	var/max_pending_attempts = 3
+	var/maximum_bonus = 3
 
 	New()
 		..()
 
-		src.create_storm_cells(storms_to_create)
+		if(storms_to_create)
+			src.create_storm_cells(storms_to_create)
 
 	proc/create_storm_cells(var/amt)
-		var/datum/storm_cell/new_storm
-		for (var/i = 1, i <= amt, i++)
-			new_storm = new
-			storm_list += new_storm
-			new_storm.move_center_to(rand(5,world.maxx - 5),rand(5,world.maxy - 5),1)
+		if(amt)
+			var/datum/storm_cell/new_storm
+			src.maximum_bonus = src.maximum_bonus * length(src.storm_list)
+			for (var/i = 1, i <= amt, i++)
+				new_storm = new
+				storm_list += new_storm
+				new_storm.move_center_to(rand(5,world.maxx - 5),rand(5,world.maxy - 5),1)
+			src.maximum_bonus = src.maximum_bonus / length(src.storm_list)
+
+	proc/remove_storm_cells(var/amt)
+		var/i = 0
+		if(length(src.storm_list))
+			src.maximum_bonus = src.maximum_bonus * length(src.storm_list)
+			for(var/datum/storm_cell/cell in storm_list)
+				if(i >= amt)
+					break
+				qdel(cell)
+				i++
+			if(length(src.storm_list))
+				src.maximum_bonus = src.maximum_bonus / length(src.storm_list)
+			else
+				src.maximum_bonus = initial(src.maximum_bonus)
 
 	proc/process()
 		for(var/datum/storm_cell/S in storm_list)
@@ -56,7 +75,7 @@
 						break
 		if(!lightning_struck)
 			var/datum/storm_cell/S = pick(storm_list)
-			if(S)
+			if(S && S.potential_bonus < src.maximum_bonus)
 				S.potential_bonus += 0.2
 		else
 			src.pending_strike_attempts = 0
@@ -76,14 +95,6 @@
 				else
 					dist += S.falloff
 					. += S.falloff * (S.potential * sin(45.84 * dist / S.falloff) + S.potential_bonus) / dist
-
-	proc/remove_storm_cells(var/amt)
-		var/i = 0
-		for(var/datum/storm_cell/cell in storm_list)
-			if(i >= amt)
-				break
-			qdel(cell)
-			i++
 
 /datum/storm_cell
 	var/drift_x = 0
