@@ -444,7 +444,10 @@
 			if(prob(1))
 				playsound(src.loc, "sound/voice/screams/male_scream.ogg", 100, 1, channel=VOLUME_CHANNEL_EMOTE)
 				src.visible_message("<span class='alert'><B>The [src] screams!</B></span>")
-			new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base(get_turf(src))
+			if(src.reagents?.has_reagent("bubs"))
+				new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base/bubsian(get_turf(src))
+			else
+				new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base(get_turf(src))
 			user.u_equip(src)
 			qdel(src)
 		else if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/saw) || istype(W,/obj/item/knife/butcher))
