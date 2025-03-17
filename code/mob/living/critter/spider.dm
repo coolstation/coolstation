@@ -44,6 +44,7 @@
 
 	New()
 		..()
+		AddComponent(/datum/component/spider_filter_item)
 		if (src.icon_state == "big_spide")
 			src.icon_state = "big_spide[pick("", "-red", "-green", "-blue")]"
 			src.icon_state_alive = src.icon_state

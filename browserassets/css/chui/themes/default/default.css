@@ -9,6 +9,7 @@ body {
 	font-size: 12px;
 	line-height: 1.4;
 	color: #fcfcfc;
+	overflow: hidden;
 }
 table {
 	width: 100%;
@@ -129,7 +130,6 @@ a {
 	bottom: 0;
 	left: 0;
 	word-wrap: break-word;
-	overflow: hidden;
 	border-top: 3px solid #9a8469;
 	border-left: 3px solid #9a8469;
 	border-right: 3px solid #9a8469;
@@ -137,8 +137,8 @@ a {
 	background: #9a8469;
 	border-style: none ridge ridge ridge;
 }
-#content .innerContent { /* also has: .nano-content */
-	padding: 15px 15px 15px 15px; background-repeat: repeat-x;
+#content .innerContent { /* also has: .not-nano-content */
+	padding: 10px 10px 10px 10px; background-repeat: repeat-x;
 }
 
 .contentFlex {
@@ -223,38 +223,33 @@ a {
 /* RESIZE AREAS END */
 
 /* CUSTOM SCROLLBARS START */
-.nano > .nano-content {
+.not-nano > .not-nano-content {
   position      : absolute;
-  overflow-y	: scroll;
+  overflow-y	: auto;
+  overflow-x    : hidden;
   top           : 0;
   right         : 0;
   bottom        : 0;
   left          : 0;
 }
-.nano > .nano-content:focus {
+.not-nano > .not-nano-content:focus {
   outline: thin dotted;
 }
-.nano > .nano-content::-webkit-scrollbar {
-  display: none;
-}
-.has-scrollbar > .nano-content::-webkit-scrollbar {
-  display: block;
-}
-.nano > .nano-pane {
+
+.not-nano > .not-nano-pane {
   background : #322716;
   position   : absolute;
   width      : 14px;
   right      : 0;
   top        : 0;
   bottom     : 0px;
-  visibility : hidden\9; /* Target only IE7 and IE8 with this hack */
   opacity    : 0.75;
   -webkit-transition    : .2s;
   -moz-transition       : .2s;
   -o-transition         : .2s;
   transition            : .2s;
 }
-.nano > .nano-pane > .nano-slider {
+.not-nano > .not-nano-pane > .not-nano-slider {
   background: #dad8b6;
   position              : relative;
   margin                : 0;
@@ -262,13 +257,9 @@ a {
   border-left-color: #9a8469;
   border-bottom-color: #9a8469;
 }
-.nano-content.scrollbar-visible {
-    padding-right: 28px !important;
-}
 
 
-.nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
-  visibility : visible\9; /* Target only IE7 and IE8 with this hack */
+.not-nano:hover > .not-nano-pane, .not-nano-pane.active, .not-nano-pane.flashed {
   opacity    : 1;
 }
 /* CUSTOM SCROLLBARS END */
