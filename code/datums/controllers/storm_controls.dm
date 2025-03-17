@@ -19,7 +19,8 @@
 	proc/create_storm_cells(var/amt)
 		if(amt)
 			var/datum/storm_cell/new_storm
-			src.maximum_bonus = src.maximum_bonus * length(src.storm_list)
+			if(length(src.storm_list))
+				src.maximum_bonus = src.maximum_bonus * length(src.storm_list)
 			for (var/i = 1, i <= amt, i++)
 				new_storm = new
 				storm_list += new_storm
