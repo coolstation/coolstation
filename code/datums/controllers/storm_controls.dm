@@ -1,6 +1,10 @@
 /datum/storm_controller
 	var/list/storm_list = list()
+#ifdef MAP_OVERRIDE_PERDUTA
 	var/storms_to_create = 3
+#else
+	var/storm_to_create = 0
+#endif
 	var/lightning_tally = 0
 	var/pending_strike_attempts = 1
 	var/max_pending_attempts = 3
@@ -8,9 +12,7 @@
 	New()
 		..()
 
-#ifdef MAP_OVERRIDE_PERDUTA
 		src.create_storm_cells(storms_to_create)
-#endif
 
 	proc/create_storm_cells(var/amt)
 		var/datum/storm_cell/new_storm
@@ -32,7 +34,7 @@
 			src.lightning_tally = 0
 			src.pending_strike_attempts = min(src.pending_strike_attempts + 1, src.max_pending_attempts)
 			var/list/client/lightning_targets = clients
-			while(length(lightning_targets))
+			while(lightning_targets.len)
 				var/client/target = pick(lightning_targets)
 				if(!target.mob || !isliving(target.mob))
 					lightning_targets -= target
@@ -50,7 +52,7 @@
 		if(!lightning_struck)
 			var/datum/storm_cell/S = pick(storm_list)
 			if(S)
-				S.potential_bonus += 0.5
+				S.potential_bonus += 0.2
 		else
 			src.pending_strike_attempts = 0
 			var/datum/storm_cell/S = pick(storm_list)
@@ -107,11 +109,11 @@
 		if (x >= world.maxx || x <= 1 || y >= world.maxy || y <= 1)
 			x = x % 298 + 2
 			y = y % 298 + 2
-			src.drift_x = src.drift_x * rand(8,12) / 10
-			src.drift_y = src.drift_y * rand(8,12) / 10
+			src.drift_x = src.drift_x * rand(8,11) / 10
+			src.drift_y = src.drift_y * rand(8,11) / 10
 			if((src.drift_x ** 2 + src.drift_y ** 2) < (src.initial_speed / 2)) // if it stalls out, beeline for the center of the station instead
-				src.drift_x = (src.center.x - 150) / -100
-				src.drift_y = (src.center.y - 150) / -100
+				src.drift_x = (src.center.x - (world.maxx / 2)) / (-world.maxx / 3)
+				src.drift_y = (src.center.y - (world.maxy / 2)) / (-world.maxy / 3)
 
 		center.change(x,y,z)
 		return TRUE

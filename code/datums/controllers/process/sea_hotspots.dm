@@ -28,7 +28,7 @@
 
 	setup()
 		name = "Storm Cell Process"
-		schedule_interval = 10 SECONDS
+		schedule_interval = 2 SECONDS
 		controller = global.storm_controller
 
 	copyStateFrom(datum/controller/process/target)
