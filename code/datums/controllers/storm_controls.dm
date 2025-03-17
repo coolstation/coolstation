@@ -26,23 +26,26 @@
 	proc/process()
 		for(var/datum/storm_cell/S in storm_list)
 			S.partial_x += S.drift_x
-			S.partial_x += S.drift_y
+			S.partial_y += S.drift_y
 			S.move_center_to(S.center.x + floor(S.partial_x), S.center.y + floor(S.partial_y), S.center.z)
 			S.partial_x = S.partial_x % 1
 			S.partial_y = S.partial_y % 1
 			src.lightning_tally += S.potential_bonus
 		var/lightning_struck = FALSE
+		var/lightning_attempts = 0
 		if(prob(ceil(lightning_tally)))
 			src.lightning_tally = 0
 			src.pending_strike_attempts = min(src.pending_strike_attempts + 1, src.max_pending_attempts)
 			var/list/client/lightning_targets = clients
-			while(!lightning_struck)
+			var/total_strikes = ceil(lightning_targets / 15)
+			while(lightning_attempts < total_strikes)
 				var/client/target = pick(lightning_targets)
 				if(!target.mob || !isliving(target.mob))
 					lightning_targets -= target
 					if(!lightning_targets.len)
 						break
 					continue
+				lightning_attempts++
 				var/turf/T = get_turf(target.mob)
 				for(var/i = 1, i <= src.pending_strike_attempts, i++)
 					var/turf/target_turf = locate(T.x + rand(-10,10), T.y + rand(-7,7), T.z)
@@ -52,7 +55,6 @@
 							lightning_strike(target_turf, power = turf_potential * 8 + 4)
 							lightning_struck = TRUE
 						break
-				break
 		if(!lightning_struck)
 			var/datum/storm_cell/S = pick(storm_list)
 			if(S)
