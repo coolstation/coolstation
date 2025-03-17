@@ -623,6 +623,7 @@ obj/decal/fakeobjects
 	icon_state = "lightning1"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_SELFILLUM
+	anchored = ANCHORED_ALWAYS
 	var/height = 8
 	var/shake_intensity = 10
 	var/strike_time = 1 SECOND
