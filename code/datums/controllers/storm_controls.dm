@@ -89,7 +89,7 @@
 	var/potential = -6
 	var/potential_bonus = 0
 	var/falloff = 5
-	var/initial_speed = 1.5
+	var/initial_speed = 0.4
 
 	var/datum/hotspot_point/center = new //going to reuse hotspot points since its there and does what i need it to
 
