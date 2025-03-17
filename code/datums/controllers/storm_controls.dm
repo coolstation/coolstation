@@ -9,10 +9,14 @@
 	var/pending_strike_attempts = 1
 	var/max_pending_attempts = 3
 	var/maximum_bonus = 3
+	var/x_spawn_cuberoot = 0
+	var/y_spawn_cuberoot = 0
 
 	New()
 		..()
 
+		src.x_spawn_cuberoot = floor((world.maxx * 1.5) ** (1/3)) // we want to generate in the edges of the triple size map more often
+		src.y_spawn_cuberoot = floor((world.maxy * 1.5) ** (1/3))
 		if(storms_to_create)
 			src.create_storm_cells(storms_to_create)
 
@@ -24,7 +28,7 @@
 			for (var/i = 1, i <= amt, i++)
 				new_storm = new
 				storm_list += new_storm
-				new_storm.move_center_to(rand(5,world.maxx - 5),rand(5,world.maxy - 5),1)
+				new_storm.move_center_to(rand(-src.x_spawn_cuberoot,src.x_spawn_cuberoot) ** 3, rand(-src.y_spawn_cuberoot,src.y_spawn_cuberoot) ** 3, 1)
 			src.maximum_bonus = src.maximum_bonus / length(src.storm_list)
 
 	proc/remove_storm_cells(var/amt)
@@ -87,9 +91,8 @@
 	proc/probe_turf(var/turf/T)
 		.= 0
 		for (var/datum/storm_cell/S in storm_list)
-			var/turf/T2 = S.center.turf()
-			if (T2 && (T.z == T2.z))
-				var/dist = GET_EUCLIDEAN_DIST(T, T2)
+			if (T.z == S.center.z)
+				var/dist = sqrt((T.x - S.center.x) ** 2 + (T.y - S.center.y) ** 2)
 
 				if(dist <= S.falloff)
 					. += S.potential + S.potential_bonus - 5
@@ -122,15 +125,15 @@
 	proc/move_center_to(var/x, var/y, var/z)
 		if (!src.can_drift) return FALSE
 
-		//if the storm would go off the edge of the map, put it on the opposite side, and shake up the variables a bit.
-		if (x >= world.maxx || x <= 1 || y >= world.maxy || y <= 1)
-			x = x % 298 + 2
-			y = y % 298 + 2
-			src.drift_x = src.drift_x * rand(8,11) / 10
-			src.drift_y = src.drift_y * rand(8,11) / 10
+		//if the storm would go too far off the edge of the map, put it sorta on the opposite side, and shake up the variables a bit.
+		if (x >= world.maxx * 2 || x <= -world.maxx || y >= world.maxy * 2 || y <= -world.maxy)
+			x = x % (world.maxx * 3) - world.maxx
+			y = y % (world.maxy * 3) - world.maxy
+			src.drift_x += src.drift_x * rand(-2,2) / 10
+			src.drift_y += src.drift_y * rand(-2,2) / 10
 			if((src.drift_x ** 2 + src.drift_y ** 2) < (src.initial_speed / 2)) // if it stalls out, beeline for the center of the station instead
-				src.drift_x = (src.center.x - (world.maxx / 2)) / (-world.maxx / 3)
-				src.drift_y = (src.center.y - (world.maxy / 2)) / (-world.maxy / 3)
+				src.drift_x = (src.center.x - (world.maxx / 2)) / (-world.maxx / 4)
+				src.drift_y = (src.center.y - (world.maxy / 2)) / (-world.maxy / 4)
 
 		center.change(x,y,z)
 		return TRUE
