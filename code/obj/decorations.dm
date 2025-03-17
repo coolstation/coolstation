@@ -312,6 +312,7 @@
 	//check if somebody walked in and its russlin' time
 	HasEntered(atom/movable/AM as mob|obj)
 		..()
+
 		if(!(ishuman(AM) || AM.throwing))
 			return
 
