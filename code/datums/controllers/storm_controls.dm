@@ -34,18 +34,18 @@
 		if(prob(ceil(lightning_tally)))
 			src.lightning_tally = 0
 			src.pending_strike_attempts = min(src.pending_strike_attempts + 1, src.max_pending_attempts)
-			var/list/client/lightning_targets
-			for(var/client/target in global.clients)
-				if(!target.mob || !isliving(target.mob))
+			var/list/mob/living/lightning_targets = list()
+			for(var/client/target_client in global.clients)
+				if(!target_client.mob || !isliving(target_client.mob))
 					continue
-				lightning_targets += target
+				lightning_targets |= target_client.mob
 			if(!length(lightning_targets))
 				return
 			var/total_strikes = ceil(lightning_targets / 15)
 			while(lightning_attempts < total_strikes)
 				lightning_attempts++
-				var/client/target = pick(lightning_targets)
-				var/turf/T = get_turf(target.mob)
+				var/mob/target = pick(lightning_targets)
+				var/turf/T = get_turf(target)
 				for(var/i = 1, i <= src.pending_strike_attempts, i++)
 					var/turf/target_turf = locate(T.x + rand(-10,10), T.y + rand(-7,7), T.z)
 					if(istype(target_turf,/turf/space/magindara) || locate(/obj/overlay/magindara_skylight) in target_turf)
