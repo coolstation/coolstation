@@ -109,7 +109,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 								AM.event_handler_flags &= ~IS_PITFALLING
 								return
-						pit.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
+						pit.fall_to(pit.get_turf_to_fall(AM), AM, src.BruteDamageMax)
 		else
 			AM.event_handler_flags |= IS_PITFALLING
 			src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
