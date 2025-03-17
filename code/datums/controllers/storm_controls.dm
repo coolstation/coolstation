@@ -41,7 +41,7 @@
 				lightning_targets |= target_client.mob
 			if(!length(lightning_targets))
 				return
-			var/total_strikes = ceil(lightning_targets / 15)
+			var/total_strikes = ceil(length(lightning_targets) / 15)
 			while(lightning_attempts < total_strikes)
 				lightning_attempts++
 				var/mob/target = pick(lightning_targets)
