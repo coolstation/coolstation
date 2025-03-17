@@ -1,6 +1,9 @@
 /datum/storm_controller
 	var/list/storm_list = list()
-	var/storms_to_create = 5
+	var/storms_to_create = 3
+	var/lightning_tally = 0
+	var/pending_strike_attempts = 1
+	var/max_pending_attempts = 3
 
 	New()
 		..()
@@ -18,16 +21,54 @@
 
 	proc/process()
 		for(var/datum/storm_cell/S in storm_list)
-			S.move_center_to(S.center.x + S.drift_x, S.center.y + S.drift_y, S.center.z)
+			S.partial_x += S.drift_x
+			S.partial_x += S.drift_y
+			S.move_center_to(S.center.x + floor(S.partial_x), S.center.y + floor(S.partial_y), S.center.z)
+			S.partial_x = S.partial_x % 1
+			S.partial_y = S.partial_y % 1
+			src.lightning_tally += S.potential_bonus
+		var/lightning_struck = FALSE
+		if(prob(ceil(lightning_tally)))
+			src.lightning_tally = 0
+			src.pending_strike_attempts = min(src.pending_strike_attempts + 1, src.max_pending_attempts)
+			var/list/client/lightning_targets = clients
+			while(length(lightning_targets))
+				var/client/target = pick(lightning_targets)
+				if(!target.mob || !isliving(target.mob))
+					lightning_targets -= target
+					continue
+				var/turf/T = get_turf(target.mob)
+				for(var/i = 1, i <= src.pending_strike_attempts, i++)
+					var/turf/target_turf = locate(T.x + rand(-10,10), T.y + rand(-7,7), T.z)
+					if(istype(target_turf,/turf/space/magindara) || locate(/obj/overlay/magindara_skylight) in target_turf)
+						var/turf_potential = src.probe_turf(target_turf)
+						if(turf_potential > 0)
+							lightning_strike(target_turf, power = turf_potential * 8 + 4)
+							lightning_struck = TRUE
+						break
+				break
+		if(!lightning_struck)
+			var/datum/storm_cell/S = pick(storm_list)
+			if(S)
+				S.potential_bonus += 0.5
+		else
+			src.pending_strike_attempts = 0
+			var/datum/storm_cell/S = pick(storm_list)
+			if(S)
+				S.potential_bonus -= 2
 
 	proc/probe_turf(var/turf/T)
 		.= 0
 		for (var/datum/storm_cell/S in storm_list)
 			var/turf/T2 = S.center.turf()
 			if (T2 && (T.z == T2.z))
-				var/dist = GET_EUCLIDEAN_DIST(T, T2) + 1
+				var/dist = GET_EUCLIDEAN_DIST(T, T2)
 
-				. += (-9 * sin(45.84 * dist)) / (1.5 * dist)
+				if(dist <= S.falloff)
+					. += S.potential + S.potential_bonus - 5
+				else
+					dist += S.falloff
+					. += S.falloff * (S.potential * sin(45.84 * dist / S.falloff) + S.potential_bonus) / dist
 
 	proc/remove_storm_cells(var/amt)
 		var/i = 0
@@ -40,13 +81,19 @@
 /datum/storm_cell
 	var/drift_x = 0
 	var/drift_y = 0
+	var/partial_x = 0
+	var/partial_y = 0
 	var/can_drift = 1
+	var/potential = -6
+	var/potential_bonus = 0
+	var/falloff = 5
+	var/initial_speed = 1.5
 
 	var/datum/hotspot_point/center = new //going to reuse hotspot points since its there and does what i need it to
 
 	New()
-		src.drift_x = rand(2,4)
-		src.drift_y = 6 - drift_x
+		src.drift_x = rand() * src.initial_speed
+		src.drift_y = sqrt(src.initial_speed ** 2 - src.drift_x ** 2)
 		if(prob(50))
 			src.drift_x = -src.drift_x
 		if(prob(50))
@@ -54,20 +101,17 @@
 		..()
 
 	proc/move_center_to(var/x, var/y, var/z)
-		if (!can_drift) return FALSE
+		if (!src.can_drift) return FALSE
 
-		//if the storm would go off the edge of the map, qdel it and place a new one somewhere on the opposite side, within some random variance.
+		//if the storm would go off the edge of the map, put it on the opposite side, and shake up the variables a bit.
 		if (x >= world.maxx || x <= 1 || y >= world.maxy || y <= 1)
-			var/datum/storm_cell/new_storm = new
-			storm_controller.storm_list += new_storm
-			new_storm.move_center_to(x % 296 + 2, y % 296 + 2, z)
-			new_storm.drift_x = src.drift_x + rand(-1,1)
-			new_storm.drift_y = src.drift_y + rand(-1,1)
-			if(!new_storm.drift_x && !new_storm.drift_y) // if it stalls out, beeline for the center of the station instead
-				new_storm.drift_x = floor((new_storm.center.x - 150) / -25)
-				new_storm.drift_y = floor((new_storm.center.y - 150) / -25)
-			qdel(src)
-			return FALSE
+			x = x % 298 + 2
+			y = y % 298 + 2
+			src.drift_x = src.drift_x * rand(8,12) / 10
+			src.drift_y = src.drift_y * rand(8,12) / 10
+			if((src.drift_x ** 2 + src.drift_y ** 2) < (src.initial_speed / 2)) // if it stalls out, beeline for the center of the station instead
+				src.drift_x = (src.center.x - 150) / -100
+				src.drift_y = (src.center.y - 150) / -100
 
 		center.change(x,y,z)
 		return TRUE
