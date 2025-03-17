@@ -67,6 +67,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	layer = EFFECTS_LAYER_4
 	plane = PLANE_NOSHADOW_ABOVE
 	mouse_opacity = FALSE
+	color = "#ffffff"
 	alpha = 128
 
 	ex_act(severity)
