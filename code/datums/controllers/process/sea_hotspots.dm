@@ -40,5 +40,4 @@
 			controller.process()
 		else
 			controller = 0
-			global.storm_controller.remove_storm_cells(INFINITY)
 #endif
