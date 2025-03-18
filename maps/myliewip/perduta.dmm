@@ -10,6 +10,15 @@
 /obj/item/clothing/suit/bedsheet/ace,
 /turf/floor/blackwhite/corner,
 /area/station/crew_quarters/clown)
+"af" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5
+	},
+/area/magindara)
 "ag" = (
 /turf/floor/wood/eight,
 /area/station/hydroponics/lobby)
@@ -270,6 +279,20 @@
 	dir = 1
 	},
 /area/station/crew_quarters/clown)
+"cO" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/floor/plating,
+/area/magindara)
+"cR" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "cS" = (
 /obj/decal/cleanable/rust,
 /turf/floor/white/checker2,
@@ -539,6 +562,12 @@
 	dir = 1
 	},
 /area/station/crew_quarters/clown)
+"fu" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five,
+/area/magindara)
 "fy" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -1200,6 +1229,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"lg" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/grille/catwalk{
+	dir = 6
+	},
+/obj/railing/cool,
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "lh" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/cable{
@@ -1664,6 +1704,11 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/crew_quarters/kitchen)
+"oo" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 6
+	},
+/area/magindara)
 "oq" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/green/corner{
@@ -2062,6 +2107,16 @@
 /obj/storage/secure/crate/bee/loaded,
 /turf/floor/wood/eight,
 /area/station/hydroponics/lobby)
+"qN" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "qR" = (
 /obj/submachine/cargopad{
 	name = "Robotics Workshop Pad"
@@ -2134,6 +2189,16 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
+"ry" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "rD" = (
 /obj/cabinet/medicalcritical,
 /turf/floor/white/checker,
@@ -2268,6 +2333,15 @@
 /obj/disposalpipe/trunk/west,
 /turf/floor/industrial,
 /area/station/medical/robotics)
+"sy" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 4
+	},
+/area/magindara)
 "sC" = (
 /turf/space/magindara,
 /area/station/crew_quarters/clown)
@@ -2642,6 +2716,21 @@
 /obj/overlay/magindara_skylight,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
+"vX" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/railing/cool,
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "vY" = (
 /obj/stool/bed/moveable,
 /obj/item/clothing/suit/bedsheet/green,
@@ -2750,6 +2839,14 @@
 /obj/storage/secure/closet/medical/anesthetic,
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
+"wS" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 1
+	},
+/area/magindara)
 "wW" = (
 /obj/decal/poster/wallsign/poster_clown,
 /turf/wall,
@@ -2787,6 +2884,16 @@
 /obj/decal/cleanable/mess/burrito,
 /turf/floor/carpet/grime,
 /area/station/security/checkpoint/medical)
+"xs" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 6
+	},
+/area/magindara)
 "xw" = (
 /obj/machinery/light,
 /obj/decal/tile_edge/stripe/big{
@@ -3430,6 +3537,15 @@
 /obj/disposalpipe/segment/food/bent/east,
 /turf/floor/grass,
 /area/station/medical/research)
+"CP" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 4
+	},
+/area/magindara)
 "CU" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/disposalpipe/segment/vertical,
@@ -3665,6 +3781,16 @@
 "Fd" = (
 /turf/floor/cautionblack,
 /area/station/hallway/primary/southwest)
+"Fg" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "Fh" = (
 /turf/floor/carpet/darkcarpet/border{
 	dir = 4
@@ -3770,6 +3896,15 @@
 /obj/window_blinds/cog2/left,
 /turf/floor/plating,
 /area/station/medical/medbay/surgery)
+"FV" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 8
+	},
+/area/magindara)
 "FX" = (
 /turf/floor,
 /area/magindara)
@@ -3935,6 +4070,16 @@
 /obj/machinery/door/window/eastleft,
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
+"Hv" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "Hy" = (
 /obj/cable{
 	d1 = 4;
@@ -3944,6 +4089,11 @@
 /obj/decal/cleanable/oil,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"HB" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5
+	},
+/area/magindara)
 "HC" = (
 /obj/stool/chair/comfy/blue{
 	dir = 1
@@ -3972,6 +4122,11 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"HI" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 10
+	},
+/area/magindara)
 "HL" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/white,
@@ -4618,6 +4773,17 @@
 	dir = 4
 	},
 /area/station/hallway/primary/west)
+"MY" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "Na" = (
 /obj/machinery/vending/medical_public,
 /turf/floor/blue,
@@ -4972,6 +5138,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"PO" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/circuit/white,
+/area/magindara)
 "PP" = (
 /obj/shrub/big,
 /obj/disposaloutlet/west,
@@ -5147,6 +5317,16 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"Rb" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
 "Rc" = (
 /obj/grille/catwalk/cross{
 	dir = 6
@@ -5323,10 +5503,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
-"Sh" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/magindara)
 "Sr" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/white/checker2,
@@ -5344,6 +5520,15 @@
 /obj/table/reinforced/auto,
 /turf/floor/carpet/blue/fancy/edge/east,
 /area/station/medical/staff)
+"Sw" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 10
+	},
+/area/magindara)
 "Sx" = (
 /obj/shrub/big,
 /turf/floor/grass,
@@ -5719,6 +5904,21 @@
 "Vc" = (
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
+"Vg" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 5;
+	icon_state = "shaft_center"
+	},
+/area/magindara)
+"Vl" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 8
+	},
+/area/magindara)
 "Vo" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6;
@@ -5865,6 +6065,11 @@
 	dir = 9
 	},
 /area/station/hallway/primary/west)
+"Wu" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/decal/cleanable/oil,
+/turf/floor/plating,
+/area/magindara)
 "Ww" = (
 /obj/table/reinforced/kitchen/solid/auto,
 /turf/floor/white/checker2,
@@ -5917,6 +6122,18 @@
 /obj/machinery/light,
 /turf/floor,
 /area/station/hallway/primary/west)
+"WT" = (
+/turf/wall/r_wall,
+/area/magindara)
+"WU" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 9
+	},
+/area/magindara)
 "Xb" = (
 /obj/window/reinforced/east,
 /turf/floor/wood/five,
@@ -6017,6 +6234,11 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
+"XB" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 9
+	},
+/area/magindara)
 "XE" = (
 /obj/machinery/computer/genetics{
 	dir = 8
@@ -49296,8 +49518,8 @@ SO
 SO
 SO
 SO
-Ot
 SO
+Ot
 SO
 SO
 VC
@@ -49597,10 +49819,10 @@ SO
 SO
 SO
 SO
+SO
 rP
 OX
 VL
-ky
 ky
 Qa
 XN
@@ -49900,8 +50122,8 @@ SO
 SO
 SO
 SO
-Rh
 SO
+Rh
 SO
 SO
 VC
@@ -50202,8 +50424,8 @@ SO
 SO
 SO
 SO
-Rh
 SO
+Rh
 SO
 SO
 VC
@@ -50504,8 +50726,8 @@ SO
 SO
 SO
 SO
-Rh
 SO
+Rh
 SO
 SO
 VC
@@ -50798,16 +51020,16 @@ SO
 SO
 SO
 SO
-OX
-OX
-OX
-OX
-OX
-Sh
-Sh
-OX
-OX
-OX
+WT
+WT
+Wu
+WT
+WT
+SO
+SO
+SO
+SO
+Rh
 SO
 SO
 VC
@@ -51098,18 +51320,18 @@ SO
 SO
 SO
 SO
+WT
+WT
+WT
+WU
+Vl
+Sw
+WT
+WT
+WT
 SO
 SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-OX
+Rh
 SO
 SO
 VC
@@ -51400,18 +51622,18 @@ SO
 SO
 SO
 SO
+WT
+XB
+FV
+Vg
+Fg
+Vg
+FV
+HI
+WT
 SO
 SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Sh
+SO
 SO
 SO
 VC
@@ -51701,19 +51923,19 @@ SO
 SO
 SO
 SO
+WT
+WT
+wS
+Rb
+Vg
+Fg
+Vg
+cR
+fu
+WT
+WT
 SO
 SO
-SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Sh
 SO
 SO
 VC
@@ -52003,22 +52225,22 @@ SO
 SO
 SO
 SO
+WT
+XB
+Hv
+ry
+Vg
+Fg
+Vg
+qN
+MY
+HI
+WT
 SO
 SO
 SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Sh
 SO
-SO
-SO
+vX
 SO
 SO
 SO
@@ -52305,22 +52527,22 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Sh
-SO
-SO
-SO
+cO
+wS
+Rb
+Vg
+Vg
+Fg
+Vg
+Vg
+cR
+fu
+PO
+SA
+SA
+SA
+SA
+lg
 SO
 SO
 SO
@@ -52607,19 +52829,19 @@ SO
 SO
 SO
 SO
+WT
+HB
+qN
+MY
+Vg
+Fg
+Vg
+Hv
+ry
+oo
+WT
 SO
 SO
-SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Sh
 SO
 SO
 SO
@@ -52909,19 +53131,19 @@ SO
 SO
 SO
 SO
+WT
+WT
+wS
+Rb
+Vg
+Fg
+Vg
+cR
+fu
+WT
+WT
 SO
 SO
-SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-OX
 SO
 SO
 SO
@@ -53212,18 +53434,18 @@ SO
 SO
 SO
 SO
+WT
+HB
+sy
+Vg
+Fg
+Vg
+sy
+oo
+WT
 SO
 SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-OX
+SO
 SO
 SO
 SO
@@ -53514,18 +53736,18 @@ SO
 SO
 SO
 SO
+WT
+WT
+WT
+af
+CP
+xs
+WT
+WT
+WT
 SO
 SO
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-OX
+SO
 SO
 SO
 SO
@@ -53818,11 +54040,11 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
+WT
+WT
+cO
+WT
+WT
 SO
 SO
 SO
