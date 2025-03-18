@@ -119,7 +119,7 @@
 	var/initial_speed = 0.5
 	/// how much speed is added towards the center of the map each time it loops
 	var/central_pull = 0.2
-	/// controls spreading the waves wider as they get further away. lower = more broadening of waves
+	/// controls the breadth change of waves as they get further away. lower than 1 = more broadening of waves, higher than 1 = more shrinking of waves
 	var/wavecrush = 0.95
 
 	/// tiles per tick in x dimension, set from initial_speed in New
