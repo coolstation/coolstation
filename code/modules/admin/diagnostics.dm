@@ -720,7 +720,7 @@ proc/debug_map_apc_count(delim,zlim)
 		help = {"Storm overlay. Color indicates pressure and potential. Number corresponds to lightning strike power at this turf."}
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			. = ..()
-			var/val = storm_controller.probe_turf(theTurf)
+			var/val = storm_controller.calculate_potential_in_turf(theTurf)
 			img.app.color = hsv2rgb(clamp(75 + (val * 7.5),0,275), 100, 50)
 			if(val > 2)
 				img.app.overlays = list(src.makeText(round(val + 3, 0.1), RESET_ALPHA))

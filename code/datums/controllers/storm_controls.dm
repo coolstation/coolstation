@@ -77,7 +77,7 @@
 				for(var/i = 1, i <= src.pending_strike_attempts, i++)
 					var/turf/target_turf = locate(T.x + rand(-10,10), T.y + rand(-7,7), T.z)
 					if(istype(target_turf,/turf/space/magindara) || locate(/obj/overlay/magindara_skylight) in target_turf)
-						var/turf_potential = src.probe_turf(target_turf)
+						var/turf_potential = src.calculate_potential_in_turf(target_turf)
 						if(turf_potential > 2)
 							lightning_strike(target_turf, power = turf_potential + 3)
 							lightning_struck = TRUE
@@ -92,11 +92,14 @@
 			if(S)
 				S.potential_bonus -= 20
 
-	proc/probe_turf(var/turf/T)
-		.= 0
+	proc/calculate_potential_in_turf(var/turf/T)
+		return src.calculate_potential(T.x,T.y,T.z)
+
+	proc/calculate_potential(var/x, var/y, var/z)
+		. = 0
 		for (var/datum/storm_cell/S in storm_list)
-			if (T.z == S.z)
-				var/dist = sqrt((T.x - S.x) ** 2 + (T.y - S.y) ** 2)
+			if (z == S.z)
+				var/dist = sqrt((x - S.x) ** 2 + (y - S.y) ** 2)
 
 				if(dist <= S.breadth)
 					. += S.potential + S.potential_bonus - 5
