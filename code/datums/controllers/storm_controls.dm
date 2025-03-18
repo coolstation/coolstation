@@ -146,8 +146,8 @@
 			new_y = (new_y + world.maxy / 2) % (world.maxy * 2) - (world.maxy / 2)
 			src.drift_x += src.drift_x * (rand() * 0.4 - 0.3) // the storm slows down, usually (-30% to +10% speed change, averaging -10%)
 			src.drift_y += src.drift_y * (rand() * 0.4 - 0.3) // so it will lose some of its initial random inclination
-			src.drift_x += (0.5 - (src.x / src.maxx)) * src.central_pull // but this bit pushes towards world center
-			src.drift_y += (0.5 - (src.y / src.maxy)) * src.central_pull // as such storms grow more "aggressive" over round
+			src.drift_x += (0.5 - (src.x / world.maxx)) * src.central_pull // but this bit pushes towards world center
+			src.drift_y += (0.5 - (src.y / world.maxy)) * src.central_pull // as such storms grow more "aggressive" over round
 
 		src.x = new_x
 		src.y = new_y
