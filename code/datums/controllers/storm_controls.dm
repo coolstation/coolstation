@@ -5,7 +5,7 @@
 #else
 	var/storm_to_create = 0
 #endif
-	/// what the tally starts at, likely negative to provide brief roundstart safety
+	/// what the tally starts at, negative to provide brief roundstart safety. lightning strikes attempt to start each tick at lightning_tally% chance
 	var/lightning_tally = -60
 	/// the bonus potential that will be spread across the storms from repeated non-strikes (this is the total, not per storm)
 	var/maximum_bonus = 30
@@ -23,8 +23,8 @@
 	New()
 		..()
 
-		src.x_spawn_cuberoot = floor((world.maxx * 1.5) ** (1/3)) // we want to generate in the edges of the triple size map more often
-		src.y_spawn_cuberoot = floor((world.maxy * 1.5) ** (1/3))
+		src.x_spawn_cuberoot = floor((world.maxx) ** (1/3)) // we want to generate in the edges of the triple size map more often
+		src.y_spawn_cuberoot = floor((world.maxy) ** (1/3))
 		if(storms_to_create)
 			src.create_storm_cells(storms_to_create)
 
@@ -114,7 +114,7 @@
 	/// additional charge not affected by wave, but affected by distance
 	var/potential_bonus = 0
 	/// breadth of initial wave before wavecrush
-	var/breadth = 6
+	var/breadth = 3
 	/// initial speed
 	var/initial_speed = 0.5
 	/// how much speed is added towards the center of the map each time it loops
