@@ -687,10 +687,6 @@
 /obj/machinery/vending/cigarette/noknobs,
 /turf/floor/carpet/grime,
 /area/station/security/checkpoint/medical)
-"gC" = (
-/obj/disposalpipe/junction/right/north,
-/turf/floor,
-/area/station/hallway/primary/west)
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northeast,
 /obj/table/auto,
@@ -737,7 +733,7 @@
 	icon_state = "0-4"
 	},
 /turf/floor/plating,
-/area/magindara)
+/area/station/maintenance/central)
 "gT" = (
 /turf/wall,
 /area/station/crew_quarters/clown)
@@ -2820,7 +2816,7 @@
 	icon_state = "2-8"
 	},
 /turf/floor/plating,
-/area/magindara)
+/area/station/maintenance/central)
 "xG" = (
 /obj/decal/tile_edge/stripe/big{
 	icon_state = "bigstripe-edge2";
@@ -3380,7 +3376,7 @@
 	},
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
-/area/magindara)
+/area/station/maintenance/central)
 "Cv" = (
 /obj/grille/catwalk{
 	dir = 8
@@ -3770,9 +3766,6 @@
 /obj/window_blinds/cog2/left,
 /turf/floor/plating,
 /area/station/medical/medbay/surgery)
-"FX" = (
-/turf/floor,
-/area/magindara)
 "Gf" = (
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 9
@@ -4355,10 +4348,6 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/medical/medbay/surgery)
-"Lc" = (
-/obj/disposalpipe/segment/vertical,
-/turf/floor/plating,
-/area/magindara)
 "Le" = (
 /obj/machinery/hydro_growlamp,
 /obj/decal/cleanable/dirt,
@@ -4379,9 +4368,6 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
-"Li" = (
-/turf/floor/plating,
-/area/station/hallway/primary/west)
 "Lj" = (
 /obj/cable{
 	d2 = 8;
@@ -33901,8 +33887,8 @@ SO
 SO
 SO
 SO
-FX
-FX
+SO
+SO
 SO
 SO
 SO
@@ -34203,8 +34189,8 @@ SO
 SO
 SO
 SO
-FX
-FX
+SO
+SO
 SO
 SO
 SO
@@ -34505,8 +34491,8 @@ SO
 SO
 SO
 SO
-FX
-FX
+SO
+SO
 SO
 SO
 SO
@@ -34807,8 +34793,8 @@ Uh
 SO
 SO
 SO
-FX
-FX
+SO
+SO
 SO
 SO
 SO
@@ -42642,10 +42628,10 @@ SO
 SO
 SO
 SO
-nL
-Li
-Li
-Li
+tC
+mF
+mF
+mF
 iH
 nJ
 Ok
@@ -42944,11 +42930,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Lc
-Lc
-gC
+tC
+mF
+dU
+dU
+UY
 nJ
 Yv
 Yv
@@ -43246,10 +43232,10 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
 nJ
 nJ
 Yv
@@ -43548,10 +43534,10 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
 nJ
 nJ
 Yv
@@ -43850,10 +43836,10 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
 nJ
 nJ
 Yv
@@ -44152,11 +44138,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 bS
 bS
 bS
@@ -44454,11 +44440,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 bS
 yO
 qC
@@ -44756,11 +44742,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 bS
 oW
 ej
@@ -45058,11 +45044,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 bS
 OV
 hy
@@ -45360,11 +45346,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 bS
 bS
 bS
@@ -45662,13 +45648,13 @@ SO
 SO
 SO
 SO
-OX
-OX
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+tC
+tC
+mF
+mF
+mF
+mF
 gP
 Yv
 Yv
@@ -45966,11 +45952,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 Cq
 dU
 dU
@@ -46268,11 +46254,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 xE
 MJ
 MJ
@@ -46570,12 +46556,12 @@ OX
 Gn
 SO
 SO
-OX
-OX
-OX
-OX
-Vq
-Vq
+tC
+tC
+tC
+tC
+mF
+mF
 mF
 mF
 cs
@@ -46875,11 +46861,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
+tC
 mF
-il
+mF
+mF
+mF
 cs
 Xd
 Yo
@@ -47177,11 +47163,11 @@ SO
 SO
 SO
 SO
-OX
-Vq
-Vq
-Vq
-Vq
+tC
+mF
+mF
+mF
+mF
 cs
 sa
 NM
@@ -47479,11 +47465,11 @@ SO
 SO
 SO
 SO
-OX
-OX
-OX
-OX
-OX
+tC
+tC
+tC
+tC
+tC
 cs
 Kb
 Iy
