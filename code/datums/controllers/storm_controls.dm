@@ -141,13 +141,13 @@
 		if (!src.can_drift) return FALSE
 
 		//if the storm would go too far off the edge of the map, put it sorta on the opposite side, and shake up the variables a bit.
-		if (new_x >= world.maxx * 2 || new_x <= -world.maxx || new_y >= world.maxy * 2 || new_y <= -world.maxy)
-			new_x = (new_x + world.maxx) % (world.maxx * 3) - world.maxx
-			new_y = (new_y + world.maxy) % (world.maxy * 3) - world.maxy
+		if (new_x >= world.maxx * 1.5 || new_x <= (-world.maxx * 0.5) || new_y >= world.maxy * 1.5 || new_y <= (-world.maxy * 0.5))
+			new_x = (new_x + world.maxx / 2) % (world.maxx * 2) - (world.maxx / 2)
+			new_y = (new_y + world.maxy / 2) % (world.maxy * 2) - (world.maxy / 2)
 			src.drift_x += src.drift_x * (rand() * 0.4 - 0.3) // the storm slows down, usually (-30% to +10% speed change, averaging -10%)
 			src.drift_y += src.drift_y * (rand() * 0.4 - 0.3) // so it will lose some of its initial random inclination
-			src.drift_x += (src.x - world.maxx * 0.5) / (world.maxx * -1.5) * src.central_pull // but this bit pushes towards world center
-			src.drift_y += (src.y - world.maxy * 0.5) / (world.maxy * -1.5) * src.central_pull // as such storms grow more "aggressive" over round
+			src.drift_x += (0.5 - (src.x / src.maxx)) * src.central_pull // but this bit pushes towards world center
+			src.drift_y += (0.5 - (src.y / src.maxy)) * src.central_pull // as such storms grow more "aggressive" over round
 
 		src.x = new_x
 		src.y = new_y

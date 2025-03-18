@@ -109,10 +109,10 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
 								AM.event_handler_flags &= ~IS_PITFALLING
 								return
-						pit.fall_to(pit.get_turf_to_fall(AM), AM, src.BruteDamageMax)
+						pit.fall_to(AM, src.BruteDamageMax)
 		else
 			AM.event_handler_flags |= IS_PITFALLING
-			src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
+			src.fall_to(AM, src.BruteDamageMax)
 
 	/// called when movable atom AM lands from a throw into a pitfall turf.
 	proc/start_fall_no_coyote(var/signalsender, var/atom/movable/AM)
@@ -122,11 +122,11 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		AM.event_handler_flags |= IS_PITFALLING
 		AM.event_handler_flags &= ~IN_COYOTE_TIME
 
-		src.fall_to(src.get_turf_to_fall(AM), AM, src.BruteDamageMax)
+		src.fall_to(AM, src.BruteDamageMax)
 		return 1
 
-	/// a proc that makes a movable atom 'AM' fall from 'src.typecasted_parent()' to 'T' with a maximum of 'brutedamage' brute damage
-	proc/fall_to(var/turf/T, var/atom/movable/AM, var/brutedamage = 50)
+	/// a proc that makes a movable atom 'AM' animate a fall with 'brutedamage' brute damage then actually fall
+	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
 			return
 		#ifdef CHECK_PITFALL_INITIALIZATION
@@ -159,12 +159,18 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (!QDELETED(AM))
 					if(M)
 						M.lastgasp()
+					var/turf/T
+					var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
+					if(pit)
+						T = get_turf_to_fall(AM)
+					else
+						T = src.get_turf_to_fall(AM)
 					src.actually_fall(T, AM, brutedamage, old_density)
 		else
 			if(ismob(AM))
 				var/mob/M = AM
 				M.lastgasp()
-			src.actually_fall(T, AM, brutedamage)
+			src.actually_fall(src.get_turf_to_fall(AM), AM, brutedamage)
 
 	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50, reset_density = 0)
 		if (isturf(T))
@@ -244,7 +250,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				AM.throwing = 0
 				animate(AM)
 				if(keep_falling)
-					next_pit.fall_to(next_pit.get_turf_to_fall(AM),AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
+					next_pit.fall_to(AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
 				else
 					AM.event_handler_flags &= ~IS_PITFALLING
 				return
