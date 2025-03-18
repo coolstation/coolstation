@@ -202,7 +202,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		new /obj/decal/lightning(target)
 		explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
 		for(var/mob/living/L in orange(2, target)) // some more mean effects
-			L.changeStatus("disorient",min(5 * power,30 SECONDS))
+			L.changeStatus("disorient",min(15 * power,30 SECONDS))
 			L.change_misstep_chance(min(power, 30))
 
 /obj/item/device/weather_remote

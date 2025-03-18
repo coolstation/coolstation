@@ -296,19 +296,6 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
-"di" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/floor/plating,
-/area/station/maintenance/central)
 "dm" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -530,6 +517,10 @@
 	name = "Clown Hole APC";
 	pixel_y = 24;
 	dir = 1
+	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -1526,11 +1517,6 @@
 	dir = 1
 	},
 /area/station/medical/research)
-"ni" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/maint,
-/turf/wall,
-/area/station/maintenance/central)
 "no" = (
 /obj/cable{
 	d1 = 1;
@@ -2162,6 +2148,35 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"rG" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/railing/cool,
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
+"rI" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/railing/cool,
+/obj/railing/cool{
+	dir = 1
+	},
+/turf/space/magindara,
+/area/magindara)
 "rJ" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
@@ -2672,7 +2687,7 @@
 /area/station/maintenance/central)
 "wu" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/maint,
+/obj/access_spawn/bar,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "wz" = (
@@ -3171,6 +3186,11 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"Be" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/lesb,
+/turf/floor/wood/five,
+/area/station/crew_quarters/baroffice)
 "Bf" = (
 /obj/machinery/power/apc{
 	areastring = "Central Maintenance";
@@ -3444,7 +3464,6 @@
 /area/station/hallway/primary/west)
 "Dc" = (
 /obj/machinery/power/data_terminal,
-/obj/cable,
 /obj/machinery/computer3/terminal/zeta{
 	dir = 4
 	},
@@ -3550,6 +3569,12 @@
 /obj/disposalpipe/segment/morgue/bent/east,
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"Eh" = (
+/obj/landmark/start{
+	name = "Bartender"
+	},
+/turf/floor/wood/five,
+/area/station/crew_quarters/baroffice)
 "Ek" = (
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
@@ -4801,14 +4826,9 @@
 	icon_state = "4-8"
 	},
 /obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/cable{
 	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -6166,6 +6186,10 @@
 	dir = 10
 	},
 /area/station/hallway/primary/west)
+"Zk" = (
+/obj/storage/secure/closet/civilian/bartender,
+/turf/floor/wood/five,
+/area/station/crew_quarters/baroffice)
 "Zl" = (
 /obj/stool/chair/office/green{
 	dir = 1
@@ -36891,8 +36915,8 @@ MJ
 MJ
 MJ
 MJ
-mF
-mF
+MJ
+MJ
 mF
 mF
 qt
@@ -38428,7 +38452,7 @@ ik
 ik
 VG
 mF
-mF
+Et
 tC
 SO
 SO
@@ -38730,7 +38754,7 @@ ik
 ik
 VG
 tC
-ni
+yi
 tC
 tC
 SO
@@ -39334,7 +39358,7 @@ ik
 fi
 VG
 Rz
-di
+OU
 lx
 QL
 gl
@@ -39636,7 +39660,7 @@ ik
 ik
 VG
 Od
-di
+OU
 vu
 QL
 gl
@@ -39938,7 +39962,7 @@ ik
 ik
 VG
 Bf
-di
+OU
 Og
 tC
 uI
@@ -51119,7 +51143,7 @@ TK
 hd
 Jk
 Jk
-Jk
+Zk
 hd
 NJ
 BD
@@ -51420,8 +51444,8 @@ lr
 SO
 hd
 Jk
-Jk
-Jk
+Eh
+Be
 hd
 pv
 BD
@@ -52284,7 +52308,7 @@ SO
 SO
 SO
 SO
-SO
+Vq
 Vq
 Vq
 Vq
@@ -52318,7 +52342,7 @@ SO
 SO
 SO
 SO
-SO
+rI
 SO
 SO
 SO
@@ -52586,15 +52610,15 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
 Sh
 SO
 SO
@@ -52620,8 +52644,8 @@ SO
 SO
 SO
 SO
-SO
-SO
+rG
+ky
 OX
 ky
 ij
@@ -52888,15 +52912,15 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
 OX
 SO
 SO
@@ -52922,7 +52946,7 @@ SO
 SO
 SO
 SO
-SO
+rI
 SO
 SO
 SO
@@ -53190,15 +53214,15 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
 OX
 SO
 SO
@@ -53224,7 +53248,7 @@ SO
 SO
 SO
 SO
-SO
+rI
 SO
 SO
 SO
@@ -53492,15 +53516,15 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
 OX
 SO
 SO

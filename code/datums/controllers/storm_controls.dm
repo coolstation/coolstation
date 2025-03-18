@@ -78,8 +78,8 @@
 					var/turf/target_turf = locate(T.x + rand(-10,10), T.y + rand(-7,7), T.z)
 					if(istype(target_turf,/turf/space/magindara) || locate(/obj/overlay/magindara_skylight) in target_turf)
 						var/turf_potential = src.calculate_potential_in_turf(target_turf)
-						if(turf_potential > 2)
-							lightning_strike(target_turf, power = turf_potential + 3)
+						if(turf_potential > 2 && prob(turf_potential * 10))
+							lightning_strike(target_turf, power = turf_potential)
 							lightning_struck = TRUE
 						break
 		if(!lightning_struck)
@@ -102,7 +102,7 @@
 				var/dist = sqrt((x - S.x) ** 2 + (y - S.y) ** 2)
 
 				if(dist <= S.breadth)
-					. += S.potential + S.potential_bonus - 5
+					. += S.potential + S.potential_bonus
 				else
 					. += (S.potential * sin(45.84 * (dist ** S.wavecrush) / S.breadth) + S.potential_bonus) / dist
 
@@ -114,9 +114,9 @@
 	/// additional charge not affected by wave, but affected by distance
 	var/potential_bonus = 0
 	/// breadth of initial wave before wavecrush
-	var/breadth = 5
+	var/breadth = 6
 	/// initial speed
-	var/initial_speed = 0.6
+	var/initial_speed = 0.5
 	/// how much speed is added towards the center of the map each time it loops
 	var/central_pull = 0.2
 	/// controls spreading the waves wider as they get further away. higher = more broadening of waves
