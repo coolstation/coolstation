@@ -70,7 +70,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/test_fall(var/atom/movable/AM,var/no_thrown=FALSE)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
-		if(AM.event_handler_flags & (IS_PITFALLING | CAN_UPDRAFT))
+		if(AM.event_handler_flags & (IS_PITFALLING | CAN_UPDRAFT | Z_ANCHORED))
 			return
 		if(no_thrown && AM.throwing)
 			return

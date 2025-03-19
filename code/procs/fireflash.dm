@@ -161,6 +161,18 @@
 						open[link] = target_dist
 				else
 					open[link] = target_dist
+		var/datum/component/updraft/up = T.GetComponent(/datum/component/updraft)
+		if(up)
+			var/turf/link = up.TargetTurf
+			if (!link)
+				continue
+			var/target_dist = dist + 1
+			if (!(link in closed))
+				if (link in open)
+					if (open[link] > target_dist)
+						open[link] = target_dist
+				else
+					open[link] = target_dist
 
 		LAGCHECK(LAG_REALTIME)
 
