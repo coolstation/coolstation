@@ -194,6 +194,7 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 	plane = PLANE_DEFAULT
 	var/time_to_die
 	cleanup_active = FALSE
+	event_handler_flags = CAN_UPDRAFT
 
 	New(var/time_to_live = 1.5 SECONDS)
 		..()
@@ -230,6 +231,15 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 			icon_state = "1"
 
 		return 1
+
+	set_loc(newloc)
+		var/obj/hotspot/fireflash/hotspot = locate(/obj/hotspot/fireflash) in newloc
+		if (hotspot)
+			hotspot.time_to_die = max(hotspot.time_to_die,src.time_to_die) + FIREFLASH_HOTSPOT_TIME
+			hotspot.temperature = max(hotspot.temperature,src.temperature)
+			qdel(src)
+			return
+		. = ..()
 
 	disposing()
 		fireflashes -= src

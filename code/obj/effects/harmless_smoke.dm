@@ -9,6 +9,7 @@
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
+	event_handler_flags = CAN_UPDRAFT
 /*
 	pooled()
 		..()

@@ -24,7 +24,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	/// Does the bottom get a linked updraft?
 	var/CreateUpdraft = FALSE
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, CreateUpdraft = FALSE)
 		. = ..()
 		if (!istype(src.parent, /turf))
 			return COMPONENT_INCOMPATIBLE
@@ -33,6 +33,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		src.HangTime		= HangTime
 		src.FallTime		= FallTime
 		src.DepthScale		= DepthScale
+		src.CreateUpdraft	= CreateUpdraft
 
 	PostTransfer()
 		if (!istype(src.parent, /turf))
@@ -43,6 +44,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
 		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
 		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
+		if(src.CreateUpdraft)
+			var/datum/component/updraft/bottom = src.get_turf_to_fall().AddComponent(/datum/component/updraft)
+			bottom.TargetTurf = src.typecasted_parent()
 		for(var/atom/movable/AM in src.typecasted_parent())
 			src.start_fall(AM,AM)
 
@@ -57,8 +61,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		RETURN_TYPE(/turf)
 		. = src.parent
 
-	/// returns the turf to drop a movable AM to. Must be overridden by all children, or they will output to themself. Overriding could filter or deny ghosts passage.
-	get_turf_to_fall(var/atom/A)
+	/// returns the turf to drop an atom A to. Must be overridden by all children, or it will output to itself. Overrides can filter, deny ghosts passage, etc.
+	proc/get_turf_to_fall(var/atom/A)
 		RETURN_TYPE(/turf)
 		return src.parent
 
@@ -66,7 +70,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 	proc/test_fall(var/atom/movable/AM,var/no_thrown=FALSE)
 		if (!istype(AM, /atom/movable) || istype(AM, /obj/projectile))
 			return
-		if(AM.event_handler_flags & IS_PITFALLING)
+		if(AM.event_handler_flags & (IS_PITFALLING | CAN_UPDRAFT))
 			return
 		if(no_thrown && AM.throwing)
 			return
@@ -279,13 +283,14 @@ TYPEINFO(/datum/component/pitfall/target_landmark)
 	/// The landmark that the fall sends you to. Should be a landmark define.
 	var/TargetLandmark = ""
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetLandmark = "")
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, CreateUpdraft = FALSE, TargetLandmark = "")
 		if (!TargetLandmark)
 			return COMPONENT_INCOMPATIBLE
 		..()
 		src.TargetLandmark = TargetLandmark
 
 	get_turf_to_fall(var/atom/A)
+		RETURN_TYPE(/turf)
 		return pick_landmark(src.TargetLandmark)
 
 TYPEINFO(/datum/component/pitfall/target_area)
@@ -303,13 +308,14 @@ TYPEINFO(/datum/component/pitfall/target_area)
 	/// The area path that the target falls into. For area targeting
 	var/TargetArea = null
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, TargetArea = null)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, CreateUpdraft = FALSE, TargetArea = null)
 		if (!TargetArea || !ispath(TargetArea, /area))
 			return COMPONENT_INCOMPATIBLE
 		..()
 		src.TargetArea = TargetArea
 
 	get_turf_to_fall(atom/movable/AM)
+		RETURN_TYPE(/turf)
 		return pick(get_area_turfs(src.TargetArea))
 
 TYPEINFO(/datum/component/pitfall/target_coordinates)
@@ -319,6 +325,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		ARG_INFO("HangTime", "num", "How much coyote time things get for the pit.", 0.3 SECONDS),
 		ARG_INFO("FallTime", "num", "How long it takes for a thing to animate falling down the pit.", 1.2 SECONDS),
 		ARG_INFO("DepthScale", "num", "A scalar for how small FallTime, if any, makes them.", 0.3),
+		ARG_INFO("CreateUpdraft", "num", "Create an updraft at the bottom?", 1),
 		ARG_INFO("OffsetX", "num", "The X offset added to the pitfall turf's X.", 0),
 		ARG_INFO("OffsetY", "num", "The Y offset added to the pitfall turf's Y.", 0),
 		ARG_INFO("TargetZ", "num", "The Z level that the target falls into. Must be set.", 0),
@@ -339,7 +346,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 	/// Try to find a non-dense spot around the target to land on in range(x).
 	var/LandingRange = 3
 
-	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, OffsetX = 0, OffsetY = 0, TargetZ = 0, LandingRange = 3)
+	Initialize(BruteDamageMax = 50, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, CreateUpdraft = TRUE, OffsetX = 0, OffsetY = 0, TargetZ = 0, LandingRange = 3)
 		if (!TargetZ)
 			return COMPONENT_INCOMPATIBLE
 		..()
@@ -350,6 +357,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		src.update_targets()
 
 	get_turf_to_fall(atom/A)
+		RETURN_TYPE(/turf)
 		return pick(src.TargetList)
 
 	proc/update_targets() // prefers non-dense turf, only chooses the closest turf. If you want multiple possibilities, make a child.
