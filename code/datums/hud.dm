@@ -6,13 +6,6 @@
 	New()
 		..()
 		appearance_flags |= NO_CLIENT_COLOR
-		if(isatom(loc) && !istype(loc, /atom/movable/screen))
-			CRASH("HUD object [identify_object(src)] was created in [identify_object(loc)]")
-
-	set_loc(atom/newloc)
-		. = ..()
-		if(!isnull(newloc))
-			CRASH("HUD object [identify_object(src)] was moved to [identify_object(newloc)]")
 
 /**
  * Sets screen_loc of this screen object, in form of point coordinates,

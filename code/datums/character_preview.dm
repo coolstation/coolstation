@@ -40,11 +40,11 @@ datum/character_preview
 				"size" = "128,128",
 			)))
 
-	src.handler = new
-	src.handler.plane = PLANE_BLACKNESS
-	src.handler.mouse_opacity = 0
-	src.handler.set_position(src.preview_id, 1, 1)
-	src.viewer?.screen += src.handler
+		src.handler = new
+		src.handler.plane = PLANE_BLACKNESS
+		src.handler.mouse_opacity = 0
+		src.handler.set_position(src.preview_id, 1, 1)
+		src.viewer?.screen += src.handler
 
 		var/mob/living/carbon/human/H = new(src.get_mob_spawn_loc())
 		mobs -= H
