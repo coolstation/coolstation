@@ -1016,7 +1016,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2049,12 +2048,6 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
-"jj" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "jk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -3270,7 +3263,7 @@
 /area/station/turret_protected/ai_upload)
 "oE" = (
 /obj/machinery/door/window/northleft,
-/turf/floor/airless/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 1
 	},
 /area/station/security/main)
@@ -4795,6 +4788,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "vM" = (
@@ -5047,7 +5041,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/airless/stairs/wide/other,
+/turf/floor/stairs/wide/other,
 /area/station/security/main)
 "wY" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -5118,7 +5112,7 @@
 /obj/window/thindow{
 	dir = 1
 	},
-/turf/floor/airless/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 1
 	},
 /area/station/security/main)
@@ -5596,7 +5590,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/turf/floor/airless/stairs/wide/other{
+/turf/floor/stairs{
 	dir = 8
 	},
 /area/station/security/main)
@@ -7239,7 +7233,7 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/sewage,
-/turf/floor/airless/stairs/wide,
+/turf/floor/stairs/wide,
 /area/station/security/main)
 "Gq" = (
 /obj/wingrille_spawn/reinforced,
@@ -8286,7 +8280,7 @@
 /obj/decal/tile_edge/stripe{
 	dir = 1
 	},
-/turf/floor/airless/stairs/wide/middle,
+/turf/floor/stairs/wide/middle,
 /area/station/security/main)
 "Ln" = (
 /obj/cable/blue{
@@ -9512,7 +9506,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/airless/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 1
 	},
 /area/station/security/main)
@@ -9676,13 +9670,6 @@
 	dir = 4
 	},
 /area/station/mining/lobby)
-"QM" = (
-/obj/grille/catwalk/jen,
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
-/area/station/maintenance/inner/north{
-	name = "North Tunnel"
-	})
 "QO" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -10089,7 +10076,7 @@
 /obj/window/thindow{
 	dir = 1
 	},
-/turf/floor/airless/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 1
 	},
 /area/station/security/main)
@@ -10151,6 +10138,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "SN" = (
@@ -10956,14 +10944,6 @@
 	},
 /turf/floor/grime,
 /area/station/security/main)
-"WD" = (
-/obj/disposalpipe/trunk/zlevel{
-	dir = 1;
-	target_z = 1
-	},
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
-/area/station/crew_quarters/fitness)
 "WE" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
@@ -49012,7 +48992,7 @@ bW
 Qv
 Gt
 lv
-WD
+nf
 Ep
 ux
 HB
@@ -49314,7 +49294,7 @@ bW
 ze
 Gt
 lv
-WD
+nf
 Ep
 ux
 HB
@@ -61664,7 +61644,7 @@ HB
 dZ
 ZH
 se
-QM
+xD
 rE
 xD
 xD
@@ -61966,7 +61946,7 @@ HB
 dZ
 ZH
 se
-QM
+xD
 yJ
 xD
 xD
@@ -66214,7 +66194,7 @@ Vd
 ul
 uq
 vK
-jj
+NQ
 SM
 uq
 lK
