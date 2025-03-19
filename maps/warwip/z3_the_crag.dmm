@@ -2289,7 +2289,6 @@
 "ko" = (
 /obj/decal/cleanable/mess/splotch_one,
 /obj/decal/skeleton,
-/obj/decal/cleanable/pathogen_sweat,
 /obj/decal/cleanable/cobweb{
 	icon_state = "cobweb"
 	},
@@ -2804,6 +2803,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/decal/cleanable/dirt/random,
 /obj/item/cigbutt{
 	pixel_x = 7
 	},
@@ -6245,6 +6245,7 @@
 /area/station/engine/hotloop)
 "Cf" = (
 /obj/decal/cleanable/dirt,
+/obj/decal/cleanable/mess/random_food,
 /obj/submachine/chef_sink/chem_sink{
 	dir = 4;
 	pixel_x = -4
@@ -6648,6 +6649,12 @@
 	},
 /turf/floor/plating,
 /area/station/security/hos)
+"DV" = (
+/obj/decal/cleanable/rust/jen,
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/mess/random_food,
+/turf/floor/airless/black/grime,
+/area/station/medical/cdc)
 "Ea" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -7213,6 +7220,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/east,
+/obj/decal/cleanable/dirt/random,
 /obj/item/cigbutt{
 	pixel_x = -11;
 	pixel_y = 6
@@ -61366,7 +61374,7 @@ Ab
 IJ
 rH
 uE
-Qz
+DV
 Ab
 HB
 HB
