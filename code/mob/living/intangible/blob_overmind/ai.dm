@@ -16,17 +16,17 @@
 
 	var/counter = 4
 	var/refresh_lists = 0
-	var/datum/blob_ability/deploy = null
-	var/datum/blob_ability/attack = null
-	var/datum/blob_ability/spread = null
-	var/datum/blob_ability/ribosome = null
-	var/datum/blob_ability/mito = null
-	var/datum/blob_ability/wall = null
-	var/datum/blob_ability/absorb = null
-	var/datum/blob_ability/promote = null
-	var/datum/blob_upgrade/spread_up = null
-	var/datum/blob_upgrade/gen_up = null
-	var/datum/blob_upgrade/fireres_up = null
+	var/datum/targetable/blob/deploy = null
+	var/datum/targetable/blob/attack = null
+	var/datum/targetable/blob/spread = null
+	var/datum/targetable/blob/build/ribosome = null
+	var/datum/targetable/blob/build/mito = null
+	var/datum/targetable/blob/build/wall = null
+	var/datum/targetable/blob/absorb = null
+	var/datum/targetable/blob/promote = null
+	var/datum/targetable/blob/evolution/spread_up = null
+	var/datum/targetable/blob/evolution/gen_up = null
+	var/datum/targetable/blob/evolution/fireres_up = null
 
 	var/turf/last_spread = null
 	var/turf/last_lost = null
@@ -52,7 +52,7 @@
 		..()
 		name = "Blob AI #[ai_id]"
 		real_name = name
-		deploy = locate(/datum/blob_ability/plant_nucleus) in abilities
+		deploy = src.abilityHolder.getAbility(/datum/targetable/blob/plant_nucleus)
 
 	proc/priority(var/obj/O)
 		if (!O.density)
@@ -230,14 +230,14 @@
 			return 1
 		if (client)
 			return
-		if (!blobs.len && state != 1)
+		if (!length(blob_holder.blobs) && state != 1)
 			return
 		ai_ticks_queued_up++
 		src.ai_process()
 		SPAWN_DBG(0)
 			var/max_extra_ticks = 4
 			var/extra_ticks_left = max_extra_ticks
-			while(bio_points >= bio_points_max * 2/3 && ai_ticks_queued_up <= 4 && extra_ticks_left-- && APPROX_TICK_USE < 80)
+			while(blob_holder.points >= blob_holder.points_max * 2/3 && ai_ticks_queued_up <= 4 && extra_ticks_left-- && APPROX_TICK_USE < 80)
 				sleep(4 SECONDS / (max_extra_ticks + 1))
 				src.ai_process()
 			ai_ticks_queued_up--
@@ -258,12 +258,12 @@
 					evaluate(T)
 
 		if (state > 1)
-			if(src.extra_nuclei)
+			if(src.blob_holder.extra_nuclei)
 				src.place_extra_nucleus()
 
 			if (fireres_up)
 				if (fireres_up.check_requirements())
-					fireres_up.take_upgrade()
+					fireres_up.cast()
 					fireres_up = null
 					logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took fire resistance upgrade.")
 
@@ -292,8 +292,8 @@
 									break
 								if(T.can_blob_spread_here())
 									spread_to(T, 0)
-									sleep(spread.cooldown_time + 1)
-					// no explicit `absorb.onUse` call because absorption is now automatic
+									sleep(spread.cooldown + 1)
+					// no explicit `absorb.cast` call because absorption is now automatic
 
 		switch (state)
 			if (STATE_DEAD)
@@ -310,53 +310,50 @@
 						state = 0
 						return
 
-					color = random_color()
-					my_material.color = color
-					initial_material.color = color
-					var/r = hex2num(copytext(color, 2, 4))
-					var/g = hex2num(copytext(color, 4, 6))
-					var/b = hex2num(copytext(color, 6))
-					var/hsv = rgb2hsv(r,g,b)
-					organ_color = hsv2rgb( hsv[1], hsv[2], 100 )
+					blob_holder.color = random_color()
+					blob_holder.my_material.color = color
+					blob_holder.initial_material.color = color
+					blob_holder.organ_color = random_color()
+					color = blob_holder.color
 
 					if (istype(T, /turf/space))
 						return // Do not deploy on space.
 					if (!check_viability(T))
 						return
-					deploy.onUse(T)
-					if (deploy in abilities)
+					deploy.cast(T)
+					if (src.abilityHolder.getAbility(/datum/targetable/blob/plant_nucleus))
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Deploy failed.")
 						return
 					state = STATE_EXPANDING
 					last_spread = T
 					update_lists(T)
-					spread = locate(/datum/blob_ability/spread) in abilities
-					attack = locate(/datum/blob_ability/attack) in abilities
-					ribosome = locate(/datum/blob_ability/build/ribosome) in abilities
-					mito = locate(/datum/blob_ability/build/mitochondria) in abilities
-					wall = locate(/datum/blob_ability/build/wall) in abilities
-					absorb = locate(/datum/blob_ability/absorb) in abilities
-					promote = locate(/datum/blob_ability/promote) in abilities
-					spread_up = locate(/datum/blob_upgrade/quick_spread) in available_upgrades
-					gen_up = locate(/datum/blob_upgrade/extra_genrate) in available_upgrades
-					fireres_up = locate(/datum/blob_upgrade/fire_resist) in available_upgrades
+					spread = blob_holder.getAbility(/datum/targetable/blob/spread)
+					attack = blob_holder.getAbility(/datum/targetable/blob/attack)
+					ribosome = blob_holder.getAbility(/datum/targetable/blob/build/ribosome)
+					mito = blob_holder.getAbility(/datum/targetable/blob/build/mitochondria)
+					wall = blob_holder.getAbility(/datum/targetable/blob/build/wall)
+					absorb = blob_holder.getAbility(/datum/targetable/blob/absorb)
+					promote = blob_holder.getAbility(/datum/targetable/blob/promote_nucleus)
+					spread_up = blob_holder.getAbility(/datum/targetable/blob/evolution/quick_spread)
+					gen_up = blob_holder.getAbility(/datum/targetable/blob/evolution/extra_genrate)
+					fireres_up = blob_holder.getAbility(/datum/targetable/blob/evolution/fire_resist)
 					logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Deployed blob to ([T.x], [T.y], [T.z]).")
 					counter = 0
 			if (STATE_EXPANDING)
 				refresh_lists++
-				if (blobs.len > 15 && prob(blobs.len / (ribosome_count + 1)) && bio_points_max >= ribosome.bio_point_cost)
+				if (blob_holder.blobs.len > 15 && prob(blob_holder.blobs.len / (ribosome_count + 1)) && blob_holder.points_max >= ribosome.pointCost)
 					state = STATE_DO_LIPIDS
-				if (!(gen_up in available_upgrades))
+				if (!(blob_holder.getAbility(/datum/targetable/blob/evolution/extra_genrate)))
 					gen_up = null
-				if (!(spread_up in available_upgrades))
+				if (!blob_holder.getAbility(/datum/targetable/blob/evolution/spread))
 					spread_up = null
 				if (gen_up)
 					if (gen_up.check_requirements())
-						gen_up.take_upgrade()
+						gen_up.cast()
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took generation rate upgrade while expanding.")
 				if (spread_up)
 					if (spread_up.check_requirements())
-						spread_up.take_upgrade()
+						spread_up.cast()
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took spread upgrade while expanding.")
 				if(length(open) + length(open_low) + length(open_medium) == 0 && length(closed) > 0)
 					destroying = pick(closed)
@@ -364,7 +361,7 @@
 				if (destroying && !has_adjacent_blob(destroying))
 					destroying = null
 				if (open.len && !destroying)
-					if (bio_points < spread.bio_point_cost)
+					if (blob_holder.points < spread.pointCost)
 						return
 					for (var/turf/Q in range(5, last_spread))
 						if (Q in open)
@@ -396,7 +393,7 @@
 					spread_to(ST, 1)
 					return
 				if ((open_medium.len && !destroying) || (destroying && destroy_level == 1))
-					if (bio_points < attack.bio_point_cost)
+					if (blob_holder.points < attack.pointCost)
 						return
 					ST = null
 					if (destroying)
@@ -415,7 +412,7 @@
 						destroying = ST
 						destroy_level = 1
 						set_loc(ST)
-						attack.onUse(ST)
+						attack.cast(ST)
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Attacking tile at [showCoords(ST.x, ST.y, ST.z)].")
 						var/new_score = evaluate_no_add(ST)
 						if (new_score != 1)
@@ -431,7 +428,7 @@
 					else if (destroying)
 						destroying = null
 				if (open_low.len || destroying)
-					if (bio_points < attack.bio_point_cost)
+					if (blob_holder.points < attack.pointCost)
 						return
 					ST = null
 					if (destroying)
@@ -450,7 +447,7 @@
 						destroying = ST
 						destroy_level = 2
 						set_loc(ST)
-						attack.onUse(ST)
+						attack.cast(ST)
 						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Attacking tile at [showCoords(ST.x, ST.y, ST.z)].")
 						var/new_score = evaluate_no_add(ST)
 						if (new_score != 2)
@@ -469,14 +466,14 @@
 					state = force_state
 					force_state = 0
 			if (STATE_DO_LIPIDS)
-				if (bio_points < ribosome.bio_point_cost)
-					if(bio_points_max < ribosome.bio_point_cost)
+				if (blob_holder.points < ribosome.pointCost)
+					if(blob_holder.points_max < ribosome.pointCost)
 						state = STATE_EXPANDING
 					return
 				var/obj/blob/A
 				if (!A)
 					for (var/i in 1 to 20)
-						var/obj/blob/C = pick(blobs)
+						var/obj/blob/C = pick(blob_holder.blobs)
 						if (C.type == /obj/blob)
 							A = C
 							break
@@ -486,7 +483,7 @@
 					return
 				var/turf/T = get_turf(A)
 				set_loc(T)
-				ribosome.onUse(T)
+				ribosome.cast(T)
 				var/obj/blob/ribosome/L = locate() in T
 				if (L)
 					ribosome_count++
@@ -508,12 +505,12 @@
 					if (!C)
 						state = STATE_EXPANDING
 						return
-					if (bio_points < mito.bio_point_cost)
+					if (blob_holder.points < mito.pointCost)
 						if (prob(20))
 							state = STATE_EXPANDING
 						return
 					var/turf/T = get_turf(C)
-					if (get_gen_rate() < 4)
+					if (blob_holder.get_gen_rate() < 4)
 						state = STATE_EXPANDING
 					else if (create_mitochondria_if_possible(T) || prob(40))
 						state = STATE_EXPANDING
@@ -543,7 +540,7 @@
 									break
 								else
 									attackers -= M
-									var/dist = get_dist(M, src)
+									var/dist = GET_DIST(M, src)
 									if (n_dist > dist)
 										n_dist = dist
 										nearest = M
@@ -621,7 +618,7 @@
 							break
 
 	proc/place_extra_nucleus()
-		if(!src.extra_nuclei)
+		if(!src.blob_holder.extra_nuclei)
 			return
 		var/list/obj/blob/visited = list()
 		var/list/obj/blob/current = list()
@@ -631,7 +628,7 @@
 				var/turf/T = get_step(blob.loc, dir)
 				if(!istype(T))
 					continue
-				if(!T.density && !(locate(/obj/blob) in T) || blob.type == /obj/blob/nucleus && blob.overmind == src)
+				if(!T.density && !(locate(/obj/blob) in T) || blob.type == /obj/blob/nucleus && blob.blob_holder == src.blob_holder)
 					current[blob] = 1
 					break
 		while(length(current))
@@ -645,15 +642,15 @@
 					if(next_blob && !(next_blob in visited) && !(next_blob in next) && !(next_blob in current))
 						next[next_blob] = 1
 			current = next
-		promote.onUse(final_target?.loc)
+		promote.cast(final_target?.loc)
 
 	proc/attack_now(var/turf/T)
 		set_loc(T)
-		attack.onUse(T)
+		attack.cast(T)
 
 	proc/spread_to(var/turf/ST, var/is_calm)
 		set_loc(ST)
-		spread.onUse(ST)
+		spread.cast(ST)
 		if (locate(/obj/blob) in ST)
 			open -= ST
 			if (is_calm)
@@ -675,23 +672,24 @@
 			fortifying = ST
 
 	proc/create_mitochondria_if_possible(var/turf/T)
-		if (bio_points >= mito.bio_point_cost && mito.last_used <= world.time)
+		if (blob_holder.points >= mito.pointCost && mito.cooldowncheck())
 			set_loc(T)
-			mito.onUse(T)
+			mito.cast(T)
 			logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Creating mitochondria at [showCoords(T.x, T.y, T.z)].")
 			return 1
 		return 0
 
 	proc/create_wall_if_possible(var/turf/T)
-		if (bio_points >= wall.bio_point_cost && wall.last_used <= world.time)
+		if (blob_holder.points >= wall.pointCost && wall.cooldowncheck())
 			set_loc(T)
-			wall.onUse(T)
+			wall.cast(T)
 			logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Creating wall at [showCoords(T.x, T.y, T.z)].")
 			return 1
 		return 0
 
-	onBlobHit(var/obj/blob/B, var/mob/M)
-		if (!prob(max(1, min(100, (2000 - 100 * get_dist(B, src)) / 13))))
+	was_harmed(var/obj/blob/B, var/mob/M, special, intent)
+		..()
+		if (!prob(max(1, min(100, (2000 - 100 * GET_DIST(M, src)) / 13))))
 			return
 		if (!(M in attackers))
 			attackers += M
@@ -703,7 +701,7 @@
 		counter = 0
 
 	onBlobDeath(var/obj/blob/B, var/mob/M)
-		if (!prob(max(1, min(100, (2000 - 100 * get_dist(B, src)) / 13))))
+		if (!prob(max(1, min(100, (2000 - 100 * GET_DIST(B, src)) / 13))))
 			return
 		attacker = M
 		if (istype(B, /obj/blob/ribosome))

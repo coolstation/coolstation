@@ -20491,6 +20491,10 @@
 "pIh" = (
 /obj/table/auto,
 /obj/item/storage/pill_bottle/mutadone,
+/obj/item/kitchen/utensil/knife,
+/obj/item/kitchen/utensil/knife,
+/obj/item/device/analyzer/genes,
+/obj/item/device/analyzer/genes,
 /turf/floor/bluegreen,
 /area/station/medical/research)
 "pIE" = (
@@ -20682,6 +20686,24 @@
 	dir = 1;
 	name = "autoname - SS13"
 	},
+/obj/storage/crate/gene_separators,
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = -7
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/genetic_syringes,
 /turf/floor/bluegreen,
 /area/station/medical/research)
 "pNS" = (
@@ -23504,7 +23526,7 @@
 /turf/floor/engine/vacuum,
 /area/station/science/lab)
 "rTg" = (
-/obj/item/reagent_containers/food/snacks/ingredient/pizza2{
+/obj/item/reagent_containers/food/snacks/ingredient/pizza_base{
 	pixel_y = 4
 	},
 /obj/decal/cleanable/ketchup,

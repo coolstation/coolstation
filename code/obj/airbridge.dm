@@ -52,9 +52,34 @@
 	var/area/original_area = /area/space
 	var/area/airbridge/airbridge_area// = /area/airbridge
 
+	var/auto_pressurize = TRUE // just gonna make this default true cause it makes sense
+
 	drawbridge
 		name = "Drawbridge Controller"
 		original_turf = /turf/floor/plating/airless/asteroid
+
+	classic
+		floor_turf = /turf/floor/airbridge/classic
+		wall_turf = /turf/wall/airbridge/classic
+
+		gray
+			floor_turf = /turf/floor/airbridge/classic/white
+			wall_turf = /turf/wall/airbridge/classic/gray
+
+		orangeyellow
+			floor_turf = /turf/floor/airbridge/classic/yellow
+			wall_turf = /turf/wall/airbridge/classic/orange
+
+		green
+			floor_turf = /turf/floor/airbridge/classic/green
+			wall_turf = /turf/wall/airbridge/classic/green
+
+		red
+			floor_turf = /turf/floor/airbridge/classic/red
+			wall_turf = /turf/wall/airbridge/classic/gray
+
+		purple
+			floor_turf = /turf/floor/airbridge/classic/purple
 
 	New()
 		START_TRACKING
@@ -130,7 +155,7 @@
 		if(linked.working || working) return 1
 		else return 0
 
-	proc/establish_bridge()
+	proc/establish_bridge(bolt_id = null)
 		if(linked == null) get_link()
 		if(linked == null) return
 
@@ -200,13 +225,23 @@
 				if(istype(l))
 					l.seton(1)
 
+			if(bolt_id != null)
+				for (var/obj/machinery/door/airlock/M in by_type[/obj/machinery/door])
+					if (M.id == bolt_id)
+						if (M.locked)
+							M.locked = 0
+							playsound(M, 'sound/machines/airlock_bolted.ogg', 40)
+							SPAWN_DBG(0) M.update_icon()
+
+			if(auto_pressurize)
+				SPAWN_DBG (1 SECOND) pressurize()
 
 			working = 0
 			updateComps()
 
 		return
 
-	proc/remove_bridge()
+	proc/remove_bridge(bolt_id = null)
 		if(linked == null) get_link()
 		if(linked == null) return
 
@@ -252,6 +287,17 @@
 			working = 0
 			updateComps()
 
+			if(bolt_id != null)
+				SPAWN_DBG(1 SECOND)
+				for (var/obj/machinery/door/airlock/M in by_type[/obj/machinery/door])
+					if (M.id == bolt_id)
+						if (!M.locked)
+							M.force_close()
+							M.operating = 0
+							M.locked = 1
+							playsound(M, 'sound/machines/airlock_bolted.ogg', 40)
+							SPAWN_DBG(0) M.update_icon()
+
 		return
 
 	proc/updateComps()
@@ -274,6 +320,10 @@
 	// set this var to 1 in the map editor if you want the airbridge to establish and pressurize when the round starts
 	// only do it to ONE of the computers for the airbridge ID or they will both try to do it and get confused
 	var/starts_established = 0
+
+	var/bolt_doors = FALSE // Are there doors that will bolt after the airbridge retracts? (uses door id var)
+	var/auto_retract = FALSE // Will the airbridge automatically retract?
+	var/auto_retract_time = 1 MINUTE
 
 	var/working = 0
 	var/state_str = ""
@@ -320,6 +370,9 @@
 		if (starts_established && length(links))
 			SPAWN_DBG(1 SECOND)
 				do_initial_extend()
+		if (auto_retract)
+			if (ON_COOLDOWN(src, "auto_retract", auto_retract_time)) return
+			remove_bridge()
 		return
 
 	proc/pick_controller()
@@ -402,7 +455,7 @@
 			return 0
 		var/obj/airbridge_controller/C = src.pick_controller()
 		if (istype(C))
-			C.establish_bridge()
+			C.establish_bridge(bolt_doors ? id : null)
 			return 1
 
 	proc/remove_bridge()
@@ -410,7 +463,7 @@
 			return 0
 		var/obj/airbridge_controller/C = src.pick_controller()
 		if (istype(C))
-			C.remove_bridge()
+			C.remove_bridge(bolt_doors ? id : null)
 			return 1
 
 	proc/pressurize()
