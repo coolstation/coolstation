@@ -163,10 +163,12 @@ var/global/datum/transit_controller/transit_controls = new
 	icon_state = "moon_shaft"
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
+	var/auto = FALSE
 
 	New()
 		..()
-		src.calculate_direction(TRUE)
+		if(src.auto)
+			src.calculate_direction(TRUE)
 		src.initialise_component()
 
 	proc/initialise_component()

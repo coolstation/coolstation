@@ -171,6 +171,16 @@
 /obj/decal/cleanable/fungus,
 /turf/wall,
 /area/station/security/checkpoint/medical)
+"cf" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 4;
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "ch" = (
 /obj/lattice{
 	dir = 6;
@@ -427,6 +437,12 @@
 	},
 /turf/floor/green,
 /area/station/hydroponics/lobby)
+"eg" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 1;
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "eh" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -635,6 +651,12 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"fX" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 8;
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "fY" = (
 /obj/grille/catwalk{
 	dir = 8
@@ -2299,6 +2321,15 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"sn" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "sp" = (
 /obj/lattice{
 	dir = 9;
@@ -2865,6 +2896,22 @@
 	dir = 8
 	},
 /area/station/hallway/primary/west)
+"xm" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 1;
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
+"xo" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 4;
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "xr" = (
 /obj/stool/chair/office/red{
 	dir = 1
@@ -4368,6 +4415,11 @@
 "JP" = (
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"JQ" = (
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "JT" = (
 /turf/floor,
 /area/station/medical/research)
@@ -6202,6 +6254,17 @@
 	},
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
+"Xt" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five{
+	dir = 8;
+	icon_state = "shaft_inner"
+	},
+/area/magindara)
 "Xu" = (
 /turf/floor/green/corner{
 	dir = 8
@@ -51611,9 +51674,9 @@ SO
 WT
 XB
 FV
-Vg
+eg
 Fg
-Vg
+fX
 FV
 HI
 WT
@@ -52213,13 +52276,13 @@ SO
 SO
 WT
 XB
-Hv
+xm
 ry
 Vg
 Fg
 Vg
 qN
-MY
+Xt
 HI
 WT
 SO
@@ -52817,13 +52880,13 @@ SO
 SO
 WT
 HB
-qN
+cf
 MY
 Vg
 Fg
 Vg
 Hv
-ry
+sn
 oo
 WT
 SO
@@ -53423,9 +53486,9 @@ SO
 WT
 HB
 sy
-Vg
+xo
 Fg
-Vg
+JQ
 sy
 oo
 WT
