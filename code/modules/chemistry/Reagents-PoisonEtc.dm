@@ -786,7 +786,7 @@ datum
 			reaction_blob(var/obj/blob/B, var/volume)
 				if (B.type == /obj/blob)
 					var/obj/blob/lipid/L = new /obj/blob/lipid(B.loc)
-					L.setOvermind(B.overmind)
+					L.setHolder(B.blob_holder)
 					qdel(B)
 
 		harmful/hemotoxin
