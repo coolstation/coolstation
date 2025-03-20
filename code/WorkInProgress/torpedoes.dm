@@ -91,7 +91,6 @@
 	density = 0
 	layer = 10
 	alpha = 200
-	event_handler_flags = IMMUNE_MANTA_PUSH
 
 	var/image/trgImage = null
 	var/obj/machinery/torpedo_console/master = null
@@ -569,7 +568,7 @@
 	anchored = 1
 	throw_spin = 0
 	layer = 5
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_FLUID_ENTER
 
 	var/lockdir = null
 

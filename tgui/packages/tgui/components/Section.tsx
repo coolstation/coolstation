@@ -10,16 +10,16 @@ import { addScrollableNode, removeScrollableNode } from '../events';
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 
 interface SectionProps extends BoxProps {
-  className?: string;
-  title?: string;
-  buttons?: InfernoNode;
-  fill?: boolean;
-  fitted?: boolean;
-  scrollable?: boolean;
+  readonly className?: string;
+  readonly title?: string;
+  readonly buttons?: InfernoNode;
+  readonly fill?: boolean;
+  readonly fitted?: boolean;
+  readonly scrollable?: boolean;
   /** @deprecated This property no longer works, please remove it. */
-  level?: boolean;
+  readonly level?: boolean;
   /** @deprecated Please use `scrollable` property */
-  overflowY?: any;
+  readonly overflowY?: any;
 }
 
 export class Section extends Component<SectionProps> {
@@ -60,7 +60,6 @@ export class Section extends Component<SectionProps> {
       <div
         className={classes([
           'Section',
-          Byond.IS_LTE_IE8 && 'Section--iefix',
           fill && 'Section--fill',
           fitted && 'Section--fitted',
           scrollable && 'Section--scrollable',

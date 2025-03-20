@@ -8,7 +8,7 @@
 
 	/**
 	 * Directs JS errors to a byond proc for logging
-	 * 
+	 *
 	 * @param string file Name of the logfile to dump errors in, do not prepend with data/
 	 * @param boolean overrideDefault True to prevent default JS errors (an big honking error prompt thing)
 	 * @param function customSuppress Pass a function that returns true to prevent logging of a specific error
@@ -38,7 +38,7 @@
 				extra += !error ? '' : ' | error: ' + error;
 				extra += !navigator.userAgent ? '' : ' | user agent: ' + navigator.userAgent;
 				var debugLine = 'Error: ' + msg + ' | url: ' + url + ' | line: ' + line + extra;
-				window.location = '?action=debugFileOutput&file=' + file + '&message=' + escaper(debugLine);
+				window.location = 'byond://?action=debugFileOutput&file=' + file + '&message=' + escaper(debugLine);
 			}
 			return overrideDefault;
 		};

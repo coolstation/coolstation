@@ -179,7 +179,7 @@
 						color:#fff;
 						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 						font:1.2em 'PxPlus IBM VGA9';
-						-webkit-text-stroke:0.083em black;
+						-webkit-text-stroke:0.3px black;
 					}
 					a{
 						text-decoration:none;
@@ -303,7 +303,7 @@
 						color:#fff;
 						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 						font:1em 'PxPlus IBM VGA9';
-						-webkit-text-stroke:0.083em black;
+						-webkit-text-stroke:0.3px black;
 					}
 					a{
 						text-decoration:none;

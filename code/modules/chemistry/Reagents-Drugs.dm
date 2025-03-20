@@ -101,7 +101,7 @@ datum
 					M.change_misstep_chance(10 * mult)
 
 					var/image/imagekey = pick(halluc_attackers)
-					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=rand(10,15), max_attackers=rand(1,3))
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=rand(30,50), max_attackers=rand(1,2))
 				// a really shitty form of traitor stimulants - you'll be tough to take down but nearly uncontrollable anyways and you won't heal the way stims do
 
 				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=25)
@@ -308,7 +308,7 @@ datum
 				new /datum/hallucinated_sound('sound/weapons/Gunshot.ogg', min_count = 1, max_count = 3, delay = 0.4 SECONDS),
 				new /datum/hallucinated_sound('sound/impact_sounds/Energy_Hit_3.ogg', min_count = 2, max_count = 4, delay = COMBAT_CLICK_DELAY),
 				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 50, min_count = 2, max_count = 5, delay = 0.2 SECONDS),
-				'sound/voice/creepyshriek.ogg',
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 20),
 				new /datum/hallucinated_sound('sound/impact_sounds/Metal_Hit_1.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
 				'sound/machines/airlock_swoosh_temp.ogg',
 				'sound/machines/airlock_deny.ogg',
@@ -341,40 +341,70 @@ datum
 				"The universe itself",
 			)
 			var/static/list/monkey_images = list(
-				new /image('icons/mob/monkey.dmi', "monkey"),
+				new /image('icons/mob/monkey.dmi', "monkey_hallucination"),
 				new /image('icons/mob/monkey.dmi', "fire3"),
 				new /image('icons/mob/monkey.dmi', "skeleton"),
 				new /image('icons/mob/monkey.dmi', "seamonkey"),
 			)
 			var/static/list/critter_image_list = list(
-				new /image('icons/mob/hallucinations.dmi', "spider"),
+				//new /image('icons/mob/hallucinations.dmi', "spider"),
 				new /image('icons/mob/hallucinations.dmi', "dragon"),
 				new /image('icons/mob/hallucinations.dmi', "pig"),
 				new /image('icons/mob/hallucinations.dmi', "slime"),
-				new /image('icons/mob/critter.dmi', "martianW"),
+				new /image('icons/mob/monkey.dmi', "monkey_hallucination"),
+				new /image('icons/mob/monkey.dmi', "fire3"),
+				new /image('icons/mob/monkey.dmi', "skeleton"),
+				new /image('icons/mob/monkey.dmi', "seamonkey"),
+				new /image('icons/mob/critter.dmi', "spacebee"),
+				new /image('icons/mob/critter.dmi', "eyespider"),
+				new /image('icons/mob/critter.dmi', "skeleton"),
+				new /image('icons/mob/critter.dmi', "fly"),
 			)
 			var/static/list/monkey_names = strings("names/monkey.txt")
+			var/static/list/halluc_images = list(
+				new /image(icon = 'icons/obj/scrap.dmi', icon_state = "Crusher_1"),
+				new /image(icon = 'icons/misc/mechanicsExpansion.dmi', icon_state = "comp_flush"),
+				new /image(icon = 'icons/obj/foodNdrink/food_produce.dmi', icon_state = "banana-peel"),
+				new /image(icon = 'icons/obj/items/weapons.dmi', icon_state = "mine_radiation_armed"),
+				new /image(icon = 'icons/obj/decals/urine.dmi', icon_state = "floor1"),
+				new /image(icon = 'icons/obj/decals/cleanables.dmi', icon_state = "messnoodle2meatball"),
+				new /image(icon = 'icons/obj/foodNdrink/kitchen.dmi', icon_state = "cleaver")
+			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				//pretty colors
 				//M.AddComponent(/datum/component/hallucination/trippy_colors, timeout=10)
+				M.druggy = max(M.druggy, 15)
 
-				//get attacked
-				if(prob(60)) //monkey mode
-					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=3)
-				else
-					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=3)
+				if(probmult(25)) //get attacked
+					if(prob(50)) //monkey mode
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=15, max_attackers=3)
+					else
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=80, max_attackers=1)
 
 				//THE VOICES GET LOUDER
-				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=5)
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=10)
+
+				//TRUST NOTHING
+				M.AddComponent(/datum/component/hallucination/random_image_override,\
+					timeout=15,\
+					image_list=halluc_images,\
+					target_list=list(/turf/floor),\
+					range=7,\
+					image_prob=20,\
+					image_time=30,\
+					override=FALSE,\
+					visible_creation = FALSE,\
+					pixel_variance = 6\
+				)
 
 				if(probmult(8)) //display a random chat message
 					M.playsound_local(M.loc, pick(src.speech_sounds, 100, 1))
 					boutput(M, "<b>[pick(src.voice_names)]</b> says, \"[phrase_log.random_phrase("say")]\"")
 
 				//turn someone into a critter
-				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=critter_image_list, target_list=list(/mob/living/carbon/human), range=6, image_prob=10, image_time=20, override=TRUE)
+				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=critter_image_list, target_list=list(/mob/living/carbon/human), range=6, image_prob=25, image_time=20, override=TRUE)
 				..()
 				return
 
@@ -415,7 +445,10 @@ datum
 				if(!M) M = holder.my_atom
 				M.druggy = max(M.druggy, 5)
 				var/image/imagekey = pick(bee_halluc)
-				M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=bee_halluc[imagekey], attacker_prob=10)
+				if(probmult(33))
+					var/list/attackers = M.GetComponents(/datum/component/hallucination/fake_attack)
+					if(length(attackers) < 5)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=5, image_list=list(imagekey), name_list=bee_halluc[imagekey], attacker_prob=10)
 				if (probmult(12))
 					M.visible_message(pick("<b>[M]</b> makes a buzzing sound.", "<b>[M]</b> buzzes."),pick("BZZZZZZZZZZZZZZZ", "<span class='alert'><b>THE BUZZING GETS LOUDER</b></span>", "<span class='alert'><b>THE BUZZING WON'T STOP</b></span>"))
 				if (probmult(15))
@@ -778,16 +811,29 @@ datum
 			overdose = 20
 			hunger_value = -0.1
 			thirst_value = -0.09
+			var/fake_health = 40
+
+			on_remove()
+				src.fake_health = 40
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil")
+				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness -= 40
-				if(prob(25)) M.take_brain_damage(1 * mult)
-				if(probmult(15)) M.emote(pick("smile", "grin", "yawn", "laugh", "drool"))
+				src.fake_health += mult
+				if(prob(25))
+					M.take_brain_damage(1 * mult)
+					src.fake_health += 3 * mult
+				if(probmult(15))
+					M.emote(pick("smile", "grin", "yawn", "laugh", "drool"))
 				if(prob(10))
 					boutput(M, "<span class='notice'><b>You feel pretty chill.</b></span>")
 					M.bodytemperature -= 1 * mult
 					M.emote("smile")
+					src.fake_health += 3 * mult
 				if(prob(5))
 					boutput(M, "<span class='alert'><b>You feel too chill!</b></span>")
 					M.emote(pick("yawn", "drool"))
@@ -798,11 +844,13 @@ datum
 				if(prob(2))
 					boutput(M, "<span class='alert'><b>Your skin feels all rough and dry.</b></span>")
 					random_brute_damage(M, 2 * mult)
+				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil", src.fake_health)
 				..()
 				return
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				var/effect = ..(severity, M)
+				src.fake_health += severity * 4
 				if (severity == 1)
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M.name]</b> looks dazed!</span>")
@@ -863,7 +911,10 @@ datum
 					playsound(M.loc, 'sound/voice/animal/cat.ogg', 50, 1)
 
 				var/image/imagekey = pick(cat_halluc)
-				M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=cat_halluc[imagekey], attacker_prob=7, max_attackers=3)
+				if(probmult(40)) //get attacked
+					var/list/attackers = M.GetComponents(/datum/component/hallucination/fake_attack)
+					if(length(attackers) < 2)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=cat_halluc[imagekey], attacker_prob=7, max_attackers=1)
 				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.cat_sounds, sound_prob=20)
 				..()
 				return
@@ -903,7 +954,10 @@ datum
 					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, 2)
 
 				var/image/imagekey = pick(bat_halluc)
-				M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=bat_halluc[imagekey], attacker_prob=7, max_attackers=3)
+				if(probmult(40)) //get attacked
+					var/list/attackers = M.GetComponents(/datum/component/hallucination/fake_attack)
+					if(length(attackers) < 2)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=bat_halluc[imagekey], attacker_prob=7, max_attackers=1)
 				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.bat_sounds, sound_prob=20)
 				..()
 				return

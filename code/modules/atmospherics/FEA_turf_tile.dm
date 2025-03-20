@@ -86,10 +86,10 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				active_hotspot = null
 		if(being_superconductive)
 			air_master.active_super_conductivity.Remove(src)
-		if(blocks_air)
+		if(gas_impermeable)
 			for(var/direction in cardinal)
 				var/turf/tile = get_step(src,direction)
-				if(air_master && istype(tile) && !tile.blocks_air)
+				if(air_master && istype(tile) && !tile.gas_impermeable)
 					air_master.tiles_to_update |= tile
 		qdel(air)
 		if (gas_icon_overlay)
@@ -100,7 +100,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		..()
 
 /turf/proc/instantiate_air()
-	if(!blocks_air)
+	if(!gas_impermeable)
 		air = new()
 
 		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
@@ -257,8 +257,11 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				if(air.check_tile_graphic())
 					update_visuals(air)
 
+			for(var/direction in cardinal)
+				LAGCHECK(LAG_REALTIME)
+				if(gas_cross(get_step(src,direction)))
+					air_check_directions |= direction
 		return removed
-
 	else
 		var/datum/gas_mixture/GM = new()
 		var/sum = BASE_GASES_TOTAL_MOLES(src)
@@ -276,7 +279,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 	for(var/direction in cardinal)
 		LAGCHECK(LAG_REALTIME)
-		if(CanPass(null, get_step(src,direction), 0, 0))
+		if(gas_cross(get_step(src,direction)))
 			air_check_directions |= direction
 
 	if(parent)
@@ -296,7 +299,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				if(!istype(T) || (T.parent!=parent))
 
 					//See what kind of border it is
-					if(istype(T,/turf/space) && !istype(T,/turf/space/fluid))
+					if(istype_exact(T,/turf/space) && src.gas_cross(T) && T.gas_cross(src))
 						if(parent.space_borders)
 							parent.space_borders |= src
 						else
@@ -304,7 +307,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 						length_space_border++
 						group_border |= direction
 
-					else if(issimulatedturf(T))
+					else if(issimulatedturf(T) && src.gas_cross(T) && T.gas_cross(src))
 						if(parent.borders)
 							parent.borders |= src
 						else
@@ -400,7 +403,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 /turf/proc/super_conduct()
 	var/conductivity_directions = 0
-	if(blocks_air)
+	if(gas_impermeable)
 		//Does not participate in air exchange, so will conduct heat across all four borders at this time
 		conductivity_directions = NORTH|SOUTH|EAST|WEST
 #ifdef ATMOS_ARCHIVING

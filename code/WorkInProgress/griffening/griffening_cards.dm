@@ -1,30 +1,30 @@
 // I should just kill this bit with fire.
-#define GRIFFENING_TYPE_SWIFT 1
-#define GRIFFENING_TYPE_ARMOR 2
-#define GRIFFENING_TYPE_INSTANT 4
-#define GRIFFENING_TYPE_RESPONSE 8
-#define GRIFFENING_TYPE_EQUIP 16
-#define GRIFFENING_TYPE_FIRE 32
-#define GRIFFENING_TYPE_CONTINUOUS 64
+#define GRIFFENING_TYPE_SWIFT (1<<0)
+#define GRIFFENING_TYPE_ARMOR (1<<1)
+#define GRIFFENING_TYPE_INSTANT (1<<2)
+#define GRIFFENING_TYPE_RESPONSE (1<<3)
+#define GRIFFENING_TYPE_EQUIP (1<<4)
+#define GRIFFENING_TYPE_FIRE (1<<5)
+#define GRIFFENING_TYPE_CONTINUOUS (1<<6)
 
 #define GRIFFENING_TARGET_NONE 0
-#define GRIFFENING_TARGET_HUMAN 1
-#define GRIFFENING_TARGET_CYBORG 2
-#define GRIFFENING_TARGET_ETHEREAL 4
-#define GRIFFENING_TARGET_ROBOT 8
-#define GRIFFENING_TARGET_ORGANIC 16
-#define GRIFFENING_TARGET_SYNDICATE 32
+#define GRIFFENING_TARGET_HUMAN (1<<0)
+#define GRIFFENING_TARGET_CYBORG (1<<1)
+#define GRIFFENING_TARGET_ETHEREAL (1<<2)
+#define GRIFFENING_TARGET_ROBOT (1<<3)
+#define GRIFFENING_TARGET_ORGANIC (1<<4)
+#define GRIFFENING_TARGET_SYNDICATE (1<<5)
 #define GRIFFENING_TARGET_CREATURE GRIFFENING_TARGET_HUMAN | GRIFFENING_TARGET_CYBORG | GRIFFENING_TARGET_ROBOT | GRIFFENING_TARGET_ETHEREAL | GRIFFENING_TARGET_ORGANIC | GRIFFENING_TARGET_SYNDICATE
-#define GRIFFENING_TARGET_EFFECT 64
-#define GRIFFENING_TARGET_EQUIP 128
+#define GRIFFENING_TARGET_EFFECT (1<<6)
+#define GRIFFENING_TARGET_EQUIP (1<<7)
 #define GRIFFENING_TARGET_EFFECT_ROW GRIFFENING_TARGET_EFFECT | GRIFFENING_TARGET_EQUIP
-#define GRIFFENING_TARGET_AREA 256
+#define GRIFFENING_TARGET_AREA (1<<8)
 #define GRIFFENING_TARGET_ANYTHING GRIFFENING_TARGET_CREATURE | GRIFFENING_TARGET_EFFECT_ROW | GRIFFENING_TARGET_AREA
-#define GRIFFENING_TARGET_OPPONENT 512
-#define GRIFFENING_TARGET_OWN 1024
+#define GRIFFENING_TARGET_OPPONENT (1<<9)
+#define GRIFFENING_TARGET_OWN (1<<10)
 #define GRIFFENING_TARGET_ANY_PLAYER GRIFFENING_TARGET_OPPONENT | GRIFFENING_TARGET_OWN
-#define GRIFFENING_TARGET_DISCARD 2048
-#define GRIFFENING_TARGET_DISCARDED 4096
+#define GRIFFENING_TARGET_DISCARD (1<<11)
+#define GRIFFENING_TARGET_DISCARDED (1<<12)
 
 #define GRIFFENING_TARGET_OWN_HUMAN GRIFFENING_TARGET_HUMAN | GRIFFENING_TARGET_OWN
 #define GRIFFENING_TARGET_OPPONENT_HUMAN GRIFFENING_TARGET_HUMAN | GRIFFENING_TARGET_OPPONENT
@@ -49,11 +49,11 @@
 #define GRIFFENING_ATTRIBUTE_ROBOT GRIFFENING_TARGET_ROBOT
 #define GRIFFENING_ATTRIBUTE_ORGANIC GRIFFENING_TARGET_ORGANIC
 #define GRIFFENING_ATTRIBUTE_SYNDICATE GRIFFENING_TARGET_SYNDICATE
-#define GRIFFENING_ATTRIBUTE_AI 64
+#define GRIFFENING_ATTRIBUTE_AI (1<<6)
 //#define GRIFFENING_ATTRIBUTE_SYNDICATE 128
-#define GRIFFENING_ATTRIBUTE_HANDS 256
-#define GRIFFENING_ATTRIBUTE_LAWS 512
-#define GRIFFENING_ATTRIBUTE_HEAD 1024
+#define GRIFFENING_ATTRIBUTE_HANDS (1<<7)
+#define GRIFFENING_ATTRIBUTE_LAWS (1<<8)
+#define GRIFFENING_ATTRIBUTE_HEAD (1<<9)
 #define GRIFFENING_ATTRIBUTE_DEFAULT GRIFFENING_ATTRIBUTE_HANDS | GRIFFENING_ATTRIBUTE_ORGANIC | GRIFFENING_ATTRIBUTE_HUMAN
 
 /datum/playing_card
@@ -341,25 +341,25 @@
 			randomized_stats = TRUE
 			attributes = GRIFFENING_ATTRIBUTE_NONE
 
-			george_melons
+			small_bart
 				heart
-					card_name = "Heart of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Heart of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
 				brain
-					card_name = "Brain of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Brain of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
 				skull
-					card_name = "Skull of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Skull of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
 				limbs
-					card_name = "Limbs of George Melons"
-					card_data = "This card cannot be played. This card is immediately used if 'George Melons' is played."
+					card_name = "Limbs of Small Bart"
+					card_data = "This card cannot be played. This card is immediately used if 'Small Bart' is played."
 
-				card_name = "George Melons"
-				card_data = "This card can only be played if the player holds 'Heart of George Melons', 'Brain of George Melons', 'Skull of George Melons' and 'Limbs of George Melons' in his or her hands. When George Melons is played, the player instantly wins."
+				card_name = "Small Bart"
+				card_data = "This card can only be played if the player holds 'Heart of Small Bart', 'Brain of Small Bart', 'Skull of Small Bart' and 'Limbs of Small Bart' in his or her hands. When Small Bart is played, the player instantly wins."
 
 			beepsky
 				card_name = "Officer Beepsky"

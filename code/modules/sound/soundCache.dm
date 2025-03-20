@@ -296,6 +296,7 @@ var/global/list/soundCache = list(
  	"sound/effects/shovel3.ogg" = 'sound/effects/shovel3.ogg',\
  	"sound/effects/singsuck.ogg" = 'sound/effects/singsuck.ogg',\
  	"sound/effects/sleepstethoscope.ogg" = 'sound/effects/sleepstethoscope.ogg',\
+ 	"sound/effects/slidewhistlefall.ogg" = 'sound/effects/slidewhistlefall.ogg',\
  	"sound/effects/smoke.ogg" = 'sound/effects/smoke.ogg',\
  	"sound/effects/smoke_tile_spread.ogg" = 'sound/effects/smoke_tile_spread.ogg',\
  	"sound/effects/sparks1.ogg" = 'sound/effects/sparks1.ogg',\

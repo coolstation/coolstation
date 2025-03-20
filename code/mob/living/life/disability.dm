@@ -12,6 +12,7 @@
 			if (probmult(5))
 				owner.sleeping = 1
 				owner.changeStatus("paralysis", 5 SECONDS)
+				owner.drowsyness = 0
 
 		if (owner.misstep_chance > 0)
 			switch(owner.misstep_chance)

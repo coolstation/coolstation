@@ -827,9 +827,6 @@
 				src.goods_sell += new /datum/commodity/podparts/ballistic(src)
 				src.goods_sell += new /datum/commodity/podparts/artillery(src)
 				src.goods_sell += new /datum/commodity/contraband/artillery_ammo(src)
-#ifdef MAP_OVERRIDE_MANTA
-				src.goods_sell += new /datum/commodity/HEtorpedo(src)
-#endif
 
 				//src.goods_buy += new /datum/commodity/contraband/egun(src)
 				src.goods_buy += new /datum/commodity/contraband/secheadset(src)

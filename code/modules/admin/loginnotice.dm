@@ -98,7 +98,7 @@
 								<hr>
 								<p style='white-space: pre-wrap;'>[message]</p>
 								<hr>
-								<p class='c'><a class='a' href="?src=\ref[src];action=loginnotice_ack">Acknowledge Message</a></p>
+								<p class='c'><a class='a' href="byond://?src=\ref[src];action=loginnotice_ack">Acknowledge Message</a></p>
 							</body>
 						</html>
 					"}

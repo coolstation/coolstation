@@ -13,6 +13,9 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_antag_popups,
 		/client/proc/admin_changelog, //changelog, i might rename this
 
+		//minor debugging
+		/client/proc/enable_webview_devtools,
+
 		//quickly make a thing without buildmode (thanks delari)
 		/client/proc/create_obj,
 		/client/proc/create_mob,
@@ -130,7 +133,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_show_player_compids,
 
 		//movement
-		/client/proc/Jump,
+		/client/proc/jump_to_area,
 		/client/proc/jumptomob,
 		/client/proc/jtm,
 		/client/proc/jumptokey,
@@ -266,6 +269,7 @@ var/list/admin_verbs = list(
 
 		//atom management
 		/datum/admins/proc/spawn_atom,
+		/datum/admins/proc/spawn_atom_typesof,
 		/datum/admins/proc/heavenly_spawn_obj,
 		/datum/admins/proc/supplydrop_spawn_obj,
 		/datum/admins/proc/demonically_spawn_obj,
@@ -507,6 +511,9 @@ var/list/admin_verbs = list(
 		// /client/proc/remove_camera_paths_verb,
 		// /client/proc/dbg_itemspecial,
 		// /client/proc/dbg_objectprop,
+
+		//big debugging
+		/client/proc/grant_webview_devtools,
 
 		//toggles
 		/datum/admins/proc/toggle_bone_system,
@@ -788,6 +795,13 @@ var/list/special_pa_observing_verbs = list(
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	if (src.holder)
 		src.holder.create_object(usr)
+	return
+
+/client/proc/jump_to_area()
+	set name = "Jump"
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	if (src.holder)
+		src.holder.jump_to(usr)
 	return
 
 /client/proc/create_mob()
@@ -2304,6 +2318,12 @@ var/list/fun_images = list()
 			C.cmd_emag_target(A)
 
 	src.update_cursor()
+
+//Let admins use ghostjump links as non ghost mobs, I guess.
+/mob/verb/ghostjump(x as num, y as num, z as num)
+	set name = ".ghostjump"
+	set hidden = TRUE
+	src.client?.jumptocoord(x,y,z)
 
 
 /client/proc/vpn_whitelist_add(vpnckey as text)

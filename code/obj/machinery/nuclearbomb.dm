@@ -5,7 +5,6 @@
 	icon_state = "nuclearbomb"//1"
 	density = 1
 	anchored = 0
-	event_handler_flags = IMMUNE_MANTA_PUSH
 	_health = 150
 	_max_health = 150
 	var/armed = 0

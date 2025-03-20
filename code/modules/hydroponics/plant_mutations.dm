@@ -153,12 +153,12 @@
 
 // Melon Mutations
 
-/datum/plantmutation/melon/george
+/datum/plantmutation/melon/rainbow
 	name = "Rainbow Melons"
 	name_prefix = "Rainbow "
-	crop = /obj/item/reagent_containers/food/snacks/plant/melon/george
+	crop = /obj/item/reagent_containers/food/snacks/plant/melon/rainbow
 	iconmod = "MelonRainbow"
-	assoc_reagents = list("george_melonium")
+	assoc_reagents = list("rainbow_melonium")
 
 /datum/plantmutation/melon/balloon
 	name = "Balloon Melons"

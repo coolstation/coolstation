@@ -1366,6 +1366,24 @@ var/datum/flock/testflock
 			open_the_channel()
 		boutput(src, "<B><I>The Channel is now [channel_open ? "open" : "closed"].</I></B>")
 
+/client/proc/enable_webview_devtools()
+	set name = "WebView2 Devtools (Self)"
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	winset(src, null, "browser-options=devtools,find")
+	boutput(src, "<B>WebView2 Devtools enabled, right click a window to inspect it.</B>")
+
+/client/proc/grant_webview_devtools()
+	set name = "Webview2 Devtools (Grant)"
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	var/mob/mob_to_grant_devtools = input("Select mob:","Mob", null) as null|mob in world
+
+	winset(mob_to_grant_devtools, null, "browser-options=devtools,find")
+	boutput(mob_to_grant_devtools, "<B>WebView2 Devtools enabled, right click a window to inspect it.</B>")
+
 #undef ARG_INFO_NAME
 #undef ARG_INFO_TYPE
 #undef ARG_INFO_DESC

@@ -305,6 +305,13 @@ soon it will go away */
 	dud_freq = 3
 	fouling = 8
 
+//slow rifle round, initially for AMS turret
+/datum/projectile/bullet/rifle_medium/slow
+	projectile_speed = 20
+	dissipation_delay = 1
+	dissipation_rate = 4
+
+
 /datum/projectile/bullet/rifle_medium/AP
 	name = "bullet"
 	//SemiAutoRifleShot.wav by SuperPhat -- https://freesound.org/s/421710/ -- License: Creative Commons 0
@@ -507,6 +514,14 @@ soon it will go away */
 		hit_ground_chance = 80 //dirty
 
 		//on_hit override message to player: "J'ow!" "That really jurt!" etc.
+
+	scrap
+		name = "juicer scrap"
+		icon_state = "buckshotscrap"
+		power = 6 //fired in group of 6 shots (max 36) with some spread
+		dissipation_delay = 4
+		dissipation_rate = 4
+		hit_ground_chance = 40
 
 //bartender's round
 //meant to
@@ -1570,3 +1585,28 @@ soon it will go away */
 
 	on_hit(atom/hit)
 		hit.UpdateOverlays(image('icons/misc/frogs.dmi', "icon_state" = "getout"), "getout") //its like im trying to intentionally torture players
+
+//we can have coilguns in TYOOL 2053, just not like that :)
+/datum/projectile/bullet/coil
+	name = "coil"
+	icon_state = "coil"
+	power = 25 //lowish damage, but easy to spray & pray
+	shot_sound = 'sound/misc/boing/1.ogg' //comedy
+	damage_type = D_KINETIC
+	hit_type = DAMAGE_CUT
+	jam_mult = 1
+	implanted = /obj/item/implant/projectile/coil
+	casing = null
+	icon_turf_hit = null
+	dud_freq = 4
+	max_range = 100
+	dissipation_rate = 0.2 //slow to lose energy even with ricochets :3
+
+	on_hit(atom/hit, direction, obj/projectile/P)
+		if(!ismob(hit))
+			if (!shoot_reflected_bounce(P, hit, 8, PROJ_RAPID_HEADON_BOUNCE))
+				on_max_range_die(P)
+		..()
+
+	on_max_range_die(obj/projectile/O)
+		new /obj/item/coil/small/(get_turf(O))

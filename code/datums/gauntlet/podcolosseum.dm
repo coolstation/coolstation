@@ -477,7 +477,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	src.debug_variables(colosseum_controller)
 
-/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/machinery/colosseum_putt))
 		return 0
 	return ..()
@@ -488,7 +488,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 	icon_state = "gauntfloorPod"
 	event_handler_flags = USE_CANPASS
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/machinery/colosseum_putt))
 			return 1
 		return ..()
@@ -954,14 +954,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 		boutput(usr, "<span class='hint'>Press Insert (or Q in WASD mode) to stop the ship.</span>")
 		boutput(usr, "<span class='hint'>Click the ship to get out.</span>")
 
-#define INDICATOR_PRIMARY 1
-#define INDICATOR_SECONDARY 2
-#define INDICATOR_HEALTH 4
-#define INDICATOR_ARMOR 8
-#define INDICATOR_FIRERES 16
-#define INDICATOR_SHIELDGEN 32
-#define INDICATOR_SHOTCOUNT 64
-#define INDICATOR_SHOTDAMAGE 128
+#define INDICATOR_PRIMARY (1<<0)
+#define INDICATOR_SECONDARY (1<<1)
+#define INDICATOR_HEALTH (1<<2)
+#define INDICATOR_ARMOR (1<<3)
+#define INDICATOR_FIRERES (1<<4)
+#define INDICATOR_SHIELDGEN (1<<5)
+#define INDICATOR_SHOTCOUNT (1<<6)
+#define INDICATOR_SHOTDAMAGE (1<<7)
 #define INDICATOR_ALL 255
 
 #define OVERLAY_SHIELD 1

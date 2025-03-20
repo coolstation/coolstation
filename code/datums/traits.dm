@@ -963,6 +963,15 @@ obj/trait/pilot
 	points = -1
 	isPositive = 0
 
+/obj/trait/organ_connoisseur
+	name = "Organ Connoisseur (-1)"
+	cleanName = "Organ Connoisseur"
+	desc = "You know far more about the valuable innards of your coworkers than you should."
+	id = "organ_connoisseur"
+	icon_state = "organ"
+	points = -1
+	isPositive = 1
+
 /obj/trait/clown_disbelief
 	name = "Clown Disbelief (0)"
 	cleanName = "Clown Disbelief"
@@ -1184,6 +1193,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/cat
 
+/obj/trait/bird
+	name = "Avian (0) \[Species\]"
+	cleanName = "Avian"
+	icon_state = "birdT"
+	desc = "Bird up."
+	id = "bird"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/birb
+
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"
@@ -1242,7 +1262,7 @@ obj/trait/pilot
 		if(ishuman(owner))
 			//skeleton, monkey, and human (null) are rarer
 			//also possible are squid and cat
-			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat)
+			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat, prob(100); /datum/mutantrace/birb)
 			if (our_pick)
 				var/mob/living/carbon/human/H = owner
 				H.set_mutantrace(our_pick)

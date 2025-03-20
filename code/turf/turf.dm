@@ -31,7 +31,6 @@
 	//Properties for both
 	var/temperature = T20C
 
-	var/blocks_air = 0
 	var/icon_old = null
 	var/name_old = null
 	var/tmp/pathweight = 1
@@ -83,7 +82,7 @@
 			if(initial(src.opacity))
 				src.RL_SetOpacity(src.material.alpha <= MATERIAL_ALPHA_OPACITY ? 0 : 1)
 
-		blocks_air = material.hasProperty("permeable") ? material.getProperty("permeable") >= 33 : blocks_air
+		gas_impermeable = material.hasProperty("permeable") ? material.getProperty("permeable") >= 33 : gas_impermeable
 		return
 
 	serialize(var/savefile/F, var/path, var/datum/sandbox/sandbox)
@@ -477,7 +476,7 @@
 		return
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
-
+	SEND_SIGNAL(src, COMSIG_TURF_REPLACED, what)
 	if (!can_replace_with_stuff && !force) //(for unsimmed turfs)
 		return //..(what, keep_old_material = keep_old_material, handle_air = handle_air)
 
@@ -844,7 +843,7 @@
 	desc = "Looks normal."
 
 /turf/space/proc/update_icon(starlight_alpha=255)
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna))
+	if(!isnull(space_color) && !istype(src, /turf/space/fluid) && !istype(src, /turf/space/gehenna))
 		src.color = space_color
 
 	if(fullbright)
@@ -878,11 +877,6 @@
 		icon_state = "darkvoid"
 		name = "void"
 		desc = "Yep, this is fine."
-	if(buzztile == null && prob(1) && prob(1) && src.z == 1) //Dumb shit to trick nerds.
-		buzztile = src
-		icon_state = "wiggle"
-		src.desc = "There appears to be a spatial disturbance in this area of space."
-		new/obj/item/device/key/random(src)
 
 	update_icon()
 

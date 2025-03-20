@@ -3,17 +3,17 @@ For the main html chat area
 *********************************/
 
 
-#define CTX_PM 1
-#define CTX_SMSG 2
-#define CTX_BOOT 4
-#define CTX_BAN 8
-#define CTX_GIB 16
-#define CTX_POPT 32
-#define CTX_JUMP 64
-#define CTX_GET 128
+#define CTX_PM (1<<0)
+#define CTX_SMSG (1<<1)
+#define CTX_BOOT (1<<2)
+#define CTX_BAN (1<<3)
+#define CTX_GIB (1<<4)
+#define CTX_POPT (1<<5)
+#define CTX_JUMP (1<<6)
+#define CTX_GET (1<<7)
 
-#define CTX_OBSERVE 256
-#define CTX_GHOSTJUMP 512
+#define CTX_OBSERVE (1<<8)
+#define CTX_GHOSTJUMP (1<<9)
 
 // minimum number of messages in a single tick to consider it a "burst"
 #define CHAT_BURST_START 5

@@ -289,6 +289,7 @@
 					if(H.traitHolder && H.traitHolder.hasTrait("smoker") || !((src in H.get_equipped_items()) || ((H.l_store==src||H.r_store==src) && !(H.wear_mask && (H.wear_mask.c_flags & BLOCKSMOKE || (H.wear_mask.c_flags & MASKINTERNALS && H.internal))))))
 						src.reagents.remove_any(puffrate)
 					else
+						open_flame_reaction(M.reagents)
 						if(H.bodytemperature < H.base_body_temp)
 							H.bodytemperature += 1
 						if (prob(1))
@@ -945,10 +946,10 @@
 
 	dropped(mob/user)
 		..()
-		if (isturf(src.loc) && src.on > 0)
+		/*if (isturf(src.loc) && src.on > 0)
 			user.visible_message("<span class='alert'><b>[user]</b> calmly drops and treads on the lit [src.name], putting it out instantly.</span>")
 			src.put_out(user)
-			return
+			return*/
 		SPAWN_DBG(0)
 			if (src.loc != user)
 				light.attach(src)
@@ -1094,6 +1095,7 @@
 				if (fella.wear_mask && istype(fella.wear_mask, /obj/item/clothing/mask/cigarette))
 					var/obj/item/clothing/mask/cigarette/smoke = fella.wear_mask // aaaaaaa
 					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with [src].</span>")
+					open_flame_reaction(fella.reagents)
 					fella.set_clothing_icon_dirty()
 					return
 				else if (fella.bleeding || (fella.butt_op_stage == 4 && user.zone_sel.selecting == "chest"))
@@ -1144,8 +1146,8 @@
 
 	New()
 		..()
-		src.create_reagents(100)
-		reagents.add_reagent("fuel", 100)
+		src.create_reagents(10)
+		reagents.add_reagent("fuel", 10)
 
 		src.setItemSpecial(/datum/item_special/flame)
 		return
@@ -1264,7 +1266,7 @@
 					src.deactivate(null)
 				return
 			if (!infinite_fuel && reagents.get_reagent_amount("fuel"))
-				reagents.remove_reagent("fuel", 1)
+				reagents.remove_reagent("fuel", 0.2)
 			var/turf/location = src.loc
 			if (ismob(location))
 				var/mob/M = location
@@ -1288,7 +1290,7 @@
 
 	firesource_interact()
 		if (!infinite_fuel && reagents.get_reagent_amount("fuel"))
-			reagents.remove_reagent("fuel", 1)
+			reagents.remove_reagent("fuel", 0.4)
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)

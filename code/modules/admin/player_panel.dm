@@ -8,7 +8,7 @@
 	return
 
 /datum/admins/proc/playeropt_link(mob/M, action)
-	return "?src=\ref[src];action=[action];targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts"
+	return "byond://?src=\ref[src];action=[action];targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts"
 /datum/admins/proc/playeropt(mob/M)
 	if (!ismob(M))
 		alert("Mob not found - can't auto-refresh the panel. (May have been banned / deleted)")

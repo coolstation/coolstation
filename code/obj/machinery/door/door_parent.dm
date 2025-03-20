@@ -142,6 +142,12 @@
 
 	return !density
 
+/obj/machinery/door/gas_cross(turf/target)
+	if (density && next_timeofday_opened)
+		return (world.timeofday >= next_timeofday_opened) //Hey this is a really janky fix. Makes it so the door 'opens' on realtime even if the animations and sounds are laggin
+
+	return !density
+
 /obj/machinery/door/proc/update_nearby_tiles(need_rebuild)
 	var/turf/source = loc
 	if (istype(source))
@@ -600,6 +606,25 @@
 			src.open()
 
 		else if(src.operating)
+			src.operating = 0
+
+/obj/machinery/door/proc/force_close()
+	src.operating = 1
+	close_trys = 0
+	SPAWN_DBG(-1)
+		src.update_icon(1)
+		src.set_density(1)
+		src.update_nearby_tiles()
+
+		if(src.visible)
+			if (ignore_light_or_cam_opacity)
+				src.opacity = 1
+			else
+				src.RL_SetOpacity(1)
+
+		src.closed()
+
+		if(src.operating)
 			src.operating = 0
 
 /obj/machinery/door/proc/opened()

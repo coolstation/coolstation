@@ -1513,9 +1513,7 @@
 	set category = "Commands"
 	set name = "Toggle Ceiling Visibility"
 
-/mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (air_group || (height==0)) return 1
-
+/mob/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/projectile))
 		return !projCanHit(mover:proj_data)
 

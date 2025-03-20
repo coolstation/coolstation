@@ -48,7 +48,7 @@ var/mutable_appearance/fluid_ma
 	mouse_opacity = 1
 	layer = FLUID_LAYER
 
-	event_handler_flags = USE_HASENTERED | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_HASENTERED
 
 	var/finalcolor = "#ffffff"
 	color = "#ffffff"

@@ -549,9 +549,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "awG" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -1119,9 +1117,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "aPF" = (
 /obj/disposalpipe/segment/morgue,
@@ -7087,7 +7083,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "frQ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -9212,6 +9208,13 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/black,
 /area/station/chapel/sanctuary)
+"gTD" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 1
+	},
+/turf/floor,
+/area/station/quartermaster/cargooffice)
 "gTY" = (
 /obj/burning_barrel,
 /turf/space/gehenna/desert,
@@ -10029,9 +10032,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "hBb" = (
 /obj/machinery/light/fluorescent/warm{
@@ -10077,7 +10078,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "hCa" = (
 /obj/cable{
@@ -10577,17 +10578,13 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "hWQ" = (
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "hWW" = (
 /obj/decal/tile_edge/stripe{
@@ -15301,9 +15298,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "lDy" = (
 /obj/cable{
@@ -17801,7 +17796,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "nNG" = (
 /obj/item/storage/wall/fire{
@@ -17857,7 +17852,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "nQd" = (
 /obj/table/auto{
@@ -19579,7 +19574,7 @@
 /obj/machinery/button/elevator/dum{
 	pixel_x = 24
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/dum_top)
 "peU" = (
 /obj/disposalpipe/segment/brig{
@@ -21923,9 +21918,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "qRl" = (
 /obj/disposalpipe/segment/morgue{
@@ -24352,9 +24345,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "sMl" = (
 /obj/cable/blue{
@@ -26197,7 +26188,7 @@
 /area/station/medical/medbay/lobby)
 "ugx" = (
 /obj/grille/catwalk/cross/grey,
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/qmdum_top)
 "ugO" = (
 /obj/disposalpipe/segment/horizontal,
@@ -27455,7 +27446,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "uWM" = (
 /obj/wingrille_spawn/reinforced,
@@ -27572,7 +27563,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "vbY" = (
 /obj/forcefield/energyshield/perma,
@@ -29796,7 +29787,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "wBe" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -29946,9 +29937,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "wIu" = (
 /obj/disposalpipe/segment/brig,
@@ -91203,7 +91192,7 @@ frb
 eAw
 hyl
 foq
-fsA
+gTD
 vDg
 lQW
 lSE

@@ -138,6 +138,16 @@
 	msgLose = "Your udders fall off!"
 	icon_state  = "cow"
 
+/datum/bioEffect/mutantrace/birb
+	name = "Avian Genetics"
+	desc = "The subject birds up."
+	id = "birb"
+	mutantrace_option = "Birb"
+	mutantrace_path = /datum/mutantrace/birb
+	msgGain = "You feel the need to collect sticks and yell swears at tourists."
+	msgLose = "Your beautiful feathers start to fall out!"
+	icon_state = "bird"
+
 /datum/bioEffect/mutantrace/fert
 	name = "Musteline Genetics"
 	desc = "The subject gets \'slinky and stinky\', whatever that means."
@@ -147,6 +157,8 @@
 	msgGain = "You feel REALLY EXCITED and want to jump around a bit."
 	msgLose = "You calm down a lot, but for some reason you still stink???"
 	icon_state  = "fert"
+
+
 
 /datum/bioEffect/mutantrace/chicken
 	name = "Experimental Strain Epsilon Gamma Gamma #5"

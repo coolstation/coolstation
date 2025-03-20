@@ -29,21 +29,11 @@ Important variables:
 		This stores all data for.
 		If you modify, make sure to update the archived_cycle to prevent race conditions and maintain symmetry
 
-	atom/CanPass(atom/movable/mover, turf/target, height, air_group)
-		returns 1 for allow pass and 0 for deny pass
+	atom/gas_cross(turf/target)
+		returns 1 for allow gas crossing and 0 for deny gas crossing
 		Turfs automatically call this for all objects/mobs in its turf.
-		This is called both as source.CanPass(target, height, air_group)
-			and  target.CanPass(source, height, air_group)
-
-		Cases for the parameters
-		1. This is called with args (mover, location, height>0, air_group=0) for normal objects.
-		2. This is called with args (null, location, height=0, air_group=0) for flowing air.
-		3. This is called with args (null, location, height=?, air_group=1) for determining group boundaries.
-
-		Cases 2 and 3 would be different for doors or other objects open and close fairly often.
-			(Case 3 would return 0 always while Case 2 would return 0 only when the door is open)
-			This prevents the necessity of re-evaluating group geometry every time a door opens/closes.
-
+		This is called both as source.gas_cross(target)
+			and  target.gas_cross(source)
 
 Important Procedures
 	air_master.process()
@@ -52,32 +42,31 @@ Important Procedures
 
 */
 
-/atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	return (!density || !height || air_group)
+/atom/proc/CanPass(atom/movable/mover)
+	return (!density)
 
+/atom/proc/gas_cross(turf/target)
+	return !src.gas_impermeable
 
-/turf/CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
+/turf/CanPass(atom/movable/mover, turf/target)
+	. = ..()
 	if(!target) return 0
 
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
-
+/turf/gas_cross(turf/target)
+	if(target?.gas_impermeable || src.gas_impermeable)
+		return 0
 	else // Now, doing more detailed checks for air movement and air group formation
-		if(target.blocks_air||blocks_air)
-			return 0
-
 		if (src.turf_persistent.checkingcanpass > 0)
-			for(var/obj/obstacle as anything in src)
-				if((obstacle.event_handler_flags & USE_CANPASS) && !obstacle.CanPass(mover, target, height, air_group))
+			for(var/atom/A as anything in src)
+				if(!A.gas_cross(target))
 					return 0
 
 		if (target?.turf_persistent.checkingcanpass > 0)
-			for(var/obj/obstacle as anything in target)
-				if((obstacle.event_handler_flags & USE_CANPASS) && !obstacle.CanPass(mover, src, height, air_group))
+			for(var/atom/A as anything in target)
+				if(!A.gas_cross(src))
 					return 0
 
 		return 1
-
 
 var/global/datum/controller/air_system/air_master
 var/global/total_gas_mixtures = 0
@@ -165,7 +154,7 @@ datum/controller/air_system
 		//floors should be safe? we'd like to skip space and walls shouldn't form airgroups anyway (though they probably do IDK)
 		for(var/turf/floor/S in world)
 			if(issimulatedturf(S))
-				if(!S.parent)
+				if(!S.gas_impermeable && !S.parent)
 					assemble_group_turf(S)
 				//this is inside the issimulatedturf thing cause otherwise a third of Z2 adds itself to the active singletons list (laggy as shit)
 				S.update_air_properties()
@@ -186,7 +175,7 @@ datum/controller/air_system
 				test.length_space_border = 0
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
-					if(T && !(T in members) && test.CanPass(null, T, null,1))
+					if(T && !(T in members) && test.gas_cross(T) && T.gas_cross(test))
 						if(issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
@@ -194,7 +183,7 @@ datum/controller/air_system
 							else
 								LAZYLISTINIT(possible_borders)
 								possible_borders |= test
-						else if(istype(T, /turf/space) && !istype(T, /turf/space/fluid))
+						else if(istype_exact(T, /turf/space))
 							LAZYLISTINIT(possible_space_borders)
 							possible_space_borders |= test
 							test.length_space_border++

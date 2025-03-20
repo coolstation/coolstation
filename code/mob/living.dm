@@ -628,11 +628,14 @@
 	if (istype(target, /obj/decal/point))
 		return
 
-	var/obj/item/gun/G = src.equipped()
-	if(!istype(G) || !ismob(target))
-		src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
 	else
-		src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
+		var/obj/item/gun/G = src.equipped()
+		if(!istype(G) || !ismob(target))
+			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+		else
+			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
 
 	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
 
@@ -815,7 +818,10 @@
 								secure_headset_mode = lowertext(copytext(message,3,end)) //why did i do this to the players
 							message = copytext(message, end)
 
-						else
+						else // Chances are they're using a regular radio prefix instead of a 2 letter one
+							if (!lowertext(copytext(message,2,3) == " ")) // (This makes the :3 prefixes obsolete but fuck em they mess players up)
+								message_mode = "monitor"
+								secure_headset_mode = lowertext(copytext(message,2,3))
 							message = copytext(message, 3)
 
 				else

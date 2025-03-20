@@ -159,7 +159,7 @@
 
 ABSTRACT_TYPE(/datum/job/command)
 /datum/job/command
-	linkcolor = "#00CC00"
+	linkcolor = "#128352"
 	slot_card = /obj/item/card/id/command
 	map_can_autooverride = 0
 	//do_not_save_gun = 1
@@ -489,7 +489,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 ABSTRACT_TYPE(/datum/job/security)
 /datum/job/security
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	slot_card = /obj/item/card/id/security
 	recieves_miranda = 1
 	//do_not_save_gun = 1
@@ -613,7 +613,7 @@ ABSTRACT_TYPE(/datum/job/security)
 
 ABSTRACT_TYPE(/datum/job/research)
 /datum/job/research
-	linkcolor = "#9900FF"
+	linkcolor = "#A645D1"
 	slot_card = /obj/item/card/id/research
 
 /datum/job/research/scientist
@@ -669,7 +669,7 @@ ABSTRACT_TYPE(/datum/job/research)
 
 ABSTRACT_TYPE(/datum/job/medical)
 /datum/job/medical
-	linkcolor = "#9900FF" //still the nerd department (medsci)
+	linkcolor = "#3577AD" //still the nerd department (medsci)
 	slot_card = /obj/item/card/id/research
 
 /datum/job/medical/medical_doctor
@@ -822,6 +822,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	name = "Geneticist"
 	limit = 2
 	department = "research"
+	linkcolor = "#A645D1"
 	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/genetics)
 	slot_jump = list(/obj/item/clothing/under/rank/geneticist)
@@ -871,7 +872,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 ABSTRACT_TYPE(/datum/job/engineering)
 /datum/job/engineering
-	linkcolor = "#D6B327"
+	linkcolor = "#ac5f06"
 	slot_card = /obj/item/card/id/engineering
 
 /datum/job/engineering/engineer
@@ -984,7 +985,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics
-	linkcolor = "#FF9900"
+	linkcolor = "#7B750F"
 	slot_card = /obj/item/card/id/logistics
 
 //QM got promoted, look under /job/command/quartermaster
@@ -1085,7 +1086,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 
 ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/civilian
-	linkcolor = "#0099FF"
+	linkcolor = "#0873d2"
 	slot_card = /obj/item/card/id/civilian
 
 /datum/job/civilian/chef
@@ -1254,7 +1255,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/civilian/AI
 	name = "AI"
-	linkcolor = "#999999"
+	linkcolor = "#7B7070"
 	limit = 1
 	//no_late_join = 1
 	high_priority_job = 1
@@ -1274,7 +1275,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/civilian/cyborg
 	name = "Cyborg"
-	linkcolor = "#999999"
+	linkcolor = "#7B7070"
 	limit = 8
 	//no_late_join = 1
 	allow_traitors = 0
@@ -1292,6 +1293,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		return M.Robotize_MK2()
 
 // Special Cases
+
+/datum/job/special
+	linkcolor = "#46afb9" //For the job screen
 
 /datum/job/special/station_builder
 	// Used for Construction game mode, where you build the station
@@ -1329,7 +1333,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/head_surgeon
 	name = "Head Surgeon"
-	linkcolor = "#00CC00"
+	linkcolor = "#3577AD"
 	limit = 0
 	wages = PAY_IMPORTANT
 	cant_spawn_as_rev = 1
@@ -1355,7 +1359,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/lawyer
 	name = "Lawyer"
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	wages = PAY_DOCTORATE
 	limit = 0
 	slot_jump = list(/obj/item/clothing/under/misc/lawyer)
@@ -1371,7 +1375,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/vice_officer
 	name = "Vice Officer"
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	limit = 0
 	wages = PAY_TRADESMAN
 	allow_traitors = 0
@@ -1394,7 +1398,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/forensic_technician
 	name = "Forensic Technician"
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	limit = 0
 	wages = PAY_TRADESMAN
 	cant_spawn_as_rev = 1
@@ -1413,7 +1417,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/toxins_researcher
 	name = "Toxins Researcher"
-	linkcolor = "#9900FF"
+	linkcolor = "#A645D1"
 	limit = 0
 	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/toxins)
@@ -1430,7 +1434,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/research_assistant
 	name = "Research Assistant"
-	linkcolor = "#9900FF"
+	linkcolor = "#A645D1"
 	limit = 0
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
@@ -1444,7 +1448,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/medical_assistant
 	name = "Medical Assistant"
-	linkcolor = "#9900FF"
+	linkcolor = "#A645D1"
 	limit = 0
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
@@ -1458,7 +1462,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/special/tech_assistant
 	name = "Technical Assistant"
-	linkcolor = "#FF9900"
+	linkcolor = "#ac5f06"
 	limit = 0
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
@@ -1595,7 +1599,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/special/random/vip
 	name = "VIP"
 	wages = PAY_EXECUTIVE
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	slot_jump = list(/obj/item/clothing/under/suit)
 	slot_head = list(/obj/item/clothing/head/that)
 	slot_eyes = list(/obj/item/clothing/glasses/monocle)
@@ -1864,10 +1868,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/special/random/radioshowhost
 	name = "Radio Show Host"
 	wages = PAY_TRADESMAN
-#ifdef MAP_OVERRIDE_MANTA
-	limit = 0
-	special_spawn_location = 0
-#elif defined(MAP_OVERRIDE_OSHAN)
+#ifdef MAP_OVERRIDE_OSHAN
 	limit = 1
 	special_spawn_location = 0
 #else
@@ -2590,7 +2591,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	name = "Head of Mining"
 	limit = 0
 	wages = PAY_IMPORTANT
-	linkcolor = "#00CC00"
+	linkcolor = "#7B750F"
 	cant_spawn_as_rev = 1
 	slot_card = /obj/item/card/id/command
 	slot_belt = list(/obj/item/device/pda2/mining)
@@ -2628,7 +2629,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 
 /datum/job/special/meatcube
 	name = "Meatcube"
-	linkcolor = "#FF0000"
+	linkcolor = "#990000"
 	limit = 0
 	allow_traitors = 0
 	slot_ears = list()
@@ -2698,6 +2699,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		droneize(M, 0)
 
 /datum/job/daily //Special daily jobs
+	linkcolor = "#3bc48b"
 
 /datum/job/daily/sunday
 	name = "Boxer"
@@ -2773,7 +2775,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 
 /datum/job/daily/thursday
 	name = "Lawyer"
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	wages = PAY_DOCTORATE
 	limit = 4
 	slot_jump = list(/obj/item/clothing/under/misc/lawyer)
@@ -2812,7 +2814,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 
 /datum/job/daily/saturday
 	name = "Part-time Vice Officer"
-	linkcolor = "#FF0000"
+	linkcolor = "#af4242"
 	limit = 2
 	wages = PAY_TRADESMAN
 	allow_traitors = 0

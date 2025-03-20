@@ -194,7 +194,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	post_signal("supply")
 	var/HTML
 
-	var/header_thing_chui_toggle = (user.client && !user.client.use_chui) ? {"
+	var/header_thing_chui_toggle = true ? {"
 		<style type='text/css'>
 			body {
 				font-family: Verdana, sans-serif;
@@ -421,7 +421,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	// which as [src] turns into ... location = '.chui onclose Quartermaster's Console'
 	// which as you can probably guess is a syntax error. i have no idea why this only started
 	// happening halfway into this but: chui!!!!!!!!!!!!!!!!!!
-	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;")
+	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;", FALSE, TRUE)
 	onclose(user, "qmComputer_\ref[src]")
 	return
 
@@ -429,7 +429,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 // part of it is that there's no real good way to genericize this yet,
 // and part of it is that chui already sort of kind of eh maybe does it
 /obj/machinery/computer/supplycomp/proc/topicLink(action, subaction, var/list/extra)
-	return "?src=\ref[src]&action=[action][subaction ? "&subaction=[subaction]" : ""]&[extra && islist(extra) ? list2params(extra) : ""]"
+	return "byond://?src=\ref[src]&action=[action][subaction ? "&subaction=[subaction]" : ""]&[extra && islist(extra) ? list2params(extra) : ""]"
 
 
 /obj/machinery/computer/supplycomp/proc/set_cdc()

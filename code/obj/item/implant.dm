@@ -801,7 +801,6 @@ THROWING DARTS
 	icon_state = "bullet"
 	desc = "A spent bullet."
 	var/bleed_timer = 0
-	var/forensic_ID = null // match a bullet to a gun holy heckkkkk
 
 	bullet_pistol_heavy
 		name = "Juicer Jr. round"
@@ -1742,3 +1741,15 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 			take_bleeding_damage(M, null, 10, DAMAGE_CUT)
 			src.set_loc(M)
 			src.implanted = 1
+
+/obj/item/implant/projectile/coil
+	name = "coil"
+	desc = "Or possibly a spring."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "small_coil"
+
+	on_remove(mob/M)
+		..()
+		new /obj/item/coil/small/(get_turf(M)) //the cycle of violence carries on
+		SPAWN_DBG(0)
+			qdel(src)

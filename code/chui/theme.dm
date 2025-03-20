@@ -47,6 +47,9 @@ chui/theme
 			for( var/key in params["css"] )
 				generated += "<link rel='stylesheet' type='text/css' href='[resource(key)]'>"
 
+		if( params["headerhtml"])
+			generated += params["headerhtml"]
+
 		if( params["title"] )
 			generated += "<title>[html_encode(params["title"])]</title>"
 
@@ -109,8 +112,9 @@ chui/theme/base
 					<div class='borderSlants'></div>
 					<div class='corner bl'></div>
 					<div class='corner br'></div>
-					<div id='content' class='nano'>
-						<div class='nano-content innerContent'>
+					<div id='content' class='nano not-nano'>
+					<div class=nano-content></div>
+						<div class='not-nano-content innerContent'>
 							[body]
 						</div>
 					</div>
@@ -170,8 +174,9 @@ chui/theme/flock
 			"}
 		rendered += {"
 				<div id='cornerWrap'>
-					<div id='content' class='nano'>
-						<div class='nano-content innerContent'>
+					<div id='content' class='nano not-nano'>
+						<div class=nano-content></div>
+						<div class='not-nano-content innerContent'>
 							[body]
 						</div>
 					</div>

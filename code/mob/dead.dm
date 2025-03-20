@@ -1,6 +1,6 @@
 /mob/dead
 	stat = 2
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_CANPASS
 
 // dead
 
@@ -12,7 +12,7 @@
 /mob/dead/ex_act(severity)
 	return
 
-/mob/dead/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/mob/dead/CanPass(atom/movable/mover, turf/target)
 	return 1
 
 /mob/dead/say_understands()
@@ -32,6 +32,11 @@
 			var/obj/ladder/L = target
 			L.climb(src)
 			return
+		if (isturf(target) && !ON_COOLDOWN(src, "GHOST_PITFALL_SEARCHING", 2 SECONDS))
+			var/datum/component/pitfall/pit = target.GetComponent(/datum/component/pitfall)
+			if(pit)
+				src.set_loc(pit.get_turf_to_fall(src))
+
 		src.examine_verb(target)
 
 /mob/dead/process_move(keys)

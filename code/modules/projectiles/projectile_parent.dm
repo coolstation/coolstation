@@ -20,8 +20,9 @@
 	var/max_range = PROJ_INFINITE_RANGE //max range
 	var/initial_power = 20 // local copy of power for determining power when hitting things
 	var/implanted = null
-	var/forensic_ID = null
-	var/atom/shooter = null // Who/what fired this?
+	/// The mob/thing that fired this projectile
+	var/atom/shooter = null
+	/// Mob-typed copy of `shooter` var to save time on casts later
 	var/mob/mob_shooter = null
 	// We use shooter to avoid self collision, however, the shot may have been initiated through a proxy object. This is for logging.
 	var/travelled = 0 // track distance
@@ -181,7 +182,7 @@
 			if(sigreturn & PROJ_ATOM_PASSTHROUGH || (pierces_left != 0 && first && !(sigreturn & PROJ_ATOM_CANNOT_PASS))) //try to hit other targets on the tile
 				for (var/mob/X in T.contents)
 					if(!(X in src.hitlist))
-						if (!X.CanPass(src, get_step(src, X.dir), 1, 0))
+						if (!X.CanPass(src, get_step(src, X.dir)))
 							src.collide(X, first = 0)
 					if(QDELETED(src))
 						return
@@ -203,7 +204,7 @@
 			if(first && (sigreturn & PROJ_OBJ_HIT_OTHER_OBJS))
 				for (var/obj/X in T.contents)
 					if(!(X in src.hitlist))
-						if (!X.CanPass(src, get_step(src, X.dir), 1, 0))
+						if (!X.CanPass(src, get_step(src, X.dir)))
 							src.collide(X, first = 0)
 					if(QDELETED(src))
 						return
@@ -321,7 +322,7 @@
 	Crossed(var/atom/movable/A)
 		if (!istype(A))
 			return // can't happen will happen
-		if (!A.CanPass(src, get_step(src, A.dir), 1, 0))
+		if (!A.CanPass(src, get_step(src, A.dir)))
 			src.collide(A)
 
 		if (collide_with_other_projectiles && A.type == src.type)
@@ -334,7 +335,7 @@
 		for(var/thing as mob|obj|turf|area in T)
 			var/atom/A = thing
 			if (A == src) continue
-			if (!A.CanPass(src, get_step(src, A.dir), 1, 0))
+			if (!A.CanPass(src, get_step(src, A.dir)))
 				src.collide(A)
 
 			if (collide_with_other_projectiles && A.type == src.type)
