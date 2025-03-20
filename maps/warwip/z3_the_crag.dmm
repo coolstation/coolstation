@@ -724,14 +724,6 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
-"dG" = (
-/obj/disposalpipe/trunk/zlevel{
-	dir = 1;
-	target_z = 1
-	},
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
-/area/station/crew_quarters/fitness)
 "dI" = (
 /obj/wingrille_spawn,
 /obj/cable{
@@ -2016,12 +2008,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
-"jj" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "jk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -6786,14 +6772,6 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Ec" = (
@@ -7284,18 +7262,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/grille/catwalk/jen,
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -8775,6 +8741,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "MO" = (
@@ -11037,13 +11004,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
-"WO" = (
-/obj/grille/catwalk/jen,
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
-/area/station/maintenance/inner/north{
-	name = "North Tunnel"
-	})
 "WP" = (
 /turf/wall/auto/rivet,
 /area/station/maintenance/disposal/sewage)
@@ -49032,7 +48992,7 @@ bW
 jn
 Gt
 lv
-dG
+nf
 Ep
 ux
 HB
@@ -49334,7 +49294,7 @@ bW
 kZ
 Gt
 lv
-dG
+nf
 Ep
 ux
 HB
@@ -61684,7 +61644,7 @@ HB
 dZ
 ZH
 se
-WO
+xD
 rE
 xD
 xD
@@ -61986,7 +61946,7 @@ HB
 dZ
 ZH
 se
-WO
+xD
 Jg
 xD
 xD
@@ -66234,7 +66194,7 @@ Vd
 ul
 uq
 MM
-jj
+NQ
 DZ
 uq
 lK
