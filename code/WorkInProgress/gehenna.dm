@@ -220,7 +220,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	proc/create_rocks()
 		rocks = list()
 		for(var/i in 1 to 18)
-			rocks += image('icons/turf/gehenna_overlays.dmi',"rock[i]")
+			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_LAYER)
+			rock.plane = PLANE_NOSHADOW_BELOW
+			rocks += rock
 
 	make_light()
 		if (!light)
