@@ -255,7 +255,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
+		icon_state = "gehenna_edge"
+#else
 		icon_state = "gehenna"
+#endif
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0
@@ -276,7 +280,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
+		icon_state = "gehenna_corner"
+#else
 		icon_state = "gehenna"
+#endif
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0
@@ -297,7 +305,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
+		icon_state = "gehenna_beat"
+#else
 		icon_state = "gehenna"
+#endif
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0
