@@ -164,6 +164,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	oxygen = GEHENNA_O2
 	nitrogen = GEHENNA_N2
 	temperature = GEHENNA_TEMP
+	turf_flags = MINE_MAP_PRESENTS_EMPTY
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
