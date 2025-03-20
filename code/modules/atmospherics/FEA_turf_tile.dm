@@ -299,7 +299,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				if(!istype(T) || (T.parent!=parent))
 
 					//See what kind of border it is
-					if(istype(T,/turf/space) && !istype(T,/turf/space/fluid) && src.gas_cross(T) && T.gas_cross(src))
+					if(istype_exact(T,/turf/space) && src.gas_cross(T) && T.gas_cross(src))
 						if(parent.space_borders)
 							parent.space_borders |= src
 						else
