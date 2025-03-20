@@ -40,6 +40,7 @@ chui.setLabel = function(id, label) {
 	$('a').contents().filter(function() { return this.nodeType === 3; })[0].textContent = label;
 };
 
+/// absolutely hate this, it works but returns a CORS error - will fix someday
 chui.bycall = function(method, data) {
 	data = data || {};
 	data._cact = method;
@@ -234,7 +235,8 @@ chui.initialize = function() {
 	});
 	$('.close').attr('href', '#');
 
-	chui.bycall('register');
+	//chui.bycall('register');
+	chui.winset('_cact','register')
 
 	if (chui.flags & CHUI_FLAG_FADEIN) {
 		chui.fadeIn();
