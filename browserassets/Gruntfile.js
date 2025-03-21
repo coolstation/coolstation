@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 
   var rev = grunt.file.read('revision') || '1';
   rev = rev.replace(/(\r\n|\n|\r)/gm, '');
-  var cdn = 'http://cdn.coolstation.space';
+  var cdn = 'https://cdn.coolstation.space';
 
   // Define the configuration for all the tasks
   grunt.initConfig({

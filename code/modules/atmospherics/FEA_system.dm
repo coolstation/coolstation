@@ -183,7 +183,7 @@ datum/controller/air_system
 							else
 								LAZYLISTINIT(possible_borders)
 								possible_borders |= test
-						else if(istype(T, /turf/space) && !istype(T, /turf/space/fluid))
+						else if(istype_exact(T, /turf/space))
 							LAZYLISTINIT(possible_space_borders)
 							possible_space_borders |= test
 							test.length_space_border++
