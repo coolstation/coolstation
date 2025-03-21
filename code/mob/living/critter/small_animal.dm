@@ -1382,6 +1382,11 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_burn = 5
 	flags = TABLEPASS | DOORPASS
 	fits_under_table = 1
+	var/static/image/blacklight_image = image('icons/mob/critter.dmi',"scorpion")
+
+	New()
+		..()
+		src.AddComponent(/datum/component/blacklight_visible, src.blacklight_image)
 
 	setup_hands()
 		..()

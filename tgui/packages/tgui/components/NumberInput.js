@@ -48,6 +48,7 @@ export class NumberInput extends Component {
         return;
       }
       this.ref = e.target;
+      document.body.style['pointer-events'] = 'none';
       this.setState({
         dragging: false,
         origin: e.screenY,
@@ -66,7 +67,6 @@ export class NumberInput extends Component {
           onDrag(e, value);
         }
       }, this.props.updateRate || DEFAULT_UPDATE_RATE);
-      document.setPointerCapture(e.pointerId);
       document.addEventListener('mousemove', this.handleDragMove);
       document.addEventListener('mouseup', this.handleDragEnd);
     };
@@ -105,6 +105,7 @@ export class NumberInput extends Component {
     this.handleDragEnd = e => {
       const { onChange, onDrag } = this.props;
       const { dragging, value, internalValue } = this.state;
+      document.body.style['pointer-events'] = 'auto';
       clearTimeout(this.timer);
       clearInterval(this.dragInterval);
       this.setState({
@@ -112,7 +113,6 @@ export class NumberInput extends Component {
         editing: !dragging,
         origin: null,
       });
-      document.releasePointerCapture(e.pointerId);
       document.removeEventListener('mousemove', this.handleDragMove);
       document.removeEventListener('mouseup', this.handleDragEnd);
       if (dragging) {
