@@ -631,14 +631,6 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
-"cE" = (
-/obj/disposalpipe/trunk/zlevel{
-	dir = 1;
-	target_z = 1
-	},
-/obj/stool,
-/turf/floor/grime,
-/area/station/maintenance/inner/south)
 "cF" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -1652,10 +1644,9 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "hl" = (
-/obj/table/auto,
-/obj/item/game_kit,
 /obj/machinery/light/small/yellow,
 /obj/decal/cleanable/dirt/random,
+/obj/stool,
 /turf/floor/grime,
 /area/station/maintenance/inner/south)
 "hm" = (
@@ -2073,10 +2064,6 @@
 /obj/decal/poster/wallsign/biohazard,
 /turf/wall,
 /area/station/medical/cdc)
-"ja" = (
-/obj/stool,
-/turf/floor/grime,
-/area/station/maintenance/inner/south)
 "jc" = (
 /obj/machinery/manufacturer/mining,
 /turf/floor/cautionblack/side{
@@ -3935,6 +3922,7 @@
 /obj/storage/secure/closet/fridge,
 /obj/item/reagent_containers/food/snacks/sandwich/banhmi,
 /obj/item/reagent_containers/food/drinks/milk/soy,
+/obj/random_item_spawner/snacks/five,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -5941,9 +5929,6 @@
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon13,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
@@ -7289,11 +7274,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
-"Fi" = (
-/obj/disposalpipe/segment/sewage,
-/obj/stool,
-/turf/floor/grime,
-/area/station/maintenance/inner/south)
 "Fj" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment,
@@ -8940,6 +8920,11 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Mu" = (
+/obj/table/auto,
+/obj/item/game_kit,
+/turf/floor/grime,
+/area/station/maintenance/inner/south)
 "Mv" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -9242,6 +9227,9 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
+"NN" = (
+/turf/floor/grime,
+/area/station/crew_quarters/arcade)
 "NO" = (
 /obj/disposalpipe/segment/sewage,
 /obj/decal/tile_edge/stripe{
@@ -9350,7 +9338,9 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
-/obj/grille/catwalk/jen,
+/obj/grille/catwalk/jen{
+	pixel_y = -1
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Oq" = (
@@ -10450,8 +10440,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/classic,
-/turf/floor/carpet/arcade/filthy,
+/turf/floor/grime,
 /area/station/crew_quarters/arcade)
 "SQ" = (
 /obj/table/regal/auto,
@@ -10583,9 +10572,8 @@
 	},
 /area/station/engine/hotloop)
 "Tm" = (
-/obj/table/auto,
-/obj/item/game_kit,
 /obj/decal/cleanable/dirt/random,
+/obj/stool,
 /turf/floor/grime,
 /area/station/maintenance/inner/south)
 "Tq" = (
@@ -10668,10 +10656,6 @@
 /obj/machinery/cashreg,
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
-"TK" = (
-/obj/disposalpipe/segment/sewage,
-/turf/floor/grime,
-/area/station/maintenance/inner/south)
 "TL" = (
 /obj/item/device/radio/intercom/security{
 	dir = 1
@@ -56027,9 +56011,9 @@ ha
 rx
 wk
 hk
-Fi
-TK
-cE
+hk
+hk
+XM
 Hw
 Le
 td
@@ -56330,7 +56314,7 @@ Db
 Xe
 Op
 Tm
-vs
+Mu
 hl
 Hw
 nB
@@ -56631,10 +56615,10 @@ uq
 QS
 lN
 NQ
-ja
 vs
-ja
-Hw
+vs
+vs
+NN
 SP
 NI
 cu

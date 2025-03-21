@@ -655,6 +655,11 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "arcade_carpet_filthy"
 	permadirty = 1
+	var/static/image/blacklight_image = image('icons/turf/floors.dmi',"arcade_carpet_glow")
+
+	New()
+		..()
+		src.AddComponent(/datum/component/blacklight_visible, src.blacklight_image)
 
 DEFINE_FLOORS(carpet/regalcarpet,
 	name = "regal carpet";\
