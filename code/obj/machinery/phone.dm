@@ -110,8 +110,8 @@
 					boutput(user,"<span class='alert'>As you pick up the phone you notice that the cord has been cut!</span>")
 		else
 			src.ringing = 0
-			src.linked.ringing = 0
-			if(src.linked.handset.holder)
+			src.linked?.ringing = 0
+			if(src.linked?.handset?.holder)
 				src.linked.handset.holder.playsound_local(src.linked.handset.holder,"sound/machines/phones/remote_answer.ogg",50,0)
 		return
 
@@ -287,7 +287,7 @@
 	GetBody()
 		var/html = ""
 		for_by_tcl(P, /obj/machinery/phone)
-			if (P.unlisted) continue
+			if (P.unlisted || P == owner) continue
 			html += "[theme.generateButton(P.phone_id, "[P.phone_id]")] <br/>"
 		return html
 
