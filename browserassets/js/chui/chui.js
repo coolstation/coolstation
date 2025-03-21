@@ -40,13 +40,11 @@ chui.setLabel = function(id, label) {
 	$('a').contents().filter(function() { return this.nodeType === 3; })[0].textContent = label;
 };
 
-/// absolutely hate this, it works but returns a CORS error - will fix someday
 chui.bycall = function(method, data) {
 	data = data || {};
 	data._cact = method;
 	const Http = new XMLHttpRequest();
-	Http.open('GET', 'byond://?src=' + chui.window + '&' + $.param(data));
-	Http.send();
+	document.location = 'byond://?src=' + chui.window + '&' + $.param(data);
 };
 
 chui.close = function() {
@@ -235,8 +233,7 @@ chui.initialize = function() {
 	});
 	$('.close').attr('href', '#');
 
-	//chui.bycall('register');
-	chui.winset('_cact','register')
+	chui.bycall('register');
 
 	if (chui.flags & CHUI_FLAG_FADEIN) {
 		chui.fadeIn();
