@@ -176,6 +176,14 @@
 	},
 /turf/floor/plating,
 /area/station/engine/gas)
+"aZ" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/grey/blackgrime/other,
+/area/station/security/interrogation)
 "ba" = (
 /obj/ladder/auto,
 /turf/floor/yellow,
@@ -1033,10 +1041,10 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "eu" = (
-/obj/stool/chair/syndicate{
+/obj/decal/cleanable/dirt/jen,
+/obj/stool/chair{
 	dir = 1
 	},
-/obj/decal/cleanable/dirt/jen,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "ew" = (
@@ -3865,6 +3873,11 @@
 "qB" = (
 /obj/access_spawn/security,
 /obj/machinery/door/airlock/security,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "qD" = (
@@ -5176,10 +5189,6 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/security/hos)
-"wx" = (
-/obj/wingrille_spawn/crystal,
-/turf/floor/plating,
-/area/station/maintenance/inner/south)
 "wy" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -5639,6 +5648,9 @@
 "yv" = (
 /obj/machinery/light/small/neutral{
 	dir = 1
+	},
+/obj/cable{
+	icon_state = "2-8"
 	},
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
@@ -6995,8 +7007,8 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
 "Eg" = (
-/obj/stool/chair/syndicate,
 /obj/decal/cleanable/dirt/jen,
+/obj/stool/chair,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "Eh" = (
@@ -8928,6 +8940,12 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Mv" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/grey/blackgrime/other,
+/area/station/security/interrogation)
 "Mw" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -53869,7 +53887,7 @@ dq
 QL
 iD
 vV
-Lv
+aZ
 Lv
 BU
 NL
@@ -54172,7 +54190,7 @@ RN
 nZ
 vV
 yv
-Lv
+Mv
 Lv
 NL
 ux
@@ -59060,7 +59078,7 @@ aW
 HL
 NQ
 mW
-wx
+hz
 ly
 AI
 Bh
@@ -59362,7 +59380,7 @@ JA
 HL
 NQ
 mW
-wx
+hz
 ot
 dz
 Yj
@@ -59664,7 +59682,7 @@ Fm
 HL
 NQ
 mW
-wx
+hz
 hC
 AI
 VE
