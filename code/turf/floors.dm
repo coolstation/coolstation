@@ -651,6 +651,11 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "office_carpet2"
 
+/turf/floor/carpet/arcade/filthy
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "arcade_carpet_filthy"
+	permadirty = 1
+
 DEFINE_FLOORS(carpet/regalcarpet,
 	name = "regal carpet";\
 	icon = 'icons/turf/floors.dmi';\
