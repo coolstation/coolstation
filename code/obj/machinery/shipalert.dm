@@ -86,6 +86,9 @@ var/global/soundGeneralQuarters = sound('sound/machines/siren_generalquarters_qu
 		//toggle off
 		shipAlertState = SHIP_ALERT_GOOD
 
+		for_by_tcl(T, /turf/floor/specialroom/elevator_shaft)
+			T.toggle_lights()
+
 		//update all lights
 		for (var/obj/machinery/light/L in stationLights)
 			L.power_change()
@@ -106,6 +109,9 @@ var/global/soundGeneralQuarters = sound('sound/machines/siren_generalquarters_qu
 		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 		//toggle on
 		shipAlertState = SHIP_ALERT_BAD
+
+		for_by_tcl(T, /turf/floor/specialroom/elevator_shaft)
+			T.toggle_lights()
 
 		//update all lights
 		for (var/obj/machinery/light/L in stationLights)
