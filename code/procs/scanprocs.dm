@@ -623,7 +623,7 @@
 		check_me = A.return_air()
 	if (istype(A, /obj/machinery/atmospherics/pipe))
 		var/obj/machinery/atmospherics/pipe/P = A
-		check_me = P.parent.air
+		check_me = P.parent?.air
 	if (istype(A, /obj/item/assembly/time_bomb))
 		var/obj/item/assembly/time_bomb/TB = A
 		if (TB.part3)

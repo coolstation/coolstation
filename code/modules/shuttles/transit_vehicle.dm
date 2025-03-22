@@ -178,6 +178,9 @@ var/global/datum/transit_controller/transit_controls = new
 		emergency_light = null
 		..()
 
+	burn_tile()
+		return
+
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 25,\
