@@ -169,6 +169,9 @@ var/global/datum/transit_controller/transit_controls = new
 		src.calculate_direction(TRUE)
 		src.initialise_component()
 
+	burn_tile()
+		return
+
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
 			BruteDamageMax = 25,\
