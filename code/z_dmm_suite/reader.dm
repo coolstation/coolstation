@@ -19,6 +19,8 @@ dmm_suite
 	default to (1, 1, world.maxz+1)
 	*/
 	read_map(dmm_text as text, coordX as num, coordY as num, coordZ as num, tag as text, overwrite as num)
+		worldgen_hold = TRUE
+
 		var/datum/loadedProperties/props = new()
 		props.sourceX = coordX
 		props.sourceY = coordY
@@ -125,6 +127,8 @@ dmm_suite
 				sleep(-1)
 			sleep(-1)
 		//
+		if (current_state >= GAME_STATE_PREGAME)
+			initialize_worldgen()
 		return props
 
 	/*-- load_map ------------------------------------

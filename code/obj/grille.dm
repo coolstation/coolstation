@@ -27,11 +27,16 @@
 	New()
 		..()
 		if(src.auto)
-			SPAWN_DBG(0) //fix for sometimes not joining on map load
+			if (worldgen_hold)
+				worldgen_candidates[worldgen_generation] += src
+			else
 				if (map_setting && ticker)
 					src.update_neighbors()
 
 				src.update_icon()
+
+	generate_worldgen()
+		src.update_icon()
 
 	disposing()
 		var/list/neighbors = null

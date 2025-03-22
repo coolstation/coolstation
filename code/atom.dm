@@ -196,6 +196,9 @@
 	proc/return_air()
 		return null
 
+	//called on relevant atoms when a map/prefab/whatever has finished loading, see code/modules/worldgen/worldgen_parent.dm
+	proc/generate_worldgen()
+
 /**
   * Convenience proc to see if a container is open for chemistry handling
 	*

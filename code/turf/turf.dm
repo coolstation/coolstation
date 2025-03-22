@@ -139,7 +139,6 @@
 		else
 			return FALSE
 
-	proc/generate_worldgen()
 
 	proc/inherit_area() //jerko built a thing
 		if(!loc:expandable) return
