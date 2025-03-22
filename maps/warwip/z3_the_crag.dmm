@@ -7226,7 +7226,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/turf/floor/grime,
+/turf/floor/plating,
 /area/station/science/teleporter)
 "Ew" = (
 /obj/table/wood/auto,
@@ -7848,6 +7848,7 @@
 	pixel_y = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/item/clothing/head/helmet/camera,
 /turf/floor/plating,
 /area/station/science/teleporter)
 "GJ" = (
@@ -12204,6 +12205,9 @@
 	icon_state = "camera";
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/item/device/camera_viewer{
+	network = "Zeta"
 	},
 /turf/floor/plating,
 /area/station/science/teleporter)
