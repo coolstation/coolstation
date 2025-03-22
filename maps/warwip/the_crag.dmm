@@ -3418,7 +3418,7 @@
 "jU" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "jV" = (
 /obj/table/reinforced/auto,
 /turf/floor,
@@ -4752,8 +4752,8 @@
 /area/shuttle/merchant_shuttle/right_station/cogmap)
 "nQ" = (
 /obj/decal/poster/wallsign/wktv{
-	pixel_y = 13;
-	pixel_x = -14
+	pixel_x = -14;
+	pixel_y = 13
 	},
 /turf/floor/carpet/purple,
 /area/station/crew_quarters/radio/lab)
@@ -5189,8 +5189,8 @@
 	anchored = 1
 	},
 /obj/stool/bench/sauna{
-	dir = 4;
-	color = "#924D2C"
+	color = "#924D2C";
+	dir = 4
 	},
 /turf/floor/wood/eight,
 /area/station/crew_quarters/sauna)
@@ -7777,9 +7777,9 @@
 /area/station/medical/medbay/treatment)
 "wL" = (
 /obj/stool/chair/office/orange{
+	desc = "A horribly uncomfortable chair, poor print quality is evident";
 	dir = 8;
-	name = "horrible 3D printed chair";
-	desc = "A horribly uncomfortable chair, poor print quality is evident"
+	name = "horrible 3D printed chair"
 	},
 /turf/floor/white,
 /area/listeningpost)
@@ -7950,19 +7950,19 @@
 	pixel_y = 6
 	},
 /obj/item/paper_bin{
-	pixel_y = -4;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = -4
 	},
 /obj/item/paper_bin{
-	pixel_y = -3;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -3
 	},
 /obj/item/item_box/pens,
 /obj/item/portable_typewriter{
 	pixel_y = 1
 	},
 /turf/floor/black/side,
-/area/station/chapel/office)
+/area/station/communications/office)
 "xj" = (
 /obj/machinery/atmospherics/valve/horizontal,
 /turf/floor,
@@ -8210,8 +8210,8 @@
 	dir = 8
 	},
 /obj/machinery/clothingbooth{
-	pixel_y = 9;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 9
 	},
 /obj/decal/cleanable/dirt,
 /turf/floor/white,
@@ -8463,12 +8463,12 @@
 	},
 /obj/table/wood/auto,
 /obj/item/cigpacket/burn{
-	pixel_y = -2;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -2
 	},
 /obj/item/device/light/zippo/gold{
-	pixel_y = -3;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -3
 	},
 /turf/floor/wood/eight,
 /area/station/crew_quarters/radio/lab)
@@ -8525,9 +8525,9 @@
 "yW" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 8;
-	pixel_y = 1;
+	icon_state = "intact_on";
 	on = 1;
-	icon_state = "intact_on"
+	pixel_y = 1
 	},
 /turf/space/gehenna/desert/plating,
 /area/station/crew_quarters/radio/lab)
@@ -9239,7 +9239,7 @@
 	dir = 1
 	},
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "AY" = (
 /turf/space/gehenna/desert/plating,
 /area/gehenna{
@@ -9294,8 +9294,8 @@
 /area/station/medical/medbay/surgery)
 "Bh" = (
 /obj/shrub/dead{
-	pixel_y = 10;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 10
 	},
 /obj/item/storage/secure/ssafe{
 	pixel_y = 32
@@ -9534,12 +9534,12 @@
 	dir = 1
 	},
 /obj/item/disk/data/cartridge/captain{
-	pixel_y = 8;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 8
 	},
 /obj/item/disk/data/cartridge/captain{
-	pixel_y = 1;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 1
 	},
 /obj/random_item_spawner/peripherals/few,
 /turf/floor/white,
@@ -10281,8 +10281,8 @@
 /area/station/medical/medbay/treatment)
 "Eo" = (
 /obj/item/screwdriver{
-	pixel_y = -4;
-	pixel_x = 11
+	pixel_x = 11;
+	pixel_y = -4
 	},
 /turf/space/gehenna/desert/beaten,
 /area/gehenna)
@@ -10387,9 +10387,9 @@
 	desc = "Are we live?";
 	icon_state = "radio0";
 	name = "sign";
+	pixel_x = -32;
 	pixel_y = -7;
-	removable_bulb = 0;
-	pixel_x = -32
+	removable_bulb = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/wood/eight,
@@ -10637,7 +10637,7 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Fr" = (
 /turf/floor/cautionblack/side{
 	dir = 4
@@ -10684,7 +10684,7 @@
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/printing_press,
 /turf/floor,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Fz" = (
 /obj/stool/bar,
 /obj/landmark/start{
@@ -10839,8 +10839,8 @@
 /obj/item/stackable_ammo/pistol/italian/ten,
 /obj/item/record/clown_collection/disco,
 /obj/item/record/honkmas{
-	pixel_y = 1;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 1
 	},
 /obj/random_item_spawner/desk_stuff/few,
 /turf/floor/carpet/purple,
@@ -10867,7 +10867,7 @@
 /obj/machinery/light/fluorescent/ceiling,
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Gf" = (
 /turf/space/gehenna/desert/path{
 	dir = 4
@@ -11219,8 +11219,8 @@
 	pixel_y = 32
 	},
 /obj/shitty_radio/shitty_tv{
-	pixel_y = 3;
-	pixel_x = 14
+	pixel_x = 14;
+	pixel_y = 3
 	},
 /turf/floor/wood/eight,
 /area/station/crew_quarters/radio/lab)
@@ -11362,7 +11362,7 @@
 	pixel_y = 10
 	},
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Hy" = (
 /obj/machinery/door/airlock/classic,
 /obj/disposalpipe/segment/morgue,
@@ -11730,7 +11730,7 @@
 /obj/machinery/photocopier,
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
-/area/station/chapel/office)
+/area/station/communications/office)
 "IC" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/table/reinforced/auto,
@@ -12654,7 +12654,7 @@
 /obj/machinery/computer/announcement,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Li" = (
 /turf/floor/purple/side,
 /area/station/science/lobby)
@@ -12908,7 +12908,7 @@
 	icon_state = "4-8"
 	},
 /turf/wall,
-/area/station/chapel/office)
+/area/station/communications/office)
 "LU" = (
 /obj/table/wood/auto,
 /obj/item/device/radio/intercom{
@@ -13091,7 +13091,7 @@
 /area/shuttle/merchant_shuttle/left_station/cogmap)
 "Mu" = (
 /turf/floor/black/side,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Mv" = (
 /obj/table/reinforced/auto,
 /obj/machinery/door/firedoor/border_only{
@@ -13938,8 +13938,8 @@
 	pixel_y = -3
 	},
 /obj/item/storage/box/donkpocket_kit{
-	pixel_y = 2;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /obj/random_item_spawner/snacks/five,
 /turf/floor/white,
@@ -14594,8 +14594,8 @@
 	pixel_y = -6
 	},
 /obj/item/reagent_containers/food/snacks/burrito/self_heating{
-	pixel_y = 1;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/food/snacks/burrito/self_heating{
 	pixel_x = 4;
@@ -14606,12 +14606,12 @@
 	pixel_y = 1
 	},
 /obj/item/reagent_containers/food/snacks/burrito/self_heating{
-	pixel_y = 1;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/food/snacks/burrito/self_heating{
-	pixel_y = -6;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = -6
 	},
 /obj/item/reagent_containers/food/snacks/burrito/self_heating{
 	pixel_y = -9
@@ -15261,6 +15261,9 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/floor/plating,
 /area/station/science/storage)
+"SC" = (
+/turf/wall,
+/area/station/communications/office)
 "SD" = (
 /obj/machinery/door_control/podbay/qm/new_walls/west,
 /obj/machinery/camera{
@@ -16300,7 +16303,7 @@
 /area/station/engine/elect)
 "Vw" = (
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "Vx" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -16775,9 +16778,9 @@
 /area/station/crew_quarters/bar)
 "WV" = (
 /obj/stool/chair/office/orange{
+	desc = "A horribly uncomfortable chair, poor print quality is evident";
 	dir = 4;
-	name = "horrible 3D printed chair";
-	desc = "A horribly uncomfortable chair, poor print quality is evident"
+	name = "horrible 3D printed chair"
 	},
 /turf/floor/white,
 /area/listeningpost)
@@ -17081,8 +17084,8 @@
 	dir = 9
 	},
 /obj/stool/bench/sauna{
-	dir = 1;
-	color = "#924D2C"
+	color = "#924D2C";
+	dir = 1
 	},
 /obj/machinery/light/small/neutral,
 /obj/item/reagent_containers/food/drinks/water{
@@ -17540,9 +17543,9 @@
 "Zl" = (
 /obj/item/storage/toilet{
 	color = "#F17232";
-	pixel_y = 7;
+	desc = "Layer lines on a toilet behave how you would expect...";
 	name = "3d printed toilet";
-	desc = "Layer lines on a toilet behave how you would expect..."
+	pixel_y = 7
 	},
 /obj/decoration/toiletholder{
 	dir = 4
@@ -17766,7 +17769,7 @@
 	pixel_y = 25
 	},
 /turf/floor/carpet/red,
-/area/station/chapel/office)
+/area/station/communications/office)
 "ZT" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/purple/standard/edge/se,
@@ -17800,8 +17803,8 @@
 "ZY" = (
 /obj/reagent_dispensers/watertank/big{
 	anchored = 1;
-	pixel_y = 8;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/space/gehenna/desert/corner,
@@ -55669,12 +55672,12 @@ Gj
 Gj
 Gj
 Gj
-ZE
-ZE
-ZE
-ZE
-ZE
-ZE
+SC
+SC
+SC
+SC
+SC
+SC
 fg
 fg
 AY
@@ -55971,7 +55974,7 @@ Gj
 Gj
 Gj
 Gj
-ZE
+SC
 Fq
 Hx
 xi
@@ -56273,7 +56276,7 @@ Gj
 Gj
 Gj
 Gj
-ZE
+SC
 ZS
 AX
 Mu
@@ -56575,7 +56578,7 @@ Gj
 Gj
 Gj
 Gj
-ZE
+SC
 Lh
 Vw
 Mu
@@ -56877,11 +56880,11 @@ ZE
 ZE
 Di
 Di
-ZE
+SC
 LT
 jU
-ZE
-ZE
+SC
+SC
 JD
 GT
 SY
