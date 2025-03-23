@@ -503,6 +503,43 @@
 
 /////////////////////////////////////////
 
+//IT'S NOT ORANGE OKAY??
+
+/turf/floor/tangerine
+	icon_state = "fulltangerine"
+
+/turf/floor/tangerine/side
+	icon_state = "tangerine"
+
+/turf/floor/tangerine/corner
+	icon_state = "tangerinecorner"
+
+/turf/floor/tangerineblack
+	icon_state = "tangerineblack"
+
+/turf/floor/tangerinewhite
+	icon_state = "tangerinewhite"
+
+/turf/floor/tangerineblack/corner
+	icon_state = "tangerineblackcorner"
+
+/turf/floor/tangerinewhite/corner
+	icon_state = "tangerinewhitecorner"
+
+/turf/floor/tangerinewhite/checker
+	icon_state = "tangerinechecker"
+
+	other
+		dir = 4
+
+/turf/floor/tangerineblack/checker
+	icon_state = "tangerineblackchecker"
+
+	other
+		dir = 4
+
+/////////////////////////////////////////
+
 /turf/floor/circuit
 	name = "transduction matrix"
 	desc = "An elaborate, faintly glowing matrix of isolinear circuitry."
