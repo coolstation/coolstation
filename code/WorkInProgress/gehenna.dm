@@ -245,10 +245,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		doublesize = FALSE
 
 		railroad
+			name = "railroad"
 			icon_state = "railroad_concrete"
 
 	railroad_ties
-		name = "bored tunnel floor"
+		name = "railroad"
 		desc = "Industry must flourish."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "railroad"
