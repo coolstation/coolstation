@@ -412,7 +412,7 @@
 
 /mob/living/MouseDrop_T(atom/dropped, mob/dropping_user)
 	///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
-	if(!isnull(dropped))
+	if(isobj(dropped))
 		var/obj/O = dropped
 		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
 			if (can_reach(src, O))
