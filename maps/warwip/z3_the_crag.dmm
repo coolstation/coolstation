@@ -9372,6 +9372,11 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"MR" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/monkeyplant,
+/turf/floor/grass,
+/area/station/medical/research)
 "MT" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
 /obj/machinery/meter,
@@ -10284,7 +10289,6 @@
 	},
 /area/station/security/main)
 "Qo" = (
-/obj/monkeyplant,
 /turf/floor/green/side,
 /area/station/medical/research)
 "Qp" = (
@@ -50178,7 +50182,7 @@ SI
 SI
 SI
 SI
-nn
+MR
 vO
 HB
 HB
