@@ -6440,8 +6440,12 @@
 /area/station/engine/engineering/ce)
 "tt" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
+/obj/machinery/power/apc/autoname/north,
+/obj/cable{
+	icon_state = "0-8"
+	},
 /turf/floor/plating,
-/area/station/maintenance/west)
+/area/station/medical/breakroom)
 "tu" = (
 /obj/cable{
 	d2 = 4;
@@ -48598,9 +48602,9 @@ YR
 YR
 YR
 sf
-tr
-tr
 xy
+AI
+Il
 mh
 Bk
 hN
