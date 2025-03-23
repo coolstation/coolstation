@@ -5208,10 +5208,6 @@
 /obj/shrub/big,
 /turf/floor/planter/strips,
 /area/station/hallway/primary/south)
-"pC" = (
-/obj/machinery/door/airlock/external,
-/turf/floor/industrial,
-/area/station/engine/storage)
 "pD" = (
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
 /obj/machinery/light/fluorescent/ceiling,
@@ -9600,6 +9596,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"De" = (
+/turf/wall,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "Df" = (
 /obj/cable{
 	d1 = 1;
@@ -17065,6 +17067,10 @@
 /obj/disposalpipe/segment,
 /turf/floor,
 /area/station/hallway/secondary/south)
+"Zn" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/industrial,
+/area/station/engine/storage)
 "Zo" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
@@ -50985,12 +50991,12 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
 YR
-Ko
+uz
 tz
 tz
 MY
@@ -51287,7 +51293,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -51589,7 +51595,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -51891,7 +51897,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -52193,7 +52199,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -52495,7 +52501,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -52797,12 +52803,12 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
 YR
-VZ
+dW
 VZ
 VZ
 AJ
@@ -53099,7 +53105,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -53401,7 +53407,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -53703,7 +53709,7 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -54005,7 +54011,7 @@ TE
 TE
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
@@ -54305,14 +54311,14 @@ TE
 TE
 TE
 TE
-TE
-TE
-TE
+De
+De
+De
 YR
 Wp
 Wp
 YR
-VZ
+dW
 qO
 VZ
 AJ
@@ -71832,8 +71838,8 @@ Cl
 cq
 WZ
 WZ
-pC
-pC
+Zn
+Zn
 WZ
 Dn
 Dn
@@ -99605,7 +99611,7 @@ Gj
 Gj
 fg
 fg
-fg
+lX
 Cl
 Cl
 Cl
@@ -99614,7 +99620,7 @@ CQ
 Cl
 Cl
 Cl
-Cl
+lX
 fg
 fg
 Gj
@@ -99907,7 +99913,7 @@ Gj
 Gj
 fg
 fg
-Gj
+lX
 YR
 YR
 YR
@@ -99916,7 +99922,7 @@ Wp
 YR
 YR
 YR
-Gj
+lX
 Gj
 fg
 Gj
@@ -100209,16 +100215,16 @@ Gj
 Gj
 Gj
 fg
-fg
-Gj
-Gj
+lX
+lX
+lX
 YR
 Wp
 Wp
 YR
-Gj
-Gj
-Gj
+lX
+lX
+lX
 fg
 Gj
 Gj
@@ -100513,12 +100519,12 @@ Gj
 Gj
 Gj
 Gj
-Gj
+lX
 YR
 Wp
 Wp
 YR
-Gj
+lX
 Gj
 Gj
 Gj
