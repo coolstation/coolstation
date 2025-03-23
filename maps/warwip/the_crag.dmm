@@ -5208,6 +5208,10 @@
 /obj/shrub/big,
 /turf/floor/planter/strips,
 /area/station/hallway/primary/south)
+"pC" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/industrial,
+/area/station/engine/storage)
 "pD" = (
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
 /obj/machinery/light/fluorescent/ceiling,
@@ -17239,7 +17243,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vehicle/tank/minisub/engineer,
+/obj/machinery/computer/transit_terminal/mining,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
@@ -71828,8 +71832,8 @@ Cl
 cq
 WZ
 WZ
-WZ
-WZ
+pC
+pC
 WZ
 Dn
 Dn
@@ -75140,7 +75144,7 @@ LD
 Pl
 ck
 Pq
-Jy
+Cl
 Cl
 Cl
 CQ
@@ -75442,7 +75446,7 @@ TR
 ck
 NI
 Pq
-tS
+Cl
 Cl
 Cl
 CQ
