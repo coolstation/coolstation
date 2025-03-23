@@ -234,6 +234,29 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		SPAWN_DBG(0.1)
 			light?.enable()
 
+	tunnel_surface
+		name = "bored tunnel floor"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "concrete"
+		rock_mult = 0
+		generateLight = 0
+		big_rock_chance = 0
+		doublesize = FALSE
+
+		railroad
+			icon_state = "railroad_concrete"
+
+	railroad_ties
+		name = "bored tunnel floor"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "railroad"
+		rock_mult = 0
+		generateLight = 1
+		big_rock_chance = 0
+		doublesize = FALSE
+
 	plating
 		name = "sand-covered plating"
 		desc = "The desert slowly creeps upon everything we build."
