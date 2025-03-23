@@ -4053,9 +4053,14 @@
 /turf/floor/plating,
 /area/station/crew_quarters/cafeteria)
 "mh" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
-/turf/space/gehenna/desert/tunnel_surface,
-/area/gehenna)
+/turf/floor/plating,
+/area/station/maintenance/west)
 "mi" = (
 /obj/table/wood/auto,
 /obj/item/storage/box/record/radio/one,
@@ -9914,6 +9919,7 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_y = 32
 	},
+/obj/machinery/vending/crash_cart,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -10886,7 +10892,9 @@
 "GW" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/robotics,
-/turf/floor/plating,
+/turf/floor/blueblack{
+	dir = 4
+	},
 /area/station/medical/robotics)
 "GX" = (
 /obj/cable{
@@ -48587,13 +48595,13 @@ YR
 Wp
 Wp
 YR
-mh
+YR
 YR
 sf
 tr
 tr
 xy
-AI
+mh
 Bk
 hN
 GV
