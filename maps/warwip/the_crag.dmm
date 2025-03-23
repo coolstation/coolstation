@@ -9375,7 +9375,10 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "Cu" = (
-/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/disposal/mail/autoname/medbay/robotics,
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/floor/black,
 /area/station/medical/robotics)
 "Cw" = (
@@ -10989,7 +10992,7 @@
 /turf/floor/plating,
 /area/station/maintenance/west)
 "Hs" = (
-/obj/table/reinforced/auto,
+/obj/machinery/manufacturer/robotics,
 /turf/floor/black,
 /area/station/medical/robotics)
 "Hu" = (
@@ -11500,7 +11503,7 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/obj/table/reinforced/auto,
+/obj/machinery/manufacturer/robotics,
 /obj/item/device/radio/intercom/medical{
 	dir = 4
 	},
@@ -11609,15 +11612,6 @@
 /obj/shitty_radio/ceiling,
 /turf/floor,
 /area/station/hallway/primary/north)
-"Jh" = (
-/obj/disposalpipe/trunk,
-/obj/machinery/disposal/mail/autoname/medbay/robotics,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 5;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/turf/floor/black,
-/area/station/medical/robotics)
 "Ji" = (
 /obj/machinery/guardbot_dock,
 /obj/cable{
@@ -12224,7 +12218,9 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "KW" = (
-/obj/disposalpipe/segment/mail/horizontal,
+/obj/disposalpipe/segment/bent{
+	dir = 4
+	},
 /obj/landmark/start{
 	name = "Roboticist"
 	},
@@ -12795,12 +12791,6 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/north)
-"MK" = (
-/obj/disposalpipe/segment/bent{
-	dir = 1
-	},
-/turf/floor/black,
-/area/station/medical/robotics)
 "ML" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_mrsmuggles"
@@ -48889,8 +48879,8 @@ Hg
 Hh
 oD
 Jt
-Jh
-MK
+Zw
+Zw
 Zw
 hN
 pa
@@ -49192,7 +49182,7 @@ hN
 nL
 EE
 iS
-Cu
+Zw
 Zw
 hN
 vc
@@ -49495,7 +49485,7 @@ rd
 GG
 Yp
 KW
-Zw
+Cu
 eB
 Xn
 JT
