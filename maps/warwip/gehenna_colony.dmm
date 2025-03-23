@@ -1495,6 +1495,11 @@
 /obj/machinery/disposal,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
+"biI" = (
+/turf/floor{
+	icon_state = "flophole4"
+	},
+/area/listeningpost)
 "biY" = (
 /obj/machinery/light/small/cool{
 	dir = 1
@@ -7200,7 +7205,7 @@
 	},
 /area/station/quartermaster/storage)
 "fuv" = (
-/turf/floor/orange,
+/turf/floor,
 /area/listeningpost)
 "fuA" = (
 /obj/cable{
@@ -18021,6 +18026,11 @@
 	dir = 4
 	},
 /area/listeningpost)
+"nXD" = (
+/turf/floor{
+	icon_state = "flophole3"
+	},
+/area/listeningpost)
 "nXR" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
@@ -23541,6 +23551,11 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
+"seA" = (
+/turf/floor{
+	icon_state = "flophole1"
+	},
+/area/listeningpost)
 "sfa" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/device/ticket_writer{
@@ -28168,6 +28183,11 @@
 	},
 /turf/floor,
 /area/station/engine/engineering/breakroom)
+"vAv" = (
+/turf/floor{
+	icon_state = "flophole2"
+	},
+/area/listeningpost)
 "vAE" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/plating{
@@ -108881,9 +108901,9 @@ dmM
 fed
 oRN
 fuv
-ipO
 fuv
-ipO
+seA
+nXD
 fuv
 dld
 nKp
@@ -109184,9 +109204,9 @@ nKp
 rCY
 tlb
 fuv
-ipO
+vAv
+biI
 fuv
-ipO
 nQd
 nKp
 fCx

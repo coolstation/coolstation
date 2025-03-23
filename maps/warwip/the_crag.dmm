@@ -1405,7 +1405,7 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/random_item_spawner/medicine/one,
-/turf/floor/white,
+/turf/floor,
 /area/listeningpost)
 "ei" = (
 /obj/machinery/vending/port_a_nanomed,
@@ -1489,7 +1489,7 @@
 "er" = (
 /obj/machinery/door/airlock/gannets/chemistry/alt,
 /obj/access_spawn/syndie_shuttle,
-/turf/floor/purple/side,
+/turf/floor,
 /area/listeningpost)
 "es" = (
 /obj/cable{
@@ -1601,7 +1601,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/white,
+/turf/floor,
 /area/listeningpost)
 "eL" = (
 /obj/machinery/light/fluorescent{
@@ -2095,6 +2095,11 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
+"gh" = (
+/turf/floor{
+	icon_state = "flophole3"
+	},
+/area/listeningpost)
 "gi" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/south{
 	pixel_y = 27
@@ -2982,6 +2987,12 @@
 	dir = 4
 	},
 /area/shuttle/merchant_shuttle/right_station/cogmap)
+"iY" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/listeningpost)
 "iZ" = (
 /obj/machinery/light/small/red{
 	dir = 4
@@ -3720,7 +3731,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/floor/white,
+/turf/floor,
 /area/listeningpost)
 "lj" = (
 /obj/table/reinforced/auto,
@@ -5185,7 +5196,7 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/white,
+/turf/floor,
 /area/listeningpost)
 "pA" = (
 /obj/machinery/door/airlock/gannets/toxins,
@@ -6504,6 +6515,9 @@
 	dir = 8
 	},
 /area/station/hallway/primary/south)
+"tH" = (
+/turf/floor,
+/area/listeningpost)
 "tI" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -7912,7 +7926,7 @@
 	pixel_y = 9
 	},
 /obj/decal/cleanable/dirt,
-/turf/floor/white,
+/turf/floor,
 /area/listeningpost)
 "xU" = (
 /obj/cable{
@@ -15752,6 +15766,11 @@
 /obj/disposalpipe/junction/right/north,
 /turf/floor,
 /area/station/hallway/secondary/south)
+"Vi" = (
+/turf/floor{
+	icon_state = "flophole1"
+	},
+/area/listeningpost)
 "Vj" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -17019,6 +17038,11 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"Zi" = (
+/turf/floor{
+	icon_state = "flophole2"
+	},
+/area/listeningpost)
 "Zk" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/light_switch/east,
@@ -17109,6 +17133,11 @@
 /obj/window_blinds/right,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"Zz" = (
+/turf/floor{
+	icon_state = "flophole4"
+	},
+/area/listeningpost)
 "ZA" = (
 /obj/machinery/atmospherics/valve/purge/vertical,
 /turf/floor,
@@ -30045,7 +30074,7 @@ Iz
 lJ
 RC
 An
-iz
+iY
 li
 TL
 iz
@@ -30347,8 +30376,8 @@ Iz
 Ji
 zf
 Iz
-yR
-yR
+Vi
+gh
 Iz
 jx
 jx
@@ -30649,8 +30678,8 @@ Iz
 Cn
 zf
 Iz
-yR
-yR
+Zi
+Zz
 Iz
 Iz
 Iz
@@ -30951,8 +30980,8 @@ Kp
 Yz
 zf
 uC
-yR
-yR
+tH
+tH
 Iz
 Iz
 Iz
@@ -31253,8 +31282,8 @@ DI
 zf
 hx
 Iz
-yR
-yR
+tH
+tH
 eg
 Iz
 Ys
@@ -31555,9 +31584,9 @@ Iz
 Iz
 Iz
 Iz
-yR
-yR
-yR
+tH
+tH
+tH
 Tw
 yR
 lE
@@ -31857,8 +31886,8 @@ zf
 Yh
 CZ
 er
-yR
-yR
+tH
+tH
 pz
 Iz
 Zl
