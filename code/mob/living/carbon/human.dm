@@ -3632,12 +3632,3 @@
 	else
 		boutput(src, "<span class='alert'><B>You're not a cluwne for some reason! That's a bug!!! </B></span>")
 
-///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
-/mob/living/carbon/human/MouseDrop_T(atom/dropped, mob/dropping_user)
-	if(isobj(dropped))
-		var/obj/O = dropped
-		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
-			if (can_reach(src, O))
-				new /obj/item/lifted_thing(O, src)
-			return
-	..()

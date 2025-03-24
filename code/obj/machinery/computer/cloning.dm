@@ -832,9 +832,9 @@ proc/find_ghost_by_key(var/find_key)
 		. += list("diskReadOnly" = src.diskette.read_only)
 
 	var/list/recordsTemp = list()
-	for (var/r in records)
+	for (var/datum/data/record/r as anything in records)
 		var/saved = FALSE
-		var/obj/item/implant/cloner/implant = locate(r["fields"]["imp"])
+		var/obj/item/implant/cloner/implant = locate(r.fields["imp"])
 		var/currentHealth = ""
 		if(istype(implant))
 			currentHealth = implant.getHealthList()

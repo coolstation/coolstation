@@ -10,12 +10,13 @@
 	opacity = 1
 	anchored = 0.0
 	mouse_opacity = 0
+
 	var/amount = 6.0
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
-	event_handler_flags = USE_HASENTERED
+	event_handler_flags = USE_HASENTERED | CAN_UPDRAFT
 
 /obj/effects/bad_smoke/Move()
 	. = ..()
