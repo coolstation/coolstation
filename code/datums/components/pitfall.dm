@@ -389,7 +389,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		if (!isliving(AM) || !length(src.TargetList)) //objects get got by the area that kills you if you enter it, we're not here to litter
 			return
 		if (prob(10))
-			return ..()
+			return ..(AM, no_thrown=FALSE)
 		return
 
 	// Find a random outdoorsy turf, since I'm making this in the context of shuttle transit areas (which are all scooched up to the side of Z2)
