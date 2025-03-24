@@ -371,3 +371,35 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		if(!length(src.TargetList))
 			return FALSE
 		return TRUE
+
+/datum/component/pitfall/planetary_splat
+	var/list/TargetList
+
+	get_turf_to_fall(atom/A)
+		RETURN_TYPE(/turf)
+		return pick(src.TargetList)
+
+	Initialize(BruteDamageMax = 1000, AnchoredAllowed = TRUE, HangTime = 0.3 SECONDS, FallTime = 1.2 SECONDS, DepthScale = 0.3, CreateUpdraft = FALSE)
+		..()
+		src.CreateUpdraft = FALSE //no
+		src.update_targets()
+
+	//10% chance for mobs to fall back onto the planet. The shuttle is just doing fucking donuts over Gehenna I guess
+	test_fall(var/atom/movable/AM,var/no_thrown=FALSE)
+		if (!isliving(AM) || !length(src.TargetList)) //objects get got by the area that kills you if you enter it, we're not here to litter
+			return
+		if (prob(10))
+			return ..()
+		return
+
+	// Find a random outdoorsy turf, since I'm making this in the context of shuttle transit areas (which are all scooched up to the side of Z2)
+	// there's no real way to use the offsets.
+	proc/update_targets()
+		src.TargetList = list()
+		for(var/i in 1 to 10)
+			var/turf/T = locate(rand(world.maxx), rand(world.maxy), Z_LEVEL_STATION)
+			if (istype(T, /turf/space/gehenna/desert))
+				src.TargetList += T
+		if(!length(src.TargetList))
+			return FALSE
+		return TRUE
