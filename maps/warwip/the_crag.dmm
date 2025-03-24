@@ -2707,7 +2707,7 @@
 "hX" = (
 /obj/wingrille_spawn/crystal,
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/plating,
+/turf/floor/plating/airless,
 /area/station/engine/core)
 "hY" = (
 /obj/disposalpipe/segment/sewage{
@@ -11952,6 +11952,10 @@
 /obj/machinery/light_switch/west,
 /turf/floor/stairs,
 /area/station/chapel/sanctuary)
+"Ka" = (
+/obj/wingrille_spawn/crystal,
+/turf/floor/plating/airless,
+/area/station/engine/core)
 "Kb" = (
 /obj/cable{
 	d1 = 4;
@@ -67037,7 +67041,7 @@ Iu
 mb
 op
 op
-Vr
+Ka
 Ee
 JB
 zT
@@ -67339,7 +67343,7 @@ op
 DD
 Iu
 mb
-Vr
+Ka
 lz
 PQ
 pG
@@ -67641,7 +67645,7 @@ op
 DD
 mb
 TZ
-Vr
+Ka
 eX
 WR
 pD
