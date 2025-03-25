@@ -164,6 +164,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	oxygen = GEHENNA_O2
 	nitrogen = GEHENNA_N2
 	temperature = GEHENNA_TEMP
+	turf_flags = MINE_MAP_PRESENTS_EMPTY
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -219,7 +220,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	proc/create_rocks()
 		rocks = list()
 		for(var/i in 1 to 18)
-			rocks += image('icons/turf/gehenna_overlays.dmi',"rock[i]")
+			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_LAYER)
+			rock.plane = PLANE_NOSHADOW_BELOW
+			rocks += rock
 
 	make_light()
 		if (!light)
@@ -230,6 +233,30 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
 			light?.enable()
+
+	tunnel_surface
+		name = "bored tunnel floor"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "concrete"
+		rock_mult = 0
+		generateLight = 0
+		big_rock_chance = 0
+		doublesize = FALSE
+
+		railroad
+			name = "railroad"
+			icon_state = "railroad_concrete"
+
+	railroad_ties
+		name = "railroad"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "railroad"
+		rock_mult = 0
+		generateLight = 1
+		big_rock_chance = 0
+		doublesize = FALSE
 
 	plating
 		name = "sand-covered plating"
@@ -255,7 +282,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
+		icon_state = "gehenna_edge"
+#else
 		icon_state = "gehenna"
+#endif
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0
@@ -276,7 +307,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
+		icon_state = "gehenna_corner"
+#else
 		icon_state = "gehenna"
+#endif
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0
@@ -297,7 +332,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		name = "beaten earth"
 		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
+		icon_state = "gehenna_beat"
+#else
 		icon_state = "gehenna"
+#endif
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0

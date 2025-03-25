@@ -661,6 +661,7 @@ datum
 			fluid_b = 160
 			transparency = 155
 			data = null
+			var/granted_updraft = FALSE
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -669,11 +670,41 @@ datum
 						M.bioHolder.AddEffect("quiet_voice")
 				..()
 
+			on_mob_life(var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				if(src.volume >= 50)
+					if(!(M.event_handler_flags & CAN_UPDRAFT))
+						src.granted_updraft = TRUE
+						M.event_handler_flags |= CAN_UPDRAFT
+						src.depletion_rate = 5
+						var/turf/T = get_turf(M)
+						var/datum/component/updraft/up = T.GetComponent(/datum/component/updraft)
+						if(up)
+							up.attempt_rise(M, M)
+				else if(src.granted_updraft)
+					src.granted_updraft = FALSE
+					M.event_handler_flags &= ~CAN_UPDRAFT
+					src.depletion_rate = initial(src.depletion_rate)
+					var/turf/T = get_turf(M)
+					var/datum/component/pitfall/down = T.GetComponent(/datum/component/pitfall)
+					if(down)
+						down.start_fall_no_coyote(M, M)
+				..()
+				return
+
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M?.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.RemoveEffect("quiet_voice")
+					if(src.granted_updraft)
+						src.granted_updraft = FALSE
+						M.event_handler_flags &= ~CAN_UPDRAFT
+						src.depletion_rate = initial(src.depletion_rate)
+						var/turf/T = get_turf(M)
+						var/datum/component/pitfall/down = T.GetComponent(/datum/component/pitfall)
+						if(down)
+							down.start_fall_no_coyote(M, M)
 				..()
 
 		radium

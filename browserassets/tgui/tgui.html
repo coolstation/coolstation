@@ -105,8 +105,6 @@ var parseMetaTag = function (name) {
     // Perform a standard call via location.href
     if (url.length < 2048) {
       location.href = 'byond://' + url;
-			var testTitle = document.getElementById('hidden-title-for-testing');
-			testTitle['textContent'] = url;
       return;
     }
     // Send an HTTP request to DreamSeeker's HTTP server.

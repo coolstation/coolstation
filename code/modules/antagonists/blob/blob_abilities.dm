@@ -1,166 +1,452 @@
-// TODO: merge this with the new ability system.
-/datum/blob_ability
-	var/name = null
-	var/desc = null
-	var/icon = 'icons/ui/blob_ui.dmi'
-	var/icon_state = "blob-template"
-	var/bio_point_cost = 0
-	var/cooldown_time = 0
-	var/last_used = 0
-	var/targeted = 1
-	var/mob/living/intangible/blob_overmind/owner
-	var/atom/movable/screen/blob/button
-	var/special_screen_loc = null
-	var/helpable = 1
+#define BLOB_EVOLUTION_FIRERES		(1<<0)
+#define BLOB_EVOLUTION_POISONRES	(1<<1)
+#define BLOB_EVOLUTION_DEVOURITEM	(1<<2)
+#define BLOB_EVOLUTION_REINFORCE	(1<<3)
+#define BLOB_EVOLUTION_REINFORCEALL	(1<<4)
+
+// THE BLOB HOLDER
+
+/datum/abilityHolder/blob
+	topBarRendered = 1
+	pointName = "Biomass Points"
+	regenRate = 3
+	var/total_placed = 0
+	var/started = 0
+	var/spread_mitigation = 0
+	var/spread_upgrade = 0
+	var/viewing_upgrades = TRUE
+	var/datum/tutorial_base/blob/tutorial
+	var/evo_points = 0
+	var/attack_power = 1
+	var/multi_spread = 0
+	var/extra_nuclei = 0
+	var/evolution_flags = 0
+	var/datum/material/my_material = null
+	var/datum/material/initial_material = null
+	var/list/obj/blob/blobs = list()
+	var/list/obj/blob/lipid/lipids = list()
+	var/list/obj/blob/nucleus/nuclei = list()
+	var/color = "#F5A9B8"
+	var/organ_color = "#5BCEFA"
+	var/points_max = 1
+	var/points_max_bonus = 7 //starting bio point cap should be 10-12 now, i think. a bit more wiggle room for starter blobs.
+	var/gen_rate_bonus = 0
+	var/gen_rate_used = 0
+	var/next_evo_point = 25
+	var/next_extra_nucleus = 100
+	var/upgrading = 0
+	var/upgrade_id = 1
+	var/nucleus_reflectivity = 0
+	var/image/nucleus_overlay
+	var/next_pity_point = 100
+	var/debuff_timestamp = 0
+	var/debuff_duration = 1200 //deciseconds. 1200 = 2 minutes
+	var/starter_buff = 1
+	var/obj/item/clothing/head/hat = null
 
 	New()
 		..()
-		var/atom/movable/screen/blob/B = new /atom/movable/screen/blob(null)
-		B.icon = src.icon
-		B.icon_state = src.icon_state
-		B.ability = src
-		B.name = src.name
-		B.desc = src.desc
-		src.button = B
+#ifdef Z3_IS_A_STATION_LEVEL
+		if(isintangible(src.owner))
+			src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
+			src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
+#endif
+		src.addAbility(/datum/targetable/blob/plant_nucleus)
+		src.addAbility(/datum/targetable/blob/set_color)
+		src.addAbility(/datum/targetable/blob/tutorial)
+		src.addAbility(/datum/targetable/blob/help)
 
-	disposing()
-		if (button)
-			button.dispose()
-			button = null
-		owner = null
-		..()
+		if(prob(50))
+			color = "#5BCEFA"
+			organ_color = "#F5A9B8"
 
-	proc
-		onUse(var/turf/T)
-			if (!istype(owner))
-				return 1
-			if (bio_point_cost > 0)
-				if (!owner.hasPoints(bio_point_cost))
-					boutput(owner, "<span class='alert'>You do not have enough bio points to use that ability.</span>")
-					return 1
-			if (cooldown_time > 0 && last_used > world.time)
-				boutput(owner, "<span class='alert'>That ability is on cooldown for [round((last_used - world.time) / 10)] seconds.</span>")
-				return 1
-			var/area/A = get_area(T)
-			if(A?.sanctuary)
-				boutput(owner, "<span class='alert'>You cannot use that ability here.</span>")
-				return 1
-			return 0
+		my_material = copyMaterial(getMaterial("blob"))
+		my_material.color = src.color
+		initial_material = copyMaterial(getMaterial("blob"))
 
-		deduct_bio_points()
-			if (bio_point_cost > 0)
-				owner.usePoints(bio_point_cost)
+		src.nucleus_overlay = image('icons/mob/blob.dmi', null, "reflective_overlay")
+		src.nucleus_overlay.alpha = 0
+		src.nucleus_overlay.appearance_flags = RESET_COLOR
 
-		do_cooldown()
-			//boutput(world, "cooldown initiated, length of [cooldown_time]")
-			last_used = world.time + cooldown_time
-			owner.update_buttons()
-			SPAWN_DBG(cooldown_time + 1)
-				//boutput(world, "cooldown over, refreshing UI")
-				if (owner)
-					owner.update_buttons()
-
-		tutorial_check(var/id, var/turf/T)
-			if (owner)
-				if (owner.tutorial)
-					if (!owner.tutorial.PerformAction(id, T))
-						return 0
+	onLife(mult = 1)
+		if (..())
 			return 1
 
-		//place a bunch of random blob tiles around the center. runs through multiple loops to fill gaps
+		//time to un-apply the nucleus-destroyed debuff
+		if (src.debuff_timestamp && world.timeofday >= src.debuff_timestamp)
+			src.debuff_timestamp = 0
+			boutput(src, "<span class='alert'><b>You can feel your former power returning!</b></span>")
 
-		auto_spread(turf/starter, maxRange = 3, maxTurfs = 15, maxLoops = 2, currentRange = 1, currentTurfs = 0, currentLoop = 1)
-			//if we went outside the allowed range
-			if (currentRange > maxRange)
-				//if we have loops left, do so
-				if (currentLoop < maxLoops)
-					src.auto_spread(starter, maxRange, maxTurfs, maxLoops, 1, currentTurfs, currentLoop + 1)
+		if (blobs.len > 0)
+			/**
+			 * at 2175 blobs, blob points max will reach about 350. It will begin decreasing sharply after that
+			 * This is a size penalty. Basically if the blob gets too damn big, the crew has some chance of
+			 * fighting it back because it will run out of points.
+			 */
+			src.points_max = src.BlobPointsBezierApproximation(floor(length(src.blobs) / 5)) + src.points_max_bonus
+
+		src.generatePoints(mult)
+
+		if (length(blobs) >= next_evo_point)
+			next_evo_point += initial(next_evo_point)
+			evo_points++
+			boutput(src, "<span class='notice'><b>You have expanded enough to earn one evo point! You will be granted another at size [next_evo_point]. Good luck!</b></span>")
+
+		if (total_placed >= next_pity_point)
+			next_pity_point += initial(next_pity_point)
+			evo_points++
+			boutput(src, "<span class='notice'><b>You have perfomed enough spreads to earn one evo point! You will be granted another after placing [next_pity_point] tiles. Good luck!</b></span>")
+
+		if (length(blobs) >= next_extra_nucleus)
+			next_extra_nucleus += initial(next_extra_nucleus)
+			extra_nuclei++
+			boutput(src, "<span class='notice'><b>You have expanded enough to earn one extra nucleus! You will be granted another at size [next_extra_nucleus]. Good luck!</b></span>")
+
+		src.nucleus_reflectivity = src.blobs.len < 151 ? 100 : 100 - ((src.blobs.len - 150)/2)
+		var/old_alpha = src.nucleus_overlay.alpha
+		var/new_alpha = clamp(src.nucleus_reflectivity * 2, 0, 255)
+		if(abs(old_alpha - new_alpha) >= 25 || (old_alpha != new_alpha && (new_alpha == 0 || old_alpha == 0)))
+			src.nucleus_overlay.alpha = new_alpha
+			for(var/obj/blob/nucleus/N in src.nuclei)
+				if(new_alpha)
+					N.UpdateOverlays(src.nucleus_overlay, "reflectivity")
+				else
+					N.UpdateOverlays(null, "reflectivity")
+
+	Stat()
+		stat(null, " ")
+		stat("--Blob--", " ")
+		stat("Bio Points:", "[floor(points)]/[points_max]")
+		//debuff active
+		if (src.debuff_timestamp && gen_rate_bonus > 0)
+			var/genBonus = floor(gen_rate_bonus / 2)
+			stat("Generation Rate:", "[regenRate + genBonus - gen_rate_used]/[regenRate + gen_rate_bonus] BP <span class='alert'>(WEAKENED)</span>")
+
+		else
+			stat("Generation Rate:", "[regenRate + gen_rate_bonus - gen_rate_used]/[regenRate + gen_rate_bonus] BP")
+
+		stat("Blob Size:", blobs.len)
+		stat("Total spreads:", total_placed)
+		stat("Evo Points:", evo_points)
+		stat("Next Evo Point at size:", next_evo_point)
+		stat("Total spreads needed for additional point:", next_pity_point)
+		stat("Living nuclei:", nuclei.len)
+		stat("Unplaced extra nuclei:", extra_nuclei)
+		stat("Next Extra Nucleus at size:", next_extra_nucleus)
+
+	deductPoints(var/cost)
+		if (points < cost)
+			var/needed = cost - points
+			if (lipids.len * 4 >= needed)
+				while (points < cost)
+					if (!lipids.len)
+						break
+					var/obj/blob/lipid/L = pick(lipids)
+					if (!istype(L))
+						lipids -= L
+						continue
+					L.use()
+		if (points >= cost)
+			points -= cost
+			return 1
+
+	pointCheck(cost)
+		if (!src.usesPoints)
+			return 1
+		if (src.points < 0) // Just-in-case fallback.
+			logTheThing("debug", usr, null, "'s ability holder ([src.type]) was set to an invalid value (points less than 0), resetting.")
+			src.points = 0
+		for (var/Q in lipids)
+			if (!istype(Q, /obj/blob/lipid))
+				lipids -= Q
+		if (cost > points + length(lipids) * 4)
+			boutput(owner, notEnoughPointsMessage)
+			return 0
+		return 1
+
+	generatePoints(mult)
+		//debuff active
+		lastBonus = bonus
+		src.points += bonus
+
+		var/genBonus = gen_rate_bonus
+		if (src.debuff_timestamp && genBonus > 0)
+			genBonus = floor(genBonus / 2)
+
+			//maybe other debuffs here in the future
+
+		src.points = clamp((src.points + (regenRate + genBonus - gen_rate_used) * mult), 0, src.points_max) //these are rounded in point displays
+
+
+	updateButtons(called_by_owner, start_x, start_y)
+		if(..())
+			return
+		if (src.shiftPower)
+			src.shiftPower.object.overlays += src.shiftPower.object.shift_highlight
+		if (src.ctrlPower)
+			src.ctrlPower.object.overlays += src.ctrlPower.object.ctrl_highlight
+		if (src.altPower)
+			src.altPower.object.overlays += src.altPower.object.alt_highlight
+		if (viewing_upgrades)
+			var/pos_x = 0
+			var/pos_y = 14
+
+			for(var/datum/targetable/blob/evolution/B in src.abilities)
+				if (!istype(B.object))
+					continue
+				B.object.overlays = list()
+				B.object.invisibility = 0
+				B.object.screen_loc = "WEST+[pos_x]:9,NORTH-[pos_y]"
+				pos_x++
+				if(pos_x > 3)
+					pos_x = 0
+					pos_y--
+				if(!B.check_requirements())
+					B.object.overlays += B.object.darkener
+		else
+			for(var/datum/targetable/blob/evolution/B in src.abilities)
+				B.object.invisibility = 101
+
+	proc/reset()
+		src.attack_power = initial(src.attack_power)
+		src.points = 0
+		src.points_max = initial(src.points_max)
+		src.points_max_bonus = initial(src.points_max_bonus)
+		src.regenRate = initial(src.regenRate)
+		src.gen_rate_bonus = 0
+		src.gen_rate_used = 0
+		src.evo_points = 0
+		src.next_evo_point = initial(src.next_evo_point)
+		src.next_pity_point = initial(src.next_pity_point)
+		src.total_placed = 0
+		src.spread_upgrade = 0
+		src.spread_mitigation = 0
+		src.viewing_upgrades = 1
+		src.help_mode = 0
+		src.blobs = new()
+		src.started = 0
+		src.extra_nuclei = 0
+		src.next_extra_nucleus = initial(src.next_extra_nucleus)
+		src.multi_spread = 0
+		src.upgrading = 0
+		src.upgrade_id = 1
+		src.lipids = new()
+		src.nuclei = new()
+		src.my_material = copyMaterial(getMaterial("blob"))
+		src.my_material.color = src.color
+		src.initial_material = copyMaterial(getMaterial("blob"))
+		src.debuff_timestamp = 0
+		src.starter_buff = 1
+
+		for(var/datum/targetable/B in src.abilities)
+			src.removeAbilityInstance(B)
+
+#ifdef Z3_IS_A_STATION_LEVEL
+		if(isintangible(src.owner))
+			src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
+			src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
+#endif
+		src.addAbility(/datum/targetable/blob/plant_nucleus)
+		src.addAbility(/datum/targetable/blob/set_color)
+		src.addAbility(/datum/targetable/blob/tutorial)
+		src.addAbility(/datum/targetable/blob/help)
+
+	proc/setHat( var/obj/item/clothing/head/new_hat )
+		new_hat.pixel_y = 15
+		new_hat.pixel_x = 0
+		new_hat.appearance_flags |= KEEP_APART & RESET_ALPHA
+		new_hat.plane = PLANE_SELFILLUM + 1
+		for( var/obj/blob/b in nuclei )
+			if(src.hat)
+				b.vis_contents -= src.hat
+			b.vis_contents += new_hat
+		if( src.hat )
+			qdel(src.hat)
+		src.hat = new_hat
+		src.hat.set_loc(src.owner)
+
+	proc/BlobPointsBezierApproximation(var/t)
+		// t = number of tiles occupied by the blob
+		t = max(0, min(1000, t))
+		var/points
+
+		if (t < 514)
+			points = t - ((t ** 2) / 4000) - (eulers ** ((t-252)/50)) + 1
+		else if (t >= 514)
+			// Oh dear, you seem to be too fucking big. Whoopsie daisies...
+			// Marq update: gonna flatline this at 40 so big blobs aren't completely useless
+			// The idea is not that we should be punishing big blobs, rather we should be making progress progressively difficult.
+			points = max(40, 30000 / (t - 417) - 51)
+
+		return floor(max(0, points))
+
+	proc/get_gen_rate()
+		return regenRate + gen_rate_bonus - gen_rate_used
+
+	proc/tutorial_check(var/id, var/turf/T)
+		if(src.tutorial && !src.tutorial.PerformAction(id, T))
+			return 0
+		return 1
+
+	proc/auto_spread(turf/starter, maxRange = 3, maxTurfs = 15, maxLoops = 2, currentRange = 1, currentTurfs = 0, currentLoop = 1)
+		//if we went outside the allowed range
+		if (currentRange > maxRange)
+			//if we have loops left, do so
+			if (currentLoop < maxLoops)
+				src.auto_spread(starter, maxRange, maxTurfs, maxLoops, 1, currentTurfs, currentLoop + 1)
+			return
+
+		var/list/outerArea = orange(currentRange, starter)
+
+		//subtract the inner tiles (we only want the outer edge of our range)
+		if (currentRange > 1)
+			var/list/innerArea = orange(currentRange - 1, starter)
+			outerArea -= innerArea
+
+		for (var/turf/T in outerArea)
+			//reached max amount of blob tiles to place
+			if (currentTurfs > maxTurfs)
 				return
 
-			var/list/outerArea = orange(currentRange, starter)
+			if (T.can_blob_spread_here(null, null, isadmin(owner)))
+				var/obj/blob/B
+				if (prob(5))
+					B = new /obj/blob/lipid(T)
+				else if (prob(5))
+					B = new /obj/blob/ribosome(T)
+				else if (prob(5))
+					B = new /obj/blob/mitochondria(T)
+				else if (prob(5))
+					B = new /obj/blob/wall(T)
+				else if (prob(5))
+					B = new /obj/blob/firewall(T)
+				else
+					B = new /obj/blob(T)
+				src.total_placed++
+				B.setHolder(src)
+				currentTurfs++
 
-			//subtract the inner tiles (we only want the outer edge of our range)
-			if (currentRange > 1)
-				var/list/innerArea = orange(currentRange - 1, starter)
-				outerArea -= innerArea
+		//recurse!
+		src.auto_spread(starter, maxRange, maxTurfs, maxLoops, currentRange + 1, currentTurfs, currentLoop)
 
-			for (var/turf/T in outerArea)
-				//LAGCHECK(LAG_HIGH)
 
-				//reached max amount of blob tiles to place
-				if (currentTurfs > maxTurfs)
+	proc/start_tutorial()
+		if (tutorial)
+			return
+		tutorial = new(src)
+		if (tutorial.tutorial_area)
+			tutorial.Start()
+		else
+			boutput(src, "<span class='alert'>Could not start tutorial! Please try again later or call Mylie.</span>")
+			tutorial = null
+			return
+
+// STARTER ABILITIES
+
+/datum/targetable/blob
+	icon = 'icons/ui/blob_ui.dmi'
+	icon_state = "blob-template"
+	cooldown = 0
+	last_cast = 0
+	targeted = 1
+	target_anything = 1
+	preferred_holder_type = /datum/abilityHolder/blob
+	var/datum/abilityHolder/blob/blob_holder
+
+	onAttach(datum/abilityHolder/H)
+		. = ..()
+		src.blob_holder = H
+
+/datum/targetable/blob/plant_nucleus
+	name = "Deploy"
+	icon_state = "blob-nucleus"
+	desc = "This will place your first nucleus at the target. You can only do this once. Once placed, a small amount of blob tiles will spawn around it."
+	targeted = 1
+
+	cast(var/atom/target)
+		if (..())
+			return 1
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
+
+		if (istype(T,/turf/space/))
+			boutput(src.holder.owner, "<span class='alert'>You can't start in space!</span>")
+			return
+
+		if (!isadmin(src.holder.owner)) //admins can spawn wherever
+			if (!istype(T.loc, /area/station/) && !istype(T.loc, /area/blob/))
+				boutput(src.holder.owner, __red("You need to start on the [station_or_ship()]!"))
+				return
+
+			if (!issimulatedturf(T))
+				boutput(src.holder.owner, "<span class='alert'>This kind of tile cannot support a blob.</span>")
+				return
+
+			if (T.density)
+				boutput(src.holder.owner, "<span class='alert'>You can't start inside a wall!</span>")
+				return
+
+			for (var/atom/O in T.contents)
+				if (O.density)
+					boutput(src.holder.owner, "<span class='alert'>That tile is blocked by [O].</span>")
 					return
 
-				if (T.can_blob_spread_here(null, null, isadmin(owner)))
-					var/obj/blob/B
-					if (prob(5))
-						B = new /obj/blob/lipid(T)
-					else if (prob(5))
-						B = new /obj/blob/ribosome(T)
-					else if (prob(5))
-						B = new /obj/blob/mitochondria(T)
-					else if (prob(5))
-						B = new /obj/blob/wall(T)
-					else if (prob(5))
-						B = new /obj/blob/firewall(T)
-					else
-						B = new /obj/blob(T)
-					owner.total_placed++
-					B.setOvermind(src.owner)
-					currentTurfs++
+			for (var/mob/M in viewers(T, 7))
+				if (isrobot(M) || ishuman(M))
+					if (!isdead(M))
+						boutput(src.holder.owner, "<span class='alert'>You are being watched.</span>")
+						return
 
-			//recurse!
-			src.auto_spread(starter, maxRange, maxTurfs, maxLoops, currentRange + 1, currentTurfs, currentLoop)
-
-
-	// Wholesale stolen from ability_parent
-	// last_cast -> last_used
-	proc/update_cooldown_cost()
-		if (!button)
+		if (!src.blob_holder.tutorial_check("deploy", T))
 			return
-		var/newcolor = null
-		var/on_cooldown = round((last_used - world.time) / 10)
 
-		if (bio_point_cost)
-			if (owner.bio_points < bio_point_cost)
-				newcolor = rgb(64, 64, 64)
-				button.point_overlay.maptext = "<span class='sh vb r ps2p' style='color: #cc2222;'>[bio_point_cost]</span>"
-			else
-				button.point_overlay.maptext = "<span class='sh vb r ps2p'>[bio_point_cost]</span>"
-		else
-			button.point_overlay.maptext = null
+		var/obj/blob/nucleus/C = new /obj/blob/nucleus(T)
+		C.layer++
+		src.blob_holder.total_placed++
+		C.setHolder(src.holder)
+		C.Life()
+		src.blob_holder.started = 1
+		src.holder.addAbility(/datum/targetable/blob/spread)
+		src.holder.addAbility(/datum/targetable/blob/attack)
+		src.holder.addAbility(/datum/targetable/blob/consume)
+		src.holder.addAbility(/datum/targetable/blob/repair)
+		src.holder.addAbility(/datum/targetable/blob/absorb)
+		src.holder.addAbility(/datum/targetable/blob/promote_nucleus)
+	#ifdef Z3_IS_A_STATION_LEVEL
+		src.holder.addAbility(/datum/targetable/blob/blob_level_transfer)
+	#endif
+		src.holder.addAbility(/datum/targetable/blob/build/ribosome)
+		src.holder.addAbility(/datum/targetable/blob/build/lipid)
+		src.holder.addAbility(/datum/targetable/blob/build/mitochondria)
+		src.holder.addAbility(/datum/targetable/blob/build/wall)
+		src.holder.addAbility(/datum/targetable/blob/build/firewall)
+		src.holder.addAbility(/datum/targetable/blob/toggle_evolution_bar)
+		src.holder.addAbility(/datum/targetable/blob/evolution/extra_genrate)
+		src.holder.addAbility(/datum/targetable/blob/evolution/quick_spread)
+		src.holder.addAbility(/datum/targetable/blob/evolution/spread)
+		src.holder.addAbility(/datum/targetable/blob/evolution/attack)
+		src.holder.addAbility(/datum/targetable/blob/evolution/fire_resist)
+		src.holder.addAbility(/datum/targetable/blob/evolution/poison_resist)
+		src.holder.addAbility(/datum/targetable/blob/evolution/devour_item)
+		src.holder.addAbility(/datum/targetable/blob/evolution/bridge)
+		src.holder.addAbility(/datum/targetable/blob/evolution/launcher)
+		src.holder.addAbility(/datum/targetable/blob/evolution/plasmaphyll)
+		src.holder.addAbility(/datum/targetable/blob/evolution/ectothermid)
+		src.holder.addAbility(/datum/targetable/blob/evolution/reflective)
 
-		if (on_cooldown > 0)
-			newcolor = rgb(96, 96, 96)
-			button.cooldown_overlay.alpha = 255
-			button.cooldown_overlay.maptext = "<span class='sh vb c ps2p'>[min(999, on_cooldown)]</span>"
-			button.point_overlay.alpha = 64
-		else
-			button.cooldown_overlay.alpha = 0
-			button.point_overlay.alpha = 255
+		if (!src.blob_holder.tutorial)
+			//do a little "blobsplosion"
+			var/amount = rand(20, 30)
+			src.blob_holder.auto_spread(T, maxRange = 3, maxTurfs = amount)
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobdeploy.ogg", 50, 1)
+		src.holder.removeAbility(/datum/targetable/blob/plant_nucleus)
+		src.holder.removeAbility(/datum/targetable/blob/set_color)
+		src.holder.removeAbility(/datum/targetable/blob/tutorial)
 
-		if (newcolor != button.color)
-			button.color = newcolor
-
-
-/datum/blob_ability/upgrade
-	name = "Toggle Upgrade Bar"
-	desc = "Expand or contract the upgrades bar."
-	icon_state = "blob-viewupgrades"
-	targeted = 0
-	special_screen_loc = "SOUTH,WEST"
-	helpable = 0
-
-	onUse(var/turf/T)
-		if (..())
-			return
-		if (owner.viewing_upgrades)
-			owner.viewing_upgrades = 0
-		else
-			owner.viewing_upgrades = 1
-		owner.update_buttons()
-
-/datum/blob_ability/help
+/datum/targetable/blob/help
 	name = "Toggle Help Mode"
 	desc = "Enter or exit help mode."
 	icon_state = "blob-help0"
@@ -168,233 +454,91 @@
 	special_screen_loc = "SOUTH,EAST"
 	helpable = 0
 
-	onUse(var/turf/T)
+	cast()
 		if (..())
 			return
-		if (owner.help_mode)
-			owner.help_mode = 0
+		if (src.holder.help_mode)
+			src.holder.help_mode = 0
 		else
-			owner.help_mode = 1
-			boutput(owner, "<span class='notice'>Help Mode has been activated  To disable it, click on this button again.</span>")
-		src.button.icon_state = "blob-help[owner.help_mode]"
-		owner.update_buttons()
+			src.holder.help_mode = 1
+			boutput(src.holder.owner, "<span class='notice'>Help Mode has been activated. To disable it, click on this button again.</span>")
+			boutput(src.holder.owner, "<span class='notice'>Hold down Shift, Ctrl or Alt while clicking the button to set it to that key.</span>")
+			boutput(src.holder.owner, "<span class='notice'>You will then be able to use it freely by holding that button and left-clicking a tile.</span>")
+			boutput(src.holder.owner, "<span class='notice'>Alternatively, you can click with your middle mouse button to use the ability on your current tile.</span>")
+			boutput(src.holder.owner, "<span class='notice'>If you want to swap the places of two buttons on this bar, click and drag one to the position you want it to occupy.</span>")
+		src.object.icon_state = "blob-help[src.holder.help_mode]"
+		src.holder.updateButtons()
 
-// STARTER ABILITIES
-
-/datum/blob_ability/plant_nucleus
-	name = "Deploy"
-	icon_state = "blob-nucleus"
-	desc = "This will place the first blob on your current tile. You can only do this once. Once placed, a small amount of blob tiles will spawn around it."
-	targeted = 0
-
-	onUse(var/turf/T)
-		if (..())
-			return
-		if (!T)
-			T = get_turf(owner)
-
-		if (istype(T,/turf/space/))
-			boutput(owner, "<span class='alert'>You can't start in space!</span>")
-			return
-
-		if (!isadmin(owner)) //admins can spawn wherever
-			if (!istype(T.loc, /area/station/) && !istype(T.loc, /area/blob/))
-				boutput(owner, __red("You need to start on the [station_or_ship()]!"))
-				return
-
-			if (!issimulatedturf(T))
-				boutput(owner, "<span class='alert'>This kind of tile cannot support a blob.</span>")
-				return
-
-			if (T.density)
-				boutput(owner, "<span class='alert'>You can't start inside a wall!</span>")
-				return
-
-			for (var/atom/O in T.contents)
-				if (O.density)
-					boutput(owner, "<span class='alert'>That tile is blocked by [O].</span>")
-					return
-
-			for (var/mob/M in viewers(T, 7))
-				if (isrobot(M) || ishuman(M))
-					if (!isdead(M))
-						boutput(owner, "<span class='alert'>You are being watched.</span>")
-						return
-
-		if (!tutorial_check("deploy", T))
-			return
-
-		var/turf/startTurf = get_turf(owner)
-		var/obj/blob/nucleus/C = new /obj/blob/nucleus(startTurf)
-		C.layer++
-		owner.total_placed++
-		C.setOvermind(owner)
-		C.Life()
-		owner.started = 1
-		owner.add_ability(/datum/blob_ability/spread)
-		owner.add_ability(/datum/blob_ability/attack)
-		owner.add_ability(/datum/blob_ability/consume)
-		owner.add_ability(/datum/blob_ability/repair)
-		owner.add_ability(/datum/blob_ability/absorb)
-		owner.add_ability(/datum/blob_ability/promote)
-	#ifdef Z3_IS_A_STATION_LEVEL
-		owner.add_ability(/datum/blob_ability/blob_level_transfer)
-	#endif
-		owner.add_ability(/datum/blob_ability/build/ribosome)
-		owner.add_ability(/datum/blob_ability/build/lipid)
-		owner.add_ability(/datum/blob_ability/build/mitochondria)
-		owner.add_ability(/datum/blob_ability/build/wall)
-		owner.add_ability(/datum/blob_ability/build/firewall)
-		owner.add_ability(/datum/blob_ability/upgrade)
-		for (var/X in childrentypesof(/datum/blob_upgrade))
-			owner.add_upgrade(X, 1)
-
-		if (!owner.tutorial)
-			//do a little "blobsplosion"
-			var/amount = rand(20, 30)
-			src.auto_spread(startTurf, maxRange = 3, maxTurfs = amount)
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobdeploy.ogg", 50, 1)
-		owner.remove_ability(/datum/blob_ability/plant_nucleus)
-		owner.remove_ability(/datum/blob_ability/set_color)
-		owner.remove_ability(/datum/blob_ability/tutorial)
-
-/datum/blob_ability/set_color
+/datum/targetable/blob/set_color
 	name = "Set Color"
 	desc = "Choose what color you want your blob to be. This will be removed when you start the blob."
 	icon_state = "blob-color"
 	targeted = 0
 
-	onUse()
+	cast()
 		if (..())
-			return
-		owner.color = input("Select your Color","Blob") as color
-		var/r = hex2num(copytext(owner.color, 2, 4))
-		var/g = hex2num(copytext(owner.color, 4, 6))
-		var/b = hex2num(copytext(owner.color, 6))
-		var/hsv = rgb2hsv(r,g,b)
-		owner.organ_color = hsv2rgb( hsv[1], hsv[2], 100 )
+			return 1
+		src.blob_holder.color = input("Select your Color","Blob") as color
+		src.blob_holder.organ_color = input("Select your Organelle Color","Blob") as color
+		src.blob_holder.my_material.color = src.blob_holder.color
 
-		owner.my_material.color = owner.color
-
-//I don't like doing this but it's less resistance than moving all of blob abilities to the new system
-#ifdef Z3_IS_A_STATION_LEVEL
-/datum/blob_ability/upper_transfer
-	name = "Go To Upper Level"
-	desc = "See what's happening upstairs"
-	icon = 'icons/ui/ghost_observer_abilities.dmi'
-	icon_state = "upper_transfer"
-	targeted = 0
-
-	onUse()
-		if (..())
-			return
-		if (owner.z == Z_LEVEL_STATION)
-			return
-		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_STATION)
-		owner.set_loc(destination)
-
-/datum/blob_ability/lower_transfer
-	name = "Go To Lower Level"
-	desc = "See what's happening downstairs"
-	icon = 'icons/ui/ghost_observer_abilities.dmi'
-	icon_state = "lower_transfer"
-	targeted = 0
-
-	onUse()
-		if (..())
-			return
-		if (owner.z == Z_LEVEL_DEBRIS)
-			return
-		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_DEBRIS)
-		owner.set_loc(destination)
-#endif
-
-/datum/blob_ability/tutorial
-	name = "Interactive Tutorial"
-	desc = "Check out the interactive blob tutorial to get started with blobs."
-	icon_state = "blob-help0"
-	targeted = 0
-
-	onUse()
-		if (..())
-			return
-		if (owner.tutorial)
-			boutput(owner, "<span class='alert'>You're already in the tutorial!</span>")
-			return
-		owner.start_tutorial()
-
-/datum/blob_ability/tutorial_exit
-	name = "Exit Tutorial"
-	desc = "Exit the blob tutorial and re-enter the game."
-	icon_state = "blob-exit"
-	targeted = 0
-	special_screen_loc = "SOUTH,EAST-1"
-
-	onUse()
-		if (..())
-			return
-		if (!owner.tutorial)
-			boutput(owner, "<span class='alert'>You're not in the tutorial!</span>")
-			return
-		owner.tutorial.Finish()
-		owner.tutorial = null
-
-// BASIC ABILITIES
-
-/datum/blob_ability/spread
+/datum/targetable/blob/spread
 	name = "Spread"
 	icon_state = "blob-spread"
-	desc = "This spends two bio-points to spread to the desired tile. Blobs must be placed cardinally adjacent to other blobs. This ability is free of cost and cooldown until the first time you reach 40 tiles."
-	bio_point_cost = 2
-	cooldown_time = 20
+	desc = "This spends two biomass to spread to the desired tile. Blobs must be placed cardinally adjacent to other blobs."
+	pointCost = 0
+	cooldown = 2 SECONDS
+	var/pointCostPostStarterBuff = 2
 
-	onUse(var/turf/T)
-		if (!owner.starter_buff && ..())
+	cast(var/atom/target)
+		if (..())
 			return 1
 
-		if (!T)
-			T = get_turf(owner)
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		if (istype(T, /turf/space))
-			var/datum/blob_ability/bridge/B = owner.get_ability(/datum/blob_ability/bridge)
+			var/datum/targetable/blob/bridge/B = src.holder.getAbility(/datum/targetable/blob/bridge)
 
 			if (B)
-				var/success = !B.onUse(T)		//Abilities return 1 on failure and 0 on success. fml
+				var/success = !B.cast(T)		//Abilities return 1 on failure and 0 on success. fml
 				if (success)
-					boutput(owner, "<span class='notice'>You create a bridge on [T].</span>")
+					boutput(src.holder.owner, "<span class='notice'>You create a bridge on [T].</span>")
 				else
-					boutput(owner, "<span class='alert'>You were unable to place a bridge on [T].</span>")
+					boutput(src.holder.owner, "<span class='alert'>You were unable to place a bridge on [T].</span>")
 
 				return 1
 
-		var/obj/blob/B1 = T.can_blob_spread_here(owner, null, isadmin(owner))
+		var/obj/blob/B1 = T.can_blob_spread_here(src.holder.owner, null, isadmin(src.holder.owner))
 		if (!istype(B1))
 			return 1
 
-		if (!tutorial_check("spread", T))
+		if (!src.blob_holder.tutorial_check("spread", T))
 			return 1
 
 		var/obj/blob/B2 = new /obj/blob(T)
-		B2.setOvermind(owner)
+		B2.setHolder(src.holder)
 
-		cooldown_time = 16
+		cooldown = 16
 		var/mindist = 127
 		for_by_tcl(nucleus, /obj/blob/nucleus)
-			if(nucleus.overmind == owner)
-				mindist = min(mindist, get_dist(T, get_turf(nucleus)))
+			if(nucleus.blob_holder == src.holder)
+				mindist = min(mindist, GET_DIST(T, get_turf(nucleus)))
 
-		mindist *= max((length(owner.blobs) * 0.005) - 2, 1)
+		mindist *= max((length(src.blob_holder.blobs) * 0.005) - 2, 1)
 
-		cooldown_time = max(cooldown_time + max(mindist * 0.5 - 10, 0) - owner.spread_upgrade * 5 - owner.spread_mitigation * 0.5, 6)
-		owner.total_placed++
+		cooldown = max(cooldown + max(mindist * 0.5 - 10, 0) - src.blob_holder.spread_upgrade * 5 - src.blob_holder.spread_mitigation * 0.5, 6)
+		src.blob_holder.total_placed++
 
-		var/extra_spreads = round(owner.multi_spread / 100) + (prob(owner.multi_spread % 100) ? 1 : 0)
+		var/extra_spreads = round(src.blob_holder.multi_spread / 100) + (prob(src.blob_holder.multi_spread % 100) ? 1 : 0)
 		if (extra_spreads)
 			var/list/spreadability = list()
-			for (var/turf/floor/Q in view(7, owner))
+			for (var/turf/floor/Q in view(7, src.holder.owner))
 				if (locate(/obj/blob) in Q)
 					continue
-				var/obj/blob/B3 = Q.can_blob_spread_here(null, null, isadmin(owner))
+				var/obj/blob/B3 = Q.can_blob_spread_here(null, null, isadmin(src.holder.owner))
 				if (B3)
 					spreadability += Q
 
@@ -402,98 +546,101 @@
 			for (var/i = 1, i <= extra_spreads && spreadability.len, i++)
 				var/turf/R = pick(spreadability)
 				var/obj/blob/B3 = new /obj/blob(R)
-				owner.total_placed++
-				B3.setOvermind(owner)
+				src.blob_holder.total_placed++
+				B3.setHolder(src.holder)
 				spreadability -= R
 
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
-		if (!owner.starter_buff)
-			src.deduct_bio_points()
-			src.do_cooldown()
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
+		if (src.blob_holder.starter_buff)
+			if (length(src.blob_holder.blobs) >= 40)
+				boutput(src.blob_holder.owner, SPAN_ALERT("You've grown large enough to lose your starter bonus! Good luck!"))
+				src.blob_holder.starter_buff = 0
+				pointCost = src.pointCostPostStarterBuff
+			else
+				pointCost = 0
+				cooldown = 6
 
-/datum/blob_ability/promote
+/datum/targetable/blob/promote_nucleus
 	name = "Promote to Nucleus"
 	icon_state = "blob-nucleus"
 	desc = "This ability allows you to plant extra nuclei. You are allowed to use this ability once for every 100 tiles of blob reached."
-	bio_point_cost = 0
-	cooldown_time = 1200
-	var/using = 0
+	pointCost = 0
+	cooldown = 120 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return 1
-		if (using)
-			return 1
-		using = 1
-		if (!owner.extra_nuclei)
+		if (!src.blob_holder.extra_nuclei)
 			boutput(usr, "<span class='alert'>You cannot place additional nuclei at this time.</span>")
-			using = 0
 			return 1
 
-		if (!T)
-			T = get_turf(owner)
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
+
 		var/obj/blob/B = locate() in T
 		if (!B)
 			boutput(usr, "<span class='alert'>No blob here to convert!</span>")
-			using = 0
 			return 1
-		if (B.type != /obj/blob)
+		if (!istype_exact(B, /obj/blob))
 			boutput(usr, "<span class='alert'>Cannot promote special blob tiles!</span>")
-			using = 0
 			return 1
-		owner.extra_nuclei--
+		src.blob_holder.extra_nuclei--
 		var/obj/blob/nucleus/N = new(T)
-		N.setOvermind(owner)
+		N.setHolder(src.holder)
 		N.setMaterial(B.material)
 		B.material = null
 		qdel(B)
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobdeploy.ogg", 50, 1)
-		deduct_bio_points()
-		do_cooldown()
-		using = 0
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobdeploy.ogg", 50, 1)
 
-/datum/blob_ability/consume
+/datum/targetable/blob/consume
 	name = "Consume"
 	icon_state = "blob-consume"
 	desc = "This ability can be used to remove an existing blob tile for biopoints. Any blob tile you own can be consumed."
-	bio_point_cost = 10
-	cooldown_time = 20
+	pointCost = 10
+	cooldown = 2 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
-			return
-		if (!T)
-			T = get_turf(owner)
+			return 1
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
+
 		var/obj/blob/B = locate() in T
 		if (!B)
-			return
+			return 1
 		if (B.disposed)
-			return
-		if (B.overmind != owner)
-			return
+			return 1
+		if (B.blob_holder != src.holder)
+			return 1
 		if (istype(B, /obj/blob/nucleus))
 			boutput(usr, "<span class='alert'>You cannot consume a nucleus!</span>")
-			return
-		if (!tutorial_check("consume", T))
-			return
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobconsume[rand(1, 2)].ogg", 80, 1)
+			return 1
+		if (!src.blob_holder.tutorial_check("consume", T))
+			return 1
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobconsume[rand(1, 2)].ogg", 80, 1)
 		B.visible_message("<span class='alert'><b>The blob consumes a piece of itself!</b></span>")
 		qdel(B)
-		src.deduct_bio_points()
-		src.do_cooldown()
 
-/datum/blob_ability/attack
+/datum/targetable/blob/attack
 	name = "Attack"
 	icon_state = "blob-attack"
 	desc = "This ability commands the blob to attack the selected tile instantly. It must be next to a blob."
-	bio_point_cost = 1
-	cooldown_time = 20
+	pointCost = 1
+	cooldown = 2 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return
-		if (!T)
-			T = get_turf(owner)
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		var/obj/blob/B
 		var/turf/checked
@@ -509,79 +656,81 @@
 					break
 
 		if (!istype(B))
-			boutput(owner, "<span class='alert'>That tile is not adjacent to a blob capable of attacking.</span>")
+			boutput(src.holder.owner, "<span class='alert'>That tile is not adjacent to a blob capable of attacking.</span>")
 			return
 
-		if (!tutorial_check("attack", T))
+		if (!src.blob_holder.tutorial_check("attack", T))
 			return
 
-		owner.playsound_local(owner.loc, "sound/voice/blob/blob[pick("deploy", "attack")].ogg", 85, 1)
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blob[pick("deploy", "attack")].ogg", 85, 1)
 		B.attack(T)
 		for (var/obj/blob/C in orange(B, 7))
 			if (prob(25))
-				if (C.overmind == B.overmind)
+				if (C.blob_holder == B.blob_holder)
 					C.attack_random()
 
-		src.deduct_bio_points()
-		src.do_cooldown()
 
-/datum/blob_ability/repair
+/datum/targetable/blob/repair
 	name = "Repair"
 	icon_state = "blob-repair"
 	desc = "This ability repairs a selected blob tile by 20 health."
-	bio_point_cost = 1
-	cooldown_time = 20
+	pointCost = 1
+	cooldown = 2 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
-			return
-		if (!T)
-			T = get_turf(owner)
+			return 1
 
-		if (!tutorial_check("repair", T))
-			return
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
+
+		if (!src.blob_holder.tutorial_check("repair", T))
+			return 1
 
 		var/obj/blob/B = T.get_blob_on_this_turf()
 
 		if (B)
 			if(ON_COOLDOWN(B, "manual_blob_heal", 6 SECONDS))
-				boutput(owner, "<span class='alert'>That blob tile needs time before it can be repaired again.</span>")
-				return
+				boutput(src.holder.owner, "<span class='alert'>That blob tile needs time before it can be repaired again.</span>")
+				return 1
 
 			B.heal_damage(20)
 			B.update_icon()
-			owner.playsound_local(owner.loc, "sound/voice/blob/blobheal[rand(1, 3)].ogg", 50, 1)
-			src.deduct_bio_points()
-			src.do_cooldown()
+			src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobheal[rand(1, 3)].ogg", 50, 1)
 		else
-			boutput(owner, "<span class='alert'>There is no blob there to repair.</span>")
+			boutput(src.holder.owner, "<span class='alert'>There is no blob there to repair.</span>")
+			return 1
 
-/datum/blob_ability/absorb
+/datum/targetable/blob/absorb
 	name = "Absorb"
 	icon_state = "blob-absorb"
-	desc = "This will attempt to absorb a living being standing on one of your blob tiles. It takes a moment to work. If successful, it will grant four evo points, or one for monkeys."
-	bio_point_cost = 0
-	cooldown_time = 2 SECONDS
+	desc = "This will attempt to absorb a living person standing on one of your blob tiles. It takes a moment to work. If successful, it will grant four evo points."
+	pointCost = 0
+	cooldown = 2 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
-			return
-		if (!T)
-			T = get_turf(owner)
+			return 1
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		var/obj/blob/B = T.get_blob_on_this_turf()
 		if (!istype(B))
-			boutput(owner, "<span class='alert'>There is no blob there to absorb someone with.</span>")
-			return
+			boutput(src.holder.owner, "<span class='alert'>There is no blob there to absorb someone with.</span>")
+			return 1
 		if (!B.can_absorb)
-			boutput(owner, "<span class='alert'>[B] cannot absorb beings.</span>")
+			boutput(src.holder.owner, "<span class='alert'>[B] cannot absorb beings.</span>")
 
-		if (!tutorial_check("absorb", T))
-			return
+		if (!src.blob_holder.tutorial_check("absorb", T))
+			return 1
 
 		//Things that can be absorbed: humans, mobcritters, monkeys
 
-		// var/mob/living/M = locate(/mob/living) in T.contents
 		var/mob/living/M = null
 		for (var/A in T.contents)
 			if (check_target_immunity(A))
@@ -597,17 +746,16 @@
 		if (!M)
 			M = locate() in T
 			if (ishuman(M))
-				boutput(owner, "<span class='alert'>There's no flesh left on [M.name] to absorb.</span>")
+				boutput(src.holder.owner, "<span class='alert'>There's no flesh left on [M.name] to absorb.</span>")
 				return
-			boutput(owner, "<span class='alert'>There is no-one there that you can absorb.</span>")
+			boutput(src.holder.owner, "<span class='alert'>There is no-one there that you can absorb.</span>")
 			return
 
 		B.visible_message("<span class='alert'><b>The blob starts trying to absorb [M.name]!</b></span>")
-		actions.start(new /datum/action/bar/blob_absorb(M, owner), B)
-
+		actions.start(new /datum/action/bar/blob_absorb(M, src.holder.owner), B)
 
 //The owner is the blob tile object...
-/datum/action/bar/blob_absorb //This is used when you try to set someones internals
+/datum/action/bar/blob_absorb
 	bar_icon_state = "bar-blob"
 	border_icon_state = "border-blob"
 	color_active = "#d73715"
@@ -615,49 +763,42 @@
 	color_failure = "#8d1422"
 	duration = 10 SECONDS
 
-	// interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	interrupt_flags = 0
-	id = "internalsother"
-	// icon = 'icons/obj/clothing/item_masks.dmi'
-	// icon_state = "breath"
+	id = "blobabsorb"
 	var/mob/living/target
-	var/mob/living/intangible/blob_overmind/blob_o
+	var/datum/abilityHolder/blob/blob_holder
 
-	//Target (obvious),
-	New(Target, var/mob/living/intangible/blob_overmind/blob_o)
+	New(Target, var/datum/abilityHolder/blob/blob_holder)
 		..()
 		target = Target
 		if (!istype(target))
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		src.blob_o = blob_o
+		src.blob_holder = blob_holder
 
-	onInterrupt(var/flag)
-		..()
 	onUpdate()
 		..()
-		if(!target || !owner || get_dist(owner, target) > 0 || !blob_o)
+		if(!target || !owner || GET_DIST(owner, target) > 0 || !blob_holder)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		if (ishuman(target) && target:decomp_stage == 4)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		//damage thing a bit
-		// target.take_toxin_damage(rand(2,4))
 		target.TakeDamage(burn=rand(2,4), tox=rand(2,4))
 
 	onEnd()
 		..()
 		//owner type actually matters here. But it should never not be this anyway...
-		if(!target || !owner || get_dist(owner, target) > 0 || !istype (blob_o, /mob/living/intangible/blob_overmind))
+		if(!target || !owner || GET_DIST(owner, target) > 0 || !istype(blob_holder))
 			return
 
 		//This whole first bit is all still pretty ugly cause this ability works on both critters and humans. I didn't have it in me to rewrite the whole thing - kyle
 		if (ismobcritter(target))
 			target.gib()
 			target.visible_message("<span class='alert'><b>The blob tries to absorb [target.name], but something goes horribly right!</b></span>")
-			if (blob_o?.mind) //ahem ahem AI blobs exist
-				blob_o.mind.blob_absorb_victims += target
+			if (blob_holder.owner?.mind) //ahem ahem AI blobs exist
+				blob_holder.owner.mind.blob_absorb_victims += target
 			return
 
 		if (!ishuman(target))
@@ -669,11 +810,11 @@
 		if (H?.decomp_stage == 4)
 			H.decomp_stage = 4
 
-		if (blob_o?.mind) //ahem ahem AI blobs exist
-			blob_o.mind.blob_absorb_victims += H
+		if (blob_holder.owner?.mind) //ahem ahem AI blobs exist
+			blob_holder.owner.mind.blob_absorb_victims += H
 
-		if (!isnpcmonkey(H) || prob(50))
-			blob_o.evo_points += 2
+		if (!isnpc(H))
+			blob_holder.evo_points += 4
 			playsound(H.loc, "sound/voice/blob/blobsucced.ogg", 100, 1)
 		//This is all the animation and stuff making the effect look good crap. Not much to see here.
 
@@ -696,23 +837,25 @@
 			sleep(2 SECONDS)
 			animate(H, time = 10, alpha = 255, pixel_z = current_target_z, easing = LINEAR_EASING)
 
-
-/datum/blob_ability/reinforce
+/datum/targetable/blob/reinforce
 	name = "Reinforce Blob"
 	icon_state = "blob-reinforce"
 	desc = "Reinforce the selected blob bit with a material deposit on the same tile. Blob bits with reinforcements may be more durable or more heat resistant, or otherwise may bear special properties depending on the properties of the material. A single blob bit can be repeatedly reinforced to push its properties closer to that of the reinforcing material."
-	bio_point_cost = 2
-	cooldown_time = 20
+	pointCost = 2
+	cooldown = 2 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return 1
-		if (!T)
-			T = get_turf(owner)
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		var/obj/blob/B = locate() in T
 		if (!B)
-			boutput(owner, "<span class='alert'>No blob there to reinforce.</span>")
+			boutput(src.holder.owner, "<span class='alert'>No blob there to reinforce.</span>")
 			return 1
 
 		var/list/deposits = list()
@@ -721,7 +864,7 @@
 			deposits += M
 
 		if (!deposits.len)
-			boutput(owner, "<span class='alert'>No material deposits for reinforcement there.</span>")
+			boutput(src.holder.owner, "<span class='alert'>No material deposits for reinforcement there.</span>")
 			return 1
 
 		var/obj/material_deposit/reinforcing = deposits[1]
@@ -738,86 +881,83 @@
 		B.setMaterial(getInterpolatedMaterial(B.material, reinforcing.material, 0.17))
 		qdel(reinforcing)
 
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobreinforce[rand(1, 2)].ogg", 50, 1)
-		src.deduct_bio_points()
-		src.do_cooldown()
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobreinforce[rand(1, 2)].ogg", 50, 1)
 
-
-/datum/blob_ability/reclaimer
+/datum/targetable/blob/reclaimer
 	name = "Build Reclaimer"
 	icon_state = "blob-reclaimer"
 	desc = "This will convert an untapped reagent deposit in the blob into a reclaimer. Reclaimers consume the reagents in the deposit and provide biopoints in exchange. When the deposit depletes, the reclaimer becomes a lipid."
-	bio_point_cost = 4
-	cooldown_time = 50
+	pointCost = 4
+	cooldown = 5 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return 1
-		if (!T)
-			T = get_turf(owner)
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		var/obj/blob/deposit/B = locate() in T
 		if (!B)
-			boutput(owner, "<span class='alert'>Reclaimers must be placed on untapped reagent deposits.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Reclaimers must be placed on untapped reagent deposits.</span>")
 			return 1
 		if (B.type != /obj/blob/deposit)
-			boutput(owner, "<span class='alert'>Reclaimers must be placed on untapped reagent deposits.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Reclaimers must be placed on untapped reagent deposits.</span>")
 			return 1
 
-		if (!tutorial_check("reclaimer", T))
+		if (!src.blob_holder.tutorial_check("reclaimer", T))
 			return 1
 
 		B.build_reclaimer()
-		src.deduct_bio_points()
-		src.do_cooldown()
 
-		return
-
-/datum/blob_ability/replicator
+/datum/targetable/blob/replicator
 	name = "Build Replicator"
 	icon_state = "blob-replicator"
 	desc = "This will convert an untapped reagent deposit in the blob into a replicator. Replicators use other reagent deposits to create more of the highest volume reagent in the deposit."
-	bio_point_cost = 4
-	cooldown_time = 50
+	pointCost = 4
+	cooldown = 5 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return 1
-		if (!T)
-			T = get_turf(owner)
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		var/obj/blob/deposit/B = locate() in T
 		if (!B)
-			boutput(owner, "<span class='alert'>Replicators must be placed on untapped reagent deposits.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Replicators must be placed on untapped reagent deposits.</span>")
 			return 1
 		if (B.type != /obj/blob/deposit)
-			boutput(owner, "<span class='alert'>Replicators must be placed on untapped reagent deposits.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Replicators must be placed on untapped reagent deposits.</span>")
 			return 1
 
-		if (!tutorial_check("replicator", T))
+		if (!src.blob_holder.tutorial_check("replicator", T))
 			return 1
 
 		B.build_replicator()
-		src.deduct_bio_points()
-		src.do_cooldown()
 
-		return
-
-/datum/blob_ability/bridge
+/datum/targetable/blob/bridge
 	name = "Build Bridge"
 	icon_state = "blob-bridge"
 	desc = "Creates a floor that you can cross through in space. The floor can be destroyed by fire or weldingtools, and does not act as a blob tile."
-	bio_point_cost = 5
-	cooldown_time = 5 SECONDS
+	pointCost = 5
+	cooldown = 5 SECONDS
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return 1
-		if (!T)
-			T = get_turf(owner)
 
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 		if (!istype(T, /turf/space))
-			boutput(owner, "<span class='alert'>Bridges must be placed on space tiles.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Bridges must be placed on space tiles.</span>")
 			return 1
 
 		var/passed = 0
@@ -829,25 +969,21 @@
 					break
 
 		if (!passed)
-			boutput(owner, "<span class='alert'>You require an adjacent blob tile to create a bridge.</span>")
+			boutput(src.holder.owner, "<span class='alert'>You require an adjacent blob tile to create a bridge.</span>")
 			return 1
 
-		if (!tutorial_check("bridge", T))
+		if (!src.blob_holder.tutorial_check("bridge", T))
 			return 1
 
 		var/turf/floor/blob/B = T.ReplaceWith(/turf/floor/blob, FALSE, TRUE, FALSE)
-		B.setOvermind(owner)
-		src.deduct_bio_points()
-		src.do_cooldown()
+		B.setHolder(src.holder)
 
-		return
-
-/datum/blob_ability/devour_item
+/datum/targetable/blob/devour_item
 	name = "Devour Item"
 	icon_state = "blob-digest"
 	desc = "This ability will attempt to devour and digest an object on or cardinally adjacent to a blob tile. This process takes 2 seconds, and it can be interrupted by the removal of the blobs in the item's vicinity or the item itself. If the item or any of its contents contained any reagents, a reagent deposit tile will be created on a nearby standard blob tile."
-	bio_point_cost = 3
-	cooldown_time = 0
+	pointCost = 3
+	cooldown = 0
 
 	proc/recursive_reagents(var/obj/O)
 		var/list/ret = list()
@@ -858,22 +994,19 @@
 			ret += recursive_reagents(P)
 		return ret
 
-	onUse(var/turf/T)
+	cast(var/atom/target)
 		if (..())
 			return 1
 
-		if (!T)
-			T = get_turf(owner)
-		var/sel_target = T
-		if (isturf(T))
-			sel_target = null
-		else
-			T = get_turf(T)
-		var/list/items = list()
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
+		var/list/obj/item/items = list()
 		for (var/obj/item/I in T)
 			items += I
 		if (!items.len)
-			boutput(owner, "<span class='alert'>Nothing to devour there.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Nothing to devour there.</span>")
 			return 1
 
 		var/obj/blob/Bleb = locate() in T
@@ -885,19 +1018,15 @@
 					break
 
 		if (!Bleb)
-			boutput(owner, "<span class='alert'>There is no blob nearby which can devour items.</span>")
+			boutput(src.holder.owner, "<span class='alert'>There is no blob nearby which can devour items.</span>")
 			return 1
 
-		if (!tutorial_check("devour", T))
+		if (!src.blob_holder.tutorial_check("devour", T))
 			return 1
 
 		var/obj/item/I = items[1]
-		if (!sel_target)
-			if (items.len > 1)
-				I = input("Which item?", "Item", null) as null|anything in items
-		else
-			I = sel_target
-
+		if (items.len > 1)
+			I = input("Which item?", "Item", null) as null|anything in items
 		if (!I)
 			return 1
 
@@ -905,210 +1034,203 @@
 			return 1
 
 		if (!Bleb) //Wire: Duplicated from above because there's an input() in-between (Fixes runtime: Cannot execute null.visible message())
-			boutput(owner, "<span class='alert'>There is no blob nearby which can devour items.</span>")
+			boutput(src.holder.owner, "<span class='alert'>There is no blob nearby which can devour items.</span>")
 			return 1
 
 		Bleb.visible_message("<span class='alert'><b>The blobs starts devouring [I]!</b></span>")
-		sleep(2 SECONDS)
-		if (!I)
-			return 1
-		if (!isturf(I.loc))
-			return 1
-		Bleb = locate() in I.loc
-		if (!Bleb)
-			for (var/D in cardinal)
-				var/turf/B = get_step(I.loc, D)
-				Bleb = locate() in B
+		SPAWN_DBG(2 SECONDS)
+			if (I && isturf(I.loc))
+				Bleb = locate() in I.loc
+				if (!Bleb)
+					for (var/D in cardinal)
+						var/turf/B = get_step(I.loc, D)
+						Bleb = locate() in B
+						if (Bleb)
+							break
+
 				if (Bleb)
-					break
+					Bleb.visible_message("<span class='alert'><b>The blob devours [I]!</b></span>")
 
-		if (!Bleb)
-			return 1
+					if (I.material)
+						var/count = 2
+						if (istype(I, /obj/item/raw_material) || istype(I, /obj/item/material_piece))
+							count = 3
+						if (I.amount >= 10)
+							count *= round(I.amount / 10) + 1
+						for (var/i = 1, i <= count, i++)
+							new /obj/material_deposit(Bleb.loc, I.material, src.holder)
 
-		var/do_pool = 0
-
-		Bleb.visible_message("<span class='alert'><b>The blob devours [I]!</b></span>")
-
-		if (I.material)
-			var/count = 2
-			if (istype(I, /obj/item/raw_material) || istype(I, /obj/item/material_piece))
-				count = 3
-				do_pool = 1
-			if (I.amount >= 10)
-				count *= round(I.amount / 10) + 1
-			for (var/i = 1, i <= count, i++)
-				new /obj/material_deposit(Bleb.loc, I.material, owner)
-
-		var/list/aggregated = recursive_reagents(I)
-		if (aggregated.len)
-			if (Bleb.type != /obj/blob)
-				Bleb = null
-				for (var/obj/blob/C in range(5, Bleb))
-					if (C.type == /obj/blob && C.overmind == owner)
-						Bleb = C
-						break
-			if (Bleb)
-				var/obj/blob/deposit/B2 = new /obj/blob/deposit(Bleb.loc)
-				B2.setOvermind(owner)
-				qdel(Bleb)
-				B2.reagents = new /datum/reagents(0)
-				B2.reagents.my_atom = B2
-				for (var/datum/reagent/R in aggregated)
-					if (!B2)
-						src.deduct_bio_points()
-						return
-					B2.reagents.maximum_volume += R.volume
-					B2.reagents.add_reagent(R.id, R.volume)
-				if (B2)
-					B2.update_reagent_overlay()
-					if (!B2.reagents.total_volume)
-						var/obj/blob/B3 = new /obj/blob(B2.loc)
-						B3.setOvermind(owner)
-						qdel(B2)
-		src.deduct_bio_points()
-
-		if (do_pool)
-			qdel(I)
-		else
-			qdel(I)
+					var/list/aggregated = recursive_reagents(I)
+					qdel(I)
+					if (aggregated.len)
+						if (Bleb.type != /obj/blob)
+							Bleb = null
+							for (var/obj/blob/C in range(5, Bleb))
+								if (C.blob_holder == src.holder && istype_exact(C, /obj/blob))
+									Bleb = C
+									break
+						if (Bleb)
+							var/obj/blob/deposit/B2 = new /obj/blob/deposit(Bleb.loc)
+							B2.setHolder(src.holder)
+							qdel(Bleb)
+							B2.reagents = new /datum/reagents(0)
+							B2.reagents.my_atom = B2
+							for (var/datum/reagent/R in aggregated)
+								if (B2)
+									B2.reagents.maximum_volume += R.volume
+									B2.reagents.add_reagent(R.id, R.volume)
+							if (B2)
+								B2.update_reagent_overlay()
+								if (!B2.reagents.total_volume)
+									var/obj/blob/B3 = new /obj/blob(B2.loc)
+									B3.setHolder(src.holder)
+									qdel(B2)
 
 // CONSTRUCTION ABILITIES
 
-/datum/blob_ability/build
+/datum/targetable/blob/build
 	var/gen_rate_invest = 0
 	var/build_path = /obj/blob
-	cooldown_time = 100
+	cooldown = 10 SECONDS
 	var/buildname = "build"
 
-	onUse(var/turf/T)
+	extra_help(user)
+		boutput(user, "<span class='notice'>This is a building ability - you need to use it on a regular blob tile.</span>")
+		if (src.gen_rate_invest > 0)
+			boutput(user, "<span class='notice'>This ability requires you to invest [src.gen_rate_invest] of your BP generation rate in it. It will be returned when the cell is destroyed.</span>")
+
+	cast(var/atom/target)
 		if (..())
 			return 1
-		if (!T)
-			T = get_turf(owner)
+
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/T = get_turf(target)
 
 		var/obj/blob/B = T.get_blob_on_this_turf()
 
 		if (!B)
-			boutput(owner, "<span class='alert'>There is no blob there to convert.</span>")
+			boutput(src.holder.owner, "<span class='alert'>There is no blob there to convert.</span>")
 			return 1
 
 		if (gen_rate_invest > 0)
-			if (owner.get_gen_rate() < gen_rate_invest + 1)
-				boutput(owner, "<span class='alert'>You do not have a high enough generation rate to use that ability.</span>")
-				boutput(owner, "<span class='alert'>Keep in mind that you cannot reduce your generation rate to zero or below.</span>")
+			if (src.blob_holder.regenRate < gen_rate_invest + 1)
+				boutput(src.holder.owner, "<span class='alert'>You do not have a high enough generation rate to use that ability.</span>")
+				boutput(src.holder.owner, "<span class='alert'>Keep in mind that you cannot reduce your generation rate to zero or below.</span>")
 				return 1
 
 		if (B.type != /obj/blob)
-			boutput(owner, "<span class='alert'>You cannot convert special blob cells.</span>")
+			boutput(src.holder.owner, "<span class='alert'>You cannot convert special blob cells.</span>")
 			return 1
 
-		if (!tutorial_check(buildname, T))
+		if (!src.blob_holder.tutorial_check(buildname, T))
 			return 1
 
 		var/obj/blob/L = new build_path(T)
-		L.setOvermind(owner)
+		L.setHolder(src.holder)
 		L.setMaterial(B.material)
 		B.material = null
 		qdel(B)
 		if (gen_rate_invest)
-			owner.gen_rate_used++
-		src.deduct_bio_points()
-		src.do_cooldown()
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobplace[rand(1, 6)].ogg", 75, 1)
+			src.blob_holder.gen_rate_used++
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobplace[rand(1, 6)].ogg", 75, 1)
 
-/datum/blob_ability/build/lipid
+/datum/targetable/blob/build/lipid
 	name = "Build Lipid Cell"
 	icon_state = "blob-lipid"
 	desc = "This will convert a blob tile into a Lipid. Lipids act as a storage for 4 biopoints. When you try to spend more than your available biopoints, you will use up lipids to substitute for the missing points. If a lipid is destroyed, the stored points are lost."
-	bio_point_cost = 5
+	pointCost = 5
 	build_path = /obj/blob/lipid
 	buildname = "lipid"
 
-/datum/blob_ability/build/ribosome
+/datum/targetable/blob/build/ribosome
 	name = "Build Ribosome Cell"
 	icon_state = "blob-ribosome"
 	desc = "This will convert a blob tile into a Ribosome. Ribosomes increase your generation of biopoints, allowing you to do more things."
-	bio_point_cost = 15
+	pointCost = 15
 	build_path = /obj/blob/ribosome
 	buildname = "ribosome"
 
-/datum/blob_ability/build/mitochondria
+/datum/targetable/blob/build/mitochondria
 	name = "Build Mitochondria Cell"
 	icon_state = "blob-mitochondria"
 	desc = "This will convert a blob tile into a Mitochondrion. Mitochondria heal nearby blob cells."
-	bio_point_cost = 5
+	pointCost = 5
 	build_path = /obj/blob/mitochondria
 	buildname = "mitochondria"
 
-/datum/blob_ability/build/plasmaphyll
+/datum/targetable/blob/build/plasmaphyll
 	name = "Build Plasmaphyll Cell"
 	icon_state = "blob-plasmaphyll"
 	desc = "This will convert a blob tile into a Plasmaphyll. Plasmaphylls protect nearby blob pieces from sustained fires by absorbing plasma out of the air and converting it into biopoints."
-	bio_point_cost = 15
+	pointCost = 15
 	gen_rate_invest = 1
 	build_path = /obj/blob/plasmaphyll
 	buildname = "plasmaphyll"
 
-/datum/blob_ability/build/ectothermid
+/datum/targetable/blob/build/ectothermid
 	name = "Build Ectothermid Cell"
 	icon_state = "blob-ectothermid"
 	desc = "This will convert a blob tile into a Ectothermid. Ectothermids provice heat protection in an area at the cost of for biopoints."
-	bio_point_cost = 15
+	pointCost = 15
 	gen_rate_invest = 1
 	build_path = /obj/blob/ectothermid
 	buildname = "ectothermid"
 
-/datum/blob_ability/build/reflective
+/datum/targetable/blob/build/reflective
 	name = "Build Reflective Membrane Cell"
 	icon_state = "blob-reflective"
 	desc = "This will convert a blob tile into a reflective membrane. Reflective membranes are reflect energy projectiles back in the direction they were shot from."
-	bio_point_cost = 8
+	pointCost = 8
 	build_path = /obj/blob/reflective
 	buildname = "reflective"
 
-/datum/blob_ability/build/launcher
+/datum/targetable/blob/build/launcher
 	name = "Build Slime Launcher"
 	icon_state = "blob-cannon"
 	desc = "This will convert a blob tile into a slime launcher. Slime launchers will fire weak projectiles at nearby humans and cyborgs at the cost of 2 biopoints. Click-drag any reagent deposit onto a slime launcher to load the reagents into the launcher. When loaded with reagents, the slime bullets are also infused with the reagents and while the reservoir lasts, firing the launcher does not cost biopoints."
-	bio_point_cost = 10
+	pointCost = 10
 	build_path = /obj/blob/launcher
 	buildname = "launcher"
 
-/datum/blob_ability/build/wall
+/datum/targetable/blob/build/wall
 	name = "Build Thick Membrane Cell"
 	icon_state = "blob-wall"
 	desc = "This will convert a blob tile into a wall. Wall cells are harder to destroy."
-	bio_point_cost = 5
+	pointCost = 5
 	build_path = /obj/blob/wall
 	buildname = "wall"
 
-/datum/blob_ability/build/firewall
+/datum/targetable/blob/build/firewall
 	name = "Build Fire-resistant Membrane Cell"
 	icon_state = "blob-firewall"
 	desc = "This will convert a blob tile into a fire-resistant wall. Fire resistant walls are very resistant to fire damage."
-	bio_point_cost = 5
+	pointCost = 5
 	build_path = /obj/blob/firewall
 	buildname = "firewall"
 
-/datum/blob_ability/blob_level_transfer //Spread up/down ladders & elevators, not the thing that moves the overmind between levels
+#ifdef Z3_IS_A_STATION_LEVEL
+/datum/targetable/blob/blob_level_transfer //Spread up/down ladders & elevators, not the thing that moves the overmind between levels
 	name = "Build Level Transfer"
 	icon_state = "blob-leveltransfer"
 	desc = "This will convert a blob tile into a vertical lever transfer, allowing you to spread across station levels. Only placeable in elevator shafts and on ladders."
 
-	bio_point_cost = 4 //2x that of spread
-	cooldown_time = 4 SECONDS //Idem, though this one doesn't have scaling maths
+	pointCost = 4 //2x that of spread
+	cooldown = 4 SECONDS //Idem, though this one doesn't have scaling maths
 
-	onUse(turf/turf_z1)
+	cast(var/atom/target)
 		if (..())
-			return 1 //I dunno
+			return 1
 
-	#ifndef Z3_IS_A_STATION_LEVEL
-		logTheThing("debug", src, null, "A blob tried making a level transfer on a map that doesn't support it, what?")
-		return 1
-	#else
+		if (!target)
+			target = get_turf(src.holder.owner)
+
+		var/turf/turf_z1 = get_turf(target)
+
 		var/turf/turf_z3
 		if (!turf_z1)
-			turf_z1 = get_turf(owner)
+			turf_z1 = get_turf(src.holder.owner)
 		turf_z1 = locate(turf_z1.x, turf_z1.y, 1) //I don't care if this ends up being unnecessary
 		turf_z3 = locate(turf_z1.x, turf_z1.y, 3)
 
@@ -1117,10 +1239,10 @@
 		var/obj/blob/B_z3 = locate() in turf_z3
 
 		if (!(B_z1) && !(B_z3))
-			boutput(owner, "<span class='alert'>You must spread here first on either level.</span>")
+			boutput(src.holder.owner, "<span class='alert'>You must spread here first on either level.</span>")
 			return 1
 		if ((B_z1 && B_z1.type != /obj/blob) || (B_z3 && B_z3.type != /obj/blob))
-			boutput(owner, "<span class='alert'>You can't convert special tiles.</span>")
+			boutput(src.holder.owner, "<span class='alert'>You can't convert special tiles.</span>")
 			return 1
 
 		//This bit is kinda ugly, sorry
@@ -1137,7 +1259,7 @@
 				if (turf_ladder)
 					turf_ladder.blocked = TRUE
 				else //no ladder or elevator, aborte
-					boutput(owner, "<span class='alert'>This must be used at an elevator shaft or ladder.</span>")
+					boutput(src.holder.owner, "<span class='alert'>This must be used at an elevator shaft or ladder.</span>")
 					return 1
 
 		var/obj/blob/linked/up
@@ -1155,237 +1277,233 @@
 
 		up.linked_blob = down
 		down.linked_blob = up
-		up.setOvermind(owner)
-		down.setOvermind(owner)
-		src.deduct_bio_points()
-		src.do_cooldown()
-		owner.playsound_local(owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
-	#endif
+		up.setHolder(src.holder)
+		down.setHolder(src.holder)
+		src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
+#endif
 
-//////////////
-// UPGRADES //
-//////////////
+/datum/targetable/blob/tutorial
+	name = "Interactive Tutorial"
+	desc = "Check out the interactive blob tutorial to get started with blobs."
+	icon_state = "blob-help0"
+	targeted = 0
 
-/datum/blob_upgrade
-	var/name = null
-	var/desc = null
-	var/icon = 'icons/ui/blob_ui.dmi'
-	var/icon_state = "blob-template"
+	cast()
+		if (..())
+			return
+		if (src.blob_holder.tutorial)
+			boutput(src.holder, "<span class='alert'>You're already in the tutorial!</span>")
+			return
+		src.blob_holder.start_tutorial()
+
+/datum/targetable/blob/tutorial_exit
+	name = "Exit Tutorial"
+	desc = "Exit the blob tutorial and re-enter the game."
+	icon_state = "blob-exit"
+	targeted = 0
+	special_screen_loc = "SOUTH,EAST-1"
+
+	cast()
+		if (..())
+			return
+		if (!src.blob_holder.tutorial)
+			boutput(src.holder, "<span class='alert'>You're not in the tutorial!</span>")
+			return
+		src.blob_holder.tutorial.Finish()
+		src.blob_holder.tutorial = null
+
+
+// UPGRADES AKA EVOLUTIONS
+
+/datum/targetable/blob/toggle_evolution_bar
+	name = "Toggle Upgrade Bar"
+	desc = "Expand or contract the upgrades bar."
+	icon_state = "blob-viewupgrades"
+	targeted = 0
+	special_screen_loc = "SOUTH,WEST"
+	helpable = 0
+
+	cast()
+		if (..())
+			return
+		if (src.blob_holder.viewing_upgrades)
+			src.blob_holder.viewing_upgrades = 0
+		else
+			src.blob_holder.viewing_upgrades = 1
+		src.holder.updateButtons()
+
+/datum/targetable/blob/evolution
+	targeted = FALSE
+	special_screen_loc = "SOUTH,WEST"
 	var/evo_point_cost = 0
-	var/last_used = 0
 	var/repeatable = 0
-	var/initially_disabled = 0
 	var/scaling_cost_mult = 1
 	var/scaling_cost_add = 0
-	var/mob/living/intangible/blob_overmind/owner
-	var/atom/movable/screen/blob/button
-	var/upgradename = "upgrade"
+	var/evolution_flags = 0
+	var/id = "upgrade"
 
-	New()
-		..()
-		var/atom/movable/screen/blob/B = new /atom/movable/screen/blob(null)
-		B.icon = src.icon
-		B.icon_state = src.icon_state
-		B.upgrade = src
-		B.name = src.name
-		B.desc = src.desc
-		src.button = B
-
-	disposing()
-		if(button)
-			button.dispose()
-			button = null
-		owner = null
-		..()
+	cast()
+		if(src.check_requirements())
+			src.take_upgrade()
+			src.deduct_evo_points()
 
 	proc/check_requirements()
-		if (!istype(owner))
-			return 0
-		if (owner.evo_points < evo_point_cost)
-			//boutput(owner, "<span class='alert'>You need [bio_point_cost] bio-points to take this upgrade.</span>")
+		if (src.blob_holder.evo_points < evo_point_cost)
 			return 0
 		return 1
-
-	// Wholesale stolen from ability_parent
-	proc/update_cooldown_cost()
-		if (!button)
-			return
-		var/newcolor = null
-
-		if (evo_point_cost)
-			if (owner.evo_points < evo_point_cost)
-				newcolor = rgb(64, 64, 64)
-				button.point_overlay.maptext = "<span class='sh vb r ps2p' style='color: #cc2222;'>[evo_point_cost]</span>"
-			else
-				button.point_overlay.maptext = "<span class='sh vb r ps2p'>[evo_point_cost]</span>"
-		else
-			button.point_overlay.maptext = null
-
-		if (newcolor != button.color)
-			button.color = newcolor
-
 
 	proc/deduct_evo_points()
 		if (evo_point_cost == 0)
 			return
-		owner.evo_points = max(0,round(owner.evo_points - evo_point_cost))
+		src.blob_holder.evo_points = max(0,round(src.blob_holder.evo_points - evo_point_cost))
 		src.evo_point_cost = round(src.evo_point_cost * src.scaling_cost_mult)
 		src.evo_point_cost += scaling_cost_add
 
-
 	proc/take_upgrade()
-		if (!istype(owner))
+		if (!src.blob_holder.tutorial_check(id, null))
 			return 1
-		if (!tutorial_check())
-			return 1
-		if (!(src in owner.upgrades))
-			owner.upgrades += src
+		src.blob_holder.evolution_flags |= src.evolution_flags
 		if (repeatable > 0)
 			repeatable--
 		if (repeatable == 0)
-			owner.available_upgrades -= src
+			src.holder.removeAbilityInstance(src)
 		if (prob(80))
-			owner.playsound_local(owner.loc, "sound/voice/blob/blobup1.ogg", 50, 1)
+			src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobup1.ogg", 50, 1)
 		else if (prob(50))
-			owner.playsound_local(owner.loc, "sound/voice/blob/blobup2.ogg", 50, 1)
+			src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobup2.ogg", 50, 1)
 		else
-			owner.playsound_local(owner.loc, "sound/voice/blob/blobup3.ogg", 50, 1)
+			src.holder.owner.playsound_local(src.holder.owner.loc, "sound/voice/blob/blobup3.ogg", 50, 1)
 
-		owner.update_buttons()
+		src.holder.updateButtons()
 
-	proc/tutorial_check()
-		if (owner)
-			if (owner.tutorial)
-				if (!owner.tutorial.PerformAction("upgrade-[upgradename]", null))
-					return 0
-		return 1
-
-/datum/blob_upgrade/extra_genrate
+/datum/targetable/blob/evolution/extra_genrate
 	name = "Passive: Increase Generation Rate"
 	icon_state = "blob-genrate"
 	desc = "Increases your BP generation rate by 2. Can be repeated."
 	evo_point_cost = 1
 	scaling_cost_add = 1
 	repeatable = -1
-	upgradename = "genrate"
+	id = "upgrade-genrate"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.gen_rate_bonus += 2
-		owner.update_buttons()
+		src.blob_holder.gen_rate_bonus += 2
 
-/datum/blob_upgrade/quick_spread
+/datum/targetable/blob/evolution/quick_spread
 	name = "Passive: Quicker Spread"
 	icon_state = "blob-quickspread"
 	desc = "Reduces the cooldown of your Spread ability by 0.5 seconds. Can be repeated. The cooldown of Spread cannot go below 0.6 seconds."
 	evo_point_cost = 3
 	scaling_cost_add = 3
 	repeatable = -1
-	upgradename = "spread"
+	id = "upgrade-spread"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.spread_upgrade++
+		src.blob_holder.spread_upgrade++
 
-/datum/blob_upgrade/spread
+/datum/targetable/blob/evolution/spread
 	name = "Passive: Spread Upgrade"
 	icon_state = "blob-spread"
 	desc = "When spreading, adds a cumulative 20% chance to spread off another, random tile on your screen. Every time your chance hits a multiple of 100%, the spread for that amount of tiles is guaranteed and a new chance is added for an extra tile. For example, at 120%, you have a 100% chance to spread twice; with a 20% chance to spread three times instead."
 	evo_point_cost = 1
 	scaling_cost_add = 1
 	repeatable = -1
-	upgradename = "multispread"
+	id = "upgrade-multispread"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.multi_spread += 20
+		src.blob_holder.multi_spread += 20
 
-/datum/blob_upgrade/attack
+/datum/targetable/blob/evolution/attack
 	name = "Passive: Attack Upgrade"
 	icon_state = "blob-attack"
 	desc = "Increases your attack damage and the chance of mob knockdown. Level 3+ of this upgrade will allow you to punch down girders. Can be repeated."
 	evo_point_cost = 1
 	scaling_cost_add = 1
 	repeatable = -1
-	upgradename = "attack"
+	id = "upgrade-attack"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.attack_power += 0.34
+		src.blob_holder.attack_power += 0.34
 
-/datum/blob_upgrade/fire_resist
+/datum/targetable/blob/evolution/fire_resist
 	name = "Passive: Fire Resistance"
 	icon_state = "blob-fireresist"
 	desc = "Makes your blob become more resistant to fire and heat based attacks."
 	evo_point_cost = 2
-	upgradename = "fireres"
+	id = "upgrade-fireres"
+	evolution_flags = BLOB_EVOLUTION_FIRERES
 
-/datum/blob_upgrade/poison_resist
+/datum/targetable/blob/evolution/poison_resist
 	name = "Passive: Poison Resistance"
 	icon_state = "blob-poisonresist"
 	desc = "Makes your blob become more resistant to chemical attacks."
 	evo_point_cost = 2
-	upgradename = "poisonres"
+	id = "upgrade-poisonres"
+	evolution_flags = BLOB_EVOLUTION_POISONRES
 
-/datum/blob_upgrade/devour_item
+/datum/targetable/blob/evolution/devour_item
 	name = "Ability: Devour Item"
 	icon_state = "blob-digest"
 	desc = "Unlocks the Devour Item ability, which can be used to near-instantly break down any item adjacent to any blob tile. In addition, a reagent deposit is created in the blob if the item contained any reagents. Reagent deposits can be used with various blob elements. Material bearing objects will break down into material deposits, which can be used to reinforce your blob."
 	evo_point_cost = 1
-	upgradename = "digest"
+	id = "upgrade-digest"
+	evolution_flags = BLOB_EVOLUTION_DEVOURITEM
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/devour_item)
-		owner.add_upgrade(/datum/blob_upgrade/reclaimer)
-		owner.add_upgrade(/datum/blob_upgrade/replicator)
-		owner.add_upgrade(/datum/blob_upgrade/reinforce)
+		src.holder.addAbility(/datum/targetable/blob/devour_item)
+		src.holder.addAbility(/datum/targetable/blob/evolution/reclaimer)
+		src.holder.addAbility(/datum/targetable/blob/evolution/replicator)
+		src.holder.addAbility(/datum/targetable/blob/evolution/reinforce)
 
-/datum/blob_upgrade/reinforce
+// initially disabled
+/datum/targetable/blob/evolution/reinforce
 	name = "Ability: Reinforce"
 	icon_state = "blob-reinforce"
 	desc = "Unlocks the Reinforce ability, which can be used to strengthen a single blob bit. Blob bits with reinforcements may be more durable or more heat resistant, or otherwise may bear special properties depending on the properties of the material. A single blob bit can be repeatedly reinforced to push its properties closer to that of the reinforcing material."
 	evo_point_cost = 1
-	initially_disabled = 1
-	upgradename = "reinforce"
+	id = "upgrade-reinforce"
+	evolution_flags = BLOB_EVOLUTION_REINFORCE
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/reinforce)
-		owner.add_upgrade(/datum/blob_upgrade/reinforce_spread)
+		src.holder.addAbility(/datum/targetable/blob/reinforce)
+		src.holder.addAbility(/datum/targetable/blob/evolution/reinforce_spread)
 
-/datum/blob_upgrade/reinforce_spread
+// initially disabled
+/datum/targetable/blob/evolution/reinforce_spread
 	name = "Passive: Reinforced Spread"
 	icon_state = "blob-global-reinforce"
 	desc = "Reinforces the blob with material permanently. All existing blob tiles are reinforced with the average of the used materials, and all future blob bits will be created with the infusion. This upgrade requires 60 material deposits to be on your current tile."
 	evo_point_cost = 1
-	initially_disabled = 1
 	scaling_cost_add = 2
 	repeatable = -1
-	upgradename = "reinforce_spread"
+	id = "upgrade-reinforce_spread"
 	var/required_deposits = 30
 	var/taking = 0
+	evolution_flags = BLOB_EVOLUTION_REINFORCEALL
 
 	take_upgrade()
-		if (!istype(owner))
-			return 1
-		if (!tutorial_check())
+		if (!src.blob_holder.tutorial_check())
 			return 1
 		var/count = 0
-		for (var/obj/material_deposit/M in view(owner))
-			if (M.overmind == owner && M.material)
+		for (var/obj/material_deposit/M in view(src.holder.owner))
+			if (M.blob_holder == src.holder && M.material)
 				count++
 		if (count < required_deposits)
-			boutput(usr, "<span class='alert'><b>You need more deposits on your screen! (Required: [required_deposits], have: [count])</b></span>")
+			boutput(src.holder.owner, "<span class='alert'><b>You need more deposits on your screen! (Required: [required_deposits], have: [count])</b></span>")
 			return 1
 		if (taking)
-			boutput(usr, "<span class='alert'>Cannot take this upgrade currently! Please wait.</span>")
+			boutput(src.holder.owner, "<span class='alert'>Cannot take this upgrade currently! Please wait.</span>")
 			return 1
 		taking = 1
 		var/list/mats = list()
@@ -1393,7 +1511,7 @@
 		var/list/deposits = list()
 		var/total = 0
 		var/max_id = null
-		for (var/obj/material_deposit/M in view(owner))
+		for (var/obj/material_deposit/M in view(src.holder.owner))
 			if (total >= required_deposits)
 				break
 			var/datum/material/Mat = M.material
@@ -1422,109 +1540,106 @@
 			taking = 0
 			return 1
 		var/datum/material/to_merge = mats[max_id]
-		owner.my_material = getInterpolatedMaterial(owner.my_material, to_merge, 0.17)
+		src.blob_holder.my_material = getInterpolatedMaterial(src.blob_holder.my_material, to_merge, 0.17)
 		for (var/obj/O in deposits)
 			qdel(O)
 		boutput(usr, "<span class='notice'>Applying upgrade to the blob...</span>")
 		SPAWN_DBG(0)
 			var/wg = 0
-			for (var/obj/blob/O in owner.blobs)
-				O.setMaterial(owner.my_material)
+			for (var/obj/blob/O in src.blob_holder.blobs)
+				O.setMaterial(src.blob_holder.my_material)
 				wg++
 				if (wg >= 20)
 					sleep(0.1 SECONDS)
 					wg = 0
 			boutput(usr, "<span class='notice'>Finished applying material upgrade!</span>")
 			taking = 0
-		if (!(src in owner.upgrades))
-			owner.upgrades += src
+		if (!(BLOB_EVOLUTION_REINFORCEALL & src.blob_holder.evolution_flags))
+			src.blob_holder.evolution_flags |= BLOB_EVOLUTION_REINFORCEALL
 		return 0
 
-/datum/blob_upgrade/reclaimer
+// initially disabled
+/datum/targetable/blob/evolution/reclaimer
 	name = "Structure: Reclaimer"
 	icon_state = "blob-reclaimer"
 	desc = "Unlocks the Reclaimer blob bit, which can be placed on reagent deposits. The reclaimer produces biopoints over time using reagents. Once the deposit depletes, the blob piece is transformed into a lipid."
 	evo_point_cost = 1
-	initially_disabled = 1
-	upgradename = "reclaimer"
+	id = "upgrade-reclaimer"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/reclaimer)
+		src.holder.addAbility(/datum/targetable/blob/reclaimer)
 
-/datum/blob_upgrade/replicator
+// initially disabled
+/datum/targetable/blob/evolution/replicator
 	name = "Structure: Replicator"
 	icon_state = "blob-replicator"
 	desc = "Unlocks the Replicator blob bit, which can be placed on reagent deposits. The replicator replicates the highest volume reagent in the deposit using reagents from other deposits, at the cost of biopoints."
 	evo_point_cost = 2
-	initially_disabled = 1
-	upgradename = "replicator"
+	id = "upgrade-replicator"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/replicator)
+		src.holder.addAbility(/datum/targetable/blob/replicator)
 
-/datum/blob_upgrade/bridge
+/datum/targetable/blob/evolution/bridge
 	name = "Structure: Bridge"
 	icon_state = "blob-bridge"
 	desc = "Unlocks the Bridge blob bit, which can be placed on space tiles. Bridges are floor tiles, you still need to spread onto them, and cannot spread from them."
 	evo_point_cost = 1
-	initially_disabled = 0
-	upgradename = "bridge"
+	id = "upgrade-bridge"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/bridge)
+		src.holder.addAbility(/datum/targetable/blob/bridge)
 
-/datum/blob_upgrade/launcher
+/datum/targetable/blob/evolution/launcher
 	name = "Structure: Slime Launcher"
 	icon_state = "blob-cannon"
 	desc = "Unlocks the Slime Launcher blob bit, which fires at nearby mobs at the cost of biopoints. Slime inflicts a short stun and minimal damage."
-	upgradename = "launcher"
-
+	id = "upgrade-launcher"
 	evo_point_cost = 1
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/build/launcher)
+		src.holder.addAbility(/datum/targetable/blob/build/launcher)
 
-/datum/blob_upgrade/plasmaphyll
+/datum/targetable/blob/evolution/plasmaphyll
 	name = "Structural: Plasmaphyll"
 	icon_state = "blob-plasmaphyll"
 	desc = "Unlocks the plasmaphyll blob bit, which passively protects an area from plasma by converting it to biopoints."
 	evo_point_cost = 1
-	upgradename = "plasmaphyll"
+	id = "upgrade-plasmaphyll"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/build/plasmaphyll)
+		src.holder.addAbility(/datum/targetable/blob/build/plasmaphyll)
 
-/datum/blob_upgrade/ectothermid
+/datum/targetable/blob/evolution/ectothermid
 	name = "Structural: Ectothermid"
 	icon_state = "blob-ectothermid"
-	desc = "Unlocks the ectothermid blob bit, which passively an protects area from temperature. This protection consumes biopoints."
+	desc = "Unlocks the ectothermid blob bit, which passively protects an area from temperature. This protection consumes biopoints."
 	evo_point_cost = 2
-	upgradename = "ectothermid"
+	id = "upgrade-ectothermid"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/build/ectothermid)
+		src.holder.addAbility(/datum/targetable/blob/build/ectothermid)
 
-/datum/blob_upgrade/reflective
+/datum/targetable/blob/evolution/reflective
 	name = "Structural: Reflective Membrane"
 	icon_state = "blob-reflective"
 	desc = "Unlocks the reflective membrane, which is immune to energy projectiles."
 	evo_point_cost = 1
-	upgradename = "reflective"
+	id = "upgrade-reflective"
 
 	take_upgrade()
 		if (..())
 			return 1
-		owner.add_ability(/datum/blob_ability/build/reflective)
-
+		src.holder.addAbility(/datum/targetable/blob/build/reflective)

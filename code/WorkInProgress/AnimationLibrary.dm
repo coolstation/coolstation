@@ -1564,3 +1564,22 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 		animate(AM, transform = shrink, time = time, pixel_y = AM.pixel_y - y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
 		animate(transform = M, pixel_y = AM.pixel_y + y_shift)
 
+//!eeee...
+/proc/animate_rise_bottom(var/atom/movable/AM, var/time = 2.8 SECONDS, var/max_scale = 1.3, y_raise = 96, fadeout = 128)
+	var/matrix/grow = matrix()
+	var/matrix/M = matrix(AM.transform)
+	grow.Scale(max_scale,max_scale * 0.9)
+	var/previous_alpha = AM.alpha
+	SPAWN_DBG(0)
+		animate(AM, transform = grow, time = time, pixel_y = AM.pixel_y + y_raise, alpha = max(AM.alpha - fadeout, 0), easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
+		animate(transform = M, pixel_y = AM.pixel_y - y_raise, alpha = previous_alpha)
+
+//...eeeeW
+/proc/animate_rise_top(var/atom/movable/AM, var/time = 1.2 SECONDS, var/min_scale = 0.3)
+	var/matrix/shrink = matrix()
+	var/matrix/M = matrix(AM.transform)
+	shrink.Scale(min_scale,min_scale * 0.9)
+	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
+	SPAWN_DBG(0)
+		animate(AM, transform = shrink, pixel_y = AM.pixel_y - y_shift)
+		animate(transform = M, time = time, pixel_y = AM.pixel_y + y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)

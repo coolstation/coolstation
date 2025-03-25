@@ -647,6 +647,7 @@ var/obj/item/dummy/click_dummy = new
 			T.set_dir(S.dir)
 
 		for (var/atom/movable/AM as anything in S)
+			if (AM.event_handler_flags & Z_ANCHORED) continue
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
 			if (ignore_fluid && istype(AM, /obj/fluid)) continue // this previously said "!ignore_fluid" which seems like a mistake? setting ignore_fluid to 1 actually made it move fluids... ~warc
 			if (!move_ghosts && istype(AM, /mob/dead/observer)) continue
