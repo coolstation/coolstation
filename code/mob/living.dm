@@ -78,6 +78,7 @@
 //#endif
 
 	var/throws_can_hit_me = 1
+	var/can_throw = 1
 
 	var/last_heard_name = null
 	var/last_chat_color = null
@@ -2066,6 +2067,112 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	src.do_disorient(100 * stun_multiplier + stun, weakened = stun, stunned = stun, disorient = stun + 40 * stun_multiplier, remove_stamina_below_zero = 1)
 
 	return shock_damage
+
+/mob/living/proc/throw_mode_off()
+
+/mob/living/throw_item(atom/target, list/params)
+	..()
+	var/turf/thrown_from = get_turf(src)
+	var/how_to_throw = THROW_NORMAL
+
+	var/mob/living/carbon/human/H = null
+
+	if(istype(src, /mob/living/carbon/human))
+		H = src
+
+	throw_mode_off()
+
+	if (!can_throw)
+		return
+
+	if (src.stat)
+		return
+
+	//MBC : removing this because it felt bad and it wasn't *too* exploitable. still does click delay on the end of a throw anyway.
+	//if (usr.next_click > world.time)
+	//	return
+
+	var/obj/item/I = src.equipped()
+
+	if (!I || !isitem(I) || I.cant_drop)
+		if(H)
+			H.slidekick(target)
+		return
+
+	if (istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		I = G.handle_throw(src, target)
+		if (G && !G.qdeled) //make sure it gets qdeled because the critter u_equip function sucks and doesnt properly call dropped()
+			qdel(G)
+		if (!I) return
+
+	if (istype(I, /obj/item/lifted_thing))
+		var/obj/item/lifted_thing/LT = I
+		I = LT.our_thing
+		LT.place_the_thing(get_turf(src), src)
+
+
+	u_equip(I)
+
+	I.set_loc(src.loc)
+
+	if (get_dist(src, target) > 0)
+		src.set_dir(get_dir(src, target))
+
+	if (isitem(I))
+		I.dropped(src) // let it know it's been dropped
+
+	//actually throw it!
+	if (I)
+		attack_twitch(src)
+		I.layer = initial(I.layer)
+		var/yeet = 0 // what the fuck am I doing
+		if(src.mind && H)
+			if(H.mind.karma >= 50) //karma karma karma karma karma khamelion
+				H.yeet_chance = 1
+			if(H.mind.karma < 0) //you come and go, you come and go.
+				H.yeet_chance = 0
+			if(H.mind.karma < 50 && src.mind.karma >= 0)
+				H.yeet_chance = 0.1
+
+			if(prob(H.yeet_chance))
+				src.visible_message("<span class='alert'>[src] yeets [I].</span>")
+				src.say("YEET")
+				yeet = 1 // I hate this
+		else
+			src.visible_message("<span class='alert'>[src] throws [I].</span>")
+		if (iscarbon(I))
+			var/mob/living/carbon/C = I
+			logTheThing("combat", src, C, "throws [constructTarget(C,"combat")] at [log_loc(src)].")
+			if ( ishuman(C) && !C.getStatusDuration("weakened"))
+				C.changeStatus("weakened", 1 SECOND)
+		else
+			// Added log_reagents() call for drinking glasses. Also the location (Convair880).
+			logTheThing("combat", src, null, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] at [log_loc(src)].")
+		if (istype_exact(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction
+			src.inertia_dir = get_dir(target, src)
+			step(src, inertia_dir)
+		if ((istype_exact(I.loc, /turf/space) || I.no_gravity)  && ismob(I))
+			var/mob/M = I
+			M.inertia_dir = get_dir(src,target)
+
+		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
+		if(istype(I,/mob/living/carbon/human))
+			how_to_throw = THROW_KNOCKDOWN
+		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
+		if(yeet)
+			new/obj/effect/supplyexplosion(I.loc)
+
+			playsound(I.loc, 'sound/effects/ExplosionFirey.ogg', 100, 1)
+
+			for(var/mob/M in view(7, I.loc))
+				shake_camera(M, 20, 8)
+
+		if (mob_flags & AT_GUNPOINT)
+			for(var/obj/item/grab/gunpoint/G in grabbed_by)
+				G.shoot()
+
+		src.next_click = world.time + src.combat_click_delay
 
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'
