@@ -28,9 +28,8 @@
 	///time when mob last awoke from hibernation
 	var/last_hibernation_wake_tick = 0
 	var/is_hibernating = TRUE
-
+	can_throw = 0
 	var/can_burn = 1
-	var/can_throw = 0
 	var/can_choke = 0
 	var/in_throw_mode = 0
 	//this is probably crap but I can't be arsed to refactor

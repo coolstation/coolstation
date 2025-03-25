@@ -2401,6 +2401,11 @@
 	update_clothing()
 
 /mob/proc/throw_item(atom/target, list/params)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_MOB_THROW_ITEM, target, params)
+
+/mob/living/throw_item(atom/target, list/params)
+	..()
 	var/turf/thrown_from = get_turf(src)
 	var/how_to_throw = THROW_NORMAL
 
@@ -2408,18 +2413,20 @@
 
 	if(istype(src, /mob/living/carbon/human))
 		H = src
-		H.throw_mode_off()
+
+	throw_mode_off()
+
+	if (!can_throw)
+		return
 
 	if (src.stat)
 		return
-
 
 	//MBC : removing this because it felt bad and it wasn't *too* exploitable. still does click delay on the end of a throw anyway.
 	//if (usr.next_click > world.time)
 	//	return
 
 	var/obj/item/I = src.equipped()
-
 
 	if (!I || !isitem(I) || I.cant_drop)
 		if(H)
@@ -2429,6 +2436,8 @@
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		I = G.handle_throw(src, target)
+		if (G && !G.qdeled) //make sure it gets qdeled because the critter u_equip function sucks and doesnt properly call dropped()
+			qdel(G)
 		if (!I) return
 
 	if (istype(I, /obj/item/lifted_thing))
@@ -2436,12 +2445,16 @@
 		I = LT.our_thing
 		LT.place_the_thing(get_turf(src), src)
 
-	I.set_loc(src.loc)
 
 	u_equip(I)
 
+	I.set_loc(src.loc)
+
 	if (get_dist(src, target) > 0)
 		src.set_dir(get_dir(src, target))
+
+	if (isitem(I))
+		I.dropped(src) // let it know it's been dropped
 
 	//actually throw it!
 	if (I)
@@ -2494,8 +2507,6 @@
 				G.shoot()
 
 		src.next_click = world.time + src.combat_click_delay
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_MOB_THROW_ITEM, target, params)
 
 /mob/throw_impact(atom/hit, datum/thrown_thing/thr)
 	if(!isturf(hit) || hit.density)

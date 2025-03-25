@@ -78,6 +78,7 @@
 //#endif
 
 	var/throws_can_hit_me = 1
+	var/can_throw = 1
 
 	var/last_heard_name = null
 	var/last_chat_color = null
