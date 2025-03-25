@@ -344,7 +344,7 @@
 		else
 			throw_mode_on()
 
-	proc/throw_mode_off()
+	throw_mode_off()
 		src.in_throw_mode = 0
 		src.update_cursor()
 		hud.update_throwing()

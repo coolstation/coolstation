@@ -997,7 +997,7 @@
 	else
 		throw_mode_on()
 
-/mob/living/carbon/human/proc/throw_mode_off()
+/mob/living/carbon/human/throw_mode_off()
 	src.in_throw_mode = 0
 	src.update_cursor()
 	hud.update_throwing()
