@@ -41,7 +41,7 @@
 		..()
 		#ifdef DESERT_MAP
 		src.AddComponent(/datum/component/pitfall/planetary_splat,\
-			BruteDamageMax = 1000,\
+			BruteDamageMax = 1050,\
 			HangTime = 0 SECONDS,\
 			FallTime = 0.1 SECONDS)
 		#endif
