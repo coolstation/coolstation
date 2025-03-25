@@ -50,14 +50,15 @@
 			src.health = src.health_max
 			//DEBUG ("[src.name] [log_loc(src)] has [health] health / [health_max] max health ([health_multiplier] multiplier).")
 
-		if(current_state >= GAME_STATE_WORLD_INIT)
-			SPAWN_DBG(0)
-				initialize()
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			src.set_layer_from_settings()
+			update_nearby_tiles(need_rebuild=1)
 
-	initialize()
+	generate_worldgen()
 		src.set_layer_from_settings()
 		update_nearby_tiles(need_rebuild=1)
-		..()
 
 	proc/set_layer_from_settings()
 		if (!map_settings)
@@ -731,14 +732,18 @@
 	New()
 		..()
 
-		if (map_setting && ticker)
-			src.update_neighbors()
-		//in my original code here i removed the if condition and just updated neighbors and i don't know why
-		//leaving it as is here for now
-
-		SPAWN_DBG(0)
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			if (map_setting && ticker)
+				src.update_neighbors()
+				//in my original code here i removed the if condition and just updated neighbors and i don't know why
+				//leaving it as is here for now
 			src.update_icon()
 			//also need to add some logic as to when things get built vs. deconstructed vs. destroyed but at least it's in here
+
+	generate_worldgen()
+		src.update_icon()
 
 	disposing()
 		..()
@@ -980,12 +985,14 @@
 
 	New()
 		..()
-		if(current_state >= GAME_STATE_WORLD_INIT)
-			SPAWN_DBG(0)
-				initialize()
 
-	initialize()
-		. = ..()
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			src.set_up()
+			qdel(src)
+
+	generate_worldgen()
 		src.set_up()
 		qdel(src)
 
