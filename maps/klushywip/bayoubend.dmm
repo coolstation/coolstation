@@ -1338,6 +1338,19 @@
 	icon_state = "2-8"
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/table/auto,
+/obj/item/device/multitool{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/electronics/soldering{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/item/electronics/soldering{
+	pixel_x = 7;
+	pixel_y = 2
+	},
 /turf/floor/yellow/side{
 	dir = 4
 	},
@@ -11886,7 +11899,6 @@
 	},
 /area/station/engine/engineering)
 "jnT" = (
-/obj/table/auto,
 /obj/item/storage/toolbox/mechanical{
 	pixel_y = 6
 	},
@@ -11902,6 +11914,7 @@
 	pixel_x = -1;
 	pixel_y = -1
 	},
+/obj/table/auto,
 /turf/floor/yellow/side{
 	dir = 4
 	},
@@ -16098,6 +16111,12 @@
 	},
 /turf/floor/black,
 /area/station/crew_quarters/catering)
+"mvb" = (
+/obj/machinery/portable_reclaimer,
+/turf/floor/grime,
+/area/station/storage/warehouse{
+	name = "Warehouse"
+	})
 "mvm" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/cable{
@@ -17221,19 +17240,10 @@
 /turf/floor/engine,
 /area/station/engine/ptl)
 "nnN" = (
-/obj/table/auto,
-/obj/item/device/multitool{
-	pixel_x = -4;
-	pixel_y = 4
+/obj/decal/poster/wallsign/teamwork{
+	pixel_y = 31
 	},
-/obj/item/electronics/soldering{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/obj/item/electronics/soldering{
-	pixel_x = 7;
-	pixel_y = 2
-	},
+/obj/decal/cleanable/mess/sodacan,
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -18141,12 +18151,9 @@
 /turf/wall,
 /area/station/crew_quarters/quarters_west)
 "nUt" = (
-/obj/decal/cleanable/dirt/random,
 /obj/machinery/portable_reclaimer,
-/turf/floor/grime,
-/area/station/storage/warehouse{
-	name = "Warehouse"
-	})
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "nUE" = (
 /turf/floor/carpet/red/fancy/edge{
 	dir = 9
@@ -68974,7 +68981,7 @@ pZg
 rXa
 aRd
 hAj
-cjV
+nUt
 nXI
 jik
 mtV
@@ -77772,7 +77779,7 @@ dzV
 tRV
 osd
 jPq
-nUt
+ltX
 tFa
 cbJ
 mhA
@@ -78074,7 +78081,7 @@ qJv
 mgc
 emK
 lZR
-osd
+mvb
 svB
 cbJ
 mhA
