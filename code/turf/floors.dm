@@ -503,6 +503,43 @@
 
 /////////////////////////////////////////
 
+//IT'S NOT ORANGE OKAY??
+
+/turf/floor/tangerine
+	icon_state = "fulltangerine"
+
+/turf/floor/tangerine/side
+	icon_state = "tangerine"
+
+/turf/floor/tangerine/corner
+	icon_state = "tangerinecorner"
+
+/turf/floor/tangerineblack
+	icon_state = "tangerineblack"
+
+/turf/floor/tangerinewhite
+	icon_state = "tangerinewhite"
+
+/turf/floor/tangerineblack/corner
+	icon_state = "tangerineblackcorner"
+
+/turf/floor/tangerinewhite/corner
+	icon_state = "tangerinewhitecorner"
+
+/turf/floor/tangerinewhite/checker
+	icon_state = "tangerinechecker"
+
+	other
+		dir = 4
+
+/turf/floor/tangerineblack/checker
+	icon_state = "tangerineblackchecker"
+
+	other
+		dir = 4
+
+/////////////////////////////////////////
+
 /turf/floor/circuit
 	name = "transduction matrix"
 	desc = "An elaborate, faintly glowing matrix of isolinear circuitry."
@@ -650,6 +687,16 @@
 /turf/floor/carpet/office/other
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "office_carpet2"
+
+/turf/floor/carpet/arcade/filthy
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "arcade_carpet_filthy"
+	permadirty = 1
+	var/static/image/blacklight_image = image('icons/turf/floors.dmi',"arcade_carpet_glow")
+
+	New()
+		..()
+		src.AddComponent(/datum/component/blacklight_visible, src.blacklight_image)
 
 DEFINE_FLOORS(carpet/regalcarpet,
 	name = "regal carpet";\
@@ -1448,11 +1495,11 @@ DEFINE_FLOORS(techfloor/green,
 		plate_mat = getMaterial("blob")
 		. = ..()
 
-	proc/setOvermind(var/mob/living/intangible/blob_overmind/O)
+	proc/setHolder(var/datum/abilityHolder/blob/AH)
 		if (!material)
 			setMaterial(getMaterial("blob"))
-		material.color = O.color
-		color = O.color
+		material.color = AH.color
+		color = AH.color
 
 	attackby(var/obj/item/W, var/mob/user)
 		if (isweldingtool(W))

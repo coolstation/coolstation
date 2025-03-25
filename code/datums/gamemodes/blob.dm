@@ -109,7 +109,7 @@
 		if (isblob(M.current))
 			var/mob/living/intangible/blob_overmind/O = M.current
 			blobcount += 1
-			tilecount += O.blobs.len
+			tilecount += length(O.blob_holder.blobs)
 	for (var/datum/mind/M in Agimmicks)
 		if (!M)
 			continue
@@ -118,7 +118,7 @@
 		if (isblob(M.current))
 			var/mob/living/intangible/blob_overmind/O = M.current
 			blobcount += 1
-			tilecount += O.blobs.len
+			tilecount += length(O.blob_holder.blobs)
 	if(tilecount < 500*blobcount)
 		return 0
 	return 1

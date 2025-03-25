@@ -44,8 +44,7 @@ chui.bycall = function(method, data) {
 	data = data || {};
 	data._cact = method;
 	const Http = new XMLHttpRequest();
-	Http.open('GET', 'byond://?src=' + chui.window + '&' + $.param(data));
-	Http.send();
+	document.location = 'byond://?src=' + chui.window + '&' + $.param(data);
 };
 
 chui.close = function() {

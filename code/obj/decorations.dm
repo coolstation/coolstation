@@ -217,7 +217,7 @@
 		user.lastattacked = src
 
 		//BUSH ANIMATION!!!!
-		src.shake_bush()
+		src.shake_bush(50)
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
 			var/something = null
@@ -251,8 +251,8 @@
 		interact_particle(user,src)
 
 //BUSH ANIMATION!!!!
-	proc/shake_bush()
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, -1)
+	proc/shake_bush(var/volume)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, -1)
 
 		var/wiggle = 6
 
@@ -310,13 +310,23 @@
 	event_handler_flags = USE_HASENTERED
 
 	//check if somebody walked in and its russlin' time
-	HasEntered(AM as mob|obj)
-		if (ishuman(AM))
-
-			src.shake_bush()
-
+	HasEntered(atom/movable/AM as mob|obj)
 		..()
-		return
+
+		if(!(ishuman(AM) || AM.throwing))
+			return
+
+		if(isnpc(AM)) //if its a monkey (a type of human NPC)
+			src.shake_bush(10)
+			return
+
+		if (AM.throwing) //if its a thlrown item and not a human/monke
+			src.shake_bush(20)
+			return
+		//humans are much louder than thrown items and mobs
+		//Only players will trigger this
+		src.shake_bush(50)
+
 
 /obj/shrub/big/big2
 	icon_state = "fern2"

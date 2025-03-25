@@ -245,6 +245,40 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 		HH.limb_name = "teeth"					// name for the dummy holder
 		HH.can_hold_items = 0
 
+//Admin crimes mickey
+/mob/living/critter/small_animal/mouse/mickey/admin
+	desc = "This is the real one, the real mouse. He is here."
+	pull_w_class = W_CLASS_BUBSIAN
+	health_brute = 42
+	health_burn = 120
+	hand_count = 2
+	is_npc = FALSE
+
+	setup_hands()
+
+		..()
+		var/datum/handHolder/HH = hands[1]
+		HH.limb = new /datum/limb
+		HH.icon = 'icons/ui/critter_ui.dmi'
+		HH.icon_state = "handn"
+		HH.name = "paw"
+		HH.limb_name = "claws"
+
+		HH = hands[2]
+		HH.limb = new /datum/limb
+		HH.icon = 'icons/ui/critter_ui.dmi'
+		HH.icon_state = "handn"
+		HH.name = "paw"
+		HH.limb_name = "claws"
+		HH.can_hold_items = TRUE	// name for the dummy holder
+
+	New()
+		. = ..()
+		var/datum/abilityHolder/critter/abilityHolder = src.add_ability_holder(/datum/abilityHolder/critter)
+		abilityHolder.addAbility(/datum/targetable/ankle_bite)
+		APPLY_MOB_PROPERTY(src, PROP_LIFT_ANYTHING, src)
+		src.ai = null
+
 /mob/living/critter/small_animal/mouse/mickey
 	name = "Mickey Mouse"
 	real_name = "Mickey Mouse"
@@ -1382,6 +1416,11 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_burn = 5
 	flags = TABLEPASS | DOORPASS
 	fits_under_table = 1
+	var/static/image/blacklight_image = image('icons/mob/critter.dmi',"scorpion")
+
+	New()
+		..()
+		src.AddComponent(/datum/component/blacklight_visible, src.blacklight_image)
 
 	setup_hands()
 		..()

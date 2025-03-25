@@ -29,6 +29,7 @@ var/list/ban_from_airborne_fluid = list()
 	mouse_opacity = 1
 	opacity = 0
 	layer = FLUID_AIR_LAYER
+	event_handler_flags = Z_ANCHORED
 
 	set_up(var/newloc, var/do_enters = 1)
 		if (is_setup) return
@@ -161,8 +162,48 @@ var/list/ban_from_airborne_fluid = list()
 		blocked_dirs = 0
 		spawned_any = 0
 
-		var/turf/t
+		var/turf/t = get_turf(src)
 		if(!waterflow_enabled) return
+		var/datum/component/updraft/up = t.GetComponent(/datum/component/updraft)
+		if(up)
+			if (!src.group)
+				src.removed()
+				return
+			t = up.TargetTurf
+			if (IS_VALID_FLUID_TURF(t))
+				if(t.active_airborne_liquid && !t.active_airborne_liquid.pooled)
+					if (t.active_airborne_liquid.group && t.active_airborne_liquid.group != src.group)
+						touched_other_group = t.active_airborne_liquid.group
+						t.active_airborne_liquid.icon_state = "airborne"
+				else if(!t.density && src.group)
+					LAGCHECK(LAG_LOW)
+					spawned_any = 1
+					src.icon_state = "airborne"
+					var/obj/fluid/F = new /obj/fluid/airborne()
+					F.set_up(t,0)
+					if (F && src.group) //set_up may decide to remove F
+						F.amt = src.group.amt_per_tile
+						F.name = src.name
+						F.color = src.finalcolor
+						F.finalcolor = src.finalcolor
+						F.alpha = src.finalalpha
+						F.finalalpha = src.finalalpha
+						F.avg_viscosity = src.avg_viscosity
+						F.last_depth_level = src.last_depth_level
+						F.step_sound = src.step_sound
+						F.movement_speed_mod = src.movement_speed_mod
+
+						if (src.group)
+							F.group = src.group
+							. += F
+						else
+							var/datum/fluid_group/FG = new
+							FG.add(F, src.group.amt_per_tile)
+							F.group = FG
+
+						F.done_init()
+
+
 		for( var/dir in cardinal )
 			LAGCHECK(LAG_LOW)
 			if (!src.group)
@@ -183,7 +224,6 @@ var/list/ban_from_airborne_fluid = list()
 					touched_other_group = t.active_airborne_liquid.group
 					t.active_airborne_liquid.icon_state = "airborne"
 				continue
-
 			if(! t.density )
 				var/suc = 1
 				var/push_thing = 0

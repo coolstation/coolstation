@@ -420,6 +420,8 @@
 			if (!target)
 				return
 
+			worldgen_hold = TRUE
+
 			if (!wall_bits.len)
 				wall_bits = target.generate_walls()
 
@@ -472,6 +474,8 @@
 				active = 0
 				boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
 				return
+
+			initialize_worldgen()
 
 			sleep(sleep_time)
 			if (malfunctioning && prob(20))
@@ -652,6 +656,8 @@
 					mining_apc.zapStuff()
 
 	proc/pull_new_source(var/selectable_encounter_id = null)
+		worldgen_hold = TRUE
+
 		for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 			M.opacity = 1
 			M.set_density(1)
@@ -709,6 +715,7 @@
 			active = 0
 			boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
 			return
+		initialize_worldgen()
 
 		sleep(sleep_time)
 		if (malfunctioning && prob(20))
@@ -1125,7 +1132,8 @@
 	New(var/loc)
 		src.icon_state = pick("ast1","ast2","ast3")
 		..()
-		worldgenCandidates += src
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
 		if(current_state <= GAME_STATE_PREGAME)
 			src.build_icon()
 
@@ -1491,11 +1499,15 @@
 		icon_state = "astfloor" + "[sprite_variation]"
 		coloration_overlay = image(src.icon,"color_overlay")
 		coloration_overlay.blend_mode = 4
-		update_icon()
-		worldgenCandidates += src
+
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			update_icon()
 
 	generate_worldgen()
 		. = ..()
+		update_icon()
 		src.space_overlays()
 
 	ex_act(severity)
@@ -1527,12 +1539,11 @@
 		if (fullbright)
 			src.overlays += /image/fullbright //Fixes perma-darkness
 		#endif
-		SPAWN_DBG(0)
-			if (istype(src)) //Wire note: just roll with this ok
-				for (var/turf/wall/asteroid/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
-				for (var/turf/space/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
+		if (istype(src)) //Wire note: just roll with this ok
+			for (var/turf/wall/asteroid/A in orange(src,1))
+				src.apply_edge_overlay(get_dir(src, A))
+			for (var/turf/space/A in orange(src,1))
+				src.apply_edge_overlay(get_dir(src, A))
 
 	proc/apply_edge_overlay(var/thedir) //For overlays ON THE FLOOR TILE
 		var/image/dig_overlay = image('icons/turf/asteroid.dmi', "edge[thedir]")

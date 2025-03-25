@@ -163,11 +163,23 @@ var/global/datum/transit_controller/transit_controls = new
 	icon_state = "moon_shaft"
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
+	var/datum/light/point/emergency_light
 
 	New()
+		START_TRACKING
 		..()
-		src.calculate_direction(TRUE)
+		src.calculate_direction()
+		src.toggle_lights()
 		src.initialise_component()
+
+	Del()
+		STOP_TRACKING
+		qdel(emergency_light)
+		emergency_light = null
+		..()
+
+	burn_tile()
+		return
 
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_landmark,\
@@ -175,56 +187,85 @@ var/global/datum/transit_controller/transit_controls = new
 			HangTime = 0 SECONDS,\
 			TargetLandmark = fall_landmark)
 
-	proc/calculate_direction(var/propagate = FALSE)
-		var/area_type = get_area(src)
-		var/turf/floor/specialroom/elevator_shaft/n = get_step(src,NORTH)
-		var/turf/floor/specialroom/elevator_shaft/e = get_step(src,EAST)
-		var/turf/floor/specialroom/elevator_shaft/w = get_step(src,WEST)
-		var/turf/floor/specialroom/elevator_shaft/s = get_step(src,SOUTH)
+	proc/toggle_lights()
+		if (src.icon_state == "shaft_center") //the center of big elevators can stay dark
+			emergency_light?.disable()
+			UpdateOverlays(null, "lights")
+		var/image/I = image('icons/obj/pathlights.dmi', "blank")
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_ADD
+		I.layer = LIGHTING_LAYER_BASE
+		switch(src.icon_state)
+			if("moon_shaft")
+				I.icon_state = "shaft_lights"
+			if("shaft_inner")
+				I.icon_state = "shaft_lights-inner"
+			if("shaft_single")
+				I.icon_state = "shaft_lights-single"
 
-		if (!istype(get_area(n), area_type))
-			n = null
-		if (!istype(get_area(e), area_type))
-			e = null
-		if (!istype(get_area(w), area_type))
-			w = null
-		if (!istype(get_area(s), area_type))
-			s = null
-		if (!istype(n))
-			n = null
-		if (!istype(e))
-			e = null
-		if (!istype(w))
-			w = null
-		if (!istype(s))
-			s = null
-
-		if (n && e && w && s)
-			src.icon_state = "shaft_center"
-		else if (e && w && s)
-			set_dir(NORTH)
-		else if (n && e && w)
-			set_dir(SOUTH)
-		else if (n && w && s)
-			set_dir(EAST)
-		else if (n && e && s)
-			set_dir(WEST)
-		else if (n && e)
-			set_dir(SOUTHWEST)
-		else if (e && s)
-			set_dir(NORTHWEST)
-		else if (n && w)
-			set_dir(SOUTHEAST)
-		else if (s && w)
-			set_dir(NORTHEAST)
+		if (shipAlertState == SHIP_ALERT_BAD)
+			if (!emergency_light) //lazy, innit
+				emergency_light = new
+				emergency_light.set_color(1, 0.15, 0.15)
+				emergency_light.set_brightness(0.3)
+				emergency_light.attach(src)
+			UpdateOverlays(I, "lights")
+			emergency_light.enable()
 		else
-			src.icon_state = "shaft_single"
+			UpdateOverlays(null, "lights")
+			emergency_light?.disable()
 
-		if (propagate)
-			n?.calculate_direction(FALSE)
-			e?.calculate_direction(FALSE)
-			w?.calculate_direction(FALSE)
-			s?.calculate_direction(FALSE)
+	proc/calculate_direction()
+		//rewrote this whole thing to only care about areas and not adjacent elevator turfs
+		//I had to anyways to fit in logic for inner corners, but
+		//partially boarding up a shaft (or having a half-smashed elevator platform) shouldn't affect how the shaft presents itself
+		//(I'm coming for Damaged Elevator Platforms 2: This Time It Works next >:3)
+		//And since the areas are static, we don't need to worry about updating neighbours either B)
+		var/area/A = get_area(src)
+		var/area/n = get_area(get_step(src, NORTH))
+		var/area/s = get_area(get_step(src, SOUTH))
+		var/area/e = get_area(get_step(src, EAST))
+		var/area/w = get_area(get_step(src, WEST))
+
+		var/dir2be = NORTH | SOUTH | EAST | WEST
+
+		if (istype_exact(n, A.type))
+			dir2be &= ~NORTH
+		if (istype_exact(s, A.type))
+			dir2be &= ~SOUTH
+		if (istype_exact(e, A.type))
+			dir2be &= ~EAST
+		if (istype_exact(w, A.type))
+			dir2be &= ~WEST
+
+		if (!dir2be) //surrounded by elevator turfs, may be a central or an inner corner
+			//this is hardcoded based on how the corners are ordered in the shaft_inner icon_state
+			//for example, a corner to the southeast is SOUTH, so for a south-east inner corner (where there is NO elevator turf) we want to eliminate all directions but SOUTH
+			dir2be = NORTH | SOUTH | EAST | WEST
+
+			var/area/ne = get_area(get_step(src,NORTHEAST))
+			if (istype_exact(ne, A.type))
+				dir2be &= ~EAST
+			var/area/se = get_area(get_step(src,SOUTHEAST))
+			if (istype_exact(se, A.type))
+				dir2be &= ~SOUTH
+			var/area/nw = get_area(get_step(src,NORTHWEST))
+			if (istype_exact(nw, A.type))
+				dir2be &= ~NORTH
+			var/area/sw = get_area( get_step(src,SOUTHWEST))
+			if (istype_exact(sw, A.type))
+				dir2be &= ~WEST
+			if (dir2be in cardinal)
+				src.icon_state = "shaft_inner"
+				set_dir(dir2be)
+			else src.icon_state = "shaft_center" //also includes things that would correspond to multiple inner corners, which we don't have graphics for
+		else
+			if (dir2be in alldirs)
+				set_dir(dir2be)
+			else //dir2be is 3 or 4 directions
+				//4 directions is a single size elevator
+				//3 directions is a single-neighbour dead end (say you mapped a 2x1 elevator), for which we don't have graphics
+				src.icon_state = "shaft_single"
 
 	ex_act(severity)
 		return

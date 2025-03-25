@@ -14,7 +14,7 @@
 
 	w_class = W_CLASS_BULKY
 
-	New(obj/held_thing, mob/living/carbon/human/holder)
+	New(obj/held_thing, mob/living/holder)
 		if (!istype(held_thing) || !istype(holder))
 			qdel(src)
 			return

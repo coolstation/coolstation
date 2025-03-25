@@ -78,6 +78,7 @@
 //#endif
 
 	var/throws_can_hit_me = 1
+	var/can_throw = 1
 
 	var/last_heard_name = null
 	var/last_chat_color = null
@@ -121,6 +122,11 @@
 	var/list/stomach_contents = list()
 
 	var/last_sleep = 0 //used for sleep_bubble
+
+	//human prototypes for critter slidekicks
+	var/obj/item/clothing/shoes/shoes = null
+	var/datum/human_limbs/limbs = null
+
 
 	can_lie = 1
 
@@ -411,6 +417,13 @@
 			W.onMouseUp(object,location,control,params)
 
 /mob/living/MouseDrop_T(atom/dropped, mob/dropping_user)
+	///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
+	if(isobj(dropped))
+		var/obj/O = dropped
+		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
+			if (can_reach(src, O))
+				new /obj/item/lifted_thing(O, src)
+			return
 	if (istype(dropped, /obj/item/organ/) || istype(dropped, /obj/item/clothing/head/butt/) || istype(dropped, /obj/item/skull/))
 		// because butts are clothing you're born with, and skull primarily exist to reenact hamlet... for some insane reason
 		var/obj/item/organ/dropping_organ = dropped
@@ -2059,6 +2072,204 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	src.do_disorient(100 * stun_multiplier + stun, weakened = stun, stunned = stun, disorient = stun + 40 * stun_multiplier, remove_stamina_below_zero = 1)
 
 	return shock_damage
+
+/mob/living/proc/throw_mode_off()
+
+// allows slidekicking without blocking being a thing
+/mob/living/proc/slidekick(atom/target)
+	if (src.next_click > world.time)
+		return
+	if (src.lying || !src.canmove || !can_act(src))
+		return
+	if (isturf(src.loc) && target)
+		var/turf/T = src.loc
+		var/target_dir = get_dir(src,target)
+		var/did_any_dive_hit = FALSE
+		if(!target_dir)
+			target_dir = src.dir
+		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
+		if (!T.throw_unlimited && target_dir)
+			src.next_click = world.time + src.combat_click_delay
+			if (!HAS_MOB_PROPERTY(src, PROP_SLIDEKICK_TURBO))
+				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
+				src.force_laydown_standup()
+			else
+				src.changeStatus("turbosliding", (0.1 + 0.1 * slidekick_range) SECONDS)
+				src.force_laydown_standup()
+			SPAWN_DBG(0)
+				for (var/v in 1 to slidekick_range)
+					var/turf/target_turf = get_step(src,target_dir)
+					if (!target_turf)
+						target_turf = T
+					step_to(src,target_turf)
+
+					if(get_turf(src) == target_turf)
+						var/mob/living/dive_attack_hit = null
+						for (var/mob/living/L in target_turf)
+							if (src == L) continue
+							dive_attack_hit = L
+							did_any_dive_hit = TRUE
+							break
+
+						var/damage = rand(1,2)
+						if(ishuman(src))
+							if (src.shoes)
+								damage += src.shoes.kick_bonus
+							else if (src.limbs.r_leg)
+								damage += src.limbs.r_leg.limb_hit_bonus
+							else if (src.limbs.l_leg)
+								damage += src.limbs.l_leg.limb_hit_bonus
+
+						for (var/obj/machinery/bot/secbot/secbot in target_turf) // punt that beepsky
+							src.visible_message("<span class='alert'><b>[src]</b> kicks [secbot] like the football!</span>")
+							var/atom/throw_target = get_edge_target_turf(secbot, target_dir)
+							secbot.throw_at(throw_target, 6, 2)
+							SPAWN_DBG(2 SECONDS) //can't believe that just happened! the audacity does not compute! also give it some time to go sailing
+								secbot.threatlevel = 2
+								secbot.EngageTarget(src)
+
+						if (dive_attack_hit)
+							dive_attack_hit.was_harmed(src, special = "slidekick")
+							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
+							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
+							for (var/mob/O in AIviewers(src))
+								O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)
+							logTheThing("combat", src, dive_attack_hit, "slides into [dive_attack_hit] at [log_loc(dive_attack_hit)].")
+
+						var/item_num_to_throw = 0
+						if (ishuman(src))
+							item_num_to_throw += !!src.limbs.r_leg
+							item_num_to_throw += !!src.limbs.l_leg
+
+						if (item_num_to_throw)
+							for (var/obj/item/itm in target_turf) // We want to kick items only
+								if (itm.w_class >= W_CLASS_HUGE)
+									continue
+
+								var/atom/throw_target = get_edge_target_turf(itm, target_dir)
+								if (throw_target)
+									item_num_to_throw--
+									playsound(itm, "swing_hit", 50, 1)
+									itm.throw_at(throw_target, W_CLASS_HUGE - itm.w_class, (1 / itm.w_class) + 0.8) // Range: 1-4, Speed: 1-2
+
+								if (!item_num_to_throw)
+									break
+
+					if (target_turf.throw_unlimited) // oh shit here i go slippin
+						src.throw_at(get_edge_target_turf(src, target_dir),1,1)
+						break
+
+					if (v < slidekick_range)
+						sleep(0.1 SECONDS)
+
+				if(!did_any_dive_hit)
+					for (var/mob/O in AIviewers(src))
+						O.show_message("<span class='alert'><B>[src] slides to the ground!</B></span>", 1, group = "resist")
+	return
+
+
+/mob/living/throw_item(atom/target, list/params)
+	..()
+	var/turf/thrown_from = get_turf(src)
+	var/how_to_throw = THROW_NORMAL
+
+	var/mob/living/carbon/human/H = null
+
+	if(istype(src, /mob/living/carbon/human))
+		H = src
+
+	throw_mode_off()
+
+	if (!can_throw)
+		return
+
+	if (src.stat)
+		return
+
+	//MBC : removing this because it felt bad and it wasn't *too* exploitable. still does click delay on the end of a throw anyway.
+	//if (usr.next_click > world.time)
+	//	return
+
+	var/obj/item/I = src.equipped()
+
+	if (!I || !isitem(I) || I.cant_drop)
+		slidekick(target)
+		return
+
+	if (istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		I = G.handle_throw(src, target)
+		if (G && !G.qdeled) //make sure it gets qdeled because the critter u_equip function sucks and doesnt properly call dropped()
+			qdel(G)
+		if (!I) return
+
+	if (istype(I, /obj/item/lifted_thing))
+		var/obj/item/lifted_thing/LT = I
+		I = LT.our_thing
+		LT.place_the_thing(get_turf(src), src)
+
+
+	u_equip(I)
+
+	I.set_loc(src.loc)
+
+	if (get_dist(src, target) > 0)
+		src.set_dir(get_dir(src, target))
+
+	if (isitem(I))
+		I.dropped(src) // let it know it's been dropped
+
+	//actually throw it!
+	if (I)
+		attack_twitch(src)
+		I.layer = initial(I.layer)
+		var/yeet = 0 // what the fuck am I doing
+		if(src.mind && H)
+			if(H.mind.karma >= 50) //karma karma karma karma karma khamelion
+				H.yeet_chance = 1
+			if(H.mind.karma < 0) //you come and go, you come and go.
+				H.yeet_chance = 0
+			if(H.mind.karma < 50 && src.mind.karma >= 0)
+				H.yeet_chance = 0.1
+
+			if(prob(H.yeet_chance))
+				src.visible_message("<span class='alert'>[src] yeets [I].</span>")
+				src.say("YEET")
+				yeet = 1 // I hate this
+		else
+			src.visible_message("<span class='alert'>[src] throws [I].</span>")
+		if (iscarbon(I))
+			var/mob/living/carbon/C = I
+			logTheThing("combat", src, C, "throws [constructTarget(C,"combat")] at [log_loc(src)].")
+			if ( ishuman(C) && !C.getStatusDuration("weakened"))
+				C.changeStatus("weakened", 1 SECOND)
+		else
+			// Added log_reagents() call for drinking glasses. Also the location (Convair880).
+			logTheThing("combat", src, null, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] at [log_loc(src)].")
+		if (istype_exact(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction
+			src.inertia_dir = get_dir(target, src)
+			step(src, inertia_dir)
+		if ((istype_exact(I.loc, /turf/space) || I.no_gravity)  && ismob(I))
+			var/mob/M = I
+			M.inertia_dir = get_dir(src,target)
+
+		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
+		if(istype(I,/mob/living/carbon/human))
+			how_to_throw = THROW_KNOCKDOWN
+		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
+		if(yeet)
+			new/obj/effect/supplyexplosion(I.loc)
+
+			playsound(I.loc, 'sound/effects/ExplosionFirey.ogg', 100, 1)
+
+			for(var/mob/M in view(7, I.loc))
+				shake_camera(M, 20, 8)
+
+		if (mob_flags & AT_GUNPOINT)
+			for(var/obj/item/grab/gunpoint/G in grabbed_by)
+				G.shoot()
+
+		src.next_click = world.time + src.combat_click_delay
 
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'
