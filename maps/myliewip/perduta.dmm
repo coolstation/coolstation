@@ -985,6 +985,24 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor,
 /area/station/hallway/primary/west)
+"iL" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "iU" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -3625,6 +3643,8 @@
 	dir = 8;
 	status = 2
 	},
+/obj/cable,
+/obj/machinery/power/data_terminal,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Du" = (
@@ -39357,7 +39377,7 @@ no
 no
 MA
 MJ
-OU
+iL
 Dc
 tC
 FN
