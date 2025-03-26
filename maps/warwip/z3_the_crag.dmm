@@ -5649,12 +5649,26 @@
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "xQ" = (
-/obj/storage/secure/closet/security/equipment,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 1;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/storage/closet/biohazard{
+	name = "\improper Narcotics Response Kit"
+	},
+/obj/item/storage/box/biohazard_bags{
+	pixel_y = -3
+	},
+/obj/item/device/narco,
+/obj/item/device/narco{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/device/narco{
+	pixel_y = -8;
+	pixel_x = 2
 	},
 /turf/floor/grey/blackgrime/other,
 /area/station/security/main)
@@ -11033,6 +11047,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/device/narco,
 /turf/floor/grime,
 /area/station/security/main)
 "TA" = (
