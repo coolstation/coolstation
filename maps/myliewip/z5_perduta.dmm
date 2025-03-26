@@ -207,14 +207,6 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
-"fQ" = (
-/obj/cable{
-	icon_state = "1-10";
-	d1 = 1;
-	d2 = 10
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "gp" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -286,22 +278,6 @@
 "hP" = (
 /turf/floor/green,
 /area/station/hydroponics/bay)
-"hR" = (
-/obj/cable{
-	icon_state = "2-5";
-	d1 = 2;
-	d2 = 5
-	},
-/turf/space/fluid/trench,
-/area/magindara)
-"hY" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "ia" = (
 /obj/grille/catwalk/elevator,
 /obj/structure/girder/reinforced,
@@ -332,18 +308,6 @@
 	},
 /turf/floor/cautionblack,
 /area/station/janitor/office)
-"jb" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "js" = (
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 1;
@@ -401,10 +365,6 @@
 	},
 /area/station/hydroponics/bay)
 "ka" = (
-/obj/lattice{
-	dir = 5;
-	icon_state = "lattice-dir-b"
-	},
 /obj/machinery/light/small/red{
 	dir = 8
 	},
@@ -453,6 +413,14 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"lr" = (
+/obj/cable{
+	d1 = 6;
+	d2 = 8;
+	icon_state = "6-8"
+	},
+/turf/space/fluid/trench,
+/area/station/turret_protected/AIbaseoceanfloor)
 "lz" = (
 /turf/space/fluid/trench,
 /turf/wall/r_wall,
@@ -520,16 +488,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor/plating,
 /area/space)
-"mF" = (
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir-b"
-	},
-/obj/machinery/light/small/red{
-	dir = 8
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "mY" = (
 /turf/floor/plating,
 /area/station/maintenance/central)
@@ -557,17 +515,6 @@
 /obj/grille/catwalk/bob/inner,
 /turf/floor/plating,
 /area/station/medical/robotics)
-"oc" = (
-/obj/lattice{
-	dir = 9;
-	icon_state = "lattice-dir-b";
-	tag = "icon-lattice-dir-b (NORTHWEST)"
-	},
-/obj/machinery/light/small/red{
-	dir = 4
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "og" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
@@ -711,11 +658,11 @@
 /turf/space/fluid/trench,
 /area/magindara)
 "rc" = (
-/obj/railing{
+/obj/railing/cool{
 	dir = 8
 	},
 /obj/machinery/hydro_growlamp,
-/obj/railing,
+/obj/railing/cool,
 /turf/floor,
 /area/station/hydroponics/bay)
 "rg" = (
@@ -733,6 +680,19 @@
 "ri" = (
 /turf/wall/r_wall,
 /area/station/hydroponics/bay)
+"rj" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "rn" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -783,9 +743,9 @@
 	icon_state = "lattice-dir"
 	},
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/space/fluid/trench,
 /area/magindara)
@@ -814,6 +774,11 @@
 /turf/space/fluid/trench,
 /area/magindara)
 "tq" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /obj/cable{
 	d1 = 2;
 	d2 = 4;
@@ -942,6 +907,11 @@
 /obj/machinery/light/small/red,
 /turf/space/fluid/trench,
 /area/station/turret_protected/AIbaseoceanfloor)
+"va" = (
+/obj/table/regal/auto,
+/obj/machinery/phone,
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "vy" = (
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
@@ -1003,7 +973,7 @@
 /turf/space/fluid/trench,
 /area/station/turret_protected/AIbaseoceanfloor)
 "xm" = (
-/obj/railing,
+/obj/railing/cool,
 /turf/floor,
 /area/station/hydroponics/bay)
 "xq" = (
@@ -1052,7 +1022,7 @@
 /area/station/medical/robotics)
 "xU" = (
 /obj/submachine/seed_vendor,
-/obj/railing{
+/obj/railing/cool{
 	dir = 4
 	},
 /turf/floor/green/side{
@@ -1147,10 +1117,34 @@
 	},
 /turf/floor/plating,
 /area/space)
+"AA" = (
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "AW" = (
 /obj/disposalpipe/segment/vertical,
 /turf/floor/cautionblack,
 /area/station/maintenance/central)
+"Bu" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Bx" = (
 /obj/machinery/vending/hydroponics,
 /turf/floor/grass/random,
@@ -1273,7 +1267,7 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "Ed" = (
-/obj/railing{
+/obj/railing/cool{
 	dir = 4
 	},
 /turf/floor/green/side{
@@ -1326,6 +1320,30 @@
 /obj/access_spawn/maint,
 /turf/floor/cautionblack,
 /area/station/hydroponics/bay)
+"Fq" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
+"Fw" = (
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "FP" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/darkpurpleblack{
@@ -1544,14 +1562,6 @@
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
-"Jj" = (
-/obj/cable{
-	d1 = 5;
-	d2 = 8;
-	icon_state = "5-8"
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "Jr" = (
 /obj/machinery/conveyor/south{
 	id = "crusherbelt"
@@ -1582,6 +1592,14 @@
 /obj/storage/closet/janitor,
 /turf/floor/black,
 /area/station/janitor/office)
+"Ks" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/space/fluid/trench,
+/area/station/turret_protected/AIbaseoceanfloor)
 "KB" = (
 /obj/machinery/conveyor/south{
 	id = "crusherbelt"
@@ -1687,6 +1705,18 @@
 	},
 /turf/floor/black,
 /area/station/janitor/office)
+"Nj" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/station/turret_protected/AIbaseoceanfloor)
 "Nt" = (
 /obj/machinery/door/airlock/external,
 /obj/cable{
@@ -1800,7 +1830,7 @@
 /area/station/turret_protected/ai)
 "Qk" = (
 /obj/reagent_dispensers/watertank/big,
-/obj/railing{
+/obj/railing/cool{
 	dir = 8
 	},
 /turf/floor/green/side{
@@ -1840,6 +1870,14 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"QN" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/fluid/trench,
+/area/station/turret_protected/AIbaseoceanfloor)
 "Rd" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
@@ -1912,7 +1950,7 @@
 /turf/space/fluid/trench,
 /area/station/turret_protected/AIbaseoceanfloor)
 "Si" = (
-/obj/railing{
+/obj/railing/cool{
 	dir = 8
 	},
 /turf/floor/green/side{
@@ -1957,6 +1995,13 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
+"TL" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "TO" = (
 /obj/decal/cleanable/blood/gibs/body,
 /obj/decal/cleanable/blood,
@@ -1972,6 +2017,13 @@
 	},
 /turf/floor/cautionblack,
 /area/station/janitor/office)
+"Uc" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Uv" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -1990,14 +2042,6 @@
 	dir = 6
 	},
 /area/station/janitor/office)
-"UR" = (
-/obj/cable{
-	icon_state = "4-10";
-	d1 = 4;
-	d2 = 10
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "UU" = (
 /obj/machinery/light,
 /turf/floor/grass/random,
@@ -2026,11 +2070,11 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "VV" = (
-/obj/railing{
+/obj/machinery/hydro_growlamp,
+/obj/railing/cool{
 	dir = 4
 	},
-/obj/machinery/hydro_growlamp,
-/obj/railing,
+/obj/railing/cool,
 /turf/floor,
 /area/station/hydroponics/bay)
 "Wa" = (
@@ -2049,17 +2093,22 @@
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
 "Wk" = (
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/power/apc{
 	pixel_y = -24;
 	name = "Crusher Pit APC";
 	areastring = "Waste Disposal"
 	},
+/obj/cable,
 /turf/space/fluid/trench,
 /area/magindara)
+"Wl" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 9;
+	icon_state = "2-9"
+	},
+/turf/space/fluid/trench,
+/area/station/turret_protected/AIbaseoceanfloor)
 "Wq" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/cautionblack,
@@ -42752,8 +42801,8 @@ BX
 BX
 BX
 BX
-mF
-HX
+ka
+TL
 hv
 hv
 LH
@@ -42767,7 +42816,7 @@ gB
 LH
 hv
 hv
-HX
+Uc
 ka
 BX
 BX
@@ -43960,7 +44009,7 @@ BX
 BX
 BX
 BX
-hR
+BX
 sV
 Nt
 Hh
@@ -44261,9 +44310,9 @@ BX
 BX
 BX
 BX
-UR
 BX
-kM
+BX
+Fq
 gB
 gB
 gB
@@ -44563,11 +44612,11 @@ BX
 BX
 BX
 BX
-QE
+BX
 NG
-HX
-hv
-hv
+Bu
+AA
+Fw
 XI
 pY
 zA
@@ -44579,8 +44628,8 @@ pY
 XI
 hv
 hv
-HX
-oc
+Uc
+NG
 BX
 BX
 BX
@@ -44865,11 +44914,11 @@ BX
 BX
 CP
 hv
-jb
+hv
 HX
 xq
 BX
-BX
+rj
 Wk
 pY
 Iv
@@ -45167,12 +45216,12 @@ BX
 BX
 BX
 BX
-rA
+BX
 ex
 HX
 BX
+QE
 BX
-Jj
 pY
 GO
 KB
@@ -45470,10 +45519,10 @@ BX
 BX
 BX
 BX
-SS
-sV
-TD
-fQ
+BX
+kM
+BX
+QE
 BX
 pY
 GO
@@ -45775,7 +45824,7 @@ BX
 BX
 kM
 BX
-BX
+QE
 BX
 pY
 br
@@ -46077,7 +46126,7 @@ BX
 BX
 Mc
 BX
-BX
+QE
 BX
 pY
 QI
@@ -46379,7 +46428,7 @@ BX
 BX
 BX
 BX
-BX
+QE
 BX
 pY
 Jr
@@ -46681,7 +46730,7 @@ BX
 BX
 BX
 BX
-BX
+QE
 BX
 pY
 pY
@@ -46983,7 +47032,7 @@ BX
 BX
 BX
 BX
-BX
+QE
 BX
 BX
 BX
@@ -47285,7 +47334,7 @@ BX
 BX
 BX
 BX
-BX
+QE
 BX
 BX
 BX
@@ -47587,7 +47636,7 @@ BX
 BX
 BX
 BX
-BX
+rA
 BX
 BX
 BX
@@ -47890,18 +47939,18 @@ BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-Od
-sZ
-Od
+SS
+TD
+TD
+TD
+TD
+TD
+TD
+TD
+TD
+QN
+Nj
+Ks
 JE
 Aq
 ir
@@ -48203,7 +48252,7 @@ BX
 BX
 uY
 lz
-Od
+EE
 JE
 KS
 eR
@@ -48505,7 +48554,7 @@ BX
 BX
 Od
 sZ
-Od
+EE
 JE
 vF
 ir
@@ -48807,7 +48856,7 @@ BX
 BX
 CX
 Iu
-uE
+rg
 JE
 JE
 YS
@@ -49109,10 +49158,10 @@ BX
 BX
 Od
 Od
-Od
+EE
 Od
 JE
-EB
+va
 lC
 eY
 fA
@@ -49411,7 +49460,7 @@ BX
 BX
 BX
 CX
-uE
+rg
 uE
 JE
 JE
@@ -49713,7 +49762,7 @@ BX
 BX
 BX
 BX
-Od
+lr
 Od
 sZ
 Od
@@ -50016,10 +50065,10 @@ BX
 BX
 BX
 BX
-Od
-sZ
-Od
-sZ
+Wl
+Nj
+QN
+Nj
 tq
 xh
 wo
@@ -51228,7 +51277,7 @@ BX
 BX
 BX
 BX
-QE
+rA
 BX
 BX
 BX
@@ -51530,8 +51579,8 @@ BX
 BX
 BX
 BX
-hY
-TD
+BX
+SS
 TD
 TD
 TD
