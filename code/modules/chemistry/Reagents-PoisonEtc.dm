@@ -1132,6 +1132,7 @@ datum
 			transparency = 20
 			depletion_rate = 0.8
 			penetrates_skin = 1
+			contraband = 3
 			var/counter = 1
 			var/remove_buff = 0
 /*

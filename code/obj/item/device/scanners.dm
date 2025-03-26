@@ -411,7 +411,7 @@ that cannot be itched
 		user.visible_message("<span class='notice'><b>[user]</b> scans [A] with [src]!</span>",\
 		"<span class='notice'>You scan [A] with [src]!</span>")
 
-		src.scan_results = scan_reagents(A, visible = 1)
+		src.scan_results = scan_reagents(A, visible = 1, show_volume = !ismob(A))
 		tooltip_rebuild = 1
 
 		if (!isnull(A.reagents))
