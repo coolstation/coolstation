@@ -438,6 +438,59 @@ that cannot be itched
 			if (!isnull(src.scan_results))
 				. += "<br><span class='notice'>Previous scan's results:<br>[src.scan_results]</span>"
 
+
+//Sec variant
+/obj/item/device/narco
+	name = "N.A.R.C.O."
+	icon_state = "narco"
+	desc = "A hand-held device that scans and lists the chemicals inside the scanned subject. Winners dont do drugs!"
+	flags = FPRINT | ONBELT | TABLEPASS | CONDUCT
+	throwforce = 3
+	w_class = W_CLASS_TINY
+	throw_speed = 5
+	throw_range = 10
+	m_amt = 200
+	mats = 5
+	var/scan_results = null
+	hide_attack = 2
+	tooltip_flags = REBUILD_DIST
+
+	attack(mob/M as mob, mob/user as mob)
+		return
+
+	afterattack(atom/A as mob|obj|turf|area, mob/user as mob)
+		user.visible_message("<span class='notice'><b>[user]</b> scans [A] with [src]!</span>",\
+		"<span class='notice'>You scan [A] with [src]!</span>")
+
+		src.scan_results = scan_reagents(A, visible = 1)
+		tooltip_rebuild = 1
+
+		if (!isnull(A.reagents))
+			if (A.reagents.reagent_list.len > 0)
+				set_icon_state("narco-results")
+			else
+				set_icon_state("narco-no")
+		else
+			set_icon_state("narco-no")
+
+		if (isnull(src.scan_results))
+			boutput(user, "<span class='alert'>\The [src] encounters an error and crashes!</span>")
+		else
+			boutput(user, "[src.scan_results]")
+
+	attack_self(mob/user as mob)
+		if (isnull(src.scan_results))
+			boutput(user, "<span class='notice'>No previous scan results located.</span>")
+			return
+		boutput(user, "<span class='notice'>Previous scan's results:<br>[src.scan_results]</span>")
+
+	get_desc(dist)
+		if (dist < 3)
+			if (!isnull(src.scan_results))
+				. += "<br><span class='notice'>Previous scan's results:<br>[src.scan_results]</span>"
+
+
+
 /////////////////////////////////////// Atmos analyzer /////////////////////////////////////
 
 /obj/item/device/analyzer/atmospheric
