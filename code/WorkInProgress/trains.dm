@@ -130,16 +130,25 @@
 	throw_end(list/params, turf/thrown_from)
 		. = ..()
 
-	proc/build_colors()
-		src.main_color = random_color()
+	proc/build_colors(var/main_color, var/casing_color, var/hazpaint_color)
+		if(!main_color)
+			src.main_color = random_color()
+		else
+			src.main_color = main_color
 		var/image/main = image('icons/obj/large/trains_256x128.dmi',"engine_main")
 		main.color = src.main_color
 		src.UpdateOverlays(main, "engine_main")
-		src.casing_color = random_color()
+		if(!casing_color)
+			src.casing_color = random_color()
+		else
+			src.casing_color = casing_color
 		var/image/casing = image('icons/obj/large/trains_256x128.dmi',"engine_casing")
 		casing.color = src.casing_color
 		src.UpdateOverlays(casing, "engine_casing")
-		src.hazpaint_color = random_saturated_hex_color()
+		if(!hazpaint_color)
+			src.hazpaint_color = random_saturated_hex_color()
+		else
+			src.hazpaint_color = hazpaint_color
 		var/image/hazpaint = image('icons/obj/large/trains_256x128.dmi',"engine_hazpaint")
 		hazpaint.color = src.hazpaint_color
 		src.UpdateOverlays(hazpaint, "engine_hazpaint")
