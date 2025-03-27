@@ -690,13 +690,13 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
 	sendItemIconsToAll()
 
+	UPDATE_TITLE_STATUS("Reticulating splines")
+	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
+	initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
+
 	UPDATE_TITLE_STATUS("Starting processes")
 	Z_LOG_DEBUG("World/Init", "Setting up process scheduler...")
 	processScheduler.setup()
-
-	UPDATE_TITLE_STATUS("Reticulating splines")
-	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
-	initialize_worldgen()
 
 	Z_LOG_DEBUG("World/Init", "Running map-specific initialization...")
 	map_settings.init()
