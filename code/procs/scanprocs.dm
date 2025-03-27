@@ -403,9 +403,9 @@
 				var/show_OD = (medical && current_reagent.overdose != 0 && current_reagent.volume >= current_reagent.overdose)
 				var/show_contra_alert = (show_contraband && current_reagent.contraband != 0)
 				if (single_line)
-					reagent_data += "<span [show_OD ? "class='alert'" : "class='notice'"]>[current_reagent][show_volume ? " ([current_reagent.volume])" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>,"
+					reagent_data += "<span [(show_OD || show_contra_alert) ? "class='alert'" : "class='notice'"]>[current_reagent][show_volume ? " ([current_reagent.volume])" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>,"
 				else
-					reagent_data += "<span [show_OD ? "class='alert'" : "class='notice'"]><br>&emsp;[current_reagent.name][show_volume ? " - [current_reagent.volume]" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>"
+					reagent_data += "<span [(show_OD || show_contra_alert) ? "class='alert'" : "class='notice'"]><br>&emsp;[current_reagent.name][show_volume ? " - [current_reagent.volume]" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>"
 			if (single_line)
 				data += "[copytext(reagent_data, 1, -1)]"
 			else
