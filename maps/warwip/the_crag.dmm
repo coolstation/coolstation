@@ -184,9 +184,9 @@
 "aH" = (
 /obj/machinery/plantpot,
 /obj/decal/poster/wallsign/chsc{
-	pixel_y = 31;
+	desc = "A poster that reads 'GROW FOOD, NOT WEED'.";
 	icon_state = "grow_food_not_weed";
-	desc = "A poster that reads 'GROW FOOD, NOT WEED'."
+	pixel_y = 31
 	},
 /turf/floor/grass,
 /area/station/hydroponics/bay{
@@ -7299,9 +7299,6 @@
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/railing/cyan{
-	dir = 8
-	},
 /turf/floor/grime,
 /area/station/quartermaster/cargooffice/storefront)
 "vY" = (
@@ -11956,9 +11953,6 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/railing/cyan{
 	dir = 4
 	},
 /obj/decal/cleanable/rust/jen,
