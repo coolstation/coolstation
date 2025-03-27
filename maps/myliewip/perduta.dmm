@@ -1573,6 +1573,7 @@
 /area/station/medical/research)
 "mO" = (
 /obj/machinery/door/airlock/external,
+/obj/access_spawn/janitor,
 /turf/floor/plating,
 /area/station/janitor/office)
 "mP" = (
@@ -1810,6 +1811,19 @@
 /obj/railing/cool,
 /turf/floor/specialroom/clown,
 /area/station/crew_quarters/clown)
+"oD" = (
+/obj/machinery/power/apc{
+	areastring = "Janitor's Supply Closet";
+	dir = 8;
+	name = "Janitor Closet APC";
+	pixel_x = -24
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "oF" = (
 /obj/railing/cool,
 /turf/floor,
@@ -5574,6 +5588,8 @@
 /area/station/maintenance/central)
 "RC" = (
 /obj/machinery/door/airlock,
+/obj/access_spawn/janitor,
+/obj/firedoor_spawn,
 /turf/floor,
 /area/station/janitor/supply)
 "RD" = (
@@ -6440,6 +6456,19 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"XI" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "XN" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/lattice{
@@ -6493,6 +6522,7 @@
 	},
 /area/station/medical/robotics)
 "Yj" = (
+/obj/storage/closet,
 /turf/floor/darkpurpleblack{
 	dir = 8
 	},
@@ -35524,8 +35554,8 @@ ra
 ra
 nJ
 nJ
-SO
-SO
+nJ
+nL
 SO
 SO
 SO
@@ -35826,8 +35856,8 @@ Dk
 ra
 nJ
 nJ
-Vq
-Vq
+nJ
+nL
 Vq
 Vq
 Vq
@@ -36128,8 +36158,8 @@ Dr
 RC
 nJ
 nJ
-Vq
-Vq
+nJ
+qt
 Vq
 Vq
 Vq
@@ -36430,7 +36460,7 @@ iA
 ra
 nJ
 nJ
-nL
+nJ
 nL
 nL
 nL
@@ -37028,7 +37058,7 @@ mF
 mF
 mF
 mF
-mF
+oD
 mF
 Wg
 Xg
@@ -37330,8 +37360,8 @@ MJ
 MJ
 MJ
 MJ
-mF
-mF
+XI
+MJ
 qt
 nJ
 nJ
