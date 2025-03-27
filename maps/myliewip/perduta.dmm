@@ -203,6 +203,11 @@
 /obj/railing/cool{
 	dir = 4
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/floor,
 /area/station/hallway/primary/west)
 "cn" = (
@@ -332,6 +337,14 @@
 /obj/firedoor_spawn,
 /turf/floor/blue,
 /area/station/medical/medbay/treatment)
+"de" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/cautionblack/side{
+	dir = 8
+	},
+/area/station/hallway/primary/west)
 "df" = (
 /obj/disposalpipe/segment/vertical,
 /turf/floor/blue,
@@ -469,6 +482,17 @@
 	},
 /turf/floor/sanitary/blue,
 /area/station/medical/medbay/restroom)
+"en" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "et" = (
 /obj/machinery/light{
 	dir = 1
@@ -823,6 +847,19 @@
 /obj/machinery/door/airlock/external,
 /turf/floor/cautionblack,
 /area/station/hallway/primary/southwest)
+"hj" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "hk" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -1053,6 +1090,11 @@
 	},
 /obj/railing/cool{
 	dir = 4
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
@@ -1826,6 +1868,19 @@
 /area/station/maintenance/central)
 "oF" = (
 /obj/railing/cool,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
+"oJ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor,
 /area/station/hallway/primary/west)
 "oO" = (
@@ -2457,6 +2512,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/floor/blue/side{
 	icon_state = "blue";
 	dir = 1
@@ -2604,6 +2664,17 @@
 /obj/window_blinds/cog2/left,
 /turf/floor/plating,
 /area/station/medical/robotics)
+"tZ" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "ue" = (
 /obj/cable{
 	d1 = 5;
@@ -2724,6 +2795,9 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/security/checkpoint/medical)
+"vb" = (
+/turf/floor/cautionblack,
+/area/station/hallway/primary/west)
 "vc" = (
 /obj/table/wood/auto,
 /obj/machinery/coffeemaker/botany{
@@ -2854,6 +2928,14 @@
 	dir = 9
 	},
 /area/station/hydroponics/lobby)
+"wn" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "wo" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor{
 	dir = 4
@@ -3029,6 +3111,14 @@
 	dir = 6
 	},
 /area/station/hallway/primary/west)
+"xC" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/southwest)
 "xD" = (
 /obj/machinery/door/airlock,
 /obj/access_spawn/bar,
@@ -3060,6 +3150,17 @@
 	dir = 5
 	},
 /area/station/medical/research)
+"xR" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/firedoor_spawn,
+/obj/access_spawn/maint,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/hallway/primary/west)
 "xS" = (
 /obj/grille/catwalk,
 /obj/lattice{
@@ -3432,6 +3533,14 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"AZ" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "Be" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/lesb,
@@ -3667,6 +3776,10 @@
 /obj/disposalpipe/segment/food/bent/east,
 /turf/floor/grass,
 /area/station/medical/research)
+"CN" = (
+/obj/storage/closet/emergency,
+/turf/floor/cautionblack,
+/area/station/hallway/primary/west)
 "CP" = (
 /obj/lattice{
 	dir = 1;
@@ -3772,6 +3885,10 @@
 	dir = 1
 	},
 /area/station/hallway/primary/southwest)
+"DB" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/cautionblack,
+/area/station/hallway/primary/west)
 "DF" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/overlay/magindara_skylight,
@@ -4115,6 +4232,17 @@
 /obj/window/reinforced/west,
 /turf/floor/green,
 /area/station/hydroponics/lobby)
+"GG" = (
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/cautionblack/side{
+	dir = 8
+	},
+/area/station/hallway/primary/west)
 "GH" = (
 /obj/machinery/portable_reclaimer,
 /turf/floor/industrial,
@@ -4409,6 +4537,14 @@
 	dir = 8
 	},
 /turf/space/magindara,
+/area/station/hallway/primary/southwest)
+"Jb" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/floor,
 /area/station/hallway/primary/southwest)
 "Jc" = (
 /obj/machinery/computer/cloning,
@@ -5106,6 +5242,24 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"Ov" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "OE" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
@@ -5508,6 +5662,11 @@
 /obj/machinery/light{
 	dir = 1;
 	pixel_x = -1
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/floor/blue/corner{
 	dir = 4
@@ -6114,9 +6273,6 @@
 	dir = 10
 	},
 /area/station/medical/research)
-"Vq" = (
-/turf/floor/plating,
-/area/magindara)
 "Vs" = (
 /obj/cable{
 	d1 = 2;
@@ -6242,6 +6398,11 @@
 "Wl" = (
 /obj/railing/cool{
 	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
@@ -34948,10 +35109,10 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
+nL
+nL
+DB
+nL
 SO
 SO
 SO
@@ -35250,10 +35411,10 @@ Uh
 SO
 SO
 SO
-SO
-SO
-SO
-SO
+nL
+CN
+vb
+nL
 SO
 SO
 SO
@@ -35552,9 +35713,9 @@ ra
 ra
 ra
 ra
-nJ
-nJ
-nJ
+nL
+GG
+de
 nL
 SO
 SO
@@ -35858,9 +36019,9 @@ nJ
 nJ
 nJ
 nL
-Vq
-Vq
-Vq
+mF
+mF
+mF
 SO
 SO
 SO
@@ -36157,12 +36318,12 @@ Tu
 Dr
 RC
 nJ
-nJ
+AZ
 nJ
 qt
-Vq
-Vq
-Vq
+mF
+mF
+mF
 SO
 SO
 SO
@@ -36459,7 +36620,7 @@ Yj
 iA
 ra
 nJ
-nJ
+AZ
 nJ
 nL
 nL
@@ -36761,7 +36922,7 @@ ra
 ra
 ra
 Py
-nJ
+AZ
 nJ
 nJ
 nJ
@@ -37063,13 +37224,13 @@ mF
 Wg
 Xg
 tM
-nJ
+Ov
 Wl
 Wl
 Wl
 Wl
 Wl
-nJ
+wn
 nJ
 nJ
 nL
@@ -37362,9 +37523,9 @@ MJ
 MJ
 XI
 MJ
-qt
-nJ
-nJ
+xR
+oJ
+hj
 cm
 eK
 TI
@@ -37372,7 +37533,7 @@ zD
 Bk
 Ai
 jl
-nJ
+wn
 nJ
 nL
 SO
@@ -37674,7 +37835,7 @@ SO
 SO
 oZ
 Ai
-cw
+tZ
 nJ
 nL
 VG
@@ -37976,7 +38137,7 @@ SO
 SO
 SO
 Ln
-cw
+tZ
 nJ
 nJ
 ik
@@ -38278,15 +38439,15 @@ cJ
 fq
 SO
 VN
-cw
-nJ
-nJ
-ik
-ik
-ik
-ik
-ik
-ik
+en
+oJ
+oJ
+no
+no
+no
+no
+no
+Jb
 VG
 VG
 SO
@@ -38588,7 +38749,7 @@ qA
 ik
 ik
 ik
-ik
+xC
 ik
 VG
 VG
@@ -38890,7 +39051,7 @@ Jh
 Jh
 Jh
 ik
-ik
+xC
 ik
 ik
 VG
