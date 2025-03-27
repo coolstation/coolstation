@@ -165,6 +165,10 @@
 "bS" = (
 /turf/wall,
 /area/station/medical/medbay/restroom)
+"bU" = (
+/obj/machinery/door/airlock/external,
+/turf/wall,
+/area/station/medical/morgue)
 "bZ" = (
 /turf/wall,
 /area/station/hydroponics/lobby)
@@ -975,6 +979,12 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"iA" = (
+/obj/storage/cart/trash,
+/turf/floor/darkpurpleblack/corner{
+	dir = 1
+	},
+/area/station/janitor/supply)
 "iD" = (
 /obj/stool/bench/green/auto,
 /turf/floor/green/side{
@@ -1131,6 +1141,16 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"kn" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/polyam,
+/obj/decal/poster/wallsign/pride/transgender{
+	pixel_y = 32
+	},
+/turf/floor/darkpurpleblack/corner{
+	dir = 4
+	},
+/area/station/janitor/supply)
 "kt" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -2171,6 +2191,9 @@
 /obj/firedoor_spawn,
 /turf/floor/red,
 /area/station/security/checkpoint/medical)
+"ra" = (
+/turf/wall,
+/area/station/janitor/supply)
 "rb" = (
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 4
@@ -2315,6 +2338,9 @@
 /obj/stool/chair/office/green{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Geneticist"
+	},
 /turf/floor/green/corner,
 /area/station/medical/research)
 "sa" = (
@@ -2429,6 +2455,10 @@
 	},
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
+"sX" = (
+/obj/mopbucket,
+/turf/floor/darkpurpleblack/corner,
+/area/station/janitor/supply)
 "sZ" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
@@ -3281,6 +3311,38 @@
 	},
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
+"Ad" = (
+/obj/rack,
+/obj/item/caution{
+	pixel_x = -11;
+	pixel_y = 8
+	},
+/obj/item/caution{
+	pixel_x = -10;
+	pixel_y = 5
+	},
+/obj/item/caution{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/caution{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/obj/item/storage/box/trash_bags{
+	pixel_y = 6;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/bucket{
+	pixel_y = -1;
+	pixel_x = 6
+	},
+/obj/item/mop{
+	pixel_y = -4;
+	pixel_x = 6
+	},
+/turf/floor/darkpurpleblack/corner,
+/area/station/janitor/supply)
 "Ai" = (
 /obj/lattice,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -3647,6 +3709,22 @@
 /obj/machinery/power/data_terminal,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"Dk" = (
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 4;
+	name = "utility sink"
+	},
+/turf/floor/darkpurpleblack/corner{
+	dir = 8
+	},
+/area/station/janitor/supply)
+"Dr" = (
+/turf/floor/darkpurpleblack{
+	dir = 1
+	},
+/area/station/janitor/supply)
 "Du" = (
 /obj/machinery/computer/operating{
 	id = "OR1"
@@ -4652,9 +4730,6 @@
 	},
 /turf/space/magindara,
 /area/magindara)
-"Lt" = (
-/turf/floor,
-/area/station/maintenance/central)
 "Lu" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -5497,6 +5572,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"RC" = (
+/obj/machinery/door/airlock,
+/turf/floor,
+/area/station/janitor/supply)
 "RD" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
 /turf/floor/white/checker,
@@ -5714,6 +5793,11 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"Tu" = (
+/turf/floor/darkpurpleblack{
+	dir = 6
+	},
+/area/station/janitor/supply)
 "Tx" = (
 /obj/machinery/power/apc{
 	areastring = "Medbay Restroom";
@@ -6408,6 +6492,11 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"Yj" = (
+/turf/floor/darkpurpleblack{
+	dir = 8
+	},
+/area/station/janitor/supply)
 "Yl" = (
 /obj/overlay{
 	icon = 'icons/misc/beach2.dmi';
@@ -6514,6 +6603,9 @@
 "Zl" = (
 /obj/stool/chair/office/green{
 	dir = 1
+	},
+/obj/landmark/start{
+	name = "Pharmacist"
 	},
 /turf/floor,
 /area/station/medical/research)
@@ -35426,12 +35518,12 @@ SO
 SO
 SO
 Uh
-tC
-tC
-tC
-tC
-Lt
-Lt
+ra
+ra
+ra
+ra
+nJ
+nJ
 SO
 SO
 SO
@@ -35727,13 +35819,13 @@ SO
 SO
 SO
 Uh
-tC
-tC
-mF
-mF
-tC
-Lt
-Lt
+ra
+ra
+Ad
+Dk
+ra
+nJ
+nJ
 Vq
 Vq
 Vq
@@ -36026,16 +36118,16 @@ VL
 OX
 VL
 VL
-TV
 ky
-tC
-tC
-mF
-mF
-mF
-tC
-Lt
-Lt
+ky
+FN
+ra
+sX
+Tu
+Dr
+RC
+nJ
+nJ
 Vq
 Vq
 Vq
@@ -36328,14 +36420,14 @@ SO
 gl
 SO
 SO
+SO
+SO
 gl
-SO
-SO
-tC
-mF
-mF
-mF
-nL
+ra
+kn
+Yj
+iA
+ra
 nJ
 nJ
 nL
@@ -36633,11 +36725,11 @@ QL
 QL
 QL
 tC
-tC
-mF
-mF
-nL
-nL
+ra
+ra
+ra
+ra
+ra
 Py
 nJ
 nJ
@@ -48409,7 +48501,7 @@ SO
 SO
 SO
 HD
-cs
+bU
 cs
 ZN
 pP
