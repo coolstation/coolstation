@@ -21,9 +21,7 @@ function byond() {
         currentIsKey = !currentIsKey;
     }
     console.log(url);
-    const Http = new XMLHttpRequest();
-    Http.open("GET", url);
-    Http.send();
+	window.location = url;
 }
 
 removepiece = function(position){

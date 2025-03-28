@@ -56,6 +56,8 @@ datum/character_preview
 		if(isturf(H.loc))
 			do_gimmick_mob_spawning_stuff(H)
 
+		SEND_SIGNAL(src, COMSIG_UIMAP_LOADED, src.viewer)
+
 	proc/add_background(color)
 		if(isnull(src.background))
 			src.background = new()

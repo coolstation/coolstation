@@ -43,7 +43,6 @@ chui.setLabel = function(id, label) {
 chui.bycall = function(method, data) {
 	data = data || {};
 	data._cact = method;
-	const Http = new XMLHttpRequest();
 	document.location = 'byond://?src=' + chui.window + '&' + $.param(data);
 };
 
