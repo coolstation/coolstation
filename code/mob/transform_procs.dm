@@ -616,7 +616,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 		min_time_passed = second_time_around
 	var/time_elapsed = (world.timeofday + ((world.timeofday < mind.last_death_time) ? 864000 : 0)) - mind.last_death_time // Offset the time of day in case of midnight rollover
 	var/time_left = min_time_passed - time_elapsed
-	if(time_left > 0)
+	if(time_left > 0 && !isadmin(src))
 		var/time_left_message = ""
 		var/minutes = floor(time_left / 600)
 		var/seconds = floor((time_left - (minutes * 600))/10)
