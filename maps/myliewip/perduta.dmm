@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
 /obj/table/reinforced/industrial/auto,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "ae" = (
@@ -151,7 +151,7 @@
 	dir = 1
 	},
 /obj/stool/bar,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "bH" = (
@@ -165,10 +165,6 @@
 "bS" = (
 /turf/wall,
 /area/station/medical/medbay/restroom)
-"bU" = (
-/obj/machinery/door/airlock/external,
-/turf/wall,
-/area/station/medical/morgue)
 "bZ" = (
 /turf/wall,
 /area/station/hydroponics/lobby)
@@ -383,7 +379,7 @@
 	dir = 4
 	},
 /obj/stool/bar,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "du" = (
@@ -434,7 +430,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "dU" = (
@@ -546,7 +542,7 @@
 /obj/decal/tile_edge/stripe/corner/extra_big2{
 	dir = 10
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "ff" = (
@@ -610,6 +606,11 @@
 	dir = 1
 	},
 /area/station/crew_quarters/clown)
+"ft" = (
+/obj/structure/woodwall,
+/obj/grille/steel,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "fu" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -657,6 +658,7 @@
 /area/station/medical/medbay/treatment)
 "fF" = (
 /obj/decal/cleanable/rust,
+/obj/grille/steel,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "fU" = (
@@ -716,7 +718,7 @@
 "gb" = (
 /obj/machinery/door/airlock,
 /obj/access_spawn/bar,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "gd" = (
@@ -948,7 +950,7 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "hV" = (
@@ -1259,6 +1261,10 @@
 	dir = 1
 	},
 /area/station/medical/robotics)
+"kQ" = (
+/obj/grille/steel,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "kR" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
@@ -2018,7 +2024,7 @@
 	dir = 1
 	},
 /obj/machinery/vending/snack,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "pw" = (
@@ -2107,7 +2113,7 @@
 	pixel_y = 10;
 	pixel_x = 1
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "pU" = (
@@ -2300,7 +2306,7 @@
 /area/station/medical/medbay/surgery)
 "rq" = (
 /obj/decal/slipmat,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/crew_quarters/bar)
 "rs" = (
@@ -2580,7 +2586,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 5
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "tr" = (
@@ -2771,7 +2777,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 5
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "uX" = (
@@ -2882,7 +2888,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "vX" = (
@@ -2994,7 +3000,7 @@
 /obj/machinery/glass_recycler{
 	pixel_y = 4
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "wP" = (
@@ -3215,7 +3221,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "yv" = (
@@ -3387,7 +3393,7 @@
 	pixel_x = 0;
 	pixel_y = 4
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "zY" = (
@@ -3584,7 +3590,7 @@
 /turf/space/magindara,
 /area/station/crew_quarters/clown)
 "Bo" = (
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/crew_quarters/bar)
 "Bs" = (
@@ -3658,7 +3664,7 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "BD" = (
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "BH" = (
@@ -3678,7 +3684,7 @@
 	dir = 1
 	},
 /obj/item/caution,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "BS" = (
@@ -3813,7 +3819,7 @@
 /obj/decal/tile_edge/stripe/corner/extra_big2{
 	dir = 5
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "CZ" = (
@@ -3822,6 +3828,13 @@
 	dir = 4
 	},
 /area/station/hallway/primary/west)
+"Db" = (
+/obj/ladder{
+	icon_state = "ladder-square";
+	pixel_y = 3
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "Dc" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
@@ -3891,7 +3904,7 @@
 /area/station/hallway/primary/west)
 "DF" = (
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "DG" = (
@@ -4710,6 +4723,10 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/ladder{
+	icon_state = "ladder-square";
+	pixel_y = 3
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Kk" = (
@@ -5007,7 +5024,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "My" = (
@@ -5150,7 +5167,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "NB" = (
@@ -5178,7 +5195,7 @@
 	dir = 1
 	},
 /obj/submachine/slot_machine/cash,
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "NM" = (
@@ -5837,6 +5854,7 @@
 	d1 = 1;
 	d2 = 10
 	},
+/obj/grille/steel,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Su" = (
@@ -5997,7 +6015,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
 	},
-/obj/overlay/magindara_skylight,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "TH" = (
@@ -6097,11 +6115,11 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Ul" = (
-/obj/overlay/magindara_skylight,
 /obj/railing/cool,
 /obj/railing/cool{
 	dir = 1
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/stairs/dark{
 	dir = 8
 	},
@@ -42079,10 +42097,10 @@ mF
 ue
 tC
 wi
-LE
-SO
-SO
-SO
+tW
+TV
+OX
+jv
 SO
 SO
 SO
@@ -42382,7 +42400,7 @@ mF
 tC
 Rh
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -42680,12 +42698,12 @@ VG
 VG
 mF
 Et
-mF
+kQ
 tC
-Rh
-SO
-SO
-SO
+wi
+VL
+OX
+jv
 SO
 SO
 SO
@@ -42986,7 +43004,7 @@ mF
 tC
 FN
 SO
-SO
+ex
 SO
 SO
 SO
@@ -43249,7 +43267,7 @@ SO
 tC
 mF
 mF
-mF
+tC
 iH
 nJ
 Ok
@@ -43852,8 +43870,8 @@ SO
 SO
 tC
 mF
-mF
-mF
+tC
+tC
 nJ
 nJ
 Yv
@@ -44155,7 +44173,7 @@ SO
 tC
 mF
 mF
-mF
+tC
 nJ
 nJ
 Yv
@@ -44456,8 +44474,8 @@ SO
 SO
 tC
 mF
-mF
-mF
+tC
+tC
 nJ
 nJ
 Yv
@@ -44759,8 +44777,8 @@ SO
 tC
 mF
 mF
-mF
-mF
+tC
+tC
 bS
 bS
 bS
@@ -45373,7 +45391,7 @@ Aj
 Su
 EI
 Yv
-mF
+kQ
 Uk
 Jr
 nR
@@ -45965,9 +45983,9 @@ SO
 SO
 SO
 tC
-mF
-mF
-mF
+Db
+tC
+tC
 mF
 bS
 bS
@@ -46572,9 +46590,9 @@ SO
 SO
 tC
 mF
-mF
-mF
-mF
+dU
+dU
+dU
 Pu
 dU
 dU
@@ -47178,10 +47196,10 @@ tC
 tC
 tC
 tC
-mF
-mF
-mF
-mF
+ft
+ft
+tC
+tC
 cs
 cs
 cs
@@ -48692,7 +48710,7 @@ SO
 SO
 SO
 HD
-bU
+cs
 cs
 ZN
 pP
@@ -52936,7 +52954,7 @@ SO
 SO
 SO
 SO
-SO
+VG
 ik
 ik
 ik
@@ -53242,7 +53260,7 @@ SO
 SO
 SO
 SO
-VG
+SO
 SO
 SO
 SO

@@ -90,7 +90,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 /obj/overlay/magindara_skylight
 	name = null
-	desc = "hidden decal to show the light and weather of Magindara on any turf"
+	desc = "hidden decal to show the light and/or weather of Magindara on any turf"
 	anchored = 2
 	var/datum/light/point/light = null
 	var/light_r = 0.55
@@ -109,12 +109,17 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
 			light?.enable()
-		if(!magindara_global_fog)
-			update_magindaran_weather()
-		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
+
 
 	ex_act(severity)
 		return
+
+/obj/overlay/magindara_skylight/weather
+	New()
+		..()
+		if(!magindara_global_fog)
+			update_magindaran_weather()
+		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
 
 /area/magindara
 	icon_state = "pink"
