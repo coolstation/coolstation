@@ -38,7 +38,7 @@ chui/window/keybind_menu
 
 		html += "<tfoot><tr><td colspan=\"2\">[theme.generateButton("reset", "Reset All Keybinding Data (Caution!)")]</td></tr></tfoot></table>"
 
-		html += "<script language=\"JavaScript\">$(\".input\").on(\"change keyup paste\", function(){var elem=$(this); chui.bycall(\"changed_key\", {action:elem.attr(\"id\"), key:elem.val()})})</script>"
+		html += "<script language=\"JavaScript\">$(\".input\").on(\"change keyup paste\", function(){var elem=$(this); chui.winset(\"changed_key\", $.param({action:elem.attr(\"id\"), key:elem.val()}))})</script>"
 
 		return html.Join()
 

@@ -72,12 +72,16 @@
 					icon_state = "sand_other_texture3"
 					src.set_dir(pick(cardinal))
 
-		if (spawningFlags && current_state <= GAME_STATE_WORLD_INIT)
-			//worldgenCandidates[src] = 1 //Adding self to possible worldgen turfs
-			// idk about the above. walls still use [src]=1 ...
-			// the bottom is much faster in my testing and works just as well
-			// maybe should be converted to this everywhere?
-			worldgenCandidates += src //Adding self to possible worldgen turfs
+		//AFAIK the only in-round ocean floor spawns are from departing shuttles
+		//which don't generate anything, but I might as well convert it to use worldgen_hold
+		if (spawningFlags)
+			if (worldgen_hold)
+				//worldgen_candidates[src] = 1 //Adding self to possible worldgen turfs
+				// idk about the above. walls still use [src]=1 ...
+				// the bottom is much faster in my testing and works just as well
+				// maybe should be converted to this everywhere?
+				worldgen_candidates[worldgen_generation] += src //Adding self to possible worldgen turfs
+			else generate_worldgen()
 
 		if(current_state > GAME_STATE_WORLD_INIT)
 			for(var/dir in cardinal)

@@ -32,8 +32,9 @@ proc/generate_teleareas()
 	LAGCHECK(LAG_HIGH)
 	teleareas = list()
 	for (var/area/area in world)
+		if (!length(area.turfs)) continue
 		if (istype(area, /area/station))
-			var/turf/T = area.contents[1]
+			var/turf/T = area.turfs[1]
 			//why is Z_LEVEL_DEBRIS not a thing on underwater maps?
 			#ifndef UNDERWATER_MAP
 			if (T?.z == Z_LEVEL_STATION || (map_currently_very_dusty && T?.z == Z_LEVEL_DEBRIS))
@@ -43,7 +44,7 @@ proc/generate_teleareas()
 				teleareas[area.name] = area
 			#endif
 		if (istype(area, /area/diner))
-			var/turf/T = area.contents[1]
+			var/turf/T = area.turfs[1]
 			if (T?.z == Z_LEVEL_MINING)
 				teleareas[area.name] = area
 		if(istype(area, /area/wizard_station))

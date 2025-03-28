@@ -1263,6 +1263,27 @@
 	img = "images/pw_map.png"
 	cat = "map"
 
+/obj/decal/poster/wallsign/dont_drugs
+	name = "Anti-drug poster"
+	desc = "A poster warning against the dangers of drug use."
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "ddd"
+
+/obj/decal/poster/wallsign/dont_drugs/do_drugs
+	name = "Anti-Anti-drug poster"
+	desc = "A poster that once warned against the dangers of drug use."
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "dd"
+
+/obj/decal/poster/wallsign/wktv
+	name = "WKTV logo"
+	desc = "the WKTV logo printed on a shitty carpet"
+	icon = 'icons/obj/decals/posters_64x32.dmi'
+	icon_state = "wktv"
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER
+
+
 /obj/decal/poster/banner
 	name = "banner"
 	desc = "An unfinished banner, try adding some color to it by using a crayon!"

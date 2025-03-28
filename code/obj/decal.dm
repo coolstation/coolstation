@@ -591,3 +591,60 @@ obj/decal/fakeobjects
 	density = 0
 	opacity = 0
 	anchored = 1
+
+/obj/decal/landing_gear_prints_gehenna
+	name = null
+	desc = null
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "landing_gear_gehenna"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+/obj/decal/beaten_edge_thin
+	name = null
+	desc = null
+	icon = 'icons/turf/gehenna_overlays.dmi'
+	icon_state = "beaten_edge_thin"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+
+/obj/decal/cragrock
+	name = "\improper Gehennan rock spikes"
+	desc = "Painfully sharp shards of sulfurous rock."
+	icon = 'icons/obj/large/64x64.dmi'
+	icon_state = "cragrock1"
+	pixel_x = -16
+	density = 1
+	opacity = 0
+	anchored = 1
+	plane = PLANE_NOSHADOW_ABOVE
+
+	New()
+		..()
+		icon_state = "cragrock[rand(1,4)]"
+
+	Bumped(AM as mob|obj)
+		if(!ismob(AM))
+			return
+		var/mob/living/L = AM
+		if(prob(5))
+			take_bleeding_damage(L,null,5,DAMAGE_STAB)
+			random_brute_damage(L,10)
+			L.visible_message("<span class='alert'>[L] stubs their toe on [src]!</span>","<span class='alert'>You stub your toe on [src]!</span>")

@@ -164,6 +164,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	oxygen = GEHENNA_O2
 	nitrogen = GEHENNA_N2
 	temperature = GEHENNA_TEMP
+	turf_flags = MINE_MAP_PRESENTS_EMPTY
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -175,22 +176,53 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	var/light_height = 3
 	var/generateLight = 1
 	var/stone_color
+	var/static/list/image/rocks
+	var/rock_mult = 85
+	var/x_drift = 1
+	var/y_drift = 1
+	var/perlin_zoom = 80
+	var/icon_suffix = null
+	var/doublesize = TRUE
+	var/big_rock_chance = 2
 
 	New()
 		..()
-		if (generateLight)
-			src.make_light() /*
-			generateLight = 0
-			if (z != 3) //nono z3
-				for (var/dir in alldirs)
-					var/turf/T = get_step(src,dir)
-					if (istype(T, /turf/simulated))
-						generateLight = 1
-						src.make_light()
-						break */
-		if(icon_state == "gehenna_beat" || icon_state == "gehenna")
-			src.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
+		if(src.doublesize)
+			icon_state += "_[x % 2][y % 2]"
+		var/seed = global.server_start_time + src.z * 42069
+		var/x_input = (src.x + rand(-src.x_drift,src.x_drift)) / src.perlin_zoom
+		var/y_input = (src.y + rand(-src.y_drift,src.y_drift)) / src.perlin_zoom
+		var/rock_chance = text2num(rustg_noise_get_at_coordinates("[seed]", "[x_input]", "[y_input]"))
+		rock_chance = 3.8*((rock_chance - 0.5)**2) + 0.05
+		var/g = floor(rock_chance * 55 + 200)
+		var/b = floor(rock_chance * 125 + 130)
+		src.color = rgb(255,g,b)
+		src.stone_color = src.color
+		if(src.rock_mult)
+			if(!src.rocks)
+				src.create_rocks()
+			if(prob(floor(src.rock_mult * rock_chance)))
+				UpdateOverlays(pick(src.rocks), "rock_overlay")
+			if(prob(big_rock_chance * (1.2 - rock_chance))) // ouuugh i hate mapgen
+				SPAWN_DBG(0.5)
+					var/create_rock = TRUE
+					for(var/obj/decal/cragrock/rock in range(5, src))
+						create_rock = FALSE
+						break
+					if(create_rock)
+						var/obj/decal/cragrock/rock = new(src)
+						rock.color = src.color
+
+		if (generateLight)
+			src.make_light()
+
+	proc/create_rocks()
+		rocks = list()
+		for(var/i in 1 to 18)
+			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_LAYER)
+			rock.plane = PLANE_NOSHADOW_BELOW
+			rocks += rock
 
 	make_light()
 		if (!light)
@@ -202,46 +234,124 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		SPAWN_DBG(0.1)
 			light?.enable()
 
-	wackalope
-		name = "cool and exciting new sand"
-		desc = "this sand is a work in progress and it's so good"
-		New()
-			..()
-			icon_state = "gehenna_[x % 2][y % 2]"
+	tunnel_surface
+		name = "bored tunnel floor"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "concrete"
+		rock_mult = 0
+		generateLight = 0
+		big_rock_chance = 0
+		doublesize = FALSE
 
+		railroad
+			name = "railroad"
+			icon_state = "railroad_concrete"
+
+	railroad_ties
+		name = "railroad"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "railroad"
+		rock_mult = 0
+		generateLight = 1
+		big_rock_chance = 0
+		doublesize = FALSE
 
 	plating
 		name = "sand-covered plating"
 		desc = "The desert slowly creeps upon everything we build."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_tile"
+		rock_mult = 30
+		doublesize = FALSE
+		big_rock_chance = 0
 
 		thermal
 			name = "sand-covered solar plating"
-			desc = "absorbs the sun's rays, gets real hot."
+			desc = "Absorbs the sun's rays, gets real hot."
 			temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(1.5*WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+			rock_mult = 0
+			big_rock_chance = 0
 
 		podbay
 			icon_state = "gehenna_plating"
+			rock_mult = 0
 
 	path
 		name = "beaten earth"
-		desc = "this soil has been beaten flat by years of foot traffic."
+		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
 		icon_state = "gehenna_edge"
+#else
+		icon_state = "gehenna"
+#endif
+		rock_mult = 20
+		doublesize = TRUE
+		big_rock_chance = 0
+		var/static/list/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in alldirs)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i)
 
 	corner
 		name = "beaten earth"
-		desc = "this soil has been beaten flat by years of foot traffic."
+		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
 		icon_state = "gehenna_corner"
+#else
+		icon_state = "gehenna"
+#endif
+		rock_mult = 20
+		doublesize = TRUE
+		big_rock_chance = 0
+		var/static/list/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in alldirs)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i)
 
 	beaten
 		name = "beaten earth"
-		desc = "this soil has been beaten flat by years of foot traffic."
+		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
 		icon_state = "gehenna_beat"
+#else
+		icon_state = "gehenna"
+#endif
+		rock_mult = 20
+		doublesize = TRUE
+		big_rock_chance = 0
+		var/static/image/beaten_sand
 
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[pick(cardinal)]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in cardinal)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i)
 
 /area/gehenna
 	requires_power = 0

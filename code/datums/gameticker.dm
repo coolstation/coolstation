@@ -263,6 +263,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			if (prob(spawnchance))
 				Artifact_Spawn(T)
 
+		//moved out of initialize_worldgen now that that's called more than once
+		var/obj/item/storage/toilet/Terlet = pick(by_type[/obj/item/storage/toilet])
+		Terlet?.curse()
+
 		shippingmarket.get_market_timeleft()
 
 		logTheThing("ooc", null, null, "<b>Current round begins</b>")

@@ -32,6 +32,10 @@
 
 	on_reagent_change()
 		src.update_icon()
+		if(src.reagents.has_reagent("helium") || src.reagents.has_reagent("hydrogen"))
+			src.event_handler_flags |= CAN_UPDRAFT
+		else
+			src.event_handler_flags &= ~CAN_UPDRAFT
 		src.last_reag_total = src.reagents.total_volume
 		src.burst_chance()
 

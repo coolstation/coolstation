@@ -33,6 +33,26 @@
 		..()
 		if (icon_state == "tplaceholder") icon_state = (channel_open ? "near_blank" : "[rand(1,25)]" )
 
+/turf/space/shuttle_transit/deadly
+	#ifdef IN_MAP_EDITOR
+	icon_state = "tplaceholder_red"
+	#endif
+	New()
+		..()
+		#ifdef DESERT_MAP
+		src.AddComponent(/datum/component/pitfall/planetary_splat,\
+			BruteDamageMax = 1050,\
+			HangTime = 0 SECONDS,\
+			FallTime = 0.1 SECONDS)
+		#endif
+
+	Entered(atom/movable/A)
+		#ifdef DATALOGGER
+		if (ishuman(A) || issilicon(A))
+			game_stats.Increment("workplacesafety") //Please keep your arms and legs inside the shuttle at all times.
+		#endif
+		..()
+
 /turf/floor/shuttle_noprotections
 	name = "shuttle floor"
 	icon_state = "floord"

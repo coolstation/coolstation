@@ -549,9 +549,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "awG" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -1119,9 +1117,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "aPF" = (
 /obj/disposalpipe/segment/morgue,
@@ -1499,6 +1495,11 @@
 /obj/machinery/disposal,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
+"biI" = (
+/turf/floor{
+	icon_state = "flophole4"
+	},
+/area/listeningpost)
 "biY" = (
 /obj/machinery/light/small/cool{
 	dir = 1
@@ -7087,7 +7088,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "frQ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -7204,7 +7205,7 @@
 	},
 /area/station/quartermaster/storage)
 "fuv" = (
-/turf/floor/orange,
+/turf/floor,
 /area/listeningpost)
 "fuA" = (
 /obj/cable{
@@ -10036,9 +10037,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "hBb" = (
 /obj/machinery/light/fluorescent/warm{
@@ -10084,7 +10083,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "hCa" = (
 /obj/cable{
@@ -10584,17 +10583,13 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "hWQ" = (
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "hWW" = (
 /obj/decal/tile_edge/stripe{
@@ -15308,9 +15303,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "lDy" = (
 /obj/cable{
@@ -17808,7 +17801,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/sec_top)
 "nNG" = (
 /obj/item/storage/wall/fire{
@@ -17864,7 +17857,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/com_top)
 "nQd" = (
 /obj/table/auto{
@@ -18031,6 +18024,11 @@
 /obj/stool/chair/comfy/barber_chair,
 /turf/floor/purplewhite/corner{
 	dir = 4
+	},
+/area/listeningpost)
+"nXD" = (
+/turf/floor{
+	icon_state = "flophole3"
 	},
 /area/listeningpost)
 "nXR" = (
@@ -19586,7 +19584,7 @@
 /obj/machinery/button/elevator/dum{
 	pixel_x = 24
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/dum_top)
 "peU" = (
 /obj/disposalpipe/segment/brig{
@@ -21930,9 +21928,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "qRl" = (
 /obj/disposalpipe/segment/morgue{
@@ -23555,6 +23551,11 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
+"seA" = (
+/turf/floor{
+	icon_state = "flophole1"
+	},
+/area/listeningpost)
 "sfa" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/device/ticket_writer{
@@ -24359,9 +24360,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "sMl" = (
 /obj/cable/blue{
@@ -26204,7 +26203,7 @@
 /area/station/medical/medbay/lobby)
 "ugx" = (
 /obj/grille/catwalk/cross/grey,
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/qmdum_top)
 "ugO" = (
 /obj/disposalpipe/segment/horizontal,
@@ -27462,7 +27461,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "uWM" = (
 /obj/wingrille_spawn/reinforced,
@@ -27579,7 +27578,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/sea_elevator_shaft,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "vbY" = (
 /obj/forcefield/energyshield/perma,
@@ -28184,6 +28183,11 @@
 	},
 /turf/floor,
 /area/station/engine/engineering/breakroom)
+"vAv" = (
+/turf/floor{
+	icon_state = "flophole2"
+	},
+/area/listeningpost)
 "vAE" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/plating{
@@ -29803,7 +29807,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/carpet/grime,
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/macro_test/top)
 "wBe" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -29953,9 +29957,7 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/floor/specialroom/elevator_shaft/straight_down,
 /area/transit_vehicle/elevator/med_top)
 "wIu" = (
 /obj/disposalpipe/segment/brig,
@@ -108899,9 +108901,9 @@ dmM
 fed
 oRN
 fuv
-ipO
 fuv
-ipO
+seA
+nXD
 fuv
 dld
 nKp
@@ -109202,9 +109204,9 @@ nKp
 rCY
 tlb
 fuv
-ipO
+vAv
+biI
 fuv
-ipO
 nQd
 nKp
 fCx
