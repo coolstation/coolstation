@@ -21,7 +21,6 @@ client/proc/open_dj_panel()
 	var/loaded_sound = null // holds current song file
 	var/sound_volume = 50
 	var/sound_frequency = 1
-	var/admin_sound_channel = 1014
 
 /datum/dj_panel/ui_state(mob/user)
 	return tgui_always_state
