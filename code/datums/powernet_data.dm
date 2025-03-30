@@ -58,6 +58,10 @@ var/global/list/dirty_pnet_nodes = list()
 	var/dissolve_when_possible = FALSE
 
 
+/datum/powernet_graph_node/New()
+	adjacent_nodes = list()
+	..()
+
 //No attempt at fixing lingering references, just nuke. Let's not make this any more complicated.
 /datum/powernet_graph_node/disposing()
 	pnet = null
@@ -141,10 +145,19 @@ var/global/list/dirty_pnet_nodes = list()
 			node_one.adjacent_nodes[node_two] = link_one
 			node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
 
+	previous_adjacent_nodes -= adjacent_nodes
+	var/an_netnum = src.netnum
+	while(length(previous_adjacent_nodes))
+		var/datum/powernet_graph_node/orphaned_node = previous_adjacent_nodes[1]
+		previous_adjacent_nodes -= orphaned_node.propagate_netnum(orphaned_node, an_netnum)
+		if (length(previous_adjacent_nodes))
+			var/datum/powernet/PN = new
+			powernets += PN
+			PN.number = length(powernets)
+			an_netnum = PN.number
+
 	if (dissolve_self)
 		qdel(src)
-		//TODO compare what's left of adjacent_nodes versus previous_adjacent_nodes after doing a network propagation ping
-		//Tell the other nodes to split off into other powernets
 
 	dirty_pnet_nodes -= src
 
@@ -174,6 +187,8 @@ var/global/list/dirty_pnet_nodes = list()
 		var/list/new_nodes = a_node.adjacent_nodes.Copy() - visited_nodes
 		nodes_to_visit |= new_nodes
 
+	return visited_nodes
+
 //Stretches of cables with two connections. That is, the parts that aren't dead ends or
 //For navigating the graph we don't need to bother with these, that's the point of abstracting into a graph.
 //These are going to be a useful in figuring out what happened to a powernet post-explosion
@@ -201,10 +216,17 @@ var/global/list/dirty_pnet_nodes = list()
 
 		..()
 
+	//No attempt at fixing lingering references, just nuke. Let's not make this any more complicated.
+	disposing()
+		cables = null
+		adjacent_nodes = null
+		..()
+
+
 ///split up
 /datum/powernet_graph_link/proc/dissolve()
 	//Should note that when a cable inside a link becomes a node because a new connection appeared
-	//That cable is already removed in cable/proc/integrate. The assumption is that all cables we call link_dissolve_crawl are still links.
+	//That cable is already removed in cable/proc/integrate. The assumption is that all cables we call link_crawl are still links.
 	//That is to avoid recursion.
 
 	//break links between nodes
@@ -219,5 +241,6 @@ var/global/list/dirty_pnet_nodes = list()
 	//let all the cables sort themselves out
 	while(length(cables))
 		var/obj/cable/C = cables[1]
-		cables -= C.link_dissolve_crawl(src)
+		var/datum/powernet_graph_link/L = C.link_crawl()
+		cables -= L.cables
 	qdel(src)

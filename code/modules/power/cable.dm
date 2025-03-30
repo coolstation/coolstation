@@ -146,6 +146,10 @@
 	else
 		applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
 
+	if (current_state >= GAME_STATE_WORLD_INIT)
+		src.integrate()
+		//all_cables += src
+
 	START_TRACKING
 
 /obj/cable/disposing()		// called when a cable is deleted
@@ -436,7 +440,6 @@
 
 
 	else //we are a link
-
 		//dead end 2 link
 		for (var/datum/powernet_graph_node/dead_node as anything in nodes2kill)
 			var/datum/powernet_graph_node/neighbour_node = dead_node.adjacent_nodes[1]
@@ -475,31 +478,11 @@
 		for (var/datum/powernet_graph_node/directly_adjacent_node as anything in nodes2link)
 			src.is_a_link.adjacent_nodes += directly_adjacent_node
 
-		//cleanup to make sure our linked nodes know of each other, not gauranteed yet
-		var/datum/powernet_graph_node/linked_node_1 = src.is_a_link.adjacent_nodes[1]
-		var/datum/powernet_graph_node/linked_node_2 = src.is_a_link.adjacent_nodes[2]
-		//I'm sorry this looks like this, it's, yeah
-		if (!(linked_node_2 in linked_node_1.adjacent_nodes))
-			linked_node_1.adjacent_nodes[linked_node_2] = src.is_a_link
-		else //node 1 knows of 2, but not via our link aaaa
-			var/datum/powernet_graph_link/maybe_us_node_1 = linked_node_1.adjacent_nodes[linked_node_2]
-			if (islist(maybe_us_node_1)) //and it's a fucking list AAAAA
-				linked_node_1.adjacent_nodes[linked_node_2] += src.is_a_link
-			else if (maybe_us_node_1 != src.is_a_link)
-				linked_node_1.adjacent_nodes[linked_node_2] = list(maybe_us_node_1, src.is_a_link)
+		correct_link_references()
 
-		if (!(linked_node_1 in linked_node_2.adjacent_nodes))
-			linked_node_2.adjacent_nodes[linked_node_1] = src.is_a_link
-		else //node 2 knows of 1, but not via our link aaaa
-			var/datum/powernet_graph_link/maybe_us_node_2 = linked_node_2.adjacent_nodes[linked_node_1]
-			if (islist(maybe_us_node_2)) //and it's a fucking list AAAAA
-				linked_node_2.adjacent_nodes[linked_node_1] += src.is_a_link
-			else if (maybe_us_node_2 != src.is_a_link)
-				linked_node_2.adjacent_nodes[linked_node_1] = list(maybe_us_node_2, src.is_a_link)
-
-		src.is_a_link.expected_length = length(src.is_a_link.cables)
-
-		linked_node_1.propagate_netnum(linked_node_1, future_powernet.number, early_end_at_matching_netnum = TRUE)
+	if (length(src.is_a_link.adjacent_nodes))
+		var/datum/powernet_graph_node/propergate = src.is_a_link.adjacent_nodes[1]
+		propergate.propagate_netnum(propergate, future_powernet.number, early_end_at_matching_netnum = TRUE)
 
 	/*
 	for (var/obj/cable/C in connections)
@@ -588,12 +571,89 @@
 			else //other cable stays a node
 */
 
-/obj/cable/proc/link_dissolve_crawl(datum/powernet_graph_link/dead_link)
-	if (!src.is_a_link)
-		return src
-	if (dead_link != src.is_a_link)
-		return src
+/obj/cable/proc/link_crawl()
+	var/list/connections = get_connections()
+	if (length(connections) != 2) return
+	var/datum/powernet_graph_link/new_link = new
+	src.is_a_link = new_link
+	src.is_a_link.cables += src
 
+
+	for (var/obj/cable/next_cable as anything in connections)
+		var/obj/cable/last_cable = src
+
+
+		var/list/temp_connections = next_cable.get_connections()
+		//go along straights indefinitely
+		while (length(temp_connections) == 2)
+			if (next_cable in new_link.cables) //we've looped on ourselves
+				//assign the two cables we have references for nodes arbitrarily, so the net is still technically functional.
+				next_cable.is_a_link = null
+				next_cable.is_a_node = new
+				next_cable.is_a_node.physical_node = next_cable
+				last_cable.is_a_link = null
+				last_cable.is_a_node = new
+				last_cable.is_a_node.physical_node = last_cable
+
+				new_link.cables -= last_cable
+				new_link.cables -= next_cable
+				new_link.adjacent_nodes = list(next_cable.is_a_node, last_cable.is_a_node)
+				next_cable.is_a_node.adjacent_nodes[last_cable.is_a_node] = list(null, new_link)
+				last_cable.is_a_node.adjacent_nodes[next_cable.is_a_node] = list(null, new_link)
+				goto loop_break
+
+			new_link.cables += next_cable
+			next_cable.is_a_link = new_link
+			if (temp_connections[1] == last_cable)
+				last_cable = next_cable
+				next_cable = temp_connections[2]
+			else
+				last_cable = next_cable
+				next_cable = temp_connections[1]
+			temp_connections = next_cable.get_connections()
+
+
+		//found a node
+		if (!next_cable.is_a_node)
+			next_cable.is_a_node = new
+			next_cable.is_a_node.physical_node = next_cable
+		src.is_a_link.adjacent_nodes += next_cable.is_a_node
+
+	loop_break:
+	if (src.is_a_link)
+		correct_link_references()
+	else //in case we've run into the loop-of-wire thing up top, src probably became one of the emergency nodes
+		var/obj/cable/unlikely = new_link.cables[1]
+		unlikely.correct_link_references()
+
+	return src.is_a_link
+
+///cleanup to make sure our linked nodes know of each other
+/obj/cable/proc/correct_link_references()
+	var/datum/powernet_graph_node/linked_node_1 = src.is_a_link.adjacent_nodes[1]
+	var/datum/powernet_graph_node/linked_node_2 = src.is_a_link.adjacent_nodes[2]
+	//I'm sorry this looks like this, it's, yeah
+	if (!(linked_node_2 in linked_node_1.adjacent_nodes))
+		linked_node_1.adjacent_nodes += linked_node_2
+		linked_node_1.adjacent_nodes[linked_node_2] = src.is_a_link
+	else //node 1 knows of 2, but not via our link aaaa
+		var/datum/powernet_graph_link/maybe_us_node_1 = linked_node_1.adjacent_nodes[linked_node_2]
+		if (islist(maybe_us_node_1)) //and it's a fucking list AAAAA
+			linked_node_1.adjacent_nodes[linked_node_2] += src.is_a_link
+		else if (maybe_us_node_1 != src.is_a_link)
+			linked_node_1.adjacent_nodes[linked_node_2] = list(maybe_us_node_1, src.is_a_link)
+
+	if (!(linked_node_1 in linked_node_2.adjacent_nodes))
+		linked_node_2.adjacent_nodes += linked_node_1
+		linked_node_2.adjacent_nodes[linked_node_1] = src.is_a_link
+	else //node 2 knows of 1, but not via our link aaaa
+		var/datum/powernet_graph_link/maybe_us_node_2 = linked_node_2.adjacent_nodes[linked_node_1]
+		if (islist(maybe_us_node_2)) //and it's a fucking list AAAAA
+			linked_node_2.adjacent_nodes[linked_node_1] += src.is_a_link
+		else if (maybe_us_node_2 != src.is_a_link)
+			linked_node_2.adjacent_nodes[linked_node_1] = list(maybe_us_node_2, src.is_a_link)
+
+	src.is_a_link.expected_length = length(src.is_a_link.cables)
 
 
 

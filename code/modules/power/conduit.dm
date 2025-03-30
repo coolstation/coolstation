@@ -128,14 +128,14 @@
 
 		if(netnum && powernets && powernets.len >= netnum) //NEED FOR CLEAN GC IN EXPLOSIONS
 			powernets[netnum].cables -= src
-*/
+
 	//insulator.owner = null
 	//conductor.owner = null
 
 	STOP_TRACKING
 
 	..()													// then go ahead and delete the cable
-
+*/
 // returns the powernet this cable belongs to
 /obj/cable/conduit/get_powernet()
 	return

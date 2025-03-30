@@ -17,11 +17,14 @@
 			if(makingpowernets)
 				return // TODO queue instead
 			for(var/obj/cable/C in src.get_connections())
+				src.netnum = C.get_netnumber()
+				break
+				/*
 				if(src.netnum == 0)
 					src.netnum = C.get_netnumber()
 				else if(C.netnum != 0 && C.netnum != src.netnum) // could be a join instead but this won't happen often so screw it
 					makepowernets()
-					return
+					return*/
 			if(src.netnum)
 				src.powernet = powernets[src.netnum]
 				src.powernet.nodes += src
@@ -82,6 +85,7 @@
 // rebuild all power networks from scratch
 var/makingpowernets = 0
 var/makingpowernetssince = 0
+//var/list/obj/cable/all_cables = list()
 /proc/makepowernets()
 	if (makingpowernets)
 		logTheThing("debug", null, null, "makepowernets was called while it was already running! oh no!")
@@ -95,6 +99,65 @@ var/makingpowernetssince = 0
 	else
 		makingpowernetssince = 0
 
+	var/netcount = 1 //was 0, we now increment after building a net
+	powernets = list()
+
+	for_by_tcl(PC, /obj/cable)
+		if (PC.is_a_link) continue
+		if (PC.is_a_node) continue
+		var/datum/powernet/PN = new
+		PN.number = netcount
+		powernets += PN
+		netcount++
+		var/list/nodes = list()
+		var/list/nodes_2_visit = list()
+
+		if (length(PC.get_connections()) == 2)
+			PC.link_crawl()
+			if (PC.is_a_link)
+				nodes |= PC.is_a_link.adjacent_nodes
+				nodes_2_visit |= PC.is_a_link.adjacent_nodes
+			else
+				nodes |= PC.is_a_node
+				nodes_2_visit |= PC.is_a_node
+		else
+			PC.is_a_node = new
+			PC.is_a_node.physical_node = PC
+			nodes |= PC.is_a_node
+			nodes_2_visit |= PC.is_a_node
+
+
+		while (length(nodes_2_visit))
+			var/datum/powernet_graph_node/asdaw_node = nodes_2_visit[1]
+			nodes_2_visit -= asdaw_node
+			var/obj/cable/asdaw_cable = asdaw_node.physical_node
+			for(var/obj/cable/Casd in asdaw_cable.get_connections())
+				if (Casd.is_a_link) continue
+				if (Casd.is_a_node) continue
+				if (length(Casd.get_connections()) == 2)
+					var/datum/powernet_graph_link/Lasd = Casd.link_crawl()
+					if (!(Lasd.adjacent_nodes[1] in nodes))
+						nodes_2_visit |= Lasd.adjacent_nodes[1]
+					if (!(Lasd.adjacent_nodes[2] in nodes))
+						nodes_2_visit |= Lasd.adjacent_nodes[2]
+					nodes |= Lasd.adjacent_nodes
+
+				else
+					Casd.is_a_node = new
+					Casd.is_a_node.physical_node = Casd
+					nodes |= Casd.is_a_node
+					nodes_2_visit |= Casd.is_a_node
+
+
+		for(var/datum/powernet_graph_node/net_node as anything in nodes)
+			net_node.netnum = netcount
+			net_node.pnet = PN
+		PN.all_graph_nodes = nodes
+
+		LAGCHECK(LAG_MED)
+
+
+	/*
 	var/netcount = 1 //was 0, we now increment after building a net
 	powernets = list()
 
@@ -134,7 +197,7 @@ var/makingpowernetssince = 0
 		if(M.use_datanet)
 			M.powernet.data_nodes += M
 		LAGCHECK(LAG_MED)
-
+	*/
 	makingpowernets = 0
 	DEBUG_MESSAGE("rebuilding powernets end")
 
@@ -172,8 +235,7 @@ var/makingpowernetssince = 0
 	for(var/obj/cable/C in T)
 		if(C.open_circuit) continue
 		if(C.d1 == fdir || C.d2 == fdir)
-			if(!unmarked || !C.netnum)
-				. += C
+			. += C
 
 	. -= source
 
@@ -181,25 +243,25 @@ var/makingpowernetssince = 0
 /obj/cable/proc/get_connections(unmarked = 0)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T = get_step(src, d1)
-	. += power_list(T, src , d1, unmarked)
+	. += power_list(T, src , d1, unmarked, TRUE)
 	T = get_step(src, d2)
-	. += power_list(T, src, d2, unmarked)
+	. += power_list(T, src, d2, unmarked, TRUE)
 
 	//changed this to only allowed same-tile connections if both sides are knots.
 	if (d1 == 0)
 		for(var/obj/cable/C in src.loc)
-			if(C != src && C.d1 == 0 && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a central knot
-				. += C
+			if(C != src && C.d1 == 0 && !C.open_circuit) // my turf, sharing a central knot
+				. |= C
 
 /obj/cable/proc/get_connections_one_dir(is_it_d2, unmarked = 0)
 	. = list()	// this will be a list of all connected power objects
 	var/d = is_it_d2 ? d2 : d1
 	var/turf/T = get_step(src, d)
-	. += power_list(T, src , d, unmarked)
+	. += power_list(T, src , d, unmarked, TRUE)
 
 	if (d == 0)
 		for(var/obj/cable/C in src.loc)
-			if(C != src && C.d1 == 0 && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a central knot
+			if(C != src && C.d1 == 0 && !C.open_circuit) // my turf, sharing a central knot
 				. += C
 
 /obj/machinery/power/proc/get_connections(unmarked = 0)
@@ -216,7 +278,7 @@ var/makingpowernetssince = 0
 
 		for(var/obj/cable/C in T)
 
-			if((C.netnum && unmarked) || C.open_circuit)
+			if(C.open_circuit)
 				continue
 
 			if(C.d1 == cdir || C.d2 == cdir)
@@ -228,14 +290,12 @@ var/makingpowernetssince = 0
 
 	for(var/obj/cable/C in src.loc)
 
-		if(C.netnum && unmarked)
-			continue
-
 		if(C.d1 == 0)
 			. += C
 
 //LummoxJR patch:
 ///I think this proc is for collecting power cables/machinery under netnumber [num] starting from [O]. I've added it returning TRUE when it finishes, or FALSE when it cuts of early (so makepowernets can reuse the netnum) - Bat
+/*
 /proc/powernet_nextlink(var/obj/O, var/num)
     var/list/P
     var/list/more
@@ -289,9 +349,10 @@ var/makingpowernetssince = 0
                     X:netnum = -1
                 more += P.Copy(2)
 // cut a powernet at this cable object
-
+*/
 /datum/powernet/proc/cut_cable(var/obj/cable/C)
-
+	qdel(C)
+/*
 	var/turf/T1 = C.loc
 	if(C.d1)
 		T1 = get_step(C, C.d1)
@@ -372,8 +433,8 @@ var/makingpowernetssince = 0
 		//there is a loop, so nothing to be done
 		return
 
-	return
-
+	return*/
+/*
 /datum/powernet/proc/join_to(var/datum/powernet/PN) // maybe pool powernets someday
 	for(var/obj/cable/C as anything in src.cables)
 		C.netnum = PN.number
@@ -384,7 +445,7 @@ var/makingpowernetssince = 0
 		M.powernet = PN
 		PN.nodes += M
 		if (M.use_datanet)
-			PN.data_nodes += M
+			PN.data_nodes += M*/
 
 /datum/powernet/proc/reset()
 	load = newload
