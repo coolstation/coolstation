@@ -530,7 +530,7 @@ proc/debug_map_apc_count(delim,zlim)
 				if(M.netnum >= 0)
 					netnums |= M.netnum
 			for(var/obj/cable/C in theTurf)
-				if(C.is_a_node?.netnum >= 0)
+				if(C.is_a_node?.netnum > 0)
 					netnums |= C.is_a_node.netnum
 			img.app.overlays = list(src.makeText(jointext(netnums, " ")))
 			if(!netnums.len)
