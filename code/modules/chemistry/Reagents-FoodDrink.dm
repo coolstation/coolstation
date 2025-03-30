@@ -2758,6 +2758,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 1
+			burn_energy = 820000
 			burn_temperature = 1200
 			burn_volatility = 4
 
@@ -2786,6 +2787,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 1
+			burn_energy = 900000
 			burn_temperature = 1000
 			burn_volatility = 6
 
