@@ -1202,6 +1202,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 0.25 // Oil is a slow burner
+			burn_energy = 838000 // but still has plenty of energy
 			burn_temperature = 600 + T0C
 			burn_volatility = 3
 			minimum_reaction_temperature = T0C + 200
