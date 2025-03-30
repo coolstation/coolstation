@@ -138,6 +138,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
+			burn_energy = 590000
 			burn_temperature = 900
 			burn_volatility = 4
 			thirst_value = -0.02
@@ -335,6 +336,7 @@ datum
 			transparency = 255
 			flammable_influence = TRUE
 			burn_speed = 3
+			burn_energy = 85000
 			burn_temperature = 3000
 			burn_volatility = 4
 
@@ -419,6 +421,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2
+			burn_energy = 950000
 			burn_temperature = 2700
 			burn_volatility = 8
 
