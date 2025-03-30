@@ -237,6 +237,8 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 		for (var/mob/living/L in loc)
 			L.update_burning(min(max(temperature / 60, 5),33))
 
+		perform_exposure()
+
 		if (volume > (CELL_VOLUME * 0.4))
 			icon_state = "2"
 		else
