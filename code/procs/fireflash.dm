@@ -171,8 +171,8 @@
 	return affected
 
 
-/proc/fireflash_sm(atom/center, radius, temp, falloff, capped = 1, bypass_RNG = 0)
-	var/list/affected = fireflash_s(center, radius, temp, falloff)
+/proc/fireflash_sm(atom/center, radius, temp, falloff, capped = 1, bypass_RNG = 0, energy)
+	var/list/affected = fireflash_s(center, radius, temp, falloff, energy)
 	for (var/turf/T in affected)
 		if (issimulatedturf(T) && !T.loc:sanctuary)
 			var/mytemp = affected[T]
