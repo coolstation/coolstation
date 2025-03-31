@@ -2973,7 +2973,7 @@ var/global/noir = 0
 
 					if ("yeolde")
 						if (src.level >= LEVEL_PA)
-							message_admins("[key_name(usr)] began replacing all Z1 airlocks with wooden doors.")
+							message_admins("[key_name(usr)] began replacing all Z1 .optionGroup.")
 							for (var/obj/machinery/door/D in by_type[/obj/machinery/door])
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 airlocks with wooden doors was terminated due to the atom emerygency stop!")
@@ -4208,7 +4208,7 @@ var/global/noir = 0
 
 	dat += {"<style>
 				a {text-decoration:none}
-				.optionGroup {padding:5px; margin-bottom:8px; border:1px solid black}
+				.optionGroup {padding:5px; margin-bottom:8px; border:1px solid black; background: #dad8b6; color: #6D5D03}
 				.optionGroup .title {display:block; color:white; background:black; padding: 2px 5px; margin: -5px -5px 2px -5px}
 			</style>"}
 
