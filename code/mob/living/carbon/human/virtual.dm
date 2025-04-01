@@ -38,9 +38,14 @@
 
 	death(gibbed)
 
+		ghostize(src)
+
 		Station_VNet.Leave_Vspace(src)
 
 		qdel(src)
+
+		src.z = 1 //stops gibs generating in nullspace
+
 		return
 
 	disposing()

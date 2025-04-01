@@ -178,6 +178,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 4
+			burn_energy = 550000
 			burn_temperature = 2200
 			burn_volatility = 15 // Very Dangerous
 			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable

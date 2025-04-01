@@ -314,9 +314,15 @@ var/global
 	blowout = 0
 	farty_party = 0
 	deep_farting = 0
-	no_emote_cooldowns = 0
+
+#ifdef APRIL_FOOLS
+	ghost_invisibility = INVIS_NONE
+	no_emote_cooldowns = 1
+#else
 	// Default ghost invisibility. Set when the game is over
 	ghost_invisibility = INVIS_GHOST
+	no_emote_cooldowns = 0
+#endif
 
 
 	datum/titlecard/lobby_titlecard
@@ -393,9 +399,18 @@ var/global
 
 	halloween_mode = 0
 
-	literal_disarm = 0
-
 #ifdef RP_MODE
+#define SIMS_MODE
+#endif
+
+#ifdef APRIL_FOOLS
+#define SIMS_MODE
+	literal_disarm = 1
+#else
+	literal_disarm = 0
+#endif
+
+#ifdef SIMS_MODE // idk if theres a smarter way to do this
 	global_sims_mode = 1 // SET THIS TO 0 TO DISABLE SIMS MODE
 #else
 	global_sims_mode = 0 // SET THIS TO 0 TO DISABLE SIMS MODE
