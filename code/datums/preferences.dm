@@ -118,16 +118,15 @@ datum/preferences
 			qdel(src.preview)
 			src.preview = null
 
-	ui_data(mob/user)
-		if (isnull(src.preview))
-			src.preview = new(user.client, "preferences", "preferences_character_preview")
-			src.preview.add_background()
-			src.update_preview_icon()
-
+	ui_data(mob/user, datum/tgui/ui)
 		var/client/client = ismob(user) ? user.client : user
 
 		if (!client)
 			return
+
+		if (isnull(src.preview))
+			src.preview = new(user.client, "preferences", "preferences_character_preview", ui.window)
+			RegisterSignal(src.preview, COMSIG_UIMAP_LOADED, PROC_REF(update_preview_icon_initial))
 
 		var/list/profiles = new/list(SAVEFILE_PROFILES_MAX)
 		for (var/i = 1, i <= SAVEFILE_PROFILES_MAX, i++)
@@ -220,7 +219,7 @@ datum/preferences
 		)
 
 //disable options on slots that have been played *or* on characters with the same name as a played one.
-#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(src)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
+#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(client)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
 
 	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 		. = ..()
@@ -1000,10 +999,16 @@ datum/preferences
 
 		src.real_name = src.name_first + " " + src.name_last
 
+	proc/update_preview_icon_initial()
+		update_preview_icon()
+		UnregisterSignal(src.preview, COMSIG_UIMAP_LOADED)
 
 	proc/update_preview_icon()
 		if (!AH)
 			logTheThing("debug", usr ? usr : null, null, "a preference datum's appearence holder is null!")
+			return
+
+		if(!src.preview?.handler)
 			return
 
 		var/datum/mutantrace/mutantRace = null

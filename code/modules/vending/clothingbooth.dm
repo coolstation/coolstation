@@ -29,17 +29,22 @@ var/list/clothingbooth_items = list()
 		return
 	if(!ishuman(user))
 		return
+	if(!src.preview)
+		src.preview = new()
+	src.uipostpreview(user.client) // this needs to be refactored into maybe a chui window
 
-	var/mob/living/carbon/human/H = user
-	src.preview.update_appearance(H.bioHolder.mobAppearance, H.mutantrace, name=user.real_name)
+/obj/machinery/clothingbooth/proc/uipostpreview(client/client_user)
+	var/mob/living/carbon/human/H = client_user.mob
+	src.preview.update_appearance(H.bioHolder.mobAppearance, H.mutantrace, name=H.real_name)
 	qdel(src.preview_item)
 	src.preview_item = null
 	src.preview.remove_all_clients()
-	src.preview.add_client(user.client)
+	src.preview.add_client(client_user)
 
-	user << browse_rsc('browserassets/css/clothingbooth.css')
-	user << browse_rsc('browserassets/js/clothingbooth.js')
-	user << browse(replacetext(replacetext(replacetext(grabResource("html/clothingbooth.html"), "!!BOOTH_LIST!!", clothingbooth_json), "!!SRC_REF!!", "\ref[src]"), "!!PREVIEW_ID!!", src.preview.preview_id), "window=ClothingBooth;size=600x600;can_resize=1;can_minimize=1;")
+	client_user << browse_rsc('browserassets/css/clothingbooth.css')
+	client_user << browse_rsc('browserassets/js/clothingbooth.js')
+	client_user << browse(replacetext(replacetext(replacetext(grabResource("html/clothingbooth.html"), "!!BOOTH_LIST!!", clothingbooth_json), "!!SRC_REF!!", "\ref[src]"), "!!PREVIEW_ID!!", src.preview.preview_id), "window=ClothingBooth;size=600x600;can_resize=1;can_minimize=1;")
+
 
 
 //clothing booth stuffs <3
@@ -65,7 +70,6 @@ var/list/clothingbooth_items = list()
 		light.set_brightness(0.6)
 		light.set_height(1.5)
 		light.enable()
-		src.preview = new()
 
 	relaymove(mob/user as mob)
 		if (user.stat != 0 || user.getStatusDuration("stunned"))
