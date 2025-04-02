@@ -1043,6 +1043,10 @@
 	dir = 5
 	},
 /area/station/security/equipment)
+"aZd" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/grime,
+/area/station/shipyard)
 "bak" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -5422,6 +5426,9 @@
 	},
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
+"eLH" = (
+/turf/floor/carpet/grime,
+/area/station/shipyard)
 "eMh" = (
 /obj/lattice{
 	dir = 4;
@@ -6887,10 +6894,7 @@
 /turf/floor/wood/five,
 /area/station/chapel/sanctuary)
 "fZs" = (
-/obj/machinery/door/airlock/maintenance{
-	icon_state = "door_locked";
-	locked = 1
-	},
+/obj/machinery/door/airlock/classic,
 /turf/floor/plating/random,
 /area/space)
 "fZz" = (
@@ -11763,6 +11767,11 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
+"krJ" = (
+/turf/floor/blackwhite/whitegrime,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "kst" = (
 /obj/decal/poster/wallsign/escape_right,
 /turf/wall,
@@ -12718,6 +12727,11 @@
 	},
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
+"liJ" = (
+/turf/floor/grime,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "liZ" = (
 /turf/floor/circuit/green,
 /area/station/garden/owlery)
@@ -12973,7 +12987,7 @@
 /turf/floor/carpet/arcade,
 /area/station/bridge/captain)
 "ltM" = (
-/turf/floor/plating/random,
+/turf/floor/carpet/grime,
 /area/station/storage/warehouse{
 	name = "Warehouse"
 	})
@@ -13083,6 +13097,11 @@
 	},
 /turf/floor/carpet/arcade/half,
 /area/station/bridge/captain)
+"lxV" = (
+/turf/floor/carpet/grime,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "lyi" = (
 /obj/stool/chair/green{
 	dir = 4
@@ -14997,6 +15016,12 @@
 	dir = 8
 	},
 /area/station/science/lobby)
+"ncO" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/plating/random,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "ndr" = (
 /obj/stool/chair/comfy,
 /obj/disposalpipe/segment{
@@ -18884,6 +18909,9 @@
 /obj/firedoor_spawn,
 /turf/floor/bluegreen,
 /area/station/medical/research)
+"qnC" = (
+/turf/floor/grime,
+/area/station/shipyard)
 "qnD" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -20907,6 +20935,9 @@
 /obj/decal/cleanable/mess/random_litter,
 /turf/floor/wood,
 /area/station/crew_quarters/fitness)
+"rXx" = (
+/turf/floor/blackwhite/whitegrime,
+/area/station/shipyard)
 "rXD" = (
 /obj/machinery/vending/monkey,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
@@ -23326,6 +23357,12 @@
 /obj/storage/closet/office,
 /turf/floor/carpet/blue/fancy/edge,
 /area/station/medical/staff)
+"ubf" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/mining/refinery{
+	name = "Scrapping"
+	})
 "ubw" = (
 /obj/pathlights/shuttle{
 	dir = 4
@@ -23530,6 +23567,10 @@
 	},
 /turf/floor/blue/side,
 /area/space)
+"uff" = (
+/obj/structure/woodwall,
+/turf/floor/grime,
+/area/station/shipyard)
 "ufH" = (
 /obj/machinery/dispenser,
 /obj/disposalpipe/segment/sewage{
@@ -24996,6 +25037,10 @@
 /obj/machinery/firealarm,
 /turf/wall,
 /area/station/maintenance/solar/north)
+"vvy" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating/random,
+/area/station/maintenance/disposal)
 "vwi" = (
 /obj/disposalpipe/switch_junction/left/north,
 /turf/floor/blackwhite/whitegrime,
@@ -25762,6 +25807,10 @@
 	dir = 4
 	},
 /area/station/security/main)
+"wob" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/grime,
+/area/space)
 "woG" = (
 /obj/machinery/power/apc/autoname/north{
 	pixel_y = 24
@@ -26801,6 +26850,10 @@
 	},
 /turf/floor/engine,
 /area/space)
+"xld" = (
+/obj/structure/woodwall,
+/turf/floor/plating/random,
+/area/station/shipyard)
 "xlg" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -51330,11 +51383,11 @@ vmB
 vmB
 dSw
 ckB
+vmB
+vmB
+vmB
 ckB
-vmB
-vmB
-vmB
-vmB
+aaB
 ckB
 aaB
 aaB
@@ -51632,11 +51685,11 @@ vmB
 vmB
 dSw
 ckB
+vmB
 ckB
 ckB
 ckB
-ckB
-ckB
+ipT
 xXQ
 ipT
 ipT
@@ -51938,7 +51991,7 @@ ckB
 xXQ
 xXQ
 dSw
-dSw
+aaB
 aaB
 aaB
 aaB
@@ -53124,7 +53177,7 @@ ipT
 ipT
 ipT
 ipT
-ckB
+kCO
 dSw
 adT
 ckB
@@ -53426,7 +53479,7 @@ ipT
 ipT
 ipT
 ckB
-ckB
+kCO
 dSw
 adT
 adT
@@ -54039,7 +54092,7 @@ adT
 dSw
 vmB
 vmB
-vmB
+wob
 vmB
 osW
 osW
@@ -54330,7 +54383,7 @@ ipT
 dSw
 ckB
 ckB
-ckB
+kCO
 hqZ
 dSw
 dSw
@@ -54631,7 +54684,7 @@ ipT
 ipT
 dSw
 ckB
-ckB
+kCO
 hqZ
 xXQ
 xXQ
@@ -54932,9 +54985,9 @@ ipT
 dSw
 dSw
 dSw
-ckB
-ckB
-ckB
+dSw
+kCO
+kCO
 xXQ
 dSw
 dSw
@@ -56173,7 +56226,7 @@ wlx
 wlx
 wlx
 wlx
-wyx
+dJx
 aHC
 gSC
 eij
@@ -56470,12 +56523,12 @@ sFJ
 mtE
 gpj
 dJx
+dJx
+vvy
 wlx
 wlx
 wlx
-wlx
-wlx
-wyx
+dJx
 dnw
 nbb
 dSw
@@ -56754,7 +56807,7 @@ kCO
 kCO
 kCO
 kCO
-vmB
+wob
 vmB
 jXB
 jPb
@@ -56776,8 +56829,8 @@ wlx
 wlx
 wlx
 wlx
-wlx
-wyx
+dJx
+dJx
 iFh
 nbb
 fsf
@@ -70411,10 +70464,10 @@ cdQ
 gJZ
 gJZ
 gJZ
-nfr
-nfr
-nfr
-bMk
+cdQ
+ncO
+cdQ
+seQ
 bMk
 seQ
 seQ
@@ -70713,15 +70766,15 @@ cdQ
 cdQ
 gJZ
 gJZ
-nfr
-nfr
-nfr
-gJZ
-gJZ
 cdQ
 nfr
-gtF
-gtF
+nfr
+cdQ
+gJZ
+cdQ
+krJ
+rXx
+rXx
 seQ
 bMk
 bMk
@@ -71016,14 +71069,14 @@ cdQ
 cdQ
 cdQ
 cdQ
+ncO
 cdQ
 cdQ
 cdQ
 cdQ
-cdQ
-nfr
-gtF
-gtF
+krJ
+rXx
+rXx
 seQ
 bMk
 bMk
@@ -71315,17 +71368,17 @@ qRn
 qRn
 cRN
 cdQ
+liJ
+liJ
+liJ
+liJ
+liJ
 nfr
-nfr
-nfr
-nfr
-nfr
-nfr
-nfr
+liJ
 cdQ
-nfr
-gtF
-gtF
+krJ
+rXx
+rXx
 seQ
 bMk
 bMk
@@ -71617,17 +71670,17 @@ qRn
 qRn
 cRN
 cdQ
-nfr
-nfr
-nfr
-nfr
-nfr
-nfr
-nfr
+liJ
+liJ
+liJ
+liJ
+liJ
+liJ
+liJ
 cdQ
-nfr
-gtF
-gtF
+krJ
+rXx
+rXx
 seQ
 bMk
 bMk
@@ -71920,15 +71973,15 @@ qRn
 cRN
 cdQ
 cdQ
+ubf
+ubf
 cdQ
 cdQ
+nfr
+liJ
 cdQ
 cdQ
-cdQ
-cdQ
-cdQ
-cdQ
-seQ
+rXx
 seQ
 seQ
 seQ
@@ -72229,12 +72282,12 @@ cdQ
 nfr
 nfr
 nfr
-nfr
-gtF
-gtF
-gtF
-gtF
-gtF
+liJ
+qnC
+qnC
+xld
+qnC
+qnC
 ckB
 ckB
 ckB
@@ -72527,17 +72580,17 @@ qRn
 qRn
 qRn
 qRn
-cdQ
-nfr
-nfr
-nfr
-nfr
-gtF
-gtF
-gtF
-gtF
-gtF
-ckB
+ubf
+liJ
+liJ
+liJ
+liJ
+qnC
+xld
+uff
+qnC
+qnC
+vmB
 ckB
 ipT
 ipT
@@ -72830,11 +72883,11 @@ qRn
 qRn
 qRn
 cdQ
-nfr
-nfr
-nfr
-nfr
-gtF
+cdQ
+cdQ
+cdQ
+cdQ
+aZd
 seQ
 seQ
 seQ
@@ -73132,11 +73185,11 @@ hQj
 hQj
 hQj
 cdQ
+cRN
+cRN
 cdQ
-cdQ
-cdQ
-nfr
-gtF
+lxV
+eLH
 seQ
 bMk
 bMk
@@ -73438,7 +73491,7 @@ cRN
 cRN
 cdQ
 cdQ
-dSw
+odC
 dSw
 dSw
 ipT
@@ -73741,7 +73794,7 @@ jPq
 ltM
 ltM
 ltM
-ckB
+odC
 dSw
 ipT
 ipT
@@ -74043,7 +74096,7 @@ jPq
 mhA
 ltM
 ltM
-ckB
+odC
 dSw
 ipT
 ipT
@@ -74345,7 +74398,7 @@ jPq
 mhA
 ltM
 ltM
-ckB
+odC
 dSw
 ipT
 ipT
@@ -74645,7 +74698,7 @@ pvc
 pvc
 pvc
 jdW
-lBr
+kWZ
 jdW
 jdW
 jdW
@@ -74947,9 +75000,9 @@ jdW
 jdW
 lBr
 jdW
-lBr
-lBr
-lBr
+kWZ
+kWZ
+kWZ
 jdW
 oFu
 oFu
@@ -75250,8 +75303,8 @@ jdW
 lBr
 jdW
 lBr
-lBr
-lBr
+kWZ
+kWZ
 jdW
 oFu
 oFu
@@ -75552,8 +75605,8 @@ jdW
 lBr
 jdW
 lBr
-lBr
-lBr
+kWZ
+kWZ
 jdW
 oFu
 oFu
@@ -75855,7 +75908,7 @@ lBr
 jdW
 lBr
 lBr
-lBr
+kWZ
 jdW
 oFu
 oFu
@@ -76157,7 +76210,7 @@ lBr
 lBr
 lBr
 lBr
-lBr
+kWZ
 jdW
 oFu
 oFu
@@ -76759,8 +76812,8 @@ pvc
 jdW
 lBr
 jdW
-lBr
-lBr
+kWZ
+kWZ
 lBr
 jdW
 oFu
