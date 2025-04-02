@@ -1251,7 +1251,6 @@
 /obj/decal/cleanable/rust/jen,
 /obj/critter/mouse/mad,
 /obj/machinery/light/fluorescent/ceiling,
-/obj/machinery/atmospherics/unary/vent_pump,
 /turf/floor,
 /area/station/medical/cdc)
 "ez" = (
@@ -2423,9 +2422,8 @@
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "iN" = (
-/obj/machinery/door/airlock/engineering,
-/obj/access_spawn/engineering_engine,
-/obj/firedoor_spawn,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/wingrille_spawn/crystal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -2571,6 +2569,7 @@
 /obj/grille/catwalk/jen,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon14,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -3029,9 +3028,14 @@
 /area/station/bridge)
 "lb" = (
 /obj/decal/cleanable/dirt/jen,
-/obj/machinery/pathogen_manipulator,
 /obj/window{
 	dir = 2
+	},
+/obj/table/reinforced/chemistry{
+	icon_state = "8"
+	},
+/obj/machinery/synthomatic{
+	pixel_y = 12
 	},
 /turf/floor/grey/side,
 /area/station/medical/cdc)
@@ -3902,7 +3906,7 @@
 "nY" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/drainage,
-/obj/machinery/light_switch/east,
+/obj/machinery/shower,
 /turf/floor/grime,
 /area/station/crew_quarters/bathroom{
 	name = "Official Bathroom"
@@ -4238,6 +4242,12 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"pr" = (
+/obj/machinery/atmospherics/pipe/tank/air_repressurization/north,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "ps" = (
 /obj/stool/chair/comfy/green{
 	dir = 8
@@ -4246,6 +4256,18 @@
 /area/station/bridge)
 "pt" = (
 /obj/decal/cleanable/dirt/random,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
+"pu" = (
+/obj/machinery/atmospherics/binary/pump{
+	frequency = 1229;
+	icon_state = "intact_on";
+	name = "Gas pump - Ext 2";
+	on = 1;
+	target_pressure = 1000
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -5319,6 +5341,7 @@
 	pixel_y = 30;
 	unlisted = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7125,6 +7148,12 @@
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
 	})
+"zH" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "zI" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -8222,6 +8251,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9141,14 +9171,11 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Gw" = (
-/obj/table/reinforced/chemistry/auto,
-/obj/machinery/synthomatic{
-	pixel_y = 12
-	},
 /obj/decal/cleanable/dirt/jen,
 /obj/machinery/light_switch/auto{
 	pixel_y = 27
 	},
+/obj/machinery/vending/pathology,
 /turf/floor/plating,
 /area/station/medical/cdc)
 "Gy" = (
@@ -9341,10 +9368,10 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/decal/poster/wallsign/WC_blue{
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/decal/poster/wallsign/WC_black{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10375,6 +10402,14 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"KU" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "KV" = (
 /turf/wall/r_wall,
 /area/station/security/brig/south_side)
@@ -11596,7 +11631,7 @@
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "Pk" = (
-/obj/machinery/vending/pathology,
+/obj/machinery/pathogen_manipulator,
 /turf/floor/plating,
 /area/station/medical/cdc)
 "Pl" = (
@@ -11615,6 +11650,13 @@
 /obj/decal/cleanable/fungus,
 /turf/wall,
 /area/station/medical/cdc)
+"Po" = (
+/obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Pp" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -11644,6 +11686,13 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
+"Pv" = (
+/obj/decal/cleanable/dirt/dirt4,
+/obj/machinery/atmospherics/pipe/tank/air_repressurization/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11726,6 +11775,7 @@
 	pixel_y = 7
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/light_switch/east,
 /turf/floor/grime,
 /area/station/crew_quarters/bathroom{
 	name = "Official Bathroom"
@@ -12501,6 +12551,13 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"SM" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "SN" = (
 /turf/wall,
 /area/station/crew_quarters/clown)
@@ -12798,9 +12855,18 @@
 	},
 /turf/floor/grey/blackgrime/other,
 /area/station/security/main)
-"TT" = (
-/obj/table/reinforced/industrial/auto,
+"TS" = (
+/obj/table/reinforced/industrial,
 /obj/item/wrench,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
+"TT" = (
+/obj/machinery/atmospherics/pipe/vertical_pipe/north{
+	target_z = 1
+	},
+/obj/structure/girder/riser,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12870,8 +12936,9 @@
 /turf/floor,
 /area/station/janitor/office)
 "Uk" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/wingrille_spawn/crystal,
+/obj/machinery/door/airlock/engineering,
+/obj/firedoor_spawn,
+/obj/access_spawn/engineering_engine,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -13263,13 +13330,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
-"VE" = (
-/obj/machinery/atmospherics/pipe/tank/air_repressurization/north,
-/obj/decal/cleanable/dirt/dirt4,
-/turf/floor/plating,
-/area/station/maintenance/inner/south{
-	name = "South Tunnel"
-	})
 "VF" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -13639,7 +13699,7 @@
 	},
 /obj/decal/cleanable/dirt/jen,
 /obj/table/reinforced/chemistry{
-	icon_state = "8"
+	icon_state = "12"
 	},
 /turf/floor/grey/side,
 /area/station/medical/cdc)
@@ -13799,6 +13859,7 @@
 	})
 "Xr" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/valve/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -14153,6 +14214,12 @@
 /obj/disposalpipe/trunk,
 /turf/floor/darkblue,
 /area/station/bridge)
+"YX" = (
+/obj/machinery/atmospherics/pipe/manifold/east,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "YY" = (
 /obj/machinery/power/apc{
 	areastring = "Septic Tank";
@@ -60572,7 +60639,7 @@ Zr
 Zr
 Zr
 Zr
-Zr
+SM
 dp
 Fb
 ux
@@ -60876,12 +60943,12 @@ Sg
 qt
 ju
 Te
-Fb
-ux
-ux
-ux
-ux
-HB
+uq
+Jm
+Jm
+Jm
+Jm
+Jm
 HB
 HB
 HB
@@ -61176,14 +61243,14 @@ HL
 HL
 HL
 HL
-NQ
+WB
 FX
 uq
-Fb
-Fb
-Fb
-uq
-HB
+TS
+ly
+AI
+Bh
+Jm
 HB
 HB
 HB
@@ -61478,14 +61545,14 @@ eL
 TY
 aW
 HL
-NQ
-FX
-qx
-ly
+WB
+FY
+Po
 AI
-Bh
-Fb
-HB
+ot
+dz
+Yj
+Jm
 ux
 HB
 HB
@@ -61780,14 +61847,14 @@ eL
 Oc
 JA
 HL
-NQ
-FY
+WB
+FX
 Uk
-ot
 dz
-Yj
-Fb
-ux
+hC
+AI
+Pv
+Jm
 HB
 HB
 HB
@@ -62085,11 +62152,11 @@ HL
 tw
 FX
 qx
-hC
+zH
+YX
 AI
-VE
-Fb
-ux
+pr
+Jm
 HB
 HB
 HB
@@ -62384,14 +62451,14 @@ lC
 aE
 dx
 HL
-NQ
+WB
 FX
-Fb
+uq
 hC
 AI
 dw
-Fb
-ux
+uq
+Jm
 ux
 HB
 HB
@@ -62687,12 +62754,12 @@ Md
 HL
 HL
 DE
-FX
+KU
 iN
 Xr
-dz
+pu
 TT
-Fb
+uq
 ux
 ux
 HB
@@ -62990,11 +63057,11 @@ Eu
 kC
 NQ
 FX
-Fb
+uq
 MB
 AI
 oZ
-Fb
+uq
 ux
 ux
 ux
@@ -63293,9 +63360,9 @@ kC
 bU
 FX
 uq
-Fb
-Fb
-Fb
+uq
+uq
+uq
 uq
 ux
 ux

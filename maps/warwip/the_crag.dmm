@@ -86,7 +86,6 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
-/obj/grille/catwalk/jen,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -5028,6 +5027,10 @@
 	},
 /turf/floor,
 /area/station/crew_quarters/toilets)
+"oO" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/north,
+/turf/space/gehenna/desert/plating,
+/area/station/science/storage)
 "oP" = (
 /obj/table/wood/auto,
 /obj/machinery/coffeemaker/botany,
@@ -5547,6 +5550,13 @@
 	},
 /turf/floor,
 /area/station/hallway/secondary/south)
+"qx" = (
+/obj/machinery/atmospherics/pipe/vertical_pipe/south{
+	target_z = 3
+	},
+/obj/structure/girder/riser,
+/turf/space/gehenna/desert/plating,
+/area/station/science/storage)
 "qy" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/firedoor_spawn,
@@ -11603,6 +11613,11 @@
 	icon_state = "dark"
 	},
 /area/station/chapel/office)
+"Iw" = (
+/obj/machinery/light/fluorescent/ceiling,
+/obj/grille/catwalk/jen,
+/turf/floor,
+/area/station/engine/core)
 "Ix" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -65559,9 +65574,9 @@ PA
 Cl
 Cl
 Cl
-Cl
-Cl
-Cl
+XN
+XN
+XN
 Cl
 Cl
 Cl
@@ -65861,9 +65876,9 @@ PA
 PA
 Cl
 Cl
-Cl
-Cl
-Cl
+XN
+qx
+oO
 Cl
 Cl
 Cl
@@ -66163,9 +66178,9 @@ Ib
 cR
 Cl
 Cl
-Cl
-Cl
-Cl
+XN
+XN
+XN
 Cl
 Cl
 Cl
@@ -69163,7 +69178,7 @@ hh
 YN
 ym
 FI
-YN
+Iw
 bA
 LW
 bT
