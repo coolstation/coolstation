@@ -181,8 +181,8 @@ export const dragStartHandler = event => {
   logger.log('drag start');
   dragging = true;
   dragPointOffset = [
-    window.screenLeft - event.screenX * window.devicePixelRatio,
-    window.screenTop - event.screenY * window.devicePixelRatio,
+    (window.screenLeft - event.screenX) * window.devicePixelRatio,
+    (window.screenTop - event.screenY) * window.devicePixelRatio,
   ];
   document.addEventListener('mousemove', dragMoveHandler);
   document.addEventListener('mouseup', dragEndHandler);
@@ -213,8 +213,8 @@ export const resizeStartHandler = (x, y) => event => {
   logger.log('resize start', resizeMatrix);
   resizing = true;
   dragPointOffset = [
-    window.screenLeft - event.screenX,
-    window.screenTop - event.screenY,
+    (window.screenLeft - event.screenX) * window.devicePixelRatio,
+    (window.screenTop - event.screenY) * window.devicePixelRatio,
   ];
   initialSize = [
     window.innerWidth,

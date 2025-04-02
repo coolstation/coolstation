@@ -137,14 +137,14 @@ chui.initialize = function() {
 
 	document.querySelector('#titlebar').addEventListener('pointermove', function(ev) {
 		if (chui.titlebarMousedown == 1) {
-			chui.setPos(Math.floor(ev.screenX - chui.startOffsetX), Math.floor(ev.screenY - chui.startOffsetY));
+			chui.setPos(Math.floor(ev.screenX * window.devicePixelRatio - chui.startOffsetX), Math.floor(ev.screenY * window.devicePixelRatio - chui.startOffsetY));
 		}
 	});
 	document.querySelector('#titlebar').addEventListener('pointerdown', function(ev) {
 		if (ev.target.className !== 'icon-remove' && ev.target.className !== 'icon-minus') { // hacky way to ignore drags on the close and minimize buttons
 			chui.titlebarMousedown = 1;
-			chui.startOffsetX = Math.floor(ev.screenX - window.screenX);
-			chui.startOffsetY = Math.floor(ev.screenY - window.screenY);
+			chui.startOffsetX = Math.floor(ev.screenX - window.screenX) * window.devicePixelRatio;
+			chui.startOffsetY = Math.floor(ev.screenY - window.screenY) * window.devicePixelRatio;
 			this.setPointerCapture(ev.pointerId);
 		}
 	});
@@ -166,8 +166,8 @@ chui.initialize = function() {
 				var rx = Number($(this).attr('rx'));
 				var ry = Number($(this).attr('ry'));
 
-				var dx = ev.screenX - chui.startOffsetX;
-				var dy = ev.screenY - chui.startOffsetY;
+				var dx = ev.screenX * window.devicePixelRatio - chui.startOffsetX;
+				var dy = ev.screenY * window.devicePixelRatio - chui.startOffsetY;
 
 				var newX = chui.oldX;
 				var newY = chui.oldY;
@@ -192,12 +192,12 @@ chui.initialize = function() {
 		});
 		$('body').on('pointerdown', 'div.resizeArea', function(ev) {
 			chui.resizeMousedown = 1;
-			chui.startOffsetX = Math.floor(ev.screenX);
-			chui.startOffsetY = Math.floor(ev.screenY);
-			chui.oldX = window.screenX;
-			chui.oldY = window.screenY;
-			chui.oldW = document.body.offsetWidth;
-			chui.oldH = document.body.offsetHeight;
+			chui.startOffsetX = Math.floor(ev.screenX) * window.devicePixelRatio;
+			chui.startOffsetY = Math.floor(ev.screenY) * window.devicePixelRatio;
+			chui.oldX = window.screenX * window.devicePixelRatio;
+			chui.oldY = window.screenY * window.devicePixelRatio;
+			chui.oldW = document.body.offsetWidth * window.devicePixelRatio;
+			chui.oldH = document.body.offsetHeight * window.devicePixelRatio;
 			this.setPointerCapture(ev.originalEvent.pointerId);
 		});
 		$('body').on('pointerup', 'div.resizeArea', function(ev) {
