@@ -281,16 +281,16 @@
 		return 0
 	attack_self(mob/user)
 		. = ..()
-		if(icon_state == "clown")
+		if(icon_state != "clown_hairless")
 			icon_state = "clown_hairless"
 			item_state = "clown_hat_hairless"
 			src.add_fingerprint(user)
-			boutput (user, __red("you chance the style of the [src]."))
+			boutput (user, __red("you change the style of the [src]."))
 		else
-			icon_state = "clown"
-			item_state = "clown_hat"
+			icon_state = "[initial(icon_state)]"
+			item_state = "[initial(item_state)]"
 			src.add_fingerprint(user)
-			boutput (user, __red("you chance the style of the [src]."))
+			boutput (user, __red("you change the style of the [src]."))
 
 /obj/item/clothing/mask/gas/syndie_clown
 	name = "clown wig and mask"
