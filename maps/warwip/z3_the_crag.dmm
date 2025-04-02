@@ -7,6 +7,13 @@
 	},
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"ae" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "ag" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -74,6 +81,7 @@
 /area/station/janitor/office)
 "ax" = (
 /obj/machinery/light/fluorescent/harsh,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "az" = (
@@ -131,6 +139,7 @@
 /obj/item/paper/iou{
 	pixel_y = 10
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/darkblue,
 /area/station/bridge)
 "aG" = (
@@ -144,18 +153,40 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"aH" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/turf/floor/darkblue,
+/area/station/bridge)
 "aI" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer/north,
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"aJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/darkblueblack{
+	dir = 1
+	},
+/area/station/bridge)
+"aK" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "aL" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"aM" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grime,
+/area/station/crew_quarters/fitness)
 "aN" = (
 /obj/item/cigbutt{
 	pixel_x = 7;
@@ -167,8 +198,27 @@
 /area/station/security/hos)
 "aO" = (
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor/plating,
 /area/station/security/brig)
+"aP" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
+"aT" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/fluorescent/red{
+	dir = 8
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/security/main)
 "aU" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -177,6 +227,7 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "aV" = (
@@ -195,18 +246,23 @@
 	},
 /turf/floor/plating,
 /area/station/engine/gas)
+"aX" = (
+/obj/disposalpipe/segment/morgue,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "aZ" = (
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "ba" = (
-/obj/ladder/auto{
-	pixel_x = -2
-	},
+/obj/ladder/auto,
 /turf/floor/cautionblack,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -251,8 +307,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
+/turf/floor,
 /area/station/bridge)
 "bj" = (
 /obj/cable/blue{
@@ -265,6 +321,13 @@
 	dir = 4
 	},
 /turf/floor/plating,
+/area/station/engine/hotloop)
+"bl" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/grime,
 /area/station/engine/hotloop)
 "bm" = (
 /obj/cable{
@@ -325,6 +388,7 @@
 /area/station/crew_quarters/bathroom)
 "bx" = (
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/wall,
 /area/station/security/main)
 "by" = (
@@ -343,6 +407,7 @@
 	tag = ""
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "bz" = (
@@ -358,6 +423,8 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/switch_junction/left/south,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/main)
 "bB" = (
@@ -388,7 +455,7 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "bF" = (
@@ -400,6 +467,7 @@
 /obj/decal/poster/wallsign/dont_drugs{
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -412,9 +480,18 @@
 "bH" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
+	})
+"bI" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
 	})
 "bJ" = (
 /obj/grille/catwalk/jen,
@@ -424,6 +501,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "bK" = (
@@ -454,11 +532,10 @@
 	icon_state = "1-2"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "bO" = (
-/obj/decal/fakeobjects/swordrack{
-	name = "i'm not real yet...";
-	pixel_y = 26
+/obj/machinery/vending/gunse{
+	pixel_y = 3
 	},
 /turf/floor/industrial,
 /area/station/security/armory)
@@ -475,6 +552,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "bS" = (
@@ -482,6 +560,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/red/side,
 /area/station/security/main)
 "bT" = (
@@ -511,6 +591,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "bX" = (
@@ -528,6 +609,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs{
 	dir = 8
 	},
@@ -572,6 +654,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -727,7 +810,6 @@
 /obj/disposalpipe/segment/bent{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
@@ -769,6 +851,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/crew_quarters/arcade)
+"cV" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_pump/north,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "cX" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -776,6 +864,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -819,6 +908,13 @@
 	},
 /turf/floor/bluewhite,
 /area/station/medical/basement)
+"dl" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/east,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "dm" = (
 /turf/floor/cautionblack/side{
 	dir = 10
@@ -833,6 +929,15 @@
 	dir = 1
 	},
 /area/station/medical/basement)
+"dp" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "dq" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -882,6 +987,7 @@
 "dA" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/tile_edge/stripe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/stairs/wide/other{
 	dir = 1
 	},
@@ -915,6 +1021,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -932,6 +1039,7 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -960,6 +1068,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 8
+	},
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "dK" = (
@@ -980,8 +1091,9 @@
 "dP" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/middle,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
-/area/station/bridge)
+/area/station/bridge/captain)
 "dQ" = (
 /obj/machinery/atmospherics/valve/purge/horizontal{
 	name = "hot loop sample valve"
@@ -999,8 +1111,14 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"dS" = (
+/obj/decal/poster/wallsign/biohazard,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/wall,
+/area/station/medical/cdc)
 "dT" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/turret_deployer/riot,
@@ -1012,6 +1130,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "dX" = (
@@ -1027,6 +1146,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1034,13 +1154,14 @@
 "eb" = (
 /obj/storage/secure/closet/command/captain,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "ec" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1061,6 +1182,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "eg" = (
@@ -1075,6 +1197,7 @@
 "eh" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1096,6 +1219,8 @@
 "en" = (
 /obj/disposalpipe/segment/bent,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1105,6 +1230,10 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"eq" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/grime,
+/area/station/crew_quarters/catering)
 "eu" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/stool/chair{
@@ -1115,8 +1244,9 @@
 "ev" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/captain,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "ew" = (
 /obj/decal/cleanable/rust/jen,
 /obj/critter/mouse/mad,
@@ -1134,14 +1264,12 @@
 	},
 /obj/table/wood/auto,
 /obj/machinery/power/data_terminal,
-/turf/floor/grey,
-/area/station/bridge)
-"eA" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/floor/darkblue,
+/turf/floor/grey,
 /area/station/bridge)
 "eB" = (
 /turf/floor/plating/gehenna,
@@ -1166,8 +1294,18 @@
 	icon_state = "2-8"
 	},
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
+"eF" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "eG" = (
 /turf/floor/plating,
 /area/transit_vehicle/elevator/eng_bot)
@@ -1211,6 +1349,7 @@
 "eQ" = (
 /obj/disposalpipe/junction/middle/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1233,6 +1372,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/wall/r_wall,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1252,21 +1392,28 @@
 /obj/table/wood/auto,
 /obj/machinery/light/lamp/bright,
 /obj/machinery/power/apc/autoname/north,
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/carpet/green,
-/area/gehenna/underground)
+/area/station/bridge/hos)
+"fc" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
+"fg" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "fh" = (
 /turf/wall/r_wall,
 /area/station/turret_protected/ai)
 "fj" = (
 /obj/disposalpipe/segment/sewage,
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
+/turf/floor,
 /area/station/bridge)
 "fk" = (
 /obj/cable{
@@ -1274,6 +1421,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "fl" = (
@@ -1331,15 +1479,12 @@
 	},
 /turf/floor/grey/blackgrime,
 /area/station/turret_protected/ai)
-"fu" = (
-/turf/wall/asteroid/gehenna/tough/z3,
-/area/station/bridge)
 "fw" = (
 /obj/cable{
 	icon_state = "2-8"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "fy" = (
 /obj/machinery/vending/paint/broken,
 /turf/floor/plating,
@@ -1350,6 +1495,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "fA" = (
@@ -1366,6 +1512,7 @@
 /obj/grille/catwalk/jen,
 /obj/machinery/door/airlock/security,
 /obj/access_spawn/forensics,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/detectives_office)
 "fC" = (
@@ -1377,6 +1524,13 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
+"fD" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "fE" = (
 /obj/storage/closet/wardrobe/specialty_janitor,
 /turf/floor/purple/side{
@@ -1391,6 +1545,10 @@
 "fH" = (
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"fI" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "fK" = (
 /obj/fitness/weightlifter,
 /obj/disposalpipe/segment{
@@ -1432,7 +1590,7 @@
 	dir = 8
 	},
 /turf/floor/grime,
-/area/gehenna/underground)
+/area/station/bridge)
 "fP" = (
 /obj/machinery/door_control{
 	id = "crusher";
@@ -1443,6 +1601,7 @@
 "fT" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/detectives_office)
 "fU" = (
@@ -1467,14 +1626,18 @@
 "fY" = (
 /turf/floor/grime,
 /area/station/storage/tech)
+"fZ" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/east,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "ga" = (
 /turf/wall/r_wall,
 /area/station/engine/hotloop)
 "gb" = (
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "line1"
-	},
 /turf/floor/grime,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1499,8 +1662,27 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"gg" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/grille/catwalk/bob/twosides{
+	dir = 8
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
+/turf/floor/plating,
+/area/station/turret_protected/ai_upload)
 "gh" = (
 /turf/wall/auto/rivet,
 /area/station/maintenance/disposal/sewage)
@@ -1515,6 +1697,7 @@
 /obj/decal/poster/wallsign/medbay_left{
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1555,8 +1738,9 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/bent,
-/obj/table/reinforced/auto,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1578,8 +1762,13 @@
 	setup_os_string = "MAIN_DISH_SS13"
 	},
 /obj/machinery/light/small/red,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/turret_protected/ai_upload)
+"gy" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/wall/r_wall,
+/area/station/engine/hotloop)
 "gC" = (
 /obj/disposalpipe/segment/bent{
 	dir = 1
@@ -1599,6 +1788,7 @@
 	dir = 2
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1624,6 +1814,10 @@
 	dir = 6
 	},
 /area/station/medical/research)
+"gJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "gK" = (
 /obj/machinery/light/fluorescent/harsh{
 	dir = 8
@@ -1649,7 +1843,7 @@
 	dir = 1
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "gQ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/cable{
@@ -1660,6 +1854,7 @@
 "gR" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/darkblue,
 /area/station/bridge)
 "gS" = (
@@ -1672,11 +1867,15 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 1
+	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "gV" = (
 /obj/disposalpipe/switch_junction/left/north,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1705,8 +1904,9 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_y = 32
 	},
-/obj/table/reinforced/auto,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1720,6 +1920,7 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
 /turf/floor/plating,
 /area/station/security/main)
 "hg" = (
@@ -1729,6 +1930,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -1758,6 +1960,7 @@
 "hk" = (
 /obj/disposalpipe/segment/sewage,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1778,6 +1981,7 @@
 	icon_state = "1-2"
 	},
 /obj/access_spawn/heads,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "hn" = (
@@ -1789,17 +1993,25 @@
 /obj/access_spawn/security,
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/door/airlock/security,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/security/main)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
+/turf/floor/cautionblack/side,
+/area/station/mining/lobby)
 "hr" = (
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/security/main)
 "hv" = (
@@ -1809,7 +2021,7 @@
 "hx" = (
 /obj/item/storage/toilet/goldentoilet,
 /turf/floor/marble,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "hy" = (
 /obj/decal/cleanable/dirt/random,
 /obj/storage/closet/fire,
@@ -1825,6 +2037,8 @@
 	})
 "hA" = (
 /obj/machinery/light_switch/west,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "hB" = (
@@ -1850,13 +2064,27 @@
 /obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/mining/tunnel)
+"hE" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "hF" = (
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grime,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
+	})
+"hG" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
+/obj/table/auto,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
 	})
 "hH" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -1868,6 +2096,7 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "hJ" = (
@@ -1885,10 +2114,15 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"hL" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grime,
+/area/station/crew_quarters/catering)
 "hM" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 2"
@@ -1897,6 +2131,14 @@
 	dir = 4
 	},
 /area/station/engine/hotloop)
+"hO" = (
+/obj/grille/catwalk/jen,
+/obj/disposalpipe/segment/sewage{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/plating,
+/area/station/security/main)
 "hQ" = (
 /obj/storage/crate{
 	desc = "Whoa! What will they think of next?";
@@ -1943,10 +2185,6 @@
 /obj/grille/catwalk/jen/twosides,
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"hU" = (
-/obj/item/mining_tools/pick,
-/turf/floor/sand,
-/area/station/security/brig/north_side)
 "hV" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -1969,13 +2207,14 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/red/corner{
 	dir = 4
 	},
 /area/station/security/main)
 "hZ" = (
 /obj/window_blinds,
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn/crystal,
 /turf/floor/plating,
 /area/station/security/hos)
 "ib" = (
@@ -2012,6 +2251,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "ih" = (
@@ -2026,8 +2266,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor,
 /area/station/bridge)
 "il" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -2060,6 +2300,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -2077,6 +2318,12 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "iv" = (
@@ -2085,11 +2332,20 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/research,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/science/teleporter)
 "iw" = (
 /obj/machinery/portable_atmospherics/canister/farts/filled,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
+"ix" = (
+/obj/machinery/light/fluorescent{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/grime,
 /area/station/engine/hotloop)
 "iy" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
@@ -2113,13 +2369,16 @@
 /obj/submachine/ATM{
 	pixel_x = 32
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 8
+	},
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "iC" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -2137,11 +2396,12 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "iE" = (
 /turf/floor/marble,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "iG" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /turf/floor/bluewhite/corner{
@@ -2149,9 +2409,9 @@
 	},
 /area/station/medical/basement)
 "iI" = (
-/obj/table/reinforced/auto,
 /obj/item/storage/firstaid/old,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2209,6 +2469,7 @@
 	})
 "iZ" = (
 /obj/decal/poster/wallsign/biohazard,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/wall,
 /area/station/medical/cdc)
 "jc" = (
@@ -2223,6 +2484,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -2244,12 +2506,14 @@
 	pixel_y = 10
 	},
 /obj/item/scissors,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblue,
 /area/station/bridge)
 "jg" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon3,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2264,10 +2528,7 @@
 /turf/floor/white,
 /area/station/medical/basement)
 "jm" = (
-/obj/decal/tile_edge/line/black{
-	dir = 6;
-	icon_state = "line1"
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "jo" = (
@@ -2282,20 +2543,14 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment,
-/turf/floor/plating,
-/area/station/crew_quarters/fitness)
-"jr" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/grille/catwalk/jen,
-/obj/cable{
-	icon_state = "4-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "js" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "jt" = (
@@ -2304,6 +2559,7 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/mining,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -2314,6 +2570,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon14,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -2327,6 +2584,7 @@
 	})
 "jx" = (
 /obj/decal/cleanable/mess/random_food,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "jy" = (
@@ -2362,6 +2620,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2392,7 +2651,7 @@
 /area/station/mining/lobby)
 "jI" = (
 /turf/floor/grime,
-/area/gehenna/underground)
+/area/station/bridge)
 "jJ" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
@@ -2401,6 +2660,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2456,11 +2716,11 @@
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "jV" = (
-/obj/table/reinforced/auto,
 /obj/random_item_spawner/tools/one,
 /obj/decal/poster/wallsign/hypothermia{
 	pixel_y = 31
 	},
+/obj/table/auto,
 /turf/floor/cautionblack,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2516,6 +2776,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/grey,
 /area/station/bridge)
 "kk" = (
@@ -2610,6 +2871,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2625,6 +2887,7 @@
 	dir = 4
 	},
 /obj/decal/cleanable/mud,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "ky" = (
@@ -2674,6 +2937,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon6,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2717,8 +2981,21 @@
 "kQ" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/bent,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
+"kR" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor,
+/area/station/bridge)
 "kS" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -2734,6 +3011,17 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"kW" = (
+/obj/disposalpipe/segment/sewage,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "kZ" = (
 /turf/floor/darkblueblack{
 	dir = 5
@@ -2758,6 +3046,7 @@
 /obj/grille/catwalk/jen,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon16,
 /obj/disposalpipe/segment/morgue,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "le" = (
@@ -2775,8 +3064,12 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
+/area/station/security/main)
+"lh" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/wall,
 /area/station/security/main)
 "li" = (
 /obj/cable,
@@ -2791,6 +3084,7 @@
 /obj/disposalpipe/segment,
 /obj/access_spawn/security,
 /obj/machinery/door/airlock/security,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/security/main)
 "lm" = (
@@ -2804,6 +3098,15 @@
 	},
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
+"lo" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grey,
+/area/station/bridge)
 "lr" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/genetics_booth,
@@ -2816,6 +3119,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblue,
 /area/station/bridge)
 "lu" = (
@@ -2841,8 +3145,14 @@
 /area/station/crew_quarters/bathroom{
 	name = "Official Bathroom"
 	})
+"lx" = (
+/obj/grille/catwalk/jen,
+/obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/south,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "ly" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southeast,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -2854,6 +3164,11 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"lz" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "lA" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/mess/burrito,
@@ -2866,6 +3181,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "lC" = (
@@ -2942,6 +3258,13 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"lP" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/north,
+/turf/floor/darkblue,
+/area/station/bridge)
 "lQ" = (
 /turf/wall/asteroid/gehenna/z3,
 /area/station/maintenance/inner/north{
@@ -2981,6 +3304,7 @@
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "lX" = (
@@ -2988,6 +3312,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -3024,12 +3349,8 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/obj/disposalpipe/segment/bent{
-	dir = 1
-	},
-/obj/grille/catwalk/jen,
 /obj/machinery/vending/cigarette,
-/turf/floor/plating,
+/turf/floor,
 /area/station/bridge)
 "mf" = (
 /obj/machinery/computer/genetics{
@@ -3041,6 +3362,7 @@
 /area/station/medical/research)
 "mg" = (
 /obj/machinery/light/fluorescent,
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "mh" = (
@@ -3074,6 +3396,7 @@
 "mn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "mo" = (
@@ -3120,6 +3443,7 @@
 	pixel_y = 30;
 	unlisted = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -3144,8 +3468,9 @@
 	dir = 8
 	},
 /obj/machinery/light_switch/east,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "mz" = (
 /obj/disposalpipe/segment/bent{
 	dir = 8
@@ -3156,6 +3481,7 @@
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "mB" = (
@@ -3219,6 +3545,7 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -3247,6 +3574,8 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -3254,8 +3583,9 @@
 "mN" = (
 /obj/table/wood/auto/desk,
 /obj/machinery/phone/unlisted,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "mO" = (
 /obj/storage/crate,
 /turf/floor/cautionblack,
@@ -3274,6 +3604,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -3287,6 +3618,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "mV" = (
@@ -3358,6 +3690,7 @@
 	icon_state = "1-8"
 	},
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "nj" = (
@@ -3374,6 +3707,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -3390,6 +3724,7 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "nm" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/grey,
 /area/station/turret_protected/ai)
 "nn" = (
@@ -3413,10 +3748,18 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"nt" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/grey,
+/area/station/bridge)
 "nw" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/floor/grey,
 /area/station/teleporter)
+"nx" = (
+/turf/floor/carpet/blue,
+/area/station/bridge/captain)
 "nz" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -3430,6 +3773,7 @@
 "nA" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/bridge)
 "nB" = (
@@ -3457,6 +3801,7 @@
 	dir = 1;
 	icon_state = "line1"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/purple/side{
 	dir = 9
 	},
@@ -3475,6 +3820,14 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"nJ" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor,
+/area/station/crewquarters/cryotron)
 "nK" = (
 /obj/disposalpipe/segment/sewage,
 /obj/wingrille_spawn/reinforced,
@@ -3510,9 +3863,18 @@
 /obj/machinery/teleport/portal_generator,
 /turf/floor/grey,
 /area/station/teleporter)
+"nS" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "nT" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
 /turf/floor/plating,
 /area/station/security/brig)
 "nU" = (
@@ -3566,6 +3928,7 @@
 	icon_state = "2-4"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "oc" = (
@@ -3596,10 +3959,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/light/fluorescent/red{
-	dir = 8
-	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "ok" = (
@@ -3609,10 +3970,15 @@
 	icon_state = "1-2"
 	},
 /obj/decal/tile_edge/stripe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs/wide/other{
 	dir = 1
 	},
-/area/station/bridge)
+/area/station/security/main)
+"ol" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "om" = (
 /turf/wall/false_wall,
 /area/station/maintenance/inner/south{
@@ -3626,6 +3992,8 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -3674,12 +4042,16 @@
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "oy" = (
-/obj/table/reinforced/auto,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"oz" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor/horizontal,
+/turf/floor/plating/gehenna,
+/area/station/mining/tunnel)
 "oA" = (
 /obj/cable{
 	d2 = 2;
@@ -3721,6 +4093,8 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/main)
 "oK" = (
@@ -3745,6 +4119,7 @@
 "oM" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "oN" = (
@@ -3765,6 +4140,10 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"oR" = (
+/obj/machinery/atmospherics/unary/vent_pump/south,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "oS" = (
 /obj/disposalpipe/segment/ejection{
 	dir = 4
@@ -3776,15 +4155,16 @@
 /obj/item/remote/porter/port_a_sci,
 /turf/floor/plating,
 /area/station/science/teleporter)
+"oU" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/grey,
+/area/station/bridge)
 "oV" = (
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass,
-/obj/decal/tile_edge/line/black{
-	dir = 8;
-	icon_state = "line1"
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/door/airlock/glass/command,
 /turf/floor/darkblue,
 /area/station/bridge)
 "oW" = (
@@ -3820,6 +4200,7 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -3852,6 +4233,7 @@
 	name = "autoname - SS13"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -3907,12 +4289,14 @@
 /obj/decal/cleanable/cobweb{
 	icon_state = "cobweb"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor/grey,
 /area/station/teleporter)
 "pD" = (
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -3929,7 +4313,7 @@
 	dir = 8
 	},
 /turf/floor/marble,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "pG" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -3960,6 +4344,7 @@
 	icon_state = "1-2"
 	},
 /obj/access_spawn/research,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/storage/tech)
 "pL" = (
@@ -3985,21 +4370,24 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
 "pO" = (
+/obj/access_spawn/ai_upload,
 /obj/machinery/door/airlock/command{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/obj/access_spawn/ai_upload,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grey,
 /area/station/turret_protected/ai_upload)
 "pP" = (
 /obj/decal/cleanable/mess/sodacan,
 /obj/decal/cleanable/dirt/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "pQ" = (
@@ -4008,6 +4396,10 @@
 	},
 /turf/floor/grey/blackgrime,
 /area/station/turret_protected/ai)
+"pS" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/wall,
+/area/station/medical/cdc)
 "pW" = (
 /turf/floor/white/corner{
 	dir = 8
@@ -4027,6 +4419,7 @@
 	icon_state = "2-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/plating,
 /area/station/science/teleporter)
 "qd" = (
@@ -4057,9 +4450,18 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
+	})
+"qj" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
 	})
 "qk" = (
 /obj/cable{
@@ -4086,7 +4488,7 @@
 	icon_state = "2-4"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/hos)
+/area/gehenna/underground)
 "qp" = (
 /obj/machinery/computer/atmosphere/mixercontrol{
 	dir = 4;
@@ -4110,6 +4512,7 @@
 	},
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -4129,11 +4532,21 @@
 	icon_state = "0-8"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/hos)
+/area/gehenna/underground)
+"qx" = (
+/obj/wingrille_spawn/crystal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "qy" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"qz" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "qA" = (
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
@@ -4148,6 +4561,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "qD" = (
@@ -4161,6 +4575,19 @@
 /obj/disposalpipe/segment/bent,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"qI" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "qJ" = (
 /obj/cable/blue{
 	icon_state = "0-4"
@@ -4181,6 +4608,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
 "qM" = (
@@ -4199,6 +4627,13 @@
 	},
 /turf/floor/plating,
 /area/station/crew_quarters/arcade)
+"qR" = (
+/obj/machinery/light/fluorescent/harsh{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "qT" = (
 /obj/decal/cleanable/dirt/random,
 /obj/access_spawn/security,
@@ -4212,6 +4647,7 @@
 /area/station/security/main)
 "qU" = (
 /obj/landmark/start/latejoin,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "qV" = (
@@ -4230,14 +4666,20 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"qX" = (
+/obj/machinery/atmospherics/unary/vent_pump/east,
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "qY" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4256,14 +4698,34 @@
 "rc" = (
 /obj/table/wood/auto,
 /obj/machinery/phone/unlisted,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
+	},
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
+"re" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
+"rg" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "rh" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4287,6 +4749,9 @@
 /obj/decal/tile_edge/stripe{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
+	},
 /turf/floor/red/side,
 /area/station/security/brig)
 "rn" = (
@@ -4300,6 +4765,15 @@
 	dir = 8
 	},
 /area/station/security/main)
+"ro" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/stairs/wide/other{
+	dir = 1
+	},
+/area/station/bridge)
 "rp" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -4308,6 +4782,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4331,14 +4806,29 @@
 	icon_state = "1-2"
 	},
 /turf/wall/r_wall,
-/area/station/bridge/hos)
+/area/station/bridge)
+"rv" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/grille/catwalk/bob/twosides{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/turret_protected/ai_upload)
 "rw" = (
 /obj/submachine/chef_sink{
 	dir = 4;
 	name = "bathroom sink"
 	},
 /turf/floor/marble,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "rx" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
@@ -4358,6 +4848,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -4380,6 +4871,11 @@
 /obj/machinery/atmospherics/portables_connector/west,
 /turf/floor/red,
 /area/station/engine/hotloop)
+"rL" = (
+/obj/stool/chair/comfy/green,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/darkblue,
+/area/station/bridge)
 "rN" = (
 /obj/machinery/vending/cigarette,
 /obj/decal/cleanable/dirt/random,
@@ -4403,6 +4899,11 @@
 /obj/machinery/power/data_terminal,
 /obj/table/wood/auto,
 /obj/item/disk/data/floppy/read_only/communications,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "rT" = (
@@ -4414,12 +4915,19 @@
 	})
 "rU" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon17,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
 "rV" = (
 /obj/machinery/atmospherics/unary/cryo_cell/west,
 /turf/floor/bluewhite,
 /area/station/medical/basement)
+"rW" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/darkblueblack{
+	dir = 1
+	},
+/area/station/bridge)
 "rX" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -4428,13 +4936,30 @@
 "sa" = (
 /turf/wall,
 /area/station/maintenance/disposal/crusher)
-"se" = (
-/obj/disposalpipe/segment/mail/horizontal,
+"sd" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"se" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
+"sf" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/darkblueblack{
+	dir = 1
+	},
+/area/station/bridge)
 "sg" = (
 /obj/cable{
 	d1 = 1;
@@ -4443,6 +4968,10 @@
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "sh" = (
@@ -4452,6 +4981,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/catering)
 "si" = (
@@ -4500,7 +5030,7 @@
 	icon_state = "1-2"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/hos)
+/area/gehenna/underground)
 "su" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor/plating/gehenna,
@@ -4509,17 +5039,14 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/white,
 /area/station/medical/basement)
 "sx" = (
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "line1"
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "sy" = (
@@ -4531,6 +5058,7 @@
 /area/station/teleporter)
 "sA" = (
 /obj/storage/secure/closet/animal,
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/green/side{
 	dir = 5
 	},
@@ -4539,6 +5067,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "sD" = (
@@ -4562,6 +5091,7 @@
 /obj/access_spawn/security,
 /obj/machinery/door/airlock/gannets/glass/security/alt,
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/grime,
 /area/station/security/main)
 "sG" = (
@@ -4592,6 +5122,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "sL" = (
@@ -4611,15 +5142,33 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
+"sP" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/east,
+/turf/floor/white,
+/area/station/medical/basement)
 "sQ" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"sS" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "sU" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -4674,6 +5223,7 @@
 "th" = (
 /obj/table/regal/auto,
 /obj/item/paper/book/from_file/the_trial,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/darkblue,
 /area/station/bridge)
 "ti" = (
@@ -4681,6 +5231,7 @@
 /obj/disposalpipe/segment,
 /obj/access_spawn/engineering_engine,
 /obj/firedoor_spawn,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "tj" = (
@@ -4689,6 +5240,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4711,6 +5263,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -4725,7 +5278,9 @@
 /area/station/storage/tech)
 "tr" = (
 /obj/table/reinforced/industrial/auto,
-/obj/item/breaching_hammer,
+/obj/item/cigarbox/gold{
+	pixel_y = 3
+	},
 /turf/floor/industrial,
 /area/station/security/armory)
 "tt" = (
@@ -4734,6 +5289,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/stairs/wide/green,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4749,6 +5305,7 @@
 /area/station/engine/coldloop)
 "tv" = (
 /obj/structure/woodwall,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4798,6 +5355,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /turf/floor/grime,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -4812,7 +5370,7 @@
 	name = "stall"
 	},
 /turf/floor/marble,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "tF" = (
 /obj/machinery/atmospherics/portables_connector/north,
 /obj/machinery/light/fluorescent{
@@ -4820,6 +5378,15 @@
 	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"tG" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "tI" = (
 /obj/table/wood/auto,
 /obj/random_item_spawner/shoe/few,
@@ -4891,16 +5458,12 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
 "tO" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -4930,6 +5493,7 @@
 "tT" = (
 /obj/disposalpipe/junction/right/west,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -4937,6 +5501,7 @@
 "tV" = (
 /obj/disposalpipe/segment,
 /obj/decal/tile_edge/stripe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs/wide{
 	dir = 1
 	},
@@ -4978,6 +5543,13 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
+"ue" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/grey,
+/area/station/bridge)
 "ug" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -4990,6 +5562,24 @@
 /obj/fluid_spawner/polluted_filth,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"uh" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
+"uj" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/south,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "uk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5042,8 +5632,13 @@
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "ut" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/carpet/green,
-/area/station/bridge)
+/area/station/bridge/hos)
+"uu" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "uw" = (
 /obj/disposalpipe/segment/sewage,
 /obj/grille/catwalk/jen,
@@ -5115,10 +5710,6 @@
 	},
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
-"uK" = (
-/obj/disposalpipe/segment/mail/vertical,
-/turf/wall/r_wall,
-/area/station/bridge/captain)
 "uM" = (
 /turf/wall,
 /area/station/crew_quarters/catering)
@@ -5152,6 +5743,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -5162,6 +5754,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "uS" = (
@@ -5178,13 +5771,22 @@
 	},
 /turf/floor/grey,
 /area/station/teleporter)
+"uV" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/south,
+/turf/floor/grey,
+/area/station/bridge)
 "uW" = (
 /obj/decal/floatingtiles/loose/random,
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "uX" = (
 /obj/disposalpipe/junction/right/south,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -5216,12 +5818,14 @@
 	pixel_x = -3
 	},
 /obj/machinery/light_switch/east,
+/obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "vd" = (
 /obj/disposalpipe/segment,
 /obj/access_spawn/heads,
 /obj/machinery/door/airlock/glass/command,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/darkblue,
 /area/station/bridge)
 "vf" = (
@@ -5236,8 +5840,9 @@
 	icon_state = "2-4"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
-/area/station/bridge)
+/area/station/security/main)
 "vh" = (
 /obj/table/wood/auto,
 /obj/cable{
@@ -5250,16 +5855,6 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
-"vk" = (
-/obj/grille/catwalk/jen,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/mail/vertical,
-/turf/floor/plating,
-/area/station/security/main)
 "vl" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -5276,10 +5871,6 @@
 /obj/decal/cleanable/rust/jen,
 /turf/floor/sandytile,
 /area/station/medical/cdc)
-"vo" = (
-/obj/disposalpipe/segment/mail/vertical,
-/turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
 "vp" = (
 /turf/floor/darkblueblack{
 	dir = 6
@@ -5289,6 +5880,7 @@
 /obj/item/device/radio/intercom/cargo{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "vr" = (
@@ -5312,6 +5904,7 @@
 	})
 "vu" = (
 /obj/storage/cart/forensic,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "vv" = (
@@ -5319,6 +5912,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/east,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "vy" = (
@@ -5330,6 +5924,13 @@
 	dir = 1
 	},
 /area/station/bridge)
+"vz" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "vA" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5342,6 +5943,7 @@
 /obj/machinery/computer/aiupload{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/turret_protected/ai_upload)
 "vC" = (
@@ -5402,12 +6004,22 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "vM" = (
 /obj/landmark/start,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"vN" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "vO" = (
 /turf/wall/r_wall,
 /area/station/medical/research)
@@ -5418,6 +6030,8 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -5478,8 +6092,9 @@
 	pixel_y = 8
 	},
 /obj/item/spacecash/fivehundred,
+/obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/floor/carpet/green,
-/area/gehenna/underground)
+/area/station/bridge/hos)
 "wd" = (
 /obj/decal/cleanable/rust/jen,
 /obj/machinery/atmospherics/unary/vent_pump/east,
@@ -5505,19 +6120,15 @@
 /area/station/mining/lobby)
 "wh" = (
 /obj/disposalpipe/segment/sewage,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/wall/r_wall,
-/area/station/bridge/captain)
+/area/station/bridge)
 "wi" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/station/medical/research)
 "wj" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "wk" = (
@@ -5526,6 +6137,7 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -5569,6 +6181,23 @@
 "ws" = (
 /turf/floor/darkblueblack,
 /area/station/bridge)
+"wt" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
+"wu" = (
+/obj/machinery/door/airlock/glass,
+/obj/access_spawn/medlab,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/green,
+/area/station/medical/research)
 "ww" = (
 /obj/table/wood/auto,
 /obj/cable{
@@ -5600,6 +6229,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "wB" = (
@@ -5615,8 +6245,9 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
-/area/station/bridge)
+/area/station/security/main)
 "wG" = (
 /turf/floor/grime,
 /area/station/maintenance/disposal)
@@ -5626,6 +6257,10 @@
 	},
 /turf/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
+"wJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/wall,
+/area/station/security/quarters)
 "wK" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -5636,6 +6271,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "wL" = (
@@ -5691,8 +6327,13 @@
 /obj/decal/poster/wallsign/bunks{
 	pixel_y = -31
 	},
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/red/side,
 /area/station/security/main)
+"wS" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor,
+/area/station/medical/research)
 "wT" = (
 /turf/floor/plating/gehenna,
 /area/station/engine/gas)
@@ -5716,6 +6357,7 @@
 	on = 1;
 	target_pressure = 1000
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "wZ" = (
@@ -5729,8 +6371,9 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/carpet/green,
-/area/gehenna/underground)
+/area/station/bridge/hos)
 "xb" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -5739,14 +6382,20 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"xc" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor/grime,
+/area/station/maintenance/disposal)
 "xd" = (
 /obj/disposalpipe/junction/right/north,
 /obj/grille/catwalk/jen,
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -5781,6 +6430,13 @@
 /obj/access_spawn/ai_upload,
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
+"xl" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/south,
+/turf/floor/red/side,
+/area/station/security/main)
 "xm" = (
 /obj/grille/catwalk/jen,
 /obj/decal/poster/wallsign/warning3{
@@ -5789,21 +6445,22 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "xo" = (
-/obj/table/reinforced/auto,
 /obj/machinery/phone,
+/obj/table/auto,
 /turf/floor/purple,
 /area/station/janitor/office)
 "xp" = (
+/obj/disposalpipe/segment/bent{
+	dir = 2
+	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/bent{
-	dir = 2
 	},
 /turf/floor/white,
 /area/station/medical/basement)
@@ -5813,6 +6470,7 @@
 /area/station/engine/combustion_chamber)
 "xv" = (
 /obj/disposalpipe/junction/right/south,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "xw" = (
@@ -5827,6 +6485,10 @@
 "xy" = (
 /turf/wall,
 /area/station/storage/tech)
+"xA" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "xC" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -5852,6 +6514,11 @@
 	dir = 4
 	},
 /area/station/engine/hotloop)
+"xI" = (
+/obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "xJ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/northwest,
 /turf/floor/grime,
@@ -5861,7 +6528,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "xN" = (
@@ -5870,6 +6537,10 @@
 /obj/firedoor_spawn,
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"xO" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "xP" = (
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
@@ -5907,6 +6578,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/main)
 "xU" = (
@@ -5933,6 +6605,7 @@
 /turf/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
 "xX" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/mining/lobby)
 "xY" = (
@@ -5954,6 +6627,20 @@
 /obj/table/reinforced/auto,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
+"xZ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	icon_state = "2-4"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/security/main)
 "ya" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/left,
@@ -5965,10 +6652,16 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"yc" = (
+/obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "yd" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
 /turf/floor/grime,
@@ -5980,6 +6673,7 @@
 	pixel_y = 8
 	},
 /obj/item/device/detective_scanner,
+/obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "yf" = (
@@ -5993,14 +6687,19 @@
 /obj/fluid_spawner/polluted_filth/yuck,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"yj" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor,
+/area/station/crewquarters/cryotron)
 "yl" = (
 /obj/disposalpipe/junction/left/east,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal{
-	dir = 9
-	},
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"ym" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "yn" = (
 /obj/window{
 	dir = 2
@@ -6045,8 +6744,15 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/security/main)
+"yq" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
+/turf/wall/r_wall,
+/area/station/engine/hotloop)
 "yr" = (
 /obj/machinery/power/apc/autoname/east,
 /obj/cable,
@@ -6059,6 +6765,7 @@
 "ys" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -6078,11 +6785,14 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
-"yw" = (
-/turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/hos)
+"yz" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/east,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "yA" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -6123,7 +6833,12 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"yI" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/wall,
+/area/station/medical/cdc)
 "yJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs/wide/green/other,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -6136,8 +6851,8 @@
 /area/station/engine/combustion_chamber)
 "yL" = (
 /obj/grille/catwalk/jen,
-/obj/table/reinforced/auto,
 /obj/random_item_spawner/tools_w_igloves/maybe_few,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "yN" = (
@@ -6157,6 +6872,7 @@
 /area/station/security/brig/north_side)
 "yQ" = (
 /obj/machinery/light_switch/west,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -6203,6 +6919,7 @@
 	pixel_y = 24
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -6210,9 +6927,13 @@
 "ze" = (
 /obj/disposalpipe/junction/left/east,
 /obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"zf" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
+/turf/wall/r_wall,
+/area/station/engine/hotloop)
 "zg" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -6225,7 +6946,11 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/turf/floor/grey,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/stairs/wide/middle{
+	dir = 1
+	},
 /area/station/bridge)
 "zi" = (
 /obj/landmark/spawner{
@@ -6247,17 +6972,21 @@
 	icon_state = "1-2"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/hos)
+/area/gehenna/underground)
 "zl" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 2;
 	target_z = 1
 	},
-/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"zm" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "zn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /obj/decal/tile_edge/floorguide/arrow_n{
@@ -6269,6 +6998,17 @@
 /obj/barber_pole,
 /turf/wall,
 /area/station/crew_quarters/barber_shop)
+"zq" = (
+/obj/machinery/light/fluorescent/red{
+	dir = 8
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "zs" = (
 /obj/wingrille_spawn/crystal,
 /obj/disposalpipe/segment/mineral{
@@ -6287,6 +7027,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -6295,6 +7036,7 @@
 /obj/access_spawn/security,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/airlock/gannets/glass/security/alt,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "zv" = (
@@ -6320,6 +7062,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblue,
 /area/station/bridge)
 "zy" = (
@@ -6327,6 +7070,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/autoname/north,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "zz" = (
@@ -6341,6 +7085,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -6354,6 +7099,7 @@
 	icon_state = "line1"
 	},
 /obj/machinery/door/airlock/classic,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "zC" = (
@@ -6383,6 +7129,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grime,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -6391,12 +7138,9 @@
 /obj/reagent_dispensers/watertank/big,
 /turf/floor/purple,
 /area/station/janitor/office)
-"zL" = (
-/obj/wingrille_spawn/crystal,
-/turf/floor/sand,
-/area/station/security/brig/north_side)
 "zM" = (
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
 "zN" = (
@@ -6405,6 +7149,7 @@
 	dir = 4
 	},
 /obj/storage/secure/closet/fridge/pathology,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "zO" = (
@@ -6425,20 +7170,21 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"zS" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor/horizontal,
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "zT" = (
 /obj/disposalpipe/segment/sewage,
 /obj/decal/tile_edge/stripe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/stairs/wide{
 	dir = 1
 	},
-/area/station/bridge)
+/area/station/security/main)
 "zU" = (
 /obj/machinery/button/elevator/com{
 	pixel_y = 32
-	},
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "line1"
 	},
 /turf/floor/grime,
 /area/station/maintenance/inner/north{
@@ -6481,8 +7227,8 @@
 /obj/decal/poster/wallsign/security_left{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -6509,8 +7255,8 @@
 /area/station/medical/cdc)
 "Ac" = (
 /obj/grille/catwalk/jen,
-/obj/table/reinforced/auto,
 /obj/item/storage/firstaid/crit,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "Ae" = (
@@ -6522,6 +7268,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"Ag" = (
+/obj/item/clothing/suit/armor/EOD,
+/obj/item/clothing/head/helmet/EOD,
+/obj/table/reinforced/industrial/auto,
+/turf/floor/industrial,
+/area/station/security/armory)
 "Ah" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -6537,6 +7289,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/stairs{
 	dir = 1
 	},
@@ -6548,10 +7301,25 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"An" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/grey,
+/area/station/turret_protected/ai_upload)
 "Aq" = (
 /obj/machinery/recharge_station,
 /turf/floor/grime,
 /area/station/storage/tech)
+"Ar" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Au" = (
 /turf/floor/plating/gehenna,
 /area/station/engine/hotloop)
@@ -6561,10 +7329,15 @@
 	},
 /turf/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
+"Ay" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "Az" = (
 /obj/disposalpipe/segment/sewage,
 /obj/grille/catwalk/jen,
-/turf/floor/darkblue,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/plating,
 /area/station/security/main)
 "AA" = (
 /obj/decal/cleanable/dirt/random,
@@ -6641,6 +7414,7 @@
 "AJ" = (
 /obj/disposalpipe/switch_junction/right/south,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "AK" = (
@@ -6667,17 +7441,30 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
+"AO" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
 "AP" = (
-/obj/table/reinforced/auto,
 /obj/machinery/light/small/neutral{
 	dir = 8
 	},
 /obj/item/pen,
 /obj/item/wrench,
+/obj/machinery/atmospherics/unary/vent_pump/north,
+/obj/table/auto,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "AQ" = (
@@ -6693,6 +7480,7 @@
 "AU" = (
 /obj/disposalpipe/junction/right/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "AV" = (
@@ -6730,8 +7518,9 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/west,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/carpet/green,
-/area/gehenna/underground)
+/area/station/bridge/hos)
 "AY" = (
 /obj/disposalpipe/segment,
 /obj/item/device/radio/intercom/security,
@@ -6779,8 +7568,20 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/mining/lobby)
+"Bg" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Bh" = (
 /obj/machinery/atmospherics/pipe/tank/air_repressurization/north,
 /obj/decal/cleanable/dirt/dirt5,
@@ -6870,6 +7671,7 @@
 "By" = (
 /obj/disposalpipe/switch_junction/left/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -6882,6 +7684,15 @@
 /obj/item/clothing/suit/bedsheet/red,
 /turf/floor/carpet,
 /area/station/security/quarters)
+"BA" = (
+/obj/disposalpipe/segment/bent{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "BC" = (
 /turf/wall/asteroid/gehenna/z3,
 /area/station/medical/research)
@@ -6890,6 +7701,8 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -6903,20 +7716,19 @@
 /area/station/engine/gas)
 "BH" = (
 /obj/machinery/computer/ordercomp,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "BM" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
-/area/station/bridge)
+/area/station/security/main)
 "BN" = (
 /obj/table/wood/auto,
 /obj/machinery/light/fluorescent/neutral{
@@ -6926,7 +7738,8 @@
 /area/station/medical/research)
 "BT" = (
 /obj/decal/cleanable/dirt/random,
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
@@ -6939,6 +7752,7 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon19,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "BW" = (
@@ -6948,6 +7762,7 @@
 	},
 /obj/machinery/vending/cola/blue,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "BX" = (
@@ -6967,6 +7782,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -6979,9 +7795,10 @@
 	icon_state = "1-2"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "Cb" = (
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
 "Cc" = (
@@ -7023,15 +7840,10 @@
 /obj/decal/poster/wallsign/chsl,
 /turf/wall,
 /area/station/medical/cdc)
-"Cl" = (
-/obj/table/reinforced/industrial/auto,
-/obj/item/clothing/glasses/thermal,
-/obj/item/clothing/glasses/thermal{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/turf/floor/industrial,
-/area/station/security/armory)
+"Ck" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/cautionblack/side,
+/area/station/mining/lobby)
 "Cm" = (
 /obj/decal/poster/wallsign/security{
 	pixel_y = -26
@@ -7071,8 +7883,9 @@
 "Cr" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/head_of_personnel,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/carpet/green,
-/area/station/bridge)
+/area/station/bridge/hos)
 "Cs" = (
 /obj/machinery/ignition_switch{
 	id = "combustion_ignition";
@@ -7096,6 +7909,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "Cx" = (
@@ -7138,13 +7952,13 @@
 	name = "North Tunnel"
 	})
 "CJ" = (
-/obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment{
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
 /obj/access_spawn/medical,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/medical/basement)
 "CL" = (
@@ -7192,6 +8006,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol_deuce/beacon15,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7223,6 +8038,7 @@
 /obj/machinery/phone/wall{
 	pixel_y = 30
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "CZ" = (
@@ -7234,7 +8050,7 @@
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7253,9 +8069,9 @@
 /turf/floor/plating,
 /area/station/engine/gas)
 "Dg" = (
-/obj/table/reinforced/auto,
 /obj/random_item_spawner/tools/one,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -7285,6 +8101,14 @@
 "Dm" = (
 /obj/disposalpipe/junction/middle/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
+"Dn" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -7299,6 +8123,11 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"Dq" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "Dr" = (
 /obj/cable{
 	d1 = 2;
@@ -7312,8 +8141,9 @@
 	dir = 4
 	},
 /obj/critter/cat/jones,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "Du" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -7323,6 +8153,12 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Dw" = (
+/obj/grille/catwalk/jen,
+/obj/disposalpipe/segment/sewage,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/security/main)
 "Dx" = (
 /obj/structure/woodwall,
 /obj/cable{
@@ -7345,6 +8181,10 @@
 	icon_state = "2-4"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/light/fluorescent/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "DA" = (
@@ -7391,6 +8231,9 @@
 /obj/machinery/coffeemaker/command{
 	pixel_y = 5
 	},
+/obj/mug_rack{
+	pixel_y = 33
+	},
 /turf/floor/darkblue,
 /area/station/bridge)
 "DG" = (
@@ -7399,6 +8242,7 @@
 /area/station/engine/combustion_chamber)
 "DI" = (
 /obj/machinery/light_switch/east,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/grey,
 /area/station/turret_protected/ai)
 "DK" = (
@@ -7414,6 +8258,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7424,6 +8269,7 @@
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7438,8 +8284,17 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
+"DQ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/stairs{
+	dir = 8
+	},
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "DR" = (
 /obj/ladder/auto,
 /turf/floor/grime,
@@ -7460,6 +8315,22 @@
 	},
 /turf/floor/plating,
 /area/station/security/hos)
+"DV" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
+"DZ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/wall/r_wall,
+/area/station/engine/hotloop)
 "Ea" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -7492,6 +8363,10 @@
 /obj/machinery/phone/unlisted,
 /turf/floor/carpet/grime,
 /area/station/security/hos)
+"Eb" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "Ec" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -7516,6 +8391,7 @@
 "Ef" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/junction/right/north,
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7527,6 +8403,7 @@
 	pixel_y = 30;
 	unlisted = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "Eh" = (
@@ -7555,6 +8432,7 @@
 	dir = 1;
 	icon_state = "line1"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/purple/side{
 	dir = 1
 	},
@@ -7562,12 +8440,20 @@
 "El" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/sewage,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/plating,
 /area/station/security/main)
 "Em" = (
 /obj/cryotron,
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"En" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grey,
+/area/station/bridge)
 "Ep" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/fitness)
@@ -7584,6 +8470,13 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Es" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
+/turf/floor/darkblue,
+/area/station/bridge)
 "Eu" = (
 /obj/machinery/atmospherics/portables_connector/north,
 /obj/machinery/light/fluorescent{
@@ -7637,6 +8530,7 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7646,7 +8540,7 @@
 	icon_state = "0-4"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "EC" = (
 /obj/disposalpipe/segment/bent,
 /obj/machinery/camera{
@@ -7662,6 +8556,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/morgue,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "EG" = (
@@ -7670,6 +8565,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/grime,
 /area/station/science/teleporter)
 "EH" = (
@@ -7680,6 +8576,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7688,6 +8585,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/carpet,
 /area/station/security/quarters)
 "EL" = (
@@ -7753,6 +8651,10 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
+"EV" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/wall/r_wall,
+/area/station/engine/hotloop)
 "EW" = (
 /obj/decal/cleanable/dirt/dirt5,
 /obj/decal/cleanable/edge_grit{
@@ -7812,8 +8714,9 @@
 /obj/machinery/light/fluorescent{
 	dir = 1
 	},
-/obj/table/reinforced/auto,
-/obj/random_item_spawner/tools_w_igloves/maybe_few,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 8
+	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "Fh" = (
@@ -7852,10 +8755,17 @@
 "Fn" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Fq" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/cautionblack/side{
+	dir = 8
+	},
+/area/station/mining/lobby)
 "Fr" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 1;
@@ -7889,16 +8799,17 @@
 "Fy" = (
 /obj/table/regal/auto,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Fz" = (
 /obj/grille/catwalk/jen,
-/obj/table/reinforced/auto,
 /obj/item/storage/box/mousetraps{
 	pixel_x = -6;
 	pixel_y = 6
 	},
 /obj/item/storage/box/mousetraps,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "FA" = (
@@ -7910,12 +8821,13 @@
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
 "FB" = (
-/obj/table/reinforced/auto,
 /obj/item/spraybottle/cleaner,
 /obj/item/spraybottle/cleaner{
 	pixel_x = 1;
 	pixel_y = -8
 	},
+/obj/machinery/atmospherics/unary/vent_pump/north,
+/obj/table/auto,
 /turf/floor/purple/side{
 	dir = 10
 	},
@@ -7942,6 +8854,14 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"FG" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/east,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "FH" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -7982,10 +8902,19 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
 	})
+"FK" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/security/brig)
 "FL" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -7998,12 +8927,25 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/grey,
 /area/station/bridge)
+"FQ" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/turret_protected/ai)
 "FR" = (
 /obj/storage/secure/closet/command/hop,
 /turf/floor/carpet/green,
-/area/station/bridge)
+/area/station/bridge/hos)
+"FS" = (
+/obj/structure/woodwall,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "FT" = (
 /turf/floor,
 /area/station/crewquarters/cryotron)
@@ -8026,6 +8968,20 @@
 "FW" = (
 /turf/wall,
 /area/station/security/checkpoint/customs)
+"FX" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
+"FY" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "FZ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -8033,6 +8989,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -8046,6 +9003,7 @@
 /area/station/security/checkpoint/customs)
 "Gb" = (
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/darkblueblack,
 /area/station/bridge)
 "Gc" = (
@@ -8064,6 +9022,10 @@
 	},
 /turf/floor/red/side,
 /area/station/security/main)
+"Gf" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "Gg" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
@@ -8083,6 +9045,7 @@
 /obj/submachine/ATM/atm_alt{
 	pixel_y = 30
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -8106,6 +9069,7 @@
 "Gj" = (
 /obj/disposalpipe/junction/left/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -8114,6 +9078,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/stairs{
 	dir = 4
 	},
@@ -8172,6 +9137,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Gw" = (
@@ -8185,6 +9151,10 @@
 	},
 /turf/floor/plating,
 /area/station/medical/cdc)
+"Gy" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "Gz" = (
 /obj/wingrille_spawn/crystal,
 /turf/floor/plating,
@@ -8200,6 +9170,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/ai_governor/viewports,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
 "GC" = (
@@ -8208,6 +9179,7 @@
 /obj/machinery/light/small/blue,
 /obj/table/reinforced/auto,
 /obj/machinery/phone/unlisted,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/grey,
 /area/station/turret_protected/ai_upload)
 "GD" = (
@@ -8218,11 +9190,9 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/horizontal,
 /turf/floor/plating,
 /area/station/mining/tunnel)
-"GH" = (
-/turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
 "GI" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -8231,7 +9201,6 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/east,
-/obj/table/reinforced/auto,
 /obj/item/decoration/ashtray{
 	butts = 5;
 	name = "grubby old ashtray"
@@ -8244,6 +9213,8 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/item/clothing/head/helmet/camera,
+/obj/machinery/atmospherics/unary/vent_pump/south,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/science/teleporter)
 "GJ" = (
@@ -8251,8 +9222,8 @@
 /area/gehenna/underground)
 "GK" = (
 /obj/disposalpipe/segment/sewage,
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor,
 /area/station/bridge)
 "GN" = (
 /obj/machinery/light/fluorescent/harsh,
@@ -8290,6 +9261,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
 /turf/floor/grime,
 /area/station/storage/tech)
 "GR" = (
@@ -8299,9 +9271,11 @@
 /area/station/medical/research)
 "GT" = (
 /obj/disposalpipe/junction/middle/west,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblueblack,
 /area/station/bridge)
 "GU" = (
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/stairs{
 	dir = 8
 	},
@@ -8350,6 +9324,9 @@
 /obj/table/wood/auto,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
+	},
 /turf/floor/grey,
 /area/station/bridge/customs)
 "Hb" = (
@@ -8367,6 +9344,7 @@
 /obj/decal/poster/wallsign/WC_blue{
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -8382,6 +9360,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor/red/side,
 /area/station/security/main)
 "Hi" = (
@@ -8395,6 +9374,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Hk" = (
@@ -8439,14 +9419,12 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/disposalpipe/segment/morgue,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/morgue,
-/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
-	dir = 4
 	},
 /turf/floor/white,
 /area/station/medical/basement)
@@ -8464,6 +9442,7 @@
 	},
 /obj/disposalpipe/segment/bent,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -8513,13 +9492,14 @@
 "HF" = (
 /obj/storage/closet/law,
 /turf/floor/grime,
-/area/gehenna/underground)
+/area/station/bridge)
 "HG" = (
 /obj/machinery/vending/janitor,
 /obj/decal/tile_edge/line/black{
 	dir = 9;
 	icon_state = "line1"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
 /turf/floor/purple/side{
 	dir = 5
 	},
@@ -8539,6 +9519,13 @@
 /obj/machinery/portable_reclaimer,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
+"HK" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/grime,
+/area/station/storage/tech)
 "HL" = (
 /turf/wall/r_wall,
 /area/station/engine/gas)
@@ -8567,16 +9554,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
-"HQ" = (
-/obj/table/reinforced/auto,
-/obj/decal/tile_edge/line/black{
-	dir = 1;
-	icon_state = "line1"
-	},
-/turf/floor/purple/side{
-	dir = 1
-	},
-/area/station/janitor/office)
 "HR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -8594,8 +9571,9 @@
 /area/station/storage/tech)
 "HX" = (
 /obj/grille/catwalk/jen,
-/obj/table/reinforced/auto,
 /obj/random_item_spawner/tools/one,
+/obj/machinery/atmospherics/unary/vent_pump/east,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -8607,6 +9585,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "HZ" = (
@@ -8688,16 +9667,25 @@
 	},
 /obj/decal/tile_edge/stripe,
 /obj/machinery/door_timer/genpop_n/new_walls/north,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/red/side{
 	dir = 1
 	},
 /area/station/security/brig)
+"It" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "Iu" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -8719,6 +9707,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "Iy" = (
@@ -8773,6 +9762,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -8782,7 +9772,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/white,
 /area/station/medical/basement)
 "IE" = (
@@ -8806,6 +9796,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"IJ" = (
+/obj/machinery/atmospherics/valve/horizontal,
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "IL" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -8819,6 +9813,7 @@
 /obj/landmark/start{
 	name = "Security Officer"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/red/side,
 /area/station/security/main)
 "IN" = (
@@ -8833,7 +9828,7 @@
 "IO" = (
 /obj/disposalpipe/segment/sewage,
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "IP" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -8852,6 +9847,7 @@
 	icon_state = "2-4"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/plating,
 /area/station/science/teleporter)
 "IX" = (
@@ -8866,6 +9862,7 @@
 /obj/decal/poster/wallsign/pride/random{
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "Jb" = (
@@ -8911,6 +9908,10 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"Jj" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/wall,
+/area/station/maintenance/disposal)
 "Jk" = (
 /obj/machinery/vending/cola/blue,
 /obj/grille/catwalk/jen,
@@ -8985,6 +9986,7 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -8992,6 +9994,7 @@
 "Jy" = (
 /obj/disposalpipe/segment/morgue,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Jz" = (
@@ -9002,6 +10005,16 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/floor/plating,
 /area/station/engine/gas)
+"JD" = (
+/obj/disposalpipe/segment/bent{
+	dir = 8
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "JF" = (
 /obj/machinery/vending/medical_public,
 /turf/floor/white/grime,
@@ -9011,14 +10024,24 @@
 "JG" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/clothing/glasses/nightvision,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal{
+	pixel_x = 2;
+	pixel_y = 6
+	},
 /turf/floor/industrial,
 /area/station/security/armory)
 "JI" = (
 /obj/decal/tile_edge/stripe{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/stairs/wide/middle,
 /area/station/security/main)
+"JJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/wall/r_wall,
+/area/station/engine/hotloop)
 "JL" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -9052,6 +10075,9 @@
 /obj/item/paper_bin{
 	pixel_y = 6
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 1
+	},
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "JQ" = (
@@ -9063,6 +10089,17 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"JR" = (
+/obj/disposalpipe/segment/sewage,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "JS" = (
 /obj/decal/tile_edge/stripe{
 	dir = 1
@@ -9071,6 +10108,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs/wide/other,
 /area/station/security/main)
 "JU" = (
@@ -9105,6 +10143,7 @@
 /obj/machinery/door_timer/genpop_s/new_walls/south{
 	pixel_y = -24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/red/side,
 /area/station/security/brig)
 "JY" = (
@@ -9123,6 +10162,10 @@
 /obj/item/storage/firstaid/regular,
 /turf/floor,
 /area/station/science/teleporter)
+"Kb" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/grey,
+/area/station/turret_protected/ai_upload)
 "Kc" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -9132,6 +10175,7 @@
 	pixel_y = 30;
 	unlisted = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -9148,6 +10192,13 @@
 /obj/machinery/door/airlock/classic,
 /turf/floor/darkblue,
 /area/station/bridge)
+"Ke" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/atmospherics/unary/vent_pump/north,
+/turf/floor/grime,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "Kf" = (
 /turf/wall,
 /area/station/security/hos)
@@ -9173,6 +10224,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/grey,
 /area/station/bridge)
 "Km" = (
@@ -9180,6 +10232,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -9193,10 +10246,15 @@
 "Kp" = (
 /obj/machinery/door/airlock/gannets/glass/engineering/alt,
 /obj/access_spawn/mining,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/lobby)
+"Kr" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/grey,
+/area/station/teleporter)
 "Kt" = (
 /turf/floor/industrial,
 /area/station/security/armory)
@@ -9210,10 +10268,12 @@
 	},
 /obj/disposalpipe/junction/right/south,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "Kw" = (
 /obj/machinery/light/small/green,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/turret_protected/ai_upload)
 "Ky" = (
@@ -9242,11 +10302,24 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/stairs{
 	dir = 4
 	},
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
+	})
+"KD" = (
+/turf/floor/carpet/green,
+/area/station/bridge/hos)
+"KE" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
 	})
 "KF" = (
 /obj/cable{
@@ -9255,6 +10328,7 @@
 	icon_state = "1-2"
 	},
 /obj/item/device/radio/intercom/bridge,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblueblack{
 	dir = 1
 	},
@@ -9268,6 +10342,7 @@
 	name = "North Tunnel"
 	})
 "KL" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grey,
 /area/station/turret_protected/ai_upload)
 "KN" = (
@@ -9291,6 +10366,7 @@
 "KQ" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -9327,6 +10403,7 @@
 	tag = ""
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "La" = (
@@ -9351,6 +10428,13 @@
 	dir = 5
 	},
 /area/station/mining/lobby)
+"Lg" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
 "Lh" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -9371,6 +10455,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/east,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "Ll" = (
@@ -9394,6 +10479,7 @@
 	dir = 9;
 	icon_state = "xtra_bigstripe-corner2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/mining/lobby)
 "Lq" = (
@@ -9401,6 +10487,7 @@
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "Lr" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -9408,6 +10495,13 @@
 "Lv" = (
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
+"Lw" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "Lx" = (
 /turf/wall,
 /area/station/crew_quarters/bathroom)
@@ -9422,7 +10516,6 @@
 /obj/disposalpipe/segment/bent{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/white,
 /area/station/medical/basement)
 "LB" = (
@@ -9435,6 +10528,13 @@
 /obj/storage/closet/dresser/random,
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"LC" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor,
+/area/station/crewquarters/cryotron)
 "LE" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -9445,16 +10545,23 @@
 	dir = 1
 	},
 /obj/decal/tile_edge/stripe,
+/obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/red/side{
 	dir = 1
 	},
 /area/station/security/brig)
+"LF" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/bridge/customs)
 "LG" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = -32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9466,12 +10573,26 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"LJ" = (
+/obj/decal/cleanable/dirt/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/black/grime,
+/area/station/medical/cdc)
+"LK" = (
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "LN" = (
 /obj/disposalpipe/segment/bent,
 /obj/grille/catwalk/jen,
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -9480,6 +10601,10 @@
 /obj/storage/closet/wardrobe/pride,
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"LQ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/grime,
+/area/station/maintenance/disposal)
 "LR" = (
 /obj/machinery/power/smes{
 	charge = 2e+006;
@@ -9512,8 +10637,13 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/morgue,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"Mb" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/turf/floor/grey,
+/area/station/turret_protected/ai)
 "Mc" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/station/security/brig/north_side)
@@ -9521,13 +10651,21 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/engine/gas)
+"Mf" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "Mi" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Mj" = (
@@ -9551,7 +10689,15 @@
 	icon_state = "1-2"
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
+"Mm" = (
+/obj/table/auto,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "Mn" = (
 /obj/decal/cleanable/rust/jen,
 /obj/table/reinforced/chemistry{
@@ -9570,6 +10716,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -9577,8 +10724,9 @@
 "Mr" = (
 /obj/table/wood/auto/desk,
 /obj/machinery/phone/unlisted,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
 /turf/floor/carpet/green,
-/area/gehenna/underground)
+/area/station/bridge/hos)
 "Ms" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -9619,6 +10767,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -9630,20 +10779,25 @@
 	},
 /obj/item/card/id/captains_spare,
 /turf/floor/marble,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "My" = (
 /obj/decal/tile_edge/stripe,
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /obj/machinery/computer/secure_data,
 /turf/floor/red/side{
 	dir = 1
 	},
 /area/station/security/brig)
+"MA" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/manifold/north,
+/turf/floor/grey,
+/area/station/bridge)
 "MB" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southwest,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /obj/machinery/light/fluorescent/red{
 	dir = 1
 	},
@@ -9663,6 +10817,7 @@
 /obj/machinery/computer/card{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "MH" = (
@@ -9685,6 +10840,7 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/mining,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -9711,6 +10867,7 @@
 "MP" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9721,6 +10878,7 @@
 /turf/floor/grass,
 /area/station/medical/research)
 "MS" = (
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/grey,
 /area/station/bridge)
 "MT" = (
@@ -9730,6 +10888,7 @@
 /area/station/engine/hotloop)
 "MU" = (
 /obj/storage/secure/closet/security/equipment,
+/obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/floor/carpet,
 /area/station/security/quarters)
 "MV" = (
@@ -9819,12 +10978,26 @@
 "Nk" = (
 /turf/floor/plating,
 /area/transit_vehicle/elevator/qm_bot)
+"Nl" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
+/turf/floor/cautionblack/side{
+	dir = 4
+	},
+/area/station/mining/lobby)
 "Nm" = (
 /turf/wall/r_wall,
 /area/station/science/teleporter)
 "Nn" = (
 /turf/floor/carpet/grime,
 /area/station/security/hos)
+"No" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Nr" = (
 /obj/item/dye_bottle,
 /obj/item/dye_bottle,
@@ -9840,11 +11013,13 @@
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
 "Nt" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/green/side{
 	dir = 1
 	},
 /area/station/medical/research)
 "Nu" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/purple/side{
 	dir = 4
 	},
@@ -9865,6 +11040,7 @@
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "Nz" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grime,
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
@@ -9881,6 +11057,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -9891,6 +11068,9 @@
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 8
 	},
 /turf/floor/carpet,
 /area/station/security/quarters)
@@ -9928,6 +11108,7 @@
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9986,19 +11167,27 @@
 	dir = 5
 	},
 /area/station/medical/basement)
+"NV" = (
+/obj/wingrille_spawn/reinforced,
+/obj/window_blinds/middle,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/bridge/hos)
 "NY" = (
 /obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/machinery/portable_atmospherics/canister/sleeping_agent,
 /turf/floor/industrial,
 /area/station/security/armory)
 "NZ" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/captain,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/carpet/blue,
-/area/station/bridge)
+/area/station/bridge/captain)
 "Oc" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/plating,
@@ -10038,6 +11227,7 @@
 	dir = 5;
 	icon_state = "xtra_bigstripe-corner2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor,
 /area/station/mining/lobby)
 "Oo" = (
@@ -10053,6 +11243,7 @@
 /obj/grille/catwalk/jen{
 	pixel_y = -1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -10158,11 +11349,19 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/grey,
 /area/station/teleporter)
 "Ow" = (
 /turf/floor/darkblue,
 /area/station/bridge)
+"Oy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grey,
+/area/station/bridge/customs)
 "Oz" = (
 /obj/grille/catwalk/jen,
 /obj/decal/poster/wallsign/security_wall{
@@ -10199,9 +11398,9 @@
 /area/station/crew_quarters/fitness)
 "OD" = (
 /obj/machinery/light/fluorescent/red,
-/obj/table/reinforced/auto,
 /obj/item/mining_tools/pick,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10233,6 +11432,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -10241,6 +11441,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "OM" = (
@@ -10265,6 +11466,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
 "OO" = (
@@ -10290,13 +11492,22 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/turf/floor/grey,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor/stairs/wide{
+	dir = 1
+	},
 /area/station/bridge)
 "OT" = (
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "OU" = (
@@ -10307,6 +11518,7 @@
 	})
 "OV" = (
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/security/main)
 "OW" = (
@@ -10333,6 +11545,7 @@
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/northleft,
 /obj/machinery/cashreg,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/green,
 /area/station/medical/research)
 "Pb" = (
@@ -10342,6 +11555,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/red/side,
 /area/station/security/main)
 "Pd" = (
@@ -10353,16 +11567,20 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/science/teleporter)
 "Pf" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
 "Pi" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -10385,6 +11603,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
 "Pm" = (
@@ -10411,6 +11630,7 @@
 "Ps" = (
 /obj/table/regal/auto,
 /obj/item/paper/folded/ball,
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Pu" = (
@@ -10452,12 +11672,16 @@
 "PB" = (
 /turf/wall/r_wall,
 /area/station/turret_protected/ai_upload)
+"PC" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "PD" = (
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/hos)
+/area/gehenna/underground)
 "PE" = (
 /turf/wall/r_wall,
 /area/station/security/brig/north_side)
@@ -10465,6 +11689,7 @@
 /obj/machinery/light/fluorescent/harsh{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "PG" = (
@@ -10493,7 +11718,7 @@
 	dir = 4
 	},
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "PJ" = (
 /obj/submachine/chef_sink{
 	desc = "A common utility sink.";
@@ -10512,6 +11737,10 @@
 /obj/item/decoration/flower_vase/vase7,
 /turf/floor/darkblueblack,
 /area/station/bridge)
+"PL" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/darkblue,
+/area/station/bridge)
 "PN" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -10522,6 +11751,7 @@
 /obj/decal/cleanable/rust/jen,
 /obj/decal/cleanable/dirt/jen,
 /obj/decal/cleanable/mess/random_food,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "PQ" = (
@@ -10532,12 +11762,13 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "PS" = (
-/obj/table/reinforced/auto,
 /obj/item/mining_tools/pick,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10546,6 +11777,10 @@
 /obj/stool/chair/comfy/green,
 /turf/floor/darkblue,
 /area/station/bridge)
+"PU" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/horizontal,
+/turf/floor/plating/gehenna,
+/area/station/mining/tunnel)
 "PV" = (
 /obj/storage/crate/bin/dumpster,
 /obj/item/reagent_containers/food/snacks/onionchips,
@@ -10579,12 +11814,14 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
-/area/station/bridge)
+/area/station/security/main)
 "PZ" = (
 /obj/machinery/door/airlock/engineering,
 /obj/grille/catwalk/jen,
 /obj/access_spawn/engineering_engine,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "Qb" = (
@@ -10605,13 +11842,26 @@
 /obj/disposalpipe/segment/bent{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Qe" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/hop,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/carpet/green,
-/area/gehenna/underground)
+/area/station/bridge/hos)
+"Qg" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
+/turf/floor/grey/blackgrime,
+/area/station/turret_protected/ai)
+"Qh" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "Qi" = (
 /obj/machinery/atmospherics/valve/vertical{
 	name = "Freezer Valve"
@@ -10631,6 +11881,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10641,6 +11892,9 @@
 	},
 /area/station/security/main)
 "Qo" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 1
+	},
 /turf/floor/green/side,
 /area/station/medical/research)
 "Qp" = (
@@ -10666,6 +11920,7 @@
 	tag = ""
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "Qr" = (
@@ -10699,10 +11954,12 @@
 /obj/disposalpipe/segment/mail/vertical,
 /obj/access_spawn/heads,
 /obj/machinery/door/airlock/glass/command,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Qy" = (
 /obj/machinery/light_switch/west,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "Qz" = (
@@ -10711,7 +11968,7 @@
 	name = "Head of Personnel"
 	},
 /turf/floor/carpet/green,
-/area/station/bridge)
+/area/station/bridge/hos)
 "QA" = (
 /obj/machinery/portable_atmospherics/canister/air/large,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -10720,6 +11977,7 @@
 /turf/floor/industrial,
 /area/station/engine/hotloop)
 "QB" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -10730,6 +11988,7 @@
 	pixel_x = -32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10738,6 +11997,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/cautionblack/side,
 /area/station/mining/lobby)
 "QF" = (
@@ -10749,8 +12009,16 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/item/breaching_hammer,
 /turf/floor/industrial,
 /area/station/security/armory)
+"QG" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "QH" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
@@ -10758,6 +12026,7 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "QI" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -10768,11 +12037,13 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/red,
 /area/station/security/quarters)
 "QL" = (
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "QN" = (
@@ -10790,6 +12061,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /turf/floor/purple/side{
 	dir = 8
 	},
@@ -10802,10 +12074,14 @@
 "QQ" = (
 /turf/floor,
 /area/station/medical/research)
+"QR" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "QS" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -10815,6 +12091,7 @@
 	dir = 1
 	},
 /obj/storage/closet/janitor,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "QY" = (
@@ -10822,6 +12099,7 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -10851,12 +12129,21 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/stairs{
 	dir = 8
 	},
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"Ri" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "Rk" = (
 /obj/wingrille_spawn/crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
@@ -10870,9 +12157,12 @@
 /area/station/crew_quarters/bathroom)
 "Rn" = (
 /obj/machinery/light/fluorescent/red,
-/obj/table/reinforced/auto,
 /obj/item/device/light/flashlight,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 1
+	},
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10900,6 +12190,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor,
 /area/station/mining/lobby)
 "Rv" = (
@@ -10924,26 +12215,29 @@
 "Ry" = (
 /obj/disposalpipe/trunk,
 /turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
+/area/gehenna/underground)
 "RA" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
 "RC" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "RD" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -10953,11 +12247,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/cable{
-	icon_state = "1-8"
-	},
-/obj/grille/catwalk/jen,
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor,
 /area/station/bridge)
 "RH" = (
 /obj/disposalpipe/segment,
@@ -10966,6 +12258,7 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/plating,
 /area/station/security/main)
 "RM" = (
@@ -10989,9 +12282,9 @@
 	name = "South Tunnel"
 	})
 "RP" = (
-/obj/table/reinforced/auto,
 /obj/item/device/light/flashlight,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -11000,8 +12293,9 @@
 /obj/disposalpipe/segment/sewage,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
-/area/station/bridge)
+/area/station/security/main)
 "RS" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/disposal,
@@ -11015,13 +12309,6 @@
 	dir = 9
 	},
 /area/station/security/main)
-"RT" = (
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/obj/disposalpipe/segment/mail/vertical,
-/turf/wall/asteroid/gehenna/z3,
-/area/station/bridge/captain)
 "RU" = (
 /obj/disposalpipe/segment/sewage,
 /turf/floor/grime,
@@ -11047,6 +12334,7 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -11055,6 +12343,7 @@
 /obj/disposalpipe/segment/sewage,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "Sd" = (
@@ -11070,6 +12359,7 @@
 "Sg" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11085,6 +12375,7 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/access_spawn/brig,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/main)
 "Sn" = (
@@ -11130,13 +12421,25 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment/morgue,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Ss" = (
 /obj/machinery/arc_electroplater,
 /turf/floor/plating,
 /area/station/mining/lobby)
+"Su" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "Sv" = (
 /obj/stool/chair/office{
 	dir = 8
@@ -11164,14 +12467,10 @@
 /area/station/engine/coldloop)
 "SD" = (
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "SE" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/light_switch/east,
 /turf/floor/darkblue,
 /area/station/bridge)
@@ -11184,6 +12483,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11210,6 +12510,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "SP" = (
@@ -11252,6 +12553,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11279,6 +12581,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/security/checkpoint/customs)
 "SX" = (
@@ -11287,6 +12590,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -11306,10 +12610,18 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/science/teleporter)
+"Te" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Tf" = (
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/darkblue,
 /area/station/bridge)
 "Tg" = (
@@ -11388,6 +12700,7 @@
 	icon_state = "4-8"
 	},
 /obj/item/device/narco,
+/obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/floor/grime,
 /area/station/security/main)
 "TA" = (
@@ -11420,6 +12733,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -11432,6 +12746,14 @@
 /obj/firedoor_spawn,
 /turf/floor/grime,
 /area/station/engine/coldloop)
+"TH" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "TI" = (
 /obj/table/wood/auto,
 /obj/machinery/light/small/neutral{
@@ -11440,6 +12762,11 @@
 /obj/machinery/cashreg,
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
+"TK" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/engine/hotloop)
 "TL" = (
 /obj/item/device/radio/intercom/security{
 	dir = 1
@@ -11457,6 +12784,11 @@
 	},
 /obj/machinery/networked/storage/scanner{
 	bank_id = "Command"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/grime,
 /area/station/bridge)
@@ -11502,8 +12834,13 @@
 	pixel_x = 24
 	},
 /obj/cable,
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"TX" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "TY" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor/plating,
@@ -11533,8 +12870,8 @@
 /turf/floor,
 /area/station/janitor/office)
 "Uk" = (
-/obj/wingrille_spawn/reinforced,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/wingrille_spawn/crystal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11570,12 +12907,17 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Us" = (
 /obj/item/device/radio/intercom/engineering,
 /turf/floor/grime,
 /area/station/turret_protected/ai)
+"Ut" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/wall,
+/area/station/janitor/office)
 "Uu" = (
 /obj/machinery/power/apc/autoname/east,
 /obj/cable{
@@ -11584,8 +12926,19 @@
 	},
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
+"Uv" = (
+/obj/disposalpipe/segment/bent{
+	dir = 8
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/manifold/south,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Uw" = (
 /obj/item/device/radio/intercom/science,
 /turf/floor/grime,
@@ -11640,6 +12993,7 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
 /area/station/security/main)
 "UD" = (
@@ -11674,6 +13028,17 @@
 "UO" = (
 /turf/wall,
 /area/station/security/detectives_office)
+"UP" = (
+/obj/disposalpipe/segment,
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "UQ" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -11688,6 +13053,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -11703,6 +13069,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11721,6 +13088,7 @@
 	pixel_y = 24
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -11728,6 +13096,7 @@
 "UY" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/bridge)
 "Va" = (
@@ -11736,6 +13105,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
+"Vb" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/darkblue,
+/area/station/bridge)
 "Vd" = (
 /obj/wingrille_spawn,
 /obj/cable{
@@ -11772,6 +13145,11 @@
 	},
 /turf/floor/grime,
 /area/station/storage/tech)
+"Vl" = (
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/tools_w_igloves/maybe_few,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "Vn" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -11791,6 +13169,7 @@
 	},
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/tech_storage,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/storage/tech)
 "Vp" = (
@@ -11805,6 +13184,7 @@
 	dir = 5;
 	icon_state = "xtra_bigstripe-corner2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southeast,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "Vs" = (
@@ -11819,6 +13199,9 @@
 /obj/reagent_dispensers/watertank/fountain,
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_y = 32
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable{
+	dir = 4
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
@@ -11837,6 +13220,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
 "Vw" = (
@@ -11847,6 +13231,8 @@
 /obj/disposalpipe/segment/bent{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Vy" = (
@@ -11859,6 +13245,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"Vz" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northwest,
+/turf/floor,
+/area/station/crewquarters/cryotron)
 "VA" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -11897,6 +13287,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -11911,6 +13302,19 @@
 /turf/floor/white/grime,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
+	})
+"VJ" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
 	})
 "VK" = (
 /obj/machinery/atmospherics/portables_connector/west,
@@ -11958,6 +13362,7 @@
 "VR" = (
 /obj/fitness/speedbag/wizard,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
 "VS" = (
@@ -11984,8 +13389,13 @@
 	pixel_y = 5
 	},
 /obj/table/wood/auto,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/bridge)
+"VW" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/southwest,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "VX" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -12001,6 +13411,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12032,6 +13443,19 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/basement)
+"Wi" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Wk" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -12041,6 +13465,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12048,6 +13473,7 @@
 "Wl" = (
 /obj/machinery/door/airlock/gannets/glass/engineering/alt,
 /obj/access_spawn/mining,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -12055,6 +13481,7 @@
 "Wn" = (
 /obj/disposalpipe/junction/right/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Wo" = (
@@ -12062,6 +13489,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12096,6 +13524,7 @@
 "Wt" = (
 /obj/grille/catwalk/jen,
 /obj/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "Wv" = (
@@ -12128,6 +13557,16 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"WB" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "WE" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
@@ -12135,15 +13574,12 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
 	},
+/obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/floor,
 /area/station/crewquarters/cryotron)
 "WF" = (
 /obj/rack,
 /obj/item/room_planner,
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "line1"
-	},
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "WG" = (
@@ -12155,6 +13591,7 @@
 /obj/decal/poster/wallsign/security{
 	pixel_y = -25
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -12171,6 +13608,7 @@
 /area/station/crew_quarters/fitness)
 "WI" = (
 /obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/crew_quarters/catering)
 "WL" = (
@@ -12191,7 +13629,7 @@
 	name = "Captain"
 	},
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "WN" = (
 /obj/window{
 	dir = 2
@@ -12212,14 +13650,26 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grime,
 /area/station/science/teleporter)
+"WR" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/red/side,
+/area/station/security/main)
 "WS" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"WT" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
+/turf/floor/plating/gehenna,
+/area/station/engine/hotloop)
 "WU" = (
 /obj/item/storage/wall/clothingrack/dresses2{
 	dir = 1
@@ -12289,6 +13739,7 @@
 "Xf" = (
 /obj/disposalpipe/junction/middle/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "Xi" = (
@@ -12304,6 +13755,14 @@
 "Xj" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/station/crew_quarters/fitness)
+"Xk" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grey,
+/area/station/bridge)
 "Xl" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/wall/r_wall,
@@ -12339,7 +13798,7 @@
 	name = "North Tunnel"
 	})
 "Xr" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12350,6 +13809,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12359,6 +13819,7 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "Xv" = (
@@ -12369,8 +13830,14 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
+"Xx" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/station/science/teleporter)
 "XB" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/research,
@@ -12406,8 +13873,9 @@
 /obj/table/wood/auto,
 /obj/machinery/light/lamp/bright,
 /obj/machinery/power/apc/autoname/north,
+/obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "XG" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -12421,6 +13889,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/grey,
 /area/station/turret_protected/ai)
 "XK" = (
@@ -12435,6 +13904,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -12456,6 +13926,11 @@
 /obj/machinery/disposal,
 /turf/floor/blue/checker,
 /area/station/medical/basement)
+"XP" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/station/turret_protected/ai)
 "XR" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor/bluewhite,
@@ -12468,6 +13943,10 @@
 "XU" = (
 /turf/floor/sandytile,
 /area/station/security/brig/south_side)
+"XV" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "XW" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -12479,6 +13958,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/security/main)
 "XX" = (
@@ -12502,6 +13982,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/machinery/door/airlock/command,
 /turf/floor/grey,
 /area/station/teleporter)
@@ -12556,6 +14037,7 @@
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -12582,6 +14064,7 @@
 /obj/landmark/start{
 	name = "Geneticist"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/floor/green/side{
 	dir = 1
 	},
@@ -12594,6 +14077,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/medical/basement)
 "Yx" = (
@@ -12623,6 +14107,7 @@
 /obj/machinery/manufacturer_attachment/canister_port{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/cautionblack/side,
 /area/station/mining/lobby)
 "YI" = (
@@ -12647,6 +14132,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "YQ" = (
@@ -12691,7 +14177,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
@@ -12735,8 +14222,9 @@
 /obj/shrub/captainshrub{
 	pixel_y = 10
 	},
+/obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/floor/carpet/blue,
-/area/gehenna/underground)
+/area/station/bridge/captain)
 "Zl" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -12748,6 +14236,7 @@
 	pixel_y = 32
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -12780,6 +14269,13 @@
 /obj/cable,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"Zr" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "Zt" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -12822,6 +14318,7 @@
 	},
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -12907,6 +14404,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/grey,
 /area/station/turret_protected/ai)
 "ZL" = (
@@ -12916,6 +14414,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/northeast,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -12956,12 +14455,21 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor/red/side,
 /area/station/security/main)
+"ZU" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "ZV" = (
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/grey,
 /area/station/bridge/customs)
 "ZY" = (
@@ -12972,9 +14480,11 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/brig)
 "ZZ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe,
 /turf/floor/cautionblack/side{
 	dir = 9
 	},
@@ -47846,7 +49356,7 @@ Xv
 Xv
 nC
 ty
-vJ
+Mf
 vJ
 ua
 Vu
@@ -48149,7 +49659,7 @@ Xv
 nC
 ej
 vu
-xP
+qz
 Va
 MH
 nC
@@ -48162,7 +49672,7 @@ eK
 iA
 lu
 sv
-jk
+sP
 rV
 iA
 KG
@@ -48717,12 +50227,12 @@ HB
 HB
 HB
 HB
-GH
-GH
-GH
-GH
-GH
-GH
+HB
+HB
+HB
+HB
+HB
+HB
 ux
 ux
 ux
@@ -48734,13 +50244,13 @@ ux
 Mc
 Mc
 Mc
-zL
+Mc
 Mc
 PE
 PE
 eO
 Xw
-nT
+FK
 Cg
 KV
 KV
@@ -48752,8 +50262,8 @@ Xv
 Xv
 Ep
 sI
-fH
-fW
+aM
+Dq
 Gl
 xC
 Je
@@ -48767,7 +50277,7 @@ gC
 WH
 xM
 sJ
-fW
+fD
 hR
 kq
 Sv
@@ -49019,12 +50529,12 @@ HB
 HB
 HB
 HB
-GH
-GH
-GH
-GH
-GH
-GH
+HB
+HB
+HB
+HB
+HB
+HB
 ux
 ux
 ux
@@ -49036,13 +50546,13 @@ ux
 Mc
 Mc
 Mc
-hU
+Mc
 Mc
 Mc
 PE
 RV
 Xw
-nT
+FK
 nz
 KV
 Xv
@@ -49054,27 +50564,27 @@ Xv
 Xv
 Ep
 ah
-fH
-fW
-Gl
-fW
+aM
+zm
+LK
+hE
 bW
-Gl
-fW
+LK
+hE
 Xt
-Jy
+aX
 Jy
 ld
 EF
 Ma
 Sq
 Vw
-fW
-GR
+yz
+wu
 Nt
-QQ
-QQ
-QQ
+wS
+wS
+wS
 Qo
 hR
 ux
@@ -49321,21 +50831,21 @@ HB
 HB
 HB
 HB
-GH
+HB
 Ry
 IO
 gN
-GH
-GH
-fu
-fu
-fu
-fu
-fu
-fu
-fu
-fu
-fu
+HB
+HB
+ux
+ux
+ux
+ux
+ux
+ux
+ux
+ux
+ux
 Mc
 Mc
 Mc
@@ -49357,15 +50867,15 @@ Xv
 Ep
 XX
 rU
-Xt
-jr
+BA
+cv
 fs
 Vy
 cv
 kU
 is
 kU
-kU
+It
 AJ
 Mi
 cM
@@ -49623,16 +51133,11 @@ HB
 HB
 HB
 HB
-GH
-GH
-GH
+HB
+HB
+HB
 PI
-GH
-ch
-ei
-ei
-ei
-ei
+HB
 ei
 ei
 ei
@@ -49640,8 +51145,13 @@ ei
 ei
 Ed
 Ed
-hB
-hB
+Ed
+Ed
+Ed
+Ed
+Ed
+Bq
+Bq
 hB
 Ed
 lg
@@ -49649,12 +51159,12 @@ xR
 Sj
 Hf
 Ed
-hB
-hB
+Bq
+Bq
 Ed
 Ed
-hB
-hB
+Bq
+Bq
 Ed
 Ed
 VR
@@ -49925,37 +51435,37 @@ HB
 HB
 HB
 HB
-GH
+HB
 EB
 Ry
-RT
-vo
-uK
+PI
+HB
+ei
 md
 bi
 ik
-BM
+kR
 ok
 vf
-ik
+BM
 BM
 PX
 sg
 KZ
-vk
-Dy
-vk
 og
+xZ
+og
+aT
 hr
 UC
 bA
 XW
 ob
-vk
-vk
-vk
+og
+og
+og
 Dy
-vk
+og
 og
 Qq
 bx
@@ -50227,7 +51737,7 @@ HB
 HB
 HB
 HB
-GH
+HB
 fw
 Ml
 bN
@@ -50239,15 +51749,15 @@ GK
 GK
 zT
 wF
-GK
-GK
+Az
+Az
 RR
 Az
-oI
-oI
+hO
+hO
 bJ
 xm
-oI
+hO
 oI
 AU
 OV
@@ -50263,7 +51773,7 @@ eE
 sF
 aU
 ni
-Fj
+lx
 Zj
 RW
 cF
@@ -50529,12 +52039,12 @@ HB
 HB
 HB
 HB
-GH
-GH
-GH
-GH
-GH
-ch
+HB
+HB
+HB
+HB
+HB
+ei
 gR
 oV
 ds
@@ -50550,7 +52060,7 @@ Ed
 AL
 hB
 Ed
-hB
+lh
 ck
 Ed
 hB
@@ -50559,13 +52069,13 @@ hB
 oO
 hZ
 WX
-Kf
-Kf
+oO
+oO
 oO
 Ed
 fW
 fW
-fW
+Dq
 Gl
 Ep
 fK
@@ -50573,10 +52083,10 @@ qk
 fH
 Tt
 nf
-bW
+xM
 ze
-Gt
-lv
+Su
+cV
 nf
 vO
 SI
@@ -50831,17 +52341,17 @@ HB
 HB
 HB
 HB
-yw
-yw
-yw
-yw
-yw
-cx
+HB
+HB
+HB
+HB
+HB
+ei
 TN
 it
 Gn
 ei
-eA
+Ow
 tO
 Ow
 ei
@@ -50854,7 +52364,7 @@ Iz
 hB
 OJ
 rn
-Ed
+hB
 Bq
 Bq
 Bq
@@ -50867,7 +52377,7 @@ Kf
 Ed
 ag
 wm
-wm
+uh
 Zz
 ZI
 Sp
@@ -51128,22 +52638,22 @@ HB
 HB
 HB
 HB
-Jm
-Jm
-Jm
-Jm
-Jm
-cx
-yw
-yw
-yw
-yw
-cx
+ch
+ch
+ch
+ch
+ch
+ch
+HB
+HB
+HB
+HB
+ei
 rS
 OT
 JV
 ei
-eA
+Ow
 tO
 tS
 ei
@@ -51157,9 +52667,9 @@ MN
 TE
 Ge
 Ed
-hB
-hB
-hB
+Ed
+Ed
+Ed
 oO
 Ew
 JL
@@ -51169,7 +52679,7 @@ Kf
 Ed
 fW
 fW
-fW
+Dq
 fW
 fH
 Tt
@@ -51430,12 +52940,12 @@ HB
 HB
 HB
 HB
-Jm
+ch
 Mx
 pF
 rw
-Jm
-cx
+ch
+ch
 qo
 zk
 st
@@ -51445,7 +52955,7 @@ VV
 qL
 JV
 ei
-eA
+Ow
 SE
 Ow
 ei
@@ -51455,7 +52965,7 @@ Ed
 Ed
 hB
 hB
-hB
+Ed
 dD
 Hh
 Ed
@@ -51470,8 +52980,8 @@ pf
 Kf
 Ed
 PR
-fW
-fW
+hE
+sS
 fW
 il
 qA
@@ -51479,7 +52989,7 @@ go
 fW
 qv
 Ep
-bW
+xM
 QH
 Ex
 Ep
@@ -51732,17 +53242,17 @@ HB
 HB
 HB
 HB
-Jm
+ch
 hx
 iE
 iE
-Jm
-cx
+ch
+ch
 qw
 PD
-yw
-yw
-cx
+HB
+HB
+ei
 ez
 it
 Gn
@@ -51777,7 +53287,7 @@ eB
 Ep
 Ep
 Ep
-Ep
+mk
 Pp
 Pp
 Ep
@@ -52034,19 +53544,19 @@ HB
 HB
 HB
 HB
-Jm
-Jm
-Jm
+ch
+ch
+ch
 tE
-Jm
-cx
-cx
-cx
-cx
-cx
-cx
+ch
+ch
+ei
+ei
+ei
+ei
+ei
 Pl
-it
+En
 pw
 ei
 px
@@ -52061,7 +53571,7 @@ qT
 jC
 VL
 Tz
-Hh
+xl
 FC
 TP
 cw
@@ -52079,11 +53589,11 @@ eB
 eB
 HB
 HB
-uq
+Fb
 HR
 wq
 uq
-NQ
+WB
 rx
 zC
 uq
@@ -52336,19 +53846,19 @@ HB
 HB
 HB
 HB
-Jm
+ch
 XF
 WM
-RC
+nx
 eb
-ei
+ch
 sV
 YV
 Qp
 VT
 qe
 zM
-OT
+Xk
 JV
 ei
 lw
@@ -52363,7 +53873,7 @@ Cn
 jC
 ss
 tl
-Hh
+WR
 hW
 TP
 cw
@@ -52381,11 +53891,11 @@ ux
 ux
 ux
 HB
-uq
+Fb
 TZ
 wq
 wq
-NQ
+WB
 rx
 zC
 HB
@@ -52638,19 +54148,19 @@ HB
 HB
 HB
 HB
-Jm
+ch
 mN
 RC
 RC
 RC
 NZ
 Tf
-Ow
-Ow
-Ow
-Yx
+PL
+PL
+PL
+rW
 MS
-it
+En
 LX
 ei
 vt
@@ -52659,7 +54169,7 @@ py
 nk
 nN
 bX
-bX
+DV
 bz
 OM
 qq
@@ -52674,7 +54184,7 @@ Ft
 jO
 Kt
 Ly
-Kt
+Ag
 Oh
 ux
 ux
@@ -52683,11 +54193,11 @@ ux
 ux
 ux
 ux
-uq
+Fb
 tR
 wq
 wq
-NQ
+WB
 rx
 zC
 HB
@@ -52940,19 +54450,19 @@ HB
 HB
 HB
 HB
-Jm
+ch
 Zk
 ev
 Dt
 mx
 dP
-Tf
+aH
 Ow
 UA
 UA
 Yx
-MS
-it
+oU
+En
 PK
 ei
 PJ
@@ -52961,20 +54471,20 @@ cG
 Hc
 Ym
 CD
-xD
+QG
 pz
 Bl
 ZJ
 Qn
 hX
-Hh
+WR
 yt
 bs
 So
 un
 Oh
 bO
-Cl
+Kt
 JG
 dT
 Oh
@@ -52985,11 +54495,11 @@ ux
 ux
 ux
 ux
-uq
+Fb
 JF
 wq
 za
-NQ
+WB
 rx
 zC
 HB
@@ -53242,19 +54752,19 @@ HB
 HB
 HB
 HB
-Jm
-Jm
-Jm
-Jm
-Jm
 ei
-Tf
-Ow
+ei
+ei
+ei
+ei
+ei
+lP
+Vb
 th
 Ps
-Yx
-MS
-it
+aJ
+nt
+uV
 Gn
 ei
 ei
@@ -53269,11 +54779,11 @@ hB
 sU
 Ed
 XK
-Hh
+WR
 Go
-or
-or
-or
+Go
+Go
+Go
 Oh
 Oh
 Oh
@@ -53287,7 +54797,7 @@ ux
 ux
 ux
 ux
-uq
+Fb
 VH
 wq
 uq
@@ -53544,40 +55054,40 @@ HB
 HB
 HB
 HB
-Jm
+cx
 wb
 Qe
 xa
 AX
-dP
-Tf
+NV
+Es
 PT
 SQ
 Fy
 vy
-zM
-OT
+MA
+lo
 GT
 dA
 nA
 nA
 Qw
-KQ
+fZ
 qW
 mI
 en
 ho
-El
+Dw
 El
 Ct
 uQ
 wR
-or
+wJ
 MU
 YF
 CX
 Pm
-or
+Go
 ux
 ux
 ux
@@ -53846,14 +55356,14 @@ HB
 HB
 HB
 HB
-Jm
+cx
 Mr
 ut
 ut
 ut
 Cr
 lt
-PT
+rL
 jf
 zx
 KF
@@ -53866,7 +55376,7 @@ CP
 Yk
 aA
 ZH
-se
+vN
 RX
 hB
 Xc
@@ -53879,7 +55389,7 @@ EI
 gL
 Jq
 gL
-or
+Go
 ux
 ux
 ux
@@ -53895,7 +55405,7 @@ Fu
 Nr
 EQ
 Ak
-NQ
+WB
 rx
 zC
 uq
@@ -54148,12 +55658,12 @@ HB
 HB
 HB
 HB
-Jm
+cx
 fa
 Qz
-ut
+KD
 FR
-ei
+cx
 EC
 Rv
 ku
@@ -54181,7 +55691,7 @@ NE
 Pm
 Bz
 Pm
-or
+Go
 ux
 ux
 ux
@@ -54197,7 +55707,7 @@ Fu
 oe
 Hi
 VX
-NQ
+WB
 rx
 zC
 HB
@@ -54450,17 +55960,17 @@ HB
 HB
 HB
 HB
-Jm
-Jm
-ei
-ei
-ei
-ei
+cx
+cx
+cx
+cx
+cx
+cx
 VO
 Ow
 bt
 aF
-Yx
+sf
 MS
 Vv
 Yk
@@ -54470,7 +55980,7 @@ Yk
 ei
 Kc
 ZH
-se
+vN
 id
 UR
 FW
@@ -54478,11 +55988,11 @@ zu
 FW
 NL
 qB
-NL
+vV
 vV
 NL
-or
-or
+Go
+Go
 Go
 ux
 ux
@@ -54763,8 +56273,8 @@ Ow
 lc
 ps
 Yx
-MS
-it
+oU
+ro
 da
 VF
 Uf
@@ -54772,7 +56282,7 @@ Ha
 uY
 rp
 ZH
-se
+vN
 jw
 FW
 dq
@@ -54782,7 +56292,7 @@ vV
 aZ
 Lv
 BU
-vV
+NL
 ux
 ux
 ux
@@ -54801,7 +56311,7 @@ Fu
 fC
 Cq
 VX
-NQ
+WB
 rx
 zC
 HB
@@ -55056,7 +56566,7 @@ HB
 HB
 HB
 HB
-Jm
+ei
 fO
 jI
 ei
@@ -55074,7 +56584,7 @@ MG
 PQ
 dZ
 ZH
-se
+vN
 Oz
 FW
 vZ
@@ -55084,7 +56594,7 @@ vV
 yv
 Mv
 Lv
-vV
+NL
 ux
 ux
 ux
@@ -55103,7 +56613,7 @@ Fu
 JY
 TI
 zp
-NQ
+WB
 rx
 zC
 uq
@@ -55358,7 +56868,7 @@ HB
 HB
 HB
 HB
-Jm
+ei
 HF
 jI
 SV
@@ -55367,9 +56877,9 @@ Ow
 Jz
 Ow
 Ah
-it
+ue
 OR
-da
+LF
 BH
 OK
 lI
@@ -55386,7 +56896,7 @@ vV
 Eg
 km
 eu
-vV
+NL
 ux
 ux
 ux
@@ -55660,9 +57170,9 @@ HB
 HB
 HB
 HB
-Jm
-Jm
-Jm
+ei
+ei
+ei
 ei
 tC
 nU
@@ -55673,17 +57183,17 @@ xj
 PB
 PB
 Tg
-OK
+Oy
 MZ
 Nd
 dZ
 ZH
-se
+vN
 xD
 aV
 Ga
 TL
-FW
+UR
 NL
 vV
 vV
@@ -55971,7 +57481,7 @@ rB
 wp
 ei
 Wq
-sL
+gg
 GC
 PB
 KY
@@ -55985,7 +57495,7 @@ uZ
 ZG
 AZ
 kt
-FW
+UR
 ux
 ux
 ux
@@ -56009,7 +57519,7 @@ Ii
 Ih
 MI
 kp
-NQ
+WB
 iC
 lN
 uq
@@ -56282,11 +57792,11 @@ vc
 PQ
 UW
 ZH
-se
+vN
 SJ
 UR
-FW
-FW
+UR
+UR
 UR
 ux
 ux
@@ -56311,7 +57821,7 @@ tI
 Ih
 Ih
 OU
-NQ
+WB
 rx
 lN
 uq
@@ -56584,7 +58094,7 @@ cI
 PQ
 Zl
 ZH
-se
+vN
 mE
 gS
 ux
@@ -56613,7 +58123,7 @@ HN
 Ih
 YE
 kp
-NQ
+WB
 rx
 lN
 HX
@@ -56878,7 +58388,7 @@ ei
 ei
 Ux
 Jf
-KL
+Kb
 hQ
 PB
 kG
@@ -56916,7 +58426,7 @@ yR
 oQ
 Fb
 ha
-rx
+TH
 wk
 hk
 RU
@@ -56931,8 +58441,8 @@ xy
 oK
 XE
 GQ
-XE
-XE
+HK
+HK
 pK
 WP
 Ai
@@ -57173,22 +58683,22 @@ HB
 fh
 pQ
 po
-po
-po
-pQ
-po
-KS
+oR
+Gf
+Lg
+Gf
+XP
 GB
-Jf
-KL
+rv
+An
 KL
 pO
-sz
+Kr
 pC
 Br
 IC
 ZH
-se
+vN
 Dg
 ux
 ux
@@ -57490,7 +59000,7 @@ Ov
 Yf
 Mw
 ZO
-se
+vN
 RP
 ux
 ux
@@ -57519,10 +59029,10 @@ ux
 ux
 HB
 Fb
-Fb
+hG
 QS
 lN
-NQ
+Ar
 vs
 vs
 vs
@@ -57784,7 +59294,7 @@ po
 KS
 KS
 oL
-KS
+FQ
 fh
 TA
 sz
@@ -57792,7 +59302,7 @@ nw
 Br
 bF
 ZH
-se
+vN
 xD
 ux
 ux
@@ -57820,11 +59330,11 @@ ux
 ux
 ux
 ux
-HB
+Jm
 uq
-QS
+qj
 lN
-NQ
+Ar
 uq
 Fb
 Fb
@@ -58094,7 +59604,7 @@ kS
 Br
 zb
 ZH
-se
+vN
 xD
 XT
 ux
@@ -58126,7 +59636,7 @@ ux
 uq
 zZ
 lN
-NQ
+Ar
 Fb
 Gg
 ba
@@ -58384,8 +59894,8 @@ KS
 KS
 KS
 nd
-po
-nm
+Qg
+Mb
 XJ
 DI
 nm
@@ -58396,7 +59906,7 @@ sz
 Br
 zt
 ZH
-se
+vN
 jw
 XT
 ux
@@ -58426,9 +59936,9 @@ ux
 ux
 ux
 uq
-QS
+qj
 lN
-NQ
+Ar
 Fb
 mW
 mW
@@ -58443,7 +59953,7 @@ iP
 Nz
 tB
 jd
-Kn
+Ke
 NI
 GI
 Pd
@@ -58686,7 +60196,7 @@ YL
 YL
 YL
 YL
-po
+xA
 fh
 fh
 fh
@@ -58698,7 +60208,7 @@ wB
 Br
 kw
 ZH
-se
+vN
 xD
 XT
 ux
@@ -58728,9 +60238,9 @@ ux
 ux
 ux
 ux
-QS
+qj
 lN
-NQ
+Ar
 uq
 uq
 mW
@@ -58748,7 +60258,7 @@ cu
 cu
 NI
 Nm
-Td
+Xx
 Td
 Nm
 Oe
@@ -58985,10 +60495,10 @@ HB
 fh
 ft
 po
-po
-po
-ft
-po
+fc
+ol
+fg
+gJ
 fh
 ux
 ux
@@ -59000,7 +60510,7 @@ az
 aL
 IC
 ZH
-se
+vN
 xD
 ux
 ux
@@ -59042,28 +60552,28 @@ Wo
 Wo
 Wo
 DM
-mW
-mW
-mW
+Zr
+Zr
+dl
 BD
 hK
-mW
-mW
+Zr
+Zr
 MP
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
-mW
+nS
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+Zr
+dp
 Fb
 ux
 ux
@@ -59302,7 +60812,7 @@ BX
 Zi
 IC
 ZH
-se
+vN
 xD
 ux
 ux
@@ -59332,7 +60842,7 @@ ux
 ux
 ux
 ux
-eh
+qj
 Eh
 Gj
 qt
@@ -59340,7 +60850,7 @@ NM
 Sg
 xd
 ZC
-Sg
+No
 Sg
 qt
 Sg
@@ -59352,7 +60862,7 @@ Sg
 qt
 Sg
 NM
-Sg
+FG
 Sg
 Jw
 rA
@@ -59365,7 +60875,7 @@ Sg
 Sg
 qt
 ju
-mW
+Te
 Fb
 ux
 ux
@@ -59604,7 +61114,7 @@ BX
 aL
 IC
 ZH
-se
+vN
 xD
 ux
 ux
@@ -59636,7 +61146,7 @@ ux
 uq
 Xs
 lN
-NQ
+Ar
 ga
 ga
 ga
@@ -59667,7 +61177,7 @@ HL
 HL
 HL
 NQ
-mW
+FX
 uq
 Fb
 Fb
@@ -59906,7 +61416,7 @@ gS
 XT
 kw
 ZH
-se
+vN
 oy
 XT
 ux
@@ -59938,28 +61448,28 @@ ux
 uq
 Wk
 lN
-NQ
+Ar
 ga
-Au
-Au
-Al
+Gy
+PC
+TK
 cb
 GU
 Al
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+PC
+aP
 wT
 wT
 HL
@@ -59969,8 +61479,8 @@ TY
 aW
 HL
 NQ
-mW
-hz
+FX
+qx
 ly
 AI
 Bh
@@ -60208,7 +61718,7 @@ ux
 XT
 rp
 ZH
-se
+vN
 OD
 XT
 ux
@@ -60238,11 +61748,11 @@ ux
 ux
 ux
 uq
-eh
+qj
 lN
-NQ
+Ar
 ga
-Au
+Ay
 ga
 ga
 hJ
@@ -60261,7 +61771,7 @@ ga
 ga
 ga
 ga
-ga
+JJ
 HL
 Md
 HL
@@ -60271,7 +61781,7 @@ Oc
 JA
 HL
 NQ
-mW
+FY
 Uk
 ot
 dz
@@ -60510,7 +62020,7 @@ HB
 XT
 kw
 ZH
-se
+vN
 PS
 XT
 ux
@@ -60540,11 +62050,11 @@ ux
 ux
 ux
 ux
-eh
+qj
 lN
-NQ
+Ar
 ga
-Au
+Ay
 ga
 bB
 Zt
@@ -60563,7 +62073,7 @@ lG
 Dj
 je
 Wf
-Bs
+XV
 Oo
 Wx
 Yr
@@ -60573,8 +62083,8 @@ Wx
 Fm
 HL
 tw
-mW
-hz
+FX
+qx
 hC
 AI
 VE
@@ -60812,7 +62322,7 @@ HB
 HB
 dZ
 ZH
-se
+vN
 xD
 ux
 ux
@@ -60842,12 +62352,12 @@ ux
 ux
 ux
 ux
-eh
+qj
 lN
-NQ
+Ar
 ga
-Au
-ga
+ym
+gy
 js
 Sn
 hT
@@ -60875,7 +62385,7 @@ aE
 dx
 HL
 NQ
-mW
+FX
 Fb
 hC
 AI
@@ -61114,7 +62624,7 @@ HB
 HB
 dZ
 ZH
-se
+vN
 xD
 HB
 HB
@@ -61144,9 +62654,9 @@ HB
 ux
 ux
 ux
-eh
+qj
 lN
-NQ
+Ar
 ga
 Au
 ga
@@ -61177,7 +62687,7 @@ Md
 HL
 HL
 DE
-mW
+FX
 iN
 Xr
 dz
@@ -61416,7 +62926,7 @@ HB
 HB
 dZ
 ZH
-se
+vN
 xD
 HB
 HB
@@ -61446,9 +62956,9 @@ HB
 ux
 ux
 uq
-eh
+qj
 lN
-NQ
+Ar
 ga
 Au
 ga
@@ -61479,7 +62989,7 @@ mh
 Eu
 kC
 NQ
-mW
+FX
 Fb
 MB
 AI
@@ -61718,7 +63228,7 @@ HB
 XT
 dZ
 ZH
-se
+vN
 xD
 XT
 HB
@@ -61750,7 +63260,7 @@ Fb
 uq
 tN
 lN
-NQ
+Ar
 ga
 Au
 ga
@@ -61775,13 +63285,13 @@ Sy
 kC
 el
 kC
-Ll
+qX
 SH
 Ll
 Ll
 kC
 bU
-mW
+FX
 uq
 Fb
 Fb
@@ -62020,7 +63530,7 @@ HB
 XT
 Zl
 ZH
-se
+vN
 jw
 XT
 gS
@@ -62050,9 +63560,9 @@ dz
 dz
 iR
 uq
-eh
+qj
 lN
-NQ
+Ar
 ga
 Au
 ga
@@ -62077,13 +63587,13 @@ Hx
 xN
 jo
 bG
-SD
+yc
 mn
 SD
 xv
 ti
 QY
-mW
+ZU
 Fb
 HB
 HB
@@ -62352,9 +63862,9 @@ dz
 dz
 dz
 hz
-eh
+qj
 lN
-NQ
+Ar
 ga
 Gz
 ga
@@ -62624,16 +64134,16 @@ HB
 HB
 dZ
 ZH
-se
+re
 cX
 tt
 hg
-xD
+Qh
 Mq
 tv
 iZ
-Ab
-Ab
+yI
+yI
 bQ
 Xm
 QZ
@@ -62926,7 +64436,7 @@ HB
 HB
 dZ
 ZH
-se
+vN
 xD
 Mj
 xD
@@ -62956,9 +64466,9 @@ dz
 dz
 dz
 hz
-eh
+qj
 lN
-NQ
+Ar
 Gz
 yf
 Px
@@ -63226,20 +64736,20 @@ HB
 HB
 HB
 HB
-dZ
-ZH
-se
-xD
+sd
+qI
+tG
+Dn
 yJ
-xD
-xD
-am
-tv
-iZ
-Ab
-Ab
+Dn
+Dn
+Mm
+FS
+dS
+pS
+pS
 zN
-gt
+LJ
 jx
 kx
 Ab
@@ -63260,7 +64770,7 @@ dz
 uq
 Xs
 lN
-NQ
+Ar
 Gz
 yf
 Px
@@ -63530,7 +65040,7 @@ HB
 XT
 dZ
 ZH
-se
+vN
 xD
 XT
 bc
@@ -63863,11 +65373,11 @@ HB
 HB
 uq
 eh
-lN
-NQ
-ga
-Gz
-ga
+Wi
+Bg
+DZ
+xI
+DZ
 Iw
 qy
 Sd
@@ -64134,7 +65644,7 @@ HB
 XT
 Kc
 ZH
-se
+vN
 xD
 XT
 ux
@@ -64164,13 +65674,13 @@ HB
 HB
 HB
 HB
-eh
+qj
 lN
 eW
 ga
 Au
 ga
-Zt
+bl
 TC
 Bs
 oW
@@ -64436,7 +65946,7 @@ HB
 HB
 dZ
 ZH
-se
+vN
 xD
 ux
 ux
@@ -64466,9 +65976,9 @@ ux
 HB
 HB
 HB
-eh
+qj
 lN
-NQ
+Ar
 ga
 Au
 ga
@@ -64738,7 +66248,7 @@ ux
 HB
 dZ
 ZH
-se
+vN
 xD
 ux
 ux
@@ -64768,13 +66278,13 @@ ux
 ux
 HB
 HB
-eh
+qj
 lN
-NQ
+Ar
 ga
 Au
 ga
-Zt
+bl
 qy
 hH
 hH
@@ -65040,7 +66550,7 @@ ux
 HB
 dZ
 ZH
-se
+vN
 xD
 ux
 ux
@@ -65072,10 +66582,10 @@ ux
 uq
 Xs
 lN
-NQ
+Ar
 ga
-Au
-ga
+aK
+DZ
 wK
 Ig
 Vi
@@ -65342,8 +66852,8 @@ ux
 gS
 kw
 ZH
-se
-oy
+vN
+gS
 XT
 KH
 ux
@@ -65371,12 +66881,12 @@ HB
 ux
 ux
 ux
-uq
+Fb
 pg
 lN
-NQ
+Ar
 ga
-Au
+uu
 ga
 Fg
 KW
@@ -65393,8 +66903,8 @@ hH
 so
 Bs
 Bs
-Zt
-Sy
+vz
+lz
 gT
 HL
 Md
@@ -65644,9 +67154,9 @@ ux
 gS
 rp
 ZH
-se
+re
 Rn
-XT
+gS
 KH
 ux
 HB
@@ -65673,15 +67183,15 @@ HB
 HB
 ux
 ux
-uq
+Fb
 ms
 lN
-NQ
+Ar
 ga
-Au
+uu
 ga
 Hq
-Bs
+Vl
 Bs
 Bs
 pH
@@ -65691,9 +67201,9 @@ mw
 bn
 IB
 Vq
-Bs
+xO
 wY
-pH
+ix
 aG
 Lj
 yN
@@ -65946,9 +67456,9 @@ uM
 uM
 pq
 ZH
-se
+vN
 Dg
-XT
+gS
 KH
 KH
 XT
@@ -65978,7 +67488,7 @@ Jv
 uq
 Xs
 lN
-NQ
+Ar
 ga
 iw
 ga
@@ -65992,7 +67502,7 @@ ga
 ga
 eG
 eG
-ga
+EV
 Gz
 HC
 ga
@@ -66243,58 +67753,58 @@ HB
 HB
 uM
 zy
-sG
+eq
 Qy
 WI
-dZ
-ZH
-se
+AO
+VJ
+uj
 iI
 XT
-XT
-XT
+gS
+gS
 XT
 XT
 jV
 Bu
 nq
 XT
-XT
-XT
-XT
-XT
-XT
+gS
+gS
+gS
+gS
+gS
 XT
 uq
 Qt
 uq
 uq
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
 uq
 uq
-uq
-uq
-uq
-uq
-uq
-uq
-uq
-eh
+qj
 lN
-NQ
+Ar
 ga
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
-Au
+VW
+Eb
+Eb
+Eb
+Eb
+Eb
+Eb
+Eb
+WT
 ga
 eG
 eG
-ga
+EV
 Jc
 MT
 so
@@ -66557,12 +68067,12 @@ KQ
 Yo
 QD
 KQ
+bI
 KQ
 KQ
 KQ
 KQ
-KQ
-Yo
+zq
 KQ
 QD
 KQ
@@ -66576,13 +68086,13 @@ LG
 bH
 Iu
 bH
-bH
+rg
 bH
 Iu
 bH
-QY
+Uv
 lN
-NQ
+Ar
 ga
 ga
 ga
@@ -66592,11 +68102,11 @@ ga
 ga
 ga
 ga
-ga
-ga
-ga
-ga
-ga
+yq
+DZ
+DZ
+DZ
+zf
 nh
 Bs
 xG
@@ -66859,7 +68369,7 @@ hh
 Er
 Er
 dC
-Er
+kW
 Er
 Er
 Er
@@ -66878,13 +68388,13 @@ yb
 ed
 lS
 qZ
+JR
 lS
 lS
 lS
-lS
-lS
+JR
 AV
-NQ
+Ar
 ux
 ux
 ux
@@ -67148,7 +68658,7 @@ HB
 HB
 uM
 uz
-sG
+hL
 gX
 uM
 uM
@@ -67160,18 +68670,18 @@ Pf
 RD
 uX
 Pf
-SX
+wt
+eF
 Pf
 Pf
 Pf
-Pf
-SX
-Pf
+wt
+eF
 Pf
 rh
 Pf
 SX
-RA
+UP
 Sg
 Sg
 RA
@@ -67179,14 +68689,14 @@ eQ
 mM
 Sg
 Sg
+No
+KE
 Sg
 Sg
 Sg
-Sg
-Sg
-Sg
+KE
 RA
-QY
+JD
 HB
 HB
 ux
@@ -67450,7 +68960,7 @@ HB
 HB
 uM
 Dk
-sG
+hL
 sG
 hc
 uM
@@ -67463,7 +68973,7 @@ IN
 Zh
 gS
 Re
-WA
+DQ
 gS
 gS
 os
@@ -67482,11 +68992,11 @@ sQ
 Fb
 dh
 zB
+Jj
 dh
-dh
 Nj
 Nj
-Nj
+Ut
 VA
 Nj
 Nj
@@ -67752,7 +69262,7 @@ HB
 HB
 uM
 Jb
-sG
+hL
 yZ
 GA
 uM
@@ -67783,7 +69293,7 @@ ZA
 Ky
 gh
 YY
-wG
+xc
 hA
 AP
 Nj
@@ -68086,7 +69596,7 @@ OB
 hv
 uk
 wG
-wG
+LQ
 wG
 ak
 MO
@@ -68392,7 +69902,7 @@ SO
 fV
 Nj
 Xn
-HQ
+Ek
 au
 lf
 Fa
@@ -68671,7 +70181,7 @@ SN
 EM
 Bp
 fz
-FT
+yj
 Lq
 jP
 lL
@@ -68972,8 +70482,8 @@ Vs
 LW
 ZF
 vM
-fz
-FT
+nJ
+Vz
 Jh
 jP
 tg
@@ -69273,14 +70783,14 @@ eS
 Vs
 LW
 yC
-FT
+yj
 fz
 EP
 jP
 jP
 PF
 ie
-Pz
+fI
 Pz
 gK
 wn
@@ -69575,17 +71085,17 @@ ux
 CT
 SN
 sy
-FT
+yj
 fz
 lD
 jP
 jc
-jH
-ie
+hq
+Ri
 HY
-Pz
+QR
 ZZ
-QB
+Fq
 QB
 dm
 WY
@@ -70179,13 +71689,13 @@ ux
 ux
 OO
 ME
-FT
+yj
 fz
 LB
 jP
 jc
-jH
-ie
+Ck
+Lw
 jP
 MX
 Rw
@@ -70481,13 +71991,13 @@ HB
 ux
 OO
 Em
-FT
+yj
 fz
 LP
 jP
 jP
-PF
-ie
+qR
+Lw
 jP
 AM
 MX
@@ -70784,12 +72294,12 @@ HB
 OO
 FT
 qU
-fz
+LC
 ax
 jP
 qN
 YH
-ie
+Lw
 jP
 MX
 MX
@@ -71392,12 +72902,12 @@ OO
 OO
 jP
 gl
-jH
-ie
+Ck
+ae
 vq
-Pz
+TX
 Lf
-QI
+Nl
 QI
 Ci
 mO
@@ -71699,7 +73209,7 @@ Nx
 ap
 uR
 Pz
-Pz
+fI
 Pz
 wg
 HJ
@@ -72001,7 +73511,7 @@ jP
 hD
 GF
 CB
-CB
+zS
 gH
 jP
 jP
@@ -72301,9 +73811,9 @@ ux
 ux
 jP
 Pq
+IJ
 CB
-CB
-CB
+IJ
 GN
 jP
 HB
@@ -72603,9 +74113,9 @@ ux
 ux
 ux
 ux
-eU
+PU
 OW
-OW
+oz
 ux
 ux
 ux
@@ -72905,9 +74415,9 @@ ux
 ux
 ux
 ux
+PU
 OW
-OW
-OW
+oz
 ux
 ux
 ux
@@ -73509,7 +75019,7 @@ HB
 ux
 ux
 ux
-OW
+eU
 OW
 OW
 ux
