@@ -880,7 +880,7 @@ obj/trait/pilot
 	"salbutamol","perfluorodecalin","mannitol","charcoal","antihol","ethanol","iron","mercury","oxygen","plasma","sugar","radium","water","bathsalts","jenkem","crank",\
 	"LSD","space_drugs","THC","nicotine","krokodil","catdrugs","triplemeth","methamphetamine","mutagen","neurotoxin","sarin","smokepowder","infernite","phlogiston","fuel",\
 	"anti_fart","lube","ectoplasm","cryostylane","oil","sewage","ants","spiders","poo","love","hugs","fartonium","blood","bloodc","vomit","urine","capsaicin","cheese",\
-	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg")
+	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg", "milk")
 
 	onAdd(var/mob/owner)
 		allergic_players[owner] = pick(allergen_id_list)
