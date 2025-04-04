@@ -975,7 +975,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//	spread_angle += GRIP_PENALTY/3
 	src.force = 2 + bulk
 	src.throwforce = bulk
-
+	if(src.two_handed)
+		flags &= ~ONBELT
+		flags |= ONBACK
+	else
+		flags &= ~ONBACK
+		flags |= ONBELT
 	buildTooltipContent()
 	built = 1
 
