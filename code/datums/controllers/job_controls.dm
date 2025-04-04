@@ -109,7 +109,7 @@ var/datum/job_controller/job_controls
 		dat += "<A href='byond://?src=\ref[src];ChangeName=1'>Can Change Name on Spawn:</A> [src.job_creator.change_name_on_spawn ? "Yes":"No"]<br>"
 		dat += "<A href='byond://?src=\ref[src];SetSpawnLoc=1'>Spawn Location:</A> [src.job_creator.special_spawn_location ? locate(src.job_creator.spawn_x,src.job_creator.spawn_y,src.job_creator.spawn_z) : "Default"]<br>"
 		dat += "<A href='byond://?src=\ref[src];SpawnId=1'>Spawns with ID:</A> [src.job_creator.spawn_id ? "Yes" : "No"]<br>"
-		dat += "<A href='byond://?src=\ref[src];EditObjective=1'>Custom Objective:</A> [src.job_creator.objective][src.job_creator.objective ? (src.job_creator.spawn_miscreant ? " (Miscreant)" : " (Crew Objective)") : ""]<br>"
+		dat += "<A href='byond://?src=\ref[src];EditObjective=1'>Custom Objective:</A> [src.job_creator.objective][src.job_creator.objective ? (src.job_creator.spawn_miscreant ? " (Miscreant)" : " (Crew Objective)") : null]<br>"
 		dat += "<A href='byond://?src=\ref[src];ToggleAnnounce=1'>Head of Staff-style Announcement:</A> [src.job_creator.announce_on_join?"Yes":"No"]<br>"
 		dat += "<A href='byond://?src=\ref[src];ToggleRadioAnnounce=1'>Radio Announcement:</A> [src.job_creator.radio_announcement?"Yes":"No"]<br>"
 		dat += "<A href='byond://?src=\ref[src];ToggleManifest=1'>Add To Manifest:</A> [src.job_creator.add_to_manifest?"Yes":"No"]<br>"
@@ -117,21 +117,21 @@ var/datum/job_controller/job_controls
 		dat += "<BR>"
 		if (ispath(src.job_creator.mob_type, /mob/living/carbon/human))
 			dat += "<A href='byond://?src=\ref[src];EditMutantrace=1'>Mutantrace:</A> [src.job_creator.starting_mutantrace]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditHeadgear=1'>Starting Headgear:</A> [src.job_creator.slot_head]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditMask=1'>Starting Mask:</A>  [src.job_creator.slot_mask]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditHeadset=1'>Starting Headset:</A> [src.job_creator.slot_ears]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditGlasses=1'>Starting Glasses:</A> [src.job_creator.slot_eyes]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditOvercoat=1'>Starting Overcoat:</A> [src.job_creator.slot_suit]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditJumpsuit=1'>Starting Jumpsuit:</A> [src.job_creator.slot_jump]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditHeadgear=1'>Starting Headgear:</A> [length(src.job_creator.slot_head) ? src.job_creator.slot_head[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditMask=1'>Starting Mask:</A>  [length(src.job_creator.slot_mask) ? src.job_creator.slot_mask[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditHeadset=1'>Starting Headset:</A> [length(src.job_creator.slot_ears) ? src.job_creator.slot_ears[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditGlasses=1'>Starting Glasses:</A> [length(src.job_creator.slot_eyes) ? src.job_creator.slot_eyes[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditOvercoat=1'>Starting Overcoat:</A> [length(src.job_creator.slot_suit) ? src.job_creator.slot_suit[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditJumpsuit=1'>Starting Jumpsuit:</A> [length(src.job_creator.slot_jump) ? src.job_creator.slot_jump[1] : null]<br>"
 			dat += "<A href='byond://?src=\ref[src];EditIDCard=1'>Starting ID Card:</A> [src.job_creator.slot_card]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditGloves=1'>Starting Gloves:</A> [src.job_creator.slot_glov]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditShoes=1'>Starting Shoes:</A> [src.job_creator.slot_foot]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditBack=1'>Starting Back Item:</A> [src.job_creator.slot_back]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditBelt=1'>Starting Belt Item:</A> [src.job_creator.slot_belt]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditPock1=1'>Starting 1st Pocket Item:</A> [src.job_creator.slot_poc1]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditPock2=1'>Starting 2nd Pocket Item:</A> [src.job_creator.slot_poc2]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditLhand=1'>Starting Left Hand Item:</A> [src.job_creator.slot_lhan]<br>"
-			dat += "<A href='byond://?src=\ref[src];EditRhand=1'>Starting Right Hand Item:</A> [src.job_creator.slot_rhan]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditGloves=1'>Starting Gloves:</A> [length(src.job_creator.slot_glov) ? src.job_creator.slot_glov[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditShoes=1'>Starting Shoes:</A> [length(src.job_creator.slot_foot) ? src.job_creator.slot_foot[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditBack=1'>Starting Back Item:</A> [length(src.job_creator.slot_back) ? src.job_creator.slot_back[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditBelt=1'>Starting Belt Item:</A> [length(src.job_creator.slot_belt) ? src.job_creator.slot_belt[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditPock1=1'>Starting 1st Pocket Item:</A> [length(src.job_creator.slot_poc1) ? src.job_creator.slot_poc1[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditPock2=1'>Starting 2nd Pocket Item:</A> [length(src.job_creator.slot_poc2) ? src.job_creator.slot_poc2[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditLhand=1'>Starting Left Hand Item:</A> [length(src.job_creator.slot_lhan) ? src.job_creator.slot_lhan[1] : null]<br>"
+			dat += "<A href='byond://?src=\ref[src];EditRhand=1'>Starting Right Hand Item:</A> [length(src.job_creator.slot_rhan) ? src.job_creator.slot_rhan[1] : null]<br>"
 			dat += "<A href='byond://?src=\ref[src];EditImpl=1'>Starting Implant:</A> [src.job_creator.recieves_implant]<br>"
 			for(var/i in 1 to 7)
 				dat += "<A href='byond://?src=\ref[src];EditBpItem=[i]'>Starting Backpack Item [i]:</A> [src.job_creator.items_in_backpack.len >= i ? src.job_creator.items_in_backpack[i] : null]<br>"
@@ -228,17 +228,17 @@ var/datum/job_controller/job_controls
 
 		if(href_list["EditName"])
 			var/picker = input("What is this job's name?","Job Creator")
-			src.job_creator.name = list(picker)
+			src.job_creator.name = picker
 			src.job_creator()
 
 		if(href_list["EditWages"])
 			var/picker = input("How much does this job get paid each payday?","Job Creator") as num
-			src.job_creator.wages = list(picker)
+			src.job_creator.wages = picker
 			src.job_creator()
 
 		if(href_list["EditLimit"])
 			var/picker = input("How many of this job can there be on the station?","Job Creator") as num
-			src.job_creator.limit = list(picker)
+			src.job_creator.limit = picker
 			src.job_creator()
 
 		if(href_list["EditMob"])
@@ -259,7 +259,7 @@ var/datum/job_controller/job_controls
 				usr.show_text("No mob matching that name", "red")
 				return
 
-			src.job_creator.mob_type = list(picker)
+			src.job_creator.mob_type = picker
 			src.job_creator()
 
 		if(href_list["EditMutantrace"])
@@ -285,7 +285,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No mutantrace matching that name", "red")
 						return
 
-					src.job_creator.starting_mutantrace = list(picker)
+					src.job_creator.starting_mutantrace = picker
 
 			src.job_creator()
 
@@ -477,7 +477,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No ID card matching that name", "red")
 						return
 
-					src.job_creator.slot_card = list(picker)
+					src.job_creator.slot_card = picker
 
 			src.job_creator()
 
@@ -758,7 +758,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No shoes implant that name", "red")
 						return
 
-					src.job_creator.recieves_implant = list(picker)
+					src.job_creator.recieves_implant = picker
 
 			src.job_creator()
 
@@ -790,7 +790,7 @@ var/datum/job_controller/job_controls
 
 					while(src.job_creator.items_in_backpack.len < slot_num)
 						src.job_creator.items_in_backpack += null
-					src.job_creator.items_in_backpack[slot_num] = list(picker)
+					src.job_creator.items_in_backpack[slot_num] = picker
 
 			src.job_creator()
 
@@ -822,7 +822,7 @@ var/datum/job_controller/job_controls
 
 					while(src.job_creator.items_in_belt.len < slot_num)
 						src.job_creator.items_in_belt += null
-					src.job_creator.items_in_belt[slot_num] = list(picker)
+					src.job_creator.items_in_belt[slot_num] = picker
 
 			src.job_creator()
 
