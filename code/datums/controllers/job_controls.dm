@@ -228,17 +228,17 @@ var/datum/job_controller/job_controls
 
 		if(href_list["EditName"])
 			var/picker = input("What is this job's name?","Job Creator")
-			src.job_creator.name = picker
+			src.job_creator.name = list(picker)
 			src.job_creator()
 
 		if(href_list["EditWages"])
 			var/picker = input("How much does this job get paid each payday?","Job Creator") as num
-			src.job_creator.wages = picker
+			src.job_creator.wages = list(picker)
 			src.job_creator()
 
 		if(href_list["EditLimit"])
 			var/picker = input("How many of this job can there be on the station?","Job Creator") as num
-			src.job_creator.limit = picker
+			src.job_creator.limit = list(picker)
 			src.job_creator()
 
 		if(href_list["EditMob"])
@@ -259,7 +259,7 @@ var/datum/job_controller/job_controls
 				usr.show_text("No mob matching that name", "red")
 				return
 
-			src.job_creator.mob_type = picker
+			src.job_creator.mob_type = list(picker)
 			src.job_creator()
 
 		if(href_list["EditMutantrace"])
@@ -285,7 +285,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No mutantrace matching that name", "red")
 						return
 
-					src.job_creator.starting_mutantrace = picker
+					src.job_creator.starting_mutantrace = list(picker)
 
 			src.job_creator()
 
@@ -313,7 +313,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No headgear matching that name", "red")
 						return
 
-					src.job_creator.slot_head = picker
+					src.job_creator.slot_head = list(picker)
 
 			src.job_creator()
 
@@ -340,7 +340,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No mask matching that name", "red")
 						return
 
-					src.job_creator.slot_mask = picker
+					src.job_creator.slot_mask = list(picker)
 
 			src.job_creator()
 
@@ -367,7 +367,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No headset matching that name", "red")
 						return
 
-					src.job_creator.slot_ears = picker
+					src.job_creator.slot_ears = list(picker)
 
 			src.job_creator()
 
@@ -394,7 +394,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No glasses matching that name", "red")
 						return
 
-					src.job_creator.slot_eyes = picker
+					src.job_creator.slot_eyes = list(picker)
 
 			src.job_creator()
 
@@ -421,7 +421,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No exosuit matching that name", "red")
 						return
 
-					src.job_creator.slot_suit = picker
+					src.job_creator.slot_suit = list(picker)
 
 			src.job_creator()
 
@@ -448,7 +448,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No jumpsuit matching that name", "red")
 						return
 
-					src.job_creator.slot_jump = picker
+					src.job_creator.slot_jump = list(picker)
 
 			src.job_creator()
 
@@ -477,7 +477,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No ID card matching that name", "red")
 						return
 
-					src.job_creator.slot_card = picker
+					src.job_creator.slot_card = list(picker)
 
 			src.job_creator()
 
@@ -504,7 +504,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No gloves matching that name", "red")
 						return
 
-					src.job_creator.slot_glov = picker
+					src.job_creator.slot_glov = list(picker)
 
 			src.job_creator()
 
@@ -531,7 +531,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No shoes matching that name", "red")
 						return
 
-					src.job_creator.slot_foot = picker
+					src.job_creator.slot_foot = list(picker)
 
 			src.job_creator()
 
@@ -569,7 +569,7 @@ var/datum/job_controller/job_controls
 							return
 						qdel(check)
 
-					src.job_creator.slot_back = picker
+					src.job_creator.slot_back = list(picker)
 
 			src.job_creator()
 
@@ -605,7 +605,7 @@ var/datum/job_controller/job_controls
 							return
 						qdel(check)
 
-					src.job_creator.slot_belt = picker
+					src.job_creator.slot_belt = list(picker)
 
 			src.job_creator()
 
@@ -641,7 +641,7 @@ var/datum/job_controller/job_controls
 							return
 						qdel(check)
 
-					src.job_creator.slot_poc1 = picker
+					src.job_creator.slot_poc1 = list(picker)
 
 			src.job_creator()
 
@@ -677,7 +677,7 @@ var/datum/job_controller/job_controls
 							return
 						qdel(check)
 
-					src.job_creator.slot_poc2 = picker
+					src.job_creator.slot_poc2 = list(picker)
 
 			src.job_creator()
 
@@ -704,7 +704,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No item matching that name", "red")
 						return
 
-					src.job_creator.slot_lhan = picker
+					src.job_creator.slot_lhan = list(picker)
 
 			src.job_creator()
 
@@ -731,7 +731,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No item matching that name", "red")
 						return
 
-					src.job_creator.slot_rhan = picker
+					src.job_creator.slot_rhan = list(picker)
 
 			src.job_creator()
 
@@ -758,7 +758,7 @@ var/datum/job_controller/job_controls
 						usr.show_text("No shoes implant that name", "red")
 						return
 
-					src.job_creator.recieves_implant = picker
+					src.job_creator.recieves_implant = list(picker)
 
 			src.job_creator()
 
@@ -790,7 +790,7 @@ var/datum/job_controller/job_controls
 
 					while(src.job_creator.items_in_backpack.len < slot_num)
 						src.job_creator.items_in_backpack += null
-					src.job_creator.items_in_backpack[slot_num] = picker
+					src.job_creator.items_in_backpack[slot_num] = list(picker)
 
 			src.job_creator()
 
@@ -822,7 +822,7 @@ var/datum/job_controller/job_controls
 
 					while(src.job_creator.items_in_belt.len < slot_num)
 						src.job_creator.items_in_belt += null
-					src.job_creator.items_in_belt[slot_num] = picker
+					src.job_creator.items_in_belt[slot_num] = list(picker)
 
 			src.job_creator()
 
