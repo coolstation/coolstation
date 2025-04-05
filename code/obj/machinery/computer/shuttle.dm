@@ -407,13 +407,13 @@
 	if(miningshuttle_location == 0)
 		var/area/start_location = locate(/area/shuttle/mining/space)
 		var/area/end_location = locate(/area/shuttle/mining/station)
-		start_location.move_contents_to(end_location)
+		start_location.move_contents_to(end_location,/turf/floor/airless/engine/caution)
 		miningshuttle_location = 1
 	else
 		if(miningshuttle_location == 1)
 			var/area/start_location = locate(/area/shuttle/mining/station)
 			var/area/end_location = locate(/area/shuttle/mining/space)
-			start_location.move_contents_to(end_location)
+			start_location.move_contents_to(end_location,/turf/floor/airless/engine/caution)
 			miningshuttle_location = 0
 
 	for(var/obj/machinery/computer/mining_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])

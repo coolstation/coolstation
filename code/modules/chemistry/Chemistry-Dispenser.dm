@@ -471,6 +471,11 @@
 
 	dispense_sound = 'sound/effects/splort.ogg'
 
+/obj/machinery/chem_dispenser/old
+	name = "old alcohol dispenser"
+	desc = "A really old alcohol dispenser... does this thing even work anymore???"
+	dispensable_reagents = list("ethanol","dirtywater","oil",,"beer")
+
 // Reagent Groups
 
 /datum/reagent_group_account
