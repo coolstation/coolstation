@@ -512,6 +512,7 @@ var/f_color_selector_handler/F_Color_Selector
 	set background = 1
 	Z_LOG_DEBUG("World/Init", "init() - Lagcheck enabled")
 	lagcheck_enabled = 1
+	current_state = GAME_STATE_WORLD_INIT
 
 	game_start_countdown = new()
 	UPDATE_TITLE_STATUS("Initializing world")
