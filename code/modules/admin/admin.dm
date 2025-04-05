@@ -995,6 +995,23 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Primary Adminstrator to revive players.")
 
+		if ("revive2")
+			if (src.level >= LEVEL_SA)
+				var/mob/M = locate(href_list["target"])
+				if (ismob(M))
+					if(isobserver(M))
+						alert("You can't revive a ghost! How does that even work?!")
+						return
+					if(config.allow_admin_rev)
+						M.revive2()
+						message_admins("<span class='alert'>Admin [key_name(usr)] healed / revived [key_name(M)]!</span>")
+						logTheThing("admin", usr, M, "healed / revived [constructTarget(M,"admin")]")
+						logTheThing("diary", usr, M, "healed / revived [constructTarget(M,"diary")]", "admin")
+					else
+						alert("Reviving is currently disabled.")
+			else
+				alert("You need to be at least a Primary Adminstrator to revive players.")
+
 		if ("makeai")
 			if (src.level >= LEVEL_SA)
 				var/mob/M = locate(href_list["target"])
@@ -4542,6 +4559,13 @@ var/global/noir = 0
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.full_heal()
+		H.remove_ailments() // don't spawn with heart failure
+	return
+
+/mob/proc/revive2()
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.part_heal()
 		H.remove_ailments() // don't spawn with heart failure
 	return
 
