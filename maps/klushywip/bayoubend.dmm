@@ -4977,9 +4977,9 @@
 	},
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass/pitcher{
-	pixel_y = 11;
+	name = "old glass pitcher";
 	pixel_x = -4;
-	name = "old glass pitcher"
+	pixel_y = 11
 	},
 /turf/floor/wood/five,
 /area/station/maintenance/oldstation)
@@ -5324,8 +5324,8 @@
 	pixel_y = 9
 	},
 /obj/item/extinguisher{
-	pixel_y = 10;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/item/chem_grenade/firefighting{
 	pixel_x = 4;
@@ -6311,8 +6311,13 @@
 /turf/floor/grass/random,
 /area/station/hydroponics/bay)
 "eOO" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor/plating/random,
-/area/station/crew_quarters/lounge/starboard)
+/area/station/maintenance/central)
 "ePc" = (
 /obj/grille/catwalk/bob/fourcorners,
 /obj/cable/yellow{
@@ -7070,8 +7075,8 @@
 /obj/stool/bed,
 /obj/item/clothing/head/mime_beret,
 /obj/item/kitchen/utensil/knife/steak{
-	pixel_y = -9;
-	dir = 8
+	dir = 8;
+	pixel_y = -9
 	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/maintenance/oldstation)
@@ -8517,8 +8522,8 @@
 /area/station/crew_quarters/kitchen)
 "gwx" = (
 /obj/item/storage/firstaid/old{
-	pixel_y = 4;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 4
 	},
 /obj/table/auto,
 /obj/machinery/light/small/red{
@@ -10894,8 +10899,8 @@
 	pixel_y = 10
 	},
 /obj/deskclutter{
-	pixel_y = 2;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_south)
@@ -11016,8 +11021,8 @@
 "ipj" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/bottle/vintage{
-	pixel_y = 4;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = 4
 	},
 /obj/item/raw_material/shard/glass,
 /turf/floor/wood/five,
@@ -13881,13 +13886,13 @@
 "kvX" = (
 /obj/table/auto,
 /obj/item/storage/box/diskbox{
-	pixel_y = 18;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = 18
 	},
 /obj/machinery/networked/printer{
-	print_id = "Mainframe";
+	pixel_x = 2;
 	pixel_y = 5;
-	pixel_x = 2
+	print_id = "Mainframe"
 	},
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -14024,8 +14029,8 @@
 "kAj" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/clipboard/with_pen{
-	pixel_y = 5;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 5
 	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
@@ -15583,8 +15588,8 @@
 /area/station/science/storage)
 "lJU" = (
 /obj/stool/bed{
-	name = "old mattress";
-	desc = "An old, stained matress. What are these stains?"
+	desc = "An old, stained matress. What are these stains?";
+	name = "old mattress"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
@@ -18016,8 +18021,8 @@
 /obj/table/auto,
 /obj/item/skull,
 /obj/item/skull{
-	pixel_y = -5;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -5
 	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/maintenance/oldstation)
@@ -19984,8 +19989,13 @@
 	},
 /area/station/storage/tools)
 "oTO" = (
-/turf/wall,
-/area/station/hallway/primary/southeast)
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable,
+/obj/machinery/power/apc/autoname/south,
+/turf/floor/plating/random,
+/area/station/hallway/primary/south)
 "oUf" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
@@ -20258,8 +20268,8 @@
 "pdL" = (
 /obj/table/reinforced/auto,
 /obj/item/stamp{
-	pixel_y = -17;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -17
 	},
 /obj/window/west,
 /obj/item/paper_bin{
@@ -22695,9 +22705,14 @@
 /turf/floor/carpet/arcade/half,
 /area/station/crew_quarters/arcade)
 "qJn" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/station/hallway/primary/southeast)
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "qJv" = (
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
 /turf/floor/engine,
@@ -23667,7 +23682,7 @@
 	icon_state = "1-2"
 	},
 /turf/floor/plating/random,
-/area/station/crew_quarters/lounge/starboard)
+/area/station/maintenance/southeast)
 "rvk" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -24326,13 +24341,6 @@
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon13,
 /turf/floor,
 /area/station/hallway/primary/south)
-"rVx" = (
-/obj/machinery/power/apc/autoname/east,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor/grime,
-/area/station/maintenance/southeast)
 "rVz" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -25762,12 +25770,12 @@
 	name = "grubby old ashtray"
 	},
 /obj/item/implant/projectile/bardart{
-	pixel_y = 10;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 10
 	},
 /obj/item/implant/projectile/bardart{
-	pixel_y = 10;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /turf/floor/wood/five,
 /area/station/maintenance/oldstation)
@@ -26797,8 +26805,8 @@
 /area/listeningpost)
 "tEB" = (
 /obj/stool/bed{
-	name = "old mattress";
-	desc = "An old, stained matress. What are these stains?"
+	desc = "An old, stained matress. What are these stains?";
+	name = "old mattress"
 	},
 /obj/decal/poster/wallsign/clown_calendar/slip{
 	pixel_x = -32
@@ -28217,8 +28225,8 @@
 "uHN" = (
 /obj/table/auto,
 /obj/item/kitchen/utensil/knife/steak{
-	pixel_y = 6;
-	dir = 8
+	dir = 8;
+	pixel_y = 6
 	},
 /obj/item/soup_pot,
 /turf/floor/grey/blackgrime,
@@ -28398,8 +28406,8 @@
 "uPL" = (
 /obj/decal/mule/dropoff,
 /obj/machinery/door_control{
-	pixel_x = 24;
-	name = "Cargo Doors Control"
+	name = "Cargo Doors Control";
+	pixel_x = 24
 	},
 /obj/cable{
 	icon_state = "1-2"
@@ -32196,12 +32204,12 @@
 	pixel_x = 5
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_y = 10;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 10
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_y = 3;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 3
 	},
 /turf/floor/wood/five,
 /area/station/maintenance/oldstation)
@@ -32717,8 +32725,8 @@
 /area/station/crew_quarters/kitchen)
 "ymh" = (
 /obj/stool/bed{
-	name = "old mattress";
-	desc = "An old, stained matress. What are these stains?"
+	desc = "An old, stained matress. What are these stains?";
+	name = "old mattress"
 	},
 /obj/item/reagent_containers/food/drinks/bottle/cider{
 	pixel_x = 4
@@ -70610,8 +70618,8 @@ vOJ
 xtT
 mjH
 ndU
-cjV
-nXI
+eOO
+oTO
 jik
 pxM
 eAI
@@ -70912,8 +70920,8 @@ eLr
 gOP
 hvZ
 uAj
-cjV
-nXI
+nlm
+qJn
 jik
 nnN
 jZx
@@ -77294,7 +77302,7 @@ vSl
 irh
 cNn
 nLP
-rVx
+nLP
 kTp
 nLP
 jpt
@@ -80595,7 +80603,7 @@ tfl
 xsq
 nNP
 qoR
-eOO
+bce
 aTt
 aTt
 aTt
@@ -80897,12 +80905,12 @@ dSS
 ndV
 nNP
 uqV
-eOO
+bce
 uQc
 vtK
 crS
 vcO
-oTO
+uQc
 uUW
 tgF
 jdW
@@ -81204,7 +81212,7 @@ dbL
 bwy
 gGo
 qTa
-oTO
+uQc
 sTc
 ahE
 jdW
@@ -81506,7 +81514,7 @@ eNp
 eGs
 jlK
 bGy
-qJn
+lTI
 tCX
 oYw
 jdW
@@ -81808,7 +81816,7 @@ hBL
 dtr
 jlK
 vBW
-qJn
+lTI
 tgF
 ege
 jdW
