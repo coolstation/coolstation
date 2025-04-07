@@ -667,7 +667,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(prob(jam_frequency_reload))
 		jammed = JAM_LOAD
 		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
-		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
+		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
 		return 0
 	else
 		//finally, everything normal. just load it and cycle
