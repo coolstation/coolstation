@@ -915,7 +915,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span class='alert'><b>The dynamo gets stuck!</b></span>") //slammed forward too fast or whatever
 		else
 			boutput(user,"<span class='alert'><b>The casing gets stuck!</b></span>") //failed to eject
-		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
+		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
 
 	return TRUE
 
