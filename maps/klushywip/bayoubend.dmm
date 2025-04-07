@@ -1140,12 +1140,10 @@
 /turf/floor,
 /area/station/storage/eva)
 "aXa" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir";
-	tag = "icon-lattice-dir (EAST)"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
 	},
-/turf/space,
+/turf/floor/airless/engine/caution,
 /area/shuttle/merchant_shuttle/left_station/destiny)
 "aXq" = (
 /obj/disposalpipe/segment{
@@ -3360,6 +3358,9 @@
 	dir = 8
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Cargo Technician"
+	},
 /turf/floor/cautionblack,
 /area/station/quartermaster/cargobay)
 "cDp" = (
@@ -8002,6 +8003,9 @@
 /area/station/maintenance/east)
 "gbP" = (
 /obj/stool/bench/auto,
+/obj/landmark/start{
+	name = "Scrapper"
+	},
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -8732,10 +8736,6 @@
 	},
 /turf/floor,
 /area/station/engine/coldloop)
-"gEU" = (
-/obj/decal/poster/wallsign/space,
-/turf/wall,
-/area/station/shipyard)
 "gFe" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -9212,6 +9212,10 @@
 	},
 /turf/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
+"gVG" = (
+/obj/decal/poster/wallsign/space,
+/turf/wall,
+/area/station/shipyard)
 "gVH" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -11171,6 +11175,10 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
+"iyh" = (
+/obj/machinery/atmospherics/pipe/tank/toxins/south,
+/turf/floor/airless/engine/caution,
+/area/station/shipyard)
 "iyO" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light{
@@ -13112,6 +13120,9 @@
 /obj/machinery/light/small{
 	dir = 4;
 	icon_state = "bulb1"
+	},
+/obj/landmark/start{
+	name = "Cargo Technician"
 	},
 /turf/floor/cautionblack/side{
 	dir = 4
@@ -15378,6 +15389,10 @@
 	},
 /turf/floor/black,
 /area/station/security/armory)
+"lCp" = (
+/obj/machinery/atmospherics/portables_connector/north,
+/turf/floor/airless/engine/caution,
+/area/station/shipyard)
 "lCw" = (
 /obj/machinery/light{
 	dir = 4;
@@ -18193,6 +18208,12 @@
 /obj/access_spawn/engineering_power,
 /turf/floor/plating/random,
 /area/station/maintenance/east)
+"nJI" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
+	},
+/turf/floor/airless/engine/caution,
+/area/shuttle/merchant_shuttle/left_station/destiny)
 "nKa" = (
 /obj/decal/floatingtiles/loose/random,
 /turf/floor/plating/random,
@@ -28444,6 +28465,10 @@
 	mail_tag = "Conveience Store";
 	name = "Convienence Store"
 	})
+"uUq" = (
+/obj/machinery/atmospherics/valve/digital/vertical,
+/turf/floor/airless/engine/caution,
+/area/station/shipyard)
 "uUw" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -31765,7 +31790,7 @@
 /turf/floor/wood/five,
 /area/station/chapel/sanctuary)
 "xyB" = (
-/turf/space,
+/turf/floor/airless/engine/caution,
 /area/shuttle/merchant_shuttle/left_station/destiny)
 "xzc" = (
 /obj/storage/secure/closet/medical/medicine,
@@ -66967,12 +66992,12 @@ fvS
 knb
 oBb
 hwz
-xyB
-aXa
-xyB
-aXa
-xyB
-xyB
+bMk
+vrk
+bMk
+vrk
+bMk
+bMk
 bMk
 bMk
 bMk
@@ -67269,20 +67294,20 @@ paZ
 uCo
 oBb
 hwz
-xyB
-aXa
-xyB
-aXa
-xyB
-xyB
+bMk
+vrk
+bMk
+vrk
+bMk
+bMk
 rtl
 wXL
 wXL
 wXL
 wXL
-wXL
-wXL
-wXL
+iyh
+uUq
+lCp
 wXL
 wXL
 wXL
@@ -67571,23 +67596,23 @@ oNu
 jmW
 oBb
 qyM
-xyB
-aXa
-xyB
-aXa
-xyB
-xyB
+bMk
+vrk
+bMk
+vrk
+bMk
+bMk
 rtl
 cvN
 eBg
 aFA
-eFg
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
+nJI
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
 cvN
 cvN
 tES
@@ -67873,23 +67898,23 @@ oNu
 jmW
 oBb
 hwz
-xyB
-aXa
-xyB
-aXa
-xyB
-xyB
+bMk
+vrk
+bMk
+vrk
+bMk
+bMk
 pqS
 aFA
 cvN
 eBg
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
 cvN
 cvN
 cvN
@@ -68175,23 +68200,23 @@ oNu
 xUA
 oBb
 hwz
-xyB
-aXa
-xyB
-aXa
-xyB
-xyB
+bMk
+vrk
+bMk
+vrk
+bMk
+bMk
 pqS
 cvN
 cvN
 cvN
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
 cvN
 cvN
 cvN
@@ -68487,13 +68512,13 @@ pqS
 cvN
 cvN
 cvN
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
 cvN
 cvN
 cvN
@@ -68789,13 +68814,13 @@ pqS
 cvN
 cvN
 cvN
-gXf
-cvN
-cvN
-cvN
-cvN
-cvN
-cvN
+aXa
+xyB
+xyB
+xyB
+xyB
+xyB
+xyB
 cvN
 cvN
 hoz
@@ -76965,9 +76990,9 @@ bce
 nNP
 ezI
 gtF
-gEU
+gVG
 seQ
-gEU
+gVG
 gtF
 gtF
 gtF
@@ -77571,7 +77596,7 @@ nYF
 seQ
 seQ
 seQ
-gEU
+gVG
 bMk
 bMk
 bMk
