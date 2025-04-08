@@ -198,6 +198,9 @@ export const backendMiddleware = store => {
         Byond.winset(window.__windowId__, {
           'is-visible': true,
         });
+        sendMessage({
+          type: 'visible',
+        });
         perf.mark('resume/finish');
         if (process.env.NODE_ENV !== 'production') {
           logger.log('visible in',

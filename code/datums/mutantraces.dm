@@ -1994,7 +1994,8 @@
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
 
 	say_verb()
-		return "squawks"
+		return "coos" //I used pidgeon noises sorry
+		//return "squawks"
 
 	sight_modifier()
 		mob.see_in_dark = SEE_DARK_HUMAN + 1

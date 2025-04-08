@@ -13,6 +13,7 @@
 	block_vision = 0
 	var/block_eye = null // R or L
 	var/correct_bad_vision = 0
+	var/isNudged = FALSE
 	compatible_species = list("human", "cow", "werewolf", "flubber")
 
 /obj/item/clothing/glasses/crafted
@@ -113,6 +114,18 @@
 	item_state = "glasses"
 	desc = "Corrective lenses, perfect for the near-sighted."
 	correct_bad_vision = 1
+	attack_self(mob/user)
+		user.show_text("You nudge the glasses.")
+		if(!src.isNudged)
+			src.icon_state = "flashing"
+			src.item_state = "flashing"
+			src.desc = "Corrective lenses, perfect for the near sighted. You feel really cool right now."
+			src.isNudged = TRUE
+		else
+			src.icon_state = "glasses"
+			src.item_state = "glasses"
+			src.desc = "Corrective lenses, perfect for the near sighted. You actually looked like a huge dork."
+			src.isNudged = FALSE
 
 /obj/item/clothing/glasses/regular/ecto
 	name = "peculiar spectacles"

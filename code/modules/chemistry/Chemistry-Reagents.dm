@@ -30,6 +30,7 @@ datum
 		var/combusts_on_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire
 		var/combusts_on_gaseous_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire while aerosolized
 		var/burn_speed = 0 // Speed at which a chem burns
+		var/burn_energy = 0 // The energy a chemical releases when burnt, in Joules per unit
 		var/burn_volatility = 0 // How violently it burns
 		var/burn_temperature = 0 // Temperature at which a chem burns
 		var/reacting = 0 // fuck off chemist spam

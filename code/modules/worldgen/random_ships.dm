@@ -2,7 +2,8 @@
  * Wanna make a room for a S P A C E S H I P ???? Cool!!!!!! All you have to do is make your prefab, name it
  * whatever, (has to be either 3x3 or 5x3 for now), and throw it in assets/maps/random_ships/(cargo or room)/size
  * NOTE: ALL PREFABS HAVE TO HAVE THE CLEAR_AREA AREA, AND ALL CARGO PREFABS MUST HAVE BOTH CLEAR_TURF AND CLEAR_AREA <3
- * oh ya you can make a spaceship too, just throw it in the 30x25 folder same as the rest :3
+ * oh ya you can make a spaceship too, just throw it in the 25x15 folder same as the rest :3
+ * IMPORTANT: Please do not make your ship prefabs already destroyed. Just make how it would look if it were intact. There's code for that sweetie.
  */
 
 
@@ -153,8 +154,8 @@ proc/buildRandomShips()
 
 
 
-	size30x25
-		size = "30x25"
+	size25x15
+		size = "25x15"
 	#ifdef IN_MAP_EDITOR
-		icon = 'icons/map-editing/random-rooms/30x25.dmi'
+		icon = 'icons/map-editing/random-rooms/30x25.dmi' //update this
 	#endif

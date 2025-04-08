@@ -1878,6 +1878,10 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 	name = "Northwest Inner Maintenance"
 	icon_state = "IN_NWmaint"
 
+/area/station/maintenance/oldstation
+	name = "Old Station"
+	icon_state = "maintcentral"
+
 // OUTER maintenance
 
 /area/station/maintenance/outer/north

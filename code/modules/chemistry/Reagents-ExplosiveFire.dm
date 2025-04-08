@@ -22,6 +22,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2
+			burn_energy = 1100000
 			burn_temperature = 2500
 			burn_volatility = 10
 			minimum_reaction_temperature = T0C - 50
@@ -76,6 +77,7 @@ datum
 			transparency = 255
 			mob_burning = 15
 			burn_speed = 1.5
+			burn_energy = 900000
 			burn_temperature = 1500
 			burn_volatility = 6
 			minimum_reaction_temperature = T0C
@@ -93,6 +95,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 0.35
+			burn_energy = 600000
 			burn_temperature = 1200
 			burn_volatility = 2
 			minimum_reaction_temperature = T0C + 100
@@ -135,6 +138,7 @@ datum
 				id = "syndicate_napalm"
 				description = "Extra sticky, extra burny"
 				burn_speed = 0.25
+				burn_energy = 690000
 				burn_temperature = 1800
 				burn_volatility = 3
 
@@ -162,6 +166,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 0.5
+			burn_energy = 875000
 			burn_temperature = 5000
 			burn_volatility = 14
 			minimum_reaction_temperature = T0C+600
@@ -412,6 +417,7 @@ datum
 			viscosity = 0.5
 			flammable_influence = TRUE
 			burn_speed = 3
+			burn_energy = 0 // not a fuel, its an oxidizer
 			burn_temperature = 3500
 			burn_volatility = 14
 
@@ -493,6 +499,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2.5
+			burn_energy = 1500000
 			burn_temperature = 9000
 			burn_volatility = 20
 			minimum_reaction_temperature = -INFINITY
@@ -654,7 +661,7 @@ datum
 			viscosity = 0.2
 
 		combustible/fuel // COGWERKS CHEM REVISION PROJECT. treat like acetylene or similar basic hydrocarbons for other reactions
-			name = "welding fuel"
+			name = "fuel"
 			id = "fuel"
 			description = "A highly flammable blend of basic hydrocarbons, mostly Acetylene. Useful for both welding and organic chemistry, and can be fortified into a heavier oil."
 			reagent_state = LIQUID
@@ -670,6 +677,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 1
+			burn_energy = 840000 // gases use molar specific heat, this is in joules. assumes a 400 unit fuel tank is a 10 liter jerrycan
 			burn_temperature = 1300
 			burn_volatility = 5
 			var/smoke_counter = 0
