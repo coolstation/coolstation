@@ -104,9 +104,10 @@
 	var/list/atom/atoms = list()
 	for(var/atom/A in target)
 		atoms += A
-	for(var/mob/dude in range(1,target))
-		if (dude.next_move > world.time && dude.prev_loc == target)
-			atoms |= dude
+	if(whatcha_see_is_whatcha_get)
+		for(var/mob/dude in range(1,target))
+			if (dude.next_move > world.time && dude.prev_loc == target)
+				atoms |= dude
 
 	return atoms
 
