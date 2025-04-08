@@ -2139,7 +2139,7 @@
 "afa" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Zeta_South";
-	location = "Zeta_Midway"
+	beacon_id = "Zeta_Midway"
 	},
 /turf/floor,
 /area/station/science/lobby)
@@ -2250,7 +2250,7 @@
 "afo" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Zeta_West";
-	location = "Zeta_North"
+	beacon_id = "Zeta_North"
 	},
 /turf/floor,
 /area/station/science/lobby)
@@ -4153,7 +4153,7 @@
 "aiJ" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Zeta_Midway";
-	location = "Zeta_West"
+	beacon_id = "Zeta_West"
 	},
 /obj/cable{
 	d1 = 2;
@@ -4246,7 +4246,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Zeta_North";
-	location = "Zeta_East"
+	beacon_id = "Zeta_East"
 	},
 /turf/floor,
 /area/station/science/lobby)
@@ -5807,7 +5807,7 @@
 "alJ" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol";
-	location = "bar";
+	beacon_id = "bar";
 	name = "buddytime beacon"
 	},
 /turf/floor/white,
@@ -6803,7 +6803,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Zeta_East";
-	location = "Zeta_South"
+	beacon_id = "Zeta_South"
 	},
 /turf/floor,
 /area/station/science/lobby)
@@ -10206,7 +10206,7 @@
 "auk" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #1"
+	beacon_id = "QM #1"
 	},
 /obj/machinery/bot/mulebot{
 	home_destination = "QM #1"
@@ -10482,7 +10482,7 @@
 "auO" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #2"
+	beacon_id = "QM #2"
 	},
 /obj/machinery/light,
 /turf/floor/bot,
@@ -12163,7 +12163,7 @@
 "ayH" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Quartermasters";
-	location = "Shuttle Bay Hallway"
+	beacon_id = "Shuttle Bay Hallway"
 	},
 /obj/disposalpipe/segment/morgue{
 	dir = 4;
@@ -12223,7 +12223,7 @@
 "ayN" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Chapel Hallway";
-	location = "Quartermasters"
+	beacon_id = "Quartermasters"
 	},
 /obj/disposalpipe/segment/morgue{
 	dir = 4;
@@ -15772,7 +15772,7 @@
 /obj/disposalpipe/segment,
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Shuttle Bay Hallway";
-	location = "Cafeteria"
+	beacon_id = "Cafeteria"
 	},
 /turf/floor,
 /area/station/hallway/primary/north)
@@ -16114,7 +16114,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Bridge Hallway";
-	location = "Chapel Hallway"
+	beacon_id = "Chapel Hallway"
 	},
 /turf/floor/neutral/side{
 	dir = 4
@@ -16898,7 +16898,7 @@
 "aIB" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Chapel"
+	beacon_id = "Chapel"
 	},
 /turf/floor/specialroom/chapel,
 /area/station/chapel/sanctuary)
@@ -24326,7 +24326,7 @@
 "aXe" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Security Hallway";
-	location = "Bridge Hallway"
+	beacon_id = "Bridge Hallway"
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/floor,
@@ -27820,7 +27820,7 @@
 "bdk" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Cafeteria";
-	location = "Medical Hallway"
+	beacon_id = "Medical Hallway"
 	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
@@ -31405,7 +31405,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Engineering Hallway";
-	location = "Security Hallway"
+	beacon_id = "Security Hallway"
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
@@ -35663,7 +35663,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Engineering"
+	beacon_id = "Engineering"
 	},
 /turf/floor/bot,
 /area/station/engine/storage)
@@ -36046,7 +36046,7 @@
 "bup" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Medical Hallway";
-	location = "Bar Hallway"
+	beacon_id = "Bar Hallway"
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
@@ -36754,7 +36754,7 @@
 "bvZ" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Hydroponics"
+	beacon_id = "Hydroponics"
 	},
 /obj/window/reinforced{
 	dir = 2;
@@ -38990,7 +38990,7 @@
 /obj/disposalpipe/segment/mail,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Hydroponics"
+	beacon_id = "Hydroponics"
 	},
 /turf/floor/green/side{
 	dir = 8
@@ -40541,7 +40541,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=Bar Hallway";
-	location = "Engineering Hallway"
+	beacon_id = "Engineering Hallway"
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
@@ -41045,7 +41045,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Tool Storage"
+	beacon_id = "Tool Storage"
 	},
 /turf/floor/bot,
 /area/station/storage/tools)

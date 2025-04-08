@@ -56,6 +56,7 @@
 			var/mob/M = AM
 			if (!M.hasStatus("handcuffed"))
 				src.bumpopen(M)
+		return
 
 	else if (istype(AM, /obj/vehicle))
 		var/obj/vehicle/V = AM
@@ -64,18 +65,21 @@
 			return
 		if (!M2.hasStatus("handcuffed"))
 			src.bumpopen(M2)
+		return
 
 	else if (istype(AM, /obj/machinery/vehicle/tank))
 		var/obj/machinery/vehicle/tank/T = AM
 		var/mob/M = T.pilot
 		if (!M) return
 		src.bumpopen(M)
+		return
 
 	else if (istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/B = AM
 		if (src.check_access(B.botcard))
 			if (src.density)
 				src.open()
+		return
 
 	else if (istype(AM, /obj/critter/))
 		var/obj/critter/C = AM
@@ -88,6 +92,7 @@
 			C.frustration = 0
 		else
 			C.frustration++
+		return
 
 	return
 
