@@ -916,7 +916,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour6;desc=Aviary's great. Best spot on the whole station, if you ask me. Anyone's allowed in here, so bring your friends.";
 	freq = 1443;
-	location = "tour5";
+	beacon_id = "tour5";
 	name = "tour 5 - aviary"
 	},
 /obj/disposalpipe/segment/transport,
@@ -5931,7 +5931,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour6;desc=Research quarters around here. The nerve of these people, giving a bee as much room as a full staff member when robots get crammed shoulder to shoulder.";
 	freq = 1447;
-	location = "tour5";
+	beacon_id = "tour5";
 	name = "node 5"
 	},
 /obj/cable{
@@ -9711,7 +9711,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour20;desc=Alright, that about wraps it up. If you need a tour of the back streets, head up to the north side and look for my buddy Mason.";
 	freq = 1443;
-	location = "tour19";
+	beacon_id = "tour19";
 	name = "tour 19 - conclusion"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
@@ -9946,7 +9946,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour7;desc=Room with the yellow checkers is a cargo endpoint. You'll see 'em everywhere. Little further down, Research's common room. Nice spot.";
 	freq = 1447;
-	location = "tour6";
+	beacon_id = "tour6";
 	name = "node 6"
 	},
 /obj/cable{
@@ -11253,7 +11253,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour17;desc=This little neighborhood is the Grand Central Station of atmospheric hookups. Secure on my right, catering area on my left.";
 	freq = 1447;
-	location = "tour16";
+	beacon_id = "tour16";
 	name = "node 16"
 	},
 /obj/disposalpipe/segment/horizontal,
@@ -14061,7 +14061,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour19;desc=Alright, my battery's getting a bit worn out. I'm heading back to my spot. See ya later.";
 	freq = 1447;
-	location = "tour18";
+	beacon_id = "tour18";
 	name = "node 18"
 	},
 /obj/machinery/atmospherics/pipe/simple,
@@ -14832,7 +14832,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour9;desc=Nice little kitty-corner here. Fancy teleporter through the blue door, monitoring room up the stairs, computer stuff across the hall.";
 	freq = 1443;
-	location = "tour8";
+	beacon_id = "tour8";
 	name = "tour 8 - northeast"
 	},
 /turf/floor,
@@ -18978,7 +18978,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour2;desc=Alright, off to a good start. This little chute here takes you to a waystation for the cargo routing system. Great spot to get away from things.";
 	freq = 1447;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "node 1"
 	},
 /turf/floor/plating,
@@ -19395,7 +19395,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour4;desc=Now we're getting into the real stuff. Research is on your left here - unsafe chemicals, teleportation, weird alien crap, you know who to call.";
 	freq = 1443;
-	location = "tour3";
+	beacon_id = "tour3";
 	name = "tour 3 - research"
 	},
 /turf/floor,
@@ -21366,7 +21366,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour12;desc=While I'm here, may as well mention - most shuttles dock around here.";
 	freq = 1447;
-	location = "tour11";
+	beacon_id = "tour11";
 	name = "node 11"
 	},
 /obj/machinery/atmospherics/pipe/manifold/north,
@@ -21390,7 +21390,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour15;desc=The less glamorous side of Security. End of sentence, prisoners get dropped here.";
 	freq = 1447;
-	location = "tour14";
+	beacon_id = "tour14";
 	name = "node 14"
 	},
 /obj/disposalpipe/segment/transport,
@@ -21463,7 +21463,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour18;desc=This is the coziest part of the whole platform. Especially that room back there, but that might just be me.";
 	freq = 1447;
-	location = "tour17";
+	beacon_id = "tour17";
 	name = "node 17"
 	},
 /obj/cable{
@@ -22079,7 +22079,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour8;desc=Main entry to the Bridge. If you ever need a change of scenery, look for the Head of Personnel either here or at the Courtroom.";
 	freq = 1443;
-	location = "tour7";
+	beacon_id = "tour7";
 	name = "tour 7 - bridge"
 	},
 /obj/disposalpipe/switch_junction/left/east{
@@ -22606,7 +22606,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour10;desc=South substation's right down here. Green door goes to the crematorium.";
 	freq = 1447;
-	location = "tour9";
+	beacon_id = "tour9";
 	name = "node 9"
 	},
 /turf/floor/plating,
@@ -26616,7 +26616,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour12;desc=Security nook. You probably spotted one back up by the north side. Long arm of the law, so to speak.";
 	freq = 1443;
-	location = "tour11";
+	beacon_id = "tour11";
 	name = "tour 11 - checkpoint"
 	},
 /turf/floor,
@@ -31302,7 +31302,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour";
 	freq = 1447;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "node home"
 	},
 /turf/floor/grey/side{
@@ -33866,7 +33866,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour19;desc=Back around to here again, huh? Big civilian stuff on the left - boxing, b-ball, pool, shower room - and the security front office on the right.";
 	freq = 1443;
-	location = "tour18";
+	beacon_id = "tour18";
 	name = "tour 18 - crew"
 	},
 /turf/floor,
@@ -34400,7 +34400,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour5;desc=Shiny little room on my left is the scrub room. One door goes to toxins, the other one to the test chamber. Bad news bears. Green door's the emergency storage, yellow one's the robot depot.";
 	freq = 1447;
-	location = "tour4";
+	beacon_id = "tour4";
 	name = "node 4"
 	},
 /turf/floor/grey,
@@ -34834,7 +34834,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour2;desc=On your left here, we've got EVA storage. Great if someone knocks a hole in the hull. The bar's on the right - make sure to check in every once in a while, a live show crops up now and then.";
 	freq = 1443;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "tour 1 - bar"
 	},
 /obj/disposalpipe/segment/morgue,
@@ -39053,7 +39053,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour17;desc=Chapel's down in here. Beautiful place, big catered reception hall. Absolute BEST place to throw a party.";
 	freq = 1443;
-	location = "tour16";
+	beacon_id = "tour16";
 	name = "tour 16 - chapel"
 	},
 /obj/disposalpipe/segment/mail/bent/north,
@@ -40691,7 +40691,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour15;desc=Courtroom on my left - ID changes, criminal cases, lost and found, all of that gets handled there. On the right, Quartermasters - anything you need shipped in or out, call 'em up.";
 	freq = 1443;
-	location = "tour14";
+	beacon_id = "tour14";
 	name = "tour 14 - east junction"
 	},
 /obj/disposalpipe/segment/transport,
@@ -41694,7 +41694,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour8;desc=Solar substation through this door. There are two on station, but this one's nicer by a LOT.";
 	freq = 1447;
-	location = "tour7";
+	beacon_id = "tour7";
 	name = "node 7"
 	},
 /turf/floor/plating,
@@ -54754,7 +54754,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour16;desc=If you ever need to talk to someone in the Bridge, which I'm sure is for a legitimate reason, try the catering concourse.";
 	freq = 1447;
-	location = "tour15";
+	beacon_id = "tour15";
 	name = "node 15"
 	},
 /obj/cable{
@@ -56834,7 +56834,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour11;desc=First door in the hall behind you heads to the air hookups for this side of the station. Pretty quiet around here most of the time.";
 	freq = 1447;
-	location = "tour10";
+	beacon_id = "tour10";
 	name = "node 10"
 	},
 /turf/floor/plating,
@@ -57967,7 +57967,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour1;desc=Howdy, friends! I'm Maurice, your plastic pal who's fun to be with. Let's take a walk around!";
 	freq = 1443;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "tour beacon - start"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
@@ -58631,7 +58631,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour18;desc=Oh, before I forget. Head out the back door of the pool, look for the weird statue. Great spot.";
 	freq = 1443;
-	location = "tour17";
+	beacon_id = "tour17";
 	name = "tour 17 - west"
 	},
 /obj/disposalpipe/segment/mail/vertical,
@@ -65922,7 +65922,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour4;desc=Gas storage through here. Not as dangerous as the main toxin lab, but keep your distance if you hear screaming or fire or both.";
 	freq = 1447;
-	location = "tour3";
+	beacon_id = "tour3";
 	name = "node 3"
 	},
 /obj/cable{
@@ -68724,7 +68724,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour3;desc=The back halls of Research are where the -real- cool things get done. You can see the artifact range down there, and the pod bay opposite.";
 	freq = 1447;
-	location = "tour2";
+	beacon_id = "tour2";
 	name = "node 2"
 	},
 /turf/floor/grey,
@@ -69338,7 +69338,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour";
 	freq = 1443;
-	location = "tour20";
+	beacon_id = "tour20";
 	name = "tour beacon - home"
 	},
 /obj/decal/xmas_lights/ephemeral{
@@ -69386,7 +69386,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour16;desc=Medical booth and public market. Pretty easy to tell which one's which. You head down this branch, you'll hit the main dock - escape, merchants, mining, pods, what have you.";
 	freq = 1443;
-	location = "tour15";
+	beacon_id = "tour15";
 	name = "tour 15 - south junction"
 	},
 /turf/floor,
@@ -70546,7 +70546,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour13;desc=This is a GREAT spot to pick up some new digs. If I could wear shoes, I'd come here all the time.";
 	freq = 1447;
-	location = "tour12";
+	beacon_id = "tour12";
 	name = "node 12"
 	},
 /turf/floor/green,
@@ -73082,7 +73082,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour1;desc=Oh, nice. If Maurice sent you, give him a hug for me. Anyways, I'm Mason, and I'll take you where he's not allowed to.";
 	freq = 1447;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "node 0"
 	},
 /turf/floor,
@@ -74475,7 +74475,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour14;desc=This warehouse is a bit messy, but it's pretty safe. Door on your right goes to the foundry, door on your left goes to the market stall.";
 	freq = 1447;
-	location = "tour13";
+	beacon_id = "tour13";
 	name = "node 13"
 	},
 /obj/cable{
@@ -79545,7 +79545,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour7;desc=Up here, we got the big 'ol medical bay. Surgical's along the red line, basic care's on your left, genetics on your right.";
 	freq = 1443;
-	location = "tour6";
+	beacon_id = "tour6";
 	name = "tour 6 - medbay"
 	},
 /obj/disposalpipe/segment/mail/vertical,
@@ -85443,7 +85443,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour9;desc=Stuff gets a little hinky around here. Watch your step. Air hookups are right on the corner.";
 	freq = 1447;
-	location = "tour8";
+	beacon_id = "tour8";
 	name = "node 8"
 	},
 /turf/floor/plating,
@@ -86020,7 +86020,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour3;desc=Janitor's office is on the left here. You make a mess, swing by, it'll get cleaned up. Probably. Door on your right's the backstage.";
 	freq = 1443;
-	location = "tour2";
+	beacon_id = "tour2";
 	name = "tour 2 - janitor"
 	},
 /obj/disposalpipe/segment/mail/vertical,
@@ -87429,7 +87429,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour13;desc=This fine establishment on my left is the station's Jazz Lounge. Number one spot to blow your paycheck, if you ask me. Not that I have a paycheck. Or the ability to gamble.";
 	freq = 1443;
-	location = "tour12";
+	beacon_id = "tour12";
 	name = "tour 12 - jazz lounge"
 	},
 /obj/cable{
@@ -88235,7 +88235,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour5;desc=Research and Medical both have back halls for gettin' to the quarters and secondary rooms. There's a little dock of sorts up this way, too.";
 	freq = 1443;
-	location = "tour4";
+	beacon_id = "tour4";
 	name = "tour 4 - north"
 	},
 /turf/floor,
@@ -91024,7 +91024,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour14;desc=Funny little junction right here. Detective's on my left, Hydroponics on my right. Two different ways to get smoked!";
 	freq = 1443;
-	location = "tour13";
+	beacon_id = "tour13";
 	name = "tour 13 - vice"
 	},
 /obj/disposalpipe/segment/brig{
@@ -91875,7 +91875,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour11;desc=Engineering wing. Main concourse's through the double doors, mechanics straight on. The little desk's in front of the construction room.";
 	freq = 1443;
-	location = "tour9";
+	beacon_id = "tour9";
 	name = "tour 9 - engineering"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
