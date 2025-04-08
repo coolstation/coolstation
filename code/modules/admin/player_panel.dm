@@ -143,6 +143,7 @@
 					<div class='r'>
 						<a href='[playeropt_link(M, "checkhealth")]'>Check</a> &bull;
 						<a href='[playeropt_link(M, "revive")]'>Heal</a> &bull;
+						<a href='[playeropt_link(M, "revive2")]'>(Barely)</a> &bull;
 						[(M.stat == 2 || M.max_health == 0) ? "Dead" : "[round(100 * M.health / M.max_health)]%"]
 						[isliving(M) ? {" &bull; <a href='[playeropt_link(M, "makesick")]'>Give Ailment</a>"} : ""]
 					</div>

@@ -138,6 +138,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
+			burn_energy = 590000
 			burn_temperature = 900
 			burn_volatility = 4
 			thirst_value = -0.02
@@ -335,6 +336,7 @@ datum
 			transparency = 255
 			flammable_influence = TRUE
 			burn_speed = 3
+			burn_energy = 85000
 			burn_temperature = 3000
 			burn_volatility = 4
 
@@ -419,6 +421,7 @@ datum
 			flammable_influence = TRUE
 			combusts_on_fire_contact = TRUE
 			burn_speed = 2
+			burn_energy = 950000
 			burn_temperature = 2700
 			burn_volatility = 8
 
@@ -871,6 +874,30 @@ datum
 						L.changeStatus("burning", -1 * volume SECONDS)
 						playsound(L, "sound/impact_sounds/burn_sizzle.ogg", 50, 1, pitch = 0.8)
 				return 1
+
+
+		water/dirtyWater
+
+			name = "filthy water"
+			id = "dirtywater"
+			description = "This water is choked with ash, dust, and god knows what else."
+			reagent_state = LIQUID
+			fluid_r = 106
+			fluid_b = 117
+			fluid_g = 122
+			transparency = 90
+			thirst_value = -0.5
+			hygiene_value = 0.8
+			bladder_value = -0.2
+			taste = "musty"
+
+			on_mob_life(var/mob/living/L, var/mult = 1)
+				..()
+				if (ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if (H.organHolder)
+						H.organHolder.damage_organs(1*mult, 0, 1, target_organs, 20)
+				L.nutrition += 1  * mult
 
 		water/water_holy
 			name = "holy water"

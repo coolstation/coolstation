@@ -367,6 +367,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_mass_modify_object_variables,
 		/client/proc/cmd_debug_mutantrace,
 		/client/proc/cmd_admin_rejuvenate,
+		/client/proc/cmd_admin_rejuvenate_crit,
 		/client/proc/cmd_admin_drop_everything,
 		/client/proc/cmd_admin_humanize,
 		/client/proc/cmd_admin_mobileAIize,
@@ -2268,6 +2269,8 @@ var/list/fun_images = list()
 			C.cmd_admin_check_health(A)
 		if("Heal")
 			C.cmd_admin_rejuvenate(A)
+		if("Heal Partly")
+			C.cmd_admin_rejuvenate_crit(A)
 		if("Gib")
 			C.cmd_admin_gib(A)
 		if("Polymorph")

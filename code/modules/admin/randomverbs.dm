@@ -432,6 +432,25 @@
 	else
 		alert("Admin revive disabled")
 
+/client/proc/cmd_admin_rejuvenate_crit(mob/M as mob in world)
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+	set name = "Heal Partly"
+	set popup_menu = 0
+	admin_only
+	if(!src.mob)
+		return
+	if(isobserver(M))
+		alert("Cannot revive a ghost")
+		return
+	if(config.allow_admin_rev)
+		M.part_heal()
+
+		logTheThing("admin", usr, M, "partly healed / revived [constructTarget(M,"admin")]")
+		logTheThing("diary", usr, M, "partly healed / revived [constructTarget(M,"diary")]", "admin")
+		message_admins("<span class='alert'>Admin [key_name(usr)] partly healed / revived [key_name(M)]!</span>")
+	else
+		alert("Admin revive disabled")
+
 /client/proc/cmd_admin_rejuvenate_all()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Heal All"

@@ -995,6 +995,23 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Primary Adminstrator to revive players.")
 
+		if ("revive2")
+			if (src.level >= LEVEL_SA)
+				var/mob/M = locate(href_list["target"])
+				if (ismob(M))
+					if(isobserver(M))
+						alert("You can't revive a ghost! How does that even work?!")
+						return
+					if(config.allow_admin_rev)
+						M.revive2()
+						message_admins("<span class='alert'>Admin [key_name(usr)] healed / revived [key_name(M)]!</span>")
+						logTheThing("admin", usr, M, "healed / revived [constructTarget(M,"admin")]")
+						logTheThing("diary", usr, M, "healed / revived [constructTarget(M,"diary")]", "admin")
+					else
+						alert("Reviving is currently disabled.")
+			else
+				alert("You need to be at least a Primary Adminstrator to revive players.")
+
 		if ("makeai")
 			if (src.level >= LEVEL_SA)
 				var/mob/M = locate(href_list["target"])
@@ -2973,7 +2990,7 @@ var/global/noir = 0
 
 					if ("yeolde")
 						if (src.level >= LEVEL_PA)
-							message_admins("[key_name(usr)] began replacing all Z1 airlocks with wooden doors.")
+							message_admins("[key_name(usr)] began replacing all Z1 .optionGroup.")
 							for (var/obj/machinery/door/D in by_type[/obj/machinery/door])
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 airlocks with wooden doors was terminated due to the atom emerygency stop!")
@@ -4208,7 +4225,7 @@ var/global/noir = 0
 
 	dat += {"<style>
 				a {text-decoration:none}
-				.optionGroup {padding:5px; margin-bottom:8px; border:1px solid black}
+				.optionGroup {padding:5px; margin-bottom:8px; border:1px solid black; background: #dad8b6; color: #6D5D03}
 				.optionGroup .title {display:block; color:white; background:black; padding: 2px 5px; margin: -5px -5px 2px -5px}
 			</style>"}
 
@@ -4542,6 +4559,13 @@ var/global/noir = 0
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.full_heal()
+		H.remove_ailments() // don't spawn with heart failure
+	return
+
+/mob/proc/revive2()
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.part_heal()
 		H.remove_ailments() // don't spawn with heart failure
 	return
 
