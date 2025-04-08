@@ -15,6 +15,63 @@
 		return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey].sav"
 
 
+	savefile_to_json(client/user, profileNum = 1)
+		if (IsGuestKey(user.key))
+			return 0
+		var/savefile/F
+		var/list/export = list()
+		var/jsonExport
+		F = new /savefile(src.savefile_path(user), -1)
+
+		//details
+		F["[profileNum]_real_name"] >> export["real_name"]
+		F["[profileNum]_name_first"] >> export["name_first"]
+		F["[profileNum]_name_middle"] >> export["name_middle"]
+		F["[profileNum]_name_last"] >> export["name_last"]
+		F["[profileNum]_gender"] >> export["gender"] //coolstation's main export
+		F["[profileNum]_age"] >> export["age"]
+		F["[profileNum]_fartsound"] >> export["fartsound"]
+		F["[profileNum]_screamsound"] >> export["screamsound"]
+		F["[profileNum]_voicetype"] >> export["voicetype"]
+		F["[profileNum]_PDAcolor"] >> export["PDAcolor"]
+		F["[profileNum]_pda_ringtone_index"] >> export["pda_ringtone_index"]
+		F["[profileNum]_random_blood"] >> export["random_blood"]
+		F["[profileNum]_blood_type"] >> export["blood_type"]
+
+		//records
+		F["[profileNum]_pin"] >> export["pin"]
+		F["[profileNum]_flavor_text"] >> export["flavor_text"]
+		F["[profileNum]_medical_note"] >> export["medical_note"]
+		F["[profileNum]_security_note"] >> export["seccurity_note"]
+
+		//rando character stuff, this might not be useful for the webapp.
+		F["[profileNum]_name_is_always_random"] >> export["name_is_always_random"]
+		F["[profileNum]_look_is_always_random"] >> export["look_is_always_random"]
+
+		//appearance holder stuff, critical
+		if (src.AH)
+			F["[profileNum]_pronouns"] >> export["pronouns"]
+			F["[profileNum]_pronouns_preferred_gender"] >> export["pronouns_preferred_gender"]
+			F["[profileNum]_pronouns_subjective"] >> export["pronouns_subjective"]
+			F["[profileNum]_pronouns_objective"] >> export["pronouns_objective"]
+			F["[profileNum]_pronouns_possessive"] >> export["pronouns_possessive"]
+			F["[profileNum]_pronouns_posessive_pronoun"] >> export["posessive_pronoun"] //is that mispelled or is it just me being dysgraphic
+			F["[profileNum]_pronouns_reflexive"] >> export["pronouns_reflexive"]
+			F["[profileNum]_pronouns_plural"] >> export["pronouns_plural"] //this many pronouns could make a grown man cry, love to see it
+			F["[profileNum]_eye_color"] >> export["eye_color"]
+			F["[profileNum]_hair_color"] >> export["hair_color"]
+			F["[profileNum]_facial_color"] >> export["facial_color"]
+			F["[profileNum]_detail_color"] >> export["detail_color"]
+			F["[profileNum]_skin_tone"] >> export["skin_tone"]
+			F["[profileNum]_hair_style_name"] >> export["hair_style_name"]
+			F["[profileNum]_facial_style_name"] >> export["facial_style_name"]
+			F["[profileNum]_detail_style_name"] >> export["detail_style_name"]
+			F["[profileNum]_underwear_style_name"] >> export["underwear_style_name"]
+			F["[profileNum]_underwear_color"] >> export["underwear_color"]
+
+		jsonExport = json_encode(export)
+		return jsonExport
+
 	// returnSaveFile returns the file rather than writing it
 	// used for cloud saves
 	savefile_save(client/user, profileNum = 1, returnSavefile = 0)
