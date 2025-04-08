@@ -3294,6 +3294,14 @@ var/global/noir = 0
 						logTheThing("admin", usr, null, "used Farty Party secret")
 						logTheThing("diary", usr, null, "used Farty Party secret", "admin")
 
+					if("wysiwyg")
+						if(src.level >= LEVEL_ADMIN)
+							if(whatcha_see_is_whatcha_get)
+								whatcha_see_is_whatcha_get = FALSE
+								message_admins("[key_name(usr)] swapped combat to old-style with no WYSIWYG.")
+							else
+								whatcha_see_is_whatcha_get = TRUE
+								message_admins("[key_name(usr)] swapped combat to new-style with WYSIWYG.")
 					else
 				if (usr) logTheThing("admin", usr, null, "used secret [href_list["secretsfun"]]")
 				logTheThing("diary", usr, null, "used secret [href_list["secretsfun"]]", "admin")
@@ -4429,6 +4437,7 @@ var/global/noir = 0
 				<A href='byond://?src=\ref[src];action=secretsfun;type=noir'>Noir</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsfun;type=the_great_switcharoo'>The Great Switcharoo</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsfun;type=fartyparty'>Farty Party All The Time</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsfun;type=wysiwyg'>Toggle Whatcha See is Whatcha Get</A><BR>
 		"}
 
 	dat += "</div>"
