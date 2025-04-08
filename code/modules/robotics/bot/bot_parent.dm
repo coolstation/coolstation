@@ -323,11 +323,11 @@
 	var/list/current_movepath
 	var/adjacent = 0
 	var/scanrate = 10
-	var/max_dist = 90
+	var/max_dist = 150
 	var/max_beacons = 20
 	var/turf/exclude
 
-	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _scanrate = 10, _max_dist = 90, list/obj/machinery/navbeacon/_stops = null, turf/_exclude = null)
+	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _scanrate = 10, _max_dist = 150, list/obj/machinery/navbeacon/_stops = null, turf/_exclude = null)
 		..()
 		if(istype(newmaster))
 			src.master = newmaster
@@ -371,7 +371,7 @@
 			return
 
 		if(length(stops))
-			master.path = AStar(get_turf(master), get_turf(stops[1]), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
+			master.path = AStar(get_turf(master), src.master.get_pathable_turf(stops[1]), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
 		else
 			master.path = AStar(get_turf(master), src.the_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
 
@@ -438,7 +438,7 @@
 				src.last_stop_net_id = last_stop.net_id
 				src.stops -= src.stops[1]
 				if(length(src.stops))
-					master.path = AStar(get_turf(master), get_turf(src.stops[1]), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
+					master.path = AStar(get_turf(master), src.master.get_pathable_turf(src.stops[1]), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
 				else
 					master.path = AStar(get_turf(master), src.the_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
 					break

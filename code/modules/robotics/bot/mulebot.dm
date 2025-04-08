@@ -19,6 +19,7 @@
 
 	var/beacon_freq = FREQ_BOT_NAV
 	var/control_freq = FREQ_BOT_CONTROL
+	var/pda_freq = FREQ_PDA
 
 	suffix = ""
 
@@ -89,6 +90,7 @@
 			if(radio_controller)
 				radio_controller.add_object(src, "[control_freq]")
 				radio_controller.add_object(src, "[beacon_freq]")
+				radio_controller.add_object(src, "[pda_freq]")
 
 	// set up the wire colours in random order
 	// and the random wire display order
@@ -545,11 +547,11 @@
 		if (src.last_loc == get_turf(src))
 			blockcount++
 			mode = 4
-			if(blockcount == 3)
+			if(blockcount == 5)
 				src.visible_message("[src] makes an annoyed buzzing sound.", "You hear an electronic buzzing sound.")
 				playsound(src.loc, "sound/machines/buzz-two.ogg", 40, 0)
 
-			if(blockcount > 5)	// attempt 5 times before recomputing
+			if(blockcount > 8)	// attempt 8 times before recomputing (why 8? because it was annoyingly loud on 5)
 				// find new path excluding blocked turf
 				src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
 				playsound(src.loc, "sound/machines/buzz-sigh.ogg", 50, 0)
@@ -577,6 +579,14 @@
 			post_signal(beacon_freq, "findbeacon", new_dest)
 			updateDialog()
 
+	proc/set_destination_pda(var/net_id)
+		if(src.wires & wire_mobavoid)
+			SPAWN_DBG(0)
+				KillPathAndGiveUp()
+				new_destination = net_id
+				post_signal(pda_freq, "address_1", "ping")
+				updateDialog()
+
 	// starts bot moving to current destination
 	proc/start()
 		if(src.target)
@@ -587,10 +597,12 @@
 				mode = 2
 			KillPathAndGiveUp()
 			src.navigate_with_navbeacons(src.target, src.bot_move_delay)
-			icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
-		else
-			src.visible_message("[src] makes an annoyed buzzing sound.", "You hear an electronic buzzing sound.")
-			playsound(src.loc, "sound/machines/buzz-two.ogg", 50, 0)
+			if(src.path)
+				icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
+				return
+		src.visible_message("[src] makes an annoyed buzzing sound.", "You hear an electronic buzzing sound.")
+		playsound(src.loc, "sound/machines/buzz-two.ogg", 50, 0)
+		mode = 0
 
 	// starts bot moving to home
 	// sends a beacon query to find
@@ -713,6 +725,16 @@
 		// process all-bot input
 		if(recv=="bot_status" && (wires & wire_remote_rx))
 			send_status()
+			return
+
+		if(recv=="ping_reply" && (wires & wire_remote_rx))
+			if(wires & wire_beacon_rx && signal.data["sender"] == new_destination)
+				destination = new_destination
+				new_destination = null
+				target = signal.source.loc
+				loaddir = 0
+				updateDialog()
+			return
 
 		recv = signal.data["command_[ckey(suffix)]"]
 		if(wires & wire_remote_rx)
@@ -730,6 +752,10 @@
 
 				if("target")
 					set_destination(signal.data["destination"] )
+					return
+
+				if("pda_target")
+					set_destination_pda(signal.data["destination"] )
 					return
 
 				if("unload")
@@ -781,7 +807,7 @@
 
 		if(freq == beacon_freq && !(wires & wire_beacon_tx))
 			return
-		if(freq == control_freq && !(wires & wire_remote_tx))
+		if((freq == control_freq || freq == pda_freq) && !(wires & wire_remote_tx))
 			return
 
 		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[freq]")
@@ -791,6 +817,7 @@
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
 		signal.transmission_method = 1
+		signal.data["sender"] = src.botnet_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
 			//boutput(world, "sent [key],[keyval[key]] on [freq]")

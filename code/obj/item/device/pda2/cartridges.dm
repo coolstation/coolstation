@@ -266,6 +266,7 @@
 		name = "\improper Space Tycoon Ultra cartridge"
 		desc = "Contains all the tools to declare independence... again."
 		icon_state = "cart-qm"
+		file_amount = 64
 
 		New()
 			..()
