@@ -548,6 +548,8 @@ var/global
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
+	whatcha_see_is_whatcha_get = TRUE
+
 /proc/updateAreaLists()
 	//Admin jump list
 	for (var/area/A in get_areas_with_turfs(/area))
