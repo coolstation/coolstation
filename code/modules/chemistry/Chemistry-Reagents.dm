@@ -58,6 +58,7 @@ datum
 		var/random_chem_blacklisted = 0 // will not appear in random chem sources oddcigs/artifacts/etc
 		var/boiling_point = T0C + 100
 		var/can_crack = 0 // used by organic chems
+		var/contraband = 0 // bastards hate this shit
 
 		New()
 			..()
