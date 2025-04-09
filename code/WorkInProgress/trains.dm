@@ -15,7 +15,7 @@
 	var/hazpaint_color
 	var/step_delay = 0.5
 	var/in_bump = 0
-	var/hitslow = 1.02
+	var/hitslow = 1.03
 	var/list/mob/riders = list()
 
 	New()
