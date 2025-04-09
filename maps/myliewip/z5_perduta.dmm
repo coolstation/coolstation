@@ -416,10 +416,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/space/fluid/trench,
 /area/station/turret_protected/AIbaseoceanfloor)
-"kr" = (
-/obj/decal/cleanable/blood/drip/high,
-/turf/wall,
-/area/station/janitor/office)
 "kw" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/light/small/red{
@@ -993,6 +989,9 @@
 /obj/item/body_bag/deployed/bone,
 /turf/floor/plating,
 /area/magindara)
+"vf" = (
+/turf/floor/plating,
+/area/station/hydroponics/bay)
 "vj" = (
 /turf/floor/plating,
 /area/magindara)
@@ -1399,10 +1398,6 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
-"Eg" = (
-/obj/decal/cleanable/blood/splatter/extra,
-/turf/wall,
-/area/station/janitor/office)
 "Ei" = (
 /obj/cable{
 	d1 = 4;
@@ -1817,6 +1812,18 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/space/fluid/trench,
 /area/magindara)
+"LK" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/lattice{
+	dir = 2;
+	icon_state = "lattice-dir"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "LN" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
@@ -2013,6 +2020,10 @@
 "Qp" = (
 /turf/wall,
 /area/station/hydroponics/bay)
+"Qz" = (
+/obj/structure/girder,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "QE" = (
 /obj/cable{
 	d1 = 4;
@@ -2195,6 +2206,13 @@
 /obj/decal/cleanable/blood/gibs/body,
 /obj/decal/cleanable/blood,
 /obj/machinery/vending/paint/broken,
+/obj/decal/cleanable/blood/drip/high{
+	pixel_y = 33
+	},
+/obj/decal/cleanable/blood/splatter/extra{
+	pixel_x = 30;
+	pixel_y = 0
+	},
 /turf/floor/black,
 /area/station/janitor/office)
 "TZ" = (
@@ -2431,6 +2449,9 @@
 /turf/floor/green/side{
 	dir = 8
 	},
+/area/station/hydroponics/bay)
+"Zv" = (
+/turf/space/fluid/trench,
 /area/station/hydroponics/bay)
 "Zx" = (
 /obj/wingrille_spawn/reinforced_crystal,
@@ -38227,9 +38248,9 @@ BX
 HX
 BX
 HX
-BX
-BX
-BX
+HX
+HX
+HX
 HX
 YK
 nI
@@ -38818,10 +38839,10 @@ BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
+HX
+Hu
+Hu
+HX
 BX
 BX
 BX
@@ -38831,9 +38852,9 @@ BX
 BX
 BX
 HX
-BX
-BX
-BX
+HX
+HX
+HX
 Eb
 NP
 vc
@@ -39121,8 +39142,8 @@ BX
 BX
 HX
 HX
-HX
-HX
+vj
+vj
 HX
 HX
 HX
@@ -39422,14 +39443,14 @@ BX
 BX
 BX
 HX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+vj
+vj
+vj
+vj
+vj
+vj
+vj
+vj
 BX
 BX
 BX
@@ -39724,19 +39745,19 @@ BX
 BX
 BX
 HX
+vj
+vj
+vj
+vj
+vj
+vj
+vj
+vj
 BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+xq
+xq
+xq
+xq
 BX
 BX
 BX
@@ -40026,20 +40047,20 @@ HX
 HX
 HX
 HX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+vj
+vj
+vj
+vj
+vj
+vj
+vj
+vj
+xq
+xq
+xq
+xq
+xq
+xq
 BX
 BX
 BX
@@ -40328,20 +40349,20 @@ vj
 vj
 vj
 HX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+vj
+vj
+vj
+vj
+vj
+HX
+HX
+HX
+xq
+xq
+xq
+xq
+xq
+xq
 BX
 BX
 BX
@@ -40630,20 +40651,20 @@ vj
 BQ
 vj
 HX
+vj
+vj
+vj
+HX
+HX
+HX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+xq
+xq
+xq
+xq
+xq
+xq
 BX
 BX
 BX
@@ -40935,17 +40956,17 @@ vj
 vj
 vj
 vj
+HX
 BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+xq
+xq
+xq
+xq
+xq
+xq
 BX
 BX
 BX
@@ -40962,7 +40983,7 @@ BX
 Hu
 vj
 vj
-HX
+vj
 HX
 BX
 BX
@@ -41237,16 +41258,16 @@ vj
 vj
 vj
 vj
+HX
 BX
 BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
+xq
+xq
+xq
+xq
 BX
 BX
 BX
@@ -41262,10 +41283,10 @@ BX
 BX
 BX
 HX
+vj
+vj
+vj
 HX
-HX
-HX
-BX
 BX
 BX
 BX
@@ -41539,6 +41560,7 @@ vj
 vj
 vj
 vj
+HX
 BX
 BX
 BX
@@ -41562,12 +41584,11 @@ BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
+HX
+vj
+vj
+vj
+HX
 BX
 BX
 BX
@@ -41841,6 +41862,7 @@ vj
 vj
 vj
 vj
+HX
 BX
 BX
 BX
@@ -41864,12 +41886,11 @@ BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
+HX
+vj
+vj
+vj
+HX
 BX
 BX
 BX
@@ -42140,38 +42161,38 @@ ex
 HX
 vj
 vj
+HX
+HX
+HX
+HX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+BX
+HX
 vj
 vj
 vj
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+HX
 BX
 BX
 BX
@@ -42421,8 +42442,8 @@ BX
 BX
 rS
 HX
-BX
-kr
+hv
+gB
 TO
 MT
 ub
@@ -42433,7 +42454,7 @@ By
 Mi
 If
 gB
-BX
+hv
 HX
 pt
 BX
@@ -42469,13 +42490,13 @@ BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+HX
+vj
+vj
+vj
+HX
+HX
+HX
 BX
 BX
 BX
@@ -42725,7 +42746,7 @@ HX
 xq
 BX
 gB
-Eg
+gB
 gB
 Ke
 ub
@@ -42771,13 +42792,13 @@ BX
 BX
 BX
 BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+HX
+vj
+vj
+vj
+vj
+vj
+HX
 BX
 BX
 BX
@@ -43074,15 +43095,15 @@ bb
 bb
 bb
 bb
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
-BX
+vj
+vj
+vj
+vj
+vj
+HX
+hv
+hv
+xq
 BX
 BX
 BX
@@ -43375,13 +43396,13 @@ BX
 rx
 NK
 zg
-bb
-ri
-ri
-BX
-BX
-BX
-BX
+Qz
+vf
+vf
+vj
+vj
+vj
+HX
 BX
 BX
 BX
@@ -43679,10 +43700,10 @@ AW
 Wq
 bb
 Qp
-ri
-ri
-LN
-LN
+Qp
+Qp
+eD
+eD
 ri
 ri
 BX
@@ -45441,9 +45462,9 @@ BX
 BX
 ex
 HX
-BX
-QE
-BX
+hv
+LK
+hv
 pY
 GO
 KB
@@ -45451,9 +45472,9 @@ KB
 gW
 Gl
 pY
-BX
-BX
-BX
+hv
+hv
+hv
 HX
 aA
 BX
@@ -49114,8 +49135,8 @@ BX
 BX
 BX
 BX
-ri
-ri
+Zv
+Zv
 BX
 BX
 BX
