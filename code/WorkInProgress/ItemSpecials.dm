@@ -99,6 +99,18 @@
 
 	return ((dx*dx) + (dy*dy))
 
+/// Finds every mob that is currently moving away from a turf, but has not reached the end of their movement.
+/proc/atoms_in_combat_range(var/turf/target)
+	var/list/atom/atoms = list()
+	for(var/atom/A in target)
+		atoms += A
+	if(whatcha_see_is_whatcha_get)
+		for(var/mob/dude in range(1,target))
+			if (dude.next_move > world.time && dude.prev_loc == target)
+				atoms |= dude
+
+	return atoms
+
 //Handles setup for specials and adds / removes them from items.
 /obj/item/proc/setItemSpecial(var/type = null)
 	if(!ispath(type))
@@ -446,7 +458,7 @@
 				S.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -898,7 +910,7 @@
 				C.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackhand(user,params)
 						hit = 1
@@ -946,7 +958,7 @@
 				C.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackhand(user,params)
 						hit = 1
@@ -1121,7 +1133,7 @@
 				S.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -1136,7 +1148,7 @@
 					SS.setup(turf)
 
 					hit = 0
-					for(var/atom/A in turf)
+					for(var/atom/A in atoms_in_combat_range(turf))
 						if(isTarget(A))
 							A.Attackby(master, user, params, 1)
 							hit = 1
@@ -1194,7 +1206,7 @@
 							L.move_laying = list(B)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -1746,7 +1758,7 @@
 				S.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1

@@ -12,9 +12,7 @@ function byond() {
         currentIsKey = !currentIsKey;
     }
     console.log(url);
-    const Http = new XMLHttpRequest();
-    Http.open("GET", url);
-    Http.send();
+    window.location = url;
 }
 
 var boop = function(e){ //updated
@@ -100,9 +98,7 @@ window.onload = function(e) {
 			+ "&size=" + Math.floor(rect.width) + "x" + Math.floor(rect.height));
 	}
 	addEventListener("unload", function() {
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "winset?id=ClothingBooth." + previewID + ";parent=");
-		xhr.send();
+		window.location = "byond://winset?id=ClothingBooth." + previewID + ";parent=";
 	});
 	addEventListener("resize", positionPreview);
 	addEventListener("scroll", positionPreview);

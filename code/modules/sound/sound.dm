@@ -731,7 +731,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
  		"bloop" = sound('sound/misc/talk/buwoo.ogg'),	"bloop!" = sound('sound/misc/talk/buwoo_exclaim.ogg'),	"bloop?" = sound('sound/misc/talk/buwoo_ask.ogg'), \
 		"fert" = sound('sound/misc/talk/fert.ogg'),	"fert!" = sound('sound/misc/talk/fert_exclaim.ogg'),	"fert?" = sound('sound/misc/talk/fert_ask.ogg'), \
 		"cat" = sound('sound/misc/talk/cat.ogg'),	"cat!" = sound('sound/misc/talk/cat_exclaim.ogg'),"cat?" = sound('sound/misc/talk/cat_exclaim.ogg'), \
-		"bird" = sound('sound/voice/animal/squawk1.ogg'), "bird!" = sound('sound/voice/animal/squawk2.ogg'),"bird?" = sound('sound/voice/animal/squawk3.ogg'), \
+		"bird" = sound('sound/misc/talk/pigeon_coo.ogg'), "bird!" = sound('sound/misc/talk/pigeon_exclaim.ogg'),"bird?" = sound('sound/misc/talk/pigeon_ask.ogg'), \
  		"lizard" = sound('sound/misc/talk/lizard.ogg'),	"lizard!" = sound('sound/misc/talk/lizard_exclaim.ogg'),"lizard?" = sound('sound/misc/talk/lizard_ask.ogg'), \
  		"skelly" = sound('sound/misc/talk/skelly.ogg'),	"skelly!" = sound('sound/misc/talk/skelly_exclaim.ogg'),"skelly?" = sound('sound/misc/talk/skelly_ask.ogg'), \
 		"blub" = sound('sound/misc/talk/blub.ogg'),	"blub!" = sound('sound/misc/talk/blub_exclaim.ogg'),"blub?" = sound('sound/misc/talk/blub_ask.ogg'), \
