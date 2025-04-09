@@ -119,6 +119,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	var/sound_type = null //bespoke set of loading and cycling noises
 
+	var/do_icon_recoil = FALSE // its broken!!!!
+
 	two_handed = 0
 	can_dual_wield = 1
 
@@ -290,6 +292,37 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 	else
 		..()
+
+
+/// modular gunse recoil. generates 'implicit_recoil_strength' from gun bulet
+/obj/item/gun/modular/handle_recoil(mob/user, turf/start, turf/target, POX, POY, first_shot = TRUE, force_projectile = FALSE)
+	if (!recoil_enabled)
+		return
+	var/start_recoil = FALSE
+	if (recoil == 0)
+		start_recoil = TRUE // if recoil is 0, make sure do_recoil starts
+
+	// Add recoil
+	var/stacked_recoil = 0
+	if (recoil_stacking_enabled)
+		recoil_stacks += 1
+		stacked_recoil = clamp(round(recoil_stacks) - recoil_stacking_safe_stacks,0,recoil_stacking_max_stacks) * recoil_stacking_amount
+	var/datum/projectile/projectile = (force_projectile ? force_projectile : src.current_projectile)
+	var/implicit_recoil_strength = 5*log(projectile.power * projectile.shot_number)+10
+	recoil += (implicit_recoil_strength + stacked_recoil)
+	recoil = clamp(recoil, 0, recoil_max)
+	recoil_last_shot = TIME
+	if (camera_recoil_enabled)
+		do_camera_recoil(user, start,target,POX,POY)
+
+	if (first_shot && projectile.shot_number > 1 && projectile.shot_delay > 0)
+		for (var/i=1 to projectile.shot_number-1)
+			var/force_proj = src.current_projectile
+			spawn(i*projectile.shot_delay)
+				handle_recoil(user,start,target,POX,POY, FALSE, force_proj) // hacky. pass current_projectile
+	if (start_recoil && icon_recoil_enabled)
+		spawn(0)
+			do_icon_recoil()
 
 //Replaces /obj/item/stackable_ammo/proc/reload. Now also does distance interrupts and doesn't rely on sleeps
 /datum/action/bar/private/load_ammo
@@ -824,6 +857,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		spread += 5 * how_drunk
 	spread = max(spread, spread_angle)
 
+	spread += (recoil/recoil_max) * recoil_inaccuracy_max
+
 	var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
 	if (P)
 		P.forensic_ID = src.forensic_ID
@@ -846,6 +881,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
+	handle_recoil(user, start, target, POX, POY)
 #ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")

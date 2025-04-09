@@ -591,78 +591,78 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 
 	tour0
 		name = "tour beacon - start"
-		location = "tour0"
+		beacon_id = "tour0"
 		codes_txt = "tour;next_tour=tour1;desc=Oh, hello!  I apologize, I wasn't expecting guests before the renovations were done!  Welcome to the Museum of Lunar History!  Before we begin, there is a request that all guests from Soviet bloc countries move down the hall to my right for special screening.  This, um, includes those from Zvezda.  Even if you have a day pass.  I'm sorry, I hope this isn't too much of a bother!"
 
 	tour1
-		location = "tour1"
+		beacon_id = "tour1"
 		codes_txt = "tour;next_tour=tour2;desc=FAAE or, as it is commonly called, Plasma, was first discovered here on the moon in 1969.  It's not actually native to the moon, though!  It was discovered embedded in the site of a meteorite impact, extending down really far, almost like it grew outward!|pBut it didn't, because plasma crystals can't grow, ha ha..|pIt makes sense that more plasma was found in the asteroid belt.  Oh, and through the Channel, um, as much as weird holes in space time make sense."
 
 	tour2
-		location = "tour2"
+		beacon_id = "tour2"
 		codes_txt = "tour;next_tour=tour3;desc=Lunar plasma deposits were almost entirely in crystalline form.  Mining efforts went pretty slowly before Nanotrasen arrived!"
 
 	tour3
-		location = "tour3"
+		beacon_id = "tour3"
 		codes_txt = "tour;next_tour=tour4;desc=Nanotrasen, then the newly-diversifying National Notary Supply Company, first acquired plasma samples from the Apollo missions through connections to this man, the visionary Victor Jam, head of the Senate Committee on Aeronau--|pOh, um, I guess this is down for renovations.  Nevermind."
 
 	tour4
-		location = "tour4"
+		beacon_id = "tour4"
 		codes_txt = "tour;next_tour=tour5;desc=This is the site of our star exhibit, the Apollo 11 Experience!  Well, it will be the star when renovations are done and it has more displays and material.  Eventually.|pI'm really sorry that it isn't done yet.  Did I mention that?"
 
 	tour5
-		location = "tour5"
+		beacon_id = "tour5"
 		codes_txt = "tour;next_tour=tour6;desc=Outside that window is the actual, genuine recreation of the site where Neil Armstrong first walked on the moon!  Of course, it now sits much lower due to extensive strip mining.|pAs you have selected the surface tour option, we will get to walk in Neil's reconstructed footprints!  Wow!  Please, ensure your helmets are latched and follow me through the airlock in an orderly manner!"
 
 	tour6
-		location = "tour6"
+		beacon_id = "tour6"
 		codes_txt = "tour;next_tour=tour7;desc=Again, please make sure your suit is secured!  As I understand, air is kinda important."
 
 	tour7
-		location = "tour7"
+		beacon_id = "tour7"
 		New()
 			var/goofy_story = pick_string("lunar.txt", "mary_stories")
 			codes_txt = "tour;next_tour=tour8;desc=This is the lunar surf..oh! You probably can't hear me, being that we are outside and my audio systems aren't hooked to the radio.  Ha ha.  I guess I can just say anything I want now.  [goofy_story]"
 			..()
 
 	tour8
-		location = "tour8"
+		beacon_id = "tour8"
 		codes_txt = "tour;next_tour=tour9;desc=Wow, That sure was fun!  And nobody was hurt, which is important.  Please disregard this message if anyone was hurt or did not have fun."
 
 	tour9
-		location = "tour9"
+		beacon_id = "tour9"
 		codes_txt = "tour;next_tour=tour10;desc=This is a model of the NASA LESA base, the first permanent lunar base.  Construction finished in fall 1971 and it wasn't decommissioned until 1996!|pIt was the main site for plasma mining before Nanotrasen received mineral rights.|pThe base accomplished a great deal of scientific discovery and answered age-old questions, such as \"is the moon made of cheese?\" and \"is the moon full of tiny little men named Gary?\""
 
 	tour10
-		location = "tour10"
+		beacon_id = "tour10"
 		codes_txt = "tour;next_tour=tour11;desc=Oh, um, I guess this compartment is sealed.  And decompressed.  Okay then.  That just covers the spaceport that became the city.  Nothing important..."
 
 	tour11
-		location = "tour11"
+		beacon_id = "tour11"
 		codes_txt = "tour;next_tour=tour12;desc=This is also normally open.  And working.  I'll try to get your ticket fees refunded because this is just completely unacceptable."
 
 	tour12
-		location = "tour12"
+		beacon_id = "tour12"
 		codes_txt = "tour;next_tour=tour13;desc=Oh, the Lunaport exhibits are still in this hall!  Good!"
 
 	tour13
-		location = "tour13"
+		beacon_id = "tour13"
 		codes_txt = "tour;next_tour=tour14;desc=This exhibit remembers the 2004 Lunar Port Hostage Crisis, where the primary spaceport was seized for a terrifying four days by the Space Irish Republican Army.|pIn the aftermath, laws were passed boosting the size and capability of corporate security forces--boosting our safety without violating the 1967 Outer Space Treaty!"
 
 	tour14
-		location = "tour14"
+		beacon_id = "tour14"
 		codes_txt = "tour;next_tour=tour15;desc=This exhibit is on Wallace Jam, the longest-serving administrator of the Lunaport, during the economic boom times of 2001 to 2024.  Please note the whimsical bag of jellybeans on his desk.  He was known for throwing them at people."
 
 	tour15
-		location = "tour15"
+		beacon_id = "tour15"
 		codes_txt = "tour;next_tour=tour16;desc=This is the MNX-12, the first master computer of Lunaport, operational from the 2021 administration sector expansion until 2041.  It managed a ton of tasks across the growing city.|pThis was Thinktronic Data System's first big contract with Nanotrasen!  Fun fact: the first robuddy United States senator, Lloyd-019, started out working under MNX in 2031!"
 
 	tour16
-		location = "tour16"
+		beacon_id = "tour16"
 		codes_txt = "tour;next_tour=tour17;desc=This is Greg, also affectionately called \"Lousy Greg,\" beloved town character known for...laying down apparently?  Um, maybe this would be a good time to hit the gift shop?  Yes."
 
 	tour17
-		location = "tour17"
+		beacon_id = "tour17"
 		codes_txt = "tour;"
 
 #define NT_DISCOUNT   (1<<0)

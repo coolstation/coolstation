@@ -228,6 +228,7 @@
 	name = "MULE Bot Control"
 	size = 16.0
 	var/list/beacons
+	var/list/pdas
 
 	return_text()
 		if(..())
@@ -279,6 +280,7 @@
 				var/obj/storage/crate/C = src.botstatus["load"]
 				. += "<BR>Current Load: [ !C ? "<i>none</i>" : "[C.name] (<A href='byond://?src=\ref[src];op=unload'><i>unload</i></A>)" ]<BR>"
 				. += "<A href='byond://?src=\ref[src];op=scanbeacons'>Scan destinations</a><br>"
+				. += "<A href='byond://?src=\ref[src];op=import'>Import PDAs</a><br>"
 				. += "Destination: [!src.botstatus["dest"] ? "<i>none</i>" : src.botstatus["dest"] ] (<A href='byond://?src=\ref[src];op=setdest'><i>set</i></A>)<BR>"
 				. += "Power: [src.botstatus["powr"]]%<BR>"
 				. += "Home: [!src.botstatus["home"] ? "<i>none</i>" : src.botstatus["home"] ]<BR>"
@@ -288,7 +290,15 @@
 				. += "\[<A href='byond://?src=\ref[src];op=stop'>Stop</A>\] "
 				. += "\[<A href='byond://?src=\ref[src];op=go'>Proceed</A>\] "
 				. += "\[<A href='byond://?src=\ref[src];op=home'>Return Home</A>\]<BR>"
-				. += "<HR><A href='byond://?src=\ref[src];op=botlist'>Return to bot list</A>"
+
+				. += "<HR><A href='byond://?src=\ref[src];op=botlist'>Return to bot list</A><BR><HR>"
+				for (var/P_id in src.pdas)
+					var/P_name = src.pdas[P_id]
+					if (!P_name)
+						src.pdas -= P_id
+						continue
+					. += "<li>PDA-[P_name]"
+					. += " \[<a href='byond://?src=\ref[src];op=setpdadest&deliver=[P_id]'>Set Target</a>\]<BR>"
 		. = jointext(., "")
 
 	Topic(href, href_list)
@@ -301,6 +311,11 @@
 
 		switch(href_list["op"])
 
+			if("import")
+				src.pdas = null
+				if(src.master.host_program && istype(src.master.host_program, /datum/computer/file/pda_program/os/main_os))
+					src.pdas = src.master.host_program:detected_pdas
+
 			if("control")
 				active = locate(href_list["bot"])
 				post_status(control_freq, cmd, "bot_status")
@@ -311,7 +326,7 @@
 
 			if("scanbeacons")
 				beacons = null
-				src.post_status(src.master.beacon_freq, "findbeacon", "delivery")
+				src.post_status(src.master.beacon_freq, "findbeacon", "any")
 
 			if("botlist")
 				active = null
@@ -326,7 +341,9 @@
 					if(dest)
 						post_status(control_freq, cmd, "target", "destination", dest)
 						post_status(control_freq, cmd, "bot_status")
-
+			if("setpdadest")
+				if(href_list["deliver"])
+					post_status(control_freq, cmd, "pda_target", "destination", href_list["deliver"])
 			if("retoff")
 				post_status(control_freq, cmd, "autoret", "value", 0)
 				post_status(control_freq, cmd, "bot_status")

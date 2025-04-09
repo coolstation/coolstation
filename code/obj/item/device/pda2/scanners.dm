@@ -67,7 +67,7 @@
 		scan_atom(atom/A as mob|obj|turf|area)
 			if (..())
 				return
-			. = scan_reagents(A, visible = 1)
+			. = scan_reagents(A, visible = 1, show_volume = !ismob(A))
 
 	//Plant scanner
 	plant_scan
