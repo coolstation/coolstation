@@ -15,6 +15,56 @@
 		return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey].sav"
 
 
+	json_to_character(client/user, var/JSON) //doesn't even need to deal with savefiles tbh, this is only here just so it's next to savefile_to_json
+		if(IsGuestKey(user.key))
+			return 0
+		var/list/decodedJSON = json_decode(JSON)
+		src.real_name << decodedJSON["real_name"]
+		src.name_first << decodedJSON["name_first"]
+		src.name_middle << decodedJSON["name_middle"]
+		src.name_last << decodedJSON["name_last"]
+		src.gender << decodedJSON["gender"]
+		src.age << decodedJSON["age"]
+		AH.fartsound << decodedJSON["fartsound"]
+		AH.screamsound << decodedJSON["screamsound"]
+		AH.voicetype << decodedJSON["voicetype"]
+		src.PDAcolor << decodedJSON["PDAcolor"]
+		src.pda_ringtone_index << decodedJSON["pda_ringtone_index"]
+		src.random_blood << decodedJSON["random_blood"]
+		src.blType << decodedJSON["blood_type"]
+
+		// Records
+		src.pin << decodedJSON["pin"]
+		src.flavor_text << decodedJSON["flavor_text"]
+		src.medical_note << decodedJSON["medical_note"]
+		src.security_note << decodedJSON["security_note"]
+
+		// Randomize appearances
+		src.be_random_name << decodedJSON["name_is_always_random"]
+		src.be_random_look << decodedJSON["look_is_always_random"]
+
+		// AppearanceHolder details
+		if (src.AH)
+			AH.pronouns.name << decodedJSON["pronouns"]
+			AH.pronouns.preferredGender << decodedJSON["pronouns_preferredGender"]
+			AH.pronouns.subjective << decodedJSON["pronouns_subjective"]
+			AH.pronouns.objective << decodedJSON["pronouns_objective"]
+			AH.pronouns.possessive << decodedJSON["pronouns_possessive"]
+			AH.pronouns.posessivePronoun << decodedJSON["posessive_pronoun"]
+			AH.pronouns.reflexive << decodedJSON["pronouns_reflexive"]
+			AH.pronouns.pluralize << decodedJSON["pronouns_plural"]
+			AH.e_color << decodedJSON["eye_color"]
+			AH.customization_first_color << decodedJSON["hair_color"]
+			AH.customization_second_color << decodedJSON["facial_color"]
+			AH.customization_third_color << decodedJSON["detail_color"]
+			AH.s_tone << decodedJSON["skin_tone"]
+			AH.customization_first << decodedJSON["hair_style_name"]
+			AH.customization_second << decodedJSON["facial_style_name"]
+			AH.customization_third << decodedJSON["detail_style_name"]
+			AH.underwear << decodedJSON["underwear_style_name"]
+			AH.u_color << decodedJSON["underwear_color"]
+
+
 	savefile_to_json(client/user, profileNum = 1)
 		if (IsGuestKey(user.key))
 			return 0
@@ -42,7 +92,7 @@
 		F["[profileNum]_pin"] >> export["pin"]
 		F["[profileNum]_flavor_text"] >> export["flavor_text"]
 		F["[profileNum]_medical_note"] >> export["medical_note"]
-		F["[profileNum]_security_note"] >> export["seccurity_note"]
+		F["[profileNum]_security_note"] >> export["security_note"]
 
 		//rando character stuff, this might not be useful for the webapp.
 		F["[profileNum]_name_is_always_random"] >> export["name_is_always_random"]
