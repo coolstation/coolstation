@@ -66,7 +66,7 @@
 		is_atmos_simulated = 1 //gotta light that POO
 	sheezius
 		ckey = "sheezius"
-		name = "Claire's Office of Claire"
+		name = "Claire's Orifice of Claire"
 	schwick
 		ckey = "schwickyschwag"
 		name = "Schwick's Normal Bear Closet"
@@ -76,7 +76,9 @@
 	tamber
 		ckey = "tamber"
 		name = "Office of Tamber"
-
-	zamujasa
-		ckey = "zamujasa"
-		name = "Office of Zamujasa"
+	lupi
+		ckey = "awildlupi"
+		name = "the fart side"
+	wackalope
+		ckey = "wackalope"
+		name = "ITS A LIGHTNING ROD OK"

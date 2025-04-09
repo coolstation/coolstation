@@ -251,7 +251,7 @@
 		overlays += /image/fullbright
 
 
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
+/turf/Enter(atom/movable/mover as mob|obj, atom/oldLoc as mob|obj|turf|area)
 	if (!mover)
 		return 1
 
@@ -265,7 +265,7 @@
 			var/obj/obstacle = thing
 			if(obstacle == mover)
 				continue
-			if((mover != obstacle) && (forget != obstacle))
+			if(oldLoc != obstacle)
 				if(obstacle.event_handler_flags & USE_CHECKEXIT)
 					if(!obstacle.CheckExit(mover, src))
 						mover.Bump(obstacle, 1)
@@ -282,7 +282,7 @@
 			var/atom/movable/obstacle = thing
 			if(obstacle == mover) continue
 			if(!mover)	return 0
-			if ((forget != obstacle))
+			if ((oldLoc != obstacle))
 				if(obstacle.event_handler_flags & USE_CANPASS)
 					if(!obstacle.CanPass(mover, cturf, 1, 0))
 
@@ -303,7 +303,7 @@
 					var/atom/movable/obstacle = thing
 					if(obstacle == mover) continue
 					if(!mover)	return 0
-					if ((forget != obstacle))
+					if ((oldLoc != obstacle))
 						if(obstacle.event_handler_flags & USE_CANPASS)
 							if(!obstacle.CanPass(mover, cturf, 1, 0))
 

@@ -544,8 +544,8 @@ obj/decal/fakeobjects
 
 						if (TD && isturf(TD) && !TD.density)
 							new /obj/decal/mule/dropoff(TD)
-							if (!isnull(NB.location))
-								src.name = "[src.name] ([NB.location])"
+							if (!isnull(NB.beacon_id))
+								src.name = "[src.name] ([NB.beacon_id])"
 							break
 			return
 

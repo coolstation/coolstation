@@ -24,6 +24,7 @@ datum
 			hunger_value = -0.1
 			bladder_value = -0.1
 			thirst_value = -0.05
+			contraband = 8
 			var/static/list/halluc_attackers = list(
 				new /image('icons/mob/critter.dmi',"death") = list("death","the bell guy","GO METS!"),
 				new /image('icons/mob/critter.dmi', "cluwnespider_queen") = list("your mother","fat fuck","horrible green crab"),
@@ -203,6 +204,7 @@ datum
 			hygiene_value = -0.5
 			thirst_value = -0.04
 			energy_value = -0.04
+			contraband = 2
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -231,6 +233,7 @@ datum
 			hunger_value = -0.05
 			thirst_value = -0.05
 			stun_resist = 60
+			contraband = 6
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -300,6 +303,7 @@ datum
 			transparency = 20
 			value = 6 // 4 2
 			thirst_value = -0.03
+			contraband = 4
 			var/static/list/halluc_sounds = list(
 				"punch",
 				'sound/vox/poo-vox.ogg',
@@ -433,6 +437,7 @@ datum
 			transparency = 100
 			value = 5
 			thirst_value = -0.03
+			contraband = 4.2
 			var/static/list/bee_halluc = list(
 				new /image('icons/mob/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
 				new /image('icons/mob/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
@@ -511,6 +516,7 @@ datum
 			viscosity = 0.4
 			hunger_value = -0.04
 			thirst_value = -0.04
+			contraband = 1
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -658,6 +664,7 @@ datum
 			addiction_prob = 100
 			overdose = 70
 			stun_resist = 11
+			contraband = 2
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -762,6 +769,7 @@ datum
 			value = 3
 			viscosity = 0.1
 			thirst_value = -0.3
+			contraband = 4
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -811,6 +819,7 @@ datum
 			overdose = 20
 			hunger_value = -0.1
 			thirst_value = -0.09
+			contraband = 7
 			var/fake_health = 40
 
 			on_remove()
@@ -894,6 +903,7 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			contraband = 2
 			var/static/list/cat_halluc = list(
 				new /image('icons/mob/critter.dmi',"cat-ghost") = list("ghost cat"),
 				new /image('icons/mob/critter.dmi', "cat1-wild") = list("wild cat"),
@@ -937,6 +947,7 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			contraband = 2
 			var/static/list/bat_halluc = list(
 				new /image('icons/mob/critter.dmi',"bat-dance") = list("ghost bat"),
 				new /image('icons/mob/critter.dmi', "scarybat-dance") = list("wild bat"),
@@ -987,6 +998,7 @@ datum
 			bladder_value = -0.1
 			hunger_value = -0.3
 			thirst_value = -0.2
+			contraband = 18
 
 			on_remove()
 				if(ismob(holder?.my_atom))
@@ -1068,6 +1080,7 @@ datum
 			hunger_value = -0.09
 			thirst_value = -0.09
 			stun_resist = 50
+			contraband = 6
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -1144,6 +1157,7 @@ datum
 			fluid_b = 63
 			transparency = 100
 			depletion_rate = 0.3
+			contraband = 13
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
 				if(!M) M = holder.my_atom

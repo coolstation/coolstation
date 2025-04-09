@@ -154,6 +154,25 @@
 	else
 		return list("<B>[user]</B> raises [his_or_her(user)] hand.", "<I>raises [his_or_her(user)] hand</I>", MESSAGE_VISIBLE)
 
+/datum/emote/nudge
+/datum/emote/nudge/enact(mob/user, voluntary = 0, param)
+	if(!user.restrained())
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (H.glasses && istype(H.glasses, /obj/item/clothing/glasses/regular))
+				var/obj/item/clothing/glasses/G = H.glasses
+				if(G.isNudged != TRUE)
+					G.attack_self(user)
+					if(user.mind && !user.mind.alreadyNudged)
+						elecflash(user)
+						user.mind.alreadyNudged = TRUE
+					user.update_clothing()
+					return list("<B>[user]</B> nudges [his_or_her(user)] glasses up [his_or_her(user)] nose", MESSAGE_VISIBLE)
+				else
+					G.attack_self(user)
+					user.update_clothing()
+					return list("<B>[user]</B> pushes [his_or_her(user)] glasses back down [his_or_her(user)] nose", MESSAGE_VISIBLE)
+
 /datum/emote/tip
 /datum/emote/tip/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (user.restrained() || user.stat || !istype(user))

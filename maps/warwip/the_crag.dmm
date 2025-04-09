@@ -75,7 +75,7 @@
 	})
 "ap" = (
 /obj/machinery/vending/medical_public,
-/obj/decal/poster/wallsign/poster_rand{
+/obj/decal/poster/wallsign/dont_drugs{
 	pixel_y = 32
 	},
 /turf/floor/blue/side{
@@ -131,7 +131,7 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
 	target_z = 3
 	},
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -390,6 +390,9 @@
 	dir = 8
 	},
 /obj/machinery/disposal,
+/obj/decal/poster/wallsign/dont_drugs/do_drugs{
+	pixel_y = 32
+	},
 /turf/floor/cautionblack/side{
 	dir = 1
 	},
@@ -582,6 +585,7 @@
 /area/station/hallway/secondary/south)
 "bR" = (
 /obj/table/reinforced/bar/auto,
+/obj/machinery/phone,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -1185,7 +1189,7 @@
 	dir = 2;
 	target_z = 3
 	},
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -1607,7 +1611,7 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -1953,6 +1957,9 @@
 	target_z = 3
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -2710,6 +2717,13 @@
 /obj/machinery/light/small/red,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"hZ" = (
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
+/turf/floor/grime,
+/area/station/quartermaster/cargooffice/storefront)
 "ia" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -2937,7 +2951,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 2
 	},
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -3139,12 +3153,11 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/paper_bin,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/item/pen,
 /obj/window/reinforced/east,
+/obj/machinery/phone,
 /turf/floor/blue/side{
 	dir = 8
 	},
@@ -3225,9 +3238,9 @@
 /area/shuttle/merchant_shuttle/right_station/cogmap)
 "jD" = (
 /obj/table/reinforced/auto,
-/obj/machinery/cashreg,
 /obj/machinery/door/window/westright,
 /obj/access_spawn/cargo,
+/obj/machinery/phone,
 /turf/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "jE" = (
@@ -3267,6 +3280,10 @@
 	dir = 1
 	},
 /obj/item/pen,
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
 /turf/floor,
 /area/station/science/artifact)
 "jL" = (
@@ -3359,6 +3376,13 @@
 	},
 /turf/floor,
 /area/station/science/lobby)
+"jZ" = (
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
+/turf/floor/black/side,
+/area/station/hallway/primary/north)
 "ka" = (
 /obj/disposalpipe/junction/middle/east,
 /turf/floor/bot,
@@ -3738,6 +3762,7 @@
 	dir = 4
 	},
 /obj/window/reinforced/east,
+/obj/item/pen,
 /turf/floor/blue/side{
 	dir = 10
 	},
@@ -4014,7 +4039,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 1
 	},
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -4458,7 +4483,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 8
 	},
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -4778,7 +4803,7 @@
 /turf/floor,
 /area/station/science/artifact)
 "op" = (
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -4801,6 +4826,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/item/reagent_containers/food/drinks/mug/random_color,
+/obj/item/pen/red,
+/obj/item/pen/fancy,
 /turf/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "ou" = (
@@ -6119,6 +6147,16 @@
 	dir = 1
 	},
 /area/station/hallway/primary/north)
+"sw" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/southeast)
 "sx" = (
 /turf/floor/wood/seven,
 /area/station/quartermaster/cargooffice)
@@ -6795,6 +6833,10 @@
 /area/shuttle/mining/station)
 "uF" = (
 /obj/machinery/chem_master,
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
 /turf/floor/black,
 /area/station/science/chemistry)
 "uG" = (
@@ -6899,6 +6941,10 @@
 /area/station/maintenance/southeast)
 "vc" = (
 /obj/machinery/manufacturer/medical,
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "vd" = (
@@ -7006,6 +7052,9 @@
 	name = "utility sink"
 	},
 /obj/machinery/light_switch/west,
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/green,
 /area/station/hydroponics/lobby)
 "vs" = (
@@ -7936,7 +7985,7 @@
 	dir = 0;
 	name = "autoname - SS13"
 	},
-/obj/decal/poster/wallsign/poster_rand{
+/obj/decal/poster/wallsign/dont_drugs{
 	pixel_y = 32
 	},
 /turf/floor,
@@ -9745,7 +9794,7 @@
 /area/station/quartermaster/cargooffice/storefront)
 "DD" = (
 /obj/disposalpipe/switch_junction/left/east,
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -9974,6 +10023,10 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
+	},
 /turf/floor/yellow/checker,
 /area/station/engine/engineering/ce)
 "En" = (
@@ -10290,6 +10343,19 @@
 /obj/storage/secure/closet/engineering/engineer,
 /turf/floor/black,
 /area/station/engine/core)
+"Fk" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
+/turf/floor/purple/side{
+	dir = 1
+	},
+/area/station/science/lobby)
 "Fl" = (
 /obj/cable{
 	d1 = 1;
@@ -10878,6 +10944,9 @@
 	dir = 4
 	},
 /obj/machinery/recharge_station,
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/black,
 /area/station/medical/robotics)
 "GW" = (
@@ -11357,7 +11426,7 @@
 /area/gehenna)
 "Iu" = (
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -13920,6 +13989,9 @@
 	dir = 4
 	},
 /obj/item/cargotele,
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/wood/seven,
 /area/station/quartermaster/cargooffice)
 "PZ" = (
@@ -14048,6 +14120,14 @@
 	},
 /turf/floor,
 /area/station/science/lobby)
+"Qt" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/decal/poster/wallsign/dont_drugs{
+	pixel_y = 32
+	},
+/turf/floor/plating,
+/area/station/maintenance/north)
 "Qu" = (
 /obj/stool,
 /turf/floor/white,
@@ -14124,7 +14204,7 @@
 /area/station/engine/core)
 "QF" = (
 /obj/machinery/atmospherics/pipe/vent/north,
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -14259,6 +14339,9 @@
 	dir = 4
 	},
 /obj/machinery/door/window/eastright,
+/obj/item/paper_bin{
+	pixel_y = -1
+	},
 /turf/floor/blue/side{
 	dir = 8
 	},
@@ -14504,6 +14587,16 @@
 /obj/window_blinds/left,
 /turf/floor/plating,
 /area/station/chapel/office)
+"RI" = (
+/obj/machinery/chem_heater,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
+	},
+/obj/decal/poster/wallsign/dont_drugs{
+	pixel_y = 32
+	},
+/turf/floor/black,
+/area/station/science/chemistry)
 "RJ" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -14547,6 +14640,14 @@
 	},
 /turf/floor,
 /area/station/medical/medbay/treatment)
+"RO" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/table/wood/auto,
+/obj/item/pen/crayon/aqua,
+/turf/floor/carpet/grime,
+/area/station/science/research_director)
 "RP" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -14905,6 +15006,9 @@
 /obj/table/reinforced/auto,
 /obj/item/reagent_containers/food/snacks/breadloaf,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/phone/wall{
+	pixel_y = 32
+	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "SO" = (
@@ -15313,7 +15417,7 @@
 /area/station/engine/storage)
 "TZ" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -15504,7 +15608,7 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/airless/plating,
+/turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
 	requires_power = 0
@@ -15794,7 +15898,7 @@
 	},
 /obj/table/wood/auto,
 /obj/disposalpipe/segment/mail/vertical,
-/obj/item/pen/crayon/aqua,
+/obj/machinery/phone,
 /turf/floor/carpet/grime,
 /area/station/science/research_director)
 "Vk" = (
@@ -15855,6 +15959,11 @@
 /obj/storage/cart/mechcart,
 /turf/floor,
 /area/station/engine/elect)
+"Vu" = (
+/obj/table/reinforced/auto,
+/obj/machinery/phone/unlisted,
+/turf/floor,
+/area/station/science/lab)
 "Vv" = (
 /obj/machinery/vending/mechanics,
 /turf/floor,
@@ -16164,11 +16273,9 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/pen/fancy,
-/obj/item/pen/red,
 /obj/machinery/door/window/westleft,
-/obj/item/reagent_containers/food/drinks/mug/random_color,
 /obj/access_spawn/cargo,
+/obj/machinery/cashreg,
 /turf/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "Wy" = (
@@ -16274,6 +16381,7 @@
 /obj/item/device/radio/intercom/medical{
 	dir = 4
 	},
+/obj/machinery/phone,
 /turf/floor/carpet/blue/standard/edge/nw,
 /area/station/medical/head)
 "WO" = (
@@ -17248,8 +17356,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/decal/poster/wallsign/poster_rand{
-	pixel_y = 32
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	unlisted = 1
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
@@ -55561,7 +55670,7 @@ ix
 mO
 mU
 ji
-TM
+RI
 Zr
 yH
 UF
@@ -57029,7 +57138,7 @@ DO
 DN
 le
 Di
-tq
+jZ
 OF
 OF
 wF
@@ -58892,7 +59001,7 @@ gu
 NB
 Kd
 ZZ
-MH
+Fk
 aj
 Aa
 jE
@@ -59189,7 +59298,7 @@ Kd
 cv
 ZL
 vt
-dP
+RO
 gu
 OE
 Kd
@@ -62528,7 +62637,7 @@ Jv
 sd
 LI
 nf
-ud
+Vu
 jH
 Sv
 xo
@@ -68816,7 +68925,7 @@ By
 iA
 SG
 mr
-EA
+hZ
 Au
 EA
 xk
@@ -69400,7 +69509,7 @@ Gj
 Gj
 Gj
 xf
-pj
+Qt
 oR
 Nf
 Rx
@@ -71875,7 +71984,7 @@ Dn
 Dn
 Dn
 Dn
-IG
+sw
 Zs
 Zs
 iZ

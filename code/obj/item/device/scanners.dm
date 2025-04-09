@@ -76,14 +76,22 @@ Contains:
 			return null
 
 		var/mob/our_mob = src
-		while(!isnull(our_mob) && !istype(our_mob, /turf) && !ismob(our_mob)) our_mob = our_mob.loc
+		var/atom/movable/scan_focus
+		if (istype(src.loc, /obj/disposalholder/crawler))
+			var/obj/disposalholder/crawler/crawler = src.loc
+			our_mob = crawler.pilot
+			scan_focus = crawler.loc
+		else
+			while(!isnull(our_mob) && !istype(our_mob, /turf) && !ismob(our_mob)) our_mob = our_mob.loc
 		if(!istype(our_mob) || !our_mob.client)
 			return null
+		if (!scan_focus)
+			scan_focus = our_mob
 		var/client/C = our_mob.client
 		var/turf/center = get_turf(our_mob)
 
 		var/image/main_display = image(null)
-		for(var/turf/T in range(src.scan_range, our_mob))
+		for(var/turf/T in range(src.scan_range, scan_focus))
 			if(T.interesting && find_interesting)
 				our_mob.playsound_local(T, "sound/machines/ping.ogg", 55, 1)
 
@@ -114,7 +122,7 @@ Contains:
 				display.pixel_y = (T.y - center.y) * 32
 				main_display.overlays += display
 
-		main_display.loc = our_mob.loc
+		main_display.loc = get_turf(scan_focus)
 
 		C.images += main_display
 		last_display = main_display
@@ -411,7 +419,7 @@ that cannot be itched
 		user.visible_message("<span class='notice'><b>[user]</b> scans [A] with [src]!</span>",\
 		"<span class='notice'>You scan [A] with [src]!</span>")
 
-		src.scan_results = scan_reagents(A, visible = 1)
+		src.scan_results = scan_reagents(A, visible = 1, show_volume = !ismob(A))
 		tooltip_rebuild = 1
 
 		if (!isnull(A.reagents))
@@ -462,7 +470,7 @@ that cannot be itched
 		user.visible_message("<span class='notice'><b>[user]</b> scans [A] with [src]!</span>",\
 		"<span class='notice'>You scan [A] with [src]!</span>")
 
-		src.scan_results = scan_reagents(A, visible = 1)
+		src.scan_results = scan_reagents(A, show_temp = 0, visible = 1, show_contraband = 1, min_volume = 5)
 		tooltip_rebuild = 1
 
 		if (!isnull(A.reagents))

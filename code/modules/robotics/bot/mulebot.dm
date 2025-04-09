@@ -19,6 +19,7 @@
 
 	var/beacon_freq = FREQ_BOT_NAV
 	var/control_freq = FREQ_BOT_CONTROL
+	var/pda_freq = FREQ_PDA
 
 	suffix = ""
 
@@ -68,6 +69,7 @@
 
 	var/bloodiness = 0		// count of bloodiness
 	var/nocellspawn = 0 //Used for spawning a MULE w/o a cell.
+	var/turf/last_loc
 
 	New()
 		..()
@@ -88,6 +90,7 @@
 			if(radio_controller)
 				radio_controller.add_object(src, "[control_freq]")
 				radio_controller.add_object(src, "[beacon_freq]")
+				radio_controller.add_object(src, "[pda_freq]")
 
 	// set up the wire colours in random order
 	// and the random wire display order
@@ -321,14 +324,15 @@
 				if("stop")
 					if(mode >=2)
 						mode = 0
+						KillPathAndGiveUp()
 
 				if("go")
-					if(mode == 0)
-						start()
+					mode = 2
+					start()
 
 				if("home")
-					if(mode == 0 || mode == 2)
-						start_home()
+					mode = 3
+					start_home()
 
 				if("destination")
 					var/new_dest = input("Enter new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", destination) as text|null
@@ -411,6 +415,22 @@
 	proc/has_power()
 		return !open && cell?.charge>0 && (wires & wire_power1) && (wires & wire_power2)
 
+	// mousedrop the bot to unload the bot
+	MouseDrop(var/turf/T)
+		if(!istype(T))
+			T = get_turf(T)
+
+		if(usr.stat)
+			return
+
+		if(!isliving(usr))
+			return
+
+		if(load && GET_DIST(src, usr) <= 1 && GET_DIST(src, T) <= 1)
+			unload(get_dir(src,T))
+			return
+		..()
+
 	// mousedrop a crate to load the bot
 	MouseDrop_T(var/atom/movable/C, mob/user)
 
@@ -422,6 +442,9 @@
 
 		if(load)
 			return
+
+		if(C == user && !src.emagged)
+			src.remove_dialog(user)
 
 		load(C)
 
@@ -493,200 +516,135 @@
 			AM.pixel_y = initial(AM.pixel_y)
 		mode = 0
 
-	var/last_process_time
-
 	process()
 		. = ..()
-		var/time_since_last = TIME - last_process_time
-		last_process_time = TIME
 		if(!has_power())
 			on = 0
 			return
 		if(on)
 			SPAWN_DBG(0)
-				// speed varies between 1-4 depending on how many wires are cut (and which of the two)
+				// speed varies between 1-4 depending on how many wires are cut (and which of the two), slowing dramatically if BOTH are cut
 				var/speed = ((wires & wire_motor1) ? 1:0) + ((wires & wire_motor2) ? 2:0) + 1
-				// both wires results in no speed at all :(
-				var/n_steps = list(0, 12, 7, 6)[speed]
+				src.bot_move_delay = list(15, 0.45, 1.25, 2)[speed]
 
-				var/sleep_time = n_steps ? clamp(time_since_last / n_steps, 0.04 SECONDS, 1.5 SECONDS) : 0
+	DoWhileMoving()
+		if(src.mode <= 0) return TRUE
+		if(bloodiness && issimulatedturf(src.last_loc))
+			//boutput(world, "at ([x],[y]) moving to ([next.x],[next.y])")
+			var/obj/decal/cleanable/blood/tracks/B = make_cleanable(/obj/decal/cleanable/blood/tracks, loc)
+			var/newdir = get_dir(loc, last_loc)
+			if(newdir == dir)
+				B.set_dir(newdir)
+			else
+				newdir = newdir | dir
+				if(newdir == 3)
+					newdir = 1
+				else if(newdir == 12)
+					newdir = 4
+				B.set_dir(newdir)
+			bloodiness--
+		if(cell) cell.use(1)
+		if (src.last_loc == get_turf(src))
+			blockcount++
+			mode = 4
+			if(blockcount == 5)
+				src.visible_message("[src] makes an annoyed buzzing sound.", "You hear an electronic buzzing sound.")
+				playsound(src.loc, "sound/machines/buzz-two.ogg", 40, 0)
 
-				for (var/i = 1 to n_steps)
-					sleep(sleep_time)
-					process_bot()
+			if(blockcount > 8)	// attempt 8 times before recomputing (why 8? because it was annoyingly loud on 5)
+				// find new path excluding blocked turf
+				src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
+				playsound(src.loc, "sound/machines/buzz-sigh.ogg", 50, 0)
 
-	proc/process_bot()
-		//if(mode) boutput(world, "Mode: [mode]")
-		switch(mode)
-			if(0)		// idle
-				icon_state = "mulebot0"
-				return
-			if(1)		// loading/unloading
-				return
-			if(2,3,4)		// navigating to deliver,home, or blocked
-
-				if(loc == target)		// reached target
-					at_target()
-					return
-
-				else if(length(path) && target) // valid path
-					var/turf/next = path[1]
-					reached_target = 0
-					if(next == loc)
-						path -= next
-						return
-
-					if(issimulatedturf(next))
-						//boutput(world, "at ([x],[y]) moving to ([next.x],[next.y])")
-
-						if(bloodiness)
-							var/obj/decal/cleanable/blood/tracks/B = make_cleanable(/obj/decal/cleanable/blood/tracks, loc)
-							var/newdir = get_dir(next, loc)
-							if(newdir == dir)
-								B.set_dir(newdir)
-							else
-								newdir = newdir | dir
-								if(newdir == 3)
-									newdir = 1
-								else if(newdir == 12)
-									newdir = 4
-								B.set_dir(newdir)
-							bloodiness--
-
-						step_towards(src, next)	// attempt to move
-						var/moved = src.loc == next // step_towards return value is unreliable at best and always false at worst
-						if(cell) cell.use(1)
-						if(moved)	// successful move
-							//boutput(world, "Successful move.")
-							blockcount = 0
-							path -= loc
-
-							if(mode==4)
-								SPAWN_DBG(1 DECI SECOND)
-									send_status()
-
-							if(destination == home_destination)
-								mode = 3
-							else
-								mode = 2
-
-						else		// failed to move
-
-							//boutput(world, "Unable to move.")
-
-							blockcount++
-							mode = 4
-							if(blockcount == 3)
-								src.visible_message("[src] makes an annoyed buzzing sound", "You hear an electronic buzzing sound.")
-								playsound(src.loc, "sound/machines/buzz-two.ogg", 50, 0)
-
-							if(blockcount > 5)	// attempt 5 times before recomputing
-								// find new path excluding blocked turf
-								src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
-								playsound(src.loc, "sound/machines/buzz-sigh.ogg", 50, 0)
-
-								SPAWN_DBG(0.2 SECONDS)
-									calc_path(next)
-									if(path)
-										src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
-										playsound(src.loc, "sound/machines/ping.ogg", 50, 0)
-									mode = 4
-								mode = 6
-								return
-							return
-					else
-						src.visible_message("[src] makes an annoyed buzzing sound", "You hear an electronic buzzing sound.")
-						playsound(src.loc, "sound/machines/buzz-two.ogg", 50, 0)
-						//boutput(world, "Bad turf.")
-						mode = 5
-						return
-				else
-					//boutput(world, "No path.")
-					mode = 5
-					return
-
-			if(5)		// calculate new path
-				//boutput(world, "Calc new path.")
 				mode = 6
-				SPAWN_DBG(0)
-
-					calc_path()
-
+				SPAWN_DBG(0.2 SECONDS)
+					src.navigate_with_navbeacons(src.target, src.bot_move_delay, exclude = src.path[1])
 					if(path)
 						blockcount = 0
-						mode = 4
 						src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
 						playsound(src.loc, "sound/machines/ping.ogg", 50, 0)
-
-					else
-						src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
-						playsound(src.loc, "sound/machines/buzz-sigh.ogg", 50, 0)
-
-						mode = 7
-			//if(6)
-				//boutput(world, "Pending path calc.")
-			//if(7)
-				//boutput(world, "No dest / no route.")
-		return
-
-	// calculates a path to the current destination
-	// given an optional turf to avoid
-	proc/calc_path(var/turf/avoid = null)
-		src.path = AStar(src.loc, src.target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 500, botcard, avoid)
+				return TRUE
+		else
+			src.last_loc = get_turf(src)
+			src.blockcount = 0
+			src.mode = 2 + reached_target
 
 	// sets the current destination
 	// signals all beacons matching the delivery code
 	// beacons will return a signal giving their locations
 	proc/set_destination(var/new_dest)
 		SPAWN_DBG(0)
+			KillPathAndGiveUp()
 			new_destination = new_dest
-			post_signal(beacon_freq, "findbeacon", "delivery")
+			post_signal(beacon_freq, "findbeacon", new_dest)
 			updateDialog()
+
+	proc/set_destination_pda(var/net_id)
+		if(src.wires & wire_mobavoid)
+			SPAWN_DBG(0)
+				KillPathAndGiveUp()
+				new_destination = net_id
+				post_signal(pda_freq, "address_1", "ping")
+				updateDialog()
 
 	// starts bot moving to current destination
 	proc/start()
-		if(destination == home_destination)
-			mode = 3
-		else
-			mode = 2
-		icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
+		if(src.target)
+			if(destination == home_destination)
+				mode = 3
+			else
+				reached_target = 0
+				mode = 2
+			KillPathAndGiveUp()
+			src.navigate_with_navbeacons(src.target, src.bot_move_delay)
+			if(src.path)
+				icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
+				return
+		src.visible_message("[src] makes an annoyed buzzing sound.", "You hear an electronic buzzing sound.")
+		playsound(src.loc, "sound/machines/buzz-two.ogg", 50, 0)
+		mode = 0
 
 	// starts bot moving to home
 	// sends a beacon query to find
 	proc/start_home()
+		if(src.mode <= 0) return
 		SPAWN_DBG(0)
 			set_destination(home_destination)
+			reached_target = 1
 			mode = 4
-		icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
+			sleep(0.5 SECONDS)
+			start()
 
 	// called when bot reaches current target
-	proc/at_target()
+	DoAtDestination()
+		mode = 0
 		if(!reached_target)
-			src.visible_message("[src] makes a chiming sound!", "You hear a chime.")
-			playsound(src.loc, "sound/machines/chime.ogg", 50, 0)
-			reached_target = 1
+			if(get_turf(src) == get_turf(src.target))
+				src.visible_message("[src] makes a chiming sound!", "You hear a chime.")
+				playsound(src.loc, "sound/machines/chime.ogg", 50, 0)
+				reached_target = 1
 
-			if(load)		// if loaded, unload at target
-				unload(loaddir)
-			else
-				// not loaded
-				if(auto_pickup)		// find a crate
-					var/atom/movable/AM
-					if(!(wires & wire_loadcheck))		// if emagged, load first unanchored thing we find
-						for(var/atom/movable/A in get_step(loc, loaddir))
-							if(!A.anchored)
-								AM = A
-								break
-					else			// otherwise, look for crates only
-						AM = locate(/obj/storage) in get_step(loc,loaddir)
-					if (AM && !AM.anchored)
-						load(AM)
-			// whatever happened, check to see if we return home
+				if(load)		// if loaded, unload at target
+					unload(loaddir)
+				else
+					// not loaded
+					if(auto_pickup)		// find a crate
+						var/atom/movable/AM
+						if(!(wires & wire_loadcheck))		// if emagged, load first unanchored thing we find
+							for(var/atom/movable/A in get_step(loc, loaddir))
+								if(!A.anchored)
+									AM = A
+									break
+						else			// otherwise, look for crates only
+							AM = locate(/obj/storage) in get_step(loc,loaddir)
+						if (AM && !AM.anchored)
+							load(AM)
+				// whatever happened, check to see if we return home
 
-			if(auto_return && destination != home_destination)
+			if(auto_return && home_destination && destination != home_destination)
 				// auto return set and not at home already
-				start_home()
 				mode = 4
+				start_home()
 			else
 				mode = 0	// otherwise go idle
 
@@ -696,7 +654,7 @@
 
 	// called when bot bumps into anything
 	Bump(var/atom/obs)
-		if(!(wires & wire_mobavoid))		//usually just bumps, but if avoidance disabled knock over mobs
+		if(!(wires & wire_mobavoid)) //usually just bumps, but if avoidance disabled knock over mobs
 			var/mob/M = obs
 			if(ismob(M))
 				if(isrobot(M))
@@ -706,8 +664,7 @@
 					M.pulling = null
 					M.changeStatus("stunned", 8 SECONDS)
 					M.changeStatus("weakened", 5 SECONDS)
-					M.lying = 1
-					M.set_clothing_icon_dirty()
+					M.force_laydown_standup()
 		..()
 
 	alter_health()
@@ -768,6 +725,16 @@
 		// process all-bot input
 		if(recv=="bot_status" && (wires & wire_remote_rx))
 			send_status()
+			return
+
+		if(recv=="ping_reply" && (wires & wire_remote_rx))
+			if(wires & wire_beacon_rx && signal.data["sender"] == new_destination)
+				destination = new_destination
+				new_destination = null
+				target = signal.source.loc
+				loaddir = 0
+				updateDialog()
+			return
 
 		recv = signal.data["command_[ckey(suffix)]"]
 		if(wires & wire_remote_rx)
@@ -775,14 +742,20 @@
 			switch(recv)
 				if("stop")
 					mode = 0
+					KillPathAndGiveUp()
 					return
 
 				if("go")
+					mode = 2
 					start()
 					return
 
 				if("target")
 					set_destination(signal.data["destination"] )
+					return
+
+				if("pda_target")
+					set_destination_pda(signal.data["destination"] )
 					return
 
 				if("unload")
@@ -793,6 +766,7 @@
 					return
 
 				if("home")
+					mode = 3
 					start_home()
 					return
 
@@ -811,9 +785,10 @@
 		// receive response from beacon
 		recv = signal.data["beacon"]
 		if(wires & wire_beacon_rx)
-			if(recv == new_destination)	// if the recvd beacon location matches the set destination
+			if(recv && recv == new_destination)	// if the recvd beacon location matches the set destination
 										// the we will navigate there
 				destination = new_destination
+				new_destination = null
 				target = signal.source.loc
 				var/direction = signal.data["dir"]	// this will be the load/unload dir
 				if(direction)
@@ -821,7 +796,6 @@
 				else
 					loaddir = 0
 				icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
-				calc_path()
 				updateDialog()
 
 	// send a radio signal with a single data key/value pair
@@ -833,7 +807,7 @@
 
 		if(freq == beacon_freq && !(wires & wire_beacon_tx))
 			return
-		if(freq == control_freq && !(wires & wire_remote_tx))
+		if((freq == control_freq || freq == pda_freq) && !(wires & wire_remote_tx))
 			return
 
 		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[freq]")
@@ -843,6 +817,7 @@
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
 		signal.transmission_method = 1
+		signal.data["sender"] = src.botnet_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
 			//boutput(world, "sent [key],[keyval[key]] on [freq]")

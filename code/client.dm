@@ -1025,6 +1025,19 @@ var/global/curr_day = null
 		return 1
 	return 0
 
+/client/verb/toggle_camera_recoil()
+	set hidden = 1
+	set name = "toggle-camera-recoil"
+
+	if (!src.recoil_controller)
+		src.recoil_controller = new/datum/recoil_controller(src)
+
+	if ((winget(src, "menu.toggle_camera_recoil", "is-checked") == "true"))
+		src.recoil_controller?.enable()
+
+	else
+		src.recoil_controller?.disable()
+
 /client/proc/setJoinDate()
 	joined_date = ""
 

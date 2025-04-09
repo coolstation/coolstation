@@ -931,6 +931,21 @@
 	doants = 0
 	food_effects = list("food_explosion_resist")
 
+/obj/item/reagent_containers/food/snacks/peanuts
+	name = "\improper Discount Dan's peanut peananza"
+	desc = "A sack of cheap peanuts, about what you'd expect."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "peanuts"
+	amount = 4
+	initial_volume = 30
+	initial_reagents = list("packing_peanuts"=20, "salt" = 5)
+
+/obj/item/reagent_containers/food/snacks/peanuts/salty
+	name = "\improper Discount Dan's peanut peananza - extra salty"
+	desc = "A sack of cheap peanuts, but with even more salt than the regular kind. Excellent!"
+	icon_state = "peanuts-saltier"
+	initial_reagents = list("salt"=20, "packing_peanuts" = 5)
+
 /obj/item/reagent_containers/food/snacks/popcorn
 	name = "popcorn"
 	desc = "Pop that corn!"

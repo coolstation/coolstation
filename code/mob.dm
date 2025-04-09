@@ -124,6 +124,7 @@
 	var/say_language = "english"
 	var/literate = 1 // im liturit i kin reed an riet
 
+
 	var/list/movement_modifiers = list()
 
 	var/misstep_chance = 0
@@ -2440,6 +2441,38 @@
 	if (src.hasStatus("handcuffed"))
 		src.handcuffs.destroy_handcuffs(src)
 	src.bodytemperature = src.base_body_temp
+	if (src.stat > 1)
+		setalive(src)
+
+/mob/proc/part_heal()
+
+	src.HealDamage("All",max(src.get_brute_damage() - 90, 0),max(src.get_burn_damage() - 90, 0),max(src.get_toxin_damage() - 90, 0) )
+	src.take_oxygen_deprivation(-100)
+	src.drowsyness = 0
+	src.stuttering = 0
+	src.losebreath = 0
+	/*
+	src.delStatus("paralysis")
+	src.delStatus("stunned")
+	src.delStatus("weakened")
+	src.delStatus("slowed")
+	src.delStatus("burning")
+	src.delStatus("radiation")
+	src.delStatus("n_radiation")
+	src.change_eye_blurry(-INFINITY)
+	src.take_eye_damage(-INFINITY)
+	src.take_eye_damage(-INFINITY, 1)
+	src.take_ear_damage(-INFINITY)
+	src.take_ear_damage(-INFINITY, 1)*/
+	src.take_brain_damage(-INFINITY)
+	/*
+	src.health = src.max_health
+	src.buckled = null
+
+	if (src.hasStatus("handcuffed"))
+		src.handcuffs.destroy_handcuffs(src)
+	src.bodytemperature = src.base_body_temp
+	*/
 	if (src.stat > 1)
 		setalive(src)
 
