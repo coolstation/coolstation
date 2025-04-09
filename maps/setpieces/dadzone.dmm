@@ -4476,7 +4476,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour0;desc=Test! ";
 	freq = 1443;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "station tour beacon"
 	},
 /turf/floor/specialroom/cafeteria,
@@ -4484,7 +4484,7 @@
 "kk" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol";
-	location = "bar"
+	beacon_id = "bar"
 	},
 /turf/floor/specialroom/cafeteria,
 /area/sim/area1)
@@ -4492,7 +4492,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour1;desc=Hello! Welcome to to the Nanotrasen C-Class Orbital Facility Tour! I will be your tourguide today on this adventure! Let's get started!";
 	freq = 1443;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "tour beacon - start"
 	},
 /turf/floor/specialroom/cafeteria,

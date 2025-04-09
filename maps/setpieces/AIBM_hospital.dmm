@@ -5159,7 +5159,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour0;desc=Test! ";
 	freq = 1443;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "station tour beacon"
 	},
 /turf/floor/specialroom/cafeteria,
@@ -5167,7 +5167,7 @@
 "nj" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol";
-	location = "bar"
+	beacon_id = "bar"
 	},
 /turf/floor/specialroom/cafeteria,
 /area/sim/area1)
@@ -5175,7 +5175,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour1;desc=Hello! Welcome to to the Nanotrasen C-Class Orbital Facility Tour! I will be your tourguide today on this adventure! Let's get started!";
 	freq = 1443;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "tour beacon - start"
 	},
 /turf/floor/specialroom/cafeteria,
@@ -5958,7 +5958,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov3";
 	freq = 1440;
-	location = "sov2"
+	beacon_id = "sov2"
 	},
 /turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
@@ -6541,7 +6541,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov6";
 	freq = 1440;
-	location = "sov5"
+	beacon_id = "sov5"
 	},
 /turf/floor{
 	icon_state = "floor"
@@ -6562,7 +6562,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov2";
 	freq = 1440;
-	location = "sov1"
+	beacon_id = "sov1"
 	},
 /turf/floor{
 	icon_state = "floor"
@@ -6933,7 +6933,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov5";
 	freq = 1440;
-	location = "sov4"
+	beacon_id = "sov4"
 	},
 /obj/stool,
 /turf/floor/carpet/office,
@@ -6954,7 +6954,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov4";
 	freq = 1440;
-	location = "sov3"
+	beacon_id = "sov3"
 	},
 /turf/floor/blackwhite/whitegrime,
 /area/hospital/samostrel)
@@ -7340,7 +7340,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov7";
 	freq = 1440;
-	location = "sov6"
+	beacon_id = "sov6"
 	},
 /turf/floor/engine,
 /area/hospital/samostrel)
@@ -8156,7 +8156,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sov1";
 	freq = 1440;
-	location = "sov7"
+	beacon_id = "sov7"
 	},
 /turf/floor{
 	icon = 'icons/turf/shuttle.dmi';

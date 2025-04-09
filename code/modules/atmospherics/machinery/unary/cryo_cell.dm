@@ -173,7 +173,7 @@
 			beaker_text = "<B>Beaker:</B> <A href='byond://?src=\ref[src];eject=1'>Eject</A><BR>"
 			beaker_text += "<B>Beaker Contents:</B> <A href='byond://?src=\ref[src];show_beaker_contents=1'>[show_beaker_contents ? "Hide" : "Show"]</A> "
 			if (show_beaker_contents)
-				beaker_text += "<BR>[scan_reagents(src.beaker)]"
+				beaker_text += "<BR>[scan_reagents(src.beaker, show_volume = 1)]"
 		else
 			beaker_text = "<B>Beaker:</B> <FONT color=red>No beaker loaded</FONT>"
 
