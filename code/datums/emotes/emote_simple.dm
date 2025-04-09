@@ -316,6 +316,16 @@
 	cry
 		enact(mob/user, voluntary = 0, param) //fuck you for having non-matching strings you piece of shit
 			if (!ismuzzled(user))
+				var/corner = FALSE
+				for (var/direction as anything in cardinal)
+					var/turf/T1 = get_step(user, direction)
+					if (!(T1.CanPass(user, T1)))
+						var/turf/T2 = get_step(user, turn(direction,90))
+						if (!(T2.CanPass(user, T2)))
+							corner = TRUE
+							break
+				if (corner)
+					return list("<B>[user]</B> cries in the corner.", "<I>cries in the corner</I>", MESSAGE_AUDIBLE)
 				return list("<B>[user]</B> cries.", "<I>cries</I>", MESSAGE_AUDIBLE)
 			else
 				return list("<B>[user]</B> makes an odd noise. A tear runs down [his_or_her(user)] face.", "<I>makes an odd noise</I>", MESSAGE_AUDIBLE)

@@ -17,6 +17,9 @@
 	var/amount_per_transfer_from_this = 10
 	var/capacity
 
+	///inheritance for these is kinda a mess, all the reagent carts are separated but then water coolers are a subtype of the water carts????????
+	var/can_break = FALSE //so fuck it
+
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/cargotele))
 			W:cargoteleport(src, user)
@@ -31,28 +34,22 @@
 		if (dist <= 2 && reagents)
 			. += "<br><span class='notice'>[reagents.get_description(user,RC_SCALE)]</span>"
 
-	proc/smash()
+	proc/smash(die = TRUE)
 		var/turf/T = get_turf(src)
 		if(T)
 			T.fluid_react(src.reagents, min(src.reagents.total_volume,10000))
+		if (die || src.reagents.maximum_volume == 0 || can_break == FALSE)
+			qdel(src)
+		src.icon_state = "[initial(src.icon_state)]-busted"
 		src.reagents.clear_reagents()
-		qdel(src)
+		src.reagents.maximum_volume = 0
+
+
 
 	ex_act(severity)
-		switch(severity)
-			if (OLD_EX_SEVERITY_1)
-				smash()
-				return
-			if (OLD_EX_SEVERITY_2)
-				if (prob(50))
-					smash()
-					return
-			if (OLD_EX_SEVERITY_3)
-				if (prob(5))
-					smash()
-					return
-			else
-		return
+		//welding tanks explode at a bit over 10 power, and I'd like them to break but not disappear when that happens.
+		if (prob(12*severity - 20)) //at least ~2 power to start breaking, guaranteed break at 10
+			smash(prob(10*severity - 200)) //0% chance to disappear outright at 10 power, guaranteed at 20
 
 	blob_act(var/power)
 		if (prob(25))
@@ -161,6 +158,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "foamtank"
 	amount_per_transfer_from_this = 25
+	can_break = TRUE
 
 	New()
 		..()
@@ -172,7 +170,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 25
-	capacity = 1000
+	capacity = 4000 //a thousand? for a cart this size? Even 4k is lowballing it but whatever.
+	can_break = TRUE
 
 	New()
 		..()
@@ -211,6 +210,7 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR
 	mats = 8
 	capacity = 500
+	can_break = FALSE
 
 	var/has_tank = 1
 
@@ -344,6 +344,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 25
+	can_break = TRUE
 
 	New()
 		..()
@@ -382,7 +383,7 @@
 			circle.pellet_shot_volume = 0
 			circle.pellets_to_fire = 12
 			shoot_projectile_ST_pixel_spread(get_turf(src), circle, get_step(src, NORTH))
-		src.smash()
+		//src.smash(FALSE) These spawn an explosion on self already
 		return TRUE
 
 /obj/reagent_dispensers/heliumtank
@@ -391,6 +392,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "heliumtank"
 	amount_per_transfer_from_this = 25
+	can_break = TRUE
 
 	New()
 		..()

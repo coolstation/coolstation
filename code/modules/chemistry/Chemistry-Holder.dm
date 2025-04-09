@@ -43,6 +43,7 @@ datum
 		var/combustible_volume = 0
 		var/composite_combust_speed = 0
 		var/composite_combust_temp = 0
+		var/composite_combust_energy = 0
 		var/composite_volatility = 0
 		var/combustible_pressure = 0
 
@@ -679,20 +680,20 @@ datum
 				switch (burn_volatility)
 					if (0 to 6)
 						for (var/turf/T in src.covered_turf())
-							fireflash_s(T, 0, src.composite_combust_temp)
+							fireflash_s(T, 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
 					if (6 to 15)
 						burn_speed *= 1.25
 						for (var/turf/T in src.covered_turf())
-							fireflash_s(T, 0, src.composite_combust_temp)
-						if (prob(burn_volatility * 5) && length(src.covered_turf())) // from 30 to 75% chance
-							var/turf/chosen_turf = pick(src.covered_turf()) // chance to cause an additional, brighter fireball
+							fireflash_s(T, 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
+						if (prob(burn_volatility * 5) && length(src.covered_turf())) // from 30 to 75% chance to cause an additional, brighter fireball
+							var/turf/chosen_turf = pick(src.covered_turf()) // intentionally no thermal energy
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 					if (15 to INFINITY)
 						burn_speed *= 2
 						for (var/turf/T in src.covered_turf())
-							fireflash_sm(T, 0, src.composite_combust_temp, 0)
-						if (prob((burn_volatility) * 2 + 40) && length(src.covered_turf())) // from 70 to 100% chance
-							var/turf/chosen_turf = pick(src.covered_turf()) // chance to cause an additional, brighter fireball
+							fireflash_sm(T, 0, src.composite_combust_temp, 0, energy = src.composite_combust_energy * burn_speed / src.combustible_volume)
+						if (prob((burn_volatility) * 2 + 40) && length(src.covered_turf())) // from 70 to 100% chance to cause an additional, brighter fireball
+							var/turf/chosen_turf = pick(src.covered_turf()) // intentionally no thermal energy
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 							if (prob(50))
 								chosen_turf = pick(src.covered_turf()) // and 50% after that to cause an additional small explosion
@@ -732,18 +733,18 @@ datum
 
 				switch(burn_volatility)
 					if (2 to 5) // Unsafe, leaking flames
-						fireflash_s(get_turf(src.my_atom), 0, src.composite_combust_temp)
+						fireflash_s(get_turf(src.my_atom), 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
 					if (5 to 14) // Very spicy fire that maybe breaks stuff
 						burn_speed *= 2
 						var/fireflash_size = clamp(((burn_volatility - 5) / 3), 0, 2)
-						fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1))
+						fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
 					if (14 to INFINITY) // splatter chems and break
 						var/turf/T = get_turf(src.my_atom)
 						var/explosion_size = clamp(((burn_volatility - 5) / 3), 0, 4)
-						fireflash_sm(T, explosion_size, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size + 1))
+						fireflash_sm(T, explosion_size, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size + 1), energy = src.composite_combust_energy)
 						explosion_size = clamp(((burn_volatility - 14) * (combustible_volume ** 0.33) / 3), 0, 6)
 						explosion(src.my_atom, T, -1,-1,explosion_size/2,explosion_size)
 						if (istype(src.my_atom, /obj))
@@ -794,7 +795,7 @@ datum
 						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 6, 0.25, 1.25), 1, 7)
 						M.visible_message("<span class='alert'><b>[M]</b> explodes!</span>",self_message = "<span class='combat bold'>You explode!<span class='alert'>", blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1))
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1), src.composite_combust_energy)
 						burn_speed = INFINITY
 
 				else
@@ -807,7 +808,7 @@ datum
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
 							var/fireflash_size = max(round(src.combustible_pressure) / 3 - 2, 0)
-							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1))
+							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
 							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
@@ -817,7 +818,7 @@ datum
 						var/explosion_size = clamp((burn_volatility) / 3 * clamp((combustible_volume ** 0.33) / 10, 0.25, 1.25), 1, 8)
 						src.my_atom.visible_message("<span class='alert'>[src.my_atom] explodes!</span>",blind_message = "<span class='alert'>You hear a loud bang!<span class='alert'>")
 						explosion(my_atom, T, explosion_size / 4, explosion_size / 2, explosion_size - 1,explosion_size + 1)
-						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1))
+						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1), energy = src.composite_combust_energy * burn_speed / src.combustible_volume)
 						if (isobj(my_atom))
 							var/obj/O = my_atom
 							if (!O.shatter_chemically(projectiles = TRUE))
@@ -840,6 +841,7 @@ datum
 			total_volume = 0
 			combustible_volume = 0
 			composite_combust_speed = 0
+			composite_combust_energy = 0
 			composite_combust_temp = 0
 			composite_volatility = 0
 
@@ -855,6 +857,7 @@ datum
 						if (current_reagent.flammable_influence)
 							combustible_volume += current_reagent.volume
 							composite_combust_speed += current_reagent.burn_speed * current_reagent.volume
+							composite_combust_energy += current_reagent.burn_energy * current_reagent.volume
 							composite_combust_temp += current_reagent.burn_temperature * current_reagent.volume
 							composite_volatility += current_reagent.burn_volatility * current_reagent.volume
 

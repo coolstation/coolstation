@@ -30,6 +30,7 @@ datum
 		var/combusts_on_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire
 		var/combusts_on_gaseous_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire while aerosolized
 		var/burn_speed = 0 // Speed at which a chem burns
+		var/burn_energy = 0 // The energy a chemical releases when burnt, in Joules per unit
 		var/burn_volatility = 0 // How violently it burns
 		var/burn_temperature = 0 // Temperature at which a chem burns
 		var/reacting = 0 // fuck off chemist spam
@@ -57,6 +58,7 @@ datum
 		var/random_chem_blacklisted = 0 // will not appear in random chem sources oddcigs/artifacts/etc
 		var/boiling_point = T0C + 100
 		var/can_crack = 0 // used by organic chems
+		var/contraband = 0 // bastards hate this shit
 
 		New()
 			..()

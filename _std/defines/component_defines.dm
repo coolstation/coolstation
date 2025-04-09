@@ -299,6 +299,12 @@
 /// vehicle goes off of in_transit and is ready to move again (this one's after those vars get updated)
 #define COMSIG_TRANSIT_VEHICLE_READY "transit_ready"
 
+// ---- ui signals ----
+/// a ui map is fully loaded (client)
+#define COMSIG_UIMAP_LOADED "uimap_loaded"
+/// a ui is visible enough to show a uimap, on client
+#define COMSIG_UI_VISIBLE "ui_visible"
+
 // ---- broadcasting signals ----
 //Uncomment these as you need them
 

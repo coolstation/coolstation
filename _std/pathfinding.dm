@@ -34,6 +34,41 @@
 		if (traverseNum > maxtraverse)
 			return null // if we reach this part, there's no more nodes left to explore
 
+/proc/NavBeaconAStar(obj/machinery/navbeacon/start, obj/machinery/navbeacon/end, adjacent, heuristic, maxtraverse = 20, max_stop_dist = 48, obj/machinery/navbeacon/exclude = null)
+	if(isnull(end) || isnull(start))
+		return
+	var/list/obj/machinery/navbeacon/open = list(start)
+	var/list/obj/machinery/navbeacon/nodeParent = list()
+	var/list/nodeGcost = list()
+
+	var/traverseNum = 0
+	while (traverseNum++ < length(open))
+		var/obj/machinery/navbeacon/current = open[traverseNum]
+		var/tentativeGScore = nodeGcost[current]
+		if (current == end)
+			var/list/reconstructed_path = list()
+			while (current)
+				reconstructed_path.Insert(1, current)
+				current = nodeParent[current]
+			return reconstructed_path
+
+		var/list/obj/machinery/navbeacon/neighbors = call(current, adjacent)(max_stop_dist)
+		for (var/obj/machinery/navbeacon/neighbor in neighbors)
+			if ((neighbor in open) || neighbor == exclude)
+				continue
+			var/gScore = tentativeGScore + neighbors[neighbor]
+			var/fScore = gScore + call(get_turf(neighbor), heuristic)(end)
+
+			for (var/i = traverseNum; i <= length(open);)
+				if (i++ == length(open) || open[open[i]] >= fScore)
+					open.Insert(i, neighbor)
+					open[neighbor] = fScore
+					break
+			nodeGcost[neighbor] = gScore
+			nodeParent[neighbor] = current
+
+		if (traverseNum > maxtraverse)
+			return null // if we reach this part, there's no more nodes left to explore
 
 //#define DEBUG_ASTAR
 
@@ -385,14 +420,11 @@ var/static/obj/item/card/id/ALL_ACCESS_CARD
 
 
 
-
-
-
 /turf/proc
 	AdjacentTurfs()
 		. = list()
 		for(var/turf/t in oview(src,1))
-			if (istype(t, /turf/space)) //Judging from this previously looking for simmed turfs and the proc names here, I presume this is correct
+			if (istype_exact(t, /turf/space)) //Judging from this previously looking for simmed turfs and the proc names here, I presume this is correct
 				continue
 			if(!t.density)
 				if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
