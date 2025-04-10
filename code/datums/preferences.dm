@@ -885,7 +885,8 @@ datum/preferences
 
 			if ("json-import")
 				var/rawjson = input(usr, "Paste raw JSON data here","JSON Import",src.pin) as null|text
-				if(rawjson)
+
+				if(rawjson && isThisShitEvenJson(rawjson))//is this actually json? it better be pal
 					src.json_to_character(client,rawjson)
 				else
 					boutput(usr, "<b><span class='alert'>JSON import failed</b></span>")

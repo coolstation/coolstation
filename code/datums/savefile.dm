@@ -23,11 +23,6 @@
 
 		if(decodedJSON["traits"])
 			src.traitPreferences.traits_selected = decodedJSON["traits"]
-		var/datum/mutantrace/mutantRace = null
-		for (var/ID in decodedJSON["traits"])
-			var/obj/trait/T = getTraitById(ID)
-			if (T?.mutantRace)
-				mutantRace = T.mutantRace
 
 		src.real_name << decodedJSON["real_name"]
 		src.name_first = decodedJSON["name_first"]
@@ -42,7 +37,7 @@
 		src.pda_ringtone_index = decodedJSON["pda_ringtone_index"]
 		src.random_blood = decodedJSON["random_blood"]
 		src.blType = decodedJSON["blood_type"]
-		boutput(usr, "<b><span class='alert'>char details loaded</b></span>")
+		//boutput(usr, "<b><span class='alert'>char details loaded</b></span>")
 		//boutput(usr, "<b><span class='alert'>DEBUG list first name: [decodedJSON["name_first"]], src name: [src.name_first]</b></span>")
 
 		// Records
@@ -50,7 +45,7 @@
 		src.flavor_text = decodedJSON["flavor_text"]
 		src.medical_note = decodedJSON["medical_note"]
 		src.security_note = decodedJSON["security_note"]
-		boutput(usr, "<b><span class='alert'>DEBUG record details loaded</b></span>")
+		//boutput(usr, "<b><span class='alert'>DEBUG record details loaded</b></span>")
 		// Randomize appearances
 		src.be_random_name = decodedJSON["name_is_always_random"]
 		src.be_random_look = decodedJSON["look_is_always_random"]
@@ -84,9 +79,10 @@
 		boutput(usr, "<b><span class='alert'>Character [decodedJSON["name_first"]] loaded.</b></span>")
 		return 1
 
-	savefile_to_json(client/user, profileNum = 1)
+	savefile_to_json(client/user)
 		var/savefile/F
 		var/list/export = list()
+		var/profileNum = src.profile_number
 		var/jsonExport
 		F = new /savefile(src.savefile_path(user), -1)
 
@@ -110,6 +106,8 @@
 		F["[profileNum]_flavor_text"] >> export["flavor_text"]
 		F["[profileNum]_medical_note"] >> export["medical_note"]
 		F["[profileNum]_security_note"] >> export["security_note"]
+
+		F["[profileNum]_traits"] >> export["traits"]
 
 		//rando character stuff, this might not be useful for the webapp.
 		F["[profileNum]_name_is_always_random"] >> export["name_is_always_random"]
@@ -136,7 +134,7 @@
 			F["[profileNum]_underwear_style_name"] >> export["underwear_style_name"]
 			F["[profileNum]_underwear_color"] >> export["underwear_color"]
 
-		F["[profileNum]_traits"] >> export["traits"]
+
 
 		jsonExport = json_encode(export)
 		return jsonExport
