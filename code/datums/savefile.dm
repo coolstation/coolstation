@@ -20,6 +20,9 @@
 		src.profile_number = profileNum
 		var/list/decodedJSON = list()
 		decodedJSON = json_decode(JSON)
+		if(!legal_json_check(decodedJSON))
+			boutput(usr, "<b><span class='alert'>JSON data corrupted, aborting.</b></span>")
+			return 0
 
 		if(decodedJSON["traits"])
 			src.traitPreferences.traits_selected = decodedJSON["traits"]
@@ -607,3 +610,5 @@
 
 		user.player.cloudsaves.Remove( name )
 		return 1
+
+
