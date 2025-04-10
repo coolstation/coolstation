@@ -18,7 +18,8 @@
 	json_to_character(client/user, var/JSON) //doesn't even need to deal with savefiles tbh, this is only here just so it's next to savefile_to_json
 		if(IsGuestKey(user.key))
 			return 0
-		var/list/decodedJSON = json_decode(JSON)
+		var/list/decodedJSON = list()
+		decodedJSON = json_decode(JSON)
 		src.real_name << decodedJSON["real_name"]
 		src.name_first << decodedJSON["name_first"]
 		src.name_middle << decodedJSON["name_middle"]
@@ -64,6 +65,9 @@
 			AH.underwear << decodedJSON["underwear_style_name"]
 			AH.u_color << decodedJSON["underwear_color"]
 
+		//debug
+		boutput(usr, "<b><span class='alert'>DEBUG LNAME [decodedJSON["name_last"]]</b></span>")
+		return 1
 
 	savefile_to_json(client/user, profileNum = 1)
 		if (IsGuestKey(user.key))

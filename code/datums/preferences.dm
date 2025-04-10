@@ -878,6 +878,20 @@ datum/preferences
 				src.profile_modified = TRUE
 				return TRUE
 
+			if ("json-export")
+				var/json = savefile_to_json(usr)
+				boutput(usr, "<b><span class='alert'>Char JSON: </b>[json]</span>")
+				return TRUE
+
+			if ("json-import")
+				var/rawjson = input(usr, "Paste raw JSON data here","JSON Import",src.pin) as null|text
+				if(rawjson)
+					src.json_to_character(client,rawjson)
+				else
+					boutput(usr, "<b><span class='alert'>JSON import failed</b></span>")
+				return TRUE
+
+
 			if ("reset")
 				src.profile_modified = TRUE
 
