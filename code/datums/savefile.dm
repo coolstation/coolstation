@@ -20,6 +20,15 @@
 		src.profile_number = profileNum
 		var/list/decodedJSON = list()
 		decodedJSON = json_decode(JSON)
+
+		if(decodedJSON["traits"])
+			src.traitPreferences.traits_selected = decodedJSON["traits"]
+		var/datum/mutantrace/mutantRace = null
+		for (var/ID in decodedJSON["traits"])
+			var/obj/trait/T = getTraitById(ID)
+			if (T?.mutantRace)
+				mutantRace = T.mutantRace
+
 		src.real_name << decodedJSON["real_name"]
 		src.name_first = decodedJSON["name_first"]
 		src.name_middle = decodedJSON["name_middle"]
@@ -61,9 +70,9 @@
 			AH.customization_second_color = decodedJSON["facial_color"]
 			AH.customization_third_color = decodedJSON["detail_color"]
 			AH.s_tone = decodedJSON["skin_tone"]
-			AH.customization_first = decodedJSON["hair_style_name"]
-			AH.customization_second = decodedJSON["facial_style_name"]
-			AH.customization_third = decodedJSON["detail_style_name"]
+			AH.customization_first = find_style_by_name(decodedJSON["hair_style_name"])
+			AH.customization_second = find_style_by_name(decodedJSON["facial_style_name"])
+			AH.customization_third = find_style_by_name(decodedJSON["detail_style_name"])
 			AH.underwear = decodedJSON["underwear_style_name"]
 			AH.u_color = decodedJSON["underwear_color"]
 			//boutput(usr, "<b><span class='alert'>DEBUG AH details loaded</b></span>")
