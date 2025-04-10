@@ -33,8 +33,8 @@
 		src.pda_ringtone_index = decodedJSON["pda_ringtone_index"]
 		src.random_blood = decodedJSON["random_blood"]
 		src.blType = decodedJSON["blood_type"]
-		boutput(usr, "<b><span class='alert'>DEBUG char details loaded</b></span>")
-		boutput(usr, "<b><span class='alert'>DEBUG list first name: [decodedJSON["name_first"]], src name: [src.name_first]</b></span>")
+		boutput(usr, "<b><span class='alert'>char details loaded</b></span>")
+		//boutput(usr, "<b><span class='alert'>DEBUG list first name: [decodedJSON["name_first"]], src name: [src.name_first]</b></span>")
 
 		// Records
 		src.pin = decodedJSON["pin"]
@@ -66,10 +66,11 @@
 			AH.customization_third = decodedJSON["detail_style_name"]
 			AH.underwear = decodedJSON["underwear_style_name"]
 			AH.u_color = decodedJSON["underwear_color"]
-			boutput(usr, "<b><span class='alert'>DEBUG AH details loaded</b></span>")
-			boutput(usr, "<b><span class='alert'>DEBUG list eye color: [decodedJSON["eye_color"]], src color: [AH.e_color]</b></span>")
-		src.traitPreferences.traits_selected = decodedJSON["traits"]
-		boutput(usr, "<b><span class='alert'>DEBUG LNAME [decodedJSON["name_last"]]</b></span>")
+			//boutput(usr, "<b><span class='alert'>DEBUG AH details loaded</b></span>")
+			//boutput(usr, "<b><span class='alert'>DEBUG list eye color: [decodedJSON["eye_color"]], src color: [AH.e_color]</b></span>")
+		if(decodedJSON["traits"])
+			src.traitPreferences.traits_selected = decodedJSON["traits"]
+		boutput(usr, "<b><span class='alert'>Character [decodedJSON["name_first"]] loaded.</b></span>")
 		return 1
 
 	savefile_to_json(client/user, profileNum = 1)
