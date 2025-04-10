@@ -15,9 +15,9 @@
 		return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey].sav"
 
 
-	json_to_character(client/user, var/JSON) //doesn't even need to deal with savefiles tbh, this is only here just so it's next to savefile_to_json
-		if(IsGuestKey(user.key))
-			return 0
+	json_to_character(client/user, var/JSON, var/profileNum) //doesn't even need to deal with savefiles tbh, this is only here just so it's next to savefile_to_json
+
+		src.profile_number = profileNum
 		var/list/decodedJSON = list()
 		decodedJSON = json_decode(JSON)
 		src.real_name << decodedJSON["real_name"]
@@ -33,13 +33,15 @@
 		src.pda_ringtone_index << decodedJSON["pda_ringtone_index"]
 		src.random_blood << decodedJSON["random_blood"]
 		src.blType << decodedJSON["blood_type"]
+		boutput(usr, "<b><span class='alert'>DEBUG char details loaded</b></span>")
+		boutput(usr, "<b><span class='alert'>DEBUG list first name: [decodedJSON["name_first"]], src name: [src.name_first]</b></span>")
 
 		// Records
 		src.pin << decodedJSON["pin"]
 		src.flavor_text << decodedJSON["flavor_text"]
 		src.medical_note << decodedJSON["medical_note"]
 		src.security_note << decodedJSON["security_note"]
-
+		boutput(usr, "<b><span class='alert'>DEBUG record details loaded</b></span>")
 		// Randomize appearances
 		src.be_random_name << decodedJSON["name_is_always_random"]
 		src.be_random_look << decodedJSON["look_is_always_random"]
@@ -64,14 +66,14 @@
 			AH.customization_third << decodedJSON["detail_style_name"]
 			AH.underwear << decodedJSON["underwear_style_name"]
 			AH.u_color << decodedJSON["underwear_color"]
+			boutput(usr, "<b><span class='alert'>DEBUG AH details loaded</b></span>")
+			boutput(usr, "<b><span class='alert'>DEBUG list eye color: [decodedJSON["eye_color"]], src color: [AH.e_color]</b></span>")
 
 		//debug
 		boutput(usr, "<b><span class='alert'>DEBUG LNAME [decodedJSON["name_last"]]</b></span>")
 		return 1
 
 	savefile_to_json(client/user, profileNum = 1)
-		if (IsGuestKey(user.key))
-			return 0
 		var/savefile/F
 		var/list/export = list()
 		var/jsonExport
