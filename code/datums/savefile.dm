@@ -21,55 +21,54 @@
 		var/list/decodedJSON = list()
 		decodedJSON = json_decode(JSON)
 		src.real_name << decodedJSON["real_name"]
-		src.name_first << decodedJSON["name_first"]
-		src.name_middle << decodedJSON["name_middle"]
-		src.name_last << decodedJSON["name_last"]
-		src.gender << decodedJSON["gender"]
-		src.age << decodedJSON["age"]
-		AH.fartsound << decodedJSON["fartsound"]
-		AH.screamsound << decodedJSON["screamsound"]
-		AH.voicetype << decodedJSON["voicetype"]
-		src.PDAcolor << decodedJSON["PDAcolor"]
-		src.pda_ringtone_index << decodedJSON["pda_ringtone_index"]
-		src.random_blood << decodedJSON["random_blood"]
-		src.blType << decodedJSON["blood_type"]
+		src.name_first = decodedJSON["name_first"]
+		src.name_middle = decodedJSON["name_middle"]
+		src.name_last = decodedJSON["name_last"]
+		src.gender = decodedJSON["gender"]
+		src.age = decodedJSON["age"]
+		AH.fartsound = decodedJSON["fartsound"]
+		AH.screamsound = decodedJSON["screamsound"]
+		AH.voicetype = decodedJSON["voicetype"]
+		src.PDAcolor = decodedJSON["PDAcolor"]
+		src.pda_ringtone_index = decodedJSON["pda_ringtone_index"]
+		src.random_blood = decodedJSON["random_blood"]
+		src.blType = decodedJSON["blood_type"]
 		boutput(usr, "<b><span class='alert'>DEBUG char details loaded</b></span>")
 		boutput(usr, "<b><span class='alert'>DEBUG list first name: [decodedJSON["name_first"]], src name: [src.name_first]</b></span>")
 
 		// Records
-		src.pin << decodedJSON["pin"]
-		src.flavor_text << decodedJSON["flavor_text"]
-		src.medical_note << decodedJSON["medical_note"]
-		src.security_note << decodedJSON["security_note"]
+		src.pin = decodedJSON["pin"]
+		src.flavor_text = decodedJSON["flavor_text"]
+		src.medical_note = decodedJSON["medical_note"]
+		src.security_note = decodedJSON["security_note"]
 		boutput(usr, "<b><span class='alert'>DEBUG record details loaded</b></span>")
 		// Randomize appearances
-		src.be_random_name << decodedJSON["name_is_always_random"]
-		src.be_random_look << decodedJSON["look_is_always_random"]
+		src.be_random_name = decodedJSON["name_is_always_random"]
+		src.be_random_look = decodedJSON["look_is_always_random"]
 
 		// AppearanceHolder details
 		if (src.AH)
-			AH.pronouns.name << decodedJSON["pronouns"]
-			AH.pronouns.preferredGender << decodedJSON["pronouns_preferredGender"]
-			AH.pronouns.subjective << decodedJSON["pronouns_subjective"]
-			AH.pronouns.objective << decodedJSON["pronouns_objective"]
-			AH.pronouns.possessive << decodedJSON["pronouns_possessive"]
-			AH.pronouns.posessivePronoun << decodedJSON["posessive_pronoun"]
-			AH.pronouns.reflexive << decodedJSON["pronouns_reflexive"]
-			AH.pronouns.pluralize << decodedJSON["pronouns_plural"]
-			AH.e_color << decodedJSON["eye_color"]
-			AH.customization_first_color << decodedJSON["hair_color"]
-			AH.customization_second_color << decodedJSON["facial_color"]
-			AH.customization_third_color << decodedJSON["detail_color"]
-			AH.s_tone << decodedJSON["skin_tone"]
-			AH.customization_first << decodedJSON["hair_style_name"]
-			AH.customization_second << decodedJSON["facial_style_name"]
-			AH.customization_third << decodedJSON["detail_style_name"]
-			AH.underwear << decodedJSON["underwear_style_name"]
-			AH.u_color << decodedJSON["underwear_color"]
+			AH.pronouns.name = decodedJSON["pronouns"]
+			AH.pronouns.preferredGender = decodedJSON["pronouns_preferredGender"]
+			AH.pronouns.subjective = decodedJSON["pronouns_subjective"]
+			AH.pronouns.objective = decodedJSON["pronouns_objective"]
+			AH.pronouns.possessive = decodedJSON["pronouns_possessive"]
+			AH.pronouns.posessivePronoun = decodedJSON["posessive_pronoun"]
+			AH.pronouns.reflexive = decodedJSON["pronouns_reflexive"]
+			AH.pronouns.pluralize = decodedJSON["pronouns_plural"]
+			AH.e_color = decodedJSON["eye_color"]
+			AH.customization_first_color = decodedJSON["hair_color"]
+			AH.customization_second_color = decodedJSON["facial_color"]
+			AH.customization_third_color = decodedJSON["detail_color"]
+			AH.s_tone = decodedJSON["skin_tone"]
+			AH.customization_first = decodedJSON["hair_style_name"]
+			AH.customization_second = decodedJSON["facial_style_name"]
+			AH.customization_third = decodedJSON["detail_style_name"]
+			AH.underwear = decodedJSON["underwear_style_name"]
+			AH.u_color = decodedJSON["underwear_color"]
 			boutput(usr, "<b><span class='alert'>DEBUG AH details loaded</b></span>")
 			boutput(usr, "<b><span class='alert'>DEBUG list eye color: [decodedJSON["eye_color"]], src color: [AH.e_color]</b></span>")
-
-		//debug
+		src.traitPreferences.traits_selected = decodedJSON["traits"]
 		boutput(usr, "<b><span class='alert'>DEBUG LNAME [decodedJSON["name_last"]]</b></span>")
 		return 1
 
@@ -124,6 +123,8 @@
 			F["[profileNum]_detail_style_name"] >> export["detail_style_name"]
 			F["[profileNum]_underwear_style_name"] >> export["underwear_style_name"]
 			F["[profileNum]_underwear_color"] >> export["underwear_color"]
+
+		F["[profileNum]_traits"] >> export["traits"]
 
 		jsonExport = json_encode(export)
 		return jsonExport
