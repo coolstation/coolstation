@@ -178,7 +178,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency_reload + src.jam_frequency_fire]% </span></div>"
 
 	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
-	. += "<div> <span>Maxcap: [src.max_ammo_capacity] </span></div>"
+	. += "<div> <span>Maxcap: [src.max_ammo_capacity + 1] </span></div>"
 	. += "<div> <span>Loaded: [src.ammo_list.len + (src.current_projectile?1:0)] </span></div>"
 
 	lastTooltipContent = .
@@ -1004,7 +1004,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
-	if(bulk >= 6 || flashbulb_only) //flashfoss always two hands, how else will you crank off
+	if(bulk > 6 || flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
 		src.can_dual_wield = FALSE
 		//if(!foregrip)
@@ -1040,7 +1040,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	accessory_on_fire = 0
 	accessory_on_cycle = 0
 	flash_auto = 0
-	bulk = 0
+	bulk = bulkiness
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
@@ -1160,7 +1160,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "nt_short" //or nt_long
 	var/electrics_intact = FALSE //the grody autoloading ID locked snitchy smart gun parts that are just begging to be microwaved, emagged, or simply pried and cut out
-
+	spread_angle = 6
 
 ABSTRACT_TYPE(/obj/item/gun/modular/NT/short)
 /obj/item/gun/modular/NT/short
@@ -1194,7 +1194,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_BULLPUP
 	bullpup_stock = 1 //for the overlay
-	spread_angle = 4
+	spread_angle = 5
 	jam_frequency_fire = 2
 	jam_frequency_reload = 4
 
@@ -1304,6 +1304,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 			grip = new /obj/item/gun_parts/grip/NT/stub(src)
 		else
 			grip = new /obj/item/gun_parts/grip/NT/guardless(src)
+
+/obj/item/gun/modular/NT/short/pistol_sec
+	name = "\improper NT pistol"
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/NT/long/padded(src)
+		if(prob(10))
+			grip = new /obj/item/gun_parts/grip/NT/fancy(src)
+		else if(prob(10))
+			grip = new /obj/item/gun_parts/grip/NT/ceremonial(src)
+		else
+			grip = new /obj/item/gun_parts/grip/NT/stub(src)
+
 
 //single shot, no stock, intended for shotgun shell
 /obj/item/gun/modular/NT/short/bartender

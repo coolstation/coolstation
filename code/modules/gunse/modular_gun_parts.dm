@@ -299,7 +299,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 		..()
 		if(!my_gun)
 			return
-
+		my_gun.max_ammo_capacity += src.max_ammo_capacity
 		my_gun.spread_angle = max(0, (my_gun.spread_angle + src.spread_angle)) // so we cant dip below 0
 
 		my_gun.name = src.name_addition + " " + my_gun.name
@@ -653,19 +653,22 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		name_addition = "rusty"
 
 	ceremonial
+		max_ammo_capacity = 1
 		name = "ceremonial standard grip"
 		icon_state = "nt_ceremonial"
 		name_addition = "shmancy"
 
 	fancy
+		max_ammo_capacity = 1
 		name = "fancy standard grip"
 		icon_state = "nt_fancy"
 		name_addition = "fancy"
 
 	stub
+		max_ammo_capacity = 1
 		name = "stub grip"
 		icon_state = "nt_stub"
-		spread_angle = -1
+		spread_angle = 0
 		name_addition = "stubby"
 
 	wood

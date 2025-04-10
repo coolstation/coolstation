@@ -286,7 +286,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	//hos can spawn with everything, no big deal
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/enhanced)
+	slot_belt = list(/obj/item/storage/belt/security/HoS)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
 	slot_poc2 = list(/obj/item/instrument/whistle) //replaces sec starter kit
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
@@ -2411,9 +2411,9 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_mask = list(/obj/item/clothing/mask/breath)
 	slot_card = null		///obj/item/card/id/
 	slot_poc1 = list(/obj/item/reagent_containers/pill/tox)
-	slot_poc2 = list(/obj/item/storage/pouch/bullet_9mm)
+	slot_poc2 = list(/obj/item/stackable_ammo/pistol/zaubertube/ten)
 	slot_lhan = list()
-	slot_rhan = list(/obj/item/gun/kinetic/pistol)
+	slot_rhan = list(/obj/item/gun/modular/soviet/long/advanced)
 
 	special_setup(var/mob/living/carbon/human/M)
 		..()
@@ -2525,7 +2525,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_card = /obj/item/card/id/command
 	slot_poc1 = list(/obj/item/spacecash/fivehundred)
 	slot_poc2 = list(/obj/item/rubberduck)
-	items_in_backpack = list(/obj/item/gun/modular/NT/short/pistol,
+	items_in_backpack = list(/obj/item/gun/modular/NT/short/pistol_sec,
 							/obj/item/device/pda2/heads,
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/storage/firstaid/regular,
