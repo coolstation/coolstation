@@ -579,7 +579,7 @@
 	/obj/item/gun/kinetic/zipgun,
 	/obj/item/clothing/mask/gas/NTSO,
 	//obj/item/gun/energy/tasersmg,
-	/obj/item/gun/energy/signifer2, //added so the NTSO mask can be clipped to the belt, maybe good to do with all gas masks?
+	//obj/item/gun/energy/signifer2, //added so the NTSO mask can be clipped to the belt, maybe good to do with all gas masks?
 	/obj/item/device/prisoner_scanner,
 	/obj/item/gun/modular ) // in the future this migh be the only gun who knows)
 	in_list_or_max = 1
@@ -602,7 +602,11 @@
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten)
 
 	enhanced
-		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
+		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol_sec, //energy/taser_gun,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/handcuffs, /obj/item/device/flash)
+
+	HoS
+		spawn_contents = list(/obj/item/gun/modular/italian/silly, //energy/taser_gun,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/handcuffs, /obj/item/device/flash)
 
 	offense
@@ -613,8 +617,8 @@
 		spawn_contents = list(/obj/item/baton, /obj/item/reagent_containers/food/snacks/donut/custom/robust = 1,  /obj/item/reagent_containers/emergency_injector/morphine = 3, /obj/item/reagent_containers/emergency_injector/naloxone = 2)
 
 	control
-		spawn_contents = list(/obj/item/gun/modular/NT/long,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/stackable_ammo/pistol/capacitive/three)
+		spawn_contents = list(/obj/item/gun/modular/NT/long/shotty,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/stackable_ammo/scatter/slug_rubber/ten)
 		New()
 			..()
 
@@ -622,14 +626,14 @@
 		spawn_contents = list(/obj/item/barrier, /obj/item/device/detective_scanner, /obj/item/device/ticket_writer, /obj/item/stackable_ammo/pistol/capacitive/three)
 
 	ntso
-		spawn_contents = list(/obj/item/gun/energy/signifer2, /obj/item/gun/kinetic/clock_188, /obj/item/baton/ntso, /obj/item/clothing/mask/gas/NTSO, /obj/item/storage/ntso_pouch, /obj/item/barrier) //secbelt subtype that only spawns on NTSO, not in vendor
+		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol_sec, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/baton/ntso, /obj/item/clothing/mask/gas/NTSO, /obj/item/storage/ntso_pouch, /obj/item/barrier) //secbelt subtype that only spawns on NTSO, not in vendor
 
 	baton
 		spawn_contents = list(/obj/item/baton, /obj/item/barrier)
 
 	tasersmg
 		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/tasersmg,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/three)
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //

@@ -3513,3 +3513,71 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return false
 		return true
+
+
+
+/obj/machinery/vending/sause // todo: make it slather sauce on stuff instead of selling loose sauce but this is funny anyway.
+	name = "sause"
+	desc = "looks normal."
+	icon_state = "sauce"
+	icon_panel = "standard-panel"
+	icon_off = "monkey-off"
+	icon_broken = "monkey-broken"
+	icon_fallen = "monkey-fallen"
+	pay = 1
+	acceptcard = 0
+	slogan_list = list("<span style=\"font-family:'Comic Sans MS', sans-serif; \">for they <span style=\"color:#0F0;\">HIGH ROLLERS</span> out there...... </span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; \">get it on their. </span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; color: yellow; \">exclusive, premiume <span style=\"color:brown;\">GOURMéT BARBEBEQUE SAUCE.</span></span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; color:gold; \">CHRIST</span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; \">INGREGIENTS: it`s is, 100% <span style=\"color:gold;\">SAUSCE!!</span></span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; \">Cash Only.</span>")
+
+	light_r = 0.9
+	light_g = 0.6
+	light_b = 0.1
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5, cost=PAY_UNTRAINED/9)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5, cost=PAY_UNTRAINED/9)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/hotsauce, 5, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/coldsauce, 5, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/cream, 5, cost=PAY_UNTRAINED/7)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/custard, 5, cost=PAY_UNTRAINED/7)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/butters, 5, cost=PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5, cost=PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/shaker/mustard, 5, cost=PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/shaker/ketchup, 5, cost=PAY_UNTRAINED/3)
+
+/obj/machinery/vending/meat //MEAT VENDING MACHINE
+	name = "Meat4cash"
+	desc = "An exotic meat vendor."
+	icon_state = "steak"
+	icon_panel = "standard-panel"
+	icon_off = "monkey-off"
+	icon_broken = "monkey-broken"
+	icon_fallen = "monkey-fallen"
+	pay = 1
+	acceptcard = 0
+	slogan_list = list("It's meat you can buy!",
+	"Trade your money for meat!",
+	"Buy the meat! It's meat!",
+	"Why not buy the meat?",
+	"Please, please buy meat.")
+
+	light_r = 0.9
+	light_g = 0.1
+	light_b = 0.1
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat, 10, cost=PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat, 10, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat, 20, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/meatball, 5, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meatpaste, 5, cost=PAY_UNTRAINED/7)
+
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat, 2, cost=PAY_UNTRAINED, hidden=1)
+
+
