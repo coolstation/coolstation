@@ -598,7 +598,7 @@
 
 
 	standard
-		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
+		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/taser_gun,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten)
 
 	enhanced
@@ -632,7 +632,7 @@
 		spawn_contents = list(/obj/item/baton, /obj/item/barrier)
 
 	tasersmg
-		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/tasersmg,
+		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/tasersmg,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
 
 //////////////////////////////

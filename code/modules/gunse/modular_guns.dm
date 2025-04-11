@@ -28,6 +28,9 @@ giving an "average" spread for stock guns around 5-10
 //remember: no "real" guns, and that doesn't just mean real guns with different goofy names!!!!
 
 //receivers are at the center of everything, basically, so that's the part that makes a gun's a gun's
+//Try to standardize recievers as much as possible: Differentiate the guns via their parts, not the block they're put on.
+//If you want to spin off a new reciever, make sure it has: A different sprite, AND a different function- Not just numerical differences
+//EX: Soviets might have a zauber reciever in single action, and a kinetic firearm in revolver action- these two are quite distinct.
 
 // add or subtract these when building the complete gun
 #define STOCK_OFFSET_SHORT -3
@@ -60,13 +63,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	icon_state = "shittygun"
 	contraband = 0 //is this a crime gun made by and for crimers
 	inventory_counter_enabled = 1
-	var/bulk = 1 //bulkiness should also impact recoil (not as a real modeled thing but a time between shots/comedic whoopsies)
-	var/bulkiness = 1 //receivers have bulk too.
+	var/bulk = 1 //bulkiness should also impact recoil (todo)
+	var/bulkiness = 1 //receivers have bulk too. total is reset to this on build.
 
 	//offsets and parts
 	var/barrel_overlay_x = 0 //barrel attachment offset relative to standard (16,19 to 16,16) part attachment
 	var/barrel_overlay_y = 0
-	var/bullpup_stock = 0 // place stock directly behind grip and redraw receiver greebles over top to cover it again
 	var/grip_overlay_x = 0 //grip attachment offset relative to standard (12,16) attachment point on small receiver
 	var/grip_overlay_y = 0 //easiest to use templates to make it consistent: less math/offsetting
 	var/stock_overlay_x = 0 //stock attachment offset relative to standard (16,19 to 16,16) part attachment
@@ -79,8 +81,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
-	var/caliber = 0.31 //standard light barrel
-	var/cartridge_length = 20 //standard small receiver
+	var/caliber = 0 //standard light barrel
+
 
 	var/flashbulb_only = 0 // FOSS guns only
 	var/flash_auto = 0 // FOSS auto-fire setting
@@ -106,8 +108,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
 	var/accessory_on_cycle = 0 // does the accessory need to know you pressed C?
 
-	var/jam_frequency_reload = 1 //base % chance to jam on reload. Just cycle again to clear.
-	var/jam_frequency_fire = 1 //base % chance to jam on fire. Cycle to clear.
+	var/jam_frequency = 1 //base % chance to jam on reload. Just cycle again to clear.
+	//var/jam_frequency = 1 //base % chance to jam on fire. Cycle to clear.
 	//var/misfire_frequency = 1 //base % chance to fire wrong in some way
 	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately (but will after a delay, whether held or not)
 	//var/catastrophic_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user. probably not fun to have to find a screwdriver or rod and poke it out so forget that
@@ -174,8 +176,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(stock && crank_level)
 		. += "<div><span>Spring tension: [src.crank_level] </span></div>"
 
-	if(jam_frequency_fire || jam_frequency_reload)
-		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency_reload + src.jam_frequency_fire]% </span></div>"
+	if(jam_frequency)
+		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency]% </span></div>"
 
 	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
 	. += "<div> <span>Maxcap: [src.max_ammo_capacity + 1] </span></div>"
@@ -286,7 +288,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			I.set_loc(src)
 			part.add_overlay_to_gun(src,0)
 			//set the built receiver iconstate because this is sort of a WIP so, easier to figure out what the hell's going on
-			icon_state = "[initial(icon_state)]-built"
+			//icon_state = "[initial(icon_state)]-built"
 		else
 			boutput(user,"<span class='notice'><b>The [src]'s DRM prevents you from attaching [I].</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
@@ -349,17 +351,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		if (target_gun.jammed)
-			boutput(src.owner, "<span class='alert'>This gun is jammed!</span>")
+			boutput(src.owner, "<span class='alert'>This gun is jammed! (Press C to cycle)</span>")
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
 		//some hardcoded ammo incompatabilities
-		if (istype(donor_ammo, /obj/item/stackable_ammo/scatter) && !target_gun.scatter)
-			boutput(owner, "<span class='notice'>That shell won't fit the breech.</span>")
-			interrupt(INTERRUPT_ALWAYS)
-			return
-		if (target_gun.cartridge_length < donor_ammo.cartridge_length)
-			boutput(owner, "<span class='notice'>That cartridge won't fit the receiver.</span>")
+		//if (istype(donor_ammo, /obj/item/stackable_ammo/scatter) && !target_gun.scatter)
+		//	boutput(owner, "<span class='notice'>That shell won't fit the breech.</span>")
+		//	interrupt(INTERRUPT_ALWAYS)
+		//	return
+		if (target_gun.caliber < donor_ammo.caliber)
+			boutput(owner, "<span class='notice'>That cartridge won't fit the breech.</span>")
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		else if (istype(donor_ammo, /obj/item/stackable_ammo/flashbulb) && !target_gun.flashbulb_only)
@@ -444,7 +446,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				target_gun.ammo_list += donor_ammo.projectile_type
 
 				//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
-				if (prob(target_gun.jam_frequency_reload)) //jammed just because this thing sucks to load or you're clumsy
+				if (prob(target_gun.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
 					target_gun.jammed = JAM_LOAD
 					boutput(owner, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
 					interrupt(INTERRUPT_ALWAYS)
@@ -499,8 +501,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			barrel.desc += " The internal lenses have been destroyed."
 			src.lensing = 0
 			src.spread_angle += 5 // this will reset to stock when the gun is rebuilt
-			src.jam_frequency_fire += 5 // this will reset to stock when the gun is rebuilt
-			src.jam_frequency_reload += 5 // this will reset to stock when the gun is rebuilt
+			src.jam_frequency += 10 // this will reset to stock when the gun is rebuilt
+			//src.jam_frequency += 5 // this will reset to stock when the gun is rebuilt
 			P.power *= PROJ_PENALTY_BARREL
 			if(usr)
 				boutput(usr, "<span class='alert'><b>[src.barrel] is shattered by the projectile!</b></span>")
@@ -579,7 +581,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 		else
 			//check chance to cause a jam while loading
-			if(prob(jam_frequency_reload)) //very unlikely unless you're clumsy i guess
+			if(prob(jam_frequency)) //very unlikely unless you're clumsy i guess
 				jammed = JAM_LOAD
 				boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
 				playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
@@ -697,7 +699,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			accessory.alt_fire()
 		return 1
 
-	if(prob(jam_frequency_reload))
+	if(prob(jam_frequency))
 		jammed = JAM_LOAD
 		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
@@ -793,7 +795,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	//jam regular gun's
 	if(!flashbulb_only)
-		if(prob(jam_frequency_fire))
+		if(prob(jam_frequency))
 			jammed = JAM_FIRE
 			user.show_text("The cartridge fails to go off!", "red")
 			playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
@@ -804,7 +806,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	//jam flashbulb gun's
 	else
-		if(prob(jam_frequency_fire))
+		if(prob(jam_frequency))
 			//if you're playing it unsafe
 			if (unsafety)
 				if (prob(max(0,(2 ^ (crank_level - safe_crank_level) + 5)))) //sudden and possibly explosive breakage versus expected burnout, with increasingly bad odds
@@ -945,7 +947,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only) //we just want to do this regardless of whatever happens with bulbs possibly burning out
 		src.inventory_counter.update_number(crank_level)
 
-	if(prob(jam_frequency_reload))
+	if(prob(jam_frequency))
 		jammed = JAM_CYCLE
 		if (flashbulb_only)
 			boutput(user,"<span class='alert'><b>The dynamo gets stuck!</b></span>") //slammed forward too fast or whatever
@@ -992,11 +994,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		two_handed = 1 //for later: if (stock.foldable != 2) (unfolded) then 2-handed
 	if(!grip && !stock) //uh oh
 		spread_angle += GRIP_PENALTY
-	if(bullpup_stock) //quick + dirty handling of overlay shit since the stock must be behind the receiver
-		var/image/I = image(icon, icon_state) //so so dirty
-		src.UpdateOverlays(I, "greebling") //later this will be its own thing and every receiver can greeble. bullpupping will simply be a more forward grip/foregrip offset + overlay on stock
-		src.two_handed = TRUE
-		src.can_dual_wield = FALSE
+
 
 	if(accessory)
 		parts += accessory
@@ -1044,8 +1042,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
-	jam_frequency_reload = initial(jam_frequency_reload)
-	jam_frequency_fire = initial(jam_frequency_fire)
+	jam_frequency = initial(jam_frequency)
 	can_dual_wield = initial(can_dual_wield)
 	two_handed = initial(two_handed)
 	spread_angle = initial(spread_angle)
@@ -1148,7 +1145,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 //Ammo: standard/small and also primarily stun
 //magazine: none by default, ammo is stored behind/in the stock (the grip holds the very large battery for the light and the loader)
 //eventually: convert long receiver to short receiver and vice versa via swappable kit (with NT and soviet receivers)
-
+/*
 ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT
 	name = "abstract NT gun"
@@ -1161,17 +1158,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	icon_state = "nt_short" //or nt_long
 	var/electrics_intact = FALSE //the grody autoloading ID locked snitchy smart gun parts that are just begging to be microwaved, emagged, or simply pried and cut out
 	spread_angle = 6
-
-ABSTRACT_TYPE(/obj/item/gun/modular/NT/short)
-/obj/item/gun/modular/NT/short
+*/
+ABSTRACT_TYPE(/obj/item/gun/modular/NT)
+/obj/item/gun/modular/NT
 	name = "\improper NT pistol receiver"
 	real_name = "\improper NT pistol"
 	desc = "A basic, Nanotrasen-licensed single-shot weapon."
+	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "nt_short" //or nt_long
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
-	fiddlyness = 15
+	max_ammo_capacity = 0
+	action = "single"
+	gun_DRM = GUN_NANO
+	var/electrics_intact = FALSE //the grody autoloading ID locked snitchy smart gun parts that are just begging to be microwaved, emagged, or simply pried and cut out
+	spread_angle = 6
 
 	//short receiver, by itself and unbuilt
 	receiver
@@ -1179,24 +1181,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/short)
 
 //long receiver, by itself
 //eventually be able to convert between long and short?
-ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
+//ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 
 /obj/item/gun/modular/NT/long
 	name = "\improper NT rifle receiver"
 	real_name = "\improper NT rifle"
 	desc = "A mostly reliable, autoloading Nanotrasen-licensed and corporate security-issued weapon."
-	cartridge_length = 40
+	//cartridge_length = 40
 	max_ammo_capacity = 2 //built in small loader
 	action = "autoloader"
 	icon_state = "nt_long"
 	fiddlyness = 25
-	grip_overlay_x = GRIP_OFFSET_BULLPUP
-	barrel_overlay_x = BARREL_OFFSET_LONG
-	stock_overlay_x = STOCK_OFFSET_BULLPUP
-	bullpup_stock = 1 //for the overlay
-	spread_angle = 5
-	jam_frequency_fire = 2
-	jam_frequency_reload = 4
+	//grip_overlay_x = GRIP_OFFSET_BULLPUP
+	//barrel_overlay_x = BARREL_OFFSET_LONG
+	//stock_overlay_x = STOCK_OFFSET_BULLPUP
+
+
 
 	//long receiver, by itself and unbuilt
 	receiver
@@ -1292,7 +1292,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 		return 1
 
 //a built and usable pistol
-/obj/item/gun/modular/NT/short/pistol
+/obj/item/gun/modular/NT/pistol
 	name = "\improper NT pistol"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
@@ -1360,7 +1360,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT/long)
 	grip_overlay_x = GRIP_OFFSET_BULLPUP
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_BULLPUP
-	bullpup_stock = 1
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/shotty(src)
 		if(prob(50))
@@ -1401,8 +1401,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	stock_overlay_x = -10 //combined with the inherent -6 on the stock itself, this is 16 to the left (fiddly fucking thing)
 	grip_overlay_x = -4
 	grip_overlay_y = -2
-	jam_frequency_fire = 0 //really only if overcharged
-	jam_frequency_reload = 0 //only if the user is clumsy
+	jam_frequency = 0 //really only if overcharged
+	jam_frequency = 0 //only if the user is clumsy
 	//foregrip_offset_x = 12
 	//foregrip_offset_y = 0
 
@@ -1457,7 +1457,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	icon_state = "juicer" //only large
 	max_ammo_capacity = 0 //fukt up mags only
 	action = "pump"
-	cartridge_length = 40
+	//cartridge_length = 40
 	gun_DRM = GUN_JUICE
 	spread_angle = 10
 	//color = "#99FF99"
@@ -1466,8 +1466,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
 	//foregrip_offset_x = 15 //put it on the pump
-	jam_frequency_fire = 5
-	jam_frequency_reload = 15
+	jam_frequency = 5
+	jam_frequency = 15
 	fiddlyness = 0 //surprisingly not very fiddly, loads fast, clears jams fast. built for sucking
 
 //just the receiver
@@ -1577,8 +1577,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
-	jam_frequency_fire = 2
-	jam_frequency_reload = 1
+	jam_frequency = 2
 	fiddlyness = 45
 
 /obj/item/gun/modular/soviet/short/basic
@@ -1614,17 +1613,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	real_name = "\improper Soviet lazernaya vintovka"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
-	cartridge_length = 40
+	//cartridge_length = 40
 	max_ammo_capacity = 4
 	spread_angle = 9
 	contraband = 4
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
-	two_handed = TRUE
-	can_dual_wield = FALSE
-	jam_frequency_fire = 2
-	jam_frequency_reload = 4
+	//two_handed = TRUE
+	//can_dual_wield = FALSE
+	jam_frequency = 2
 	fiddlyness = 35
 
 /obj/item/gun/modular/soviet/long/advanced
@@ -1692,8 +1690,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
 	barrel_overlay_x = BARREL_OFFSET_SHORT
-	jam_frequency_fire = 5
-	jam_frequency_reload = 0
+	jam_frequency = 5
+	jam_frequency = 0
 	var/currently_firing = FALSE //this double action pull is slow
 	fiddlyness = 25
 

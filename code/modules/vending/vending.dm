@@ -1522,7 +1522,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 3)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 3)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 2)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
@@ -2022,7 +2022,7 @@
 		//above this line is for debug and testing only, they'll go in the bin later.
 		//all should require permit, some should require permit and sec
 		//full gunse
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 1, cost = PAY_TRADESMAN*1.5)
 		//DIY section
@@ -2065,7 +2065,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN*0.9)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN*0.9)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.4)
 
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 3, cost = PAY_UNTRAINED)
