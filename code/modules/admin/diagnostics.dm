@@ -532,8 +532,12 @@ proc/debug_map_apc_count(delim,zlim)
 			for(var/obj/cable/C in theTurf)
 				if(C.is_a_node?.netnum > 0)
 					netnums |= C.is_a_node.netnum
+				else if (C.is_a_link)
+					img.app.color = debug_color_of(C.is_a_link)
+					img.app.alpha = 90
+					return
 			img.app.overlays = list(src.makeText(jointext(netnums, " ")))
-			if(!netnums.len)
+			if(!length(netnums))
 				img.app.color = "#00000000"
 				img.app.alpha = 0
 			else if(0 in netnums)

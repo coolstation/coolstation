@@ -102,7 +102,7 @@ var/global/list/dirty_pnet_nodes = list()
 		do
 		{
 			if (istype(relevant_link))
-				if (delete_link || (relevant_link.expected_length > length(relevant_link.cables))) //link borked or one of the end points borked
+				if (delete_link || (relevant_link.expected_length != length(relevant_link.cables))) //link borked or one of the end points borked
 					unbroken_links--
 					relevant_link.dissolve()
 
@@ -173,13 +173,14 @@ var/global/list/dirty_pnet_nodes = list()
 	while (length(nodes_to_visit))
 		var/datum/powernet_graph_node/a_node = nodes_to_visit[1]
 		visited_nodes |= a_node
+		nodes_to_visit -= a_node
 
 		//If we're just doing a local update (merging 2 nets or whatever) and there's no reason to assume the net as a whole is compromised
 		if (a_node.netnum == new_netnum && early_end_at_matching_netnum)
 			continue
 
 		//not bothing updating the powernet's cables list cause I want to deprecate that
-		a_node.pnet.all_graph_nodes -= a_node
+		a_node.pnet?.all_graph_nodes -= a_node
 		a_node.netnum = new_netnum
 		a_node.pnet = PN
 		PN.all_graph_nodes |= a_node
@@ -242,5 +243,7 @@ var/global/list/dirty_pnet_nodes = list()
 	while(length(cables))
 		var/obj/cable/C = cables[1]
 		var/datum/powernet_graph_link/L = C.link_crawl()
-		cables -= L.cables
+		if (L)
+			cables -= L.cables
+		else cables -= C
 	qdel(src)

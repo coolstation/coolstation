@@ -11,25 +11,31 @@
 
 /obj/machinery/power/New(var/new_loc)
 	..()
-	if (current_state > GAME_STATE_PREGAME) //Any time after game start
-		SPAWN_DBG(0.1 SECONDS) // aaaaaaaaaaaaaaaa
-			src.netnum = 0
-			if(makingpowernets)
-				return // TODO queue instead
-			for(var/obj/cable/C in src.get_connections())
-				src.netnum = C.get_netnumber()
-				break
-				/*
-				if(src.netnum == 0)
-					src.netnum = C.get_netnumber()
-				else if(C.netnum != 0 && C.netnum != src.netnum) // could be a join instead but this won't happen often so screw it
-					makepowernets()
-					return*/
-			if(src.netnum)
-				src.powernet = powernets[src.netnum]
-				src.powernet.nodes += src
-				if(src.use_datanet)
-					src.powernet.data_nodes += src
+	if (netnum != -1)
+		if (worldgen_hold || makingpowernets)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			generate_worldgen()
+
+/obj/machinery/power/generate_worldgen()
+	src.netnum = 0
+	if(makingpowernets)
+		return // TODO queue instead
+	for(var/obj/cable/C in src.get_connections())
+		src.netnum = C.get_netnumber()
+		break
+	/*
+	if(src.netnum == 0)
+		src.netnum = C.get_netnumber()
+	else if(C.netnum != 0 && C.netnum != src.netnum) // could be a join instead but this won't happen often so screw it
+		makepowernets()
+		return*/
+	if(src.netnum)
+		src.powernet = powernets[src.netnum]
+		src.powernet.nodes += src
+		if(src.use_datanet)
+			src.powernet.data_nodes += src
+
 
 /obj/machinery/power/disposing()
 	if(src.powernet)
@@ -108,7 +114,6 @@ var/makingpowernetssince = 0
 		var/datum/powernet/PN = new
 		PN.number = netcount
 		powernets += PN
-		netcount++
 		var/list/nodes = list()
 		var/list/nodes_2_visit = list()
 
@@ -153,6 +158,7 @@ var/makingpowernetssince = 0
 			net_node.netnum = netcount
 			net_node.pnet = PN
 		PN.all_graph_nodes = nodes
+		netcount++
 
 		LAGCHECK(LAG_MED)
 

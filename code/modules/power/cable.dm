@@ -153,12 +153,15 @@
 	START_TRACKING
 
 /obj/cable/disposing()		// called when a cable is deleted
+	STOP_TRACKING
+	..()					// move cable first
 
 	var/datum/powernet_graph_node/node2update
 	if (is_a_link)
 		is_a_link.cables -= src
 		//either node will work
 		node2update = is_a_link.adjacent_nodes[1]
+		is_a_link = null
 	else if (is_a_node)
 		node2update = is_a_node
 		is_a_node.physical_node = null
@@ -182,10 +185,6 @@
 	*/
 	//insulator.owner = null
 	//conductor.owner = null
-
-	STOP_TRACKING
-
-	..()													// then go ahead and delete the cable
 
 /obj/cable/hide(var/i)
 
@@ -484,92 +483,6 @@
 		var/datum/powernet_graph_node/propergate = src.is_a_link.adjacent_nodes[1]
 		propergate.propagate_netnum(propergate, future_powernet.number, early_end_at_matching_netnum = TRUE)
 
-	/*
-	for (var/obj/cable/C in connections)
-		var/datum/powernet_graph_node/Cs_node = C.is_a_node
-		switch(C.get_connections())
-			if (2) //other cable was a dead end, is now a simple connection
-				/*There are 4 possibilities here:
-					-we want to be a node but have none, so we can steal the one C has
-					-we want a node and have one already, so we
-				*/
-
-				if (src.is_a_node) //absorb C into the link between its (now obsolete) node and it's one previous neighbour
-
-					var/datum/powernet_graph_node/neighbour_node = Cs_node.adjacent_nodes[1]
-					var/datum/powernet_graph_link/maybe_link = Cs_node.adjacent_nodes[neighbour_node]
-
-					if (istype(maybe_link))
-						maybe_link.cables |= C
-						maybe_link.expected_length = length(maybe_link.cables)
-
-					else //C was a direct neighbour of its one other node
-						maybe_link = new(list(C), list(src.is_a_node, neighbour_node))
-
-					neighbour_node.adjacent_nodes -= Cs_node
-					neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
-					src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
-
-					qdel(Cs_node)
-					C.is_a_node = null
-					C.is_a_link = maybe_link
-
-
-				else
-					//So, one thing that can happen is we close a loop of wire
-					//where we'd technically not have any junctions that should be nodes, but nodes are also required for powernets to function.
-					//so in that case we'll just leave the two previous dead ends as nodes.
-					var/datum/powernet_graph_node/possible_loop_node = Cs_node.adjacent_nodes[1]
-					if (possible_loop_node.physical_node in connections && length(possible_loop_node.adjacent_nodes) == 1)
-						src.is_a_link = new(list(src), list(Cs_node, possible_loop_node))
-						//list em up, since, well, technically we've given it the topology of two links connecting the same nodes
-						Cs_node.adjacent_nodes[possible_loop_node] = list(Cs_node.adjacent_nodes[possible_loop_node], src.is_a_link)
-						possible_loop_node.adjacent_nodes[Cs_node] = list(possible_loop_node.adjacent_nodes[Cs_node], src.is_a_link)
-						return //we've handled the entire net by now
-
-					else //not a loop
-						if (!src.is_a_link)
-							src.is_a_link = Cs_node.adjacent_nodes[possible_loop_node]
-							if (!src.is_a_link)
-								src.is_a_link = new(list(src, C))
-							src.is_a_link.adjacent_nodes += possible_loop_node
-
-						else
-
-							if (length(src.is_a_link.adjacent_nodes))
-								var/datum/powernet_graph_node/previous_node = src.is_a_link.adjacent_nodes[1]
-								if (possible_loop_node in previous_node.adjacent_nodes)
-									var/fucken_existing_connections1 = previous_node.adjacent_nodes[possible_loop_node]
-									var/fucken_existing_connections2 = possible_loop_node.adjacent_nodes[previous_node]
-									if (islist(fucken_existing_connections1)) //gonna assume that if 1 is a list then 2 is too, and vice versa
-										previous_node.adjacent_nodes[possible_loop_node] += src.is_a_link
-										possible_loop_node.adjacent_nodes[previous_node] += src.is_a_link
-									else
-										previous_node.adjacent_nodes[possible_loop_node] = list(fucken_existing_connections1 ,src.is_a_link)
-										possible_loop_node.adjacent_nodes[previous_node] = list(fucken_existing_connections2 ,src.is_a_link)
-								else
-									previous_node.adjacent_nodes[possible_loop_node] = src.is_a_link
-									possible_loop_node.adjacent_nodes[previous_node] = src.is_a_link
-							src.is_a_link.adjacent_nodes += possible_loop_node
-
-						possible_loop_node.adjacent_nodes -= Cs_node
-						qdel(Cs_node)
-						C.is_a_node = null
-
-			if (3) //other cable needs to become a node
-				var/datum/powernet_graph_link/Cs_link = C.is_a_link
-				C.is_a_link = null
-				C.is_a_node = new()
-				C.is_a_node.physical_node = C
-				if (src.is_a_node)
-					src.is_a_node.adjacent_nodes += C.is_a_node
-					C.is_a_node.adjacent_nodes += src.is_a_node
-					//C.is_a_node.pnet = src.is_a_node.pnet
-					//C.is_a_node.netnum = src.is_a_node.netnum
-				else
-
-			else //other cable stays a node
-*/
 
 /obj/cable/proc/link_crawl()
 	var/list/connections = get_connections()
