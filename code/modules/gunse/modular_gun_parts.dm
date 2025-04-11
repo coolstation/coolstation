@@ -24,11 +24,16 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun = gun
 		add_overlay_to_gun(gun, 1)
 		my_gun.bulk += src.bulkiness
-		my_gun.name = my_gun.real_name //clear "receiver"
+		//my_gun.name = my_gun.real_name //clear "receiver" (wrong spot for this)
+		my_gun.max_ammo_capacity += src.max_ammo_capacity
+		my_gun.jam_frequency += src.jam_frequency
+
 		return 1
 
+
+
 	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
-		var/image/I = image(icon, "[icon_state]-built")
+		var/image/I = image(icon, icon_state)//"[icon_state]-built")
 		if(correctly) //proper assembly?
 			I.pixel_x = overlay_x
 			I.pixel_y = overlay_y
@@ -37,8 +42,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 				I.pixel_x = overlay_x + 3
 			if (part_type == "stock")
 				I.pixel_x = overlay_x - 3
-				//if (gun.bullpup_stock) //gotta figure this fucker out: we'd want this to be an underlay or a layer slightly below the reciever
-				//for now i'm just adding another overlay of the receiver maybe
 			if (part_type == "grip")
 				I.pixel_y = overlay_y - 3
 		gun.UpdateOverlays(I, part_type)
@@ -56,7 +59,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/silenced = 0
 	var/muzzle_flash = "muzzle_flash"
 	var/lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
-	var/jam_frequency_fire = 1 //additional % chance to jam on fire. Reload to clear.
+	var/jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
 	var/scatter = 0
 	var/length = 0 // centimetres
 
@@ -70,11 +73,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/safe_crank_level = 0 // FOSS guns only (limited cranking)
 	var/bulkiness = 1 //higher bulkiness leads to 2-handedness?? 1-5 i guess
 	var/stock_dual_wield = 1 // if gun AND stock can be dual wielded, whole gun can be dual wielded.
-	var/jam_frequency_reload = 0 //attitional % chance to jam on reload. Just reload again to clear.
+	var/jam_frequency = 0 //attitional % chance to jam on reload. Just reload again to clear.
 
 	// mag vars
 	// max_ammo_capacity = 0 //modifier
-	// jam_frequency_reload = 5 //additional % chance to jam on reload. Just reload again to clear.
+	// jam_frequency = 5 //additional % chance to jam on reload. Just reload again to clear.
 
 	buildTooltipContent()
 		. = ..()
@@ -99,8 +102,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 			. += "<div><img src='[resource("images/tooltips/lensing.png")]' alt='' class='icon' /><span>Optical Lens: [src.lensing] </span></div>"
 		if(length)
 			. += "<div><span>Barrel length: [src.length] </span></div>"
-		if(jam_frequency_fire || jam_frequency_reload)
-			. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jam Probability: [src.jam_frequency_reload + src.jam_frequency_fire] </span></div>"
+		if(jam_frequency || jam_frequency)
+			. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jam Probability: [src.jam_frequency + src.jam_frequency] </span></div>"
 		if(max_ammo_capacity)
 			. += "<div> <span>Capacity Modifier: [src.max_ammo_capacity] </span></div>"
 		lastTooltipContent = .
@@ -115,7 +118,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 	silenced = 0
 	muzzle_flash = "muzzle_flash"
 	lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
-	jam_frequency_fire = 1 //additional % chance to jam on fire. Reload to clear.
+	jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
 	scatter = 0
 	icon = 'icons/obj/items/modular_guns/barrels.dmi'
 	icon_state = "it_revolver"
@@ -140,7 +143,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 		my_gun.muzzle_flash = src.muzzle_flash
 		my_gun.lensing = src.lensing
 		my_gun.scatter = src.scatter
-		my_gun.jam_frequency_fire += src.jam_frequency_fire
+		my_gun.jam_frequency += src.jam_frequency
 		my_gun.name = my_gun.name + " " + src.name_addition
 		//Icon! :)
 
@@ -172,7 +175,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	max_crank_level = 0 // FOSS guns only
 	bulkiness = 1 // if gun or stock is 2 handed, whole gun is 2 handed
 	stock_dual_wield = 1 // if gun AND stock can be dual wielded, whole gun can be dual wielded.
-	jam_frequency_reload = 0 //attitional % chance to jam on reload. Just reload again to clear.
+	jam_frequency = 0 //attitional % chance to jam on reload. Just reload again to clear.
 	part_DRM = GUN_JUICE | GUN_NANO | GUN_SOVIET | GUN_ITALIAN //pretty much everyone by default
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_solid"
@@ -195,7 +198,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 		my_gun.spread_angle = max(0, (my_gun.spread_angle + src.spread_angle)) // so we cant dip below 0
 
 		my_gun.can_dual_wield &= src.stock_dual_wield
-		my_gun.jam_frequency_reload += src.jam_frequency_reload
+		my_gun.jam_frequency += src.jam_frequency
 		my_gun.ammo_list += src.ammo_list
 		my_gun.name = src.name_addition + " " + my_gun.name
 		if(flashbulb_only)
@@ -321,7 +324,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
 
 	part_type = "magazine"
 	max_ammo_capacity = 0 //modifier
-	jam_frequency_reload = 5 //additional % chance to jam on reload. Just reload again to clear.
+	jam_frequency = 5 //additional % chance to jam on reload. Just reload again to clear.
 	var/list/ammo_list = list() // ammo that stays in the mag when removed
 
 	icon_state = "generic_magazine"
@@ -335,8 +338,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
 			return
 		my_gun.magazine = src
 		my_gun.ammo_list += src.ammo_list
-		my_gun.max_ammo_capacity += src.max_ammo_capacity
-		my_gun.jam_frequency_reload += src.jam_frequency_reload
+		//my_gun.max_ammo_capacity += src.max_ammo_capacity
+		//my_gun.jam_frequency += src.jam_frequency
 		my_gun.name = my_gun.name + " " + src.name_addition
 
 	remove_part_from_gun()
@@ -490,7 +493,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A cheaply-built shotgun barrel. And by cheaply-built I mean someone adapted a broken vuvuzela for a gun."
 	spread_angle =  13 // jesus christ it's a spread machine
 	scatter = 1
-	jam_frequency_fire = 5 //but very poorly built
+	jam_frequency = 5 //but very poorly built
 	part_DRM = GUN_JUICE
 	name_addition = "BLUNDA"
 	icon_state = "juicer_blunderbuss"
@@ -513,7 +516,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Shotgun barrel: for yuor gun's pleansure."
 	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 4
-	jam_frequency_fire = 8
+	jam_frequency = 8
 	length = 17
 	icon_state = "juicer_ribbed"
 	name_addition = "Genthlemaenne's"
@@ -524,7 +527,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
 	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle =  4 // accurate?? ish?
-	jam_frequency_fire = 15 //but very!!!!!!! poorly built
+	jam_frequency = 15 //but very!!!!!!! poorly built
 	name_addition = "BLITZINNNNNNN'"
 	icon_state = "juicer_long"
 	bulkiness = 3
@@ -683,7 +686,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
 	spread_angle = 0
 	max_ammo_capacity = 1 // to make that revolver revolve!
-	jam_frequency_reload = 3 // a lot  more jammy!!
+	jam_frequency = 3 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "it_plain"
@@ -694,7 +697,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
 		spread_angle = -1
 		max_ammo_capacity = 3 // to make that revolver revolve!
-		jam_frequency_reload = 6 // a lot  more jammy!!
+		jam_frequency = 6 // a lot  more jammy!!
 		part_DRM = GUN_ITALIAN | GUN_SOVIET
 		icon_state = "it_fancy"
 		name_addition = "jovial"
@@ -705,7 +708,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		desc = "An extremely weirdly-shaped and red sauce-smelling combat grip, but it's definitely comfortable."
 		spread_angle = -2
 		max_ammo_capacity = 2
-		jam_frequency_reload = 4
+		jam_frequency = 4
 		part_DRM = GUN_ITALIAN | GUN_SOVIET
 		icon_state = "it_meatballs"
 		name_addition = ""
@@ -717,7 +720,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		desc = "Smells like spaghetti."
 		spread_angle = 0
 		max_ammo_capacity = 2
-		jam_frequency_reload = 4
+		jam_frequency = 4
 		part_DRM = GUN_ITALIAN | GUN_SOVIET
 		icon_state = "it_cowboy"
 		bulkiness = 2
@@ -727,7 +730,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 			desc = "Looks like trouble."
 			spread_angle = 3
 			max_ammo_capacity = 1
-			jam_frequency_reload = 6
+			jam_frequency = 6
 			icon_state = "it_bandit"
 
 		pearl
@@ -735,7 +738,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 			desc = "Tastes like plastic."
 			spread_angle = -3
 			max_ammo_capacity = 1
-			jam_frequency_reload = 2
+			jam_frequency = 2
 			icon_state = "it_pearl"
 
 
@@ -786,7 +789,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 3
 	can_dual_wield = 0
 	max_ammo_capacity = 2 // a few more rounds
-	jam_frequency_reload = 2 // a little more jammy
+	jam_frequency = 2 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_solid"
@@ -796,7 +799,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A comfortable NT shoulder stock with cheek rest"
 	spread_angle = -6 // quite better stabilisation
 	max_ammo_capacity = 1 // additional shot in the butt
-	jam_frequency_reload = 1 // not too bad
+	jam_frequency = 1 // not too bad
 	name_addition = "sharpshooter"
 	icon_state = "nt_solid_cheek"
 
@@ -808,7 +811,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	can_dual_wield = 0
 	foldable = 1
 	//max_ammo_capacity = 0 // does not add ammo
-	//jam_frequency_reload = 3 // a little more jammy
+	//jam_frequency = 3 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "capable"
 	icon_state = "nt_wire"
@@ -821,7 +824,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 4
 	can_dual_wield = 0
 	max_ammo_capacity = 5
-	jam_frequency_reload = 5 // a little more jammy
+	jam_frequency = 5 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "appointed"
 	icon_state = "nt_solid_mag"
@@ -832,7 +835,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -5 // brety gud
 	bulkiness = 1
 	//max_ammo_capacity = 0 // does not add ammo
-	//jam_frequency_reload = 3 // a little more jammy
+	//jam_frequency = 3 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "cacciatore"
 	icon_state = "it_solid"
@@ -856,7 +859,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -5 // brety gud
 	bulkiness = 2
 	//max_ammo_capacity = 0 // does not add ammo
-	//jam_frequency_reload = 3 // a little more jammy
+	//jam_frequency = 3 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "ustoychivyy"
 	icon_state = "sov_solid"
@@ -917,7 +920,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring. This one's kind of hard to hold."
 	spread_angle = 2 // poor stabilisation
 	max_ammo_capacity = 1 // more bulbs in the pocket
-	jam_frequency_reload = 10
+	jam_frequency = 10
 	flash_auto = 1
 	max_crank_level = 25
 	safe_crank_level = 15
@@ -934,7 +937,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	can_dual_wield = 0
 	max_crank_level = 5 // for syndicate ops
 	safe_crank_level = 3
-	jam_frequency_reload = 5 // a little more jammy
+	jam_frequency = 5 // a little more jammy
 	name_addition = "six-sigma"
 	icon_state = "stock_double_alt"
 
@@ -1056,7 +1059,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper HOTT SHOTTS MAG"
 	desc = "Holds 3 rounds, and 30,000 followers."
 	max_ammo_capacity = 3
-	jam_frequency_reload = 8
+	jam_frequency = 8
 	name_addition = "LARGE"
 	icon = 'icons/obj/items/modular_guns/magazines.dmi'
 	icon_state = "juicer_drum"
@@ -1066,7 +1069,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		desc = "Holds 4 rounds, and seems to be made out of some kind of cereal box."
 		icon_state = "juicer_drum-bigger"
 		max_ammo_capacity = 4
-		jam_frequency_reload = 16
+		jam_frequency = 16
 
 	five
 		name = "\improper HOTTTTEST SHOTTTTS MAG"
@@ -1074,5 +1077,5 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		icon_state = "juicer_drum-biggest"
 		max_ammo_capacity = 5
 		contraband = 5
-		jam_frequency_reload = 12
+		jam_frequency = 12
 

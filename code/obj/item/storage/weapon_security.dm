@@ -81,7 +81,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
-	spawn_contents = list(/obj/item/gun/modular/NT/short/pistol,\
+	spawn_contents = list(/obj/item/gun/modular/NT/pistol,\
 	/obj/item/stackable_ammo/pistol/NT/ten = 2,\
 	/obj/item/stackable_ammo/pistol/tranq)
 
