@@ -60,8 +60,8 @@
 
 	var/grab_stuff_on_spawn = TRUE
 
-	///Items that are 'inside' the crate, even when it's open. These will be dragged around with the crate until removed.
-	var/list/vis_items = list()
+	///Controls items that are 'inside' the crate, even when it's open. These will be dragged around with the crate until removed.
+	var/datum/vis_storage_controller/vis_controller
 
 	New()
 		..()
@@ -523,9 +523,7 @@
 		for (var/obj/O in get_turf(src))
 			if (src.is_acceptable_content(O))
 				O.set_loc(src)
-		for (var/obj/O in vis_items)
-			vis_contents -= O
-
+		vis_controller?.hide()
 		for (var/mob/M in get_turf(src))
 			if (M.anchored || M.buckled)
 				continue
@@ -619,13 +617,12 @@
 				items++
 
 		var/newloc = get_turf(src)
+		vis_controller?.show()
 		for (var/obj/O in src)
 			if (delete_and_damage)
 				qdel(O)
 				continue
-			if (O in vis_items)
-				src.vis_contents += O
-			else
+			if (!(O in vis_controller?.vis_items))
 				O.set_loc(newloc)
 			if(istype(O,/obj/item/mousetrap))
 				var/obj/item/mousetrap/our_trap = O
