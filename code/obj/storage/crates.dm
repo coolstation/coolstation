@@ -869,7 +869,7 @@
 	icon_opened = "stxcrate_open"
 	icon_closed = "stxcrate"
 
-	filled_6
+	filled_4
 		New()
 			var/datum/loot_generator/sarin_filler
 			src.vis_controller = new(src)
