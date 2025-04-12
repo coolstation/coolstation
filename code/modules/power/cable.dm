@@ -159,18 +159,21 @@
 	var/datum/powernet_graph_node/node2update
 	if (is_a_link)
 		is_a_link.cables -= src
-		//either node will work
-		node2update = is_a_link.adjacent_nodes[1]
+		if (defer_powernet_rebuild)
+			dirty_pnet_nodes |= is_a_link.adjacent_nodes
+		else
+			var/datum/powernet_graph_node/node1 = is_a_link.adjacent_nodes[1]
+			var/datum/powernet_graph_node/node2 = is_a_link.adjacent_nodes[2]
+			node1.validate()
+			node2.validate()
 		is_a_link = null
 	else if (is_a_node)
-		node2update = is_a_node
 		is_a_node.physical_node = null
+		if (defer_powernet_rebuild)
+			dirty_pnet_nodes |= node2update
+		else
+			is_a_node.validate()
 		is_a_node = null
-	node2update.pnet.cables -= src
-	if (defer_powernet_rebuild)
-		dirty_pnet_nodes |= node2update
-	else
-		node2update.validate()
 	/*
 	if(!defer_powernet_rebuild)	// set if network will be rebuilt manually
 
@@ -529,6 +532,7 @@
 		//found a node
 		if (!next_cable.is_a_node)
 			next_cable.is_a_node = new
+			next_cable.is_a_link = null
 			next_cable.is_a_node.physical_node = next_cable
 		src.is_a_link.adjacent_nodes += next_cable.is_a_node
 

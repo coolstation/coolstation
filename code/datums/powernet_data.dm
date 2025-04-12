@@ -55,7 +55,6 @@ var/global/list/dirty_pnet_nodes = list()
 
 	var/netnum = 0
 
-	var/dissolve_when_possible = FALSE
 
 
 /datum/powernet_graph_node/New()
@@ -80,8 +79,6 @@ var/global/list/dirty_pnet_nodes = list()
 
 	var/list/datum/powernet_graph_node/previous_adjacent_nodes = adjacent_nodes.Copy()
 	for (var/datum/powernet_graph_node/other_node as anything in adjacent_nodes)
-		//set this up for checking if there's powernet breaks later.
-		other_node.netnum = 0
 		var/datum/powernet_graph_link/relevant_link = adjacent_nodes[other_node]
 
 		var/delete_link = (dissolve_self || !other_node.physical_node)//if directly adjacent nodes, see if one of our cables is ded
@@ -139,22 +136,25 @@ var/global/list/dirty_pnet_nodes = list()
 		node_one.adjacent_nodes -= src
 		node_two.adjacent_nodes -= src
 		if (node_two in node_one.adjacent_nodes) //They're already linked, fuck
-			node_one.adjacent_nodes[node_two] |= link_one
-			node_two.adjacent_nodes[node_one] |= link_one
+			node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one))
+			node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one))
 		else
 			node_one.adjacent_nodes[node_two] = link_one
 			node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
 
 	previous_adjacent_nodes -= adjacent_nodes
 	var/an_netnum = src.netnum
+	if (length(adjacent_nodes))
+		var/datum/powernet_graph_node/non_break_node = adjacent_nodes[1]
+		previous_adjacent_nodes -= non_break_node.propagate_netnum(non_break_node, an_netnum)
+
 	while(length(previous_adjacent_nodes))
+		var/datum/powernet/PN = new
+		powernets += PN
+		PN.number = length(powernets)
+		an_netnum = PN.number
 		var/datum/powernet_graph_node/orphaned_node = previous_adjacent_nodes[1]
 		previous_adjacent_nodes -= orphaned_node.propagate_netnum(orphaned_node, an_netnum)
-		if (length(previous_adjacent_nodes))
-			var/datum/powernet/PN = new
-			powernets += PN
-			PN.number = length(powernets)
-			an_netnum = PN.number
 
 	if (dissolve_self)
 		qdel(src)
@@ -180,7 +180,10 @@ var/global/list/dirty_pnet_nodes = list()
 			continue
 
 		//not bothing updating the powernet's cables list cause I want to deprecate that
-		a_node.pnet?.all_graph_nodes -= a_node
+		if (a_node.pnet)
+			a_node.pnet.all_graph_nodes -= a_node
+			if (!length(a_node.pnet))
+				qdel(a_node.pnet)
 		a_node.netnum = new_netnum
 		a_node.pnet = PN
 		PN.all_graph_nodes |= a_node
