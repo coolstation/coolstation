@@ -934,7 +934,7 @@
 	throwforce = 7
 	stamina_damage = 24
 	stamina_cost = 30
-	stamina_crit_chance = 40
+	stamina_crit_chance = 30
 	mats = list("wood" = 8)
 
 

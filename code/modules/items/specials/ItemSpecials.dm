@@ -703,7 +703,7 @@
 			desc = "An AoE attack with a chance for a home run."
 
 			modify_attack_result(mob/user, mob/target, datum/attackResults/msgs)
-				if (msgs.damage > 0 && msgs.stamina_crit)
+				if (msgs.damage > 0 && prob(master.stamina_crit_chance))
 					var/turf/target_turf = get_edge_target_turf(target, get_dir(user, target))
 					target.throw_at(target_turf, 4, 1, throw_type = THROW_BASEBALL)
 					msgs.played_sound = 'sound/impact_sounds/bat_wood_crit.ogg'
