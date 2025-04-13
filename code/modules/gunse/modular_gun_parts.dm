@@ -73,7 +73,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/safe_crank_level = 0 // FOSS guns only (limited cranking)
 	var/bulkiness = 1 //higher bulkiness leads to 2-handedness?? 1-5 i guess
 	var/stock_dual_wield = 1 // if gun AND stock can be dual wielded, whole gun can be dual wielded.
-	var/jam_frequency = 0 //attitional % chance to jam on reload. Just reload again to clear.
+
 
 	// mag vars
 	// max_ammo_capacity = 0 //modifier
@@ -142,7 +142,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 		my_gun.silenced = src.silenced
 		my_gun.muzzle_flash = src.muzzle_flash
 		my_gun.lensing = src.lensing
-		my_gun.scatter = src.scatter
+//	my_gun.scatter = src.scatter
 		my_gun.jam_frequency += src.jam_frequency
 		my_gun.name = my_gun.name + " " + src.name_addition
 		//Icon! :)
