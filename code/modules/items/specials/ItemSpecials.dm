@@ -1900,12 +1900,8 @@
 
 /datum/item_special/heavy_swing
 	cooldown = 55 // slightly slower than the time to get up from a wallstun
-	staminaCost = 50
 	moveDelay = 10
-	moveDelayDuration = 5
-
-	requiresStaminaToFire = 1
-	staminaReqAmt = 90
+	moveDelayDuration = 10
 
 	var/damageMultHit = 0.85
 	var/damageMultShove = 0.2
