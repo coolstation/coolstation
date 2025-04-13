@@ -833,7 +833,7 @@
 
 	whirlwind
 		cooldown = 20
-		restrainDuration = 1
+		restrainDuration = 5
 		image = "whirlwind"
 		name = "Whirlwind"
 		desc = "Hit all enemies around you."
@@ -1149,7 +1149,7 @@
 		moveDelay = 7
 		moveDelayDuration = 6
 		damageMult = 1
-		restrainDuration = 3
+		restrainDuration = 10
 
 		image = "barrier"
 		name = "Energy Barrier"
@@ -1533,7 +1533,6 @@
 		cooldown = 0
 		moveDelay = 0
 		moveDelayDuration = 0
-		staminaReqAmt = 0
 
 		image = "rush"
 		name = "Dash"
@@ -1852,9 +1851,10 @@
 /datum/item_special/heavy_swing
 	cooldown = 55 // slightly slower than the time to get up from a wallstun
 	moveDelay = 10
-	moveDelayDuration = 10
+	moveDelayDuration = 20
+	restrainDuration = 15
 
-	var/damageMultHit = 0.85
+	var/damageMultHit = 0.75
 	var/damageMultShove = 0.2
 
 	image = "heavyswing"
@@ -1923,7 +1923,7 @@
 				playsound(master, 'sound/effects/swoosh.ogg', 50, FALSE)
 
 /datum/item_special/massacre
-	cooldown = 2 SECONDS
+	cooldown = 10 SECONDS
 	moveDelay = 5
 	moveDelayDuration = 10
 	damageMult = 1
@@ -1935,7 +1935,7 @@
 	/// Maximum number of hits
 	var/max_chain = 10
 	/// Damage multiplier, initial
-	var/damage_mult_start = 0.4
+	var/damage_mult_start = 0.3
 	/// Damage multiplier increase per chain
 	var/damage_mult_increment = 0.075
 	///Disorient when interrupted
@@ -2015,10 +2015,10 @@
 			if (!hit)
 				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
 
-		if (current_chain > 2 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the third swing
+		if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
 			var/string ="[H] swings their machete too hard and loses their balance!"
 			H.show_message(SPAN_ALERT(string), 1)
-			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * chain)
+			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
 		afterUse(user)
 
 	afterUse(mob/user)

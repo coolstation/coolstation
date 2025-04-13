@@ -1562,19 +1562,18 @@ obj/item/whetstone
 		BLOCK_SETUP(BLOCK_ROD)
 		src.setItemSpecial(/datum/item_special/heavy_swing)
 
-//Machete for The Slasher
-/obj/item/slasher_machete
-	name = "slasher's machete"
+/obj/item/machete
+	name = "rusty machete"
 	desc = "An old machete, clearly showing signs of wear and tear due to its age."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "machete"
 	item_state = "welder_machete"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	hit_type = DAMAGE_CUT
-	flags = USEDELAY
-	force = 25
+	flags = USEDELAY | FPRINT
+	force = 20
 	click_delay = 16 DECI SECONDS //unbalanced blade
-	throwforce = 5
+	throwforce = 6
 	throw_speed = 1
 	throw_range = 5
 	contraband = 4
@@ -1587,6 +1586,9 @@ obj/item/whetstone
 		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/massacre)
 
+	equipped(mob/user, slot)
+		. = ..()
+		playsound(user, 'sound/items/blade_pull.ogg', 60, TRUE)
 
 /obj/item/switchblade
 	name = "switchblade"
