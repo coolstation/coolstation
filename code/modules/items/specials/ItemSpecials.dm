@@ -839,7 +839,7 @@
 		desc = "Hit all enemies around you."
 
 		onMouseUp(atom/target,location,control,params)
-			if(!isturf(target.loc) && !isturf(target)) return
+			if(!target || (!isturf(target.loc) && !isturf(target))) return
 			if(!usable()) return
 			var/list/parameters = params2list(params)
 			if(parameters["left"] && master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
@@ -1923,9 +1923,9 @@
 				playsound(master, 'sound/effects/swoosh.ogg', 50, FALSE)
 
 /datum/item_special/massacre
-	cooldown = 10 SECONDS
-	moveDelay = 5
-	moveDelayDuration = 10
+	cooldown = 3 SECONDS
+	moveDelay = 8
+	moveDelayDuration = 30
 	damageMult = 1
 	image = "dagger"
 	name = "Butcher"
@@ -1941,7 +1941,7 @@
 	///Disorient when interrupted
 	var/penalty_disorient = TRUE
 	///Disorient time on interrupt
-	var/disorient_duration_base = 2 SECONDS
+	var/disorient_duration_base = 3 SECONDS
 	///Extra disorient duration per extra swing
 	var/disorient_duration_additive = 0.5 SECONDS
 	var/alternate = FALSE
@@ -1981,7 +1981,7 @@
 			current_chain++
 			if (current_chain == 13)
 				sleep(0.2 SECONDS)
-				var/string ="[H] raises \the [src] up high!"
+				var/string ="[H] raises \the [master] up high!"
 				H.show_message(SPAN_ALERT(string), 1, assoc_maptext = make_chat_maptext(H, "<I>[string]</I>", "color: #C2BEBE;", alpha = 140))
 				sleep(2 SECONDS)
 				damageMult = 5
