@@ -1849,7 +1849,7 @@
 					var/datum/gang/usergang = user.get_gang()
 					tag = image('icons/obj/decals/gang_tags.dmi', "gangtag[usergang.gang_tag]")
 					tag.pixel_y = 5
-					SPAWN (2 DECI SECONDS)
+					SPAWN_DBG(2 DECI SECONDS)
 						playsound(A.loc, 'sound/effects/graffiti_hit.ogg', 10, TRUE)
 				if (ismonkey(A))
 					tag.pixel_y = tag.pixel_y - 6
@@ -1872,8 +1872,6 @@
 
 		afterUse(user)
 		playsound(master, 'sound/items/graffitispray3.ogg', 50, TRUE)
-
-
 
 /datum/item_special/massacre
 	cooldown = 2 SECONDS
