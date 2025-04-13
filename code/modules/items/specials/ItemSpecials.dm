@@ -280,16 +280,18 @@
 		return msgs
 
 	rush
-		cooldown = 100
+		cooldown = 20
 		image = "rush"
 		name = "Rush"
 		desc = "Click once to charge, click again to rush."
-		var/maxRange = 13
+		var/maxRange = 15
 		damageMult = 2
 
 		var/datum/action/bar/private/icon/rush/action = null
 
 		onMouseUp(atom/target,location,control,params)
+			if(!target)
+				return
 			var/list/parameters = params2list(params)
 			if(parameters["left"])
 				if(action)
@@ -306,61 +308,58 @@
 						actions.start(action, usr)
 			return
 
-		proc/rush(atom/movable/user, atom/target, progress, params)
+		proc/rush(mob/user, atom/target, progress, params)
 			preUse(user)
+			user.pass_through_mobs = TRUE
 			action = null
 			src.cooldown = round(max(10, initial(src.cooldown) * progress))
 
-			var/atom/lastTurf = null
-			var/direction = get_dir_pixel(user, target, params)
-			var/list/attacked = list()
-			var/blurX = 0
-			var/blurY = 0
-
-			user.set_dir(direction)
-
-			switch(direction)
-				if(NORTH)
-					blurY = 16
-				if(SOUTH)
-					blurY = -16
-				if(EAST)
-					blurX = 16
-				if(WEST)
-					blurX = -16
-				if(NORTHEAST)
-					blurX = 16
-					blurY = 16
-				if(SOUTHEAST)
-					blurY = -16
-					blurX = 16
-				if(SOUTHWEST)
-					blurY = -16
-					blurX = -16
-				if(NORTHWEST)
-					blurY = 16
-					blurX = -16
+			var/turf/lastTurf = get_turf(user)
 
 			for(var/i=0, i < max(1,round(maxRange * progress)), i++)
-				if(lastTurf)
-					lastTurf = get_step(lastTurf, direction)
-				else
-					lastTurf = get_turf(user)
 
-				var/cancel = 0
-				for(var/atom/A in lastTurf)
-					if(A.density && !isTarget(A))
-						cancel = 1
-						break
-				if(cancel) //Doing it like this because breaking the outer loop with a label just fails.
-					break
+				var/direction = get_dir_pixel(user, target, params)
+				var/list/attacked = list()
+				var/blurX = 0
+				var/blurY = 0
 
-				if(lastTurf.density)
-					break
-
-				user.set_loc(lastTurf)
 				user.set_dir(direction)
-				var/obj/itemspecialeffect/bluefade/E = new()
+
+				switch(direction)
+					if(NORTH)
+						blurY = 10
+					if(SOUTH)
+						blurY = -10
+					if(EAST)
+						blurX = 10
+					if(WEST)
+						blurX = -10
+					if(NORTHEAST)
+						blurX = 10
+						blurY = 10
+					if(SOUTHEAST)
+						blurY = -10
+						blurX = 10
+					if(SOUTHWEST)
+						blurY = -10
+						blurX = -10
+					if(NORTHWEST)
+						blurY = 10
+						blurX = -10
+
+				var/turf/newTurf = get_step(user, target)
+				user.set_dir(direction)
+				step_to(user, newTurf)
+
+				if(newTurf == lastTurf)
+					break
+
+				if(lastTurf == get_turf(target))
+					break
+
+				lastTurf = get_turf(user)
+
+				var/obj/itemspecialeffect/glitter/E = new()
 				E.setup(user.loc)
 				E.filters = filter(type="motion_blur", x=blurX, y=blurY)
 
@@ -368,7 +367,7 @@
 				animate(alpha=0,pixel_x=((blurX*(-1))*3),pixel_y=((blurY*(-1))*3), time=(15+(i*3)),loop=0)
 
 				var/hit = 0
-				for(var/atom/A in lastTurf)
+				for(var/atom/A in atoms_in_combat_range(lastTurf))
 					if(A in attacked) continue
 					if(isTarget(A, user) && A != user)
 						A.Attackby(master, user, params, 1)
@@ -383,11 +382,19 @@
 						var/obj/itemspecialeffect/rushhit/R = new()
 						R.setup(user.loc)
 
-				sleep(0.2)
+				sleep(0.1 SECONDS)
 
+			if(user)
+				user.pass_through_mobs = FALSE
 			afterUse(user)
-			playsound(master, 'sound/impact_sounds/Rush_Slash.ogg', 50, 0)
+			playsound(master, 'sound/effects/sprint_puff.ogg', 60, 0)
 			return
+
+		basketball
+			maxRange = 8
+			damageMult = 4 // teehee
+			name = "Ball On 'Em"
+			desc = "Click once to shuffle, click again to ball on the competition."
 
 	throwing
 		cooldown = 10
@@ -2236,6 +2243,12 @@
 		pixel_y = 0
 		blend_mode = BLEND_ADD
 
+	glitter
+		icon = 'icons/effects/effects.dmi'
+		icon_state = "glitter"
+		pixel_x = 0
+		pixel_y = 0
+
 	simple
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "simple"
@@ -2517,6 +2530,10 @@
 
 	onInterrupt(var/flag)
 		..()
+		if(flag == INTERRUPT_MOVE && target && user)
+			if(special.master == user.equipped() && istype(special, /datum/item_special/rush))
+				special.rush(user, target, progress, params)
+				return
 
 	onEnd()
 		..()

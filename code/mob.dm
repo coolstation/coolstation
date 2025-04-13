@@ -52,7 +52,7 @@
 	var/lastattacker = null
 	var/lastattacked = null //tell us whether or not to use Combat or Default click delays depending on whether this var was set.
 	var/lastattackertime = 0
-	var/other_mobs = null
+	var/pass_through_mobs = FALSE
 	var/memory = ""
 	var/atom/movable/pulling = null
 	var/stat = 0.0
@@ -1521,7 +1521,7 @@
 
 	if (ismob(mover))
 		var/mob/moving_mob = mover
-		if ((src.other_mobs && moving_mob.other_mobs))
+		if ((src.pass_through_mobs || moving_mob.pass_through_mobs))
 			return 1
 		return (!mover.density || !src.density || src.lying)
 	else

@@ -16,6 +16,10 @@
 	stamina_crit_chance = 5
 	custom_suicide = 1
 
+/obj/item/basketball/New()
+	..()
+	src.setItemSpecial(/datum/item_special/rush/basketball)
+
 /obj/item/basketball/attack_hand(mob/user as mob)
 	..()
 	if(user)
@@ -65,6 +69,7 @@
 		W.set_loc(src)
 		var/obj/item/plutonium_core/P = W
 		src.payload = W
+		src.force += 15
 		if(src.loc == user)
 			P.plutonize(user.verbs)
 		return
