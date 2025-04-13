@@ -127,6 +127,8 @@
 #define COMSIG_ITEM_SPECIAL_POST "itm_special_post"
 /// When items process ticks on an item
 #define COMSIG_ITEM_PROCESS "itm_process"
+/// When an item is twirled
+#define COMSIG_ITEM_TWIRLED "itm_twirled"
 
 // ---- cloaking device signal ----
 /// Make cloaking devices turn off

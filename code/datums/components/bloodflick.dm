@@ -40,8 +40,8 @@ TYPEINFO(/datum/component/bloodflick)
 		src.haswet = FALSE
 		make_cleanable(/obj/decal/cleanable/blood, get_turf(src.parent))
 		playsound(src.weapon.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 40, 1)
-		SPAWN(1 DECI SECOND) // so that the twirl emote message appears first (in theory)
-			boutput("<span class='notice'>Blood splatters onto the floor!</span>") 
+		SPAWN_DBG(1 DECI SECOND) // so that the twirl emote message appears first (in theory)
+			boutput("<span class='notice'>Blood splatters onto the floor!</span>")
 
 /// applies wet blood to the knife and starts the blood drying countdown
 /datum/component/bloodflick/proc/wetten()
@@ -51,7 +51,7 @@ TYPEINFO(/datum/component/bloodflick)
 	if (!src.haswet)
 		src.haswet = TRUE
 		src.iswet += 1
-	SPAWN(drytime)
+	SPAWN_DBG(drytime)
 		// it could get cleaned while it's drying
 		if (!dummy.blood_DNA)
 			src.hasdry = FALSE

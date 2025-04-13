@@ -2410,7 +2410,7 @@
 		if (thr?.get_throw_travelled() <= 410)
 			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
 				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened") && !(thr.throw_type & THROW_BASEBALL))
+				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
 					src.changeStatus("weakened", 2 SECONDS)
 					src.force_laydown_standup()
 		else

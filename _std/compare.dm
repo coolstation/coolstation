@@ -43,18 +43,7 @@
 /proc/cmp_datum_text_dsc(datum/a, datum/b, variable)
 	return sorttext(a.vars[variable], b.vars[variable])
 
-/proc/compareArtifactTypes(datum/artifact/A1, datum/artifact/A2)
-	if(A1.type_size == A2.type_size)
-		return sorttext(A2.type_name, A1.type_name)
-	return A1.type_size - A2.type_size
-
 #ifdef CHEM_REACTION_PRIORITIES
 /proc/cmp_chemical_reaction_priotity(datum/chemical_reaction/a, datum/chemical_reaction/b)
 	return a.priority > b.priority
 #endif
-
-/proc/cmp_job_order_priority(datum/job/a, datum/job/b)
-	return cmp_numeric_asc(a.order_priority, b.order_priority)
-
-/proc/cmp_gang_score_desc(datum/gang/a, datum/gang/b)
-	return cmp_numeric_dsc(a.score_total, b.score_total)
