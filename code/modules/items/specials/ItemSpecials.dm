@@ -1980,7 +1980,7 @@
 	/// Maximum number of hits
 	var/max_chain = 10
 	/// Damage multiplier, initial
-	var/damage_mult_start = 0.3
+	var/damage_mult_start = 0.2
 	/// Damage multiplier increase per chain
 	var/damage_mult_increment = 0.075
 	///Disorient when interrupted
@@ -2061,7 +2061,7 @@
 				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
 
 		if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
-			var/string ="[H] swings their machete too hard and loses their balance!"
+			var/string ="[H] swings \the [master] too hard and loses their balance!"
 			H.show_message(SPAN_ALERT(string), 1)
 			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
 		afterUse(user)
