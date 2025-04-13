@@ -1569,7 +1569,7 @@ obj/item/whetstone
 	desc = "An old machete, clearly showing signs of wear and tear due to its age."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "machete"
-	item_state = "welder_machete"
+	item_state = "machete"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	hit_type = DAMAGE_CUT
 	flags = USEDELAY | FPRINT
@@ -1582,15 +1582,12 @@ obj/item/whetstone
 	w_class = W_CLASS_NORMAL
 	tool_flags = TOOL_CUTTING
 	hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
+	pickup_sfx = "sound/items/blade_pull.ogg"
 
 	New()
 		..()
 		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/massacre)
-
-	equipped(mob/user, slot)
-		. = ..()
-		playsound(user, 'sound/items/blade_pull.ogg', 60, TRUE)
 
 /obj/item/switchblade
 	name = "switchblade"
