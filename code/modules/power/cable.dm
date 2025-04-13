@@ -174,20 +174,6 @@
 		else
 			is_a_node.validate()
 		is_a_node = null
-	/*
-	if(!defer_powernet_rebuild)	// set if network will be rebuilt manually
-
-		if(netnum && powernets && powernets.len >= netnum)		// make sure cable & powernet data is valid
-			var/datum/powernet/PN = powernets[netnum]
-			PN.cut_cable(src)									// updated the powernets
-	else
-		defer_powernet_rebuild = 2
-
-		if(netnum && powernets && powernets.len >= netnum) //NEED FOR CLEAN GC IN EXPLOSIONS
-			powernets[netnum].cables -= src
-	*/
-	//insulator.owner = null
-	//conductor.owner = null
 
 /obj/cable/hide(var/i)
 
@@ -223,8 +209,8 @@
 	src.log_wirelaying(user, 1)
 
 	shock(user, 50)
-
-	defer_powernet_rebuild = 0		// to fix no-action bug
+	//What if this isn't bugged anymore? IDK
+	//defer_powernet_rebuild = 0		// to fix no-action bug
 	qdel(src)
 	return
 
@@ -534,6 +520,7 @@
 			next_cable.is_a_node = new
 			next_cable.is_a_link = null
 			next_cable.is_a_node.physical_node = next_cable
+			//SEND_SIGNAL(next_cable, COMSIG_POWERNET_TOPOLOGY_CHANGE)
 		src.is_a_link.adjacent_nodes += next_cable.is_a_node
 
 	loop_break:

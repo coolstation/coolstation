@@ -234,7 +234,7 @@ proc/debug_map_apc_count(delim,zlim)
 			mt.maptext_x = -3
 		mt.appearance_flags = RESET_COLOR | additional_flags
 		return mt
-
+/*
 	teleblocked
 		name = "teleblocked areas"
 		help = "Red tiles are ones that are teleblocked, green ones can be teleported to."
@@ -279,7 +279,7 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.desc = "Area: [area.name]<br/>Type: [area.type]"
 			img.app.icon = initial(theTurf.loc.icon)
 			img.app.icon_state = initial(theTurf.loc.icon_state)
-
+*/
 	area_power
 		name = "area power"
 		help = "Shows how charged the APC powercell is in an area. Also shows when the APC is off etc. Colour is based on charge level."
@@ -546,6 +546,22 @@ proc/debug_map_apc_count(delim,zlim)
 				img.app.color = "#ffffff"
 			else
 				img.app.color = debug_color_of(netnums[1])
+
+	powernet_link_status
+		name = "power active links"
+		help = {"green- active node<br>red - deactivated link<br>white - node<br>"}
+
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.color = "#00000000"
+			for(var/obj/cable/C in theTurf)
+				if(C.is_a_node)
+					img.app.color = "#ffffff"
+					return
+				else if (C.is_a_link?.active <= 0)
+					img.app.color = "#ff0000"
+					return
+				else
+					img.app.color = "#00ff00"
 
 	disposals
 		name = "disposal pipes"

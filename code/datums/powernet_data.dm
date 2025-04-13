@@ -56,7 +56,6 @@ var/global/list/dirty_pnet_nodes = list()
 	var/netnum = 0
 
 
-
 /datum/powernet_graph_node/New()
 	adjacent_nodes = list()
 	..()
@@ -102,6 +101,8 @@ var/global/list/dirty_pnet_nodes = list()
 				if (delete_link || (relevant_link.expected_length != length(relevant_link.cables))) //link borked or one of the end points borked
 					unbroken_links--
 					relevant_link.dissolve()
+				else if (relevant_link.active > 0)
+					unbroken_links--
 
 			if (--how_many_links > 0)
 				relevant_link = links[how_many_links]
@@ -203,6 +204,9 @@ var/global/list/dirty_pnet_nodes = list()
 	var/list/obj/cable/cables
 	//Which two nodes are we connecting
 	var/list/datum/powernet_graph_node/adjacent_nodes
+
+	//Cable breakers deactivate
+	var/active = 1 //Nearly a boolean, but if multiple breakers affect the same link this will go into the negatives
 
 	//links don't have a net number, we'll just grab the number of one of the nodes if needed (should be rare, like mostly people poking wires with multitools).
 	//Less stuff to keep in line.
