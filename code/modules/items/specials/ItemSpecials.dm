@@ -2040,6 +2040,8 @@
 				sleep(rand(7,9) DECI SECONDS)
 			else
 				sleep(rand(4,6) DECI SECONDS)
+			if(!H.equipped() == master)
+				break
 			turf = get_step(master, direction)
 			if (alternate)
 				cleave_effect = new/obj/itemspecialeffect/cleave_flipped

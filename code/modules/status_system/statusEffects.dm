@@ -1790,12 +1790,12 @@
 			victim.attach_hud(src.hud)
 
 	onRemove()
-		qdel(hud)
-		hud = null
-		. = ..()
 		if (ismob(owner))
 			var/mob/victim = owner
 			victim.detach_hud(src.hud)
+		qdel(hud)
+		hud = null
+		. = ..()
 		for (var/i in 1 to length(tag_images))
 			owner.ClearSpecificOverlays("graffitisplat[i]")
 
