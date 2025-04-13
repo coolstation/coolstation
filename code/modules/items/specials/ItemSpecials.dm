@@ -174,16 +174,12 @@
 	var/last_use = 0				//Last world.time this was used.
 
 	var/cooldown = 20			//Cooldown time of attack
-	var/staminaCost = 15		//Stamina cost of attack
 	var/moveDelay = 10		//Slow movement by this much after attack
 	var/moveDelayDuration = 10 //Slow for this long (in BYOND time)
 	var/restrainDuration = 0 //time in 1/10th seconds during which we are held in place following an attack
 
 	var/overrideCrit = 0 //Temporarily switch item to this crit chance during attacks. (if not -1/negative)
 	var/overrideStaminaDamage = -1 //Temporarily set item stamina damage to this during attacks (if not -1/negative)
-
-	var/requiresStaminaToFire = 0 //If true, the user will need to meet a certain stamina requirement to begin the attack.
-	var/staminaReqAmt = 15 	//Amount of stamina needed to fire. default to stamina cost
 
 	var/image = "whirlwind"
 	var/name = "Whirlwind"
@@ -205,7 +201,7 @@
 		return
 
 	proc/getDesc()
-		var/infoStr = "[staminaCost ? "[staminaCost] stam, ":""][round(cooldown/10, 0.1)]s CD<br>"
+		var/infoStr = "[round(cooldown/10, 0.1)]s CD<br>"
 		return infoStr + desc
 
 	proc/onMouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
@@ -241,10 +237,6 @@
 	proc/usable(var/mob/user)
 		if (!user) user = usr
 
-		if(istype(user, /mob/living/carbon/human) && src.requiresStaminaToFire)
-			var/mob/living/carbon/human/H = user
-			if(H.stamina < staminaReqAmt) return 0
-
 		if(world.time < (last_use + cooldown))
 			return 0
 
@@ -264,14 +256,6 @@
 	//MBC : Removed Damage/Stamina modifications from preUse() and afterUse() and moved their to item.attack() to avoid race condition
 	proc/preUse(var/mob/person)
 		SHOULD_CALL_PARENT(1)
-		if(isliving(person))
-			var/mob/living/H = person
-
-			if(STAMINA_NO_ATTACK_CAP && H.stamina > STAMINA_MIN_ATTACK)
-				var/cost = staminaCost
-				cost = min(cost,H.stamina - STAMINA_MIN_ATTACK)
-				H.remove_stamina(cost)
-
 		if(moveDelayDuration && moveDelay)
 			SPAWN_DBG(0)
 				person.movement_delay_modifier += moveDelay
@@ -295,7 +279,6 @@
 
 	rush
 		cooldown = 100
-		staminaCost = 25
 		image = "rush"
 		name = "Rush"
 		desc = "Hold to charge, release to rush."
@@ -409,7 +392,6 @@
 
 	throwing
 		cooldown = 10
-		staminaCost = 5
 		moveDelay = 0
 		moveDelayDuration = 0
 		overrideCrit = -1
@@ -434,7 +416,6 @@
 
 	simple
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 0//5
 		moveDelayDuration = 0//4
 		damageMult = 1
@@ -481,20 +462,17 @@
 		kendo_light
 			name = "Light Attack"
 			desc = "A weak, but fast and economic attack."
-			staminaCost = 5
 			animation_color = "#a3774d"
 
 		kendo_heavy
 			name = "Heavy Attack"
 			desc = "A powerful, but slow and draining attack."
-			staminaCost = 35
 			moveDelay = 5
 			moveDelayDuration = 5
 			animation_color = "#a3774d"
 
 	rangestab
 		cooldown = 0 //10
-		staminaCost = 5
 		moveDelay = 5
 		moveDelayDuration = 5
 
@@ -538,7 +516,6 @@
 		kendo_thrust
 			name = "Thrust"
 			desc = "A powerful ranged stab."
-			staminaCost = 8
 			damageMult = 1
 			animation_color = "#a3774d"
 
@@ -546,7 +523,6 @@
 				return
 	swipe
 		cooldown = 0 //30
-		staminaCost = 5
 		moveDelay = 5
 		moveDelayDuration = 5
 
@@ -669,7 +645,6 @@
 			name = "Sweep"
 			desc = "An AoE attack with a chance to disarm."
 			//cooldown = 0 //30
-			staminaCost = 15
 			swipe_color = "#a3774d"
 			damageMult = 0.8
 
@@ -691,10 +666,7 @@
 
 	launch_projectile
 		cooldown = 3 SECONDS
-		staminaCost = 30
 		moveDelay = 0
-		requiresStaminaToFire = TRUE
-		staminaReqAmt = 30
 		/// projectile datum containing data for projectile objects
 		var/datum/projectile/projectile = null
 		/// type path of the special effect
@@ -742,8 +714,7 @@
 
 	slam
 		cooldown = 50
-		staminaCost = 30
-		moveDelay = 10
+		moveDelay = 15
 		moveDelayDuration = 20
 		restrainDuration = 1
 		damageMult = 0.22
@@ -755,7 +726,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 2 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.7
 			return
 
@@ -863,7 +833,6 @@
 
 	whirlwind
 		cooldown = 20
-		staminaCost = 15
 		restrainDuration = 1
 		image = "whirlwind"
 		name = "Whirlwind"
@@ -895,7 +864,6 @@
 
 	disarm
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 0
 		moveDelayDuration = 0
 
@@ -943,7 +911,6 @@
 
 	harm
 		cooldown = 0
-		staminaCost = 0//todo: adjust?
 		moveDelay = 0
 		moveDelayDuration = 0
 
@@ -1123,7 +1090,6 @@
 
 	double
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 5
 		moveDelayDuration = 5
 		damageMult = 0.80
@@ -1136,7 +1102,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 1.6 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.5
 			return
 
@@ -1181,7 +1146,6 @@
 
 	barrier
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 7
 		moveDelayDuration = 6
 		damageMult = 1
@@ -1193,7 +1157,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 0.1 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.8
 			return
 
@@ -1257,7 +1220,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 0.4 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.8
 			return
 
@@ -1337,7 +1299,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 0.4 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.8
 			return
 
@@ -1452,12 +1413,9 @@
 			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, 0.1, 2.8)
 
 	katana_dash
-		cooldown = 9
+		cooldown = 30
 		moveDelay = 0
 		moveDelayDuration = 0
-		staminaCost = 30		//Stamina cost of attack
-		requiresStaminaToFire = 1
-		staminaReqAmt = 80
 
 		image = "rush"
 		name = "Katana Dash"
@@ -1563,7 +1521,6 @@
 			return
 
 	katana_dash/reverse
-		staminaCost = 10
 		reversed = 1
 
 		on_hit(var/mob/hit)
@@ -1576,8 +1533,6 @@
 		cooldown = 0
 		moveDelay = 0
 		moveDelayDuration = 0
-		staminaCost = 30		//Stamina cost of attack
-		requiresStaminaToFire = 1
 		staminaReqAmt = 0
 
 		image = "rush"
@@ -1690,11 +1645,10 @@
 
 	nunchucks
 		cooldown = 30
-		staminaCost = 40
 		moveDelay = 5
 		moveDelayDuration = 5
 
-		damageMult = 0.8
+		damageMult = 0.75
 
 		image = "dagger"
 		name = "double hit"
@@ -1751,7 +1705,6 @@
 
 	tile_fling
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 0
 		moveDelayDuration = 0
 		damageMult = 1
@@ -1804,7 +1757,6 @@
 
 /datum/item_special/graffiti
 	cooldown = 3 SECONDS
-	staminaCost = 5
 	moveDelay = 5
 	moveDelayDuration = 5
 
@@ -1877,7 +1829,6 @@
 
 /datum/item_special/simple/bloodystab
 	cooldown = 0
-	staminaCost = 5
 	moveDelay = 5
 	moveDelayDuration = 5
 
@@ -1973,13 +1924,12 @@
 
 /datum/item_special/massacre
 	cooldown = 2 SECONDS
-	staminaCost = 0
 	moveDelay = 5
 	moveDelayDuration = 10
 	damageMult = 1
 	image = "dagger"
 	name = "Butcher"
-	desc = "Repeatedly attack a target. Deals more damage and costs more stamina for every hit landed."
+	desc = "Repeatedly attack a target. The longer the chain goes, the more damage you deal per hit, but the longer you are staggered if interrupted."
 
 	var/current_chain = 0
 	/// Maximum number of hits
@@ -1988,12 +1938,12 @@
 	var/damage_mult_start = 0.4
 	/// Damage multiplier increase per chain
 	var/damage_mult_increment = 0.075
-	///Stamina cost per extra swing
-	var/staminacost_chain = 0
-	///Stamina cost increase per extra swing
-	var/staminacost_chain_additive = 5
-	///Disorient and drain stamina when interrupted
+	///Disorient when interrupted
 	var/penalty_disorient = TRUE
+	///Disorient time on interrupt
+	var/disorient_duration_base = 2 SECONDS
+	///Extra disorient duration per extra swing
+	var/disorient_duration_additive = 0.5 SECONDS
 	var/alternate = FALSE
 	onAdd()
 		if(master)
@@ -2025,11 +1975,10 @@
 		if (!hit)
 			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
 
-		while (hit && H.stamina > (staminacost_chain + staminacost_chain_additive*current_chain) && H.equipped() == master && current_chain < max_chain)
+		while (hit && H.equipped() == master && current_chain < max_chain)
 			H.next_click = world.time + 5 SECONDS
 			last_use = world.time
 			current_chain++
-			H.remove_stamina(staminacost_chain + staminacost_chain_additive*current_chain)
 			if (current_chain == 13)
 				sleep(0.2 SECONDS)
 				var/string ="[H] raises \the [src] up high!"
@@ -2066,10 +2015,10 @@
 			if (!hit)
 				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
 
-		if (current_chain > 3 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the third swing
+		if (current_chain > 2 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the third swing
 			var/string ="[H] swings their machete too hard and loses their balance!"
 			H.show_message(SPAN_ALERT(string), 1)
-			H.do_disorient(H.get_stamina(), 0, 0, 0, 4 SECONDS, FALSE)
+			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * chain)
 		afterUse(user)
 
 	afterUse(mob/user)
@@ -2091,7 +2040,7 @@
 		name = "Massacre"
 		desc = "Repeatedly attack a target. Decapitate if left uninterrupted."
 		max_chain = 13
-		staminacost_chain_additive = 0
+		disorient_duration_additive = 0
 		damage_mult_start = 0.6
 		damage_mult_increment = 0.1
 		penalty_disorient = FALSE
