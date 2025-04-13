@@ -649,8 +649,8 @@
 
 	return
 /obj/item/spray_paint
-	name = "'LeadMaxxx' spray paint can"
-	desc = "A can of gloss spray paint. Great for doing wicked sick art. Not so great when the janitor shows up."
+	name = "'LeadMaxXx' spray paint can"
+	desc = "A can of leaded spray paint. Great for doing wicked sick art. Not so great when the janitor shows up."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "spraycan"
 	item_state = "spraycan"
@@ -666,8 +666,6 @@
 	var/list/tags_single
 	var/list/tags_double
 	var/list/tags_triple
-
-	w_class = W_CLASS_TINY
 
 	proc/update_icon()
 		if (charges > 0 )

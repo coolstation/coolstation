@@ -930,11 +930,11 @@
 	icon_state = "baseballbat"
 	item_state = "baseballbat"
 	hit_type = DAMAGE_BLUNT
-	force = 12
+	force = 10
 	throwforce = 7
 	stamina_damage = 24
 	stamina_cost = 30
-	stamina_crit_chance = 15
+	stamina_crit_chance = 40
 	mats = list("wood" = 8)
 
 
