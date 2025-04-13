@@ -860,3 +860,27 @@
 	escape
 		spawn_contents = list(/obj/item/sea_ladder,
 		/obj/item/pipebomb/bomb/engineering = 2)
+
+// evil nasty biohazard crate
+/obj/storage/crate/sarincrate
+	name = "sarin grenade crate"
+	desc = "A menacing crate to store deadly sarin grenades."
+	icon_state = "stxcrate"
+	icon_opened = "stxcrate_open"
+	icon_closed = "stxcrate"
+
+	filled_4
+		New()
+			var/datum/loot_generator/sarin_filler
+			src.vis_controller = new(src)
+			sarin_filler = new /datum/loot_generator(2,1)
+			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
+			..()
+
+	filled_8
+		New()
+			var/datum/loot_generator/sarin_filler
+			src.vis_controller = new(src)
+			sarin_filler = new /datum/loot_generator(2,2)
+			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
+			..()
