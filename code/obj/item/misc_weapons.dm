@@ -1552,8 +1552,9 @@ obj/item/whetstone
 	tool_flags = TOOL_CHOPPING //to chop through doors
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
+
 	two_handed = 1
-	click_delay = 30
+	click_delay = 3 SECONDS
 
 	force = 30 //this number is multiplied by 4 when attacking doors.
 	stamina_damage = 60
@@ -1563,6 +1564,24 @@ obj/item/whetstone
 		..()
 		BLOCK_SETUP(BLOCK_ROD)
 		src.setItemSpecial(/datum/item_special/heavy_swing)
+
+/obj/item/breaching_hammer/sledgehammer
+	name = "sledgehammer"
+	desc = "A super heavy metal hammer perfect for smacking walls and people you don't like."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "sledgehammer"
+	item_state = "sledgehammer"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	flags = FPRINT | TABLEPASS | ONBACK
+
+	w_class = W_CLASS_BULKY
+	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD
+
+	force = 45
+
+	setupProperties()
+		..()
+		setProperty("movespeed", 1.2)
 
 /obj/item/machete
 	name = "rusty machete"

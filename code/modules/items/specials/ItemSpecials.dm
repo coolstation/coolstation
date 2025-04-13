@@ -99,6 +99,7 @@
 
 	return ((dx*dx) + (dy*dy))
 
+#define WYSIWYG_SPECIAL_SCALE 1 // at 0, this means you can be hit by a special through your entire movement. at 1, 50%, at 2, 33%, and so on. Raise if specials feel too good across the board
 /// Finds every mob that is currently moving away from a turf, but has not reached the end of their movement.
 /proc/atoms_in_combat_range(var/turf/target)
 	var/list/atom/atoms = list()
@@ -106,10 +107,11 @@
 		atoms += A
 	if(whatcha_see_is_whatcha_get)
 		for(var/mob/dude in range(1,target))
-			if (dude.next_move > world.time && dude.prev_loc == target)
+			if (dude.next_move > ((world.time + dude.next_move * WYSIWYG_SPECIAL_SCALE) / (1 + WYSIWYG_SPECIAL_SCALE) ) && dude.prev_loc == target)
 				atoms |= dude
 
 	return atoms
+#undef WYSIWYG_SPECIAL_SCALE
 
 //Handles setup for specials and adds / removes them from items.
 /obj/item/proc/setItemSpecial(var/type = null)
@@ -281,21 +283,11 @@
 		cooldown = 100
 		image = "rush"
 		name = "Rush"
-		desc = "Hold to charge, release to rush."
-		var/maxRange = 17
+		desc = "Click once to charge, click again to rush."
+		var/maxRange = 13
 		damageMult = 2
 
 		var/datum/action/bar/private/icon/rush/action = null
-
-		onMouseDown(atom/target,location,control,params)
-			if(!isturf(target.loc) && !isturf(target)) return
-			if(!usable()) return
-			var/list/parameters = params2list(params)
-			if(parameters["left"] && master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
-				action = new(src, usr, target)
-				action.params = params
-				actions.start(action, usr)
-			return
 
 		onMouseUp(atom/target,location,control,params)
 			var/list/parameters = params2list(params)
@@ -305,6 +297,13 @@
 						action.target = target
 					action.params = params
 					action.state = ACTIONSTATE_FINISH
+				else
+					if(!isturf(target.loc) && !isturf(target)) return
+					if(!usable()) return
+					if(master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+						action = new(src, usr, target)
+						action.params = params
+						actions.start(action, usr)
 			return
 
 		proc/rush(atom/movable/user, atom/target, progress, params)
@@ -2516,12 +2515,14 @@
 
 	onStart()
 		..()
+		user.canmove = 0
 
 	onInterrupt(var/flag)
 		..()
 
 	onEnd()
 		..()
+		user.canmove = initial(user.canmove)
 		if(target == null || user == null)
 			interrupt(INTERRUPT_ALWAYS)
 			return
