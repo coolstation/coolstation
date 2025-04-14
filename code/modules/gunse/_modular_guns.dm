@@ -301,6 +301,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/gun/modular/target_gun
 	id = "load_ammo"
 
+	proc/caliber_check(obj/item/gun/modular/gun, obj/item/stackable_ammo/ammo)
+		if(ammo.caliber == 0 || gun.caliber == CALIBER_LW || gun.caliber == ammo.caliber)
+			return 1
+		return 0
+
 	New(obj/item/gun/modular/gun, obj/item/stackable_ammo/ammo)
 		if (!istype(gun) || !istype(ammo))
 			interrupt(INTERRUPT_ALWAYS)
@@ -326,7 +331,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//	boutput(owner, "<span class='notice'>That shell won't fit the breech.</span>")
 		//	interrupt(INTERRUPT_ALWAYS)
 		//	return
-		if (target_gun.caliber < donor_ammo.caliber)
+		if (!caliber_check(target_gun, donor_ammo))
 			boutput(owner, "<span class='notice'>That cartridge won't fit the breech.</span>")
 			interrupt(INTERRUPT_ALWAYS)
 			return
@@ -996,6 +1001,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	accessory_on_cycle = 0
 	flash_auto = 0
 	bulk = bulkiness
+	caliber = 0
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)

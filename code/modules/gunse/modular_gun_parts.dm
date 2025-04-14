@@ -60,7 +60,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/muzzle_flash = "muzzle_flash"
 	var/lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
 	var/jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
-	var/scatter = 0
+	var/scatter = 0 // affects the Width part of the gun caliber
 	var/length = 0 // centimetres
 
 	//stock vars
@@ -142,7 +142,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 		my_gun.silenced = src.silenced
 		my_gun.muzzle_flash = src.muzzle_flash
 		my_gun.lensing = src.lensing
-//	my_gun.scatter = src.scatter
+		my_gun.caliber |= src.scatter
 		my_gun.jam_frequency += src.jam_frequency
 		my_gun.name = my_gun.name + " " + src.name_addition
 		//Icon! :)
@@ -191,12 +191,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 		if(!my_gun)
 			return
 		//if stock blocks grip, return
-		if(part_type == "stock")
+		if(part_type == "stock") //????
 			my_gun.stock = src
 			my_gun.can_dual_wield = src.can_dual_wield
 		my_gun.max_ammo_capacity += src.max_ammo_capacity
 		my_gun.spread_angle = max(0, (my_gun.spread_angle + src.spread_angle)) // so we cant dip below 0
-
+		my_gun.caliber |= CALIBER_L // shoulder stock allows long cartridges for some reason
 		my_gun.can_dual_wield &= src.stock_dual_wield
 		my_gun.jam_frequency += src.jam_frequency
 		my_gun.ammo_list += src.ammo_list

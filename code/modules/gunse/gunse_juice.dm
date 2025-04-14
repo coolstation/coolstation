@@ -15,15 +15,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	icon_state = "juicer" //only large
 	max_ammo_capacity = 0 //fukt up mags only
 	action = "pump"
-	//cartridge_length = 40
 	gun_DRM = GUN_JUICE
 	spread_angle = 10
-	//color = "#99FF99"
-	contraband = 4
+	contraband = 1
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
-	//foregrip_offset_x = 15 //put it on the pump
 	jam_frequency = 5
 	jam_frequency = 15
 	fiddlyness = 0 //surprisingly not very fiddly, loads fast, clears jams fast. built for sucking
