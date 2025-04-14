@@ -16,10 +16,6 @@
 	stamina_crit_chance = 5
 	custom_suicide = 1
 
-/obj/item/basketball/New()
-	..()
-	src.setItemSpecial(/datum/item_special/rush/basketball)
-
 /obj/item/basketball/attack_hand(mob/user as mob)
 	..()
 	if(user)

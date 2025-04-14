@@ -285,6 +285,8 @@
 		name = "Rush"
 		desc = "Click once to charge, click again to rush."
 		var/maxRange = 15
+		var/move_delay = 0.1 SECONDS
+		var/starting_progress = 0
 		damageMult = 2
 
 		var/datum/action/bar/private/icon/rush/action = null
@@ -324,8 +326,6 @@
 					var/blurX = 0
 					var/blurY = 0
 
-					user.set_dir(direction)
-
 					switch(direction)
 						if(NORTH)
 							blurY = 10
@@ -348,14 +348,14 @@
 							blurY = 10
 							blurX = -10
 
+					sleep(move_delay)
+
 					step(user, direction)
 					user.set_dir(direction)
+					src.onStep(user)
 					var/newTurf = get_turf(user)
 
 					if(newTurf == lastTurf)
-						break
-
-					if(newTurf == get_turf(target))
 						break
 
 					lastTurf = newTurf
@@ -371,31 +371,42 @@
 					for(var/atom/A in atoms_in_combat_range(lastTurf))
 						if(A in attacked) continue
 						if(isTarget(A, user) && A != user)
-							user.emote("flip")
 							A.Attackby(master, user, params, 1)
 							attacked += A
 							hit = 1
+							src.onHit(A, user)
 
 					if(hit)
-						if(prob(1))
-							var/obj/itemspecialeffect/zantetsuken/Z = new()
-							Z.setup(user.loc)
-						else
-							var/obj/itemspecialeffect/rushhit/R = new()
-							R.setup(user.loc)
+						var/obj/itemspecialeffect/rushhit/R = new()
+						R.setup(user.loc)
 
-					sleep(0.1 SECONDS)
+					if(newTurf == get_turf(target))
+						break
+
+
 				if(user)
 					user.pass_through_mobs = FALSE
 			afterUse(user)
 			playsound(master, 'sound/effects/sprint_puff.ogg', 60, 0)
 			return
 
+		proc/onHit(atom/target, mob/user)
+			return
+
+		proc/onStep(mob/user)
+			return
+
 		basketball
 			maxRange = 8
-			damageMult = 4 // teehee
+			move_delay = 0.3 SECONDS
+			starting_progress = 0.6
 			name = "Ball On 'Em"
 			desc = "Click once to shuffle, click again to ball on the competition."
+
+			onHit(atom/target, mob/user)
+				..()
+				animate(user, time = 0.1 SECONDS, pixel_y = user.pixel_y + 22)
+				animate(time = 0.2 SECONDS, pixel_y = user.pixel_y - 22)
 
 	throwing
 		cooldown = 10
@@ -2522,6 +2533,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 		else
 			special = D
+			progress = D.starting_progress
 			user = U
 			target = T
 
