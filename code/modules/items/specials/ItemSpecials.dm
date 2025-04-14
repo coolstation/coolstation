@@ -310,7 +310,7 @@
 
 		proc/rush(mob/user, atom/target, progress, params)
 			preUse(user)
-			user.set_density(0)
+			user.pass_through_mobs = TRUE
 			action = null
 			src.cooldown = round(max(10, initial(src.cooldown) * progress))
 
@@ -384,9 +384,8 @@
 							R.setup(user.loc)
 
 					sleep(0.1 SECONDS)
-
-			if(user)
-				user.set_density(initial(user.density))
+				if(user)
+					user.pass_through_mobs = FALSE
 			afterUse(user)
 			playsound(master, 'sound/effects/sprint_puff.ogg', 60, 0)
 			return
