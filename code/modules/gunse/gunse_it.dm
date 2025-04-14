@@ -22,7 +22,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	jam_frequency = 5
 	jam_frequency = 0
-//	var/currently_firing = FALSE //this double action pull is slow
+	var/currently_firing = FALSE //this double action pull is slow
 	fiddlyness = 25
 
 	//ideally we have two lists
@@ -33,7 +33,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	//load and fire in that order, every time
 	//spin cylinder by clickdragging onto itself if not cocked
 	//decock on load?
-/*
+
 	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//If we're doing a double action thing here where it automatically resets and is ready to fire the next shot?
 		//Maybe a short sleep, that's the tradeoff for not having to click it every time... I'm not putting it in until I sort out more
@@ -70,7 +70,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			boutput(user,"<span><b>You cock the hammer.</b></span>")
 			hammer_cocked = 1
 		buildTooltipContent()
-*/
+
 /obj/item/gun/modular/italian/basic
 	name = "basic Italian revolver"
 	real_name = "\improper Italianetto"
