@@ -371,6 +371,7 @@
 					for(var/atom/A in atoms_in_combat_range(lastTurf))
 						if(A in attacked) continue
 						if(isTarget(A, user) && A != user)
+							user.emote("flip")
 							A.Attackby(master, user, params, 1)
 							attacked += A
 							hit = 1
@@ -2530,10 +2531,7 @@
 
 	onInterrupt(var/flag)
 		..()
-		if(flag == INTERRUPT_MOVE && target && user)
-			if(special.master == user.equipped() && istype(special, /datum/item_special/rush))
-				special.rush(user, target, progress, params)
-				return
+		user.canmove = initial(user.canmove)
 
 	onEnd()
 		..()
