@@ -310,82 +310,83 @@
 
 		proc/rush(mob/user, atom/target, progress, params)
 			preUse(user)
-			user.pass_through_mobs = TRUE
+			user.set_density(0)
 			action = null
 			src.cooldown = round(max(10, initial(src.cooldown) * progress))
 
 			var/turf/lastTurf = get_turf(user)
 
-			for(var/i=0, i < max(1,round(maxRange * progress)), i++)
+			SPAWN_DBG(0)
+				for(var/i=0, i < max(1,round(maxRange * progress)), i++)
 
-				var/direction = get_dir_pixel(user, target, params)
-				var/list/attacked = list()
-				var/blurX = 0
-				var/blurY = 0
+					var/direction = get_dir_pixel(user, target, params)
+					var/list/attacked = list()
+					var/blurX = 0
+					var/blurY = 0
 
-				user.set_dir(direction)
+					user.set_dir(direction)
 
-				switch(direction)
-					if(NORTH)
-						blurY = 10
-					if(SOUTH)
-						blurY = -10
-					if(EAST)
-						blurX = 10
-					if(WEST)
-						blurX = -10
-					if(NORTHEAST)
-						blurX = 10
-						blurY = 10
-					if(SOUTHEAST)
-						blurY = -10
-						blurX = 10
-					if(SOUTHWEST)
-						blurY = -10
-						blurX = -10
-					if(NORTHWEST)
-						blurY = 10
-						blurX = -10
+					switch(direction)
+						if(NORTH)
+							blurY = 10
+						if(SOUTH)
+							blurY = -10
+						if(EAST)
+							blurX = 10
+						if(WEST)
+							blurX = -10
+						if(NORTHEAST)
+							blurX = 10
+							blurY = 10
+						if(SOUTHEAST)
+							blurY = -10
+							blurX = 10
+						if(SOUTHWEST)
+							blurY = -10
+							blurX = -10
+						if(NORTHWEST)
+							blurY = 10
+							blurX = -10
 
-				var/turf/newTurf = get_step(user, target)
-				user.set_dir(direction)
-				step_to(user, newTurf)
+					step(user, direction)
+					user.set_dir(direction)
+					var/newTurf = get_turf(user)
 
-				if(newTurf == lastTurf)
-					break
+					if(newTurf == lastTurf)
+						break
 
-				if(lastTurf == get_turf(target))
-					break
+					if(newTurf == get_turf(target))
+						break
 
-				lastTurf = get_turf(user)
+					lastTurf = newTurf
 
-				var/obj/itemspecialeffect/glitter/E = new()
-				E.setup(user.loc)
-				E.filters = filter(type="motion_blur", x=blurX, y=blurY)
+					var/obj/itemspecialeffect/glitter/E = new()
+					E.setup(user.loc)
+					E.filters = filter(type="motion_blur", x=blurX, y=blurY)
 
-				animate(E, alpha=255,time=0,loop=0)
-				animate(alpha=0,pixel_x=((blurX*(-1))*3),pixel_y=((blurY*(-1))*3), time=(15+(i*3)),loop=0)
+					animate(E, alpha=255,time=0,loop=0)
+					animate(alpha=0,pixel_x=((blurX*(-1))*3),pixel_y=((blurY*(-1))*3), time=(15+(i*3)),loop=0)
 
-				var/hit = 0
-				for(var/atom/A in atoms_in_combat_range(lastTurf))
-					if(A in attacked) continue
-					if(isTarget(A, user) && A != user)
-						A.Attackby(master, user, params, 1)
-						attacked += A
-						hit = 1
+					var/hit = 0
+					for(var/atom/A in atoms_in_combat_range(lastTurf))
+						if(A in attacked) continue
+						if(isTarget(A, user) && A != user)
+							A.Attackby(master, user, params, 1)
+							attacked += A
+							hit = 1
 
-				if(hit)
-					if(prob(1))
-						var/obj/itemspecialeffect/zantetsuken/Z = new()
-						Z.setup(user.loc)
-					else
-						var/obj/itemspecialeffect/rushhit/R = new()
-						R.setup(user.loc)
+					if(hit)
+						if(prob(1))
+							var/obj/itemspecialeffect/zantetsuken/Z = new()
+							Z.setup(user.loc)
+						else
+							var/obj/itemspecialeffect/rushhit/R = new()
+							R.setup(user.loc)
 
-				sleep(0.1 SECONDS)
+					sleep(0.1 SECONDS)
 
 			if(user)
-				user.pass_through_mobs = FALSE
+				user.set_density(initial(user.density))
 			afterUse(user)
 			playsound(master, 'sound/effects/sprint_puff.ogg', 60, 0)
 			return
