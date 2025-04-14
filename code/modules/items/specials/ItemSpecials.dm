@@ -2525,6 +2525,11 @@
 			user = U
 			target = T
 
+	disposing()
+		if(special)
+			special.action = null
+		..()
+
 	onStart()
 		..()
 		user.canmove = 0
@@ -2532,6 +2537,9 @@
 	onInterrupt(var/flag)
 		..()
 		user.canmove = initial(user.canmove)
+		if(special)
+			special.action = null
+		return
 
 	onEnd()
 		..()
@@ -2543,7 +2551,8 @@
 		if(special)
 			if(special.master == user.equipped() && istype(special, /datum/item_special/rush))
 				special.rush(user, target, progress, params)
-				return
+			special.action = null
+			return
 
 	onUpdate()
 		if(target == null || user == null || !istype(special, /datum/item_special/rush))
