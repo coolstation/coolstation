@@ -2021,6 +2021,7 @@
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
 		//all should require permit, some should require permit and sec
+		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 		//full gunse
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.5)
@@ -2060,6 +2061,7 @@
 		name = "Fucile Fusilli"
 		desc = "Un distributore automatico pieno di armi."
 		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
@@ -2106,6 +2108,7 @@
 		color = "#bbFFbb"
 		name = "JUICER SYSTEN"
 		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, cost = PAY_TRADESMAN*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/ribbed, 2, cost = PAY_TRADESMAN)
