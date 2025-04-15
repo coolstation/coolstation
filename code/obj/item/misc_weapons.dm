@@ -491,7 +491,7 @@
 
 	New()
 		..()
-		setItemSpecial(/datum/item_special/jab)
+		//setItemSpecial(/datum/item_special/jab)
 		BLOCK_SETUP(BLOCK_KNIFE)
 
 /obj/item/dagger/throw_impact(atom/A, datum/thrown_thing/thr)

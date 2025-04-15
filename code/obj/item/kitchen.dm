@@ -136,7 +136,7 @@ TRAYS
 
 	New()
 		..()
-		setItemSpecial(/datum/item_special/jab)
+		//setItemSpecial(/datum/item_special/jab)
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
