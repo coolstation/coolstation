@@ -1642,7 +1642,7 @@ obj/item/whetstone
 			active = TRUE
 			tool_flags = TOOL_CUTTING
 			item_state = "knife"
-			src.setItemSpecial(/datum/item_special/simple/bloodystab)
+			//src.setItemSpecial(/datum/item_special/simple/bloodystab)
 			icon_state = "switchblade-open"
 			hit_type = DAMAGE_CUT
 			force = 10
@@ -1655,7 +1655,7 @@ obj/item/whetstone
 			active = FALSE
 			item_state = ""
 			tool_flags = 0
-			src.setItemSpecial(/datum/item_special/simple)
+			//src.setItemSpecial(/datum/item_special/simple)
 			icon_state = "switchblade-close"
 			hit_type = DAMAGE_BLUNT
 			stamina_crit_chance = 5
