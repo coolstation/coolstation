@@ -14,7 +14,7 @@
 a new modular gun system
 every /obj/item/gun/modular/ has some basic stats and some basic shooting behavior. Nothing super complex.
 by default all children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
-with some ordinary basic parts. barrel and mag are necessary, the other two whatever.
+with some ordinary basic parts. barrel and grip or stock are necessary, the other two whatever.
 additional custom parts can be created with stat bonuses, and other effects in their add_part_to_gun() proc
 
 TODO: make desc dynamic on build unless overridden by an existing desc (i.e. spawned from vending machine or on person)
@@ -23,7 +23,7 @@ TODO: make desc dynamic on build unless overridden by an existing desc (i.e. spa
 in order to balance this, barrels should be balanced around ~ -15 spread, and stocks around -5 (so -13 is a rough barrel, -17 is a good one, etc.)
 giving an "average" spread for stock guns around 5-10
 */
-//modular guns - guns systen - gun's systen - tags for Search Optimisation™
+//modular guns - guns systen - gunse systen - gun's systen - tags for Search Optimisation™
 
 //remember: no "real" guns, and that doesn't just mean real guns with different goofy names!!!!
 
@@ -49,6 +49,13 @@ giving an "average" spread for stock guns around 5-10
 #define CALIBER_W  1 // 01 - wide
 #define CALIBER_L  2 // 10 - long
 #define CALIBER_LW 3 // 11 - huge
+//bitflags for finding your bits
+#define GUN_PART_UNDEF  0
+#define GUN_PART_BARREL 1
+#define GUN_PART_STOCK  2
+#define GUN_PART_GRIP   4
+#define GUN_PART_MAG    8
+#define GUN_PART_ACCSY  16
 
 ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/ // PARENT TYPE TO ALL MODULER GUN'S
@@ -122,6 +129,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
 	two_handed = 0
 	can_dual_wield = 1
+	var/call_on_cycle = 0 //bitflag
+	var/call_on_fire = 0 //bitflag
 
 	New()
 		..()
@@ -573,8 +582,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
-	if(accessory && accessory_on_cycle)
-		accessory.on_cycle()
+	if(call_on_cycle & GUN_PART_BARREL)
+		barrel.on_cycle(src, current_projectile)
+	if(call_on_cycle & GUN_PART_STOCK)
+		stock.on_cycle(src, current_projectile)
+	if(call_on_cycle & GUN_PART_GRIP)
+		grip.on_cycle(src, current_projectile)
+	if(call_on_cycle & GUN_PART_MAG)
+		magazine.on_cycle(src, current_projectile)
+	if(call_on_cycle & GUN_PART_ACCSY)
+		accessory.on_cycle(src, current_projectile)
 
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
@@ -830,8 +847,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	chamber_checked = FALSE
 	hammer_cocked = FALSE
 
-	if(accessory && accessory_on_fire)
-		accessory.on_fire()
+	if(call_on_fire & GUN_PART_BARREL)
+		barrel.on_fire(src, P)
+	if(call_on_fire & GUN_PART_STOCK)
+		stock.on_fire(src, P)
+	if(call_on_fire & GUN_PART_GRIP)
+		grip.on_fire(src, P)
+	if(call_on_fire & GUN_PART_MAG)
+		magazine.on_fire(src, P)
+	if(call_on_fire & GUN_PART_ACCSY)
+		accessory.on_fire(src, P)
 
 	if(user && !suppress_fire_msg)
 		if(!src.silenced)
@@ -931,44 +956,29 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
-	icon_state = "[initial(icon_state)]-built" //if i don't do this it's -built-built-built
+	name = real_name
+	icon_state = initial(icon_state)//if i don't do this it's -built-built-built
 	parts = list()
 	if(barrel)
 		parts += barrel
-	/*
-	if(foregrip) //tuck this under the barrel
-		foregrip.part_type = "foregrip"
-		parts += foregrip
-		foregrip.overlay_x += foregrip_offset_x
-		foregrip.overlay_y += foregrip_offset_y
-	*/
-	else //bad idea
+	else
 		spread_angle += BARREL_PENALTY
-	if(src.gun_DRM == GUN_JUICE) //pump requires two hands also it's almost always fukken huge
-		src.two_handed = FALSE //but i may revisit this
-		src.can_dual_wield = FALSE
 	if(magazine)
 		parts += magazine
 	if(grip)
 		parts += grip
 	if(stock)
 		parts += stock
-		two_handed = 1 //for later: if (stock.foldable != 2) (unfolded) then 2-handed
-	if(!grip && !stock) //uh oh
+	if(!grip && !stock)
 		spread_angle += GRIP_PENALTY
-
-
 	if(accessory)
 		parts += accessory
-
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
 	if(bulk > 6 || flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
 		src.can_dual_wield = FALSE
-		//if(!foregrip)
-		//	spread_angle += GRIP_PENALTY/3
 	src.force = 2 + bulk
 	src.throwforce = bulk
 
