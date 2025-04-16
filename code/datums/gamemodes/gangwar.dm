@@ -648,9 +648,10 @@
 	usr.verbs -= /client/proc/set_gang_base
 
 	return
+
 /obj/item/spray_paint
 	name = "'LeadMaxXx' spray paint can"
-	desc = "A can of leaded spray paint. Great for doing wicked sick art. Not so great when the janitor shows up."
+	desc = "A can of cheap spray paint. Great for doing wicked sick art. Not so great when the janitor shows up."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "spraycan"
 	item_state = "spraycan"
@@ -682,9 +683,9 @@
 		src.setItemSpecial(/datum/item_special/graffiti)
 
 	attack_self(mob/user)
-		if (ON_COOLDOWN(src,"shake",1 SECOND))
+		if (ON_COOLDOWN(src,"shake",1 SECOND)) // you gotta shake that shit fast
 			user.visible_message(SPAN_ALERT("[user] shakes the [src.name]!"))
-			playsound(user.loc, 'sound/items/graffitishake.ogg', 50, FALSE)
+			playsound(user.loc, 'sound/items/graffitishake.ogg', 40, FALSE)
 
 	afterattack(target, mob/user)
 		do_graffiti(target,user)
@@ -708,7 +709,7 @@
 
 	proc/refresh_single_tags()
 		tags_single = list()
-		for (var/i=1 to 9)
+		for (var/i=1 to 6)
 			tags_single += i
 	proc/refresh_double_tags()
 		tags_double = list()
@@ -716,7 +717,7 @@
 			tags_double += i
 	proc/refresh_triple_tags()
 		tags_triple = list()
-		for (var/i=1 to 11)
+		for (var/i=1 to 3)
 			tags_triple += i
 
 	proc/do_graffiti(target, mob/user)
@@ -780,7 +781,7 @@
 
 /obj/decal/cleanable/gang_graffiti
 	name = "graffiti"
-	desc = "A mural, of some kind. Made with cheap paint."
+	desc = "A mural in leaded paint, loudly proclaiming some sort of stance."
 	icon = 'icons/obj/decals/graffiti.dmi'
 
 /*
@@ -892,8 +893,6 @@
 	var/obj/item/spray_paint/spraycan
 	/// the mob spraying this tag
 	var/mob/M
-	/// the gang we're spraying for
-	var/datum/gang/gang
 	/// when our next spray sound can beplayed
 	var/next_spray = 0 DECI SECONDS
 
@@ -918,7 +917,10 @@
 			if (BOUNDS_DIST(owner, sprayedturf) > 0)
 				interrupt(INTERRUPT_ALWAYS)
 				return
-		if(world.time - src.started > next_spray)
+		if (spraycan.loc != owner)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if(TIME - src.started > next_spray)
 			next_spray += rand(18,26) DECI SECONDS
 			playsound(owner.loc, 'sound/items/graffitispray3.ogg', 100, TRUE)
 		var/new_duration = duration
@@ -947,6 +949,9 @@
 				interrupt(INTERRUPT_ALWAYS)
 				return
 		if(!owner)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (spraycan.loc != owner)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		spraycan.in_use = FALSE
