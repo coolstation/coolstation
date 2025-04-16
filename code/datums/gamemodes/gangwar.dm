@@ -649,6 +649,11 @@
 
 	return
 
+/// defines the highest tag id for each of the tag sizes
+#define SINGLE_GRAFFITI_TAGS 6
+#define DOUBLE_GRAFFITI_TAGS 6
+#define TRIPLE_GRAFFITI_TAGS 3
+
 /obj/item/spray_paint
 	name = "'LeadMaxXx' spray paint can"
 	desc = "A can of cheap spray paint. Great for doing wicked sick art. Not so great when the janitor shows up."
@@ -709,15 +714,15 @@
 
 	proc/refresh_single_tags()
 		tags_single = list()
-		for (var/i=1 to 6)
+		for (var/i=1 to SINGLE_GRAFFITI_TAGS)
 			tags_single += i
 	proc/refresh_double_tags()
 		tags_double = list()
-		for (var/i=1 to 6)
+		for (var/i=1 to DOUBLE_GRAFFITI_TAGS)
 			tags_double += i
 	proc/refresh_triple_tags()
 		tags_triple = list()
-		for (var/i=1 to 3)
+		for (var/i=1 to TRIPLE_GRAFFITI_TAGS)
 			tags_triple += i
 
 	proc/do_graffiti(target, mob/user)
@@ -778,6 +783,10 @@
 			add_target(user, turftarget)
 		else if (length(graffititargets) < 3)
 			add_target(user, turftarget)
+
+#undef SINGLE_GRAFFITI_TAGS
+#undef DOUBLE_GRAFFITI_TAGS
+#undef TRIPLE_GRAFFITI_TAGS
 
 /obj/decal/cleanable/gang_graffiti
 	name = "graffiti"
