@@ -1900,6 +1900,10 @@
 				A.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
 				status.tag_images += tag
 
+				loser.visible_message(SPAN_COMBAT("[user] sprays paint into [loser]'s face!"),SPAN_COMBAT("[user] sprays paint in your face!"))
+				logTheThing("combat", user, loser, "attacks [constructTarget(loser,"combat")] with [master] ([master.type], object name: [initial(master.name)]) at [log_loc(user)].")
+				loser.was_harmed(user, master, TRUE)
+
 				hit_twitch(A)
 				if (ishuman(A) && prob(40))
 					var/mob/living/carbon/human/victim = A

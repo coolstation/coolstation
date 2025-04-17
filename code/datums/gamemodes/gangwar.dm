@@ -716,11 +716,14 @@
 		status.tag_images += tag
 
 		M.visible_message(SPAN_COMBAT("[user] sprays paint into [M]'s face!"),SPAN_COMBAT("[user] sprays paint in your face!"))
+		logTheThing("combat", user, M, "attacks [constructTarget(M,"combat")] with [src] ([type], object name: [initial(name)]) at [log_loc(user)].")
+
 
 		hit_twitch(M)
 		if (ishuman(M))
 			var/mob/living/carbon/human/victim = M
 			victim.emote("cough")
+			victim.was_harmed(user, src, TRUE)
 
 		src.charges--
 		src.update_icon()
