@@ -1832,6 +1832,19 @@
 	var/ignition = FALSE
 	var/flipped = FALSE
 
+	afterUse(mob/user)
+		..()
+		if(istype(master, /obj/item/spray_paint))
+			var/obj/item/spray_paint/spraycan = master
+			spraycan.charges--
+			if (spraycan.charges <= 0)
+				boutput(user, SPAN_ALERT("The graffiti can's empty!"))
+				playsound(user.loc, "sound/items/can_crush-[rand(1,3)].ogg", 50, 1)
+				spraycan.icon_state = "spraycan_crushed"
+				spraycan.setItemSpecial(/datum/item_special/simple)
+				spraycan.tooltip_rebuild = 1
+			spraycan.update_icon()
+
 	pixelaction(atom/target, list/params, mob/user, reach)
 		if(!isturf(target.loc) && !isturf(target)) return
 		if(!usable(user)) return
@@ -1859,11 +1872,18 @@
 		graffiti.setup(effect)
 		graffiti.set_dir(direction)
 
+		if(isopenflametool(user.l_hand) || isopenflametool(user.r_hand))
+			ignition = TRUE
+
 		for(var/turf/T in list(one, two, three))
 			for(var/atom/movable/A in T)
+				if(ignition)
+					T.hotspot_expose(1200,50)
 				if(A in attacked) continue
 				if(!isliving(A)) continue
 				var/mob/living/loser = A
+				if(ignition)
+					loser.changeStatus("burning", 10 SECONDS)
 				var/tag_int = pick(1,2,3)
 				var/image/tag = image('icons/effects/effects.dmi',"graffiti_mask_[tag_int]")
 				tag.pixel_y = rand(-1,5)
@@ -1875,7 +1895,7 @@
 				tag.alpha = 200
 				tag.color = graffiti.color
 				tag.appearance_flags = KEEP_TOGETHER
-				A.setStatus("graffiti_blind", 8 SECONDS)
+				A.setStatus("graffiti_blind", 7 SECONDS)
 				var/datum/statusEffect/graffiti/status = A.hasStatus("graffiti_blind")
 				A.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
 				status.tag_images += tag

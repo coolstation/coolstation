@@ -695,6 +695,37 @@
 	afterattack(target, mob/user)
 		do_graffiti(target,user)
 
+	attack(mob/M, mob/user, def_zone, is_special)
+		if(!isliving(M) || !src.charges)
+			return ..()
+		var/tag_int = pick(1,2,3)
+		var/image/tag = image('icons/effects/effects.dmi',"graffiti_mask_[tag_int]")
+		tag.pixel_y = rand(-1,5)
+		if (ismonkey(M))
+			tag.pixel_y = tag.pixel_y - 6
+		if (M.bioHolder.HasEffect("dwarf"))
+			tag.pixel_y = tag.pixel_y - 4
+		tag.blend_mode = BLEND_INSET_OVERLAY
+		tag.alpha = 200
+		tag.color = pick("#FF0000","#FF9A00","#FFFF00","#00FF78","#00FFFF","#0081DF","#CC00FF","#FFCCFF","#EBE6EB")
+		tag.appearance_flags = KEEP_TOGETHER
+		M.setStatus("graffiti_blind", 11 SECONDS)
+		M.changeStatus("disorient", 1 SECONDS)
+		var/datum/statusEffect/graffiti/status = M.hasStatus("graffiti_blind")
+		M.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
+		status.tag_images += tag
+
+		M.visible_message(SPAN_COMBAT("[user] sprays paint into [M]'s face!"),SPAN_COMBAT("[user] sprays paint in your face!"))
+
+		hit_twitch(M)
+		if (ishuman(M))
+			var/mob/living/carbon/human/victim = M
+			victim.emote("cough")
+
+		src.charges--
+		src.update_icon()
+		playsound(src, 'sound/items/graffitispray3.ogg', 50, TRUE)
+
 	proc/clear_targets()
 		graffititargets = list()
 		tagging_horizontally = FALSE
@@ -709,8 +740,6 @@
 		target_image.icon_state = "tile_channel_target"
 		target_image.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		user << target_image
-
-
 
 	proc/refresh_single_tags()
 		tags_single = list()
@@ -1013,7 +1042,7 @@
 
 		spraycan.clear_targets()
 		playsound(spraycan.loc, 'sound/effects/graffiti_hit.ogg', 20, TRUE)
-		if (spraycan.charges == 0)
+		if (spraycan.charges <= 0)
 			boutput(owner, SPAN_ALERT("The graffiti can's empty!"))
 			playsound(owner.loc, "sound/items/can_crush-[rand(1,3)].ogg", 50, 1)
 			spraycan.icon_state = "spraycan_crushed"
