@@ -185,7 +185,7 @@ var/global/list/bible_contents = list()
 
 /obj/item/storage/bible/mini
 	//Grif
-	name = "O.C. Bible"
+	name = "Ol' Piccola Bib"
 	desc = "For when you don't want the good book to take up too much space in your life."
 	icon_state = "minibible"
 	item_state = null
