@@ -1895,7 +1895,7 @@
 				tag.alpha = 200
 				tag.color = graffiti.color
 				tag.appearance_flags = KEEP_TOGETHER
-				A.setStatus("graffiti_blind", 7 SECONDS)
+				A.setStatus("graffiti_blind", 5 SECONDS)
 				var/datum/statusEffect/graffiti/status = A.hasStatus("graffiti_blind")
 				A.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
 				status.tag_images += tag

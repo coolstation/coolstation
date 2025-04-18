@@ -709,7 +709,7 @@
 		tag.alpha = 200
 		tag.color = pick("#FF0000","#FF9A00","#FFFF00","#00FF78","#00FFFF","#0081DF","#CC00FF","#FFCCFF","#EBE6EB")
 		tag.appearance_flags = KEEP_TOGETHER
-		M.setStatus("graffiti_blind", 11 SECONDS)
+		M.setStatus("graffiti_blind", 8 SECONDS)
 		M.changeStatus("disorient", 1 SECONDS)
 		var/datum/statusEffect/graffiti/status = M.hasStatus("graffiti_blind")
 		M.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
