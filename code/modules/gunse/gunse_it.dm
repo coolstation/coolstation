@@ -10,16 +10,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	real_name = "abstract Italian gun"
 	desc = "abstract type do not instantiate"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
-	icon_state = "italian" //only
+	icon_state = "italian_short" //only
 	//basic revolving mechanism
 	action = "double"
 	//this will be a "magazine" but like tubes we'll have a slightly different firing method
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 10
 	//color = "#FFFF99"
-	grip_overlay_x = GRIP_OFFSET_SHORT
-	stock_overlay_x = STOCK_OFFSET_SHORT
-	barrel_overlay_x = BARREL_OFFSET_SHORT
+	barrel_overlay_x = 5
+	grip_overlay_x = -4
+	grip_overlay_y = -4
+	stock_overlay_x = -5
+	stock_overlay_y = -2
 	jam_frequency = 5
 	jam_frequency = 0
 	var/currently_firing = FALSE //this double action pull is slow

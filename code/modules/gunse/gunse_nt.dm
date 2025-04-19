@@ -27,10 +27,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	real_name = "\improper NT pistol"
 	desc = "A basic, Nanotrasen-licensed single-shot weapon."
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
-	icon_state = "nt_short" //or nt_long
-	barrel_overlay_x = BARREL_OFFSET_SHORT
-	grip_overlay_x = GRIP_OFFSET_SHORT
-	stock_overlay_x = STOCK_OFFSET_SHORT
+	icon_state = "nt"
+	barrel_overlay_x = 5
+	grip_overlay_x = -4
+	grip_overlay_y = -2
+	stock_overlay_x = -4
+	stock_overlay_y = -1
 	max_ammo_capacity = 0
 	action = "single"
 	gun_DRM = GUN_NANO
@@ -52,7 +54,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		else if(prob(10)) // yes i know these are diminishing probabilities, thats the idea.
 			grip = new /obj/item/gun_parts/grip/NT/stub(src)
 		else
-			grip = new /obj/item/gun_parts/grip/NT/guardless(src)
+			grip = new /obj/item/gun_parts/grip/NT(src)
 
 /obj/item/gun/modular/NT/short/pistol_sec
 	name = "\improper NT pistol"
@@ -87,6 +89,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 //long rifle
 /obj/item/gun/modular/NT/long/rifle
 	name = "\improper NT rifle"
+	real_name = "\improper NT rifle"
 
 	make_parts()
 		if(prob(90))
@@ -94,21 +97,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		else
 			barrel = new /obj/item/gun_parts/barrel/NT/long/padded(src)
 		stock = new /obj/item/gun_parts/stock/NT(src)
-		if(prob(40))
+		if(prob(60))
 			grip = new /obj/item/gun_parts/grip/NT
-		else if(prob(40))
-			grip = new /obj/item/gun_parts/grip/NT/guardless
 		if(prob(10))
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 //stocked shotgun for sec
 /obj/item/gun/modular/NT/long/shotty
 	name = "\improper NT riot suppressor"
+	real_name = "\improper NT shotgun"
 	desc = "'Innovated' almost entirely from Juicer parts, it seems."
-	icon_state = "nt_long"
-	grip_overlay_x = GRIP_OFFSET_BULLPUP
-	barrel_overlay_x = BARREL_OFFSET_LONG
-	stock_overlay_x = STOCK_OFFSET_BULLPUP
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/shotty(src)
