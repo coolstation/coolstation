@@ -1256,7 +1256,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	invisibility = 101
 	plane = PLANE_HUD
 	layer = HUD_LAYER_3
-	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | PIXEL_SCALE
+	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | PIXEL_SCALE | KEEP_APART
 	var/static/matrix/infinity_matrix = matrix().Turn(90).Translate(18, 1)
 
 	New()

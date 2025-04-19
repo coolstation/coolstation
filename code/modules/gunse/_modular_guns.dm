@@ -65,6 +65,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	icon_state = "shittygun"
 	contraband = 0 //is this a crime gun made by and for crimers
 	inventory_counter_enabled = 1
+	appearance_flags = LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
 
 	// VARIABLES TO SET ON EACH RECIEVER
 	var/gun_DRM = 0 // identify the gun model / type
@@ -82,11 +83,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/auto_eject = 0 // Do we eject casings on cycle, or on reload?
 	var/action = null //what kinda gun is this
 	//offsets and parts
-	var/barrel_overlay_x = 0 //barrel attachment offset relative to standard (16,19 to 16,16) part attachment
+	///how many pixels from the center (16,16) does the barrel attach. most barrels have 2 pixels above the center and 2 or 3 below.
+	var/barrel_overlay_x = 0
 	var/barrel_overlay_y = 0
-	var/grip_overlay_x = 0 //grip attachment offset relative to standard (12,16) attachment point on small receiver
-	var/grip_overlay_y = 0 //easiest to use templates to make it consistent: less math/offsetting
-	var/stock_overlay_x = 0 //stock attachment offset relative to standard (16,19 to 16,16) part attachment
+	///how many pixels from the center (16,16) does the grip attach
+	var/grip_overlay_x = 0
+	var/grip_overlay_y = 0
+	///how many pixels from the center (16,16) does the stock attach
+	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
 	var/foregrip_offset_x = 8 //where to place the foregrip relative to the grip (default: 8 inches)
 	var/foregrip_offset_y = 0
