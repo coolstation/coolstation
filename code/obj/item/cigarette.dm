@@ -1175,6 +1175,7 @@
 		src.item_state = "zippoon"
 		light.enable()
 		processing_items |= src
+		src.tool_flags |= TOOL_OPENFLAME
 		if (user != null)
 			user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 			playsound(user, 'sound/items/zippo_open.ogg', 30, 1)
@@ -1187,6 +1188,7 @@
 		src.item_state = "zippo"
 		light.disable()
 		processing_items.Remove(src)
+		src.tool_flags &= ~TOOL_OPENFLAME
 		if (user != null)
 			user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
 			playsound(user, 'sound/items/zippo_close.ogg', 30, 1)

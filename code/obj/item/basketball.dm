@@ -65,6 +65,7 @@
 		W.set_loc(src)
 		var/obj/item/plutonium_core/P = W
 		src.payload = W
+		src.force += 15
 		if(src.loc == user)
 			P.plutonize(user.verbs)
 		return

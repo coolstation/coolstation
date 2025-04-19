@@ -134,6 +134,10 @@ TRAYS
 	dir = NORTH
 	throwforce = 7
 
+	New()
+		..()
+		//setItemSpecial(/datum/item_special/jab)
+
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
 			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
@@ -170,6 +174,7 @@ TRAYS
 
 	New()
 		..()
+		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/double)
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

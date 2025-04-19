@@ -160,6 +160,7 @@
 				src.welding = 0
 				src.force = 3
 				hit_type = DAMAGE_BLUNT
+				src.tool_flags &= ~TOOL_OPENFLAME
 				set_icon_state("weldingtool-off" + src.icon_state_variant_suffix)
 				src.item_state = "weldingtool-off" + src.item_state_variant_suffix
 				user.update_inhands()
@@ -184,6 +185,7 @@
 			boutput(user, "<span class='notice'>You will now weld when you attack.</span>")
 			src.force = 15
 			hit_type = DAMAGE_BURN
+			src.tool_flags |= TOOL_OPENFLAME
 			set_icon_state("weldingtool-on" + src.icon_state_variant_suffix)
 			src.item_state = "weldingtool-on" + src.item_state_variant_suffix
 			processing_items |= src
@@ -193,6 +195,7 @@
 			boutput(user, "<span class='notice'>Not welding anymore.</span>")
 			src.force = 3
 			hit_type = DAMAGE_BLUNT
+			src.tool_flags &= ~TOOL_OPENFLAME
 			set_icon_state("weldingtool-off" + src.icon_state_variant_suffix)
 			src.item_state = "weldingtool-off" + src.item_state_variant_suffix
 		user.update_inhands()
@@ -228,6 +231,7 @@
 				welding = 0
 				force = 3
 				hit_type = DAMAGE_BLUNT
+				src.tool_flags &= ~TOOL_OPENFLAME
 				set_icon_state("weldingtool-off" + src.icon_state_variant_suffix)
 				src.item_state = "weldingtool-off" + src.item_state_variant_suffix
 				processing_items.Remove(src)

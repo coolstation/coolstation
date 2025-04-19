@@ -1379,6 +1379,10 @@
 
 
 	msgs.damage = power
+
+	if (is_special && src.special)
+		msgs = src.special.modify_attack_result(user, M, msgs)
+
 	msgs.flush()
 	src.add_fingerprint(user)
 	#ifdef COMSIG_ITEM_ATTACK_POST
