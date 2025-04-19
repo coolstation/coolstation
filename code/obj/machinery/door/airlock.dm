@@ -215,7 +215,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		..()
 		if(!isrestrictedz(src.z) && src.name == initial(src.name)) //The latter half prevents renaming varedited doors.
 			var/area/station/A = get_area(src)
-			src.name = A.name
+			if(A)
+				src.name = A.name
 		src.net_access_code = rand(1, NET_ACCESS_OPTIONS)
 		START_TRACKING
 

@@ -1636,6 +1636,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 			src.update_quantity()
 
+		qdel(AM)
 		animate(src, pixel_y = 0 + src.float_pixels,  time = 2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
 		animate(pixel_y = 0, time = 2 SECONDS, loop = -1, easing = SINE_EASING)
 		set_up = TRUE
