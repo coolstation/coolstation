@@ -800,10 +800,14 @@ About the new airlock wires panel:
 //So this is the place you edit to decide that shit, thanks
 /obj/machinery/door/airlock/proc/determine_wire_group()
 	//ATM I've set it on a visual basis: doors that look the same have the same wires.
-	if (src.icon_base == "door") //non-pyro doors are all in their own dmis
-		src.door_group = src.icon
-	else //pyro/perspective airlocks set icon_base
-		src.door_group = src.icon_base
+	var/area/A = get_area(src)
+	if (A.area_door_group)
+		src.door_group = A.area_door_group
+	else
+		if (src.icon_base == "door") //non-pyro doors are all in their own dmis
+			src.door_group = src.icon
+		else //pyro/perspective airlocks set icon_base
+			src.door_group = src.icon_base
 
 	if (!(src.door_group in airlockWireColorToFlag))
 		RandomAirlockWires(src.door_group)
