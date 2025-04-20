@@ -56,7 +56,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		else
 			grip = new /obj/item/gun_parts/grip/NT(src)
 
-/obj/item/gun/modular/NT/short/pistol_sec
+/obj/item/gun/modular/NT/pistol_sec
 	name = "\improper NT pistol"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/long/padded(src)
@@ -69,7 +69,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 
 //single shot, no stock, intended for shotgun shell
-/obj/item/gun/modular/NT/short/bartender
+/obj/item/gun/modular/NT/bartender
 	name = "grey-market NT shotgun"
 	desc = "Cobbled together from unlicensed parts and passed between bartenders for at least a quarter of a generation."
 	contraband = 3
@@ -87,7 +87,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 //long rifle
-/obj/item/gun/modular/NT/long/rifle
+/obj/item/gun/modular/NT/rifle
 	name = "\improper NT rifle"
 	real_name = "\improper NT rifle"
 
@@ -103,7 +103,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 //stocked shotgun for sec
-/obj/item/gun/modular/NT/long/shotty
+/obj/item/gun/modular/NT/shotty
 	name = "\improper NT riot suppressor"
 	real_name = "\improper NT shotgun"
 	desc = "'Innovated' almost entirely from Juicer parts, it seems."

@@ -986,6 +986,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	src.force = 2 + bulk
 	src.throwforce = bulk
 
+	src.spread_angle = max(0, src.spread_angle) // hee hoo
+
 	buildTooltipContent()
 	built = 1
 
