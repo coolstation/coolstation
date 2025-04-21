@@ -18,6 +18,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	icon_state = "shittygun"
 	sound_type = "soviet"
 	gun_DRM = GUN_SOVIET
+	lensing = 0.2
 
 //short receiver only
 /obj/item/gun/modular/soviet/short

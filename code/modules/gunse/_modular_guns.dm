@@ -465,7 +465,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/alter_projectile(var/obj/projectile/P)
 	if(P.proj_data.window_pass)
 		if(lensing)
-			P.power *= lensing
+			P.power *= lensing + 0.2
 			return
 		P.power *= PROJ_PENALTY_BARREL
 		return
@@ -1009,7 +1009,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	safe_crank_level = 0
 	flashbulb_only = 0
 
-	lensing = 0
+	lensing = initial(lensing)
 	muzzle_flash = 0
 	silenced = 0
 	accessory_alt = 0

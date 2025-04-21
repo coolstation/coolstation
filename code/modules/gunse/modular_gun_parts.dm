@@ -29,7 +29,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/spread_angle = 0 // modifier, added to stock
 	var/silenced = FALSE
 	var/muzzle_flash = null
-	var/lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
+	var/lensing = 0 // Variable used for optical gun barrels. Adds onto static base of 0.2x
 	var/jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
 	var/scatter = FALSE // affects the Width part of the gun caliber
 	var/length = 0 // centimetres
