@@ -125,12 +125,18 @@
 		else
 			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1)
 
-/obj/cable/New(var/newloc, var/obj/item/cable_coil/source)
+/obj/cable/New(var/newloc, var/obj/item/cable_coil/source, dir1, dir2)
 	..()
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
-	d1 = text2num( icon_state )
+	if (dir1)
+		d1 = dir1
+	else
+		d1 = text2num( icon_state )
 
-	d2 = text2num( copytext( icon_state, findtext(icon_state, "-")+1 ) )
+	if (dir2)
+		d2 = dir2
+	else
+		d2 = text2num( copytext( icon_state, findtext(icon_state, "-")+1 ) )
 
 	if (source) src.iconmod = source.iconmod
 
@@ -380,15 +386,17 @@
 				if (future_powernet.number > C.is_a_node.pnet.number)
 					future_powernet = C.is_a_node.pnet //select for smallest numbered pnet
 
-		switch(C.get_connections())
+		var/list/awawa = C.get_connections()
+		switch(length(awawa))
 			if (3) //other cable was a link, needs to become a node
 				cables_with_links2kill += C
 			if (2) //other cable was a dead end, is now a simple connection
+
 				nodes2kill += C.is_a_node
 			else   //other cable stays a node
 				nodes2link += C.is_a_node
 
-	if (!src.is_a_node) //edge case time
+	if (!src.is_a_node && length(nodes2kill) == 2) //edge case time
 		//So, one thing that can happen is we close a loop of wire
 		//where we'd technically not have any junctions that should be nodes, but nodes are also required for powernets to function.
 		//so in that case we'll just leave the two previous dead ends as nodes.
@@ -415,6 +423,8 @@
 		if (src.is_a_node)
 			src.is_a_node.adjacent_nodes += new_physical_node.is_a_node
 			new_physical_node.is_a_node.adjacent_nodes += src.is_a_node
+		else
+			nodes2link |= new_physical_node.is_a_node
 
 	if (src.is_a_node)
 		//these are going from 1->2 connections, so by definition they only had one adjacent node
@@ -445,34 +455,35 @@
 	else //we are a link
 		//dead end 2 link
 		for (var/datum/powernet_graph_node/dead_node as anything in nodes2kill)
-			var/datum/powernet_graph_node/neighbour_node = dead_node.adjacent_nodes[1]
-			var/datum/powernet_graph_link/maybe_link = dead_node.adjacent_nodes[neighbour_node]
+			if (length(dead_node.adjacent_nodes))
+				var/datum/powernet_graph_node/neighbour_node = dead_node.adjacent_nodes[1]
+				var/datum/powernet_graph_link/maybe_link = dead_node.adjacent_nodes[neighbour_node]
 
-			neighbour_node.adjacent_nodes -= dead_node
+				neighbour_node.adjacent_nodes -= dead_node
 
-			if (istype(maybe_link))	//use existing link
-				if (src.is_a_link) //ah dang it, we gotta merge
-					src.is_a_link.cables += maybe_link.cables
-					src.is_a_link.cables += dead_node.physical_node
-					dead_node.physical_node.is_a_link = src.is_a_link
-					src.is_a_link.adjacent_nodes += neighbour_node
-				else //let's add both of us to it
-					src.is_a_link = maybe_link
-					dead_node.physical_node.is_a_link = maybe_link
-					maybe_link.cables += list(dead_node.physical_node, src)
-			else //make a new link
-				if (src.is_a_link)
-					src.is_a_link.cables += dead_node.physical_node
-					dead_node.physical_node.is_a_link = src.is_a_link
-				else
-					src.is_a_link = new(list(src, dead_node.physical_node), list(neighbour_node))
-					dead_node.physical_node.is_a_link = src.is_a_link
+				if (istype(maybe_link))	//use existing link
+					if (src.is_a_link) //ah dang it, we gotta merge
+						src.is_a_link.cables += maybe_link.cables
+						src.is_a_link.cables += dead_node.physical_node
+						dead_node.physical_node.is_a_link = src.is_a_link
+						src.is_a_link.adjacent_nodes += neighbour_node
+					else //let's add both of us to it
+						src.is_a_link = maybe_link
+						dead_node.physical_node.is_a_link = maybe_link
+						maybe_link.cables += list(dead_node.physical_node, src)
+				else //make a new link
+					if (src.is_a_link)
+						src.is_a_link.cables += dead_node.physical_node
+						dead_node.physical_node.is_a_link = src.is_a_link
+					else
+						src.is_a_link = new(list(src, dead_node.physical_node), list(neighbour_node))
+						dead_node.physical_node.is_a_link = src.is_a_link
 
+				//neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
+				//src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
 
 			dead_node.physical_node.is_a_node = null
 			qdel(dead_node)
-			neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
-			src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
 
 		//All that's left is direct neighbouring nodes. If we're not part of a link yet, there's no way we'd get assigned one anymore.
 		if (!src.is_a_link)
@@ -490,62 +501,73 @@
 
 /obj/cable/proc/link_crawl()
 	var/list/connections = get_connections()
-	if (length(connections) != 2) return
-	var/datum/powernet_graph_link/new_link = new
-	src.is_a_link = new_link
-	src.is_a_link.cables += src
+	switch(length(connections))
+		if (3)
+			return //should get cleaned up elsewhere in pnet code (trying to avoid recursion in integrate or validate)
+		if (1)
+			src.is_a_node = new
+			src.is_a_node.physical_node = src
+			var/obj/cable/C = connections[1]
+			if (C.is_a_node)
+				C.is_a_node.adjacent_nodes += src.is_a_node
+				src.is_a_node.adjacent_nodes += C.is_a_node
+				src.is_a_node.pnet = C.is_a_node.pnet
+		else //2
+			var/datum/powernet_graph_link/new_link = new
+			src.is_a_link = new_link
+			src.is_a_link.cables += src
 
 
-	for (var/obj/cable/next_cable as anything in connections)
-		var/obj/cable/last_cable = src
+			for (var/obj/cable/next_cable as anything in connections)
+				var/obj/cable/last_cable = src
 
 
-		var/list/temp_connections = next_cable.get_connections()
-		//go along straights indefinitely
-		while (length(temp_connections) == 2)
-			if (next_cable in new_link.cables) //we've looped on ourselves
-				//assign the two cables we have references for nodes arbitrarily, so the net is still technically functional.
-				next_cable.is_a_link = null
-				next_cable.is_a_node = new
-				next_cable.is_a_node.physical_node = next_cable
-				last_cable.is_a_link = null
-				last_cable.is_a_node = new
-				last_cable.is_a_node.physical_node = last_cable
+				var/list/temp_connections = next_cable.get_connections()
+				//go along straights indefinitely
+				while (length(temp_connections) == 2)
+					if (next_cable in new_link.cables) //we've looped on ourselves
+						//assign the two cables we have references for nodes arbitrarily, so the net is still technically functional.
+						next_cable.is_a_link = null
+						next_cable.is_a_node = new
+						next_cable.is_a_node.physical_node = next_cable
+						last_cable.is_a_link = null
+						last_cable.is_a_node = new
+						last_cable.is_a_node.physical_node = last_cable
 
-				new_link.cables -= last_cable
-				new_link.cables -= next_cable
-				new_link.adjacent_nodes = list(next_cable.is_a_node, last_cable.is_a_node)
-				next_cable.is_a_node.adjacent_nodes[last_cable.is_a_node] = list(null, new_link)
-				last_cable.is_a_node.adjacent_nodes[next_cable.is_a_node] = list(null, new_link)
-				goto loop_break
+						new_link.cables -= last_cable
+						new_link.cables -= next_cable
+						new_link.adjacent_nodes = list(next_cable.is_a_node, last_cable.is_a_node)
+						next_cable.is_a_node.adjacent_nodes[last_cable.is_a_node] = list(null, new_link)
+						last_cable.is_a_node.adjacent_nodes[next_cable.is_a_node] = list(null, new_link)
+						goto loop_break
 
-			new_link.cables += next_cable
-			next_cable.is_a_link = new_link
-			if (temp_connections[1] == last_cable)
-				last_cable = next_cable
-				next_cable = temp_connections[2]
-			else
-				last_cable = next_cable
-				next_cable = temp_connections[1]
-			temp_connections = next_cable.get_connections()
+					new_link.cables += next_cable
+					next_cable.is_a_link = new_link
+					if (temp_connections[1] == last_cable)
+						last_cable = next_cable
+						next_cable = temp_connections[2]
+					else
+						last_cable = next_cable
+						next_cable = temp_connections[1]
+					temp_connections = next_cable.get_connections()
 
 
-		//found a node
-		if (!next_cable.is_a_node)
-			next_cable.is_a_node = new
-			next_cable.is_a_link = null
-			next_cable.is_a_node.physical_node = next_cable
-			//SEND_SIGNAL(next_cable, COMSIG_POWERNET_TOPOLOGY_CHANGE)
-		src.is_a_link.adjacent_nodes += next_cable.is_a_node
+				//found a node
+				if (!next_cable.is_a_node)
+					next_cable.is_a_node = new
+					next_cable.is_a_link = null
+					next_cable.is_a_node.physical_node = next_cable
+					//SEND_SIGNAL(next_cable, COMSIG_POWERNET_TOPOLOGY_CHANGE)
+				src.is_a_link.adjacent_nodes += next_cable.is_a_node
 
-	loop_break:
-	if (src.is_a_link)
-		correct_link_references()
-	else //in case we've run into the loop-of-wire thing up top, src probably became one of the emergency nodes
-		var/obj/cable/unlikely = new_link.cables[1]
-		unlikely.correct_link_references()
+			loop_break:
+			if (src.is_a_link)
+				correct_link_references()
+			else //in case we've run into the loop-of-wire thing up top, src probably became one of the emergency nodes
+				var/obj/cable/unlikely = new_link.cables[1]
+				unlikely.correct_link_references()
 
-	return src.is_a_link
+			return src.is_a_link
 
 ///cleanup to make sure our linked nodes know of each other
 /obj/cable/proc/correct_link_references()

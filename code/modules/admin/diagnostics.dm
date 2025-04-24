@@ -526,6 +526,7 @@ proc/debug_map_apc_count(delim,zlim)
 		help = {"red - contains 0 (no powernet), that's probably bad<br>white - contains multiple powernets<br>other - coloured based on the single powernet<br>numbers - ids of all powernets on the tile"}
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/list/netnums = list()
+			var/link_col
 			for(var/obj/machinery/power/M in theTurf)
 				if(M.netnum >= 0)
 					netnums |= M.netnum
@@ -533,13 +534,15 @@ proc/debug_map_apc_count(delim,zlim)
 				if(C.is_a_node?.pnet?.number > 0)
 					netnums |= C.is_a_node.pnet.number
 				else if (C.is_a_link)
-					img.app.color = debug_color_of(C.is_a_link)
-					img.app.alpha = 90
-					return
+					link_col = debug_color_of(C.is_a_link)
 			img.app.overlays = list(src.makeText(jointext(netnums, " ")))
 			if(!length(netnums))
-				img.app.color = "#00000000"
-				img.app.alpha = 0
+				if (link_col)
+					img.app.color = link_col
+					img.app.alpha = 90
+				else
+					img.app.color = "#00000000"
+					img.app.alpha = 0
 			else if(0 in netnums)
 				img.app.color = "#ff0000"
 			else if(netnums.len >= 2)

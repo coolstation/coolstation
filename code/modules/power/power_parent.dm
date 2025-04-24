@@ -146,7 +146,25 @@ var/makingpowernetssince = 0
 		var/obj/cable/next_cable = next_node.physical_node
 		for(var/obj/cable/next_next_cable in next_cable.get_connections()) //IDK what to call these things either anymore
 			if (next_next_cable.is_a_link) continue
-			if (next_next_cable.is_a_node) continue
+			if (next_next_cable.is_a_node)
+				if (next_node in next_next_cable.is_a_node.adjacent_nodes)
+					if (islist(next_next_cable.is_a_node.adjacent_nodes[next_next_cable.is_a_node]))
+						var/list/lissed = next_node.adjacent_nodes[next_next_cable.is_a_node]
+						lissed += null
+						next_node.adjacent_nodes[next_next_cable.is_a_node] = lissed
+						lissed = next_next_cable.is_a_node.adjacent_nodes[next_node]
+						lissed += null
+						next_next_cable.is_a_node.adjacent_nodes[next_node] += lissed
+					else
+						next_node.adjacent_nodes[next_next_cable.is_a_node] = list(next_node.adjacent_nodes[next_next_cable.is_a_node], null)
+						next_next_cable.is_a_node.adjacent_nodes[next_node] = list(next_next_cable.is_a_node.adjacent_nodes[next_node], null)
+				else
+					next_node.adjacent_nodes += next_next_cable.is_a_node
+					next_node.adjacent_nodes[next_next_cable.is_a_node] = null
+					next_next_cable.is_a_node.adjacent_nodes += next_node
+					next_next_cable.is_a_node.adjacent_nodes[next_node] = null
+				continue
+
 			if (length(next_next_cable.get_connections()) == 2)
 				var/datum/powernet_graph_link/next_next_link = next_next_cable.link_crawl()
 				if (!(next_next_link.adjacent_nodes[1] in nodes))

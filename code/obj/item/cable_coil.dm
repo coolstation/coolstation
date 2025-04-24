@@ -321,23 +321,15 @@ obj/item/cable_coil/dropped(mob/user)
 				boutput(user, "There's already a cable at that position.")
 				return
 		C.shock(user, 25)
-		if (!defer_powernet_rebuild)
-			defer_powernet_rebuild = TRUE
-			qdel(C)
-			defer_powernet_rebuild = FALSE
-		else
-			qdel(C)
+		qdel(C)
 		plop_a_cable(target, user, nd1, nd2)
 		return
 
 ///This was copy-pasted some 5 times across the 4 cable laying procs that existed) FSR?
 obj/item/cable_coil/proc/plop_a_cable(turf/overthere, mob/user, dir1, dir2)
-	var/obj/cable/NC = new cable_obj_type(overthere, src)
+	var/obj/cable/NC = new cable_obj_type(overthere, src, dir1, dir2)
 	applyCableMaterials(NC, src.insulator, src.conductor)
-	NC.d1 = dir1
-	NC.d2 = dir2
 	NC.add_fingerprint()
 	NC.updateicon()
-	NC.integrate()
 	NC.log_wirelaying(user)
 	src.use(1)
