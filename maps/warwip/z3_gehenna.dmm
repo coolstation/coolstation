@@ -6297,6 +6297,15 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersB)
+"dLx" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/rifle,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "dLE" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/wall,
@@ -6584,15 +6593,6 @@
 	},
 /turf/floor/grey,
 /area/station/bridge/basement)
-"dUi" = (
-/obj/table/glass/reinforced/auto{
-	color = "#666666"
-	},
-/obj/item/gun/modular/NT/short/pistol,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "dUm" = (
 /obj/cable{
 	d1 = 4;
@@ -8748,6 +8748,21 @@
 "eZh" = (
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
+"eZj" = (
+/obj/machinery/light/fluorescent/harsh/very,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "bot2"
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=4";
+	beacon_id = "Mechlab #2"
+	},
+/obj/item/storage/box/cablesbox{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/floor,
+/area/station/engine/elect)
 "eZq" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -10556,6 +10571,19 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/mining/barracks)
+"gfM" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "bot2"
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=4";
+	beacon_id = "Mechlab #1"
+	},
+/obj/decal/poster/wallsign/poster_rand{
+	pixel_x = 32
+	},
+/turf/floor,
+/area/station/engine/elect)
 "gfP" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/decal/cleanable/dirt/random,
@@ -21194,15 +21222,6 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor/black,
 /area/station/engine/coldloop)
-"mke" = (
-/obj/table/glass/reinforced/auto{
-	color = "#666666"
-	},
-/obj/item/gun/modular/NT/long/shotty,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "mkw" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/small/cool{
@@ -22403,21 +22422,6 @@
 	dir = 5
 	},
 /area/station/engine/inner)
-"mRN" = (
-/obj/machinery/light/fluorescent/harsh/very,
-/obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "bot2"
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	beacon_id = "Mechlab #2"
-	},
-/obj/item/storage/box/cablesbox{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/turf/floor,
-/area/station/engine/elect)
 "mSc" = (
 /obj/lattice,
 /obj/item/raw_material/rock,
@@ -25131,19 +25135,6 @@
 /area/station/maintenance/outer/east{
 	name = "East Lower Maintenance"
 	})
-"oxJ" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "bot2"
-	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	beacon_id = "Mechlab #1"
-	},
-/obj/decal/poster/wallsign/poster_rand{
-	pixel_x = 32
-	},
-/turf/floor,
-/area/station/engine/elect)
 "oye" = (
 /obj/disposalpipe/segment/produce,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -25807,15 +25798,6 @@
 	},
 /turf/floor/grey,
 /area/station/engine/inner)
-"oZo" = (
-/obj/table/glass/reinforced/auto{
-	color = "#666666"
-	},
-/obj/item/gun/modular/NT/long/rifle,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "oZq" = (
 /obj/table/auto{
 	color = "#666666"
@@ -30049,6 +30031,15 @@
 	},
 /turf/wall,
 /area/station/science/lab)
+"rID" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/pistol,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "rIG" = (
 /obj/machinery/atmospherics/portables_connector/south,
 /turf/floor/black,
@@ -36729,6 +36720,15 @@
 	},
 /turf/floor,
 /area/station/mining/staff_room)
+"vBC" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/shotty,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "vBE" = (
 /turf/floor/plating/random,
 /area/ghostdrone_factory)
@@ -90072,7 +90072,7 @@ taZ
 taZ
 qbq
 qbq
-oZo
+dLx
 ijD
 ijD
 ijD
@@ -90374,7 +90374,7 @@ taZ
 taZ
 taZ
 qbq
-oZo
+dLx
 ijD
 uCv
 tij
@@ -91360,7 +91360,7 @@ dUx
 hAP
 gjR
 cGr
-mRN
+eZj
 gKf
 dOj
 sfJ
@@ -91661,7 +91661,7 @@ vRa
 iXn
 nkx
 bWv
-oxJ
+gfM
 mGr
 gKf
 gXy
@@ -92790,11 +92790,11 @@ taZ
 taZ
 taZ
 qbq
-dUi
+rID
 ijD
 ijD
 ijD
-mke
+vBC
 qbq
 qbq
 veb
@@ -93092,7 +93092,7 @@ taZ
 taZ
 qbq
 qbq
-dUi
+rID
 ijD
 ijD
 ijD

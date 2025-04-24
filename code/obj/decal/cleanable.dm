@@ -1895,7 +1895,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	name = "graffiti"
 	desc = "What a funky dude. He'll never attain political power."
 	icon = 'icons/obj/decals/graffiti.dmi'
-	icon_state = "greenface"
+	icon_state = "graffiti-single-1"
 
 /// Input a cardinal direction, it'll throw it somewhere within +-45 degrees of that direction. More or less.
 /obj/decal/cleanable/proc/streak_cleanable(var/list/directions, var/randcolor = 0, var/full_streak)

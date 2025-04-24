@@ -117,8 +117,6 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	var/hand_ghosts = 1 //pickup ghosts inhand
 
-	var/hidden_spiders = FALSE
-
 /client/proc/audit(var/category, var/message, var/target)
 	if(src.holder && (src.holder.audit & category))
 		logTheThing("audit", src, target, message)

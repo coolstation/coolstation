@@ -446,14 +446,14 @@ var/datum/score_tracker/score_tracker
 		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
 		. += "<B>Weades Growne:</B> [weadegrowne]<BR>"
 		. += "<B>Doinks Sparked:</B> [doinkssparked]<BR>"
-		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"
+		. += "<B>Time To Cloner Destruction:</B> [score_tracker.cloner_broken_timestamp ? "[score_tracker.cloner_broken_timestamp] ticks" : "Never even happened."]<BR>"
 #ifdef DATALOGGER
 		. += "<B>Shots Fired:</B> [game_stats.GetStat("gunfire")]<BR>"
 		. += "<B>Health and Safety violations:</B> [game_stats.GetStat("workplacesafety")]<BR>"
 		. += "<B>Number of times a clown was abused:</B> [game_stats.GetStat("clownabuse")]<BR>"
 		. += "<B><I><span style='color:green;'>im gay :)</B></I> [game_stats.GetStat("gayirl")]</span><BR>"
-		. += "<BR><B>COOL FACT:</B> all the [pick("space bees","ferrets","clowns","juicers","robots","fish","cats","rocks","paisanos")] are gay<BR>"
 #endif
+		. += "<BR><B>COOL FACT:</B> all the [pick("space bees","ferrets","clowns","juicers","robots","fish","cats","rocks","paisanos")] are gay<BR>"
 		return jointext(., "")
 
 

@@ -1183,7 +1183,6 @@ WET FLOOR SIGN
 
 /datum/item_special/suck
 	cooldown = 30
-	staminaCost = 10
 	moveDelay = 8
 	moveDelayDuration = 10
 	var/range = 3
