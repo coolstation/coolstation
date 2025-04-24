@@ -147,20 +147,33 @@
 		applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
 
 	if (current_state >= GAME_STATE_WORLD_INIT)
-		src.integrate()
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			src.integrate()
 		//all_cables += src
 
 	START_TRACKING
+
+//Deal with prefabs plopping down cablenets of their own
+//what this currently does not account for is something like a prefab type that adds to the station grid,
+//in which case it would be sensible to find an existing powernet to propagate to the new parts
+/obj/cable/generate_worldgen()
+	if (src.is_a_link) return
+	if (src.is_a_node) return
+	DEBUG_MESSAGE("Adding new powernet section (likely a prefab getting placed)")
+	makepowernet_from_cable(src, length(powernets) + 1)
+	DEBUG_MESSAGE("Finishing new powernet section")
 
 /obj/cable/disposing()		// called when a cable is deleted
 	STOP_TRACKING
 	..()					// move cable first
 
-	var/datum/powernet_graph_node/node2update
 	if (is_a_link)
 		is_a_link.cables -= src
 		if (defer_powernet_rebuild)
-			dirty_pnet_nodes |= is_a_link.adjacent_nodes
+			if (is_a_link.adjacent_nodes)
+				dirty_pnet_nodes |= is_a_link.adjacent_nodes
 		else
 			var/datum/powernet_graph_node/node1 = is_a_link.adjacent_nodes[1]
 			var/datum/powernet_graph_node/node2 = is_a_link.adjacent_nodes[2]
@@ -170,7 +183,7 @@
 	else if (is_a_node)
 		is_a_node.physical_node = null
 		if (defer_powernet_rebuild)
-			dirty_pnet_nodes |= node2update
+			dirty_pnet_nodes |= is_a_node
 		else
 			is_a_node.validate()
 		is_a_node = null
@@ -275,10 +288,10 @@
 		if (!powernets) return 0
 
 		if (is_a_node)
-			number = is_a_node.netnum
+			number = is_a_node.pnet.number
 		else if (is_a_link?.adjacent_nodes)
 			var/datum/powernet_graph_node/N = is_a_link.adjacent_nodes[1]
-			number = N.netnum
+			number = N.pnet.number
 
 		//The below wouldn't work with the new structure of powernets anyway, but I'm sitting here wondering why they bothered looping all the connections
 		//If these cables are your direct connections you're all on the same fucken powernet anyway.
@@ -319,7 +332,7 @@
 	var/datum/powernet_graph_node/polled_node = src.is_a_node
 	if (src.is_a_link)
 		polled_node = src.is_a_link.adjacent_nodes[1]
-	return polled_node.netnum
+	return polled_node.pnet.number
 
 // returns the powernet this cable belongs to
 /obj/cable/proc/get_powernet()
@@ -338,6 +351,8 @@
 		src.is_a_node = new()
 		src.is_a_node.physical_node = src
 		src.is_a_node.pnet = new /datum/powernet()
+		powernets += src.is_a_node.pnet
+		src.is_a_node.pnet.number = length(powernets)
 		return
 
 	//In theory it'd be possible to steal the node datum from a connection that doesn't need it anymore,
@@ -468,9 +483,9 @@
 
 		correct_link_references()
 
-	if (length(src.is_a_link.adjacent_nodes))
-		var/datum/powernet_graph_node/propergate = src.is_a_link.adjacent_nodes[1]
-		propergate.propagate_netnum(propergate, future_powernet.number, early_end_at_matching_netnum = TRUE)
+		if (length(src.is_a_link.adjacent_nodes))
+			var/datum/powernet_graph_node/propergate = src.is_a_link.adjacent_nodes[1]
+			propergate.propagate_netnum(propergate, future_powernet.number, early_end_at_matching_netnum = TRUE)
 
 
 /obj/cable/proc/link_crawl()

@@ -13,7 +13,7 @@
 	..()
 	if (netnum != -1)
 		if (worldgen_hold || makingpowernets)
-			worldgen_candidates[worldgen_generation] += src
+			worldgen_candidates[worldgen_generation+1] += src // generated along with cables in a prefab, the cables need to trigger first
 		else
 			generate_worldgen()
 
@@ -111,101 +111,61 @@ var/makingpowernetssince = 0
 	for_by_tcl(PC, /obj/cable)
 		if (PC.is_a_link) continue
 		if (PC.is_a_node) continue
-		var/datum/powernet/PN = new
-		PN.number = netcount
-		powernets += PN
-		var/list/nodes = list()
-		var/list/nodes_2_visit = list()
-
-		if (length(PC.get_connections()) == 2)
-			PC.link_crawl()
-			if (PC.is_a_link)
-				nodes |= PC.is_a_link.adjacent_nodes
-				nodes_2_visit |= PC.is_a_link.adjacent_nodes
-			else
-				nodes |= PC.is_a_node
-				nodes_2_visit |= PC.is_a_node
-		else
-			PC.is_a_node = new
-			PC.is_a_node.physical_node = PC
-			nodes |= PC.is_a_node
-			nodes_2_visit |= PC.is_a_node
-
-
-		while (length(nodes_2_visit))
-			var/datum/powernet_graph_node/asdaw_node = nodes_2_visit[1]
-			nodes_2_visit -= asdaw_node
-			var/obj/cable/asdaw_cable = asdaw_node.physical_node
-			for(var/obj/cable/Casd in asdaw_cable.get_connections())
-				if (Casd.is_a_link) continue
-				if (Casd.is_a_node) continue
-				if (length(Casd.get_connections()) == 2)
-					var/datum/powernet_graph_link/Lasd = Casd.link_crawl()
-					if (!(Lasd.adjacent_nodes[1] in nodes))
-						nodes_2_visit |= Lasd.adjacent_nodes[1]
-					if (!(Lasd.adjacent_nodes[2] in nodes))
-						nodes_2_visit |= Lasd.adjacent_nodes[2]
-					nodes |= Lasd.adjacent_nodes
-
-				else
-					Casd.is_a_node = new
-					Casd.is_a_node.physical_node = Casd
-					nodes |= Casd.is_a_node
-					nodes_2_visit |= Casd.is_a_node
-
-
-		for(var/datum/powernet_graph_node/net_node as anything in nodes)
-			net_node.netnum = netcount
-			net_node.pnet = PN
-		PN.all_graph_nodes = nodes
+		makepowernet_from_cable(PC, netcount)
 		netcount++
 
 		LAGCHECK(LAG_MED)
 
-
-	/*
-	var/netcount = 1 //was 0, we now increment after building a net
-	powernets = list()
-
-	for_by_tcl(PC, /obj/cable)
-		PC.netnum = 0
-	LAGCHECK(LAG_MED)
-
-	for(var/obj/machinery/power/M as anything in machine_registry[MACHINES_POWER])
-		if(M.netnum >=0)
-			M.netnum = 0
-	LAGCHECK(LAG_MED)
-
-	for_by_tcl(PC, /obj/cable)
-		if(!PC.netnum)
-			if (powernet_nextlink(PC, netcount))
-				netcount++
-		LAGCHECK(LAG_MED)
-
-	for(var/L = 1 to netcount)
-		var/datum/powernet/PN = new()
-		//PN.tag = "powernet #[L]"
-		powernets += PN
-		PN.number = L
-
-	for_by_tcl(C, /obj/cable)
-		if(!C.netnum) continue
-		var/datum/powernet/PN = powernets[C.netnum]
-		PN.cables += C
-		LAGCHECK(LAG_MED)
-
-	for(var/obj/machinery/power/M as anything in machine_registry[MACHINES_POWER])
-		if(M.netnum<=0)		// APCs have netnum=-1 so they don't count as network nodes directly
-			continue
-
-		M.powernet = powernets[M.netnum]
-		M.powernet.nodes += M
-		if(M.use_datanet)
-			M.powernet.data_nodes += M
-		LAGCHECK(LAG_MED)
-	*/
 	makingpowernets = 0
 	DEBUG_MESSAGE("rebuilding powernets end")
+
+/proc/makepowernet_from_cable(obj/cable/C, num)
+	var/datum/powernet/PN = new
+	PN.number = num
+	powernets += PN
+	var/list/nodes = list()
+	var/list/nodes_2_visit = list()
+
+	if (length(C.get_connections()) == 2)
+		C.link_crawl()
+		if (C.is_a_link)
+			nodes |= C.is_a_link.adjacent_nodes
+			nodes_2_visit |= C.is_a_link.adjacent_nodes
+		else
+			nodes |= C.is_a_node
+			nodes_2_visit |= C.is_a_node
+	else
+		C.is_a_node = new
+		C.is_a_node.physical_node = C
+		nodes |= C.is_a_node
+		nodes_2_visit |= C.is_a_node
+
+	while (length(nodes_2_visit))
+		var/datum/powernet_graph_node/next_node = nodes_2_visit[1]
+		nodes_2_visit -= next_node
+		var/obj/cable/next_cable = next_node.physical_node
+		for(var/obj/cable/next_next_cable in next_cable.get_connections()) //IDK what to call these things either anymore
+			if (next_next_cable.is_a_link) continue
+			if (next_next_cable.is_a_node) continue
+			if (length(next_next_cable.get_connections()) == 2)
+				var/datum/powernet_graph_link/next_next_link = next_next_cable.link_crawl()
+				if (!(next_next_link.adjacent_nodes[1] in nodes))
+					nodes_2_visit |= next_next_link.adjacent_nodes[1]
+				if (!(next_next_link.adjacent_nodes[2] in nodes))
+					nodes_2_visit |= next_next_link.adjacent_nodes[2]
+				nodes |= next_next_link.adjacent_nodes
+
+			else
+				next_next_cable.is_a_node = new
+				next_next_cable.is_a_node.physical_node = next_next_cable
+				nodes |= next_next_cable.is_a_node
+				nodes_2_visit |= next_next_cable.is_a_node
+
+
+	for(var/datum/powernet_graph_node/net_node as anything in nodes)
+		//net_node.netnum = netcount
+		net_node.pnet = PN
+	PN.all_graph_nodes = nodes
 
 /proc/unfuck_makepowernets()
 	makingpowernets = 0

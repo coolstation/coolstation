@@ -321,7 +321,12 @@ obj/item/cable_coil/dropped(mob/user)
 				boutput(user, "There's already a cable at that position.")
 				return
 		C.shock(user, 25)
-		qdel(C)
+		if (!defer_powernet_rebuild)
+			defer_powernet_rebuild = TRUE
+			qdel(C)
+			defer_powernet_rebuild = FALSE
+		else
+			qdel(C)
 		plop_a_cable(target, user, nd1, nd2)
 		return
 

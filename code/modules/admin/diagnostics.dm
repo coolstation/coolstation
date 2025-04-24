@@ -530,8 +530,8 @@ proc/debug_map_apc_count(delim,zlim)
 				if(M.netnum >= 0)
 					netnums |= M.netnum
 			for(var/obj/cable/C in theTurf)
-				if(C.is_a_node?.netnum > 0)
-					netnums |= C.is_a_node.netnum
+				if(C.is_a_node?.pnet?.number > 0)
+					netnums |= C.is_a_node.pnet.number
 				else if (C.is_a_link)
 					img.app.color = debug_color_of(C.is_a_link)
 					img.app.alpha = 90

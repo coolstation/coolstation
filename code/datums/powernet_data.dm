@@ -41,6 +41,13 @@ var/global/list/dirty_pnet_nodes = list()
 
 	var/netexcess = 0
 
+	disposing()
+		for (var/i in src.number to length(powernets))
+			var/datum/powernet/PN = powernets[i]
+			PN.number = i
+		src.number = 0
+		..()
+
 //Represents either a branch (one cable connecting to 3+ other cables) in the net or a dead end (a cable connected to 0-1 other cables)
 /datum/powernet_graph_node // not my fault that "nodes" in the context of pnets already means something else
 
@@ -53,7 +60,7 @@ var/global/list/dirty_pnet_nodes = list()
 	///Our associated powernet
 	var/datum/powernet/pnet
 
-	var/netnum = 0
+	//var/netnum = 0
 
 
 /datum/powernet_graph_node/New()
@@ -101,7 +108,7 @@ var/global/list/dirty_pnet_nodes = list()
 				if (delete_link || (relevant_link.expected_length != length(relevant_link.cables))) //link borked or one of the end points borked
 					unbroken_links--
 					relevant_link.dissolve()
-				else if (relevant_link.active > 0)
+				else if (relevant_link.active <= 0)
 					unbroken_links--
 
 			if (--how_many_links > 0)
@@ -144,7 +151,7 @@ var/global/list/dirty_pnet_nodes = list()
 			node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
 
 	previous_adjacent_nodes -= adjacent_nodes
-	var/an_netnum = src.netnum
+	var/an_netnum = src.pnet.number
 	if (length(adjacent_nodes))
 		var/datum/powernet_graph_node/non_break_node = adjacent_nodes[1]
 		previous_adjacent_nodes -= non_break_node.propagate_netnum(non_break_node, an_netnum)
@@ -177,15 +184,15 @@ var/global/list/dirty_pnet_nodes = list()
 		nodes_to_visit -= a_node
 
 		//If we're just doing a local update (merging 2 nets or whatever) and there's no reason to assume the net as a whole is compromised
-		if (a_node.netnum == new_netnum && early_end_at_matching_netnum)
+		if (a_node.pnet?.number == new_netnum && early_end_at_matching_netnum)
 			continue
 
 		//not bothing updating the powernet's cables list cause I want to deprecate that
 		if (a_node.pnet)
 			a_node.pnet.all_graph_nodes -= a_node
-			if (!length(a_node.pnet))
+			if (!length(a_node.pnet.all_graph_nodes))
 				qdel(a_node.pnet)
-		a_node.netnum = new_netnum
+		//a_node.netnum = new_netnum
 		a_node.pnet = PN
 		PN.all_graph_nodes |= a_node
 
