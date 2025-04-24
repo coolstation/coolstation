@@ -303,6 +303,7 @@ var/global/list/mapNames = list(
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 	qm_supply_type = "shuttle"
+	shuttle_map_turf = /turf/floor/airless/engine/caution
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"

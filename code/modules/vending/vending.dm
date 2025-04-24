@@ -1522,8 +1522,8 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 3)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 3)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
@@ -2021,22 +2021,20 @@
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
 		//all should require permit, some should require permit and sec
+		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 		//full gunse
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.5)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/rifle, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 1, cost = PAY_TRADESMAN*1.5)
 		//DIY section
 		//receivers
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/receiver, 2, cost = PAY_TRADESMAN/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/receiver, 2, hidden=1, cost = PAY_TRADESMAN)
 		//partse
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT, 5, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 5, cost = PAY_UNTRAINED*1.1)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 1, hidden=1, cost = PAY_TRADESMAN*1.2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT, 5, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/guardless, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT, 6, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/fancy, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/ceremonial, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/stub, 2, cost = PAY_UNTRAINED/2)
@@ -2062,11 +2060,12 @@
 		name = "Fucile Fusilli"
 		desc = "Un distributore automatico pieno di armi."
 		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN*0.9)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.4)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN*0.9)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/rifle, 1, cost = PAY_TRADESMAN*1.4)
 
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 3, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  2, cost = PAY_UNTRAINED*1.1)
@@ -2108,12 +2107,13 @@
 		color = "#bbFFbb"
 		name = "JUICER SYSTEN"
 		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, cost = PAY_TRADESMAN*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/ribbed, 2, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/short/basic, 2, cost = PAY_TRADESMAN*1.2)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 3, hidden=1, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 3, hidden=1, cost = PAY_TRADESMAN)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)

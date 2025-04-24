@@ -30,8 +30,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/icon_full  = "white"
 	var/icon_shell = "white_case"
 	//uses_multiple_icon_states = 1
-	var/caliber = 0.31 //.31 (8mm) standard light barrel, double that to 0.62 (8mm) for heavy barrel (shot) defined by installed barrel, light fits in heavy but not vice versa
-	var/cartridge_length = 20 //pistol 20 rifle 40 defined by receiver, pistol fits in rifle but not vice versa
+	var/caliber = 0 // 0,1,2,3 : standard, wide, long, both.
 	opacity = 0
 	density = 0
 	anchored = 0.0
@@ -237,7 +236,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				if (M.jammed) //jammed after process_ammo
 					boutput(user, "<span class='notice'>Fuck, shit, you fumbled something.</span>")
 					break
-				else if (prob(M.jam_frequency_reload)) //jammed just because this thing sucks to load or you're clumsy
+				else if (prob(M.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
 					M.jammed = 2
 					boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
 					break
@@ -264,7 +263,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	caliber = 0.31
+	caliber = 0
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
 	icon_empty = "nt_empty"
@@ -453,8 +452,8 @@ THE_USUAL_FLAVOURS(pistol/zaubertube, "\improper Soviet zaubertubes")
 //rifle shit
 ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 /obj/item/stackable_ammo/rifle
-	caliber = 0.31
-	cartridge_length = 40
+	caliber = CALIBER_L
+	//cartridge_length = 40
 
 /obj/item/stackable_ammo/rifle/NT
 	name = "\improper NT rifle ammo"
@@ -469,6 +468,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	fiddlyness = 5
+
 THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle ammo")
 
 /obj/item/stackable_ammo/rifle/soviet
@@ -529,7 +529,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
-	caliber = 0.61
+	caliber = CALIBER_W
 
 	/*reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(!M.scatter)
@@ -576,7 +576,7 @@ THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 	icon_empty = "juicer_shells_red-empty"
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
-	cartridge_length = 40 //for big receivers only
+	//cartridge_length = 40 //for big receivers only
 	fiddlyness = 30
 THE_USUAL_FLAVOURS(scatter/juicer, "\improper Juicer Hot Pocketz")
 

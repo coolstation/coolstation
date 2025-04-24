@@ -41,6 +41,7 @@
 #define THROW_SLIP (1<<3)
 #define THROW_SANDWICH (1<<4) //This is for one single item, because I'm pretty sure this would never have been clean.
 #define THROW_KNOCKDOWN (1<<5) //i know what i'm doing
+#define THROW_BASEBALL  (1<<6)
 
 //For serialization purposes
 #define DESERIALIZE_ERROR 0

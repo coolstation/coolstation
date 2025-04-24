@@ -55,7 +55,7 @@
 	m_amt = 40000
 	g_amt = 0
 	caliber = 0.31 //doing it here because most of it's going to be here
-	var/cartridge_length = 20
+	//var/cartridge_length = 20
 	var/amount_left = 0.0
 	var/max_amount = 1000
 	var/unusualCell

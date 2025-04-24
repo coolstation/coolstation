@@ -1569,13 +1569,13 @@
 	name = "autoname - SS13"
 	},
 /obj/table/reinforced/industrial/auto,
-/obj/item/gun/modular/NT/long/shotty{
+/obj/item/gun/modular/NT/shotty{
 	pixel_y = 4
 	},
-/obj/item/gun/modular/NT/long/shotty{
+/obj/item/gun/modular/NT/shotty{
 	pixel_y = -4
 	},
-/obj/item/gun/modular/NT/long/shotty,
+/obj/item/gun/modular/NT/shotty,
 /turf/floor,
 /area/station/security/armory)
 "bpo" = (
@@ -7224,6 +7224,10 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/power/apc/autoname/south,
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable,
 /turf/floor/green/side,
 /area/station/turret_protected/Zeta)
 "fvS" = (

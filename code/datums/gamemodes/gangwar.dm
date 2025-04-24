@@ -649,77 +649,204 @@
 
 	return
 
+/// defines the highest tag id for each of the tag sizes
+#define SINGLE_GRAFFITI_TAGS 6
+#define DOUBLE_GRAFFITI_TAGS 6
+#define TRIPLE_GRAFFITI_TAGS 3
+
 /obj/item/spray_paint
-	name = "Spraypaint Can"
-	desc = "A can of spray paint."
+	name = "'LeadMaxXx' spray paint can"
+	desc = "A can of cheap spray paint. Great for doing wicked sick art. Not so great when the janitor shows up."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "spraycan"
 	item_state = "spraycan"
-	flags = FPRINT | EXTRADELAY | TABLEPASS | CONDUCT
+	flags = EXTRADELAY | TABLEPASS | CONDUCT | FPRINT
 	w_class = W_CLASS_SMALL
-	var/in_use = 0
+	var/in_use = FALSE
+	var/list/turf/graffititargets = list()
+	var/list/image/targetoverlay = list()
+	var/charges = 10
+	var/tagging_horizontally = FALSE
+	var/tagging_vertically = FALSE
+	var/tagging_direction
+	var/list/tags_single
+	var/list/tags_double
+	var/list/tags_triple
 
-	afterattack(target as turf|obj, mob/user as mob)
-		if(!istype(target,/turf) && !istype(target,/obj/decal/cleanable/gangtag)) return
+	proc/update_icon()
+		if (charges > 0 )
+			inventory_counter?.update_number(charges)
+		else
+			inventory_counter?.update_text("-")
+
+	New()
+		inventory_counter_enabled = TRUE
+		refresh_single_tags()
+		refresh_double_tags()
+		refresh_triple_tags()
+		..()
+		src.setItemSpecial(/datum/item_special/graffiti)
+
+	attack_self(mob/user)
+		if (ON_COOLDOWN(src,"shake",1 SECOND)) // you gotta shake that shit fast
+			user.visible_message(SPAN_ALERT("[user] shakes the [src.name]!"))
+			playsound(user.loc, 'sound/items/graffitishake.ogg', 40, FALSE)
+
+	afterattack(target, mob/user)
+		do_graffiti(target,user)
+
+	attack(mob/M, mob/user, def_zone, is_special)
+		if(!isliving(M) || !src.charges)
+			return ..()
+		var/tag_int = pick(1,2,3)
+		var/image/tag = image('icons/effects/effects.dmi',"graffiti_mask_[tag_int]")
+		tag.pixel_y = rand(-1,5)
+		if (ismonkey(M))
+			tag.pixel_y = tag.pixel_y - 6
+		if (M.bioHolder.HasEffect("dwarf"))
+			tag.pixel_y = tag.pixel_y - 4
+		tag.blend_mode = BLEND_INSET_OVERLAY
+		tag.alpha = 200
+		tag.color = pick("#FF0000","#FF9A00","#FFFF00","#00FF78","#00FFFF","#0081DF","#CC00FF","#FFCCFF","#EBE6EB")
+		tag.appearance_flags = KEEP_TOGETHER
+		M.setStatus("graffiti_blind", 8 SECONDS)
+		M.changeStatus("disorient", 1 SECONDS)
+		var/datum/statusEffect/graffiti/status = M.hasStatus("graffiti_blind")
+		M.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
+		status.tag_images += tag
+
+		M.visible_message(SPAN_COMBAT("[user] sprays paint into [M]'s face!"),SPAN_COMBAT("[user] sprays paint in your face!"))
+		logTheThing("combat", user, M, "attacks [constructTarget(M,"combat")] with [src] ([type], object name: [initial(name)]) at [log_loc(user)].")
+
+
+		hit_twitch(M)
+		if (ishuman(M))
+			var/mob/living/carbon/human/victim = M
+			victim.emote("cough")
+			victim.was_harmed(user, src, TRUE)
+
+		src.charges--
+		src.update_icon()
+		playsound(src, 'sound/items/graffitispray3.ogg', 50, TRUE)
+
+	proc/clear_targets()
+		graffititargets = list()
+		tagging_horizontally = FALSE
+		tagging_vertically = FALSE
+		for (var/image/image in targetoverlay)
+			targetoverlay -= image
+			qdel(image)
+	proc/add_target(mob/user, turf/turftarget)
+		graffititargets += turftarget
+		var/image/target_image = image('icons/effects/effects.dmi', turftarget)
+		targetoverlay += target_image
+		target_image.icon_state = "tile_channel_target"
+		target_image.layer = NOLIGHT_EFFECTS_LAYER_BASE
+		user << target_image
+
+	proc/refresh_single_tags()
+		tags_single = list()
+		for (var/i=1 to SINGLE_GRAFFITI_TAGS)
+			tags_single += i
+	proc/refresh_double_tags()
+		tags_double = list()
+		for (var/i=1 to DOUBLE_GRAFFITI_TAGS)
+			tags_double += i
+	proc/refresh_triple_tags()
+		tags_triple = list()
+		for (var/i=1 to TRIPLE_GRAFFITI_TAGS)
+			tags_triple += i
+
+	proc/do_graffiti(target, mob/user)
+		if(!istype(target,/turf)) return
 
 		if (!user)
 			return
-
-		if(in_use)
-			boutput(user, "<span class='alert'>You are already tagging an area!</span>")
+		if (length(graffititargets) + 1 > charges)
 			return
-
 		var/turf/turftarget = get_turf(target)
 
-		if(turftarget == loc || get_dist(src,target) > 1) return
+		if(BOUNDS_DIST(src, target) > 0 || (turftarget in graffititargets) || turftarget == get_turf(user)) //spraying at your feet messes with math
+			return
+		if(in_use)
+			var/valid = FALSE
+			for (var/turf/sprayedturf in graffititargets)
+				var/relative_dir = get_dir(turftarget,sprayedturf)
+				if (BOUNDS_DIST(sprayedturf, turftarget) == 0 && (relative_dir in cardinal))
+					if (tagging_horizontally && (relative_dir == WEST || relative_dir == EAST))
+						valid = TRUE
+						break
+					if (tagging_vertically && (relative_dir == NORTH || relative_dir == SOUTH))
+						valid = TRUE
+						break
+					if (!tagging_horizontally && !tagging_vertically)
+						valid = TRUE
+						break
+			if (!valid)
+				boutput(user, SPAN_ALERT("You are already tagging elsewhere!"))
+				return
 
-		if(!user.mind || !user.mind.gang)
-			boutput(user, "<span class='alert'>You aren't in a gang, why would you do that?</span>")
-			return
+		user.visible_message(SPAN_ALERT("[user] begins to spray graffiti on the [turftarget.name]!"))
+		if (!actions.hasAction(user,"spray_graffiti"))
+			actions.start(new/datum/action/bar/icon/spray_graffiti(src), user)
+			clear_targets()
+			add_target(user, turftarget)
+			var/chosen_dir = get_dir(turftarget,user)
+			if (chosen_dir)
+				tagging_direction = chosen_dir
+			else
+				tagging_direction = SOUTH
+		else if (length(graffititargets) == 1)
+			var/chosen_dir = get_dir(turftarget,user)
+			var/direction_check = get_dir(turftarget,graffititargets[1])
+			if (direction_check == NORTH || direction_check == SOUTH)
+				tagging_vertically = TRUE
+				if (chosen_dir == 0)
+					tagging_direction = turn(direction_check,-90) & (EAST | WEST)
+				else
+					tagging_direction = chosen_dir & (EAST | WEST)
 
-		var/area/getarea = get_area(turftarget)
-		if(!getarea)
-			boutput(user, "<span class='alert'>You can't claim this place!</span>")
-			return
-		if(getarea.name == "Space")
-			boutput(user, "<span class='alert'>You can't claim space!</span>")
-			return
-		if(getarea.name == "Ocean")
-			boutput(user, "<span class='alert'>You can't claim the entire ocean!</span>")
-			return
-		if((getarea.teleport_blocked) || istype(getarea, /area/supply) || istype(getarea, /area/shuttle/))
-			boutput(user, "<span class='alert'>You can't claim this place!</span>")
-			return
-		if(!ishuman(user))
-			boutput(user, "<span class='alert'>You don't have the dexterity to spray paint a gang tag!</span>")
-		if(getarea.gang_owners && getarea.gang_owners != user.mind.gang && !turftarget.tagged)
-			boutput(user, "<span class='alert'>[getarea.gang_owners.gang_name] own this area! You must paint over their tag to capture it!</span>")
-			return
-		if(getarea.being_captured)
-			boutput(user, "<span class='alert'>Somebody is already tagging that area!</span>")
-			return
-		if(getarea.gang_owners == user.mind.gang)
-			boutput(user, "<span class='alert'>This place is already owned by your gang!</span>")
-			return
+			else if (direction_check == EAST || direction_check == WEST)
+				tagging_horizontally = TRUE
+				if (chosen_dir == 0)
+					tagging_direction = turn(direction_check,-90) & (NORTH | SOUTH)
+				else
+					tagging_direction = chosen_dir & (NORTH | SOUTH)
+			add_target(user, turftarget)
+		else if (length(graffititargets) < 3)
+			add_target(user, turftarget)
 
-		user.visible_message("<span class='alert'>[user] begins to paint a gang tag on the [turftarget.name]!</span>")
-		actions.start(new/datum/action/bar/icon/spray_gang_tag(turftarget, src), user)
+#undef SINGLE_GRAFFITI_TAGS
+#undef DOUBLE_GRAFFITI_TAGS
+#undef TRIPLE_GRAFFITI_TAGS
 
+/obj/decal/cleanable/gang_graffiti
+	name = "graffiti"
+	desc = "A mural in leaded paint, loudly proclaiming some sort of stance."
+	icon = 'icons/obj/decals/graffiti.dmi'
+
+/*
 /datum/action/bar/icon/spray_gang_tag
-	duration = 15 SECONDS
+	duration = GANG_SPRAYPAINT_TAG_TIME
 	interrupt_flags = INTERRUPT_STUNNED
-	id = "spray_tag"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "spraycan"
 	var/turf/target_turf
 	var/area/target_area
-	var/obj/item/spray_paint/S
+	var/obj/item/spray_paint_gang/spraycan
+	/// the mob spraying this tag
 	var/mob/M
+	/// the gang we're spraying for
+	var/datum/gang/gang
+	/// when our next spray sound can beplayed
+	var/next_spray = 0 DECI SECONDS
 
-	New(var/turf/target_turf as turf, var/obj/item/spray_paint/S)
+	New(var/turf/target_turf as turf, var/obj/item/spray_paint_gang/can, var/tag_over)
 		src.target_turf = target_turf
 		src.target_area = get_area(target_turf)
-		src.S = S
+		src.spraycan = can
+		if (tag_over)
+			src.duration = GANG_SPRAYPAINT_TAG_REPLACE_TIME
 		..()
 
 	onStart()
@@ -728,10 +855,11 @@
 		try
 			if (ismob(owner))
 				M = owner
-			if (M?.mind?.gang)
-				icon = 'icons/obj/decals/graffiti.dmi'
-				icon_state = "gangtag[M.mind.gang.gang_tag]"
-				var/speedup = M.mind.gang.gear_worn(M) + (owner.hasStatus("janktank") ? 1: 0)
+				src.gang = M?.get_gang()
+			if (gang)
+				icon = 'icons/obj/decals/gang_tags.dmi'
+				icon_state = "gangtag[src.gang.gang_tag]"
+				var/speedup = src.gang.gear_worn(M)
 				switch (speedup)
 					if (1)
 						duration = 13 SECONDS
@@ -744,48 +872,185 @@
 			..()
 			throw e
 
-		if(get_dist(owner, target_turf) > 1 || target_turf == null || !owner)
+		if(BOUNDS_DIST(owner, target_turf) > 0 || target_turf == null || !owner)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-		target_area.being_captured = 1
-		S.in_use = 1
-		playsound(target_turf, "sound/machines/hiss.ogg", 50, 1)	//maybe just repeat the appropriate amount of times
+		spraycan.in_use = TRUE
+		playsound(target_turf, 'sound/items/graffitishake.ogg', 50, FALSE)
+		next_spray += rand(10,15) DECI SECONDS
 
 	onUpdate()
 		..()
-		if(get_dist(owner, target_turf) > 1 || target_turf == null || !owner)
+		if(BOUNDS_DIST(owner, target_turf) > 0 || target_turf == null || !owner || !(spraycan in M.equipped_list()))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if(src.time_spent() > next_spray)
+			next_spray += rand(18,26) DECI SECONDS
+			playsound(target_turf, 'sound/items/graffitispray3.ogg', 100, TRUE)
+
+	onInterrupt(var/flag)
+		boutput(owner, SPAN_ALERT("You were interrupted!"))
+		if (spraycan)
+			spraycan.in_use = FALSE
+		..()
+
+	onEnd()
+		var/mob/M = owner
+		..()
+		if(BOUNDS_DIST(owner, target_turf) > 0 || target_turf == null || !owner || !(spraycan in M.equipped_list()))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if(!spraycan.check_tile_unclaimed(target_turf, owner))
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-		if(prob(15))
-			playsound(target_turf, "sound/machines/hiss.ogg", 50, 1)
+		spraycan.in_use = FALSE
+		target_area.being_captured = FALSE
+		var/sprayOver = FALSE
+		for (var/obj/decal/gangtag/otherTag in range(1,target_turf))
+			otherTag.disable()
+			sprayOver = TRUE
 
-	onInterrupt(var/flag)
-		boutput(owner, "<span class='alert'>You were interrupted!</span>")
-		if (target_area)
-			target_area.being_captured = 0
-		if (S)
-			S.in_use = 0
+		src.gang.make_tag(target_turf)
+		spraycan.empty = TRUE
+		spraycan.icon_state = "spraycan_crushed_gang"
+		spraycan.setItemSpecial(/datum/item_special/simple)
+		spraycan.tooltip_rebuild = 1
+		gang.add_points(GANG_SPRAYPAINT_INSTANT_SCORE, M, showText = TRUE)
+		if(sprayOver)
+			logTheThing(LOG_GAMEMODE, owner, "[owner] has successfully tagged the [target_area], spraying over another tag.")
+		else
+			logTheThing(LOG_GAMEMODE, owner, "[owner] has successfully tagged the [target_area]")
+		boutput(M, SPAN_NOTICE("You have claimed this area for your gang and gained bonus points!"))*/
+
+
+/datum/action/bar/icon/spray_graffiti
+	id = "spray_graffiti"
+	duration = 100 SECONDS
+	interrupt_flags = INTERRUPT_STUNNED
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "spraycan"
+	var/obj/item/spray_paint/spraycan
+	/// the mob spraying this tag
+	var/mob/M
+	/// when our next spray sound can beplayed
+	var/next_spray = 0 DECI SECONDS
+
+	New(obj/item/spray_paint/S)
+		src.spraycan = S
+		..()
+
+	onStart()
+		..()
+
+		for (var/turf/sprayedturf in spraycan.graffititargets)
+			if (BOUNDS_DIST(owner, sprayedturf) > 0)
+				interrupt(INTERRUPT_ALWAYS)
+				return
+
+		spraycan.in_use = TRUE
+		next_spray += rand(10,15) DECI SECONDS
+
+	onUpdate()
+		..()
+		for (var/turf/sprayedturf in spraycan.graffititargets)
+			if (BOUNDS_DIST(owner, sprayedturf) > 0)
+				interrupt(INTERRUPT_ALWAYS)
+				return
+		if (spraycan.loc != owner)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if(TIME - src.started > next_spray)
+			next_spray += rand(18,26) DECI SECONDS
+			playsound(owner.loc, 'sound/items/graffitispray3.ogg', 100, TRUE)
+		var/new_duration = duration
+		switch (length(spraycan.graffititargets))
+			if (1)
+				new_duration = 2 SECONDS
+			if (2)
+				new_duration = 4 SECONDS
+			if (3)
+				new_duration = 6 SECONDS
+		if (new_duration != duration)
+			duration = new_duration
+			updateBar()
+
+	onInterrupt(flag)
+		boutput(owner, SPAN_ALERT("You were interrupted!"))
+		if (spraycan)
+			spraycan.in_use = FALSE
+			spraycan.clear_targets()
 		..()
 
 	onEnd()
 		..()
-		if(get_dist(owner, target_turf) > 1 || target_turf == null || !owner)
+		for (var/turf/sprayedturf in spraycan.graffititargets)
+			if (BOUNDS_DIST(owner, sprayedturf) > 0)
+				interrupt(INTERRUPT_ALWAYS)
+				return
+		if(!owner)
 			interrupt(INTERRUPT_ALWAYS)
 			return
+		if (spraycan.loc != owner)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		spraycan.in_use = FALSE
+		var/iconstate
+		var/targets = length(spraycan.graffititargets)
+		switch (targets)
+			if (1)
+				var/result = pick(spraycan.tags_single)
+				spraycan.tags_single -= result
+				iconstate = "graffiti-single-[result]"
+				if (length(spraycan.tags_single) == 0)
+					spraycan.refresh_single_tags()
+			if (2)
+				var/result = pick(spraycan.tags_double)
+				spraycan.tags_double -= result
+				iconstate = "graffiti-dbl-[result]-"
+				if (length(spraycan.tags_double) == 0)
+					spraycan.refresh_double_tags()
+			if (3)
+				var/result = pick(spraycan.tags_triple)
+				spraycan.tags_triple -= result
+				iconstate = "graffiti-trpl-[result]-"
+				if (length(spraycan.tags_triple) == 0)
+					spraycan.refresh_triple_tags()
+		spraycan.charges -= targets
+		spraycan.update_icon()
+		if (targets == 1)
+			var/obj/decal/cleanable/gang_graffiti/tag = new/obj/decal/cleanable/gang_graffiti(spraycan.graffititargets[1])
+			tag.icon_state = iconstate
+			tag.dir = spraycan.tagging_direction
+		else
+			var/list/turf/turfs_ordered = new/list(length(spraycan.graffititargets))
+			var/spraydirection = dir_to_angle(spraycan.tagging_direction)
+			var/vec = angle_to_vector(spraydirection)
+			var/min_distance = 1000
+			// the smallest X/Y coord, depending on if X/Y used
+			for (var/i = 1 to targets)
+				min_distance = min(vec[2] * spraycan.graffititargets[i].y - vec[1] * spraycan.graffititargets[i].x , min_distance)
 
-		S.in_use = 0
-		target_area.being_captured = 0
+			//sorts tags by their distance from min_distance, 1-3
+			for (var/sorting = 1 to targets)
+				var/dist = (vec[2] * spraycan.graffititargets[sorting].y -vec[1] * spraycan.graffititargets[sorting].x ) - min_distance
+				turfs_ordered[dist+1] = spraycan.graffititargets[sorting]
 
-		var/obj/decal/cleanable/gangtag/T = make_cleanable(/obj/decal/cleanable/gangtag,target_turf)
-		T.icon_state = "gangtag[M.mind.gang.gang_tag]"
-		T.name = "[M.mind.gang.gang_name] tag"
-		T.owners = M.mind.gang
-		T.delete_same_tags()
-		target_turf.tagged = 1
-		target_area.gang_owners = M.mind.gang
-		boutput(M, "<span class='notice'>You have claimed this area for your gang!</span>")
+			for (var/i = 1 to targets)
+				var/obj/decal/cleanable/gang_graffiti/tag = new/obj/decal/cleanable/gang_graffiti(turfs_ordered[i])
+				tag.icon_state = "[iconstate][i]"
+				tag.dir = spraycan.tagging_direction
+
+
+		spraycan.clear_targets()
+		playsound(spraycan.loc, 'sound/effects/graffiti_hit.ogg', 20, TRUE)
+		if (spraycan.charges <= 0)
+			boutput(owner, SPAN_ALERT("The graffiti can's empty!"))
+			playsound(owner.loc, "sound/items/can_crush-[rand(1,3)].ogg", 50, 1)
+			spraycan.icon_state = "spraycan_crushed"
+			spraycan.setItemSpecial(/datum/item_special/simple)
+			spraycan.tooltip_rebuild = 1
 
 /obj/ganglocker
 	desc = "Gang locker."

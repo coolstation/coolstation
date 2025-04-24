@@ -1125,7 +1125,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/bartending)
 	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker) // bartenders buddy ammo is broken i think
-	items_in_backpack = list(/obj/item/gun/modular/NT/short/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/NT/mini/three)
+	items_in_backpack = list(/obj/item/gun/modular/NT/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/NT/mini/three)
 
 	New()
 		..()
@@ -2525,7 +2525,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_card = /obj/item/card/id/command
 	slot_poc1 = list(/obj/item/spacecash/fivehundred)
 	slot_poc2 = list(/obj/item/rubberduck)
-	items_in_backpack = list(/obj/item/gun/modular/NT/short/pistol_sec,
+	items_in_backpack = list(/obj/item/gun/modular/NT/pistol_sec,
 							/obj/item/device/pda2/heads,
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/storage/firstaid/regular,
