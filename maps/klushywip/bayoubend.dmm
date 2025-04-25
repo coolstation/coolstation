@@ -658,6 +658,12 @@
 	},
 /turf/floor/redblack,
 /area/listeningpost)
+"aCK" = (
+/obj/machinery/light/small,
+/turf/floor/shuttlebay{
+	name = "reinforced plating"
+	},
+/area/station/storage/warehouse)
 "aCT" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide{
 	dir = 8;
@@ -5627,6 +5633,12 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
+"emQ" = (
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/floor/plating/random,
+/area/station/shipyard)
 "emS" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -13895,7 +13907,6 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "ksc" = (
-/obj/machinery/light/small,
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/shuttlebay{
@@ -19359,9 +19370,12 @@
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "osb" = (
-/obj/landmark/random_ship/size25x15,
-/turf/space,
-/area/shuttle/bayou/shipyard)
+/obj/storage/crate/wooden,
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/floor/plating/random,
+/area/station/shipyard)
 "osd" = (
 /obj/machinery/light/beacon,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -26436,6 +26450,10 @@
 /obj/machinery/firealarm,
 /turf/wall,
 /area/station/crew_quarters/clown)
+"tmr" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "tmI" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
@@ -78228,7 +78246,7 @@ daD
 rqL
 ezI
 nNP
-nYF
+tmr
 gtF
 gtF
 xLm
@@ -78245,7 +78263,7 @@ xLm
 xLm
 xLm
 xLm
-osb
+xLm
 ipT
 ipT
 ipT
@@ -79438,7 +79456,7 @@ mhA
 txM
 mhA
 mhA
-gtF
+emQ
 xLm
 xLm
 xLm
@@ -81550,7 +81568,7 @@ fDl
 pGm
 sUK
 oFu
-lBr
+gtF
 gtF
 gtF
 xLm
@@ -81849,7 +81867,7 @@ gKk
 pvc
 fDl
 ksc
-fDl
+aCK
 sUK
 bQW
 vae
@@ -82153,7 +82171,7 @@ fDl
 gNO
 fDl
 seQ
-gtF
+osb
 gtF
 gtF
 gtF
@@ -82455,7 +82473,7 @@ hUO
 gJu
 gJu
 seQ
-dYn
+lBr
 nzO
 gtF
 gtF
@@ -82759,7 +82777,7 @@ gtF
 gtF
 seQ
 seQ
-gtF
+emQ
 gtF
 xLm
 xLm
@@ -83057,7 +83075,7 @@ vWX
 vWX
 vWX
 gJu
-gtF
+emQ
 gtF
 gtF
 gtF
