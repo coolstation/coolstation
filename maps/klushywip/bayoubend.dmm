@@ -658,12 +658,6 @@
 	},
 /turf/floor/redblack,
 /area/listeningpost)
-"aCK" = (
-/obj/machinery/light/small,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/station/storage/warehouse)
 "aCT" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide{
 	dir = 8;
@@ -2067,6 +2061,12 @@
 	},
 /turf/floor,
 /area/station/science/bot_storage)
+"bIf" = (
+/obj/machinery/light/small,
+/turf/floor/shuttlebay{
+	name = "reinforced plating"
+	},
+/area/station/storage/warehouse)
 "bIu" = (
 /obj/machinery/computer/bank_data,
 /turf/floor,
@@ -5633,12 +5633,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
-"emQ" = (
-/obj/machinery/light/small/red{
-	dir = 1
-	},
-/turf/floor/plating/random,
-/area/station/shipyard)
 "emS" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -11166,6 +11160,12 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/medbay/cloner)
+"isJ" = (
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/floor/plating/random,
+/area/station/shipyard)
 "isL" = (
 /obj/machinery/power/apc/autoname/west,
 /obj/cable{
@@ -13214,6 +13214,10 @@
 	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
+"jSL" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/plating/random,
+/area/station/maintenance/southeast)
 "jTF" = (
 /obj/storage/crate,
 /obj/item/device/analyzer/healthanalyzer{
@@ -21566,6 +21570,10 @@
 	pixel_x = 6;
 	pixel_y = -3
 	},
+/obj/item/device/narco{
+	pixel_y = 8;
+	pixel_x = -8
+	},
 /turf/floor/red/side{
 	dir = 6
 	},
@@ -26450,10 +26458,6 @@
 /obj/machinery/firealarm,
 /turf/wall,
 /area/station/crew_quarters/clown)
-"tmr" = (
-/obj/machinery/door/airlock/external,
-/turf/floor/plating/random,
-/area/station/maintenance/southeast)
 "tmI" = (
 /obj/decal/cleanable/fungus,
 /turf/wall,
@@ -78246,7 +78250,7 @@ daD
 rqL
 ezI
 nNP
-tmr
+jSL
 gtF
 gtF
 xLm
@@ -79456,7 +79460,7 @@ mhA
 txM
 mhA
 mhA
-emQ
+isJ
 xLm
 xLm
 xLm
@@ -81867,7 +81871,7 @@ gKk
 pvc
 fDl
 ksc
-aCK
+bIf
 sUK
 bQW
 vae
@@ -82777,7 +82781,7 @@ gtF
 gtF
 seQ
 seQ
-emQ
+isJ
 gtF
 xLm
 xLm
@@ -83075,7 +83079,7 @@ vWX
 vWX
 vWX
 gJu
-emQ
+isJ
 gtF
 gtF
 gtF
