@@ -2121,6 +2121,9 @@
 	name = "AI-Sat"
 	},
 /obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
 /turf/floor/circuit,
 /area/station/turret_protected/AIsat)
 "bKy" = (
@@ -2480,6 +2483,12 @@
 	})
 "bVN" = (
 /obj/machinery/computer3/generic/radio,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d1 = 0;
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "bVX" = (
@@ -4725,6 +4734,12 @@
 "dJx" = (
 /turf/wall,
 /area/station/maintenance/disposal)
+"dJy" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "dJC" = (
 /obj/lattice{
 	icon_state = "lattice-broken"
@@ -5559,6 +5574,14 @@
 	dir = 10
 	},
 /area/station/engine/engineering)
+"emc" = (
+/obj/table/folding,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "emd" = (
 /obj/rack,
 /obj/item/device/audio_log{
@@ -8743,6 +8766,11 @@
 	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
 	},
 /obj/table/reinforced/auto,
+/obj/cable{
+	d1 = 0;
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "gDS" = (
@@ -10486,6 +10514,12 @@
 	name = "DWAINE Terminal - Zeta";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d1 = 0;
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "hQy" = (
@@ -11178,6 +11212,9 @@
 /area/station/medical/robotics)
 "ixA" = (
 /obj/grille/catwalk/jen/twosides,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "ixG" = (
@@ -13868,6 +13905,9 @@
 "ksm" = (
 /obj/grille/catwalk/jen/twosides,
 /obj/machinery/door/airlock/glass/command,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "kst" = (
@@ -13919,6 +13959,9 @@
 "kuc" = (
 /obj/decal/tile_edge/line/black{
 	icon_state = "line1"
+	},
+/obj/cable{
+	icon_state = "1-2"
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/AIsat)
@@ -16517,6 +16560,10 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"mqA" = (
+/obj/random_item_spawner/junk/one,
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "mqH" = (
 /obj/item/storage/toolbox/mechanical{
 	pixel_x = -10;
@@ -20391,6 +20438,12 @@
 /area/station/maintenance/oldstation)
 "peB" = (
 /obj/machinery/computer/announcement,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d1 = 0;
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "pfg" = (
@@ -23147,6 +23200,12 @@
 	dir = 10
 	},
 /area/station/bridge)
+"qTX" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "qUg" = (
 /obj/random_item_spawner/junk/one,
 /obj/cable{
@@ -23724,6 +23783,11 @@
 	name = "autoname - SS13";
 	network = "SS13";
 	tag = ""
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
@@ -24849,6 +24913,11 @@
 "siS" = (
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
@@ -26173,6 +26242,9 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "tdn" = (
@@ -26224,6 +26296,11 @@
 /obj/grille/catwalk/jen/twosides,
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
@@ -46992,7 +47069,7 @@ eih
 mhb
 bKv
 kuc
-oLF
+hZH
 ksm
 ixA
 tfS
@@ -74481,7 +74558,7 @@ pwF
 fCH
 cjV
 cjV
-cjV
+hGy
 hwz
 wkX
 aFU
@@ -74781,7 +74858,7 @@ srE
 eDj
 mNV
 xgL
-cjV
+emc
 cjV
 cjV
 hwz
@@ -75083,9 +75160,9 @@ wyY
 wyY
 gip
 fCH
-cjV
-cjV
-cjV
+dJy
+qTX
+mqA
 hwz
 dGm
 gqF
