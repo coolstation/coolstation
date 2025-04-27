@@ -6820,16 +6820,9 @@
 /area/buddyfactory)
 "asI" = (
 /obj/rack,
-/obj/item/guardbot_core/old,
-/obj/item/guardbot_core/old,
+/obj/item/device/guardbot_tool/flash,
+/obj/item/device/guardbot_tool/flash,
 /turf/floor,
-/area/buddyfactory)
-"asJ" = (
-/obj/machinery/buddyfactory{
-	dir = 1;
-	input_stage = 2
-	},
-/turf/floor/cautionblack,
 /area/buddyfactory)
 "asK" = (
 /obj/machinery/buddyfactory{
@@ -6989,8 +6982,8 @@
 /area/buddyfactory)
 "atg" = (
 /obj/rack,
-/obj/item/device/guardbot_tool/flash,
-/obj/item/device/guardbot_tool/flash,
+/obj/item/guardbot_core/old,
+/obj/item/guardbot_core/old,
 /turf/floor,
 /area/buddyfactory)
 "ath" = (
@@ -16320,9 +16313,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/navbeacon{
+	beacon_id = "Control Room";
 	codes_txt = "patrol;next_patrol=Central Junction";
-	freq = 1431;
-	beacon_id = "Control Room"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7/control)
@@ -16651,9 +16644,9 @@
 /area/h7/storage)
 "aXO" = (
 /obj/machinery/navbeacon{
+	beacon_id = "Storage";
 	codes_txt = "patrol;next_patrol=Living Quarters";
-	freq = 1431;
-	beacon_id = "Storage"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7/storage)
@@ -17773,9 +17766,9 @@
 /area/iss)
 "baV" = (
 /obj/machinery/navbeacon{
+	beacon_id = "Living Quarters";
 	codes_txt = "patrol;next_patrol=Lab Access";
-	freq = 1431;
-	beacon_id = "Living Quarters"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7/crew)
@@ -17846,9 +17839,9 @@
 /area/h7)
 "bbb" = (
 /obj/machinery/navbeacon{
+	beacon_id = "Central Junction";
 	codes_txt = "patrol;next_patrol=Storage";
-	freq = 1431;
-	beacon_id = "Central Junction"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7)
@@ -19082,9 +19075,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/navbeacon{
+	beacon_id = "Lab Access";
 	codes_txt = "patrol;next_patrol=Control Room";
-	freq = 1431;
-	beacon_id = "Lab Access"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7)
@@ -23655,11 +23648,11 @@
 /obj/landmark/club_juice_dj,
 /obj/indestructible/invisible_block,
 /obj/decal/fakeobjects{
+	anchored = 1;
 	desc = "Seriously, this isn't Flexx. Quit bothering the DJ.";
 	icon = 'icons/mob/64.dmi';
 	icon_state = "djnotflexx";
-	name = "DJ Not Flexx";
-	anchored = 1
+	name = "DJ Not Flexx"
 	},
 /turf/floor/black,
 /area/juicer/club)
@@ -31702,7 +31695,7 @@ ajC
 aqC
 aqC
 asq
-asJ
+asK
 ate
 atE
 ath
