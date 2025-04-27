@@ -1863,7 +1863,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	density = 0
 	anchored = 1
 	layer = OBJ_LAYER
-	icon = 'icons/obj/decals/graffiti.dmi'
+	icon = 'icons/obj/decals/gang_tags.dmi'
 	icon_state = "gangtag0"
 	var/datum/gang/owners = null
 
