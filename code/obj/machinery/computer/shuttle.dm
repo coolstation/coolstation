@@ -149,10 +149,7 @@
 		buildRandomShips()
 		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
 		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
-		prepShips(start_location)
-		SPAWN_DBG(3 SECONDS)
-			start_location.move_contents_to(end_location)
-			shipyardship_location = 1
+		prepShips(start_location, start_location, end_location) //the move is handled in here for various reasons
 
 	else if(shipyardship_location == 1) //station -> staging area
 		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
