@@ -60,6 +60,9 @@
 
 	var/grab_stuff_on_spawn = TRUE
 
+	///Controls items that are 'inside' the crate, even when it's open. These will be dragged around with the crate until removed.
+	var/datum/vis_storage_controller/vis_controller
+
 	New()
 		..()
 		START_TRACKING
@@ -75,6 +78,9 @@
 						A.set_loc(src)
 
 	disposing()
+		if(src.vis_controller)
+			qdel(src.vis_controller)
+			src.vis_controller = null
 		STOP_TRACKING
 		..()
 
@@ -490,10 +496,7 @@
 			for(var/atom/movable/AM in entangled)
 				AM.set_loc(src.open ? src.loc : src)
 
-		if (user)
-			src.dump_contents(user)
-		else
-			src.dump_contents()
+		src.dump_contents(user)
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
@@ -520,7 +523,7 @@
 		for (var/obj/O in get_turf(src))
 			if (src.is_acceptable_content(O))
 				O.set_loc(src)
-
+		vis_controller?.hide()
 		for (var/mob/M in get_turf(src))
 			if (M.anchored || M.buckled)
 				continue
@@ -602,6 +605,8 @@
 			var/start_px = -11
 			var/items = 1
 			for (var/obj/item/I in contents) //Wanna skip mobs, wanna skip non-items
+				if ((I in vis_controller?.vis_items))
+					continue
 				if (items > 8)
 					I.pixel_y = min(0,pixel_y) //try to keep the bottom of the cart sprite free, clicking stuffed crates is a goddamn pain
 				else
@@ -614,11 +619,13 @@
 				items++
 
 		var/newloc = get_turf(src)
+		vis_controller?.show()
 		for (var/obj/O in src)
 			if (delete_and_damage)
 				qdel(O)
 				continue
-			O.set_loc(newloc)
+			if (!(O in vis_controller?.vis_items))
+				O.set_loc(newloc)
 			if(istype(O,/obj/item/mousetrap))
 				var/obj/item/mousetrap/our_trap = O
 				if(our_trap.armed && user)

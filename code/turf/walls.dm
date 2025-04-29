@@ -383,6 +383,10 @@
 		/*SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/wall/proc/weld_action,\
 			list(W, user), W.icon, W.icon_state, "[user] finishes disassembling the outer wall plating.", null)*/
 
+	else if (istype(W, /obj/item/breaching_hammer/sledgehammer))
+		src.weld_action(W, user)
+		return
+
 //Spooky halloween key
 	else if(istype(W,/obj/item/device/key/haunted))
 		//Okay, create a temporary false wall.

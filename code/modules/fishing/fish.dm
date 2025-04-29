@@ -49,12 +49,14 @@
 		if(istype(W, /obj/item/kitchen/utensil/knife)) // need to be a prepared chef to properly separate the toxins
 			if(user.traitHolder?.hasTrait("training_chef") && (user.a_intent != INTENT_HARM)) // Allow some room for sabotaging chefs
 				fillet_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/fugu/wellmade
-				var/obj/liver = new liver_type(src.loc)
-				user.put_in_hand_or_drop(liver)
 				boutput(user, "<span class='notice'>You carefully skin and gut \the [src], separating the poisonous parts.</span>")
 			else
+				if (prob(70) && (user.a_intent != INTENT_HARM))
+					fillet_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/fugu/wellmade
 				boutput(user, "<span class='notice'>You attempt skin and gut \the [src] into something edible.</span>")
+			var/obj/liver = new liver_type(src.loc)
 			var/obj/fillet = new fillet_type(src.loc)
+			user.put_in_hand_or_drop(liver)
 			user.put_in_hand_or_drop(fillet)
 			qdel(src)
 			return

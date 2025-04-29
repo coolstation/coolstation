@@ -42,6 +42,8 @@
 /datum/movement_modifier/disoriented
 	additive_slowdown = 8
 
+/datum/movement_modifier/tagged
+	additive_slowdown = 3
 /datum/movement_modifier/hastened
 	additive_slowdown = -0.8
 

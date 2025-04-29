@@ -303,6 +303,7 @@ var/global/list/mapNames = list(
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 	qm_supply_type = "shuttle"
+	shuttle_map_turf = /turf/floor/airless/engine/caution
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
@@ -340,6 +341,23 @@ var/global/list/mapNames = list(
 		/datum/job/medical/pathologist = 0,
 		/datum/job/logistics/janitor = 1
 	)
+
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/floor/airless/engine/caution"
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = "/turf/floor/airless/engine/caution"
+
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = "/turf/floor/airless/engine/caution"
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
 
 
 /datum/map_settings/cogmap

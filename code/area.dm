@@ -46,6 +46,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
 
+	var/area_door_group
+
 	//fucking ANTS getting EVERYWHERE
 	var/no_ants = 1
 
@@ -1878,6 +1880,10 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 	name = "Northwest Inner Maintenance"
 	icon_state = "IN_NWmaint"
 
+/area/station/maintenance/oldstation
+	name = "Old Station"
+	icon_state = "maintcentral"
+
 // OUTER maintenance
 
 /area/station/maintenance/outer/north
@@ -2131,6 +2137,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Mining"
 	icon_state = "abstract"
 	sound_environment = EAX_HANGAR
+	area_door_group = "logistics"
 
 /area/station/mining/staff_room
 	name = "Mining Staff Room"
@@ -2181,6 +2188,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
 	mail_tag = "Bridge"
+	area_door_group = "bridge"
 
 /area/station/bridge/united_command //currently only on atlas - ET
 	name = "United Command"
@@ -2651,6 +2659,7 @@ ABSTRACT_TYPE(/area/station/engine)
 /area/station/engine
 	sound_environment = EAX_STONEROOM
 	workplace = 1
+	area_door_group = "engineering"
 
 /area/station/engine/engineering
 	name = "Engineering"
@@ -2824,6 +2833,7 @@ ABSTRACT_TYPE(/area/station/medical)
 	name = "Medical area"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "medbay"
 
 /area/station/medical/medbay
 	name = "Medbay"
@@ -2945,6 +2955,7 @@ ABSTRACT_TYPE(/area/station/security)
 	teleport_blocked = 1
 	workplace = 1
 	spy_secure_area = TRUE
+	area_door_group = "security"
 
 /area/station/security/main
 	name = "Security"
@@ -3107,6 +3118,7 @@ ABSTRACT_TYPE(/area/station/security)
 	icon_state = "storage"
 	do_not_irradiate = 1
 	spy_secure_area = FALSE	// Easy to get into
+	area_door_group = "engineering"
 
 // solums
 
@@ -3155,6 +3167,7 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 	name = "Quartermaster's"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/quartermaster/office
 	name = "Quartermaster's Office"
@@ -3216,6 +3229,7 @@ ABSTRACT_TYPE(/area/station/janitor)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/janitor/office
 	name = "Janitor's Office"
@@ -3238,6 +3252,7 @@ ABSTRACT_TYPE(/area/station/science)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "research"
 
 /area/station/science/chemistry
 	name = "Chemistry"

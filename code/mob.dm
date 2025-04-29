@@ -52,7 +52,7 @@
 	var/lastattacker = null
 	var/lastattacked = null //tell us whether or not to use Combat or Default click delays depending on whether this var was set.
 	var/lastattackertime = 0
-	var/other_mobs = null
+	var/pass_through_mobs = FALSE
 	var/memory = ""
 	var/atom/movable/pulling = null
 	var/stat = 0.0
@@ -1521,7 +1521,7 @@
 
 	if (ismob(mover))
 		var/mob/moving_mob = mover
-		if ((src.other_mobs && moving_mob.other_mobs))
+		if ((src.pass_through_mobs || moving_mob.pass_through_mobs))
 			return 1
 		return (!mover.density || !src.density || src.lying)
 	else
@@ -2410,7 +2410,7 @@
 		if (thr?.get_throw_travelled() <= 410)
 			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
 				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened"))
+				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
 					src.changeStatus("weakened", 2 SECONDS)
 					src.force_laydown_standup()
 		else
@@ -2441,6 +2441,38 @@
 	if (src.hasStatus("handcuffed"))
 		src.handcuffs.destroy_handcuffs(src)
 	src.bodytemperature = src.base_body_temp
+	if (src.stat > 1)
+		setalive(src)
+
+/mob/proc/part_heal()
+
+	src.HealDamage("All",max(src.get_brute_damage() - 90, 0),max(src.get_burn_damage() - 90, 0),max(src.get_toxin_damage() - 90, 0) )
+	src.take_oxygen_deprivation(-100)
+	src.drowsyness = 0
+	src.stuttering = 0
+	src.losebreath = 0
+	/*
+	src.delStatus("paralysis")
+	src.delStatus("stunned")
+	src.delStatus("weakened")
+	src.delStatus("slowed")
+	src.delStatus("burning")
+	src.delStatus("radiation")
+	src.delStatus("n_radiation")
+	src.change_eye_blurry(-INFINITY)
+	src.take_eye_damage(-INFINITY)
+	src.take_eye_damage(-INFINITY, 1)
+	src.take_ear_damage(-INFINITY)
+	src.take_ear_damage(-INFINITY, 1)*/
+	src.take_brain_damage(-INFINITY)
+	/*
+	src.health = src.max_health
+	src.buckled = null
+
+	if (src.hasStatus("handcuffed"))
+		src.handcuffs.destroy_handcuffs(src)
+	src.bodytemperature = src.base_body_temp
+	*/
 	if (src.stat > 1)
 		setalive(src)
 

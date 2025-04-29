@@ -1951,6 +1951,43 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			"You purr!")
 
 
+/mob/living/critter/small_animal/pig/hogg
+	name = "hogg vorbis"
+	real_name = "hogg vorbis"
+	desc = "the hogg vorbis."
+	icon_state = "hogg"
+	icon_state_dead = "pig-dead"
+	density = 1
+	speechverb_say = "screams!"
+	speechverb_exclaim = "screams!"
+	meat_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
+	name_the_meat = 0
+
+	specific_emotes(var/act, var/param = null, var/voluntary = 0)
+		if(act == "scream" && src.emote_check(voluntary, 50))
+			var/turf/T = get_turf(src)
+			var/hogg = pick("sound/voice/hagg_vorbis.ogg","sound/voice/hogg_vorbis.ogg","sound/voice/hogg_vorbis_the.ogg","sound/voice/hogg_vorbis_screams.ogg","sound/voice/hogg_with_scream.ogg","sound/voice/hoooagh2.ogg","sound/voice/hoooagh.ogg",)
+			playsound(T, hogg, 60, 1, channel=VOLUME_CHANNEL_EMOTE)
+			return "<span class='emote'><b>[src]</b> screeeams!</span>"
+		return null
+
+	specific_emote_type(var/act)
+		switch (act)
+			if ("scream")
+				return 2
+		return ..()
+
+	on_pet(mob/user)
+		if (..())
+			return 1
+		if (prob(ASS_JAM?50:25))
+			var/turf/T = get_turf(src)
+			src.visible_message("[src] screams![prob(5) ? " ...uh?" : null]",\
+			"You screams!")
+			var/hogg = pick("sound/voice/hagg_vorbis.ogg","sound/voice/hogg_vorbis.ogg","sound/voice/hogg_vorbis_the.ogg","sound/voice/hogg_vorbis_screams.ogg","sound/voice/hogg_with_scream.ogg","sound/voice/hoooagh2.ogg","sound/voice/hoooagh.ogg",)
+			playsound(T, hogg, 60, 1)
+			user.add_karma(1.5)
+
 /* ============================================= */
 /* -------------------- Bat -------------------- */
 /* ============================================= */

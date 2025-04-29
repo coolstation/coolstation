@@ -569,7 +569,7 @@ This is basically useless for anyone but miners.
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/minibible
-	name = "Miniature Bible"
+	name = "Miniature Bib"
 	item = /obj/item/storage/bible/mini
 	cost = 1
 	desc = "We understand it can be difficult to carry out some of our missions. Here is some spiritual counsel in a small package."

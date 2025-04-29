@@ -2602,6 +2602,17 @@
 	},
 /turf/floor/white,
 /area/hospital)
+"azc" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov3";
+	freq = 1440;
+	beacon_id = "sov2"
+	},
+/turf/floor{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor3"
+	},
+/area/hospital/samostrel)
 "azm" = (
 /turf/space,
 /turf/wall/setpieces/hospital,
@@ -30148,6 +30159,10 @@
 /obj/gravity_well_generator,
 /turf/floor,
 /area/solariumjoke)
+"clp" = (
+/obj/landmark/random_ship/size25x15,
+/turf/space,
+/area/shuttle/bayou/stagearea)
 "clq" = (
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
@@ -31065,17 +31080,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"cnZ" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov3";
-	freq = 1440;
-	location = "sov2"
-	},
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/area/hospital/samostrel)
 "cob" = (
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
@@ -31850,27 +31854,11 @@
 	dir = 9
 	},
 /area/hospital/samostrel)
-"cqm" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov6";
-	freq = 1440;
-	location = "sov5"
-	},
-/turf/floor,
-/area/hospital/samostrel)
 "cqn" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
 	name = "grimy pipe";
 	pixel_x = 6
-	},
-/turf/floor,
-/area/hospital/samostrel)
-"cqp" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov2";
-	freq = 1440;
-	location = "sov1"
 	},
 /turf/floor,
 /area/hospital/samostrel)
@@ -32603,15 +32591,6 @@
 	dir = 10
 	},
 /area/hospital/samostrel)
-"ctl" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov5";
-	freq = 1440;
-	location = "sov4"
-	},
-/obj/stool,
-/turf/floor/carpet/office,
-/area/hospital/samostrel)
 "ctm" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -32623,14 +32602,6 @@
 	name = "broken computer"
 	},
 /turf/floor/carpet/office,
-/area/hospital/samostrel)
-"ctr" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov4";
-	freq = 1440;
-	location = "sov3"
-	},
-/turf/floor/blackwhite/whitegrime,
 /area/hospital/samostrel)
 "cts" = (
 /turf/wall{
@@ -33251,14 +33222,6 @@
 	name = "broken pod door control";
 	pixel_x = -24;
 	pixel_y = 8
-	},
-/turf/floor/engine,
-/area/hospital/samostrel)
-"cvT" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov7";
-	freq = 1440;
-	location = "sov6"
 	},
 /turf/floor/engine,
 /area/hospital/samostrel)
@@ -47809,18 +47772,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"diD" = (
-/obj/trigger/spooky_emote,
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=sov1";
-	freq = 1440;
-	location = "sov7"
-	},
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/area/hospital/samostrel)
 "diU" = (
 /turf/floor,
 /area/blob/tutorial_zone_3)
@@ -54571,6 +54522,14 @@
 	icon_state = "green2"
 	},
 /area/wizard_station)
+"jif" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov2";
+	freq = 1440;
+	beacon_id = "sov1"
+	},
+/turf/floor,
+/area/hospital/samostrel)
 "jih" = (
 /turf/wall/setpieces/fakewindow{
 	dir = 6
@@ -54581,6 +54540,18 @@
 /obj/item/raw_material/gemstone,
 /turf/floor/arctic/snow/ice,
 /area/lower_arctic/mining)
+"jkn" = (
+/obj/trigger/spooky_emote,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov1";
+	freq = 1440;
+	beacon_id = "sov7"
+	},
+/turf/floor{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor3"
+	},
+/area/hospital/samostrel)
 "jlc" = (
 /turf/floor/black,
 /area/sim/racing_track{
@@ -57329,6 +57300,14 @@
 	icon_state = "fullblack"
 	},
 /area/sim/chess)
+"qVp" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov6";
+	freq = 1440;
+	beacon_id = "sov5"
+	},
+/turf/floor,
+/area/hospital/samostrel)
 "qVL" = (
 /obj/grille/catwalk{
 	dir = 5;
@@ -58206,6 +58185,15 @@
 /turf/space,
 /turf/space/shuttle_transit,
 /area/area_that_kills_you_if_you_enter_it)
+"tIw" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov5";
+	freq = 1440;
+	beacon_id = "sov4"
+	},
+/obj/stool,
+/turf/floor/carpet/office,
+/area/hospital/samostrel)
 "tJa" = (
 /obj/table/auto/desk,
 /obj/item/electronics/soldering,
@@ -58916,10 +58904,6 @@
 "vCq" = (
 /turf/wall/auto/concrete,
 /area/upper_arctic/exterior/surface)
-"vEi" = (
-/obj/landmark/random_ship/size30x25,
-/turf/space,
-/area/shuttle/bayou/stagearea)
 "vEz" = (
 /obj/item/storage/pill_bottle/gsbp,
 /obj/decal/cleanable/vomit,
@@ -59068,6 +59052,14 @@
 	},
 /turf/cordon,
 /area/cordon)
+"vZK" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov7";
+	freq = 1440;
+	beacon_id = "sov6"
+	},
+/turf/floor/engine,
+/area/hospital/samostrel)
 "vZN" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/soviet/private/cargo,
@@ -59433,6 +59425,14 @@
 	},
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/lobby)
+"xct" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=sov4";
+	freq = 1440;
+	beacon_id = "sov3"
+	},
+/turf/floor/blackwhite/whitegrime,
+/area/hospital/samostrel)
 "xdy" = (
 /obj/item/weldingtool,
 /turf/floor/concrete,
@@ -115873,7 +115873,7 @@ csS
 cuM
 dpk
 cvD
-cvT
+vZK
 cuM
 cXj
 doc
@@ -117373,7 +117373,7 @@ cnI
 toQ
 dti
 dnn
-cqm
+qVp
 cqC
 cqL
 cqV
@@ -118270,7 +118270,7 @@ toQ
 toQ
 toQ
 cnH
-cnZ
+azc
 toQ
 toQ
 toQ
@@ -118279,13 +118279,13 @@ toQ
 toQ
 dnn
 dtp
-cqp
+jif
 dnz
 xXO
 cqW
 crj
 csj
-ctl
+tIw
 cuV
 cvn
 toQ
@@ -118901,7 +118901,7 @@ doo
 xXO
 dfL
 toQ
-diD
+jkn
 djq
 cna
 djA
@@ -119191,7 +119191,7 @@ dnz
 cqX
 crm
 crm
-ctr
+xct
 crm
 cvo
 xXO
@@ -131896,6 +131896,16 @@ daq
 daq
 daq
 aaa
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -131910,17 +131920,7 @@ obi
 obi
 obi
 obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-vEi
+clp
 aaa
 daq
 daq
@@ -132198,16 +132198,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -132500,16 +132500,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -132802,16 +132802,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -133104,16 +133104,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -133406,16 +133406,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -133708,16 +133708,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -134010,16 +134010,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -134312,16 +134312,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -134614,16 +134614,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -134916,16 +134916,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -135218,16 +135218,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -135520,16 +135520,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -135822,16 +135822,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -136124,16 +136124,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -136426,16 +136426,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -136728,16 +136728,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -137030,16 +137030,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -137332,16 +137332,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -137634,16 +137634,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -137936,16 +137936,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -138238,16 +138238,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -138540,16 +138540,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -138842,16 +138842,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -139144,16 +139144,16 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 obi
 obi
 obi
@@ -139446,31 +139446,31 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 dkG
 uMA
@@ -139748,31 +139748,31 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
 aaa
 dkG
 uMA
@@ -140050,31 +140050,31 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
 aaa
 dkG
 uMA
@@ -140352,31 +140352,31 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
 aaa
 dkG
 uMA
@@ -140654,31 +140654,31 @@ daq
 daq
 daq
 aaa
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
-obi
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
+daq
 aaa
 dkG
 dkG

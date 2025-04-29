@@ -262,20 +262,6 @@
 
 //CONSTRUCTION WORKER STUFF//
 
-/obj/item/sledgehammer
-	name = "sledgehammer"
-	desc = "A heavy hammer that takes great deal of strenght to wield."
-	icon_state = "sledgehammer"
-	item_state = "sledgehammer"
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	two_handed = 1
-	click_delay = 30
-	force = 50
-
-	New()
-		..()
-		BLOCK_SETUP(BLOCK_ROD)
-
 /obj/item/constructioncone
 	desc = "Caution!"
 	name = "construction cone"

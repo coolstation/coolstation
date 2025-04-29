@@ -1311,7 +1311,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=garden";
-	location = "bar";
+	beacon_id = "bar";
 	name = "bot navigation beacon"
 	},
 /turf/floor/wood/eight{
@@ -1443,7 +1443,7 @@
 "acl" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=hangar";
-	location = "fuq3";
+	beacon_id = "fuq3";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -2225,7 +2225,7 @@
 "anN" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=lol";
-	location = "btw_fuck_bot_pathing";
+	beacon_id = "btw_fuck_bot_pathing";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -7331,7 +7331,7 @@
 "bOb" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=btw_fuck_bot_pathing";
-	location = "fuck_me_i_guess";
+	beacon_id = "fuck_me_i_guess";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -7545,7 +7545,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=construction";
-	location = "engi";
+	beacon_id = "engi";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -15900,7 +15900,7 @@
 "eso" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=medbay";
-	location = "medsci";
+	beacon_id = "medsci";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -19049,7 +19049,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=bots";
-	location = "stocks";
+	beacon_id = "stocks";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -28390,7 +28390,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=fuck_me_i_guess";
-	location = "so_like";
+	beacon_id = "so_like";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -28621,7 +28621,7 @@
 "ieM" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=i_mean_honestly";
-	location = "why_did_i_do_this_to_myself";
+	beacon_id = "why_did_i_do_this_to_myself";
 	name = "bot navigation beacon"
 	},
 /turf/floor/wood/two,
@@ -31483,7 +31483,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=pharmacy";
-	location = "medbay";
+	beacon_id = "medbay";
 	name = "bot navigation beacon"
 	},
 /turf/floor/white/checker,
@@ -35930,7 +35930,7 @@
 "kws" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=there_was_already_an_easier_way_to_do_this";
-	location = "i_mean_honestly";
+	beacon_id = "i_mean_honestly";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -36979,7 +36979,7 @@
 "kMO" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=medsci";
-	location = "bots";
+	beacon_id = "bots";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/brig{
@@ -39059,7 +39059,7 @@
 "ltw" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=so_like";
-	location = "but_i_did_it_like_this_before_i_noticed_it";
+	beacon_id = "but_i_did_it_like_this_before_i_noticed_it";
 	name = "bot navigation beacon"
 	},
 /turf/floor/black,
@@ -39132,7 +39132,7 @@
 /obj/disposalpipe/segment/mail,
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=engi";
-	location = "mech";
+	beacon_id = "mech";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -41242,7 +41242,7 @@
 /obj/disposalpipe/segment/mail,
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=stocks";
-	location = "construction";
+	beacon_id = "construction";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/brig{
@@ -53438,7 +53438,7 @@
 /obj/disposalpipe/segment/brig,
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=but_i_did_it_like_this_before_i_noticed_it";
-	location = "there_was_already_an_easier_way_to_do_this";
+	beacon_id = "there_was_already_an_easier_way_to_do_this";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -62350,7 +62350,7 @@
 "rZh" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=fuq3";
-	location = "garden";
+	beacon_id = "garden";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/mail{
@@ -67390,7 +67390,7 @@
 "tBd" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=why_did_i_do_this_to_myself";
-	location = "pharmacy";
+	beacon_id = "pharmacy";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -69518,7 +69518,7 @@
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #1"
+	beacon_id = "QM #1"
 	},
 /turf/floor,
 /area/station/quartermaster/office)
@@ -75031,7 +75031,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=bar";
-	location = "lol";
+	beacon_id = "lol";
 	name = "bot navigation beacon"
 	},
 /turf/floor{
@@ -80544,7 +80544,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=mech";
-	location = "hangar";
+	beacon_id = "hangar";
 	name = "bot navigation beacon"
 	},
 /turf/floor,

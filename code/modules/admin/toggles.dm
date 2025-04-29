@@ -125,6 +125,7 @@ var/list/server_toggles_tab_verbs = list(\
 		//src.verbs -= /proc/possess
 		src.verbs -= /client/proc/addreagents
 		src.verbs -= /client/proc/cmd_admin_rejuvenate
+		src.verbs -= /client/proc/cmd_admin_rejuvenate_crit
 
 		src.verbs -= /client/proc/main_loop_context
 		src.verbs -= /client/proc/main_loop_tick_detail
@@ -142,7 +143,7 @@ var/list/server_toggles_tab_verbs = list(\
 		//src.verbs += /proc/possess
 		src.verbs += /client/proc/addreagents
 		src.verbs += /client/proc/cmd_admin_rejuvenate
-
+		src.verbs += /client/proc/cmd_admin_rejuvenate_crit
 		src.verbs += /client/proc/main_loop_context
 		src.verbs += /client/proc/main_loop_tick_detail
 		src.verbs += /client/proc/ticklag
