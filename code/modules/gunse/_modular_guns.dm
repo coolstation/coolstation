@@ -985,6 +985,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.can_dual_wield = FALSE
 	src.force = 2 + bulk
 	src.throwforce = bulk
+
+	src.spread_angle = max(0, src.spread_angle) // hee hoo
+
 	if(src.two_handed)
 		flags &= ~ONBELT
 		flags |= ONBACK
