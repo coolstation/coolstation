@@ -905,7 +905,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	uses_multiple_icon_states = 1
 	item_state = "rpg7"
 	wear_image_icon = 'icons/mob/back.dmi'
-	flags = ONBACK
+	flags = ONBACK | FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY
 	w_class = W_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 4
