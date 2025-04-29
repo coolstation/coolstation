@@ -1552,6 +1552,7 @@ obj/item/whetstone
 	tool_flags = TOOL_CHOPPING //to chop through doors
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
+	flags = FPRINT | TABLEPASS | ONBACK
 
 	two_handed = 1
 	click_delay = 3 SECONDS
@@ -1572,7 +1573,6 @@ obj/item/whetstone
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	flags = FPRINT | TABLEPASS | ONBACK
 
 	w_class = W_CLASS_BULKY
 	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD
