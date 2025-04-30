@@ -1,0 +1,54 @@
+/datum/random_event/major/sandstorm
+	name = "Sandstorm"
+	required_elapsed_round_time = 30 MINUTES
+#ifndef DESERT_MAP
+	disabled = FALSE
+#endif
+
+	event_effect()
+		..()
+		var/timetoreachsec = rand(1,9)
+		var/timetoreach = rand(60,120)
+		var/actualtime = timetoreach * 10 + timetoreachsec
+		var/originDirection = rand(1,4) //1 North, 2 East, 3 South, 4 West Never Eat Shitty Wankers
+
+		var/sound/blow = sound('sound/ambience/nature/Wind_Low.ogg')
+		blow.channel = 5
+		blow.volume = 50
+		blow.repeat = TRUE
+		world << sound
+		command_alert("A severe weather disturbance has been detected approaching the station. All personnel have [timetoreach].[timetoreachsec] seconds to make their way indoors. Crew are advised to cover airways and eyes when going outdoors. The storm is predicted to last anywhere from a couple minutes to hours.", "Weather Alert")
+
+		SPAWN_DBG(0)
+			sleep(actualtime)
+			for(var/area/A in world)
+				LAGCHECK(LAG_LOW) //what does that do
+				if(A.z != Z_LEVEL_STATION)
+					continue
+				if(istype(A, /area/gehenna))
+					A.sandstorm = TRUE
+					A.blowOrigin = originDirection
+
+			sandstorm = TRUE
+			blow.repeat = FALSE
+			blow.volume = 25
+			world << blow
+
+			var/sound/stormsound = sound('sound/misc/Wind_Cold1.ogg')
+			stormsound.repeat = TRUE
+			stormsound.volume = 50
+			stormsound.channel = 5
+			world << stormsound
+			boutput(world, "<span class='alert'><B>WARNING</B>: Severe storm system has hit [station_name(1)]. Do not go outside without covering airways and eyes.</span>")
+
+			sleep(rand(10 MINUTES, 30 MINUTES))
+			command_alert("The low pressure system is rapidly increasing in pressure. ETA 120 seconds until the storm has passed.", "Weather Alert")
+
+			sleep(rand(50 SECONDS, 110 SECONDS))
+
+			for (var/area/A in world)
+				LAGCHECK(LAG_LOW)
+				if (A.z != Z_LEVEL_STATION)
+					continue
+				A.sandstorm = FALSE
+				A.blowOrigin = 0
