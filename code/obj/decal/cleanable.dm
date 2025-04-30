@@ -1570,6 +1570,18 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	stain = "painted"
 	gross = 1
 
+/obj/decal/cleanable/sand
+	name = "sand"
+	desc = "It gets everywhere!"
+	icon = 'icons/obj/decals/blood.dmi' //waiting for wack icon,for now it's blood
+	random_icon_states = null
+	slippery = 0
+	can_dry = 0
+	can_sample = 0
+	sample_reagent = "dirtywater" //change this
+	stain = "sandy"
+	gross = 0
+
 /obj/decal/cleanable/greenglow
 	name = "green glow"
 	desc = "Eerie."
