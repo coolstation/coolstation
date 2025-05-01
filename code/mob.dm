@@ -2886,13 +2886,15 @@
 // no text description though, because it's all different everywhere
 /mob/proc/vomit(var/nutrition=0, var/specialType=null)
 	playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.lastgasp(FALSE,TRUE,"blublublub")
 	if(specialType)
 		if(!locate(specialType) in src.loc)
 			new specialType(src.loc)
 	else
 		if(!locate(custom_vomit_type) in src.loc)
 			make_cleanable(custom_vomit_type,src.loc)
-	src.lastgasp(FALSE,"blublublub")
 	src.nutrition -= nutrition
 
 /mob/proc/get_hand_pixel_x()
