@@ -2892,7 +2892,7 @@
 	else
 		if(!locate(custom_vomit_type) in src.loc)
 			make_cleanable(custom_vomit_type,src.loc)
-
+	src.lastgasp(FALSE,"blublublub")
 	src.nutrition -= nutrition
 
 /mob/proc/get_hand_pixel_x()
