@@ -77,7 +77,7 @@ proc/processShips(var/area/shipyard)
 	shipyardship_post_densitymap = calculate_density_map(shipyard)
 	SPAWN_DBG(10 SECONDS)
 		playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
-		gib_area(shipyard)
+		//gib_area(shipyard)
 		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
 
 proc/buildRandomShips()

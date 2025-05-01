@@ -156,7 +156,7 @@
 		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
 		processShips(start_location)
 		SPAWN_DBG(15 SECONDS)
-			start_location.move_contents_to(end_location, move_ghosts = FALSE)
+			start_location.move_contents_to(end_location, move_ghosts = FALSE, move_mobs = FALSE)
 			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
 			shipyardship_location = 0
 
