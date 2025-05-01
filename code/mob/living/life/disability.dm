@@ -54,7 +54,7 @@
 			if (A.sandstorm) //just handles damage taken, and not the pushing.
 				if(ishuman(owner))
 					var/mob/living/carbon/human/H = owner
-					if(!istype(H.glasses, /obj/item/clothing/glasses) && !istype(H.head, /obj/item/clothing/helmet))
+					if(!istype(H.glasses, /obj/item/clothing/glasses) && !istype(H.head, /obj/item/clothing/head/helmet))
 						if(prob(30))
 							H.take_eye_damage(rand(1,2))
 						if (prob(25))

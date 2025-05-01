@@ -1341,14 +1341,13 @@
 			tickcount += timePassed
 			var/time = (tickcount/tickSpacing)
 
-			if(time >= 1 && ismob(owner) if(get_turf(owner)))
+			if(time >= 1 && ismob(owner))
 				tickcount -= (round(time) * tickSpacing)
 				for(var/i in 1 to time)
 					var/turf/T = get_turf(owner)
 					if(!istype(T, /area/gehenna))
 							//make cleanable footprints
 						if(prob(trackProb))
-							var/turf/T = get_turf(owner)
 							var/obj/decal/cleanable/sand/S
 							if (T.messy > 0)
 								S = locate(/obj/decal/cleanable/sand, T)

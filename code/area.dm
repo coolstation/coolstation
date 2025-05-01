@@ -145,6 +145,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
 	var/sandstorm = FALSE
 	var/blowOrigin = 0
+	var/sandstormIntensity = 0
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -267,7 +268,14 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							if (!src.active)
 								src.active = 1
 								SEND_SIGNAL(src, COMSIG_AREA_ACTIVATED)
-/*
+		if(istype(A.loc, /area/))
+			var/area/a = A.loc
+			if (a.sandstorm)
+				if(prob(sandstormIntensity))
+					walk(A,a.blowOrigin)
+
+	/*
+
 						//Dumb fucking medal fuck
 						if (src.name == "Space" && istype(A, /obj/vehicle/segway))
 							enteringM.unlock_medal("Jimi Heselden", 1)

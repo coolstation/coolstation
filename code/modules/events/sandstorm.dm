@@ -10,13 +10,23 @@
 		var/timetoreachsec = rand(1,9)
 		var/timetoreach = rand(60,120)
 		var/actualtime = timetoreach * 10 + timetoreachsec
+		var/intensity = rand(10,50)
 		var/originDirection = rand(1,4) //1 North, 2 East, 3 South, 4 West Never Eat Shitty Wankers
+		switch(originDirection)
+			if(1)
+				originDirection = NORTH
+			if(2)
+				originDirection = EAST
+			if(3)
+				originDirection = SOUTH
+			if(4)
+				originDirection = WEST
 
-		var/sound/blow = sound('sound/ambience/nature/Wind_Low.ogg')
+		var/sound/blow = sound('sound/ambience/loop/Wind_Low.ogg')
 		blow.channel = 5
 		blow.volume = 50
 		blow.repeat = TRUE
-		world << sound
+		world << blow
 		command_alert("A severe weather disturbance has been detected approaching the station. All personnel have [timetoreach].[timetoreachsec] seconds to make their way indoors. Crew are advised to cover airways and eyes when going outdoors. The storm is predicted to last anywhere from a couple minutes to hours.", "Weather Alert")
 
 		SPAWN_DBG(0)
@@ -28,13 +38,14 @@
 				if(istype(A, /area/gehenna))
 					A.sandstorm = TRUE
 					A.blowOrigin = originDirection
+					A.sandstormIntensity = intensity
 
 			sandstorm = TRUE
 			blow.repeat = FALSE
 			blow.volume = 25
 			world << blow
 
-			var/sound/stormsound = sound('sound/misc/Wind_Cold1.ogg')
+			var/sound/stormsound = sound('sound/ambience/nature/Wind_Cold1.ogg')
 			stormsound.repeat = TRUE
 			stormsound.volume = 50
 			stormsound.channel = 5
@@ -50,5 +61,6 @@
 				LAGCHECK(LAG_LOW)
 				if (A.z != Z_LEVEL_STATION)
 					continue
+				A.sandstormIntensity = 0
 				A.sandstorm = FALSE
 				A.blowOrigin = 0
