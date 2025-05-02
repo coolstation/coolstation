@@ -105,7 +105,7 @@ var/clownabuse = 0
 
 /obj/item/paper/tug/diner_arcade_invoice
     name = "Big Yank's Space Tugs, Limited."
-    desc = "Looks like a bill of sale."
+    desc = "Looks like a bill of sale, slightly yellowed."
     info = {"<b>Client:</b> Bill, John
             <br><b>Date:</b> TBD
             <br><b>Articles:</b> Structure, Static. Pressurized. Duplex.
