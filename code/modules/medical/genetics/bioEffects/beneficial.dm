@@ -688,6 +688,8 @@ var/list/radio_brains = list()
 	id = "space_farts"
 	effectType = EFFECT_TYPE_POWER
 	probability = 66
+	msgGain = "Your butt feels...sculpted. Just not in the usual sense."
+	msgLose = "Your butt stops feeling so special to you."
 
 	blockCount = 3
 	blockGaps = 3
@@ -699,3 +701,10 @@ var/list/radio_brains = list()
 	var/active = 0
 	stability_loss = 15
 	icon_state  = "haze"
+
+	OnLife(var/mult)
+		APPLY_MOB_PROPERTY(src.owner, PROP_SPACEFARTS, src)
+
+	OnRemove()
+		REMOVE_MOB_PROPERTY(src.owner, PROP_SPACEFARTS, src)
+		. = ..()
