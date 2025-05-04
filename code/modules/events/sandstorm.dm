@@ -2,7 +2,7 @@
 	name = "Sandstorm"
 	required_elapsed_round_time = 30 MINUTES
 #ifndef DESERT_MAP
-	disabled = FALSE
+	disabled = TRUE
 #endif
 
 	event_effect()
