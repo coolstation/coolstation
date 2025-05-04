@@ -69,6 +69,8 @@ o+`        `-` ``..-:yooos-..----------..`
 // Probably hefty
 //#define QUEUE_STAT_DEBUG
 
+// #define SKIP_EVENT_WARN //skips event warn period so you can just instantly test a random event
+
 // Makes the code crash / log when an abstract type is instantiated.
 // see _stadlib/_types.dm for details
 // #define ABSTRACT_VIOLATION_CRASH

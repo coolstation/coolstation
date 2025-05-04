@@ -10,7 +10,7 @@
 		var/timetoreachsec = rand(1,9)
 		var/timetoreach = rand(60,120)
 		var/actualtime = timetoreach * 10 + timetoreachsec
-		var/intensity = rand(10,50)
+		var/intensity = rand(5,15)
 		var/originDirection = rand(1,4) //1 North, 2 East, 3 South, 4 West Never Eat Shitty Wankers
 		switch(originDirection)
 			if(1)
@@ -39,6 +39,8 @@
 					A.sandstorm = TRUE
 					A.blowOrigin = originDirection
 					A.sandstormIntensity = intensity
+					A.overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
+
 
 			sandstorm = TRUE
 			blow.repeat = FALSE
@@ -64,3 +66,4 @@
 				A.sandstormIntensity = 0
 				A.sandstorm = FALSE
 				A.blowOrigin = 0
+				A.overlays -= image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)

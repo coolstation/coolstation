@@ -1632,21 +1632,22 @@
 
 	proc/track_sand(mob/living/M, oldLoc, direct)
 		var/turf/T = get_turf(M)
-		var/obj/decal/cleanable/sand/S
-		if (T.messy > 0)
-			S = locate(/obj/decal/cleanable/sand) in T
-		if	(!S)
-			if(prob(30))
-				S = make_cleanable(/obj/decal/cleanable/sand, T)
-		var/list/states = M.get_step_image_states()
-
-		if (states[1] || states[2])
-			if(states[1])
-				S.create_overlay(states[1], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
-			if(states[2])
-				S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
-		else
-			S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
+		if(!istype(T.loc,/area/gehenna))
+			var/obj/decal/cleanable/sand/S
+			if (T.messy > 0)
+				S = locate(/obj/decal/cleanable/sand) in T
+			if	(!S)
+				if(prob(30))
+					S = make_cleanable(/obj/decal/cleanable/sand, T)
+			var/list/states = M.get_step_image_states()
+			if(S)
+				if (states[1] || states[2])
+					if(states[1])
+						S.create_overlay(states[1], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+					if(states[2])
+						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
+				else
+					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"
