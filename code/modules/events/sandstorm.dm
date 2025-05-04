@@ -10,7 +10,7 @@
 		var/timetoreachsec = rand(1,9)
 		var/timetoreach = rand(60,120)
 		var/actualtime = timetoreach * 10 + timetoreachsec
-		var/intensity = rand(5,15)
+		var/intensity = rand(6,20) //todo: hook up gehenna weather to this. Shouldn't be hard
 		var/originDirection = rand(1,4) //1 North, 2 East, 3 South, 4 West Never Eat Shitty Wankers
 		switch(originDirection)
 			if(1)
@@ -29,13 +29,15 @@
 		world << blow
 		command_alert("A severe weather disturbance has been detected approaching the station. All personnel have [timetoreach].[timetoreachsec] seconds to make their way indoors. Crew are advised to cover airways and eyes when going outdoors. The storm is predicted to last anywhere from a couple minutes to hours.", "Weather Alert")
 
+		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Sandstorm", "[timetoreach] Seconds", "Wind speeds of [intensity] Wargs expected. Seek shelter indoors immediately. Do not go outside with exposed eyes or airways.")
+
 		SPAWN_DBG(0)
 			sleep(actualtime)
 			for(var/area/A in world)
 				LAGCHECK(LAG_LOW) //what does that do
 				if(A.z != Z_LEVEL_STATION)
 					continue
-				if(istype(A, /area/gehenna))
+				if((istype(A, /area/gehenna) || istype(A, /area/shuttle)) && A.z == Z_LEVEL_STATION) //probably a bad fix
 					A.sandstorm = TRUE
 					A.blowOrigin = originDirection
 					A.sandstormIntensity = intensity

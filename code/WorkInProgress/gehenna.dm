@@ -55,7 +55,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 			var/area/A = src.loc
 			if(A.sandstorm)
 				if(prob(A.sandstormIntensity) && !istype(O.dir, A.blowOrigin)) //yeah this is a bad fix, sue me
-					step(O,A.blowOrigin,1 SECOND)
+					step(O,A.blowOrigin)
 		//if(istype(O, /mob/living))
 			//RegisterSignal(O, COMSIG_MOVABLE_MOVED, PROC_REF(footprints))
 	/*
