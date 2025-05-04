@@ -51,12 +51,13 @@
 						break
 				if(!interdictor_influence)
 					owner.changeStatus("radiation", (A.irradiated * 10 * mult) SECONDS)
-			if (A.sandstorm) //just handles damage taken, and not the pushing.
+			if (A.sandstorm)
 				if(ishuman(owner))
 					var/mob/living/carbon/human/H = owner
 					if(!istype(H.glasses, /obj/item/clothing/glasses) && !istype(H.head, /obj/item/clothing/head/helmet))
 						if(prob(30))
 							H.take_eye_damage(rand(1,2))
+					if(!H.wear_mask)
 						if (prob(25))
 							if (prob(60))
 								if (!H.organHolder.left_lung.robotic)
@@ -64,7 +65,7 @@
 							else
 								if (!H.organHolder.right_lung.robotic)
 									H.organHolder.damage_organ(0, 0, 1, "right_lung")
-				owner.changeStatus("sandy", (A.sandstorm * 30 * mult) SECONDS)
+				owner.changeStatus("sandy", (A.sandstorm * 5 * mult) SECONDS)
 
 
 		if (owner.bioHolder)

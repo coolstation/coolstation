@@ -49,6 +49,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	color = "#ffffff"
 	special_volume_override = -1
 
+	Entered(atom/movable/O)
+		..()
+		if(src.sandstorm)
+			if(prob(src.sandstormIntensity)) //yeah this is a bad fix, sue me
+				walk(owner,src.blowOrigin)
+
 
 /turf/wall/asteroid/gehenna
 	fullbright = 0

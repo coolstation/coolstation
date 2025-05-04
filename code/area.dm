@@ -224,6 +224,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//20 is 95% and is a special case to just mute the sound without stopping it
 				if(M.loc.loc.type == /area/gehenna)
 					insideness = 1
+
 				else if(M.loc.loc.type != /area/space) //bleh
 					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
 					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
@@ -268,11 +269,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							if (!src.active)
 								src.active = 1
 								SEND_SIGNAL(src, COMSIG_AREA_ACTIVATED)
-		if(istype(A.loc, /area/))
-			var/area/a = A.loc
-			if (a.sandstorm)
-				if(prob(sandstormIntensity))
-					walk(A,a.blowOrigin)
+
 
 	/*
 
