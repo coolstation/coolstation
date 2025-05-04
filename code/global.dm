@@ -312,6 +312,7 @@ var/global
 	signal_loss = 0
 	fart_attack = 0
 	blowout = 0
+	sandstorm = 0
 	farty_party = 0
 	deep_farting = 0
 

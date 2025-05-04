@@ -1328,6 +1328,8 @@
 		getTooltip()
 			. = "Your max stamina and stamina regen have been increased slightly."
 
+
+
 	patho_oxy_speed
 		id = "patho_oxy_speed"
 		name = "Oxygen Storage"
@@ -1613,6 +1615,39 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+/datum/statusEffect/sandy
+	id = "sandy"
+	name = "Sandy"
+	desc = "You're getting sand everywhere! It's coarse and rough!"
+	icon_state = "painted" //you better sprite this wack
+
+	onAdd(optional)
+		. = ..()
+		if(istype(owner, /mob/living))
+			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(track_sand))
+	onRemove()
+		. = ..()
+		if(istype(owner, /mob/living))
+			UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+	proc/track_sand(mob/living/M, oldLoc, direct)
+		var/turf/T = get_turf(M)
+		if(!istype(T.loc,/area/gehenna))
+			var/obj/decal/cleanable/sand/S
+			if (T.messy > 0)
+				S = locate(/obj/decal/cleanable/sand) in T
+			if	(!S)
+				if(prob(30))
+					S = make_cleanable(/obj/decal/cleanable/sand, T)
+			var/list/states = M.get_step_image_states()
+			if(S)
+				if (states[1] || states[2])
+					if(states[1])
+						S.create_overlay(states[1], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+					if(states[2])
+						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
+				else
+					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"
