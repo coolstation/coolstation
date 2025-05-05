@@ -30,6 +30,7 @@
 		command_alert("A severe weather disturbance has been detected approaching the station. All personnel have [timetoreach].[timetoreachsec] seconds to make their way indoors. Crew are advised to cover airways and eyes when going outdoors. The storm is predicted to last anywhere from a couple minutes to hours.", "Weather Alert")
 
 		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Sandstorm", "[timetoreach] Seconds", "Wind speeds of [intensity] Wargs expected. Seek shelter indoors immediately. Do not go outside with exposed eyes or airways.")
+		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 
 		SPAWN_DBG(0)
 			sleep(actualtime)
