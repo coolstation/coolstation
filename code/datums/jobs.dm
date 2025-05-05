@@ -1408,6 +1408,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_glov = list(/obj/item/clothing/gloves/latex)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_poc1 = list(/obj/item/device/detective_scanner)
+	slot_poc2 = list(/obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled)
 	items_in_backpack = list(/obj/item/tank/emergency_oxygen)
 
 	New()
