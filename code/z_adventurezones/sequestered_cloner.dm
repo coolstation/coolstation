@@ -20,7 +20,7 @@
 	initialize()
 		. = ..()
 		for(var/obj/cable/C in src.loc)
-			C.update_network()
+			C.integrate()
 			break
 
 	// set channels depending on how much charge we have left
