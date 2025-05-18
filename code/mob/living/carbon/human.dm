@@ -3455,3 +3455,30 @@
 	else
 		boutput(src, "<span class='alert'><B>You're not a cluwne for some reason! That's a bug!!! </B></span>")
 
+/mob/living/carbon/human/can_climb_ladder(silent = FALSE)
+	var/limb_count = 0
+	var/tread_count = 0
+	if (src.limbs.r_arm?.can_hold_items) //zombies and item arms are SOL
+		limb_count++
+	if (src.limbs.l_arm?.can_hold_items)
+		limb_count++
+	//treads don't do you much good on ladders
+	if (src.limbs.r_leg)
+		if (istype(src.limbs.r_leg, /obj/item/parts/robot_parts/leg/right/treads))
+			tread_count++
+		else limb_count++
+	if (src.limbs.l_leg)
+		if (istype(src.limbs.l_leg, /obj/item/parts/robot_parts/leg/left/treads))
+			tread_count++
+		else limb_count++
+	if (limb_count >= 3)
+		#ifdef DATALOGGER
+		if (limb_count == 3 && silent) //You're supposed to keep 3 points of contact on a ladder at all times
+			game_stats.Increment("workplacesafety")
+		#endif
+		return ..()
+	if (tread_count == 2 && !silent)
+		boutput(src, "<span class=alert>You can't climb a ladder while equipped with treads!</span>")
+	else
+		boutput(src, "<span class=alert>You don't have enough limbs to climb ladders!</span>")
+	return FALSE

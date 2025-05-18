@@ -3276,3 +3276,14 @@
 	. = src?.bioHolder?.mobAppearance?.pronouns
 	if(isnull(.))
 		. = get_singleton(/datum/pronouns/theyThem)
+
+///is mob capable of climbing a ladder
+/mob/proc/can_climb_ladder(silent = FALSE)
+	if (can_act(src, TRUE))
+		return TRUE
+	boutput(src, "<span class=alert>You can't climb a ladder while incapacitated!</span>")
+	return FALSE
+
+//Observers bypass this check anyway, but regardless
+/mob/dead/can_climb_ladder(silent = FALSE)
+	return TRUE
