@@ -69,7 +69,14 @@
 		for (var/mob/new_player/player in unassigned)
 			player.mind.assigned_role = "Construction Worker"
 		return
-
+	else if (master_mode == "grigori_v_drac") //drac gamemode overrides sec spawns because everyone except sec is an antag, meaning sec can't just take from the antag leftovers
+		for (var/mob/new_player/player in unassigned)
+			if(player.mind.overrideHOS)
+				player.mind.assigned_role = "Head of Security"
+				unassigned.Remove(player)
+			else if(player.mind.overrideSecOff)
+				player.mind.assigned_role = "Security Officer"
+				unassigned.Remove(player)
 	var/list/pick1 = list()
 	var/list/pick2 = list()
 	var/list/pick3 = list()
