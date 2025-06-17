@@ -598,15 +598,22 @@
 	isPositive = 1
 	category = "trinkets"
 
+//2025-6-17: Moved from 25% of wage bonus starting cash to a flat 300$ and from -1 to 0 pts
+//300 was the highest you'd get out of it (being captain), which is't much anyway
+//Even then it's hardly on par with Unionized for cost.
 /obj/trait/pawnstar
-	name = "Pawn Star (-1) \[Trinkets\]"
+	name = "Pawn Star (0) \[Trinkets\]"
 	cleanName = "Pawn Star"
-	desc = "You sold your trinket before you departed for the station. You start with a bonus of 25% of your starting cash in your inventory."
+	//desc has to be done at runtime :v
 	id = "pawnstar"
 	icon_state = "pawnP"
-	points = -1
+	points = 0
 	isPositive = 1
 	category = "trinkets"
+
+	New()
+		desc = "You sold your trinket before you departed for the station. You start with a bonus of 300[CREDIT_SIGN] to your starting cash in your inventory."
+		..()
 
 /obj/trait/beestfriend
 	name = "BEEst friend (-1) \[Trinkets\]"

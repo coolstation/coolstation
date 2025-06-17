@@ -719,12 +719,9 @@
 		src.mind.store_memory("Your pin to your ID is: [C.pin]")
 
 	if (wagesystem.jobs[JOB.name])
-		var/cashModifier = 1.0
-		if (src.traitHolder && src.traitHolder.hasTrait("pawnstar"))
-			cashModifier = 1.25
-
+		//300$ extra for folks with Pawn Star
 		var/obj/item/spacecash/S = new()
-		S.setup(src,wagesystem.jobs[JOB.name] * cashModifier)
+		S.setup(src,wagesystem.jobs[JOB.name] + (src.traitHolder?.hasTrait("pawnstar") ? 300 : 0))
 
 		if (isnull(src.get_slot(slot_r_store)))
 			src.equip_if_possible(S, slot_r_store)
