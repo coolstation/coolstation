@@ -2,6 +2,7 @@
 
 //flap flap gonna put cursed stuff here
 
+//urticating hairs
 
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion
