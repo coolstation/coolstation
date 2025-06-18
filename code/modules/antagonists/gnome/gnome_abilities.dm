@@ -102,7 +102,7 @@
 			else
 				playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 				src.visible_message(SPAN_COMBAT("[src] deforms and crumples wetly when hit!"))
-				src.changeHealthy(-15)
+				src.changeHealth(-15)
 			src.last_interacted = world.time
 			user.next_click = world.time + user.combat_click_delay
 			attack_twitch(user)
