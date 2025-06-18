@@ -502,7 +502,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 	//		animate(transform = turn(GetPooledMatrix(), -360), time = 1, loop = -1)
 	if (isobj(user.loc))
 		var/obj/container = user.loc
-		container.mob_flip_inside(user)
+		if(container.mob_flip_inside(user))
+			return list(null, null, MESSAGE_VISIBLE)
 
 	if (!iswrestler(user))
 		if (user.stamina <= STAMINA_FLIP_COST || (user.stamina - STAMINA_FLIP_COST) <= 0)
