@@ -139,13 +139,20 @@ mob/new_player
 			winset(src, "joinmenu.button_cancel", "is-disabled=true;is-visible=false")
 		if(client)
 			winshow(src, "joinmenu", 1)
-		if(client?.antag_tokens > 0 && (!ticker || current_state <= GAME_STATE_PREGAME))
+		if(client?.antag_tokens > 0 && (!ticker || current_state <= GAME_STATE_PREGAME) && master_mode != "grigori_v_drac")
 			winset(src, "joinmenu.button_ready_antag", "is-disabled=false;is-visible=true")
+			winset(src, "joinmenu.button_ready_sec", "is-disabled=true;is-visible=false")
 			winset(src, "joinmenu", "size=240x256")
 			winset(src, "joinmenu.observe", "pos=18,192")
+		else if(client && master_mode == "grigori_v_drac")
+			winset(src, "joinmenu", "size=240x200")
+			winset(src, "joinmenu.observe", "pos=18,136")
+			winset(src, "joinmenu.button_ready_sec", "is-disabled=false;is-visible=true")
+			winset(src, "joinmenu.button_ready_antag", "is-disabled=true;is-visible=false")
 		else if(client) // this shouldn't be necessary but it is
 			winset(src, "joinmenu", "size=240x200")
 			winset(src, "joinmenu.observe", "pos=18,136")
+			winset(src, "joinmenu.button_ready_sec", "is-disabled=true;is-visible=false")
 			winset(src, "joinmenu.button_ready_antag", "is-disabled=true;is-visible=false")
 		if(src.ready)
 			if (client) winset(src, "joinmenu.button_charsetup", "is-disabled=true")
@@ -862,6 +869,20 @@ a.latejoin-card:hover {
 		else
 			src.show_text("You don't even have any tokens. How did you get here?", "red")
 
+		src.declare_ready()
+
+	verb/declare_ready_as_sec() //used for special round types where sec is selected before antags
+		set hidden = 1
+		set name = ".ready_sec"
+
+		if(src.client.has_login_notice_pending(TRUE))
+			return
+
+		if(!(!ticker || current_state <= GAME_STATE_PREGAME))
+			src.show_text("The round has already started. To join security now, you must join via the latejoin menu.","red")
+		else
+			src.client.using_cop_token = 1
+			src.show_text("Cop mode activated, oink oink.", "red")
 		src.declare_ready()
 
 	verb/declare_ready()

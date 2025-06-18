@@ -80,10 +80,17 @@
 		switch(traitor.special_role)
 			if(ROLE_GRIGORI)
 				objective_set_path = pick(typesof(/datum/objective_set/grigori))
-				equip_grigori(traitor.current)
+				traitor.current.make_grigori()
 			if(ROLE_LESSERVAMP)
-				objective_set_path = pick(Typesof(/datum/objective_set/drac))
+				objective_set_path = pick(typesof(/datum/objective_set/drac))
 				traitor.current.make_vampire(lesser = TRUE)
+		if(!isnull(objective_set_path))
+			new objective_set_path(traitor)
+		var/obj_count = 1 //like count dracula
+		for (var/datum/objective/objective in traitor.objectives)
+			boutput(traitor.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
+			obj_count++
+
 
 /datum/game_mode/grigori_v_drac/proc/get_candidates(num_sec)
 	var/list/candidates = list()
@@ -96,31 +103,24 @@
 		//how do we fuck with the hellbanned people here lol
 		if ((player.ready) && !(player.mind in traitors) && !candidates.Find(player.mind))
 			if(num_sec && num_sec < assigned_sec) //the sec check is here because usually the entire station isn't an antagonist, and sec can just pick from the leftovers. Not here.
-				if(assigned_HOS != 0)
-					if(player.client.preferences.job_favorite == "Head of Security" && prob(50) && !player.mind.overrideSecOff)
+				if(!assigned_HOS)
+					if(player.client.preferences.job_favorite == "Head of Security" && player.client.using_cop_token && !player.mind.overrideHOS)
 						player.mind.overrideHOS = TRUE
 						assigned_sec++
-						assigned_HOS++
+						assigned_HOS = 1
 						continue
-					else if(player.client.preferences.jobs_med_priority.Find("Head of Security") && prob(30) && !player.mind.overrideSecOff)
+					else if(player.client.preferences.jobs_med_priority.Find("Head of Security") && player.client.using_cop_token && !player.mind.overrideHOS)
 						player.mind.overrideHOS = TRUE
 						assigned_sec++
-						assigned_HOS++
+						assigned_HOS = 1
 						continue
-					else if(player.client.preferences.jobs_low_priority.Find("Head of Security") && prob(30) && !player.mind.overrideSecOff)
+					else if(player.client.preferences.jobs_low_priority.Find("Head of Security") && player.client.using_cop_token && !player.mind.overrideHOS)
 						player.mind.overrideHOS = TRUE
 						assigned_sec++
-						assigned_HOS++
+						assigned_HOS = 1
 						continue
-				if(player.client.preferences.job_favorite == "Security Officer" && prob(50) && !player.mind.overrideHOS)
-					player.mind.overrideSecOff = TRUE
-					assigned_sec++
-					continue
-				else if(player.client.preferences.jobs_med_priority.Find("Security Officer") && prob(30) && !player.mind.overrideHOS)
-					player.mind.overrideSecOff = TRUE
-					assigned_sec++
-					continue
-				else if(player.client.preferences.jobs_low_priority.Find("Security Officer") && prob(30) && !player.mind.overrideHOS)
+
+				if(player.client.using_cop_token && !player.mind.overrideHOS)
 					player.mind.overrideSecOff = TRUE
 					assigned_sec++
 					continue

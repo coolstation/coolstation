@@ -92,13 +92,13 @@ o+`        `-` ``..-:yooos-..----------..`
 //////////// MAP OVERRIDES
 
 //---------------------- Maps that are being maintained ------------------------------//
-//#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
+#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-#define MAP_OVERRIDE_CRAG						// secret >:)
+//#define MAP_OVERRIDE_CRAG						// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
@@ -136,6 +136,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MODE_OVERRIDE_REVOLUTION 		//(Up to) 3 rev leaders teach crew the meaning of ACAB.
 //#define MODE_OVERRIDE_REVOLUTION_EX  	//Revs but the round doesn't end early, I didn't know we had this.
 //#define MODE_OVERRIDE_BLOB				//2-3 blobs versus the station.
+#define MODE_OVERRIDE_GRIGORI_V_DRAC //TTT gamemode where everyone is either grigori or dracula. Battle it out
 //#define MODE_OVERRIDE_GANG				//Several gangs vie for the highest score by doing crimes. In theory, anyway.
 //#define MODE_OVERRIDE_CONSPIRACY		//A group of crewmembers enact a sinister plot. More heavily role-play oriented than most modes.
 //#define MODE_OVERRIDE_DISASTER			//The crew fights off an onslaught of scary until help arrives.

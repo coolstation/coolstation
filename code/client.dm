@@ -65,6 +65,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	var/antag_tokens //Number of antagonist tokens available to the player
 	var/using_antag_token = 0 //Set when the player readies up at round start, and opts to redeem a token.
+	var/using_cop_token = 0 //used for special game modes
 
 	var/persistent_bank_valid = FALSE
 	var/persistent_bank = 0 //cross-round persistent cash value (is increased as a function of job paycheck + station score)

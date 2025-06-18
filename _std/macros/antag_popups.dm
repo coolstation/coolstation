@@ -65,6 +65,8 @@
 #define SHOW_KUDZU_TIPS(M) M.Browse(grabResource("html/traitorTips/kudzu.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_FOOTBALL_TIPS(M) M.Browse(grabResource("html/traitorTips/football.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_ZOMBIE_TIPS(M) M.Browse(grabResource("html/traitorTips/zombieTips.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_GRIGORI_TIPS(M) M.Browse(grabResource("html/traitorTips/grigori.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_DRAC_TIPS(M) M.Browse(grabResource("html/traitorTips/drac.html"), ANTAG_TIPS_WINDOW)
 
 // borg does things a little differently
 #define BORG_EMAGGED_MSG "<span class='alert'><b>PROGRAM EXCEPTION AT 0x05BADDAD</b></span><br><span class='alert'><b>Law ROM data corrupted. Unable to restore...</b></span>"

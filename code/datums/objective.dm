@@ -638,6 +638,33 @@ proc/create_fluff(datum/mind/target)
 		if (owner.is_changeling.absorbtions >= absorb_count) // You start with 0 DNA these days, not 1.
 			return 1
 
+/datum/objective/specialist/eliminatedracs
+	explanation_text = "Eliminate every Dracula hiding on the station. Careful, though, as you don't know who's a fellow Grigori and who's a Dracula."
+	var/list/dracs = list()
+	set_up()
+		for(var/datum/mind/possible_drac in ticker.minds)
+			if(possible_drac && (possible_drac != owner) && ishuman(possible_drac.current))
+				if(possible_drac.special_role == ROLE_LESSERVAMP)
+					dracs += possible_drac
+	check_completion()
+		for(var/datum/mind/drac in dracs)
+			if(!isdead(drac.current))
+				return 0
+		return 1
+
+/datum/objective/specialist/eliminategrigoris
+	explanation_text = "Eliminate every Grigori on the station. Careful, though, as you don't know who's a fellow Drac and who's a Grigori. And they have traps!"
+	var/list/grigoris = list()
+	set_up()
+		for(var/datum/mind/possible_grigori in ticker.minds)
+			if(possible_grigori && (possible_grigori != owner) && ishuman(possible_grigori.current))
+				if(possible_grigori.special_role == ROLE_GRIGORI)
+					grigoris += possible_grigori
+	check_completion()
+		for(var/datum/mind/grigori in grigoris)
+			if(!isdead(grigori.current))
+				return 0
+		return 1
 /datum/objective/specialist/drinkblood
 	medal_name = "Dracula Jr."
 	var/bloodcount
@@ -1047,6 +1074,45 @@ proc/create_fluff(datum/mind/target)
 
 		return 1
 
+/datum/objective/escape/hijack_grigoris
+	explanation_text = "Hijack the emergency shuttle by escaping alone or with your fellow Grigoris. Anyone else who snuck on needs to die before you reach Centcom. Preferably by trap."
+	check_completion()
+		if(emergency_shuttle.location<SHUTTLE_LOC_RETURNED)
+			return 0
+
+		if(!owner.current || owner.current.stat ==2)
+			return 0
+
+		if(isghostcritter(owner.current))
+			return 0
+
+		for(var/mob/living/player in mobs)
+			if (player.mind && (player.mind != owner) && !(player.mind.special_role == ROLE_GRIGORI))
+				if (!isdead(player)) //they're not dead
+					if (in_centcom(player))
+						return 0
+
+		return 1
+
+/datum/objective/escape/hijack_dracs
+	explanation_text = "Hijack the emergency shuttle by escaping alone or with your fellow Draculas. Anyone else who snuck on needs to die before you reach Centcom."
+	check_completion()
+		if(emergency_shuttle.location<SHUTTLE_LOC_RETURNED)
+			return 0
+
+		if(!owner.current || owner.current.stat ==2)
+			return 0
+
+		if(isghostcritter(owner.current))
+			return 0
+
+		for(var/mob/living/player in mobs)
+			if (player.mind && (player.mind != owner) && !(player.mind.special_role == ROLE_LESSERVAMP || player.mind.special_role == ROLE_VAMPIRE || player.mind.special_role == ROLE_VAMPTHRALL))
+				if (!isdead(player)) //yes i copy pasted this fight me
+					if (in_centcom(player))
+						return 0
+
+		return 1
 /////////////////////////////////////////////////////////
 // Conspirator objectives                              //
 /////////////////////////////////////////////////////////
@@ -1277,6 +1343,56 @@ ABSTRACT_TYPE(/datum/objective/conspiracy)
 	escape_choices = list(/datum/objective/escape/survive)
 
 // Wraith not listed since it has its own dedicated proc
+
+//grigori v drac
+
+/datum/objective_set/grigori/standard
+	objective_list = list(/datum/objective/specialist/eliminatedracs)
+	escape_choices = list(/datum/objective/escape/survive)
+
+/datum/objective_set/grigori/gimmick
+	objective_list = list(/datum/objective/specialist/eliminatedracs,/datum/objective/regular/gimmick)
+	escape_choices = list(/datum/objective/escape/survive)
+
+/datum/objective_set/grigori/violent
+	objective_list = list(/datum/objective/specialist/eliminatedracs)
+	escape_choices = list(/datum/objective/escape/hijack_group)
+
+/datum/objective_set/grigori/grudges
+	objective_list = list(/datum/objective/specialist/eliminatedracs,/datum/objective/regular/assassinate,/datum/objective/regular/assassinate)
+	escape_choices = list(/datum/objective/escape/survive)
+
+/datum/objective_set/grigori/notenoughroomfortwoofus
+	objective_list = list(/datum/objective/specialist/eliminatedracs)
+	objective_list = list(/datum/objective/escape/hijack)
+
+/datum/objective_set/grigori/purge
+	objective_list = list(/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,/datum/objective/specialist/eliminatedracs)
+	escape_choices = list(/datum/objective/escape/hijack_grigoris)
+
+/datum/objective_set/drac/standard
+	objective_list = list(/datum/objective/specialist/eliminategrigoris,/datum/objective/specialist/drinkblood)
+	escape_choices = list(/datum/objective/escape)
+
+/datum/objective_set/drac/dractogetherstrong
+	objective_list = list(/datum/objective/specialist/eliminategrigoris,/datum/objective/specialist/drinkblood,/datum/objective/regular/assassinate)
+	escape_choices = list(/datum/objective/escape/hijack_dracs)
+
+/datum/objective_set/drac/purge
+	objective_list = list(/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,
+	/datum/objective/regular/assassinate,/datum/objective/specialist/eliminategrigoris)
+	escape_choices = list(/datum/objective/escape/hijack)
+
+
 
 // Traitors
 
