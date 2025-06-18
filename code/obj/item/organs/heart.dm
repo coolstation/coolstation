@@ -102,6 +102,11 @@
 		..()
 		src.icon_state = pick("plant_heart", "plant_heart_bloom")
 
+/obj/item/organ/heart/drac //literally the exact same thing but with a sticker on it
+	name = "dracula heart"
+	desc = "The heart of a dracula. Wierdly dry."
+	transplant_XP = 5
+
 /obj/item/organ/heart/cyber
 	name = "cyberheart"
 	desc = "A cybernetic heart. Is this thing really medical-grade?"

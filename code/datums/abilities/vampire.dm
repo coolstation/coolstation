@@ -3,7 +3,7 @@
 
 /* 	/		/		/		/		/		/		Setup		/		/		/		/		/		/		/		/		*/
 
-/mob/proc/make_vampire(shitty = FALSE, nonantag = FALSE)
+/mob/proc/make_vampire(shitty = FALSE, nonantag = FALSE, lesser = FALSE)
 	var/datum/abilityHolder/vampire/vampholder = src.get_ability_holder(/datum/abilityHolder/vampire)
 	if (vampholder && istype(vampholder))
 		return
@@ -11,9 +11,18 @@
 	if (ishuman(src) || ismobcritter(src))
 		if (ishuman(src))
 			var/datum/abilityHolder/vampire/V = src.add_ability_holder(/datum/abilityHolder/vampire)
+			src.organHolder.heart = /obj/item/organ/heart/drac //idk
 
 			if(shitty) // Infernal dracula.
 				V.addAbility(/datum/targetable/vampire/blood_tracking)
+
+			else if(lesser) //lesser drac for grigoris v dracs
+				V.addAbility(/datum/targetable/vampire/vampire_bite)
+				V.addAbility(/datum/targetable/vampire/blood_tracking)
+				V.addAbility(/datum/targetable/vampire/glare)
+				V.addAbility(/datum/targetable/vampire/hypnotize)
+				src.max_health = 65 //probably a bad way to do this   ?
+				V.isLesser = TRUE
 			else
 				V.addAbility(/datum/targetable/vampire/vampire_bite)
 				V.addAbility(/datum/targetable/vampire/blood_steal)
@@ -195,6 +204,7 @@
 	points = 0 // Replaces the old vamp_blood_remaining var.
 	var/vamp_blood_tracking = 1
 	var/mob/vamp_isbiting = null
+	var/isLesser = FALSE
 
 	// Note: please use mob.get_vampire_blood() & mob.change_vampire_blood() instead of changing the numbers directly.
 
@@ -274,37 +284,47 @@
 			src.last_power = 1
 
 			src.addAbility(/datum/targetable/vampire/phaseshift_vampire_old)
-			src.addAbility(/datum/targetable/vampire/enthrall)
-			src.addAbility(/datum/targetable/vampire/speak_thrall)
+			if(!src.isLesser)
+				src.addAbility(/datum/targetable/vampire/enthrall)
+				src.addAbility(/datum/targetable/vampire/speak_thrall)
 
 		if (src.last_power == 1 && src.vamp_blood >= src.level2)
 			src.last_power = 2
 
-			src.has_thermal = 1
-			APPLY_MOB_PROPERTY(src.owner, PROP_THERMALVISION_MK2, src)
-			boutput(src.owner, __blue("<h3>Your draculicious vision has improved (thermal)!</h3>"))
+			if(!src.isLesser)
+				src.addAbility(/datum/targetable/vampire/mark_coffin)
+				src.addAbility(/datum/targetable/vampire/coffin_escape)
+				src.has_thermal = 1
 
-			src.addAbility(/datum/targetable/vampire/mark_coffin)
-			src.addAbility(/datum/targetable/vampire/coffin_escape)
+				APPLY_MOB_PROPERTY(src.owner, PROP_THERMALVISION_MK2, src)
+				boutput(src.owner, __blue("<h3>Your draculicious vision has improved (thermal)!</h3>"))
+			else
+				src.has_thermal = 1
+
+				APPLY_MOB_PROPERTY(src.owner, PROP_THERMALVISION, src)
+				boutput(src.owner, __blue("<h3>Your draculicious vision has improved marginally(thermal)!</h3>"))
 
 		if (src.last_power == 2 && src.vamp_blood >= src.level3)
 			src.last_power = 3
+			if(!src.isLesser)
+				src.addAbility(/datum/targetable/vampire/call_bats)
+				src.addAbility(/datum/targetable/vampire/vampire_scream)
+			else
+				src.addAbility(/datum/targetable/vampire/glare)
+				src.owner.max_health = 80
 
-			src.addAbility(/datum/targetable/vampire/call_bats)
-			src.addAbility(/datum/targetable/vampire/vampire_scream)
-
-		if (src.last_power == 3 && src.vamp_blood >= src.level4)
+		if (src.last_power == 3 && src.vamp_blood >= src.level4 && !src.isLesser)
 			src.last_power = 4
 
 			src.addAbility(/datum/targetable/vampire/plague_touch)
 
-		if (src.last_power == 4 && src.vamp_blood >= src.level5)
+		if (src.last_power == 4 && src.vamp_blood >= src.level5 && !src.isLesser)
 			src.last_power = 5
 
 			src.removeAbility(/datum/targetable/vampire/vampire_scream)
 			src.addAbility(/datum/targetable/vampire/vampire_scream/mk2)
 
-		if (src.last_power == 5 && src.vamp_blood >= src.level6)
+		if (src.last_power == 5 && src.vamp_blood >= src.level6 && !src.isLesser)
 			src.last_power = 6
 
 			src.has_xray = 1

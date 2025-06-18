@@ -7,7 +7,7 @@
 	var/list/traitor_types = list(ROLE_GRIGORI, ROLE_LESSERVAMP)
 
 	var/num_sec_divisor = 10 //used to scale amount of sec
-	var/num_sec_possible = 5 //includes HoS
+	var/num_sec_possible = 4 //includes HoS
 
 /datum/game_mode/grigori_v_drac/announce()
 	boutput(world, "<B>The current game mode is - Grigori Vs Dracula!</B>")
@@ -73,7 +73,17 @@
 /datum/game_mode/grigori_v_drac/post_setup()
 	var/objective_set_path = null
 
+	for (var/datum/mind/traitor in traitors)
+		if (traitor.assigned_role == "Chaplain" && prob(80))
+			traitor.assigned_role = ROLE_GRIGORI //most chaplains are grigoris but some can be dracs
 
+		switch(traitor.special_role)
+			if(ROLE_GRIGORI)
+				objective_set_path = pick(typesof(/datum/objective_set/grigori))
+				equip_grigori(traitor.current)
+			if(ROLE_LESSERVAMP)
+				objective_set_path = pick(Typesof(/datum/objective_set/drac))
+				traitor.current.make_vampire(lesser = TRUE)
 
 /datum/game_mode/grigori_v_drac/proc/get_candidates(num_sec)
 	var/list/candidates = list()

@@ -214,7 +214,7 @@
 
 		if (traitor.assigned_role == "Chaplain" && traitor.special_role == ROLE_VAMPIRE)
 			// vamp will burn in the chapel before he can react(or we can make some special/rare chaplain vampire antag role)
-			if (prob(50))
+			if (prob(70))
 				traitor.special_role = ROLE_TRAITOR
 			else
 				traitor.special_role = ROLE_CHANGELING
