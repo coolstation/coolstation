@@ -1,6 +1,13 @@
 // nasty shapeshifting gnomes
 
 /datum/abilityHolder/gnome
+	regenRate = 0
+	points = 0
+	pointName = "Viscera"
+	onAbilityStat()
+		..()
+		.= list()
+		.["Viscera consumed:"] = points
 	New()
 		..()
 		src.addAbility(/datum/targetable/gnome/disguise)
@@ -25,11 +32,11 @@
 	desc = "mylie coded bad (you shouldnt see this)"
 	real_name = "squishy mass"
 	real_desc = "It faintly wriggles. This thing is alive."
-	burn_point = T0C + 1100
+	burn_point = T0C + 400
 	cannot_be_stored = TRUE
 	p_class = 2
 	pickup_sfx = "sound/impact_sounds/Slimy_Cut_1.ogg"
-	_max_health = 30
+	_max_health = 50
 	soundproofing = -1
 	cant_drop = TRUE
 	force = 3
@@ -72,8 +79,7 @@
 				boutput(user, "You thrash and inject venom.")
 				boutput(M, SPAN_COMBAT("[src] thrashes and you feel the burn of venom!"))
 				playsound(M, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1)
-				M.reagents.add_reagent("histamine", 1.5)
-				M.reagents.add_reagent("vertigo", 1)
+				M.reagents.add_reagent("histamine", 2)
 		else
 			boutput(user, "You rustle around to better hide.")
 			playsound(src.loc, "sound/impact_sounds/Slimy_Cut_1.ogg", 35, 1)
@@ -87,13 +93,16 @@
 					boutput(M, SPAN_ALERT("[user] foolishly picks you up!"))
 					src.last_interacted = world.time
 		else
+			for (var/mob/M in src.contents)
+				boutput(M, SPAN_COMBAT("[user] punches at you!"))
 			if(src.loc == user)
 				playsound(user.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 				user.visible_message(SPAN_COMBAT("[src] deforms and crumples wetly when hit!"))
+				src.changeHealth(-3)
 			else
 				playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 				src.visible_message(SPAN_COMBAT("[src] deforms and crumples wetly when hit!"))
-			src.changeHealth(-5)
+				src.changeHealthy(-15)
 			src.last_interacted = world.time
 			user.next_click = world.time + user.combat_click_delay
 			attack_twitch(user)
@@ -106,16 +115,19 @@
 
 	attackby(obj/item/W, mob/user, params)
 		user.lastattacked = src
-		if(W?.force)
-			src.changeHealth(-W.force)
-		else
+		if(!(W?.force))
 			return ..()
+		for (var/mob/M in src.contents)
+			boutput(M, SPAN_COMBAT("[user] attacks you with \the [W]!"))
 		if(src.loc == user)
 			playsound(user.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			user.visible_message(SPAN_COMBAT("[src] deforms and crumples wetly when hit!"))
+			src.changeHealth(-W.force / 3)
 		else
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			src.visible_message(SPAN_COMBAT("[src] deforms and crumples wetly when hit!"))
+			src.changeHealth(-W.force * 2)
+			take_bleeding_damage(src.ability_master.holder.owner, user, 4)
 		src.last_interacted = world.time
 		. = ..()
 
@@ -221,6 +233,8 @@
 		src.disguise_dummy.disguise_as(target)
 		src.holder.owner.set_loc(src.disguise_dummy)
 
+		src.holder.addAbility(/datum/targetable/gnome/shed_disguise)
+
 		boutput(src.holder.owner, __blue("You disguise yourself as \the [target]."))
 
 		return 0
@@ -287,9 +301,8 @@
 			return 1
 
 		if(!isnull(disguise))
-			if(target.reagents)
-				target.reagents.add_reagent("vertigo", 3.5)
 			if (!(target.dir & get_dir(target, disguise)))
+				src.holder.points++
 				boutput(target, SPAN_COMBAT("Something just bit you! It burns!"))
 				boutput(src.holder.owner, SPAN_COMBAT("You bite [target] stealthily!"))
 			else
