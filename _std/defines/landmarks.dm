@@ -19,12 +19,21 @@
 #define LANDMARK_DRAIN_EXIT "drain_exit" //Where drains send fluids (well, practically but the actual draining happens in fluid code itself)
 
 // centcom shuttle landmarks
-#define LANDMARK_SHUTTLE_COG1 "shuttle-cog1"
-#define LANDMARK_SHUTTLE_COG2 "shuttle-cog2"
-#define LANDMARK_SHUTTLE_SEALAB "shuttle-sealab"
-#define LANDMARK_SHUTTLE_DONUT2 "shuttle-donut2"
-#define LANDMARK_SHUTTLE_DONUT3 "shuttle-donut3"
-#define LANDMARK_SHUTTLE_DESTINY "shuttle-destiny"
+#define LANDMARK_SHUTTLE_ESCAPE_COG1 "shuttle-escape-cog1"
+#define LANDMARK_SHUTTLE_ESCAPE_COG2 "shuttle-escape-cog2"
+#define LANDMARK_SHUTTLE_ESCAPE_SEALAB "shuttle-escape-sealab"
+#define LANDMARK_SHUTTLE_ESCAPE_DONUT2 "shuttle-escape-donut2"
+#define LANDMARK_SHUTTLE_ESCAPE_DONUT3 "shuttle-escape-donut3"
+#define LANDMARK_SHUTTLE_ESCAPE_DESTINY "shuttle-escape-destiny"
+
+// en-route shuttle loading landmarks
+//most of these aren't fully implemented yet
+#define LANDMARK_SHUTTLE_ARRIVALS_COG1 "shuttle-arrivals-cog1"
+//#define LANDMARK_SHUTTLE_ARRIVALS_COG2 "shuttle-arrivals-cog2"
+//#define LANDMARK_SHUTTLE_ARRIVALS_SEALAB "shuttle-arrivals-sealab" //probably unneeded with the missiles
+//#define LANDMARK_SHUTTLE_ARRIVALS_DONUT2 "shuttle-arrivals-donut2"
+//#define LANDMARK_SHUTTLE_ARRIVALS_DONUT3 "shuttle-arrivals-donut3"
+//#define LANDMARK_SHUTTLE_ARRIVALS_DESTINY "shuttle-arrivals-destiny" //generally a cryotron map :V
 
 // nukies
 
