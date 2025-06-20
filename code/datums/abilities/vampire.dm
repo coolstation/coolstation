@@ -12,7 +12,8 @@
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			var/datum/abilityHolder/vampire/V = src.add_ability_holder(/datum/abilityHolder/vampire)
-			H.organHolder.receive_organ(/obj/item/organ/heart/drac, "heart", 0.0, 1)
+			var/obj/item/organ/heart/drac/new_heart = new
+			H.organHolder.receive_organ(new_heart, "heart",force=1)
 
 			if(shitty) // Infernal dracula.
 				V.addAbility(/datum/targetable/vampire/blood_tracking)

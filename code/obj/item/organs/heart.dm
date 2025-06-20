@@ -104,7 +104,7 @@
 
 /obj/item/organ/heart/drac //literally the exact same thing but with a sticker on it
 	name = "dracula heart"
-	desc = "The heart of a dracula. Wierdly dry."
+	desc = "The heart of a dracula. Kinda dry."
 	transplant_XP = 5
 
 /obj/item/organ/heart/cyber
