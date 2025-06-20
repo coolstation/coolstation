@@ -79,7 +79,6 @@
 		src.ai = new /datum/aiHolder/gnome(src)
 		remove_lifeprocess(/datum/lifeprocess/blindness)
 		remove_lifeprocess(/datum/lifeprocess/viruses)
-		src.misstep_chance = 20
 
 	proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 		remove_lifeprocess(/datum/lifeprocess/blood)
@@ -92,10 +91,6 @@
 		remove_lifeprocess(/datum/lifeprocess/sight)
 		remove_lifeprocess(/datum/lifeprocess/skin)
 		remove_lifeprocess(/datum/lifeprocess/statusupdate)
-
-	change_misstep_chance(amount)
-		. = ..()
-		src.misstep_chance = max(20,src.misstep_chance)
 
 	death(var/gibbed)
 		qdel(src.ai)

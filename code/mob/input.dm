@@ -65,7 +65,9 @@
 		return
 
 	if (src.next_move - world.time >= world.tick_lag / 10)
-		return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
+		// from my tests, this is an error from years ago, so im removing it so that process_move returns a truthy value ONLY when it actually moves
+		//return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
+		return
 
 	if (src.move_dir)
 		//SPRINTING REMOVAL - Despite the name, this running var seems to actually be what dictates the speed increase when sprinting
