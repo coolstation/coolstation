@@ -285,7 +285,12 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		//Tell the participation recorder that we're done FAFFING ABOUT
 		participationRecorder.releaseHold()
 
-	SPAWN_DBG (6000) // 10 minutes in
+	#if DYNAMIC_ARRIVAL_SHUTTLE_TIME > 0
+	SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME)
+		transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start normal)")
+	#endif
+
+	SPAWN_DBG ((map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC) ? (10 MINUTES + DYNAMIC_ARRIVAL_SHUTTLE_TIME) : (10 MINUTES)) // 10 minutes in
 		for(var/obj/machinery/power/monitor/smes/E in machine_registry[MACHINES_POWER])
 			LAGCHECK(LAG_LOW)
 			if(E.powernet?.avail <= 0)

@@ -26,14 +26,9 @@
 #define LANDMARK_SHUTTLE_ESCAPE_DONUT3 "shuttle-escape-donut3"
 #define LANDMARK_SHUTTLE_ESCAPE_DESTINY "shuttle-escape-destiny"
 
-// en-route shuttle loading landmarks
-//most of these aren't fully implemented yet
-#define LANDMARK_SHUTTLE_ARRIVALS_COG1 "shuttle-arrivals-cog1"
-//#define LANDMARK_SHUTTLE_ARRIVALS_COG2 "shuttle-arrivals-cog2"
-//#define LANDMARK_SHUTTLE_ARRIVALS_SEALAB "shuttle-arrivals-sealab" //probably unneeded with the missiles
-//#define LANDMARK_SHUTTLE_ARRIVALS_DONUT2 "shuttle-arrivals-donut2"
-//#define LANDMARK_SHUTTLE_ARRIVALS_DONUT3 "shuttle-arrivals-donut3"
-//#define LANDMARK_SHUTTLE_ARRIVALS_DESTINY "shuttle-arrivals-destiny" //generally a cryotron map :V
+// en-route arrivals shuttle loading landmarks
+#define LANDMARK_SHUTTLE_ARRIVALS_PRELOAD "shuttle-arrivals-preload"
+#define LANDMARK_SHUTTLE_ARRIVALS "shuttle-arrivals"
 
 // nukies
 

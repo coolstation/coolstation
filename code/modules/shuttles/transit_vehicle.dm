@@ -48,7 +48,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle)
 		return TRUE
 
 
-var/global/datum/transit_controller/transit_controls = new
+var/global/datum/transit_controller/transit_controls
 
 /// Controller which manages transit routes
 /datum/transit_controller

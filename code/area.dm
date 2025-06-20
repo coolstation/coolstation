@@ -648,8 +648,11 @@ ABSTRACT_TYPE(/area/shuttle)
 	name = "Arrival Shuttle"
 	teleport_blocked = 2
 
+/area/shuttle/arrival/pre_load
+	icon_state = "shuttle_preload"
+
 /area/shuttle/arrival/pre_game
-	icon_state = "shuttle2"
+	icon_state = "shuttle_transit"
 
 /area/shuttle/arrival/station
 	icon_state = "shuttle"

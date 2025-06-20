@@ -72,6 +72,20 @@ var/global/list/job_start_locations = list()
 	name = LANDMARK_LATEJOIN
 	add_to_landmarks = TRUE
 
+	//Woop woop dynamic arrivals shuttle requires we actually move the latejoin landmarks
+/obj/landmark/start/latejoin/dynamic_shuttle
+	deleted_on_start = FALSE
+
+	set_loc(newloc)
+		if (current_state >= GAME_STATE_PLAYING && !disposed)
+			landmarks[name] -= src.loc
+			job_start_locations[src.name] -= src.loc
+			..()
+			landmarks[name] += src.loc
+			job_start_locations[src.name] += src.loc
+			qdel(src) //you can die now :)
+		else ..()
+
 /obj/landmark/cruiser_entrance
 	name = LANDMARK_CRUISER_ENTRANCE
 
@@ -348,18 +362,25 @@ var/global/list/job_start_locations = list()
 	icon_state = "landmark"
 	color = "#ff0000"
 
+	arrivals_preload
+		name = LANDMARK_SHUTTLE_ARRIVALS_PRELOAD
+		color = "#ff00FF"
+
+	arrivals
+		name = LANDMARK_SHUTTLE_ARRIVALS
+
 	cog1
-		name = LANDMARK_SHUTTLE_COG1
+		name = LANDMARK_SHUTTLE_ESCAPE_COG1
 	cog2
-		name = LANDMARK_SHUTTLE_COG2
+		name = LANDMARK_SHUTTLE_ESCAPE_COG2
 	sealab
-		name = LANDMARK_SHUTTLE_SEALAB
+		name = LANDMARK_SHUTTLE_ESCAPE_SEALAB
 	donut2
-		name = LANDMARK_SHUTTLE_DONUT2
+		name = LANDMARK_SHUTTLE_ESCAPE_DONUT2
 	donut3
-		name = LANDMARK_SHUTTLE_DONUT3
+		name = LANDMARK_SHUTTLE_ESCAPE_DONUT3
 	destiny
-		name = LANDMARK_SHUTTLE_DESTINY
+		name = LANDMARK_SHUTTLE_ESCAPE_DESTINY
 
 /obj/landmark/drain_exit
 	name = LANDMARK_DRAIN_EXIT
