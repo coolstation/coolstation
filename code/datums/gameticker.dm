@@ -174,6 +174,18 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	logTheThing("debug", null, null, "Chosen game mode: [mode] ([master_mode]) on map [getMapNameFromID(map_setting)].")
 
+	#if (defined(I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO)) || (DYNAMIC_ARRIVAL_SHUTTLE_TIME == 0)
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start skipped)")
+	#else
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		var/area/A = locate(/area/shuttle/arrival/pre_game)
+		for (var/obj/machinery/door/airlock/an_door in A.machines)
+			if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+				if (!an_door.locked)
+					an_door.toggle_bolt()
+	#endif
+
 	//Tell the participation recorder to queue player data while the round starts up
 	participationRecorder.setHold()
 
@@ -286,8 +298,16 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		participationRecorder.releaseHold()
 
 	#if DYNAMIC_ARRIVAL_SHUTTLE_TIME > 0
-	SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME)
-		transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start normal)")
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME)
+			var/area/A = locate(/area/shuttle/arrival/pre_game)
+			for (var/obj/machinery/door/airlock/an_door in A.machines)
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (an_door.locked)
+						an_door.toggle_bolt()
+			transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start normal)")
+		SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME - (5 SECONDS))
+			playsound(pick(get_area_turfs(/area/shuttle/arrival/pre_game)), "sound/effects/ship_engage.ogg", 100, 1)
 	#endif
 
 	SPAWN_DBG ((map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC) ? (10 MINUTES + DYNAMIC_ARRIVAL_SHUTTLE_TIME) : (10 MINUTES)) // 10 minutes in

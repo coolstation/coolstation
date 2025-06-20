@@ -47,10 +47,6 @@ var/list/prefab_shuttles = list()
 				else
 					CRASH("Unable to find arrival shuttle map [path_shuttle]")
 
-				//dynamic shuttle soft-disabled but map is set up for one, dock the shuttle immediately
-				#if DYNAMIC_ARRIVAL_SHUTTLE_TIME == 0
-				transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start skipped)")
-				#endif
 
 		switch(map_settings.escape_centcom)
 			if(/area/shuttle/escape/centcom/cogmap)
