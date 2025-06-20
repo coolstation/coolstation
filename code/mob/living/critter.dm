@@ -44,7 +44,6 @@
 	health = 0
 
 	var/ultravision = 0
-	var/tranquilizer_resistance = 0
 	explosion_resistance = 0
 
 	var/list/inhands = list()
@@ -357,8 +356,9 @@
 		hud.update_throwing()
 
 	proc/can_pull(atom/A)
-		if (!src.ghost_spawned) //if its an admin or wizard made critter, just let them pull everythang
-			return 1
+		// why did this just bypass all pull logic for non-ghost critters???
+		//if (!src.ghost_spawned) //if its an admin or wizard made critter, just let them pull everythang
+		//	return 1
 		if (ismob(A))
 			return (src.pull_w_class >= W_CLASS_NORMAL)
 		else if (isobj(A))

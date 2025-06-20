@@ -959,6 +959,7 @@ var/global/list/soundCache = list(
  	"sound/misc/step/step_flipflop_1.ogg" = 'sound/misc/step/step_flipflop_1.ogg',\
  	"sound/misc/step/step_flipflop_2.ogg" = 'sound/misc/step/step_flipflop_2.ogg',\
  	"sound/misc/step/step_flipflop_3.ogg" = 'sound/misc/step/step_flipflop_3.ogg',\
+ 	"sound/misc/step/step_gnome_1.ogg" = 'sound/misc/step/step_gnome_1.ogg',\
  	"sound/misc/step/step_heavyboots_1.ogg" = 'sound/misc/step/step_heavyboots_1.ogg',\
  	"sound/misc/step/step_heavyboots_2.ogg" = 'sound/misc/step/step_heavyboots_2.ogg',\
  	"sound/misc/step/step_heavyboots_3.ogg" = 'sound/misc/step/step_heavyboots_3.ogg',\

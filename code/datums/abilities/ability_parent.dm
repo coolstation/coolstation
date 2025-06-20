@@ -71,7 +71,7 @@
 		.= 0
 		if (points_last != points)
 			points_last = points
-			src.updateText(0, src.x_occupied, src.y_occupied)
+			src.updateText()
 
 	proc/updateCounters()
 		// this is probably dogshit but w/e
@@ -135,7 +135,7 @@
 			x_occupied = pos_x
 			y_occupied = pos_y
 
-			src.updateText(0, x_occupied, y_occupied)
+			src.updateText()
 			src.abilitystat?.update_on_hud(x_occupied,y_occupied)
 			return
 
@@ -148,8 +148,11 @@
 					B.object.updateIcon()
 			return
 
-	proc/updateText(var/called_by_owner = 0)
-		if (composite_owner && !called_by_owner)
+	proc/updateText()
+		if (composite_owner)
+			if (abilitystat)
+				qdel(abilitystat)
+				abilitystat = null
 			composite_owner.updateText()
 			return
 
@@ -517,6 +520,7 @@
 	disposing()
 		if(owner?.hud)
 			owner.hud.remove_object(src)
+		owner = null
 		..()
 
 	proc/get_controlling_mob()
@@ -875,6 +879,7 @@
 				doCooldown()
 			afterCast()
 			holder.updateButtons()
+			return result
 
 		cast(atom/target)
 			if(interrupt_action_bars) actions.interrupt(holder.owner, INTERRUPT_ACT)
@@ -1155,10 +1160,10 @@
 
 
 		if (src.topBarRendered)
-			src.updateText(0, x_occupied, y_occupied)
+			src.updateText()
 			src.abilitystat?.update_on_hud(x_occupied,y_occupied)
 
-	updateText(var/called_by_owner = 0)
+	updateText()
 		if (!abilitystat)
 			abilitystat = new
 			abilitystat.owner = src
