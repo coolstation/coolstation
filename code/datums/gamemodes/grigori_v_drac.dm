@@ -20,6 +20,7 @@
 		if(!istype(player)) continue
 		if(player.ready)
 			num_players++
+	boutput(usr, "<b><span class='alert'>DEBUG we broke the loop boss</b></span>") //debug
 
 	var/num_enemies = 0
 	var/num_sec = 0
@@ -32,8 +33,10 @@
 	num_enemies = num_players - num_sec
 	num_grigoris = max(1,floor(num_enemies / 2))
 	num_dracs = max(1,num_enemies - num_grigoris)
+	boutput(world, "<b><span class='alert'>DEBUG we got da numbas boss. E:[num_enemies] S:[num_sec] G:[num_grigoris] D: [num_dracs]</b></span>") //debug
 
 	var/list/candidates = get_candidates(num_sec)
+	boutput(world, "<b><span class='alert'>DEBUG we got da candidates boss</b></span>") //debug
 
 	for(var/datum/mind/tokenUser in antag_token_list())
 		tokenUser.current?.client?.using_antag_token = FALSE
@@ -50,6 +53,7 @@
 			grigori.special_role = ROLE_GRIGORI
 			candidates.Remove(grigori)
 		num_grigoris = chosen_grigoris.len //just to keep the record straight
+		boutput(world, "<b><span class='alert'>DEBUG we assigned da grigoris boss</b></span>") //debug
 	if(num_dracs)
 		var/list/chosen_dracs = candidates //we've already pulled the chosen grigoris out, all that's left is dracs
 		for (var/datum/mind/drac in chosen_dracs)
@@ -57,6 +61,7 @@
 			drac.special_role = ROLE_LESSERVAMP
 			candidates.Remove(drac)
 		num_dracs = chosen_dracs
+		boutput(world, "<b><span class='alert'>DEBUG we assigned da dracs boss</b></span>")
 	if(candidates.len > 0) //mopping up what's left behind(hopefully none)
 		for (var/datum/mind/leftover in candidates)
 			if(prob(50))
@@ -69,6 +74,7 @@
 				leftover.special_role = ROLE_LESSERVAMP
 				candidates.Remove(leftover)
 				num_dracs++
+	return 1 //eventually add limits and whatnot (2 players per team, 1 sec etc)
 
 /datum/game_mode/grigori_v_drac/post_setup()
 	var/objective_set_path = null
@@ -81,15 +87,18 @@
 			if(ROLE_GRIGORI)
 				objective_set_path = pick(typesof(/datum/objective_set/grigori))
 				traitor.current.make_grigori()
+				boutput(traitor.current, "<B>You are a Grigori! Bring the hearts of Dracs to the chaple to create traps with your abilities.</B>")
 			if(ROLE_LESSERVAMP)
 				objective_set_path = pick(typesof(/datum/objective_set/drac))
 				traitor.current.make_vampire(lesser = TRUE)
+				boutput(traitor.current, "<B>You are a Drac! Drink the blood of Grigoris to unlock more abilities.</B>")
 		if(!isnull(objective_set_path))
 			new objective_set_path(traitor)
 		var/obj_count = 1 //like count dracula
 		for (var/datum/objective/objective in traitor.objectives)
 			boutput(traitor.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
+
 
 
 /datum/game_mode/grigori_v_drac/proc/get_candidates(num_sec)
@@ -102,7 +111,7 @@
 		if (!istype(player)) continue
 		//how do we fuck with the hellbanned people here lol
 		if ((player.ready) && !(player.mind in traitors) && !candidates.Find(player.mind))
-			if(num_sec && num_sec < assigned_sec) //the sec check is here because usually the entire station isn't an antagonist, and sec can just pick from the leftovers. Not here.
+			if(num_sec && num_sec > assigned_sec) //the sec check is here because usually the entire station isn't an antagonist, and sec can just pick from the leftovers. Not here.
 				if(!assigned_HOS)
 					if(player.client.preferences.job_favorite == "Head of Security" && player.client.using_cop_token && !player.mind.overrideHOS)
 						player.mind.overrideHOS = TRUE
@@ -123,6 +132,7 @@
 				if(player.client.using_cop_token && !player.mind.overrideHOS)
 					player.mind.overrideSecOff = TRUE
 					assigned_sec++
+					boutput(world, "<b><span class='alert'>DEBUG we assigned a cop boss</b></span>")
 					continue
 			candidates += player.mind
 	return candidates

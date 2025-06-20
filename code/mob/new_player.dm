@@ -724,6 +724,11 @@ a.latejoin-card:hover {
 			makebad(new_character, bad_type)
 			new_character.mind.late_special_role = 1
 			logTheThing("debug", new_character, null, "<b>Late join</b>: assigned antagonist role: [bad_type].")
+		else if (ticker?.mode && istype(ticker.mode, /datum/game_mode/grigori_v_drac) && allow_late_antagonist && current_state == GAME_STATE_PLAYING) //why not just do a dirty elif
+			var/bad_type = pick(ticker.mode.latejoin_antag_roles)
+			makebad(new_character, bad_type)
+			new_character.mind.late_special_role = 1
+			logTheThing("debug", new_character, null, "<b>Late join</b>: assigned antagonist role: [bad_type].")
 		else
 			if (ishuman(new_character) && allow_late_antagonist && current_state == GAME_STATE_PLAYING && ticker.round_elapsed_ticks >= 6000 && emergency_shuttle.timeleft() >= 300 && !C.hellbanned) // no new evils for the first 10 minutes or last 5 before shuttle
 				if (late_traitors && ticker.mode && ticker.mode.latejoin_antag_compatible == 1)
@@ -822,7 +827,17 @@ a.latejoin-card:hover {
 				traitormob.make_wraith()
 				generate_wraith_objectives(traitor)
 
+			if (ROLE_GRIGORI)
+				traitor.special_role = ROLE_GRIGORI
+				objective_set_path = pick(typesof(/datum/objective_set/grigori))
+				traitor.current.make_grigori()
+				boutput(traitor.current, "<B>You are a Grigori! Bring the hearts of Dracs to the chaple to create traps with your abilities.</B>")
 
+			if (ROLE_LESSERVAMP)
+				traitor.special_role = ROLE_LESSERVAMP
+				objective_set_path = pick(typesof(/datum/objective_set/drac))
+				traitor.current.make_vampire(lesser = TRUE)
+				boutput(traitor.current, "<B>You are a Drac! Drink the blood of Grigoris to unlock more abilities.</B>")
 
 			else // Fallback if role is unrecognized.
 				traitor.special_role = ROLE_TRAITOR
@@ -873,7 +888,7 @@ a.latejoin-card:hover {
 
 	verb/declare_ready_as_sec() //used for special round types where sec is selected before antags
 		set hidden = 1
-		set name = ".ready_sec"
+		set name = ".declare_ready_as_sec"
 
 		if(src.client.has_login_notice_pending(TRUE))
 			return
