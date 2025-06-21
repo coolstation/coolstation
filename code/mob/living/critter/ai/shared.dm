@@ -260,7 +260,7 @@
 		src.holder.target = src.get_best_target(get_targets())
 
 	if(src.holder.target)
-		if(src.holder.target.z != src.holder.owner.z)
+		if(!isalive(src.holder.target) || src.holder.target.z != src.holder.owner.z)
 			src.holder.target = null
 			return ..()
 		src.holder.move_to(src.holder.target,src.approach_range)
