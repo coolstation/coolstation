@@ -225,6 +225,7 @@
 // LA VIOLENCIA
 
 /datum/aiHolder/violent
+	move_shuffle_at_target = 20
 
 /datum/aiHolder/violent/New()
 	..()
@@ -261,9 +262,10 @@
 
 	if(src.holder.target)
 		var/mob/living/M = src.holder.target
-		if(!istype(M) || !isalive(M) || M.z != src.holder.owner.z)
+		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z)
 			src.holder.target = null
 			return ..()
+
 		src.holder.move_to(M,src.approach_range)
 
 		src.holder.owner.a_intent = prob(85) ? INTENT_HARM : INTENT_DISARM

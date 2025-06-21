@@ -15,6 +15,8 @@ var/list/ai_move_scheduled = list()
 	var/move_frustration = 0
 	var/frustration_turn = 0
 
+	var/move_shuffle_at_target = 0 // chance to shuffle when at the right distance
+
 	var/enabled = 1
 	///A client is controlling the mob so the AI should be inactive
 	var/suspended = FALSE //(keeping client login/logout separate from the enabled var cause that seems like asking for problems otherwise)
@@ -129,18 +131,23 @@ var/list/ai_move_scheduled = list()
 		var/turn = src.frustration_turn
 		// lil janky, but process_move returns a truthy value when movement was successful
 		var/tried_move = null
+		var/current_dist = GET_DIST(src.owner,get_turf(src.move_target))
+		var/shuffling = FALSE
+		if(src.move_shuffle_at_target && current_dist == src.move_dist && prob(src.move_shuffle_at_target))
+			turn += pick(90,45,-45,-90)
+			shuffling = TRUE
 		switch(src.move_frustration)
 			if(2 to 4)
 				src.frustration_turn = pick(-90,90)
 			if(4 to INFINITY)
 				src.frustration_turn = pick(-90,90,180)
 		if (src.move_side)
-			if (get_dist(src.owner,get_turf(src.move_target)) > src.move_dist)
+			if (shuffling || current_dist > src.move_dist)
 				turn += src.move_reverse?90:-90
 				src.owner.move_dir = turn( get_dir(src.owner,get_turf(src.move_target)),turn )
 				tried_move = src.owner.process_move()
 		else if (src.move_reverse)
-			if (get_dist(src.owner,get_turf(src.move_target)) < src.move_dist)
+			if (shuffling || current_dist < src.move_dist)
 				turn += 180
 				switch(rand(1,4)) //fudge walk away behavior
 					if (1)
@@ -156,7 +163,7 @@ var/list/ai_move_scheduled = list()
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				tried_move = src.owner.process_move()
 		else
-			if (get_dist(src.owner,get_turf(src.move_target)) > src.move_dist)
+			if (shuffling || current_dist > src.move_dist)
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				tried_move = src.owner.process_move()
 		if(tried_move)
