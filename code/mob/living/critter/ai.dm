@@ -159,12 +159,12 @@ var/list/ai_move_scheduled = list()
 			if (get_dist(src.owner,get_turf(src.move_target)) > src.move_dist)
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				tried_move = src.owner.process_move()
-		if(!isnull(tried_move))
+		if(tried_move)
 			if(src.owner?.loc == old_loc)
 				src.move_frustration++
 			else
 				src.move_frustration = 0
-				if (src.frustration_turn && prob(20))
+				if (src.frustration_turn && prob(30))
 					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)

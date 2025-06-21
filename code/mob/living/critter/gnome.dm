@@ -5,6 +5,8 @@
 	can_help = TRUE
 	can_grab = TRUE
 	can_disarm = TRUE
+	flags = TABLEPASS
+	fits_under_table = TRUE
 	reagent_capacity = 100
 	hand_count = 2
 	speechverb_say = "hisses"
@@ -97,3 +99,29 @@
 		src.ai = null
 		reduce_lifeprocess_on_death()
 		..()
+
+/obj/gnome_hole
+	name = "gnome manhole"
+	desc = "A pit most foul, a horrid glimpse into the gnome hive."
+	icon = 'icons/obj/anomalies.dmi'
+	icon_state = "gnomehole"
+	anchored = ANCHORED_ALWAYS
+	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
+
+	ex_act()
+		return
+
+	bullet_act()
+		return
+
+	blob_act(var/power)
+		return
+
+	meteorhit()
+		return
+
+	attackby()
+		return
+
+	attack_hand()
+		return

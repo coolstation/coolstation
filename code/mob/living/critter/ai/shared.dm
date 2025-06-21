@@ -107,9 +107,6 @@
 			else
 				holder.owner.say(pick("that sure is swell","oh boy","gee whiz","hot dog","hee hee"))
 
-/datum/aiTask/timed/wander/long
-	minimum_task_ticks = 30
-	maximum_task_ticks = 50
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TARGETED TASK
 // a timed task that also relates to a target and the acquisition of said target

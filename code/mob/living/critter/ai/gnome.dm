@@ -3,11 +3,11 @@
 
 /datum/aiHolder/gnome/New()
 	..()
-
-	default_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, task_cache[/datum/aiTask/timed/wander/long]))
+	var/wander_task = get_instance(/datum/aiTask/timed/wander/aquatic, list(src))
+	default_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, wander_task))
 
 /datum/aiHolder/gnome/was_harmed(obj/item/W, mob/M)
-	current_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, task_cache[/datum/aiTask/timed/wander/long]))
+	current_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, task_cache[/datum/aiTask/timed/wander/aquatic]))
 	current_task.reset()
 
 /datum/aiTask/sequence/gnome_flee_sequence
@@ -69,12 +69,14 @@
 	for(var/obj/item/I in view(2, src.holder.owner.loc))
 		if(!I.anchored && I.w_class <= W_CLASS_BULKY && !src.disguise_ability.handleCast(I))
 			src.successful = TRUE
+			src.holder.move_to(I, pick(0,1))
 			return
-	for(var/obj/item/I in view(5, src.holder.owner.loc))
+	for(var/obj/item/I in view(7, src.holder.owner.loc))
 		if(!I.anchored && I.w_class <= W_CLASS_BULKY)
 			src.holder.move_to(I, 1)
 			return
+	src.fails = 100
+	return
 
 /datum/aiTask/succeedable/gnome_disguise/succeeded()
 	return src.successful
-
