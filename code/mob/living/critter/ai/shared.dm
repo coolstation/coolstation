@@ -260,18 +260,19 @@
 		src.holder.target = src.get_best_target(get_targets())
 
 	if(src.holder.target)
-		if(!isalive(src.holder.target) || src.holder.target.z != src.holder.owner.z)
+		var/mob/living/M = src.holder.target
+		if(!istype(M) || !isalive(M) || M.z != src.holder.owner.z)
 			src.holder.target = null
 			return ..()
-		src.holder.move_to(src.holder.target,src.approach_range)
+		src.holder.move_to(M,src.approach_range)
 
 		src.holder.owner.a_intent = prob(85) ? INTENT_HARM : INTENT_DISARM
 
 		owncritter.hud.update_intent() // god i hate this
 
-		if(!src.holder.owner.ability_attack(src.holder.target))
-			if(GET_DIST(src.holder.owner, src.holder.target) <= 1)
-				src.holder.owner.hand_attack(src.holder.target)
+		if(!src.holder.owner.ability_attack(M))
+			if(GET_DIST(src.holder.owner, M) <= 1)
+				src.holder.owner.hand_attack(M)
 	else
 		src.holder.move_to(locate(src.holder.owner.x + rand(-4, 4), src.holder.owner.y + rand(-4, 4), src.holder.owner.z))
 
