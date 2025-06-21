@@ -9,6 +9,7 @@
 	target_anything = 1
 	var/throws = 0
 	var/heat = 3000
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())

@@ -208,8 +208,6 @@
 		for (var/atom/movable/AM in src)
 			AM.set_loc(T)
 		if(src.ability_holder_master)
-			var/datum/targetable/gnome/disguise/disguise_master = src.ability_holder_master.getAbility(/datum/targetable/gnome/disguise)
-			disguise_master.doCooldown()
 			src.ability_holder_master.removeAbility(/datum/targetable/gnome/shed_disguise)
 			src.ability_holder_master.disguised = FALSE
 			src.ability_holder_master.updateButtons()
@@ -242,12 +240,16 @@
 	name = "Disguise"
 	desc = "Hide yourself as an imitation of a nearby item. Solidifying like this will prevent squeezing under airlocks."
 	pointCost = 0
-	cooldown = 30 SECONDS
+	cooldown = 10 SECONDS
 	max_range = 3
 	var/minimum_visible_pixels = 35
 
 	cast(var/obj/item/target)
 		if (..())
+			return 1
+
+		if(src.gnome_holder.disguise_health <= 5)
+			boutput(src.holder.owner, __red("Your disguise is too weak to maintain!"))
 			return 1
 
 		if (GET_DIST(src.holder.owner, target) > src.max_range)
@@ -341,6 +343,7 @@
 	pointCost = 0
 	cooldown = 20 SECONDS
 	max_range = 1
+	attack_mobs = TRUE
 
 	cast(var/mob/living/target)
 		if (..())

@@ -220,3 +220,59 @@
 		M.registered_area = get_area(M)
 		if(M.registered_area)
 			M.registered_area.registered_mob_critters |= M
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LA VIOLENCIA
+
+/datum/aiHolder/violent
+
+/datum/aiHolder/violent/New()
+	..()
+	src.default_task = get_instance(/datum/aiTask/timed/targeted/violence, list(src))
+
+/datum/aiHolder/violent/was_harmed(obj/item/W, mob/M)
+	if(src.owner.ai_is_valid_target(M))
+		src.target = M
+
+// this task causes violence for a while
+/datum/aiTask/timed/targeted/violence
+	name = "violence"
+	minimum_task_ticks = 30
+	maximum_task_ticks = 50
+	var/last_seek = 0
+	var/seek_every = 3 SECONDS
+	var/approach_range = 1
+
+/datum/aiTask/timed/targeted/violence/get_targets()
+	. = list()
+	if(src.holder.owner)
+		for(var/mob/living/M in view(src.target_range, src.holder.owner))
+			if(isalive(M) && src.holder.owner.ai_is_valid_target(M))
+				. += M
+
+/datum/aiTask/timed/targeted/violence/on_tick()
+	var/mob/living/critter/owncritter = src.holder.owner
+	if (!src.holder.owner || HAS_MOB_PROPERTY(src.holder.owner, PROP_CANTMOVE))
+		return
+
+	if(!src.holder.target && world.time > src.last_seek + src.seek_every)
+		src.last_seek = world.time
+		src.holder.target = src.get_best_target(get_targets())
+
+	if(src.holder.target)
+		if(src.holder.target.z != src.holder.owner.z)
+			src.holder.target = null
+			return ..()
+		src.holder.move_to(src.holder.target,src.approach_range)
+
+		src.holder.owner.a_intent = prob(85) ? INTENT_HARM : INTENT_DISARM
+
+		owncritter.hud.update_intent() // god i hate this
+
+		if(!src.holder.owner.ability_attack(src.holder.target))
+			if(GET_DIST(src.holder.owner, src.holder.target) <= 1)
+				src.holder.owner.hand_attack(src.holder.target)
+	else
+		src.holder.move_to(locate(src.holder.owner.x + rand(-4, 4), src.holder.owner.y + rand(-4, 4), src.holder.owner.z))
+
+	..()

@@ -295,6 +295,22 @@
 	if(!istype(M, /mob/new_player))
 		dat += {"
 			<div class='optionGroup' style='border-color: #B57EDC;'>
+				<h2 style='background-color: #B57EDC;'>AI Controls</h2>
+				<div>
+					<div class='l'>Current</div>
+					<div class='r'>
+						[M.ai ? M.ai.type : "No AI"]
+					</div>
+					<div class='l'>Alter AI</div>
+					<div class='r'>
+						[M.ai ? "<a href='[playeropt_link(M, "disableai")]'>Remove AI</a>" : "<a href='[playeropt_link(M, "violentai")]'>Violent AI</a>"]
+					</div>
+				</div>
+			</div>
+			"}
+
+		dat += {"
+			<div class='optionGroup' style='border-color: #B57EDC;'>
 				<h2 style='background-color: #B57EDC;'>Antagonist Options</h2>
 				<div>
 					<div class='l'>Antag Status</div>

@@ -7,6 +7,8 @@
 	cooldown = 600
 	start_on_cooldown = 0
 	icon_state = "writhe"
+	attack_mobs = TRUE
+
 
 	cast(atom/target)
 		if (..())

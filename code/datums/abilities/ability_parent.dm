@@ -812,6 +812,7 @@
 		targeted = 0
 		target_anything = 0
 		target_in_inventory = 0
+		attack_mobs = FALSE // if true, ai mobs will use this to attack other mobs
 		last_cast = 0
 		cooldown = 100
 		start_on_cooldown = 0

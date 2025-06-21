@@ -3,12 +3,13 @@
 
 /datum/aiHolder/gnome/New()
 	..()
-	var/wander_task = get_instance(/datum/aiTask/timed/wander/aquatic, list(src))
-	default_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, wander_task))
+	var/datum/aiTask/timed/violence_task = get_instance(/datum/aiTask/timed/targeted/violence, list(src))
+	src.default_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, violence_task))
+	violence_task.transition_task = src.default_task
 
 /datum/aiHolder/gnome/was_harmed(obj/item/W, mob/M)
-	current_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, task_cache[/datum/aiTask/timed/wander/aquatic]))
-	current_task.reset()
+	src.current_task = get_instance(/datum/aiTask/sequence/gnome_flee_sequence, list(src, task_cache[/datum/aiTask/timed/targeted/violence]))
+	src.current_task.reset()
 
 /datum/aiTask/sequence/gnome_flee_sequence
 	name = "flee"

@@ -2347,3 +2347,27 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			whisper ? src.whisper(message) : src.say(message)
 		src.stat = old_stat // back to being dead 😌
+
+// attempts to attack with any violent ability (attack_mobs = TRUE) in abilityHolder, returning 1 on a successful attack
+/mob/living/proc/ability_attack(atom/target, params)
+	var/dist = GET_DIST(src, target)
+	if(src.abilityHolder)
+		for(var/datum/targetable/ability in src.abilityHolder.abilities)
+			if(ability.attack_mobs && dist <= ability.max_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+				return 1
+	return 0
+
+/mob/living/proc/ai_is_valid_target(mob/M)
+	return M != src
+
+/mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
+	remove_lifeprocess(/datum/lifeprocess/blood)
+	remove_lifeprocess(/datum/lifeprocess/canmove)
+	remove_lifeprocess(/datum/lifeprocess/disability)
+	remove_lifeprocess(/datum/lifeprocess/fire)
+	remove_lifeprocess(/datum/lifeprocess/hud)
+	remove_lifeprocess(/datum/lifeprocess/mutations)
+	remove_lifeprocess(/datum/lifeprocess/organs)
+	remove_lifeprocess(/datum/lifeprocess/sight)
+	remove_lifeprocess(/datum/lifeprocess/skin)
+	remove_lifeprocess(/datum/lifeprocess/statusupdate)

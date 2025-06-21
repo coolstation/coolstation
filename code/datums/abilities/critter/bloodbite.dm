@@ -8,6 +8,7 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "bloodbite"
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())
