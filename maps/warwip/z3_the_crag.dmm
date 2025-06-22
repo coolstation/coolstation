@@ -2050,8 +2050,8 @@
 	})
 "hG" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable,
-/obj/table/auto,
 /obj/grille/catwalk/jen,
+/obj/table/auto,
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -4631,19 +4631,6 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
-"rb" = (
-/obj/table/reinforced/industrial,
-/obj/item/extinguisher{
-	pixel_x = 10;
-	pixel_y = 6
-	},
-/obj/item/extinguisher{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/obj/item/extinguisher,
-/turf/floor/plating,
-/area/gehenna/underground)
 "rc" = (
 /obj/table/wood/auto,
 /obj/machinery/phone/unlisted,
@@ -7228,7 +7215,12 @@
 	name = "South Tunnel"
 	})
 "At" = (
-/obj/machinery/bot/firebot,
+/obj/table/reinforced/industrial,
+/obj/item/chem_grenade/firefighting{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/item/chem_grenade/firefighting,
 /turf/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -7970,7 +7962,8 @@
 "Df" = (
 /obj/machinery/dispenser{
 	pixel_y = 4;
-	pltanks = 0
+	pltanks = 1;
+	o2tanks = 5
 	},
 /turf/floor/plating{
 	icon_state = "panelscorched"
@@ -12572,16 +12565,16 @@
 /turf/floor/grey/blackgrime/other,
 /area/station/security/checkpoint/customs)
 "TM" = (
-/obj/table/reinforced/industrial,
 /obj/decal/cleanable/dirt/dirt5,
-/obj/item/chem_grenade/firefighting,
-/obj/item/chem_grenade/firefighting{
-	pixel_y = 5;
-	pixel_x = 6
+/obj/table/reinforced/industrial,
+/obj/item/extinguisher,
+/obj/item/extinguisher{
+	pixel_x = 10;
+	pixel_y = 6
 	},
-/obj/item/chem_grenade/firefighting{
-	pixel_y = 4;
-	pixel_x = -5
+/obj/item/extinguisher{
+	pixel_x = 1;
+	pixel_y = 7
 	},
 /turf/floor/plating,
 /area/gehenna/underground)
@@ -12830,15 +12823,8 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
 "UK" = (
-/obj/table/reinforced/industrial,
 /obj/item/clothing/mask/gas/emergency,
-/obj/item/clothing/mask/gas/emergency{
-	pixel_y = 4;
-	pixel_x = 5
-	},
-/obj/item/clothing/mask/gas/emergency{
-	pixel_y = 12
-	},
+/obj/table/reinforced/industrial,
 /turf/floor/plating,
 /area/gehenna/underground)
 "UL" = (
@@ -65526,7 +65512,7 @@ op
 Yq
 Yq
 gs
-rb
+Yq
 BI
 HB
 HB
