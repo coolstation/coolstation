@@ -34,6 +34,18 @@ datum
 		var/consume_all = 0 //If set to 1, the recipe will consume ALL of its components instead of just proportional parts.
 
 
+		New()
+			..()
+			if (result_amount < 0)
+
+				switch (result_amount)
+					if (RECIPE_AUTO_PRESERVE_VOLUME)
+						result_amount = 0
+						for (var/id in src.required_reagents)
+							result_amount += required_reagents[id]
+					else
+						result_amount = 0 //functionally 1 if you look elsewhere, but it's the default atm
+
 #ifdef CHEM_REACTION_PRIORITIES
 		proc/operator<(var/datum/chemical_reaction/reaction)
 			return priority > reaction.priority
@@ -1347,7 +1359,7 @@ datum
 			id = "pinacolada"
 			result = "pinacolada"
 			required_reagents = list("juice_pineapple" = 1, "rum" = 1, "coconut_milk" = 1)
-			result_amount = 4
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 			mix_phrase = "The drink gives off the smell of a rainy beach."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -1356,7 +1368,7 @@ datum
 			id = "mimosa"
 			result = "mimosa"
 			required_reagents = list("juice_orange" = 1, "champagne" = 1)
-			result_amount = 1
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 			mix_phrase = "The drink fizzes as the pulp settles to the top."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -1381,7 +1393,7 @@ datum
 		cocktail_tomcollins/tomcollins2
 			id = "tomcollins2"
 			required_reagents = list("gtonic" = 2, "lemonade" = 1)
-			result_amount = 3
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 
 		cocktail_sangria
 			name = "Sangria"

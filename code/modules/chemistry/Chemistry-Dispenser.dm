@@ -482,7 +482,7 @@
 /obj/machinery/chem_dispenser/old
 	name = "old alcohol dispenser"
 	desc = "A really old alcohol dispenser... does this thing even work anymore???"
-	dispensable_reagents = list("ethanol","dirtywater","oil",,"beer")
+	dispensable_reagents = list("ethanol","dirtywater","oil","beer")
 
 	icon_state = "alc_dispenser"
 	icon_base = "alc_dispenser"

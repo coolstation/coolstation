@@ -260,6 +260,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			dat += "<br></small>"
 		dat += "<BR>"
 
+
 		dat += "<b><u>Minor Random Events</u></b><BR>"
 		for(var/datum/random_event/RE in minor_events)
 			dat += "<a href='byond://?src=\ref[src];TriggerMEvent=\ref[RE]'><b>[RE.name]</b></a>"

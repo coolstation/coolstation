@@ -1355,12 +1355,6 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			id = "[x][y]"
 		..() //moved this to the bottom to avoid repeating code here
 
-	#ifdef Z3_IS_A_STATION_LEVEL
-	attack_ai(mob/user) //Assuming for the moment that there's only autoladders on Gehenna
-		if (isAIeye(user))
-			climb(user)
-	#endif
-
 
 
 /obj/ladder
@@ -1420,12 +1414,13 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 				game_stats.Increment("workplacesafety")
 				#endif
 
+	attack_ai(mob/user)
+		if (!istype(user, /mob/living/silicon/ai)) //even with the chicken feet AIs don't have enough limbs to try
+			attack_hand(user)
 
 
 	attack_hand(mob/user as mob)
 		if (src.broken || src.blocked) return
-		if (user.stat || user.getStatusDuration("weakened") || get_dist(user, src) > 1)
-			return
 		src.climb(user)
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -1452,7 +1447,8 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			user.set_loc(get_turf(otherLadder))
 			return
 			//boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
-		actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
+		if (user.can_climb_ladder(silent = FALSE))
+			actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
 		//user.set_loc(get_turf(otherLadder))
 
 
@@ -1512,6 +1508,9 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 	onEnd()
 		..()
+		if (!pizzaghetti.can_climb_ladder(silent = TRUE))
+			interrupt(INTERRUPT_ALWAYS)
+			return
 		pizzaghetti.set_loc(get_turf(robust_penis))
 		//How you're getting a mop bucket or a crate up a ladder I'll never know, but it'd be good if you could.
 		if (pizzaghetti.pulling)

@@ -687,7 +687,7 @@
 					return
 
 		if (!issilicon(AM))
-			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing) // mutual brohugs all around!
+			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing && !(src.pulling && src.pulling.density)) // mutual brohugs all around!
 				var/turf/oldloc = src.loc
 				var/turf/newloc = tmob.loc
 
@@ -2886,13 +2886,15 @@
 // no text description though, because it's all different everywhere
 /mob/proc/vomit(var/nutrition=0, var/specialType=null)
 	playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.lastgasp(FALSE,TRUE,"blublublub")
 	if(specialType)
 		if(!locate(specialType) in src.loc)
 			new specialType(src.loc)
 	else
 		if(!locate(custom_vomit_type) in src.loc)
 			make_cleanable(custom_vomit_type,src.loc)
-
 	src.nutrition -= nutrition
 
 /mob/proc/get_hand_pixel_x()
@@ -3274,3 +3276,14 @@
 	. = src?.bioHolder?.mobAppearance?.pronouns
 	if(isnull(.))
 		. = get_singleton(/datum/pronouns/theyThem)
+
+///is mob capable of climbing a ladder
+/mob/proc/can_climb_ladder(silent = FALSE)
+	if (can_act(src, TRUE))
+		return TRUE
+	boutput(src, "<span class=alert>You can't climb a ladder while incapacitated!</span>")
+	return FALSE
+
+//Observers bypass this check anyway, but regardless
+/mob/dead/can_climb_ladder(silent = FALSE)
+	return TRUE

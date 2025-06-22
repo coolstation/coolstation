@@ -46,6 +46,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
 
+	var/area_door_group
+
 	//fucking ANTS getting EVERYWHERE
 	var/no_ants = 1
 
@@ -141,6 +143,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/tmp/played_fx_2 = 0
 	var/sound_group = null
 	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
+	var/sandstorm = FALSE
+	var/blowOrigin = 0
+	var/sandstormIntensity = 0
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -219,6 +224,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//20 is 95% and is a special case to just mute the sound without stopping it
 				if(M.loc.loc.type == /area/gehenna)
 					insideness = 1
+
 				else if(M.loc.loc.type != /area/space) //bleh
 					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
 					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
@@ -263,7 +269,10 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							if (!src.active)
 								src.active = 1
 								SEND_SIGNAL(src, COMSIG_AREA_ACTIVATED)
-/*
+
+
+	/*
+
 						//Dumb fucking medal fuck
 						if (src.name == "Space" && istype(A, /obj/vehicle/segway))
 							enteringM.unlock_medal("Jimi Heselden", 1)
@@ -639,8 +648,11 @@ ABSTRACT_TYPE(/area/shuttle)
 	name = "Arrival Shuttle"
 	teleport_blocked = 2
 
+/area/shuttle/arrival/pre_load
+	icon_state = "shuttle_preload"
+
 /area/shuttle/arrival/pre_game
-	icon_state = "shuttle2"
+	icon_state = "shuttle_transit"
 
 /area/shuttle/arrival/station
 	icon_state = "shuttle"
@@ -2135,6 +2147,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Mining"
 	icon_state = "abstract"
 	sound_environment = EAX_HANGAR
+	area_door_group = "logistics"
 
 /area/station/mining/staff_room
 	name = "Mining Staff Room"
@@ -2185,6 +2198,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
 	mail_tag = "Bridge"
+	area_door_group = "bridge"
 
 /area/station/bridge/united_command //currently only on atlas - ET
 	name = "United Command"
@@ -2655,6 +2669,7 @@ ABSTRACT_TYPE(/area/station/engine)
 /area/station/engine
 	sound_environment = EAX_STONEROOM
 	workplace = 1
+	area_door_group = "engineering"
 
 /area/station/engine/engineering
 	name = "Engineering"
@@ -2828,6 +2843,7 @@ ABSTRACT_TYPE(/area/station/medical)
 	name = "Medical area"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "medbay"
 
 /area/station/medical/medbay
 	name = "Medbay"
@@ -2949,6 +2965,7 @@ ABSTRACT_TYPE(/area/station/security)
 	teleport_blocked = 1
 	workplace = 1
 	spy_secure_area = TRUE
+	area_door_group = "security"
 
 /area/station/security/main
 	name = "Security"
@@ -3111,6 +3128,7 @@ ABSTRACT_TYPE(/area/station/security)
 	icon_state = "storage"
 	do_not_irradiate = 1
 	spy_secure_area = FALSE	// Easy to get into
+	area_door_group = "engineering"
 
 // solums
 
@@ -3159,6 +3177,7 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 	name = "Quartermaster's"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/quartermaster/office
 	name = "Quartermaster's Office"
@@ -3220,6 +3239,7 @@ ABSTRACT_TYPE(/area/station/janitor)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/janitor/office
 	name = "Janitor's Office"
@@ -3242,6 +3262,7 @@ ABSTRACT_TYPE(/area/station/science)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "research"
 
 /area/station/science/chemistry
 	name = "Chemistry"

@@ -63,6 +63,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "shittygun"
+	wear_image_icon = 'icons/mob/back.dmi'
+	wear_state = "shittygun"
 	contraband = 0 //is this a crime gun made by and for crimers
 	inventory_counter_enabled = 1
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
@@ -988,6 +990,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	src.spread_angle = max(0, src.spread_angle) // hee hoo
 
+	if(src.two_handed)
+		flags &= ~ONBELT
+		flags |= ONBACK
+	else
+		flags &= ~ONBACK
+		flags |= ONBELT
 	buildTooltipContent()
 	built = 1
 

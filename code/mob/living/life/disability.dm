@@ -51,6 +51,23 @@
 						break
 				if(!interdictor_influence)
 					owner.changeStatus("radiation", (A.irradiated * 10 * mult) SECONDS)
+			if (A.sandstorm)
+				if(ishuman(owner))
+					var/mob/living/carbon/human/H = owner
+					H.change_eye_blurry(15, 30)
+					if(!istype(H.glasses, /obj/item/clothing/glasses) && !istype(H.head, /obj/item/clothing/head/helmet))
+						if(prob(30))
+							H.take_eye_damage(rand(3,5))
+					if(!H.wear_mask)
+						if (prob(25))
+							if (prob(60))
+								if (!H.organHolder.left_lung.robotic)
+									H.organHolder.damage_organ(3, 0, 0, "left_lung")
+							else
+								if (!H.organHolder.right_lung.robotic)
+									H.organHolder.damage_organ(3, 0, 0, "right_lung")
+				owner.changeStatus("sandy", (A.sandstorm * 5 * mult) SECONDS)
+
 
 		if (owner.bioHolder)
 			var/total_stability = owner.bioHolder.genetic_stability
