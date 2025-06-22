@@ -34,17 +34,16 @@ a:hover {
 	width: 14px;
 }
 ::-webkit-scrollbar-track {
-    border-style: outset;
-    border-left-color: #9a8469;
-    border-right-color: #9a8469;
+    border-style: none;
     background: #2A2624;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-style: outset;
+    border-style: none;
     background: #dad8b6;
     border-left-color: #9a8469;
     border-bottom-color: #9a8469;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 :focus-visible {
@@ -61,10 +60,10 @@ a:hover {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: #363636;
-	border-top: 3px solid #9a8469;
-	border-left: 3px solid #9a8469;
-	border-right: 3px solid #9a8469;
+	background-color: #3b342b;
+	border-top: 0px solid #9a8469;
+	border-left: 0px solid #9a8469;
+	border-right: 0px solid #9a8469;
 	border-bottom: 1px solid #161616;
 	border-style: solid;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
@@ -142,13 +141,14 @@ a:hover {
 	bottom: 0;
 	left: 0;
 	word-wrap: break-word;
-	border-top: 3px solid #9a8469;
-	border-left: 3px solid #9a8469;
-	border-right: 3px solid #9a8469;
-	border-bottom: 3px solid #322716;
+	border-top: 0px solid #9a8469;
+	border-left: 0px solid #9a8469;
+	border-right: 0px solid #9a8469;
+	border-bottom: 0px solid #322716;
 	background: #79664f;
 	border-style: solid;
 	box-shadow: rgba(93, 79, 50, 0.096) 0px -30px 60px -12px inset, rgba(0, 0, 0, 0.205) 0px 18px 36px -18px inset;
+	opacity: 0.8;
 }
 #content .innerContent { /* also has: .not-nano-content */
 	padding: 10px 10px 10px 10px; background-repeat: repeat-x;
@@ -266,10 +266,9 @@ a:hover {
   background: #dad8b6;
   position              : relative;
   margin                : 0;
-  border-style: solid;
-  border-left-color: #9a8469;
-  border-bottom-color: #9a8469;
-  box-shadow: rgba(26, 22, 17, 0.1) 0px 0px 16px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
 }
 
 
