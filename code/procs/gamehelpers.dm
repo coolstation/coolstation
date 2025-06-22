@@ -99,10 +99,17 @@ var/list/stinkThingies = list("ass","taint","armpit","excretions","leftovers","a
 /// For interacting with stuff.
 /proc/in_interact_range(atom/source, atom/user)
 	. = FALSE
-	if(bounds_dist(source, user) == 0 || IN_RANGE(source, user, 1)) // fucking byond
+	if(whatcha_see_is_whatcha_get)
+		if(istype(source, /mob))
+			var/mob/target = source
+			if (target.next_move > world.time && IN_RANGE(target.prev_loc, user, 1))
+				return TRUE
+	if(BOUNDS_DIST(source, user) == 0 || (IN_RANGE(source, user, 1))) // IN_RANGE is for general stuff, bounds_dist is for large sprites, presumably
 		return TRUE
-	else if (source in bible_contents && locate(/obj/item/storage/bible) in range(1, user)) // whoever added the global bibles, fuck you
-		return TRUE
+	else if (source in bible_contents)
+		for_by_tcl(B, /obj/item/storage/bible) // o coder past, quieten your rage
+			if(IN_RANGE(user,B,1))
+				return TRUE
 	else
 		if (iscarbon(user))
 			var/mob/living/carbon/C = user
@@ -599,7 +606,7 @@ var/obj/item/dummy/click_dummy = new
 				qdel(AM)
 
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE)
+/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE, var/move_mobs = TRUE)
 	//Takes: Area.
 	//Optional: turf type to leave behind, flag for ignoring fluid puddle objects, and flag to treat source turfs of type turftoleave as "empty" and to not move the turf
 	//(The latter being so we don't put elevator shaft turfs at the bottom of elevators. That wasn't a great time. It might be neat too for simulating shuttles with holes in em though.)
@@ -651,6 +658,7 @@ var/obj/item/dummy/click_dummy = new
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
 			if (ignore_fluid && istype(AM, /obj/fluid)) continue // this previously said "!ignore_fluid" which seems like a mistake? setting ignore_fluid to 1 actually made it move fluids... ~warc
 			if (!move_ghosts && istype(AM, /mob/dead/observer)) continue
+			if (!move_mobs && istype(AM, /mob/)) continue
 			AM.set_loc(T)
 
 		if(turftoleave)

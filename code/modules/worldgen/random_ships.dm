@@ -2,7 +2,8 @@
  * Wanna make a room for a S P A C E S H I P ???? Cool!!!!!! All you have to do is make your prefab, name it
  * whatever, (has to be either 3x3 or 5x3 for now), and throw it in assets/maps/random_ships/(cargo or room)/size
  * NOTE: ALL PREFABS HAVE TO HAVE THE CLEAR_AREA AREA, AND ALL CARGO PREFABS MUST HAVE BOTH CLEAR_TURF AND CLEAR_AREA <3
- * oh ya you can make a spaceship too, just throw it in the 30x25 folder same as the rest :3
+ * oh ya you can make a spaceship too, just throw it in the 25x15 folder same as the rest :3
+ * IMPORTANT: Please do not make your ship prefabs already destroyed. Just make how it would look if it were intact. There's code for that sweetie.
  */
 
 
@@ -60,19 +61,23 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 	pdaSignal.transmission_method = TRANSMISSION_RADIO
 	if(transmit_connection != null)
 		transmit_connection.post_signal(null, pdaSignal)
+	shipyardship_pre_densitymap = list()
+	shipyardship_post_densitymap = list()
 
-proc/prepShips(var/area/stagearea)
+proc/prepShips(var/area/stagearea,var/area/start_location,var/area/end_location) //not efficient
 	if(prob(60))
 		explode_area(stagearea,rand(60,190),rand(1,3))
-	SPAWN_DBG(1 SECONDS)
+	SPAWN_DBG(7 SECONDS)
 		shipyardship_pre_densitymap = calculate_density_map(stagearea)
+		start_location.move_contents_to(end_location)
+		shipyardship_location = 1
 
 proc/processShips(var/area/shipyard)
 	command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Control Alert","sound/machines/engine_alert2.ogg")
+	shipyardship_post_densitymap = calculate_density_map(shipyard)
 	SPAWN_DBG(10 SECONDS)
 		playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
-		gib_area(shipyard)
-		shipyardship_post_densitymap = calculate_density_map(shipyard)
+		//gib_area(shipyard)
 		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
 
 proc/buildRandomShips()
@@ -153,8 +158,8 @@ proc/buildRandomShips()
 
 
 
-	size30x25
-		size = "30x25"
+	size25x15
+		size = "25x15"
 	#ifdef IN_MAP_EDITOR
-		icon = 'icons/map-editing/random-rooms/30x25.dmi'
+		icon = 'icons/map-editing/random-rooms/30x25.dmi' //update this
 	#endif

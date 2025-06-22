@@ -139,6 +139,7 @@
 		animate(thing, transform = turn(trans, 120), time = 0.7, loop = 3, flags = ANIMATION_PARALLEL)
 		animate(transform = turn(trans, 240), time = 0.7, flags = ANIMATION_PARALLEL)
 		animate(transform = trans, time = 0.7, flags = ANIMATION_PARALLEL)*/
+		SEND_SIGNAL(thing, COMSIG_ITEM_TWIRLED, src, thing)
 		return list(thing.on_spin_emote(user), "<I>twirls [thing]</I>", MESSAGE_VISIBLE)
 	else
 		return list("<B>[user]</B> wiggles [his_or_her(user)] fingers a bit.[prob(10) ? " Weird." : null]", "<I>wiggles [his_or_her(user)] fingers a bit</I>", MESSAGE_VISIBLE)
@@ -153,6 +154,25 @@
 		return list(object.on_raise_emote(user), "<I>raises [object]</I>", MESSAGE_VISIBLE)
 	else
 		return list("<B>[user]</B> raises [his_or_her(user)] hand.", "<I>raises [his_or_her(user)] hand</I>", MESSAGE_VISIBLE)
+
+/datum/emote/nudge
+/datum/emote/nudge/enact(mob/user, voluntary = 0, param)
+	if(!user.restrained())
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (H.glasses && istype(H.glasses, /obj/item/clothing/glasses/regular))
+				var/obj/item/clothing/glasses/G = H.glasses
+				if(G.isNudged != TRUE)
+					G.attack_self(user)
+					if(user.mind && !user.mind.alreadyNudged)
+						elecflash(user)
+						user.mind.alreadyNudged = TRUE
+					user.update_clothing()
+					return list("<B>[user]</B> nudges [his_or_her(user)] glasses up [his_or_her(user)] nose", MESSAGE_VISIBLE)
+				else
+					G.attack_self(user)
+					user.update_clothing()
+					return list("<B>[user]</B> pushes [his_or_her(user)] glasses back down [his_or_her(user)] nose", MESSAGE_VISIBLE)
 
 /datum/emote/tip
 /datum/emote/tip/enact(mob/living/carbon/human/user, voluntary = 0, param)
@@ -365,7 +385,18 @@
 	if (user.bioHolder.HasEffect("chime_snaps"))
 		user.sound_fingersnap = 'sound/musical_instruments/WeirdChime_5.ogg'
 		user.sound_snap = 'sound/impact_sounds/Glass_Shards_Hit_1.ogg'
-	if (prob(5))
+	var/hasSwitch = FALSE
+	for (var/obj/item/container as anything in user.get_equipped_items())
+		if (!(locate(/obj/item/switchblade) in container))
+			continue
+		var/obj/item/switchblade/blade = (locate(/obj/item/switchblade) in container)
+		blade.set_loc(get_turf(user))
+		user.put_in_hand_or_drop(blade)
+		user.visible_message("<span class='alert'><B>[user] pulls a [blade] out of \the [container]!</B></span>")
+		playsound(user.loc, "rustle", 60, TRUE)
+		hasSwitch = TRUE
+		break
+	if (!hasSwitch && prob(5))
 		random_brute_damage(user, 20)
 		if (narrator_mode)
 			playsound(user.loc, 'sound/vox/break.ogg', 100, 1, channel=VOLUME_CHANNEL_EMOTE)
@@ -378,6 +409,7 @@
 		else
 			playsound(user.loc, user.sound_fingersnap, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 		return list("<B>[user]</B> snaps [his_or_her(user)] fingers.", null, MESSAGE_AUDIBLE)
+
 
 
 /datum/emote/airquote // also airquotes

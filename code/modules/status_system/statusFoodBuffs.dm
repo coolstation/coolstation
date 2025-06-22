@@ -395,6 +395,18 @@
 	maxDuration = 6000
 	unique = 1
 
+	onAdd()
+		. = ..()
+		if(ismob(owner))
+			var/mob/M = owner
+			APPLY_MOB_PROPERTY(M, PROP_SPACEFARTS, src)
+
+	onRemove()
+		. = ..()
+		if(ismob(owner))
+			var/mob/M = owner
+			REMOVE_MOB_PROPERTY(M, PROP_SPACEFARTS, src)
+
 /datum/statusEffect/bad_breath
 	id = "food_bad_breath"
 	name = "Food (Bad Breath)"

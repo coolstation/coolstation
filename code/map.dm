@@ -2,6 +2,8 @@
 #define MAP_SPAWN_SHUTTLE 1
 #define MAP_SPAWN_CRYO 2
 #define MAP_SPAWN_MISSILE 3
+//Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
+#define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
 #define MAP_NAME_RANDOM 1
 
@@ -107,6 +109,8 @@ var/global/list/mapNames = list(
 	var/escape_station = /area/shuttle/escape/station
 	var/escape_def = SHUTTLE_NODEF
 	var/escape_dir = SOUTH
+	//Only used with MAP_SPAWN_SHUTTLE_DYNAMIC, determines which shuttle folder gets used
+	var/arrivals_shape = "cogmap"
 
 	var/shuttle_map_turf = /turf/space
 	var/qm_supply_type = "space" //can also be "shuttle"!
@@ -303,6 +307,7 @@ var/global/list/mapNames = list(
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 	qm_supply_type = "shuttle"
+	//shuttle_map_turf = /turf/floor/airless/engine/caution
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
@@ -341,6 +346,23 @@ var/global/list/mapNames = list(
 		/datum/job/logistics/janitor = 1
 	)
 
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/floor/airless/engine/caution"
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = "/turf/floor/airless/engine/caution"
+
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = "/turf/floor/airless/engine/caution"
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
+
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
@@ -370,6 +392,8 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/cogmap
 	escape_def = SHUTTLE_SOUTH
 	escape_dir = SOUTH
+	arrivals_type = MAP_SPAWN_SHUTTLE_DYNAMIC
+	arrivals_shape = "cogmap"
 
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
 	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap

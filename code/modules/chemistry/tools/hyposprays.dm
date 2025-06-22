@@ -82,6 +82,8 @@ var/global/list/chem_whitelist = list("antihol", "charcoal", "epinephrine", "ins
 			return
 
 		if (href_list["dump_cont"])
+			var/turf/T = get_turf(src)
+			src.reagents.trans_to(T, src.reagents.total_volume)
 			src.reagents.clear_reagents()
 
 		if (href_list["change_amt"])

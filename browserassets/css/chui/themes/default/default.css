@@ -20,18 +20,24 @@ table {
 }
 
 a {
-	color: #3b3122;
-	font-weight: bold;
+    color: #01B8AA;
+    font-weight: bold;
+    transition: color 0.1s ease;
+	text-decoration: none;
+}
+
+a:hover {
+    color: #015c55;
 }
 ::-webkit-scrollbar {
-	background: #322716;
+	background: #2A2624;
 	width: 14px;
 }
 ::-webkit-scrollbar-track {
     border-style: outset;
     border-left-color: #9a8469;
     border-right-color: #9a8469;
-    background: #322716;
+    background: #2A2624;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -55,23 +61,27 @@ a {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: #322716;
+	background: #363636;
 	border-top: 3px solid #9a8469;
 	border-left: 3px solid #9a8469;
 	border-right: 3px solid #9a8469;
-	border-style: ridge;
+	border-bottom: 1px solid #161616;
+	border-style: solid;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 #titlebar h1 {
-	margin: 0;
 	color: #dad8b6;
-	font-size: 16px;
-	font-family: "Trebuchet MS", sans-serif;
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 #titlebar a {
 	display: block;
 	position: absolute;
 	text-decoration: none;
-	color: white;
+	color: #C5C5C5;
 	width: 35px;
 	height: 26px;
 	line-height: 28px;
@@ -80,12 +90,14 @@ a {
 
 
 }
+/*
 #titlebar .min {
 	top: -1px;
 	right: 26px;
 	font-size: 15px;
-	color: #dad8b6;
+	color: #C5C5C5;
 }
+*/
 #titlebar .close {
 	color: #dad8b6;
 	top: -2px;
@@ -93,7 +105,7 @@ a {
 	font-size: 15px;
 }
 #titlebar a:hover {
-	color: #dad8b6;
+	color: #d42626;
 }
 /* TITLEBAR END */
 
@@ -134,8 +146,9 @@ a {
 	border-left: 3px solid #9a8469;
 	border-right: 3px solid #9a8469;
 	border-bottom: 3px solid #322716;
-	background: #9a8469;
-	border-style: none ridge ridge ridge;
+	background: #79664f;
+	border-style: solid;
+	box-shadow: rgba(93, 79, 50, 0.096) 0px -30px 60px -12px inset, rgba(0, 0, 0, 0.205) 0px 18px 36px -18px inset;
 }
 #content .innerContent { /* also has: .not-nano-content */
 	padding: 10px 10px 10px 10px; background-repeat: repeat-x;
@@ -237,7 +250,7 @@ a {
 }
 
 .not-nano > .not-nano-pane {
-  background : #322716;
+  background : #2A2624;
   position   : absolute;
   width      : 14px;
   right      : 0;
@@ -253,9 +266,10 @@ a {
   background: #dad8b6;
   position              : relative;
   margin                : 0;
-  border-style: outset;
+  border-style: solid;
   border-left-color: #9a8469;
   border-bottom-color: #9a8469;
+  box-shadow: rgba(26, 22, 17, 0.1) 0px 0px 16px;
 }
 
 
@@ -278,76 +292,95 @@ a {
 }
 
 /* Buttons are complicated */
+
 .button {
+	border: 0.125em solid transparent;
+	border-radius: 0.125em;
+	background-color: #01010100;
+	box-shadow: 0.0625em 0.0625em 0.0625em #00000000;
+	width: 4em;
+  }
+  .button-inside {
+	--background-color: #f05a22;
+	--background-color-active: #ee5529;
+	--light-shadow-color: #ffb147;
+	--dark-shadow-color: #d72d12;
+	--text-color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: inline-block;
 	position: relative;
-	height: 22px;
-	padding: 0 15px;
-	margin: 8px 2px 8px 0;
-	line-height: 22px; /* height of self + 1 - difference between .button:before and .button:after heights */
-	background: #3b3122;
-	text-align: center;
-	font-size: 11px;
-	font-weight: bold;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #fff;
-	border-bottom: 2px solid #6d6617;
-	border-right: 2px solid #6d6617;
-	overflow: visible;
-	cursor: pointer;
-	box-sizing: border-box;
-	outline: none;
-}
-.button[disabled] {
-	opacity: 0.5;
-}
-.button:focus {
-	border-color: transparent;
-}
-.button:active {
-	border-left-color: #ebe5a0;
-	border-right-color: #ebe5a0;
-}
-
-/* Alt button styles */
-
-.small.button {
-	padding: 0 5px;
-	height: 27px;
-	line-height: 27px;
-	font-size: 10px;
-}
-.medium.button {
-	height: 25px;
-	line-height: 25px;
-}
-.full.button {
-	display: block;
+	border-radius: 0.5625em;
+	padding: 0.625em 0.75em 0.4375em;
 	width: 100%;
-}
+	background-color: var(--background-color);
+	background-size: 80px 80px;
+	box-shadow: inset 0.0625em 0.0625em 0.0625em var(--light-shadow-color),
+	  inset -0.0625em -0.0625em 0.0625em var(--dark-shadow-color),
+	  0.125em 0.125em 0.25em #0000006b;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--text-color);
+	transition-property: transform, background-color, box-shadow;
+	transition-duration: 0.2s;
+	transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 1);
+  }
+  .button:active .button-inside {
+	transform: scale(0.98);
+	background-color: var(--background-color-active);
+	box-shadow: inset 0 0 0.25em #000,
+	  inset 0.0625em 0.0625em 0.0625em transparent,
+	  inset -0.0625em -0.0625em 0.0625em transparent,
+	  0.125em 0.125em 0.25em transparent;
+  }
+  .button-inside.dark-gray {
+	--background-color: #353535;
+	--background-color-active: #313030;
+	--light-shadow-color: #a7a7a7;
+	--dark-shadow-color: #1c1c1c;
+  }
+  .button-inside.white {
+	--background-color: #cfcbca;
+	--background-color-active: #b9b5b3;
+	--light-shadow-color: #fafafa;
+	--dark-shadow-color: #646464;
+	--text-color: #010101;
+  }
+  .button-inside.light-gray {
+	--background-color: #bcbcbc;
+	--background-color-active: #b1adad;
+	--light-shadow-color: #f7f7f7;
+	--dark-shadow-color: #646464;
+  }
+  .button-inside.gray {
+	--background-color: #676767;
+	--background-color-active: #575454;
+	--light-shadow-color: #b8b7b5;
+	--dark-shadow-color: #383838;
+  }
+
 
 
 /* Button color schemes */
 
 /* Dark
-BG: #21272c //Replacement #322716
+BG: #21272c //Replacement #2A2624
 Border: #9a8469 //Replacment #6d6617
 Highlight: #58B4DC // Replacement ##6d6617
 Text: #fff
 */
 .dark.button,
 .dark.button .top,
-.dark.button .bottom {background-color: #322716;}
+.dark.button .bottom {background-color: #2A2624;}
 .dark.button:active,
-.dark.button:active .top {border-color: #322716;}
-.dark.button:active .bottom {border-left-color: #322716;}
+.dark.button:active .top {border-color: #2A2624;}
+.dark.button:active .bottom {border-left-color: #2A2624;}
 .dark.button,
 .dark.button .top,
 .dark.button .bottom {border-color: #6d6617;}
 
 .dark.button:hover .bottom,
-.dark.button:active .bottom {border-bottom-color: #dad8b6;}
+.dark.button:active .bottom {border-bottom-color: #363636;}
 
 
 

@@ -122,12 +122,18 @@ var/global/list/cycling_airlocks = list()
 
 
 //This generates the randomized airlock wire assignments for the game.
-/proc/RandomAirlockWires()
+/proc/RandomAirlockWires(door_group)
+	if (!door_group) return
 	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
 	var/list/wires = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	airlockIndexToFlag = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	airlockIndexToWireColor = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	airlockWireColorToIndex = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockWireColorToFlag.Add(door_group)
+	//airlockWireColorToFlag[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockIndexToFlag.Add(door_group)
+	airlockIndexToFlag[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockIndexToWireColor.Add(door_group)
+	airlockIndexToWireColor[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockWireColorToIndex.Add(door_group)
+	airlockWireColorToIndex[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	var/flagIndex = 1
 	for (var/flag=1, flag<1024, flag+=flag)
 		var/valid = 0
@@ -136,11 +142,11 @@ var/global/list/cycling_airlocks = list()
 			if (wires[colorIndex]==0)
 				valid = 1
 				wires[colorIndex] = flag
-				airlockIndexToFlag[flagIndex] = flag
-				airlockIndexToWireColor[flagIndex] = colorIndex
-				airlockWireColorToIndex[colorIndex] = flagIndex
+				airlockIndexToFlag[door_group][flagIndex] = flag
+				airlockIndexToWireColor[door_group][flagIndex] = colorIndex
+				airlockWireColorToIndex[door_group][colorIndex] = flagIndex
 		flagIndex+=1
-	return wires
+	airlockWireColorToFlag[door_group] = wires
 
 /* Example:
 Airlock wires color -> flag are { 64, 128, 256, 2, 16, 4, 8, 32, 1 }.
@@ -181,6 +187,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
 
+	///Which group of wires-2-function airlocks this door belongs to, overridden in determine_wire_group so try editing there first
+	var/door_group = "fuck" //Maybe don't varedit this when an airlock had it's wiring fucked with already
 
 	var/cycle_id = ""	//! Which airlock junction network it's in.
 	var/cycle_enter_id = "" //! An ID for a certain entrance in a junction
@@ -215,8 +223,10 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		..()
 		if(!isrestrictedz(src.z) && src.name == initial(src.name)) //The latter half prevents renaming varedited doors.
 			var/area/station/A = get_area(src)
-			src.name = A.name
+			if(A)
+				src.name = A.name
 		src.net_access_code = rand(1, NET_ACCESS_OPTIONS)
+		determine_wire_group()
 		START_TRACKING
 
 
@@ -786,6 +796,23 @@ About the new airlock wires panel:
 	play_animation("deny")
 	playsound(src, src.sound_deny_temp, 100, 0)
 
+//keywords: door hacking group, door group, airlock group, airlock hacking group, airlock wires, door wires
+//While we all seem to agree that wiring groups were good to make hacking in more difficult, there wasn't agreement on how to divvy them up
+//So this is the place you edit to decide that shit, thanks
+/obj/machinery/door/airlock/proc/determine_wire_group()
+	//ATM I've set it on a visual basis: doors that look the same have the same wires.
+	var/area/A = get_area(src)
+	if (A.area_door_group)
+		src.door_group = A.area_door_group
+	else
+		if (src.icon_base == "door") //non-pyro doors are all in their own dmis
+			src.door_group = src.icon
+		else //pyro/perspective airlocks set icon_base
+			src.door_group = src.icon_base
+
+	if (!(src.door_group in airlockWireColorToFlag))
+		RandomAirlockWires(src.door_group)
+
 /obj/machinery/door/airlock/proc/try_pulse(var/wire_color, mob/user)
 	if (!user.find_tool_in_hand(TOOL_PULSING))
 		boutput(user, "You need a multitool or similar!")
@@ -797,8 +824,8 @@ About the new airlock wires panel:
 	return TRUE
 
 /obj/machinery/door/airlock/proc/pulse(var/wireColor)
-	//var/wireFlag = airlockWireColorToFlag[wireColor] //not used in this function
-	var/wireIndex = airlockWireColorToIndex[wireColor]
+	//var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor] //not used in this function
+	var/wireIndex = airlockWireColorToIndex[src.door_group][wireColor]
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_IDSCAN)
 			//Sending a pulse through this flashes the red light on the door (if the door has power).
@@ -923,8 +950,8 @@ About the new airlock wires panel:
 	return TRUE
 
 /obj/machinery/door/airlock/proc/cut(var/wireColor)
-	var/wireFlag = airlockWireColorToFlag[wireColor]
-	var/wireIndex = airlockWireColorToIndex[wireColor]
+	var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor]
+	var/wireIndex = airlockWireColorToIndex[src.door_group][wireColor]
 	wires &= ~wireFlag
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
@@ -976,8 +1003,8 @@ About the new airlock wires panel:
 	return TRUE
 
 /obj/machinery/door/airlock/proc/mend(var/wireColor)
-	var/wireFlag = airlockWireColorToFlag[wireColor]
-	var/wireIndex = airlockWireColorToIndex[wireColor] //not used in this function
+	var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor]
+	var/wireIndex = airlockWireColorToIndex[src.door_group][wireColor] //not used in this function
 	wires |= wireFlag
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
@@ -1014,11 +1041,11 @@ About the new airlock wires panel:
 	return (src.secondsElectrified != 0)
 
 /obj/machinery/door/airlock/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = airlockWireColorToFlag[wireColor]
+	var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor]
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/door/airlock/proc/isWireCut(var/wireIndex)
-	var/wireFlag = airlockIndexToFlag[wireIndex]
+	var/wireFlag = airlockIndexToFlag[src.door_group][wireIndex]
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/door/airlock/proc/canAIControl()
@@ -1946,7 +1973,7 @@ obj/machinery/door/airlock
 
 	var/list/wire_states = list()
 	for(var/I in src.wire_colors)
-		wire_states += src.isWireCut(airlockWireColorToIndex[src.wire_colors[I]])
+		wire_states += src.isWireCut(airlockWireColorToIndex[src.door_group][src.wire_colors[I]])
 	. += list("wireStates" = wire_states)
 
 /obj/machinery/door/airlock/proc/aidoor_access_check(mob/user)

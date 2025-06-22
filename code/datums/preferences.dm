@@ -54,6 +54,7 @@ datum/preferences
 	var/flying_chat_hidden = 0
 	var/auto_capitalization = 0
 	var/local_deadchat = 0
+	var/hidden_spiders = 0
 	var/use_wasd = 1
 	var/use_azerty = 0 // do they have an AZERTY keyboard?
 	var/spessman_direction = SOUTH
@@ -118,16 +119,15 @@ datum/preferences
 			qdel(src.preview)
 			src.preview = null
 
-	ui_data(mob/user)
-		if (isnull(src.preview))
-			src.preview = new(user.client, "preferences", "preferences_character_preview")
-			src.preview.add_background()
-			src.update_preview_icon()
-
+	ui_data(mob/user, datum/tgui/ui)
 		var/client/client = ismob(user) ? user.client : user
 
 		if (!client)
 			return
+
+		if (isnull(src.preview))
+			src.preview = new(user.client, "preferences", "preferences_character_preview", ui.window)
+			RegisterSignal(src.preview, COMSIG_UIMAP_LOADED, PROC_REF(update_preview_icon_initial))
 
 		var/list/profiles = new/list(SAVEFILE_PROFILES_MAX)
 		for (var/i = 1, i <= SAVEFILE_PROFILES_MAX, i++)
@@ -218,9 +218,25 @@ datum/preferences
 			"preferredMap" = src.preferred_map,
 			"skipLobbyMusic" = src.skip_lobby_music
 		)
+	proc/legal_json_check(var/list/json)
+		for(var/c in bad_name_characters)
+			if(findtext(json["name_first"],c) || findtext(json["name_middle"],c) || findtext(json["name_last"],c)) //illegal names
+				return 0
+		if(json["gender"] != NEUTER && json["gender"] != MALE && json["gender"] != FEMALE)
+			return 0
+		if(json["age"] < 20 || json["age"] > 80)
+			return 0
+		if(json["fartsound"] && !(json["fartsound"] in AH.fartsounds))
+			return 0
+		if(!(json["screamsound"] in AH.screamsounds))
+			return 0
+		if(!is_valid_color_string(json["PDAcolor"]) || !is_valid_color_string(json["eye_color"]) || !is_valid_color_string(json["hair_color"]) || !is_valid_color_string(json["facial_color"]) || !is_valid_color_string(json["detail_color"]) || !is_valid_color_string(json["underwear_color"]))
+			return 0
+		return 1
+
 
 //disable options on slots that have been played *or* on characters with the same name as a played one.
-#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(src)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
+#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(client)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
 
 	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 		. = ..()
@@ -879,6 +895,21 @@ datum/preferences
 				src.profile_modified = TRUE
 				return TRUE
 
+			if ("json-export")
+				var/json = savefile_to_json(usr)
+				boutput(usr, "<b><span class='alert'>Char JSON: </b>[json]</span>")
+				return TRUE
+
+			if ("json-import")
+				var/rawjson = input(usr, "Paste raw JSON data here","JSON Import",src.pin) as null|text
+
+				if(rawjson && isThisShitEvenJson(rawjson))//is this actually json? it better be pal
+					src.json_to_character(client,rawjson)
+				else
+					boutput(usr, "<b><span class='alert'>JSON import failed</b></span>")
+				return TRUE
+
+
 			if ("reset")
 				src.profile_modified = TRUE
 
@@ -1000,10 +1031,16 @@ datum/preferences
 
 		src.real_name = src.name_first + " " + src.name_last
 
+	proc/update_preview_icon_initial()
+		update_preview_icon()
+		UnregisterSignal(src.preview, COMSIG_UIMAP_LOADED)
 
 	proc/update_preview_icon()
 		if (!AH)
 			logTheThing("debug", usr ? usr : null, null, "a preference datum's appearence holder is null!")
+			return
+
+		if(!src.preview?.handler)
 			return
 
 		var/datum/mutantrace/mutantRace = null
@@ -1994,3 +2031,4 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 /proc/crap_checkbox(var/checked)
 	if (checked) return "&#9745;"
 	else return "&#9744;"
+

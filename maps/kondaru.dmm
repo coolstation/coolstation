@@ -6913,7 +6913,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour14;desc=In most circumstances, this public news station has no dedicated staff assigned. If you're looking for something to do on your time off, try journalism!";
 	freq = 1443;
-	location = "tour13";
+	beacon_id = "tour13";
 	name = "tour 13 - news"
 	},
 /obj/decal/tile_edge/floorguide/science{
@@ -6979,7 +6979,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour15;desc=The Engineering department's power division is located here. In the event they're not good at their jobs, the Pod Bay is directly opposite.";
 	freq = 1443;
-	location = "tour14";
+	beacon_id = "tour14";
 	name = "tour 14 - north"
 	},
 /turf/floor,
@@ -8631,7 +8631,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour16;desc=The station chapel is outfitted with a confessional booth and crematorium facilities. Just that. Definitely nothing else.";
 	freq = 1443;
-	location = "tour15";
+	beacon_id = "tour15";
 	name = "tour 15 - chapel"
 	},
 /turf/floor,
@@ -10368,7 +10368,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour13;desc=I'll be honest with you, I don't remember what this is. I think this used to be a poker club. Somebody else lives here now, though.";
 	freq = 1443;
-	location = "tour12";
+	beacon_id = "tour12";
 	name = "tour 12 - detective"
 	},
 /turf/floor/red/side{
@@ -18308,7 +18308,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour17;desc=If doing a lap around the station isn't hitting the spot, make sure to try out the gymnasium facilities. On my left, there's also a mechanics' workshop and the rest of Engineering.";
 	freq = 1443;
-	location = "tour16";
+	beacon_id = "tour16";
 	name = "tour 16 - gym"
 	},
 /obj/machinery/light/emergency{
@@ -19512,7 +19512,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour12;desc=In the event of a hull breach or other loss of atmosphere, please proceed to this location or any of the blue emergency cabinets dispersed among the station.";
 	freq = 1443;
-	location = "tour11";
+	beacon_id = "tour11";
 	name = "tour 11 - eva"
 	},
 /turf/floor/black/side{
@@ -20737,7 +20737,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour11;desc=This is the station's medical bay. In the event of major injury, please report directly to this location as rapidly as possible for treatment.";
 	freq = 1443;
-	location = "tour10";
+	beacon_id = "tour10";
 	name = "tour 10 - medical"
 	},
 /turf/floor/carpet/blue/fancy/edge/north,
@@ -25464,7 +25464,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour3;desc=In the event of minor to moderate injuries, you can stop by this convenient booth instead of going all the way to Medbay.";
 	freq = 1443;
-	location = "tour2";
+	beacon_id = "tour2";
 	name = "tour 2 - medbooth"
 	},
 /turf/floor/blue/side{
@@ -25673,7 +25673,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour10;desc=Somebody's probably going to make a mess. Don't worry - the janitor's here to help! Disclaimer: This unit does not condone or encourage creation of messes.";
 	freq = 1443;
-	location = "tour9";
+	beacon_id = "tour9";
 	name = "tour 9 - janitorial"
 	},
 /turf/floor,
@@ -27538,7 +27538,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour6;desc=In the event you have committed an infraction, this room across from Security's main desk will help you get back on track. Make sure to ask for secure reimbursement of your effects!";
 	freq = 1443;
-	location = "tour5";
+	beacon_id = "tour5";
 	name = "tour 5 - security"
 	},
 /obj/disposalpipe/segment/vertical,
@@ -27865,7 +27865,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour7;desc=This station features a centrally-located mining magnet, permitting miners to easily interact with departments such as the Quartermaster's office to my right.";
 	freq = 1443;
-	location = "tour6";
+	beacon_id = "tour6";
 	name = "tour 6 - resource"
 	},
 /turf/floor,
@@ -29730,7 +29730,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour8;desc=They say magic is just science that isn't understood. For the staff assistants in the crowd, this is the wizard's den! Please maintain a safe distance.";
 	freq = 1443;
-	location = "tour7";
+	beacon_id = "tour7";
 	name = "tour 7 - science"
 	},
 /turf/floor,
@@ -31063,7 +31063,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour1;desc=Greetings, unfrozen crew member or other participant! I am the Mitigative After-Rest Crew Orientation unit, or Marco for short, and I'm here to show you around. Let's go!";
 	freq = 1443;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "tour beacon - start"
 	},
 /obj/decal/tile_edge/floorguide/arrow_e{
@@ -31505,7 +31505,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour18;desc=Oh, before I forget. Head out the shower room's back door and hang a left, and look for the wood doors. Don't tell anyone I told you.";
 	freq = 1443;
-	location = "tour17";
+	beacon_id = "tour17";
 	name = "tour 17 - east"
 	},
 /turf/floor,
@@ -36563,7 +36563,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour9;desc=If you're looking to get your shark on, look no further. The station stock floor is on my right, and trade vessels dock here on the regular.";
 	freq = 1443;
-	location = "tour8";
+	beacon_id = "tour8";
 	name = "tour 8 - mercantile"
 	},
 /turf/floor{
@@ -45738,7 +45738,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour20;desc=Thank you for joining me on this tour! You should now be acclimatized to the station. If you're still feeling a bit lost, look for the Bartender or Head of Personnel.";
 	freq = 1443;
-	location = "tour19";
+	beacon_id = "tour19";
 	name = "tour 19 - conclusion"
 	},
 /obj/decal/tile_edge/floorguide/botany{
@@ -47199,7 +47199,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour5;desc=Our state-of-the-art hydroponics department is equipped with over a dozen cultivation units. If you'd like to try your hand at gardening, job changes may be available at the courtroom to my right.";
 	freq = 1443;
-	location = "tour4";
+	beacon_id = "tour4";
 	name = "tour 4 - south"
 	},
 /turf/floor,
@@ -52630,7 +52630,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour";
 	freq = 1443;
-	location = "tour20";
+	beacon_id = "tour20";
 	name = "tour beacon - home"
 	},
 /obj/machinery/power/data_terminal,
@@ -54873,7 +54873,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour2;desc=Whether you've been in a long sleep or on a long trip, the on-station bar and cafeteria is sure to get you up and running again. Try the arcade, too!";
 	freq = 1443;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "tour 1 - bar"
 	},
 /turf/floor/specialroom/bar,
@@ -61128,7 +61128,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour19;desc=This section of the station contains crew quarters and the evacuation wing. In the event the emergency shuttle is called, please proceed down this corridor in an orderly fashion.";
 	freq = 1443;
-	location = "tour18";
+	beacon_id = "tour18";
 	name = "tour 18 - crew"
 	},
 /turf/floor,
@@ -61986,7 +61986,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour4;desc=On my right through the double doors is the station's headquarters. When waiting in the area, please use the provided seating.";
 	freq = 1443;
-	location = "tour3";
+	beacon_id = "tour3";
 	name = "tour 3 - command"
 	},
 /obj/decal/tile_edge/floorguide/qm{

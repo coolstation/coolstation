@@ -7,29 +7,6 @@
 		..()
 		appearance_flags |= NO_CLIENT_COLOR
 
-/**
- * Sets screen_loc of this screen object, in form of point coordinates,
- * with optional pixel offset (px, py).
- *
- * There's finer equivalents below this for hud datums
- *
- * If applicable, "assigned_map" has to be assigned before this proc call.
- *
- * Code Snippet licensed under MIT from /tg/station (#49960)
- * Copyright (c) 2020 Aleksej Komarov
- */
-/atom/movable/screen/proc/set_position(x, y, px = 0, py = 0)
-	screen_loc = "[x]:[px],[y]:[py]"
-	fix_screen_loc(x, y, px, py)
-
-/// 516 hack fix for screen_loc issues with the TGUI ByondUI element
-/atom/movable/screen/proc/fix_screen_loc(x, y, px, py)
-    set waitfor = FALSE
-    sleep(0.1 SECONDS)
-    screen_loc = "[x]:100:0,100:0"
-    sleep(0.1 SECONDS)
-    screen_loc = "[x]:[px],[y]:[py]"
-
 /atom/movable/screen/hud
 	plane = PLANE_HUD
 	var/datum/hud/master
@@ -145,7 +122,7 @@
 		for (var/atom/A in src.objects)
 			C.screen -= A
 
-	proc/create_screen(id, name, icon, state, loc, layer = HUD_LAYER, dir = SOUTH, tooltipTheme = null, desc = null, customType = null)
+	proc/create_screen(id, name, icon, state, loc, layer = HUD_LAYER, dir = SOUTH, tooltipTheme = null, desc = null, customType = null, mouse_opacity = TRUE)
 		var/atom/movable/screen/hud/S
 		if (customType)
 			if (!ispath(customType, /atom/movable/screen/hud))
@@ -164,6 +141,7 @@
 		S.layer = layer
 		S.set_dir(dir)
 		S.tooltipTheme = tooltipTheme
+		S.mouse_opacity = mouse_opacity
 		src.objects += S
 
 		for (var/client/C in src.clients)

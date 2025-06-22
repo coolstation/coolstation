@@ -52,7 +52,7 @@
 	var/lastattacker = null
 	var/lastattacked = null //tell us whether or not to use Combat or Default click delays depending on whether this var was set.
 	var/lastattackertime = 0
-	var/other_mobs = null
+	var/pass_through_mobs = FALSE
 	var/memory = ""
 	var/atom/movable/pulling = null
 	var/stat = 0.0
@@ -123,6 +123,7 @@
 	var/lastDamageIconUpdate
 	var/say_language = "english"
 	var/literate = 1 // im liturit i kin reed an riet
+
 
 	var/list/movement_modifiers = list()
 
@@ -686,7 +687,7 @@
 					return
 
 		if (!issilicon(AM))
-			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing) // mutual brohugs all around!
+			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing && !(src.pulling && src.pulling.density)) // mutual brohugs all around!
 				var/turf/oldloc = src.loc
 				var/turf/newloc = tmob.loc
 
@@ -1520,7 +1521,7 @@
 
 	if (ismob(mover))
 		var/mob/moving_mob = mover
-		if ((src.other_mobs && moving_mob.other_mobs))
+		if ((src.pass_through_mobs || moving_mob.pass_through_mobs))
 			return 1
 		return (!mover.density || !src.density || src.lying)
 	else
@@ -2409,7 +2410,7 @@
 		if (thr?.get_throw_travelled() <= 410)
 			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
 				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened"))
+				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
 					src.changeStatus("weakened", 2 SECONDS)
 					src.force_laydown_standup()
 		else
@@ -2440,6 +2441,38 @@
 	if (src.hasStatus("handcuffed"))
 		src.handcuffs.destroy_handcuffs(src)
 	src.bodytemperature = src.base_body_temp
+	if (src.stat > 1)
+		setalive(src)
+
+/mob/proc/part_heal()
+
+	src.HealDamage("All",max(src.get_brute_damage() - 90, 0),max(src.get_burn_damage() - 90, 0),max(src.get_toxin_damage() - 90, 0) )
+	src.take_oxygen_deprivation(-100)
+	src.drowsyness = 0
+	src.stuttering = 0
+	src.losebreath = 0
+	/*
+	src.delStatus("paralysis")
+	src.delStatus("stunned")
+	src.delStatus("weakened")
+	src.delStatus("slowed")
+	src.delStatus("burning")
+	src.delStatus("radiation")
+	src.delStatus("n_radiation")
+	src.change_eye_blurry(-INFINITY)
+	src.take_eye_damage(-INFINITY)
+	src.take_eye_damage(-INFINITY, 1)
+	src.take_ear_damage(-INFINITY)
+	src.take_ear_damage(-INFINITY, 1)*/
+	src.take_brain_damage(-INFINITY)
+	/*
+	src.health = src.max_health
+	src.buckled = null
+
+	if (src.hasStatus("handcuffed"))
+		src.handcuffs.destroy_handcuffs(src)
+	src.bodytemperature = src.base_body_temp
+	*/
 	if (src.stat > 1)
 		setalive(src)
 
@@ -2853,13 +2886,15 @@
 // no text description though, because it's all different everywhere
 /mob/proc/vomit(var/nutrition=0, var/specialType=null)
 	playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.lastgasp(FALSE,TRUE,"blublublub")
 	if(specialType)
 		if(!locate(specialType) in src.loc)
 			new specialType(src.loc)
 	else
 		if(!locate(custom_vomit_type) in src.loc)
 			make_cleanable(custom_vomit_type,src.loc)
-
 	src.nutrition -= nutrition
 
 /mob/proc/get_hand_pixel_x()
@@ -3241,3 +3276,14 @@
 	. = src?.bioHolder?.mobAppearance?.pronouns
 	if(isnull(.))
 		. = get_singleton(/datum/pronouns/theyThem)
+
+///is mob capable of climbing a ladder
+/mob/proc/can_climb_ladder(silent = FALSE)
+	if (can_act(src, TRUE))
+		return TRUE
+	boutput(src, "<span class=alert>You can't climb a ladder while incapacitated!</span>")
+	return FALSE
+
+//Observers bypass this check anyway, but regardless
+/mob/dead/can_climb_ladder(silent = FALSE)
+	return TRUE

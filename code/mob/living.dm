@@ -2216,9 +2216,6 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (get_dist(src, target) > 0)
 		src.set_dir(get_dir(src, target))
 
-	if (isitem(I))
-		I.dropped(src) // let it know it's been dropped
-
 	//actually throw it!
 	if (I)
 		attack_twitch(src)

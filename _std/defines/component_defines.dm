@@ -75,6 +75,8 @@
 #define COMSIG_UPDATE_ICON "atom_update_icon"
 /// When something enters the contents of this atom (i.e. Entered())
 #define COMSIG_ATOM_ENTERED "atom_entered"
+/// when this atom has clean_forensic called, send this signal.
+#define COMSIG_ATOM_CLEANED "atom_cleaned"
 
 // ---- turf signals ----
 
@@ -125,6 +127,8 @@
 #define COMSIG_ITEM_SPECIAL_POST "itm_special_post"
 /// When items process ticks on an item
 #define COMSIG_ITEM_PROCESS "itm_process"
+/// When an item is twirled
+#define COMSIG_ITEM_TWIRLED "itm_twirled"
 
 // ---- cloaking device signal ----
 /// Make cloaking devices turn off
@@ -298,6 +302,12 @@
 #define COMSIG_TRANSIT_VEHICLE_MOVED "transit_arrives"
 /// vehicle goes off of in_transit and is ready to move again (this one's after those vars get updated)
 #define COMSIG_TRANSIT_VEHICLE_READY "transit_ready"
+
+// ---- ui signals ----
+/// a ui map is fully loaded (client)
+#define COMSIG_UIMAP_LOADED "uimap_loaded"
+/// a ui is visible enough to show a uimap, on client
+#define COMSIG_UI_VISIBLE "ui_visible"
 
 // ---- broadcasting signals ----
 //Uncomment these as you need them

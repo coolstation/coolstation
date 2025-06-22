@@ -4899,7 +4899,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sec";
-	location = "crew";
+	beacon_id = "crew";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -6370,7 +6370,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=medbay";
-	location = "research";
+	beacon_id = "research";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/transport,
@@ -6804,7 +6804,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=depot";
-	location = "eva";
+	beacon_id = "eva";
 	name = "bot navigation beacon"
 	},
 /turf/floor{
@@ -7261,7 +7261,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Pod Bay"
+	beacon_id = "Pod Bay"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -8644,7 +8644,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Catering"
+	beacon_id = "Catering"
 	},
 /obj/disposalpipe/segment/mail,
 /obj/machinery/light_switch{
@@ -10268,7 +10268,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=research";
-	location = "depot";
+	beacon_id = "depot";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/mail{
@@ -13410,7 +13410,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Courtroom"
+	beacon_id = "Courtroom"
 	},
 /turf/floor/bot,
 /area/station/bridge)
@@ -13422,7 +13422,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Research"
+	beacon_id = "Research"
 	},
 /turf/floor/bot,
 /area/station/science/lobby)
@@ -13434,7 +13434,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Security"
+	beacon_id = "Security"
 	},
 /obj/disposalpipe/segment{
 	dir = 8;
@@ -13450,7 +13450,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=crew";
-	location = "pool";
+	beacon_id = "pool";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/mail{
@@ -13466,7 +13466,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=escape";
-	location = "engine";
+	beacon_id = "engine";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -13479,7 +13479,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=eva";
-	location = "court";
+	beacon_id = "court";
 	name = "bot navigation beacon"
 	},
 /obj/machinery/atmospherics/pipe/simple{
@@ -17973,7 +17973,7 @@
 /obj/disposalpipe/segment,
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=court";
-	location = "sec";
+	beacon_id = "sec";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -23741,7 +23741,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=disposals";
-	location = "warehouse";
+	beacon_id = "warehouse";
 	name = "bot navigation beacon"
 	},
 /turf/floor/bot,
@@ -48534,14 +48534,14 @@
 "bNr" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Engineering"
+	beacon_id = "Engineering"
 	},
 /turf/floor/bot,
 /area/station/engine/engineering)
 "bNs" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Crew Quarters"
+	beacon_id = "Crew Quarters"
 	},
 /obj/disposalpipe/segment/mail{
 	dir = 8
@@ -48551,7 +48551,7 @@
 "bNt" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Escape Hallway"
+	beacon_id = "Escape Hallway"
 	},
 /turf/floor/escape/corner{
 	dir = 8
@@ -48560,14 +48560,14 @@
 "bNu" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Market"
+	beacon_id = "Market"
 	},
 /turf/floor/bot,
 /area/station/crew_quarters/market)
 "bNv" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Chapel"
+	beacon_id = "Chapel"
 	},
 /obj/machinery/light_switch{
 	name = "S light switch";
@@ -48578,7 +48578,7 @@
 "bNw" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #1"
+	beacon_id = "QM #1"
 	},
 /obj/machinery/bot/mulebot{
 	home_destination = "QM #1"
@@ -48588,14 +48588,14 @@
 "bNx" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #2"
+	beacon_id = "QM #2"
 	},
 /turf/floor/bot,
 /area/station/quartermaster/office)
 "bNy" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Tool Storage"
+	beacon_id = "Tool Storage"
 	},
 /obj/machinery/light_switch{
 	name = "S light switch";
@@ -48608,14 +48608,14 @@
 "bNz" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
-	location = "Hydroponics"
+	beacon_id = "Hydroponics"
 	},
 /turf/floor/bot,
 /area/station/hydroponics/lobby)
 "bNA" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
-	location = "Medbay"
+	beacon_id = "Medbay"
 	},
 /obj/disposalpipe/segment/morgue{
 	dir = 8
@@ -48627,7 +48627,7 @@
 "bNB" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=bar";
-	location = "chapel";
+	beacon_id = "chapel";
 	name = "bot navigation beacon"
 	},
 /obj/machinery/atmospherics/pipe/simple{
@@ -48640,7 +48640,7 @@
 "bNC" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=cargo";
-	location = "escape";
+	beacon_id = "escape";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -48648,7 +48648,7 @@
 "bND" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=chapel";
-	location = "disposals";
+	beacon_id = "disposals";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/morgue{
@@ -48660,7 +48660,7 @@
 "bNE" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=engine";
-	location = "medbay";
+	beacon_id = "medbay";
 	name = "bot navigation beacon"
 	},
 /turf/floor/white,
@@ -48668,7 +48668,7 @@
 "bNF" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=pool";
-	location = "bar";
+	beacon_id = "bar";
 	name = "bot navigation beacon"
 	},
 /turf/floor/specialroom/bar,
@@ -48676,7 +48676,7 @@
 "bNG" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=warehouse";
-	location = "cargo";
+	beacon_id = "cargo";
 	name = "bot navigation beacon"
 	},
 /obj/machinery/light{

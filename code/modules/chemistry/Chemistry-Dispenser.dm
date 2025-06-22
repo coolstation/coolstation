@@ -471,6 +471,19 @@
 
 	dispense_sound = 'sound/effects/splort.ogg'
 
+/obj/machinery/chem_dispenser/old
+	name = "old alcohol dispenser"
+	desc = "A really old alcohol dispenser... does this thing even work anymore???"
+	dispensable_reagents = list("ethanol","dirtywater","oil","beer")
+
+	icon_state = "alc_dispenser"
+	icon_base = "alc_dispenser"
+	glass_path = /obj/item/reagent_containers/food/drinks
+	glass_name = "pitcher"
+	dispenser_name = "Old"
+
+	dispense_sound = 'sound/misc/pourdrink2.ogg'
+
 // Reagent Groups
 
 /datum/reagent_group_account

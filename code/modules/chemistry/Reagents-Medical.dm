@@ -78,6 +78,7 @@ datum
 			addiction_min = 15
 			overdose = 15
 			depletion_rate = 0.2
+			contraband = 1
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
 
