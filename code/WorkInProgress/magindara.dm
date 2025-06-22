@@ -1,7 +1,7 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 /turf/space/magindara
-	name = "\improper the ocean below"
+	name = "ocean below"
 	desc = "The deep ocean of Magindara far below, whipped with waves and frigid cold."
 	icon = 'icons/turf/water.dmi'
 	icon_state = "magindara_ocean"
