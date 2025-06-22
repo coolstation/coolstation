@@ -312,6 +312,7 @@ var/global
 	signal_loss = 0
 	fart_attack = 0
 	blowout = 0
+	sandstorm = 0
 	farty_party = 0
 	deep_farting = 0
 
@@ -423,10 +424,10 @@ var/global
 	//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
 	//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
 	//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
-	list/airlockWireColorToFlag = RandomAirlockWires()
-	list/airlockIndexToFlag
-	list/airlockIndexToWireColor
-	list/airlockWireColorToIndex
+	list/airlockWireColorToFlag = list()// = RandomAirlockWires()
+	list/airlockIndexToFlag = list()
+	list/airlockIndexToWireColor = list()
+	list/airlockWireColorToIndex = list()
 	list/APCWireColorToFlag = RandomAPCWires()
 	list/APCIndexToFlag
 	list/APCIndexToWireColor
@@ -547,6 +548,8 @@ var/global
 	list/cooldowns
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
+
+	whatcha_see_is_whatcha_get = TRUE
 
 /proc/updateAreaLists()
 	//Admin jump list

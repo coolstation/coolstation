@@ -1224,6 +1224,7 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bhole"
 	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 	examine()
 		return list()
@@ -1233,6 +1234,7 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "plasma-bhole"
 	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 	examine()
 		return list()

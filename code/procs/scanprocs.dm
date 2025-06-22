@@ -206,7 +206,7 @@
 
 	if (M.reagents)
 		if (verbose_reagent_info)
-			reagent_data = scan_reagents(M, 0, 0, 0, 1)
+			reagent_data = scan_reagents(M, show_temp = 0, single_line = 0, visible = 0, medical = 1, show_volume = 0, show_contraband = 0, min_volume = 0)
 		else
 			var/ephe_amt = M.reagents:get_reagent_amount("ephedrine")
 			var/epi_amt = M.reagents:get_reagent_amount("epinephrine")
@@ -368,7 +368,7 @@
 	record_prog.mode = 1
 	pda.attack_self(usr)
 
-/proc/scan_reagents(var/atom/A as turf|obj|mob, var/show_temp = 1, var/single_line = 0, var/visible = 0, var/medical = 0)
+/proc/scan_reagents(var/atom/A as turf|obj|mob, var/show_temp = 1, var/single_line = 0, var/visible = 0, var/medical = 0, var/show_volume = 0, var/show_contraband = 0, var/min_volume = 0)
 	if (!A)
 		return "<span class='alert'>ERROR: NO SUBJECT DETECTED</span>"
 
@@ -391,25 +391,31 @@
 		if (reagents.reagent_list.len > 0)
 			if("cloak_juice" in reagents.reagent_list)
 				var/datum/reagent/cloaker = reagents.reagent_list["cloak_juice"]
-				if(cloaker.volume >= 5)
+				if(cloaker.volume >= 1)
 					data = "<span class='alert'>ERR: SPECTROSCOPIC ANALYSIS OF THIS SUBSTANCE IS NOT POSSIBLE.</span>"
 					return data
 
 			var/reagents_length = length(reagents.reagent_list)
 			data = "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found in [A].</span>"
-
+			var/count
 			for (var/current_id in reagents.reagent_list)
 				var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
+				if(min_volume > current_reagent.volume)
+					continue
 				var/show_OD = (medical && current_reagent.overdose != 0 && current_reagent.volume >= current_reagent.overdose)
+				var/show_contra_alert = (show_contraband && current_reagent.contraband != 0)
 				if (single_line)
-					reagent_data += "<span [show_OD ? "class='alert'" : "class='notice'"]>[current_reagent] ([current_reagent.volume])[show_OD? " - OD!":""]</span>,"
+					reagent_data += "<span [(show_OD || show_contra_alert) ? "class='alert'" : "class='notice'"]>[current_reagent][show_volume ? " ([current_reagent.volume])" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>,"
 				else
-					reagent_data += "<span [show_OD ? "class='alert'" : "class='notice'"]><br>&emsp;[current_reagent.name] - [current_reagent.volume][show_OD? " - OD!":""]</span>"
+					reagent_data += "<span [(show_OD || show_contra_alert) ? "class='alert'" : "class='notice'"]><br>&emsp;[current_reagent.name][show_volume ? " - [current_reagent.volume]" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>"
+				count++
+			if(!count)
+				data = "<span class='alert'>ERR: SPECTROSCOPIC ANALYSIS FAILED DUE TO SAMPLE SIZE.</span>"
+				return data
 			if (single_line)
 				data += "[copytext(reagent_data, 1, -1)]"
 			else
 				data += "[reagent_data]"
-
 			if (show_temp)
 				data += "<br><span class='notice'>Overall temperature: [reagents.total_temperature - T0C]&deg;C ([reagents.total_temperature * 1.8-459.67]&deg;F)</span>"
 		else

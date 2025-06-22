@@ -234,9 +234,11 @@
 		qdel(B)
 	src.hand = !src.hand
 
-/mob/living/carbon/lastgasp(allow_dead=FALSE)
-	..(allow_dead, grunt=pick("NGGH","OOF","UGH","ARGH","BLARGH","BLUH","URK") )
-
+/mob/living/carbon/lastgasp(allow_dead=FALSE,overrideGrunt=FALSE,customGrunt=null)
+	if(!overrideGrunt)
+		..(allow_dead, grunt=pick("NGGH","OOF","UGH","ARGH","BLARGH","BLUH","URK") )
+	else
+		..(allow_dead, grunt=customGrunt)
 
 /mob/living/carbon/full_heal()
 	src.remove_ailments()

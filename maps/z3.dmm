@@ -4882,7 +4882,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/item/gun/modular/NT/short/bartender,
+/obj/item/gun/modular/NT/bartender,
 /turf/floor/industrial,
 /area/space)
 "ane" = (
@@ -4943,7 +4943,7 @@
 /area/space)
 "anl" = (
 /obj/storage/crate/internals,
-/obj/item/gun/modular/NT/long/shotty,
+/obj/item/gun/modular/NT/shotty,
 /turf/floor/industrial,
 /area/space)
 "anm" = (
@@ -4959,7 +4959,7 @@
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 4
 	},
-/obj/item/gun/modular/NT/short/bartender,
+/obj/item/gun/modular/NT/bartender,
 /turf/floor/industrial,
 /area/space)
 "ano" = (
@@ -6820,16 +6820,9 @@
 /area/buddyfactory)
 "asI" = (
 /obj/rack,
-/obj/item/guardbot_core/old,
-/obj/item/guardbot_core/old,
+/obj/item/device/guardbot_tool/flash,
+/obj/item/device/guardbot_tool/flash,
 /turf/floor,
-/area/buddyfactory)
-"asJ" = (
-/obj/machinery/buddyfactory{
-	dir = 1;
-	input_stage = 2
-	},
-/turf/floor/cautionblack,
 /area/buddyfactory)
 "asK" = (
 /obj/machinery/buddyfactory{
@@ -6989,8 +6982,8 @@
 /area/buddyfactory)
 "atg" = (
 /obj/rack,
-/obj/item/device/guardbot_tool/flash,
-/obj/item/device/guardbot_tool/flash,
+/obj/item/guardbot_core/old,
+/obj/item/guardbot_core/old,
 /turf/floor,
 /area/buddyfactory)
 "ath" = (
@@ -7908,6 +7901,11 @@
 	icon_state = "paper";
 	pixel_x = 6;
 	pixel_y = 3
+	},
+/obj/item/paper/tug/diner_arcade_invoice_the_sequel{
+	icon_state = "paper";
+	pixel_x = 12;
+	pixel_y = 6
 	},
 /turf/floor/arrival,
 /area/diner/hallway)
@@ -16320,9 +16318,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/navbeacon{
+	beacon_id = "Control Room";
 	codes_txt = "patrol;next_patrol=Central Junction";
-	freq = 1431;
-	location = "Control Room"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7/control)
@@ -16651,9 +16649,9 @@
 /area/h7/storage)
 "aXO" = (
 /obj/machinery/navbeacon{
+	beacon_id = "Storage";
 	codes_txt = "patrol;next_patrol=Living Quarters";
-	freq = 1431;
-	location = "Storage"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7/storage)
@@ -17773,9 +17771,9 @@
 /area/iss)
 "baV" = (
 /obj/machinery/navbeacon{
+	beacon_id = "Living Quarters";
 	codes_txt = "patrol;next_patrol=Lab Access";
-	freq = 1431;
-	location = "Living Quarters"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7/crew)
@@ -17846,9 +17844,9 @@
 /area/h7)
 "bbb" = (
 /obj/machinery/navbeacon{
+	beacon_id = "Central Junction";
 	codes_txt = "patrol;next_patrol=Storage";
-	freq = 1431;
-	location = "Central Junction"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7)
@@ -19082,9 +19080,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/navbeacon{
+	beacon_id = "Lab Access";
 	codes_txt = "patrol;next_patrol=Control Room";
-	freq = 1431;
-	location = "Lab Access"
+	freq = 1431
 	},
 /turf/floor,
 /area/h7)
@@ -23655,11 +23653,11 @@
 /obj/landmark/club_juice_dj,
 /obj/indestructible/invisible_block,
 /obj/decal/fakeobjects{
+	anchored = 1;
 	desc = "Seriously, this isn't Flexx. Quit bothering the DJ.";
 	icon = 'icons/mob/64.dmi';
 	icon_state = "djnotflexx";
-	name = "DJ Not Flexx";
-	anchored = 1
+	name = "DJ Not Flexx"
 	},
 /turf/floor/black,
 /area/juicer/club)
@@ -24955,7 +24953,7 @@
 /area/diner/dining)
 "pKr" = (
 /obj/decal/cleanable/dirt,
-/obj/item/gun/modular/NT/short/bartender,
+/obj/item/gun/modular/NT/bartender,
 /turf/floor/carpet/grime,
 /area/diner/motel)
 "pKR" = (
@@ -31702,7 +31700,7 @@ ajC
 aqC
 aqC
 asq
-asJ
+asK
 ate
 atE
 ath

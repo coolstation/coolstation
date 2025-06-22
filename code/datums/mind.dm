@@ -45,6 +45,7 @@ datum/mind
 	// The relevant code snippets call a ckey -> mob reference lookup proc where necessary,
 	// namely whois_ckey_to_mob_reference(mob.mind.master) (Convair880).
 	var/master = null
+	var/alreadyNudged = FALSE
 
 	var/dnr = 0
 	var/joined_observer = 0 //keep track of whether this player joined round as an observer (blocks them from bank payouts)

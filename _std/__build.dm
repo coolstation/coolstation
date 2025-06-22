@@ -69,6 +69,8 @@ o+`        `-` ``..-:yooos-..----------..`
 // Probably hefty
 //#define QUEUE_STAT_DEBUG
 
+// #define SKIP_EVENT_WARN //skips event warn period so you can just instantly test a random event
+
 // Makes the code crash / log when an abstract type is instantiated.
 // see _stadlib/_types.dm for details
 // #define ABSTRACT_VIOLATION_CRASH
@@ -90,7 +92,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //////////// MAP OVERRIDES
 
 //---------------------- Maps that are being maintained ------------------------------//
-//#define MAP_OVERRIDE_BAYOUBEND 		//low to midpop scrapping map by Klushy225
+//#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2

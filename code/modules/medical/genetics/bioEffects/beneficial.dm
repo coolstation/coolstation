@@ -680,3 +680,31 @@ var/list/radio_brains = list()
 	OnRemove()
 		REMOVE_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src)
 		. = ..()
+
+//return of space farting (okay, it was back as a food thing already, but)
+/datum/bioEffect/space_farts
+	name = "High Efficiency Thrust Buttocks"
+	desc = "Reshapes the subject's butt in a manner that coincidentally allows their flatulence to produce a small amount of thrust."
+	id = "space_farts"
+	effectType = EFFECT_TYPE_POWER
+	probability = 66
+	msgGain = "Your butt feels...sculpted. Just not in the usual sense."
+	msgLose = "Your butt stops feeling so special to you."
+
+	blockCount = 3
+	blockGaps = 3
+	lockProb = 40
+	lockedGaps = 1
+	lockedDiff = 4
+	lockedChars = list("A","T")
+	lockedTries = 6
+	var/active = 0
+	stability_loss = 15
+	icon_state  = "haze"
+
+	OnLife(var/mult)
+		APPLY_MOB_PROPERTY(src.owner, PROP_SPACEFARTS, src)
+
+	OnRemove()
+		REMOVE_MOB_PROPERTY(src.owner, PROP_SPACEFARTS, src)
+		. = ..()

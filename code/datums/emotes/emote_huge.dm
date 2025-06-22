@@ -133,7 +133,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							if (H.sims)
 								H.sims.affectMotive("fun", 4)
 						//break deliberately omitted
-
+			var/accident = FALSE
 			if (!fart_on_other)
 				switch(rand(1, 42))
 					if (1) message = "<B>[user]</B> lets out a little 'toot' from [his_or_her(user)] butt."
@@ -166,6 +166,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						message = "<B>[user]</B> sharts! That's just nasty."
 						if(user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))
 							user.poop()
+							accident = TRUE
 					if (28) message = "<B>[user]</B> farts delicately."
 					if (29) message = "<B>[user]</B> farts timidly."
 					if (30) message = "<B>[user]</B> farts very, very quietly. The stench is OVERPOWERING."
@@ -233,12 +234,16 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						fireflash_s(T,0,user.reagents.composite_combust_temp)
 
 				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
-					if ((firepower > 2 && firepower < 10) || user.getStatusDuration("food_space_farts"))
-						user.inertia_dir = user.dir
-						step(user, user.inertia_dir)
-						SPAWN_DBG(1 DECI SECOND)
+					if (accident)
+						if (HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)
+					else
+						if ((firepower > 2 && firepower < 10) || HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
 							user.inertia_dir = user.dir
-							step(user, user.inertia_dir)
+							//step(user, user.inertia_dir) <- seemed kinda unnecessary, you moved forward 2 tiles from one fart? - Bat
+							SPAWN_DBG(1 DECI SECOND)
+								user.inertia_dir = user.dir
+								step(user, user.inertia_dir)
 				else if(!firepower)
 					if(prob(10) && istype(user.loc, /turf/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
 						message = "<b>[user]</B> farts. The fart freezes in MID-AIR!!!"

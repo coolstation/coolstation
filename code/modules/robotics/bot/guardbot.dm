@@ -4092,8 +4092,9 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/pen))
 			if (created_name != initial(created_name))
-				boutput(user, "<span class='alert'>This robot has already been named!</span>")
-				return
+				if (alert(user, "This robot has already been named! Rename?", "ALERT", "Yes", "No") == "No")
+					return
+				remove_suffixes(1)
 
 			var/t = input(user, "Enter new robot name", src.name, src.created_name) as text
 			if(t && t != src.name && t != src.created_name)
@@ -4105,6 +4106,8 @@
 				return
 
 			src.created_name = t
+			src.name_suffix("- \"[src.created_name]\"")
+			src.UpdateName()
 		else
 			..()
 
@@ -4133,7 +4136,7 @@
 		return
 
 
-	//Frame -> Add cell -> Add core -> Add arm -> Done. Then add tool. Or gun.
+	//Frame -> Add cell -> Add core -> (Add tool) -> Add arm -> Done. (Then add tool. Or gun.)
 	attackby(obj/item/W as obj, mob/user as mob)
 		if ((istype(W, /obj/item/guardbot_core)))
 			if(W:buddy_model != src.buddy_model)
@@ -4146,6 +4149,8 @@
 			src.icon_state = "robuddy_frame-[buddy_model]-3"
 			if(W:created_name)
 				src.created_name = W:created_name
+				src.name_suffix("- \"[src.created_name]\"")
+				src.UpdateName()
 			if(W:created_default_task)
 				src.created_default_task = W:created_default_task
 			if(W:created_model_task)
@@ -4161,6 +4166,13 @@
 			src.stage = 2
 			src.icon_state = "robuddy_frame-[buddy_model]-2"
 			boutput(user, "You add the power cell to [src]!")
+
+		//Bringing this back to buddy building, but it's optional
+		else if((istype(W, /obj/item/device/guardbot_tool)) && stage == 3 && !created_module)
+			user.drop_item()
+			W.set_loc(src)
+			src.created_module = W
+			boutput(user, "You add the [W.name] to [src]!")
 
 
 		else if (istype(W, /obj/item/parts/robot_parts/arm/) && src.stage == 3)
@@ -4179,11 +4191,16 @@
 				newbot.setup_default_startup_task = src.created_default_task
 
 			// Everyone gets a new gunt
-			newbot.tool = new /obj/item/device/guardbot_tool/gun
-			newbot.tool.set_loc(newbot)
-			newbot.tool.master = newbot
-
-			newbot.locked = 0
+			if(src.created_module)
+				newbot.tool = src.created_module
+				newbot.tool.set_loc(newbot)
+				newbot.tool.master = newbot
+				newbot.locked = TRUE
+			else
+				newbot.tool = new /obj/item/device/guardbot_tool/gun
+				newbot.tool.set_loc(newbot)
+				newbot.tool.master = newbot
+				newbot.locked = FALSE
 
 			if(src.created_model_task)
 				newbot.model_task = src.created_model_task
@@ -4192,6 +4209,25 @@
 
 			qdel(src)
 			return
+
+		else if (istype(W, /obj/item/pen) && src.stage == 3)
+			if (created_name != initial(created_name))//copied cause the main board gets deleted on insertion
+				if (alert(user, "This robot has already been named! Rename?", "ALERT", "Yes", "No") == "No")
+					return
+				remove_suffixes(1)
+
+			var/t = input(user, "Enter new robot name", src.name, src.created_name) as text
+			if(t && t != src.name && t != src.created_name)
+				phrase_log.log_phrase("bot-guard", t)
+			t = copytext(html_encode(t), 1, MAX_MESSAGE_LEN)
+			if (!t)
+				return
+			if (!in_interact_range(src, user) && src.loc != user)
+				return
+
+			src.created_name = t
+			src.name_suffix("- \"[src.created_name]\"")
+			src.UpdateName()
 
 		else
 			spawn(0)

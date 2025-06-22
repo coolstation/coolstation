@@ -99,6 +99,20 @@
 
 	return ((dx*dx) + (dy*dy))
 
+#define WYSIWYG_SPECIAL_SCALE 1 // at 0, this means you can be hit by a special through your entire movement. at 1, 50%, at 2, 33%, and so on. Raise if specials feel too good across the board
+/// Finds every mob that is currently moving away from a turf, but has not reached the end of their movement.
+/proc/atoms_in_combat_range(var/turf/target)
+	var/list/atom/atoms = list()
+	for(var/atom/A in target)
+		atoms += A
+	if(whatcha_see_is_whatcha_get)
+		for(var/mob/dude in range(1,target))
+			if (dude.next_move > ((world.time + dude.next_move * WYSIWYG_SPECIAL_SCALE) / (1 + WYSIWYG_SPECIAL_SCALE) ) && dude.prev_loc == target)
+				atoms |= dude
+
+	return atoms
+#undef WYSIWYG_SPECIAL_SCALE
+
 //Handles setup for specials and adds / removes them from items.
 /obj/item/proc/setItemSpecial(var/type = null)
 	if(!ispath(type))
@@ -162,16 +176,12 @@
 	var/last_use = 0				//Last world.time this was used.
 
 	var/cooldown = 20			//Cooldown time of attack
-	var/staminaCost = 15		//Stamina cost of attack
 	var/moveDelay = 10		//Slow movement by this much after attack
 	var/moveDelayDuration = 10 //Slow for this long (in BYOND time)
 	var/restrainDuration = 0 //time in 1/10th seconds during which we are held in place following an attack
 
 	var/overrideCrit = 0 //Temporarily switch item to this crit chance during attacks. (if not -1/negative)
 	var/overrideStaminaDamage = -1 //Temporarily set item stamina damage to this during attacks (if not -1/negative)
-
-	var/requiresStaminaToFire = 0 //If true, the user will need to meet a certain stamina requirement to begin the attack.
-	var/staminaReqAmt = 15 	//Amount of stamina needed to fire. default to stamina cost
 
 	var/image = "whirlwind"
 	var/name = "Whirlwind"
@@ -193,7 +203,7 @@
 		return
 
 	proc/getDesc()
-		var/infoStr = "[staminaCost ? "[staminaCost] stam, ":""][round(cooldown/10, 0.1)]s CD<br>"
+		var/infoStr = "[round(cooldown/10, 0.1)]s CD<br>"
 		return infoStr + desc
 
 	proc/onMouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
@@ -229,10 +239,6 @@
 	proc/usable(var/mob/user)
 		if (!user) user = usr
 
-		if(istype(user, /mob/living/carbon/human) && src.requiresStaminaToFire)
-			var/mob/living/carbon/human/H = user
-			if(H.stamina < staminaReqAmt) return 0
-
 		if(world.time < (last_use + cooldown))
 			return 0
 
@@ -252,14 +258,6 @@
 	//MBC : Removed Damage/Stamina modifications from preUse() and afterUse() and moved their to item.attack() to avoid race condition
 	proc/preUse(var/mob/person)
 		SHOULD_CALL_PARENT(1)
-		if(isliving(person))
-			var/mob/living/H = person
-
-			if(STAMINA_NO_ATTACK_CAP && H.stamina > STAMINA_MIN_ATTACK)
-				var/cost = staminaCost
-				cost = min(cost,H.stamina - STAMINA_MIN_ATTACK)
-				H.remove_stamina(cost)
-
 		if(moveDelayDuration && moveDelay)
 			SPAWN_DBG(0)
 				person.movement_delay_modifier += moveDelay
@@ -277,28 +275,25 @@
 		if(restrainDuration)
 			person.restrain_time = TIME + restrainDuration
 
+	//For using the result of the attack to determine fancy behavior
+	proc/modify_attack_result(var/mob/user, var/mob/target, var/datum/attackResults/msgs)
+		return msgs
+
 	rush
-		cooldown = 100
-		staminaCost = 25
+		cooldown = 20
 		image = "rush"
 		name = "Rush"
-		desc = "Hold to charge, release to rush."
-		var/maxRange = 17
+		desc = "Click once to charge, click again to rush."
+		var/maxRange = 15
+		var/move_delay = 0.1 SECONDS
+		var/starting_progress = 0
 		damageMult = 2
 
 		var/datum/action/bar/private/icon/rush/action = null
 
-		onMouseDown(atom/target,location,control,params)
-			if(!isturf(target.loc) && !isturf(target)) return
-			if(!usable()) return
-			var/list/parameters = params2list(params)
-			if(parameters["left"] && master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
-				action = new(src, usr, target)
-				action.params = params
-				actions.start(action, usr)
-			return
-
 		onMouseUp(atom/target,location,control,params)
+			if(!target)
+				return
 			var/list/parameters = params2list(params)
 			if(parameters["left"])
 				if(action)
@@ -306,94 +301,115 @@
 						action.target = target
 					action.params = params
 					action.state = ACTIONSTATE_FINISH
+				else
+					if(!isturf(target.loc) && !isturf(target)) return
+					if(!usable()) return
+					if(master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+						action = new(src, usr, target)
+						action.params = params
+						actions.start(action, usr)
 			return
 
-		proc/rush(atom/movable/user, atom/target, progress, params)
+		proc/rush(mob/user, atom/target, progress, params)
 			preUse(user)
+			user.pass_through_mobs = TRUE
 			action = null
 			src.cooldown = round(max(10, initial(src.cooldown) * progress))
 
-			var/atom/lastTurf = null
-			var/direction = get_dir_pixel(user, target, params)
-			var/list/attacked = list()
-			var/blurX = 0
-			var/blurY = 0
+			var/turf/lastTurf = get_turf(user)
 
-			user.set_dir(direction)
+			SPAWN_DBG(0)
+				for(var/i=0, i < max(1,round(maxRange * progress)), i++)
 
-			switch(direction)
-				if(NORTH)
-					blurY = 16
-				if(SOUTH)
-					blurY = -16
-				if(EAST)
-					blurX = 16
-				if(WEST)
-					blurX = -16
-				if(NORTHEAST)
-					blurX = 16
-					blurY = 16
-				if(SOUTHEAST)
-					blurY = -16
-					blurX = 16
-				if(SOUTHWEST)
-					blurY = -16
-					blurX = -16
-				if(NORTHWEST)
-					blurY = 16
-					blurX = -16
+					var/direction = get_dir_pixel(user, target, params)
+					var/list/attacked = list()
+					var/blurX = 0
+					var/blurY = 0
 
-			for(var/i=0, i < max(1,round(maxRange * progress)), i++)
-				if(lastTurf)
-					lastTurf = get_step(lastTurf, direction)
-				else
-					lastTurf = get_turf(user)
+					switch(direction)
+						if(NORTH)
+							blurY = 10
+						if(SOUTH)
+							blurY = -10
+						if(EAST)
+							blurX = 10
+						if(WEST)
+							blurX = -10
+						if(NORTHEAST)
+							blurX = 10
+							blurY = 10
+						if(SOUTHEAST)
+							blurY = -10
+							blurX = 10
+						if(SOUTHWEST)
+							blurY = -10
+							blurX = -10
+						if(NORTHWEST)
+							blurY = 10
+							blurX = -10
 
-				var/cancel = 0
-				for(var/atom/A in lastTurf)
-					if(A.density && !isTarget(A))
-						cancel = 1
+					sleep(move_delay)
+
+					step(user, direction)
+					user.set_dir(direction)
+					src.onStep(user)
+					var/newTurf = get_turf(user)
+
+					if(newTurf == lastTurf)
 						break
-				if(cancel) //Doing it like this because breaking the outer loop with a label just fails.
-					break
 
-				if(lastTurf.density)
-					break
+					lastTurf = newTurf
 
-				user.set_loc(lastTurf)
-				user.set_dir(direction)
-				var/obj/itemspecialeffect/bluefade/E = new()
-				E.setup(user.loc)
-				E.filters = filter(type="motion_blur", x=blurX, y=blurY)
+					var/obj/itemspecialeffect/glitter/E = new()
+					E.setup(user.loc)
+					E.filters = filter(type="motion_blur", x=blurX, y=blurY)
 
-				animate(E, alpha=255,time=0,loop=0)
-				animate(alpha=0,pixel_x=((blurX*(-1))*3),pixel_y=((blurY*(-1))*3), time=(15+(i*3)),loop=0)
+					animate(E, alpha=255,time=0,loop=0)
+					animate(alpha=0,pixel_x=((blurX*(-1))*3),pixel_y=((blurY*(-1))*3), time=(15+(i*3)),loop=0)
 
-				var/hit = 0
-				for(var/atom/A in lastTurf)
-					if(A in attacked) continue
-					if(isTarget(A, user) && A != user)
-						A.Attackby(master, user, params, 1)
-						attacked += A
-						hit = 1
+					var/hit = 0
+					for(var/atom/A in atoms_in_combat_range(lastTurf))
+						if(A in attacked) continue
+						if(isTarget(A, user) && A != user)
+							A.Attackby(master, user, params, 1)
+							attacked += A
+							hit = 1
+							src.onHit(A, user)
 
-				if(hit)
-					if(prob(1))
-						var/obj/itemspecialeffect/zantetsuken/Z = new()
-						Z.setup(user.loc)
-					else
+					if(hit)
 						var/obj/itemspecialeffect/rushhit/R = new()
 						R.setup(user.loc)
 
-				sleep(0.2)
+					if(newTurf == get_turf(target))
+						break
 
+
+				if(user)
+					user.pass_through_mobs = FALSE
 			afterUse(user)
-			playsound(master, 'sound/impact_sounds/Rush_Slash.ogg', 50, 0)
+			playsound(master, 'sound/effects/sprint_puff.ogg', 60, 0)
 			return
+
+		proc/onHit(atom/target, mob/user)
+			return
+
+		proc/onStep(mob/user)
+			return
+
+		basketball
+			maxRange = 8
+			move_delay = 0.3 SECONDS
+			starting_progress = 0.6
+			name = "Ball On 'Em"
+			desc = "Click once to shuffle, click again to ball on the competition."
+
+			onHit(atom/target, mob/user)
+				..()
+				animate(user, time = 0.1 SECONDS, pixel_y = user.pixel_y + 22)
+				animate(time = 0.2 SECONDS, pixel_y = user.pixel_y - 22)
 
 	throwing
 		cooldown = 10
-		staminaCost = 5
 		moveDelay = 0
 		moveDelayDuration = 0
 		overrideCrit = -1
@@ -418,7 +434,6 @@
 
 	simple
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 0//5
 		moveDelayDuration = 0//4
 		damageMult = 1
@@ -426,6 +441,8 @@
 		image = "simple"
 		name = "Attack"
 		desc = "Attack in direction. No crits."
+		var/directional = FALSE
+		var/obj/itemspecialeffect/specialEffect = /obj/itemspecialeffect/simple
 
 		onAdd()
 			if(master)
@@ -440,13 +457,15 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
-				var/obj/itemspecialeffect/simple/S = new()
+				var/obj/itemspecialeffect/simple/S = new specialEffect
 				if(src.animation_color)
 					S.color = src.animation_color
+				if(directional)
+					S.set_dir(direction)
 				S.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -461,20 +480,62 @@
 		kendo_light
 			name = "Light Attack"
 			desc = "A weak, but fast and economic attack."
-			staminaCost = 5
 			animation_color = "#a3774d"
 
 		kendo_heavy
 			name = "Heavy Attack"
 			desc = "A powerful, but slow and draining attack."
-			staminaCost = 35
 			moveDelay = 5
 			moveDelayDuration = 5
 			animation_color = "#a3774d"
 
+	jab
+		cooldown = 2 SECONDS
+		moveDelay = 5
+		moveDelayDuration = 4
+		damageMult = 0.75
+		overrideCrit = 0 // no crits, prevent insane bleeds
+
+		image = "jab"
+		name = "Jab"
+		desc = "Quickly jab in a direction. Lowers cooldown massively on a successful hit."
+
+		//cooldown on successful hit
+		//with a 75% damage mult this is ~1.9x bonus, but will be massively bumped down by even a little bit of armor
+		var/success_cooldown = 4 DECI SECONDS
+
+		onAdd()
+			if(master)
+				overrideStaminaDamage = master.stamina_damage * 0.4
+			return
+
+		pixelaction(atom/target, params, mob/user, reach)
+			if(!isturf(target.loc) && !isturf(target)) return
+			if(!usable(user)) return
+			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+				preUse(user)
+				var/direction = get_dir_pixel(user, target, params)
+				var/turf/turf = get_step(master, direction)
+
+				var/obj/itemspecialeffect/jab/effect = new /obj/itemspecialeffect/jab
+				effect.set_dir(direction)
+				effect.setup(turf)
+
+				var/hit = FALSE
+				for(var/atom/A in turf)
+					if(isTarget(A))
+						A.Attackby(master, user, params, 1)
+						hit = TRUE
+						last_use = world.time - (cooldown - success_cooldown)
+						break
+				afterUse(user)
+				if (!hit)
+					playsound(master, 'sound/effects/swoosh.ogg', 50, FALSE)
+			return
+
+
 	rangestab
 		cooldown = 0 //10
-		staminaCost = 5
 		moveDelay = 5
 		moveDelayDuration = 5
 
@@ -518,7 +579,6 @@
 		kendo_thrust
 			name = "Thrust"
 			desc = "A powerful ranged stab."
-			staminaCost = 8
 			damageMult = 1
 			animation_color = "#a3774d"
 
@@ -526,7 +586,6 @@
 				return
 	swipe
 		cooldown = 0 //30
-		staminaCost = 5
 		moveDelay = 5
 		moveDelayDuration = 5
 
@@ -649,7 +708,6 @@
 			name = "Sweep"
 			desc = "An AoE attack with a chance to disarm."
 			//cooldown = 0 //30
-			staminaCost = 15
 			swipe_color = "#a3774d"
 			damageMult = 0.8
 
@@ -658,12 +716,20 @@
 					overrideStaminaDamage = master.stamina_damage * 0.8
 				return
 
+		baseball
+			name = "Baseball Swing"
+			desc = "An AoE attack with a chance for a home run."
+
+			modify_attack_result(mob/user, mob/target, datum/attackResults/msgs)
+				if (msgs.damage > 0 && prob(master.stamina_crit_chance))
+					var/turf/target_turf = get_edge_target_turf(target, get_dir(user, target))
+					target.throw_at(target_turf, 4, 1, throw_type = THROW_BASEBALL)
+					msgs.played_sound = 'sound/impact_sounds/bat_wood_crit.ogg'
+				return msgs
+
 	launch_projectile
 		cooldown = 3 SECONDS
-		staminaCost = 30
 		moveDelay = 0
-		requiresStaminaToFire = TRUE
-		staminaReqAmt = 30
 		/// projectile datum containing data for projectile objects
 		var/datum/projectile/projectile = null
 		/// type path of the special effect
@@ -711,8 +777,7 @@
 
 	slam
 		cooldown = 50
-		staminaCost = 30
-		moveDelay = 10
+		moveDelay = 15
 		moveDelayDuration = 20
 		restrainDuration = 1
 		damageMult = 0.22
@@ -724,7 +789,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 2 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.7
 			return
 
@@ -832,14 +896,13 @@
 
 	whirlwind
 		cooldown = 20
-		staminaCost = 15
-		restrainDuration = 1
+		restrainDuration = 5
 		image = "whirlwind"
 		name = "Whirlwind"
 		desc = "Hit all enemies around you."
 
 		onMouseUp(atom/target,location,control,params)
-			if(!isturf(target.loc) && !isturf(target)) return
+			if(!target || (!isturf(target.loc) && !isturf(target))) return
 			if(!usable()) return
 			var/list/parameters = params2list(params)
 			if(parameters["left"] && master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
@@ -864,7 +927,6 @@
 
 	disarm
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 0
 		moveDelayDuration = 0
 
@@ -898,7 +960,7 @@
 				C.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackhand(user,params)
 						hit = 1
@@ -912,7 +974,6 @@
 
 	harm
 		cooldown = 0
-		staminaCost = 0//todo: adjust?
 		moveDelay = 0
 		moveDelayDuration = 0
 
@@ -946,7 +1007,7 @@
 				C.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackhand(user,params)
 						hit = 1
@@ -1092,7 +1153,6 @@
 
 	double
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 5
 		moveDelayDuration = 5
 		damageMult = 0.80
@@ -1105,7 +1165,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 1.6 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.5
 			return
 
@@ -1121,7 +1180,7 @@
 				S.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -1136,7 +1195,7 @@
 					SS.setup(turf)
 
 					hit = 0
-					for(var/atom/A in turf)
+					for(var/atom/A in atoms_in_combat_range(turf))
 						if(isTarget(A))
 							A.Attackby(master, user, params, 1)
 							hit = 1
@@ -1150,11 +1209,10 @@
 
 	barrier
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 7
 		moveDelayDuration = 6
 		damageMult = 1
-		restrainDuration = 3
+		restrainDuration = 10
 
 		image = "barrier"
 		name = "Energy Barrier"
@@ -1162,7 +1220,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 0.1 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.8
 			return
 
@@ -1194,7 +1251,7 @@
 							L.move_laying = list(B)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -1226,7 +1283,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 0.4 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.8
 			return
 
@@ -1306,7 +1362,6 @@
 
 		onAdd()
 			if(master)
-				staminaCost = master.stamina_cost * 0.4 //Inherits from the item.
 				overrideStaminaDamage = master.stamina_damage * 0.8
 			return
 
@@ -1421,12 +1476,9 @@
 			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, 0.1, 2.8)
 
 	katana_dash
-		cooldown = 9
+		cooldown = 30
 		moveDelay = 0
 		moveDelayDuration = 0
-		staminaCost = 30		//Stamina cost of attack
-		requiresStaminaToFire = 1
-		staminaReqAmt = 80
 
 		image = "rush"
 		name = "Katana Dash"
@@ -1532,7 +1584,6 @@
 			return
 
 	katana_dash/reverse
-		staminaCost = 10
 		reversed = 1
 
 		on_hit(var/mob/hit)
@@ -1545,9 +1596,6 @@
 		cooldown = 0
 		moveDelay = 0
 		moveDelayDuration = 0
-		staminaCost = 30		//Stamina cost of attack
-		requiresStaminaToFire = 1
-		staminaReqAmt = 0
 
 		image = "rush"
 		name = "Dash"
@@ -1659,11 +1707,10 @@
 
 	nunchucks
 		cooldown = 30
-		staminaCost = 40
 		moveDelay = 5
 		moveDelayDuration = 5
 
-		damageMult = 0.8
+		damageMult = 0.75
 
 		image = "dagger"
 		name = "double hit"
@@ -1720,7 +1767,6 @@
 
 	tile_fling
 		cooldown = 0
-		staminaCost = 0
 		moveDelay = 0
 		moveDelayDuration = 0
 		damageMult = 1
@@ -1746,7 +1792,7 @@
 				S.setup(turf)
 
 				var/hit = 0
-				for(var/atom/A in turf)
+				for(var/atom/A in atoms_in_combat_range(turf))
 					if(isTarget(A))
 						A.Attackby(master, user, params, 1)
 						hit = 1
@@ -1769,6 +1815,346 @@
 				if (!hit)
 					playsound(master, 'sound/effects/swoosh.ogg', 50, 0)
 			return
+
+
+/datum/item_special/graffiti
+	cooldown = 3 SECONDS
+	moveDelay = 5
+	moveDelayDuration = 5
+
+	damageMult = 1
+
+	image = "swipe"
+	name = "Spray Burst"
+	desc = "Use a burst of spray paint to harmlessly blind, deface & disorient an opponent."
+	var/spray_color
+	/// If true, the swipe will ignite stuff in it's reach.
+	var/ignition = FALSE
+	var/flipped = FALSE
+
+	afterUse(mob/user)
+		..()
+		if(istype(master, /obj/item/spray_paint))
+			var/obj/item/spray_paint/spraycan = master
+			spraycan.charges--
+			if (spraycan.charges <= 0)
+				boutput(user, SPAN_ALERT("The graffiti can's empty!"))
+				playsound(user.loc, "sound/items/can_crush-[rand(1,3)].ogg", 50, 1)
+				spraycan.icon_state = "spraycan_crushed"
+				spraycan.setItemSpecial(/datum/item_special/simple)
+				spraycan.tooltip_rebuild = 1
+			spraycan.update_icon()
+
+	pixelaction(atom/target, list/params, mob/user, reach)
+		if(!isturf(target.loc) && !isturf(target)) return
+		if(!usable(user)) return
+		if(!params["left"] || !master || !get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			return
+		preUse(user)
+		var/direction = get_dir_pixel(user, target, params)
+		if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
+			direction = (prob(50) ? turn(direction, 45) : turn(direction, -45))
+
+		var/list/attacked = list()
+
+		var/turf/one = get_step(master, direction)
+		var/turf/effect = get_step(one, direction)
+		var/turf/two = get_step(one, turn(direction, 90))
+		var/turf/three = get_step(one, turn(direction, -90))
+		var/obj/itemspecialeffect/graffiti
+		if (flipped)
+			graffiti = new /obj/itemspecialeffect/graffiti_flipped
+		else
+			graffiti = new /obj/itemspecialeffect/graffiti
+		flipped = !flipped
+		graffiti.color = pick("#FF0000","#FF9A00","#FFFF00","#00FF78","#00FFFF","#0081DF","#CC00FF","#FFCCFF","#EBE6EB")
+
+		graffiti.setup(effect)
+		graffiti.set_dir(direction)
+
+		if(isopenflametool(user.l_hand) || isopenflametool(user.r_hand))
+			ignition = TRUE
+
+		for(var/turf/T in list(one, two, three))
+			for(var/atom/movable/A in T)
+				if(ignition)
+					T.hotspot_expose(1200,50)
+				if(A in attacked) continue
+				if(!isliving(A)) continue
+				var/mob/living/loser = A
+				if(ignition)
+					loser.changeStatus("burning", 10 SECONDS)
+				var/tag_int = pick(1,2,3)
+				var/image/tag = image('icons/effects/effects.dmi',"graffiti_mask_[tag_int]")
+				tag.pixel_y = rand(-1,5)
+				if (ismonkey(A))
+					tag.pixel_y = tag.pixel_y - 6
+				if (loser.bioHolder.HasEffect("dwarf"))
+					tag.pixel_y = tag.pixel_y - 4
+				tag.blend_mode = BLEND_INSET_OVERLAY
+				tag.alpha = 200
+				tag.color = graffiti.color
+				tag.appearance_flags = KEEP_TOGETHER
+				A.setStatus("graffiti_blind", 5 SECONDS)
+				var/datum/statusEffect/graffiti/status = A.hasStatus("graffiti_blind")
+				A.UpdateOverlays(tag,"graffitisplat[length(status.tag_images)+1]")
+				status.tag_images += tag
+
+				loser.visible_message(SPAN_COMBAT("[user] sprays paint into [loser]'s face!"),SPAN_COMBAT("[user] sprays paint in your face!"))
+				logTheThing("combat", user, loser, "attacks [constructTarget(loser,"combat")] with [master] ([master.type], object name: [initial(master.name)]) at [log_loc(user)].")
+				loser.was_harmed(user, master, TRUE)
+
+				hit_twitch(A)
+				if (ishuman(A) && prob(40))
+					var/mob/living/carbon/human/victim = A
+					victim.emote("cough")
+				attacked += A
+
+		afterUse(user)
+		playsound(master, 'sound/items/graffitispray3.ogg', 50, TRUE)
+
+/datum/item_special/simple/bloodystab
+	cooldown = 0
+	moveDelay = 5
+	moveDelayDuration = 5
+
+	image = "stab"
+	name = "Stab"
+	desc = "Aim for the throat for bloody crits."
+	directional = TRUE
+	specialEffect = /obj/itemspecialeffect/dagger
+
+	var/stab_color = "#FFFFFF"
+
+	modify_attack_result(mob/user, mob/target, datum/attackResults/msgs) //bleed on crit!
+		if (msgs.damage > 0 && msgs.stamina_crit)
+			msgs.bleed_always = TRUE
+			// bleed people wearing armor less
+			msgs.bleed_bonus = 10 + round(20 * clamp(msgs.damage / master.force, 0, 1))
+			msgs.played_sound= 'sound/impact_sounds/Flesh_Stab_1.ogg'
+			blood_slash(target,1,null, turn(user.dir,180), 3)
+		return msgs
+
+/datum/item_special/heavy_swing
+	cooldown = 55 // slightly slower than the time to get up from a wallstun
+	moveDelay = 10
+	moveDelayDuration = 20
+	restrainDuration = 15
+
+	var/damageMultHit = 0.75
+	var/damageMultShove = 0.2
+
+	image = "heavyswing"
+	name = "Heavy swing"
+	desc = "Step forward and do a wide swing. Interrupted if you step into something."
+
+	pixelaction(atom/target, params, mob/user, reach)
+		if(!isturf(target.loc) && !isturf(target)) return
+		if(!usable(user)) return
+		var/direction = get_dir_pixel(user, target, params)
+		var/list/attacked = list()
+
+		if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
+			direction = (prob(50) ? turn(direction, 45) : turn(direction, -45))
+		var/turf/T2 = null
+		user.next_move = world.time + 6 DECI SECONDS
+		T2 = get_step(master, direction)
+		for(var/atom/A in T2)
+			if(isTarget(A) && ismob(A))
+				var/mob/M = A
+				M.throw_at(get_edge_cheap(T2, direction), 3, 20)
+				var/obj/itemspecialeffect/heavybump/bumpeffect = new /obj/itemspecialeffect/heavybump
+				bumpeffect.set_dir(direction)
+				bumpeffect.setup(T2)
+				damageMult = damageMultShove
+				M.Attackby(master, user, params, 1)
+				playsound(master,"sound/impact_sounds/metal_thump.ogg", 50, FALSE)
+				return
+		if (!step(user, direction)) return
+
+		var/obj/itemspecialeffect/heavystep/stepeffect = new /obj/itemspecialeffect/heavystep
+		stepeffect.set_dir(direction)
+		stepeffect.setup(T2)
+		playsound(master,"sound/misc/step/step_heavyboots_[pick(1,2,3)].ogg", 50, FALSE)
+
+		SPAWN_DBG(3 DECI SECONDS)
+			var/turf/one = get_step(T2, turn(direction, 90))
+			var/turf/three = get_step(T2, direction) // front middle tile
+			var/turf/two = get_step(three, turn(direction, 90))
+			var/turf/four = get_step(three, turn(direction, -90))
+			var/turf/five = get_step(T2, turn(direction, -90))
+			damageMult = damageMultHit
+
+			var/obj/itemspecialeffect/wide_swipe/swipe = new /obj/itemspecialeffect/wide_swipe
+			swipe.set_dir(direction)
+			swipe.setup(T2)
+
+			var/hit = 0
+			for(var/turf/T in list(five,four))
+				for(var/atom/A in T)
+					if(A in attacked) continue
+					if(isTarget(A))
+						A.Attackby(master, user, params, 1)
+						attacked += A
+						hit = 1
+			SPAWN_DBG(1 DECI SECONDS)
+				for(var/turf/T in list(three,two,one))
+					for(var/atom/A in T)
+						if(A in attacked) continue
+						if(isTarget(A))
+							A.Attackby(master, user, params, 1)
+							attacked += A
+							hit = 1
+
+			if (!hit)
+				playsound(master, 'sound/effects/swoosh.ogg', 50, FALSE)
+
+/datum/item_special/massacre
+	cooldown = 3 SECONDS
+	moveDelay = 8
+	moveDelayDuration = 30
+	damageMult = 1
+	image = "dagger"
+	name = "Butcher"
+	desc = "Repeatedly attack a target. The longer the chain goes, the more damage you deal per hit, but the longer you are staggered if interrupted."
+
+	var/current_chain = 0
+	/// Maximum number of hits
+	var/max_chain = 10
+	/// Damage multiplier, initial
+	var/damage_mult_start = 0.2
+	/// Damage multiplier increase per chain
+	var/damage_mult_increment = 0.075
+	///Disorient when interrupted
+	var/penalty_disorient = TRUE
+	///Disorient time on interrupt
+	var/disorient_duration_base = 3 SECONDS
+	///Extra disorient duration per extra swing
+	var/disorient_duration_additive = 0.5 SECONDS
+	var/alternate = FALSE
+	onAdd()
+		if(master)
+			overrideStaminaDamage = master.stamina_damage * 0.8
+
+	pixelaction(atom/target, params, mob/user, reach)
+		damageMult = damage_mult_start
+		if(!isturf(target.loc) && !isturf(target)) return
+		if(!usable(user) || !isliving(user)) return
+
+		var/mob/living/H = user
+		if(!params["left"] || !master || !get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			return
+		preUse(user)
+		current_chain = 0
+		var/direction = get_dir_pixel(user, target, params)
+		var/turf/turf = get_step(master, direction)
+
+		var/obj/itemspecialeffect/cleave/cleave_effect = new /obj/itemspecialeffect/cleave
+		cleave_effect.set_dir(direction)
+		cleave_effect.setup(turf)
+		alternate = TRUE
+		var/hit = FALSE
+		for(var/atom/A in turf)
+			if(isTarget(A))
+				A.Attackby(master, user, params, TRUE)
+				hit = TRUE
+				break
+		if (!hit)
+			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+
+		while (hit && H.equipped() == master && current_chain < max_chain)
+			H.next_click = world.time + 5 SECONDS
+			last_use = world.time
+			current_chain++
+			if (current_chain == 13)
+				sleep(0.2 SECONDS)
+				var/string ="[H] raises \the [master] up high!"
+				H.show_message(SPAN_ALERT(string), 1, assoc_maptext = make_chat_maptext(H, "<I>[string]</I>", "color: #C2BEBE;", alpha = 140))
+				sleep(2 SECONDS)
+				damageMult = 5
+			else if (current_chain == 3)
+				sleep(0.2 SECONDS)
+				user.emote("twirl")
+				sleep(1.4 SECONDS)
+				damageMult = damage_mult_start+(current_chain*damage_mult_increment)
+			else if (current_chain < 3)
+				damageMult = damage_mult_start+(current_chain*damage_mult_increment)
+				sleep(rand(7,9) DECI SECONDS)
+			else
+				sleep(rand(4,6) DECI SECONDS)
+			if(!H.equipped() == master)
+				break
+			turf = get_step(master, direction)
+			if (alternate)
+				cleave_effect = new/obj/itemspecialeffect/cleave_flipped
+			else
+				cleave_effect = new/obj/itemspecialeffect/cleave
+			alternate = !alternate
+			cleave_effect.set_dir(direction)
+			cleave_effect.setup(turf)
+			if (prob(10) && current_chain > 3)
+				user.emote(pick("laugh","cackle","grin"))
+
+			hit = 0
+			for(var/atom/A as anything in turf)
+				if(isTarget(A))
+					A.Attackby(master, user, params, TRUE)
+					hit = TRUE
+					break
+			if (!hit)
+				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+
+		if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
+			var/string ="[H] swings \the [master] too hard and loses their balance!"
+			H.show_message(SPAN_ALERT(string), 1)
+			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
+		afterUse(user)
+
+	afterUse(mob/user)
+		last_use = world.time
+		user.next_click = world.time + 5 SECONDS
+		..()
+
+	modify_attack_result(mob/user, mob/target, datum/attackResults/msgs) //bleed on crit!
+		if (msgs.damage > 0 && (msgs.stamina_crit || current_chain > 3))
+			msgs.bleed_always = TRUE
+			var/slash_flipped = (current_chain%2) * 180
+			var/blood_dir = angle2dir(get_angle(user,target)+90 - slash_flipped)
+			blood_slash(target,1,null, blood_dir, 3)
+			if (current_chain > 3)
+				msgs.played_sound= pick('sound/impact_sounds/Flesh_Stab_1.ogg','sound/impact_sounds/Slimy_Splat_1.ogg')
+		return msgs
+
+	slasher
+		name = "Massacre"
+		desc = "Repeatedly attack a target. Decapitate if left uninterrupted."
+		max_chain = 13
+		disorient_duration_additive = 0
+		damage_mult_start = 0.6
+		damage_mult_increment = 0.1
+		penalty_disorient = FALSE
+		modify_attack_result(mob/user, mob/target, datum/attackResults/msgs)
+			..()
+			if (msgs.damage > 0 && isliving(target))
+				var/mob/living/carbon/human/H = target
+				var/list/limbs = list("l_arm","r_arm","l_leg","r_leg")
+				var/the_limb = null
+				if (current_chain > 10 && current_chain < 13)
+					msgs.played_sound = 'sound/impact_sounds/Flesh_Tear_2.ogg'
+					if (user.zone_sel.selecting in limbs)
+						the_limb = user.zone_sel.selecting
+					else
+						the_limb = pick("l_arm","r_arm","l_leg","r_leg")
+
+					if (the_limb)
+						H.sever_limb(the_limb)
+				else if (current_chain == 13)
+					msgs.played_sound = 'sound/impact_sounds/Flesh_Tear_2.ogg'
+					H.organHolder.drop_and_throw_organ("head", dist = 5, speed = 1, showtext = 1)
+					user.emote("laugh")
+			return msgs
+
+
 
 /obj/itemspecialeffect
 	name = ""
@@ -1862,12 +2248,42 @@
 		pixel_y = -32
 		can_clash = 1
 
+	wide_swipe
+		icon = 'icons/effects/96x96.dmi'
+		icon_state = "wide_swipe"
+		pixel_x = -32
+		pixel_y = -32
+
+	heavybump
+		icon = 'icons/effects/effects.dmi'
+		icon_state = "heavybump"
+		pixel_x = 0
+		pixel_y = 0
+
+	heavystep
+		icon = 'icons/effects/effects.dmi'
+		icon_state = "heavystep"
+		pixel_x = 0
+		pixel_y = 0
+
+	dagger
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "dagger"
+		pixel_x = -32
+		pixel_y = -32
+
 	bluefade
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "bluefade2"
 		pixel_x = 0
 		pixel_y = 0
 		blend_mode = BLEND_ADD
+
+	glitter
+		icon = 'icons/effects/effects.dmi'
+		icon_state = "glitter"
+		pixel_x = 0
+		pixel_y = 0
 
 	simple
 		icon = 'icons/effects/effects.dmi'
@@ -2036,6 +2452,57 @@
 		pixel_y = -32
 		can_clash = 1
 
+	graffiti
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "graffiti1"
+		pixel_x = -32
+		pixel_y = -32
+
+	graffiti_flipped
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "graffiti2"
+		pixel_x = -32
+		pixel_y = -32
+
+	chop //vertical slash
+		plane = PLANE_SELFILLUM
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "chop1"
+		pixel_x = -32
+		pixel_y = -32
+
+	chop_flipped
+		plane = PLANE_SELFILLUM
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "chop2"
+		pixel_x = -32
+		pixel_y = -32
+
+	cleave //horizontal slash
+		plane = PLANE_SELFILLUM
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "cleave1"
+		pixel_x = -32
+		pixel_y = -32
+
+	cleave_flipped
+		plane = PLANE_SELFILLUM
+		icon = 'icons/effects/meleeeffects.dmi'
+		icon_state = "cleave2"
+		pixel_x = -32
+		pixel_y = -32
+
+	jab
+		icon = 'icons/effects/effects.dmi'
+		icon_state = "quickjab"
+		pixel_x = 0
+		pixel_y = 0
+
+		New()
+			pixel_x = rand(-5,5)
+			pixel_y = rand(-5,5)
+			..()
+
 /obj/itemspecialeffect/impact
 	icon = 'icons/effects/impacts.dmi'
 	del_time = 2 SECONDS
@@ -2075,8 +2542,6 @@
 /datum/action/bar/private/icon/rush
 	id = "rush"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "conc"
 	var/datum/item_special/rush/special
 	var/mob/user
 	var/atom/target
@@ -2092,17 +2557,29 @@
 			interrupt(INTERRUPT_ALWAYS)
 		else
 			special = D
+			progress = D.starting_progress
 			user = U
 			target = T
 
+	disposing()
+		if(special)
+			special.action = null
+		..()
+
 	onStart()
 		..()
+		user.canmove = 0
 
 	onInterrupt(var/flag)
 		..()
+		user.canmove = initial(user.canmove)
+		if(special)
+			special.action = null
+		return
 
 	onEnd()
 		..()
+		user.canmove = initial(user.canmove)
 		if(target == null || user == null)
 			interrupt(INTERRUPT_ALWAYS)
 			return
@@ -2110,7 +2587,8 @@
 		if(special)
 			if(special.master == user.equipped() && istype(special, /datum/item_special/rush))
 				special.rush(user, target, progress, params)
-				return
+			special.action = null
+			return
 
 	onUpdate()
 		if(target == null || user == null || !istype(special, /datum/item_special/rush))

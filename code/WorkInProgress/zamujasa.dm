@@ -1004,6 +1004,10 @@
 				maptext_prefix = "<span class='c pixel sh'>Deaths:\n<span class='vga'>"
 				ding_sound = "sound/misc/lose.ogg"
 
+		safety
+			monitored_var = "workplacesafety"
+			maptext_prefix = "<span class='c pixel sh'>Health and Safety Violations:\n<span class='vga'>"
+
 		adminhelps
 			monitored_var = "adminhelps"
 			maptext_prefix = "<span class='c pixel sh'>Adminhelps:\n<span class='vga'>"
@@ -1256,7 +1260,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	invisibility = 101
 	plane = PLANE_HUD
 	layer = HUD_LAYER_3
-	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | PIXEL_SCALE
+	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | PIXEL_SCALE | KEEP_APART
 	var/static/matrix/infinity_matrix = matrix().Turn(90).Translate(18, 1)
 
 	New()
@@ -1396,157 +1400,185 @@ Other Coolstation servers: Not Yet!!!</span>"})
 
 
 
-
-/obj/admin_spacebux_store
-	name = "admin spacebux store setup object"
+// modified from admin_spacebux_store by mylie
+/obj/configurable_credit_store
+	name = "configurable credit store setup object"
 	desc = "An admin can click on this to set stuff up."
-	density = 1
+	density = 0
 	anchored = 1
 	icon = 'icons/mob/inhand/hand_general.dmi'
 	icon_state = "DONGS"
+	layer = EFFECTS_LAYER_4
 	var/tmp/set_up = FALSE
 	var/tmp/copy_mode = FALSE
 	var/tmp/thing_name = null
-	var/tmp/type_to_spawn = null
 	var/tmp/atom/thing_to_copy = null
-	var/tmp/price = 0
-	var/tmp/limit_per_player = 0
-	var/tmp/limit_total = 0
 	var/tmp/number_purchased = 0
 	var/tmp/obj/maptext_junk/price_text = null
 	var/tmp/obj/maptext_junk/quantity_text = null
 	var/tmp/list/purchaser_ckeys = list()
-	var/admin_ckey = null
+	var/type_to_spawn = null
+	var/delete_at_zero = TRUE
+	var/float_pixels = 0
+	var/price = 0
+	var/limit_per_player = 0
+	var/limit_total = 0
 
 	get_desc()
 		if (set_up)
-			. += "<br>Total purchases: [src.number_purchased] purchased by [purchaser_ckeys.len] player\s (total: [src.number_purchased * src.price] Spacebux)"
+			. += "<br>Looks like it costs $[src.price][src.limit_per_player ? ", a person can buy up to [src.limit_per_player]," : null] and there are [src.limit_total - src.number_purchased] left."
 
 	attack_hand(mob/user)
 		if (!set_up)
-			if (!isadmin(user))
-				boutput(user, SPAN_ALERT("You're no admin! Get your dirty hands off this!"))
-				return
-
-			var/copyOrType = alert(user, "Sell copies of a target, or new instances of a type?", "Whatcha sellin'?", "Copies", "Type", "Cancel")
-			if (copyOrType == "Copies")
-				// copy
-				alert(user, "Click on the thing you want to sell copies of.")
-				var/atom/thing = pick_ref(user)
-				if(!(isobj(thing) || ismob(thing)))
-					boutput(user, SPAN_ALERT("It has to be an obj or mob, sorry!"))
-					return
-
-				copy_mode = TRUE
-				src.thing_to_copy = thing
-				src.appearance = thing.appearance
-				src.thing_name = thing.name
-
-			else if (copyOrType == "Type")
-
-				alert(user, "Click on something for the store to copy the appearance of (the actual item you're selling comes after this; you might have to varedit the store later)")
-				var/atom/thing = pick_ref(user)
-				if(!(isobj(thing) || ismob(thing)))
-					boutput(user, SPAN_ALERT("It has to be an obj or mob, sorry!"))
-					return
-
-				// copy the appearance
-				src.appearance = thing.appearance
-				src.thing_name = thing.name
-
-				var/objpath = get_one_match(input(user, "Type in (part of) a path to spawn:", "Type path", "[thing.type]"), /atom)
-				copy_mode = FALSE
-				src.type_to_spawn = objpath
-
-			else
-				// cancel
-				return
-
-			src.price = 0 // sorry this is fully automated luxury space communism now.
-			// src.price = max(0, input(user, "How much does one cost?", "Spacebux Price", 500) as num)
-			src.limit_total = max(0, input(user, "How many can be taken? (0=infinite)", "Quantity", 0) as num)
-			src.limit_per_player = max(0, input(user, "How many can one player take? (0=infinite)", "Quantity", 0) as num)
-			// src.admin_ckey = (alert(user, "Attach it to your adminness? This will tell you when people buy it (and also give you the money they spend).", "FEED ME SPACEBUX", "Yes", "No") == "Yes") ? user.ckey : null
-
-			src.name = "[price > 0 ? "spacebux shop" : "dispenser"] - [src.thing_name]"
-			src.desc = "A little shop where you can grab \a [src.thing_name]. They're free! Wow!"
-
-			src.price_text = new()
-			src.price_text.set_loc(src)
-			src.price_text.maptext_width = 132
-			src.price_text.maptext_x = -50
-			src.price_text.maptext_y = 34
-			src.price_text.maptext = "<span class='c vb sh xfont'>[price > 0 ? price : "FREE"]</span>"
-			src.vis_contents += src.price_text
-			src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
-
-			if (src.limit_total)
-				src.quantity_text = new()
-				src.quantity_text.set_loc(src)
-				src.vis_contents += src.quantity_text
-				src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
-				src.update_quantity()
-
-			src.set_up = TRUE
-
-			animate(src, pixel_y = 0 + 8,  time = 2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
-			animate(pixel_y = 0, time = 2 SECONDS, loop = -1, easing = SINE_EASING)
-
+			src.try_setup(user)
 		else
 			// it has been set up so we can do stuff here
-
-			// Check if this can actually be bought
-			// This also outputs the message to (user) as to why they can't
-			if (!src.can_this_person_buy_it(user))
-				return FALSE
-
-			// Are we actually buying this?
-			if (src.price)
-				// Do we really wanna buy it?
-				if (tgui_alert(user, "Purchase \a [src.thing_name] for [src.price] Spacebux?", "Buy it?", list("Yes", "No"), 10 SECONDS) != "Yes")
-					// If no, abort
-					return
-
-				// Check if this can actually be bought, again
-				// This is here because of a race condition when none are left:
-				// Player 1   click -> prompt -------------------------> buy (x-1)
-				// Player 2               click -> prompt ---> buy (x0)
-				if (!src.can_this_person_buy_it(user))
-					return FALSE
-
-				// user.client.add_to_bank(-src.price)
-				// if (src.admin_ckey)
-				// 	try
-				// 		var/client/A = getClientFromCkey(src.admin_ckey)
-				// 		A.add_to_bank(src.price)
-				// 		boutput(A, SPAN_ALERT("[usr.real_name] bought \a [src.name] for [src.price]."))
-
-				// 	catch
-				// 		// do nothing. if they're offline we dont care.
-
-			// logTheThing(LOG_DIARY, user, "purchased [src.thing_name] for [src.price] spacebux.")
-
-			if (!src.purchaser_ckeys[user.client.ckey])
-				src.purchaser_ckeys[user.client.ckey] = 0
-
-			src.number_purchased++
-			src.purchaser_ckeys[user.client.ckey]++
-			src.update_quantity()
-			playsound(src, 'sound/misc/cashregister.ogg', 33, FALSE)
-
-			var/atom/new_instance = null
-			var/turf/T = get_turf(user)
-			if (src.copy_mode && src.thing_to_copy)
-				new_instance = semi_deep_copy(src.thing_to_copy, T)
-			else
-				new_instance = new src.type_to_spawn(T)
-
-			// Try to put it in their hand if it's an item
-			if (istype(new_instance, /obj/item))
-				user.put_in_hand_or_drop(new_instance)
+			src.try_purchase(user)
 
 		return
 
+	attackby(obj/item/I, mob/user)
+		if (!set_up)
+			src.try_setup(user)
+		else if(istype(I, /obj/item/spacecash))
+			src.try_purchase(user)
+		return
+
+	proc/try_setup(mob/user)
+		if (!isadmin(user))
+			boutput(user, SPAN_ALERT("You're no admin! Please wait for one to configure this!"))
+			return
+
+		var/copyOrType = alert(user, "Sell copies of a target, or new instances of a type?", "Whatcha sellin'?", "Copies", "Type", "Cancel")
+		if (copyOrType == "Copies")
+			// copy
+			alert(user, "Click on the thing you want to sell copies of.")
+			var/atom/thing = pick_ref(user)
+			if(!(isobj(thing) || ismob(thing)))
+				boutput(user, SPAN_ALERT("It has to be an obj or mob, sorry!"))
+				return
+
+			copy_mode = TRUE
+			src.thing_to_copy = thing
+			src.appearance = thing.appearance
+			src.thing_name = thing.name
+
+		else if (copyOrType == "Type")
+
+			alert(user, "Click on something for the store to copy the appearance of (the actual item you're selling comes after this; you might have to varedit the store later)")
+			var/atom/thing = pick_ref(user)
+			if(!(isobj(thing) || ismob(thing)))
+				boutput(user, SPAN_ALERT("It has to be an obj or mob, sorry!"))
+				return
+
+			// copy the appearance
+			src.appearance = thing.appearance
+			src.thing_name = thing.name
+
+			var/objpath = get_one_match(input(user, "Type in (part of) a path to spawn:", "Type path", "[thing.type]"), /atom)
+			copy_mode = FALSE
+			src.type_to_spawn = objpath
+
+		else
+			// cancel
+			return
+
+		src.price = max(0, input(user, "How much does one cost?", "Credit Price", 500) as num)
+		src.limit_total = max(0, input(user, "How many can be taken? (0=infinite)", "Quantity", 0) as num)
+		src.limit_per_player = max(0, input(user, "How many can one player take? (0=infinite)", "Quantity", 0) as num)
+
+		src.name = "[price > 0 ? "credit shop" : "dispenser"] - [src.thing_name]"
+		src.desc = "A little shop where you can grab \a [src.thing_name]. Wow!"
+
+		src.price_text = new()
+		src.price_text.set_loc(src)
+		src.price_text.maptext_width = 132
+		src.price_text.maptext_x = -50
+		src.price_text.maptext_y = -8
+		src.price_text.maptext = "<span class='c vb sh xfont'><font color=green>[price > 0 ? "$[price]" : "FREE"]</font></span>"
+		src.vis_contents += src.price_text
+		src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
+
+		if (src.limit_total && src.limit_total != 1)
+			src.quantity_text = new()
+			src.quantity_text.set_loc(src)
+			src.vis_contents += src.quantity_text
+			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
+			src.update_quantity()
+
+		src.set_up = TRUE
+
+		animate(src, pixel_y = 0 + src.float_pixels,  time = 2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
+		animate(pixel_y = 0, time = 2 SECONDS, loop = -1, easing = SINE_EASING)
+
+	proc/try_purchase(mob/user)
+
+		// Check if this can actually be bought
+		// This also outputs the message to (user) as to why they can't
+		if (!src.can_this_person_buy_it(user))
+			return FALSE
+
+		// Are we actually buying this?
+		if (src.price)
+
+			// Do we really wanna buy it?
+			if (alert(user, "Purchase \a [src.thing_name] for [src.price] credits?", "Buy it?", "Yes", "No") != "Yes")
+				// If no, abort
+				return
+
+			// Check if this can actually be bought, again
+			// This is here because of a race condition when none are left:
+			// Player 1   click -> prompt -------------------------> buy (x-1)
+			// Player 2               click -> prompt ---> buy (x0)
+			if (!src.can_this_person_buy_it(user))
+				return FALSE
+
+		if(src.price)
+			var/list/obj/item/spacecash/credits = list()
+			for(var/obj/item/spacecash/credit in user.contents) // intentionally does not grab cash from backpacks, belts, etc. DOES grab cash from your guts. its funny.
+				credits += credit
+			var/left_to_pay = src.price
+			while(left_to_pay && length(credits))
+				var/obj/item/spacecash/credit = credits[1]
+				if(credit.amount >= left_to_pay)
+					credit.amount -= left_to_pay
+					credit.update_stack_appearance()
+					left_to_pay = 0
+				else
+					left_to_pay -= credit.amount
+					credit.amount = 0
+				if(!credit.amount)
+					qdel(credit)
+					credits -= credit
+			if(left_to_pay) // idk if it CAN happen but im afraid it COULD happen due to really fast races - mylie
+				boutput(user, SPAN_ALERT("Something goes fucky with the purchase, so you get your money back."))
+				var/obj/item/spacecash/cashback = new()
+				cashback.setup(get_turf(user), left_to_pay)
+				user.put_in_hand_or_drop(cashback)
+				return FALSE
+
+		if (!src.purchaser_ckeys[user.client.ckey])
+			src.purchaser_ckeys[user.client.ckey] = 0
+
+		src.number_purchased++
+		src.purchaser_ckeys[user.client.ckey]++
+		src.update_quantity()
+		playsound(src, 'sound/misc/cashregister.ogg', 33, FALSE)
+
+		var/atom/new_instance = null
+		var/turf/T = get_turf(src)
+		if (src.copy_mode && src.thing_to_copy)
+			new_instance = semi_deep_copy(src.thing_to_copy, T)
+		else
+			new_instance = new src.type_to_spawn(T)
+
+		// Try to put it in their hand if it's an item
+		if (istype(new_instance, /obj/item))
+			user.put_in_hand_or_drop(new_instance)
+
+		if(src.delete_at_zero && (src.number_purchased >= src.limit_total))
+			qdel(src)
+			return
 
 	// TRUE: yes you can buy it  FALSE: no
 	proc/can_this_person_buy_it(mob/user)
@@ -1560,9 +1592,13 @@ Other Coolstation servers: Not Yet!!!</span>"})
 			boutput(user, SPAN_ALERT("You've reached the limit that you can buy."))
 			return FALSE
 
-		// if (src.price && !user.client.bank_can_afford(src.price))
-		// 	boutput(user, SPAN_ALERT("Not enough Spacebux to purchase."))
-		// 	return FALSE
+		if(src.price)
+			var/total_credits = 0
+			for(var/obj/item/spacecash/credit in user.contents) // intentionally does not grab cash from backpacks, belts, etc. DOES grab cash from your guts. its funny.
+				total_credits += credit.amount
+			if(total_credits < src.price)
+				boutput(user, SPAN_ALERT("You're gonna need some more credits for that."))
+				return FALSE
 		return TRUE
 
 	proc/update_quantity()
@@ -1570,12 +1606,15 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		src.quantity_text.maptext = "<span class='r sh pixel' style='font-size: 5px;[(limit_total - number_purchased) == 0 ? " color: red;" : ""]'>x[limit_total - number_purchased]</span>"
 		return
 
-/obj/admin_spacebux_store/premade
+/obj/configurable_credit_store/premade
+	limit_total = 1
+
 	New()
 		. = ..()
-		if (!type_to_spawn) return
+		if(istext(type_to_spawn))
+			type_to_spawn = text2path(type_to_spawn)
+		if (!type_to_spawn)	return
 		setup_premade_shop()
-
 
 	proc/setup_premade_shop()
 		var/atom/movable/AM = new type_to_spawn
@@ -1583,29 +1622,31 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		src.appearance = AM.appearance
 		src.name = AM.name
 		src.thing_name = AM.name
+		src.set_density(AM.density)
 
 		src.price_text = new()
 		src.price_text.set_loc(src)
 		src.price_text.maptext_width = 132
 		src.price_text.maptext_x = -50
-		src.price_text.maptext_y = 34
-		src.price_text.maptext = "<span class='c vb sh xfont'>[price > 0 ? price : "FREE"]</span>"
+		src.price_text.maptext_y = -8
+		src.price_text.maptext = "<span class='c vb sh xfont'><font color=green>[price > 0 ? "$[price]" : "FREE"]</font></span>"
 		src.vis_contents += src.price_text
 		src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 
-		if (src.limit_total)
+		if (src.limit_total && src.limit_total != 1)
 			src.quantity_text = new()
 			src.quantity_text.set_loc(src)
 			src.vis_contents += src.quantity_text
 			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 			src.update_quantity()
 
-		animate(src, pixel_y = 0 + 8,  time = 2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
+		qdel(AM)
+		animate(src, pixel_y = 0 + src.float_pixels,  time = 2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
 		animate(pixel_y = 0, time = 2 SECONDS, loop = -1, easing = SINE_EASING)
 		set_up = TRUE
 
-
-/obj/admin_spacebux_store/premade/popcorn
+/obj/configurable_credit_store/premade/popcorn
+	limit_total = 0
 	price = 0
 	type_to_spawn = /obj/item/reagent_containers/food/snacks/popcorn
 

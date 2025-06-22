@@ -49,6 +49,34 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	color = "#ffffff"
 	special_volume_override = -1
 
+	Entered(atom/movable/O)
+		..()
+		if(istype(src.loc,/area/gehenna))
+			var/area/A = src.loc
+			if(A.sandstorm)
+				if(prob(A.sandstormIntensity) && !istype(O.dir, A.blowOrigin)) //yeah this is a bad fix, sue me
+					step(O,A.blowOrigin)
+		//if(istype(O, /mob/living))
+			//RegisterSignal(O, COMSIG_MOVABLE_MOVED, PROC_REF(footprints))
+	/*
+	Exited(atom/movable/O)
+		if(istype(O,/mob/living))
+			UnregisterSignal(O, COMSIG_MOVABLE_MOVED)
+
+	proc/footprints(mob/living/M, oldLoc, direct)
+		var/obj/decal/cleanable/imprint/I
+		I = locate(/obj/decal/cleanable/imprint) in src
+		if(!I)
+			I = make_cleanable(/obj/decal/cleanable/imprint, src)
+		var/list/states = M.get_step_image_states()
+		if (states[1] || states[2])
+			if(states[1])
+				I.create_overlay(states[1], "#564c38", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+			if(states[2])
+				I.create_overlay(states[2], "#564c38", direct, 'icons/obj/decals/blood.dmi') //awawa
+		else
+			I.create_overlay("smear2", "#564c38", direct, 'icons/obj/decals/blood.dmi')
+	*/
 
 /turf/wall/asteroid/gehenna
 	fullbright = 0
@@ -358,6 +386,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon_state = "dither_b"
 	name = "the gehennan desert"
 	is_construction_allowed = TRUE
+
 
 /area/gehenna/south // just in case i need a separate area for stuff
 	requires_power = 0

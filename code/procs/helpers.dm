@@ -5,6 +5,7 @@
   * @param es set this to true if your item's plural ends in "es"
   * @return the plural suffix based on numbers
   */
+
 /proc/s_es(var/number as num, var/es = 0)
 	if (isnull(number))
 		return
@@ -15,6 +16,16 @@
 			return "es"
 		else
 			return "s"
+
+
+/proc/isThisShitEvenJson(var/string) //Returns a boolean on whether or not something is JSON. BIG FUCKING WARNING NOTE: DOESN'T WORK IF ARRAYS ARE ON THE START OR END!!!!
+	if(!istext(string)) //because i'm lazy and i don't need it and probably nobody ever will
+		return 0 //no!!!
+	string = trim(string)
+	if(copytext(string, 1, 2) == "{" && copytext(string, length(string), length(string) +1) == "}")
+		return 1 //yeah I think so
+	return 0 //get outta here pal
+
 
 /**
   * Returns true if the char you feed it is uppercase.
@@ -2630,3 +2641,8 @@ proc/message_ghosts(var/message, show_wraith = FALSE)
 		// Otherwise, output to ghosts
 		if (isdead(M) || iswraith(M) || isghostdrone(M) || isVRghost(M) || inafterlifebar(M))
 			boutput(M, rendered)
+
+/proc/recoil_camera(mob/M, dir, strength=1, spread=3)
+	if(!M || !M.client || !M.client.recoil_controller)
+		return
+	M.client.recoil_controller.recoil_camera(dir,strength,spread)

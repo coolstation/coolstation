@@ -2706,7 +2706,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour0;desc=Test! ";
 	freq = 1443;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "station tour beacon"
 	},
 /turf/floor/specialroom/cafeteria,
@@ -2714,7 +2714,7 @@
 "gH" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol";
-	location = "bar"
+	beacon_id = "bar"
 	},
 /turf/floor/specialroom/cafeteria,
 /area/sim/area1)

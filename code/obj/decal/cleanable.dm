@@ -1570,6 +1570,27 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	stain = "painted"
 	gross = 1
 
+/obj/decal/cleanable/imprint
+	name = "footprint"
+	desc = "An imprint in the sand left by a foot."
+	icon = 'icons/obj/decals/blood.dmi'
+	random_icon_states = null
+	slippery = 0
+	can_dry = 0
+	can_sample = 0
+	gross = 0
+
+/obj/decal/cleanable/sand
+	name = "sand"
+	desc = "It gets everywhere!"
+	icon = 'icons/obj/decals/blood.dmi' //waiting for wack icon,for now it's blood
+	random_icon_states = null
+	slippery = 0
+	can_dry = 0
+	can_sample = 0
+	stain = "sandy"
+	gross = 0
+
 /obj/decal/cleanable/greenglow
 	name = "green glow"
 	desc = "Eerie."
@@ -1863,7 +1884,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	density = 0
 	anchored = 1
 	layer = OBJ_LAYER
-	icon = 'icons/obj/decals/graffiti.dmi'
+	icon = 'icons/obj/decals/gang_tags.dmi'
 	icon_state = "gangtag0"
 	var/datum/gang/owners = null
 
@@ -1895,7 +1916,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	name = "graffiti"
 	desc = "What a funky dude. He'll never attain political power."
 	icon = 'icons/obj/decals/graffiti.dmi'
-	icon_state = "greenface"
+	icon_state = "graffiti-single-1"
 
 /// Input a cardinal direction, it'll throw it somewhere within +-45 degrees of that direction. More or less.
 /obj/decal/cleanable/proc/streak_cleanable(var/list/directions, var/randcolor = 0, var/full_streak)

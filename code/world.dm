@@ -362,6 +362,8 @@ var/f_color_selector_handler/F_Color_Selector
 		artifact_controls = new /datum/artifact_controller()
 		Z_LOG_DEBUG("Preload", "  mining_controls")
 		mining_controls = new /datum/mining_controller()
+		Z_LOG_DEBUG("Preload", "  transit_controls")
+		transit_controls = new /datum/transit_controller()
 		Z_LOG_DEBUG("Preload", "  broadcast_controls")
 		broadcast_controls = new /datum/broadcast_controller()
 		Z_LOG_DEBUG("Preload", "  score_tracker")

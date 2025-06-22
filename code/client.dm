@@ -117,8 +117,6 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	var/hand_ghosts = 1 //pickup ghosts inhand
 
-	var/hidden_spiders = FALSE
-
 /client/proc/audit(var/category, var/message, var/target)
 	if(src.holder && (src.holder.audit & category))
 		logTheThing("audit", src, target, message)
@@ -1024,6 +1022,19 @@ var/global/curr_day = null
 		logTheThing("admin", null, null, "Banned proxy: AnchorFree Hotspot Shield [addr].")
 		return 1
 	return 0
+
+/client/verb/toggle_camera_recoil()
+	set hidden = 1
+	set name = "toggle-camera-recoil"
+
+	if (!src.recoil_controller)
+		src.recoil_controller = new/datum/recoil_controller(src)
+
+	if ((winget(src, "menu.toggle_camera_recoil", "is-checked") == "true"))
+		src.recoil_controller?.enable()
+
+	else
+		src.recoil_controller?.disable()
 
 /client/proc/setJoinDate()
 	joined_date = ""
