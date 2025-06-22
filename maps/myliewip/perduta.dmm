@@ -128,6 +128,8 @@
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/eastleft,
 /obj/window/reinforced/north,
+/obj/access_spawn/chemistry,
+/obj/firedoor_spawn,
 /turf/floor/cautionblack,
 /area/station/science/chemistry)
 "bq" = (
@@ -998,6 +1000,14 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"hY" = (
+/obj/stool/chair/office/blue{
+	dir = 4
+	},
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/station/science/chemistry)
 "hZ" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -1301,6 +1311,9 @@
 	dir = 1
 	},
 /area/station/medical/robotics)
+"kO" = (
+/turf/floor/purplewhite,
+/area/station/science/chemistry)
 "kQ" = (
 /obj/grille/steel,
 /turf/floor/plating,
@@ -1614,6 +1627,10 @@
 	},
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/medical/staff)
+"mz" = (
+/obj/table/reinforced/chemistry/auto,
+/turf/floor/purplewhite,
+/area/station/science/chemistry)
 "mE" = (
 /obj/machinery/deep_fryer,
 /turf/floor/white/checker2,
@@ -1825,6 +1842,15 @@
 	},
 /turf/floor/grass,
 /area/station/medical/research)
+"og" = (
+/obj/table/reinforced/chemistry/beakers,
+/obj/machinery/glass_recycler{
+	pixel_y = 12;
+	mats = 50;
+	pixel_x = -2
+	},
+/turf/floor/white,
+/area/station/science/chemistry)
 "ok" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/lattice{
@@ -2315,6 +2341,11 @@
 /obj/firedoor_spawn,
 /turf/floor/red,
 /area/station/security/checkpoint/medical)
+"qW" = (
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/station/science/chemistry)
 "ra" = (
 /turf/wall,
 /area/station/janitor/supply)
@@ -2327,6 +2358,14 @@
 /obj/submachine/chef_oven,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"rd" = (
+/obj/table/reinforced/chemistry/beakers,
+/obj/machinery/coffeemaker/research{
+	pixel_x = 2;
+	pixel_y = 12
+	},
+/turf/floor/white,
+/area/station/science/chemistry)
 "ri" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/disposalpipe/segment/vertical,
@@ -2462,6 +2501,10 @@
 /obj/machinery/manufacturer/robotics,
 /turf/floor/industrial,
 /area/station/medical/robotics)
+"rY" = (
+/obj/table/reinforced/chemistry/auto,
+/turf/floor/purple/checker,
+/area/station/science/chemistry)
 "rZ" = (
 /obj/stool/chair/office/green{
 	dir = 4
@@ -2590,6 +2633,11 @@
 	dir = 1
 	},
 /area/station/hallway/primary/southwest)
+"sP" = (
+/turf/floor/purplewhite/corner{
+	dir = 1
+	},
+/area/station/science/chemistry)
 "sR" = (
 /obj/blind_switch/area/east,
 /obj/decal/tile_edge/stripe/big{
@@ -2717,6 +2765,7 @@
 /obj/table/reinforced/auto,
 /obj/window/reinforced/south,
 /obj/window/reinforced/east,
+/obj/firedoor_spawn,
 /turf/floor/cautionblack,
 /area/station/science/chemistry)
 "tT" = (
@@ -3046,6 +3095,10 @@
 /obj/access_spawn/bar,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
+"ww" = (
+/obj/machinery/bot/firebot,
+/turf/floor/purple/checker,
+/area/station/science/chemistry)
 "wz" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -4084,6 +4137,11 @@
 /obj/disposalpipe/segment/morgue/bent/east,
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"Ed" = (
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/station/science/chemistry)
 "Ee" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 8
@@ -4361,6 +4419,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/southwest)
+"Gq" = (
+/turf/floor/purple/checker,
+/area/station/science/chemistry)
+"Gr" = (
+/obj/machinery/chem_heater,
+/turf/floor/purplewhite/corner,
+/area/station/science/chemistry)
 "Gy" = (
 /obj/table/wood/auto,
 /obj/item/device/light/zippo{
@@ -4471,6 +4536,10 @@
 	dir = 10
 	},
 /area/station/crew_quarters/clown)
+"Hn" = (
+/obj/machinery/chem_heater,
+/turf/floor/purplewhite,
+/area/station/science/chemistry)
 "Hu" = (
 /obj/machinery/door/window/eastleft,
 /turf/floor/wood/five,
@@ -4813,6 +4882,9 @@
 /obj/neon_lining{
 	dir = 8
 	},
+/obj/landmark/spawner{
+	name = "monkeyspawn_krimpus"
+	},
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five{
 	dir = 10
 	},
@@ -4853,6 +4925,9 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "Kj" = (
+/obj/machinery/door/airlock/glass,
+/obj/access_spawn/chemistry,
+/obj/firedoor_spawn,
 /turf/floor,
 /area/station/science/chemistry)
 "Kk" = (
@@ -5048,6 +5123,10 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"Lv" = (
+/obj/machinery/chem_dispenser,
+/turf/floor/purplewhite,
+/area/station/science/chemistry)
 "Lw" = (
 /obj/machinery/light{
 	dir = 1;
@@ -5159,6 +5238,9 @@
 "Ml" = (
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/eastright,
+/obj/access_spawn/chemistry,
+/obj/access_spawn/chemistry,
+/obj/firedoor_spawn,
 /turf/floor/cautionblack,
 /area/station/science/chemistry)
 "Mp" = (
@@ -5266,6 +5348,12 @@
 /obj/decal/cleanable/eggsplat,
 /turf/floor/plating,
 /area/station/security/checkpoint/medical)
+"Nj" = (
+/obj/machinery/chemicompiler_stationary,
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/station/science/chemistry)
 "Nm" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2/right,
@@ -5360,6 +5448,12 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"NT" = (
+/obj/machinery/chem_master,
+/turf/floor/purplewhite{
+	dir = 1
+	},
+/area/station/science/chemistry)
 "NZ" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /turf/floor/white/checker,
@@ -5562,6 +5656,12 @@
 "PB" = (
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"PC" = (
+/obj/machinery/chem_master,
+/turf/floor/purplewhite{
+	dir = 8
+	},
+/area/station/science/chemistry)
 "PE" = (
 /obj/machinery/computer3/generic/secure_data{
 	dir = 8
@@ -5720,6 +5820,12 @@
 "Qt" = (
 /turf/floor/green/corner,
 /area/station/hallway/primary/southwest)
+"QG" = (
+/obj/stool/chair/office/blue{
+	dir = 1
+	},
+/turf/floor/purple/checker,
+/area/station/science/chemistry)
 "QH" = (
 /obj/storage/secure/closet/medical/medkit,
 /turf/floor/white/checker,
@@ -6430,6 +6536,11 @@
 	dir = 8
 	},
 /area/magindara)
+"Vn" = (
+/turf/floor/purplewhite/corner{
+	dir = 8
+	},
+/area/station/science/chemistry)
 "Vo" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6;
@@ -6527,11 +6638,21 @@
 	dir = 4
 	},
 /area/station/hallway/primary/southwest)
+"VV" = (
+/turf/floor/purplewhite/corner{
+	dir = 4
+	},
+/area/station/science/chemistry)
 "VX" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
 /turf/floor/plating,
 /area/station/hallway/primary/southwest)
+"VY" = (
+/turf/floor/purplewhite{
+	dir = 4
+	},
+/area/station/science/chemistry)
 "Wa" = (
 /turf/floor/cautionblack/side{
 	dir = 1
@@ -6977,6 +7098,11 @@
 /obj/railing/cool,
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
+"Zi" = (
+/turf/floor/purplewhite{
+	dir = 5
+	},
+/area/station/science/chemistry)
 "Zk" = (
 /obj/storage/secure/closet/civilian/bartender,
 /turf/floor/wood/five,
@@ -43177,10 +43303,10 @@ tC
 LE
 SO
 to
-Kj
-Kj
-Kj
-Kj
+Gr
+VY
+VY
+Vn
 to
 sx
 sx
@@ -43479,10 +43605,10 @@ tC
 SO
 SO
 zp
-Kj
-Kj
-Kj
-Kj
+Lv
+QG
+Gq
+Nj
 zp
 sx
 sx
@@ -43781,13 +43907,13 @@ wi
 VL
 VL
 zp
-Kj
-Kj
-Kj
-Kj
+mz
+rY
+Gq
+Ed
 zp
-Kj
-Kj
+sx
+sx
 sx
 sx
 OX
@@ -44083,10 +44209,10 @@ Rh
 SO
 SO
 zp
-Kj
-Kj
-Kj
-Kj
+mz
+rY
+Gq
+NT
 to
 Kj
 to
@@ -44385,12 +44511,12 @@ Rh
 SO
 Uh
 zp
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
+Lv
+QG
+Gq
+Zi
+VY
+Vn
 to
 sx
 sx
@@ -44687,12 +44813,12 @@ Rh
 SO
 Rh
 to
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
+Hn
+Gq
+Gq
+ww
+Gq
+Ed
 zp
 sx
 sx
@@ -44989,12 +45115,12 @@ wi
 VL
 to
 to
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
+kO
+Gq
+Gq
+Gq
+Gq
+Ed
 zp
 sx
 sx
@@ -45290,13 +45416,13 @@ SO
 Rh
 SO
 to
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
+og
+kO
+Gq
+Gq
+Gq
+Gq
+Ed
 zp
 sx
 sx
@@ -45592,13 +45718,13 @@ VL
 FN
 SO
 to
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
-Kj
+rd
+VV
+hY
+PC
+qW
+qW
+sP
 to
 sx
 sx
@@ -47408,9 +47534,9 @@ Aa
 RV
 VG
 nB
-jv
-SO
-SO
+VL
+VL
+VL
 OX
 sx
 sx
