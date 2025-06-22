@@ -243,6 +243,7 @@
 	var/last_seek = 0
 	var/seek_every = 3 SECONDS
 	var/approach_range = 1
+	var/ability_cooldown = 4 SECONDS
 
 /datum/aiTask/timed/targeted/violence/get_targets()
 	. = list()
@@ -268,13 +269,22 @@
 
 		src.holder.move_to(M,src.approach_range)
 
-		src.holder.owner.a_intent = prob(85) ? INTENT_HARM : INTENT_DISARM
+		src.holder.owner.a_intent = prob(80) ? INTENT_HARM : INTENT_DISARM
 
 		owncritter.hud.update_intent() // god i hate this
 
-		if(!src.holder.owner.ability_attack(M))
-			if(GET_DIST(src.holder.owner, M) <= 1)
+		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(M))
+			return ..()
+
+		if(GET_DIST(src.holder.owner, M) <= 1)
+			src.holder.owner.hand_attack(M)
+		else if(istype(owncritter))
+			var/datum/handHolder/HH = owncritter.get_active_hand()
+			if(HH.can_range_attack)
 				src.holder.owner.hand_attack(M)
+
+		if(prob(40)) // may do a more intelligent check later, but this is decent
+			src.holder.owner.swap_hand()
 	else
 		src.holder.move_to(locate(src.holder.owner.x + rand(-4, 4), src.holder.owner.y + rand(-4, 4), src.holder.owner.z))
 

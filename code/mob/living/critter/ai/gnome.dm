@@ -1,5 +1,6 @@
 
 /datum/aiHolder/gnome
+	move_shuffle_at_target = 20
 
 /datum/aiHolder/gnome/New()
 	..()
