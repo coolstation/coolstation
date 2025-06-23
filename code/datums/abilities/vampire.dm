@@ -210,7 +210,7 @@
 
 	// Note: please use mob.get_vampire_blood() & mob.change_vampire_blood() instead of changing the numbers directly.
 
-	// At the time of writing, sight (thermal, x-ray) and chapel checks can be found in human.dm.
+	// At the time of writing, sight (thermal, x-ray) and chapel checks can be found in human.dm. LIES!!!! CHAPEL CHECKS IS IN DISABILITY.DM
 	var/has_thermal = 0
 	var/has_xray = 0
 	var/has_fullpower = 0
