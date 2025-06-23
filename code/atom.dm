@@ -621,7 +621,7 @@
 
 		if (user.mob_flags & AT_GUNPOINT)
 			for(var/obj/item/grab/gunpoint/G in user.grabbed_by)
-				G.shoot()
+				G.Shoot()
 	return
 
 /atom/movable/set_dir(new_dir)

@@ -166,7 +166,7 @@
 			C.pilot?.emote("scream")
 			if (istype(src, /obj/disposalholder/crawler) && !src.active) //partly funny, partly to avoid having to deal with two pilots (or someone holding another person indefinitely)
 				C = src
-				C.controls.in_control = FALSE
+				C.movement_controller.in_control = FALSE
 				C.pilot?.emote("scream")
 				C.active = TRUE
 				boutput(C.pilot, "<span class='alert'><b>You slam into someone else in the pipes, and lose your grip! [pick("Fuck", "Damn it", "Piss", "Noooooo", "Bitter hubris", "Oh the humanity")]!</b></span>")
@@ -260,7 +260,7 @@
 
 	disposing()
 		qdel(vision)
-		qdel(controls)
+		qdel(movement_controller)
 		vision = null
 		movement_controller = null
 		pilot = null

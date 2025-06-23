@@ -96,30 +96,6 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 			forensic_IDs.Add(src.forensic_ID)
 		return ..()
 
-	// equip handling for weapons that fit on your back
-	try_specific_equip(mob/user)
-		. = ..()
-		if (!(src.c_flags & ONBACK))
-			return
-		if (!user.back?.storage)
-			return
-		if (!user.s_active)
-			return
-		if (user.s_active.master != user.back.storage)
-			return
-		if (user.back.storage.check_can_hold(src) == STORAGE_CAN_HOLD)
-			user.back.Attackby(src, user)
-			return TRUE
-
-/obj/item/gun/proc/CreateID() //Creates a new tracking id for the gun and returns it.
-	. = ""
-
-	do
-		for(var/i = 1 to 10) // 20 characters are way too fuckin' long for anyone to care about
-			. += "[pick(numbersAndLetters)]"
-	while(. in forensic_IDs)
-
-
 ///CHECK_LOCK
 ///Call to run a weaponlock check vs the users implant
 ///Return 0 for fail
@@ -182,7 +158,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 			if (G && G.can_dual_wield && G.canshoot(user))
 				is_dual_wield = 1
 				if(!ON_COOLDOWN(G, "shoot_delay", G.shoot_delay))
-					SPAWN(0.2 SECONDS)
+					SPAWN_DBG(0.2 SECONDS)
 						if(!(G in user.equipped_list())) return
 						G.Shoot(target_turf,user_turf,user, pox+rand(-2,2), poy+rand(-2,2), is_dual_wield, target)
 
@@ -218,10 +194,8 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	if(user.a_intent != INTENT_HELP && isliving(M))
 		if (user.a_intent == INTENT_GRAB)
-			var/datum/limb/current_limb = user.equipped_limb()
-			if (current_limb.can_gun_grab)
-				attack_particle(user,M)
-				return ..()
+			attack_particle(user,M)
+			return ..()
 		src.ShootPointBlank(M, user)
 	else
 		..()
@@ -251,20 +225,23 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	//but if we do the double-gun checks here, it makes stuff like double-hold-at-gunpoint-pointblanks easier!
 	if (can_dual_wield && !second_shot)
 		//brutal double-pointblank shots
+		var/obj/item/gun/second_gun
 		if (ishuman(user))
 			if(user.hand && istype(user.r_hand, /obj/item/gun) && user.r_hand:can_dual_wield)
-				var/target_turf = get_turf(M)
+				var/target_turf = get_turf(target)
 				is_dual_wield = 1
-				SPAWN(0.2 SECONDS)
+				second_gun = user.r_hand
+				SPAWN_DBG(0.2 SECONDS)
 					if(user.r_hand != second_gun) return
 					if (BOUNDS_DIST(user, target) == 0)
 						second_gun.ShootPointBlank(target,user,second_shot = 1)
 					else
 						user.r_hand:shoot(target_turf,get_turf(user), user, rand(-5,5), rand(-5,5), is_dual_wield)
 			else if(!user.hand && istype(user.l_hand, /obj/item/gun) && user.l_hand:can_dual_wield)
-				var/target_turf = get_turf(M)
+				var/target_turf = get_turf(target)
 				is_dual_wield = 1
-				SPAWN(0.2 SECONDS)
+				second_gun = user.l_hand
+				SPAWN_DBG(0.2 SECONDS)
 					if(user.l_hand != second_gun) return
 					if (BOUNDS_DIST(user, target) == 0)
 						second_gun.ShootPointBlank(target,user,second_shot = 1)
@@ -279,7 +256,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	if (!canshoot())
 		if (!silenced)
-			M.visible_message("<span class='alert'><B>[user] tries to shoot [user == M ? "[him_or_her(user)]self" : M] with [src] point-blank, but it was empty!</B></span>")
+			target.visible_message("<span class='alert'><B>[user] tries to shoot [user == target ? "[him_or_her(user)]self" : target] with [src] point-blank, but it was empty!</B></span>")
 			playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
 		else
 			user.show_text("*click* *click*", "red")
@@ -290,18 +267,18 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		H.gunshot_residue = 1
 
 	if (!src.silenced)
-		for (var/mob/O in AIviewers(M, null))
+		for (var/mob/O in AIviewers(target, null))
 			if (O.client)
-				O.show_message("<span class='alert'><B>[user] shoots [user == M ? "[him_or_her(user)]self" : M] point-blank with [src]!</B></span>")
+				O.show_message("<span class='alert'><B>[user] shoots [user == target ? "[him_or_her(user)]self" : target] point-blank with [src]!</B></span>")
 	else
-		boutput(user, "<span class='alert'>You silently shoot [user == M ? "yourself" : M] point-blank with [src]!</span>")
+		boutput(user, "<span class='alert'>You silently shoot [user == target ? "yourself" : target] point-blank with [src]!</span>")
 
 	if (!process_ammo(user))
 		return FALSE
 
 	if (src.muzzle_flash)
 		if (isturf(user.loc))
-			muzzle_flash_attack_particle(user, user.loc, M, src.muzzle_flash)
+			muzzle_flash_attack_particle(user, user.loc, target, src.muzzle_flash)
 
 
 	if(slowdown && ismob(user))
@@ -326,24 +303,25 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	spread += (recoil/recoil_max) * recoil_inaccuracy_max
 
 	for (var/i = 0; i < current_projectile.shot_number; i++)
-		var/obj/projectile/P = initialize_projectile_pixel_spread(user, current_projectile, M, 0, 0, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
+		var/obj/projectile/P = initialize_projectile_pixel_spread(user, current_projectile, target, 0, 0, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
 		if (!P)
 			return FALSE
-		if (user == M)
+		if (user == target)
 			P.shooter = null
 			P.mob_shooter = user
 
 		P.forensic_ID = src.forensic_ID // Was missing (Convair880).
-		if(get_dist(user,M) <= 1)
+		if(GET_DIST(user,target) <= 1)
 			P.was_pointblank = 1
-			hit_with_existing_projectile(P, M) // Includes log entry.
+			hit_with_existing_projectile(P, target) // Includes log entry.
 		else
 			P.launch()
 
-		var/mob/living/L = M
-		if (M && isalive(M))
-			L.lastgasp()
-		M.set_clothing_icon_dirty()
+		var/mob/living/L = target
+		if(istype(L))
+			if (isalive(L))
+				L.lastgasp()
+			L.set_clothing_icon_dirty()
 		src.update_icon()
 		sleep(current_projectile.shot_delay)
 

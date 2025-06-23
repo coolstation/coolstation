@@ -971,6 +971,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		set_current_projectile(new/datum/projectile/bullet/airzooka)
 		..()
 
+/*
 /obj/item/gun/kinetic/smg_old //testing keelin's continuous fire POC
 	name = "submachine gun"
 	desc = "An automatic submachine gun"
@@ -989,6 +990,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smg
 		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
+*/
 
 //  <([['v') - Gannets Nuke Ops Class Guns - ('u']])>  //
 
