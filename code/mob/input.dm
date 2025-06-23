@@ -213,7 +213,7 @@
 
 						if (mob_flags & AT_GUNPOINT) //we do this check here because if we DID take a step, we aren't tight-grabbed and the gunpoint shot will be triggered by Mob/Move(). messy i know, fix later
 							for(var/obj/item/grab/gunpoint/G in grabbed_by)
-								G.Shoot()
+								G.shoot()
 
 						for (var/obj/item/grab/G as anything in src.grabbed_by)
 							if (G.assailant == pushing || G.affecting == pushing) continue

@@ -818,7 +818,7 @@ var/datum/action_controller/actions
 
 		if (source.mob_flags & AT_GUNPOINT)
 			for(var/obj/item/grab/gunpoint/G in source.grabbed_by)
-				G.Shoot()
+				G.shoot()
 
 		if(item)
 			if(!target.can_equip(item, slot))
