@@ -706,8 +706,8 @@ A Flamethrower in various states of assembly
 				src.shoot_delay = 2 DECI SECONDS
 				src.chem_divisor = 1 //hehehe
 
-			AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay)
-			set_current_projectile(src.current_projectile)
+		AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay)
+		set_current_projectile(src.current_projectile)
 
 	if (href_list["temp"])
 		if (href_list["temp"] == "reset")

@@ -194,9 +194,9 @@ TYPEINFO(/datum/component/holdertargeting/smartgun)
 				if(!GET_COOLDOWN(A, "smartgun_last_tracked_\ref[src]"))
 					tracked_targets[A]--
 					shotcount--
-					src.update_targeting_images(M)
-					if(tracked_targets[M] <= 0)
-						tracked_targets -= M
+					src.update_targeting_images(A)
+					if(tracked_targets[A] <= 0)
+						tracked_targets -= A
 
 		sleep(0.6 SECONDS)
 

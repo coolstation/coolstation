@@ -1419,13 +1419,8 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	shoot_delay = 1 SECOND
 
 	New()
-		START_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
-		set_current_projectile(new/datum/projectile/bullet/rifle_762_NATO)
+		set_current_projectile(new/datum/projectile/bullet/rifle_heavy)
 		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 3200, /datum/overlayComposition/sniper_scope, 'sound/weapons/scope.ogg')
-		..()
-
-	disposing()
-		STOP_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
 		..()
 
 	setupProperties()
