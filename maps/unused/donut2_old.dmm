@@ -121,7 +121,6 @@
 /turf/floor,
 /area/zeta/teleporter)
 "aat" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 8;
 	icon_state = "diagonalWall3"
@@ -133,7 +132,6 @@
 	},
 /area/wizard_station)
 "aav" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 1;
 	icon_state = "diagonalWall3"
@@ -667,7 +665,6 @@
 /turf/floor,
 /area/zeta/teleporter)
 "abF" = (
-/turf/space,
 /turf/shuttle/wall{
 	icon_state = "diagonalWall3"
 	},
@@ -840,7 +837,6 @@
 	},
 /area/wizard_station)
 "abT" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 4;
 	icon_state = "diagonalWall3"
@@ -1131,7 +1127,6 @@
 	},
 /area/wizard_station)
 "acx" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 4;
 	icon_state = "diagonalWall3"
@@ -19147,10 +19142,6 @@
 /obj/machinery/emitter,
 /turf/floor/plating/airless,
 /area/space)
-"aMh" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "aMi" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -22588,10 +22579,6 @@
 	},
 /turf/floor,
 /area/engine/substation/pylon)
-"aTh" = (
-/turf/floor/plating/airless,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "aTi" = (
 /obj/machinery/computer/robotics{
 	perma = 1
@@ -32125,7 +32112,6 @@
 /turf/floor/plating,
 /area/maintenance/south)
 "bmE" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 8;
 	icon_state = "diagonalWall3"
@@ -32137,7 +32123,6 @@
 	},
 /area/syndicate_station)
 "bmG" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 1;
 	icon_state = "diagonalWall3"
@@ -32235,7 +32220,6 @@
 	},
 /area/syndicate_station)
 "bmR" = (
-/turf/space,
 /turf/shuttle/wall{
 	icon_state = "diagonalWall3"
 	},
@@ -32247,7 +32231,6 @@
 	},
 /area/syndicate_station)
 "bmT" = (
-/turf/space,
 /turf/shuttle/wall{
 	dir = 4;
 	icon_state = "diagonalWall3"
@@ -48724,7 +48707,6 @@
 	},
 /area/derelict/evilreaver/chapel)
 "bZK" = (
-/turf/floor/plating,
 /turf/wall/asteroid{
 	dir = 4;
 	icon_state = "astedge"
@@ -48881,7 +48863,6 @@
 	icon_state = "brokengrille";
 	tag = "icon-brokengrille"
 	},
-/turf/floor/plating,
 /turf/wall/asteroid{
 	dir = 6;
 	icon_state = "astedge"
@@ -50043,7 +50024,6 @@
 /turf/floor,
 /area/turret_protected/aisat_interior)
 "ccJ" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "nw1"
 	},
@@ -50054,7 +50034,6 @@
 	sd_lighting = 1
 	})
 "ccK" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "north1"
 	},
@@ -50065,7 +50044,6 @@
 	sd_lighting = 1
 	})
 "ccL" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "ne1"
 	},
@@ -50112,7 +50090,6 @@
 /turf/space,
 /area/turret_protected/AIsatextAS)
 "ccU" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "inw1"
 	},
@@ -50131,7 +50108,6 @@
 	sd_lighting = 1
 	})
 "ccW" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "ine1"
 	},
@@ -50208,7 +50184,6 @@
 /turf/wall/r_wall,
 /area/turret_protected/AIsatextAS)
 "cdh" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "west1"
 	},
@@ -50421,7 +50396,6 @@
 	sd_lighting = 1
 	})
 "cdw" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "east1"
 	},
@@ -50500,7 +50474,8 @@
 	desc = "Sure is.";
 	pixel_x = 11
 	},
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cdC" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -50607,7 +50582,8 @@
 	anchored = 1;
 	state = 1
 	},
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cdL" = (
 /obj/securearea{
 	desc = "";
@@ -50627,7 +50603,8 @@
 	id = "dino-core";
 	name = "Jurassic Re-integrator Blast Door"
 	},
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cdN" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'Biohazard'";
@@ -50701,15 +50678,12 @@
 	requires_power = 1;
 	sd_lighting = 1
 	})
-"cdS" = (
-/turf/floor/yellow/side{
-	dir = 8
-	})
 "cdT" = (
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 1
 	},
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cdU" = (
 /obj/grassplug{
 	tag = "icon-grassplug (NORTH)";
@@ -50776,7 +50750,8 @@
 	sd_lighting = 1
 	})
 "cdZ" = (
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cea" = (
 /turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
@@ -51038,7 +51013,8 @@
 	name = "Toilet Cubicle";
 	req_access_txt = "0"
 	},
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cey" = (
 /obj/overlay{
 	anchored = 1;
@@ -51048,7 +51024,8 @@
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cez" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -51131,7 +51108,8 @@
 	name = "broken databank"
 	},
 /obj/effect_sparker,
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "ceF" = (
 /obj/table,
 /obj/item/medical/bruise_pack,
@@ -51143,7 +51121,6 @@
 	sd_lighting = 1
 	})
 "ceG" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "sw1"
 	},
@@ -51154,7 +51131,6 @@
 	sd_lighting = 1
 	})
 "ceH" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "isw1"
 	},
@@ -51264,7 +51240,6 @@
 	sd_lighting = 1
 	})
 "ceO" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "ise1"
 	},
@@ -51275,7 +51250,6 @@
 	sd_lighting = 1
 	})
 "ceP" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "se1"
 	},
@@ -51529,7 +51503,6 @@
 	sd_lighting = 1
 	})
 "cfi" = (
-/turf/space,
 /turf/wall/asteroid{
 	icon_state = "south1"
 	},
@@ -51586,7 +51559,8 @@
 	})
 "cfn" = (
 /obj/machinery/door/airlock/glass,
-/turf/floor/yellow/side)
+/turf/floor/yellow/side,
+/area/space)
 "cfo" = (
 /obj/crate/trashcart,
 /obj/item/clothing/under/suit_jacket/purple,
@@ -51771,13 +51745,15 @@
 /obj/item/screwdriver,
 /turf/floor/yellow/side{
 	dir = 1
-	})
+	},
+/area/space)
 "cfG" = (
 /obj/rack,
 /obj/item/clothing/head/helmet/space,
 /turf/floor/yellow/side{
 	dir = 1
-	})
+	},
+/area/space)
 "cfH" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -53553,29 +53529,6 @@
 	},
 /turf/floor/plating/airless,
 /area/space)
-"cjn" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cjo" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cjp" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cjq" = (
 /turf/wall/asteroid{
 	dir = 9;
@@ -53632,29 +53585,8 @@
 	icon_state = "astdetail"
 	},
 /area/space)
-"cjw" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cjx" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astdetail"
-	},
-/area/fuck/main)
 "cjy" = (
 /turf/wall/asteroid,
-/area/fuck/main)
-"cjz" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
 /area/fuck/main)
 "cjA" = (
 /obj/landmark/mining{
@@ -53663,13 +53595,6 @@
 	veintype = 2
 	},
 /turf/wall/asteroid,
-/area/fuck/main)
-"cjB" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astdetail"
-	},
 /area/fuck/main)
 "cjC" = (
 /obj/landmark/mining{
@@ -53779,7 +53704,6 @@
 /area/space)
 "cjM" = (
 /obj/grille,
-/turf/space,
 /turf/wall/asteroid{
 	dir = 1;
 	icon_state = "astedge"
@@ -54398,13 +54322,6 @@
 /turf/wall/asteroid{
 	dir = 10;
 	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cld" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astdetail"
 	},
 /area/fuck/main)
 "cle" = (
@@ -55972,21 +55889,6 @@
 "cot" = (
 /turf/floor/plating,
 /area/fuck/main)
-"cou" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/fuck/main)
-"cov" = (
-/obj/lattice,
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cow" = (
 /obj/lattice,
 /turf/wall/asteroid{
@@ -56542,7 +56444,6 @@
 /area/space)
 "cpB" = (
 /obj/lattice,
-/turf/space,
 /turf/wall/asteroid{
 	dir = 8;
 	icon_state = "astedge"
@@ -56575,15 +56476,6 @@
 /obj/machinery/bot/mining,
 /turf/floor/plating/airless/asteroid,
 /area/fuck/main)
-"cpI" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/fuck/main)
 "cpJ" = (
 /obj/lattice,
 /turf/space{
@@ -56603,13 +56495,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"cpL" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cpM" = (
 /obj/crate,
 /turf/floor/plating/airless/asteroid,
@@ -56771,13 +56656,6 @@
 	icon_state = "astedge"
 	},
 /area/space)
-"cqd" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cqe" = (
 /obj/machinery/light,
 /turf/floor,
@@ -56817,13 +56695,6 @@
 /obj/machinery/light,
 /turf/floor,
 /area/mining/exit_east)
-"cqj" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cqk" = (
 /obj/landmark/mining{
 	icon_state = "mining6";
@@ -56921,12 +56792,6 @@
 	dir = 8
 	},
 /area/mining/exit_east)
-"cqx" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cqy" = (
 /obj/landmark/mining{
 	icon_state = "mining6";
@@ -57289,15 +57154,6 @@
 /area/space)
 "cri" = (
 /turf/space,
-/area/fuck/main)
-"crj" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
 /area/fuck/main)
 "crk" = (
 /obj/landmark/mining{
@@ -57796,14 +57652,6 @@
 /turf/wall/asteroid{
 	dir = 5;
 	icon_state = "astdetail"
-	},
-/area/space)
-"csl" = (
-/obj/lattice,
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
 	},
 /area/space)
 "csm" = (
@@ -62506,13 +62354,6 @@
 	icon_state = "astedge"
 	},
 /area/space)
-"cAV" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
-/area/space)
 "cAW" = (
 /obj/landmark/mining{
 	icon_state = "mining3";
@@ -62533,27 +62374,6 @@
 	veintype = 5
 	},
 /turf/wall/asteroid,
-/area/space)
-"cAY" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astedge"
-	},
-/area/space)
-"cAZ" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astdetail"
-	},
-/area/space)
-"cBa" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
-	},
 /area/space)
 "cBb" = (
 /obj/landmark/mining{
@@ -62586,20 +62406,6 @@
 	veintype = 2
 	},
 /turf/wall/asteroid,
-/area/space)
-"cBe" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/space)
-"cBf" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astdetail"
-	},
 /area/space)
 "cBg" = (
 /obj/landmark/mining{
@@ -62675,20 +62481,6 @@
 	veintype = 5
 	},
 /turf/wall/asteroid,
-/area/space)
-"cBn" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astedge"
-	},
-/area/space)
-"cBo" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astdetail"
-	},
 /area/space)
 "cBp" = (
 /obj/landmark/mining{
@@ -64015,7 +63807,6 @@
 /area/crunch)
 "cEc" = (
 /obj/structure/girder,
-/turf/floor/plating,
 /turf/floor/plating/damaged2,
 /area/crunch)
 "cEd" = (
@@ -64057,10 +63848,6 @@
 	desc = "Here lies Kira Taggart, tragically killed as a result of somebody else's mistakes."
 	},
 /turf/floor/ancient,
-/area/crunch)
-"cEj" = (
-/turf/floor/plating,
-/turf/floor/plating/damaged2,
 /area/crunch)
 "cEk" = (
 /obj/machinery/light/fluorescent/worn{
@@ -64893,18 +64680,6 @@
 	},
 /turf/floor,
 /area/crunch)
-"cGn" = (
-/turf/space,
-/turf/floor/plating/damaged2,
-/area/crunch)
-"cGo" = (
-/turf/floor/void/crunch,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/crunch)
 "cGp" = (
 /turf/wall/setpieces/martian,
 /area/crunch)
@@ -64912,32 +64687,8 @@
 /obj/machinery/door/unpowered/martian,
 /turf/floor/setpieces/martian,
 /area/crunch)
-"cGr" = (
-/turf/floor/void/crunch,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (SOUTHEAST)";
-	icon_state = "diagonalWall";
-	dir = 6
-	},
-/area/crunch)
-"cGs" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (EAST)";
-	icon_state = "diagonalWall";
-	dir = 4
-	},
-/area/crunch)
 "cGt" = (
 /turf/floor/setpieces/martian,
-/area/crunch)
-"cGu" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (NORTHEAST)";
-	icon_state = "diagonalWall";
-	dir = 5
-	},
 /area/crunch)
 "cGv" = (
 /obj/structure/girder,
@@ -64967,7 +64718,6 @@
 /turf/floor/void/crunch,
 /area/crunch)
 "cGA" = (
-/turf/floor/setpieces/martian,
 /turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (NORTH)";
 	icon_state = "diagonalWall";
@@ -65080,7 +64830,6 @@
 /turf/floor/setpieces/martian,
 /area/crunch)
 "cGM" = (
-/turf/floor/setpieces/martian,
 /turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (WEST)";
 	icon_state = "diagonalWall";
@@ -65241,7 +64990,6 @@
 /turf/floor/setpieces/martian,
 /area/crunch)
 "cHd" = (
-/turf/floor/setpieces/martian,
 /turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon_state = "diagonalWall";
@@ -65492,7 +65240,6 @@
 /turf/floor/grime,
 /area/crunch)
 "cHH" = (
-/turf/floor/plating,
 /turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (NORTHEAST)";
 	icon_state = "diagonalWall";
@@ -65500,7 +65247,6 @@
 	},
 /area/crunch)
 "cHI" = (
-/turf/floor/plating,
 /turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (EAST)";
 	icon_state = "diagonalWall";
@@ -65716,7 +65462,6 @@
 /area/crunch)
 "cIp" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/floor/plating,
 /turf/floor/plating/damaged2,
 /area/crunch)
 "cIq" = (
@@ -88978,7 +88723,7 @@ aaa
 aaa
 aab
 aaM
-aTh
+aIC
 aaM
 aaM
 aab
@@ -89644,7 +89389,7 @@ aab
 aaa
 aae
 asX
-aMh
+aIC
 aab
 aaa
 aNa
@@ -263731,8 +263476,8 @@ ccV
 ccV
 ccV
 cdd
-cdS
-cdS
+bzM
+bzM
 cdd
 cdi
 cdi
@@ -290890,7 +290635,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjZ
 cjy
 cjy
@@ -290914,14 +290659,14 @@ alg
 cot
 cot
 cpB
-cpL
+clc
 aaa
 aaa
 aaa
 aaa
-cjw
-cqd
-cqd
+cjq
+ckI
+ckI
 clc
 cri
 aaa
@@ -291117,7 +290862,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjZ
 cjy
 cjy
@@ -291141,12 +290886,12 @@ cot
 coW
 cot
 cjy
-cld
-cqd
-cqd
-cqd
-cqd
-cjx
+ckV
+ckI
+ckI
+ckI
+ckI
+cjQ
 cjy
 cjy
 ckV
@@ -291344,7 +291089,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -291571,12 +291316,12 @@ aaa
 bIg
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
 cjy
-cld
+ckV
 ckI
 clc
 aaa
@@ -291798,7 +291543,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -292025,7 +291770,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -292252,7 +291997,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -292512,7 +292257,7 @@ cle
 cjy
 cqZ
 cjy
-cou
+ckT
 ckW
 ckW
 clb
@@ -292739,7 +292484,7 @@ cjy
 cjy
 cqZ
 cjy
-cqx
+ckU
 aaa
 aaa
 aaa
@@ -292966,7 +292711,7 @@ cjy
 cjy
 cqZ
 cjy
-cqx
+ckU
 aaa
 aaa
 aaa
@@ -293160,7 +292905,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 ckK
@@ -293193,7 +292938,7 @@ cjy
 cjy
 cqZ
 cjy
-cqx
+ckU
 aaa
 aaa
 aaa
@@ -293386,8 +293131,8 @@ aaa
 aaa
 aaa
 aaa
-cjw
-cjx
+cjq
+cjQ
 cjy
 cjy
 ckK
@@ -293420,7 +293165,7 @@ cjy
 cjy
 cjy
 cjy
-cqx
+ckU
 aaa
 aaa
 aaa
@@ -293613,7 +293358,7 @@ aaa
 aaa
 aaa
 aaa
-cjx
+cjQ
 cjy
 cjy
 cjy
@@ -293647,7 +293392,7 @@ cjy
 cjy
 cjy
 cjy
-cqx
+ckU
 aaa
 cjq
 clc
@@ -293839,7 +293584,7 @@ aaa
 aaa
 aaa
 aaa
-cjn
+cjq
 cjy
 cjy
 cjy
@@ -293874,7 +293619,7 @@ cjy
 cjy
 cjy
 cjy
-cld
+ckV
 ckI
 ckw
 ckV
@@ -294066,7 +293811,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -294293,7 +294038,7 @@ aaa
 aaa
 aaa
 aaa
-cjo
+cjr
 cjy
 cjy
 ckb
@@ -294520,8 +294265,8 @@ aaa
 aaa
 aaa
 aaa
-cjp
-cjz
+cjP
+ckW
 cjO
 ckb
 ckr
@@ -296831,7 +296576,7 @@ cjy
 cjy
 cjy
 cjy
-cou
+ckT
 cjO
 cqZ
 ckT
@@ -297057,8 +296802,8 @@ cle
 cjy
 cjy
 cjy
-cou
-cqj
+ckT
+clb
 cjP
 ckW
 clb
@@ -297283,8 +297028,8 @@ cjy
 cjy
 cjy
 cjy
-cou
-cqj
+ckT
+clb
 aaa
 aaa
 aaa
@@ -297471,8 +297216,8 @@ aaa
 aaa
 aaa
 aaa
-cjp
-cjB
+cjP
+cjO
 cjy
 cjy
 cjy
@@ -297509,8 +297254,8 @@ cjy
 cjy
 cjy
 cjy
-cou
-cqj
+ckT
+clb
 aaa
 aaa
 aaa
@@ -297699,8 +297444,8 @@ aaa
 aaa
 aaa
 aaa
-cjp
-cjB
+cjP
+cjO
 cjy
 cjy
 cjy
@@ -297730,13 +297475,13 @@ cpG
 cqE
 cqE
 ckw
-cou
-cjz
-cjz
-crj
-cjz
-cjz
-cqj
+ckT
+ckW
+ckW
+ckW
+ckW
+ckW
+clb
 aaa
 aaa
 aaa
@@ -298616,8 +298361,8 @@ cjy
 clf
 cle
 ckT
-cjz
-cjB
+ckW
+cjO
 cjy
 cjy
 cjy
@@ -298844,8 +298589,8 @@ cjy
 cle
 ckU
 aaa
-cjp
-cjB
+cjP
+cjO
 cjy
 cjy
 cjy
@@ -298861,7 +298606,7 @@ cpt
 cpt
 cpt
 cjy
-cou
+ckT
 ckW
 ckW
 clb
@@ -299072,7 +298817,7 @@ cle
 ckV
 clc
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -299088,7 +298833,7 @@ cpt
 cpH
 cpt
 cjy
-cqx
+ckU
 aaa
 aaa
 aaa
@@ -299299,7 +299044,7 @@ cle
 cle
 ckU
 aaa
-cjo
+cjr
 cjy
 cjy
 cjy
@@ -299314,8 +299059,8 @@ cpl
 cpt
 cpt
 cjy
-cou
-cqj
+ckT
+clb
 aaa
 aaa
 aaa
@@ -299526,8 +299271,8 @@ cjy
 clf
 ckU
 aaa
-cjp
-cjB
+cjP
+cjO
 cjy
 cjy
 cjy
@@ -299539,9 +299284,9 @@ cjy
 cjy
 cpl
 cpt
-cpI
-cjz
-cqj
+ckT
+ckW
+clb
 aaa
 aaa
 aaa
@@ -299754,8 +299499,8 @@ cle
 ckU
 aaa
 aaa
-cjp
-cjB
+cjP
+cjO
 cjy
 cjy
 cjy
@@ -299766,7 +299511,7 @@ cjy
 cot
 cpl
 cot
-cov
+csc
 aaa
 aaa
 aaa
@@ -299982,8 +299727,8 @@ ckU
 aaa
 aaa
 aaa
-cjp
-cjB
+cjP
+cjO
 cjy
 cjy
 cnY
@@ -300210,13 +299955,13 @@ aaa
 aaa
 aaa
 aaa
-cjp
-cjz
-cjz
-cjB
+cjP
+ckW
+ckW
+cjO
 cjy
 cjy
-cou
+ckT
 cot
 cot
 cot
@@ -300248,7 +299993,7 @@ aaa
 aab
 aaa
 aab
-csl
+csh
 ail
 bIi
 aij
@@ -300381,8 +300126,8 @@ aij
 cli
 aaa
 aaa
-cBe
-cBn
+ahO
+ajc
 aaa
 aaa
 aaa
@@ -300440,10 +300185,10 @@ aaa
 aaa
 aaa
 aaa
-cjp
-cjz
-cjz
-cov
+cjP
+ckW
+ckW
+csc
 aaa
 aaa
 aaa
@@ -300607,14 +300352,14 @@ aij
 aij
 cli
 cli
-cAY
-cBf
-cBo
-cBn
+aii
+bIh
+ajd
+ajc
 aaa
 aaa
 aaa
-cBe
+ahO
 aij
 aij
 aij
@@ -300837,11 +300582,11 @@ aij
 aij
 aij
 aij
-cBo
-cAY
-cAY
-cAY
-cBf
+ajd
+aii
+aii
+aii
+bIh
 aij
 aij
 cBP
@@ -301287,8 +301032,8 @@ cAz
 cAz
 aij
 aje
-cAV
-cAZ
+ail
+bIi
 aij
 cjR
 aij
@@ -301515,8 +301260,8 @@ cmQ
 ail
 ajg
 aaa
-cBa
-cAZ
+ahQ
+bIi
 aij
 aij
 aij
@@ -301743,13 +301488,13 @@ aaa
 aaa
 aaa
 aaa
-cBa
-cAV
-cAV
-cAV
-cAV
-cAV
-cAV
+ahQ
+ail
+ail
+ail
+ail
+ail
+ail
 aij
 aij
 cBC
@@ -335026,7 +334771,7 @@ cFs
 cFs
 cFs
 cFs
-cGo
+cGM
 cGp
 cGp
 cGp
@@ -335254,7 +334999,7 @@ cFs
 cFs
 cFs
 cGp
-cGs
+cHI
 cGw
 cGw
 cGA
@@ -335708,7 +335453,7 @@ cFs
 cFI
 cFs
 cGp
-cGu
+cHH
 cGt
 cGt
 cGt
@@ -335718,7 +335463,7 @@ cGp
 cGp
 cGp
 cGp
-cGs
+cHI
 cGP
 cGA
 cGp
@@ -335934,14 +335679,14 @@ cFs
 cFs
 cFs
 cFs
-cGr
+cHd
 cGp
-cGu
+cHH
 cGt
 cGt
 cGE
 cGp
-cGs
+cHI
 cGt
 cGA
 cGp
@@ -335949,11 +335694,11 @@ cGR
 cGt
 cGt
 cGp
-cGs
+cHI
 cGw
 cHc
 cGp
-cGs
+cHI
 cHm
 cHd
 cGp
@@ -336164,7 +335909,7 @@ cFs
 cFs
 cGp
 cGp
-cGu
+cHH
 cGt
 cGF
 cGp
@@ -336389,7 +336134,7 @@ cFs
 cFs
 cFs
 cFs
-cGr
+cHd
 cGp
 cGp
 cGq
@@ -336407,7 +336152,7 @@ cGG
 cGt
 cGM
 cGp
-cGu
+cHH
 cHn
 cGM
 cGp
@@ -336849,11 +336594,11 @@ cGp
 cGt
 cGt
 cGp
-cGu
+cHH
 cGt
 cGM
 cGp
-cGu
+cHH
 cGt
 cGM
 cGp
@@ -336869,7 +336614,7 @@ cDy
 cDy
 cDJ
 cDz
-cEj
+cDW
 cDz
 cIp
 cDw
@@ -337083,7 +336828,7 @@ cGp
 cGp
 cGq
 cGp
-cGs
+cHI
 cGt
 cGt
 cHe
@@ -337527,7 +337272,7 @@ cDh
 cDh
 cDh
 cGp
-cGu
+cHH
 cGt
 cGt
 cGt
@@ -337547,7 +337292,7 @@ cDw
 cDw
 cDz
 cDy
-cEj
+cDW
 cDz
 cDi
 cDi
@@ -337764,7 +337509,7 @@ cGp
 cGp
 cGp
 cGp
-cGu
+cHH
 cGJ
 cGM
 cGp
@@ -337774,8 +337519,8 @@ cGp
 cDw
 cDw
 cDw
-cEj
-cEj
+cDW
+cDW
 cDi
 cDi
 cDi
@@ -338866,7 +338611,7 @@ cDi
 cDj
 cDW
 cDz
-cEj
+cDW
 cEo
 cEw
 cEE
@@ -340700,7 +340445,7 @@ cDw
 cDK
 cDy
 cDy
-cGn
+cDW
 cFt
 cFs
 cFs
@@ -341605,7 +341350,7 @@ cFu
 cGd
 cGj
 cDw
-cGn
+cDW
 cDy
 cDz
 cFs
@@ -342510,7 +342255,7 @@ cFy
 cDy
 cDy
 cEC
-cEj
+cDW
 cDi
 cDi
 cFs
