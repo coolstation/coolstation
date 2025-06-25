@@ -1079,7 +1079,7 @@
 /area/station/crew_quarters/locker)
 "acj" = (
 /obj/morgue,
-/obj/item/reagent_containers/food/snacks/pizza/meatball,
+/obj/item/reagent_containers/food/snacks/pizza/vendor/meatball,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -30034,7 +30034,7 @@
 "bwL" = (
 /obj/table/wood/round/auto,
 /obj/displaycase{
-	displayed = new /obj/item/captaingun;
+	displayed = new/obj/item/captaingun;
 	pixel_y = 8
 	},
 /obj/machinery/light/fluorescent/auto/warm,
@@ -30118,7 +30118,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/reagent_containers/food/snacks/pizza/pepperoni{
+/obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni{
 	pixel_x = 2;
 	pixel_y = 8
 	},

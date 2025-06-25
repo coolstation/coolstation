@@ -68382,7 +68382,7 @@
 /area/station/turret_protected/armory_outside)
 "fdV" = (
 /obj/displaycase{
-	displayed = new /obj/item/captaingun
+	displayed = new/obj/item/captaingun
 	},
 /obj/window/reinforced{
 	dir = 2
@@ -69324,9 +69324,6 @@
 /area/station/quartermaster/office)
 "rMs" = (
 /obj/table/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
@@ -69585,7 +69582,6 @@
 /turf/floor/plating/scorched,
 /area/station/crew_quarters/clown)
 "wpb" = (
-/obj/submachine/chicken_incubator,
 /obj/item/reagent_containers/food/snacks/ingredient/egg{
 	rand_pos = 0
 	},
@@ -69613,7 +69609,6 @@
 	},
 /area/station/hydroponics/bay)
 "wJp" = (
-/obj/submachine/chicken_feed_grinder,
 /obj/item/reagent_containers/food/snacks/plant/corn{
 	doants = 0
 	},

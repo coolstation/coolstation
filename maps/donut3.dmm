@@ -10042,7 +10042,7 @@
 /area/station/crew_quarters/captain)
 "cEO" = (
 /obj/displaycase{
-	displayed = new /obj/item/captaingun
+	displayed = new/obj/item/captaingun
 	},
 /obj/machinery/light/fluorescent/greenish{
 	dir = 1
@@ -10682,14 +10682,6 @@
 	},
 /turf/floor/plating/jen,
 /area/station/maintenance/inner/east)
-"cPU" = (
-/obj/sea_plant_manta/branching,
-/obj/fluid_spawner{
-	amount = 200;
-	delay = 200
-	},
-/turf/floor/sand,
-/area/station/engine/engineering/ce)
 "cPX" = (
 /obj/dartboard{
 	pixel_y = 26
@@ -31716,14 +31708,6 @@
 /obj/decal/cleanable/rust/jen,
 /turf/floor/plating/jen,
 /area/station/science/gen_storage)
-"jdO" = (
-/obj/sea_plant_manta/coralfingers,
-/obj/fluid_spawner{
-	amount = 200;
-	delay = 200
-	},
-/turf/floor/sand,
-/area/station/engine/engineering/ce)
 "jey" = (
 /obj/bookshelf{
 	pixel_y = 28
@@ -73209,7 +73193,6 @@
 /obj/storage/secure/closet/fridge,
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/snacks/pizza/pepperoni,
 /turf/floor/grey/corner{
 	dir = 4
 	},
@@ -151518,7 +151501,7 @@ tCG
 iik
 bwT
 wCh
-jdO
+mfw
 wCh
 rdj
 rdj
@@ -152716,7 +152699,7 @@ rdj
 rdj
 rdj
 kTR
-cPU
+mfw
 mfw
 kTR
 kTR
