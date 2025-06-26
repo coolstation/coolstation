@@ -1441,7 +1441,7 @@ obj/decoration/ceilingfan
 		return
 
 
-obj/decoration/floralarrangement
+/obj/decoration/floralarrangement
 	name = "floral arrangement"
 	desc = "These look... Very plastic. Huh."
 	icon = 'icons/obj/furniture/walp_decor.dmi'
@@ -1449,3 +1449,24 @@ obj/decoration/floralarrangement
 	anchored = 1
 	density = 1
 
+/obj/decoration/railbed
+	name = "railbed"
+	desc = "test"
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "railbed"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+/obj/decoration/railbed/trans
+	icon_state = "railbedtrans"
+	New()
+		..()
+		src.color = null
