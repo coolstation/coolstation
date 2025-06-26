@@ -388,6 +388,7 @@
 		if (src.density)
 			last_used = world.time
 			if (src.open() == 1)
+				SEND_SIGNAL(src, COMSIG_MOB_DOORBUMP, AM)
 				return 1
 			else
 				return 0

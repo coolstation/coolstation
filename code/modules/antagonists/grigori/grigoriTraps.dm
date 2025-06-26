@@ -3,7 +3,7 @@
 	icon_state = "placeholder"
 	var/trigger_type = null
 	var/armed = FALSE
-	var/trap_type = "default"
+	var/trap_type = null
 	var/item/trap_content
 	flags = USEDELAY | TRAP_SPAWNER
 	w_class = W_CLASS_BULKY
@@ -43,7 +43,7 @@
 	var/grigori_xp = 0
 	switch(src.trigger_type)
 	if("door_touch") //it will eventually make sense why I'm using a switch here
-		make_door_handle_trap(target,src.trap_type)
+		make_trap(target,src.trap_type)
 		grigori_xp = rand(1,5)
 		qdel(src)
 	user.add_grigori_xp(grigori_xp)
@@ -56,6 +56,27 @@
 	var/obj/linked_obj
 	density = 0
 	anchored = 1
+
+	New()
+		switch(trigger_type)
+		if("door_touch")
+			AddComponent(/datum/component/activate_trap_on_door_touch)
+
+	proc/trap_triggered(var/mob/victim)
+	..()
+
+/obj/machinery/grigori_trap/chopper
+	name = "chopper trap"
+	icon_state = "placeholder"
+	desc = "a poorly hidden axe blade attatched to a string, ready to do some chopping."
+
+	proc/trap_triggered()
+		//do random chopping code here - have the trap be layerd ontop of whatever machine, and the linked object passes interactions from attackby to a proc here if the trap is present
+
+/obj/machinery/grigori_trap/make_trap(var/obj/target,var/trap_type,var/trigger_type,var/mob/user) //mylie told me to use components, time to Figure Em Out
+	var/atom/A
+	A = new trap_type
+	A.set_loc(target.loc) //add failsafes here and whatnot, this is just the stub
 
 
 

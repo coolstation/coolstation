@@ -195,6 +195,8 @@
 // ---- mob property signals ----
 /// When invisibility of a mob gets updated (old_value)
 #define COMSIG_MOB_PROP_INVISIBILITY "mob_prop_invis"
+//when a mob bumps into a door
+#define COMSIG_MOB_DOORBUMP "mob_doorbump"
 
 // ---- attack_X signals ----
 
