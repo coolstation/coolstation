@@ -69,6 +69,8 @@
 #define HAS_EQUIP_CLICK			 (1<<6)
 /// Has a click delay for attack_self()
 #define ATTACK_SELF_DELAY		 (1<<7)
+//for grigori traps. Probably not the best way to do this, I'll think of a better way once I get it working.
+#define TRAP_SPAWNER			 (1<<8)
 
 //tool flags
 #define TOOL_CLAMPING (1<<0)
