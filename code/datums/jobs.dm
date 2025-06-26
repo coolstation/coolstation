@@ -485,6 +485,28 @@ ABSTRACT_TYPE(/datum/job/command)
 			return
 		M.show_text("<b>You're the Quartermaster! Make sure the station departments are properly equipped, raw materials and salvage are coming in and going out, and income is up! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need. Without your department, this station grinds to a halt!</b>", "blue")
 
+/datum/job/command/bureaucrat
+	name = " Bureaucrat"
+	limit = 1
+	wages = PAY_IMPORTANT
+	department = "command"
+
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/device/pda2/heads)
+	slot_jump = list(/obj/item/clothing/under/misc/lawyer)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
+	slot_ears = list(/obj/item/device/radio/headset/command)
+	slot_head = list(/obj/item/clothing/head/NTberet)
+	slot_eyes = list(/obj/item/clothing/glasses/regular)
+	slot_lhan = list(/obj/item/clipboard/with_pen)
+	items_in_backpack = list(/obj/item/device/flash)
+
+	New()
+		..()
+		name = get_bureau_name()
+		src.access = get_access("VIP")
+		return
+
 // Security Jobs
 
 ABSTRACT_TYPE(/datum/job/security)
@@ -1598,6 +1620,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		if (src.alt_names.len)
 			name = pick(src.alt_names)
 
+
 /datum/job/special/random/vip
 	name = "VIP"
 	wages = PAY_EXECUTIVE
@@ -1628,6 +1651,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 			G.set_loc(B)
 
 		return
+
 
 /datum/job/special/random/inspector
 	name = "Inspector"
