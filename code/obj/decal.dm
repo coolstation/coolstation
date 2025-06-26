@@ -648,3 +648,4 @@ obj/decal/fakeobjects
 			take_bleeding_damage(L,null,5,DAMAGE_STAB)
 			random_brute_damage(L,10)
 			L.visible_message("<span class='alert'>[L] stubs their toe on [src]!</span>","<span class='alert'>You stub your toe on [src]!</span>")
+

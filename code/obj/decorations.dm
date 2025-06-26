@@ -1450,8 +1450,6 @@ obj/decoration/ceilingfan
 	density = 1
 
 /obj/decoration/railbed
-	name = "railbed"
-	desc = "test"
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "railbed"
 	anchored = 1
@@ -1465,8 +1463,29 @@ obj/decoration/ceilingfan
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
+/obj/decoration/railbed/cracked1
+	icon_state = "railbedcracked1"
+
+/obj/decoration/railbed/cracked2
+	icon_state = "railbedcracked2"
+
 /obj/decoration/railbed/trans
 	icon_state = "railbedtrans"
 	New()
 		..()
 		src.color = null
+
+/obj/decoration/railbed/trans/cracked1
+	icon_state = "railbedcracked1trans"
+
+/obj/decoration/railbed/trans/cracked2
+	icon_state = "railbedcracked2trans"
+
+/obj/decoration/train_signal
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "trainsignal"
+	anchored = 1
+	density = 0
+	plane = PLANE_NOSHADOW_BELOW
+	//this is just a dummy until it gets logic
+
