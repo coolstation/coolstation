@@ -184,6 +184,7 @@ datum
 			burn_volatility = 15 // Very Dangerous
 			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
 			value = 5
+			evaporates_cleanly = TRUE
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -726,6 +727,7 @@ datum
 			penetrates_skin = 1 // splashing saline on someones wounds would sorta help clean them
 			depletion_rate = 0.15
 			value = 5 // 3c + 1c + 1c
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1705,6 +1707,7 @@ datum
 			transparency = 240
 			value = 3 // 1 1 1
 			target_organs = list("brain")		//unused for now
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom

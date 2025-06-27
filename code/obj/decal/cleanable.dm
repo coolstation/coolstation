@@ -37,7 +37,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	var/last_dry_start = 0
 	var/dry_time = 100
 
-	flags = NOSPLASH | FPRINT
+	flags = NOSPLASH | FPRINT | OPENCONTAINER
 	layer = CLEANABLE_DECAL_LAYER
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
@@ -183,24 +183,28 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	proc/Sample(var/obj/item/W as obj, var/mob/user as mob)
 		if (!src.can_sample || !W.reagents)
 			return 0
-		if (src.sampled)
-			user.show_text("There's not enough left of [src] to [src.sample_verb] into [W].", "red")
-			return 0
 
 		if (src.reagents)
-			if (W.reagents.total_volume >= W.reagents.maximum_volume - (src.reagents.total_volume - 1))
+			var/amt_to_sample = min(src.reagents.total_volume, 10)
+			if(!amt_to_sample)
+				user.show_text("There's not enough left of [src] to [src.sample_verb] into [W].", "red")
+				return 0
+			else if (W.reagents.total_volume >= W.reagents.maximum_volume)
 				user.show_text("[W] is too full!", "red")
 				return 0
 			else
-				if (src.reagents.total_volume)
-					src.reagents.trans_to(W, src.reagents.total_volume)
+				src.reagents.trans_to(W, amt_to_sample)
 				user.visible_message("<span class='notice'><b>[user]</b> [src.sample_verb]s some of [src] into [W].</span>",\
 				"<span class='notice'>You [src.sample_verb] some of [src] into [W].</span>")
 				W.reagents.handle_reactions()
 				src.sampled = 1
 				return 1
 
+
 		else if (src.sample_amt && src.sample_reagent)
+			if (src.sampled)
+				user.show_text("There's not enough left of [src] to [src.sample_verb] into [W].", "red")
+				return 0
 			if (W.reagents.total_volume >= W.reagents.maximum_volume - (src.sample_amt - 1))
 				user.show_text("[W] is too full!", "red")
 				return 0
@@ -291,13 +295,15 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	can_dry = 1
 	sample_reagent = null
 	stain = null
-	can_sample = 0
+	can_sample = TRUE
 
 	var/can_track = 1
-	var/reagents_max = 10
+	var/reagents_max = 30
 
-	is_open_container()
-		return TRUE
+	Sample(obj/item/W, mob/user)
+		. = ..()
+		if(src.reagents && !src.reagents.total_volume)
+			qdel(src)
 
 	on_reagent_change(add)
 		src.update_color()
@@ -388,10 +394,23 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 		processing_items.Add(src)
 
 	end_dry()
-		src.dry = DRY_REAGENTS
-		src.stain = null
-		src.UpdateName()
-		processing_items.Remove(src)
+		if (src.dry == FRESH_REAGENTS)
+			src.dry = 0
+			src.UpdateName()
+			src.dry_time = rand(300,600)
+		else
+			src.dry = DRY_REAGENTS
+			src.stain = null
+			processing_items.Remove(src)
+			if(src.reagents)
+				for(var/reagent_id in src.reagents.reagent_list)
+					var/datum/reagent/reagent = src.reagents.reagent_list[reagent_id]
+					if(reagent.evaporates_cleanly)
+						src.reagents.del_reagent(reagent_id)
+				if(src.reagents.total_volume)
+					src.UpdateName()
+				else
+					qdel(src)
 
 	disposing()
 		var/obj/decal/bloodtrace/B = locate() in src.loc
@@ -472,19 +491,6 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			last_dry_start = world.time
 			processing_items |= src
 			return 1
-
-	end_dry()
-		if (src.dry == FRESH_REAGENTS)
-			src.dry = 0
-			src.UpdateName()
-			src.dry_time = rand(300,600)
-		else
-			src.dry = DRY_REAGENTS
-			src.stain = null
-			src.UpdateName()
-			src.slippery = 0
-			processing_items.Remove(src)
-			return
 
 	proc/transfer_volume(var/datum/reagents/source, var/amount = 1, var/bDNA = null, var/btype = null, var/i_state = null, var/direction = null, var/do_fluid_react = 1, var/violent = FALSE)
 		if (bDNA)
@@ -2044,14 +2050,14 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		last_touched = user
 		..()
 
-	New()
+	New(turf/newLoc, var/amount = 15)
 		..()
-		var/datum/reagents/R = new/datum/reagents(10)
+		var/datum/reagents/R = new/datum/reagents(30)
 		reagents = R
 		R.my_atom = src
-		R.add_reagent("poo", 10)
+		R.add_reagent("poo", amount)
 		icon_state = "mud[rand(1,3)]"
-		name = pick("shit","turd","poop","poo")
+		name = pick("shit","turd","poop","poo","loaf","deuce","brick")
 
 	heal(var/mob/living/M)
 		if (prob(33))
@@ -2085,7 +2091,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 				if (last_touched.sims)
 					last_touched.sims.affectMotive("fun", 10)
 		else if(ismovable(A))
-			A.add_mud(src, src.amount ? src.amount : 5)
+			A.add_mud(src, src.reagents.total_volume ? src.reagents.total_volume : 15)
 
 		qdel(src)
 

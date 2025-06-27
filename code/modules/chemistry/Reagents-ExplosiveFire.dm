@@ -259,6 +259,7 @@ datum
 			fluid_b = 200
 			transparency = 230
 			minimum_reaction_temperature = T0C+25
+			evaporates_cleanly = TRUE
 			var/ignited = 0
 /*
 			pooled()
@@ -288,6 +289,7 @@ datum
 			fluid_b = 255
 			transparency = 230
 			minimum_reaction_temperature = T0C + 100
+			evaporates_cleanly = TRUE
 			var/ignited = FALSE
 /*
 			pooled()
@@ -503,7 +505,7 @@ datum
 			burn_temperature = 9000
 			burn_volatility = 20
 			minimum_reaction_temperature = -INFINITY
-
+			evaporates_cleanly = TRUE
 
 			reaction_turf(var/turf/T, var/volume)
 				. = ..()
@@ -576,7 +578,6 @@ datum
 			volatility = 3
 			minimum_reaction_temperature = -INFINITY
 
-
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(exposed_temperature < T0C)
 					if(holder)
@@ -602,6 +603,7 @@ datum
 			viscosity = 0.6
 			volatility = 1.25
 			minimum_reaction_temperature = T0C + 200
+			evaporates_cleanly = TRUE
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!src.reacting)
@@ -624,6 +626,7 @@ datum
 			viscosity = 0.9
 			volatility = 1.5 // lol no
 			minimum_reaction_temperature = T0C+200
+			evaporates_cleanly = TRUE
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!src.reacting)

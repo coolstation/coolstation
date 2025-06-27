@@ -33,6 +33,7 @@ datum
 				fluid_b = 32
 				transparency = 120
 				penetrates_skin = 1
+				evaporates_cleanly = TRUE
 
 		harmful/simple_damage_burn
 			name = "irritant precursor"
@@ -58,6 +59,7 @@ datum
 			transparency = 20
 			blob_damage = 1
 			value = 3 // 1c + 1c + 1c
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -152,6 +154,7 @@ datum
 			transparency = 64
 			reagent_state = LIQUID
 			blob_damage = 0.2
+			evaporates_cleanly = TRUE
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -260,6 +263,7 @@ datum
 			penetrates_skin = 1
 			blob_damage = 5
 			value = 7 // 3 2 1 heat
+			evaporates_cleanly = TRUE
 			var/counter = 1
 /*
 			pooled()
@@ -400,6 +404,7 @@ datum
 			transparency = 20
 			penetrates_skin = 1
 			value = 4 // 1 1 1 heat
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -423,6 +428,7 @@ datum
 			transparency = 20
 			penetrates_skin = 1
 			value = 4
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -879,6 +885,7 @@ datum
 			transparency = 40
 			dispersal = 1
 			blob_damage = 4
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom

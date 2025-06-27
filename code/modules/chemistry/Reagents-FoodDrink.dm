@@ -3744,6 +3744,7 @@ datum
 			fluid_g = 110
 			fluid_b = 80
 			overdose = 3 //we don't add a lot of this stuff to anything
+			evaporates_cleanly = TRUE
 			var/do_tummy = 1
 
 			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume_passed)
