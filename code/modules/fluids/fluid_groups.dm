@@ -392,6 +392,7 @@
 
 	proc/update_viscosity()
 		var/avg = 0
+		var/solid = 0
 		var/reagents = 0
 
 		for(var/reagent_id in src.reagents.reagent_list)
@@ -401,6 +402,8 @@
 				continue
 
 			avg += current_reagent.viscosity * current_reagent.volume
+			if(current_reagent.is_solid())
+				solid += current_reagent.volume
 			reagents += current_reagent.volume
 			LAGCHECK(LAG_HIGH)
 
@@ -414,7 +417,9 @@
 
 		var/last_prefix = src.viscosity_prefix
 
-		if(src.avg_viscosity > HALF_MAX_VISCOSITY)
+		if(solid / reagents > 0.8)
+			src.viscosity_prefix = "powder"
+		else if(src.avg_viscosity > HALF_MAX_VISCOSITY)
 			src.viscosity_prefix = "globby"
 		else
 			src.viscosity_prefix = ""

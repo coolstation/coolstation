@@ -580,14 +580,14 @@ var/mutable_appearance/fluid_ma
 		var/last_icon = icon_state
 
 		if (last_spread_was_blocked || (src.group && src.group.amt_per_tile > src.group.required_to_spread))
-			icon_state = src.group.viscosity_prefix + "15"
+			icon_state = "[src.group.viscosity_prefix]15"
 		else
 			var/dirs = 0
 			for (var/dir in cardinal)
 				var/turf/T = get_step(src, dir)
 				if (T && T.active_liquid && T.active_liquid.group == src.group)
 					dirs |= dir
-			icon_state = src.group.viscosity_prefix + num2text(dirs)
+			icon_state = "[src.group.viscosity_prefix][num2text(dirs)]"
 
 			if (src.overlay_refs && length(src.overlay_refs))
 				src.clear_overlay()
@@ -630,6 +630,8 @@ var/mutable_appearance/fluid_ma
 		if (!wall_overlay_images)
 			wall_overlay_images = list()
 
+		overlay_key = overlay_key
+
 		if (wall_overlay_images[overlay_key])
 			overlay = wall_overlay_images[overlay_key]
 		else
@@ -637,7 +639,7 @@ var/mutable_appearance/fluid_ma
 
 		var/over_obj = !(istype(src.loc, /turf/wall)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
 		overlay.layer = over_obj ? 4 : src.layer
-		overlay.icon_state = "wall_[overlay_key]_[last_depth_level]"
+		overlay.icon_state = "[src.viscosity_prefix]wall_[overlay_key]_[last_depth_level]"
 		overlay.pixel_x = pox
 		overlay.pixel_y = poy
 		wall_overlay_images[overlay_key] = overlay
