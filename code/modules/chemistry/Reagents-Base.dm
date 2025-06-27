@@ -46,9 +46,9 @@ datum
 			id = "carbon"
 			description = "A chemical element critical to organic chemistry."
 			reagent_state = SOLID
-			fluid_r = 0
-			fluid_g = 0
-			fluid_b = 0
+			fluid_r = 5
+			fluid_g = 5
+			fluid_b = 5
 			hygiene_value = -0.5
 			transparency = 255
 

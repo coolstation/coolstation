@@ -2078,13 +2078,13 @@ datum
 			name = "meat slurry"
 			id = "meat_slurry"
 			description = "A paste comprised of highly-processed organic material. Uncomfortably similar to deviled ham spread."
-			reagent_state = SOLID
+			reagent_state = LIQUID
 			fluid_r = 235
 			fluid_g = 215
 			fluid_b = 215
 			transparency = 255
 			hunger_value = 0.5
-			viscosity = 0.5
+			viscosity = 0.8
 
 			reaction_turf(var/turf/T, var/volume)
 				var/list/covered = holder.covered_turf()
@@ -2640,11 +2640,12 @@ datum
 			name = "ketchup"
 			id = "ketchup"
 			description = "A condiment often used on hotdogs and sandwiches."
-			reagent_state = SOLID
+			reagent_state = LIQUID
 			fluid_r = 255
 			fluid_g = 0
 			fluid_b = 0
 			transparency = 255
+			viscosity = 0.7
 
 			reaction_turf(var/turf/T, var/volume) //Makes the kechup splats
 				var/list/covered = holder.covered_turf()
@@ -2986,7 +2987,7 @@ datum
 			fluid_b = 103
 			transparency = 255
 			hunger_value = 0.5
-			viscosity = 0.2
+			viscosity = 0.8
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -3668,6 +3669,8 @@ datum
 			fluid_r = 220
 			fluid_g = 180
 			fluid_b = 130
+			transparency = 230
+			viscosity = 0.7
 
 		fooddrink/satisghetti //okay that was fun calling this bonerjuice but now we have a real boner joker we have to make room for
 			name = "the satisfaction of making spaghetti"
