@@ -303,24 +303,6 @@ I::::::::I      T:::::::::T             S:::::::::::::::SS      P::::::::P      
 IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP               OOOOOOOOO          OOOOOOOOO     PPPPPPPPPP
 */
 
-/proc/muddy(var/turf/T as turf, var/num_amount)
-	if (!T)
-		return
-
-	var/obj/decal/cleanable/tracked_reagents/dynamic/B = null
-	if (T.messy > 0)
-		B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
-
-	if (!B) // look for an existing dynamic blood decal and add to it if you find one
-		B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
-
-	B.set_sample_reagent_custom("poo")
-
-	B.stain = "shit-stained"
-
-	B.transfer_volume(null, num_amount)
-	return
-
 /atom/proc/add_mud(mob/living/M as mob, var/amount = 5)
 	if (!(( src.flags) & FPRINT))
 		return

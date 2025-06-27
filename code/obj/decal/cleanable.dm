@@ -516,27 +516,27 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			if(violent)
 				switchin = 500
 			switch (switchin)
-				if (-INFINITY to 5)
+				if (-INFINITY to 2)
 					if (!list_and_len(blood_decal_low_icon_states))
 						return
 					create_overlay(blood_decal_low_icon_states, src.color, direction, 'icons/obj/decals/blood.dmi', src.alpha)
 					// no increase in slipperiness if there's just a little bit of blood being added
-				if (5 to 10)
+				if (2 to 4)
 					if (!list_and_len(blood_decal_med_icon_states))
 						return
 					create_overlay(blood_decal_med_icon_states, src.color, direction, 'icons/obj/decals/blood.dmi', src.alpha)
 					src.slippery = min(src.slippery+1, 10)
-				if (10 to 15)
+				if (4 to 6)
 					if (!list_and_len(blood_decal_high_icon_states))
 						return
 					create_overlay(blood_decal_high_icon_states, src.color, direction, 'icons/obj/decals/blood.dmi', src.alpha)
 					src.slippery = min(src.slippery+2, 10)
-				if (15 to 20)
+				if (6 to 10)
 					if (!list_and_len(blood_decal_max_icon_states))
 						return
 					create_overlay(blood_decal_max_icon_states, src.color, direction, 'icons/obj/decals/blood.dmi', src.alpha)
 					src.slippery = min(src.slippery+5, 10)
-				if (20 to INFINITY)
+				if (10 to INFINITY)
 					if (!list_and_len(blood_decal_violent_icon_states))
 						return
 					create_overlay(blood_decal_violent_icon_states, src.color, direction, 'icons/obj/decals/blood.dmi', src.alpha) // for when you wanna create a BIG MESS
@@ -610,11 +610,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/tracked_reagents/blood/tracks
 	icon_state = "tracks"
 	random_icon_states = null
-	color = "#FFFFFF"
 
 /obj/decal/cleanable/tracked_reagents/blood/hurting1
 	icon_state = "hurting1"
-	color = "#FFFFFF"
 	random_icon_states = null
 
 	hurting2
@@ -2050,12 +2048,10 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		last_touched = user
 		..()
 
-	New(turf/newLoc, var/amount = 15)
+	New(turf/newLoc, var/amount = 9)
 		..()
-		var/datum/reagents/R = new/datum/reagents(30)
-		reagents = R
-		R.my_atom = src
-		R.add_reagent("poo", amount)
+		src.create_reagents(30)
+		src.reagents.add_reagent("poo", amount)
 		icon_state = "mud[rand(1,3)]"
 		name = pick("shit","turd","poop","poo","loaf","deuce","brick")
 
@@ -2069,9 +2065,19 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
 
 		if (istype(T))
-			muddy(T, src.amount ? src.amount : 5, rand(1,3))
 
-		if (ishuman(A))
+			var/obj/decal/cleanable/tracked_reagents/dynamic/B = null
+			if (T.messy > 0)
+				B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
+
+			if (!B) // look for an existing dynamic blood decal and add to it if you find one
+				B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
+
+			B.transfer_volume(src.reagents, src.reagents.total_volume)
+
+			B.stain = "shit-stained"
+
+		else if (ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if (H.wear_suit)
 				H.wear_suit.add_mud(src)
@@ -2090,6 +2096,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 			if (istype(last_touched) && (last_touched in viewers(src)) && last_touched != H)
 				if (last_touched.sims)
 					last_touched.sims.affectMotive("fun", 10)
+
 		else if(ismovable(A))
 			A.add_mud(src, src.reagents.total_volume ? src.reagents.total_volume : 15)
 
