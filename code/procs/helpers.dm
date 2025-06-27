@@ -218,6 +218,15 @@ proc/get_angle(atom/a, atom/b)
 	return curr
 */
 
+
+/proc/get_bureau_name()
+	var/list/random_titles = list()
+	var/list/resource = list("Space Dolphin","Urine","Plasma","Paper","Tree","Human","Robot","AI","Asteroid","Ice","Lamp", "Bone", "Lotion", "Tissue", "Toilet Paper","Alien","Pants","Phasmid","Candy","Colored Pencil","Fish","Beer","Refrigerator","Furniture","Rat") //literally just throw whatever random shit you can think of
+	var/list/fields = list("Pest Control","Paperwork","HR","Rationing","Frontier Census","Middle Management","[pick(resource)] Conservation","[pick(resource)] Management","Cooperation","integration","Alignment","Documentation","Time Management","[pick(resource)] Eradication")
+	var/list/titles = list("Head of [pick(fields)]","[pick(fields)] Specialist","[pick(fields)] Director","[pick(fields)] Officer")
+	return(pick(titles))
+
+
 /proc/movable_area_check(var/atom/A)
 	if(!A.loc) return 0
 	if(!A) return 0

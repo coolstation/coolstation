@@ -2,21 +2,9 @@
 "aaa" = (
 /turf/space,
 /area/space)
-"aab" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/wizard_station)
 "aac" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/wizard_station)
-"aad" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "aae" = (
@@ -186,21 +174,10 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"aaw" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/wizard_station)
 "aax" = (
 /obj/stool/chair,
 /turf/floor/shuttle{
 	icon_state = "floor5"
-	},
-/area/wizard_station)
-"aay" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "aaz" = (
@@ -232,12 +209,6 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"aaC" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
 "aaD" = (
 /obj/cable{
 	icon_state = "0-4";
@@ -10140,10 +10111,6 @@
 	},
 /turf/wall,
 /area/station/maintenance/disposal)
-"atH" = (
-/obj/grille,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "atI" = (
 /obj/window{
 	icon_state = "rwindow";
@@ -11011,15 +10978,6 @@
 	level = 2
 	},
 /turf/space,
-/area/space)
-"avo" = (
-/obj/cable{
-	icon_state = "0-2";
-	d2 = 2
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/communications_dish,
-/turf/floor/airless/plating/damaged2,
 /area/space)
 "avp" = (
 /obj/grille,
@@ -19433,13 +19391,6 @@
 "aKt" = (
 /turf/shuttle/wall,
 /area/shuttle/recovery_shuttle)
-"aKu" = (
-/turf/shuttle/wall{
-	tag = "icon-wall (SOUTHEAST)";
-	icon_state = "wall";
-	dir = 6
-	},
-/area/shuttle/recovery_shuttle)
 "aKv" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -19487,13 +19438,6 @@
 	},
 /turf/floor/shuttle{
 	icon_state = "floor3"
-	},
-/area/shuttle/recovery_shuttle)
-"aKA" = (
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (SOUTHWEST)";
-	icon_state = "diagonalWall";
-	dir = 10
 	},
 /area/shuttle/recovery_shuttle)
 "aKB" = (
@@ -20650,9 +20594,6 @@
 /obj/lattice,
 /turf/space,
 /area/station/engine/storage)
-"aMU" = (
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/storage)
 "aMV" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 5;
@@ -21138,14 +21079,6 @@
 	d2 = 8
 	},
 /turf/space,
-/area/space)
-"aNK" = (
-/obj/machinery/power/tracker,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/floor/airless/plating/damaged2,
 /area/space)
 "aNL" = (
 /obj/closet,
@@ -21874,20 +21807,6 @@
 /obj/closet/emcloset,
 /turf/floor/shuttle{
 	icon_state = "floor3"
-	},
-/area/shuttle/recovery_shuttle)
-"aPn" = (
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/shuttle/recovery_shuttle)
-"aPo" = (
-/turf/shuttle/wall{
-	tag = "icon-wall (NORTHEAST)";
-	icon_state = "wall";
-	dir = 5
 	},
 /area/shuttle/recovery_shuttle)
 "aPp" = (
@@ -29863,13 +29782,6 @@
 	},
 /turf/floor,
 /area/station/security/prison)
-"beU" = (
-/turf/shuttle/wall{
-	dir = 9;
-	icon_state = "pwall";
-	tag = "icon-wall (SOUTHWEST)"
-	},
-/area/shuttle/brig/prison)
 "beV" = (
 /obj/grille,
 /obj/window/reinforced{
@@ -29879,13 +29791,6 @@
 	},
 /obj/window/reinforced,
 /turf/floor/shuttle,
-/area/shuttle/brig/prison)
-"beW" = (
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "pwall";
-	tag = "icon-wall (SOUTHWEST)"
-	},
 /area/shuttle/brig/prison)
 "beX" = (
 /obj/grille,
@@ -30011,21 +29916,9 @@
 	},
 /turf/floor/shuttle,
 /area/station/security/prison)
-"bfm" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "bfn" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/syndicate_station)
-"bfo" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
 	},
 /area/syndicate_station)
 "bfp" = (
@@ -30220,21 +30113,10 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_station)
-"bfM" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "bfN" = (
 /obj/machinery/door/window,
 /turf/floor/shuttle{
 	icon_state = "floor4"
-	},
-/area/syndicate_station)
-"bfO" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/syndicate_station)
 "bfP" = (
@@ -30274,24 +30156,10 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_station)
-"bfS" = (
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "pwall";
-	tag = "icon-wall (SOUTHWEST)"
-	},
-/area/shuttle/brig/prison)
 "bfT" = (
 /obj/secure_closet/personal,
 /turf/floor/shuttle{
 	icon_state = "floor2"
-	},
-/area/shuttle/brig/prison)
-"bfU" = (
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "pwall";
-	tag = "icon-wall (SOUTHWEST)"
 	},
 /area/shuttle/brig/prison)
 "bfV" = (
@@ -32350,13 +32218,6 @@
 	icon_state = "floor4"
 	},
 /area/centcom)
-"blj" = (
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "pwall";
-	tag = "icon-wall (SOUTHWEST)"
-	},
-/area/centcom)
 "blk" = (
 /obj/machinery/shuttle/engine/propulsion{
 	tag = "icon-propulsion (EAST)";
@@ -32368,10 +32229,6 @@
 	icon_state = "pwall";
 	tag = "icon-wall (SOUTHWEST)"
 	},
-/area/centcom)
-"bll" = (
-/obj/decal/cleanable/tracked_reagents/blood,
-/turf/floor/shuttle,
 /area/centcom)
 "blm" = (
 /obj/table,
@@ -32401,13 +32258,6 @@
 	},
 /turf/floor/shuttle,
 /area/centcom)
-"blr" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor/shuttle,
-/area/centcom)
 "bls" = (
 /obj/table{
 	dir = 5;
@@ -32418,13 +32268,6 @@
 "blt" = (
 /obj/stool/chair{
 	dir = 4
-	},
-/turf/floor/shuttle,
-/area/centcom)
-"blu" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor2";
-	icon_state = "floor2"
 	},
 /turf/floor/shuttle,
 /area/centcom)
@@ -32479,10 +32322,6 @@
 	},
 /turf/floor/plating,
 /area/centcom)
-"blA" = (
-/obj/decal/cleanable/tracked_reagents/blood/gibs/body,
-/turf/floor/shuttle,
-/area/centcom)
 "blB" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -32496,17 +32335,6 @@
 	dir = 1
 	},
 /turf/floor/shuttle,
-/area/centcom)
-"blD" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
-/turf/floor/shuttle,
-/area/centcom)
-"blE" = (
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "pwall";
-	tag = "icon-wall (SOUTHWEST)"
-	},
 /area/centcom)
 "blF" = (
 /obj/machinery/door_control{
@@ -33095,13 +32923,6 @@
 /obj/cable,
 /turf/floor/circuit,
 /area/meteor/dock)
-"bmY" = (
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/meteor/dock)
 "bmZ" = (
 /turf/shuttle/wall{
 	dir = 4;
@@ -33120,23 +32941,6 @@
 "bnc" = (
 /obj/machinery/door/unpowered/shuttle,
 /turf/floor/plating/airless,
-/area/meteor/dock)
-"bnd" = (
-/obj/shieldwall{
-	tag = "icon-shield1 (NORTHWEST)";
-	icon_state = "shield1";
-	dir = 9
-	},
-/obj/shieldwall{
-	tag = "icon-shield1 (SOUTHWEST)";
-	icon_state = "shield1";
-	dir = 10
-	},
-/turf/shuttle/wall{
-	tag = "icon-wall (NORTHEAST)";
-	icon_state = "wall";
-	dir = 5
-	},
 /area/meteor/dock)
 "bne" = (
 /obj/item/shieldwallgen,
@@ -34022,13 +33826,6 @@
 /obj/cable,
 /turf/floor/plating/airless,
 /area/space)
-"boC" = (
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (NORTHWEST)";
-	icon_state = "diagonalWall";
-	dir = 9
-	},
-/area/space)
 "boD" = (
 /obj/cable{
 	icon_state = "0-2";
@@ -34799,18 +34596,6 @@
 	name = "Jam Mansion";
 	requires_power = 1
 	})
-"bqa" = (
-/obj/decal/cleanable/cobweb,
-/obj/submachine/foodprocessor,
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/turf/floor/sanitary,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
 "bqb" = (
 /obj/secure_closet/meat,
 /turf/floor/sanitary,
@@ -34960,17 +34745,6 @@
 /turf/floor{
 	icon_state = "carpetE"
 	},
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bqr" = (
-/obj/item/knife_butcher,
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
-/turf/floor/sanitary,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35708,32 +35482,6 @@
 	name = "Jam Mansion";
 	requires_power = 1
 	})
-"brN" = (
-/obj/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/obj/overlay{
-	anchored = 1;
-	density = 0;
-	desc = "";
-	dir = 4;
-	icon = 'hstation.dmi';
-	icon_state = "body1";
-	layer = 3;
-	name = "body";
-	opacity = 0
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-gibbl3";
-	icon_state = "gibbl3"
-	},
-/turf/floor/carpet,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
 "brO" = (
 /obj/cable{
 	icon_state = "4-8";
@@ -35810,79 +35558,6 @@
 	name = "Jam Mansion";
 	requires_power = 1
 	})
-"brU" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (NORTHWEST)";
-	icon_state = "tracks";
-	dir = 9
-	},
-/obj/item/shard{
-	tag = "icon-small";
-	icon_state = "small"
-	},
-/turf/floor/grasstodirt{
-	tag = "icon-grasstodirt (NORTHEAST)";
-	icon_state = "grasstodirt";
-	dir = 5
-	},
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"brV" = (
-/obj/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
-	icon_state = "rwindow";
-	dir = 1
-	},
-/obj/grille{
-	density = 0;
-	icon_state = "brokengrille";
-	tag = "icon-brokengrille"
-	},
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/plating,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"brW" = (
-/obj/stool/bed,
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor2";
-	icon_state = "floor2"
-	},
-/turf/floor/carpet/grime,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"brX" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (NORTHWEST)";
-	icon_state = "tracks";
-	dir = 9
-	},
-/turf/floor/dirt,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"brY" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (SOUTHEAST)";
-	icon_state = "tracks";
-	dir = 6
-	},
-/turf/floor/dirt,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
 "brZ" = (
 /obj/item/shard,
 /turf/floor/carpet/grime,
@@ -35896,17 +35571,6 @@
 	},
 /obj/item/storage/bible,
 /turf/floor/carpet/grime,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bsb" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35932,40 +35596,6 @@
 "bse" = (
 /obj/machinery/door/unpowered/wood,
 /turf/floor/plating,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bsf" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/obj/decal/cleanable/tracked_reagents/blood/tracks,
-/turf/floor/dirt,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bsg" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/dirt,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bsh" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
-	icon_state = "tracks";
-	dir = 5
-	},
-/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36018,39 +35648,6 @@
 "bsn" = (
 /obj/item/razor_blade,
 /turf/floor/plating,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bso" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor/dirt,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bsp" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor/dirt,
-/area/crypt{
-	name = "Jam Mansion";
-	requires_power = 1
-	})
-"bsq" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
-/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36470,11 +36067,6 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"btp" = (
-/turf/floor/airless/plating/damaged2,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
 "btq" = (
 /turf/floor,
 /area/space{
@@ -36837,28 +36429,10 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"btW" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-gibbl3";
-	icon_state = "gibbl3"
-	},
-/turf/floor/white,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
 "btX" = (
 /obj/machinery/door/airlock/medical{
 	name = "Incubation Chamber";
 	req_access_txt = ""
-	},
-/turf/floor/white,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"btY" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor6";
-	icon_state = "floor6"
 	},
 /turf/floor/white,
 /area/space{
@@ -36909,18 +36483,6 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"bue" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
-/turf/floor,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"buf" = (
-/obj/decal/cleanable/tracked_reagents/blood/gibs/core,
-/turf/floor,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
 "bug" = (
 /obj/decal/cleanable/cobweb2,
 /turf/floor,
@@ -36967,24 +36529,6 @@
 	dir = 1
 	},
 /turf/floor/plating,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"bul" = (
-/obj/overlay{
-	anchored = 1;
-	density = 1;
-	desc = "";
-	dir = 4;
-	icon = 'hstation.dmi';
-	icon_state = "body2";
-	layer = 6;
-	name = "body";
-	opacity = 0
-	},
-/obj/decal/cleanable/tracked_reagents/blood,
-/obj/decal/cleanable/tracked_reagents/blood/tracks,
-/turf/floor/white,
 /area/space{
 	name = "Research Outpost Gamma"
 	})
@@ -37045,33 +36589,11 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"bus" = (
-/obj/cable{
-	icon_state = "1-2";
-	d1 = 1;
-	d2 = 2
-	},
-/turf/floor/airless/plating/damaged2,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"but" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks,
-/turf/floor/white,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
 "buu" = (
 /obj/machinery/door/airlock/medical{
 	name = "Xenobiological Research";
 	req_access_txt = ""
 	},
-/turf/floor/white,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"buv" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/white,
 /area/space{
 	name = "Research Outpost Gamma"
@@ -37399,18 +36921,6 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"buV" = (
-/obj/machinery/optable{
-	id = 8
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-itemblood";
-	icon_state = "itemblood"
-	},
-/turf/floor/white,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
 "buW" = (
 /obj/machinery/atmospherics/pipe/simple{
 	icon_state = "intact";
@@ -37572,15 +37082,6 @@
 	dir = 8
 	},
 /turf/floor/plating,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"bvm" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor,
 /area/space{
 	name = "Research Outpost Gamma"
 	})
@@ -37778,18 +37279,6 @@
 	dir = 8
 	},
 /turf/floor/plating,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"bvB" = (
-/obj/noticeboard{
-	pixel_y = 32
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/turf/floor/white,
 /area/space{
 	name = "Research Outpost Gamma"
 	})
@@ -38112,25 +37601,6 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"bwc" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor2";
-	icon_state = "floor2"
-	},
-/turf/floor,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"bwd" = (
-/obj/closet/emcloset,
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
-/turf/floor,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
 "bwe" = (
 /obj/closet/emcloset,
 /turf/floor,
@@ -38243,15 +37713,6 @@
 	})
 "bwm" = (
 /obj/crate,
-/turf/floor/white,
-/area/space{
-	name = "Research Outpost Gamma"
-	})
-"bwn" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
 /turf/floor/white,
 /area/space{
 	name = "Research Outpost Gamma"
@@ -38449,9 +37910,6 @@
 /area/space{
 	name = "Research Outpost Gamma"
 	})
-"bwH" = (
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "bwI" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -39856,17 +39314,6 @@
 	},
 /turf/space,
 /area/space)
-"bzo" = (
-/obj/grille{
-	density = 0;
-	icon_state = "brokengrille";
-	tag = "icon-brokengrille"
-	},
-/obj/window/reinforced,
-/obj/item/rods,
-/obj/item/shard,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "bzp" = (
 /obj/item/locator,
 /turf/space,
@@ -39881,18 +39328,6 @@
 "bzr" = (
 /obj/machinery/door/unpowered/shuttle{
 	name = "Miniputt 650 Microshuttle"
-	},
-/turf/floor/shuttle,
-/area/space)
-"bzs" = (
-/obj/stool/chair{
-	dir = 1
-	},
-/obj/decal/cleanable/tracked_reagents/blood,
-/obj/item/card/id{
-	assignment = "Gamma Site Researcher";
-	name = "Horace Jam's ID Card (Gamma Site Researcher)";
-	registered = "Horace Jam"
 	},
 /turf/floor/shuttle,
 /area/space)
@@ -39915,7 +39350,260 @@
 /obj/critter/spore,
 /turf/floor/plating/airless/asteroid,
 /area/space)
-"bzx" = (
+"bPW" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHEAST)";
+	icon_state = "tracks";
+	dir = 6
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"bTr" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"csn" = (
+/obj/stool/bed,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor2";
+	icon_state = "floor2"
+	},
+/turf/floor/carpet/grime,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"csI" = (
+/turf/shuttle/wall{
+	tag = "icon-wall (SOUTHEAST)";
+	icon_state = "wall";
+	dir = 6
+	},
+/area/shuttle/recovery_shuttle)
+"cLH" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHWEST)";
+	icon_state = "tracks";
+	dir = 9
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"cOs" = (
+/obj/machinery/power/tracker,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/airless/plating/damaged2,
+/area/space)
+"dqb" = (
+/obj/item/knife_butcher,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor6";
+	icon_state = "floor6"
+	},
+/turf/floor/sanitary,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"dNi" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"dTy" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"dYM" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "";
+	dir = 4;
+	icon = 'hstation.dmi';
+	icon_state = "body2";
+	layer = 6;
+	name = "body";
+	opacity = 0
+	},
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"dZZ" = (
+/turf/floor/airless/plating/damaged2,
+/area/station/engine/storage)
+"efl" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"eBY" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"eFL" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor2";
+	icon_state = "floor2"
+	},
+/turf/floor,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"fml" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"fpz" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor2";
+	icon_state = "floor2"
+	},
+/turf/floor/shuttle,
+/area/centcom)
+"ftt" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"gVm" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"imz" = (
+/obj/machinery/optable{
+	id = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-itemblood";
+	icon_state = "itemblood"
+	},
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"itg" = (
+/obj/decal/cleanable/cobweb,
+/obj/submachine/foodprocessor,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/turf/floor/sanitary,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"iwl" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"iyw" = (
+/obj/closet/emcloset,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor6";
+	icon_state = "floor6"
+	},
+/turf/floor,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"iLr" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/shuttle,
+/area/centcom)
+"iYx" = (
+/obj/noticeboard{
+	pixel_y = 32
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"iZO" = (
+/obj/stool/chair{
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/item/card/id{
+	assignment = "Gamma Site Researcher";
+	name = "Horace Jam's ID Card (Gamma Site Researcher)";
+	registered = "Horace Jam"
+	},
+/turf/floor/shuttle,
+/area/space)
+"jfN" = (
+/turf/floor/airless/plating/damaged2,
+/area/space)
+"jgh" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"jnn" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl3";
+	icon_state = "gibbl3"
+	},
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"jQo" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"jSO" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor6";
+	icon_state = "floor6"
+	},
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"keh" = (
 /obj/item/relic,
 /obj/decal/cleanable/tracked_reagents/blood/splatter{
 	tag = "icon-floor2";
@@ -39923,6 +39611,318 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/space)
+"krc" = (
+/turf/shuttle/wall{
+	dir = 9;
+	icon_state = "pwall";
+	tag = "icon-wall (SOUTHWEST)"
+	},
+/area/shuttle/brig/prison)
+"kGP" = (
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"kQO" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/core,
+/turf/floor,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"kWl" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (NORTHWEST)";
+	icon_state = "diagonalWall";
+	dir = 9
+	},
+/area/space)
+"lgh" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"lgW" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "pwall";
+	tag = "icon-wall (SOUTHWEST)"
+	},
+/area/shuttle/brig/prison)
+"lrE" = (
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "pwall";
+	tag = "icon-wall (SOUTHWEST)"
+	},
+/area/shuttle/brig/prison)
+"lRC" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"moW" = (
+/obj/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/overlay{
+	anchored = 1;
+	density = 0;
+	desc = "";
+	dir = 4;
+	icon = 'hstation.dmi';
+	icon_state = "body1";
+	layer = 3;
+	name = "body";
+	opacity = 0
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl3";
+	icon_state = "gibbl3"
+	},
+/turf/floor/carpet,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"mzw" = (
+/obj/shieldwall{
+	tag = "icon-shield1 (NORTHWEST)";
+	icon_state = "shield1";
+	dir = 9
+	},
+/obj/shieldwall{
+	tag = "icon-shield1 (SOUTHWEST)";
+	icon_state = "shield1";
+	dir = 10
+	},
+/turf/shuttle/wall{
+	tag = "icon-wall (NORTHEAST)";
+	icon_state = "wall";
+	dir = 5
+	},
+/area/meteor/dock)
+"mOB" = (
+/turf/floor/airless/plating/damaged2,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"naZ" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor/shuttle,
+/area/centcom)
+"osY" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHEAST)";
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"ovm" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"pzA" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor/shuttle,
+/area/centcom)
+"qtB" = (
+/turf/shuttle/wall{
+	tag = "icon-wall (NORTHEAST)";
+	icon_state = "wall";
+	dir = 5
+	},
+/area/shuttle/recovery_shuttle)
+"rPa" = (
+/turf/shuttle/wall{
+	dir = 10;
+	icon_state = "pwall";
+	tag = "icon-wall (SOUTHWEST)"
+	},
+/area/centcom)
+"sgb" = (
+/obj/window/reinforced{
+	tag = "icon-rwindow (NORTH)";
+	icon_state = "rwindow";
+	dir = 1
+	},
+/obj/grille{
+	density = 0;
+	icon_state = "brokengrille";
+	tag = "icon-brokengrille"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/plating,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"sHH" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (WEST)";
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/shuttle/recovery_shuttle)
+"sYZ" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
+"tax" = (
+/obj/grille,
+/turf/floor/airless/plating/damaged2,
+/area/space)
+"tEU" = (
+/obj/cable{
+	icon_state = "1-2";
+	d1 = 1;
+	d2 = 2
+	},
+/turf/floor/airless/plating/damaged2,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"umz" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "pwall";
+	tag = "icon-wall (SOUTHWEST)"
+	},
+/area/centcom)
+"vop" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor/white,
+/area/space{
+	name = "Research Outpost Gamma"
+	})
+"vsg" = (
+/obj/grille{
+	density = 0;
+	icon_state = "brokengrille";
+	tag = "icon-brokengrille"
+	},
+/obj/window/reinforced,
+/obj/item/rods,
+/obj/item/shard,
+/turf/floor/airless/plating/damaged2,
+/area/space)
+"vJB" = (
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"vRj" = (
+/turf/shuttle/wall{
+	dir = 10;
+	icon_state = "pwall";
+	tag = "icon-wall (SOUTHWEST)"
+	},
+/area/shuttle/brig/prison)
+"xgy" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"xgM" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHWEST)";
+	icon_state = "tracks";
+	dir = 9
+	},
+/obj/item/shard{
+	tag = "icon-small";
+	icon_state = "small"
+	},
+/turf/floor/grasstodirt{
+	tag = "icon-grasstodirt (NORTHEAST)";
+	icon_state = "grasstodirt";
+	dir = 5
+	},
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"xlB" = (
+/obj/cable{
+	icon_state = "0-2";
+	d2 = 2
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/communications_dish,
+/turf/floor/airless/plating/damaged2,
+/area/space)
+"xnL" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/dirt,
+/area/crypt{
+	name = "Jam Mansion";
+	requires_power = 1
+	})
+"xtM" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body,
+/turf/floor/shuttle,
+/area/centcom)
+"xJf" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (SOUTHWEST)";
+	icon_state = "diagonalWall";
+	dir = 10
+	},
+/area/shuttle/recovery_shuttle)
+"xOx" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (WEST)";
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/meteor/dock)
 
 (1,1,1) = {"
 aaa
@@ -45679,7 +45679,7 @@ aaa
 aaa
 aaa
 aaa
-bfm
+eBY
 bfn
 bfn
 bfn
@@ -45687,7 +45687,7 @@ bfn
 bfn
 bfn
 bfn
-bfM
+dTy
 aaa
 aaa
 aaa
@@ -45925,7 +45925,7 @@ aaa
 aaa
 aaa
 aaa
-bfm
+eBY
 bfn
 bfn
 bfn
@@ -46674,11 +46674,11 @@ aaa
 aaa
 aaa
 aaa
-bfm
+eBY
 bfn
 bfn
 bfn
-bfM
+dTy
 aaa
 aaj
 bfn
@@ -46695,7 +46695,7 @@ bhu
 bfn
 bfn
 bfn
-bfO
+jQo
 aaa
 aaa
 aaa
@@ -47198,7 +47198,7 @@ bhm
 bfn
 bfn
 bfn
-bfM
+dTy
 aaa
 aaa
 aaa
@@ -48206,7 +48206,7 @@ bhn
 bfn
 bfn
 bfn
-bfO
+jQo
 aaa
 aaa
 aaa
@@ -48690,11 +48690,11 @@ aaa
 aaa
 aaa
 aaa
-bfo
+vJB
 bfn
 bfn
 bfn
-bfO
+jQo
 aaa
 aaa
 aaj
@@ -48711,7 +48711,7 @@ bhz
 bfn
 bfn
 bfn
-bfM
+dTy
 aaa
 aaa
 aaa
@@ -49203,7 +49203,7 @@ aaa
 aaa
 aaa
 aaa
-bfo
+vJB
 bfn
 bfn
 bfn
@@ -49711,7 +49711,7 @@ aaa
 aaa
 aaa
 aaa
-bfo
+vJB
 bfn
 bfn
 bfn
@@ -49719,7 +49719,7 @@ bfn
 bfn
 bfn
 bfn
-bfO
+jQo
 aaa
 aaa
 aaa
@@ -53406,7 +53406,7 @@ aaa
 aaa
 aJl
 aJS
-aKu
+csI
 aKY
 aKY
 aMc
@@ -53416,7 +53416,7 @@ aNL
 aKY
 aKY
 aKY
-aPo
+qtB
 aJS
 aSn
 aaa
@@ -54918,7 +54918,7 @@ aaa
 aaa
 aaj
 aJS
-aKA
+xJf
 aKY
 aKY
 aKY
@@ -54928,7 +54928,7 @@ aKY
 aKY
 aKY
 aKY
-aPn
+sHH
 aJS
 aaa
 aaa
@@ -55171,7 +55171,7 @@ aaa
 aaa
 aJT
 aKt
-aKA
+xJf
 aKY
 aKY
 aMJ
@@ -55179,7 +55179,7 @@ aKY
 aMJ
 aKY
 aKY
-aPn
+sHH
 aKt
 aPr
 aaa
@@ -56936,13 +56936,13 @@ aJq
 aGR
 aKB
 aJS
-aKA
+xJf
 aKY
 aKY
 aKY
 aKY
 aKY
-aPn
+sHH
 aJS
 aKB
 aGR
@@ -58196,13 +58196,13 @@ aJp
 aGR
 aKB
 aJS
-aKu
+csI
 aKY
 aKY
 aKY
 aKY
 aKY
-aPo
+qtB
 aJS
 aKB
 aGR
@@ -59456,13 +59456,13 @@ aJp
 aHN
 aaa
 aJT
-aKA
+xJf
 aMi
 aML
 aNe
 aML
 aOD
-aPn
+sHH
 aPr
 aaa
 aRE
@@ -76345,7 +76345,7 @@ aLn
 aLl
 aLn
 aMp
-aMU
+dZZ
 aLi
 aQs
 aRc
@@ -76596,7 +76596,7 @@ aLn
 aMp
 aLn
 aMp
-aMU
+dZZ
 aLn
 aLi
 aQs
@@ -77350,7 +77350,7 @@ aGu
 aLo
 aLR
 aLn
-aMU
+dZZ
 aNs
 aMp
 aMr
@@ -83877,8 +83877,8 @@ aaa
 aaa
 aaa
 aaa
-atH
-atH
+tax
+tax
 abt
 avn
 axd
@@ -84383,7 +84383,7 @@ aaa
 aaa
 abt
 aaj
-avo
+xlB
 abC
 axe
 aya
@@ -84633,7 +84633,7 @@ aaa
 aaa
 aaa
 aaa
-atH
+tax
 aaa
 aaj
 aaa
@@ -85070,11 +85070,11 @@ aaa
 aaa
 aaa
 aaa
-aab
+fml
 aac
 aap
 aac
-aaw
+dNi
 aaa
 aaa
 aaa
@@ -85571,7 +85571,7 @@ aaa
 aaa
 aaa
 aaa
-aab
+fml
 aaf
 aaf
 aac
@@ -85581,7 +85581,7 @@ aag
 aac
 aaf
 aaf
-aaw
+dNi
 aaa
 aaa
 aaa
@@ -85919,7 +85919,7 @@ axj
 axj
 axj
 aaj
-aNK
+cOs
 aaa
 aaa
 aaa
@@ -87083,7 +87083,7 @@ aaa
 aaa
 aaa
 aaa
-aad
+kGP
 aac
 aac
 aac
@@ -87093,7 +87093,7 @@ aav
 aac
 aac
 aac
-aay
+iwl
 aaa
 aaa
 aaa
@@ -87336,7 +87336,7 @@ aaa
 aaa
 aaa
 aaa
-aad
+kGP
 aac
 aag
 aag
@@ -87344,7 +87344,7 @@ aag
 aag
 aag
 aac
-aaC
+sYZ
 aaa
 aaa
 aaa
@@ -88093,13 +88093,13 @@ aaa
 aaa
 aaa
 aak
-aad
+kGP
 aac
 aac
 aac
 aac
 aac
-aay
+iwl
 aaa
 aaa
 aaa
@@ -93294,12 +93294,12 @@ aaa
 aaa
 aaa
 aaa
-beU
+krc
 bfp
 bfq
 bfq
 bfp
-bfS
+lrE
 aaa
 aaj
 aaj
@@ -93543,7 +93543,7 @@ aaj
 aaa
 aaa
 aaa
-beU
+krc
 bfc
 bfc
 bfp
@@ -94299,7 +94299,7 @@ bez
 bey
 beN
 bet
-beW
+vRj
 bfc
 bfc
 bfp
@@ -94554,12 +94554,12 @@ bet
 aaj
 aaa
 aaa
-beW
+vRj
 bfp
 bfq
 bfq
 bfp
-bfU
+lgW
 aaj
 bew
 bgf
@@ -120426,13 +120426,13 @@ bkm
 bkm
 bkm
 blh
-bll
+pzA
 bln
 blh
 bkm
 bkm
 blh
-blA
+xtM
 bln
 blh
 bkm
@@ -120937,7 +120937,7 @@ bls
 blw
 bln
 bln
-blD
+iLr
 bli
 bkm
 bkm
@@ -121439,7 +121439,7 @@ bln
 bln
 blt
 blt
-bll
+pzA
 bln
 bln
 bli
@@ -121937,7 +121937,7 @@ bkm
 bkm
 bkm
 bkm
-blj
+rPa
 blh
 blp
 bln
@@ -121946,7 +121946,7 @@ blx
 bln
 blC
 blh
-blE
+umz
 bkm
 bkm
 bkm
@@ -122192,7 +122192,7 @@ bkm
 bkm
 blh
 blp
-blr
+naZ
 blt
 blt
 bln
@@ -122694,14 +122694,14 @@ bkm
 blg
 bkm
 bkm
-blj
+rPa
 blh
 blh
-blu
+fpz
 bln
 blh
 blh
-blE
+umz
 bkm
 bkm
 bkm
@@ -133637,7 +133637,7 @@ bmy
 bmy
 bmy
 bmW
-bmY
+xOx
 bmE
 bmZ
 bni
@@ -135149,7 +135149,7 @@ aaa
 bmR
 bmU
 bmU
-bnd
+mzw
 bnf
 bnb
 bnj
@@ -178695,7 +178695,7 @@ aaa
 aaa
 aJl
 aJm
-boC
+kWl
 boH
 boH
 boR
@@ -178946,7 +178946,7 @@ aaa
 aaa
 aaa
 aJm
-boC
+kWl
 boM
 boH
 boH
@@ -200904,9 +200904,9 @@ bpD
 bpD
 bpD
 bpD
-brX
-bsb
-bsf
+cLH
+lRC
+ftt
 bpD
 bqG
 bpr
@@ -201155,10 +201155,10 @@ brF
 bpG
 bpG
 bpG
-brU
-brY
+xgM
+bPW
 bsc
-bsg
+lgh
 bpD
 bqG
 bpr
@@ -201407,10 +201407,10 @@ bps
 brj
 bps
 bps
-brV
+sgb
 bps
 bps
-bsg
+lgh
 bpD
 bqG
 bqG
@@ -201659,12 +201659,12 @@ bps
 bqH
 bqI
 bps
-brW
+csn
 brZ
 bps
-bsg
+lgh
 bpD
-bso
+gVm
 bqG
 bpr
 aaa
@@ -201914,9 +201914,9 @@ bps
 bqI
 bsa
 bps
-bsh
-bsb
-bsp
+osY
+lRC
+xgy
 bqG
 bpr
 aaa
@@ -202168,7 +202168,7 @@ bps
 bps
 bps
 bps
-bsg
+lgh
 bqG
 bpr
 aaa
@@ -202420,7 +202420,7 @@ bps
 bsd
 bqV
 bps
-bsg
+lgh
 bqG
 bpr
 aaa
@@ -202672,7 +202672,7 @@ bra
 bqI
 bqH
 bps
-bsg
+lgh
 bqG
 bpr
 bpr
@@ -202924,7 +202924,7 @@ bps
 bps
 bps
 bps
-bsq
+xnL
 bqG
 bqG
 bpr
@@ -203154,7 +203154,7 @@ bps
 bps
 bps
 bps
-bqa
+itg
 bql
 bql
 bqy
@@ -203408,7 +203408,7 @@ bpO
 bps
 bqb
 bql
-bqr
+dqb
 bqz
 bqD
 bqK
@@ -204680,7 +204680,7 @@ bps
 brz
 bro
 brI
-brN
+moW
 brI
 bro
 bro
@@ -261295,7 +261295,7 @@ btq
 btq
 bvS
 btq
-bwd
+iyw
 btL
 aaa
 aaa
@@ -262043,7 +262043,7 @@ aaa
 btL
 btV
 btV
-buv
+jgh
 buH
 buU
 bvf
@@ -262549,7 +262549,7 @@ btV
 btV
 buw
 btV
-buV
+imz
 btV
 buu
 btq
@@ -262797,7 +262797,7 @@ aaa
 aaa
 aaa
 btM
-btW
+jnn
 bum
 bux
 buI
@@ -263553,7 +263553,7 @@ aaa
 aaa
 aaa
 btk
-btY
+jSO
 buo
 btq
 buJ
@@ -265578,7 +265578,7 @@ bvk
 btk
 bvH
 btq
-bwc
+eFL
 btN
 bwv
 btq
@@ -266829,7 +266829,7 @@ aaa
 aaa
 aaa
 btL
-bue
+bTr
 btq
 btq
 buR
@@ -267333,7 +267333,7 @@ aaa
 aaa
 aaa
 btL
-buf
+kQO
 btq
 btq
 btq
@@ -267590,7 +267590,7 @@ btq
 btq
 buG
 btq
-bvm
+ovm
 btN
 bvH
 btq
@@ -268582,7 +268582,7 @@ aaa
 aaa
 aaa
 aaa
-bwH
+jfN
 btg
 aaa
 btk
@@ -269090,7 +269090,7 @@ aaa
 btg
 btk
 btk
-btp
+mOB
 btt
 btq
 btC
@@ -269339,8 +269339,8 @@ aaa
 aaa
 aaa
 aaj
-bwH
-bwH
+jfN
+jfN
 btm
 btq
 btq
@@ -269350,7 +269350,7 @@ btH
 btq
 btH
 btH
-bus
+tEU
 buF
 buT
 buT
@@ -270363,7 +270363,7 @@ btN
 btN
 btN
 btN
-bvB
+iYx
 bvc
 bvX
 btV
@@ -270623,7 +270623,7 @@ buT
 buT
 bwk
 abC
-bwH
+jfN
 aaj
 aaa
 aaa
@@ -271113,17 +271113,17 @@ aaa
 aaa
 aaa
 btN
-bul
-but
-but
-but
+dYM
+efl
+efl
+efl
 bum
 bvq
 btV
 btV
 bvX
 btV
-bwn
+vop
 bwx
 btN
 aaa
@@ -271372,7 +271372,7 @@ btN
 btN
 btN
 btV
-btW
+jnn
 bvZ
 bum
 btV
@@ -330321,9 +330321,9 @@ bsY
 bsY
 bta
 bta
-bzo
+vsg
 bzq
-bzs
+iZO
 aJm
 bzu
 aaa
@@ -340209,7 +340209,7 @@ bsY
 bsY
 bsY
 bta
-bzx
+keh
 bta
 bsY
 bsY

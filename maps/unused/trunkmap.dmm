@@ -580,24 +580,10 @@
 "abD" = (
 /turf/floor/white,
 /area/russian)
-"abE" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "gibbl3";
-	tag = "icon-gibbl3"
-	},
-/turf/floor/white,
-/area/russian)
 "abF" = (
 /obj/machinery/door/airlock/medical{
 	name = "Incubation Chamber";
 	req_access_txt = ""
-	},
-/turf/floor/white,
-/area/russian)
-"abG" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "floor6";
-	tag = "icon-floor6"
 	},
 /turf/floor/white,
 /area/russian)
@@ -616,14 +602,6 @@
 "abK" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/plating,
-/area/russian)
-"abL" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
-/turf/floor,
-/area/russian)
-"abM" = (
-/obj/decal/cleanable/tracked_reagents/blood/gibs/core,
-/turf/floor,
 /area/russian)
 "abN" = (
 /obj/decal/cleanable/cobweb2,
@@ -687,11 +665,6 @@
 	},
 /turf/floor/white,
 /area/station/medical/cdc)
-"abY" = (
-/obj/decal/cleanable/tracked_reagents/blood,
-/obj/decal/cleanable/tracked_reagents/blood/tracks,
-/turf/floor/white,
-/area/russian)
 "abZ" = (
 /obj/lattice,
 /obj/storage/crate,
@@ -904,10 +877,6 @@
 	},
 /turf/floor/airless/plating/damaged2,
 /area/space)
-"acx" = (
-/obj/decal/cleanable/tracked_reagents/blood/tracks,
-/turf/floor/white,
-/area/russian)
 "acy" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -999,10 +968,6 @@
 	name = "Xenobiological Research";
 	req_access_txt = ""
 	},
-/turf/floor/white,
-/area/russian)
-"acJ" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/white,
 /area/russian)
 "acK" = (
@@ -1422,16 +1387,6 @@
 /obj/item/scalpel,
 /turf/floor/white,
 /area/russian)
-"adK" = (
-/obj/machinery/optable{
-	id = 8
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "itemblood";
-	tag = "icon-itemblood"
-	},
-/turf/floor/white,
-/area/russian)
 "adL" = (
 /obj/machinery/atmospherics/pipe/simple{
 	level = 2
@@ -1605,13 +1560,6 @@
 	},
 /turf/floor/plating,
 /area/russian)
-"aep" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "gibbl2";
-	tag = "icon-gibbl2"
-	},
-/turf/floor,
-/area/russian)
 "aeq" = (
 /obj/cable{
 	d2 = 2;
@@ -1755,16 +1703,6 @@
 	tag = "icon-rwindow (WEST)"
 	},
 /turf/floor/plating,
-/area/russian)
-"aeF" = (
-/obj/noticeboard{
-	pixel_y = 32
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "floor5";
-	tag = "icon-floor5"
-	},
-/turf/floor/white,
 /area/russian)
 "aeG" = (
 /obj/grille/steel,
@@ -2197,11 +2135,6 @@
 	},
 /turf/floor/plating,
 /area/listeningpost)
-"afT" = (
-/turf/wall/asteroid{
-	dir = 9
-	},
-/area/space)
 "afU" = (
 /turf/floor/plating/airless,
 /area/listeningpost)
@@ -3202,21 +3135,6 @@
 /obj/machinery/light,
 /turf/floor,
 /area/russian)
-"ajD" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "floor2";
-	tag = "icon-floor2"
-	},
-/turf/floor,
-/area/russian)
-"ajE" = (
-/obj/storage/closet/emergency,
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "floor6";
-	tag = "icon-floor6"
-	},
-/turf/floor,
-/area/russian)
 "ajF" = (
 /obj/storage/closet/emergency,
 /turf/floor,
@@ -3380,13 +3298,6 @@
 /area/russian)
 "ajZ" = (
 /obj/storage/crate,
-/turf/floor/white,
-/area/russian)
-"aka" = (
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "gibbl2";
-	tag = "icon-gibbl2"
-	},
 /turf/floor/white,
 /area/russian)
 "akb" = (
@@ -15533,6 +15444,11 @@
 	},
 /turf/floor,
 /area/station/engine/engineering)
+"aYW" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/white,
+/area/russian)
 "aYX" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/cable{
@@ -27408,6 +27324,13 @@
 	},
 /turf/floor,
 /area/station/security/prison)
+"bVn" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl3";
+	tag = "icon-gibbl3"
+	},
+/turf/floor/white,
+/area/russian)
 "bVo" = (
 /obj/machinery/atmospherics/valve,
 /turf/floor/blue/side{
@@ -27971,6 +27894,22 @@
 	},
 /turf/floor,
 /area/station/security/prison)
+"dGM" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/stool/chair{
+	anchored = 0;
+	desc = "The legs are loosened...";
+	name = "loose chair"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	icon_state = "helmetblood2";
+	tag = "icon-helmetblood2"
+	},
+/obj/decal/cleanable/cobweb,
+/turf/floor,
+/area/station/security/prison)
 "dIQ" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4;
@@ -28068,22 +28007,6 @@
 	icon_state = "carpetE"
 	},
 /area/station/security/hos)
-"ecs" = (
-/obj/item/handcuffs{
-	layer = 8;
-	level = 1
-	},
-/obj/machinery/atmospherics/pipe/vent{
-	dir = 4;
-	tag = "icon-intact (EAST)"
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter,
-/obj/decal/cleanable/tracked_reagents/blood/tracks{
-	dir = 1;
-	tag = "icon-tracks (NORTH)"
-	},
-/turf/floor,
-/area/station/security/prison)
 "edc" = (
 /obj/table/auto,
 /obj/item/storage/photo_album{
@@ -29374,6 +29297,13 @@
 	},
 /turf/floor/engine,
 /area/station/maintenance/disposal)
+"ihF" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2";
+	tag = "icon-gibbl2"
+	},
+/turf/floor,
+/area/russian)
 "ihZ" = (
 /obj/cable{
 	d1 = 1;
@@ -30826,6 +30756,16 @@
 	},
 /turf/floor/plating,
 /area/station/security/prison)
+"lRy" = (
+/obj/machinery/optable{
+	id = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "itemblood";
+	tag = "icon-itemblood"
+	},
+/turf/floor/white,
+/area/russian)
 "lRK" = (
 /obj/cable{
 	d1 = 1;
@@ -31272,6 +31212,10 @@
 /obj/table/auto,
 /turf/floor/shuttle,
 /area/space)
+"nln" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/white,
+/area/russian)
 "nnw" = (
 /obj/machinery/camera{
 	c_tag = "Escape Shuttle Hallway Airlocks";
@@ -31857,6 +31801,16 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"plX" = (
+/obj/noticeboard{
+	pixel_y = 32
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5";
+	tag = "icon-floor5"
+	},
+/turf/floor/white,
+/area/russian)
 "poD" = (
 /obj/machinery/sim/transmitter{
 	network = "prison"
@@ -32939,6 +32893,14 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"sbI" = (
+/obj/storage/closet/emergency,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor6";
+	tag = "icon-floor6"
+	},
+/turf/floor,
+/area/russian)
 "sdH" = (
 /obj/disposalpipe/segment{
 	dir = 1;
@@ -33169,6 +33131,22 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/solar/west)
+"sTZ" = (
+/obj/item/handcuffs{
+	layer = 8;
+	level = 1
+	},
+/obj/machinery/atmospherics/pipe/vent{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 1;
+	tag = "icon-tracks (NORTH)"
+	},
+/turf/floor,
+/area/station/security/prison)
 "sUx" = (
 /obj/cable{
 	d1 = 4;
@@ -33467,6 +33445,13 @@
 /obj/cable,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"tDl" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2";
+	tag = "icon-gibbl2"
+	},
+/turf/floor/white,
+/area/russian)
 "tDs" = (
 /turf/floor/engine{
 	carbon_dioxide = 50000;
@@ -33757,6 +33742,10 @@
 	},
 /turf/floor/plating,
 /area/station/solar/east)
+"ufv" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/core,
+/turf/floor,
+/area/russian)
 "ufE" = (
 /obj/disposalpipe/junction{
 	dir = 4;
@@ -33842,6 +33831,13 @@
 	},
 /turf/floor/plating,
 /area/station/engine/engineering)
+"uoA" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor2";
+	tag = "icon-floor2"
+	},
+/turf/floor,
+/area/russian)
 "uoN" = (
 /turf/floor/plating,
 /area/station/science/lab)
@@ -34128,6 +34124,11 @@
 	},
 /turf/floor/plating/airless,
 /area/station/engine/engineering)
+"uXR" = (
+/turf/wall/asteroid{
+	dir = 9
+	},
+/area/space)
 "uXU" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -34180,6 +34181,18 @@
 /turf/floor/specialroom/chapel{
 	dir = 8
 	},
+/area/station/security/prison)
+"vjh" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2";
+	tag = "icon-gibbl2"
+	},
+/turf/floor,
 /area/station/security/prison)
 "vll" = (
 /obj/grille/steel,
@@ -34279,18 +34292,6 @@
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/toilets)
-"vIe" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/decal/cleanable/tracked_reagents/blood/splatter{
-	icon_state = "gibbl2";
-	tag = "icon-gibbl2"
-	},
-/turf/floor,
-/area/station/security/prison)
 "vIQ" = (
 /obj/machinery/light,
 /turf/floor/red/corner{
@@ -34442,6 +34443,10 @@
 	},
 /turf/floor/plating,
 /area/station/engine/engineering)
+"waX" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor,
+/area/russian)
 "wca" = (
 /obj/stool/chair{
 	dir = 8
@@ -34610,22 +34615,6 @@
 	},
 /turf/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
-"wyJ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/stool/chair{
-	anchored = 0;
-	desc = "The legs are loosened...";
-	name = "loose chair"
-	},
-/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
-	icon_state = "helmetblood2";
-	tag = "icon-helmetblood2"
-	},
-/obj/decal/cleanable/cobweb,
-/turf/floor,
-/area/station/security/prison)
 "wzv" = (
 /obj/table/auto,
 /turf/floor/shuttle{
@@ -34810,6 +34799,13 @@
 	},
 /turf/floor/white,
 /area/station/crew_quarters/quarters)
+"xkU" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor6";
+	tag = "icon-floor6"
+	},
+/turf/floor/white,
+/area/russian)
 "xmm" = (
 /obj/lattice,
 /obj/warp_beacon{
@@ -34932,6 +34928,10 @@
 	},
 /turf/floor/shuttlebay,
 /area/station/hangar/engine)
+"xKK" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/white,
+/area/russian)
 "xMO" = (
 /obj/cable{
 	d1 = 2;
@@ -40270,7 +40270,7 @@ aaa
 aaa
 aaa
 afy
-afT
+uXR
 afZ
 bvR
 btR
@@ -110696,7 +110696,7 @@ aaR
 aaR
 aiM
 aaR
-ajE
+sbI
 aaY
 aaa
 aaa
@@ -111594,7 +111594,7 @@ aaa
 abi
 abD
 abD
-acJ
+nln
 adm
 adJ
 aeh
@@ -112200,7 +112200,7 @@ abD
 abD
 acK
 abD
-adK
+lRy
 abD
 acI
 aaR
@@ -112498,7 +112498,7 @@ aaa
 aaa
 aaa
 abj
-abE
+bVn
 acm
 acL
 ado
@@ -113404,7 +113404,7 @@ aaa
 aaa
 aaa
 abk
-abG
+xkU
 aco
 aaR
 adp
@@ -115829,7 +115829,7 @@ aen
 abk
 aff
 aaR
-ajD
+uoA
 abh
 aks
 aaR
@@ -117279,8 +117279,8 @@ liJ
 wTv
 qtK
 vey
-wyJ
-ecs
+dGM
+sTZ
 nDB
 aab
 aaa
@@ -117330,7 +117330,7 @@ aaa
 aaa
 aaa
 aaY
-abL
+waX
 aaR
 aaR
 abj
@@ -117883,7 +117883,7 @@ eiK
 vwB
 uMB
 bUK
-vIe
+vjh
 pWs
 vey
 aaa
@@ -117934,7 +117934,7 @@ aaa
 aaa
 aaa
 aaY
-abM
+ufv
 aaR
 aaR
 aaR
@@ -118241,7 +118241,7 @@ aaR
 aaR
 adl
 aaR
-aep
+ihF
 abh
 aff
 aaR
@@ -121564,7 +121564,7 @@ abh
 abh
 abh
 abh
-aeF
+plX
 adT
 ajb
 abD
@@ -122464,17 +122464,17 @@ aaa
 aaa
 aaa
 abh
-abY
-acx
-acx
-acx
+aYW
+xKK
+xKK
+xKK
 acm
 abD
 abD
 abD
 ajb
 abD
-aka
+tDl
 akt
 abh
 aaa
@@ -122773,7 +122773,7 @@ abh
 abh
 abh
 abD
-abE
+bVn
 ajt
 acm
 abD
