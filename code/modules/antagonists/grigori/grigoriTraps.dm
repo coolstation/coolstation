@@ -25,6 +25,13 @@
 		//play some sounds, animate the icon, mark armed to false
 		src.armed = FALSE
 
+	proc/deploy(var/obj/target, var/mob/user)
+		switch(src.trigger_type)
+			if("door_touch")
+				if(istype(target,/obj/machinery/door))
+					new trap_type(target,trigger_type)
+					qdel(src) //handle animations, sounds, bars, effects, and whatever else here
+
 /obj/item/device/grigori_trap_hand/door_handle //for now just an abstract, but once custom traps are worked in, this will be used for custom traps
 	name = "door control trap mechanism"
 	icon_state = "placeholder"
@@ -36,47 +43,29 @@
 	name = "hidden door blade trap"
 	icon_state = "placeholder"
 	item_state = "placeholder"
-	trap_type = "chopper"
+	trap_type = /datum/grigori_trap/chopper
 	desc = "A hidden blade that can be fastened to a door. When a victim tries to open the door, a blade will come from the door and chop a random limb off."
 
-/obj/item/device/grigori_trap_hand/deploy(var/obj/target, var/mob/user)
-	var/grigori_xp = 0
-	switch(src.trigger_type)
-	if("door_touch") //it will eventually make sense why I'm using a switch here
-		make_trap(target,src.trap_type)
-		grigori_xp = rand(1,5)
-		qdel(src)
-	user.add_grigori_xp(grigori_xp)
-
-
-/obj/machinery/grigori_trap
-	name = "grigori trap"
-	icon_state = "placeholder"
-	desc = "abstract grigori trap. far out, man!"
+/datum/grigori_trap
 	var/obj/linked_obj
-	density = 0
-	anchored = 1
 
-	New()
+	New(var/obj/target,var/trigger_type)
+		..()
+		linked_obj = target
+
 		switch(trigger_type)
-		if("door_touch")
-			AddComponent(/datum/component/activate_trap_on_door_touch)
+			if("door_touch")
+				AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,src)
 
 	proc/trap_triggered(var/mob/victim)
-	..()
+		boutput(world, "<B>help</B>")
 
-/obj/machinery/grigori_trap/chopper
-	name = "chopper trap"
-	icon_state = "placeholder"
-	desc = "a poorly hidden axe blade attatched to a string, ready to do some chopping."
 
-	proc/trap_triggered()
+/datum/grigori_trap/chopper
+	trap_triggered()
+		boutput(world, "<B>the trap springs</B>")
 		//do random chopping code here - have the trap be layerd ontop of whatever machine, and the linked object passes interactions from attackby to a proc here if the trap is present
 
-/obj/machinery/grigori_trap/make_trap(var/obj/target,var/trap_type,var/trigger_type,var/mob/user) //mylie told me to use components, time to Figure Em Out
-	var/atom/A
-	A = new trap_type
-	A.set_loc(target.loc) //add failsafes here and whatnot, this is just the stub
 
 
 
