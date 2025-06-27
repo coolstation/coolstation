@@ -639,7 +639,7 @@ var/mutable_appearance/fluid_ma
 
 		var/over_obj = !(istype(src.loc, /turf/wall)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
 		overlay.layer = over_obj ? 4 : src.layer
-		overlay.icon_state = "[src.viscosity_prefix]wall_[overlay_key]_[last_depth_level]"
+		overlay.icon_state = "[src.group.viscosity_prefix]wall_[overlay_key]_[last_depth_level]"
 		overlay.pixel_x = pox
 		overlay.pixel_y = poy
 		wall_overlay_images[overlay_key] = overlay
