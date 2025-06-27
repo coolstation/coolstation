@@ -39,11 +39,6 @@
 /obj/stone{
 	dir = 4
 	},
-/turf/space,
-/turf/floor/grass/leafy,
-/area/hospital/somewhere)
-"abF" = (
-/turf/space,
 /turf/floor/grass/leafy,
 /area/hospital/somewhere)
 "abH" = (
@@ -100,17 +95,8 @@
 /obj/grassplug{
 	dir = 1
 	},
-/turf/space,
 /turf/floor/grasstodirt{
 	dir = 4
-	},
-/area/hospital/somewhere)
-"abX" = (
-/turf/space,
-/turf/floor/grass{
-	density = 1;
-	name = "grass.";
-	opacity = 1
 	},
 /area/hospital/somewhere)
 "abZ" = (
@@ -1216,14 +1202,6 @@
 /obj/item/ammo/bullets/autocannon,
 /turf/floor/carpet/grime,
 /area/drone/office)
-"amF" = (
-/turf/space,
-/turf/cordon,
-/area/cordon)
-"amH" = (
-/turf/space,
-/turf/space/no_replace,
-/area/swap)
 "amS" = (
 /obj/machinery/vending/snack,
 /turf/floor/specialroom/bar,
@@ -1354,7 +1332,6 @@
 /turf/floor/dirt,
 /area/hospital/somewhere)
 "anV" = (
-/turf/space,
 /turf/floor/grasstodirt{
 	dir = 5
 	},
@@ -1692,12 +1669,6 @@
 	icon_state = "panelwall_cap"
 	},
 /area/hospital)
-"are" = (
-/turf/space,
-/turf/wall/setpieces/hospital{
-	dir = 10
-	},
-/area/hospital)
 "arv" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -1751,12 +1722,6 @@
 	},
 /turf/floor/plating,
 /area/hospital/underground)
-"arz" = (
-/turf/space,
-/turf/space,
-/turf/space,
-/turf/space,
-/area/space)
 "arA" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -2318,13 +2283,6 @@
 	dir = 8
 	},
 /area/owlery/gangzone)
-"awO" = (
-/turf/space,
-/turf/wall/setpieces/hospital{
-	dir = 8;
-	icon_state = "panelwall_junction"
-	},
-/area/hospital)
 "awX" = (
 /turf/floor/stairs,
 /area/drone)
@@ -2613,10 +2571,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"azm" = (
-/turf/space,
-/turf/wall/setpieces/hospital,
-/area/hospital)
 "azv" = (
 /obj/table/auto,
 /obj/random_item_spawner/medicine,
@@ -4599,7 +4553,6 @@
 	icon_state = "pipe-c";
 	name = "river pipe"
 	},
-/turf/floor/plating,
 /turf/floor/plating/damaged2,
 /area/owlery/Owlmait2)
 "aJN" = (
@@ -4912,7 +4865,6 @@
 	dir = 5;
 	name = "grimy pipe"
 	},
-/turf/floor/plating,
 /turf/floor/plating/damaged2,
 /area/owlery/Owlmait2)
 "aKK" = (
@@ -13483,57 +13435,9 @@
 	opacity = 1
 	},
 /area/iomoon)
-"boC" = (
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_edge3"
-	},
-/area/iomoon)
-"boD" = (
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/turf/wall/setpieces/iomoon/crust{
-	dir = 7;
-	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
-"boE" = (
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_detail1"
-	},
-/area/iomoon)
 "boF" = (
 /turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall2"
-	},
-/area/iomoon)
-"boG" = (
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_detail1"
 	},
 /area/iomoon)
 "boH" = (
@@ -13600,25 +13504,10 @@
 /obj/map/light/lava,
 /turf/floor/lava,
 /area/iomoon)
-"boX" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
 "boY" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 7;
 	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
-"boZ" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_edge3"
 	},
 /area/iomoon)
 "bpa" = (
@@ -13643,27 +13532,6 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/floor/lava,
-/area/iomoon)
-"bpd" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_detail1"
-	},
-/area/iomoon)
-"bpi" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 7;
-	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
-"bpj" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_detail1"
-	},
 /area/iomoon)
 "bpn" = (
 /obj/trigger/critter,
@@ -13759,15 +13627,7 @@
 	},
 /turf/floor/lava,
 /area/iomoon)
-"bpy" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_edge3"
-	},
-/area/iomoon)
 "bpz" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge3"
@@ -15124,10 +14984,6 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "btx" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail3";
@@ -15136,10 +14992,6 @@
 	},
 /area/iomoon/caves)
 "bty" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -15147,10 +14999,6 @@
 	},
 /area/iomoon/caves)
 "btz" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_detail3";
@@ -15320,10 +15168,6 @@
 	},
 /area/iomoon/caves)
 "btY" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge1";
@@ -15350,21 +15194,18 @@
 /turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "bub" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge1"
 	},
 /area/iomoon)
 "buc" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge2"
 	},
 /area/iomoon)
 "bud" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge2"
@@ -15506,10 +15347,6 @@
 /turf/floor/plating,
 /area/iomoon/base/underground)
 "bux" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 4;
 	icon_state = "iowall_detail1";
@@ -15580,7 +15417,6 @@
 	},
 /area/iomoon/robot_ruins)
 "buE" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail3";
@@ -15588,7 +15424,6 @@
 	},
 /area/iomoon)
 "buF" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 4;
 	icon_state = "iowall_edge2"
@@ -15677,26 +15512,13 @@
 	},
 /turf/floor/plating,
 /area/iomoon/base/underground)
-"buU" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_detail1"
-	},
-/turf/floor,
-/area/iomoon/base/underground)
 "buV" = (
-/turf/floor,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_detail2"
 	},
 /area/iomoon/base/underground)
 "buW" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_detail3";
-	name = "silicate cave wall"
-	},
 /turf/floor/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iocrust_edge";
@@ -15739,19 +15561,11 @@
 /turf/floor/cave,
 /area/catacombs)
 "bve" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
 	temperature = 313.15
-	},
-/area/iomoon)
-"bvf" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_edge2"
 	},
 /area/iomoon)
 "bvg" = (
@@ -15907,7 +15721,6 @@
 /turf/floor/plating,
 /area/iomoon/base/underground)
 "bvD" = (
-/turf/floor,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge3"
@@ -15934,7 +15747,6 @@
 /turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "bvL" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge1";
@@ -16062,7 +15874,6 @@
 /turf/floor/plating,
 /area/iomoon/base/underground)
 "bwh" = (
-/turf/floor,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1"
@@ -16076,10 +15887,6 @@
 /turf/floor/plating,
 /area/iomoon/base/underground)
 "bwj" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail1"
@@ -16389,16 +16196,6 @@
 	},
 /turf/floor/plating,
 /area/iomoon/base/underground)
-"bwT" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 4;
-	icon_state = "iowall_edge2"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "bwU" = (
 /turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
@@ -16406,10 +16203,6 @@
 	},
 /area/iomoon/caves)
 "bwV" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -16417,10 +16210,6 @@
 	},
 /area/iomoon/caves)
 "bwW" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
@@ -16444,10 +16233,6 @@
 	},
 /area/iomoon/caves)
 "bwZ" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_detail2";
@@ -16631,32 +16416,10 @@
 	},
 /turf/floor/plating,
 /area/iomoon/base/underground)
-"bxC" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_edge2"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
-"bxD" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_edge2";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "bxE" = (
 /turf/wall/setpieces/iomoon/ancient,
 /area/iomoon/caves)
 "bxF" = (
-/turf/floor/setpieces/iomoon/ancient,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail2";
@@ -16868,10 +16631,6 @@
 /turf/floor/arctic/plating,
 /area/iomoon/base/underground)
 "byq" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 4;
 	icon_state = "iowall_edge1";
@@ -16896,10 +16655,6 @@
 	},
 /area/iomoon/caves)
 "byt" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge1";
@@ -16908,10 +16663,6 @@
 	},
 /area/iomoon/caves)
 "byu" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail2";
@@ -16919,10 +16670,6 @@
 	},
 /area/iomoon/caves)
 "byv" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge2";
@@ -16931,7 +16678,6 @@
 	},
 /area/iomoon/caves)
 "byw" = (
-/turf/floor/setpieces/iomoon/ancient,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
@@ -16939,7 +16685,6 @@
 	},
 /area/iomoon/robot_ruins)
 "byx" = (
-/turf/floor/setpieces/iomoon/ancient,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_detail2"
@@ -17133,18 +16878,6 @@
 	},
 /turf/floor/lava,
 /area/iomoon/caves)
-"bzd" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_edge2";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "bze" = (
 /obj/item/mining_tool{
 	desc = "A power pick with a dead energy cell, effectively making it once again a regular pick.";
@@ -17224,20 +16957,6 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/floor/plating,
 /area/iomoon/base)
-"bzq" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
-"bzr" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
 "bzs" = (
 /obj/decal/cleanable/ash,
 /turf/floor/setpieces/iomoon/crust,
@@ -17504,7 +17223,6 @@
 	},
 /area/iomoon/base)
 "bAb" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge2"
@@ -17610,17 +17328,6 @@
 /turf/floor/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iocrust_edge"
-	},
-/area/iomoon/caves)
-"bAr" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_detail1";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
 	},
 /area/iomoon/caves)
 "bAs" = (
@@ -17923,12 +17630,6 @@
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
-"bBh" = (
-/turf/space/no_replace,
-/turf/floor/setpieces/iomoon/ancient{
-	icon_state = "ancientfloor3"
-	},
-/area/iomoon/robot_ruins)
 "bBi" = (
 /obj/decal/glow{
 	anchored = 1;
@@ -18192,10 +17893,6 @@
 /turf/space/fluid/cenote,
 /area/crater)
 "bBS" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge3";
@@ -18203,10 +17900,6 @@
 	},
 /area/iomoon/caves)
 "bBT" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1";
@@ -18214,23 +17907,7 @@
 	temperature = 313.15
 	},
 /area/iomoon/caves)
-"bBU" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "bBV" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail1";
@@ -18447,18 +18124,6 @@
 "bCB" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
-"bCC" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
 	},
 /turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
@@ -18694,21 +18359,12 @@
 	},
 /area/iomoon/base)
 "bDd" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge3"
 	},
 /area/iomoon)
-"bDe" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1"
-	},
-/area/iomoon)
 "bDf" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3"
@@ -18748,10 +18404,6 @@
 "bDn" = (
 /obj/grille/catwalk{
 	dir = 5
-	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iocrust_edge"
 	},
 /turf/floor{
 	carbon_dioxide = 20;
@@ -18992,7 +18644,6 @@
 	},
 /area/iomoon/base)
 "bDK" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_detail2"
@@ -19004,14 +18655,12 @@
 	},
 /area/iomoon)
 "bDM" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail3"
 	},
 /area/iomoon)
 "bDN" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge1"
@@ -19040,18 +18689,6 @@
 	},
 /turf/floor/plating,
 /area/iomoon/base/underground)
-"bDS" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_edge3";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "bDT" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 9
@@ -19119,38 +18756,27 @@
 /turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "bEb" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge3"
 	},
 /area/iomoon)
 "bEc" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_detail1"
 	},
 /area/iomoon)
 "bEd" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail1"
 	},
 /area/iomoon)
 "bEe" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
-"bEf" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge3"
 	},
 /area/iomoon)
 "bEi" = (
@@ -19171,23 +18797,7 @@
 	temperature = 313.15
 	},
 /area/iomoon/caves)
-"bEk" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge3";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "bEl" = (
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail3";
@@ -19267,13 +18877,6 @@
 	},
 /turf/floor/plating,
 /area/iomoon/base)
-"bEu" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_edge1"
-	},
-/area/iomoon)
 "bEv" = (
 /obj/decal/stalagmite{
 	desc = "It's very warm.";
@@ -19284,15 +18887,7 @@
 	},
 /turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
-"bEw" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge1"
-	},
-/area/iomoon)
 "bEx" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail3"
@@ -19311,18 +18906,6 @@
 /obj/decal/fakeobjects/pipe/heat,
 /turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
-	},
-/area/iomoon/caves)
-"bEA" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge2";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
 	},
 /area/iomoon/caves)
 "bEB" = (
@@ -19454,13 +19037,6 @@
 	},
 /turf/floor/plating,
 /area/iomoon/base)
-"bEU" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail1"
-	},
-/area/iomoon)
 "bEV" = (
 /obj/map/light/lava,
 /obj/decal/fakeobjects/pipe/heat{
@@ -19574,91 +19150,20 @@
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
-"bFj" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_detail1"
-	},
-/area/iomoon)
 "bFk" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge1";
 	layer = 3
 	},
 /area/iomoon)
-"bFl" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_detail3"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iocrust_edge"
-	},
-/area/iomoon)
-"bFm" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge2"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iocrust_edge"
-	},
-/area/iomoon)
-"bFn" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iocrust_corner"
-	},
-/area/iomoon)
 "bFo" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge1"
-	},
-/area/iomoon)
-"bFp" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_edge3"
-	},
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
 	},
 /area/iomoon)
 "bFq" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_detail1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/area/iomoon/caves)
-"bFr" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
 /turf/floor/lava{
 	density = 1;
 	desc = "It's hard to see past this bubble in the pyroclastic flows.";
@@ -19776,37 +19281,7 @@
 /obj/critter/magiczombie,
 /turf/floor/dirt,
 /area/catacombs)
-"bFG" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge2"
-	},
-/area/iomoon)
-"bFH" = (
-/turf/floor/setpieces/iomoon/crust,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail2"
-	},
-/area/iomoon)
-"bFI" = (
-/turf/space/no_replace,
-/turf/wall/setpieces/iomoon/crust{
-	icon_state = "iowall3"
-	},
-/area/iomoon)
-"bFJ" = (
-/turf/floor/setpieces/iomoon/ancient,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_detail1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/area/iomoon/robot_ruins)
 "bFK" = (
-/turf/floor/setpieces/iomoon/ancient,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge1";
@@ -19815,10 +19290,6 @@
 	},
 /area/iomoon/robot_ruins)
 "bFL" = (
-/turf/space/no_replace,
-/turf/floor/setpieces/iomoon/ancient{
-	icon_state = "ancientfloor3"
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3";
@@ -19827,7 +19298,6 @@
 	},
 /area/iomoon/robot_ruins)
 "bFM" = (
-/turf/floor/setpieces/iomoon/ancient,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
@@ -19848,14 +19318,12 @@
 	},
 /area/iomoon/robot_ruins/boss_chamber)
 "bFP" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2"
 	},
 /area/iomoon)
 "bFQ" = (
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge2"
@@ -19882,9 +19350,6 @@
 	},
 /area/crypt/graveyard)
 "bFU" = (
-/turf/floor/setpieces/iomoon/ancient{
-	icon_state = "ancientfloor3"
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1";
@@ -19893,7 +19358,6 @@
 	},
 /area/iomoon/robot_ruins)
 "bFV" = (
-/turf/floor/setpieces/iomoon/ancient,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail1";
@@ -20032,13 +19496,6 @@
 /obj/item/clothing/under/shorts/black,
 /turf/floor/setpieces/rootfloor,
 /area/catacombs)
-"bGh" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_edge1"
-	},
-/area/iomoon)
 "bGi" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet{
@@ -20153,27 +19610,6 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
-"bGy" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail2"
-	},
-/area/iomoon)
-"bGz" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_detail3"
-	},
-/turf/floor/lava,
-/area/iomoon)
-"bGA" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_edge1"
-	},
-/turf/floor/lava,
-/area/iomoon)
 "bGC" = (
 /obj/machinery/door/airlock/external{
 	name = "Maintenance Hub"
@@ -20196,10 +19632,6 @@
 	},
 /area/iomoon)
 "bGE" = (
-/turf/floor/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iocrust_edge"
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge1"
@@ -20285,19 +19717,7 @@
 	temperature = 313.15
 	},
 /area/iomoon)
-"bGR" = (
-/turf/floor/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge2"
-	},
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1"
-	},
-/area/iomoon)
 "bGS" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail1"
@@ -20342,7 +19762,6 @@
 	},
 /area/crypt/graveyard)
 "bGZ" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1"
@@ -20568,44 +19987,13 @@
 /obj/item/paper/alchemy/southeast,
 /turf/floor/dirt,
 /area/catacombs)
-"bHy" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge1"
-	},
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/area/iomoon)
-"bHz" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1"
-	},
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
-/area/iomoon)
 "bHA" = (
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail2"
 	},
 /area/iomoon)
 "bHB" = (
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge3"
@@ -21173,10 +20561,6 @@
 	},
 /obj/chaser/hospital_trigger,
 /turf/floor/carpet/office,
-/area/hospital)
-"bJc" = (
-/turf/space,
-/turf/wall/setpieces/hospital/cavern,
 /area/hospital)
 "bJd" = (
 /obj/decal/fakeobjects/pipe{
@@ -21748,10 +21132,6 @@
 	dir = 4
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 4;
@@ -22355,22 +21735,6 @@
 	},
 /turf/floor/caution/south,
 /area/crypt/sigma/lab)
-"bMT" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
-/turf/floor{
-	carbon_dioxide = 16;
-	dir = 4;
-	icon_state = "catwalk_narrow";
-	name = "heated catwalk support";
-	temperature = 372.15
-	},
-/area/iomoon)
 "bMU" = (
 /turf/wall/other{
 	icon = 'icons/misc/racing.dmi';
@@ -23181,11 +22545,6 @@
 	},
 /turf/floor/caution/north,
 /area/crunch)
-"bPr" = (
-/obj/map/light/void,
-/turf/space,
-/turf/floor/void,
-/area/crunch)
 "bPs" = (
 /obj/map/light/graveyard,
 /turf/floor/grass/leafy,
@@ -23264,10 +22623,6 @@
 "bPE" = (
 /obj/structure/girder/reinforced,
 /turf/floor/plating/damaged3,
-/area/crunch)
-"bPF" = (
-/turf/space,
-/turf/wall,
 /area/crunch)
 "bPG" = (
 /obj/map/light/graveyard,
@@ -23724,7 +23079,6 @@
 	plane = -110
 	},
 /obj/item/cable_coil/cut/small,
-/turf/space,
 /turf/floor/void,
 /area/crunch)
 "bQN" = (
@@ -24036,13 +23390,6 @@
 	req_access_txt = ""
 	},
 /turf/floor/plating,
-/area/hospital)
-"bRF" = (
-/turf/space,
-/turf/wall/setpieces/hospital{
-	dir = 1;
-	icon_state = "panelwall_junction"
-	},
 /area/hospital)
 "bRG" = (
 /obj/lattice{
@@ -24673,10 +24020,6 @@
 /obj/grille/catwalk{
 	dir = 5
 	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 4;
-	icon_state = "iocrust_edge"
-	},
 /turf/floor{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -25303,7 +24646,6 @@
 /area/hospital)
 "bWb" = (
 /obj/submachine/chef_oven,
-/turf/space,
 /turf/floor/specialroom/freezer,
 /area/hospital)
 "bWc" = (
@@ -26629,10 +25971,6 @@
 	},
 /turf/floor/white/grime,
 /area/hospital)
-"caD" = (
-/turf/floor/void,
-/turf/floor/void,
-/area/crunch)
 "caE" = (
 /obj/decal/floatingtiles{
 	dir = 8;
@@ -26646,10 +25984,6 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/floor/void,
-/area/crunch)
-"caF" = (
-/turf/space,
 /turf/floor/void,
 /area/crunch)
 "caG" = (
@@ -28621,7 +27955,6 @@
 	dir = 1
 	},
 /obj/submachine/ice_cream_dispenser,
-/turf/space,
 /turf/floor/specialroom/freezer,
 /area/hospital)
 "chc" = (
@@ -28898,10 +28231,6 @@
 /area/sim/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
-"chK" = (
-/turf/space,
-/turf/floor/specialroom/freezer,
-/area/hospital)
 "chL" = (
 /turf/wall/setpieces/hospital/cavern{
 	dir = 5;
@@ -31842,13 +31171,6 @@
 	},
 /turf/floor/caution/north,
 /area/hospital/samostrel)
-"cqk" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail2"
-	},
-/turf/floor/lava,
-/area/iomoon)
 "cql" = (
 /turf/floor/caution/corner/misc{
 	dir = 9
@@ -32392,12 +31714,6 @@
 /obj/table,
 /turf/floor/blackwhite/whitegrime,
 /area/hospital/samostrel)
-"csn" = (
-/turf/space,
-/turf/wall/bombvr,
-/area/sim/test_area{
-	name = "VR Test Area"
-	})
 "cst" = (
 /obj/decal/floatingtiles{
 	dir = 1;
@@ -32450,34 +31766,6 @@
 /area/sim/test_area{
 	name = "VR Test Area"
 	})
-"csK" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1"
-	},
-/turf/floor/lava,
-/area/iomoon)
-"csO" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_edge1"
-	},
-/turf/floor/lava,
-/area/iomoon)
-"csQ" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail1"
-	},
-/turf/floor/lava,
-/area/iomoon)
-"csR" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge3"
-	},
-/turf/floor/lava,
-/area/iomoon)
 "csS" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -33272,20 +32560,6 @@
 	},
 /turf/floor/plating/scorched,
 /area/crater)
-"cwr" = (
-/obj/grille/catwalk,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
-/turf/floor{
-	carbon_dioxide = 16;
-	dir = 1;
-	icon_state = "catwalk_narrow";
-	name = "warm catwalk support";
-	temperature = 372.15
-	},
-/area/iomoon)
 "cws" = (
 /obj/decal/lightshaft,
 /obj/map/light/graveyard,
@@ -33330,10 +32604,6 @@
 	dir = 9;
 	icon_state = "catwalk_cross"
 	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 9;
@@ -33346,10 +32616,6 @@
 /obj/grille/catwalk{
 	dir = 6;
 	icon_state = "catwalk_cross"
-	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
 	},
 /turf/floor{
 	carbon_dioxide = 16;
@@ -33418,10 +32684,6 @@
 	icon_state = "catwalk_cross"
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 20;
 	dir = 10;
@@ -38620,10 +37882,6 @@
 	dir = 10
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 1;
@@ -40014,10 +39272,6 @@
 	icon_state = "catwalk_cross"
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 6;
@@ -40029,10 +39283,6 @@
 "cNq" = (
 /obj/grille/catwalk,
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 1;
@@ -40519,7 +39769,6 @@
 /turf/floor/white,
 /area/owlery/owleryhall)
 "cOs" = (
-/turf/space,
 /turf/shuttle/wall/cockpit{
 	icon_state = "shuttlecock_mining";
 	plane = -95
@@ -43628,19 +42877,6 @@
 /obj/item/reagent_containers/food/snacks/granola_bar,
 /turf/floor/grass,
 /area/owlery/owllock)
-"cVb" = (
-/obj/map/light/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 5;
-	icon_state = "iowall_edge3";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "cVd" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 4;
@@ -46119,18 +45355,6 @@
 	},
 /turf/floor/grass,
 /area/owlery/Owlmait2)
-"cZN" = (
-/obj/map/light/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_edge2";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dab" = (
 /obj/lattice{
 	dir = 6;
@@ -46143,10 +45367,6 @@
 	dir = 9
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 20;
 	dir = 8;
@@ -46167,10 +45387,6 @@
 	dir = 5
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -46178,25 +45394,6 @@
 	temperature = 372.15
 	},
 /area/iomoon)
-"daf" = (
-/obj/map/light/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 4;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/lava,
-/area/iomoon/caves)
-"dag" = (
-/obj/map/light/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_edge2";
-	name = "silicate cave wall"
-	},
-/turf/floor/lava,
-/area/iomoon/caves)
 "dah" = (
 /obj/channel{
 	required_to_pass = 1e+009
@@ -46205,7 +45402,6 @@
 /area/crater)
 "dai" = (
 /obj/map/light/lava,
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail3";
@@ -46233,7 +45429,6 @@
 /area/crater)
 "dal" = (
 /obj/map/light/lava,
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -46269,7 +45464,6 @@
 /area/cordon)
 "dar" = (
 /obj/map/light/lava,
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_detail3";
@@ -46337,21 +45531,8 @@
 /obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni,
 /turf/floor/blackwhite/whitegrime,
 /area/crunch)
-"daV" = (
-/obj/map/light/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "daW" = (
 /obj/map/light/lava,
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
@@ -46440,7 +45621,6 @@
 /area/iomoon/caves)
 "dbm" = (
 /obj/map/light/lava,
-/turf/floor/lava,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge1";
@@ -46451,10 +45631,6 @@
 "dbn" = (
 /obj/grille/catwalk,
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	icon_state = "catwalk";
 	name = "catwalk support"
@@ -46464,10 +45640,6 @@
 /obj/grille/catwalk{
 	dir = 9;
 	icon_state = "catwalk_cross"
-	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
 	},
 /turf/floor{
 	carbon_dioxide = 16;
@@ -46479,10 +45651,6 @@
 /area/iomoon)
 "dbq" = (
 /obj/grille/catwalk,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	dir = 1;
 	icon_state = "catwalk";
@@ -46500,10 +45668,6 @@
 	icon_state = "catwalk_cross"
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 9;
@@ -46531,10 +45695,6 @@
 	icon_state = "catwalk_cross"
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 1;
@@ -46548,10 +45708,6 @@
 	dir = 4
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	dir = 4;
 	icon_state = "catwalk";
@@ -46564,10 +45720,6 @@
 	icon_state = "catwalk_cross"
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	icon_state = "catwalk_cross";
@@ -46580,10 +45732,6 @@
 	dir = 1;
 	icon_state = "catwalk_cross"
 	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 5;
@@ -46595,10 +45743,6 @@
 "dbz" = (
 /obj/grille/catwalk,
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 20;
 	dir = 4;
@@ -46611,10 +45755,6 @@
 /obj/grille/catwalk{
 	dir = 10;
 	icon_state = "catwalk_cross"
-	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
 	},
 /turf/floor{
 	carbon_dioxide = 20;
@@ -46673,9 +45813,6 @@
 /obj/iomoon_puzzle/button{
 	id = "iomoon_burntpuzzleD;iomoon_burntroomE"
 	},
-/turf/floor/setpieces/iomoon/ancient{
-	icon_state = "ancientfloor3"
-	},
 /turf/space/no_replace,
 /area/iomoon/robot_ruins)
 "dbI" = (
@@ -46685,20 +45822,6 @@
 	},
 /turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
-	},
-/area/iomoon)
-"dbJ" = (
-/obj/grille/catwalk{
-	dir = 6
-	},
-/turf/floor/setpieces/iomoon/crust{
-	icon_state = "iocrust_edge"
-	},
-/turf/floor{
-	carbon_dioxide = 16;
-	icon_state = "catwalk_cross";
-	name = "hot catwalk support";
-	temperature = 372.15
 	},
 /area/iomoon)
 "dbK" = (
@@ -46770,13 +45893,6 @@
 /obj/grille/catwalk{
 	dir = 9
 	},
-/turf/floor{
-	carbon_dioxide = 20;
-	dir = 8;
-	icon_state = "catwalk_cross";
-	name = "hot catwalk support";
-	temperature = 372.15
-	},
 /turf/floor/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iocrust_edge";
@@ -46788,10 +45904,6 @@
 /obj/map/light/lava,
 /obj/grille/catwalk{
 	dir = 4
-	},
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
 	},
 /turf/floor{
 	carbon_dioxide = 16;
@@ -46805,12 +45917,6 @@
 /obj/map/light/lava,
 /obj/grille/catwalk{
 	dir = 5
-	},
-/turf/floor{
-	dir = 4;
-	icon_state = "catwalk_cross";
-	name = "burning catwalk support";
-	temperature = 372.15
 	},
 /turf/floor/setpieces/iomoon/crust{
 	dir = 4;
@@ -47584,10 +46690,6 @@
 /obj/grille/catwalk{
 	dir = 9
 	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iocrust_edge"
-	},
 /turf/floor{
 	carbon_dioxide = 20;
 	dir = 8;
@@ -47599,10 +46701,6 @@
 "dgV" = (
 /obj/grille/catwalk{
 	dir = 4
-	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iocrust_corner"
 	},
 /turf/floor{
 	carbon_dioxide = 16;
@@ -47618,10 +46716,6 @@
 	icon_state = "catwalk_cross"
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 1;
@@ -47635,10 +46729,6 @@
 	dir = 5
 	},
 /obj/map/light/lava,
-/turf/floor/lava{
-	deadly = 0;
-	temperature = 372.15
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 4;
@@ -47649,12 +46739,6 @@
 /area/iomoon)
 "dhj" = (
 /obj/map/light/lava,
-/turf/wall/setpieces/iomoon/crust{
-	dir = 4;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
 /turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
@@ -47662,9 +46746,6 @@
 /area/iomoon/caves)
 "dhl" = (
 /obj/grille/catwalk,
-/turf/floor/setpieces/iomoon/crust{
-	icon_state = "iocrust_corner"
-	},
 /turf/floor{
 	carbon_dioxide = 16;
 	dir = 1;
@@ -47677,7 +46758,6 @@
 /obj/item/storage/wall/medical{
 	pixel_z = -1
 	},
-/turf/space,
 /turf/wall/auto/shuttle{
 	icon_state = "12"
 	},
@@ -47685,10 +46765,6 @@
 "dhA" = (
 /obj/grille/catwalk{
 	dir = 6
-	},
-/turf/floor/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iocrust_edge"
 	},
 /turf/floor{
 	carbon_dioxide = 16;
@@ -47712,7 +46788,6 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/floor/setpieces/iomoon/crust,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge1";
@@ -48232,31 +47307,7 @@
 /obj/machinery/light/small/cool,
 /turf/floor/white,
 /area/upper_arctic/fita/medsci)
-"dkp" = (
-/turf/wall/setpieces/iomoon/crust{
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
-"dkq" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 4;
-	icon_state = "iowall_detail1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dkr" = (
-/turf/floor,
 /turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_detail1"
@@ -48268,27 +47319,6 @@
 /obj/item/gun/flamethrower/assembled/loaded,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
-"dkw" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_detail1"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
-"dkx" = (
-/turf/wall/setpieces/iomoon/crust{
-	icon_state = "iowall_edge2";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dky" = (
 /obj/storage/secure/closet/medical/medicine,
 /obj/machinery/light/small/neutral{
@@ -48337,44 +47367,9 @@
 "dkH" = (
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/south)
-"dkM" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 6;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dkN" = (
 /turf/space/shuttle_transit,
 /area/shuttle_particle_spawn/south)
-"dkO" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_detail2";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
-"dkP" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 8;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dkQ" = (
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/east)
@@ -48386,17 +47381,6 @@
 	},
 /turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
-"dkS" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail3";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dkT" = (
 /obj/landmark/escape_pod_succ/west,
 /turf/space/shuttle_transit,
@@ -48407,24 +47391,7 @@
 "dkV" = (
 /turf/space/shuttle_transit,
 /area/shuttle_particle_spawn/east)
-"dkW" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 9;
-	icon_state = "iowall_detail1";
-	name = "silicate cave wall"
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dlb" = (
-/turf/floor/lava{
-	density = 1;
-	desc = "It's hard to see past this bubble in the pyroclastic flows.";
-	name = "Far Lava";
-	opacity = 1
-	},
 /turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge1";
@@ -48444,18 +47411,6 @@
 /obj/item/clothing/suit/bedsheet/pink,
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
-"dlf" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 1;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dlk" = (
 /obj/storage/crate,
 /obj/item/clothing/suit/wintercoat/research,
@@ -49440,30 +48395,6 @@
 	},
 /turf/floor/shuttlebay,
 /area/diner/tug)
-"dqT" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_detail3";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
-"dqV" = (
-/turf/wall/setpieces/iomoon/crust{
-	dir = 10;
-	icon_state = "iowall_edge1";
-	name = "silicate cave wall";
-	temperature = 313.15
-	},
-/turf/floor/setpieces/iomoon/crust{
-	name = "silicate cave floor";
-	temperature = 313.15
-	},
-/area/iomoon/caves)
 "dqX" = (
 /obj/lattice,
 /obj/the_sun{
@@ -49501,10 +48432,6 @@
 /obj/decal/cleanable/oil,
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
-"drj" = (
-/turf/space/solariumjoke,
-/turf/space/solariumjoke,
-/area/space/solariumjoke)
 "drl" = (
 /obj/machinery/camera,
 /turf/floor/neutral,
@@ -49591,10 +48518,6 @@
 	icon_state = "wall3dir"
 	},
 /area/diner/tug)
-"dsD" = (
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "dsI" = (
 /obj/lattice{
 	dir = 6;
@@ -49665,9 +48588,6 @@
 	},
 /area/diner/tug)
 "dta" = (
-/turf/floor/setpieces/iomoon/ancient{
-	icon_state = "ancientfloor3"
-	},
 /turf/space/no_replace,
 /area/iomoon/robot_ruins)
 "dtc" = (
@@ -52183,10 +51103,6 @@
 "dRe" = (
 /turf/floor/void/channel,
 /area/adventure/channel)
-"dRt" = (
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/teleport)
 "dRx" = (
 /turf/floor/specialroom/chapel{
 	dir = 8
@@ -52201,12 +51117,6 @@
 "dTe" = (
 /turf/floor/lava,
 /area/sim/racing_track)
-"dTs" = (
-/obj/window/auto/reinforced,
-/obj/grille/steel,
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "dTI" = (
 /obj/decal/fakeobjects/firelock_broken{
 	density = 1;
@@ -52946,7 +51856,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	dir = 9;
 	icon = 'icons/misc/racing.dmi';
@@ -53035,14 +51944,6 @@
 	},
 /turf/floor/arctic/snow/ice,
 /area/lower_arctic/mining)
-"fvv" = (
-/obj/window/auto/reinforced,
-/obj/grille/steel,
-/turf/space,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "fxB" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -53186,14 +52087,6 @@
 "fON" = (
 /turf/floor/vr/fourbit,
 /area/sim/racing_entry)
-"fPp" = (
-/turf/space,
-/turf/floor{
-	dir = 8;
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "fSR" = (
 /obj/decal/icefloor,
 /obj/decal/fakeobjects{
@@ -53296,10 +52189,6 @@
 /obj/decal/cleanable/cobweb2,
 /turf/floor/white/grime,
 /area/crypt/sigma/kitchen)
-"gkW" = (
-/turf/space,
-/turf/wall/void,
-/area/crunch)
 "gmD" = (
 /obj/decal/tile_edge/line/red{
 	dir = 8;
@@ -53312,14 +52201,6 @@
 	icon_state = "green";
 	name = "garrys"
 	})
-"gnV" = (
-/turf/space,
-/turf/floor{
-	dir = 4;
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "gpj" = (
 /obj/table,
 /obj/item/paper/book/from_file/pharmacopia,
@@ -53623,7 +52504,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	dir = 10;
 	icon = 'icons/misc/racing.dmi';
@@ -54391,7 +53271,6 @@
 	name = "garrys"
 	})
 "iPB" = (
-/turf/space,
 /turf/wall/auto/shuttle{
 	icon_state = "13"
 	},
@@ -54684,7 +53563,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	dir = 4;
 	icon = 'icons/misc/racing.dmi';
@@ -54777,13 +53655,6 @@
 	},
 /turf/floor/concrete,
 /area/lower_arctic/mining)
-"jUv" = (
-/turf/space,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "jWk" = (
 /turf/floor/carpet/red/standard/edge/east,
 /area/upper_arctic/fita/messhall)
@@ -55033,14 +53904,6 @@
 	},
 /turf/floor/engine/caution/west,
 /area/upper_arctic/fita/mining)
-"kMq" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "kMF" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 10;
@@ -55113,10 +53976,6 @@
 "kPL" = (
 /turf/floor/carpet/red/standard/innercorner/ne,
 /area/upper_arctic/fita/director)
-"kRK" = (
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "kRS" = (
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
@@ -55144,16 +54003,6 @@
 "kVh" = (
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/director)
-"kVY" = (
-/obj/landmark{
-	name = "battle-royale-spawn"
-	},
-/turf/space,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "kXE" = (
 /obj/decal/poster/wallsign/poster_beach{
 	pixel_y = 32
@@ -55412,7 +54261,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	dir = 1;
 	icon = 'icons/misc/racing.dmi';
@@ -55449,7 +54297,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "track_1"
@@ -55700,12 +54547,6 @@
 	icon_state = "green2"
 	},
 /area/wizard_station)
-"mHa" = (
-/turf/space,
-/turf/wall/auto/shuttle{
-	icon_state = "4"
-	},
-/area/shuttle_transit_space/west)
 "mIm" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -55761,7 +54602,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	dir = 8;
 	icon = 'icons/misc/racing.dmi';
@@ -55807,7 +54647,6 @@
 /area/wizard_station)
 "mMB" = (
 /obj/indestructible/shuttle_corner,
-/turf/space,
 /turf/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -55859,14 +54698,12 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "track_1"
 	},
 /area/shuttle/escape/transit/battle_shuttle)
 "nfN" = (
-/turf/space,
 /turf/wall/auto/shuttle{
 	icon_state = "3"
 	},
@@ -56213,7 +55050,6 @@
 /turf/floor/concrete,
 /area/lower_arctic/mining)
 "nYQ" = (
-/turf/space,
 /turf/wall/auto/shuttle{
 	icon_state = "4"
 	},
@@ -56496,12 +55332,6 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/lobby)
-"ozj" = (
-/turf/space,
-/turf/wall/auto/shuttle{
-	icon_state = "12"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "oBt" = (
 /obj/decal/fakeobjects/pipe{
 	color = "#777777";
@@ -56830,7 +55660,6 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "track_1"
@@ -57677,12 +56506,6 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"slf" = (
-/turf/space,
-/turf/wall/auto/shuttle{
-	icon_state = "15"
-	},
-/area/shuttle/escape/transit/battle_shuttle)
 "slj" = (
 /obj/machinery/vending/magivend,
 /turf/floor/shuttle{
@@ -57891,7 +56714,6 @@
 	})
 "sBb" = (
 /obj/machinery/door/airlock/pyro/external,
-/turf/space,
 /turf/floor/shuttle,
 /area/shuttle/escape/transit/battle_shuttle)
 "sCr" = (
@@ -57936,14 +56758,6 @@
 /obj/machinery/light/runway_light,
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/shuttlepad)
-"sNI" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "alt_propulsion"
-	},
-/turf/space,
-/turf/space/shuttle_transit,
-/area/shuttle_transit_space/west)
 "sOq" = (
 /turf/floor/carpet/red/standard/edge/south,
 /area/upper_arctic/fita/quartermaster)
@@ -57996,10 +56810,6 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
-"sUS" = (
-/turf/space,
-/turf/space/shuttle_transit,
-/area/battle_royale_spawn)
 "sWn" = (
 /obj/decal/poster/wallsign/stencil/left/m,
 /obj/decal/poster/wallsign/stencil/right/o,
@@ -58032,17 +56842,12 @@
 /obj/landmark{
 	name = "battle-royale-spawn"
 	},
-/turf/space,
 /turf/floor{
 	dir = 1;
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "track_2"
 	},
 /area/shuttle/escape/transit/battle_shuttle)
-"tiH" = (
-/turf/wall/void,
-/turf/floor/void,
-/area/crunch)
 "tiK" = (
 /obj/table/wood/auto,
 /obj/item/kitchen/utensil/fork,
@@ -58127,13 +56932,6 @@
 	},
 /turf/floor/concrete,
 /area/lower_arctic/mining)
-"tAg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "tAN" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/concrete,
@@ -58145,10 +56943,6 @@
 /obj/decal/garland,
 /turf/wall/arctic/abyss/ice,
 /area/lower_arctic/mining)
-"tEb" = (
-/turf/space,
-/turf/space/shuttle_transit,
-/area/shuttle_transit_space/south)
 "tEq" = (
 /obj/machinery/light/runway_light/delay4,
 /turf/floor/engine/glow,
@@ -58180,18 +56974,10 @@
 	name = "ice wall"
 	},
 /area/lower_arctic/mining)
-"tFS" = (
-/turf/space,
-/turf/space/shuttle_transit,
-/area/shuttle_transit_space/west)
 "tHo" = (
 /obj/decal/icefloor,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
-"tHT" = (
-/turf/space,
-/turf/space/shuttle_transit,
-/area/area_that_kills_you_if_you_enter_it)
 "tIw" = (
 /obj/machinery/navbeacon{
 	beacon_id = "sov4";
@@ -58435,11 +57221,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"uvj" = (
-/obj/machinery/light,
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "uwZ" = (
 /obj/sign_accidents,
 /turf/wall/auto/lead/gray,
@@ -58664,10 +57445,6 @@
 	icon_state = "blue";
 	name = "garrys dark room"
 	})
-"uYg" = (
-/turf/space,
-/turf/space,
-/area/cordon)
 "uYA" = (
 /turf/shuttle/wall/cockpit,
 /area/shuttle/escape/transit/battle_shuttle)
@@ -58681,7 +57458,6 @@
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/mining)
 "vaI" = (
-/turf/space,
 /turf/wall/auto/shuttle{
 	icon_state = "8"
 	},
@@ -59002,10 +57778,6 @@
 /obj/map/light/white,
 /turf/floor/shuttle,
 /area/shuttle/escape/transit/battle_shuttle)
-"vTe" = (
-/turf/space/shuttle_transit/deadly,
-/turf/space/shuttle_transit,
-/area/shuttle_transit_space/west)
 "vUi" = (
 /obj/decal/fakeobjects{
 	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
@@ -59099,13 +57871,6 @@
 	icon_state = "wall3"
 	},
 /area/wizard_station)
-"wge" = (
-/obj/landmark{
-	name = "battle-royale-spawn"
-	},
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "wgk" = (
 /obj/machinery/vehicle/miniputt/wizard{
 	dir = 1
@@ -59262,13 +58027,6 @@
 /obj/storage/crate,
 /turf/floor/concrete,
 /area/lower_arctic/mining)
-"wzw" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8
-	},
-/turf/space,
-/turf/space/shuttle_transit,
-/area/shuttle/escape/transit/battle_shuttle)
 "wCo" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -59370,12 +58128,6 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
-"wTB" = (
-/turf/space,
-/turf/bombvr,
-/area/sim/test_area{
-	name = "VR Test Area"
-	})
 "wVn" = (
 /obj/machinery/bot/medbot{
 	no_camera = 1
@@ -59513,14 +58265,6 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
-"xlw" = (
-/obj/map/light/white,
-/obj/landmark{
-	name = "battle-royale-spawn"
-	},
-/turf/space,
-/turf/floor/shuttle,
-/area/shuttle/escape/transit/battle_shuttle)
 "xmI" = (
 /obj/item/mining_tool/power_pick,
 /obj/decal/fakeobjects/pipe{
@@ -59689,10 +58433,6 @@
 /obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
-"xFD" = (
-/turf/space/shuttle_transit/deadly,
-/turf/space/shuttle_transit,
-/area/shuttle_transit_space/south)
 "xGt" = (
 /turf/floor/specialroom/gym,
 /area/afterlife/bar)
@@ -59918,10 +58658,6 @@
 "yeV" = (
 /turf/wall/auto/sengoku,
 /area/dojo)
-"yhp" = (
-/turf/space,
-/turf/space,
-/area/space)
 "yiP" = (
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
@@ -61050,7 +59786,7 @@ boW
 boW
 boW
 boW
-bHy
+boA
 aaa
 bKw
 bKw
@@ -61352,7 +60088,7 @@ boW
 boW
 boW
 boW
-bHz
+boA
 aaa
 bKw
 bKw
@@ -61630,8 +60366,8 @@ boW
 boW
 buc
 boH
-bpj
-boZ
+bEd
+bpz
 boW
 boW
 boW
@@ -61654,7 +60390,7 @@ boW
 boW
 boW
 boW
-bHz
+boA
 aaa
 bKw
 bKw
@@ -61932,7 +60668,7 @@ boW
 boW
 bud
 buF
-bvf
+bEe
 boV
 boW
 boW
@@ -62257,7 +60993,7 @@ boW
 boW
 boW
 bub
-bGy
+bHA
 boH
 aaa
 bKw
@@ -62558,7 +61294,7 @@ boW
 boV
 boV
 bub
-cqk
+boV
 boH
 boH
 aaa
@@ -62597,7 +61333,7 @@ wwy
 wwy
 wwy
 bKw
-caF
+bKw
 bKw
 bKw
 bKw
@@ -62824,7 +61560,7 @@ vww
 vww
 vww
 aaa
-boC
+bEb
 boV
 boW
 boW
@@ -62858,8 +61594,8 @@ boW
 boW
 boW
 bFP
-bGh
-cqk
+bGE
+boV
 boH
 boH
 boH
@@ -62900,10 +61636,10 @@ bKw
 bKw
 bKw
 wwy
-tiH
+bKw
 wwy
 wwy
-tiH
+bKw
 bKw
 bKw
 wwy
@@ -63126,7 +61862,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -63206,7 +61942,7 @@ wwy
 bKw
 bKw
 bKw
-caD
+bKw
 bKw
 bKw
 bKw
@@ -63428,7 +62164,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -63504,7 +62240,7 @@ wwy
 wwy
 bKw
 wwy
-caF
+bKw
 ojM
 bKw
 bKw
@@ -63514,9 +62250,6 @@ bKw
 bKw
 bKw
 bKw
-caD
-bKw
-caD
 bKw
 bKw
 bKw
@@ -63525,7 +62258,10 @@ bKw
 bKw
 bKw
 bKw
-caD
+bKw
+bKw
+bKw
+bKw
 bKw
 bKw
 bTU
@@ -63730,7 +62466,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -63765,7 +62501,7 @@ boW
 boW
 bud
 buF
-bGz
+boV
 boH
 boF
 boH
@@ -63805,28 +62541,28 @@ bKw
 wwy
 wwy
 bKw
-gkW
+wwy
 bKw
-caF
+bKw
 bKw
 bKw
 wwy
 wwy
-caF
-bKw
-caF
 bKw
 bKw
 bKw
 bKw
 bKw
-caF
+bKw
+bKw
+bKw
+bKw
 bKw
 bKw
 bTU
-caF
 bKw
-caF
+bKw
+bKw
 bKw
 bKw
 bKw
@@ -64032,7 +62768,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -64055,7 +62791,7 @@ dbz
 cNq
 cNq
 cNq
-dbJ
+dhA
 byg
 byg
 byg
@@ -64067,7 +62803,7 @@ boW
 boW
 boW
 boW
-csK
+boV
 boH
 boH
 boF
@@ -64110,7 +62846,7 @@ bKw
 wwy
 bKw
 bKw
-bPr
+bTU
 bKw
 wwy
 wwy
@@ -64334,7 +63070,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -64344,7 +63080,7 @@ tuw
 tuw
 tuw
 tuw
-cwr
+dhl
 cwI
 bue
 bue
@@ -64369,7 +63105,7 @@ boW
 boW
 boW
 boW
-bGA
+boV
 buF
 bGZ
 boH
@@ -64410,7 +63146,16 @@ wwy
 wwy
 bKw
 wwy
-caF
+bKw
+bKw
+bKw
+wwy
+wwy
+wwy
+bKw
+bKw
+bKw
+bKw
 bKw
 bKw
 wwy
@@ -64422,15 +63167,6 @@ bKw
 bKw
 bKw
 bKw
-wwy
-wwy
-wwy
-bKw
-caF
-bKw
-caF
-bKw
-caF
 bKw
 bKw
 bKw
@@ -64636,7 +63372,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -64733,7 +63469,7 @@ bRU
 bKw
 bKw
 bKw
-caF
+bKw
 bKw
 bKw
 bKw
@@ -64938,7 +63674,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -65020,17 +63756,7 @@ bKw
 wwy
 wwy
 bKw
-caF
 bKw
-caF
-bKw
-caF
-bKw
-caF
-bKw
-bUv
-bKw
-caF
 bKw
 bKw
 bKw
@@ -65040,9 +63766,19 @@ bKw
 bKw
 bUv
 bKw
-caF
 bKw
-caF
+bKw
+bKw
+bKw
+bKw
+bKw
+bKw
+bKw
+bUv
+bKw
+bKw
+bKw
+bKw
 bKw
 bKw
 bKw
@@ -65240,7 +63976,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -65321,7 +64057,7 @@ bKw
 wwy
 wwy
 wwy
-caF
+bKw
 bTU
 bKw
 bKw
@@ -65329,7 +64065,7 @@ bKw
 bKw
 bKw
 bKw
-caF
+bKw
 bKw
 bQL
 bYQ
@@ -65542,7 +64278,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -65580,7 +64316,7 @@ bpD
 bqq
 bqo
 boW
-csR
+boV
 aaa
 bKw
 wwy
@@ -65634,7 +64370,7 @@ bKw
 bUv
 bTU
 bKw
-caF
+bKw
 bKw
 bUQ
 bKw
@@ -65844,7 +64580,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -65882,7 +64618,7 @@ bpD
 bpD
 bqp
 boW
-csR
+boV
 aaa
 bKw
 wwy
@@ -65923,7 +64659,7 @@ bKw
 bKw
 bKw
 wwy
-tiH
+bKw
 wwy
 bKw
 bKw
@@ -65943,7 +64679,7 @@ bWo
 bXA
 bQp
 caE
-caF
+bKw
 bKw
 cgh
 bKw
@@ -66146,7 +64882,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -66184,7 +64920,7 @@ bpD
 bpD
 bqp
 boV
-csR
+boV
 aaa
 bKw
 wwy
@@ -66228,14 +64964,14 @@ bKw
 bKw
 bKw
 bKw
-caF
+bKw
 bKw
 bKw
 bKw
 bKw
 bKw
 pVm
-bPF
+igr
 bVI
 bQM
 bRf
@@ -66245,8 +64981,8 @@ bWt
 bRW
 bZH
 caJ
-bPF
-bPF
+igr
+igr
 pVm
 bKw
 cjY
@@ -66448,8 +65184,8 @@ vww
 vww
 vww
 aaa
-boE
-boX
+bEc
+bAb
 boW
 boW
 boW
@@ -67354,8 +66090,8 @@ vww
 vww
 vww
 aaa
-boG
-boZ
+bEd
+bpz
 boW
 boW
 boW
@@ -67409,7 +66145,7 @@ bKw
 bKw
 bKw
 bKw
-caF
+bKw
 bKw
 bKw
 bKw
@@ -67656,7 +66392,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -67712,7 +66448,7 @@ bKw
 bKw
 dbX
 bKw
-caD
+bKw
 bKw
 bQL
 bKw
@@ -67958,7 +66694,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -68260,7 +66996,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boW
 bps
 bpL
@@ -68562,7 +67298,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boW
 bpt
 bpM
@@ -68864,7 +67600,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boW
 bpu
 bpN
@@ -69166,7 +67902,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 bpa
 bpv
 bpO
@@ -69468,7 +68204,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 bpb
 bpw
 bpP
@@ -69770,7 +68506,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 bpc
 bpx
 bpQ
@@ -69808,7 +68544,7 @@ bqp
 boW
 boW
 boV
-csK
+boV
 aaa
 bKw
 bKw
@@ -70072,7 +68808,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boW
 boW
 boW
@@ -70109,8 +68845,8 @@ bpD
 bqp
 boW
 boV
-csO
-csQ
+boV
+boV
 aaa
 bKw
 bKw
@@ -70374,7 +69110,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boW
 boW
 boW
@@ -70411,7 +69147,7 @@ bpE
 brx
 boW
 bFP
-csQ
+boV
 boH
 aaa
 wwy
@@ -70676,7 +69412,7 @@ vww
 vww
 vww
 aaa
-boD
+boY
 boV
 boW
 boW
@@ -70978,8 +69714,8 @@ vww
 vww
 vww
 aaa
-boE
-boX
+bEc
+bAb
 boV
 boV
 bqn
@@ -71281,8 +70017,8 @@ vww
 vww
 aaa
 boF
-bpd
-bpy
+bEc
+bEb
 boW
 bpU
 bpT
@@ -71654,7 +70390,7 @@ wwy
 wwy
 bKw
 bKw
-tiH
+bKw
 wwy
 wwy
 wwy
@@ -71886,7 +70622,7 @@ vww
 aaa
 boH
 boH
-bpi
+boY
 bpR
 bqo
 boW
@@ -71969,7 +70705,7 @@ bKw
 bKw
 bKw
 bKw
-caF
+bKw
 bKw
 bKw
 bKw
@@ -72188,7 +70924,7 @@ vww
 aaa
 boH
 boH
-bpi
+boY
 bpD
 bqp
 boW
@@ -72222,7 +70958,7 @@ izT
 boV
 boW
 boW
-bGR
+bFo
 boH
 boF
 aaa
@@ -72490,7 +71226,7 @@ vww
 aaa
 boH
 boH
-bpi
+boY
 bpD
 bqq
 bqo
@@ -72556,7 +71292,7 @@ wwy
 wwy
 wwy
 wwy
-tiH
+bKw
 wwy
 bKw
 wwy
@@ -72792,7 +71528,7 @@ vww
 aaa
 boH
 boH
-bpi
+boY
 bpD
 bpD
 bqq
@@ -73094,7 +71830,7 @@ vww
 aaa
 boH
 boH
-bpi
+boY
 bpD
 bpD
 bpD
@@ -74936,7 +73672,7 @@ bEp
 btM
 izT
 bsX
-bzq
+bFP
 bFQ
 bEb
 bqp
@@ -75238,7 +73974,7 @@ bEp
 btM
 izT
 bsX
-bFG
+buc
 boH
 bEc
 bGE
@@ -75540,7 +74276,7 @@ izT
 bES
 izT
 dib
-bEU
+bGS
 aaa
 aaa
 aaa
@@ -76829,21 +75565,21 @@ sqd
 ydS
 ydS
 ydS
-wTB
-wTB
-wTB
-wTB
-wTB
 ydS
-wTB
-wTB
+ydS
+ydS
+ydS
+ydS
+ydS
+ydS
+ydS
 ydS
 csJ
 ydS
-wTB
-wTB
-wTB
-wTB
+ydS
+ydS
+ydS
+ydS
 sqd
 aaa
 "}
@@ -77131,7 +75867,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -77145,7 +75881,7 @@ ydS
 ydS
 ydS
 ydS
-wTB
+ydS
 sqd
 aaa
 "}
@@ -77433,7 +76169,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -77735,7 +76471,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -77749,7 +76485,7 @@ ydS
 ydS
 ydS
 ydS
-wTB
+ydS
 sqd
 aaa
 "}
@@ -78037,7 +76773,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -78339,12 +77075,12 @@ sqd
 csJ
 csJ
 csJ
-csn
 csJ
 csJ
 csJ
 csJ
 csJ
+csJ
 ydS
 ydS
 ydS
@@ -78353,7 +77089,7 @@ ydS
 ydS
 ydS
 ydS
-wTB
+ydS
 sqd
 aaa
 "}
@@ -78641,7 +77377,7 @@ sqd
 ydS
 ydS
 csJ
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -79164,7 +77900,7 @@ btM
 izT
 izT
 bpD
-bDe
+bFo
 aaa
 vww
 vww
@@ -79466,7 +78202,7 @@ izT
 izT
 izT
 bpD
-bDe
+bFo
 aaa
 vww
 vww
@@ -79547,21 +78283,21 @@ sqd
 ydS
 ydS
 csJ
-wTB
-ydS
-csJ
-csJ
-csJ
-csJ
-csJ
-csJ
-csJ
-csJ
 ydS
 ydS
 csJ
+csJ
+csJ
+csJ
+csJ
+csJ
+csJ
+csJ
 ydS
-wTB
+ydS
+csJ
+ydS
+ydS
 sqd
 aaa
 "}
@@ -79768,7 +78504,7 @@ izT
 izT
 izT
 bpD
-bDe
+bFo
 aaa
 vww
 vww
@@ -79849,7 +78585,7 @@ sqd
 ydS
 ydS
 csJ
-wTB
+ydS
 ydS
 csJ
 ydS
@@ -80070,7 +78806,7 @@ bpD
 bpD
 bpD
 bpD
-bDe
+bFo
 aaa
 vww
 vww
@@ -80341,7 +79077,7 @@ vYq
 vYq
 aaa
 wXY
-bpi
+boY
 bpE
 bpT
 byg
@@ -80372,7 +79108,7 @@ bpD
 bpD
 bpD
 bFk
-bFH
+bHA
 aaa
 vww
 vww
@@ -80453,7 +79189,7 @@ sqd
 ydS
 ydS
 csJ
-wTB
+ydS
 ydS
 csJ
 ydS
@@ -80673,7 +79409,7 @@ bDZ
 bpD
 bpD
 bpD
-bEU
+bGS
 boF
 aaa
 vww
@@ -80755,7 +79491,7 @@ sqd
 ydS
 ydS
 csJ
-csn
+csJ
 csJ
 csJ
 ydS
@@ -80974,7 +79710,7 @@ bpD
 bpD
 bpD
 bpD
-bDe
+bFo
 boF
 boF
 aaa
@@ -81057,7 +79793,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 csJ
 ydS
@@ -81276,9 +80012,9 @@ bpD
 bpD
 bpD
 bpD
-bFj
+bGZ
 boF
-bFI
+bDL
 aaa
 vww
 vww
@@ -81359,7 +80095,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 csJ
 ydS
@@ -81881,7 +80617,7 @@ bpD
 bpD
 bpD
 bpD
-bDe
+bFo
 boF
 aaa
 vww
@@ -81963,7 +80699,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 csJ
 ydS
@@ -82157,7 +80893,7 @@ boY
 boV
 boW
 boV
-bMT
+dgV
 brC
 bpR
 bpR
@@ -82183,7 +80919,7 @@ bpD
 bpD
 bpD
 bFk
-bEU
+bGS
 bDL
 aaa
 vww
@@ -82265,7 +81001,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 csJ
 ydS
@@ -82483,8 +81219,8 @@ bDd
 bDL
 bEb
 bpD
-bzq
-bEU
+bFP
+bGS
 boH
 bDL
 aaa
@@ -82567,7 +81303,7 @@ sqd
 csJ
 csJ
 ydS
-csn
+csJ
 csJ
 csJ
 csJ
@@ -82776,16 +81512,16 @@ boW
 boW
 bqw
 bpD
-bzq
+bFP
 bAb
 byg
 bpD
 bpD
-bDe
+bFo
 boH
 bEc
-bEu
-bEU
+bGE
+bGS
 bDL
 boH
 boH
@@ -83078,12 +81814,12 @@ boW
 bqn
 bqZ
 bpD
-bzr
+bud
 bpz
 bpD
 bpD
 bpD
-bDe
+bFo
 boF
 boF
 bDL
@@ -83171,7 +81907,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -83473,7 +82209,7 @@ sqd
 ydS
 ydS
 ydS
-wTB
+ydS
 ydS
 ydS
 ydS
@@ -83965,8 +82701,8 @@ vYq
 vYq
 aaa
 boF
-bpd
-bpy
+bEc
+bEb
 boW
 bqw
 bpD
@@ -83993,7 +82729,7 @@ bpD
 bpD
 bpD
 bEv
-bDe
+bFo
 boH
 boH
 boH
@@ -84295,7 +83031,7 @@ bpD
 bqO
 bpD
 bpD
-bDe
+bFo
 boH
 bDL
 boH
@@ -84597,7 +83333,7 @@ bpD
 bpD
 bpD
 bpD
-bDe
+bFo
 boH
 boH
 boH
@@ -84898,7 +83634,7 @@ bpD
 bpD
 bpD
 bzs
-bEw
+bub
 bEx
 boH
 boH
@@ -85199,7 +83935,7 @@ byg
 byg
 byg
 dbE
-bzq
+bFP
 bEx
 boH
 boH
@@ -85501,7 +84237,7 @@ dbE
 byg
 byg
 dbt
-bEf
+bHB
 bDL
 boH
 boF
@@ -85777,8 +84513,8 @@ vYq
 vYq
 aaa
 boF
-bpj
-boZ
+bEd
+bpz
 boV
 boV
 izT
@@ -85803,7 +84539,7 @@ byg
 dbt
 dbt
 byg
-bEf
+bHB
 boH
 boF
 boH
@@ -86408,7 +85144,7 @@ dbD
 dbF
 dbt
 bpD
-bzr
+bud
 bDM
 bDL
 aaa
@@ -86712,7 +85448,7 @@ byg
 bpD
 bpD
 bDf
-bFl
+bqP
 aaa
 vww
 vww
@@ -87014,7 +85750,7 @@ bpD
 bpD
 bpD
 bpD
-bFm
+bqp
 aaa
 vww
 vww
@@ -87316,7 +86052,7 @@ bpD
 bpD
 bqP
 bpE
-bFn
+brx
 aaa
 vww
 vww
@@ -87618,7 +86354,7 @@ bpE
 bpE
 brx
 boV
-csK
+boV
 aaa
 vww
 vww
@@ -87920,7 +86656,7 @@ boW
 boW
 boW
 boW
-csK
+boV
 aaa
 vww
 vww
@@ -88222,7 +86958,7 @@ boW
 boW
 boW
 boW
-bFp
+boA
 aaa
 vww
 vww
@@ -89703,7 +88439,7 @@ vww
 vww
 aaa
 boF
-boD
+boY
 boA
 boA
 boA
@@ -96181,7 +94917,7 @@ adR
 ady
 ady
 ady
-abF
+ady
 abV
 acx
 acx
@@ -96662,7 +95398,7 @@ bpF
 btb
 btb
 btb
-buU
+bwO
 bwh
 bwR
 bxA
@@ -96785,7 +95521,7 @@ adR
 ady
 ady
 ady
-abF
+ady
 ady
 adz
 ady
@@ -97087,7 +95823,7 @@ adR
 ady
 ady
 ady
-abF
+ady
 ady
 ady
 ady
@@ -97389,8 +96125,8 @@ adR
 adR
 adR
 adR
-abX
-abX
+adR
+adR
 adR
 adR
 adR
@@ -97415,7 +96151,7 @@ any
 any
 any
 abx
-bRF
+aAz
 bWb
 asV
 asV
@@ -97692,7 +96428,7 @@ aaa
 aaa
 aaa
 aaa
-amF
+aaa
 aaa
 aaa
 aaa
@@ -97717,18 +96453,18 @@ bLm
 bMb
 bNQ
 abx
-awO
-are
+aix
+aqG
 bYL
 bZB
 atI
 auo
 ais
 abH
-azm
-awO
+abH
+aix
 chb
-chK
+asV
 chW
 aiw
 abp
@@ -97994,8 +96730,8 @@ aaa
 aaa
 aaa
 aaa
-amF
-amF
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -98030,8 +96766,8 @@ abp
 abp
 abH
 abH
-azm
-azm
+abH
+abH
 ajf
 abp
 aaa
@@ -98297,9 +97033,6 @@ aaa
 aaa
 aaa
 aaa
-amF
-amF
-amF
 aaa
 aaa
 aaa
@@ -98307,18 +97040,9 @@ aaa
 aaa
 aaa
 aaa
-abp
-abp
-abp
-abp
-abp
-abp
-abp
-abp
-bJc
-bJc
-abp
-abp
+aaa
+aaa
+aaa
 abp
 abp
 abp
@@ -98333,8 +97057,20 @@ abp
 abp
 abp
 abp
-bJc
-bJc
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
+abp
 abp
 aaa
 aaa
@@ -98617,11 +97353,6 @@ aaa
 aaa
 aaa
 aaa
-amF
-aaa
-amF
-amF
-amF
 aaa
 aaa
 aaa
@@ -98636,7 +97367,12 @@ aaa
 aaa
 aaa
 aaa
-amF
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -98915,13 +97651,13 @@ aaa
 aaa
 dpH
 dpH
-amH
-amH
 dpH
 dpH
 dpH
 dpH
-amH
+dpH
+dpH
+dpH
 dpH
 dpH
 dpH
@@ -99217,13 +97953,6 @@ aaa
 aaa
 dpH
 dpH
-amH
-dpH
-dpH
-dpH
-dpH
-dpH
-amH
 dpH
 dpH
 dpH
@@ -99235,10 +97964,17 @@ dpH
 dpH
 dpH
 dpH
-amH
-amH
-amH
-amF
+dpH
+dpH
+dpH
+dpH
+dpH
+dpH
+dpH
+dpH
+dpH
+dpH
+aaa
 ycl
 klK
 klK
@@ -99392,10 +98128,10 @@ bAW
 txy
 txy
 txy
-bDS
+bwU
 byq
 dhj
-daf
+bvF
 bFq
 aaa
 aaa
@@ -99524,8 +98260,8 @@ dpH
 dpH
 dpH
 dpH
-amH
-amH
+dpH
+dpH
 dpH
 dpH
 dpH
@@ -99680,12 +98416,12 @@ aaa
 btc
 btc
 btx
-dkq
+bwU
 buW
 btc
-dkw
-bwT
-bxC
+bwU
+bwU
+bwU
 bwU
 dbf
 bwU
@@ -99698,7 +98434,7 @@ buB
 bwU
 buY
 bvF
-bFr
+bFq
 aaa
 aaa
 bFR
@@ -99983,9 +98719,9 @@ btc
 btx
 btW
 buy
-cVb
-daf
-daV
+dhj
+bvF
+dhj
 bwU
 bwU
 bwU
@@ -100302,7 +99038,7 @@ bwU
 byr
 bEi
 bvF
-bFr
+bFq
 aaa
 aaa
 bFS
@@ -100887,7 +99623,7 @@ biL
 aaa
 btc
 btc
-dkp
+bwU
 buB
 buY
 bvF
@@ -101190,7 +99926,7 @@ aaa
 aaa
 btc
 btz
-dqV
+bwU
 buY
 bvH
 bwl
@@ -101492,11 +100228,11 @@ blx
 aaa
 btc
 btc
-dqT
-cZN
-dag
-cZN
-dqV
+bwU
+dhj
+bvF
+dhj
+bwU
 bwU
 bwU
 buY
@@ -101510,7 +100246,7 @@ bzb
 bza
 bEz
 bEV
-bBU
+dlb
 bva
 aaa
 bFS
@@ -101798,7 +100534,7 @@ btc
 btc
 btc
 btc
-dkp
+bwU
 bwU
 byr
 bys
@@ -101812,7 +100548,7 @@ txy
 txy
 bAq
 bwU
-dlf
+bwU
 bva
 aaa
 bFS
@@ -102100,7 +100836,7 @@ aaa
 btc
 btc
 btc
-dkx
+bwU
 bwU
 buY
 bza
@@ -102114,7 +100850,7 @@ txy
 txy
 bwU
 bwU
-bBU
+dlb
 bva
 aaa
 bFR
@@ -102402,7 +101138,7 @@ aaa
 bva
 bva
 btx
-dkM
+bwU
 bwU
 buY
 bzb
@@ -102416,7 +101152,7 @@ bBJ
 bBJ
 bwU
 bwU
-bBU
+dlb
 bva
 aaa
 bFS
@@ -103320,7 +102056,7 @@ bwU
 bwU
 bwU
 buB
-bEA
+bwU
 bEl
 bva
 bva
@@ -103610,7 +102346,7 @@ aaa
 bva
 bva
 btz
-dqV
+bwU
 buB
 bwU
 bwU
@@ -103621,8 +102357,8 @@ bwU
 bwU
 bwU
 bwU
-bEk
-dkW
+bwU
+bwU
 bva
 bva
 bva
@@ -103912,18 +102648,18 @@ aaa
 aaa
 bva
 bva
-dkO
-bxD
-dkP
-bzd
-bwU
-bAr
 bwU
 bwU
-bCC
-bxD
-bxD
-dkS
+bwU
+bwU
+bwU
+bwU
+bwU
+bwU
+bwU
+bwU
+bwU
+bwU
 bva
 bva
 bva
@@ -104991,7 +103727,7 @@ clx
 oyA
 oyA
 dre
-drj
+klK
 klK
 klK
 klK
@@ -105127,7 +103863,7 @@ bze
 bwU
 bux
 bBb
-bBU
+dlb
 bxE
 bpo
 bpo
@@ -106502,7 +105238,7 @@ cnC
 oyA
 tza
 klK
-drj
+klK
 klK
 klK
 ycl
@@ -109364,7 +108100,7 @@ brl
 bpo
 brl
 bpo
-bFJ
+bFU
 bxa
 bxa
 aaa
@@ -109960,14 +108696,14 @@ brV
 dbH
 dta
 dta
-bBh
-bBh
-bBh
-bBh
-bBh
+bBY
+bBY
+bBY
+bBY
+bBY
 dta
 dta
-bBh
+bBY
 bFL
 bFU
 bxa
@@ -115252,7 +113988,7 @@ voQ
 voQ
 voQ
 voQ
-dsD
+voQ
 voQ
 dsK
 dsN
@@ -123449,7 +122185,7 @@ voQ
 voQ
 voQ
 umL
-dRt
+vVI
 eZa
 aaa
 vww
@@ -123648,7 +122384,7 @@ vww
 vww
 vww
 vww
-yhp
+vww
 vww
 vww
 vww
@@ -126365,11 +125101,11 @@ vww
 vww
 vww
 vww
-yhp
 vww
 vww
 vww
-yhp
+vww
+vww
 vww
 vww
 vww
@@ -138068,20 +136804,20 @@ dkH
 dkH
 dkH
 dkH
-tEb
-xFD
-tHT
-amF
-uYg
-uYg
-uYg
-uYg
+dkH
+dkH
+dkG
+aaa
+daq
+daq
+daq
+daq
 daq
 daq
 daq
 aaa
 aaa
-amF
+aaa
 aaa
 aaa
 aaa
@@ -140810,13 +139546,13 @@ iTb
 gWe
 aaa
 daq
-uYg
+daq
 daq
 daq
 daq
 daq
 aaa
-yhp
+vww
 vww
 vww
 vww
@@ -141097,7 +139833,7 @@ dly
 dly
 dly
 dly
-tFS
+dly
 dly
 dly
 dly
@@ -141119,13 +139855,13 @@ daq
 daq
 aaa
 vww
-yhp
 vww
 vww
 vww
-yhp
 vww
-yhp
+vww
+vww
+vww
 vww
 vww
 vww
@@ -141703,16 +140439,16 @@ dly
 dly
 dly
 dly
-tFS
-dly
-dly
-tFS
 dly
 dly
 dly
 dly
 dly
-vTe
+dly
+dly
+dly
+dly
+dly
 gWe
 aaa
 daq
@@ -142027,7 +140763,7 @@ aaa
 vww
 vww
 vww
-yhp
+vww
 vww
 vww
 vww
@@ -142304,9 +141040,9 @@ dly
 dly
 dly
 dly
-tFS
 dly
-tFS
+dly
+dly
 dly
 dly
 dly
@@ -142605,11 +141341,11 @@ dly
 dly
 lxn
 jsm
-sNI
-sNI
+jsm
+jsm
 nYQ
-sNI
-sNI
+jsm
+jsm
 jsm
 nAI
 dly
@@ -142631,14 +141367,14 @@ aaa
 vww
 vww
 vww
-yhp
-vww
-yhp
-vww
-yhp
 vww
 vww
-yhp
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -142913,7 +141649,7 @@ vaI
 oXP
 oFW
 tYo
-ozj
+oYw
 dly
 dly
 dly
@@ -143505,19 +142241,19 @@ gWe
 iTb
 dly
 dly
-tFS
-tFS
-tFS
-mHa
+dly
+dly
+dly
+jan
 dhu
-kRK
-wge
 hUd
 pXp
 hUd
 pXp
 hUd
-ozj
+pXp
+hUd
+oYw
 jan
 dly
 dly
@@ -143530,10 +142266,10 @@ aaa
 daq
 daq
 daq
-uYg
 daq
 daq
-amF
+daq
+aaa
 vww
 vww
 vww
@@ -143806,19 +142542,19 @@ aaa
 gWe
 iTb
 dly
-tFS
-tFS
-tFS
-tFS
+dly
+dly
+dly
+dly
 rrL
 iPB
 hUd
-xlw
-kRK
-xlw
+oQk
 hUd
 oQk
-kRK
+hUd
+oQk
+hUd
 xuB
 pCV
 dly
@@ -143839,11 +142575,11 @@ aaa
 vww
 vww
 vww
-yhp
 vww
 vww
 vww
-yhp
+vww
+vww
 vww
 vww
 vww
@@ -144108,20 +142844,20 @@ aaa
 gWe
 iTb
 dly
-tFS
 dly
 dly
-tFS
-tFS
+dly
+dly
+dly
 oYw
-kMq
-wge
+ijC
+pXp
 hUd
 pXp
 hUd
 pXp
 lgU
-ozj
+oYw
 dly
 dly
 dly
@@ -144129,9 +142865,9 @@ dly
 dly
 dly
 iTb
-sUS
+gWe
 aaa
-uYg
+daq
 daq
 daq
 daq
@@ -144410,17 +143146,17 @@ aaa
 gWe
 iTb
 dly
-tFS
 dly
-tFS
-tFS
-tFS
-dTs
-kRK
+dly
+dly
+dly
+dly
+jGB
+hUd
 gYo
 lyv
 jIL
-gnV
+lyv
 vjT
 hUd
 jGB
@@ -144439,7 +143175,7 @@ daq
 daq
 daq
 daq
-amF
+aaa
 vww
 vww
 vww
@@ -144447,9 +143183,9 @@ vww
 vww
 vww
 vww
-yhp
-yhp
-yhp
+vww
+vww
+vww
 vww
 vww
 vww
@@ -144712,52 +143448,52 @@ aaa
 gWe
 iTb
 dly
-tFS
 dly
-tFS
 dly
-tFS
+dly
+dly
+dly
 oYw
-kRK
+hUd
 ePn
 nMm
 nfh
-jUv
+nMm
 lLW
-kRK
-ozj
-tFS
-tFS
-tFS
+hUd
+oYw
 dly
 dly
 dly
-vTe
-sUS
-amF
+dly
+dly
+dly
+dly
+gWe
+aaa
 daq
-uYg
-uYg
-uYg
+daq
+daq
+daq
 daq
 daq
 aaa
 vww
 vww
-arz
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
 vww
-yhp
 vww
-yhp
-yhp
 vww
-yhp
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -145014,43 +143750,36 @@ aaa
 gWe
 iTb
 dly
-tFS
-tFS
-tFS
+dly
+dly
+dly
 dly
 dly
 sBb
 hUd
 pYa
-jUv
+nMm
 pCN
 nMm
 tiF
-kRK
+hUd
 sBb
-tFS
-tFS
-tFS
-tFS
 dly
-tFS
-vTe
-sUS
-amF
-uYg
-uYg
-uYg
-uYg
-uYg
-uYg
+dly
+dly
+dly
+dly
+dly
+dly
+gWe
 aaa
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 vww
 vww
 vww
@@ -145059,7 +143788,14 @@ vww
 vww
 vww
 vww
-yhp
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -145317,51 +144053,51 @@ gWe
 iTb
 dly
 dly
-tFS
-tFS
-tFS
-tFS
+dly
+dly
+dly
+dly
 sBb
-kRK
-kVY
-jUv
+hUd
+ePn
+nMm
 lTc
-jUv
+nMm
 lLW
-kRK
+hUd
 sBb
-tFS
-tFS
-tFS
-tFS
+dly
+dly
+dly
+dly
 dly
 dly
 iTb
-sUS
+gWe
 aaa
 daq
-uYg
 daq
 daq
-uYg
+daq
+daq
 daq
 aaa
-yhp
-yhp
-yhp
-yhp
-vww
-yhp
-yhp
 vww
 vww
 vww
 vww
 vww
-yhp
 vww
 vww
-yhp
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -145628,42 +144364,42 @@ ijC
 pYa
 nMm
 aBt
-jUv
+nMm
 tiF
-uvj
-ozj
-tFS
+lgU
+oYw
 dly
-tFS
-tFS
 dly
-tFS
-vTe
-sUS
+dly
+dly
+dly
+dly
+dly
+gWe
 aaa
-uYg
-uYg
 daq
-uYg
-uYg
-uYg
-amF
-yhp
-yhp
-yhp
-yhp
-vww
-yhp
-yhp
+daq
+daq
+daq
+daq
+daq
+aaa
 vww
 vww
-yhp
 vww
 vww
-yhp
 vww
 vww
-yhp
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -145930,42 +144666,42 @@ oTJ
 bcg
 utp
 mLv
-fPp
+utp
 fhV
-kRK
-dTs
-tFS
-tFS
-tFS
-tFS
-tFS
+hUd
+jGB
 dly
-vTe
-sUS
-amF
-uYg
-uYg
-uYg
-uYg
-uYg
-uYg
+dly
+dly
+dly
+dly
+dly
+dly
+gWe
 aaa
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
 vww
 vww
 vww
-yhp
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -146229,45 +144965,45 @@ dly
 dly
 jGB
 hUd
-xlw
-kRK
-xlw
-kRK
-xlw
-kRK
-dTs
-tFS
+oQk
+hUd
+oQk
+hUd
+oQk
+hUd
+jGB
 dly
-tFS
-tFS
-tFS
-tFS
-vTe
-sUS
-amF
-uYg
-uYg
-uYg
-uYg
-uYg
-uYg
-amF
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
+dly
+dly
+dly
+dly
+dly
+dly
+gWe
+aaa
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -146533,43 +145269,43 @@ xuB
 gVZ
 hUd
 rmp
-kRK
-tAg
+hUd
+rmp
 hUd
 gIj
 iPB
-tFS
-tFS
-tFS
-tFS
-tFS
-tFS
-vTe
+dly
+dly
+dly
+dly
+dly
+dly
+dly
 gWe
-amF
-uYg
-uYg
-uYg
-uYg
-uYg
+aaa
 daq
-amF
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
+daq
+daq
+daq
+daq
+daq
+aaa
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -146837,41 +145573,41 @@ tNr
 nfN
 ste
 nfN
-fvv
-slf
-wzw
-tFS
-tFS
-tFS
-tFS
-tFS
-tFS
-vTe
-sUS
-amF
-uYg
-uYg
-uYg
-uYg
-uYg
-uYg
-amF
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
-yhp
+tNr
+txL
+eDK
+dly
+dly
+dly
+dly
+dly
+dly
+dly
+gWe
+aaa
+daq
+daq
+daq
+daq
+daq
+daq
+aaa
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
+vww
 vww
 vww
 vww
@@ -147449,9 +146185,9 @@ dly
 dly
 dly
 dly
-tFS
+dly
 iTb
-sUS
+gWe
 aaa
 daq
 daq
@@ -147746,30 +146482,30 @@ nAY
 eDK
 dly
 dly
-tFS
 dly
-tFS
+dly
+dly
 dly
 dly
 dly
 iTb
-sUS
+gWe
 aaa
-uYg
 daq
 daq
 daq
 daq
-uYg
+daq
+daq
 aaa
-yhp
 vww
 vww
 vww
 vww
-yhp
 vww
-yhp
+vww
+vww
+vww
 vww
 vww
 vww
@@ -148058,13 +146794,13 @@ iTb
 gWe
 aaa
 daq
-uYg
+daq
 daq
 daq
 daq
 daq
 aaa
-yhp
+vww
 vww
 vww
 vww
