@@ -147,7 +147,7 @@
 			boutput(H, "<span class='alert'><b>[pick("IT HURTS!", "OH GOD!", "JESUS FUCK!")]</b></span>")
 			H.emote("scream")
 			random_brute_damage(user, 30)
-			bleed(H, 5, 5)
+			bleed(H, 5, violent = TRUE)
 			O.ArtifactFaultUsed(H)
 			T.visible_message("<b>[O]</b> withdraws its instruments and slams shut.")
 			working = 0

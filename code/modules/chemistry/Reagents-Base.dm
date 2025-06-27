@@ -130,7 +130,7 @@ datum
 			fluid_r = 255
 			fluid_b = 255
 			fluid_g = 255
-			transparency = 5
+			transparency = 15
 			addiction_prob = 1
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities

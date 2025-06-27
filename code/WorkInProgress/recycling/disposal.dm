@@ -2066,7 +2066,7 @@
 	src.changeStatus("weakened", 2 SECONDS)
 	return
 
-/obj/decal/cleanable/blood/gibs/pipe_eject(var/direction)
+/obj/decal/cleanable/tracked_reagents/blood/gibs/pipe_eject(var/direction)
 	var/list/dirs
 	if(direction in cardinal)
 		dirs = direction

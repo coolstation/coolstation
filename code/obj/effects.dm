@@ -15,9 +15,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		..()
 		color = initial(color)
 */
-	track_blood()
-		src.tracked_blood = null
-		return
 
 	attackby()
 	attack_hand()

@@ -659,7 +659,7 @@
 			if (istype(I,/obj/critter/cat/))
 				continue // absolutely fucking not >=I
 			if (iscritter(I)) //minced bees :)
-				var/obj/decal/cleanable/blood/gibs/whoops = make_cleanable(/obj/decal/cleanable/blood/gibs,holder)
+				var/obj/decal/cleanable/tracked_reagents/blood/gibs/whoops = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,holder)
 				whoops.name = "[pick("minced", "blended", "ground", "finely diced")] [I.name]"
 			else
 				new /obj/item/scrap(holder)

@@ -654,7 +654,7 @@ proc/find_ghost_by_key(var/find_key)
 		// Mess with the occupant
 		var/damage = round(200 / timer_length) + rand(1, 10)
 		src.occupant.TakeDamage(zone="All", brute=damage)
-		bleed(occupant, damage * 2, 0)
+		bleed(occupant, damage * 2)
 		if(prob(50))
 			playsound(src, 'sound/machines/mixer.ogg', 50, 1)
 		if(prob(30))

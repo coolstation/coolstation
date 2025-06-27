@@ -1115,7 +1115,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 
 				for (var/I = 1, I <= 5 && heart_to_punt && step(heart_to_punt,direction, 1), I++)
 //						new D(heart_to_punt.loc)
-					bleed(H, 25, 5)
+					bleed(H, 25, violent = TRUE)
 					playsound(heart_to_punt,'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
 
 				H.emote("scream")
@@ -1320,8 +1320,8 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable(/obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		gib.streak_cleanable(NORTH)
 		qdel(src)
 
@@ -2482,7 +2482,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 
 				for (var/I = 1, I <= 5 && heart_to_punt && step(heart_to_punt,direction, 1), I++)
 //						new D(heart_to_punt.loc)
-					bleed(H, 25, 5)
+					bleed(H, 25, violent = TRUE)
 					playsound(heart_to_punt,'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
 
 				H.emote("scream")

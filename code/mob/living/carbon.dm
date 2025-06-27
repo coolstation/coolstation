@@ -109,7 +109,7 @@
 		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
-				make_cleanable( /obj/decal/cleanable/mud,T)
+				make_cleanable( /obj/decal/cleanable/tracked_reagents/mud,T)
 			return
 		playsound(H, "sound/voice/hoooagh2.ogg", 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		if(H.wear_suit || H.w_uniform) // wearing pants while shitting? fine!!

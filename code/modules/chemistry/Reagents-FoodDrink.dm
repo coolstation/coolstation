@@ -2092,9 +2092,9 @@ datum
 					volume = (volume/covered.len)
 
 				if(volume >= 5 && prob(10))
-					if(!locate(/obj/decal/cleanable/blood/gibs) in T)
+					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/blood/gibs,T)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..() // call your parents  :(
@@ -2495,11 +2495,12 @@ datum
 			id = "guacamole"
 			description = "A paste comprised primarily of avocado."
 			reagent_state = LIQUID
-			fluid_r = 0
-			fluid_g = 123
-			fluid_b = 28
+			fluid_r = 152
+			fluid_g = 183
+			fluid_b = 98
+			transparency = 255
 			hunger_value = 1.5
-			viscosity = 0.4
+			viscosity = 0.7
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(prob(50))

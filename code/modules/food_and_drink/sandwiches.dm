@@ -404,7 +404,7 @@
 
 	heal(var/mob/M)
 		if(prob(20))
-			var/obj/decal/cleanable/blood/gibs/gib = make_cleanable(/obj/decal/cleanable/blood/gibs, get_turf(src) )
+			var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, get_turf(src) )
 			gib.streak_cleanable(M.dir)
 			boutput(M, "<span class='alert'>You drip some meat on the floor</span>")
 			M.visible_message("<span class='alert'>[M] drips some meat on the floor!</span>")

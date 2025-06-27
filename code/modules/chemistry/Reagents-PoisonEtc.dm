@@ -253,10 +253,9 @@ datum
 			fluid_r = 0
 			fluid_b = 180
 			fluid_g = 25
-			transparency = 10
 			description = "A highly toxic chemical with some uses as a building block for other things."
 			reagent_state = LIQUID
-			transparency = 0
+			transparency = 15
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			blob_damage = 5
@@ -306,7 +305,7 @@ datum
 			fluid_r = 255
 			fluid_g = 180
 			fluid_b = 240
-			transparency = 10
+			transparency = 30
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			touch_modifier = 0.25
@@ -722,7 +721,7 @@ datum
 								B.update_icon()
 
 								playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-								bleed(H, 500, 5) // you'll be gibbed in a moment you don't need it anyway
+								bleed(H, 500, violent = TRUE) // you'll be gibbed in a moment you don't need it anyway
 								H.visible_message("<span class='alert'><B>A huge bee bursts out of [H]! OH FUCK!</B></span>")
 								qdel(H.organHolder.heart)
 								H.gib()
@@ -812,9 +811,9 @@ datum
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
 											"<span class='alert'><B>[M]</B>'s [pick("chest", "face", "whole body")] bleeds!"))
 					playsound(M, 'sound/impact_sounds/Slimy_Splat_1.ogg', 30, TRUE) //some bloody effects
-					make_cleanable(/obj/decal/cleanable/blood/splatter,M.loc)
+					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc)
 				else if (probmult(20))
-					make_cleanable(/obj/decal/cleanable/blood/splatter,M.loc) //some extra bloody effects
+					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc) //some extra bloody effects
 				if (probmult(10))
 					M.make_jittery(50)
 					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
@@ -2093,5 +2092,5 @@ datum
 						H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 						playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 						H.TakeDamage(zone="All", brute=damage)
-						bleed(H, damage * 2 * mult, 3)
+						bleed(H, damage * 2 * mult)
 

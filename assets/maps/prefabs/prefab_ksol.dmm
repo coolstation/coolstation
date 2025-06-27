@@ -243,10 +243,10 @@
 /turf/space,
 /area/noGenerate)
 "aI" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 9
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
 /turf/floor/airless/wood,
@@ -260,14 +260,14 @@
 	},
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/oil/streak,
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 8
 	},
 /turf/floor/airless/wood,
 /area/noGenerate)
 "aK" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -279,14 +279,14 @@
 /area/noGenerate)
 "aL" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 5
 	},
 /turf/floor/airless/plating,
 /area/noGenerate)
 "aM" = (
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gibmid3"
 	},
 /turf/floor/airless/plating,
@@ -321,10 +321,10 @@
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 1
 	},
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gibarm"
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "u_madman_l"
 	},
 /obj/item/casing/rifle,
@@ -389,7 +389,7 @@
 /area/noGenerate)
 "aX" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks,
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
 /turf/floor/airless/carpet{
 	icon_state = "fred2";
 	dir = 5
@@ -414,7 +414,7 @@
 /area/noGenerate)
 "aZ" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 10
 	},
@@ -431,7 +431,7 @@
 /turf/floor/airless/plating,
 /area/noGenerate)
 "bc" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -449,25 +449,25 @@
 	name = "rusted airlock"
 	},
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 4
 	},
 /turf/floor/airless/wood,
 /area/noGenerate)
 "be" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "tracks";
 	dir = 4
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor5"
 	},
 /turf/floor/airless/wood,
 /area/noGenerate)
 "bf" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gib4"
 	},
 /turf/floor/airless/wood,
@@ -499,7 +499,7 @@
 /area/noGenerate)
 "bj" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "gibdown1"
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -526,7 +526,7 @@
 /area/noGenerate)
 "bm" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks,
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
 /turf/floor/airless/carpet{
 	icon_state = "fred2";
 	dir = 4
@@ -568,7 +568,7 @@
 /area/noGenerate)
 "br" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gibmid2"
 	},
 /obj/storage/crate/bin{
@@ -666,7 +666,7 @@
 /turf/floor/airless/wood,
 /area/noGenerate)
 "bE" = (
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gibdown1"
 	},
 /turf/floor/airless/carpet{
@@ -683,14 +683,14 @@
 	name = "decomposed corpse";
 	pixel_y = 12
 	},
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/airless/carpet{
 	icon_state = "fred2";
 	dir = 4
 	},
 /area/noGenerate)
 "bG" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "gib3"
 	},
 /turf/wall,
@@ -809,7 +809,7 @@
 	},
 /area/noGenerate)
 "bW" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "gib4"
 	},
 /obj/machinery/light/small{
@@ -875,7 +875,7 @@
 /turf/space,
 /area/noGenerate)
 "cc" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "u_ketchup_l"
 	},
 /turf/floor/airless/plating,
@@ -929,7 +929,7 @@
 /turf/floor/airless/plating,
 /area/noGenerate)
 "ck" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
 /turf/floor/airless/plating,
@@ -961,7 +961,7 @@
 /turf/floor/airless/wood,
 /area/noGenerate)
 "co" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "u_guilty"
 	},
 /turf/floor/airless/wood,
@@ -1141,14 +1141,14 @@
 /area/noGenerate)
 "cL" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "u_guilty"
 	},
 /obj/item/crowbar,
 /turf/floor/airless/wood,
 /area/noGenerate)
 "cM" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "u_guilty"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{

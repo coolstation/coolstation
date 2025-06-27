@@ -615,7 +615,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		var/obj/head = user.organHolder.drop_organ("head")
 		qdel(head)
 		playsound(src, "sound/weapons/shotgunshot.ogg", 100, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = make_cleanable( /obj/decal/cleanable/blood/gibs,get_turf(user))
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,get_turf(user))
 		gib.streak_cleanable(turn(user.dir,180))
 		health_update_queue |= user
 		return 1

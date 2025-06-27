@@ -650,11 +650,12 @@ datum
 					target.active_liquid.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
 					if(target.active_liquid.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 						target.active_liquid.reagents.stop_combusting()
+						target.visible_message("<span class='notice'>The spill stops burning!</span>")
 
 				if (target.active_airborne_liquid?.reagents?.is_combusting)
 					target.active_airborne_liquid.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
 					if(target.active_liquid.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-						target.active_liquid.reagents.stop_combusting()
+						target.visible_message("<span class='notice'>The smoke stops burning!</span>")
 
 				var/obj/fire_foam/F = (locate(/obj/fire_foam) in target)
 				if (!F)
@@ -670,6 +671,7 @@ datum
 					O.reagents.temperature_reagents(FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 200, volume * 400, 400, 1000)
 					if(O.reagents.total_temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 						O.reagents.stop_combusting()
+						O.visible_message("<span class='notice'>[O] stops burning!</span>")
 				if(isitem(O))
 					var/obj/item/I = O
 					if (I.burning)
@@ -1434,7 +1436,7 @@ datum
 			fluid_r = 200
 			fluid_g = 200
 			fluid_b = 200
-			transparency = 0
+			transparency = 255
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -1509,7 +1511,7 @@ datum
 			fluid_r = 143
 			fluid_g = 35
 			fluid_b = 103
-			transparency = 10
+			transparency = 60
 
 		werewolf_serum_fake4
 			name = "Imperfect Werewolf Serum"
@@ -3097,9 +3099,9 @@ datum
 				if (volume > 10)
 					return 1
 				if (volume >= 5)
-					if (!locate(/obj/decal/cleanable/blood) in T)
+					if (!locate(/obj/decal/cleanable/tracked_reagents/blood) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/blood,T)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,T)
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
 				. = ..()
@@ -3291,16 +3293,16 @@ datum
 						make_cleanable( /obj/decal/cleanable/urine,T)
 
 		poo
-			name = "compost"
+			name = "poo"
 			id = "poo"
 			description = "Raw fertilizer used for gardening."
 			reagent_state = SOLID
-			fluid_r = 100
-			fluid_g = 55
+			fluid_r = 150
+			fluid_g = 75
 			fluid_b = 0
 			transparency = 255
 			hygiene_value = -5
-			viscosity = 0.5
+			viscosity = 0.8
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(66))

@@ -1426,11 +1426,10 @@
 			H.blood_volume -= units
 		if (prob(5))
 			var/damage = rand(1,5)
-			var/bleed = rand(3,5)
 			H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 			playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			H.TakeDamage(zone="All", brute=damage)
-			bleed(H, damage, bleed)
+			bleed(H, damage, violent = pick(TRUE, FALSE))
 
 /datum/statusEffect/mentor_mouse
 	id = "mentor_mouse"
