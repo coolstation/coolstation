@@ -428,7 +428,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	UpdateName()
 		if(src.reagents)
 			src.real_name = src.reagents.get_master_reagent_name()
-		src.name = "[name_prefix(null, 1)][src.dry == DRY_REAGENTS ? "dried " : src.dry == FRESH_REAGENTS ? "fresh " : null][src.real_name][name_suffix(null, 1)]"
+		src.name = "[name_prefix(null, 1)][src.dry == DRY_REAGENTS ? "dried " : null][src.real_name][name_suffix(null, 1)]"
 
 	get_desc(dist)
 		. = "It's [src.real_name]."
