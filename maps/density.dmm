@@ -6664,7 +6664,6 @@
 	name = "Magnet Area Boundary"
 	},
 /turf/floor/airless/plating/catwalk,
-/turf/floor/airless/plating/catwalk,
 /area/mining/magnet)
 "nX" = (
 /obj/item/rcd_ammo/big,
@@ -6870,26 +6869,6 @@
 /obj/storage/closet/wardrobe/yellow,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
-"ot" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 8;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 4;
-	intact = 0
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 4;
-	intact = 0
-	},
-/area/mining/magnet)
 "ou" = (
 /obj/grille/catwalk{
 	dir = 6;
@@ -6922,10 +6901,6 @@
 	dir = 6;
 	layer = 2
 	},
-/turf/floor/airless/plating/catwalk{
-	dir = 6;
-	layer = 2
-	},
 /area/mining/magnet)
 "ov" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -6948,7 +6923,6 @@
 	icon_state = "magnet";
 	pixel_x = 16
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 10;
 	layer = 2
@@ -6962,7 +6936,6 @@
 /obj/grille/catwalk{
 	dir = 6
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 2;
 	icon_state = "catwalk_cross";
@@ -6978,7 +6951,6 @@
 	dir = 6;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 6;
 	layer = 2
@@ -6997,7 +6969,6 @@
 	dir = 4;
 	icon_state = "mmagnet"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 6;
 	layer = 2
@@ -51396,7 +51367,7 @@ fo
 fo
 fo
 fo
-ot
+ik
 oy
 jn
 dl
@@ -51698,7 +51669,7 @@ fo
 fo
 fo
 fo
-ot
+ik
 en
 ad
 dl

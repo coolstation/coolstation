@@ -2259,10 +2259,6 @@
 	},
 /area/meat_derelict/soviet)
 "eH" = (
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall"
@@ -2298,10 +2294,6 @@
 /turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "eL" = (
-/turf/floor{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "floor"
-	},
 /turf/wall{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon = 'icons/turf/shuttle.dmi';
@@ -2513,10 +2505,6 @@
 	},
 /area/meat_derelict/soviet)
 "fg" = (
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
 /turf/wall{
 	tag = "icon-diagonalWall (WEST)";
 	icon = 'icons/turf/shuttle.dmi';
@@ -2559,13 +2547,6 @@
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
-"fl" = (
-/turf/space,
-/turf/floor/void{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "timehole"
-	},
-/area/space)
 "fm" = (
 /turf/wall/setpieces/leadwall{
 	dir = 9
@@ -2606,7 +2587,6 @@
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/void{
 	icon = 'icons/misc/worlds.dmi';
 	icon_state = "timehole"
@@ -9471,14 +9451,14 @@ aa
 aa
 aa
 aa
-fl
-fl
-fl
-fl
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
 aa
 aa
 aa
@@ -9521,17 +9501,17 @@ aa
 aa
 aa
 aa
-fl
-fl
-fl
-fl
-fl
-fl
-fl
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
+fE
 aa
 aa
 aa
@@ -9572,19 +9552,19 @@ aa
 aa
 aa
 aa
-fl
+fE
 fu
 fu
-fl
+fE
 fu
 fu
-fl
+fE
 fu
 fu
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
 aa
 aa
 aa
@@ -9623,8 +9603,8 @@ aa
 aa
 aa
 aa
-fl
-fl
+fE
+fE
 fm
 fA
 fF
@@ -9633,10 +9613,10 @@ fA
 fF
 fm
 fA
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
 aa
 aa
 aa
@@ -9675,7 +9655,7 @@ aa
 aa
 aa
 aa
-fl
+fE
 fm
 fv
 fm
@@ -9686,9 +9666,9 @@ fq
 fA
 fo
 fA
-fl
-fl
-fl
+fE
+fE
+fE
 aa
 aa
 aa
@@ -9727,7 +9707,7 @@ aa
 aa
 aa
 aa
-fl
+fE
 fp
 fm
 fv
@@ -9738,8 +9718,8 @@ fB
 fo
 fA
 fp
-fl
-fl
+fE
+fE
 aa
 aa
 aa
@@ -9778,8 +9758,8 @@ aa
 (23,1,2) = {"
 aa
 aa
-fl
-fl
+fE
+fE
 fp
 fp
 fB
@@ -9790,8 +9770,8 @@ fB
 fG
 fp
 fp
-fl
-fl
+fE
+fE
 aa
 aa
 aa
@@ -9830,7 +9810,7 @@ aa
 (24,1,2) = {"
 aa
 aa
-fl
+fE
 fm
 fq
 fq
@@ -9843,7 +9823,7 @@ fm
 fq
 fq
 fA
-fl
+fE
 aa
 aa
 aa
@@ -9882,7 +9862,7 @@ aa
 (25,1,2) = {"
 aa
 aa
-fl
+fE
 fn
 fr
 fw
@@ -9895,7 +9875,7 @@ fz
 fz
 fz
 fn
-fl
+fE
 gh
 gh
 gh
@@ -9934,7 +9914,7 @@ aa
 (26,1,2) = {"
 aa
 aa
-fl
+fE
 fn
 fs
 fx
@@ -9947,7 +9927,7 @@ fn
 fR
 fw
 fn
-fl
+fE
 gh
 aa
 aa
@@ -9986,7 +9966,7 @@ aa
 (27,1,2) = {"
 aa
 aa
-fl
+fE
 fn
 ft
 fy
@@ -9999,7 +9979,7 @@ fn
 ft
 fy
 fn
-fl
+fE
 gh
 aa
 aa
@@ -10038,7 +10018,7 @@ aa
 (28,1,2) = {"
 aa
 aa
-fl
+fE
 fo
 fq
 fq
@@ -10051,7 +10031,7 @@ fo
 fq
 fq
 fv
-fl
+fE
 gh
 gh
 gh
@@ -10090,9 +10070,9 @@ aa
 (29,1,2) = {"
 aa
 aa
-fl
-fl
-fl
+fE
+fE
+fE
 fn
 fC
 fK
@@ -10101,9 +10081,9 @@ fK
 fC
 fK
 fn
-fl
-fl
-fl
+fE
+fE
+fE
 gh
 aa
 aa
@@ -10143,8 +10123,8 @@ aa
 aa
 aa
 aa
-fl
-fl
+fE
+fE
 fn
 fD
 fJ
@@ -10153,9 +10133,9 @@ fJ
 fD
 fJ
 fn
-fl
-fl
-fl
+fE
+fE
+fE
 gh
 aa
 aa
@@ -10195,7 +10175,7 @@ aa
 aa
 aa
 aa
-fl
+fE
 fm
 fq
 fq
@@ -10206,8 +10186,8 @@ fm
 fq
 fq
 fA
-fl
-fl
+fE
+fE
 gh
 aa
 aa
@@ -10246,8 +10226,8 @@ aa
 (32,1,2) = {"
 aa
 aa
-fl
-fl
+fE
+fE
 fn
 fz
 fz
@@ -10258,8 +10238,8 @@ fz
 fO
 fS
 fn
-fl
-fl
+fE
+fE
 gh
 aa
 aa
@@ -10299,7 +10279,7 @@ aa
 aa
 aa
 aa
-fl
+fE
 fn
 fz
 fz
@@ -10310,8 +10290,8 @@ fn
 fP
 fT
 fn
-fl
-fl
+fE
+fE
 gh
 gh
 gh
@@ -10350,8 +10330,8 @@ aa
 (34,1,2) = {"
 aa
 aa
-fl
-fl
+fE
+fE
 fn
 fz
 fz
@@ -10362,8 +10342,8 @@ fn
 fQ
 fU
 fn
-fl
-fl
+fE
+fE
 gh
 aa
 aa
@@ -10403,7 +10383,7 @@ aa
 aa
 aa
 aa
-fl
+fE
 fo
 fq
 fq
@@ -10414,8 +10394,8 @@ fo
 fq
 fq
 fv
-fl
-fl
+fE
+fE
 gh
 aa
 aa
@@ -10455,19 +10435,19 @@ aa
 aa
 aa
 aa
-fl
-fl
-fl
+fE
+fE
+fE
 fn
 fJ
 fD
 fJ
 fD
 fn
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
 gh
 aa
 aa
@@ -10508,18 +10488,18 @@ aa
 aa
 aa
 aa
-fl
-fl
+fE
+fE
 fo
 fA
 fC
 fK
 fm
 fv
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
 gh
 aa
 aa
@@ -10560,17 +10540,17 @@ aa
 aa
 aa
 aa
-fl
-fl
-fl
+fE
+fE
+fE
 fn
 fD
 fJ
 fn
-fl
-fl
-fl
-fl
+fE
+fE
+fE
+fE
 aa
 gh
 aa
@@ -10611,17 +10591,17 @@ aa
 aa
 aa
 aa
-fl
-fl
-fl
+fE
+fE
+fE
 fm
 fv
 fM
 fN
 fo
 fA
-fl
-fl
+fE
+fE
 aa
 aa
 gh
@@ -10663,8 +10643,8 @@ aa
 aa
 aa
 aa
-fl
-fl
+fE
+fE
 fm
 fv
 fz
@@ -10715,8 +10695,8 @@ aa
 aa
 aa
 aa
-fl
-fl
+fE
+fE
 fn
 fz
 fz

@@ -9941,10 +9941,6 @@
 "ats" = (
 /turf/floor/airless/plating/scorched,
 /area/station/engine/proto_gangway)
-"att" = (
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto_gangway)
 "atu" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -10278,10 +10274,6 @@
 	},
 /turf/floor,
 /area/station/maintenance/east)
-"auh" = (
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto_gangway)
 "aui" = (
 /obj/grille,
 /obj/window/reinforced{
@@ -11816,7 +11808,6 @@
 /turf/floor/plating/airless,
 /area/station/engine/proto)
 "axg" = (
-/turf/floor/plating/airless,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto)
 "axh" = (
@@ -12797,7 +12788,6 @@
 /turf/floor/plating/airless,
 /area/station/engine/proto)
 "azm" = (
-/turf/floor/airless/plating/damaged3,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto_gangway)
 "azn" = (
@@ -13078,10 +13068,6 @@
 /obj/window/reinforced,
 /turf/floor/plating/airless,
 /area/space)
-"azL" = (
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto)
 "azM" = (
 /obj/cable{
 	icon_state = "0-2";
@@ -13586,10 +13572,6 @@
 	},
 /turf/floor/blackwhite/side,
 /area/station/medical/research)
-"aAP" = (
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto)
 "aAQ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -22165,15 +22147,6 @@
 /area/station/ai_monitored/storage/secure{
 	name = "Mixing Room"
 	})
-"aPY" = (
-/obj/cable,
-/obj/item/cable_coil/cut,
-/turf/floor/airless{
-	icon_state = "solarpanel";
-	name = "solar paneling"
-	},
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "aPZ" = (
 /turf/wall,
 /area/station/ai_monitored/storage/secure{
@@ -22759,7 +22732,6 @@
 "aRb" = (
 /obj/cable,
 /obj/item/cable_coil/cut,
-/turf/floor/plating/airless,
 /turf/floor/airless/plating/damaged2,
 /area/space)
 "aRc" = (
@@ -23053,7 +23025,6 @@
 /area/space)
 "aRH" = (
 /obj/item/cable_coil/cut,
-/turf/space,
 /turf/floor/plating/damaged2,
 /area/space)
 "aRI" = (
@@ -35476,7 +35447,6 @@
 /obj/item/device/radio{
 	pixel_y = 15
 	},
-/turf/floor/plating/damaged3,
 /turf/floor/plating/damaged2,
 /area/station/chapel/sanctuary)
 "bok" = (
@@ -35628,7 +35598,6 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/floor/airless/plating/scorched,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto_gangway)
 "box" = (
@@ -35673,7 +35642,6 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/plating/airless,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto)
 "boD" = (
@@ -36128,7 +36096,6 @@
 /turf/floor/caution/east,
 /area/space)
 "bpr" = (
-/turf/floor,
 /turf/floor/plating/damaged2,
 /area/space)
 "bps" = (
@@ -36993,10 +36960,6 @@
 	d2 = 4
 	},
 /turf/floor/plating,
-/area/space)
-"caB" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
 /area/space)
 "caF" = (
 /obj/item/raw_material/shard/glass{
@@ -47280,7 +47243,7 @@ aww
 aww
 aww
 axg
-azL
+axg
 ayA
 aww
 cqb
@@ -47507,7 +47470,7 @@ axd
 axI
 ayw
 axJ
-azL
+axg
 axJ
 aww
 aww
@@ -47962,8 +47925,8 @@ axK
 boC
 axg
 axK
-azL
-aAP
+axg
+axg
 axI
 aww
 cqb
@@ -48415,7 +48378,7 @@ axg
 axe
 axK
 axe
-aAP
+axg
 axI
 axI
 axI
@@ -49087,9 +49050,9 @@ cqb
 asN
 ats
 ats
-auh
-auh
-auh
+azm
+azm
+azm
 avq
 avq
 ats
@@ -49312,9 +49275,9 @@ cqb
 cqb
 cqb
 asN
-att
-auh
-auh
+azm
+azm
+azm
 asN
 avq
 ats
@@ -79423,7 +79386,7 @@ cqb
 cqb
 cqb
 bZO
-caB
+aqp
 bZO
 cae
 aqo
@@ -86937,7 +86900,7 @@ cqb
 cqb
 cgo
 cgz
-aPY
+aRb
 cqb
 cqb
 cqb
