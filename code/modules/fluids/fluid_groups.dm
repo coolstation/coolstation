@@ -206,6 +206,7 @@
 				F.group = src
 
 		if (length(src.members) == 1)
+			src.update_viscosity()
 			F.update_icon() //update icon of the very first fluid in this group
 
 		src.last_add_time = world.time
@@ -399,8 +400,8 @@
 			if (isnull(current_reagent))
 				continue
 
-			avg += current_reagent.viscosity
-			reagents++
+			avg += current_reagent.viscosity * current_reagent.volume
+			reagents += current_reagent.volume
 			LAGCHECK(LAG_HIGH)
 
 		if (reagents && avg)
