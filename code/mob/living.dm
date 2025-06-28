@@ -1736,6 +1736,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
 
 /mob/living/proc/start_sprint()
+	var/stop_here = SEND_SIGNAL(src, COMSIG_MOB_SPRINT)
+	if (stop_here)
+		return
 	if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 		return
 	if (special_sprint && src.client)
@@ -1745,8 +1748,6 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			spell_firepoof(src)
 		if (special_sprint & SPRINT_BAT_CLOAKED)
 			spell_batpoof(src, cloak = 1)
-		if (special_sprint & SPRINT_SNIPER)
-			begin_sniping()
 	//SPRINTING REMOVAL
 	//deprecated in favour of making the sprint button temporarily toggle run/walk. This bit seems to be giving you a bit of a boost to start with
 	//look in /mob/proc/process_move() for the sustained speed boost.

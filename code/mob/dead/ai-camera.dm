@@ -88,7 +88,13 @@
 		if (C.tg_controls)
 			C.apply_keybind("robot_tg")
 
-	Move(NewLoc, direct)//Ewww!
+	process_move(keys)
+		if(keys && src.move_dir && !src.override_movement_controller && !istype(src.loc, /turf)) //when a movement key is pressed, move out of tracked mob
+			var/mob/dead/aieye/O = src
+			O.set_loc(get_turf(src))
+		. = ..()
+
+	Move(var/turf/NewLoc, direct) //Ewww!
 		last_loc = src.loc
 
 		src.closeContextActions()

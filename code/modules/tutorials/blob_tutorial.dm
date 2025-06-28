@@ -732,7 +732,7 @@ proc/AddBlobSteps(var/datum/tutorial_base/blob/T)
 		L.lit = 1
 
 	proc/sprayAt(var/turf/T)
-		L.shoot(T, src.loc, src)
+		L.Shoot(T, src.loc, src, called_target = T)
 
 	disposing()
 		..()

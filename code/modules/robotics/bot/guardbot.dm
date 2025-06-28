@@ -1105,10 +1105,10 @@
 		var/my_turf = get_turf(src)
 		var/burst = shotcount	// TODO: Make rapidfire exist, then work.
 		while(burst > 0 && target)
-			if(IN_RANGE(target_turf, my_turf, 1))
-				budgun.shoot_point_blank(target, my_turf)
+			if((BOUNDS_DIST(target_turf, my_turf) == 0))
+				budgun.ShootPointBlank(target, src)
 			else
-				budgun.shoot(target_turf, my_turf, src)
+				budgun.Shoot(target_turf, my_turf, src, called_target = target)
 			burst--
 			if (burst)
 				sleep(5)	// please dont fuck anything up

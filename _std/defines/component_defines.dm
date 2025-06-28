@@ -188,6 +188,9 @@
 #define COMSIG_MOB_GEIGER_TICK "mob_geiger"
 /// on mouseup
 #define COMSIG_MOUSEUP "mouseup"
+/// Sent when the mob starts sprinting, return TRUE to prevent other sprint code from running
+#define COMSIG_MOB_SPRINT "mob_sprint"
+
 // ---- mob/living signals ----
 /// When a Life tick occurs
 #define COMSIG_LIVING_LIFE_TICK "human_life_tick"
@@ -262,7 +265,13 @@
 // ---- fullauto UI thingy signals ----
 #define COMSIG_FULLAUTO_MOUSEDOWN "fullauto_mousedown"
 #define COMSIG_FULLAUTO_MOUSEDRAG "fullauto_mousedrag"
+/// MouseMove over a fullauto hud object
+#define COMSIG_FULLAUTO_MOUSEMOVE "fullauto_mousemove"
 #define COMSIG_GUN_PROJECTILE_CHANGED "gun_proj_changed"
+/// before ...gun/shoot() - return truthy to cancel shoot() - (target, start, shooter, POX, POY, is_dual_wield, called_target)
+#define COMSIG_GUN_TRY_SHOOT "gun_shooty"
+/// before ...gun/shoot_point_blank() - return truthy to cancel shoot_point_blank() - (target, user, second_shot)
+#define COMSIG_GUN_TRY_POINTBLANK "gun_pointblank"
 
 // ---- small cell component signals ----
 ///When the cell in a uses_cell component should be swapped out (cell, user)
@@ -308,6 +317,12 @@
 #define COMSIG_UIMAP_LOADED "uimap_loaded"
 /// a ui is visible enough to show a uimap, on client
 #define COMSIG_UI_VISIBLE "ui_visible"
+
+// ---- Sniper Scope integration with other gun components ----
+/// Sent to an item when its sniper_scope components scope is toggled, TRUE if on and FALSE if off
+#define COMSIG_SCOPE_TOGGLED "sniper_scope_toggled"
+/// Sent to a mob when its client pixel offset is changed by a scope (delta_x, delta_y)
+#define COMSIG_MOB_SCOPE_MOVED "sniper_scope_toggled"
 
 // ---- broadcasting signals ----
 //Uncomment these as you need them

@@ -377,14 +377,24 @@
 				if(prob(75) && distance > 1 && (world.timeofday - ai_attacked) > 100 && ai_validpath() && (istype(src.r_hand,/obj/item/gun) && src.r_hand:canshoot() && !A?.sanctuary))
 					//I can attack someone! =D
 					ai_target_old.Cut()
-					var/obj/item/gun/W = src.r_hand
-					W.shoot(get_turf(carbon_target), get_turf(src), src, 0, 0)
-					if(src.bioHolder.HasEffect("coprolalia") && prob(10))
-						switch(pick(1,2))
-							if(1)
-								hearers(src) << "<B>[src.name]</B> makes machine-gun noises with [his_or_her(src)] mouth."
-							if(2)
-								src.say(pick("BANG!", "POW!", "Eat lead, [carbon_target.name]!", "Suck it down, [carbon_target.name]!"))
+					var/datum/bioEffect/power/eyebeams/eyebeams = src.bioHolder.GetEffect("eyebeams")
+					var/datum/bioEffect/power/cryokinesis = src.bioHolder.GetEffect("cryokinesis")
+					var/datum/bioEffect/power/jumpy/jumpy = src.bioHolder.GetEffect("jumpy")
+					if (eyebeams && (eyebeams.ability.last_cast < world.time))
+						eyebeams?.ability.handleCast(target)
+					else if (cryokinesis && (cryokinesis.ability.last_cast < world.time))
+						cryokinesis?.ability.handleCast(target)
+					else if (jumpy && (jumpy.ability.last_cast < world.time))
+						jumpy?.ability.handleCast(target)
+					else
+						var/obj/item/gun/W = src.r_hand
+						W.Shoot(carbon_target, get_turf(src), src, 0, 0, called_target = carbon_target)
+						if(src.bioHolder.HasEffect("coprolalia") && prob(10))
+							switch(pick(1,2))
+								if(1)
+									hearers(src) << "<B>[src.name]</B> makes machine-gun noises with [his_or_her(src)] mouth."
+								if(2)
+									src.say(pick("BANG!", "POW!", "Eat lead, [carbon_target.name]!", "Suck it down, [carbon_target.name]!"))
 
 				if((prob(33) || ai_throw) && (distance > 1 || A?.sanctuary) && ai_validpath() && src.equipped() && !(istype(src.equipped(),/obj/item/gun) && src.equipped():canshoot() && !A?.sanctuary))
 					//I can attack someone! =D

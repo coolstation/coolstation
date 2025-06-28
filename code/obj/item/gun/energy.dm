@@ -107,7 +107,7 @@
 	item_state = "rifle"
 	force = 1.0
 	desc = "..."
-	charge_up = 15
+	//charge_up = 15
 	can_dual_wield = 0
 	two_handed = 1
 	slowdown = 5

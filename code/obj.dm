@@ -287,9 +287,6 @@
 	deserialize_postprocess()
 		return
 
-/obj/proc/get_movement_controller(mob/user)
-	return
-
 /obj/lattice
 	desc = "A lightweight support lattice."
 	name = "lattice"
