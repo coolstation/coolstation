@@ -136,6 +136,8 @@
 	vision = new()
 	src.attach_hud(vision)
 	src.vis_contents += src.chat_text
+	tracked_reagents = new /datum/reagents/surface(8)
+	tracked_reagents.my_atom = src
 	if (can_bleed)
 		src.ensure_bp_list()
 	if (blood_id)
@@ -167,6 +169,10 @@
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
 */
+
+	qdel(tracked_reagents)
+	tracked_reagents = null
+
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)
@@ -1217,6 +1223,8 @@
 /mob/living/Move(var/turf/NewLoc, direct)
 	var/oldloc = loc
 	. = ..()
+	if(src.tracked_reagents.total_volume)
+		src.track_reagents()
 	if (isturf(oldloc) && isturf(loc) && move_laying)
 		var/list/equippedlist = src.equipped_list()
 		if (length(equippedlist))

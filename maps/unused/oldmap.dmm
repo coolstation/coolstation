@@ -2,22 +2,8 @@
 "aa" = (
 /turf/space,
 /area/space)
-"ab" = (
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/shuttle/arrival/station)
 "ac" = (
 /turf/shuttle/wall,
-/area/shuttle/arrival/station)
-"ad" = (
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (NORTH)";
-	icon_state = "diagonalWall";
-	dir = 1
-	},
 /area/shuttle/arrival/station)
 "ae" = (
 /turf/shuttle/wall{
@@ -8358,21 +8344,9 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor,
 /area/atmos)
-"tf" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "tg" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/syndicate_station)
-"th" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
 	},
 /area/syndicate_station)
 "ti" = (
@@ -9028,17 +9002,6 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor,
 /area/atmos)
-"uD" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 6;
-	icon_state = "intact-f";
-	initialize_directions = 6;
-	layer = 3
-	},
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "uE" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4;
@@ -9078,12 +9041,6 @@
 	},
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/syndicate_station)
-"uI" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/syndicate_station)
 "uJ" = (
@@ -9659,13 +9616,6 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_station)
-"wd" = (
-/obj/machinery/atmospherics/pipe/simple,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "we" = (
 /obj/grille,
 /obj/item/hand_tele,
@@ -9679,10 +9629,6 @@
 /obj/grille,
 /obj/item/tank/oxygen,
 /turf/floor/plating/airless,
-/area/maintenance/maintcentral)
-"wh" = (
-/obj/grille,
-/turf/floor/plating/damaged2,
 /area/maintenance/maintcentral)
 "wi" = (
 /obj/table{
@@ -10273,11 +10219,6 @@
 	},
 /turf/space,
 /area/space)
-"xj" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "xk" = (
 /obj/machinery/shuttle/engine/propulsion,
 /turf/space,
@@ -10291,17 +10232,6 @@
 	},
 /turf/space,
 /area/space)
-"xm" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 6;
-	icon_state = "intact-f";
-	layer = 3
-	},
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/wizard_station)
 "xn" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4;
@@ -10326,12 +10256,6 @@
 "xp" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/wizard_station)
-"xq" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "xr" = (
@@ -10391,12 +10315,6 @@
 /obj/crate,
 /turf/floor/shuttle{
 	icon_state = "floor5"
-	},
-/area/wizard_station)
-"xy" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "xz" = (
@@ -10589,21 +10507,10 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"xR" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/wizard_station)
 "xS" = (
 /obj/stool/chair,
 /turf/floor/shuttle{
 	icon_state = "floor5"
-	},
-/area/wizard_station)
-"xT" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "xU" = (
@@ -10635,20 +10542,9 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"xX" = (
+"xZ" = (
 /turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
-"xY" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 5;
-	icon_state = "intact-f";
-	initialize_directions = 5;
-	layer = 3
-	},
-/turf/shuttle/wall{
+	dir = 1;
 	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
@@ -12883,18 +12779,6 @@
 /area/space_diner)
 "DA" = (
 /obj/decal/oven,
-/turf/floor/specialroom/bar,
-/area/space_diner)
-"DB" = (
-/obj/secure_closet/fridge{
-	icon_state = "fridge";
-	locked = 0
-	},
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-gib2";
-	icon_state = "gib2"
-	},
-/obj/item/reagent_containers/food/snacks/ingredient/gcheese,
 /turf/floor/specialroom/bar,
 /area/space_diner)
 "DC" = (
@@ -20954,12 +20838,116 @@
 	icon_state = "sw1"
 	},
 /area/space)
+"Up" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"UJ" = (
+/obj/secure_closet/fridge{
+	icon_state = "fridge";
+	locked = 0
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-gib2";
+	icon_state = "gib2"
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/gcheese,
+/turf/floor/specialroom/bar,
+/area/space_diner)
+"UN" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (NORTH)";
+	icon_state = "diagonalWall";
+	dir = 1
+	},
+/area/shuttle/arrival/station)
+"UO" = (
+/obj/machinery/atmospherics/pipe/simple,
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"Ve" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"Vo" = (
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"Vz" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"VL" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 6;
+	icon_state = "intact-f";
+	layer = 3
+	},
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"Wn" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
 "Wp" = (
 /obj/displaycase{
 	displayed = new /obj/item/captaingun
 	},
 /turf/floor,
 /area/crew_quarters/captain)
+"Wq" = (
+/obj/grille,
+/turf/floor/plating/damaged2,
+/area/maintenance/maintcentral)
+"WC" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 6;
+	icon_state = "intact-f";
+	initialize_directions = 6;
+	layer = 3
+	},
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"Xf" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"Xk" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (WEST)";
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/shuttle/arrival/station)
+"Yf" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 5;
+	icon_state = "intact-f";
+	initialize_directions = 5;
+	layer = 3
+	},
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
 "Yk" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -20971,6 +20959,18 @@
 /obj/item/camera,
 /turf/floor,
 /area/crew_quarters/captain)
+"Zu" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
+"ZR" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
 
 (1,1,1) = {"
 aa
@@ -22778,11 +22778,11 @@ aa
 aa
 aa
 aa
-xy
+Xf
 xp
 xG
 xp
-xR
+Ve
 aa
 aa
 aa
@@ -23079,7 +23079,7 @@ aa
 aa
 aa
 aa
-xm
+VL
 xs
 xs
 xA
@@ -23089,7 +23089,7 @@ xu
 xB
 xs
 xs
-xY
+Yf
 aa
 aa
 aa
@@ -23991,7 +23991,7 @@ aa
 aa
 aa
 aa
-xq
+xZ
 xp
 xp
 xp
@@ -24001,7 +24001,7 @@ xO
 xp
 xp
 xp
-xT
+ZR
 aa
 aa
 aa
@@ -24144,7 +24144,7 @@ aa
 aa
 aa
 aa
-xq
+xZ
 xp
 xt
 xt
@@ -24152,7 +24152,7 @@ xt
 xt
 xt
 xp
-xX
+Zu
 aa
 aa
 aa
@@ -24601,13 +24601,13 @@ aa
 aa
 aa
 cL
-xq
+xZ
 xp
 xp
 xp
 xp
 xp
-xT
+ZR
 aa
 aa
 aa
@@ -30349,7 +30349,7 @@ qR
 qR
 uS
 pn
-wh
+Wq
 pn
 aa
 aa
@@ -33931,7 +33931,7 @@ aa
 aa
 aa
 aa
-ab
+Xk
 ac
 ac
 ac
@@ -34082,7 +34082,7 @@ aa
 aa
 aa
 aa
-ab
+Xk
 ae
 af
 af
@@ -34538,7 +34538,7 @@ aa
 aa
 aa
 aa
-ad
+UN
 ah
 af
 ak
@@ -34691,7 +34691,7 @@ aa
 aa
 aa
 aa
-ad
+UN
 ac
 ac
 ac
@@ -40232,7 +40232,7 @@ aa
 aa
 aa
 aa
-tf
+Up
 tg
 tg
 tg
@@ -40240,7 +40240,7 @@ tg
 tg
 wY
 wt
-xj
+Wn
 aa
 aa
 aa
@@ -40378,7 +40378,7 @@ aa
 aa
 aa
 aa
-tf
+Up
 tg
 tg
 tg
@@ -40827,11 +40827,11 @@ aa
 aa
 aa
 aa
-tf
+Up
 tg
 tg
 tg
-uD
+WC
 uU
 uY
 vJ
@@ -40848,7 +40848,7 @@ wO
 vJ
 xc
 uE
-uI
+Vz
 aa
 aa
 aa
@@ -41151,7 +41151,7 @@ wL
 tg
 tg
 uE
-xj
+Wn
 aa
 aa
 aa
@@ -41759,7 +41759,7 @@ wM
 uE
 tg
 uE
-uI
+Vz
 aa
 aa
 aa
@@ -42043,11 +42043,11 @@ aa
 aa
 aa
 aa
-th
+Vo
 tg
 tg
 tg
-uI
+Vz
 aa
 aa
 vL
@@ -42064,7 +42064,7 @@ wU
 tg
 tg
 uE
-xj
+Wn
 aa
 aa
 aa
@@ -42356,7 +42356,7 @@ aa
 aa
 aa
 vM
-wd
+UO
 vJ
 vJ
 wt
@@ -42664,7 +42664,7 @@ aa
 aa
 aa
 aa
-th
+Vo
 tg
 tg
 tg
@@ -42672,7 +42672,7 @@ tg
 tg
 uH
 xc
-uI
+Vz
 aa
 aa
 aa
@@ -70811,7 +70811,7 @@ Ds
 Dy
 DA
 DA
-DB
+UJ
 Db
 Db
 Db

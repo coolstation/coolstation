@@ -52,14 +52,14 @@ TYPEINFO(/datum/component/consume/organpoints)
 		var/obj/item/organ/O = I
 		if(O.robotic)
 			L.vomit()
-			bleed(L, 5, 5)
+			bleed(L, 5, violent = TRUE)
 			L.abilityHolder.deductPoints(2, target_abilityholder)
 			boutput(L, "<span class='alert'><i>Agh!</i> That [I] was made of metal! <i>Metal!</i> Your entire body hates you for this.</span>")
 			return
 
 	else if (istype(I, /obj/item/clothing/head/butt/cyberbutt))
 		L.vomit()
-		bleed(L, 5, 5)
+		bleed(L, 5, violent = TRUE)
 		L.abilityHolder.deductPoints(2, target_abilityholder)
 		boutput(L, "<span class='alert'><i>Agh!</i> That [I] was made of metal! <i>Metal!</i> Your entire body hates you for this.</span>")
 		return
@@ -170,13 +170,13 @@ TYPEINFO(/datum/component/consume/organheal)
 		var/obj/item/organ/O = I
 		if(O.robotic)
 			M.vomit()
-			bleed(M, 5, 5)
+			bleed(M, 5, violent = TRUE)
 			M.TakeDamage("All", base_HPup * mod_mult, 0, base_HPup * mod_mult)
 			boutput(M, "<span class='alert'><i>Augh!</i> That chewed-up [I] turned to shrapnel in your stomach!</span>")
 			return
 	else if (istype(I, /obj/item/clothing/head/butt/cyberbutt))
 		M.vomit()
-		bleed(M, 5, 5)
+		bleed(M, 5, violent = TRUE)
 		M.TakeDamage("All", base_HPup * 2 * mod_mult, 0, base_HPup * 2 * mod_mult)
 		boutput(M, "<span class='alert'><i>Augh!</i> That disgusting metal ass turned to shrapnel in your stomach!</span>")
 		return

@@ -189,23 +189,23 @@
 			SPAWN_DBG(src.gibtime)
 				playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 				operating = 0
-				var/obj/decal/cleanable/blood/B1 = null // For forensics (Convair880).
-				var/obj/decal/cleanable/blood/gibs/G1 = null
+				var/obj/decal/cleanable/tracked_reagents/blood/B1 = null // For forensics (Convair880).
+				var/obj/decal/cleanable/tracked_reagents/blood/gibs/G1 = null
 				if (decomp > 2)
 					if (T1 && isturf(T1))
 						make_cleanable( /obj/decal/cleanable/molten_item,T1)
-						B1 = make_cleanable( /obj/decal/cleanable/blood,T1)
+						B1 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T1)
 						if (bdna && btype)
 							B1.blood_DNA = bdna
 							B1.blood_type = btype
 				else
 					if (T1 && isturf(T1))
-						G1 = make_cleanable( /obj/decal/cleanable/blood/gibs,T1)
+						G1 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T1)
 						if (bdna && btype)
 							G1.blood_DNA = bdna
 							G1.blood_type = btype
 					if (T2 && isturf(T2))
-						B1 = make_cleanable( /obj/decal/cleanable/blood,T2)
+						B1 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T2)
 						if (bdna && btype)
 							B1.blood_DNA = bdna
 							B1.blood_type = btype
@@ -225,16 +225,16 @@
 		SPAWN_DBG(src.gibtime)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			operating = 0
-			var/obj/decal/cleanable/blood/gibs/G2 = null // For forensics (Convair880).
+			var/obj/decal/cleanable/tracked_reagents/blood/gibs/G2 = null // For forensics (Convair880).
 
 			if (T1 && isturf(T1))
-				G2 = make_cleanable( /obj/decal/cleanable/blood/gibs,T1)
+				G2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T1)
 				if (bdna && btype)
 					G2.blood_DNA = bdna
 					G2.blood_type = btype
 				newmeat1.set_loc(T1)
 			if (T2 && isturf(T2))
-				G2 = make_cleanable( /obj/decal/cleanable/blood/gibs,T2)
+				G2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T2)
 				if (bdna && btype)
 					G2.blood_DNA = bdna
 					G2.blood_type = btype
@@ -242,7 +242,7 @@
 			else
 				newmeat2.set_loc(T1)
 			if (T3 && isturf(T3))
-				G2 = make_cleanable( /obj/decal/cleanable/blood/gibs,T3)
+				G2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T3)
 				if (bdna && btype)
 					G2.blood_DNA = bdna
 					G2.blood_type = btype

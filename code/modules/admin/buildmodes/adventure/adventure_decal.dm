@@ -24,7 +24,7 @@
 	settings(var/ctrl, var/alt, var/shift)
 		selected()
 
-	var/static/list/decals = list("Abandoned crate" = /obj/storage/crate/loot ,"Ash" = /obj/decal/cleanable/ash, "Blood" = /obj/decal/cleanable/blood, "Blood tracks" = /obj/decal/cleanable/blood/tracks, \
+	var/static/list/decals = list("Abandoned crate" = /obj/storage/crate/loot ,"Ash" = /obj/decal/cleanable/ash, "Blood" = /obj/decal/cleanable/tracked_reagents/blood, "Blood tracks" = /obj/decal/cleanable/tracked_reagents/blood/tracks, \
 	"Bookcase (single, empty)" = /obj/bookcase, "Bookcase (single, full)" = /obj/bookcase/full, "Bookcase (directional, empty)" = /obj/bookcase/directional, \
 	"Bookcase (directional, full)" = /obj/bookcase/directional/full, "Bookcase (triggerable button - use with connection tool)" = /obj/adventurepuzzle/triggerer/bookcase, \
 	"Candle" = /obj/candle_light, "Candle (spooky)" = /obj/candle_light_2spoopy, "Chair" = /obj/stool/chair, "Chair (comfy)" = /obj/stool/chair/comfy, \
@@ -33,7 +33,7 @@
 	"Cobweb (upper left)" = /obj/decal/cleanable/cobweb, "Cobweb (upper right)" = /obj/decal/cleanable/cobweb2, "Coffin" = /obj/storage/closet/coffin, "Computer frame" = /obj/computerframe, \
 	"Crate" = /obj/storage/crate, "Crate (internals)" = /obj/storage/crate/internals, "Crate (gibs)" = /obj/storage/crate/haunted, "Crate (weapons)" = /obj/storage/secure/crate/weapon, "Debris" = /obj/decal/cleanable/robot_debris, \
 	"Floating tile" = /obj/decal/floatingtiles, "Fungus" = /obj/decal/cleanable/fungus, "Gang tag" = /obj/decal/cleanable/gangtag, \
-	"Gibs" = list(/obj/decal/cleanable/blood/gibs, /obj/decal/cleanable/blood/gibs/core, /obj/decal/cleanable/blood/gibs/body), \
+	"Gibs" = list(/obj/decal/cleanable/tracked_reagents/blood/gibs, /obj/decal/cleanable/tracked_reagents/blood/gibs/core, /obj/decal/cleanable/tracked_reagents/blood/gibs/body), \
 	"Green Vomit" = /obj/decal/cleanable/greenpuke, "Ice (permanent)" = /obj/decal/icefloor, "Light beam" = /obj/decal/lightshaft, \
 	"Martian computer" = /obj/decal/aliencomputer, "Martian crevice" = /obj/crevice, "Martian door" = /obj/machinery/door/unpowered/martian, \
 	"Mushroom" = list(/obj/decal/mushrooms, /obj/decal/mushrooms/type1, /obj/decal/mushrooms/type2, /obj/decal/mushrooms/type3, /obj/decal/mushrooms/type4), \

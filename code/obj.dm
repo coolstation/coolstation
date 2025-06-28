@@ -532,10 +532,6 @@
 		else
 			return ..()
 
-	track_blood()
-		src.tracked_blood = null
-		return
-
 /obj/overlay/fake
 
 /obj/overlay/self_deleting

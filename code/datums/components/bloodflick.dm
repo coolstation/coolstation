@@ -38,7 +38,7 @@ TYPEINFO(/datum/component/bloodflick)
 	// if there's wet blood on it, flick it off
 	if (src.haswet)
 		src.haswet = FALSE
-		make_cleanable(/obj/decal/cleanable/blood, get_turf(src.parent))
+		make_cleanable(/obj/decal/cleanable/tracked_reagents/blood, get_turf(src.parent))
 		playsound(src.weapon.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 40, 1)
 		SPAWN_DBG(1 DECI SECOND) // so that the twirl emote message appears first (in theory)
 			boutput("<span class='notice'>Blood splatters onto the floor!</span>")

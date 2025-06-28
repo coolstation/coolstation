@@ -608,7 +608,7 @@
 			boutput(M, "<span class='alert'>It cuts the roof of your mouth! WHY DID YOU TRY EATING THIS DRY?!</span>")
 			random_brute_damage(M, 3)
 			take_bleeding_damage(M, null, 0, DAMAGE_STAB, 0)
-			bleed(M, 3, 1)
+			bleed(M, 3)
 			M.emote("scream")
 
 		if(src.hasPrize && ishuman(M))
@@ -618,7 +618,7 @@
 			H.changeStatus("weakened", 3 SECONDS)
 			affecting.take_damage(10, 0)
 			take_bleeding_damage(H, null, 0, DAMAGE_STAB, 0)
-			bleed(H, rand(10,30), rand(1,3))
+			bleed(H, rand(10,30))
 			H.UpdateDamageIcon()
 			src.hasPrize = 0
 			new /obj/item/razor_blade( get_turf(src) )
@@ -863,8 +863,8 @@
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 
-						var/obj/decal/cleanable/blood/gibs/G = null // For forensics (Convair880).
-						G = make_cleanable( /obj/decal/cleanable/blood/gibs,M.loc)
+						var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics (Convair880).
+						G = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,M.loc)
 						if (H.bioHolder.Uid && H.bioHolder.bloodType)
 							G.blood_DNA = H.bioHolder.Uid
 							G.blood_type = H.bioHolder.bloodType

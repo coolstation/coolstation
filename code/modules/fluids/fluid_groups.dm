@@ -2,6 +2,7 @@
 ////Fluid Group////
 ///////////////////
 
+#define HALF_MAX_VISCOSITY MAX_VISCOSITY / 2
 
 /datum/reagents/fluid_group
 	var/datum/fluid_group/my_group = null
@@ -82,9 +83,8 @@
 
 	var/base_evaporation_time = 1500
 	var/bonus_evaporation_time = 9000 //Ranges from 0 to this value depending on average viscosity
-	var/const/max_viscosity = 20
 
-	var/const/max_alpha = 230
+	var/const/max_alpha = 250
 
 	var/list/members = list()
 	var/obj/fluid/spread_member = 0 //Member that we want to spread from. Should be changed on add amt, displace, etc.
@@ -103,6 +103,7 @@
 	var/last_members_amt = 0
 	var/last_depth_level = 0
 	var/avg_viscosity = 1
+	var/viscosity_prefix = ""
 	var/last_update_time = 0
 	var/obj/fluid/last_reacted = 0
 
@@ -205,6 +206,7 @@
 				F.group = src
 
 		if (length(src.members) == 1)
+			src.update_viscosity()
 			F.update_icon() //update icon of the very first fluid in this group
 
 		src.last_add_time = world.time
@@ -390,6 +392,7 @@
 
 	proc/update_viscosity()
 		var/avg = 0
+		var/solid = 0
 		var/reagents = 0
 
 		for(var/reagent_id in src.reagents.reagent_list)
@@ -398,17 +401,30 @@
 			if (isnull(current_reagent))
 				continue
 
-			avg += current_reagent.viscosity
-			reagents++
+			avg += current_reagent.viscosity * current_reagent.volume
+			if(current_reagent.is_solid())
+				solid += current_reagent.volume
+			reagents += current_reagent.volume
 			LAGCHECK(LAG_HIGH)
 
 		if (reagents && avg)
 			avg = avg / reagents
-			src.avg_viscosity = 1 + (avg * max_viscosity)
+			src.avg_viscosity = 1 + (avg * MAX_VISCOSITY)
 		else
 			src.avg_viscosity = 1
 
-		src.avg_viscosity = min(src.avg_viscosity,max_viscosity)
+		src.avg_viscosity = min(src.avg_viscosity, MAX_VISCOSITY)
+
+		var/last_prefix = src.viscosity_prefix
+
+		if(solid / reagents > 0.8)
+			src.viscosity_prefix = "powder"
+		else if(src.avg_viscosity > HALF_MAX_VISCOSITY)
+			src.viscosity_prefix = "globby"
+		else
+			src.viscosity_prefix = ""
+
+		return src.viscosity_prefix != last_prefix
 
 	proc/add_drain_process()
 		if (src.qdeled) return
@@ -433,7 +449,7 @@
 
 		var/fluids_to_create = 0 //try to create X amount of new tiles (based on how much fluid and tiles we currently hold)
 
-		src.update_viscosity()
+		var/viscosity_prefix_changed = src.update_viscosity()
 		src.update_required_to_spread()
 		if (SPREAD_CHECK(src) || force)
 			LAGCHECK(LAG_HIGH)
@@ -483,7 +499,7 @@
 			color_dif = abs(average_color.r - last_color.r) + abs(average_color.g - last_color.g) + abs(average_color.b - last_color.b)
 		var/color_changed = (color_dif > 10)
 
-		if (my_depth_level == last_depth_level && !color_changed && length(src.members) == src.last_members_amt) //saves cycles for stuff like an ocean flooding into a pretty-much-aready-filled room
+		if (my_depth_level == last_depth_level && !viscosity_prefix_changed && !color_changed && length(src.members) == src.last_members_amt) //saves cycles for stuff like an ocean flooding into a pretty-much-aready-filled room
 			src.updating = 0
 			return 1
 
@@ -534,7 +550,7 @@
 				var/splash_level = max(1,min(my_depth_level, 3))
 				F.step_sound = "sound/misc/splash_[splash_level].ogg"
 
-			F.movement_speed_mod = F.last_depth_level <= 1 ? 0 : (viscosity_SLOW_COMPONENT(F.avg_viscosity,F.max_viscosity,F.max_speed_mod) + DEPTH_SLOW_COMPONENT(F.amt,F.max_reagent_volume,F.max_speed_mod))
+			F.movement_speed_mod = F.last_depth_level <= 1 ? 0 : (viscosity_SLOW_COMPONENT(F?.group?.avg_viscosity,F.max_speed_mod) + DEPTH_SLOW_COMPONENT(F.amt,F.max_reagent_volume,F.max_speed_mod))
 
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			//end
@@ -559,14 +575,14 @@
 				last_icon = F.icon_state
 
 				if (F.last_spread_was_blocked || (src.amt_per_tile > src.required_to_spread))
-					fluid_ma.icon_state = "15"
+					fluid_ma.icon_state = src.viscosity_prefix + "15"
 				else
 					var/dirs = 0
 					for (var/dir in cardinal)
 						var/turf/T = get_step(F, dir)
 						if (T && T.active_liquid && T.active_liquid.group == F.group)
 							dirs |= dir
-					fluid_ma.icon_state = num2text(dirs)
+					fluid_ma.icon_state = src.viscosity_prefix + num2text(dirs)
 
 					if (F.overlay_refs && length(F.overlay_refs))
 						if (F)
@@ -670,7 +686,6 @@
 					src.members = L.Copy()// this is a bit of an ouch, but drains need to be able to finish off smallish puddles properly
 
 		var/list/fluids_removed = list()
-		var/fluids_removed_avg_viscosity = 0
 
 		for (var/i = length(members), i > 0, i--)
 			if (src.qdeled) return
@@ -680,7 +695,6 @@
 			if (!F || F.group != src) continue
 
 			fluids_removed += F
-			fluids_removed_avg_viscosity += F.avg_viscosity
 
 			if (fluids_removed.len >= fluids_to_remove)
 				break
@@ -704,7 +718,6 @@
 		for (var/obj/fluid/F as anything in fluids_removed)
 			src.remove(F,0,src.updating)
 
-		//fluids_removed_avg_viscosity = fluids_removed ? (fluids_removed_avg_viscosity / fluids_removed) : 1
 		return src.avg_viscosity
 
 	proc/join(var/datum/fluid_group/join_with) //join a fluid group into this one
@@ -788,3 +801,5 @@
 		//src.last_add_time = world.time
 
 		return 1
+
+#undef HALF_MAX_VISCOSITY

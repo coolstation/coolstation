@@ -779,22 +779,6 @@
 	},
 /turf/floor/plating/scorched,
 /area/meat_derelict/guts)
-"bM" = (
-/obj/stool/chair,
-/obj/decal/skeleton{
-	desc = "Human remains in the fittings of a Head of Personnel.  Judging by the missing skull chunks, they didn't win.";
-	icon = 'icons/misc/hstation.dmi';
-	icon_state = "body8"
-	},
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "floor"
-	},
-/area/meat_derelict/guts)
 "bN" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -1835,13 +1819,6 @@
 "dO" = (
 /turf/floor/grime,
 /area/meat_derelict/entry)
-"dP" = (
-/obj/decal/cleanable/blood,
-/turf/floor{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "floor"
-	},
-/area/meat_derelict/main)
 "dQ" = (
 /obj/iomoon_puzzle/ancient_robot_door/meat{
 	dir = 4;
@@ -1865,13 +1842,6 @@
 	},
 /turf/floor,
 /area/meat_derelict/main)
-"dT" = (
-/obj/decal/cleanable/blood{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/turf/floor,
-/area/meat_derelict/guts)
 "dU" = (
 /obj/decal/fakeobjects/pipe,
 /turf/floor,
@@ -1907,13 +1877,6 @@
 	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
-	},
-/turf/floor,
-/area/meat_derelict/guts)
-"dZ" = (
-/obj/decal/cleanable/blood{
-	tag = "icon-floor6";
-	icon_state = "floor6"
 	},
 /turf/floor,
 /area/meat_derelict/guts)
@@ -2258,12 +2221,6 @@
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
-"eH" = (
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
-	},
-/area/meat_derelict/soviet)
 "eI" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -2293,14 +2250,6 @@
 /obj/meatland_obelisk,
 /turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
-"eL" = (
-/turf/wall{
-	tag = "icon-diagonalWall (SOUTHEAST)";
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 6
-	},
-/area/meat_derelict/soviet)
 "eM" = (
 /obj/decal/fakeobjects/lightbulb_broken,
 /turf/floor/caution/east{
@@ -2331,16 +2280,6 @@
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
-"eQ" = (
-/obj/decal/cleanable/blood{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/area/meat_derelict/soviet)
 "eR" = (
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
@@ -2364,17 +2303,6 @@
 	dir = 8
 	},
 /obj/critter/zombie/meatmonaut,
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/area/meat_derelict/soviet)
-"eU" = (
-/obj/item/rods,
-/obj/decal/cleanable/blood{
-	tag = "icon-floor6";
-	icon_state = "floor6"
-	},
 /turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
@@ -2504,14 +2432,6 @@
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
-"fg" = (
-/turf/wall{
-	tag = "icon-diagonalWall (WEST)";
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/meat_derelict/soviet)
 "fh" = (
 /obj/item/device/audio_log/meatland_04,
 /turf/floor/setpieces/bloodfloor,
@@ -2582,15 +2502,6 @@
 /area/space)
 "ft" = (
 /turf/floor/caution/corner/ne,
-/area/space)
-"fu" = (
-/obj/decal/fakeobjects/shuttlethruster{
-	dir = 4
-	},
-/turf/floor/void{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "timehole"
-	},
 /area/space)
 "fv" = (
 /turf/wall/setpieces/leadwall{
@@ -6009,6 +5920,95 @@
 	dir = 5
 	},
 /area/sim/racing_track)
+"uy" = (
+/turf/wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall"
+	},
+/area/meat_derelict/soviet)
+"vV" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/turf/floor,
+/area/meat_derelict/guts)
+"yo" = (
+/turf/wall{
+	tag = "icon-diagonalWall (WEST)";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/meat_derelict/soviet)
+"AG" = (
+/turf/wall{
+	tag = "icon-diagonalWall (SOUTHEAST)";
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall";
+	dir = 6
+	},
+/area/meat_derelict/soviet)
+"Dw" = (
+/obj/stool/chair,
+/obj/decal/skeleton{
+	desc = "Human remains in the fittings of a Head of Personnel.  Judging by the missing skull chunks, they didn't win.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body8"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor{
+	icon = 'icons/turf/floors.dmi';
+	icon_state = "floor"
+	},
+/area/meat_derelict/guts)
+"DZ" = (
+/obj/item/rods,
+/obj/decal/cleanable/tracked_reagents/blood{
+	tag = "icon-floor6";
+	icon_state = "floor6"
+	},
+/turf/floor{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor3"
+	},
+/area/meat_derelict/soviet)
+"QM" = (
+/obj/decal/fakeobjects/shuttlethruster{
+	dir = 4
+	},
+/turf/floor/void{
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "timehole"
+	},
+/area/space)
+"Tp" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	tag = "icon-floor6";
+	icon_state = "floor6"
+	},
+/turf/floor,
+/area/meat_derelict/guts)
+"VM" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor{
+	icon = 'icons/turf/floors.dmi';
+	icon_state = "floor"
+	},
+/area/meat_derelict/main)
+"ZL" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/turf/floor{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "floor3"
+	},
+/area/meat_derelict/soviet)
 
 (1,1,1) = {"
 aa
@@ -6151,7 +6151,7 @@ cN
 dI
 dM
 aC
-dT
+vV
 au
 aw
 ab
@@ -6521,7 +6521,7 @@ aU
 eu
 ev
 ez
-eL
+AG
 ev
 eu
 aa
@@ -6669,7 +6669,7 @@ aC
 aC
 dE
 dx
-dP
+VM
 ad
 dW
 bY
@@ -6782,7 +6782,7 @@ eu
 ev
 eE
 eN
-eU
+DZ
 eN
 fd
 ev
@@ -6988,11 +6988,11 @@ ei
 aU
 eu
 ev
-eH
-eQ
+uy
+ZL
 eu
 fa
-fg
+yo
 ev
 eu
 aa
@@ -7139,7 +7139,7 @@ cZ
 as
 ao
 bY
-dZ
+Tp
 bX
 bX
 au
@@ -8009,7 +8009,7 @@ aP
 aP
 aU
 bC
-bM
+Dw
 ca
 bj
 cn
@@ -9553,14 +9553,14 @@ aa
 aa
 aa
 fE
-fu
-fu
+QM
+QM
 fE
-fu
-fu
+QM
+QM
 fE
-fu
-fu
+QM
+QM
 fE
 fE
 fE

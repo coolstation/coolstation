@@ -76,7 +76,6 @@ var/list/ban_from_airborne_fluid = list()
 		alpha = 255
 		color = "#ffffff"
 		amt = 0
-		avg_viscosity = initial(avg_viscosity)
 		movement_speed_mod = 0
 		group = 0
 		touched_other_group = 0
@@ -150,10 +149,6 @@ var/list/ban_from_airborne_fluid = list()
 		//if (AM.event_handler_flags & USE_FLUID_ENTER)
 		//	AM.ExitedFluid(src,newloc)
 
-
-	add_tracked_blood(atom/movable/AM as mob|obj)
-		.=0
-
 	update() //returns list of created fluid tiles
 		if (!src.group) return
 		.= list()
@@ -188,7 +183,6 @@ var/list/ban_from_airborne_fluid = list()
 						F.finalcolor = src.finalcolor
 						F.alpha = src.finalalpha
 						F.finalalpha = src.finalalpha
-						F.avg_viscosity = src.avg_viscosity
 						F.last_depth_level = src.last_depth_level
 						F.step_sound = src.step_sound
 						F.movement_speed_mod = src.movement_speed_mod
@@ -269,7 +263,6 @@ var/list/ban_from_airborne_fluid = list()
 					F.finalcolor = src.finalcolor
 					F.alpha = src.finalalpha
 					F.finalalpha = src.finalalpha
-					F.avg_viscosity = src.avg_viscosity
 					F.last_depth_level = src.last_depth_level
 					F.step_sound = src.step_sound
 					F.movement_speed_mod = src.movement_speed_mod

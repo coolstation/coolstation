@@ -1785,11 +1785,6 @@
 "aec" = (
 /turf/floor/plating/random,
 /area/diner/kitchen)
-"aed" = (
-/obj/decal/cleanable/cobweb2,
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/plating/random,
-/area/diner/kitchen)
 "aee" = (
 /obj/machinery/chem_dispenser/soda,
 /turf/floor/scorched2,
@@ -1828,13 +1823,6 @@
 /area/diner/kitchen)
 "ael" = (
 /obj/decal/cleanable/dirt,
-/turf/floor/plating/random,
-/area/diner/kitchen)
-"aem" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor5"
-	},
-/obj/machinery/light/fluorescent/small,
 /turf/floor/plating/random,
 /area/diner/kitchen)
 "aen" = (
@@ -2182,20 +2170,6 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/grime,
 /area/diner/kitchen)
-"aft" = (
-/obj/decal/cleanable/blood{
-	icon_state = "floor6"
-	},
-/turf/floor/grime,
-/area/diner/dining)
-"afu" = (
-/obj/decal/cleanable/blood/hurting1,
-/turf/floor/grime,
-/area/diner/dining)
-"afv" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/grime,
-/area/diner/dining)
 "afw" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/grime,
@@ -2233,22 +2207,6 @@
 /obj/item/cigbutt,
 /turf/floor/grime,
 /area/diner/kitchen)
-"afD" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/device/audio_log,
-/turf/floor/grime,
-/area/diner/dining)
-"afE" = (
-/obj/decal/cleanable/blood/hurting1/hurting2,
-/turf/floor/grime,
-/area/diner/dining)
-"afF" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor4"
-	},
-/obj/item/clothing/mask/chicken,
-/turf/floor/grime,
-/area/diner/dining)
 "afG" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 4
@@ -2307,25 +2265,6 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/grime,
 /area/abandonedmedicalship/robot_trader)
-"afR" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor5"
-	},
-/obj/item/clothing/suit/jacketsjacket,
-/turf/floor/grime,
-/area/diner/dining)
-"afS" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/obj/item/bat,
-/turf/floor/grime,
-/area/diner/dining)
-"afT" = (
-/obj/decal/cleanable/blood,
-/obj/item/clothing/under/gimmick/shirtnjeans,
-/turf/floor/grime,
-/area/diner/dining)
 "afU" = (
 /turf/floor/stairs/wide/other,
 /area/diner/dining)
@@ -3950,21 +3889,9 @@
 "akD" = (
 /turf/floor/damaged1,
 /area/station/bridge)
-"akE" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3";
-	dir = 8
-	},
-/area/listeningpost/syndicateassaultvessel)
 "akF" = (
 /obj/wingrille_spawn/auto/crystal,
 /turf/floor/plating/random,
-/area/listeningpost/syndicateassaultvessel)
-"akG" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3";
-	dir = 6
-	},
 /area/listeningpost/syndicateassaultvessel)
 "akH" = (
 /turf/shuttle/wall{
@@ -4537,12 +4464,6 @@
 	dir = 4
 	},
 /area/listeningpost/syndicateassaultvessel)
-"alU" = (
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3";
-	dir = 10
-	},
-/area/listeningpost/syndicateassaultvessel)
 "alV" = (
 /obj/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -4714,12 +4635,6 @@
 	},
 /turf/floor{
 	icon_state = "floorgrime-w"
-	},
-/area/listeningpost/syndicateassaultvessel)
-"amq" = (
-/turf/shuttle/wall{
-	icon_state = "wall3";
-	dir = 6
 	},
 /area/listeningpost/syndicateassaultvessel)
 "amr" = (
@@ -5095,21 +5010,6 @@
 "ano" = (
 /turf/floor/carpet/red/fancy/edge/se,
 /area/listeningpost/syndicateassaultvessel)
-"anp" = (
-/obj/decal/cleanable/blood{
-	icon_state = "floor6"
-	},
-/turf/floor/red,
-/area/listeningpost/syndicateassaultvessel)
-"anq" = (
-/obj/decal/cleanable/blood,
-/obj/cable{
-	icon_state = "2-4";
-	d1 = 2;
-	d2 = 4
-	},
-/turf/floor/red,
-/area/listeningpost/syndicateassaultvessel)
 "anr" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
@@ -5133,18 +5033,6 @@
 "ant" = (
 /obj/table/auto,
 /obj/item/storage/box/handcuff_kit,
-/turf/floor/red,
-/area/listeningpost/syndicateassaultvessel)
-"anu" = (
-/obj/stool/chair{
-	anchored = 0;
-	dir = 1
-	},
-/obj/decal/cleanable/blood{
-	icon_state = "floor5"
-	},
-/obj/machinery/light/fluorescent/warm,
-/obj/cable,
 /turf/floor/red,
 /area/listeningpost/syndicateassaultvessel)
 "anv" = (
@@ -6149,17 +6037,6 @@
 	},
 /turf/floor,
 /area/station/hallway/starboardupperhallway)
-"apo" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 8;
-	icon_state = "camera";
-	name = "autoname - SS13";
-	pixel_x = 10;
-	tag = ""
-	},
-/turf/floor/plating/damaged2,
-/area/station/maintenance/upperstarboard)
 "app" = (
 /obj/cable{
 	icon_state = "4-8";
@@ -7041,14 +6918,6 @@
 "aqO" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/station/ai_monitored/armory)
-"aqP" = (
-/obj/cable{
-	icon_state = "2-8";
-	d1 = 2;
-	d2 = 8
-	},
-/turf/floor/plating/damaged2,
-/area/station/maintenance/upperstarboard)
 "aqQ" = (
 /obj/machinery/power/seaheater/big,
 /turf/space/fluid/manta,
@@ -7527,9 +7396,6 @@
 /obj/stool/chair/yellow,
 /turf/floor/orange,
 /area/station/mining/staff_room)
-"asa" = (
-/turf/floor/plating/damaged2,
-/area/station/maintenance/upperstarboard)
 "asb" = (
 /obj/structure/girder/reinforced,
 /turf/floor/plating,
@@ -19297,22 +19163,6 @@
 	},
 /turf/floor/black,
 /area/station/ai_monitored/armory)
-"aRd" = (
-/obj/decal/cleanable/blood{
-	icon_state = "floor6"
-	},
-/obj/item/device/radio/intercom/security,
-/obj/decal/cleanable/dirt/dirt5,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	icon_state = "camera";
-	name = "autoname - SS13";
-	network = "SS13";
-	tag = ""
-	},
-/turf/floor/plating/random,
-/area/station/security/brig/solitary)
 "aRe" = (
 /obj/disposalpipe/segment/ejection{
 	dir = 8;
@@ -19441,14 +19291,6 @@
 	},
 /turf/floor/black,
 /area/station/ai_monitored/armory)
-"aRp" = (
-/obj/decal/cleanable/blood,
-/obj/decal/cleanable/dirt/dirt4,
-/obj/decal/fakeobjects/lightbulb_broken{
-	dir = 8
-	},
-/turf/floor/plating/random,
-/area/station/security/brig/solitary)
 "aRq" = (
 /obj/machinery/flasher/genpop/new_walls/west{
 	id = "solitary";
@@ -49157,6 +48999,15 @@
 /obj/access_spawn/maint,
 /turf/floor/plating/random,
 /area/station/maintenance/seaturtle)
+"ciu" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/cable{
+	icon_state = "2-4";
+	d1 = 2;
+	d2 = 4
+	},
+/turf/floor/red,
+/area/listeningpost/syndicateassaultvessel)
 "cVM" = (
 /obj/storage/crate/bartending,
 /obj/disposalpipe/segment/mail{
@@ -49165,6 +49016,18 @@
 /obj/item/paper/book/from_file/pocketguide/bartending,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/bar)
+"dSK" = (
+/obj/stool/chair{
+	anchored = 0;
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor5"
+	},
+/obj/machinery/light/fluorescent/warm,
+/obj/cable,
+/turf/floor/red,
+/area/listeningpost/syndicateassaultvessel)
 "elQ" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/captain,
@@ -49202,6 +49065,42 @@
 /obj/item/device/multitool,
 /turf/floor/longtile/black,
 /area/station/turret_protected/starboard)
+"gBO" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/decal/cleanable/dirt/dirt4,
+/obj/decal/fakeobjects/lightbulb_broken{
+	dir = 8
+	},
+/turf/floor/plating/random,
+/area/station/security/brig/solitary)
+"heA" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3";
+	dir = 8
+	},
+/area/listeningpost/syndicateassaultvessel)
+"hoZ" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor6"
+	},
+/obj/item/device/radio/intercom/security,
+/obj/decal/cleanable/dirt/dirt5,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	icon_state = "camera";
+	name = "autoname - SS13";
+	network = "SS13";
+	tag = ""
+	},
+/turf/floor/plating/random,
+/area/station/security/brig/solitary)
+"hwh" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3";
+	dir = 6
+	},
+/area/listeningpost/syndicateassaultvessel)
 "hNO" = (
 /obj/table/auto,
 /obj/item/paper/book/from_file/pocketguide/medical,
@@ -49216,6 +49115,13 @@
 	dir = 1
 	},
 /area/station/medical/medbay/surgery)
+"isi" = (
+/turf/floor/plating/damaged2,
+/area/station/maintenance/upperstarboard)
+"iUN" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/grime,
+/area/diner/dining)
 "iVv" = (
 /obj/item/paper/book/from_file/pocketguide/mining,
 /obj/item/furniture_parts/table/reinforced,
@@ -49340,6 +49246,17 @@
 	dir = 1
 	},
 /area/station/hos)
+"ltU" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/item/clothing/under/gimmick/shirtnjeans,
+/turf/floor/grime,
+/area/diner/dining)
+"lMn" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3";
+	dir = 10
+	},
+/area/listeningpost/syndicateassaultvessel)
 "mna" = (
 /obj/storage/crate{
 	name = "Gambling supplies"
@@ -49370,6 +49287,13 @@
 /obj/item/paper/book/from_file/mechanicbook,
 /turf/floor/cautionblack,
 /area/station/engine/elect)
+"mGX" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/item/clothing/suit/jacketsjacket,
+/turf/floor/grime,
+/area/diner/dining)
 "mLF" = (
 /obj/table/wood/auto,
 /obj/item/paper/book/from_file/space_law,
@@ -49416,11 +49340,21 @@
 	dir = 8
 	},
 /area/listeningpost/syndicateassaultvessel)
+"ock" = (
+/obj/decal/cleanable/tracked_reagents/blood/hurting1/hurting2,
+/turf/floor/grime,
+/area/diner/dining)
 "plU" = (
 /obj/machinery/optable,
 /obj/item/from_file/medical_surgery_guide,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
+"pmn" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor6"
+	},
+/turf/floor/red,
+/area/listeningpost/syndicateassaultvessel)
 "pCp" = (
 /obj/item/device/matanalyzer{
 	pixel_x = 3;
@@ -49440,6 +49374,10 @@
 /obj/table/auto,
 /turf/floor,
 /area/station/mining/staff_room)
+"pOc" = (
+/obj/decal/cleanable/tracked_reagents/blood/hurting1,
+/turf/floor/grime,
+/area/diner/dining)
 "pVW" = (
 /obj/decal/tile_edge/check{
 	icon_state = "check1";
@@ -49461,6 +49399,20 @@
 /obj/item/camera,
 /turf/floor/darkblue/checker/other,
 /area/station/communications)
+"qkp" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/machinery/light/fluorescent/small,
+/turf/floor/plating/random,
+/area/diner/kitchen)
+"qqO" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/obj/item/bat,
+/turf/floor/grime,
+/area/diner/dining)
 "qKp" = (
 /obj/cable{
 	icon_state = "4-8";
@@ -49491,6 +49443,17 @@
 	},
 /turf/floor/caution/south,
 /area/station/engine/elect)
+"sAg" = (
+/obj/decal/cleanable/cobweb2,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/plating/random,
+/area/diner/kitchen)
+"uun" = (
+/turf/shuttle/wall{
+	icon_state = "wall3";
+	dir = 6
+	},
+/area/listeningpost/syndicateassaultvessel)
 "vmU" = (
 /obj/disposalpipe/segment/mail,
 /obj/table/reinforced/auto,
@@ -49514,6 +49477,20 @@
 	icon_state = "green1"
 	},
 /area/station/crew_quarters/cafeteria/the_rising_tide_bar)
+"vMz" = (
+/obj/cable{
+	icon_state = "2-8";
+	d1 = 2;
+	d2 = 8
+	},
+/turf/floor/plating/damaged2,
+/area/station/maintenance/upperstarboard)
+"wpK" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor6"
+	},
+/turf/floor/grime,
+/area/diner/dining)
 "wrh" = (
 /obj/machinery/power/apc/autoname/west,
 /obj/table/reinforced/auto,
@@ -49548,6 +49525,11 @@
 /obj/item/paper/book/from_file/torpedo,
 /turf/floor,
 /area/station/security/starboardtorpedoes)
+"xkf" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/device/audio_log,
+/turf/floor/grime,
+/area/diner/dining)
 "xDE" = (
 /obj/table/reinforced/auto,
 /obj/item/paper/book/from_file/pocketguide/quartermaster,
@@ -49557,10 +49539,28 @@
 	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
+"xMp" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor4"
+	},
+/obj/item/clothing/mask/chicken,
+/turf/floor/grime,
+/area/diner/dining)
 "ycf" = (
 /obj/machinery/vending/air_vendor,
 /turf/floor,
 /area/station/hallway/starboardupperhallway)
+"ykv" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	icon_state = "camera";
+	name = "autoname - SS13";
+	pixel_x = 10;
+	tag = ""
+	},
+/turf/floor/plating/damaged2,
+/area/station/maintenance/upperstarboard)
 
 (1,1,1) = {"
 aaa
@@ -89680,9 +89680,9 @@ aaa
 aaa
 aaa
 arH
-akE
+heA
 atG
-alU
+lMn
 arH
 aaa
 aaa
@@ -89980,13 +89980,13 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 akH
 atH
 akH
 akH
-alU
+lMn
 aaa
 aaa
 aaa
@@ -90281,7 +90281,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 asD
 alK
@@ -90306,7 +90306,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 akH
 akH
@@ -90907,7 +90907,7 @@ amO
 amX
 alD
 alD
-anp
+pmn
 ant
 akH
 aqe
@@ -91209,8 +91209,8 @@ amP
 akF
 alD
 alD
-anq
-anu
+ciu
+dSK
 akH
 aqf
 aqk
@@ -91489,7 +91489,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 asE
 alx
@@ -91791,7 +91791,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 akV
 akV
@@ -92091,7 +92091,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 akH
 akH
@@ -92387,7 +92387,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 akH
 akF
@@ -92701,7 +92701,7 @@ avM
 akV
 alr
 alB
-akE
+heA
 akH
 akH
 akH
@@ -93185,8 +93185,8 @@ aaV
 aJP
 aoU
 ayo
-aRd
-aRp
+hoZ
+gBO
 aJa
 aes
 axZ
@@ -93909,7 +93909,7 @@ avM
 akV
 alr
 alD
-akG
+hwh
 akH
 akH
 akH
@@ -94199,7 +94199,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 akH
 akF
@@ -94507,7 +94507,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 akH
 akH
@@ -94811,7 +94811,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 akV
 akV
@@ -95113,7 +95113,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+heA
 akH
 alm
 alF
@@ -96321,7 +96321,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 asF
 alN
@@ -96346,7 +96346,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 akH
 akH
@@ -96624,13 +96624,13 @@ aaa
 aaa
 aaa
 aaa
-akG
+hwh
 akH
 akH
 alS
 akH
 akH
-amq
+uun
 aaa
 aaa
 aaa
@@ -96928,9 +96928,9 @@ aaa
 aaa
 aaa
 atA
-akG
+hwh
 alO
-amq
+uun
 atA
 aaa
 aaa
@@ -97700,7 +97700,7 @@ aci
 atO
 aDP
 aBw
-asa
+isi
 aBw
 aBw
 aBw
@@ -98001,7 +98001,7 @@ aci
 aci
 aBr
 aEd
-apo
+ykv
 aBw
 aBw
 aCV
@@ -98309,7 +98309,7 @@ aBr
 aBr
 aFe
 aBw
-asa
+isi
 aNk
 aPs
 aBr
@@ -99219,7 +99219,7 @@ aBr
 aBr
 aCV
 aBw
-aqP
+vMz
 aPR
 aQr
 aaf
@@ -99824,7 +99824,7 @@ act
 aBr
 aBr
 aBw
-asa
+isi
 apt
 aum
 aaX
@@ -100731,7 +100731,7 @@ aaa
 act
 aBr
 aBr
-asa
+isi
 aIt
 aQW
 aQW
@@ -122126,7 +122126,7 @@ adJ
 adQ
 adA
 aec
-aem
+qkp
 aev
 aeC
 aep
@@ -122427,7 +122427,7 @@ adA
 adK
 adI
 adA
-aed
+sAg
 aen
 adZ
 aeD
@@ -123339,9 +123339,9 @@ aep
 aeF
 aep
 adq
-aft
-afD
-afR
+wpK
+xkf
+mGX
 adq
 agd
 agd
@@ -123641,9 +123641,9 @@ aex
 aep
 aeW
 afi
-afu
-afE
-afS
+pOc
+ock
+qqO
 adq
 agl
 agd
@@ -123943,9 +123943,9 @@ aey
 aeG
 aeX
 adq
-afv
-afF
-afT
+iUN
+xMp
+ltU
 adq
 agd
 agd

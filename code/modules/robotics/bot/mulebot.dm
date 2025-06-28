@@ -531,7 +531,7 @@
 		if(src.mode <= 0) return TRUE
 		if(bloodiness && issimulatedturf(src.last_loc))
 			//boutput(world, "at ([x],[y]) moving to ([next.x],[next.y])")
-			var/obj/decal/cleanable/blood/tracks/B = make_cleanable(/obj/decal/cleanable/blood/tracks, loc)
+			var/obj/decal/cleanable/tracked_reagents/blood/tracks/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/tracks, loc)
 			var/newdir = get_dir(loc, last_loc)
 			if(newdir == dir)
 				B.set_dir(newdir)

@@ -59,6 +59,7 @@ datum
 		var/boiling_point = T0C + 100
 		var/can_crack = 0 // used by organic chems
 		var/contraband = 0 // bastards hate this shit
+		var/evaporates_cleanly = FALSE // vanishes on evaporation
 
 		New()
 			..()
@@ -283,8 +284,6 @@ datum
 			if (effect <= 8)
 				M.take_toxin_damage(severity * mult)
 			return effect
-
-
 
 		proc/handle_addiction(var/mob/M, var/rate)
 			//DEBUG_MESSAGE("[src.id].handle_addiction([M],[rate])")
