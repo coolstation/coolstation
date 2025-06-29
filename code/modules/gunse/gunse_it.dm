@@ -285,7 +285,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		else if(prob(50))
 			stock = new /obj/item/gun_parts/stock/italian(src)
 		else
-			grip = new /obj/item/gun_parts/grip/italian/bandit(src)
+			grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
 
 		if(prob(40))
 			barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)

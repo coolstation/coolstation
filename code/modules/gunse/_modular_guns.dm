@@ -951,9 +951,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(src.bulk > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
 		src.can_dual_wield = FALSE
-	src.force = 2 + bulk
-	src.throwforce = bulk
-	src.w_class = ceil(W.bulk / 3)
+	src.force = 2 + src.bulk
+	src.throwforce = src.bulk
+	src.w_class = ceil(src.bulk / 3)
 
 	src.spread_angle = max(0, src.spread_angle) // hee hoo
 
