@@ -208,23 +208,6 @@
 	icon_state = "jukebox_new"
 	item_state = "jukebox_new"
 
-/obj/item/instrument/large/jukeboxvocaloid
-	name = "old jukebox"
-	desc = "Sure does! I just oiled it..."
-	anchored = 1
-	icon = 'icons/obj/decoration.dmi'
-	icon_state = "jukebox"
-	item_state = "jukebox"
-	sounds_instrument = list('sound/musical_instruments/jukebox/fukkireta.ogg',
-	'sound/musical_instruments/jukebox/popipo.ogg',
-	'sound/musical_instruments/jukebox/triple.ogg',
-	'sound/musical_instruments/jukebox/world.ogg')
-	pick_random_note = 0
-	randomized_pitch = 0
-
-	show_play_message(mob/user as mob)
-		return
-
 /* -------------------- OLD SAXO -------------------- */
 /obj/item/saxophone
 	name = "saxophone"
