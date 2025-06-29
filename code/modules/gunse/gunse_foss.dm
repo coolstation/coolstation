@@ -19,7 +19,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "foss_receiver"
 	contraband = 7
-	fiddlyness = 50
+	load_time = 1.25 SECONDS
 	//set these manually because nothing really uh
 	//nothing else is like the foss guns
 	barrel_overlay_x = 6

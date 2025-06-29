@@ -33,7 +33,7 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 	var/delaystart
 	var/delay
 	/// If 0, don't fullauto. Otherwise, fullauto is true
-	var/toggle = 0
+	var/active = TRUE
 	var/list/atom/movable/screen/fullautoAimHUD/hudSquares = list()
 	var/atom/movable/screen/fullautoAimHUD/hudCenter
 	var/client/aimer
@@ -49,11 +49,11 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 				src.delaystart = _delaystart
 
 
-	Initialize(delaystart = 1.5 DECI SECONDS)
+	Initialize(delaystart = 1.5 DECI SECONDS, active = TRUE)
 		if(..() == COMPONENT_INCOMPATIBLE || !istype(parent, /obj/item/gun))
 			return COMPONENT_INCOMPATIBLE
 		else
-			src.toggle = toggle
+			src.active = active
 			var/obj/item/gun/G = parent
 			src.delaystart = delaystart
 
@@ -77,10 +77,9 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 			hudSquares += hudSquare
 			hudCenter = hudSquare
 
-			RegisterSignal(G, COMSIG_GUN_PROJECTILE_CHANGED, PROC_REF(toggle_fullauto_firemode))
-			RegisterSignal(G, COMSIG_SCOPE_TOGGLED, PROC_REF(scope_toggled))
+			RegisterSignal(G, COMSIG_SCOPE_TOGGLED, PROC_REF(scope_actived))
 
-			if(src.toggle)
+			if(src.active)
 				RegisterSignal(G, COMSIG_ITEM_SWAP_TO, PROC_REF(init_fullauto_mode))
 				RegisterSignal(G, COMSIG_ITEM_SWAP_AWAY, PROC_REF(end_fullauto_mode))
 				if(ismob(G.loc))
@@ -106,22 +105,17 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 
 
 	on_pickup(datum/source, mob/user)
-		var/obj/item/gun/G = parent
 		. = ..()
-		if(G?.current_projectile?.fullauto_valid)
-			if(toggle)
-				if(user.equipped() == parent)
-					init_fullauto_mode(source, user)
-			else
-				if(user.equipped() == parent)
-					toggle_fullauto_firemode(source, G.current_projectile)
+		if(active)
+			if(user.equipped() == parent)
+				init_fullauto_mode(source, user)
 
 
 	on_dropped(datum/source, mob/user)
 		end_fullauto_mode(source, user)
 		. = ..()
 
-/datum/component/holdertargeting/fullauto/proc/scope_toggled(datum/source, scope_active)
+/datum/component/holdertargeting/fullauto/proc/scope_actived(datum/source, scope_active)
 	var/old_scoped = src.scoped
 	src.scoped = scope_active
 	if(!aimer)
@@ -135,21 +129,20 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 		aimer.screen -= hudCenter
 		return
 
-/datum/component/holdertargeting/fullauto/proc/toggle_fullauto_firemode(datum/source, datum/projectile/newProj)
+/datum/component/holdertargeting/fullauto/proc/set_fullauto_active(var/new_active = TRUE)
 	var/obj/item/gun/G = parent
-	if(current_user && newProj.fullauto_valid != toggle)
-		toggle = !toggle
+	src.active = new_active
 
-		if(toggle)
-			RegisterSignal(G, COMSIG_ITEM_SWAP_TO, PROC_REF(init_fullauto_mode))
-			RegisterSignal(G, COMSIG_ITEM_SWAP_AWAY, PROC_REF(end_fullauto_mode))
-			if(current_user.equipped() == G)
-				init_fullauto_mode(source, current_user)
-		else
-			UnregisterSignal(G, COMSIG_ITEM_SWAP_TO)
-			UnregisterSignal(G, COMSIG_ITEM_SWAP_AWAY)
-			if(current_user.equipped() == G)
-				end_fullauto_mode(source, current_user)
+	if(src.active)
+		RegisterSignal(G, COMSIG_ITEM_SWAP_TO, PROC_REF(init_fullauto_mode))
+		RegisterSignal(G, COMSIG_ITEM_SWAP_AWAY, PROC_REF(end_fullauto_mode))
+		if(current_user.equipped() == G)
+			init_fullauto_mode(G, current_user)
+	else
+		UnregisterSignal(G, COMSIG_ITEM_SWAP_TO)
+		UnregisterSignal(G, COMSIG_ITEM_SWAP_AWAY)
+		if(current_user.equipped() == G)
+			end_fullauto_mode(G, current_user)
 
 /datum/component/holdertargeting/fullauto/proc/init_fullauto_mode(datum/source, mob/user)
 	RegisterSignal(user, COMSIG_FULLAUTO_MOUSEDOWN, PROC_REF(begin_shootloop))
@@ -244,11 +237,8 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 
 	delay = delaystart
 	while(!stopping)
-		if(G.canshoot(L))
-			G.Shoot(target ? target : get_step(L, NORTH), get_turf(L), L, src.target_pox, src.target_poy, called_target = target)
-			G.suppress_fire_msg = 1
-		else
-			end_shootloop(L)
+		G.Shoot(target ? target : get_step(L, NORTH), get_turf(L), L, src.target_pox, src.target_poy, called_target = target)
+		G.suppress_fire_msg = 1
 		sleep(delay)
 		src.iterate_delay()
 

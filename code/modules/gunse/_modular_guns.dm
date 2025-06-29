@@ -77,10 +77,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//var/misfire_frequency = 1 //base % chance to fire wrong in some way
 	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately (but will after a delay, whether held or not)
 	//var/catastrophic_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user. probably not fun to have to find a screwdriver or rod and poke it out so forget that
-	var/fiddlyness = 25 //how difficult is it to load and clear jams from this gun (determines failure %)
+	var/load_time = 1 SECOND // added to the load_time of the ammo
+	var/reload_cooldown = 0.3 SECONDS // how often you can try to reload/clear jams
 	var/max_ammo_capacity = 1 // How much ammo can this gun hold? Don't make this null (Convair880).
 	var/sound_type = null //bespoke set of loading and cycling noises
-	var/do_icon_recoil = FALSE // its broken!!!!
 	var/flashbulb_only = 0 // FOSS guns only
 	var/auto_eject = 0 // Do we eject casings on cycle, or on reload?
 	var/action = null //what kinda gun is this
@@ -94,6 +94,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	///how many pixels from the center (16,16) does the stock attach
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
+
 	var/foregrip_offset_x = 8 //where to place the foregrip relative to the grip (default: 8 inches)
 	var/foregrip_offset_y = 0
 	var/magazine_overlay_x = 0
@@ -127,7 +128,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/list/ammo_list = list() // a list of datum/projectile types
 	current_projectile = null // chambered round
 	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time (reset this on pickup)
-	var/hammer_cocked = FALSE //not everything is a hammer but this basically means ready to fire (single action will not fire if not cocked)
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
 	var/accessory_on_cycle = 0 // does the accessory need to know you pressed C?
@@ -193,7 +193,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
 	. += "<div> <span>Maxcap: [src.max_ammo_capacity + 1] </span></div>"
-	. += "<div> <span>Loaded: [src.ammo_list.len + (src.current_projectile?1:0)] </span></div>"
+	. += "<div> <span>Loaded: [src.ammo_reserve() + (src.current_projectile?1:0)] </span></div>"
 
 	lastTooltipContent = .
 
@@ -291,7 +291,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		recoil_stacks += 1
 		stacked_recoil = clamp(round(recoil_stacks) - recoil_stacking_safe_stacks,0,recoil_stacking_max_stacks) * recoil_stacking_amount
 	var/datum/projectile/projectile = (force_projectile ? force_projectile : src.current_projectile)
-	var/implicit_recoil_strength = 5*log(projectile.power * projectile.shot_number)+10
+	var/implicit_recoil_strength = 5*log(projectile.power * projectile.shot_number)
 	recoil += (implicit_recoil_strength + stacked_recoil)
 	recoil = clamp(recoil, 0, recoil_max)
 	recoil_last_shot = TIME
@@ -301,11 +301,41 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if (first_shot && projectile.shot_number > 1 && projectile.shot_delay > 0)
 		for (var/i=1 to projectile.shot_number-1)
 			var/force_proj = src.current_projectile
-			spawn(i*projectile.shot_delay)
+			SPAWN_DBG(i*projectile.shot_delay)
 				handle_recoil(user,start,target,POX,POY, FALSE, force_proj) // hacky. pass current_projectile
 	if (start_recoil && icon_recoil_enabled)
-		spawn(0)
+		SPAWN_DBG(0)
 			do_icon_recoil()
+
+// how much ammo is left outside the chamber, overriden by children
+/obj/item/gun/modular/proc/ammo_reserve()
+	return length(src.ammo_list)
+
+// load a piece of ammo, overriden by children
+/obj/item/gun/modular/proc/load_ammo(var/mob/user, var/obj/item/stackable_ammo/donor_ammo)
+	//single shot and chamber handling
+	if(!src.current_projectile)
+		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
+		src.set_current_projectile(new donor_ammo.projectile_type())
+		if (src.sound_type)
+			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
+		else
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+
+	//load the magazine after the chamber
+	else if (src.ammo_reserve() < src.max_ammo_capacity)
+		if (src.sound_type)
+			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
+	else
+		playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+	src.ammo_list += donor_ammo.projectile_type
+
+	//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
+	if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
+		src.jammed = JAM_LOAD
+		boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+		return FALSE
+	return TRUE
 
 //Replaces /obj/item/stackable_ammo/proc/reload. Now also does distance interrupts and doesn't rely on sleeps
 /datum/action/bar/private/load_ammo
@@ -329,7 +359,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			interrupt(INTERRUPT_ALWAYS)*/
 		target_gun = gun
 		donor_ammo = ammo
-		duration += (target_gun.fiddlyness/100) - 0.25 + (donor_ammo.fiddlyness/100) //baseline (NT) fiddliness is 25% so let's make that 1 second
+		duration = max(0.1 SECONDS, target_gun.load_time + donor_ammo.load_time) //baseline (NT) load_time is 1 second
 		..()
 
 	onStart()
@@ -389,7 +419,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (!target_gun.max_ammo_capacity) //single shot
 				boutput(owner, "<span class='notice'>There's already a cartridge in [target_gun]!</span>")
 				interrupt(INTERRUPT_ALWAYS)
-			else if (length(target_gun.ammo_list) >= target_gun.max_ammo_capacity) //multi shot
+			else if (target_gun.ammo_reserve() >= target_gun.max_ammo_capacity) //multi shot
 				boutput(owner, "<span class='notice'>You can't load [target_gun] any further!</span>")
 				interrupt(INTERRUPT_ALWAYS)
 
@@ -397,10 +427,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//one more distance check
 		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_ammo) > 1)
 			interrupt(INTERRUPT_ALWAYS)
+			return ..()
 
 		//special handling for flash bulbs, which don't have projectile_type I guess. onStart should have validated the gun and ammo with each other.
 		if (!donor_ammo.projectile_type)
-			if(target_gun.ammo_list.len < target_gun.max_ammo_capacity)
+			if(target_gun.ammo_reserve() < target_gun.max_ammo_capacity)
 				target_gun.ammo_list += donor_ammo
 				var/mob/M = owner
 				M.u_equip(donor_ammo)
@@ -412,46 +443,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				boutput(owner, "<span class='notice'>You finish loading a flashtube into [target_gun].</span>")
 
 		else //All normal guns
-			//single shot and chamber handling
-			if(!target_gun.current_projectile)
-				boutput(owner, "<span class='notice'>You stuff a cartridge down the barrel of [target_gun]</span>")
-				target_gun.current_projectile = new donor_ammo.projectile_type ()
-				//play the sound here because single shot bypasses cycle_ammo
-				if (target_gun.sound_type)
-					playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-slowcycle.ogg", 60, 1)
-				else
-					playsound(target_gun.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				target_gun.hammer_cocked = TRUE
-
-			//load the magazine after the chamber
-			else if (length(target_gun.ammo_list) < target_gun.max_ammo_capacity)
-				if (target_gun.sound_type)
-					playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-load[rand(1,2)].ogg", 10, 1)
-				else
-					playsound(target_gun.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
-				target_gun.ammo_list += donor_ammo.projectile_type
-
-				//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
-				if (prob(target_gun.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
-					target_gun.jammed = JAM_LOAD
-					boutput(owner, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
-					interrupt(INTERRUPT_ALWAYS)
+			if(!target_gun.load_ammo(owner, donor_ammo))
+				interrupt(INTERRUPT_ALWAYS)
 
 			donor_ammo.change_stack_amount(-1)
 		eat_twitch(target_gun) //om nom nom
 
+		var/stored_ammo_left = target_gun.ammo_reserve()
 		//update ammo counter
 		if(!target_gun.flashbulb_only) //FOSS guns already do it in flash_process_ammo()
-			if(target_gun.max_ammo_capacity)
-				target_gun.inventory_counter.update_number(length(target_gun.ammo_list) + !!target_gun.current_projectile)
-			else
-				target_gun.inventory_counter.update_number(!!target_gun.current_projectile)
-
+			target_gun.inventory_counter.update_number(stored_ammo_left + !!target_gun.current_projectile)
 
 		if(!donor_ammo.amount) //probably more useful to tell a single-shot user they ran out of ammo than that they have a full gun.
 			boutput(owner, "<span class='notice'>All the ammo has been loaded.</span>")
 			..()
-		else if (length(target_gun.ammo_list) == target_gun.max_ammo_capacity)
+		else if (stored_ammo_left == target_gun.max_ammo_capacity)
 			boutput(owner, "<span class='notice'>The hold is now fully loaded.</span>")
 			if (target_gun.sound_type)
 				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-stopload.ogg", 30, 1)
@@ -544,23 +550,23 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			processing_ammo = FALSE
 			return 0
 
-	if(!ammo_list.len) //no bulbs in reserve? (behavior that will probably/possibly change)
+	if(!src.ammo_reserve()) //no bulbs in reserve? (behavior that will probably/possibly change)
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
 		return (current_projectile?1:0) //thinking this shouldn't be able to fire without a flashbulb, but for now...
 
-	if(ammo_list.len > max_ammo_capacity)
-		var/waste = ammo_list.len - max_ammo_capacity
+	if(src.ammo_reserve() > max_ammo_capacity)
+		var/waste = src.ammo_reserve() - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
 
-	if(!ammo_list.len) //check happens again because of process
+	if(src.ammo_reserve()) //check happens again because of process
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
 		return (current_projectile?1:0)
 
 	else
 		processing_ammo = TRUE
-		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[ammo_list.len]
+		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[src.ammo_reserve()]
 		//check for right kind of ammo
 		if(!istype(FB))
 			boutput(user,"<span class='notice'><b>Error! This device is configured only for FOSS Cathodic Flash Bulbs.</b></span>")
@@ -571,8 +577,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				jammed = JAM_LOAD
 				boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
 				playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-				qdel(ammo_list[ammo_list.len])
-				ammo_list.Remove(ammo_list[ammo_list.len]) //see ya
+				ammo_list.Remove(FB) //see ya
+				qdel(FB)
 				processing_ammo = FALSE
 				return 0
 
@@ -581,8 +587,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
-			qdel(ammo_list[ammo_list.len]) //please don't qdel typepaths
-		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
+			ammo_list.Remove(FB) //and remove it from the list
+			qdel(FB) //please don't qdel typepaths
 
 		processing_ammo = FALSE
 		return (current_projectile?1:0)
@@ -617,13 +623,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(JAM_FIRE) //problem on fire, either dud round or light strike
 			if(prob(current_projectile.dud_freq)) //unlucky, dump the round
 				src.jammed = FALSE
-				src.current_projectile = null
+				src.set_current_projectile(null)
 				//come up with a good sound for this
 				boutput(user, "You pry the dud round out of [src]") //drop a dud
 				return 0
 			else //just hit it again it'll work for sure
 				src.jammed = FALSE
-				src.hammer_cocked = TRUE
 				if (sound_type)
 					playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
 				else
@@ -642,42 +647,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//if(4) //squib, catastrophic failure, etc. real bad time. explode if shot, or requires repair?
 		//if(5) //hangfire, figure out how to handle
 
-	if(!ammo_list.len) // empty!
-		if (!hammer_cocked)
-			if (sound_type)
-				playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
-			else if (src.action == "pump")
-				playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
-			else
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
-			hammer_cocked = 1
-			boutput(user,"<span class='notice'><b>You cycle [src]'s action, but it's empty!</b></span>")
-		else if(accessory && accessory_alt)
+	var/stored_ammo_left = src.ammo_reserve()
+	if(!stored_ammo_left) // empty!
+		if(accessory && accessory_alt)
 			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
 			boutput(user,"<span class='notice'><b>You fiddle with [accessory] since you're out of ammo.</b></span>")
 		else
 			boutput(user,"<span class='notice'><b>You faff around with your unloaded [src].</b></span>")
 		return (current_projectile?1:0)
 
-	if(ammo_list.len > max_ammo_capacity)
-		var/waste = ammo_list.len - max_ammo_capacity
+	if(stored_ammo_left > max_ammo_capacity)
+		var/waste = stored_ammo_left - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
-
-	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
-		if (!hammer_cocked)
-			hammer_cocked = 1
-			boutput(user,"<span class='notice'><b>You cycle [src]'s action, but it's empty!</b></span>")
-			if (sound_type)
-				playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
-			else if (src.action == "pump")
-				playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
-			else
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
-		else
-			boutput(user,"<span class='notice'><b>You faff around with your unloaded [src].</b></span>")
-		return 0
 
 	if(current_projectile) // chamber is loaded
 		if(accessory && accessory_alt)
@@ -691,10 +674,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 0
 	else
 		//finally, everything normal. just load it and cycle
-		var/ammotype = ammo_list[ammo_list.len]
-		current_projectile = new ammotype() // last one goes in
-		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
-		hammer_cocked = TRUE
+		src.chamber_round()
 		if (sound_type)
 			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
 		else if (src.action == "pump")
@@ -703,31 +683,28 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 		return 1
 
+/obj/item/gun/modular/proc/chamber_round()
+	var/ammotype = ammo_list[src.ammo_reserve()]
+	src.set_current_projectile(new ammotype()) // this one goes in
+	ammo_list.Remove(ammotype) //and remove it from the list
+
 //cycle weapon + update counter
 /obj/item/gun/modular/attack_self(mob/user)
 	if(flashbulb_only)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
 	else
-		if(!src.processing_ammo)
+		if(!src.processing_ammo && (!src.reload_cooldown || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
 			process_ammo(user)
 		if(src.max_ammo_capacity)
 			// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
-			src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
-		else
-			src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
-		if(!hammer_cocked) //for italian revolver purposes, doesn't process_ammo like normal
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-			boutput(user,"<span><b>You cock the hammer.</b></span>")
-			hammer_cocked = 1
+			src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
 	buildTooltipContent()
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 
 /obj/item/gun/modular/canshoot()
 	if(jammed)
 		return 0
-	//do this later, i'm just focusing on sounds and reloads for now
-	//if(hammer_cocked && action == "single")
-	//	return 0
 	if(!built)
 		return 0
 	if(flashbulb_only && !flashbulb_health)
@@ -746,13 +723,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return FALSE
 	if (!canshoot())
 		if (ismob(user))
-			if (hammer_cocked)
-				user.show_text("*click* *click*", "red") // No more attack messages for empty guns (Convair880).
-				hammer_cocked = FALSE
-				if (!silenced)
-					playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
-			else if (!processing_ammo)
-				user.show_text("Nothing happens!", "red")
+			user.show_text("*click* *click*", "red") // No more attack messages for empty guns (Convair880).
+			if (!silenced)
+				playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
 		return FALSE
 	if (!isturf(target) || !isturf(start))
 		return FALSE
@@ -786,7 +759,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
 			//check chance to have a worse misfire
 			chamber_checked = FALSE
-			hammer_cocked = FALSE
 			return
 
 	//jam flashbulb gun's
@@ -827,7 +799,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			else
 				user.show_text("The flashtube shorts out and dies!", "red")
 			chamber_checked = FALSE
-			hammer_cocked = FALSE
 			return //stop
 			//maybe a chance to force a shot if this is done while cranking rather than attempting to fire
 
@@ -851,7 +822,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		P.forensic_ID = src.forensic_ID
 
 	chamber_checked = FALSE
-	hammer_cocked = FALSE
 
 	if(call_on_fire & GUN_PART_BARREL)
 		barrel.on_fire(src, P)
@@ -924,21 +894,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return
 
 	if(!flash_auto)
-		current_projectile = null // empty chamber
-
-	if(!max_ammo_capacity)
-		src.inventory_counter.update_number(!!current_projectile)
+		src.set_current_projectile(null) // empty chamber
 
 	src.update_icon()
 
 	//updating count again after shooting
-	//a lot of this can be more efficient i just want to get basic behaviors done and working right
-	if(src.max_ammo_capacity)
-		src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
-	else
-		src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
 	if(flashbulb_only) //we just want to do this regardless of whatever happens with bulbs possibly burning out
 		src.inventory_counter.update_number(crank_level)
+	else
+		src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
 
 	if(prob(jam_frequency))
 		jammed = JAM_CYCLE
@@ -957,13 +921,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank_level--
 		else
 			crank_level = 0
-	current_projectile = null // empty chamber
-	hammer_cocked = FALSE
+	src.set_current_projectile(null) // empty chamber
 	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
 	name = real_name
 	icon_state = initial(icon_state)//if i don't do this it's -built-built-built
+
+	bulk = src.bulkiness
+
 	parts = list()
 	if(barrel)
 		parts += barrel
@@ -982,11 +948,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
-	if(bulk > 6 || flashbulb_only) //flashfoss always two hands, how else will you crank off
+	if(src.bulk > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
 		src.can_dual_wield = FALSE
 	src.force = 2 + bulk
 	src.throwforce = bulk
+	src.w_class = ceil(W.bulk / 3)
 
 	src.spread_angle = max(0, src.spread_angle) // hee hoo
 
@@ -998,6 +965,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flags |= ONBELT
 	buildTooltipContent()
 	built = 1
+
+	src.inventory_counter.update_number(0)
 
 	//update the icon to match!!!!!
 
@@ -1083,7 +1052,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level for autoloader
 			if(!current_projectile)
-				current_projectile = new /datum/projectile/laser/flashbulb()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb())
 			src.inventory_counter.update_number(crank_level)
 			//07_Flywheel Toy Car.wav by 14GPanskaVitek_Martin -- https://freesound.org/s/420215/ -- License: Attribution 3.0
 			playsound(src.loc, "sound/weapons/modular/crank-flywheel.ogg", 60, 0, pitch = (0.65 + (crank_level * 0.03)))
@@ -1106,17 +1075,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			qdel(current_projectile)
 		switch(crank_level)
 			if (0)
-				current_projectile = null // this shouldnt happen but just in case!
+				src.set_current_projectile(null) // this shouldnt happen but just in case!
 			if (1)
-				current_projectile = new /datum/projectile/laser/flashbulb()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb())
 			if (2)
-				current_projectile = new /datum/projectile/laser/flashbulb/two()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/two())
 			if (3)
-				current_projectile = new /datum/projectile/laser/flashbulb/three()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/three())
 			if (4)
-				current_projectile = new /datum/projectile/laser/flashbulb/four()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/four())
 			if (5)
-				current_projectile = new /datum/projectile/laser/flashbulb/five()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/five())
 		playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.5 + (crank_level * 0.15))) //eventually make this buzzes and alarms and etc.
 		src.inventory_counter.update_number(crank_level)
 		currently_cranking_off = FALSE

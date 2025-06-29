@@ -55,8 +55,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/datum/projectile/projectile_type = null
 	var/ammo_DRM = null
 	var/reloading = 0
-	var/fiddlyness = 0
-
+	var/load_time = 0 // added to the load_time of the gun
 
 	New(var/atom/loc, var/amt = 1 as num)
 		var/default_amount = (min_amount==max_amount) ? min_amount : rand(min_amount,max_amount)
@@ -296,7 +295,7 @@ THE_USUAL_FLAVOURS(pistol/NT, "\improper NT pistol round")
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
-	fiddlyness = 5
+	load_time = 0.05 SECONDS
 THE_USUAL_FLAVOURS(pistol/HP, "\improper NT HP pistol round")
 
 /obj/item/stackable_ammo/pistol/ratshot
@@ -311,7 +310,7 @@ THE_USUAL_FLAVOURS(pistol/HP, "\improper NT HP pistol round")
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
-	fiddlyness = 10
+	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 
 //making these paper for now (paper will be used for custom rounds)
@@ -327,7 +326,7 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
-	fiddlyness = 25
+	load_time = 0.25 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 
 //rename to pistol/italian/ap
@@ -343,7 +342,7 @@ THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
-	fiddlyness = 30
+	load_time = 0.3 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 
 /obj/item/stackable_ammo/pistol/juicer
@@ -358,7 +357,7 @@ THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 	icon_empty = "juicer_jr-empty"
 	icon_one   = "bullet_juicer_jr"
 	icon_shell = "juicer_jr_case"
-	fiddlyness = 50
+	load_time = 0.5 SECONDS
 THE_USUAL_FLAVOURS(pistol/juicer, "\improper Juicer Jr. round")
 
 /obj/item/stackable_ammo/pistol/tranq
@@ -373,7 +372,7 @@ THE_USUAL_FLAVOURS(pistol/juicer, "\improper Juicer Jr. round")
 	icon_empty = "nt_empty"
 	icon_one   = "it_what"
 	icon_shell = "white_case"
-	fiddlyness = 20
+	load_time = 0.2 SECONDS
 THE_USUAL_FLAVOURS(pistol/tranq, "\improper NT Tranq-Will-8-or")
 
 /obj/item/stackable_ammo/pistol/anti_mutant
@@ -388,7 +387,7 @@ THE_USUAL_FLAVOURS(pistol/tranq, "\improper NT Tranq-Will-8-or")
 	icon_empty = "nt_empty"
 	icon_one   = "it_what"
 	icon_shell = "white_case"
-	fiddlyness = 15
+	load_time = 0.15 SECONDS
 THE_USUAL_FLAVOURS(pistol/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart")
 
 
@@ -431,7 +430,7 @@ THE_USUAL_FLAVOURS(pistol/capacitive, "\improper NT In-Capacit-8-or")
 	projectile_type = /datum/projectile/rad_bolt
 	stack_type = /obj/item/stackable_ammo/pistol/radbow
 	desc = "Stealthy projectiles that cause insidious radiation poisoning. Fits in just about anything."
-	fiddlyness = 25
+	load_time = 0.25 SECONDS
 THE_USUAL_FLAVOURS(pistol/radbow, "\improper Syndicate Radioactive Darts")
 
 /obj/item/stackable_ammo/pistol/zaubertube/
@@ -446,7 +445,7 @@ THE_USUAL_FLAVOURS(pistol/radbow, "\improper Syndicate Radioactive Darts")
 	icon_empty = "soviet-empty"
 	icon_one   = "zauber_tube"
 	icon_shell = "zauber_spent"
-	fiddlyness = 15
+	load_time = 0.15 SECONDS
 THE_USUAL_FLAVOURS(pistol/zaubertube, "\improper Soviet zaubertubes")
 
 //rifle shit
@@ -467,7 +466,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
-	fiddlyness = 5
+	load_time = 0.05 SECONDS
 
 THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle ammo")
 
@@ -483,7 +482,7 @@ THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle ammo")
 	icon_empty = "soviet-empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
-	fiddlyness = 10
+	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus ammo")
 
 /obj/item/stackable_ammo/rifle/juicer
@@ -498,7 +497,7 @@ THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus ammo")
 	icon_empty = "juicer_big-empty"
 	icon_one   = "bullet_juicer_big"
 	icon_shell = "juicer_big_case"
-	fiddlyness = 20
+	load_time = 0.2 SECONDS
 THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 
 //make a single shot
@@ -514,7 +513,7 @@ THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 	icon_empty = "nt_stun_empty"
 	icon_one   = "bullet_nerf"
 	icon_shell = "nerf_case"
-	fiddlyness = 10
+	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(rifle/capacitive/burst, "\improper NT In-Capacit-8-or MAX")
 
 
@@ -547,7 +546,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_state = "nt_shells"
 	icon_full  = "nt_shells"
 	icon_empty = "nt_shells-empty"
-	fiddlyness = 10
+	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(scatter/NT, "\improper NT Shot")
 
 //NT's EXTRA skinny shotgun shell, which works in regular light barrels! wow!
@@ -559,7 +558,7 @@ THE_USUAL_FLAVOURS(scatter/NT, "\improper NT Shot")
 	stack_type = /obj/item/stackable_ammo/scatter/NT/mini
 	icon_one   = "shell_mini_blue"
 	icon_shell = "shell_mini_case"
-	fiddlyness = 15
+	load_time = 0.15 SECONDS
 THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 
 //thinking FOSS might make some stupid shotgun shells. for later
@@ -577,7 +576,7 @@ THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
 	//cartridge_length = 40 //for big receivers only
-	fiddlyness = 30
+	load_time = 0.3 SECONDS
 THE_USUAL_FLAVOURS(scatter/juicer, "\improper Juicer Hot Pocketz")
 
 /obj/item/stackable_ammo/scatter/juicer/denim
@@ -591,7 +590,7 @@ THE_USUAL_FLAVOURS(scatter/juicer, "\improper Juicer Hot Pocketz")
 	icon_empty = "juicer_shells_blue-empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
-	fiddlyness = 50
+	load_time = 0.5 SECONDS
 THE_USUAL_FLAVOURS(scatter/juicer/denim, "\improper Juicer JAMMO")
 
 /obj/item/stackable_ammo/scatter/bartender
@@ -605,7 +604,7 @@ THE_USUAL_FLAVOURS(scatter/juicer/denim, "\improper Juicer JAMMO")
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
-	fiddlyness = 10
+	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(scatter/bartender, "\improper Bartender's Buddy")
 
 /obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
@@ -614,7 +613,7 @@ THE_USUAL_FLAVOURS(scatter/bartender, "\improper Bartender's Buddy")
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/slug_rubber
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
-	fiddlyness = 10
+	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(scatter/slug_rubber, "\improper NT rubber slug")
 
 //silly idea, I figure would be crafted ammo and not bought (though for the moment they are bought I haven't decided on a crafting method)
@@ -624,7 +623,7 @@ THE_USUAL_FLAVOURS(scatter/slug_rubber, "\improper NT rubber slug")
 	desc = "A metal coil packed into a bullet cartridge. This seems both stupid and cruel."
 	projectile_type = /datum/projectile/bullet/coil
 	stack_type = /obj/item/stackable_ammo/coil
-	fiddlyness = 5
+	load_time = 0.05 SECONDS
 THE_USUAL_FLAVOURS(coil, "coil slug round")
 
 /obj/item/stackable_ammo/flashbulb/
@@ -682,7 +681,7 @@ THE_USUAL_FLAVOURS(coil, "coil slug round")
 	max_health = 25
 	min_health = 20
 	icon_state = "bulb_good"
-	fiddlyness = 15
+	load_time = 0.15 SECONDS
 
 /obj/item/storage/box/foss_flashbulbs
 	name = "box of FOSSYN flashtubes"

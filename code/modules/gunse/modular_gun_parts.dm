@@ -203,7 +203,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	max_ammo_capacity = 0 //modifier
 	flashbulb_only = FALSE // FOSS guns only
 	max_crank_level = 0 // FOSS guns only
-	bulkiness = 1 // if gun or stock is 2 handed, whole gun is 2 handed
 	jam_frequency = 0 //attitional % chance to jam on reload. Just reload again to clear.
 	part_DRM = GUN_JUICE | GUN_NANO | GUN_SOVIET | GUN_ITALIAN //pretty much everyone by default
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
@@ -252,7 +251,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 /obj/item/gun_parts/grip/
 	//add a var for a power cell later
-	bulkiness = 1
 	part_type = GUN_PART_GRIP
 	spread_angle = 0 // modifier, added to stock
 	icon_state = "wiz"
@@ -350,6 +348,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_blue_short"
 	length = 10
 	overlay_x = 5
+	bulkiness = 2
 
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
@@ -358,8 +357,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = " longarm"
 	icon_state = "nt_blue"
 	length = 16
-	bulkiness = 3
 	overlay_x = 7
+	bulkiness = 3
 
 /obj/item/gun_parts/barrel/NT/short
 	name = "standard snub barrel"
@@ -376,18 +375,18 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 10
 	icon_state = "nt_blue_shot"
 	add_suffix = " shotty"
-	bulkiness = 2
 	overlay_x = 6
+	bulkiness = 2
 
 /obj/item/gun_parts/barrel/NT/shotty/short
 	name = "sawn-off barrel"
-	spread_angle = 12
+	spread_angle = 14
 	scatter = 1
-	length = 10
+	length = 6
 	icon_state = "nt_blue_shotshort"
 	add_suffix = " shottie"
-	bulkiness = 2
 	overlay_x = 4
+	bulkiness = 1
 
 /obj/item/gun_parts/barrel/NT/long/very
 	name = "special long barrel"
@@ -395,9 +394,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	add_suffix = " polearm"
 	icon_state = "nt_blue_very"
-	length = 50
+	length = 30
 	icon = 'icons/obj/items/modular_guns/64.dmi'
-	bulkiness = 3
+	bulkiness = 5
 
 /obj/item/gun_parts/barrel/NT/long/padded
 	name = "padded long barrel"
@@ -405,8 +404,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	add_suffix = " club"
 	icon_state = "nt_guarded"
-	bulkiness = 4
 	overlay_x = 8
+	bulkiness = 4
 
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
@@ -551,6 +550,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = " paisan"
 	length = 13
 	overlay_x = 6
+	bulkiness = 2
 
 /obj/item/gun_parts/barrel/italian/small
 	name = "canna di fucile piccolo"
@@ -560,6 +560,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 9
 	length = 5
 	overlay_x = 3
+	bulkiness = 1
 
 /obj/item/gun_parts/barrel/italian/spicy
 	name = "canna di fucile arrabiata"
@@ -594,6 +595,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 4 //a little shaky
 	length = 25
 	overlay_x = 14
+	bulkiness = 4
+
+/obj/item/gun_parts/barrel/italian/tommy
+	name = "canna di fucile ventilata"
+	desc = "una canna di fucile grande e ventilata a gas"
+	icon_state = "italian_tommy"
+	add_suffix = " sospettosa"
+	spread_angle = 1
+	length = 18
+	overlay_x = 9
+	bulkiness = 4
+	scatter = TRUE
+	// maybe MORE recoil?
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
@@ -716,6 +730,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "strapped "
 	overlay_x = -2
 	overlay_y = -1
+	bulkiness = 2
 
 	red
 		name = "redgrip"
@@ -801,7 +816,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/italian
 	name = "hunting stock"
-	desc = "A fancy walnut Italian stock for hunting (write this in italian later)" //convert from 1-2 hand and conceal
+	desc = "A fancy walnut Italian stock for hunting (write this in italian later)"
 	spread_angle = -5 // brety gud
 	//max_ammo_capacity = 0 // does not add ammo
 	//jam_frequency = 3 // a little more jammy
@@ -813,7 +828,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/italian/wire
 	name = "wire stock"
-	desc = "A long Italian wire stock that currently doesn't fold"
+	desc = "A long Italian wire stock (write this in italian later)"
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
 
@@ -1048,4 +1063,5 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		max_ammo_capacity = 5
 		contraband = 5
 		jam_frequency = 12
+		bulkiness = 2
 

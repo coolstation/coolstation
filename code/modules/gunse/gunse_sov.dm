@@ -32,7 +32,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
 	jam_frequency = 2
-	fiddlyness = 45
+	load_time = 1.2 SECONDS
 
 /obj/item/gun/modular/soviet/short/basic
 	name = "\improper Soviet laser pistol"
@@ -77,7 +77,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	//two_handed = TRUE
 	//can_dual_wield = FALSE
 	jam_frequency = 2
-	fiddlyness = 35
+	load_time = 1.1 SECONDS
 
 /obj/item/gun/modular/soviet/long/advanced
 	name = "\improper advanced Soviet laser rifle"

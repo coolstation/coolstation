@@ -34,8 +34,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	stock_overlay_x = -4
 	stock_overlay_y = -1
 	max_ammo_capacity = 0
-	action = "single"
 	gun_DRM = GUN_NANO
+	bulkiness = 2
 	spread_angle = 6
 
 	//receiver, by itself and unbuilt

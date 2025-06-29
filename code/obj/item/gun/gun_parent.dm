@@ -57,7 +57,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	// Recoil-induced icon tilting. Good for smaller guns. 64x32 icons might look a bit silly with high values.
 	// If your gun uses recoil, it's *strongly* recommended to keep this enabled.
-	var/icon_recoil_enabled = FALSE //! Should this gun's icon tilt?
+	var/icon_recoil_enabled = TRUE //! Should this gun's icon tilt?
 	var/icon_recoil_cap = 10 //! At maximum recoil, what angle should the icon state be at?
 
 	// Recoil strength stacking, increases recoil strength as you shoot more

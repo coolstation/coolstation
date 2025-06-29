@@ -495,7 +495,6 @@ datum/projectile
 		zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
 		caliber = null
 		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
-		fiddlyness = 1			 // How hard is this to handle when there's a jam or misfire
 		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
 
 		datum/material/material = null
@@ -508,8 +507,6 @@ datum/projectile
 		hit_object_sound = 0
 		hit_mob_sound = 0
 
-		///if a fullauto-capable weapon should be able to fullauto this ammo type
-		fullauto_valid = 0
 
 	// Determines the amount of length units the projectile travels each tick
 	// A tile is 32 wide, 32 long, and 32 * sqrt(2) across.
