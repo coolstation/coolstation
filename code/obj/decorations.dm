@@ -926,6 +926,19 @@ obj/decoration/ceilingfan
 	icon_state = "detectivefan"
 	anchored = 1
 	layer = EFFECTS_LAYER_BASE
+	alpha = 255
+	plane = PLANE_NOSHADOW_ABOVE
+	#ifdef IN_MAP_EDITOR
+	color = "#FFFFFF"
+	alpha = 128
+	#endif
+	New()
+		..()
+		var/image/fanimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE,src.dir)
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(fanimage)
+		fanimage.alpha = 120
+		src.alpha = 0
+
 
 /obj/decoration/candles
 	name = "wall mounted candelabra"
