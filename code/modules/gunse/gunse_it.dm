@@ -105,6 +105,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	load_time = 1 SECOND
 	shoot_delay = 0.1 SECONDS // listen, this is a lie. its actually 0.4 seconds if youre good
 	max_ammo_capacity = 5
+	bulkiness = 1
 
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
@@ -275,6 +276,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	name = "basic Italian rattler"
 	real_name = "\improper Bacino"
 	desc = "WIP Italian gun"
+	bulkiness = 3
 
 	load_time = 0.4 SECONDS
 	successful_chamber_frequency = 30

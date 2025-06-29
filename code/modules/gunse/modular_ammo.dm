@@ -318,7 +318,7 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	name = "\improper Italian pistol round"
 	real_name = "\improper Italian pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
-	projectile_type = /datum/projectile/bullet/pistol_medium/AP
+	projectile_type = /datum/projectile/bullet/pistol_medium
 	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"

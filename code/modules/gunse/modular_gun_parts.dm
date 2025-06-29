@@ -818,8 +818,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "hunting stock"
 	desc = "A fancy walnut Italian stock for hunting (write this in italian later)"
 	spread_angle = -5 // brety gud
-	//max_ammo_capacity = 0 // does not add ammo
-	//jam_frequency = 3 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_suffix = " cacciatore"
 	icon_state = "italian_solid"
@@ -829,14 +827,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/italian/wire
 	name = "wire stock"
 	desc = "A long Italian wire stock (write this in italian later)"
-	spread_angle = -2 // not as better stabilisation
-	bulkiness = 1
-
-	foldable = 1
+	spread_angle = -2 // not as good stabilisation
+	bulkiness = 2
+	//foldable = 1
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
-	add_suffix = " stabile"
+	add_suffix = " pirite"
 	icon_state = "italian_wire"
-	overlay_x = 0
+	overlay_x = -7
 
 /obj/item/gun_parts/stock/soviet
 	name = "hunting stock"
