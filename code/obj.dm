@@ -646,7 +646,7 @@
 		src.fiddleActions = list()
 		for(var/fiddle_action in concrete_typesof(src.fiddleType))
 			src.fiddleActions.Add(new fiddle_action())
-		src.fiddleLayout = new /datum/contextLayout/flexdefault(length(src.fiddleActions), 26, 26, length(src.fiddleActions) * -13 + 16, 0)
+		src.fiddleLayout = new /datum/contextLayout/flexdefault(length(src.fiddleActions), 26, 26, length(src.fiddleActions) * -13 + 16, 7)
 
 	if(length(src.fiddleActions)) // check validity
 		var/list/datum/contextAction/validFiddleActions = list()

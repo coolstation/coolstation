@@ -1356,7 +1356,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/radio)
 			target.broadcasting = TRUE
 
 	stop_broadcasting
-		name = "enable narrow microphone"
+		name = "disable broad microphone"
 		icon_state = "radio_stop_broadcasting"
 
 		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
