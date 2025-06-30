@@ -479,8 +479,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)
-		if(prob(70))
+		if(prob(50))
 			grip = new /obj/item/gun_parts/grip/italian(src)
-		else
+		else if (prob(40))
 			grip = new /obj/item/gun_parts/grip/italian/cowboy/pearl(src)
 		barrel = new /obj/item/gun_parts/barrel/italian/silenced(src)
