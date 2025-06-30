@@ -47,15 +47,24 @@ ABSTRACT_TYPE(/obj/storage/crate/illicit_crate)
 			SPAWN_DBG(0)
 				for (var/i=1 to 3)
 					lootMaster.add_random_loot(src, ILLICIT_LOOT_GUN, 1)
+					vis_controller.hide()
+					vis_controller.show()
 					sleep(1 SECOND)
 				for (var/i=1 to 3)
 					lootMaster.add_random_loot(src, ILLICIT_LOOT_AMMO, 1)
+					vis_controller.hide()
+					vis_controller.show()
 					sleep(1 SECOND)
 				for (var/i=1 to 3)
 					lootMaster.add_random_loot(src, ILLICIT_LOOT_GEAR, 1)
+					vis_controller.hide()
+					vis_controller.show()
 					sleep(1 SECOND)
 				// fill the rest with whatever
 				lootMaster.fill_remaining(src, GIMMICK)
+				vis_controller.hide()
+				vis_controller.show()
+				sleep(1 SECOND)
 	only_gimmicks
 		New()
 			initialize_loot_master(4,3)
@@ -869,8 +878,8 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/long)
 	weldinghelmets
 		tier = ILLICIT_LOOT_GEAR
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
-			spawn_item(C,I,/obj/item/clothing/head/helmet/welding,off_x=-8,off_y=-1,rot=90)
-			spawn_item(C,I,/obj/item/clothing/head/helmet/welding,off_x=8,off_y=2,rot=270)
+			spawn_item(C,I,/obj/item/clothing/head/helmet/welding,off_x=-8,off_y=-1,rot=90,scale_x=0.75,scale_y=0.825)
+			spawn_item(C,I,/obj/item/clothing/head/helmet/welding,off_x=8,off_y=2,rot=270,scale_x=0.75,scale_y=0.825)
 
 
 
@@ -1128,11 +1137,11 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/xlong_tall)
 		tier = ILLICIT_LOOT_GUN
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
 			if(prob(60))
-				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/improved,off_x=-12,off_y=1,scale_x=0.825,scale_y=0.825,)
+				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/improved,off_x=-4,off_y=1,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
 			else
-				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/masterwork,off_x=-10,off_y=1,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
+				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/masterwork,off_x=-4,off_y=1,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
 			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=-6,off_y=-8,scale_x=0.825,scale_y=0.825,layer_offset=-0.25)
-			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=6,off_y=-8,rot=180,scale_x=0.825,scale_y=0.825,layer_offset=-0.5)
+			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=6,off_y=-12,rot=180,scale_x=0.825,scale_y=0.825,layer_offset=-0.5)
 			I.parent?.tag_list("Ammo_Allowed", /obj/item/stackable_ammo/pistol/italian/ten)
 
 	// ILLICIT_LOOT_GEAR
