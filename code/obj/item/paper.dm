@@ -46,6 +46,9 @@
 	burn_possible = TRUE
 	health = 10
 	rand_pos = 9
+
+	fiddleType = /datum/contextAction/fiddle/paper
+
 	var/list/form_startpoints
 	var/list/form_endpoints
 	var/font_css_crap = null
@@ -129,35 +132,7 @@
 	return 1
 
 /obj/item/paper/attack_self(mob/user as mob)
-	var/menuchoice = alert("What would you like to do with [src]?",,"Fold","Read","Nothing")
-	if (menuchoice == "Nothing")
-		return
-	else if (menuchoice == "Read")
-		src.examine(user)
-	else
-		var/fold = alert("What would you like to fold [src] into?",,"Paper hat","Paper plane","Paper ball")
-		if(src.pooled) //It's possible to queue multiple of these menus before resolving any.
-			return
-		user.u_equip(src)
-		if (fold == "Paper hat")
-			user.show_text("You fold the paper into a hat! Neat.", "blue")
-			var/obj/item/clothing/head/paper_hat/H = new()
-			H.paper = src
-			src.set_loc(H)
-			user.put_in_hand_or_drop(H)
-		else
-			var/obj/item/paper/folded/F = null
-			if (fold == "Paper plane")
-				user.show_text("You fold the paper into a plane! Neat.", "blue")
-				F = new /obj/item/paper/folded/plane(user)
-			else
-				user.show_text("You crumple the paper into a ball! Neat.", "blue")
-				F = new /obj/item/paper/folded/ball(user)
-			F.info = src.info
-			F.old_desc = src.desc
-			F.old_icon_state = src.icon_state
-			user.put_in_hand_or_drop(F)
-			qdel(src)
+	src.examine(user)
 
 /obj/item/paper/attack_ai(var/mob/AI as mob)
 	var/mob/living/silicon/ai/user
@@ -1389,6 +1364,12 @@ as it may become compromised.
 	else
 		..()
 
+/obj/item/paper/folded/fiddle(mob/user as mob)
+	if(src.sealed)
+		src.attack_self(user)
+	else
+		return ..()
+
 /obj/item/paper/folded/examine()
 	if (src.sealed)
 		return list(desc)
@@ -1400,11 +1381,11 @@ as it may become compromised.
 	desc = "If you throw it in space is it a paper spaceship?"
 	icon_state = "paperplane"
 	throw_speed = 1
-	throw_spin = 0
 
-/obj/item/paper/folded/plane/hit_check(datum/thrown_thing/thr)
-	if(src.throwing)
-		src.throw_unlimited = 1
+/obj/item/paper/folded/plane/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
+	src.throw_unlimited = 1
+	src.throw_spin = 0
+	. = ..()
 
 /obj/item/paper/folded/ball
 	name = "paper ball"

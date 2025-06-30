@@ -3292,4 +3292,4 @@
 	var/time_left = src.next_click - world.time
 	if (time_left > CLICK_GRACE_WINDOW) // currently CLICK_GRACE_WINDOW is 0, but who knows if thatll ever change!
 		return time_left
-	src.next_click += O.fiddle(src)
+	src.next_click = world.time + O.fiddle(src)

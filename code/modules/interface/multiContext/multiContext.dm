@@ -124,6 +124,7 @@
 	var/image/background = null
 	var/mob/user = null
 	var/atom/target = null
+	var/unfocus_alpha = 255
 
 	proc/setup(datum/contextAction/A, mob/U, atom/T)
 		if(!A || !U || !T)
@@ -134,6 +135,8 @@
 		icon = action.getIcon(target,user)
 		icon_state = action.getIconState(target, user)
 		name = action.getName(target, user)
+		unfocus_alpha = action.unfocus_alpha
+		src.alpha = unfocus_alpha
 
 		var/matrix/trans = new()
 		trans = trans.Reset()
@@ -146,18 +149,21 @@
 		var/possible_bg = action.buildBackgroundIcon(target,user)
 		if (possible_bg)
 			background = possible_bg
+			background.alpha = src.unfocus_alpha
 			src.underlays += background
 
 		if(background == null)
-			background = image('icons/ui/context16x16.dmi', src, "[action.getBackground(target, user)]0")
+			background = image(src.icon, src, "[action.getBackground(target, user)]0")
 			background.appearance_flags = RESET_COLOR
 			src.underlays += background
 
 	MouseEntered(location,control,params)
 		if (usr != user)
 			return
+		src.alpha = 255
 		src.underlays.Cut()
 		background.icon_state = "[action.getBackground(target, user)]1"
+		background.alpha = 255
 		src.underlays += background
 		if (usr.client.tooltipHolder && (action != null) && action.use_tooltip)
 			usr.client.tooltipHolder.showHover(src, list(
@@ -171,8 +177,10 @@
 	MouseExited(location,control,params)
 		if (usr != user)
 			return
+		src.alpha = src.unfocus_alpha
 		src.underlays.Cut()
 		background.icon_state = "[action.getBackground(target, user)]0"
+		background.alpha = src.unfocus_alpha
 		src.underlays += background
 		if (usr.client.tooltipHolder && action.use_tooltip)
 			usr.client.tooltipHolder.hideHover()

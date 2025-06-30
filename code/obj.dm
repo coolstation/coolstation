@@ -31,6 +31,9 @@
 	/// if gun/bullet related, forensic profile of it
 	var/forensic_ID = null
 
+	var/list/datum/contextAction/fiddleActions
+	var/fiddleType = null
+
 	New()
 		. = ..()
 		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
@@ -632,5 +635,14 @@
 	while(. in forensic_IDs)
 
 // return any next_click delay to add
-/obj/proc/fiddle(var/mob/M)
+/obj/proc/fiddle(var/mob/user)
+	src.add_fingerprint(user)
+	if(src.fiddleType && !src.contextLayout)
+		src.fiddleActions = list()
+		for(var/fiddle_action in concrete_typesof(src.fiddleType))
+			src.fiddleActions.Add(new fiddle_action())
+		src.contextLayout = new /datum/contextLayout/flexdefault(length(src.fiddleActions), 26, 26, length(src.fiddleActions) * -13 + 16, 0)
+	if(length(src.fiddleActions))
+		user.showContextActions(src.fiddleActions, src)
+		return BASE_FIDDLE_DELAY
 	return BASE_FIDDLE_DELAY
