@@ -80,7 +80,7 @@ var/list/datum/contextAction/globalContextActions = null
 			trans = trans.Reset()
 			trans.Translate(offX, offY)
 
-			animate(C, alpha=255, transform=trans, easing=CUBIC_EASING, time=5)
+			animate(C, alpha=C.unfocus_alpha, transform=trans, easing=CUBIC_EASING, time=5)
 
 			offX += spacingX
 			if(offX >= spacingX * width)

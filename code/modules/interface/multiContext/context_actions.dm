@@ -1304,6 +1304,35 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/paper)
 			qdel(target)
 			user.put_in_hand_or_drop(folded)
 
+ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+/datum/contextAction/fiddle/pda2
+
+	checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+		return istype(target)
+
+	eject_id
+		name = "eject ID"
+		icon_state = "pda2_eject_id"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.ID_card)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_id_card(user)
+
+	eject_pen
+		name = "eject pen"
+		icon_state = "pda2_eject_pen"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.pen)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_pen(user)
 
 /*
 	offered

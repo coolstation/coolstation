@@ -1576,7 +1576,8 @@
 	#ifdef COMSIG_ITEM_DROPPED
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 	#endif
-
+	if(length(src.fiddleActions))
+		user.closeContextActions()
 	if(src.material) src.material.triggerDrop(user, src)
 	if (islist(src.ability_buttons))
 		for(var/obj/ability_button/B in ability_buttons)

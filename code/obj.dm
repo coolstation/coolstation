@@ -636,13 +636,25 @@
 
 // return any next_click delay to add
 /obj/proc/fiddle(var/mob/user)
-	src.add_fingerprint(user)
-	if(src.fiddleType && !src.contextLayout)
+	src.add_fingerprint(user) // the user at the very least tried to mess with it
+
+	if(!src.fiddleType)
+		return BASE_FIDDLE_DELAY
+
+	if(!src.contextLayout) // build the layout if we aint got one
 		src.fiddleActions = list()
 		for(var/fiddle_action in concrete_typesof(src.fiddleType))
 			src.fiddleActions.Add(new fiddle_action())
 		src.contextLayout = new /datum/contextLayout/flexdefault(length(src.fiddleActions), 26, 26, length(src.fiddleActions) * -13 + 16, 0)
-	if(length(src.fiddleActions))
-		user.showContextActions(src.fiddleActions, src)
-		return BASE_FIDDLE_DELAY
+
+	if(length(src.fiddleActions)) // check validity
+		var/list/datum/contextAction/validFiddleActions = list()
+		for(var/datum/contextAction/fiddle_action in src.fiddleActions)
+			if(fiddle_action.checkRequirements(src, user))
+				validFiddleActions.Add(fiddle_action)
+
+		if(length(validFiddleActions)) // display valid fiddles
+			user.showContextActions(validFiddleActions, src)
+			return BASE_FIDDLE_DELAY
+
 	return BASE_FIDDLE_DELAY

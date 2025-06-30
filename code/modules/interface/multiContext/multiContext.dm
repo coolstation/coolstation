@@ -135,8 +135,7 @@
 		icon = action.getIcon(target,user)
 		icon_state = action.getIconState(target, user)
 		name = action.getName(target, user)
-		unfocus_alpha = action.unfocus_alpha
-		src.alpha = unfocus_alpha
+		src.unfocus_alpha = action.unfocus_alpha
 
 		var/matrix/trans = new()
 		trans = trans.Reset()
@@ -149,12 +148,11 @@
 		var/possible_bg = action.buildBackgroundIcon(target,user)
 		if (possible_bg)
 			background = possible_bg
-			background.alpha = src.unfocus_alpha
 			src.underlays += background
 
 		if(background == null)
 			background = image(src.icon, src, "[action.getBackground(target, user)]0")
-			background.appearance_flags = RESET_COLOR
+			background.appearance_flags = RESET_COLOR // intentionally doesnt have RESET_ALPHA
 			src.underlays += background
 
 	MouseEntered(location,control,params)
@@ -163,7 +161,6 @@
 		src.alpha = 255
 		src.underlays.Cut()
 		background.icon_state = "[action.getBackground(target, user)]1"
-		background.alpha = 255
 		src.underlays += background
 		if (usr.client.tooltipHolder && (action != null) && action.use_tooltip)
 			usr.client.tooltipHolder.showHover(src, list(
@@ -180,7 +177,6 @@
 		src.alpha = src.unfocus_alpha
 		src.underlays.Cut()
 		background.icon_state = "[action.getBackground(target, user)]0"
-		background.alpha = src.unfocus_alpha
 		src.underlays += background
 		if (usr.client.tooltipHolder && action.use_tooltip)
 			usr.client.tooltipHolder.hideHover()
