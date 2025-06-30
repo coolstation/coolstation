@@ -1032,6 +1032,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	spread_angle = initial(spread_angle)
 	w_class = initial(w_class)
 
+// derringer-esque behavior for tiny gunse
+/obj/item/gun/modular/afterattack(obj/O as obj, mob/user as mob)
+	if (src.built && src.bulk <= 3 && O.loc == user && O != src && istype(O, /obj/item/clothing))
+		boutput(user, "<span class='hint'>You hide the [src] inside \the [O]. (Use the wink emote while wearing the clothing item to retrieve it.)</span>")
+		user.u_equip(src)
+		src.set_loc(O)
+	else
+		..()
+	return
+
 /obj/item/gun/modular/proc/crank(mob/user)
 	if (currently_cranking_off)
 		return

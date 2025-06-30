@@ -313,7 +313,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	max_ammo_capacity = 4
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/italian/small(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/short(src)
 		grip = new /obj/item/gun_parts/grip/italian(src)
 
 //Standard factory issue

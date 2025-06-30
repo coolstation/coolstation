@@ -531,6 +531,16 @@
 			playsound(user.loc, "rustle", 60, 1)
 			break
 
+		if ((locate(/obj/item/gun/modular) in C) != null)
+			var/obj/item/gun/modular/gunse = (locate(/obj/item/gun/modular) in C)
+			var/drophand = (user.hand == 0 ? user.slot_r_hand : user.slot_l_hand)
+			user.drop_item()
+			gunse.set_loc(user)
+			user.equip_if_possible(gunse, drophand)
+			user.visible_message("<span class='alert'><B>[user] pulls a gun out of \the [C]!</B></span>")
+			playsound(user.loc, "rustle", 60, 1)
+			break
+
 	return list("<B>[user]</B> winks.", "<I>winks</I>", MESSAGE_VISIBLE)
 
 
