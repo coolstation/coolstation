@@ -21,7 +21,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/overlay_y = 0 //same but vertical
 	var/foldable = 0 //wire stocks and the like. 0 cannot, 1 is deployed, 2 is folded.
 	var/part_DRM = 0 //which gun models is this part compatible with?
-	var/call_on_fire = 0 // does the gun call this accessory's on_fire() proc?
+	var/call_alter_projectile = 0 // does the gun call this accessory's alter_projectile() proc?
 	var/call_on_cycle = 0 // does the gun call this accessory's on_cycle() proc? (thats when you cycle ammo)
 	var/obj/item/gun/modular/my_gun = null
 
@@ -78,16 +78,16 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 			my_gun.can_dual_wield = FALSE
 		if(src.call_on_cycle)
 			my_gun.call_on_cycle |= src.part_type
-		if(src.call_on_fire)
-			my_gun.call_on_fire |= src.part_type
+		if(src.call_alter_projectile)
+			my_gun.call_alter_projectile |= src.part_type
 
 		return 1
 
 	proc/on_cycle(var/obj/item/gun/modular/gun, var/datum/projectile/projectile)
 		return call_on_cycle
 
-	proc/on_fire(var/obj/item/gun/modular/gun, var/datum/projectile/projectile)
-		return call_on_fire
+	proc/alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
+		return call_alter_projectile
 
 	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
 		var/image/I = image(icon, icon_state)//"[icon_state]-built")
@@ -618,8 +618,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 16
 	overlay_x = 8
 	bulkiness = 4
-	scatter = TRUE
 	silenced = TRUE
+	call_alter_projectile = TRUE
+
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.2
+		return ..()
+
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
@@ -942,11 +947,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/accessory/horn
 	name = "tactical alerter"
 	desc = "Efficiently alerts your squadron within miliseconds of target engagement, using cutting edge over-the-airwaves technology"
-	call_on_fire = 1
+	call_alter_projectile = TRUE
 	add_prefix = "tactical "
 	icon_state = "alerter"
 
-	on_fire()
+	alter_projectile()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 
 	attack_self(mob/user as mob)

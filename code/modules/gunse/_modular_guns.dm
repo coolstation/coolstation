@@ -132,14 +132,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	current_projectile = null // chambered round
 	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time (reset this on pickup)
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
-	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
-	var/accessory_on_cycle = 0 // does the accessory need to know you pressed C?
 	var/jammed = FALSE //got something stuck and unable to fire? good news these have defines now
 	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
 	two_handed = 0
 	can_dual_wield = 1
 	var/call_on_cycle = 0 //bitflag
-	var/call_on_fire = 0 //bitflag
+	var/call_alter_projectile = 0 //bitflag
 
 	New()
 		..()
@@ -479,6 +477,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return
 
 /obj/item/gun/modular/alter_projectile(var/obj/projectile/P)
+	if(call_alter_projectile)
+		if(call_alter_projectile & GUN_PART_BARREL)
+			barrel.alter_projectile(src, P)
+		if(call_alter_projectile & GUN_PART_STOCK)
+			stock.alter_projectile(src, P)
+		if(call_alter_projectile & GUN_PART_GRIP)
+			grip.alter_projectile(src, P)
+		if(call_alter_projectile & GUN_PART_MAG)
+			magazine.alter_projectile(src, P)
+		if(call_alter_projectile & GUN_PART_ACCSY)
+			accessory.alter_projectile(src, P)
+
 	if(P.proj_data.window_pass)
 		if(lensing)
 			P.power *= lensing + 0.2
@@ -830,21 +840,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	chamber_checked = FALSE
 
-	if(call_on_fire & GUN_PART_BARREL)
-		barrel.on_fire(src, P)
-	if(call_on_fire & GUN_PART_STOCK)
-		stock.on_fire(src, P)
-	if(call_on_fire & GUN_PART_GRIP)
-		grip.on_fire(src, P)
-	if(call_on_fire & GUN_PART_MAG)
-		magazine.on_fire(src, P)
-	if(call_on_fire & GUN_PART_ACCSY)
-		accessory.on_fire(src, P)
-
 	if(user && !suppress_fire_msg)
 		if(!src.silenced)
 			for(var/mob/O in AIviewers(user, null))
-				O.show_message("<span class='alert'><B>[user] fires [src] at [target]!</B></span>", 1, "<span class='alert'>You hear a gunshot</span>", 2)
+				O.show_message("<span class='alert'><B>[user] fires [src] at [target]!</B></span>", 1, "<span class='alert'>You hear a gunshot!</span>", 2)
 		else
 			if (ismob(user)) // Fix for: undefined proc or verb /obj/item/mechanics/gunholder/show text().
 				user.show_text("<span class='alert'>You silently fire the [src] at [target]!</span>") // Some user feedback for silenced guns would be nice (Convair880).
@@ -997,11 +996,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	muzzle_flash = 0
 	silenced = 0
 	accessory_alt = 0
-	accessory_on_fire = 0
-	accessory_on_cycle = 0
 	flash_auto = 0
 	bulk = bulkiness
 	caliber = 0
+
+	call_on_cycle = 0
+	call_alter_projectile = 0
 
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
