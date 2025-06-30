@@ -4,6 +4,7 @@
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "radio"
+	fiddleType = /datum/contextAction/fiddle/radio
 	var/device_color = null
 	var/chat_class = RADIOCL_STANDARD // respects dark mode, gets overriden by device_color
 	var/last_transmission
@@ -527,6 +528,7 @@ var/list/headset_channel_lookup
 /obj/item/device/radio/proc/send_hear()
 	last_transmission = world.time
 	if ((src.listening && src.wires & WIRE_RECEIVE))
+		// MYLIE NOTE - this is false, because hearers is not viewers and depth is not range. will test if actually limiting range feels nice.
 		var/list/hear = hearers(src.speaker_range, src.loc) // changed so station bounce radios will be loud and headsets will only be heard on their tile
 
 		// modified so that a mob holding the radio is always a hearer of it

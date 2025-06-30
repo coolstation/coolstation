@@ -3,6 +3,7 @@
 var/list/action_names = list(
 
 	"attackself" = "Use in-hand",
+	"fiddle" = "Fiddle in-hand",
 	"togglethrow" = "Throw (Toggle)",
 	"swaphand" = "Swap Hand",
 	"equip" = "Equip",

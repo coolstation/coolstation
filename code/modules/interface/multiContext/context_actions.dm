@@ -1334,6 +1334,63 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
 		execute(var/obj/item/device/pda2/target, var/mob/user)
 			target.eject_pen(user)
 
+// holy SHIT the variable names for radios are awful. listening is "listening to incoming signals"
+// broadcasting is "broadcasting everything around it" when true or "broadcasting only the holder" when false
+// ill fix that... later.
+ABSTRACT_TYPE(/datum/contextAction/fiddle/radio)
+/datum/contextAction/fiddle/radio
+
+	checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+		return istype(target)
+
+	start_broadcasting
+		name = "enable broad microphone"
+		icon_state = "radio_start_broadcasting"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return !target.broadcasting
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.broadcasting = TRUE
+
+	stop_broadcasting
+		name = "enable narrow microphone"
+		icon_state = "radio_stop_broadcasting"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return target.broadcasting
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.broadcasting = FALSE
+
+	start_listening
+		name = "enable incoming"
+		icon_state = "radio_start_listening"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return !target.listening
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.listening = TRUE
+
+	stop_listening
+		name = "disable incoming"
+		icon_state = "radio_stop_listening"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return target.listening
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.listening = FALSE
+
 /*
 	offered
 		icon = null
