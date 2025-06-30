@@ -148,6 +148,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		P.power = P.power * (0.5 + 0.15 * src.two_handed)
 		..()
 
+	displayed_power()
+		return "[floor(current_projectile.power * (0.5 + 0.15 * src.two_handed))] - [current_projectile.ks_ratio * 100]% lethal"
+
+
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(src.hammer_cocked)
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 20, 1)
@@ -205,8 +209,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P)
-		P.power = P.power * (0.15 + 0.1 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
+		P.power = P.power * (0.2 + 0.1 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
 		..()
+
+	displayed_power()
+		var/lower_power = floor(current_projectile.power * (0.2 + 0.1 * src.two_handed))
+		var/upper_power = floor(current_projectile.power * (0.2 + 0.1 * src.two_handed + 0.2))
+		if(lower_power == upper_power)
+			return "[lower_power] - [current_projectile.ks_ratio * 100]% lethal"
+		return "[] to [] - [current_projectile.ks_ratio * 100]% lethal"
 
 
 //THE SNIPER
@@ -250,6 +261,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		P.proj_data.dissipation_rate = P.proj_data.dissipation_rate / (2 + !!src.stock)
 		//P.proj_data.dissipation_delay = P.proj_data.dissipation_delay * (2 + !!src.stock)
 		..()
+
+	displayed_power()
+		return "[current_projectile.power] - [current_projectile.ks_ratio * 100]% lethal - x[2 + !!src.stock] range"
+
 
 // REVOLVERS
 

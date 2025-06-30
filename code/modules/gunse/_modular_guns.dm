@@ -330,6 +330,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
 	src.ammo_list += donor_ammo.projectile_type
 
+	buildTooltipContent()
+
 	//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
 	if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
 		src.jammed = JAM_LOAD
