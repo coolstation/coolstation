@@ -170,6 +170,7 @@ var/global/list/datum/keybind_style/keybind_styles = null
 		"Q" = "drop",
 		"E" = "swaphand",
 		"C" = "attackself",
+		"X" = "fiddle",
 		"DELETE" = "togglethrow"
 	)
 
@@ -191,6 +192,7 @@ var/global/list/datum/keybind_style/keybind_styles = null
 	"E" = "equip",
 	"X" = "swaphand",
 	"Z" = "attackself",
+	"V" = "fiddle",
 	"Q" = "drop",
 	"C" = "resist"
 	)
@@ -226,6 +228,7 @@ var/global/list/datum/keybind_style/keybind_styles = null
 		"B" = KEY_POINT,
 		"E" = "swaphand",
 		"C" = "attackself",
+		"X" = "fiddle",
 		"Q" = "unequip"
 	)
 
@@ -245,6 +248,7 @@ var/global/list/datum/keybind_style/keybind_styles = null
 		"ALT" = KEY_SHOCK,
 		"SPACE" = KEY_EXAMINE,
 		"X" = "swaphand",
+		"V" = "fiddle",
 		"Z" = "attackself",
 	)
 

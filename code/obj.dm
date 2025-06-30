@@ -630,3 +630,7 @@
 		for(var/i = 1 to 10) // 20 characters are way too fuckin' long for anyone to care about
 			. += "[pick(numbersAndLetters)]"
 	while(. in forensic_IDs)
+
+// return any next_click delay to add
+/obj/proc/fiddle(var/mob/M)
+	return BASE_FIDDLE_DELAY

@@ -3283,3 +3283,13 @@
 //Observers bypass this check anyway, but regardless
 /mob/dead/can_climb_ladder(silent = FALSE)
 	return TRUE
+
+/mob/proc/fiddle_with(var/obj/O)
+	actions.interrupt(src, INTERRUPT_ACT)
+
+	if (src.stat || is_incapacitated(src) || world.time < src.next_click || !can_reach(src, O))
+		return
+	var/time_left = src.next_click - world.time
+	if (time_left > CLICK_GRACE_WINDOW) // currently CLICK_GRACE_WINDOW is 0, but who knows if thatll ever change!
+		return time_left
+	src.next_click += O.fiddle(src)

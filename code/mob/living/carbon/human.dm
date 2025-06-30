@@ -945,6 +945,10 @@
 				var/obj/ladder/L = locate() in src.loc.contents // warc says this is probably shitty but maybe you can do better
 				if(L)											// warc hits commit anyways
 					L.climb(src)
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("equip")
 			src.hud.relay_click("invtoggle", src, list()) // this is incredibly dumb, it's also just as dumb as what was here previously
 		if ("togglethrow")

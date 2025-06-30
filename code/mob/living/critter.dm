@@ -1185,6 +1185,10 @@
 			var/obj/item/W = src.equipped()
 			if (W)
 				src.click(W, list())
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("togglethrow")
 			src.toggle_throw_mode()
 		else

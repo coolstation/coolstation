@@ -82,6 +82,8 @@
 #define DEFAULT_CLICK_DELAY MIN_TICKLAG //used to be 1
 #define CLICK_GRACE_WINDOW 0 //2.5
 
+#define BASE_FIDDLE_DELAY 2 DECI SECONDS
+
 //pools!!
 
 /// How much stuff is allowed in the pools before the lifeguard throws them into the deletequeue instead. A shameful lifeguard.
