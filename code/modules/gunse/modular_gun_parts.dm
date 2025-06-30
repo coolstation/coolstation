@@ -540,24 +540,33 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = 6
 	bulkiness = 2
 
-/obj/item/gun_parts/barrel/italian/small
-	name = "canna di fucile piccolo"
+/obj/item/gun_parts/barrel/italian/snub
+	name = "canna di fucile corta"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_snub"
-	add_suffix = " paisanetto"
+	add_suffix = " paisanuccia"
 	spread_angle = 9
 	length = 5
 	overlay_x = 3
 	bulkiness = 1
 
+/obj/item/gun_parts/barrel/italian/short
+	name = "canna di fucile piccolo"
+	desc = "una canna di fucile di base e di bellissima qualità"
+	icon_state = "italian_revolver_short"
+	add_suffix = " paisanetto"
+	spread_angle = 10
+	length = 7
+	overlay_x = 4
+
 /obj/item/gun_parts/barrel/italian/spicy
 	name = "canna di fucile arrabiata"
 	desc = "una canna di fucile di base e di bellissima qualità"
-	icon_state = "italian_revolver_short"
+	icon_state = "italian_revolver_weighted"
 	add_suffix = " paisana"
-	spread_angle = 9
-	length = 16
-	overlay_x = 4
+	spread_angle = 5
+	length = 12
+	overlay_x = 6
 
 /obj/item/gun_parts/barrel/italian/accurate
 	name = "buon canna di fucile"
@@ -610,7 +619,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	call_alter_projectile = TRUE
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
-		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.8
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.7
 		P.proj_data.shot_sound_extrarange = P.proj_data.shot_sound_extrarange - 11 // this magic number is one third of MAX_SOUND_RANGE
 		return ..()
 

@@ -212,6 +212,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	shoot(target, start, mob/user, POX, POY, is_dual_wield)
 		if(src.jammed)
 			return // TODO - feedback
+		if(!src.ammo_reserve() && !src.current_projectile)
+			return // TODO - spinny sound, do i even need to set the index on this one???
 		if(src.current_projectile)
 			..()
 		src.process_ammo(user)
@@ -403,7 +405,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 			stock = new /obj/item/gun_parts/stock/italian/wire(src)
 
 		if (prob(5)) // it happens to a lot of gunse
-			barrel = new /obj/item/gun_parts/barrel/italian/small(src)
+			barrel = new /obj/item/gun_parts/barrel/italian/snub(src)
 		else if(prob(40))
 			barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
 		else
