@@ -97,7 +97,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		return ..()
 
 /obj/item/gun/proc/displayed_power()
-	return "[current_projectile.power] - [current_projectile.ks_ratio * 100]% lethal"
+	return "[floor(current_projectile?.power)] - [current_projectile?.ks_ratio * 100]% lethal"
 
 ///CHECK_LOCK
 ///Call to run a weaponlock check vs the users implant

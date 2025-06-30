@@ -57,6 +57,9 @@ giving an "average" spread for stock guns around 5-10
 #define GUN_PART_MAG    8
 #define GUN_PART_ACCSY  16
 
+#define STANDARD_BARREL_LEN 20 // please warc let me kill this formula the direct barrel length -> damage formula wounds me - mylie
+#define BARREL_SCALING(length) min((1 + max((length-STANDARD_BARREL_LEN)/((length+STANDARD_BARREL_LEN)/2)/1.5,-0.75)),2)
+
 ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/ // PARENT TYPE TO ALL MODULER GUN'S
 	var/no_build = FALSE //should this receiver be built from attached parts on spawn? (useful for only-receivers)
@@ -196,6 +199,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	. += "<div> <span>Loaded: [src.ammo_reserve() + (src.current_projectile?1:0)] </span></div>"
 
 	lastTooltipContent = .
+
+/obj/item/gun/modular/displayed_power()
+	return "[floor(current_projectile?.power * BARREL_SCALING(src.barrel?.length))] - [current_projectile?.ks_ratio * 100]% lethal"
 
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
@@ -505,8 +511,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			buildTooltipContent()
 			return
 
-		var/barrel_adjustment = max((barrel.length-STANDARD_BARREL_LEN)/((barrel.length+STANDARD_BARREL_LEN)/2)/1.5,-0.75)
-		P.power *= min((1 + barrel_adjustment),2)
+		P.power *= BARREL_SCALING(src.barrel?.length)
 		return
 
 //handle flashtube and cranking for foss lasers. returns 1 if good to go
@@ -1003,6 +1008,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	can_dual_wield = initial(can_dual_wield)
 	two_handed = initial(two_handed)
 	spread_angle = initial(spread_angle)
+	w_class = initial(w_class)
 
 /obj/item/gun/modular/proc/crank(mob/user)
 	if (currently_cranking_off)

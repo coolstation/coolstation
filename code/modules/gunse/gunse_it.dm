@@ -111,10 +111,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
 		if(!src.currently_firing)
-			if (src.current_projectile)
+			SPAWN_DBG(0)
 				src.currently_firing = TRUE
-
-				SPAWN_DBG(src.hammer_cocked ? 0 : 0.2 SECONDS) // what the hell have i done here
+				if(!src.current_projectile)
+					process_ammo()
+					sleep(0.2 SECONDS)
+				if (src.current_projectile)
+					sleep(src.hammer_cocked ? 0 : 0.2 SECONDS) // approved by the pope
 					if(!src.hammer_cocked)
 						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 						sleep(0.1 SECONDS)
@@ -130,10 +133,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 						else
 							break // if you aim off a world border this can happen
 						sleep(0.4 SECONDS)
-						src.process_ammo()
-					src.currently_firing = FALSE
-			else
-				src.process_ammo()
+						if(src.hammer_cocked)
+							src.process_ammo()
+					sleep(0.3 SECONDS)
+				src.currently_firing = FALSE
+
 
 	attack_self(mob/user)
 		if(src.currently_firing && (src.jammed || src.hammer_cocked))
@@ -142,15 +146,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 			boutput(user,"<span><b>You cock the hammer.</b></span>")
 			src.hammer_cocked = TRUE
+			return
 		return ..()
 
 	alter_projectile(obj/projectile/P)
-		P.power = P.power * (0.5 + 0.15 * src.two_handed)
+		P.power = P.power * (0.6 + 0.2 * src.two_handed)
 		..()
 
 	displayed_power()
-		return "[floor(current_projectile.power * (0.5 + 0.15 * src.two_handed))] - [current_projectile.ks_ratio * 100]% lethal"
-
+		return "[floor(BARREL_SCALING(src.barrel?.length) * (current_projectile?.power * (0.6 + 0.2 * src.two_handed)))] - [current_projectile?.ks_ratio * 100]% lethal"
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(src.hammer_cocked)
@@ -209,15 +213,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P)
-		P.power = P.power * (0.2 + 0.1 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
+		P.power = P.power * (0.25 + 0.25 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
 		..()
 
 	displayed_power()
-		var/lower_power = floor(current_projectile.power * (0.2 + 0.1 * src.two_handed))
-		var/upper_power = floor(current_projectile.power * (0.2 + 0.1 * src.two_handed + 0.2))
+		var/lower_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.25 * src.two_handed))
+		var/upper_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.25 * src.two_handed + 0.2))
 		if(lower_power == upper_power)
-			return "[lower_power] - [current_projectile.ks_ratio * 100]% lethal"
-		return "[] to [] - [current_projectile.ks_ratio * 100]% lethal"
+			return "[lower_power] - [current_projectile?.ks_ratio * 100]% lethal"
+		return "[lower_power] to [upper_power] - [current_projectile?.ks_ratio * 100]% lethal"
 
 
 //THE SNIPER
@@ -241,12 +245,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	load_time = 1.3 SECONDS
 
-	recoil_strength = 12
-	recoil_reset_mult = 0.925
-	camera_recoil_multiplier = 2.5
+	recoil_strength = 25
+	recoil_reset_mult = 0.975
 
 	var/scope_speed = 12
-	var/scope_range = 1200
+	var/scope_range = 640
 
 	build_gun()
 		..()
@@ -263,7 +266,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		..()
 
 	displayed_power()
-		return "[current_projectile.power] - [current_projectile.ks_ratio * 100]% lethal - x[2 + !!src.stock] range"
+		return "[floor(current_projectile?.power * BARREL_SCALING(src.barrel?.length))] - [current_projectile?.ks_ratio * 100]% lethal - x[2 + !!src.stock] range"
 
 
 // REVOLVERS
