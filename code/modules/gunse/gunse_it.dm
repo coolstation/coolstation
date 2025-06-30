@@ -172,7 +172,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	name = "abstract Italian rattler"
 	real_name = "abstract Italian rattler"
 	icon_state = "italian_rattler"
-	spread_angle = 5
+	spread_angle = 2
 	barrel_overlay_x = 6
 	grip_overlay_x = -7
 	grip_overlay_y = -4
@@ -181,9 +181,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	load_time = 0.3 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
 	max_ammo_capacity = 15
 	bulkiness = 3
-	var/successful_chamber_frequency = 30
+	var/successful_chamber_frequency = 40
 
-	shoot_delay = 0.15 SECONDS
+	shoot_delay = 0.2 SECONDS
 
 	recoil_strength = 4
 	recoil_inaccuracy_max = 15
@@ -248,6 +248,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	recoil_strength = 25
 	recoil_reset_mult = 0.975
 
+	shoot_delay = 1.2 SECONDS
+
 	var/scope_speed = 12
 	var/scope_range = 640
 
@@ -283,7 +285,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		grip = new /obj/item/gun_parts/grip/italian(src)
 
 //Standard factory issue
-/obj/item/gun/modular/italian/revolver/italiano
+/obj/item/gun/modular/italian/revolver/improved
 	name = "improved Italian revolver"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata in acciaio di qualità e pelle.."
@@ -302,7 +304,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 			grip = new /obj/item/gun_parts/grip/italian/cowboy(src)
 
 //mama mia
-/obj/item/gun/modular/italian/revolver/big_italiano
+/obj/item/gun/modular/italian/revolver/masterwork
 	name = "masterwork Italian revolver"
 	real_name = "\improper Italianone"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
@@ -339,7 +341,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	bulkiness = 3
 
 	load_time = 0.4 SECONDS
-	successful_chamber_frequency = 30
+	successful_chamber_frequency = 40
 
 	make_parts()
 		if(prob(60))
@@ -361,7 +363,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	desc = "WIP Italian gun"
 
 	load_time = 0.3 SECONDS
-	successful_chamber_frequency = 33
+	successful_chamber_frequency = 43
 
 	make_parts()
 		if(prob(70))
@@ -383,7 +385,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	desc = "WIP Italian gun"
 
 	load_time = 0.25 SECONDS
-	successful_chamber_frequency = 35
+	successful_chamber_frequency = 45
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)
@@ -415,12 +417,70 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 			barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
 
 // SNIPERS
-//the only one for testing
+// basic but always has a stock by default
+/obj/item/gun/modular/italian/sniper/basic
+	name = "improved Italian sniper"
+	real_name = "\improper Zuffa"
+	desc = "WIP Italian gun"
+
+	scope_range = 480
+	scope_speed = 10
+
+	make_parts()
+		stock = new /obj/item/gun_parts/stock/italian/wire(src)
+		if(prob(30))
+			if(prob(50))
+				grip = new /obj/item/gun_parts/grip/italian(src)
+			else if(prob(70))
+				grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
+			else
+				grip = new /obj/item/gun_parts/grip/italian/bigger(src)
+		if(prob(60))
+			barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/italian/buntline(src)
+
+// better and less likely to be rockin out w/ the wire stock out
+/obj/item/gun/modular/italian/sniper/improved
+	name = "improved Italian sniper"
+	real_name = "\improper Rissa"
+	desc = "WIP Italian gun"
+
+	scope_range = 640
+	scope_speed = 12
+
+	make_parts()
+		if(prob(60))
+			stock = new /obj/item/gun_parts/stock/italian/wire(src)
+		else
+			stock = new /obj/item/gun_parts/stock/italian(src)
+		if(prob(50))
+			if(prob(50))
+				grip = new /obj/item/gun_parts/grip/italian(src)
+			else if(prob(70))
+				grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
+			else
+				grip = new /obj/item/gun_parts/grip/italian/bigger(src)
+		if(prob(40))
+			barrel = new /obj/item/gun_parts/barrel/italian/silenced(src)
+		else if(prob(60))
+			barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
+
+//named after Letizia Battaglia, and then the lesser snipers were named for near-synonyms of her surname
 /obj/item/gun/modular/italian/sniper/masterwork
 	name = "masterwork Italian sniper"
-	real_name = "\improper Battaglio"
+	real_name = "\improper Battaglia"
 	desc = "WIP Italian gun"
+
+	scope_range = 800
+	scope_speed = 16
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)
-		barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
+		if(prob(70))
+			grip = new /obj/item/gun_parts/grip/italian(src)
+		else
+			grip = new /obj/item/gun_parts/grip/italian/cowboy/pearl(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/silenced(src)

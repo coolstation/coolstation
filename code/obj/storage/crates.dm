@@ -854,7 +854,7 @@
 		/obj/item/chem_grenade/shock = 2)
 
 	weapons4
-		spawn_contents = list(/obj/item/gun/modular/italian/revolver/big_italiano,
+		spawn_contents = list(/obj/item/gun/modular/italian/revolver/masterwork,
 		/obj/item/stackable_ammo/pistol/italian/AP/ten)
 
 	escape

@@ -709,7 +709,7 @@
 /obj/item/storage/secure/ssafe/icemoon
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/gun/modular/italian/revolver/italiano,
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,
 	/obj/item/chilly_orb, // a thing to confuse people
 	/obj/item/spacecash/thousand = 3)
 

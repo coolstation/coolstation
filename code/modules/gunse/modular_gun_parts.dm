@@ -584,7 +584,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_buntline"
 	add_suffix = " tiratore"
-	spread_angle = 0
+	spread_angle = 2
 	overlay_x = 8
 
 /obj/item/gun_parts/barrel/italian/joker
@@ -592,7 +592,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_justsilly"
 	add_suffix = " burlone"
-	spread_angle = 4 //a little shaky
+	spread_angle = 5 //a little shaky
 	length = 25
 	overlay_x = 14
 	bulkiness = 4
@@ -602,12 +602,24 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "una canna di fucile grande e ventilata a gas"
 	icon_state = "italian_tommy"
 	add_suffix = " sospettosa"
-	spread_angle = 1
+	spread_angle = 5
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
 	scatter = TRUE
 	// maybe MORE recoil?
+
+/obj/item/gun_parts/barrel/italian/silenced
+	name = "canna di fucile tacito"
+	desc = "silenced italian barrel???"
+	icon_state = "italian_silenced"
+	add_suffix = " valentino"
+	spread_angle = 4
+	length = 16
+	overlay_x = 8
+	bulkiness = 4
+	scatter = TRUE
+	silenced = TRUE
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
