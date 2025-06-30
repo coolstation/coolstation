@@ -23,24 +23,25 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/part_DRM = 0 //which gun models is this part compatible with?
 	var/call_alter_projectile = 0 // does the gun call this accessory's alter_projectile() proc?
 	var/call_on_cycle = 0 // does the gun call this accessory's on_cycle() proc? (thats when you cycle ammo)
+	var/caliber = CALIBER_TINY // bitflag OR'd with other parts, TINY is 00 (pistol), WIDE is 01 (shotgun), LONG is 10 (rifle), LONG_WIDE is 11 (huge stuff)
+	var/bulkiness = 1 //higher bulkiness increases w_class and handedness, each part is 1-5
+	var/spread_angle = 0 // modifier, added to receiver
+	var/jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
+	var/max_ammo_capacity = 0 //modifier
+
 	var/obj/item/gun/modular/my_gun = null
 
 	//barrel vars (usually)
-	var/spread_angle = 0 // modifier, added to stock
 	var/silenced = FALSE
 	var/muzzle_flash = null
 	var/lensing = 0 // Variable used for optical gun barrels. Adds onto static base of 0.2x
-	var/jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
-	var/scatter = FALSE // affects the Width part of the gun caliber
 	var/length = 0 // centimetres
 
 	//stock vars (usually)
-	var/max_ammo_capacity = 0 //modifier
 	var/flashbulb_only = FALSE 	// FOSS guns only (only takes flashbulb ammo)
 	var/flash_auto = FALSE 		// FOSS guns only (autoloader, multiple small shots on a big charge)
 	var/max_crank_level = 0 // FOSS guns only (top end cranking)
 	var/safe_crank_level = 0 // FOSS guns only (limited cranking)
-	var/bulkiness = 1 //higher bulkiness leads to 2-handedness?? 1-5 i guess
 
 	proc/add_part_to_gun(var/obj/item/gun/modular/gun)
 		if(!istype(gun))
@@ -60,6 +61,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun.spread_angle += src.spread_angle
 		my_gun.lensing += src.lensing
 		my_gun.silenced |= src.silenced
+		my_gun.caliber |= src.caliber
 
 		//FOSS
 		my_gun.flashbulb_only |= src.flashbulb_only
@@ -70,12 +72,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		//CONDITIONALS
 		if(src.muzzle_flash)
 			my_gun.muzzle_flash = src.muzzle_flash
-		if(src.scatter)
-			my_gun.caliber |= CALIBER_W
-		if(part_type & GUN_PART_STOCK)
-			my_gun.caliber |= CALIBER_L
-			my_gun.two_handed = TRUE
-			my_gun.can_dual_wield = FALSE
 		if(src.call_on_cycle)
 			my_gun.call_on_cycle |= src.part_type
 		if(src.call_alter_projectile)
@@ -119,6 +115,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 
 	buildTooltipContent()
 		. = ..()
+
 		if(part_DRM)
 			. += "<div><span>DRM REQUIREMENTS: </span>"
 			if(part_DRM & GUN_NANO)
@@ -132,18 +129,24 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 			if(part_DRM & GUN_ITALIAN)
 				. += "<img src='[resource("images/tooltips/temp_italian.png")]' alt='' class='icon' />"
 			. += "</div>"
-		if(scatter)
-			. += "<div><img src='[resource("images/tooltips/temp_scatter.png")]' alt='' class='icon' /></div>"
-		if(spread_angle)
-			. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread Modifier: [src.spread_angle] </span></div>"
+		if(length)
+			. += "<div><span>Barrel length: [src.length] - [round(100 * BARREL_SCALING(src.length), 0.5)]% power </span></div>"
+
+		if(caliber)
+			. += "<div><span>Caliber Modifier: [src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>HUGE</b>" : "Long") : "Wide"]</span></div>"
+
+		. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread Modifier: [src.spread_angle] </span></div>"
+
 		if(lensing)
 			. += "<div><img src='[resource("images/tooltips/lensing.png")]' alt='' class='icon' /><span>Optical Lens: [src.lensing] </span></div>"
-		if(length)
-			. += "<div><span>Barrel length: [src.length] </span></div>"
-		if(jam_frequency || jam_frequency)
-			. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jam Probability: [src.jam_frequency + src.jam_frequency] </span></div>"
+
+		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jam Modifier: [src.jam_frequency] </span></div>"
+
+		. += "<div><span>Bulk: [src.bulkiness][pick("kg","lb","0%"," finger")] </span></div>"
+
 		if(max_ammo_capacity)
 			. += "<div> <span>Capacity Modifier: [src.max_ammo_capacity] </span></div>"
+
 		lastTooltipContent = .
 
 
@@ -157,18 +160,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 	muzzle_flash = "muzzle_flash"
 	lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
 	jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
-	scatter = FALSE
 	icon = 'icons/obj/items/modular_guns/barrels.dmi'
 	icon_state = "italian_revolver"
 	length = STANDARD_BARREL_LEN
 	overlay_x = 13
 	muzzle_flash = "muzzle_flash"
-	// for uniformity, barrels should start on the 3rd column of the frame and try to cover a height of 4 pixels
-	// just for ease of reference, the projectile will "exit" the receiver one pixel down from the top
-	// this means you've got a pixel at the top (19,3) and bottom (16,3) for receiver attachment
-	// the row one pixel down (18) for light barrels, and the middle 2 rows of the 4 pixels (17,18) for implied heavy barrels
-	// check the template and other sprites for details
-	// use these offsets if your sprite doesnt match that (extreme length, greebling, etc)
 
 	add_part_to_gun(var/obj/item/gun/modular/gun)
 		overlay_x += gun.barrel_overlay_x
@@ -208,6 +204,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	max_crank_level = 0 // FOSS guns only
 	jam_frequency = 0 //attitional % chance to jam on reload. Just reload again to clear.
 	part_DRM = GUN_JUICE | GUN_NANO | GUN_SOVIET | GUN_ITALIAN //pretty much everyone by default
+	caliber = CALIBER_LONG
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_solid"
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
@@ -239,18 +236,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 
 //the thing you hold to hold a gun
 // mechanically they're just a stick to hold onto
-
-	// MOVE TO WIKI AS HOW TO CREATE A GUN'S PARTS ARTICLE:
-	// full size part icons can be whatever. half-sized built icons have to fit this template, where each px is approximately 1 inch
-	// for uniformity, grips should aim for a virtual attachment point at (12,16), 1,1 up from the bottom left of a standard small receiver outline (greebling can exceed this)
-	// make sure the right side of the trigger has a 2 px vertical flat area, with 1px clearance to the left of the trigger
-	// templates will be available for three styles/starting points: pistol, revolver, rifle. each has different cutouts but they all share same attachment point and interface with trigger
-	// grip goes over 1 hand gun, under 2 hand gun
-	// there's also a standard trigger location for reference (useful for NT bullpup)
-	// and for now let's assume a foregrip is like, 6px to the right of the regular grip
-
-	// also really just use the template,
-
 ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 /obj/item/gun_parts/grip/
 	//add a var for a power cell later
@@ -374,22 +359,22 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/NT/shotty
 	name = "shotgun barrel"
 	spread_angle = 18
-	scatter = 1
 	length = 10
 	icon_state = "nt_blue_shot"
 	add_suffix = " shotty"
 	overlay_x = 6
 	bulkiness = 2
+	caliber = CALIBER_WIDE
 
 /obj/item/gun_parts/barrel/NT/shotty/short
 	name = "sawn-off barrel"
 	spread_angle = 14
-	scatter = 1
 	length = 6
 	icon_state = "nt_blue_shotshort"
 	add_suffix = " shottie"
 	overlay_x = 4
 	bulkiness = 1
+	caliber = CALIBER_WIDE
 
 /obj/item/gun_parts/barrel/NT/long/very
 	name = "special long barrel"
@@ -447,13 +432,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper BLUNDA barrel"
 	desc = "A cheaply-built shotgun barrel. And by cheaply-built I mean someone adapted a broken vuvuzela for a gun."
 	spread_angle =  13 // jesus christ it's a spread machine
-	scatter = 1
 	jam_frequency = 5 //but very poorly built
 	part_DRM = GUN_JUICE
 	add_prefix = "BLUNDA "
 	icon_state = "juicer_blunderbuss"
 	length = 16
 	bulkiness = 1
+	caliber = CALIBER_WIDE
 	//absolutely needs a quiet fucked up vuvuzela honk
 
 /obj/item/gun_parts/barrel/juicer/chub
@@ -609,7 +594,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
-	scatter = TRUE
+	caliber = CALIBER_WIDE
 	// maybe MORE recoil?
 
 /obj/item/gun_parts/barrel/italian/silenced

@@ -12,15 +12,16 @@
  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀▀▀▀▀▀▀▀▀▀▀
 
 a new modular gun system
-every /obj/item/gun/modular/ has some basic stats and some basic shooting behavior. Nothing super complex.
+every /obj/item/gun/modular/ (a receiver) has some basic stats and handles shooting behavior.
 by default all children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
-with some ordinary basic parts. barrel and grip or stock are necessary, the other two whatever.
+with some ordinary basic parts. barrel and grip or stock are pretty necessary, the other two whatever.
 additional custom parts can be created with stat bonuses, and other effects in their add_part_to_gun() proc
 
 TODO: make desc dynamic on build unless overridden by an existing desc (i.e. spawned from vending machine or on person)
 
 "average" base spread is 25 without a barrel, other guns may be less accurate, perhaps up to 30. few should ever be more accurate.
-in order to balance this, barrels should be balanced around ~ -15 spread, and stocks around -5 (so -13 is a rough barrel, -17 is a good one, etc.)
+having any barrel is -10 spread.
+in order to balance this, barrels should be balanced around -5 spread, and stocks around -5 (so -3 is a rough barrel, -7 is a great one, etc.)
 giving an "average" spread for stock guns around 5-10
 */
 //modular guns - guns systen - gunse systen - gun's systen - tags for Search Optimisation™
@@ -28,9 +29,8 @@ giving an "average" spread for stock guns around 5-10
 //remember: no "real" guns, and that doesn't just mean real guns with different goofy names!!!!
 
 //receivers are at the center of everything, basically, so that's the part that makes a gun's a gun's
-//Try to standardize recievers as much as possible: Differentiate the guns via their parts, not the block they're put on.
 //If you want to spin off a new reciever, make sure it has: A different sprite, AND a different function- Not just numerical differences
-//EX: Soviets might have a zauber reciever in single action, and a kinetic firearm in revolver action- these two are quite distinct.
+//Generally, a manufacturer should have a similar action for all their receivers, in terms of how a player interacts with it
 
 // add or subtract these when building the complete gun
 #define STOCK_OFFSET_SHORT -3
@@ -45,10 +45,10 @@ giving an "average" spread for stock guns around 5-10
 #define JAM_CYCLE 2
 #define JAM_LOAD 3
 #define JAM_CATASTROPHIC 4
-//short and narrow LW / 00
-#define CALIBER_W  1 // 01 - wide
-#define CALIBER_L  2 // 10 - long
-#define CALIBER_LW 3 // 11 - huge
+#define CALIBER_TINY  0 // 00 - tiny
+#define CALIBER_WIDE  1 // 01 - wide
+#define CALIBER_LONG  2 // 10 - long
+#define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 11 - huge
 //bitflags for finding your bits
 #define GUN_PART_UNDEF  0
 #define GUN_PART_BARREL 1
@@ -58,12 +58,12 @@ giving an "average" spread for stock guns around 5-10
 #define GUN_PART_ACCSY  16
 
 #define STANDARD_BARREL_LEN 20 // the formula that determines ALL GUN BARREL LENGTH DAMAGE SCALING. be careful with this one.
-#define BARREL_SCALING(length) min((1 + max((length-STANDARD_BARREL_LEN)/((length+STANDARD_BARREL_LEN)/2)/1.5,-0.75)),2)
+#define BARREL_SCALING(length) (1 + clamp(((length - STANDARD_BARREL_LEN) / (length + STANDARD_BARREL_LEN)) * 0.420, -0.25, 0.25))
 
 ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/ // PARENT TYPE TO ALL MODULER GUN'S
 	var/no_build = FALSE //should this receiver be built from attached parts on spawn? (useful for only-receivers)
-	var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
+	//var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "shittygun"
 	wear_image_icon = 'icons/mob/back.dmi'
@@ -72,21 +72,19 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	inventory_counter_enabled = 1
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
 
-	// VARIABLES TO SET ON EACH RECIEVER
+	two_handed = FALSE
+	can_dual_wield = TRUE
+
+	// VARIABLES YOU CAN SET ON EACH RECIEVER
 	var/gun_DRM = 0 // identify the gun model / type
 	var/bulkiness = 1 //receivers have bulk too. total is reset to this on build.
 	var/jam_frequency = 1 //base % chance to jam on reload. Just cycle again to clear.
-	//var/jam_frequency = 1 //base % chance to jam on fire. Cycle to clear.
-	//var/misfire_frequency = 1 //base % chance to fire wrong in some way
-	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately (but will after a delay, whether held or not)
-	//var/catastrophic_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user. probably not fun to have to find a screwdriver or rod and poke it out so forget that
 	var/load_time = 1 SECOND // added to the load_time of the ammo
 	var/reload_cooldown = 0.3 SECONDS // how often you can try to reload/clear jams
 	var/max_ammo_capacity = 1 // How much ammo can this gun hold? Don't make this null (Convair880).
 	var/sound_type = null //bespoke set of loading and cycling noises
 	var/flashbulb_only = 0 // FOSS guns only
-	var/auto_eject = 0 // Do we eject casings on cycle, or on reload?
-	var/action = null //what kinda gun is this
+
 	//offsets and parts
 	///how many pixels from the center (16,16) does the barrel attach. most barrels have 2 pixels above the center and 2 or 3 below.
 	var/barrel_overlay_x = 0
@@ -97,14 +95,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	///how many pixels from the center (16,16) does the stock attach
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
-
-	var/foregrip_offset_x = 8 //where to place the foregrip relative to the grip (default: 8 inches)
-	var/foregrip_offset_y = 0
+	///how many pixels from the center (16,16) does the magazine attach
 	var/magazine_overlay_x = 0
 	var/magazine_overlay_y = 0
-	//TODO: changeable offsets to handle 1 vs 2 handedness, barrel length, stock size, etc.
 
-	// INTERNAL VARS - DO NOT MODIFY
+
+	// INTERNAL VARS - DO NOT MODIFY DIRECTLY
+	current_projectile = null // chambered round
+	var/list/casing_list = list() // a list of types that will clatter out, usually on reload
+	var/list/ammo_list = list() // a list of datum/projectile types
+	var/jammed = FALSE //got something stuck and unable to fire? good news these have defines now
+
 	var/obj/item/gun_parts/barrel/barrel = null
 	var/obj/item/gun_parts/grip/grip = null //need either a grip or a stock to sensibly use
 	var/obj/item/gun_parts/stock/stock = null //optional
@@ -114,9 +115,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/list/obj/item/gun_parts/parts = list()
 	var/built = 0
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
-	//var/scatter = 0 // variable for using hella shotgun shells or something
-	var/caliber = 0 //standard light barrel
+	var/caliber = 0 //see CALIBER defines, this is what sizes a gun can contain
 	var/bulk = 1 //bulkiness should also impact recoil (todo)
+	var/call_on_cycle = 0 //bitflag
+	var/call_alter_projectile = 0 //bitflag
+	var/chamber_checked = FALSE // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time (reset this on pickup)
+	var/accessory_alt = FALSE //does the accessory offer an alternative firing mode?
+
+	// MYLIE TO DO - MOVE TO FOSS PARTS v
 	var/flash_auto = 0 // FOSS auto-fire setting
 	var/flashbulb_health = 0 // FOSS guns only
 	var/unsafety = 0 // FOSS guns only (turn this on and exceed safe design specs)
@@ -125,28 +131,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/crank_level = 0 // FOSS guns only
 	var/currently_cranking_off = 0 // see above
 	var/crank_channel = null //what channel is the flywheel loop playing on (for auto)
-	//var/reliability = 100 //how often this thing fucks up (decreased by fouling)
-	//var/fouling = 0 //How gunked up this thing is (reduces reliability, can be negative for freshly cleaned)
-	var/list/casing_list = list() // a list of types that will clatter out, usually on reload
-	var/list/ammo_list = list() // a list of datum/projectile types
-	current_projectile = null // chambered round
-	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time (reset this on pickup)
-	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
-	var/jammed = FALSE //got something stuck and unable to fire? good news these have defines now
 	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
-	two_handed = 0
-	can_dual_wield = 1
-	var/call_on_cycle = 0 //bitflag
-	var/call_alter_projectile = 0 //bitflag
+	// MYLIE TO DO - MOVE TO FOSS PARTS ^
 
 	New()
 		..()
-		make_parts()
-		if (no_build) //need to revisit
+		if (no_build)
 			reset_gun()
 		else
+			make_parts()
 			build_gun()
-
 
 /obj/item/gun/modular/proc/make_parts()
 	return
@@ -162,6 +156,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/buildTooltipContent()
 	. = ..()
+
 	if(gun_DRM)
 		. += "<div><span>DRM LICENSE: </span>"
 		if(gun_DRM & GUN_NANO)
@@ -175,31 +170,34 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(gun_DRM & GUN_ITALIAN)
 			. += "<img src='[resource("images/tooltips/temp_italian.png")]' alt='' class='icon' />"
 		. += "</div>"
-	if(caliber & CALIBER_W)
-		. += "<div><img src='[resource("images/tooltips/temp_scatter.png")]' alt='' class='icon' /></div>"
+
+	if(barrel && barrel.length)
+		. += "<div><span>Barrel length: [src.barrel.length] - [round(100 * BARREL_SCALING(src.barrel.length), 0.5)]% power </span></div>"
+
+	. += "<div><span>Caliber Allowance: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Anythin'</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
 
 	. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread: [src.spread_angle]° </span></div>"
 
 	if(lensing)
 		. += "<div><img src='[resource("images/tooltips/lensing.png")]' alt='' class='icon' /><span>Lenses: [src.lensing] </span></div>"
 
-	if(barrel && barrel.length)
-		. += "<div><span>Barrel length: [src.barrel.length] </span></div>"
-
 	if(stock && crank_level)
 		. += "<div><span>Spring tension: [src.crank_level] </span></div>"
 
-	if(jam_frequency)
-		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency]% </span></div>"
+	. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency]% </span></div>"
 
 	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
+
 	. += "<div> <span>Maxcap: [src.max_ammo_capacity + 1] </span></div>"
+
 	. += "<div> <span>Loaded: [src.ammo_reserve() + (src.current_projectile?1:0)] </span></div>"
 
 	lastTooltipContent = .
 
 /obj/item/gun/modular/displayed_power()
-	return "[floor(current_projectile?.power * BARREL_SCALING(src.barrel?.length))] - [current_projectile?.ks_ratio * 100]% lethal"
+	if(src.current_projectile)
+		return "[floor(current_projectile.power * BARREL_SCALING(src.barrel?.length))] dmg - [floor(current_projectile.ks_ratio * 100)]% lethal"
+	return "[round(100 * BARREL_SCALING(src.barrel?.length), 0.5)]% power"
 
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
@@ -375,7 +373,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	id = "load_ammo"
 
 	proc/caliber_check(obj/item/gun/modular/gun, obj/item/stackable_ammo/ammo)
-		if(ammo.caliber == 0 || gun.caliber == CALIBER_LW || gun.caliber == ammo.caliber)
+		if(ammo.caliber == CALIBER_TINY || gun.caliber == CALIBER_LONG_WIDE || gun.caliber == ammo.caliber)
 			return 1
 		return 0
 
@@ -716,8 +714,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.chamber_round()
 		if (sound_type)
 			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
-		else if (src.action == "pump")
-			playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
+		//else if (src.action == "pump")
+		//	playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
 		else
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 		return 1
@@ -978,11 +976,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
-	if(src.bulk > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
+	if((src.bulk + !!stock) > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
 		src.can_dual_wield = FALSE
-	src.force = 2 + src.bulk
-	src.throwforce = src.bulk
+	src.force = floor(4 + src.bulk / 2)
+	src.throwforce = floor(6 + src.bulk / 3)
 	src.w_class = ceil(src.bulk / 3)
 
 	src.spread_angle = max(0, src.spread_angle) // hee hoo

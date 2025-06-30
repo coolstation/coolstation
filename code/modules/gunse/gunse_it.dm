@@ -85,6 +85,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			else
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
+		src.buildTooltipContent()
+
 		//This can stay for now
 		if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
 			src.jammed = JAM_LOAD
@@ -159,7 +161,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		..()
 
 	displayed_power()
-		return "[floor(BARREL_SCALING(src.barrel?.length) * (current_projectile?.power * (0.6 + 0.2 * src.two_handed)))] - [current_projectile?.ks_ratio * 100]% lethal"
+		if(src.current_projectile)
+			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.6 + 0.2 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
+		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.6 + 0.2 * src.two_handed), 0.5)]% power"
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(src.hammer_cocked)
@@ -239,11 +243,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		..()
 
 	displayed_power()
-		var/lower_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.2 * src.two_handed))
-		var/upper_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.2 * src.two_handed + 0.4))
-		if(lower_power == upper_power)
-			return "[lower_power] - [current_projectile?.ks_ratio * 100]% lethal"
-		return "[lower_power] to [upper_power] - [current_projectile?.ks_ratio * 100]% lethal"
+		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.25 + 0.2 * src.two_handed)
+		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.25 + 0.2 * src.two_handed + 0.4)
+		if(src.current_projectile)
+			return "[floor(lower_scale * src.current_projectile.power)] to [floor(upper_scale * src.current_projectile.power)] dmg - [current_projectile.ks_ratio * 100]% lethal"
+		return "[round(100 * lower_scale, 0.5)]% to [round(100 * upper_scale, 0.5)]% power"
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		src.failures_to_chamber = 0
@@ -293,8 +297,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		..()
 
 	displayed_power()
-		return "[floor(current_projectile?.power * BARREL_SCALING(src.barrel?.length))] - [current_projectile?.ks_ratio * 100]% lethal - x[2 + !!src.stock] range"
-
+		if(src.current_projectile)
+			return "[floor(src.current_projectile.power * BARREL_SCALING(src.barrel?.length))] - [floor(src.current_projectile.ks_ratio * 100)]% lethal - x[2 + !!src.stock] range"
+		return "[round(100 * BARREL_SCALING(src.barrel?.length), 0.5)]% power - x[2 + !!src.stock] range"
 
 // REVOLVERS
 

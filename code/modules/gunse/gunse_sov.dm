@@ -13,7 +13,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	name = "\improper abstract Soviet laser gun"
 	real_name = "\improper abstract Soviet laser gun"
 	desc = "abstract type do not instantiate"
-	action = "lever"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "shittygun"
 	sound_type = "soviet"

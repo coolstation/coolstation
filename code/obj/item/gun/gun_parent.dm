@@ -86,8 +86,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	buildTooltipContent()
 		. = ..()
-		if(current_projectile)
-			. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/ranged.png")]\" width=\"10\" height=\"10\" /> Bullet Power: [src.displayed_power()]"
+		. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/ranged.png")]\" width=\"10\" height=\"10\" /> Bullet Stats: [src.displayed_power()]"
 		lastTooltipContent = .
 
 	New()
@@ -97,7 +96,9 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		return ..()
 
 /obj/item/gun/proc/displayed_power()
-	return "[floor(current_projectile?.power)] - [current_projectile?.ks_ratio * 100]% lethal"
+	if(current_projectile)
+		return "[floor(current_projectile.power)] dmg - [floor(current_projectile.ks_ratio * 100)]% lethal"
+	return "100% power"
 
 ///CHECK_LOCK
 ///Call to run a weaponlock check vs the users implant

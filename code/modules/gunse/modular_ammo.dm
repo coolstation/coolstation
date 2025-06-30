@@ -465,7 +465,7 @@ THE_USUAL_FLAVOURS(pistol/zaubertube, "\improper Soviet zaubertubes")
 //rifle shit
 ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 /obj/item/stackable_ammo/rifle
-	caliber = CALIBER_L
+	caliber = CALIBER_LONG
 	//cartridge_length = 40
 
 /obj/item/stackable_ammo/rifle/NT
@@ -512,7 +512,7 @@ THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus ammo")
 	icon_one   = "bullet_juicer_big"
 	icon_shell = "juicer_big_case"
 	load_time = 0.2 SECONDS
-	caliber = CALIBER_LW
+	caliber = CALIBER_LONG_WIDE
 THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 
 //make a single shot
@@ -543,7 +543,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
-	caliber = CALIBER_W
+	caliber = CALIBER_WIDE
 
 	/*reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(!M.scatter)
