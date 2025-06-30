@@ -382,7 +382,7 @@
 	icon_state = "38-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/pistol_medium
+	ammo_type = new/datum/projectile/bullet/pistol_italian
 	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "38"
@@ -394,7 +394,7 @@
 	icon_state = "38A-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/pistol_medium/AP
+	ammo_type = new/datum/projectile/bullet/pistol_italian/AP
 	icon_dynamic = 1
 	icon_short = "38A"
 	icon_empty = "speedloader_empty"

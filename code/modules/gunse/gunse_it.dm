@@ -197,17 +197,59 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 
 	build_gun()
 		..()
-		AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay, src.shoot_delay, 1)
+		src.AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay, src.shoot_delay, 1)
 
 	reset_gun()
 		..()
-		var/C = GetComponent(/datum/component/holdertargeting/fullauto)
+		var/C = src.GetComponent(/datum/component/holdertargeting/fullauto)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P)
 		P.power = P.power * (0.15 + 0.1 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
 		..()
 
+
+//THE SNIPER
+//Slow single action "revolver" (has to be for copyright reasons, I reckon), holding a minimal number of rounds, that comes with a fancy shmancy scope.
+//Cuts by 50% (w/o stock) or 66% (with stock) the dissipation rate of ammo, in exchange for extreme bulk and slow fire rate.
+ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
+/obj/item/gun/modular/italian/sniper
+	name = "abstract Italian sniper"
+	real_name = "abstract Italian sniper"
+	icon_state = "italian_sniper"
+	spread_angle = -2
+	jam_frequency = 1
+	barrel_overlay_x = 6
+	barrel_overlay_y = -1
+	grip_overlay_x = -6
+	grip_overlay_y = -3
+	stock_overlay_x = -7
+	stock_overlay_y = -1
+	max_ammo_capacity = 2
+	bulkiness = 5
+
+	load_time = 1.3 SECONDS
+
+	recoil_strength = 12
+	recoil_reset_mult = 0.925
+	camera_recoil_multiplier = 2.5
+
+	var/scope_speed = 12
+	var/scope_range = 1200
+
+	build_gun()
+		..()
+		src.AddComponent(/datum/component/holdertargeting/sniper_scope, src.scope_speed, src.scope_range)
+
+	reset_gun()
+		..()
+		var/C = src.GetComponent(/datum/component/holdertargeting/sniper_scope)
+		qdel(C)
+
+	alter_projectile(obj/projectile/P)
+		P.proj_data.dissipation_rate = P.proj_data.dissipation_rate / (2 + !!src.stock)
+		//P.proj_data.dissipation_delay = P.proj_data.dissipation_delay * (2 + !!src.stock)
+		..()
 
 // REVOLVERS
 
@@ -354,3 +396,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		else
 			barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
 
+// SNIPERS
+//the only one for testing
+/obj/item/gun/modular/italian/sniper/masterwork
+	name = "masterwork Italian sniper"
+	real_name = "\improper Battaglio"
+	desc = "WIP Italian gun"
+
+	make_parts()
+		stock = new /obj/item/gun_parts/stock/italian(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)

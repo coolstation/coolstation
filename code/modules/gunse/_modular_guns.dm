@@ -996,7 +996,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	bulk = bulkiness
 	caliber = 0
 
-	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
 	can_dual_wield = initial(can_dual_wield)

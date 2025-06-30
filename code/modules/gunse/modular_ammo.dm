@@ -318,7 +318,7 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	name = "\improper Italian pistol round"
 	real_name = "\improper Italian pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
-	projectile_type = /datum/projectile/bullet/pistol_medium
+	projectile_type = /datum/projectile/bullet/pistol_italian
 	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
@@ -326,7 +326,6 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
-	load_time = 0.25 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 
 //rename to pistol/italian/ap
@@ -334,7 +333,7 @@ THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 	name = "\improper Italian AP pistol round"
 	real_name = "\improper Italian AP pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, with an AP core. The same caliber everyone else copies. Still in paper..."
-	projectile_type = /datum/projectile/bullet/pistol_medium/AP
+	projectile_type = /datum/projectile/bullet/pistol_italian/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
@@ -342,8 +341,23 @@ THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 	icon_empty = "italian-empty"
 	icon_one   = "it_what"
 	icon_shell = "red_case" //except it's supposed to be caseless
-	load_time = 0.3 SECONDS
+	load_time = 0.05 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
+
+/obj/item/stackable_ammo/pistol/italian/flare
+	name = "\improper Italian flare pistol round"
+	real_name = "\improper Italian flare pistol round"
+	desc = "Still in Italia's .31 caliber, these rounds are specially packed with magnesium. This necessitates an even lighter powder load."
+	projectile_type = /datum/projectile/bullet/pistol_italian/flare
+	stack_type = /obj/item/stackable_ammo/pistol/italian/flare
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "italian"
+	icon_full  = "italian"
+	icon_empty = "italian-empty"
+	icon_one   = "it_what"
+	icon_shell = "red_case" //except it's supposed to be caseless
+	load_time = 0.3 SECONDS
+THE_USUAL_FLAVOURS(pistol/italian/flare, "\improper Italian flare pistol round")
 
 /obj/item/stackable_ammo/pistol/juicer
 	name = "\improper Juicer Jr. round"
@@ -498,6 +512,7 @@ THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus ammo")
 	icon_one   = "bullet_juicer_big"
 	icon_shell = "juicer_big_case"
 	load_time = 0.2 SECONDS
+	caliber = CALIBER_LW
 THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 
 //make a single shot
