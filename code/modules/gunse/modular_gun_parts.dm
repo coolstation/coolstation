@@ -97,10 +97,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		else // to be tightened
 			if (part_type & GUN_PART_BARREL)
 				I.pixel_x = overlay_x + 3
+				I.pixel_y = overlay_y
 			if (part_type & GUN_PART_STOCK)
 				I.pixel_x = overlay_x - 3
+				I.pixel_y = overlay_y - 1
 			if (part_type & GUN_PART_GRIP)
 				I.pixel_y = overlay_y - 3
+				I.pixel_y = overlay_y - 1
 		I.layer = gun.layer - 0.01
 		gun.UpdateOverlays(I, "[part_type]")
 
@@ -622,7 +625,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	call_alter_projectile = TRUE
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
-		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.2
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.8
+		P.proj_data.shot_sound_extrarange = P.proj_data.shot_sound_extrarange - 11 // this magic number is one third of MAX_SOUND_RANGE
 		return ..()
 
 

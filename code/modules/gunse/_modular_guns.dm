@@ -57,7 +57,7 @@ giving an "average" spread for stock guns around 5-10
 #define GUN_PART_MAG    8
 #define GUN_PART_ACCSY  16
 
-#define STANDARD_BARREL_LEN 20 // please warc let me kill this formula the direct barrel length -> damage formula wounds me - mylie
+#define STANDARD_BARREL_LEN 20 // the formula that determines ALL GUN BARREL LENGTH DAMAGE SCALING. be careful with this one.
 #define BARREL_SCALING(length) min((1 + max((length-STANDARD_BARREL_LEN)/((length+STANDARD_BARREL_LEN)/2)/1.5,-0.75)),2)
 
 ABSTRACT_TYPE(/obj/item/gun/modular)
@@ -127,7 +127,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/crank_channel = null //what channel is the flywheel loop playing on (for auto)
 	//var/reliability = 100 //how often this thing fucks up (decreased by fouling)
 	//var/fouling = 0 //How gunked up this thing is (reduces reliability, can be negative for freshly cleaned)
-	var/casing_to_eject = null // kee ptrack
+	var/list/casing_list = list() // a list of types that will clatter out, usually on reload
 	var/list/ammo_list = list() // a list of datum/projectile types
 	current_projectile = null // chambered round
 	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time (reset this on pickup)
@@ -315,11 +315,33 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/proc/ammo_reserve()
 	return length(src.ammo_list)
 
+/obj/item/gun/modular/proc/eject_casings()
+	if (length(src.casing_list) > 0)
+		var/turf/T = get_turf(src)
+		if(T)
+			SPAWN_DBG(0)
+				var/i = 1
+				var/batch = 3
+				for(var/casing in src.casing_list)
+					if(i == batch)
+						sleep(1 DECI SECOND)
+						i = 0
+						batch++
+					var/obj/new_casing = new casing(T) // make your casings pianos for all the shits i give - mylie
+					new_casing.forensic_ID = src.forensic_ID
+					i++
+				src.casing_list.Cut()
+	return
+
 // load a piece of ammo, overriden by children
 /obj/item/gun/modular/proc/load_ammo(var/mob/user, var/obj/item/stackable_ammo/donor_ammo)
+	if(length(src.casing_list))
+		boutput(user, "<span class='notice'>First, you clear the casings from [src].</span>")
+		src.eject_casings()
+
 	//single shot and chamber handling
 	if(!src.current_projectile)
-		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
+		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src].</span>")
 		src.set_current_projectile(new donor_ammo.projectile_type())
 		if (src.sound_type)
 			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
@@ -837,6 +859,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
 	if (P)
 		P.forensic_ID = src.forensic_ID
+		if(current_projectile.casing)
+			casing_list.Add(current_projectile.casing)
 
 	chamber_checked = FALSE
 

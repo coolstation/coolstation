@@ -28,7 +28,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 	MouseDrop_T(obj/O as obj, mob/user as mob)
 		if(src.built && O == src && GET_DIST(src, user) <= 1)
-			user.visible_message("<span class='notice'>[user] spins the cylinder.</span>", "<span class='notice'>You spin the cylinder.</span>")
+			user.visible_message("<span class='notice'>[user] spins the cylinder.</span>", "<span class='notice'>You spin the cylinder[length(src.casing_list) ? " and toss the casings": ""].</span>")
+			src.eject_casings()
 			src.cylinder_index = rand(1, src.max_ammo_capacity)
 		else
 			return ..()
@@ -53,6 +54,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		return src.stored_ammo_count
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		if(length(src.casing_list))
+			boutput(user, "<span class='notice'>First, you clear the casings from [src].</span>")
+			src.eject_casings()
+
 		// load the ammo reserves first. for. good reasons. not roulette.
 		if (src.ammo_reserve() < src.max_ammo_capacity)
 			if (src.sound_type)
@@ -163,6 +168,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 			src.hammer_cocked = FALSE
 		return ..()
 
+	on_spin_emote(mob/living/carbon/human/user)
+		if(length(src.casing_list))
+			src.eject_casings()
+		. = ..()
 
 //THE RATTLER
 //Massive drum-like cylinder that increases in damage and decreases in accuracy as it is fired,
@@ -181,7 +190,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	load_time = 0.3 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
 	max_ammo_capacity = 15
 	bulkiness = 3
-	var/successful_chamber_frequency = 40
+	var/successful_chamber_frequency = 27
+	var/failed_chamber_fudge = 3 // each failed chamber boosts successful_chamber_frequency by this much until the gun is reloaded or chambers
+	var/max_fudged_chance = 90 // maxes at this chance after enough fudges
+	var/failures_to_chamber = 0
 
 	shoot_delay = 0.2 SECONDS
 
@@ -194,14 +206,23 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	recoil_reset_mult = 0.9
 
 	shoot(target, start, mob/user, POX, POY, is_dual_wield)
+		if(src.jammed)
+			return // TODO - feedback
 		if(src.current_projectile)
 			..()
-		if(!src.jammed && prob(src.successful_chamber_frequency))
-			src.process_ammo(user)
+		src.process_ammo(user)
+		if(src.current_projectile && src.ammo_reserve()) // yes, empty cylinders count as failures, so long as SOMETHING is in here
+			src.failures_to_chamber = 0
 		else
-			src.cylinder_index++
-			if(src.cylinder_index > src.max_ammo_capacity)
-				src.cylinder_index = 1
+			src.failures_to_chamber++
+
+	chamber_round()
+		if(prob(min(src.max_fudged_chance, src.successful_chamber_frequency + src.failed_chamber_fudge * src.failures_to_chamber)))
+			return ..()
+		src.cylinder_index++
+		if(src.cylinder_index > src.max_ammo_capacity)
+			src.cylinder_index = 1
+		return FALSE
 
 	build_gun()
 		..()
@@ -210,19 +231,23 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	reset_gun()
 		..()
 		var/C = src.GetComponent(/datum/component/holdertargeting/fullauto)
+		src.failures_to_chamber = 0
 		qdel(C)
 
 	alter_projectile(obj/projectile/P)
-		P.power = P.power * (0.25 + 0.25 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
+		P.power = P.power * (0.25 + 0.2 * src.two_handed + 0.4 * src.recoil / src.recoil_max)
 		..()
 
 	displayed_power()
-		var/lower_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.25 * src.two_handed))
-		var/upper_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.25 * src.two_handed + 0.2))
+		var/lower_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.2 * src.two_handed))
+		var/upper_power = floor(BARREL_SCALING(src.barrel?.length) * current_projectile?.power * (0.25 + 0.2 * src.two_handed + 0.4))
 		if(lower_power == upper_power)
 			return "[lower_power] - [current_projectile?.ks_ratio * 100]% lethal"
 		return "[lower_power] to [upper_power] - [current_projectile?.ks_ratio * 100]% lethal"
 
+	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		src.failures_to_chamber = 0
+		. = ..()
 
 //THE SNIPER
 //Slow single action "revolver" (has to be for copyright reasons, I reckon), holding a minimal number of rounds, that comes with a fancy shmancy scope.
@@ -342,6 +367,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	load_time = 0.4 SECONDS
 	successful_chamber_frequency = 40
+	failed_chamber_fudge = 3
 
 	make_parts()
 		if(prob(60))
@@ -363,7 +389,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	desc = "WIP Italian gun"
 
 	load_time = 0.3 SECONDS
-	successful_chamber_frequency = 43
+	successful_chamber_frequency = 30
 
 	make_parts()
 		if(prob(70))
@@ -385,7 +411,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	desc = "WIP Italian gun"
 
 	load_time = 0.25 SECONDS
-	successful_chamber_frequency = 45
+	successful_chamber_frequency = 30
+	failed_chamber_fudge = 3.5
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)
@@ -397,11 +424,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	real_name = "\improper Sterno"
 	desc = "WIP Italian gun"
 
-	shoot_delay = 0.1 SECONDS
+	shoot_delay = 0.15 SECONDS
 
 	max_ammo_capacity = 26
 	load_time = 0.2 SECONDS
-	successful_chamber_frequency = 20
+	successful_chamber_frequency = 15
+	max_fudged_chance = 75
 
 	make_parts()
 		if(prob(60))

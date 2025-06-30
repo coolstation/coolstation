@@ -42,6 +42,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	receiver
 		no_build = TRUE
 
+	shoot(target, start, mob/user, POX, POY, is_dual_wield)
+		. = ..()
+		src.eject_casings()
+
 //a built and usable pistol
 /obj/item/gun/modular/NT/pistol
 	name = "\improper NT pistol"
