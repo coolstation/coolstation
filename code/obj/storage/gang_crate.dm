@@ -1137,11 +1137,11 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/xlong_tall)
 		tier = ILLICIT_LOOT_GUN
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
 			if(prob(60))
-				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/improved,off_x=-4,off_y=1,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
+				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/improved,off_x=-4,off_y=4,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
 			else
-				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/masterwork,off_x=-4,off_y=1,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
-			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=-6,off_y=-8,scale_x=0.825,scale_y=0.825,layer_offset=-0.25)
-			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=6,off_y=-12,rot=180,scale_x=0.825,scale_y=0.825,layer_offset=-0.5)
+				spawn_item(C,I,/obj/item/gun/modular/italian/rattler/masterwork,off_x=-4,off_y=4,scale_x=0.825,scale_y=0.825,layer_offset=-0.75)
+			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=-6,off_y=-4,scale_x=0.825,scale_y=0.825,layer_offset=-0.25)
+			spawn_item(C,I,/obj/item/gun/modular/italian/revolver/italiano,off_x=6,off_y=-8,rot=180,scale_x=0.825,scale_y=0.825,layer_offset=-0.5)
 			I.parent?.tag_list("Ammo_Allowed", /obj/item/stackable_ammo/pistol/italian/ten)
 
 	// ILLICIT_LOOT_GEAR
