@@ -530,18 +530,20 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 2
 
 /obj/item/gun_parts/barrel/italian
-	name = "canna di fucile"
+	name = "italian pistol barrel"
+	real_name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
 	icon_state = "italian_revolver"
 	spread_angle = 7 // "alta qualità"
 	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	add_suffix = " paisan"
-	length = 13
+	length = 12
 	overlay_x = 6
 	bulkiness = 2
 
 /obj/item/gun_parts/barrel/italian/snub
-	name = "canna di fucile corta"
+	name = "italian snub barrel"
+	real_name = "canna di fucile corta"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_snub"
 	add_suffix = " paisanuccia"
@@ -551,7 +553,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 1
 
 /obj/item/gun_parts/barrel/italian/short
-	name = "canna di fucile piccolo"
+	name = "italian short barrel"
+	real_name = "canna di fucile piccolo"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_short"
 	add_suffix = " paisanetto"
@@ -561,16 +564,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 1
 
 /obj/item/gun_parts/barrel/italian/spicy
-	name = "canna di fucile arrabiata"
+	name = "italian weighted barrel"
+	real_name = "canna di fucile arrabiata"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_weighted"
 	add_suffix = " paisana"
 	spread_angle = 5
-	length = 12
 	overlay_x = 6
 
 /obj/item/gun_parts/barrel/italian/accurate
-	name = "buon canna di fucile"
+	name = "italian sighted barrel"
+	real_name = "buon canna di fucile"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_long"
 	add_suffix = " paisano"
@@ -578,15 +582,18 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = 7
 
 /obj/item/gun_parts/barrel/italian/buntline
-	name = "canna di fucile extra lunga"
+	name = "italian buntline barrel"
+	real_name = "canna di fucile extra lunga"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_buntline"
 	add_suffix = " tiratore"
-	spread_angle = 2
+	spread_angle = 4
+	length = 17
 	overlay_x = 8
 
 /obj/item/gun_parts/barrel/italian/joker
-	name = "canna di fucile pagliaccioo"
+	name = "italian jokester barrel"
+	real_name = "canna di fucile pagliaccioo"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_justsilly"
 	add_suffix = " burlone"
@@ -596,11 +603,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 4
 
 /obj/item/gun_parts/barrel/italian/tommy
-	name = "canna di fucile ventilata"
+	name = "italian thick ventilated barrel"
+	real_name = "canna di fucile ventilata"
 	desc = "una canna di fucile grande e ventilata a gas"
 	icon_state = "italian_tommy"
 	add_suffix = " sospettosa"
-	spread_angle = 5
+	spread_angle = 6
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
@@ -608,7 +616,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	// maybe MORE recoil?
 
 /obj/item/gun_parts/barrel/italian/silenced
-	name = "canna di fucile tacito"
+	name = "italian silenced barrel"
+	real_name = "canna di fucile tacito"
 	desc = "silenced italian barrel???"
 	icon_state = "italian_silenced"
 	add_suffix = " valentino"
@@ -640,39 +649,40 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = -3
 	overlay_y = -3
 
-	ceremonial
-		max_ammo_capacity = 1
-		name = "ceremonial standard grip"
-		icon_state = "nt_ceremonial"
-		add_prefix = "shmancy "
-		overlay_x = -2
+/obj/item/gun_parts/grip/NT/ceremonial
+	max_ammo_capacity = 1
+	name = "ceremonial standard grip"
+	icon_state = "nt_ceremonial"
+	add_prefix = "shmancy "
+	overlay_x = -2
 
-	fancy
-		max_ammo_capacity = 1
-		name = "fancy standard grip"
-		icon_state = "nt_fancy"
-		add_prefix = "fancy "
-		overlay_x = -2
+/obj/item/gun_parts/grip/NT/fancy
+	max_ammo_capacity = 1
+	name = "fancy standard grip"
+	icon_state = "nt_fancy"
+	add_prefix = "fancy "
+	overlay_x = -2
 
-	stub
-		max_ammo_capacity = 1
-		name = "stub grip"
-		icon_state = "nt_stub"
-		spread_angle = 0
-		add_prefix = "stubby "
-		overlay_x = -1
+/obj/item/gun_parts/grip/NT/stub
+	max_ammo_capacity = 1
+	name = "stub grip"
+	icon_state = "nt_stub"
+	spread_angle = 0
+	add_prefix = "stubby "
+	overlay_x = -1
 
-	wood
-		name = "wood grip"
-		icon_state = "nt_rev"
-		spread_angle = -1
-		add_prefix = "woody "
-		overlay_x = -2
-		overlay_y = -2
+/obj/item/gun_parts/grip/NT/wood
+	name = "wood grip"
+	icon_state = "nt_rev"
+	spread_angle = -1
+	add_prefix = "woody "
+	overlay_x = -2
+	overlay_y = -2
 
 
 /obj/item/gun_parts/grip/italian
-	name = "impugnatura a pistola"
+	name = "italian pistol grip"
+	real_name = "impugnatura a pistola"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
 	spread_angle = 0
 	max_ammo_capacity = 1 // to make that revolver revolve!
@@ -683,58 +693,58 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "quality "
 	overlay_x = -2
 
-	bigger
-		name = "impugnatura a pistola piu larga"
-		desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-		spread_angle = -1
-		max_ammo_capacity = 3 // to make that revolver revolve!
-		jam_frequency = 6 // a lot  more jammy!!
-		part_DRM = GUN_ITALIAN | GUN_SOVIET
-		icon_state = "italian_fancy"
-		add_prefix = "jovial "
-		bulkiness = 2
-		overlay_x = -2
+/obj/item/gun_parts/grip/bigger
+	name = "italian fat grip"
+	real_name = "impugnatura a pistola piu larga"
+	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
+	spread_angle = -1
+	max_ammo_capacity = 3 // to make that revolver revolve!
+	jam_frequency = 6 // a lot  more jammy!!
+	part_DRM = GUN_ITALIAN | GUN_SOVIET
+	icon_state = "italian_fancy"
+	add_prefix = "jovial "
+	bulkiness = 2
+	overlay_x = -2
 
-	meatball
-		name = "da meatballs"
-		desc = "An extremely weirdly-shaped and red sauce-smelling combat grip, but it's definitely comfortable."
-		spread_angle = -2
-		max_ammo_capacity = 2
-		jam_frequency = 4
-		part_DRM = GUN_ITALIAN | GUN_SOVIET
-		icon_state = "italian_meatballs"
-		add_prefix = "polpetti "
-		bulkiness = 2
-		overlay_x = -2
+/obj/item/gun_parts/grip/italian/meatball
+	name = "da meatballs"
+	desc = "An extremely weirdly-shaped and red sauce-smelling combat grip, but it's definitely comfortable."
+	spread_angle = -2
+	max_ammo_capacity = 2
+	jam_frequency = 4
+	part_DRM = GUN_ITALIAN | GUN_SOVIET
+	icon_state = "italian_meatballs"
+	add_prefix = "polpetti "
+	bulkiness = 2
+	overlay_x = -2
 
+/obj/item/gun_parts/grip/italian/cowboy
+	name = "italian cowboy grip"
+	desc = "Smells like spaghetti."
+	spread_angle = 0
+	max_ammo_capacity = 2
+	jam_frequency = 4
+	part_DRM = GUN_ITALIAN | GUN_SOVIET
+	icon_state = "italian_cowboy"
+	bulkiness = 2
+	overlay_x = -3
+	overlay_y = -3
 
-	cowboy
-		name = "cowboy grip"
-		desc = "Smells like spaghetti."
-		spread_angle = 0
-		max_ammo_capacity = 2
-		jam_frequency = 4
-		part_DRM = GUN_ITALIAN | GUN_SOVIET
-		icon_state = "italian_cowboy"
-		bulkiness = 2
-		overlay_x = -3
-		overlay_y = -3
+/obj/item/gun_parts/grip/italian/cowboy/bandit
+	name = "italian bandit grip"
+	desc = "Looks like trouble."
+	spread_angle = 3
+	max_ammo_capacity = 1
+	jam_frequency = 6
+	icon_state = "italian_bandit"
 
-		bandit
-			name = "bandit grip"
-			desc = "Looks like trouble."
-			spread_angle = 3
-			max_ammo_capacity = 1
-			jam_frequency = 6
-			icon_state = "italian_bandit"
-
-		pearl
-			name = "pearl grip"
-			desc = "Tastes like plastic."
-			spread_angle = -3
-			max_ammo_capacity = 1
-			jam_frequency = 2
-			icon_state = "italian_pearl"
+/obj/item/gun_parts/grip/italian/cowboy/pearl
+	name = "italian pearl grip"
+	desc = "Tastes like plastic."
+	spread_angle = -3
+	max_ammo_capacity = 1
+	jam_frequency = 2
+	icon_state = "italian_pearl"
 
 
 /obj/item/gun_parts/grip/juicer
@@ -748,20 +758,21 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_y = -1
 	bulkiness = 2
 
-	red
-		name = "redgrip"
-		icon_state = "red"
-		add_prefix = "stylish "
+/obj/item/gun_parts/grip/juicer/red
+	name = "redgrip"
+	icon_state = "red"
+	add_prefix = "stylish "
 
-	black
-		icon_state = "black"
-		add_prefix = "slick "
+/obj/item/gun_parts/grip/juicer/black
+	name = "slick grip"
+	icon_state = "black"
+	add_prefix = "slick "
 
-	trans
-		name = "da brick"
-		icon_state = "trans"
-		throwforce = 10 // hehe
-		add_prefix = "queer "
+/obj/item/gun_parts/grip/juicer/trans
+	name = "da brick"
+	icon_state = "trans"
+	throwforce = 10 // hehe
+	add_prefix = "queer "
 
 /obj/item/gun_parts/grip/foss
 	name = "\improper FOSS grip"
@@ -813,7 +824,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "capable "
 	icon_state = "nt_wire"
 	overlay_x = 0 //generally wire stocks should be centered, using "template-offset" as a guide
-	caliber = CALIBER_TINY
+	caliber = CALIBER_TINY // barely a stock at all
 
 /obj/item/gun_parts/stock/NT/drum //TODO: make this fucker slow to load somehow
 	name = "helical-magazine stock"
@@ -829,8 +840,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = -9
 
 /obj/item/gun_parts/stock/italian
-	name = "hunting stock"
-	desc = "A fancy walnut Italian stock for hunting (write this in italian later)"
+	name = "italian hunting stock"
+	real_name = "calcio del fucile"
+	desc = "Un calcio in noce robusto ma leggero per la caccia."
 	spread_angle = -5 // brety gud
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_suffix = " cacciatore"
@@ -839,8 +851,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = -9
 
 /obj/item/gun_parts/stock/italian/wire
-	name = "wire stock"
-	desc = "A long Italian wire stock (write this in italian later)"
+	name = "italian wire stock"
+	real_name = "calcio dell'asta"
+	desc = "Un solido ceppo in filo metallico italiano, decorato con foglia d'oro."
 	spread_angle = -4 // not as great, but good
 	bulkiness = 2
 	//foldable = 1
@@ -848,7 +861,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = " pirite"
 	icon_state = "italian_wire"
 	overlay_x = -7
-	caliber = CALIBER_TINY // doesnt allow long bullets
+	caliber = CALIBER_TINY // barely a stock at all
 
 /obj/item/gun_parts/stock/soviet
 	name = "hunting stock"
@@ -872,7 +885,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "udobnyy "
 	icon_state = "sov_wire"
 	overlay_x = 0
-	caliber = CALIBER_TINY
+	caliber = CALIBER_TINY // barely a stock at all
 
 //Free and Open Source Cranked-Up Springs/Capacitors/Etc.
 //One second per crank just imo, the spam was getting bad

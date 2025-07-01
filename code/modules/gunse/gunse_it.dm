@@ -347,7 +347,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/revolver/improved
 	name = "improved Italian revolver"
 	real_name = "\improper Italiano"
-	desc = "Una pistola realizzata in acciaio di qualità e pelle.."
+	desc = "Una pistola realizzata in acciaio di qualità e pelle."
 	max_ammo_capacity = 5
 
 	make_parts()
@@ -396,7 +396,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/rattler/basic
 	name = "basic Italian rattler"
 	real_name = "\improper Bacino"
-	desc = "WIP Italian gun"
+	desc = "Tecnicamente è un revolver, con un tamburo enorme e un meccanismo di cameratura inaffidabile."
 	bulkiness = 3
 
 	load_time = 0.4 SECONDS
@@ -420,7 +420,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/rattler/improved
 	name = "improved Italian rattler"
 	real_name = "\improper Costola"
-	desc = "WIP Italian gun"
+	desc = "Un modello recente di revolver con un massiccio tamburo lucidato."
 
 	load_time = 0.3 SECONDS
 	successful_chamber_frequency = 30
@@ -442,7 +442,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/rattler/masterwork
 	name = "masterwork Italian rattler"
 	real_name = "\improper Cranio"
-	desc = "WIP Italian gun"
+	desc = "Un revolver all'avanguardia con un cilindro massiccio ben unto con olio d'oliva."
 
 	load_time = 0.25 SECONDS
 	successful_chamber_frequency = 30
@@ -456,7 +456,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/rattler/saucy
 	name = "saucy Italian rattler"
 	real_name = "\improper Sterno"
-	desc = "WIP Italian gun"
+	desc = "Questa pistola, un prototipo di revolver che divora munizioni, puzza di pomodoro."
 
 	shoot_delay = 0.15 SECONDS
 
@@ -483,7 +483,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/sniper/basic
 	name = "improved Italian sniper"
 	real_name = "\improper Zuffa"
-	desc = "WIP Italian gun"
+	desc = "Un fucile a doppia azione a lungo raggio, dotato di un buon mirino ottico."
 
 	scope_range = 480
 	scope_speed = 10
@@ -506,14 +506,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/sniper/improved
 	name = "improved Italian sniper"
 	real_name = "\improper Rissa"
-	desc = "WIP Italian gun"
+	desc = "Un fucile a doppia azione a lungo raggio, dotato di un buon mirino ottico e unto con vino rosso."
 
 	scope_range = 640
 	scope_speed = 12
 	dissipation_divisor = 2
 
 	make_parts()
-		if(prob(60))
+		if(prob(30))
 			stock = new /obj/item/gun_parts/stock/italian/wire(src)
 		else
 			stock = new /obj/item/gun_parts/stock/italian(src)
@@ -535,7 +535,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/sniper/masterwork
 	name = "masterwork Italian sniper"
 	real_name = "\improper Battaglia"
-	desc = "WIP Italian gun"
+	desc = "Un sofisticato fucile a doppia azione a lungo raggio, dotato di un cannocchiale adatto a sparare alla mafia."
 
 	scope_range = 800
 	scope_speed = 16
