@@ -186,7 +186,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	name = "abstract Italian rattler"
 	real_name = "abstract Italian rattler"
 	icon_state = "italian_rattler"
-	spread_angle = 2
+	spread_angle = 4
 	barrel_overlay_x = 6
 	grip_overlay_x = -7
 	grip_overlay_y = -4
@@ -203,7 +203,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	shoot_delay = 0.2 SECONDS
 
 	recoil_strength = 4
-	recoil_inaccuracy_max = 15
+	recoil_inaccuracy_max = 12
 	recoil_stacking_enabled = TRUE
 	recoil_stacking_amount = 2
 	recoil_stacking_safe_stacks = 1
