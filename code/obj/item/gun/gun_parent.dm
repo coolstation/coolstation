@@ -300,7 +300,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 				how_drunk = 2
 			if (1 to 110)
 				how_drunk = 1
-		how_drunk = max(0, how_drunk - isalcoholresistant(user) ? 1 : 0)
+		how_drunk = max(0, how_drunk - (isalcoholresistant(user) ? 1 : 0))
 		spread += 5 * how_drunk
 	spread = max(spread, spread_angle)
 
@@ -387,7 +387,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 				how_drunk = 2
 			if (1 to 110)
 				how_drunk = 1
-		how_drunk = max(0, how_drunk - isalcoholresistant(user) ? 1 : 0)
+		how_drunk = max(0, how_drunk - (isalcoholresistant(user) ? 1 : 0))
 		spread += 5 * how_drunk
 	spread = max(spread, spread_angle)
 

@@ -567,7 +567,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = " paisana"
 	spread_angle = 5
 	length = 12
-	overlay_x = 7
+	overlay_x = 6
 
 /obj/item/gun_parts/barrel/italian/accurate
 	name = "buon canna di fucile"
@@ -620,7 +620,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	call_alter_projectile = TRUE
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
-		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.7
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.45
 		P.proj_data.shot_sound_extrarange = P.proj_data.shot_sound_extrarange - 11 // this magic number is one third of MAX_SOUND_RANGE
 		return ..()
 

@@ -733,9 +733,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	else
 		if(!src.processing_ammo && (!src.reload_cooldown || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
 			process_ammo(user)
-		if(src.max_ammo_capacity)
-			// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
-			src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
+		// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
+		src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
 	buildTooltipContent()
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 
@@ -848,7 +847,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				how_drunk = 2
 			if (1 to 110)
 				how_drunk = 1
-		how_drunk = max(0, how_drunk - isalcoholresistant(user) ? 1 : 0)
+		how_drunk = max(0, how_drunk - (isalcoholresistant(user) ? 1 : 0))
 		spread += 5 * how_drunk
 	spread = max(spread, spread_angle)
 
@@ -978,7 +977,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if((src.bulk + !!stock) > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
-		src.can_dual_wield = FALSE
+
 	src.force = floor(4 + src.bulk / 2)
 	src.throwforce = floor(6 + src.bulk / 3)
 	src.w_class = ceil(src.bulk / 3)
@@ -988,9 +987,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(src.two_handed)
 		flags &= ~ONBELT
 		flags |= ONBACK
+		src.can_dual_wield = FALSE
 	else
 		flags &= ~ONBACK
 		flags |= ONBELT
+		src.can_dual_wield = TRUE
 	buildTooltipContent()
 	built = 1
 

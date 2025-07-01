@@ -28,6 +28,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 	MouseDrop_T(obj/O as obj, mob/user as mob)
 		if(src.built && O == src && GET_DIST(src, user) <= 1)
+			playsound(src.loc, "sound/weapons/cylinderspin.ogg", 50)
 			user.visible_message("<span class='notice'>[user] spins the cylinder.</span>", "<span class='notice'>You spin the cylinder[length(src.casing_list) ? " and toss the casings": ""].</span>")
 			src.eject_casings()
 			src.cylinder_index = rand(1, src.max_ammo_capacity)
@@ -101,7 +102,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	name = "abstract Italian revolver"
 	real_name = "abstract Italian revolver"
 	icon_state = "italian_revolver"
-	spread_angle = 10
+	spread_angle = 8
 	barrel_overlay_x = 5
 	grip_overlay_x = -4
 	grip_overlay_y = -4
@@ -118,8 +119,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
 		if(!src.currently_firing)
+			src.currently_firing = TRUE
 			SPAWN_DBG(0)
-				src.currently_firing = TRUE
 				if(!src.current_projectile)
 					process_ammo()
 					sleep(0.2 SECONDS)
@@ -256,8 +257,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		. = ..()
 
 //THE SNIPER
-//Slow single action "revolver" (has to be for copyright reasons, I reckon), holding a minimal number of rounds, that comes with a fancy shmancy scope.
-//Cuts by 50% (w/o stock) or 66% (with stock) the dissipation rate of ammo, in exchange for extreme bulk and slow fire rate.
+//Slow double action only "revolver" (has to be for copyright reasons, I reckon), holding a minimal number of rounds. Comes with a fancy scope.
+//Cuts the dissipation rate of ammo, in exchange for extreme bulk and slow fire rate.
 ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/sniper
 	name = "abstract Italian sniper"
@@ -272,17 +273,42 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	stock_overlay_x = -7
 	stock_overlay_y = -1
 	max_ammo_capacity = 2
-	bulkiness = 5
+	bulkiness = 4
 
 	load_time = 1.3 SECONDS
 
 	recoil_strength = 25
 	recoil_reset_mult = 0.975
+	recoil_inaccuracy_max = 8
 
 	shoot_delay = 1.2 SECONDS
 
+	var/currently_firing = FALSE
 	var/scope_speed = 12
 	var/scope_range = 640
+	var/dissipation_divisor = 1.75
+
+	// ultra heavy Double Action Only revolver
+	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
+		if(!src.currently_firing)
+			src.currently_firing = TRUE
+			SPAWN_DBG(0)
+				if(!src.current_projectile)
+					process_ammo()
+					sleep(0.2 SECONDS)
+				if (src.current_projectile)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					sleep(0.15 SECONDS)
+					var/offset_x = target.x - start.x
+					var/offset_y = target.y - start.y
+					if(src.current_projectile && src.loc == user && !src.jammed)
+						var/turf/T_start = get_turf(user)
+						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
+						if(T_start && T_target)
+							..(T_target, T_start, user, POX, POY, is_dual_wield)
+					sleep(0.3 SECONDS)
+				sleep(0.2 SECONDS)
+				src.currently_firing = FALSE
 
 	build_gun()
 		..()
@@ -294,14 +320,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P)
-		P.proj_data.dissipation_rate = P.proj_data.dissipation_rate / (2 + !!src.stock)
-		//P.proj_data.dissipation_delay = P.proj_data.dissipation_delay * (2 + !!src.stock)
+		P.proj_data.dissipation_rate = P.proj_data.dissipation_rate / (src.dissipation_divisor + !!src.stock)
+		// INTENTIONALLY LEFT OUT - this was too strong
+		//P.proj_data.dissipation_delay = P.proj_data.dissipation_delay * (src.dissipation_divisor + !!src.stock)
 		..()
 
 	displayed_power()
 		if(src.current_projectile)
 			return "[floor(src.current_projectile.power * BARREL_SCALING(src.barrel?.length))] - [floor(src.current_projectile.ks_ratio * 100)]% lethal - x[2 + !!src.stock] range"
-		return "[round(100 * BARREL_SCALING(src.barrel?.length), 0.5)]% power - x[2 + !!src.stock] range"
+		return "[round(100 * BARREL_SCALING(src.barrel?.length), 0.5)]% power - x[src.dissipation_divisor + !!src.stock] range"
 
 // REVOLVERS
 
@@ -483,6 +510,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	scope_range = 640
 	scope_speed = 12
+	dissipation_divisor = 2
 
 	make_parts()
 		if(prob(60))
@@ -511,6 +539,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	scope_range = 800
 	scope_speed = 16
+	dissipation_divisor = 2.25
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)
