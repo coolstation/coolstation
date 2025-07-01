@@ -239,6 +239,7 @@ TYPEINFO(/datum/component/holdertargeting/fullauto)
 	while(!stopping)
 		G.Shoot(target ? target : get_step(L, NORTH), get_turf(L), L, src.target_pox, src.target_poy, called_target = target)
 		G.suppress_fire_msg = 1
+		L.set_dir(get_dir(get_turf(L),target))
 		sleep(delay)
 		src.iterate_delay()
 

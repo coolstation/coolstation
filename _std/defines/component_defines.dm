@@ -188,7 +188,7 @@
 #define COMSIG_MOB_GEIGER_TICK "mob_geiger"
 /// on mouseup
 #define COMSIG_MOUSEUP "mouseup"
-/// Sent when the mob starts sprinting, return TRUE to prevent other sprint code from running
+/// Sent when the mob starts pressing the sprint key, return TRUE to prevent other sprint code from running
 #define COMSIG_MOB_SPRINT "mob_sprint"
 
 // ---- mob/living signals ----

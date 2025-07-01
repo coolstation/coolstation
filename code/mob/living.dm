@@ -1731,6 +1731,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+			if((keys & KEY_RUN && SEND_SIGNAL(src, COMSIG_MOB_SPRINT)) || src.override_movement_controller)
+				return
 			m_intent = (m_intent == "walk") ? "run" : "walk"
 			src.hud.update_mintent()
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
@@ -1739,14 +1741,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+			if((keys & KEY_RUN && SEND_SIGNAL(src, COMSIG_MOB_SPRINT)) || src.override_movement_controller)
+				return
 			m_intent = (m_intent == "walk") ? "run" : "walk"
 			src.hud.update_mintent()
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
 
 /mob/living/proc/start_sprint()
-	var/stop_here = SEND_SIGNAL(src, COMSIG_MOB_SPRINT)
-	if (stop_here)
-		return
 	if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 		return
 	if (special_sprint && src.client)

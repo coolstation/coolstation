@@ -51,6 +51,7 @@ TYPEINFO(/datum/component/holdertargeting/sniper_scope)
 	else
 		src.begin_sniping(user)
 	scoped = !scoped
+	return TRUE
 
 /datum/component/holdertargeting/sniper_scope/proc/begin_sniping(mob/user)
 	user.override_movement_controller = src.movement_controller
