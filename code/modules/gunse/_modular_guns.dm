@@ -19,8 +19,8 @@ additional custom parts can be created with stat bonuses, and other effects in t
 
 TODO: make desc dynamic on build unless overridden by an existing desc (i.e. spawned from vending machine or on person)
 
-"average" base spread is 25 without a barrel, other guns may be less accurate, perhaps up to 30. few should ever be more accurate.
-having any barrel is -10 spread.
+"average" base spread is 5 without a barrel, other guns may be less accurate, few are more accurate - those that are have limiting factors.
+having no barrel is +20 spread, having neither a stock nor grip is +10
 in order to balance this, barrels should be balanced around -5 spread, and stocks around -5 (so -3 is a rough barrel, -7 is a great one, etc.)
 giving an "average" spread for stock guns around 5-10
 */

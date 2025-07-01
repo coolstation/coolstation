@@ -180,7 +180,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 
 //THE RATTLER
 //Massive drum-like cylinder that increases in damage and decreases in accuracy as it is fired,
-//but has a solid chance to fail to chamber each round- so keep spinning the drum for diminishing returns!
+//but has a solid chance to fail to chamber each round- so keep spinning the cylinder for diminishing returns!
 ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 /obj/item/gun/modular/italian/rattler
 	name = "abstract Italian rattler"
@@ -258,13 +258,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 
 //THE SNIPER
 //Slow double action only "revolver" (has to be for copyright reasons, I reckon), holding a minimal number of rounds. Comes with a fancy scope.
-//Cuts the dissipation rate of ammo, in exchange for extreme bulk and slow fire rate.
+//Cuts the dissipation rate of ammo, in exchange for extreme bulk and slow fire rate. Minimal spread, but has high recoil-based spread.
 ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/sniper
 	name = "abstract Italian sniper"
 	real_name = "abstract Italian sniper"
 	icon_state = "italian_sniper"
-	spread_angle = -2
+	spread_angle = 0
 	jam_frequency = 1
 	barrel_overlay_x = 6
 	barrel_overlay_y = -1
