@@ -37,6 +37,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	gun_DRM = GUN_NANO
 	bulkiness = 2
 	spread_angle = 6
+	reload_cooldown = 0.7 SECONDS
 
 	//receiver, by itself and unbuilt
 	receiver
