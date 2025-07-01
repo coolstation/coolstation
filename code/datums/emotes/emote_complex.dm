@@ -521,6 +521,9 @@
 /datum/emote/wink/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user)) return
 	for (var/obj/item/C as anything in user.get_equipped_items())
+		if(istype(C, /obj/item/storage)) // HATE
+			continue
+
 		if ((locate(/obj/item/gun/kinetic/derringer) in C) != null)
 			var/obj/item/gun/kinetic/derringer/D = (locate(/obj/item/gun/kinetic/derringer) in C)
 			var/drophand = (user.hand == 0 ? user.slot_r_hand : user.slot_l_hand)

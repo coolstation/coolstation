@@ -130,7 +130,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 				. += "<img src='[resource("images/tooltips/temp_italian.png")]' alt='' class='icon' />"
 			. += "</div>"
 		if(length)
-			. += "<div><span>Barrel length: [src.length] - [round(100 * BARREL_SCALING(src.length), 0.5)]% power </span></div>"
+			. += "<div><span>Barrel length: [src.length] cm = [round(100 * BARREL_SCALING(src.length), 0.5)]% power </span></div>"
 
 		if(caliber)
 			. += "<div><span>Caliber Modifier: [src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>HUGE</b>" : "Long") : "Wide"]</span></div>"
@@ -358,7 +358,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/barrel/NT/shotty
 	name = "shotgun barrel"
-	spread_angle = 18
+	spread_angle = 14
 	length = 10
 	icon_state = "nt_blue_shot"
 	add_suffix = " shotty"
@@ -368,7 +368,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/barrel/NT/shotty/short
 	name = "sawn-off barrel"
-	spread_angle = 14
+	spread_angle = 18
 	length = 6
 	icon_state = "nt_blue_shotshort"
 	add_suffix = " shottie"
@@ -558,6 +558,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 10
 	length = 7
 	overlay_x = 4
+	bulkiness = 1
 
 /obj/item/gun_parts/barrel/italian/spicy
 	name = "canna di fucile arrabiata"
@@ -566,7 +567,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = " paisana"
 	spread_angle = 5
 	length = 12
-	overlay_x = 6
+	overlay_x = 7
 
 /obj/item/gun_parts/barrel/italian/accurate
 	name = "buon canna di fucile"
@@ -807,14 +808,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "An uncomfortable NT wire stock, but maybe some day it can fold up" //convert from 1-2 hand and conceal
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
-
 	foldable = 1
-	//max_ammo_capacity = 0 // does not add ammo
-	//jam_frequency = 3 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "capable "
 	icon_state = "nt_wire"
 	overlay_x = 0 //generally wire stocks should be centered, using "template-offset" as a guide
+	caliber = CALIBER_TINY
 
 /obj/item/gun_parts/stock/NT/drum //TODO: make this fucker slow to load somehow
 	name = "helical-magazine stock"
@@ -842,13 +841,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/italian/wire
 	name = "wire stock"
 	desc = "A long Italian wire stock (write this in italian later)"
-	spread_angle = -2 // not as good stabilisation
+	spread_angle = -4 // not as great, but good
 	bulkiness = 2
 	//foldable = 1
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_suffix = " pirite"
 	icon_state = "italian_wire"
 	overlay_x = -7
+	caliber = CALIBER_TINY // doesnt allow long bullets
 
 /obj/item/gun_parts/stock/soviet
 	name = "hunting stock"
@@ -872,6 +872,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "udobnyy "
 	icon_state = "sov_wire"
 	overlay_x = 0
+	caliber = CALIBER_TINY
 
 //Free and Open Source Cranked-Up Springs/Capacitors/Etc.
 //One second per crank just imo, the spam was getting bad

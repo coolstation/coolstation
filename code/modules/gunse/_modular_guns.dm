@@ -172,7 +172,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		. += "</div>"
 
 	if(barrel && barrel.length)
-		. += "<div><span>Barrel length: [src.barrel.length] - [round(100 * BARREL_SCALING(src.barrel.length), 0.5)]% power </span></div>"
+		. += "<div><span>Barrel length: [src.barrel.length] cm = [round(100 * BARREL_SCALING(src.barrel.length), 0.5)]% power </span></div>"
 
 	. += "<div><span>Caliber: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Anythin'</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
 
@@ -1034,8 +1034,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 // derringer-esque behavior for tiny gunse
 /obj/item/gun/modular/afterattack(obj/O as obj, mob/user as mob)
-	if (src.built && src.bulk <= 3 && O.loc == user && O != src && istype(O, /obj/item/clothing))
-		boutput(user, "<span class='hint'>You hide the [src] inside \the [O]. (Use the wink emote while wearing the clothing item to retrieve it.)</span>")
+	if (src.built && !src.stock && src.bulk <= 3 && O.loc == user && O != src && istype(O, /obj/item/clothing))
+		playsound(user.loc, "rustle", 50, 1)
+		boutput(user, SPAN_HINT("You hide the [src] inside \the [O]. (Use the wink emote while wearing the clothing item to retrieve it.)</span>"))
+		for(var/mob/M in orange(3, user))
+			boutput(M,SPAN_ALERT("[user] stuffs a gun inside \the [O]!"))
 		user.u_equip(src)
 		src.set_loc(O)
 	else
