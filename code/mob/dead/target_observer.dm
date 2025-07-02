@@ -108,7 +108,7 @@ var/list/observers = list()
 		if(src.target)
 			var/mob/living/M = src.target
 			src.target = null
-			M.removeOverlaysClient(src.client)
+			removeOverlaysClient(src.client)
 			for (var/datum/hud/hud in M.huds)
 				src.detach_hud(hud)
 			if(istype(M))
@@ -129,7 +129,7 @@ var/list/observers = list()
 		if (istype(M))
 			M.observers += src
 			if(src.client)
-				M.updateOverlaysClient(src.client)
+				addOverlaysClient(src.client, M)
 			for (var/datum/hud/hud in M.huds)
 				src.attach_hud(hud)
 
@@ -157,7 +157,7 @@ var/list/observers = list()
 	my_ghost.delete_on_logout = my_ghost.delete_on_logout_reset
 
 	if (src.client)
-		src.removeOverlaysClient(src.client)
+		removeOverlaysClient(src.client)
 		client.mob = my_ghost
 
 	if (src.mind)

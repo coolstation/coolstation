@@ -12,6 +12,8 @@
 	var/instance = screenOverlayLibrary[compType]
 	if(screenoverlays.Find(instance))return //Only one instance per overlay Type. Keep this. Im serious. Else mobs will end up with 324598762 blind overlays
 	screenoverlays.Add(instance)
+	if(src.client)
+		src.client.screen += instance
 	return
 
 /mob/proc/removeOverlayComposition(var/compType) //Removes composition type from active compositions on mob
@@ -20,6 +22,8 @@
 	var/instance = screenOverlayLibrary[compType]
 	if(screenoverlays.Find(instance))
 		screenoverlays.Remove(instance)
+		if(src.client)
+			src.client.screen -= instance
 	return
 
 /mob/proc/hasOverlayComposition(var/compType) //Does that mob have the overlay active?
@@ -28,30 +32,16 @@
 	var/instance = screenOverlayLibrary[compType]
 	return screenoverlays.Find(instance)
 
-/mob/proc/updateOverlaysClient(var/client/CL) //Updates the overlays of current mob to given client
-	removeOverlaysClient(CL)
-	addOverlaysClient(CL)
-	return
-
-/mob/proc/addOverlaysClient(var/client/CL) //Adds the overlays of current mob to given client
-	if(!CL) return
-	for(var/datum/overlayComposition/C in screenoverlays)
+/proc/addOverlaysClient(var/client/CL, var/mob/source) //Adds the overlays of current mob to given client
+	if(!CL || !source) return
+	for(var/datum/overlayComposition/C in source.screenoverlays)
 		for(var/atom/movable/screen/screenoverlay/S in C.instances)
 			CL.screen += S
 
-/mob/proc/removeOverlaysClient(var/client/CL) //Removes all overlays of given client
+/proc/removeOverlaysClient(var/client/CL) //Removes all overlays of given client
 	if(!CL) return
 	for(var/atom/movable/screen/screenoverlay/S in CL.screen)
 		CL.screen -= S
-
-//Because dead mobs don't have a life loop
-/mob/dead/addOverlayComposition()
-	..()
-	updateOverlaysClient(src.client)
-
-/mob/dead/removeOverlayComposition()
-	..()
-	updateOverlaysClient(src.client)
 
 /atom/movable/screen/screenoverlay
 	name = ""
@@ -431,16 +421,6 @@
 
 		return ..()
 
-/datum/overlayComposition/sniper_scope
-	New()
-		var/datum/overlayDefinition/sniper_scope = new()
-		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scope.dmi'
-		sniper_scope.d_icon_state = "sniper_scope"
-		sniper_scope.do_wide_fill = 0
-		definitions.Add(sniper_scope)
-
-		return ..()
-
 /datum/overlayComposition/insanity
 	New()
 		var/datum/overlayDefinition/insanity = new()
@@ -451,5 +431,26 @@
 		//insanity.d_alpha = 190
 		insanity.d_screen_loc = "CENTER-10,CENTER-7"
 		definitions.Add(insanity)
+
+		return ..()
+
+/datum/overlayComposition/sniper_scope_old
+	New()
+		var/datum/overlayDefinition/sniper_scope = new()
+		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scope_old.dmi'
+		sniper_scope.d_icon_state = "sniper_scope"
+		sniper_scope.do_wide_fill = 0
+		definitions.Add(sniper_scope)
+
+		return ..()
+
+/datum/overlayComposition/sniper_scope
+	New()
+		var/datum/overlayDefinition/sniper_scope = new()
+		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scopes.dmi'
+		sniper_scope.d_icon_state = "base"
+		sniper_scope.do_wide_fill = 0
+		sniper_scope.d_screen_loc = "CENTER-5,CENTER-5"
+		definitions.Add(sniper_scope)
 
 		return ..()

@@ -4,7 +4,7 @@ TYPEINFO(/datum/component/holdertargeting/sniper_scope)
 		ARG_INFO("speed", "num", "Scope movement per tick (in pixels)", 12),
 		ARG_INFO("max_range", "num", "Maximum range of scope (in pixels, 0 for infinite)", 3200),
 		ARG_INFO("scope_overlay", "type", "Type of the scope overlay", /datum/overlayComposition/sniper_scope),
-		ARG_INFO("scope_sound", "text", "Sound to play when raising scope", 'sound/weapons/scope.ogg'),
+		ARG_INFO("scope_sound", "text", "Sound to play when raising scope", "sound/weapons/scope.ogg"),
 	)
 
 /datum/component/holdertargeting/sniper_scope

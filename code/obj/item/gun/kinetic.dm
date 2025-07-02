@@ -1422,7 +1422,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		set_current_projectile(new/datum/projectile/bullet/rifle_heavy)
-		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 3200, /datum/overlayComposition/sniper_scope, 'sound/weapons/scope.ogg')
+		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 3200, /datum/overlayComposition/sniper_scope_old, 'sound/weapons/scope.ogg')
 		..()
 
 	setupProperties()

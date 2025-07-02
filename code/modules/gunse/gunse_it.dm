@@ -322,7 +322,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	build_gun()
 		..()
-		src.AddComponent(/datum/component/holdertargeting/sniper_scope, src.scope_speed, src.scope_range)
+		src.AddComponent(/datum/component/holdertargeting/sniper_scope, src.scope_speed, src.scope_range, /datum/overlayComposition/sniper_scope, "sound/weapons/scope.ogg")
 
 	reset_gun()
 		..()
