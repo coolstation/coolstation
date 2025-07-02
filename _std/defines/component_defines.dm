@@ -268,10 +268,8 @@
 /// MouseMove over a fullauto hud object
 #define COMSIG_FULLAUTO_MOUSEMOVE "fullauto_mousemove"
 #define COMSIG_GUN_PROJECTILE_CHANGED "gun_proj_changed"
-/// before ...gun/shoot() - return truthy to cancel shoot() - (target, start, shooter, POX, POY, is_dual_wield, called_target)
+/// before ...gun/shoot() - return truthy to cancel shoot() - (target, start, shooter, POX, POY, is_dual_wield, point_blank_target)
 #define COMSIG_GUN_TRY_SHOOT "gun_shooty"
-/// before ...gun/shoot_point_blank() - return truthy to cancel shoot_point_blank() - (target, user, second_shot)
-#define COMSIG_GUN_TRY_POINTBLANK "gun_pointblank"
 
 // ---- small cell component signals ----
 ///When the cell in a uses_cell component should be swapped out (cell, user)

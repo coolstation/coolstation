@@ -248,7 +248,9 @@
 
 		var/len = sqrt(src.xo * src.xo + src.yo * src.yo)
 
-		if (len == 0 || projectile_speed == 0)
+		var/speed = internal_speed || proj_data.projectile_speed
+
+		if (len == 0 || speed == 0)
 			return //will die on next step before moving
 
 		src.xo = src.xo / len
@@ -274,7 +276,6 @@
 		Turn(angle)
 		if (!proj_data.precalculated)
 			return
-		var/speed = internal_speed || proj_data.projectile_speed
 		var/x32 = 0
 		var/xs = 1
 		var/y32 = 0

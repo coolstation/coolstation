@@ -734,7 +734,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 1
 	return 0
 
-/obj/item/gun/modular/shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
+/obj/item/gun/modular/shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
 	if (isghostdrone(user))
 		user.show_text("<span class='combat bold'>Your internal law subroutines kick in and prevent you from using [src]!</span>")
 		return FALSE
@@ -839,6 +839,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		P.forensic_ID = src.forensic_ID
 		if(current_projectile.casing)
 			casing_list.Add(current_projectile.casing)
+		if(point_blank_target && GET_DIST(user,point_blank_target) <= 1)
+			P.was_pointblank = 1
+			hit_with_existing_projectile(P, point_blank_target)
 
 	chamber_checked = FALSE
 
@@ -921,16 +924,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
 
 	return TRUE
-
-/obj/item/gun/modular/shoot_point_blank(var/mob/M as mob, var/mob/user as mob, var/second_shot = 0)
-	..()
-	if (flashbulb_only)
-		if (flash_auto)
-			crank_level--
-		else
-			crank_level = 0
-	src.set_current_projectile(null) // empty chamber
-	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
 	name = real_name

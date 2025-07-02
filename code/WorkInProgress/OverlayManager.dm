@@ -9,21 +9,23 @@
 /mob/proc/addOverlayComposition(var/compType) //Adds composition type to active compositions on mob
 	if(!ispath(compType))return
 	if(!screenOverlayLibrary.Find(compType))return
-	var/instance = screenOverlayLibrary[compType]
-	if(screenoverlays.Find(instance))return //Only one instance per overlay Type. Keep this. Im serious. Else mobs will end up with 324598762 blind overlays
-	screenoverlays.Add(instance)
+	var/datum/overlayComposition/comp = screenOverlayLibrary[compType]
+	if(screenoverlays.Find(comp))return //Only one instance per overlay Type. Keep this. Im serious. Else mobs will end up with 324598762 blind overlays
+	screenoverlays.Add(comp)
 	if(src.client)
-		src.client.screen += instance
+		for(var/atom/movable/screen/screenoverlay/overlay in comp.instances)
+			src.client.screen += overlay
 	return
 
 /mob/proc/removeOverlayComposition(var/compType) //Removes composition type from active compositions on mob
 	if(!ispath(compType)) return
 	if(!screenOverlayLibrary.Find(compType)) return
-	var/instance = screenOverlayLibrary[compType]
-	if(screenoverlays.Find(instance))
-		screenoverlays.Remove(instance)
+	var/datum/overlayComposition/comp = screenOverlayLibrary[compType]
+	if(screenoverlays.Find(comp))
 		if(src.client)
-			src.client.screen -= instance
+			for(var/atom/movable/screen/screenoverlay/overlay in comp.instances)
+				src.client.screen -= overlay
+		screenoverlays.Remove(comp)
 	return
 
 /mob/proc/hasOverlayComposition(var/compType) //Does that mob have the overlay active?

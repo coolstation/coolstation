@@ -1547,10 +1547,6 @@
 		shotcount = 0
 		. = ..()
 
-	shoot_point_blank(mob/M, mob/user, second_shot)
-		shotcount = 0
-		. = ..()
-
 /obj/item/gun/energy/tasersmg
 	name = "Taser SMG"
 	icon_state = "tsmg_burst100"

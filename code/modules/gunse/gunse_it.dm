@@ -129,7 +129,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	//MAYBE: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 	//much too consider
 
-	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
+	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/atom/point_blank_target)
 		if(!src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
 			SPAWN_DBG(0)
@@ -144,11 +144,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 					src.hammer_cocked = TRUE
 					var/offset_x = target.x - start.x
 					var/offset_y = target.y - start.y
+					var/point_blank_first = point_blank_target
 					while(src.current_projectile && user.equipped() == src && !src.jammed)
 						var/turf/T_start = get_turf(user)
 						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
 						if(T_start && T_target)
-							..(T_target, T_start, user, POX, POY, is_dual_wield) // the voices told me its okay to do this
+							..(T_target, T_start, user, POX, POY, is_dual_wield, point_blank_first) // the voices told me its okay to do this
+							point_blank_first = null
 						else
 							break // if you aim off a world border this can happen
 						sleep(0.4 SECONDS)
@@ -221,12 +223,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	recoil_stacking_max_stacks = 10
 	recoil_reset_mult = 0.9
 
-	shoot(target, start, mob/user, POX, POY, is_dual_wield)
+	shoot(target, start, mob/user, POX, POY, is_dual_wield, point_blank_target)
 		if(src.jammed)
 			return // TODO - feedback
 		if(src.current_projectile)
 			..()
-		src.process_ammo(user)
+		src.chamber_round(user)
 		if(src.current_projectile) // yes, empty cylinders count as failures
 			src.failures_to_chamber = 0
 		else
@@ -289,7 +291,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	recoil_strength = 25
 	recoil_reset_mult = 0.975
-	recoil_inaccuracy_max = 8
+	recoil_inaccuracy_max = 20
 
 	shoot_delay = 1.2 SECONDS
 
@@ -299,23 +301,23 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	var/dissipation_divisor = 1.75
 
 	// ultra heavy Double Action Only revolver
-	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
-		if(!src.currently_firing)
+	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
+		if(!src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
 			SPAWN_DBG(0)
 				if(!src.current_projectile)
-					process_ammo()
-					sleep(0.2 SECONDS)
+					chamber_round()
+					sleep(0.3 SECONDS)
 				if (src.current_projectile)
 					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-					sleep(0.15 SECONDS)
+					sleep(0.2 SECONDS)
 					var/offset_x = target.x - start.x
 					var/offset_y = target.y - start.y
 					if(src.current_projectile && src.loc == user && !src.jammed)
 						var/turf/T_start = get_turf(user)
 						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
 						if(T_start && T_target)
-							..(T_target, T_start, user, POX, POY, is_dual_wield)
+							..(T_target, T_start, user, POX, POY, is_dual_wield, point_blank_target)
 					sleep(0.3 SECONDS)
 				sleep(0.2 SECONDS)
 				src.currently_firing = FALSE
