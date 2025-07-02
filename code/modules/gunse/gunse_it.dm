@@ -190,8 +190,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 
 	displayed_power()
 		if(src.current_projectile)
-			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.6 + 0.2 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
-		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.6 + 0.2 * src.two_handed), 0.5)]% power"
+			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.7 + 0.2 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
+		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.7 + 0.2 * src.two_handed), 0.5)]% power"
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(src.hammer_cocked)
