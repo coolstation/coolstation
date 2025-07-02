@@ -35,15 +35,26 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		else
 			return ..()
 
-	chamber_round()
+	chamber_round(mob/user)
+		if(src.current_projectile)
+			return FALSE
+		. = FALSE
+		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = 35, vary = TRUE, extrarange = -28)
 		var/ammotype = ammo_list[src.cylinder_index]
-		if(ammotype)
+		if(!isnull(ammotype))
+			if(prob(src.jam_frequency))
+				src.jammed = JAM_LOAD
+				boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
+				playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
+				return FALSE
 			src.set_current_projectile(new ammotype()) // this one goes in
 			src.ammo_list[src.cylinder_index] = null // preserve order of remaining
 			src.stored_ammo_count--
+			. = TRUE
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
 			src.cylinder_index = 1
+		return
 
 	ammo_reserve()
 		if(src.dirty_ammo)
@@ -115,14 +126,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	max_ammo_capacity = 5
 	bulkiness = 1
 
+	//MAYBE: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
+	//much too consider
+
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
-		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
-		//much too consider
-		if(!src.currently_firing)
+		if(!src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
 			SPAWN_DBG(0)
 				if(!src.current_projectile)
-					process_ammo()
+					src.chamber_round()
 					sleep(0.2 SECONDS)
 				if (src.current_projectile)
 					sleep(src.hammer_cocked ? 0 : 0.2 SECONDS) // approved by the pope
@@ -132,20 +144,19 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 					src.hammer_cocked = TRUE
 					var/offset_x = target.x - start.x
 					var/offset_y = target.y - start.y
-					while(src.hammer_cocked && src.current_projectile && src.loc == user && !src.jammed)
+					while(src.current_projectile && user.equipped() == src && !src.jammed)
 						var/turf/T_start = get_turf(user)
 						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
 						if(T_start && T_target)
 							..(T_target, T_start, user, POX, POY, is_dual_wield) // the voices told me its okay to do this
-							src.hammer_cocked = FALSE
 						else
 							break // if you aim off a world border this can happen
 						sleep(0.4 SECONDS)
 						if(src.hammer_cocked)
-							src.process_ammo()
+							src.chamber_round(user)
+						src.hammer_cocked = FALSE
 					sleep(0.3 SECONDS)
 				src.currently_firing = FALSE
-
 
 	attack_self(mob/user)
 		if(src.currently_firing && (src.jammed || src.hammer_cocked))
@@ -157,7 +168,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 			return
 		return ..()
 
-	alter_projectile(obj/projectile/P)
+	alter_projectile(obj/projectile/P, mob/user)
 		P.power = P.power * (0.6 + 0.2 * src.two_handed)
 		..()
 
@@ -213,19 +224,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	shoot(target, start, mob/user, POX, POY, is_dual_wield)
 		if(src.jammed)
 			return // TODO - feedback
-		if(!src.ammo_reserve() && !src.current_projectile)
-			return // TODO - spinny sound, do i even need to set the index on this one???
 		if(src.current_projectile)
 			..()
 		src.process_ammo(user)
-		if(src.current_projectile && src.ammo_reserve()) // yes, empty cylinders count as failures, so long as SOMETHING is in here
+		if(src.current_projectile) // yes, empty cylinders count as failures
 			src.failures_to_chamber = 0
 		else
 			src.failures_to_chamber++
 
-	chamber_round()
+	chamber_round(mob/user)
 		if(prob(min(src.max_fudged_chance, src.successful_chamber_frequency + src.failed_chamber_fudge * src.failures_to_chamber)))
 			return ..()
+		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = min(50, 20 + src.failed_chamber_fudge * 3), vary = TRUE, extrarange = -28)
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
 			src.cylinder_index = 1
@@ -241,7 +251,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		src.failures_to_chamber = 0
 		qdel(C)
 
-	alter_projectile(obj/projectile/P)
+	alter_projectile(obj/projectile/P, mob/user)
 		P.power = P.power * (0.25 + 0.2 * src.two_handed + 0.4 * src.recoil / src.recoil_max)
 		..()
 
@@ -319,7 +329,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		var/C = src.GetComponent(/datum/component/holdertargeting/sniper_scope)
 		qdel(C)
 
-	alter_projectile(obj/projectile/P)
+	alter_projectile(obj/projectile/P, mob/user)
 		P.proj_data.dissipation_rate = P.proj_data.dissipation_rate / (src.dissipation_divisor + !!src.stock)
 		// INTENTIONALLY LEFT OUT - this was too strong
 		//P.proj_data.dissipation_delay = P.proj_data.dissipation_delay * (src.dissipation_divisor + !!src.stock)
@@ -481,7 +491,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 // SNIPERS
 // basic but always has a stock by default
 /obj/item/gun/modular/italian/sniper/basic
-	name = "improved Italian sniper"
+	name = "basic Italian sniper"
 	real_name = "\improper Zuffa"
 	desc = "Un fucile a doppia azione a lungo raggio, dotato di un buon mirino ottico."
 

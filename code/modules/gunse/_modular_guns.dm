@@ -311,7 +311,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 // how much ammo is left outside the chamber, overriden by children
 /obj/item/gun/modular/proc/ammo_reserve()
-	return length(src.ammo_list)
+	return src.ammo_list ? length(src.ammo_list) : 0
 
 /obj/item/gun/modular/proc/eject_casings()
 	if (length(src.casing_list) > 0)
@@ -496,18 +496,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			onRestart()
 		return
 
-/obj/item/gun/modular/alter_projectile(var/obj/projectile/P)
+/obj/item/gun/modular/alter_projectile(var/obj/projectile/P, var/mob/user)
 	if(call_alter_projectile)
 		if(call_alter_projectile & GUN_PART_BARREL)
-			barrel.alter_projectile(src, P)
+			barrel.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_STOCK)
-			stock.alter_projectile(src, P)
+			stock.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_GRIP)
-			grip.alter_projectile(src, P)
+			grip.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_MAG)
-			magazine.alter_projectile(src, P)
+			magazine.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_ACCSY)
-			accessory.alter_projectile(src, P)
+			accessory.alter_projectile(src, P, user)
 
 	if(P.proj_data.window_pass)
 		if(lensing)
@@ -595,7 +595,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/waste = src.ammo_reserve() - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
-		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
+		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
 
 	if(src.ammo_reserve()) //check happens again because of process
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
@@ -631,30 +631,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
-	if(call_on_cycle & GUN_PART_BARREL)
-		barrel.on_cycle(src, current_projectile)
-	if(call_on_cycle & GUN_PART_STOCK)
-		stock.on_cycle(src, current_projectile)
-	if(call_on_cycle & GUN_PART_GRIP)
-		grip.on_cycle(src, current_projectile)
-	if(call_on_cycle & GUN_PART_MAG)
-		magazine.on_cycle(src, current_projectile)
-	if(call_on_cycle & GUN_PART_ACCSY)
-		accessory.on_cycle(src, current_projectile)
+	if(call_on_cycle)
+		if(call_on_cycle & GUN_PART_BARREL)
+			barrel.on_cycle(src, current_projectile, user)
+		if(call_on_cycle & GUN_PART_STOCK)
+			stock.on_cycle(src, current_projectile, user)
+		if(call_on_cycle & GUN_PART_GRIP)
+			grip.on_cycle(src, current_projectile, user)
+		if(call_on_cycle & GUN_PART_MAG)
+			magazine.on_cycle(src, current_projectile, user)
+		if(call_on_cycle & GUN_PART_ACCSY)
+			accessory.on_cycle(src, current_projectile, user)
 
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
-
-	if(src.max_ammo_capacity == 0 && !jammed) //single shot handling
-		if(chamber_checked && accessory && accessory_alt)
-			accessory.alt_fire()
-			return //nothing else to do here
-		else
-			boutput(user, "You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
-			if(!chamber_checked)
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				chamber_checked = 1
-			return (current_projectile?1:0)
 
 	switch(jammed)
 		if(JAM_FIRE) //problem on fire, either dud round or light strike
@@ -684,46 +674,37 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//if(4) //squib, catastrophic failure, etc. real bad time. explode if shot, or requires repair?
 		//if(5) //hangfire, figure out how to handle
 
-	var/stored_ammo_left = src.ammo_reserve()
-	if(!stored_ammo_left) // empty!
-		if(accessory && accessory_alt)
-			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
-			boutput(user,"<span class='notice'><b>You fiddle with [accessory] since you're out of ammo.</b></span>")
-		else
-			boutput(user,"<span class='notice'><b>You faff around with your unloaded [src].</b></span>")
-		return (current_projectile?1:0)
+	var/ammo_left = src.ammo_reserve()
 
-	if(stored_ammo_left > max_ammo_capacity)
-		var/waste = stored_ammo_left - max_ammo_capacity
-		ammo_list.Cut(1,(1 + waste))
-		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
-		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
-
-	if(current_projectile) // chamber is loaded
-		if(accessory && accessory_alt)
-			accessory.alt_fire()
+	if(accessory && accessory_alt && (src.current_projectile || !ammo_left)) // accessory alt fire
+		accessory.alt_fire()
 		return 1
 
-	if(prob(jam_frequency))
-		jammed = JAM_LOAD
-		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
-		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
-		return 0
-	else
-		//finally, everything normal. just load it and cycle
-		src.chamber_round()
+	if(ammo_left > src.max_ammo_capacity)
+		var/waste = ammo_left - max_ammo_capacity
+		src.ammo_list.Cut(1,(1 + waste))
+		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
+		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
+
+	if(src.chamber_round(user)) //finally, attempt to load and cycle
 		if (sound_type)
 			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
-		//else if (src.action == "pump")
-		//	playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
-		else
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-		return 1
+		return TRUE
+	return FALSE
 
-/obj/item/gun/modular/proc/chamber_round()
-	var/ammotype = ammo_list[src.ammo_reserve()]
+/obj/item/gun/modular/proc/chamber_round(var/mob/user)
+	var/ammo_left = src.ammo_reserve()
+	if(current_projectile || !ammo_left)
+		return FALSE
+	if(prob(src.jam_frequency))
+		src.jammed = JAM_LOAD
+		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
+		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
+		return FALSE
+	var/ammotype = ammo_list[ammo_left]
 	src.set_current_projectile(new ammotype()) // this one goes in
 	ammo_list.Remove(ammotype) //and remove it from the list
+	return TRUE
 
 //cycle weapon + update counter
 /obj/item/gun/modular/attack_self(mob/user)
@@ -733,7 +714,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	else
 		if(!src.processing_ammo && (!src.reload_cooldown || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
 			process_ammo(user)
-		// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
+		// this is how many shots are left in reserve- plus the one in the chamber. it was a little too confusing to not include it
 		src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
 	buildTooltipContent()
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)

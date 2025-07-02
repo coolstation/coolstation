@@ -79,10 +79,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 
 		return 1
 
-	proc/on_cycle(var/obj/item/gun/modular/gun, var/datum/projectile/projectile)
+	proc/on_cycle(var/obj/item/gun/modular/gun, var/datum/projectile/projectile, var/mob/user)
 		return call_on_cycle
 
-	proc/alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
+	proc/alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
 		return call_alter_projectile
 
 	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
@@ -618,7 +618,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/italian/silenced
 	name = "italian silenced barrel"
 	real_name = "canna di fucile tacito"
-	desc = "silenced italian barrel???"
+	desc = "Una sottile canna di pistola racchiusa in un robusto silenziatore e freno a gas."
 	icon_state = "italian_silenced"
 	add_suffix = " valentino"
 	spread_angle = 4
@@ -628,9 +628,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	silenced = TRUE
 	call_alter_projectile = TRUE
 
-	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P)
-		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.45
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.25
 		P.proj_data.shot_sound_extrarange = P.proj_data.shot_sound_extrarange - 11 // this magic number is one third of MAX_SOUND_RANGE
+		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, extrarange = P.proj_data.shot_sound_extrarange)
 		return ..()
 
 
@@ -693,7 +694,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "quality "
 	overlay_x = -2
 
-/obj/item/gun_parts/grip/bigger
+/obj/item/gun_parts/grip/italian/bigger
 	name = "italian fat grip"
 	real_name = "impugnatura a pistola piu larga"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
@@ -963,8 +964,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "tactical "
 	icon_state = "alerter"
 
-	alter_projectile()
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+		return ..()
 
 	attack_self(mob/user as mob)
 		user.u_equip(src)

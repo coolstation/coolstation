@@ -334,7 +334,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	if (flag)
 		return
 
-/obj/item/gun/proc/alter_projectile(var/obj/projectile/P)
+/obj/item/gun/proc/alter_projectile(var/obj/projectile/P, var/mob/user)
 	return
 
 /obj/item/gun/proc/Shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/called_target = null)
