@@ -129,7 +129,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	max_ammo_capacity = 6
 	bulkiness = 1
 
-	shoot_delay = 0.1 SECONDS // listen, this is a lie. its actually 0.4 seconds if youre good
+	shoot_delay = 0.1 SECONDS // this is a lie. its actually 0.6ish seconds if youre good
 	reload_cooldown = 0.2 SECONDS
 
 	var/hammer_cocked = FALSE
@@ -165,6 +165,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 						sleep(0.4 SECONDS)
 						if(src.hammer_cocked)
 							src.chamber_round(user)
+					if(src.hammer_cocked)
+						playsound(src.loc, "sound/weapons/dryfire.ogg", 35, 1)
+				else
+					playsound(src.loc, "sound/weapons/dryfire.ogg", 35, 1)
 				src.hammer_cocked = FALSE
 				sleep(0.3 SECONDS)
 				src.currently_firing = FALSE
@@ -329,8 +333,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
 						if(T_start && T_target)
 							..(T_target, T_start, user, POX, POY, is_dual_wield, point_blank_target)
-					sleep(0.3 SECONDS)
-				sleep(0.2 SECONDS)
+					else
+						playsound(src.loc, "sound/weapons/dryfire.ogg", 50, 1)
+					sleep(0.2 SECONDS)
+				sleep(0.3 SECONDS)
 				src.currently_firing = FALSE
 
 	build_gun()

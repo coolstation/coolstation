@@ -1834,6 +1834,7 @@ var/global/list/soundCache = list(
  	"sound/weapons/cylinderspin.ogg" = 'sound/weapons/cylinderspin.ogg',\
  	"sound/weapons/deagle.ogg" = 'sound/weapons/deagle.ogg',\
  	"sound/weapons/derringer.ogg" = 'sound/weapons/derringer.ogg',\
+ 	"sound/weapons/dryfire.ogg" = 'sound/weapons/dryfire.ogg',\
  	"sound/weapons/DSBFG.ogg" = 'sound/weapons/DSBFG.ogg',\
  	"sound/weapons/DSRXPLOD.ogg" = 'sound/weapons/DSRXPLOD.ogg',\
  	"sound/weapons/female_cswordattack1.ogg" = 'sound/weapons/female_cswordattack1.ogg',\

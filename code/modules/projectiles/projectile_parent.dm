@@ -730,7 +730,7 @@ datum/projectile/snowball
 			T.visible_message("<b><span class='alert'>...but the projectile bounces off uselessly!</span></b>")
 			P.die()
 			return
-		if (P.proj_data)
+		if (P.was_pointblank && P.proj_data)
 			P.proj_data.on_pointblank(P, T)
 	P.collide(T) // The other immunity check is in there (Convair880).
 
