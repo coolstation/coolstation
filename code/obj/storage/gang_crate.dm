@@ -9,7 +9,6 @@
 
 
 /// Large storage object with lots of loot.
-ABSTRACT_TYPE(/obj/storage/crate/illicit_crate)
 /obj/storage/crate/illicit_crate
 	name = "illicit crate"
 	desc = "A surprisingly advanced crate, with an improvised cash register. Smells terrible..."
