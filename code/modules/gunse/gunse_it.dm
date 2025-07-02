@@ -185,7 +185,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		return ..()
 
 	alter_projectile(obj/projectile/P, mob/user)
-		P.power = P.power * (0.6 + 0.2 * src.two_handed)
+		P.power = P.power * (0.7 + 0.2 * src.two_handed)
 		..()
 
 	displayed_power()
@@ -269,12 +269,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P, mob/user)
-		P.power = P.power * (0.25 + 0.2 * src.two_handed + 0.4 * src.recoil / src.recoil_max)
+		P.power = P.power * (0.35 + 0.2 * src.two_handed + 0.25 * src.recoil / src.recoil_max)
 		..()
 
 	displayed_power()
-		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.25 + 0.2 * src.two_handed)
-		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.25 + 0.2 * src.two_handed + 0.4)
+		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.35 + 0.2 * src.two_handed)
+		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.35 + 0.2 * src.two_handed + 0.25)
 		if(src.current_projectile)
 			return "[floor(lower_scale * src.current_projectile.power)] to [floor(upper_scale * src.current_projectile.power)] dmg - [current_projectile.ks_ratio * 100]% lethal"
 		return "[round(100 * lower_scale, 0.5)]% to [round(100 * upper_scale, 0.5)]% power"
@@ -336,12 +336,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 					else
 						playsound(src.loc, "sound/weapons/dryfire.ogg", 50, 1)
 					sleep(0.2 SECONDS)
+				else
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					sleep(0.2 SECONDS)
+					playsound(src.loc, "sound/weapons/dryfire.ogg", 50, 1)
 				sleep(0.3 SECONDS)
 				src.currently_firing = FALSE
 
 	build_gun()
 		..()
-		src.AddComponent(/datum/component/holdertargeting/sniper_scope, src.scope_speed, src.scope_range, /datum/overlayComposition/sniper_scope, "sound/weapons/scope.ogg")
+		src.AddComponent(/datum/component/holdertargeting/sniper_scope, src.scope_speed, src.scope_range, /datum/overlayComposition/sniper_scope_italian, "sound/weapons/scope.ogg")
 
 	reset_gun()
 		..()

@@ -456,3 +456,14 @@
 		definitions.Add(sniper_scope)
 
 		return ..()
+
+/datum/overlayComposition/sniper_scope_italian
+	New()
+		var/datum/overlayDefinition/sniper_scope = new()
+		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scopes.dmi'
+		sniper_scope.d_icon_state = "italian"
+		sniper_scope.do_wide_fill = 0
+		sniper_scope.d_screen_loc = "CENTER-5,CENTER-5"
+		definitions.Add(sniper_scope)
+
+		return ..()
