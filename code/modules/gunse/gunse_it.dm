@@ -23,6 +23,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			src.ammo_list[src.chambered_index] = null
 			src.stored_ammo_count--
 			src.chambered_index = 0
+			src.inventory_counter.update_number(src.ammo_reserve())
 
 	build_gun()
 		..()
@@ -167,6 +168,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 				src.hammer_cocked = FALSE
 				sleep(0.3 SECONDS)
 				src.currently_firing = FALSE
+			return TRUE
 
 	attack_self(mob/user)
 		if(src.currently_firing && (src.jammed || src.hammer_cocked))

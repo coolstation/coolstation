@@ -418,16 +418,17 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	if (!src.canshoot())
 		return 0
 
-	src.process_ammo(user)
 	user.visible_message("<span class='alert'><b>[user] places [src] against [his_or_her(user)] head!</b></span>")
 	var/dmg = user.get_brute_damage() + user.get_burn_damage()
 	var/turf/T = get_turf(user)
+	APPLY_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide", 0.1 - user.get_ranged_protection()) // take 10x damage from projectiles for 1 second
 	src.Shoot(T, T, user, point_blank_target = user)
-	var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
-	if (new_dmg >= (dmg + 10)) // it did some appreciable amount of damage
-		user.TakeDamage("head", 500, 0)
-	else
-		user.visible_message("<span class='alert'>[user] hangs their head in shame because they chose such a weak gun.</span>")
+	SPAWN_DBG(1 SECOND)
+		if(!QDELETED(user)) // i sincerely hope someone makes this check matter
+			REMOVE_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
+			var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
+			if (new_dmg < (dmg + 30)) // BOOOO!
+				user.visible_message("<span class='alert'>[user] hangs their head in shame because they chose such a weak gun.</span>")
 	return 1
 
 /obj/item/gun/on_spin_emote(var/mob/living/carbon/human/user as mob)

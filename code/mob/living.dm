@@ -1884,7 +1884,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 					src.remove_stamina(min(round(stun/rangedprot) * 30, 125)) //thanks to the odd scaling i have to cap this.
 					src.stamina_stun()
 
-				src.TakeDamage("chest", damage/max((rangedprot/3), 1), 0, 0, P.proj_data.hit_type)
+				src.TakeDamage("chest", damage/max((rangedprot / 3), min(1, rangedprot)), 0, 0, P.proj_data.hit_type)
 				if (isalive(src))
 					lastgasp()
 				if (rangedprot > 1)
