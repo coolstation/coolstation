@@ -12,8 +12,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	gun_DRM = GUN_ITALIAN
 	jam_frequency = 0
 	var/cylinder_index = 1
+	var/chambered_index = 1
 	var/dirty_ammo = TRUE
 	var/stored_ammo_count = 0 // only count our ammo when actually needed, otherwise use tricks to avoid checking the entire cylinder a ton
+
+	shoot(target, start, mob/user, POX, POY, is_dual_wield, mob/point_blank_target)
+		. = ..()
+		if(.) // we remove the current projectile here, not in set_current_projectile, because we want to be able to cycle back around
+			qdel(src.current_projectile)
+			src.ammo_list[src.chambered_index] = null
+			src.stored_ammo_count--
+			src.chambered_index = 0
 
 	build_gun()
 		..()
@@ -36,32 +45,37 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			return ..()
 
 	chamber_round(mob/user)
-		if(src.current_projectile)
-			return FALSE
 		. = FALSE
+
 		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = 35, vary = TRUE, extrarange = -28)
 		var/ammotype = ammo_list[src.cylinder_index]
+
 		if(!isnull(ammotype))
-			if(prob(src.jam_frequency))
-				src.jammed = JAM_LOAD
-				boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
-				playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
-				return FALSE
-			src.set_current_projectile(new ammotype()) // this one goes in
-			src.ammo_list[src.cylinder_index] = null // preserve order of remaining
-			src.stored_ammo_count--
+			if(istype(ammotype, /datum/projectile)) // might have already been chambered then cycled away
+				src.set_current_projectile(ammotype) // so just rechamber it
+			else // or its brand new
+				src.set_current_projectile(new ammotype()) // this one gets instantiated
+				src.ammo_list[src.cylinder_index] = src.current_projectile // it remains in the cylinder until fired, tho
+
+			src.chambered_index = src.cylinder_index
 			. = TRUE
+			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 25, extrarange = -28)
+
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
 			src.cylinder_index = 1
 		return
+
+	set_current_projectile(datum/projectile/newProj) // we dont want to delete the fired bullet for this one, so it doesnt call parent
+		src.current_projectile = newProj
+		SEND_SIGNAL(src, COMSIG_GUN_PROJECTILE_CHANGED, newProj)
 
 	ammo_reserve()
 		if(src.dirty_ammo)
 			src.dirty_ammo = FALSE
 			src.stored_ammo_count = 0
 			for(var/i in 1 to length(src.ammo_list))
-				if(!isnull(src.ammo_list[i]))
+				if(i != src.chambered_index && !isnull(src.ammo_list[i]))
 					src.stored_ammo_count++
 		return src.stored_ammo_count
 
@@ -70,7 +84,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			boutput(user, "<span class='notice'>First, you clear the casings from [src].</span>")
 			src.eject_casings()
 
-		// load the ammo reserves first. for. good reasons. not roulette.
 		if (src.ammo_reserve() < src.max_ammo_capacity)
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
@@ -88,14 +101,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 					src.stored_ammo_count++
 					src.cylinder_index = potential_slot
 					break
-		//single shot and chamber handling
-		else if(!src.current_projectile)
-			boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
-			src.set_current_projectile(new donor_ammo.projectile_type())
-			if (src.sound_type)
-				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
-			else
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
 		src.buildTooltipContent()
 
@@ -113,18 +118,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	name = "abstract Italian revolver"
 	real_name = "abstract Italian revolver"
 	icon_state = "italian_revolver"
-	spread_angle = 8
+	spread_angle = 6
 	barrel_overlay_x = 5
 	grip_overlay_x = -4
 	grip_overlay_y = -4
 	stock_overlay_x = -5
 	stock_overlay_y = -2
+	load_time = 1 SECOND
+	max_ammo_capacity = 6
+	bulkiness = 1
+
+	shoot_delay = 0.1 SECONDS // listen, this is a lie. its actually 0.4 seconds if youre good
+	reload_cooldown = 0.2 SECONDS
+
 	var/hammer_cocked = FALSE
 	var/currently_firing = FALSE
-	load_time = 1 SECOND
-	shoot_delay = 0.1 SECONDS // listen, this is a lie. its actually 0.4 seconds if youre good
-	max_ammo_capacity = 5
-	bulkiness = 1
 
 	//MAYBE: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 	//much too consider
@@ -132,20 +140,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/atom/point_blank_target)
 		if(!src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
+			var/offset_x = target.x - start.x
+			var/offset_y = target.y - start.y
+			var/point_blank_first = point_blank_target
 			SPAWN_DBG(0)
 				if(!src.current_projectile)
 					src.chamber_round()
+					sleep(0.1 SECONDS)
+				if(!src.hammer_cocked)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 50, 1)
 					sleep(0.2 SECONDS)
-				if (src.current_projectile)
-					sleep(src.hammer_cocked ? 0 : 0.2 SECONDS) // approved by the pope
-					if(!src.hammer_cocked)
-						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-						sleep(0.1 SECONDS)
 					src.hammer_cocked = TRUE
-					var/offset_x = target.x - start.x
-					var/offset_y = target.y - start.y
-					var/point_blank_first = point_blank_target
-					while(src.current_projectile && user.equipped() == src && !src.jammed)
+				if (src.current_projectile)
+					while(src.hammer_cocked && src.current_projectile && user.equipped() == src && !src.jammed)
+						src.hammer_cocked = FALSE
 						var/turf/T_start = get_turf(user)
 						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
 						if(T_start && T_target)
@@ -156,8 +164,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 						sleep(0.4 SECONDS)
 						if(src.hammer_cocked)
 							src.chamber_round(user)
-						src.hammer_cocked = FALSE
-					sleep(0.3 SECONDS)
+				src.hammer_cocked = FALSE
+				sleep(0.3 SECONDS)
 				src.currently_firing = FALSE
 
 	attack_self(mob/user)
@@ -165,7 +173,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 			return
 		if(!src.jammed && !src.hammer_cocked) // fan the damn hammer
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-			boutput(user,"<span><b>You cock the hammer.</b></span>")
+			boutput(user,"<span><b>You [src.currently_firing ? "fan" : "cock"] the hammer.</b></span>", group = "revolvercock_\ref[src]")
 			src.hammer_cocked = TRUE
 			return
 		return ..()
@@ -237,6 +245,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	chamber_round(mob/user)
 		if(prob(min(src.max_fudged_chance, src.successful_chamber_frequency + src.failed_chamber_fudge * src.failures_to_chamber)))
 			return ..()
+
 		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = min(50, 20 + src.failed_chamber_fudge * 3), vary = TRUE, extrarange = -28)
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
@@ -276,7 +285,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	name = "abstract Italian sniper"
 	real_name = "abstract Italian sniper"
 	icon_state = "italian_sniper"
-	spread_angle = 0
+	spread_angle = 1
 	jam_frequency = 1
 	barrel_overlay_x = 6
 	barrel_overlay_y = -1
@@ -304,6 +313,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
 		if(!src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
+			var/offset_x = target.x - start.x
+			var/offset_y = target.y - start.y
 			SPAWN_DBG(0)
 				if(!src.current_projectile)
 					chamber_round()
@@ -311,8 +322,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 				if (src.current_projectile)
 					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 					sleep(0.2 SECONDS)
-					var/offset_x = target.x - start.x
-					var/offset_y = target.y - start.y
 					if(src.current_projectile && src.loc == user && !src.jammed)
 						var/turf/T_start = get_turf(user)
 						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
@@ -349,7 +358,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	name = "basic Italian revolver"
 	real_name = "\improper Italianetto"
 	desc = "Una pistola realizzata in acciaio mediocre."
-	max_ammo_capacity = 4
+	max_ammo_capacity = 5
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/short(src)
@@ -360,7 +369,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	name = "improved Italian revolver"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata in acciaio di qualità e pelle."
-	max_ammo_capacity = 5
+	max_ammo_capacity = 6
 
 	make_parts()
 		if (prob(50))
@@ -379,7 +388,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	name = "masterwork Italian revolver"
 	real_name = "\improper Italianone"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
-	max_ammo_capacity = 6
+	max_ammo_capacity = 7
 
 	make_parts()
 
@@ -394,7 +403,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 /obj/item/gun/modular/italian/revolver/silly
 	name = "jokerfied Italian revolver"
 	real_name = "\improper Grande Italiano"
-	max_ammo_capacity = 6
+	max_ammo_capacity = 7
 	desc = "Io sono il pagliaccio, bambino!"
 
 	make_parts()

@@ -13,24 +13,25 @@
 
 a new modular gun system
 every /obj/item/gun/modular/ (a receiver) has some basic stats and handles shooting behavior.
-by default all children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
+by default all concrete children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
 with some ordinary basic parts. barrel and grip or stock are pretty necessary, the other two whatever.
 additional custom parts can be created with stat bonuses, and other effects in their add_part_to_gun() proc
 
+receivers are at the center of everything, basically, so that's the part that makes a gun's a gun's
+If you want to spin off a new reciever, make sure it has: A different sprite, AND a different function- Not just numerical differences
+Generally, a manufacturer should have a similar action for all their receivers, in terms of how a player interacts with it
+
 TODO: make desc dynamic on build unless overridden by an existing desc (i.e. spawned from vending machine or on person)
 
-"average" base spread is 5 without a barrel, other guns may be less accurate, few are more accurate - those that are have limiting factors.
+"average" receiver base spread is 5, other guns may be less accurate, few are more accurate - those that are have limiting factors.
 having no barrel is +20 spread, having neither a stock nor grip is +10
-in order to balance this, barrels should be balanced around -5 spread, and stocks around -5 (so -3 is a rough barrel, -7 is a great one, etc.)
+in order to balance this, barrels should be balanced around 5 spread (7 is a rough barrel, 0 is a great one, etc.), and stocks around -3
 giving an "average" spread for stock guns around 5-10
 */
+
 //modular guns - guns systen - gunse systen - gun's systen - tags for Search Optimisation™
 
 //remember: no "real" guns, and that doesn't just mean real guns with different goofy names!!!!
-
-//receivers are at the center of everything, basically, so that's the part that makes a gun's a gun's
-//If you want to spin off a new reciever, make sure it has: A different sprite, AND a different function- Not just numerical differences
-//Generally, a manufacturer should have a similar action for all their receivers, in terms of how a player interacts with it
 
 // add or subtract these when building the complete gun
 #define STOCK_OFFSET_SHORT -3
@@ -46,8 +47,8 @@ giving an "average" spread for stock guns around 5-10
 #define JAM_LOAD 3
 #define JAM_CATASTROPHIC 4
 #define CALIBER_TINY  0 // 00 - tiny
-#define CALIBER_WIDE  1 // 01 - wide
-#define CALIBER_LONG  2 // 10 - long
+#define CALIBER_WIDE  (1<<0) // 01 - wide
+#define CALIBER_LONG  (1<<1) // 10 - long
 #define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 11 - huge
 //bitflags for finding your bits
 #define GUN_PART_UNDEF  0
@@ -81,7 +82,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/jam_frequency = 1 //base % chance to jam on reload. Just cycle again to clear.
 	var/load_time = 1 SECOND // added to the load_time of the ammo
 	var/reload_cooldown = 0.3 SECONDS // how often you can try to reload/clear jams
-	var/max_ammo_capacity = 1 // How much ammo can this gun hold? Don't make this null (Convair880).
+	var/max_ammo_capacity = 1 // How much ammo this gun can hold, INCLUDING any chambered rounds
 	var/sound_type = null //bespoke set of loading and cycling noises
 	var/flashbulb_only = 0 // FOSS guns only
 
@@ -188,9 +189,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
 
-	. += "<div> <span>Maxcap: [src.max_ammo_capacity + 1] </span></div>"
+	. += "<div> <span>Maxcap: [src.max_ammo_capacity] </span></div>"
 
-	. += "<div> <span>Loaded: [src.ammo_reserve() + (src.current_projectile?1:0)] </span></div>"
+	. += "<div> <span>Loaded: [src.ammo_reserve()] </span></div>"
 
 	lastTooltipContent = .
 
@@ -309,9 +310,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		SPAWN_DBG(0)
 			do_icon_recoil()
 
-// how much ammo is left outside the chamber, overriden by children
+// how much ammo is left, including the chamber, overriden by children
 /obj/item/gun/modular/proc/ammo_reserve()
-	return src.ammo_list ? length(src.ammo_list) : 0
+	return src.ammo_list ? length(src.ammo_list) + !!src.current_projectile : !!src.current_projectile
 
 /obj/item/gun/modular/proc/eject_casings()
 	if (length(src.casing_list) > 0)
@@ -331,37 +332,44 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				src.casing_list.Cut()
 	return
 
+/obj/item/gun/modular/set_current_projectile(datum/projectile/newProj)
+	qdel(src.current_projectile)
+	. = ..()
+
 // load a piece of ammo, overriden by children
 /obj/item/gun/modular/proc/load_ammo(var/mob/user, var/obj/item/stackable_ammo/donor_ammo)
 	if(length(src.casing_list))
-		boutput(user, "<span class='notice'>First, you clear the casings from [src].</span>")
+		boutput(user, "<span class='notice'>You clear the casings from [src].</span>")
 		src.eject_casings()
 
-	//single shot and chamber handling
-	if(!src.current_projectile)
-		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src].</span>")
-		src.set_current_projectile(new donor_ammo.projectile_type())
-		if (src.sound_type)
-			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
+	if(src.ammo_reserve() < src.max_ammo_capacity)
+		//single shot and chamber handling
+		if(!src.current_projectile)
+			boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src].</span>")
+			src.set_current_projectile(new donor_ammo.projectile_type())
+
+			if (src.sound_type)
+				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
+			else
+				playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 60, 1)
+
+		//load the magazine after the chamber
 		else
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+			if (src.sound_type)
+				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
+			else
+				playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+				src.ammo_list += donor_ammo.projectile_type
 
-	//load the magazine after the chamber
-	else if (src.ammo_reserve() < src.max_ammo_capacity)
-		if (src.sound_type)
-			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
-	else
-		playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
-	src.ammo_list += donor_ammo.projectile_type
+		buildTooltipContent()
 
-	buildTooltipContent()
-
-	//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
-	if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
-		src.jammed = JAM_LOAD
-		boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
-		return FALSE
-	return TRUE
+		//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
+		if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
+			src.jammed = JAM_LOAD
+			boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+			return FALSE
+		return TRUE
+	return FALSE
 
 //Replaces /obj/item/stackable_ammo/proc/reload. Now also does distance interrupts and doesn't rely on sleeps
 /datum/action/bar/private/load_ammo
@@ -371,11 +379,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/stackable_ammo/donor_ammo
 	var/obj/item/gun/modular/target_gun
 	id = "load_ammo"
-
-	proc/caliber_check(obj/item/gun/modular/gun, obj/item/stackable_ammo/ammo)
-		if(ammo.caliber == CALIBER_TINY || gun.caliber == CALIBER_LONG_WIDE || gun.caliber == ammo.caliber)
-			return 1
-		return 0
 
 	New(obj/item/gun/modular/gun, obj/item/stackable_ammo/ammo)
 		if (!istype(gun) || !istype(ammo))
@@ -393,19 +396,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		if (target_gun.jammed)
-			boutput(src.owner, "<span class='alert'>This gun is jammed! (Press C to cycle)</span>")
+			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)</span>"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if ((target_gun.caliber | donor_ammo.caliber) != target_gun.caliber)
+			boutput(src.owner, SPAN_ALERT("That cartridge won't fit."))
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-		//some hardcoded ammo incompatabilities
-		//if (istype(donor_ammo, /obj/item/stackable_ammo/scatter) && !target_gun.scatter)
-		//	boutput(owner, "<span class='notice'>That shell won't fit the breech.</span>")
-		//	interrupt(INTERRUPT_ALWAYS)
-		//	return
-		if (!caliber_check(target_gun, donor_ammo))
-			boutput(owner, "<span class='notice'>That cartridge won't fit the breech.</span>")
-			interrupt(INTERRUPT_ALWAYS)
-			return
 		else if (istype(donor_ammo, /obj/item/stackable_ammo/flashbulb) && !target_gun.flashbulb_only)
 			//Note that you can load regular ammo into flashbulb guns.
 			//ATM this just makes the gun complain to the player and clear the round, but I believe there was the intent for firing like that to blow out the lenses
@@ -438,16 +436,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	loopStart()
 		if (!donor_ammo || donor_ammo.disposed || !target_gun || target_gun.disposed) //gun or ammo missing
 			interrupt(INTERRUPT_ALWAYS)
+			return
 		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_ammo) > 1) //gun or ammo out of range
 			interrupt(INTERRUPT_ALWAYS)
+			return
 
-		if(target_gun.current_projectile) //gun might be full
-			if (!target_gun.max_ammo_capacity) //single shot
-				boutput(owner, "<span class='notice'>There's already a cartridge in [target_gun]!</span>")
-				interrupt(INTERRUPT_ALWAYS)
-			else if (target_gun.ammo_reserve() >= target_gun.max_ammo_capacity) //multi shot
-				boutput(owner, "<span class='notice'>You can't load [target_gun] any further!</span>")
-				interrupt(INTERRUPT_ALWAYS)
+		if (target_gun.ammo_reserve() >= target_gun.max_ammo_capacity)
+			boutput(owner, "<span class='notice'>You can't load [target_gun] any further!</span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
 
 	onEnd()
 		//one more distance check
@@ -478,10 +475,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/stored_ammo_left = target_gun.ammo_reserve()
 		//update ammo counter
 		if(!target_gun.flashbulb_only) //FOSS guns already do it in flash_process_ammo()
-			target_gun.inventory_counter.update_number(stored_ammo_left + !!target_gun.current_projectile)
+			target_gun.inventory_counter.update_number(stored_ammo_left)
 
 		if(!donor_ammo.amount) //probably more useful to tell a single-shot user they ran out of ammo than that they have a full gun.
 			boutput(owner, "<span class='notice'>All the ammo has been loaded.</span>")
+			if (target_gun.sound_type)
+				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-stopload.ogg", 30, 1)
+			else
+				playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
 			..()
 		else if (stored_ammo_left == target_gun.max_ammo_capacity)
 			boutput(owner, "<span class='notice'>The hold is now fully loaded.</span>")
@@ -693,14 +694,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	return FALSE
 
 /obj/item/gun/modular/proc/chamber_round(var/mob/user)
-	var/ammo_left = src.ammo_reserve()
-	if(current_projectile || !ammo_left)
+	var/ammo_left = src.ammo_reserve() // this doesnt correct ammo count based on current projectile because
+	if(current_projectile || !ammo_left) // this early return checks if current projectile
 		return FALSE
 	if(prob(src.jam_frequency))
 		src.jammed = JAM_LOAD
 		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
 		return FALSE
+	playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
 	var/ammotype = ammo_list[ammo_left]
 	src.set_current_projectile(new ammotype()) // this one goes in
 	ammo_list.Remove(ammotype) //and remove it from the list
@@ -715,7 +717,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(!src.processing_ammo && (!src.reload_cooldown || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
 			process_ammo(user)
 		// this is how many shots are left in reserve- plus the one in the chamber. it was a little too confusing to not include it
-		src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
+		src.inventory_counter.update_number(src.ammo_reserve())
 	buildTooltipContent()
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 
@@ -816,7 +818,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			else
 				user.show_text("The flashtube shorts out and dies!", "red")
 			chamber_checked = FALSE
-			return //stop
+			return FALSE //stop
 			//maybe a chance to force a shot if this is done while cranking rather than attempting to fire
 
 	var/spread = is_dual_wield*10
@@ -902,7 +904,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//force drop of gun if not stunned but shock was bad enough
 		//force scream
 		crank_level = 0
-		return
+		return TRUE
 
 	if(!flash_auto)
 		src.set_current_projectile(null) // empty chamber
@@ -913,7 +915,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only) //we just want to do this regardless of whatever happens with bulbs possibly burning out
 		src.inventory_counter.update_number(crank_level)
 	else
-		src.inventory_counter.update_number(src.ammo_reserve() + !!current_projectile)
+		src.inventory_counter.update_number(src.ammo_reserve())
 
 	if(prob(jam_frequency))
 		jammed = JAM_CYCLE

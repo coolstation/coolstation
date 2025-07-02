@@ -13,7 +13,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	name = "abstract NT gun"
 	real_name = "abstract NT gun"
 	desc = "You're not supposed to see this, call a coder or whatever."
-	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
+	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	action = "single"
 	gun_DRM = GUN_NANO
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
@@ -33,7 +33,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	grip_overlay_y = -2
 	stock_overlay_x = -4
 	stock_overlay_y = -1
-	max_ammo_capacity = 0
+	max_ammo_capacity = 1
 	gun_DRM = GUN_NANO
 	bulkiness = 2
 	spread_angle = 6

@@ -160,6 +160,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 	muzzle_flash = "muzzle_flash"
 	lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
 	jam_frequency = 1 //additional % chance to jam on fire. Reload to clear.
+	spread_angle = 5 // modifier, added to receiver
 	icon = 'icons/obj/items/modular_guns/barrels.dmi'
 	icon_state = "italian_revolver"
 	length = STANDARD_BARREL_LEN
@@ -198,7 +199,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	//add a var for a power cell later
 	part_type = GUN_PART_STOCK
 
-	spread_angle = 0 // modifier, added to stock
+	spread_angle = 0 // modifier, added to receiver
 	max_ammo_capacity = 0 //modifier
 	flashbulb_only = FALSE // FOSS guns only
 	max_crank_level = 0 // FOSS guns only
@@ -240,7 +241,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 /obj/item/gun_parts/grip/
 	//add a var for a power cell later
 	part_type = GUN_PART_GRIP
-	spread_angle = 0 // modifier, added to stock
+	spread_angle = 0 // modifier, added to receiver
 	icon_state = "wiz"
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 
@@ -302,6 +303,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/accessory/
 	var/alt_fire = 0 //does this accessory offer an alt-mode? light perhaps? (this is triggered by cycling with the chamber full)
 
+	spread_angle = 0 // modifier, added to receiver
+
 	part_type = GUN_PART_ACCSY
 	icon_state = "generic_magazine"
 
@@ -331,7 +334,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/NT
 	name = "standard barrel"
 	desc = "A cylindrical barrel, unrifled."
-	spread_angle = 1 // basic stabilisation
+	spread_angle = 4 // decent stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	icon_state = "nt_blue_short"
 	length = 10
@@ -341,7 +344,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
 	desc = "A cylindrical barrel, rifled."
-	spread_angle = 0
+	spread_angle = 2
 	add_suffix = " longarm"
 	icon_state = "nt_blue"
 	length = 16
@@ -350,7 +353,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/barrel/NT/short
 	name = "standard snub barrel"
-	spread_angle = 4
+	spread_angle = 6
 	length = 5
 	icon_state = "nt_blue_snub"
 	add_suffix = " shortie"
@@ -379,7 +382,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/NT/long/very
 	name = "special long barrel"
 	desc = "A cylindrical barrel, rifled."
-	spread_angle = -1
+	spread_angle = 0
 	add_suffix = " polearm"
 	icon_state = "nt_blue_very"
 	length = 30
@@ -389,7 +392,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/NT/long/padded
 	name = "padded long barrel"
 	desc = "A cylindrical barrel, padded."
-	spread_angle = -1
+	spread_angle = 0
 	add_suffix = " club"
 	icon_state = "nt_guarded"
 	overlay_x = 8
@@ -534,9 +537,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	real_name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
 	icon_state = "italian_revolver"
-	spread_angle = 7 // "alta qualità"
 	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	add_suffix = " paisan"
+	spread_angle = 5 // "alta qualità"
 	length = 12
 	overlay_x = 6
 	bulkiness = 2
@@ -547,7 +550,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_snub"
 	add_suffix = " paisanuccia"
-	spread_angle = 9
+	spread_angle = 7
 	length = 5
 	overlay_x = 3
 	bulkiness = 1
@@ -558,7 +561,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "italian_revolver_short"
 	add_suffix = " paisanetto"
-	spread_angle = 10
+	spread_angle = 6
 	length = 7
 	overlay_x = 4
 	bulkiness = 1

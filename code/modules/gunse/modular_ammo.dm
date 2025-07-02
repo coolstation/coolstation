@@ -15,6 +15,20 @@
 /obj/item/stackable_ammo/_path/ten/min_amount = 10;\
 /obj/item/stackable_ammo/_path/ten/max_amount = 10
 
+#define THE_HUGE_FLAVOURS(_path, _name)\
+/obj/item/stackable_ammo/_path/twenty;\
+/obj/item/stackable_ammo/_path/twenty/name = _name+" (x20)";\
+/obj/item/stackable_ammo/_path/twenty/min_amount = 20;\
+/obj/item/stackable_ammo/_path/twenty/max_amount = 20;\
+/obj/item/stackable_ammo/_path/thirty;\
+/obj/item/stackable_ammo/_path/thirty/name = _name+" (x30)";\
+/obj/item/stackable_ammo/_path/thirty/min_amount = 30;\
+/obj/item/stackable_ammo/_path/thirty/max_amount = 30;\
+/obj/item/stackable_ammo/_path/fifty;\
+/obj/item/stackable_ammo/_path/fifty/name = _name+" (x50)";\
+/obj/item/stackable_ammo/_path/fifty/min_amount = 50;\
+/obj/item/stackable_ammo/_path/fifty/max_amount = 50
+
 #define default_max_amount 1
 #define default_min_amount 1
 
@@ -30,7 +44,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/icon_full  = "white"
 	var/icon_shell = "white_case"
 	//uses_multiple_icon_states = 1
-	var/caliber = 0 // 0,1,2,3 : standard, wide, long, both.
 	opacity = 0
 	density = 0
 	anchored = 0.0
@@ -53,8 +66,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/min_amount = default_min_amount
 	var/max_amount = default_max_amount
 	var/datum/projectile/projectile_type = null
+	var/caliber = CALIBER_TINY // CALIBER_TINY, CALIBER_WIDE, CALIBER_LONG, CALIBER_LONG_WIDE
 	var/ammo_DRM = null
-	var/reloading = 0
 	var/load_time = 0 // added to the load_time of the gun
 
 	New(var/atom/loc, var/amt = 1 as num)
@@ -62,6 +75,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.amount = max(amt,default_amount) //take higher
 		..(loc)
 		src.update_stack_appearance()
+
+	buildTooltipContent()
+		. = ..()
+		. += "<div><span>Caliber: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Huge</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
+		lastTooltipContent = .
 
 	//All the ammo has 3/5/10 variants that need to stack onto the parent type
 	//But then also you get subtypes that shouldn't, so the istype checks the normal version of this pro does don't work (for example, NT mini shot shouldn't stack onto regular NT shot)
@@ -71,22 +89,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			if(src.stack_type == I.stack_type)
 				return TRUE
 		return FALSE
-
-	/*
-	proc/setup(var/atom/L, var/amt = 1 as num)
-	set_loc(L)
-		set_amt(amt)
-
-	proc/set_amt(var/amt = 1 as num)
-		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
-		src.amount = max(amt,default_amount)
-		src.update_stack_appearance()*/
-/*
-	unpooled()
-		..()
-		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
-		src.amount = max(1, default_amount) //take higher
-		src.update_stack_appearance()*/
 
 	disposing()
 		if (usr)
@@ -106,7 +108,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				src.icon_state = icon_empty
 			else
 				src.icon_state = icon_full
-
 
 	UpdateName()
 		src.name = "[src.amount] [name_prefix(null, 1)][src.real_name][s_es(src.amount)][name_suffix(null, 1)]"
@@ -151,107 +152,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				young_money.Attackhand(user)*/
 		else
 			..(user)
-
-	//just realized this needs some checks to handle things like: moved away from ammo, no longer holding gun, etc.
-	//whoops that's current you's and later me's problem
-	/*proc/reload(var/obj/item/gun/modular/M, mob/user as mob)
-		if(reloading)
-			return
-		if(!istype(M))
-			return
-		if(!projectile_type)
-			return
-		if(!M.ammo_list)
-			M.ammo_list = list()
-		if(M.jammed)
-			return //clear that shit first!
-		M.chamber_checked = 0
-
-		//single shot and chamber handling
-		if((M.ammo_list.len >= M.max_ammo_capacity) || !M.max_ammo_capacity)
-			if(M.current_projectile)
-				if (!M.max_ammo_capacity)
-					boutput(user, "<span class='notice'>There's already a cartridge in [M]!</span>")
-				else
-					boutput(user, "<span class='notice'>You can't load [M] any further!</span>")
-				return
-			else
-				reloading = TRUE
-				boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [M]</span>")
-				sleep(10)
-				M.current_projectile = new projectile_type()
-				amount --
-				update_stack_appearance()
-				if(amount < 1)
-					user.u_equip(src)
-					src.dropped(user)
-					qdel(src)
-				//play the sound here because single shot bypasses cycle_ammo
-				if (M.sound_type)
-					playsound(M.loc, "sound/weapons/modular/[M.sound_type]-slowcycle.ogg", 60, 1)
-				else
-					playsound(M.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				M.hammer_cocked = TRUE
-				//set up counter
-				if(M.max_ammo_capacity)
-					M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
-				else
-					M.inventory_counter.update_number(!!M.current_projectile) // 1 if its loaded, 0 if not.
-				reloading = FALSE
-			return
-		//standard handling
-		reloading = TRUE
-		if(amount < 1)
-			user.u_equip(src)
-			src.dropped(user)
-			qdel(src)
-		SPAWN_DBG(0)
-			boutput(user, "<span class='notice'>You start loading rounds into [M].</span>")
-			if (M.sound_type)
-				playsound(M.loc, "sound/weapons/modular/[M.sound_type]-startload.ogg", 60, 1)
-			else
-				playsound(M.loc, "sound/weapons/gunload_click.ogg", 60, 1)
-				//playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //oldsound
-			sleep(0)
-			while(M.ammo_list.len < M.max_ammo_capacity)
-				if(amount < 1)
-					user.u_equip(src)
-					src.dropped(user)
-					qdel(src)
-					break
-				if (M.sound_type)
-					playsound(M.loc, "sound/weapons/modular/[M.sound_type]-load[rand(1,2)].ogg", 10, 1)
-				else
-					playsound(M.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
-					//playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8) //oldsound
-				amount--
-				M.ammo_list += projectile_type
-				update_stack_appearance()
-				M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
-				//moving this here so you load the first round every time instead of having to load twice to be full up
-				if(!M.current_projectile)
-					sleep(10)
-					M.process_ammo()
-				if (M.jammed) //jammed after process_ammo
-					boutput(user, "<span class='notice'>Fuck, shit, you fumbled something.</span>")
-					break
-				else if (prob(M.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
-					M.jammed = 2
-					boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
-					break
-				sleep(10)
-			if (M.sound_type)
-				playsound(M.loc, "sound/weapons/modular/[M.sound_type]-stopload.ogg", 30, 1)
-			else
-				playsound(M.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
-			if (M.ammo_list.len == M.max_ammo_capacity)
-				boutput(user, "<span class='notice'>The hold is now fully loaded.</span>")
-			else
-				boutput(user, "<span class='notice'>You stop loading.</span>")
-
-			M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
-
-			reloading = FALSE*/
 
 /* ------------------------------- Pistol Ammo ------------------------------ */
 ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
@@ -466,7 +366,6 @@ THE_USUAL_FLAVOURS(pistol/zaubertube, "\improper Soviet zaubertubes")
 ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 /obj/item/stackable_ammo/rifle
 	caliber = CALIBER_LONG
-	//cartridge_length = 40
 
 /obj/item/stackable_ammo/rifle/NT
 	name = "\improper NT rifle ammo"
@@ -545,12 +444,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_shell = "shell_case"
 	caliber = CALIBER_WIDE
 
-	/*reload(var/obj/item/gun/modular/M, mob/user as mob)
-		if(!M.scatter)
-			boutput(user, "<span class='notice'>That shell won't fit the breech.</span>")
-			return
-		..()*/
-
 //NT's small shotgun shell
 /obj/item/stackable_ammo/scatter/NT
 	name = "\improper NT Shot"
@@ -574,6 +467,7 @@ THE_USUAL_FLAVOURS(scatter/NT, "\improper NT Shot")
 	icon_one   = "shell_mini_blue"
 	icon_shell = "shell_mini_case"
 	load_time = 0.15 SECONDS
+	caliber = CALIBER_TINY
 THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 
 //thinking FOSS might make some stupid shotgun shells. for later
@@ -582,7 +476,7 @@ THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 /obj/item/stackable_ammo/scatter/juicer
 	name = "\improper Juicer Hot Pocketz"
 	real_name = "\improper Juicer Hot Pocketz"
-	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels, but won't fit in pistol receivers."
+	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrel."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer
 	stack_type = /obj/item/stackable_ammo/scatter/juicer
 	icon_state = "juicer_shells_red"
@@ -590,14 +484,13 @@ THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
 	icon_empty = "juicer_shells_red-empty"
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
-	//cartridge_length = 40 //for big receivers only
 	load_time = 0.3 SECONDS
 THE_USUAL_FLAVOURS(scatter/juicer, "\improper Juicer Hot Pocketz")
 
 /obj/item/stackable_ammo/scatter/juicer/denim
 	name = "\improper Juicer JAMMO"
 	real_name = "\improper Juicer JAMMO"
-	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels and long receivers."
+	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
 	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
 	icon_state = "juicer_shells_blue"
@@ -657,37 +550,6 @@ THE_USUAL_FLAVOURS(coil, "coil slug round")
 	update_stack_appearance()
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
-
-
-	/*
-	reload(var/obj/item/gun/modular/M, mob/user as mob)
-		if(reloading)
-			return
-		if(!istype(M))
-			return
-		if(!M.flashbulb_only)
-			return
-		if(!M.ammo_list)
-			M.ammo_list = list()
-		if(M.ammo_list.len >= M.max_ammo_capacity)
-			return
-		reloading = TRUE
-		SPAWN_DBG(0)
-			boutput(user, "<span class='notice'>You start loading a flashtube into [M].</span>")
-			if(M.ammo_list.len < M.max_ammo_capacity)
-				sleep(10)
-				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
-				M.ammo_list += src
-				user.u_equip(src)
-				src.dropped(user)
-				src.set_loc(M)
-				sleep(10)
-				playsound(src.loc, "sound/items/Screwdriver.ogg", 30, 0.1, 0, 0.8)
-				if(!M.flashbulb_health)
-					M.flash_process_ammo(user)
-				boutput(user, "<span class='notice'>You finish loading a flashtube into [M].</span>")
-				reloading = FALSE
-				*/
 
 /obj/item/stackable_ammo/flashbulb/better
 	name = "\improper FOSSYN. Cathodic Flash Tube 2.0b"

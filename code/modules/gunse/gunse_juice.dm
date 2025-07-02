@@ -13,7 +13,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "juicer" //only large
-	max_ammo_capacity = 0 //fukt up mags only
+	max_ammo_capacity = 1 //fukt up mags only
 	gun_DRM = GUN_JUICE
 	spread_angle = 10
 	contraband = 1

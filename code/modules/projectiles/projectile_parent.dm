@@ -107,7 +107,7 @@
 			return
 		else
 			hitlist += A
-		if (A == shooter) return // never collide with the original shooter
+		if (A == shooter && !src.was_pointblank) return // only collide with the original shooter if they pointblank themself
 		if (ismob(A)) //don't doublehit
 			if (ticks_until_can_hit_mob > 0 || goes_through_mobs)
 				return
