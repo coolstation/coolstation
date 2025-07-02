@@ -43,6 +43,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/max_crank_level = 0 // FOSS guns only (top end cranking)
 	var/safe_crank_level = 0 // FOSS guns only (limited cranking)
 
+	New()
+		. = ..()
+		name = real_name
+
 	proc/add_part_to_gun(var/obj/item/gun/modular/gun)
 		if(!istype(gun))
 			return 0 // what
