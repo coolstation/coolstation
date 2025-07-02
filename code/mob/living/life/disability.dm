@@ -63,7 +63,7 @@
 						if (prob(25))
 							boutput(owner, "<span class='alert'>You inhale a bunch of sand!</span>")
 							owner.emote("cough")
-							if (prob(60))
+							if (prob(70)) // favors the left lung so both of a spaceman's lungs don't die at the same time
 								if (!H.organHolder.left_lung.robotic)
 									H.organHolder.damage_organ(3, 0, 0, "left_lung")
 							else
