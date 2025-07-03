@@ -2008,6 +2008,10 @@
 	icon_state = "carafe-com"
 	item_state = "carafe-com"
 
+/obj/item/reagent_containers/food/drinks/carafe/generic
+	icon_state = "carafe-gen"
+	item_state = "carafe-gen"
+
 /obj/item/reagent_containers/food/drinks/coconut
 	name = "Coconut"
 	desc = "Must be migrational."
