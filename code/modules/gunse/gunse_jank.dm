@@ -1,0 +1,79 @@
+
+// jank gunse go here - for now, thats the zipgun
+ABSTRACT_TYPE(/obj/item/gun/modular/zip)
+/obj/item/gun/modular/zip
+	name = "zipgun"
+	real_name = "zipgun"
+	desc = "A staple gun welded and reconfigured to fire bullets. Barely. Make sure to spin the casings out."
+	max_ammo_capacity = 1
+	gun_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN | GUN_SOVIET
+	spread_angle = 4
+	icon_state = "zip"
+	load_time = 1.3 SECONDS
+	barrel_overlay_x = 7
+	stock_overlay_x = -11
+	grip_overlay_x = -8
+	grip_overlay_y = -5
+	caliber = CALIBER_LONG_WIDE // it would just be disrespectful to this things history to not allow any ammo
+	var/gonna_blow = FALSE
+
+	shoot(var/target,var/start ,var/mob/user)
+		if(src.gonna_blow)
+			return
+		var/failure_chance = 0
+		if(src.current_projectile?.power)
+			failure_chance = clamp(round(src.current_projectile.power/2 - 20), -3, 30) + length(src.casing_list) * 5 + src.ammo_reserve()
+		if(failure_chance > 0 && prob(failure_chance))
+			if(prob(failure_chance))	// Sometimes the failure is obvious
+				playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
+				boutput(user, SPAN_ALERT("The [src]'s shoddily thrown-together [pick("breech", "bullet holder", "firing pin", "striker", "staple-driver mechanism", "bendy metal part", "shooty-bit")][pick("", "...thing")] [pick("cracks", "pops off", "bends nearly in half", "comes loose")]! It's gonna blow!</span>"))
+			else						// Other times, less obvious
+				playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 50, 1)
+			src.gonna_blow = TRUE
+			SPAWN_DBG(rand(6, 30))
+				if(src.current_projectile?.power && src.gonna_blow)
+					var/turf/T = get_turf(src)
+					explosion_new(src, T, failure_chance / 7)
+					qdel(src)
+		return ..()
+
+	load_ammo(var/mob/user, var/obj/item/stackable_ammo/donor_ammo) // doesnt clear casings unless ya spin it
+		if(src.ammo_reserve() < src.max_ammo_capacity)
+			//single shot and chamber handling
+			if(!src.current_projectile)
+				boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src].</span>")
+				src.set_current_projectile(new donor_ammo.projectile_type())
+
+				if (src.sound_type)
+					playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
+				else
+					playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 60, 1)
+
+			//load the magazine after the chamber
+			else
+				if (src.sound_type)
+					playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
+				else
+					playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+					src.ammo_list += donor_ammo.projectile_type
+
+			buildTooltipContent()
+
+			//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
+			if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
+				src.jammed = JAM_LOAD
+				boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+				return FALSE
+			return TRUE
+		return FALSE
+
+	on_spin_emote(mob/living/carbon/human/user)
+		. = ..()
+		src.eject_casings()
+
+/obj/item/gun/modular/zip/base
+	no_build = TRUE
+
+/obj/item/gun/modular/zip/classic
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/pipeframe(src)

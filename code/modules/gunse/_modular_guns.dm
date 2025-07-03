@@ -992,11 +992,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	accessory_alt = 0
 	flash_auto = 0
 	bulk = bulkiness
-	caliber = 0
 
 	call_on_cycle = 0
 	call_alter_projectile = 0
 
+	caliber = initial(caliber)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
 	can_dual_wield = initial(can_dual_wield)

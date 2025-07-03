@@ -340,28 +340,20 @@ CONTAINS:
 				surgery_limb.surgery(src)
 			return
 
-/*
-	attackby(obj/item/W, mob/user)
-		..()
+	afterattack(atom/target, mob/user, reach, params)
+		if (istype(target, /obj/item/gun_exploder))
+			user.show_text("You smash out part of [src] to make a receiver. This looks pretty unsafe!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/items/Deconstruct.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun/modular/zip/base/new_gun = new(T)
+			user.put_in_hand_or_drop(new_gun)
+		else
+			. = ..()
 
-		if (istype(W,/obj/item/pipebomb/frame))
-			var/obj/item/pipebomb/frame/F = W
-			if (F.state < 2)
-				user.show_text("This might work better if [F] was hollowed out.")
-			else if (F.state == 2)
-				user.show_text("You combine [F] and [src]. This looks pretty unsafe!")
-				user.u_equip(F)
-				user.u_equip(src)
-				var/turf/T = get_turf(src)
-				playsound(T, "sound/items/Deconstruct.ogg", 50, 1)
-				new/obj/item/gun/kinetic/zipgun(T)
-				qdel(F)
-				qdel(src)
 
-			else
-				user.show_text("You can't seem to combine these two items this way.")
-		return
-*/
+
 
 // a mostly decorative thing from z2 areas I want to add to office closets
 /obj/item/staple_gun/red

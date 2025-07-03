@@ -641,6 +641,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, extrarange = P.proj_data.shot_sound_extrarange)
 		return ..()
 
+/obj/item/gun_parts/barrel/pipeframe
+	name = "pipe barrel"
+	real_name = "pipe barrel"
+	desc = "A barrel made of metal pipe."
+	icon_state = "pipe"
+	add_prefix = "classic "
+	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN | GUN_SOVIET
+	spread_angle = 9
+	length = 13
+	overlay_x = 7
+	bulkiness = 4
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.

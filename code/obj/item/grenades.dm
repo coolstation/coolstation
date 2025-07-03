@@ -1452,6 +1452,18 @@ PIPE BOMBS + CONSTRUCTION
 			state = 2
 		return
 
+	afterattack(atom/target, mob/user, reach, params)
+		if (src.state == 2 && istype(target, /obj/item/gun_exploder))
+			user.show_text("With [src] and some good ol' percussive force, you make a barrel. This looks pretty dangerous!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/impact_sounds/Metal_Hit_1.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun_parts/barrel/pipeframe/new_barrel = new(T)
+			user.put_in_hand_or_drop(new_barrel)
+		else
+			. = ..()
+
 	attackby(obj/item/W, mob/user)
 		//NOTE: state 1 is unused since the first stages of pipe frames now happen through constructable atmos
 		if(isweldingtool(W) && state == 1)
