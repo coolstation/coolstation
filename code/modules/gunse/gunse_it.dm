@@ -65,7 +65,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 			src.chambered_index = src.cylinder_index
 			. = TRUE
-			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 25, extrarange = -28)
+			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
 
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
@@ -259,6 +259,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
 			src.cylinder_index = 1
+		src.chambered_index = src.cylinder_index
 		return FALSE
 
 	build_gun()
