@@ -228,6 +228,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	var/failures_to_chamber = 0
 
 	shoot_delay = 0.2 SECONDS
+	reload_cooldown = 0.5 SECONDS
 
 	recoil_strength = 4
 	recoil_inaccuracy_max = 12
@@ -241,7 +242,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		if(src.jammed)
 			return // TODO - feedback
 		if(src.current_projectile)
-			..()
+			if(src.reload_cooldown)
+				ON_COOLDOWN(src, "mess_with_gunse", src.reload_cooldown)
+			. = ..()
 		src.chamber_round(user)
 		if(src.current_projectile) // yes, empty cylinders count as failures
 			src.failures_to_chamber = 0
@@ -318,6 +321,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	// ultra heavy Double Action Only revolver
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
 		if(!src.currently_firing && !src.jammed)
+			. = TRUE
 			src.currently_firing = TRUE
 			var/offset_x = target.x - start.x
 			var/offset_y = target.y - start.y
