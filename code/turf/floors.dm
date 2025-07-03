@@ -840,6 +840,10 @@ DEFINE_FLOORS(marble/border_wb,
 	icon_state = "freezerfloor3"
 	clean = 1
 
+/turf/floor/specialroom/fireblu
+	icon_state = "fireblu"
+	clean = TRUE //Can't have ants on my fireblu
+
 /turf/floor/specialroom/medbay
 	icon_state = "medbay"
 	clean = 1 //but not for long
@@ -2058,6 +2062,9 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
 	material = null
+
+	bunker_grille
+		name = "placeholder bunker grille"
 
 	bloodwall
 		name = "bloody wall"

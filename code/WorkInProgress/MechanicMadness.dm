@@ -2951,7 +2951,7 @@
 			if(Gun.canshoot())
 				var/atom/target = getTarget()
 				if(target)
-					Gun.shoot(target, get_turf(src), src)
+					Gun.Shoot(get_turf(target), get_turf(src), src, called_target = target)
 			else
 				src.visible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"The [Gun.name] has no [istype(Gun, /obj/item/gun/energy) ? "charge" : "ammo"] remaining.\"</span>")
 				playsound(src.loc, "sound/machines/buzz-two.ogg", 50, 0)

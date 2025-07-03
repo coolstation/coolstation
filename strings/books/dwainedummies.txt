@@ -69,7 +69,7 @@ Pictures are for losers and babies.</p>
 <p>Operating a DWAINE mainframe is done solely through a terminal interface - graphics and icons and things are unnecessary and also are for tiny children with no understanding of REAL COMPUTERS.</p>
 <p>So, let's get started! After logging in, you will be presented with a prompt - usually following this format:</p>
 <div class="code">
-]GMelons@DWAINE - 12:00 03/04/52
+]BNaturals@DWAINE - 12:00 03/04/52
 </div>
 <p>When you type in text and push the Enter key, you will notice your command is sent like this:</P>
 <div class="code">
@@ -113,14 +113,14 @@ The structure works like a tree, with everything starting at the "root" folder,
 and expanding outwards from there. A typical file path in DWAINE would look like
 this:<br>
 <div class="code">
-/home/GMelons/Pictures/pr0n_jpg
+/home/BNaturals/Pictures/pr0n_jpg
 </div><p>
 You might be wondering what the name of the root folder is, since it doesn't
 seem to be immediately obvious in that filepath. The system root is referred to
 as <i>"/"</i>. So, if we expand this path, we get this:
 <div class="code"><pre>/
 	home/
-		GMelons/
+		BNaturals/
 			Pictures/
 				pr0n_jpg
 				butt_png
@@ -132,7 +132,7 @@ as <i>"/"</i>. So, if we expand this path, we get this:
 <p>
 So, if we wanted to listen to something, we would use this path:<br>
 <div class="code">
-/home/GMelons/Music/fart_ogg
+/home/BNaturals/Music/fart_ogg
 </div>
 <p>
 Simple, right? Well.
@@ -163,17 +163,17 @@ followed by the path you want to change to.<br>
 <p>
 So, let's say we want to go to our Pictures directory.
 <div class="code">
->cd /home/GMelons/Pictures
+>cd /home/BNaturals/Pictures
 </div>
 <p>
 And here we are! If you want to move one space up the file path, back to
-GMelons, you would write
+BNaturals, you would write
 <div class="code">
 >cd ..
 </div>
 <p>
 instead. Note that using ".." as a file path works with other commands too.<br>
-If you were in GMelons and you wanted to go to Pictures, you could also
+If you were in BNaturals and you wanted to go to Pictures, you could also
 just type
 <div class="code">
 >cd Pictures
@@ -190,13 +190,13 @@ The copy command is:
 <p>
 Followed by the original file, and then the destination. Pour �xample:
 <div class="code">
->cp /home/GMelons/Pictures/butt_png /home/JGrife/Documents
+>cp /home/BNaturals/Pictures/butt_png /home/JGrife/Documents
 </div>
 <p>
 This would copy the file "butt_png" to /home/JGrife/Documents.<br>
 However, you can copy and give the destination file a new name, like this:
 <div class="code">
-cp /home/GMelons/Pictures/butt_png /home/JGrife/Documents/importantfile_txt
+cp /home/BNaturals/Pictures/butt_png /home/JGrife/Documents/importantfile_txt
 </div>
 <p>
 So now, JGrife sees he has an important file to open! OH NO! Butt!<br>
@@ -300,7 +300,7 @@ that you know they are printers and not storage drives.
 <br>
 To copy a file to a storage drive, simply do the following:
 <div class="code">
->cp /home/GMelons/Pictures/pr0n_jpg /mnt/drive_name
+>cp /home/BNaturals/Pictures/pr0n_jpg /mnt/drive_name
 </div>
 <p>
 Easy!

@@ -61,19 +61,23 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 	pdaSignal.transmission_method = TRANSMISSION_RADIO
 	if(transmit_connection != null)
 		transmit_connection.post_signal(null, pdaSignal)
+	shipyardship_pre_densitymap = list()
+	shipyardship_post_densitymap = list()
 
-proc/prepShips(var/area/stagearea)
+proc/prepShips(var/area/stagearea,var/area/start_location,var/area/end_location) //not efficient
 	if(prob(60))
 		explode_area(stagearea,rand(60,190),rand(1,3))
-	SPAWN_DBG(1 SECONDS)
+	SPAWN_DBG(7 SECONDS)
 		shipyardship_pre_densitymap = calculate_density_map(stagearea)
+		start_location.move_contents_to(end_location)
+		shipyardship_location = 1
 
 proc/processShips(var/area/shipyard)
 	command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Control Alert","sound/machines/engine_alert2.ogg")
+	shipyardship_post_densitymap = calculate_density_map(shipyard)
 	SPAWN_DBG(10 SECONDS)
 		playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
-		gib_area(shipyard)
-		shipyardship_post_densitymap = calculate_density_map(shipyard)
+		//gib_area(shipyard)
 		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
 
 proc/buildRandomShips()

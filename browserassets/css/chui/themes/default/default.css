@@ -34,14 +34,17 @@ a:hover {
 	width: 14px;
 }
 ::-webkit-scrollbar-track {
-    border-style: none;
+    border-style: outset;
+    border-left-color: #9a8469;
+    border-right-color: #9a8469;
     background: #2A2624;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-style: none;
-    background: #363636;
-	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-style: outset;
+    background: #dad8b6;
+    border-left-color: #9a8469;
+    border-bottom-color: #9a8469;
 }
 
 :focus-visible {
@@ -59,15 +62,15 @@ a:hover {
 	bottom: 0;
 	left: 0;
 	background: #363636;
-	border-top: 0px solid #363636;
-	border-left: 0px solid #363636;
-	border-right: 0px solid #363636;
+	border-top: 3px solid #9a8469;
+	border-left: 3px solid #9a8469;
+	border-right: 3px solid #9a8469;
 	border-bottom: 1px solid #161616;
 	border-style: solid;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 #titlebar h1 {
-	color: #C5C5C5;
+	color: #dad8b6;
 	font-size: 12px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: flex;
@@ -96,7 +99,7 @@ a:hover {
 }
 */
 #titlebar .close {
-	color: #C5C5C5;
+	color: #dad8b6;
 	top: -2px;
 	right: 6px;
 	font-size: 15px;
@@ -139,11 +142,11 @@ a:hover {
 	bottom: 0;
 	left: 0;
 	word-wrap: break-word;
-	border-top: 0.5px solid #03030391;
-	border-left: 0px solid #3F3A36;
-	border-right: 0px solid #3F3A36;
-	border-bottom:0px solid #3C3A38;
-	background: #3F3A36;
+	border-top: 3px solid #9a8469;
+	border-left: 3px solid #9a8469;
+	border-right: 3px solid #9a8469;
+	border-bottom: 3px solid #322716;
+	background: #79664f;
 	border-style: solid;
 	box-shadow: rgba(93, 79, 50, 0.096) 0px -30px 60px -12px inset, rgba(0, 0, 0, 0.205) 0px 18px 36px -18px inset;
 }
@@ -260,12 +263,12 @@ a:hover {
   transition            : .2s;
 }
 .not-nano > .not-nano-pane > .not-nano-slider {
-  background: #363636;
+  background: #dad8b6;
   position              : relative;
   margin                : 0;
   border-style: solid;
-  border-left-color: #363636;
-  border-bottom-color: #363636;
+  border-left-color: #9a8469;
+  border-bottom-color: #9a8469;
   box-shadow: rgba(26, 22, 17, 0.1) 0px 0px 16px;
 }
 
@@ -280,11 +283,11 @@ a:hover {
 **************************/
 
 .well {
-	background-color: #363636;
-	border-top: 1px solid #3F3A36;
-	border-left: 1px solid #3F3A36;
-	border-right: 1px solid #3F3A36;
-	border-bottom: 1px solid #3C3A38;
+	background-color: #322716;
+	border-top: 1px solid #322716;
+	border-left: 1px solid #322716;
+	border-right: 1px solid #9a8469;
+	border-bottom: 1px solid #dad8b6;
 	padding: 10px;
 }
 

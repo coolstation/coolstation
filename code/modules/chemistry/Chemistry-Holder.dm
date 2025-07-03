@@ -86,6 +86,8 @@ datum
 			my_atom = null
 			total_volume = 0
 			addiction_tally = null
+			if(src.is_combusting)
+				combusting_reagent_holders -= src
 			..()
 
 		proc/covered_turf()
@@ -323,6 +325,7 @@ datum
 
 			if (isnull(target.reagents))
 				target.reagents = new
+				target.reagents.my_atom = target
 
 			var/datum/reagents/target_reagents = target.reagents
 			amount = min(amount, target_reagents.maximum_volume - target_reagents.total_volume)
@@ -615,26 +618,18 @@ datum
 
 			return 1
 
-		proc/test_chem_burning() // Handles logic to shut down combustion
-			if (composite_volatility > 0.5)
-				return
-			src.stop_combusting()
-
 		proc/stop_combusting()
 			if(src.is_combusting)
-				if(src.my_atom)
-					src.my_atom.visible_message("<span class='notice'>[src.my_atom] stops burning!</span>")
 				src.is_combusting = FALSE
 				src.combustible_pressure = 0
 				combusting_reagent_holders -= src
+				if(src.my_atom)
+					src.my_atom.stopped_reagent_combustion()
 
 		proc/start_combusting() // Starts combustion
 			if (!src.is_combusting && src.composite_volatility > 0.5)
-				if(src.my_atom)
+				if(ismob(src.my_atom))
 					src.my_atom.visible_message("<span class='alert'>The chemicals in [src.my_atom] begin burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
-				combusting_reagent_holders += src
-				src.is_combusting = TRUE
-				src.process_combustion() // one free to get the party started fast
 
 				var/turf/T = get_turf(src.my_atom)
 				var/mob/our_user = null
@@ -652,12 +647,19 @@ datum
 						our_user = usr
 						if (my_atom.fingerprintslast) // Our container. You don't necessarily have to pick it up to transfer stuff.
 							our_fingerprints = my_atom.fingerprintslast
-						else if (my_atom.loc.fingerprintslast) // Backpacks etc.
+						else if (my_atom.loc?.fingerprintslast) // Backpacks etc.
 							our_fingerprints = my_atom.loc.fingerprintslast
 				if (our_user && ismob(our_user))
 					logTheThing("combat", our_user, null, "Combustion started ([my_atom ? log_reagents(my_atom) : log_reagents(src)]) at [T ? "[log_loc(T)]" : "null"].")
 				else
 					logTheThing("combat", our_user, null, "Combustion started ([my_atom ? log_reagents(my_atom) : log_reagents(src)]) at [T ? "[log_loc(T)]" : "null"].[our_fingerprints ? " Container last touched by: [our_fingerprints]." : ""]")
+
+				combusting_reagent_holders += src
+				src.is_combusting = TRUE
+				if(src.my_atom)
+					src.my_atom.started_reagent_combustion()
+				src.process_combustion() // one free to get the party started fast
+
 
 		proc/pressurized_open()
 			if (src.combustible_volume)
@@ -668,6 +670,38 @@ datum
 			src.combustible_pressure = 0
 
 		proc/process_combustion(mult = 1) //Handles any chem that burns
+			if (src.composite_volatility <= 0.5)
+				src.stop_combusting()
+				return
+
+			// surfaces burning
+			if (src.my_atom && istype(src,/datum/reagents/surface))
+				var/continue_burn = FALSE
+				var/burn_volatility = src.composite_volatility * clamp((src.combustible_volume ** 0.25) / 3, 0.35, 1.2)
+				burn_volatility = clamp(burn_volatility, 0, 30)
+				var/burn_speed = src.composite_combust_speed
+				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
+
+				if (!ON_COOLDOWN(my_atom, "surface_fire_1", 3 SECONDS))
+					particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, 8))
+
+				if(ismob(src.my_atom))
+					src.my_atom.changeStatus("burning", burn_volatility SECONDS)
+				src.my_atom.temperature_expose(null, src.total_temperature, src.total_volume)
+
+				for (var/reagent_id in src.reagent_list)
+					var/datum/reagent/reagent = src.reagent_list[reagent_id]
+					if (reagent.flammable_influence)
+						var/amount_to_remove = (burn_speed * mult) * (reagent.volume / src.combustible_volume)
+						reagent.do_burn(min(amount_to_remove,reagent.volume))
+						src.remove_reagent(reagent_id, amount_to_remove)
+						if(src.has_reagent(reagent_id))
+							continue_burn = TRUE
+
+				if(!continue_burn)
+					src.stop_combusting()
+				return
+
 			// Smoke and pools burning
 			if (istype(src,/datum/reagents/fluid_group))
 				var/covered_area = length(src.covered_turf())
@@ -724,12 +758,14 @@ datum
 				var/burn_speed = src.composite_combust_speed
 				src.temperature_reagents(src.composite_combust_temp, burn_volatility * 4, change_cap = 300, change_min = 1)
 
-				if (!ON_COOLDOWN(my_atom, "internal_fire_1", (ceil((11 - src.combustible_pressure) / 2) SECONDS)))
-					particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, src.combustible_pressure))
+				if (!ON_COOLDOWN(my_atom, "internal_fire_1", 6 SECONDS))
+					particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, 4))
 
-				if (!ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
-					src.trans_to(src.my_atom.loc,src.combustible_volume * burn_volatility / 200)
+				if (src.combustible_volume >= 5 && !ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
 					src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays burning chemicals!</span>", blind_message = "<span class='alert'>You hear a hissing splatter!</span>", group = "splatter_chem_fire_\ref[src]")
+					src.trans_to(src.my_atom.loc,max(src.combustible_volume * burn_volatility / 200, 5))
+					if(QDELETED(src.my_atom))
+						return
 
 				switch(burn_volatility)
 					if (2 to 5) // Unsafe, leaking flames
@@ -741,6 +777,8 @@ datum
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
+							if(QDELETED(src.my_atom))
+								return
 					if (14 to INFINITY) // splatter chems and break
 						var/turf/T = get_turf(src.my_atom)
 						var/explosion_size = clamp(((burn_volatility - 5) / 3), 0, 4)
@@ -750,6 +788,8 @@ datum
 						if (istype(src.my_atom, /obj))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
+							if(QDELETED(src.my_atom))
+								return
 						else
 							burn_speed = INFINITY
 
@@ -865,9 +905,6 @@ datum
 				composite_combust_speed = composite_combust_speed / combustible_volume
 				composite_combust_temp = composite_combust_temp / combustible_volume
 				composite_volatility = composite_volatility / total_volume
-
-			if (is_combusting)
-				test_chem_burning()
 
 			if(isitem(my_atom))
 				var/obj/item/I = my_atom
@@ -1066,9 +1103,6 @@ datum
 			if (!donotupdate)
 				update_total()
 
-			if(!donotreact)
-				temperature_react()
-
 			if (!donotupdate)
 				reagents_changed(1)
 
@@ -1077,6 +1111,10 @@ datum
 				current_reagent.on_add()
 				if (!donotreact)
 					src.handle_reactions()
+
+			if(!donotreact)
+				temperature_react()
+
 			return 1
 
 		proc/remove_reagent(var/reagent, var/amount, var/update_total = 1, var/reagents_change = 1)
@@ -1360,6 +1398,9 @@ datum
 				classic_smoke_reaction(src, min(round(volume / 5), 4), location = my_atom ? get_turf(my_atom) : 0)
 			else
 				smoke_reaction(src, round(min(5, round(volume/10))), location = my_atom ? get_turf(my_atom) : 0)
+
+// currently a stub, any behavior for reagents on the surface of something goes here
+/datum/reagents/surface
 
 ///////////////////////////////////////////////////////////////////////////////////
 

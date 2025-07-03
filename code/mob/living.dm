@@ -136,6 +136,8 @@
 	vision = new()
 	src.attach_hud(vision)
 	src.vis_contents += src.chat_text
+	tracked_reagents = new /datum/reagents/surface(8)
+	tracked_reagents.my_atom = src
 	if (can_bleed)
 		src.ensure_bp_list()
 	if (blood_id)
@@ -167,6 +169,10 @@
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
 */
+
+	qdel(tracked_reagents)
+	tracked_reagents = null
+
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)
@@ -1217,6 +1223,8 @@
 /mob/living/Move(var/turf/NewLoc, direct)
 	var/oldloc = loc
 	. = ..()
+	if(src.tracked_reagents.total_volume)
+		src.track_reagents()
 	if (isturf(oldloc) && isturf(loc) && move_laying)
 		var/list/equippedlist = src.equipped_list()
 		if (length(equippedlist))
@@ -1736,6 +1744,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
 
 /mob/living/proc/start_sprint()
+	var/stop_here = SEND_SIGNAL(src, COMSIG_MOB_SPRINT)
+	if (stop_here)
+		return
 	if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 		return
 	if (special_sprint && src.client)
@@ -1745,8 +1756,6 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			spell_firepoof(src)
 		if (special_sprint & SPRINT_BAT_CLOAKED)
 			spell_batpoof(src, cloak = 1)
-		if (special_sprint & SPRINT_SNIPER)
-			begin_sniping()
 	//SPRINTING REMOVAL
 	//deprecated in favour of making the sprint button temporarily toggle run/walk. This bit seems to be giving you a bit of a boost to start with
 	//look in /mob/proc/process_move() for the sustained speed boost.
@@ -2215,9 +2224,6 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	if (get_dist(src, target) > 0)
 		src.set_dir(get_dir(src, target))
-
-	if (isitem(I))
-		I.dropped(src) // let it know it's been dropped
 
 	//actually throw it!
 	if (I)

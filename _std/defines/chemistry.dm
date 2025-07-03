@@ -30,3 +30,8 @@
 
 //macro for lag-compensated probability - assumes lag-compensation multiplier is always called mult
 #define probmult(x) (prob(percentmult((x), mult)))
+
+//chemical reaction result amounts can be negative and it's not useful, it's free real estate!
+
+///When instantiating the recipe, make the output volume consistent with combined input volume (e.g. 5u of reagents go in, 5u of reagent come out)
+#define RECIPE_AUTO_PRESERVE_VOLUME -1

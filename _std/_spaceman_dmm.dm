@@ -15,8 +15,6 @@
 	#define VAR_FINAL var/SpacemanDMM_final
 	#define VAR_PRIVATE var/SpacemanDMM_private
 	#define VAR_PROTECTED var/SpacemanDMM_protected
-/proc/lerp(var/a, var/b, var/t) // BAD HACK
-	return a * (1 - t) + b * t
 #else
 	#define RETURN_TYPE(X)
 	#define SHOULD_CALL_PARENT(X)

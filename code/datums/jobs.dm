@@ -286,7 +286,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	//hos can spawn with everything, no big deal
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/enhanced)
+	slot_belt = list(/obj/item/storage/belt/security/HoS)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
 	slot_poc2 = list(/obj/item/instrument/whistle) //replaces sec starter kit
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
@@ -485,6 +485,28 @@ ABSTRACT_TYPE(/datum/job/command)
 			return
 		M.show_text("<b>You're the Quartermaster! Make sure the station departments are properly equipped, raw materials and salvage are coming in and going out, and income is up! Delegate tasks, coordinate with other departments, and make sure your subordinates have what they need. Without your department, this station grinds to a halt!</b>", "blue")
 
+/datum/job/command/bureaucrat
+	name = " Bureaucrat"
+	limit = 1
+	wages = PAY_IMPORTANT
+	department = "command"
+
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/device/pda2/heads)
+	slot_jump = list(/obj/item/clothing/under/misc/lawyer)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
+	slot_ears = list(/obj/item/device/radio/headset/command)
+	slot_head = list(/obj/item/clothing/head/NTberet)
+	slot_eyes = list(/obj/item/clothing/glasses/regular)
+	slot_lhan = list(/obj/item/clipboard/with_pen)
+	items_in_backpack = list(/obj/item/device/flash)
+
+	New()
+		..()
+		name = get_bureau_name()
+		src.access = get_access("VIP")
+		return
+
 // Security Jobs
 
 ABSTRACT_TYPE(/datum/job/security)
@@ -587,6 +609,7 @@ ABSTRACT_TYPE(/datum/job/security)
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/security/shoulder_holster)
 	slot_poc1 = list(/obj/item/device/pda2/forensic)
+	slot_poc2 = list(/obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled)
 	slot_jump = list(/obj/item/clothing/under/rank/det)
 	slot_foot = list(/obj/item/clothing/shoes/detective)
 	slot_head = list(/obj/item/clothing/head/det_hat)
@@ -1125,7 +1148,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/bartending)
 	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker) // bartenders buddy ammo is broken i think
-	items_in_backpack = list(/obj/item/gun/modular/NT/short/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/NT/mini/three)
+	items_in_backpack = list(/obj/item/gun/modular/NT/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/NT/mini/three)
 
 	New()
 		..()
@@ -1408,6 +1431,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_glov = list(/obj/item/clothing/gloves/latex)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_poc1 = list(/obj/item/device/detective_scanner)
+	slot_poc2 = list(/obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled)
 	items_in_backpack = list(/obj/item/tank/emergency_oxygen)
 
 	New()
@@ -1596,6 +1620,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		if (src.alt_names.len)
 			name = pick(src.alt_names)
 
+
 /datum/job/special/random/vip
 	name = "VIP"
 	wages = PAY_EXECUTIVE
@@ -1626,6 +1651,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 			G.set_loc(B)
 
 		return
+
 
 /datum/job/special/random/inspector
 	name = "Inspector"
@@ -2411,9 +2437,9 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_mask = list(/obj/item/clothing/mask/breath)
 	slot_card = null		///obj/item/card/id/
 	slot_poc1 = list(/obj/item/reagent_containers/pill/tox)
-	slot_poc2 = list(/obj/item/storage/pouch/bullet_9mm)
+	slot_poc2 = list(/obj/item/stackable_ammo/pistol/zaubertube/ten)
 	slot_lhan = list()
-	slot_rhan = list(/obj/item/gun/kinetic/pistol)
+	slot_rhan = list(/obj/item/gun/modular/soviet/long/advanced)
 
 	special_setup(var/mob/living/carbon/human/M)
 		..()
@@ -2525,7 +2551,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_card = /obj/item/card/id/command
 	slot_poc1 = list(/obj/item/spacecash/fivehundred)
 	slot_poc2 = list(/obj/item/rubberduck)
-	items_in_backpack = list(/obj/item/gun/modular/NT/short/pistol,
+	items_in_backpack = list(/obj/item/gun/modular/NT/pistol_sec,
 							/obj/item/device/pda2/heads,
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/storage/firstaid/regular,

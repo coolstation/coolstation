@@ -52,7 +52,7 @@
 	var/lastattacker = null
 	var/lastattacked = null //tell us whether or not to use Combat or Default click delays depending on whether this var was set.
 	var/lastattackertime = 0
-	var/other_mobs = null
+	var/pass_through_mobs = FALSE
 	var/memory = ""
 	var/atom/movable/pulling = null
 	var/stat = 0.0
@@ -224,7 +224,7 @@
 
 	var/last_cubed = 0
 
-	var/obj/use_movement_controller = null
+	var/datum/movement_controller/override_movement_controller = null
 	var/next_spammable_chem_reaction_time = 0
 
 	var/dir_locked = FALSE
@@ -687,7 +687,7 @@
 					return
 
 		if (!issilicon(AM))
-			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing) // mutual brohugs all around!
+			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing && !(src.pulling && src.pulling.density)) // mutual brohugs all around!
 				var/turf/oldloc = src.loc
 				var/turf/newloc = tmob.loc
 
@@ -793,9 +793,6 @@
 	src.update_camera()
 
 /mob/set_loc(atom/new_loc, new_pixel_x = 0, new_pixel_y = 0)
-	if (use_movement_controller && isobj(src.loc) && src.loc:get_movement_controller())
-		use_movement_controller = null
-
 	if(istype(src.loc, /obj/machinery/vehicle/) && src.loc != new_loc)
 		var/obj/machinery/vehicle/V = src.loc
 		V.eject(src)
@@ -804,10 +801,6 @@
 	src.loc_pixel_x = new_pixel_x
 	src.loc_pixel_y = new_pixel_y
 	src.update_camera()
-
-	if (isobj(src.loc))
-		if(src.loc:get_movement_controller())
-			use_movement_controller = src.loc
 
 	walk(src,0) //cancel any walk movements
 
@@ -1212,6 +1205,9 @@
 		src.suicide_alert = 0
 	if(src.ckey)
 		respawn_controller.subscribeNewRespawnee(src.ckey)
+	//stop piloting pods or whatever
+	src.override_movement_controller = null
+
 
 /mob/proc/restrained()
 	. = src.hasStatus("handcuffed")
@@ -1521,7 +1517,7 @@
 
 	if (ismob(mover))
 		var/mob/moving_mob = mover
-		if ((src.other_mobs && moving_mob.other_mobs))
+		if ((src.pass_through_mobs || moving_mob.pass_through_mobs))
 			return 1
 		return (!mover.density || !src.density || src.lying)
 	else
@@ -2410,7 +2406,7 @@
 		if (thr?.get_throw_travelled() <= 410)
 			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
 				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened"))
+				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
 					src.changeStatus("weakened", 2 SECONDS)
 					src.force_laydown_standup()
 		else
@@ -2886,13 +2882,15 @@
 // no text description though, because it's all different everywhere
 /mob/proc/vomit(var/nutrition=0, var/specialType=null)
 	playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.lastgasp(FALSE,TRUE,"blublublub")
 	if(specialType)
 		if(!locate(specialType) in src.loc)
 			new specialType(src.loc)
 	else
 		if(!locate(custom_vomit_type) in src.loc)
 			make_cleanable(custom_vomit_type,src.loc)
-
 	src.nutrition -= nutrition
 
 /mob/proc/get_hand_pixel_x()
@@ -3274,3 +3272,14 @@
 	. = src?.bioHolder?.mobAppearance?.pronouns
 	if(isnull(.))
 		. = get_singleton(/datum/pronouns/theyThem)
+
+///is mob capable of climbing a ladder
+/mob/proc/can_climb_ladder(silent = FALSE)
+	if (can_act(src, TRUE))
+		return TRUE
+	boutput(src, "<span class=alert>You can't climb a ladder while incapacitated!</span>")
+	return FALSE
+
+//Observers bypass this check anyway, but regardless
+/mob/dead/can_climb_ladder(silent = FALSE)
+	return TRUE

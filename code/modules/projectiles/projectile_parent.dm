@@ -451,10 +451,6 @@
 
 			animate(src,pixel_x = wx-dpx, pixel_y = wy-dpy, time = 1 DECI SECOND, flags = ANIMATION_END_NOW) //todo figure out later
 
-	track_blood()
-		src.tracked_blood = null
-		return
-
 	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		return
 

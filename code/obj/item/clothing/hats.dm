@@ -923,13 +923,13 @@ proc/filter_trait_hats(var/type)
 		if (!istype(host))
 			processing_items.Remove(src)
 			processing = 0
-			return
+			return/*
 		if(prob(1))
 			host.real_name = "[prob(10)?SPACER_PICK("honorifics")+" ":""][prob(20)?SPACER_PICK("stuff")+" ":""][SPACER_PICK("firstnames")+" "][prob(80)?SPACER_PICK("nicknames")+" ":""][prob(50)?SPACER_PICK("firstnames"):SPACER_PICK("lastnames")]"
 			host.name = host.real_name
 			boutput(host, "<span class='notice'>You suddenly feel a lot more like, uh, well like [host.real_name]!</span>")
 			var/turf/T = get_turf(src)
-			T.fluid_react_single("miasma_s", 5, airborne = 1)
+			T.fluid_react_single("miasma_s", 5, airborne = 1)*/
 		if(isdead(host))
 			host.visible_message("<span class='notice'>A fun surprise pops out of [host]!</span>")
 			new /obj/item/a_gift/festive(get_turf(src))

@@ -9,7 +9,7 @@ ABSTRACT_TYPE(/obj/item/parts)
 	override_attack_hand = 0
 	var/skin_tone = "#FFFFFF"
 	var/slot = null // which part of the person or robot suit does it go on???????
-	var/streak_decal = /obj/decal/cleanable/blood // what streaks everywhere when it's cut off?
+	var/streak_decal = /obj/decal/cleanable/tracked_reagents/blood // what streaks everywhere when it's cut off?
 	var/streak_descriptor = "bloody" //bloody, oily, etc
 	var/datum/limb/limb_data = null // used by arms for attack_hand overrides
 	var/limb_type = /datum/limb // the type of limb_data

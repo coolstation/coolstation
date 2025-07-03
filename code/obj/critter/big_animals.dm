@@ -200,7 +200,7 @@ obj/critter/bear/care
 				targetLimb.remove(0)
 				H.update_body()
 				M.emote("scream")
-				bleed(H, 20, 30)
+				bleed(H, 20, violent = TRUE)
 				targetLimb.delete()
 				return
 

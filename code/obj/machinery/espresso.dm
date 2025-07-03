@@ -333,6 +333,10 @@
 	icon_state = "coffeemaker-com"
 	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/command
 
+/obj/machinery/coffeemaker/generic
+	icon_state = "coffeemaker-gen"
+	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/generic
+
 
 /* ===================================================== */
 /* ---------------------- Mug Rack --------------------- */

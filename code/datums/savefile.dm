@@ -15,6 +15,133 @@
 		return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey].sav"
 
 
+	json_to_character(client/user, var/JSON, var/profileNum) //doesn't even need to deal with savefiles tbh, this is only here just so it's next to savefile_to_json
+
+		src.profile_number = profileNum
+		var/list/decodedJSON = list()
+		decodedJSON = json_decode(JSON)
+		if(!legal_json_check(decodedJSON))
+			boutput(usr, "<b><span class='alert'>JSON data corrupted, aborting.</b></span>")
+			return 0
+
+		if(decodedJSON["traits"])
+			src.traitPreferences.traits_selected = decodedJSON["traits"]
+
+		src.real_name << decodedJSON["real_name"]
+		src.name_first = decodedJSON["name_first"]
+		src.name_middle = decodedJSON["name_middle"]
+		src.name_last = decodedJSON["name_last"]
+		src.gender = decodedJSON["gender"]
+		src.age = decodedJSON["age"]
+		AH.fartsound = decodedJSON["fartsound"]
+		AH.screamsound = decodedJSON["screamsound"]
+		AH.voicetype = decodedJSON["voicetype"]
+		src.PDAcolor = decodedJSON["PDAcolor"]
+		src.pda_ringtone_index = decodedJSON["pda_ringtone_index"]
+		src.random_blood = decodedJSON["random_blood"]
+		src.blType = decodedJSON["blood_type"]
+		//boutput(usr, "<b><span class='alert'>char details loaded</b></span>")
+		//boutput(usr, "<b><span class='alert'>DEBUG list first name: [decodedJSON["name_first"]], src name: [src.name_first]</b></span>")
+
+		// Records
+		src.pin = decodedJSON["pin"]
+		src.flavor_text = decodedJSON["flavor_text"]
+		src.medical_note = decodedJSON["medical_note"]
+		src.security_note = decodedJSON["security_note"]
+		//boutput(usr, "<b><span class='alert'>DEBUG record details loaded</b></span>")
+		// Randomize appearances
+		src.be_random_name = decodedJSON["name_is_always_random"]
+		src.be_random_look = decodedJSON["look_is_always_random"]
+
+		// AppearanceHolder details
+		if (src.AH)
+			AH.pronouns.name = decodedJSON["pronouns"]
+			AH.pronouns.preferredGender = decodedJSON["pronouns_preferredGender"]
+			AH.pronouns.subjective = decodedJSON["pronouns_subjective"]
+			AH.pronouns.objective = decodedJSON["pronouns_objective"]
+			AH.pronouns.possessive = decodedJSON["pronouns_possessive"]
+			AH.pronouns.posessivePronoun = decodedJSON["posessive_pronoun"]
+			AH.pronouns.reflexive = decodedJSON["pronouns_reflexive"]
+			AH.pronouns.pluralize = decodedJSON["pronouns_plural"]
+			AH.e_color = decodedJSON["eye_color"]
+			AH.customization_first_color = decodedJSON["hair_color"]
+			AH.customization_second_color = decodedJSON["facial_color"]
+			AH.customization_third_color = decodedJSON["detail_color"]
+			AH.s_tone = decodedJSON["skin_tone"]
+
+			AH.customization_first = find_style_by_name(decodedJSON["hair_style_name"])
+			AH.customization_second = find_style_by_name(decodedJSON["facial_style_name"])
+			AH.customization_third = find_style_by_name(decodedJSON["detail_style_name"])
+
+			AH.underwear = decodedJSON["underwear_style_name"]
+			AH.u_color = decodedJSON["underwear_color"]
+			//boutput(usr, "<b><span class='alert'>DEBUG AH details loaded</b></span>")
+			//boutput(usr, "<b><span class='alert'>DEBUG list eye color: [decodedJSON["eye_color"]], src color: [AH.e_color]</b></span>")
+		if(decodedJSON["traits"])
+			src.traitPreferences.traits_selected = decodedJSON["traits"]
+		boutput(usr, "<b><span class='alert'>Character [decodedJSON["name_first"]] loaded.</b></span>")
+		return 1
+
+	savefile_to_json(client/user)
+		var/savefile/F
+		var/list/export = list()
+		var/profileNum = src.profile_number
+		var/jsonExport
+		F = new /savefile(src.savefile_path(user), -1)
+
+		//details
+		F["[profileNum]_real_name"] >> export["real_name"]
+		F["[profileNum]_name_first"] >> export["name_first"]
+		F["[profileNum]_name_middle"] >> export["name_middle"]
+		F["[profileNum]_name_last"] >> export["name_last"]
+		F["[profileNum]_gender"] >> export["gender"] //coolstation's main export
+		F["[profileNum]_age"] >> export["age"]
+		F["[profileNum]_fartsound"] >> export["fartsound"]
+		F["[profileNum]_screamsound"] >> export["screamsound"]
+		F["[profileNum]_voicetype"] >> export["voicetype"]
+		F["[profileNum]_PDAcolor"] >> export["PDAcolor"]
+		F["[profileNum]_pda_ringtone_index"] >> export["pda_ringtone_index"]
+		F["[profileNum]_random_blood"] >> export["random_blood"]
+		F["[profileNum]_blood_type"] >> export["blood_type"]
+
+		//records
+		F["[profileNum]_pin"] >> export["pin"]
+		F["[profileNum]_flavor_text"] >> export["flavor_text"]
+		F["[profileNum]_medical_note"] >> export["medical_note"]
+		F["[profileNum]_security_note"] >> export["security_note"]
+
+		F["[profileNum]_traits"] >> export["traits"]
+
+		//rando character stuff, this might not be useful for the webapp.
+		F["[profileNum]_name_is_always_random"] >> export["name_is_always_random"]
+		F["[profileNum]_look_is_always_random"] >> export["look_is_always_random"]
+
+		//appearance holder stuff, critical
+		if (src.AH)
+			F["[profileNum]_pronouns"] >> export["pronouns"]
+			F["[profileNum]_pronouns_preferred_gender"] >> export["pronouns_preferred_gender"]
+			F["[profileNum]_pronouns_subjective"] >> export["pronouns_subjective"]
+			F["[profileNum]_pronouns_objective"] >> export["pronouns_objective"]
+			F["[profileNum]_pronouns_possessive"] >> export["pronouns_possessive"]
+			F["[profileNum]_pronouns_posessive_pronoun"] >> export["posessive_pronoun"] //is that mispelled or is it just me being dysgraphic
+			F["[profileNum]_pronouns_reflexive"] >> export["pronouns_reflexive"]
+			F["[profileNum]_pronouns_plural"] >> export["pronouns_plural"] //this many pronouns could make a grown man cry, love to see it
+			F["[profileNum]_eye_color"] >> export["eye_color"]
+			F["[profileNum]_hair_color"] >> export["hair_color"]
+			F["[profileNum]_facial_color"] >> export["facial_color"]
+			F["[profileNum]_detail_color"] >> export["detail_color"]
+			F["[profileNum]_skin_tone"] >> export["skin_tone"]
+			F["[profileNum]_hair_style_name"] >> export["hair_style_name"]
+			F["[profileNum]_facial_style_name"] >> export["facial_style_name"]
+			F["[profileNum]_detail_style_name"] >> export["detail_style_name"]
+			F["[profileNum]_underwear_style_name"] >> export["underwear_style_name"]
+			F["[profileNum]_underwear_color"] >> export["underwear_color"]
+
+
+
+		jsonExport = json_encode(export)
+		return jsonExport
+
 	// returnSaveFile returns the file rather than writing it
 	// used for cloud saves
 	savefile_save(client/user, profileNum = 1, returnSavefile = 0)
@@ -134,6 +261,7 @@
 		F["flying_chat_hidden"] << src.flying_chat_hidden
 		F["auto_capitalization"] << src.auto_capitalization
 		F["local_deachat"] << src.local_deadchat
+		F["hidden_spiders"] << src.hidden_spiders
 
 		if (returnSavefile)
 			return F
@@ -314,6 +442,7 @@
 		F["flying_chat_hidden"] >> src.flying_chat_hidden
 		F["auto_capitalization"] >> src.auto_capitalization
 		F["local_deachat"] >> src.local_deadchat
+		F["hidden_spiders"] >> src.hidden_spiders
 
 
 		if (isnull(src.name_first) || !length(src.name_first) || isnull(src.name_last) || !length(src.name_last))
@@ -483,3 +612,5 @@
 
 		user.player.cloudsaves.Remove( name )
 		return 1
+
+

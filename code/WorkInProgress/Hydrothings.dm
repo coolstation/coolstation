@@ -1189,7 +1189,7 @@ obj/critter/madnessowl/switchblade
 					sleep(1.5 SECONDS)
 					src.visible_message("<span class='alert'><B>[src]</B> ravenously eats the mangled brain remnants out of the decapitated head!</span>")
 					playsound(src.loc, "sound/voice/animal/hoot.ogg", 80, 1)
-					make_cleanable( /obj/decal/cleanable/blood,src.loc)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,src.loc)
 					src.target = null
 				else
 					src.visible_message("<span class='alert'><B>[src]</B> pounds on [BORG.name]'s head furiously!</span>")
@@ -1272,7 +1272,7 @@ obj/critter/madnessowl/switchblade
 				random_brute_damage(target, 10,1)
 				take_bleeding_damage(target, null, 5, DAMAGE_CUT, 0, get_turf(target))
 				if(prob(33)) // don't make quite so much mess
-					bleed(target, 5, 5, get_step(src.loc, pick(alldirs)), 1)
+					bleed(target, 5, get_step(src.loc, pick(alldirs)), violent = TRUE)
 				sleep(0.4 SECONDS)
 				src.frenzied--
 			src.frenzied = 0

@@ -1358,7 +1358,10 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			playsound(T, "sound/effects/bamf.ogg", 40, 1)
 			user.visible_message("<span class='success'><b>[user]</b> blasts some bling at [target]!</span>")
 
-	attackby(var/obj/item/spacecash/C as obj, mob/user as mob)
+	shoot_point_blank(atom/target, mob/user, second_shot)
+		Shoot(get_turf(target), get_turf(user), user, 0, 0)
+
+	attackby(var/obj/item/spacecash/C, mob/user)
 		if (!istype(C))
 			return ..()
 		if (C.amount <= 0) // how??

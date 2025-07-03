@@ -112,8 +112,8 @@
 								if (9) message = "<B>[src]</B> shows that it can fart just as good as any human."
 								if (10)
 									message = "<B>[src]</B> farts blood and guts out of one of its sides! That's absolutely disgusting!"
-									var/obj/decal/cleanable/blood/gibs/gib = null
-									gib = make_cleanable(/obj/decal/cleanable/blood/gibs,src.loc)
+									var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+									gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 									gib.streak_cleanable()
 						playsound(src.loc, 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 						src.remove_stamina(STAMINA_DEFAULT_FART_COST)
