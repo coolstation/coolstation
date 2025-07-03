@@ -415,8 +415,6 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 /obj/item/gun/suicide(var/mob/living/carbon/human/user as mob)
 	if (!src.user_can_suicide(user))
 		return 0
-	if (!src.canshoot())
-		return 0
 
 	user.visible_message("<span class='alert'><b>[user] places [src] against [his_or_her(user)] head!</b></span>")
 	var/dmg = user.get_brute_damage() + user.get_burn_damage()
@@ -428,7 +426,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 			REMOVE_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
 			var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
 			if (new_dmg < (dmg + 30)) // BOOOO!
-				user.visible_message("<span class='alert'>[user] hangs their head in shame because they chose such a weak gun.</span>")
+				user.visible_message("<span class='alert'>[user] hangs [his_or_her(user)] head in shame.</span>")
 	return 1
 
 /obj/item/gun/on_spin_emote(var/mob/living/carbon/human/user as mob)
