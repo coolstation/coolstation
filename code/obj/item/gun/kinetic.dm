@@ -620,7 +620,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	icon = 'icons/effects/VR.dmi'
 
 //no, chappie doesn't just get a fancy bespoke non-modular gun's
-/*
 /obj/item/gun/kinetic/faith
 	name = "Faith"
 	desc = "'Cause ya gotta have Faith."
@@ -637,7 +636,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/bullet_22/faith
 		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
-*/
 
 /obj/item/gun/kinetic/detectiverevolver
 	name = "Detective Special revolver"
@@ -1077,7 +1075,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		set_current_projectile(new/datum/projectile/bullet/airzooka)
 		..()
 
-/*
 /obj/item/gun/kinetic/smg_old //testing keelin's continuous fire POC
 	name = "submachine gun"
 	desc = "An automatic submachine gun"
@@ -1096,7 +1093,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smg
 		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
-*/
 
 //  <([['v') - Gannets Nuke Ops Class Guns - ('u']])>  //
 
@@ -1536,7 +1532,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		setProperty("movespeed", 0.8)
 
 // WIP //////////////////////////////////
-/*/obj/item/gun/kinetic/sniper/antimateriel
+/obj/item/gun/kinetic/sniper/antimateriel
 	name = "M20-S antimateriel cannon"
 	desc = "A ruthlessly powerful rifle chambered for a 20mm cannon round. Built to destroy vehicles and infrastructure at range."
 	icon = 'icons/obj/large/64x32.dmi'
@@ -1571,7 +1567,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 0.3)*/
+		setProperty("movespeed", 0.3)
 
 /obj/item/gun/kinetic/flintlockpistol
 	name = "flintlock pistol"

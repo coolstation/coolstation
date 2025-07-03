@@ -673,7 +673,7 @@ datum/projectile/bullet/frog/getout
 datum/projectile/bullet/rod
 	impact_range = 16
 
-datum/projectile/bullet/flare/ufo
+datum/projectile/bullet/slug/flare/ufo
 	impact_range = 8
 
 datum/projectile/owl

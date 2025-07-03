@@ -670,7 +670,7 @@ datum
 			src.combustible_pressure = 0
 
 		proc/process_combustion(mult = 1) //Handles any chem that burns
-			if (src.composite_volatility <= 0.5)
+			if (src.composite_volatility <= 0.5 || !src.combustible_volume)
 				src.stop_combusting()
 				return
 

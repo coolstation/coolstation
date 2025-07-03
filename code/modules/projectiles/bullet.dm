@@ -310,13 +310,17 @@ toxic - poisons
 	dissipation_rate = 3
 	dissipation_delay = 3
 	hit_ground_chance = 50
+	damage_type = D_KINETIC
+	hit_type = DAMAGE_BLUNT
 	icon_turf_hit = null
 	implanted = null
 
-	mini //for maintenance pest control, fired in a group of 8 (up to 32)
-		name = "ratshot"
-		sname = "ratshot"
-		hit_ground_chance = 75
+/datum/projectile/bullet/shot/NT/mini //for maintenance pest control, fired in a group of 8 (up to 32)
+	name = "ratshot"
+	sname = "ratshot"
+	power = 3
+	dissipation_rate = 2.5
+	hit_ground_chance = 75
 
 //probably a lawgiver thing but we can adopt this into real separate shell
 //fired as a single projectile
