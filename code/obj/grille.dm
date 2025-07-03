@@ -531,7 +531,7 @@
 				return
 		else if (istype(W, /obj/item/gun))
 			var/obj/item/gun/G = W
-			G.ShootPointBlank(src, user)
+			G.Shoot(get_turf(src), get_turf(user), user, point_blank_target = src)
 			return
 		// electrocution check
 

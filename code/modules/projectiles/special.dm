@@ -164,6 +164,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		while (pellets > 0)
 			pellets--
 			var/obj/projectile/FC = initialize_projectile(PT, F, O.xo, O.yo, O.shooter)
+			FC.was_pointblank = TRUE
 			hit_with_existing_projectile(FC, target)
 
 
@@ -196,6 +197,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
 		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
+		FC.power = FC.power * P.power / F.power // scale to modification
 		FC.rotateDirection(current_angle)
 		FC.launch()
 		current_angle += angle_adjust_per_pellet
@@ -215,17 +217,19 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 12 //4 per
 	spread_projectile_type = /datum/projectile/bullet/shot_weak
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	var/speed_max = 5
-	var/speed_min = 60
+	var/speed_max = 30
+	var/speed_min = 15
 	var/spread_angle_variance = 5
 	var/dissipation_variance = 32
 
 	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
 		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
+		FC.power = FC.power * P.power / F.power // scale to modification
 		FC.rotateDirection(rand(0-spread_angle_variance,spread_angle_variance))
 		FC.internal_speed = rand(speed_min,speed_max)
 		FC.travelled = rand(0,dissipation_variance)
 		FC.launch()
+
 //NT shot is plastic
 /datum/projectile/special/spreader/buckshot_burst/nt
 	name = "buckshot"
@@ -234,8 +238,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 10
 	spread_projectile_type = /datum/projectile/bullet/shot_weak
 	casing = /obj/item/casing/shotgun/blue
-	speed_max = 5
-	speed_min = 60
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 10
 	dissipation_variance = 20
 
@@ -246,8 +250,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 5
 	spread_projectile_type = /datum/projectile/bullet/shot_weak/mini
 	casing = /obj/item/casing/shotgun/blue
-	speed_max = 5
-	speed_min = 60
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 5
 	dissipation_variance = 20
 
@@ -260,8 +264,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	casing = /obj/item/casing/shotgun/red
-	speed_max = 5
-	speed_min = 60
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 15
 	dissipation_variance = 32
 
@@ -272,8 +276,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 8 //12 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy/denim
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	speed_max = 5
-	speed_min = 60
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 20
 	dissipation_variance = 32
 
@@ -284,8 +288,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 6 // 6 per
 	spread_projectile_type = /datum/projectile/bullet/shot_heavy/scrap
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	speed_max = 12
-	speed_min = 36
+	speed_max = 36
+	speed_min = 12
 	spread_angle_variance = 15
 	dissipation_variance = 64
 
@@ -298,8 +302,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	caliber = 0.62
 	casing = /obj/item/casing/shotgun/gray
 	spread_projectile_type = /datum/projectile/bullet/shot_salt
-	speed_min = 28
 	speed_max = 36
+	speed_min = 28
 	dissipation_variance = 64
 	spread_angle_variance = 3
 	pellets_to_fire = 4
@@ -1134,8 +1138,6 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	hit_ground_chance = 0 // burn right over em
 	max_range = 10
 	silentshot = 1 // Mr. Muggles is hit by the chemical bolt x99999
-	fullauto_valid = 0
-
 
 	/// Releases some of the projectile's gas into the turf
 	proc/emit_gas(turf/T, all_of_it = 0)
