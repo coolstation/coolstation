@@ -598,38 +598,33 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
 		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
 
-	if(src.ammo_reserve()) //check happens again because of process
-		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return (current_projectile?1:0)
-
+	processing_ammo = TRUE
+	var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[src.ammo_reserve()]
+	//check for right kind of ammo
+	if(!istype(FB))
+		boutput(user,"<span class='notice'><b>Error! This device is configured only for FOSS Cathodic Flash Bulbs.</b></span>")
+		playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 	else
-		processing_ammo = TRUE
-		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[src.ammo_reserve()]
-		//check for right kind of ammo
-		if(!istype(FB))
-			boutput(user,"<span class='notice'><b>Error! This device is configured only for FOSS Cathodic Flash Bulbs.</b></span>")
-			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
-		else
-			//check chance to cause a jam while loading
-			if(prob(jam_frequency)) //very unlikely unless you're clumsy i guess
-				jammed = JAM_LOAD
-				boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
-				playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-				ammo_list.Remove(FB) //see ya
-				qdel(FB)
-				processing_ammo = FALSE
-				return 0
+		//check chance to cause a jam while loading
+		if(prob(jam_frequency)) //very unlikely unless you're clumsy i guess
+			jammed = JAM_LOAD
+			boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
+			playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
+			ammo_list.Remove(FB) //see ya
+			qdel(FB)
+			processing_ammo = FALSE
+			return 0
 
-			//load it from the pile
-			flashbulb_health = rand(FB.min_health, FB.max_health)
-			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		//load it from the pile
+		flashbulb_health = rand(FB.min_health, FB.max_health)
+		boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
+		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
-			ammo_list.Remove(FB) //and remove it from the list
-			qdel(FB) //please don't qdel typepaths
+		ammo_list.Remove(FB) //and remove it from the list
+		qdel(FB) //please don't qdel typepaths
 
-		processing_ammo = FALSE
-		return (current_projectile?1:0)
+	processing_ammo = FALSE
+	return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
 	if(call_on_cycle)
