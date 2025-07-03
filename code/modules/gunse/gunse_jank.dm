@@ -33,7 +33,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 				playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 50, 1)
 			src.gonna_blow = TRUE
 			SPAWN_DBG(rand(6, 30))
-				if(src.current_projectile?.power && src.gonna_blow)
+				if(!QDELETED(src))
 					var/turf/T = get_turf(src)
 					explosion_new(src, T, failure_chance / 7)
 					qdel(src)
