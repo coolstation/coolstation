@@ -1391,7 +1391,7 @@ toxic - poisons
 
 /* ------------------------------- Silly Stuff ------------------------------ */
 
-/datum/projectile/bullet/foamdart
+/datum/projectile/bullet/pistol/foamdart
 	name = "foam dart"
 	sname = "foam dart"
 	icon_state = "foamdart"

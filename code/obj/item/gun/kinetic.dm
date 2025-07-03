@@ -378,7 +378,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		TO_LOAD.Attackby(nade, user)
 		src.Attackby(TO_LOAD, user)
 
-
+/*
 /obj/item/gun/kinetic/foamdartgun
 	name = "Foam Dart Gun"
 	icon_state = "foamdartgun"
@@ -395,6 +395,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/foamdarts/ten
 		set_current_projectile(new/datum/projectile/bullet/foamdart)
 		..()
+*/
 
 /obj/item/gun/kinetic/derringer
 	name = "derringer"

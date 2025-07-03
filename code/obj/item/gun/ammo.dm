@@ -1,4 +1,4 @@
-//////////////////////////////// Parent ////////////////////////////
+///////////////// this type of ammo is being removed /////////////////
 
 /obj/item/ammo
 	name = "ammo"
@@ -44,7 +44,6 @@
 	// 1.57 - 40mm grenade shell
 	// 1.58 - RPG-7 (Tube is 40mm too, though warheads are usually larger in diameter.)
 
-	//cartridge_length = 20 is pistol (short) 40 is rifle (long)
 
 /obj/item/ammo/bullets
 	name = "Ammo box"
@@ -1171,8 +1170,6 @@
 	desc = "A box containg a single inert meowitzer. It appears to be softly purring. Wait is that a cat?"
 	ammo_type = new/datum/projectile/special/meowitzer/inert
 
-*/
-
 /obj/item/ammo/bullets/foamdarts
 	sname = "foam darts"
 	name = "foam dart box"
@@ -1186,6 +1183,8 @@
 /obj/item/ammo/bullets/foamdarts/ten
 	amount_left = 10
 	max_amount = 10
+
+*/
 
 /obj/item/ammo/bullets/dueling
 	sname = "dueling rounds"

@@ -2354,6 +2354,7 @@
 	upperfluc = 100
 	lowerfluc = -20
 
+/*
 /datum/commodity/toygun
 	comname = "Toy Gun"
 	comtype = /obj/item/gun/kinetic/foamdartgun
@@ -2363,11 +2364,12 @@
 	baseprice = 2000
 	upperfluc = 100
 	lowerfluc = -100
+*/
 
-/datum/commodity/toygunammo
-	comname = "Foam Darts"
-	comtype = /obj/item/ammo/bullets/foamdarts
-	desc = "A box of foam darts for toy guns."
+/datum/commodity/foam_pistol_ammo
+	comname = "Foam Darts (10x)"
+	comtype = /obj/item/stackable_ammo/pistol/foamdart/ten
+	desc = "A box of foam darts."
 	onmarket = 0
 	price = 200
 	baseprice = 200

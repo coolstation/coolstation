@@ -294,7 +294,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		recoil_stacks += 1
 		stacked_recoil = clamp(round(recoil_stacks) - recoil_stacking_safe_stacks,0,recoil_stacking_max_stacks) * recoil_stacking_amount
 	var/datum/projectile/projectile = (force_projectile ? force_projectile : src.current_projectile)
-	var/implicit_recoil_strength = 5*log(projectile.power * projectile.shot_number)
+	var/implicit_recoil_strength = projectile.power * projectile.shot_number
+	if(implicit_recoil_strength)
+		implicit_recoil_strength = 5*log(implicit_recoil_strength)
 	recoil += (implicit_recoil_strength + stacked_recoil)
 	recoil = clamp(recoil, 0, recoil_max)
 	recoil_last_shot = TIME
