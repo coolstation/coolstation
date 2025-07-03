@@ -395,8 +395,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if (!ismob(owner)) //plenty of assuming this is true will follow (but mostly not needing typecasting)
 			interrupt(INTERRUPT_ALWAYS)
 			return
+		if (!target_gun.built)
+			boutput(src.owner, SPAN_ALERT("This gun needs to be hammered into place!"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
 		if (target_gun.jammed)
-			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)</span>"))
+			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)"))
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		if ((target_gun.caliber | donor_ammo.caliber) != target_gun.caliber)
