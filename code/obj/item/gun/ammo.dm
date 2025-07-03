@@ -1099,6 +1099,7 @@
 	charge = 2500.0
 	max_charge = 2500.0
 
+/*
 /obj/item/ammo/bullets/flintlock //Flintlock cant be reloaded so this is only for the initial bullet.
 	sname = ".58 Flintlock"
 	name = ".58 Flintlock"
@@ -1107,6 +1108,7 @@
 	amount_left = 1
 	max_amount = 1
 	caliber = 0.58
+*/
 
 /obj/item/ammo/bullets/antisingularity
 	sname = "Singularity buster rocket"
@@ -1134,6 +1136,7 @@
 	delete_on_reload = 1
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
+/*
 /obj/item/ammo/bullets/gun
 	name = "Briefcase of guns"
 	desc = "A briefcase full of guns. It's locked tight..."
@@ -1167,6 +1170,8 @@
 	name = "inert meowitzer"
 	desc = "A box containg a single inert meowitzer. It appears to be softly purring. Wait is that a cat?"
 	ammo_type = new/datum/projectile/special/meowitzer/inert
+
+*/
 
 /obj/item/ammo/bullets/foamdarts
 	sname = "foam darts"

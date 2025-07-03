@@ -102,12 +102,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		switch (src.amount)
 			if (-INFINITY to 0)
 				qdel(src) // ???
+				return
 			if(1)
 				src.icon_state = icon_one
-			if ((default_max_amount-1) to 2)
+				return
+			/*if ((default_max_amount-1) to 2)
 				src.icon_state = icon_empty
+				return*/
 			else
 				src.icon_state = icon_full
+				return
 
 	UpdateName()
 		src.name = "[src.amount] [name_prefix(null, 1)][src.real_name][s_es(src.amount)][name_suffix(null, 1)]"
@@ -695,6 +699,25 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 		if(prob(30))
 			hit.ex_act(OLD_EX_LIGHT)
 		return
+
+/// VERY WEIRD STUFF
+
+/obj/item/stackable_ammo/meowitzer
+	name = "enriched purrlonium artillery shell"
+	real_name = "enriched purrlonium artillery shell"
+	desc = "It's vibrating rapidly, and seems eager to wreak havoc. Point away from anything you hold dear."
+	icon = 'icons/mob/critter.dmi'
+	icon_state = "cat1"
+	icon_one = "cat1"
+	projectile_type = /datum/projectile/special/meowitzer
+	caliber = CALIBER_LONG_WIDE
+	max_stack = 1
+
+/obj/item/stackable_ammo/meowitzer/inert
+	name = "depleted purrlonium artillery shell"
+	real_name = "depleted purrlonium artillery shell"
+	desc = "The volatile cations have been depleted, but it still purrs with potential."
+	projectile_type = /datum/projectile/special/meowitzer/inert
 
 #undef default_max_amount
 #undef default_min_amount

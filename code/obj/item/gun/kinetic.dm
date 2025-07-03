@@ -457,6 +457,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	spawn_contents = list(/obj/item/gun/kinetic/dueling_pistol = 2,\
 	/obj/item/ammo/bullets/dueling)
 
+/*
 /obj/item/gun/kinetic/meowitzer
 	name = "\improper Meowitzer"
 	desc = "It purrs gently in your hands."
@@ -496,6 +497,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		..()
 		ammo = new/obj/item/ammo/bullets/meowitzer/inert
 		set_current_projectile(new/datum/projectile/special/meowitzer/inert)
+*/
 
 // Ported from old, non-gun RPG-7 object class (Convair880).
 /obj/item/gun/kinetic/rpg7

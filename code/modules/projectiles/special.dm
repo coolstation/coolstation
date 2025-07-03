@@ -483,7 +483,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			playsound_global(world, 'sound/effects/creaking_metal1.ogg', 40)
 
 // A weapon by Sovexe
-//Used by: Meowitzer (unsafe)
+//Used by: Meowitzer shell (unsafe)
 /datum/projectile/special/meowitzer //what have I done
 	shot_sound = 'sound/misc/boing/6.ogg'
 	name  = "meowitzer"
@@ -515,7 +515,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 				explosion_new(projectile, T, explosion_power, 1)
 		return
 
-//Used by: Meowitzer (safe)
+//Used by: Meowitzer shell (safe)
 /datum/projectile/special/meowitzer/inert
 	explosive_hits = 0
 

@@ -142,7 +142,6 @@
 											/obj/item/gun/energy/pulse_rifle,
 											/obj/item/gun/bling_blaster,\
 											/obj/item/bang_gun,\
-											/obj/item/gun/kinetic/meowitzer/inert,\
 											/obj/item/gun/russianrevolver,\
 											/obj/item/gun/energy/egun,\
 											/obj/item/gun/energy/ghost,\
@@ -1018,11 +1017,6 @@
 	proc/CheckMagCellWhatever()
 		if(!src.budgun || !src.cell)
 			return 0 // fingerguns arent good2shoot yet
-
-		if (istype(src.budgun, /obj/item/gun/kinetic/meowitzer/inert)) // cats4days
-			var/obj/item/gun/kinetic/meowgun = src.budgun
-			meowgun.ammo.amount_left = meowgun.ammo.max_amount
-			return 1 // mew2meow!
 
 		if (istype(src.budgun, /obj/item/gun/bling_blaster))
 			var/obj/item/gun/bling_blaster/cash_gun = src.budgun
