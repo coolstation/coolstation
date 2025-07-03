@@ -14,6 +14,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 	stock_overlay_x = -11
 	grip_overlay_x = -8
 	grip_overlay_y = -5
+	bulkiness = 2
+	reload_cooldown = 0.9 SECONDS
 	caliber = CALIBER_LONG_WIDE // it would just be disrespectful to this things history to not allow any ammo
 	var/gonna_blow = FALSE
 
@@ -22,7 +24,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 			return
 		var/failure_chance = 0
 		if(src.current_projectile?.power)
-			failure_chance = clamp(round(src.current_projectile.power/2 - 20), -3, 30) + length(src.casing_list) * 5 + src.ammo_reserve()
+			failure_chance = clamp(round(src.current_projectile.power/2 - 20), -5, 30) + length(src.casing_list) * 5 + src.ammo_reserve() + !!src.jammed * 5
 		if(failure_chance > 0 && prob(failure_chance))
 			if(prob(failure_chance))	// Sometimes the failure is obvious
 				playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
