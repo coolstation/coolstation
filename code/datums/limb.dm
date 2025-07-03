@@ -285,7 +285,7 @@
 		reload_time = 40
 
 	fire_elemental
-		proj = new/datum/projectile/bullet/flare
+		proj = new/datum/projectile/bullet/slug/flare
 		shots = 1
 		current_shots = 1
 		cooldown = 40

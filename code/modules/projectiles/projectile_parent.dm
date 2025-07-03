@@ -33,7 +33,7 @@
 	var/facing_dir = 1 //default dir we set to in do_step()
 
 	var/data = 0
-	var/was_pointblank = 0 // Adjusts the log entry accordingly.
+	var/was_pointblank = 0 // Adjusts the log entry accordingly and allows point blank impact
 
 	var/was_setup = 0
 	var/far_border_hit
