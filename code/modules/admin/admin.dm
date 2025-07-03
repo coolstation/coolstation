@@ -821,7 +821,7 @@ var/global/noir = 0
 							<A href='byond://?src=\ref[src];action=[cmd];type=assday'>Ass Day Classic (For testing only.)</A><br>
 							<A href='byond://?src=\ref[src];action=[cmd];type=construction'>Construction (For testing only. Don't select this!)</A><br>
 							"})
-#if FOOTBALL_MODE
+#ifdef FOOTBALL_MODE
 				dat += "<A href='byond://?src=\ref[src];action=[cmd];type=football'>Football</A>"
 #endif
 				dat += "</body></html>"

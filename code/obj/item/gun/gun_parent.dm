@@ -57,7 +57,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	// Recoil-induced icon tilting. Good for smaller guns. 64x32 icons might look a bit silly with high values.
 	// If your gun uses recoil, it's *strongly* recommended to keep this enabled.
-	var/icon_recoil_enabled = FALSE //! Should this gun's icon tilt?
+	var/icon_recoil_enabled = TRUE //! Should this gun's icon tilt?
 	var/icon_recoil_cap = 10 //! At maximum recoil, what angle should the icon state be at?
 
 	// Recoil strength stacking, increases recoil strength as you shoot more
@@ -86,8 +86,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	buildTooltipContent()
 		. = ..()
-		if(current_projectile)
-			. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/ranged.png")]\" width=\"10\" height=\"10\" /> Bullet Power: [current_projectile.power] - [current_projectile.ks_ratio * 100]% lethal"
+		. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/ranged.png")]\" width=\"10\" height=\"10\" /> Final Bullet: [src.displayed_power()]"
 		lastTooltipContent = .
 
 	New()
@@ -95,6 +94,11 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 			src.forensic_ID = src.CreateID()
 			forensic_IDs.Add(src.forensic_ID)
 		return ..()
+
+/obj/item/gun/proc/displayed_power()
+	if(current_projectile)
+		return "[floor(current_projectile.power)] dmg - [floor(current_projectile.ks_ratio * 100)]% lethal"
+	return "100% power"
 
 ///CHECK_LOCK
 ///Call to run a weaponlock check vs the users implant
@@ -196,7 +200,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		if (user.a_intent == INTENT_GRAB)
 			attack_particle(user,M)
 			return ..()
-		src.ShootPointBlank(M, user)
+		src.Shoot(get_turf(M), get_turf(user), user, point_blank_target = M)
 	else
 		..()
 		attack_particle(user,M)
@@ -208,136 +212,19 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 #endif
 		return
 
-/obj/item/gun/proc/ShootPointBlank(atom/target, var/mob/user as mob, var/second_shot = 0)
-	if(!SEND_SIGNAL(src, COMSIG_GUN_TRY_POINTBLANK, target, user, second_shot))
-		src.shoot_point_blank(target, user, second_shot)
-
-/obj/item/gun/proc/shoot_point_blank(atom/target, var/mob/user as mob, var/second_shot = 0)
-	if (!target || !user)
-		return FALSE
-
-	if (isghostdrone(user))
-		user.show_text("<span class='combat bold'>Your internal law subroutines kick in and prevent you from using [src]!</span>")
-		return FALSE
-
-	var/is_dual_wield = 0
-	//Ok. i know it's kind of dumb to add this param 'second_shot' to the shoot_point_blank proc just to make sure pointblanks don't repeat forever when we could just move these checks somewhere else.
-	//but if we do the double-gun checks here, it makes stuff like double-hold-at-gunpoint-pointblanks easier!
-	if (can_dual_wield && !second_shot)
-		//brutal double-pointblank shots
-		var/obj/item/gun/second_gun
-		if (ishuman(user))
-			if(user.hand && istype(user.r_hand, /obj/item/gun) && user.r_hand:can_dual_wield)
-				var/target_turf = get_turf(target)
-				is_dual_wield = 1
-				second_gun = user.r_hand
-				SPAWN_DBG(0.2 SECONDS)
-					if(user.r_hand != second_gun) return
-					if (BOUNDS_DIST(user, target) == 0)
-						second_gun.ShootPointBlank(target,user,second_shot = 1)
-					else
-						user.r_hand:shoot(target_turf,get_turf(user), user, rand(-5,5), rand(-5,5), is_dual_wield)
-			else if(!user.hand && istype(user.l_hand, /obj/item/gun) && user.l_hand:can_dual_wield)
-				var/target_turf = get_turf(target)
-				is_dual_wield = 1
-				second_gun = user.l_hand
-				SPAWN_DBG(0.2 SECONDS)
-					if(user.l_hand != second_gun) return
-					if (BOUNDS_DIST(user, target) == 0)
-						second_gun.ShootPointBlank(target,user,second_shot = 1)
-					else
-						user.l_hand:shoot(target_turf,get_turf(user), user, rand(-5,5), rand(-5,5), is_dual_wield)
-
-
-	if (src.artifact && istype(src.artifact, /datum/artifact))
-		var/datum/artifact/art_gun = src.artifact
-		if (!art_gun.activated)
-			return
-
-	if (!canshoot())
-		if (!silenced)
-			target.visible_message("<span class='alert'><B>[user] tries to shoot [user == target ? "[him_or_her(user)]self" : target] with [src] point-blank, but it was empty!</B></span>")
-			playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
-		else
-			user.show_text("*click* *click*", "red")
-		return FALSE
-
-	if (ishuman(user) && src.add_residue) // Additional forensic evidence for kinetic firearms (Convair880).
-		var/mob/living/carbon/human/H = user
-		H.gunshot_residue = 1
-
-	if (!src.silenced)
-		for (var/mob/O in AIviewers(target, null))
-			if (O.client)
-				O.show_message("<span class='alert'><B>[user] shoots [user == target ? "[him_or_her(user)]self" : target] point-blank with [src]!</B></span>")
-	else
-		boutput(user, "<span class='alert'>You silently shoot [user == target ? "yourself" : target] point-blank with [src]!</span>")
-
-	if (!process_ammo(user))
-		return FALSE
-
-	if (src.muzzle_flash)
-		if (isturf(user.loc))
-			muzzle_flash_attack_particle(user, user.loc, target, src.muzzle_flash)
-
-
-	if(slowdown && ismob(user))
-		SPAWN_DBG(-1)
-			user.movement_delay_modifier += slowdown
-			sleep(slowdown_time)
-			user.movement_delay_modifier -= slowdown
-
-	var/spread = 0
-	if (ismob(user) && user.reagents)
-		var/how_drunk = 0
-		var/amt = user.reagents.get_reagent_amount("ethanol")
-		switch(amt)
-			if (110 to INFINITY)
-				how_drunk = 2
-			if (1 to 110)
-				how_drunk = 1
-		how_drunk = max(0, how_drunk - isalcoholresistant(user) ? 1 : 0)
-		spread += 5 * how_drunk
-	spread = max(spread, spread_angle)
-
-	spread += (recoil/recoil_max) * recoil_inaccuracy_max
-
-	for (var/i = 0; i < current_projectile.shot_number; i++)
-		var/obj/projectile/P = initialize_projectile_pixel_spread(user, current_projectile, target, 0, 0, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
-		if (!P)
-			return FALSE
-		if (user == target)
-			P.shooter = null
-			P.mob_shooter = user
-
-		P.forensic_ID = src.forensic_ID // Was missing (Convair880).
-		if(GET_DIST(user,target) <= 1)
-			P.was_pointblank = 1
-			hit_with_existing_projectile(P, target) // Includes log entry.
-		else
-			P.launch()
-
-		var/mob/living/L = target
-		if(istype(L))
-			if (isalive(L))
-				L.lastgasp()
-			L.set_clothing_icon_dirty()
-		src.update_icon()
-		sleep(current_projectile.shot_delay)
-
 /obj/item/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	src.add_fingerprint(user)
 	if (flag)
 		return
 
-/obj/item/gun/proc/alter_projectile(var/obj/projectile/P)
+/obj/item/gun/proc/alter_projectile(var/obj/projectile/P, var/mob/user)
 	return
 
-/obj/item/gun/proc/Shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/called_target = null)
-	if(!SEND_SIGNAL(src, COMSIG_GUN_TRY_SHOOT, target, start, user, POX, POY, is_dual_wield, called_target))
-		src.shoot(target, start, user, POX, POY, is_dual_wield, called_target)
+/obj/item/gun/proc/Shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/point_blank_target = null)
+	if(!SEND_SIGNAL(src, COMSIG_GUN_TRY_SHOOT, target, start, user, POX, POY, is_dual_wield, point_blank_target))
+		src.shoot(target, start, user, POX, POY, is_dual_wield, point_blank_target)
 
-/obj/item/gun/proc/shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/called_target = null)
+/obj/item/gun/proc/shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/point_blank_target = null)
 	if (isghostdrone(user))
 		user.show_text("<span class='combat bold'>Your internal law subroutines kick in and prevent you from using [src]!</span>")
 		return FALSE
@@ -383,7 +270,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 				how_drunk = 2
 			if (1 to 110)
 				how_drunk = 1
-		how_drunk = max(0, how_drunk - isalcoholresistant(user) ? 1 : 0)
+		how_drunk = max(0, how_drunk - (isalcoholresistant(user) ? 1 : 0))
 		spread += 5 * how_drunk
 	spread = max(spread, spread_angle)
 
@@ -528,25 +415,26 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 /obj/item/gun/suicide(var/mob/living/carbon/human/user as mob)
 	if (!src.user_can_suicide(user))
 		return 0
-	if (!src.canshoot())
-		return 0
 
-	src.process_ammo(user)
 	user.visible_message("<span class='alert'><b>[user] places [src] against [his_or_her(user)] head!</b></span>")
 	var/dmg = user.get_brute_damage() + user.get_burn_damage()
-	src.ShootPointBlank(user, user)
-	var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
-	if (new_dmg >= (dmg + 10)) // it did some appreciable amount of damage
-		user.TakeDamage("head", 500, 0)
-	else
-		user.visible_message("<span class='alert'>[user] hangs their head in shame because they chose such a weak gun.</span>")
+	var/turf/T = get_turf(user)
+	APPLY_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide", 0.1 - user.get_ranged_protection()) // take 10x damage from projectiles for 1 second
+	src.Shoot(T, T, user, point_blank_target = user)
+	SPAWN_DBG(1 SECOND)
+		if(!QDELETED(user)) // i sincerely hope someone makes this check matter
+			REMOVE_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
+			var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
+			if (new_dmg < (dmg + 30)) // BOOOO!
+				user.visible_message("<span class='alert'>[user] hangs [his_or_her(user)] head in shame.</span>")
 	return 1
 
 /obj/item/gun/on_spin_emote(var/mob/living/carbon/human/user as mob)
 	. = ..(user)
 	if ((user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(50)) || (user.reagents && prob(user.reagents.get_reagent_amount("ethanol") / 2)) || prob(5))
 		user.visible_message("<span class='alert'><b>[user] accidentally shoots [him_or_her(user)]self with [src]!</b></span>")
-		src.ShootPointBlank(user, user)
+		var/turf/T = get_turf(user)
+		src.Shoot(T, T, user, point_blank_target = user)
 		JOB_XP(user, "Clown", 3)
 
 

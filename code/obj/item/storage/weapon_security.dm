@@ -53,7 +53,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
-	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/masterwork,\
 	/obj/item/stackable_ammo/pistol/italian/ten,\
 	/obj/item/stackable_ammo/pistol/italian/AP/five,\
 	/obj/item/stackable_ammo/pistol/capacitive/five)
@@ -63,7 +63,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
-	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,\
 	/obj/item/gun_parts/grip/italian/bigger,\
 	/obj/item/stackable_ammo/pistol/capacitive/ten,\
 	/obj/item/stackable_ammo/pistol/NT/five)

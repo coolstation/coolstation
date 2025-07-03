@@ -107,7 +107,7 @@
 			return
 		else
 			hitlist += A
-		if (A == shooter) return // never collide with the original shooter
+		if (A == shooter && !src.was_pointblank) return // only collide with the original shooter if they pointblank themself
 		if (ismob(A)) //don't doublehit
 			if (ticks_until_can_hit_mob > 0 || goes_through_mobs)
 				return
@@ -236,7 +236,7 @@
 	proc/setup()
 		if(QDELETED(src))
 			return
-		if (src.proj_data == null || (xo == 0 && yo == 0) || proj_data.projectile_speed == 0)
+		if (src.proj_data == null)
 			die()
 			return
 
@@ -248,9 +248,11 @@
 
 		var/len = sqrt(src.xo * src.xo + src.yo * src.yo)
 
-		if (len == 0)
-			die()
-			return
+		var/speed = internal_speed || proj_data.projectile_speed
+
+		if (len == 0 || speed == 0)
+			return //will die on next step before moving
+
 		src.xo = src.xo / len
 		src.yo = src.yo / len
 
@@ -274,7 +276,6 @@
 		Turn(angle)
 		if (!proj_data.precalculated)
 			return
-		var/speed = internal_speed || proj_data.projectile_speed
 		var/x32 = 0
 		var/xs = 1
 		var/y32 = 0
@@ -354,6 +355,11 @@
 		src.ticks_until_can_hit_mob--
 		proj_data.tick(src)
 		if (QDELETED(src))
+			return
+
+		if(!was_setup) //if setup failed due to us having no speed or no direction, try to collide with something before dying
+			collide_with_applicable_in_tile(loc)
+			die()
 			return
 
 		var/turf/curr_turf = loc
@@ -495,7 +501,6 @@ datum/projectile
 		zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
 		caliber = null
 		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
-		fiddlyness = 1			 // How hard is this to handle when there's a jam or misfire
 		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
 
 		datum/material/material = null
@@ -508,8 +513,6 @@ datum/projectile
 		hit_object_sound = 0
 		hit_mob_sound = 0
 
-		///if a fullauto-capable weapon should be able to fullauto this ammo type
-		fullauto_valid = 0
 
 	// Determines the amount of length units the projectile travels each tick
 	// A tile is 32 wide, 32 long, and 32 * sqrt(2) across.
@@ -727,7 +730,7 @@ datum/projectile/snowball
 			T.visible_message("<b><span class='alert'>...but the projectile bounces off uselessly!</span></b>")
 			P.die()
 			return
-		if (P.proj_data)
+		if (P.was_pointblank && P.proj_data)
 			P.proj_data.on_pointblank(P, T)
 	P.collide(T) // The other immunity check is in there (Convair880).
 
@@ -877,7 +880,7 @@ datum/projectile/snowball
 	P.power = DATA.power
 
 	P.proj_data = DATA
-	alter_proj?.Invoke(P)
+	alter_proj?.Invoke(P, shooter)
 
 
 	if(P.proj_data == DATA)

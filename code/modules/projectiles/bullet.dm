@@ -22,7 +22,7 @@ ABSTRACT_TYPE(/datum/projectile/bullet)
 //Multiplier for innate cartridge accuracy
 	var/accuracy_mult = 1
 //Amount of fouling to do per shot (50 shots of NT ammo until it starts to get rough and need cleaning, 100 shots before it really has problems. Other shots are much dirtier)
-	var/dirtiness = 1
+	//var/dirtiness = 1
 
 	// caliber list: update as needed
 	// 0.31 - standard pistol/rifle, standard barrel (replaces .22, 9mm, .38, .357, .45, .308, 30-06, 7.62, etc.)
@@ -184,28 +184,50 @@ soon it will go away */
 		shot_number = 3
 
 */
-//generally going to be italian rounds (.38 equivalent)
-/datum/projectile/bullet/pistol_medium
+//buttery smooth italian light rounds, slightly more range and much less damage
+/datum/projectile/bullet/pistol_italian
 	name = "bullet"
-	sname = "execute"
-	power = 40
+	power = 20
 	ks_ratio = 1.0
-	jam_mult = 1
-	implanted = /obj/item/implant/projectile/bullet_pistol_medium
+	jam_mult = 0.8
+	implanted = /obj/item/implant/projectile/bullet_pistol_italian
 	caliber = 0.31
+	dissipation_delay = 6
+	dissipation_rate = 4.5
 	icon_turf_hit = "bhole-small"
 	casing = /obj/item/casing/medium
-	dud_freq = 5
-	fouling = 4
+	dud_freq = 2
 
-/datum/projectile/bullet/pistol_medium/AP //traitor det revolver
-	power = 35
-	jam_mult = 1.1
-	implanted = /obj/item/implant/projectile/bullet_pistol_medium_ap
+// really need to get framework for AP rounds in place
+/datum/projectile/bullet/pistol_italian/AP //traitor det revolver
+	power = 25
+	jam_mult = 0.85
+	implanted = /obj/item/implant/projectile/bullet_pistol_italian_ap
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
-	dud_freq = 3
-	fouling = 5
+
+// slightly silly
+/datum/projectile/bullet/pistol_italian/flare
+	power = 12
+	jam_mult = 1.2
+	implanted = null
+	brightness = 1
+	color_red = 1
+	color_green = 0.2
+	color_blue = 0
+
+	tick(var/obj/projectile/P)
+		var/turf/T = get_turf(P)
+		if (isturf(T) && !(locate(/obj/blob/reflective) in T))
+			T.hotspot_expose(max(power*50,T20C), 5)
+		return ..()
+
+	on_hit(atom/hit, direction, obj/projectile/P)
+		. = ..()
+		if(isliving(hit))
+			var/mob/living/L = hit
+			L.changeStatus("burning", floor(4 + src.power DECI SECONDS))
+
 
 /* see you space cowboy
 /datum/projectile/bullet/revolver_45
@@ -252,7 +274,7 @@ soon it will go away */
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
 	hit_ground_chance = 100
-	implanted = /obj/item/implant/projectile/bullet_pistol_medium_ap
+	implanted = /obj/item/implant/projectile/bullet_pistol_italian_ap
 	ks_ratio = 0.66
 	caliber = 0.41
 	icon_turf_hit = "bhole"
@@ -852,8 +874,6 @@ soon it will go away */
 			M.changeStatus("staggered", clamp(P.power/8, 5, 1) SECONDS)
 
 	auto
-		fullauto_valid = 1
-		sname = "full auto"
 		shot_volume = 66
 		cost = 1
 		shot_number = 1

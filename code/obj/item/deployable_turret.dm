@@ -584,7 +584,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 125
 	max_health = 125
 	range = 7
-	projectile_type = /datum/projectile/bullet/pistol_medium
+	projectile_type = /datum/projectile/bullet/pistol_italian
 	burst_size = 2
 	fire_rate = 1
 	angle_arc_size = 90

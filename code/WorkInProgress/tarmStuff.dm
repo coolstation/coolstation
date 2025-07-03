@@ -29,10 +29,6 @@
 		. = ..(target, start, user, POX+rand(-spread_angle, spread_angle)*16, POY+rand(-spread_angle, spread_angle)*16)
 		last_shot_time = TIME
 
-	shoot_point_blank(mob/M, mob/user, second_shot)
-		shotcount = 0
-		. = ..()
-
 	alter_projectile(obj/projectile/P)
 		. = ..()
 		if(++shotcount < 3)

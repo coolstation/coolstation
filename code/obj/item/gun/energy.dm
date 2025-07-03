@@ -1167,7 +1167,7 @@
 	New(var/mob/M)
 		set_current_projectile(new/datum/projectile/energy_bolt/aoe)
 		projectiles = list("detain" = current_projectile, "execute" = new/datum/projectile/bullet/pistol_weak, "smokeshot" = new/datum/projectile/bullet/smoke, "knockout" = new/datum/projectile/bullet/tranq_dart, "hotshot" = new/datum/projectile/bullet/flare, "bigshot" = new/datum/projectile/bullet/shot_weak, "clownshot" = new/datum/projectile/bullet/clownshot, "pulse" = new/datum/projectile/energy_bolt/pulse)
-		// projectiles = list(current_projectile,new/datum/projectile/bullet/pistol_medium,new/datum/projectile/bullet/smoke,new/datum/projectile/bullet/tranq_dart/law_giver,new/datum/projectile/bullet/flare,new/datum/projectile/bullet/slug_boom,new/datum/projectile/bullet/clownshot)
+		// projectiles = list(current_projectile,new/datum/projectile/bullet/pistol_italian,new/datum/projectile/bullet/smoke,new/datum/projectile/bullet/tranq_dart/law_giver,new/datum/projectile/bullet/flare,new/datum/projectile/bullet/slug_boom,new/datum/projectile/bullet/clownshot)
 
 		src.indicator_display = image('icons/obj/items/gun.dmi', "")
 		asign_name(M)
@@ -1544,10 +1544,6 @@
 			P.proj_data = new/datum/projectile/laser/signifer_lethal/brute
 
 	shoot()
-		shotcount = 0
-		. = ..()
-
-	shoot_point_blank(mob/M, mob/user, second_shot)
 		shotcount = 0
 		. = ..()
 

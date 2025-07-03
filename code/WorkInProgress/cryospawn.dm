@@ -148,7 +148,6 @@
 				L.hibernating = 1
 				if (L.client)
 					L.addOverlayComposition(/datum/overlayComposition/blinded)
-					L.updateOverlaysClient(L.client)
 				for (var/obj/machinery/computer/announcement/A as anything in machine_registry[MACHINES_ANNOUNCEMENTS])
 					if (!A.status && A.announces_arrivals)
 						A.announce_departure(L)
@@ -163,7 +162,6 @@
 		L.hibernating = 1
 		if (L.client)
 			L.addOverlayComposition(/datum/overlayComposition/blinded)
-			L.updateOverlaysClient(L.client)
 		for (var/obj/machinery/computer/announcement/A as anything in machine_registry[MACHINES_ANNOUNCEMENTS])
 			if (!A.status && A.announces_arrivals)
 				A.announce_departure(L)

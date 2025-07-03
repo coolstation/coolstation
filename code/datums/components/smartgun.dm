@@ -245,7 +245,7 @@ TYPEINFO(/datum/component/holdertargeting/smartgun)
 			G.suppress_fire_msg = initial(G.suppress_fire_msg)
 		else
 			if(!ON_COOLDOWN(G, "shoot_delay", G.shoot_delay))
-				G.Shoot(src.mouse_target ? src.mouse_target : get_step(user, NORTH), get_turf(user), user, src.target_pox, src.target_poy, called_target = mouse_target)
+				G.Shoot(src.mouse_target ? src.mouse_target : get_step(user, NORTH), get_turf(user), user, src.target_pox, src.target_poy)
 		shooting = 0
 
 	tracked_targets = list()

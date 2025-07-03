@@ -635,7 +635,7 @@
 			if (1)
 				new /obj/item/storage/pill_bottle/cyberpunk(src)
 				new /obj/item/storage/pill_bottle/ipecac(src)
-				new /obj/item/gun/modular/italian/basic(src)
+				new /obj/item/gun/modular/italian/revolver/basic(src)
 				new /obj/item/stackable_ammo/pistol/NT/five(src)
 				new /obj/item/paper/orangeroomsafe(src)
 			if (2)
@@ -709,7 +709,7 @@
 /obj/item/storage/secure/ssafe/icemoon
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/gun/modular/italian/italiano,
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,
 	/obj/item/chilly_orb, // a thing to confuse people
 	/obj/item/spacecash/thousand = 3)
 

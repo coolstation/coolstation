@@ -102,7 +102,7 @@ datum/mind
 
 		if (current)
 			if(current.client)
-				current.removeOverlaysClient(current.client)
+				removeOverlaysClient(current.client)
 				tgui_process.on_transfer(current, new_character)
 				new_character.lastKnownIP = current.client.address
 				if(isghostdrone(src.current)) //clear the static overlays on death, qdel, being cloned, etc.
@@ -115,7 +115,7 @@ datum/mind
 		new_character.key = key
 
 		if(current.client)
-			current.addOverlaysClient(current.client)
+			addOverlaysClient(current.client, current)
 
 		Z_LOG_DEBUG("Mind/TransferTo", "Mind swapped, moving verbs")
 

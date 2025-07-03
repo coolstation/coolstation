@@ -736,10 +736,12 @@ var/datum/action_controller/actions
 		owner << border.img
 
 	onDelete()
-		bar.icon = 'icons/ui/actions.dmi'
-		border.icon = 'icons/ui/actions.dmi'
-		del(bar.img)
-		del(border.img)
+		if(bar)
+			bar.icon = 'icons/ui/actions.dmi'
+			del(bar.img)
+		if(border)
+			border.icon = 'icons/ui/actions.dmi'
+			del(border.img)
 		..()
 
 /datum/action/bar/private/icon //Only visible to the owner and has a little icon on the bar.

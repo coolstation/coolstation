@@ -14,7 +14,7 @@
 	var/armor_value_bullet = 1
 
 	if (!(client && client.hellbanned))
-		armor_value_bullet = get_ranged_protection()
+		armor_value_bullet = max(get_ranged_protection(), 0.01)
 	var/target_organ = pick("left_lung", "right_lung", "left_kidney", "right_kidney", "liver", "stomach", "intestines", "spleen", "pancreas", "appendix", "tail")
 	if (P.proj_data) //Wire: Fix for: Cannot read null.damage_type
 		switch(P.proj_data.damage_type)
@@ -53,12 +53,8 @@
 									src.organHolder.damage_organ(0, (damage/armor_value_bullet)*2, 0, target_organ)
 							//implanted.implanted(src, null, min(20, max(0, floor(damage / 10) ) ))
 			if (D_PIERCING)
-				if (armor_value_bullet > 1)
-					if (src.organHolder && prob(50))
-						src.organHolder.damage_organ(damage/max(armor_value_bullet/3), 0, 0, target_organ)
-				else
-					if (src.organHolder && prob(50))
-						src.organHolder.damage_organ(damage/1, 0, 0, target_organ)
+				if (src.organHolder && prob(50))
+					src.organHolder.damage_organ(damage/max( armor_value_bullet / 3, min(1, armor_value_bullet)), 0, 0, target_organ)
 
 				if (P.implanted)
 					if (istext(P.implanted))

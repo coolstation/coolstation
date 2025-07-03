@@ -305,7 +305,6 @@ A Flamethrower in various states of assembly
 		src.fueltank = B
 		B.linkedflamer = src
 		..()
-		src.current_projectile.fullauto_valid = 1
 		src.set_current_projectile(src.current_projectile)
 
 	disposing()
@@ -684,20 +683,24 @@ A Flamethrower in various states of assembly
 	if (href_list["mode"])
 		mode = text2num(href_list["mode"])
 		playsound(src, "sound/effects/valve_creak.ogg", 15, 1)
-		src.current_projectile.fullauto_valid = 1
 		src.current_projectile.shot_number = 1
 		switch(src.mode)
 			if(FLAMER_MODE_AUTO) // mid-range automatic
+				var/datum/component/holdertargeting/fullauto/fullauto = GetComponent(/datum/component/holdertargeting/fullauto)
+				fullauto.set_fullauto_active(TRUE)
 				src.spread_angle = 15
 				src.shoot_delay = 2 DECI SECONDS
 				src.chem_divisor = 5 //5 shots per second
 			if(FLAMER_MODE_BURST) // close range burst
+				var/datum/component/holdertargeting/fullauto/fullauto = GetComponent(/datum/component/holdertargeting/fullauto)
+				fullauto.set_fullauto_active(FALSE)
 				src.spread_angle = 30
 				src.current_projectile.shot_number = 4
 				src.chem_divisor = 4 //4 shots per burst
 				src.shoot_delay = 1 SECOND
 			if(FLAMER_MODE_SINGLE) // single line (default)
-				src.current_projectile.fullauto_valid = 0
+				var/datum/component/holdertargeting/fullauto/fullauto = GetComponent(/datum/component/holdertargeting/fullauto)
+				fullauto.set_fullauto_active(FALSE)
 				src.spread_angle = 0
 				src.shoot_delay = 1 SECOND
 				src.chem_divisor = 1 //1 line per second
@@ -706,7 +709,7 @@ A Flamethrower in various states of assembly
 				src.shoot_delay = 2 DECI SECONDS
 				src.chem_divisor = 1 //hehehe
 
-		AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay)
+		AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay, TRUE)
 		set_current_projectile(src.current_projectile)
 
 	if (href_list["temp"])

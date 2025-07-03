@@ -239,13 +239,7 @@
 
 		if (src.client) //ov1
 			// overlays
-			src.updateOverlaysClient(src.client)
 			src.antagonist_overlay_refresh(0, 0)
-
-		if (src.observers.len)
-			for (var/mob/x in src.observers)
-				if (x.client)
-					src.updateOverlaysClient(x.client)
 
 		for (var/obj/item/grab/G in src.equipped_list(check_for_magtractor = 0))
 			G.process(life_mult)
@@ -551,13 +545,6 @@
 		L = lifeprocesses[/datum/lifeprocess/blindness]
 		if (L)
 			L.process()
-
-		if (src.client)
-			updateOverlaysClient(src.client)
-		if (src.observers.len)
-			for (var/mob/x in src.observers)
-				if (x.client)
-					src.updateOverlaysClient(x.client)
 
 
 	handle_stamina_updates()

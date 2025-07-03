@@ -181,12 +181,10 @@ var/HasturPresent = 0
 	cast()
 		for(var/mob/living/M in orange(300))
 			M.addOverlayComposition(/datum/overlayComposition/insanity)
-			M.updateOverlaysClient(M.client)
 			boutput(M, pick("<font color=purple><b>The reality around you fades out..</b></font>","<font color=purple><b>Suddenly your mind feels extremely frail and vulnerable..</b></font>","<font color=purple><b>Your sanity starts to fail you...</b></font>"))
 			playsound(M, "sound/ambience/spooky/Void_Song.ogg", 50, 1)
 			SPAWN_DBG(62 SECONDS)
 				M.removeOverlayComposition(/datum/overlayComposition/insanity)
-				M.updateOverlaysClient(M.client)
 
 
 //INSANITY AURA ABILITY// - Pretty much just a changeling re-do

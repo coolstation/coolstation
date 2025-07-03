@@ -12,14 +12,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	real_name = "\improper FOSS laser"
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19"
 	max_ammo_capacity = 1 // just takes a flash bulb.
-	action = "nerd"
 	gun_DRM = GUN_FOSS
 	spread_angle = 7
 	//color = "#aaaaFF"
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "foss_receiver"
 	contraband = 7
-	fiddlyness = 50
+	load_time = 1.25 SECONDS
 	//set these manually because nothing really uh
 	//nothing else is like the foss guns
 	barrel_overlay_x = 6

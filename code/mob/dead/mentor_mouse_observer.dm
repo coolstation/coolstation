@@ -128,7 +128,7 @@
 
 	disposing()
 		if(src.client)
-			src.removeOverlaysClient(src.client)
+			removeOverlaysClient(src.client)
 		if(src.my_mouse)
 			src.my_mouse.set_loc(get_turf(src))
 			src.mind?.transfer_to(src.my_mouse)
@@ -143,7 +143,7 @@
 			src.my_mouse = new
 		src.target?.visible_message("\The [src.my_mouse] jumps out of [src.target]'s pocket.")
 		if(src.client)
-			src.removeOverlaysClient(src.client)
+			removeOverlaysClient(src.client)
 		src.my_mouse.set_loc(get_turf(src))
 		if(src.mind)
 			src.mind.transfer_to(src.my_mouse)
