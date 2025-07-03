@@ -45,6 +45,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		else
 			return ..()
 
+	on_spin_emote(mob/living/carbon/human/user)
+		if(length(src.casing_list))
+			src.eject_casings()
+		. = ..()
+
 	chamber_round(mob/user)
 		. = FALSE
 
@@ -199,11 +204,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 			boutput(user,"<span><b>You lower the hammer.</b></span>")
 			src.hammer_cocked = FALSE
 		return ..()
-
-	on_spin_emote(mob/living/carbon/human/user)
-		if(length(src.casing_list))
-			src.eject_casings()
-		. = ..()
 
 //THE RATTLER
 //Massive drum-like cylinder that increases in damage and decreases in accuracy as it is fired,
