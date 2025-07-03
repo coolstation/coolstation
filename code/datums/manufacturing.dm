@@ -224,6 +224,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
+/*
 /datum/manufacture/stunrounds
 	name = ".38 Stunner Rounds"
 	item_paths = list("MET-1","CON-1", "CRY-1")
@@ -250,6 +251,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 30 SECONDS
 	create = 1
 	category = "Resource"
+*/
 
 /datum/manufacture/bullet_smoke
 	name = "40mm Smoke Grenade"
@@ -3063,6 +3065,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Weapon"
 
+/*
 /datum/manufacture/saa	//
 	name = "Colt SAA"
 	item_paths = list("MET-2")
@@ -3112,6 +3115,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "ammo"
+*/
 
 /datum/manufacture/riot_launcher	//
 	name = "Riot Launcher"
@@ -3146,6 +3150,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "ammo"
 
+/*
 /datum/manufacture/sniper	//
 	name = "Sniper"
 	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
@@ -3194,6 +3199,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "Ammo"
+*/
 /datum/manufacture/plank	//
 	name = "Plank/Barricade"
 	item_paths = list("MET-1")

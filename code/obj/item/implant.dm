@@ -802,11 +802,11 @@ THROWING DARTS
 	desc = "A spent bullet."
 	var/bleed_timer = 0
 
-	bullet_pistol_heavy
+	bullet_pistol_juicer
 		name = "Juicer Jr. round"
 		desc = "A half-standard-caliber pistol round, fired in pairs. Manufactured solely for clout."
 
-	bullet_pistol_heavy_ap
+	bullet_pistol_juicer_ap
 		name = "Juicer Jr. AP pistol round"
 		desc = "Probably the most illegal a pistol bullet can possibly be, despite the size."
 
@@ -818,35 +818,40 @@ THROWING DARTS
 		name = ".31 AP pistol round"
 		desc = "Italian armor-piercing round. Very rare, VERY contraband. This is a spicy meatball."
 
-	bullet_pistol_weak
+	bullet_pistol_nt
 		name = "8mm Short round"
 		desc = "Standard plastic bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
 		loose = TRUE
 
-	bullet_rifle_weak
-		name = "8mm Long round"
-		desc = "Honestly the exact same thing as the pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
+	bullet_pistol_nt_hp
+		name = "8mm Short HP round"
+		desc = "Special issue hollow point pistol round, rather rare."
 		loose = TRUE
 
-	bullet_rifle_weak_ap
+	bullet_rifle_nt
+		name = "8mm Long round"
+		desc = "Honestly the exact same thing as an NT pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
+		loose = TRUE
+
+	bullet_rifle_nt_ap
 		name = "8mm Long AP round"
 		desc = "Special issue Nanotrasen armor-piercing rifle round. Unusual to see."
 
-	bullet_rifle_medium
+	bullet_rifle_soviet
 		name = "2.8 line rifle round"
 		desc = "Soviet surplus rifle round. You don't see these very often since they switched to zaubertubes exclusively 3X years ago."
 
-	bullet_rifle_medium_ap
+	bullet_rifle_soviet_ap
 		name = "2.8 line AP rifle round"
 		desc = "Soviet surplus rifle round with an armor piercing center. This one's pretty hardcore... Get it? Hey, do you get it?"
 
-	bullet_rifle_heavy
+	bullet_rifle_juicer
 		name = "Juicer BIG rifle round"
-		desc = "This is just two Juicer pistol rounds glued together. Whatever."
+		desc = "This piece of shit reeks of overpacked powder and party drugs. If it wasn't so dangerous, it would be stupid."
 
-	bullet_rifle_heavy
+	bullet_rifle_juicer_ap
 		name = "Juicer BIG AP rifle round"
-		desc = "This is just two Juicer pistol rounds welded around a nail. Whatever."
+		desc = "This is just a juicer rifle round with a nail welded into it. Whatever."
 
 	shot_buck
 		name = "buckshot"

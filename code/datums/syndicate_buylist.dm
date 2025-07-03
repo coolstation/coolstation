@@ -48,23 +48,25 @@ proc/build_syndi_buylist_cache()
 	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/*
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: Italian Pistol Rounds"
 	item = /obj/item/stackable_ammo/pistol/italian/ten
 	cost = 1
 	desc = "Ten rounds of chump-poppers, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: Italian Pistol Rounds (AP)"
-	item = /obj/item/stackable_ammo/pistol/italian/AP/five
+	item = /obj/item/stackable_ammo/pistol/italian/AP/ten
 	cost = 1
-	desc = "Five rounds of vest-shredders, in case you run out."
+	desc = "Ten rounds of vest-shredders, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/buckshot
 	name = "Ammo: Juicer Shotgun Buckshot"
-	item = /obj/item/stackable_ammo/scatter/juicer/ten
+	item = /obj/item/stackable_ammo/shotgun/juicer/ten
 	cost = 2
 	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
@@ -72,7 +74,7 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/weapon/radbow
 	name = "Ammo: Rad Poison Crossbow Bolts"
 	item = /obj/item/stackable_ammo/pistol/radbow/ten
-	cost = 3
+	cost = 2
 	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisoning. Can be fired from any modular gun. Popular with the NT pistol."
 	blockedmode = list(/datum/game_mode/revolution)
 
@@ -863,14 +865,6 @@ This is basically useless for anyone but miners.
 	job = list("Chemist","Scientist","Research Director")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/ammo_38AP // 2 TC for 1 speedloader was very poor value compared to other guns and traitor items in general (Convair880).
-	name = ".38 AP ammo box"
-	item = /obj/item/storage/box/ammo38AP
-	cost = 0 //2
-	desc = "Armor-piercing ammo for a .38 Special revolver (not included)."
-	job = list("Detective")
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution, /datum/game_mode/spy_theft)
-
 /datum/syndicate_buylist/traitor/traitorthermalscanner
 	name = "Advanced Optical Thermal Scanner"
 	item = /obj/item/clothing/glasses/thermal/traitor
@@ -980,12 +974,14 @@ This is basically useless for anyone but miners.
 	desc = "A signal flaregun for emergency use. Or for setting jerks on fire"
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy)
 
+/*
 /datum/syndicate_buylist/surplus/rifle
 	name = "Old Hunting Rifle"
 	item = /obj/item/gun/kinetic/hunting_rifle
 	cost = 7
 	desc = "An old hunting rifle, comes with only four bullets. Use them wisely."
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy, /datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/surplus/bananagrenades
 	name = "Banana Grenades"

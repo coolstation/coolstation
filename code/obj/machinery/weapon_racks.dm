@@ -100,6 +100,7 @@
 			stand_type = "egun_charge_rack"
 			recharges_contents = 1
 
+/*
 	shotgun_rack
 		name = "shotgun rack"
 		desc = "A rack for holding 3 shotguns."
@@ -124,6 +125,7 @@
 
 		recharger
 			recharges_contents = 1
+*/
 
 	New()
 		..()

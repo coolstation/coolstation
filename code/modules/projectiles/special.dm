@@ -138,6 +138,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "spread shot"
 	sname = "spread shot"
 	shot_sound = 'sound/weapons/grenade.ogg'
+	implanted = null
 	var/pellets_to_fire = 15
 	var/spread_projectile_type = /datum/projectile/bullet/flak_chunk
 	var/split_type = 0
@@ -150,7 +151,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		if(split_type == 0)
 			split(P)
 
-	on_hit(var/atom/A,var/obj/projectile/P)
+	on_end(var/obj/projectile/P)
 		if(split_type == 1)
 			split(P)
 
@@ -207,7 +208,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicer jr tandem shot"
 	cost = 1
 	pellets_to_fire = 2
-	spread_projectile_type = /datum/projectile/bullet/pistol_heavy //60 (30x2)
+	spread_projectile_type = /datum/projectile/bullet/pistol/juicer //40 (20x2)
 	spread_angle = 10
 
 /datum/projectile/special/spreader/buckshot_burst
@@ -215,7 +216,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "buckshot"
 	cost = 1
 	pellets_to_fire = 12 //4 per
-	spread_projectile_type = /datum/projectile/bullet/shot_weak
+	spread_projectile_type = /datum/projectile/bullet/shot
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	var/speed_max = 30
 	var/speed_min = 15
@@ -231,25 +232,22 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.launch()
 
 //NT shot is plastic
-/datum/projectile/special/spreader/buckshot_burst/nt
+/datum/projectile/special/spreader/buckshot_burst/NT
 	name = "buckshot"
 	sname = "buckshot"
-	cost = 1
 	pellets_to_fire = 10
-	spread_projectile_type = /datum/projectile/bullet/shot_weak
+	spread_projectile_type = /datum/projectile/bullet/shot/NT
 	casing = /obj/item/casing/shotgun/blue
 	speed_max = 30
 	speed_min = 15
 	spread_angle_variance = 10
 	dissipation_variance = 20
 
-/datum/projectile/special/spreader/buckshot_burst/nt/short
+/datum/projectile/special/spreader/buckshot_burst/NT/short
 	name = "ratshot"
 	sname = "ratshot"
-	cost = 1
-	pellets_to_fire = 5
-	spread_projectile_type = /datum/projectile/bullet/shot_weak/mini
-	casing = /obj/item/casing/shotgun/blue
+	pellets_to_fire = 8
+	spread_projectile_type = /datum/projectile/bullet/shot/NT/mini
 	speed_max = 30
 	speed_min = 15
 	spread_angle_variance = 5
@@ -259,10 +257,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader/buckshot_burst/juicer
 	name = "juicershot"
 	sname = "juicershot"
-	cost = 1
 	pellets_to_fire = 8 //10 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer
 	casing = /obj/item/casing/shotgun/red
 	speed_max = 30
 	speed_min = 15
@@ -274,8 +270,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicershot"
 	cost = 1
 	pellets_to_fire = 8 //12 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy/denim
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer/denim
 	speed_max = 30
 	speed_min = 15
 	spread_angle_variance = 20
@@ -286,8 +281,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicer scrap"
 	cost = 1
 	pellets_to_fire = 6 // 6 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy/scrap
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer/scrap
+	casing = /obj/item/casing/shotgun/gray
 	speed_max = 36
 	speed_min = 12
 	spread_angle_variance = 15
@@ -296,12 +291,10 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
 	sname = "rock salt"
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	power = 20
-	implanted = null
 	caliber = 0.62
 	casing = /obj/item/casing/shotgun/gray
-	spread_projectile_type = /datum/projectile/bullet/shot_salt
+	spread_projectile_type = /datum/projectile/bullet/shot/salt
 	speed_max = 36
 	speed_min = 28
 	dissipation_variance = 64
@@ -311,13 +304,13 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader/buckshot_burst/nails
 	name = "nails"
 	sname = "nails"
-	cost = 1
+	power = 32
 	pellets_to_fire = 8
-	spread_projectile_type = /datum/projectile/bullet/nails
+	speed_max = 45
+	speed_min = 36
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer/nail
 	casing = /obj/item/casing/shotgun/gray
 	spread_angle_variance = 10
-	damage_type = D_SPECIAL
-	power = 32
 
 //Used by: battle bus, stinger grenades (shrapnel)
 /datum/projectile/special/spreader/uniform_burst/circle

@@ -340,6 +340,7 @@
 
 		return ..()
 
+/*
 /obj/item/ammo/bullets/bullet_22
 	sname = "8mm Short"
 	name = "8mm Short magazine"
@@ -650,6 +651,8 @@
 		amount_left = 1
 		max_amount = 1
 
+*/
+
 /obj/item/ammo/bullets/autocannon
 	sname = "40mm HE"
 	name = "40mm HE shells"
@@ -832,6 +835,7 @@
 	delete_on_reload = 1
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
+/*
 /obj/item/ammo/bullets/rod
 	sname = "metal rod"
 	name = "metal rod"
@@ -886,7 +890,7 @@
 		ammo_type = new/datum/projectile/bullet/lmg/weak
 		amount_left = 25.0
 		max_amount = 25.0
-
+*/
 
 //////////////////////////////////// Power cells for eguns //////////////////////////
 

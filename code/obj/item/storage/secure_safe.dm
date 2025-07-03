@@ -506,7 +506,7 @@
 					S.setup(src)
 			if (7)
 				new /obj/item/gun/modular/NT/shotty(src)
-				new /obj/item/stackable_ammo/scatter/slug_rubber/five(src)
+				new /obj/item/stackable_ammo/shotgun/slug_rubber/five(src)
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
 					S.setup(src)
@@ -684,7 +684,7 @@
 				S.setup(src)
 			if (3)
 				new /obj/item/gun/modular/NT/shotty(src)
-				new /obj/item/stackable_ammo/scatter/slug_rubber/ten(src)
+				new /obj/item/stackable_ammo/shotgun/slug_rubber/ten(src)
 			if (4)
 				new /obj/item/paper/freeze(src)
 

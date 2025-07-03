@@ -340,8 +340,8 @@ var/global/list/questionable_generic_gift_paths = list(/obj/item/relic,
 	/obj/item/gun/energy/glitch_gun,
 	/obj/item/instrument/trumpet/dootdoot,
 	/obj/item/instrument/fiddle/satanic,
-	/obj/item/gun/kinetic/beepsky,
-	/obj/item/gun/kinetic/gungun,
+//	/obj/item/gun/kinetic/beepsky,
+//	/obj/item/gun/kinetic/gungun,
 #endif
 	/obj/item/spacecash/random/small)
 

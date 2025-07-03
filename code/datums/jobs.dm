@@ -941,7 +941,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 		slot_head = list(/obj/item/clothing/head/helmet/welding)
 		slot_belt = list(/obj/item/tank/emergency_oxygen)
 		slot_mask = list(/obj/item/clothing/mask/breath)
-		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/device/light/glowstick,/obj/item/gun/kinetic/flaregun,/obj/item/ammo/bullets/flare,/obj/item/cell/cerenkite)
+		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/device/light/glowstick,/obj/item/gun/modular/NT/flare_gun,/obj/item/stackable_ammo/shotgun/slug_flare/ten,/obj/item/cell/cerenkite)
 
 		special_setup(var/mob/living/carbon/human/M)
 			..()
@@ -1148,7 +1148,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/bartending)
 	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker) // bartenders buddy ammo is broken i think
-	items_in_backpack = list(/obj/item/gun/modular/NT/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three, /obj/item/stackable_ammo/scatter/NT/mini/three)
+	items_in_backpack = list(/obj/item/gun/modular/NT/bartender, /obj/item/stackable_ammo/shotgun/slug_rubber/three, /obj/item/stackable_ammo/pistol/ratshot/three)
 
 	New()
 		..()
@@ -1557,7 +1557,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	limit = 0
 	wages = PAY_UNTRAINED
 	slot_jump = list(/obj/item/clothing/under/rank/det)
-	slot_belt = list(/obj/item/gun/kinetic/detectiverevolver)
+	slot_belt = list(/obj/item/gun/modular/italian/revolver/basic)
 	slot_head = list(/obj/item/clothing/head/cowboy)
 	slot_mask = list(/obj/item/clothing/mask/cigarette/random)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
@@ -2494,7 +2494,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	cant_spawn_as_rev = 1
 	recieves_implant = /obj/item/implant/microbomb
 	slot_back = list(/obj/item/storage/backpack/satchel)
-	slot_belt = list(/obj/item/gun/kinetic/pistol)
+	slot_belt = list(/obj/item/gun/modular/italian/revolver/improved)
 	slot_jump = list(/obj/item/clothing/under/misc/syndicate)
 	slot_suit = list(/obj/item/clothing/suit/space/syndicate/specialist)
 	slot_head = list(/obj/item/clothing/head/helmet/space/syndicate/specialist)
@@ -2502,11 +2502,11 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_ears = list( /obj/item/device/radio/headset/syndicate) //needs their own secret channel
 	slot_mask = list(/obj/item/clothing/mask/breath)
 	slot_card = /obj/item/card/id/
-	slot_poc1 = list(/obj/item/storage/pouch/assault_rifle)
-	slot_poc2 = list(/obj/item/storage/pouch/bullet_9mm)
+	//slot_poc1 = list(/obj/item/storage/pouch/assault_rifle)
+	//slot_poc2 = list(/obj/item/storage/pouch/bullet_9mm)
 	slot_lhan = list(/obj/item/remote/syndicate_teleporter)
 	slot_rhan = list(/obj/item/tank/jetpack)
-	items_in_backpack = list(/obj/item/gun/kinetic/assault_rifle,
+	items_in_backpack = list(///obj/item/gun/kinetic/assault_rifle,
 							/obj/item/device/pda2,
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/breaching_charge)
@@ -2555,7 +2555,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 							/obj/item/device/pda2/heads,
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/storage/firstaid/regular,
-							/obj/item/stackable_ammo/pistol/HP/ten,
+							/obj/item/stackable_ammo/pistol/NT/HP/ten,
 							/obj/item/gun/modular/italian/revolver/basic)
 
 	New()

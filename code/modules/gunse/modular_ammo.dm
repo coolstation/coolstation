@@ -159,7 +159,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	name = "abstract pistol round"
 	real_name = "abstract pistol round"
 	desc = "abstract bullet do not instantiate" //Do you think abstract bullets would be good for killing mimes?
-	projectile_type = /datum/projectile/bullet/pistol_weak
+	projectile_type = /datum/projectile/bullet/pistol
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	caliber = 0
@@ -173,7 +173,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	name = "\improper NT pistol round"
 	real_name = "\improper NT pistol round"
 	desc = "NT's standard 8mm Short firearms cartridge. The same caliber everyone else copies."
-	projectile_type = /datum/projectile/bullet/pistol_weak
+	projectile_type = /datum/projectile/bullet/pistol/NT
 	stack_type = /obj/item/stackable_ammo/pistol/NT
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
@@ -183,12 +183,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	icon_shell = "brass_case"
 THE_USUAL_FLAVOURS(pistol/NT, "\improper NT pistol round")
 
-/obj/item/stackable_ammo/pistol/HP
+/obj/item/stackable_ammo/pistol/NT/HP
 	name = "\improper NT HP pistol round"
 	real_name = "\improper NT HP pistol round"
 	desc = "NT's 8mm Short firearms cartridge, with a hollow point for hunting and pest control. Not permitted for use on crew members."
-	projectile_type = /datum/projectile/bullet/pistol_weak
-	stack_type = /obj/item/stackable_ammo/pistol/HP
+	projectile_type = /datum/projectile/bullet/pistol/NT/HP
+	stack_type = /obj/item/stackable_ammo/pistol/NT/HP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -196,13 +196,13 @@ THE_USUAL_FLAVOURS(pistol/NT, "\improper NT pistol round")
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	load_time = 0.05 SECONDS
-THE_USUAL_FLAVOURS(pistol/HP, "\improper NT HP pistol round")
+THE_USUAL_FLAVOURS(pistol/NT/HP, "\improper NT HP pistol round")
 
 /obj/item/stackable_ammo/pistol/ratshot
 	name = "\improper NT ratshot pistol round"
 	real_name = "\improper NT ratshot pistol round"
 	desc = "NT's 8mm Short firearms cartridge, filled with a tiny amount of shot for pest control. Not permitted for use on crew members."
-	projectile_type = /datum/projectile/special/spreader/buckshot_burst/nt/short
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/NT/short
 	stack_type = /obj/item/stackable_ammo/pistol/ratshot
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
@@ -218,7 +218,7 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	name = "\improper Italian pistol round"
 	real_name = "\improper Italian pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
-	projectile_type = /datum/projectile/bullet/pistol_italian
+	projectile_type = /datum/projectile/bullet/pistol/italian
 	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
@@ -233,7 +233,7 @@ THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 	name = "\improper Italian AP pistol round"
 	real_name = "\improper Italian AP pistol round"
 	desc = "Italia's standard .31 pistol firearms cartridge, with an AP core. The same caliber everyone else copies. Still in paper..."
-	projectile_type = /datum/projectile/bullet/pistol_italian/AP
+	projectile_type = /datum/projectile/bullet/pistol/italian/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
@@ -248,7 +248,7 @@ THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 	name = "\improper Italian flare pistol round"
 	real_name = "\improper Italian flare pistol round"
 	desc = "Still in Italia's .31 caliber, these rounds are specially packed with magnesium. This necessitates an even lighter powder load."
-	projectile_type = /datum/projectile/bullet/pistol_italian/flare
+	projectile_type = /datum/projectile/bullet/pistol/italian/flare
 	stack_type = /obj/item/stackable_ammo/pistol/italian/flare
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "italian"
@@ -273,56 +273,6 @@ THE_USUAL_FLAVOURS(pistol/italian/flare, "\improper Italian flare pistol round")
 	icon_shell = "juicer_jr_case"
 	load_time = 0.5 SECONDS
 THE_USUAL_FLAVOURS(pistol/juicer, "\improper Juicer Jr. round")
-
-/obj/item/stackable_ammo/pistol/tranq
-	name = "\improper NT Tranq-Will-8-or"
-	real_name = "\improper NT Tranq-Will-8-or"
-	desc = "Tranquilizer darts inside bullet cases? What the fuck are these even?"
-	projectile_type = /datum/projectile/bullet/tranq_dart
-	stack_type = /obj/item/stackable_ammo/pistol/tranq
-	ammo_DRM = GUN_NANO
-	icon_state = "nt_white"
-	icon_full  = "nt_white"
-	icon_empty = "nt_empty"
-	icon_one   = "it_what"
-	icon_shell = "white_case"
-	load_time = 0.2 SECONDS
-THE_USUAL_FLAVOURS(pistol/tranq, "\improper NT Tranq-Will-8-or")
-
-/obj/item/stackable_ammo/pistol/anti_mutant
-	name = "\improper NT Jean-Nerre-De Boulier dart"
-	real_name = "\improper NT Jean-Nerre-De Boulier dart"
-	desc = "Darts with anti-mutagenic solution, named after the slightly too prominent geneticists who necessitated their invention."
-	projectile_type = /datum/projectile/bullet/tranq_dart/anti_mutant
-	stack_type = /obj/item/stackable_ammo/pistol/anti_mutant
-	ammo_DRM = GUN_NANO
-	icon_state = "nt_white"
-	icon_full  = "nt_white"
-	icon_empty = "nt_empty"
-	icon_one   = "it_what"
-	icon_shell = "white_case"
-	load_time = 0.15 SECONDS
-THE_USUAL_FLAVOURS(pistol/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart")
-
-
-/*	These also existed as tranq rifle rounds but I don't have a good name for em
-	syndicate
-		name = "\improper  Tranq-Will-8-or"
-		real_name = "\improper NT Tranq-Will-8-or"
-		amount_left = 5
-		max_amount = 5
-		ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate
-		ammo_DRM = GUN_SOVIET //since FOSSies don't use bullets, this was the next best thing I could think of
-
-		pistol
-			sname = ".31.0a Tranqilizer"
-			name = ".31.0a tranquilizer pistol darts"
-			amount_left = 15
-			max_amount = 15
-			caliber = 0.31
-			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
-*/
-
 
 /obj/item/stackable_ammo/pistol/capacitive/
 	name = "\improper NT In-Capacit-8-or"
@@ -367,11 +317,60 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 /obj/item/stackable_ammo/rifle
 	caliber = CALIBER_LONG
 
+/obj/item/stackable_ammo/rifle/tranq
+	name = "\improper NT Tranq-Will-8-or"
+	real_name = "\improper NT Tranq-Will-8-or"
+	desc = "Tranquilizer darts inside bullet cases? What the fuck are these even?"
+	projectile_type = /datum/projectile/bullet/tranq_dart
+	stack_type = /obj/item/stackable_ammo/rifle/tranq
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_white"
+	icon_full  = "nt_white"
+	icon_empty = "nt_empty"
+	icon_one   = "it_what"
+	icon_shell = "white_case"
+	load_time = 0.2 SECONDS
+THE_USUAL_FLAVOURS(rifle/tranq, "\improper NT Tranq-Will-8-or")
+
+/obj/item/stackable_ammo/rifle/anti_mutant
+	name = "\improper NT Jean-Nerre-De Boulier dart"
+	real_name = "\improper NT Jean-Nerre-De Boulier dart"
+	desc = "Darts with anti-mutagenic solution, named after the slightly too prominent geneticists who necessitated their invention."
+	projectile_type = /datum/projectile/bullet/tranq_dart/anti_mutant
+	stack_type = /obj/item/stackable_ammo/rifle/anti_mutant
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_white"
+	icon_full  = "nt_white"
+	icon_empty = "nt_empty"
+	icon_one   = "it_what"
+	icon_shell = "white_case"
+	load_time = 0.15 SECONDS
+THE_USUAL_FLAVOURS(rifle/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart")
+
+/*	These also existed as tranq rifle rounds but I don't have a good name for em
+	syndicate
+		name = "\improper  Tranq-Will-8-or"
+		real_name = "\improper NT Tranq-Will-8-or"
+		amount_left = 5
+		max_amount = 5
+		ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate
+		ammo_DRM = GUN_SOVIET //since FOSSies don't use bullets, this was the next best thing I could think of
+
+		pistol
+			sname = ".31.0a Tranqilizer"
+			name = ".31.0a tranquilizer pistol darts"
+			amount_left = 15
+			max_amount = 15
+			caliber = 0.31
+			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
+*/
+
+
 /obj/item/stackable_ammo/rifle/NT
-	name = "\improper NT rifle ammo"
+	name = "\improper NT rifle round"
 	real_name = "\improper NT rifle ammo"
 	desc = "Standard 8mm NT Long rifle cartridges: twice as nice as pistol bullets."
-	projectile_type = /datum/projectile/bullet/rifle_weak
+	projectile_type = /datum/projectile/bullet/rifle/NT
 	stack_type = /obj/item/stackable_ammo/rifle/NT
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
 	icon_state = "nt_brass"
@@ -381,13 +380,13 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	icon_shell = "brass_case"
 	load_time = 0.05 SECONDS
 
-THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle ammo")
+THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle round")
 
 /obj/item/stackable_ammo/rifle/soviet
-	name = "\improper Soviet surplus ammo"
-	real_name = "\improper Soviet surplus ammo"
+	name = "\improper Soviet surplus cartridge"
+	real_name = "\improper Soviet surplus cartridge"
 	desc = "Old, obsolete 2.8 line Soviet rifle cartridges. This stuff is covered in 3X years of dust and cosmoline."
-	projectile_type = /datum/projectile/bullet/rifle_medium
+	projectile_type = /datum/projectile/bullet/rifle/soviet
 	stack_type = /obj/item/stackable_ammo/rifle/soviet
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
 	icon_state = "soviet-surplus"
@@ -396,13 +395,13 @@ THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle ammo")
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
 	load_time = 0.1 SECONDS
-THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus ammo")
+THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus cartridge")
 
 /obj/item/stackable_ammo/rifle/juicer
 	name = "\improper Juicer BIG rounds"
 	real_name = "\improper Juicer BIG rounds"
 	desc = "Juicer-pressed fat fuck rifle rounds, manufactured solely for illegal export."
-	projectile_type = /datum/projectile/bullet/rifle_heavy
+	projectile_type = /datum/projectile/bullet/rifle/juicer
 	stack_type = /obj/item/stackable_ammo/rifle/juicer
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
 	icon_state = "juicer_big"
@@ -432,10 +431,10 @@ THE_USUAL_FLAVOURS(rifle/capacitive/burst, "\improper NT In-Capacit-8-or MAX")
 
 
 //smoothbore shit
-ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
-/obj/item/stackable_ammo/scatter/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
-	name = "generic scatter ammo"
-	real_name = "generic scatter ammo"
+ABSTRACT_TYPE(/obj/item/stackable_ammo/shotgun/)
+/obj/item/stackable_ammo/shotgun/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
+	name = "generic shotgun ammo"
+	real_name = "generic shotgun ammo"
 	desc = "debug"
 	icon_state = "shells"
 	icon_full  = "shells"
@@ -445,94 +444,100 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	caliber = CALIBER_WIDE
 
 //NT's small shotgun shell
-/obj/item/stackable_ammo/scatter/NT
+/obj/item/stackable_ammo/shotgun/NT
 	name = "\improper NT Shot"
 	real_name = "\improper NT Shot"
 	desc = "NT 16mm shotgun shell with medium shot, for heavy barrels."
-	projectile_type = /datum/projectile/special/spreader/buckshot_burst
-	stack_type = /obj/item/stackable_ammo/scatter/NT
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/NT
+	stack_type = /obj/item/stackable_ammo/shotgun/NT
 	icon_state = "nt_shells"
 	icon_full  = "nt_shells"
 	icon_empty = "nt_shells-empty"
 	load_time = 0.1 SECONDS
-THE_USUAL_FLAVOURS(scatter/NT, "\improper NT Shot")
-
-//NT's EXTRA skinny shotgun shell, which works in regular light barrels! wow!
-/obj/item/stackable_ammo/scatter/NT/mini
-	name = "\improper NT Mini Shot"
-	real_name = "\improper NT Mini Shot"
-	desc = "NT 8mm microshotgun shell, loaded for maintenance vermin. For light barrels."
-	projectile_type = /datum/projectile/bullet/shot_weak/mini
-	stack_type = /obj/item/stackable_ammo/scatter/NT/mini
-	icon_one   = "shell_mini_blue"
-	icon_shell = "shell_mini_case"
-	load_time = 0.15 SECONDS
-	caliber = CALIBER_TINY
-THE_USUAL_FLAVOURS(scatter/NT/mini, "\improper NT Mini Shot")
+THE_USUAL_FLAVOURS(shotgun/NT, "\improper NT Shot")
 
 //thinking FOSS might make some stupid shotgun shells. for later
 
 //juicer BIG shells
-/obj/item/stackable_ammo/scatter/juicer
+/obj/item/stackable_ammo/shotgun/juicer
 	name = "\improper Juicer Hot Pocketz"
 	real_name = "\improper Juicer Hot Pocketz"
 	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrel."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer
-	stack_type = /obj/item/stackable_ammo/scatter/juicer
+	stack_type = /obj/item/stackable_ammo/shotgun/juicer
 	icon_state = "juicer_shells_red"
 	icon_full  = "juicer_shells_red"
 	icon_empty = "juicer_shells_red-empty"
 	icon_one   = "shell_red"
 	icon_shell = "shell_red_case"
 	load_time = 0.3 SECONDS
-THE_USUAL_FLAVOURS(scatter/juicer, "\improper Juicer Hot Pocketz")
+THE_USUAL_FLAVOURS(shotgun/juicer, "\improper Juicer Hot Pocketz")
 
-/obj/item/stackable_ammo/scatter/juicer/denim
+/obj/item/stackable_ammo/shotgun/juicer/denim
 	name = "\improper Juicer JAMMO"
 	real_name = "\improper Juicer JAMMO"
 	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
-	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
+	stack_type = /obj/item/stackable_ammo/shotgun/juicer/denim
 	icon_state = "juicer_shells_blue"
 	icon_full  = "juicer_shells_blue"
 	icon_empty = "juicer_shells_blue-empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
 	load_time = 0.5 SECONDS
-THE_USUAL_FLAVOURS(scatter/juicer/denim, "\improper Juicer JAMMO")
+THE_USUAL_FLAVOURS(shotgun/juicer/denim, "\improper Juicer JAMMO")
 
-/obj/item/stackable_ammo/scatter/bartender
+/obj/item/stackable_ammo/shotgun/bartender
 	name = "\improper Bartender's Buddy"
 	real_name = "\improper Bartender's Buddy"
 	desc = "Unlicensed and handmade short 16mm shotgun shell, full of rock salt. And probably some kind of acid. Fuck Bart."
-	projectile_type = /datum/projectile/bullet/shot_salt
-	stack_type = /obj/item/stackable_ammo/scatter/bartender
+	projectile_type = /datum/projectile/special/spreader/buckshot_burst/salt
+	stack_type = /obj/item/stackable_ammo/shotgun/bartender
 	icon_state = "shells"
 	icon_full  = "shells"
 	icon_empty = "empty"
 	icon_one   = "shell_blue"
 	icon_shell = "shell_case"
 	load_time = 0.1 SECONDS
-THE_USUAL_FLAVOURS(scatter/bartender, "\improper Bartender's Buddy")
+THE_USUAL_FLAVOURS(shotgun/bartender, "\improper Bartender's Buddy")
 
-/obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
+/obj/item/stackable_ammo/shotgun/slug_flare
+	name = "gray-market flare"
+	real_name = "gray-market flare"
+	desc = "A fiery magnesium flare packed into a short 16mm package."
+	projectile_type = /datum/projectile/bullet/slug/flare
+	stack_type = /obj/item/stackable_ammo/shotgun/slug_flare
+	load_time = 0.15 SECONDS
+THE_USUAL_FLAVOURS(shotgun/slug_flare, "gray-market flare")
+
+/obj/item/stackable_ammo/shotgun/slug_boom
+	name = "juicin' firework round"
+	real_name = "juicin' firework round"
+	desc = "An absolutely unsafe amount of explosives is packed into this huge shotgun shell."
+	projectile_type = /datum/projectile/bullet/slug/boom
+	stack_type = /obj/item/stackable_ammo/shotgun/slug_boom
+	load_time = 0.3 SECONDS
+	caliber = CALIBER_LONG_WIDE
+THE_USUAL_FLAVOURS(shotgun/slug_boom, "juicin' firework round")
+
+/obj/item/stackable_ammo/shotgun/slug_rubber
 	name = "\improper NT rubber slug"
 	real_name = "\improper NT rubber slug"
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
-	projectile_type = /datum/projectile/bullet/slug_rubber
-	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
+	projectile_type = /datum/projectile/bullet/slug/rubber
+	stack_type = /obj/item/stackable_ammo/shotgun/slug_rubber
 	load_time = 0.1 SECONDS
-THE_USUAL_FLAVOURS(scatter/slug_rubber, "\improper NT rubber slug")
+THE_USUAL_FLAVOURS(shotgun/slug_rubber, "\improper NT rubber slug")
 
 //silly idea, I figure would be crafted ammo and not bought (though for the moment they are bought I haven't decided on a crafting method)
-/obj/item/stackable_ammo/coil
+/obj/item/stackable_ammo/shotgun/coil
 	name = "coil slug round"
 	real_name = "coil slug round"
-	desc = "A metal coil packed into a bullet cartridge. This seems both stupid and cruel."
+	desc = "A metal coil packed into a beefy cartridge. This seems both stupid and cruel."
 	projectile_type = /datum/projectile/bullet/coil
-	stack_type = /obj/item/stackable_ammo/coil
-	load_time = 0.05 SECONDS
-THE_USUAL_FLAVOURS(coil, "coil slug round")
+	stack_type = /obj/item/stackable_ammo/shotgun/coil
+	load_time = 0.2 SECONDS
+THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. Cathodic Flash Tube 1.4"
@@ -585,7 +590,6 @@ THE_USUAL_FLAVOURS(coil, "coil slug round")
 			new /obj/item/gun_parts/barrel/foss/long(src)
 
 // NEW PROJECTILE TYPES TEMPORARY STORAGE
-
 
 /datum/projectile/energy_bolt/three
 	power = 20

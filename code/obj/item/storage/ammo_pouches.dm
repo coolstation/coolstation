@@ -13,6 +13,7 @@
 	does_not_open_in_pocket = 0
 	can_hold = list(/obj/item/ammo)
 
+/*
 	assault_rifle
 		name = "rifle magazine pouch"
 		icon_state = "ammopouch-large"
@@ -79,6 +80,7 @@
 		slots = 4
 		spawn_contents = list(/obj/item/ammo/bullets/grenade_round/explosive = 2,
 		/obj/item/ammo/bullets/grenade_round/high_explosive = 2)
+*/
 
 	rpg
 		name = "MPRT rocket pouch"

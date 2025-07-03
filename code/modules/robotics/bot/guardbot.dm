@@ -229,6 +229,7 @@
 			src.hat.name = "Eldritch shape-shifting hat."
 			src.update_icon()
 
+/*
 	assgun
 		name = "Assaultbuddy"
 		desc = "What happens when you put an assault rifle in the microwave."
@@ -244,6 +245,7 @@
 		obeygunlaw = 0
 		gunlocklock = 1
 		emagged = 1
+*/
 
 	safety
 		name = "Klaus"
@@ -1089,7 +1091,7 @@
 				if(src?.budgun?.current_projectile)
 					thing2shoot = src.budgun.current_projectile
 				else
-					thing2shoot = new/datum/projectile/bullet/pistol_weak/stunners
+					thing2shoot = new/datum/projectile/bullet/pistol/NT/stunners
 			var/list/mob/nearby_dorks = list()
 			for (var/mob/living/D in oview(7, src))
 				nearby_dorks.Add(D)
@@ -1112,9 +1114,11 @@
 			burst--
 			if (burst)
 				sleep(5)	// please dont fuck anything up
+			/*
 			if(istype(budgun, /obj/item/gun/kinetic/riotgun))
 				var/obj/item/gun/kinetic/riotgun/RG = budgun
 				RG.rack(src)
+			*/
 		ON_COOLDOWN(src, "buddy_refire_delay", src.gunfire_cooldown)
 		return 1
 

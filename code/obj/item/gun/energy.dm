@@ -1141,6 +1141,8 @@
 
 //turn these into switchable foam dart/water/noisemaker gun toys just in my imo
 //space cop playset comes with unassailable plastic badge and ignorable consent decree
+
+/*
 /obj/item/gun/energy/lawbringer/old
 	name = "Antique Lawbringer"
 	icon = 'icons/obj/items/gun.dmi'
@@ -1408,6 +1410,7 @@
 		if (get_dist(user,F) > range)
 			continue
 		tfireflash(F,0.5,2400)
+*/
 
 // Pulse Rifle //
 // An energy gun that uses the lawbringer's Pulse setting, to beef up the current armory.

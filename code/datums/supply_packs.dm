@@ -461,16 +461,15 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 		access = access_securitylockers
 
 	upgrade
-		name = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
-		desc = "Some alternate history magic plastic guns and grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
-		contents = "1x Clock 180, x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
-		contains = list(/obj/item/gun/kinetic/clock_188/boomerang,
-						/obj/item/storage/box/QM_grenadekit_security,
+		name = "Weapons Crate - Experimental Grenades (Cardlocked \[Security Equipment])"
+		desc = "Some grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
+		contents = "x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
+		contains = list(/obj/item/storage/box/QM_grenadekit_security,
 						/obj/item/storage/box/QM_grenadekit_experimentalweapons,
 						/obj/item/clothing/head/helmet/hardhat/security/improved)
-		cost = 12000
+		cost = 9000
 		containertype = /obj/storage/secure/crate/weapon
-		containername = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
+		containername = "Weapons Crate - Experimental Grenades (Cardlocked \[Security Equipment])"
 		access = access_securitylockers
 		hidden = 1
 

@@ -125,3 +125,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 			grip = new /obj/item/gun_parts/grip/NT/wood(src)
 		//if(prob(30))
 		//	foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
+
+/obj/item/gun/modular/NT/flare_gun
+	name = "\improper NT flare gun"
+	real_name = "\improper NT flare gun"
+	desc = "Designed to fire 16mm flares. Fortunately, flares aren't all it can fire."
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/NT/shotty/short(src)
+		if(prob(50))
+			grip = new /obj/item/gun_parts/grip/NT/stub(src)
+		else
+			grip = new /obj/item/gun_parts/grip/NT/wood(src)

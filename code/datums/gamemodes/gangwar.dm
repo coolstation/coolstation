@@ -1905,6 +1905,8 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 ////////////////////////////////////////////////////////
 /////////////COUNTRY WESTERN////////////////////////////
 /////////////////////////////////////////////////////////
+
+/*
 /datum/gang_item/country_western/colt_saa
 	name = "Colt Single Action Army .45"
 	desc = "It shoots bullets."
@@ -1917,7 +1919,7 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 	class2 = "weapon"
 	price = 700
 	item_path = /obj/item/ammo/bullets/c_45
-
+*/
 
 /datum/gang_item/misc/bathsalts
 	name = "Bathsalts Pill Bottle"

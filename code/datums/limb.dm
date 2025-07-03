@@ -236,14 +236,14 @@
 		return 0
 
 	arm38
-		proj = new/datum/projectile/bullet/pistol_italian
+		proj = new/datum/projectile/bullet/pistol/italian
 		shots = 3
 		current_shots = 3
 		cooldown = 30
 		reload_time = 200
 
 	abg
-		proj = new/datum/projectile/bullet/slug_rubber
+		proj = new/datum/projectile/bullet/slug/rubber
 		shots = 6
 		current_shots = 6
 		cooldown = 30
@@ -1287,10 +1287,9 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 	/obj/machinery/atmospherics/valve,\
 	/obj/machinery/vending,\
 	/obj/machinery/nuclearbomb,\
-	/obj/item/gun/kinetic/airzooka,\
 	/obj/machinery/computer,\
-	/obj/machinery/power/smes,
-	/obj/item/tinyhammer,
+	/obj/machinery/power/smes,\
+	/obj/item/tinyhammer,\
 	/obj/item/device/light/zippo) //Items that ghostcritters simply cannot interact, regardless of w_class
 	. = list()
 	for (var/blocked_type in blocked_types)

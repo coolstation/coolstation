@@ -340,6 +340,7 @@ CONTAINS:
 				surgery_limb.surgery(src)
 			return
 
+/*
 	attackby(obj/item/W, mob/user)
 		..()
 
@@ -360,7 +361,7 @@ CONTAINS:
 			else
 				user.show_text("You can't seem to combine these two items this way.")
 		return
-
+*/
 
 // a mostly decorative thing from z2 areas I want to add to office closets
 /obj/item/staple_gun/red

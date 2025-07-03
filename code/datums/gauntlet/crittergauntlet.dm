@@ -701,7 +701,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		point_cost = -3
 		minimum_level = 20
 		probability =  20
-		supplies = list(/obj/item/chem_grenade/very_incendiary/vr, /obj/item/gun/kinetic/spes, /obj/item/gun/energy/laser_gun/virtual)
+		supplies = list(/obj/item/chem_grenade/very_incendiary/vr, /* /obj/item/gun/kinetic/spes */, /obj/item/gun/energy/laser_gun/virtual)
 
 	welding
 		name = "Welders"
@@ -711,6 +711,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		max_percent = 0.75
 		supplies = list(/obj/item/weldingtool/vr)
 
+/*
 	revolver
 		name = "Revolvers"
 		point_cost = -2
@@ -743,6 +744,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		max_percent = 0.5
 		max_amount = 1
 		supplies = list(/obj/item/gun/kinetic/ak47)
+*/
 
 	bfg
 		name = "The BFG"

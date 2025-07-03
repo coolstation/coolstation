@@ -389,6 +389,7 @@ mob/verb/checkrewards()
 //Detective
 
 //this will go away when detective revolver is modular
+/*
 /datum/jobXpReward/detective
 	name = "The Colt"
 	desc = "Gain access to an older replica of a fake gun by sacrificing your revolver."
@@ -438,6 +439,7 @@ mob/verb/checkrewards()
 		C.mob.put_in_hand(colt)
 		boutput(C.mob, "Your revolver vanishes and is replaced with [colt]!")
 		return
+*/
 
 /datum/jobXpReward/detectivenoirglasses
 	name = "Noir-Tech Glasses"
