@@ -1,22 +1,31 @@
 /obj/item/device/grigori_trap_hand
 	name = "inhand grigori trap"
 	icon_state = "placeholder"
-	var/trigger_type = null
+	var/trigger_type = "default"
 	var/armed = FALSE
 	var/trap_type = null
 	var/item/trap_content
-	flags = USEDELAY | TRAP_SPAWNER
+	flags = USEDELAY
 	w_class = W_CLASS_BULKY
 	item_state = "placeholder"
 	desc = "abstract trap. Hand? !!!"
 
 	attack_self(var/mob/user as mob)
 		if(src.armed)
-			boutput(user, "<span class='alert'>You disarm [src]</span>")
+			boutput(user, "<span class='alert'>You disarm the [src.name]</span>")
 			src.disarm()
 		else
-			boutput(user, "<span class='alert'>You arm [src]. Click on a [trigger_type] to set the trap.</span>")
+			boutput(user, "<span class='alert'>You arm the [src.name]. Click on a [trigger_type] to set the trap.</span>") //probably need an associated list to have proper instructions (ie, door_touch = door, door_enter = door usw.)
 			src.arm()
+
+	afterattack(var/atom/target, var/mob/user as mob)
+		if(!src.armed)
+			boutput(user, "<span class='alert'>The trap isn't armed!</span>")
+			return
+
+		if(istype(target,/obj)) //eh?
+			src.deploy(target, user) //flesh this out
+
 
 	proc/arm()
 		//play some sounds, animate the icon, mark armed to true
@@ -29,17 +38,18 @@
 		switch(src.trigger_type)
 			if("door_touch")
 				if(istype(target,/obj/machinery/door))
-					new trap_type(target,trigger_type)
+					new src.trap_type(target,trigger_type)
+					boutput(user, "<span class='alert'>You set the trap on the [target.name].</span>")
 					qdel(src) //handle animations, sounds, bars, effects, and whatever else here
+				else
+					boutput(user, "<span class='alert'>This trap doesn't fit here.</span>")
+					return
+			else
+				boutput(user, "<span class='alert'>This trap can't fit here.</span>") //be more descriptive later
+				return
 
-/obj/item/device/grigori_trap_hand/door_handle //for now just an abstract, but once custom traps are worked in, this will be used for custom traps
-	name = "door control trap mechanism"
-	icon_state = "placeholder"
-	item_state = "placeholder"
-	trigger_type = "door_touch"
-	desc = "A door control trap trigger. This trigger attatches to a door, and is activated upon the user trying to open the door."
 
-/obj/item/device/grigori_trap_hand/door_handle/chopper //a blade cuts a random limb off
+/obj/item/device/grigori_trap_hand/chopper //a blade cuts a random limb off
 	name = "hidden door blade trap"
 	icon_state = "placeholder"
 	item_state = "placeholder"
