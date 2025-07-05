@@ -1,7 +1,7 @@
 /obj/item/device/grigori_trap_hand
 	name = "inhand grigori trap"
 	icon_state = "placeholder"
-	var/trigger_type = "default"
+	var/trigger_type = "door_touch"
 	var/armed = FALSE
 	var/trap_type = null
 	var/item/trap_content
@@ -9,6 +9,8 @@
 	w_class = W_CLASS_BULKY
 	item_state = "placeholder"
 	desc = "abstract trap. Hand? !!!"
+
+
 
 	attack_self(var/mob/user as mob)
 		if(src.armed)
@@ -58,6 +60,7 @@
 
 /datum/grigori_trap
 	var/obj/linked_obj
+	var/list/tomtech = list("DAAAAAAA!!!!!","YEEEEOOOOOWCH!","AAAAAAAAAHHH!!!","rraaaAAAAAAAAA!!!!!","OOOOOOOOWWWWIIIIEEE!!!") //load bearing
 
 	New(var/obj/target,var/trigger_type)
 		..()
@@ -68,12 +71,34 @@
 				AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,src)
 
 	proc/trap_triggered(var/mob/victim)
-		boutput(world, "<B>help</B>")
+		boutput(world, "<B>SOMETHING IS WRONG!!! FIX IT YOU LAZY BASTARD!</B>")
 
 
-/datum/grigori_trap/chopper
-	trap_triggered()
-		boutput(world, "<B>the trap springs</B>")
+/datum/grigori_trap/chopper //this'll take an arm off! maybe even a leg!
+	var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg") //non-lethal!
+
+	trap_triggered(var/mob/target)
+		var/mob/living/carbon/human/H
+		if(istype(target, /mob/living/carbon/human))
+			H = target
+			if(H.organHolder?.tail)
+				choppableBits += "tail"
+			var/targetedLimb = pick(choppableBits) //whatever
+
+			if(targetedLimb == "tail")
+				H.drop_and_throw_organ("tail",dist=3,speed=1)
+			else
+				H.sever_limb(targetedLimb)
+		else
+			//do flat damage ig
+			boutput(world,"<b>you triggered it pal</b>")
+			return
+		//call animation here
+		//play sound here
+		qdel(src) //move this to a special destroy proc or whatever, throw defusals in there too why not
+
+
+		boutput(target, "<span class='alert'><B>[pick(src.tomtech)]</B></span>")
 		//do random chopping code here - have the trap be layerd ontop of whatever machine, and the linked object passes interactions from attackby to a proc here if the trap is present
 
 
