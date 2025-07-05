@@ -4,41 +4,91 @@ var/datum/train_controller/train_spotter
 
 /datum/train_controller
 	var/list/datum/train_conductor/conductors = list()
+	var/next_id = 1
+	var/list/datum/train_preset/presets = list()
+
+/datum/train_controller/New()
+	. = ..()
+	var/list/preset_types = concrete_typesof(/datum/train_preset)
+	for(var/preset_type in preset_types)
+		presets.Add(new preset_type)
 
 /datum/train_controller/proc/config()
 	var/dat = "<html><body><title>Train Spotter</title>"
-	dat += "<b><u>Train Controls</u></b><HR><small>"
+	dat += "<b><u>Train Controls</u></b><HR>"
 
-	dat += "<a href='byond://?src=\ref[src];create=1'>Create New Train</a><br>"
+	dat += "<a href='byond://?src=\ref[src];create=1'>Create New Train</a><br><small>"
 
 	for (var/datum/train_conductor/conductor in src.conductors)
-		dat += "<br>"
-		dat += "<a href='byond://?src=\ref[src];inspect=\ref[conductor]'>Variables for Train #\ref[conductor]</a><br>"
-		if(!conductor.active)
-			dat += "<a href='byond://?src=\ref[src];start=\ref[conductor]'>Start Train #\ref[conductor]</a><br>"
-		else
-			dat += "<a href='byond://?src=\ref[src];stop=\ref[conductor]'>Stop Train #\ref[conductor]</a><br>"
+		dat += "<HR>"
+		dat += "<b><a href='byond://?src=\ref[src];inspect=\ref[conductor]'>Variables for Train #[conductor.train_id]</a></b><br><HR>"
+		if(conductor.train_z && conductor.train_front_x && conductor.train_front_y && length(conductor.cars))
+			if(!conductor.active)
+				dat += "<a href='byond://?src=\ref[src];start=\ref[conductor]'>Start at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].</a><br>"
+		if(conductor.active)
+			dat += "<a href='byond://?src=\ref[src];stop=\ref[conductor]'>Stop train</a><br>"
+		dat += "<a href='byond://?src=\ref[src];loadpreset=\ref[conductor]'>Load Preset</a><br>"
 
 	dat += "</small></body></html>"
 
-	usr.Browse(dat,"window=trains;size=400x600")
+	usr.Browse(dat,"window=train_spotter;size=400x600")
 
 /datum/train_controller/Topic(href, href_list[])
 	usr_admin_only
 	if (href_list["create"])
 		new /datum/train_conductor()
-		src.config()
 	if (href_list["inspect"])
 		var/datum/train_conductor/conductor = locate(href_list["inspect"]) in src.conductors
-		src.config()
-		usr.client:debug_variables(conductor)
+		if(istype(conductor))
+			usr.client:debug_variables(conductor)
 	if (href_list["start"])
 		var/datum/train_conductor/conductor = locate(href_list["start"]) in src.conductors
-		conductor.active = TRUE
-		conductor.train_loop()
+		if(istype(conductor))
+			conductor.active = TRUE
+			conductor.train_loop()
 	if (href_list["stop"])
 		var/datum/train_conductor/conductor = locate(href_list["stop"]) in src.conductors
-		conductor.active = FALSE
+		if(istype(conductor))
+			conductor.active = FALSE
+	if (href_list["loadpreset"])
+		var/datum/train_conductor/conductor = locate(href_list["loadpreset"]) in src.conductors
+		if(istype(conductor))
+			var/datum/train_preset/preset = input(usr, "Select a preset", "Presets",null) in src.presets
+			if(preset)
+				if(preset.name)
+					conductor.basic_name = preset.name
+				if(length(preset.cars))
+					conductor.cars.Cut()
+					conductor.cars.Add(preset.cars)
+				if(preset.movement_delay)
+					conductor.movement_delay = preset.movement_delay
+				if(preset.x)
+					conductor.train_front_x = preset.x
+				if(preset.y)
+					conductor.train_front_y = preset.y
+				if(preset.z)
+					conductor.train_z = preset.z
+	src.config()
+
+/* ----------- THE TRAIN PRESETS, FOR FUN STUFFS ----------- */
+
+ABSTRACT_TYPE(/datum/train_preset)
+/datum/train_preset
+	var/name = null
+	var/list/cars
+	var/movement_delay = 0
+	var/x = 0
+	var/y = 0
+	var/z = 0
+
+/datum/train_preset/fast_af
+	movement_delay = 0.125
+
+/datum/train_preset/slow
+	movement_delay = 3
+
+/datum/train_preset/shipping_cars
+	cars = list(/atom/movable/traincar/NT_engine, /atom/movable/traincar/NT_shipping, /atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping)
 
 /* ----------- THE TRAIN CARS, THE GOOD LOOKIN' BITS ----------- */
 
@@ -47,7 +97,7 @@ var/datum/train_controller/train_spotter
 	name = "traincar"
 	desc = "That thing what runs you over."
 	icon = 'icons/obj/large/trains_256x128.dmi'
-	icon_state = "engine_flatbody"
+	icon_state = "boxcar_flatbody"
 	bound_width = 256
 	bound_height = 64
 	layer = EFFECTS_LAYER_4
@@ -56,37 +106,71 @@ var/datum/train_controller/train_spotter
 	throw_spin = FALSE
 	event_handler_flags = Z_ANCHORED
 	animate_movement = SYNC_STEPS
+	dir = WEST
 	var/traincar_length = 8
 	var/loaded = FALSE // used to allow cars to sit in the trainyard safely
-	var/any_color_1 = "#FFFFFF"
-	var/any_color_2 = "#FFFFFF"
-	var/bright_color_1 = "#FFFFFF"
-	var/colorful = TRUE
+	var/datum/train_conductor/my_conductor
 
-/atom/movable/traincar/New()
+	var/dull_color_1 = "#FFFFFF"
+	var/dull_color_2 = "#FFFFFF"
+	var/bright_color_1 = "#FFFFFF"
+
+/atom/movable/traincar/New(var/turf/newLoc, var/datum/train_conductor/conductor)
 	..()
+	src.my_conductor = conductor
 	src.build_colors()
 	src.build_overlays()
 
 /atom/movable/traincar/proc/build_colors()
-	src.any_color_1 = random_color()
-	src.any_color_2 = random_color()
+	src.dull_color_1 = random_greyish_hex_color()
+	src.dull_color_2 = random_greyish_hex_color()
 	src.bright_color_1 = random_saturated_hex_color()
 
 /atom/movable/traincar/proc/build_overlays()
 	return
+
+/atom/movable/traincar/Bumped(var/atom/movable/AM)
+	. = ..()
+	if(src.loaded && src.my_conductor && src.my_conductor.active && src.my_conductor.movement_delay < 1 SECOND)
+		if(isliving(AM))
+			var/mob/living/L = AM
+			if(L.nodamage || ON_COOLDOWN(AM, "trainvacuumbump", 0.1 SECONDS) || GET_COOLDOWN(AM, "trainsquish"))
+				return
+			src.my_conductor.potential_crushes.Add(AM)
+			var/turf/target = get_turf(AM)
+			var/y_variance = get_dir(src, AM) & NORTH ? 1 : -1
+			if(ON_COOLDOWN(AM, "trainvacuumsucc", 0.3 SECONDS)) // hit twice within 0.3 seconds, excluding the 0.1 second invuln, to get sucked under
+				AM.set_loc(locate(target.x, clamp(target.y + y_variance, 1, world.maxy - 1), target.z))
+			y_variance = y_variance * rand(-4, 15)
+			if(src.my_conductor.train_direction & EAST)
+				target = locate(min(target.x + 40, world.maxx-1), clamp(target.y + y_variance, 1, world.maxy - 1), target.z)
+			if(src.my_conductor.train_direction & WEST)
+				target = locate(max(target.x - 40, 1), clamp(target.y + y_variance, 1, world.maxy - 1), target.z)
+			src.visible_message("[AM] gets clipped by \the [src.my_conductor.basic_name]!")
+			AM.throw_at(target, floor(5 / src.my_conductor.movement_delay), 2.5 / src.my_conductor.movement_delay)
+			shake_camera(L, 4 / src.my_conductor.movement_delay, 5 / src.my_conductor.movement_delay)
+			random_brute_damage(L, rand(10, 15) / src.my_conductor.movement_delay, TRUE)
+			L.changeStatus("stunned", 2 SECONDS / src.my_conductor.movement_delay)
+			L.changeStatus("weakened", 3 SECONDS / src.my_conductor.movement_delay)
+			L.force_laydown_standup()
 
 // THE ENGINE
 /atom/movable/traincar/NT_engine
 	name = "engine"
 	icon_state = "engine_flatbody"
 
+/atom/movable/traincar/NT_engine/build_colors()
+	src.dull_color_1 = rand(200, 230)
+	src.dull_color_1 = rgb(src.dull_color_1, src.dull_color_1, src.dull_color_1)
+	src.dull_color_2 = rgb(rand(60,70), rand(115,125), rand(160, 170))
+	src.bright_color_1 = rgb(rand(230,255), rand(200,220), rand(65,80))
+
 /atom/movable/traincar/NT_engine/build_overlays()
 	var/image/main = image('icons/obj/large/trains_256x128.dmi',"engine_main")
-	main.color = src.any_color_1
+	main.color = src.dull_color_1
 	src.UpdateOverlays(main, "engine_main")
 	var/image/casing = image('icons/obj/large/trains_256x128.dmi',"engine_casing")
-	casing.color = src.any_color_2
+	casing.color = src.dull_color_2
 	src.UpdateOverlays(casing, "engine_casing")
 	var/image/hazpaint = image('icons/obj/large/trains_256x128.dmi',"engine_hazpaint")
 	hazpaint.color = src.bright_color_1
@@ -104,19 +188,72 @@ var/datum/train_controller/train_spotter
 	fullbright.plane = PLANE_SELFILLUM
 	src.UpdateOverlays(fullbright, "engine_fullbright")
 
+// ONE OR TWO SHIPPING CONTAINERS
+/atom/movable/traincar/NT_shipping
+	name = "shipping car"
+
+/atom/movable/traincar/NT_shipping/build_colors()
+	src.dull_color_1 = random_greyish_hex_color(50,90)
+	src.dull_color_2 = random_greyish_hex_color(50,90)
+	//src.bright_color_1 = random_saturated_hex_color()
+
+/atom/movable/traincar/NT_shipping/build_overlays()
+	var/did_one = prob(90)
+	var/offset = rand(3,7)
+
+	if(did_one)
+		var/image/container_1 = image('icons/obj/large/trains_128x96.dmi',"shipping_container")
+		container_1.color = src.dull_color_1
+		container_1.pixel_x = offset
+		container_1.pixel_y = rand(28, 31)
+		src.UpdateOverlays(container_1, "container_one")
+		if(prob(5))
+			var/image/paint_1 = image('icons/obj/large/trains_128x96.dmi',"shipping_container_paint1")
+			paint_1.pixel_x = container_1.pixel_x
+			paint_1.pixel_y = container_1.pixel_y
+			src.UpdateOverlays(paint_1, "paint_one")
+		var/image/grime_1 = image('icons/obj/large/trains_128x96.dmi',"shipping_container_grime_multiply1")
+		grime_1.blend_mode = BLEND_MULTIPLY
+		grime_1.pixel_x = container_1.pixel_x
+		grime_1.pixel_y = container_1.pixel_y
+		src.UpdateOverlays(grime_1, "grime_one")
+
+	if(!did_one || prob(90))
+		var/image/container_2 = image('icons/obj/large/trains_128x96.dmi',"shipping_container")
+		container_2.color = src.dull_color_2
+		container_2.pixel_x = offset + rand(118,120)
+		container_2.pixel_y = rand(28, 31)
+		src.UpdateOverlays(container_2, "container_two")
+		if(prob(5))
+			var/image/paint_2 = image('icons/obj/large/trains_128x96.dmi',"shipping_container_paint1")
+			paint_2.pixel_x = container_2.pixel_x
+			paint_2.pixel_y = container_2.pixel_y
+			src.UpdateOverlays(paint_2, "paint_two")
+		var/image/grime_2 = image('icons/obj/large/trains_128x96.dmi',"shipping_container_grime_multiply1")
+		grime_2.blend_mode = BLEND_MULTIPLY
+		grime_2.pixel_x = container_2.pixel_x
+		grime_2.pixel_y = container_2.pixel_y
+		src.UpdateOverlays(grime_2, "grime_two")
+
 /* ----------- THE TRAIN CONDUCTOR, WHOM DRIVES THE TRAIN ----------- */
 
 /datum/train_conductor
 	var/basic_name = "train"
 	var/active = FALSE
 	var/train_direction = WEST // east-bound trains MIGHT POSSIBLY EVENTUALLY happen. dont count on it.
+	var/train_id = 0 // the id of this train
 	var/train_ram_width_bonus = 0 // additional x width of the front hitbox, set dynamically by speed
 	var/train_ram_height_bonus = 1 // additional y height of the front hitbox, usually static
-	var/train_front_x = 285 // the lowest x coordinate in the trains front hitbox
+#if defined(MAP_OVERRIDE_CRAG)
 	var/train_front_y = 163 // the lowest y coordinate in the trains front hitbox
+	var/train_z = 1 // the z level the train is on
+#else
+	var/train_front_y = 0 // the lowest y coordinate in the trains front hitbox
 	var/train_z = 0 // the z level the train is on
+#endif
+	var/train_front_x = 285 // the lowest x coordinate in the trains front hitbox
 	var/train_end_x = 285 // the highest x coordinate in the train
-	var/list/cars = list(/atom/movable/traincar/NT_engine, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar, /atom/movable/traincar) // all the cars in this train, instantiated or not
+	var/list/cars = list()
 	var/list/mob/living/potential_crushes = list() // any mobs that need to be checked for being under the train
 	var/movement_delay = 0.5 // how long to wait between each movement
 	var/train_unload_x = 15 // a traincar that reaches this x coordinate will immediately be removed
@@ -126,13 +263,15 @@ var/datum/train_controller/train_spotter
 /datum/train_conductor/New()
 	. = ..()
 	train_spotter.conductors.Add(src)
+	src.train_id = train_spotter.next_id
+	train_spotter.next_id++
 
 /datum/train_conductor/disposing()
 	for(var/atom/movable/traincar/car in src.cars)
 		qdel(car)
 	src.cars = null
 	src.potential_crushes = null
-	train_spotter.conductors.Cut(src)
+	train_spotter.conductors -= src
 	. = ..()
 
 /datum/train_conductor/proc/setup()
@@ -146,7 +285,7 @@ var/datum/train_controller/train_spotter
 		qdel(src)
 		return
 
-	if(!src.train_z || !src.active || !src.movement_delay) // refuse to process trains that havent been put on a z level
+	if(!src.train_z || !src.active || src.movement_delay < 0.01) // refuse to process trains that havent been put on a z level
 		return
 
 	// first, time for the crushing
@@ -221,16 +360,17 @@ var/datum/train_controller/train_spotter
 						continue
 					potential_crushes.Add(L)
 					if(!L.lying)
-						shake_camera(L, 20, 20)
+						ON_COOLDOWN(L, "trainsquish", 1 SECOND)
+						shake_camera(L, 5 / src.movement_delay, 10 / src.movement_delay)
 						for (var/mob/C in viewers(L))
 							shake_camera(C, 1, 2)
 							C.show_message("<span class='alert'><B>\The [src.basic_name] rams into [L] and sends them flying!</B></span>", 1)
-						random_brute_damage(L, rand(40, 55), TRUE)
-						L.changeStatus("stunned", 5 SECONDS)
-						L.changeStatus("weakened", 6 SECONDS)
+						random_brute_damage(L, rand(20, 25) / src.movement_delay, TRUE)
+						L.changeStatus("stunned", 2 SECONDS / src.movement_delay)
+						L.changeStatus("weakened", 3 SECONDS / src.movement_delay)
 						L.force_laydown_standup()
 						var/turf/target = get_edge_target_turf(L, turn(src.train_direction, pick(45,-45)))
-						L.throw_at(target, 5, 4)
+						L.throw_at(target, floor(5 / src.movement_delay), 1.5 / src.movement_delay)
 						playsound(T, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 
 				if(istype(T, /turf/wall))
@@ -268,7 +408,7 @@ var/datum/train_controller/train_spotter
 		else
 			if(i == 1)
 				src.train_front_x--
-			car = new car_or_typepath(locate(current_x, src.train_front_y, src.train_z))
+			car = new car_or_typepath(locate(current_x, src.train_front_y, src.train_z), src)
 			car.loaded = TRUE
 			current_x += car.traincar_length
 			src.cars[i] = car
@@ -277,3 +417,7 @@ var/datum/train_controller/train_spotter
 
 	SPAWN_DBG(src.movement_delay)
 		src.train_loop()
+
+/area/centcom/train_depot
+	name = "NTFC Train Depot"
+	icon_state = "yellow"
