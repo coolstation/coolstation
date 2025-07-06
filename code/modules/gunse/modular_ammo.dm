@@ -39,11 +39,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	desc = "You gotta have bullets."
 	icon = 'icons/obj/items/modular_guns/ammo.dmi'
 	icon_state = "white"
-	var/icon_one
-	var/icon_low
-	var/icon_high = "white"
-	//var/icon_shell = "white_case"
-	//uses_multiple_icon_states = 1
+	var/ammo_icon_state = "ammobrass"
+	var/image/ammo_color_image
 	opacity = 0
 	density = 0
 	anchored = 0.0
@@ -74,7 +71,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		var/default_amount = (min_amount==max_amount) ? min_amount : rand(min_amount,max_amount)
 		src.amount = max(amt,default_amount) //take higher
 		..(loc)
+		if(src.ammo_icon_state)
+			src.ammo_color_image = image('icons/obj/items/modular_guns/ammo.dmi', null, "[src.ammo_icon_state][src.caliber & CALIBER_WIDE]")
+			src.ammo_color_image.blend_mode = BLEND_MULTIPLY
 		src.update_stack_appearance()
+
 
 	buildTooltipContent()
 		. = ..()
@@ -99,27 +100,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	update_stack_appearance()
 		src.UpdateName()
 		src.inventory_counter?.update_number(src.amount)
-		switch (src.amount)
-			if (-INFINITY to 0)
-				qdel(src) // ???
-				return
-			if(1)
-				if(src.icon_one)
-					src.icon_state = src.icon_one
-				else if(src.icon_low)
-					src.icon_state = src.icon_low
-				else
-					src.icon_state = src.icon_high
-				return
-			if (2 to 4)
-				if(src.icon_low)
-					src.icon_state = src.icon_low
-				else
-					src.icon_state = src.icon_high
-				return
-			else
-				src.icon_state = icon_high
-				return
+		if(src.amount <= 0)
+			qdel(src) // ???
+			return
+		if(src.ammo_color_image)
+			var/ammo_rendered = src.amount
+			if(src.caliber & CALIBER_WIDE)
+				ammo_rendered = ammo_rendered * 2
+			var/image/ammo_amount_overlay = image('icons/obj/items/modular_guns/ammo.dmi', src.ammo_color_image, "ammooverlay[min(ammo_rendered, 10)]")
+			ammo_amount_overlay.overlays += src.ammo_color_image
+			src.UpdateOverlays(ammo_amount_overlay, "stackable_ammo_overlay")
+
 
 	UpdateName()
 		src.name = "[src.max_stack > 1 ? "[src.amount] " : ""][name_prefix(null, 1)][src.real_name][s_es(src.amount)][name_suffix(null, 1)]"
@@ -160,11 +151,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	caliber = 0
-	icon_state = "nt_brass"
-	icon_high  = "nt_brass"
-	icon_low = "nt_empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
 
 /obj/item/stackable_ammo/pistol/NT
 	name = "\improper NT pistol round"
@@ -173,11 +159,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/bullet/pistol/NT
 	stack_type = /obj/item/stackable_ammo/pistol/NT
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_brass"
-	icon_high  = "nt_brass"
-	icon_low = "nt_empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
+	icon_state = "nt_basic"
 THE_USUAL_FLAVOURS(pistol/NT, "\improper NT pistol round")
 
 /obj/item/stackable_ammo/pistol/NT/HP
@@ -187,11 +169,6 @@ THE_USUAL_FLAVOURS(pistol/NT, "\improper NT pistol round")
 	projectile_type = /datum/projectile/bullet/pistol/NT/HP
 	stack_type = /obj/item/stackable_ammo/pistol/NT/HP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_brass"
-	icon_high  = "nt_brass"
-	icon_low = "nt_empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
 	load_time = 0.05 SECONDS
 THE_USUAL_FLAVOURS(pistol/NT/HP, "\improper NT HP pistol round")
 
@@ -202,11 +179,6 @@ THE_USUAL_FLAVOURS(pistol/NT/HP, "\improper NT HP pistol round")
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/NT/short
 	stack_type = /obj/item/stackable_ammo/pistol/ratshot
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_brass"
-	icon_high  = "nt_brass"
-	icon_low = "nt_empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 
@@ -218,14 +190,10 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	projectile_type = /datum/projectile/bullet/pistol/italian
 	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "italian"
-	icon_high  = "italian"
-	icon_low = "italian-empty"
-	//icon_one   = "it_what"
-	//icon_shell = "red_case" //except it's supposed to be caseless
+	icon_state = "italian_basic"
+	ammo_icon_state = "ammopaper"
 THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 
-//rename to pistol/italian/ap
 /obj/item/stackable_ammo/pistol/italian/AP
 	name = "\improper Italian AP pistol round"
 	real_name = "\improper Italian AP pistol round"
@@ -233,11 +201,6 @@ THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 	projectile_type = /datum/projectile/bullet/pistol/italian/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "italian"
-	icon_high  = "italian"
-	icon_low = "italian-empty"
-	//icon_one   = "it_what"
-	//icon_shell = "red_case" //except it's supposed to be caseless
 	load_time = 0.05 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 
@@ -248,11 +211,6 @@ THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 	projectile_type = /datum/projectile/bullet/pistol/italian/flare
 	stack_type = /obj/item/stackable_ammo/pistol/italian/flare
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "italian"
-	icon_high  = "italian"
-	icon_low = "italian-empty"
-	//icon_one   = "it_what"
-	//icon_shell = "red_case" //except it's supposed to be caseless
 	load_time = 0.3 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian/flare, "\improper Italian flare pistol round")
 
@@ -264,10 +222,6 @@ THE_USUAL_FLAVOURS(pistol/italian/flare, "\improper Italian flare pistol round")
 	stack_type = /obj/item/stackable_ammo/pistol/juicer
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "juicer_jr"
-	icon_high  = "juicer_jr"
-	icon_low = "juicer_jr-empty"
-	//icon_one   = "bullet_juicer_jr"
-	//icon_shell = "juicer_jr_case"
 	load_time = 0.5 SECONDS
 THE_USUAL_FLAVOURS(pistol/juicer, "\improper Juicer Jr. round")
 
@@ -279,10 +233,7 @@ THE_USUAL_FLAVOURS(pistol/juicer, "\improper Juicer Jr. round")
 	stack_type = /obj/item/stackable_ammo/pistol/capacitive/
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_stun"
-	icon_high  = "nt_stun"
-	icon_low = "nt_stun_empty"
-	//icon_one   = "bullet_nerf"
-	//icon_shell = "nerf_case"
+	ammo_icon_state = "ammofoam"
 THE_USUAL_FLAVOURS(pistol/capacitive, "\improper NT In-Capacit-8-or")
 
 /obj/item/stackable_ammo/pistol/radbow
@@ -302,10 +253,6 @@ THE_USUAL_FLAVOURS(pistol/radbow, "\improper Syndicate Radioactive Darts")
 	stack_type = /obj/item/stackable_ammo/pistol/zaubertube/
 	ammo_DRM = GUN_SOVIET | GUN_FOSS
 	icon_state = "soviet-zauber"
-	icon_high  = "soviet-zauber"
-	icon_low = "soviet-empty"
-	//icon_one   = "zauber_tube"
-	//icon_shell = "zauber_spent"
 	load_time = 0.15 SECONDS
 THE_USUAL_FLAVOURS(pistol/zaubertube, "\improper Soviet zaubertubes")
 
@@ -322,10 +269,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	stack_type = /obj/item/stackable_ammo/rifle/tranq
 	ammo_DRM = GUN_NANO
 	icon_state = "nt_white"
-	icon_high  = "nt_white"
-	icon_low = "nt_empty"
-	//icon_one   = "it_what"
-	//icon_shell = "white_case"
 	load_time = 0.2 SECONDS
 THE_USUAL_FLAVOURS(rifle/tranq, "\improper NT Tranq-Will-8-or")
 
@@ -337,31 +280,8 @@ THE_USUAL_FLAVOURS(rifle/tranq, "\improper NT Tranq-Will-8-or")
 	stack_type = /obj/item/stackable_ammo/rifle/anti_mutant
 	ammo_DRM = GUN_NANO
 	icon_state = "nt_white"
-	icon_high  = "nt_white"
-	icon_low = "nt_empty"
-	//icon_one   = "it_what"
-	//icon_shell = "white_case"
 	load_time = 0.15 SECONDS
 THE_USUAL_FLAVOURS(rifle/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart")
-
-/*	These also existed as tranq rifle rounds but I don't have a good name for em
-	syndicate
-		name = "\improper  Tranq-Will-8-or"
-		real_name = "\improper NT Tranq-Will-8-or"
-		amount_left = 5
-		max_amount = 5
-		ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate
-		ammo_DRM = GUN_SOVIET //since FOSSies don't use bullets, this was the next best thing I could think of
-
-		pistol
-			sname = ".31.0a Tranqilizer"
-			name = ".31.0a tranquilizer pistol darts"
-			amount_left = 15
-			max_amount = 15
-			caliber = 0.31
-			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
-*/
-
 
 /obj/item/stackable_ammo/rifle/NT
 	name = "\improper NT rifle round"
@@ -370,11 +290,7 @@ THE_USUAL_FLAVOURS(rifle/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart")
 	projectile_type = /datum/projectile/bullet/rifle/NT
 	stack_type = /obj/item/stackable_ammo/rifle/NT
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
-	icon_state = "nt_brass"
-	icon_high  = "nt_brass"
-	icon_low = "nt_empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
+	icon_state = "nt_basic"
 	load_time = 0.05 SECONDS
 
 THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle round")
@@ -387,10 +303,6 @@ THE_USUAL_FLAVOURS(rifle/NT, "\improper NT rifle round")
 	stack_type = /obj/item/stackable_ammo/rifle/soviet
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
 	icon_state = "soviet-surplus"
-	icon_high  = "soviet-surplus"
-	icon_low = "soviet-empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus cartridge")
 
@@ -402,10 +314,7 @@ THE_USUAL_FLAVOURS(rifle/soviet, "\improper Soviet surplus cartridge")
 	stack_type = /obj/item/stackable_ammo/rifle/juicer
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
 	icon_state = "juicer_big"
-	icon_high  = "juicer_big"
-	icon_low = "juicer_big-empty"
-	//icon_one   = "bullet_juicer_big"
-	//icon_shell = "juicer_big_case"
+	ammo_icon_state = "ammogreenshell"
 	load_time = 0.2 SECONDS
 	caliber = CALIBER_LONG_WIDE
 THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
@@ -419,37 +328,28 @@ THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 	stack_type = /obj/item/stackable_ammo/rifle/capacitive/burst
 	ammo_DRM = GUN_NANO
 	icon_state = "nt_stun"
-	icon_high  = "nt_stun"
-	icon_low = "nt_stun_empty"
-	//icon_one   = "bullet_nerf"
-	//icon_shell = "nerf_case"
+	ammo_icon_state = "ammofoam"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(rifle/capacitive/burst, "\improper NT In-Capacit-8-or MAX")
 
 
 //smoothbore shit
 ABSTRACT_TYPE(/obj/item/stackable_ammo/shotgun/)
-/obj/item/stackable_ammo/shotgun/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
+/obj/item/stackable_ammo/shotgun/ // USE THIS TYPE FOR WIDE AMMO
 	name = "generic shotgun ammo"
 	real_name = "generic shotgun ammo"
 	desc = "debug"
 	icon_state = "shells"
-	icon_high  = "shells"
-	icon_low = "empty"
-	//icon_one   = "shell_blue"
-	//icon_shell = "shell_case"
 	caliber = CALIBER_WIDE
 
-//NT's small shotgun shell
+//NT's boring shotgun shell
 /obj/item/stackable_ammo/shotgun/NT
 	name = "\improper NT Shot"
 	real_name = "\improper NT Shot"
 	desc = "NT 16mm shotgun shell with medium shot, for heavy barrels."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/NT
 	stack_type = /obj/item/stackable_ammo/shotgun/NT
-	icon_state = "nt_shells"
-	icon_high  = "nt_shells"
-	icon_low = "nt_shells-empty"
+	icon_state = "nt_basic"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(shotgun/NT, "\improper NT Shot")
 
@@ -463,10 +363,7 @@ THE_USUAL_FLAVOURS(shotgun/NT, "\improper NT Shot")
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer
 	stack_type = /obj/item/stackable_ammo/shotgun/juicer
 	icon_state = "juicer_shells_red"
-	icon_high  = "juicer_shells_red"
-	icon_low = "juicer_shells_red-empty"
-	//icon_one   = "shell_red"
-	//icon_shell = "shell_red_case"
+	ammo_icon_state = "ammoredshell"
 	load_time = 0.3 SECONDS
 THE_USUAL_FLAVOURS(shotgun/juicer, "\improper Juicer Hot Pocketz")
 
@@ -476,11 +373,7 @@ THE_USUAL_FLAVOURS(shotgun/juicer, "\improper Juicer Hot Pocketz")
 	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/juicer/denim
 	stack_type = /obj/item/stackable_ammo/shotgun/juicer/denim
-	icon_state = "juicer_shells_blue"
-	icon_high  = "juicer_shells_blue"
-	icon_low = "juicer_shells_blue-empty"
-	//icon_one   = "shell_blue"
-	//icon_shell = "shell_case"
+	ammo_icon_state = "ammoblueshell"
 	load_time = 0.5 SECONDS
 THE_USUAL_FLAVOURS(shotgun/juicer/denim, "\improper Juicer JAMMO")
 
@@ -491,10 +384,7 @@ THE_USUAL_FLAVOURS(shotgun/juicer/denim, "\improper Juicer JAMMO")
 	projectile_type = /datum/projectile/special/spreader/buckshot_burst/salt
 	stack_type = /obj/item/stackable_ammo/shotgun/bartender
 	icon_state = "shells"
-	icon_high  = "shells"
-	icon_low = "empty"
-	//icon_one   = "shell_blue"
-	//icon_shell = "shell_case"
+	ammo_icon_state = "ammogreyshell"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(shotgun/bartender, "\improper Bartender's Buddy")
 
@@ -504,6 +394,7 @@ THE_USUAL_FLAVOURS(shotgun/bartender, "\improper Bartender's Buddy")
 	desc = "A fiery magnesium flare packed into a short 16mm package."
 	projectile_type = /datum/projectile/bullet/slug/flare
 	stack_type = /obj/item/stackable_ammo/shotgun/slug_flare
+	ammo_icon_state = "ammoorangeshell"
 	load_time = 0.15 SECONDS
 THE_USUAL_FLAVOURS(shotgun/slug_flare, "gray-market flare")
 
@@ -513,6 +404,7 @@ THE_USUAL_FLAVOURS(shotgun/slug_flare, "gray-market flare")
 	desc = "An absolutely unsafe amount of explosives is packed into this huge shotgun shell."
 	projectile_type = /datum/projectile/bullet/slug/boom
 	stack_type = /obj/item/stackable_ammo/shotgun/slug_boom
+	ammo_icon_state = "ammoorangeshell"
 	load_time = 0.3 SECONDS
 	caliber = CALIBER_LONG_WIDE
 THE_USUAL_FLAVOURS(shotgun/slug_boom, "juicin' firework round")
@@ -523,6 +415,8 @@ THE_USUAL_FLAVOURS(shotgun/slug_boom, "juicin' firework round")
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/slug/rubber
 	stack_type = /obj/item/stackable_ammo/shotgun/slug_rubber
+	icon_state = "nt_basic"
+	ammo_icon_state = "ammoblueshell"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(shotgun/slug_rubber, "\improper NT rubber slug")
 
@@ -701,9 +595,7 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 	desc = "It's vibrating rapidly, and seems eager to wreak havoc. Point away from anything you hold dear."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "cat1"
-	icon_one = "cat1"
-	icon_low = "cat1"
-	icon_high = "cat1"
+	ammo_icon_state = null
 	projectile_type = /datum/projectile/special/meowitzer
 	caliber = CALIBER_LONG_WIDE
 	max_stack = 1
@@ -721,11 +613,6 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 	projectile_type = /datum/projectile/bullet/pistol/foamdart
 	stack_type = /obj/item/stackable_ammo/pistol/foamdart
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_brass"
-	icon_high  = "nt_brass"
-	icon_low = "nt_empty"
-	//icon_one   = "bullet_brass"
-	//icon_shell = "brass_case"
 THE_USUAL_FLAVOURS(pistol/foamdart, "foam dart")
 
 #undef default_max_amount

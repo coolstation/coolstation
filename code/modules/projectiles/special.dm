@@ -271,6 +271,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	cost = 1
 	pellets_to_fire = 8 //12 per
 	spread_projectile_type = /datum/projectile/bullet/shot/juicer/denim
+	casing = /obj/item/casing/shotgun/blue
 	speed_max = 30
 	speed_min = 15
 	spread_angle_variance = 20
