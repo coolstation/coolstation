@@ -85,22 +85,24 @@
 
 	proc/trap_triggered(var/mob/target,var/isAttacked)
 		if(isAttacked)
-			var/result = disarm_step(target, target.equipped())
-			if(result)
-				return // they succeeded in progressing or disarmed it
+			return disarm_step(target, target.equipped())
+
+			//boutput(world, "<b>DEBUG: ran through</b>")
 
 	proc/disarm_step(var/mob/user, var/obj/item/tool)
-		boutput(world, "<b>DEBUG: entered disarm_step, T:[tool.name]</b>")
+		//boutput(world, "<b>DEBUG: entered disarm_step, T:[tool.name]</b>")
 		if(!tool || !tool.tool_flags)
+			//boutput(world, "<b>DEBUG: exit at first check</b>")
 			return 0
 
 		if(tool.tool_flags & disarm_steps[1])
 			//right tool, handle checks and progress bar
 			if(prob(90)) //make engineers have a higher chance of doing this, clumsy people lower
 				disarm_steps.Remove(disarm_steps[1])
-				src.apply_disarm_hint()
 				if(!length(disarm_steps))
 					src.trap_disarmed(user, tool)
+				else
+					src.apply_disarm_hint()
 				return 1
 				//user feedback
 			else
@@ -113,6 +115,7 @@
 			//do some sort of sound
 			sleep(0.6 SECONDS) //give them a moment to realize they fucked up
 			return 0
+		//boutput(world, "<b>DEBUG: runs through</b>")
 
 	proc/trap_disarmed(var/mob/user,var/obj/item/tool)
 		qdel(src)
@@ -127,7 +130,8 @@
 		var/list/starters = list("It looks like this trap ","You think this trap ","This trap ", "The voices tell you this trap ", "You pray that this trap ")
 		var/list/middle = list()
 		var/list/enders = list("to be disarmed.","to be safely disarmed.","to be unsafely disarmed","to maybe disarm it","to hopefully disarm it.")
-
+		if(!disarm_steps[1])
+			return
 		if(disarm_steps[1] & TOOL_SNIPPING)
 			middle = list("needs to be snipped ","needs to be cut ","needs to be precisely cut ","needs to have scissor blades jammed into it ")
 			//snip desc
@@ -144,7 +148,8 @@
 	var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg") //non-lethal!
 	//run a check to see what limbs the target has, prune missing ones from the list. Makes our life easier
 	trap_triggered(var/mob/target,var/isAttacked)
-		..()
+		if(..()) //is this awful?
+			return 0
 		var/mob/living/carbon/human/H
 		if(istype(target, /mob/living/carbon/human))
 			H = target
