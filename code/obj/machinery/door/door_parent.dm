@@ -3,6 +3,7 @@
 /obj/machinery/door
 	name = "door"
 	icon_state = "door1"
+	desc = "this is a door."
 	opacity = 1
 	density = 1
 	flags = FPRINT | ALWAYS_SOLID_FLUID
@@ -305,6 +306,10 @@
 		return
 	if(istype(I, /obj/item/grab))
 		return ..() // handled in grab.dm + Bumped
+	if(istype(I, /obj/item/device/grigori_trap_hand))
+		return
+	if(src.isTrapped)
+		return
 
 	if (src.isblocked() == 1)
 		if (src.density && src.operating != 1 && I)

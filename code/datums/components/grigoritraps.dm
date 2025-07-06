@@ -7,8 +7,8 @@
 		RegisterSignal(linked_obj, COMSIG_MOB_DOORBUMP, /datum/component/activate_trap_on_door_touch/proc/on_bump_signal)
 		RegisterSignal(linked_obj, COMSIG_ATTACKBY, /datum/component/activate_trap_on_door_touch/proc/on_attack_signal)
 
-	proc/on_bump_signal(_,_,var/mob/usr)//blank arguments ew i'll fix em
-		linked_trap.trap_triggered(usr)
+	proc/on_bump_signal(_,var/mob/usr)//blank arguments ew i'll fix em
+		linked_trap.trap_triggered(usr,0)
 	proc/on_attack_signal(_,_,var/mob/usr)
-		linked_trap.trap_triggered(usr)
+		linked_trap.trap_triggered(usr,1)
 
