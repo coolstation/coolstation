@@ -190,7 +190,7 @@ THE_USUAL_FLAVOURS(pistol/ratshot, "\improper NT ratshot pistol round")
 	projectile_type = /datum/projectile/bullet/pistol/italian
 	stack_type = /obj/item/stackable_ammo/pistol/italian
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "italian_basic"
+	icon_state = "italian_paper"
 	ammo_icon_state = "ammopaper"
 THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 
@@ -200,6 +200,7 @@ THE_USUAL_FLAVOURS(pistol/italian, "\improper Italian pistol round")
 	desc = "Italia's standard .31 pistol firearms cartridge, with an AP core. The same caliber everyone else copies. Still in paper..."
 	projectile_type = /datum/projectile/bullet/pistol/italian/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
+	icon_state = "italian_ap"
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	load_time = 0.05 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
@@ -210,6 +211,7 @@ THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 	desc = "Still in Italia's .31 caliber, these rounds are specially packed with magnesium. This necessitates an even lighter powder load."
 	projectile_type = /datum/projectile/bullet/pistol/italian/flare
 	stack_type = /obj/item/stackable_ammo/pistol/italian/flare
+	icon_state = "italian_flare"
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	load_time = 0.3 SECONDS
 THE_USUAL_FLAVOURS(pistol/italian/flare, "\improper Italian flare pistol round")
