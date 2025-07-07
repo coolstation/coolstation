@@ -8,7 +8,11 @@
 		RegisterSignal(linked_obj, COMSIG_ATTACKBY, /datum/component/activate_trap_on_door_touch/proc/on_attack_signal)
 
 	proc/on_bump_signal(_,var/mob/usr)//blank arguments ew i'll fix em
-		linked_trap.trap_triggered(usr,0)
+		linked_trap.trap_triggered(usr)
 	proc/on_attack_signal(_,_,var/mob/usr)
-		linked_trap.trap_triggered(usr,1)
+		if(!istype(usr.equipped(), /obj/item))
+			linked_trap.trap_triggered(usr)
+		else
+			linked_trap.attempt_disarm(usr,usr.equipped())
+
 

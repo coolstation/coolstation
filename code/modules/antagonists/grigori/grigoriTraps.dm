@@ -1,3 +1,5 @@
+//this handles basically all of the grigori trap stuff, except for the components, which are in grigoritraps.dm (i know, sue me. It's with the rest of the components)
+
 /obj/item/device/grigori_trap_hand
 	name = "inhand grigori trap"
 	icon_state = "placeholder"
@@ -83,39 +85,18 @@
 			if("door_touch")
 				AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,src)
 
-	proc/trap_triggered(var/mob/target,var/isAttacked)
-		if(isAttacked)
-			return disarm_step(target, target.equipped())
-
-			//boutput(world, "<b>DEBUG: ran through</b>")
-
-	proc/disarm_step(var/mob/user, var/obj/item/tool)
-		//boutput(world, "<b>DEBUG: entered disarm_step, T:[tool.name]</b>")
-		if(!tool || !tool.tool_flags)
-			//boutput(world, "<b>DEBUG: exit at first check</b>")
+	proc/trap_triggered(var/mob/target)
+		if(!target)
 			return 0
+
+	proc/attempt_disarm(var/mob/user,var/obj/item/tool)
+		if(!tool || !tool.tool_flags)
+			trap_triggered(user)
 
 		if(tool.tool_flags & disarm_steps[1])
-			//right tool, handle checks and progress bar
-			if(prob(90)) //make engineers have a higher chance of doing this, clumsy people lower
-				disarm_steps.Remove(disarm_steps[1])
-				if(!length(disarm_steps))
-					src.trap_disarmed(user, tool)
-				else
-					src.apply_disarm_hint()
-				return 1
-				//user feedback
-			else
-				boutput(user, "<span class='alert'>You slip while trying to disarm the trap! <b>OH SHIT!</b></span>")
-				//have like, a screwdriver slipping sound or something
-				sleep(0.6 SECONDS) //give them a moment to realize they fucked up
-				return 0
+			actions.start(new/datum/action/bar/private/icon/grigori_trap_disarm(src,src.linked_obj,tool),user)
 		else
-			boutput(user, "<span class='alert'>Wait a second... that wasn't the right tool! <b>OH SHIT!</b></span>")
-			//do some sort of sound
-			sleep(0.6 SECONDS) //give them a moment to realize they fucked up
-			return 0
-		//boutput(world, "<b>DEBUG: runs through</b>")
+			trap_triggered(user)
 
 	proc/trap_disarmed(var/mob/user,var/obj/item/tool)
 		qdel(src)
@@ -145,36 +126,40 @@
 
 
 /datum/grigori_trap/chopper //this'll take an arm off! maybe even a leg!
-	var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg") //non-lethal!
-	//run a check to see what limbs the target has, prune missing ones from the list. Makes our life easier
+	var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg","tail") //non-lethal!
 	trap_triggered(var/mob/target,var/isAttacked)
 		if(..()) //is this awful?
 			return 0
+
 		var/mob/living/carbon/human/H
 		if(istype(target, /mob/living/carbon/human))
 			H = target
-			if(H.organHolder?.tail)
-				choppableBits.Add("tail")
-			var/targetedLimb = pick(choppableBits) //whatever
+			if(!H.organHolder?.tail)
+				choppableBits.Remove("tail")
+			if(!H.limbs.r_arm)
+				choppableBits.Remove("r_arm")
+			if(!H.limbs.l_arm)
+				choppableBits.Remove("l_arm")
+			if(!H.limbs.r_leg)
+				choppableBits.Remove("r_leg")
+			if(!H.limbs.l_leg)
+				choppableBits.Remove("l_leg")
+			var/targetedLimb = pick(choppableBits)
 
 			if(targetedLimb == "tail")
 				H.drop_and_throw_organ("tail",dist=3,speed=1)
 			else
 				H.sever_limb(targetedLimb)
+			target.TakeDamage("chest",30,0,0,DAMAGE_CUT,0)
 		else
-			//do flat damage ig
-			boutput(world,"<b>you triggered it pal</b>") //debug
-			//lol what if we checked specifically for beepsky and made him detonate
-			return
+			target.TakeDamage("All",50,0,0,DAMAGE_CUT,0)
+
 		//call animation here
 		//play sound here
 
 		playsound(target, pick("sound/impact_sounds/Flesh_Stab_3.ogg","sound/impact_sounds/Flesh_Cut_1.ogg"), 75,4)
 		boutput(target, "<span class='alert'><B>[pick(src.tomtech)]</B></span>")
-		qdel(src) //move this to a special destroy proc or whatever, throw defusals in there too why not
-		//do random chopping code here - have the trap be layerd ontop of whatever machine, and the linked object passes interactions from attackby to a proc here if the trap is present
-
-
+		qdel(src)
 
 // PROGRESS BARS
 /datum/action/bar/icon/grigori_trap_place //when a grigori places a trap somewhere
@@ -208,3 +193,58 @@
 		owner.visible_message("<span class='notice'>[owner] fits something to [target]!</span>")
 		trap.deploy(target,owner)
 		logTheThing("station", owner, null, "sets trap: [trap.name] at loc: [target.loc] of type: [trap.trigger_type],[trap.trap_type]")
+
+/datum/action/bar/private/icon/grigori_trap_disarm
+	duration = 15
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	var/datum/grigori_trap/trap
+	var/atom/linked
+	var/obj/item/tool
+	var/sound/toolsound
+
+	New(var/datum/grigori_trap/t,var/atom/a,var/obj/item/tt)
+		..()
+		trap = t
+		linked = a
+		tool = tt
+		if(tt.tool_flags & TOOL_WRENCHING)
+			toolsound = "sound/items/Ratchet.ogg"
+		else if(tt.tool_flags & TOOL_SCREWING)
+			toolsound = "sound/items/Screwdriver.ogg"
+		else if(tt.tool_flags & TOOL_SNIPPING)
+			toolsound = "sound/items/Wirecutter.ogg"
+
+	onUpdate()
+		..()
+		if(get_dist(owner, linked) > 1 || trap == null || linked == null || owner == null || tool == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		var/mob/source = owner
+		if(tool != source.equipped())
+			interrupt(INTERRUPT_ALWAYS)
+
+	onStart()
+		..()
+		playsound(owner, toolsound, 50,4)
+		boutput(owner, "<span class='alert'>You start to disarm the trap...</span>")
+
+	onEnd()
+		..()
+		if(prob(90)) //remember to check for engi training
+			trap.disarm_steps.Remove(trap.disarm_steps[1])
+			if(!length(trap.disarm_steps))
+				trap.trap_disarmed(owner, tool)
+			else
+				trap.apply_disarm_hint()
+		else
+			boutput(owner, "<span class='alert'>Wait.. that wasn't right! <b>OH FUCK!</b></span>")
+			//broken thing sound
+			sleep(0.6 SECONDS) //give them a moment to realize they fucked up
+			trap.trap_triggered(owner)
+
+	onInterrupt()
+		boutput(owner, "<span class='alert'>You slip while trying to disarm the trap! <b>OH SHIT!</b></span>")
+		//have like, a screwdriver slipping sound or something
+		trap.trap_triggered(owner)
+		..()
+
