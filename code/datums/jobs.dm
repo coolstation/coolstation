@@ -1897,6 +1897,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 #ifdef MAP_OVERRIDE_OSHAN
 	limit = 1
 	special_spawn_location = 0
+#elif defined(MAP_OVERRIDE_CRAG)
+	limit = 1
+	special_spawn_location = 0
 #else
 	limit = 1
 	special_spawn_location = 1
