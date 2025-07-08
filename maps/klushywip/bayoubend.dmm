@@ -17632,12 +17632,9 @@
 /turf/wall,
 /area/station/maintenance/disposal)
 "mZF" = (
-/obj/machinery/power/apc/autoname/north,
-/obj/machinery/conveyor/west{
-	id = "ghost"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
+/obj/creepy_sound_trigger,
+/turf/floor/grime,
+/area/station/maintenance/oldstation)
 "mZS" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -19513,10 +19510,10 @@
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "osb" = (
-/obj/storage/crate/wooden,
 /obj/machinery/light/small/red{
 	dir = 1
 	},
+/obj/reagent_dispensers/fueltank,
 /turf/floor/plating/random,
 /area/station/shipyard)
 "osd" = (
@@ -30316,6 +30313,7 @@
 /area/station/crew_quarters/bar)
 "vWb" = (
 /obj/machinery/door/airlock/classic,
+/obj/creepy_sound_trigger,
 /turf/floor/grime,
 /area/station/maintenance/oldstation)
 "vWm" = (
@@ -32516,6 +32514,7 @@
 	name = "old wooden chair";
 	pixel_y = 4
 	},
+/obj/creepy_sound_trigger,
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "xDx" = (
@@ -63005,7 +63004,7 @@ wDt
 wDt
 siW
 uQh
-uQh
+mZF
 pNw
 tXg
 tmI
@@ -109874,7 +109873,7 @@ ipT
 ipT
 yjO
 yjO
-mZF
+kzX
 jKX
 dfQ
 bkT
