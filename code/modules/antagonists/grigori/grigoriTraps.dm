@@ -41,7 +41,7 @@
 				dropped.set_loc(user.loc)
 			trigger_type = W
 			playsound(user, "sound/items/Screwdriver.ogg",50,4)
-			boutput(user, "<span class='alert'>You attatch the [W.name] to the [src.name]. [trigger_type.trigger_desc]</span>")
+			boutput(user, "<span class='alert'>You attach the [W.name] to the [src.name]. [trigger_type.trigger_desc]</span>")
 			qdel(W)
 
 	afterattack(var/atom/target, var/mob/user as mob)
@@ -49,8 +49,8 @@
 			boutput(user, "<span class='alert'>The trap isn't armed!</span>")
 			return
 		if(!trigger_type.check_deploy(user))
-			return
-		actions.start(new/datum/action/bar/icon/grigori_trap_place(src, target),user)
+			actions.start(new/datum/action/bar/icon/grigori_trap_place(src, target),user)
+
 
 	proc/arm(var/mob/user)
 		//play some sounds, animate the icon, mark armed to true
@@ -126,7 +126,7 @@
 /obj/item/device/grigori_trigger/door_touch
 	name = "door trap trigger"
 	desc = "Attach this trigger to a trap to make it able to be placed on doors."
-	trigger_desc = "This trap can be attatched to any door, and is sprung when someone tries to open it."
+	trigger_desc = "This trap can be attached to any door, and is sprung when someone tries to open it."
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
@@ -134,7 +134,7 @@
 /obj/item/device/grigori_trigger/computer_touch
 	name = "computer trap trigger"
 	desc = "Attach this trigger to a trap to make it able to be placed on computers."
-	trigger_desc = "This trap can be attatched to any computer, and is sprung when someone interacts with it."
+	trigger_desc = "This trap can be attached to any computer, and is sprung when someone interacts with it."
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_computer_touch,linked_obj,trap)
@@ -142,7 +142,7 @@
 /obj/item/device/grigori_trigger/chair_sit
 	name = "chair trap trigger"
 	desc = "Attach this trigger to a trap to make it able to be set on chairs."
-	trigger_desc = "This trap can be attatched to a chair with a back, and is sprung when someone buckles into it."
+	trigger_desc = "This trap can be attached to a chair with a back, and is sprung when someone buckles into it."
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_chair_buckle,linked_obj,trap)
@@ -150,7 +150,7 @@
 /obj/item/device/grigori_trigger/switch_flick
 	name = "switch trap trigger"
 	desc = "Attach this trigger to a trap to make it able to be set on switches."
-	trigger_desc = "This trap can be attatched to a switch, and is sprung when someone flips it."
+	trigger_desc = "This trap can be attached to a switch, and is sprung when someone flips it."
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
