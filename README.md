@@ -1,4 +1,17 @@
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Fancy-Schmancy-Necromancy)](https://github.com/anuraghazra/github-readme-stats)
+<picture>
+  <source
+    srcset="https://github-readme-stats.vercel.app/api?username=Fancy-Schmancy-Necromancy
+&show_icons=true&theme=dark"
+    media="(prefers-color-scheme: dark)"
+  />
+  <source
+    srcset="https://github-readme-stats.vercel.app/api?username=Fancy-Schmancy-Necromancy
+&show_icons=true"
+    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+  />
+  <img src="https://github-readme-stats.vercel.app/api?username=Fancy-Schmancy-Necromancy
+&show_icons=true" />
+</picture>
 
 [<img src=".github/assets/setup.png" alt="Setup" width="150" align="left">](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fdev)
 
