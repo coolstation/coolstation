@@ -1,11 +1,22 @@
 //this handles basically all of the grigori trap stuff, except for the components, which are in grigoritraps.dm (i know, sue me. It's with the rest of the components)
 
+
+/*
+================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TRAP ITEMS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================================================================================
+*/
+
 /obj/item/device/grigori_trap_hand
 	name = "inhand grigori trap"
 	icon_state = "placeholder"
-	var/trigger_type = "door_touch"
+	var/trigger_type
+	var/trigger_desc = "This trap has no trigger type. Report this!"
 	var/armed = FALSE
 	var/trap_type = null
+
+	var/list/valid_triggers = list("door_touch","computer_touch","chair_sit") //we're doing too many switches and defining these too many times, a central list would be helpful
+
 	flags = USEDELAY
 	w_class = W_CLASS_BULKY
 	item_state = "placeholder"
@@ -13,12 +24,24 @@
 
 
 
+	New(var/random_trigger = 1)
+		..()
+		if(random_trigger)
+			trigger_type = pick(valid_triggers)
+		switch(trigger_type)
+			if ("door_touch")
+				trigger_desc = "This trap can be attatched to any door, and is sprung when someone tries to open it."
+			if ("computer_touch")
+				trigger_desc = "This trap can be attatched to any computer, and is sprung when someone interacts with it."
+			if ("chair_sit")
+				trigger_desc = "This trap can be attatched to a chair with a back, and is sprung when someone buckles into it."
+
 	attack_self(var/mob/user as mob)
 		if(src.armed)
 			boutput(user, "<span class='alert'>You disarm the [src.name]</span>")
 			src.disarm(user)
 		else
-			boutput(user, "<span class='alert'>You arm the [src.name]. Click on a [trigger_type] to set the trap.</span>") //probably need an associated list to have proper instructions (ie, door_touch = door, door_enter = door usw.)
+			boutput(user, "<span class='alert'>You arm the [src.name]. [trigger_desc]</span>") //probably need an associated list to have proper instructions (ie, door_touch = door, door_enter = door usw.)
 			src.arm(user)
 
 	afterattack(var/atom/target, var/mob/user as mob)
@@ -30,6 +53,14 @@
 			if ("door_touch")
 				if(!istype(target,/obj/machinery/door))
 					boutput(user, "<span class='alert'>This trap can't fit here.</span>")
+					return 0
+			if ("computer_touch")
+				if(!istype(target,/obj/machinery/computer))
+					boutput(user,"<span class='alert'>This trap can't fit here.</span>")
+					return 0
+			if ("chair_sit")
+				if(!istype(target,/obj/stool/chair))
+					boutput(user,"<span class='alert'>This trap can't fit here.</span>")
 					return 0
 			else
 				boutput(user, "<span class='alert'>This trap can't fit here.</span>") //be more descriptive later
@@ -57,17 +88,27 @@
 
 
 /obj/item/device/grigori_trap_hand/chopper //a blade cuts a random limb off
-	name = "hidden door blade trap"
+	name = "hidden blade trap"
 	icon_state = "placeholder"
 	item_state = "placeholder"
 	trap_type = /datum/grigori_trap/chopper
-	desc = "A hidden blade that can be fastened to a door. When a victim tries to open the door, a blade will come from the door and chop a random limb off."
+	desc = "A hidden blade trap that takes a limb from its target when they set off the trigger."
+
+
+/*
+=================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TRAP DATUMS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=================================================================================================
+*/
+
+
 
 /datum/grigori_trap
 	var/obj/linked_obj
 	var/list/tomtech = list("DAAAAAAA!!!!!","YEEEEOOOOOWCH!","AAAAAAAAAHHH!!!","rraaaAAAAAAAAA!!!!!","OOOOOOOOWWWWIIIIEEE!!!") //load bearing
 	var/list/disarm_steps_range = list(1,4) //are vector2s a thing in dm? idk
 	var/list/disarm_tools = list(TOOL_SNIPPING,TOOL_SCREWING,TOOL_WRENCHING)
+
 
 	var/disarm_hint
 	var/list/disarm_steps = list()
@@ -84,7 +125,10 @@
 		switch(trigger_type)
 			if("door_touch")
 				AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,src)
-
+			if("computer_touch")
+				AddComponent(/datum/component/activate_trap_on_computer_touch,linked_obj,src)
+			if("chair_sit")
+				AddComponent(/datum/component/activate_trap_on_chair_buckle, linked_obj,src)
 	proc/trap_triggered(var/mob/target)
 		if(!target)
 			return 0
@@ -153,6 +197,8 @@
 			target.TakeDamage("chest",30,0,0,DAMAGE_CUT,0)
 		else
 			target.TakeDamage("All",50,0,0,DAMAGE_CUT,0)
+		if(target.buckled)
+			target.buckled.unbuckle()
 
 		//call animation here
 		//play sound here
@@ -161,7 +207,11 @@
 		boutput(target, "<span class='alert'><B>[pick(src.tomtech)]</B></span>")
 		qdel(src)
 
-// PROGRESS BARS
+/*
+=================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ACTION BARS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=================================================================================================
+*/
 /datum/action/bar/icon/grigori_trap_place //when a grigori places a trap somewhere
 	duration = 35
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
