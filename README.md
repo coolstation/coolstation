@@ -1,8 +1,4 @@
-### [![Coolstation](.github/assets/coolstation.png)](#) Welcome to the main repository for the Coolstation fork of the [Goonstation](https://github.com/goonstation/goonstation) branch of [Space Station 13](https://spacestation13.com/).
-
-[![fuckshit](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](#)[![made with crayons](https://forthebadge.com/images/badges/made-with-crayons.svg)](#)[![made in byond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](#)
-
-# SETUP
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Fancy-Schmancy-Necromancy)](https://github.com/anuraghazra/github-readme-stats)
 
 [<img src=".github/assets/setup.png" alt="Setup" width="150" align="left">](https://hackmd.io/@goonstation/docs/%2F%40goonstation%2Fdev)
 
