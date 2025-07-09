@@ -10,61 +10,46 @@
 /obj/item/device/grigori_trap_hand
 	name = "inhand grigori trap"
 	icon_state = "placeholder"
-	var/trigger_type
-	var/trigger_desc = "This trap has no trigger type. Report this!"
+	var/obj/item/device/grigori_trigger/trigger_type
 	var/armed = FALSE
 	var/trap_type = null
 
-	var/list/valid_triggers = list("door_touch","computer_touch","chair_sit") //we're doing too many switches and defining these too many times, a central list would be helpful
+	//var/list/valid_triggers = list("door_touch","computer_touch","chair_sit","switch_flick") //we're doing too many switches and defining these too many times, a central list would be helpful
 
 	flags = USEDELAY
 	w_class = W_CLASS_BULKY
 	item_state = "placeholder"
 	desc = "abstract trap. Hand? !!!"
 
-
-
-	New(var/random_trigger = 1)
+	New()
 		..()
-		if(random_trigger)
-			trigger_type = pick(valid_triggers)
-		switch(trigger_type)
-			if ("door_touch")
-				trigger_desc = "This trap can be attatched to any door, and is sprung when someone tries to open it."
-			if ("computer_touch")
-				trigger_desc = "This trap can be attatched to any computer, and is sprung when someone interacts with it."
-			if ("chair_sit")
-				trigger_desc = "This trap can be attatched to a chair with a back, and is sprung when someone buckles into it."
+		trigger_type = new /obj/item/device/grigori_trigger
 
 	attack_self(var/mob/user as mob)
 		if(src.armed)
 			boutput(user, "<span class='alert'>You disarm the [src.name]</span>")
 			src.disarm(user)
 		else
-			boutput(user, "<span class='alert'>You arm the [src.name]. [trigger_desc]</span>") //probably need an associated list to have proper instructions (ie, door_touch = door, door_enter = door usw.)
+			boutput(user, "<span class='alert'>You arm the [src.name]. [src.trigger_type?.trigger_desc]</span>") //probably need an associated list to have proper instructions (ie, door_touch = door, door_enter = door usw.)
 			src.arm(user)
+
+	attackby(obj/item/W, mob/user)
+		if(istype(W,/obj/item/device/grigori_trigger))
+			if(!trigger_type?.name == "null trigger")
+				var/obj/item/device/grigori_trigger/dropped = trigger_type
+				new dropped
+				dropped.set_loc(user.loc)
+			trigger_type = W
+			playsound(user, "sound/items/Screwdriver.ogg",50,4)
+			boutput(user, "<span class='alert'>You attatch the [W.name] to the [src.name]. [trigger_type.trigger_desc]</span>")
+			qdel(W)
 
 	afterattack(var/atom/target, var/mob/user as mob)
 		if(!src.armed)
 			boutput(user, "<span class='alert'>The trap isn't armed!</span>")
 			return
-
-		switch(src.trigger_type)
-			if ("door_touch")
-				if(!istype(target,/obj/machinery/door))
-					boutput(user, "<span class='alert'>This trap can't fit here.</span>")
-					return 0
-			if ("computer_touch")
-				if(!istype(target,/obj/machinery/computer))
-					boutput(user,"<span class='alert'>This trap can't fit here.</span>")
-					return 0
-			if ("chair_sit")
-				if(!istype(target,/obj/stool/chair))
-					boutput(user,"<span class='alert'>This trap can't fit here.</span>")
-					return 0
-			else
-				boutput(user, "<span class='alert'>This trap can't fit here.</span>") //be more descriptive later
-				return 0
+		if(!trigger_type.check_deploy(user))
+			return
 		actions.start(new/datum/action/bar/icon/grigori_trap_place(src, target),user)
 
 	proc/arm(var/mob/user)
@@ -96,6 +81,84 @@
 
 
 /*
+===================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TRIGGER ITEMS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================================================
+*/
+//the plan is to make grigoris able to create triggers out of random items via their ability holder
+
+/obj/item/device/grigori_trigger
+	name = "null trigger"
+	icon_state = "placeholder"
+	item_state = "placeholder"
+	desc = "abstract trigger, how did you get this"
+
+	var/trigger_desc = "This trap does not have a trigger set yet. Hit it with a trigger to set the trigger type."
+
+	w_class = W_CLASS_SMALL
+
+	proc/check_deploy(var/atom/target, var/mob/user as mob)
+		if (istype(src,/obj/item/device/grigori_trigger/door_touch))
+			if(!istype(target,/obj/machinery/door))
+				boutput(user, "<span class='alert'>This trap can't fit here.</span>")
+				return 0
+		else if(istype(src,/obj/item/device/grigori_trigger/computer_touch))
+			if(!istype(target,/obj/machinery/computer))
+				boutput(user,"<span class='alert'>This trap can't fit here.</span>")
+				return 0
+		else if(istype(src,/obj/item/device/grigori_trigger/chair_sit))
+			if(!istype(target,/obj/stool/chair))
+				boutput(user,"<span class='alert'>This trap can't fit here.</span>")
+				return 0
+		else if(istype(src,/obj/item/device/grigori_trigger/switch_flick))
+			if(!istype(target,/obj/machinery/light_switch) && !istype(target,/obj/machinery/conveyor_switch) && !istype(target,/obj/machinery/ignition_switch))
+				boutput(user,"<span class='alert'>This trap can't fit here.</span>")
+				return 0
+		else
+			boutput(user, "<span class='alert'>This trap has no trigger set.</span>")
+			return 0
+		return 1
+
+	proc/set_component(var/mob/user)
+		boutput(user,"<span class='alert'>This trap is broken. Bug report this</span>")
+		return 0
+
+/obj/item/device/grigori_trigger/door_touch
+	name = "door trap trigger"
+	desc = "Attach this trigger to a trap to make it able to be placed on doors."
+	trigger_desc = "This trap can be attatched to any door, and is sprung when someone tries to open it."
+
+	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
+		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
+
+/obj/item/device/grigori_trigger/computer_touch
+	name = "computer trap trigger"
+	desc = "Attach this trigger to a trap to make it able to be placed on computers."
+	trigger_desc = "This trap can be attatched to any computer, and is sprung when someone interacts with it."
+
+	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
+		trap.AddComponent(/datum/component/activate_trap_on_computer_touch,linked_obj,trap)
+
+/obj/item/device/grigori_trigger/chair_sit
+	name = "chair trap trigger"
+	desc = "Attach this trigger to a trap to make it able to be set on chairs."
+	trigger_desc = "This trap can be attatched to a chair with a back, and is sprung when someone buckles into it."
+
+	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
+		trap.AddComponent(/datum/component/activate_trap_on_chair_buckle,linked_obj,trap)
+
+/obj/item/device/grigori_trigger/switch_flick
+	name = "switch trap trigger"
+	desc = "Attach this trigger to a trap to make it able to be set on switches."
+	trigger_desc = "This trap can be attatched to a switch, and is sprung when someone flips it."
+
+	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
+		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
+
+
+
+
+/*
 =================================================================================================
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TRAP DATUMS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 =================================================================================================
@@ -113,7 +176,7 @@
 	var/disarm_hint
 	var/list/disarm_steps = list()
 
-	New(var/obj/target,var/trigger_type)
+	New(var/obj/target,var/obj/item/device/grigori_trigger/trigger_type)
 		..()
 		linked_obj = target
 		target.linked_trap = src
@@ -122,13 +185,10 @@
 		for(var/j = 1, j <= i, j++)
 			disarm_steps += list(pick(disarm_tools)) //generates a random list of disarm steps to make disarming traps annoying and dangerous
 		src.apply_disarm_hint()
-		switch(trigger_type)
-			if("door_touch")
-				AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,src)
-			if("computer_touch")
-				AddComponent(/datum/component/activate_trap_on_computer_touch,linked_obj,src)
-			if("chair_sit")
-				AddComponent(/datum/component/activate_trap_on_chair_buckle, linked_obj,src)
+
+		if(!trigger_type.set_component(target,src))
+			qdel(src)
+
 	proc/trap_triggered(var/mob/target)
 		if(!target)
 			return 0
@@ -242,7 +302,7 @@
 		..()
 		owner.visible_message("<span class='notice'>[owner] fits something to [target]!</span>")
 		trap.deploy(target,owner)
-		logTheThing("station", owner, null, "sets trap: [trap.name] at loc: [target.loc] of type: [trap.trigger_type],[trap.trap_type]")
+		logTheThing("station", owner, null, "sets trap: [trap.name] at loc: [target.loc] of type: [trap.trigger_type.name],[trap.trap_type]")
 
 /datum/action/bar/private/icon/grigori_trap_disarm
 	duration = 15
