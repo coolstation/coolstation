@@ -141,7 +141,8 @@
 					C.c_color = src.icon_state
 					C.icon_state = "folded_[src.icon_state]"
 					C.item_state = C.icon_state
-
+				if (src.linked_trap)
+					src.linked_trap.trap_triggered(user)
 				qdel(src)
 			else
 				src.rotate()

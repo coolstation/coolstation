@@ -36,9 +36,8 @@
 	attackby(obj/item/W, mob/user)
 		if(istype(W,/obj/item/device/grigori_trigger))
 			if(!trigger_type?.name == "null trigger")
-				var/obj/item/device/grigori_trigger/dropped = trigger_type
-				new dropped
-				dropped.set_loc(user.loc)
+				var/obj/item/device/grigori_trigger/dropped = new trigger_type
+				user.put_in_hand_or_drop(dropped)
 			trigger_type = W
 			playsound(user, "sound/items/Screwdriver.ogg",50,4)
 			boutput(user, "<span class='alert'>You attach the [W.name] to the [src.name]. [trigger_type.trigger_desc]</span>")
@@ -48,15 +47,15 @@
 		if(!src.armed)
 			boutput(user, "<span class='alert'>The trap isn't armed!</span>")
 			return
-		if(!trigger_type.check_deploy(user))
+		if(trigger_type.check_deploy(target, user))
 			actions.start(new/datum/action/bar/icon/grigori_trap_place(src, target),user)
 
 
 	proc/arm(var/mob/user)
 		//play some sounds, animate the icon, mark armed to true
 		playsound(user, "sound/effects/sword_unsheath2.ogg",50,4)
-
 		src.armed = TRUE
+
 	proc/disarm(var/mob/user)
 		//play some sounds, animate the icon, mark armed to false
 		playsound(user, "sound/effects/sword_unsheath1.ogg",50,4) //we could use better sounds for this
@@ -99,25 +98,27 @@
 
 	proc/check_deploy(var/atom/target, var/mob/user as mob)
 		if (istype(src,/obj/item/device/grigori_trigger/door_touch))
-			if(!istype(target,/obj/machinery/door))
-				boutput(user, "<span class='alert'>This trap can't fit here.</span>")
-				return 0
+			if(istype(target,/obj/machinery/door))
+				return 1
+
 		else if(istype(src,/obj/item/device/grigori_trigger/computer_touch))
-			if(!istype(target,/obj/machinery/computer))
-				boutput(user,"<span class='alert'>This trap can't fit here.</span>")
-				return 0
+			if(istype(target,/obj/machinery/computer))
+				return 1
+
 		else if(istype(src,/obj/item/device/grigori_trigger/chair_sit))
-			if(!istype(target,/obj/stool/chair))
-				boutput(user,"<span class='alert'>This trap can't fit here.</span>")
-				return 0
+			if(istype(target,/obj/stool/chair))
+				return 1
+
 		else if(istype(src,/obj/item/device/grigori_trigger/switch_flick))
-			if(!istype(target,/obj/machinery/light_switch) && !istype(target,/obj/machinery/conveyor_switch) && !istype(target,/obj/machinery/ignition_switch))
-				boutput(user,"<span class='alert'>This trap can't fit here.</span>")
-				return 0
-		else
+			if(istype(target,/obj/machinery/light_switch) && !istype(target,/obj/machinery/conveyor_switch) && !istype(target,/obj/machinery/ignition_switch))
+				return 1
+
+		else if(src.name == "null trigger")
 			boutput(user, "<span class='alert'>This trap has no trigger set.</span>")
 			return 0
-		return 1
+
+		boutput(user, "<span class='alert'>This trap can't fit here.</span>")
+		return 0
 
 	proc/set_component(var/mob/user)
 		boutput(user,"<span class='alert'>This trap is broken. Bug report this</span>")
@@ -130,6 +131,7 @@
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
+		return 1
 
 /obj/item/device/grigori_trigger/computer_touch
 	name = "computer trap trigger"
@@ -138,6 +140,7 @@
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_computer_touch,linked_obj,trap)
+		return 1
 
 /obj/item/device/grigori_trigger/chair_sit
 	name = "chair trap trigger"
@@ -146,6 +149,7 @@
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_chair_buckle,linked_obj,trap)
+		return 1
 
 /obj/item/device/grigori_trigger/switch_flick
 	name = "switch trap trigger"
@@ -154,6 +158,7 @@
 
 	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
 		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
+		return 1
 
 
 
@@ -187,6 +192,7 @@
 		src.apply_disarm_hint()
 
 		if(!trigger_type.set_component(target,src))
+			boutput(world,"<B>DEBUG: why the fuck is the trap qdelling</B>")
 			qdel(src)
 
 	proc/trap_triggered(var/mob/target)
