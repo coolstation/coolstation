@@ -736,10 +736,12 @@ var/datum/action_controller/actions
 		owner << border.img
 
 	onDelete()
-		bar.icon = 'icons/ui/actions.dmi'
-		border.icon = 'icons/ui/actions.dmi'
-		del(bar.img)
-		del(border.img)
+		if(bar)
+			bar.icon = 'icons/ui/actions.dmi'
+			del(bar.img)
+		if(border)
+			border.icon = 'icons/ui/actions.dmi'
+			del(border.img)
 		..()
 
 /datum/action/bar/private/icon //Only visible to the owner and has a little icon on the bar.
@@ -1451,6 +1453,50 @@ var/datum/action_controller/actions
 		if(owner && target)
 			mop.clean(target, owner)
 
+
+/datum/action/bar/icon/syringe
+	duration = 1 SECONDS
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ATTACKED
+	var/mob/mob_owner
+	var/mob/target
+	var/obj/item/reagent_containers/syringe/S
+
+	New(var/mob/target, var/item, var/icon, var/icon_state)
+		..()
+		src.target = target
+		if (istype(item, /obj/item/reagent_containers/syringe))
+			S = item
+		else
+			logTheThing("debug", src, null, "/datum/action/bar/icon/syringe called with invalid type [item].")
+		src.icon = icon
+		src.icon_state = icon_state
+
+
+	onStart()
+		if (!ismob(owner))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		src.mob_owner = owner
+
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		..()
+
+	onUpdate()
+		..()
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onEnd()
+		..()
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!isnull(S))
+			S.syringe_action(owner, target)
 
 /datum/action/bar/private/spy_steal //Used when a spy tries to steal a large object
 	duration = 30

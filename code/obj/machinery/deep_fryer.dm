@@ -100,6 +100,9 @@ var/list/fryer_recipes
 		src.fryitem = W
 		src.icon_state = "fryer1"
 		if(fucked_up_now_kid)
+			#ifdef DATALOGGER
+			game_stats.Increment("workplacesafety")
+			#endif
 			var/turf/T = get_turf(src)
 			src.visible_message("<span class='alert'>[src] erupts into a disaster of hot oil!</span>")
 			fireflash(T, 2)
@@ -179,7 +182,7 @@ var/list/fryer_recipes
 
 		src.reagents.trans_to(src.fryitem, 2)
 
-		if (src.cooktime < 60)
+		if (src.cooktime <= 60)
 
 			if (src.cooktime >= 30 && src.cooktime_prev < 30)
 				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
@@ -353,11 +356,15 @@ var/list/fryer_recipes
 		set desc = "Drain and replenish fryer oils."
 		set category = "Local"
 
-		if (src.reagents)
+		if(src.reagents.reagent_list.len)
 			if (isobserver(usr) || isintangible(usr)) // Ghosts probably shouldn't be able to take revenge on a traitor chef or whatever (Convair880).
-				return
-			else
-				src.reagents.clear_reagents()
-				src.visible_message("<span class='alert'>[usr] drains and refreshes the frying oil!</span>")
+				for(var/reagent_id in src.reagents.reagent_list)
+					if(reagent_id != "grease") // The above comment makes sense if some traitor chef has filled the fryer with hard-fought deathchems. But if there's nothing in it to lose but standard default hot grease, fuck it: Let ghosts chairspin the deep fryer again.
+						boutput(usr, "<span class='alert'>Some supernatural condition prevents you from tampering with the fryer from beyond the realm of the living! Nice try, though.</span>")
+						return
+			src.reagents.clear_reagents()
+			src.reagents.add_reagent("grease", 25) //also maybe actually refresh the frying oil instead of just draining it and doing nothing
+			src.reagents.set_reagent_temp(src.frytemp)
+			src.visible_message("<span class='alert'>[usr] drains and refreshes the frying oil!</span>")
 
 		return

@@ -23,7 +23,7 @@
 	var/list/secure_connections = null
 	var/datum/radio_frequency/radio_connection
 	var/speaker_range = 2
-	var/static/image/speech_bubble = image('icons/mob/mob.dmi', "speech")
+	var/static/mutable_appearance/speech_bubble = living_speech_bubble //typing_indicator.dm
 	var/hardened = 1	//This is for being able to run through signal jammers (just solar flares for now). acceptable values = 0 and 1.
 
 	flags = FPRINT | TABLEPASS | ONBELT | CONDUCT
@@ -255,6 +255,13 @@ var/list/headset_channel_lookup
 
 	var/ai_sender = 0
 	var/eqjobname
+
+	//If we're trying to talk on a secure channel update the channel input box for last sent channel hotkey
+	if(secure && !isnull(src.secure_frequencies[secure]))
+		var/color = default_frequency_color(src.secure_frequencies[secure])
+		var/title = "[format_frequency(src.secure_frequencies[secure])] - "\
+		+ (headset_channel_lookup["[src.secure_frequencies[secure]]"] ? headset_channel_lookup["[src.secure_frequencies[secure]]"] : "(Unknown)")
+		M.open_radio_input(":[secure]", title, color, open_window=FALSE)
 
 	if (iscarbon(M))
 		if (hasvar(M, "wear_id"))

@@ -1,17 +1,84 @@
-"a" = (/obj/machinery/light/small{dir = 8; icon_state = "bulb1"},/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"b" = (/obj/decal/cleanable/blood/drip,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"d" = (/obj/machinery/atmospherics/portables_connector,/obj/machinery/portable_atmospherics/canister/toxins,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"j" = (/obj/decal/cleanable/blood/gibs/body,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"r" = (/obj/decal/cleanable/blood,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"A" = (/obj/decal/fakeobjects/sealedsleeper,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"G" = (/obj/machinery/atmospherics/pipe/manifold{dir = 4; icon_state = "manifold"; level = 2},/obj/machinery/light/small{dir = 4; icon_state = "bulb1"},/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"Q" = (/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"R" = (/obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"S" = (/obj/machinery/atmospherics/pipe/manifold{level = 2},/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
-"V" = (/obj/machinery/atmospherics/unary/cold_sink/freezer/cryo/north,/turf/floor/sanitary/blue,/area/dmm_suite/clear_area)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/light/small{
+	dir = 8;
+	icon_state = "bulb1"
+	},
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"b" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"d" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"j" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"r" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"A" = (
+/obj/decal/fakeobjects/sealedsleeper,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"G" = (
+/obj/machinery/atmospherics/pipe/manifold{
+	dir = 4;
+	icon_state = "manifold";
+	level = 2
+	},
+/obj/machinery/light/small{
+	dir = 4;
+	icon_state = "bulb1"
+	},
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"Q" = (
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"R" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"S" = (
+/obj/machinery/atmospherics/pipe/manifold{
+	level = 2
+	},
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
+"V" = (
+/obj/machinery/atmospherics/unary/cold_sink/freezer/cryo/north,
+/turf/floor/sanitary/blue,
+/area/dmm_suite/clear_area)
 
 (1,1,1) = {"
-bAAAd
-aRSSG
-jQQrV
+b
+a
+j
+"}
+(2,1,1) = {"
+A
+R
+Q
+"}
+(3,1,1) = {"
+A
+S
+Q
+"}
+(4,1,1) = {"
+A
+S
+r
+"}
+(5,1,1) = {"
+d
+G
+V
 "}

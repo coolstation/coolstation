@@ -291,6 +291,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 
 /datum/materialProc/telecrystal_entered
 	execute(var/atom/owner, var/atom/movable/entering)
+		if(istype(entering, /mob/dead)) return
 		var/turf/T = get_turf(entering)
 		if(prob(50) && owner && isturf(owner) && !isrestrictedz(T.z))
 			. = get_offset_target_turf(get_turf(entering), rand(-2, 2), rand(-2, 2))
@@ -344,7 +345,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 			return*/
 		for (var/turf/floor/target in range(1,location))
 			if(ON_COOLDOWN(target, "plasmastone_plasma_generate", 10 SECONDS)) continue
-			if(!target.blocks_air && target.air)
+			if(!target.gas_impermeable && target.air)
 				if(target.parent?.group_processing)
 					target.parent.suspend_group_processing()
 

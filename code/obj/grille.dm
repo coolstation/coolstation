@@ -27,11 +27,16 @@
 	New()
 		..()
 		if(src.auto)
-			SPAWN_DBG(0) //fix for sometimes not joining on map load
+			if (worldgen_hold)
+				worldgen_candidates[worldgen_generation] += src
+			else
 				if (map_setting && ticker)
 					src.update_neighbors()
 
 				src.update_icon()
+
+	generate_worldgen()
+		src.update_icon()
 
 	disposing()
 		var/list/neighbors = null
@@ -524,7 +529,10 @@
 			else
 				..()
 				return
-
+		else if (istype(W, /obj/item/gun))
+			var/obj/item/gun/G = W
+			G.Shoot(get_turf(src), get_turf(user), user, point_blank_target = src)
+			return
 		// electrocution check
 
 		var/OSHA_is_crying = 1
@@ -678,7 +686,7 @@
 
 		return src.electrocute(user, prb, net, ignore_gloves)
 
-	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			if (density)
 				return prob(50)

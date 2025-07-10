@@ -124,7 +124,7 @@
 	dir = 4;
 	icon_state = "line2"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space)
 "hk" = (
 /turf/floor/carpet{
@@ -6781,10 +6781,6 @@
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/black/grime,
 /area/dank_trench)
-"Cr" = (
-/turf/space,
-/turf/space,
-/area/space)
 "CB" = (
 /obj/decal/cleanable/dirt,
 /obj/machinery/manufacturer/general{
@@ -6994,7 +6990,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/obj/machinery/power/apc/autoname_north/nopoweralert{
+/obj/machinery/power/apc/autoname/north{
 	environ = 2;
 	equipment = 2;
 	lighting = 2;
@@ -7002,6 +6998,7 @@
 	operating = 0;
 	start_charge = 23
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -8176,7 +8173,7 @@ ab
 gW
 gW
 gW
-Cr
+gW
 gW
 gW
 gW
@@ -9382,11 +9379,11 @@ wL
 (7,1,1) = {"
 ab
 gW
-Cr
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -13006,7 +13003,7 @@ wX
 (19,1,1) = {"
 ab
 gW
-Cr
+gW
 gW
 gW
 gW
@@ -13610,13 +13607,13 @@ wZ
 (21,1,1) = {"
 ab
 gW
-Cr
-gW
-Cr
 gW
 gW
-Cr
-Cr
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -14521,8 +14518,8 @@ gW
 gW
 gW
 gW
-Cr
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -15724,14 +15721,14 @@ gW
 (28,1,1) = {"
 ab
 gW
-Cr
 gW
 gW
 gW
-Cr
 gW
 gW
-Cr
+gW
+gW
+gW
 gW
 gW
 gW
@@ -17266,34 +17263,34 @@ gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -17568,7 +17565,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -17595,7 +17591,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -17870,7 +17867,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -17897,7 +17893,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -18172,7 +18169,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -18199,7 +18195,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -18474,7 +18471,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -18501,7 +18497,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -18776,7 +18773,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -18803,7 +18799,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -19078,7 +19075,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -19105,7 +19101,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -19380,7 +19377,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -19407,7 +19403,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -19682,7 +19679,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -19709,7 +19705,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -19984,7 +19981,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -20011,7 +20007,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -20286,7 +20283,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -20313,7 +20309,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -20580,15 +20577,6 @@ gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
 gW
 gW
 gW
@@ -20615,7 +20603,16 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -20917,7 +20914,7 @@ gW
 gW
 gW
 gW
-Cr
+gW
 gW
 gW
 gW
@@ -21184,15 +21181,6 @@ gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
 gW
 gW
 gW
@@ -21219,7 +21207,16 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -21494,7 +21491,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -21521,7 +21517,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -21796,7 +21793,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -21823,7 +21819,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -22098,7 +22095,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -22125,7 +22121,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -22400,14 +22397,6 @@ gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
 gW
 gW
 gW
@@ -22427,7 +22416,15 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -22709,7 +22706,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -22729,7 +22725,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -23011,7 +23008,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -23031,7 +23027,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -23313,7 +23310,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -23333,7 +23329,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -23615,7 +23612,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -23635,7 +23631,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -23917,7 +23914,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -23937,7 +23933,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -24219,7 +24216,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -24239,7 +24235,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -24521,7 +24518,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -24541,7 +24537,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -24823,27 +24820,27 @@ gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -25138,7 +25135,7 @@ gW
 gW
 gW
 gW
-Cr
+gW
 gW
 gW
 gW
@@ -25433,16 +25430,16 @@ gW
 gW
 gW
 gW
-Cr
-Cr
 gW
 gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW
@@ -25735,7 +25732,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -25744,7 +25740,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -26037,7 +26034,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -26046,7 +26042,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -26339,7 +26336,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -26348,7 +26344,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -26641,7 +26638,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -26650,7 +26646,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -26943,7 +26940,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -26952,7 +26948,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -27245,7 +27242,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -27254,7 +27250,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -27547,7 +27544,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -27556,7 +27552,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -27849,7 +27846,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -27858,7 +27854,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -28151,7 +28148,6 @@ gW
 gW
 gW
 gW
-Cr
 gW
 gW
 gW
@@ -28160,7 +28156,8 @@ gW
 gW
 gW
 gW
-Cr
+gW
+gW
 gW
 gW
 gW
@@ -28453,16 +28450,16 @@ gW
 gW
 gW
 gW
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
+gW
 gW
 gW
 gW

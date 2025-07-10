@@ -407,7 +407,7 @@
 	icon = 'icons/obj/foodNdrink/drinks.dmi'
 	flags = FPRINT | TABLEPASS
 	w_class = W_CLASS_TINY
-	rand_pos = 1
+	rand_pos = 8
 
 	drink_umbrella
 		name = "drink umbrella"

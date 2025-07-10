@@ -2,7 +2,7 @@
 	name = "Radioactive Blowout"
 	required_elapsed_round_time = 40 MINUTES
 	var/space_color = "#ff4646"
-#ifdef MAP_OVERRIDE_GEHENNA
+#ifdef DESERT_MAP
 	disabled = TRUE
 #endif
 
@@ -46,7 +46,7 @@
 					if (!A.irradiated)
 						A.irradiated = TRUE
 						A.icon_state = "blowout"
-					for (var/turf/T in A)
+					for (var/turf/T in A.turfs)
 						if (rand(0,1000) < 5 && istype(T,/turf/floor))
 							Artifact_Spawn(T)
 

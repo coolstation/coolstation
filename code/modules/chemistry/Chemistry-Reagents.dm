@@ -26,6 +26,13 @@ datum
 		var/max_addiction_severity = "HIGH" // HIGH = barfing, stuns, etc, LOW = twitching, getting tired
 		var/dispersal = 4 // The range at which this disperses from a grenade. Should be lower for heavier particles (and powerful stuff).
 		var/volatility = 0 // Volatility determines effectiveness in pipebomb. This is 0 for a bad additive, otherwise a positive number which linerally affects explosive power.
+		var/flammable_influence = FALSE  // Determines if the chemical can burn at all
+		var/combusts_on_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire
+		var/combusts_on_gaseous_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire while aerosolized
+		var/burn_speed = 0 // Speed at which a chem burns
+		var/burn_energy = 0 // The energy a chemical releases when burnt, in Joules per unit
+		var/burn_volatility = 0 // How violently it burns
+		var/burn_temperature = 0 // Temperature at which a chem burns
 		var/reacting = 0 // fuck off chemist spam
 		var/overdose = 0 // if reagents are at or above this in a mob, it's an overdose - if double this, it's a major overdose
 		var/depletion_rate = 0.4 // this much goes away per tick
@@ -51,6 +58,8 @@ datum
 		var/random_chem_blacklisted = 0 // will not appear in random chem sources oddcigs/artifacts/etc
 		var/boiling_point = T0C + 100
 		var/can_crack = 0 // used by organic chems
+		var/contraband = 0 // bastards hate this shit
+		var/evaporates_cleanly = FALSE // vanishes on evaporation
 
 		New()
 			..()
@@ -104,6 +113,9 @@ datum
 			return
 
 		proc/reaction_temperature(exposed_temperature, exposed_volume) //By default we do nothing.
+			return
+
+		proc/do_burn(var/reacting_volume)
 			return
 
 		//reaction_mob, reaction_obj reaction_turf and reaction_blob all return 1 by default. Children procs should override return value with 0.
@@ -272,8 +284,6 @@ datum
 			if (effect <= 8)
 				M.take_toxin_damage(severity * mult)
 			return effect
-
-
 
 		proc/handle_addiction(var/mob/M, var/rate)
 			//DEBUG_MESSAGE("[src.id].handle_addiction([M],[rate])")

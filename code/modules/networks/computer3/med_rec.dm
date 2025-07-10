@@ -560,15 +560,16 @@
 						<br><b>Severity:</b> Medium"}
 
 					if ("4")
-						entrydat = {"<b>Name:</b> Jungle Fever
-						<br><b>Number of stages:</b> 1
-						<br><b>Spread:</b> Airborne Transmission
-						<br><b>Possible Cure:</b> None
-						<br><b>Affected Species:</b> Monkey
+						entrydat = {"<b>Name:</b> Berserker
+						<br><b>Number of stages:</b> 2
+						<br><b>Spread:</b> Contact Transmission
+						<br><b>Possible Cure:</b> Spaceacillin
+						<br><b>Affected Species:</b> Human
 						<br>
-						<br><b>Notes:</b> Monkies with this disease will bite humans, causing humans to spontaneously to mutate into a monkey.
-						<br>
-						<br><b>Severity:</b> Medium"}
+						<br><b>Notes:</b> This disease causes fits of extreme rage and violence in the victim.
+						Due to its ability to spread, it is considered extremely dangerous.
+						Do not attempt to reason with infected persons.<br>
+						<br><b>Severity:</b> Major"}
 
 					if ("5")
 						entrydat = {"<b>Name:</b> Clowning Around
@@ -615,18 +616,6 @@
 						in physical position of subject.  Keep patients away from active engines.<br>
 						<br><b>Severity:</b> Unknown"}
 
-					if ("9")
-						entrydat = {"<b>Name:</b> Berserker
-						<br><b>Number of stages:</b> 2
-						<br><b>Spread:</b> Contact Transmission
-						<br><b>Possible Cure:</b> Spaceacillin
-						<br><b>Affected Species:</b> Human
-						<br>
-						<br><b>Notes:</b> This disease causes fits of extreme rage and violence in the victim.
-						Due to its ability to spread, it is considered extremely dangerous.
-						Do not attempt to reason with infected persons.<br>
-						<br><b>Severity:</b> Major"}
-
 					else
 
 						return
@@ -662,12 +651,11 @@
 					(01) GBS<br>
 					(02) Common Cold<br>
 					(03) Flu<br>
-					(04) Jungle Fever<br>
+					(04) Berserker<br>
 					(05) Clowning Around<br>
 					(06) Space Rhinovirus<br>
 					(07) Robot Transformation<br>
 					(08) Teleportitis<br>
-					(09) Berserker<br>
 					Enter virus number or 0 to return."}
 
 			return dat

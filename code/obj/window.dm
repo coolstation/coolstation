@@ -28,6 +28,7 @@
 	var/reinf = 0 // cant figure out how to remove this without the map crying aaaaa - ISN
 	var/deconstruct_time = 0//20
 	pressure_resistance = 4*ONE_ATMOSPHERE
+	gas_impermeable = TRUE
 	anchored = 1
 
 	the_tuff_stuff
@@ -49,14 +50,15 @@
 			src.health = src.health_max
 			//DEBUG ("[src.name] [log_loc(src)] has [health] health / [health_max] max health ([health_multiplier] multiplier).")
 
-		if(current_state >= GAME_STATE_WORLD_INIT)
-			SPAWN_DBG(0)
-				initialize()
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			src.set_layer_from_settings()
+			update_nearby_tiles(need_rebuild=1)
 
-	initialize()
+	generate_worldgen()
 		src.set_layer_from_settings()
 		update_nearby_tiles(need_rebuild=1)
-		..()
 
 	proc/set_layer_from_settings()
 		if (!map_settings)
@@ -73,7 +75,7 @@
 
 	disposing()
 		density = 0
-		update_nearby_tiles(need_rebuild=1)
+		update_nearby_tiles(need_rebuild=1, selfnotify = 1)
 		. = ..()
 
 	Move()
@@ -286,7 +288,7 @@
 			the_text += " ...you can't see through it at all. What kind of idiot made this?"
 		return the_text
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if(istype(mover, /obj/projectile))
 			var/obj/projectile/P = mover
 			if(P.proj_data.window_pass)
@@ -294,10 +296,14 @@
 		if (src.dir == SOUTHWEST || src.dir == SOUTHEAST || src.dir == NORTHWEST || src.dir == NORTHEAST)
 			return 0 //full tile window, you can't move into it!
 		if(get_dir(loc, target) == dir)
-
 			return !density
 		else
 			return 1
+
+	gas_cross(turf/target)
+		. = TRUE
+		if ((src.dir in ordinal) || get_dir(loc, target) == dir)
+			. = ..()
 
 	CheckExit(atom/movable/O as mob|obj, target as turf)
 		if (!src.density)
@@ -307,6 +313,8 @@
 			if(P.proj_data.window_pass)
 				return 1
 		if (get_dir(loc, target) == src.dir)
+			if(!src.anchored && ismob(O))
+				step_to(src, target)
 			return 0
 		return 1
 
@@ -518,7 +526,6 @@
 
 		return 1
 
-
 /datum/action/bar/icon/deconstruct_window
 	duration = 5 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
@@ -725,14 +732,18 @@
 	New()
 		..()
 
-		if (map_setting && ticker)
-			src.update_neighbors()
-		//in my original code here i removed the if condition and just updated neighbors and i don't know why
-		//leaving it as is here for now
-
-		SPAWN_DBG(0)
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			if (map_setting && ticker)
+				src.update_neighbors()
+				//in my original code here i removed the if condition and just updated neighbors and i don't know why
+				//leaving it as is here for now
 			src.update_icon()
 			//also need to add some logic as to when things get built vs. deconstructed vs. destroyed but at least it's in here
+
+	generate_worldgen()
+		src.update_icon()
 
 	disposing()
 		..()
@@ -974,12 +985,14 @@
 
 	New()
 		..()
-		if(current_state >= GAME_STATE_WORLD_INIT)
-			SPAWN_DBG(0)
-				initialize()
 
-	initialize()
-		. = ..()
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			src.set_up()
+			qdel(src)
+
+	generate_worldgen()
 		src.set_up()
 		qdel(src)
 

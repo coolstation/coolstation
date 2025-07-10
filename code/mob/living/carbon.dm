@@ -10,7 +10,7 @@
 	//var/heart_op_stage = 0.0
 
 	infra_luminosity = 4
-	var/poop_amount = 5
+	var/poop_amount = 9
 
 /mob/living/carbon/New()
 	START_TRACKING
@@ -28,13 +28,17 @@
 		if (!src.throwing && !src.lying && isturf(NewLoc))
 			var/turf/T = NewLoc
 			if (T.turf_flags & MOB_SLIP)
-				switch (T.wet)
+				var/wet_adjusted = T.wet
+				if (T.wet && traitHolder?.hasTrait("super_slips"))
+					wet_adjusted = max(wet_adjusted, 2) //whee
+				switch (wet_adjusted)
 					if (1)
 						if (locate(/obj/item/clothing/under/towel) in T)
 							src.inertia_dir = 0
 							T.wet = 0
 							return
 						if (src.slip())
+							src.lastgasp()
 							boutput(src, "<span class='notice'>You slipped on the wet floor!</span>")
 							src.unlock_medal("I just cleaned that!", 1)
 						else
@@ -43,6 +47,7 @@
 					if (2) //lube
 						src.pulling = null
 						src.changeStatus("weakened", 3.5 SECONDS)
+						src.lastgasp()
 						boutput(src, "<span class='notice'>You slipped on the floor!</span>")
 						playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
 						var/atom/target = get_edge_target_turf(src, src.dir)
@@ -51,10 +56,13 @@
 						src.pulling = null
 						src.changeStatus("weakened", 6 SECONDS)
 						playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
+						src.lastgasp()
 						boutput(src, "<span class='notice'>You slipped on the floor!</span>")
 						var/atom/target = get_edge_target_turf(src, src.dir)
 						src.throw_at(target, 30, 1, throw_type = THROW_SLIP)
 						random_brute_damage(src, 10)
+
+
 
 /mob/living/carbon/relaymove(var/mob/user, direction)
 	if(user in src.stomach_contents)
@@ -87,21 +95,20 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
-	if(ON_COOLDOWN(src, "poo", 10 MINUTES))
+	if(ON_COOLDOWN(src, "poo", 20 MINUTES))
 		boutput(src, "You don't feel ready to go.")
 		return
 	SPAWN_DBG(0.1 SECOND)
 		var/mob/living/carbon/human/H = src
 		var/obj/item/reagent_containers/poo_target = src.equipped()
-		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
-		shit.amount = src.poop_amount
+		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(src.loc, src.poop_amount)
 		shit.owner = src // this is your shit.
 		if(src.poops)
 			src.poops--
 		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
-				make_cleanable( /obj/decal/cleanable/mud,T)
+				make_cleanable( /obj/decal/cleanable/tracked_reagents/mud,T)
 			return
 		playsound(H, "sound/voice/hoooagh2.ogg", 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		if(H.wear_suit || H.w_uniform) // wearing pants while shitting? fine!!
@@ -117,11 +124,11 @@
 				// ... also set suit/uniform to bottomless? I dunno
 			else
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")
-				H.wiped = 0 //+1 trait idea: nothin' but net
+			H.wiped = 0 //+1 trait idea: nothin' but net
 			if(H.w_uniform)
-				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 5)
+				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 15)
 			else
-				H.wear_suit?.add_mud(H, H.poop_amount ? H.poop_amount : 5)
+				H.wear_suit?.add_mud(H, H.poop_amount ? H.poop_amount : 15)
 			H.set_clothing_icon_dirty() //ur a shitter
 			playsound(H, H.sound_fart, 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			return
@@ -136,7 +143,7 @@
 				else
 					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 100, 1)
 					poo_target.reagents.add_reagent("poo",\
-						(H.poop_amount ? H.poop_amount : 5))
+						(H.poop_amount ? H.poop_amount : 15))
 					qdel(shit)
 				H.cleanhands = 0
 				H.wiped = 0
@@ -226,17 +233,11 @@
 		qdel(B)
 	src.hand = !src.hand
 
-/mob/living/carbon/lastgasp()
-	// making this spawn a new proc since lastgasps seem to be related to the mob loop hangs. this way the loop can keep rolling in the event of a problem here. -drsingh
-	SPAWN_DBG(0)
-		if (!src || !src.client) return														// break if it's an npc or a disconnected player
-		var/enteredtext = winget(src, "mainwindow.input", "text")							// grab the text from the input bar
-		if ((copytext(enteredtext,1,6) == "say \"") && length(enteredtext) > 5)				// check if the player is trying to say something
-			winset(src, "mainwindow.input", "text=\"\"")									// clear the player's input bar to register death / unconsciousness
-			var/grunt = pick("NGGH","OOF","UGH","ARGH","BLARGH","BLUH","URK")				// pick a grunt to append
-			src.say(copytext(enteredtext,6,0) + "--" + grunt, ignore_stamina_winded = 1)	// say the thing they were typing and grunt
-
-
+/mob/living/carbon/lastgasp(allow_dead=FALSE,overrideGrunt=FALSE,customGrunt=null)
+	if(!overrideGrunt)
+		..(allow_dead, grunt=pick("NGGH","OOF","UGH","ARGH","BLARGH","BLUH","URK") )
+	else
+		..(allow_dead, grunt=customGrunt)
 
 /mob/living/carbon/full_heal()
 	src.remove_ailments()
@@ -245,6 +246,7 @@
 	src.change_misstep_chance(-INFINITY)
 	if (src.reagents)
 		src.reagents.clear_reagents()
+		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)
@@ -291,6 +293,20 @@
 		return
 
 	src.oxyloss = max(0,src.oxyloss + amount)
+	return
+
+/mob/living/carbon/lose_breath(var/amount)
+	if (..())
+		return
+
+	if (!losebreath && amount < 0)
+		return
+
+	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+		src.losebreath = 0
+		return
+
+	src.losebreath = max(0,src.losebreath + amount)
 	return
 
 /mob/living/carbon/get_brain_damage()

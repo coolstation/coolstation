@@ -12,8 +12,8 @@ import { Box, Button, Stack } from '../../components';
  };
 
  type InputButtonsProps = {
-   input: string | number | null;
-   inputIsValid?: Validator;
+   readonly input: string | number | null;
+   readonly inputIsValid?: Validator;
  };
 
 export type Validator = {

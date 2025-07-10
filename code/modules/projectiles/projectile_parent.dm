@@ -20,8 +20,9 @@
 	var/max_range = PROJ_INFINITE_RANGE //max range
 	var/initial_power = 20 // local copy of power for determining power when hitting things
 	var/implanted = null
-	var/forensic_ID = null
-	var/atom/shooter = null // Who/what fired this?
+	/// The mob/thing that fired this projectile
+	var/atom/shooter = null
+	/// Mob-typed copy of `shooter` var to save time on casts later
 	var/mob/mob_shooter = null
 	// We use shooter to avoid self collision, however, the shot may have been initiated through a proxy object. This is for logging.
 	var/travelled = 0 // track distance
@@ -106,7 +107,7 @@
 			return
 		else
 			hitlist += A
-		if (A == shooter) return // never collide with the original shooter
+		if (A == shooter && !src.was_pointblank) return // only collide with the original shooter if they pointblank themself
 		if (ismob(A)) //don't doublehit
 			if (ticks_until_can_hit_mob > 0 || goes_through_mobs)
 				return
@@ -181,7 +182,7 @@
 			if(sigreturn & PROJ_ATOM_PASSTHROUGH || (pierces_left != 0 && first && !(sigreturn & PROJ_ATOM_CANNOT_PASS))) //try to hit other targets on the tile
 				for (var/mob/X in T.contents)
 					if(!(X in src.hitlist))
-						if (!X.CanPass(src, get_step(src, X.dir), 1, 0))
+						if (!X.CanPass(src, get_step(src, X.dir)))
 							src.collide(X, first = 0)
 					if(QDELETED(src))
 						return
@@ -203,7 +204,7 @@
 			if(first && (sigreturn & PROJ_OBJ_HIT_OTHER_OBJS))
 				for (var/obj/X in T.contents)
 					if(!(X in src.hitlist))
-						if (!X.CanPass(src, get_step(src, X.dir), 1, 0))
+						if (!X.CanPass(src, get_step(src, X.dir)))
 							src.collide(X, first = 0)
 					if(QDELETED(src))
 						return
@@ -235,7 +236,7 @@
 	proc/setup()
 		if(QDELETED(src))
 			return
-		if (src.proj_data == null || (xo == 0 && yo == 0) || proj_data.projectile_speed == 0)
+		if (src.proj_data == null)
 			die()
 			return
 
@@ -247,9 +248,11 @@
 
 		var/len = sqrt(src.xo * src.xo + src.yo * src.yo)
 
-		if (len == 0)
-			die()
-			return
+		var/speed = internal_speed || proj_data.projectile_speed
+
+		if (len == 0 || speed == 0)
+			return //will die on next step before moving
+
 		src.xo = src.xo / len
 		src.yo = src.yo / len
 
@@ -273,7 +276,6 @@
 		Turn(angle)
 		if (!proj_data.precalculated)
 			return
-		var/speed = internal_speed || proj_data.projectile_speed
 		var/x32 = 0
 		var/xs = 1
 		var/y32 = 0
@@ -321,7 +323,7 @@
 	Crossed(var/atom/movable/A)
 		if (!istype(A))
 			return // can't happen will happen
-		if (!A.CanPass(src, get_step(src, A.dir), 1, 0))
+		if (!A.CanPass(src, get_step(src, A.dir)))
 			src.collide(A)
 
 		if (collide_with_other_projectiles && A.type == src.type)
@@ -334,7 +336,7 @@
 		for(var/thing as mob|obj|turf|area in T)
 			var/atom/A = thing
 			if (A == src) continue
-			if (!A.CanPass(src, get_step(src, A.dir), 1, 0))
+			if (!A.CanPass(src, get_step(src, A.dir)))
 				src.collide(A)
 
 			if (collide_with_other_projectiles && A.type == src.type)
@@ -353,6 +355,11 @@
 		src.ticks_until_can_hit_mob--
 		proj_data.tick(src)
 		if (QDELETED(src))
+			return
+
+		if(!was_setup) //if setup failed due to us having no speed or no direction, try to collide with something before dying
+			collide_with_applicable_in_tile(loc)
+			die()
 			return
 
 		var/turf/curr_turf = loc
@@ -450,10 +457,6 @@
 
 			animate(src,pixel_x = wx-dpx, pixel_y = wy-dpy, time = 1 DECI SECOND, flags = ANIMATION_END_NOW) //todo figure out later
 
-	track_blood()
-		src.tracked_blood = null
-		return
-
 	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		return
 
@@ -497,6 +500,8 @@ datum/projectile
 		disruption = 0           // planned thing to deal with pod electronics / etc
 		zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
 		caliber = null
+		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
+		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
 
 		datum/material/material = null
 
@@ -508,8 +513,6 @@ datum/projectile
 		hit_object_sound = 0
 		hit_mob_sound = 0
 
-		///if a fullauto-capable weapon should be able to fullauto this ammo type
-		fullauto_valid = 0
 
 	// Determines the amount of length units the projectile travels each tick
 	// A tile is 32 wide, 32 long, and 32 * sqrt(2) across.
@@ -727,7 +730,7 @@ datum/projectile/snowball
 			T.visible_message("<b><span class='alert'>...but the projectile bounces off uselessly!</span></b>")
 			P.die()
 			return
-		if (P.proj_data)
+		if (P.was_pointblank && P.proj_data)
 			P.proj_data.on_pointblank(P, T)
 	P.collide(T) // The other immunity check is in there (Convair880).
 
@@ -877,7 +880,7 @@ datum/projectile/snowball
 	P.power = DATA.power
 
 	P.proj_data = DATA
-	alter_proj?.Invoke(P)
+	alter_proj?.Invoke(P, shooter)
 
 
 	if(P.proj_data == DATA)

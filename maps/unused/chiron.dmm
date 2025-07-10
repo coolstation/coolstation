@@ -99,7 +99,6 @@
 	icon_state = "catwalk";
 	dir = 10
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 1;
 	icon_state = "catwalk_cross";
@@ -136,7 +135,6 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/station/engine/vesselpower)
 "aan" = (
@@ -181,7 +179,6 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 8;
 	icon_state = "catwalk_cross";
@@ -197,7 +194,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -376,7 +372,6 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -498,7 +493,6 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/station/engine/vesselpower)
 "aaX" = (
@@ -515,7 +509,6 @@
 /obj/grille/catwalk{
 	dir = 6
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 2;
 	icon_state = "catwalk_cross";
@@ -1187,7 +1180,6 @@
 /obj/grille/catwalk{
 	dir = 9
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 8;
 	icon_state = "catwalk_cross";
@@ -1219,7 +1211,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -1266,7 +1257,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -1322,7 +1312,6 @@
 /obj/grille/catwalk{
 	dir = 10
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 1;
 	icon_state = "catwalk_cross";
@@ -1342,7 +1331,6 @@
 /obj/grille/catwalk{
 	dir = 5
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -1356,7 +1344,6 @@
 	d2 = 2
 	},
 /obj/grille/catwalk,
-/turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/east)
 "act" = (
@@ -1719,7 +1706,7 @@
 "adc" = (
 /obj/table/reinforced/auto,
 /obj/item/device/radio/intercom{
-
+	
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/item/device/radio,
@@ -1993,7 +1980,6 @@
 	dir = 1;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	icon_state = "catwalk_cross";
@@ -2028,7 +2014,6 @@
 	dir = 1;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	icon_state = "catwalk_cross";
@@ -2208,7 +2193,6 @@
 	icon_state = "camera";
 	name = "autoname - SS13"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	layer = 2
@@ -2351,7 +2335,6 @@
 /obj/grille/catwalk{
 	dir = 9
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 8;
 	icon_state = "catwalk_cross";
@@ -2487,7 +2470,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -2757,7 +2739,6 @@
 	dir = 5;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	layer = 2
@@ -3585,7 +3566,6 @@
 	d2 = 2
 	},
 /obj/grille/catwalk,
-/turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/west)
 "agp" = (
@@ -3971,7 +3951,6 @@
 	},
 /area/shuttle/research/outpost)
 "agW" = (
-/turf/space,
 /turf/shuttle/wall/cockpit{
 	dir = 8;
 	icon_state = "shuttlecock"
@@ -4073,7 +4052,6 @@
 	},
 /area/station/medical/cdc)
 "ahf" = (
-/turf/floor/shuttle,
 /turf/shuttle/wall/cockpit/window{
 	name = "window"
 	},
@@ -9566,12 +9544,12 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	operating = 1;
 	pixel_x = -24;
 	pixel_y = 0;
 	start_charge = 90
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable,
 /turf/floor,
 /area/station/crew_quarters/market{
@@ -9999,10 +9977,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/caution/east{
 	dir = 8
 	},
@@ -10047,10 +10025,10 @@
 	areastring = "Owlery";
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4";
@@ -11095,7 +11073,7 @@
 	pixel_x = 6
 	},
 /obj/item/device/radio/intercom/catering{
-
+	
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -11710,10 +11688,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -12728,10 +12706,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -13583,7 +13561,7 @@
 /obj/landmark/start{
 	name = "Quartermaster"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -15373,7 +15351,6 @@
 /obj/machinery/door/poddoor/blast/single{
 	autoclose = 1;
 	density = 1;
-
 	icon_state = "bdoornoblasts1";
 	id = "disposals_door";
 	layer = 4;
@@ -15481,10 +15458,10 @@
 	areastring = "East Crew Quarters";
 	dir = 8;
 	name = "East Crew Quarters APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -15914,7 +15891,6 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 8;
 	icon_state = "catwalk_cross";
@@ -16147,7 +16123,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -16168,7 +16143,6 @@
 	icon_state = "camera";
 	name = "autoname - SS13"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -16604,7 +16578,6 @@
 /obj/grille/catwalk{
 	dir = 5
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -18440,7 +18413,6 @@
 	dir = 6;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 6;
 	layer = 2
@@ -18474,7 +18446,6 @@
 	icon_state = "magwarning2";
 	name = "ACTIVE MAGNET AREA"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	layer = 2
@@ -18656,7 +18627,6 @@
 	icon_state = "magwarning2";
 	name = "ACTIVE MAGNET AREA"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 10;
 	layer = 2
@@ -18721,7 +18691,7 @@
 /turf/floor/plating,
 /area/station/mining/refinery)
 "aLD" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "N APC";
@@ -19151,7 +19121,7 @@
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "aMv" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -19749,7 +19719,6 @@
 	icon_state = "magwarning2";
 	name = "ACTIVE MAGNET AREA"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 6;
 	layer = 2
@@ -19763,7 +19732,6 @@
 	icon_state = "catwalk_cross";
 	dir = 5
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	layer = 2
@@ -19993,7 +19961,6 @@
 	icon_state = "catwalk";
 	dir = 5
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -20053,7 +20020,6 @@
 	dir = 6;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 6;
 	layer = 2
@@ -20068,7 +20034,6 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -20084,7 +20049,6 @@
 	dir = 6;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 6;
 	layer = 2
@@ -20100,7 +20064,6 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 10;
 	layer = 2
@@ -20119,7 +20082,6 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -20191,7 +20153,6 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -20318,7 +20279,6 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	layer = 2
@@ -21003,7 +20963,6 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/south)
 "aPR" = (
@@ -21567,7 +21526,6 @@
 	d2 = 2
 	},
 /obj/grille/catwalk,
-/turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/south)
 "aQT" = (
@@ -21840,7 +21798,6 @@
 /obj/grille/catwalk{
 	dir = 9
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 8;
 	icon_state = "catwalk_cross";
@@ -22470,11 +22427,11 @@
 	areastring = "West Primary Hallway";
 	dir = 2;
 	name = "West Primary Hallway APC";
-	noalerts = 1;
 	operating = 1;
 	pixel_y = -24;
 	start_charge = 90
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -22819,7 +22776,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -24388,7 +24344,7 @@
 	},
 /area/station/engine/elect)
 "aWt" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/grime,
 /area/station/mining/staff_room)
 "aWu" = (
@@ -24551,7 +24507,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -24853,7 +24808,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -24875,7 +24829,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	intact = 0
@@ -25192,12 +25145,12 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "E APC";
-	noalerts = 1;
 	operating = 1;
 	pixel_x = 24;
 	pixel_y = 0;
 	start_charge = 90
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable,
 /turf/floor/sanitary,
 /area/station/medical/morgue)
@@ -25539,7 +25492,6 @@
 	dir = 1;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	icon_state = "catwalk_cross";
@@ -25569,7 +25521,6 @@
 /obj/grille/catwalk{
 	dir = 5
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	icon_state = "catwalk_cross";
@@ -26143,7 +26094,6 @@
 	dir = 1;
 	icon_state = "catwalk_cross"
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	icon_state = "catwalk_cross";
@@ -26314,7 +26264,6 @@
 /obj/grille/catwalk{
 	dir = 6
 	},
-/turf/space,
 /turf/floor/airless/plating/catwalk{
 	dir = 2;
 	icon_state = "catwalk_cross";
@@ -27339,7 +27288,7 @@
 /obj/table/reinforced/auto,
 /obj/item/shipcomponent/secondary_system/cargo,
 /obj/item/shipcomponent/secondary_system/cargo,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/mining/hangar)
@@ -27362,7 +27311,7 @@
 	name = "N APC";
 	pixel_y = 24
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/mining/hangar)
@@ -27386,27 +27335,27 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/mining/hangar)
 "bbZ" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/firstaid/regular,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/mining/hangar)
 "bca" = (
 /obj/table/reinforced/auto,
 /obj/item/shipcomponent/mainweapon/mining,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/mining/hangar)
 "bcb" = (
 /obj/storage/closet/welding_supply,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/mining/hangar)
@@ -27618,7 +27567,7 @@
 /obj/item/paper/book/from_file/matsci_guide,
 /obj/item/device/matanalyzer,
 /obj/item/device/matanalyzer,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/mining/hangar)
@@ -27809,7 +27758,7 @@
 /area/mining/hangar)
 "bcQ" = (
 /obj/reagent_dispensers/fueltank,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/mining/hangar)
@@ -29112,7 +29061,7 @@
 /obj/item/extinguisher,
 /obj/item/crowbar,
 /obj/item/clothing/shoes/magnetic,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/mining/hangar)
@@ -29470,7 +29419,7 @@
 /area/mining/hangar)
 "bgc" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/mining/hangar)
@@ -30074,10 +30023,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/carpet{
 	icon_state = "fgreen2";
 	dir = 9
@@ -31718,10 +31667,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4";
@@ -32372,7 +32321,7 @@
 /area/station/hallway/secondary/exit)
 "blR" = (
 /obj/item/device/radio/intercom{
-
+	
 	},
 /obj/table/auto,
 /obj/item/decoration/ashtray,
@@ -32914,13 +32863,6 @@
 	icon_state = "ast1"
 	},
 /area/space)
-"bnn" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "ast1"
-	},
-/area/space)
 "bno" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -33125,13 +33067,6 @@
 	},
 /turf/floor/plating,
 /area/listeningpost)
-"bnM" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "ast1"
-	},
-/area/space)
 "bnN" = (
 /obj/cable{
 	icon_state = "0-4";
@@ -33140,10 +33075,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/marker/supplymarker,
 /turf/floor/grey/side{
 	dir = 4
@@ -114299,7 +114234,7 @@ aaa
 bnj
 bnj
 bnj
-bnn
+bnm
 bnp
 bns
 bny
@@ -114903,7 +114838,7 @@ aaa
 bnj
 bnj
 bnj
-bnn
+bnm
 bnp
 bnu
 bnA
@@ -117022,7 +116957,7 @@ aaa
 aao
 aaa
 aaa
-bnM
+bnq
 aap
 aap
 aap

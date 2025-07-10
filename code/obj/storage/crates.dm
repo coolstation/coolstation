@@ -48,7 +48,7 @@
 		desc = "Contents vary from sugar-shockers to pure poison."
 		spawn_contents = list(/obj/item/reagent_containers/food/drinks/noodlecup = 2,
 		/obj/item/reagent_containers/food/drinks/peach = 2,
-		/obj/item/reagent_containers/food/drinks/covfefe = 2,
+		/obj/item/reagent_containers/food/drinks/pseudocoffee = 2,
 		/obj/item/reagent_containers/food/drinks/bottle/soda/spooky = 2,
 		/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2 = 2,
 		/obj/item/reagent_containers/food/drinks/bottle/soda/gingerale = 2,
@@ -664,7 +664,7 @@
 		name = "Class Crate - Combat Engineer"
 		desc = "A crate containing a Specialist Operative loadout."
 		spawn_contents = list(/obj/item/paper/nast_manual,
-		/obj/item/turret_deployer,
+		/obj/item/turret_deployer/syndicate,
 		/obj/item/wrench/battle,
 		/obj/item/gun/kinetic/spes,
 		/obj/item/storage/pouch/shotgun/weak,
@@ -840,12 +840,13 @@
 		/obj/item/cell/erebite/charged)
 
 	weapons
-		spawn_contents = list(/obj/item/gun/energy/phaser_gun,
-		/obj/item/old_grenade/stinger = 2,
-		/obj/item/ammo/power_cell/med_power)
+		spawn_contents = list(/obj/item/gun/modular/soviet/short/covert,
+		/obj/item/stackable_ammo/pistol/zaubertube/five,
+		/obj/item/old_grenade/stinger = 2,)
 
 	weapons2
-		spawn_contents = list(/obj/item/gun/energy/laser_gun,
+		spawn_contents = list(/obj/item/gun/modular/soviet/long/advanced,
+		/obj/item/stackable_ammo/pistol/zaubertube/five,
 		/obj/item/chem_grenade/cryo = 4)
 
 	weapons3
@@ -853,13 +854,33 @@
 		/obj/item/chem_grenade/shock = 2)
 
 	weapons4
-		spawn_contents = list(/obj/item/gun/kinetic/zipgun,
-		/obj/item/ammo/bullets/a38 = 2)
-
-	cargonia
-		spawn_contents = list(/obj/item/radio_tape/advertisement/cargonia,
-		/obj/item/clothing/under/rank/cargo,/obj/decal/skeleton)
+		spawn_contents = list(/obj/item/gun/modular/italian/revolver/masterwork,
+		/obj/item/stackable_ammo/pistol/italian/AP/ten)
 
 	escape
 		spawn_contents = list(/obj/item/sea_ladder,
 		/obj/item/pipebomb/bomb/engineering = 2)
+
+// evil nasty biohazard crate
+/obj/storage/crate/sarincrate
+	name = "sarin grenade crate"
+	desc = "A menacing crate to store deadly sarin grenades."
+	icon_state = "stxcrate"
+	icon_opened = "stxcrate_open"
+	icon_closed = "stxcrate"
+
+	filled_4
+		New()
+			var/datum/loot_generator/sarin_filler
+			src.vis_controller = new(src)
+			sarin_filler = new /datum/loot_generator(2,1)
+			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
+			..()
+
+	filled_8
+		New()
+			var/datum/loot_generator/sarin_filler
+			src.vis_controller = new(src)
+			sarin_filler = new /datum/loot_generator(2,2)
+			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
+			..()

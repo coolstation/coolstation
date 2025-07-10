@@ -18,6 +18,7 @@
 	icon_state = "mail-1"
 	item_state = "gift"
 	pressure_resistance = 70
+	rand_pos = 2
 	var/random_icons = TRUE
 	var/spawn_type = null
 	var/tmp/target_dna = null
@@ -225,8 +226,6 @@
 		for(var/j in 1 to 3)
 			color_list[j] = 127 + (color_list[j] / 2) + rand(-10, 10)
 		package.color = rgb(color_list[1], color_list[2], color_list[3])
-		package.pixel_x = rand(-2, 2)
-		package.pixel_y = rand(-2, 2)
 
 		// packages are dna-locked so you can't just swipe everyone's mail like a jerk.
 		package.target_dna = recipient["dna"]
@@ -522,7 +521,7 @@ var/global/mail_types_everyone = list(
 	/obj/item/pen/fancy = 2,
 	/obj/item/toy/plush = 3,
 	/obj/item/toy/figure = 3,
-	/obj/item/toy/gooncode = 2,
+	/obj/item/toy/coolcode = 2,
 	/obj/item/toy/cellphone = 3,
 	/obj/item/toy/handheld/robustris = 3,
 	/obj/item/toy/handheld/arcade = 3,

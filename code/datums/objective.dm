@@ -152,11 +152,9 @@ proc/create_fluff(datum/mind/target)
 /datum/objective/regular/steal
 	var/obj/item/steal_target
 	var/target_name
-#ifdef MAP_OVERRIDE_MANTA
 	set_up()
 		var/list/items = list("Head of Security\'s beret", "prisoner\'s beret", "DetGadget hat", "horse mask", "authentication disk",
-		"\'freeform\' AI module", "gene power module", "mainframe memory board", "yellow cake", "aurora MKII utility belt", "Head of Security\'s war medal", "Research Director\'s Diploma", "Medical Director\'s Medical License", "Head of Personnel\'s First Bill",
-		"much coveted Gooncode")
+		"\'freeform\' AI module", "gene power module", "mainframe memory board", "yellow cake", "aurora MKII utility belt", "extra spicy Coolcode", "golden crayon")
 
 		target_name = pick(items)
 		switch(target_name)
@@ -178,51 +176,12 @@ proc/create_fluff(datum/mind/target)
 				steal_target = /obj/item/reagent_containers/food/snacks/yellow_cake_uranium_cake
 			if("aurora MKII utility belt")
 				steal_target = /obj/item/storage/belt/utility/prepared/ceshielded
-			if("Head of Security\'s war medal")
-				steal_target = /obj/item/clothing/suit/hosmedal
-			if("Research Director\'s Diploma")
-				steal_target = /obj/item/rddiploma
-			if("Medical Director\'s Medical License")
-				steal_target = /obj/item/mdlicense
-			if("Head of Personnel\'s First Bill")
-				steal_target = /obj/item/firstbill
-			if("much coveted Gooncode")
-				steal_target = /obj/item/toy/gooncode
-			if("horse mask")
-				steal_target = /obj/item/clothing/mask/horse_mask
-#else
-	set_up()
-		var/list/items = list("Head of Security\'s beret", "prisoner\'s beret", "DetGadget hat", "horse mask", "authentication disk",
-		"\'freeform\' AI module", "gene power module", "mainframe memory board", "yellow cake", "aurora MKII utility belt", "much coveted Gooncode", "golden crayon")
-
-		target_name = pick(items)
-		switch(target_name)
-			if("Head of Security\'s beret")
-				steal_target = /obj/item/clothing/head/hos_hat
-			if("prisoner\'s beret")
-				steal_target = /obj/item/clothing/head/beret/prisoner
-			if("DetGadget hat")
-				steal_target = /obj/item/clothing/head/det_hat/gadget
-			if("authentication disk")
-				steal_target = /obj/item/disk/data/floppy/read_only/authentication
-			if("\'freeform\' AI module")
-				steal_target = /obj/item/aiModule/freeform
-			if("gene power module")
-				steal_target = /obj/item/cloneModule/genepowermodule
-			if("mainframe memory board")
-				steal_target = /obj/item/disk/data/memcard/main2
-			if("yellow cake")
-				steal_target = /obj/item/reagent_containers/food/snacks/yellow_cake_uranium_cake
-			if("aurora MKII utility belt")
-				steal_target = /obj/item/storage/belt/utility/prepared/ceshielded
-			if("much coveted Gooncode")
-				steal_target = /obj/item/toy/gooncode
+			if("extra spicy Coolcode")
+				steal_target = /obj/item/toy/coolcode
 			if("horse mask")
 				steal_target = /obj/item/clothing/mask/horse_mask
 			if("golden crayon")
 				steal_target = /obj/item/pen/crayon/golden
-#endif
-
 		explanation_text = "Steal the [target_name] and have it anywhere on you at the end of the shift."
 		return steal_target
 
@@ -240,10 +199,6 @@ proc/create_fluff(datum/mind/target)
 
 	set_up()
 		var/list/items = list(
-		"tasers",\
-		"phasers",\
-		"eguns",\
-		"riot shotguns",\
 		"identification cards",\
 		"insulated gloves",\
 		"stun batons",\
@@ -259,18 +214,6 @@ proc/create_fluff(datum/mind/target)
 
 		target_name = pick(items)
 		switch (target_name)
-			if ("tasers")
-				multigrab_target = /obj/item/gun/energy/taser_gun
-				multigrab_num = rand(2, 5)
-			if ("phasers")
-				multigrab_target = /obj/item/gun/energy/phaser_gun
-				multigrab_num = rand(2, 5)
-			if ("eguns")
-				multigrab_target = /obj/item/gun/energy/egun
-				multigrab_num = rand(2, 5)
-			if ("riot shotguns")
-				multigrab_target = /obj/item/gun/kinetic/riotgun
-				multigrab_num = rand(2, 3)
 			if ("identification cards")
 				multigrab_target = /obj/item/card/id
 				multigrab_num = rand(5, 10)
@@ -397,22 +340,6 @@ proc/create_fluff(datum/mind/target)
 
 /datum/objective/regular/bonsaitree
 	// Brought this back as a very rare gimmick objective (Convair880).
-#ifdef MAP_OVERRIDE_MANTA
-	explanation_text = "Destroy the Captain's ship in a bottle."
-
-	check_completion()
-		var/area/cap_quarters = locate(/area/station/captain)
-		var/obj/captain_bottleship/cap_ship
-
-		for (var/obj/captain_bottleship/T in cap_quarters)
-			cap_ship = T
-		if (!cap_ship)
-			return 1  // Somebody deleted it somehow, I suppose?
-		else if (cap_ship?.destroyed == 1)
-			return 1
-		else
-			return 0
-#else
 	explanation_text = "Destroy the Captain's prized bonsai tree."
 
 	check_completion()
@@ -427,7 +354,7 @@ proc/create_fluff(datum/mind/target)
 			return 1
 		else
 			return 0
-#endif
+
 ///////////////////////////////////////////////////////////////
 // Regular objectives not currently used in current gameplay //
 ///////////////////////////////////////////////////////////////
@@ -804,11 +731,9 @@ proc/create_fluff(datum/mind/target)
 		if (!owner.current)
 			return 0
 
-		var/mob/living/intangible/blob_overmind/O = owner.current
-		if (!istype(O))
-			return 0
+		var/datum/abilityHolder/blob/blob_holder = owner.current.get_ability_holder(/datum/abilityHolder/blob)
 
-		if (O.blobs.len >= blobtiletarget)
+		if (length(blob_holder.blobs) >= blobtiletarget)
 			return 1
 
 /datum/objective/specialist/wraith

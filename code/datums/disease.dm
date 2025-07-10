@@ -30,6 +30,7 @@ The reason I know that is because whoever did that split also didn't clean up th
 	var/detectability = 0				// detectors must >= this to pick up the disease
 	var/resistance_prob = 0				// how likely this disease is to grant immunity once cured
 	var/max_stacks = 1					// how many times at once you can have this ailment
+	var/carrier_possible = TRUE			// can this disease create asymptomatic carriers
 
 	//MALADY STUFF ONLY
 	var/min_advance_ticks = 0//delay the evolution of stuff like shock if it rolls badly for us
@@ -423,7 +424,7 @@ The reason I know that is because whoever did that split also didn't clean up th
 		AD.affected_mob = src
 		AD.on_infection()
 
-		if (prob(5))
+		if (D.carrier_possible && prob(5))
 			AD.state = "Asymptomatic"
 			// carrier - will spread it but won't suffer from it
 		return AD
@@ -558,6 +559,9 @@ The reason I know that is because whoever did that split also didn't clean up th
 	var/numMid = floor((1 * shockInput) / 10)
 	var/numLow = floor((1 * shockInput) / 20)
 	if (src.organHolder.heart && src.organHolder.heart.robotic && src.organHolder.heart.emagged && !src.organHolder.heart.broken)
+		#ifdef DATALOGGER
+		game_stats.Increment("workplacesafety")
+		#endif
 		APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "heart_shock", 5)
 		src.add_stam_mod_max("heart_shock", 20)
 		SPAWN_DBG(9000)
@@ -580,6 +584,9 @@ The reason I know that is because whoever did that split also didn't clean up th
 			src.organHolder.heart.breakme()
 			src.contract_disease(/datum/ailment/malady/flatline, null, null, 1)
 	else if (src.organHolder.heart && src.organHolder.heart.robotic && !src.organHolder.heart.emagged && !src.organHolder.heart.broken)
+		#ifdef DATALOGGER
+		game_stats.Increment("workplacesafety")
+		#endif
 		APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "heart_shock", 1)
 		src.add_stam_mod_max("heart_shock", 10)
 		SPAWN_DBG(9000)

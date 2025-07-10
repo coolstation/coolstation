@@ -182,6 +182,15 @@
 		name = "pink jumpsuit"
 		icon_state = "pink"
 		item_state = "pink"
+
+	random
+		New()
+			..()
+			name = "jumpsuit" // not gonna go through making sure the name is 'proper'
+			var/color = pick("black","grey","white","darkred","red","lightred","orange","brown","lightbrown","yellow","yellowgreen","lightgreen","green","aqua","lightblue","blue","darkblue","purple","lightpurple","magenta","pink")
+			icon_state = color
+			item_state = color
+
 //PRIDE
 /obj/item/clothing/under/pride
 	name = "LGBT pride jumpsuit"
@@ -671,8 +680,8 @@
 /obj/item/clothing/under/misc/hydroponics
 	name = "senior botanist's jumpsuit"
 	desc = "Anyone wearing this has probably grown a LOT of weed in their time."
-	icon_state = "hydro"
-	item_state = "hydro"
+	icon_state = "hydro" //this was not renamed
+	item_state = "hydro-senior" //but this was, oh well
 
 /obj/item/clothing/under/misc/mail
 	name = "mailcarrier's jumpsuit"

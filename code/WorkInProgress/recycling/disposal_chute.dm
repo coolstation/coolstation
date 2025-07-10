@@ -493,7 +493,7 @@
 		src.flush()
 		playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
 		if (user) //ZeWaka: Fix for null.loc
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			health_update_queue |= user
 		SPAWN_DBG(50 SECONDS)
 			if (user && !isdead(user))

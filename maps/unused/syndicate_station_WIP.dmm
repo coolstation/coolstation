@@ -381,7 +381,6 @@
 	icon_state = "bigstripe-edge";
 	dir = 4
 	},
-/turf/floor/plating/random,
 /turf/wall/target,
 /area/syndicate_station/firing_range)
 "bi" = (
@@ -393,7 +392,6 @@
 	dir = 4
 	},
 /obj/machinery/light/small/floor,
-/turf/floor/plating/random,
 /turf/wall/target,
 /area/syndicate_station/firing_range)
 "bj" = (
@@ -895,7 +893,7 @@
 /turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cq" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"

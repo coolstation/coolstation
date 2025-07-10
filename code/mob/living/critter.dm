@@ -28,9 +28,8 @@
 	///time when mob last awoke from hibernation
 	var/last_hibernation_wake_tick = 0
 	var/is_hibernating = TRUE
-
+	can_throw = 0
 	var/can_burn = 1
-	var/can_throw = 0
 	var/can_choke = 0
 	var/in_throw_mode = 0
 	//this is probably crap but I can't be arsed to refactor
@@ -345,7 +344,7 @@
 		else
 			throw_mode_on()
 
-	proc/throw_mode_off()
+	throw_mode_off()
 		src.in_throw_mode = 0
 		src.update_cursor()
 		hud.update_throwing()
@@ -356,58 +355,6 @@
 		src.in_throw_mode = 1
 		src.update_cursor()
 		hud.update_throwing()
-
-	throw_item(atom/target, list/params)
-		..()
-		if (!can_throw)
-			return
-		src.throw_mode_off()
-		if (usr.stat)
-			return
-
-		var/obj/item/I = src.equipped()
-
-		if (!I || !isitem(I) || I.cant_drop)
-			return
-
-		if (istype(I, /obj/item/grab))
-			var/obj/item/grab/G = I
-			I = G.handle_throw(src,target)
-			if (G && !G.qdeled) //make sure it gets qdeled because our u_equip function sucks and doesnt properly call dropped()
-				qdel(G)
-			if (!I) return
-
-		I.set_loc(src.loc)
-
-		u_equip(I)
-
-		if (isitem(I))
-			I.dropped(src) // let it know it's been dropped
-
-		//actually throw it!
-		if (I)
-			I.layer = initial(I.layer)
-			if(prob(yeet_chance))
-				src.visible_message("<span class='alert'>[src] yeets [I].</span>")
-			else
-				src.visible_message("<span class='alert'>[src] throws [I].</span>")
-			if (iscarbon(I))
-				var/mob/living/carbon/C = I
-				logTheThing("combat", src, C, "throws [constructTarget(C,"combat")] at [log_loc(src)].")
-				if ( ishuman(C) )
-					C.changeStatus("weakened", 1 SECOND)
-			else
-				// Added log_reagents() call for drinking glasses. Also the location (Convair880).
-				logTheThing("combat", src, null, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] at [log_loc(src)].")
-			if (istype(src.loc, /turf/space)) //they're in space, move em one space in the opposite direction
-				src.inertia_dir = get_dir(target, src)
-				step(src, inertia_dir)
-			if (istype(I.loc, /turf/space) && ismob(I))
-				var/mob/M = I
-				M.inertia_dir = get_dir(src,target)
-			I.throw_at(target, I.throw_range, I.throw_speed, params)
-
-			playsound(src.loc, 'sound/effects/throw.ogg', 50, 1, 0.1)
 
 	proc/can_pull(atom/A)
 		if (!src.ghost_spawned) //if its an admin or wizard made critter, just let them pull everythang

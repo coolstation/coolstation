@@ -34,7 +34,7 @@ Handsaw
 	stamina_crit_chance = 10
 
 	m_amt = 50
-	rand_pos = 1
+	rand_pos = 8
 	custom_suicide = 1
 
 	New()
@@ -92,12 +92,13 @@ Handsaw
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
-	rand_pos = 1
+	rand_pos = 8
 	custom_suicide = 1
 
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_KNIFE)
+		//src.setItemSpecial(/datum/item_special/jab)
 
 	suicide(var/mob/user as mob)
 		if (!src.user_can_suicide(user))
@@ -139,7 +140,7 @@ Handsaw
 	stamina_damage = 15
 	stamina_cost = 10
 	stamina_crit_chance = 30
-	rand_pos = 1
+	rand_pos = 8
 
 	New()
 		..()
@@ -201,7 +202,7 @@ Handsaw
 	stamina_crit_chance = 15
 
 	m_amt = 150
-	rand_pos = 1
+	rand_pos = 8
 
 	New()
 		..()

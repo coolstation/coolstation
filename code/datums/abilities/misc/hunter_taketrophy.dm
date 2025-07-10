@@ -132,7 +132,7 @@
 					if (istype(W, /obj/item/skull/))
 						var/obj/item/skull/S = W
 						S.name = "[HH.real_name]'s skull"
-						tvalue += S.value // Can might have another skull in their pocket, who knows.
+						tvalue += S.trophy_value // Can might have another skull in their pocket, who knows.
 						no_of_skulls++
 						S.set_loc(get_turf(HH)) // We always want to drop that skull, since gib ejectables are a RNG thing.
 					else
@@ -149,7 +149,7 @@
 			var/obj/item/organ/head/SH = target
 			if (istype(SH) && SH.skull && istype(SH.skull, /obj/item/skull/))
 				var/obj/item/skull/S2 = SH.skull
-				tvalue += S2.value
+				tvalue += S2.trophy_value
 				no_of_skulls++
 				S2.set_loc(get_turf(SH))
 				SH.update_icon()

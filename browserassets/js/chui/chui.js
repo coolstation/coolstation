@@ -43,9 +43,7 @@ chui.setLabel = function(id, label) {
 chui.bycall = function(method, data) {
 	data = data || {};
 	data._cact = method;
-	const Http = new XMLHttpRequest();
-	Http.open('GET', '?src=' + chui.window + '&' + $.param(data));
-	Http.send();
+	document.location = 'byond://?src=' + chui.window + '&' + $.param(data);
 };
 
 chui.close = function() {
@@ -70,7 +68,7 @@ chui.setSize = function(w, h) {
 };
 
 chui.setPosSize = function(x, y, w, h) {
-	document.location = 'byond://winset?' + chui.window + '.size=' + escape(w+','+h ) + '&' + chui.window + '.pos=' + escape(x+','+y);
+	document.location = 'byond://winset?' + chui.window + '.size=' + escaper(w+','+h ) + '&' + chui.window + '.pos=' + escaper(x+','+y);
 };
 
 chui.chatDebug = function(msg) {
@@ -92,15 +90,14 @@ chui.initialize = function() {
 	// Scrollbar
 	$('#content').nanoScroller({ scrollTop: window.name });
 
-	chui.winset('transparent-color', '#FF00E4'); // Sets the window transparent color for 1 bit transparency.
+	//chui.winset('transparent-color', '#FF00E4'); // Sets the window transparent color for 1 bit transparency.
 
 	// Window Movement
 	////// ALIGNMENT
 
 	// Save opening position
-	var prevX = window.screenLeft;
-	var prevY = window.screenTop;
 
+	/*
 	// If the offset data exists in a cookie, just get it from there, otherwise generate it
 	var offsetCookie = chui.getCookie('chuiOffset');
 	//prompt("cook" + offsetCookie, offsetCookie);
@@ -134,97 +131,78 @@ chui.initialize = function() {
 
 	// Put the window back where it came from
 	chui.setPos(clampedX, clampedY);
-
+	*/
 	/////// ALIGNMENT FIN
 	//// Titlebar
 
-	$('body').on('mousemove', '#titlebar', function(ev) {
-		ev = ev || window.event;
-		if (typeof chui.lastX === 'undefined') {
-			chui.lastX = ev.screenX;
-			chui.lastY = ev.clientY;
-		}
+	document.querySelector('#titlebar').addEventListener('pointermove', function(ev) {
 		if (chui.titlebarMousedown == 1) {
-			var dx = (ev.screenX - chui.lastX);
-			var dy = (ev.screenY - chui.lastY);
-			dx += window.screenLeft - chui.offsetX;
-			dy += window.screenTop - chui.offsetY;
-
-			chui.setPos(dx, dy);
-		}
-		chui.lastX = ev.screenX;
-		chui.lastY = ev.screenY;
-	});
-	$('body').on('mousedown', '#titlebar', function() {
-		chui.titlebarMousedown = 1;
-		if ($(this)[0].setCapture) {
-			$(this)[0].setCapture();
+			chui.setPos(Math.floor(ev.screenX * window.devicePixelRatio - chui.startOffsetX), Math.floor(ev.screenY * window.devicePixelRatio - chui.startOffsetY));
 		}
 	});
-	$('body').on('mouseup', '#titlebar', function() {
+	document.querySelector('#titlebar').addEventListener('pointerdown', function(ev) {
+		if (ev.target.className !== 'icon-remove' && ev.target.className !== 'icon-minus') { // hacky way to ignore drags on the close and minimize buttons
+			chui.titlebarMousedown = 1;
+			chui.startOffsetX = Math.floor(ev.screenX - window.screenX) * window.devicePixelRatio;
+			chui.startOffsetY = Math.floor(ev.screenY - window.screenY) * window.devicePixelRatio;
+			this.setPointerCapture(ev.pointerId);
+		}
+	});
+	document.querySelector('#titlebar').addEventListener('pointerup', function(ev) {
 		chui.titlebarMousedown = 0;
-		if ($(this)[0].releaseCapture) {
-			$(this)[0].releaseCapture();
-		}
+		this.releasePointerCapture(ev.pointerId);
 	});
 
 	//// FIN Titlebar
 	//// Size handles
 
 	if (chui.flags & CHUI_FLAG_SIZABLE > 0) {
-		$('body').on('mousemove', 'div.resizeArea', function(ev) {
+		$('body').on('pointermove', 'div.resizeArea', function(ev) {
 			if (chui.resizeWorking) {
 				return;
 			}
 			chui.resizeWorking = true;
-			ev = ev || window.event;
-			if (typeof chui.lastX === 'undefined') {
-				chui.lastX = ev.screenX - chui.offsetX;
-				chui.lastY = ev.screenY - chui.offsetY;
-			}
 			if (chui.resizeMousedown == 1) {
-				// TODO: Handle sizing under minimum and coming back up being funny.
-				var width = document.body.offsetWidth;
-				var height = document.body.offsetHeight;
 				var rx = Number($(this).attr('rx'));
 				var ry = Number($(this).attr('ry'));
 
-				var dx = ((ev.screenX-chui.offsetX) - chui.lastX);
-				var dy = ((ev.screenY-chui.offsetY) - chui.lastY);
+				var dx = ev.screenX * window.devicePixelRatio - chui.startOffsetX;
+				var dy = ev.screenY * window.devicePixelRatio - chui.startOffsetY;
 
-				var newX = window.screenLeft - chui.offsetX;
-				var newY = window.screenTop - chui.offsetY;
+				var newX = chui.oldX;
+				var newY = chui.oldY;
 
-				var newW = width + (dx * rx);
-				if (rx == -1) {
-					newX += dx;
-				}
-				var newH = height + (dy * ry);
-				if (ry == -1) {
-					newY += dy;
-				}
+				var newW = Math.floor(dx * rx + chui.oldW);
+				var newH = Math.floor(dy * ry + chui.oldH);
 
 				newW = Math.max(chui.minWidth, newW);
 				newH = Math.max(chui.minHeight, newH);
 
+				if (rx == -1) {
+					newX += chui.oldW - newW
+				}
+				if (ry == -1) {
+					newY += chui.oldH - newH
+				}
+
 				chui.setPosSize(newX, newY, newW, newH);
 			}
-			chui.lastX = ev.screenX - chui.offsetX;
-			chui.lastY = ev.screenY - chui.offsetY;
 
 			chui.resizeWorking = false; //Prevent odd occasions where this gets called multiple times while working.
 		});
-		$('body').on('mousedown', 'div.resizeArea', function() {
+		$('body').on('pointerdown', 'div.resizeArea', function(ev) {
 			chui.resizeMousedown = 1;
-			if (this.setCapture) {
-				this.setCapture();
-			}
+			chui.startOffsetX = Math.floor(ev.screenX) * window.devicePixelRatio;
+			chui.startOffsetY = Math.floor(ev.screenY) * window.devicePixelRatio;
+			chui.oldX = window.screenX * window.devicePixelRatio;
+			chui.oldY = window.screenY * window.devicePixelRatio;
+			chui.oldW = document.body.offsetWidth * window.devicePixelRatio;
+			chui.oldH = document.body.offsetHeight * window.devicePixelRatio;
+			this.setPointerCapture(ev.originalEvent.pointerId);
 		});
-		$('body').on('mouseup', 'div.resizeArea', function() {
+		$('body').on('pointerup', 'div.resizeArea', function(ev) {
 			chui.resizeMousedown = 0;
-			if (this.releaseCapture) {
-				this.releaseCapture();
-			}
+			this.releasePointerCapture(ev.originalEvent.pointerId);
 		});
 	} else {
 		$('div.resizeArea').remove();
@@ -270,8 +248,8 @@ chui.fadeIn = function() {
 	var width = document.body.offsetWidth;
 	var height = document.body.offsetHeight;
 
-	var x = window.screenLeft - chui.offsetX;
-	var y = window.screenTop - chui.offsetY;
+	var x = window.screenLeft;
+	var y = window.screenTop;
 
 	chui.setSize(width + 80, height + 80);
 	chui.setPos(x - 40, y - 40);
@@ -296,8 +274,8 @@ chui.fadeOut = function() {
 	var width = document.body.offsetWidth;
 	var height = document.body.offsetHeight;
 
-	var x = window.screenLeft - chui.offsetX;
-	var y = window.screenTop - chui.offsetY;
+	var x = window.screenLeft;
+	var y = window.screenTop;
 	$({ foo: 1 }).animate({ foo: 0 }, {
 		duration: 1000,
 		step: function(val) {

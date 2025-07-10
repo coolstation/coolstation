@@ -171,7 +171,7 @@
 		if (M.buckled)
 			boutput(user, "They're already buckled into something!", "red")
 			return 0
-		if (!( iscarbon(M) ) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
+		if (get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
 			return 0
 		if(src.stool_user && src.stool_user.buckled == src && src.stool_user != M)
 			user.show_text("There's already someone buckled in [src]!", "red")
@@ -354,6 +354,15 @@
 	green
 		icon_state = "chair-g"
 
+	purple
+		icon_state = "chair-p"
+
+	orange
+		icon_state = "chair-o"
+
+	dblue
+		icon_state = "chair-n"
+
 /* ========================================================== */
 /* -------------------- Syndicate Chairs -------------------- */
 /* ========================================================== */
@@ -505,6 +514,14 @@
 		icon_state = "office_chair_purple"
 		parts_type = /obj/item/furniture_parts/office_chair/purple
 
+	orange
+		icon_state = "office_chair_orange"
+		parts_type = /obj/item/furniture_parts/office_chair/orange
+
+	lblue
+		icon_state = "office_chair_lblue"
+		parts_type = /obj/item/furniture_parts/office_chair/lblue
+
 	syndie
 		icon_state = "syndiechair"
 		parts_type = null
@@ -578,6 +595,18 @@
 		icon_state = "chair_comfy-yellow"
 		arm_icon_state = "arm-yellow"
 		parts_type = /obj/item/furniture_parts/comfy_chair/yellow
+
+	orange
+		name = "comfy orange chair"
+		icon_state = "chair_comfy-orange"
+		arm_icon_state = "arm-orange"
+		parts_type = /obj/item/furniture_parts/comfy_chair/orange
+
+	lblue
+		name = "comfy light blue chair"
+		icon_state = "chair_comfy-lblue"
+		arm_icon_state = "arm-lblue"
+		parts_type = /obj/item/furniture_parts/comfy_chair/lblue
 
 	purple
 		name = "comfy purple chair"

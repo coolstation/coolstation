@@ -43,7 +43,7 @@
 		var/obj/skull = user.organHolder.drop_organ("skull")
 		if (skull)
 			skull.set_loc(user.loc)
-		make_cleanable( /obj/decal/cleanable/blood,user.loc)
+		make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 		playsound(user, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 		health_update_queue |= user
 

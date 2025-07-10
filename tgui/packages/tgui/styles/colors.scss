@@ -1,6 +1,8 @@
 /**
  * Copyright (c) 2020 Aleksej Komarov
  * SPDX-License-Identifier: MIT
+ *
+ * Tetra theme colours: Blame Tamber
  */
 
 @use 'sass:color';
@@ -10,27 +12,28 @@
 // Base colors
 $black: #000000 !default;
 $white: #ffffff !default;
-$red: #db2828 !default;
-$orange: #f2711c !default;
-$yellow: #fbd608 !default;
+$red: #db5a5a !default;
+$orange: #f29253 !default;
+$yellow: #fbe14f !default;
 $olive: #b5cc18 !default;
-$green: #20b142 !default;
+$green: #52b168 !default;
 $teal: #00b5ad !default;
 $blue: #2185d0 !default;
-$violet: #6435c9 !default;
-$purple: #a333c8 !default;
-$pink: #e03997 !default;
+$violet: #7e5ac9 !default;
+$purple: #b066c8 !default;
+$pink: #e060a8 !default;
 $brown: #a5673f !default;
 $grey: #767676 !default;
+$light-grey: #aaa !default;
 
-$primary: #4972a1 !default;
-$good: #5baa27 !default;
-$average: #f08f11 !default;
-$bad: #db2828 !default;
+$primary: #5e7da1 !default;
+$good: #71AA4C !default;
+$average: #f0af5b !default;
+$bad: #DB4B4B !default;
 $label: #7e90a7 !default;
 
 // Background and foreground color lightness ratios
-$bg-lightness: -15% !default;
+$bg-lightness: -30% !default;
 $fg-lightness: 10% !default;
 
 @function bg($color) {
@@ -58,6 +61,7 @@ $_gen_map: (
   'pink': $pink,
   'brown': $brown,
   'grey': $grey,
+  'light-grey': $light-grey,
   'good': $good,
   'average': $average,
   'bad': $bad,
@@ -71,14 +75,14 @@ $bg-map-keys: map.keys($_gen_map) !default;
 
 $fg-map: ();
 @each $color-name in $fg-map-keys {
-  $fg-map: map-merge($fg-map, (
+  $fg-map: map.merge($fg-map, (
     $color-name: fg(map.get($_gen_map, $color-name)),
   ));
 }
 
 $bg-map: ();
 @each $color-name in $bg-map-keys {
-  $bg-map: map-merge($bg-map, (
+  $bg-map: map.merge($bg-map, (
     $color-name: bg(map.get($_gen_map, $color-name)),
   ));
 }

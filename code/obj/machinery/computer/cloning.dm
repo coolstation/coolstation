@@ -576,11 +576,6 @@ proc/find_ghost_by_key(var/find_key)
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			bo(occupant, "<span class='notice'>\The [src] unlocks!</span>")
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if (air_group || (height==0))
-			return 1
-		..()
-
 	// Meat grinder functionality.
 	proc/find_pods()
 		if (!islist(src.pods))
@@ -659,7 +654,7 @@ proc/find_ghost_by_key(var/find_key)
 		// Mess with the occupant
 		var/damage = round(200 / timer_length) + rand(1, 10)
 		src.occupant.TakeDamage(zone="All", brute=damage)
-		bleed(occupant, damage * 2, 0)
+		bleed(occupant, damage * 2)
 		if(prob(50))
 			playsound(src, 'sound/machines/mixer.ogg', 50, 1)
 		if(prob(30))
@@ -705,9 +700,9 @@ proc/find_ghost_by_key(var/find_key)
 			if(!src.allowed(usr))
 				show_message("You do not have permission to delete records.", "danger")
 				return TRUE
-			var/selected_record =	find_record(params["ckey"])
+			var/datum/data/record/selected_record =	find_record(params["ckey"])
 			if(selected_record)
-				logTheThing("station", usr, null, "deletes the cloning record [selected_record["fields"]["name"]] for player [selected_record["fields"]["ckey"]] at [log_loc(src)].")
+				logTheThing("station", usr, null, "deletes the cloning record [selected_record.fields["name"]] for player [selected_record.fields["ckey"]] at [log_loc(src)].")
 				src.records.Remove(selected_record)
 				qdel(selected_record)
 				selected_record = null
@@ -736,19 +731,19 @@ proc/find_ghost_by_key(var/find_key)
 				. = TRUE
 		if("saveToDisk")
 			var/ckey = params["ckey"]
-			var/selected_record = find_record(ckey)
+			var/datum/data/record/selected_record = find_record(ckey)
 			if ((isnull(src.diskette)) || (src.diskette.read_only) || (isnull(selected_record)))
 				show_message("Save error.", "warning")
 				. = TRUE
 
 			for (var/datum/computer/file/clone/R in src.diskette.root.contents)
-				if (R.fields["ckey"] == selected_record["fields"]["ckey"])
+				if (R.fields["ckey"] == selected_record.fields["ckey"])
 					show_message("Record already exists on disk.", "info")
 					. = TRUE
 
 			var/datum/computer/file/clone/cloneFile = new
-			cloneFile.name = "CloneRecord-[ckey(selected_record["fields"]["name"])]"
-			cloneFile.fields = selected_record["fields"]
+			cloneFile.name = "CloneRecord-[ckey(selected_record.fields["name"])]"
+			cloneFile.fields = selected_record.fields
 			if((src.diskette.file_used + cloneFile.size) > src.diskette.file_amount)
 				show_message("Disk is full.", "danger")
 				return TRUE
@@ -837,21 +832,21 @@ proc/find_ghost_by_key(var/find_key)
 		. += list("diskReadOnly" = src.diskette.read_only)
 
 	var/list/recordsTemp = list()
-	for (var/r in records)
+	for (var/datum/data/record/r as anything in records)
 		var/saved = FALSE
-		var/obj/item/implant/cloner/implant = locate(r["fields"]["imp"])
+		var/obj/item/implant/cloner/implant = locate(r.fields["imp"])
 		var/currentHealth = ""
 		if(istype(implant))
 			currentHealth = implant.getHealthList()
 		if(src.diskette) // checks if saved to disk
 			for (var/datum/computer/file/clone/F in src.diskette.root.contents)
-				if(F.fields["ckey"] == r["fields"]["ckey"])
+				if(F.fields["ckey"] == r.fields["ckey"])
 					saved = TRUE
 
 		recordsTemp.Add(list(list(
-			name = r["fields"]["name"],
-			id = r["fields"]["id"],
-			ckey = r["fields"]["ckey"],
+			name = r.fields["name"],
+			id = r.fields["id"],
+			ckey = r.fields["ckey"],
 			health = currentHealth,
 			implant = !isnull(implant),
 			saved = saved

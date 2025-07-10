@@ -137,7 +137,15 @@
 
 				saveStat("Shuttle", "[locstr]: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 		else
-			stats["Shuttle"] = 0
+			if (map_settings?.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+				if (ticker.round_elapsed_ticks < DYNAMIC_ARRIVAL_SHUTTLE_TIME)
+					saveStat("Shuttle", "ETA to [station_or_ship()]: [((DYNAMIC_ARRIVAL_SHUTTLE_TIME - ticker.round_elapsed_ticks) / 60) % 60]:[add_zero(num2text((DYNAMIC_ARRIVAL_SHUTTLE_TIME - ticker.round_elapsed_ticks) % 60), 2)]")
+				else
+					stats["Shuttle"] = 0
+			else
+				stats["Shuttle"] = 0
+
+
 
 var/global/datum/mob_stat_thinker/mobStat = new
 

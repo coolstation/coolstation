@@ -22,7 +22,8 @@
 	var/obj/item/clothing/suit/wear_suit = null
 	var/obj/item/clothing/under/w_uniform = null
 //	var/obj/item/device/radio/w_radio = null
-	var/obj/item/clothing/shoes/shoes = null
+	//Defined in living for critter dropkicks
+	shoes = null
 	var/obj/item/belt = null
 	var/obj/item/clothing/gloves/gloves = null
 	var/obj/item/clothing/glasses/glasses = null
@@ -118,7 +119,8 @@
 	var/obj/item/trinket = null //Used for spy_theft mode - this is an item that is eligible to have a bounty on it
 
 	//dismemberment stuff
-	var/datum/human_limbs/limbs = null
+	//defined in living.dm for critter dropkicks
+	limbs = null
 
 	var/static/image/human_image = image('icons/mob/human.dmi')
 	var/static/image/human_head_image = image('icons/mob/human_head.dmi')
@@ -583,7 +585,7 @@
 		I.former_implantee = null
 	..()
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed, deathgasp = TRUE, decompose = TRUE)
 	if (ticker.mode)
 		ticker.mode.on_human_death(src)
 	if(src.mind && src.mind.damned) // Ha you arent getting out of hell that easy.
@@ -694,7 +696,8 @@
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			NORMAL BUSINESS
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	emote("deathgasp") //let the world KNOW WE ARE DEAD
+	if(deathgasp)
+		emote("deathgasp") //let the world KNOW WE ARE DEAD
 
 	if (!src.mutantrace || inafterlife(src)) // wow fucking racist
 		modify_christmas_cheer(-7)
@@ -713,30 +716,33 @@
 		var/obj/item/clothing/suit/armor/suicide_bomb/A = src.wear_suit
 		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/item/clothing/suit/armor/suicide_bomb, trigger), src)
 
-	src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
-
-	if (src.mind) // I think this is kinda important (Convair880).
-		src.mind.register_death()
-		if (src.mind.special_role == ROLE_INSURGENT)
-			remove_insurgent_status(src, "nsurgt", "death")
-		else if (src.mind.special_role == ROLE_VAMPTHRALL)
-			remove_insurgent_status(src, "vthrall", "death")
-		else if (src.mind.master)
-			remove_insurgent_status(src, "other_recruit", "death")
-		if (src.mind.ckey && !inafterlife(src))
-			var/turf/where = get_turf(src)
-			var/where_text = "Unknown (?, ?, ?)"
-			if (where)
-				where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
-
-			message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
-
-#ifdef DATALOGGER
-		game_stats.Increment("playerdeaths")
-#endif
+	if(decompose)
+		src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
 
 	logTheThing("combat", src, null, "dies [log_health(src)] at [log_loc(src)].")
-	//src.icon_state = "dead"
+		//src.icon_state = "dead"
+
+	if (!src.mind) // I think this is kinda important (Convair880).
+		return ..(gibbed)
+
+	src.mind.register_death()
+	if (src.mind.special_role == ROLE_INSURGENT)
+		remove_insurgent_status(src, "nsurgt", "death")
+	else if (src.mind.special_role == ROLE_VAMPTHRALL)
+		remove_insurgent_status(src, "vthrall", "death")
+	else if (src.mind.master)
+		remove_insurgent_status(src, "other_recruit", "death")
+	if (src.mind.ckey && !inafterlife(src))
+		var/turf/where = get_turf(src)
+		var/where_text = "Unknown (?, ?, ?)"
+		if (where)
+			where_text = "<b>[where.loc]</b> [showCoords(where.x, where.y, where.z, ghostjump=TRUE)]"
+
+		message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
+
+#ifdef DATALOGGER
+	game_stats.Increment("playerdeaths")
+#endif
 
 	if (!src.suiciding)
 		if (emergency_shuttle?.location == SHUTTLE_LOC_STATION)
@@ -993,7 +999,7 @@
 	else
 		throw_mode_on()
 
-/mob/living/carbon/human/proc/throw_mode_off()
+/mob/living/carbon/human/throw_mode_off()
 	src.in_throw_mode = 0
 	src.update_cursor()
 	hud.update_throwing()
@@ -1002,85 +1008,6 @@
 	src.in_throw_mode = 1
 	src.update_cursor()
 	hud.update_throwing()
-
-/mob/living/carbon/human/throw_item(atom/target, list/params)
-	..()
-	var/turf/thrown_from = get_turf(src)
-	src.throw_mode_off()
-	if (src.stat)
-		return
-
-
-	//MBC : removing this because it felt bad and it wasn't *too* exploitable. still does click delay on the end of a throw anyway.
-	//if (usr.next_click > world.time)
-	//	return
-
-	var/obj/item/I = src.equipped()
-
-	if (!I || !isitem(I) || I.cant_drop) return
-
-	if (istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		I = G.handle_throw(src, target)
-		if (!I) return
-
-	I.set_loc(src.loc)
-
-	u_equip(I)
-
-	if (get_dist(src, target) > 0)
-		src.set_dir(get_dir(src, target))
-
-	//actually throw it!
-	if (I)
-		attack_twitch(src)
-		I.layer = initial(I.layer)
-		var/yeet = 0 // what the fuck am I doing
-		if(src.mind)
-			if(src.mind.karma >= 50) //karma karma karma karma karma khamelion
-				yeet_chance = 1
-			if(src.mind.karma < 0) //you come and go, you come and go.
-				yeet_chance = 0
-			if(src.mind.karma < 50 && src.mind.karma >= 0)
-				yeet_chance = 0.1
-
-		if(prob(yeet_chance))
-			src.visible_message("<span class='alert'>[src] yeets [I].</span>")
-			src.say("YEET")
-			yeet = 1 // I hate this
-		else
-			src.visible_message("<span class='alert'>[src] throws [I].</span>")
-		if (iscarbon(I))
-			var/mob/living/carbon/C = I
-			logTheThing("combat", src, C, "throws [constructTarget(C,"combat")] at [log_loc(src)].")
-			if ( ishuman(C) && !C.getStatusDuration("weakened"))
-				C.changeStatus("weakened", 1 SECOND)
-		else
-			// Added log_reagents() call for drinking glasses. Also the location (Convair880).
-			logTheThing("combat", src, null, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] at [log_loc(src)].")
-		if (istype(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction
-			src.inertia_dir = get_dir(target, src)
-			step(src, inertia_dir)
-		if ((istype(I.loc, /turf/space) || I.no_gravity)  && ismob(I))
-			var/mob/M = I
-			M.inertia_dir = get_dir(src,target)
-
-		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
-
-		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from)
-		if(yeet)
-			new/obj/effect/supplyexplosion(I.loc)
-
-			playsound(I.loc, 'sound/effects/ExplosionFirey.ogg', 100, 1)
-
-			for(var/mob/M in view(7, I.loc))
-				shake_camera(M, 20, 8)
-
-		if (mob_flags & AT_GUNPOINT)
-			for(var/obj/item/grab/gunpoint/G in grabbed_by)
-				G.shoot()
-
-		src.next_click = world.time + src.combat_click_delay
 
 /mob/living/carbon/human/click(atom/target, list/params)
 	if (src.client)
@@ -1734,10 +1661,7 @@
 			M.show_message(rendered, 2)
 
 	//mbc FUCK why doesn't this have any parent to call
-	speech_bubble.icon_state = "speech"
-	UpdateOverlays(speech_bubble, "speech_bubble")
-	SPAWN_DBG(1.5 SECONDS)
-		UpdateOverlays(null, "speech_bubble")
+
 
 /mob/living/carbon/human/var/const
 	slot_back = 1
@@ -2212,6 +2136,8 @@
 		hud.add_other_object(src.r_store,hud.layouts[hud.layout_style]["storage2"])
 
 /mob/living/carbon/human/proc/can_equip(obj/item/I, slot)
+	if(src.hasStatus("handcuffed") && I == src.equipped())//handcuff cheese
+		return 0
 	switch (slot)
 		if (slot_l_store, slot_r_store)
 			if (I.w_class <= W_CLASS_SMALL && src.w_uniform)
@@ -2816,8 +2742,8 @@
 		return null
 	var/obj/item/clothing/head/wig/W = new(src)
 	var/actuallyHasHair = 0
-	W.name = "[real_name]'s hair"
-	W.real_name = "[real_name]'s hair" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
+	W.name = "natural wig"
+	W.real_name = "natural wig" // The clothing parent setting real_name is probably good for other stuff so I'll just do this
 	W.icon = 'icons/mob/human_hair.dmi'
 	W.icon_state = "bald" // Let's give the actual hair a chance to shine
 /* commenting this out and making it an overlay to fix issues with colors stacking
@@ -3363,7 +3289,7 @@
 		src.drop_juggle()
 
 
-/mob/living/carbon/human/special_movedelay_mod(delay,space_movement,aquatic_movement)
+/mob/living/carbon/human/special_movedelay_mod(delay,space_movement,aquatic_movement,lying_multiplier)
 	.= delay
 	var/missing_legs = 0
 	var/missing_arms = 0
@@ -3372,13 +3298,13 @@
 		if (!src.limbs.r_leg) missing_legs++
 		if (!src.limbs.l_arm) missing_arms++
 		if (!src.limbs.r_arm) missing_arms++
-	if (src.lying)
-		missing_legs = 2
 	else if (src.shoes && src.shoes.chained)
 		missing_legs = 2
 
 	if (missing_legs == 2)
 		. += 14 - ((2-missing_arms) * 2) // each missing leg adds 7 of movement delay. Each functional arm reduces this by 2.
+	else if (src.lying)
+		. += (14 - ((2-missing_arms) * 2)) * lying_multiplier
 	else
 		. += 7*missing_legs
 
@@ -3528,3 +3454,31 @@
 
 	else
 		boutput(src, "<span class='alert'><B>You're not a cluwne for some reason! That's a bug!!! </B></span>")
+
+/mob/living/carbon/human/can_climb_ladder(silent = FALSE)
+	var/limb_count = 0
+	var/tread_count = 0
+	if (src.limbs.r_arm?.can_hold_items) //zombies and item arms are SOL
+		limb_count++
+	if (src.limbs.l_arm?.can_hold_items)
+		limb_count++
+	//treads don't do you much good on ladders
+	if (src.limbs.r_leg)
+		if (istype(src.limbs.r_leg, /obj/item/parts/robot_parts/leg/right/treads))
+			tread_count++
+		else limb_count++
+	if (src.limbs.l_leg)
+		if (istype(src.limbs.l_leg, /obj/item/parts/robot_parts/leg/left/treads))
+			tread_count++
+		else limb_count++
+	if (limb_count >= 3)
+		#ifdef DATALOGGER
+		if (limb_count == 3 && silent) //You're supposed to keep 3 points of contact on a ladder at all times
+			game_stats.Increment("workplacesafety")
+		#endif
+		return ..()
+	if (tread_count == 2 && !silent)
+		boutput(src, "<span class=alert>You can't climb a ladder while equipped with treads!</span>")
+	else
+		boutput(src, "<span class=alert>You don't have enough limbs to climb ladders!</span>")
+	return FALSE

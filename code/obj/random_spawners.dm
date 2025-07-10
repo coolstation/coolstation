@@ -1440,7 +1440,6 @@
 						/obj/item/clothing/mask/mmyers,
 						/obj/item/clothing/mask/mime,
 						/obj/item/clothing/mask/moustache,
-						/obj/item/clothing/mask/melons,
 						/obj/item/clothing/mask/wrestling,
 						/obj/item/clothing/mask/wrestling/black,
 						/obj/item/clothing/mask/wrestling/green,
@@ -1489,6 +1488,30 @@
 	lots
 		min_amt2spawn = 5
 		max_amt2spawn = 7
+
+/obj/random_item_spawner/pizza
+	name = "random pizza spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 1
+	items2spawn = list(/obj/item/reagent_containers/food/snacks/pizza/cargo/cheese,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/pepperoni,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/mushroom)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
+
+/obj/random_item_spawner/cola
+	name = "random cola spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 2
+	items2spawn = list(/obj/item/reagent_containers/food/drinks/cola,
+						/obj/item/reagent_containers/food/drinks/cola/random,
+						/obj/item/reagent_containers/food/drinks/peach,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/orange,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/grones)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
 
 /obj/random_item_spawner/hat
 	name = "random hat spawner"
@@ -1607,6 +1630,7 @@
 						/obj/item/clothing/shoes/flippers,
 						/obj/item/clothing/shoes/fuzzy,
 						/obj/item/clothing/shoes/gogo,
+						/obj/item/clothing/shoes/turbopunk,
 						/obj/item/clothing/shoes/heels,
 						/obj/item/clothing/shoes/macho,
 						/obj/item/clothing/shoes/mj_shoes,
@@ -1854,7 +1878,7 @@
 	New()
 		. = ..()
 		SPAWN_DBG(1 DECI SECOND) //sync with the organs spawn
-			make_cleanable(/obj/decal/cleanable/blood/gibs, src.loc)
+			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc)
 
 	one_to_three
 		min_amt2spawn = 1

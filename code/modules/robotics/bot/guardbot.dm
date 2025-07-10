@@ -1105,10 +1105,10 @@
 		var/my_turf = get_turf(src)
 		var/burst = shotcount	// TODO: Make rapidfire exist, then work.
 		while(burst > 0 && target)
-			if(IN_RANGE(target_turf, my_turf, 1))
-				budgun.shoot_point_blank(target, my_turf)
+			if((BOUNDS_DIST(target_turf, my_turf) == 0))
+				budgun.Shoot(target_turf, my_turf, src, point_blank_target = target)
 			else
-				budgun.shoot(target_turf, my_turf, src)
+				budgun.Shoot(target_turf, my_turf, src)
 			burst--
 			if (burst)
 				sleep(5)	// please dont fuck anything up
@@ -1946,6 +1946,7 @@
 		is_gun = 1
 		is_stun = 1 //Can be both nonlethal and lethal
 		is_lethal = 1 //Depends on reagent load.
+		value = 500
 		var/datum/projectile/current_projectile = new /datum/projectile/syringe
 		var/stun_reagent = "haloperidol"
 		var/kill_reagent = "cyanide"
@@ -1998,6 +1999,7 @@
 		tool_id = "SMOKE"
 		is_stun = 1
 		is_lethal = 1
+		value = 500
 		var/stun_reagent = "ketamine"
 		var/kill_reagent = "neurotoxin"
 
@@ -2032,6 +2034,7 @@
 		tool_id = "TASER"
 		is_stun = 1
 		is_gun = 1
+		value = 400
 		var/datum/projectile/current_projectile = new/datum/projectile/energy_bolt/robust
 
 		// Updated for new projectile code (Convair880).
@@ -2067,6 +2070,7 @@
 		icon_state = "tool_flash"
 		is_stun = 1
 		tool_id = "FLASH"
+		value = 250
 
 		bot_attack(var/atom/target as mob|obj, obj/machinery/bot/guardbot/user, ranged=0, lethal=0)
 			if(..()) return
@@ -2098,6 +2102,7 @@
 		is_gun = 1
 		is_stun = 1 //Can be both nonlethal and lethal
 		is_lethal = 1
+		value = 700
 
 		bot_attack(var/atom/target as mob|obj, obj/machinery/bot/guardbot/user, ranged=0, lethal=0)
 			if(..())
@@ -2179,6 +2184,14 @@
 		desc = "A miniature fabricator designed to fit inside a PR-6S Guardbuddy and provide for it an inexhaustible supply of kinetic ammunition, at the expense of the bot's built-in battery charge. When attached, this device welds itself to the bot, and if it detects a weapon in the bot's grip, it'll weld itself to that as well."
 		icon_state = "press_forbidden"
 		tool_id = "AMMOFAB - if you see this, please tell Superlagg their thing broke =0"
+		value = 1000
+
+	sense //meant as an apology quest for the Stone Cold Cop Disliker medal. no code yet but it soon will be
+		name = "SenseBuddy taste-and-smell sensor kit prototype"
+		desc = "A prototype miniature sensor array and translation package designed to fit inside a PR-6S Guardbuddy and provide for it the sensation of taste and smell. This never went into production as PR-6S units tested with this module immediately neglected all duties to harass the hospitality staff for every kind of food they could come up with (all of them)."
+		icon_state = "press_forbidden"
+		tool_id = "YUMMYBOT - if you see this, please tell Bobskunk their thing broke =0"
+		value = 5000
 
 //Task Datums
 /datum/computer/file/guardbot_task //Computer datum so it can be transmitted over radio
@@ -4079,8 +4092,9 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/pen))
 			if (created_name != initial(created_name))
-				boutput(user, "<span class='alert'>This robot has already been named!</span>")
-				return
+				if (alert(user, "This robot has already been named! Rename?", "ALERT", "Yes", "No") == "No")
+					return
+				remove_suffixes(1)
 
 			var/t = input(user, "Enter new robot name", src.name, src.created_name) as text
 			if(t && t != src.name && t != src.created_name)
@@ -4092,6 +4106,8 @@
 				return
 
 			src.created_name = t
+			src.name_suffix("- \"[src.created_name]\"")
+			src.UpdateName()
 		else
 			..()
 
@@ -4120,7 +4136,7 @@
 		return
 
 
-	//Frame -> Add cell -> Add core -> Add arm -> Done. Then add tool. Or gun.
+	//Frame -> Add cell -> Add core -> (Add tool) -> Add arm -> Done. (Then add tool. Or gun.)
 	attackby(obj/item/W as obj, mob/user as mob)
 		if ((istype(W, /obj/item/guardbot_core)))
 			if(W:buddy_model != src.buddy_model)
@@ -4133,6 +4149,8 @@
 			src.icon_state = "robuddy_frame-[buddy_model]-3"
 			if(W:created_name)
 				src.created_name = W:created_name
+				src.name_suffix("- \"[src.created_name]\"")
+				src.UpdateName()
 			if(W:created_default_task)
 				src.created_default_task = W:created_default_task
 			if(W:created_model_task)
@@ -4148,6 +4166,13 @@
 			src.stage = 2
 			src.icon_state = "robuddy_frame-[buddy_model]-2"
 			boutput(user, "You add the power cell to [src]!")
+
+		//Bringing this back to buddy building, but it's optional
+		else if((istype(W, /obj/item/device/guardbot_tool)) && stage == 3 && !created_module)
+			user.drop_item()
+			W.set_loc(src)
+			src.created_module = W
+			boutput(user, "You add the [W.name] to [src]!")
 
 
 		else if (istype(W, /obj/item/parts/robot_parts/arm/) && src.stage == 3)
@@ -4166,11 +4191,16 @@
 				newbot.setup_default_startup_task = src.created_default_task
 
 			// Everyone gets a new gunt
-			newbot.tool = new /obj/item/device/guardbot_tool/gun
-			newbot.tool.set_loc(newbot)
-			newbot.tool.master = newbot
-
-			newbot.locked = 0
+			if(src.created_module)
+				newbot.tool = src.created_module
+				newbot.tool.set_loc(newbot)
+				newbot.tool.master = newbot
+				newbot.locked = TRUE
+			else
+				newbot.tool = new /obj/item/device/guardbot_tool/gun
+				newbot.tool.set_loc(newbot)
+				newbot.tool.master = newbot
+				newbot.locked = FALSE
 
 			if(src.created_model_task)
 				newbot.model_task = src.created_model_task
@@ -4179,6 +4209,25 @@
 
 			qdel(src)
 			return
+
+		else if (istype(W, /obj/item/pen) && src.stage == 3)
+			if (created_name != initial(created_name))//copied cause the main board gets deleted on insertion
+				if (alert(user, "This robot has already been named! Rename?", "ALERT", "Yes", "No") == "No")
+					return
+				remove_suffixes(1)
+
+			var/t = input(user, "Enter new robot name", src.name, src.created_name) as text
+			if(t && t != src.name && t != src.created_name)
+				phrase_log.log_phrase("bot-guard", t)
+			t = copytext(html_encode(t), 1, MAX_MESSAGE_LEN)
+			if (!t)
+				return
+			if (!in_interact_range(src, user) && src.loc != user)
+				return
+
+			src.created_name = t
+			src.name_suffix("- \"[src.created_name]\"")
+			src.UpdateName()
 
 		else
 			spawn(0)

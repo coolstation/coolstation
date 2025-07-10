@@ -315,7 +315,7 @@
 				var/obj/bantyson/Q = new /obj/bantyson(pickedstart)
 				Q.tysonmins2 = tysonmins
 				Q.tysontarget2 = tysontarget
-				Q.caller = usr
+				Q.callster = usr
 				Q.tysonreason = reason
 				Q.timelimit = time
 				Q.tysonspeed = speed
@@ -342,7 +342,7 @@
 	var/turf/pickedstart = locate(startx, starty, tysontarget.z)
 	var/obj/gibtyson/Q = new /obj/gibtyson(pickedstart)
 	Q.tysontarget2 = tysontarget
-	Q.caller = usr
+	Q.callster = usr
 	Q.tysonspeed = speed
 
 /obj/bantyson/
@@ -355,7 +355,7 @@
 	anchored = 0
 	var/mob/tysontarget2 = null
 	var/tysonmins2 = null
-	var/mob/caller = null
+	var/mob/callster = null
 	var/tysonreason = null
 	var/tysoncantreach = 0
 	var/timelimit = 6
@@ -413,14 +413,14 @@
 			addData["compID"] =  tysontarget2.computer_id
 			addData["ip"] = tysontarget2.client.address
 			addData["reason"] = tysonreason
-			addData["akey"] = caller:ckey
+			addData["akey"] = callster:ckey
 			addData["mins"] = tysonmins2
 			addBan(addData)
 			boutput(tysontarget2, "<span class='alert'><BIG><B>You have been tysoned by [usr.client.ckey].<br>Reason: [tysonreason] and he couldn't escape the tyson.</B></BIG></span>")
 			boutput(tysontarget2, "<span class='alert'>This is a temporary tysonban, it will be removed in [tysonmins2] minutes.</span>")
-			logTheThing("admin", caller:client, tysontarget2, "has tysonbanned [constructTarget(tysontarget2,"admin")]. Reason: [tysonreason] and he couldn't escape the tyson. This will be removed in [tysonmins2] minutes.")
-			logTheThing("diary", caller:client, tysontarget2, "has tysonbanned [constructTarget(tysontarget2,"diary")]. Reason: [tysonreason] and he couldn't escape the tyson. This will be removed in [tysonmins2] minutes.", "admin")
-			message_admins("<span class='internal'>[caller?.client?.ckey] has tysonbanned [tysontarget2.ckey].<br>Reason: [tysonreason] and he couldn't escape the tyson.<br>This will be removed in [tysonmins2] minutes.</span>")
+			logTheThing("admin", callster:client, tysontarget2, "has tysonbanned [constructTarget(tysontarget2,"admin")]. Reason: [tysonreason] and he couldn't escape the tyson. This will be removed in [tysonmins2] minutes.")
+			logTheThing("diary", callster:client, tysontarget2, "has tysonbanned [constructTarget(tysontarget2,"diary")]. Reason: [tysonreason] and he couldn't escape the tyson. This will be removed in [tysonmins2] minutes.", "admin")
+			message_admins("<span class='internal'>[callster?.client?.ckey] has tysonbanned [tysontarget2.ckey].<br>Reason: [tysonreason] and he couldn't escape the tyson.<br>This will be removed in [tysonmins2] minutes.</span>")
 			del(tysontarget2.client)
 			tysontarget2.gib()
 		playsound(src.loc, pick('sound/misc/Boxingbell.ogg'), 50, 0)
@@ -436,7 +436,7 @@
 	anchored = 0
 	var/mob/tysontarget2 = null
 	var/tysonspeed = 1
-	var/mob/caller = null
+	var/mob/callster = null
 
 	New()
 		SPAWN_DBG(0) process()
@@ -475,9 +475,9 @@
 			for(var/mob/O in AIviewers(src, null))
 				O.show_message("<span class='alert'><B>[src]</B> KOs [tysontarget2] in one punch!</span>", 1)
 			playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 30, 1, -2)
-			logTheThing("admin", caller:client, tysontarget2, "tysongibbed [constructTarget(tysontarget2,"admin")]")
-			logTheThing("diary", caller:client, tysontarget2, "tysongibbed [constructTarget(tysontarget2,"diary")]", "admin")
-			message_admins("<span class='internal'>[caller?.client?.ckey] has tysongibbed [tysontarget2] ([tysontarget2.ckey]).</span>")
+			logTheThing("admin", callster:client, tysontarget2, "tysongibbed [constructTarget(tysontarget2,"admin")]")
+			logTheThing("diary", callster:client, tysontarget2, "tysongibbed [constructTarget(tysontarget2,"diary")]", "admin")
+			message_admins("<span class='internal'>[callster?.client?.ckey] has tysongibbed [tysontarget2] ([tysontarget2.ckey]).</span>")
 			tysontarget2.gib()
 			sleep(0.5 SECONDS)
 			playsound(src.loc, pick('sound/misc/knockout.ogg'), 50, 0)

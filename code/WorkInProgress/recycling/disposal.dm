@@ -160,6 +160,18 @@
 	// merge two holder objects
 	// used when a a holder meets a stuck holder
 	proc/merge(var/obj/disposalholder/other)
+		if (istype(other, /obj/disposalholder/crawler)) //early return here to have mercy on pipe crawling players
+			var/obj/disposalholder/crawler/C = other
+			boutput(C.pilot, "<span class='alert'><b>Something else coming down the pipes sweeps you with it! [pick("Fuck", "Damn it", "Piss", "Noooooo", "Bitter hubris", "Oh the humanity")]!</b></span>")
+			C.pilot?.emote("scream")
+			if (istype(src, /obj/disposalholder/crawler) && !src.active) //partly funny, partly to avoid having to deal with two pilots (or someone holding another person indefinitely)
+				C = src
+				C.movement_controller.in_control = FALSE
+				C.pilot?.emote("scream")
+				C.active = TRUE
+				boutput(C.pilot, "<span class='alert'><b>You slam into someone else in the pipes, and lose your grip! [pick("Fuck", "Damn it", "Piss", "Noooooo", "Bitter hubris", "Oh the humanity")]!</b></span>")
+				SPAWN_DBG(1 DECI SECOND) //Get fucked
+					process()		// spawn off the movement process
 		for(var/atom/movable/AM in other)
 			AM.set_loc(src)	// move everything in other holder to this one
 		if(other.mail_tag && !src.mail_tag)
@@ -196,6 +208,7 @@
 		user.changeStatus("paralysis", 4 SECONDS)
 		user.changeStatus("weakened", 4 SECONDS)
 		src.visible_message("<span class='alert'><b>[P]</b> emits a loud thump and rattles a bit.</span>")
+		user.take_brain_damage(prob(50))
 
 		animate_storage_thump(P)
 
@@ -230,6 +243,42 @@
 	// warc sez: \\
 	// this is a special guy created specifically to help automatically configure the mail system.
 	autoconfig = 1
+
+/obj/disposalholder/crawler
+	// bat sex: \\
+	// this is a special gal that lets players traverse the disposals network
+	var/mob/pilot
+	var/datum/movement_controller/pipe_crawler/movement_controller
+	var/obj/item/device/t_scanner/vision
+
+	New()
+		vision = new(src)
+		vision.set_on(TRUE)
+		movement_controller = new()
+		movement_controller.owner = src
+		..()
+
+	disposing()
+		qdel(vision)
+		qdel(movement_controller)
+		vision = null
+		movement_controller = null
+		pilot = null
+		..()
+
+	start(obj/machinery/disposal/D)
+		if (!can_act(pilot, TRUE))
+			movement_controller.in_control = TRUE
+			return ..()
+
+		if(!D.trunk || D.trunk.loc != D.loc)
+			D.expel(src)	// no trunk connected, so expel immediately
+			return
+
+		set_loc(D.trunk)
+		set_dir(D.trunk.dir)
+
+
 
 // Disposal pipes
 
@@ -1253,7 +1302,7 @@
 				src.force = 88
 				src.throwforce = 88
 				src.throw_range = 2
-				src.reagents.add_reagent("george_melonium",25)
+				src.reagents.add_reagent("rainbow_melonium",25)
 
 			if (9)
 				src.name = "degenerate loaf"
@@ -1262,7 +1311,7 @@
 				src.force = 110
 				src.throwforce = 110
 				src.throw_range = 1
-				src.reagents.add_reagent("george_melonium",50)
+				src.reagents.add_reagent("rainbow_melonium",50)
 
 			if (10)
 				src.name = "strangelet loaf"
@@ -1271,7 +1320,7 @@
 				src.force = 220
 				src.throwforce = 220
 				src.throw_range = 0
-				src.reagents.add_reagent("george_melonium",100)
+				src.reagents.add_reagent("rainbow_melonium",100)
 
 				if (!src.processing)
 					src.processing = 1
@@ -2014,7 +2063,7 @@
 	src.changeStatus("weakened", 2 SECONDS)
 	return
 
-/obj/decal/cleanable/blood/gibs/pipe_eject(var/direction)
+/obj/decal/cleanable/tracked_reagents/blood/gibs/pipe_eject(var/direction)
 	var/list/dirs
 	if(direction in cardinal)
 		dirs = direction

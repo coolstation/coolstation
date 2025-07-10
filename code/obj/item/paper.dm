@@ -45,6 +45,7 @@
 	burn_output = 900
 	burn_possible = TRUE
 	health = 10
+	rand_pos = 9
 	var/list/form_startpoints
 	var/list/form_endpoints
 	var/font_css_crap = null
@@ -77,11 +78,7 @@
 	SPAWN_DBG(0)
 		if (src.info && src.icon_state == "paper_blank")
 			icon_state = "paper"
-	if (!src.rand_pos)
-		return
-	else
-		src.pixel_y = rand(-8, 8)
-		src.pixel_x = rand(-9, 9)
+
 /*
 /obj/item/paper/pooled()
 
@@ -663,7 +660,7 @@ as it may become compromised.
 				<li>Step Two: Lay down a conductor beneath the center of the planned position of the generator. See diagram.</li>
 				<br><img src='[resource("images/pocket_guides/1by3.png")]'>
 				<li>Step Three: Deploy the Hot Gas Circulator on the left side of the 1x3 area, and the Cold Gas Circulator on the right side.</li>
-				<li>Step Four: Deploy the Thermoelectric generator over the conductor, between the two Circulators. The order is critical. </li>
+				<li>Step Four: Deploy the Thermoelectric generator over the conductor, between the two Circulators. The order is not critical. </li>
 				<li>Step Five: Construct necessary plumbing and supporting hardware. Note that gas flows from north to south through Gas Circulators.</li></ul>
 				<br><img src='[resource("images/pocket_guides/teg.png")]'><br>
 				<b>ABSOLUTELY NO WARRANTY, EXPRESS OR IMPLIED, IS PROVIDED, AS-IS, LLC, NO COPYRIGHT INTENDED, I DO NOT CREATE JOINDER.</b>"}
@@ -727,60 +724,6 @@ as it may become compromised.
 			 I will be back to save you soon. We promised to escape together, remember?<br>
 			 <br>
 			 -A.C"}
-
-/obj/item/paper/mantasegways
-    name = "paper - Where are the security segways?"
-    icon_state = "paper"
-    info = {"<h4>Where are the security segways?</h4><br>
-    Many of you have asked "where are the security segways?". Well let me tell you that we finally got rid of those filthy stains on the cover of the Space Law
-	and permanently brigged them in some warehouse on the ship.
-    <br>
-    Now quit bothering us with your nonsensical questions and get back to work!
-    <br>
-    <font size=1>- Head of Security </font>"}
-
-/obj/item/paper/mantasecscanners
-	name = "paper - Security Officers are so dumb!"
-	icon_state = "paper"
-	info ={"Man, I can't believe how ridiculously dumb those security officers are! It's been weeks since I cut the wires to the security scanners on the left
-	and right side of security and yet they still haven't noticed!<br>
-	I swear, as soon as I'll get out of here, I'm going to go and snatch that sweet medal that Head of Security has in his office."}
-
-/obj/item/paper/mantanote
-	name = "paper - The Sea"
-	icon_state = "paper"
-	info ={"
-	The sea, the darkness, the death and despair- <br>
-	all around me all this harkens back to days with air.<br>
-	My hands, my arms, my clothes and hair - <br>
-	all of this will go to waste in here! <br>
-
-	A fool I was, in days way past, to go enlist - <br>
-	a braggard, he was, who convinced me of this! <br>
-	I signed the paper and thus am trapped, fuck this! <br>
-
-	The creaking of the ship, the metal closing in - <br>
-	ah, the wonderful engineers, smash their shins! <br>
-	Jail would be a soft fate for the likes of these! <br>
-
-	The days go by, I hear me sigh, and dread what swam just by - <br>
-	I won't survive tonight, or if I do, tomorrow. For I know why, <br>
-	the metal creaks in horror. I leave this poem, to you dear reader, <br>
-	please excuse the mistakes, for I fear that the pen moves too slow, <br>
-	my eyes move too slow, everything is too slow, and I cannot fix the mistakes I made in here, and I cannot fix anything I have done in here. <br>
-	Goodbye my reader, if you exist, please don't make my mistakes again. <br>"}
-
-/obj/item/paper/mantahopnote
-	name = "paper - Important message"
-	icon_state = "paper"
-	info ={"
-	It has come to our attention that there is an increasing number of<br>
-	threats on your life regarding matters of you refusing to hand out all access cards.<br>
-	In order to keep your life more secure, we have commissioned a naval style armored coat for your usage. <br>
-
-	We hope that it will keep you alive long enough for us to find a potential replacement candidate to do your job.
-
-	With best regards,<br>Nanotrasen HR Department. <br>"}
 
 /obj/item/paper/antisingularity
 	name = "paper - How to properly operate Singularity Buster rocket launcher"
@@ -1257,7 +1200,7 @@ as it may become compromised.
 	m_amt = 60
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 	var/special_mode = null
 	var/is_reassignable = 1
 	var/assignment = null
@@ -1583,11 +1526,10 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "postcard-mushroom"
 	sizex = 1066
 	sizey = 735
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:2px'><img src='[resource("images/arts/mushroom_station.png")]'></body></html>"
 
 /obj/item/paper/botany_guide
@@ -1596,11 +1538,10 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "botany_guide"
 	sizex = 970
 	sizey = 690
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:2px'><img src='[resource("images/pocket_guides/botanyguide.png")]'></body></html>"
 
 /obj/item/paper/ranch_guide
@@ -1609,11 +1550,10 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "ranch_guide"
 	sizex = 1100
 	sizey = 800
+	rand_pos = 8
 
 	New()
 		..()
-		pixel_x = rand(-8, 8)
-		pixel_y = rand(-8, 8)
 		info = "<html><body><style>img {width: 100%; height: auto;}></style><img src='[resource("images/pocket_guides/ranchguide.png")]'></body></html>"
 
 /obj/item/paper/iou

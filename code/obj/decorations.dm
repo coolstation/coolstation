@@ -194,11 +194,16 @@
 	var/time_between_uses = 400 // The default time between uses.
 	var/override_default_behaviour = 0 // When this is set to 1, the additional_items list will be used to dispense items.
 	var/list/additional_items = list() // See above.
+	var/base_x = 0
+	var/base_y = 0
+
 
 	New()
 		..()
 		max_uses = rand(0, 5)
 		spawn_chance = rand(1, 40)
+		base_x = pixel_x
+		base_y = pixel_y
 	ex_act(var/severity)
 		switch(severity)
 			if(1,2)
@@ -210,19 +215,9 @@
 		if (destroyed) return ..()
 
 		user.lastattacked = src
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, -1)
 
-		var/original_x = pixel_x
-		var/original_y = pixel_y
-		var/wiggle = 6
-
-		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
-			while (wiggle > 0)
-				wiggle--
-				animate(src, pixel_x = rand(-3,3), pixel_y = rand(-3,3), time = 2, easing = EASE_IN)
-				sleep(0.1 SECONDS)
-
-		animate(src, pixel_x = original_x, pixel_y = original_y, time = 2, easing = EASE_OUT)
+		//BUSH ANIMATION!!!!
+		src.shake_bush(50)
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
 			var/something = null
@@ -254,6 +249,21 @@
 						L.changeStatus("stunned", 2 SECONDS)
 
 		interact_particle(user,src)
+
+//BUSH ANIMATION!!!!
+	proc/shake_bush(var/volume)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, -1)
+
+		var/wiggle = 6
+
+		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
+			while (wiggle > 0)
+				wiggle--
+				animate(src, pixel_x = rand(src.base_x-3,src.base_x+3), pixel_y = rand(src.base_y-3,src.base_y+3), time = 2, easing = EASE_IN)
+				sleep(0.1 SECONDS)
+
+		animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+
 
 	Crossed(atom/movable/AM)
 		. = ..()
@@ -289,6 +299,40 @@
 			. = ..()
 			src.dir = pick(alldirs)
 
+/obj/shrub/big
+	name = "fern"
+	icon = 'icons/obj/large/64x64.dmi'
+	icon_state = "fern1"
+	pixel_x = -16
+	pixel_y = -16
+	bound_width = 64
+	bound_height = 64
+	event_handler_flags = USE_HASENTERED
+
+	//check if somebody walked in and its russlin' time
+	HasEntered(atom/movable/AM as mob|obj)
+		..()
+
+		if(!(ishuman(AM) || AM.throwing))
+			return
+
+		if(isnpc(AM)) //if its a monkey (a type of human NPC)
+			src.shake_bush(10)
+			return
+
+		if (AM.throwing) //if its a thlrown item and not a human/monke
+			src.shake_bush(20)
+			return
+		//humans are much louder than thrown items and mobs
+		//Only players will trigger this
+		src.shake_bush(50)
+
+
+/obj/shrub/big/big2
+	icon_state = "fern2"
+
+/obj/shrub/big/big3
+	icon_state = "fern3"
 
 //It'll show up on multitools
 /obj/shrub/syndicateplant
@@ -882,6 +926,19 @@ obj/decoration/ceilingfan
 	icon_state = "detectivefan"
 	anchored = 1
 	layer = EFFECTS_LAYER_BASE
+	alpha = 255
+	plane = PLANE_NOSHADOW_ABOVE
+	#ifdef IN_MAP_EDITOR
+	color = "#FFFFFF"
+	alpha = 128
+	#endif
+	New()
+		..()
+		var/image/fanimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE,src.dir)
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(fanimage)
+		fanimage.alpha = 120
+		src.alpha = 0
+
 
 /obj/decoration/candles
 	name = "wall mounted candelabra"
@@ -1180,6 +1237,7 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bhole"
 	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 	examine()
 		return list()
@@ -1189,6 +1247,7 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "plasma-bhole"
 	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 	examine()
 		return list()
@@ -1395,11 +1454,51 @@ obj/decoration/ceilingfan
 		return
 
 
-obj/decoration/floralarrangement
+/obj/decoration/floralarrangement
 	name = "floral arrangement"
 	desc = "These look... Very plastic. Huh."
 	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "floral_arrange"
 	anchored = 1
 	density = 1
+
+/obj/decoration/railbed
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "railbed"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+/obj/decoration/railbed/cracked1
+	icon_state = "railbedcracked1"
+
+/obj/decoration/railbed/cracked2
+	icon_state = "railbedcracked2"
+
+/obj/decoration/railbed/trans
+	icon_state = "railbedtrans"
+	New()
+		..()
+		src.color = null
+
+/obj/decoration/railbed/trans/cracked1
+	icon_state = "railbedcracked1trans"
+
+/obj/decoration/railbed/trans/cracked2
+	icon_state = "railbedcracked2trans"
+
+/obj/decoration/train_signal
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "trainsignal"
+	anchored = 1
+	density = 0
+	plane = PLANE_NOSHADOW_BELOW
+	//this is just a dummy until it gets logic
 

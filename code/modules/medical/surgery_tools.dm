@@ -173,6 +173,15 @@ CONTAINS:
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "saw"
 
+/obj/item/circular_saw/grody
+	name = "nasty old bonesaw"
+	icon_state = "saw_grody"
+	desc = "A rusty old bonesaw, caked in blood. You're liable to give someone sepsis if you try using this old thing."
+
+	attack(mob/living/carbon/M as mob, mob/user as mob)
+		src.reagents.add_reagent("MRSA", src.reagents.maximum_volume - src.reagents.total_volume)
+		return ..()
+
 /* =========================================================== */
 /* -------------------- Enucleation Spoon -------------------- */
 /* =========================================================== */
@@ -415,6 +424,9 @@ CONTAINS:
 		if (src.defibrillate(M, user, src.emagged, src.makeshift, src.cell))
 			JOB_XP(user, "Medical Doctor", 5)
 			src.charged = 0
+			if(istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+				var/obj/machinery/atmospherics/unary/cryo_cell/cryo = src.loc
+				cryo.shock_icon()
 			set_icon_state("[src.icon_base]-shock")
 			SPAWN_DBG(1 SECOND)
 				set_icon_state("[src.icon_base]-off")
@@ -433,6 +445,9 @@ CONTAINS:
 			return 0
 		playsound(src.loc, "sound/impact_sounds/Energy_Hit_3.ogg", 75, 1, pitch = 0.92)
 		src.charged = 0
+		if(istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+			var/obj/machinery/atmospherics/unary/cryo_cell/cryo = src.loc
+			cryo.shock_icon()
 		set_icon_state("[src.icon_base]-shock")
 		SPAWN_DBG(1 SECOND)
 			set_icon_state("[src.icon_base]-off")
@@ -486,8 +501,9 @@ CONTAINS:
 			shockcure = 1
 			break
 
-	user.visible_message("<span class='alert'><b>[user]</b> places the electrodes of [src] onto [user == patient ? "[his_or_her(user)] own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>",\
-	"<span class='alert'>You place the electrodes of [src] onto [user == patient ? "your own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>")
+	if(!istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		user.visible_message("<span class='alert'><b>[user]</b> places the electrodes of [src] onto [user == patient ? "[his_or_her(user)] own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>",\
+		"<span class='alert'>You place the electrodes of [src] onto [user == patient ? "your own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>")
 
 	if (emagged || (patient.health < 0 && !faulty) || (shockcure && !faulty) || (faulty && prob(25 + suiciding)) || (suiciding && prob(44)))
 
@@ -626,6 +642,14 @@ CONTAINS:
 			newcell = new /obj/item/cell/charged(src)
 		src.cell = newcell
 		newcell.set_loc(src)
+
+	attackby(obj/item/W, mob/user, params)
+		if(istool(W, TOOL_CUTTING))
+			boutput(user, "You cut the cables off the cell.")
+			user.put_in_hand_or_drop(src.cell)
+			qdel(src)
+		else return ..()
+
 
 
 
@@ -1155,6 +1179,122 @@ CONTAINS:
 			AM.set_loc(src.loc)
 		..()
 
+	deployed
+		var/list/spawn_contents = list()
+		icon_state = "bodybag-closed1"
+		w_class = W_CLASS_BULKY
+
+		New()
+			..()
+			SPAWN_DBG(1 DECI SECOND)
+				src.make_my_stuff()
+
+		proc/make_my_stuff() // copying from large_storage_parent.dm
+			. = 1
+			if (!islist(src.spawn_contents))
+				return 0
+
+			for (var/thing in src.spawn_contents)
+				var/amt = 1
+				if (!ispath(thing))
+					continue
+				if (isnum(spawn_contents[thing])) //Instead of duplicate entries in the list, let's make them associative
+					amt = abs(spawn_contents[thing])
+				do new thing(src)	//Two lines! I TOLD YOU I COULD DO IT!!!
+				while (--amt > 0)
+
+		corpse
+			spawn_contents = list(/mob/living/carbon/human/normal/corpse)
+
+			morgue
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/morgue_patient)
+
+			clown
+				var/opened = FALSE
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/clown)
+				open()
+					..()
+
+					if(!opened)
+						opened = TRUE
+						var/obj/item/pie = new /obj/item/reagent_containers/food/snacks/pie/cream(src.loc)
+						var/mob/M = locate(/mob/living) in view(2)
+						if(M)
+							pie.throw_at(M, 3, 2)  // one last prank
+
+			martian
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/unique/martian, /obj/item/raw_material/martian = 2)
+
+			miner
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/unique/miner_accident, /obj/item/material_piece/copper)
+				var/opened = FALSE
+				open()
+					..()
+
+					if(!opened)
+						opened = TRUE
+						var/obj/item/satchel/mining/M = new(src.loc)
+						var/gems = rand(1,5)
+						while(gems > 0)
+							gems--
+							var/obj/item/raw_material/gemstone/gem = new()
+							M.add_thing(gem)
+
+			fancy
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/unique/fancy)
+				var/opened = FALSE
+				open()
+					..()
+
+					if(!opened)
+						var/obj/item/material_piece/B = new(src.loc) //going to make this a processed material piece to try and avoid matsci
+						B.setMaterial(getMaterial("silver"))
+						B.icon = 'icons/obj/items/items.dmi'
+						B.icon_state = "bracelet"
+						B.name = "silver bracelet"
+						B.desc = "A tarnished bit of silver that may still be useful as scrap."
+						B.layer = 3.1
+
+		bone
+			spawn_contents = list(/obj/item/skull/classic, /obj/item/material_piece/bone = 2)
+
+		cloth
+			spawn_contents = list(/obj/decal/skeleton/unanchored, /obj/item/material_piece/cloth/cottonfabric/randomcolor = 3)
+
+		spidersilk
+			spawn_contents = list(/obj/critter/nicespider, /obj/item/material_piece/cloth/spidersilk = 2)
+
+		bohrum
+			spawn_contents = list(/obj/decal/cleanable/ash = 2)
+			var/opened = FALSE
+			open()
+				..()
+
+				if(!opened)
+					opened = TRUE
+					var/obj/item/material_piece/hip = new(src.loc) //going to make this a processed material piece to try and avoid matsci
+					hip.setMaterial(getMaterial("bohrum"))
+					hip.icon_state = "scrap4"
+					hip.name = "bohrum hip implant"
+					hip.desc = "It looks like you still might be able to use the metal in this."
+					hip.layer = 3.1
+
+		blood // might be a way to make this support any fluid?
+			var/opened = FALSE
+			open()
+				..()
+
+				if(!opened)
+					opened = TRUE
+					var/datum/effects/system/steam_spread/steam = new()
+					steam.set_up(8, 0, get_turf(src), "#ff0000") // would need to figure out how to get the reagent color
+					steam.attach(src)
+					steam.start()
+					var/turf/T = get_turf(src.loc)
+					T.fluid_react_single("blood", 150)
+					src.visible_message("<span class='alert'>[src] gushes a torrent of blood from every seam!</span>")
+					playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+
 	proc/update_icon()
 		if (src.open && src.open_image)
 			src.overlays += src.open_image
@@ -1625,4 +1765,4 @@ CONTAINS:
 		New()
 			. = ..()
 			SPAWN_DBG(1 DECI SECOND) //sync with the organs spawn
-				make_cleanable(/obj/decal/cleanable/blood/gibs, src.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc)

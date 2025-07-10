@@ -1,7 +1,7 @@
 
 /obj/storage/closet/coffin/vampire
 	name = "vampiric coffin"
-	desc = "A vampire's place of rest. They can regenerate while inside."
+	desc = "A dracula's place of rest. They can regenerate while inside."
 	icon_state = "vampcoffin"
 	icon_closed = "vampcoffin"
 	icon_opened = "vampcoffin-open"

@@ -14,7 +14,7 @@
 
 	w_class = W_CLASS_BULKY
 
-	New(obj/held_thing, mob/living/carbon/human/holder)
+	New(obj/held_thing, mob/living/holder)
 		if (!istype(held_thing) || !istype(holder))
 			qdel(src)
 			return
@@ -72,7 +72,7 @@
 
 	afterattack(atom/target, mob/user, reach, params)
 		if ((istype(target, /turf) && !target.density) || istype(target, /obj/table))
-			place_the_thing(target, user)
+			place_the_thing(target, user, params)
 		else
 			. = ..()
 
@@ -87,10 +87,13 @@
 			place_the_thing(get_turf(user), user)
 
 
-/obj/item/lifted_thing/proc/place_the_thing(atom/target, mob/user)
+/obj/item/lifted_thing/proc/place_the_thing(atom/target, mob/user, var/params)
 	if (!target)
 		target = get_turf(src)
 	our_thing.set_loc(get_turf(target))
+	if (islist(params) && params["icon-y"] && params["icon-x"])
+		our_thing.pixel_x = text2num(params["icon-x"]) - 16
+		our_thing.pixel_y = text2num(params["icon-y"]) - 16
 	if (machine_was_previously_processing)
 		var/obj/machinery/M = our_thing
 		M.SubscribeToProcess()

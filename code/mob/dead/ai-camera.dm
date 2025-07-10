@@ -88,7 +88,13 @@
 		if (C.tg_controls)
 			C.apply_keybind("robot_tg")
 
-	Move(NewLoc, direct)//Ewww!
+	process_move(keys)
+		if(keys && src.move_dir && !src.override_movement_controller && !istype(src.loc, /turf)) //when a movement key is pressed, move out of tracked mob
+			var/mob/dead/aieye/O = src
+			O.set_loc(get_turf(src))
+		. = ..()
+
+	Move(var/turf/NewLoc, direct) //Ewww!
 		last_loc = src.loc
 
 		src.closeContextActions()
@@ -146,6 +152,9 @@
 		if (!src.mainframe.stat && !src.mainframe.restrained() && !src.mainframe.hasStatus(list("weakened", "paralysis", "stunned")))
 			if(src.client.check_any_key(KEY_OPEN | KEY_BOLT | KEY_SHOCK) && istype(target, /obj) )
 				var/obj/O = target
+				if(istype(O,/obj/machinery/door/firedoor))
+					for(var/obj/machinery/door/airlock/airlock in O.loc)
+						O = airlock
 				O.receive_silicon_hotkey(src)
 				return
 
@@ -263,8 +272,8 @@
 	say_radio()
 		src.mainframe.say_radio()
 
-	say_main_radio()
-		src.mainframe.say_main_radio()
+	say_main_radio(msg as text)
+		src.mainframe.say_main_radio(msg)
 
 	emote(var/act, var/voluntary = 0)
 		if (mainframe)

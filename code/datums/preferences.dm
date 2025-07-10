@@ -54,6 +54,7 @@ datum/preferences
 	var/flying_chat_hidden = 0
 	var/auto_capitalization = 0
 	var/local_deadchat = 0
+	var/hidden_spiders = 0
 	var/use_wasd = 1
 	var/use_azerty = 0 // do they have an AZERTY keyboard?
 	var/spessman_direction = SOUTH
@@ -118,16 +119,15 @@ datum/preferences
 			qdel(src.preview)
 			src.preview = null
 
-	ui_data(mob/user)
-		if (isnull(src.preview))
-			src.preview = new(user.client, "preferences", "preferences_character_preview")
-			src.preview.add_background()
-			src.update_preview_icon()
-
+	ui_data(mob/user, datum/tgui/ui)
 		var/client/client = ismob(user) ? user.client : user
 
 		if (!client)
 			return
+
+		if (isnull(src.preview))
+			src.preview = new(user.client, "preferences", "preferences_character_preview", ui.window)
+			RegisterSignal(src.preview, COMSIG_UIMAP_LOADED, PROC_REF(update_preview_icon_initial))
 
 		var/list/profiles = new/list(SAVEFILE_PROFILES_MAX)
 		for (var/i = 1, i <= SAVEFILE_PROFILES_MAX, i++)
@@ -218,9 +218,25 @@ datum/preferences
 			"preferredMap" = src.preferred_map,
 			"skipLobbyMusic" = src.skip_lobby_music
 		)
+	proc/legal_json_check(var/list/json)
+		for(var/c in bad_name_characters)
+			if(findtext(json["name_first"],c) || findtext(json["name_middle"],c) || findtext(json["name_last"],c)) //illegal names
+				return 0
+		if(json["gender"] != NEUTER && json["gender"] != MALE && json["gender"] != FEMALE)
+			return 0
+		if(json["age"] < 20 || json["age"] > 80)
+			return 0
+		if(json["fartsound"] && !(json["fartsound"] in AH.fartsounds))
+			return 0
+		if(!(json["screamsound"] in AH.screamsounds))
+			return 0
+		if(!is_valid_color_string(json["PDAcolor"]) || !is_valid_color_string(json["eye_color"]) || !is_valid_color_string(json["hair_color"]) || !is_valid_color_string(json["facial_color"]) || !is_valid_color_string(json["detail_color"]) || !is_valid_color_string(json["underwear_color"]))
+			return 0
+		return 1
+
 
 //disable options on slots that have been played *or* on characters with the same name as a played one.
-#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(src)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
+#define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(client)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
 
 	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 		. = ..()
@@ -879,6 +895,21 @@ datum/preferences
 				src.profile_modified = TRUE
 				return TRUE
 
+			if ("json-export")
+				var/json = savefile_to_json(usr)
+				boutput(usr, "<b><span class='alert'>Char JSON: </b>[json]</span>")
+				return TRUE
+
+			if ("json-import")
+				var/rawjson = input(usr, "Paste raw JSON data here","JSON Import",src.pin) as null|text
+
+				if(rawjson && isThisShitEvenJson(rawjson))//is this actually json? it better be pal
+					src.json_to_character(client,rawjson)
+				else
+					boutput(usr, "<b><span class='alert'>JSON import failed</b></span>")
+				return TRUE
+
+
 			if ("reset")
 				src.profile_modified = TRUE
 
@@ -1000,10 +1031,16 @@ datum/preferences
 
 		src.real_name = src.name_first + " " + src.name_last
 
+	proc/update_preview_icon_initial()
+		update_preview_icon()
+		UnregisterSignal(src.preview, COMSIG_UIMAP_LOADED)
 
 	proc/update_preview_icon()
 		if (!AH)
 			logTheThing("debug", usr ? usr : null, null, "a preference datum's appearence holder is null!")
+			return
+
+		if(!src.preview?.handler)
 			return
 
 		var/datum/mutantrace/mutantRace = null
@@ -1177,8 +1214,10 @@ datum/preferences
 		position: relative;
 		padding: 0 1.2em;
 		border: 1px solid rgba(128, 128, 128, 0.5);
+		background: white;
 		}
 	.jobtable td a {
+		font-weight: normal;
 		text-decoration: none;
 		}
 	.jobtable td div a.job {
@@ -1642,7 +1681,15 @@ datum/preferences
 					character.bioHolder.bloodType = blType
 
 		//character.real_name = real_name
-		src.real_name = src.name_first + " " + src.name_last
+		var/mononym = 0
+		for(var/ID in traitPreferences.traits_selected)
+			if(ID == "mononym")
+				mononym = 1
+				break
+		if(mononym)
+			src.real_name = src.name_first
+		else
+			src.real_name = src.name_first + " " + src.name_last
 		character.real_name = src.real_name
 
 		//Wire: Not everything has a bioholder you morons
@@ -1779,11 +1826,18 @@ datum/preferences
 	//DEBUG_MESSAGE("EYE final: [return_color]")
 	return return_color
 
+/* //these are unused and also broken anyway. RIP bozo
 proc/isfem(datum/customization_style/style)
-	return !!(initial(style.gender) & FEMININE)
+	return !!(initial(style.gender)) // I have removed the gender. Pray I do not alter it further.
 
 proc/ismasc(datum/customization_style/style)
-	return !!(initial(style.gender) & MASCULINE)
+	return !!(initial(style.gender))
+*/
+
+//It turns out that gendering all the hairstyles was what kept people from getting, like, a third of an afro for their random hair.
+proc/is_randomized_appropriate(datum/customization_style/style)
+	return !!(initial(style.good_for_randomization) == TRUE)
+
 
 // this is weird but basically: a list of hairstyles and their appropriate detail styles, aka hair_details["80s"] would return the Hairmetal: Faded style
 // further on in the randomize_look() proc we'll see if we've got one of the styles in here and if so, we have a chance to add the detailing
@@ -1902,26 +1956,14 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 
 	var/has_second = 0
 	var/type_first
-	if (AH.gender == MALE)
-		if (prob(5)) // small chance to have a hairstyle more geared to the other gender
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/isfem))
-			AH.customization_first = new type_first
-		else // otherwise just use one standard to the current gender
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/ismasc))
-			AH.customization_first = new type_first
 
+	type_first = pick(filtered_concrete_typesof(/datum/customization_style/hair, /proc/is_randomized_appropriate))
+	AH.customization_first = new type_first
+	if (AH.gender == MALE)
 		if (prob(33)) // since we're a guy, a chance for facial hair
 			var/type_second = pick(concrete_typesof(/datum/customization_style/beard) + concrete_typesof(/datum/customization_style/moustache))
 			AH.customization_second = new type_second
 			has_second = 1 // so the detail check doesn't do anything - we already got a secondary thing!!
-
-	else // if FEMALE
-		if (prob(8)) // same as above for guys, just reversed and with a slightly higher chance since it's ~more appropriate~ for ladies to have guy haircuts than vice versa  :I
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/ismasc))
-			AH.customization_first = new type_first
-		else // ss13 is coded with gender stereotypes IN ITS VERY CORE
-			type_first = pick(filtered_concrete_typesof(/datum/customization_style,/proc/isfem))
-			AH.customization_first = new type_first
 
 	if (!has_second)
 		var/hair_detail = hair_details[AH.customization_first.name] // check for detail styles for our chosen style
@@ -1989,3 +2031,4 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 /proc/crap_checkbox(var/checked)
 	if (checked) return "&#9745;"
 	else return "&#9744;"
+

@@ -289,8 +289,8 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 500)
-				M.add_stam_mod_max("stims", 500)
+				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
+				M.add_stam_mod_max("stims", 50)
 				M.add_stun_resist_mod("stims", 1000)
 				M.filters += filter(type="displace", icon=icon('icons/effects/distort.dmi', "muscly"), size=0)
 				src.filter = M.filters[length(M.filters)]
@@ -1098,6 +1098,27 @@
 				var/mob/living/carbon/human/H = L
 				H.hud.update_resting()
 
+	turbosliding
+		id = "turbosliding"
+		name = "Turbosliding"
+		desc = "You are performing an incredibly sick slide."
+		visible = 0
+		unique = 1
+		maxDuration = 5 SECONDS // if you think this needs to be longer, please reconsider
+		movement_modifier = /datum/movement_modifier/turbosliding
+		var/mob/living/L
+
+		onAdd(optional=null)
+			. = ..()
+			if (isliving(owner))
+				L = owner
+			else
+				owner.delStatus("turbosliding")
+
+		onRemove()
+			. = ..()
+			L.force_laydown_standup()
+
 	ganger
 		id = "ganger"
 		name = "Gang Member"
@@ -1307,6 +1328,8 @@
 		getTooltip()
 			. = "Your max stamina and stamina regen have been increased slightly."
 
+
+
 	patho_oxy_speed
 		id = "patho_oxy_speed"
 		name = "Oxygen Storage"
@@ -1403,11 +1426,10 @@
 			H.blood_volume -= units
 		if (prob(5))
 			var/damage = rand(1,5)
-			var/bleed = rand(3,5)
 			H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 			playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			H.TakeDamage(zone="All", brute=damage)
-			bleed(H, damage, bleed)
+			bleed(H, damage, violent = pick(TRUE, FALSE))
 
 /datum/statusEffect/mentor_mouse
 	id = "mentor_mouse"
@@ -1592,6 +1614,39 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+/datum/statusEffect/sandy
+	id = "sandy"
+	name = "Sandy"
+	desc = "You're getting sand everywhere! It's coarse and rough!"
+	icon_state = "painted" //you better sprite this wack
+
+	onAdd(optional)
+		. = ..()
+		if(istype(owner, /mob/living))
+			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(track_sand))
+	onRemove()
+		. = ..()
+		if(istype(owner, /mob/living))
+			UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+	proc/track_sand(mob/living/M, oldLoc, direct)
+		var/turf/T = get_turf(M)
+		if(!istype(T.loc,/area/gehenna))
+			var/obj/decal/cleanable/sand/S
+			if (T.messy > 0)
+				S = locate(/obj/decal/cleanable/sand) in T
+			if	(!S)
+				if(prob(30))
+					S = make_cleanable(/obj/decal/cleanable/sand, T)
+			var/list/states = M.get_step_image_states()
+			if(S)
+				if (states[1] || states[2])
+					if(states[1])
+						S.create_overlay(states[1], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+					if(states[2])
+						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
+				else
+					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"
@@ -1676,7 +1731,7 @@
 		//No atom properties around these parts :V
 		var/mob/ffs = owner
 		animate_swim(owner)
-		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors
+		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
 		APPLY_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		..()
 
@@ -1746,3 +1801,52 @@
 				var/obj/hallucinated_item/O = new /obj/hallucinated_item(pick(turf_line), H, item_inst)
 				var/image/hallucinated_image = image(item_inst, O)
 				H << hallucinated_image
+
+/datum/statusEffect/graffiti
+	id = "graffiti_blind"
+	name = "Tagged!"
+	desc = "You've been tagged! <br>Movement speed is reduced. Eyesight reduced. "
+	icon_state = "tagged"
+	unique = TRUE
+	maxDuration = 15 SECONDS
+	var/emote_delay_counter = 0
+	var/sound = 'sound/effects/electric_shock_short.ogg'
+	var/emote_cooldown = 7
+	var/list/tag_images = list()
+	var/list/tag_filters = list()
+	movement_modifier = /datum/movement_modifier/tagged
+	var/datum/hud/vision_impair_tag/hud = new
+
+	onAdd(optional)
+		..()
+		if (ismob(owner))
+			var/mob/victim = owner
+			victim.attach_hud(src.hud)
+
+	onRemove()
+		if (ismob(owner))
+			var/mob/victim = owner
+			victim.detach_hud(src.hud)
+		qdel(hud)
+		hud = null
+		. = ..()
+		for (var/i in 1 to length(tag_images))
+			owner.ClearSpecificOverlays("graffitisplat[i]")
+
+	onUpdate(timePassed)
+		emote_delay_counter += timePassed
+		if (duration < 4 SECONDS)
+			for (var/i in 1 to length(tag_images))
+				var/image/tag = tag_images[i]
+				var/target_alpha = duration * 5
+				if (tag.alpha > target_alpha)
+					tag.alpha = target_alpha
+					owner.UpdateOverlays(tag,"graffitisplat[i]")
+		if (emote_delay_counter >= emote_cooldown && owner && !owner.hasStatus(list("knockdown", "unconscious")) )
+			emote_delay_counter -= emote_cooldown
+			if (prob(10) && ismob(owner))
+				var/mob/victim = owner
+				victim.emote(pick("cough", "blink"))
+			playsound(owner, sound, 17, TRUE, 0.4, 1.6)
+			violent_twitch(owner)
+		. = ..(timePassed)

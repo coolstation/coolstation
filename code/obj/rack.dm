@@ -8,8 +8,9 @@
 	desc = "A metal frame used to hold objects. Can be wrenched and made portable."
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	proc/rackbreak()
-		icon_state += "-broken"
-		src.set_density(0)
+		if (density)
+			icon_state += "-broken"
+			src.set_density(0)
 
 /obj/rack/New()
 	..()
@@ -49,9 +50,7 @@
 		rackbreak()
 		return
 
-/obj/rack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-
+/obj/rack/CanPass(atom/movable/mover, turf/target)
 	if (mover.flags & TABLEPASS)
 		return 1
 	else

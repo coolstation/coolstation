@@ -385,11 +385,12 @@
 				if (G.type == /area/colosseum)
 					colosseum = G
 					break
+			if (!colosseum) return //unit teeeests
 			var/minx = 300
 			var/miny = 300
 			var/maxx = 0
 			var/maxy = 0
-			for (var/turf/T in colosseum)
+			for (var/turf/T in colosseum.turfs)
 				if (!T.density)
 					spawnturfs += T
 					if (T.x < minx)
@@ -476,7 +477,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	src.debug_variables(colosseum_controller)
 
-/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/machinery/colosseum_putt))
 		return 0
 	return ..()
@@ -487,7 +488,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 	icon_state = "gauntfloorPod"
 	event_handler_flags = USE_CANPASS
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/machinery/colosseum_putt))
 			return 1
 		return ..()
@@ -507,14 +508,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 			if (i == 1)
 				S.icon_state = "health_bar_left"
 				var/sl = barLength - i
-				S.screen_loc = "NORTH+1,[edge]-[sl]"
+				S.screen_loc = "North-1,[edge]-[sl]"
 			else if (i == barLength)
 				S.icon_state = "health_bar_right"
-				S.screen_loc = "NORTH+1,[edge]"
+				S.screen_loc = "North-1,[edge]"
 			else
 				S.icon_state = "health_bar_center"
 				var/sl = barLength - i
-				S.screen_loc = "NORTH+1,[edge]-[sl]"
+				S.screen_loc = "North-1,[edge]-[sl]"
 			barBits += S
 		health_overlay = image('icons/obj/colosseum.dmi', "health")
 
@@ -619,14 +620,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	proc/setWest(var/n)
 		if (n)
-			indicated_icon.screen_loc = "NORTH+1,WEST+[n]"
-		counter.screen_loc = "NORTH+1,WEST+[n+1]"
+			indicated_icon.screen_loc = "North-1,WEST+[n]"
+		counter.screen_loc = "North-1,WEST+[n+1]"
 
 	primary
 		New()
 			..()
-			indicated_icon.screen_loc = "NORTH+1,WEST"
-			counter.screen_loc = "NORTH+1,WEST+1"
+			indicated_icon.screen_loc = "North-1,WEST"
+			counter.screen_loc = "North-1,WEST+1"
 
 		assembleDefault()
 			..()
@@ -641,8 +642,8 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 	secondary
 		New()
 			..()
-			indicated_icon.screen_loc = "NORTH+1,WEST+2"
-			counter.screen_loc = "NORTH+1,WEST+3"
+			indicated_icon.screen_loc = "North-1,WEST+2"
+			counter.screen_loc = "North-1,WEST+3"
 
 		assembleDefault()
 			..()
@@ -953,14 +954,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 		boutput(usr, "<span class='hint'>Press Insert (or Q in WASD mode) to stop the ship.</span>")
 		boutput(usr, "<span class='hint'>Click the ship to get out.</span>")
 
-#define INDICATOR_PRIMARY 1
-#define INDICATOR_SECONDARY 2
-#define INDICATOR_HEALTH 4
-#define INDICATOR_ARMOR 8
-#define INDICATOR_FIRERES 16
-#define INDICATOR_SHIELDGEN 32
-#define INDICATOR_SHOTCOUNT 64
-#define INDICATOR_SHOTDAMAGE 128
+#define INDICATOR_PRIMARY (1<<0)
+#define INDICATOR_SECONDARY (1<<1)
+#define INDICATOR_HEALTH (1<<2)
+#define INDICATOR_ARMOR (1<<3)
+#define INDICATOR_FIRERES (1<<4)
+#define INDICATOR_SHIELDGEN (1<<5)
+#define INDICATOR_SHOTCOUNT (1<<6)
+#define INDICATOR_SHOTDAMAGE (1<<7)
 #define INDICATOR_ALL 255
 
 #define OVERLAY_SHIELD 1
@@ -1057,9 +1058,6 @@ proc/get_colosseum_message(var/name, var/message)
 		radio = new(src)
 
 		movement_controller = new(src)
-
-	get_movement_controller()
-		return movement_controller
 
 	proc/on_damage()
 		next_shield_regen = ticker.round_elapsed_ticks + 50

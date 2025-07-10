@@ -67,7 +67,7 @@
 				state = "Remissive"
 				return 1
 
-			if (reagentcure.len && affected_mob.reagents)
+			if (length(reagentcure) && affected_mob.reagents)
 				for (var/current_id in affected_mob.reagents.reagent_list)
 					if (reagentcure.Find(current_id))
 						var/we_are_cured = 0
@@ -110,7 +110,7 @@
 	info = "The patient is in shock."
 	max_stages = 3
 	cure = "Saline Solution"
-	reagentcure = list("saline")
+	reagentcure = list("saline", "morphine")
 	recureprob = 10
 	affected_species = list("Human","Monkey")
 	stage_prob = 6

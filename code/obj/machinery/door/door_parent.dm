@@ -56,6 +56,7 @@
 			var/mob/M = AM
 			if (!M.hasStatus("handcuffed"))
 				src.bumpopen(M)
+		return
 
 	else if (istype(AM, /obj/vehicle))
 		var/obj/vehicle/V = AM
@@ -64,18 +65,21 @@
 			return
 		if (!M2.hasStatus("handcuffed"))
 			src.bumpopen(M2)
+		return
 
 	else if (istype(AM, /obj/machinery/vehicle/tank))
 		var/obj/machinery/vehicle/tank/T = AM
 		var/mob/M = T.pilot
 		if (!M) return
 		src.bumpopen(M)
+		return
 
 	else if (istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/B = AM
 		if (src.check_access(B.botcard))
 			if (src.density)
 				src.open()
+		return
 
 	else if (istype(AM, /obj/critter/))
 		var/obj/critter/C = AM
@@ -88,6 +92,7 @@
 			C.frustration = 0
 		else
 			C.frustration++
+		return
 
 	return
 
@@ -137,6 +142,12 @@
 		animate_door_squeeze(mover)
 		return 1 // they can pass through a closed door
 
+	if (density && next_timeofday_opened)
+		return (world.timeofday >= next_timeofday_opened) //Hey this is a really janky fix. Makes it so the door 'opens' on realtime even if the animations and sounds are laggin
+
+	return !density
+
+/obj/machinery/door/gas_cross(turf/target)
 	if (density && next_timeofday_opened)
 		return (world.timeofday >= next_timeofday_opened) //Hey this is a really janky fix. Makes it so the door 'opens' on realtime even if the animations and sounds are laggin
 
@@ -600,6 +611,25 @@
 			src.open()
 
 		else if(src.operating)
+			src.operating = 0
+
+/obj/machinery/door/proc/force_close()
+	src.operating = 1
+	close_trys = 0
+	SPAWN_DBG(-1)
+		src.update_icon(1)
+		src.set_density(1)
+		src.update_nearby_tiles()
+
+		if(src.visible)
+			if (ignore_light_or_cam_opacity)
+				src.opacity = 1
+			else
+				src.RL_SetOpacity(1)
+
+		src.closed()
+
+		if(src.operating)
 			src.operating = 0
 
 /obj/machinery/door/proc/opened()

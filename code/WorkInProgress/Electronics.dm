@@ -10,6 +10,7 @@
 	pressure_resistance = 10
 	item_state = "electronic"
 	flags = FPRINT | TABLEPASS | CONDUCT
+	value = 25 //base commodity price
 
 /obj/item/electronics/New()
 	..()
@@ -23,6 +24,7 @@
 /obj/item/electronics/battery
 	name = "battery"
 	icon_state = "batt1"
+	value = 30
 
 /obj/item/electronics/battery/New()
 	src.icon_state = pick("batt1", "batt2", "batt3")
@@ -32,6 +34,7 @@
 /obj/item/electronics/board
 	name = "board"
 	icon_state = "board1"
+	value = 50
 
 /obj/item/electronics/board/New()
 	src.icon_state = pick("board1", "board2", "board3")
@@ -41,6 +44,7 @@
 /obj/item/electronics/fuse
 	name = "fuse"
 	icon_state = "fuse1"
+	value = 10
 
 /obj/item/electronics/fuse/New()
 	src.icon_state = pick("fuse1", "fuse2", "fuse3")
@@ -50,6 +54,7 @@
 /obj/item/electronics/switc
 	name = "switch"
 	icon_state = "switch1"
+	value = 10
 
 /obj/item/electronics/switc/New()
 	src.icon_state = pick("switch1", "switch2", "switch3")
@@ -59,6 +64,7 @@
 /obj/item/electronics/keypad
 	name = "keypad"
 	icon_state = "keypad1"
+	value = 30
 /obj/item/electronics/keypad/New()
 	src.icon_state = pick("keypad1", "keypad2", "keypad3")
 	randompix()
@@ -67,6 +73,7 @@
 /obj/item/electronics/screen
 	name = "screen"
 	icon_state = "screen1"
+	value = 40
 /obj/item/electronics/screen/New()
 	src.icon_state = pick("screen1", "screen2", "screen3")
 	randompix()
@@ -75,6 +82,7 @@
 /obj/item/electronics/capacitor
 	name = "capacitor"
 	icon_state = "capacitor1"
+	value = 10
 /obj/item/electronics/capacitor/New()
 	src.icon_state = pick("capacitor1", "capacitor2", "capacitor3")
 	randompix()
@@ -83,6 +91,7 @@
 /obj/item/electronics/buzzer
 	name = "buzzer"
 	icon_state = "buzzer"
+	value = 10
 /obj/item/electronics/buzzer/New()
 	randompix()
 	..()
@@ -90,6 +99,7 @@
 /obj/item/electronics/resistor
 	name = "resistor"
 	icon_state = "resistor1"
+	value = 10
 /obj/item/electronics/resistor/New()
 	src.icon_state = pick("resistor1", "resistor2")
 	randompix()
@@ -98,6 +108,7 @@
 /obj/item/electronics/bulb
 	name = "bulb"
 	icon_state = "bulb1"
+	value = 15
 /obj/item/electronics/bulb/New()
 	src.icon_state = pick("bulb1", "bulb2")
 	randompix()
@@ -106,6 +117,7 @@
 /obj/item/electronics/relay
 	name = "relay"
 	icon_state = "relay1"
+	value = 20
 /obj/item/electronics/bulb/New()
 	src.icon_state = pick("relay1", "relay2")
 	randompix()
@@ -114,6 +126,7 @@
 /obj/item/electronics/frame
 	name = "frame"
 	icon_state = "frame"
+	value = 60
 	var/store_type = null
 	var/secured = 0
 	var/viewstat = 0
@@ -376,6 +389,7 @@
 	throwforce = 5
 	w_class = W_CLASS_SMALL
 	pressure_resistance = 40
+	value = 35
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		if (!isobj(target))
@@ -399,7 +413,7 @@
 /obj/item/electronics/scanner
 	name = "device analyzer"
 	icon_state = "deviceana"
-	desc = "Used for scanning certain items for use with the ruckingenur kit."
+	desc = "Used for diagnosing problems with station equipment and making backup scans. These scans can then be used with the ruckingenur kit to produce schematics for replacing equipment."
 	force = 2
 	hit_type = DAMAGE_BLUNT
 	throwforce = 5
@@ -407,11 +421,24 @@
 	pressure_resistance = 50
 	var/list/scanned = list()
 	var/viewstat = 0
+	value = 150
 
 	syndicate
 		is_syndicate = 1
 
 /obj/item/electronics/scanner/afterattack(var/obj/O, mob/user as mob)
+	//Maintenance arrears
+	//
+	if (istype(O, /obj/machinery))
+		var/obj/machinery/M = O
+		var/hint = M.malfunction_hint()
+		if (hint)
+			animate_scanning(O, "#FF6633")
+			user.visible_message("<b>[user]</b> has scanned the [O].")
+			boutput(user, "<br><span class='alert'>Maintenance analysis: <b>[M] is not functioning properly.</span></b>")
+			src.audible_message("<span class='notice'>NanoTrasen maintenance guide advises: <i>[hint]</i></span>")
+			return
+
 	if(istype(O,/obj/machinery/rkit) || istype(O, /obj/item/electronics/frame))
 		return
 	if(istype(O,/obj/))
@@ -444,6 +471,7 @@
 	density = 1
 	//var/datum/electronics/electronics_items/link = null
 	req_access = list(access_captain, access_head_of_personnel, access_maxsec, access_engineering_chief, access_quartermaster)
+	value = 30000
 
 	var/processing = 0
 	var/net_id = null
@@ -849,6 +877,7 @@
 	hit_type = DAMAGE_CUT
 	tool_flags = TOOL_SAWING
 	w_class = W_CLASS_NORMAL
+	value = 150
 
 	proc/finish_decon(atom/target,mob/user)
 		if (!isobj(target))
@@ -1018,3 +1047,4 @@
 	hit_type = DAMAGE_BLUNT
 	tool_flags = 0
 	w_class = W_CLASS_NORMAL
+	value = -9999 //bug

@@ -51,7 +51,7 @@
 		src.icon_state = "vrbed_1"
 		M.client.eye = src.ship
 
-		M.use_movement_controller = ship
+		M.override_movement_controller = ship.movement_controller
 
 		if(ship.show_tracking)
 			ship.apply_arrows(M)
@@ -100,7 +100,7 @@
 				occupant.attach_hud(hud)
 			src.stored_huds.len = 0
 
-		src.occupant.use_movement_controller = null
+		src.occupant.override_movement_controller = null
 		src.occupant.changeStatus("weakened",20)
 		src.occupant = null
 		src.active = 0

@@ -1,13 +1,12 @@
 //fluid as a space tile
 //on turfnotify, will start processing fluid creation
 
-#define SPAWN_DECOR 1
-#define SPAWN_PLANTS 2
-#define SPAWN_FISH 4
-#define SPAWN_LOOT 8
-#define SPAWN_PLANTSMANTA 16
-#define SPAWN_TRILOBITE 32
-#define SPAWN_HALLU 64
+#define SPAWN_DECOR (1<<0)
+#define SPAWN_PLANTS (1<<1)
+#define SPAWN_FISH (1<<2)
+#define SPAWN_LOOT (1<<3)
+#define SPAWN_TRILOBITE (1<<4)
+#define SPAWN_HALLU (1<<5)
 
 
 /turf/proc/make_light() //dummyproc so we can inherit
@@ -73,12 +72,16 @@
 					icon_state = "sand_other_texture3"
 					src.set_dir(pick(cardinal))
 
-		if (spawningFlags && current_state <= GAME_STATE_WORLD_INIT)
-			//worldgenCandidates[src] = 1 //Adding self to possible worldgen turfs
-			// idk about the above. walls still use [src]=1 ...
-			// the bottom is much faster in my testing and works just as well
-			// maybe should be converted to this everywhere?
-			worldgenCandidates += src //Adding self to possible worldgen turfs
+		//AFAIK the only in-round ocean floor spawns are from departing shuttles
+		//which don't generate anything, but I might as well convert it to use worldgen_hold
+		if (spawningFlags)
+			if (worldgen_hold)
+				//worldgen_candidates[src] = 1 //Adding self to possible worldgen turfs
+				// idk about the above. walls still use [src]=1 ...
+				// the bottom is much faster in my testing and works just as well
+				// maybe should be converted to this everywhere?
+				worldgen_candidates[worldgen_generation] += src //Adding self to possible worldgen turfs
+			else generate_worldgen()
 
 		if(current_state > GAME_STATE_WORLD_INIT)
 			for(var/dir in cardinal)
@@ -170,13 +173,6 @@
 			if (prob(8))
 				var/obj/plant = pick( src.z == 5 ? childrentypesof(/obj/sea_plant) : (childrentypesof(/obj/sea_plant) - /obj/sea_plant/anemone/lit) )
 				var/obj/sea_plant/P = new plant(src)
-				//mbc : bleh init() happens BFORRE this, most likely
-				P.initialize()
-
-		if (spawningFlags & SPAWN_PLANTSMANTA)
-			if (prob(8))
-				var/obj/plant = pick( src.z == 5 ? childrentypesof(/obj/sea_plant_manta) : (childrentypesof(/obj/sea_plant_manta) - /obj/sea_plant_manta/anemone/lit) )
-				var/obj/sea_plant_manta/P = new plant(src)
 				//mbc : bleh init() happens BFORRE this, most likely
 				P.initialize()
 
@@ -279,14 +275,31 @@
 
 	name = "deep hole"
 	icon_state = "pit"
-	var/list/L = list()
 	spawningFlags = 0
-	randomIcon = 0
-	generateLight = 0
+	randomIcon = FALSE
+	generateLight = FALSE
 
-	allow_hole = 0
+	allow_hole = FALSE
 
 	color = OCEAN_COLOR
+	fullbright = TRUE
+
+	New()
+		. = ..()
+		for (var/obj/venthole/hole in src)
+			qdel(hole)
+		var/noise_scale = 55
+		var/r1 = text2num(rustg_noise_get_at_coordinates("[global.server_start_time]", "[src.x / noise_scale]", "[src.y / noise_scale]"))
+		var/r2 = text2num(rustg_noise_get_at_coordinates("[global.server_start_time + 123465]", "[src.x / noise_scale]", "[src.y / noise_scale]"))
+		var/col = rgb(255 * (1 - r1 - r2), 255 * r2, 255 * r1)
+		src.update_icon(90, col)
+		src.initialise_component()
+
+	proc/initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_area,\
+			BruteDamageMax = 6,\
+			HangTime = 0.3 SECONDS,\
+			TargetArea = /area/trench_landing)
 	// fullbright = 1
 
 	edge
@@ -300,79 +313,24 @@
 			STOP_TRACKING
 			. = ..()
 
-	proc/try_build_turf_list()
-		if (!L || L.len == 0)
-			for(var/turf/T in get_area_turfs(/area/trench_landing))
-				L+=T
-
-	Entered(var/atom/movable/AM)
-		if (istype(AM,/mob/dead) || istype(AM,/mob/wraith) || istype(AM,/mob/living/intangible) || istype(AM, /obj/lattice) || istype(AM, /obj/cable/reinforced) || istype(AM,/obj/torpedo_targeter) || istype(AM,/obj/overlay) || istype (AM, /obj/arrival_missile) || istype(AM, /obj/sea_ladder_deployed))
-			return
-		if (locate(/obj/lattice) in src)
-			return
-		if (ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			if (H.back && H.back.c_flags & IS_JETPACK)
-				if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
-					var/obj/item/tank/jetpack/J = H.back
-					if(J.allow_thrust(0.01, H))
-						return
-		if (isliving(AM))
-			var/mob/living/peep = AM
-			if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
-				peep.attempt_swim() //should do nothing if they're already swimming I think?
-			if (HAS_MOB_PROPERTY(peep,PROP_ATOM_FLOATING))
-				return
-		return_if_overlay_or_effect(AM)
-
-		try_build_turf_list()
-
-		if (length(L))
-			SPAWN_DBG(0.3 SECONDS)//you can 'jump' over a hole by running real fast or being thrown!!
-				if (istype(AM.loc, /turf/space/fluid/warp_z5))
-					visible_message("<span class='alert'>[AM] falls down [src]!</span>")
-					if (ismob(AM))
-						var/mob/M = AM
-						random_brute_damage(M, 6)
-						M.changeStatus("weakened", 2 SECONDS)
-						playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 10, 1)
-						M.emote("scream")
-
-					AM.set_loc(pick(L))
-
 
 /turf/space/fluid/warp_z5/realwarp
 	New()
 		..()
-		if (get_step(src, NORTH).type != /turf/space/fluid/warp_z5/realwarp)
+		src.initialise_component()
+		if (!istype(get_step(src, NORTH), /turf/space/fluid/warp_z5/realwarp))
 			icon_state = "pit_wall"
 
 		var/turf/space/fluid/under = get_step(src, SOUTH)
-		if (under.type == /turf/space/fluid/warp_z5/realwarp)
+		if (istype(under.type, /turf/space/fluid/warp_z5/realwarp))
 			under.icon_state = "pit"
 
-	try_build_turf_list()
-		if (!L || L.len == 0)
-			for(var/turf/space/fluid/T in range(8,locate(src.x,src.y,5)))
-				L += T
-				break
-
-			if(length(L))
-				var/needlink = 1
-				var/turf/space/fluid/picked_turf = pick(L)
-
-				for(var/turf/space/fluid/T in range(5,picked_turf))
-					if(T.linked_hole)
-						needlink = 0
-						break
-
-				if(needlink)
-					if(!picked_turf.linked_hole)
-						picked_turf.linked_hole = src
-						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
-
-		..()
-
+	initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+			BruteDamageMax = 6,\
+			HangTime = 0.3 SECONDS,\
+			TargetZ = 5,\
+			LandingRange = 8)
 
 //trench floor
 /turf/space/fluid/trench
@@ -394,7 +352,8 @@
 					T.blow_hole()
 					var/turf/space/fluid/warp_z5/hole = locate(x, y, 1)
 					if(istype(hole))
-						hole.L = list(src)
+						var/datum/component/pitfall/target_coordinates/getcomp = hole.GetComponent(/datum/component/pitfall/target_coordinates)
+						getcomp.TargetList = list(src)
 						src.linked_hole = hole
 						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
 						break
@@ -441,17 +400,6 @@
 /turf/space/fluid/fullbright
 	fullbright = 1
 
-//Manta
-/turf/space/fluid/manta
-	luminosity = 1
-	generateLight = 0
-	spawningFlags = SPAWN_PLANTSMANTA
-	turf_flags = CAN_BE_SPACE_SAMPLE | MANTA_PUSH
-
-//Manta
-/turf/space/fluid/manta/nospawn
-	spawningFlags = null
-
 /turf/floor/specialroom/sea_elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
@@ -460,56 +408,65 @@
 
 	New()
 		..()
+		src.calculate_direction(TRUE)
+		src.AddComponent(/datum/component/pitfall/target_landmark,\
+			BruteDamageMax = 25,\
+			HangTime = 0 SECONDS,\
+			TargetLandmark = LANDMARK_FALL_SEA)
 
-		var/turf/n = get_step(src,NORTH)
-		var/turf/e = get_step(src,EAST)
-		var/turf/w = get_step(src,WEST)
-		var/turf/s = get_step(src,SOUTH)
+	proc/calculate_direction(var/propagate = FALSE)
+		var/area_type = get_area(src)
+		var/turf/floor/specialroom/sea_elevator_shaft/n = get_step(src,NORTH)
+		var/turf/floor/specialroom/sea_elevator_shaft/e = get_step(src,EAST)
+		var/turf/floor/specialroom/sea_elevator_shaft/w = get_step(src,WEST)
+		var/turf/floor/specialroom/sea_elevator_shaft/s = get_step(src,SOUTH)
 
-		if (!istype(get_area(n),area_type))
+		if (!istype(get_area(n), area_type))
 			n = null
-		if (!istype(get_area(e),area_type))
+		if (!istype(get_area(e), area_type))
 			e = null
-		if (!istype(get_area(w),area_type))
+		if (!istype(get_area(w), area_type))
 			w = null
-		if (!istype(get_area(s),area_type))
+		if (!istype(get_area(s), area_type))
+			s = null
+		if (!istype(n))
+			n = null
+		if (!istype(e))
+			e = null
+		if (!istype(w))
+			w = null
+		if (!istype(s))
 			s = null
 
-		if (e && s)
-			set_dir(SOUTH)
-			e.set_dir(NORTH)
-			s.set_dir(WEST)
-		else if (e && n)
-			set_dir(WEST)
-			e.set_dir(EAST)
-			n.set_dir(SOUTH)
-		else if (w && s)
+		if (n && e && w && s)
+			src.icon_state = "shaft_center"
+		else if (e && w && s)
 			set_dir(NORTH)
-			w.set_dir(SOUTH)
-			s.set_dir(EAST)
-		else if (w && n)
+		else if (n && e && w)
+			set_dir(SOUTH)
+		else if (n && w && s)
 			set_dir(EAST)
-			w.set_dir(WEST)
-			n.set_dir(NORTH)
+		else if (n && e && s)
+			set_dir(WEST)
+		else if (n && e)
+			set_dir(SOUTHWEST)
+		else if (e && s)
+			set_dir(NORTHWEST)
+		else if (n && w)
+			set_dir(SOUTHEAST)
+		else if (s && w)
+			set_dir(NORTHEAST)
+		else
+			src.icon_state = "shaft_single"
+
+		if (propagate)
+			n?.calculate_direction(FALSE)
+			e?.calculate_direction(FALSE)
+			w?.calculate_direction(FALSE)
+			s?.calculate_direction(FALSE)
 
 	ex_act(severity)
 		return
-
-	Entered(atom/movable/A as mob|obj)
-		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
-			return ..()
-		var/turf/T = pick_landmark(LANDMARK_FALL_SEA)
-		if (isturf(T))
-			visible_message("<span class='alert'>[A] falls down [src]!</span>")
-			if (ismob(A))
-				var/mob/M = A
-				random_brute_damage(M, 25)
-				M.changeStatus("weakened", 5 SECONDS)
-				M.emote("scream")
-				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
-			A.set_loc(T)
-			return
-		else ..()
 
 /obj/machinery/computer/sea_elevator
 	name = "Elevator Control"
@@ -595,4 +552,3 @@
 #undef SPAWN_DECOR
 #undef SPAWN_PLANTS
 #undef SPAWN_FISH
-#undef SPAWN_PLANTSMANTA

@@ -25,12 +25,9 @@
 		if (map_setting && ticker)
 			src.update_neighbors()
 
-		if (current_state > GAME_STATE_WORLD_INIT)
-			SPAWN_DBG(0) //worldgen overrides ideally
-				src.update_icon()
-
-		else
-			worldgenCandidates[src] = 1
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else src.update_icon()
 
 	generate_worldgen()
 		src.update_icon()
@@ -655,7 +652,7 @@
 				src.update_icon()
 
 		else
-			worldgenCandidates[src] = 1
+			worldgen_candidates[src] = 1
 
 	generate_worldgen()
 		src.update_icon()

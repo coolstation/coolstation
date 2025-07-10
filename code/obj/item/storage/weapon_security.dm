@@ -53,7 +53,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
-	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/masterwork,\
 	/obj/item/stackable_ammo/pistol/italian/ten,\
 	/obj/item/stackable_ammo/pistol/italian/AP/five,\
 	/obj/item/stackable_ammo/pistol/capacitive/five)
@@ -63,7 +63,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
-	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,\
 	/obj/item/gun_parts/grip/italian/bigger,\
 	/obj/item/stackable_ammo/pistol/capacitive/ten,\
 	/obj/item/stackable_ammo/pistol/NT/five)
@@ -81,7 +81,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
-	spawn_contents = list(/obj/item/gun/modular/NT/short/pistol,\
+	spawn_contents = list(/obj/item/gun/modular/NT/pistol,\
 	/obj/item/stackable_ammo/pistol/NT/ten = 2,\
 	/obj/item/stackable_ammo/pistol/tranq)
 
@@ -96,10 +96,21 @@
 	name = "shotgun box"
 	icon_state = "hard_case"
 	desc = "A box containing a low-powered shotgun and some ammo."
-	spawn_contents = list(/obj/item/gun/modular/NT/long/shotty,\
+	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
 	/obj/item/stackable_ammo/scatter/juicer/five,\
 	/obj/item/stackable_ammo/rifle/capacitive/burst/ten,\
 	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
+
+//TODO: grunge up the case
+/obj/item/storage/box/shotgun/juicer
+	name = "juicer shotgun box"
+	icon_state = "hard_case"
+	desc = "A box containing a high-powered juicer shotgun and some ammo."
+	spawn_contents = list(/obj/item/gun/modular/juicer/blunder,\
+	/obj/item/stackable_ammo/scatter/juicer/ten,\
+	/obj/item/stackable_ammo/scatter/juicer/denim/three,\
+	/obj/item/stackable_ammo/rifle/capacitive/burst/five,\
+	/obj/item/stackable_ammo/scatter/slug_rubber/five)
 
 /obj/item/storage/box/revolver_ammo
 	name = "revolver ammo box"

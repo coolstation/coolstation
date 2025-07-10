@@ -86,6 +86,9 @@ var/global/soundGeneralQuarters = sound('sound/machines/siren_generalquarters_qu
 		//toggle off
 		shipAlertState = SHIP_ALERT_GOOD
 
+		for_by_tcl(T, /turf/floor/specialroom/elevator_shaft)
+			T.toggle_lights()
+
 		//update all lights
 		for (var/obj/machinery/light/L in stationLights)
 			L.power_change()
@@ -100,17 +103,15 @@ var/global/soundGeneralQuarters = sound('sound/machines/siren_generalquarters_qu
 			return
 
 		//alert and siren
-#ifdef MAP_OVERRIDE_MANTA
-		command_alert("All personnel, doo doo caca pee pee, pee and poo and farts haha, pee poo hee hee", "NSS Manta - General Quarters")
-		//command_alert("This is not a drill. This is not a drill. General Quarters, General Quarters. All hands man your battle stations. Crew without military training shelter in place. Set material condition '[rand(1, 100)]-[pick_string("station_name.txt", "militaryLetters")]' throughout the ship. The route of travel is forward and up to starboard, down and aft to port. Prepare for hostile contact.", "NSS Manta - General Quarters")
-#else
 		command_alert("All personnel, this is not a test. There is a confirmed, hostile threat on-board and/or near the station. Report to your stations. Prepare for the worst.", "Alert - Condition Red")
-#endif
 		world << soundGeneralQuarters
 		broadcast = new(station_name, "Condition Red - General Emergency")
 		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 		//toggle on
 		shipAlertState = SHIP_ALERT_BAD
+
+		for_by_tcl(T, /turf/floor/specialroom/elevator_shaft)
+			T.toggle_lights()
 
 		//update all lights
 		for (var/obj/machinery/light/L in stationLights)

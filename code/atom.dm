@@ -1,6 +1,3 @@
-TYPEINFO(/atom)
-	var/admin_spawnable = TRUE
-
 /**
   * The base type for nearly all physical objects in SS13
 	*
@@ -41,6 +38,9 @@ TYPEINFO(/atom)
 
 	proc/RawClick(location,control,params)
 		return
+
+	/// If atmos should be blocked by this - special behaviours handled in gas_cross() overrides
+	var/gas_impermeable = FALSE
 
 /* -------------------- name stuff -------------------- */
 	/*
@@ -196,6 +196,9 @@ TYPEINFO(/atom)
 	proc/return_air()
 		return null
 
+	//called on relevant atoms when a map/prefab/whatever has finished loading, see code/modules/worldgen/worldgen_parent.dm
+	proc/generate_worldgen()
+
 /**
   * Convenience proc to see if a container is open for chemistry handling
 	*
@@ -213,6 +216,10 @@ TYPEINFO(/atom)
 
 	proc/toggle_container()
 		flags ^= ~OPENCONTAINER
+
+	proc/started_reagent_combustion()
+
+	proc/stopped_reagent_combustion()
 
 	proc/transfer_all_reagents(var/atom/A as turf|obj|mob, var/mob/user as mob)
 		// trans from src to A
@@ -295,6 +302,13 @@ TYPEINFO(/atom)
 //atom.event_handler_flags & USE_HASENTERED MUST EVALUATE AS TRUE OR THIS PROC WONT BE CALLED EITHER
 /atom/proc/HasExited(atom/movable/AM as mob|obj, atom/NewLoc)
 	return
+
+/atom/Entered(atom/movable/AM)
+	SHOULD_CALL_PARENT(TRUE)
+	#ifdef SPACEMAN_DMM //im cargo culter
+	..()
+	#endif
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM)
 
 /atom/proc/ProximityLeave(atom/movable/AM as mob|obj)
 	return
@@ -413,10 +427,6 @@ TYPEINFO(/atom)
 
 
 /atom/movable/disposing()
-	if (temp_flags & MANTA_PUSHING)
-		mantaPushList.Remove(src)
-		temp_flags &= ~MANTA_PUSHING
-
 	if (temp_flags & SPACE_PUSHING)
 		EndSpacePush(src)
 
@@ -429,7 +439,6 @@ TYPEINFO(/atom)
 
 
 /atom/movable/Move(NewLoc, direct)
-
 
 	//mbc disabled for now, i dont think this does too much for visuals i cant hit 40fps anyway argh i cant even tell
 	//tile glide smoothing:
@@ -486,6 +495,31 @@ TYPEINFO(/atom)
 
 		return // this should in turn fire off its own slew of move calls, so don't do anything here
 
+	 // if updating pitfall checks, UPDATE THIS TO MATCH
+	if (src.event_handler_flags & IS_PITFALLING)
+		var/turf/T = NewLoc
+		if(src.event_handler_flags & IN_COYOTE_TIME)
+			if(!istype(T))
+				src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+			else
+				var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
+				if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
+					src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+				else if (ismob(src))
+					var/mob/M = src
+					if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+						src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+		else
+			if(!istype(T))
+				return
+			var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
+			if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
+				return
+			if (ismob(src))
+				var/mob/M = src
+				if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+					return
+
 	var/atom/A = src.loc
 	. = ..()
 	src.move_speed = TIME - src.l_move_time
@@ -495,10 +529,6 @@ TYPEINFO(/atom)
 		if (length(src.attached_objs))
 			for (var/atom/movable/M as anything in attached_objs)
 				M.set_loc(src.loc)
-		if (islist(src.tracked_blood))
-			src.track_blood()
-		if (islist(src.tracked_mud))
-			src.track_mud()
 		actions.interrupt(src, INTERRUPT_MOVE)
 		#ifdef COMSIG_MOVABLE_MOVED
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
@@ -1027,3 +1057,15 @@ TYPEINFO(/atom)
 	message_admins("[key_name(usr)] rotated [target] by [rot] degrees")
 	target.Turn(rot)
 	return
+
+/// For an unanchored movable atom
+#define UNANCHORED 0
+/// For an atom that can't be moved by player actions
+#define ANCHORED 1
+/// For an atom that's always immovable, even by stuff like black holes and gravity artifacts.
+#define ANCHORED_ALWAYS 2
+
+/// The atom is below the floor tiles.
+#define UNDERFLOOR 1
+/// The atom is above the floor tiles.
+#define OVERFLOOR 2

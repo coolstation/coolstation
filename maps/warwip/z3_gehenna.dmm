@@ -579,7 +579,7 @@
 	})
 "apU" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -765,7 +765,7 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -952,7 +952,7 @@
 	})
 "aCG" = (
 /obj/disposalpipe/segment/bent/east,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-10"
 	},
@@ -1453,7 +1453,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/blind_switch/area/north{
 	pixel_x = -10
 	},
@@ -1509,7 +1509,7 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/storage/tech)
 "aSu" = (
@@ -2776,7 +2776,7 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grey,
 /area/station/science/research_director)
 "bza" = (
@@ -2813,7 +2813,7 @@
 /area/station/maintenance/disposal/crusher)
 "bAr" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/security/processing)
@@ -2836,7 +2836,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor,
 /area/station/turret_protected/AIbasecore1)
@@ -4480,7 +4480,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "0-9"
 	},
@@ -5088,7 +5088,7 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -5100,9 +5100,6 @@
 /turf/floor/plating,
 /area/station/routing/depot)
 "ddW" = (
-/obj/landmark{
-	name = "qmdumfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/qmdum_bot)
 "dec" = (
@@ -5410,7 +5407,7 @@
 "dnj" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -5560,7 +5557,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/storage/closet/wrestling,
 /obj/decal/cleanable/rust/jen,
 /obj/decal/cleanable/dirt/random,
@@ -5679,7 +5676,7 @@
 	})
 "dvi" = (
 /obj/stool/bench/auto,
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -5717,7 +5714,7 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -6169,7 +6166,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 8
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -6179,7 +6176,7 @@
 	name = "North Lower Maintenance"
 	})
 "dIP" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -6265,7 +6262,7 @@
 "dKx" = (
 /obj/disposalpipe/segment/vertical,
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -6591,7 +6588,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/short/pistol,
+/obj/item/gun/modular/NT/pistol,
 /turf/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -7130,7 +7127,7 @@
 /turf/wall/r_wall,
 /area/station/quartermaster/refinery)
 "ehM" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -7820,7 +7817,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grey,
 /area/station/engine/inner)
 "eAH" = (
@@ -8014,7 +8011,7 @@
 /turf/floor/grey,
 /area/station/science/artifact)
 "eEO" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /turf/floor/black,
 /area/station/mining/staff_room)
 "eFa" = (
@@ -8758,7 +8755,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Mechlab #2"
+	beacon_id = "Mechlab #2"
 	},
 /obj/item/storage/box/cablesbox{
 	pixel_x = -3;
@@ -8985,7 +8982,7 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "ffS" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -9324,7 +9321,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/black,
 /area/station/science/lab)
 "fsx" = (
@@ -9332,7 +9329,7 @@
 	dir = 1
 	},
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -10580,7 +10577,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Mechlab #1"
+	beacon_id = "Mechlab #1"
 	},
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
@@ -10742,7 +10739,7 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/outer/ne{
@@ -11447,7 +11444,7 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/inner/nw)
 "gEU" = (
@@ -11468,7 +11465,7 @@
 /turf/floor/plating,
 /area/station/bridge/locker)
 "gFr" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
@@ -11783,7 +11780,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/cable,
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/plating,
 /area/station/bridge/hos)
 "gOZ" = (
@@ -11986,7 +11983,7 @@
 /area/station/science/lobby)
 "gUQ" = (
 /obj/table/reinforced/auto,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/item/clothing/head/helmet/hardhat,
@@ -12476,7 +12473,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/crew_quarters/clown)
 "hjt" = (
@@ -13070,7 +13067,7 @@
 /turf/wall/r_wall,
 /area/station/engine/hotloop)
 "hGj" = (
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -13330,7 +13327,7 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
@@ -13371,7 +13368,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/window/east,
 /turf/floor/plating,
 /area/station/engine/power)
@@ -13663,7 +13660,7 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -13761,9 +13758,6 @@
 /turf/floor/grey,
 /area/station/bridge/basement)
 "hZl" = (
-/obj/landmark{
-	name = "qmfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/qm_bot)
 "hZy" = (
@@ -13876,7 +13870,7 @@
 /obj/grille/catwalk/jen/side{
 	dir = 1
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/table/folding,
 /obj/item/paper_bin{
 	pixel_y = 6
@@ -14584,7 +14578,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
@@ -15203,7 +15197,7 @@
 /area/station/storage/warehouse)
 "iPB" = (
 /obj/disposalpipe/segment/bent/east,
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -15374,7 +15368,7 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -15604,7 +15598,7 @@
 /area/station/medical/medbooth)
 "iZd" = (
 /obj/table/reinforced/auto,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/floor/grey,
@@ -15835,9 +15829,6 @@
 /turf/wall,
 /area/station/medical/basement)
 "jhw" = (
-/obj/landmark{
-	name = "engfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/eng_bot)
 "jhI" = (
@@ -16001,7 +15992,7 @@
 /area/station/science/lobby)
 "jld" = (
 /obj/cable,
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/janitor/supply)
@@ -17291,7 +17282,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grime,
 /area/station/quartermaster/automat)
 "jWM" = (
@@ -18025,7 +18016,7 @@
 	name = "Northeast Tunnel"
 	})
 "kqx" = (
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /obj/cable,
 /turf/floor/plating,
 /area/station/bridge/locker)
@@ -18098,7 +18089,7 @@
 /turf/floor/black,
 /area/station/engine/inner)
 "ktd" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -18199,7 +18190,7 @@
 /turf/floor/carpet/grime4,
 /area/station/crew_quarters/quartersA)
 "kwl" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -18351,7 +18342,7 @@
 /area/station/engine/storage)
 "kAs" = (
 /obj/rack,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /obj/decal/cleanable/dirt/random,
 /obj/item/paper{
 	icon_state = "paper";
@@ -18657,7 +18648,7 @@
 /turf/floor/plating,
 /area/station/maintenance/south)
 "kKS" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -18747,7 +18738,7 @@
 "kNi" = (
 /obj/rack,
 /obj/item/storage/toolbox/emergency,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "kNw" = (
@@ -19188,7 +19179,7 @@
 "kWF" = (
 /obj/decal/cleanable/dirt,
 /obj/rack,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /turf/floor/industrial,
 /area/station/medical/basement)
 "kWJ" = (
@@ -19929,7 +19920,7 @@
 /obj/cable{
 	icon_state = "0-10"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/grime,
 /area/station/wc/cargo)
 "lwX" = (
@@ -20838,7 +20829,7 @@
 /obj/cable/purple{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/grey,
 /area/station/science/bot_storage)
 "lYl" = (
@@ -21106,7 +21097,7 @@
 /turf/floor/plating/gehenna,
 /area/station/maintenance/inner/nw)
 "mfN" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -21235,7 +21226,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/long/shotty,
+/obj/item/gun/modular/NT/shotty,
 /turf/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -21452,7 +21443,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/table/reinforced/auto,
 /obj/item/gun/modular/soviet/short/basic,
 /turf/floor/black,
@@ -21648,7 +21639,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/black,
 /area/station/security/checkpoint/medical)
@@ -21888,9 +21879,6 @@
 /turf/floor,
 /area/station/turret_protected/AIbasecore1)
 "mCa" = (
-/obj/landmark{
-	name = "dumfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/dum_bot)
 "mCo" = (
@@ -22452,7 +22440,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/storage/closet/welding_supply,
 /turf/floor/industrial,
 /area/station/engine/storage)
@@ -22505,7 +22493,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating/random,
 /area/station/maintenance/inner/west)
 "mUr" = (
@@ -22702,7 +22690,7 @@
 /obj/item/reagent_containers/food/snacks/candy/caramel,
 /obj/item/reagent_containers/food/snacks/candy/caramel,
 /obj/item/device/light/flashlight,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /obj/item/clothing/head/helmet/hardhat,
 /turf/floor/plating/gehenna,
 /area/gehenna/underground/staffies_nest)
@@ -23317,7 +23305,7 @@
 /turf/floor/black,
 /area/station/science/lab)
 "nte" = (
-/obj/storage/secure/closet/engineering/mining,
+/obj/storage/secure/closet/logistics/mining,
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
@@ -23694,7 +23682,7 @@
 /turf/floor/black,
 /area/station/science/chemistry)
 "nDp" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -23930,7 +23918,7 @@
 /turf/wall,
 /area/station/janitor/office)
 "nKt" = (
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "nLa" = (
@@ -24257,6 +24245,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/south)
+"nUu" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
+	},
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/station/mining/refinery)
 "nVs" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -25112,7 +25111,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/item/reagent_containers/pill/stox,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
 	pixel_x = -9;
@@ -25305,9 +25304,6 @@
 /turf/floor/white,
 /area/station/medical/cdc)
 "oFs" = (
-/obj/landmark{
-	name = "medfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/med_bot)
 "oFt" = (
@@ -25815,7 +25811,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/long/rifle,
+/obj/item/gun/modular/NT/rifle,
 /turf/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -26536,9 +26532,6 @@
 /area/station/crew_quarters/baroffice)
 "pxf" = (
 /obj/decal/cleanable/rust/jen,
-/obj/landmark{
-	name = "secfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/sec_bot)
 "pxq" = (
@@ -26596,7 +26589,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/light/emergency{
 	dir = 8
 	},
@@ -26787,7 +26780,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "pFT" = (
@@ -26930,7 +26923,7 @@
 /obj/stool/chair/couch/blue{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -27185,7 +27178,7 @@
 /area/station/quartermaster/refinery)
 "pUt" = (
 /obj/decal/cleanable/dirt/jen,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /turf/floor/plating/random,
 /area/station/crew_quarters/clown)
 "pUP" = (
@@ -31514,7 +31507,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/medical/medbay{
 	name = "Med-Eng Mainframe"
@@ -31671,7 +31664,7 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "sIM" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -31976,7 +31969,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /obj/blind_switch/area/south{
 	pixel_x = -11
 	},
@@ -32254,7 +32247,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/plating/random,
 /area/station/medical/cdc)
 "sZX" = (
@@ -32376,9 +32369,6 @@
 /turf/floor/carpet/grime,
 /area/station/medical/staff)
 "tct" = (
-/obj/landmark{
-	name = "comfall"
-	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/com_bot)
 "tcy" = (
@@ -32627,7 +32617,7 @@
 /turf/floor/plating,
 /area/station/crew_quarters/catering)
 "tks" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -32823,7 +32813,7 @@
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -32882,7 +32872,7 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
 "trR" = (
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/cable,
 /turf/floor/plating,
 /area/station/crew_quarters/catering)
@@ -33006,7 +32996,7 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/autoname_west,
+/obj/machinery/power/apc/autoname/west,
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
@@ -33184,6 +33174,9 @@
 /turf/floor/grey,
 /area/station/crew_quarters/baroffice)
 "tBa" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 4
+	},
 /turf/floor/yellow/side,
 /area/station/mining/refinery)
 "tBg" = (
@@ -33954,7 +33947,7 @@
 	dir = 1
 	},
 /obj/rack,
-/obj/item/mining_tools/pick,
+/obj/item/mining_tool,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/engine/inner)
@@ -33968,7 +33961,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/janitor/office)
 "ubj" = (
@@ -35436,7 +35429,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 9;
@@ -35522,7 +35515,7 @@
 /turf/floor,
 /area/station/mining/equipment)
 "uUR" = (
-/obj/machinery/power/apc/autoname_south,
+/obj/machinery/power/apc/autoname/south,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -37490,7 +37483,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/station/maintenance/south)
 "wac" = (
@@ -38232,7 +38225,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
 "wvk" = (
@@ -38366,7 +38359,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/black,
 /area/station/mining/barracks)
 "wBg" = (
@@ -38514,7 +38507,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/plating,
 /area/station/maintenance/outer/nw{
 	name = "Northwest Lower Maintenance"
@@ -38583,7 +38576,7 @@
 /turf/floor/carpet/blue,
 /area/station/bridge/hos)
 "wKF" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -39150,7 +39143,7 @@
 /turf/floor/plating,
 /area/station/mining/tunnel)
 "xdv" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -39270,7 +39263,7 @@
 /turf/floor/plating,
 /area/station/routing/depot)
 "xfO" = (
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -39298,7 +39291,7 @@
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
-/obj/machinery/power/apc/autoname_east,
+/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -39391,7 +39384,6 @@
 /turf/floor/plating/random,
 /area/station/medical/basement)
 "xkJ" = (
-/obj/landmark/elevator_fall/macro_test,
 /turf/floor/plating,
 /area/transit_vehicle/elevator/macro_test/bot)
 "xkK" = (
@@ -39459,7 +39451,7 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 8
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -39690,7 +39682,7 @@
 /obj/machinery/light/emergency{
 	dir = 8
 	},
-/obj/machinery/power/apc/autoname_north,
+/obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-4"
@@ -104565,7 +104557,7 @@ kPQ
 kPQ
 kPQ
 pro
-bIN
+nUu
 qRU
 tBa
 xTA

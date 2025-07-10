@@ -1,7 +1,7 @@
 // rest in peace the_very_holy_global_bible_list_amen (??? - 2020)
 var/global/list/bible_contents = list()
 
-/obj/item/storage/bible
+/obj/item/storage/bible //keyword: ol bib
 	name = "ol' bib"
 	desc = "A facsimile of a xerox of a copy of a daguerrotype of some historical italian text. Someone seems to have hollowed it out for hiding things in."
 	icon_state ="bible"
@@ -85,13 +85,13 @@ var/global/list/bible_contents = list()
 			// ******* Check
 			if ((ishuman(H) && prob(60) && !(M.traitHolder?.hasTrait("atheist"))))
 				bless(M, user)
-				M.visible_message("<span class='alert'><B>[user] heals [M] with the power of Christ!</B></span>")
-				boutput(M, "<span class='alert'>May the power of Christ compel you to be healed!</span>")
+				M.visible_message("<span class='alert'><B>[user] heals [M] with the power of [src]!</B></span>")
+				boutput(M, "<span class='alert'>May the power of [src] compel you to be healed!</span>")
 				if (narrator_mode)
 					playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
 				else
 					playsound(src.loc, "punch", 25, 1, -1)
-				logTheThing("combat", user, M, "biblically healed [constructTarget(M,"combat")]")
+				logTheThing("combat", user, M, "ol'biblically healed [constructTarget(M,"combat")]")
 			else
 				if (ishuman(M) && !istype(M:head, /obj/item/clothing/head/helmet))
 					if (M.traitHolder?.hasTrait("atheist"))
@@ -99,7 +99,7 @@ var/global/list/bible_contents = list()
 					else
 						M.take_brain_damage(10)
 					boutput(M, "<span class='alert'>You feel dazed from the blow to the head.</span>")
-				logTheThing("combat", user, M, "biblically injured [constructTarget(M,"combat")]")
+				logTheThing("combat", user, M, "ol'biblically injured [constructTarget(M,"combat")]")
 				M.visible_message("<span class='alert'><B>[user] beats [M] over the head with [src]!</B></span>")
 				if (narrator_mode)
 					playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
@@ -185,7 +185,7 @@ var/global/list/bible_contents = list()
 
 /obj/item/storage/bible/mini
 	//Grif
-	name = "O.C. Bible"
+	name = "Ol' Piccola Bib"
 	desc = "For when you don't want the good book to take up too much space in your life."
 	icon_state = "minibible"
 	item_state = null

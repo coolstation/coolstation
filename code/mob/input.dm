@@ -1,13 +1,13 @@
 
+/mob/var/prev_loc = 0
 /mob/var/move_dir = 0
 /mob/var/next_move = 0
 
 
 /mob/hotkey(name)
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.hotkey(src, name)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.hotkey(src, name)
 	return ..()
 
 /mob/keys_changed(keys, changed)
@@ -17,10 +17,9 @@
 		else
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			controller.keys_changed(src, keys, changed)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		controller.keys_changed(src, keys, changed)
 		return
 
 	if (changed & (KEY_FORWARD|KEY_BACKWARD|KEY_RIGHT|KEY_LEFT))
@@ -49,15 +48,15 @@
 		if(!src.dir_locked) //in order to not turn around and good fuckin ruin the emote animation
 			src.set_dir(src.move_dir)
 	if (changed & (KEY_THROW|KEY_PULL|KEY_POINT|KEY_EXAMINE|KEY_BOLT|KEY_OPEN|KEY_SHOCK)) // bleh
+		src.overhead_throw()
 		src.update_cursor()
 
 /mob/proc/process_move(keys)
 	set waitfor = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.process_move(src, keys)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.process_move(src, keys)
 
 	if (isdead(src) && !isobserver(src) && !istype(src, /mob/zoldorf))
 		return
@@ -134,6 +133,7 @@
 						qdel(G)
 
 				var/turf/old_loc = src.loc
+				src.prev_loc = old_loc
 
 				//use commented bit if you wanna have world fps different from client. But its not perfect!
 				var/glide = (world.icon_size / ceil(delay / world.tick_lag)) //* (world.tick_lag / CLIENTSIDE_TICK_LAG_SMOOTH))

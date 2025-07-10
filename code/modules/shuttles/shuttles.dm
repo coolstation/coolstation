@@ -61,7 +61,7 @@
 			return
 		var/turf/T2 = pick(get_area_turfs(destination.target_area))
 		//flourish = new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
-		new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
+		new /obj/effects/fly_in/shuttle(T2, src.departure_delay)
 
 		sleep(departure_delay)
 		playsound(target, "sound/misc/ground_rumble_big.ogg", 70, 1)
@@ -184,9 +184,8 @@
 	departing(datum/transit_stop/destination)
 		shippingmarket.CSS_at_NTFC = FALSE
 		var/turf/target
-		for(var/turf/T in locate(src.current_location.target_area))
-			target = T
-			break
+		var/area/A = locate(src.current_location.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/effects/ship_charge.ogg", 70, 1)
 		else
@@ -203,12 +202,34 @@
 
 	arriving(datum/transit_stop/destination)
 		var/turf/target
-		for(var/turf/T in locate(destination.target_area))
-			target = T
-			break
+		var/area/A = locate(destination.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/machines/hiss.ogg", 50, 1)
 			SPAWN_DBG(1 DECI SECOND)
 				playsound(target, "sound/items/Deconstruct.ogg", 65, 1)
 				destination.on_arrival()
 		sleep(disembark_time)
+
+/datum/transit_stop/arrivals_dock
+	stop_id 	= "arrivals_dock"
+	name		= "Station Arrival Shuttle Dock"
+	target_area = /area/shuttle/arrival/station
+
+/datum/transit_stop/arrivals_pregame
+	current_occupant = "arrivals_shuttle"
+	stop_id 	= "arrivals_pregame"
+	name		= "En Route"
+	target_area = /area/shuttle/arrival/pre_game
+
+	can_receive_vehicle() //It's just some random bit of space near the station
+		return FALSE
+
+/datum/transit_vehicle/arrivals_shuttle
+	vehicle_id = "arrivals_shuttle"
+
+	stop_ids = list("arrivals_dock", "arrivals_pregame")
+
+	var/departure_delay = 0 SECONDS
+
+	var/disembark_time = 0 SECONDS

@@ -29,6 +29,10 @@
 #define COMPONENT_NOTRANSFER 2
 
 
+/// arginfo handling TODO: document
+#define ARG_INFO(name, type, desc, default...)\
+	list(name, type, desc, ##default)
+
 // How multiple components of the exact same type are handled in the same datum
 
 /// old component is deleted (default)
@@ -69,6 +73,17 @@
 #define COMSIG_ATOM_EXAMINE "atom_examine"
 /// when something happens that should trigger an icon update. Or something.
 #define COMSIG_UPDATE_ICON "atom_update_icon"
+/// When something enters the contents of this atom (i.e. Entered())
+#define COMSIG_ATOM_ENTERED "atom_entered"
+/// when this atom has clean_forensic called, send this signal.
+#define COMSIG_ATOM_CLEANED "atom_cleaned"
+
+// ---- turf signals ----
+
+/// when a turf is replaced by another turf (what)
+#define COMSIG_TURF_REPLACED "turf_replaced"
+/// when a movable lands in a turf (thing, /datum/thrown_thing)
+#define COMSIG_TURF_LANDIN_THROWN "turf_landin"
 
 // ---- atom/movable signals ----
 
@@ -78,7 +93,8 @@
 #define COMSIG_MOVABLE_SET_LOC "mov_set_loc"
 /// when an AM ends throw (thing, /datum/thrown_thing)
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
-
+/// when an AM is revealed from under a floor tile (turf revealed from)
+#define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
 // ---- item signals ----
 
 /// When an item is equipped (user, slot)
@@ -111,6 +127,8 @@
 #define COMSIG_ITEM_SPECIAL_POST "itm_special_post"
 /// When items process ticks on an item
 #define COMSIG_ITEM_PROCESS "itm_process"
+/// When an item is twirled
+#define COMSIG_ITEM_TWIRLED "itm_twirled"
 
 // ---- cloaking device signal ----
 /// Make cloaking devices turn off
@@ -170,6 +188,9 @@
 #define COMSIG_MOB_GEIGER_TICK "mob_geiger"
 /// on mouseup
 #define COMSIG_MOUSEUP "mouseup"
+/// Sent when the mob starts pressing the sprint key, return TRUE to prevent other sprint code from running
+#define COMSIG_MOB_SPRINT "mob_sprint"
+
 // ---- mob/living signals ----
 /// When a Life tick occurs
 #define COMSIG_LIVING_LIFE_TICK "human_life_tick"
@@ -244,7 +265,11 @@
 // ---- fullauto UI thingy signals ----
 #define COMSIG_FULLAUTO_MOUSEDOWN "fullauto_mousedown"
 #define COMSIG_FULLAUTO_MOUSEDRAG "fullauto_mousedrag"
+/// MouseMove over a fullauto hud object
+#define COMSIG_FULLAUTO_MOUSEMOVE "fullauto_mousemove"
 #define COMSIG_GUN_PROJECTILE_CHANGED "gun_proj_changed"
+/// before ...gun/shoot() - return truthy to cancel shoot() - (target, start, shooter, POX, POY, is_dual_wield, point_blank_target)
+#define COMSIG_GUN_TRY_SHOOT "gun_shooty"
 
 // ---- small cell component signals ----
 ///When the cell in a uses_cell component should be swapped out (cell, user)
@@ -284,6 +309,18 @@
 #define COMSIG_TRANSIT_VEHICLE_MOVED "transit_arrives"
 /// vehicle goes off of in_transit and is ready to move again (this one's after those vars get updated)
 #define COMSIG_TRANSIT_VEHICLE_READY "transit_ready"
+
+// ---- ui signals ----
+/// a ui map is fully loaded (client)
+#define COMSIG_UIMAP_LOADED "uimap_loaded"
+/// a ui is visible enough to show a uimap, on client
+#define COMSIG_UI_VISIBLE "ui_visible"
+
+// ---- Sniper Scope integration with other gun components ----
+/// Sent to an item when its sniper_scope components scope is toggled, TRUE if on and FALSE if off
+#define COMSIG_SCOPE_TOGGLED "sniper_scope_toggled"
+/// Sent to a mob when its client pixel offset is changed by a scope (delta_x, delta_y)
+#define COMSIG_MOB_SCOPE_MOVED "sniper_scope_toggled"
 
 // ---- broadcasting signals ----
 //Uncomment these as you need them

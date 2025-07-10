@@ -108,7 +108,7 @@ var/list/observers = list()
 		if(src.target)
 			var/mob/living/M = src.target
 			src.target = null
-			M.removeOverlaysClient(src.client)
+			removeOverlaysClient(src.client)
 			for (var/datum/hud/hud in M.huds)
 				src.detach_hud(hud)
 			if(istype(M))
@@ -129,7 +129,7 @@ var/list/observers = list()
 		if (istype(M))
 			M.observers += src
 			if(src.client)
-				M.updateOverlaysClient(src.client)
+				addOverlaysClient(src.client, M)
 			for (var/datum/hud/hud in M.huds)
 				src.attach_hud(hud)
 
@@ -138,7 +138,7 @@ var/list/observers = list()
 
 
 //no longer a verb so I can get hivemind observers to use this, instead of their near copy
-/mob/dead/target_observer/proc/stop_observing()
+/mob/dead/target_observer/proc/stop_observing(var/turf/jump_turf) //optional: pass a turf to send us (default is wherever our observation target is)
 
 	if (isobj(target))
 		src.UnregisterSignal(target, list(COMSIG_PARENT_PRE_DISPOSING))
@@ -157,7 +157,7 @@ var/list/observers = list()
 	my_ghost.delete_on_logout = my_ghost.delete_on_logout_reset
 
 	if (src.client)
-		src.removeOverlaysClient(src.client)
+		removeOverlaysClient(src.client)
 		client.mob = my_ghost
 
 	if (src.mind)
@@ -165,9 +165,10 @@ var/list/observers = list()
 
 	var/ASLoc = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
 	if (target)
-		var/turf/T = get_turf(target)
-		if (T && (!isghostrestrictedz(T.z) || (isghostrestrictedz(T.z) && (restricted_z_allowed(my_ghost, T) || (my_ghost.client && my_ghost.client.holder)))))
-			my_ghost.set_loc(T)
+		if(!istype(jump_turf))
+			jump_turf = get_turf(target)
+		if (jump_turf && (!isghostrestrictedz(jump_turf.z) || (isghostrestrictedz(jump_turf.z) && (restricted_z_allowed(my_ghost, jump_turf) || (my_ghost.client && my_ghost.client.holder)))))
+			my_ghost.set_loc(jump_turf)
 		else
 			if (ASLoc)
 				my_ghost.set_loc(ASLoc)
@@ -192,24 +193,8 @@ var/list/observers = list()
 
 	voluntary_stop_observing()
 
-/mob/dead/target_observer/verb/ghostjump(x as num, y as num, z as num)
-	set name = ".ghostjump"
-	set hidden = TRUE
-
+/mob/dead/target_observer/ghostjump(x as num, y as num, z as num)
 	if(src.type != /mob/dead/target_observer)
 		return // ugh, bad inheritance :whelm:
 
-	var/turf/T = locate(x, y, z)
-	// if (!can_ghost_be_here(src, T))
-	// 	return
-
-	if(isnull(src.ghost))
-		src.ghost = new(src.corpse)
-
-		if (!src.corpse)
-			src.ghost.name = src.name
-			src.ghost.real_name = src.real_name
-
-	var/mob/dead/observer/ghost = src.ghost
-	qdel(src)
-	ghost.set_loc(T)
+	stop_observing(locate(x, y, z))

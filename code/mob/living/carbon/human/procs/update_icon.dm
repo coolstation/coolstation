@@ -171,9 +171,10 @@
 	// Also no barefoot poo overlays but that would go here
 
 	// same as above but for shoes/bare feet
-	if (islist(src.tracked_blood) && !src.shoes)
+	if (src.tracked_reagents.total_volume && !src.shoes)
 
 		blood_image.layer = MOB_CLOTHING_LAYER+0.1
+		blood_image.color = src.tracked_reagents.get_average_rgb()
 		if (src.limbs && src.limbs.l_leg && src.limbs.l_leg.accepts_normal_human_overlays)
 			blood_image.icon_state = "left_shoeblood_c"
 			UpdateOverlays(blood_image, "bloody_feet_l")
@@ -944,7 +945,7 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 				src.body_standing.overlays += human_image
 				human_image.color = chest_color_before
 
-				human_image.icon_state = "groin_[gender_t]"
+				human_image.icon_state = "groin_[gender_t][src.organHolder?.butt ? "" : "_buttless"]"
 				src.body_standing.overlays += human_image
 
 				// all this shit goes on the torso anyway

@@ -71,7 +71,7 @@
 			"Subtle Message",\
 			"Check Health",\
 			"Heal",\
-
+			"Heal Partly",\
 			"Manage Bioeffects",\
 			"Manage Abilities",\
 			"Add Reagents",\

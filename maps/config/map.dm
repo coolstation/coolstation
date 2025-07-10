@@ -49,9 +49,6 @@
 #elif defined(MAP_OVERRIDE_ATLAS)
 #include "atlas.dm"
 
-#elif defined(MAP_OVERRIDE_MANTA)
-#include "manta.dm"
-
 #elif defined(MAP_OVERRIDE_KONDARU)
 #include "kondaru.dm"
 
@@ -99,6 +96,6 @@
 #include "standard.dm"
 #endif
 
-#if FOOTBALL_MODE && !defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+#if defined(FOOTBALL_MODE) && !defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
 #include "..\zamujasa\football2.dmm"
 #endif

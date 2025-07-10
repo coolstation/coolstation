@@ -8,7 +8,7 @@
 	icon = 'icons/obj/hydroponics/items_hydroponics.dmi'
 	var/brewable = 0 // will hitting a still with it do anything?
 	var/brew_result = null // what will it make if it's brewable?
-	rand_pos = 1
+	rand_pos = 8
 
 	New()
 		..()
@@ -38,6 +38,7 @@
 	burn_possible = TRUE
 	item_function_flags = COLD_BURN
 	crop_suffix	= " leaf"
+	value = 75 //base commodity price
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (!src.reagents)
@@ -90,6 +91,8 @@
 	brew_result = list("THC", "CBD")
 	contraband = 1
 	w_class = W_CLASS_TINY
+	value = -5 //small crime
+	alt_value = 50 //but why not
 
 /obj/item/plant/herb/cannabis/spawnable
 	make_reagents()
@@ -103,6 +106,8 @@
 	desc = "Is it supposed to be glowing like that...?"
 	icon_state = "megaweedleaf"
 	brew_result = list("THC", "LSD")
+	value = -50 //medium crime
+	alt_value = 250
 
 /obj/item/plant/herb/cannabis/mega/spawnable
 	make_reagents()
@@ -116,6 +121,8 @@
 	desc = "Looks a bit dark. Oh well."
 	icon_state = "blackweedleaf"
 	brew_result = list("THC", "cyanide")
+	value = -500 //big crime
+	alt_value = 500 //but someone might sell it...
 
 /obj/item/plant/herb/cannabis/black/spawnable
 	make_reagents()
@@ -129,6 +136,8 @@
 	desc = "It feels smooth and nice to the touch."
 	icon_state = "whiteweedleaf"
 	brew_result = list("THC", "omnizine")
+	value = 100 //okay they might actually buy it
+	alt_value = 300
 
 /obj/item/plant/herb/cannabis/white/spawnable
 	make_reagents()
@@ -143,6 +152,8 @@
 	icon_state = "Oweedleaf"
 	brew_result = list("THC", "LSD", "suicider", "space_drugs", "mercury", "lithium", "atropine", "haloperidol", "methamphetamine",\
 	"capsaicin", "psilocybin", "hairgrownium", "ectoplasm", "bathsalts", "itching", "crank", "krokodil", "catdrugs", "histamine")
+	value = -500 //holy shit
+	alt_value = 2500 //piss
 
 /obj/item/plant/herb/cannabis/omega/spawnable
 	make_reagents()
@@ -174,6 +185,7 @@
 	icon_state = "tobacco"
 	brewable = 1
 	brew_result = list("nicotine")
+	value = 50
 
 	build_name(obj/item/W)
 		return "[istype(W, /obj/item/spacecash) ? "[W.amount]-credit " : ""]rolled cigarette"
@@ -198,6 +210,7 @@
 	icon_state = "twobacco"
 	brewable = 1
 	brew_result = list("nicotine2")
+	value = 100
 
 /obj/item/plant/wheat
 	name = "wheat"
@@ -205,6 +218,7 @@
 	icon_state = "wheat"
 	brewable = 1
 	brew_result = "beer"
+	value = 10
 
 /obj/item/plant/wheat/durum
 	name = "durum wheat"
@@ -227,6 +241,7 @@
 	name = "oat"
 	desc = "A bland but healthy cereal crop. Good source of fiber."
 	icon_state = "oat"
+	value = 10
 
 /obj/item/plant/sugar/
 	name = "sugar cane"
@@ -235,11 +250,13 @@
 	icon_state = "sugarcane"
 	brewable = 1
 	brew_result = "rum"
+	value = 10
 
 /obj/item/plant/herb/grass
 	name = "grass"
 	desc = "Fresh free-range spacegrass."
 	icon_state = "grass"
+	value = -1 //trash
 
 /obj/item/plant/herb/contusine
 	name = "contusine leaves"
@@ -258,6 +275,7 @@
 	crop_suffix = " leaves"
 	desc = "Chewy leaves often manufactured for use in radiation treatment medicine. They seem strangely hairy."
 	icon_state = "nureousfuzzy"
+	value = 150
 
 /obj/item/plant/herb/asomna
 	name = "asomna bark"
@@ -274,6 +292,7 @@
 	icon_state = "asomnarobust"
 	brewable = 1
 	brew_result = "tea"
+	value = 150
 
 /obj/item/plant/herb/commol
 	name = "commol root"
@@ -286,6 +305,7 @@
 	crop_suffix	= " root"
 	desc = "This thick root is covered in abnormal ammounts of bark. A powerful emetic can be extracted from it."
 	icon_state = "ipecacuanha"
+	value = 50
 
 /obj/item/plant/herb/ipecacuanha/invigorating
 	name = "ipecacuanha root"
@@ -300,6 +320,7 @@
 	icon_state = "ipecacuanhabilious"
 	brewable = 1
 	brew_result = "gvomit"
+	value = -25 //gross
 
 /obj/item/plant/herb/sassafras
 	name = "sassafras root"
@@ -308,6 +329,7 @@
 	icon_state = "sassafras"
 	brewable = 1
 	brew_result = "sarsaparilla"
+	value = 20
 
 /obj/item/plant/herb/venne
 	name = "venne fibers"
@@ -320,12 +342,14 @@
 	crop_prefix	= "black "
 	desc = "It's black and greasy. Kinda gross."
 	icon_state = "venneT"
+	value = -20
 
 /obj/item/plant/herb/venne/curative
 	name = "dawning venne fibers"
 	crop_prefix	= "dawning "
 	desc = "It has a lovely sunrise coloration to it."
 	icon_state = "venneC"
+	value = 150
 
 /obj/item/plant/herb/mint
 	name = "mint leaves"
@@ -334,6 +358,7 @@
 	icon_state = "mint"
 	brewable = 1
 	brew_result = "menthol"
+	value = 20
 
 /obj/item/plant/herb/catnip
 	name = "nepeta cataria"
@@ -342,19 +367,24 @@
 	icon_state = "catnip"
 	brewable = 1
 	brew_result = "catdrugs"
+	value = 20
 
 /obj/item/plant/herb/poppy
 	name = "poppy"
 	crop_suffix	= ""
 	desc = "A distinctive red flower."
 	icon_state = "poppy"
+	value = -50
+	alt_value = 350
 
 /obj/item/plant/herb/aconite
 	name = "aconite"
 	crop_suffix	= ""
 	desc = "Also known as wolfsbane. You know, just in case you have any wolves that need baning."
 	icon_state = "aconite"
+	value = 5 //not particularly useful (however a werewolf outbreak market event might send this skyrocketing!!)
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
+
 	// module_research_type = /obj/item/plant/herb/cannabis
 	attack_hand(var/mob/user as mob)
 		if (iswerewolf(user))
@@ -422,6 +452,7 @@
 	"Sofia", "Camila", "Aria", "Scarlett", "Liam", "Noah", "William", "James",
 	"Oliver", "Benjamin", "Elijah", "Lucas", "Mason", "Logan", "Alexander", "Ethan",
 	"Jacob", "Michael", "Daniel", "Henry", "Jackson", "Sebastian", "Aiden", "Matthew")
+	value = 5 //just a flower
 
 	New()
 		..()
@@ -461,3 +492,4 @@
 	name = "houttuynia cordata"
 	desc = "Also known as fish mint or heart leaf, used in cuisine for its distinct fishy flavor."
 	icon_state = "hcordata"
+	value = 20

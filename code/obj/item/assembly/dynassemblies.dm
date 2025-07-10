@@ -273,7 +273,7 @@ For hairball DynAssemblies see: jonescity.dm
 	desc = "An interesting product of shoddy coding somewhere. How silly."
 	icon = 'icons/obj/instruments.dmi'
 	icon_state = "trumpet"
-	rand_pos = 1
+	rand_pos = 8
 
 	body
 		name = "instrument body"

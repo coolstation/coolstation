@@ -19,7 +19,7 @@ String.prototype.includes = function (str) {
 }
 
 function byond() {
-    url = "?src=" + srcRef;
+    url = "byond://?src=" + srcRef;
     currentIsKey = true;
     for(var i = 0; i < arguments.length; i++) {
         if(currentIsKey)
@@ -30,9 +30,7 @@ function byond() {
         currentIsKey = !currentIsKey;
     }
     console.log(url);
-    const Http = new XMLHttpRequest();
-    Http.open("GET", url);
-    Http.send();
+    window.location = url;
 }
 
 function updatecredits(com,name,path,c,stock){
@@ -55,7 +53,7 @@ function updatecredits(com,name,path,c,stock){
 				maintag[0].dataset.stock = lastclicked.dataset.stock.toString();
 			}
 		}
-		
+
 	}else if(com == "update"){
 		if(!(c.toString().includes("%"))){
 			CREDITS = parseInt(c);
@@ -120,7 +118,7 @@ window.onload = function(e) {
 			credititems.push(itemlist[i]);
 		}
 	}
-	
+
 	//initialize soul items
 	var soulitemdiv = document.getElementById("soulitems")
 	var whichc = 1
@@ -157,7 +155,7 @@ window.onload = function(e) {
 		div.appendChild(cost);
 		soulitemdiv.appendChild(div);
 	}
-	
+
 	//initialize credit items
 	whichc = 1
 	var credititemdiv = document.getElementById("credititems")
@@ -195,7 +193,7 @@ window.onload = function(e) {
 		div.appendChild(cost);
 		credititemdiv.appendChild(div);
 	}
-	
+
 	//initialize credit return
 	var creditreturn = document.getElementById("creditreturn")
 	creditreturn.textContent = "Return Credits: "+CREDITS.toString();

@@ -77,6 +77,7 @@ var/static/list/human_emotes = list(
 	"salute" = /datum/emote/visible_restrain/salute,
 	"wave" = /datum/emote/visible_restrain/wave,
 	"raisehand" = /datum/emote/raisehand,
+	"nudge" = /datum/emote/nudge,
 	"crackknuckles" = /datum/emote/visible_restrain/crackknuckles,
 	"knuckles" = /datum/emote/visible_restrain/crackknuckles,
 	"stretch" = /datum/emote/visible_restrain/stretch,

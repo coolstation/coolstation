@@ -6,42 +6,21 @@
 
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
+	cancel_typing("whisperwindow")
 	return src.whisper(message)
 
-/mob/verb/start_say() //more or less what Zamujasa did for goonstation, but tweaked to work with coolstation code, and not quite as expansive
-	set name = "start_say"
-	set hidden = 1
-	var/mob/living/M = null
-	if(istype(src,/mob/living))
-		M = src
-	if(M)
-		M.speech_bubble.icon_state = "typing"
-		UpdateOverlays(M.speech_bubble,"speech_bubble")
-		SPAWN_DBG(15 SECONDS)
-			if (M?.speech_bubble?.icon_state == "typing")
-				M.UpdateOverlays(null, "speech_bubble")
-
-	var/message = input("","Say") as null|text
-
-	if (message)
-		src.say_verb(message)
-		return
-
-	if (M && M.speech_bubble?.icon_state == "typing")
-		M.lasttyping = null
-		M.UpdateOverlays(null,"speech_bubble")
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 
 	if (!message)
 		return
-	if (src.client && url_regex?.Find(message) && !client.holder)
+	if (client && url_regex?.Find(message) && !client.holder)
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
 		boutput(src, "<span class='alert'>&emsp;<b>\"[message]</b>\"</span>")
 		return
 
-	src.say(message)
+	say(message)
 	#ifdef SECRETS_ENABLED
 	check_say(message, src)
 	#endif
@@ -53,20 +32,106 @@
 	set name = "say_radio"
 	set hidden = 1
 
-/mob/verb/say_main_radio()
+/mob/verb/say_main_radio(msg as text)
 	set name = "say_main_radio"
 	set hidden = 1
 
-/mob/living/say_main_radio()
+/mob/say_main_radio(msg as text)
 	set name = "say_main_radio"
+	set desc = "Speaking on the main radio frequency"
 	set hidden = 1
-	var/text = input("", "Speaking on the main radio frequency") as null|text
+	cancel_typing("radiochannelsay")
+	var/client/client = src.client
+	if(isAI(src) && !src.client)
+	//AI eye is sending the message
+		client = usr.client
 	if (client.preferences.auto_capitalization)
 		var/i = 1
-		while (copytext(text, i, i+1) == " ")
+		while (copytext(msg, i, i+1) == " ")
 			i++
-		text = capitalize(copytext(text, i))
-	src.say_verb(";" +text)
+		msg = capitalize(copytext(msg, i))
+	src.say_verb(";" + msg)
+
+/mob/proc/setup_radio_box()
+	if(isnull(src.client) || !src.ears || !istype(src.ears, /obj/item/device/radio))
+		return
+
+	var/prefix = winget(client, "radiochannelsaywindow.input", "command")
+	var/obj/item/device/radio/headset = src.ears
+	var/list/s_freqs = headset.secure_frequencies
+	var/regex/R = new(@":([^\s]*)", "g")
+	R.Find(prefix)
+
+	//Box has been set up with a channel we have
+	if(R.match in s_freqs || R.match == ":" || R.match == ";")
+		return
+
+	//No secure channels
+	if(!(istype(s_freqs) && length(s_freqs)))
+		var/color = default_frequency_color(R_FREQ_DEFAULT)
+		var/title = "[format_frequency(R_FREQ_DEFAULT)] - "\
+		+ (headset_channel_lookup["[R_FREQ_DEFAULT]"])
+		open_radio_input(";", title, color, open_window=FALSE)
+		return
+
+	//Last case- the window isn't setup with a secure channel, but we have them
+	var/first_freq = s_freqs[s_freqs[1]]
+	var/color = default_frequency_color(first_freq)
+	var/title = "[format_frequency(first_freq)] - "\
+	+ (headset_channel_lookup["[first_freq]"] ? headset_channel_lookup["[first_freq]"] : "(Unknown)")
+	open_radio_input("[":" + s_freqs[1] ]", title, color, open_window=FALSE)
+
+/mob/proc/open_radio_input(token as text, title as text, color, open_window=TRUE)
+	//Some of the radio channels are way too bright
+	var/list/colorOverrides = list(
+		RADIOC_SECURITY = "#ac2e2e",
+		RADIOC_RESEARCH = "#9e6fdd",
+		RADIOC_STANDARD = "#aaaa55",
+		RADIOC_CIVILIAN = "#8d2d7a",
+		RADIOC_OTHER = "#aaaa55"
+
+	)
+	if(color in colorOverrides)
+		color = colorOverrides[color]
+
+	if(!color)
+		color ="#aaaa55"
+	var/client/client = src.client
+	if(isAI(src) && !src.client)
+		client = usr.client
+	winset(client, "radiochannelsaywindow", "background-color=\"[color]\"")
+	winset(client, "radiochannelsaywindow", "title=\"Speaking on [title]\"")
+	winset(client, "radiochannelsaywindow.input", "command=\"say_radio_channel \\\"[token] \"")
+	winset(client, "radiochannelsaywindow.accept", "command=\".winset \\\"command=\\\"say_radio_channel \\\\\\\"[token]\[\[radiochannelsaywindow.input.text as escaped\]\]\\\";radiochannelsaywindow.is-visible=false\\\";radiochannelsaywindow.input.text=\\\"\\\"\"")
+	if(open_window) winset(client, "radiochannelsaywindow", "is-visible=true")
+	if(open_window) winset(client, "radiochannelsaywindow.input", "focus=true")
+
+	SPAWN_DBG(3 SECONDS)
+		//The channel selector sends us the Return+UP when we press enter so we have to turn this off
+		//But let's turn it back on after a moment so we won't usually be affected by latency just to close the window
+		winset(client, "radiochannelsaywindow_macro_returnup", "is-disabled=false" )
+
+/mob/verb/say_radio_channel(msg as text)
+	set name = "say_radio_channel"
+	set hidden = 1
+
+/mob/say_radio_channel(msg as text)
+	set name = "say_radio_channel"
+	set desc = "Speaking on radio channel"
+	set hidden = 1
+	var/client/client = src.client
+	//AI eye is sending the message
+	if(isAI(src) && !src.client)
+		client = usr.client
+	winset(client, "radiochannelsaywindow", "is-visible=false")
+	//Don't usr why I need this here
+	cancel_typing("radiochannelsay")
+	if (client.preferences.auto_capitalization)
+		var/i = 1
+		while (copytext(msg, i, i+1) == " ")
+			i++
+		msg = capitalize(copytext(msg, i))
+	src.say_verb(msg)
 
 /mob/living/say_radio()
 	set name = "say_radio"
@@ -76,7 +141,9 @@
 		var/mob/living/silicon/ai/A = src
 		var/list/choices = list()
 		var/list/channels = list()
+		var/list/frequencies = list()
 		var/list/radios = list(A.radio1, A.radio2, A.radio3)
+
 		for (var/i = 1, i <= radios.len, i++)
 			var/obj/item/device/radio/R = radios[i]
 			var/channel_name
@@ -86,13 +153,14 @@
 				// Honestly this should probably be fixed in some other way, but, effort.
 				channel_name = "[format_frequency(R.frequency)] - " + (headset_channel_lookup["[R.frequency]"] ? headset_channel_lookup["[R.frequency]"] : "(Unknown)")
 				choices += channel_name
+				frequencies[channel_name] = R.frequency
 				channels[channel_name] = ":[i]"
 
 			if (istype(R.secure_frequencies) && length(R.secure_frequencies))
 				for (var/sayToken in R.secure_frequencies)
 					channel_name = "[format_frequency(R.secure_frequencies[sayToken])] - " + (headset_channel_lookup["[R.secure_frequencies[sayToken]]"] ? headset_channel_lookup["[R.secure_frequencies[sayToken]]"] : "(Unknown)")
-
 					choices += channel_name
+					frequencies[channel_name] = R.secure_frequencies[sayToken]
 					channels[channel_name] = ":[i][sayToken]"
 
 		if (A.robot_talk_understand)
@@ -111,13 +179,11 @@
 		var/token = channels[choice]
 		if (!token)
 			boutput(src, "Somehow '[choice]' didn't match anything. Welp. Probably busted.")
-		var/text = input("", "Speaking over [choice] ([token])") as null|text
-		if (text)
 
-			if(src?.client?.preferences.auto_capitalization)
-				text = capitalize(text)
+		var/choice_index = choices.Find(choice)
+		var/color = default_frequency_color(frequencies[frequencies[choice_index]])
+		open_radio_input(token, choice, color)
 
-			src.say_verb(token + " " + text)
 
 	else if (src.ears && istype(src.ears, /obj/item/device/radio))
 		var/obj/item/device/radio/R = src.ears
@@ -141,6 +207,7 @@
 		if (!choice)
 			return
 
+		var/color = "#aaaa55"
 		var/choice_index = choices.Find(choice)
 		if (choice_index == 1)
 			token = ";"
@@ -148,14 +215,10 @@
 			token = ":s"
 		else
 			token = ":" + R.secure_frequencies[choice_index - 1]
+			color = default_frequency_color(R.secure_frequencies[R.secure_frequencies[choice_index - 1]])
 
-		var/text = input("", "Speaking to [choice] frequency") as null|text
-		if (client.preferences.auto_capitalization)
-			var/i = 1
-			while (copytext(text, i, i+1) == " ")
-				i++
-			text = capitalize(copytext(text, i))
-		src.say_verb(token + " " + text)
+		open_radio_input(token, choice, color)
+
 	else
 		boutput(src, "<span class='notice'>You must put a headset on your ear slot to speak on the radio.</span>")
 
@@ -301,7 +364,7 @@
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
 
-	var/rendered = "<span class='game hivesay'><span class='prefix'>HIVEMIND:</span> <span class='name' data-ctx='\ref[src.mind]'>[name]<span class='text-normal'>[alt_name]</span></span> <span class='message'>[message]</span></span>"
+	var/rendered = "<span class='hivesay'><span class='prefix'>HIVEMIND:</span> <span class='name' data-ctx='\ref[src.mind]'>[name]<span class='text-normal'>[alt_name]</span></span> <span class='message'>[message]</span></span>"
 
 	//show to hivemind
 	for (var/client/C in clients)
@@ -324,7 +387,7 @@
 
 	if (isvampire(src))
 		name = src.real_name
-		alt_name = " (VAMPIRE)"
+		alt_name = " (DRACULA)"
 	else if (isvampiricthrall(src))
 		name = src.real_name
 		alt_name = " (THRALL)"
@@ -336,7 +399,7 @@
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
 
-	var/rendered = "<span class='game ghoulsay'><span class='prefix'>GHOULSPEAK:</span> <span class='name' data-ctx='\ref[src.mind]'>[name]<span class='text-normal'>[alt_name]</span></span> <span class='message'>[message]</span></span>"
+	var/rendered = "<span class='thrallsay'><span class='prefix'>GHOULSPEAK:</span> <span class='name' data-ctx='\ref[src.mind]'>[name]<span class='text-normal'>[alt_name]</span></span> <span class='message'>[message]</span></span>"
 
 	//show to ghouls
 	for (var/client/C in clients)
@@ -773,7 +836,8 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 /mob/proc/heard_say(var/mob/other)
 	return
 
-/mob/proc/lastgasp()
+/mob/proc/lastgasp(allow_dead=FALSE)
+	set waitfor = FALSE
 	return
 
 /mob/proc/item_attack_message(var/mob/T, var/obj/item/S, var/d_zone, var/devastating = 0, var/armor_blocked = 0)
@@ -781,11 +845,13 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 		if(armor_blocked)
 			return "<span class='alert'><B>[src] attacks [T] in the [d_zone] with [S], but [T]'s armor blocks it!</B></span>"
 		else
+			T.lastgasp()
 			return "<span class='alert'><B>[src] attacks [T] in the [d_zone] with [S][devastating ? " and lands a devastating hit!" : "!"]</B></span>"
 	else
 		if(armor_blocked)
 			return "<span class='alert'><B>[src] attacks [T] with [S], but [T]'s armor blocks it!</B></span>"
 		else
+			T.lastgasp()
 			return "<span class='alert'><B>[src] attacks [T] with [S] [devastating ? "and lands a devastating hit!" : "!"]</B></span>"
 
 /mob/proc/get_age_pitch_for_talk()
@@ -808,10 +874,14 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 		modifier -= 120
 	if (modifier == 0)
 		modifier = 1
+#ifdef APRIL_FOOLS
+	return -(1.0 + 0.5*(modifier - src.bioHolder.age)/80 + rand(-15,15)/100) // backwards ::)
+#else
 	if (random_emotesounds == 0)
 		return 1.0 + 0.5*(modifier - src.bioHolder.age)/80
 	return 1.0 + 0.5*(modifier - src.bioHolder.age)/80 + rand(-15,15)/100
 
+#endif
 /mob/proc/understands_language(var/langname)
 	if (langname == say_language)
 		return 1

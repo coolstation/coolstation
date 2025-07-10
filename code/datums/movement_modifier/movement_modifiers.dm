@@ -14,6 +14,7 @@
 	var/space_movement = 0
 	var/aquatic_movement = 0
 	var/mob_pull_multiplier = 1
+	var/lying_multiplier = 1 // multiplier to the slowdown for lying down
 	var/ask_proc = 0
 
 /datum/movement_modifier/proc/modifiers(mob/user, turf/move_target, running)
@@ -41,8 +42,13 @@
 /datum/movement_modifier/disoriented
 	additive_slowdown = 8
 
+/datum/movement_modifier/tagged
+	additive_slowdown = 3
 /datum/movement_modifier/hastened
 	additive_slowdown = -0.8
+
+/datum/movement_modifier/turbosliding
+	lying_multiplier = 0.4
 
 /datum/movement_modifier/janktank
 	health_deficiency_adjustment = -50

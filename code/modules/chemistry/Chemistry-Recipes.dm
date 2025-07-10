@@ -34,6 +34,18 @@ datum
 		var/consume_all = 0 //If set to 1, the recipe will consume ALL of its components instead of just proportional parts.
 
 
+		New()
+			..()
+			if (result_amount < 0)
+
+				switch (result_amount)
+					if (RECIPE_AUTO_PRESERVE_VOLUME)
+						result_amount = 0
+						for (var/id in src.required_reagents)
+							result_amount += required_reagents[id]
+					else
+						result_amount = 0 //functionally 1 if you look elsewhere, but it's the default atm
+
 #ifdef CHEM_REACTION_PRIORITIES
 		proc/operator<(var/datum/chemical_reaction/reaction)
 			return priority > reaction.priority
@@ -1347,7 +1359,7 @@ datum
 			id = "pinacolada"
 			result = "pinacolada"
 			required_reagents = list("juice_pineapple" = 1, "rum" = 1, "coconut_milk" = 1)
-			result_amount = 4
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 			mix_phrase = "The drink gives off the smell of a rainy beach."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -1356,7 +1368,7 @@ datum
 			id = "mimosa"
 			result = "mimosa"
 			required_reagents = list("juice_orange" = 1, "champagne" = 1)
-			result_amount = 1
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 			mix_phrase = "The drink fizzes as the pulp settles to the top."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -1381,7 +1393,7 @@ datum
 		cocktail_tomcollins/tomcollins2
 			id = "tomcollins2"
 			required_reagents = list("gtonic" = 2, "lemonade" = 1)
-			result_amount = 3
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 
 		cocktail_sangria
 			name = "Sangria"
@@ -1859,6 +1871,15 @@ datum
 					C.reagents.add_reagent("cyanide", (0.4 * created_volume) / length(mobs_affected))
 				return
 
+		hemotoxin
+			name = "hemotoxin"
+			id = "hemotoxin"
+			result = "hemotoxin"
+			required_reagents = list("acetone" = 1, "pacid" = 1, "phosphorus" = 2, "sulfur" = 1)
+			mix_phrase = "The substance condenses into a sickly yellow liquid."
+			required_temperature = T0C + 130
+			result_amount = 2 // 40% yield
+
 		sarin // oh god why am i adding this
 			name = "Sarin"
 			id = "sarin"
@@ -2229,6 +2250,17 @@ datum
 			mix_phrase = "The mixture rapidly turns into a dense pink liquid."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
+		pentobarbital // New Losebreath Toxin for Lings
+			name = "Pentobarbital"
+			id = "Pentobarbital"
+			result = "pentobarbital"
+			required_reagents = list("perfluorodecalin" = 1, "urine" = 1, "carbon" = 1, "acetic_acid" = 1)
+			//required_temperature = T0C + 100
+			// take something vaguely losebreathy, urea, and alkylate it???
+			result_amount = 2
+			mix_phrase = "The mixture forms a salt which rapidly precipitates."
+			//mix_sound = 'sound/misc/drinkfizz.ogg'
+
 		styptic_powder // COGWERKS CHEM REVISION PROJECT: no idea, probably a magic drug
 			name = "Styptic Powder"
 			id = "styptic_powder"
@@ -2269,6 +2301,16 @@ datum
 					C.reagents.add_reagent("toxin",((0.25 * created_volume) / length(mobs_affected)))
 					C.reagents.add_reagent("neurotoxin",((0.5 * created_volume) / length(mobs_affected))) // ~HEH~
 				return
+
+		vertigo
+			name = "vertigo"
+			id = "vertigo"
+			result = "vertigo"
+			required_reagents = list("acid" = 1, "neurotoxin" = 2, "acetone" = 1)
+			result_amount = 2
+			required_temperature = T0C + 450
+			mix_phrase = "The neurotoxin breaks down, bubbling violently."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
 
 		mutadone // // COGWERKS CHEM REVISION PROJECT: magic bullshit drug, make it involve mutagen
 			name = "Mutadone"
@@ -3859,7 +3901,7 @@ datum
 			name = "Liquified Space Rubber"
 			id = "flubber"
 			result = "flubber"
-			required_reagents = list("rubber" = 2, "george_melonium" = 1, "sorium" = 1, "superlube" = 1, "radium" = 1)
+			required_reagents = list("rubber" = 2, "rainbow_melonium" = 1, "sorium" = 1, "superlube" = 1, "radium" = 1)
 			result_amount = 5
 			mix_phrase = "The mixture congeals and starts to vibrate <b>powerfully!</b>"
 			mix_sound = 'sound/misc/boing/6.ogg'

@@ -247,7 +247,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	icon = 'icons/obj/items/casings.dmi'
 	icon_state = "medium"
 	w_class = W_CLASS_TINY
-	var/forensic_ID = null
 	plane = PLANE_NOSHADOW_BELOW //2023-9-1 - if this breaks layering remove, but IMO bullet casings shouldn't really be casting shadows
 
 	small
@@ -561,8 +560,9 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		if(hit_atom == usr)
 			if(prob(prob_clonk))
 				var/mob/living/carbon/human/user = usr
+				var/turf/T = get_turf(user)
 				user.visible_message("<span class='alert'><B>[user] fumbles the catch and accidentally discharges [src]!</B></span>")
-				src.shoot_point_blank(user, user)
+				src.Shoot(T, T, user, point_blank_target = user)
 				user.force_laydown_standup()
 			else
 				src.Attackhand(usr)
@@ -573,7 +573,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 				var/mob/living/carbon/human/user = usr
 				if(istype(user.wear_suit, /obj/item/clothing/suit/security_badge))
 					src.silenced = 1
-					src.shoot_point_blank(M, M)
+					src.Shoot(get_turf(M), get_turf(src), user, point_blank_target = M)
 					M.visible_message("<span class='alert'><B>[src] fires, hitting [M] point blank!</B></span>")
 					src.silenced = initial(src.silenced)
 
@@ -616,7 +616,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		var/obj/head = user.organHolder.drop_organ("head")
 		qdel(head)
 		playsound(src, "sound/weapons/shotgunshot.ogg", 100, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = make_cleanable( /obj/decal/cleanable/blood/gibs,get_turf(user))
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,get_turf(user))
 		gib.streak_cleanable(turn(user.dir,180))
 		health_update_queue |= user
 		return 1
@@ -656,17 +656,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	shoot(var/target,var/start ,var/mob/user)
 		if(ammo.amount_left > 0 && !racked_slide)
 			boutput(user, "<span class='notice'>You need to rack the slide before you can fire!</span>")
-		..()
-		src.racked_slide = FALSE
-		src.casings_to_eject = 1
-		if (src.ammo.amount_left == 0) // change icon_state to empty if 0 shells left
-			src.update_icon()
-			src.casings_to_eject = 0
-
-	shoot_point_blank(user, user)
-		if(ammo.amount_left > 0 && !racked_slide)
-			boutput(user, "<span class='notice'>You need to rack the slide before you can fire!</span>")
-			return
 		..()
 		src.racked_slide = FALSE
 		src.casings_to_eject = 1
@@ -906,7 +895,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	uses_multiple_icon_states = 1
 	item_state = "rpg7"
 	wear_image_icon = 'icons/mob/back.dmi'
-	flags = ONBACK
+	flags = ONBACK | FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY
 	w_class = W_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 4
@@ -972,6 +961,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		set_current_projectile(new/datum/projectile/bullet/airzooka)
 		..()
 
+/*
 /obj/item/gun/kinetic/smg_old //testing keelin's continuous fire POC
 	name = "submachine gun"
 	desc = "An automatic submachine gun"
@@ -990,6 +980,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smg
 		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
+*/
 
 //  <([['v') - Gannets Nuke Ops Class Guns - ('u']])>  //
 
@@ -1417,78 +1408,16 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	two_handed = 1
 	w_class = W_CLASS_BULKY
 
-	var/datum/movement_controller/snipermove = null
+	shoot_delay = 1 SECOND
 
 	New()
-		ammo = new/obj/item/ammo/bullets/rifle_762_NATO
 		set_current_projectile(new/datum/projectile/bullet/rifle_heavy)
-		snipermove = new/datum/movement_controller/sniper_look()
-		..()
-
-	disposing()
-		snipermove = null
+		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 3200, /datum/overlayComposition/sniper_scope_old, 'sound/weapons/scope.ogg')
 		..()
 
 	setupProperties()
 		..()
 		setProperty("movespeed", 0.8)
-
-
-	dropped(mob/M)
-		remove_self(M)
-		..()
-
-	move_callback(var/mob/living/M, var/turf/source, var/turf/target)
-		if (M.use_movement_controller)
-			if (source != target)
-				just_stop_snipe(M)
-
-	proc/remove_self(var/mob/living/M)
-		if (islist(M.move_laying))
-			M.move_laying -= src
-		else
-			M.move_laying = null
-
-		if (ishuman(M))
-			M:special_sprint &= ~SPRINT_SNIPER
-
-		just_stop_snipe(M)
-
-	proc/just_stop_snipe(var/mob/living/M) // remove overlay here
-		if (M.client)
-			M.client.pixel_x = 0
-			M.client.pixel_y = 0
-
-		M.use_movement_controller = null
-		M.keys_changed(0,0xFFFF)
-		M.removeOverlayComposition(/datum/overlayComposition/sniper_scope)
-
-	attack_hand(mob/user as mob)
-		if (..() && ishuman(user))
-			user:special_sprint |= SPRINT_SNIPER
-			var/mob/living/L = user
-
-			//set move callback (when user moves, sniper go down)
-			if (islist(L.move_laying))
-				L.move_laying += src
-			else
-				if (L.move_laying)
-					L.move_laying = list(L.move_laying, src)
-				else
-					L.move_laying = list(src)
-
-	get_movement_controller()
-		.= snipermove
-
-/mob/living/proc/begin_sniping() //add overlay + sound here
-	for (var/obj/item/gun/kinetic/sniper/S in equipped_list(check_for_magtractor = 0))
-		src.use_movement_controller = S
-		src.keys_changed(0,0xFFFF)
-		if(!src.hasOverlayComposition(/datum/overlayComposition/sniper_scope))
-			src.addOverlayComposition(/datum/overlayComposition/sniper_scope)
-		playsound(src, "sound/weapons/scope.ogg", 50, 1)
-		break
-
 
 // WIP //////////////////////////////////
 /*/obj/item/gun/kinetic/sniper/antimateriel
@@ -1520,7 +1449,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	New()
 		ammo = new/obj/item/ammo/bullets/cannon
 		set_current_projectile(new/datum/projectile/bullet/cannon)
-		snipermove = new/datum/movement_controller/sniper_look()
+		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 0, /datum/overlayComposition/sniper_scope, 'sound/weapons/scope.ogg')
 		..()
 
 

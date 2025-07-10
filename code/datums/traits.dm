@@ -598,15 +598,22 @@
 	isPositive = 1
 	category = "trinkets"
 
+//2025-6-17: Moved from 25% of wage bonus starting cash to a flat 300$ and from -1 to 0 pts
+//300 was the highest you'd get out of it (being captain), which is't much anyway
+//Even then it's hardly on par with Unionized for cost.
 /obj/trait/pawnstar
-	name = "Pawn Star (-1) \[Trinkets\]"
+	name = "Pawn Star (0) \[Trinkets\]"
 	cleanName = "Pawn Star"
-	desc = "You sold your trinket before you departed for the station. You start with a bonus of 25% of your starting cash in your inventory."
+	//desc has to be done at runtime :v
 	id = "pawnstar"
 	icon_state = "pawnP"
-	points = -1
+	points = 0
 	isPositive = 1
 	category = "trinkets"
+
+	New()
+		desc = "You sold your trinket before you departed for the station. You start with a bonus of 300[CREDIT_SIGN] to your starting cash in your inventory."
+		..()
 
 /obj/trait/beestfriend
 	name = "BEEst friend (-1) \[Trinkets\]"
@@ -714,6 +721,12 @@
 	cleanName = "Professional Drinker"
 	desc = "Sometimes you drink on the job, sometimes drinking is the job."
 	id = "training_drinker"
+
+/obj/trait/job/chef
+	name = "Kitchen Training"
+	cleanName = "Kitchen Training"
+	desc = "You've spent years in the chef academy."
+	id = "training_chef"
 
 // scientist scream gimmick, unrelated to training but putting it here anyway
 /obj/trait/job/scienceteam
@@ -874,7 +887,7 @@ obj/trait/pilot
 	"salbutamol","perfluorodecalin","mannitol","charcoal","antihol","ethanol","iron","mercury","oxygen","plasma","sugar","radium","water","bathsalts","jenkem","crank",\
 	"LSD","space_drugs","THC","nicotine","krokodil","catdrugs","triplemeth","methamphetamine","mutagen","neurotoxin","sarin","smokepowder","infernite","phlogiston","fuel",\
 	"anti_fart","lube","ectoplasm","cryostylane","oil","sewage","ants","spiders","poo","love","hugs","fartonium","blood","bloodc","vomit","urine","capsaicin","cheese",\
-	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg")
+	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg", "milk")
 
 	onAdd(var/mob/owner)
 		allergic_players[owner] = pick(allergen_id_list)
@@ -956,6 +969,15 @@ obj/trait/pilot
 	icon_state = "greedybeast"
 	points = -1
 	isPositive = 0
+
+/obj/trait/organ_connoisseur
+	name = "Organ Connoisseur (-1)"
+	cleanName = "Organ Connoisseur"
+	desc = "You know far more about the valuable innards of your coworkers than you should."
+	id = "organ_connoisseur"
+	icon_state = "organ"
+	points = -1
+	isPositive = 1
 
 /obj/trait/clown_disbelief
 	name = "Clown Disbelief (0)"
@@ -1178,6 +1200,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/cat
 
+/obj/trait/bird
+	name = "Avian (0) \[Species\]"
+	cleanName = "Avian"
+	icon_state = "birdT"
+	desc = "Bird up."
+	id = "bird"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/birb
+
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"
@@ -1236,7 +1269,7 @@ obj/trait/pilot
 		if(ishuman(owner))
 			//skeleton, monkey, and human (null) are rarer
 			//also possible are squid and cat
-			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat)
+			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat, prob(100); /datum/mutantrace/birb)
 			if (our_pick)
 				var/mob/living/carbon/human/H = owner
 				H.set_mutantrace(our_pick)
@@ -1264,6 +1297,15 @@ obj/trait/pilot
 			var/mob/living/carbon/C = owner
 			C.poop_amount -= 5
 
+/obj/trait/mononym
+	name = "Mononym (-1)"
+	cleanName = "Mononym"
+	id = "mononym"
+	icon_state = "spellingerror"
+	desc = "Like Cher, Madonna, Gooby, Prince. Uses the first name slot."
+	points = -1
+	isPositive = 1
+
 /obj/trait/ling_blood //False positive on ling blood tests
 	name = "Changeling Blood (0)"
 	cleanName = "Changeling Blood"
@@ -1276,6 +1318,13 @@ obj/trait/pilot
 		if(isliving(owner))
 			var/mob/living/L = owner
 			L.blood_id = "bloodc"
+
+/obj/trait/super_slips
+	name = "Slipping Hazard (+1)"
+	cleanName = "Slipping Hazard"
+	id = "super_slips"
+	desc = "You never were good at managing yourself slipping."
+	points = 1
 
 //Infernal Contract Traits
 /obj/trait/hair

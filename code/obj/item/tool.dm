@@ -14,7 +14,7 @@
 	stamina_cost = STAMINA_ITEM_COST * 10/9
 	stamina_crit_chance = STAMINA_CRIT_CHANCE * 2/5
 
-	rand_pos = 1
+	rand_pos = 8
 
 	proc/on_use()
 		return 1

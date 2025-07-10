@@ -69,6 +69,8 @@ o+`        `-` ``..-:yooos-..----------..`
 // Probably hefty
 //#define QUEUE_STAT_DEBUG
 
+// #define SKIP_EVENT_WARN //skips event warn period so you can just instantly test a random event
+
 // Makes the code crash / log when an abstract type is instantiated.
 // see _stadlib/_types.dm for details
 // #define ABSTRACT_VIOLATION_CRASH
@@ -90,13 +92,13 @@ o+`        `-` ``..-:yooos-..----------..`
 //////////// MAP OVERRIDES
 
 //---------------------- Maps that are being maintained ------------------------------//
-//#define MAP_OVERRIDE_BAYOUBEND 		//low to midpop scrapping map by Klushy225
+//#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
-#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
+//#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-//#define MAP_OVERRIDE_CRAG						// secret :)
+#define MAP_OVERRIDE_CRAG						// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //#define MAP_OVERRIDE_SUMMIT       //klushy WIP - seriously do not use this, will break
 //---------------------- Maps that exist but maybe not up to date --------------------//
@@ -111,7 +113,6 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_HORIZON			// Horizon by Warcrimes do not use
 //#define MAP_OVERRIDE_SPIRIT 			// Hastily Repurposed Shopping Mall - Tamber
 //#define MAP_OVERRIDE_ATLAS  			// gannetmap
-//#define MAP_OVERRIDE_MANTA  			// bootlicker map
 //#define MAP_OVERRIDE_DENSITY			// Urs' tiny map to troll players (we still have it I guess)
 //#define MAP_OVERRIDE_KONDARU
 //#define MAP_OVERRIDE_OZYMANDIAS
@@ -184,4 +185,4 @@ var/global/ci_dm_version_minor = "100"
 #define BUILD_TIME_UNIX 1234567890 // Unix epoch, second precision
 
 // Uncomment and set to a URL with a zip of the RSC to offload RSC sending to an external webserver/CDN.
-#define PRELOAD_RSC_URL "http://cdn.coolstation.space/coolstation.rsc.zip"
+#define PRELOAD_RSC_URL "https://cdn.coolstation.space/coolstation.rsc.zip"

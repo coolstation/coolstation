@@ -55,7 +55,7 @@
 	m_amt = 40000
 	g_amt = 0
 	caliber = 0.31 //doing it here because most of it's going to be here
-	var/cartridge_length = 20
+	//var/cartridge_length = 20
 	var/amount_left = 0.0
 	var/max_amount = 1000
 	var/unusualCell
@@ -382,7 +382,7 @@
 	icon_state = "38-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/pistol_medium
+	ammo_type = new/datum/projectile/bullet/pistol_italian
 	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "38"
@@ -394,7 +394,7 @@
 	icon_state = "38A-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/pistol_medium/AP
+	ammo_type = new/datum/projectile/bullet/pistol_italian/AP
 	icon_dynamic = 1
 	icon_short = "38A"
 	icon_empty = "speedloader_empty"
@@ -464,7 +464,7 @@
 /obj/item/ammo/bullets/a12
 	sname = "Juicer HOT POCKETS Buckshot"
 	name = "Juicer HOT POCKETS ammo box"
-	ammo_type = new/datum/projectile/bullet/shot_heavy
+	ammo_type = new/datum/projectile/special/spreader/buckshot_burst/juicer
 	icon_state = "12"
 	amount_left = 8.0
 	max_amount = 8.0
@@ -474,7 +474,7 @@
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	weak //for nuke ops engineer (probably going away)
-		ammo_type = new/datum/projectile/bullet/shot_heavy/weak
+		ammo_type = new/datum/projectile/special/spreader/buckshot_burst/juicer
 
 //need to figure out where we're using this, maybe this is a feature of sawn off barrels
 /obj/item/ammo/bullets/buckshot_burst // real spread shotgun ammo
@@ -662,6 +662,7 @@
 	icon_dynamic = 0
 	icon_empty = "40mmR-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
+	value = 100000
 
 	single
 		amount_left = 1

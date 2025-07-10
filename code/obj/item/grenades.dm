@@ -325,56 +325,22 @@ PIPE BOMBS + CONSTRUCTION
 	prime()
 		var/turf/T = ..()
 		if (T)
-			var/obj/item/old_grenade/smoke/mustard/M = null
-			if (istype(src, /obj/item/old_grenade/smoke/mustard))
-				M = src
 			playsound(T, "sound/effects/smoke.ogg", 50, 1, -3)
-
 			SPAWN_DBG(0)
 				if (src)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
 
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
+					src.smoke.start()
 					sleep(1 SECOND)
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						M.mustard_gas.start()
-					else
-						src.smoke.start()
-
-					if (M && istype(M, /obj/item/old_grenade/smoke/mustard))
-						qdel(M)
-					else
-						qdel(src)
+					src.smoke.start()
+					qdel(src)
 		else
 			qdel(src)
 		return
 
-/obj/item/old_grenade/smoke/mustard
-	name = "mustard gas grenade"
-	var/datum/effects/system/mustard_gas_spread/mustard_gas
-	icon_state = "mustard"
-	icon_state_armed = "mustard1"
-
-	New()
-		..()
-		if (usr?.loc) //Wire: Fix for Cannot read null.loc
-			src.mustard_gas = new /datum/effects/system/mustard_gas_spread/
-			src.mustard_gas.attach(src)
-			src.mustard_gas.set_up(5, 0, usr.loc)
 
 /obj/item/old_grenade/stinger
 	name = "stinger grenade"
@@ -539,7 +505,7 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(2 SECONDS)
 				if (pulse) qdel(pulse)
 
-			for (var/turf/tile in range(world.view-1, T))
+			for (var/turf/tile in range(world_view_adjusted(-1), T))
 				for (var/atom/O in tile.contents)
 					var/area/t = get_area(O)
 					if(t?.sanctuary) continue
@@ -953,7 +919,7 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(0)
 				//Center tile
 				var/obj/effects/spray/S = spraybits[1]
-				make_cleanable(/obj/decal/cleanable/mud,S.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,S.loc)
 				if(is_blocked_turf(S.loc))
 					spraybits -= S
 					qdel(S)
@@ -962,9 +928,9 @@ PIPE BOMBS + CONSTRUCTION
 				for(var/i=0, i<src.splashzone, i++)
 					for(var/obj/effects/spray/SP in spraybits)
 						SP.set_loc(get_step(SP.loc, SP.original_dir))
-						make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 						if(is_blocked_turf(SP.loc))
-							make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+							make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 							spraybits -= SP
 							qdel(SP)
 
@@ -1652,6 +1618,7 @@ PIPE BOMBS + CONSTRUCTION
 	var/rcd = 0
 	var/plasma = 0
 	var/rcd_mat = "steel"
+	var/fuze = 5 // how many seconds
 	//if it contains reagents, those will be splashed on the floor
 
 	var/list/throw_objs = new /list()
@@ -1665,9 +1632,9 @@ PIPE BOMBS + CONSTRUCTION
 		logTheThing("combat", user, null, "arms a pipe bomb (power [strength]) in [user.loc.loc] ([showCoords(user.x, user.y, user.z)])")
 
 		if (sound_effect)
-			SPAWN_DBG(4 SECONDS) //you can use a sound effect to hold a bomb in hand and throw it at the very last moment!
+			SPAWN_DBG((max(fuze-1,1)) SECONDS) //you can use a sound effect to hold a bomb in hand and throw it at the very last moment!
 				playsound(src, sound_effect, 50, 1)
-		SPAWN_DBG(5 SECONDS)
+		SPAWN_DBG(fuze SECONDS)
 			do_explode()
 
 	ex_act(severity)
@@ -1714,7 +1681,7 @@ PIPE BOMBS + CONSTRUCTION
 				if (meat > 1)
 					gibs(src.loc)
 				for (var/turf/splat in view(meat,src.loc))
-					make_cleanable( /obj/decal/cleanable/blood,splat)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,splat)
 			if (ghost) //throw objects towards bomb center
 				var/turf/T = get_turf(src.loc)
 				if (ghost > 1)
@@ -1772,7 +1739,7 @@ PIPE BOMBS + CONSTRUCTION
 
 			if (plasma)
 				for (var/turf/floor/target in range(1,src.loc))
-					if(!target.blocks_air && target.air)
+					if(!target.gas_impermeable && target.air)
 						if(target.parent?.group_processing)
 							target.parent.suspend_group_processing()
 

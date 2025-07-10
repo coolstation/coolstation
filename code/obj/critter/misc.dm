@@ -377,7 +377,7 @@
 		else
 			..()
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/proj = mover
 			if (istype(proj.proj_data, /datum/projectile/energy_bolt_antighost))
@@ -904,9 +904,9 @@
 				return
 
 	ai_think()
-		if(!locate(/obj/decal/cleanable/blood) in src.loc)
+		if(!locate(/obj/decal/cleanable/tracked_reagents/blood) in src.loc)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1, -1)
-			make_cleanable( /obj/decal/cleanable/blood,loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,loc)
 		return ..()
 
 /obj/critter/blobman
@@ -1544,7 +1544,7 @@
 			else
 				src.visible_message("[src] slithers around happily!")
 
-	CanPass(atom/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			return prob(50)
 		else

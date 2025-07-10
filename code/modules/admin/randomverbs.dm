@@ -107,7 +107,7 @@
 
 	var/subtle_href = null
 	if(src.holder && M.client)
-		subtle_href = "?src=\ref[src.holder];action=subtlemsg&targetckey=[M.client.ckey]"
+		subtle_href = "byond://?src=\ref[src.holder];action=subtlemsg&targetckey=[M.client.ckey]"
 	message_admins("<span class='internal'><b>SubtleMessage: [key_name(src.mob)] <i class='icon-arrow-right'></i> [key_name(Mclient.mob, custom_href=subtle_href)] : [msg]</b></span>")
 
 /client/proc/cmd_admin_plain_message(mob/M as mob in world)
@@ -432,6 +432,25 @@
 	else
 		alert("Admin revive disabled")
 
+/client/proc/cmd_admin_rejuvenate_crit(mob/M as mob in world)
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+	set name = "Heal Partly"
+	set popup_menu = 0
+	admin_only
+	if(!src.mob)
+		return
+	if(isobserver(M))
+		alert("Cannot revive a ghost")
+		return
+	if(config.allow_admin_rev)
+		M.part_heal()
+
+		logTheThing("admin", usr, M, "partly healed / revived [constructTarget(M,"admin")]")
+		logTheThing("diary", usr, M, "partly healed / revived [constructTarget(M,"diary")]", "admin")
+		message_admins("<span class='alert'>Admin [key_name(usr)] partly healed / revived [key_name(M)]!</span>")
+	else
+		alert("Admin revive disabled")
+
 /client/proc/cmd_admin_rejuvenate_all()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Heal All"
@@ -553,7 +572,7 @@
 		logTheThing("admin", usr, null, "deleted [O] at ([showCoords(O.x, O.y, O.z)])")
 		logTheThing("diary", usr, null, "deleted [O] at ([showCoords(O.x, O.y, O.z)])", "admin")
 		message_admins("[key_name(usr)] deleted [O] at ([showCoords(O.x, O.y, O.z)])")
-		if (flourish)
+		if (pizzazz)
 			leaving_animation(O)
 		qdel(O)
 		O=null
@@ -1453,7 +1472,7 @@
 		"}
 
 
-	var/refresh_url = "?src=\ref[src.holder];action=checkreagent_refresh;target=\ref[target];origin=reagent_report"
+	var/refresh_url = "byond://?src=\ref[src.holder];action=checkreagent_refresh;target=\ref[target];origin=reagent_report"
 	var/final_report = {"
 	<style type='text/css'>
 		* {
@@ -2840,6 +2859,67 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	else
 		boutput(src, "You must be at least an Administrator to use this command.")
 
+/client/proc/cmd_no_evil_players()
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set name = "No Evil (Players)"
+	set desc = "Blindfolds, deafens, or muzzles all players."
+	if(holder && src.holder.level >= LEVEL_ADMIN)
+		var/sense = alert("Blindfold, earmuff, or muzzle all players?",,"See no Evil","Hear no Evil", "Speak no Evil")
+		var/evil = alert("Are we making them impossible to remove?",, "Yes", "No") == "Yes"
+		if (alert("Are you sure you want to do this?",,"Yes","No") == "No")
+			return
+
+		switch(sense)
+			if("See no Evil")
+				for (var/mob/living/carbon/human/H in mobs)
+					if (H.client)
+						var/obj/item/clothing/glasses/eyeslot = H.glasses
+						if (eyeslot)
+							H.u_equip(eyeslot)
+							eyeslot.set_loc(H.loc)
+						var/obj/item/clothing/glasses/blindfold/blindfold = new()
+						H.force_equip(blindfold, H.slot_glasses)
+						if (evil)
+							blindfold.cant_self_remove = TRUE
+							blindfold.cant_other_remove = TRUE
+
+				logTheThing("admin", src, null, "has blindfolded every player[evil ? " irremovably" : ""].")
+				logTheThing("diary", src, null, "has blindfolded every player[evil ? " irremovably" : ""].", "admin")
+
+			if("Hear no Evil")
+				for (var/mob/living/carbon/human/H in mobs)
+					if (H.client)
+						var/obj/item/earslot = H.ears
+						if (earslot)
+							H.u_equip(earslot)
+							earslot.set_loc(H.loc)
+						var/obj/item/clothing/ears/earmuffs/earmuffs = new()
+						H.force_equip(earmuffs, H.slot_ears)
+						if (evil)
+							earmuffs.cant_self_remove = TRUE
+							earmuffs.cant_other_remove = TRUE
+
+				logTheThing("admin", src, null, "has earmuffed every player[evil ? " irremovably" : ""].")
+				logTheThing("diary", src, null, "has earmuffed every player[evil ? " irremovably" : ""].", "admin")
+
+			if("Speak no Evil")
+				for (var/mob/living/carbon/human/H in mobs)
+					if (H.client)
+						var/obj/item/clothing/mask/maskslot = H.wear_mask
+						if (maskslot)
+							H.u_equip(maskslot)
+							maskslot.set_loc(H.loc)
+						var/obj/item/clothing/mask/muzzle/muzzle = new()
+						H.force_equip(muzzle, H.slot_wear_mask)
+						if (evil)
+							muzzle.cant_self_remove = TRUE
+							muzzle.cant_other_remove = TRUE
+
+				logTheThing("admin", src, null, "has muzzled every player[evil ? " irremovably" : ""].")
+				logTheThing("diary", src, null, "has muzzled every player[evil ? " irremovably" : ""].", "admin")
+
+	else
+		boutput(src, "You must be at least an Administrator to use this command.")
 
 /client/proc/cmd_swampify_station()
 	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)

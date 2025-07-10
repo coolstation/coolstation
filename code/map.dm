@@ -2,6 +2,8 @@
 #define MAP_SPAWN_SHUTTLE 1
 #define MAP_SPAWN_CRYO 2
 #define MAP_SPAWN_MISSILE 3
+//Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
+#define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
 #define MAP_NAME_RANDOM 1
 
@@ -42,7 +44,6 @@ var/global/list/mapNames = list(
 	//"Icarus" = 		list("id" = "ICARUS",		"settings" = "icarus",			"playerPickable" = ASS_JAM),
 	//"Density" = 		list("id" = "DENSITY", 		"settings" = "density", 		"playerPickable" = ASS_JAM,	"MaxPlayersAllowed" = 30),
 	"Atlas" = 			list("id" = "ATLAS", 		"settings" = "atlas", 			"playerPickable" = 1,		"MaxPlayersAllowed" = 30),
-	//"Manta" = 		list("id" = "MANTA", 		"settings" = "manta", 			"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
 	"Wrestlemap" = 		list("id" = "WRESTLEMAP", 	"settings" = "wrestlemap", 		"playerPickable" = ASS_JAM),
 	"pod_wars" = 		list("id" = "POD_WARS", 	"settings" = "pod_wars", 		"playerPickable" = 0),
 	"blank" = 			list("id" = "BLANK", 		"settings" = "", 				"playerPickable" = 0),
@@ -109,6 +110,8 @@ var/global/list/mapNames = list(
 	var/escape_station = /area/shuttle/escape/station
 	var/escape_def = SHUTTLE_NODEF
 	var/escape_dir = SOUTH
+	//Only used with MAP_SPAWN_SHUTTLE_DYNAMIC, determines which shuttle folder gets used
+	var/arrivals_shape = "cogmap"
 
 	var/shuttle_map_turf = /turf/space
 	var/qm_supply_type = "space" //can also be "shuttle"!
@@ -338,6 +341,7 @@ var/global/list/mapNames = list(
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 	qm_supply_type = "shuttle"
+	//shuttle_map_turf = /turf/floor/airless/engine/caution
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
@@ -376,6 +380,23 @@ var/global/list/mapNames = list(
 		/datum/job/logistics/janitor = 1
 	)
 
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/floor/airless/engine/caution"
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = "/turf/floor/airless/engine/caution"
+
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = "/turf/floor/airless/engine/caution"
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
+
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
@@ -405,6 +426,8 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/cogmap
 	escape_def = SHUTTLE_SOUTH
 	escape_dir = SOUTH
+	arrivals_type = MAP_SPAWN_SHUTTLE_DYNAMIC
+	arrivals_shape = "cogmap"
 
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
 	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
@@ -621,54 +644,6 @@ var/global/list/mapNames = list(
 		/datum/job/special/lawyer = 1,
 		/datum/job/engineering/atmospheric_technician = 1
 	)
-
-/datum/map_settings/manta
-	name = "MANTA"
-	display_name = "NSS Manta"
-	goonhub_map = "https://goonhub.com/maps/manta"
-	walls = /turf/wall/auto/supernorn
-	rwalls = /turf/wall/auto/reinforced/supernorn
-	auto_walls = 1
-	style = "ship"
-	arrivals_type = MAP_SPAWN_CRYO
-
-	windows = /obj/window/auto
-	windows_thin = /obj/window/pyro
-	rwindows = /obj/window/auto/reinforced
-	rwindows_thin = /obj/window/reinforced/pyro
-	windows_crystal = /obj/window/auto/crystal
-	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
-	auto_windows = 1
-
-	ext_airlocks = /obj/machinery/door/airlock/pyro/external
-	airlock_style = "pyro"
-	shuttle_map_turf = /turf/space/fluid/manta
-
-	escape_centcom = /area/shuttle/escape/centcom/manta
-	escape_outpost = /area/shuttle/escape/outpost/manta
-	escape_transit = /area/shuttle/escape/transit/manta
-	escape_station = /area/shuttle/escape/station/manta
-	escape_def = SHUTTLE_MANTA
-	escape_dir = NORTH
-
-	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
-	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap/manta
-	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
-	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap/manta
-
-	valid_nuke_targets = list("the fitness room" = list(/area/station/crew_quarters/fitness),
-		"the cargo bay" = list(/area/station/quartermaster/cargobay),
-		"the bridge" = list(/area/station/bridge),
-		"the medbay lobby" = list(/area/station/medical/medbay/lobby),
-		"the chapel" = list(/area/station/chapel/sanctuary),
-		"the communications office" = list(/area/station/communications/office),
-		"the courtroom" = list(/area/station/crew_quarters/courtroom),
-		"the chemistry lab" = list(/area/station/science/chemistry),
-		"the hydroponics bay" = list(/area/station/hydroponics/bay),
-		"the Rising Tide bar" = list(/area/station/crew_quarters/cafeteria/the_rising_tide_bar))
 
 /datum/map_settings/mushroom
 	name = "MUSHROOM"
@@ -1165,12 +1140,12 @@ var/global/list/mapNames = list(
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
 
-	windows = /obj/window/auto
-	windows_thin = /obj/window/pyro
-	rwindows = /obj/window/auto/reinforced
-	rwindows_thin = /obj/window/reinforced/pyro
-	windows_crystal = /obj/window/auto/crystal
-	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
 	window_layer_full = COG2_WINDOW_LAYER
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
@@ -1241,12 +1216,12 @@ var/global/list/mapNames = list(
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
 
-	windows = /obj/window/auto
-	windows_thin = /obj/window/pyro
-	rwindows = /obj/window/auto/reinforced
-	rwindows_thin = /obj/window/reinforced/pyro
-	windows_crystal = /obj/window/auto/crystal
-	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
 	window_layer_full = COG2_WINDOW_LAYER
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
@@ -1424,9 +1399,6 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
-	manta
-		icon_state = "shuttle_escape-manta"
-		filler_turf = "/turf/space/fluid"
 	donut3
 		icon_state = "shuttle_escape-dnt3"
 
@@ -1444,9 +1416,6 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
-	manta
-		icon_state = "shuttle_escape-manta"
-		filler_turf = "/turf/space/fluid"
 	donut3
 		icon_state = "shuttle_escape-dnt3"
 
@@ -1467,8 +1436,6 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
-	manta
-		icon_state = "shuttle_escape-manta"
 
 /area/shuttle/escape/transit
 	icon_state = "shuttle_escape"
@@ -1491,10 +1458,6 @@ var/global/list/mapNames = list(
 	battle_shuttle
 		icon_state = "shuttle_escape-battle-shuttle"
 		warp_dir = EAST
-	manta
-		icon_state = "shuttle_escape-manta"
-		warp_dir = NORTH
-
 /area/shuttle/merchant_shuttle/left_centcom
 	icon_state = "shuttle_merch_l"
 	donut2

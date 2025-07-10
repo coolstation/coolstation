@@ -46,6 +46,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
 
+	var/area_door_group
+
 	//fucking ANTS getting EVERYWHERE
 	var/no_ants = 1
 
@@ -82,6 +84,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/tmp/used_light = 0
 	var/tmp/used_environ = 0
 	var/expandable = 1
+
+	var/list/turf/turfs = list()
 
 	//set a mail tag for areas, for auto-tag and construction purposes
 	//cool to use caps and spaces, no big deal, i think,
@@ -139,6 +143,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/tmp/played_fx_2 = 0
 	var/sound_group = null
 	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
+	var/sandstorm = FALSE
+	var/blowOrigin = 0
+	var/sandstormIntensity = 0
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -217,6 +224,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//20 is 95% and is a special case to just mute the sound without stopping it
 				if(M.loc.loc.type == /area/gehenna)
 					insideness = 1
+
 				else if(M.loc.loc.type != /area/space) //bleh
 					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
 					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
@@ -261,7 +269,10 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							if (!src.active)
 								src.active = 1
 								SEND_SIGNAL(src, COMSIG_AREA_ACTIVATED)
-/*
+
+
+	/*
+
 						//Dumb fucking medal fuck
 						if (src.name == "Space" && istype(A, /obj/vehicle/segway))
 							enteringM.unlock_medal("Jimi Heselden", 1)
@@ -456,11 +467,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			if ("The Blind Pig") sound_fx_1 = pick('sound/ambience/spooky/TheBlindPig.ogg','sound/ambience/spooky/TheBlindPig2.ogg')
 			if ("M. Fortuna's House of Fortune") sound_fx_1 = 'sound/ambience/spooky/MFortuna.ogg'
 			else
-			#ifdef SUBMARINE_MAP
-				sound_fx_1 = pick(ambience_submarine)
-			#else
 				sound_fx_1 = pick(ambience_general)
-			#endif
 
 			#ifdef HALLOWEEN
 				if (prob(50))
@@ -483,8 +490,11 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 ///Where you'd previously chuck turfs directly into area contents, please now call this or atmos might crap out
 /area/proc/add_turf(turf/T) //but that aside why wasn't there a proc for turfs entering areas before?
 	if (!istype(T)) return
+	var/area/old_area = T.loc
+	old_area.turfs -= T
+	turfs += T
 	contents += T
-	if (src.is_atmos_simulated && !T.air)
+	if (is_atmos_simulated && !T.air)
 		T.instantiate_air()
 
 /area/space // the base area you SHOULD be using for space/ocean/etc.
@@ -569,8 +579,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			jerk.remove()
 		else if (isobj(O) && !istype(O, /obj/overlay/tile_effect))
 			qdel(O)
-		return
-
+		. = ..()
 /area/battle_royale_spawn //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Battle Royale warp zone"
 	skip_sims = 1
@@ -639,8 +648,11 @@ ABSTRACT_TYPE(/area/shuttle)
 	name = "Arrival Shuttle"
 	teleport_blocked = 2
 
+/area/shuttle/arrival/pre_load
+	icon_state = "shuttle_preload"
+
 /area/shuttle/arrival/pre_game
-	icon_state = "shuttle2"
+	icon_state = "shuttle_transit"
 
 /area/shuttle/arrival/station
 	icon_state = "shuttle"
@@ -1173,9 +1185,6 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Derelict Space Station"
 	icon_state = "derelict"
 	is_atmos_simulated = TRUE
-#ifdef SUBMARINE_MAP
-	force_fullbright = 1
-#endif
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
 #endif
@@ -1628,19 +1637,12 @@ ABSTRACT_TYPE(/area/station)
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/tmp/initial_structure_value = 0
 	no_ants = 0
-#ifdef MOVING_SUB_MAP
-	filler_turf = "/turf/space/fluid/manta"
-
-	New()
-		..()
-		initial_structure_value = calculate_structure_value()
-#else
 	filler_turf = null
 
 	New()
 		..()
 		initial_structure_value = calculate_structure_value()
-#endif
+
 ABSTRACT_TYPE(/area/station/atmos)
 /area/station/atmos
 	name = "Atmospherics"
@@ -1887,6 +1889,10 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 /area/station/maintenance/inner/nw
 	name = "Northwest Inner Maintenance"
 	icon_state = "IN_NWmaint"
+
+/area/station/maintenance/oldstation
+	name = "Old Station"
+	icon_state = "maintcentral"
 
 // OUTER maintenance
 
@@ -2141,6 +2147,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Mining"
 	icon_state = "abstract"
 	sound_environment = EAX_HANGAR
+	area_door_group = "logistics"
 
 /area/station/mining/staff_room
 	name = "Mining Staff Room"
@@ -2191,10 +2198,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
 	mail_tag = "Bridge"
-#ifdef SUBMARINE_MAP //we can probably dump this
-	sound_group = "bridge"
-	sound_loop_1 = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
-#endif
+	area_door_group = "bridge"
 
 /area/station/bridge/united_command //currently only on atlas - ET
 	name = "United Command"
@@ -2665,6 +2669,7 @@ ABSTRACT_TYPE(/area/station/engine)
 /area/station/engine
 	sound_environment = EAX_STONEROOM
 	workplace = 1
+	area_door_group = "engineering"
 
 /area/station/engine/engineering
 	name = "Engineering"
@@ -2838,6 +2843,7 @@ ABSTRACT_TYPE(/area/station/medical)
 	name = "Medical area"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "medbay"
 
 /area/station/medical/medbay
 	name = "Medbay"
@@ -2959,6 +2965,7 @@ ABSTRACT_TYPE(/area/station/security)
 	teleport_blocked = 1
 	workplace = 1
 	spy_secure_area = TRUE
+	area_door_group = "security"
 
 /area/station/security/main
 	name = "Security"
@@ -3080,21 +3087,6 @@ ABSTRACT_TYPE(/area/station/security)
 	sound_environment = EAX_LIVINGROOM
 	workplace = 1
 
-/area/station/security/detectives_office_manta
-	name = "Detective's Office"
-	icon_state = "detective"
-	mail_tag = "Detective's Office"
-	sound_environment = EAX_FOREST
-	workplace = 1
-	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_1_vol = 30
-	sound_group = "detective"
-
-/area/station/security/detectives_office_manta/detectives_bedroom
-		name = "Detective's Bedroom"
-		icon_state = "red"
-		workplace = 0
-
 /area/station/security/hos
 	name = "Head of Security's Office"
 	icon_state = "HOS"
@@ -3136,6 +3128,7 @@ ABSTRACT_TYPE(/area/station/security)
 	icon_state = "storage"
 	do_not_irradiate = 1
 	spy_secure_area = FALSE	// Easy to get into
+	area_door_group = "engineering"
 
 // solums
 
@@ -3184,6 +3177,7 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 	name = "Quartermaster's"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/quartermaster/office
 	name = "Quartermaster's Office"
@@ -3245,6 +3239,7 @@ ABSTRACT_TYPE(/area/station/janitor)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/janitor/office
 	name = "Janitor's Office"
@@ -3267,6 +3262,7 @@ ABSTRACT_TYPE(/area/station/science)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "research"
 
 /area/station/science/chemistry
 	name = "Chemistry"
@@ -4561,10 +4557,6 @@ area/station/hallway/starboardupperhallway
 	name = "Bridge"
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
-#ifdef SUBMARINE_MAP
-	sound_group = "bridge"
-	sound_loop_1 = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
-#endif
 
 /area/station2/captain //Three below this one are because Manta uses specific ambience on the bridge
 	name = "Captain's Office"

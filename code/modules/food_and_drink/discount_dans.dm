@@ -341,6 +341,7 @@
 	initial_volume = 50
 	initial_reagents = list("badgrease"=3,"VHFCS"=9)
 	brewable = 1
+	rand_pos = 3
 	brew_result = list("sewage", "yuck")
 	food_effects = list("food_sweaty")
 
@@ -357,9 +358,6 @@
 		..()
 		//reagents.add_reagent("badgrease",3)
 		//reagents.add_reagent("VHFCS",9)
-
-		pixel_x = rand(-3,3)
-		pixel_y = rand(-3,3)
 
 		var/i = 3
 		while(i-- > 0)
@@ -388,7 +386,7 @@
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 0
 	stamina_cost = 0
-	rand_pos = 1
+	rand_pos = 8
 
 	New()
 		src.traytype = rand(1,9)
@@ -503,7 +501,7 @@
 				src.initial_reagents["UGHFCS"] = 2
 				src.initial_reagents["coffee"] = 4
 				src.initial_reagents["egg"] = 4
-				src.initial_reagents["george_melonium"] = 1 //IT'S OUTTA THE PARK
+				src.initial_reagents["rainbow_melonium"] = 1 //IT'S OUTTA THE PARK
 
 			if (5)
 				src.name = "Corporal Dan's Tee Vee Dinner - Last Meal Flavor" //Your last meal, or else!

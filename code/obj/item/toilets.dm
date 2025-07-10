@@ -79,11 +79,17 @@ TOILET
 		var/mob/living/carbon/human/H = user
 		if (istype(H.w_uniform, /obj/item/clothing/under/gimmick/mario) && istype(H.head, /obj/item/clothing/head/mario))
 			user.visible_message("<span class='notice'>[user] dives into [src]!</span>", "<span class='notice'>You dive into [src]!</span>")
-			particleMaster.SpawnSystem(new /datum/particleSystem/tpbeam(src.loc))
+			//particleMaster.SpawnSystem(new /datum/particleSystem/tpbeam(src.loc))
 			playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
 			H.unlock_medal("It'sa me, Mario", 1)
 
-			var/list/destinations = list()
+
+			var/obj/disposalholder/crawler/crawl = new()
+			crawl.pilot = user
+			user.set_loc(crawl)
+			crawl.init_sewer(src)
+			return
+			/*var/list/destinations = list()
 
 			for_by_tcl(T, /obj/item/storage/toilet)
 				if (T == src || !isturf(T.loc) || T.z != src.z  || isrestrictedz(T.z) || (istype(T.loc.loc,/area) && T.loc.loc:teleport_blocked))
@@ -96,7 +102,7 @@ TOILET
 				M.set_loc(picked.loc)
 				playsound(picked.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
 				user.visible_message("<span class='notice'>[user] emerges from [src]!</span>", "<span class='notice'>You emerge from [src]!</span>")
-			return
+			return*/
 
 	if (M == user)
 		user.visible_message("<span class='notice'>[user] sits on [src].</span>", "<span class='notice'>You sit on [src].</span>")

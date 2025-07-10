@@ -553,7 +553,7 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 		vote_map[vref][map_name] = 1
 
 	proc/topicLink(action, subaction, var/list/extra)
-		return "?src=\ref[src]&action=[action][subaction ? "&subaction=[subaction]" : ""]&[extra && islist(extra) ? list2params(extra) : ""]"
+		return "byond://?src=\ref[src]&action=[action][subaction ? "&subaction=[subaction]" : ""]&[extra && islist(extra) ? list2params(extra) : ""]"
 
 	proc/generate_window(var/client/C)
 		var/list/dat = list()

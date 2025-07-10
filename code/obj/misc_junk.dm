@@ -226,7 +226,7 @@
 	force = 8
 	w_class = W_CLASS_TINY
 	throwforce = 10
-	rand_pos = 1
+	rand_pos = 8
 	stamina_damage = 40
 	stamina_cost = 20
 	stamina_crit_chance = 5

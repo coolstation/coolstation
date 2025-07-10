@@ -23,6 +23,7 @@
 	power_used = 250
 	hud_state = "cloak"
 	f_active = 1
+	value = 500000
 	var/image/shield = null
 
 	Use(mob/user as mob)
@@ -618,7 +619,7 @@
 			}
 		}
 
-		document.getElementById("enterkey").setAttribute("href","?src=\ref[src];enter=" + currentVal + ";");
+		document.getElementById("enterkey").setAttribute("href","byond://?src=\ref[src];enter=" + currentVal + ";");
 	}
 
 	function keypadIn(num)

@@ -1,5 +1,5 @@
-/var/const/OPEN = 1
-/var/const/CLOSED = 2
+#define OPEN 1
+#define CLOSED 2
 
 /obj/firedoor_spawn
 	name = "firedoor spawn"
@@ -19,7 +19,14 @@
 			var/obj/machinery/door/firedoor/F = new map_settings.firelock_style(src.loc)
 			F.set_dir(D.dir)
 			F.layer = D.layer + 0.01
-			break
+			return
+		//no doors? probably a line of spawners bridging the hallway
+		for(var/direction in list(NORTH, WEST))
+			var/turf/T = get_step(src, direction)
+			if (T.density || (locate(/obj/window) in T) || (locate(/obj/firedoor_spawn) in T) || (locate(/obj/machinery/door/firedoor) in T))
+				var/obj/machinery/door/firedoor/F = new map_settings.firelock_style(src.loc)
+				F.set_dir(turn(direction, 90)) //Chosen test directions bias the doors to be west and south facing. I mostly did that for the latter, because then the writing is the right way up
+				break
 
 /obj/machinery/door/firedoor
 	name = "Firelock"
@@ -194,18 +201,8 @@
 	check_nextstate()
 
 /obj/machinery/door/firedoor/border_only
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(air_group)
-			var/direction = get_dir(src,target)
-			return (dir != direction)
-		else if(density)
-			if(!height)
-				var/direction = get_dir(src,target)
-				return (dir != direction)
-			else
-				return 0
-
-		return 1
+	gas_cross(turf/target)
+		return (dir != get_dir(src,target))
 
 	update_nearby_tiles(need_rebuild)
 		if(!air_master) return 0
@@ -259,7 +256,10 @@
 	src.close()
 	var/obj/head = user.organHolder.drop_organ("head")
 	qdel(head)
-	make_cleanable( /obj/decal/cleanable/blood/gibs,src.loc)
+	make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 	playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 	return 1
+
+#undef OPEN
+#undef CLOSED

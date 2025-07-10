@@ -48,7 +48,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle)
 		return TRUE
 
 
-var/global/datum/transit_controller/transit_controls = new
+var/global/datum/transit_controller/transit_controls
 
 /// Controller which manages transit routes
 /datum/transit_controller
@@ -161,78 +161,125 @@ var/global/datum/transit_controller/transit_controls = new
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "moon_shaft"
+	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
+	var/datum/light/point/emergency_light
 
 	New()
+		START_TRACKING
+		..()
+		src.calculate_direction()
+		src.toggle_lights()
+		src.initialise_component()
+
+	Del()
+		STOP_TRACKING
+		qdel(emergency_light)
+		emergency_light = null
 		..()
 
-		var/area_type = get_area(src)
-		var/turf/n = get_step(src,NORTH)
-		var/turf/e = get_step(src,EAST)
-		var/turf/w = get_step(src,WEST)
-		var/turf/s = get_step(src,SOUTH)
+	burn_tile()
+		return
 
-		if (!istype(get_area(n), area_type))
-			n = null
-		if (!istype(get_area(e), area_type))
-			e = null
-		if (!istype(get_area(w), area_type))
-			w = null
-		if (!istype(get_area(s), area_type))
-			s = null
+	proc/initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_landmark,\
+			BruteDamageMax = 25,\
+			HangTime = 0 SECONDS,\
+			TargetLandmark = fall_landmark)
 
-		if (e && s)
-			set_dir(SOUTH)
-			e.set_dir(NORTH)
-			s.set_dir(WEST)
-		else if (e && n)
-			set_dir(WEST)
-			e.set_dir(EAST)
-			n.set_dir(SOUTH)
-		else if (w && s)
-			set_dir(NORTH)
-			w.set_dir(SOUTH)
-			s.set_dir(EAST)
-		else if (w && n)
-			set_dir(EAST)
-			w.set_dir(WEST)
-			n.set_dir(NORTH)
+	proc/toggle_lights()
+		if (src.icon_state == "shaft_center") //the center of big elevators can stay dark
+			emergency_light?.disable()
+			UpdateOverlays(null, "lights")
+		var/image/I = image('icons/obj/pathlights.dmi', "blank")
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_ADD
+		I.layer = LIGHTING_LAYER_BASE
+		switch(src.icon_state)
+			if("moon_shaft")
+				I.icon_state = "shaft_lights"
+			if("shaft_inner")
+				I.icon_state = "shaft_lights-inner"
+			if("shaft_single")
+				I.icon_state = "shaft_lights-single"
+
+		if (shipAlertState == SHIP_ALERT_BAD)
+			if (!emergency_light) //lazy, innit
+				emergency_light = new
+				emergency_light.set_color(1, 0.15, 0.15)
+				emergency_light.set_brightness(0.3)
+				emergency_light.attach(src)
+			UpdateOverlays(I, "lights")
+			emergency_light.enable()
+		else
+			UpdateOverlays(null, "lights")
+			emergency_light?.disable()
+
+	proc/calculate_direction()
+		//rewrote this whole thing to only care about areas and not adjacent elevator turfs
+		//I had to anyways to fit in logic for inner corners, but
+		//partially boarding up a shaft (or having a half-smashed elevator platform) shouldn't affect how the shaft presents itself
+		//(I'm coming for Damaged Elevator Platforms 2: This Time It Works next >:3)
+		//And since the areas are static, we don't need to worry about updating neighbours either B)
+		var/area/A = get_area(src)
+		var/area/n = get_area(get_step(src, NORTH))
+		var/area/s = get_area(get_step(src, SOUTH))
+		var/area/e = get_area(get_step(src, EAST))
+		var/area/w = get_area(get_step(src, WEST))
+
+		var/dir2be = NORTH | SOUTH | EAST | WEST
+
+		if (istype_exact(n, A.type))
+			dir2be &= ~NORTH
+		if (istype_exact(s, A.type))
+			dir2be &= ~SOUTH
+		if (istype_exact(e, A.type))
+			dir2be &= ~EAST
+		if (istype_exact(w, A.type))
+			dir2be &= ~WEST
+
+		if (!dir2be) //surrounded by elevator turfs, may be a central or an inner corner
+			//this is hardcoded based on how the corners are ordered in the shaft_inner icon_state
+			//for example, a corner to the southeast is SOUTH, so for a south-east inner corner (where there is NO elevator turf) we want to eliminate all directions but SOUTH
+			dir2be = NORTH | SOUTH | EAST | WEST
+
+			var/area/ne = get_area(get_step(src,NORTHEAST))
+			if (istype_exact(ne, A.type))
+				dir2be &= ~EAST
+			var/area/se = get_area(get_step(src,SOUTHEAST))
+			if (istype_exact(se, A.type))
+				dir2be &= ~SOUTH
+			var/area/nw = get_area(get_step(src,NORTHWEST))
+			if (istype_exact(nw, A.type))
+				dir2be &= ~NORTH
+			var/area/sw = get_area( get_step(src,SOUTHWEST))
+			if (istype_exact(sw, A.type))
+				dir2be &= ~WEST
+			if (dir2be in cardinal)
+				src.icon_state = "shaft_inner"
+				set_dir(dir2be)
+			else src.icon_state = "shaft_center" //also includes things that would correspond to multiple inner corners, which we don't have graphics for
+		else
+			if (dir2be in alldirs)
+				set_dir(dir2be)
+			else //dir2be is 3 or 4 directions
+				//4 directions is a single size elevator
+				//3 directions is a single-neighbour dead end (say you mapped a 2x1 elevator), for which we don't have graphics
+				src.icon_state = "shaft_single"
 
 	ex_act(severity)
 		return
 
-	Entered(atom/movable/A as mob|obj)
-		//if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible) || istype(A, /obj/blob))
-		if (A.flags & TECHNICAL_ATOM || istype(A, /obj/blob)) //we can do this better (except the blob one, RIP)
-			return ..()
-		if (locate(/obj/grille/catwalk) in src) //non-turf elevator platform.
-			return ..()
-		var/turf/T = pick_landmark(fall_landmark)
-		var/safe = FALSE
-		if (isturf(T))
-			visible_message("<span class='alert'>[A] falls down [src]!</span>")
-			if (ismob(A))
-				var/mob/M = A
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
-						safe = TRUE
-					if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
-						safe = TRUE
-					if (H.back && (H.back.c_flags & IS_JETPACK))
-						safe = TRUE
 
-				if(safe)
-					visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
-				else
-					random_brute_damage(M, 25)
-					M.changeStatus("weakened", 5 SECONDS)
-					M.emote("scream")
-					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
-			A.set_loc(T)
-			return
-		else ..()
+/turf/floor/specialroom/elevator_shaft/straight_down
+	var/target_z = 3
 
+	initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+			BruteDamageMax = 25,\
+			HangTime = 0 SECONDS,\
+			TargetZ = target_z,\
+			LandingRange = 0)
 
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
@@ -247,9 +294,8 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 
 	departing(datum/transit_stop/destination)
 		var/turf/target
-		for(var/turf/T in locate(src.current_location.target_area))
-			target = T
-			break
+		var/area/A = locate(src.current_location.target_area)
+		target = pick(A.turfs)
 		if(target)
 			playsound(target, "sound/machines/elevator_move.ogg", 100, 0)
 		else
@@ -260,12 +306,15 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 				M.close()
 		sleep(departure_delay)
 		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
-			if (!istype(M.loc, text2path(destination.target_area.filler_turf)) || locate(/obj/grille/catwalk) in M.loc) //once we make catwalks constructable you could play Hole In The Wall 2: Hole In The Ceiling
-				SPAWN_DBG(1 DECI SECOND)
-					random_brute_damage(M, 30)
-					M.changeStatus("weakened", 5 SECONDS)
-					M.emote("scream")
-					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
+			//if (!istype(M.loc, text2path(destination.target_area.filler_turf)) || locate(/obj/grille/catwalk) in M.loc) //once we make catwalks constructable you could play Hole In The Wall 2: Hole In The Ceiling
+			SPAWN_DBG(1 DECI SECOND) // i dont think that check above was doing what it was meant to.
+				random_brute_damage(M, 30)
+				M.changeStatus("weakened", 5 SECONDS)
+				M.emote("scream")
+				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
+				#ifdef DATALOGGER
+				game_stats.Increment("workplacesafety")
+				#endif
 
 	arriving(datum/transit_stop/destination)
 		sleep(door_delay)

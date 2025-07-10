@@ -370,7 +370,7 @@
 		var/list/selected_access_list = src.custom_access_list[slot]
 		src.modify.access = selected_access_list.Copy()
 	if (src.modify)
-		src.modify.name = "[src.modify.registered]'s ID Card ([src.modify.assignment])"
+		src.modify.name = "[src.modify.registered]'s [src.modify.generic_name] ([src.modify.assignment])"
 	if (src.eject)
 		if (istype(src.eject,/obj/item/implantcase/access))
 			var/obj/item/implantcase/access/A = src.eject

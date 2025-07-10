@@ -2012,7 +2012,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2024,7 +2024,7 @@
 /obj/item/extinguisher{
 	pixel_y = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2033,7 +2033,7 @@
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2044,7 +2044,7 @@
 /obj/item/clothing/head/helmet/space,
 /obj/item/clothing/mask/breath,
 /obj/item/screwdriver,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2057,7 +2057,7 @@
 /obj/item/extinguisher{
 	pixel_y = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2230,7 +2230,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2258,7 +2258,7 @@
 	d2 = 2
 	},
 /obj/item/crowbar,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2314,7 +2314,7 @@
 "aeF" = (
 /obj/rack,
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor,
 /area/station/crew_quarters/market)
@@ -2375,7 +2375,7 @@
 /turf/floor/plating,
 /area/station/crew_quarters/market)
 "aeK" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 2
 	},
 /area/station/hallway/primary/north)
@@ -2419,7 +2419,7 @@
 /obj/item/sheet/glass{
 	amount = 50
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2454,7 +2454,7 @@
 	name = "Local Air Monitor";
 	pixel_x = 29
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2589,7 +2589,7 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "afb" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -2627,7 +2627,7 @@
 /obj/item/device/light/flashlight,
 /obj/item/device/light/flashlight,
 /obj/item/device/light/flashlight,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2639,7 +2639,7 @@
 /obj/item/storage/box/lightbox/tubes,
 /obj/item/storage/box/lightbox/tubes,
 /obj/item/storage/box/lightbox/bulbs,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2653,7 +2653,7 @@
 	c_tag = "EVA";
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2662,7 +2662,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor/plating,
 /area/station/maintenance/northeast)
@@ -2818,7 +2818,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -2835,7 +2835,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/ai_monitored/storage/eva)
 "afx" = (
 /obj/cable{
@@ -2848,7 +2848,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -2858,7 +2858,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -3046,10 +3046,10 @@
 	name = "E.V.A.";
 	req_access_txt = "18"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/ai_monitored/storage/eva)
 "afP" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/ai_monitored/storage/eva)
@@ -3060,7 +3060,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/ai_monitored/storage/eva)
@@ -3239,7 +3239,7 @@
 /obj/landmark/spawner{
 	name = "monkeyspawn_albert"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hallway/primary/north)
@@ -3270,7 +3270,7 @@
 	maxcharge = 15000
 	},
 /obj/item/storage/firstaid/oxygen,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/ai_monitored/storage/eva)
@@ -3286,7 +3286,7 @@
 	c_tag = "EVA";
 	dir = 1
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/ai_monitored/storage/eva)
 "agh" = (
 /obj/table{
@@ -3303,7 +3303,7 @@
 	pixel_y = 1
 	},
 /obj/item/device/timer,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/ai_monitored/storage/eva)
 "agi" = (
 /obj/table{
@@ -3316,7 +3316,7 @@
 /obj/item/cable_coil,
 /obj/item/storage/toolbox/electrical,
 /obj/item/disk/data/floppy/read_only/communications,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/ai_monitored/storage/eva)
 "agj" = (
 /obj/table{
@@ -3325,13 +3325,13 @@
 	},
 /obj/item/storage/belt/utility,
 /obj/item/device/gps,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/ai_monitored/storage/eva)
 "agk" = (
 /obj/machinery/dispenser{
 	pltanks = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/ai_monitored/storage/eva)
@@ -3522,7 +3522,7 @@
 	dir = 1
 	},
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor,
 /area/station/janitor/office)
@@ -3566,7 +3566,7 @@
 /area/station/maintenance/northeast)
 "agU" = (
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
@@ -3699,7 +3699,7 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "ahj" = (
-/obj/storage/secure/closet/civilian/janitor,
+/obj/storage/secure/closet/logistics/janitor,
 /turf/floor,
 /area/station/janitor/office)
 "ahk" = (
@@ -4196,7 +4196,7 @@
 /obj/item/storage/box/mousetraps,
 /obj/item/storage/box/mousetraps,
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor/grime,
 /area/station/janitor/office)
@@ -4564,7 +4564,7 @@
 /turf/floor,
 /area/station/quartermaster/storage)
 "aiQ" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 2
 	},
 /area/station/quartermaster/storage)
@@ -4572,7 +4572,7 @@
 /obj/machinery/conveyor_switch{
 	id = "cargo"
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/storage)
 "aiS" = (
 /obj/cable{
@@ -4680,7 +4680,7 @@
 /turf/floor,
 /area/station/quartermaster/storage)
 "ajb" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/storage)
@@ -4895,7 +4895,7 @@
 	},
 /obj/item/cargotele,
 /obj/item/cargotele,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/quartermaster/storage)
@@ -4969,7 +4969,7 @@
 /turf/wall,
 /area/station/chapel/sanctuary)
 "ajC" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/storage)
@@ -5922,7 +5922,7 @@
 /area/station/quartermaster/storage)
 "alp" = (
 /obj/item/device/radio/intercom{
-
+	
 	},
 /obj/machinery/light,
 /turf/floor,
@@ -7934,7 +7934,7 @@
 "aoZ" = (
 /obj/table,
 /obj/item/hand_tele,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/teleporter)
@@ -7944,7 +7944,7 @@
 	icon_state = "0-2";
 	d2 = 2
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/teleporter)
 "apb" = (
 /obj/cable{
@@ -7959,14 +7959,14 @@
 	c_tag = "Teleporter";
 	dir = 2
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/teleporter)
 "apc" = (
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/teleporter)
 "apd" = (
 /obj/cable{
@@ -7979,7 +7979,7 @@
 	pixel_y = 24
 	},
 /obj/disposalpipe/segment,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/teleporter)
@@ -8081,7 +8081,7 @@
 /turf/floor/black,
 /area/station/medical/morgue)
 "apt" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/teleporter)
@@ -8096,7 +8096,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/teleporter)
@@ -8111,7 +8111,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/teleporter)
@@ -8122,7 +8122,7 @@
 	icon_state = "1-8"
 	},
 /obj/disposalpipe/segment,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/teleporter)
@@ -8688,7 +8688,7 @@
 	dir = 8
 	},
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor/purple/side{
 	dir = 9
@@ -9214,10 +9214,10 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering)
 "arL" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering)
 "arM" = (
 /obj/machinery/power/data_terminal,
@@ -9227,7 +9227,7 @@
 	d2 = 4
 	},
 /obj/cable,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering)
 "arN" = (
 /obj/cable{
@@ -9494,17 +9494,17 @@
 /turf/floor/plating,
 /area/station/engine/engineering)
 "aso" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/engine/engineering)
 "asp" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/engine/engineering)
 "asq" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/engine/engineering)
@@ -9741,12 +9741,12 @@
 /turf/floor/plating,
 /area/station/engine/engineering)
 "asV" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/engineering)
 "asW" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/engineering)
@@ -9940,10 +9940,6 @@
 /area/space)
 "ats" = (
 /turf/floor/airless/plating/scorched,
-/area/station/engine/proto_gangway)
-"att" = (
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
 /area/station/engine/proto_gangway)
 "atu" = (
 /obj/cable{
@@ -10278,10 +10274,6 @@
 	},
 /turf/floor,
 /area/station/maintenance/east)
-"auh" = (
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto_gangway)
 "aui" = (
 /obj/grille,
 /obj/window/reinforced{
@@ -10462,15 +10454,15 @@
 /turf/floor,
 /area/station/engine/engineering)
 "auz" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/engine/engineering)
 "auA" = (
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/engine/engineering)
 "auB" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/engine/engineering)
@@ -10666,7 +10658,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering)
 "auX" = (
 /obj/machinery/power/data_terminal,
@@ -10675,7 +10667,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/engineering)
 "auY" = (
 /obj/cable,
@@ -10851,7 +10843,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
-
+	
 	},
 /turf/floor,
 /area/station/maintenance/east)
@@ -11816,7 +11808,6 @@
 /turf/floor/plating/airless,
 /area/station/engine/proto)
 "axg" = (
-/turf/floor/plating/airless,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto)
 "axh" = (
@@ -12721,7 +12712,7 @@
 /turf/floor,
 /area/station/medical/robotics)
 "azd" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 2
 	},
 /area/station/medical/robotics)
@@ -12731,7 +12722,7 @@
 	name = "Local Air Monitor";
 	pixel_x = 29
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/medical/robotics)
 "azf" = (
 /obj/machinery/camera{
@@ -12797,7 +12788,6 @@
 /turf/floor/plating/airless,
 /area/station/engine/proto)
 "azm" = (
-/turf/floor/airless/plating/damaged3,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto_gangway)
 "azn" = (
@@ -13020,7 +13010,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/medical/robotics)
@@ -13078,10 +13068,6 @@
 /obj/window/reinforced,
 /turf/floor/plating/airless,
 /area/space)
-"azL" = (
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto)
 "azM" = (
 /obj/cable{
 	icon_state = "0-2";
@@ -13247,13 +13233,13 @@
 /turf/floor,
 /area/station/medical/robotics)
 "aAe" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/medical/robotics)
 "aAf" = (
 /obj/item/extinguisher,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/medical/robotics)
@@ -13586,10 +13572,6 @@
 	},
 /turf/floor/blackwhite/side,
 /area/station/medical/research)
-"aAP" = (
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/station/engine/proto)
 "aAQ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -16336,7 +16318,7 @@
 /area/station/hydroponics/bay)
 "aFL" = (
 /obj/item/wrench,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hydroponics/bay)
@@ -16765,7 +16747,7 @@
 /turf/floor,
 /area/station/hydroponics/bay)
 "aGw" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/hydroponics/bay)
@@ -16785,7 +16767,7 @@
 	dir = 4
 	},
 /obj/item/hand_labeler,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hydroponics/bay)
@@ -17693,7 +17675,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hydroponics/bay)
@@ -17711,7 +17693,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/hydroponics/lobby)
@@ -17726,7 +17708,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hydroponics/lobby)
@@ -17735,7 +17717,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hydroponics/lobby)
@@ -17749,7 +17731,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/hydroponics/lobby)
@@ -17758,7 +17740,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/hydroponics/lobby)
@@ -18352,7 +18334,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hydroponics/bay)
@@ -18375,7 +18357,7 @@
 	name = "Grove Module Airlock";
 	opacity = 0
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/hydroponics/bay)
 "aJp" = (
 /obj/cable{
@@ -18383,7 +18365,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/hydroponics/lobby)
@@ -18419,7 +18401,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hydroponics/lobby)
@@ -18442,7 +18424,7 @@
 	name = "Grove Module Airlock";
 	opacity = 0
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/hydroponics/lobby)
 "aJu" = (
 /obj/cable{
@@ -18852,7 +18834,7 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/science/artifact)
@@ -18968,12 +18950,12 @@
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/hydroponics/bay)
 "aKt" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/hydroponics/lobby)
@@ -18983,7 +18965,7 @@
 	c_tag = "Grove Module Airlock";
 	dir = 1
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hydroponics/lobby)
 "aKv" = (
 /obj/cable{
@@ -18991,16 +18973,16 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hydroponics/lobby)
 "aKw" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/hydroponics/lobby)
 "aKx" = (
 /obj/storage/crate,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/hydroponics/lobby)
@@ -19622,7 +19604,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/space{
@@ -19750,7 +19732,7 @@
 	icon_state = "pool";
 	dir = 9
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aLR" = (
 /obj/pool{
@@ -19758,7 +19740,7 @@
 	icon_state = "pool";
 	dir = 1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aLS" = (
 /obj/pool{
@@ -19766,7 +19748,7 @@
 	icon_state = "pool";
 	dir = 5
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aLT" = (
 /obj/window/reinforced{
@@ -20050,7 +20032,7 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/guardbot_dock,
 /obj/machinery/bot/guardbot/gunner,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space{
 	name = "Research Sector"
 	})
@@ -20062,7 +20044,7 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/bot/guardbot/ranger,
 /obj/machinery/guardbot_dock,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space{
 	name = "Research Sector"
 	})
@@ -20079,7 +20061,7 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space{
 	name = "Research Sector"
 	})
@@ -20100,7 +20082,7 @@
 	c_tag = "Research Sector";
 	dir = 2
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space{
 	name = "Research Sector"
 	})
@@ -20121,7 +20103,7 @@
 	frequency = 1445;
 	name = "Station Intercom (Medical)"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space{
 	name = "Research Sector"
 	})
@@ -20132,12 +20114,12 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/guardbot_dock,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/space{
 	name = "Research Sector"
 	})
 "aMG" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/space{
@@ -20149,14 +20131,14 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 2
 	},
 /area/space{
 	name = "Research Sector"
 	})
 "aMI" = (
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/space{
 	name = "Research Sector"
 	})
@@ -20319,7 +20301,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aMU" = (
 /obj/poolwater,
@@ -20347,7 +20329,7 @@
 	dir = 4
 	},
 /obj/pool_springboard,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aMX" = (
 /obj/cable{
@@ -20581,7 +20563,7 @@
 	pixel_y = 24;
 	text = "NF"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/space{
@@ -20598,7 +20580,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/space{
@@ -20615,7 +20597,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/space{
@@ -20627,21 +20609,21 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/space{
 	name = "Research Sector"
 	})
 "aNA" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/space{
 	name = "Research Sector"
 	})
 "aNB" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/space{
@@ -20658,7 +20640,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/space{
@@ -20845,7 +20827,7 @@
 	icon_state = "pool";
 	dir = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aNQ" = (
 /obj/poolwater,
@@ -20864,7 +20846,7 @@
 	icon_state = "pool";
 	dir = 4
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aNS" = (
 /turf/floor{
@@ -21111,7 +21093,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/space{
@@ -21123,7 +21105,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/space{
@@ -21300,7 +21282,7 @@
 	icon_state = "pool";
 	dir = 10
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aOC" = (
 /obj/pool,
@@ -21325,7 +21307,7 @@
 	icon_state = "pool";
 	dir = 6
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aOF" = (
 /obj/cable{
@@ -21703,7 +21685,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aPo" = (
 /obj/cable{
@@ -21712,7 +21694,7 @@
 	d2 = 8
 	},
 /obj/item/beach_ball,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aPp" = (
 /obj/cable{
@@ -21725,7 +21707,7 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/fitness)
 "aPq" = (
 /obj/cable{
@@ -22165,15 +22147,6 @@
 /area/station/ai_monitored/storage/secure{
 	name = "Mixing Room"
 	})
-"aPY" = (
-/obj/cable,
-/obj/item/cable_coil/cut,
-/turf/floor/airless{
-	icon_state = "solarpanel";
-	name = "solar paneling"
-	},
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "aPZ" = (
 /turf/wall,
 /area/station/ai_monitored/storage/secure{
@@ -22759,7 +22732,6 @@
 "aRb" = (
 /obj/cable,
 /obj/item/cable_coil/cut,
-/turf/floor/plating/airless,
 /turf/floor/airless/plating/damaged2,
 /area/space)
 "aRc" = (
@@ -23053,7 +23025,6 @@
 /area/space)
 "aRH" = (
 /obj/item/cable_coil/cut,
-/turf/space,
 /turf/floor/plating/damaged2,
 /area/space)
 "aRI" = (
@@ -33099,10 +33070,10 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "W APC";
-	noalerts = 1;
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/map/apc_helper/nopoweralert,
 /obj/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -35476,7 +35447,6 @@
 /obj/item/device/radio{
 	pixel_y = 15
 	},
-/turf/floor/plating/damaged3,
 /turf/floor/plating/damaged2,
 /area/station/chapel/sanctuary)
 "bok" = (
@@ -35602,11 +35572,11 @@
 	dir = 1;
 	locked = 0;
 	name = "Worn APC";
-	noalerts = 1;
 	operating = 0;
 	pixel_y = 24;
 	start_charge = 40
 	},
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/circuit,
 /area/space)
 "bov" = (
@@ -35628,7 +35598,6 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/floor/airless/plating/scorched,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto_gangway)
 "box" = (
@@ -35673,7 +35642,6 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/floor/plating/airless,
 /turf/floor/airless/plating/damaged2,
 /area/station/engine/proto)
 "boD" = (
@@ -36128,7 +36096,6 @@
 /turf/floor/caution/east,
 /area/space)
 "bpr" = (
-/turf/floor,
 /turf/floor/plating/damaged2,
 /area/space)
 "bps" = (
@@ -36993,10 +36960,6 @@
 	d2 = 4
 	},
 /turf/floor/plating,
-/area/space)
-"caB" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
 /area/space)
 "caF" = (
 /obj/item/raw_material/shard/glass{
@@ -47280,7 +47243,7 @@ aww
 aww
 aww
 axg
-azL
+axg
 ayA
 aww
 cqb
@@ -47507,7 +47470,7 @@ axd
 axI
 ayw
 axJ
-azL
+axg
 axJ
 aww
 aww
@@ -47962,8 +47925,8 @@ axK
 boC
 axg
 axK
-azL
-aAP
+axg
+axg
 axI
 aww
 cqb
@@ -48415,7 +48378,7 @@ axg
 axe
 axK
 axe
-aAP
+axg
 axI
 axI
 axI
@@ -49087,9 +49050,9 @@ cqb
 asN
 ats
 ats
-auh
-auh
-auh
+azm
+azm
+azm
 avq
 avq
 ats
@@ -49312,9 +49275,9 @@ cqb
 cqb
 cqb
 asN
-att
-auh
-auh
+azm
+azm
+azm
 asN
 avq
 ats
@@ -79423,7 +79386,7 @@ cqb
 cqb
 cqb
 bZO
-caB
+aqp
 bZO
 cae
 aqo
@@ -86937,7 +86900,7 @@ cqb
 cqb
 cgo
 cgz
-aPY
+aRb
 cqb
 cqb
 cqb

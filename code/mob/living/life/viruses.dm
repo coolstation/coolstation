@@ -16,7 +16,7 @@
 					am.stage_act(mult)
 
 		if (prob(40))
-			for (var/obj/decal/cleanable/blood/B in view(2, owner))
+			for (var/obj/decal/cleanable/tracked_reagents/blood/B in view(2, owner))
 				for (var/datum/ailment_data/disease/virus in B.diseases)
 					if (virus.spread == "Airborne")
 						owner.contract_disease(null,null,virus,0)

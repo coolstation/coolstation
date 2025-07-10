@@ -14,13 +14,13 @@
 #define LEVEL_BABBY -1
 
 //admin access flags, to replace admin levels for buttons
-#define ADMIN_ACCESS_HOST 1 //is this only something that someone with direct servertouching responsibility should use
-#define ADMIN_ACCESS_DEBUG 2 //runtimes and whatever *weird* stuff only real genuine coders should trifle with or care about
-#define ADMIN_ACCESS_MOD 4 //ban, notes access
-#define ADMIN_ACCESS_RISKYFUN 8 //pop off all limbs, implant microbombs into all, give everyone fucking pet omega drones or whatever
-#define ADMIN_ACCESS_BASIC 16 //noclip, some overlays, asay/dsay, ooc
-#define ADMIN_ACCESS_FUN 32 //fun image, dj panel, give everyone (safe) pets, gibself
-#define ADMIN_ACCESS_DM 64 //not technically admin, but mostly for temporary player elevation so they can run a gimmick
+#define ADMIN_ACCESS_HOST (1<<0) //is this only something that someone with direct servertouching responsibility should use
+#define ADMIN_ACCESS_DEBUG (1<<1) //runtimes and whatever *weird* stuff only real genuine coders should trifle with or care about
+#define ADMIN_ACCESS_MOD (1<<2) //ban, notes access
+#define ADMIN_ACCESS_RISKYFUN (1<<3) //pop off all limbs, implant microbombs into all, give everyone fucking pet omega drones or whatever
+#define ADMIN_ACCESS_BASIC (1<<4) //noclip, some overlays, asay/dsay, ooc
+#define ADMIN_ACCESS_FUN (1<<5) //fun image, dj panel, give everyone (safe) pets, gibself
+#define ADMIN_ACCESS_DM (1<<6) //not technically admin, but mostly for temporary player elevation so they can run a gimmick
 
 // verb categories
 #define ADMIN_CAT_PREFIX "🇦"

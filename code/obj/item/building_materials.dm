@@ -49,8 +49,12 @@ MATERIAL
 	stamina_cost = 23
 	stamina_crit_chance = 10
 	var/datum/material/reinforcement = null
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
+	value = 7 //for now. 7 is about what the base commodity market calls for. adding this value in as-is while i start to migrate commodity pricing over to a multiplier-and-offset model rather than a strict price for all that goes up and down.
+	// TODO: holy fuck we've never touched sheet in hand construction since ever, maybe we should reconsider?
+	//also re: construction but 1 mauxite/molitz per sheet is a really long throwback. changing out the economy makes me feel like these full sheets are more... an 8x8 sheet.
+	//this also relegates them to walls specifically, ideally with a cart to make it easier. we'd want to make constructing objects out of metal not come from fukken... origami'ing a sheet of metal bigger than you are into a chair somehow. fabricators or stampers or whatever, buddy!!!!
 
 	New()
 		..()
@@ -687,7 +691,7 @@ MATERIAL
 	stamina_damage = 20
 	stamina_cost = 16
 	stamina_crit_chance = 30
-	rand_pos = 1
+	rand_pos = 8
 	inventory_counter_enabled = 1
 
 	New()
@@ -989,7 +993,7 @@ MATERIAL
 			head.set_loc(src)
 			heads += head
 			src.update()
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 		SPAWN_DBG(50 SECONDS)
@@ -1154,12 +1158,13 @@ MATERIAL
 				W.icon_old = "floor"
 			W.to_plating()
 
-		if(ismob(usr) && !istype(src.material, /datum/material/metal/steel))
-			logTheThing("station", usr, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(S)].")
-		if(src.material)
-			W.setMaterial(src.material)
-		src.change_stack_amount(-1)
-		return TRUE
+			if(ismob(usr) && !istype(src.material, /datum/material/metal/steel))
+				logTheThing("station", usr, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(S)].")
+			if(src.material)
+				W.setMaterial(src.material)
+			src.change_stack_amount(-1)
+			return TRUE
+		return FALSE
 #endif
 
 /obj/item/tile/steel

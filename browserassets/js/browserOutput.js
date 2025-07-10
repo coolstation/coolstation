@@ -62,9 +62,10 @@ var opts = {
 };
 
 var themes = { // "css-class": "Option name"
-    'theme-default': 'Windows 3.1 (default)',
-    'theme-dark': 'Dark',
-}
+    'theme-default': 'Windows 3.1',
+    'theme-dark': 'Coolstation (default)',
+	'theme-dark charcoal-override' : 'Charcoal'
+};
 
 //Polyfill for fucking date now because of course IE8 and below don't support it
 if (!Date.now) {
@@ -215,8 +216,8 @@ function output(message, group) {
                     var thisClass = messageClasses[i];
                     $.each(opts.showMessagesFilters, function(key, val) { //Every filter
                         if (key !== 'All' && val.show === false && typeof val.match != 'undefined') {
-                            for (var i = 0; i < val.match.length; i++) {
-                                var matchClass = val.match[i];
+                            for (var j = 0; j < val.match.length; j++) {
+                                var matchClass = val.match[j];
                                 if (matchClass == thisClass) {
                                     filteredOut = key;
                                     break;
@@ -417,7 +418,7 @@ function handleClientData(ckey, ip, compid) {
     //byond sends player info to here
     var currentData = {'ckey': ckey, 'ip': ip, 'compid': compid};
     if (opts.clientData && !$.isEmptyObject(opts.clientData)) {
-        runByond('?action=ehjax&type=datum&datum=chatOutput&proc=analyzeClientData&param[cookie]='+JSON.stringify({'connData': opts.clientData}));
+        runByond('byond://?action=ehjax&type=datum&datum=chatOutput&proc=analyzeClientData&param[cookie]='+JSON.stringify({'connData': opts.clientData}));
 
         for (var i = 0; i < opts.clientData.length; i++) {
             var saved = opts.clientData[i];
@@ -430,7 +431,7 @@ function handleClientData(ckey, ip, compid) {
             opts.clientData.shift();
         }
     } else {
-        runByond('?action=ehjax&type=datum&datum=chatOutput&proc=analyzeClientData&param[cookie]=none');
+        runByond('byond://?action=ehjax&type=datum&datum=chatOutput&proc=analyzeClientData&param[cookie]=none');
     }
 
     //Update the cookie with current details
@@ -602,7 +603,7 @@ $(function() {
             opts.pingCounter = 0; //reset
             opts.pongTime = 0; //reset
             opts.pingTime = Date.now();
-            runByond('?action=ehjax&window=browseroutput&type=datum&datum=chatOutput&proc=ping');
+            runByond('byond://?action=ehjax&window=browseroutput&type=datum&datum=chatOutput&proc=ping');
             setTimeout(function() {
                 if (!opts.pongTime) { //If no response within 10 seconds of ping request
                     if (!opts.noResponse) { //Only actually append a message if the previous ping didn't also fail (to prevent spam)
@@ -748,11 +749,11 @@ $(function() {
     $messages.on('click', 'a', function(e) {
         e.preventDefault();
         var href = $(this).attr('href');
-        if (href[0] == '?' || (href.length >= 8 && href.substring(0,8) == 'byond://')) {
+        if (href.length >= 8 && href.substring(0,8) == 'byond://') {
             runByond(href);
         } else {
             href = escaper(href);
-            runByond('?action=openLink&link='+href);
+            runByond('byond://?action=openLink&link='+href);
         }
     });
 
@@ -901,7 +902,7 @@ $(function() {
         var popupContent = '<div class="head">Change Theme</div><div id="changeTheme" class="changeTheme">';
         $.each(themes, function(themeclass, themename) {
           popupContent = popupContent + '<a href="#" data-theme="'+themeclass+'">'+themename+'</a>';
-        })
+        });
 
         popupContent = popupContent + '</div>';
         createPopup(popupContent, 200);
@@ -943,7 +944,7 @@ $(function() {
         } else {
             xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
         }
-        xmlHttp.open('GET', 'http://cdn.coolstation.space/css/browserOutput.css', false);
+        xmlHttp.open('GET', 'https://cdn.coolstation.space/css/browserOutput.css', false);
         xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xmlHttp.send();
         saved += '<style>'+xmlHttp.responseText+'</style>';
@@ -1027,7 +1028,7 @@ $(function() {
     ******************************************/
 
     //Do IE check because apparently some luddites still rock XP and IE 8 in the year of our lord 2017
-    var trident = navigator.userAgent.match(/Trident\/(\d)\.\d(?:;|$)/gi);
+	/*var trident = navigator.userAgent.match(/Trident\/(\d)\.\d(?:;|$)/gi);
     var msie = document.documentMode;
     if ((msie && msie < 10) || (trident && parseInt(trident) < 6)) { //Trident/6.0 == IE 10
         $('body').append('<div class="browser-warning">'+
@@ -1035,9 +1036,10 @@ $(function() {
                 '<strong>Please consider upgrading or some stuff might be broken for you!</strong>'+
                 '<a href="#" class="close"><i class="icon-remove"></i></a>'+
             '</div>');
-    }
+    }*/
+	// in the year of mylie 2025 we use webview2
 
-    runByond('?action=ehjax&type=datum&datum=chatOutput&proc=doneLoading&param[ua]='+escaper(navigator.userAgent));
+    runByond('byond://?action=ehjax&type=datum&datum=chatOutput&proc=doneLoading&param[ua]='+escaper(navigator.userAgent));
     if ($('#loading').is(':visible')) {
         $('#loading').remove();
     }

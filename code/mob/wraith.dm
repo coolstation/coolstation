@@ -17,7 +17,7 @@
 	blinded = 0
 	anchored = 1
 	alpha = 180
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_CANPASS
 	plane = PLANE_NOSHADOW_ABOVE
 
 	var/deaths = 0
@@ -65,9 +65,6 @@
 		theName = "[uppertext(fc)][copytext(theName, 2)]"
 		theName = theName  + "[pick(" the Impaler", " the Tormentor", " the Forsaken", " the Destroyer", " the Devourer", " the Tyrant", " the Overlord", " the Damned", " the Desolator", " the Exiled")]"
 		return theName
-
-	proc/get_movement_controller(mob/user)
-		return movement_controller
 
 	New(var/mob/M)
 		. = ..()
@@ -229,7 +226,7 @@
 			for (var/datum/objective/specialist/wraith/WO in src.mind.objectives)
 				WO.onAbsorb(M)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/proj = mover
 			if (proj.proj_data.hits_wraiths)

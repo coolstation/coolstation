@@ -652,9 +652,19 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "gg"
 			popup_win = 1
-			imgw = 1242
-			imgh = 1755
+			imgw = 1252
+			imgh = 1765
 			img = "images/arts/posters/gg.png"
+
+		pope_portrait
+			name = "portrait of the Pope"
+			desc = "An official press photo of His Eminence Nosferatu IV, put out by the Space Holy See."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "pope"
+			popup_win = 1
+			imgw = 199
+			imgh = 262
+			img = "images/arts/posters/pope.jpg"
 
 		circulatory
 			name = "anatomical poster"
@@ -662,8 +672,8 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "circulatory"
 			popup_win = 1
-			imgw = 265
-			imgh = 564
+			imgw = 275
+			imgh = 574
 			img = "images/arts/posters/circulatory.jpg"
 
 		poster_beach
@@ -765,7 +775,7 @@
 
 		mantaposter
 			name = "NSS Manta poster"
-			desc = "Pre-eliminary signing up for Nanotrasen's newest military vessel NSS Manta has now begun. Reach out to your head of personnel or a local Nanotrasen recruiting officer to find out more about new job oppurtunities aboard NSS Manta! "
+			desc = "The NSS Manta was a piece of shit and sunk!"
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "mantaposter"
 
@@ -1252,6 +1262,27 @@
 	imgh = 702
 	img = "images/pw_map.png"
 	cat = "map"
+
+/obj/decal/poster/wallsign/dont_drugs
+	name = "Anti-drug poster"
+	desc = "A poster warning against the dangers of drug use."
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "ddd"
+
+/obj/decal/poster/wallsign/dont_drugs/do_drugs
+	name = "Anti-Anti-drug poster"
+	desc = "A poster that once warned against the dangers of drug use."
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "dd"
+
+/obj/decal/poster/wallsign/wktv
+	name = "WKTV logo"
+	desc = "the WKTV logo printed on a shitty carpet"
+	icon = 'icons/obj/decals/posters_64x32.dmi'
+	icon_state = "wktv"
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER
+
 
 /obj/decal/poster/banner
 	name = "banner"

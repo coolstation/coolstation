@@ -244,7 +244,7 @@
 	desc = "Hey, it's not red at all!"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "mars"
-	blocks_air = 1
+	gas_impermeable = 1
 	opacity = 1
 	density = 1
 	fullbright = 0
@@ -679,7 +679,7 @@
 	opensdoors = OBJ_CRITTER_OPENS_DOORS_NONE
 	atksilicon = 1
 	var/overheat = 0
-	var/datum/projectile/my_bullet = new/datum/projectile/bullet/pistol_medium
+	var/datum/projectile/my_bullet = new/datum/projectile/bullet/pistol_italian
 
 	Shoot()
 		if(overheat < 10)

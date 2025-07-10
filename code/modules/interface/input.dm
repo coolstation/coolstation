@@ -236,7 +236,7 @@ var/list/dirty_keystates = list()
 
 		var/next = user.click(object, parameters, location, control)
 
-		if (isnum(next) && src.preferences.use_click_buffer && src.queued_click != object && next <= max(user.click_delay, user.combat_click_delay))
+		if ((isnum(next) && next > 0) && src.preferences.use_click_buffer && src.queued_click != object && next <= max(user.click_delay, user.combat_click_delay))
 			src.queued_click = object
 			SPAWN_DBG(next+1)
 				if (src.queued_click == object)

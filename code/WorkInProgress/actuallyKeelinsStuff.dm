@@ -350,6 +350,11 @@ Returns:
 	desc = "someone drew something here"
 	var/list/arteests = list()
 
+/datum/gunTarget
+	var/params = null
+	var/target = null
+	var/user = 0
+
 /obj/item/permmarker
 	name = "Permanent Marker"
 	icon = 'icons/obj/items/items.dmi'
@@ -1254,9 +1259,9 @@ Returns:
 				if(ismob(A))//Shitty hack because attackby uses spawn on mobs. Meaning force etc will reset before the attack executes, thus doing 0 damage.
 					src.attack(A, user, user.zone_sel && user.zone_sel.selecting ? user.zone_sel.selecting : null)
 					if(bloody)
-						bleed(A, 5, 5, get_turf(target))
-						bleed(A, 5, 2, get_step(target,get_dir(user, target)))
-						bleed(A, 5, 1, get_step(get_step(target,get_dir(user, target)),get_dir(user, target)))
+						bleed(A, 5, get_turf(target), violent = TRUE)
+						bleed(A, 5, get_step(target,get_dir(user, target)))
+						bleed(A, 5, get_step(get_step(target,get_dir(user, target)),get_dir(user, target)))
 						//blood_slash(A, 5, get_step(target,get_dir(user, target)), get_dir(user, target), 4)
 					hitmob = 1
 				else
@@ -2404,11 +2409,6 @@ Returns:
 	ex_act()
 		return
 
-/proc/gobuzz()
-	if(buzztile)
-		usr.set_loc(buzztile)
-	return
-
 /obj/item/beamtest
 	desc = "beamtest thingamobob"
 	name = "beamtest thingamobob"
@@ -3270,7 +3270,7 @@ Returns:
 	flags = FPRINT | ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 	event_handler_flags = USE_CANPASS
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (mover?.throwing)
 			return 1
 		return ..()

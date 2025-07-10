@@ -420,6 +420,8 @@
 			if (!target)
 				return
 
+			worldgen_hold = TRUE
+
 			if (!wall_bits.len)
 				wall_bits = target.generate_walls()
 
@@ -472,6 +474,8 @@
 				active = 0
 				boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
 				return
+
+			initialize_worldgen()
 
 			sleep(sleep_time)
 			if (malfunctioning && prob(20))
@@ -652,6 +656,8 @@
 					mining_apc.zapStuff()
 
 	proc/pull_new_source(var/selectable_encounter_id = null)
+		worldgen_hold = TRUE
+
 		for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 			M.opacity = 1
 			M.set_density(1)
@@ -709,6 +715,7 @@
 			active = 0
 			boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
 			return
+		initialize_worldgen()
 
 		sleep(sleep_time)
 		if (malfunctioning && prob(20))
@@ -1125,7 +1132,8 @@
 	New(var/loc)
 		src.icon_state = pick("ast1","ast2","ast3")
 		..()
-		worldgenCandidates += src
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
 		if(current_state <= GAME_STATE_PREGAME)
 			src.build_icon()
 
@@ -1491,11 +1499,15 @@
 		icon_state = "astfloor" + "[sprite_variation]"
 		coloration_overlay = image(src.icon,"color_overlay")
 		coloration_overlay.blend_mode = 4
-		update_icon()
-		worldgenCandidates += src
+
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			update_icon()
 
 	generate_worldgen()
 		. = ..()
+		update_icon()
 		src.space_overlays()
 
 	ex_act(severity)
@@ -1527,12 +1539,11 @@
 		if (fullbright)
 			src.overlays += /image/fullbright //Fixes perma-darkness
 		#endif
-		SPAWN_DBG(0)
-			if (istype(src)) //Wire note: just roll with this ok
-				for (var/turf/wall/asteroid/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
-				for (var/turf/space/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
+		if (istype(src)) //Wire note: just roll with this ok
+			for (var/turf/wall/asteroid/A in orange(src,1))
+				src.apply_edge_overlay(get_dir(src, A))
+			for (var/turf/space/A in orange(src,1))
+				src.apply_edge_overlay(get_dir(src, A))
 
 	proc/apply_edge_overlay(var/thedir) //For overlays ON THE FLOOR TILE
 		var/image/dig_overlay = image('icons/turf/asteroid.dmi', "edge[thedir]")
@@ -1934,8 +1945,10 @@ obj/item/clothing/gloves/concussive
 		for (var/turf/wall/asteroid/A in range(src.expl_flash,src))
 			if(get_dist(src,A) <= src.expl_heavy)
 				A.damage_asteroid(4)
+				continue
 			if(get_dist(src,A) <= src.expl_light)
 				A.damage_asteroid(3)
+				continue
 			if(get_dist(src,A) <= src.expl_flash)
 				A.damage_asteroid(2)
 
@@ -2394,10 +2407,11 @@ var/global/list/cargopads = list()
 	inventory_counter_enabled = 1
 
 	borg
-		New()
+		//this satchel wasn't added to the module so it'd just get lost in wherever the hell
+		/*New()
 			..()
 			var/obj/item/satchel/mining/large/S = new /obj/item/satchel/mining/large(src)
-			satchel = S
+			satchel = S*/
 
 	//attack_self can just dump on the floor as usual for all I care, but let me unload the dang satchel directly thanks
 	attack_hand(mob/user)
@@ -2423,7 +2437,8 @@ var/global/list/cargopads = list()
 			inventory_counter.update_number(satchel.curitems)
 			if (old_satchel)
 				user.visible_message("[user] swaps [src]'s [old_satchel.name] for [S].", "You swap [src]'s' [old_satchel] for [S].")
-				user.put_in_hand_or_drop(old_satchel)
+				if (!issilicon(user))
+					user.put_in_hand_or_drop(old_satchel)
 			else
 				user.visible_message("[user] inserts [S] into [src].", "You insert [S] into [src].")
 		else

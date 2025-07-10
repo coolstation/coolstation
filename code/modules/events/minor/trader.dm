@@ -45,7 +45,7 @@
 			SPAWN_DBG(0)
 				A.ex_act(OLD_EX_TOTAL)
 
-		for(var/turf/T in end_location)
+		for(var/turf/T in end_location.turfs)
 			dstturfs += T
 			if(T.y < throwy)
 				throwy = T.y

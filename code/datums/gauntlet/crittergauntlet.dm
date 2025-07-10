@@ -403,7 +403,8 @@
 				if (G.type == /area/gauntlet)
 					gauntlet = G
 					break
-			for (var/turf/T in gauntlet)
+			if (!gauntlet) return //unit teeeests
+			for (var/turf/T in gauntlet.turfs)
 				if (!T.density)
 					spawnturfs += T
 

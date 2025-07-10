@@ -2,6 +2,7 @@
 
 Modules to do things with cloning modules
 
+These ones slot into the clone pod, as opposed to /obj/item/cloner_upgrade for things that go in the computer and /obj/item/grinder_upgrade for the reclaimer.
 */
 
 
@@ -9,7 +10,7 @@ Modules to do things with cloning modules
 /obj/item/cloneModule/speedyclone
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "speedyclone"
-	name = "SpeedyClone2000"
+	name = "\improper SpeedyClone2000"
 	desc = "An experimental cloning module. Greatly speeds up the cloning process. Also voids the cloning pod warranty."
 
 
@@ -17,7 +18,7 @@ Modules to do things with cloning modules
 /obj/item/cloneModule/efficientclone
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "efficientclone"
-	name = "Biomatter recycling unit"
+	name = "biomatter recycling unit"
 	desc = "An experimental cloning module. Lowers the amount of biomatter a cloning pod needs by recycling old biomatter."
 
 
@@ -25,15 +26,21 @@ Modules to do things with cloning modules
 /obj/item/cloneModule/minderaser
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "mindwipe"
-	name = "Prototype Rehabilitation Module #17"
+	name = "\improper Prototype Rehabilitation Module #17"
 	desc = "An experimental treatment device meant for only the worst of criminals. Fires a barrage of electrical signals to the brain during medical procedues. It looks like it has some cloning goop and blood smeared on it - yuck."
 
 /obj/item/cloneModule/insurgent_module
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "insurgentmodule"
-	name = "Insurgent cloning module"
-	desc = "A powerful device that remaps people's brains when they get cloned to make them completely loyal to the owner of this module"
+	name = "insurgent cloning module"
+	desc = "A powerful device that remaps people's brains when they get cloned to make them completely loyal to the owner of this module."
 
+//RIP clone pod auto-starting 2020-2025, but I figured we could work it into loot tables somewhere. as a treat. maybe.
+/obj/item/cloneModule/auto_start
+	icon = 'icons/obj/items/module.dmi'
+	icon_state = "autostart"
+	name = "pre-cloning automation unit"
+	desc = "An experimental cloning module. Allows a cloning pod to get a head start on new clones, even before the target genotype is finalised."
 
 /obj/item/storage/box/insurgent_module_kit
 	name = "Insurgent module kit"

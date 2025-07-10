@@ -20,6 +20,8 @@
 	anchored = 1
 	density = 1
 	mats = 8
+	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | ON_BORDER
+	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	deconstruct_flags = DECON_CROWBAR | DECON_MULTITOOL
 	var/timing = 0 // Timer running?
 	var/time = null // In 1/10th seconds.
@@ -222,6 +224,18 @@
 			ui = new(user, src, "Sleeper", src.name)
 			ui.open()
 
+	CanPass(atom/movable/O as mob|obj, turf/target, height=0, air_group=0)
+		if(air_group)
+			return 1
+		if (dir & get_dir(loc, O))
+			return 0
+		return 1
+
+	CheckExit(atom/movable/O as mob|obj, target as turf)
+		if (dir & get_dir(O.loc, target))
+			return 0
+		return 1
+
 /obj/machinery/sleep_console/compact
 	find_sleeper_in_range = 0
 
@@ -289,11 +303,6 @@
 		ENSURE_IMAGE(src.image_lid, src.icon, "sleeperlid[!isnull(occupant)]")
 		src.UpdateOverlays(src.image_lid, "lid")
 		return
-
-	CanPass(atom/movable/O as mob|obj, target as turf, height=0, air_group=0)
-		if (air_group || (height==0))
-			return 1
-		..()
 
 	ex_act(severity)
 		switch (severity)

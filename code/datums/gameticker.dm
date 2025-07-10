@@ -40,7 +40,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg')
 	var/picked_music = null
 
 
@@ -174,6 +174,18 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	logTheThing("debug", null, null, "Chosen game mode: [mode] ([master_mode]) on map [getMapNameFromID(map_setting)].")
 
+	#if (defined(I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO)) || (DYNAMIC_ARRIVAL_SHUTTLE_TIME == 0)
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start skipped)")
+	#else
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		var/area/A = locate(/area/shuttle/arrival/pre_game)
+		for (var/obj/machinery/door/airlock/an_door in A.machines)
+			if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+				if (!an_door.locked)
+					an_door.toggle_bolt()
+	#endif
+
 	//Tell the participation recorder to queue player data while the round starts up
 	participationRecorder.setHold()
 
@@ -263,6 +275,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			if (prob(spawnchance))
 				Artifact_Spawn(T)
 
+		//moved out of initialize_worldgen now that that's called more than once
+		var/obj/item/storage/toilet/Terlet = pick(by_type[/obj/item/storage/toilet])
+		Terlet?.curse()
+
 		shippingmarket.get_market_timeleft()
 
 		logTheThing("ooc", null, null, "<b>Current round begins</b>")
@@ -281,7 +297,20 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		//Tell the participation recorder that we're done FAFFING ABOUT
 		participationRecorder.releaseHold()
 
-	SPAWN_DBG (6000) // 10 minutes in
+	#if DYNAMIC_ARRIVAL_SHUTTLE_TIME > 0
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME)
+			var/area/A = locate(/area/shuttle/arrival/pre_game)
+			for (var/obj/machinery/door/airlock/an_door in A.machines)
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (an_door.locked)
+						an_door.toggle_bolt()
+			transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start normal)")
+		SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME - (5 SECONDS))
+			playsound(pick(get_area_turfs(/area/shuttle/arrival/pre_game)), "sound/effects/ship_engage.ogg", 100, 1)
+	#endif
+
+	SPAWN_DBG ((map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC) ? (10 MINUTES + DYNAMIC_ARRIVAL_SHUTTLE_TIME) : (10 MINUTES)) // 10 minutes in
 		for(var/obj/machinery/power/monitor/smes/E in machine_registry[MACHINES_POWER])
 			LAGCHECK(LAG_LOW)
 			if(E.powernet?.avail <= 0)
@@ -513,7 +542,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					roundend_countdown.add_client(C)
 					C.save_misc_skin_settings_to_cloud() //congrats 4 making it to end of round lets save some shit while we have you
 
-				var/roundend_time = 60
+				var/roundend_time = 90
 				while (roundend_time >= 0)
 					roundend_countdown.update_time(roundend_time)
 					sleep(1 SECONDS)
@@ -529,7 +558,25 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
-					ircbot.event("roundend")
+					// Put together a package of score data that we can hand off to the discord bot
+					var/list/roundend_score = list(
+						"map" = getMapNameFromID(map_setting),
+						"survival" = score_tracker.score_crew_survival_rate,
+						"sec_scr"  = score_tracker.final_score_sec,
+						"eng_scr"  = score_tracker.final_score_eng,
+						"civ_scr"  = score_tracker.final_score_civ,
+						"res_scr"  = score_tracker.final_score_res,
+						"grade"    = score_tracker.grade,
+						"m_damaged" = score_tracker.most_damaged_escapee,
+						"r_escaped" = score_tracker.richest_escapee,
+						"r_total"  = score_tracker.richest_total,
+						"beepsky"  = score_tracker.beepsky_alive,
+						"farts"    = fartcount,
+						"wead"     = weadegrowne,
+						"doinks"   = doinkssparked,
+						"clowns"   = clownabuse
+						)
+					ircbot.event("roundend", list("score" = roundend_score))
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 

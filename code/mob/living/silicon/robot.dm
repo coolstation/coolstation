@@ -3391,5 +3391,33 @@
 
 		//STEP SOUND HANDLING OVER
 
+/mob/living/silicon/robot/can_climb_ladder(silent = FALSE)
+	var/limb_count = 0
+	var/tread_count = 0
+	if (src.part_arm_r)
+		limb_count++
+	if (src.part_arm_l)
+		limb_count++
+	//treads don't do you much good on ladders
+	if (src.part_leg_r)
+		if (istype(src.part_leg_r, /obj/item/parts/robot_parts/leg/right/treads))
+			tread_count++
+		else limb_count++
+	if (src.part_leg_l)
+		if (istype(part_leg_l, /obj/item/parts/robot_parts/leg/left/treads))
+			tread_count++
+		else limb_count++
+	if (limb_count >= 3)
+		#ifdef DATALOGGER
+		if (limb_count == 3 && silent) //You're supposed to keep 3 points of contact on a ladder at all times
+			game_stats.Increment("workplacesafety")
+		#endif
+		return ..()
+	if (tread_count == 2 && !silent)
+		boutput(src, "<span class=alert>You can't climb a ladder while equipped with treads!</span>") //until we make taur borgs a thing anyway
+	else
+		boutput(src, "<span class=alert>You don't have enough limbs to climb ladders!</span>")
+	return FALSE
+
 #undef can_step_sfx
 #undef ROBOT_BATTERY_DISTRESS_THRESHOLD

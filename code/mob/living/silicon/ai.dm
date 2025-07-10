@@ -735,12 +735,12 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	if (O)
 		if (printalerts)
 			if (C?.camera_status)
-				src.show_text("--- [class] alarm detected in [A.name]! ( <A HREF=\"?src=\ref[src];switchcamera=\ref[C]\">[C.c_tag]</A> )")
+				src.show_text("--- [class] alarm detected in [A.name]! ( <A HREF=\"byond://?src=\ref[src];switchcamera=\ref[C]\">[C.c_tag]</A> )")
 			else if (length(CL))
 				var/foo = 0
 				var/dat2 = ""
 				for (var/obj/machinery/camera/I in CL)
-					dat2 += "[(!foo) ? " " : "| "]<A HREF=\"?src=\ref[src];switchcamera=\ref[I]\">[I.c_tag]</A>"
+					dat2 += "[(!foo) ? " " : "| "]<A HREF=\"byond://?src=\ref[src];switchcamera=\ref[I]\">[I.c_tag]</A>"
 					foo = 1
 				src.show_text("--- [class] alarm detected in [A.name]! ([dat2])")
 			else
@@ -1265,7 +1265,8 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 /mob/living/silicon/ai/Login()
 	..()
 	update_clothing()
-	src.updateOverlaysClient(src.client) //ov1
+	removeOverlaysClient(src.client)
+	addOverlaysClient(src.client, src)
 	if (!isdead(src))
 		for (var/obj/machinery/ai_status_display/O in machine_registry[MACHINES_STATUSDISPLAYS]) //change status
 			if (O.owner && O.owner != src)
@@ -1275,7 +1276,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	return
 
 /mob/living/silicon/ai/Logout()
-	src.removeOverlaysClient(src.client) //ov1
+	removeOverlaysClient(src.client) //ov1
 	// Only turn off the status displays if we're dead.
 	if (isdead(src))
 		for (var/obj/machinery/ai_status_display/O in machine_registry[MACHINES_STATUSDISPLAYS]) //change status
@@ -1797,8 +1798,11 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.set_eye(null)
+		src.removeOverlayComposition(/datum/overlayComposition/static_noise)
 		return 0
-	if (isdead(src) || C.network != src.network) return 0
+	if (isdead(src) || C.network != src.network)
+		src.removeOverlayComposition(/datum/overlayComposition/static_noise)
+		return 0
 
 	// ok, we're alive, camera is acceptable and in our network...
 	camera_overlay_check(C) //Add static if the camera is disabled
@@ -1825,7 +1829,6 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	else
 		src.removeOverlayComposition(/datum/overlayComposition/static_noise)
 		. = 1
-	src.updateOverlaysClient(src.client) //ov1
 
 //AI player -> Powerline comm network interfacing (wireless assumes all nodes are objects)
 

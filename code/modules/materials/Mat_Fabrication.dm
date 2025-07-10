@@ -8,16 +8,13 @@
 	/datum/matfab_recipe/bow,
 	/datum/matfab_recipe/quiver,
 	/datum/matfab_recipe/lens,
-	/datum/matfab_recipe/tripod,
 	/datum/matfab_recipe/glasses,
 	/datum/matfab_recipe/jumpsuit,
 	/datum/matfab_recipe/glovesins,
 	/datum/matfab_recipe/glovearmor,
 	/datum/matfab_recipe/shoes,
-	/datum/matfab_recipe/flashlight,
 	/datum/matfab_recipe/lighttube,
 	/datum/matfab_recipe/lightbulb,
-	/datum/matfab_recipe/tripodbulb,
 	/datum/matfab_recipe/sheet,
 	/datum/matfab_recipe/cell_small,
 	/datum/matfab_recipe/cell_large,
@@ -170,10 +167,10 @@
 
 	proc/buildHtml()
 		var/html = list()
-		html += "<a href=\"?src=\ref[src];tab=recipes\"><i class=\"icon-list\"></i> Blueprints</a>  "
-		html += "<a href=\"?src=\ref[src];tab=storage\"><i class=\"icon-folder-open\"></i> Storage</a>  "
-		html += "<a href=\"?src=\ref[src];tab=progress\"><i class=\"icon-cog\"></i> Progress</a>  "
-		html += "<a href=\"?src=\ref[src];tab=settings\"><i class=\"icon-wrench\"></i> Settings</a>"
+		html += "<a href=\"byond://?src=\ref[src];tab=recipes\"><i class=\"icon-list\"></i> Blueprints</a>  "
+		html += "<a href=\"byond://?src=\ref[src];tab=storage\"><i class=\"icon-folder-open\"></i> Storage</a>  "
+		html += "<a href=\"byond://?src=\ref[src];tab=progress\"><i class=\"icon-cog\"></i> Progress</a>  "
+		html += "<a href=\"byond://?src=\ref[src];tab=settings\"><i class=\"icon-wrench\"></i> Settings</a>"
 		html += "<hr>"
 
 		html += "<div>"
@@ -182,17 +179,17 @@
 				html += "Output into fabricator: <a href='byond://?src=\ref[src];toggleoutput=1'>[outputInternal ? "ON":"OFF"]</a><br>"
 			if("recipes")
 				if(filter_category)
-					html += "<i class=\"icon-exclamation-sign\"></i> Filtering by Category: [filter_category] <a href=\"?src=\ref[src];filteroff=1\"><i class=\"icon-remove-sign\"></i></a>"
+					html += "<i class=\"icon-exclamation-sign\"></i> Filtering by Category: [filter_category] <a href=\"byond://?src=\ref[src];filteroff=1\"><i class=\"icon-remove-sign\"></i></a>"
 				else if (filter_string)
-					html += "<i class=\"icon-exclamation-sign\"></i> Filtering by Name: [filter_string] <a href=\"?src=\ref[src];filteroff=1\"><i class=\"icon-remove-sign\"></i></a>"
+					html += "<i class=\"icon-exclamation-sign\"></i> Filtering by Name: [filter_string] <a href=\"byond://?src=\ref[src];filteroff=1\"><i class=\"icon-remove-sign\"></i></a>"
 				else
 					html += "<i class=\"icon-search\"></i> Category: "
 					var/list/categories = list()
 					for(var/datum/matfab_recipe/E in recipes)
 						if(!(E.category in categories))
 							categories.Add(E.category)
-							html += "<a href=\"?src=\ref[src];filtercat=[E.category]\">[E.category]</a> "
-					html += "<i class=\"icon-caret-right\"></i> <a href=\"?src=\ref[src];filterstr=1\">Name</a>"
+							html += "<a href=\"byond://?src=\ref[src];filtercat=[E.category]\">[E.category]</a> "
+					html += "<i class=\"icon-caret-right\"></i> <a href=\"byond://?src=\ref[src];filterstr=1\">Name</a>"
 				html += "<hr>"
 
 				html += "<div style=\"overflow-y: auto; height:500px;\">"
@@ -373,6 +370,7 @@
 	icon = 'icons/obj/electronics.dmi'
 	icon_state = "blueprint"
 	item_state = "sheet"
+	rand_pos = 4
 
 	var/datum/matfab_recipe/recipe = null
 
@@ -383,6 +381,4 @@
 			return 0
 		src.name = "Manufacturer Blueprint: [src.recipe.name]"
 		src.desc = "This blueprint will allow a nanofab unit to build a [src.recipe.name]"
-		src.pixel_x = rand(-4,4)
-		src.pixel_y = rand(-4,4)
 		return 1

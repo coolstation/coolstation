@@ -101,6 +101,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	if (!istype(M)) return
 	var/obj/item/raw_material/shard/S = locate() in src
 	if (S)
+		if(M.getStatusDuration("stunned") || M.getStatusDuration("weakened")) // woop reinvented the dragging exploit
+			return
 		boutput(M, "<span class='alert'><B>You step on [S]! Ouch!</B></span>")
 		S.step_on(M)
 
@@ -759,3 +761,58 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 /obj/item/clothing/shoes/work_boots
 	name = "work boots"
 	icon_state = "work_boots"
+
+/obj/item/clothing/shoes/turbopunk
+	name = "turbopunk rollerskates"
+	desc = "Nothing remains of straight laces."
+	icon_state = "rollerskates"
+	step_sound = "step_rubberboot"
+	step_priority = STEP_PRIORITY_LOW
+	compatible_species = list("cow", "human")
+
+	setupProperties()
+		..()
+		setProperty("slidekick_bonus", 5)
+
+	equipped(mob/user, slot)
+		. = ..()
+		APPLY_MOB_PROPERTY(user, PROP_SLIDEKICK_TURBO, src)
+
+	unequipped(mob/user)
+		. = ..()
+		REMOVE_MOB_PROPERTY(user, PROP_SLIDEKICK_TURBO, src)
+
+
+/obj/item/clothing/shoes/thong
+	name = "garbage flip-flops"
+	desc = "These cheap sandals don't even look legal."
+	icon_state = "thong"
+	protective_temperature = 0
+	permeability_coefficient = 1
+	var/possible_names = list("sandals", "flip-flops", "thongs", "rubber slippers", "jandals", "slops", "chanclas")
+	var/stapled = FALSE
+
+	examine()
+		. = ..()
+		if(stapled)
+			. += "Two thongs stapled together, to make a MEGA VELOCITY boomarang."
+		else
+			. += "These cheap [pick(possible_names)] don't even look legal."
+
+	attackby(obj/item/W, mob/user)
+		if (istype(W, /obj/item/staple_gun) && !stapled)
+			stapled = TRUE
+			boutput(user, "You staple the [src] together to create a mighty thongarang.")
+			name = "thongarang"
+			icon_state = "thongarang"
+			throwforce = 5
+			throw_range = 10
+			throw_return = 1
+		else
+			..()
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 0)
+		setProperty("heatprot", 0)
+		setProperty("conductivity", 1)

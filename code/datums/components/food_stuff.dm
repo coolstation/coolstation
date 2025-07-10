@@ -9,6 +9,11 @@
 
 /datum/component/consume/can_eat_inedible_organs
 	var/can_eat_heads = 0
+
+TYPEINFO(/datum/component/consume/can_eat_inedible_organs)
+	initialization_args = list(
+		ARG_INFO("can_eat_heads", "num", "If heads are also valid food (bool)", FALSE)
+	)
 /datum/component/consume/can_eat_inedible_organs/Initialize(var/can_eat_heads)
 	..()
 	src.can_eat_heads = can_eat_heads
@@ -28,6 +33,10 @@
 	var/target_abilityholder = /datum/abilityHolder/lizard
 	var/static/list/organ2points = list(/obj/item/organ/head=2,/obj/item/skull=0,/obj/item/organ/brain=3,/obj/item/organ/chest=5,/obj/item/organ/heart=2,/obj/item/organ/appendix=0,/obj/item/clothing/head/butt=0)
 
+TYPEINFO(/datum/component/consume/organpoints)
+	initialization_args = list(
+		ARG_INFO("target_abilityholder", "ref", "Abilityholder to handle points for")
+	)
 /datum/component/consume/organpoints/Initialize(var/target_abilityholder)
 	..()
 	src.target_abilityholder = target_abilityholder
@@ -43,14 +52,14 @@
 		var/obj/item/organ/O = I
 		if(O.robotic)
 			L.vomit()
-			bleed(L, 5, 5)
+			bleed(L, 5, violent = TRUE)
 			L.abilityHolder.deductPoints(2, target_abilityholder)
 			boutput(L, "<span class='alert'><i>Agh!</i> That [I] was made of metal! <i>Metal!</i> Your entire body hates you for this.</span>")
 			return
 
 	else if (istype(I, /obj/item/clothing/head/butt/cyberbutt))
 		L.vomit()
-		bleed(L, 5, 5)
+		bleed(L, 5, violent = TRUE)
 		L.abilityHolder.deductPoints(2, target_abilityholder)
 		boutput(L, "<span class='alert'><i>Agh!</i> That [I] was made of metal! <i>Metal!</i> Your entire body hates you for this.</span>")
 		return
@@ -142,6 +151,10 @@
 	var/base_HPup = 5
 	var/mod_mult = 1
 
+TYPEINFO(/datum/component/consume/organheal)
+	initialization_args = list(
+		ARG_INFO("mod_mult", "num", "healing multiplier", 1)
+	)
 /datum/component/consume/organheal/Initialize(var/mod_mult)
 	..()
 	src.mod_mult = mod_mult
@@ -157,13 +170,13 @@
 		var/obj/item/organ/O = I
 		if(O.robotic)
 			M.vomit()
-			bleed(M, 5, 5)
+			bleed(M, 5, violent = TRUE)
 			M.TakeDamage("All", base_HPup * mod_mult, 0, base_HPup * mod_mult)
 			boutput(M, "<span class='alert'><i>Augh!</i> That chewed-up [I] turned to shrapnel in your stomach!</span>")
 			return
 	else if (istype(I, /obj/item/clothing/head/butt/cyberbutt))
 		M.vomit()
-		bleed(M, 5, 5)
+		bleed(M, 5, violent = TRUE)
 		M.TakeDamage("All", base_HPup * 2 * mod_mult, 0, base_HPup * 2 * mod_mult)
 		boutput(M, "<span class='alert'><i>Augh!</i> That disgusting metal ass turned to shrapnel in your stomach!</span>")
 		return
@@ -247,6 +260,10 @@
 	var/obj/item/food_parent
 	var/list/status_effects = list()
 
+TYPEINFO(/datum/component/consume/food_effects)
+	initialization_args = list(
+		ARG_INFO("status_effects", "list", "List of status effects to apply when eaten")
+	)
 /datum/component/consume/food_effects/Initialize(var/list/_status_effects)
 	..()
 	if(!istype(parent, /obj/item))

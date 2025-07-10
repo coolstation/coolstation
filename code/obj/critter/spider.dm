@@ -18,6 +18,10 @@
 	var/venom1 = "venom"
 	var/flailing = 0
 
+	New()
+		..()
+		AddComponent(/datum/component/spider_filter_item)
+
 	CritterAttack(mob/M)
 		..()
 		if(iscarbon(M) && M.reagents)
@@ -106,6 +110,7 @@
 		if (!icon_state && !babyspider)
 			icon_state = pick("big_spide", "big_spide-red", "big_spide-green", "big_spide-blue")
 			src.dead_state = "[src.icon_state]-dead"
+		AddComponent(/datum/component/spider_filter_item)
 
 	CritterDeath()
 		if(!src.alive) return
@@ -524,8 +529,8 @@
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable(/obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		new src.item_shoes(src.loc)
 		if (prob(25))
 			new src.item_mask(src.loc)
@@ -581,8 +586,8 @@
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable( /obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		new src.item_shoes(src.loc)
 		new src.item_shoes(src.loc)
 		new src.item_shoes(src.loc)

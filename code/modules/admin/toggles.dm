@@ -125,6 +125,7 @@ var/list/server_toggles_tab_verbs = list(\
 		//src.verbs -= /proc/possess
 		src.verbs -= /client/proc/addreagents
 		src.verbs -= /client/proc/cmd_admin_rejuvenate
+		src.verbs -= /client/proc/cmd_admin_rejuvenate_crit
 
 		src.verbs -= /client/proc/main_loop_context
 		src.verbs -= /client/proc/main_loop_tick_detail
@@ -142,7 +143,7 @@ var/list/server_toggles_tab_verbs = list(\
 		//src.verbs += /proc/possess
 		src.verbs += /client/proc/addreagents
 		src.verbs += /client/proc/cmd_admin_rejuvenate
-
+		src.verbs += /client/proc/cmd_admin_rejuvenate_crit
 		src.verbs += /client/proc/main_loop_context
 		src.verbs += /client/proc/main_loop_tick_detail
 		src.verbs += /client/proc/ticklag
@@ -607,16 +608,16 @@ var/global/IP_alerts = 1
 		boutput(usr, "Pray turned off")
 	message_admins("[key_name(usr)] toggled its Pray to [pray_l].")
 
-/client/proc/toggle_flourish()
+/client/proc/toggle_pizzazz()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc="Toggles Your Flourish Mode"
-	set name="Toggle Flourish Mode"
+	set desc="Toggles Your Pizzazz Mode"
+	set name="Toggle Pizzazz Mode"
 	NOT_IF_TOGGLES_ARE_OFF
-	if(flourish)
-		flourish = 0
+	if(pizzazz)
+		pizzazz = 0
 	else
-		flourish = 1
-	message_admins("[key_name(usr)] toggled its Flourish Mode to [flourish].")
+		pizzazz = 1
+	message_admins("[key_name(usr)] toggled Pizzazz Mode to [pizzazz].")
 
 /datum/admins/proc/adsound()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)

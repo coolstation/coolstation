@@ -2406,9 +2406,6 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 	src.update_overlays()
 
-/obj/vehicle/forklift/get_movement_controller(mob/user)
-	return movement_controller
-
 //We, unfortunately, can't use the base relaymove here because the forklift has some
 // special behaviors with overlays and underlays that produce weird behaviors
 // (ghost riders, phantom crates) when combined with the base relaymove

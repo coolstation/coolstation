@@ -78,7 +78,7 @@
   // TODO: ACTUAL GRAPHICS
   icon_state = "atmos"
   item_state = "analyzer"
-  rand_pos = 1
+  rand_pos = 8
   w_class = W_CLASS_SMALL
   flags = FPRINT | TABLEPASS | ONBELT
   var/on = 0

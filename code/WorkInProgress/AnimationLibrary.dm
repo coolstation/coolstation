@@ -188,7 +188,7 @@
 ///obj/attackby(var/obj/item/I as obj, mob/user as mob)
 //	attack_particle(user,src)
 //	..()
-/proc/attack_particle(var/mob/M, var/atom/target)
+/proc/attack_particle(var/mob/M, var/atom/target, var/hidden = FALSE)
 	if (!M || !target || !M.attack_particle) return
 	var/diff_x = target.x - M.x
 	var/diff_y = target.y - M.y
@@ -211,6 +211,12 @@
 
 	M.attack_particle.alpha = 180
 	M.attack_particle.loc = M.loc
+	var/image/fake
+	if(hidden)
+		fake = image(M.attack_particle.icon,M.attack_particle,M.attack_particle.icon_state)
+		M.attack_particle.icon = 'icons/mob/mob.dmi'
+		M.attack_particle.icon_state = "blank"
+		M << fake
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -230,10 +236,11 @@
 	SPAWN_DBG(0.5 SECONDS)
 		//animate(M.attack_particle, alpha = 0, time = 2, flags = ANIMATION_PARALLEL)
 		M.attack_particle?.alpha = 0
+		qdel(fake)
 
 /mob/var/last_interact_particle = 0
 
-/proc/interact_particle(var/mob/M, var/atom/target)
+/proc/interact_particle(var/mob/M, var/atom/movable/target, var/turf = FALSE)
 	if (!M || !target) return
 	if (world.time <= M.last_interact_particle + M.combat_click_delay) return
 	var/diff_x = target.x - M.x
@@ -270,7 +277,10 @@
 		//animate(transform = t_size, time = 6, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
 
 		animate(M.attack_particle, transform = t_size, time = 6, easing = BOUNCE_EASING)
-		animate(pixel_x = (diff_x*32) + target.pixel_x, pixel_y = (diff_y*32)  + target.pixel_y, time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
+		if(turf)
+			animate(pixel_x = (diff_x*32) + target.pixel_x, pixel_y = (diff_y*32) + target.pixel_y, time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
+		else
+			animate(pixel_x = (diff_x*32) + target.pixel_x + (target.bound_width * 0.5 - 16), pixel_y = (diff_y*32) + target.pixel_y + (target.bound_height * 0.5 - 16), time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
 		sleep(0.5 SECONDS)
 		//animate(M.attack_particle, alpha = 0, time = 2, flags = ANIMATION_PARALLEL)
 		M.attack_particle.alpha = 0
@@ -467,7 +477,11 @@ var/global/list/default_muzzle_flash_colors = list(
 
 proc/muzzle_flash_attack_particle(var/mob/M, var/turf/origin, var/turf/target, var/muzzle_anim, var/muzzle_light_color=null, var/offset=25)
 	if (!M || !origin || !target || !muzzle_anim) return
-	var/firing_angle = get_angle(origin, target)
+	var/firing_angle
+	if(origin == target)
+		firing_angle = dir_to_angle(M.dir)
+	else
+		firing_angle = get_angle(origin, target)
 	muzzle_flash_any(M, firing_angle, muzzle_anim, muzzle_light_color, offset)
 
 proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var/muzzle_light_color, var/offset=25)
@@ -1543,3 +1557,33 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 	SPAWN_DBG(0)
 		animate(A, transform = M, time = timing, loop = -1, easing = LINEAR_EASING)
 		animate(transform = MD, time = timing, loop = -1, easing = LINEAR_EASING)
+
+//Weeee!
+/proc/animate_fall(var/atom/movable/AM, var/time = 2 SECONDS, var/min_scale = 0.3)
+	var/matrix/shrink = matrix()
+	var/matrix/M = matrix(AM.transform)
+	shrink.Scale(min_scale,min_scale * 0.9)
+	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
+	SPAWN_DBG(0)
+		animate(AM, transform = shrink, time = time, pixel_y = AM.pixel_y - y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
+		animate(transform = M, pixel_y = AM.pixel_y + y_shift)
+
+//!eeee...
+/proc/animate_rise_bottom(var/atom/movable/AM, var/time = 2.8 SECONDS, var/max_scale = 1.3, y_raise = 96, fadeout = 128)
+	var/matrix/grow = matrix()
+	var/matrix/M = matrix(AM.transform)
+	grow.Scale(max_scale,max_scale * 0.9)
+	var/previous_alpha = AM.alpha
+	SPAWN_DBG(0)
+		animate(AM, transform = grow, time = time, pixel_y = AM.pixel_y + y_raise, alpha = max(AM.alpha - fadeout, 0), easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
+		animate(transform = M, pixel_y = AM.pixel_y - y_raise, alpha = previous_alpha)
+
+//...eeeeW
+/proc/animate_rise_top(var/atom/movable/AM, var/time = 1.2 SECONDS, var/min_scale = 0.3)
+	var/matrix/shrink = matrix()
+	var/matrix/M = matrix(AM.transform)
+	shrink.Scale(min_scale,min_scale * 0.9)
+	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
+	SPAWN_DBG(0)
+		animate(AM, transform = shrink, pixel_y = AM.pixel_y - y_shift)
+		animate(transform = M, time = time, pixel_y = AM.pixel_y + y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)

@@ -76,18 +76,17 @@ datum
 			transparency = 30
 			addiction_prob = 10//50
 			addiction_min = 15
-			overdose = 20
+			overdose = 15
+			depletion_rate = 0.2
+			contraband = 1
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+
 			on_add()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -3)
+					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -95,6 +94,7 @@ datum
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -102,22 +102,38 @@ datum
 				if(!M) M = holder.my_atom
 				if(!counter) counter = 1
 				//don't do shit if there's naloxone in you
-				if(!holder.has_reagent("naloxone"))
-					M.jitteriness = max(M.jitteriness-25,0)
-					if(holder.has_reagent("omegazine"))
-						holder.remove_reagent("omegazine", 3 * mult)
+				if(holder.has_reagent("naloxone"))
+					..()
+					return
 
-					switch(counter += 1 * mult)
-						if(1 to 15)
-							if(probmult(7)) M.emote("yawn")
-						if(16 to 35)
-							M.drowsyness  = max(M.drowsyness, 20)
-						if(36 to INFINITY)
-							M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
-							M.drowsyness  = max(M.drowsyness, 20)
+				M.jitteriness = max(M.jitteriness-25,0)
+				if(holder.has_reagent("omegazine"))
+					holder.remove_reagent("omegazine", 3 * mult)
+
+				switch(counter += 1 * mult)
+					if(1 to 40)
+						if(probmult(5)) M.emote("yawn")
+					if(40 to 60)
+						if(probmult(25)) M.drowsyness  = max(M.drowsyness, 5)
+					if(60 to INFINITY)
+						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
+						M.drowsyness  = max(M.drowsyness, 20)
+						holder.remove_reagent("morphine", 0.2 * mult) //morphine gets flushed faster while you are KO'd
+
+						if(probmult(35) && counter > 70)
+							M.losebreath += (5)
+							M.take_toxin_damage(2)
 
 				..()
 				return
+
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				if (counter < 35) // OD makes morphine act significantly faster
+					counter = 35
+				..()
+				return
+
 
 		//prevents morphine from working (specifically for stopping overdose condition)
 		medical/naloxone
@@ -141,7 +157,7 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -3)
+					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -158,13 +174,18 @@ datum
 			addiction_prob = 10//50
 			addiction_min = 15
 			overdose = 20
+			depletion_rate = 0.6
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
+			flammable_influence = TRUE
+			combusts_on_gaseous_fire_contact = TRUE
+			burn_speed = 4
+			burn_energy = 550000
+			burn_temperature = 2200
+			burn_volatility = 15 // Very Dangerous
+			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
 			value = 5
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+			evaporates_cleanly = TRUE
+
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -181,20 +202,38 @@ datum
 				if(!M) M = holder.my_atom
 				if(!counter) counter = 1
 				M.jitteriness = max(M.jitteriness-25,0)
+				M.stuttering += rand(3,5)
 				if(holder.has_reagent("omegazine"))
 					holder.remove_reagent("omegazine", 2 * mult)
 
 				switch(counter += 1 * mult)
-					if(1 to 15)
-						if(probmult(7)) M.emote("yawn")
-					if(16 to 35)
-						M.drowsyness  = max(M.drowsyness, 20)
-					if(36 to INFINITY)
+					if(3 to 14)
+						if(probmult(10))
+							M.emote(pick("yawn", "giggle", "laugh"))
+							M.drowsyness  = max(M.drowsyness, 8)
+					if(14 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
+						holder.remove_reagent("ether", 0.4 * mult)
 						M.drowsyness  = max(M.drowsyness, 20)
 
 				..()
 				return
+
+			reaction_temperature(exposed_temperature, exposed_volume)
+				. = ..()
+				if(holder && !holder.is_combusting)
+					holder.start_combusting()
+				return
+
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				M.take_brain_damage(0.5 * mult)
+				M.take_toxin_damage(0.5 * mult)
+				holder.remove_reagent("ether", mult)
+				if(probmult(20))
+					M.emote(pick("shudder","shiver","drool"))
+					boutput(M, "<span class='alert'>You feel very sick!</span>")
 
 		//for gas station boner pills
 		medical/bonerjuice //probably moving this to medical
@@ -207,6 +246,8 @@ datum
 			transparency = 100
 			addiction_prob = 20
 			overdose = 35
+			var/static/list/halluc_skeleton = list(new /image('icons/mob/human.dmi',"skeleton"))
+			var/static/list/sex_garfield = list(new /image('icons/obj/vehicles/vehicles.dmi', "sex"))
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (prob(5))
@@ -245,9 +286,9 @@ datum
 					M.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
 				if (prob(5))
 					if(prob(95))
-						fake_attackEx(M, 'icons/mob/human.dmi', "skeleton", (pick("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected")))
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=halluc_skeleton, name_list=list("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected"), attacker_prob=15, max_attackers=1)
 					else
-						fake_attackEx(M, 'icons/obj/vehicles/vehicles.dmi', "sex", "sex garfield")
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=sex_garfield, name_list=list("sex garfield"), attacker_prob=100, max_attackers=1)
 				return
 
 			on_remove()
@@ -353,9 +394,13 @@ datum
 			overdose = 25
 			depletion_rate = 0.1
 			value = 11 // 5c + 3c + 1c + 1c + 1c
+			var/fake_health = -10
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				if(src.fake_health < 45)
+					src.fake_health += mult
+				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
 				if(prob(55))
 					M.HealDamage("All", 2 * mult, 0)
 				//set it so it only slowly reduces mild fevers from disease and not, you know, burn victims
@@ -371,8 +416,10 @@ datum
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 			on_remove()
+				src.fake_health = -10
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
+					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 		//hmm. well.
@@ -525,9 +572,9 @@ datum
 					volume = (volume/covered.len)
 
 				if(volume >= 5)
-					if(!locate(/obj/decal/cleanable/blood/gibs) in T)
+					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/blood/gibs,T)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
 			/*reaction_obj(var/obj/O, var/volume)
 				if(istype(O,/obj/item/parts/robot_parts/robot_frame))
 					if (O.check_completion() && volume >= 20)
@@ -680,6 +727,7 @@ datum
 			penetrates_skin = 1 // splashing saline on someones wounds would sorta help clean them
 			depletion_rate = 0.15
 			value = 5 // 3c + 1c + 1c
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -989,15 +1037,15 @@ datum
 					if (effect <= 2)
 						M.visible_message("<span class='alert'>[M] coughs up a lot of blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(5,10) * mult, 3 * mult)
+						bleed(M, rand(5,10) * mult)
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'>[M] coughs up a little blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(1,2) * mult, 1 * mult)
+						bleed(M, rand(1,2) * mult)
 				else if (severity == 2) // greater
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M] is bleeding from [his_or_her(M)] very pores!</span>")
-						bleed(M, rand(10,20) * mult, rand(1,3) * mult)
+						bleed(M, rand(10,20) * mult)
 						if (ishuman(M))
 							var/mob/living/carbon/human/H = M
 							var/list/gear_to_bloody = list(H.r_hand, H.l_hand, H.head, H.wear_mask, H.w_uniform, H.wear_suit, H.belt, H.gloves, H.glasses, H.shoes, H.wear_id, H.back)
@@ -1009,11 +1057,11 @@ datum
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'>[M] coughs up a lot of blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(5,10) * mult, 3 * mult)
+						bleed(M, rand(5,10) * mult)
 					else if (effect <= 8)
 						M.visible_message("<span class='alert'>[M] coughs up a little blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(1,2) * mult, 1 * mult)
+						bleed(M, rand(1,2) * mult)
 
 		// old name for factor VII, which is a protein that causes blood to clot.
 		//this stuff is seemingly just used for people with hemophilia but this is ss13 so let's give it to everybody who's bleeding a little, it's fine.
@@ -1076,7 +1124,7 @@ datum
 					else if (severity > 1 && prob(50))
 						L.visible_message("<span class='alert'>[L] coughs up a little blood!</span>")
 						playsound(L, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(L, rand(2,8) * mult, 3 * mult)
+						bleed(L, rand(2,8) * mult)
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						if (H.organHolder)
@@ -1608,6 +1656,43 @@ datum
 				..()
 				return
 
+		//what??? Medical??? Why yes, it's an anticonvulsant you see!
+		medical/pentobarbital
+			name = "pentobarbital"
+			id = "pentobarbital"
+			description = "This antiquated barbiturate still sees seldom use as an anticonvulsant, and to aid brain swelling. Larger doses carry the danger of arrested respiration."
+			reagent_state = LIQUID
+			fluid_r = 240
+			fluid_g = 250
+			fluid_b = 255
+			transparency = 40
+			value = 4 // 1 1 1 1
+			overdose = 10
+
+			on_mob_life(var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				M.take_brain_damage(-1 * mult)
+
+				M.jitteriness = max(M.jitteriness-5,0)
+				M.do_disorient(disorient = src.volume)
+
+				if(probmult(5))
+					M.drowsyness = max(M.drowsyness, src.volume)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), rand(1,src.volume)))
+					for(var/datum/ailment_data/disease/virus in M.ailments)
+						if(istype(virus.master,/datum/ailment/disease/space_madness) || istype(virus.master,/datum/ailment/disease/berserker))
+							M.cure_disease(virus)
+
+				if(probmult(10)) M.emote("drool")
+				..()
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				M.losebreath = max(5, M.losebreath)
+
+				if (severity >= 2 && probmult(20))
+					M.drowsyness = max(M.drowsyness, src.volume)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), src.volume))
+
 		//ideally this prevents accumulation of further brain damage instead of healing it
 		//specifically, brain damage from fever and psychic damage or whatever instead of oxygen deprevation (cardiovascular problems)
 		//then we can have some other medication for actually healing brain damage, potentially with synthflesh as a precursor reagent
@@ -1622,6 +1707,7 @@ datum
 			transparency = 240
 			value = 3 // 1 1 1
 			target_organs = list("brain")		//unused for now
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom

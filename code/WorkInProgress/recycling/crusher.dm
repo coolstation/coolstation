@@ -1,5 +1,5 @@
 /obj/machinery/crusher
-	name = "Crusher Unit"
+	name = "crusher unit"
 	desc = "Breaks things down into metal/glass/waste"
 	density = 1
 	icon = 'icons/obj/scrap.dmi'
@@ -49,6 +49,9 @@
 			qdel(O)
 		logTheThing("combat", M, null, "is ground up in a crusher at [log_loc(src)].")
 		M.gib()
+		#ifdef DATALOGGER
+		game_stats.Increment("workplacesafety")
+		#endif
 	else if(isobj(AM))
 		var/obj/B = AM
 		tm_amt += B.m_amt
@@ -158,7 +161,7 @@
 
 
 /obj/machinery/crusher/industrialcrusher
-	name = "Industrial Crusher Unit"
+	name = "industrial crusher unit"
 	desc = "Efficiently breaks down most matter, reducing it to its base materials."
 	icon = 'icons/obj/scrap.dmi' //make it have like, orange and white tape around it or something idk i'll do it later
 	icon_state = "Crusher_1"
