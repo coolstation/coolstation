@@ -361,7 +361,7 @@
 		var/list/masks = list(/obj/item/clothing/mask/batman, /obj/item/clothing/mask/clown_hat, /obj/item/clothing/mask/horse_mask, /obj/item/clothing/mask/moustache, /obj/item/clothing/mask/gas/swat, /obj/item/clothing/mask/owl_mask, /obj/item/clothing/mask/hunter, /obj/item/clothing/mask/skull, /obj/item/clothing/mask/spiderman)
 		var/masktype = pick(masks)
 		new masktype(target)
-		new /obj/item/gun/energy/laser_gun/virtual(target)
+		//new /obj/item/gun/energy/laser_gun/virtual(target)
 		new /obj/item/extinguisher/virtual(target)
 		new /obj/item/card/id/gauntlet(target, forwhom)
 		// CRITTERGAUNTLETTODO - 2/3rds chance that the key only works with one type of artifact and with how rare artifact spawns are that makes them worthless.
@@ -701,7 +701,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		point_cost = -3
 		minimum_level = 20
 		probability =  20
-		supplies = list(/obj/item/chem_grenade/very_incendiary/vr, /* /obj/item/gun/kinetic/spes */, /obj/item/gun/energy/laser_gun/virtual)
+		supplies = list(/obj/item/chem_grenade/very_incendiary/vr, /* /obj/item/gun/kinetic/spes, /obj/item/gun/energy/laser_gun/virtual*/)
 
 	welding
 		name = "Welders"
@@ -744,7 +744,6 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		max_percent = 0.5
 		max_amount = 1
 		supplies = list(/obj/item/gun/kinetic/ak47)
-*/
 
 	bfg
 		name = "The BFG"
@@ -772,7 +771,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		min_percent = 0.25
 		max_percent = 0.5
 		supplies = list(/obj/item/gun/energy/laser_gun/pred/vr)
-
+*/
 	axe
 		name = "Energy Axes"
 		point_cost = -2.5

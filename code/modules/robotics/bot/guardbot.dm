@@ -136,25 +136,14 @@
 
 	////////////////////// GUN STUFF -V
 	// Lifted from secbot!
-	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/taser_gun,\
-											/obj/item/gun/energy/vuvuzela_gun,\
-											/obj/item/gun/energy/wavegun,\
-											/obj/item/gun/energy/pulse_rifle,
-											/obj/item/gun/bling_blaster,\
+	var/global/list/budgun_whitelist = list(/obj/item/gun/bling_blaster,\
 											/obj/item/bang_gun,\
 											/obj/item/gun/russianrevolver,\
-											/obj/item/gun/energy/egun,\
 											/obj/item/gun/energy/ghost,\
-											/obj/item/gun/energy/owl_safe,\
-											/obj/item/gun/energy/frog,\
 											/obj/item/gun/energy/shrinkray,\
 											/obj/item/gun/energy/glitch_gun)
 	// List of guns that arent wierd gimmicks or traitor weapons
-	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/taser_gun,\
-											/obj/item/gun/energy/wavegun,\
-											/obj/item/gun/energy/pulse_rifle,\
-											/obj/item/gun/energy/egun,\
-											/obj/item/bang_gun)
+	var/global/list/budgun_actualguns = list(/obj/item/bang_gun)
 	var/shotcount = 1		// Number of times it shoots when it should, modded by emag state
 	var/gun = null			// What's the name of our robot's gun? Used in the chat window!
 	var/obeygunlaw = 1		// Does our bot follow the gun whitelist?
@@ -410,8 +399,6 @@
 				src.hasgun = 1
 				src.gun = budgun.name
 				update_icon()
-				if(istype(src.budgun, /obj/item/gun/energy/egun))
-					CheckSafety(src.budgun, src.emagged, null)
 
 			if(radio_controller)
 				radio_connection = radio_controller.add_object(src, "[control_freq]")
@@ -471,9 +458,6 @@
 			if (src.idle || !src.on)
 				SPAWN_DBG(1 SECOND)
 					boutput(user, "[src] looks confused for a moment.")
-		if (src.budgun)
-			if(istype(src.budgun, /obj/item/gun/energy/egun))
-				CheckSafety(src.budgun, 1, user)
 		return 1
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -574,77 +558,6 @@
 			else if (W.force && src.task)
 				src.task.attack_response(user)
 			..()
-
-	proc/CheckSafety(var/obj/item/gun/energy/W, var/unsafe = 0, var/user = null)
-		if (!istype(W, /obj/item/gun/energy/egun))
-			return	// Eguns only, please!
-		if (!src.on || src.idle)
-			src.slept_through_laser_class = 1	// y'know, whenever you get a chance
-			return
-		var/fluffbud = pick("small", "cute", "handsome", "adorable", "lovable", "lovely")
-		var/budfluff = pick("Thinktronic Data System", "rectangular device",\
-											 "robot under warranty", "ambulatory home appliance")
-		var/fluffbad1 = pick("a total bad a-s-s", "an intimidating", "a rugged",\
-											 "a sovereign", "an edgy", "an unlovable",\
-											 "a [pick("strikingly","")] robust", "a freedom-loving")
-		var/fluffbad2 = pick("spacehunter", "sight to behold", "allied mastercomputer",\
-											 "quadrangle", "starfighter", "free-willed individual stuck in a rectangle",\
-											 "future president of space", "future space federation wrestling champion")
-
-		if (!unsafe) // we're a good little robot
-			if (!istype(src.budgun.current_projectile, /datum/projectile/laser))
-				speak("Aww, [src.slept_through_laser_class ? "whoever gave me this [src.budgun] knows" : "you know"] just how I like my Multiple-Firemode Energy Weapons!")
-				set_emotion("love")
-			else
-				if(slept_through_laser_class)
-					src.visible_message("[src] looks at the [src.budgun] in its hand, curious.")
-					speak("Huh, that's new.")
-				speak("[(src.slept_through_laser_class || !user) ? "" : "Thank you, [user]! "]Oh... but article-[(rand(1,6))] subsection-[rand(1,32764)] of Spacelaw prohibits any [fluffbud] [budfluff] from wielding a Class-[pick("A", "B","C", "D")] laser weapon.")
-				SPAWN_DBG(2 SECONDS)
-					speak("Oh! This weapon has a stun setting! That makes it [pick("A-OK", "totally fine", "well within certain loopholes of the law")] for me to use!")
-					src.budgun.set_current_projectile(new /datum/projectile/energy_bolt)
-					src.budgun.item_state = "egun"
-					src.budgun.icon_state = "energystun100"
-					src.budgun.muzzle_flash = "muzzle_flash_elec"
-					src.budgun.update_icon()
-					update_icon()
-		else if (!istype(src.budgun.current_projectile, /datum/projectile/laser)) // Our Egun is set to stun
-			speak("I can't kill anything with this!")
-			SPAWN_DBG(2 SECONDS)
-				speak("Much better!")
-				src.budgun.set_current_projectile(new /datum/projectile/laser)
-				src.budgun.item_state = "egun"
-				src.budgun.icon_state = "energykill100"
-				src.budgun.muzzle_flash = "muzzle_flash_laser"
-				src.budgun.update_icon()
-				update_icon()
-		else	// LASER
-			if (src.said_dumb_things)
-				return
-			src.said_dumb_things = 1
-			SPAWN_DBG(15 SECONDS)
-				src.said_dumb_things = 0
-			speak("[user ? "Thank you, [user]! Oh... but a" : "A"]rticle-[rand(1,6)] subsection-[rand(1,32764)] of Spacelaw prohibits any [fluffbud] [budfluff] from wielding a Class-[pick("A", "B","C", "D")] laser weapon.")
-			SPAWN_DBG(2 SECONDS)
-				if (user)
-					speak("But, you wouldn't say that I'm [fluffbud], would you?")
-				else
-					speak("But hey, the law's for [pick("chumps", "the spacebirds", "losers")], right?")
-				if (prob(25))
-					sleep(2 SECONDS)
-					if(user)
-						speak("Cus I'd say I'm more [fluffbad1] [fluffbad2].")
-					else
-						speak("Right?")
-					if (prob(25))
-						sleep(10 SECONDS)
-						if (src?.on)	// Are they even still alive or something
-							if(user)
-								speak("Yup. That's me. Definitely [fluffbad1] [fluffbad2] through and through.")
-							else
-								speak("Yeah. I'm right. Heck the law. Heck the law for real!")
-		if (src.slept_through_laser_class)
-			src.slept_through_laser_class = 0
 
 	proc/GunSux()
 		var/turf/TdurgSux = get_turf(src)
@@ -910,8 +823,6 @@
 				user.u_equip(Q)
 				update_icon()
 				IllegalBotMod(null, user)	// Time to see if our mods want to do anything with this gun
-				if(istype(Q, /obj/item/gun/energy/egun))
-					CheckSafety(src.budgun, src.emagged, user)
 
 			if ("tool")
 				if (src.locked) // It locked, then unlock it
@@ -1278,8 +1189,6 @@
 			src.obeygunlaw = 0
 			src.set_emotion("look")
 
-		if(istype(src.budgun, /obj/item/gun/energy/egun))
-			CheckSafety(src.budgun, 1)
 		return
 
 	explode(var/allow_big_explosion=1)
@@ -1726,9 +1635,6 @@
 
 		if(src.reply_wait)
 			src.reply_wait--
-
-		if(src.on && !src.idle && src.slept_through_laser_class)	// Rise and shine, buddy
-			CheckSafety(src.budgun, src.emagged)	// Look at your gun!
 
 		if(!src.tasks.len && (src.model_task || setup_default_startup_task))
 			if(!src.model_task)

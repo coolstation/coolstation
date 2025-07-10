@@ -1881,18 +1881,6 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 	class2 = "weapon"
 	price = 30000
 	item_path = /obj/item/sword
-/datum/gang_item/space/phaser_gun
-	name = "Phaser Gun"
-	desc = "It shoots phasers."
-	class2 = "weapon"
-	price = 1300
-	item_path = /obj/item/gun/energy/phaser_gun
-/datum/gang_item/space/laser_gun
-	name = "Laser Gun"
-	desc = "It shoots lasers."
-	class2 = "weapon"
-	price = 20000
-	item_path = /obj/item/gun/energy/laser_gun
 /datum/gang_item/space/stims
 	name = "Stimulants"
 	desc = "These drugs'll keep you goin'."

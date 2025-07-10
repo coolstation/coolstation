@@ -1924,14 +1924,6 @@
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/thrusters
 
-/******************** Alastor Pattern Thruster Blueprints *******************/
-/obj/item/paper/manufacturer_blueprint/alastor
-	icon = 'icons/obj/items/writing.dmi'
-	icon_state = "blueprint"
-	desc = "Seems like theres traces of charcoal on the paper. Huh."
-	blueprint = /datum/manufacture/alastor
-
-
 /******************** Spatial Interdictor *******************/
 
 /obj/item/paper/manufacturer_blueprint/interdictor_frame

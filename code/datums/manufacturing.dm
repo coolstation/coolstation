@@ -3015,17 +3015,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
-/******************** GUNS *******************/
-
-/datum/manufacture/alastor
-	name = "Alastor pattern laser rifle"
-	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
-	item_amounts = list(1,10,20,20)
-	item_outputs = list(/obj/item/gun/energy/alastor)
-	time = 30 SECONDS
-	create = 1
-	category = "Tool"
-
 /************ INTERDICTOR STUFF ************/
 
 /datum/manufacture/interdictor_frame

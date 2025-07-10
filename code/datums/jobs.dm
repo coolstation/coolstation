@@ -223,7 +223,7 @@ ABSTRACT_TYPE(/datum/job/command)
 		slot_back = list(/obj/item/storage/backpack/NT)
 		slot_mask = list(/obj/item/clothing/mask/gas)
 		slot_eyes = list(/obj/item/clothing/glasses/thermal)
-		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/camera,/obj/item/gun/energy/egun)
+		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/camera/*,/obj/item/gun/energy/egun*/)
 
 		special_setup(var/mob/living/carbon/human/M)
 			..()
@@ -332,7 +332,7 @@ ABSTRACT_TYPE(/datum/job/command)
 		slot_glov = list(/obj/item/clothing/gloves/latex)
 		slot_back = list(/obj/item/storage/backpack/NT)
 		slot_eyes = list(/obj/item/clothing/glasses/thermal)
-		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/breaching_charge,/obj/item/breaching_charge,/obj/item/gun/energy/laser_gun/pred)
+		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/breaching_charge,/obj/item/breaching_charge/*,/obj/item/gun/energy/laser_gun/pred*/)
 
 		special_setup(var/mob/living/carbon/human/M)
 			..()
@@ -589,7 +589,7 @@ ABSTRACT_TYPE(/datum/job/security)
 		slot_head = list(/obj/item/clothing/head/helmet/swat)
 		slot_glov = list(/obj/item/clothing/gloves/fingerless)
 		slot_back = list(/obj/item/storage/backpack/NT)
-		slot_belt = list(/obj/item/gun/energy/laser_gun)
+		//slot_belt = list(/obj/item/gun/energy/laser_gun)
 		slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
 		items_in_backpack = list(/obj/item/crowbar,/obj/item/device/light/flashlight,/obj/item/baton,/obj/item/breaching_charge,/obj/item/breaching_charge)
 
@@ -2465,7 +2465,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	allow_spy_theft = 0
 	cant_spawn_as_rev = 1
 
-	slot_back = list(/obj/item/gun/energy/blaster_cannon)
+	//slot_back = list(/obj/item/gun/energy/blaster_cannon)
 	slot_belt = list(/obj/item/storage/fanny)
 	//more
 /datum/job/special/juicer/clubfert

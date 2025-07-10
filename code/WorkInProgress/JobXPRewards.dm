@@ -332,7 +332,6 @@ mob/verb/checkrewards()
 	sacrifice_name = "Lawbringer"
 	required_levels = list("Head of Security"=5)
 
-*/
 
 //Captain
 
@@ -389,7 +388,6 @@ mob/verb/checkrewards()
 //Detective
 
 //this will go away when detective revolver is modular
-/*
 /datum/jobXpReward/detective
 	name = "The Colt"
 	desc = "Gain access to an older replica of a fake gun by sacrificing your revolver."

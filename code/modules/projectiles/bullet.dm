@@ -230,7 +230,7 @@ toxic - poisons
 	implanted = /obj/item/implant/projectile/bullet_rifle_nt_ap
 	dud_freq = 0
 
-//Italian long
+//Soviet long
 /datum/projectile/bullet/rifle/soviet
 	name = "bullet"
 	//SemiAutoRifleShot.wav by SuperPhat -- https://freesound.org/s/421710/ -- License: Creative Commons 0
@@ -315,7 +315,7 @@ toxic - poisons
 	icon_turf_hit = null
 	implanted = null
 
-/datum/projectile/bullet/shot/NT/mini //for maintenance pest control, fired in a group of 8 (up to 32)
+/datum/projectile/bullet/shot/NT/mini //for maintenance pest control, fired in a group of 8 (up to 24)
 	name = "ratshot"
 	sname = "ratshot"
 	power = 3

@@ -832,7 +832,7 @@ This is basically useless for anyone but miners.
 	desc = "A box of shot glasses that hold WAAAY more that normal. Cheat at drinking games!"
 	job = list("Bartender")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
+/*
 /datum/syndicate_buylist/traitor/vuvuzelagun
 	name = "Vuvuzela Gun"
 	item = /obj/item/gun/energy/vuvuzela_gun
@@ -840,7 +840,7 @@ This is basically useless for anyone but miners.
 	desc = "<b>BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</b>"
 	job = list("Assistant","Technical Assistant","Medical Assistant","Staff Assistant", "Clown")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
+*/
 /datum/syndicate_buylist/traitor/moustache_grenade
 	name = "Moustache Grenade"
 	item = /obj/item/old_grenade/moustache
@@ -945,14 +945,14 @@ This is basically useless for anyone but miners.
 	cost = 2
 	desc = "An ornamental dagger for stabbing people with."
 	blockedmode = list(/datum/game_mode/spy)
-
+/*
 /datum/syndicate_buylist/surplus/advanced_laser
 	name = "Laser Rifle"
 	item = /obj/item/gun/energy/laser_gun/pred
 	cost = 6
 	desc = "An experimental laser design with a self-charging cerenkite battery."
 	blockedmode = list(/datum/game_mode/spy_theft ,/datum/game_mode/spy, /datum/game_mode/revolution)
-
+*/
 /datum/syndicate_buylist/surplus/breachingT
 	name = "Thermite Breaching Charge"
 	item = /obj/item/breaching_charge/thermite

@@ -485,17 +485,6 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 		access = access_securitylockers
 		hidden = 1
 
-	weapons2
-		name = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
-		desc = "Some future space guns that fell out of some kind of portal into our warehouse. Get them while supplies last."
-		contents = "x2 Phaser Gun"
-		contains = list(/obj/item/gun/energy/phaser_gun = 2)
-		cost = 5000
-		containertype = /obj/storage/secure/crate/weapon
-		containername = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
-		access = access_securitylockers
-		hidden = 1
-
 	antibio
 		name = "Anti-Biological Hazard Supplies"
 		desc = " A couple of tools for combatting rogue biological lifeforms."

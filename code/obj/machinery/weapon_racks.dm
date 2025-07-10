@@ -55,7 +55,7 @@
 */
 
 	//RANGED WEAPONS//
-
+/*
 	taser_rack
 		name = "taser rack"
 		desc = "A storage rack that fits 4 taser guns. Efficient!"
@@ -100,7 +100,6 @@
 			stand_type = "egun_charge_rack"
 			recharges_contents = 1
 
-/*
 	shotgun_rack
 		name = "shotgun rack"
 		desc = "A rack for holding 3 shotguns."

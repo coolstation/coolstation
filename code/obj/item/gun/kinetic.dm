@@ -395,7 +395,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/foamdarts/ten
 		set_current_projectile(new/datum/projectile/bullet/foamdart)
 		..()
-*/
 
 /obj/item/gun/kinetic/derringer
 	name = "derringer"
@@ -427,7 +426,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		..()
 		ammo.amount_left = 0
 		update_icon()
-
+*/
 /obj/item/gun/kinetic/dueling_pistol
 	name = "dueling pistol"
 	desc = "Let's settle this."
