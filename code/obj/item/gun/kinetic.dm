@@ -560,8 +560,9 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		if(hit_atom == usr)
 			if(prob(prob_clonk))
 				var/mob/living/carbon/human/user = usr
+				var/turf/T = get_turf(user)
 				user.visible_message("<span class='alert'><B>[user] fumbles the catch and accidentally discharges [src]!</B></span>")
-				src.ShootPointBlank(user, user)
+				src.Shoot(T, T, user, point_blank_target = user)
 				user.force_laydown_standup()
 			else
 				src.Attackhand(usr)
@@ -572,7 +573,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 				var/mob/living/carbon/human/user = usr
 				if(istype(user.wear_suit, /obj/item/clothing/suit/security_badge))
 					src.silenced = 1
-					src.ShootPointBlank(M, M)
+					src.Shoot(get_turf(M), get_turf(src), user, point_blank_target = M)
 					M.visible_message("<span class='alert'><B>[src] fires, hitting [M] point blank!</B></span>")
 					src.silenced = initial(src.silenced)
 
@@ -655,17 +656,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	shoot(var/target,var/start ,var/mob/user)
 		if(ammo.amount_left > 0 && !racked_slide)
 			boutput(user, "<span class='notice'>You need to rack the slide before you can fire!</span>")
-		..()
-		src.racked_slide = FALSE
-		src.casings_to_eject = 1
-		if (src.ammo.amount_left == 0) // change icon_state to empty if 0 shells left
-			src.update_icon()
-			src.casings_to_eject = 0
-
-	shoot_point_blank(user, user)
-		if(ammo.amount_left > 0 && !racked_slide)
-			boutput(user, "<span class='notice'>You need to rack the slide before you can fire!</span>")
-			return
 		..()
 		src.racked_slide = FALSE
 		src.casings_to_eject = 1
@@ -1422,7 +1412,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		set_current_projectile(new/datum/projectile/bullet/rifle_heavy)
-		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 3200, /datum/overlayComposition/sniper_scope, 'sound/weapons/scope.ogg')
+		AddComponent(/datum/component/holdertargeting/sniper_scope, 12, 3200, /datum/overlayComposition/sniper_scope_old, 'sound/weapons/scope.ogg')
 		..()
 
 	setupProperties()

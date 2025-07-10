@@ -2011,7 +2011,7 @@
 	create_products()
 		//..()
 		/*
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/improved, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
@@ -2061,9 +2061,9 @@
 		desc = "Un distributore automatico pieno di armi."
 		create_products()
 			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/silly, 1, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/masterwork, 2, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/improved, 4, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN*0.9)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/rifle, 1, cost = PAY_TRADESMAN*1.4)
 
@@ -2111,7 +2111,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, cost = PAY_TRADESMAN*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/ribbed, 2, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2, cost = PAY_UNTRAINED*1.1)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/improved, 2, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/short/basic, 2, cost = PAY_TRADESMAN*1.2)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 3, hidden=1, cost = PAY_TRADESMAN)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)

@@ -2559,7 +2559,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 							/obj/item/old_grenade/stinger/frag,
 							/obj/item/storage/firstaid/regular,
 							/obj/item/stackable_ammo/pistol/HP/ten,
-							/obj/item/gun/modular/italian/basic)
+							/obj/item/gun/modular/italian/revolver/basic)
 
 	New()
 		..()

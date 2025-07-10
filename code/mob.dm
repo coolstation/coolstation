@@ -496,7 +496,7 @@
 		for (var/datum/hud/hud in src.huds)
 			hud.add_client(src.client)
 
-		src.addOverlaysClient(src.client)  //ov1
+		addOverlaysClient(src.client, src)
 
 	src.emote_allowed = 1
 	src.ai?.suspended = TRUE
