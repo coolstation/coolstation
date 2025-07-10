@@ -276,15 +276,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 			name = "railroad"
 			icon_state = "railroad_concrete"
 
-	railroad_ties
-		name = "railroad"
-		desc = "Industry must flourish."
-		icon = 'icons/turf/floors.dmi'
-		icon_state = "railroad"
-		rock_mult = 0
-		generateLight = 1
+	no_spikes
 		big_rock_chance = 0
-		doublesize = FALSE
+
+		no_rocks
+			rock_mult = 0
 
 	plating
 		name = "sand-covered plating"
