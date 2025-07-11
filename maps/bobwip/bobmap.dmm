@@ -1410,20 +1410,6 @@
 /obj/storage/closet/emergency,
 /turf/floor/plating,
 /area/station/maintenance/inner/ne)
-"aBO" = (
-/obj/submachine/chef_sink/chem_sink{
-	dir = 8
-	},
-/obj/decal/cleanable/dirt/dirt3,
-/obj/decal/cleanable/blood/drip/low,
-/obj/decal/poster/wallsign/chsl{
-	pixel_y = 29
-	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 4
-	},
-/turf/floor/grey/blackgrime,
-/area/station/chapel/funeral_parlor)
 "aCc" = (
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
@@ -10286,6 +10272,13 @@
 /obj/wingrille_spawn/reinforced/classic,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"evk" = (
+/turf/shuttle/wall/cockpit/window{
+	dir = 8;
+	icon_state = "wall_trans";
+	name = "window"
+	},
+/area/shuttle/arrival/station)
 "evC" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
 /obj/machinery/light/small/warm,
@@ -16505,13 +16498,6 @@
 /obj/machinery/light/small/warm,
 /turf/floor,
 /area/station/mining/refinery)
-"gTI" = (
-/turf/floor/shuttle,
-/turf/shuttle/wall/cockpit/window{
-	icon_state = "wall_trans";
-	name = "window"
-	},
-/area/shuttle/arrival/station)
 "gTQ" = (
 /obj/disposalpipe/trunk/mail/east,
 /obj/machinery/light/emergency,
@@ -19908,16 +19894,6 @@
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
-"iqg" = (
-/obj/decal/cleanable/blood/splatter/extra,
-/obj/decal/cleanable/dirt/dirt5,
-/obj/npc/trader/exclown,
-/obj/machinery/light/emergencyflashing{
-	brightness = 0.7;
-	tag = "clownhole"
-	},
-/turf/floor,
-/area/station/crew_quarters/clown)
 "iql" = (
 /obj/landmark/start{
 	name = "Janitor"
@@ -25285,6 +25261,16 @@
 	},
 /turf/wall/r_wall,
 /area/station/hangar/main)
+"ktg" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter/extra,
+/obj/decal/cleanable/dirt/dirt5,
+/obj/npc/trader/exclown,
+/obj/machinery/light/emergencyflashing{
+	brightness = 0.7;
+	tag = "clownhole"
+	},
+/turf/floor,
+/area/station/crew_quarters/clown)
 "ktA" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/lattice{
@@ -25395,6 +25381,16 @@
 	dir = 4
 	},
 /area/station/hydroponics/lobby)
+"kwE" = (
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/meatball,
+/obj/table/auto,
+/obj/item/kitchen/utensil/knife/pizza_cutter,
+/obj/disposalpipe/segment,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/arcade,
+/area/station/crew_quarters/arcade)
 "kwM" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -29445,6 +29441,20 @@
 	dir = 4
 	},
 /area/station/storage/primary)
+"mcw" = (
+/obj/submachine/chef_sink/chem_sink{
+	dir = 8
+	},
+/obj/decal/cleanable/dirt/dirt3,
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/obj/decal/poster/wallsign/chsl{
+	pixel_y = 29
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/turf/floor/grey/blackgrime,
+/area/station/chapel/funeral_parlor)
 "mcG" = (
 /turf/wall/r_wall,
 /area/station/bridge/captain)
@@ -29715,6 +29725,15 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/shuttlebay,
 /area/station/mining/refinery)
+"mgl" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/obj/decal/cleanable/dirt/dirt5,
+/obj/map/light/dimred,
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor,
+/area/station/crew_quarters/clown)
 "mgq" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -33949,6 +33968,12 @@
 	dir = 8
 	},
 /area/station/crew_quarters/courtroom)
+"nPt" = (
+/turf/shuttle/wall/cockpit/window{
+	icon_state = "wall_trans";
+	name = "window"
+	},
+/area/shuttle/arrival/station)
 "nPz" = (
 /obj/rack,
 /obj/item/sheet/glass/reinforced/fullstack,
@@ -35010,6 +35035,16 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/north)
+"oli" = (
+/obj/machinery/optable{
+	name = "Autopsy Table"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/obj/machinery/light/small/ceiling/cool/very{
+	pixel_y = 10
+	},
+/turf/floor/grey/blackgrime,
+/area/station/chapel/funeral_parlor)
 "olj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
@@ -35568,16 +35603,6 @@
 /obj/disposalpipe/segment,
 /turf/floor,
 /area/station/hydroponics/bay)
-"owE" = (
-/obj/item/reagent_containers/food/snacks/pizza/meatball,
-/obj/table/auto,
-/obj/item/kitchen/utensil/knife/pizza_cutter,
-/obj/disposalpipe/segment,
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/floor/carpet/arcade,
-/area/station/crew_quarters/arcade)
 "owI" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -43159,15 +43184,6 @@
 /obj/machinery/cashreg,
 /turf/floor/wood/seven,
 /area/station/crew_quarters/jazz)
-"rCK" = (
-/obj/decal/cleanable/blood/tracks,
-/obj/decal/cleanable/dirt/dirt5,
-/obj/map/light/dimred,
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/floor,
-/area/station/crew_quarters/clown)
 "rCO" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -56723,16 +56739,6 @@
 "wMy" = (
 /turf/floor/sanitary/white,
 /area/station/science/lobby)
-"wMz" = (
-/obj/machinery/optable{
-	name = "Autopsy Table"
-	},
-/obj/decal/cleanable/blood/drip/low,
-/obj/machinery/light/small/ceiling/cool/very{
-	pixel_y = 10
-	},
-/turf/floor/grey/blackgrime,
-/area/station/chapel/funeral_parlor)
 "wML" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable/blue{
@@ -59072,14 +59078,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
-"xEj" = (
-/turf/floor/shuttle,
-/turf/shuttle/wall/cockpit/window{
-	dir = 8;
-	icon_state = "wall_trans";
-	name = "window"
-	},
-/area/shuttle/arrival/station)
 "xEo" = (
 /obj/machinery/atmospherics/pipe/vent{
 	name = "hot loop upper purge pressure"
@@ -91399,7 +91397,7 @@ bQE
 sYU
 eyu
 cuq
-owE
+kwE
 odZ
 xWJ
 eyu
@@ -92270,7 +92268,7 @@ jOu
 tqy
 bwn
 vlu
-wMz
+oli
 bbC
 aoO
 uTG
@@ -93174,7 +93172,7 @@ tqy
 azh
 cQu
 tqy
-aBO
+mcw
 mRt
 bwl
 cPe
@@ -102533,11 +102531,11 @@ xzG
 xzG
 xzG
 xbW
-gTI
+nPt
 kZD
 eEb
 kZD
-xEj
+evk
 qkm
 xzG
 xzG
@@ -114060,8 +114058,8 @@ orV
 kJZ
 pMM
 hMY
-rCK
-iqg
+mgl
+ktg
 yeY
 pHX
 xzG

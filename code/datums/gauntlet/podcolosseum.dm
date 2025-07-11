@@ -1059,9 +1059,6 @@ proc/get_colosseum_message(var/name, var/message)
 
 		movement_controller = new(src)
 
-	get_movement_controller()
-		return movement_controller
-
 	proc/on_damage()
 		next_shield_regen = ticker.round_elapsed_ticks + 50
 

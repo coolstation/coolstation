@@ -1,13 +1,13 @@
 /proc/gibs(atom/location, var/list/diseases, var/list/ejectables, var/blood_DNA, var/blood_type, var/headbits = 1, mob/living/source=null)
     // Added blood type and DNA for forensics (Convair880).
-	var/obj/decal/cleanable/blood/gibs/gib = null
+	var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
 	var/list/gibs = new()
 	if(!location)
 		location = usr
 	playsound(location, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib.streak_cleanable(NORTH)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
@@ -16,7 +16,7 @@
 	gibs.Add(gib)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib.streak_cleanable(SOUTH)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
@@ -25,7 +25,7 @@
 	gibs.Add(gib)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib.streak_cleanable(WEST)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
@@ -34,7 +34,7 @@
 	gibs.Add(gib)
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib.streak_cleanable(EAST)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
@@ -44,7 +44,7 @@
 
 	if(headbits)
 		// RANDOM BODY
-		gib = make_cleanable( /obj/decal/cleanable/blood/gibs/body,location)
+		gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/body,location)
 		gib.streak_cleanable()
 		gib.diseases += diseases
 		gib.blood_DNA = blood_DNA
@@ -53,7 +53,7 @@
 		gibs.Add(gib)
 
 	// CORE
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs/core,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/core,location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -126,10 +126,10 @@
 /proc/partygibs(atom/location, var/list/diseases, var/blood_DNA, var/blood_type)
     // Added blood type and DNA for forensics (Convair880).
 	var/list/party_colors = list(rgb(0,0,255),rgb(204,0,102),rgb(255,255,0),rgb(51,153,0))
-	var/obj/decal/cleanable/blood/gibs/gib = null
+	var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	if (prob(30))
 		gib.icon_state = "gibup1"
 	gib.diseases += diseases
@@ -139,7 +139,7 @@
 	gib.streak_cleanable(NORTH)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	if (prob(30))
 		gib.icon_state = "gibdown1"
 	gib.diseases += diseases
@@ -149,7 +149,7 @@
 	gib.streak_cleanable(SOUTH)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -158,7 +158,7 @@
 
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -167,7 +167,7 @@
 
 
 	// RANDOM BODY
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs/body,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/body,location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -183,7 +183,7 @@
 		gib.color = pick(party_colors)
 
 	// CORE
-	gib = make_cleanable( /obj/decal/cleanable/blood/gibs/core,location)
+	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/core,location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type

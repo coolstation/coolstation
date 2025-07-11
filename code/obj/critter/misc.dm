@@ -904,9 +904,9 @@
 				return
 
 	ai_think()
-		if(!locate(/obj/decal/cleanable/blood) in src.loc)
+		if(!locate(/obj/decal/cleanable/tracked_reagents/blood) in src.loc)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1, -1)
-			make_cleanable( /obj/decal/cleanable/blood,loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,loc)
 		return ..()
 
 /obj/critter/blobman

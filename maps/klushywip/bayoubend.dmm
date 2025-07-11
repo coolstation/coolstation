@@ -912,7 +912,7 @@
 /area/station/bridge/captain)
 "aMf" = (
 /obj/decal/fakeobjects/lightbulb_broken,
-/obj/decal/cleanable/blood/gibs/body,
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body,
 /turf/floor/blackwhite/whitegrime,
 /area/station/maintenance/oldstation)
 "aMk" = (
@@ -952,6 +952,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "aOa" = (
@@ -1349,7 +1350,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/grime,
 /area/station/hallway/primary/east)
 "bfq" = (
@@ -1872,6 +1873,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "bCJ" = (
@@ -2131,12 +2133,15 @@
 /turf/floor/plating,
 /area/station/security/hos)
 "bKv" = (
-/obj/landmark{
-	name = "AI-Sat"
-	},
 /obj/machinery/power/data_terminal,
 /obj/cable{
 	icon_state = "0-2"
+	},
+/obj/landmark{
+	name = "AI-Sat"
+	},
+/obj/landmark/start{
+	name = "AI"
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/AIsat)
@@ -3699,6 +3704,7 @@
 	dir = 1
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "cNn" = (
@@ -5711,7 +5717,7 @@
 /turf/floor/grey,
 /area/station/science/storage)
 "eoz" = (
-/obj/decal/cleanable/blood/drip,
+/obj/decal/cleanable/tracked_reagents/blood/drip,
 /turf/floor/grime,
 /area/listeningpost)
 "eoG" = (
@@ -6751,10 +6757,10 @@
 	},
 /area/station/crew_quarters/market)
 "fcx" = (
-/obj/firedoor_spawn,
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "fcB" = (
@@ -9655,10 +9661,6 @@
 /turf/floor/grime,
 /area/station/crew_quarters/lounge/starboard)
 "hhx" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
 /obj/disposalpipe/segment/bent{
 	dir = 4
 	},
@@ -13635,8 +13637,18 @@
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
 "keI" = (
-/obj/machinery/vending/gunse,
-/turf/floor/grime,
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/ceiling,
+/turf/floor,
 /area/station/hallway/primary/east)
 "keY" = (
 /obj/cable{
@@ -14240,6 +14252,11 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/item/decoration/ashtray{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/window/west,
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "kBG" = (
@@ -14605,7 +14622,7 @@
 	},
 /area/station/science/chemistry)
 "kOP" = (
-/obj/decal/cleanable/blood/drip,
+/obj/decal/cleanable/tracked_reagents/blood/drip,
 /turf/floor/blackwhite/whitegrime,
 /area/station/maintenance/oldstation)
 "kPz" = (
@@ -16625,14 +16642,10 @@
 	name = "Warehouse"
 	})
 "mnC" = (
-/obj/table/reinforced/industrial/auto,
-/obj/item/decoration/ashtray{
-	pixel_x = -7;
-	pixel_y = 1
-	},
 /obj/decal/poster/wallsign/poster_discount{
 	pixel_y = -22
 	},
+/obj/machinery/vending/gunse,
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "mnY" = (
@@ -17231,7 +17244,7 @@
 	},
 /area/station/crew_quarters/market)
 "mKi" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "mKy" = (
@@ -17632,12 +17645,9 @@
 /turf/wall,
 /area/station/maintenance/disposal)
 "mZF" = (
-/obj/machinery/power/apc/autoname/north,
-/obj/machinery/conveyor/west{
-	id = "ghost"
-	},
-/turf/floor/plating/airless/asteroid,
-/area/ghostdrone_factory)
+/obj/creepy_sound_trigger,
+/turf/floor/grime,
+/area/station/maintenance/oldstation)
 "mZS" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -19513,10 +19523,10 @@
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "osb" = (
-/obj/storage/crate/wooden,
 /obj/machinery/light/small/red{
 	dir = 1
 	},
+/obj/reagent_dispensers/fueltank,
 /turf/floor/plating/random,
 /area/station/shipyard)
 "osd" = (
@@ -20210,7 +20220,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor,
 /area/station/hallway/primary/east)
 "oQh" = (
@@ -20380,7 +20390,7 @@
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "oWX" = (
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /obj/item/clothing/mask/mime,
 /turf/floor/grime,
 /area/listeningpost)
@@ -20953,7 +20963,7 @@
 /obj/decal/poster/wallsign/clown_calendar/bridge{
 	pixel_y = 33
 	},
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /obj/item/parts/human_parts/leg/mutant/skeleton/left,
 /turf/floor/blackwhite/whitegrime,
 /area/station/maintenance/oldstation)
@@ -21543,7 +21553,6 @@
 /turf/floor,
 /area/station/science/bot_storage)
 "pMY" = (
-/obj/machinery/light,
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
@@ -22109,7 +22118,7 @@
 /turf/wall/auto,
 /area/space)
 "qbb" = (
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "qbS" = (
@@ -25250,6 +25259,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "snc" = (
@@ -25804,6 +25814,7 @@
 /obj/pathlights/shuttle{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "sFt" = (
@@ -25891,6 +25902,19 @@
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/carpet/arcade/half,
 /area/station/crew_quarters/arcade)
+"sLs" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/ceiling,
+/turf/floor,
+/area/station/hallway/primary/south)
 "sLA" = (
 /obj/rack,
 /obj/item/clothing/glasses/thermal{
@@ -28681,7 +28705,7 @@
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_south)
 "uFM" = (
-/obj/firedoor_spawn,
+/obj/machinery/door/firedoor/border_only,
 /turf/floor/red,
 /area/station/hallway/secondary/exit)
 "uFX" = (
@@ -29358,7 +29382,7 @@
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "vjQ" = (
-/obj/decal/cleanable/blood/drip,
+/obj/decal/cleanable/tracked_reagents/blood/drip,
 /turf/floor/sanitary/blue,
 /area/station/maintenance/oldstation)
 "vkN" = (
@@ -29621,6 +29645,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "vtQ" = (
@@ -30145,6 +30170,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/east)
 "vPf" = (
@@ -31049,10 +31075,10 @@
 /turf/floor/grime,
 /area/station/construction)
 "wxh" = (
-/obj/firedoor_spawn,
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "wxT" = (
@@ -31333,7 +31359,7 @@
 /area/station/hydroponics/lobby)
 "wID" = (
 /obj/storage/secure/crate/gear/armory/grenades,
-/obj/item/gun/modular/italian/big_italiano,
+/obj/item/gun/modular/italian/revolver/masterwork,
 /turf/floor,
 /area/station/security/armory)
 "wIX" = (
@@ -32516,6 +32542,7 @@
 	name = "old wooden chair";
 	pixel_y = 4
 	},
+/obj/creepy_sound_trigger,
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "xDx" = (
@@ -32887,6 +32914,7 @@
 /obj/pathlights/shuttle{
 	dir = 8
 	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor,
 /area/station/hallway/primary/south)
 "xUL" = (
@@ -33224,7 +33252,6 @@
 /turf/floor/sanitary/white,
 /area/station/medical/robotics)
 "yhy" = (
-/obj/machinery/light,
 /obj/firedoor_spawn,
 /turf/floor,
 /area/station/hallway/primary/south)
@@ -63005,7 +63032,7 @@ wDt
 wDt
 siW
 uQh
-uQh
+mZF
 pNw
 tXg
 tmI
@@ -70597,7 +70624,7 @@ kjf
 dXU
 oNu
 smV
-aYg
+dXU
 qPn
 qyM
 hwz
@@ -74220,7 +74247,7 @@ uIx
 eID
 raQ
 oNu
-fgu
+sLs
 dXU
 eLe
 vZD
@@ -76929,7 +76956,7 @@ xEL
 tYC
 wmZ
 fXC
-osV
+keI
 aas
 jve
 nzD
@@ -77865,7 +77892,7 @@ noB
 noB
 gqG
 qnC
-keI
+tgF
 xbO
 vxm
 hkU
@@ -109874,7 +109901,7 @@ ipT
 ipT
 yjO
 yjO
-mZF
+kzX
 jKX
 dfQ
 bkT

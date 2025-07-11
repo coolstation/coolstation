@@ -993,7 +993,7 @@ MATERIAL
 			head.set_loc(src)
 			heads += head
 			src.update()
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 		SPAWN_DBG(50 SECONDS)

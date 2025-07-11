@@ -715,7 +715,7 @@
 
 		if (affecting && assailant && isitem(src.loc))
 			var/obj/item/gun/G = src.loc
-			G.shoot_point_blank(src.affecting,src.assailant,1) //don't shoot an offhand gun
+			G.Shoot(get_turf(affecting), get_turf(assailant), assailant, point_blank_target = affecting)
 
 		qdel(src)
 

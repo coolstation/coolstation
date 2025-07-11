@@ -166,7 +166,7 @@
 			C.pilot?.emote("scream")
 			if (istype(src, /obj/disposalholder/crawler) && !src.active) //partly funny, partly to avoid having to deal with two pilots (or someone holding another person indefinitely)
 				C = src
-				C.controls.in_control = FALSE
+				C.movement_controller.in_control = FALSE
 				C.pilot?.emote("scream")
 				C.active = TRUE
 				boutput(C.pilot, "<span class='alert'><b>You slam into someone else in the pipes, and lose your grip! [pick("Fuck", "Damn it", "Piss", "Noooooo", "Bitter hubris", "Oh the humanity")]!</b></span>")
@@ -248,30 +248,27 @@
 	// bat sex: \\
 	// this is a special gal that lets players traverse the disposals network
 	var/mob/pilot
-	var/datum/movement_controller/pipe_crawler/controls
+	var/datum/movement_controller/pipe_crawler/movement_controller
 	var/obj/item/device/t_scanner/vision
 
 	New()
 		vision = new(src)
 		vision.set_on(TRUE)
-		controls = new()
-		controls.owner = src
+		movement_controller = new()
+		movement_controller.owner = src
 		..()
-
-	get_movement_controller(mob/user)
-		return controls
 
 	disposing()
 		qdel(vision)
-		qdel(controls)
+		qdel(movement_controller)
 		vision = null
-		controls = null
+		movement_controller = null
 		pilot = null
 		..()
 
 	start(obj/machinery/disposal/D)
 		if (!can_act(pilot, TRUE))
-			controls.in_control = TRUE
+			movement_controller.in_control = TRUE
 			return ..()
 
 		if(!D.trunk || D.trunk.loc != D.loc)
@@ -2066,7 +2063,7 @@
 	src.changeStatus("weakened", 2 SECONDS)
 	return
 
-/obj/decal/cleanable/blood/gibs/pipe_eject(var/direction)
+/obj/decal/cleanable/tracked_reagents/blood/gibs/pipe_eject(var/direction)
 	var/list/dirs
 	if(direction in cardinal)
 		dirs = direction

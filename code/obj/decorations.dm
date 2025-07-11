@@ -926,6 +926,19 @@ obj/decoration/ceilingfan
 	icon_state = "detectivefan"
 	anchored = 1
 	layer = EFFECTS_LAYER_BASE
+	alpha = 255
+	plane = PLANE_NOSHADOW_ABOVE
+	#ifdef IN_MAP_EDITOR
+	color = "#FFFFFF"
+	alpha = 128
+	#endif
+	New()
+		..()
+		var/image/fanimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE,src.dir)
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(fanimage)
+		fanimage.alpha = 120
+		src.alpha = 0
+
 
 /obj/decoration/candles
 	name = "wall mounted candelabra"
@@ -1441,11 +1454,51 @@ obj/decoration/ceilingfan
 		return
 
 
-obj/decoration/floralarrangement
+/obj/decoration/floralarrangement
 	name = "floral arrangement"
 	desc = "These look... Very plastic. Huh."
 	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "floral_arrange"
 	anchored = 1
 	density = 1
+
+/obj/decoration/railbed
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "railbed"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+/obj/decoration/railbed/cracked1
+	icon_state = "railbedcracked1"
+
+/obj/decoration/railbed/cracked2
+	icon_state = "railbedcracked2"
+
+/obj/decoration/railbed/trans
+	icon_state = "railbedtrans"
+	New()
+		..()
+		src.color = null
+
+/obj/decoration/railbed/trans/cracked1
+	icon_state = "railbedcracked1trans"
+
+/obj/decoration/railbed/trans/cracked2
+	icon_state = "railbedcracked2trans"
+
+/obj/decoration/train_signal
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "trainsignal"
+	anchored = 1
+	density = 0
+	plane = PLANE_NOSHADOW_BELOW
+	//this is just a dummy until it gets logic
 

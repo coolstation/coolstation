@@ -128,7 +128,7 @@
 	death(gibbed)
 		if(originalmob)
 			if (src.client)
-				src.removeOverlaysClient(src.client)
+				removeOverlaysClient(src.client)
 				client.mob = originalmob
 
 			if (src.mind)
