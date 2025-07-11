@@ -476,6 +476,47 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 	icon_state = "book0"
 	file_path = "strings/books/clergy_diary.txt"
 
+/obj/item/paper/book/sillytexts
+	name = "THE ANCIET JEDI TEXTS"
+	desc = "Ancient book that brought life to this world"
+
+	icon = 'icons/obj/items/writing.dmi'
+	icon_state = "silly_texts"
+
+	var/const/ID = "sillytexts"
+
+	attack_self(mob/user as mob)
+		boutput(user, "This is silly")
+
+		var/id = "[ID]_\ref[src]"
+
+		var/wincheck = winexists(user, "[id]")
+		if(wincheck != "MAIN")
+			winclone(user, "[ID]", "[id]")
+
+		var/dat = {"
+			<!doctype html>
+			<html>
+				<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+					<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				</head>
+				<script>
+					fn = (url) => { window.location.href = \"https://www.byond.com/docs/ref/#/DM\" }
+				</script>
+				<body onload="fn()">
+					<p> Give it a second... </p>
+				</body>
+			</html>
+		"}
+
+		user << output(dat, "[id].texto")
+
+		winshow(user, "[id]", 1)
+		onclose(user, "[id]")
+
+		return
+
 /******************** CUSTOM BOOKS ********************/
 
 /obj/item/paper/book/custom //custom book parent, just to avoid cluttering up normal books
