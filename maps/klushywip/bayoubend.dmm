@@ -5180,11 +5180,6 @@
 "dXU" = (
 /turf/floor,
 /area/station/hallway/primary/south)
-"dXX" = (
-/obj/decal/cleanable/dirt/random,
-/obj/bookcase,
-/turf/floor/carpet/grime2,
-/area/station/maintenance/oldstation)
 "dXY" = (
 /turf/floor/grime,
 /area/station/security/secwing{
@@ -9457,7 +9452,9 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/quarters_south)
 "gZm" = (
-/obj/storage/closet/dresser/random,
+/obj/storage/closet/dresser/random{
+	anchored = 1
+	},
 /obj/decal/cleanable/cobweb,
 /obj/item/organ/eye/cyber/camera,
 /turf/floor/carpet/grime2,
@@ -58499,7 +58496,7 @@ wDt
 hQg
 gZm
 lJU
-dXX
+heO
 tEB
 hQg
 qdk
