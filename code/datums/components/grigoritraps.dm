@@ -29,6 +29,7 @@
 		else
 			linked_trap.attempt_disarm(usr,usr.equipped())
 
+
 /datum/component/activate_trap_on_chair_buckle
 
 	var/datum/grigori_trap/linked_trap

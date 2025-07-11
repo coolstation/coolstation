@@ -35,8 +35,11 @@
 
 	attackby(obj/item/W, mob/user)
 		if(istype(W,/obj/item/device/grigori_trigger))
-			if(!trigger_type?.name == "null trigger")
-				var/obj/item/device/grigori_trigger/dropped = new trigger_type
+			if(trigger_type.name != "null trigger")
+				boutput(user, "<b>debug: it aint null</b>")
+				var/atom/movable/d = new src.trigger_type.type
+				var/obj/item/dropped = d
+				user.u_equip(W)
 				user.put_in_hand_or_drop(dropped)
 			trigger_type = W
 			playsound(user, "sound/items/Screwdriver.ogg",50,4)
@@ -109,9 +112,6 @@
 			if(istype(target,/obj/stool/chair))
 				return 1
 
-		else if(istype(src,/obj/item/device/grigori_trigger/switch_flick))
-			if(istype(target,/obj/machinery/light_switch) && !istype(target,/obj/machinery/conveyor_switch) && !istype(target,/obj/machinery/ignition_switch))
-				return 1
 
 		else if(src.name == "null trigger")
 			boutput(user, "<span class='alert'>This trap has no trigger set.</span>")
@@ -151,14 +151,6 @@
 		trap.AddComponent(/datum/component/activate_trap_on_chair_buckle,linked_obj,trap)
 		return 1
 
-/obj/item/device/grigori_trigger/switch_flick
-	name = "switch trap trigger"
-	desc = "Attach this trigger to a trap to make it able to be set on switches."
-	trigger_desc = "This trap can be attached to a switch, and is sprung when someone flips it."
-
-	set_component(var/obj/linked_obj,var/datum/grigori_trap/trap)
-		trap.AddComponent(/datum/component/activate_trap_on_door_touch,linked_obj,trap)
-		return 1
 
 
 
