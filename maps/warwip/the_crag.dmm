@@ -8603,6 +8603,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
+"wX" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/hallway/primary/south)
 "wY" = (
 /obj/machinery/atmospherics/valve/purge/horizontal,
 /obj/decal/poster/wallsign/poster_rand{
@@ -8705,6 +8710,7 @@
 /obj/item/portable_typewriter{
 	pixel_y = 1
 	},
+/obj/item/paper/book/sillytexts,
 /turf/floor/black/side,
 /area/station/communications/office)
 "xj" = (
@@ -15058,11 +15064,6 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/crew_quarters/toilets)
-"Ox" = (
-/obj/wingrille_spawn/reinforced,
-/obj/decal/gehenna/warning,
-/turf/floor/plating,
-/area/station/hallway/primary/south)
 "Oy" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/vertical,
@@ -56342,7 +56343,7 @@ Wp
 YR
 dW
 qO
-Ox
+wX
 AJ
 AJ
 il

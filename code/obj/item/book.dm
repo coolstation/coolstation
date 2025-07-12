@@ -477,8 +477,8 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 	file_path = "strings/books/clergy_diary.txt"
 
 /obj/item/paper/book/sillytexts
-	name = "THE ANCIET JEDI TEXTS"
-	desc = "Ancient book that brought life to this world"
+	name = "THE ANCIENT TEXTS"
+	desc = "How to manifest an orgonic domain, and other party tricks. Published by Dantom Universal Nature Guides."
 
 	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "silly_texts"
