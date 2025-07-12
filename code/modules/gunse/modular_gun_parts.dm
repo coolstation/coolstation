@@ -45,7 +45,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 
 	New()
 		. = ..()
-		name = real_name
+		if(src.real_name)
+			src.name = src.real_name
 
 	proc/add_part_to_gun(var/obj/item/gun/modular/gun)
 		if(!istype(gun))
