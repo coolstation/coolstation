@@ -8245,9 +8245,6 @@
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/railing/cyan{
-	dir = 8
-	},
 /turf/floor/grime,
 /area/station/quartermaster/cargooffice/storefront)
 "vY" = (
@@ -13342,9 +13339,6 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/railing/cyan{
-	dir = 4
-	},
 /obj/decal/cleanable/rust/jen,
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -15053,6 +15047,9 @@
 /turf/floor,
 /area/station/science/lab)
 "Ov" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/floor,
 /area/gehenna{
 	icon_state = "dither_r";
@@ -17486,6 +17483,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/west)
+"UT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "UU" = (
 /turf/wall,
 /area/station/quartermaster/cargooffice/idk_another_one{
@@ -64799,7 +64802,7 @@ sN
 cT
 cT
 sE
-fM
+UT
 sE
 GN
 Nx
