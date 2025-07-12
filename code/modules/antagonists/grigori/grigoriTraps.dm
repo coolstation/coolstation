@@ -81,6 +81,18 @@
 	trap_type = /datum/grigori_trap/chopper
 	desc = "A hidden blade trap that takes a limb from its target when they set off the trigger."
 
+/obj/item/device/grigori_trap_hand/shotgun
+	name = "hidden shotgun trap"
+	trap_type = /datum/grigori_trap/shotgun
+	desc = "A mechanism that blows a shotgun shell up when triggered. "
+
+/obj/item/device/grigori_trap_hand/shotgun/lethal
+	name = "hidden lethal shotgun trap"
+	trap_type = /datum/grigori_trap/shotgun/lethal
+	desc = "A mechanism that blows a shotgun shell up when triggered. This one packs a <b>PUNCH!</b>"
+
+
+
 
 /*
 ===================================================================================================
@@ -229,7 +241,7 @@
 
 /datum/grigori_trap/chopper //this'll take an arm off! maybe even a leg!
 	var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg","tail") //non-lethal!
-	trap_triggered(var/mob/target,var/isAttacked)
+	trap_triggered(var/mob/target)
 		if(..()) //is this awful?
 			return 0
 
@@ -264,6 +276,27 @@
 		playsound(target, pick("sound/impact_sounds/Flesh_Stab_3.ogg","sound/impact_sounds/Flesh_Cut_1.ogg"), 75,4)
 		boutput(target, "<span class='alert'><B>[pick(src.tomtech)]</B></span>")
 		qdel(src)
+
+/datum/grigori_trap/shotgun
+	var/lethal = 0
+	trap_triggered(var/mob/target)
+		if(..())
+			return 0
+		var/datum/projectile/p
+		if(!lethal)
+			p = new /datum/projectile/special/spreader/buckshot_burst/nt
+		else
+			p = new /datum/projectile/special/spreader/buckshot_burst/juicer
+		var/obj/projectile/proj = initialize_projectile_ST(src.linked_obj,p,target)
+		if(proj)
+			proj.launch()
+
+		playsound(target, "sound/weapons/shotgunshot.ogg",75,4)
+		boutput(target, "<span class='alert'><B>[pick(src.tomtech)]</B></span>")
+		qdel(src)
+
+/datum/grigori_trap/shotgun/lethal
+	var/lethal = 1
 
 /*
 =================================================================================================
