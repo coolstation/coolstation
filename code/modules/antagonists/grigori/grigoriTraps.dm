@@ -287,16 +287,17 @@
 			p = new /datum/projectile/special/spreader/buckshot_burst/nt
 		else
 			p = new /datum/projectile/special/spreader/buckshot_burst/juicer
-		var/obj/projectile/proj = initialize_projectile_ST(src.linked_obj,p,target)
-		if(proj)
-			proj.launch()
+		for(var/i = 0, i<2, i++)
+			var/obj/projectile/proj = initialize_projectile_ST(src.linked_obj,p,target)
+			if(proj)
+				proj.launch()
 
 		playsound(target, "sound/weapons/shotgunshot.ogg",75,4)
 		boutput(target, "<span class='alert'><B>[pick(src.tomtech)]</B></span>")
 		qdel(src)
 
 /datum/grigori_trap/shotgun/lethal
-	var/lethal = 1
+	lethal = 1
 
 /*
 =================================================================================================
