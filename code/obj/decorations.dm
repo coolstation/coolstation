@@ -202,6 +202,15 @@
 	//	edible bushes
 	//	max amount of reagent a bush can contain
 	var/const/REAG_MAX_VOLUME = 50
+	//	probability (in %) that its an edible shrub
+	var/const/EDIBLE_PROB = 50
+	//	limits for the random max_uses when edible
+	var/const/MIN_MUNCHES = 2
+	var/const/MAX_MUNCHES = 10
+	//	probability (in %) to much
+	var/const/MUNCH_PROB = 65
+	//	time (in 1/10 seconds) between munches
+	var/const/MUNCH_COOLDOWN = 50
 	//	enabling this replaces the drop function with eat function
 	var/edible = 0
 	//	flavor of the bush
@@ -211,8 +220,19 @@
 
 	New()
 		..()
-		max_uses = rand(0, 5)
-		spawn_chance = rand(1, 40)
+
+		if (prob(EDIBLE_PROB))
+			edible = 1
+			max_uses = rand(MIN_MUNCHES, MAX_MUNCHES)
+			//	when edible, its the chance of munching
+			spawn_chance = MUNCH_PROB
+			//	when edible,
+			time_between_uses = MUNCH_COOLDOWN
+		else
+			edible = 0
+			max_uses = rand(0, 5)
+			spawn_chance = rand(1, 40)
+
 		base_x = pixel_x
 		base_y = pixel_y
 
