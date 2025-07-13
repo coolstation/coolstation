@@ -261,18 +261,18 @@
 				else
 					visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
 			else
-			var/something = null
+				var/something = null
 
-			if (override_default_behaviour && islist(additional_items) && length(additional_items))
-				something = pick(additional_items)
-			else
-				something = pick(trinket_safelist)
+				if (override_default_behaviour && islist(additional_items) && length(additional_items))
+					something = pick(additional_items)
+				else
+					something = pick(trinket_safelist)
 
-			if (ispath(something))
-				var/thing = new something(src.loc)
-				visible_message("<b><span class='alert'>[user] violently shakes [src] around! \An [thing] falls out!</span></b>", 1)
-				last_use = world.time
-				max_uses--
+				if (ispath(something))
+					var/thing = new something(src.loc)
+					visible_message("<b><span class='alert'>[user] violently shakes [src] around! \An [thing] falls out!</span></b>", 1)
+					last_use = world.time
+					max_uses--
 		else
 			visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
 
