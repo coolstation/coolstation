@@ -216,7 +216,13 @@
 	//	flavor of the bush
 	var/flavor = "menthol"
 	//	amount of flavor
-	var/amount = 10
+	var/flavor_amount = 10
+	//	amount of food to give a player cow
+	var/food = 10
+	//	feed multiplier, scales how much it feeds a cow
+	var/feed_mult = 6
+	//	bladder multiplier, scales how much it unbladders a cow (not even sure if cows have bladders)
+	var/bladder_mult = -0.2
 
 	New()
 		..()
@@ -272,11 +278,22 @@
 						src.create_reagents(REAG_MAX_VOLUME);
 
 					//	adds the flavor to this object before moving it to the eater and forcing a reaction
-					src.reagents.add_reagent(flavor, amount)
-					src.reagents.trans_to(user, amount)
-					src.reagents.reaction(user, INGEST, amount)
+					src.reagents.add_reagent(flavor, flavor_amount)
+					src.reagents.trans_to(user, flavor_amount)
+					src.reagents.reaction(user, INGEST, flavor_amount)
 
-					//	shows message after eating
+					//	a player with mutant race "cow" will also be fed from it
+					if (istype(user, /mob/living/carbon/human/))
+						var/mob/living/carbon/human/h = user
+						if (h.mutantrace && h.mutantrace.name == "cow")
+							if (H.sims)
+								H.sims.affectMotive("Hunger", food*feed_mult)
+								H.sims.affectMotive("Bladder", food*bladder_mult)
+
+					//	TODO: Visual effects
+					//	Some effects of the bush being eaten would be cool
+
+					//	shows message AFTER applying effects
 					visible_message("<b><span class='alert'>[user] plucks some leafs from [src] and eats them!</span></b>", 1)
 				else
 					visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
