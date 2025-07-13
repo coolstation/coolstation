@@ -1,3 +1,7 @@
+//	Put to 1 to make reagent storage on object creation
+#define ENV_BUSH_REAG_STORAGE_ON_NEW 0
+//	Put to 1 to always make reagent storage regardless of edible or not
+#define ENV_BUSH_REAG_STORAGE_ALWAYS 0
 
 /obj/poolwater
 	name = "water"
@@ -175,8 +179,6 @@
 		density = 0
 		icon_state = "lava9"
 
-
-
 /obj/shrub
 	name = "shrub"
 	icon = 'icons/misc/worlds.dmi'
@@ -213,6 +215,18 @@
 		spawn_chance = rand(1, 40)
 		base_x = pixel_x
 		base_y = pixel_y
+
+//	Allows for easier control at compile time
+#if defined(ENV_BUSH_REAG_STORAGE_ON_NEW) && ENV_BUSH_REAG_STORAGE_ON_NEW
+#if defined(ENV_BUSH_REAG_STORAGE_ALWAYS) && ENV_BUSH_REAG_STORAGE_ALWAYS
+		//	I hope the compiler removes it directly
+		if (1)
+#else
+		if (edible)
+#endif
+			src.create_reagents(REAG_MAX_VOLUME)
+#endif
+
 	ex_act(var/severity)
 		switch(severity)
 			if(1,2)
@@ -353,7 +367,6 @@
 		//humans are much louder than thrown items and mobs
 		//Only players will trigger this
 		src.shake_bush(50)
-
 
 /obj/shrub/big/big2
 	icon_state = "fern2"
