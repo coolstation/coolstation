@@ -286,9 +286,9 @@
 					if (istype(user, /mob/living/carbon/human/))
 						var/mob/living/carbon/human/h = user
 						if (h.mutantrace && h.mutantrace.name == "cow")
-							if (H.sims)
-								H.sims.affectMotive("Hunger", food*feed_mult)
-								H.sims.affectMotive("Bladder", food*bladder_mult)
+							if (h.sims)
+								h.sims.affectMotive("Hunger", food*feed_mult)
+								h.sims.affectMotive("Bladder", food*bladder_mult)
 
 					//	TODO: Visual effects
 					//	Some effects of the bush being eaten would be cool
