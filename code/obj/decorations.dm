@@ -197,6 +197,15 @@
 	var/base_x = 0
 	var/base_y = 0
 
+	//	edible bushes
+	//	max amount of reagent a bush can contain
+	var/const/REAG_MAX_VOLUME = 50
+	//	enabling this replaces the drop function with eat function
+	var/edible = 0
+	//	flavor of the bush
+	var/flavor = "menthol"
+	//	amount of flavor
+	var/amount = 10
 
 	New()
 		..()
@@ -220,6 +229,24 @@
 		src.shake_bush(50)
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
+			//	allows user to eat the shrub
+			if (src.edible)
+				if (user.a_intent == "harm")
+					//	TODO: Add some compile-time checks
+					//	This might be skipped if the define FLAGS are properly set
+					if (!src.reagents)
+						src.create_reagents(REAG_MAX_VOLUME);
+
+					//	adds the flavor to this object before moving it to the eater and forcing a reaction
+					src.reagents.add_reagent(flavor, amount)
+					src.reagents.trans_to(user, amount)
+					src.reagents.reaction(user, INGEST, amount)
+
+					//	shows message after eating
+					visible_message("<b><span class='alert'>[user] plucks some leafs from [src] and eats them!</span></b>", 1)
+				else
+					visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
+			else
 			var/something = null
 
 			if (override_default_behaviour && islist(additional_items) && length(additional_items))
