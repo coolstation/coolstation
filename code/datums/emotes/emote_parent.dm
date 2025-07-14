@@ -289,3 +289,83 @@ var/static/list/fert_emotes = list(
 	"laugh" = /datum/emote/fert/laugh,
 	"scream" = /datum/emote/scream/fert
 	)
+
+//shared by AI, borgs, possibly ghostdrones?
+
+//to add: list, listbasic, listtarget
+var/static/list/base_silicon_emotes = list(
+	"scream" = /datum/emote/scream/silicon,
+	"fart" = /datum/emote/fart/silicon,
+	"help" = /datum/emote/help,
+	"salute" = /datum/emote/visible_restrain/salute,
+	"hug" = /datum/emote/visible_restrain/targeted/hug,
+	"bow" = /datum/emote/visible_restrain/targeted/bow,
+	"wave" = /datum/emote/visible_restrain/wave,
+	"nod" = /datum/emote/simple_visible/nod,
+	"nodat" = /datum/emote/targeted/nodat,
+	"blink" = /datum/emote/simple_visible/blink,
+	"pout" = /datum/emote/simple_visible/pout,
+	"shrug" = /datum/emote/simple_visible/shrug,
+	"glare" = /datum/emote/simple_visible/glare,
+	"stare" = /datum/emote/simple_visible/stare,
+	"look" = /datum/emote/targeted/look,
+	"leer" = /datum/emote/targeted/leer,
+	"point" = /datum/emote/point,
+	"panic" = /datum/emote/visible_restrain/panic,
+	"freakout" = /datum/emote/visible_restrain/panic,
+	"clap" = /datum/emote/visible_restrain/clap,
+	"flap" = /datum/emote/visible_restrain/flap,
+	"aflap" = /datum/emote/visible_restrain/flap/aflap,
+	"twitch" = /datum/emote/twitch,
+	"twitch_v" = /datum/emote/twitch/twitch_v,
+	"twitch_s" = /datum/emote/twitch/twitch_v,
+	"custom" = /datum/emote/custom,
+	"customv" = /datum/emote/customv,
+	"customh" = /datum/emote/customh,
+	"me" = /datum/emote/me,
+	"smile" = /datum/emote/simple_visible/smile,
+	"grin" = /datum/emote/simple_visible/grin,
+	"smirk" = /datum/emote/simple_visible/smirk,
+	"frown" = /datum/emote/simple_visible/frown,
+	"scowl" = /datum/emote/simple_visible/scowl,
+	"grimace" = /datum/emote/simple_visible/grimace,
+	"sulk" = /datum/emote/simple_visible/sulk,
+	"think" = /datum/emote/simple_visible/think,
+	"ponder" = /datum/emote/simple_visible/ponder,
+	"contemplate" = /datum/emote/simple_visible/contemplate,
+	"flipout" = /datum/emote/simple_visible/flipout,
+	"rage" = /datum/emote/simple_visible/rage,
+	"fury" = /datum/emote/simple_visible/rage,
+	"angry" = /datum/emote/simple_visible/rage,
+	"johnny" = /datum/emote/johnny,
+	"birdwell" = /datum/emote/birdwell,
+	"burp" = /datum/emote/birdwell
+	)
+
+
+var/static/list/AI_emotes = list(
+	"flip" = /datum/emote/flip/AI,
+	"kick" = /datum/emote/AI_kick,
+	"list" = /datum/emote/listall/AI,
+	"listbasic" = /datum/emote/listbasic/AI,
+	"listtarget" = /datum/emote/listtarget/AI
+	)
+
+//if ("sigh","laugh","chuckle","giggle","chortle","guffaw","cackle")
+var/static/list/cyborg_emotes = list(
+	"dance" = /datum/emote/dance/cyborg,
+	"flip" = /datum/emote/flip/cyborg,
+	"snap" = /datum/emote/snap,
+	"flex" = /datum/emote/flex,
+	"flexmuscles" = /datum/emote/flex,
+	"sigh" = /datum/emote/simple_audible/sigh,
+	"laugh" = /datum/emote/play_laugh/laugh,
+	"chuckle" = /datum/emote/play_laugh/chuckle,
+	"giggle" = /datum/emote/play_laugh/giggle,
+	"chortle" = /datum/emote/play_laugh/chortle,
+	"chuckle" = /datum/emote/play_laugh/chuckle,
+	"guffaw" = /datum/emote/play_laugh/guffaw,
+	"list" = /datum/emote/listall/cyborg,
+	"listbasic" = /datum/emote/listbasic/cyborg,
+	"listtarget" = /datum/emote/listtarget/cyborg
+	)
