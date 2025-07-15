@@ -22,8 +22,8 @@
 	var/datum/radio_frequency/frequency
 	var/static/manual_off_reactivate_idle = 8 //how many machine loop ticks to idle after being manually switched off
 	var/idle_count = 0
-	var/image/fire1 = null
-	var/image/fire0 = null
+	var/static/image/fire1 = null
+	var/static/image/fire0 = null
 	text = ""
 	desc = "A fire sensor and alarm system. When it detects fire or is manually activated, it closes all firelocks in the area to minimize the spread of fire."
 
@@ -41,28 +41,41 @@
 	if(!net_id)
 		net_id = generate_net_id(src)
 
-	var/image/fire0 = SafeGetOverlayImage("fire0", 'icons/obj/machines/monitors.dmi', "fire0e")
-	fire0.plane = PLANE_LIGHTING
-	fire0.layer = LIGHTING_LAYER_BASE
-	fire0.blend_mode = BLEND_ADD
-	src.UpdateOverlays(fire0, "fire0",0, 1)
+	if(!fire0)
+		fire0 = SafeGetOverlayImage("fire0", 'icons/obj/machines/monitors.dmi', "fire0e")
+		fire0.plane = PLANE_LIGHTING
+		fire0.layer = LIGHTING_LAYER_BASE
+		fire0.blend_mode = BLEND_ADD
 
-	var/image/fire1 = SafeGetOverlayImage("fire1", 'icons/obj/machines/monitors.dmi', "fire1e")
-	fire1.plane = PLANE_LIGHTING
-	fire1.layer = LIGHTING_LAYER_BASE
-	fire1.blend_mode = BLEND_ADD
-	src.UpdateOverlays(fire1, "fire1",0, 1)
-
+	if(!fire1)
+		fire1 = SafeGetOverlayImage("fire1", 'icons/obj/machines/monitors.dmi', "fire1e")
+		fire1.plane = PLANE_LIGHTING
+		fire1.layer = LIGHTING_LAYER_BASE
+		fire1.blend_mode = BLEND_ADD
 
 	AddComponent(/datum/component/mechanics_holder)
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "toggleinput")
 	SPAWN_DBG(1 SECOND)
 		frequency = radio_controller.return_frequency("[alarm_frequency]")
 
+	update_icon()
+
 /obj/machinery/firealarm/disposing()
 		STOP_TRACKING
 		radio_controller.remove_object(src, "[alarm_frequency]")
 		..()
+
+/obj/machinery/firealarm/proc/update_icon()
+	switch(icon_state)
+		if("fire0")
+			src.UpdateOverlays(fire0, "fire0")
+			src.UpdateOverlays(null, "fire1")
+		if("fire1")
+			src.UpdateOverlays(null, "fire0")
+			src.UpdateOverlays(fire1, "fire1")
+		else
+			src.UpdateOverlays(null, "fire0")
+			src.UpdateOverlays(null, "fire1")
 
 /obj/machinery/firealarm/set_loc(var/newloc)
 	..()
@@ -74,10 +87,8 @@
 /obj/machinery/firealarm/proc/toggleinput(var/datum/mechanicsMessage/inp)
 	if(src.icon_state == "fire0")
 		alarm()
-		//src.UpdateOverlays
 	else
 		reset()
-		//src.UpdateOverlays
 	return
 
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
@@ -123,10 +134,12 @@
 	if(powered(ENVIRON))
 		status &= ~NOPOWER
 		icon_state = "fire0"
+		update_icon()
 	else
 		SPAWN_DBG(rand(0,15))
 			status |= NOPOWER
 			icon_state = "firep"
+			update_icon()
 
 /obj/machinery/firealarm/attack_hand(mob/user as mob)
 	if(user.stat || status & (NOPOWER|BROKEN))
@@ -155,6 +168,7 @@
 	if (src.ringlimiter)
 		src.ringlimiter = 0
 
+	update_icon()
 	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
 	sleep(5 SECONDS)	//maybe then you'll actually be able to reset it for a little without spam clicking a dozen times
 	src.dont_spam = 0	//maybe maybe i dunno im just a big stinky doofus though
@@ -184,6 +198,7 @@
 		src.ringlimiter = 1
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
 
+	update_icon()
 	src.dont_spam = 1
 	sleep(5 SECONDS)
 	src.dont_spam = 0
