@@ -76,7 +76,7 @@
 		else
 			implants_available = implants_available ^ EYE_LEFT
 		boutput(H, "<span class='alert'><b>[pick("IT HURTS!", "OH GOD!", "JESUS FUCK!")]</b></span>")
-		bleed(H, 5, 5)
+		bleed(H, 5, violent = TRUE)
 		SPAWN_DBG(5 DECI SECOND)
 			H.emote("scream")
 		if (implants_available & EYE_RIGHT)

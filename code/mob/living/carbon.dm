@@ -10,7 +10,7 @@
 	//var/heart_op_stage = 0.0
 
 	infra_luminosity = 4
-	var/poop_amount = 5
+	var/poop_amount = 9
 
 /mob/living/carbon/New()
 	START_TRACKING
@@ -101,15 +101,14 @@
 	SPAWN_DBG(0.1 SECOND)
 		var/mob/living/carbon/human/H = src
 		var/obj/item/reagent_containers/poo_target = src.equipped()
-		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
-		shit.amount = src.poop_amount
+		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(src.loc, src.poop_amount)
 		shit.owner = src // this is your shit.
 		if(src.poops)
 			src.poops--
 		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
-				make_cleanable( /obj/decal/cleanable/mud,T)
+				make_cleanable( /obj/decal/cleanable/tracked_reagents/mud,T)
 			return
 		playsound(H, "sound/voice/hoooagh2.ogg", 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		if(H.wear_suit || H.w_uniform) // wearing pants while shitting? fine!!
@@ -127,9 +126,9 @@
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")
 			H.wiped = 0 //+1 trait idea: nothin' but net
 			if(H.w_uniform)
-				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 5)
+				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 15)
 			else
-				H.wear_suit?.add_mud(H, H.poop_amount ? H.poop_amount : 5)
+				H.wear_suit?.add_mud(H, H.poop_amount ? H.poop_amount : 15)
 			H.set_clothing_icon_dirty() //ur a shitter
 			playsound(H, H.sound_fart, 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			return
@@ -144,7 +143,7 @@
 				else
 					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 100, 1)
 					poo_target.reagents.add_reagent("poo",\
-						(H.poop_amount ? H.poop_amount : 5))
+						(H.poop_amount ? H.poop_amount : 15))
 					qdel(shit)
 				H.cleanhands = 0
 				H.wiped = 0

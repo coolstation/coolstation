@@ -124,9 +124,6 @@
 		targeter = new(src.loc, src)
 		return ..()
 
-	get_movement_controller()
-		return movement_controller
-
 	attack_hand(mob/user as mob)
 		if(src.controller && src.controller.loc != src)
 			src.exit(0)
@@ -145,6 +142,7 @@
 		if(tube)
 			inUse = 1
 			user.set_loc(src)
+			user.override_movement_controller = src.movement_controller
 			user.pixel_y = -8
 			boutput(user, "<span class='hint'><b>Press Q or E to exit targeting.</b></span>")
 			vis_contents += user
@@ -185,6 +183,7 @@
 			if(controller.client && targeter)
 				controller.client.images -= targeter.trgImage
 				controller.client.eye = controller
+			controller.override_movement_controller = null
 			controller = null
 			inUse = 0
 		return

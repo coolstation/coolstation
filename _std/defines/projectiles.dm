@@ -31,7 +31,6 @@
 
 //power multiplier when *not* using the appropriate barrel type on a modular gun. Unfocused beam, shit gas efficiency, whatever.
 #define PROJ_PENALTY_BARREL 0.25
-#define STANDARD_BARREL_LEN 20 // is 20 centimetres good? bad? idk! but that's what 1.0 damage modifier is.
 
 //This determines the base spread for guns missing the critical parts, and therefore the default barrel/grip stabilisation as well.
 #define BARREL_PENALTY 20

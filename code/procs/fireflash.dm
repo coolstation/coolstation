@@ -114,6 +114,7 @@
 			hotspot.temperature = falloff_affected_temp
 			hotspot.set_loc(T)
 		affected_hotspots += hotspot
+		affected[T] = hotspot.temperature
 
 		hotspot.volume = 400
 		hotspot.set_real_color()
@@ -165,9 +166,10 @@
 
 		LAGCHECK(LAG_REALTIME)
 
-	var/hotspot_energy = energy / length(affected_hotspots)
-	for(var/obj/hotspot/fireflash/hotspot in affected_hotspots)
-		hotspot.thermal_energy += hotspot_energy
+	if(length(affected_hotspots))
+		var/hotspot_energy = energy / length(affected_hotspots)
+		for(var/obj/hotspot/fireflash/hotspot in affected_hotspots)
+			hotspot.thermal_energy += hotspot_energy
 	return affected
 
 

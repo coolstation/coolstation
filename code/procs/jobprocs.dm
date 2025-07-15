@@ -425,14 +425,23 @@
 	src.mind.assigned_role = JOB.name
 
 	if (!joined_late)
+		//if the arrival shuttle starts in transit, put everyone who isn't a head of staff on it.
 		if (ticker?.mode && !istype(ticker.mode, /datum/game_mode/construction))
-			if (job_start_locations && islist(job_start_locations[JOB.name]))
-				var/tries = 8
+			if (map_settings?.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC /*&& !istype(JOB, /datum/job/command)*/)
+				var/tries = 8 //these loops try to make people not start the round on top of one another
 				var/turf/T
 				do
-					T = pick(job_start_locations[JOB.name])
+					T = pick_landmark(LANDMARK_LATEJOIN)
 				while((locate(/mob) in T) && tries--)
 				src.set_loc(T)
+			else
+				if (job_start_locations && islist(job_start_locations[JOB.name]))
+					var/tries = 8
+					var/turf/T
+					do
+						T = pick(job_start_locations[JOB.name])
+					while((locate(/mob) in T) && tries--)
+					src.set_loc(T)
 		else
 			src.set_loc(pick_landmark(LANDMARK_LATEJOIN))
 	else

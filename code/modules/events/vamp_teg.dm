@@ -309,7 +309,7 @@ datum/teg_transformation/vampire
 				src.teg.grump -= 10
 			else
 				reagents.remove_any_to(100)
-				make_cleanable(/obj/decal/cleanable/blood,get_step(src.teg, SOUTH))
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_step(src.teg, SOUTH))
 				src.teg.efficiency_controller += 5
 				SPAWN_DBG(45 SECONDS)
 					if(src.teg?.active_form == src)

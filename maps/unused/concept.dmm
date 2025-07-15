@@ -2273,13 +2273,6 @@
 	},
 /turf/floor/plating,
 /area/maintenance/westsolar)
-"aeF" = (
-/obj/rack,
-/obj/item/device/radio/intercom{
-	
-	},
-/turf/floor,
-/area/crew_quarters/market)
 "aeG" = (
 /obj/machinery/door_control{
 	name = "Door Toggle";
@@ -2619,15 +2612,6 @@
 	dir = 5
 	},
 /area/ai_monitored/storage/eva)
-"afh" = (
-/obj/stool/chair{
-	dir = 4
-	},
-/obj/item/device/radio/intercom{
-	
-	},
-/turf/floor/plating,
-/area/maintenance/fsmaint)
 "afi" = (
 /obj/cable,
 /obj/machinery/power/data_terminal,
@@ -3479,17 +3463,6 @@
 /obj/item/storage/lightbox/bulbs,
 /turf/floor,
 /area/janitor)
-"agN" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	
-	},
-/turf/floor,
-/area/janitor)
 "agO" = (
 /obj/machinery/light_switch{
 	name = "N light switch";
@@ -3528,12 +3501,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
 /area/maintenance/fsmaint)
-"agU" = (
-/obj/item/device/radio/intercom{
-	
-	},
-/turf/floor/plating,
-/area/maintenance/disposal)
 "agV" = (
 /obj/disposalpipe/trunk{
 	tag = "icon-pipe-t (NORTH)";
@@ -4150,20 +4117,6 @@
 	},
 /turf/wall,
 /area/storage/autolathe)
-"aif" = (
-/obj/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/obj/item/storage/mousetraps,
-/obj/item/storage/mousetraps,
-/obj/item/storage/mousetraps,
-/obj/item/device/radio/intercom{
-	
-	},
-/turf/floor/grime,
-/area/janitor)
 "aig" = (
 /obj/cable{
 	icon_state = "4-8";
@@ -5883,13 +5836,6 @@
 	name = "Loading Door Control";
 	pixel_x = -24
 	},
-/turf/floor,
-/area/quartermaster/storage)
-"alp" = (
-/obj/item/device/radio/intercom{
-	
-	},
-/obj/machinery/light,
 /turf/floor,
 /area/quartermaster/storage)
 "alq" = (
@@ -8644,17 +8590,6 @@
 	dir = 1
 	},
 /area/turret_protected/ai_upload_foyer)
-"aqR" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/item/device/radio/intercom{
-	
-	},
-/turf/floor/purple/side{
-	dir = 9
-	},
-/area/turret_protected/ai_upload_foyer)
 "aqS" = (
 /obj/cable{
 	icon_state = "2-4";
@@ -9906,10 +9841,6 @@
 "ats" = (
 /turf/floor/airless/plating/scorched,
 /area/engine/proto_gangway)
-"att" = (
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto_gangway)
 "atu" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -10243,10 +10174,6 @@
 	},
 /turf/floor,
 /area/maintenance/east)
-"auh" = (
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto_gangway)
 "aui" = (
 /obj/grille,
 /obj/window/reinforced{
@@ -11039,15 +10966,6 @@
 	},
 /turf/floor/plating,
 /area/maintenance/east)
-"avN" = (
-/obj/cable{
-	icon_state = "1-2";
-	d1 = 1;
-	d2 = 2
-	},
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto_gangway)
 "avO" = (
 /obj/cable{
 	tag = "icon-1-4";
@@ -11779,10 +11697,6 @@
 	},
 /turf/floor/plating/airless,
 /area/engine/proto)
-"axg" = (
-/turf/floor/plating/airless,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto)
 "axh" = (
 /obj/machinery/fission/neutron_injector,
 /turf/floor/plating/airless,
@@ -12382,15 +12296,6 @@
 	d2 = 4
 	},
 /turf/floor/airless/plating/damaged1,
-/area/engine/proto)
-"ayy" = (
-/obj/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/turf/floor/plating/airless,
-/turf/floor/airless/plating/damaged2,
 /area/engine/proto)
 "ayz" = (
 /obj/cable{
@@ -13018,19 +12923,6 @@
 /mob/living/carbon/monkey,
 /turf/floor/white,
 /area/medical/research)
-"azK" = (
-/obj/machinery/fission/reactor,
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto)
-"azL" = (
-/turf/floor/airless/plating/scorched,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto)
-"azM" = (
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto)
 "azN" = (
 /obj/machinery/power/monitor,
 /obj/cable,
@@ -13513,11 +13405,6 @@
 	},
 /turf/floor/blackwhite/side,
 /area/medical/research)
-"aAP" = (
-/obj/machinery/fission/reactor,
-/turf/floor/airless/plating/damaged1,
-/turf/floor/airless/plating/damaged2,
-/area/engine/proto)
 "aAQ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -21084,13 +20971,6 @@
 "aOu" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/syndicate_teleporter)
-"aOv" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
 	},
 /area/syndicate_teleporter)
 "aOw" = (
@@ -32775,13 +32655,6 @@
 	icon_state = "wall3"
 	},
 /area/wizard_station)
-"bjI" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
-	},
-/area/wizard_station)
 "bjJ" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 4
@@ -35062,16 +34935,6 @@
 	dir = 9
 	},
 /area/space)
-"boL" = (
-/obj/item/baton,
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor/yellow/side{
-	dir = 1
-	},
-/area/space)
 "boM" = (
 /obj/crate,
 /turf/floor/yellow/side{
@@ -35588,15 +35451,6 @@
 /obj/mopbucket,
 /turf/floor/caution/east,
 /area/space)
-"bpX" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/obj/decal/cleanable/blood/splatter,
-/turf/floor,
-/area/space)
 "bpY" = (
 /obj/machinery/door/airlock,
 /turf/floor,
@@ -35702,18 +35556,6 @@
 "bql" = (
 /turf/wall/other,
 /area/tdome/tdome2)
-"bqm" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor,
-/area/space)
 "bqn" = (
 /obj/item/saw/syndie,
 /turf/floor/grass{
@@ -35789,41 +35631,8 @@
 	},
 /turf/floor/black,
 /area/space)
-"bqD" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHWEST)";
-	icon_state = "tracks";
-	dir = 9
-	},
-/obj/critter/lion,
-/turf/floor,
-/area/space)
-"bqE" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor,
-/area/space)
-"bqF" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHEAST)";
-	icon_state = "tracks";
-	dir = 6
-	},
-/turf/floor,
-/area/space)
 "bqG" = (
 /obj/kitchenspike,
-/turf/floor/plating,
-/area/space)
-"bqH" = (
-/obj/kitchenspike,
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
 /turf/floor/plating,
 /area/space)
 "bqI" = (
@@ -35885,14 +35694,6 @@
 	icon_state = "carpetNE"
 	},
 /area/space)
-"bqR" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor,
-/area/space)
 "bqS" = (
 /obj/critter/lion,
 /turf/floor,
@@ -35900,11 +35701,6 @@
 "bqT" = (
 /obj/item/cigpacket,
 /turf/floor,
-/area/space)
-"bqU" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/circular_saw,
-/turf/floor/plating,
 /area/space)
 "bqV" = (
 /obj/item/razor_blade,
@@ -35943,17 +35739,6 @@
 	icon_state = "carpet2"
 	},
 /area/space)
-"bqZ" = (
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-suitblood";
-	icon_state = "suitblood"
-	},
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-helmetblood";
-	icon_state = "helmetblood"
-	},
-/turf/floor/carpet,
-/area/space)
 "bra" = (
 /turf/floor/carpet,
 /area/space)
@@ -35979,19 +35764,6 @@
 	dir = 8
 	},
 /turf/wall/r_wall,
-/area/space)
-"brd" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHWEST)";
-	icon_state = "tracks";
-	dir = 9
-	},
-/turf/floor,
 /area/space)
 "bre" = (
 /obj/disposalpipe/trunk,
@@ -36048,61 +35820,6 @@
 	},
 /turf/floor{
 	icon_state = "carpetNW"
-	},
-/area/space)
-"brj" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHWEST)";
-	icon_state = "tracks";
-	dir = 9
-	},
-/turf/floor{
-	icon_state = "carpet2"
-	},
-/area/space)
-"brk" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
-	icon_state = "tracks";
-	dir = 8
-	},
-/turf/floor{
-	icon_state = "carpet1"
-	},
-/area/space)
-"brl" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
-	icon_state = "tracks";
-	dir = 8
-	},
-/obj/item/paper{
-	info = "I keep cutting and they won't stop and I keep cutting<font size=4>and</font><font size=3>they wo</font><font size=2>nt stop and I keep cutting</font>and the<i>HE</i> ISN'T<br> COMING WHY WON<font size=1><b>he</b> co<br>me I keep calling and <i>he</i> has left and <i>he</i> isn't here but I keep</font><font size=4>CUTTING AN</font><font size=3>D <b>HE</b> <br>WON'T COME WHY WON'T HE COME</font>";
-	name = "scrawled note"
-	},
-/turf/floor/carpet,
-/area/space)
-"brm" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
-	icon_state = "tracks";
-	dir = 8
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
-	icon_state = "tracks";
-	dir = 5
-	},
-/turf/floor/carpet,
-/area/space)
-"brn" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
-	icon_state = "tracks";
-	dir = 5
-	},
-/turf/floor{
-	icon_state = "carpet2"
 	},
 /area/space)
 "bro" = (
@@ -36212,32 +35929,6 @@
 	icon_state = "carpetW"
 	},
 /area/space)
-"brB" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor/carpet,
-/area/space)
-"brC" = (
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-helmetblood2";
-	icon_state = "helmetblood2"
-	},
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-suitblood2";
-	icon_state = "suitblood2"
-	},
-/turf/floor/carpet,
-/area/space)
-"brD" = (
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
-/turf/floor/carpet,
-/area/space)
 "brE" = (
 /turf/floor{
 	icon_state = "carpetE"
@@ -36338,149 +36029,6 @@
 	icon_state = "carpetW"
 	},
 /area/space)
-"brT" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
-	icon_state = "tracks";
-	dir = 1
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor/carpet,
-/area/space)
-"brU" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/critter/yeti,
-/turf/floor/carpet,
-/area/space)
-"brV" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/carpet,
-/area/space)
-"brW" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor/carpet,
-/area/space)
-"brX" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
-	icon_state = "tracks";
-	dir = 5
-	},
-/turf/floor/carpet,
-/area/space)
-"brY" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor/carpet,
-/area/space)
-"brZ" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor{
-	icon_state = "carpetE"
-	},
-/area/space)
-"bsa" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/machinery/door/airlock{
-	name = "Robuster's Legacy"
-	},
-/turf/floor/black,
-/area/space)
-"bsb" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/machinery/door/poddoor{
-	id = "maze-d3";
-	name = "Bunker Inner Door"
-	},
-/turf/floor/black,
-/area/space)
-"bsc" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/machinery/door/poddoor{
-	id = "maze-d2";
-	name = "Bunker Center Door"
-	},
-/turf/floor/black,
-/area/space)
-"bsd" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/machinery/door/poddoor{
-	id = "maze-d1";
-	name = "Bunker Outer Door"
-	},
-/turf/floor/black,
-/area/space)
-"bse" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/black,
-/area/space)
-"bsf" = (
-/obj/machinery/door/airlock{
-	name = "Robuster's Requiem"
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/black,
-/area/space)
-"bsg" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/caution/west,
-/area/space)
 "bsh" = (
 /obj/overlay{
 	anchored = 1;
@@ -36573,42 +36121,6 @@
 	icon_state = "carpetW"
 	},
 /area/space)
-"bsm" = (
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-gib2";
-	icon_state = "gib2"
-	},
-/turf/floor/carpet,
-/area/space)
-"bsn" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHWEST)";
-	icon_state = "tracks";
-	dir = 9
-	},
-/turf/floor/carpet,
-/area/space)
-"bso" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHEAST)";
-	icon_state = "tracks";
-	dir = 6
-	},
-/turf/floor/carpet,
-/area/space)
-"bsp" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHEAST)";
-	icon_state = "tracks";
-	dir = 6
-	},
-/turf/floor/carpet,
-/area/space)
 "bsq" = (
 /obj/window/reinforced{
 	tag = "icon-rwindow (EAST)";
@@ -36694,26 +36206,6 @@
 "bsA" = (
 /turf/floor{
 	icon_state = "carpetSW"
-	},
-/area/space)
-"bsB" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor{
-	icon_state = "carpet2"
-	},
-/area/space)
-"bsC" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor{
-	icon_state = "carpet1"
 	},
 /area/space)
 "bsD" = (
@@ -36855,21 +36347,6 @@
 	},
 /turf/floor/white,
 /area/tdome/tdomea)
-"bsT" = (
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-u_guilty";
-	icon_state = "u_guilty"
-	},
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-shoeblood";
-	icon_state = "shoeblood"
-	},
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-maskblood";
-	icon_state = "maskblood"
-	},
-/turf/floor/carpet,
-/area/space)
 "bsU" = (
 /obj/item/paper,
 /turf/floor{
@@ -37156,13 +36633,6 @@
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
-"btE" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor,
-/area/space)
 "btF" = (
 /obj/disposalpipe/segment{
 	dir = 1;
@@ -37881,15 +37351,6 @@
 	},
 /turf/floor,
 /area/space)
-"bve" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/floor{
-	icon = 'beach.dmi';
-	icon_state = "sand";
-	name = "sand";
-	opacity = 0
-	},
-/area/space)
 "bvf" = (
 /obj/critter/bloodling,
 /turf/floor{
@@ -37959,11 +37420,6 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/floor/plating,
 /area/space)
-"bvo" = (
-/obj/reagent_dispensers/beerkeg,
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/plating,
-/area/space)
 "bvp" = (
 /obj/secure_closet/bar,
 /turf/floor/specialroom/bar,
@@ -37999,13 +37455,6 @@
 	icon_state = "floorVR2"
 	},
 /area/sim/gunsim)
-"bvv" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-gibbl2";
-	icon_state = "gibbl2"
-	},
-/turf/floor/plating,
-/area/space)
 "bvw" = (
 /obj/secure_closet/fridge{
 	icon_state = "fridge";
@@ -38618,13 +38067,6 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_station)
-"bxf" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
-	},
-/area/syndicate_station)
 "bxg" = (
 /obj/lattice,
 /turf/floor/void,
@@ -39119,11 +38561,6 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_station)
-"byq" = (
-/obj/structure/girder,
-/turf/floor/plating,
-/turf/floor/plating/damaged2,
-/area/crunch)
 "byr" = (
 /obj/item/bananapeel,
 /obj/item/tile{
@@ -39194,10 +38631,6 @@
 	desc = "Here lies Kira Taggart, tragically killed as a result of somebody else's mistakes."
 	},
 /turf/floor/ancient,
-/area/crunch)
-"byA" = (
-/turf/floor/plating,
-/turf/floor/plating/damaged2,
 /area/crunch)
 "byB" = (
 /obj/machinery/light/fluorescent/worn{
@@ -39532,18 +38965,6 @@
 /obj/deskclutter,
 /turf/floor/carpet,
 /area/crunch)
-"bzq" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor2";
-	icon_state = "floor2"
-	},
-/obj/window/cubicle{
-	tag = "icon-cubicle (WEST)";
-	icon_state = "cubicle";
-	dir = 8
-	},
-/turf/floor/carpet,
-/area/crunch)
 "bzr" = (
 /obj/decal/fakeobjects/firealarm_broken{
 	dir = 4;
@@ -39659,20 +39080,6 @@
 	dir = 6
 	},
 /obj/item/gun/russianrevolver,
-/turf/floor/carpet,
-/area/crunch)
-"bzF" = (
-/obj/stool/chair{
-	dir = 8
-	},
-/obj/window/cubicle,
-/obj/decal/skeleton{
-	desc = "The remains of a human. The skull has a hole in it.  An extra one, I mean.";
-	layer = 2.5;
-	pixel_y = 8
-	},
-/obj/decal/cleanable/blood/splatter,
-/obj/spook,
 /turf/floor/carpet,
 /area/crunch)
 "bzG" = (
@@ -40240,10 +39647,6 @@
 /area/admin{
 	name = "Test room"
 	})
-"bAY" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
-/area/crunch)
 "bAZ" = (
 /obj/rail,
 /turf/floor{
@@ -40322,28 +39725,12 @@
 /area/admin{
 	name = "Test room"
 	})
-"bBi" = (
-/turf/floor/void,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/crunch)
 "bBj" = (
 /turf/wall/setpieces/martian,
 /area/crunch)
 "bBk" = (
 /obj/machinery/door/unpowered/martian,
 /turf/floor/setpieces/martian,
-/area/crunch)
-"bBl" = (
-/turf/floor/void,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (SOUTHEAST)";
-	icon_state = "diagonalWall";
-	dir = 6
-	},
 /area/crunch)
 "bBm" = (
 /obj/machinery/power/apc{
@@ -40393,24 +39780,8 @@
 /area/admin{
 	name = "Test room"
 	})
-"bBq" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (EAST)";
-	icon_state = "diagonalWall";
-	dir = 4
-	},
-/area/crunch)
 "bBr" = (
 /turf/floor/setpieces/martian,
-/area/crunch)
-"bBs" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (NORTHEAST)";
-	icon_state = "diagonalWall";
-	dir = 5
-	},
 /area/crunch)
 "bBt" = (
 /obj/structure/girder,
@@ -40555,14 +39926,6 @@
 /area/admin{
 	name = "Test room"
 	})
-"bBH" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (NORTH)";
-	icon_state = "diagonalWall";
-	dir = 1
-	},
-/area/crunch)
 "bBI" = (
 /obj/decal/ash,
 /turf/floor/setpieces/martian,
@@ -40720,14 +40083,6 @@
 	pixel_y = 30
 	},
 /turf/floor/setpieces/martian,
-/area/crunch)
-"bBY" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
 /area/crunch)
 "bBZ" = (
 /obj/shieldwall{
@@ -41710,14 +41065,6 @@
 	},
 /turf/floor/setpieces/martian,
 /area/crunch)
-"bEl" = (
-/turf/floor/setpieces/martian,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (SOUTHEAST)";
-	icon_state = "diagonalWall";
-	dir = 6
-	},
-/area/crunch)
 "bEm" = (
 /obj/crevice{
 	pixel_y = -28
@@ -42564,22 +41911,6 @@
 /obj/machinery/recharger,
 /turf/floor/grime,
 /area/crunch)
-"bFZ" = (
-/turf/floor/plating,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (NORTHEAST)";
-	icon_state = "diagonalWall";
-	dir = 5
-	},
-/area/crunch)
-"bGa" = (
-/turf/floor/plating,
-/turf/wall/setpieces/martian{
-	tag = "icon-diagonalWall (EAST)";
-	icon_state = "diagonalWall";
-	dir = 4
-	},
-/area/crunch)
 "bGb" = (
 /obj/item/tile,
 /turf/floor,
@@ -43158,12 +42489,6 @@
 /obj/item/tile,
 /turf/floor/plating/scorched,
 /area/crunch)
-"bHt" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/decal/skeleton,
-/obj/spook,
-/turf/floor/white,
-/area/crunch)
 "bHu" = (
 /obj/grille,
 /obj/window{
@@ -43228,11 +42553,6 @@
 /obj/stool/chair,
 /obj/machinery/light,
 /turf/floor,
-/area/crunch)
-"bHB" = (
-/obj/decal/fakeobjects/lighttube_broken,
-/turf/floor/plating,
-/turf/floor/plating/damaged2,
 /area/crunch)
 "bHC" = (
 /obj/grille,
@@ -44272,10 +43592,6 @@
 	pixel_x = -32
 	},
 /turf/floor/airless/plating/damaged1,
-/area/wreckage/bridge)
-"bKd" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
 /area/wreckage/bridge)
 "bKe" = (
 /obj/disposalpipe/broken{
@@ -47027,21 +46343,6 @@
 	icon_state = "floor3"
 	},
 /area/derelict/salyut)
-"bPs" = (
-/obj/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/obj/item/shard/crystal,
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/turf/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/derelict/salyut)
 "bPt" = (
 /obj/cable{
 	icon_state = "2-8";
@@ -47507,135 +46808,11 @@
 	icon_state = "aplaceholder"
 	},
 /area/space)
-"bQl" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/space)
-"bQm" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "astedge"
-	},
-/area/space)
-"bQn" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
-	},
-/area/space)
-"bQo" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astdetail"
-	},
-/area/space)
 "bQp" = (
 /turf/wall/asteroid,
 /area/space)
-"bQq" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/space)
-"bQr" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/space)
-"bQs" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
-/area/space)
-"bQt" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astedge"
-	},
-/area/space)
-"bQu" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "astedge"
-	},
-/area/space)
-"bQv" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "astdetail"
-	},
-/area/space)
-"bQw" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astdetail"
-	},
-/area/space)
-"bQx" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
-"bQy" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
-"bQz" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
-"bQA" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "astdetail"
-	},
-/area/space)
-"bQB" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astdetail"
-	},
-/area/space)
-"bQC" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astdetail"
-	},
-/area/h7/asteroid)
 "bQD" = (
 /turf/wall/asteroid,
-/area/h7/asteroid)
-"bQE" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astdetail"
-	},
 /area/h7/asteroid)
 "bQF" = (
 /obj/window/reinforced,
@@ -47912,14 +47089,6 @@
 	},
 /turf/floor,
 /area/h7/control)
-"bRd" = (
-/obj/stool/chair,
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor2";
-	icon_state = "floor2"
-	},
-/turf/floor,
-/area/h7/control)
 "bRe" = (
 /obj/cable{
 	d1 = 1;
@@ -47933,13 +47102,6 @@
 	},
 /turf/wall/r_wall,
 /area/space)
-"bRf" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
 "bRg" = (
 /turf/floor/cautionblack/side{
 	dir = 8
@@ -48015,32 +47177,6 @@
 	},
 /turf/floor,
 /area/h7/control)
-"bRq" = (
-/obj/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor,
-/area/h7/control)
-"bRr" = (
-/obj/cable{
-	icon_state = "2-8";
-	d1 = 2;
-	d2 = 8
-	},
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
-	icon_state = "tracks";
-	dir = 5
-	},
-/turf/floor,
-/area/h7/control)
 "bRs" = (
 /obj/machinery/light/fluorescent/worn{
 	tag = "icon-tube1 (EAST)";
@@ -48085,25 +47221,10 @@
 	},
 /turf/floor,
 /area/h7/control)
-"bRy" = (
-/obj/cable{
-	tag = "icon-1-2";
-	icon_state = "1-2"
-	},
-/obj/decal/cleanable/blood/tracks,
-/turf/floor,
-/area/h7/control)
 "bRz" = (
 /obj/item/storage/trashcan,
 /turf/floor,
 /area/h7/control)
-"bRA" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astdetail"
-	},
-/area/h7/asteroid)
 "bRB" = (
 /obj/rack,
 /obj/item/sheet/metal{
@@ -48130,23 +47251,6 @@
 	},
 /turf/floor,
 /area/h7/control)
-"bRD" = (
-/obj/decal/fakeobjects/firelock_broken{
-	tag = "icon-door0 (NORTH)";
-	icon_state = "door0";
-	dir = 1
-	},
-/obj/cable{
-	tag = "icon-1-2";
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/command{
-	name = "Computer Core";
-	req_access_txt = "11"
-	},
-/obj/decal/cleanable/blood/tracks,
-/turf/floor,
-/area/h7/computer_core)
 "bRE" = (
 /turf/wall/r_wall,
 /area/h7/storage)
@@ -48195,14 +47299,6 @@
 	},
 /turf/floor,
 /area/h7/computer_core)
-"bRN" = (
-/obj/cable{
-	tag = "icon-1-2";
-	icon_state = "1-2"
-	},
-/obj/decal/cleanable/blood/tracks,
-/turf/floor,
-/area/h7/computer_core)
 "bRO" = (
 /turf/floor/cautionblack/side{
 	dir = 4
@@ -48225,19 +47321,6 @@
 "bRQ" = (
 /turf/wall/r_wall,
 /area/h7/computer_core)
-"bRR" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
-"bRS" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
 "bRT" = (
 /obj/cable{
 	icon_state = "0-2";
@@ -48328,15 +47411,6 @@
 "bSa" = (
 /turf/floor,
 /area/h7/computer_core)
-"bSb" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/decal/cleanable/blood/tracks,
-/turf/floor,
-/area/h7/computer_core)
 "bSc" = (
 /obj/cable{
 	icon_state = "2-8";
@@ -48421,27 +47495,6 @@
 	},
 /turf/floor,
 /area/h7)
-"bSl" = (
-/obj/machinery/light/fluorescent/worn{
-	tag = "icon-tube1 (WEST)";
-	icon_state = "tube1";
-	dir = 8
-	},
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor5";
-	icon_state = "floor5"
-	},
-/obj/decal/skeleton,
-/turf/floor,
-/area/h7/computer_core)
-"bSm" = (
-/obj/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHEAST)";
-	icon_state = "tracks";
-	dir = 6
-	},
-/turf/floor,
-/area/h7/computer_core)
 "bSn" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -48469,13 +47522,6 @@
 	},
 /turf/floor/bot,
 /area/h7/computer_core)
-"bSp" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
 "bSq" = (
 /obj/crate,
 /obj/item/caution{
@@ -48671,20 +47717,6 @@
 	},
 /turf/floor/plating,
 /area/h7)
-"bSJ" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/h7/asteroid)
-"bSK" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/h7/asteroid)
 "bSL" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -49054,16 +48086,6 @@
 	dir = 1
 	},
 /turf/floor/plating,
-/area/h7/crew)
-"bTI" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/obj/decal/fakeobjects/firealarm_broken{
-	pixel_y = 24
-	},
-/turf/floor,
 /area/h7/crew)
 "bTJ" = (
 /obj/machinery/light/fluorescent/worn{
@@ -49671,13 +48693,6 @@
 /obj/item/storage/toolbox/electrical,
 /turf/floor/plating,
 /area/h7)
-"bUR" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astdetail"
-	},
-/area/h7/asteroid)
 "bUS" = (
 /turf/wall/asteroid{
 	dir = 10;
@@ -49720,23 +48735,6 @@
 /obj/item/skull,
 /turf/space,
 /area/space)
-"bVa" = (
-/obj/stool/bed,
-/obj/window/basic{
-	tag = "icon-window (NORTH)";
-	icon_state = "window";
-	dir = 1
-	},
-/obj/decal/skeleton,
-/obj/item/clothing/suit/bedsheet,
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor3";
-	icon_state = "floor3"
-	},
-/turf/floor{
-	icon_state = "carpetW"
-	},
-/area/h7/crew)
 "bVb" = (
 /obj/stool/bed,
 /obj/window/basic{
@@ -49798,11 +48796,6 @@
 "bVi" = (
 /turf/wall,
 /area/h7/asteroid)
-"bVj" = (
-/obj/decal/cleanable/blood,
-/obj/decal/cleanable/cobweb,
-/turf/floor/plating,
-/area/h7)
 "bVk" = (
 /obj/stool/bed,
 /obj/window/basic{
@@ -49948,13 +48941,6 @@
 	},
 /turf/floor,
 /area/h7/lab)
-"bVD" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor3";
-	icon_state = "floor3"
-	},
-/turf/floor,
-/area/h7/lab)
 "bVE" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -49967,15 +48953,6 @@
 	},
 /turf/floor/red/side{
 	dir = 9
-	},
-/area/h7/lab)
-"bVF" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/turf/floor/red/side{
-	dir = 1
 	},
 /area/h7/lab)
 "bVG" = (
@@ -50258,13 +49235,6 @@
 /obj/item/cable_coil/cut,
 /turf/floor/airless/plating/damaged1,
 /area/h7)
-"bWk" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astdetail"
-	},
-/area/space)
 "bWl" = (
 /obj/decal/fakeobjects/lighttube_broken{
 	tag = "icon-tube-broken (WEST)";
@@ -50444,13 +49414,6 @@
 /area/h7)
 "bWC" = (
 /turf/wall/asteroid,
-/area/h7)
-"bWD" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
 /area/h7)
 "bWE" = (
 /obj/item/cable_coil/cut{
@@ -50688,20 +49651,6 @@
 	dir = 8
 	},
 /area/h7/lab)
-"bWY" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/h7)
-"bWZ" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/h7)
 "bXa" = (
 /obj/cable,
 /obj/machinery/power/solar{
@@ -51193,12 +50142,6 @@
 /obj/item/pen,
 /turf/floor,
 /area/h7/lab)
-"bYc" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "astdetail"
-	},
-/area/h7/asteroid)
 "bYd" = (
 /obj/table{
 	contents = newlist();
@@ -52227,10 +51170,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/floor/plating,
 /area/AIsattele)
-"caB" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "caC" = (
 /turf/floor/plating/airless,
 /area/ab_res{
@@ -56318,12 +55257,6 @@
 /area/ab_res{
 	name = "Research Outpost Zeta"
 	})
-"cgY" = (
-/obj/cable,
-/obj/item/cable_coil/cut,
-/turf/floor/plating/airless,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "cgZ" = (
 /obj/grille,
 /obj/window/reinforced{
@@ -56817,13 +55750,6 @@
 /area/ab_res{
 	name = "Research Outpost Zeta"
 	})
-"chO" = (
-/obj/item/cable_coil/cut,
-/turf/space,
-/turf/floor/plating/damaged2,
-/area/ab_res{
-	name = "Research Outpost Zeta"
-	})
 "chP" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -56907,12 +55833,6 @@
 /area/ab_res{
 	name = "Research Outpost Zeta"
 	})
-"chX" = (
-/turf/floor,
-/turf/floor/plating/damaged2,
-/area/ab_res{
-	name = "Research Outpost Zeta"
-	})
 "chY" = (
 /turf/floor/caution/west,
 /area/ab_res{
@@ -56979,29 +55899,6 @@
 	},
 /turf/floor/plating/airless,
 /area/space)
-"cif" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cig" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cih" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cii" = (
 /turf/wall/asteroid{
 	dir = 9;
@@ -57058,29 +55955,8 @@
 	icon_state = "astdetail"
 	},
 /area/space)
-"cio" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cip" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9;
-	icon_state = "astdetail"
-	},
-/area/fuck/main)
 "ciq" = (
 /turf/wall/asteroid,
-/area/fuck/main)
-"cir" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
 /area/fuck/main)
 "cis" = (
 /obj/landmark/mining{
@@ -57089,13 +55965,6 @@
 	veintype = 2
 	},
 /turf/wall/asteroid,
-/area/fuck/main)
-"cit" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astdetail"
-	},
 /area/fuck/main)
 "ciu" = (
 /obj/landmark/mining{
@@ -57203,14 +56072,6 @@
 	icon_state = "astedge"
 	},
 /area/space)
-"ciE" = (
-/obj/grille,
-/turf/space,
-/turf/wall/asteroid{
-	dir = 1;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "ciF" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -57828,13 +56689,6 @@
 /turf/wall/asteroid{
 	dir = 10;
 	icon_state = "astedge"
-	},
-/area/fuck/main)
-"cjX" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astdetail"
 	},
 /area/fuck/main)
 "cjY" = (
@@ -59402,21 +58256,6 @@
 "cnn" = (
 /turf/floor/plating/airless,
 /area/fuck/main)
-"cno" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/fuck/main)
-"cnp" = (
-/obj/lattice,
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cnq" = (
 /obj/lattice,
 /turf/wall/asteroid{
@@ -59970,14 +58809,6 @@
 	icon_state = "astedge"
 	},
 /area/space)
-"cov" = (
-/obj/lattice,
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cow" = (
 /turf/wall,
 /area/mining/exit_west)
@@ -60005,15 +58836,6 @@
 /obj/machinery/bot/mining,
 /turf/floor/plating/airless/asteroid,
 /area/fuck/main)
-"coC" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astdetail"
-	},
-/area/fuck/main)
 "coD" = (
 /obj/landmark/mining{
 	icon_state = "mining3";
@@ -60027,13 +58849,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"coE" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "coF" = (
 /obj/crate,
 /turf/floor/plating/airless/asteroid,
@@ -60195,13 +59010,6 @@
 	icon_state = "astedge"
 	},
 /area/space)
-"coW" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "coX" = (
 /obj/machinery/light,
 /turf/floor,
@@ -60241,13 +59049,6 @@
 /obj/machinery/light,
 /turf/floor,
 /area/mining/exit_east)
-"cpc" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6;
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cpd" = (
 /obj/landmark/mining{
 	icon_state = "mining6";
@@ -60345,12 +59146,6 @@
 	dir = 8
 	},
 /area/mining/exit_east)
-"cpq" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "astedge"
-	},
-/area/fuck/main)
 "cpr" = (
 /obj/landmark/mining{
 	icon_state = "mining6";
@@ -60713,15 +59508,6 @@
 /area/space)
 "cqb" = (
 /turf/space,
-/area/fuck/main)
-"cqc" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	dir = 4;
-	icon_state = "astedge"
-	},
 /area/fuck/main)
 "cqd" = (
 /obj/landmark/mining{
@@ -61220,14 +60006,6 @@
 /turf/wall/asteroid{
 	dir = 5;
 	icon_state = "astdetail"
-	},
-/area/space)
-"cre" = (
-/obj/lattice,
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astedge"
 	},
 /area/space)
 "crf" = (
@@ -64333,28 +63111,6 @@
 	dir = 1
 	},
 /area/derelict/evilreaver)
-"cwV" = (
-/obj/table/woodentable{
-	tag = "icon-woodentable (SOUTHWEST)";
-	icon_state = "woodentable";
-	dir = 10
-	},
-/obj/decal/cleanable/blood,
-/obj/landmark{
-	name = "evilchef_corpse"
-	},
-/obj/item/lightgrenade{
-	desc = "A sharp, bloody knife.";
-	icon = 'kitchen.dmi';
-	icon_state = "knife_b";
-	name = "Butcher's Knife";
-	state = 1
-	},
-/obj/item/electronics/battery,
-/turf/floor/specialroom/cafeteria{
-	dir = 1
-	},
-/area/derelict/evilreaver)
 "cwW" = (
 /obj/table/woodentable,
 /obj/item/plate,
@@ -64427,20 +63183,6 @@
 	dir = 1
 	},
 /area/derelict/evilreaver)
-"cxc" = (
-/obj/decal/cleanable/blood,
-/obj/machinery/light/small{
-	dir = 4;
-	icon_state = "bulb1";
-	sd_ColorBlue = 0.3;
-	sd_ColorGreen = 0.3;
-	tag = "icon-bulb1 (EAST)"
-	},
-/obj/spook,
-/turf/floor/specialroom/cafeteria{
-	dir = 1
-	},
-/area/derelict/evilreaver)
 "cxd" = (
 /obj/landmark/mining{
 	icon_state = "mining2";
@@ -64458,26 +63200,6 @@
 	tag = "icon-door_locked"
 	},
 /turf/floor,
-/area/derelict/evilreaver)
-"cxf" = (
-/obj/decal/cleanable/blood,
-/turf/floor/specialroom/cafeteria{
-	dir = 1
-	},
-/area/derelict/evilreaver)
-"cxg" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "..How the hell is this even possible?";
-	icon = 'evilreaverstation.dmi';
-	icon_state = "meatspike_h";
-	name = "a meat spike"
-	},
-/obj/decal/cleanable/blood,
-/turf/floor/specialroom/cafeteria{
-	dir = 1
-	},
 /area/derelict/evilreaver)
 "cxh" = (
 /obj/landmark/mining{
@@ -64525,19 +63247,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"cxl" = (
-/obj/decal/cleanable/blood,
-/obj/decal/skeleton{
-	desc = "The head seems to be gone.";
-	icon = 'hstation.dmi';
-	icon_state = "body2";
-	name = "corpse";
-	tag = "icon-body2"
-	},
-/turf/floor/specialroom/cafeteria{
-	dir = 1
-	},
-/area/derelict/evilreaver)
 "cxm" = (
 /obj/kitchenspike,
 /turf/floor/specialroom/cafeteria{
@@ -66083,20 +64792,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"cAb" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8;
-	icon_state = "astedge"
-	},
-/area/space)
-"cAc" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 5;
-	icon_state = "astdetail"
-	},
-/area/space)
 "cAd" = (
 /obj/landmark/mining{
 	icon_state = "mining6";
@@ -67221,6 +65916,87 @@
 	icon_state = "astedge"
 	},
 /area/space)
+"cFy" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/caution/west,
+/area/space)
+"cHn" = (
+/turf/wall/asteroid{
+	dir = 1;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"cJI" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/item/device/radio/intercom,
+/turf/floor/plating,
+/area/maintenance/fsmaint)
+"deU" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor{
+	icon_state = "carpetE"
+	},
+/area/space)
+"dgc" = (
+/turf/floor/airless/plating/damaged2,
+/area/engine/proto)
+"dqn" = (
+/obj/cable{
+	icon_state = "2-8";
+	d1 = 2;
+	d2 = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHEAST)";
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/floor,
+/area/h7/control)
+"dqA" = (
+/turf/wall/asteroid{
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"drA" = (
+/obj/stool/chair,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor2";
+	icon_state = "floor2"
+	},
+/turf/floor,
+/area/h7/control)
+"dsM" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor2";
+	icon_state = "floor2"
+	},
+/obj/window/cubicle{
+	tag = "icon-cubicle (WEST)";
+	icon_state = "cubicle";
+	dir = 8
+	},
+/turf/floor/carpet,
+/area/crunch)
+"dxh" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor4";
+	icon_state = "floor4"
+	},
+/turf/floor/red/side{
+	dir = 1
+	},
+/area/h7/lab)
 "dzO" = (
 /obj/cable{
 	icon_state = "1-2";
@@ -67241,6 +66017,119 @@
 /obj/item/camera,
 /turf/floor/blue,
 /area/crew_quarters/captain)
+"dPd" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor{
+	icon = 'beach.dmi';
+	icon_state = "sand";
+	name = "sand";
+	opacity = 0
+	},
+/area/space)
+"dSf" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor{
+	icon_state = "carpet1"
+	},
+/area/space)
+"ebd" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor/carpet,
+/area/space)
+"eYq" = (
+/obj/item/device/radio/intercom,
+/obj/machinery/light,
+/turf/floor,
+/area/quartermaster/storage)
+"fiu" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor,
+/area/h7/computer_core)
+"fiF" = (
+/turf/floor/plating/damaged2,
+/area/ab_res{
+	name = "Research Outpost Zeta"
+	})
+"fiJ" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/black,
+/area/space)
+"fAF" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/device/radio/intercom,
+/turf/floor,
+/area/janitor)
+"gic" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/critter/yeti,
+/turf/floor/carpet,
+/area/space)
+"glo" = (
+/turf/floor/airless/plating/damaged2,
+/area/wreckage/bridge)
+"gxq" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/decal/skeleton,
+/obj/spook,
+/turf/floor/white,
+/area/crunch)
+"gzK" = (
+/obj/decal/fakeobjects/firelock_broken{
+	tag = "icon-door0 (NORTH)";
+	icon_state = "door0";
+	dir = 1
+	},
+/obj/cable{
+	tag = "icon-1-2";
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/command{
+	name = "Computer Core";
+	req_access_txt = "11"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor,
+/area/h7/computer_core)
+"gFp" = (
+/turf/wall/asteroid{
+	icon_state = "astdetail"
+	},
+/area/h7/asteroid)
+"gHx" = (
+/obj/structure/girder,
+/turf/floor/plating/damaged2,
+/area/crunch)
+"gRz" = (
+/turf/wall/asteroid{
+	dir = 9;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
 "hgy" = (
 /obj/table{
 	tag = "icon-tabledir (SOUTHEAST)";
@@ -67256,12 +66145,333 @@
 /obj/item/camera,
 /turf/floor,
 /area/wreckage/bridge)
+"hLY" = (
+/obj/reagent_dispensers/beerkeg,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/plating,
+/area/space)
+"inB" = (
+/turf/wall/asteroid{
+	dir = 6;
+	icon_state = "astdetail"
+	},
+/area/h7/asteroid)
+"ita" = (
+/obj/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor,
+/area/h7/control)
+"izj" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHWEST)";
+	icon_state = "tracks";
+	dir = 9
+	},
+/turf/floor{
+	icon_state = "carpet2"
+	},
+/area/space)
+"iHR" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor3";
+	icon_state = "floor3"
+	},
+/turf/floor,
+/area/h7/lab)
+"iKY" = (
+/turf/wall/setpieces/martian{
+	tag = "icon-diagonalWall (EAST)";
+	icon_state = "diagonalWall";
+	dir = 4
+	},
+/area/crunch)
+"iNh" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/decal/cleanable/cobweb,
+/turf/floor/plating,
+/area/h7)
+"iRe" = (
+/turf/wall/asteroid{
+	dir = 4;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"jof" = (
+/obj/cable,
+/obj/item/cable_coil/cut,
+/turf/floor/airless/plating/damaged2,
+/area/space)
+"joh" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = "maze-d3";
+	name = "Bunker Inner Door"
+	},
+/turf/floor/black,
+/area/space)
+"jCd" = (
+/obj/cable{
+	tag = "icon-1-2";
+	icon_state = "1-2"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor,
+/area/h7/control)
+"jRx" = (
+/obj/machinery/door/airlock{
+	name = "Robuster's Requiem"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/black,
+/area/space)
+"jVq" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor,
+/area/space)
+"kxR" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/obj/window/cubicle,
+/obj/decal/skeleton{
+	desc = "The remains of a human. The skull has a hole in it.  An extra one, I mean.";
+	layer = 2.5;
+	pixel_y = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/spook,
+/turf/floor/carpet,
+/area/crunch)
+"kzl" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor/carpet,
+/area/space)
+"kDb" = (
+/turf/wall/asteroid{
+	dir = 10;
+	icon_state = "astdetail"
+	},
+/area/h7/asteroid)
+"kLA" = (
+/turf/wall/asteroid{
+	dir = 6;
+	icon_state = "astedge"
+	},
+/area/h7)
+"kNj" = (
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "wall3_space"
+	},
+/area/wizard_station)
+"kYc" = (
+/turf/wall/asteroid{
+	dir = 9;
+	icon_state = "astdetail"
+	},
+/area/h7/asteroid)
+"ldj" = (
+/turf/wall/asteroid{
+	dir = 4;
+	icon_state = "astdetail"
+	},
+/area/h7/asteroid)
+"lei" = (
+/turf/wall/asteroid{
+	dir = 5;
+	icon_state = "astdetail"
+	},
+/area/h7/asteroid)
+"llo" = (
+/obj/stool/bed,
+/obj/window/basic{
+	tag = "icon-window (NORTH)";
+	icon_state = "window";
+	dir = 1
+	},
+/obj/decal/skeleton,
+/obj/item/clothing/suit/bedsheet,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor3";
+	icon_state = "floor3"
+	},
+/turf/floor{
+	icon_state = "carpetW"
+	},
+/area/h7/crew)
+"luC" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	name = "Robuster's Legacy"
+	},
+/turf/floor/black,
+/area/space)
+"lJT" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHWEST)";
+	icon_state = "tracks";
+	dir = 9
+	},
+/turf/floor/carpet,
+/area/space)
+"lQv" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor,
+/area/space)
+"mfz" = (
+/turf/wall/asteroid{
+	dir = 4;
+	icon_state = "astedge"
+	},
+/area/h7)
+"miu" = (
+/obj/item/device/radio/intercom,
+/turf/floor/plating,
+/area/maintenance/disposal)
+"msQ" = (
+/obj/machinery/fission/reactor,
+/turf/floor/airless/plating/damaged2,
+/area/engine/proto)
+"mCO" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHEAST)";
+	icon_state = "tracks";
+	dir = 6
+	},
+/turf/floor/carpet,
+/area/space)
+"nAO" = (
+/obj/decal/fakeobjects/lighttube_broken,
+/turf/floor/plating/damaged2,
+/area/crunch)
+"nBh" = (
+/turf/wall/setpieces/martian{
+	tag = "icon-diagonalWall (SOUTHEAST)";
+	icon_state = "diagonalWall";
+	dir = 6
+	},
+/area/crunch)
 "nDU" = (
 /obj/displaycase{
 	displayed = new /obj/item/captaingun
 	},
 /turf/floor,
 /area/wreckage/bridge)
+"nGe" = (
+/obj/grille,
+/turf/wall/asteroid{
+	dir = 1;
+	icon_state = "astedge"
+	},
+/area/fuck/main)
+"nIY" = (
+/obj/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/floor/airless/plating/damaged2,
+/area/engine/proto)
+"nRO" = (
+/obj/table/woodentable{
+	tag = "icon-woodentable (SOUTHWEST)";
+	icon_state = "woodentable";
+	dir = 10
+	},
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/landmark{
+	name = "evilchef_corpse"
+	},
+/obj/item/lightgrenade{
+	desc = "A sharp, bloody knife.";
+	icon = 'kitchen.dmi';
+	icon_state = "knife_b";
+	name = "Butcher's Knife";
+	state = 1
+	},
+/obj/item/electronics/battery,
+/turf/floor/specialroom/cafeteria{
+	dir = 1
+	},
+/area/derelict/evilreaver)
+"nUC" = (
+/obj/item/cable_coil/cut,
+/turf/floor/plating/damaged2,
+/area/ab_res{
+	name = "Research Outpost Zeta"
+	})
+"nYl" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = "maze-d2";
+	name = "Bunker Center Door"
+	},
+/turf/floor/black,
+/area/space)
+"ogP" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor,
+/area/space)
+"oCe" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-gib6";
+	icon_state = "gib6"
+	},
+/turf/floor/carpet,
+/area/space)
 "oRv" = (
 /obj/table/woodentable,
 /obj/item/camera{
@@ -67278,6 +66488,438 @@
 	icon_state = "carpetS"
 	},
 /area/security/detectives_office)
+"oVt" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor/plating,
+/area/space)
+"peS" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor{
+	icon_state = "carpet2"
+	},
+/area/space)
+"ptF" = (
+/turf/wall/asteroid{
+	dir = 6;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"pGQ" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHWEST)";
+	icon_state = "tracks";
+	dir = 9
+	},
+/turf/floor,
+/area/space)
+"pUd" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (WEST)";
+	icon_state = "tracks";
+	dir = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHEAST)";
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/floor/carpet,
+/area/space)
+"qme" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-suitblood";
+	icon_state = "suitblood"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-helmetblood";
+	icon_state = "helmetblood"
+	},
+/turf/floor/carpet,
+/area/space)
+"qqQ" = (
+/turf/wall/asteroid{
+	dir = 5;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"qLe" = (
+/obj/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/item/shard/crystal,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/derelict/salyut)
+"reS" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "..How the hell is this even possible?";
+	icon = 'evilreaverstation.dmi';
+	icon_state = "meatspike_h";
+	name = "a meat spike"
+	},
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor/specialroom/cafeteria{
+	dir = 1
+	},
+/area/derelict/evilreaver)
+"rfL" = (
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "wall3_space"
+	},
+/area/syndicate_teleporter)
+"rkY" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-helmetblood2";
+	icon_state = "helmetblood2"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-suitblood2";
+	icon_state = "suitblood2"
+	},
+/turf/floor/carpet,
+/area/space)
+"rzZ" = (
+/turf/wall/asteroid{
+	dir = 8;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"rDo" = (
+/turf/wall/asteroid{
+	dir = 6;
+	icon_state = "astdetail"
+	},
+/area/h7)
+"rLy" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHEAST)";
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/floor/carpet,
+/area/space)
+"rWL" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/device/radio/intercom,
+/turf/floor/purple/side{
+	dir = 9
+	},
+/area/turret_protected/ai_upload_foyer)
+"sgX" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor4";
+	icon_state = "floor4"
+	},
+/obj/decal/fakeobjects/firealarm_broken{
+	pixel_y = 24
+	},
+/turf/floor,
+/area/h7/crew)
+"soy" = (
+/obj/cable{
+	tag = "icon-1-2";
+	icon_state = "1-2"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor,
+/area/h7/computer_core)
+"svV" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/circular_saw,
+/turf/floor/plating,
+/area/space)
+"sBM" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor/carpet,
+/area/space)
+"sMe" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHEAST)";
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/floor{
+	icon_state = "carpet2"
+	},
+/area/space)
+"sMt" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHEAST)";
+	icon_state = "tracks";
+	dir = 6
+	},
+/turf/floor/carpet,
+/area/space)
+"sNo" = (
+/turf/wall/setpieces/martian{
+	tag = "icon-diagonalWall (NORTH)";
+	icon_state = "diagonalWall";
+	dir = 1
+	},
+/area/crunch)
+"tbd" = (
+/obj/cable{
+	icon_state = "1-2";
+	d1 = 1;
+	d2 = 2
+	},
+/turf/floor/airless/plating/damaged2,
+/area/engine/proto_gangway)
+"tnU" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (WEST)";
+	icon_state = "tracks";
+	dir = 8
+	},
+/obj/item/paper{
+	info = "I keep cutting and they won't stop and I keep cutting<font size=4>and</font><font size=3>they wo</font><font size=2>nt stop and I keep cutting</font>and the<i>HE</i> ISN'T<br> COMING WHY WON<font size=1><b>he</b> co<br>me I keep calling and <i>he</i> has left and <i>he</i> isn't here but I keep</font><font size=4>CUTTING AN</font><font size=3>D <b>HE</b> <br>WON'T COME WHY WON'T HE COME</font>";
+	name = "scrawled note"
+	},
+/turf/floor/carpet,
+/area/space)
+"tsS" = (
+/obj/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/item/storage/mousetraps,
+/obj/item/storage/mousetraps,
+/obj/item/storage/mousetraps,
+/obj/item/device/radio/intercom,
+/turf/floor/grime,
+/area/janitor)
+"txc" = (
+/turf/wall/asteroid{
+	dir = 10;
+	icon_state = "astedge"
+	},
+/area/h7/asteroid)
+"uPL" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHEAST)";
+	icon_state = "tracks";
+	dir = 6
+	},
+/turf/floor,
+/area/space)
+"vpy" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = "maze-d1";
+	name = "Bunker Outer Door"
+	},
+/turf/floor/black,
+/area/space)
+"vyx" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-u_guilty";
+	icon_state = "u_guilty"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-shoeblood";
+	icon_state = "shoeblood"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-maskblood";
+	icon_state = "maskblood"
+	},
+/turf/floor/carpet,
+/area/space)
+"vAe" = (
+/turf/wall/setpieces/martian{
+	tag = "icon-diagonalWall (WEST)";
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/crunch)
+"vHP" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHWEST)";
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor/carpet,
+/area/space)
+"vNs" = (
+/obj/item/baton,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/space)
+"vSq" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (WEST)";
+	icon_state = "tracks";
+	dir = 8
+	},
+/turf/floor{
+	icon_state = "carpet1"
+	},
+/area/space)
+"vTI" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTH)";
+	icon_state = "tracks";
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor,
+/area/space)
+"vWo" = (
+/obj/lattice,
+/turf/wall/asteroid{
+	dir = 8;
+	icon_state = "astedge"
+	},
+/area/fuck/main)
+"vWU" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (NORTHWEST)";
+	icon_state = "tracks";
+	dir = 9
+	},
+/obj/critter/lion,
+/turf/floor,
+/area/space)
+"vZY" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/machinery/light/small{
+	dir = 4;
+	icon_state = "bulb1";
+	sd_ColorBlue = 0.3;
+	sd_ColorGreen = 0.3;
+	tag = "icon-bulb1 (EAST)"
+	},
+/obj/spook,
+/turf/floor/specialroom/cafeteria{
+	dir = 1
+	},
+/area/derelict/evilreaver)
+"wbw" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/carpet,
+/area/space)
+"wtk" = (
+/obj/kitchenspike,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-gibbl2";
+	icon_state = "gibbl2"
+	},
+/turf/floor/plating,
+/area/space)
+"wwL" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/decal/skeleton{
+	desc = "The head seems to be gone.";
+	icon = 'hstation.dmi';
+	icon_state = "body2";
+	name = "corpse";
+	tag = "icon-body2"
+	},
+/turf/floor/specialroom/cafeteria{
+	dir = 1
+	},
+/area/derelict/evilreaver)
+"wxW" = (
+/turf/wall/setpieces/martian{
+	tag = "icon-diagonalWall (NORTHEAST)";
+	icon_state = "diagonalWall";
+	dir = 5
+	},
+/area/crunch)
+"wGO" = (
+/obj/rack,
+/obj/item/device/radio/intercom,
+/turf/floor,
+/area/crew_quarters/market)
+"xcN" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor/specialroom/cafeteria{
+	dir = 1
+	},
+/area/derelict/evilreaver)
+"xdY" = (
+/obj/machinery/light/fluorescent/worn{
+	tag = "icon-tube1 (WEST)";
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/obj/decal/skeleton,
+/turf/floor,
+/area/h7/computer_core)
+"xMu" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (EAST)";
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor,
+/area/space)
+"xYg" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-gib2";
+	icon_state = "gib2"
+	},
+/turf/floor/carpet,
+/area/space)
+"ylE" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	tag = "icon-tracks (SOUTHEAST)";
+	icon_state = "tracks";
+	dir = 6
+	},
+/turf/floor,
+/area/h7/computer_core)
 
 (1,1,1) = {"
 aaa
@@ -77136,7 +76778,7 @@ aaH
 aaa
 aaa
 aww
-axg
+dgc
 axK
 axI
 aww
@@ -77363,8 +77005,8 @@ aww
 aww
 aww
 aww
-axg
-azK
+dgc
+msQ
 ayA
 aww
 aaa
@@ -77591,7 +77233,7 @@ axd
 axI
 ayw
 axJ
-azL
+dgc
 axJ
 aww
 aww
@@ -77819,9 +77461,9 @@ axJ
 ayx
 axK
 axK
-axg
+dgc
 ayA
-axg
+dgc
 aww
 aaa
 aaa
@@ -78043,11 +77685,11 @@ aaa
 aww
 axe
 axK
-ayy
-axg
+nIY
+dgc
 axK
-azL
-aAP
+dgc
+msQ
 axI
 aww
 aaa
@@ -78495,11 +78137,11 @@ aaa
 aaa
 aaa
 aww
-axg
+dgc
 axe
 axK
 axe
-azM
+dgc
 axI
 axI
 axI
@@ -78724,7 +78366,7 @@ aaa
 aww
 axh
 axM
-axg
+dgc
 azl
 azN
 axK
@@ -79171,9 +78813,9 @@ aaa
 asN
 ats
 ats
-auh
-auh
-auh
+azm
+azm
+azm
 avq
 avq
 ats
@@ -79396,9 +79038,9 @@ aaa
 aaa
 aaa
 asN
-att
-auh
-auh
+azm
+azm
+azm
 asN
 avq
 ats
@@ -79628,7 +79270,7 @@ atu
 atu
 atu
 atu
-avN
+tbd
 awx
 atu
 axP
@@ -82005,7 +81647,7 @@ aaa
 aaa
 aaa
 aaa
-bjI
+kNj
 bjH
 bjH
 bjH
@@ -82233,7 +81875,7 @@ aaa
 aaa
 aaa
 aaa
-bjI
+kNj
 bjH
 bjL
 bjL
@@ -82915,7 +82557,7 @@ aaa
 aaa
 aaa
 aaH
-bjI
+kNj
 bjH
 bjH
 bjH
@@ -87097,7 +86739,7 @@ agD
 agD
 akE
 agD
-alp
+eYq
 ags
 alY
 alY
@@ -87531,9 +87173,9 @@ adx
 adK
 adW
 aes
-aeF
+wGO
 adK
-aeF
+wGO
 afM
 adW
 ags
@@ -91396,10 +91038,10 @@ aeN
 aey
 agh
 adP
-agN
+fAF
 ahm
 ahJ
-aif
+tsS
 agR
 acf
 acf
@@ -93434,7 +93076,7 @@ ado
 acf
 aeC
 aeT
-afh
+cJI
 acf
 adm
 acE
@@ -93666,7 +93308,7 @@ acf
 afT
 agn
 agz
-agU
+miu
 ahs
 ahs
 ahs
@@ -95735,7 +95377,7 @@ apk
 apA
 anm
 aqo
-aqR
+rWL
 art
 asb
 aqo
@@ -110300,7 +109942,7 @@ aaa
 aaa
 aaa
 aaa
-aOv
+rfL
 aOu
 aOu
 aOu
@@ -122609,7 +122251,7 @@ bxd
 bxd
 bxd
 bxd
-bBi
+vAe
 bBj
 bBj
 bBj
@@ -122837,10 +122479,10 @@ bxd
 bxd
 bxd
 bBj
-bBq
+iKY
 bBA
 bBA
-bBH
+sNo
 bBj
 bBj
 bwP
@@ -123068,7 +122710,7 @@ bBr
 bBr
 bBr
 bBr
-bBH
+sNo
 bBj
 bwP
 bwP
@@ -123291,7 +122933,7 @@ bxd
 bAl
 bxd
 bBj
-bBs
+wxW
 bBr
 bBr
 bBr
@@ -123301,9 +122943,9 @@ bBj
 bBj
 bBj
 bBj
-bBq
+iKY
 bCk
-bBH
+sNo
 bBj
 bBj
 bBj
@@ -123312,7 +122954,7 @@ bBj
 bBj
 bBj
 bBj
-bFZ
+wxW
 bxx
 bxv
 bxv
@@ -123517,28 +123159,28 @@ bxd
 bxd
 bxd
 bxd
-bBl
+nBh
 bBj
-bBs
+wxW
 bBr
 bBr
 bBL
 bBj
-bBq
+iKY
 bBr
-bBH
+sNo
 bBj
 bCE
 bBr
 bBr
 bBj
-bBq
+iKY
 bBA
 bEk
 bBj
-bBq
+iKY
 bFd
-bEl
+nBh
 bBj
 bxx
 bxv
@@ -123747,7 +123389,7 @@ bxd
 bxd
 bBj
 bBj
-bBs
+wxW
 bBr
 bBM
 bBj
@@ -123972,7 +123614,7 @@ bxd
 bxd
 bxd
 bxd
-bBl
+nBh
 bBj
 bBj
 bBk
@@ -123988,11 +123630,11 @@ bBr
 bBj
 bBN
 bBr
-bBY
+vAe
 bBj
-bBs
+wxW
 bFe
-bBY
+vAe
 bBj
 bxx
 bxv
@@ -124220,7 +123862,7 @@ bBj
 bBj
 bBj
 bBj
-bGa
+iKY
 bxv
 bxv
 bxv
@@ -124432,17 +124074,17 @@ bBj
 bBr
 bBr
 bBj
-bBs
+wxW
 bBr
-bBY
+vAe
 bBj
-bBs
+wxW
 bBr
-bBY
+vAe
 bBj
 bBr
 bBr
-bEl
+nBh
 bBj
 bBj
 bxt
@@ -124452,9 +124094,9 @@ bxv
 bxv
 bxK
 bxx
-byA
+byg
 bxx
-bHB
+nAO
 bxt
 bwP
 bxd
@@ -124658,7 +124300,7 @@ bwP
 bBj
 bBI
 bBr
-bBH
+sNo
 bBj
 bBk
 bBj
@@ -124666,7 +124308,7 @@ bBj
 bBj
 bBk
 bBj
-bBq
+iKY
 bBr
 bBr
 bEm
@@ -124896,7 +124538,7 @@ bBr
 bBr
 bBr
 bBr
-bBY
+vAe
 bBj
 bBj
 bxt
@@ -125110,7 +124752,7 @@ bwP
 bwP
 bwP
 bBj
-bBs
+wxW
 bBr
 bBr
 bBr
@@ -125130,7 +124772,7 @@ bxt
 bxt
 bxx
 bxv
-byA
+byg
 bxx
 bwV
 bwV
@@ -125340,16 +124982,16 @@ bBj
 bBj
 bBN
 bBr
-bBY
+vAe
 bBj
 bBj
 bBj
 bBj
 bBj
 bBj
-bBs
+wxW
 bBR
-bBY
+vAe
 bBj
 bwP
 bBj
@@ -125357,8 +124999,8 @@ bBj
 bxt
 bxt
 bxt
-byA
-byA
+byg
+byg
 bwV
 bwV
 bwV
@@ -126221,7 +125863,7 @@ bwY
 bwY
 bwY
 bwY
-byq
+gHx
 bwV
 bxt
 bxt
@@ -126449,7 +126091,7 @@ bwV
 bwY
 byg
 bxx
-byA
+byg
 byM
 byW
 bzj
@@ -126681,7 +126323,7 @@ byN
 byX
 bzk
 bzu
-bzF
+kxR
 bzJ
 bxt
 bxt
@@ -128084,7 +127726,7 @@ bGu
 bBB
 bxt
 bBB
-bHt
+gxq
 bBB
 bxp
 bwV
@@ -128949,7 +128591,7 @@ bys
 bxt
 bxt
 bza
-bzq
+dsM
 bxt
 bxt
 bxt
@@ -129416,7 +129058,7 @@ bAH
 bxt
 bxt
 bxg
-bAY
+bCu
 bxg
 bxd
 bxd
@@ -130093,7 +129735,7 @@ bAc
 bxv
 bxv
 bzc
-byA
+byg
 bwV
 bwV
 bxd
@@ -148685,7 +148327,7 @@ aaa
 aaa
 aaa
 aaa
-bxf
+bwF
 bwE
 bwE
 bwE
@@ -148918,7 +148560,7 @@ aaa
 aaa
 aaa
 aaa
-bxf
+bwF
 bwE
 bwE
 bwE
@@ -152730,11 +152372,11 @@ boi
 boi
 bqM
 bqN
-brj
-brB
-brT
-brB
-bsB
+izj
+sBM
+vHP
+sBM
+peS
 bsA
 bqM
 boi
@@ -152957,11 +152599,11 @@ boi
 bqz
 bqN
 bqY
-brk
+vSq
 bra
-brU
+gic
 bra
-bsC
+dSf
 bqY
 bsA
 bqM
@@ -152976,8 +152618,8 @@ buO
 buw
 buv
 boi
-bvo
-bvv
+hLY
+oVt
 boi
 aaH
 aaH
@@ -153183,13 +152825,13 @@ boi
 boi
 bqA
 bqO
-bqZ
-brl
-brC
-brV
-bsm
-brV
-bsT
+qme
+tnU
+rkY
+wbw
+xYg
+wbw
+vyx
 bto
 bqM
 boi
@@ -153411,11 +153053,11 @@ boi
 bqB
 bqP
 bra
-brm
-brB
-brW
-bsn
-bsp
+pUd
+sBM
+kzl
+lJT
+sMt
 bra
 bto
 bqM
@@ -153638,10 +153280,10 @@ boi
 bqC
 bqQ
 bqY
-brk
-brD
-brX
-bso
+vSq
+oCe
+rLy
+mCO
 bsD
 bsU
 bsE
@@ -153865,10 +153507,10 @@ boi
 boi
 bqM
 brb
-brn
-brB
-brY
-bsp
+sMe
+sBM
+ebd
+sMt
 bqY
 bsE
 bqM
@@ -154094,7 +153736,7 @@ boi
 bqM
 brb
 brE
-brZ
+deU
 brE
 bsE
 bqM
@@ -154321,7 +153963,7 @@ boi
 boi
 boi
 boi
-bsa
+luC
 boi
 boi
 boi
@@ -154548,7 +154190,7 @@ boi
 brc
 bro
 brF
-bsb
+joh
 bsq
 bro
 bsV
@@ -154775,7 +154417,7 @@ boi
 brc
 bro
 brF
-bsc
+nYl
 bsq
 bro
 bsV
@@ -155002,7 +154644,7 @@ aaa
 boi
 boi
 brG
-bsd
+vpy
 brG
 boi
 boi
@@ -155229,7 +154871,7 @@ aaa
 boi
 brp
 brH
-bse
+fiJ
 brH
 bsF
 boi
@@ -155456,7 +155098,7 @@ aaa
 boi
 brq
 brH
-bse
+fiJ
 brH
 bsF
 boi
@@ -155683,7 +155325,7 @@ aaa
 boi
 boi
 boi
-bsf
+jRx
 boi
 boi
 boi
@@ -155910,7 +155552,7 @@ aaa
 boi
 ado
 boi
-bsg
+cFy
 boi
 aaa
 aaa
@@ -156137,7 +155779,7 @@ boi
 boi
 boi
 brG
-bqE
+xMu
 brG
 brr
 bsW
@@ -156359,19 +156001,19 @@ boi
 boC
 bpV
 boi
-bqD
-bqR
-brd
-bqR
-bqR
-bqF
+vWU
+jVq
+pGQ
+jVq
+jVq
+uPL
 bsr
 bsG
 bsJ
 bsJ
 brs
 btz
-btE
+ogP
 boW
 boi
 boi
@@ -156586,9 +156228,9 @@ boi
 boC
 boC
 boi
-bqE
+xMu
 boi
-bqE
+xMu
 brr
 brI
 brI
@@ -156813,7 +156455,7 @@ boi
 boC
 boC
 boi
-bqE
+xMu
 boi
 boW
 brs
@@ -157040,7 +156682,7 @@ boi
 bpC
 boi
 boi
-bqE
+xMu
 boi
 bpZ
 boW
@@ -157060,7 +156702,7 @@ buB
 bto
 boi
 buS
-bve
+dPd
 buK
 bvs
 bvy
@@ -157267,7 +156909,7 @@ boi
 bpO
 bpW
 boi
-bqE
+xMu
 boi
 boi
 boi
@@ -157492,9 +157134,9 @@ boV
 boV
 bpD
 boW
-bpX
-bqm
-bqF
+vTI
+lQv
+uPL
 boi
 bre
 brt
@@ -157713,7 +157355,7 @@ aaa
 boi
 bot
 boF
-boL
+vNs
 boW
 bpk
 bps
@@ -158857,7 +158499,7 @@ boi
 boi
 aET
 bqG
-bqU
+svV
 boC
 bpY
 boW
@@ -159083,7 +158725,7 @@ aaa
 aaa
 aaa
 aET
-bqH
+wtk
 boC
 boi
 boi
@@ -176866,8 +176508,8 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -177093,8 +176735,8 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQu
+bTj
+bUK
 aaa
 aaa
 bQk
@@ -177320,8 +176962,8 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQu
+bTj
+bUK
 aaa
 aaa
 aaa
@@ -177547,8 +177189,8 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -177993,7 +177635,7 @@ bUb
 bUB
 bSx
 bUT
-bVa
+llo
 bVd
 bVk
 bSx
@@ -178657,7 +178299,7 @@ aaa
 aaa
 aaa
 aaa
-bQw
+ciM
 aaa
 aaa
 aaa
@@ -178883,9 +178525,9 @@ aaa
 aaa
 aaa
 aaa
-bQl
+bTi
 bQp
-bQt
+bUS
 aaa
 aaa
 aaa
@@ -179109,11 +178751,11 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQo
+bTi
+bTt
 bQp
-bQB
-bQt
+cjQ
+bUS
 aaa
 aaa
 bSx
@@ -179121,7 +178763,7 @@ bSO
 bTe
 bTm
 bSx
-bTI
+sgX
 bUb
 bUl
 bUb
@@ -179336,11 +178978,11 @@ aaa
 aaa
 bQk
 aaa
-bQm
+bTj
 bQp
 bQp
-bQq
-bQr
+bUJ
+bUL
 aaa
 aaa
 bSx
@@ -179563,10 +179205,10 @@ bQk
 aaa
 aaa
 aaa
-bQm
+bTj
 bQp
 bQp
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -179790,10 +179432,10 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQs
-bQs
-bQr
+bTk
+bTV
+bTV
+bUL
 aaa
 aaa
 aaa
@@ -181545,7 +181187,7 @@ aaa
 bOU
 bOW
 bPg
-bPs
+qLe
 bPb
 bOW
 bOU
@@ -181614,8 +181256,8 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 bTQ
@@ -181840,9 +181482,9 @@ aaa
 aaa
 aaa
 aaa
-bQl
+bTi
 bQp
-bQr
+bUL
 aaa
 aaa
 bSi
@@ -181852,10 +181494,10 @@ bRZ
 bSi
 aaa
 aaa
-bQx
+gRz
 bVi
-bRf
-bRf
+rzZ
+rzZ
 bVw
 bVw
 bVV
@@ -182059,16 +181701,16 @@ aaa
 aaa
 aaa
 bQK
-bQx
-bRf
-bRf
-bRf
-bRf
-bRR
+gRz
+rzZ
+rzZ
+rzZ
+rzZ
+txc
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -182078,8 +181720,8 @@ bRX
 bRZ
 bTO
 aaa
-bQx
-bQC
+gRz
+kYc
 bQD
 bQD
 bVw
@@ -182285,13 +181927,13 @@ bQk
 aaa
 aaa
 aaa
-bQx
-bQC
+gRz
+kYc
 bQD
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
 aaa
@@ -182304,8 +181946,8 @@ bRZ
 bRX
 bRZ
 bTP
-bQx
-bQC
+gRz
+kYc
 bQD
 bQD
 bQD
@@ -182511,14 +182153,14 @@ aaa
 aaa
 aaa
 aaa
-bQx
-bQC
+gRz
+kYc
 bQD
 bQD
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
 aaa
@@ -182531,7 +182173,7 @@ bRZ
 bRX
 bRZ
 bTQ
-bQC
+kYc
 bQD
 bSi
 bSi
@@ -182738,7 +182380,7 @@ aaa
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQD
 bQW
@@ -182761,7 +182403,7 @@ bRJ
 bQD
 bQD
 bRJ
-bVj
+iNh
 bVn
 bVy
 bVA
@@ -182964,8 +182606,8 @@ aaa
 aaa
 aaa
 aaa
-bQx
-bQC
+gRz
+kYc
 bQD
 bQW
 bQW
@@ -183191,7 +182833,7 @@ bQk
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQD
 bQW
@@ -183418,7 +183060,7 @@ aaa
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQD
 bQW
@@ -183645,7 +183287,7 @@ aaa
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQD
 bQW
@@ -183872,8 +183514,8 @@ aaa
 aaa
 aaa
 aaa
-bQz
-bQE
+qqQ
+lei
 bQD
 bQW
 bRh
@@ -183899,7 +183541,7 @@ bUu
 bTa
 bTa
 bVx
-bVD
+iHR
 bVA
 bVA
 bWo
@@ -184100,7 +183742,7 @@ aaa
 bQk
 aaa
 aaa
-bQy
+cHn
 bQD
 bQW
 bRj
@@ -184327,7 +183969,7 @@ aaa
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQW
 bRk
@@ -184554,8 +184196,8 @@ aaa
 aaa
 aaa
 aaa
-bQz
-bQE
+qqQ
+lei
 bQW
 bRl
 bRh
@@ -184580,7 +184222,7 @@ bTa
 bTa
 bTa
 bVx
-bVF
+dxh
 bVP
 bWb
 bWq
@@ -185051,7 +184693,7 @@ bQD
 bQD
 bVw
 bQD
-bRS
+dqA
 aaH
 aaH
 aaa
@@ -185277,8 +184919,8 @@ bVw
 bQD
 bQD
 bQD
-bSJ
-bSK
+inB
+ptF
 aaa
 aaa
 aaa
@@ -185504,7 +185146,7 @@ bVw
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
 aaa
@@ -185729,10 +185371,10 @@ bVw
 bVw
 bVw
 bQD
-bSJ
-bSp
-bSp
-bYc
+inB
+iRe
+iRe
+gFp
 aaa
 aaa
 aaa
@@ -185956,7 +185598,7 @@ bQD
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
 aaa
@@ -186145,13 +185787,13 @@ aaa
 bKL
 bQH
 bQR
-bRd
-bRq
+drA
+ita
 bRa
 bQX
 bRM
 bSa
-bSl
+xdY
 bSs
 bSD
 bSW
@@ -186163,10 +185805,10 @@ bTa
 bTa
 bSi
 bQD
-bSJ
-bSK
+inB
+ptF
 aaH
-bQy
+cHn
 bQD
 bQD
 bRJ
@@ -186176,14 +185818,14 @@ bVS
 bRJ
 bWC
 bWC
-bWY
-bWD
-bWD
-bSp
-bSp
-bSp
-bSp
-bSK
+rDo
+mfz
+mfz
+iRe
+iRe
+iRe
+iRe
+ptF
 aaa
 aaa
 aaa
@@ -186373,12 +186015,12 @@ bKL
 bQH
 bQS
 bRa
-bRr
-bRy
-bRD
-bRN
-bSb
-bSm
+dqn
+jCd
+gzK
+soy
+fiu
+ylE
 bSa
 bSE
 bSX
@@ -186390,10 +186032,10 @@ bTa
 bUv
 bSi
 bQD
-bRS
+dqA
 bUZ
-bQx
-bQC
+gRz
+kYc
 bQD
 bQD
 bSi
@@ -186401,9 +186043,9 @@ bVT
 bWi
 bVU
 bSi
-bWD
-bWD
-bWZ
+mfz
+mfz
+kLA
 aaa
 aaa
 aaa
@@ -186617,12 +186259,12 @@ bSi
 bSi
 bSi
 bQD
-bUR
-bRf
-bQC
+kDb
+rzZ
+kYc
 bQD
-bSJ
-bSp
+inB
+iRe
 bSi
 bVU
 bWj
@@ -186847,8 +186489,8 @@ bQD
 bQD
 bQD
 bQD
-bSJ
-bSK
+inB
+ptF
 aaa
 bVI
 bVU
@@ -187074,7 +186716,7 @@ bQD
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
 aaa
@@ -187281,9 +186923,9 @@ aaa
 aaa
 bhp
 bOP
-bQz
+qqQ
 bQD
-bQE
+lei
 bQD
 bQD
 bSi
@@ -187301,8 +186943,8 @@ bQD
 bQD
 bQD
 bQD
-bUR
-bRR
+kDb
+txc
 aaa
 aaa
 aaa
@@ -187509,8 +187151,8 @@ aaa
 aaa
 aaa
 aaa
-bRA
-bQy
+ldj
+cHn
 bQD
 bQD
 bSi
@@ -187529,11 +187171,11 @@ bQD
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -187728,8 +187370,8 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -187737,7 +187379,7 @@ aaa
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQD
 bSi
@@ -187756,11 +187398,11 @@ bQD
 bQD
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
-bQm
-bQu
+bTj
+bUK
 bQk
 aaa
 aaa
@@ -187954,17 +187596,17 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQo
-bQu
-bQw
+bTi
+bTt
+bUK
+ciM
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-bQy
+cHn
 bQD
 bQD
 bQD
@@ -187978,16 +187620,16 @@ bQD
 bQD
 bQD
 bQD
-bSJ
-bSp
-bQE
+inB
+iRe
+lei
 bQD
 bQD
-bRS
+dqA
 aaa
 aaa
-bQm
-bQu
+bTj
+bUK
 aaa
 aaa
 aaa
@@ -188180,41 +187822,41 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQo
+bTi
+bTt
 bQp
 bQp
 bQp
-bQA
+cjI
 aaa
 aaa
 aaa
 aaa
 aaa
-bQz
-bQE
+qqQ
+lei
 bQD
 bQD
 bQD
-bSJ
-bSp
-bQE
+inB
+iRe
+lei
 bQD
 bQD
 bQD
-bSJ
-bSp
-bSp
-bSK
+inB
+iRe
+iRe
+ptF
 aaa
-bQz
-bSp
+qqQ
+iRe
 bQD
-bSK
+ptF
 aaa
 bQk
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -188407,36 +188049,36 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bQp
 bQp
 bQp
 bQp
-bQt
+bUS
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-bQz
-bQE
-bSp
-bSp
-bSK
+qqQ
+lei
+iRe
+iRe
+ptF
 aaa
-bQz
-bSp
-bSp
-bSp
-bSK
-aaa
-aaa
+qqQ
+iRe
+iRe
+iRe
+ptF
 aaa
 aaa
 aaa
 aaa
-bRA
+aaa
+aaa
+ldj
 aaa
 aaa
 aaa
@@ -188634,20 +188276,20 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bQp
 bQp
 bQp
 bQp
-bQB
-bQt
+cjQ
+bUS
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-bRA
+ldj
 aaa
 aaa
 aaa
@@ -188861,13 +188503,13 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bQp
 bQp
 bQp
 bQp
 bQp
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -189088,13 +188730,13 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQq
-bQs
-bQs
+bTj
+bUJ
+bTV
+bTV
 bQp
 bQp
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -189315,13 +188957,13 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
-bQv
+cid
 bQp
-bQq
-bQr
+bUJ
+bUL
 aaa
 aaa
 aaa
@@ -189546,8 +189188,8 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -197278,8 +196920,8 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -197505,9 +197147,9 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQB
-bQt
+bTj
+cjQ
+bUS
 aaa
 aaa
 aaa
@@ -197732,9 +197374,9 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQs
-bQr
+bTk
+bTV
+bUL
 aaa
 aaa
 aaa
@@ -200698,8 +200340,8 @@ aaa
 aaa
 aaa
 bQk
-bQv
-bQt
+cid
+bUS
 aaa
 aaa
 aaa
@@ -200709,8 +200351,8 @@ aaa
 bQk
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -200926,7 +200568,7 @@ aaa
 aaa
 aaa
 aaa
-bWk
+ciN
 aaa
 aaa
 aaa
@@ -200936,8 +200578,8 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQu
+bTj
+bUK
 aaa
 aaa
 aaa
@@ -201163,8 +200805,8 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQu
+bTj
+bUK
 aaa
 aaa
 aaa
@@ -201390,8 +201032,8 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -202743,8 +202385,8 @@ aaa
 aaa
 bQk
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -202969,9 +202611,9 @@ aaa
 aaa
 aaa
 aaa
-bQl
+bTi
 bWr
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -203196,9 +202838,9 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQq
-bQr
+bTj
+bUJ
+bUL
 aaa
 aaa
 aaa
@@ -203423,8 +203065,8 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -204204,7 +203846,7 @@ aaa
 aaH
 bJF
 bJQ
-bKd
+glo
 bJQ
 bKA
 bJF
@@ -204792,8 +204434,8 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -205018,10 +204660,10 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQo
-bQu
-bQw
+bTi
+bTt
+bUK
+ciM
 aaa
 aaa
 aaa
@@ -205244,12 +204886,12 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQo
+bTi
+bTt
 bQp
 bQp
 bQp
-bQA
+cjI
 aaa
 aaa
 aaa
@@ -205362,7 +205004,7 @@ bJQ
 bJQ
 bJQ
 bKP
-bKd
+glo
 bOG
 aaH
 aaa
@@ -205471,12 +205113,12 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bTu
 bQp
 bQp
 bQp
-bQt
+bUS
 aaa
 aaa
 aaa
@@ -205698,13 +205340,13 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bXl
 bXl
 bXl
 bQp
-bQB
-bQt
+cjQ
+bUS
 aaa
 aaa
 aaa
@@ -205925,13 +205567,13 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bXl
 bQp
 bXl
 bXl
 bQp
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -206152,13 +205794,13 @@ aaa
 aaa
 aaa
 aaa
-bQm
-bQq
-bQs
-bQs
+bTj
+bUJ
+bTV
+bTV
 bQp
 bTu
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -206379,13 +206021,13 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
-bQv
+cid
 bQp
-bQq
-bQr
+bUJ
+bUL
 aaa
 aaa
 aaa
@@ -206610,8 +206252,8 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQr
+bTk
+bUL
 aaa
 aaa
 aaa
@@ -207718,7 +207360,7 @@ aaa
 aaa
 aaa
 aaa
-bQw
+ciM
 aaa
 aaa
 aaa
@@ -207944,9 +207586,9 @@ aaa
 aaa
 aaa
 aaa
-bQl
+bTi
 bQp
-bQt
+bUS
 aaa
 aaa
 aaa
@@ -208170,11 +207812,11 @@ aaa
 aaa
 aaa
 aaa
-bQl
-bQo
+bTi
+bTt
 bQp
-bQB
-bQt
+cjQ
+bUS
 aaa
 aaa
 aaa
@@ -208397,11 +208039,11 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bQp
 bQp
-bQq
-bQr
+bUJ
+bUL
 aaa
 aaa
 aaa
@@ -208624,10 +208266,10 @@ aaa
 aaa
 aaa
 aaa
-bQm
+bTj
 bQp
 bQp
-bQu
+bUK
 aaa
 aaa
 aaa
@@ -208851,10 +208493,10 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQs
-bQs
-bQr
+bTk
+bTV
+bTV
+bUL
 aaa
 aaa
 aaa
@@ -209450,7 +209092,7 @@ bOs
 bOs
 bOF
 bJN
-bKd
+glo
 aaa
 aaa
 aaa
@@ -231795,7 +231437,7 @@ aaa
 aaa
 aaa
 aaH
-caB
+cgJ
 aaH
 caD
 caO
@@ -234322,7 +233964,7 @@ chn
 chE
 cdf
 chT
-chX
+fiF
 cbt
 cib
 aaa
@@ -235455,7 +235097,7 @@ cgT
 chg
 chs
 chg
-chO
+nUC
 caD
 aaa
 aaH
@@ -238175,7 +237817,7 @@ bOJ
 bOJ
 cgA
 bOJ
-cgY
+jof
 aaa
 aaa
 aaa
@@ -292246,7 +291888,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciR
 ciq
 ciq
@@ -292269,15 +291911,15 @@ aaH
 aaM
 cnn
 cnn
-cov
-coE
+vWo
+cjW
 aaa
 aaa
 aaa
 aaa
-cio
-coW
-coW
+cii
+cjA
+cjA
 cjW
 cqb
 aaa
@@ -292473,7 +292115,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciR
 ciq
 ciq
@@ -292497,12 +292139,12 @@ cnn
 cnQ
 cnn
 ciq
-cjX
-coW
-coW
-coW
-coW
-cip
+cjO
+cjA
+cjA
+cjA
+cjA
+ciI
 ciq
 ciq
 cjO
@@ -292700,7 +292342,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -292927,12 +292569,12 @@ aaa
 bQk
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciq
 ciq
-cjX
+cjO
 cjA
 cjW
 aaa
@@ -293154,7 +292796,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -293381,7 +293023,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -293608,7 +293250,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -293835,7 +293477,7 @@ aaa
 ado
 ado
 ado
-ciE
+nGe
 ciq
 ciq
 ciq
@@ -293868,7 +293510,7 @@ cjY
 ciq
 cpS
 ciq
-cno
+cjM
 cjP
 cjP
 cjV
@@ -294095,7 +293737,7 @@ ciq
 ciq
 cpS
 ciq
-cpq
+cjN
 aaa
 aaa
 aaa
@@ -294289,7 +293931,7 @@ aaa
 ado
 ado
 ado
-ciE
+nGe
 ciq
 ciq
 cjC
@@ -294322,7 +293964,7 @@ ciq
 ciq
 cpS
 ciq
-cpq
+cjN
 aaa
 aaa
 aaa
@@ -294516,7 +294158,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 cjC
@@ -294549,7 +294191,7 @@ ciq
 ciq
 cpS
 ciq
-cpq
+cjN
 aaa
 aaa
 aaa
@@ -294742,8 +294384,8 @@ aaa
 aaa
 aaa
 aaa
-cio
-cip
+cii
+ciI
 ciq
 ciq
 cjC
@@ -294776,7 +294418,7 @@ ciq
 ciq
 ciq
 ciq
-cpq
+cjN
 aaa
 aaa
 aaa
@@ -294969,7 +294611,7 @@ aaa
 aaa
 aaa
 aaa
-cip
+ciI
 ciq
 ciq
 ciq
@@ -295003,7 +294645,7 @@ ciq
 ciq
 ciq
 ciq
-cpq
+cjN
 aaa
 cii
 cjW
@@ -295195,7 +294837,7 @@ aaa
 aaa
 aaa
 aaa
-cif
+cii
 ciq
 ciq
 ciq
@@ -295230,7 +294872,7 @@ ciq
 ciq
 ciq
 ciq
-cjX
+cjO
 cjA
 cjo
 cjO
@@ -295422,7 +295064,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -295649,7 +295291,7 @@ aaa
 aaa
 aaa
 aaa
-cig
+cij
 ciq
 ciq
 ciT
@@ -295876,8 +295518,8 @@ aaa
 aaa
 aaa
 aaa
-cih
-cir
+ciH
+cjP
 ciG
 ciT
 cjj
@@ -298187,7 +297829,7 @@ ciq
 ciq
 ciq
 ciq
-cno
+cjM
 ciG
 cpS
 cjM
@@ -298413,8 +298055,8 @@ cjY
 ciq
 ciq
 ciq
-cno
-cpc
+cjM
+cjV
 ciH
 cjP
 cjV
@@ -298639,8 +298281,8 @@ ciq
 ciq
 ciq
 ciq
-cno
-cpc
+cjM
+cjV
 aaa
 aaa
 aaa
@@ -298827,8 +298469,8 @@ aaa
 aaa
 aaa
 aaa
-cih
-cit
+ciH
+ciG
 ciq
 ciq
 ciq
@@ -298865,8 +298507,8 @@ ciq
 ciq
 ciq
 ciq
-cno
-cpc
+cjM
+cjV
 aaa
 aaa
 aaa
@@ -299055,8 +298697,8 @@ aaa
 aaa
 aaa
 aaa
-cih
-cit
+ciH
+ciG
 ciq
 ciq
 ciq
@@ -299086,13 +298728,13 @@ coA
 cpx
 cpx
 cjo
-cno
-cir
-cir
-cqc
-cir
-cir
-cpc
+cjM
+cjP
+cjP
+cjP
+cjP
+cjP
+cjV
 aaa
 aaa
 aaa
@@ -299972,8 +299614,8 @@ ciq
 cjZ
 cjY
 cjM
-cir
-cit
+cjP
+ciG
 ciq
 ciq
 ciq
@@ -300200,8 +299842,8 @@ ciq
 cjY
 cjN
 aaa
-cih
-cit
+ciH
+ciG
 ciq
 ciq
 ciq
@@ -300217,7 +299859,7 @@ con
 con
 con
 ciq
-cno
+cjM
 cjP
 cjP
 cjV
@@ -300428,7 +300070,7 @@ cjY
 cjO
 cjW
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -300444,7 +300086,7 @@ con
 coB
 con
 ciq
-cpq
+cjN
 aaa
 aaa
 aaa
@@ -300655,7 +300297,7 @@ cjY
 cjY
 cjN
 aaa
-cig
+cij
 ciq
 ciq
 ciq
@@ -300670,8 +300312,8 @@ cof
 con
 con
 ciq
-cno
-cpc
+cjM
+cjV
 aaa
 aaa
 aaa
@@ -300882,8 +300524,8 @@ ciq
 cjZ
 cjN
 aaa
-cih
-cit
+ciH
+ciG
 ciq
 ciq
 ciq
@@ -300895,9 +300537,9 @@ ciq
 ciq
 cof
 con
-coC
-cir
-cpc
+cjM
+cjP
+cjV
 aaa
 aaa
 aaa
@@ -301110,8 +300752,8 @@ cjY
 cjN
 aaa
 aaa
-cih
-cit
+ciH
+ciG
 ciq
 ciq
 ciq
@@ -301122,7 +300764,7 @@ ciq
 cnn
 cof
 cnn
-cnp
+cqV
 aaa
 aaa
 aaa
@@ -301338,8 +300980,8 @@ cjN
 aaa
 aaa
 aaa
-cih
-cit
+ciH
+ciG
 ciq
 ciq
 cmS
@@ -301566,13 +301208,13 @@ aaa
 aaa
 aaa
 aaa
-cih
-cir
-cir
-cit
+ciH
+cjP
+cjP
+ciG
 ciq
 ciq
-cno
+cjM
 cnn
 cnn
 cnn
@@ -301604,7 +301246,7 @@ aaa
 aaH
 aaa
 aaH
-cre
+cra
 bTV
 bTv
 bQp
@@ -301737,8 +301379,8 @@ bQp
 ckc
 aaa
 aaa
-bQl
-bQt
+bTi
+bUS
 aaa
 aaa
 aaa
@@ -301796,10 +301438,10 @@ aaa
 aaa
 aaa
 aaa
-cih
-cir
-cir
-cnp
+ciH
+cjP
+cjP
+cqV
 aaa
 aaa
 aaa
@@ -301963,14 +301605,14 @@ bQp
 bQp
 ckc
 ckc
-cAb
-bQo
-bQB
-bQt
+bUj
+bTt
+cjQ
+bUS
 aaa
 aaa
 aaa
-bQl
+bTi
 bQp
 bQp
 bQp
@@ -302193,11 +301835,11 @@ bQp
 bQp
 bQp
 bQp
-bQB
-cAb
-cAb
-cAb
-bQo
+cjQ
+bUj
+bUj
+bUj
+bTt
 bQp
 bQp
 cAN
@@ -302643,8 +302285,8 @@ czD
 czD
 bQp
 bUJ
-bQs
-cAc
+bTV
+bTv
 bQp
 bTu
 bQp
@@ -302871,8 +302513,8 @@ clK
 bTV
 bUL
 aaa
-bQn
-cAc
+bTk
+bTv
 bQp
 bQp
 bQp
@@ -303099,13 +302741,13 @@ aaa
 aaa
 aaa
 aaa
-bQn
-bQs
-bQs
-bQs
-bQs
-bQs
-bQs
+bTk
+bTV
+bTV
+bTV
+bTV
+bTV
+bTV
 bQp
 bQp
 cAA
@@ -311231,7 +310873,7 @@ cwM
 cwT
 cxb
 cxb
-cxl
+wwL
 cwM
 bQp
 bUK
@@ -311457,7 +311099,7 @@ bQp
 cwM
 cwU
 cxb
-cxf
+xcN
 cxb
 cwM
 bQp
@@ -311682,7 +311324,7 @@ aaa
 bTj
 bQp
 cwM
-cwV
+nRO
 cxb
 cxb
 cxb
@@ -311910,8 +311552,8 @@ bTj
 bQp
 cwM
 cwW
-cxc
-cxg
+vZY
+reS
 cxm
 cwM
 bQp

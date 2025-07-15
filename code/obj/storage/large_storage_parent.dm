@@ -690,7 +690,7 @@
 				if (found)
 					playsound(src.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 75, 1)
 					M.show_text("<b>OH JESUS CHRIST</b>", "red")
-					bleed(M, 500, 5)
+					bleed(M, 500, violent = TRUE)
 					src.log_me(usr && ismob(usr) ? usr : null, M, "uses trash compactor")
 					var/mob/living/carbon/cube/meat/W = M.make_cube(/mob/living/carbon/cube/meat, rand(10,15), get_turf(src))
 					if (src.crunches_deliciously)

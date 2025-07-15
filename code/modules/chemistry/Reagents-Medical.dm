@@ -184,6 +184,7 @@ datum
 			burn_volatility = 15 // Very Dangerous
 			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
 			value = 5
+			evaporates_cleanly = TRUE
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -571,9 +572,9 @@ datum
 					volume = (volume/covered.len)
 
 				if(volume >= 5)
-					if(!locate(/obj/decal/cleanable/blood/gibs) in T)
+					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/blood/gibs,T)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
 			/*reaction_obj(var/obj/O, var/volume)
 				if(istype(O,/obj/item/parts/robot_parts/robot_frame))
 					if (O.check_completion() && volume >= 20)
@@ -726,6 +727,7 @@ datum
 			penetrates_skin = 1 // splashing saline on someones wounds would sorta help clean them
 			depletion_rate = 0.15
 			value = 5 // 3c + 1c + 1c
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1035,15 +1037,15 @@ datum
 					if (effect <= 2)
 						M.visible_message("<span class='alert'>[M] coughs up a lot of blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(5,10) * mult, 3 * mult)
+						bleed(M, rand(5,10) * mult)
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'>[M] coughs up a little blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(1,2) * mult, 1 * mult)
+						bleed(M, rand(1,2) * mult)
 				else if (severity == 2) // greater
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M] is bleeding from [his_or_her(M)] very pores!</span>")
-						bleed(M, rand(10,20) * mult, rand(1,3) * mult)
+						bleed(M, rand(10,20) * mult)
 						if (ishuman(M))
 							var/mob/living/carbon/human/H = M
 							var/list/gear_to_bloody = list(H.r_hand, H.l_hand, H.head, H.wear_mask, H.w_uniform, H.wear_suit, H.belt, H.gloves, H.glasses, H.shoes, H.wear_id, H.back)
@@ -1055,11 +1057,11 @@ datum
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'>[M] coughs up a lot of blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(5,10) * mult, 3 * mult)
+						bleed(M, rand(5,10) * mult)
 					else if (effect <= 8)
 						M.visible_message("<span class='alert'>[M] coughs up a little blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(1,2) * mult, 1 * mult)
+						bleed(M, rand(1,2) * mult)
 
 		// old name for factor VII, which is a protein that causes blood to clot.
 		//this stuff is seemingly just used for people with hemophilia but this is ss13 so let's give it to everybody who's bleeding a little, it's fine.
@@ -1122,7 +1124,7 @@ datum
 					else if (severity > 1 && prob(50))
 						L.visible_message("<span class='alert'>[L] coughs up a little blood!</span>")
 						playsound(L, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(L, rand(2,8) * mult, 3 * mult)
+						bleed(L, rand(2,8) * mult)
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						if (H.organHolder)
@@ -1705,6 +1707,7 @@ datum
 			transparency = 240
 			value = 3 // 1 1 1
 			target_organs = list("brain")		//unused for now
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom

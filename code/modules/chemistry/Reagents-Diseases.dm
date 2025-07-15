@@ -41,7 +41,7 @@ datum
 			fluid_r = 255
 			fluid_g = 255
 			fluid_b = 255
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/clowning_around
 
 		disease/vampire_serum
@@ -63,7 +63,7 @@ datum
 			fluid_r = 255
 			fluid_g = 255
 			fluid_b = 255
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/cluwneing_around
 
 		disease/lycanthropy //Please never give this an actual recipe .I
@@ -75,7 +75,7 @@ datum
 			fluid_r = 173
 			fluid_g = 65
 			fluid_b = 133
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/lycanthropy
 
 		disease/mucus // Cold
@@ -378,7 +378,7 @@ datum
 			fluid_r = 192
 			fluid_g = 32
 			fluid_b = 232
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/malady/flatline
 
 		disease/bacon_grease // please do not give a recipe, just a thing for testing heart-related things atm
@@ -389,7 +389,7 @@ datum
 			fluid_r = 247
 			fluid_g = 230
 			fluid_b = 177
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/malady/heartfailure
 
 		disease/toomuch // High Fever
@@ -413,7 +413,7 @@ datum
 			fluid_r = 146
 			fluid_g = 93
 			fluid_b = 108
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/noheart
 
 			on_mob_life(var/mob/M, var/mult = 1)

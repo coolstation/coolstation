@@ -2,6 +2,8 @@
 #define MAP_SPAWN_SHUTTLE 1
 #define MAP_SPAWN_CRYO 2
 #define MAP_SPAWN_MISSILE 3
+//Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
+#define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
 #define MAP_NAME_RANDOM 1
 
@@ -107,6 +109,8 @@ var/global/list/mapNames = list(
 	var/escape_station = /area/shuttle/escape/station
 	var/escape_def = SHUTTLE_NODEF
 	var/escape_dir = SOUTH
+	//Only used with MAP_SPAWN_SHUTTLE_DYNAMIC, determines which shuttle folder gets used
+	var/arrivals_shape = "cogmap"
 
 	var/shuttle_map_turf = /turf/space
 	var/qm_supply_type = "space" //can also be "shuttle"!
@@ -388,6 +392,8 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/cogmap
 	escape_def = SHUTTLE_SOUTH
 	escape_dir = SOUTH
+	arrivals_type = MAP_SPAWN_SHUTTLE_DYNAMIC
+	arrivals_shape = "cogmap"
 
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
 	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
