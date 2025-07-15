@@ -275,12 +275,13 @@
 	allowed_type = /obj/item/light/bulb
 	New()
 		..()
-		//var/image/bulb = SafeGetOverlayImage("bulb", src.icon, "bulb_g")
-		//bulb.plane = PLANE_LIGHTING
-		//bulb.layer = LIGHTING_LAYER_BASE
-		//bulb.blend_mode = BLEND_ADD
-		//bulb.color = src.light_type.color
-		//UpdateOverlays(bulb, "bulb", 0, 1)
+		var/image/bulb = SafeGetOverlayImage("bulb", src.icon, "bulb_g")
+		bulb.plane = PLANE_LIGHTING
+		bulb.layer = LIGHTING_LAYER_BASE
+		bulb.blend_mode = BLEND_ADD
+		SPAWN_DBG(1 SECOND)
+			bulb.color = src.light_type.color
+			UpdateOverlays(bulb, "bulb", 0, 1)
 
 /obj/machinery/light/small/auto
 	nostick = FALSE

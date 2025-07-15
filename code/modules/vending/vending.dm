@@ -1282,6 +1282,11 @@
 
 	create_products()
 		..()
+		var/image/snack = SafeGetOverlayImage("snack", src.icon, "snack_g")
+		snack.plane = PLANE_LIGHTING
+		snack.layer = LIGHTING_LAYER_BASE
+		snack.blend_mode = BLEND_ADD
+		UpdateOverlays(snack, "snack", 0, 1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/candy/regular, 10, cost=PAY_UNTRAINED/20)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/chips, 10, cost=PAY_UNTRAINED/15)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/donut, 10, cost=PAY_TRADESMAN/20)
