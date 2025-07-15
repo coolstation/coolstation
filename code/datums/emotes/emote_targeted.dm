@@ -28,6 +28,10 @@
 		emote_string = "looks at"
 		action_phrase = "look at"
 		inaction_phrase = list("out of sight" = 1, "not in sight" = 99)
+	leer
+		emote_string = "leers at"
+		action_phrase = "leer at"
+		inaction_phrase = list("out of sight" = 1, "not in sight" = 99)
 	boggle
 		no_out_of_range = TRUE
 		target_type = "both"

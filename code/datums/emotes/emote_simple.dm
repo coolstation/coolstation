@@ -417,7 +417,7 @@
 	user.show_text("To use emotes, simply enter 'me (emote)' in the input bar. Certain emotes can be targeted at other characters - to do this, enter 'me (emote) (name of character)' without the brackets.")
 	user.show_text("For a list of all emotes, use 'me list'. For a list of basic emotes, use 'me listbasic'. For a list of emotes that can be targeted, use 'me listtarget'.")
 
-//Emotes differ per mob type, so
+//These fucking suck and we need a better system, but for the moment I'm just copy pasting this shit :V
 /datum/emote/listtarget/human
 /datum/emote/listtarget/human/enact(mob/user, voluntary = 0, param)
 	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, flipoff, doubleflip, shakefist, handshake, daps, slap, boggle, highfive, fingerguns")
@@ -431,4 +431,32 @@
 	nosepick, flex, facepalm, panic, snap, airquote, twitch, twitch_v, faint, deathgasp, signal, wink, collapse, trip, dance, scream, \
 	burp, fart, monologue, contemplate, custom")
 
+/datum/emote/listall/cyborg
+/datum/emote/listall/cyborg/enact(mob/user, voluntary = 0, param)
+	user.show_text("Basic emotes:")
+	user.show_text("clap, flap, aflap, twitch, twitch_s, scream, sigh, laugh, chuckle, giggle, chortle, guffaw, cackle, birdwell, fart, flip, custom, customv, customh")
+	user.show_text("Targetable emotes:")
+	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, point")
 
+/datum/emote/listall/AI
+/datum/emote/listall/AI/enact(mob/user, voluntary = 0, param)
+	user.show_text("Basic emotes:")
+	user.show_text("twitch, twitch_s, scream, birdwell, fart, flip, custom, customv, customh")
+	user.show_text("Targetable emotes:")
+	user.show_text("salute, bow, wave, glare, stare, look, leer, nod, point")
+
+/datum/emote/listbasic/cyborg
+/datum/emote/listbasic/cyborg/enact(mob/user, voluntary = 0, param)
+	user.show_text("clap, flap, aflap, twitch, twitch_s, scream, sigh, laugh, chuckle, giggle, chortle, guffaw, cackle, birdwell, fart, flip, custom, customv, customh")
+
+/datum/emote/listtarget/cyborg
+/datum/emote/listtarget/cyborg/enact(mob/user, voluntary = 0, param)
+	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, point")
+
+/datum/emote/listbasic/AI
+/datum/emote/listbasic/AI/enact(mob/user, voluntary = 0, param)
+	user.show_text("twitch, twitch_s, scream, birdwell, fart, flip, custom, customv, customh")
+
+/datum/emote/listtarget/AI
+/datum/emote/listtarget/AI/enact(mob/user, voluntary = 0, param)
+	user.show_text("salute, bow, wave, glare, stare, look, leer, nod, point")
