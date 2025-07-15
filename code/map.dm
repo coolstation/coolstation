@@ -30,7 +30,7 @@ var/global/list/mapNames = list(
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
-	//"Summit Outpost" =  list("id" = "SUMMIT", settings = "summit", 					"playerPickable" = 1,		"MaxPlayersAllowed" = 75),
+	"Summit Outpost" =  list("id" = "SUMMIT", "settings" = "summit", 				"playerPickable" = 1,		"MaxPlayersAllowed" = 75),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
@@ -287,7 +287,7 @@ var/global/list/mapNames = list(
 		"the escape arm" = list(/area/station/hallway/secondary/exit),
 		"the dank ass observatory" = list(/area/station/crew_quarters/observatory),
 		"the chapel" = list(/area/station/chapel/sanctuary))
-/*
+
 /datum/map_settings/summit
 	name = "SUMMIT"
 	walls = /turf/wall/
@@ -320,7 +320,7 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/donut2
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
-*/
+
 /datum/map_settings/bayoubend
 	name = "BAYOUBEND"
 	walls = /turf/wall/
