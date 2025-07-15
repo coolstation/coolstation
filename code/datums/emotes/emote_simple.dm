@@ -274,14 +274,14 @@
 	cackle
 		emote_string = "cackles"
 
-/datum/emote/play_laugh/enact(mob/living/carbon/human/user, voluntary = 0, param)
-	if (!istype(user)) //sound_list_laugh
-		return
+/datum/emote/play_laugh/enact(mob/user, voluntary = 0, param)
 	if (!ismuzzled(user))
-		if (user.sound_list_laugh && length(user.sound_list_laugh))
-			playsound(user.loc, pick(user.sound_list_laugh), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-		if (user.traitHolder && user.traitHolder.hasTrait("scienceteam"))
-			return list("[user] [emote_string] nervously.", "<I>[emote_string] worriedly</I>", MESSAGE_AUDIBLE)
+		if (ishuman(user)) //sound_list_laugh is human specific
+			var/mob/living/carbon/human/H = user
+			if (H.sound_list_laugh && length(H.sound_list_laugh))
+				playsound(H.loc, pick(H.sound_list_laugh), 80, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			if (H.traitHolder && H.traitHolder.hasTrait("scienceteam"))
+				return list("[H] [emote_string] nervously.", "<I>[emote_string] worriedly</I>", MESSAGE_AUDIBLE)
 		return list("[user] [emote_string].", emote_string, MESSAGE_AUDIBLE)
 	return	list("<B>[user]</B> tries to make a noise.", "<I>tries to make a noise</I>", MESSAGE_VISIBLE)
 
