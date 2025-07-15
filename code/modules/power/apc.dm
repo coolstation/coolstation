@@ -258,6 +258,7 @@ var/zapLimiter = 0
 		UpdateOverlays(isWireColorCut(APC_WIRE_MAIN_POWER2) ? I_wirewhite : null, "wirewhite", 0, 1)
 		UpdateOverlays(isWireColorCut(APC_WIRE_AI_CONTROL) ? I_wireyellow : null, "wireyellow", 0, 1)
 
+
 		return
 	else
 		icon_state = "apc0"
@@ -270,14 +271,58 @@ var/zapLimiter = 0
 		var/image/I_equp = SafeGetOverlayImage("equipment", 'icons/obj/machines/power.dmi', "apco0-[equipment]")
 		var/image/I_envi = SafeGetOverlayImage("environment", 'icons/obj/machines/power.dmi', "apco2-[environ]")
 
+		// Duplicate overlays without blend mode/layer changes
+		var/image/I_lock_plain = SafeGetOverlayImage("lock_plain", 'icons/obj/machines/power.dmi', "apcox-[locked]")
+		var/image/I_chrg_plain = SafeGetOverlayImage("charge_plain", 'icons/obj/machines/power.dmi', "apco3-[charging]")
+		var/image/I_brke_plain = SafeGetOverlayImage("breaker_plain", 'icons/obj/machines/power.dmi', "apcbr-[operating]")
+		var/image/I_lite_plain = SafeGetOverlayImage("lighting_plain", 'icons/obj/machines/power.dmi', "apco1-[lighting]")
+		var/image/I_equp_plain = SafeGetOverlayImage("equipment_plain", 'icons/obj/machines/power.dmi', "apco0-[equipment]")
+		var/image/I_envi_plain = SafeGetOverlayImage("environment_plain", 'icons/obj/machines/power.dmi', "apco2-[environ]")
+
+		I_lock.blend_mode = BLEND_ADD
+		I_lock.plane = PLANE_LIGHTING
+		I_lock.layer = LIGHTING_LAYER_BASE
+		I_lock.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+
+		I_chrg.blend_mode = BLEND_ADD
+		I_chrg.plane = PLANE_LIGHTING
+		I_chrg.layer = LIGHTING_LAYER_BASE
+		I_chrg.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+
+		I_brke.blend_mode = BLEND_ADD
+		I_brke.plane = PLANE_LIGHTING
+		I_brke.layer = LIGHTING_LAYER_BASE
+		I_brke.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+
+		I_lite.blend_mode = BLEND_ADD
+		I_lite.plane = PLANE_LIGHTING
+		I_lite.layer = LIGHTING_LAYER_BASE
+		I_lite.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+
+		I_equp.blend_mode = BLEND_ADD
+		I_equp.plane = PLANE_LIGHTING
+		I_equp.layer = LIGHTING_LAYER_BASE
+		I_equp.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+
+		I_envi.blend_mode = BLEND_ADD
+		I_envi.plane = PLANE_LIGHTING
+		I_envi.layer = LIGHTING_LAYER_BASE
+		I_envi.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+
 		UpdateOverlays(I_lock, "lock", 0, 1)
 		UpdateOverlays(I_chrg, "charge", 0, 1)
 		UpdateOverlays(I_brke, "breaker", 0, 1)
+		UpdateOverlays(I_lock_plain, "lock_plain", 0, 1)
+		UpdateOverlays(I_chrg_plain, "charge_plain", 0, 1)
+		UpdateOverlays(I_brke_plain, "breaker_plain", 0, 1)
 
 		if(operating && !do_not_operate)
 			UpdateOverlays(I_lite, "lighting", 0, 1)
 			UpdateOverlays(I_equp, "equipment", 0, 1)
 			UpdateOverlays(I_envi, "environment", 0, 1)
+			UpdateOverlays(I_lite_plain, "lighting_plain", 0, 1)
+			UpdateOverlays(I_equp_plain, "equipment_plain", 0, 1)
+			UpdateOverlays(I_envi_plain, "environment_plain", 0, 1)
 
 /obj/machinery/power/apc/emp_act()
 	..()

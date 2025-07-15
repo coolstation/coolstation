@@ -22,9 +22,14 @@
 	var/datum/radio_frequency/frequency
 	var/static/manual_off_reactivate_idle = 8 //how many machine loop ticks to idle after being manually switched off
 	var/idle_count = 0
+	var/image/fire1 = null
+	var/image/fire0 = null
 	text = ""
-
 	desc = "A fire sensor and alarm system. When it detects fire or is manually activated, it closes all firelocks in the area to minimize the spread of fire."
+
+
+
+
 
 /obj/machinery/firealarm/New()
 	..()
@@ -35,6 +40,13 @@
 
 	if(!net_id)
 		net_id = generate_net_id(src)
+
+	var/image/fire0 = SafeGetOverlayImage("fire0", 'icons/obj/machines/monitors.dmi', "fire0e")
+	fire0.plane = PLANE_LIGHTING
+	fire0.layer = LIGHTING_LAYER_BASE
+	fire0.blend_mode = BLEND_ADD
+	src.UpdateOverlays(fire0, "fire0",0, 1)
+
 
 	AddComponent(/datum/component/mechanics_holder)
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "toggleinput")
@@ -56,8 +68,22 @@
 /obj/machinery/firealarm/proc/toggleinput(var/datum/mechanicsMessage/inp)
 	if(src.icon_state == "fire0")
 		alarm()
+		src.UpdateOverlays(null, "fire0",0,1)
+		SPAWN_DBG(0.5 SECONDS)
+			var/image/fire1 = SafeGetOverlayImage("fire1", 'icons/obj/machines/monitors.dmi', "fire1e")
+			fire1.plane = PLANE_LIGHTING
+			fire1.layer = LIGHTING_LAYER_BASE
+			fire1.blend_mode = BLEND_ADD
+			src.UpdateOverlays(fire1, "fire1",0, 1)
 	else
 		reset()
+		src.UpdateOverlays(null, "fire1",0,1)
+		SPAWN_DBG(0.5 SECONDS)
+			var/image/fire0 = SafeGetOverlayImage("fire0", 'icons/obj/machines/monitors.dmi', "fire0e")
+			fire0.plane = PLANE_LIGHTING
+			fire0.layer = LIGHTING_LAYER_BASE
+			fire0.blend_mode = BLEND_ADD
+			src.UpdateOverlays(fire0, "fire0",0, 1)
 	return
 
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
@@ -208,6 +234,7 @@
 				post_alert(src.icon_state == "fire0", sender)
 			if ("trigger")
 				src.alarm()
+
 			if ("reset")
 				src.reset()
 

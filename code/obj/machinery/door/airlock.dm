@@ -2104,3 +2104,11 @@ and support double doors, so I feel they're better and more versatile, even if t
 			D.cycle_enter_id = src.enter_id
 			D.attempt_cycle_link()
 
+
+/obj/glowdummy
+	name = "glowdummy"
+	icon = 'icons/obj/doors/door1.dmi'
+	icon_state = "glowdummy"
+	plane = PLANE_LIGHTING
+	layer = LIGHTING_LAYER_BASE
+	blend_mode = BLEND_ADD
