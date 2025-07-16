@@ -164,7 +164,10 @@
 		if (has_glow)
 			glow = new(src)//mage(src.icon,src,"[base_state]-glow",PLANE_NOSHADOW_ABOVE,src.dir)
 			glow.icon_state = "[base_state]-glow"
-			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE //IDK
+			glow.plane = PLANE_LIGHTING
+			glow.layer = LIGHTING_LAYER_BASE
+			glow.blend_mode = BLEND_ADD
+			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR  //IDK
 			glow.mouse_opacity = FALSE //Here's what we do this for
 
 		var/area/A = get_area(src)
@@ -275,13 +278,6 @@
 	allowed_type = /obj/item/light/bulb
 	New()
 		..()
-		var/image/bulb = SafeGetOverlayImage("bulb", src.icon, "bulb_g")
-		bulb.plane = PLANE_LIGHTING
-		bulb.layer = LIGHTING_LAYER_BASE
-		bulb.blend_mode = BLEND_ADD
-		SPAWN_DBG(1 SECOND)
-			bulb.color = src.light_type.color
-			UpdateOverlays(bulb, "bulb", 0, 1)
 
 /obj/machinery/light/small/auto
 	nostick = FALSE
@@ -674,8 +670,14 @@
 
 	if (on)
 		light.enable()
+		var/image/bulb = SafeGetOverlayImage("bulb", src.icon, "[base_state]_g")
+		bulb.plane = PLANE_LIGHTING
+		bulb.layer = LIGHTING_LAYER_BASE
+		bulb.blend_mode = BLEND_ADD
+		src.UpdateOverlays(bulb, "bulb", 1, 1)
 	else
 		light.disable()
+		src.UpdateOverlays(null, "bulb", 1, 1)
 
 	SPAWN_DBG(0)
 		// now check to see if the bulb is burned out
