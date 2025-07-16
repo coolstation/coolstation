@@ -1,15 +1,23 @@
-#define NEVICATA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR)) * 2)
+//#define NEVICATA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR)) * 2)
+#define NEVICATA_TIME 90
 
 #define NEVICATA_PRESSURE ONE_ATMOSPHERE * 0.8 //0.8 atm pressure
 #define WASTES_MIN_TEMP 125 //only marginally warmer than the real life Triton
 #define WASTES_MAX_TEMP 170 //hell is still well beyond frozen over
-#define NEVICATA_CO2 NEVICATA_PRESSURE * 0.1
+#define NEVICATA_CO2 NEVICATA_PRESSURE * 0.01
 #define NEVICATA_N2 NEVICATA_PRESSURE  * 0.67
-#define NEVICATA_02 NEVICATA_PRESSURE * 0.32 //atmospheric composition here is stable.
-#define NEVICATA_TEMP WASTES_MIN_TEMP + ((0.5*sin(NEVICATA_TIME-45)+0.5)*(WASTES_MAX_TEMP - WASTES_MIN_TEMP)) //this is straight up copy pasted, just so the map will actually *work*
+#define NEVICATA_02 NEVICATA_PRESSURE * 0.32
+#define NEVICATA_TEMP ((WASTES_MAX_TEMP - WASTES_MIN_TEMP)/2) * sin(NEVICATA_TIME-20) + ((WASTES_MAX_TEMP + WASTES_MIN_TEMP) / 2)
 
 var/global/nevicata_time = NEVICATA_TIME
 
+// 10 - dark and cold
+// 30 - little, slightly warmer sunrise
+// 70 - About as bright as twilight and as cold as the Titan.
+// 90 - The midday glow of Amica casts a long shadow, still really cold
+// 110 -The warmest it will be, which is still lethal.
+// 150 -Amica is beginning to set, and the bone chilling cold is creeping back(more bone chilling, rather.)
+//
 //todo: make some nevicata audio loops and whatnot
 
 /turf/space/nevicata
@@ -109,9 +117,9 @@ var/global/nevicata_time = NEVICATA_TIME
 
 	var/datum/light/point/light = null
 	var/light_r = 0.3*(sin(NEVICATA_TIME)+1.1)
-	var/light_g = 0.2*(sin(NEVICATA_TIME )+1.1)
-	var/light_b = 0.3*(sin(NEVICATA_TIME - 45 )+1.1)
-	var/light_brightness = 0.3*(sin(NEVICATA_TIME)+0.8) + 0.13
+	var/light_g = 0.15*(sin(NEVICATA_TIME)+1.1)
+	var/light_b = 0.2*(sin(NEVICATA_TIME)) + 0.3
+	var/light_brightness = 0.6*(sin(NEVICATA_TIME)) + 0.62
 	var/light_height = 3
 	var/generateLight = 1
 	var/stone_color
