@@ -2,10 +2,10 @@
 
 #define NEVICATA_PRESSURE ONE_ATMOSPHERE * 0.8 //0.8 atm pressure
 #define WASTES_MIN_TEMP 125 //only marginally warmer than the real life Triton
-#define WASTES_MAX_TEMP 250 //hell is still well beyond frozen over
+#define WASTES_MAX_TEMP 170 //hell is still well beyond frozen over
 #define NEVICATA_CO2 NEVICATA_PRESSURE * 0.1
-#define NEVICATA_N2 NEVICATA_PRESSURE  * 0.82
-#define NEVICATA_02 NEVICATA_PRESSURE * 0.17 //atmospheric composition here is stable.
+#define NEVICATA_N2 NEVICATA_PRESSURE  * 0.67
+#define NEVICATA_02 NEVICATA_PRESSURE * 0.32 //atmospheric composition here is stable.
 #define NEVICATA_TEMP WASTES_MIN_TEMP + ((0.5*sin(NEVICATA_TIME-45)+0.5)*(WASTES_MAX_TEMP - WASTES_MIN_TEMP)) //this is straight up copy pasted, just so the map will actually *work*
 
 var/global/nevicata_time = NEVICATA_TIME
