@@ -89,6 +89,7 @@
 	text = ""
 	power_usage = 0
 	power_channel = LIGHT
+	has_bulb_overlay = TRUE
 	// base description and icon_state
 	var/base_state = "tube"
 	//toggles the actual state of giving off light
@@ -622,6 +623,7 @@
 	nostick = 0
 	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
+	has_bulb_overlay = TRUE
 
 /obj/machinery/light/fluorescent/auto
 	nostick = FALSE //do the stick
