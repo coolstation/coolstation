@@ -126,6 +126,9 @@
 	var/has_glow = TRUE //TODO - transition maps to /obj/machinery/light/fluorescent so this can be false by default
 	var/obj/overlay/glow = null
 
+	var/has_bulb_overlay = FALSE
+	var/image/bulb_overlay
+
 	New()
 		..()
 		light = new
@@ -133,6 +136,14 @@
 		light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
 		light.set_height(2.4)
 		light.attach(src)
+
+		if(src.has_bulb_overlay)
+			src.bulb_overlay = image(src.icon, src, "[src.base_state]_g")
+			src.bulb_overlay.plane = PLANE_LIGHTING
+			src.bulb_overlay.layer = LIGHTING_LAYER_BASE
+			src.bulb_overlay.blend_mode = BLEND_ADD
+			src.bulb_overlay.color = rgb(min(src.light.r * 270, 255), min(src.light.g * 270, 255), min(src.light.b * 270, 255))
+
 		SPAWN_DBG(1 DECI SECOND)
 			update()
 
@@ -276,6 +287,8 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
+	has_bulb_overlay = TRUE
+
 	New()
 		..()
 
@@ -294,6 +307,7 @@
 	plane = PLANE_FLOOR
 	allowed_type = /obj/item/light/bulb
 	wallmounted = FALSE
+	has_bulb_overlay = FALSE
 
 //ceiling lights!!
 /obj/machinery/light/small/ceiling
@@ -305,6 +319,7 @@
 	level = 2
 	wallmounted = FALSE
 	ceilingmounted = TRUE
+	has_bulb_overlay = FALSE
 
 //finally redid these sprites
 //good for shitty areas like maint
@@ -312,6 +327,7 @@
 	icon_state = "overbulb1"
 	base_state = "overbulb"
 	desc = "A small bare-bulb lighting fixture, embedded in the ceiling."
+	has_bulb_overlay = FALSE
 
 //emergency lights that turn on when either the power is out or an alert is triggered on the bridge
 /obj/machinery/light/emergency
@@ -669,15 +685,13 @@
 	//if(src.light.enabled != on)
 
 	if (on)
-		light.enable()
-		var/image/bulb = SafeGetOverlayImage("bulb", src.icon, "[base_state]_g")
-		bulb.plane = PLANE_LIGHTING
-		bulb.layer = LIGHTING_LAYER_BASE
-		bulb.blend_mode = BLEND_ADD
-		src.UpdateOverlays(bulb, "bulb", 1, 1)
+		src.light.enable()
+		if(src.has_bulb_overlay)
+			src.UpdateOverlays(src.bulb_overlay, "bulb")
 	else
-		light.disable()
-		src.UpdateOverlays(null, "bulb", 1, 1)
+		src.light.disable()
+		if(src.has_bulb_overlay)
+			src.UpdateOverlays(null, "bulb")
 
 	SPAWN_DBG(0)
 		// now check to see if the bulb is burned out
@@ -752,6 +766,8 @@
 	current_lamp = inserted_lamp
 	current_lamp.set_loc(null)
 	light.set_color(current_lamp.color_r, current_lamp.color_g, current_lamp.color_b)
+	if(src.bulb_overlay)
+		src.bulb_overlay.color = rgb(min(current_lamp.color_r * 270, 255), min(current_lamp.color_g * 270, 255), min(current_lamp.color_b * 270, 255))
 	brightness = initial(brightness)
 	on = has_power()
 	update()
