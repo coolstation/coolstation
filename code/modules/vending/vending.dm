@@ -143,6 +143,8 @@
 	var/light_g = 1
 	var/light_b = 1
 
+	var/glow = TRUE // is this machine emissive?
+
 	var/output_target = null
 
 	power_usage = 50
@@ -150,6 +152,13 @@
 	var/window_size = "400x475"
 
 	New()
+		if(glow == TRUE)
+			var/image/glow = image(src.icon, src, "[icon_state]_g")
+			glow.plane = PLANE_LIGHTING
+			glow.layer = LIGHTING_LAYER_BASE
+			glow.blend_mode = BLEND_ADD
+			src.UpdateOverlays(glow, "glow")
+
 		src.create_products()
 		AddComponent(/datum/component/mechanics_holder)
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Vend Random", "vendinput")
@@ -1252,11 +1261,6 @@
 
 	create_products()
 		..()
-		var/image/coffee = SafeGetOverlayImage("coffee", src.icon, "coffee_g")
-		coffee.plane = PLANE_LIGHTING
-		coffee.layer = LIGHTING_LAYER_BASE
-		coffee.blend_mode = BLEND_ADD
-		UpdateOverlays(coffee, "coffee", 0, 1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/coffee, 25, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/tea, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/xmas, 10, cost=PAY_TRADESMAN/10)
@@ -1282,11 +1286,6 @@
 
 	create_products()
 		..()
-		var/image/snack = SafeGetOverlayImage("snack", src.icon, "snack_g")
-		snack.plane = PLANE_LIGHTING
-		snack.layer = LIGHTING_LAYER_BASE
-		snack.blend_mode = BLEND_ADD
-		UpdateOverlays(snack, "snack", 0, 1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/candy/regular, 10, cost=PAY_UNTRAINED/20)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/chips, 10, cost=PAY_UNTRAINED/15)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/donut, 10, cost=PAY_TRADESMAN/20)
@@ -1590,11 +1589,6 @@
 
 		create_products()
 			..()
-			var/image/robust = SafeGetOverlayImage("robust", src.icon, "robust_g")
-			robust.plane = PLANE_LIGHTING
-			robust.layer = LIGHTING_LAYER_BASE
-			robust.blend_mode = BLEND_ADD
-			UpdateOverlays(robust, "robust", 0, 1)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/red, 10, cost=PAY_UNTRAINED/10)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pink, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/lime, 10, cost=PAY_UNTRAINED/6)
@@ -1622,11 +1616,6 @@
 
 		create_products()
 			..()
-			var/image/grife = SafeGetOverlayImage("grife", src.icon, "grife_g")
-			grife.plane = PLANE_LIGHTING
-			grife.layer = LIGHTING_LAYER_BASE
-			grife.blend_mode = BLEND_ADD
-			UpdateOverlays(grife, "grife", 0, 1)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/blue, 10, cost=PAY_UNTRAINED/10)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/orange, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
@@ -2620,11 +2609,6 @@
 		return ..()
 
 	generate_vending_HTML()
-		var/image/pizza = SafeGetOverlayImage("pizza", src.icon, "pizza_g")
-		pizza.plane = PLANE_LIGHTING
-		pizza.layer = LIGHTING_LAYER_BASE
-		pizza.blend_mode = BLEND_ADD
-		UpdateOverlays(pizza, "pizza", 0, 1)
 		src.vending_HTML = "<TT><B>PizzaVend 0.5b</B></TT><BR>"
 
 		if (src.pizcooking)
