@@ -140,10 +140,10 @@
 
 		if(src.has_bulb_overlay)
 			src.bulb_overlay = image(src.icon, src, "[src.base_state]_g")
-			src.bulb_overlay.plane = PLANE_LIGHTING
+			src.bulb_overlay.plane = PLANE_SELFILLUM
 			src.bulb_overlay.layer = LIGHTING_LAYER_FULLBRIGHT
 			src.bulb_overlay.blend_mode = BLEND_OVERLAY
-			src.bulb_overlay.color = rgb(min(src.light.r * 255, 255), min(src.light.g * 255, 255), min(src.light.b * 255, 255))
+			src.bulb_overlay.color = rgb(min(src.light.r * 1000, 255), min(src.light.g * 1000, 255), min(src.light.b * 750, 255))
 
 		SPAWN_DBG(1 DECI SECOND)
 			update()
@@ -292,6 +292,7 @@
 
 	New()
 		..()
+
 
 /obj/machinery/light/small/auto
 	nostick = FALSE
@@ -1338,9 +1339,9 @@
 	base_state = "bulb-yellow"
 	item_state = "contvapour"
 	g_amt = 100
-	color_r = 1
-	color_g = 1
-	color_b = 0.9
+	color_r = 0.98
+	color_g = 0.75
+	color_b = 0.5
 
 	red
 		name = "red light bulb"
