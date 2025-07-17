@@ -143,7 +143,7 @@
 			src.bulb_overlay.plane = PLANE_SELFILLUM
 			src.bulb_overlay.layer = LIGHTING_LAYER_FULLBRIGHT
 			src.bulb_overlay.blend_mode = BLEND_OVERLAY
-			src.bulb_overlay.color = rgb(min(src.light.r * 1000, 255), min(src.light.g * 1000, 255), min(src.light.b * 750, 255))
+			src.bulb_overlay.color = rgb(clamp(src.light.r * 255, 150, 255), clamp(src.light.g * 255, 150, 255), clamp(src.light.b * 220, 150, 255))
 
 		SPAWN_DBG(1 DECI SECOND)
 			update()
@@ -776,7 +776,7 @@
 	current_lamp.set_loc(null)
 	light.set_color(current_lamp.color_r, current_lamp.color_g, current_lamp.color_b)
 	if(src.bulb_overlay)
-		src.bulb_overlay.color = rgb(min(current_lamp.color_r * 255, 255), min(current_lamp.color_g * 255, 255), min(current_lamp.color_b * 255, 255))
+		src.bulb_overlay.color = rgb(clamp(current_lamp.color_r * 255, 150, 255), clamp(current_lamp.color_g * 255, 150, 255), clamp(current_lamp.color_b * 220, 150, 255))
 	brightness = initial(brightness)
 	on = has_power()
 	update()
