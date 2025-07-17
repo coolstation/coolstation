@@ -636,6 +636,12 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 
 	New()
 		..()
+		var/image/lights = image(src.icon, src, "[src.icon_state]_g")
+		lights.plane = PLANE_LIGHTING
+		lights.layer = LIGHTING_LAYER_BASE
+		lights.blend_mode = BLEND_ADD
+		UpdateOverlays(lights, "lights")
+
 		light = new /datum/light/point
 		light.set_color(0.20, 0.60, 0.90)
 		light.set_brightness(0.3)
