@@ -88,8 +88,8 @@
 		if (isrobot(src.occupant))
 			var/mob/living/silicon/robot/R = src.occupant
 			dat += "<u><b>Occupant Name:</b></u> [R.name] "
-			if (user != src.occupant)
-				dat += "<A href='byond://?src=\ref[src];rename=1'>(Rename)</A>"
+			//if (user != src.occupant)
+			dat += "<A href='byond://?src=\ref[src];rename=1'>(Rename)</A>"
 			dat += "<BR>"
 
 			var/dmgalerts = 0
@@ -305,12 +305,12 @@
 			return
 
 		if (href_list["rename"])
-			if (usr == src.occupant)
+			/*if (usr == src.occupant) //hush, let em
 				boutput(usr, "<span class='alert'>You may not rename yourself!</span>")
 				src.updateUsrDialog()
-				return
+				return*/
 			var/mob/living/silicon/robot/R = src.occupant
-			var/newname = copytext(strip_html(sanitize(input(usr, "What do you want to rename [R]?", "Cyborg Maintenance", R.name) as null|text)), 1, 64)
+			var/newname = copytext(strip_html(sanitize(input(usr, "What do you want to rename [R == usr ? "yourself" : R]?", "Cyborg Maintenance", R.name) as null|text)), 1, 64)
 			if ((!issilicon(usr) && (get_dist(usr, src) > 1)) || usr.stat || !newname)
 				return
 			if (url_regex?.Find(newname))

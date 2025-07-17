@@ -1157,7 +1157,7 @@
 /turf/floor/purple/side,
 /area/station/science/lobby)
 "df" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/wall/auto/concrete{
 	color = "#DFC57B"
 	},
@@ -2166,7 +2166,6 @@
 /area/station/maintenance/north)
 "fK" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/decal/tile_edge/line,
 /turf/wall,
 /area/station/quartermaster/cargooffice)
 "fL" = (
@@ -2317,16 +2316,16 @@
 	dir = 1
 	},
 /obj/item/implant/projectile/bardart{
-	pixel_y = 3;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 3
 	},
 /obj/item/implant/projectile/bardart{
-	pixel_y = 1;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 1
 	},
 /obj/item/implant/projectile/bardart{
-	pixel_y = 1;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 1
 	},
 /obj/item/implant/projectile/bardart,
 /obj/item/implant/projectile/bardart,
@@ -2740,7 +2739,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4";
@@ -4561,8 +4560,8 @@
 "ml" = (
 /obj/item/clothing/under/towel{
 	name = "mime bed";
-	pixel_y = -2;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /obj/landmark/start{
 	name = "Mime"
@@ -6003,8 +6002,8 @@
 "pZ" = (
 /obj/table/reinforced/auto,
 /obj/item/tank/plasma{
-	pixel_y = -5;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -5
 	},
 /turf/floor/plating,
 /area/station/science/gen_storage)
@@ -6377,7 +6376,7 @@
 /obj/decal/tile_edge/stripe{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/wood/eight,
 /area/station/crew_quarters/radio/lab)
 "rd" = (
@@ -6975,7 +6974,7 @@
 	},
 /area/station/crew_quarters/cafeteria)
 "sD" = (
-/obj/machinery/door/unpowered/wood/lily,
+/obj/machinery/door/unpowered/wood,
 /turf/floor/airbridge/classic/white,
 /area/station/crew_quarters/radio/lab)
 "sE" = (
@@ -8246,9 +8245,6 @@
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/railing/cyan{
-	dir = 8
-	},
 /turf/floor/grime,
 /area/station/quartermaster/cargooffice/storefront)
 "vY" = (
@@ -8604,6 +8600,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
+"wX" = (
+/obj/wingrille_spawn/reinforced,
+/obj/decal/gehenna/warning,
+/turf/floor/plating,
+/area/station/hallway/primary/south)
 "wY" = (
 /obj/machinery/atmospherics/valve/purge/horizontal,
 /obj/decal/poster/wallsign/poster_rand{
@@ -8706,6 +8707,7 @@
 /obj/item/portable_typewriter{
 	pixel_y = 1
 	},
+/obj/item/paper/book/sillytexts,
 /turf/floor/black/side,
 /area/station/communications/office)
 "xj" = (
@@ -9078,7 +9080,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/unpowered/wood/lily,
+/obj/machinery/door/unpowered/wood,
 /turf/floor/wood/eight,
 /area/station/crew_quarters/radio/lab)
 "yi" = (
@@ -9802,8 +9804,8 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
 /obj/table/reinforced/industrial/auto,
 /obj/item/device/multitool{
-	pixel_y = 0;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 0
 	},
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
@@ -11407,7 +11409,7 @@
 	pixel_y = -7;
 	removable_bulb = 0
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/wood/eight,
 /area/station/crew_quarters/radio/lab)
 "EG" = (
@@ -11973,8 +11975,8 @@
 /obj/machinery/vending/medical_public,
 /obj/decal/cleanable/dirt/random,
 /obj/decal/poster/wallsign/framed_award{
-	pixel_y = 26;
-	desc = "Voted #1 bar in the outpost"
+	desc = "Voted #1 bar in the outpost";
+	pixel_y = 26
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
@@ -13325,7 +13327,7 @@
 	name = "Cargo Bay Dock"
 	})
 "JM" = (
-/obj/machinery/door/unpowered/wood/lily,
+/obj/machinery/door/unpowered/wood,
 /turf/floor/plating,
 /area/station/crew_quarters/radio/lab)
 "JN" = (
@@ -13335,9 +13337,6 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/railing/cyan{
 	dir = 4
 	},
 /obj/decal/cleanable/rust/jen,
@@ -15048,6 +15047,9 @@
 /turf/floor,
 /area/station/science/lab)
 "Ov" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/floor,
 /area/gehenna{
 	icon_state = "dither_r";
@@ -15816,7 +15818,7 @@
 /turf/floor,
 /area/station/medical/robotics)
 "QA" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/storage/crate/furnacefuel,
 /obj/item/plant/herb/cannabis/spawnable,
 /turf/floor/wood/eight,
@@ -17098,12 +17100,12 @@
 "TX" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/wrench{
-	pixel_y = -5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -5
 	},
 /obj/item/wrench/yellow{
-	pixel_y = 4;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /turf/floor/plating,
 /area/station/atmos/hookups/north)
@@ -17481,6 +17483,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/west)
+"UT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "UU" = (
 /turf/wall,
 /area/station/quartermaster/cargooffice/idk_another_one{
@@ -55490,10 +55498,10 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -55791,12 +55799,12 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -56093,13 +56101,13 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -56338,7 +56346,7 @@ Wp
 YR
 dW
 qO
-VZ
+wX
 AJ
 AJ
 il
@@ -56375,8 +56383,8 @@ Pw
 MD
 MD
 MD
-nq
-nq
+MD
+YR
 fg
 fg
 Gj
@@ -56387,22 +56395,22 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
+YR
+YR
 Gj
 Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -56678,33 +56686,33 @@ MD
 MD
 MD
 MD
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-Gj
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+lX
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -56980,8 +56988,8 @@ MD
 MD
 MD
 MD
-nq
-nq
+YR
+YR
 fg
 Gj
 Gj
@@ -56998,14 +57006,14 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -57301,12 +57309,12 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -57604,11 +57612,11 @@ Gj
 Gj
 Gj
 Gj
-nq
-nq
-nq
-nq
-nq
+YR
+YR
+YR
+YR
+YR
 Gj
 Gj
 Gj
@@ -64794,7 +64802,7 @@ sN
 cT
 cT
 sE
-fM
+UT
 sE
 GN
 Nx

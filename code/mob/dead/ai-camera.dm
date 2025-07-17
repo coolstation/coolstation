@@ -152,6 +152,9 @@
 		if (!src.mainframe.stat && !src.mainframe.restrained() && !src.mainframe.hasStatus(list("weakened", "paralysis", "stunned")))
 			if(src.client.check_any_key(KEY_OPEN | KEY_BOLT | KEY_SHOCK) && istype(target, /obj) )
 				var/obj/O = target
+				if(istype(O,/obj/machinery/door/firedoor))
+					for(var/obj/machinery/door/airlock/airlock in O.loc)
+						O = airlock
 				O.receive_silicon_hotkey(src)
 				return
 

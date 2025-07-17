@@ -1,3 +1,7 @@
+//	Put to 1 to make reagent storage on object creation
+#define ENV_BUSH_REAG_STORAGE_ON_NEW 0
+//	Put to 1 to always make reagent storage regardless of edible or not
+#define ENV_BUSH_REAG_STORAGE_ALWAYS 0
 
 /obj/poolwater
 	name = "water"
@@ -175,8 +179,6 @@
 		density = 0
 		icon_state = "lava9"
 
-
-
 /obj/shrub
 	name = "shrub"
 	icon = 'icons/misc/worlds.dmi'
@@ -197,13 +199,60 @@
 	var/base_x = 0
 	var/base_y = 0
 
+	//	edible bushes
+	//	max amount of reagent a bush can contain
+	var/const/REAG_MAX_VOLUME = 50
+	//	probability (in %) that its an edible shrub
+	var/const/EDIBLE_PROB = 50
+	//	limits for the random max_uses when edible
+	var/const/MIN_MUNCHES = 2
+	var/const/MAX_MUNCHES = 10
+	//	probability (in %) to much
+	var/const/MUNCH_PROB = 65
+	//	time (in 1/10 seconds) between munches
+	var/const/MUNCH_COOLDOWN = 50
+	//	enabling this replaces the drop function with eat function
+	var/edible = 0
+	//	flavor of the bush
+	var/flavor = "menthol"
+	//	amount of flavor
+	var/flavor_amount = 10
+	//	amount of food to give a player cow
+	var/food = 10
+	//	feed multiplier, scales how much it feeds a cow
+	var/feed_mult = 6
+	//	bladder multiplier, scales how much it unbladders a cow (not even sure if cows have bladders)
+	var/bladder_mult = -0.2
 
 	New()
 		..()
-		max_uses = rand(0, 5)
-		spawn_chance = rand(1, 40)
+
+		if (prob(EDIBLE_PROB))
+			edible = 1
+			max_uses = rand(MIN_MUNCHES, MAX_MUNCHES)
+			//	when edible, its the chance of munching
+			spawn_chance = MUNCH_PROB
+			//	when edible,
+			time_between_uses = MUNCH_COOLDOWN
+		else
+			edible = 0
+			max_uses = rand(0, 5)
+			spawn_chance = rand(1, 40)
+
 		base_x = pixel_x
 		base_y = pixel_y
+
+//	Allows for easier control at compile time
+#if defined(ENV_BUSH_REAG_STORAGE_ON_NEW) && ENV_BUSH_REAG_STORAGE_ON_NEW
+#if defined(ENV_BUSH_REAG_STORAGE_ALWAYS) && ENV_BUSH_REAG_STORAGE_ALWAYS
+		//	I hope the compiler removes it directly
+		if (1)
+#else
+		if (edible)
+#endif
+			src.create_reagents(REAG_MAX_VOLUME)
+#endif
+
 	ex_act(var/severity)
 		switch(severity)
 			if(1,2)
@@ -220,18 +269,47 @@
 		src.shake_bush(50)
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
-			var/something = null
+			//	allows user to eat the shrub
+			if (src.edible)
+				if (user.a_intent == "harm")
+					//	TODO: Add some compile-time checks
+					//	This might be skipped if the define FLAGS are properly set
+					if (!src.reagents)
+						src.create_reagents(REAG_MAX_VOLUME);
 
-			if (override_default_behaviour && islist(additional_items) && length(additional_items))
-				something = pick(additional_items)
+					//	adds the flavor to this object before moving it to the eater and forcing a reaction
+					src.reagents.add_reagent(flavor, flavor_amount)
+					src.reagents.trans_to(user, flavor_amount)
+					src.reagents.reaction(user, INGEST, flavor_amount)
+
+					//	a player with mutant race "cow" will also be fed from it
+					if (istype(user, /mob/living/carbon/human/))
+						var/mob/living/carbon/human/h = user
+						if (h.mutantrace && h.mutantrace.name == "cow")
+							if (h.sims)
+								h.sims.affectMotive("Hunger", food*feed_mult)
+								h.sims.affectMotive("Bladder", food*bladder_mult)
+
+					//	TODO: Visual effects
+					//	Some effects of the bush being eaten would be cool
+
+					//	shows message AFTER applying effects
+					visible_message("<b><span class='alert'>[user] plucks some leafs from [src] and eats them!</span></b>", 1)
+				else
+					visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
 			else
-				something = pick(trinket_safelist)
+				var/something = null
 
-			if (ispath(something))
-				var/thing = new something(src.loc)
-				visible_message("<b><span class='alert'>[user] violently shakes [src] around! \An [thing] falls out!</span></b>", 1)
-				last_use = world.time
-				max_uses--
+				if (override_default_behaviour && islist(additional_items) && length(additional_items))
+					something = pick(additional_items)
+				else
+					something = pick(trinket_safelist)
+
+				if (ispath(something))
+					var/thing = new something(src.loc)
+					visible_message("<b><span class='alert'>[user] violently shakes [src] around! \An [thing] falls out!</span></b>", 1)
+					last_use = world.time
+					max_uses--
 		else
 			visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
 
@@ -326,7 +404,6 @@
 		//humans are much louder than thrown items and mobs
 		//Only players will trigger this
 		src.shake_bush(50)
-
 
 /obj/shrub/big/big2
 	icon_state = "fern2"
