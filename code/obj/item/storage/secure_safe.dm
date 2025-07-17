@@ -718,7 +718,7 @@
 	random_code = 1
 	spawn_contents = list(/obj/item/robot_foodsynthesizer,\
 	/obj/item/spacecash/thousand,\
-	/obj/item/gun/kinetic/derringer/empty)
+	/obj/item/stackable_ammo/rifle/tranq/three)
 
 /obj/item/storage/secure/ssafe/shooting_range //prefab safe
 	configure_mode = 0

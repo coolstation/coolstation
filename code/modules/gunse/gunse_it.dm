@@ -132,7 +132,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	stock_overlay_y = -2
 	load_time = 1 SECOND
 	max_ammo_capacity = 6
-	bulkiness = 1
+	bulkiness = 2
 
 	shoot_delay = 0.1 SECONDS // this is a lie. its actually 0.6ish seconds if youre good
 	reload_cooldown = 0.2 SECONDS
@@ -427,6 +427,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		barrel = new /obj/item/gun_parts/barrel/italian/joker(src)
 		grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
 
+/obj/item/gun/modular/italian/revolver/derringer
+	name = "lightweight Italian revolver"
+	real_name = "\improper Sicario"
+	desc = "Buttateli nella polvere con questa piccola arma da fuoco."
+	max_ammo_capacity = 2
+	bulkiness = 1
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/italian/short(src)
+		grip = new/obj/item/gun_parts/grip/italian(src)
 
 // RATTLERS
 

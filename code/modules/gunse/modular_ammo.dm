@@ -221,6 +221,17 @@ THE_USUAL_FLAVOURS(pistol/italian/AP, "\improper Italian AP pistol round")
 	icon_state = "italian_flare"
 THE_USUAL_FLAVOURS(pistol/italian/flare, "\improper Italian flare pistol round")
 
+/obj/item/stackable_ammo/pistol/italian/derringer
+	name = "rimfire assassin's round"
+	real_name = "rimfire assassin's round"
+	desc = "Highly illegal, these rimfire pistol rounds are produced for amoral killers and violate at least three patents."
+	projectile_type = /datum/projectile/bullet/pistol/italian/derringer
+	stack_type = /obj/item/stackable_ammo/pistol/italian/derringer
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	load_time = 0.7 SECONDS
+	contraband = 4
+THE_USUAL_FLAVOURS(pistol/italian/derringer, "rimfire assassin's round")
+
 /obj/item/stackable_ammo/pistol/juicer
 	name = "\improper Juicer Jr. round"
 	real_name = "\improper Juicer Jr. round"

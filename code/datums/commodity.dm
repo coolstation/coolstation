@@ -2633,6 +2633,7 @@
 	upperfluc = 15000
 	lowerfluc = -15000
 
+/*
 /datum/commodity/flock/tech/incapacitor
 	comname = "Incapacitor"
 	comtype = /obj/item/gun/energy/flock
@@ -2640,6 +2641,7 @@
 	price = 30000
 	upperfluc = 12500
 	lowerfluc = -12500
+*/
 
 /////////////////////////////////
 ///////skeleton trader //////////

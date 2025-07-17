@@ -290,6 +290,7 @@
 	get_desc()
 		return . += "There [src.amount_left == 1 ? "is" : "are"] [src.amount_left][ammo_type.material && istype(ammo_type.material, /datum/material/metal/silver) ? " silver " : " "]bullet\s left!"
 
+/*
 /obj/item/ammo/bullets/derringer
 	sname = ".41 RF"
 	name = ".41 ammo box"
@@ -339,7 +340,6 @@
 
 		return ..()
 
-/*
 /obj/item/ammo/bullets/bullet_22
 	sname = "8mm Short"
 	name = "8mm Short magazine"

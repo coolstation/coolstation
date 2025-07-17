@@ -1038,7 +1038,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	implanted= null
 	casing = null
 	icon_turf_hit = null
-	typetospawn = /obj/item/gun/kinetic/derringer
+	typetospawn = /obj/item/gun/modular/NT/pistol
 
 
 /datum/projectile/special/spawner/wasp //shoot wasps

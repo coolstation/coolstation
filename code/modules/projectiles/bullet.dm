@@ -174,7 +174,7 @@ toxic - poisons
 	dud_freq = 10
 	fouling = 6
 
-/datum/projectile/bullet/pistol_juicer/AP
+/datum/projectile/bullet/pistol/juicer/AP
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
 	//jam_mult = 2.2
@@ -182,8 +182,7 @@ toxic - poisons
 	dud_freq = 7
 	fouling = 8
 
-//leaving this for now
-/datum/projectile/bullet/derringer
+/datum/projectile/bullet/pistol/italian/derringer
 	name = "bullet"
 	shot_sound = 'sound/weapons/derringer.ogg'
 	power = 120
@@ -194,14 +193,16 @@ toxic - poisons
 	hit_ground_chance = 100
 	implanted = /obj/item/implant/projectile/bullet_pistol_italian_ap
 	ks_ratio = 0.66
-	caliber = 0.41
+	caliber = CALIBER_TINY
 	icon_turf_hit = "bhole"
 	casing = /obj/item/casing/derringer
 	dud_freq = 0
 
 	on_hit(atom/hit)
-		if(ismob(hit) && hasvar(hit, "stunned"))
-			hit:stunned += 5
+		if(ismob(hit))
+			var/mob/M = hit
+			M.changeStatus("weakened", 2 SECONDS)
+			M.force_laydown_standup()
 		..()
 
 /* ------------------------------- Rifle Shit ------------------------------- */

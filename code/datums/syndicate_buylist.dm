@@ -217,9 +217,9 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/derringer
 	name = "Gun: Derringer"
-	item = /obj/item/gun/kinetic/derringer
+	item = /obj/item/storage/box/derringer
 	cost = 2
-	desc = "A small pistol that can be hidden inside worn clothes and retrieved using the wink emote. Comes with two shots and does extreme damage at close range."
+	desc = "Three shots of Italian rimfire rounds, incredibly lethal at incredibly short ranges. Comes with a tiny revolver that can be stashed in worn clothes and retrieved with the wink emote."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/utility/stealthstorage

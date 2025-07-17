@@ -91,9 +91,9 @@
 /obj/item/storage/box/derringer
 	name = "derringer box"
 	icon_state = "hard_case"
-	desc = "A box containing a derringer and some ammo."
-	spawn_contents = list(/obj/item/gun/kinetic/derringer,\
-	/obj/item/ammo/bullets/derringer = 4)
+	desc = "A box containing a derringer and a bit of vicious rimfire ammo."
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/derringer,\
+	/obj/item/stackable_ammo/pistol/italian/derringer/three)
 
 /obj/item/storage/box/shotgun
 	name = "shotgun box"
