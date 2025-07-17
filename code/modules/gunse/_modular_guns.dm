@@ -13,7 +13,7 @@
 
 a new modular gun system
 every /obj/item/gun/modular/ (a receiver) has some basic stats and handles shooting behavior.
-by default all concrete children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
+by default all concrete children of /obj/item/gun/modular/ should populate their own barrel/stock/accessory as appropriate
 with some ordinary basic parts. barrel and grip or stock are pretty necessary, the other two whatever.
 additional custom parts can be created with stat bonuses, and other effects in their add_part_to_gun() proc
 
@@ -55,8 +55,8 @@ giving an "average" spread for stock guns around 5-10
 #define GUN_PART_BARREL 1
 #define GUN_PART_STOCK  2
 #define GUN_PART_GRIP   4
-#define GUN_PART_MAG    8
-#define GUN_PART_ACCSY  16
+#define GUN_PART_ACCSY  8
+#define GUN_PART_RCVR	16
 
 #define STANDARD_BARREL_LEN 20 // the formula that determines ALL GUN BARREL LENGTH DAMAGE SCALING. be careful with this one.
 #define BARREL_SCALING(length) (1 + clamp(((length - STANDARD_BARREL_LEN) / (length + STANDARD_BARREL_LEN)) * 0.420, -0.25, 0.25))
@@ -84,7 +84,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/reload_cooldown = 0.3 SECONDS // how often you can try to reload/clear jams
 	var/max_ammo_capacity = 1 // How much ammo this gun can hold, INCLUDING any chambered rounds
 	var/sound_type = null //bespoke set of loading and cycling noises
-	var/flashbulb_only = 0 // FOSS guns only
+	var/list/muzzle_flashes = list() // any muzzle flashes played by this gun, barrels (and other parts) can add to this list
+	var/flashbulb_only = 0 // FOSS guns only, set to GUN_PART_RCVR if its defined on the reciever
 
 	//offsets and parts
 	///how many pixels from the center (16,16) does the barrel attach. most barrels have 2 pixels above the center and 2 or 3 below.
@@ -96,10 +97,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	///how many pixels from the center (16,16) does the stock attach
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
-	///how many pixels from the center (16,16) does the magazine attach
-	var/magazine_overlay_x = 0
-	var/magazine_overlay_y = 0
-
 
 	// INTERNAL VARS - DO NOT MODIFY DIRECTLY
 	current_projectile = null // chambered round
@@ -111,7 +108,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/gun_parts/grip/grip = null //need either a grip or a stock to sensibly use
 	var/obj/item/gun_parts/stock/stock = null //optional
 	var/obj/item/gun_parts/grip/foregrip = null // optional
-	var/obj/item/gun_parts/magazine/magazine = null // sort of optional (juicer guns require mag)
 	var/obj/item/gun_parts/accessory/accessory = null
 	var/list/obj/item/gun_parts/parts = list()
 	var/built = 0
@@ -257,11 +253,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					grip = I
 				else
 					grip = I
-			if (istype(I, /obj/item/gun_parts/magazine/))
-				if(magazine) //occupado
-					boutput(user,"<span class='notice'>...and knock [magazine] out of the way.</span>")
-					magazine.set_loc(get_turf(src))
-				magazine = I
 			if (istype(I, /obj/item/gun_parts/accessory/))
 				if(accessory) //occupado
 					boutput(user,"<span class='notice'>...and knock [accessory] out of the way.</span>")
@@ -355,7 +346,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			else
 				playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 60, 1)
 
-		//load the magazine after the chamber
+		//load the hold after the chamber
 		else
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
@@ -511,8 +502,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_GRIP)
 			grip.alter_projectile(src, P, user)
-		if(call_alter_projectile & GUN_PART_MAG)
-			magazine.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_ACCSY)
 			accessory.alter_projectile(src, P, user)
 
@@ -640,8 +629,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock.on_cycle(src, current_projectile, user)
 		if(call_on_cycle & GUN_PART_GRIP)
 			grip.on_cycle(src, current_projectile, user)
-		if(call_on_cycle & GUN_PART_MAG)
-			magazine.on_cycle(src, current_projectile, user)
 		if(call_on_cycle & GUN_PART_ACCSY)
 			accessory.on_cycle(src, current_projectile, user)
 
@@ -755,10 +742,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//prevents reloading while shooting, among other things
 	actions.interrupt(user, INTERRUPT_ACT)
 
-	if (src.muzzle_flash)
-		if (isturf(user.loc))
-			var/turf/origin = user.loc
-			muzzle_flash_attack_particle(user, origin, target, src.muzzle_flash)
+	if (length(src.muzzle_flashes) && isturf(user.loc))
+		var/turf/origin = user.loc
+		for(var/i in 1 to length(src.muzzle_flashes))
+			muzzle_flash_attack_particle(user, origin, target, src.muzzle_flashes[i])
 
 	if (ismob(user))
 		var/mob/M = user
@@ -930,7 +917,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/proc/build_gun()
 	name = real_name
-	icon_state = initial(icon_state)//if i don't do this it's -built-built-built
 
 	bulk = src.bulkiness
 
@@ -939,8 +925,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		parts += barrel
 	else
 		spread_angle += BARREL_PENALTY
-	if(magazine)
-		parts += magazine
 	if(grip)
 		parts += grip
 	if(stock)
@@ -951,6 +935,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		parts += accessory
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
+
+	src.UpdateName()
 
 	if((src.bulk + !!stock) > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
@@ -972,43 +958,61 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	buildTooltipContent()
 	built = 1
 
+	src.inventory_counter.show_count()
 	src.inventory_counter.update_number(0)
 
 	//update the icon to match!!!!!
 
 /obj/item/gun/modular/proc/reset_gun()
-	icon_state = initial(icon_state)
 	parts = list()
 	barrel = null
 	grip = null
 	stock = null
-	magazine = null
 	accessory = null
-	//foregrip = null
+	name_prefixes = null
+	name_suffixes = null
 
 	name = "[real_name] receiver"
+
+	src.UpdateName()
 
 	max_crank_level = 0
 	safe_crank_level = 0
 	flashbulb_only = 0
+	flash_auto = initial(flash_auto)
 
-	lensing = initial(lensing)
-	muzzle_flash = 0
-	silenced = 0
 	accessory_alt = 0
-	flash_auto = 0
-	bulk = bulkiness
 
 	call_on_cycle = 0
 	call_alter_projectile = 0
 
+	lensing = initial(lensing)
+	muzzle_flashes = initial(muzzle_flashes)
+	silenced = initial(silenced)
 	caliber = initial(caliber)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
-	can_dual_wield = initial(can_dual_wield)
-	two_handed = initial(two_handed)
 	spread_angle = initial(spread_angle)
-	w_class = initial(w_class)
+
+	bulk = bulkiness
+
+	if((src.bulk) >= 5)
+		src.two_handed = TRUE
+
+	src.force = floor(4 + src.bulk / 2)
+	src.throwforce = floor(6 + src.bulk / 3)
+	src.w_class = ceil(src.bulk / 3)
+
+	if(src.two_handed)
+		flags &= ~ONBELT
+		flags |= ONBACK
+		src.can_dual_wield = FALSE
+	else
+		flags &= ~ONBACK
+		flags |= ONBELT
+		src.can_dual_wield = TRUE
+
+	src.inventory_counter.hide_count()
 
 // derringer-esque behavior for tiny gunse
 /obj/item/gun/modular/afterattack(obj/O as obj, mob/user as mob)
@@ -1160,9 +1164,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					part.set_loc(user.loc)
 				if(gun.foregrip)
 					part = gun.foregrip.remove_part_from_gun()
-					part.set_loc(user.loc)
-				if(gun.magazine)
-					part = gun.magazine.remove_part_from_gun()
 					part.set_loc(user.loc)
 				if(gun.accessory)
 					part = gun.accessory.remove_part_from_gun()

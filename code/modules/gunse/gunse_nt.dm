@@ -129,10 +129,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT/flare_gun
 	name = "\improper NT flare gun"
 	real_name = "\improper NT flare gun"
-	desc = "Designed to fire 16mm flares. Fortunately, flares aren't all it can fire."
+	desc = "Designed to fire 16mm flares. The barrel can't take much more than that."
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/NT/shotty/short(src)
+		barrel = new /obj/item/gun_parts/barrel/NT/shotty/flare(src)
 		if(prob(50))
 			grip = new /obj/item/gun_parts/grip/NT/stub(src)
 		else

@@ -12,7 +12,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	gun_DRM = GUN_ITALIAN
 	jam_frequency = 0
 	var/cylinder_index = 1
-	var/chambered_index = 1
+	var/chambered_index = 0
 	var/dirty_ammo = TRUE
 	var/stored_ammo_count = 0 // only count our ammo when actually needed, otherwise use tricks to avoid checking the entire cylinder a ton
 
@@ -437,6 +437,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/short(src)
 		grip = new/obj/item/gun_parts/grip/italian(src)
+
+/obj/item/gun/modular/italian/revolver/derringer/preloaded
+	New()
+		..()
+		src.ammo_list = list(/datum/projectile/bullet/pistol/italian/derringer, /datum/projectile/bullet/pistol/italian/derringer, /datum/projectile/bullet/pistol/italian/derringer)
+		src.stored_ammo_count = 3
+		src.inventory_counter.update_number(src.ammo_reserve())
 
 // RATTLERS
 

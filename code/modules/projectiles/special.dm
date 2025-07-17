@@ -198,7 +198,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
 		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
-		FC.power = FC.power * P.power / F.power // scale to modification
+		FC.power = FC.power * P.power / src.power // scaling with barrels etc
 		FC.rotateDirection(current_angle)
 		FC.launch()
 		current_angle += angle_adjust_per_pellet
@@ -218,6 +218,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pellets_to_fire = 12 //4 per
 	spread_projectile_type = /datum/projectile/bullet/shot
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	ignores_spread = TRUE
 	var/speed_max = 30
 	var/speed_min = 15
 	var/spread_angle_variance = 5
@@ -225,10 +226,14 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
 		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
-		FC.power = FC.power * P.power / F.power // scale to modification
-		FC.rotateDirection(rand(0-spread_angle_variance,spread_angle_variance))
-		FC.internal_speed = rand(speed_min,speed_max)
-		FC.travelled = rand(0,dissipation_variance)
+		FC.power = FC.power * P.initial_power / src.power // scaling with barrels etc
+
+		src.spread_angle_variance += P.max_spread / src.pellets_to_fire // buckshotty spread?
+		FC.rotateDirection(rand(0-src.spread_angle_variance,src.spread_angle_variance))
+		FC.max_spread += src.spread_angle_variance
+
+		FC.internal_speed = rand(src.speed_min,src.speed_max)
+		FC.travelled = rand(0,src.dissipation_variance)
 		FC.launch()
 
 //NT shot is plastic

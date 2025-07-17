@@ -195,9 +195,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			if(new_gun.stock)
 				src.part = new_gun.stock.remove_part_from_gun()
 				src.part.set_loc(src.loc)
-			if(new_gun.magazine)
-				src.part = new_gun.magazine.remove_part_from_gun()
-				src.part.set_loc(src.loc)
 			if(new_gun.accessory)
 				src.part = new_gun.accessory.remove_part_from_gun()
 				src.part.set_loc(src.loc)
@@ -264,8 +261,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			src.barrel = new_gun.barrel.remove_part_from_gun()
 		if(new_gun.stock)
 			src.stock = new_gun.stock.remove_part_from_gun()
-		if(new_gun.magazine)
-			src.magazine = new_gun.magazine.remove_part_from_gun()
 		if(new_gun.accessory)
 			src.accessory = new_gun.accessory.remove_part_from_gun()
 
@@ -279,8 +274,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		//add parts to gun // this is gonna runtime you dipshit
 		gun.barrel = src.barrel
 		gun.stock = src.stock
-		gun.magazine = src.magazine
-		gun.accessory = src.accessory
 
 		//dispense gun
 		gun.build_gun()
@@ -290,7 +283,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		gun = null
 		barrel.contents = null
 		stock.contents = null
-		magazine.contents = null
 		accessory = null
 
 /obj/machinery/vending/gun_safe

@@ -57,6 +57,8 @@
 	var/is_processing = 0//MBC BANDAID FOR BAD BUG : Sometimes Launch() is called twice and spawns two process loops, causing DOUBLEBULLET speed and collision. this fix is bad but i cant figure otu the real issue
 	var/is_detonating = 0//to start modeling fuses
 
+	var/max_spread = 0 // tracks summed maximums of possible spread applied, currently used for buckshot style effects
+
 	proc/rotateDirection(var/angle)
 		var/oldxo = xo
 		var/oldyo = yo
@@ -502,6 +504,7 @@ datum/projectile
 		caliber = null
 		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
 		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
+		ignores_spread = FALSE	// Ignores all spread from the gun, usually used for things that just need to pass that spread to subprojectiles they create
 
 		datum/material/material = null
 
@@ -863,8 +866,10 @@ datum/projectile/snowball
 	if (P && spread_angle)
 		if (spread_angle < 0)
 			spread_angle = -spread_angle
-		var/spread = rand(spread_angle * 10) / 10
-		P.rotateDirection(prob(50) ? spread : -spread)
+		P.max_spread += spread_angle
+		if(!P.proj_data.ignores_spread)
+			var/spread = rand(spread_angle * 10) / 10
+			P.rotateDirection(prob(50) ? spread : -spread)
 	return P
 
 /proc/initialize_projectile(var/turf/S, var/datum/projectile/DATA, var/xo, var/yo, var/shooter = null, var/turf/remote_sound_source, var/play_shot_sound = TRUE, var/datum/callback/alter_proj = null)

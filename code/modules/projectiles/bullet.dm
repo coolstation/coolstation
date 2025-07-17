@@ -483,7 +483,7 @@ toxic - poisons
 	name = "flare"
 	sname = "flare"
 	shot_sound = 'sound/weapons/flaregun.ogg'
-	power = 20
+	power = 15
 	damage_type = D_BURNING
 	hit_type = null
 	brightness = 1

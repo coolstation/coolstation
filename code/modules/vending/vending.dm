@@ -2051,7 +2051,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
@@ -2074,7 +2074,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/spicy, 5, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/accurate, 5, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/wizard, 1, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
 
 
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), cost = 15)
@@ -2129,8 +2129,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/juicer/ribbed, 4, cost = PAY_UNTRAINED*0.7)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 3, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, cost = PAY_UNTRAINED*0.9)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/black, 4, cost = PAY_UNTRAINED*0.7)

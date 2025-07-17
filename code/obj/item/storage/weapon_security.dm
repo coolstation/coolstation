@@ -125,7 +125,7 @@
 	name = "flare gun box"
 	icon_state = "revolver"
 	desc = "A box containing a flare gun and flares."
-	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
+	spawn_contents = list(/obj/item/gun/modular/NT/flare_gun,\
 	/obj/item/stackable_ammo/shotgun/slug_flare/ten)
 
 
