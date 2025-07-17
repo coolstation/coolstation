@@ -143,7 +143,8 @@
 	var/light_g = 1
 	var/light_b = 1
 
-	var/glow = TRUE // is this machine emissive?
+	var/has_glow = TRUE // is this machine emissive?
+	var/image/glow
 
 	var/output_target = null
 
@@ -152,11 +153,11 @@
 	var/window_size = "400x475"
 
 	New()
-		if(glow == TRUE)
-			var/image/glow = image(src.icon, src, "[icon_state]_g")
-			glow.plane = PLANE_LIGHTING
-			glow.layer = LIGHTING_LAYER_BASE
-			glow.blend_mode = BLEND_ADD
+		if(has_glow)
+			src.glow = image(src.icon, src, "[icon_state]_g")
+			src.glow.plane = PLANE_LIGHTING
+			src.glow.layer = LIGHTING_LAYER_BASE
+			src.glow.blend_mode = BLEND_ADD
 			src.UpdateOverlays(glow, "glow")
 
 		src.create_products()
@@ -936,16 +937,22 @@
 	if (status & BROKEN)
 		icon_state = icon_broken ? icon_broken : "[initial(icon_state)]-broken"
 		light.disable()
+		if(src.has_glow)
+			src.UpdateOverlays(null, "glow")
 	else
 		if ( powered() )
 			icon_state = initial(icon_state)
 			status &= ~NOPOWER
 			light.enable()
+			if(src.has_glow)
+				src.UpdateOverlays(glow, "glow")
 		else
 			SPAWN_DBG(rand(0, 15))
 				src.icon_state = icon_off ? icon_off : "[initial(icon_state)]-off"
 				status |= NOPOWER
 				light.disable()
+				if(src.has_glow)
+					src.UpdateOverlays(null, "glow")
 
 /obj/machinery/vending/proc/fall(mob/living/carbon/victim)
 	if (can_fall != 1)

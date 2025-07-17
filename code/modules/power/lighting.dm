@@ -141,9 +141,9 @@
 		if(src.has_bulb_overlay)
 			src.bulb_overlay = image(src.icon, src, "[src.base_state]_g")
 			src.bulb_overlay.plane = PLANE_LIGHTING
-			src.bulb_overlay.layer = LIGHTING_LAYER_BASE
-			src.bulb_overlay.blend_mode = BLEND_ADD
-			src.bulb_overlay.color = rgb(min(src.light.r * 270, 255), min(src.light.g * 270, 255), min(src.light.b * 270, 255))
+			src.bulb_overlay.layer = LIGHTING_LAYER_FULLBRIGHT
+			src.bulb_overlay.blend_mode = BLEND_OVERLAY
+			src.bulb_overlay.color = rgb(min(src.light.r * 255, 255), min(src.light.g * 255, 255), min(src.light.b * 255, 255))
 
 		SPAWN_DBG(1 DECI SECOND)
 			update()
@@ -342,6 +342,7 @@
 	on = 0
 	removable_bulb = 0
 	has_glow = TRUE
+	has_bulb_overlay = FALSE
 
 //Same as the above but starts on and stays on
 /obj/machinery/light/emergencyflashing
@@ -356,6 +357,7 @@
 	on = 1
 	removable_bulb = 0
 	has_glow = TRUE
+	has_bulb_overlay = FALSE
 
 	//repurpose for actual exit signs per room that flash when the shuttle's here
 	exitsign
@@ -551,6 +553,7 @@
 	light_type = /obj/item/light/big_bulb
 	allowed_type = /obj/item/light/big_bulb
 	power_usage = 0
+	has_bulb_overlay = FALSE
 
 	attackby(obj/item/W, mob/user)
 
@@ -599,6 +602,7 @@
 	wallmounted = FALSE
 	deconstruct_flags = DECON_SIMPLE
 	plane = PLANE_DEFAULT
+	has_bulb_overlay = FALSE
 
 	var/switchon = 0		// independent switching for lamps - not controlled by area lightswitch
 
@@ -716,6 +720,8 @@
 				current_lamp.update()
 				on = 0
 				light.disable()
+				if(src.has_bulb_overlay)
+					src.UpdateOverlays(null, "bulb")
 			else
 				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
@@ -769,7 +775,7 @@
 	current_lamp.set_loc(null)
 	light.set_color(current_lamp.color_r, current_lamp.color_g, current_lamp.color_b)
 	if(src.bulb_overlay)
-		src.bulb_overlay.color = rgb(min(current_lamp.color_r * 270, 255), min(current_lamp.color_g * 270, 255), min(current_lamp.color_b * 270, 255))
+		src.bulb_overlay.color = rgb(min(current_lamp.color_r * 255, 255), min(current_lamp.color_g * 255, 255), min(current_lamp.color_b * 255, 255))
 	brightness = initial(brightness)
 	on = has_power()
 	update()
