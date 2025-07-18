@@ -207,6 +207,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "juicer jr tandem shot"
 	sname = "juicer jr tandem shot"
 	cost = 1
+	power = 40
 	pellets_to_fire = 2
 	spread_projectile_type = /datum/projectile/bullet/pistol/juicer //40 (20x2)
 	spread_angle = 10
@@ -216,6 +217,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "buckshot"
 	cost = 1
 	pellets_to_fire = 12 //4 per
+	power = 48
 	spread_projectile_type = /datum/projectile/bullet/shot
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	ignores_spread = TRUE
@@ -241,6 +243,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "buckshot"
 	sname = "buckshot"
 	pellets_to_fire = 10
+	power = 40
 	spread_projectile_type = /datum/projectile/bullet/shot/NT
 	casing = /obj/item/casing/shotgun/blue
 	speed_max = 30
@@ -252,6 +255,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "ratshot"
 	sname = "ratshot"
 	pellets_to_fire = 8
+	power = 24
 	spread_projectile_type = /datum/projectile/bullet/shot/NT/mini
 	speed_max = 30
 	speed_min = 15
@@ -263,6 +267,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "juicershot"
 	sname = "juicershot"
 	pellets_to_fire = 8 //10 per
+	power = 80
 	spread_projectile_type = /datum/projectile/bullet/shot/juicer
 	casing = /obj/item/casing/shotgun/red
 	speed_max = 30
@@ -275,6 +280,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicershot"
 	cost = 1
 	pellets_to_fire = 8 //12 per
+	power = 106
 	spread_projectile_type = /datum/projectile/bullet/shot/juicer/denim
 	casing = /obj/item/casing/shotgun/blue
 	speed_max = 30
@@ -287,6 +293,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicer scrap"
 	cost = 1
 	pellets_to_fire = 6 // 6 per
+	power = 36
 	spread_projectile_type = /datum/projectile/bullet/shot/juicer/scrap
 	casing = /obj/item/casing/shotgun/gray
 	speed_max = 36
@@ -297,7 +304,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
 	sname = "rock salt"
-	power = 20
+	power = 24
 	caliber = 0.62
 	casing = /obj/item/casing/shotgun/gray
 	spread_projectile_type = /datum/projectile/bullet/shot/salt

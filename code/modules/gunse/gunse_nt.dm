@@ -133,7 +133,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/shotty/flare(src)
-		if(prob(50))
+		if(prob(10))
 			grip = new /obj/item/gun_parts/grip/NT/stub(src)
 		else
 			grip = new /obj/item/gun_parts/grip/NT/wood(src)

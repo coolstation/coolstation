@@ -14,8 +14,8 @@ accssry : mall ninja bullshit. optics. gadgets. flashlights. horns. sexy nude me
 ABSTRACT_TYPE(/obj/item/gun_parts)
 /obj/item/gun_parts/
 	icon = 'icons/obj/items/modular_guns/accessory.dmi'
-	var/add_prefix = "" // INCLUDE A TRAILING SPACE
-	var/add_suffix = "" // INCLUDE A LEADING SPACE
+	var/add_prefix = "" // DONT INCLUDE A TRAILING SPACE
+	var/add_suffix = "" // DONT INCLUDE A LEADING SPACE
 	var/part_type = GUN_PART_UNDEF
 	var/overlay_x = 0 //how much does the sprite need to move to fit with standard attachment position
 	var/overlay_y = 0 //same but vertical
@@ -80,7 +80,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 
 		//LISTS
 		if(src.muzzle_flash)
-			my_gun.muzzle_flashes += src.muzzle_flash
+			my_gun.muzzle_flashes.Add(src.muzzle_flash)
 
 		//BITFIELDS
 		if(src.silenced)
@@ -161,6 +161,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		for(var/obj/item/gun_parts/part in my_gun.parts)
 			my_gun.caliber |= part.caliber
 
+		my_gun.UpdateOverlays(null, "[part_type]")
+
 		my_gun = null
 		overlay_x = initial(overlay_x)
 		overlay_y = initial(overlay_y)
@@ -237,6 +239,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 		if(!my_gun)
 			return
 		my_gun.barrel = null
+		my_gun.spread_angle += BARREL_PENALTY
 		. = ..()
 
 //the thing on the back of a grun
@@ -289,6 +292,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 			var/total = ((my_gun.ammo_list.len > src.max_ammo_capacity) ? max_ammo_capacity : 0)
 			src.ammo_list = my_gun.ammo_list.Copy(1,(total))
 			my_gun.ammo_list.Cut(1,(total))
+		if(!my_gun.grip)
+			my_gun.spread_angle += GRIP_PENALTY
 		. = ..()
 
 //the thing you hold to hold a gun
@@ -315,6 +320,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 		if(!my_gun) //already removed, or so you think
 			return
 		my_gun.grip = null
+		if(!my_gun.stock)
+			my_gun.spread_angle += GRIP_PENALTY
 		. = ..()
 
 		/*
@@ -403,7 +410,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "flare gun barrel"
 	spread_angle = -2
 	length = 5
-	icon_state = "nt_blue_shotshort"
+	icon_state = "nt_blue_shotflare"
 	add_suffix = null
 	add_prefix = "plastic"
 	overlay_x = 4
@@ -416,7 +423,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 			var/spread = rand((P.power ** 0.66) * 20) / 10
 			P.rotateDirection(prob(50) ? spread : -spread)
 			P.max_spread += spread
-			if(prob(P.power))
+			if(prob(P.power * 1.5))
+				explosion_new(src, get_turf(src), 1)
+				src.remove_part_from_gun()
+				src.set_loc(get_turf(src))
+				src.visible_message("\The [src] bursts and pops off the gun!")
 				src.combust(src)
 		return ..()
 
@@ -585,6 +596,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 12
 	overlay_x = 6
 	bulkiness = 2
+
+/obj/item/gun_parts/barrel/italian/derringer
+	name = "italian derringer barrel"
+	real_name = "canna di fucile corta"
+	desc = "una canna di fucile dalle dimensioni minime in assoluto."
+	icon_state = "italian_revolver_derringer"
+	add_suffix = "carino"
+	spread_angle = 5
+	length = 2
+	overlay_x = 2
+	bulkiness = 1
 
 /obj/item/gun_parts/barrel/italian/snub
 	name = "italian snub barrel"

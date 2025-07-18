@@ -958,7 +958,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	buildTooltipContent()
 	built = 1
 
-	src.inventory_counter.show_count()
 	src.inventory_counter.update_number(0)
 
 	//update the icon to match!!!!!
@@ -987,7 +986,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	call_alter_projectile = 0
 
 	lensing = initial(lensing)
-	muzzle_flashes = initial(muzzle_flashes)
+	muzzle_flashes = list()
 	silenced = initial(silenced)
 	caliber = initial(caliber)
 	max_ammo_capacity = initial(max_ammo_capacity)
@@ -1011,8 +1010,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flags &= ~ONBACK
 		flags |= ONBELT
 		src.can_dual_wield = TRUE
-
-	src.inventory_counter.hide_count()
 
 // derringer-esque behavior for tiny gunse
 /obj/item/gun/modular/afterattack(obj/O as obj, mob/user as mob)

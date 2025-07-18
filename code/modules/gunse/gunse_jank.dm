@@ -24,7 +24,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 			return
 		var/failure_chance = 0
 		if(src.current_projectile?.power)
-			failure_chance = clamp(round(src.current_projectile.power/2 - 20), -5, 30) + length(src.casing_list) * 5 + src.ammo_reserve() + !!src.jammed * 5
+			failure_chance = clamp(round(src.current_projectile.power * 0.67 - 15), -5, 30) + (length(src.casing_list) + src.ammo_reserve() + !!src.jammed * 5) * 5
 		if(failure_chance > 0 && prob(failure_chance))
 			if(prob(failure_chance))	// Sometimes the failure is obvious
 				playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
@@ -32,7 +32,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 			else						// Other times, less obvious
 				playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 50, 1)
 			src.gonna_blow = TRUE
-			SPAWN_DBG(rand(6, 30))
+			SPAWN_DBG(rand(6, 10))
 				if(!QDELETED(src))
 					var/turf/T = get_turf(src)
 					explosion_new(src, T, failure_chance / 7)

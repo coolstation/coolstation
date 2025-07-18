@@ -435,7 +435,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	bulkiness = 1
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/italian/short(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/derringer(src)
 		grip = new/obj/item/gun_parts/grip/italian(src)
 
 /obj/item/gun/modular/italian/revolver/derringer/preloaded
