@@ -17,7 +17,7 @@
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
-	var/num_enemies_divisor = 10
+	var/num_enemies_divisor = 10 //used in traitor scaling- a higher number means less traitors(on average)
 
 
 /datum/game_mode/mixed/announce()
@@ -75,7 +75,7 @@
 				if(ROLE_VAMPIRE) num_vampires++
 				if(ROLE_GRINCH) num_grinches++
 				if(ROLE_SPY_THIEF) num_spy_thiefs++
-				if(ROLE_WEREWOLF) num_werewolves++
+				if(ROLE_WEREWOLF) num_werewolves++ //i would not call this stealthy, this could do with re-assignment to the combat roles section imo
 
 
 	token_players = antag_token_list()
@@ -213,8 +213,8 @@
 		objective_set_path = null // Gotta reset this.
 
 		if (traitor.assigned_role == "Chaplain" && traitor.special_role == ROLE_VAMPIRE)
-			// vamp will burn in the chapel before he can react
-			if (prob(50))
+			// vamp will burn in the chapel before he can react(or we can make some special/rare chaplain vampire antag role)
+			if (prob(70))
 				traitor.special_role = ROLE_TRAITOR
 			else
 				traitor.special_role = ROLE_CHANGELING
@@ -222,7 +222,7 @@
 		switch (traitor.special_role)
 			if (ROLE_TRAITOR)
 			#ifdef RP_MODE
-				objective_set_path = pick(typesof(/datum/objective_set/traitor/rp_friendly))
+				objective_set_path = pick(typesof(/datum/objective_set/traitor/rp_friendly))//don't we already have a mixed rp mode
 			#else
 				objective_set_path = pick(typesof(/datum/objective_set/traitor))
 			#endif
@@ -247,7 +247,7 @@
 				if (traitor.current.gender == "female")
 					randomname = pick_string_autokey("names/wizard_female.txt")
 				else
-					randomname = pick_string_autokey("names/wizard_male.txt")
+					randomname = pick_string_autokey("names/wizard_male.txt") //could do with an update here
 
 				SPAWN_DBG(0)
 					var/newname = input(traitor.current,"You are a Wizard. Would you like to change your name to something else?", "Name change",randomname)

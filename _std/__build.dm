@@ -2,36 +2,62 @@
 /*
   ANY CHANGES HERE WILL BE OVERWRITTEN BY THE SERVER BUILD PROCESS.
   THAT BEING SAID, THIS IS THE IDEAL PLACE TO FORCE A CERTAIN MAP/FLAGS FOR LOCAL DEVELOPMENT.
-  ALSO HERE'S A BEE
+  ALSO HERE'S NOT A BEE
 
-                .-..-.``        ```````
-  .........`   s-`../-...`  `...........`
-o+`        `-` ``..-:yooos-..----------..`
-             .-`osyyyhssyh:.............-
-            `+hh+/::::s::::::/oyysssys-`
-          .sh+:o/:::::s:::::::::+yNNNNNs.
-         od+:::++:::::s:::::::::::/yNNNmdy`
-       .ds::::::+:::::/:::::::::::::/dNNNhd-
-      `d+////::::::::::://///::::::::/hNNNym.
-      ddmNNNNmy/::::::/ymNNNNds/::::::/dNNNsd`
-     :MNNNNNNNNm+::::+mNNNNNNNNd/::::::oNNNydyooyy
-     yNNNs::sNNNy::::dNNh/:/mNNN+:::::::mNNdsMNNd-
-     dNNd....dNN+::::+NN:...oNNd/:::::::mNNNoNs:
-     yyymdoodNd+::::::+hmyoyNNh/::::::::mNNdsh
-     /m://ooo/::::::::::/+oo+/:::::::::/NNNhd/
-      ds::::::::++:::/++:::::::::::::::sNNNhm`
-      .m+::::::::+++++/:::::::::::::::/NNNNm-
-       .do:::::::::::::::::::::::::::/mNNNN:
-        `yh+::::::::::::::::::::::::/mNMMyd-
-          .ydo/::::::::::::::::::::oNNmds :d
-           .N:+yhyso//::::::://+osyyN- /h  N`
-           .N   y:-:++osssssso++:`  M` :s
-           `d.                     .d`
+
+                                                                               =
+                                                                         ++::::.+
+                                                                  ++=   +----*::+- +=++-
+                                                                      -===++++++=-+=
+                                                                   +=-----------------+
+                                                                +==-------------------=+
+                                                               =----------------=------=
+                                                             +-----------------@@-------+
+                                                            +-------------------@=------+
+                                                           +--------@@@---------------+=
+                                                          +-------------------=@#@@@#-+
+                                                          ---------------@@@=---@#---=+
+                                                         ==-----------#@@@+++++++----
+                                                         ---------------=#+++++++---+
+                                                        +----------------#++++++@---
+                                                        -------------------++=------
+                                                        ----------------------@@*---
+                                                        -----------------+++++++*--
+                                                       ------------------=+++++++--
+                                                      +------------------++++++@---
+                                                      =----------------------------
+                                                      =------------------@@@@@%++--
+                                                      =------------------@+++++++--
+                                                      =------------------@+++++++=-+
+                                                      =-------------------#++++%--==
+                                                      =------------------------=%@-=
+                                                      =-------------------+++++++*-=+
+                                                    +---------------------+++++++*--=
+                                                   +----------------------@+++++*---=
+                                                  +---------------------------------+
+                                                +-----------------------------+------
+                                             ++--------------------------------------
+                                         =--------------------------------=----------
+                                    ==-----------------------------------+-----------
+         +-=---==++           ++==---=-------------------------------=-+------------=
+       +-=-----------------=---------=---------------------------===+---------------+
+        +=-:++=-=-----------------------------------------------=+------------------
+               =--+=-----------------------------------------+---------------------
+                  +---+=*---------------------------------+----------------------+
+                       +-------+++=-----------=--------------------------------=
+                              +#-----------------------:------@*------------+=
+                                                       %@==%@%::%#-------+
+                                                      #@@@@@@@*=:=@%%-:@%
+                                                      %@##%@@@@%-:+@@#@#*@%*+
+                                                       #*%#%#@@@@#=*%@%%@@*@@@@%
+                                                            **#%%%%%%%%@%%@* #+-
+                                                                    @@@@@%%-
+
 */
 
 //////////// OPTIONS TO GO FAST
 
-//#define IM_REALLY_IN_A_FUCKING_HURRY_HERE 1  		// Skip setup for atmos, Z5, don't show changelogs, skip pregame lobby
+#define IM_REALLY_IN_A_FUCKING_HURRY_HERE 1  		// Skip setup for atmos, Z5, don't show changelogs, skip pregame lobby
 //#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1		// Only include the map Atlas, no other zlevels. Boots way faster
 #define Z_LOG_ENABLE 1  							// Enable additional world.log logging
 
@@ -92,7 +118,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //////////// MAP OVERRIDES
 
 //---------------------- Maps that are being maintained ------------------------------//
-//#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
+#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
@@ -136,6 +162,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MODE_OVERRIDE_REVOLUTION 		//(Up to) 3 rev leaders teach crew the meaning of ACAB.
 //#define MODE_OVERRIDE_REVOLUTION_EX  	//Revs but the round doesn't end early, I didn't know we had this.
 //#define MODE_OVERRIDE_BLOB				//2-3 blobs versus the station.
+#define MODE_OVERRIDE_GRIGORI_V_DRAC //TTT gamemode where everyone is either grigori or dracula. Battle it out
 //#define MODE_OVERRIDE_GANG				//Several gangs vie for the highest score by doing crimes. In theory, anyway.
 //#define MODE_OVERRIDE_CONSPIRACY		//A group of crewmembers enact a sinister plot. More heavily role-play oriented than most modes.
 //#define MODE_OVERRIDE_DISASTER			//The crew fights off an onslaught of scary until help arrives.
