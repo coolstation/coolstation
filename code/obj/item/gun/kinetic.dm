@@ -497,7 +497,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		..()
 		ammo = new/obj/item/ammo/bullets/meowitzer/inert
 		set_current_projectile(new/datum/projectile/special/meowitzer/inert)
-*/
 
 // Ported from old, non-gun RPG-7 object class (Convair880).
 /obj/item/gun/kinetic/rpg7
@@ -545,6 +544,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			ammo.amount_left = 1
 			src.update_icon()
 			return
+*/
 
 /obj/item/gun/kinetic/antisingularity
 	desc = "An experimental rocket launcher designed to deliver various payloads in rocket format."

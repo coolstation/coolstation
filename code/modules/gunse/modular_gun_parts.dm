@@ -1170,3 +1170,25 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		jam_frequency = 12
 		bulkiness = 2
 
+// the weird parts for glue'd gunse
+
+/obj/item/gun_parts/barrel/MPRT
+	name = "MPRT-7 barrel"
+	desc = "A smoothbore tube to fire oversized warheads."
+	icon_state = "mprt"
+	part_DRM = GUN_FOSS
+	caliber = CALIBER_WIDE
+	overlay_x = 5
+	length = 12
+	muzzle_flash = "muzzle_flash_launch"
+	bulkiness = 4
+	spread_angle = 2
+
+/obj/item/gun_parts/stock/MPRT
+	name = "MPRT-7 breach"
+	desc = "A heat-shielded tube to vent propellant backblast behind the user."
+	icon_state = "mprt"
+	part_DRM = GUN_FOSS
+	overlay_x = -12
+	bulkiness = 4
+	spread_angle = -3

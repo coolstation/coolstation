@@ -1,5 +1,5 @@
 
-// jank gunse go here - for now, thats the zipgun
+// misc gunse go here
 ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 /obj/item/gun/modular/zip
 	name = "zipgun"
@@ -79,3 +79,53 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 /obj/item/gun/modular/zip/classic
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/pipeframe(src)
+
+// the MPRT
+ABSTRACT_TYPE(/obj/item/gun/modular/MPRT)
+/obj/item/gun/modular/MPRT
+	name = "MPRT-7"
+	desc = "A rocket-propelled grenade launcher licensed by the Space Irish Republican Army."
+	icon_state = "mprt"
+	item_state = "rpg7_empty"
+	uses_multiple_icon_states = 1
+	contraband = 8
+	caliber = CALIBER_SPUD
+	max_ammo_capacity = 1
+	gun_DRM = GUN_FOSS
+	barrel_overlay_x = 5
+	stock_overlay_x = -6
+	grip_overlay_x = -4
+	grip_overlay_y = -5
+	bulkiness = 4
+
+	shoot()
+		. = ..()
+		if(!src.current_projectile)
+			src.UpdateOverlays(null, "warhead")
+
+	build_gun()
+		. = ..()
+		max_ammo_capacity = 1
+		buildTooltipContent()
+
+	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		if(!src.current_projectile)
+			boutput(user, "<span class='notice'>You stuff \an [donor_ammo] down the barrel of \the [src].</span>")
+			if(donor_ammo.caliber & CALIBER_SPUD)
+				var/image/warhead = image(donor_ammo.icon, src, donor_ammo.icon_state, OBJ_LAYER - 0.02, EAST, src.barrel_overlay_x + src.barrel?.overlay_x, -1)
+				src.UpdateOverlays(warhead, "warhead")
+				src.set_current_projectile(new donor_ammo.projectile_type())
+				buildTooltipContent()
+			else
+				boutput(user, "<span class='notice'>It falls right through!</span>")
+				if(donor_ammo.stack_type)
+					new donor_ammo.stack_type(get_turf(src))
+		return FALSE
+
+/obj/item/gun/modular/MPRT/built
+	glued = TRUE
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/MPRT(src)
+		stock = new /obj/item/gun_parts/stock/MPRT(src)
+

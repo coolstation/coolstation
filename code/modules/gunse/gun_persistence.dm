@@ -173,6 +173,10 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			..()
 			return
 		var/obj/item/gun/modular/new_gun = W
+		if(new_gun.glued)
+			playsound(src.loc, "sound/impact_sounds/Wood_Hit_1.ogg", 70, 1)
+			..()
+			return
 		if(!new_gun.built)
 			new_gun.ClearAllOverlays(1)
 			boutput(user, "<span class='notice'>You smash the pieces of the gun into place!</span>")

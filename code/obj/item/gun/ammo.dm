@@ -820,6 +820,7 @@
 			AMMO.unload_nade()
 			qdel(src)
 
+/*
 // Ported from old, non-gun RPG-7 object class (Convair880).
 /obj/item/ammo/bullets/rpg
 	sname = "MPRT rocket"
@@ -834,7 +835,6 @@
 	delete_on_reload = 1
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
-/*
 /obj/item/ammo/bullets/rod
 	sname = "metal rod"
 	name = "metal rod"

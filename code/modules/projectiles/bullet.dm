@@ -1028,14 +1028,14 @@ toxic - poisons
 	cost = 1
 	shot_sound = 'sound/weapons/rocket.ogg'
 	ks_ratio = 1.0
-	caliber = 1.58
+	caliber = CALIBER_LONG_WIDE | CALIBER_SPUD
 	icon_turf_hit = "bhole-large"
 	dud_freq = 0
 
-	on_hit(atom/hit)
-		var/turf/T = get_turf(hit)
+	on_end(var/obj/projectile/O)
+		var/turf/T = get_turf(O)
 		if (T)
-			for (var/mob/living/carbon/human/M in view(hit, 2))
+			for (var/mob/living/carbon/human/M in view(T, 2))
 				M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
 				if (M.get_ranged_protection()>=1.5)
 					boutput(M, "<span class='alert'>Your armor blocks the shrapnel!</span>")

@@ -46,10 +46,12 @@ giving an "average" spread for stock guns around 5-10
 #define JAM_CYCLE 2
 #define JAM_LOAD 3
 #define JAM_CATASTROPHIC 4
+//bitflags for shooting yoar lode
 #define CALIBER_TINY  0 // 00 - tiny
 #define CALIBER_WIDE  (1<<0) // 01 - wide
 #define CALIBER_LONG  (1<<1) // 10 - long
 #define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 11 - huge
+#define CALIBER_SPUD (1<<2)
 //bitflags for finding your bits
 #define GUN_PART_UNDEF  0
 #define GUN_PART_BARREL 1
@@ -131,6 +133,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
 	// MYLIE TO DO - MOVE TO FOSS PARTS ^
 
+	var/glued = FALSE // if TRUE, gun cant be dismantled
+
 	New()
 		..()
 		if (no_build)
@@ -171,7 +175,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(barrel && barrel.length)
 		. += "<div><span>Barrel length: [src.barrel.length] cm = [round(100 * BARREL_SCALING(src.barrel.length), 0.5)]% power </span></div>"
 
-	. += "<div><span>Caliber: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Anythin'</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
+	. += "<div><span>Caliber: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Huge</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
 
 	. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread: [src.spread_angle]° </span></div>"
 
