@@ -1287,9 +1287,9 @@
 	"Fill the gap in your stomach right now!",
 	"A fresh delight is only a bite away!",
 	"We feature Discount Dan's Noodle Soups!")
-	light_r =1
-	light_g = 0.4
-	light_b = 0.4
+	light_r =0.6
+	light_g = 0.92
+	light_b = 0.85
 
 	create_products()
 		..()
