@@ -657,9 +657,9 @@
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
 "bR" = (
-/obj/table/reinforced/bar/auto,
 /obj/machinery/phone,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/table/reinforced,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -2625,11 +2625,13 @@
 /turf/floor/plating,
 /area/station/maintenance/north)
 "gR" = (
-/obj/table/reinforced/bar/auto,
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/machinery/cashreg,
+/obj/table/reinforced/bar{
+	icon_state = "3"
+	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
 	},
@@ -2693,6 +2695,9 @@
 	},
 /obj/table/wood/auto,
 /obj/decal/cleanable/dirt/random,
+/obj/item/device/light/candle/small{
+	pixel_y = 4
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/cafeteria)
 "ha" = (
@@ -3978,8 +3983,8 @@
 "kI" = (
 /obj/decal/cleanable/dirt/random,
 /obj/item/instrument/large/jukebox,
-/obj/decal/poster/wallsign/framed_award/firstbill{
-	pixel_y = 26
+/obj/decal/poster/wallsign/pope_portrait{
+	pixel_y = 32
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
@@ -5176,7 +5181,13 @@
 /area/station/crew_quarters/kitchen)
 "nT" = (
 /obj/decal/cleanable/dirt/random,
-/obj/table/reinforced/auto,
+/obj/table/reinforced/kitchen/auto,
+/obj/machinery/espresso_machine{
+	pixel_y = 6
+	},
+/obj/cup_rack{
+	pixel_y = 34
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -5394,9 +5405,10 @@
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "ow" = (
-/obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced/bar{
+	icon_state = "12"
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -5594,7 +5606,9 @@
 "oV" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/bar,
-/turf/wall/wooden,
+/turf/floor/specialroom/bar{
+	icon_state = "dark"
+	},
 /area/station/crew_quarters/bar)
 "oW" = (
 /obj/machinery/light/fluorescent{
@@ -5956,9 +5970,12 @@
 /area/station/maintenance/west)
 "pU" = (
 /obj/decal/cleanable/dirt/random,
-/obj/table/reinforced/auto,
-/obj/machinery/microwave{
+/obj/table/reinforced/kitchen/auto,
+/obj/machinery/coffeemaker/generic{
 	pixel_y = 4
+	},
+/obj/mug_rack{
+	pixel_y = 36
 	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
@@ -6012,6 +6029,9 @@
 	icon_state = "4-8"
 	},
 /obj/table/wood/auto,
+/obj/item/device/light/candle/small{
+	pixel_y = 6
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/cafeteria)
 "qb" = (
@@ -8432,8 +8452,10 @@
 /area/station/chapel/sanctuary)
 "wA" = (
 /obj/item/plate/tray,
-/obj/table/reinforced/auto,
 /obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced{
+	icon_state = "12"
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "wB" = (
@@ -9163,11 +9185,8 @@
 /turf/floor,
 /area/station/engine/storage)
 "yv" = (
-/obj/decal/tile_edge/line/black{
-	icon_state = "line1"
-	},
-/turf/floor/grime,
-/area/station/quartermaster/cargooffice/storefront)
+/turf/wall/wooden,
+/area/station/crew_quarters/bar)
 "yw" = (
 /obj/item/device/radio/intercom/brig{
 	dir = 8
@@ -9580,8 +9599,10 @@
 /turf/floor/plating,
 /area/station/hydroponics/lobby)
 "zB" = (
-/obj/table/reinforced/auto,
 /obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced{
+	icon_state = "12"
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "zC" = (
@@ -11344,9 +11365,10 @@
 /area/station/maintenance/southeast)
 "Ew" = (
 /obj/machinery/light/fluorescent/ceiling,
-/obj/table/reinforced/auto,
 /obj/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced/bar{
+	icon_state = "12"
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -11761,6 +11783,14 @@
 /obj/item/pen,
 /turf/floor,
 /area/station/engine/core)
+"FC" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced{
+	icon_state = "12"
+	},
+/obj/item/device/light/zippo,
+/turf/floor,
+/area/station/crew_quarters/kitchen)
 "FD" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/sewage{
@@ -11890,8 +11920,9 @@
 /turf/floor,
 /area/station/science/lobby)
 "FW" = (
-/obj/table/reinforced/auto,
-/obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced/bar{
+	icon_state = "12"
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -11974,9 +12005,8 @@
 "Gh" = (
 /obj/machinery/vending/medical_public,
 /obj/decal/cleanable/dirt/random,
-/obj/decal/poster/wallsign/framed_award{
-	desc = "Voted #1 bar in the outpost";
-	pixel_y = 26
+/obj/decal/poster/wallsign/pride/italian{
+	pixel_y = 32
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
@@ -12907,11 +12937,11 @@
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "IJ" = (
-/obj/table/reinforced/auto,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/power/apc/autoname/east,
 /obj/cable,
+/obj/table/reinforced/kitchen/auto,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "IK" = (
@@ -13544,9 +13574,11 @@
 /turf/wall,
 /area/station/engine/core)
 "Ku" = (
-/obj/table/reinforced/bar/auto,
-/obj/item_dispenser/icedispenser,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/item_dispenser/icedispenser{
+	pixel_y = 8
+	},
+/obj/table/reinforced,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -15381,7 +15413,7 @@
 "Pp" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/light_switch/east,
-/obj/table/round/auto,
+/obj/table/reinforced,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -16673,12 +16705,12 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "SN" = (
-/obj/table/reinforced/auto,
 /obj/item/reagent_containers/food/snacks/breadloaf,
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/phone/wall{
 	pixel_y = 32
 	},
+/obj/table/reinforced/kitchen/auto,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "SO" = (
@@ -16868,8 +16900,10 @@
 	},
 /area/listeningpost)
 "Ts" = (
-/obj/table/reinforced/bar/auto,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/table/reinforced/bar{
+	icon_state = "3"
+	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
 	},
@@ -17811,12 +17845,12 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/rack,
 /obj/decal/cleanable/cobweb2,
 /obj/item/storage/box/ic_cones,
 /obj/item/storage/box/ic_cones{
 	pixel_y = 5
 	},
+/obj/table/reinforced/kitchen/auto,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -18006,13 +18040,15 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "Wr" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/decoration/ashtray{
 	butts = 5;
 	name = "grubby old ashtray"
 	},
 /obj/disposalpipe/segment{
 	dir = 4
+	},
+/obj/table/reinforced/bar{
+	icon_state = "3"
 	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
@@ -18495,7 +18531,6 @@
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "XJ" = (
-/obj/table/reinforced/bar/auto,
 /obj/machinery/glass_recycler{
 	glass_amt = 5;
 	pixel_y = 8
@@ -18505,6 +18540,9 @@
 	},
 /obj/machinery/partyalarm{
 	pixel_y = 25
+	},
+/obj/table/reinforced/bar{
+	icon_state = "3"
 	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
@@ -69001,7 +69039,7 @@ Jj
 fV
 gS
 MA
-zB
+FC
 Nb
 YH
 sv
@@ -69605,7 +69643,7 @@ Jj
 pU
 dF
 Lx
-fe
+yv
 DR
 Fu
 jT
@@ -71115,7 +71153,7 @@ xf
 fe
 oG
 YX
-fe
+yv
 Gh
 Fu
 UD
@@ -71417,7 +71455,7 @@ Mm
 fe
 xc
 dF
-fe
+yv
 du
 Fc
 jL
@@ -71437,7 +71475,7 @@ ra
 EA
 ra
 ev
-yv
+EA
 kS
 AY
 Rj
@@ -71719,7 +71757,7 @@ zi
 fe
 OY
 dF
-fe
+yv
 kI
 uB
 SM
@@ -72021,15 +72059,15 @@ Wj
 fe
 dR
 dF
-fe
-fe
+yv
+yv
 oV
 fe
 XJ
 Wr
 Ts
 gR
-fe
+yv
 fe
 vX
 ra
