@@ -3423,7 +3423,7 @@
 /obj/decal/poster/wallsign/bar{
 	pixel_y = 30
 	},
-/obj/window/crystal/east,
+/obj/window/east,
 /turf/floor/grey/checker,
 /area/station/crew_quarters/cafeteria)
 "jg" = (
@@ -11783,14 +11783,6 @@
 /obj/item/pen,
 /turf/floor,
 /area/station/engine/core)
-"FC" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/table/reinforced{
-	icon_state = "12"
-	},
-/obj/item/device/light/zippo,
-/turf/floor,
-/area/station/crew_quarters/kitchen)
 "FD" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/sewage{
@@ -12771,6 +12763,14 @@
 	dir = 4
 	},
 /area/station/science/lab)
+"Ii" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/table/reinforced{
+	icon_state = "12"
+	},
+/obj/item/device/light/zippo,
+/turf/floor,
+/area/station/crew_quarters/kitchen)
 "Ij" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northeast,
 /turf/space/gehenna/desert/plating,
@@ -69039,7 +69039,7 @@ Jj
 fV
 gS
 MA
-FC
+Ii
 Nb
 YH
 sv
