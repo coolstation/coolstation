@@ -1235,11 +1235,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		if (P?.power && (P.power > 20 || prob(80 + P.power)))
 			src.integrity -= P.power
 		if(src.integrity <= 0)
+			src.set_loc(get_turf(src))
 			src.remove_part_from_gun()
 			src.visible_message("\The [src] tears apart from wear!")
 			src.combust(src)
 		return ..()
-
 
 /obj/item/gun_parts/stock/singularity_buster
 	name = "Singularity Buster breach"

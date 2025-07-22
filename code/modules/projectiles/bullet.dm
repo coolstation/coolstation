@@ -1280,7 +1280,7 @@ toxic - poisons
 	name = "Singularity buster rocket"
 	window_pass = 0
 	icon = 'icons/obj/projectiles.dmi'
-	icon_state = "regrocket"
+	icon_state = "antisingularity"
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
 	power = 5
@@ -1288,7 +1288,7 @@ toxic - poisons
 	cost = 1
 	shot_sound = 'sound/weapons/rocket.ogg'
 	ks_ratio = 1.0
-	caliber = 1.12
+	caliber = CALIBER_SPUD | CALIBER_LONG_WIDE
 	icon_turf_hit = "bhole-large"
 	implanted = null
 	dud_freq = 0
@@ -1320,7 +1320,7 @@ toxic - poisons
 	cost = 1
 	shot_sound = 'sound/weapons/rocket.ogg'
 	ks_ratio = 1.0
-	caliber = 1.12
+	caliber = CALIBER_SPUD | CALIBER_LONG_WIDE
 	icon_turf_hit = "bhole-large"
 	implanted = null
 	dud_freq = 0
