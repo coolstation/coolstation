@@ -1107,7 +1107,6 @@
 	amount_left = 1
 	max_amount = 1
 	caliber = 0.58
-*/
 
 /obj/item/ammo/bullets/antisingularity
 	sname = "Singularity buster rocket"
@@ -1135,7 +1134,6 @@
 	delete_on_reload = 1
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
-/*
 /obj/item/ammo/bullets/gun
 	name = "Briefcase of guns"
 	desc = "A briefcase full of guns. It's locked tight..."

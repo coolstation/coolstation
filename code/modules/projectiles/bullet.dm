@@ -1035,7 +1035,7 @@ toxic - poisons
 	on_end(var/obj/projectile/O)
 		var/turf/T = get_turf(O)
 		if (T)
-			for (var/mob/living/carbon/human/M in view(T, 2))
+			for (var/mob/living/carbon/human/M in view(4, T))
 				M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
 				if (M.get_ranged_protection()>=1.5)
 					boutput(M, "<span class='alert'>Your armor blocks the shrapnel!</span>")

@@ -175,7 +175,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(barrel && barrel.length)
 		. += "<div><span>Barrel length: [src.barrel.length] cm = [round(100 * BARREL_SCALING(src.barrel.length), 0.5)]% power </span></div>"
 
-	. += "<div><span>Caliber: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Huge</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
+	if(!src.caliber)
+		. += "<div><span>Caliber: Small (Pistol)</span></div>"
+	else
+		if(src.caliber & CALIBER_LONG)
+			. += "<div><span>Caliber: Long (Rifle)</span></div>"
+		if(src.caliber & CALIBER_WIDE)
+			. += "<div><span>Caliber: Wide (Shotgun)</span></div>"
+		if(src.caliber & CALIBER_SPUD)
+			. += "<div><span>Caliber: Spudlike (Rocket)</span></div>"
 
 	. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread: [src.spread_angle]° </span></div>"
 

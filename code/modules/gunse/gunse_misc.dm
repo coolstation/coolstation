@@ -97,11 +97,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular/MPRT)
 	grip_overlay_x = -4
 	grip_overlay_y = -5
 	bulkiness = 4
+	jam_frequency = -1
 
 	shoot()
 		. = ..()
 		if(!src.current_projectile)
 			src.UpdateOverlays(null, "warhead")
+			src.item_state = "rpg7_empty"
+			if (ishuman(src.loc))
+				var/mob/living/carbon/human/H = src.loc
+				H.update_inhands()
 
 	build_gun()
 		. = ..()
@@ -114,6 +119,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/MPRT)
 			if(donor_ammo.caliber & CALIBER_SPUD)
 				var/image/warhead = image(donor_ammo.icon, src, donor_ammo.icon_state, OBJ_LAYER - 0.02, EAST, src.barrel_overlay_x + src.barrel?.overlay_x, -1)
 				src.UpdateOverlays(warhead, "warhead")
+				src.item_state = "rpg7"
+				if (ishuman(src.loc))
+					var/mob/living/carbon/human/H = src.loc
+					H.update_inhands()
 				src.set_current_projectile(new donor_ammo.projectile_type())
 				buildTooltipContent()
 			else
@@ -129,3 +138,42 @@ ABSTRACT_TYPE(/obj/item/gun/modular/MPRT)
 		barrel = new /obj/item/gun_parts/barrel/MPRT(src)
 		stock = new /obj/item/gun_parts/stock/MPRT(src)
 
+// the singulo buster
+ABSTRACT_TYPE(/obj/item/gun/modular/singularity_buster)
+/obj/item/gun/modular/singularity_buster
+	name = "Singularity Buster"
+	desc = "An experimental rocket launcher designed to deliver various payloads in rocket format."
+	icon_state = "antisingularity"
+	item_state = "ntlauncher"
+	caliber = CALIBER_SPUD
+	max_ammo_capacity = 1
+	gun_DRM = GUN_NANO
+	barrel_overlay_x = 5
+	stock_overlay_x = -6
+	grip_overlay_x = -4
+	grip_overlay_y = -5
+	bulkiness = 4
+
+	build_gun()
+		. = ..()
+		max_ammo_capacity = 1
+		buildTooltipContent()
+
+	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		if(!src.current_projectile)
+			boutput(user, "<span class='notice'>You stuff \an [donor_ammo] down the barrel of \the [src].</span>")
+			if(donor_ammo.caliber & CALIBER_SPUD)
+				src.set_current_projectile(new donor_ammo.projectile_type())
+				buildTooltipContent()
+			else
+				boutput(user, "<span class='notice'>It falls right through!</span>")
+				if(donor_ammo.stack_type)
+					new donor_ammo.stack_type(get_turf(src))
+		return FALSE
+
+/obj/item/gun/modular/singularity_buster/built
+	glued = TRUE
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/singularity_buster(src)
+		stock = new /obj/item/gun_parts/stock/singularity_buster(src)

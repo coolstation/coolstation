@@ -603,3 +603,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		else if (prob(40))
 			grip = new /obj/item/gun_parts/grip/italian/cowboy/pearl(src)
 		barrel = new /obj/item/gun_parts/barrel/italian/silenced(src)
+
+/obj/item/gun/modular/italian/sniper/basic/riot
+	name = "Italian grenade launcher"
+	real_name = "\improper Rivolta"
+	desc = "Un lanciarazzi antisommossa di grossa cilindrata, utilizzato per lanciare fumogeni e granate per disperdere la folla."
+
+	make_parts()
+		stock = new /obj/item/gun_parts/stock/italian/wire(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/grenade(src)

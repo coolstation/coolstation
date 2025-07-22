@@ -544,7 +544,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			ammo.amount_left = 1
 			src.update_icon()
 			return
-*/
 
 /obj/item/gun/kinetic/antisingularity
 	desc = "An experimental rocket launcher designed to deliver various payloads in rocket format."
@@ -573,7 +572,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		..()
 		setProperty("movespeed", 0.8)
 
-/*
 /obj/item/gun/kinetic/minigun
 	name = "Minigun"
 	desc = "The M134 Minigun is a 7.62×51mm NATO, six-barrel rotary machine gun with a high rate of fire."

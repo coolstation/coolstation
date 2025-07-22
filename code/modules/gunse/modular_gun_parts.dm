@@ -189,8 +189,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		if(length)
 			. += "<div><span>Barrel length: [src.length] cm = [round(100 * BARREL_SCALING(src.length), 0.5)]% power </span></div>"
 
-		if(caliber)
-			. += "<div><span>Caliber Modifier: [src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>HUGE</b>" : "Long") : "Wide"]</span></div>"
+		if(src.caliber & CALIBER_LONG)
+			. += "<div><span>Caliber Modifier: Long</span></div>"
+		if(src.caliber & CALIBER_WIDE)
+			. += "<div><span>Caliber Modifier: Wide</span></div>"
+		if(src.caliber & CALIBER_SPUD)
+			. += "<div><span>Caliber Modifier: Spudlike</span></div>"
 
 		. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread Modifier: [src.spread_angle] </span></div>"
 
@@ -701,6 +705,26 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, extrarange = P.proj_data.shot_sound_extrarange)
 		return ..()
 
+/obj/item/gun_parts/barrel/italian/grenade
+	name = "italian grenade barrel"
+	real_name = "canna del lanciagranate"
+	desc = "Una canna larga per lanciare granate. Non dovrebbe essere usata per proiettili più piccoli."
+	icon_state = "italian_grenade"
+	add_suffix = "pistoni"
+	spread_angle = 2
+	length = 18
+	overlay_x = 9
+	bulkiness = 4
+	caliber = CALIBER_SPUD
+	call_alter_projectile = TRUE
+
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
+		if (!(P.proj_data.caliber & CALIBER_SPUD))
+			var/spread = rand(200) / 10 + 3
+			P.rotateDirection(prob(50) ? spread : -spread)
+			P.max_spread += spread
+		return ..()
+
 /obj/item/gun_parts/barrel/pipeframe
 	name = "pipe barrel"
 	real_name = "pipe barrel"
@@ -1179,7 +1203,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS
 	caliber = CALIBER_WIDE
 	overlay_x = 5
-	length = 12
+	length = 20
 	muzzle_flash = "muzzle_flash_launch"
 	bulkiness = 4
 	spread_angle = 2
@@ -1191,4 +1215,37 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS
 	overlay_x = -12
 	bulkiness = 4
+	spread_angle = -3
+
+/obj/item/gun_parts/barrel/singularity_buster
+	name = "Singularity Buster barrel"
+	desc = "A lightweight barrel designed to fire at least three singularity busting warheads before safely disintegrating."
+	icon_state = "antisingularity"
+	part_DRM = GUN_NANO
+	caliber = CALIBER_WIDE
+	overlay_x = 5
+	length = 20
+	muzzle_flash = "muzzle_flash_launch"
+	bulkiness = 2
+	spread_angle = 2
+	call_alter_projectile = TRUE
+	var/integrity = 15
+
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
+		if (P?.power && (P.power > 20 || prob(80 + P.power)))
+			src.integrity -= P.power
+		if(src.integrity <= 0)
+			src.remove_part_from_gun()
+			src.visible_message("\The [src] tears apart from wear!")
+			src.combust(src)
+		return ..()
+
+
+/obj/item/gun_parts/stock/singularity_buster
+	name = "Singularity Buster breach"
+	desc = "A composite breach designed to provide stability in high gravity environments."
+	icon_state = "mprt"
+	part_DRM = GUN_NANO
+	overlay_x = -12
+	bulkiness = 3
 	spread_angle = -3

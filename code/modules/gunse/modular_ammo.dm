@@ -618,12 +618,23 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 /obj/item/stackable_ammo/he_rocket
 	name = "HE rocket"
 	real_name = "HE rocket"
-	name = "A high explosive rocket to be fired from an MPRT."
+	desc = "A high explosive rocket to be fired from an MPRT."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "rpg_rocket"
 	ammo_icon_state = null
 	stack_type = /obj/item/stackable_ammo/he_rocket
 	projectile_type = /datum/projectile/bullet/rpg
+	caliber = CALIBER_LONG_WIDE | CALIBER_SPUD
+	max_stack = 1
+
+/obj/item/stackable_ammo/antisingularity
+	name = "antisingularity rocket"
+	real_name = "antisingularity rocket"
+	desc = "A complex rocket designed to punch into a singularity and destabilize it."
+	icon_state = "antisingularity"
+	ammo_icon_state = null
+	stack_type = /obj/item/stackable_ammo/antisingularity
+	projectile_type = /datum/projectile/bullet/antisingularity
 	caliber = CALIBER_LONG_WIDE | CALIBER_SPUD
 	max_stack = 1
 

@@ -430,7 +430,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 		name = "Anti-Singularity Pack"
 		desc = "Everything that the crew needs to take down a rogue singularity."
 		contents = "1x Singularity Busting Thingy, 5x Singularity Busting Thingy Bullets, 1x Instruction Pamphlet"
-		contains = list(/obj/item/paper/antisingularity,/obj/item/ammo/bullets/antisingularity = 5,/obj/item/gun/kinetic/antisingularity)
+		contains = list(/obj/item/paper/antisingularity,/obj/item/stackable_ammo/antisingularity = 5,/obj/item/gun/modular/singularity_buster/built)
 		cost = 10000
 		containertype = /obj/storage/crate/classcrate/qm
 		containername = "Anti-Singularity Supply Pack"

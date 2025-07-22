@@ -800,6 +800,7 @@ THROWING DARTS
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "bullet"
 	desc = "A spent bullet."
+	loose = TRUE
 	var/bleed_timer = 0
 
 	bullet_pistol_juicer
@@ -821,17 +822,15 @@ THROWING DARTS
 	bullet_pistol_nt
 		name = "8mm Short round"
 		desc = "Standard plastic bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
-		loose = TRUE
 
 	bullet_pistol_nt_hp
 		name = "8mm Short HP round"
 		desc = "Special issue hollow point pistol round, rather rare."
-		loose = TRUE
+		loose = FALSE
 
 	bullet_rifle_nt
 		name = "8mm Long round"
 		desc = "Honestly the exact same thing as an NT pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
-		loose = TRUE
 
 	bullet_rifle_nt_ap
 		name = "8mm Long AP round"
@@ -864,27 +863,23 @@ THROWING DARTS
 	staple
 		name = "staple"
 		desc = "Well that's not very nice."
-		loose = TRUE
 
 	shrapnel
 		name = "shrapnel"
 		icon = 'icons/obj/scrap.dmi'
 		desc = "A bunch of jagged shards of metal."
 		icon_state = "2metal2" //4u
-		loose = TRUE
 
 	dart
 		name = "dart"
 		icon = 'icons/obj/chemical.dmi'
 		desc = "A small hollow dart."
 		icon_state = "syringeproj"
-		loose = TRUE
 
 	flintlock
 		name= "flintlock round"
 		desc = "Rather unperfect round ball. Looks very old."
 		icon_state = "flintlockbullet"
-		loose = TRUE
 
 /obj/item/implant/projectile/implanted(mob/living/carbon/C, var/mob/I, var/bleed_time = 60)
 	SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, C)
