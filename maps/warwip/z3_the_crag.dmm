@@ -3602,6 +3602,13 @@
 /obj/item/device/light/flashlight,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"lI" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "lJ" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -6824,6 +6831,15 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"xc" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/disposalpipe/segment,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "xe" = (
 /obj/machinery/manufacturer,
 /obj/machinery/phone/wall{
@@ -7351,6 +7367,13 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"yO" = (
+/obj/disposalpipe/junction/right/east,
+/obj/grille/catwalk/jen,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "yP" = (
 /obj/decal/fakeobjects/rockpile,
 /turf/floor/sand,
@@ -9963,6 +9986,12 @@
 /obj/firedoor_spawn,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"HD" = (
+/obj/disposalpipe/segment,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "HE" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -10194,6 +10223,12 @@
 	},
 /turf/floor/plating,
 /area/station/security/hos)
+"Im" = (
+/obj/disposalpipe/trunk,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "In" = (
 /obj/disposalpipe/segment/sewage,
 /obj/cable{
@@ -14372,6 +14407,19 @@
 	},
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
+"WO" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/jen,
+/obj/disposalpipe/segment,
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "WS" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor/plating,
@@ -64619,12 +64667,12 @@ HB
 HB
 dz
 dz
-dz
-dz
-hz
-qj
-lN
-NQ
+Im
+HD
+lI
+xc
+WO
+yO
 ga
 Gz
 ga
