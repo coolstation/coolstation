@@ -439,6 +439,10 @@
 		boutput(user, "<span class='alert'>No bank account associated with this ID found.</span>")
 		src.scan = null
 
+/* For potential festivities! */
+/obj/machinery/vending/proc/seasonal_check(mob/user as mob, datum/data/vending_product/product)
+	return
+
 /obj/machinery/vending/proc/generate_HTML(var/update_vending = 0, var/update_wire = 0)
 	src.HTML = ""
 
@@ -795,7 +799,7 @@
 				T.contents -= playervended
 			SPAWN_DBG(src.vend_delay)
 				src.vend_ready = 1 // doin this at the top here just in case something goes fucky and the proc crashes
-
+				src.seasonal_check(usr, R)
 				if (ispath(product_path))
 					var/atom/movable/vended = new product_path(src.get_output_location()) // changed from obj, because it could be a mob, THANKS VALUCHIMP
 					vended.layer = src.layer + 0.1 //So things stop spawning under the fukin thing
