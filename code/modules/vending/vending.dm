@@ -1342,9 +1342,9 @@
 	"I'd rather toolbox than switch.",
 	"Smoke!",
 	"Don't believe the reports - smoke today!")
-	light_r =0.55
-	light_g = 1
-	light_b = 0.5
+	light_r =0.7
+	light_g = 0.67
+	light_b = 0.51
 
 	create_products()
 		..()
@@ -2739,7 +2739,7 @@
 /obj/machinery/vending/grub //remove this once there's literally any other method of generating grubs
 	name = "Grub Hub"
 	desc = "There's bugs in this here box!"
-	icon_state = "monkey"
+	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
 	acceptcard = 0

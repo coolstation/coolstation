@@ -140,7 +140,7 @@
 	name = "Engineering Intercom"
 	frequency = R_FREQ_INTERCOM_ENGINEERING
 	broadcasting = 0
-	device_color = "#BBBB00"
+	device_color = "#e0bb17"
 
 	initialize()
 		set_frequency(frequency)
@@ -149,7 +149,7 @@
 	name = "Cargo Intercom"
 	frequency = R_FREQ_INTERCOM_CARGO
 	broadcasting = 0
-	device_color = "#9A8B0D"
+	device_color = "#ca410a"
 
 	initialize()
 		set_frequency(frequency)

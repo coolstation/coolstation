@@ -844,11 +844,18 @@
 
 		if(!src.open || always_display_locks)
 			if (src.emagged)
-				src.UpdateOverlays(image(src.icon, src.icon_sparks), "sparks")
+				var/image/sparks = image(src.icon, src.icon_sparks)
+				sparks.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(sparks, "sparks")
+				src.UpdateOverlays(null, "light")
 			else if (src.locked)
-				src.UpdateOverlays(image(src.icon, src.icon_redlight), "light")
+				var/image/redlight = image(src.icon, src.icon_redlight)
+				redlight.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(redlight, "light")
 			else
-				src.UpdateOverlays(image(src.icon, src.icon_greenlight), "light")
+				var/image/greenlight = image(src.icon, src.icon_greenlight)
+				greenlight.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(greenlight, "light")
 		else
 			src.UpdateOverlays(null, "sparks")
 			src.UpdateOverlays(null, "light")

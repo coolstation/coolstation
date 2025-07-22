@@ -89,7 +89,6 @@
 	text = ""
 	power_usage = 0
 	power_channel = LIGHT
-	has_bulb_overlay = TRUE
 	// base description and icon_state
 	var/base_state = "tube"
 	//toggles the actual state of giving off light
@@ -284,7 +283,7 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness = 1.2
+	brightness = 1.5
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
