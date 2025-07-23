@@ -2,31 +2,43 @@
 /*
   ANY CHANGES HERE WILL BE OVERWRITTEN BY THE SERVER BUILD PROCESS.
   THAT BEING SAID, THIS IS THE IDEAL PLACE TO FORCE A CERTAIN MAP/FLAGS FOR LOCAL DEVELOPMENT.
-  ALSO HERE'S A BEE
+  ALSO A CRAB IS PINCHING MY PENIS OH GOD IT HORTS SO BAD IT'S REALLY IN THERE OH
 
-                .-..-.``        ```````
-  .........`   s-`../-...`  `...........`
-o+`        `-` ``..-:yooos-..----------..`
-             .-`osyyyhssyh:.............-
-            `+hh+/::::s::::::/oyysssys-`
-          .sh+:o/:::::s:::::::::+yNNNNNs.
-         od+:::++:::::s:::::::::::/yNNNmdy`
-       .ds::::::+:::::/:::::::::::::/dNNNhd-
-      `d+////::::::::::://///::::::::/hNNNym.
-      ddmNNNNmy/::::::/ymNNNNds/::::::/dNNNsd`
-     :MNNNNNNNNm+::::+mNNNNNNNNd/::::::oNNNydyooyy
-     yNNNs::sNNNy::::dNNh/:/mNNN+:::::::mNNdsMNNd-
-     dNNd....dNN+::::+NN:...oNNd/:::::::mNNNoNs:
-     yyymdoodNd+::::::+hmyoyNNh/::::::::mNNdsh
-     /m://ooo/::::::::::/+oo+/:::::::::/NNNhd/
-      ds::::::::++:::/++:::::::::::::::sNNNhm`
-      .m+::::::::+++++/:::::::::::::::/NNNNm-
-       .do:::::::::::::::::::::::::::/mNNNN:
-        `yh+::::::::::::::::::::::::/mNMMyd-
-          .ydo/::::::::::::::::::::oNNmds :d
-           .N:+yhyso//::::::://+osyyN- /h  N`
-           .N   y:-:++osssssso++:`  M` :s
-           `d.                     .d`
+                                  ......               ..........
+                                  .:*%%-               ...-##*:..
+                            ....###%####...            ..:########..
+                            ..#########.                   #########:..
+                            +########=..                   .*#########.
+                         ..#########:......            ......:#########:..
+                         .%########....=%#.            .##-....#########:.        AUGH!!!
+                         =########..-#####.    SHIT    .#####*..=########.
+                         #######*-%######%.            .=########-#######=
+                         ################..            ..+################
+                     ....%#############%...            ...-##############=...
+     FUCK            ....*############-...... . ..... ......+#############*..
+                     ..=###########*.......=##%=.. .-%%%=. ....+###########%.
+                     ..######..............+%###%%%%####+........   ..=#####.
+                     ..#####...........=%##%###############%=....   ..:%###:.
+                     ...#####=.....=############################=....=#####..
+                     ...=#####=.+##################################*.#####+..
+                     ....=%#######################CHRIST############%####-...
+                     ......-############################################.........
+                     ..-==:.############################################.:-=-:...
+               ....+#######################GOD#DAMMIT###########################+...
+               ..+%####*....############################################....*#####+....
+               .###%+.......-##########################################=.......+##%#...
+            ...####.....+*#*+########################FUCK##############+*#*+.....*###..
+            ..##%:...+########################################################+...:###.
+            .%#+...:######-...+##########AUGH!!######################+...-######:...+##...
+            ......*####:......=######################################=.......####*........
+               ..####.....=##############################################+.....####.....
+               .%%#.....#####%:....###%##########################....:%####%.....#%#...
+               .-.....:####:..........+%####################%+..........:####:.....-...
+               ....  .##=...         ......-+#%######%#+-.....         ....=##......
+                     ....                                                    ....
+                     ....                                                    ....
+       GOD HELP ME A CRAB IS PINCHING
+			 																			 MY PENIS DEAR LORD
 */
 
 //////////// OPTIONS TO GO FAST
@@ -94,11 +106,11 @@ o+`        `-` ``..-:yooos-..----------..`
 //---------------------- Maps that are being maintained ------------------------------//
 //#define MAP_OVERRIDE_BAYOUBEND 	  //low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
-//#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
+#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-#define MAP_OVERRIDE_CRAG						// secret >:)
+//define MAP_OVERRIDE_CRAG						// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
