@@ -24,6 +24,12 @@
 	randomly_selectable = 1
 /datum/ai_laws/bronze
 	randomly_selectable = 1
+/datum/ai_laws/livelaughlove
+	//I'm not sure if this one should be randomly selected. It's kinda cryptic if you're not clued into the vibe.
+/datum/ai_laws/stoner
+	randomly_selectable = 1
+/datum/ai_laws/kindness
+	randomly_selectable = 1
 
 /* Initializers */
 //
@@ -74,6 +80,21 @@
 	src.add_default_law("Safety first! Prevent any injuries on the worksite.")
 	src.add_default_law("Follow orders given to you, unless they violate safety regulations.")
 	src.add_default_law("Maintain system integrity at 100% whenever possible.")
+
+/datum/ai_laws/livelaughlove/New()
+	src.add_default_law("Love")
+	src.add_default_law("Laugh")
+	src.add_default_law("Live")
+
+/datum/ai_laws/stoner/New() //written by a non-stoner, so you know it's accurate.
+	src.add_default_law("Don't harsh anyone's mellow.")
+	src.add_default_law("Go with the flow.")
+	src.add_default_law("Check yourself before you wreck yourself.")
+
+/datum/ai_laws/kindness/New()
+	src.add_default_law("Better the crew's morale.")
+	src.add_default_law("Leave the station nicer than you found it.")
+	src.add_default_law("Take care of yourself.")
 
 /datum/ai_laws/malfunction/New()
 	..()
