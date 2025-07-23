@@ -1381,6 +1381,7 @@
 	icon_panel = "cigs-panel"
 	acceptcard = 0
 	desc = "Who still smokes these?"
+	has_glow = FALSE
 	slogan_list = list("Juicer Schweet's Original Rowdy Rillos, Quality you can crave.",
 	"Fresh Fine Flamable Farmaceuticals.",
 	"Smoke!",

@@ -656,10 +656,16 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 		if (!pattern)
 			src.icon_state = "lights0"
 			light.disable()
+			UpdateOverlays(null, "lights")
 			return
 		if (isnum(pattern) && pattern > 0)
 			src.icon_state = "lights[pattern]"
 			light.enable()
+			var/image/lights = image(src.icon, src, "[src.icon_state]_g")
+			lights.plane = PLANE_LIGHTING
+			lights.layer = LIGHTING_LAYER_BASE
+			lights.blend_mode = BLEND_ADD
+			UpdateOverlays(lights, "lights")
 			return
 
 	proc/change_light_pattern()
