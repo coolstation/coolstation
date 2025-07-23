@@ -258,6 +258,7 @@ var/zapLimiter = 0
 		UpdateOverlays(isWireColorCut(APC_WIRE_MAIN_POWER2) ? I_wirewhite : null, "wirewhite", 0, 1)
 		UpdateOverlays(isWireColorCut(APC_WIRE_AI_CONTROL) ? I_wireyellow : null, "wireyellow", 0, 1)
 
+
 		return
 	else
 		icon_state = "apc0"
@@ -270,6 +271,24 @@ var/zapLimiter = 0
 		var/image/I_equp = SafeGetOverlayImage("equipment", 'icons/obj/machines/power.dmi', "apco0-[equipment]")
 		var/image/I_envi = SafeGetOverlayImage("environment", 'icons/obj/machines/power.dmi', "apco2-[environ]")
 
+		I_lock.blend_mode = BLEND_OVERLAY
+		I_lock.plane = PLANE_SELFILLUM
+
+		I_chrg.blend_mode = BLEND_OVERLAY
+		I_chrg.plane = PLANE_SELFILLUM
+
+		I_brke.blend_mode = BLEND_OVERLAY
+		I_brke.plane = PLANE_SELFILLUM
+
+		I_lite.blend_mode = BLEND_OVERLAY
+		I_lite.plane = PLANE_SELFILLUM
+
+		I_equp.blend_mode = BLEND_OVERLAY
+		I_equp.plane = PLANE_SELFILLUM
+
+		I_envi.blend_mode = BLEND_OVERLAY
+		I_envi.plane = PLANE_SELFILLUM
+
 		UpdateOverlays(I_lock, "lock", 0, 1)
 		UpdateOverlays(I_chrg, "charge", 0, 1)
 		UpdateOverlays(I_brke, "breaker", 0, 1)
@@ -278,6 +297,7 @@ var/zapLimiter = 0
 			UpdateOverlays(I_lite, "lighting", 0, 1)
 			UpdateOverlays(I_equp, "equipment", 0, 1)
 			UpdateOverlays(I_envi, "environment", 0, 1)
+
 
 /obj/machinery/power/apc/emp_act()
 	..()

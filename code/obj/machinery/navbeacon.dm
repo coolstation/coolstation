@@ -22,6 +22,7 @@
 	var/codes_txt = ""	// codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
 	var/net_id = ""
 
+
 	req_access = list(access_engineering,access_engineering_mechanic,access_research_director)
 	object_flags = CAN_REPROGRAM_ACCESS
 
@@ -29,6 +30,11 @@
 		. = ..()
 		START_TRACKING
 		UnsubscribeProcess()
+		var/image/navlight = SafeGetOverlayImage("navlight", src.icon, "navbeacon_e")
+		navlight.plane = PLANE_LIGHTING
+		navlight.layer = LIGHTING_LAYER_BASE
+		navlight.blend_mode = BLEND_ADD
+		UpdateOverlays(navlight, "navlight", 0, 1)
 
 		set_codes()
 
