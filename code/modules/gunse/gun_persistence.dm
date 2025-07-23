@@ -207,9 +207,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 				src.part.set_loc(src.loc)
 			src.part = null
 			new_gun.reset_gun() // back to inits
-			new_gun.buildTooltipContent()
-			new_gun.built = 0
-			new_gun.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 
 
 

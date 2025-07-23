@@ -175,5 +175,5 @@ ABSTRACT_TYPE(/obj/item/gun/modular/singularity_buster)
 	glued = TRUE
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/singularity_buster(src)
-		stock = new /obj/item/gun_parts/stock/singularity_buster(src)
+		barrel = new /obj/item/gun_parts/barrel/NT/singularity_buster(src)
+		stock = new /obj/item/gun_parts/stock/NT/singularity_buster(src)

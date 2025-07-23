@@ -711,11 +711,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Una canna larga per lanciare granate. Non dovrebbe essere usata per proiettili più piccoli."
 	icon_state = "italian_grenade"
 	add_suffix = "pistoni"
-	spread_angle = 2
+	spread_angle = 4
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
-	caliber = CALIBER_SPUD
+	caliber = CALIBER_WIDE
 	call_alter_projectile = TRUE
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
@@ -1207,6 +1207,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	muzzle_flash = "muzzle_flash_launch"
 	bulkiness = 4
 	spread_angle = 2
+	call_alter_projectile = TRUE
+
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
+		if (!(P.proj_data.caliber & CALIBER_SPUD))
+			var/spread = rand(200) / 10 + 3
+			P.rotateDirection(prob(50) ? spread : -spread)
+			P.max_spread += spread
+		return ..()
 
 /obj/item/gun_parts/stock/MPRT
 	name = "MPRT-7 breach"
@@ -1217,11 +1225,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 4
 	spread_angle = -3
 
-/obj/item/gun_parts/barrel/singularity_buster
+/obj/item/gun_parts/barrel/NT/singularity_buster
 	name = "Singularity Buster barrel"
 	desc = "A lightweight barrel designed to fire at least three singularity busting warheads before safely disintegrating."
 	icon_state = "antisingularity"
-	part_DRM = GUN_NANO
 	caliber = CALIBER_WIDE
 	overlay_x = 5
 	length = 20
@@ -1241,11 +1248,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 			src.combust(src)
 		return ..()
 
-/obj/item/gun_parts/stock/singularity_buster
+/obj/item/gun_parts/stock/NT/singularity_buster
 	name = "Singularity Buster breach"
 	desc = "A composite breach designed to provide stability in high gravity environments."
 	icon_state = "mprt"
-	part_DRM = GUN_NANO
 	overlay_x = -12
 	bulkiness = 3
 	spread_angle = -3

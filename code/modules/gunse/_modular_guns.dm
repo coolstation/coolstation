@@ -983,9 +983,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name_prefixes = null
 	name_suffixes = null
 
-	name = "[real_name] receiver"
-
 	src.UpdateName()
+
+	name = "[real_name] receiver"
 
 	max_crank_level = 0
 	safe_crank_level = 0
@@ -1004,11 +1004,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
 	spread_angle = initial(spread_angle)
+	built = 0
 
 	bulk = bulkiness
 
 	if((src.bulk) >= 5)
 		src.two_handed = TRUE
+	else
+		src.two_handed = FALSE
 
 	src.force = floor(4 + src.bulk / 2)
 	src.throwforce = floor(6 + src.bulk / 3)
@@ -1022,6 +1025,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flags &= ~ONBACK
 		flags |= ONBELT
 		src.can_dual_wield = TRUE
+
+	src.buildTooltipContent()
+	src.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 
 // derringer-esque behavior for tiny gunse
 /obj/item/gun/modular/afterattack(obj/O as obj, mob/user as mob)

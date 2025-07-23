@@ -144,7 +144,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	//much too consider
 
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/atom/point_blank_target)
-		if(!src.currently_firing && !src.jammed)
+		if(src.built && !src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
 			var/offset_x = target.x - start.x
 			var/offset_y = target.y - start.y
@@ -298,7 +298,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	spread_angle = 1
 	jam_frequency = 1
 	barrel_overlay_x = 6
-	barrel_overlay_y = -1
+	barrel_overlay_y = 0
 	grip_overlay_x = -6
 	grip_overlay_y = -3
 	stock_overlay_x = -7
@@ -321,7 +321,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	// ultra heavy Double Action Only revolver
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
-		if(!src.currently_firing && !src.jammed)
+		if(src.built && !src.currently_firing && !src.jammed)
 			. = TRUE
 			src.currently_firing = TRUE
 			var/offset_x = target.x - start.x
@@ -611,4 +611,5 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian/wire(src)
+		grip = new /obj/item/gun_parts/grip/italian(src)
 		barrel = new /obj/item/gun_parts/barrel/italian/grenade(src)
