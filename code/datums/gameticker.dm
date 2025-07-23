@@ -157,7 +157,13 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		src.mode.announce()
 
 	// uhh is this where this goes??
-	src.centralized_ai_laws = new /datum/ai_laws/asimov()
+	var/list/good_laws = list()
+	for(var/A in typesof(/datum/ai_laws))
+		var/datum/ai_laws/ai = new A()
+		if(ai.randomly_selectable)
+			good_laws += ai
+
+	src.centralized_ai_laws = pick(good_laws)
 
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = src.mode.pre_setup()
