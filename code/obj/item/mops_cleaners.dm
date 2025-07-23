@@ -327,7 +327,7 @@ WET FLOOR SIGN
 				src.reagents.remove_any(5)
 			else if(src.reagents.has_reagent("blood"))
 				src.reagents.remove_reagent("blood",3)
-				make_cleanable( /obj/decal/cleanable/blood, U)
+				make_cleanable( /obj/decal/cleanable/tracked_reagents/blood, U)
 			else
 				src.reagents.remove_any(3)
 				make_cleanable( /obj/decal/cleanable/dirt, U)

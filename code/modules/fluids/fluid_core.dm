@@ -62,9 +62,6 @@ var/mutable_appearance/fluid_ma
 
 	var/amt = 0 //amount of reagents contained - should be updated mainly by the group.
 
-	var/const/max_viscosity = 20
-	var/avg_viscosity = 1
-
 	var/const/max_speed_mod = 3 //max. slowdown we can experience per slowdown type
 	var/const/max_speed_mod_total = 5 //highest movement_speed_mod allowed
 	var/movement_speed_mod = 0 //scales with viscosity + depth
@@ -193,7 +190,6 @@ var/mutable_appearance/fluid_ma
 		finalcolor = "#ffffff"
 		finalalpha = 100
 		amt = 0
-		avg_viscosity = initial(avg_viscosity)
 		movement_speed_mod = 0
 		group = 0
 		touched_other_group = 0
@@ -309,13 +305,6 @@ var/mutable_appearance/fluid_ma
 			AM.ExitedFluid(src,newloc)
 
 
-	proc/add_tracked_blood(atom/movable/AM as mob|obj)
-		AM.tracked_blood = list("bDNA" = src.blood_DNA, "btype" = src.blood_type, "color" = src.color, "count" = rand(2,6))
-		if (ismob(AM))
-			var/mob/M = AM
-			M.set_clothing_icon_dirty()
-
-
 	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		..()
 		if (!src.group || !src.group.reagents || !length(src.group.members)) return
@@ -367,7 +356,7 @@ var/mutable_appearance/fluid_ma
 				blocked_dirs++
 				if (t.active_liquid.group && t.active_liquid.group != src.group)
 					touched_other_group = t.active_liquid.group
-					t.active_liquid.icon_state = "15"
+					t.active_liquid.icon_state = src.group.viscosity_prefix + "15"
 				continue
 
 			if(! t.density )
@@ -397,7 +386,7 @@ var/mutable_appearance/fluid_ma
 				if(suc && src.group) //group went missing? ok im doin a check here lol
 					LAGCHECK(LAG_HIGH)
 					spawned_any = 1
-					src.icon_state = "15"
+					src.icon_state = src.group.viscosity_prefix + "15"
 					var/obj/fluid/F = new()
 					F.set_up(t,0)
 					if (!F || !src.group) continue //set_up may decide to remove F
@@ -408,7 +397,6 @@ var/mutable_appearance/fluid_ma
 					F.finalcolor = src.finalcolor
 					F.alpha = src.finalalpha
 					F.finalalpha = src.finalalpha
-					F.avg_viscosity = src.avg_viscosity
 					F.last_depth_level = src.last_depth_level
 					F.step_sound = src.step_sound
 					F.movement_speed_mod = src.movement_speed_mod
@@ -592,14 +580,14 @@ var/mutable_appearance/fluid_ma
 		var/last_icon = icon_state
 
 		if (last_spread_was_blocked || (src.group && src.group.amt_per_tile > src.group.required_to_spread))
-			icon_state = "15"
+			icon_state = "[src.group.viscosity_prefix]15"
 		else
 			var/dirs = 0
 			for (var/dir in cardinal)
 				var/turf/T = get_step(src, dir)
 				if (T && T.active_liquid && T.active_liquid.group == src.group)
 					dirs |= dir
-			icon_state = num2text(dirs)
+			icon_state = "[src.group.viscosity_prefix][num2text(dirs)]"
 
 			if (src.overlay_refs && length(src.overlay_refs))
 				src.clear_overlay()
@@ -642,6 +630,8 @@ var/mutable_appearance/fluid_ma
 		if (!wall_overlay_images)
 			wall_overlay_images = list()
 
+		overlay_key = overlay_key
+
 		if (wall_overlay_images[overlay_key])
 			overlay = wall_overlay_images[overlay_key]
 		else
@@ -649,7 +639,7 @@ var/mutable_appearance/fluid_ma
 
 		var/over_obj = !(istype(src.loc, /turf/wall)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
 		overlay.layer = over_obj ? 4 : src.layer
-		overlay.icon_state = "wall_[overlay_key]_[last_depth_level]"
+		overlay.icon_state = "[src.group.viscosity_prefix]wall_[overlay_key]_[last_depth_level]"
 		overlay.pixel_x = pox
 		overlay.pixel_y = poy
 		wall_overlay_images[overlay_key] = overlay
@@ -747,11 +737,11 @@ var/mutable_appearance/fluid_ma
 		entered_group = 0
 
 	if (entered_group && (src.loc != oldloc))
-		if (F.amt > 0 && F.amt <= F.max_slip_volume && F.avg_viscosity <= F.max_slip_viscosity)
+		if (F?.amt > 0 && F.amt <= F.max_slip_volume && F.group?.avg_viscosity <= F.max_slip_viscosity)
 			var/master_block_slippy = F.group.reagents.get_master_reagent_slippy(F.group)
 			switch(master_block_slippy)
 				if(0)
-					var/slippery =  (1 - (F.avg_viscosity/F.max_slip_viscosity)) * 50
+					var/slippery =  (1 - (F.group.avg_viscosity/F.max_slip_viscosity)) * 50
 					var/checks = 10
 					for (var/thing in oldloc)
 						if (istype(thing,/obj/machinery/door))
@@ -781,7 +771,7 @@ var/mutable_appearance/fluid_ma
 
 
 	//Possibility to consume reagents. (Each reagent should return 0 in its reaction_[type]() proc if reagents should be removed from fluid)
-	if (do_reagent_reaction && F.group.reagents && F.group.reagents.reagent_list)
+	if (do_reagent_reaction && F && F.group && F.group.reagents && F.group.reagents.reagent_list)
 		F.group.last_reacted = F
 		var/react_volume = F.amt > 10 ? (F.amt / 2) : (F.amt)
 		react_volume = min(react_volume,100) //capping the react amt
@@ -810,25 +800,19 @@ var/mutable_appearance/fluid_ma
 
 	//BLOODSTAINS
 	if (F.group.master_reagent_id =="blood" || F.group.master_reagent_id == "bloodc")
-		if (F.group.master_reagent_id == "blood")
-			//if (ishuman(M))
-			if (src.lying)
-				if (src.wear_suit)
-					src.wear_suit.add_blood(F)
-					src.set_clothing_icon_dirty()
-				else if (src.w_uniform)
-					src.w_uniform.add_blood(F)
-					src.set_clothing_icon_dirty()
-			else
-				if (src.shoes)
-					src.shoes.add_blood(F)
-					src.set_clothing_icon_dirty()
-			F.add_tracked_blood(src)
-			//else if (isliving(M))// || isobj(AM))
-			//	M.add_blood(F)
-			//	if (!M.anchored)
-			//		F.add_tracked_blood(M)
+		if (src.lying)
+			if (src.wear_suit)
+				src.wear_suit.add_blood(F)
+				src.set_clothing_icon_dirty()
+			else if (src.w_uniform)
+				src.w_uniform.add_blood(F)
+				src.set_clothing_icon_dirty()
+		else
+			if (src.shoes)
+				src.shoes.add_blood(F)
+				src.set_clothing_icon_dirty()
 
+	F.group.reagents.trans_to_direct(src.tracked_reagents, rand(3,4)) // potentially terrifying
 
 	var/do_reagent_reaction = 1
 

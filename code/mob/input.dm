@@ -5,10 +5,9 @@
 
 
 /mob/hotkey(name)
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.hotkey(src, name)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.hotkey(src, name)
 	return ..()
 
 /mob/keys_changed(keys, changed)
@@ -18,10 +17,9 @@
 		else
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			controller.keys_changed(src, keys, changed)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		controller.keys_changed(src, keys, changed)
 		return
 
 	if (changed & (KEY_FORWARD|KEY_BACKWARD|KEY_RIGHT|KEY_LEFT))
@@ -56,10 +54,9 @@
 /mob/proc/process_move(keys)
 	set waitfor = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.process_move(src, keys)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.process_move(src, keys)
 
 	if (isdead(src) && !isobserver(src) && !istype(src, /mob/zoldorf))
 		return

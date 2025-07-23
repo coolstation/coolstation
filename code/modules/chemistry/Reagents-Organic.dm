@@ -81,7 +81,7 @@ ABSTRACT_TYPE(/datum/reagent/organic)
 		id = "ethylene"
 		description = "A colorless flammable gas."
 		taste = "sweet, musky"
-		transparency = 5
+		transparency = 15
 		fluid_r = 255
 		fluid_g = 255
 		fluid_b = 255

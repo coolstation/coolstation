@@ -262,9 +262,17 @@
 
 	HasEntered(AM as mob|obj)
 		if ((ishuman(AM)) && (src.armed))
-			var/mob/living/carbon/H = AM
+			var/mob/living/carbon/human/H = AM
 			if (H.m_intent == "run")
 				src.triggered(H)
+				if (!H.shoes)
+					for (var/obj/item/mousetrap/other_trap in src.loc)
+						if (other_trap != src)
+							if (other_trap.armed)
+								other_trap.triggered(H)
+								var/obj/item/clothing/shoes/mousetraps/kicks = new(src, other_trap)
+								H.equip_if_possible(kicks, H.slot_shoes)
+								break
 				H.visible_message("<span class='alert'><B>[H] accidentally steps on the mousetrap.</B></span>",\
 				"<span class='alert'><B>You accidentally step on the mousetrap!</B></span>")
 

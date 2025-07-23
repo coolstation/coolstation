@@ -7,10 +7,6 @@
 	//var/list/forensic_info = null
 	var/list/forensic_trace = null // list(fprint, bDNA, btype) - can't get rid of this so easy!
 
-/atom/movable
-	var/tracked_blood = null // list(bDNA, btype, color, count)
-	var/tracked_mud = null
-
 /*
 /atom/proc/add_forensic_info(var/key, var/value)
 	if (!key || !value)
@@ -101,6 +97,7 @@
 	var/b_uid = "--unidentified substance--"
 	var/b_type = "--unidentified substance--"
 	var/blood_color = DEFAULT_BLOOD_COLOR
+	var/blood_stain = "blood-stained"
 	if(istype(source, /obj/fluid))
 		var/obj/fluid/F = source
 		blood_color = F.group.reagents.get_master_color()
@@ -124,26 +121,13 @@
 		if (source.blood_type)
 			b_type = source.blood_type
 	if(istype(source, /obj/decal/cleanable))
+		var/obj/decal/cleanable/source_cleanable = source
 		if(!isnull(source.color))
 			blood_color = source.color
+		blood_stain = source_cleanable.stain
 	if (!( src.blood_DNA ))
 		if (isitem(src))
 			var/obj/item/I = src
-			#ifdef OLD_BLOOD_OVERLAY
-			var/icon/new_icon
-			if (I.uses_multiple_icon_states)
-				new_icon = new /icon(I.icon)
-			else
-				new_icon = new /icon(I.icon, I.icon_state)
-			new_icon.Blend(new /icon('icons/obj/decals/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
-			new_icon.Blend(blood_color, ICON_MULTIPLY)
-			new_icon.Blend(new /icon('icons/obj/decals/blood.dmi', "itemblood"), ICON_MULTIPLY)
-			if (I.uses_multiple_icon_states)
-				new_icon.Blend(new /icon(I.icon), ICON_UNDERLAY)
-			else
-				new_icon.Blend(new /icon(I.icon, I.icon_state), ICON_UNDERLAY)
-			I.icon = new_icon
-			#else
 			I.appearance_flags |= KEEP_TOGETHER
 			var/image/blood_overlay = image('icons/obj/decals/blood.dmi', "itemblood")
 			blood_overlay.appearance_flags = PIXEL_SCALE | RESET_COLOR
@@ -151,15 +135,11 @@
 			blood_overlay.alpha = min(blood_overlay.alpha, 200)
 			blood_overlay.blend_mode = BLEND_INSET_OVERLAY
 			src.UpdateOverlays(blood_overlay, "blood_splatter")
-			#endif
 			I.blood_DNA = b_uid
 			I.blood_type = b_type
 			if (istype(I, /obj/item/clothing))
 				var/obj/item/clothing/C = src
-				C.add_stain("blood-stained")
-		else if (issimulatedturf(L))
-			if(istype(L))
-				bleed(L, amount, 5, rand(1,3), src)
+				C.add_stain(blood_stain)
 		else if (ishuman(src)) // this will add the blood to their hands or something?
 			src.blood_DNA = b_uid
 			src.blood_type = b_type
@@ -181,11 +161,7 @@
 	//	return
 	// The first version accidently looped through everything for every atom. Consequently, cleaner grenades caused horrendous lag on my local server. Woops.
 	if (!ismob(src)) // Mobs are a special case.
-		if (isobj(src))
-			var/obj/O = src
-			if (O.tracked_blood)
-				O.tracked_blood = null
-		if (isitem(src) && (src.fingerprints || src.blood_DNA || src.blood_type || src.mud_stained))
+		if (isitem(src) && (src.fingerprints || src.blood_DNA || src.blood_type))
 			src.UpdateOverlays(null, "mud_splatter")
 			src.add_forensic_trace("fprints", src.fingerprints)
 			src.fingerprints = null
@@ -195,11 +171,7 @@
 				src.add_forensic_trace("bDNA", src.blood_DNA)
 				var/obj/item/CI = src
 				CI.blood_DNA = null
-				#ifdef OLD_BLOOD_OVERLAY
-				CI.icon = initial(icon)
-				#else
 				CI.UpdateOverlays(null, "blood_splatter")
-				#endif
 		if (istype(src, /obj/item/clothing))
 			var/obj/item/clothing/C = src
 			C.clean_stains()
@@ -237,11 +209,7 @@
 					if (check.blood_DNA)
 						check.add_forensic_trace("bDNA", check.blood_DNA)
 						check.blood_DNA = null
-						#ifdef OLD_BLOOD_OVERLAY
-						check.icon = initial(check.icon)
-						#else
 						check.UpdateOverlays(null, "blood_splatter")
-						#endif
 				if (istype(check, /obj/item/clothing))
 					var/obj/item/clothing/C = check
 					C.clean_stains()
@@ -261,7 +229,7 @@
 				M.makeup_color = null
 				M.spiders = null
 				M.set_body_icon_dirty()
-			M.tracked_blood = null
+			M.tracked_reagents.clear_reagents()
 			M.set_clothing_icon_dirty()
 
 		else
@@ -273,80 +241,36 @@
 			L.blood_DNA = null
 			L.add_forensic_trace("btype", L.blood_type)
 			L.blood_type = null
-			L.tracked_blood = null
+			L.tracked_reagents.clear_reagents()
 			L.set_clothing_icon_dirty()
 	SEND_SIGNAL(src, COMSIG_ATOM_CLEANED)
 
-/atom/movable/proc/track_blood()
-	return
-/atom/movable/proc/track_mud()
-	return
-/* needs adjustment so let's stick with mobs for now
-/obj/track_blood()
-	if (!islist(src.tracked_blood))
-		return
-	var/obj/decal/cleanable/blood/dynamic/B = locate(/obj/decal/cleanable/blood/dynamic) in get_turf(src)
-	var/blood_color_to_pass = src.tracked_blood["color"] ? src.tracked_blood["color"] : DEFAULT_BLOOD_COLOR
+/mob/living
+	var/datum/reagents/tracked_reagents
 
-	if (!B)
-		B = make_cleanable( /obj/decal/cleanable/blood/dynamic(get_turf(src))
-	B.add_volume(blood_color_to_pass, 1, src.tracked_blood, "smear3", src.last_move)
-
-	src.tracked_blood["count"] --
-	if (src.tracked_blood["count"] <= 0)
-		src.tracked_blood = null
-	return
-
-/obj/item/track_blood()
-	if (!islist(src.tracked_blood))
-		return
-	var/obj/decal/cleanable/blood/dynamic/B = locate(/obj/decal/cleanable/blood/dynamic) in get_turf(src)
-	var/blood_color_to_pass = src.tracked_blood["color"] ? src.tracked_blood["color"] : DEFAULT_BLOOD_COLOR
-
-	if (!B)
-		B = make_cleanable( /obj/decal/cleanable/blood/dynamic(get_turf(src))
-	var/Istate = src.w_class > 4 ? "3" : src.w_class > 2 ? "2" : "1"
-	B.add_volume(blood_color_to_pass, 1, src.tracked_blood, Istate, src.last_move)
-
-	src.tracked_blood["count"] --
-	if (src.tracked_blood["count"] <= 0)
-		src.tracked_blood = null
-	return
-*/
-/mob/living/track_blood()
-	if (!islist(src.tracked_blood))
-		return
+/mob/living/proc/track_reagents()
 	var/turf/T = get_turf(src)
-	var/obj/decal/cleanable/blood/dynamic/tracks/B = null
+	var/obj/decal/cleanable/tracked_reagents/dynamic/tracks/B = null
 	if (T.messy > 0)
-		B = locate(/obj/decal/cleanable/blood/dynamic) in T
-
-	var/blood_color_to_pass = src.tracked_blood["color"] ? src.tracked_blood["color"] : DEFAULT_BLOOD_COLOR
+		B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 	if (!B)
 		if (T.active_liquid)
+			src.tracked_reagents.trans_to_direct(T.active_liquid.group.reagents, 1)
 			return
-		B = make_cleanable( /obj/decal/cleanable/blood/dynamic/tracks,get_turf(src))
-		B.set_sample_reagent_custom(src.tracked_blood["sample_reagent"],0)
+		B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic/tracks,get_turf(src))
 
 	var/list/states = src.get_step_image_states()
 
 	if (states[1] || states[2])
 		if (states[1])
-			B.add_volume(blood_color_to_pass, src.tracked_blood["sample_reagent"], 0.5, 0.5, src.tracked_blood, states[1], src.last_move, 0)
+			B.transfer_volume(src.tracked_reagents, 0.5, null, null, states[1], src.last_move, 0)
 		if (states[2])
-			B.add_volume(blood_color_to_pass, src.tracked_blood["sample_reagent"], 0.5, 0.5, src.tracked_blood, states[2], src.last_move, 0)
+			B.transfer_volume(src.tracked_reagents, 0.5, null, null, states[2], src.last_move, 0)
 	else
-		B.add_volume(blood_color_to_pass, src.tracked_blood["sample_reagent"], 1, 1, src.tracked_blood, "smear2", src.last_move, 0)
+		B.transfer_volume(src.tracked_reagents, 1, null, null, "smear2", src.last_move, 0)
 
-	if (src.tracked_blood && isnum(src.tracked_blood["count"])) // mirror from below
-		src.tracked_blood["count"] --
-		if (src.tracked_blood["count"] <= 0)
-			src.tracked_blood = null
-			src.set_clothing_icon_dirty()
-			return
-	else
-		src.tracked_blood = null
+	if (!src.tracked_reagents.total_volume) // mirror from below
 		src.set_clothing_icon_dirty()
 		return
 
@@ -358,7 +282,6 @@
 
 /mob/living/silicon/robot/get_step_image_states()
 	return list(istype(src.part_leg_l) ? src.part_leg_l.step_image_state : null, istype(src.part_leg_r) ? src.part_leg_r.step_image_state : null)
-
 
 /*
                                   ''''''
@@ -380,53 +303,13 @@ I::::::::I      T:::::::::T             S:::::::::::::::SS      P::::::::P      
 IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP               OOOOOOOOO          OOOOOOOOO     PPPPPPPPPP
 */
 
-
-
-/atom/var/mud_stained = 0
-
-
-
-/proc/muddy(var/mob/living/some_idiot, var/num_amount, var/vis_amount, var/turf/T as turf)
-
-	if (!T)
-		T = get_turf(some_idiot)
-
-	var/obj/decal/cleanable/mud/dynamic/B = null
-	if (T.messy > 0)
-		B = locate(/obj/decal/cleanable/mud/dynamic) in T
-	var/mud_color_to_pass = DEFAULT_MUD_COLOR
-
-	if (!B) // look for an existing dynamic blood decal and add to it if you find one
-		B = make_cleanable( /obj/decal/cleanable/mud/dynamic,T)
-		B.color = mud_color_to_pass
-
-	B.add_volume(mud_color_to_pass, num_amount, vis_amount)
-	return
-
-
-
-/atom/proc/add_mud(mob/living/M as mob, var/amount = 5,)
+/atom/proc/add_mud(mob/living/M as mob, var/amount = 5)
 	if (!(( src.flags) & FPRINT))
 		return
 
 	if (isitem(src))
 		var/obj/item/I = src
 
-#ifdef OLD_BLOOD_OVERLAY
-		var/icon/new_icon
-		if (I.uses_multiple_icon_states)
-			new_icon = new /icon(I.icon)
-		else
-			new_icon = new /icon(I.icon, I.icon_state)
-		new_icon.Blend(new /icon('icons/obj/decals/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
-		new_icon.Blend(DEFAULT_MUD_COLOR, ICON_MULTIPLY)
-		new_icon.Blend(new /icon('icons/obj/decals/not_poo.dmi', "itemmud"), ICON_MULTIPLY)
-		if (I.uses_multiple_icon_states)
-			new_icon.Blend(new /icon(I.icon), ICON_UNDERLAY)
-		else
-			new_icon.Blend(new /icon(I.icon, I.icon_state), ICON_UNDERLAY)
-		I.icon = new_icon
-#else
 		I.appearance_flags |= KEEP_TOGETHER
 		var/image/mud_overlay = image('icons/obj/decals/not_poo.dmi', "itemmud")
 		mud_overlay.appearance_flags = PIXEL_SCALE | RESET_COLOR
@@ -434,8 +317,6 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		mud_overlay.alpha = min(mud_overlay.alpha, 200)
 		mud_overlay.blend_mode = BLEND_INSET_OVERLAY
 		src.UpdateOverlays(mud_overlay, "mud_splatter")
-#endif
-
 
 		if (istype(I, /obj/item/clothing))
 			var/obj/item/clothing/C = src
@@ -444,44 +325,8 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		else
 			I.name = "[pick("filthy ","muddy ","dirty ")] [I]"
 
-
-
-	else if (issimulatedturf(src))
-		muddy(M, amount, rand(1,3), src)
-
 	else
 		return
 
 /mob/living/carbon/human
 	var/mud_gib_stage = 0.0
-
-
-/mob/living/track_mud()
-	if (!islist(src.tracked_mud))
-		return
-	var/turf/T = get_turf(src)
-	var/obj/decal/cleanable/mud/dynamic/tracks/B = null
-	if (T.messy > 0)
-		B = locate(/obj/decal/cleanable/mud/dynamic) in T
-
-	var/mud_color_to_pass = src.tracked_mud["color"] ? src.tracked_mud["color"] : DEFAULT_MUD_COLOR
-
-	if (!B)
-		if (T.active_liquid)
-			return
-		B = make_cleanable( /obj/decal/cleanable/mud/dynamic/tracks,get_turf(src))
-		B.set_sample_reagent_custom(src.tracked_mud["sample_reagent"],0)
-
-	B.add_volume(mud_color_to_pass, src.tracked_mud["sample_reagent"], 1, 0, src.tracked_mud, "footprints[rand(1,2)]", src.last_move, 0)
-
-	if (src.tracked_mud && isnum(src.tracked_mud["count"])) // mirror from below
-		src.tracked_mud["count"] --
-		if (src.tracked_mud["count"] <= 0)
-			src.tracked_mud = null
-			src.set_clothing_icon_dirty()
-			return
-	else
-		src.tracked_mud = null
-		src.set_clothing_icon_dirty()
-		return
-

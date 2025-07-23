@@ -9,7 +9,7 @@
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "i" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
 /obj/table/auto,
@@ -17,7 +17,7 @@
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "o" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 8
 	},
 /obj/item/device/light/flashlight,
@@ -44,7 +44,7 @@
 /obj/storage/crate/freezer,
 /obj/random_item_spawner/organs/bloody/one_to_three,
 /obj/random_item_spawner/organs/one_to_three,
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gib3"
 	},
 /turf/floor/plating,
@@ -67,19 +67,19 @@
 	id = "treatment"
 	},
 /obj/machinery/drainage,
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "drip2b"
 	},
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "R" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 4
 	},
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "V" = (
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
 "Y" = (

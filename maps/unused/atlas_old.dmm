@@ -1961,13 +1961,6 @@
 "fK" = (
 /turf/wall/auto/reinforced/supernorn/the_tuff_stuff,
 /area/station/maintenance/southwest)
-"fL" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
 "fM" = (
 /obj/table/auto,
 /turf/floor/yellow,
@@ -12669,49 +12662,6 @@
 	dir = 5
 	},
 /area/station/medical/medbay)
-"Dy" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/northeast)
-"Dz" = (
-/obj/machinery/power/apc/autoname/north,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/northeast)
-"DA" = (
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/northeast)
-"DB" = (
-/obj/storage/closet/fire{
-	name = "rusty firefighting supplies closet"
-	},
-/obj/critter/bat,
-/obj/decal/cleanable/cobweb2,
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/northeast)
 "DC" = (
 /obj/machinery/disposal/small{
 	dir = 4
@@ -14312,27 +14262,6 @@
 	},
 /turf/space,
 /area/listeningpost/solars)
-"Hx" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
-"Hy" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
-"Hz" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
-	},
-/area/space)
 "HA" = (
 /obj/disposalpipe/segment,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon6,
@@ -16586,6 +16515,14 @@
 	},
 /turf/floor/engine,
 /area/station/engine/inner)
+"Qb" = (
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/northeast)
 "Qs" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	dir = 4;
@@ -16647,12 +16584,65 @@
 	dir = 4
 	},
 /area/station/science/chemistry)
+"Rx" = (
+/turf/shuttle/wall{
+	dir = 10;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
+"Te" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/northeast)
+"TQ" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "Ue" = (
 /obj/displaycase{
 	displayed = new /obj/item/captaingun
 	},
 /turf/floor/blue,
 /area/station/bridge/captain)
+"Un" = (
+/obj/machinery/power/apc/autoname/north,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/northeast)
+"VA" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
+"Wb" = (
+/obj/storage/closet/fire{
+	name = "rusty firefighting supplies closet"
+	},
+/obj/critter/bat,
+/obj/decal/cleanable/cobweb2,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/northeast)
 "WQ" = (
 /obj/table/auto,
 /obj/machinery/light{
@@ -16663,6 +16653,12 @@
 /obj/item/card_box/plain,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
+"XD" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "wall3"
+	},
+/area/space)
 "YE" = (
 /obj/table/auto,
 /obj/item/paper/book/from_file/hydroponicsguide,
@@ -70244,7 +70240,7 @@ eP
 uA
 eP
 hR
-Dy
+Te
 hR
 jF
 jF
@@ -70546,7 +70542,7 @@ eS
 fs
 eS
 hR
-Dz
+Un
 hR
 gH
 gM
@@ -70848,7 +70844,7 @@ fu
 gR
 sW
 hR
-DA
+Qb
 hR
 gI
 xs
@@ -71150,7 +71146,7 @@ ft
 kk
 sX
 hR
-DB
+Wb
 hR
 Ds
 DU
@@ -89106,11 +89102,11 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HU
 HU
 HU
-Hx
+Rx
 aa
 aa
 aa
@@ -89407,13 +89403,13 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HS
 IN
 JH
 IN
 HS
-Hx
+Rx
 aa
 aa
 aa
@@ -90614,7 +90610,7 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HS
 Iu
 ID
@@ -90622,7 +90618,7 @@ IQ
 Jc
 Iu
 HS
-Hx
+Rx
 aa
 aa
 aa
@@ -91821,7 +91817,7 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HS
 Ik
 HS
@@ -91831,7 +91827,7 @@ Jf
 HS
 Ik
 HS
-Hx
+Rx
 aa
 aa
 aa
@@ -92423,7 +92419,7 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HL
 HT
 Ic
@@ -92437,7 +92433,7 @@ Im
 Jq
 HT
 HL
-Hx
+Rx
 aa
 aa
 aa
@@ -93027,7 +93023,7 @@ aa
 aa
 aa
 aa
-Hy
+VA
 HL
 HS
 Id
@@ -93041,7 +93037,7 @@ Im
 JG
 HS
 HL
-Hz
+XD
 aa
 aa
 aa
@@ -94538,7 +94534,7 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HF
 HF
 Io
@@ -94550,7 +94546,7 @@ IA
 Io
 HF
 HF
-Hx
+Rx
 aa
 aa
 aa
@@ -94839,7 +94835,7 @@ aa
 aa
 aa
 aa
-fL
+TQ
 HF
 HV
 HF
@@ -94853,7 +94849,7 @@ JB
 HF
 HV
 HF
-Hx
+Rx
 aa
 aa
 aa

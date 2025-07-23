@@ -810,11 +810,11 @@ THROWING DARTS
 		name = "Juicer Jr. AP pistol round"
 		desc = "Probably the most illegal a pistol bullet can possibly be, despite the size."
 
-	bullet_pistol_medium
+	bullet_pistol_italian
 		name = ".31 pistol round"
 		desc = "Italian in origin. Not too rare, but still contraband. Smells like olive oil."
 
-	bullet_pistol_medium_ap
+	bullet_pistol_italian_ap
 		name = ".31 AP pistol round"
 		desc = "Italian armor-piercing round. Very rare, VERY contraband. This is a spicy meatball."
 

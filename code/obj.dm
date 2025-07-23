@@ -289,9 +289,6 @@
 	deserialize_postprocess()
 		return
 
-/obj/proc/get_movement_controller(mob/user)
-	return
-
 /obj/lattice
 	desc = "A lightweight support lattice."
 	name = "lattice"
@@ -538,10 +535,6 @@
 			return
 		else
 			return ..()
-
-	track_blood()
-		src.tracked_blood = null
-		return
 
 /obj/overlay/fake
 

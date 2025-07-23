@@ -29,6 +29,7 @@
 	var/light_style = "disposal" // for the lights and stuff
 	var/image/handle_image = null
 	var/destination_tag = null
+	var/image/glow
 	mats = 20			// whats the point of letting people build trunk pipes if they cant build new disposals?
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_SCREWDRIVER
 	power_usage = 100
@@ -348,6 +349,8 @@
 			var/image/I = GetOverlayImage("content_light")
 			if (!I)
 				I = image(src.icon, "[light_style]-full")
+				I.plane = BLEND_OVERLAY
+				I.layer = PLANE_SELFILLUM
 			UpdateOverlays(I, "content_light")
 		else
 			UpdateOverlays(null, "content_light", 0, 1)
@@ -356,18 +359,20 @@
 		var/image/I = GetOverlayImage("status")
 		if (!I)
 			I = image(src.icon, "[light_style]-charge")
-		switch (mode)
-			if (DISPOSAL_CHUTE_CHARGING)
-				I.icon_state = "[light_style]-charge"
-			if (DISPOSAL_CHUTE_CHARGED)
-				I.icon_state = "[light_style]-ready"
-			if (DISPOSAL_CHUTE_NOTRUNK)
-				I.icon_state = "disposal-notrunk" //common overlay
-			if (DISPOSAL_CHUTE_NOTAG)
-				I.icon_state = "mail-notag" //mail only, but works on all
-			else
-				I = null
-
+		if (I)
+			I.plane = BLEND_OVERLAY
+			I.layer = PLANE_SELFILLUM
+			switch (mode)
+				if (DISPOSAL_CHUTE_CHARGING)
+					I.icon_state = "[light_style]-charge"
+				if (DISPOSAL_CHUTE_CHARGED)
+					I.icon_state = "[light_style]-ready"
+				if (DISPOSAL_CHUTE_NOTRUNK)
+					I.icon_state = "disposal-notrunk" //common overlay
+				if (DISPOSAL_CHUTE_NOTAG)
+					I.icon_state = "mail-notag" //mail only, but works on all
+				else
+					I = null
 		UpdateOverlays(I, "status", 0, 1)
 		/*
 		if(mode == 1)
@@ -493,7 +498,7 @@
 		src.flush()
 		playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
 		if (user) //ZeWaka: Fix for null.loc
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			health_update_queue |= user
 		SPAWN_DBG(50 SECONDS)
 			if (user && !isdead(user))

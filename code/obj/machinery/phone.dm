@@ -26,6 +26,26 @@
 	var/ringingicon = "phone_ringing"
 	var/answeredicon = "phone_answered"
 	var/dialicon = "phone_dial"
+	var/base_x = 0 //this gets set later with the pixel offset of the phone
+	var/base_y = 0
+
+
+	proc/shake_phone(var/volume)
+
+		var/wiggle = 25 //the amount o' shakin
+		if(src.answered == 0)
+			src.icon_state = "[ringingicon]"
+
+		SPAWN_DBG(0)
+			for (var/i = wiggle,i > 0, i--)
+				animate(src, pixel_x = rand(src.base_x-1,src.base_x+1), pixel_y = rand(src.base_y-1,src.base_y+1), time = 0.5, easing = EASE_IN)
+				sleep(0.1 SECONDS)
+
+		animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+		SPAWN_DBG(1.8 SECONDS)
+			if(src.answered == 0)
+				src.icon_state = "[phoneicon]"
+
 
 
 
@@ -37,18 +57,28 @@
 
 		// Give the phone an appropriate departmental color. Jesus christ thats fancy.
 		if(istype(location,/area/station/security))
-			src.color = "#ff0000"
+			src.color = "#a76a6a"
 		else if(istype(location,/area/station/bridge))
-			src.color = "#00aa00"
+			src.color = "#769c76"
 		else if(istype(location, /area/station/engine) || istype(location, /area/station/quartermaster) || istype(location, /area/station/mining))
-			src.color = "#aaaa00"
+			src.color = "#aa9867"
 		else if(istype(location, /area/station/science))
-			src.color = "#9933ff"
+			src.color = "#9a84b1"
 		else if(istype(location, /area/station/medical))
-			src.color = "#0000ff"
+			src.color = "#6395b8"
 		else
-			src.color = "#663300"
-		src.overlays += image('icons/obj/machines/phones.dmi',"[dialicon]")
+			src.color = "#c2aca1"
+
+		var/image/dial_image = image('icons/obj/machines/phones.dmi',"[dialicon]") //sets the dial icon image, dialicon refers to either the dial or buttons to each phone type respectively
+
+		dial_image.appearance_flags = RESET_COLOR //clears the phone color for this overlay
+
+		src.UpdateOverlays(dial_image,"[dialicon]") //makes them changes happen
+
+		base_x = pixel_x //this tells the animation what the original pixel offset was
+		base_y = pixel_y
+
+
 		// Generate a name for the phone.
 
 		if(isnull(src.phone_id))
@@ -158,7 +188,6 @@
 			qdel(src)
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
-		src.icon_state = "[ringingicon]"
 		if (!src.emagged)
 			if(user)
 				boutput(user, "<span class='alert'>You short out the ringer circuit on the [src].</span>")
@@ -168,10 +197,15 @@
 
 	process()
 		if(src.emagged == 1)
-			playsound(src.loc,"sound/machines/phones/ring_incoming.ogg" ,100,1)
+			playsound(src.loc,"sound/machines/phones/ring_incoming.ogg" ,40,0)
+			SPAWN_DBG(2 SECONDS)
+			src.last_ring = 0
+			shake_phone()
+
+
 			if(src.answered == 0)
 				src.icon_state = "[ringingicon]"
-			return
+
 
 		if(src.connected == 0)
 			return
@@ -189,8 +223,11 @@
 			else
 				if(src.last_ring >= 2)
 					playsound(src.loc,"sound/machines/phones/ring_incoming.ogg" ,40,0)
-					src.icon_state = "[ringingicon]"
+					if(src.answered == 0)
+						src.icon_state = "[ringingicon]"
 					src.last_ring = 0
+					shake_phone()
+
 
 
 	proc/hang_up()

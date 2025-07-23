@@ -118,11 +118,7 @@
 			return 1
 		var/mob/M = holder.owner
 		var/turf/S = get_turf(M)
-		var/obj/projectile/O = initialize_projectile_ST(S, proj, T)
-		if (!O)
-			return 1
-		if (!O.was_setup)
-			O.setup()
+		var/obj/projectile/O = initialize_projectile_pixel_spread(S, proj, T)
 		O.special_data["owner"] = src
 		O.launch()
 		return 0

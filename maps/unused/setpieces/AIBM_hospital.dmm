@@ -48,32 +48,6 @@
 	},
 /turf/floor/grass,
 /area/hospital/somewhere)
-"ak" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 6;
-	icon_state = "cavern_detail1"
-	},
-/area/hospital)
-"al" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	icon_state = "cavern_edge1"
-	},
-/area/hospital)
-"am" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
-"an" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 10;
-	icon_state = "cavern_detail2"
-	},
-/area/hospital)
 "ao" = (
 /turf/wall/setpieces/hospital,
 /area/hospital)
@@ -137,22 +111,8 @@
 	},
 /turf/floor/grass,
 /area/hospital/somewhere)
-"ay" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 6;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "az" = (
 /turf/floor/setpieces/hospital/cavern,
-/area/hospital)
-"aA" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 10;
-	icon_state = "cavern_edge3"
-	},
 /area/hospital)
 "aB" = (
 /turf/floor/bluewhite{
@@ -300,13 +260,6 @@
 	},
 /turf/floor{
 	name = "plating"
-	},
-/area/hospital)
-"aX" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 8;
-	icon_state = "cavern_edge1"
 	},
 /area/hospital)
 "aY" = (
@@ -634,13 +587,6 @@
 /obj/chaser/hospital_trigger,
 /turf/floor/white,
 /area/hospital)
-"bW" = (
-/obj/decal/cleanable/blood/splatter{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/turf/floor/white,
-/area/hospital)
 "bX" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent/worn{
@@ -703,10 +649,6 @@
 	icon_state = "sink";
 	dir = 1
 	},
-/turf/floor/white,
-/area/hospital)
-"ch" = (
-/obj/decal/cleanable/blood/drip/high,
 /turf/floor/white,
 /area/hospital)
 "ci" = (
@@ -1236,14 +1178,6 @@
 "dC" = (
 /turf/floor/carpet/arcade,
 /area/hospital)
-"dD" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	density = 0;
-	dir = 6;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "dE" = (
 /obj/decal/fakeobjects{
 	name = "broken computer";
@@ -1563,13 +1497,6 @@
 	},
 /turf/floor/white/grime,
 /area/hospital)
-"ez" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 8;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "eA" = (
 /obj/stool/chair/comfy/red,
 /turf/floor{
@@ -1598,27 +1525,6 @@
 	tag = ""
 	},
 /turf/floor/setpieces/hospital/cavern,
-/area/hospital)
-"eE" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
-"eF" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 1;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
-"eG" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_detail1"
-	},
 /area/hospital)
 "eH" = (
 /obj/decal/fakeobjects{
@@ -1963,13 +1869,6 @@
 	},
 /turf/floor/white,
 /area/hospital)
-"fA" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 4;
-	icon_state = "cavern_edge1"
-	},
-/area/hospital)
 "fB" = (
 /obj/machinery/door_control{
 	desc = "A remote control switch for the security door.";
@@ -2044,13 +1943,6 @@
 	dir = 8
 	},
 /turf/floor/white,
-/area/hospital)
-"fM" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 4;
-	icon_state = "cavern_edge2"
-	},
 /area/hospital)
 "fN" = (
 /obj/table,
@@ -2501,13 +2393,6 @@
 /obj/submachine/foodprocessor,
 /turf/floor/specialroom/freezer,
 /area/hospital)
-"gZ" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 4;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "ha" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -2669,13 +2554,6 @@
 /obj/submachine/ice_cream_dispenser,
 /turf/floor/specialroom/freezer,
 /area/hospital)
-"hq" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 5;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "hr" = (
 /obj/machinery/light/small/iomoon{
 	dir = 8;
@@ -2706,13 +2584,6 @@
 /obj/item/reagent_containers/food/snacks/ice_cream/goodrandom,
 /obj/item/reagent_containers/food/snacks/ice_cream/goodrandom,
 /turf/floor/specialroom/freezer,
-/area/hospital)
-"hv" = (
-/turf/floor/setpieces/hospital/cavern,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 5;
-	icon_state = "cavern_detail1"
-	},
 /area/hospital)
 "hw" = (
 /obj/machinery/door/airlock/maintenance{
@@ -3337,12 +3208,6 @@
 	dir = 10
 	},
 /area/hospital/underground)
-"iQ" = (
-/obj/decal/cleanable/blood/drip/med,
-/turf/floor/caution/corner/misc{
-	dir = 6
-	},
-/area/hospital/underground)
 "iR" = (
 /turf/floor{
 	tag = "icon-corner_east";
@@ -3417,13 +3282,6 @@
 	icon_state = "corner_east"
 	},
 /area/hospital/underground)
-"iZ" = (
-/turf/floor/plating/scorched,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital/underground)
 "ja" = (
 /obj/decal/fakeobjects/pipe{
 	icon_state = "intact";
@@ -3457,20 +3315,6 @@
 	pixel_y = 24
 	},
 /turf/floor/caution/corner/ne,
-/area/hospital/underground)
-"jf" = (
-/turf/floor/plating/scorched,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 1;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital/underground)
-"jg" = (
-/turf/floor/plating/scorched,
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_detail1"
-	},
 /area/hospital/underground)
 "jh" = (
 /obj/decal/fakeobjects/pipe{
@@ -3558,15 +3402,6 @@
 	},
 /turf/floor/plating/scorched,
 /area/hospital/underground)
-"jp" = (
-/turf/floor{
-	name = "plating"
-	},
-/turf/wall/setpieces/hospital/cavern{
-	dir = 4;
-	icon_state = "cavern_edge2"
-	},
-/area/hospital/underground)
 "jq" = (
 /turf/floor/plating/damaged3,
 /area/hospital/underground)
@@ -3578,12 +3413,6 @@
 	icon_state = "conduit";
 	name = "power conduit"
 	},
-/turf/floor{
-	name = "plating"
-	},
-/area/hospital/underground)
-"js" = (
-/obj/decal/cleanable/blood/tracks,
 /turf/floor{
 	name = "plating"
 	},
@@ -3643,61 +3472,6 @@
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorleft1";
 	name = "security door"
-	},
-/area/hospital/underground)
-"jx" = (
-/turf/floor{
-	name = "plating"
-	},
-/turf/wall/setpieces/hospital/cavern{
-	dir = 5;
-	icon_state = "cavern_detail1"
-	},
-/area/hospital/underground)
-"jy" = (
-/turf/floor{
-	name = "plating"
-	},
-/turf/wall/setpieces/hospital/cavern{
-	dir = 5;
-	icon_state = "cavern_edge2"
-	},
-/area/hospital/underground)
-"jz" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 10;
-	icon = 'icons/obj/machines/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 9
-	},
-/turf/floor{
-	name = "plating"
-	},
-/area/hospital/underground)
-"jA" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/machines/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 6
-	},
-/obj/decal/fakeobjects/lightbulb_broken,
-/turf/floor{
-	name = "plating"
 	},
 /area/hospital/underground)
 "jB" = (
@@ -5365,66 +5139,10 @@
 /obj/table/auto,
 /turf/floor/specialroom/cafeteria,
 /area/sim/area1)
-"nK" = (
-/turf/space,
-/turf/floor/void/channel{
-	density = 1;
-	name = "very much a wormhole distortion";
-	opacity = 1
-	},
-/area/adventure/channel)
-"nL" = (
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/teleport)
-"nM" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "A sensor array for a ship.  A Soviet ship.  full of communists.";
-	dir = 1;
-	icon = 'icons/misc/hospital.dmi';
-	icon_state = "sensor_array";
-	name = "sensor array"
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/teleport)
-"nN" = (
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
-"nO" = (
-/turf/space,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/turf/floor/void/channel,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/hospital/samostrel)
 "nP" = (
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall"
-	},
-/area/hospital/samostrel)
-"nQ" = (
-/turf/space,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 6
-	},
-/turf/floor/void/channel,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 6
 	},
 /area/hospital/samostrel)
 "nR" = (
@@ -5620,14 +5338,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"oh" = (
-/obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 6
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "oi" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -5640,22 +5350,6 @@
 /turf/floor{
 	name = "plating"
 	},
-/area/adventure/channel/flingy)
-"oj" = (
-/obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 8
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
-"ok" = (
-/obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 10
-	},
-/turf/space,
-/turf/floor/void/channel,
 /area/adventure/channel/flingy)
 "ol" = (
 /obj/decal/fakeobjects{
@@ -5673,13 +5367,6 @@
 /area/hospital/samostrel)
 "om" = (
 /turf/floor/plating/scorched,
-/area/adventure/channel/flingy)
-"on" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/floor/void/channel,
 /area/adventure/channel/flingy)
 "oo" = (
 /obj/grille/steel,
@@ -5727,14 +5414,6 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
-"or" = (
-/obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 9
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "os" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -5759,14 +5438,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"ot" = (
-/obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 5
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "ou" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -5799,14 +5470,6 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
-"ow" = (
-/obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 2
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "ox" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -5925,17 +5588,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"oG" = (
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/turf/wall{
-	dir = 4;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
-	},
-/area/hospital/samostrel)
 "oH" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -5963,16 +5615,6 @@
 /turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
-	},
-/area/hospital/samostrel)
-"oJ" = (
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
 	},
 /area/hospital/samostrel)
 "oK" = (
@@ -6074,17 +5716,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"oS" = (
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 6
-	},
-/area/hospital/samostrel)
 "oT" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -6113,17 +5744,6 @@
 /turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
-	},
-/area/hospital/samostrel)
-"oV" = (
-/turf/floor{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "floor3"
-	},
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 8
 	},
 /area/hospital/samostrel)
 "oW" = (
@@ -6666,16 +6286,6 @@
 	icon_state = "corner_east"
 	},
 /area/hospital/samostrel)
-"pV" = (
-/turf/floor{
-	icon_state = "floor"
-	},
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/hospital/samostrel)
 "pW" = (
 /turf/floor/caution/corner/misc{
 	dir = 2
@@ -6800,14 +6410,6 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
-"qm" = (
-/obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 4
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "qn" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -7089,14 +6691,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"qR" = (
-/obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 10
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "qS" = (
 /obj/decal/fakeobjects{
 	tag = "icon-conduit (NORTH)";
@@ -7173,32 +6767,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"ra" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "This conduit is all burned and melty, like something was sheared off it.  By a ball of plasma (the state of matter).";
-	dir = 8;
-	icon = 'icons/misc/hospital.dmi';
-	icon_state = "broken_powerline";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
-"rb" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 8;
-	icon = 'icons/obj/machines/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel/flingy)
 "rc" = (
 /obj/rail/cap{
 	dir = 8
@@ -7469,15 +7037,6 @@
 	},
 /turf/floor/engine,
 /area/hospital/samostrel)
-"rx" = (
-/turf/floor{
-	icon_state = "floor"
-	},
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
-	},
-/area/hospital/samostrel)
 "ry" = (
 /obj/decal/skeleton{
 	desc = "Oh.  Gross.";
@@ -7517,18 +7076,6 @@
 "rB" = (
 /turf/floor/specialroom/freezer{
 	dir = 1
-	},
-/area/hospital/samostrel)
-"rC" = (
-/turf/space,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
-	},
-/turf/floor/void/channel,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
 	},
 /area/hospital/samostrel)
 "rD" = (
@@ -7587,28 +7134,6 @@
 	icon_state = "floor"
 	},
 /area/hospital/samostrel)
-"rI" = (
-/turf/space,
-/turf/wall{
-	dir = 4;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
-	},
-/turf/floor/void/channel,
-/turf/wall{
-	dir = 4;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
-	},
-/area/hospital/samostrel)
-"rJ" = (
-/obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 4
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel)
 "rK" = (
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 1
@@ -7750,10 +7275,6 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
-"rW" = (
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel)
 "rX" = (
 /obj/decal/fakeobjects{
 	name = "power conduit";
@@ -7893,14 +7414,6 @@
 	icon_state = "floor"
 	},
 /area/hospital/samostrel)
-"si" = (
-/turf/floor/caution/south,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 6
-	},
-/area/hospital/samostrel)
 "sj" = (
 /obj/decal/fakeobjects{
 	tag = "icon-conduit (NORTH)";
@@ -7913,14 +7426,6 @@
 	anchored = 1
 	},
 /turf/floor/caution/south,
-/area/hospital/samostrel)
-"sk" = (
-/turf/floor/caution/south,
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall";
-	dir = 8
-	},
 /area/hospital/samostrel)
 "sl" = (
 /obj/machinery/door/airlock/maintenance{
@@ -8219,14 +7724,6 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
-"sJ" = (
-/obj/decal/fakeobjects/shuttlethruster{
-	desc = "A small impulse drive.";
-	dir = 4
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel)
 "sK" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
@@ -8282,14 +7779,6 @@
 	icon_state = "wall3"
 	},
 /area/hospital/samostrel)
-"sP" = (
-/obj/decal/fakeobjects/shuttlethruster{
-	desc = "A small impulse drive.";
-	dir = 8
-	},
-/turf/space,
-/turf/floor/void/channel,
-/area/adventure/channel)
 "sQ" = (
 /turf/floor/black{
 	intact = 1
@@ -8343,16 +7832,6 @@
 /obj/item/clothing/mask/gas/emergency,
 /turf/floor{
 	name = "plating"
-	},
-/area/hospital/samostrel)
-"sW" = (
-/turf/floor/engine/caution/east{
-	dir = 2
-	},
-/turf/wall{
-	dir = 4;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall3"
 	},
 /area/hospital/samostrel)
 "sX" = (
@@ -8754,6 +8233,371 @@
 	icon_state = "wall"
 	},
 /area/adventure/channel)
+"tQ" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 10;
+	icon_state = "cavern_detail2"
+	},
+/area/hospital)
+"vR" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b";
+	dir = 10
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"vT" = (
+/turf/wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall"
+	},
+/area/hospital/samostrel)
+"wb" = (
+/turf/floor/void/channel,
+/area/adventure/channel)
+"zE" = (
+/obj/lattice{
+	icon_state = "lattice-dir";
+	dir = 4
+	},
+/turf/floor/void/channel,
+/area/adventure/channel)
+"zL" = (
+/obj/lattice{
+	icon_state = "lattice-dir";
+	dir = 10
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"zR" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 5;
+	icon_state = "cavern_detail1"
+	},
+/area/hospital/underground)
+"Ad" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 9;
+	icon_state = "cavern_detail1"
+	},
+/area/hospital/underground)
+"Ah" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 6;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"Ar" = (
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Bk" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b";
+	dir = 6
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Bl" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 4;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"BG" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 8;
+	icon_state = "cavern_edge1"
+	},
+/area/hospital)
+"Cb" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 8;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"Ch" = (
+/obj/lattice{
+	icon_state = "lattice-dir";
+	dir = 4
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Co" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 4;
+	icon_state = "cavern_edge2"
+	},
+/area/hospital/underground)
+"Cw" = (
+/obj/decal/fakeobjects/shuttlethruster{
+	desc = "A small impulse drive.";
+	dir = 4
+	},
+/turf/floor/void/channel,
+/area/adventure/channel)
+"Di" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/high,
+/turf/floor/white,
+/area/hospital)
+"Dy" = (
+/turf/wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/hospital/samostrel)
+"Er" = (
+/turf/wall{
+	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3"
+	},
+/area/hospital/samostrel)
+"EK" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	tag = "icon-floor4";
+	icon_state = "floor4"
+	},
+/turf/floor/white,
+/area/hospital)
+"EY" = (
+/turf/wall/setpieces/hospital/cavern{
+	density = 0;
+	dir = 6;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"Fl" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 10;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"Gi" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 10;
+	icon = 'icons/obj/machines/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (SOUTHWEST)"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 9
+	},
+/turf/floor{
+	name = "plating"
+	},
+/area/hospital/underground)
+"Gl" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor{
+	name = "plating"
+	},
+/area/hospital/underground)
+"Ho" = (
+/obj/lattice{
+	icon_state = "lattice-dir";
+	dir = 2
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Kx" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 6;
+	icon_state = "cavern_detail1"
+	},
+/area/hospital)
+"My" = (
+/obj/lattice{
+	icon_state = "lattice-dir";
+	dir = 8
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"MN" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 9;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"Pa" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 9;
+	icon_state = "cavern_detail1"
+	},
+/area/hospital)
+"Pe" = (
+/turf/wall{
+	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall"
+	},
+/area/hospital/samostrel)
+"Pf" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 5;
+	icon_state = "cavern_edge2"
+	},
+/area/hospital/underground)
+"SC" = (
+/turf/floor/void/channel,
+/area/adventure/channel/teleport)
+"Ta" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty, like something was sheared off it.  By a ball of plasma (the state of matter).";
+	dir = 8;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Tf" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/machines/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 6
+	},
+/obj/decal/fakeobjects/lightbulb_broken,
+/turf/floor{
+	name = "plating"
+	},
+/area/hospital/underground)
+"Tl" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 5;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"VE" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 1;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"VH" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 1;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital/underground)
+"VM" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 4;
+	icon_state = "cavern_edge2"
+	},
+/area/hospital)
+"Wf" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b";
+	dir = 9
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Wu" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 4;
+	icon_state = "cavern_edge1"
+	},
+/area/hospital)
+"Wv" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "A sensor array for a ship.  A Soviet ship.  full of communists.";
+	dir = 1;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "sensor_array";
+	name = "sensor array"
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/teleport)
+"WK" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 9;
+	icon_state = "cavern_edge3"
+	},
+/area/hospital/underground)
+"WM" = (
+/turf/wall/setpieces/hospital/cavern{
+	icon_state = "cavern_edge3"
+	},
+/area/hospital)
+"Xb" = (
+/turf/wall/setpieces/hospital/cavern{
+	dir = 5;
+	icon_state = "cavern_detail1"
+	},
+/area/hospital)
+"Xz" = (
+/turf/floor/void/channel{
+	density = 1;
+	name = "very much a wormhole distortion";
+	opacity = 1
+	},
+/area/adventure/channel)
+"XA" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/med,
+/turf/floor/caution/corner/misc{
+	dir = 6
+	},
+/area/hospital/underground)
+"XC" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 8;
+	icon = 'icons/obj/machines/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Yb" = (
+/turf/wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall";
+	dir = 6
+	},
+/area/hospital/samostrel)
+"Yd" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Ym" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b";
+	dir = 5
+	},
+/turf/floor/void/channel,
+/area/adventure/channel/flingy)
+"Zk" = (
+/obj/decal/fakeobjects/shuttlethruster{
+	desc = "A small impulse drive.";
+	dir = 8
+	},
+/turf/floor/void/channel,
+/area/adventure/channel)
+"ZH" = (
+/turf/wall/setpieces/hospital/cavern{
+	icon_state = "cavern_edge1"
+	},
+/area/hospital)
 
 (1,1,1) = {"
 aa
@@ -9128,7 +8972,7 @@ aa
 aa
 ad
 ad
-ak
+Kx
 ad
 ad
 af
@@ -9199,8 +9043,8 @@ aa
 aa
 aa
 ad
-ak
-ay
+Kx
+Ah
 az
 aV
 bd
@@ -9271,7 +9115,7 @@ aa
 aa
 aa
 ad
-al
+ZH
 az
 az
 aW
@@ -9343,7 +9187,7 @@ aa
 aa
 aa
 ad
-am
+WM
 az
 aL
 aV
@@ -9415,7 +9259,7 @@ aa
 aa
 aa
 ad
-al
+ZH
 az
 az
 az
@@ -9467,7 +9311,7 @@ iv
 hN
 iS
 hK
-jf
+VH
 hF
 hF
 hF
@@ -9487,8 +9331,8 @@ aa
 aa
 aa
 ad
-an
-aA
+tQ
+Fl
 az
 az
 az
@@ -9513,8 +9357,8 @@ ag
 eP
 bJ
 ag
-ak
-ak
+Kx
+Kx
 bd
 gr
 bJ
@@ -9538,8 +9382,8 @@ ip
 iv
 hN
 iT
-iZ
-jg
+WK
+Ad
 hF
 hF
 hF
@@ -9560,7 +9404,7 @@ aa
 aa
 ad
 ad
-am
+WM
 az
 az
 az
@@ -9585,18 +9429,18 @@ ag
 cX
 cW
 cx
-fA
-fM
+Wu
+VM
 ah
 aN
 gx
 gE
 aV
 bd
-fM
-gZ
-ay
-eF
+VM
+Bl
+Ah
+VE
 ad
 ad
 ad
@@ -9632,8 +9476,8 @@ aa
 aa
 ad
 ad
-an
-aA
+tQ
+Fl
 az
 az
 br
@@ -9668,8 +9512,8 @@ br
 az
 az
 az
-hq
-hv
+Tl
+Xb
 ad
 ad
 hE
@@ -9705,9 +9549,9 @@ ad
 ad
 ad
 ad
-an
-aX
-aA
+tQ
+BG
+Fl
 br
 bA
 aF
@@ -9723,8 +9567,8 @@ dw
 dC
 dV
 ag
-ak
-dD
+Kx
+EY
 eD
 az
 az
@@ -9741,8 +9585,8 @@ az
 az
 az
 az
-hq
-hv
+Tl
+Xb
 ad
 hE
 aa
@@ -9795,11 +9639,11 @@ ao
 ao
 bG
 bg
-dD
+EY
 az
-eE
-aX
-aA
+MN
+BG
+Fl
 az
 az
 az
@@ -9814,7 +9658,7 @@ az
 az
 az
 az
-eF
+VE
 ad
 hE
 aa
@@ -9830,8 +9674,8 @@ hF
 hF
 hF
 hH
-jp
-jx
+Co
+zR
 hH
 hF
 "}
@@ -9863,13 +9707,13 @@ ad
 ad
 ad
 ad
-ak
-dD
+Kx
+EY
 az
 az
 az
 az
-eF
+VE
 af
 ao
 ao
@@ -9885,8 +9729,8 @@ az
 az
 az
 az
-eE
-eG
+MN
+Pa
 ad
 hE
 aa
@@ -9903,7 +9747,7 @@ hF
 hF
 hH
 jq
-jy
+Pf
 hH
 hF
 "}
@@ -9935,13 +9779,13 @@ ad
 ad
 ad
 ad
-al
+ZH
 az
 az
 az
 az
 az
-eF
+VE
 ag
 fc
 fo
@@ -9953,11 +9797,11 @@ gx
 gE
 aV
 bd
-aX
-aX
-aX
-aX
-eG
+BG
+BG
+BG
+BG
+Pa
 ad
 ad
 hE
@@ -10012,8 +9856,8 @@ ao
 bG
 ao
 aP
-ez
-eG
+Cb
+Pa
 ag
 fd
 fp
@@ -10191,7 +10035,7 @@ hH
 hH
 hV
 jr
-jz
+Gi
 hH
 hF
 "}
@@ -10262,8 +10106,8 @@ hH
 hH
 hH
 ia
-js
-jA
+Gl
+Tf
 hH
 hF
 "}
@@ -10936,7 +10780,7 @@ ad
 ag
 bP
 aE
-ch
+Di
 ah
 cE
 cK
@@ -11007,7 +10851,7 @@ aa
 ad
 ag
 bQ
-bW
+EK
 aE
 ag
 cF
@@ -11840,7 +11684,7 @@ hX
 in
 iA
 iz
-iQ
+XA
 iY
 hX
 hT
@@ -16842,55 +16686,55 @@ aa
 aa
 aa
 aa
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
 aa
 "}
 (10,1,3) = {"
@@ -16914,55 +16758,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nK
+Xz
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+Xz
 aa
 "}
 (11,1,3) = {"
@@ -16986,55 +16830,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (12,1,3) = {"
@@ -17058,55 +16902,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (13,1,3) = {"
@@ -17130,55 +16974,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (14,1,3) = {"
@@ -17202,55 +17046,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-qm
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ch
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (15,1,3) = {"
@@ -17274,55 +17118,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-oj
-on
-on
-qR
-ra
-oj
-on
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
+Yd
+Yd
+zL
+Ta
+My
+Yd
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (16,1,3) = {"
@@ -17346,55 +17190,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-qm
-nN
-nN
-qm
-rb
-qm
-nN
-nN
-qm
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ch
+Ar
+Ar
+Ch
+XC
+Ch
+Ar
+Ar
+Ch
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (17,1,3) = {"
@@ -17418,55 +17262,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-qm
-nO
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ch
+Dy
 qF
 nP
 qF
 nP
 rt
-rC
-rJ
-rW
-rW
-rW
-rW
-rW
-rW
-sJ
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-nK
+vT
+zE
+wb
+wb
+wb
+wb
+wb
+wb
+Cw
+wb
+wb
+wb
+wb
+wb
+wb
+wb
+Xz
 aa
 "}
 (18,1,3) = {"
@@ -17490,18 +17334,18 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-oh
-on
-or
-nO
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Bk
+Yd
+Wf
+Dy
 nR
 nR
 nR
@@ -17527,9 +17371,9 @@ nR
 nR
 nR
 nR
-rC
-rW
-nO
+vT
+wb
+Dy
 nR
 nR
 nR
@@ -17562,20 +17406,20 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
 oi
 oo
 ox
 nR
 nR
-oG
+Pe
 oR
 oX
 nP
@@ -17634,15 +17478,15 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-oj
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
 op
 oy
 nW
@@ -17656,7 +17500,7 @@ nW
 oM
 nW
 pJ
-pV
+Dy
 nR
 pA
 pA
@@ -17682,7 +17526,7 @@ nP
 nP
 nP
 nP
-nK
+Xz
 aa
 "}
 (21,1,3) = {"
@@ -17706,14 +17550,14 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
 oi
 op
 nW
@@ -17741,7 +17585,7 @@ qI
 rE
 rL
 qM
-pV
+Dy
 nP
 rQ
 rQ
@@ -17754,7 +17598,7 @@ nR
 nR
 nR
 nR
-nK
+Xz
 aa
 "}
 (22,1,3) = {"
@@ -17778,15 +17622,15 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-oj
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
 oq
 nW
 oF
@@ -17826,7 +17670,7 @@ sO
 sO
 sO
 nR
-nK
+Xz
 aa
 "}
 (23,1,3) = {"
@@ -17850,20 +17694,20 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
 oi
 nR
 nR
 nR
 nR
-oJ
+vT
 oB
 pa
 nP
@@ -17885,20 +17729,20 @@ qI
 pu
 rG
 rZ
-si
+Yb
 nP
-oG
+Pe
 nW
-oS
+Yb
 nP
 sN
-sW
+Er
 te
 tk
 tu
 sO
 sO
-nK
+Xz
 aa
 "}
 (24,1,3) = {"
@@ -17922,18 +17766,18 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-ok
-or
-nN
-nQ
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+vR
+Wf
+Ar
+Yb
 nR
 nR
 nR
@@ -17970,7 +17814,7 @@ tl
 tl
 ty
 sN
-nK
+Xz
 aa
 "}
 (25,1,3) = {"
@@ -17994,18 +17838,18 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-oj
-or
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
+Wf
+Ar
 nP
 nW
 nW
@@ -18042,7 +17886,7 @@ tl
 tm
 sQ
 sN
-nK
+Xz
 aa
 "}
 (26,1,3) = {"
@@ -18066,10 +17910,10 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nO
+Xz
+SC
+Ar
+Dy
 nP
 nP
 nP
@@ -18081,7 +17925,7 @@ nP
 nP
 oM
 nP
-oJ
+vT
 oB
 nW
 oM
@@ -18094,10 +17938,10 @@ qf
 pA
 qy
 qM
-pV
+Dy
 nR
 nR
-rx
+vT
 rG
 rO
 qM
@@ -18114,7 +17958,7 @@ tm
 tl
 tz
 sN
-nK
+Xz
 aa
 "}
 (27,1,3) = {"
@@ -18138,9 +17982,9 @@ aa
 aa
 aa
 aa
-nK
-nL
-nO
+Xz
+SC
+Dy
 nR
 nR
 nY
@@ -18149,10 +17993,10 @@ nR
 ol
 nY
 nR
-oG
+Pe
 oN
 oP
-oS
+Yb
 nR
 nR
 nR
@@ -18173,11 +18017,11 @@ nR
 rH
 pA
 sc
-sk
+Dy
 nP
 su
 nW
-oV
+Dy
 nP
 sN
 sY
@@ -18186,7 +18030,7 @@ tl
 tl
 sQ
 sN
-nK
+Xz
 aa
 "}
 (28,1,3) = {"
@@ -18210,8 +18054,8 @@ aa
 aa
 aa
 aa
-nK
-nL
+Xz
+SC
 nP
 nS
 nV
@@ -18258,7 +18102,7 @@ tn
 tn
 tA
 sN
-nK
+Xz
 aa
 "}
 (29,1,3) = {"
@@ -18282,8 +18126,8 @@ aa
 aa
 aa
 aa
-nK
-nM
+Xz
+Wv
 nP
 nT
 nW
@@ -18313,7 +18157,7 @@ qO
 qW
 nW
 nW
-oS
+Yb
 nP
 rQ
 rR
@@ -18330,7 +18174,7 @@ to
 tv
 tB
 sN
-nK
+Xz
 aa
 "}
 (30,1,3) = {"
@@ -18354,8 +18198,8 @@ aa
 aa
 aa
 aa
-nK
-nL
+Xz
+SC
 nP
 nU
 nX
@@ -18402,7 +18246,7 @@ tp
 tp
 tC
 sN
-nK
+Xz
 aa
 "}
 (31,1,3) = {"
@@ -18426,9 +18270,9 @@ aa
 aa
 aa
 aa
-nK
-nL
-nQ
+Xz
+SC
+Yb
 nR
 nR
 ob
@@ -18437,10 +18281,10 @@ nR
 oe
 ob
 nR
-oJ
+vT
 nW
 nW
-oV
+Dy
 nR
 nR
 nR
@@ -18474,7 +18318,7 @@ tq
 qG
 tB
 sN
-nK
+Xz
 aa
 "}
 (32,1,3) = {"
@@ -18498,10 +18342,10 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nQ
+Xz
+SC
+Ar
+Yb
 nP
 nP
 nP
@@ -18513,7 +18357,7 @@ nP
 nP
 oM
 nP
-oG
+Pe
 pg
 nW
 oM
@@ -18546,7 +18390,7 @@ tr
 qG
 tD
 sN
-nK
+Xz
 aa
 "}
 (33,1,3) = {"
@@ -18570,18 +18414,18 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-oj
-ot
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
+Ym
+Ar
 nP
 nW
 nW
@@ -18618,7 +18462,7 @@ tr
 qG
 tE
 sN
-nK
+Xz
 aa
 "}
 (34,1,3) = {"
@@ -18642,18 +18486,18 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-oh
-ot
-nN
-nO
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Bk
+Ym
+Ar
+Dy
 nR
 nR
 nR
@@ -18690,7 +18534,7 @@ ts
 tw
 tF
 sN
-nK
+Xz
 aa
 "}
 (35,1,3) = {"
@@ -18714,20 +18558,20 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
 oi
 nR
 nR
 nR
 nR
-oG
+Pe
 oR
 oY
 nP
@@ -18762,7 +18606,7 @@ tt
 tx
 sO
 sO
-nK
+Xz
 aa
 "}
 (36,1,3) = {"
@@ -18786,15 +18630,15 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-oj
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
 ou
 oC
 oK
@@ -18834,7 +18678,7 @@ sO
 sO
 sO
 nR
-nK
+Xz
 aa
 "}
 (37,1,3) = {"
@@ -18858,14 +18702,14 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
 om
 op
 oD
@@ -18906,7 +18750,7 @@ nR
 nR
 nR
 nR
-nK
+Xz
 aa
 "}
 (38,1,3) = {"
@@ -18930,15 +18774,15 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-oj
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+My
 op
 oE
 oL
@@ -18978,7 +18822,7 @@ nP
 nP
 nP
 nP
-nK
+Xz
 aa
 "}
 (39,1,3) = {"
@@ -19002,20 +18846,20 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
 oi
 ov
 ox
 nR
 nR
-oJ
+vT
 oW
 pe
 nP
@@ -19023,9 +18867,9 @@ pp
 pp
 nP
 nR
-oJ
+vT
 og
-oV
+Dy
 nP
 qt
 qE
@@ -19074,18 +18918,18 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-ok
-ow
-ot
-nQ
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+vR
+Ho
+Ym
+Yb
 nR
 nR
 nR
@@ -19111,9 +18955,9 @@ nP
 nP
 nR
 nR
-rI
-rW
-nQ
+Pe
+wb
+Yb
 nR
 nR
 nR
@@ -19146,55 +18990,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nQ
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Yb
 nR
 nR
 nR
 nR
 nR
-rI
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-sP
-rW
-rW
-rW
-rW
-rW
-rW
-rW
-nK
+Pe
+wb
+wb
+wb
+wb
+wb
+wb
+wb
+Zk
+wb
+wb
+wb
+wb
+wb
+wb
+wb
+Xz
 aa
 "}
 (42,1,3) = {"
@@ -19218,55 +19062,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (43,1,3) = {"
@@ -19290,55 +19134,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (44,1,3) = {"
@@ -19362,55 +19206,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (45,1,3) = {"
@@ -19434,55 +19278,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (46,1,3) = {"
@@ -19506,55 +19350,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nN
-nK
+Xz
+SC
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Ar
+Xz
 aa
 "}
 (47,1,3) = {"
@@ -19578,55 +19422,55 @@ aa
 aa
 aa
 aa
-nK
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nK
+Xz
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+SC
+Xz
 aa
 "}
 (48,1,3) = {"
@@ -19650,55 +19494,55 @@ aa
 aa
 aa
 aa
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
-nK
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
 aa
 "}
 (49,1,3) = {"

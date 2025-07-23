@@ -676,7 +676,7 @@ SYNDICATE DRONE FACTORY AREAS
 	playsound(src.loc, 'sound/machines/ArtifactEld2.ogg', 30, 1)
 	user.reagents.add_reagent("itching", 10)
 	take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-	bleed(user, 5, 5)
+	bleed(user, 5, violent = TRUE)
 	src.desc = "This isn't coming off... oh god..."
 	if (!src.processing)
 		src.processing++
@@ -685,21 +685,21 @@ SYNDICATE DRONE FACTORY AREAS
 		boutput(user, "<span class='notice'>The [src] feels like it's getting tighter. Ouch! Seems to have a lot of sharp edges inside.</span>")
 		random_brute_damage(user, 5)
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-		bleed(user, 5, 5)
+		bleed(user, 5, violent = TRUE)
 		sleep(9 SECONDS)
 		user.visible_message("<span class='alert'><b>[src] violently contracts around [user]!</B></span>")
 		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, -1)
 		random_brute_damage(user, 15)
 		user.emote("scream")
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-		bleed(user, 5, 1)
+		bleed(user, 5, violent = TRUE)
 		sleep(5 SECONDS)
 		user.visible_message("<span class='alert'><b>[src] digs into [user]!</B></span>")
 		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, -1)
 		random_brute_damage(user, 15)
 		user.emote("scream")
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-		bleed(user, 5, 5)
+		bleed(user, 5, violent = TRUE)
 		sleep(5 SECONDS)
 		var/mob/living/carbon/human/H = user
 		playsound(user.loc, 'sound/impact_sounds/Slimy_Hit_4.ogg', 50, 1, -1)
@@ -709,7 +709,7 @@ SYNDICATE DRONE FACTORY AREAS
 		if (!H.decomp_stage)
 			H.bioHolder.AddEffect("eaten") //gross
 		take_bleeding_damage(user, null, 0, DAMAGE_CUT, 0)
-		bleed(user, 15, 5)
+		bleed(user, 15, violent = TRUE)
 		user.emote("faint")
 		user.reagents.add_reagent("ectoplasm", 50)
 
@@ -979,7 +979,7 @@ SYNDICATE DRONE FACTORY AREAS
 			var/turf/middle = locate(src.x + 2, src.y + 2, src.z)
 			var/blood = 0
 			for(var/atom/A in range(2, middle))
-				if(istype(A, /obj/decal/cleanable/blood))
+				if(istype(A, /obj/decal/cleanable/tracked_reagents/blood))
 					blood = 1
 					break
 			if(blood == 1)

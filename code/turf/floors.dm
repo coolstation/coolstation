@@ -2063,6 +2063,9 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	fullbright = 0
 	material = null
 
+	bunker_grille
+		name = "placeholder bunker grille"
+
 	bloodwall
 		name = "bloody wall"
 		desc = "Gross."

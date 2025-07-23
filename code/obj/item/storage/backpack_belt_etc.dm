@@ -606,7 +606,7 @@
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/handcuffs, /obj/item/device/flash)
 
 	HoS
-		spawn_contents = list(/obj/item/gun/modular/italian/silly, //energy/taser_gun,
+		spawn_contents = list(/obj/item/gun/modular/italian/revolver/silly, //energy/taser_gun,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/handcuffs, /obj/item/device/flash)
 
 	offense

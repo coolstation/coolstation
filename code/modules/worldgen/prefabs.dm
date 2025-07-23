@@ -400,8 +400,9 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 
 	grill //test post do not bonk
 		maxNum = 1
+		required = 1
 		prefabPath = "assets/maps/prefabs/prefab_grill.dmm"
-		probability = 30
+		probability = 100
 		prefabSizeX = 10
 		prefabSizeY = 10
 

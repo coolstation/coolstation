@@ -100,7 +100,7 @@
 			for (var/turf/T in range(src, rand(1, 3)))
 				if(T.density)
 					continue
-				make_cleanable(/obj/decal/cleanable/blood/gibs, T)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, T)
 
 			if (prob(5) && occupant.organHolder?.heart)
 				occupant.organHolder.drop_organ("heart")

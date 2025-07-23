@@ -133,6 +133,9 @@
 		icon_state = "smes"
 
 	var/image/I = SafeGetOverlayImage("operating", 'icons/obj/machines/power.dmi', "smes-op[online]")
+	I.plane = PLANE_LIGHTING
+	I.layer = LIGHTING_LAYER_BASE
+	I.blend_mode = BLEND_ADD
 	UpdateOverlays(I, "operating")
 
 	I = SafeGetOverlayImage("chargemode",'icons/obj/machines/power.dmi', "smes-oc1")

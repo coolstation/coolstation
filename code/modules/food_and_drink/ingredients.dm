@@ -29,7 +29,7 @@
 		if (src.blood <= 0) return ..()
 
 		if (istype(T))
-			make_cleanable( /obj/decal/cleanable/blood,T)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T)
 			blood--
 		..()
 
