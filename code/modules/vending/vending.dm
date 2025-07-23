@@ -1375,6 +1375,7 @@
 	noknobs
 		desc = "If you want to get cancer, might as well do it in style!"
 		icon_state = "cigs"
+		has_glow = FALSE
 
 /obj/machinery/vending/cigarette/schweewa
 	icon_state = "s_cigs_old"
@@ -1673,6 +1674,7 @@
 	icon_panel = "generic-panel"
 	acceptcard = 0
 	pay = 0
+	has_glow = FALSE
 
 	light_r =1
 	light_g = 0.88
@@ -2375,6 +2377,7 @@
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
+	has_glow = FALSE
 
 	New()
 		. = ..()
@@ -2885,6 +2888,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #else
 	name = "Zoldorf"
 	desc = "A horrid old fortune-telling machine."
@@ -2908,6 +2912,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #endif
 	New()
 		..()
@@ -3142,6 +3147,7 @@
 	pay = 1
 	acceptcard = 1
 	vend_delay = 20
+	has_glow = FALSE
 	slogan_list = list("Look snappy in seconds!",
 	"Style over substance.")
 
