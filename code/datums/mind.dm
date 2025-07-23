@@ -16,6 +16,8 @@ datum/mind
 	var/completed_objs = 0 // completed crew objectives
 	var/all_objs = 0 // for sbux calcs
 
+	var/overrideHOS = FALSE
+	var/overrideSecOff = FALSE
 	var/assigned_role
 	var/special_role
 	var/late_special_role = 0

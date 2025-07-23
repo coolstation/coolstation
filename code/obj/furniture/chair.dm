@@ -141,7 +141,8 @@
 					C.c_color = src.icon_state
 					C.icon_state = "folded_[src.icon_state]"
 					C.item_state = C.icon_state
-
+				if (src.linked_trap)
+					src.linked_trap.trap_triggered(user)
 				qdel(src)
 			else
 				src.rotate()
@@ -208,6 +209,7 @@
 				to_buckle.buckled = src
 				src.stool_user = to_buckle
 				src.buckledIn = 1
+				SEND_SIGNAL(src,COMSIG_MOVABLE_CHAIR_BUCKLE,H,src)
 				to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
 				H.start_chair_flip_targeting()
 		else
@@ -223,6 +225,7 @@
 			to_buckle.set_loc(src.loc)
 			src.buckledIn = 1
 			to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
+			SEND_SIGNAL(src,COMSIG_MOVABLE_CHAIR_BUCKLE,to_buckle,src)
 		if (has_butt)
 			playsound(src, (has_butt.sound_fart ? has_butt.sound_fart : 'sound/voice/farts/fart1.ogg'), 50, 1)
 		else
@@ -256,6 +259,7 @@
 			SPAWN_DBG(0.5 SECONDS)
 				H.on_chair = 0
 				src.buckledIn = 0
+				SEND_SIGNAL(src,COMSIG_MOVABLE_CHAIR_BUCKLE,H,src)
 		else if ((M.buckled))
 			reset_anchored(M)
 			M.buckled = null
@@ -263,6 +267,7 @@
 			src.stool_user = null
 			SPAWN_DBG(0.5 SECONDS)
 				src.buckledIn = 0
+				SEND_SIGNAL(src,COMSIG_MOVABLE_CHAIR_BUCKLE,M,src)
 
 		playsound(src, "sound/misc/belt_click.ogg", 50, 1)
 
