@@ -27,6 +27,7 @@
 	var/paint_color = "#ff0000"
 	var/add_orig = 0.2
 	var/paint_intensity = 0.6
+	has_glow = FALSE
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if(user)

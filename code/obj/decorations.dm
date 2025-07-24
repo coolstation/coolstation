@@ -1579,3 +1579,211 @@ obj/decoration/ceilingfan
 	plane = PLANE_NOSHADOW_BELOW
 	//this is just a dummy until it gets logic
 
+/obj/neon_sign
+	name = "neon sign"
+	desc = "A neon sign that lights up the area with a soft glow."
+	icon = 'icons/obj/neonsigns.dmi'
+	icon_state = "git"
+	var/base_icon_state = "git"
+	var/animated = FALSE
+	var/light_brightness = 0.5
+	var/light_r = 1
+	var/light_g = 1
+	var/light_b = 1
+	var/datum/light/light
+	plane = BLEND_OVERLAY
+	layer = PLANE_SELFILLUM
+
+	New()
+		..()
+		if(animated)
+			icon_state = "[base_icon_state]-a"
+		else
+			icon_state = base_icon_state
+		light = new /datum/light/point
+		light.set_brightness(light_brightness)
+		light.set_color(light_r, light_g, light_b)
+		light.attach(src)
+		light.enable()
+
+
+/obj/neon_sign/toolbox
+	name = "toolbox neon sign"
+	desc = "A neon sign shaped like a toolbox."
+	icon_state = "toolbox"
+	base_icon_state = "toolbox"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/exit
+	name = "exit neon sign"
+	desc = "A neon exit sign."
+	icon_state = "exit"
+	base_icon_state = "exit"
+	animated = FALSE
+	light_r = 0.3
+	light_g = 0.9
+	light_b = 0.39
+/obj/neon_sign/nt
+	name = "nanotrasen neon sign"
+	desc = "A neon sign with the Nanotrasen logo."
+	icon_state = "nt"
+	base_icon_state = "nt"
+	animated = FALSE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/syndie
+	name = "syndicate neon sign"
+	desc = "A neon sign with the Syndicate logo."
+	icon_state = "syndie"
+	base_icon_state = "syndie"
+	animated = FALSE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/open
+	name = "open neon sign"
+	desc = "A neon sign that says 'OPEN'."
+	icon_state = "open"
+	base_icon_state = "open"
+	animated = TRUE
+	light_r = 0.52
+	light_g = 0.2
+	light_b = 1
+/obj/neon_sign/hearts
+	name = "heart neon sign"
+	desc = "A heart shaped neon sign."
+	icon_state = "hearts"
+	base_icon_state = "hearts"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/diamonds
+	name = "diamond neon sign"
+	desc = "A diamond shaped neon sign."
+	icon_state = "diamonds"
+	base_icon_state = "diamonds"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/spades
+	name = "spade neon sign"
+	desc = "A spade shaped neon sign."
+	icon_state = "spades"
+	base_icon_state = "spades"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/clubs
+	name = "club neon sign"
+	desc = "A club shaped neon sign."
+	icon_state = "clubs"
+	base_icon_state = "clubs"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/sun
+	name = "sun neon sign"
+	desc = "A neon sign shaped like a sun."
+	icon_state = "sun"
+	base_icon_state = "sun"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 1
+	light_b = 0.78
+/obj/neon_sign/medical
+	name = "medical neon sign"
+	desc = "A neon sign with a medical cross."
+	icon_state = "medical"
+	base_icon_state = "medical"
+	animated = FALSE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/medical/weed
+	name = "weed neon sign"
+	desc = "A neon sign with a green 'medical' cross."
+	icon_state = "weedzone"
+	base_icon_state = "weedzone"
+	animated = TRUE
+	light_r = 0.3
+	light_g = 0.9
+	light_b = 0.39
+/obj/neon_sign/peace
+	name = "peace neon sign"
+	desc = "A neon sign with a peace symbol."
+	icon_state = "peace"
+	base_icon_state = "peace"
+	animated = TRUE
+	light_r = 0.3
+	light_g = 0.9
+	light_b = 0.39
+/obj/neon_sign/bees
+	name = "bees neon sign"
+	desc = "A neon sign spelling out BIG BEES."
+	icon_state = "bees"
+	base_icon_state = "bees"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 1
+	light_b = 0.78
+/obj/neon_sign/syringe
+	name = "syringe neon sign"
+	desc = "A neon sign shaped like a syringe."
+	icon_state = "syringe"
+	base_icon_state = "syringe"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/knife
+	name = "knife neon sign"
+	desc = "A neon sign shaped like a knife."
+	icon_state = "knife"
+	base_icon_state = "knife"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/gun
+	name = "gun neon sign"
+	desc = "A neon sign shaped like a gun."
+	icon_state = "gun"
+	base_icon_state = "gun"
+	animated = FALSE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/flaming
+	name = "flamingo neon sign"
+	desc = "A neon sign shaped like a flamingo."
+	icon_state = "flaming"
+	base_icon_state = "flaming"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/caviar
+	name = "cocktail neon sign"
+	desc = "A neon sign shaped like a cocktail glass."
+	icon_state = "caviar"
+	base_icon_state = "caviar"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/beer
+	name = "beer neon sign"
+	desc = "A neon sign shaped like a beer mug."
+	icon_state = "beer"
+	base_icon_state = "beer"
+	animated = TRUE
+	light_r = 0.94
+	light_g = 0.98
+	light_b = 0.02
