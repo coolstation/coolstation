@@ -198,6 +198,10 @@
 			player.ready = 0
 			unassigned -= player //out for the count
 			boutput(player, "<b>You were sent back to the lobby after not rolling your favorite job.</b> <br> You can disable this by going to occupation>Only Spawn as favorite job.")
+			winset(player, "joinmenu.button_charsetup", "is-disabled=false")
+			winset(player, "joinmenu.button_ready", "is-disabled=false;is-visible=true")
+			winset(player, "joinmenu.button_cancel", "is-disabled=true;is-visible=false")
+			winset(player, "joinmenu.button_ready_antag", "is-disabled=false")
 			//this is if they checked the "Only Spawn as Favorite Job" check in job prefs. If they got antag, though, they get to keep rolling.
 			//if they chose a command role they won't be promoted anyway, because the only way for them to be promoted is if the slot were empty, and we already checked
 
