@@ -1,4 +1,5 @@
 // Cleaned up the ancient code that used to be here (Convair880).
+ABSTRACT_TYPE(/obj/item/mine) //To be safe I guess
 /obj/item/mine
 	name = "land mine (parent)"
 	desc = "You shouldn't be able to see this!"
@@ -23,7 +24,8 @@
 		if (!src.our_timer || !istype(src.our_timer))
 			src.our_timer = new /obj/item/device/timer(src)
 			src.our_timer.master = src
-
+			src.our_timer.ui_name = "Mine Timer"
+			src.our_timer.lock_once_timer_set = TRUE
 		return
 
 	examine()
