@@ -2836,6 +2836,10 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"jg" = (
+/obj/machinery/light_switch/north,
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "jh" = (
 /obj/cable,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
@@ -4026,11 +4030,6 @@
 	dir = 4
 	},
 /area/station/engine/hotloop)
-"ni" = (
-/obj/machinery/atmospherics/portables_connector/west,
-/obj/machinery/light_switch/south,
-/turf/floor/grime,
-/area/station/engine/hotloop)
 "nj" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/red/standard/edge/sw,
@@ -4158,7 +4157,7 @@
 	name = "utility sink"
 	},
 /obj/machinery/light_switch/north{
-	otherarea = /area/station/maintenance/disposal/sewage;
+	otherarea = "station/maintenance/disposal/sewage";
 	pixel_x = 11
 	},
 /turf/floor/grime,
@@ -5238,10 +5237,6 @@
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
 	})
-"ru" = (
-/obj/machinery/light_switch/north,
-/turf/floor/grime,
-/area/station/engine/coldloop)
 "ry" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
 /turf/floor/plating,
@@ -7940,6 +7935,10 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
+"AE" = (
+/obj/machinery/light_switch/north,
+/turf/floor/grime,
+/area/station/crew_quarters/fitness)
 "AF" = (
 /obj/decal/cleanable/mess/random_food,
 /obj/machinery/camera{
@@ -9321,6 +9320,15 @@
 /obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"Fg" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/light_switch/north,
+/turf/floor/plating,
+/area/station/crew_quarters/fitness)
 "Fh" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/disposal_pipedispenser/mobile{
@@ -9819,10 +9827,6 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
-"GT" = (
-/obj/machinery/light_switch/north,
-/turf/floor/grime,
-/area/station/engine/hotloop)
 "GU" = (
 /turf/floor/stairs{
 	dir = 8
@@ -10273,7 +10277,7 @@
 /obj/decal/tile_edge/stripe,
 /obj/machinery/door_timer/genpop_n/new_walls/north,
 /obj/machinery/light_switch/north{
-	otherarea = /area/station/security/brig/north_side;
+	otherarea = "station/security/brig/north_side";
 	pixel_x = 11
 	},
 /turf/floor/red/side{
@@ -11993,10 +11997,6 @@
 /obj/firedoor_spawn,
 /turf/floor/plating,
 /area/station/engine/gas)
-"Op" = (
-/obj/machinery/light_switch/north,
-/turf/floor/grime,
-/area/station/crew_quarters/fitness)
 "Oq" = (
 /obj/cable/blue,
 /obj/machinery/power/terminal,
@@ -12729,8 +12729,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
 /obj/machinery/light_switch/south{
-	otherarea = /area/station/security/brig/south_side;
-	pixel_x = 10
+	otherarea = "station/security/brig/south_side";
+	pixel_x = 11
 	},
 /turf/floor/red/side,
 /area/station/security/brig)
@@ -13139,15 +13139,6 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
-"Se" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/grille/catwalk/jen,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/machinery/light_switch/north,
-/turf/floor/plating,
-/area/station/crew_quarters/fitness)
 "Sg" = (
 /obj/disposalpipe/segment,
 /obj/grille/catwalk/jen,
@@ -14499,6 +14490,10 @@
 	},
 /turf/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
+"WX" = (
+/obj/machinery/light_switch/north,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "WY" = (
 /obj/table/reinforced/auto,
 /obj/item/hand_labeler{
@@ -15337,6 +15332,11 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"ZV" = (
+/obj/machinery/atmospherics/portables_connector/west,
+/obj/machinery/light_switch/south,
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "ZX" = (
 /obj/disposalpipe/segment/bent{
 	dir = 1
@@ -52934,7 +52934,7 @@ oO
 oO
 oO
 Ed
-Op
+AE
 il
 MW
 Lk
@@ -53850,7 +53850,7 @@ go
 fH
 qv
 Ep
-Se
+Fg
 oM
 Ex
 Ep
@@ -64139,7 +64139,7 @@ EL
 Eq
 Eq
 Eq
-GT
+WX
 Zt
 Cr
 Sy
@@ -64750,7 +64750,7 @@ zw
 kC
 el
 kC
-ru
+jg
 SH
 Ll
 Ud
@@ -66846,7 +66846,7 @@ ga
 ge
 TC
 Bs
-ni
+ZV
 Eq
 Eq
 Eq
