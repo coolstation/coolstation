@@ -835,6 +835,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 	can_fall = 0
 	mats = 30
 	ai_control_enabled = 1
+	has_glow = FALSE
 	var/homeloc = null
 
 	New()
@@ -939,6 +940,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 	can_fall = 0
 	mats = 30
 	ai_control_enabled = 0
+	has_glow = FALSE
 
 	New()
 		..()

@@ -143,6 +143,9 @@
 	var/light_g = 1
 	var/light_b = 1
 
+	var/has_glow = TRUE // is this machine emissive?
+	var/image/glow
+
 	var/output_target = null
 
 	power_usage = 50
@@ -150,6 +153,13 @@
 	var/window_size = "400x475"
 
 	New()
+		if(has_glow)
+			src.glow = image(src.icon, src, "[icon_state]_g")
+			src.glow.plane = PLANE_LIGHTING
+			src.glow.layer = LIGHTING_LAYER_BASE
+			src.glow.blend_mode = BLEND_ADD
+			src.UpdateOverlays(glow, "glow")
+
 		src.create_products()
 		AddComponent(/datum/component/mechanics_holder)
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Vend Random", "vendinput")
@@ -931,16 +941,22 @@
 	if (status & BROKEN)
 		icon_state = icon_broken ? icon_broken : "[initial(icon_state)]-broken"
 		light.disable()
+		if(src.has_glow)
+			src.UpdateOverlays(null, "glow")
 	else
 		if ( powered() )
 			icon_state = initial(icon_state)
 			status &= ~NOPOWER
 			light.enable()
+			if(src.has_glow)
+				src.UpdateOverlays(glow, "glow")
 		else
 			SPAWN_DBG(rand(0, 15))
 				src.icon_state = icon_off ? icon_off : "[initial(icon_state)]-off"
 				status |= NOPOWER
 				light.disable()
+				if(src.has_glow)
+					src.UpdateOverlays(null, "glow")
 
 /obj/machinery/vending/proc/fall(mob/living/carbon/victim)
 	if (can_fall != 1)
@@ -1275,9 +1291,9 @@
 	"Fill the gap in your stomach right now!",
 	"A fresh delight is only a bite away!",
 	"We feature Discount Dan's Noodle Soups!")
-	light_r =1
-	light_g = 0.4
-	light_b = 0.4
+	light_r =0.6
+	light_g = 0.92
+	light_b = 0.85
 
 	create_products()
 		..()
@@ -1330,9 +1346,9 @@
 	"I'd rather toolbox than switch.",
 	"Smoke!",
 	"Don't believe the reports - smoke today!")
-	light_r =0.55
-	light_g = 1
-	light_b = 0.5
+	light_r =0.7
+	light_g = 0.67
+	light_b = 0.51
 
 	create_products()
 		..()
@@ -1359,12 +1375,14 @@
 	noknobs
 		desc = "If you want to get cancer, might as well do it in style!"
 		icon_state = "cigs"
+		has_glow = FALSE
 
 /obj/machinery/vending/cigarette/schweewa
 	icon_state = "s_cigs_old"
 	icon_panel = "cigs-panel"
 	acceptcard = 0
 	desc = "Who still smokes these?"
+	has_glow = FALSE
 	slogan_list = list("Juicer Schweet's Original Rowdy Rillos, Quality you can crave.",
 	"Fresh Fine Flamable Farmaceuticals.",
 	"Smoke!",
@@ -1607,6 +1625,8 @@
 		light_g = 0.5
 		light_b = 1
 
+
+
 		create_products()
 			..()
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/blue, 10, cost=PAY_UNTRAINED/10)
@@ -1654,6 +1674,7 @@
 	icon_panel = "generic-panel"
 	acceptcard = 0
 	pay = 0
+	has_glow = FALSE
 
 	light_r =1
 	light_g = 0.88
@@ -2356,6 +2377,7 @@
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
+	has_glow = FALSE
 
 	New()
 		. = ..()
@@ -2725,7 +2747,7 @@
 /obj/machinery/vending/grub //remove this once there's literally any other method of generating grubs
 	name = "Grub Hub"
 	desc = "There's bugs in this here box!"
-	icon_state = "monkey"
+	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
 	acceptcard = 0
@@ -2866,6 +2888,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #else
 	name = "Zoldorf"
 	desc = "A horrid old fortune-telling machine."
@@ -2889,6 +2912,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #endif
 	New()
 		..()
@@ -3123,6 +3147,7 @@
 	pay = 1
 	acceptcard = 1
 	vend_delay = 20
+	has_glow = FALSE
 	slogan_list = list("Look snappy in seconds!",
 	"Style over substance.")
 
