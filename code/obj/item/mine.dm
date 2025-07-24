@@ -33,6 +33,12 @@ ABSTRACT_TYPE(/obj/item/mine) //To be safe I guess
 		if (!src.suppress_flavourtext)
 			. += "It appears to be [src.armed == 1 ? "armed" : "disarmed"]."
 
+	disposing()
+		//These haven't been cleaning up their timers for probably a decade :)
+		qdel(our_timer)
+		our_timer = null
+		..()
+
 	attack_hand(mob/user as mob)
 		src.add_fingerprint(user)
 
