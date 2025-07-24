@@ -1693,6 +1693,9 @@
 	pixel_y = 2
 	},
 /obj/machinery/light,
+/obj/neon_sign/caviar{
+	pixel_x = 32
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "ev" = (
@@ -2632,6 +2635,10 @@
 /obj/table/reinforced/bar{
 	icon_state = "3"
 	},
+/obj/machinery/door/poddoor/shutters/right{
+	id = "bar";
+	dir = 8
+	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
 	},
@@ -3420,10 +3427,10 @@
 	pixel_x = -2
 	},
 /obj/decal/cleanable/dirt/random,
-/obj/decal/poster/wallsign/bar{
-	pixel_y = 30
-	},
 /obj/window/east,
+/obj/neon_sign/bees{
+	pixel_y = 32
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/cafeteria)
 "jg" = (
@@ -3643,6 +3650,11 @@
 "jI" = (
 /obj/decal/slipmat/torn{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	layer = 3.5;
+	pixel_y = -24
 	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
@@ -3982,10 +3994,10 @@
 /area/station/science/lab)
 "kI" = (
 /obj/decal/cleanable/dirt/random,
-/obj/item/instrument/large/jukebox,
-/obj/decal/poster/wallsign/pope_portrait{
-	pixel_y = 32
+/obj/machinery/partyalarm{
+	pixel_y = 25
 	},
+/obj/item/instrument/large/jukebox/schmancy,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "kJ" = (
@@ -5409,6 +5421,9 @@
 /obj/table/reinforced/bar{
 	icon_state = "12"
 	},
+/obj/machinery/door/poddoor/shutters/right{
+	id = "coffee"
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -5606,6 +5621,9 @@
 "oV" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/bar,
+/obj/decal/poster/wallsign/chsl{
+	pixel_y = 32
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -5681,6 +5699,10 @@
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
 	dir = 1
+	},
+/obj/machinery/door_control{
+	id = "kitchen";
+	pixel_x = -26
 	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
@@ -8452,9 +8474,11 @@
 /area/station/chapel/sanctuary)
 "wA" = (
 /obj/item/plate/tray,
-/obj/machinery/door/firedoor/border_only,
 /obj/table/reinforced{
 	icon_state = "12"
+	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
 	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
@@ -9185,8 +9209,14 @@
 /turf/floor,
 /area/station/engine/storage)
 "yv" = (
-/turf/wall/wooden,
-/area/station/crew_quarters/bar)
+/obj/table/reinforced{
+	icon_state = "12"
+	},
+/obj/machinery/door/poddoor/shutters/left{
+	id = "kitchen"
+	},
+/turf/floor,
+/area/station/crew_quarters/kitchen)
 "yw" = (
 /obj/item/device/radio/intercom/brig{
 	dir = 8
@@ -9599,9 +9629,11 @@
 /turf/floor/plating,
 /area/station/hydroponics/lobby)
 "zB" = (
-/obj/machinery/door/firedoor/border_only,
 /obj/table/reinforced{
 	icon_state = "12"
+	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
 	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
@@ -11364,10 +11396,12 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "Ew" = (
-/obj/machinery/light/fluorescent/ceiling,
 /obj/disposalpipe/segment,
 /obj/table/reinforced/bar{
 	icon_state = "12"
+	},
+/obj/machinery/door/poddoor/shutters/left{
+	id = "coffee"
 	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
@@ -11915,6 +11949,10 @@
 /obj/table/reinforced/bar{
 	icon_state = "12"
 	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "coffee"
+	},
+/obj/machinery/light/fluorescent/ceiling,
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -11997,9 +12035,6 @@
 "Gh" = (
 /obj/machinery/vending/medical_public,
 /obj/decal/cleanable/dirt/random,
-/obj/decal/poster/wallsign/pride/italian{
-	pixel_y = 32
-	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "Gi" = (
@@ -12764,11 +12799,13 @@
 	},
 /area/station/science/lab)
 "Ii" = (
-/obj/machinery/door/firedoor/border_only,
 /obj/table/reinforced{
 	icon_state = "12"
 	},
 /obj/item/device/light/zippo,
+/obj/machinery/door/poddoor/shutters/right{
+	id = "kitchen"
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "Ij" = (
@@ -16702,6 +16739,9 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/neon_sign/beer{
+	pixel_x = 32
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "SN" = (
@@ -16903,6 +16943,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/table/reinforced/bar{
 	icon_state = "3"
+	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "bar";
+	dir = 8
 	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
@@ -17274,12 +17318,11 @@
 /turf/floor/plating,
 /area/station/maintenance/west)
 "Up" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	layer = 3.5;
-	pixel_y = -24
-	},
 /obj/decal/cleanable/mess/sodacan,
+/obj/machinery/door_control{
+	id = "bar";
+	pixel_y = -30
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -18050,6 +18093,10 @@
 /obj/table/reinforced/bar{
 	icon_state = "3"
 	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "bar";
+	dir = 8
+	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
 	},
@@ -18538,11 +18585,12 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/partyalarm{
-	pixel_y = 25
-	},
 /obj/table/reinforced/bar{
 	icon_state = "3"
+	},
+/obj/machinery/door/poddoor/shutters/left{
+	id = "bar";
+	dir = 8
 	},
 /turf/floor/specialroom/bar/edge{
 	dir = 5
@@ -19012,6 +19060,10 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/door_control{
+	id = "coffee";
+	pixel_y = -22
+	},
 /turf/floor/specialroom/bar{
 	icon_state = "dark"
 	},
@@ -67831,7 +67883,7 @@ Pk
 Pk
 gE
 Lq
-zB
+yv
 or
 YH
 sv
@@ -69643,7 +69695,7 @@ Jj
 pU
 dF
 Lx
-yv
+fe
 DR
 Fu
 jT
@@ -71153,7 +71205,7 @@ xf
 fe
 oG
 YX
-yv
+fe
 Gh
 Fu
 UD
@@ -71455,7 +71507,7 @@ Mm
 fe
 xc
 dF
-yv
+fe
 du
 Fc
 jL
@@ -71757,7 +71809,7 @@ zi
 fe
 OY
 dF
-yv
+fe
 kI
 uB
 SM
@@ -72059,15 +72111,15 @@ Wj
 fe
 dR
 dF
-yv
-yv
+fe
+fe
 oV
 fe
 XJ
 Wr
 Ts
 gR
-yv
+fe
 fe
 vX
 ra
