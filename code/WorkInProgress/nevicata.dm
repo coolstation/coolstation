@@ -1,5 +1,5 @@
 //#define NEVICATA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR)) * 2)
-#define NEVICATA_TIME 30
+#define NEVICATA_TIME 30 //set this define to whatever to test different times of day
 
 #define NEVICATA_PRESSURE ONE_ATMOSPHERE * 0.8
 #define WASTES_MIN_TEMP 125 //only marginally warmer than the real life Triton
@@ -13,8 +13,8 @@ var/global/nevicata_time = NEVICATA_TIME
 
 // 10 - dark and cold
 // 30 - little, slightly warmer sunrise
-// 70 - About as bright as twilight and as cold as the Titan.
-// 90 - The midday glow of Amica casts a long shadow, still really cold
+// 70 - About as bright as twilight and as cold as Titan.
+// 90 - <b>The midday glow of Amica casts a long shadow</b>, still really cold
 // 110 -The warmest it will be, which is still lethal.
 // 150 -Amica is beginning to set, and the bone chilling cold is creeping back(more bone chilling, rather.)
 //
@@ -116,7 +116,7 @@ var/global/nevicata_time = NEVICATA_TIME
 	luminosity = 1
 
 	var/datum/light/point/light = null
-	var/light_r = 0.3*(sin(NEVICATA_TIME)+1.1)
+	var/light_r = 0.25*(sin(NEVICATA_TIME)+1.1)
 	var/light_g = 0.15*(sin(NEVICATA_TIME)+1.1)
 	var/light_b = 0.2*(sin(NEVICATA_TIME)) + 0.3
 	var/light_brightness = 0.6*(sin(NEVICATA_TIME)) + 0.62
