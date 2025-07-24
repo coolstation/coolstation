@@ -6410,12 +6410,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = null
-	},
 /obj/landmark{
 	icon_state = "x3";
 	name = "peststart"
@@ -20237,6 +20231,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
+"tKP" = (
+/obj/storage/closet/wardrobe/grey,
+/turf/floor,
+/area/station/crew_quarters/showers)
 "tLj" = (
 /obj/table/reinforced/chemistry/auto,
 /obj/item/device/reagentscanner{
@@ -20476,6 +20474,20 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"ubC" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/grime,
+/area/station/maintenance/disposal)
 "ubF" = (
 /obj/cable/purple{
 	icon_state = "2-4"
@@ -20865,6 +20877,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
+/obj/storage/closet/wardrobe/mixed,
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "uqD" = (
@@ -24913,6 +24926,10 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
+"ybk" = (
+/obj/storage/closet/wardrobe/yellow,
+/turf/floor/plating,
+/area/station/maintenance/west)
 "ybK" = (
 /obj/lattice{
 	dir = 4;
@@ -59230,7 +59247,7 @@ tlS
 sLl
 sLl
 ugG
-gMv
+tKP
 sLl
 cdj
 wok
@@ -63735,7 +63752,7 @@ aUi
 hli
 hGk
 aUi
-icX
+ybk
 icX
 fBW
 qTr
@@ -63743,7 +63760,7 @@ qTr
 qTr
 qTr
 xNm
-mMO
+ubC
 hKS
 lcT
 xNm
