@@ -193,6 +193,13 @@
 			logTheThing("debug", player, null, "assigned job: [player.mind.assigned_role]")
 			unassigned -= player
 			JOB.assigned++
+		else if(player.client.preferences.only_spawn_favorite && !checktraitor(player))
+			logTheThing("debug",null,null, "<B>I Said No/Jobs:<B> [player] was unreadied after not recieving their favorite job, [JOB.name].")
+			player.ready = 0
+			unassigned -= player //out for the count
+			boutput(player, "<b>You were sent back to the lobby after not rolling your favorite job.</b> <br> You can disable this by going to occupation>Only Spawn as favorite job.")
+			//this is if they checked the "Only Spawn as Favorite Job" check in job prefs. If they got antag, though, they get to keep rolling.
+			//if they chose a command role they won't be promoted anyway, because the only way for them to be promoted is if the slot were empty, and we already checked
 
 	// Do this loop twice - once for med priority and once for low priority, because elsewise
 	// it was causing weird shit to happen where having something in low priority would
@@ -313,6 +320,7 @@
 		logTheThing("debug", null, null, "<b>I Said No/Jobs:</b> [player] given a low priority role")
 		player.mind.assigned_role = pick(low_priority_jobs)
 		logTheThing("debug", player, null, "assigned job: [player.mind.assigned_role]")
+
 
 	return 1
 
