@@ -1060,6 +1060,7 @@ var/global/list/mapNames = list(
 		..()
 		for(var/turf/space/magindara/pitfall_turf)
 			pitfall_turf.initialise_component()
+			LAGCHECK(LAG_HIGH)
 
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"

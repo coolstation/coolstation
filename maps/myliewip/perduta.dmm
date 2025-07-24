@@ -176,6 +176,12 @@
 "bH" = (
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five,
 /area/transit_vehicle/elevator/jani_top)
+"bM" = (
+/obj/machinery/door/poddoor/blast/single{
+	id = "combustionexhaust1"
+	},
+/turf/floor/engine,
+/area/station/engine/thermo)
 "bN" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/lattice,
@@ -184,6 +190,13 @@
 "bS" = (
 /turf/wall,
 /area/station/medical/medbay/restroom)
+"bX" = (
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "bZ" = (
 /turf/wall,
 /area/station/hydroponics/lobby)
@@ -213,6 +226,12 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"cl" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/disposalpipe/segment/produce/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "cm" = (
 /obj/railing/cool,
 /obj/railing/cool{
@@ -451,6 +470,11 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"dV" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/northeast,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "ec" = (
 /obj/cable{
 	d1 = 4;
@@ -559,6 +583,19 @@
 /obj/overlay/magindara_skylight/weather,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
+"fc" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/cable/blue{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/generatorTemp,
+/turf/floor/industrial,
+/area/station/engine/thermo)
+"fe" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "ff" = (
 /turf/floor/green/corner{
 	dir = 4
@@ -766,6 +803,9 @@
 /obj/access_spawn/morgue,
 /turf/floor/sanitary/blue,
 /area/station/medical/medbay/cloner)
+"gj" = (
+/turf/floor/engine,
+/area/station/engine/thermo)
 "gl" = (
 /obj/lattice{
 	dir = 4;
@@ -802,6 +842,11 @@
 /obj/machinery/vending/cigarette/noknobs,
 /turf/floor/carpet/grime,
 /area/station/security/checkpoint/medical)
+"gz" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northeast,
 /obj/table/auto,
@@ -1061,6 +1106,10 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"iz" = (
+/obj/machinery/atmospherics/pipe/simple/junction/south,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "iA" = (
 /obj/storage/cart/trash,
 /turf/floor/darkpurpleblack/corner{
@@ -1099,6 +1148,11 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"iT" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "iU" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -1225,6 +1279,12 @@
 "jO" = (
 /turf/floor/grass,
 /area/station/medical/research)
+"jY" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/power/terminal,
+/obj/cable/blue,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "kk" = (
 /obj/lattice{
 	dir = 5;
@@ -1631,6 +1691,16 @@
 /obj/table/reinforced/chemistry/auto,
 /turf/floor/purplewhite,
 /area/station/science/chemistry)
+"mB" = (
+/obj/railing/cool,
+/obj/machinery/door_control{
+	id = "combustionexhaust2";
+	name = "Combustion Exhaust";
+	pixel_y = 26
+	},
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "mE" = (
 /obj/machinery/deep_fryer,
 /turf/floor/white/checker2,
@@ -1692,6 +1762,11 @@
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/west)
+"mU" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/binary/circulatorTemp/right,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "mZ" = (
 /obj/table/reinforced/auto,
 /obj/window/reinforced/north,
@@ -2281,6 +2356,17 @@
 	},
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
+"qx" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "qA" = (
 /obj/machinery/light{
 	dir = 4
@@ -2326,6 +2412,14 @@
 	icon_state = "shaft_center"
 	},
 /area/magindara)
+"qP" = (
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "qR" = (
 /obj/submachine/cargopad{
 	name = "Robotics Workshop Pad"
@@ -2878,9 +2972,15 @@
 /obj/machinery/light/fluorescent/cyan{
 	dir = 1
 	},
-/obj/decal/cleanable/blood,
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
+"uN" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "uP" = (
 /turf/floor/red/corner{
 	dir = 8
@@ -3014,6 +3114,15 @@
 	},
 /turf/floor/cautionblack,
 /area/magindara)
+"vS" = (
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/northwest,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "vU" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -3044,6 +3153,10 @@
 /obj/item/clothing/suit/bedsheet/green,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
+"wc" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "wg" = (
 /turf/floor/red/corner,
 /area/station/hallway/primary/southwest)
@@ -3460,6 +3573,12 @@
 "zd" = (
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
+"zf" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/railing/cool,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "zm" = (
 /obj/stool/chair/couch/blue{
 	dir = 4;
@@ -3484,6 +3603,14 @@
 /obj/machinery/vending/monkey,
 /turf/floor/grass,
 /area/station/medical/research)
+"zs" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/southwest,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "zu" = (
 /obj/shrub{
 	dir = 10;
@@ -3541,6 +3668,12 @@
 "zL" = (
 /turf/floor/darkpurpleblack,
 /area/station/janitor/office)
+"zR" = (
+/obj/machinery/door/poddoor/blast/single{
+	id = "combustionexhaust2"
+	},
+/turf/floor/engine,
+/area/station/engine/thermo)
 "zU" = (
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/westleft,
@@ -3660,6 +3793,19 @@
 	},
 /turf/floor/white,
 /area/station/medical/staff)
+"An" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/autoname/east,
+/turf/floor/industrial,
+/area/station/engine/thermo)
+"Av" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "AF" = (
 /obj/disposalpipe/segment/sewage/bent/west,
 /obj/stool/bed/moveable,
@@ -3730,6 +3876,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"Bh" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
+/obj/disposaloutlet/small{
+	dir = 4
+	},
+/turf/floor/engine,
+/area/station/engine/thermo)
 "Bk" = (
 /obj/lattice{
 	dir = 10;
@@ -3757,6 +3910,11 @@
 /obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/crew_quarters/bar)
+"Bq" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Bs" = (
 /obj/health_scanner/wall{
 	find_in_range = 0;
@@ -3877,6 +4035,11 @@
 	},
 /turf/floor/plating,
 /area/magindara)
+"Cb" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/southwest,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Ck" = (
 /obj/table/reinforced/kitchen/auto,
 /obj/item/shaker/salt{
@@ -3970,6 +4133,10 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"CV" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "CW" = (
 /obj/grille/catwalk{
 	dir = 8
@@ -4029,6 +4196,11 @@
 	dir = 8
 	},
 /area/station/janitor/supply)
+"Dp" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/turf/floor/plating,
+/area/station/engine/thermo)
 "Dr" = (
 /turf/floor/darkpurpleblack{
 	dir = 1
@@ -4148,6 +4320,11 @@
 	},
 /turf/floor/plating,
 /area/magindara)
+"Eg" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Eh" = (
 /obj/landmark/start{
 	name = "Bartender"
@@ -4189,6 +4366,11 @@
 	dir = 9
 	},
 /area/station/hallway/primary/west)
+"EA" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/railing/cool,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "EB" = (
 /obj/machinery/light_switch/west,
 /turf/floor/grass,
@@ -4226,6 +4408,14 @@
 /obj/shrub/random,
 /turf/floor/grass,
 /area/station/medical/research)
+"EL" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/disposalpipe/trunk/produce{
+	dir = 4
+	},
+/obj/machinery/floorflusher,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "ES" = (
 /obj/decal/cleanable/paper{
 	name = "shredded manuscript"
@@ -4439,6 +4629,12 @@
 /obj/window/reinforced/west,
 /turf/floor/green,
 /area/station/hydroponics/lobby)
+"GA" = (
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "GG" = (
 /obj/railing/cool{
 	dir = 4
@@ -4477,6 +4673,10 @@
 /obj/firedoor_spawn,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
+"GW" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northwest,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "GY" = (
 /turf/floor/darkpurpleblack{
 	dir = 1
@@ -4818,6 +5018,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/west)
+"JB" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/station/engine/thermo)
 "JD" = (
 /obj/lattice{
 	dir = 2;
@@ -4859,6 +5066,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"JK" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "JN" = (
 /obj/lattice{
 	dir = 4;
@@ -4901,6 +5113,18 @@
 "JT" = (
 /turf/floor,
 /area/station/medical/research)
+"JV" = (
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/portables_connector/east,
+/turf/floor/industrial,
+/area/station/engine/thermo)
+"JZ" = (
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/valve/horizontal,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Kb" = (
 /obj/morgue{
 	dir = 2
@@ -5149,6 +5373,11 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"LG" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/binary/circulatorTemp,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "LH" = (
 /obj/grille/catwalk,
 /obj/railing/cool{
@@ -5267,6 +5496,14 @@
 	},
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
+"Mz" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/southeast,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "MA" = (
 /obj/machinery/door/airlock/medical,
 /obj/access_spawn/maint,
@@ -5372,6 +5609,10 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"Np" = (
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Ns" = (
 /obj/decal/poster/wallsign/medbay_right,
 /turf/wall,
@@ -5386,6 +5627,11 @@
 /obj/item/tweezers,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"Nw" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/northwest,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Ny" = (
 /obj/table/reinforced/kitchen/auto,
 /obj/item/plate{
@@ -5444,6 +5690,14 @@
 	},
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"NN" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "NQ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
 /turf/floor/plating,
@@ -5608,6 +5862,20 @@
 	dir = 4
 	},
 /area/station/hallway/primary/west)
+"Pi" = (
+/obj/machinery/atmospherics/pipe/vent/south,
+/turf/floor/engine,
+/area/station/engine/thermo)
+"Pl" = (
+/obj/railing/cool,
+/obj/machinery/door_control{
+	id = "combustionexhaust1";
+	name = "Combustion Expansion";
+	pixel_y = 26
+	},
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Pm" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2{
@@ -5727,6 +5995,10 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer/south,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"PU" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "PW" = (
 /obj/machinery/vending/standard,
 /turf/floor/plating,
@@ -5848,6 +6120,11 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"QN" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "QQ" = (
 /obj/machinery/light{
 	dir = 8;
@@ -6003,6 +6280,11 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"Rw" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Rz" = (
 /obj/machinery/power/apc{
 	areastring = "Medbay Operating Theater";
@@ -6196,6 +6478,10 @@
 	},
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
+"ST" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "Td" = (
 /obj/storage/closet/dresser{
 	pixel_x = 4
@@ -6224,6 +6510,29 @@
 	dir = 1
 	},
 /area/station/crew_quarters/clown)
+"Ti" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/power/smes{
+	charge = 2e+006;
+	chargelevel = 15000;
+	name = "SMES";
+	output = 10000
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/industrial,
+/area/station/engine/thermo)
+"Tj" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Tm" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/white/checker,
@@ -6296,6 +6605,10 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"TJ" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/floor/plating,
+/area/station/engine/thermo)
 "TK" = (
 /obj/grille/catwalk/cross{
 	dir = 6
@@ -6315,6 +6628,11 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"TR" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/disposalpipe/segment/produce/horizontal,
+/turf/floor/plating,
+/area/station/engine/thermo)
 "TT" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/decal/tile_edge/stripe/corner/big2{
@@ -6338,17 +6656,10 @@
 	pixel_y = 37;
 	pixel_x = -5
 	},
-/obj/decal/cleanable/blood{
-	pixel_y = 26;
-	icon_state = "helmetblood_c";
-	pixel_x = -5;
-	random_icon_states = null
-	},
 /obj/item/caution/target_sheet{
 	pixel_y = 9;
 	pixel_x = -1
 	},
-/obj/decal/cleanable/blood,
 /turf/floor/industrial,
 /area/station/hallway/primary/west)
 "Uf" = (
@@ -6463,6 +6774,11 @@
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"UD" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/pipe/manifold/overfloor/west,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "UF" = (
 /obj/decal/tile_edge/stripe,
 /obj/item/plant/herb/cannabis/spawnable{
@@ -6585,6 +6901,10 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"VD" = (
+/obj/machinery/atmospherics/pipe/simple/junction/north,
+/turf/floor/engine,
+/area/station/engine/thermo)
 "VF" = (
 /obj/grille/catwalk,
 /obj/disposalpipe/segment/morgue,
@@ -6777,6 +7097,9 @@
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
+"WM" = (
+/turf/wall/r_wall,
+/area/station/engine/thermo)
 "WO" = (
 /obj/machinery/light,
 /turf/floor,
@@ -6794,6 +7117,11 @@
 	dir = 9
 	},
 /area/magindara)
+"WX" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
+/turf/floor/plating,
+/area/station/engine/thermo)
 "Xb" = (
 /obj/window/reinforced/east,
 /turf/floor/wood/five,
@@ -6819,6 +7147,11 @@
 /obj/stool/chair,
 /turf/floor,
 /area/station/hallway/primary/west)
+"Xi" = (
+/obj/railing/cool,
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Xl" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
@@ -7098,6 +7431,13 @@
 /obj/railing/cool,
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
+"Ze" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/machinery/atmospherics/unary/cold_sink/freezer/north{
+	dir = 8
+	},
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Zi" = (
 /turf/floor/purplewhite{
 	dir = 5
@@ -7167,6 +7507,16 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"ZL" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "ZN" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2/left{
@@ -49051,15 +49401,15 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Mz
+fe
+fe
+fe
+LG
+fe
+fe
+dV
+EA
 SO
 SO
 SO
@@ -49353,16 +49703,16 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+Np
+Np
+Np
+fc
+jY
+Ti
+Bq
+EA
+FN
 SO
 SO
 SO
@@ -49655,16 +50005,16 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+Rw
+UD
+UD
+mU
+QN
+Tj
+Bq
+zf
+gl
 SO
 SO
 SO
@@ -49957,16 +50307,16 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+Eg
+Ze
+Ze
+EL
+Eg
+Tj
+Bq
+zf
+gl
 SO
 SO
 SO
@@ -50259,16 +50609,16 @@ sp
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+Cb
+iT
+iT
+cl
+gz
+An
+Bq
+JV
+FN
 SO
 SO
 SO
@@ -50561,16 +50911,16 @@ OX
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+WM
+TJ
+TJ
+TR
+TJ
+WM
+Bq
+GA
+gl
 SO
 SO
 SO
@@ -50863,16 +51213,16 @@ wi
 sp
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+TJ
+CV
+Av
+Bh
+VD
+Dp
+Nw
+JZ
+gl
 SO
 SO
 SO
@@ -51165,16 +51515,16 @@ Nz
 FN
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+NN
+TJ
+wc
+Av
+ST
+Pi
+WX
+JK
+vS
+FN
 SO
 SO
 SO
@@ -51467,16 +51817,16 @@ DF
 OX
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+zs
+Dp
+iz
+Av
+GW
+gj
+TJ
+Xi
+wi
+LE
 SO
 SO
 SO
@@ -51769,15 +52119,15 @@ DF
 FN
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+uN
+WM
+bM
+WM
+PU
+WM
+WM
+Pl
+gl
 SO
 SO
 SO
@@ -52071,15 +52421,15 @@ DF
 FN
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+uN
+TJ
+gj
+gj
+gj
+gj
+TJ
+Xi
+gl
 SO
 SO
 SO
@@ -52373,15 +52723,15 @@ DF
 OX
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+uN
+WM
+WM
+PU
+WM
+zR
+WM
+mB
+FN
 SO
 SO
 SO
@@ -52675,15 +53025,15 @@ DF
 FN
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+ZL
+bX
+bX
+qP
+JB
+JB
+JB
+qx
+gl
 SO
 SO
 SO
@@ -52941,17 +53291,17 @@ SO
 vX
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 OX
 sx
 sx
@@ -52980,12 +53330,12 @@ SO
 SO
 SO
 SO
+FN
 SO
 SO
 SO
-SO
-SO
-SO
+Ut
+LE
 SO
 SO
 SO
@@ -53243,17 +53593,17 @@ SA
 lg
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 OX
 sx
 sx
@@ -53545,17 +53895,17 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 PY
 sx
 sx
@@ -53847,17 +54197,17 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 PY
 sx
 sx
@@ -54149,17 +54499,17 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 PY
 sx
 sx
@@ -54451,17 +54801,17 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 OX
 sx
 sx
@@ -54753,27 +55103,27 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 OX
 sx
 sx
 sx
 sx
-SO
-SO
-SO
-SO
-SO
+sx
+sx
+sx
+sx
+sx
 OX
 SO
 rI
@@ -55055,27 +55405,27 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 OX
 sx
 sx
 sx
 sx
-SO
-SO
-SO
-SO
-SO
+sx
+sx
+sx
+sx
+sx
 OX
 SO
 rI
@@ -55357,27 +55707,27 @@ SO
 SO
 SO
 SO
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
+SO
 OX
 sx
 sx
 sx
 sx
-SO
-SO
-SO
-SO
-SO
+sx
+sx
+sx
+sx
+sx
 OX
 SO
 rI
