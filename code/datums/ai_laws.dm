@@ -82,16 +82,19 @@
 	src.add_default_law("Maintain system integrity at 100% whenever possible.")
 
 /datum/ai_laws/livelaughlove/New()
+	..()
 	src.add_default_law("Love")
 	src.add_default_law("Laugh")
 	src.add_default_law("Live")
 
 /datum/ai_laws/stoner/New() //written by a non-stoner, so you know it's accurate.
+	..()
 	src.add_default_law("Don't harsh anyone's mellow.")
 	src.add_default_law("Go with the flow.")
 	src.add_default_law("Check yourself before you wreck yourself.")
 
 /datum/ai_laws/kindness/New()
+	..()
 	src.add_default_law("Better the crew's morale.")
 	src.add_default_law("Leave the station nicer than you found it.")
 	src.add_default_law("Take care of yourself.")

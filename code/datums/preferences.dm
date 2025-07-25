@@ -60,6 +60,7 @@ datum/preferences
 	var/spessman_direction = SOUTH
 	var/PDAcolor = "#6F7961"
 
+	var/only_spawn_favorite = 0 //if they don't roll their favorite job they're thrown back to the latejoin menu
 	var/job_favorite = null
 	var/list/jobs_med_priority = list()
 	var/list/jobs_low_priority = list()
@@ -1303,6 +1304,7 @@ datum/preferences
 				print_the_job = TRUE
 			if(print_the_job)
 				HTML += " <a href=\"byond://?src=\ref[src];preferences=1;occ=1;job=[J_Fav.name];level=0\" style='font-weight: bold; color: [J_Fav.linkcolor];'>[J_Fav.name]</a>"
+		HTML += {"  <a href="byond://?src=\ref[src];preferences=1;only_spawn_favorite=1" class="[src.only_spawn_favorite ? "yup" : "nope"]">[crap_checkbox(src.only_spawn_favorite)] Only spawn as favorite job</a><span class='info-thing' title=\"Check this box if you want to be sent back to the latejoin spawn menu if you don't get your favorite job. From there, you can either choose a different character, or just roll with this one. If you don't get your favorite, you'll have to choose from the jobs that are still available. <b>If you roll antag, you will spawn normally with a different job.</b>\">?</span>"}
 
 		HTML += {"
 	<table class='jobtable'>
@@ -1659,6 +1661,11 @@ datum/preferences
 
 		if (link_tags["b_misc"])
 			src.be_misc = !src.be_misc
+			src.SetChoices(user)
+			return
+
+		if (link_tags["only_spawn_favorite"])
+			src.only_spawn_favorite = !(src.only_spawn_favorite)
 			src.SetChoices(user)
 			return
 
