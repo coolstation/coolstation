@@ -249,6 +249,7 @@
 				if (9) message_append = " Wow!"
 				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
+			JOB_XP_FORCE(user,"CIGARETTE",5)
 #ifdef DATALOGGER
 			if (target.mind && target.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
@@ -271,6 +272,7 @@
 				if (9) message = "<B>[user]</B> pulls on [his_or_her(user)] [src.name]."
 				//if (10) message = "<B>[user]</B> blows out some smoke in the shape of a [pick("butt","bee","heart","burger","gun","cube","face","dog","star")]!"
 			user.visible_message("<span class='alert'>[message]</span>", group = "blow_smoke")
+			JOB_XP_FORCE(user,"CIGARETTE",2)
 		src.cycle = 0 //do the transfer on the next cycle. Also means we get the lung damage etc rolls
 
 		src.puff_ready = 0
@@ -304,6 +306,7 @@
 							else
 								if (!H.organHolder.right_lung.robotic)
 									H.organHolder.damage_organ(0, 0, 1, "right_lung")
+							JOB_XP_FORCE(H,"CIGARETTE",1)
 				else
 					src.reagents.trans_to(M, puffrate)
 					src.reagents.reaction(M, INGEST, puffrate)
