@@ -3197,7 +3197,7 @@
 	//if (!trenchfloor.linked_hole)
 	boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
 	return
-
+/*
 ///Traverse from station to mining Z
 /mob/living/verb/swim_down()
 	set name = "Swim Down"
@@ -3222,6 +3222,7 @@
 	trenchhole.try_build_turf_list()
 	actions.start(new/datum/action/bar/private/swim_cross_z(pick(trenchhole.L)), src)
 	//src.set_loc(pick(trenchhole.L))
+*/
 #endif
 
 //Move this out to a human file later
