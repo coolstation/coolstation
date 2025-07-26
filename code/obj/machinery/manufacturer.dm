@@ -2558,11 +2558,11 @@
 	/datum/manufacture/clock,
 	/datum/manufacture/clock_ammo,
 	/datum/manufacture/saa,
-	/datum/manufacture/saa_ammo,*/
+	/datum/manufacture/saa_ammo,
 	/datum/manufacture/riot_launcher,
 	/datum/manufacture/riot_launcher_ammo_pbr,
 	/datum/manufacture/riot_launcher_ammo_flashbang,
-/*	/datum/manufacture/sniper,
+	/datum/manufacture/sniper,
 	/datum/manufacture/sniper_ammo,
 	/datum/manufacture/tac_shotgun,
 	/datum/manufacture/tac_shotgun_ammo,

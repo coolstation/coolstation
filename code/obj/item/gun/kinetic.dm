@@ -345,6 +345,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		src.set_dir(pick(alldirs))
 		return
 
+/*
 /obj/item/gun/kinetic/riot40mm
 	desc = "A 40mm riot control launcher."
 	name = "Riot launcher"
@@ -378,7 +379,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		TO_LOAD.Attackby(nade, user)
 		src.Attackby(TO_LOAD, user)
 
-/*
 /obj/item/gun/kinetic/foamdartgun
 	name = "Foam Dart Gun"
 	icon_state = "foamdartgun"

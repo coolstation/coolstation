@@ -3104,8 +3104,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "ammo"
-*/
-
 /datum/manufacture/riot_launcher	//
 	name = "Riot Launcher"
 	item_paths = list("MET-1")
@@ -3138,8 +3136,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 10 SECONDS
 	create = 1
 	category = "ammo"
-
-/*
 /datum/manufacture/sniper	//
 	name = "Sniper"
 	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
