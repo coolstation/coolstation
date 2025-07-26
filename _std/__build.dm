@@ -110,7 +110,7 @@
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-//#define MAP_OVERRIDE_CRAG						// secret >:)
+#define MAP_OVERRIDE_CRAG						// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
