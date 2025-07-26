@@ -364,12 +364,6 @@
 	supply_packs = list(/datum/supply_packs/complex/arc_smelter)
 	workstation_grade = 2
 */
-/datum/supply_control/weapon_kit
-	maximum_stock = 3
-	initial_stock = 1
-	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/nanotrasen/security/weapons2)
-
 /datum/supply_control/stun_baton
 	maximum_stock = 3
 	initial_stock = 2

@@ -15,6 +15,7 @@
 
 // Gun that shoots Securitrons
 
+/*
 /obj/item/ammo/bullets/beepsky
 	sname = "Beepsky"
 	name = "beepsky box"
@@ -74,8 +75,7 @@
 		src.ammo.amount_left = 1
 		src.ammo.max_amount = 1
 
-
-
+*/
 
 
 

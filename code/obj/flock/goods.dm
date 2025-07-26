@@ -55,6 +55,7 @@
 ////////////////
 // INCAPACITOR
 ////////////////
+/*
 /obj/item/gun/energy/flock
 	name = "incapacitor"
 	desc = "A clunky projectile weapon of alien machine origin. It appears to have been based off of a couple pictures of regular human guns, but with no clear understanding of ergonomics."
@@ -86,7 +87,7 @@
 		<br><span class='bold'>###=-</span></span><br>"}
 	else
 		return null // give the standard description
-
+*/
 ////////////
 // FLOCKCACHE
 ////////////

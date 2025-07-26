@@ -268,7 +268,7 @@
 					redraw = 2
 					reference = src
 			if("Armory")
-				user.put_in_hand_or_drop(new /obj/item/gun/energy/egun)
+				//user.put_in_hand_or_drop(new /obj/item/gun/energy/egun)
 			if("Bee")
 				var/obj/critter/domestic_bee/queen/q = new /obj/critter/domestic_bee/queen
 				q.beeMom = user

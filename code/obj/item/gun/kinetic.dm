@@ -345,6 +345,233 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		src.set_dir(pick(alldirs))
 		return
 
+/*
+/obj/item/gun/kinetic/riot40mm
+	desc = "A 40mm riot control launcher."
+	name = "Riot launcher"
+	icon_state = "40mm"
+	item_state = "40mm"
+	force = MELEE_DMG_LARGE
+	w_class = W_CLASS_BULKY
+	contraband = 7
+	caliber = 1.57
+	max_ammo_capacity = 1
+	muzzle_flash = "muzzle_flash_launch"
+
+	New()
+		ammo = new/obj/item/ammo/bullets/smoke/single
+		set_current_projectile(new/datum/projectile/bullet/smoke)
+		..()
+
+	attackby(obj/item/b as obj, mob/user as mob)
+		if (istype(b, /obj/item/chem_grenade) || istype(b, /obj/item/old_grenade))
+			if(src.ammo.amount_left > 0)
+				boutput(user, "<span class='alert'>The [src] already has something in it! You can't use the conversion chamber right now! You'll have to manually unload the [src]!</span>")
+				return
+			else
+				SETUP_GENERIC_ACTIONBAR(user, src, 1 SECOND, PROC_REF(convert_grenade), list(b, user), b.icon, b.icon_state,"", null)
+				return
+		else
+			..()
+
+	proc/convert_grenade(obj/item/nade, mob/user)
+		var/obj/item/ammo/bullets/grenade_shell/TO_LOAD = new /obj/item/ammo/bullets/grenade_shell
+		TO_LOAD.Attackby(nade, user)
+		src.Attackby(TO_LOAD, user)
+
+/obj/item/gun/kinetic/foamdartgun
+	name = "Foam Dart Gun"
+	icon_state = "foamdartgun"
+	desc = "A toy gun that fires foam darts. Keep out of reach of clowns, staff assistants and scientists."
+	w_class = W_CLASS_SMALL
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	item_state = "toygun"
+	contraband = 1
+	force = 1
+	caliber = 0.393
+	max_ammo_capacity = 10
+
+	New()
+		ammo = new/obj/item/ammo/bullets/foamdarts/ten
+		set_current_projectile(new/datum/projectile/bullet/foamdart)
+		..()
+
+/obj/item/gun/kinetic/derringer
+	name = "derringer"
+	desc = "A small and easy-to-hide gun that comes with 2 shots. (Can be hidden in worn clothes and retrieved by using the wink emote)"
+	icon_state = "derringer"
+	force = MELEE_DMG_PISTOL
+	caliber = 0.41
+	max_ammo_capacity = 2
+	w_class = W_CLASS_SMALL
+	muzzle_flash = null
+
+	afterattack(obj/O as obj, mob/user as mob)
+		if (O.loc == user && O != src && istype(O, /obj/item/clothing))
+			boutput(user, "<span class='hint'>You hide the derringer inside \the [O]. (Use the wink emote while wearing the clothing item to retrieve it.)</span>")
+			user.u_equip(src)
+			src.set_loc(O)
+			src.dropped(user)
+		else
+			..()
+		return
+
+	New()
+		ammo = new/obj/item/ammo/bullets/derringer
+		set_current_projectile(new/datum/projectile/bullet/derringer)
+		..()
+
+/obj/item/gun/kinetic/derringer/empty
+	New()
+		..()
+		ammo.amount_left = 0
+		update_icon()
+*/
+/obj/item/gun/kinetic/dueling_pistol
+	name = "dueling pistol"
+	desc = "Let's settle this."
+	w_class = W_CLASS_NORMAL
+	icon_state = "dueling_pistol"
+	//color = "#ABBBFF"
+	caliber = 6969 //
+	contraband = 0 //Beepsky DO NOT INTERFERE
+
+	max_ammo_capacity = 1
+
+	New()
+		ammo = new/obj/item/ammo/bullets/dueling
+		ammo.amount_left = 0 //Start empty
+		set_current_projectile(new/datum/projectile/bullet/dueling)
+		..()
+
+	dropped(mob/user) //I can guarantee someone's gonna try and cheat this by dropping the gun before the opponent's bullet can hit them
+		ON_COOLDOWN(user, "duel_anticheat", 1.5 SECONDS) //Jokes on you chump
+		..()
+
+/obj/item/storage/box/dueling
+	name = "dueling pistol case"
+	desc = "A very fancy case for those arguments that words cannot resolve."
+	icon_state = "dueling_case_thats_a_shitty_edit_of_the_hard_case" //I couldn't be bothered at this point
+	slots = 3
+
+	spawn_contents = list(/obj/item/gun/kinetic/dueling_pistol = 2,\
+	/obj/item/ammo/bullets/dueling)
+
+/*
+/obj/item/gun/kinetic/meowitzer
+	name = "\improper Meowitzer"
+	desc = "It purrs gently in your hands."
+	icon = 'icons/obj/items/mining.dmi'
+	icon_state = "blaster"
+
+	color = "#ff7b00"
+	force = MELEE_DMG_LARGE
+	caliber = 20
+	max_ammo_capacity = 1
+	auto_eject = 0
+	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY
+	spread_angle = 0
+	can_dual_wield = 0
+	slowdown = 0
+	slowdown_time = 0
+	two_handed = 1
+	w_class = W_CLASS_BULKY
+
+	New()
+		ammo = new/obj/item/ammo/bullets/meowitzer
+		set_current_projectile(new/datum/projectile/special/meowitzer)
+		..()
+
+	afterattack(atom/A, mob/user as mob)
+		if(src.ammo.amount_left < max_ammo_capacity && istype(A, /obj/critter/cat))
+			src.ammo.amount_left += 1
+			user.visible_message("<span class='alert'>[user] loads \the [A] into \the [src].</span>", "<span class='alert'>You load \the [A] into \the [src].</span>")
+			src.current_projectile.icon_state = A.icon_state //match the cat sprite that we load
+			qdel(A)
+			return
+		else
+			..()
+
+/obj/item/gun/kinetic/meowitzer/inert
+	New()
+		..()
+		ammo = new/obj/item/ammo/bullets/meowitzer/inert
+		set_current_projectile(new/datum/projectile/special/meowitzer/inert)
+
+// Ported from old, non-gun RPG-7 object class (Convair880).
+/obj/item/gun/kinetic/rpg7
+	desc = "A rocket-propelled grenade launcher licensed by the Space Irish Republican Army."
+	name = "MPRT-7"
+	icon = 'icons/obj/large/64x32.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	icon_state = "rpg7"
+	uses_multiple_icon_states = 1
+	item_state = "rpg7"
+	wear_image_icon = 'icons/mob/back.dmi'
+	flags = ONBACK | FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY
+	w_class = W_CLASS_BULKY
+	throw_speed = 2
+	throw_range = 4
+	force = MELEE_DMG_LARGE
+	contraband = 8
+	caliber = 1.58
+	max_ammo_capacity = 1
+	can_dual_wield = 0
+	two_handed = 1
+	muzzle_flash = "muzzle_flash_launch"
+	has_empty_state = 1
+
+	New()
+		ammo = new /obj/item/ammo/bullets/rpg
+		ammo.amount_left = 0 // Spawn empty.
+		set_current_projectile(new /datum/projectile/bullet/rpg)
+		..()
+		return
+
+	update_icon()
+		..()
+		if (src.ammo.amount_left < 1)
+			src.item_state = "rpg7_empty"
+		else
+			src.item_state = "rpg7"
+		if (ishuman(src.loc))
+			var/mob/living/carbon/human/H = src.loc
+			H.update_inhands()
+
+	loaded
+		New()
+			..()
+			ammo.amount_left = 1
+			src.update_icon()
+			return
+
+/obj/item/gun/kinetic/antisingularity
+	desc = "An experimental rocket launcher designed to deliver various payloads in rocket format."
+	name = "Singularity Buster rocket launcher"
+	icon = 'icons/obj/large/64x32.dmi'
+	icon_state = "ntlauncher"
+	item_state = "ntlauncher"
+	w_class = W_CLASS_BULKY
+	throw_speed = 2
+	throw_range = 4
+	force = MELEE_DMG_LARGE
+	caliber = 1.12 //Based on APILAS
+	max_ammo_capacity = 1
+	can_dual_wield = 0
+	two_handed = 1
+	muzzle_flash = "muzzle_flash_launch"
+
+	New()
+		ammo = new /obj/item/ammo/bullets/antisingularity
+		ammo.amount_left = 0 // Spawn empty.
+		set_current_projectile(new /datum/projectile/bullet/antisingularity)
+		..()
+		return
+
+	setupProperties()
+		..()
+		setProperty("movespeed", 0.8)
+
 /obj/item/gun/kinetic/minigun
 	name = "Minigun"
 	desc = "The M134 Minigun is a 7.62×51mm NATO, six-barrel rotary machine gun with a high rate of fire."
@@ -392,39 +619,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 /obj/item/gun/kinetic/revolver/vr
 	icon = 'icons/effects/VR.dmi'
 
-/obj/item/gun/kinetic/derringer
-	name = "derringer"
-	desc = "A small and easy-to-hide gun that comes with 2 shots. (Can be hidden in worn clothes and retrieved by using the wink emote)"
-	icon_state = "derringer"
-	force = MELEE_DMG_PISTOL
-	caliber = 0.41
-	max_ammo_capacity = 2
-	w_class = W_CLASS_SMALL
-	muzzle_flash = null
-
-	afterattack(obj/O as obj, mob/user as mob)
-		if (O.loc == user && O != src && istype(O, /obj/item/clothing))
-			boutput(user, "<span class='hint'>You hide the derringer inside \the [O]. (Use the wink emote while wearing the clothing item to retrieve it.)</span>")
-			user.u_equip(src)
-			src.set_loc(O)
-			src.dropped(user)
-		else
-			..()
-		return
-
-	New()
-		ammo = new/obj/item/ammo/bullets/derringer
-		set_current_projectile(new/datum/projectile/bullet/derringer)
-		..()
-
-/obj/item/gun/kinetic/derringer/empty
-	New()
-		..()
-		ammo.amount_left = 0
-		update_icon()
-
 //no, chappie doesn't just get a fancy bespoke non-modular gun's
-/*
 /obj/item/gun/kinetic/faith
 	name = "Faith"
 	desc = "'Cause ya gotta have Faith."
@@ -441,7 +636,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/bullet_22/faith
 		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
-*/
 
 /obj/item/gun/kinetic/detectiverevolver
 	name = "Detective Special revolver"
@@ -851,86 +1045,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		set_current_projectile(new/datum/projectile/bullet/flare)
 		..()
 
-/obj/item/gun/kinetic/riot40mm
-	desc = "A 40mm riot control launcher."
-	name = "Riot launcher"
-	icon_state = "40mm"
-	item_state = "40mm"
-	force = MELEE_DMG_LARGE
-	w_class = W_CLASS_BULKY
-	contraband = 7
-	caliber = 1.57
-	max_ammo_capacity = 1
-	muzzle_flash = "muzzle_flash_launch"
-
-	New()
-		ammo = new/obj/item/ammo/bullets/smoke/single
-		set_current_projectile(new/datum/projectile/bullet/smoke)
-		..()
-
-	attackby(obj/item/b as obj, mob/user as mob)
-		if (istype(b, /obj/item/chem_grenade) || istype(b, /obj/item/old_grenade))
-			if(src.ammo.amount_left > 0)
-				boutput(user, "<span class='alert'>The [src] already has something in it! You can't use the conversion chamber right now! You'll have to manually unload the [src]!</span>")
-				return
-			else
-				SETUP_GENERIC_ACTIONBAR(user, src, 1 SECOND, PROC_REF(convert_grenade), list(b, user), b.icon, b.icon_state,"", null)
-				return
-		else
-			..()
-
-	proc/convert_grenade(obj/item/nade, mob/user)
-		var/obj/item/ammo/bullets/grenade_shell/TO_LOAD = new /obj/item/ammo/bullets/grenade_shell
-		TO_LOAD.Attackby(nade, user)
-		src.Attackby(TO_LOAD, user)
-
-
-// Ported from old, non-gun RPG-7 object class (Convair880).
-/obj/item/gun/kinetic/rpg7
-	desc = "A rocket-propelled grenade launcher licensed by the Space Irish Republican Army."
-	name = "MPRT-7"
-	icon = 'icons/obj/large/64x32.dmi'
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	icon_state = "rpg7"
-	uses_multiple_icon_states = 1
-	item_state = "rpg7"
-	wear_image_icon = 'icons/mob/back.dmi'
-	flags = ONBACK | FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY
-	w_class = W_CLASS_BULKY
-	throw_speed = 2
-	throw_range = 4
-	force = MELEE_DMG_LARGE
-	contraband = 8
-	caliber = 1.58
-	max_ammo_capacity = 1
-	can_dual_wield = 0
-	two_handed = 1
-	muzzle_flash = "muzzle_flash_launch"
-	has_empty_state = 1
-
-	New()
-		ammo = new /obj/item/ammo/bullets/rpg
-		ammo.amount_left = 0 // Spawn empty.
-		set_current_projectile(new /datum/projectile/bullet/rpg)
-		..()
-		return
-
-	update_icon()
-		..()
-		if (src.ammo.amount_left < 1)
-			src.item_state = "rpg7_empty"
-		else
-			src.item_state = "rpg7"
-		if (ishuman(src.loc))
-			var/mob/living/carbon/human/H = src.loc
-			H.update_inhands()
-
-	loaded
-		New()
-			..()
-			ammo.amount_left = 1
-			src.update_icon()
-			return
 
 /obj/item/gun/kinetic/coilgun_TEST
 	name = "coil gun"
@@ -961,7 +1075,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		set_current_projectile(new/datum/projectile/bullet/airzooka)
 		..()
 
-/*
 /obj/item/gun/kinetic/smg_old //testing keelin's continuous fire POC
 	name = "submachine gun"
 	desc = "An automatic submachine gun"
@@ -980,7 +1093,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smg
 		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
-*/
 
 //  <([['v') - Gannets Nuke Ops Class Guns - ('u']])>  //
 
@@ -1420,7 +1532,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		setProperty("movespeed", 0.8)
 
 // WIP //////////////////////////////////
-/*/obj/item/gun/kinetic/sniper/antimateriel
+/obj/item/gun/kinetic/sniper/antimateriel
 	name = "M20-S antimateriel cannon"
 	desc = "A ruthlessly powerful rifle chambered for a 20mm cannon round. Built to destroy vehicles and infrastructure at range."
 	icon = 'icons/obj/large/64x32.dmi'
@@ -1455,7 +1567,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 0.3)*/
+		setProperty("movespeed", 0.3)
 
 /obj/item/gun/kinetic/flintlockpistol
 	name = "flintlock pistol"
@@ -1487,33 +1599,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			return
 
 
-/obj/item/gun/kinetic/antisingularity
-	desc = "An experimental rocket launcher designed to deliver various payloads in rocket format."
-	name = "Singularity Buster rocket launcher"
-	icon = 'icons/obj/large/64x32.dmi'
-	icon_state = "ntlauncher"
-	item_state = "ntlauncher"
-	w_class = W_CLASS_BULKY
-	throw_speed = 2
-	throw_range = 4
-	force = MELEE_DMG_LARGE
-	caliber = 1.12 //Based on APILAS
-	max_ammo_capacity = 1
-	can_dual_wield = 0
-	two_handed = 1
-	muzzle_flash = "muzzle_flash_launch"
-
-	New()
-		ammo = new /obj/item/ammo/bullets/antisingularity
-		ammo.amount_left = 0 // Spawn empty.
-		set_current_projectile(new /datum/projectile/bullet/antisingularity)
-		..()
-		return
-
-	setupProperties()
-		..()
-		setProperty("movespeed", 0.8)
-
 /obj/item/gun/kinetic/gungun //meesa jarjar binks
 	name = "Gun"
 	desc = "A gun that shoots... something. It looks like a modified grenade launcher."
@@ -1528,49 +1613,6 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo.amount_left = 6 //spawn full please
 		set_current_projectile(new /datum/projectile/special/spawner/gun)
 		..()
-
-/obj/item/gun/kinetic/meowitzer
-	name = "\improper Meowitzer"
-	desc = "It purrs gently in your hands."
-	icon = 'icons/obj/items/mining.dmi'
-	icon_state = "blaster"
-
-	color = "#ff7b00"
-	force = MELEE_DMG_LARGE
-	caliber = 20
-	max_ammo_capacity = 1
-	auto_eject = 0
-	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY
-	spread_angle = 0
-	can_dual_wield = 0
-	slowdown = 0
-	slowdown_time = 0
-	two_handed = 1
-	w_class = W_CLASS_BULKY
-
-	New()
-		ammo = new/obj/item/ammo/bullets/meowitzer
-		set_current_projectile(new/datum/projectile/special/meowitzer)
-		..()
-
-	afterattack(atom/A, mob/user as mob)
-		if(src.ammo.amount_left < max_ammo_capacity && istype(A, /obj/critter/cat))
-			src.ammo.amount_left += 1
-			user.visible_message("<span class='alert'>[user] loads \the [A] into \the [src].</span>", "<span class='alert'>You load \the [A] into \the [src].</span>")
-			src.current_projectile.icon_state = A.icon_state //match the cat sprite that we load
-			qdel(A)
-			return
-		else
-			..()
-
-/obj/item/gun/kinetic/meowitzer/inert
-	New()
-		..()
-		ammo = new/obj/item/ammo/bullets/meowitzer/inert
-		set_current_projectile(new/datum/projectile/special/meowitzer/inert)
-
-
-
 
 /obj/item/gun/kinetic/SMG_briefcase
 	name = "secure briefcase"
@@ -1651,50 +1693,4 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			icon_state="guncase"
 		else
 			icon_state="secure"
-
-/obj/item/gun/kinetic/foamdartgun
-	name = "Foam Dart Gun"
-	icon_state = "foamdartgun"
-	desc = "A toy gun that fires foam darts. Keep out of reach of clowns, staff assistants and scientists."
-	w_class = W_CLASS_SMALL
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	item_state = "toygun"
-	contraband = 1
-	force = 1
-	caliber = 0.393
-	max_ammo_capacity = 10
-
-	New()
-		ammo = new/obj/item/ammo/bullets/foamdarts/ten
-		set_current_projectile(new/datum/projectile/bullet/foamdart)
-		..()
-
-/obj/item/gun/kinetic/dueling_pistol
-	name = "dueling pistol"
-	desc = "Let's settle this."
-	w_class = W_CLASS_NORMAL
-	icon_state = "dueling_pistol"
-	//color = "#ABBBFF"
-	caliber = 6969 //
-	contraband = 0 //Beepsky DO NOT INTERFERE
-
-	max_ammo_capacity = 1
-
-	New()
-		ammo = new/obj/item/ammo/bullets/dueling
-		ammo.amount_left = 0 //Start empty
-		set_current_projectile(new/datum/projectile/bullet/dueling)
-		..()
-
-	dropped(mob/user) //I can guarantee someone's gonna try and cheat this by dropping the gun before the opponent's bullet can hit them
-		ON_COOLDOWN(user, "duel_anticheat", 1.5 SECONDS) //Jokes on you chump
-		..()
-
-/obj/item/storage/box/dueling
-	name = "dueling pistol case"
-	desc = "A very fancy case for those arguments that words cannot resolve."
-	icon_state = "dueling_case_thats_a_shitty_edit_of_the_hard_case" //I couldn't be bothered at this point
-	slots = 3
-
-	spawn_contents = list(/obj/item/gun/kinetic/dueling_pistol = 2,\
-	/obj/item/ammo/bullets/dueling)
+*/

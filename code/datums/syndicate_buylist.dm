@@ -48,23 +48,25 @@ proc/build_syndi_buylist_cache()
 	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/*
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: Italian Pistol Rounds"
 	item = /obj/item/stackable_ammo/pistol/italian/ten
 	cost = 1
 	desc = "Ten rounds of chump-poppers, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: Italian Pistol Rounds (AP)"
-	item = /obj/item/stackable_ammo/pistol/italian/AP/five
+	item = /obj/item/stackable_ammo/pistol/italian/AP/ten
 	cost = 1
-	desc = "Five rounds of vest-shredders, in case you run out."
+	desc = "Ten rounds of vest-shredders, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/buckshot
 	name = "Ammo: Juicer Shotgun Buckshot"
-	item = /obj/item/stackable_ammo/scatter/juicer/ten
+	item = /obj/item/stackable_ammo/shotgun/juicer/ten
 	cost = 2
 	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
@@ -72,7 +74,7 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/weapon/radbow
 	name = "Ammo: Rad Poison Crossbow Bolts"
 	item = /obj/item/stackable_ammo/pistol/radbow/ten
-	cost = 3
+	cost = 2
 	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisoning. Can be fired from any modular gun. Popular with the NT pistol."
 	blockedmode = list(/datum/game_mode/revolution)
 
@@ -215,9 +217,9 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/derringer
 	name = "Gun: Derringer"
-	item = /obj/item/gun/kinetic/derringer
+	item = /obj/item/gun/modular/italian/revolver/derringer/preloaded
 	cost = 2
-	desc = "A small pistol that can be hidden inside worn clothes and retrieved using the wink emote. Comes with two shots and does extreme damage at close range."
+	desc = "A tiny revolver loaded wtih three shots of Italian rimfire, incredibly lethal at incredibly short ranges. This gun is small enough to be stashed in worn clothes and retrieved with the wink emote."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/utility/stealthstorage
@@ -830,7 +832,7 @@ This is basically useless for anyone but miners.
 	desc = "A box of shot glasses that hold WAAAY more that normal. Cheat at drinking games!"
 	job = list("Bartender")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
+/*
 /datum/syndicate_buylist/traitor/vuvuzelagun
 	name = "Vuvuzela Gun"
 	item = /obj/item/gun/energy/vuvuzela_gun
@@ -838,7 +840,7 @@ This is basically useless for anyone but miners.
 	desc = "<b>BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</b>"
 	job = list("Assistant","Technical Assistant","Medical Assistant","Staff Assistant", "Clown")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
+*/
 /datum/syndicate_buylist/traitor/moustache_grenade
 	name = "Moustache Grenade"
 	item = /obj/item/old_grenade/moustache
@@ -862,14 +864,6 @@ This is basically useless for anyone but miners.
 	desc = "Tired of destroying your own face with acid reactions? Want to make the janitor feel incompetent? This kit gets you started with three grenades. Just add beakers and screw! Now holds LARGE beakers."
 	job = list("Chemist","Scientist","Research Director")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
-/datum/syndicate_buylist/traitor/ammo_38AP // 2 TC for 1 speedloader was very poor value compared to other guns and traitor items in general (Convair880).
-	name = ".38 AP ammo box"
-	item = /obj/item/storage/box/ammo38AP
-	cost = 0 //2
-	desc = "Armor-piercing ammo for a .38 Special revolver (not included)."
-	job = list("Detective")
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution, /datum/game_mode/spy_theft)
 
 /datum/syndicate_buylist/traitor/traitorthermalscanner
 	name = "Advanced Optical Thermal Scanner"
@@ -951,14 +945,14 @@ This is basically useless for anyone but miners.
 	cost = 2
 	desc = "An ornamental dagger for stabbing people with."
 	blockedmode = list(/datum/game_mode/spy)
-
+/*
 /datum/syndicate_buylist/surplus/advanced_laser
 	name = "Laser Rifle"
 	item = /obj/item/gun/energy/laser_gun/pred
 	cost = 6
 	desc = "An experimental laser design with a self-charging cerenkite battery."
 	blockedmode = list(/datum/game_mode/spy_theft ,/datum/game_mode/spy, /datum/game_mode/revolution)
-
+*/
 /datum/syndicate_buylist/surplus/breachingT
 	name = "Thermite Breaching Charge"
 	item = /obj/item/breaching_charge/thermite
@@ -980,12 +974,14 @@ This is basically useless for anyone but miners.
 	desc = "A signal flaregun for emergency use. Or for setting jerks on fire"
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy)
 
+/*
 /datum/syndicate_buylist/surplus/rifle
 	name = "Old Hunting Rifle"
 	item = /obj/item/gun/kinetic/hunting_rifle
 	cost = 7
 	desc = "An old hunting rifle, comes with only four bullets. Use them wisely."
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy, /datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/surplus/bananagrenades
 	name = "Banana Grenades"

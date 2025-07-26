@@ -103,6 +103,7 @@
 		src.color = "#890000"
 
 // pew pew
+/*
 /obj/item/implant/projectile/bullet_flechette
 	name = "flechette"
 	desc = "A small, nasty-looking steel dart designed to pierce through armor and space suits."
@@ -168,3 +169,4 @@ obj/item/ammo/bullets/flechette_mag
 		ammo = new/obj/item/ammo/bullets/flechette_mag
 		set_current_projectile(new/datum/projectile/bullet/flechette)
 		..()
+*/

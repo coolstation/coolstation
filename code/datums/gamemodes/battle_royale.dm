@@ -167,9 +167,9 @@ proc/hide_weapons_everywhere()
 
 
 	// Feel free to add more!
-	murder_supplies.Add(/obj/item/gun/kinetic/light_machine_gun)
+	/*murder_supplies.Add(/obj/item/gun/kinetic/light_machine_gun)
 	murder_supplies.Add(/obj/item/gun/kinetic/assault_rifle)
-	murder_supplies.Add(/obj/item/gun/kinetic/pistol)
+	murder_supplies.Add(/obj/item/gun/kinetic/pistol)*/
 
 
 	for_by_tcl(S, /obj/storage) // imcoder

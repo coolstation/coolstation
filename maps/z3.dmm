@@ -98,7 +98,6 @@
 	info = "Ok Boris, you know what? Until you can spell your own fucking name right we're not going to let you make tactical decisions regarding the loot. I've put code locks on these things anyway, it'll be fine. Pickup is next week. And for fucks sake, read a book. - Daniel";
 	name = "hastily scribbled note"
 	},
-/obj/item/gun/kinetic/zipgun,
 /turf/floor/plating/airless/asteroid,
 /area/space)
 "aaw" = (
@@ -21522,7 +21521,7 @@
 	pixel_x = -4;
 	pixel_y = 30;
 	random_code = 1;
-	spawn_contents = list(/obj/item/ammo/bullets/rifle_3006,/obj/item/reagent_containers/food/snacks/pizza/vendor/mushroom,/obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni)
+	spawn_contents = list(/obj/item/stackable_ammo/rifle/juicer/five,/obj/item/reagent_containers/food/snacks/pizza/vendor/mushroom,/obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni)
 	},
 /turf/floor/setpieces/martian,
 /area/evilreaver/bridge)

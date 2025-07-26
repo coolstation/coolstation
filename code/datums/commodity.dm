@@ -1112,22 +1112,23 @@
 	lowerfluc = -5000
 
 /datum/commodity/contraband/birdbomb
-	comname = "12ga AEX ammo"
-	comtype = /obj/item/ammo/bullets/aex
-	desc = "12 gauge ammo marked 12ga AEX Large Wildlife Dispersal Cartridge. Huh."
-	price = 40000
-	baseprice = 40000
-	upperfluc = 10000
-	lowerfluc = -5000
+	comname = "Firework Rounds (3x)"
+	comtype = /obj/item/stackable_ammo/shotgun/slug_boom/three
+	desc = "Long 16mm ammo with fireworks doodled all over it. Huh."
+	price = 5000
+	baseprice = 5000
+	upperfluc = 2000
+	lowerfluc = -800
 
 /datum/commodity/contraband/flare
-	comname = "12ga Flare Shells"
-	comtype = /obj/item/ammo/bullets/flare
-	desc = "Military-grade 12 gauge flare shells. Guaranteed to brighten your day."
-	price = 15000
-	baseprice = 15000
-	upperfluc = 2500
-	lowerfluc = -2500
+	comname = "Flares (10x)"
+	comtype = /obj/item/stackable_ammo/shotgun/slug_flare/ten
+	desc = "Military-grade 16mm flare shells. Guaranteed to brighten your day."
+	price = 2000
+	baseprice = 2000
+	upperfluc = 500
+	lowerfluc = -500
+
 /*
 /datum/commodity/contraband/eguncell_highcap
 	comname = "High-Capacity Power Cell"
@@ -2353,6 +2354,7 @@
 	upperfluc = 100
 	lowerfluc = -20
 
+/*
 /datum/commodity/toygun
 	comname = "Toy Gun"
 	comtype = /obj/item/gun/kinetic/foamdartgun
@@ -2362,11 +2364,12 @@
 	baseprice = 2000
 	upperfluc = 100
 	lowerfluc = -100
+*/
 
-/datum/commodity/toygunammo
-	comname = "Foam Darts"
-	comtype = /obj/item/ammo/bullets/foamdarts
-	desc = "A box of foam darts for toy guns."
+/datum/commodity/foam_pistol_ammo
+	comname = "Foam Darts (10x)"
+	comtype = /obj/item/stackable_ammo/pistol/foamdart/ten
+	desc = "A box of foam darts."
 	onmarket = 0
 	price = 200
 	baseprice = 200
@@ -2630,6 +2633,7 @@
 	upperfluc = 15000
 	lowerfluc = -15000
 
+/*
 /datum/commodity/flock/tech/incapacitor
 	comname = "Incapacitor"
 	comtype = /obj/item/gun/energy/flock
@@ -2637,6 +2641,7 @@
 	price = 30000
 	upperfluc = 12500
 	lowerfluc = -12500
+*/
 
 /////////////////////////////////
 ///////skeleton trader //////////
@@ -2833,6 +2838,7 @@
 	lowerfluc = -200
 
 ///////////////////greg///////////////////////////////
+/*
 /datum/commodity/airzooka
 	comname = "Donk Co. brand Airzooka"
 	comtype = /obj/item/gun/kinetic/airzooka
@@ -2862,6 +2868,7 @@
 	baseprice = 500
 	upperfluc = 500
 	lowerfluc = -500
+*/
 
 /datum/commodity/owleggs
 	comname = "Owl Eggs"

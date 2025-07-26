@@ -11,8 +11,9 @@
 	max_wclass = 1
 	slots = 5
 	does_not_open_in_pocket = 0
-	can_hold = list(/obj/item/ammo)
+	can_hold = list(/obj/item/stackable_ammo)
 
+/*
 	assault_rifle
 		name = "rifle magazine pouch"
 		icon_state = "ammopouch-large"
@@ -79,11 +80,12 @@
 		slots = 4
 		spawn_contents = list(/obj/item/ammo/bullets/grenade_round/explosive = 2,
 		/obj/item/ammo/bullets/grenade_round/high_explosive = 2)
+*/
 
 	rpg
 		name = "MPRT rocket pouch"
 		slots = 4
-		spawn_contents = list(/obj/item/ammo/bullets/rpg = 2)
+		spawn_contents = list(/obj/item/stackable_ammo/he_rocket = 2)
 
 /obj/item/storage/grenade_pouch
 	name = "grenade pouch"

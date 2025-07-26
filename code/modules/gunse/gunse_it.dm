@@ -12,7 +12,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	gun_DRM = GUN_ITALIAN
 	jam_frequency = 0
 	var/cylinder_index = 1
-	var/chambered_index = 1
+	var/chambered_index = 0
 	var/dirty_ammo = TRUE
 	var/stored_ammo_count = 0 // only count our ammo when actually needed, otherwise use tricks to avoid checking the entire cylinder a ton
 
@@ -65,7 +65,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 			src.chambered_index = src.cylinder_index
 			. = TRUE
-			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 25, extrarange = -28)
+			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
 
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
@@ -132,7 +132,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	stock_overlay_y = -2
 	load_time = 1 SECOND
 	max_ammo_capacity = 6
-	bulkiness = 1
+	bulkiness = 2
 
 	shoot_delay = 0.1 SECONDS // this is a lie. its actually 0.6ish seconds if youre good
 	reload_cooldown = 0.2 SECONDS
@@ -144,7 +144,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	//much too consider
 
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/atom/point_blank_target)
-		if(!src.currently_firing && !src.jammed)
+		if(src.built && !src.currently_firing && !src.jammed)
 			src.currently_firing = TRUE
 			var/offset_x = target.x - start.x
 			var/offset_y = target.y - start.y
@@ -243,7 +243,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 			return // TODO - feedback
 		if(src.current_projectile)
 			if(src.reload_cooldown)
-				ON_COOLDOWN(src, "mess_with_gunse", src.reload_cooldown)
+				ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)
 			. = ..()
 		src.chamber_round(user)
 		if(src.current_projectile) // yes, empty cylinders count as failures
@@ -259,6 +259,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
 			src.cylinder_index = 1
+		src.chambered_index = src.cylinder_index
 		return FALSE
 
 	build_gun()
@@ -297,7 +298,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	spread_angle = 1
 	jam_frequency = 1
 	barrel_overlay_x = 6
-	barrel_overlay_y = -1
+	barrel_overlay_y = 0
 	grip_overlay_x = -6
 	grip_overlay_y = -3
 	stock_overlay_x = -7
@@ -320,7 +321,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 
 	// ultra heavy Double Action Only revolver
 	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
-		if(!src.currently_firing && !src.jammed)
+		if(src.built && !src.currently_firing && !src.jammed)
+			ON_COOLDOWN(user, "mess_with_gunse", 1 SECOND)
 			. = TRUE
 			src.currently_firing = TRUE
 			var/offset_x = target.x - start.x
@@ -366,6 +368,68 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		if(src.current_projectile)
 			return "[floor(src.current_projectile.power * BARREL_SCALING(src.barrel?.length))] - [floor(src.current_projectile.ks_ratio * 100)]% lethal - x[2 + !!src.stock] range"
 		return "[round(100 * BARREL_SCALING(src.barrel?.length), 0.5)]% power - x[src.dissipation_divisor + !!src.stock] range"
+
+//THE LAUNCHER
+//
+ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
+/obj/item/gun/modular/italian/launcher
+	name = "abstract Italian launcher"
+	real_name = "abstract Italian launcher"
+	icon_state = "italian_launcher"
+	barrel_overlay_x = 11
+	barrel_overlay_y = 0
+	grip_overlay_x = -11
+	grip_overlay_y = -3
+	stock_overlay_x = -12
+	stock_overlay_y = -1
+	max_ammo_capacity = 3
+	bulkiness = 5
+	caliber = CALIBER_SPUD
+	load_time = 1.5 SECONDS
+	spread_angle = 0
+	jam_frequency = 3
+	reload_cooldown = 1.5 SECONDS
+
+	var/currently_firing = FALSE
+
+	// similar to sniper, but slower and weightier
+	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield,var/mob/point_blank_target)
+		if(src.built && !src.currently_firing && !src.jammed)
+			ON_COOLDOWN(user, "mess_with_gunse", 1.2 SECONDS)
+			. = TRUE
+			src.currently_firing = TRUE
+			var/offset_x = target.x - start.x
+			var/offset_y = target.y - start.y
+			SPAWN_DBG(0)
+				if(!src.current_projectile)
+					chamber_round()
+					sleep(0.6 SECONDS)
+				if (src.current_projectile)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 30, 1)
+					sleep(0.3 SECONDS)
+					if(src.current_projectile && src.loc == user && !src.jammed)
+						var/turf/T_start = get_turf(user)
+						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
+						if(T_start && T_target)
+							..(T_target, T_start, user, POX, POY, is_dual_wield, point_blank_target)
+					else
+						playsound(src.loc, "sound/weapons/dryfire.ogg", 50, 1)
+					sleep(0.3 SECONDS)
+				else
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 30, 1)
+					sleep(0.3 SECONDS)
+					playsound(src.loc, "sound/weapons/dryfire.ogg", 50, 1)
+				sleep(0.3 SECONDS)
+				src.currently_firing = FALSE
+
+	chamber_round(mob/user)
+		playsound(src.loc, "sound/weapons/cylinderclickheavy1.ogg", 50, 0, -10)
+		. = ..()
+
+	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		playsound(src.loc, "sound/weapons/cylinderclickheavy1.ogg", 50, 0, -10)
+		ON_COOLDOWN(user, "mess_with_gunse", 0.7 SECONDS)
+		. = ..()
 
 // REVOLVERS
 
@@ -426,6 +490,23 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		barrel = new /obj/item/gun_parts/barrel/italian/joker(src)
 		grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
 
+/obj/item/gun/modular/italian/revolver/derringer
+	name = "lightweight Italian revolver"
+	real_name = "\improper Sicario"
+	desc = "Buttateli nella polvere con questa piccola arma da fuoco."
+	max_ammo_capacity = 2
+	bulkiness = 1
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/italian/derringer(src)
+		grip = new/obj/item/gun_parts/grip/italian(src)
+
+/obj/item/gun/modular/italian/revolver/derringer/preloaded
+	New()
+		..()
+		src.ammo_list = list(/datum/projectile/bullet/pistol/italian/derringer, /datum/projectile/bullet/pistol/italian/derringer, /datum/projectile/bullet/pistol/italian/derringer)
+		src.stored_ammo_count = 3
+		src.inventory_counter.update_number(src.ammo_reserve())
 
 // RATTLERS
 
@@ -585,3 +666,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 		else if (prob(40))
 			grip = new /obj/item/gun_parts/grip/italian/cowboy/pearl(src)
 		barrel = new /obj/item/gun_parts/barrel/italian/silenced(src)
+
+/obj/item/gun/modular/italian/launcher/basic
+	name = "Italian grenade launcher"
+	real_name = "\improper Rivolta"
+	desc = "Un lanciarazzi antisommossa di grossa cilindrata, utilizzato per lanciare fumogeni e granate per disperdere la folla."
+
+	make_parts()
+		stock = new /obj/item/gun_parts/stock/italian/wire(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/grenade(src)

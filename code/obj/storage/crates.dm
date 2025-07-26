@@ -556,6 +556,7 @@
 
 // Gannets' Nuke Ops Specialist Class Crates
 
+
 /obj/storage/crate/classcrate
 	name = "class crate"
 	desc = "A class crate"
@@ -565,6 +566,7 @@
 	icon_closed = "attachecase"
 	weld_image_offset_Y = -5
 
+/*
 	demo
 		name = "Class Crate - Grenadier"
 		desc = "A crate containing a Specialist Operative loadout. This one features a hand-held grenade launcher and a pile of ordnance."
@@ -704,9 +706,10 @@
 		/obj/item/clothing/gloves/swat/knight,
 		//obj/item/clothing/suit/space/syndicate/knight,
 		/obj/item/clothing/head/helmet/space/syndicate/specialist/knight)
+*/
 
 	qm //Hi Gannets, I like your crate and wanted to use it for some QM stuff. Come yell at Azungar if this is not ok.
-		name = "Weapons crate"
+		name = "weapons crate"
 		desc = "Just a fancy crate that may or may not contain weapons."
 
 

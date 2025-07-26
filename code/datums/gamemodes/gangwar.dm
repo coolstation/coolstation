@@ -1249,9 +1249,6 @@
 
 		//gun score
 		else if (istype(item, /obj/item/gun))
-			if(istype(item, /obj/item/gun/kinetic/foamdartgun))
-				boutput(user, "<span class='alert'><b>You cant stash toy guns in the locker<b></span>")
-				return 0
 			// var/obj/item/gun/gun = item
 			gang.score_gun += floor(300)
 			gang.spendable_points += floor(300)
@@ -1884,18 +1881,6 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 	class2 = "weapon"
 	price = 30000
 	item_path = /obj/item/sword
-/datum/gang_item/space/phaser_gun
-	name = "Phaser Gun"
-	desc = "It shoots phasers."
-	class2 = "weapon"
-	price = 1300
-	item_path = /obj/item/gun/energy/phaser_gun
-/datum/gang_item/space/laser_gun
-	name = "Laser Gun"
-	desc = "It shoots lasers."
-	class2 = "weapon"
-	price = 20000
-	item_path = /obj/item/gun/energy/laser_gun
 /datum/gang_item/space/stims
 	name = "Stimulants"
 	desc = "These drugs'll keep you goin'."
@@ -1905,6 +1890,8 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 ////////////////////////////////////////////////////////
 /////////////COUNTRY WESTERN////////////////////////////
 /////////////////////////////////////////////////////////
+
+/*
 /datum/gang_item/country_western/colt_saa
 	name = "Colt Single Action Army .45"
 	desc = "It shoots bullets."
@@ -1917,7 +1904,7 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 	class2 = "weapon"
 	price = 700
 	item_path = /obj/item/ammo/bullets/c_45
-
+*/
 
 /datum/gang_item/misc/bathsalts
 	name = "Bathsalts Pill Bottle"

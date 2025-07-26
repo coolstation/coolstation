@@ -48,10 +48,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		if(prob(25))
 			stock = new /obj/item/gun_parts/stock/italian/wire(src)
 		if(prob(60))
-			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+			accessory = new /obj/item/gun_parts/accessory/magazine/juicer(src)
 		else
-			magazine = new /obj/item/gun_parts/magazine/juicer(src)
-		if(prob(40))
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 /obj/item/gun/modular/juicer/blunder
@@ -66,7 +64,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 			grip = new /obj/item/gun_parts/grip/juicer/black(src)
 		else
 			grip = new /obj/item/gun_parts/grip/juicer(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+		accessory = new /obj/item/gun_parts/accessory/magazine/juicer/four(src)
 
 /obj/item/gun/modular/juicer/long
 	name = "\improper Juicer 'sniper'"
@@ -80,9 +78,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 			grip = new /obj/item/gun_parts/grip/italian/bigger(src)
 		if(prob(50))
 			//foregrip = new /obj/item/gun_parts/grip/juicer(src)
-			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+			accessory = new /obj/item/gun_parts/accessory/magazine/juicer/four(src)
 		else
-			magazine = new /obj/item/gun_parts/magazine/juicer/five(src)
+			accessory = new /obj/item/gun_parts/accessory/magazine/juicer/five(src)
 
 /obj/item/gun/modular/juicer/ribbed
 	name = "\improper Juicer dildogun"
@@ -95,7 +93,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		else
 			grip = new /obj/item/gun_parts/grip/juicer/black(src)
 		if(prob(50))
-			//foregrip = new /obj/item/gun_parts/grip/juicer/black(src)
-			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+			accessory = new /obj/item/gun_parts/accessory/magazine/juicer/four(src)
 		else
-			magazine = new /obj/item/gun_parts/magazine/juicer(src)
+			accessory = new /obj/item/gun_parts/accessory/magazine/juicer(src)

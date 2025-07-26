@@ -536,8 +536,8 @@
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		droploot = /obj/item/shipcomponent/secondary_system/crash
-		projectile_type = /datum/projectile/bullet/slug_boom
-		current_projectile = new/datum/projectile/bullet/slug_boom
+		projectile_type = /datum/projectile/bullet/slug/boom
+		current_projectile = new/datum/projectile/bullet/slug/boom
 		attack_cooldown = 50
 		New()
 			..()
@@ -555,8 +555,8 @@
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		droploot = /obj/item/bang_gun
-		projectile_type = /datum/projectile/bullet/rifle_medium
-		current_projectile = new/datum/projectile/bullet/rifle_medium
+		projectile_type = /datum/projectile/bullet/rifle/soviet
+		current_projectile = new/datum/projectile/bullet/rifle/soviet
 		attack_cooldown = 20
 		New()
 			..()
@@ -709,8 +709,8 @@
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		//NT faction rep deprecated
 		//droploot = /obj/item/factionrep/ntboard
-		projectile_type = /datum/projectile/bullet/lmg/weak
-		current_projectile = new/datum/projectile/bullet/lmg/weak
+		projectile_type = /datum/projectile/bullet/pistol/juicer
+		current_projectile = new/datum/projectile/bullet/pistol/juicer
 		attack_cooldown = 20
 		projectile_spread = 13
 
@@ -1273,9 +1273,9 @@
 	alertsound1 = 0
 
 	alertsound2 = 0
-	projectile_type = /datum/projectile/bullet/pistol_heavy
-	current_projectile = new/datum/projectile/bullet/pistol_heavy
-	attack_cooldown = 20
+	projectile_type = /datum/projectile/bullet/pistol/juicer
+	current_projectile = new/datum/projectile/bullet/pistol/juicer
+	attack_cooldown = 15
 
 	var/voice_gender = "male"
 

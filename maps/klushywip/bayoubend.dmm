@@ -1516,6 +1516,16 @@
 	},
 /turf/floor/grime,
 /area/station/security/brig/genpop)
+"blP" = (
+/obj/decal/poster/wallsign/stencil/right/z{
+	pixel_y = 20;
+	pixel_x = 10
+	},
+/obj/decal/poster/wallsign/stencil/right/a{
+	pixel_x = 1
+	},
+/turf/wall,
+/area/station/crew_quarters/kitchen)
 "blY" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5298,18 +5308,6 @@
 /obj/machinery/drainage,
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
-"edN" = (
-/obj/table/reinforced/industrial/auto,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten{
-	pixel_y = 8
-	},
-/obj/item/stackable_ammo/scatter/NT/mini/ten,
-/obj/item/stackable_ammo/scatter/NT/ten{
-	pixel_y = -10
-	},
-/obj/item/stackable_ammo/pistol/HP/ten,
-/turf/floor,
-/area/station/security/armory)
 "eek" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -6648,6 +6646,17 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/north)
+"eYp" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/stackable_ammo/shotgun/juicer/ten{
+	pixel_y = 14
+	},
+/obj/item/stackable_ammo/pistol/tranq/five,
+/obj/item/stackable_ammo/pistol/anti_mutant/five{
+	pixel_y = 8
+	},
+/turf/floor,
+/area/station/security/armory)
 "eYH" = (
 /obj/table/auto,
 /obj/item/game_kit,
@@ -7507,6 +7516,20 @@
 "fDt" = (
 /turf/wall,
 /area/station/medical/robotics)
+"fDO" = (
+/obj/decal/poster/wallsign/stencil/right/p{
+	pixel_y = 20;
+	pixel_x = -1
+	},
+/obj/decal/poster/wallsign/stencil/right/i{
+	pixel_x = 5
+	},
+/obj/decal/poster/wallsign/stencil/right/z{
+	pixel_y = -1;
+	pixel_x = -2
+	},
+/turf/wall,
+/area/station/crew_quarters/kitchen)
 "fEt" = (
 /obj/decal/tile_edge/line/black{
 	dir = 8;
@@ -12801,17 +12824,6 @@
 	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
-"jEN" = (
-/obj/table/reinforced/industrial/auto,
-/obj/item/stackable_ammo/scatter/juicer/ten{
-	pixel_y = 14
-	},
-/obj/item/stackable_ammo/pistol/tranq/five,
-/obj/item/stackable_ammo/pistol/anti_mutant/five{
-	pixel_y = 8
-	},
-/turf/floor,
-/area/station/security/armory)
 "jFG" = (
 /obj/machinery/ghost_catcher,
 /turf/floor/plating/airless/asteroid,
@@ -25337,20 +25349,6 @@
 	dir = 8
 	},
 /area/station/crew_quarters/market)
-"sqb" = (
-/obj/decal/poster/wallsign/stencil/right/p{
-	pixel_y = 20;
-	pixel_x = -1
-	},
-/obj/decal/poster/wallsign/stencil/right/i{
-	pixel_x = 5
-	},
-/obj/decal/poster/wallsign/stencil/right/z{
-	pixel_y = -1;
-	pixel_x = -2
-	},
-/turf/wall,
-/area/station/crew_quarters/kitchen)
 "sqy" = (
 /obj/machinery/light{
 	dir = 4;
@@ -26615,7 +26613,7 @@
 /obj/disposalpipe/segment/brig,
 /obj/item/ammo/bullets/smoke,
 /obj/item/crowbar,
-/obj/item/gun/kinetic/riot40mm{
+/obj/item/gun/modular/italian/launcher/basic{
 	pixel_y = 12
 	},
 /turf/floor/red/side,
@@ -28208,20 +28206,6 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/quarters_west)
-"unr" = (
-/obj/cable{
-	icon_state = "0-4"
-	},
-/obj/disposalpipe/segment/sewage{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/obj/decal/cleanable/rust/jen,
-/turf/floor/blackwhite/whitegrime,
-/area/station/crew_quarters/bar)
 "unu" = (
 /obj/stool/chair{
 	dir = 1;
@@ -28581,6 +28565,19 @@
 	},
 /turf/space,
 /area/space)
+"uBn" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	icon_state = "camera";
+	name = "autoname - SS13";
+	tag = ""
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/floor/blackwhite/whitegrime,
+/area/station/crew_quarters/bar)
 "uBG" = (
 /obj/cable/brown{
 	icon_state = "4-8"
@@ -30163,6 +30160,20 @@
 "vPf" = (
 /turf/wall/r_wall,
 /area/station/engine/core)
+"vPK" = (
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/disposalpipe/segment/sewage{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/decal/cleanable/rust/jen,
+/turf/floor/blackwhite/whitegrime,
+/area/station/crew_quarters/bar)
 "vPY" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -30817,6 +30828,18 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
+"wqS" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten{
+	pixel_y = 8
+	},
+/obj/item/stackable_ammo/shotgun/NT/mini/ten,
+/obj/item/stackable_ammo/shotgun/NT/ten{
+	pixel_y = -10
+	},
+/obj/item/stackable_ammo/pistol/HP/ten,
+/turf/floor,
+/area/station/security/armory)
 "wqV" = (
 /obj/table,
 /obj/machinery/recharger{
@@ -30979,19 +31002,6 @@
 /obj/item/device/radio/intercom/loudspeaker/speaker/ceiling,
 /turf/floor/carpet/arcade,
 /area/station/crew_quarters/clown)
-"wux" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	icon_state = "camera";
-	name = "autoname - SS13";
-	tag = ""
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/floor/blackwhite/whitegrime,
-/area/station/crew_quarters/bar)
 "wuX" = (
 /obj/random_item_spawner/junk/one,
 /turf/floor/plating/random,
@@ -32125,16 +32135,6 @@
 	dir = 8
 	},
 /area/station/medical/robotics)
-"xrt" = (
-/obj/decal/poster/wallsign/stencil/right/z{
-	pixel_y = 20;
-	pixel_x = 10
-	},
-/obj/decal/poster/wallsign/stencil/right/a{
-	pixel_x = 1
-	},
-/turf/wall,
-/area/station/crew_quarters/kitchen)
 "xrM" = (
 /obj/decal/cleanable/fungus,
 /turf/wall/r_wall,
@@ -67531,8 +67531,8 @@ ipT
 aIk
 sLA
 khI
-edN
-jEN
+wqS
+eYp
 wDz
 aIk
 vfX
@@ -77856,7 +77856,7 @@ aao
 orT
 ozH
 oCN
-unr
+vPK
 xfY
 reC
 kXc
@@ -78755,10 +78755,10 @@ aDM
 aDM
 bNb
 bNb
-sqb
-xrt
+fDO
+blP
 ndV
-wux
+uBn
 vmH
 rVD
 oWR

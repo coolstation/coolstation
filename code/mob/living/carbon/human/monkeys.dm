@@ -707,7 +707,7 @@
 		..()
 		SPAWN_DBG(1 SECOND)
 			src.equip_new_if_possible(/obj/item/clothing/glasses/sunglasses, slot_glasses)
-			src.equip_new_if_possible(/obj/item/gun/kinetic/detectiverevolver, slot_l_hand)
+			src.equip_new_if_possible(/obj/item/gun/modular/italian/revolver/basic, slot_l_hand)
 			src.equip_new_if_possible(/obj/item/clothing/under, slot_w_uniform)
 
 /mob/living/carbon/human/npc/monkey/sea/rich

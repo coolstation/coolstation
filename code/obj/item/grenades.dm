@@ -91,6 +91,8 @@ PIPE BOMBS + CONSTRUCTION
 				user.show_message("<span class='notice'>You set [src] for a [det_time/10] second detonation time.</span>")
 				src.desc = "It is set to detonate in [det_time/10] seconds."
 			src.add_fingerprint(user)
+		else if (istype(W, /obj/item/gun/modular))
+			actions.start(new/datum/action/bar/private/load_grenade(W, src), user)
 		return
 
 	proc/prime() // Most grenades require a turf reference.
@@ -1451,6 +1453,18 @@ PIPE BOMBS + CONSTRUCTION
 			src.reagents = null
 			state = 2
 		return
+
+	afterattack(atom/target, mob/user, reach, params)
+		if (src.state == 2 && istype(target, /obj/item/gun_exploder))
+			user.show_text("With [src] and some good ol' percussive force, you make a barrel. This looks pretty dangerous!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/impact_sounds/Metal_Hit_1.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun_parts/barrel/pipeframe/new_barrel = new(T)
+			user.put_in_hand_or_drop(new_barrel)
+		else
+			. = ..()
 
 	attackby(obj/item/W, mob/user)
 		//NOTE: state 1 is unused since the first stages of pipe frames now happen through constructable atmos

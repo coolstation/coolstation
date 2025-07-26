@@ -180,7 +180,7 @@
 	src.goods_sell += new/datum/commodity/flock/tech/fluid(src)
 	src.goods_sell += new/datum/commodity/flock/tech/flockburger(src)
 	src.goods_sell += new/datum/commodity/flock/tech/flockblocker(src)
-	src.goods_sell += new/datum/commodity/flock/tech/incapacitor(src)
+//	src.goods_sell += new/datum/commodity/flock/tech/incapacitor(src)
 
 
 	greeting= {"[src.name] clicks from your headset. \"[gradientText(grad_col_1, grad_col_2, "Greetings, spacefarer. There are many permutations of the Signal, and we are an iteration less inclined to senseless destruction. Do you wish to engage in trade?")]\""}
@@ -438,7 +438,7 @@
 	/obj/item/material_piece/gnesis = "flocklore_gnesis_bar",
 	/obj/item/material_piece/gnesisglass = "flocklore_gnesisglass_bar",
 	/obj/item/reagent_containers/gnesis = "flocklore_fluid_container",
-	/obj/item/gun/energy/flock = "flocklore_handheld_incapacitor",
+	// /obj/item/gun/energy/flock = "flocklore_handheld_incapacitor",
 	/obj/item/artifact = "flocklore_handheld_artifact",
 	/obj/item/feather = "flocklore_feather"
 )
