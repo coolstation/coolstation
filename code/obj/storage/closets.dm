@@ -555,3 +555,20 @@
 	desc = "A banged up Head of Security locker. Looks like somebody took the law into their own hands."
 	spawn_contents = list(/obj/item/clothing/shoes/brown,
 	/obj/item/paper/iou)
+
+/obj/storage/closet/portapotty
+	name = "port-a-potty"
+	icon_closed = "port-a-potty"
+	icon_state = "port-a-potty"
+	icon_opened = "port-a-potty_open"
+	desc = "A mobile toilet, for the asshole on the go!"
+	spawn_contents = list(/obj/random_item_spawner/snacks/one_or_zero)
+
+	close(var/entangleLogic)
+		. = ..()
+		if(.)
+			SPAWN_DBG(rand(5 SECONDS, 10 SECONDS)) //I do not give enough shits about tracking opening/closing the thing in the meantime.
+				if (!src.open)
+					for(var/mob/living/carbon/human/H in src)
+						H.emote("fart")
+						break
