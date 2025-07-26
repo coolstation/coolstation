@@ -1167,7 +1167,7 @@ toxic - poisons
 	cost = 1
 	shot_sound = 'sound/weapons/launcher.ogg'
 	ks_ratio = 1.0
-	caliber = 1.57 // 40mm grenade shell
+	caliber = CALIBER_SPUD | CALIBER_WIDE // 40mm grenade shell
 	icon_turf_hit = "bhole-large"
 	casing = /obj/item/casing/grenade
 	implanted = null
@@ -1229,18 +1229,16 @@ toxic - poisons
 	proc/det(var/turf/T)
 		if (T && src.has_det == 0 && src.has_grenade != 0)
 			if (src.CHEM != null)
-				var/obj/item/chem_grenade/C = SEMI_DEEP_COPY(CHEM)
-				C.set_loc(T)
+				CHEM.set_loc(T)
 				src.has_det = 1
 				SPAWN_DBG(1 DECI SECOND)
-					C.explode()
+					CHEM.explode()
 				return
 			else if (src.OLD != null)
-				var/obj/item/old_grenade/O = SEMI_DEEP_COPY(OLD)
-				O.set_loc(T)
+				OLD.set_loc(T)
 				src.has_det = 1
 				SPAWN_DBG(1 DECI SECOND)
-					O.prime()
+					OLD.prime()
 				return
 			else //what the hell happened
 				return

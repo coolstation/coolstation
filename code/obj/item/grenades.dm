@@ -91,6 +91,8 @@ PIPE BOMBS + CONSTRUCTION
 				user.show_message("<span class='notice'>You set [src] for a [det_time/10] second detonation time.</span>")
 				src.desc = "It is set to detonate in [det_time/10] seconds."
 			src.add_fingerprint(user)
+		else if (istype(W, /obj/item/gun/modular))
+			actions.start(new/datum/action/bar/private/load_grenade(W, src), user)
 		return
 
 	proc/prime() // Most grenades require a turf reference.

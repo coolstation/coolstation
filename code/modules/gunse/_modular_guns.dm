@@ -211,8 +211,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
 		actions.start(new/datum/action/bar/private/load_ammo(src, I), user)
-		//var/obj/item/stackable_ammo/SA = I
-		//SA.reload(src, user)
+		return
+
+	if (istype(I, /obj/item/chem_grenade) || istype(I, /obj/item/old_grenade))
+		actions.start(new/datum/action/bar/private/load_grenade(src, I), user)
 		return
 
 	if (istype(I, /obj/item/screwdriver) && src.flashbulb_only)
@@ -351,7 +353,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//single shot and chamber handling
 		if(!src.current_projectile)
 			boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src].</span>")
-			src.set_current_projectile(new donor_ammo.projectile_type())
+			if(istype(donor_ammo.projectile_type, /datum/projectile)) // might have already been instantiated to edit
+				src.set_current_projectile(donor_ammo.projectile_type) // so just chamber it (happens with grenades)
+			else
+				src.set_current_projectile(new donor_ammo.projectile_type()) // this one gets instantiated
 
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
@@ -505,6 +510,93 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		else
 			onRestart()
 		return
+
+/datum/action/bar/private/load_grenade
+	duration = 1.2 SECONDS
+	interrupt_flags = INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	var/obj/item/donor_grenade
+	var/obj/item/gun/modular/target_gun
+	id = "load_grenade"
+
+	New(obj/item/gun/modular/gun, obj/item/grenade)
+		if (!istype(gun) || (!istype(grenade, /obj/item/old_grenade)) && !istype(grenade, /obj/item/chem_grenade))
+			interrupt(INTERRUPT_ALWAYS)
+		target_gun = gun
+		donor_grenade = grenade
+		duration = max(0.1 SECONDS, target_gun.load_time + 0.6 SECONDS) //grenades take 0.6 extra seconds to load (for now)
+		..()
+
+	onStart()
+		if (!(target_gun.caliber & (CALIBER_SPUD | CALIBER_WIDE) == (CALIBER_SPUD | CALIBER_WIDE)))
+			boutput(src.owner, SPAN_ALERT("This gun can't handle grenades."))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!ismob(owner)) //plenty of assuming this is true will follow (but mostly not needing typecasting)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!target_gun.built)
+			boutput(src.owner, SPAN_ALERT("This gun needs to be hammered into place!"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (target_gun.jammed)
+			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!donor_grenade || donor_grenade.disposed || target_gun.disposed) //gun or grenade missing
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_grenade) > 1) //gun or grenade out of range
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if (target_gun.ammo_reserve() >= target_gun.max_ammo_capacity)
+			boutput(owner, "<span class='notice'>You can't load [target_gun] any further!</span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if(!target_gun.ammo_list)
+			target_gun.ammo_list = list()
+
+		target_gun.chamber_checked = FALSE
+
+		if (src.state == ACTIONSTATE_DELETE)
+			return
+
+		//Maybe if it's behind all the error checking we won't see the bar come up at all on failure?
+		..()
+
+		boutput(owner, "<span class='notice'>You start loading a grenade into [target_gun].</span>")
+
+		playsound(target_gun.loc, "sound/weapons/gunload_40mm.ogg", 50, 1)
+
+	onEnd()
+		//one more distance check
+		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_grenade) > 1)
+			interrupt(INTERRUPT_ALWAYS)
+			return ..()
+
+		var/obj/item/stackable_ammo/grenade_shell/grenade_ammo = new(target_gun)
+		var/datum/projectile/bullet/grenade_shell/grenade_proj = new()
+		grenade_proj.load_nade(donor_grenade)
+		grenade_ammo.projectile_type = grenade_proj // JANK
+		if(ismob(donor_grenade.loc))
+			var/mob/M = donor_grenade.loc
+			M.u_equip(donor_grenade)
+		donor_grenade.layer = initial(donor_grenade.layer)
+		donor_grenade.set_loc(target_gun)
+		target_gun.load_ammo(owner, grenade_ammo)
+
+		eat_twitch(target_gun) //om nom nom
+
+		var/stored_ammo_left = target_gun.ammo_reserve()
+		//update ammo counter
+		target_gun.inventory_counter.update_number(stored_ammo_left)
+
+		if (stored_ammo_left == target_gun.max_ammo_capacity)
+			boutput(owner, "<span class='notice'>The hold is now fully loaded.</span>")
+			playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 50)
+
+		return ..()
 
 /obj/item/gun/modular/alter_projectile(var/obj/projectile/P, var/mob/user)
 	if(call_alter_projectile)
@@ -704,7 +796,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return FALSE
 	playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
 	var/ammotype = ammo_list[ammo_left]
-	src.set_current_projectile(new ammotype()) // this one goes in
+	if(istype(ammotype, /datum/projectile)) // stuff like grenades relies on existing in there
+		src.set_current_projectile(ammotype) // so just chamber
+	else // but if its brand new
+		src.set_current_projectile(new ammotype()) // it gets instantiated
 	ammo_list.Remove(ammotype) //and remove it from the list
 	return TRUE
 
@@ -714,7 +809,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
 	else
-		if(!src.processing_ammo && (!src.reload_cooldown || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
+		if(!src.processing_ammo && (!src.reload_cooldown  || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
 			process_ammo(user)
 		// this is how many shots are left in reserve- plus the one in the chamber. it was a little too confusing to not include it
 		src.inventory_counter.update_number(src.ammo_reserve())

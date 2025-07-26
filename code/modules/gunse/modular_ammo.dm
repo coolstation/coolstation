@@ -615,6 +615,18 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 
 /* ------------------------------- Weird Ammo ------------------------------ */
 
+/obj/item/stackable_ammo/grenade_shell
+	name = "grenade shell"
+	real_name = "grenade shell"
+	desc = "A grenade fitted with just enough propellant to fire from a launcher."
+	icon = 'icons/obj/items/grenade.dmi'
+	icon_state = "fragnade"
+	ammo_icon_state = null
+	stack_type = /obj/item/stackable_ammo/grenade_shell
+	projectile_type = /datum/projectile/bullet/grenade_shell
+	caliber = CALIBER_WIDE | CALIBER_SPUD
+	max_stack = 1
+
 /obj/item/stackable_ammo/he_rocket
 	name = "HE rocket"
 	real_name = "HE rocket"
