@@ -951,7 +951,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params && params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(user, direction)
@@ -998,7 +998,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params && params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(user, direction)

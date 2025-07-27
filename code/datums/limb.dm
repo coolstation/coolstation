@@ -220,8 +220,11 @@
 			return
 		if (current_shots > 0)
 			current_shots--
-			var/pox = text2num(params["icon-x"]) - 16
-			var/poy = text2num(params["icon-y"]) - 16
+			var/pox = 0
+			var/poy = 0
+			if(params)
+				pox = text2num(params["icon-x"]) - 16
+				poy = text2num(params["icon-y"]) - 16
 			shoot_projectile_ST_pixel(user, proj, target, pox, poy)
 			user.visible_message("<b class='alert'>[user] fires at [target] with the [holder.name]!</b>")
 			next_shot_at = ticker.round_elapsed_ticks + cooldown

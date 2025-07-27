@@ -31,7 +31,7 @@
 		if(!src.move_dir)
 			return 0
 		if(TIME < src.next_move)
-			return src.next_move - TIME
+			return 0
 		var/obj/disposalpipe/oldpipe = src.owner.loc
 		if (!(oldpipe.dpdir & src.move_dir)) //see if we can even exit our current pipe this direction
 			if (istype(oldpipe, /obj/disposalpipe/trunk)) //might be trying to get out of a trunk
