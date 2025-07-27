@@ -17,7 +17,7 @@ TYPEINFO(/datum/component/controlled_by_mob)
 		return COMPONENT_INCOMPATIBLE
 	var/obj/O = parent
 	src.controlling_mob = controlling_mob
-	src.movement_controller = new/datum/movement_controller/obj_control(O)
+	src.movement_controller = new/datum/movement_controller/obj_control/admin(O)
 	src.controlling_mob.override_movement_controller = src.movement_controller
 
 /datum/component/controlled_by_mob/proc/change_mob(mob/new_mob)

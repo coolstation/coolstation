@@ -1797,6 +1797,37 @@ var/global/noir = 0
 			if(!M) return
 			usr.client.cmd_admin_alert(M)
 
+		if ("disableai")
+			if( src.level < LEVEL_PA )
+				alert("You must be at least a Primary Administrator to edit AI.")
+				return
+			var/mob/M = locate(href_list["target"])
+			if (!M) return
+			message_admins("[key_name(usr)] removed AI from [key_name(M)].")
+			logTheThing("admin", usr, M, "removed AI from [constructTarget(M,"admin")].")
+			qdel(M.ai)
+			M.ai = null
+			if(isliving(M))
+				var/mob/living/L = M
+				L.is_npc = FALSE
+
+		if ("violentai")
+			if( src.level < LEVEL_PA )
+				alert("You must be at least a Primary Administrator to edit AI.")
+				return
+			var/mob/M = locate(href_list["target"])
+			if (!M) return
+			message_admins("[key_name(usr)] added violent AI to [key_name(M)].")
+			logTheThing("admin", usr, M, "added violent AI to [constructTarget(M,"admin")].")
+			qdel(M.ai)
+			M.ai = new /datum/aiHolder/violent(M)
+			if(isliving(M))
+				var/mob/living/L = M
+				L.is_npc = TRUE
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					H.uses_mobai = TRUE
+
 		if ("makewraith")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a wraith.")
@@ -1897,7 +1928,6 @@ var/global/noir = 0
 						i++
 					ticker.mode.Agimmicks += M.mind
 					M.antagonist_overlay_refresh(1, 0)
-
 
 		if ("makemacho")
 			if( src.level < LEVEL_PA )
