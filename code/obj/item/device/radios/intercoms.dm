@@ -34,11 +34,20 @@
 	if(src.icon_state == "intercom") // if something overrides the icon we don't want this
 		var/image/screen_image = image(src.icon, "intercom-screen")
 		screen_image.color = src.device_color
+		screen_image.plane = PLANE_LIGHTING
+		screen_image.layer = LIGHTING_LAYER_BASE
+		screen_image.blend_mode = BLEND_ADD
+
+
+		var/image/screen_backing = image(src.icon, "intercom-screen")
+		screen_backing.color = src.device_color
+
 		if(src.device_color == RADIOC_INTERCOM || isnull(src.device_color)) // unboringify the colour if default
 			var/new_color = default_frequency_color(src.frequency)
 			if(new_color)
 				screen_image.color = new_color
 		src.UpdateOverlays(screen_image, "screen")
+		src.UpdateOverlays(screen_backing, "screen_backing")
 		if(src.pixel_x == 0 && src.pixel_y == 0)
 			update_pixel_offset_dir(src,null,src.dir)
 
@@ -131,7 +140,7 @@
 	name = "Engineering Intercom"
 	frequency = R_FREQ_INTERCOM_ENGINEERING
 	broadcasting = 0
-	device_color = "#BBBB00"
+	device_color = "#e0bb17"
 
 	initialize()
 		set_frequency(frequency)
@@ -140,7 +149,7 @@
 	name = "Cargo Intercom"
 	frequency = R_FREQ_INTERCOM_CARGO
 	broadcasting = 0
-	device_color = "#9A8B0D"
+	device_color = "#ca410a"
 
 	initialize()
 		set_frequency(frequency)

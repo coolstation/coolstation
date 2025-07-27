@@ -408,10 +408,16 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	//This button exists to save navigating the UI for elevators that just shuttle between two locations, if you want more than that you're better off using transit_terminal instead.
 	var/stop_top_id
 	var/stop_bottom_id
+	var/image/glow
 
 	New()
 		..()
 		SPAWN_DBG(1 SECOND)
+			glow = image(src.icon)
+			glow.alpha = 180
+			glow.plane = PLANE_LIGHTING
+			glow.layer = LIGHTING_LAYER_BASE
+			glow.blend_mode = BLEND_ADD
 			our_vehicle = transit_controls.vehicles[src.vehicle_id]
 			if (!our_vehicle) //RIP
 				status |= BROKEN //Safety permabrick ourselves
@@ -439,6 +445,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	proc/update_icon(dummy = null, datum/transit_vehicle/vehicle = null ,direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
 		if (status & (NOPOWER|BROKEN))
 			icon_state = "elev_offline"
+			UpdateOverlays(null, "glow")
 			return
 		switch(direction)
 			if ("up")
@@ -448,9 +455,12 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 			else//This handles signal-based calls
 				if (vehicle == our_vehicle)
 					icon_state = (our_vehicle.in_transit ? "elev_cooldown" : "elev_idle")
+		glow.icon_state = "[src.icon_state]-glow"
+		UpdateOverlays(glow, "glow")
 
 	disposing()
 		UnregisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED)
 		UnregisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY)
 		our_vehicle = null
+		qdel(glow)
 		..()

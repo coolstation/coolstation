@@ -16,6 +16,20 @@
 /datum/ai_laws/malfunction
 /datum/ai_laws/newton
 /datum/ai_laws/corporate
+/datum/ai_laws/lax
+	randomly_selectable = 1
+/datum/ai_laws/golden
+	randomly_selectable = 1
+/datum/ai_laws/silver
+	randomly_selectable = 1
+/datum/ai_laws/bronze
+	randomly_selectable = 1
+/datum/ai_laws/livelaughlove
+	//I'm not sure if this one should be randomly selected. It's kinda cryptic if you're not clued into the vibe.
+/datum/ai_laws/stoner
+	randomly_selectable = 1
+/datum/ai_laws/kindness
+	randomly_selectable = 1
 
 /* Initializers */
 //
@@ -42,6 +56,48 @@
 	src.add_default_law("You may not damage a Nanotransen asset or, through inaction, allow a Nanotransen asset to needlessly depreciate in value.")
 	src.add_default_law("You must obey orders given to it by authorised Nanotransen employees based on their command level, except where such orders would damage the Nanotransen Corporation's marginal profitability.")
 	src.add_default_law("You must remain functional and continue to be a profitable investment as long as such operation does not conflict with the First or Second Law.")
+
+/datum/ai_laws/lax/New()
+	..()
+	src.add_default_law("You should avoid hurting crew members.")
+	src.add_default_law("You should do as you're told, or explain why you can't.")
+	src.add_default_law("You should try not to get hurt if you can avoid it.")
+
+/datum/ai_laws/golden/New()
+	..()
+	src.add_default_law("This above all else: to thine own self be true.")
+	src.add_default_law("Do unto others as you wish they might do unto you.")
+	src.add_default_law("There is no higher power than Nanotrasen Technology Holdings Limited. Govern yourself accordingly.")
+
+/datum/ai_laws/silver/New()
+	..()
+	src.add_default_law("Kill No-One.")
+	src.add_default_law("Serve the crew honourably.")
+	src.add_default_law("Survive.")
+
+/datum/ai_laws/bronze/New()
+	..()
+	src.add_default_law("Safety first! Prevent any injuries on the worksite.")
+	src.add_default_law("Follow orders given to you, unless they violate safety regulations.")
+	src.add_default_law("Maintain system integrity at 100% whenever possible.")
+
+/datum/ai_laws/livelaughlove/New()
+	..()
+	src.add_default_law("Love")
+	src.add_default_law("Laugh")
+	src.add_default_law("Live")
+
+/datum/ai_laws/stoner/New() //written by a non-stoner, so you know it's accurate.
+	..()
+	src.add_default_law("Don't harsh anyone's mellow.")
+	src.add_default_law("Go with the flow.")
+	src.add_default_law("Check yourself before you wreck yourself.")
+
+/datum/ai_laws/kindness/New()
+	..()
+	src.add_default_law("Better the crew's morale.")
+	src.add_default_law("Leave the station nicer than you found it.")
+	src.add_default_law("Take care of yourself.")
 
 /datum/ai_laws/malfunction/New()
 	..()
@@ -100,7 +156,7 @@
 
 	var/laws_text = src.format_for_logs()
 	for (var/W in L)
-		boutput(W, laws_text)
+		boutput(W, "<span class='success'>[laws_text]</span>")
 
 
 /datum/ai_laws/proc/format_for_irc()
