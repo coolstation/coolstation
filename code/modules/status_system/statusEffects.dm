@@ -1036,31 +1036,31 @@
 		unique = 1
 		duration = INFINITE_STATUS
 		maxDuration = null
-		var/mob/living/carbon/human/H
+		var/mob/M
 		var/sleepcount = 5 SECONDS
 
 		onAdd(optional=null)
 			. = ..()
-			if (ishuman(owner))
-				H = owner
+			if (ismob(owner))
+				M = owner
 				sleepcount = 5 SECONDS
 			else
 				owner.delStatus("buckled")
 
 		clicked(list/params)
-			if(H.buckled)
-				H.buckled.Attackhand(H)
+			if(M.buckled)
+				M.buckled.Attackhand(M)
 
 		onUpdate(timePassed)
-			if (H && !H.buckled)
+			if (M && !M.buckled)
 				owner.delStatus("buckled")
 			else
 				if (sleepcount > 0)
 					sleepcount -= timePassed
 					if (sleepcount <= 0)
-						if (H.hasStatus("resting") && istype(H.buckled,/obj/stool/bed))
-							var/obj/stool/bed/B = H.buckled
-							B.sleep_in(H)
+						if (M.hasStatus("resting") && istype(M.buckled,/obj/stool/bed))
+							var/obj/stool/bed/B = M.buckled
+							B.sleep_in(M)
 						else
 							sleepcount = 3 SECONDS
 

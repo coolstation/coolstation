@@ -379,7 +379,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 			else
 				L.add_blood(src)
 				if (!L.anchored)
-					src.reagents.trans_to(L.tracked_reagents, rand(1, src.reagents-1))
+					src.reagents.trans_to(L.tracked_reagents, rand(1, src.reagents.total_volume-1))
 
 	Dry(var/time = rand(300,600))
 		if (!src.can_dry || src.dry == DRY_REAGENTS)

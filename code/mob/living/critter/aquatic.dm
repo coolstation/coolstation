@@ -54,11 +54,6 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	add_hh_flesh(src.health_brute, src.health_brute_vuln)
 	add_hh_flesh_burn(src.health_burn, src.health_burn_vuln)
 
-/mob/living/critter/aquatic/Login()
-	..()
-	if(is_npc)
-		is_npc = 0
-
 /mob/living/critter/aquatic/Life(datum/controller/process/mobs/parent)
 	if (isdead(src))
 		return

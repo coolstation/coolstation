@@ -4,7 +4,7 @@
 	icon_state = "screech"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 0
+	max_range = 5 // so that ai uses correctly
 	cooldown = 300
 	pointCost = 60
 	when_stunned = 1
@@ -12,6 +12,7 @@
 	not_when_handcuffed = 0
 	unlock_message = "You have gained chiropteran screech. It deafens nearby foes, damages windows and lights."
 	var/level = 1
+	attack_mobs = TRUE
 
 	cast(mob/target)
 		if (!holder)

@@ -17,14 +17,6 @@
 	dir = 4
 	},
 /area/station/maintenance/disposal)
-"aau" = (
-/obj/table/reinforced/industrial/auto,
-/obj/machinery/light/small/cool{
-	dir = 1
-	},
-/obj/item/stackable_ammo/scatter/juicer/three,
-/turf/floor/black,
-/area/station/ai_monitored/armory)
 "aaE" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -6297,15 +6289,6 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersB)
-"dLx" = (
-/obj/table/glass/reinforced/auto{
-	color = "#666666"
-	},
-/obj/item/gun/modular/NT/rifle,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "dLE" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/wall,
@@ -6593,6 +6576,15 @@
 	},
 /turf/floor/grey,
 /area/station/bridge/basement)
+"dUi" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/pistol,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "dUm" = (
 /obj/cable{
 	d1 = 4;
@@ -8374,6 +8366,11 @@
 "eOd" = (
 /turf/wall,
 /area/station/engine/hotloop)
+"eOh" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten,
+/turf/floor/black,
+/area/station/ai_monitored/armory)
 "eOL" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -13413,16 +13410,6 @@
 /area/station/maintenance/outer/east{
 	name = "East Lower Maintenance"
 	})
-"hPR" = (
-/obj/table/auto{
-	color = "#666666"
-	},
-/obj/machinery/light/fluorescent/cool/very,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "hPT" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -16363,6 +16350,14 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"jwa" = (
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/obj/item/stackable_ammo/shotgun/juicer/three,
+/turf/floor/black,
+/area/station/ai_monitored/armory)
 "jxi" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -21222,6 +21217,15 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor/black,
 /area/station/engine/coldloop)
+"mke" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/shotty,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "mkw" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/small/cool{
@@ -25798,6 +25802,15 @@
 	},
 /turf/floor/grey,
 /area/station/engine/inner)
+"oZo" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/rifle,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "oZq" = (
 /obj/table/auto{
 	color = "#666666"
@@ -25888,11 +25901,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/south)
-"pcc" = (
-/obj/table/reinforced/auto,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten,
-/turf/floor/black,
-/area/station/ai_monitored/armory)
 "pcg" = (
 /obj/machinery/vending/gunse{
 	acceptcard = 0;
@@ -30031,15 +30039,6 @@
 	},
 /turf/wall,
 /area/station/science/lab)
-"rID" = (
-/obj/table/glass/reinforced/auto{
-	color = "#666666"
-	},
-/obj/item/gun/modular/NT/pistol,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "rIG" = (
 /obj/machinery/atmospherics/portables_connector/south,
 /turf/floor/black,
@@ -36720,15 +36719,6 @@
 	},
 /turf/floor,
 /area/station/mining/staff_room)
-"vBC" = (
-/obj/table/glass/reinforced/auto{
-	color = "#666666"
-	},
-/obj/item/gun/modular/NT/shotty,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "vBE" = (
 /turf/floor/plating/random,
 /area/ghostdrone_factory)
@@ -39689,6 +39679,16 @@
 	},
 /turf/floor/grey,
 /area/station/science/bot_storage)
+"xxh" = (
+/obj/table/auto{
+	color = "#666666"
+	},
+/obj/machinery/light/fluorescent/cool/very,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "xxn" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
@@ -90072,7 +90072,7 @@ taZ
 taZ
 qbq
 qbq
-dLx
+oZo
 ijD
 ijD
 ijD
@@ -90374,7 +90374,7 @@ taZ
 taZ
 taZ
 qbq
-dLx
+oZo
 ijD
 uCv
 tij
@@ -90666,7 +90666,7 @@ taZ
 taZ
 tXJ
 iYQ
-pcc
+eOh
 iYQ
 mpC
 iYQ
@@ -92174,7 +92174,7 @@ pdO
 pdO
 taZ
 taZ
-aau
+jwa
 xXb
 kWS
 kgJ
@@ -92790,11 +92790,11 @@ taZ
 taZ
 taZ
 qbq
-rID
+dUi
 ijD
 ijD
 ijD
-vBC
+mke
 qbq
 qbq
 veb
@@ -93092,7 +93092,7 @@ taZ
 taZ
 qbq
 qbq
-rID
+dUi
 ijD
 ijD
 ijD
@@ -93398,7 +93398,7 @@ ybs
 ijD
 ijD
 ijD
-hPR
+xxh
 qbq
 qbq
 rBb

@@ -967,6 +967,7 @@ obj/critter/madnessowl/switchblade
 				src.attacking = 0
 		return
 
+/*
 /obj/critter/gunbot/drone/hootening //If anyone wants to take a crack at it, this guy was originally supposed to start doing melee after half HP but fuck critter code.
 	name = "The Hootening"
 	desc = "Wait you recognize them from somewhere, oh shit wait they have a gun!"
@@ -1003,7 +1004,7 @@ obj/critter/madnessowl/switchblade
 		..()
 		name = "The Hootening"
 		return
-
+*/
 
 /// ALTERNATE HOOTENING ATTEMPT
 
@@ -1477,9 +1478,9 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 		/////////////////////////////////////////////////////////
 		//// sell list //////////////////////////////////////////
 		/////////////////////////////////////////////////////////
-		src.goods_sell += new /datum/commodity/airzooka(src)
-		src.goods_sell += new /datum/commodity/airbag(src)
-		src.goods_sell += new /datum/commodity/dangerbag(src)
+		//src.goods_sell += new /datum/commodity/airzooka(src)
+		//src.goods_sell += new /datum/commodity/airbag(src)
+		//src.goods_sell += new /datum/commodity/dangerbag(src)
 		src.goods_sell += new /datum/commodity/hat/dailyspecial/greg
 		src.goods_sell += new /datum/commodity/crayons/greg
 		src.goods_sell += new /datum/commodity/drugs/poppies/greg

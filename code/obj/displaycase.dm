@@ -162,6 +162,7 @@
 	..()
 	return
 
+/*
 // Added a little mini-quest here. Gun can be repaired, and the player will be rewarded for using
 // high-quality materials, which will make the weapon more powerful (Convair880).
 /obj/item/captaingun
@@ -379,3 +380,4 @@
 
 		//DEBUG_MESSAGE("[src.name]'s quality_counter: [quality_counter]")
 		return
+*/

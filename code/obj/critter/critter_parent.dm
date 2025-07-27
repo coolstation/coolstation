@@ -996,7 +996,7 @@
 			return
 		// FUCK YOU WHOEVER IS USING THIS
 		// FUCK YOU
-		shoot_projectile_ST(src,  new/datum/projectile/bullet/pistol_italian(), target)
+		shoot_projectile_ST(src,  new/datum/projectile/bullet/pistol/italian(), target)
 		return
 
 
