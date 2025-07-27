@@ -1929,22 +1929,6 @@ var/global/noir = 0
 					ticker.mode.Agimmicks += M.mind
 					M.antagonist_overlay_refresh(1, 0)
 
-		if ("makegnome")
-			if( src.level < LEVEL_PA )
-				alert("You must be at least a Primary Administrator to make someone a gnome.")
-				return
-			var/mob/M = locate(href_list["target"])
-			if (!M) return
-			M.add_ability_holder(/datum/abilityHolder/gnome)
-			message_admins("[key_name(usr)] made [key_name(M)] a gnome.")
-			logTheThing("admin", usr, M, "made [constructTarget(M,"admin")] a gnome.")
-			if (M.mind)
-				M.show_message(SPAN_ALERT("You're a WIP antag, the Gnome!"))
-				M.mind.special_role = "gnome"
-				ticker.mode.Agimmicks += M.mind
-				M.antagonist_overlay_refresh(1, 0)
-
-
 		if ("makemacho")
 			if( src.level < LEVEL_PA )
 				alert("You must be at least a Primary Administrator to make someone a Macho Man.")

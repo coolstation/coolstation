@@ -35,8 +35,8 @@
 		. = ..()
 
 /datum/targetable/gnome
-	icon = 'icons/ui/blob_ui.dmi'
-	icon_state = "blob-reclaimer"
+	icon = 'icons/ui/critter_ui.dmi'
+	icon_state = "gnomedisguise"
 	cooldown = 0
 	last_cast = 0
 	targeted = 1
@@ -53,7 +53,7 @@
 		..()
 
 /obj/item/gnome_disguise
-	name = "gnome disguise (you shouldnt see this)"
+	name = "squishy mass"
 	desc = "mylie coded bad (you shouldnt see this)"
 	real_name = "squishy mass"
 	real_desc = "It faintly wriggles. This thing is alive."
@@ -96,10 +96,6 @@
 	Move(NewLoc, direct)
 		. = ..()
 		animate_shake(src, 1, 2, 1, src.pixel_x * 0.95, src.pixel_y * 0.95)
-
-	get_movement_controller(mob/user)
-		. = ..()
-		return movement_controller
 
 	mob_flip_inside(mob/user)
 		if(ismob(src.loc))
@@ -237,8 +233,9 @@
 			return null
 
 /datum/targetable/gnome/disguise
+	icon_state = "gnomedisguise"
 	name = "Disguise"
-	desc = "Hide yourself as an imitation of a nearby item. Solidifying like this will prevent squeezing under airlocks."
+	desc = "Hide yourself as an imitation of a nearby item."
 	pointCost = 0
 	cooldown = 10 SECONDS
 	max_range = 3
@@ -301,6 +298,7 @@
 		src.gnome_holder.disguise.disguise_as(target)
 		src.gnome_holder.disguise.disguise_scaling = floor(sqrt(pixel_count))
 		src.holder.owner.set_loc(src.gnome_holder.disguise)
+		src.holder.owner.override_movement_controller = src.gnome_holder.disguise.movement_controller
 
 		src.holder.addAbility(/datum/targetable/gnome/shed_disguise)
 		src.gnome_holder.disguised = TRUE
@@ -317,6 +315,7 @@
 		. = ..()
 
 /datum/targetable/gnome/shed_disguise
+	icon_state = "gnomeshed"
 	name = "Shed Disguise"
 	desc = "Remove your disguise and return to your natural form."
 	pointCost = 0
@@ -330,6 +329,7 @@
 			for (var/atom/movable/AM in src.gnome_holder.disguise)
 				AM.set_loc(T)
 			src.gnome_holder.disguise.set_loc(src.holder.owner)
+			src.gnome_holder.owner.override_movement_controller = null
 			src.gnome_holder.disguised = FALSE
 			boutput(src.holder.owner, __blue("You shed your disguise."))
 			src.holder.removeAbilityInstance(src)
@@ -338,6 +338,7 @@
 			return 1
 
 /datum/targetable/gnome/gnaw
+	icon_state = "gnomegnaw"
 	name = "Gnaw"
 	desc = "Take a bite of someone. If you are disguised and bite from behind, you won't even twitch."
 	pointCost = 0

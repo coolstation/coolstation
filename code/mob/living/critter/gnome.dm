@@ -5,6 +5,7 @@
 	can_help = TRUE
 	can_grab = TRUE
 	can_disarm = TRUE
+	can_throw = TRUE
 	flags = TABLEPASS
 	fits_under_table = TRUE
 	reagent_capacity = 100
@@ -17,9 +18,9 @@
 	base_walk_delay = 3
 	stepsound = "sound/misc/step/step_gnome_1.ogg"
 	pass_through_mobs = TRUE
-	var/health_brute = 35 // duped from small_animal, will think about if this should go on critter later
+	var/health_brute = 30 // duped from small_animal, will think about if this should go on critter later
 	var/health_brute_vuln = 1
-	var/health_burn = 35
+	var/health_burn = 30
 	var/health_burn_vuln = 1.5
 
 	New()
@@ -54,7 +55,7 @@
 				if (src.emote_check(voluntary, 50))
 					playsound(src, "sound/misc/gnomechuckle.ogg", 50, 1, 0.5, channel=VOLUME_CHANNEL_EMOTE)
 					return "<span class='emote'><b>[src]</b> chuckles!</span>"
-		return null
+		return ..()
 
 	Move(var/turf/NewLoc, direct)
 		src.footstep = 10
