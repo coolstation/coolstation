@@ -430,7 +430,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 		name = "Anti-Singularity Pack"
 		desc = "Everything that the crew needs to take down a rogue singularity."
 		contents = "1x Singularity Busting Thingy, 5x Singularity Busting Thingy Bullets, 1x Instruction Pamphlet"
-		contains = list(/obj/item/paper/antisingularity,/obj/item/ammo/bullets/antisingularity = 5,/obj/item/gun/kinetic/antisingularity)
+		contains = list(/obj/item/paper/antisingularity,/obj/item/stackable_ammo/antisingularity = 5,/obj/item/gun/modular/singularity_buster/built)
 		cost = 10000
 		containertype = /obj/storage/crate/classcrate/qm
 		containername = "Anti-Singularity Supply Pack"
@@ -461,16 +461,15 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 		access = access_securitylockers
 
 	upgrade
-		name = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
-		desc = "Some alternate history magic plastic guns and grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
-		contents = "1x Clock 180, x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
-		contains = list(/obj/item/gun/kinetic/clock_188/boomerang,
-						/obj/item/storage/box/QM_grenadekit_security,
+		name = "Weapons Crate - Experimental Grenades (Cardlocked \[Security Equipment])"
+		desc = "Some grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
+		contents = "x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
+		contains = list(/obj/item/storage/box/QM_grenadekit_security,
 						/obj/item/storage/box/QM_grenadekit_experimentalweapons,
 						/obj/item/clothing/head/helmet/hardhat/security/improved)
-		cost = 12000
+		cost = 9000
 		containertype = /obj/storage/secure/crate/weapon
-		containername = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
+		containername = "Weapons Crate - Experimental Grenades (Cardlocked \[Security Equipment])"
 		access = access_securitylockers
 		hidden = 1
 
@@ -483,17 +482,6 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 		cost = 1000
 		containertype = /obj/storage/secure/crate/weapon
 		containername = "Security Containment Crate - Security Equipment (Cardlocked \[Security Equipment])"
-		access = access_securitylockers
-		hidden = 1
-
-	weapons2
-		name = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
-		desc = "Some future space guns that fell out of some kind of portal into our warehouse. Get them while supplies last."
-		contents = "x2 Phaser Gun"
-		contains = list(/obj/item/gun/energy/phaser_gun = 2)
-		cost = 5000
-		containertype = /obj/storage/secure/crate/weapon
-		containername = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
 		access = access_securitylockers
 		hidden = 1
 

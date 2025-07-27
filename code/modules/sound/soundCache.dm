@@ -1834,6 +1834,7 @@ var/global/list/soundCache = list(
  	"sound/weapons/cutter.ogg" = 'sound/weapons/cutter.ogg',\
  	"sound/weapons/cylinderclick1.ogg" = 'sound/weapons/cylinderclick1.ogg',\
  	"sound/weapons/cylinderclick2.ogg" = 'sound/weapons/cylinderclick2.ogg',\
+ 	"sound/weapons/cylinderclickheavy1.ogg" = 'sound/weapons/cylinderclickheavy1.ogg',\
  	"sound/weapons/cylinderspin.ogg" = 'sound/weapons/cylinderspin.ogg',\
  	"sound/weapons/deagle.ogg" = 'sound/weapons/deagle.ogg',\
  	"sound/weapons/derringer.ogg" = 'sound/weapons/derringer.ogg',\

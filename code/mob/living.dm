@@ -1223,7 +1223,7 @@
 /mob/living/Move(var/turf/NewLoc, direct)
 	var/oldloc = loc
 	. = ..()
-	if(src.tracked_reagents.total_volume)
+	if(src.tracked_reagents?.total_volume)
 		src.track_reagents()
 	if (isturf(oldloc) && isturf(loc) && move_laying)
 		var/list/equippedlist = src.equipped_list()

@@ -1202,14 +1202,14 @@
 	// button_4.max_ammo_capacity = 400	// boolet
 	// button_4.ammo.amount_left = 400
 	// button_4.cant_other_remove = 1
-
+/*
 	var/obj/item/gun/kinetic/rpg7/loaded/button_5 = new()
 	button_5.name = "rocket launcher"
 	button_5.desc = "Splash damage zone!"
 	button_5.ammo.amount_left = 100
 	button_5.max_ammo_capacity = 100
 	button_5.cant_other_remove = 1
-
+*/
 	// were you expecting a plasma gun or something?
 	var/obj/item/breaching_hammer/button_6 = new()
 	button_6.name = "doomhammer"
@@ -1230,7 +1230,7 @@
 	// backpack_full_of_ammo.add_contents(button_2)
 	// backpack_full_of_ammo.add_contents(button_3)
 	// backpack_full_of_ammo.add_contents(button_4)
-	backpack_full_of_ammo.add_contents(button_5)
+	// backpack_full_of_ammo.add_contents(button_5)
 	backpack_full_of_ammo.add_contents(button_6)
 	backpack_full_of_ammo.add_contents(button_7)
 	backpack_full_of_ammo.add_contents(fancy_keys)
