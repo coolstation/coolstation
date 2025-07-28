@@ -13,7 +13,7 @@
 
 a new modular gun system
 every /obj/item/gun/modular/ (a receiver) has some basic stats and handles shooting behavior.
-by default all concrete children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
+by default all concrete children of /obj/item/gun/modular/ should populate their own barrel/stock/accessory as appropriate
 with some ordinary basic parts. barrel and grip or stock are pretty necessary, the other two whatever.
 additional custom parts can be created with stat bonuses, and other effects in their add_part_to_gun() proc
 
@@ -46,17 +46,19 @@ giving an "average" spread for stock guns around 5-10
 #define JAM_CYCLE 2
 #define JAM_LOAD 3
 #define JAM_CATASTROPHIC 4
+//bitflags for shooting yoar lode
 #define CALIBER_TINY  0 // 00 - tiny
 #define CALIBER_WIDE  (1<<0) // 01 - wide
 #define CALIBER_LONG  (1<<1) // 10 - long
 #define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 11 - huge
+#define CALIBER_SPUD (1<<2)
 //bitflags for finding your bits
 #define GUN_PART_UNDEF  0
 #define GUN_PART_BARREL 1
 #define GUN_PART_STOCK  2
 #define GUN_PART_GRIP   4
-#define GUN_PART_MAG    8
-#define GUN_PART_ACCSY  16
+#define GUN_PART_ACCSY  8
+#define GUN_PART_RCVR	16
 
 #define STANDARD_BARREL_LEN 20 // the formula that determines ALL GUN BARREL LENGTH DAMAGE SCALING. be careful with this one.
 #define BARREL_SCALING(length) (1 + clamp(((length - STANDARD_BARREL_LEN) / (length + STANDARD_BARREL_LEN)) * 0.420, -0.25, 0.25))
@@ -84,7 +86,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/reload_cooldown = 0.3 SECONDS // how often you can try to reload/clear jams
 	var/max_ammo_capacity = 1 // How much ammo this gun can hold, INCLUDING any chambered rounds
 	var/sound_type = null //bespoke set of loading and cycling noises
-	var/flashbulb_only = 0 // FOSS guns only
+	var/list/muzzle_flashes = list() // any muzzle flashes played by this gun, barrels (and other parts) can add to this list
+	var/flashbulb_only = 0 // FOSS guns only, set to GUN_PART_RCVR if its defined on the reciever
 
 	//offsets and parts
 	///how many pixels from the center (16,16) does the barrel attach. most barrels have 2 pixels above the center and 2 or 3 below.
@@ -96,10 +99,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	///how many pixels from the center (16,16) does the stock attach
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
-	///how many pixels from the center (16,16) does the magazine attach
-	var/magazine_overlay_x = 0
-	var/magazine_overlay_y = 0
-
 
 	// INTERNAL VARS - DO NOT MODIFY DIRECTLY
 	current_projectile = null // chambered round
@@ -111,7 +110,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/gun_parts/grip/grip = null //need either a grip or a stock to sensibly use
 	var/obj/item/gun_parts/stock/stock = null //optional
 	var/obj/item/gun_parts/grip/foregrip = null // optional
-	var/obj/item/gun_parts/magazine/magazine = null // sort of optional (juicer guns require mag)
 	var/obj/item/gun_parts/accessory/accessory = null
 	var/list/obj/item/gun_parts/parts = list()
 	var/built = 0
@@ -134,6 +132,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/crank_channel = null //what channel is the flywheel loop playing on (for auto)
 	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
 	// MYLIE TO DO - MOVE TO FOSS PARTS ^
+
+	var/glued = FALSE // if TRUE, gun cant be dismantled
 
 	New()
 		..()
@@ -175,7 +175,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(barrel && barrel.length)
 		. += "<div><span>Barrel length: [src.barrel.length] cm = [round(100 * BARREL_SCALING(src.barrel.length), 0.5)]% power </span></div>"
 
-	. += "<div><span>Caliber: [src.caliber ? (src.caliber & CALIBER_LONG ? (src.caliber & CALIBER_WIDE ? "<b>Anythin'</b>" : "Long (Rifle)") : "Wide (Shotgun)") : "Small (Pistol)"]</span></div>"
+	if(!src.caliber)
+		. += "<div><span>Caliber: Small (Pistol)</span></div>"
+	else
+		if(src.caliber & CALIBER_LONG)
+			. += "<div><span>Caliber: Long (Rifle)</span></div>"
+		if(src.caliber & CALIBER_WIDE)
+			. += "<div><span>Caliber: Wide (Shotgun)</span></div>"
+		if(src.caliber & CALIBER_SPUD)
+			. += "<div><span>Caliber: Spudlike (Rocket)</span></div>"
 
 	. += "<div><img src='[resource("images/tooltips/temp_spread.png")]' alt='' class='icon' /><span>Spread: [src.spread_angle]° </span></div>"
 
@@ -203,8 +211,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
 		actions.start(new/datum/action/bar/private/load_ammo(src, I), user)
-		//var/obj/item/stackable_ammo/SA = I
-		//SA.reload(src, user)
+		return
+
+	if (istype(I, /obj/item/chem_grenade) || istype(I, /obj/item/old_grenade))
+		actions.start(new/datum/action/bar/private/load_grenade(src, I), user)
 		return
 
 	if (istype(I, /obj/item/screwdriver) && src.flashbulb_only)
@@ -257,11 +267,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					grip = I
 				else
 					grip = I
-			if (istype(I, /obj/item/gun_parts/magazine/))
-				if(magazine) //occupado
-					boutput(user,"<span class='notice'>...and knock [magazine] out of the way.</span>")
-					magazine.set_loc(get_turf(src))
-				magazine = I
 			if (istype(I, /obj/item/gun_parts/accessory/))
 				if(accessory) //occupado
 					boutput(user,"<span class='notice'>...and knock [accessory] out of the way.</span>")
@@ -294,7 +299,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		recoil_stacks += 1
 		stacked_recoil = clamp(round(recoil_stacks) - recoil_stacking_safe_stacks,0,recoil_stacking_max_stacks) * recoil_stacking_amount
 	var/datum/projectile/projectile = (force_projectile ? force_projectile : src.current_projectile)
-	var/implicit_recoil_strength = 5*log(projectile.power * projectile.shot_number)
+	var/implicit_recoil_strength = projectile.power * projectile.shot_number
+	if(implicit_recoil_strength)
+		implicit_recoil_strength = 5*log(implicit_recoil_strength)
 	recoil += (implicit_recoil_strength + stacked_recoil)
 	recoil = clamp(recoil, 0, recoil_max)
 	recoil_last_shot = TIME
@@ -346,14 +353,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//single shot and chamber handling
 		if(!src.current_projectile)
 			boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src].</span>")
-			src.set_current_projectile(new donor_ammo.projectile_type())
+			if(istype(donor_ammo.projectile_type, /datum/projectile)) // might have already been instantiated to edit
+				src.set_current_projectile(donor_ammo.projectile_type) // so just chamber it (happens with grenades)
+			else
+				src.set_current_projectile(new donor_ammo.projectile_type()) // this one gets instantiated
 
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
 			else
 				playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 60, 1)
 
-		//load the magazine after the chamber
+		//load the hold after the chamber
 		else
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
@@ -395,8 +405,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if (!ismob(owner)) //plenty of assuming this is true will follow (but mostly not needing typecasting)
 			interrupt(INTERRUPT_ALWAYS)
 			return
+		if (!target_gun.built)
+			boutput(src.owner, SPAN_ALERT("This gun needs to be hammered into place!"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
 		if (target_gun.jammed)
-			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)</span>"))
+			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)"))
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		if ((target_gun.caliber | donor_ammo.caliber) != target_gun.caliber)
@@ -497,6 +511,93 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			onRestart()
 		return
 
+/datum/action/bar/private/load_grenade
+	duration = 1.2 SECONDS
+	interrupt_flags = INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	var/obj/item/donor_grenade
+	var/obj/item/gun/modular/target_gun
+	id = "load_grenade"
+
+	New(obj/item/gun/modular/gun, obj/item/grenade)
+		if (!istype(gun) || (!istype(grenade, /obj/item/old_grenade)) && !istype(grenade, /obj/item/chem_grenade))
+			interrupt(INTERRUPT_ALWAYS)
+		target_gun = gun
+		donor_grenade = grenade
+		duration = max(0.1 SECONDS, target_gun.load_time + 0.6 SECONDS) //grenades take 0.6 extra seconds to load (for now)
+		..()
+
+	onStart()
+		if (!(target_gun.caliber & (CALIBER_SPUD | CALIBER_WIDE) == (CALIBER_SPUD | CALIBER_WIDE)))
+			boutput(src.owner, SPAN_ALERT("This gun can't handle grenades."))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!ismob(owner)) //plenty of assuming this is true will follow (but mostly not needing typecasting)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!target_gun.built)
+			boutput(src.owner, SPAN_ALERT("This gun needs to be hammered into place!"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (target_gun.jammed)
+			boutput(src.owner, SPAN_ALERT("This gun is jammed! (Press C to cycle)"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!donor_grenade || donor_grenade.disposed || target_gun.disposed) //gun or grenade missing
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_grenade) > 1) //gun or grenade out of range
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if (target_gun.ammo_reserve() >= target_gun.max_ammo_capacity)
+			boutput(owner, "<span class='notice'>You can't load [target_gun] any further!</span>")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if(!target_gun.ammo_list)
+			target_gun.ammo_list = list()
+
+		target_gun.chamber_checked = FALSE
+
+		if (src.state == ACTIONSTATE_DELETE)
+			return
+
+		//Maybe if it's behind all the error checking we won't see the bar come up at all on failure?
+		..()
+
+		boutput(owner, "<span class='notice'>You start loading a grenade into [target_gun].</span>")
+
+		playsound(target_gun.loc, "sound/weapons/gunload_40mm.ogg", 50, 1)
+
+	onEnd()
+		//one more distance check
+		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_grenade) > 1)
+			interrupt(INTERRUPT_ALWAYS)
+			return ..()
+
+		var/obj/item/stackable_ammo/grenade_shell/grenade_ammo = new(target_gun)
+		var/datum/projectile/bullet/grenade_shell/grenade_proj = new()
+		grenade_proj.load_nade(donor_grenade)
+		grenade_ammo.projectile_type = grenade_proj // JANK
+		if(ismob(donor_grenade.loc))
+			var/mob/M = donor_grenade.loc
+			M.u_equip(donor_grenade)
+		donor_grenade.layer = initial(donor_grenade.layer)
+		donor_grenade.set_loc(target_gun)
+		target_gun.load_ammo(owner, grenade_ammo)
+
+		eat_twitch(target_gun) //om nom nom
+
+		var/stored_ammo_left = target_gun.ammo_reserve()
+		//update ammo counter
+		target_gun.inventory_counter.update_number(stored_ammo_left)
+
+		if (stored_ammo_left == target_gun.max_ammo_capacity)
+			boutput(owner, "<span class='notice'>The hold is now fully loaded.</span>")
+			playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 50)
+
+		return ..()
+
 /obj/item/gun/modular/alter_projectile(var/obj/projectile/P, var/mob/user)
 	if(call_alter_projectile)
 		if(call_alter_projectile & GUN_PART_BARREL)
@@ -505,8 +606,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_GRIP)
 			grip.alter_projectile(src, P, user)
-		if(call_alter_projectile & GUN_PART_MAG)
-			magazine.alter_projectile(src, P, user)
 		if(call_alter_projectile & GUN_PART_ACCSY)
 			accessory.alter_projectile(src, P, user)
 
@@ -598,38 +697,33 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
 		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
 
-	if(src.ammo_reserve()) //check happens again because of process
-		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return (current_projectile?1:0)
-
+	processing_ammo = TRUE
+	var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[src.ammo_reserve()]
+	//check for right kind of ammo
+	if(!istype(FB))
+		boutput(user,"<span class='notice'><b>Error! This device is configured only for FOSS Cathodic Flash Bulbs.</b></span>")
+		playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 	else
-		processing_ammo = TRUE
-		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[src.ammo_reserve()]
-		//check for right kind of ammo
-		if(!istype(FB))
-			boutput(user,"<span class='notice'><b>Error! This device is configured only for FOSS Cathodic Flash Bulbs.</b></span>")
-			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
-		else
-			//check chance to cause a jam while loading
-			if(prob(jam_frequency)) //very unlikely unless you're clumsy i guess
-				jammed = JAM_LOAD
-				boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
-				playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-				ammo_list.Remove(FB) //see ya
-				qdel(FB)
-				processing_ammo = FALSE
-				return 0
+		//check chance to cause a jam while loading
+		if(prob(jam_frequency)) //very unlikely unless you're clumsy i guess
+			jammed = JAM_LOAD
+			boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
+			playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
+			ammo_list.Remove(FB) //see ya
+			qdel(FB)
+			processing_ammo = FALSE
+			return 0
 
-			//load it from the pile
-			flashbulb_health = rand(FB.min_health, FB.max_health)
-			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		//load it from the pile
+		flashbulb_health = rand(FB.min_health, FB.max_health)
+		boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
+		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
-			ammo_list.Remove(FB) //and remove it from the list
-			qdel(FB) //please don't qdel typepaths
+		ammo_list.Remove(FB) //and remove it from the list
+		qdel(FB) //please don't qdel typepaths
 
-		processing_ammo = FALSE
-		return (current_projectile?1:0)
+	processing_ammo = FALSE
+	return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
 	if(call_on_cycle)
@@ -639,8 +733,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock.on_cycle(src, current_projectile, user)
 		if(call_on_cycle & GUN_PART_GRIP)
 			grip.on_cycle(src, current_projectile, user)
-		if(call_on_cycle & GUN_PART_MAG)
-			magazine.on_cycle(src, current_projectile, user)
 		if(call_on_cycle & GUN_PART_ACCSY)
 			accessory.on_cycle(src, current_projectile, user)
 
@@ -704,7 +796,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return FALSE
 	playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
 	var/ammotype = ammo_list[ammo_left]
-	src.set_current_projectile(new ammotype()) // this one goes in
+	if(istype(ammotype, /datum/projectile)) // stuff like grenades relies on existing in there
+		src.set_current_projectile(ammotype) // so just chamber
+	else // but if its brand new
+		src.set_current_projectile(new ammotype()) // it gets instantiated
 	ammo_list.Remove(ammotype) //and remove it from the list
 	return TRUE
 
@@ -714,7 +809,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
 	else
-		if(!src.processing_ammo && (!src.reload_cooldown || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
+		if(!src.processing_ammo && (!src.reload_cooldown  || !ON_COOLDOWN(user, "mess_with_gunse", src.reload_cooldown)))
 			process_ammo(user)
 		// this is how many shots are left in reserve- plus the one in the chamber. it was a little too confusing to not include it
 		src.inventory_counter.update_number(src.ammo_reserve())
@@ -754,10 +849,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//prevents reloading while shooting, among other things
 	actions.interrupt(user, INTERRUPT_ACT)
 
-	if (src.muzzle_flash)
-		if (isturf(user.loc))
-			var/turf/origin = user.loc
-			muzzle_flash_attack_particle(user, origin, target, src.muzzle_flash)
+	if (length(src.muzzle_flashes) && isturf(user.loc))
+		var/turf/origin = user.loc
+		for(var/i in 1 to length(src.muzzle_flashes))
+			muzzle_flash_attack_particle(user, origin, target, src.muzzle_flashes[i])
 
 	if (ismob(user))
 		var/mob/M = user
@@ -929,7 +1024,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/proc/build_gun()
 	name = real_name
-	icon_state = initial(icon_state)//if i don't do this it's -built-built-built
 
 	bulk = src.bulkiness
 
@@ -938,8 +1032,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		parts += barrel
 	else
 		spread_angle += BARREL_PENALTY
-	if(magazine)
-		parts += magazine
 	if(grip)
 		parts += grip
 	if(stock)
@@ -950,6 +1042,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		parts += accessory
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
+
+	src.UpdateName()
 
 	if((src.bulk + !!stock) > 7 || src.flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = TRUE
@@ -976,38 +1070,59 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//update the icon to match!!!!!
 
 /obj/item/gun/modular/proc/reset_gun()
-	icon_state = initial(icon_state)
 	parts = list()
 	barrel = null
 	grip = null
 	stock = null
-	magazine = null
 	accessory = null
-	//foregrip = null
+	name_prefixes = null
+	name_suffixes = null
+
+	src.UpdateName()
 
 	name = "[real_name] receiver"
 
 	max_crank_level = 0
 	safe_crank_level = 0
 	flashbulb_only = 0
+	flash_auto = initial(flash_auto)
 
-	lensing = initial(lensing)
-	muzzle_flash = 0
-	silenced = 0
 	accessory_alt = 0
-	flash_auto = 0
-	bulk = bulkiness
-	caliber = 0
 
 	call_on_cycle = 0
 	call_alter_projectile = 0
 
+	lensing = initial(lensing)
+	muzzle_flashes = list()
+	silenced = initial(silenced)
+	caliber = initial(caliber)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
-	can_dual_wield = initial(can_dual_wield)
-	two_handed = initial(two_handed)
 	spread_angle = initial(spread_angle)
-	w_class = initial(w_class)
+	built = 0
+
+	bulk = bulkiness
+
+	if((src.bulk) >= 5)
+		src.two_handed = TRUE
+	else
+		src.two_handed = FALSE
+
+	src.force = floor(4 + src.bulk / 2)
+	src.throwforce = floor(6 + src.bulk / 3)
+	src.w_class = ceil(src.bulk / 3)
+
+	if(src.two_handed)
+		flags &= ~ONBELT
+		flags |= ONBACK
+		src.can_dual_wield = FALSE
+	else
+		flags &= ~ONBACK
+		flags |= ONBELT
+		src.can_dual_wield = TRUE
+
+	src.buildTooltipContent()
+	src.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 
 // derringer-esque behavior for tiny gunse
 /obj/item/gun/modular/afterattack(obj/O as obj, mob/user as mob)
@@ -1159,9 +1274,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					part.set_loc(user.loc)
 				if(gun.foregrip)
 					part = gun.foregrip.remove_part_from_gun()
-					part.set_loc(user.loc)
-				if(gun.magazine)
-					part = gun.magazine.remove_part_from_gun()
 					part.set_loc(user.loc)
 				if(gun.accessory)
 					part = gun.accessory.remove_part_from_gun()

@@ -178,7 +178,7 @@
 		update_icon()
 		add_fingerprint(user)
 		animate_storage_rustle(src)
-		if (!src.sneaky && !istype(W, /obj/item/gun/energy/crossbow))
+		if (!src.sneaky)
 			user.visible_message("<span class='notice'>[user] has added [W] to [src]!</span>", "<span class='notice'>You have added [W] to [src].</span>")
 		playsound(src.loc, "rustle", 50, 1, -5)
 		return

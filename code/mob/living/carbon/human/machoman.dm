@@ -1651,6 +1651,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Instantly grab someone in a headlock"
 	icon_state = "badtouch"
 	targeted = 1
+	attack_mobs = TRUE
+	max_range = 1
+
 	cast(atom/target)
 		var/mob/M = target
 		if (!IN_RANGE(M, holder.owner, 1))
@@ -1674,6 +1677,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Pulverize the head of a dude you grabbed"
 	icon_state = "corruption"
 	targeted = 0
+	attack_mobs = TRUE
+	max_range = 0
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -1703,6 +1709,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Pulverize the ribcage of a dude you grabbed"
 	icon_state = "pet"
 	targeted = 0
+	attack_mobs = TRUE
+	max_range = 0
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -1730,6 +1739,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	name = "Macho Rend"
 	desc = "Tears a target limb from limb"
 	icon_state = "nostun"
+	attack_mobs = TRUE
+	max_range = 0
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -1816,6 +1828,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	name = "Macho Arena"
 	desc = "Summon a wrestling ring."
 	icon_state = "lightning_cd"
+
 	var/list/macho_arena_turfs
 	cast(atom/target)
 
@@ -1915,6 +1928,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	name = "Macho Slim-Jim Snap"
 	desc = "Snaps a target into a slim jim."
 	icon_state = "lesser"
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -2463,6 +2477,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Punches a guy's heart. Right out of their body."
 	icon_state = "stasis"
 	targeted = 1
+	attack_mobs = TRUE
+	max_range = 1
+
 	cast(atom/target)
 		var/mob/M = target
 		if (!IN_RANGE(M, holder.owner, 1))

@@ -55,7 +55,7 @@
 */
 
 	//RANGED WEAPONS//
-
+/*
 	taser_rack
 		name = "taser rack"
 		desc = "A storage rack that fits 4 taser guns. Efficient!"
@@ -124,6 +124,7 @@
 
 		recharger
 			recharges_contents = 1
+*/
 
 	New()
 		..()

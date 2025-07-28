@@ -6,8 +6,17 @@
 	admin_only
 	var/list/spawn_metal_normal = list(/obj/item/material_piece/cloth, /obj/item/material_piece/mauxite, /obj/item/material_piece/pharosium)
 	var/list/spawn_metal_valuable = list(/obj/item/material_piece/cerenkite, /obj/item/material_piece/claretine, /obj/item/material_piece/bohrum, /obj/item/material_piece/uqill)
-	var/list/spawn_item = list(/obj/item/bat, /obj/item/storage/firstaid/brute, /obj/item/gun/kinetic/riotgun, /obj/item/gun/kinetic/clock_188, /obj/item/clothing/suit/armor/vest, /obj/item/gun/kinetic/colt_saa)
-	var/list/spawn_ammo = list(/obj/item/ammo/bullets/nine_mm_NATO, /obj/item/ammo/bullets/nine_mm_NATO, /obj/item/gun/kinetic/riotgun, /obj/item/ammo/bullets/buckshot_burst,/obj/item/ammo/bullets/abg, /obj/item/ammo/bullets/c_45)
+	var/list/spawn_item = list(/obj/item/bat,\
+		/obj/item/storage/firstaid/brute,\
+		/obj/item/gun/modular/italian/sniper/improved,\
+		/obj/item/gun/modular/italian/rattler/basic,\
+		/obj/item/gun/modular/italian/rattler/saucy,\
+		/obj/item/gun/modular/italian/revolver/basic,\
+		/obj/item/gun/modular/italian/revolver/improved,\
+		/obj/item/clothing/suit/armor/vest)
+	var/list/spawn_ammo = list(/obj/item/stackable_ammo/pistol/NT/ten,\
+		/obj/item/stackable_ammo/pistol/NT/HP/five,\
+		/obj/item/stackable_ammo/rifle/NT/five)
 
 	for (var/obj/machinery/disposal/mail/MB in world)
 		var/turf/spawn_turf = get_turf(MB)
