@@ -156,6 +156,10 @@ var/global/list/job_start_locations = list()
 		name = "missile latejoin spawn marker (north)"
 		dir = NORTH
 
+	south
+		name = "missile latejoin spawn marker (not north)"
+		dir = SOUTH
+
 /obj/landmark/ass_arena_spawn
 	name = LANDMARK_ASS_ARENA_SPAWN
 	icon_state = "x"

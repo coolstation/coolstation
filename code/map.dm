@@ -1011,6 +1011,69 @@ var/global/list/mapNames = list(
 		"the mining staff room" = list(/area/station/mining/staff_room))
 		//"the radio lab" = list(/area/station/crew_quarters/radio))
 
+
+/datum/map_settings/noyade
+	name = "NOYADE"
+	goonhub_map = "https://goonhub.com/maps/oshan"
+
+	arrivals_type = MAP_SPAWN_MISSILE
+
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
+	auto_walls = 0
+	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	qm_supply_type = "shuttle"
+	shuttle_map_turf = /turf/space/fluid
+
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/cogmap2
+	escape_outpost = /area/shuttle/escape/outpost/cogmap2
+	escape_transit = /area/shuttle/escape/transit/cogmap2
+	escape_station = /area/shuttle/escape/station/cogmap2
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+	valid_nuke_targets = list()
+	//job_limits_override = list()
+
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = /turf/space/fluid/noexplosion/nospawn
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = /turf/space/fluid/noexplosion/nospawn
+
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = /turf/space/fluid/noexplosion/nospawn
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = /turf/space/fluid/noexplosion/nospawn
+
+
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"
 	walls = /turf/wall/auto/supernorn
