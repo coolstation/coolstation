@@ -376,7 +376,7 @@
 	name = "Captains Coat"
 	desc = "Prone to getting stuck in airlocks"
 	icon_state = "captain"
-	item_state = "mailcap"
+	item_state = "cap_coat"
 	body_parts_covered = TORSO|LEGS|ARMS
 	bloodoverlayimage = SUITBLOOD_COAT
 
