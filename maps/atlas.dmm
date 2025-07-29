@@ -707,8 +707,8 @@
 "bI" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/bottle/bojackson,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38,
+/obj/item/stackable_ammo/pistol/capacitive/ten,
+/obj/item/stackable_ammo/pistol/capacitive/ten,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "bJ" = (
@@ -2403,12 +2403,6 @@
 	},
 /turf/floor/black,
 /area/station/crew_quarters/catering)
-"gp" = (
-/obj/machinery/weapon_stand/taser_rack/recharger/empty,
-/turf/floor/red/side{
-	dir = 4
-	},
-/area/station/security/main)
 "gq" = (
 /obj/rack,
 /obj/item/clothing/suit/armor/heavy,
@@ -17564,7 +17558,7 @@
 /area/station/hallway/primary/east)
 "RI" = (
 /obj/displaycase{
-	displayed = new/obj/item/captaingun
+	displayed = new/obj/item/gun_parts/grip/wizard
 	},
 /turf/floor/blue,
 /area/station/bridge/captain)
@@ -18592,7 +18586,6 @@
 /turf/floor/black,
 /area/station/storage/tools)
 "UL" = (
-/obj/machinery/weapon_stand/shotgun_rack,
 /obj/decal/poster/wallsign/framed_award/hos_medal{
 	pixel_y = 26
 	},
@@ -72198,7 +72191,7 @@ dJ
 eu
 hl
 ff
-gp
+jI
 gG
 hJ
 hU
