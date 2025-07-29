@@ -373,8 +373,8 @@
 		setProperty("disorient_resist", 15)
 
 /obj/item/clothing/suit/cap_coat
-	name = "Captains Coat"
-	desc = "Prone to getting stuck in airlocks"
+	name = "captain's coat"
+	desc = "Prone to getting stuck in airlocks."
 	icon_state = "captain"
 	item_state = "cap_coat"
 	body_parts_covered = TORSO|LEGS|ARMS
