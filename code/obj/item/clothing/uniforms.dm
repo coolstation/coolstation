@@ -1055,8 +1055,8 @@
 	item_state = "shirt_n_pant-w_tie-bl"
 
 /obj/item/clothing/under/shirt_pants_w/captain
-	name = "Navy shirt and pants"
-	desc = "A shirt and pant fit for a captain"
+	name = "navy shirt and pants"
+	desc = "A crisp fit, reserved for the captain."
 	icon_state = "shirt_n_pant-cap"
 	item_state = "shirt_n_pant-cap"
 
