@@ -373,7 +373,7 @@
 		setProperty("disorient_resist", 15)
 
 /obj/item/clothing/suit/cap_coat
-	name = "captain's coat"
+	name = "Captain's coat"
 	desc = "Prone to getting stuck in airlocks."
 	icon_state = "captain"
 	item_state = "cap_coat"
