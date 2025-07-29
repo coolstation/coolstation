@@ -179,20 +179,19 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	slot_card = /obj/item/card/id/gold
 	slot_belt = list(/obj/item/device/pda2/captain)
-	slot_back = list(/obj/item/storage/backpack/captain)
+	slot_back = list(/obj/item/storage/backpack/captain/blue)
 #ifdef NO_START_JOBGEAR_MAP
 	//no armor, get it from your locker
-	slot_jump = list(/obj/item/clothing/under/rank/captain)
+	slot_jump = list(/obj/item/clothing/under/shirt_pants_w/captain)
 #elif defined(NO_DEPARTMENT_START_MAP)
 	//start cap in bed
 	slot_jump = list(/obj/item/clothing/under/gimmick/pajamas)
 #else
-	slot_jump = list(/obj/item/clothing/under/rank/captain)
-	slot_suit = list(/obj/item/clothing/suit/armor/captain)
+	slot_jump = list(/obj/item/clothing/under/shirt_pants_w/captain)
+	slot_suit = list(/obj/item/clothing/suit/cap_coat)
 #endif
 	slot_head = list(/obj/item/clothing/head/caphat)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
-	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
 	slot_ears = list(/obj/item/device/radio/headset/command/captain)
 	slot_poc1 = list(/obj/item/disk/data/floppy/read_only/authentication)
 	items_in_backpack = list(/obj/item/device/flash)
