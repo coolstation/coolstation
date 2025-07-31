@@ -2073,7 +2073,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 			if (!B) // look for an existing dynamic blood decal and add to it if you find one
 				B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
 
-			B.transfer_volume(src.reagents, src.reagents.total_volume)
+			B.transfer_volume(src.reagents, src.reagents.total_volume, do_fluid_react = (src.reagents.total_volume >= 15))
 
 			B.stain = "shit-stained"
 
