@@ -687,35 +687,6 @@
 		..()
 		.= "Original italian [name]."
 
-	//okay so this behavior is on RAW pasta, creating a COOKED pasta, which is EXTREMELY WEIRD and needs to be FIXED, TODO TODO TODO
-	//updated for the ketchup/tomato sauce split + italian sensibilities
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce))
-			boutput(user, "<span class='notice'>You create [random_spaghetti_name()] with tomato sauce...</span>")
-			var/obj/item/reagent_containers/food/snacks/spaghetti/sauce/D
-			if (user.mob_flags & IS_BONER)
-				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal(W.loc)
-				boutput(user, "<span class='alert'>... whoa, that felt good. Like really good.</span>")
-				user.reagents.add_reagent("satisghetti",20)
-			else
-				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
-			user.u_equip(W)
-			user.put_in_hand_or_drop(D)
-			qdel(W)
-			qdel(src)
-
-		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/ketchup))
-			boutput(user, "<span class='notice'>You create [random_spaghetti_name()] with ketchup...</span>")
-			var/obj/item/reagent_containers/food/snacks/spaghetti/sauce/D
-			if (user.traitHolder.hasTrait("italian"))
-				boutput(user, "<span class='alert'>... you have never felt such shame in your entire life.</span>")
-				user.changeStatus("stunned", 5 SECONDS)
-			D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
-			user.u_equip(W)
-			user.put_in_hand_or_drop(D)
-			qdel(W)
-			qdel(src)
-
 	heal(var/mob/M)
 		boutput(M, "<span class='alert'>The noodles taste terrible uncooked...</span>")
 		..()
