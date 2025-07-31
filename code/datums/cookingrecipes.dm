@@ -305,6 +305,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/meatball
 	category = "Pasta"
 
+/datum/cookingrecipe/oven/spaghetti_tw
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
+	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item3 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
+	cookbonus = 16
+	output = /obj/item/reagent_containers/food/snacks/spaghetti/theworks
+	category = "Pasta"
+
 /datum/cookingrecipe/oven/lasagna
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pasta/sheet
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
