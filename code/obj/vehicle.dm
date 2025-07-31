@@ -645,7 +645,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			reagents.add_reagent("cryostylane", 1000)
 			return
 		else if(bigshoe)
-			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
+			reagents.add_reagent("tomato_sauce", 1000) //now we got da sause
 			return
 		else
 			reagents.add_reagent("cleaner", 1000)
