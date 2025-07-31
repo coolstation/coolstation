@@ -586,6 +586,16 @@ datum
 					boutput(M, "<span class='alert'>A horrible smell assaults your nose! What in space is it?</span>")
 				return
 
+		//tomato sauce + sugar at 4:1 and heat to 200F/94C/366K
+		ketchup
+			name = "Ketchup"
+			id = "ketchup"
+			result = "ketchup"
+			required_reagents = list("tomato_sauce" = 4, "sugar" = 1)
+			required_temperature = T0C + 94
+			result_amount = 5
+			mix_phrase = "The tomato sauce gets thicker and sweeter."
+
 		lemonade
 			name = "Lemonade"
 			id = "lemonade"

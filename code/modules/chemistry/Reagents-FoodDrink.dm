@@ -2636,12 +2636,36 @@ datum
 			transparency = 255
 			value = 3 // same as salt vOv
 
+		//the new "stuff that comes out of the processor"
+		//eventually: add a container you can add to the processor so you don't get weird packets out
+		fooddrink/tomato_sauce
+			name = "tomato_sauce"
+			id = "tomato_sauce"
+			description = "A thick puree derived from the fruits of the tomato plant."
+			reagent_state = LIQUID
+			fluid_r = 255
+			fluid_g = 0
+			fluid_b = 0
+			transparency = 255
+			viscosity = 0.6
+
+			reaction_turf(var/turf/T, var/volume) //Makes the kechup splats
+				var/list/covered = holder.covered_turf()
+				if (covered.len > 9)
+					volume = (volume/covered.len)
+
+				if (volume >= 5)
+					if (!locate(/obj/decal/cleanable/ketchup) in T)
+						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+						make_cleanable(/obj/decal/cleanable/ketchup,T)
+
+		//tomato sauce + sugar at 4:1 and heat to 200F/94F/366K
 		fooddrink/ketchup
 			name = "ketchup"
 			id = "ketchup"
 			description = "A condiment often used on hotdogs and sandwiches."
 			reagent_state = LIQUID
-			fluid_r = 255
+			fluid_r = 245
 			fluid_g = 0
 			fluid_b = 0
 			transparency = 255
@@ -3204,13 +3228,14 @@ datum
 						boutput(M, "<span class='alert'>Your eyes sting!</span>")
 						M.change_eye_blurry(rand(5, 20))
 
+		//okay so, put a tomato in the juicer for this (put it in the processor for sauce)
 		fooddrink/juice_tomato
 			name = "tomato juice"
 			id = "juice_tomato"
 			fluid_r = 255
 			fluid_g = 0
 			fluid_b = 0
-			description = "Tomatoes pureed down to a liquid state."
+			description = "Tomatoes pureed down to a liquid state, strained and thin."
 			reagent_state = LIQUID
 			thirst_value = 1.5
 			bladder_value = -1.5
@@ -3818,7 +3843,7 @@ datum
 			hunger_value = 3
 
 			on_mob_life(var/mob/M, var/mult = 1)
-				M.reagents.add_reagent("juice_tomato", 0.25 * mult)
+				M.reagents.add_reagent("tomato_sauce", 0.25 * mult)
 				M.reagents.add_reagent("cheese", 0.25 * mult)
 				M.reagents.add_reagent("bread", 0.25 * mult)
 				M.reagents.add_reagent("pepperoni", 0.25 * mult)
