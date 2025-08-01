@@ -878,7 +878,10 @@
 
 		switch (message_mode)
 			if ("headset", "secure headset", "right hand", "left hand", "intercom")
-				VT = "radio"
+				if ((istype(src:wear_suit, /obj/item/clothing/suit/space))&&(istype(src:head, /obj/item/clothing/head/helmet/space)))
+					VT = "spaceradio"
+				else
+					VT = "radio"
 				ending = 0
 
 		if (singing || (src.bioHolder?.HasEffect("elvis")))
@@ -899,6 +902,9 @@
 		else if (ending == "!")
 			playsound(src, sounds_speak["[VT]!"], 55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "!"
+		else if (VT == "spaceradio")
+			playsound(src, sounds_speak["[VT]"], 55, 0, 8, pitch = 1, ignore_flag = SOUND_SPEECH)
+			speech_bubble.icon_state = "speech"
 		else
 			playsound(src, sounds_speak["[VT]"],  55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "speech"
