@@ -99,7 +99,7 @@
 			sleep(1 DECI SECOND) //Changed from 1, minor proj. speed buff
 		is_processing = 0
 
-	proc/collide(atom/A as mob|obj|turf|area, first = 1)
+	proc/collide(atom/A as mob|obj|turf, first = 1)
 		if (!A) return // you never know ok??
 		if (QDELETED(src)) return // if disposed = true, QDELETED(src) or set for garbage collection and shouldn't process bumps
 		if (!proj_data) return // this apparently happens sometimes!! (more than you think!)
@@ -277,6 +277,7 @@
 		transform = null
 		Turn(angle)
 		if (!proj_data.precalculated)
+			src.was_setup = 1
 			return
 		var/x32 = 0
 		var/xs = 1
@@ -335,16 +336,15 @@
 
 	proc/collide_with_applicable_in_tile(var/turf/T)
 		var/i = 0
-		for(var/thing as mob|obj|turf|area in T)
-			var/atom/A = thing
-			if (A == src) continue
-			if (!A.CanPass(src, get_step(src, A.dir)))
-				src.collide(A)
+		for(var/atom/movable/AM in T)
+			if (AM == src) continue
+			if (!AM.CanPass(src, get_step(src, AM.dir)))
+				src.collide(AM)
 
-			if (collide_with_other_projectiles && A.type == src.type)
-				var/obj/projectile/P = A
+			if (collide_with_other_projectiles && AM.type == src.type)
+				var/obj/projectile/P = AM
 				if (P.proj_data && src.proj_data && P.proj_data.type != src.proj_data.type) //ignore collisions with me own subtype
-					src.collide(A)
+					src.collide(AM)
 
 			if(i++ >= 50)
 				break

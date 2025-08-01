@@ -64,7 +64,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: $HOME/BYOND
-          key: ${{ runner.os }}-byond
+          key: ${{ runner.os }}-byond-${{ hashFiles('buildByond.conf')}}
+          restore-keys: ${{ runner.os }}-byond
 
       - name: Setup BYOND
         run: |

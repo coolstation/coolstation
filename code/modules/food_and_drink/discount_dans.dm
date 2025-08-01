@@ -113,7 +113,7 @@
 */
 			if (11)
 				src.real_name = "Frycook Dan's Quik-Noodles - Curly Fry Ketchup Hoedown Flavor"
-				src.initial_reagents["juice_tomato"] = 3
+				src.initial_reagents["ketchup"] = 3
 				src.initial_reagents["mugwort"] = 3
 				src.initial_reagents["capsaicin"] = 3
 				src.initial_reagents["mashedpotatoes"] = 3

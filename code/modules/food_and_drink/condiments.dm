@@ -34,9 +34,18 @@
 	heal_amt = 0
 	amount = 1
 
+
+/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
+	name = "tomato sauce"
+	desc = "Pureéd tomatoes as a sauce, straight up."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "can-tomato"
+	initial_volume = 30
+	initial_reagents = list("tomato_sauce"=25)
+
 /obj/item/reagent_containers/food/snacks/condiment/ketchup
 	name = "ketchup"
-	desc = "Pureéd tomatoes as a sauce."
+	desc = "Pureéd tomatoes as a sauce, thickened with sugar."
 	icon_state = "sachet-ketchup"
 	initial_volume = 30
 	initial_reagents = list("ketchup"=20)

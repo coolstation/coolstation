@@ -1001,6 +1001,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 						/obj/item/reagent_containers/food/snacks/condiment/custard,
 						/obj/item/reagent_containers/food/snacks/condiment/hotsauce = 3,
 						/obj/item/reagent_containers/food/snacks/condiment/ketchup = 4,
+						/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce = 2,
 						/obj/item/reagent_containers/food/snacks/condiment/mayo = 4,
 						/obj/item/reagent_containers/food/snacks/condiment/syrup = 3,
 						/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter = 3,
