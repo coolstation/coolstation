@@ -218,6 +218,10 @@
 	initial_volume = 30
 	initial_reagents = "tea"
 
+	New()
+		..()
+		reagents.set_reagent_temp(T0C + 65) //little hotter than coffee
+
 /obj/item/reagent_containers/food/drinks/tea/mugwort
 	name = "mugwort tea"
 	desc = "Rumored to have mystical powers of protection.<br>It has a message written on it: 'To the world's greatest wizard - love, Dad'"
@@ -232,6 +236,10 @@
 	heal_amt = 1
 	initial_volume = 25
 	initial_reagents = list("coffee"=24)
+
+	New()
+		..()
+		reagents.set_reagent_temp(T0C + 60) //top end of comfortable sipping
 
 /obj/item/reagent_containers/food/drinks/eggnog
 	name = "Egg Nog"
@@ -252,6 +260,10 @@
 	initial_volume = 30
 	can_recycle = FALSE
 	initial_reagents = list("chickensoup"=30)
+
+	New()
+		..()
+		reagents.set_reagent_temp(T0C + 55)
 
 /obj/item/reagent_containers/food/drinks/weightloss_shake
 	name = "Weight-Loss Shake"
