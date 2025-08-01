@@ -1252,6 +1252,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"iS" = (
+/obj/machinery/light/fluorescent/cool{
+	dir = 4
+	},
+/turf/floor,
+/area/magindara)
 "iT" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold,
@@ -1443,11 +1449,10 @@
 	},
 /area/station/science/chemistry)
 "kn" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/random,
 /obj/decal/poster/wallsign/pride/random{
 	pixel_y = 32
 	},
+/obj/mopbucket,
 /turf/floor/darkpurpleblack/corner{
 	dir = 4
 	},
@@ -2257,6 +2262,12 @@
 /obj/railing/cool,
 /turf/floor/specialroom/clown,
 /area/station/crew_quarters/clown)
+"oB" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/primary/southwest)
 "oD" = (
 /obj/machinery/power/apc{
 	areastring = "Janitor's Supply Closet";
@@ -3077,8 +3088,9 @@
 /turf/floor/red/checker,
 /area/station/medical/medbay/surgery)
 "sX" = (
-/obj/mopbucket,
 /obj/disposalpipe/segment/vertical,
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/poly,
 /turf/floor/darkpurpleblack/corner,
 /area/station/janitor/supply)
 "sZ" = (
@@ -39414,7 +39426,7 @@ sx
 sx
 sx
 sx
-sx
+iS
 sx
 sx
 sx
@@ -39699,13 +39711,13 @@ ik
 ik
 ik
 ik
-ik
-ik
-ik
+oB
+RT
+oB
 xC
 ik
 ik
-ik
+uV
 VG
 nM
 Gz
@@ -40617,7 +40629,7 @@ ik
 ik
 yg
 ik
-ik
+Nq
 OX
 OX
 sx
