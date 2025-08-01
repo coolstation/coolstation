@@ -1828,6 +1828,32 @@ datum
 				if(volume >= 5 && !(locate(/obj/item/reagent_containers/food/snacks/breadslice) in T))
 					new /obj/item/reagent_containers/food/snacks/breadslice(T)
 
+		fooddrink/garlic
+			name = "garlic"
+			id = "garlic"
+			description = "Pure garlic, in whatever form. Minced, chopped, mashed, whatever."
+			fluid_r = 225
+			fluid_g = 210
+			fluid_b = 190
+			transparency = 200
+
+			reaction_mob(var/mob/target, var/method=TOUCH, var/volume)
+				..()
+				var/reacted = 0
+				var/mob/living/M = target
+				if(istype(M))
+					if (isvampire(M))
+						M.emote("scream")
+						for(var/mob/O in AIviewers(M, null))
+							O.show_message(text("<span class='alert'><b>[] begins to crisp and burn!</b></span>", M), 1)
+						boutput(M, "<span class='alert'>Garlic! It burns!</span>")
+						var/burndmg = volume * 1.25
+						burndmg = min(burndmg, 110) //cap burn at 110 so we can't instant-kill vampires. just crit em ok.
+						M.TakeDamage("chest", 0, burndmg, 0, DAMAGE_BURN)
+						M.change_vampire_blood(-burndmg)
+						reacted = 1
+				return !reacted
+
 		fooddrink/rainbow_melonium
 			name = "rainbow melonium"
 			id = "rainbow_melonium"
@@ -2690,6 +2716,21 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
+
+		fooddrink/mayo
+			name = "mayonnaise"
+			id = "mayonnaise"
+			description = "A common egg-and-oil condiment."
+			reagent_state = SOLID
+			fluid_r = 200
+			fluid_g = 180
+			fluid_b = 120
+			transparency = 255
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if(prob(6))
+					M.reagents.add_reagent("cholesterol", rand(1,2) * mult)
+				..()
 
 		fooddrink/parmesan
 			name = "space parmesan cheese"
