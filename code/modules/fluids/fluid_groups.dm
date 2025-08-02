@@ -452,7 +452,6 @@
 		var/viscosity_prefix_changed = src.update_viscosity()
 		src.update_required_to_spread()
 		if (SPREAD_CHECK(src) || force)
-			LAGCHECK(LAG_HIGH)
 			if (src.qdeled) return 1
 			src.updating = 1
 
@@ -474,8 +473,6 @@
 			if (created && !src.qdeled)
 				return
 
-		LAGCHECK(LAG_HIGH)
-
 		if (src.last_contained_amt == src.contained_amt && length(src.members) == src.last_members_amt && !force)
 			src.updating = 0
 			return 1
@@ -487,8 +484,6 @@
 				my_depth_level++
 			else
 				break
-
-		LAGCHECK(LAG_MED)
 
 		var/datum/color/last_color = src.average_color
 		src.average_color = src.reagents?.get_average_color()
@@ -503,8 +498,6 @@
 			src.updating = 0
 			return 1
 
-		LAGCHECK(LAG_MED)
-
 		var/targetalpha = max(25, (src.average_color.a / 255) * src.max_alpha)
 		var/targetcolor = rgb(src.average_color.r, src.average_color.g, src.average_color.b)
 
@@ -517,7 +510,6 @@
 		var/last_icon = 0
 
 		for (var/obj/fluid/F as anything in src.members)
-			LAGCHECK(LAG_HIGH)
 			if (!F || F.pooled || src.qdeled) continue
 
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -536,7 +528,6 @@
 			if (F.last_depth_level != my_depth_level)
 				F.last_depth_level = my_depth_level
 				for(var/obj/O in F.loc)
-					LAGCHECK(LAG_MED)
 					if (O?.submerged_images)
 						F.HasEntered(O,O.loc)
 				for(var/mob/living/M in F.loc)
@@ -614,11 +605,11 @@
 
 	proc/spread(var/fluids_to_create) //spread in respect to members
 		.= 0 //return created fluids
+		var/list/newfluids = list()
 		var/obj/fluid/F
 		src.waitforit = 1 //don't breathe in the gas on inital spread - causes runtimes with small volumes
 		var/membercount = length(src.members)
 		for (var/i = 1, i <= membercount, i++)
-			LAGCHECK(LAG_HIGH)
 			if (src.qdeled) return
 			if (i > membercount) continue
 			F = members[i]
@@ -628,7 +619,6 @@
 				amt_per_tile = contained_amt / (membercount + .)
 
 				for (var/obj/fluid/C as anything in F.update())
-					LAGCHECK(LAG_HIGH)
 					if (!C || C.pooled) continue
 					var/turf/T = C.loc
 					if (istype(T) && drains_floor)
@@ -642,6 +632,7 @@
 						C.blood_type = F.blood_type
 
 					members += C
+					newfluids += C
 					.++
 
 				if ((membercount + .)<=0) //this can happen somehow
@@ -657,6 +648,8 @@
 
 			if (. >= fluids_to_create)
 				break
+		for (F as anything in newfluids)
+			F.update_icon()
 		src.waitforit = 0
 
 	proc/drain(var/obj/fluid/drain_source, var/fluids_to_remove, var/atom/transfer_to = 0, var/remove_reagent = 1) //basically a reverse spread with drain_source as the center
