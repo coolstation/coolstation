@@ -5,10 +5,9 @@
 
 
 /mob/hotkey(name)
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.hotkey(src, name)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.hotkey(src, name)
 	return ..()
 
 /mob/keys_changed(keys, changed)
@@ -18,10 +17,9 @@
 		else
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			controller.keys_changed(src, keys, changed)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		controller.keys_changed(src, keys, changed)
 		return
 
 	if (changed & (KEY_FORWARD|KEY_BACKWARD|KEY_RIGHT|KEY_LEFT))
@@ -56,16 +54,17 @@
 /mob/proc/process_move(keys)
 	set waitfor = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.process_move(src, keys)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.process_move(src, keys)
 
 	if (isdead(src) && !isobserver(src) && !istype(src, /mob/zoldorf))
-		return
+		return 0
 
 	if (src.next_move - world.time >= world.tick_lag / 10)
-		return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
+		// from mylies tests, this is an error from years ago, so im removing it so that process_move returns a truthy value ONLY when it actually moves
+		//return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
+		return 0
 
 	if (src.move_dir)
 		//SPRINTING REMOVAL - Despite the name, this running var seems to actually be what dictates the speed increase when sprinting
@@ -101,7 +100,7 @@
 			if (src.restrained())
 				for(var/mob/M in range(src, 1))
 					if ((M.pulling == src && (!M.restrained() && isalive(M))) || length(src.grabbed_by))
-						return
+						return 0
 
 			var/misstep_angle = 0
 			if (src.traitHolder && prob(5) && src.traitHolder.hasTrait("leftfeet"))
@@ -222,7 +221,7 @@
 							if (G.assailant == pushing || G.affecting == pushing) continue
 							if (G.state < GRAB_NECK) continue
 							if (!G.assailant || !isturf(G.assailant.loc) || G.assailant.anchored)
-								return
+								return 0
 							src.set_density(0) //assailant shouldn't be able to bump us here. Density is set to 0 by the grab stuff but *SAFETY!*
 							step(G.assailant, move_dir)
 							if(G.assailant)

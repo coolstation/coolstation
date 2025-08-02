@@ -40,4 +40,5 @@ TYPEINFO(/datum/component/blacklight_visible)
 
 /datum/component/blacklight_visible/disposing()
 	src.glow_image = null
+	src.parent_atom = null
 	. = ..()

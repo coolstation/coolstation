@@ -1070,7 +1070,7 @@
 		blood_points = max(0,blood_points)
 		cleanable_tally += (prev_blood - blood_points)
 		if (cleanable_tally > 20)
-			make_cleanable(/obj/decal/cleanable/blood,get_turf(mob))
+			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_turf(mob))
 			cleanable_tally = 0
 
 		mob.max_health = blood_points * blood_to_health_scalar
@@ -1937,7 +1937,7 @@
 			.= (pick("<B>[mob]</B> milk fall out.", "<B>[mob]</B> makes a milk puddle on the floor."))
 
 			var/turf/T = get_turf(mob)
-			bleed(mob, 10, 3, T)
+			bleed(mob, 10, T)
 			T.react_all_cleanables()
 
 

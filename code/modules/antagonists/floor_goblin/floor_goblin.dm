@@ -80,7 +80,7 @@
 	name = "Toggle Reveal"
 	desc = "Toggle your ability to hide between the floor tiles."
 	icon = 'icons/ui/critter_ui.dmi'
-	icon_state = "floorgoblin_hide"
+	icon_state = "mark"
 	targeted = 0
 	cooldown = 0
 

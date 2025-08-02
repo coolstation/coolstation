@@ -66,19 +66,8 @@
 				if (anticoag_amt)
 					final_bleed += round(clamp((anticoag_amt / 10), 0, 2), 1)
 				final_bleed *= mult
-				if (prob(max(0, min(final_bleed, 10)) * 5)) // up to 50% chance to make a big bloodsplatter
-					bleed(owner, final_bleed, 5)
-
-				else
-					switch (owner.bleeding)
-						if (1)
-							bleed(owner, final_bleed, 1) // this proc creates a bloodsplatter on src's tile
-						if (2)
-							bleed(owner, final_bleed, 2) // it takes care of removing blood, and transferring reagents, color and ling status to the blood
-						if (3 to 4)
-							bleed(owner, final_bleed, 3) // see blood_system.dm for the proc
-						if (5)
-							bleed(owner, final_bleed, 4)
+				// up to 50% chance to make a big bloodsplatter
+				bleed(owner, final_bleed, violent = prob(max(0, min(final_bleed, 10)) * 5))
 
 
 		////////////////////////////////////////////
@@ -261,7 +250,7 @@
 				if (prob(2))
 					owner.visible_message("<span class='alert'>[owner] coughs up a little blood!</span>")
 					playsound(owner, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-					bleed(owner, rand(1,2) * mult, 1)
+					bleed(owner, rand(1,2) * mult)
 				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -3)
 				owner.add_stam_mod_max("hypertension", -15)
 

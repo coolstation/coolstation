@@ -1258,11 +1258,6 @@
 "aec" = (
 /turf/floor/plating/random,
 /area/diner/kitchen)
-"aed" = (
-/obj/decal/cleanable/cobweb2,
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/plating/random,
-/area/diner/kitchen)
 "aee" = (
 /obj/machinery/chem_dispenser/soda,
 /turf/floor/scorched2,
@@ -1300,13 +1295,6 @@
 /area/diner/kitchen)
 "ael" = (
 /obj/decal/cleanable/dirt,
-/turf/floor/plating/random,
-/area/diner/kitchen)
-"aem" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor5"
-	},
-/obj/machinery/light/fluorescent/small,
 /turf/floor/plating/random,
 /area/diner/kitchen)
 "aen" = (
@@ -1622,20 +1610,6 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/grime,
 /area/diner/kitchen)
-"aft" = (
-/obj/decal/cleanable/blood{
-	icon_state = "floor6"
-	},
-/turf/floor/grime,
-/area/diner/dining)
-"afu" = (
-/obj/decal/cleanable/blood/hurting1,
-/turf/floor/grime,
-/area/diner/dining)
-"afv" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/grime,
-/area/diner/dining)
 "afw" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/grime,
@@ -1663,22 +1637,6 @@
 	},
 /turf/wall/auto/supernorn,
 /area/station/medical/morgue)
-"afD" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/device/audio_log,
-/turf/floor/grime,
-/area/diner/dining)
-"afE" = (
-/obj/decal/cleanable/blood/hurting1/hurting2,
-/turf/floor/grime,
-/area/diner/dining)
-"afF" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor4"
-	},
-/obj/item/clothing/mask/chicken,
-/turf/floor/grime,
-/area/diner/dining)
 "afH" = (
 /obj/decal/cleanable/dirt/dirt3,
 /turf/floor/grime,
@@ -1730,25 +1688,6 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/grime,
 /area/abandonedmedicalship/robot_trader)
-"afR" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor5"
-	},
-/obj/item/clothing/suit/jacketsjacket,
-/turf/floor/grime,
-/area/diner/dining)
-"afS" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/obj/item/bat,
-/turf/floor/grime,
-/area/diner/dining)
-"afT" = (
-/obj/decal/cleanable/blood,
-/obj/item/clothing/under/gimmick/shirtnjeans,
-/turf/floor/grime,
-/area/diner/dining)
 "afU" = (
 /turf/floor/stairs/wide/other,
 /area/diner/dining)
@@ -3054,23 +2993,9 @@
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai_upload)
-"akE" = (
-/turf/space/fluid/manta,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/listeningpost/syndicateassaultvessel)
 "akF" = (
 /obj/wingrille_spawn/auto/crystal,
 /turf/floor/plating/random,
-/area/listeningpost/syndicateassaultvessel)
-"akG" = (
-/turf/space/fluid/manta,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
 /area/listeningpost/syndicateassaultvessel)
 "akH" = (
 /turf/shuttle/wall{
@@ -3497,13 +3422,6 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/floor/red,
 /area/listeningpost/syndicateassaultvessel)
-"alP" = (
-/turf/floor/red,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/listeningpost/syndicateassaultvessel)
 "alQ" = (
 /obj/machinery/door/airlock/pyro/syndicate{
 	desc = "Seems to be a pretty sturdy door.";
@@ -3515,13 +3433,6 @@
 	},
 /turf/floor/red,
 /area/listeningpost/syndicateassaultvessel)
-"alR" = (
-/turf/floor/red,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/listeningpost/syndicateassaultvessel)
 "alS" = (
 /obj/machinery/drainage/big,
 /turf/floor/red,
@@ -3529,13 +3440,6 @@
 "alT" = (
 /turf/floor/redblack{
 	dir = 4
-	},
-/area/listeningpost/syndicateassaultvessel)
-"alU" = (
-/turf/space/fluid/manta,
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
 	},
 /area/listeningpost/syndicateassaultvessel)
 "alV" = (
@@ -3707,13 +3611,6 @@
 	},
 /turf/floor{
 	icon_state = "floorgrime-w"
-	},
-/area/listeningpost/syndicateassaultvessel)
-"amq" = (
-/turf/space/fluid/manta,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
 	},
 /area/listeningpost/syndicateassaultvessel)
 "amr" = (
@@ -4070,16 +3967,6 @@
 	},
 /turf/floor/carpet/red/fancy/edge/se,
 /area/listeningpost/syndicateassaultvessel)
-"anp" = (
-/obj/decal/cleanable/blood{
-	icon_state = "floor6"
-	},
-/turf/floor/red,
-/area/listeningpost/syndicateassaultvessel)
-"anq" = (
-/obj/decal/cleanable/blood,
-/turf/floor/red,
-/area/listeningpost/syndicateassaultvessel)
 "anr" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
@@ -4098,17 +3985,6 @@
 "ant" = (
 /obj/table/auto,
 /obj/item/storage/box/handcuff_kit,
-/turf/floor/red,
-/area/listeningpost/syndicateassaultvessel)
-"anu" = (
-/obj/stool/chair{
-	anchored = 0;
-	dir = 1
-	},
-/obj/decal/cleanable/blood{
-	icon_state = "floor5"
-	},
-/obj/machinery/light/fluorescent/warm,
 /turf/floor/red,
 /area/listeningpost/syndicateassaultvessel)
 "anv" = (
@@ -18948,7 +18824,7 @@
 /obj/table/reinforced/auto,
 /obj/item/ammo/bullets/smoke,
 /obj/item/ammo/bullets/smoke,
-/obj/item/gun/kinetic/riot40mm,
+/obj/item/gun/modular/italian/launcher/basic,
 /obj/item/device/detective_scanner{
 	pixel_x = 6;
 	pixel_y = 6
@@ -35412,6 +35288,12 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
+"cmE" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "diagonalWall3"
+	},
+/area/listeningpost/syndicateassaultvessel)
 "coI" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 4
@@ -36087,6 +35969,10 @@
 	},
 /turf/floor,
 /area/station/hallway/seaturtlehallway)
+"dID" = (
+/obj/decal/cleanable/tracked_reagents/blood/hurting1/hurting2,
+/turf/floor/grime,
+/area/diner/dining)
 "dIP" = (
 /obj/cable,
 /obj/machinery/door/airlock/pyro/glass,
@@ -36284,6 +36170,12 @@
 	},
 /turf/floor/green,
 /area/station/medical/research)
+"eaM" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor6"
+	},
+/turf/floor/red,
+/area/listeningpost/syndicateassaultvessel)
 "ebx" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1;
@@ -36331,6 +36223,10 @@
 	icon_state = "fred2"
 	},
 /area/station/science/restroom)
+"efu" = (
+/obj/decal/cleanable/tracked_reagents/blood/hurting1,
+/turf/floor/grime,
+/area/diner/dining)
 "eid" = (
 /obj/stool/chair/red{
 	dir = 8
@@ -36924,6 +36820,11 @@
 	dir = 1
 	},
 /area/station/crewquarters/garbagegarbs)
+"fqb" = (
+/obj/decal/cleanable/cobweb2,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/plating/random,
+/area/diner/kitchen)
 "fqo" = (
 /obj/storage/crate{
 	desc = "A private crate that isn't yours.";
@@ -37112,6 +37013,13 @@
 /obj/machinery/chem_master,
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"fDt" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/machinery/light/fluorescent/small,
+/turf/floor/plating/random,
+/area/diner/kitchen)
 "fHz" = (
 /obj/stool/chair/comfy/blue{
 	dir = 1
@@ -37963,21 +37871,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/seaturtle)
-"hqw" = (
-/obj/decal/cleanable/blood{
-	icon_state = "floor6"
-	},
-/obj/item/device/radio/intercom/security,
-/obj/decal/cleanable/dirt/dirt5,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	pixel_x = -10;
-	tag = ""
-	},
-/turf/floor/plating/random,
-/area/station/security/brig/solitary)
 "hsB" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -38023,6 +37916,21 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/plating,
 /area/station/crewquarters/cryotron)
+"hwC" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor6"
+	},
+/obj/item/device/radio/intercom/security,
+/obj/decal/cleanable/dirt/dirt5,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	pixel_x = -10;
+	tag = ""
+	},
+/turf/floor/plating/random,
+/area/station/security/brig/solitary)
 "hAj" = (
 /obj/wingrille_spawn/auto,
 /obj/window_blinds/cog2/right{
@@ -38197,6 +38105,11 @@
 	},
 /turf/floor/longtile,
 /area/station/bridge)
+"hRZ" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/item/clothing/under/gimmick/shirtnjeans,
+/turf/floor/grime,
+/area/diner/dining)
 "hSj" = (
 /obj/machinery/light/fluorescent/neutral,
 /obj/item/device/radio/intercom/cargo{
@@ -38485,6 +38398,13 @@
 	},
 /turf/floor/orange,
 /area/station/mining/refinery)
+"irZ" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/item/clothing/suit/jacketsjacket,
+/turf/floor/grime,
+/area/diner/dining)
 "iti" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1;
@@ -39425,6 +39345,11 @@
 	},
 /turf/floor/redblack,
 /area/listeningpost/syndicateassaultvessel)
+"kLR" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/device/audio_log,
+/turf/floor/grime,
+/area/diner/dining)
 "kNM" = (
 /obj/storage/secure/closet/fridge,
 /obj/item/reagent_containers/food/drinks/milk,
@@ -39858,6 +39783,12 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/station/mining/staff_room)
+"lWl" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "wall3"
+	},
+/area/listeningpost/syndicateassaultvessel)
 "lYo" = (
 /obj/item/device/radio/intercom/security{
 	dir = 4
@@ -40750,6 +40681,12 @@
 /obj/decal/cleanable/dirt,
 /turf/space/fluid/manta,
 /area/mantaSpace)
+"nUi" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/listeningpost/syndicateassaultvessel)
 "nVc" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/camera{
@@ -40793,6 +40730,13 @@
 	},
 /turf/space/fluid/manta,
 /area/diner/hangar)
+"occ" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor4"
+	},
+/obj/item/clothing/mask/chicken,
+/turf/floor/grime,
+/area/diner/dining)
 "odZ" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 4;
@@ -41319,6 +41263,10 @@
 	dir = 1
 	},
 /area/station/security/interrogation)
+"oWS" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor/red,
+/area/listeningpost/syndicateassaultvessel)
 "oXC" = (
 /obj/machinery/door_control/podbay/mining/new_walls/west{
 	name = "Submarine Bay (Mining) door control"
@@ -41886,6 +41834,15 @@
 	},
 /turf/floor,
 /area/station/hallway/secondary/construction)
+"qta" = (
+/obj/decal/cleanable/tracked_reagents/blood,
+/obj/decal/cleanable/dirt/dirt4,
+/obj/decal/fakeobjects/lightbulb_broken{
+	dir = 8;
+	pixel_x = -10
+	},
+/turf/floor/plating/random,
+/area/station/security/brig/solitary)
 "quC" = (
 /obj/storage/crate/wooden,
 /obj/machinery/light/fluorescent/neutral{
@@ -42766,6 +42723,17 @@
 /obj/window_blinds/cog2/right,
 /turf/floor/plating,
 /area/station/engine/engineering/ce)
+"suv" = (
+/obj/stool/chair{
+	anchored = 0;
+	dir = 1
+	},
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor5"
+	},
+/obj/machinery/light/fluorescent/warm,
+/turf/floor/red,
+/area/listeningpost/syndicateassaultvessel)
 "svA" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -43066,15 +43034,6 @@
 	},
 /turf/floor/red/checker,
 /area/station/medical/medbay/treatment2)
-"tlH" = (
-/obj/decal/cleanable/blood,
-/obj/decal/cleanable/dirt/dirt4,
-/obj/decal/fakeobjects/lightbulb_broken{
-	dir = 8;
-	pixel_x = -10
-	},
-/turf/floor/plating/random,
-/area/station/security/brig/solitary)
 "tmH" = (
 /obj/machinery/vehicle/tank/minisub,
 /turf/floor/shuttlebay,
@@ -43181,6 +43140,12 @@
 	},
 /turf/floor,
 /area/station/construction)
+"tFh" = (
+/turf/shuttle/wall{
+	dir = 10;
+	icon_state = "diagonalWall3"
+	},
+/area/listeningpost/syndicateassaultvessel)
 "tHn" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 8;
@@ -43849,6 +43814,13 @@
 	dir = 1
 	},
 /area/station/crewquarters/cryotron)
+"vfi" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/obj/item/bat,
+/turf/floor/grime,
+/area/diner/dining)
 "vft" = (
 /obj/decal/cleanable/oil/streak,
 /turf/floor/shuttlebay,
@@ -43868,6 +43840,10 @@
 "vhk" = (
 /turf/floor/dirt,
 /area/station/ranch)
+"vhC" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/grime,
+/area/diner/dining)
 "vjQ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -44201,6 +44177,12 @@
 /area/station/hangar/engine{
 	name = "Submarine Bay (Engineering)"
 	})
+"vMp" = (
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "floor6"
+	},
+/turf/floor/grime,
+/area/diner/dining)
 "vNT" = (
 /obj/machinery/networked/test_apparatus/xraymachine,
 /obj/machinery/power/data_terminal,
@@ -85445,9 +85427,9 @@ aaa
 aaa
 aaa
 arH
-akE
+nUi
 alO
-alU
+tFh
 arH
 aaa
 aaa
@@ -85745,13 +85727,13 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 akH
 alS
 akH
 akH
-alU
+tFh
 aaa
 aaa
 aaa
@@ -86046,7 +86028,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 asD
 alK
@@ -86071,7 +86053,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 akH
 akH
@@ -86672,7 +86654,7 @@ amO
 amX
 alD
 alD
-anp
+eaM
 ant
 akH
 aqe
@@ -86974,8 +86956,8 @@ amP
 akF
 alD
 alD
-anq
-anu
+oWS
+suv
 akH
 aqf
 aqk
@@ -87254,7 +87236,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 asE
 alx
@@ -87556,7 +87538,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 akV
 akV
@@ -87856,7 +87838,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 akH
 akH
@@ -88152,7 +88134,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 akH
 qAx
@@ -88466,7 +88448,7 @@ avM
 akV
 alr
 alB
-alP
+nUi
 akH
 akH
 akH
@@ -88950,8 +88932,8 @@ aaV
 aQB
 atH
 aqO
-hqw
-tlH
+hwC
+qta
 aSP
 kqu
 fih
@@ -89674,7 +89656,7 @@ avM
 akV
 alr
 yhC
-alR
+cmE
 akH
 akH
 akH
@@ -89964,7 +89946,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 akH
 qAx
@@ -90272,7 +90254,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 akH
 akH
@@ -90576,7 +90558,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 akV
 akV
@@ -90878,7 +90860,7 @@ aaa
 aaa
 aaa
 aaa
-akE
+nUi
 akH
 alm
 alF
@@ -92086,7 +92068,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 asF
 alN
@@ -92111,7 +92093,7 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 akH
 akH
@@ -92389,13 +92371,13 @@ aaa
 aaa
 aaa
 aaa
-akG
+cmE
 akH
 akH
 alS
 akH
 akH
-amq
+lWl
 aaa
 aaa
 aaa
@@ -92693,9 +92675,9 @@ aaa
 aaa
 aaa
 atA
-akG
+cmE
 alO
-amq
+lWl
 atA
 aaa
 aaa
@@ -117891,7 +117873,7 @@ adJ
 fmh
 adA
 aec
-aem
+fDt
 aev
 aeC
 aep
@@ -118192,7 +118174,7 @@ adA
 adK
 adI
 adA
-aed
+fqb
 aen
 adZ
 aeD
@@ -119104,9 +119086,9 @@ aep
 aeF
 aep
 adq
-aft
-afD
-afR
+vMp
+kLR
+irZ
 adq
 agd
 agd
@@ -119406,9 +119388,9 @@ aex
 aep
 aeW
 afi
-afu
-afE
-afS
+efu
+dID
+vfi
 adq
 agd
 agd
@@ -119708,9 +119690,9 @@ aey
 aeG
 aeX
 adq
-afv
-afF
-afT
+vhC
+occ
+hRZ
 adq
 agd
 agd

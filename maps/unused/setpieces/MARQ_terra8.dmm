@@ -272,11 +272,6 @@
 /turf/floor/plating,
 /area/space)
 "aQ" = (
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2";
-	dir = 10
-	},
 /turf/wall{
 	dir = 4;
 	icon = 'icons/turf/shuttle.dmi';
@@ -308,11 +303,6 @@
 /turf/floor/cave,
 /area/space)
 "aV" = (
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2";
-	dir = 6
-	},
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3";
@@ -337,7 +327,6 @@
 /turf/floor/concrete,
 /area/terraeight/fog/ground/lv5)
 "aY" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground/lv2)
 "aZ" = (
@@ -375,7 +364,6 @@
 /area/space)
 "bd" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -399,7 +387,6 @@
 /obj/decal/fakeobjects/terra8/indicators{
 	icon_state = "meter17"
 	},
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -414,7 +401,6 @@
 /obj/decal/fakeobjects/terra8/air_equipment{
 	icon_state = "fan0"
 	},
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -430,7 +416,6 @@
 /obj/decal/fakeobjects/terra8/indicators{
 	icon_state = "meter18"
 	},
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -473,16 +458,6 @@
 	icon_state = "concrete11"
 	},
 /area/bunker/lv1)
-"bp" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete6";
-	icon_state = "concrete6"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "bq" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -502,17 +477,6 @@
 	name = "rock"
 	},
 /area/space)
-"bt" = (
-/turf/wall/void{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "black";
-	name = "???"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "bu" = (
 /obj/machinery/camera{
 	dir = 1;
@@ -592,7 +556,6 @@
 /area/bunker/lv2)
 "bB" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -606,7 +569,6 @@
 	},
 /area/bunker/lv2)
 "bD" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground)
 "bE" = (
@@ -710,13 +672,6 @@
 	icon_state = "floor4"
 	},
 /area/space)
-"bS" = (
-/turf/floor/concrete,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "bT" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "xtra_bigstripe-edge";
@@ -826,20 +781,12 @@
 /area/cordon/dark)
 "cj" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground)
 "ck" = (
 /obj/decal/fakeobjects/terra8/vines,
 /turf/floor/moss,
 /area/cordon/dark)
-"cl" = (
-/turf/floor/moss,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv2)
 "cm" = (
 /obj/disposalpipe/segment{
 	name = "air pipe";
@@ -1031,13 +978,6 @@
 	},
 /turf/floor/plating,
 /area/terraeight/fog/ground/lv2)
-"cG" = (
-/turf/floor/plating,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv2)
 "cH" = (
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line-broken1";
@@ -1173,16 +1113,6 @@
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
-	},
-/area/bunker/lv2)
-"cZ" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete14";
-	icon_state = "concrete14"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete7";
-	icon_state = "concrete7"
 	},
 /area/bunker/lv2)
 "da" = (
@@ -1345,7 +1275,6 @@
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -1354,8 +1283,6 @@
 /area/terraeight/fog/ground/lv2)
 "du" = (
 /obj/map/light/screen,
-/turf/floor/plating,
-/turf/wall/setpieces/bunker_grille,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -1389,13 +1316,6 @@
 	},
 /turf/floor/setpieces/pitchblack,
 /area/bunker/lv1)
-"dy" = (
-/turf/space/fluid,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv2)
 "dz" = (
 /obj/decal/tile_edge/line/black{
 	tag = "icon-line1 (NORTH)";
@@ -1446,10 +1366,6 @@
 /area/space)
 "dE" = (
 /turf/wall/adaptive/concrete{
-	tag = "icon-concrete6";
-	icon_state = "concrete6"
-	},
-/turf/wall/adaptive/concrete{
 	tag = "icon-concrete7";
 	icon_state = "concrete7"
 	},
@@ -1477,11 +1393,6 @@
 	},
 /area/bunker/lv2)
 "dJ" = (
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2";
-	dir = 5
-	},
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3";
@@ -1592,8 +1503,6 @@
 	dir = 4;
 	icon_state = "safetyrail"
 	},
-/turf/floor/plating,
-/turf/wall/setpieces/bunker_grille,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -1633,11 +1542,6 @@
 /obj/window/cubicle/railing{
 	dir = 2
 	},
-/turf/wall/void{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "black";
-	name = "???"
-	},
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -1653,11 +1557,6 @@
 	},
 /area/bunker/lv2)
 "ec" = (
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2";
-	dir = 9
-	},
 /turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall3";
@@ -1676,30 +1575,10 @@
 	},
 /turf/floor/concrete,
 /area/bunker/lv2)
-"ee" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete12";
-	icon_state = "concrete12"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv2)
 "ef" = (
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete9";
 	icon_state = "concrete9"
-	},
-/area/bunker/lv2)
-"eg" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete10";
-	icon_state = "concrete10"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
 	},
 /area/bunker/lv2)
 "eh" = (
@@ -1711,7 +1590,6 @@
 	icon_state = "mars_bot";
 	name = "Lifter Bot"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -1719,10 +1597,6 @@
 /area/bunker/lv2)
 "ei" = (
 /obj/decal/fakeobjects/pipe/heat,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete7";
 	icon_state = "concrete7"
@@ -1761,16 +1635,6 @@
 	},
 /turf/floor/plating,
 /area/bunker/lv1)
-"en" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete12";
-	icon_state = "concrete12"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "eo" = (
 /turf/floor/plating,
 /area/bunker/lv1)
@@ -1789,20 +1653,6 @@
 	icon_state = "concrete5"
 	},
 /area/bunker/lv1)
-"eq" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/obj/disposalpipe/segment{
-	desc = "A large air pipe for high volume flows.";
-	name = "air pipe"
-	},
-/turf/floor/setpieces/pitchblack,
-/turf/floor/concrete{
-	icon_state = "rustgrate3";
-	name = "rusty grate"
-	},
-/area/bunker/lv2)
 "er" = (
 /obj/stool/chair/comfy/red{
 	icon_state = "chair_comfy-red";
@@ -1851,7 +1701,6 @@
 	dir = 4;
 	icon_state = "safetyrail"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -1896,7 +1745,6 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/space/fluid,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -2155,16 +2003,6 @@
 	},
 /turf/floor/concrete,
 /area/bunker/lv2)
-"fc" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete11";
-	icon_state = "concrete11"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv2)
 "fd" = (
 /obj/shrub{
 	dir = 6;
@@ -2223,16 +2061,6 @@
 	},
 /turf/floor/setpieces/pitchblack,
 /area/bunker/lv2)
-"fh" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete8";
-	icon_state = "concrete8"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "fi" = (
 /obj/chainlink_fence{
 	icon_state = "chainlink";
@@ -2253,7 +2081,6 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/space/fluid,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -2400,15 +2227,6 @@
 /area/bunker{
 	name = "robotics shed"
 	})
-"fA" = (
-/turf/wall/cave{
-	name = "rock"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "fB" = (
 /turf/wall/setpieces/clouds,
 /area/terraeight/fog/ground/lv4)
@@ -2424,7 +2242,6 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/space/fluid,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -2678,7 +2495,6 @@
 	icon_state = "inlet_filter-0";
 	dir = 4
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -2713,7 +2529,6 @@
 	icon_state = "conpipe-t";
 	dir = 2
 	},
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -2726,7 +2541,6 @@
 	icon_state = "inlet_filter-0";
 	dir = 8
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -2997,16 +2811,6 @@
 /obj/decal/mushrooms/type6,
 /turf/floor/moss,
 /area/terraeight/fog/ground)
-"gG" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete5";
-	icon_state = "concrete5"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv1)
 "gH" = (
 /obj/machinery/door/airlock/bunker{
 	dir = 2
@@ -3133,10 +2937,6 @@
 	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
 	icon_state = "manifold"
 	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete6";
-	icon_state = "concrete6"
-	},
 /turf/wall/setpieces/bunker_grille/cap,
 /area/bunker/lv2)
 "gU" = (
@@ -3208,10 +3008,6 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete14";
-	icon_state = "concrete14"
-	},
 /turf/wall/setpieces/bunker_grille/cap,
 /area/bunker/lv2)
 "hb" = (
@@ -3280,7 +3076,6 @@
 /turf/floor/setpieces/pitchblack,
 /area/cordon/dark)
 "hi" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground/lv4)
 "hj" = (
@@ -3333,7 +3128,6 @@
 	},
 /area/bunker/lv2)
 "hp" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/bunker/lv1)
 "hq" = (
@@ -3905,7 +3699,6 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/space/fluid,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -3951,7 +3744,6 @@
 	},
 /area/terraeight/fog/ground/lv3)
 "iE" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -4313,16 +4105,6 @@
 	icon_state = "concrete8"
 	},
 /area/bunker/lv0)
-"jp" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete8";
-	icon_state = "concrete8"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "jq" = (
 /obj/decal/fakeobjects/terra8/vines,
 /obj/decal/fakeobjects/pipe{
@@ -4330,7 +4112,6 @@
 	icon_state = "intact";
 	name = "grimy pipe"
 	},
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/bunker/lv2)
 "jr" = (
@@ -4485,17 +4266,6 @@
 /obj/decal/fakeobjects/terra8/vines,
 /turf/floor/moss,
 /area/terraeight/fog/ground)
-"jJ" = (
-/turf/wall/void{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "black";
-	name = "???"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "jK" = (
 /obj/disposalpipe/segment{
 	name = "air pipe";
@@ -4507,7 +4277,6 @@
 /turf/floor/setpieces/pitchblack,
 /area/terraeight/fog/ground)
 "jL" = (
-/turf/floor/setpieces/rootfloor,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -4582,10 +4351,6 @@
 	name = "robotics shed"
 	})
 "jU" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete14";
-	icon_state = "concrete14"
-	},
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete15";
 	icon_state = "concrete15"
@@ -4717,7 +4482,6 @@
 /turf/floor/plating,
 /area/terraeight/fog/ground/lv3)
 "kj" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -4777,7 +4541,6 @@
 /area/terraeight/fog/ground)
 "kr" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/setpieces/rootfloor,
 /turf/wall/setpieces/bunker_grille,
 /area/bunker/lv2)
 "ks" = (
@@ -4873,7 +4636,6 @@
 	},
 /area/bunker/lv1)
 "kB" = (
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground/lv3)
 "kC" = (
@@ -5117,13 +4879,6 @@
 /area/bunker{
 	name = "robotics shed"
 	})
-"kW" = (
-/turf/space/fluid,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "kX" = (
 /obj/lattice{
 	tag = "icon-lattice-dir-b (WEST)";
@@ -5412,16 +5167,6 @@
 	},
 /turf/floor/moss,
 /area/terraeight/fog/ground)
-"lE" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete11";
-	icon_state = "concrete11"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "lF" = (
 /turf/wall/void{
 	dir = 4;
@@ -5629,7 +5374,6 @@
 /area/bunker/lv00)
 "md" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground/lv4)
 "me" = (
@@ -5901,7 +5645,6 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/floor/concrete,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -6070,9 +5813,6 @@
 /obj/grille/catwalk{
 	dir = 9;
 	icon_state = "catwalk_cross"
-	},
-/turf/floor/setpieces/rootfloor{
-	icon_state = "rootfloor_2"
 	},
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
@@ -6285,21 +6025,11 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/floor/setpieces/rootfloor{
-	icon_state = "rootfloor_2"
-	},
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
 	},
 /area/terraeight/fog/ground)
-"nk" = (
-/turf/floor/concrete,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "nl" = (
 /obj/stool/chair/red{
 	icon_state = "chair-r";
@@ -6447,9 +6177,6 @@
 	dir = 5;
 	icon_state = "catwalk_cross"
 	},
-/turf/floor/setpieces/rootfloor{
-	icon_state = "rootfloor_2"
-	},
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -6499,7 +6226,6 @@
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -6509,13 +6235,6 @@
 "nE" = (
 /obj/machinery/computer/telescope,
 /turf/floor/concrete,
-/area/bunker/lv00)
-"nF" = (
-/turf/space/fluid,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
 /area/bunker/lv00)
 "nG" = (
 /obj/decal{
@@ -7105,7 +6824,6 @@
 	dir = 8
 	},
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -7143,11 +6861,6 @@
 	},
 /area/bunker/lv0)
 "oI" = (
-/turf/space/fluid,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete15";
 	icon_state = "concrete15"
@@ -7226,16 +6939,6 @@
 	name = "???"
 	},
 /area/space)
-"oP" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete7";
-	icon_state = "concrete7"
-	},
-/area/bunker/lv00)
 "oQ" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -7376,16 +7079,6 @@
 	dir = 8
 	},
 /area/bunker/lv00)
-"pa" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete12";
-	icon_state = "concrete12"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "pb" = (
 /obj/item/screwdriver,
 /obj/table/reinforced/chemistry/auto,
@@ -8377,7 +8070,6 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/floor/concrete,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -10859,7 +10551,6 @@
 /area/space)
 "tA" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/setpieces/rootfloor,
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -11111,13 +10802,6 @@
 	icon_state = "floor-darktile"
 	},
 /area/space)
-"tW" = (
-/turf/floor/setpieces/rootfloor,
-/turf/wall/setpieces/bunker_grille{
-	icon_state = "grille-burly";
-	dir = 8
-	},
-/area/space)
 "tX" = (
 /turf/wall/setpieces/bunker_window,
 /area/space)
@@ -11295,11 +10979,6 @@
 /turf/floor/moss,
 /area/space)
 "un" = (
-/turf/wall/setpieces/rootwall{
-	desc = "The foliage is too thick to see through here.";
-	icon_state = "grass";
-	name = "deep brush"
-	},
 /turf/wall/setpieces/bunker_grille{
 	icon_state = "grille-burly";
 	dir = 8
@@ -11473,17 +11152,6 @@
 	dir = 1
 	},
 /area/bunker/lv00)
-"uA" = (
-/turf/space/fluid,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete7";
-	icon_state = "concrete7"
-	},
-/area/bunker/lv0)
 "uB" = (
 /obj/decal/stalagmite,
 /obj/lattice{
@@ -11699,7 +11367,6 @@
 	icon_state = "inlet_filter-0";
 	dir = 4
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -11761,7 +11428,6 @@
 	icon_state = "inlet_filter-0";
 	dir = 8
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -12039,7 +11705,6 @@
 	network = "Bunker";
 	pixel_y = 0
 	},
-/turf/floor/concrete,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -12304,12 +11969,10 @@
 /area/terraeight/fog/ground)
 "vO" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/plating,
 /turf/wall/setpieces/bunker_grille,
 /area/terraeight/fog/ground/lv3)
 "vP" = (
 /obj/decal/fakeobjects/terra8/vines,
-/turf/floor/moss,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -12320,7 +11983,6 @@
 	pixel_x = 3;
 	pixel_y = 12
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -12796,16 +12458,6 @@
 	dir = 8
 	},
 /area/bunker/lv00)
-"wK" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete5";
-	icon_state = "concrete5"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete7";
-	icon_state = "concrete7"
-	},
-/area/bunker/lv0)
 "wL" = (
 /obj/decal/floatingtiles,
 /obj/decal{
@@ -13133,17 +12785,6 @@
 /obj/random_item_spawner/med_tool,
 /turf/floor/concrete,
 /area/bunker/lv0)
-"xe" = (
-/turf/floor/concrete,
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete7";
-	icon_state = "concrete7"
-	},
-/area/bunker/lv0)
 "xf" = (
 /obj/decal{
 	tag = "icon-cornerofdarkness (WEST)";
@@ -13187,22 +12828,7 @@
 	},
 /turf/floor/concrete,
 /area/bunker/lv0)
-"xi" = (
-/turf/floor/concrete{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "white";
-	name = "lab floor"
-	},
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete3";
-	icon_state = "concrete3"
-	},
-/area/bunker/lv0)
 "xj" = (
-/turf/wall/adaptive/concrete{
-	tag = "icon-concrete6";
-	icon_state = "concrete6"
-	},
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete7";
 	icon_state = "concrete7"
@@ -13225,7 +12851,6 @@
 	icon_state = "inlet_filter-0";
 	dir = 4
 	},
-/turf/floor/plating,
 /turf/wall/setpieces{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "hull0";
@@ -13393,7 +13018,6 @@
 	dir = 8;
 	icon_state = "safetyrail"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13404,7 +13028,6 @@
 	dir = 4;
 	icon_state = "safetyrail"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13471,7 +13094,6 @@
 	dir = 8;
 	icon_state = "safetyrail"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13483,7 +13105,6 @@
 	dir = 4;
 	icon_state = "safetyrail"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13513,7 +13134,6 @@
 /turf/floor/moss,
 /area/space)
 "xN" = (
-/turf/floor/dirt,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -13547,7 +13167,6 @@
 	name = "Air Scrubber"
 	},
 /obj/map/light/dimreddish,
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13564,7 +13183,6 @@
 /obj/window/cubicle{
 	dir = 4
 	},
-/turf/floor/concrete,
 /turf/wall/adaptive/concrete{
 	tag = "icon-concrete3";
 	icon_state = "concrete3"
@@ -13589,7 +13207,6 @@
 /obj/storage/crate/biohazard,
 /obj/map/light/dimreddish,
 /obj/item/clothing/under/trash_bag/biohazard,
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13602,7 +13219,6 @@
 /obj/item/clothing/under/trash_bag/biohazard,
 /obj/map/light/dimreddish,
 /obj/item/clothing/under/trash_bag/biohazard,
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13622,7 +13238,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13639,7 +13254,6 @@
 	name = "power conduit"
 	},
 /obj/map/light/dimreddish,
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13647,7 +13261,6 @@
 /area/bunker/lv0)
 "xZ" = (
 /obj/map/light/dimreddish,
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13661,7 +13274,6 @@
 	pixel_x = 10;
 	tag = "icon-tube-broken (EAST)"
 	},
-/turf/floor/setpieces/pitchblack,
 /turf/floor/concrete{
 	icon_state = "rustgrate3";
 	name = "rusty grate"
@@ -13764,14 +13376,14 @@ iA
 ey
 iA
 af
-bt
-fh
-fA
-fA
-fA
-gG
-fA
-fA
+af
+af
+af
+af
+af
+af
+af
+af
 bU
 aa
 aa
@@ -13861,18 +13473,18 @@ iI
 iI
 iI
 iJ
-kW
-kW
-uA
-uA
-kW
+iZ
+iZ
+xj
+xj
 iZ
 iZ
 iZ
-wK
-nk
-nk
-xe
+iZ
+xj
+iZ
+iZ
+xj
 xT
 xT
 xj
@@ -13900,7 +13512,7 @@ aa
 ah
 aC
 bk
-bp
+af
 af
 af
 ah
@@ -13927,10 +13539,10 @@ al
 iI
 iI
 iJ
-jJ
 iZ
 iZ
-jJ
+iZ
+iZ
 iJ
 os
 mJ
@@ -14089,10 +13701,10 @@ mZ
 no
 no
 iM
-xi
-xi
+iZ
+iZ
 oI
-pa
+iZ
 lM
 sB
 lM
@@ -14119,7 +13731,7 @@ be
 ei
 aF
 aF
-bt
+af
 bl
 mD
 dM
@@ -14129,7 +13741,7 @@ ep
 ga
 eH
 aL
-bS
+af
 af
 af
 af
@@ -14199,7 +13811,7 @@ eC
 gm
 fm
 qD
-bt
+af
 bV
 iB
 sI
@@ -14277,7 +13889,7 @@ iC
 lc
 lc
 bV
-fh
+af
 bV
 aI
 bv
@@ -14286,7 +13898,7 @@ aI
 al
 iJ
 iZ
-jp
+iZ
 xA
 xA
 xA
@@ -14404,14 +14016,14 @@ aa
 ah
 af
 af
-bS
+af
 it
 ex
 fw
 fG
 ah
-en
-en
+af
+af
 fl
 ah
 fG
@@ -14493,7 +14105,7 @@ iW
 ld
 lX
 bV
-fh
+af
 bV
 aI
 bv
@@ -14502,7 +14114,7 @@ aI
 al
 iM
 iZ
-jp
+iZ
 xB
 xB
 xB
@@ -14627,8 +14239,8 @@ bk
 fo
 ah
 dU
-en
-en
+af
+af
 ah
 jA
 bk
@@ -14691,7 +14303,7 @@ al
 aa
 aa
 aL
-bp
+af
 bV
 bM
 af
@@ -14846,8 +14458,8 @@ fE
 eE
 gK
 fm
-bt
-bt
+af
+af
 ah
 jl
 hf
@@ -14863,10 +14475,10 @@ al
 iI
 iI
 iM
-jp
 iZ
 iZ
-jJ
+iZ
+iZ
 iM
 lf
 mJ
@@ -14914,9 +14526,9 @@ ah
 cP
 cP
 ah
-bt
-bt
-bt
+af
+af
+af
 dT
 aa
 aa
@@ -14945,10 +14557,10 @@ iZ
 iZ
 lw
 lw
-lE
-lE
 iZ
-lE
+iZ
+iZ
+iZ
 jo
 qO
 nH
@@ -14979,12 +14591,12 @@ al
 aa
 aa
 am
-bt
-bt
-bt
-bt
-bt
-bt
+af
+af
+af
+af
+af
+af
 dT
 aa
 aa
@@ -15024,7 +14636,7 @@ iI
 lw
 iZ
 iZ
-lE
+iZ
 os
 iI
 iI
@@ -15315,7 +14927,7 @@ nN
 pD
 ml
 ml
-oP
+nu
 ml
 ml
 ml
@@ -15553,7 +15165,7 @@ cy
 cV
 cV
 cV
-dy
+cV
 bC
 bC
 bC
@@ -15628,7 +15240,7 @@ eb
 eF
 eS
 eS
-eq
+eU
 eS
 eS
 mL
@@ -16126,7 +15738,7 @@ bs
 ci
 ad
 cR
-dy
+cV
 bC
 bC
 bC
@@ -16206,7 +15818,7 @@ hj
 gY
 cB
 hY
-cG
+cV
 gA
 hm
 ao
@@ -16733,10 +16345,10 @@ tC
 tm
 uF
 tN
-tW
+un
 tm
 xG
-tW
+un
 tM
 tM
 un
@@ -16776,7 +16388,7 @@ cy
 cV
 dE
 cV
-cG
+cV
 ef
 eh
 dI
@@ -16803,7 +16415,7 @@ vW
 tl
 tC
 tm
-tW
+un
 ty
 ty
 tT
@@ -16969,10 +16581,10 @@ ml
 ml
 ml
 mC
-nF
-nF
-nF
-nF
+ml
+ml
+ml
+ml
 mC
 ml
 ml
@@ -16989,9 +16601,9 @@ cj
 bD
 bD
 cB
-cZ
+dE
 dG
-ee
+cV
 eX
 eM
 eh
@@ -17278,7 +16890,7 @@ bZ
 bZ
 br
 cR
-cl
+cV
 ef
 dI
 cQ
@@ -17354,7 +16966,7 @@ dL
 dL
 fy
 cR
-fc
+cV
 cV
 bC
 bC
@@ -17379,7 +16991,7 @@ aN
 tj
 tj
 tl
-tW
+un
 ty
 ty
 tT
@@ -17422,8 +17034,8 @@ aY
 aY
 bB
 cB
-cl
-eg
+cV
+cV
 cV
 ef
 ac
@@ -17453,7 +17065,7 @@ tj
 tl
 tl
 tl
-tW
+un
 tl
 tl
 un

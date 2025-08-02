@@ -332,7 +332,6 @@ mob/verb/checkrewards()
 	sacrifice_name = "Lawbringer"
 	required_levels = list("Head of Security"=5)
 
-*/
 
 //Captain
 
@@ -438,6 +437,7 @@ mob/verb/checkrewards()
 		C.mob.put_in_hand(colt)
 		boutput(C.mob, "Your revolver vanishes and is replaced with [colt]!")
 		return
+*/
 
 /datum/jobXpReward/detectivenoirglasses
 	name = "Noir-Tech Glasses"

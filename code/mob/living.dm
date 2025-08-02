@@ -136,6 +136,8 @@
 	vision = new()
 	src.attach_hud(vision)
 	src.vis_contents += src.chat_text
+	tracked_reagents = new /datum/reagents/surface(8)
+	tracked_reagents.my_atom = src
 	if (can_bleed)
 		src.ensure_bp_list()
 	if (blood_id)
@@ -167,6 +169,10 @@
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
 */
+
+	qdel(tracked_reagents)
+	tracked_reagents = null
+
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)
@@ -350,7 +356,7 @@
 
 /mob/living/projCanHit(datum/projectile/P)
 	if (!P) return 0
-	if (!src.lying || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (src:lying && prob(P.hit_ground_chance))) return 1
+	if (!src.lying || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (src.lying && prob(P.hit_ground_chance))) return 1
 	return 0
 
 /mob/living/proc/hand_attack(atom/target, params, location, control, origParams)
@@ -1217,6 +1223,8 @@
 /mob/living/Move(var/turf/NewLoc, direct)
 	var/oldloc = loc
 	. = ..()
+	if(src.tracked_reagents?.total_volume)
+		src.track_reagents()
 	if (isturf(oldloc) && isturf(loc) && move_laying)
 		var/list/equippedlist = src.equipped_list()
 		if (length(equippedlist))
@@ -1723,6 +1731,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+			if((keys & KEY_RUN && SEND_SIGNAL(src, COMSIG_MOB_SPRINT)) || src.override_movement_controller)
+				return
 			m_intent = (m_intent == "walk") ? "run" : "walk"
 			src.hud.update_mintent()
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
@@ -1731,6 +1741,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+			if((keys & KEY_RUN && SEND_SIGNAL(src, COMSIG_MOB_SPRINT)) || src.override_movement_controller)
+				return
 			m_intent = (m_intent == "walk") ? "run" : "walk"
 			src.hud.update_mintent()
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
@@ -1745,8 +1757,6 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			spell_firepoof(src)
 		if (special_sprint & SPRINT_BAT_CLOAKED)
 			spell_batpoof(src, cloak = 1)
-		if (special_sprint & SPRINT_SNIPER)
-			begin_sniping()
 	//SPRINTING REMOVAL
 	//deprecated in favour of making the sprint button temporarily toggle run/walk. This bit seems to be giving you a bit of a boost to start with
 	//look in /mob/proc/process_move() for the sustained speed boost.
@@ -1874,7 +1884,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 					src.remove_stamina(min(round(stun/rangedprot) * 30, 125)) //thanks to the odd scaling i have to cap this.
 					src.stamina_stun()
 
-				src.TakeDamage("chest", damage/max((rangedprot/3), 1), 0, 0, P.proj_data.hit_type)
+				src.TakeDamage("chest", damage/max((rangedprot / 3), min(1, rangedprot)), 0, 0, P.proj_data.hit_type)
 				if (isalive(src))
 					lastgasp()
 				if (rangedprot > 1)
@@ -2347,3 +2357,27 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			whisper ? src.whisper(message) : src.say(message)
 		src.stat = old_stat // back to being dead 😌
+
+// attempts to attack with any violent ability (attack_mobs = TRUE) in abilityHolder, returning 1 on a successful attack
+/mob/living/proc/ability_attack(atom/target, params)
+	var/dist = GET_DIST(src, target)
+	if(src.abilityHolder)
+		for(var/datum/targetable/ability in src.abilityHolder.abilities)
+			if(ability.attack_mobs && dist <= ability.max_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+				return 1
+	return 0
+
+/mob/living/proc/ai_is_valid_target(mob/M)
+	return M != src
+
+/mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
+	remove_lifeprocess(/datum/lifeprocess/blood)
+	remove_lifeprocess(/datum/lifeprocess/canmove)
+	remove_lifeprocess(/datum/lifeprocess/disability)
+	remove_lifeprocess(/datum/lifeprocess/fire)
+	remove_lifeprocess(/datum/lifeprocess/hud)
+	remove_lifeprocess(/datum/lifeprocess/mutations)
+	remove_lifeprocess(/datum/lifeprocess/organs)
+	remove_lifeprocess(/datum/lifeprocess/sight)
+	remove_lifeprocess(/datum/lifeprocess/skin)
+	remove_lifeprocess(/datum/lifeprocess/statusupdate)

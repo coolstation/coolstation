@@ -171,9 +171,10 @@
 	// Also no barefoot poo overlays but that would go here
 
 	// same as above but for shoes/bare feet
-	if (islist(src.tracked_blood) && !src.shoes)
+	if (src.tracked_reagents.total_volume && !src.shoes)
 
 		blood_image.layer = MOB_CLOTHING_LAYER+0.1
+		blood_image.color = src.tracked_reagents.get_average_rgb()
 		if (src.limbs && src.limbs.l_leg && src.limbs.l_leg.accepts_normal_human_overlays)
 			blood_image.icon_state = "left_shoeblood_c"
 			UpdateOverlays(blood_image, "bloody_feet_l")

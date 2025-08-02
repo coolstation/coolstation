@@ -529,8 +529,8 @@
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable(/obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		new src.item_shoes(src.loc)
 		if (prob(25))
 			new src.item_mask(src.loc)
@@ -586,8 +586,8 @@
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable( /obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		new src.item_shoes(src.loc)
 		new src.item_shoes(src.loc)
 		new src.item_shoes(src.loc)

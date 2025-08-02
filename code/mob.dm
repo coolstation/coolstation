@@ -224,7 +224,7 @@
 
 	var/last_cubed = 0
 
-	var/obj/use_movement_controller = null
+	var/datum/movement_controller/override_movement_controller = null
 	var/next_spammable_chem_reaction_time = 0
 
 	var/dir_locked = FALSE
@@ -496,7 +496,7 @@
 		for (var/datum/hud/hud in src.huds)
 			hud.add_client(src.client)
 
-		src.addOverlaysClient(src.client)  //ov1
+		addOverlaysClient(src.client, src)
 
 	src.emote_allowed = 1
 	src.ai?.suspended = TRUE
@@ -793,9 +793,6 @@
 	src.update_camera()
 
 /mob/set_loc(atom/new_loc, new_pixel_x = 0, new_pixel_y = 0)
-	if (use_movement_controller && isobj(src.loc) && src.loc:get_movement_controller())
-		use_movement_controller = null
-
 	if(istype(src.loc, /obj/machinery/vehicle/) && src.loc != new_loc)
 		var/obj/machinery/vehicle/V = src.loc
 		V.eject(src)
@@ -804,10 +801,6 @@
 	src.loc_pixel_x = new_pixel_x
 	src.loc_pixel_y = new_pixel_y
 	src.update_camera()
-
-	if (isobj(src.loc))
-		if(src.loc:get_movement_controller())
-			use_movement_controller = src.loc
 
 	walk(src,0) //cancel any walk movements
 
@@ -1212,6 +1205,9 @@
 		src.suicide_alert = 0
 	if(src.ckey)
 		respawn_controller.subscribeNewRespawnee(src.ckey)
+	//stop piloting pods or whatever
+	src.override_movement_controller = null
+
 
 /mob/proc/restrained()
 	. = src.hasStatus("handcuffed")
@@ -3185,21 +3181,30 @@
 	if (src.z == Z_LEVEL_STATION)
 		boutput(src, "<span class='alert'>You're already at the surface.</span>", group = "swimtime:)")
 		return
-	var/turf/space/fluid/trenchfloor = src.loc
-	if (!istype(trenchfloor))
-		boutput(src, "<span class='alert'>There's a ceiling below you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
-		return
-	for(var/turf/space/fluid/T in range(5,trenchfloor))
-		if(T.linked_hole)
-			actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
-			//src.set_loc(T.linked_hole)
+	var/datum/component/updraft/draft = src.loc.GetComponent(/datum/component/updraft)
+	if (draft)
+		if (draft.TargetTurf.active_liquid?.last_depth_level >= 3) //The whole thing is waterlogged enough to sustain swimming up to the top
+			actions.start(new/datum/action/bar/private/swim_cross_z(draft.TargetTurf), src)
+		else //Find a nearby ledge
+			for(var/turf/T in orange(1, draft.TargetTurf))
+				if (T.CanPass(src, T)) continue
+				if (T.GetComponent(/datum/component/pitfall)) continue
+				actions.start(new/datum/action/bar/private/swim_cross_z(T), src)
+				break
+
+	else //Try the old ocean hole system, I don't know if this is used anymore
+		var/turf/space/fluid/trenchfloor = src.loc
+		if (!istype(trenchfloor))
+			boutput(src, "<span class='alert'>There's a ceiling above you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
 			return
-		else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
-			actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
-			//src.set_loc(pick(by_type[/turf/space/fluid/warp_z5/edge]))
-			return
-	//if (!trenchfloor.linked_hole)
-	boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
+		for(var/turf/space/fluid/T in range(5,trenchfloor))
+			if(T.linked_hole)
+				actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
+				return
+			else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
+				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
+				return
+		boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
 	return
 
 ///Traverse from station to mining Z
@@ -3219,13 +3224,13 @@
 		return
 	if (!isturf(src.loc))
 		return
-	var/turf/space/fluid/warp_z5/trenchhole = src.loc
-	if (!istype(trenchhole))
+	var/datum/component/pitfall/pit = src.loc.GetComponent(/datum/component/pitfall)
+	if (!pit)
 		boutput(src, "<span class='alert'>There's a floor below you.</span>", group = "swimtime:)") //don't give me smartassery about walls
 		return
-	trenchhole.try_build_turf_list()
-	actions.start(new/datum/action/bar/private/swim_cross_z(pick(trenchhole.L)), src)
+	actions.start(new/datum/action/bar/private/swim_cross_z(pit.get_turf_to_fall()), src)
 	//src.set_loc(pick(trenchhole.L))
+
 #endif
 
 //Move this out to a human file later

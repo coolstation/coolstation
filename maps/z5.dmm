@@ -9,16 +9,23 @@
 /obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/manufacturing)
+"ad" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating/damaged3,
+/area/spyshack)
 "ae" = (
 /obj/neon_lining{
 	color = "#AF0000"
 	},
 /turf/space,
 /area/noGenerate)
-"af" = (
-/turf/space,
-/turf/wall/asteroid,
-/area/space)
 "ag" = (
 /obj/neon_lining{
 	color = "#AF0000";
@@ -31,6 +38,17 @@
 	dir = 8
 	},
 /area/gas_station)
+"ai" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/paper/numbers_note,
+/obj/item/paper/empty_bloody,
+/obj/item/paper/empty_bloody,
+/obj/item/paper/diner_invoice,
+/obj/item/paper/empty_bloody,
+/obj/item/paper/empty_bloody,
+/obj/item/paper/empty_bloody,
+/turf/floor/plating/damaged3,
+/area/spyshack)
 "aj" = (
 /turf/floor/airless/engine/caution/north,
 /area/gas_station)
@@ -73,10 +91,6 @@
 "aF" = (
 /turf/wall/r_wall,
 /area/mining/miningoutpost)
-"aG" = (
-/turf/space,
-/turf/wall,
-/area/mining/miningoutpost)
 "aH" = (
 /obj/neon_lining{
 	color = "#AF0000";
@@ -92,10 +106,6 @@
 	},
 /turf/floor/caution/south,
 /area/mining/manufacturing)
-"aP" = (
-/turf/space,
-/turf/wall/asteroid,
-/area/mining/mainasteroid)
 "aV" = (
 /turf/floor,
 /area/abandonedoutpostthing)
@@ -131,11 +141,6 @@
 	icon_state = "catwalk_cross"
 	},
 /area/abandonedoutpostthing)
-"bl" = (
-/obj/machinery/light,
-/turf/space,
-/turf/floor/shuttlebay,
-/area/mining/hangar)
 "bq" = (
 /turf/floor/shuttlebay,
 /area/mining/hangar)
@@ -193,12 +198,6 @@
 	},
 /turf/space,
 /area/noGenerate)
-"bO" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10
-	},
-/area/mining/mainasteroid)
 "bS" = (
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
@@ -1357,14 +1356,6 @@
 /obj/item/reagent_containers/food/snacks/garlicbread_ch,
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
-"hU" = (
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/space,
-/area/noGenerate)
 "hV" = (
 /obj/neon_lining{
 	dir = 4
@@ -1410,6 +1401,13 @@
 	},
 /turf/space,
 /area/noGenerate)
+"if" = (
+/obj/table/auto,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/electronics/soldering,
+/obj/item/electronics/scanner,
+/turf/floor/plating,
+/area/tech_outpost)
 "ig" = (
 /obj/critter/zombie/scientist,
 /turf/floor/purplewhite{
@@ -2070,10 +2068,6 @@
 /obj/machinery/light/runway_light/delay2,
 /turf/space,
 /area/noGenerate)
-"kZ" = (
-/turf/space,
-/turf/space,
-/area/space)
 "lb" = (
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
@@ -2081,6 +2075,19 @@
 /obj/table/schweewa,
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
+"ln" = (
+/obj/item/caution{
+	desc = "Caution! Construction Zone!";
+	name = "caution sign"
+	},
+/obj/machinery/light_switch{
+	name = "E light switch";
+	pixel_x = 24
+	},
+/turf/floor/yellow/side{
+	dir = 5
+	},
+/area/tech_outpost)
 "lr" = (
 /obj/machinery/conveyor{
 	id = "MINSouth"
@@ -2292,13 +2299,6 @@
 	dir = 1
 	},
 /area/mining/hangar)
-"mj" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/space,
-/area/noGenerate)
 "mk" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -2471,36 +2471,10 @@
 /obj/machinery/atmospherics/valve/digital/vertical,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
-"mV" = (
-/turf/space,
-/turf/wall/asteroid,
-/area/noGenerate)
 "na" = (
 /obj/grille/catwalk,
 /turf/floor/airless/plating/catwalk,
 /area/abandonedoutpostthing)
-"nb" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 8
-	},
-/area/noGenerate)
-"nc" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 10
-	},
-/area/noGenerate)
-"ni" = (
-/turf/space,
-/turf/space,
-/area/noGenerate)
-"nj" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 9
-	},
-/area/noGenerate)
 "nk" = (
 /obj/table/auto,
 /obj/item/reagent_containers/dropper,
@@ -3025,14 +2999,6 @@
 	},
 /turf/space,
 /area/noGenerate)
-"re" = (
-/obj/lattice{
-	dir = 9;
-	icon_state = "lattice-dir-b"
-	},
-/turf/space,
-/turf/space,
-/area/noGenerate)
 "rj" = (
 /turf/floor/caution/north{
 	dir = 8
@@ -3094,17 +3060,6 @@
 "rA" = (
 /turf/floor/plating/airless/asteroid,
 /area/space)
-"rD" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/paper/numbers_note,
-/obj/item/paper/empty_bloody,
-/obj/item/paper/empty_bloody,
-/obj/item/paper/diner_invoice,
-/obj/item/paper/empty_bloody,
-/obj/item/paper/empty_bloody,
-/obj/item/paper/empty_bloody,
-/turf/floor/plating/damaged3,
-/area/spyshack)
 "rI" = (
 /obj/machinery/light/fluorescent/worn{
 	dir = 8
@@ -3246,17 +3201,6 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
-"sN" = (
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/plating/damaged3,
-/area/spyshack)
 "sO" = (
 /obj/grille/catwalk,
 /obj/rail{
@@ -3334,17 +3278,6 @@
 	dir = 4
 	},
 /area/mining/magnet_control)
-"tf" = (
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/floor/plating/scorched,
-/area/spyshack)
-"th" = (
-/obj/critter/goose,
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/airless/engine/caution/south,
-/area/gas_station/schweewa)
 "tl" = (
 /turf/floor/caution/south,
 /area/mining/hangar)
@@ -4126,12 +4059,6 @@
 /obj/machinery/portable_reclaimer,
 /turf/floor/yellow/side,
 /area/tech_outpost)
-"yt" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 6
-	},
-/area/noGenerate)
 "yu" = (
 /obj/machinery/light_switch{
 	name = "N light switch";
@@ -4180,6 +4107,13 @@
 	},
 /turf/floor/plating,
 /area/gas_station/schweewa)
+"yL" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/noGenerate)
 "yM" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -4412,13 +4346,6 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
-"AI" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor2"
-	},
-/obj/stool/chair,
-/turf/floor/plating/damaged3,
-/area/spyshack)
 "AR" = (
 /obj/machinery/computer/magnet{
 	dir = 4
@@ -4524,6 +4451,12 @@
 	dir = 1
 	},
 /area/gas_station/schweewa)
+"Bt" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/turf/floor/plating/scorched,
+/area/spyshack)
 "Bv" = (
 /obj/cable{
 	d1 = 4;
@@ -4661,6 +4594,13 @@
 	},
 /turf/floor/shuttlebay,
 /area/tech_outpost)
+"Cv" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor2"
+	},
+/obj/stool/chair,
+/turf/floor/plating/damaged3,
+/area/spyshack)
 "CB" = (
 /obj/cable,
 /obj/machinery/portable_atmospherics/pump,
@@ -5515,10 +5455,6 @@
 	dir = 4
 	},
 /area/tech_outpost)
-"Jb" = (
-/turf/space,
-/turf/floor/shuttlebay,
-/area/mining/hangar)
 "Jg" = (
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/oil/streak,
@@ -5611,12 +5547,6 @@
 /obj/decal/cleanable/fungus,
 /turf/wall,
 /area/mining/power)
-"Kb" = (
-/turf/space,
-/turf/wall/asteroid{
-	dir = 4
-	},
-/area/mining/mainasteroid)
 "Ke" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/firstaid/regular,
@@ -5685,14 +5615,6 @@
 /obj/stool/chair,
 /turf/floor/caution/south,
 /area/tech_outpost)
-"KN" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/obj/machinery/light/runway_light/delay5,
-/turf/space,
-/turf/space,
-/area/noGenerate)
 "KO" = (
 /obj/storage/crate,
 /obj/item/reagent_containers/pill/stox,
@@ -5725,14 +5647,6 @@
 	dir = 9
 	},
 /area/noGenerate)
-"KU" = (
-/obj/table/auto,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/electronics/soldering,
-/obj/item/electronics/scanner,
-/turf/space,
-/turf/floor/plating,
-/area/tech_outpost)
 "KV" = (
 /obj/machinery/centrifuge,
 /turf/floor/purplewhite,
@@ -6082,6 +5996,13 @@
 /obj/item/cable_coil/cut,
 /turf/space,
 /area/noGenerate)
+"NK" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/light/runway_light/delay5,
+/turf/space,
+/area/noGenerate)
 "NS" = (
 /turf/floor/plating/airless,
 /area/mining/manufacturing)
@@ -6197,6 +6118,10 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"OD" = (
+/obj/machinery/light,
+/turf/floor/shuttlebay,
+/area/mining/hangar)
 "OE" = (
 /turf/floor/airless/engine/caution/corner,
 /area/gas_station)
@@ -6478,20 +6403,6 @@
 	},
 /turf/floor/plating,
 /area/mining/manufacturing)
-"Qt" = (
-/obj/item/caution{
-	desc = "Caution! Construction Zone!";
-	name = "caution sign"
-	},
-/obj/machinery/light_switch{
-	name = "E light switch";
-	pixel_x = 24
-	},
-/turf/space,
-/turf/floor/yellow/side{
-	dir = 5
-	},
-/area/tech_outpost)
 "Qu" = (
 /obj/storage/closet/welding_supply,
 /turf/floor/cautionblack/side{
@@ -7543,6 +7454,11 @@
 /obj/railing/red,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"XQ" = (
+/obj/critter/goose,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/airless/engine/caution/south,
+/area/gas_station/schweewa)
 "XS" = (
 /obj/cable{
 	d1 = 4;
@@ -7556,18 +7472,6 @@
 	},
 /turf/floor/plating/scorched,
 /area/spyshack)
-"XU" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/space,
-/turf/space,
-/area/noGenerate)
 "XV" = (
 /obj/storage/crate,
 /obj/item/reagent_containers/glass/compostbag,
@@ -43309,9 +43213,9 @@ aa
 aa
 aa
 aa
-kZ
-kZ
-kZ
+aa
+aa
+aa
 aa
 aa
 aa
@@ -43610,11 +43514,11 @@ aa
 aa
 aa
 aa
-kZ
 aa
 aa
 aa
-kZ
+aa
+aa
 aa
 aa
 aa
@@ -46026,11 +45930,11 @@ aa
 aa
 aa
 aa
-kZ
-kZ
 aa
-kZ
-kZ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -47234,7 +47138,7 @@ aa
 aa
 aa
 rp
-af
+rp
 rp
 aa
 aa
@@ -49036,16 +48940,16 @@ ab
 ab
 aa
 aa
-kZ
 aa
 aa
 aa
 aa
 aa
 aa
-kZ
 aa
-kZ
+aa
+aa
+aa
 aa
 aa
 aa
@@ -49061,9 +48965,9 @@ SI
 Xs
 hl
 GH
-KU
+if
 Jm
-Qt
+ln
 XF
 IV
 QR
@@ -49354,9 +49258,9 @@ aa
 aa
 ab
 ab
-mV
-mV
-mV
+YB
+YB
+YB
 SI
 hl
 hl
@@ -49656,9 +49560,9 @@ aa
 ab
 ab
 YB
-mV
-mV
-mV
+YB
+YB
+YB
 SI
 hl
 gr
@@ -49979,7 +49883,7 @@ PR
 hJ
 zl
 hK
-yt
+Yc
 Yc
 ab
 aa
@@ -51128,7 +51032,7 @@ ab
 GN
 Eu
 ZA
-th
+XQ
 xA
 ab
 cN
@@ -51168,7 +51072,7 @@ ab
 Gf
 Gf
 YB
-mV
+YB
 SI
 SI
 gU
@@ -51183,8 +51087,8 @@ hl
 YA
 XS
 Gn
-rD
-AI
+ai
+Cv
 VT
 hK
 Yc
@@ -51486,7 +51390,7 @@ sn
 Xk
 qu
 qu
-tf
+Bt
 td
 tB
 Yc
@@ -51788,7 +51692,7 @@ HO
 nl
 mA
 uP
-sN
+ad
 RN
 tB
 Yc
@@ -52963,11 +52867,11 @@ jH
 jH
 jH
 jH
-aP
 jH
 jH
 jH
-bO
+jH
+fj
 fm
 fj
 ab
@@ -53264,13 +53168,13 @@ BV
 jH
 jH
 jH
-aP
 jH
 jH
 jH
 jH
 jH
-aP
+jH
+jH
 jH
 ab
 ab
@@ -53593,7 +53497,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 kU
@@ -53603,7 +53507,7 @@ Qp
 Qp
 Wm
 Yc
-yt
+Yc
 ab
 ab
 ab
@@ -53895,7 +53799,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -54193,11 +54097,11 @@ ab
 jw
 lV
 kv
-ni
-ni
-ni
-ni
-ni
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -54472,17 +54376,17 @@ UV
 UV
 UV
 bq
-Jb
+bq
 bq
 bq
 UV
 Yg
 jh
-mj
+jh
 jh
 jh
 CV
-ni
+ab
 ab
 We
 ab
@@ -54499,7 +54403,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -54801,7 +54705,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 We
@@ -55103,7 +55007,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -55380,14 +55284,14 @@ to
 bq
 bq
 bq
-bl
+OD
 Bm
-KN
+NK
 jh
 wr
 jh
 pB
-XU
+gY
 Hu
 gY
 TT
@@ -55405,7 +55309,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -55689,7 +55593,7 @@ ab
 ab
 ab
 BO
-ni
+ab
 ab
 ab
 dz
@@ -55707,7 +55611,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -55991,7 +55895,7 @@ ab
 ab
 ab
 BO
-ni
+ab
 ab
 ab
 ab
@@ -56009,7 +55913,7 @@ ab
 We
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -56293,7 +56197,7 @@ ab
 ab
 ab
 BO
-ni
+ab
 ab
 ab
 ab
@@ -56311,7 +56215,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 We
 ab
@@ -56595,7 +56499,7 @@ ab
 ab
 ab
 BO
-ni
+ab
 ab
 ab
 ab
@@ -56613,7 +56517,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -56897,7 +56801,7 @@ ab
 ab
 ab
 BO
-ni
+ab
 ab
 ab
 ab
@@ -56915,7 +56819,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -56925,7 +56829,7 @@ ab
 ab
 hO
 ab
-ni
+ab
 ab
 ab
 ab
@@ -57199,9 +57103,9 @@ ab
 ab
 ab
 BO
-ni
-ni
-ni
+ab
+ab
+ab
 ab
 ab
 ab
@@ -57217,7 +57121,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 ab
 ab
@@ -57501,7 +57405,7 @@ ab
 ab
 ab
 qY
-re
+yL
 ab
 ab
 ab
@@ -57515,11 +57419,11 @@ ab
 jw
 lV
 kv
-nj
-nb
-nc
-ni
-nj
+kg
+Ne
+Xp
+ab
+kg
 Xp
 xe
 jh
@@ -57803,7 +57707,7 @@ xz
 xz
 xz
 FQ
-hU
+kv
 ab
 ab
 ab
@@ -58727,7 +58631,7 @@ YB
 SI
 YB
 YB
-mV
+YB
 YB
 BT
 wy
@@ -59290,7 +59194,7 @@ xf
 zY
 js
 js
-aG
+js
 aF
 Nh
 OZ
@@ -60833,7 +60737,7 @@ ab
 ab
 FR
 ab
-ni
+ab
 jw
 lV
 Ro
@@ -61135,7 +61039,7 @@ ab
 ab
 QC
 jh
-mj
+jh
 kU
 lV
 kv
@@ -61437,7 +61341,7 @@ ab
 ab
 FR
 ab
-ni
+ab
 jw
 lV
 kv
@@ -61739,7 +61643,7 @@ ab
 ab
 QC
 jh
-mj
+jh
 kU
 lV
 kv
@@ -62041,7 +61945,7 @@ ab
 ab
 FR
 ab
-nb
+Ne
 Xp
 lV
 kv
@@ -63267,7 +63171,7 @@ ab
 ab
 ab
 aa
-kZ
+aa
 aa
 aa
 aa
@@ -65028,7 +64932,7 @@ ab
 ab
 ab
 cG
-Kb
+hE
 hE
 kk
 cv
@@ -66881,7 +66785,7 @@ ab
 aa
 aa
 aa
-kZ
+aa
 aa
 aa
 aa
@@ -68085,7 +67989,7 @@ aa
 aa
 aa
 aa
-kZ
+aa
 aa
 aa
 aa
@@ -68652,7 +68556,7 @@ ab
 ab
 ab
 ab
-ni
+ab
 ab
 hi
 SI
@@ -72592,7 +72496,6 @@ aa
 aa
 aa
 aa
-kZ
 aa
 aa
 aa
@@ -72613,7 +72516,8 @@ aa
 aa
 aa
 aa
-kZ
+aa
+aa
 aa
 aa
 aa

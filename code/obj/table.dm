@@ -729,6 +729,20 @@
 	parts_type = /obj/item/furniture_parts/table/reinforced/kitchen
 	has_storage = 1
 
+	tools
+		New(loc, obj/a_drawer)
+			..(loc, new /obj/item/storage/desk_drawer/kitchen_tools(src)) //thanks batelite i am using your toolcart template (basic kitchen tools)
+
+	sink
+		name = "kitchen sink cabinet"
+		New(loc, obj/a_drawer)
+			..(loc, new /obj/item/storage/desk_drawer/kitchen_sink(src)) //cleaning supplies, not for putting in food
+
+	plate
+		name = "kitchen dish cabinet"
+		New(loc, obj/a_drawer)
+			..(loc, new /obj/item/storage/desk_drawer/kitchen_plate(src)) //just a buncha plates
+
 	auto
 		auto = 1
 

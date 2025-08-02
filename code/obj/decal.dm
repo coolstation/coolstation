@@ -50,10 +50,6 @@
 			qdel(src)
 			//return ..()
 
-	track_blood()
-		src.tracked_blood = null
-		return
-
 ////////////
 // OTHERS //
 ////////////
@@ -685,3 +681,4 @@ obj/decal/fakeobjects
 	strike_time = 2 DECI SECONDS
 	volume = 0
 	alpha = 128
+

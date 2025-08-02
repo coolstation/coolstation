@@ -91,6 +91,8 @@ PIPE BOMBS + CONSTRUCTION
 				user.show_message("<span class='notice'>You set [src] for a [det_time/10] second detonation time.</span>")
 				src.desc = "It is set to detonate in [det_time/10] seconds."
 			src.add_fingerprint(user)
+		else if (istype(W, /obj/item/gun/modular))
+			actions.start(new/datum/action/bar/private/load_grenade(W, src), user)
 		return
 
 	proc/prime() // Most grenades require a turf reference.
@@ -919,7 +921,7 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(0)
 				//Center tile
 				var/obj/effects/spray/S = spraybits[1]
-				make_cleanable(/obj/decal/cleanable/mud,S.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,S.loc)
 				if(is_blocked_turf(S.loc))
 					spraybits -= S
 					qdel(S)
@@ -928,9 +930,9 @@ PIPE BOMBS + CONSTRUCTION
 				for(var/i=0, i<src.splashzone, i++)
 					for(var/obj/effects/spray/SP in spraybits)
 						SP.set_loc(get_step(SP.loc, SP.original_dir))
-						make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 						if(is_blocked_turf(SP.loc))
-							make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+							make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 							spraybits -= SP
 							qdel(SP)
 
@@ -1452,6 +1454,18 @@ PIPE BOMBS + CONSTRUCTION
 			state = 2
 		return
 
+	afterattack(atom/target, mob/user, reach, params)
+		if (src.state == 2 && istype(target, /obj/item/gun_exploder))
+			user.show_text("With [src] and some good ol' percussive force, you make a barrel. This looks pretty dangerous!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/impact_sounds/Metal_Hit_1.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun_parts/barrel/pipeframe/new_barrel = new(T)
+			user.put_in_hand_or_drop(new_barrel)
+		else
+			. = ..()
+
 	attackby(obj/item/W, mob/user)
 		//NOTE: state 1 is unused since the first stages of pipe frames now happen through constructable atmos
 		if(isweldingtool(W) && state == 1)
@@ -1681,7 +1695,7 @@ PIPE BOMBS + CONSTRUCTION
 				if (meat > 1)
 					gibs(src.loc)
 				for (var/turf/splat in view(meat,src.loc))
-					make_cleanable( /obj/decal/cleanable/blood,splat)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,splat)
 			if (ghost) //throw objects towards bomb center
 				var/turf/T = get_turf(src.loc)
 				if (ghost > 1)

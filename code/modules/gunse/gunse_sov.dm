@@ -13,7 +13,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	name = "\improper abstract Soviet laser gun"
 	real_name = "\improper abstract Soviet laser gun"
 	desc = "abstract type do not instantiate"
-	action = "lever"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "shittygun"
 	sound_type = "soviet"
@@ -26,13 +25,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	real_name = "\improper Soviet lazernyy pistolet"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_short"
-	max_ammo_capacity = 2
+	max_ammo_capacity = 3
 	contraband = 2
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
 	jam_frequency = 2
-	fiddlyness = 45
+	load_time = 1.2 SECONDS
 
 /obj/item/gun/modular/soviet/short/basic
 	name = "\improper Soviet laser pistol"
@@ -49,7 +48,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "soviet_short"
-	max_ammo_capacity = 0 //single shot
+	max_ammo_capacity = 1 //single shot
 	gun_DRM = GUN_SOVIET
 	spread_angle = 9
 	silenced = 1 //need to set this from barrel but whatever, it's here for now
@@ -67,8 +66,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	real_name = "\improper Soviet lazernaya vintovka"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
-	//cartridge_length = 40
-	max_ammo_capacity = 4
+	max_ammo_capacity = 5
 	spread_angle = 9
 	contraband = 4
 	barrel_overlay_x = BARREL_OFFSET_LONG
@@ -77,14 +75,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	//two_handed = TRUE
 	//can_dual_wield = FALSE
 	jam_frequency = 2
-	fiddlyness = 35
+	load_time = 1.1 SECONDS
 
 /obj/item/gun/modular/soviet/long/advanced
 	name = "\improper advanced Soviet laser rifle"
 	real_name = "\improper Soviet lazernaya vintovka"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
-	max_ammo_capacity = 4
+	max_ammo_capacity = 5
 	gun_DRM = GUN_SOVIET
 	spread_angle = 9
 	contraband = 5
@@ -107,7 +105,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	real_name = "\improper Soviet lazernaya drobovik"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
-	max_ammo_capacity = 3
+	max_ammo_capacity = 4
 	gun_DRM = GUN_SOVIET
 	spread_angle = 9
 	contraband = 5

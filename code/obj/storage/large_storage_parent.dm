@@ -690,7 +690,7 @@
 				if (found)
 					playsound(src.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 75, 1)
 					M.show_text("<b>OH JESUS CHRIST</b>", "red")
-					bleed(M, 500, 5)
+					bleed(M, 500, violent = TRUE)
 					src.log_me(usr && ismob(usr) ? usr : null, M, "uses trash compactor")
 					var/mob/living/carbon/cube/meat/W = M.make_cube(/mob/living/carbon/cube/meat, rand(10,15), get_turf(src))
 					if (src.crunches_deliciously)
@@ -844,11 +844,18 @@
 
 		if(!src.open || always_display_locks)
 			if (src.emagged)
-				src.UpdateOverlays(image(src.icon, src.icon_sparks), "sparks")
+				var/image/sparks = image(src.icon, src.icon_sparks)
+				sparks.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(sparks, "sparks")
+				src.UpdateOverlays(null, "light")
 			else if (src.locked)
-				src.UpdateOverlays(image(src.icon, src.icon_redlight), "light")
+				var/image/redlight = image(src.icon, src.icon_redlight)
+				redlight.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(redlight, "light")
 			else
-				src.UpdateOverlays(image(src.icon, src.icon_greenlight), "light")
+				var/image/greenlight = image(src.icon, src.icon_greenlight)
+				greenlight.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(greenlight, "light")
 		else
 			src.UpdateOverlays(null, "sparks")
 			src.UpdateOverlays(null, "light")

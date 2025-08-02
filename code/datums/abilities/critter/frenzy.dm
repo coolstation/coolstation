@@ -8,6 +8,7 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "frenzy"
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -57,7 +58,7 @@
 				random_brute_damage(MT, 10,1)
 				take_bleeding_damage(MT, null, 5, DAMAGE_CUT, 0, get_turf(MT))
 				if(prob(33)) // don't make quite so much mess
-					bleed(MT, 5, 5, get_step(get_turf(MT), pick(alldirs)), 1)
+					bleed(MT, 5, get_step(get_turf(MT), pick(alldirs)))
 				sleep(0.4 SECONDS)
 				frenz--
 			if (MT)

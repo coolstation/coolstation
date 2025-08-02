@@ -10,6 +10,7 @@
 	when_stunned = 1
 	not_when_handcuffed = 0
 	sticky = 1
+	attack_mobs = TRUE
 
 	cast(mob/target)
 		if (!holder)

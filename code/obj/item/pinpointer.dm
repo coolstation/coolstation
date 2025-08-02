@@ -240,8 +240,8 @@
 		arrow = image('icons/obj/items/pinpointers.dmi', icon_state = "")
 
 	afterattack(atom/A as mob|obj|turf|area, mob/user as mob)
-		if(!active && istype(A, /obj/decal/cleanable/blood))
-			var/obj/decal/cleanable/blood/B = A
+		if(!active && istype(A, /obj/decal/cleanable/tracked_reagents/blood))
+			var/obj/decal/cleanable/tracked_reagents/blood/B = A
 			if(B.dry > 0) //Fresh blood is -1
 				boutput(user, "<span class='alert'>Targeted blood is too dry to be useful!</span>")
 				return

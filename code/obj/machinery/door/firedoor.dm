@@ -256,7 +256,7 @@
 	src.close()
 	var/obj/head = user.organHolder.drop_organ("head")
 	qdel(head)
-	make_cleanable( /obj/decal/cleanable/blood/gibs,src.loc)
+	make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 	playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 	return 1

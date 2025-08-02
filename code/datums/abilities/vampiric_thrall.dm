@@ -82,7 +82,7 @@
 
 				if (last_blood_points != V.blood_points)
 					last_blood_points = V.blood_points
-					src.updateText(0, src.x_occupied, src.y_occupied)
+					src.updateText()
 
 
 	onAbilityStat() // In the 'Vampire' tab.

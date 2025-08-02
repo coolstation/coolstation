@@ -4743,14 +4743,6 @@
 	dir = 4
 	},
 /area/station/security/main)
-"lA" = (
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/north)
 "lB" = (
 /obj/artifact_spawner,
 /turf/floor/plating/random,
@@ -5064,20 +5056,6 @@
 	},
 /turf/floor/snow,
 /area/station/hallway/primary/north)
-"mk" = (
-/obj/storage/closet/fire{
-	name = "rusty firefighting supplies closet"
-	},
-/obj/critter/bat,
-/obj/decal/cleanable/cobweb2,
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/obj/item/toy/coolcode,
-/turf/floor/plating/random,
-/area/station/maintenance/north)
 "ml" = (
 /obj/landmark/halloween,
 /obj/cable{
@@ -6055,6 +6033,18 @@
 	dir = 4
 	},
 /area/station/hallway/primary/north)
+"ow" = (
+/obj/machinery/power/apc/autoname/north,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/north)
 "ox" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -6224,16 +6214,6 @@
 /obj/item/stamp/cap,
 /turf/floor/carpet/arcade,
 /area/station/bridge/captain)
-"oT" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/north)
 "oU" = (
 /obj/disposalpipe/segment,
 /mob/living/critter/small_animal/cat/jones,
@@ -7485,18 +7465,6 @@
 /obj/item/instrument/harmonica,
 /turf/floor/red,
 /area/station/security/brig/genpop)
-"rQ" = (
-/obj/machinery/power/apc/autoname/north,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/decal/cleanable/rust,
-/turf/floor/plating/random,
-/area/station/maintenance/north)
 "rR" = (
 /obj/machinery/computer/ordercomp{
 	dir = 8
@@ -10313,6 +10281,12 @@
 	},
 /turf/floor/black,
 /area/station/security/armory)
+"yl" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "yn" = (
 /obj/decal/poster/wallsign/poster_clown,
 /obj/npc/trader/exclown{
@@ -11997,6 +11971,12 @@
 	},
 /turf/floor/red/checker,
 /area/station/hangar/arrivals)
+"CS" = (
+/turf/shuttle/wall{
+	dir = 10;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "CU" = (
 /obj/wingrille_spawn/auto/crystal,
 /turf/floor/plating,
@@ -15982,24 +15962,10 @@
 	icon_state = "wall3"
 	},
 /area/listeningpost/power)
-"MQ" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
 "MR" = (
 /obj/machinery/door/airlock/pyro/syndicate,
 /turf/floor/red,
 /area/listeningpost)
-"MS" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
 "MT" = (
 /obj/machinery/power/furnace,
 /obj/cable{
@@ -16729,13 +16695,6 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_teleporter)
-"OF" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
 "OG" = (
 /obj/stool/chair/red,
 /turf/floor/black,
@@ -16871,13 +16830,6 @@
 	},
 /turf/floor/plating/random,
 /area/listeningpost/power)
-"OW" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
-	},
-/area/space)
 "OX" = (
 /obj/machinery/power/furnace,
 /obj/cable,
@@ -17406,6 +17358,16 @@
 	dir = 10
 	},
 /area/station/science/lab)
+"Qd" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/north)
 "Qe" = (
 /obj/machinery/door/poddoor/pyro{
 	id = "chamber_2";
@@ -18256,6 +18218,12 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/plating/random,
 /area/station/crew_quarters/clown)
+"SK" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "SL" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/white,
@@ -18371,6 +18339,12 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/white,
 /area/station/medical/head)
+"Tj" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "wall3"
+	},
+/area/space)
 "Tk" = (
 /obj/cable{
 	d1 = 4;
@@ -19228,6 +19202,20 @@
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/caution/west,
 /area/station/engine/hotloop)
+"VR" = (
+/obj/storage/closet/fire{
+	name = "rusty firefighting supplies closet"
+	},
+/obj/critter/bat,
+/obj/decal/cleanable/cobweb2,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/obj/item/toy/coolcode,
+/turf/floor/plating/random,
+/area/station/maintenance/north)
 "VT" = (
 /obj/cable{
 	d1 = 1;
@@ -19855,6 +19843,14 @@
 	dir = 8
 	},
 /area/station/hallway/primary/north)
+"XL" = (
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/obj/decal/cleanable/rust,
+/turf/floor/plating/random,
+/area/station/maintenance/north)
 "XM" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/floor/plating/random,
@@ -77253,7 +77249,7 @@ iA
 iS
 kG
 ct
-oT
+Qd
 ct
 mr
 As
@@ -77555,7 +77551,7 @@ jS
 iT
 kI
 ct
-rQ
+ow
 ct
 nZ
 oN
@@ -77857,7 +77853,7 @@ jJ
 ku
 kG
 ct
-lA
+XL
 ct
 oa
 oO
@@ -78159,7 +78155,7 @@ iG
 jN
 kI
 ct
-mk
+VR
 ct
 pr
 qB
@@ -93095,11 +93091,11 @@ aa
 aa
 aa
 aa
-MQ
+yl
 Ng
 Xd
 Ng
-OF
+CS
 aa
 aa
 aa
@@ -93396,13 +93392,13 @@ aa
 aa
 aa
 aa
-MQ
+yl
 Ne
 NO
 Oh
 NO
 Ne
-OF
+CS
 aa
 aa
 aa
@@ -94603,7 +94599,7 @@ aa
 aa
 aa
 aa
-MQ
+yl
 Ne
 NH
 NR
@@ -94611,7 +94607,7 @@ Oj
 Ow
 NH
 Ne
-OF
+CS
 aa
 aa
 aa
@@ -95810,7 +95806,7 @@ aa
 aa
 aa
 aa
-MQ
+yl
 Ne
 Nw
 Ne
@@ -95820,7 +95816,7 @@ Oz
 Ne
 Nw
 Ne
-OF
+CS
 aa
 aa
 aa
@@ -96412,7 +96408,7 @@ aa
 aa
 aa
 aa
-MQ
+yl
 MX
 Nf
 No
@@ -96426,7 +96422,7 @@ Ny
 OO
 Nf
 MX
-OF
+CS
 aa
 aa
 aa
@@ -97016,7 +97012,7 @@ aa
 aa
 aa
 aa
-MS
+SK
 MX
 Ne
 Np
@@ -97030,7 +97026,7 @@ Ny
 OP
 Ne
 MX
-OW
+Tj
 aa
 aa
 aa
@@ -98527,7 +98523,7 @@ aa
 aa
 aa
 aa
-MQ
+yl
 MP
 MP
 NA
@@ -98539,7 +98535,7 @@ NL
 NA
 MP
 MP
-OF
+CS
 aa
 aa
 aa
@@ -98828,7 +98824,7 @@ aa
 aa
 aa
 aa
-MQ
+yl
 MP
 Nh
 MP
@@ -98842,7 +98838,7 @@ NB
 MP
 Nh
 MP
-OF
+CS
 aa
 aa
 aa

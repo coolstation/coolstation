@@ -4136,7 +4136,7 @@
 /turf/floor/grime,
 /area/station/security/brig)
 "amz" = (
-/obj/decal/cleanable/blood/splatter,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
 /obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
 /obj/decal/fakeobjects/airmonitor_broken{
 	dir = 8;
@@ -19306,26 +19306,6 @@
 	},
 /turf/floor/plating/airless,
 /area/station/maintenance/central)
-"aYv" = (
-/obj/table/wood/auto,
-/obj/item/paper_bin{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/instrument/harmonica{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/obj/item/pen{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/device/light/zippo{
-	pixel_x = 7;
-	pixel_y = 11
-	},
-/turf/floor/black,
-/area/station/crew_quarters/jazz)
 "aYw" = (
 /turf/floor/carpet{
 	dir = 10;
@@ -20227,19 +20207,6 @@
 /obj/machinery/power/data_terminal,
 /obj/cable{
 	icon_state = "0-8"
-	},
-/turf/floor/plating,
-/area/station/maintenance/east)
-"baH" = (
-/obj/table/auto,
-/obj/decal/cleanable/cobweb2,
-/obj/item/gun/kinetic/zipgun{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/item/device/light/glowstick{
-	pixel_x = 5;
-	pixel_y = 1
 	},
 /turf/floor/plating,
 /area/station/maintenance/east)
@@ -22851,11 +22818,11 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
 	},
-/obj/item/gun/kinetic/riot40mm{
+/obj/item/gun/modular/italian/launcher/basic{
 	pixel_x = -4;
 	pixel_y = 10
 	},
-/obj/item/gun/kinetic/riot40mm{
+/obj/item/gun/modular/italian/launcher/basic{
 	pixel_x = -2;
 	pixel_y = 5
 	},
@@ -56574,6 +56541,27 @@
 	},
 /turf/floor,
 /area/station/engine/power)
+"jbf" = (
+/obj/table/wood/auto,
+/obj/item/paper/book/sillytexts,
+/obj/item/paper_bin{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/instrument/harmonica{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/device/light/zippo{
+	pixel_x = 7;
+	pixel_y = 11
+	},
+/turf/floor/black,
+/area/station/crew_quarters/jazz)
 "jbg" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
@@ -63488,6 +63476,19 @@
 	},
 /turf/floor,
 /area/station/security/main)
+"wqU" = (
+/obj/table/auto,
+/obj/decal/cleanable/cobweb2,
+/obj/item/gun/modular/zip/classic{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/device/light/glowstick{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/turf/floor/plating,
+/area/station/maintenance/east)
 "wrm" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -111271,7 +111272,7 @@ aWc
 aZt
 aYK
 aXq
-aYv
+jbf
 aZt
 aWc
 aWc
@@ -122145,7 +122146,7 @@ xfX
 hIJ
 bdS
 aZJ
-baH
+wqU
 bfD
 bcM
 bdN

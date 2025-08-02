@@ -112,14 +112,6 @@
 "ax" = (
 /turf/floor/scorched2,
 /area/prefab/sea_sketch)
-"ay" = (
-/obj/item/implant/tracking,
-/obj/item/scalpel,
-/obj/decal/cleanable/blood{
-	icon_state = "drip5"
-	},
-/turf/floor/scorched2,
-/area/prefab/sea_sketch)
 "az" = (
 /obj/table/wood/round/auto,
 /obj/machinery/computer/security/wooden_tv{
@@ -234,10 +226,6 @@
 	dir = 8
 	},
 /turf/floor/scorched2,
-/area/prefab/sea_sketch)
-"aZ" = (
-/turf/space/fluid,
-/turf/floor/plating/damaged2,
 /area/prefab/sea_sketch)
 "ba" = (
 /obj/stool/chair/comfy{
@@ -447,6 +435,17 @@
 /obj/item/medical/bruise_pack,
 /turf/floor/plating,
 /area/prefab/sea_sketch)
+"Cm" = (
+/obj/item/implant/tracking,
+/obj/item/scalpel,
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "drip5"
+	},
+/turf/floor/scorched2,
+/area/prefab/sea_sketch)
+"IJ" = (
+/turf/floor/plating/damaged2,
+/area/prefab/sea_sketch)
 
 (1,1,1) = {"
 ab
@@ -562,7 +561,7 @@ br
 bT
 aQ
 aQ
-aZ
+IJ
 bO
 ap
 ab
@@ -711,7 +710,7 @@ aa
 aI
 bn
 bp
-ay
+Cm
 bz
 bi
 bL

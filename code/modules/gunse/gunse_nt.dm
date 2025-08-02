@@ -13,7 +13,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	name = "abstract NT gun"
 	real_name = "abstract NT gun"
 	desc = "You're not supposed to see this, call a coder or whatever."
-	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
+	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	action = "single"
 	gun_DRM = GUN_NANO
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
@@ -33,14 +33,19 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	grip_overlay_y = -2
 	stock_overlay_x = -4
 	stock_overlay_y = -1
-	max_ammo_capacity = 0
-	action = "single"
+	max_ammo_capacity = 1
 	gun_DRM = GUN_NANO
+	bulkiness = 2
 	spread_angle = 6
+	reload_cooldown = 0.7 SECONDS
 
 	//receiver, by itself and unbuilt
 	receiver
 		no_build = TRUE
+
+	shoot(target, start, mob/user, POX, POY, is_dual_wield)
+		. = ..()
+		src.eject_casings()
 
 //a built and usable pistol
 /obj/item/gun/modular/NT/pistol
@@ -120,3 +125,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 			grip = new /obj/item/gun_parts/grip/NT/wood(src)
 		//if(prob(30))
 		//	foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
+
+/obj/item/gun/modular/NT/flare_gun
+	name = "\improper NT flare gun"
+	real_name = "\improper NT flare gun"
+	desc = "Designed to fire 16mm flares. The barrel can't take much more than that."
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/NT/shotty/flare(src)
+		if(prob(10))
+			grip = new /obj/item/gun_parts/grip/NT/stub(src)
+		else
+			grip = new /obj/item/gun_parts/grip/NT/wood(src)
