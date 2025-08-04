@@ -315,6 +315,8 @@ var/list/headset_channel_lookup
 
 							if (ai_sender)
 								rmob.playsound_local(R, 'sound/misc/talk/radio_ai.ogg', 30, 1, 0, pitch = 1, ignore_flag = SOUND_SPEECH)
+							else if ((istype(rmob:wear_suit, /obj/item/clothing/suit/space))&&(istype(rmob:head, /obj/item/clothing/head/helmet/space)))
+								rmob.playsound_local(R, 'sound/misc/talk/radio_quin2.ogg', 30, 0, 0, pitch = 1, ignore_flag = SOUND_SPEECH)  //Adapted from file by BenScripps under CC-BY-SA-3.0 and Wikimedia Commons https://en.wikipedia.org/wiki/File:Quindar_tones.ogg
 							else
 								rmob.playsound_local(R, 'sound/misc/talk/radio2.ogg', 30, 1, 0, pitch = 1, ignore_flag = SOUND_SPEECH)
 

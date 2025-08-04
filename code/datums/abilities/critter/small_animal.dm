@@ -25,6 +25,7 @@
 	targeted = 1
 	target_anything = 1
 	var/take_eyes = 0
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -96,6 +97,7 @@
 	cooldown = 200
 	targeted = 1
 	target_anything = 1
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -134,6 +136,7 @@
 	cooldown = 250
 	targeted = 1
 	target_anything = 1
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -169,6 +172,8 @@
 	cooldown = 50
 	targeted = 1
 	target_anything = 1
+	attack_mobs = TRUE
+
 	var/venom1 = "histamine"
 	var/amt1 = 12
 	var/venom2 = "toxin"

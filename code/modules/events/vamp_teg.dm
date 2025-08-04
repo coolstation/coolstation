@@ -335,6 +335,15 @@ datum/teg_transformation/vampire
 						steam.set_up(1, 0, get_turf(C))
 						steam.attach(C)
 						steam.start(clear_holder=1)
+				if(C.reagents.has_reagent("garlic", 5))
+					src.health -= 5
+					C.reagents.remove_reagent("garlic", 8)
+					if (!(locate(/datum/effects/system/steam_spread) in C.loc))
+						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
+						var/datum/effects/system/steam_spread/steam = new()
+						steam.set_up(1, 0, get_turf(C))
+						steam.attach(C)
+						steam.start(clear_holder=1)
 
 		if(health <= 0) // thou haft defeated the beast
 			on_revert()

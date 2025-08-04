@@ -670,7 +670,7 @@ datum
 			src.combustible_pressure = 0
 
 		proc/process_combustion(mult = 1) //Handles any chem that burns
-			if (src.composite_volatility <= 0.5)
+			if (src.composite_volatility <= 0.5 || !src.combustible_volume)
 				src.stop_combusting()
 				return
 
@@ -777,6 +777,7 @@ datum
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
+							burn_speed = INFINITY
 							if(QDELETED(src.my_atom))
 								return
 					if (14 to INFINITY) // splatter chems and break
@@ -788,6 +789,7 @@ datum
 						if (istype(src.my_atom, /obj))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
+							burn_speed = INFINITY
 							if(QDELETED(src.my_atom))
 								return
 						else
@@ -861,8 +863,8 @@ datum
 						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1), energy = src.composite_combust_energy * burn_speed / src.combustible_volume)
 						if (isobj(my_atom))
 							var/obj/O = my_atom
-							if (!O.shatter_chemically(projectiles = TRUE))
-								src.clear_reagents()
+							O.shatter_chemically(projectiles = TRUE)
+							burn_speed = INFINITY
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
