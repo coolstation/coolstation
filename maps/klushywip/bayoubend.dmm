@@ -505,6 +505,9 @@
 	tag = ""
 	},
 /obj/machinery/portable_atmospherics/canister/air/large,
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/floor/cautionblack,
 /area/station/storage/emergency)
 "ava" = (
@@ -1870,17 +1873,11 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "bFY" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/light/small{
+/obj/decal/fakeobjects/lightbulb_broken{
 	dir = 4
 	},
-/obj/disposalpipe/segment,
-/turf/floor/plating/random,
-/area/station/maintenance/west)
+/turf/floor/grime,
+/area/station/maintenance/oldstation)
 "bGv" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 4;
@@ -2010,9 +2007,6 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/light/small/reddish{
-	dir = 1
-	},
 /turf/floor,
 /area/station/science/bot_storage)
 "bIf" = (
@@ -5374,9 +5368,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/light/small/reddish{
-	dir = 4
-	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
 "eiW" = (
@@ -6491,9 +6482,7 @@
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
 "eYO" = (
-/obj/shitty_radio/shitty_tv{
-	pixel_x = 32
-	},
+/obj/blind_switch/area/east,
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "eZi" = (
@@ -6953,10 +6942,6 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/floor/black,
 /area/listeningpost)
-"fqm" = (
-/obj/machinery/light/small/red,
-/turf/floor/grime,
-/area/station/maintenance/oldstation)
 "fqo" = (
 /obj/cable{
 	d1 = 1;
@@ -9877,6 +9862,7 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "hyY" = (
+/obj/decal/fakeobjects/lightbulb_broken,
 /turf/floor/plating,
 /area/station/shipyard)
 "hzr" = (
@@ -16948,6 +16934,9 @@
 	icon_state = "engineoff";
 	name = "Active Particle Phase Matrix"
 	},
+/obj/machinery/light/small/purple{
+	dir = 1
+	},
 /turf/floor/grey,
 /area/station/science/teleporter)
 "mRj" = (
@@ -17161,8 +17150,8 @@
 /turf/space,
 /area/space)
 "ncv" = (
-/obj/machinery/light/small/red,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/light/small/red,
 /turf/floor/carpet/grime2,
 /area/station/maintenance/oldstation)
 "ncC" = (
@@ -24714,11 +24703,9 @@
 	},
 /area/station/security/main)
 "svA" = (
-/obj/machinery/light/small/cool/very{
-	dir = 4
-	},
-/turf/space,
-/area/space)
+/obj/decal/fakeobjects/lightbulb_broken,
+/turf/floor/plating/random,
+/area/station/maintenance/oldstation)
 "svN" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -27374,9 +27361,6 @@
 "upP" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
-	},
-/obj/machinery/light/small/red{
-	dir = 1
 	},
 /turf/floor/grey,
 /area/station/science/storage)
@@ -31703,7 +31687,6 @@
 "xOb" = (
 /obj/machinery/recharge_station,
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/light/small/red,
 /turf/floor/cautionblack,
 /area/station/storage/emergency)
 "xOn" = (
@@ -45967,7 +45950,7 @@ ipT
 iPC
 pri
 pri
-oLF
+huY
 wxe
 wTQ
 nWn
@@ -56227,7 +56210,7 @@ wDt
 wku
 hQg
 uQh
-uQh
+tGe
 hQg
 hQg
 dri
@@ -58339,7 +58322,7 @@ raK
 osW
 osW
 qNP
-uQh
+bFY
 uQh
 wDt
 klb
@@ -58635,7 +58618,7 @@ adT
 adT
 jkq
 uQh
-fqm
+tGe
 hQg
 hQg
 hQg
@@ -60474,7 +60457,7 @@ gSC
 eij
 rsd
 uQY
-bFY
+fqo
 tLT
 fqo
 fqo
@@ -61343,7 +61326,7 @@ hQg
 hQg
 hQg
 egV
-wDt
+svA
 hQg
 kCO
 wDt
@@ -106713,7 +106696,7 @@ ipT
 ipT
 ipT
 ipT
-svA
+ipT
 ipT
 ipT
 ipT
