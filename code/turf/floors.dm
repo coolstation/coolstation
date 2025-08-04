@@ -1293,8 +1293,8 @@ DEFINE_FLOORS(snowrough/border,
 	allows_vehicles = 1
 	permadirty = 1
 
-/turf/floor/industrial
-	icon_state = "diamondtile"
+/turf/floor/riveted
+	icon_state = "riveted"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
