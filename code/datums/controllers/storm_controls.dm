@@ -3,7 +3,7 @@
 #ifdef MAP_OVERRIDE_PERDUTA
 	var/storms_to_create = 3
 #else
-	var/storm_to_create = 0
+	var/storms_to_create = 0
 #endif
 	/// what the tally starts at, negative to provide brief roundstart safety. lightning strikes attempt to start each tick at lightning_tally% chance
 	var/lightning_tally = -60
