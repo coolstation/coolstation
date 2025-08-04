@@ -63,42 +63,42 @@
 							switch (drink_choice)  //finds cup in contents and adds chosen drink to it
 								if ("Espresso")
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso",10)
+										C.reagents.add_reagent("espresso", 10, temp_new = T0C + 60)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Latte") // 5:1 milk:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 1.6)
+										C.reagents.add_reagent("espresso", 1.6, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 8.4)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Mocha") // 3:1:3 espresso:milk:chocolate
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 4.3)
+										C.reagents.add_reagent("espresso", 4.3, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 1.4)
 										C.reagents.add_reagent("chocolate", 4.3)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Cappuchino") // 1:1:1 milk foam:milk:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 3.5)
+										C.reagents.add_reagent("espresso", 3.5, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 6.5)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Americano") // 3:2 water:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 4)
+										C.reagents.add_reagent("espresso", 4, temp_new = T0C + 60)
 										C.reagents.add_reagent("water", 6)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Decaf") // 1 decaf espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("decafespresso", 10)
+										C.reagents.add_reagent("decafespresso", 10, temp_new = T0C + 60)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Flat White") // 3:2 milk:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 4)
+										C.reagents.add_reagent("espresso", 4, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 6)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
@@ -263,6 +263,7 @@
 						if ("Brew coffee")
 							for(var/obj/item/reagent_containers/food/drinks/carafe/C in src.contents)
 								C.reagents.add_reagent("coffee_fresh",100)
+								C.reagents.set_reagent_temp(T0C + 60) //kinda want it to be 80 but tolerances + no cooloff, this is good enough
 								playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 						if ("Remove carafe")
 							if (!src.my_carafe)

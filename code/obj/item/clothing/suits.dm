@@ -387,8 +387,8 @@
 
 
 /obj/item/clothing/suit/det_suit
-	name = "coat"
-	desc = "Someone who wears this means business."
+	name = "blazer"
+	desc = "If you listen closely, you can still hear faint church bells."
 	icon_state = "detective"
 	item_state = "det_suit"
 	body_parts_covered = TORSO|LEGS|ARMS

@@ -585,6 +585,11 @@
 			icon_state = "inspector_holster"
 			item_state = "inspector_holster"
 
+		holster
+			name = "hip holster"
+			icon_state = "holster"
+			item_state = "holster"
+
 
 	standard
 		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/taser_gun,

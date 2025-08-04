@@ -606,9 +606,9 @@ ABSTRACT_TYPE(/datum/job/security)
 	receives_badge = 1
 	cant_spawn_as_rev = 1
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/shoulder_holster)
+	slot_belt = list(/obj/item/storage/belt/security/shoulder_holster/holster)
 	slot_poc1 = list(/obj/item/device/pda2/forensic)
-	slot_poc2 = list(/obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled)
+	slot_poc2 = list(/obj/item/reagent_containers/food/drinks/bottle/tequila)
 	slot_jump = list(/obj/item/clothing/under/rank/det)
 	slot_foot = list(/obj/item/clothing/shoes/detective)
 	slot_head = list(/obj/item/clothing/head/det_hat)
