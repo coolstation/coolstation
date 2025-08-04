@@ -32,7 +32,7 @@
 	cap_type = "cap"
 	icon_state = "bottle-green"
 	initial_volume = 40
-	initial_reagents = list("beer"=30,"ethanol"=5)
+	initial_reagents = list("ethanol"=5)
 
 	New()
 		..()
@@ -52,6 +52,8 @@
 		while (adulterants > 0)
 			adulterants--
 			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), rand(1,3))
+
+		reagents.add_reagent("beer", src.initial_volume - src.reagents.total_volume - 5)
 
 		update_icon()
 
@@ -84,7 +86,7 @@
 	alt_filled_state = 1
 	var/safe = 0
 	initial_volume = 80
-	initial_reagents = list("wine"=60,"ethanol"=15)
+	initial_reagents = list("ethanol"=15)
 
 	New()
 		..()
@@ -98,15 +100,17 @@
 
 		if (safe)
 			name = "Watered Down [name]"
-			reagents.add_reagent("water", 1) // how is this safe? - this isn't the safe part, the safe part is up there ^ and down there v where it changes what chem list it uses  :v
+			src.reagents.add_reagent("water", 1) // how is this safe? - this isn't the safe part, the safe part is up there ^ and down there v where it changes what chem list it uses  :v
 
 		while (flavors > 0)
 			flavors--
-			reagents.add_reagent(pick_string("chemistry_tools.txt", "BOOZE_flavors"), rand(2,5))
+			src.reagents.add_reagent(pick_string("chemistry_tools.txt", "BOOZE_flavors"), rand(2,5))
 
 		while (adulterants > 0)
 			adulterants--
-			reagents.add_reagent(pick(adulterant_safety), rand(1,3))
+			src.reagents.add_reagent(pick_string("chemistry_tools.txt", adulterant_safety), rand(1,3))
+
+		src.reagents.add_reagent("wine", src.initial_volume - src.reagents.total_volume - 5)
 
 	UpdateName()
 		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
