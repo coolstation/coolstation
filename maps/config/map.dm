@@ -76,6 +76,9 @@
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 #include "bayoubend.dm"
 
+#elif defined(MAP_OVERRIDE_PERDUTA)
+#include "perduta.dm"
+
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 

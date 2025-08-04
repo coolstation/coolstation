@@ -281,6 +281,8 @@ var/global/datum/transit_controller/transit_controls
 			TargetZ = target_z,\
 			LandingRange = 0)
 
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five
+	target_z = 5
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator

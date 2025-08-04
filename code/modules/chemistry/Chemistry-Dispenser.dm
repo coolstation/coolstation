@@ -471,6 +471,14 @@
 
 	dispense_sound = 'sound/effects/splort.ogg'
 
+/obj/machinery/chem_dispenser/pharmacy
+	name = "pharmaceutical dispenser"
+	desc = "A chemical supplier tailored to the needs of medical staff."
+	dispensable_reagents = list(
+		"aluminium","carbon","ethanol","hydrogen","oxygen","silver",\
+		"sugar","sulfur","water","ammonia","anti_rad","salt")
+	dispenser_name = "Pharmacy"
+
 /obj/machinery/chem_dispenser/old
 	name = "old alcohol dispenser"
 	desc = "A really old alcohol dispenser... does this thing even work anymore???"

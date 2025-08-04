@@ -21,3 +21,23 @@
 				controller = 0
 				global.hotspot_controller.clear()
 #endif
+#ifdef MAP_OVERRIDE_PERDUTA
+/// Controls Perduta's storms and their movement.
+/datum/controller/process/storm_cell_update
+	var/tmp/datum/storm_controller/controller
+
+	setup()
+		name = "Storm Cell Process"
+		schedule_interval = 2 SECONDS
+		controller = global.storm_controller
+
+	copyStateFrom(datum/controller/process/target)
+		var/datum/controller/process/storm_cell_update/old_storm_cell_update = target
+		src.controller = old_storm_cell_update.controller
+
+	doWork()
+		if (controller)
+			controller.process()
+		else
+			controller = 0
+#endif

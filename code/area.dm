@@ -3902,6 +3902,12 @@ ABSTRACT_TYPE(/area/station/turret_protected)
 	sound_environment = EAX_HALLWAY
 	force_fullbright = 1
 
+/area/station/turret_protected/AIbaseoceanfloor
+	name = "AI Perimeter Defenses"
+	icon_state = "AIt"
+	requires_power = 0
+	sound_environment = EAX_HALLWAY
+
 /area/station/turret_protected/AIbasecore2
 	name = "AI Core 2"
 	icon_state = "AIt"
