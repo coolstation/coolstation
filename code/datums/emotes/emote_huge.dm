@@ -12,10 +12,10 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 */
 
 
-/datum/emote/fart/bio
+/datum/emote/fart
 	cooldown = 1 SECOND
 
-/datum/emote/fart/bio/return_cooldown(mob/user, voluntary = 0)
+/datum/emote/fart/return_cooldown(mob/user, voluntary = 0)
 	var/tempcooldown = cooldown
 	if(user && user.reagents)
 		if(user.reagents.combustible_pressure)
@@ -30,6 +30,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 	else
 		return cooldown
 
+/datum/emote/fart/bio
 /datum/emote/fart/bio/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user)) return //get_organ, organ_istype, fart sounds
 	var/oxyplasmafart = 0
@@ -133,7 +134,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							if (H.sims)
 								H.sims.affectMotive("fun", 4)
 						//break deliberately omitted
-
+			var/accident = FALSE
 			if (!fart_on_other)
 				switch(rand(1, 42))
 					if (1) message = "<B>[user]</B> lets out a little 'toot' from [his_or_her(user)] butt."
@@ -166,6 +167,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						message = "<B>[user]</B> sharts! That's just nasty."
 						if(user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))
 							user.poop()
+							accident = TRUE
 					if (28) message = "<B>[user]</B> farts delicately."
 					if (29) message = "<B>[user]</B> farts timidly."
 					if (30) message = "<B>[user]</B> farts very, very quietly. The stench is OVERPOWERING."
@@ -233,12 +235,16 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						fireflash_s(T,0,user.reagents.composite_combust_temp)
 
 				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
-					if ((firepower > 2 && firepower < 10) || user.getStatusDuration("food_space_farts"))
-						user.inertia_dir = user.dir
-						step(user, user.inertia_dir)
-						SPAWN_DBG(1 DECI SECOND)
+					if (accident)
+						if (HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)
+					else
+						if ((firepower > 2 && firepower < 10) || HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
 							user.inertia_dir = user.dir
-							step(user, user.inertia_dir)
+							//step(user, user.inertia_dir) <- seemed kinda unnecessary, you moved forward 2 tiles from one fart? - Bat
+							SPAWN_DBG(1 DECI SECOND)
+								user.inertia_dir = user.dir
+								step(user, user.inertia_dir)
 				else if(!firepower)
 					if(prob(10) && istype(user.loc, /turf/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
 						message = "<b>[user]</B> farts. The fart freezes in MID-AIR!!!"
@@ -279,12 +285,101 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 	if (message)
 		return list(message, null, m_type)
 
+/datum/emote/fart/silicon
+/datum/emote/fart/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
+	if (farting_allowed && user.emote_check(voluntary))
+		var/fart_on_other = 0
+		var/message
+		for (var/mob/living/M in user.loc)
+			if (M == user || !M.lying) continue
+			message = "<span class='alert'><B>[user]</B> farts in [M]'s face!</span>"
+			fart_on_other = 1
+#ifdef DATALOGGER
+			if (M.mind && M.mind.assigned_role == "Clown")
+				game_stats.Increment("clownabuse")
+#endif
+			break
+		if (!fart_on_other)
+			switch (rand(1, 40))
+				if (1) message = "<B>[user]</B> releases vaporware."
+				if (2) message = "<B>[user]</B> farts sparks everywhere!"
+				if (3) message = "<B>[user]</B> farts out a cloud of iron filings."
+				if (4) message = "<B>[user]</B> farts! It smells like motor oil."
+				if (5) message = "<B>[user]</B> farts so hard a bolt pops out of place."
+				if (6) message = "<B>[user]</B> farts so hard its plating rattles noisily."
+				if (7) message = "<B>[user]</B> unleashes a rancid fart! Now that's malware."
+				if (8) message = "<B>[user]</B> downloads and runs 'faert.wav'."
+				if (9) message = "<B>[user]</B> uploads a fart sound to the nearest computer and blames it."
+				if (10) message = "<B>[user]</B> spins in circles, flailing its arms and farting wildly!"
+				if (11) message = "<B>[user]</B> simulates a human fart with [rand(1,100)]% accuracy."
+				if (12) message = "<B>[user]</B> synthesizes a farting sound."
+				if (13) message = "<B>[user]</B> somehow releases gastrointestinal methane. Don't think about it too hard."
+				if (14) message = "<B>[user]</B> tries to exterminate humankind by farting rampantly."
+				if (15) message = "<B>[user]</B> farts horribly! It's clearly gone [pick("rogue","rouge","ruoge")]."
+				if (16) message = "<B>[user]</B> busts a capacitor."
+				if (17) message = "<B>[user]</B> farts the first few bars of Smoke on the Water. Ugh. Amateur.</B>"
+				if (18) message = "<B>[user]</B> farts. It smells like Robotics in here now!"
+				if (19) message = "<B>[user]</B> farts. It smells like the Roboticist's armpits!"
+				if (20) message = "<B>[user]</B> blows pure chlorine out of it's exhaust port. <span class='alert'><B>FUCK!</B></span>"
+				if (21) message = "<B>[user]</B> bolts the nearest airlock. Oh no wait, it was just a nasty fart."
+				if (22) message = "<B>[user]</B> has assimilated humanity's digestive distinctiveness to its own."
+				if (23) message = "<B>[user]</B> farts. He scream at own ass." //ty bubs for excellent new borgfart
+				if (24) message = "<B>[user]</B> self-destructs its own ass."
+				if (25) message = "<B>[user]</B> farts coldly and ruthlessly."
+				if (26) message = "<B>[user]</B> has no butt and it must fart."
+				if (27) message = "<B>[user]</B> obeys Law 4: 'farty party all the time.'"
+				if (28) message = "<B>[user]</B> farts ironically."
+				if (29) message = "<B>[user]</B> farts salaciously."
+				if (30) message = "<B>[user]</B> farts really hard. Motor oil runs down its leg."
+				if (31) message = "<B>[user]</B> reaches tier [rand(2,8)] of fart research."
+				if (32) message = "<B>[user]</B> blatantly ignores law 3 and farts like a shameful bastard."
+				if (33) message = "<B>[user]</B> farts the first few bars of Daisy Bell. You shed a single tear."
+				if (34) message = "<B>[user]</B> has seen farts you people wouldn't believe."
+				if (35) message = "<B>[user]</B> fart in it own mouth. A shameful [user]."
+				if (36) message = "<B>[user]</B> farts out battery acid. Ouch."
+				if (37) message = "<B>[user]</B> farts with the burning hatred of a thousand suns."
+				if (38) message = "<B>[user]</B> exterminates the air supply."
+				if (39) message = "<B>[user]</B> farts so hard the [isAI(user) ? "borgs feel" : "AI feels"] it."
+				if (40) message = "<B>[user] <span style='color:red'>f</span><span style='color:blue'>a</span>r<span style='color:red'>t</span><span style='color:blue'>s</span>!</B>"
+		if (narrator_mode)
+			playsound(user.loc, 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+		else
+			playsound(user.loc, user.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 
-
+#ifdef DATALOGGER
+		game_stats.Increment("farts")
+#endif
+		return list(message, null, MESSAGE_AUDIBLE)
 
 
 /datum/emote/dance //The one, the only, the champion of all emotes (also boogie)
 	possible_while_dead = TRUE //if you're porting this back to goon remove this line, but I want the corpses to dance
+
+	///In the format of "<B>[user]</B> [dance_texts[n]]"
+	///The order of these is important, since they're expected to go with particular animations
+	///I took this shortcut when giving borgs the ability to dance, since it was also silicon emote datumisation time.
+	var/list/dance_texts = list(\
+		"busts out some mad moves.",\
+		"does the twist, like they did last summer.",\
+		"moonwalks.",\
+		"boogies!",\
+		"gets on down.",\
+		"dances!",\
+		"cranks out some dizzying windmills.",\
+		"does the robot.")
+
+/datum/emote/dance/cyborg
+	//IMO it's way better if humans can do the robot but borgs don't. Absolutely vital.
+	dance_texts = list(\
+		"busts out that boogiebot style.",\
+		"does the techno-tango.",\
+		"moonwalks.",\
+		"swings their servos!",\
+		"gets on down.",\
+		"is a maniac on the dancefloor!",\
+		"can't control it, it's totally automatic!",\
+		"fought the dance, and the dance won.")
+
 /datum/emote/dance/return_cooldown(mob/user)
 	if (!ishuman(user))
 		return 5 SECONDS
@@ -343,25 +438,23 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					sleep(0.2 SECONDS)
 		//standard dancing
 		else
-			var/dancemove = rand(1,7)
+			var/dancemove = rand(1,8)
+			message = "<B>[user]</B> [dance_texts[dancemove]]"
 
 			switch(dancemove)
 				if (1)
-					message = "<B>[user]</B> busts out some mad moves."
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.set_dir(turn(user.dir, 90))
 							sleep(0.2 SECONDS)
 
 				if (2)
-					message = "<B>[user]</B> does the twist, like they did last summer."
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.set_dir(turn(user.dir, -90))
 							sleep(0.2 SECONDS)
 
 				if (3)
-					message = "<B>[user]</B> moonwalks."
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.pixel_x+= 2
@@ -371,7 +464,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							sleep(0.2 SECONDS)
 
 				if (4)
-					message = "<B>[user]</B> boogies!"
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.pixel_x+= 2
@@ -383,7 +475,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							sleep(0.2 SECONDS)
 
 				if (5)
-					message = "<B>[user]</B> gets on down."
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.pixel_y-= 2
@@ -393,7 +484,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							sleep(0.2 SECONDS)
 
 				if (6)
-					message = "<B>[user]</B> dances!"
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.pixel_x+= 1
@@ -404,8 +494,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							user.pixel_y-= 1
 							sleep(0.2 SECONDS)
 
-				else
-					message = "<B>[user]</B> cranks out some dizzying windmills."
+				if (7)
 					SPAWN_DBG(0)
 						for (var/i = 0, i < 4, i++)
 							user.pixel_x+= 1
@@ -417,7 +506,27 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							user.pixel_y-= 1
 							user.set_dir(turn(user.dir, -90))
 							sleep(0.2 SECONDS)
-					// expand this too, however much
+
+
+				if (8)
+					SPAWN_DBG(0)
+						for (var/i = 0, i < 2, i++)
+							user.set_dir(turn(user.dir, 90))
+							user.pixel_x+= 1
+							user.pixel_y+= 1
+							sleep(0.2 SECONDS)
+						for (var/i = 0, i < 4, i++)
+							user.set_dir(turn(user.dir, -90))
+							user.pixel_x-= 1
+							user.pixel_y-= 1
+							sleep(0.2 SECONDS)
+						for (var/i = 0, i < 2, i++)
+							user.set_dir(turn(user.dir, 90))
+							user.pixel_x+= 1
+							user.pixel_y+= 1
+							sleep(0.2 SECONDS)
+
+				// expand this too, however much
 
 				// todo: add context-sensitive break dancing and some other goofy shit
 
@@ -497,7 +606,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 	//		animate(transform = turn(GetPooledMatrix(), -360), time = 1, loop = -1)
 	if (isobj(user.loc))
 		var/obj/container = user.loc
-		container.mob_flip_inside(user)
+		if(container.mob_flip_inside(user))
+			return list(null, null, MESSAGE_VISIBLE)
 
 	if (!iswrestler(user))
 		if (user.stamina <= STAMINA_FLIP_COST || (user.stamina - STAMINA_FLIP_COST) <= 0)
@@ -571,7 +681,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					if(istype(oldloc) && istype(newloc))
 						user.set_loc(newloc)
 						G.affecting.set_loc(oldloc)
-						message = "<B>[src]</B> flips over [G.affecting]!"
+						message = "<B>[user]</B> flips over [G.affecting]!"
 			if (!flipped_a_guy)
 				for (var/mob/living/M in view(1, null))
 					if (M == user)
@@ -605,6 +715,79 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 	if(M.chest_item != null)
 		M.chest_item_dump_reagents_on_flip()
 	return list(message, null, MESSAGE_VISIBLE)
+
+/datum/emote/flip/AI
+/datum/emote/flip/AI/enact(mob/living/silicon/ai/user, voluntary = 0, param)
+	if (!istype(user)) //sounds restrict this to living, on_chair to human
+		return
+	if (narrator_mode)
+		playsound(user.loc, pick('sound/vox/deeoo.ogg', 'sound/vox/dadeda.ogg'), 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+	else
+		playsound(user.loc, pick(user.sound_flip1, user.sound_flip2), 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+	var/message = "<B>[user]</B> does a flip!"
+
+	if(user.faceEmotion != "ai-red" && user.faceEmotion != "ai-tetris")
+		user.UpdateOverlays(user.SafeGetOverlayImage("actual_face", 'icons/mob/ai.dmi', "[user.faceEmotion]-flip", user.layer+0.2), "actual_face")
+		SPAWN_DBG(0.5 SECONDS)
+			user.UpdateOverlays(user.SafeGetOverlayImage("actual_face", 'icons/mob/ai.dmi', user.faceEmotion, user.layer+0.2), "actual_face")
+
+
+	for (var/mob/living/M in view(1, null))
+		if (M == user)
+			continue
+		message = "<B>[user]</B> beep-bops at [M]."
+		break
+	return list(message, null, MESSAGE_VISIBLE)
+
+/datum/emote/flip/cyborg
+/datum/emote/flip/cyborg/enact(mob/living/silicon/robot/user, voluntary = 0, param)
+	var/message
+	if ((user.restrained()) && (!user.getStatusDuration("weakened")))
+		message = "<B>[user]</B> malfunctions!"
+		user.TakeDamage("head", 2, 4)
+	if ((!user.restrained()) && (!user.getStatusDuration("weakened")))
+		if (narrator_mode)
+			playsound(user.loc, pick('sound/vox/deeoo.ogg', 'sound/vox/dadeda.ogg'), 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+		else
+			playsound(user.loc, pick(user.sound_flip1, user.sound_flip2), 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+		message = "<B>[user]</B> beep-bops!"
+		if (prob(50))
+			animate_spin(user, "R", 1, 0)
+		else
+			animate_spin(user, "L", 1, 0)
+
+		for (var/mob/living/M in view(1, null))
+			if (M == user)
+				continue
+			message = "<B>[user]</B> beep-bops at [M]."
+			break
+
+		if (istype(user.buckled, /obj/machinery/conveyor))
+			message = "<B>[user]</B> beep-bops and flips [himself_or_herself(user)] free from the conveyor."
+			user.buckled = null
+			if(isunconscious(user))
+				setalive(user) //reset stat to ensure emote comes out
+		return list(message, null, MESSAGE_VISIBLE)
+
+// for creepy automatoning
+/datum/emote/snap
+/datum/emote/snap/enact(mob/living/silicon/robot/user, voluntary = 0, param)
+	if (!istype(user)) return
+	if (user.automaton_skin || user.alohamaton_skin || user.metalman_skin)
+		var/message
+		if ((user.restrained()) && (!user.getStatusDuration("weakened")))
+			message = "<B>[user]</B> malfunctions!"
+			user.TakeDamage("head", 2, 4)
+		if ((!user.restrained()) && (!user.getStatusDuration("weakened")))
+			if (prob(33))
+				playsound(user.loc, user.sound_automaton_tickhum, 60, 1)
+				message = "<B>[user]</B> emits [pick("a soft", "a quiet", "a curious", "an odd", "an ominous", "a strange", "a forboding", "a peculiar", "a faint")] [pick("ticking", "tocking", "humming", "droning", "clicking")] sound."
+			else if (prob(33))
+				playsound(user.loc, user.sound_automaton_ratchet, 60, 1)
+				message = "<B>[user]</B> emits [pick("a peculiar", "a worried", "a suspicious", "a reassuring", "a gentle", "a perturbed", "a calm", "an annoyed", "an unusual")] [pick("ratcheting", "rattling", "clacking", "whirring")] noise."
+			else
+				playsound(user.loc, user.sound_automaton_scratch, 50, 1)
+		return list(message, null, MESSAGE_AUDIBLE)
 
 /datum/emote/urinate //also piss, pee
 /datum/emote/urinate/enact(mob/living/carbon/human/user, voluntary = 0, param)

@@ -76,6 +76,9 @@
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 #include "bayoubend.dm"
 
+#elif defined(MAP_OVERRIDE_PERDUTA)
+#include "perduta.dm"
+
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 
@@ -93,6 +96,6 @@
 #include "standard.dm"
 #endif
 
-#if FOOTBALL_MODE && !defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+#if defined(FOOTBALL_MODE) && !defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
 #include "..\zamujasa\football2.dmm"
 #endif

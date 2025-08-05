@@ -443,12 +443,12 @@
 	SPAWN_DBG(0)
 		playsound(location, "sound/musical_instruments/Bikehorn_1.ogg", 100, 1)
 		playsound(location, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
-	var/obj/decal/cleanable/blood/splatter/extra/blood = null
+	var/obj/decal/cleanable/tracked_reagents/blood/splatter/extra/blood = null
 
 	var/list/bloods = list()
 
 	for (var/i in cardinal)
-		blood = make_cleanable(/obj/decal/cleanable/blood/splatter/extra, location)
+		blood = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter/extra, location)
 		blood.blood_DNA = bDNA
 		blood.blood_type = btype
 		blood.color = random_saturated_hex_color()
@@ -457,7 +457,7 @@
 
 	var/extra = rand(2,4)
 	for (var/i = 1, i <= extra, i++)
-		blood = make_cleanable(/obj/decal/cleanable/blood/splatter/extra, location)
+		blood = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter/extra, location)
 		blood.blood_DNA = bDNA
 		blood.blood_type = btype
 		blood.color = random_saturated_hex_color()

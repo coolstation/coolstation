@@ -212,6 +212,11 @@
 			return
 		return
 
+/obj/railway/rusty
+	name = "rusty rail"
+	icon_state = "rusty"
+	indestructible = 1
+
 /obj/railway_vehicle
 	var/obj/railway/current = null
 	var/moving_dir = 0

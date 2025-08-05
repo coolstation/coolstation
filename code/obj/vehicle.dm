@@ -645,7 +645,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			reagents.add_reagent("cryostylane", 1000)
 			return
 		else if(bigshoe)
-			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
+			reagents.add_reagent("tomato_sauce", 1000) //now we got da sause
 			return
 		else
 			reagents.add_reagent("cleaner", 1000)
@@ -2405,9 +2405,6 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		M.set_loc(src.loc)
 
 	src.update_overlays()
-
-/obj/vehicle/forklift/get_movement_controller(mob/user)
-	return movement_controller
 
 //We, unfortunately, can't use the base relaymove here because the forklift has some
 // special behaviors with overlays and underlays that produce weird behaviors

@@ -19,12 +19,16 @@
 #define LANDMARK_DRAIN_EXIT "drain_exit" //Where drains send fluids (well, practically but the actual draining happens in fluid code itself)
 
 // centcom shuttle landmarks
-#define LANDMARK_SHUTTLE_COG1 "shuttle-cog1"
-#define LANDMARK_SHUTTLE_COG2 "shuttle-cog2"
-#define LANDMARK_SHUTTLE_SEALAB "shuttle-sealab"
-#define LANDMARK_SHUTTLE_DONUT2 "shuttle-donut2"
-#define LANDMARK_SHUTTLE_DONUT3 "shuttle-donut3"
-#define LANDMARK_SHUTTLE_DESTINY "shuttle-destiny"
+#define LANDMARK_SHUTTLE_ESCAPE_COG1 "shuttle-escape-cog1"
+#define LANDMARK_SHUTTLE_ESCAPE_COG2 "shuttle-escape-cog2"
+#define LANDMARK_SHUTTLE_ESCAPE_SEALAB "shuttle-escape-sealab"
+#define LANDMARK_SHUTTLE_ESCAPE_DONUT2 "shuttle-escape-donut2"
+#define LANDMARK_SHUTTLE_ESCAPE_DONUT3 "shuttle-escape-donut3"
+#define LANDMARK_SHUTTLE_ESCAPE_DESTINY "shuttle-escape-destiny"
+
+// en-route arrivals shuttle loading landmarks
+#define LANDMARK_SHUTTLE_ARRIVALS_PRELOAD "shuttle-arrivals-preload"
+#define LANDMARK_SHUTTLE_ARRIVALS "shuttle-arrivals"
 
 // nukies
 

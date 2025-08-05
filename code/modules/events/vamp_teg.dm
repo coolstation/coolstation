@@ -309,7 +309,7 @@ datum/teg_transformation/vampire
 				src.teg.grump -= 10
 			else
 				reagents.remove_any_to(100)
-				make_cleanable(/obj/decal/cleanable/blood,get_step(src.teg, SOUTH))
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_step(src.teg, SOUTH))
 				src.teg.efficiency_controller += 5
 				SPAWN_DBG(45 SECONDS)
 					if(src.teg?.active_form == src)
@@ -329,6 +329,15 @@ datum/teg_transformation/vampire
 				if(C.reagents.has_reagent("water_holy", 5))
 					src.health -= 5
 					C.reagents.remove_reagent("water_holy", 8)
+					if (!(locate(/datum/effects/system/steam_spread) in C.loc))
+						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
+						var/datum/effects/system/steam_spread/steam = new()
+						steam.set_up(1, 0, get_turf(C))
+						steam.attach(C)
+						steam.start(clear_holder=1)
+				if(C.reagents.has_reagent("garlic", 5))
+					src.health -= 5
+					C.reagents.remove_reagent("garlic", 8)
 					if (!(locate(/datum/effects/system/steam_spread) in C.loc))
 						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
 						var/datum/effects/system/steam_spread/steam = new()

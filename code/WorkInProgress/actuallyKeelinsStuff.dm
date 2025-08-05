@@ -350,6 +350,11 @@ Returns:
 	desc = "someone drew something here"
 	var/list/arteests = list()
 
+/datum/gunTarget
+	var/params = null
+	var/target = null
+	var/user = 0
+
 /obj/item/permmarker
 	name = "Permanent Marker"
 	icon = 'icons/obj/items/items.dmi'
@@ -1254,9 +1259,9 @@ Returns:
 				if(ismob(A))//Shitty hack because attackby uses spawn on mobs. Meaning force etc will reset before the attack executes, thus doing 0 damage.
 					src.attack(A, user, user.zone_sel && user.zone_sel.selecting ? user.zone_sel.selecting : null)
 					if(bloody)
-						bleed(A, 5, 5, get_turf(target))
-						bleed(A, 5, 2, get_step(target,get_dir(user, target)))
-						bleed(A, 5, 1, get_step(get_step(target,get_dir(user, target)),get_dir(user, target)))
+						bleed(A, 5, get_turf(target), violent = TRUE)
+						bleed(A, 5, get_step(target,get_dir(user, target)))
+						bleed(A, 5, get_step(get_step(target,get_dir(user, target)),get_dir(user, target)))
 						//blood_slash(A, 5, get_step(target,get_dir(user, target)), get_dir(user, target), 4)
 					hitmob = 1
 				else
@@ -2878,14 +2883,14 @@ Returns:
 			new/obj/item/plank(T)
 			new/obj/item/plank(T)
 		else if(prob(1) && prob(40))
-			new/obj/item/gun/kinetic/spes(T)
-			new/obj/item/ammo/bullets/a12(T)
-			new/obj/item/ammo/bullets/a12(T)
+			new/obj/item/gun/modular/juicer/blunder(T)
+			new/obj/item/stackable_ammo/shotgun/juicer/denim/ten(T)
+			new/obj/item/stackable_ammo/shotgun/juicer/ten(T)
 
 		else if(prob(1) && prob(40))
-			new/obj/item/gun/kinetic/flaregun(T)
-			new/obj/item/ammo/bullets/flare(T)
-			new/obj/item/ammo/bullets/flare(T)
+			new/obj/item/gun/modular/NT/flare_gun(T)
+			new/obj/item/stackable_ammo/shotgun/slug_flare/ten(T)
+			new/obj/item/stackable_ammo/shotgun/slug_flare/ten(T)
 
 /mob/living/carbon/human/proc/zombify()
 	var/datum/ailment_data/disease/ZOM = contract_disease(/datum/ailment/disease/necrotic_degeneration, null, null, 1)

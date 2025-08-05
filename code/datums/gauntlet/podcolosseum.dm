@@ -763,7 +763,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		shotgun
 			name = "Ballistic"
-			myProj = /datum/projectile/bullet/shot_heavy
+			myProj = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
 			ammo = 40
 			abstract = 0
 			icon = 'icons/obj/items/gun.dmi'
@@ -771,7 +771,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		aex
 			name = "Ballistic (explosive)"
-			myProj = /datum/projectile/bullet/slug_boom
+			myProj = /datum/projectile/bullet/slug/boom
 			ammo = 20
 			abstract = 0
 			icon = 'icons/obj/colosseum.dmi'
@@ -925,7 +925,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 			hunting_rifle
 				name = "30.06 Shots"
-				myProj = /datum/projectile/bullet/rifle_heavy
+				myProj = /datum/projectile/bullet/rifle/juicer
 				ammo = 6
 				abstract = 0
 				icon = 'icons/obj/items/gun.dmi'
@@ -1058,9 +1058,6 @@ proc/get_colosseum_message(var/name, var/message)
 		radio = new(src)
 
 		movement_controller = new(src)
-
-	get_movement_controller()
-		return movement_controller
 
 	proc/on_damage()
 		next_shield_regen = ticker.round_elapsed_ticks + 50

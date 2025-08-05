@@ -9,6 +9,8 @@
 	target_anything = 1
 	target_in_inventory = 1
 	sticky = 1
+	max_range = 1
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())
@@ -105,6 +107,7 @@
 		inject_amount = 30
 		pointCost = 4
 		var/datum/targetable/changeling/dna_target_select/targeting = null
+		attack_mobs = FALSE
 
 		New()
 			..()

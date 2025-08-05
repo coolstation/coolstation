@@ -132,21 +132,27 @@
 				//evaporate stuff
 				if (FG.amt_per_tile <= FG.required_to_spread && !FG.updating)
 					avg_viscosity = FG.avg_viscosity
-					avg_viscosity = (FG.avg_viscosity-1) / (FG.max_viscosity-1) // should range from 0 to 1 now
+					avg_viscosity = (FG.avg_viscosity-1) / (MAX_VISCOSITY-1) // should range from 0 to 1 now
 
 					if ( world.time - FG.last_add_time > (FG.base_evaporation_time + (FG.bonus_evaporation_time * avg_viscosity)) )
 
-						//blood shouldn't evaporate cause its evidence. Just create decals.
-						if (FG.reagents.get_master_reagent_name() == "blood")
+						for(var/reagent_id in FG.reagents.reagent_list)
+							var/datum/reagent/reagent = FG.reagents.reagent_list[reagent_id]
+							if(reagent.evaporates_cleanly)
+								FG.reagents.del_reagent(reagent_id)
+
+						if(QDELETED(FG))
+							FG = null
+							continue
+
+						if(FG.reagents?.total_volume)
 							for (var/obj/fluid/F in FG.members)
 								LAGCHECK(LAG_MED)
 								if (!F) continue
-								var/obj/decal/cleanable/blood/dynamic/B = make_cleanable(/obj/decal/cleanable/blood/dynamic,F.loc)
-								B.sample_reagent = "blood"
-								B.add_volume(F.color, do_fluid_react = 0)
-								B.handle_reagent_list(FG.reagents.reagent_list)
-								B.blood_DNA = F.blood_DNA
-								B.blood_type = F.blood_type
+								var/obj/decal/cleanable/tracked_reagents/dynamic/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic,F.loc)
+								B.transfer_volume(FG.reagents, amount = 12, bDNA = F.blood_DNA, btype = F.blood_type, do_fluid_react = 0)
+								if(!FG?.reagents?.total_volume)
+									break
 
 						FG.evaporate()
 						if (FG?.qdeled)

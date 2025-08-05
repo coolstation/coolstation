@@ -1036,31 +1036,31 @@
 		unique = 1
 		duration = INFINITE_STATUS
 		maxDuration = null
-		var/mob/living/carbon/human/H
+		var/mob/M
 		var/sleepcount = 5 SECONDS
 
 		onAdd(optional=null)
 			. = ..()
-			if (ishuman(owner))
-				H = owner
+			if (ismob(owner))
+				M = owner
 				sleepcount = 5 SECONDS
 			else
 				owner.delStatus("buckled")
 
 		clicked(list/params)
-			if(H.buckled)
-				H.buckled.Attackhand(H)
+			if(M.buckled)
+				M.buckled.Attackhand(M)
 
 		onUpdate(timePassed)
-			if (H && !H.buckled)
+			if (M && !M.buckled)
 				owner.delStatus("buckled")
 			else
 				if (sleepcount > 0)
 					sleepcount -= timePassed
 					if (sleepcount <= 0)
-						if (H.hasStatus("resting") && istype(H.buckled,/obj/stool/bed))
-							var/obj/stool/bed/B = H.buckled
-							B.sleep_in(H)
+						if (M.hasStatus("resting") && istype(M.buckled,/obj/stool/bed))
+							var/obj/stool/bed/B = M.buckled
+							B.sleep_in(M)
 						else
 							sleepcount = 3 SECONDS
 
@@ -1328,6 +1328,8 @@
 		getTooltip()
 			. = "Your max stamina and stamina regen have been increased slightly."
 
+
+
 	patho_oxy_speed
 		id = "patho_oxy_speed"
 		name = "Oxygen Storage"
@@ -1424,11 +1426,10 @@
 			H.blood_volume -= units
 		if (prob(5))
 			var/damage = rand(1,5)
-			var/bleed = rand(3,5)
 			H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 			playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			H.TakeDamage(zone="All", brute=damage)
-			bleed(H, damage, bleed)
+			bleed(H, damage, violent = pick(TRUE, FALSE))
 
 /datum/statusEffect/mentor_mouse
 	id = "mentor_mouse"
@@ -1613,6 +1614,39 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+/datum/statusEffect/sandy
+	id = "sandy"
+	name = "Sandy"
+	desc = "You're getting sand everywhere! It's coarse and rough!"
+	icon_state = "painted" //you better sprite this wack
+
+	onAdd(optional)
+		. = ..()
+		if(istype(owner, /mob/living))
+			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(track_sand))
+	onRemove()
+		. = ..()
+		if(istype(owner, /mob/living))
+			UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+	proc/track_sand(mob/living/M, oldLoc, direct)
+		var/turf/T = get_turf(M)
+		if(!istype(T.loc,/area/gehenna))
+			var/obj/decal/cleanable/sand/S
+			if (T.messy > 0)
+				S = locate(/obj/decal/cleanable/sand) in T
+			if	(!S)
+				if(prob(30))
+					S = make_cleanable(/obj/decal/cleanable/sand, T)
+			var/list/states = M.get_step_image_states()
+			if(S)
+				if (states[1] || states[2])
+					if(states[1])
+						S.create_overlay(states[1], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+					if(states[2])
+						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
+				else
+					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"

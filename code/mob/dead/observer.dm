@@ -65,7 +65,8 @@
 /mob/dead/observer/Login()
 	..()
 	if(src.client)
-		src.updateOverlaysClient(src.client)
+		removeOverlaysClient(src.client)
+		addOverlaysClient(src.client, src)
 		src.updateButtons()
 	// ok so in logout we set your ghost to 101 invisibility.
 	// in login we set it back to whatever it was. so you keep your ghost.
@@ -197,8 +198,6 @@
 	if (..(parent))
 		return 1
 	if (src.client && src.client.holder) //ov1
-		// overlays
-		//src.updateOverlaysClient(src.client)
 		src.antagonist_overlay_refresh(0, 0) // Observer Life() only runs for admin ghosts (Convair880).
 
 #ifdef TWITCH_BOT_ALLOWED

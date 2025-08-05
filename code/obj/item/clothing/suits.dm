@@ -372,9 +372,23 @@
 		setProperty("rangedprot", 0.5)
 		setProperty("disorient_resist", 15)
 
+/obj/item/clothing/suit/cap_coat
+	name = "Captain's coat"
+	desc = "Prone to getting stuck in airlocks."
+	icon_state = "captain"
+	item_state = "cap_coat"
+	body_parts_covered = TORSO|LEGS|ARMS
+	bloodoverlayimage = SUITBLOOD_COAT
+
+	setupProperties()
+		..()
+		setProperty("meleeprot", 2)
+		setProperty("rangedprot", 0.5)
+
+
 /obj/item/clothing/suit/det_suit
-	name = "coat"
-	desc = "Someone who wears this means business."
+	name = "blazer"
+	desc = "If you listen closely, you can still hear faint church bells."
 	icon_state = "detective"
 	item_state = "det_suit"
 	body_parts_covered = TORSO|LEGS|ARMS

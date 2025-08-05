@@ -2,6 +2,7 @@
 
 //flap flap gonna put cursed stuff here
 
+//urticating hairs
 
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion
@@ -847,6 +848,18 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 				qdel(myButt)
 				L.playsound_local(src, 'sound/impact_sounds/Flesh_Tear_1.ogg', 50, TRUE)
 				boutput(L, "<span class='alert'><b>WOE, THINE BUTTE IS LOST!!</b></span>")
+
+//Diner's back in the debris field, so,
+/obj/item/paper/tug/diner_arcade_invoice_the_sequel
+    name = "Big Yank's Space Tugs, Limited."
+    desc = "Looks like a bill of sale."
+    info = {"<b>Client:</b> Bill, John
+            <br><b>Date:</b> TBD
+            <br><b>Articles:</b> Structure, Static. Pressurized. Duplex.
+            <br><b>Destination:</b> \"Put it back please, I'm sick of the view.\"\[sic\]
+            <br>
+            <br><b>Total Charge:</b> 9,233 paid in full with novelty jumbo hotdog-esques.
+            <br>Big Yank's Cheap Tug"}
 
 /*
 /obj/spawn_all_the_dragon_shit

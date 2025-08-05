@@ -27,6 +27,23 @@
 /obj/machinery/door/poddoor/blast/single
 	icon_state = "bdoorsingle1"
 
+/obj/machinery/door/poddoor/shutters
+	icon_state = "shutter1"
+	icon_base = "shutter"
+	layer = 5
+
+/obj/machinery/door/poddoor/shutters/left
+	icon_state = "shutterleft1"
+	icon_base = "shutterleft"
+
+/obj/machinery/door/poddoor/shutters/right
+	icon_state = "shutterright1"
+	icon_base = "shutterright"
+
+/obj/machinery/door/poddoor/shutters/center
+	icon_state = "shuttercenter1"
+	icon_base = "shuttercenter"
+
 /obj/machinery/door/poddoor/buff/staging
 	name = "Staging Area"
 	desc = "This door neatly separates the setup area from the spectator booths."
@@ -1017,7 +1034,7 @@
 
 	SPAWN_DBG(0)
 		src.operating = 1
-		flick("[icon_base]1", src)
+		flick("[icon_base]c1", src)
 		src.icon_state = "[icon_base]1"
 		src.set_density(1)
 		if (src.visible)

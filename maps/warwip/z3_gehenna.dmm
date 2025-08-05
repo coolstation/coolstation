@@ -17,14 +17,6 @@
 	dir = 4
 	},
 /area/station/maintenance/disposal)
-"aau" = (
-/obj/table/reinforced/industrial/auto,
-/obj/machinery/light/small/cool{
-	dir = 1
-	},
-/obj/item/stackable_ammo/scatter/juicer/three,
-/turf/floor/black,
-/area/station/ai_monitored/armory)
 "aaE" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -8374,6 +8366,11 @@
 "eOd" = (
 /turf/wall,
 /area/station/engine/hotloop)
+"eOh" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten,
+/turf/floor/black,
+/area/station/ai_monitored/armory)
 "eOL" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -13413,16 +13410,6 @@
 /area/station/maintenance/outer/east{
 	name = "East Lower Maintenance"
 	})
-"hPR" = (
-/obj/table/auto{
-	color = "#666666"
-	},
-/obj/machinery/light/fluorescent/cool/very,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "hPT" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -16363,6 +16350,14 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"jwa" = (
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/obj/item/stackable_ammo/shotgun/juicer/three,
+/turf/floor/black,
+/area/station/ai_monitored/armory)
 "jxi" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -25906,11 +25901,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/south)
-"pcc" = (
-/obj/table/reinforced/auto,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten,
-/turf/floor/black,
-/area/station/ai_monitored/armory)
 "pcg" = (
 /obj/machinery/vending/gunse{
 	acceptcard = 0;
@@ -39689,6 +39679,16 @@
 	},
 /turf/floor/grey,
 /area/station/science/bot_storage)
+"xxh" = (
+/obj/table/auto{
+	color = "#666666"
+	},
+/obj/machinery/light/fluorescent/cool/very,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "xxn" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
@@ -90666,7 +90666,7 @@ taZ
 taZ
 tXJ
 iYQ
-pcc
+eOh
 iYQ
 mpC
 iYQ
@@ -92174,7 +92174,7 @@ pdO
 pdO
 taZ
 taZ
-aau
+jwa
 xXb
 kWS
 kgJ
@@ -93398,7 +93398,7 @@ ybs
 ijD
 ijD
 ijD
-hPR
+xxh
 qbq
 qbq
 rBb

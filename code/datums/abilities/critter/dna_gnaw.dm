@@ -8,6 +8,7 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "gnaw"
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 

@@ -202,8 +202,8 @@ that cannot be itched
 		boutput(user, scan_forensic(A, visible = 1)) // Moved to scanprocs.dm to cut down on code duplication (Convair880).
 		src.add_fingerprint(user)
 
-		if(!active && istype(A, /obj/decal/cleanable/blood))
-			var/obj/decal/cleanable/blood/B = A
+		if(!active && istype(A, /obj/decal/cleanable/tracked_reagents/blood))
+			var/obj/decal/cleanable/tracked_reagents/blood/B = A
 			if(B.dry > 0) //Fresh blood is -1
 				boutput(user, "<span class='alert'>Targeted blood is too dry to be useful!</span>")
 				return

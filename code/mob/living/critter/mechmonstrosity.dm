@@ -176,6 +176,7 @@
 	cooldown = 600
 	targeted = 1
 	target_anything = 1
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())
@@ -211,6 +212,7 @@
 	target_nodamage_check = 1
 	max_range = 14
 	cooldown = 600
+	attack_mobs = TRUE
 
 	cast(mob/target)
 		if (!holder)
@@ -332,6 +334,7 @@
 	target_nodamage_check = 1
 	max_range = 1
 	cooldown = 600
+	//attack_mobs = TRUE // eek
 
 	cast(mob/target)
 		if (!holder)

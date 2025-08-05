@@ -993,7 +993,7 @@ MATERIAL
 			head.set_loc(src)
 			heads += head
 			src.update()
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 		SPAWN_DBG(50 SECONDS)
@@ -1104,7 +1104,7 @@ MATERIAL
 				if (istype(T, /turf/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
 					var/turf/floor/F = T
-					F.attackby(src, user)
+					F.Attackby(src, user)
 					tooltip_rebuild = 1
 
 		src.add_fingerprint(user)

@@ -171,7 +171,7 @@
 		if (M.buckled)
 			boutput(user, "They're already buckled into something!", "red")
 			return 0
-		if (!( iscarbon(M) ) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
+		if (get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
 			return 0
 		if(src.stool_user && src.stool_user.buckled == src && src.stool_user != M)
 			user.show_text("There's already someone buckled in [src]!", "red")

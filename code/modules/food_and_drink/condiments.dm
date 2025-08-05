@@ -34,9 +34,18 @@
 	heal_amt = 0
 	amount = 1
 
+
+/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
+	name = "tomato sauce"
+	desc = "Pureéd tomatoes as a sauce, straight up."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "can-tomato"
+	initial_volume = 30
+	initial_reagents = list("tomato_sauce"=25)
+
 /obj/item/reagent_containers/food/snacks/condiment/ketchup
 	name = "ketchup"
-	desc = "Pureéd tomatoes as a sauce."
+	desc = "Pureéd tomatoes as a sauce, thickened with sugar."
 	icon_state = "sachet-ketchup"
 	initial_volume = 30
 	initial_reagents = list("ketchup"=20)
@@ -49,7 +58,9 @@
 /obj/item/reagent_containers/food/snacks/condiment/mayo
 	name = "mayonnaise"
 	desc = "The subject of many a tiresome innuendo."
-	icon_state = "mayonnaise" //why the fuck was this icon state called cookie
+	icon_state = "mayonnaise"
+	initial_volume = 15
+	initial_reagents = list("mayonnaise"=10)
 
 /obj/item/reagent_containers/food/snacks/condiment/hotsauce
 	name = "hot sauce"
@@ -201,6 +212,33 @@
 						H.change_eye_blurry(10, 20) //less effective for blurriness, doesn't fly like salt
 						src.shakes ++
 						return
+					if ("capsaicin")
+						H.tri_message("<span class='alert'><b>[user]</b> [myVerb]s hot sauce into [H]'s eyes!</span>",\
+						H, "<span class='alert'>[H == user ? "You [myVerb]" : "[user] [myVerb]s"] some hot sauce into your eyes! <B>ARGH!</B></span>",\
+						user, "<span class='alert'>You [myVerb] some hot sauce into [user == H ? "your" : "[H]'s"] eyes![user == H ? " <B>Why?!</B>" : null]</span>")
+						H.emote("scream")
+						random_brute_damage(user, 5)
+						H.change_eye_blurry(15, 30) //fuck
+						src.shakes ++
+						return
+					if ("garlic")
+						if (isvampire(H))
+							H.tri_message("<span class='alert'><b>[user]</b> [myVerb]s garlic powder into [H]'s face!</span>",\
+							H, "<span class='alert'>[H == user ? "You [myVerb]" : "[user] [myVerb]s"] some garlic into your face! <B>FUCK, it BURNS your whole dracula business!</B></span>",\
+							user, "<span class='alert'>You [myVerb] some garlic into [user == H ? "your" : "[H]'s"] face![user == H ? " <B>FUCK! Why would you DO THIS? That's GARLIC! You're a DRACULA!</B>" : null]</span>")
+							H.emote("scream")
+							for(var/mob/O in AIviewers(M, null))
+								O.show_message(text("<span class='alert'><b>[] begins to crisp and burn!</b></span>", H), 1)
+							H.TakeDamage("head", 0, 6.25, 0, DAMAGE_BURN)
+							H.change_vampire_blood(-5)
+							H.change_eye_blurry(15, 30)
+						else
+							H.tri_message("<span class='alert'><b>[user]</b> [myVerb]s garlic powder into [H]'s face!</span>",\
+							H, "<span class='alert'>[H == user ? "You [myVerb]" : "[user] [myVerb]s"] some garlic into your face! Kind of annoying.</span>",\
+							user, "<span class='alert'>You [myVerb] some garlic into [user == H ? "your" : "[H]'s"] face![user == H ? " <B>Great job.</B>" : null]</span>")
+							H.change_eye_blurry(2, 5)
+						src.shakes ++
+						return
 					else
 						H.tri_message("<span class='alert'><b>[user]</b> [myVerb]s some [src.stuff] at [H]'s head!</span>",\
 						H, "<span class='alert'>[H == user ? "You [myVerb]" : "[user] [myVerb]s"] some [src.stuff] at your head! Fuck!</span>",\
@@ -248,6 +286,14 @@
 		icon_state = "shaker-parmesan"
 		stuff = "parmesan"
 
+	garlic
+		name = "garlic powder shaker"
+		desc = "A little bottle for shaking things onto other things. It has some garlic powder in it."
+		icon_state = "shaker-garlic"
+		stuff = "garlic"
+
+	//oregano is sprited but pointless mechanically, unlike garlic
+
 	redpepper
 		name = "red pepper shaker"
 		desc = "A little round glass shaker you see at certain restaurants. It has some red pepper flakes in it."
@@ -283,3 +329,35 @@
 		stuff = "mustard"
 		myVerb = "squirt"
 
+	mayo
+		name = "mayonnaise bottle"
+		desc = "A little bottle of mayonnaise. It's... completely unbranded? But it's definitely mayonnaise in there."
+		icon_state = "bottle-mayo"
+		stuff = "mayonnaise"
+		myVerb = "squirt"
+
+	hot
+		name = "hot sauce bottle"
+		desc = "A little bottle of Juicy-Hot medium-batch hot sauce. No compromises in this one: just pure, self-grown hot peppers, mashed and fermented in someone's bathtub."
+		icon_state = "bottle-hot"
+		stuff = "capsaicin"
+		myVerb = "splash"
+
+		afterattack(atom/A, mob/user as mob) //at this point the ketchup and mustard and etc. needs a refactor into regular bottles, refillable, reagent based transfer, and so on. but at least the items are there and open for more fun. especially if we find a mix between reagent and item based cooking
+			if (src.shakes >= 15)
+				user.show_text("[src] is empty!", "red") //todo: add the empty sprites for parmesan and red pepper flakes (and also salt and pepper)
+				return
+			if (istype(A, /obj/item/reagent_containers/food))
+				A.reagents.add_reagent("[src.stuff]", 2)
+				src.shakes ++
+				user.show_text("You [src.myVerb] some hot sauce onto [A].")
+			else if (istype(A, /obj/item/reagent_containers/glass/beaker))
+				A.reagents.add_reagent("[src.stuff]", 5)
+				src.shakes += 5
+				user.show_text("You [src.myVerb] some hot sauce into [A]")
+			else
+				return ..()
+
+	//todo: add ranch, bbq
+
+	//also todo: revamp self-mob interactions so you can fuckin' slurp down mayo and ranch straight from the bottle

@@ -33,6 +33,7 @@ datum
 				fluid_b = 32
 				transparency = 120
 				penetrates_skin = 1
+				evaporates_cleanly = TRUE
 
 		harmful/simple_damage_burn
 			name = "irritant precursor"
@@ -58,6 +59,7 @@ datum
 			transparency = 20
 			blob_damage = 1
 			value = 3 // 1c + 1c + 1c
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -152,6 +154,7 @@ datum
 			transparency = 64
 			reagent_state = LIQUID
 			blob_damage = 0.2
+			evaporates_cleanly = TRUE
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -253,14 +256,14 @@ datum
 			fluid_r = 0
 			fluid_b = 180
 			fluid_g = 25
-			transparency = 10
 			description = "A highly toxic chemical with some uses as a building block for other things."
 			reagent_state = LIQUID
-			transparency = 0
+			transparency = 15
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			blob_damage = 5
 			value = 7 // 3 2 1 heat
+			evaporates_cleanly = TRUE
 			var/counter = 1
 /*
 			pooled()
@@ -306,7 +309,7 @@ datum
 			fluid_r = 255
 			fluid_g = 180
 			fluid_b = 240
-			transparency = 10
+			transparency = 30
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			touch_modifier = 0.25
@@ -401,6 +404,7 @@ datum
 			transparency = 20
 			penetrates_skin = 1
 			value = 4 // 1 1 1 heat
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -424,6 +428,7 @@ datum
 			transparency = 20
 			penetrates_skin = 1
 			value = 4
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -722,7 +727,7 @@ datum
 								B.update_icon()
 
 								playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-								bleed(H, 500, 5) // you'll be gibbed in a moment you don't need it anyway
+								bleed(H, 500, violent = TRUE) // you'll be gibbed in a moment you don't need it anyway
 								H.visible_message("<span class='alert'><B>A huge bee bursts out of [H]! OH FUCK!</B></span>")
 								qdel(H.organHolder.heart)
 								H.gib()
@@ -812,9 +817,9 @@ datum
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
 											"<span class='alert'><B>[M]</B>'s [pick("chest", "face", "whole body")] bleeds!"))
 					playsound(M, 'sound/impact_sounds/Slimy_Splat_1.ogg', 30, TRUE) //some bloody effects
-					make_cleanable(/obj/decal/cleanable/blood/splatter,M.loc)
+					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc)
 				else if (probmult(20))
-					make_cleanable(/obj/decal/cleanable/blood/splatter,M.loc) //some extra bloody effects
+					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc) //some extra bloody effects
 				if (probmult(10))
 					M.make_jittery(50)
 					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
@@ -880,6 +885,7 @@ datum
 			transparency = 40
 			dispersal = 1
 			blob_damage = 4
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -2093,5 +2099,5 @@ datum
 						H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 						playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 						H.TakeDamage(zone="All", brute=damage)
-						bleed(H, damage * 2 * mult, 3)
+						bleed(H, damage * 2 * mult)
 

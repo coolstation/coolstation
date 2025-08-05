@@ -126,6 +126,9 @@
 	var/has_glow = TRUE //TODO - transition maps to /obj/machinery/light/fluorescent so this can be false by default
 	var/obj/overlay/glow = null
 
+	var/has_bulb_overlay = FALSE
+	var/image/bulb_overlay
+
 	New()
 		..()
 		light = new
@@ -133,6 +136,14 @@
 		light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
 		light.set_height(2.4)
 		light.attach(src)
+
+		if(src.has_bulb_overlay)
+			src.bulb_overlay = image(src.icon, src, "[src.base_state]_g")
+			src.bulb_overlay.plane = PLANE_SELFILLUM
+			src.bulb_overlay.layer = LIGHTING_LAYER_FULLBRIGHT
+			src.bulb_overlay.blend_mode = BLEND_OVERLAY
+			src.bulb_overlay.color = rgb(clamp(src.light.r * 255, 150, 255), clamp(src.light.g * 255, 150, 255), clamp(src.light.b * 220, 150, 255))
+
 		SPAWN_DBG(1 DECI SECOND)
 			update()
 
@@ -164,7 +175,10 @@
 		if (has_glow)
 			glow = new(src)//mage(src.icon,src,"[base_state]-glow",PLANE_NOSHADOW_ABOVE,src.dir)
 			glow.icon_state = "[base_state]-glow"
-			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE //IDK
+			glow.plane = PLANE_LIGHTING
+			glow.layer = LIGHTING_LAYER_BASE
+			glow.blend_mode = BLEND_ADD
+			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR  //IDK
 			glow.mouse_opacity = FALSE //Here's what we do this for
 
 		var/area/A = get_area(src)
@@ -269,10 +283,15 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness = 1.2
+	brightness = 1.5
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
+	has_bulb_overlay = TRUE
+
+	New()
+		..()
+
 
 /obj/machinery/light/small/auto
 	nostick = FALSE
@@ -289,6 +308,7 @@
 	plane = PLANE_FLOOR
 	allowed_type = /obj/item/light/bulb
 	wallmounted = FALSE
+	has_bulb_overlay = FALSE
 
 //ceiling lights!!
 /obj/machinery/light/small/ceiling
@@ -300,6 +320,7 @@
 	level = 2
 	wallmounted = FALSE
 	ceilingmounted = TRUE
+	has_bulb_overlay = FALSE
 
 //finally redid these sprites
 //good for shitty areas like maint
@@ -307,6 +328,7 @@
 	icon_state = "overbulb1"
 	base_state = "overbulb"
 	desc = "A small bare-bulb lighting fixture, embedded in the ceiling."
+	has_bulb_overlay = FALSE
 
 //emergency lights that turn on when either the power is out or an alert is triggered on the bridge
 /obj/machinery/light/emergency
@@ -320,6 +342,7 @@
 	on = 0
 	removable_bulb = 0
 	has_glow = TRUE
+	has_bulb_overlay = FALSE
 
 //Same as the above but starts on and stays on
 /obj/machinery/light/emergencyflashing
@@ -334,6 +357,7 @@
 	on = 1
 	removable_bulb = 0
 	has_glow = TRUE
+	has_bulb_overlay = FALSE
 
 	//repurpose for actual exit signs per room that flash when the shuttle's here
 	exitsign
@@ -529,6 +553,7 @@
 	light_type = /obj/item/light/big_bulb
 	allowed_type = /obj/item/light/big_bulb
 	power_usage = 0
+	has_bulb_overlay = FALSE
 
 	attackby(obj/item/W, mob/user)
 
@@ -577,6 +602,7 @@
 	wallmounted = FALSE
 	deconstruct_flags = DECON_SIMPLE
 	plane = PLANE_DEFAULT
+	has_bulb_overlay = FALSE
 
 	var/switchon = 0		// independent switching for lamps - not controlled by area lightswitch
 
@@ -601,6 +627,7 @@
 	nostick = 0
 	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
+	has_bulb_overlay = TRUE
 
 /obj/machinery/light/fluorescent/auto
 	nostick = FALSE //do the stick
@@ -664,9 +691,13 @@
 	//if(src.light.enabled != on)
 
 	if (on)
-		light.enable()
+		src.light.enable()
+		if(src.has_bulb_overlay)
+			src.UpdateOverlays(src.bulb_overlay, "bulb")
 	else
-		light.disable()
+		src.light.disable()
+		if(src.has_bulb_overlay)
+			src.UpdateOverlays(null, "bulb")
 
 	SPAWN_DBG(0)
 		// now check to see if the bulb is burned out
@@ -689,6 +720,8 @@
 				current_lamp.update()
 				on = 0
 				light.disable()
+				if(src.has_bulb_overlay)
+					src.UpdateOverlays(null, "bulb")
 			else
 				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
@@ -741,6 +774,8 @@
 	current_lamp = inserted_lamp
 	current_lamp.set_loc(null)
 	light.set_color(current_lamp.color_r, current_lamp.color_g, current_lamp.color_b)
+	if(src.bulb_overlay)
+		src.bulb_overlay.color = rgb(clamp(current_lamp.color_r * 255, 150, 255), clamp(current_lamp.color_g * 255, 150, 255), clamp(current_lamp.color_b * 220, 150, 255))
 	brightness = initial(brightness)
 	on = has_power()
 	update()
@@ -1303,9 +1338,9 @@
 	base_state = "bulb-yellow"
 	item_state = "contvapour"
 	g_amt = 100
-	color_r = 1
-	color_g = 1
-	color_b = 0.9
+	color_r = 0.98
+	color_g = 0.75
+	color_b = 0.5
 
 	red
 		name = "red light bulb"

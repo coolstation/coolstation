@@ -967,6 +967,7 @@ obj/critter/madnessowl/switchblade
 				src.attacking = 0
 		return
 
+/*
 /obj/critter/gunbot/drone/hootening //If anyone wants to take a crack at it, this guy was originally supposed to start doing melee after half HP but fuck critter code.
 	name = "The Hootening"
 	desc = "Wait you recognize them from somewhere, oh shit wait they have a gun!"
@@ -1003,7 +1004,7 @@ obj/critter/madnessowl/switchblade
 		..()
 		name = "The Hootening"
 		return
-
+*/
 
 /// ALTERNATE HOOTENING ATTEMPT
 
@@ -1189,7 +1190,7 @@ obj/critter/madnessowl/switchblade
 					sleep(1.5 SECONDS)
 					src.visible_message("<span class='alert'><B>[src]</B> ravenously eats the mangled brain remnants out of the decapitated head!</span>")
 					playsound(src.loc, "sound/voice/animal/hoot.ogg", 80, 1)
-					make_cleanable( /obj/decal/cleanable/blood,src.loc)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,src.loc)
 					src.target = null
 				else
 					src.visible_message("<span class='alert'><B>[src]</B> pounds on [BORG.name]'s head furiously!</span>")
@@ -1272,7 +1273,7 @@ obj/critter/madnessowl/switchblade
 				random_brute_damage(target, 10,1)
 				take_bleeding_damage(target, null, 5, DAMAGE_CUT, 0, get_turf(target))
 				if(prob(33)) // don't make quite so much mess
-					bleed(target, 5, 5, get_step(src.loc, pick(alldirs)), 1)
+					bleed(target, 5, get_step(src.loc, pick(alldirs)), violent = TRUE)
 				sleep(0.4 SECONDS)
 				src.frenzied--
 			src.frenzied = 0
@@ -1477,9 +1478,9 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 		/////////////////////////////////////////////////////////
 		//// sell list //////////////////////////////////////////
 		/////////////////////////////////////////////////////////
-		src.goods_sell += new /datum/commodity/airzooka(src)
-		src.goods_sell += new /datum/commodity/airbag(src)
-		src.goods_sell += new /datum/commodity/dangerbag(src)
+		//src.goods_sell += new /datum/commodity/airzooka(src)
+		//src.goods_sell += new /datum/commodity/airbag(src)
+		//src.goods_sell += new /datum/commodity/dangerbag(src)
 		src.goods_sell += new /datum/commodity/hat/dailyspecial/greg
 		src.goods_sell += new /datum/commodity/crayons/greg
 		src.goods_sell += new /datum/commodity/drugs/poppies/greg

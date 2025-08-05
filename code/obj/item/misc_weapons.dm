@@ -1545,13 +1545,16 @@ obj/item/whetstone
 	name = "airlock breaching sledgehammer"
 	desc = "A heavy metal hammer designed to crumple space station airlocks."
 	icon = 'icons/obj/items/weapons.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	wear_image_icon = 'icons/mob/back.dmi'
 	icon_state = "breaching_sledgehammer"
 	item_state = "breaching_sledgehammer"
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	wear_image = "breaching_sledgehammer"
 
 	tool_flags = TOOL_CHOPPING //to chop through doors
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
+	flags = FPRINT | TABLEPASS | ONBACK
 
 	two_handed = 1
 	click_delay = 3 SECONDS
@@ -1572,7 +1575,6 @@ obj/item/whetstone
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	flags = FPRINT | TABLEPASS | ONBACK
 
 	w_class = W_CLASS_BULKY
 	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD

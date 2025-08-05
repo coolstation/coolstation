@@ -13,3 +13,5 @@
 #define OCEAN_TEMP 321.15
 /// 0.85 degrees celsius. Right above the freezing point of liquid water.
 #define TRENCH_TEMP 274
+
+#define MAGINDARA_TEMP 289.15

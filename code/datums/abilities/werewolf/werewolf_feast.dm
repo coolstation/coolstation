@@ -11,6 +11,7 @@
 	not_when_handcuffed = 1
 	werewolf_only = 1
 	restricted_area_check = 2
+	attack_mobs = TRUE
 
 	cast(mob/target)
 		if (!holder)

@@ -334,14 +334,14 @@ var/global/list/questionable_generic_gift_paths = list(/obj/item/relic,
 #ifndef RP_MODE
 	/obj/item/implanter/microbomb,
 	/obj/item/old_grenade/light_gimmick,
-	/obj/item/gun/energy/bfg,
+//	/obj/item/gun/energy/bfg,
 	/obj/item/engibox/station_locked,
-	/obj/item/gun/energy/tommy_gun,
-	/obj/item/gun/energy/glitch_gun,
+//	/obj/item/gun/energy/tommy_gun,
+//	/obj/item/gun/energy/glitch_gun,
 	/obj/item/instrument/trumpet/dootdoot,
 	/obj/item/instrument/fiddle/satanic,
-	/obj/item/gun/kinetic/beepsky,
-	/obj/item/gun/kinetic/gungun,
+//	/obj/item/gun/kinetic/beepsky,
+//	/obj/item/gun/kinetic/gungun,
 #endif
 	/obj/item/spacecash/random/small)
 

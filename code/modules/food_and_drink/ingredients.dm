@@ -29,7 +29,7 @@
 		if (src.blood <= 0) return ..()
 
 		if (istype(T))
-			make_cleanable( /obj/decal/cleanable/blood,T)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T)
 			blood--
 		..()
 
@@ -686,22 +686,6 @@
 	get_desc()
 		..()
 		.= "Original italian [name]."
-
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/ketchup))
-			boutput(user, "<span class='notice'>You create [random_spaghetti_name()] with tomato sauce...</span>")
-			var/obj/item/reagent_containers/food/snacks/spaghetti/sauce/D
-			if (user.mob_flags & IS_BONER)
-				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal(W.loc)
-				boutput(user, "<span class='alert'>... whoa, that felt good. Like really good.</span>")
-				user.reagents.add_reagent("satisghetti",20)
-			else
-				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
-			user.u_equip(W)
-			user.put_in_hand_or_drop(D)
-			qdel(W)
-			qdel(src)
 
 	heal(var/mob/M)
 		boutput(M, "<span class='alert'>The noodles taste terrible uncooked...</span>")

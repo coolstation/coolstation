@@ -22,10 +22,6 @@
 "af" = (
 /turf/shuttle/wall,
 /area/noGenerate)
-"ag" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/shuttle/wall,
-/area/noGenerate)
 "ah" = (
 /turf/shuttle/wall{
 	dir = 1;
@@ -42,34 +38,6 @@
 "ak" = (
 /turf/variableTurf/wall,
 /area/space)
-"al" = (
-/obj/machinery/optable,
-/obj/map/light/white,
-/obj/decal/cleanable/cobweb,
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor5"
-	},
-/obj/item/scalpel,
-/turf/floor/plating/airless,
-/area/noGenerate)
-"am" = (
-/obj/decal/cleanable/dirt,
-/obj/decal/skeleton{
-	desc = "The head seems to be gone.";
-	icon = 'icons/misc/hstation.dmi';
-	icon_state = "body2";
-	name = "corpse"
-	},
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor3"
-	},
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor4"
-	},
-/turf/floor/plating/airless{
-	icon_state = "platingdmg1"
-	},
-/area/noGenerate)
 "an" = (
 /obj/table/auto,
 /obj/random_item_spawner/prosthetics,
@@ -88,39 +56,6 @@
 "aq" = (
 /turf/variableTurf/clear,
 /area/space)
-"ar" = (
-/obj/decal/cleanable/oil,
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/greenpuke,
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/airless{
-	icon_state = "damaged2"
-	},
-/area/noGenerate)
-"as" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor3"
-	},
-/obj/critter/zombie/scientist,
-/turf/floor/airless/scorched,
-/area/noGenerate)
-"at" = (
-/obj/wingrille_spawn/auto,
-/turf/shuttle/wall,
-/turf/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/noGenerate)
-"au" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 9
-	},
-/turf/space,
-/turf/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/noGenerate)
 "av" = (
 /obj/critter/rockworm,
 /turf/floor/plating/airless/asteroid,
@@ -167,56 +102,6 @@
 	icon_state = "damaged2"
 	},
 /area/noGenerate)
-"aB" = (
-/obj/decal/cleanable/robot_debris,
-/obj/decal/floatingtiles{
-	icon_state = "floattiles4";
-	dir = 8
-	},
-/obj/decal/cleanable/cobweb2,
-/obj/decal/cleanable/blood/gibs/body,
-/obj/decal/cleanable/blood/splatter,
-/turf/floor/plating/airless,
-/turf/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/noGenerate)
-"aC" = (
-/obj/decal/cleanable/oil/streak,
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/obj/item/reagent_containers/pill/antirad,
-/turf/floor/airless{
-	icon_state = "damaged2"
-	},
-/area/noGenerate)
-"aD" = (
-/obj/decal/skeleton{
-	name = "decomposed corpse";
-	desc = "Eugh, the stench is horrible!";
-	icon = 'icons/misc/hstation.dmi';
-	icon_state = "body1"
-	},
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor3"
-	},
-/turf/floor/airless{
-	icon_state = "floorgrime"
-	},
-/area/noGenerate)
-"aE" = (
-/obj/decal/fakeobjects/lightbulb_broken{
-	dir = 4
-	},
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor2"
-	},
-/obj/item/reagent_containers/syringe/heparin,
-/turf/floor/airless{
-	icon_state = "damaged4"
-	},
-/area/noGenerate)
 "aF" = (
 /obj/wingrille_spawn/auto,
 /turf/floor/airless/scorched,
@@ -230,40 +115,10 @@
 /obj/decal/fakeobjects/apc_broken,
 /turf/shuttle/wall,
 /area/noGenerate)
-"aI" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/coin,
-/turf/floor/airless{
-	icon_state = "floorgrime"
-	},
-/area/noGenerate)
-"aJ" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "floor5"
-	},
-/obj/item/reagent_containers/syringe/proconvertin,
-/turf/floor/airless{
-	icon_state = "floorgrime"
-	},
-/area/noGenerate)
 "aK" = (
 /obj/item/raw_material/scrap_metal,
 /turf/variableTurf/wall,
 /area/space)
-"aL" = (
-/obj/decal/cleanable/machine_debris,
-/obj/decal/floatingtiles{
-	icon_state = "floattiles5"
-	},
-/obj/decal/cleanable/blood/tracks,
-/obj/item/raw_material/shard/glass,
-/obj/decal/cleanable/blood/splatter,
-/obj/item/paper/Cloning,
-/turf/space,
-/turf/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/noGenerate)
 "aM" = (
 /obj/decal/cleanable/fungus,
 /turf/shuttle/wall,
@@ -366,17 +221,6 @@
 /obj/item/device/prox_sensor,
 /turf/space,
 /area/noGenerate)
-"aZ" = (
-/obj/decal/fakeobjects/pipe{
-	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
-	icon_state = "intact"
-	},
-/obj/decal/cleanable/blood/gibs/core,
-/turf/floor/plating/airless,
-/turf/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/noGenerate)
 "ba" = (
 /obj/decal/cleanable/machine_debris,
 /obj/item/pen/red,
@@ -420,13 +264,6 @@
 /obj/decal/cleanable/molten_item,
 /obj/decal/cleanable/oil/streak,
 /turf/floor/airless/scorched,
-/area/noGenerate)
-"bh" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/reagent_containers/pill/cyberpunk,
-/turf/floor/airless{
-	icon_state = "floorgrime"
-	},
 /area/noGenerate)
 "bi" = (
 /obj/lattice,
@@ -507,16 +344,6 @@
 /turf/floor/airless{
 	icon_state = "circuit"
 	},
-/area/noGenerate)
-"bp" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/obj/decal/fakeobjects/shuttleengine{
-	icon_state = "alt_heater";
-	dir = 8
-	},
-/turf/shuttle/wall,
 /area/noGenerate)
 "bq" = (
 /obj/decal/fakeobjects{
@@ -705,17 +532,6 @@
 	icon_state = "floorgrime"
 	},
 /area/noGenerate)
-"bO" = (
-/obj/decal/cleanable/cobweb2,
-/obj/reagent_dispensers/fueltank,
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/turf/floor/plating/airless,
-/turf/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/noGenerate)
 "bP" = (
 /obj/securearea{
 	desc = "Blue, blue.";
@@ -731,7 +547,113 @@
 /obj/machinery/door/unpowered/shuttle,
 /turf/floor/plating/airless,
 /area/noGenerate)
-"bR" = (
+"bS" = (
+/obj/item/raw_material/shard/glass,
+/turf/variableTurf/floor,
+/area/noGenerate)
+"gx" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/item/reagent_containers/syringe/proconvertin,
+/turf/floor/airless{
+	icon_state = "floorgrime"
+	},
+/area/noGenerate)
+"gV" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 9
+	},
+/turf/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/noGenerate)
+"kU" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/obj/decal/fakeobjects/shuttleengine{
+	icon_state = "alt_heater";
+	dir = 8
+	},
+/turf/shuttle/wall,
+/area/noGenerate)
+"kZ" = (
+/obj/decal/cleanable/robot_debris,
+/obj/decal/floatingtiles{
+	icon_state = "floattiles4";
+	dir = 8
+	},
+/obj/decal/cleanable/cobweb2,
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/noGenerate)
+"rx" = (
+/obj/decal/fakeobjects/pipe{
+	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
+	icon_state = "intact"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/core,
+/turf/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/noGenerate)
+"Bk" = (
+/obj/decal/cleanable/dirt,
+/obj/decal/skeleton{
+	desc = "The head seems to be gone.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body2";
+	name = "corpse"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor3"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor4"
+	},
+/turf/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/noGenerate)
+"Ip" = (
+/obj/decal/cleanable/cobweb2,
+/obj/reagent_dispensers/fueltank,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/turf/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/noGenerate)
+"JC" = (
+/obj/machinery/optable,
+/obj/map/light/white,
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/item/scalpel,
+/turf/floor/plating/airless,
+/area/noGenerate)
+"MV" = (
+/obj/decal/cleanable/machine_debris,
+/obj/decal/floatingtiles{
+	icon_state = "floattiles5"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/obj/item/raw_material/shard/glass,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/paper/Cloning,
+/turf/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/noGenerate)
+"MY" = (
 /obj/decal/fakeobjects/firelock_broken{
 	desc = "This shuttle door is really jammed.  It might as well not even be a door.  What a lousy door.  Fuck this door, man, just... just...  FUCK YOU, DOOR.";
 	icon = 'icons/turf/shuttle.dmi';
@@ -740,15 +662,84 @@
 	},
 /obj/decal/cleanable/paper,
 /turf/floor/plating/airless{
-	icon_state = "platingdmg1"
+	icon_state = "platingdmg2"
 	},
+/area/noGenerate)
+"NM" = (
+/obj/decal/cleanable/oil/streak,
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/obj/item/reagent_containers/pill/antirad,
+/turf/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/noGenerate)
+"OJ" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/reagent_containers/pill/cyberpunk,
+/turf/floor/airless{
+	icon_state = "floorgrime"
+	},
+/area/noGenerate)
+"OR" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/shuttle/wall,
+/area/noGenerate)
+"PA" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor3"
+	},
+/obj/critter/zombie/scientist,
+/turf/floor/airless/scorched,
+/area/noGenerate)
+"RY" = (
+/obj/wingrille_spawn/auto,
 /turf/floor/plating/airless{
 	icon_state = "platingdmg2"
 	},
 /area/noGenerate)
-"bS" = (
-/obj/item/raw_material/shard/glass,
-/turf/variableTurf/floor,
+"Sg" = (
+/obj/decal/skeleton{
+	name = "decomposed corpse";
+	desc = "Eugh, the stench is horrible!";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body1"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor3"
+	},
+/turf/floor/airless{
+	icon_state = "floorgrime"
+	},
+/area/noGenerate)
+"Ss" = (
+/obj/decal/cleanable/oil,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/greenpuke,
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/airless{
+	icon_state = "damaged2"
+	},
+/area/noGenerate)
+"VZ" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/coin,
+/turf/floor/airless{
+	icon_state = "floorgrime"
+	},
+/area/noGenerate)
+"YU" = (
+/obj/decal/fakeobjects/lightbulb_broken{
+	dir = 4
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "floor2"
+	},
+/obj/item/reagent_containers/syringe/heparin,
+/turf/floor/airless{
+	icon_state = "damaged4"
+	},
 /area/noGenerate)
 
 (1,1,1) = {"
@@ -790,7 +781,7 @@ ax
 aG
 aj
 ae
-bp
+kU
 aG
 bI
 ak
@@ -829,7 +820,7 @@ ak
 (6,1,1) = {"
 aq
 ae
-at
+RY
 af
 aA
 af
@@ -844,9 +835,9 @@ ak
 (7,1,1) = {"
 aq
 af
-al
-au
-aL
+JC
+gV
+MV
 aH
 aU
 aM
@@ -859,10 +850,10 @@ aq
 (8,1,1) = {"
 aq
 af
-am
-ar
-aC
-aI
+Bk
+Ss
+NM
+VZ
 aV
 bg
 bt
@@ -873,13 +864,13 @@ aq
 "}
 (9,1,1) = {"
 aq
-ag
+OR
 an
-as
-aD
-aJ
+PA
+Sg
+gx
 aW
-bh
+OJ
 bu
 bC
 bN
@@ -890,9 +881,9 @@ aq
 aq
 ah
 af
-aB
-aE
-aZ
+kZ
+YU
+rx
 aX
 bi
 bv
@@ -906,8 +897,8 @@ aq
 aq
 ah
 af
-ag
-bO
+OR
+Ip
 aY
 bj
 af
@@ -923,7 +914,7 @@ aq
 ah
 af
 aM
-bR
+MY
 bk
 bw
 bE

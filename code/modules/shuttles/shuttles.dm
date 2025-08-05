@@ -210,3 +210,26 @@
 				playsound(target, "sound/items/Deconstruct.ogg", 65, 1)
 				destination.on_arrival()
 		sleep(disembark_time)
+
+/datum/transit_stop/arrivals_dock
+	stop_id 	= "arrivals_dock"
+	name		= "Station Arrival Shuttle Dock"
+	target_area = /area/shuttle/arrival/station
+
+/datum/transit_stop/arrivals_pregame
+	current_occupant = "arrivals_shuttle"
+	stop_id 	= "arrivals_pregame"
+	name		= "En Route"
+	target_area = /area/shuttle/arrival/pre_game
+
+	can_receive_vehicle() //It's just some random bit of space near the station
+		return FALSE
+
+/datum/transit_vehicle/arrivals_shuttle
+	vehicle_id = "arrivals_shuttle"
+
+	stop_ids = list("arrivals_dock", "arrivals_pregame")
+
+	var/departure_delay = 0 SECONDS
+
+	var/disembark_time = 0 SECONDS

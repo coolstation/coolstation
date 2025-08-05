@@ -108,7 +108,9 @@
 		setupProperties()
 		. = ..()
 
-	ex_act(severity=0,last_touched=0, epicenter = null)
+	ex_act(severity=0,last_touched=0, epicenter = null, turf_safe=FALSE)
+		if(turf_safe)
+			severity = severity - 4
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -287,9 +289,6 @@
 	deserialize_postprocess()
 		return
 
-/obj/proc/get_movement_controller(mob/user)
-	return
-
 /obj/lattice
 	desc = "A lightweight support lattice."
 	name = "lattice"
@@ -319,7 +318,9 @@
 			qdel(src)
 			return
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -534,10 +535,6 @@
 			return
 		else
 			return ..()
-
-	track_blood()
-		src.tracked_blood = null
-		return
 
 /obj/overlay/fake
 

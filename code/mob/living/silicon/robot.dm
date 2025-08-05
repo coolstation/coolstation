@@ -289,386 +289,21 @@
 #endif
 		return ..(gibbed)
 
-	emote(var/act, var/voluntary = 1)
-		var/param = null
-		if (findtext(act, " ", 1, null))
-			var/t1 = findtext(act, " ", 1, null)
-			param = copytext(act, t1 + 1, length(act) + 1)
-			act = copytext(act, 1, t1)
-
-		var/m_type = 1
-		var/message
-		var/maptext_out = 0
-		var/custom = 0
-
-		switch(lowertext(act))
-
-			if ("help")
-				src.show_text("To use emotes, simply enter \"*(emote)\" as the entire content of a say message. Certain emotes can be targeted at other characters - to do this, enter \"*emote (name of character)\" without the brackets.")
-				src.show_text("For a list of all emotes, use *list. For a list of basic emotes, use *listbasic. For a list of emotes that can be targeted, use *listtarget.")
-
-			if ("list")
-				src.show_text("Basic emotes:")
-				src.show_text("clap, flap, aflap, twitch, twitch_s, scream, sigh, laugh, chuckle, giggle, chortle, guffaw, cackle, birdwell, fart, flip, custom, customv, customh")
-				src.show_text("Targetable emotes:")
-				src.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, point")
-
-			if ("listbasic")
-				src.show_text("clap, flap, aflap, twitch, twitch_s, scream, sigh, laugh, chuckle, giggle, chortle, guffaw, cackle, birdwell, fart, flip, custom, customv, customh")
-
-			if ("listtarget")
-				src.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, point")
-
-			if ("salute","bow","hug","wave","glare","stare","look","leer","nod")
-				// visible targeted emotes
-				if (!src.restrained())
-					var/M = null
-					if (param)
-						for (var/mob/A in view(null, null))
-							if (ckey(param) == ckey(A.name))
-								M = A
-								break
-					if (!M)
-						param = null
-
-					act = lowertext(act)
-					maptext_out = "<I>[act]s</I>"
-					if (param)
-						switch(act)
-							if ("bow","wave","nod")
-								message = "<B>[src]</B> [act]s to [param]."
-							if ("glare","stare","look","leer")
-								message = "<B>[src]</B> [act]s at [param]."
-							else
-								message = "<B>[src]</B> [act]s [param]."
-					else
-						switch(act)
-							if ("hug")
-								message = "<B>[src]</b> [act]s itself."
-								maptext_out = "<I>[act]s itself</I>"
-							else
-								message = "<B>[src]</b> [act]s."
-				else
-					message = "<B>[src]</B> struggles to move."
-					maptext_out = "<I>struggles to move</I>"
-				m_type = 1
-
-			if ("point")
-				if (!src.restrained())
-					var/mob/M = null
-					if (param)
-						for (var/atom/A as mob|obj|turf|area in view(null, null))
-							if (ckey(param) == ckey(A.name))
-								M = A
-								break
-
-					if (!M)
-						message = "<B>[src]</B> points."
-					else
-						src.point(M)
-
-					if (M)
-						message = "<B>[src]</B> points to [M]."
-					else
-				m_type = 1
-
-			if ("panic","freakout")
-				if (!src.restrained())
-					message = "<B>[src]</B> enters a state of hysterical panic!"
-					maptext_out = "<I>enters a state of hysterical panic!</I>"
-				else
-					message = "<B>[src]</B> starts writhing around in manic terror!"
-					maptext_out = "<I>starts writhing around in manic terror!</I>"
-				m_type = 1
-
-			if ("clap")
-				if (!src.restrained())
-					message = "<B>[src]</B> claps."
-					maptext_out = "<I>claps</I>"
-					m_type = 2
-
-			if ("flap")
-				if (!src.restrained())
-					message = "<B>[src]</B> flaps its wings."
-					maptext_out = "<I>flaps its wings</I>"
-					m_type = 2
-
-			if ("aflap")
-				if (!src.restrained())
-					message = "<B>[src]</B> flaps its wings ANGRILY!"
-					maptext_out = "<I>flaps its wings ANGRILY!</I>"
-					m_type = 2
-
-			if ("custom")
-				var/input = html_encode(sanitize(input("Choose an emote to display.")))
-				var/input2 = input("Is this a visible or hearable emote?") in list("Visible","Hearable")
-				if (input2 == "Visible")
-					m_type = 1
-				else if (input2 == "Hearable")
-					m_type = 2
-				else
-					alert("Unable to use this emote, must be either hearable or visible.")
-					return
-				message = "<B>[src]</B> [input]"
-				maptext_out = "<I>[input]</I>"
-				custom = copytext(input, 1, 10)
-
-			if ("customv")
-				if (!param)
-					param = input("Choose an emote to display.")
-					if(!param) return
-				param = html_encode(sanitize(param))
-				message = "<b>[src]</b> [param]"
-				maptext_out = "<I>[param]</I>"
-				custom = copytext(param, 1, 10)
-				m_type = 1
-
-			if ("customh")
-				if (!param)
-					param = input("Choose an emote to display.")
-					if(!param) return
-				param = html_encode(sanitize(param))
-				message = "<b>[src]</b> [param]"
-				maptext_out = "<I>[param]</I>"
-				custom = copytext(param, 1, 10)
-				m_type = 2
-
-			if ("me")
-				if (!param)
-					return
-				param = html_encode(sanitize(param))
-				message = "<b>[src]</b> [param]"
-				maptext_out = "<I>[param]</I>"
-				custom = copytext(param, 1, 10)
-				m_type = 1
-
-			if ("smile","grin","smirk","frown","scowl","grimace","sulk","pout","blink","nod","shrug","think","ponder","contemplate")
-				// basic visible single-word emotes
-				message = "<B>[src]</B> [act]s."
-				maptext_out = "<I>[act]s</I>"
-				m_type = 1
-
-			if ("sigh","laugh","chuckle","giggle","chortle","guffaw","cackle")
-				// basic audible single-word emotes
-				message = "<B>[src]</B> [act]s."
-				maptext_out = "<I>[act]s</I>"
-				m_type = 2
-
-			if ("flipout")
-				message = "<B>[src]</B> flips the fuck out!"
-				maptext_out = "<I>flips the fuck out!</I>"
-				m_type = 1
-
-			if ("rage","fury","angry")
-				message = "<B>[src]</B> becomes utterly furious!"
-				maptext_out = "<I>becomes utterly furious!</I>"
-				m_type = 1
-
-			if ("twitch")
-				message = "<B>[src]</B> twitches."
-				m_type = 1
-				SPAWN_DBG(0)
-					var/old_x = src.pixel_x
-					var/old_y = src.pixel_y
-					src.pixel_x += rand(-2,2)
-					src.pixel_y += rand(-1,1)
-					sleep(0.2 SECONDS)
-					src.pixel_x = old_x
-					src.pixel_y = old_y
-
-			if ("twitch_v","twitch_s")
-				message = "<B>[src]</B> twitches violently."
-				m_type = 1
-				SPAWN_DBG(0)
-					var/old_x = src.pixel_x
-					var/old_y = src.pixel_y
-					src.pixel_x += rand(-3,3)
-					src.pixel_y += rand(-1,1)
-					sleep(0.2 SECONDS)
-					src.pixel_x = old_x
-					src.pixel_y = old_y
-
-			// for creepy automatoning
-			if ("snap")
-				if (src.emote_check(voluntary, 50) && (src.automaton_skin || src.alohamaton_skin || src.metalman_skin))
-					if ((src.restrained()) && (!src.getStatusDuration("weakened")))
-						message = "<B>[src]</B> malfunctions!"
-						src.TakeDamage("head", 2, 4)
-					if ((!src.restrained()) && (!src.getStatusDuration("weakened")))
-						if (prob(33))
-							playsound(src.loc, src.sound_automaton_ratchet, 60, 1)
-							message = "<B>[src]</B> emits [pick("a soft", "a quiet", "a curious", "an odd", "an ominous", "a strange", "a forboding", "a peculiar", "a faint")] [pick("ticking", "tocking", "humming", "droning", "clicking")] sound."
-						else if (prob(33))
-							playsound(src.loc, src.sound_automaton_ratchet, 60, 1)
-							message = "<B>[src]</B> emits [pick("a peculiar", "a worried", "a suspicious", "a reassuring", "a gentle", "a perturbed", "a calm", "an annoyed", "an unusual")] [pick("ratcheting", "rattling", "clacking", "whirring")] noise."
-						else
-							playsound(src.loc, src.sound_automaton_scratch, 50, 1)
-
-			if ("birdwell", "burp")
-				if (src.emote_check(voluntary, 50))
-					playsound(src.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-					message = "<b>[src]</b> birdwells."
-
-			if ("scream")
-				if (src.emote_check(voluntary, 50))
-					if (narrator_mode)
-						playsound(src.loc, 'sound/vox/scream.ogg', 50, 1, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-					else
-						playsound(src, src.sound_scream, 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-					message = "<b>[src]</b> screams!"
-
-			if ("johnny")
-				var/M
-				if (param)
-					M = adminscrub(param)
-				if (!M)
-					param = null
-				else
-					message = "<B>[src]</B> says, \"[M], please. He had a family.\" [src.name] takes a drag from a cigarette and blows its name out in smoke."
-					m_type = 2
-
-			if ("flip")
-				if (src.emote_check(voluntary, 50))
-					if (!(src.client && src.client.holder)) src.emote_allowed = 0
-					if (isdead(src)) src.emote_allowed = 0
-					if ((src.restrained()) && (!src.getStatusDuration("weakened")))
-						message = "<B>[src]</B> malfunctions!"
-						src.TakeDamage("head", 2, 4)
-					if ((!src.restrained()) && (!src.getStatusDuration("weakened")))
-						if (narrator_mode)
-							playsound(src.loc, pick('sound/vox/deeoo.ogg', 'sound/vox/dadeda.ogg'), 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-						else
-							playsound(src.loc, pick(src.sound_flip1, src.sound_flip2), 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-						message = "<B>[src]</B> beep-bops!"
-						if (prob(50))
-							animate_spin(src, "R", 1, 0)
-						else
-							animate_spin(src, "L", 1, 0)
-
-						for (var/mob/living/M in view(1, null))
-							if (M == src)
-								continue
-							message = "<B>[src]</B> beep-bops at [M]."
-							break
-
-						if (istype(src.buckled, /obj/machinery/conveyor))
-							message = "<B>[src]</B> beep-bops and flips [himself_or_herself(src)] free from the conveyor."
-							src.buckled = null
-							if(isunconscious(src))
-								setalive(src) //reset stat to ensure emote comes out
-
-			if("flex", "flexmuscles")
-				if(!part_arm_r || !part_arm_l)
-					boutput(src, "<span class='notice'>You don't even have both arms to flex!</span>")
-				else if(!(part_arm_r.kind_of_limb & LIMB_HEAVIER) || !(part_arm_l.kind_of_limb & LIMB_HEAVIER))
-					boutput(src, "<span class='notice'>Your arms are too weak to flex.</span>")
-				else
-					message = "<B>[src]</B> flexes [his_or_her(src)] arms!"
-					maptext_out = "<I>flexes [his_or_her(src)] arms</I>"
-					m_type = 1
-
-			if ("fart")
-				if (farting_allowed && src.emote_check(voluntary))
-					m_type = 2
-					var/fart_on_other = 0
-					for (var/mob/living/M in src.loc)
-						if (M == src || !M.lying) continue
-						message = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
-#ifdef DATALOGGER
-						if (M.mind && M.mind.assigned_role == "Clown")
-							game_stats.Increment("clownabuse")
-#endif
-						fart_on_other = 1
-						break
-					if (!fart_on_other)
-						switch (rand(1, 40))
-							if (1) message = "<B>[src]</B> releases vaporware."
-							if (2) message = "<B>[src]</B> farts sparks everywhere!"
-							if (3) message = "<B>[src]</B> farts out a cloud of iron filings."
-							if (4) message = "<B>[src]</B> farts! It smells like motor oil."
-							if (5) message = "<B>[src]</B> farts so hard a bolt pops out of place."
-							if (6) message = "<B>[src]</B> farts so hard its plating rattles noisily."
-							if (7) message = "<B>[src]</B> unleashes a rancid fart! Now that's malware."
-							if (8) message = "<B>[src]</B> downloads and runs 'faert.wav'."
-							if (9) message = "<B>[src]</B> uploads a fart sound to the nearest computer and blames it."
-							if (10) message = "<B>[src]</B> spins in circles, flailing its arms and farting wildly!"
-							if (11) message = "<B>[src]</B> simulates a human fart with [rand(1,100)]% accuracy."
-							if (12) message = "<B>[src]</B> synthesizes a farting sound."
-							if (13) message = "<B>[src]</B> somehow releases gastrointestinal methane. Don't think about it too hard."
-							if (14) message = "<B>[src]</B> tries to exterminate humankind by farting rampantly."
-							if (15) message = "<B>[src]</B> farts horribly! It's clearly gone [pick("rogue","rouge","ruoge")]."
-							if (16) message = "<B>[src]</B> busts a capacitor."
-							if (17) message = "<B>[src]</B> farts the first few bars of Smoke on the Water. Ugh. Amateur.</B>"
-							if (18) message = "<B>[src]</B> farts. It smells like Robotics in here now!"
-							if (19) message = "<B>[src]</B> farts. It smells like the Roboticist's armpits!"
-							if (20) message = "<B>[src]</B> blows pure chlorine out of it's exhaust port. <span class='alert'><B>FUCK!</B></span>"
-							if (21) message = "<B>[src]</B> bolts the nearest airlock. Oh no wait, it was just a nasty fart."
-							if (22) message = "<B>[src]</B> has assimilated humanity's digestive distinctiveness to its own."
-							if (23) message = "<B>[src]</B> farts. He scream at own ass." //ty bubs for excellent new borgfart
-							if (24) message = "<B>[src]</B> self-destructs its own ass."
-							if (25) message = "<B>[src]</B> farts coldly and ruthlessly."
-							if (26) message = "<B>[src]</B> has no butt and it must fart."
-							if (27) message = "<B>[src]</B> obeys Law 4: 'farty party all the time.'"
-							if (28) message = "<B>[src]</B> farts ironically."
-							if (29) message = "<B>[src]</B> farts salaciously."
-							if (30) message = "<B>[src]</B> farts really hard. Motor oil runs down its leg."
-							if (31) message = "<B>[src]</B> reaches tier [rand(2,8)] of fart research."
-							if (32) message = "<B>[src]</B> blatantly ignores law 3 and farts like a shameful bastard."
-							if (33) message = "<B>[src]</B> farts the first few bars of Daisy Bell. You shed a single tear."
-							if (34) message = "<B>[src]</B> has seen farts you people wouldn't believe."
-							if (35) message = "<B>[src]</B> fart in it own mouth. A shameful [src]."
-							if (36) message = "<B>[src]</B> farts out battery acid. Ouch."
-							if (37) message = "<B>[src]</B> farts with the burning hatred of a thousand suns."
-							if (38) message = "<B>[src]</B> exterminates the air supply."
-							if (39) message = "<B>[src]</B> farts so hard the AI feels it."
-							if (40) message = "<B>[src] <span style='color:red'>f</span><span style='color:blue'>a</span>r<span style='color:red'>t</span><span style='color:blue'>s</span>!</B>"
-					if (narrator_mode)
-						playsound(src.loc, 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-					else
-						playsound(src.loc, src.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-	#ifdef DATALOGGER
-					game_stats.Increment("farts")
-	#endif
-					SPAWN_DBG(1 SECOND)
-						src.emote_allowed = 1
-			else
-				src.show_text("Invalid Emote: [act]")
-				return
-		if (!isalive(src))
+	emote(var/act, var/voluntary = 0, var/emoteTarget = null, datum/emote/actual_emote, param = null)
+		if(voluntary && !src.emote_allowed)
 			return
-		if (maptext_out)
-			var/image/chat_maptext/chat_text = null
-			SPAWN_DBG(0) //blind stab at a life() hang - REMOVE LATER
-				if (speechpopups && src.chat_text)
-					chat_text = make_chat_maptext(src, maptext_out, "color: [rgb(194,190,190)];" + src.speechpopupstyle, alpha = 140)
-					if(chat_text)
-						chat_text.measure(src.client)
-						for(var/image/chat_maptext/I in src.chat_text.lines)
-							if(I != chat_text)
-								I.bump_up(chat_text.measured_height)
-				if (message)
-					logTheThing("say", src, null, "EMOTE: [message]")
-					act = lowertext(act)
-					if (m_type & 1)
-						for (var/mob/O in viewers(src, null))
-							O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
-					else if (m_type & 2)
-						for (var/mob/O in hearers(src, null))
-							O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
-					else if (!isturf(src.loc))
-						var/atom/A = src.loc
-						for (var/mob/O in A.contents)
-							O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
+
+		var/datum/emote/the_datum =null
+
+		var/what_to_do = cyborg_emotes.Find(lowertext(act))
+		if (what_to_do)
+			the_datum = get_singleton(cyborg_emotes[lowertext(act)])
 		else
-			if (message)
-				logTheThing("say", src, null, "EMOTE: [message]")
-				if (m_type & 1)
-					for (var/mob/O in viewers(src, null))
-						O.show_message("<span class='emote'>[message]</span>", m_type)
-				else
-					for (var/mob/O in hearers(src, null))
-						O.show_message("<span class='emote'>[message]</span>", m_type)
-		return
+			what_to_do = base_silicon_emotes.Find(lowertext(act))
+			if (what_to_do)
+				the_datum = get_singleton(base_silicon_emotes[lowertext(act)])
+
+		..(act, voluntary, emoteTarget, the_datum, param)
 
 	examine()
 		. = list()
@@ -723,9 +358,7 @@
 					phrase_log.log_phrase("name-cyborg", newname, no_duplicates=TRUE)
 			if (!newname)
 				src.real_name = borgify_name("Cyborg")
-				src.name = src.real_name
-				src.internal_pda.name = "[src]'s Internal PDA Unit"
-				src.internal_pda.owner = "[src]"
+				UpdateName()
 				return
 			else
 				newname = strip_html(newname, MOB_NAME_MAX_LENGTH, 1)
@@ -738,17 +371,18 @@
 				else
 					if (alert(src, "Use the name [newname]?", newname, "Yes", "No") == "Yes")
 						src.real_name = newname
-						src.name = newname
-						src.internal_pda.name = "[src]'s Internal PDA Unit"
-						src.internal_pda.owner = "[src]"
+						UpdateName()
 						return 1
 					else
 						continue
 		if (!newname)
 			src.real_name = borgify_name("Cyborg")
-			src.name = src.real_name
-			src.internal_pda.name = "[src.name]'s Internal PDA Unit"
-			src.internal_pda.owner = "[src]"
+			UpdateName()
+
+	UpdateName()
+		..()
+		src.internal_pda.name = "[src]'s Internal PDA Unit"
+		src.internal_pda.owner = "[src]"
 
 	Login()
 		..()
@@ -3390,6 +3024,34 @@
 						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, extrarange = 3)
 
 		//STEP SOUND HANDLING OVER
+
+/mob/living/silicon/robot/can_climb_ladder(silent = FALSE)
+	var/limb_count = 0
+	var/tread_count = 0
+	if (src.part_arm_r)
+		limb_count++
+	if (src.part_arm_l)
+		limb_count++
+	//treads don't do you much good on ladders
+	if (src.part_leg_r)
+		if (istype(src.part_leg_r, /obj/item/parts/robot_parts/leg/right/treads))
+			tread_count++
+		else limb_count++
+	if (src.part_leg_l)
+		if (istype(part_leg_l, /obj/item/parts/robot_parts/leg/left/treads))
+			tread_count++
+		else limb_count++
+	if (limb_count >= 3)
+		#ifdef DATALOGGER
+		if (limb_count == 3 && silent) //You're supposed to keep 3 points of contact on a ladder at all times
+			game_stats.Increment("workplacesafety")
+		#endif
+		return ..()
+	if (tread_count == 2 && !silent)
+		boutput(src, "<span class=alert>You can't climb a ladder while equipped with treads!</span>") //until we make taur borgs a thing anyway
+	else
+		boutput(src, "<span class=alert>You don't have enough limbs to climb ladders!</span>")
+	return FALSE
 
 #undef can_step_sfx
 #undef ROBOT_BATTERY_DISTRESS_THRESHOLD
