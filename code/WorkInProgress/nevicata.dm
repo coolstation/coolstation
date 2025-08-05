@@ -105,7 +105,7 @@ var/global/nevicata_time = NEVICATA_TIME
 /turf/space/nevicata/wastes
 	pathable = 1
 	name = "frozen wastes"
-	desc = "You'll want a coat and a breath mask."
+	desc = "Crunchy ice and ash underfoot. Try not to step on the yellow spots."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "snow_calm"
 	carbon_dioxide = NEVICATA_CO2
