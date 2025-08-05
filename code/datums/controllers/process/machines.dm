@@ -66,8 +66,9 @@
 			//fix those just in time for powernet processing (more sensible to me atm than spinning a new process loop for this)
 			//but I am relying on things that defer powernet rebuilds to generally clean up after themselves, so this loop doesn't spin for very long
 			if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes)) //if shit's actively exploding don't bother, folks won't notice the incongruity
-				for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
-					node.validate()
+				CLEAR_PNET_BACKLOG_NOW
+				//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+				//	node.validate()
 			src.powernets = global.powernets
 			for(var/X in src.powernets)
 				if(!X) continue

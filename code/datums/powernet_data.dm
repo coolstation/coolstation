@@ -17,6 +17,7 @@ proc/FindRecordByFieldValue(var/list/datum/data/record/L, var/field, var/value)
 
 //powernet nodes that are involved in a cable break (either the node cable itself or a cable connecting it to an adjacent node.)
 var/global/list/dirty_pnet_nodes = list()
+var/global/list/dirty_power_machines = list()
 
 /datum/powernet
 	/// all cables & junctions
@@ -151,6 +152,9 @@ var/global/list/dirty_pnet_nodes = list()
 			node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
 
 	previous_adjacent_nodes -= adjacent_nodes
+
+	dirty_power_machines |= src.pnet.nodes
+
 	var/an_netnum = src.pnet.number
 	if (length(adjacent_nodes))
 		var/datum/powernet_graph_node/non_break_node = adjacent_nodes[1]
@@ -168,6 +172,12 @@ var/global/list/dirty_pnet_nodes = list()
 		qdel(src)
 
 	dirty_pnet_nodes -= src
+
+	//I'm not happy with putting this here but it'll do for now. Just tossing all the power machines into a bucket like this isn't great
+	if (!length(dirty_pnet_nodes))
+		for(var/obj/machinery/power/thing as anything in dirty_power_machines)
+			thing.generate_worldgen()
+
 
 ///From starting_node, crawl the node network and assign new_netnum
 /datum/powernet_graph_node/proc/propagate_netnum(datum/powernet_graph_node/starting_node, new_netnum = 1, early_end_at_matching_netnum = FALSE)
@@ -191,6 +201,7 @@ var/global/list/dirty_pnet_nodes = list()
 		if (a_node.pnet)
 			a_node.pnet.all_graph_nodes -= a_node
 			if (!length(a_node.pnet.all_graph_nodes))
+				dirty_power_machines |= a_node.pnet.nodes
 				qdel(a_node.pnet)
 		//a_node.netnum = new_netnum
 		a_node.pnet = PN

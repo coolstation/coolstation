@@ -184,7 +184,7 @@
 			var/datum/powernet_graph_node/node1 = is_a_link.adjacent_nodes[1]
 			var/datum/powernet_graph_node/node2 = is_a_link.adjacent_nodes[2]
 			node1.validate()
-			node2.validate()
+			//node2.validate() Seems unnecessary actually to validate both
 		is_a_link = null
 	else if (is_a_node)
 		is_a_node.physical_node = null

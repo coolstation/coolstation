@@ -117,8 +117,9 @@
 
 
 	if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes))
-		for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
-			node.validate()
+		CLEAR_PNET_BACKLOG_NOW
+		//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+		//	node.validate()
 
 /obj/machinery/power/breaker/proc/break_nets()
 	//defer_powernet_rebuild = TRUE
@@ -150,5 +151,6 @@
 	//defer_powernet_rebuild = FALSE
 
 	if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes))
-		for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
-			node.validate()
+		CLEAR_PNET_BACKLOG_NOW
+		//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+		//	node.validate()

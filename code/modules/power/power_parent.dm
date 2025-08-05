@@ -43,8 +43,9 @@
 		src.powernet.data_nodes -= src
 	if(src.directwired) // it can bridge gaps in the powernet :/
 		if(!defer_powernet_rebuild)
-			for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
-				node.validate()
+			CLEAR_PNET_BACKLOG_NOW
+			//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+			//	node.validate()
 		else
 			defer_powernet_rebuild = 2
 	. = ..()
