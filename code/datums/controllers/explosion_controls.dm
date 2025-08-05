@@ -110,8 +110,7 @@ var/datum/explosion_controller/explosions
 		defer_camnet_rebuild = 0
 		exploding = 0
 		RL_Resume()
-		for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
-			node.validate()
+		CLEAR_PNET_BACKLOG_NOW
 
 		rebuild_camera_network()
 		world.updateCameraVisibility()
