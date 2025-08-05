@@ -507,6 +507,8 @@
 		if (3)
 			return //should get cleaned up elsewhere in pnet code (trying to avoid recursion in integrate or validate)
 		if (1)
+			if (src.is_a_node)
+				return
 			src.is_a_node = new
 			src.is_a_node.physical_node = src
 			var/obj/cable/C = connections[1]
