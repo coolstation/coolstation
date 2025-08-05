@@ -295,6 +295,11 @@
 	},
 /turf/floor/neutral,
 /area/station/medical/head)
+"ed" = (
+/obj/firedoor_spawn,
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/west)
 "ei" = (
 /obj/machinery/door/airlock/pyro/command{
 	dir = 4
@@ -452,7 +457,7 @@
 /area/station/hallway/primary/east)
 "gI" = (
 /obj/wingrille_spawn/auto,
-/turf/wall/auto/reinforced/jen/dark1,
+/turf/floor/plating,
 /area/station/wreckage)
 "gJ" = (
 /obj/machinery/door/airlock/pyro/maintenance{
@@ -537,6 +542,10 @@
 /obj/firedoor_spawn,
 /turf/floor/neutral,
 /area/station/wreckage)
+"hU" = (
+/obj/stool/chair/comfy/orange,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "ii" = (
 /obj/cable{
 	d1 = 2;
@@ -571,6 +580,11 @@
 	},
 /turf/floor/grass/leafy,
 /area/station/hydroponics)
+"ix" = (
+/obj/shrub/random,
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/planter,
+/area/station/hallway/primary/east)
 "iz" = (
 /turf/floor/white/grime,
 /area/station/crew_quarters/kitchen)
@@ -730,11 +744,9 @@
 	},
 /area/shuttle/arrival/station)
 "kE" = (
-/obj/machinery/manufacturer/hop_and_uniform,
-/obj/cable,
-/obj/machinery/power/apc/autoname/south,
-/turf/floor/redblack,
-/area/station/security/checkpoint/arrivals)
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "kI" = (
 /obj/machinery/light/small/floor{
 	brightness = 1.6
@@ -754,6 +766,10 @@
 "kN" = (
 /turf/floor/white/grime,
 /area/station/crew_quarters/catering)
+"kP" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/southwest)
 "kR" = (
 /turf/floor/carpet/grime,
 /area/station/crew_quarters)
@@ -769,6 +785,10 @@
 /obj/window_blinds/right,
 /turf/floor/neutral,
 /area/station/medical/breakroom)
+"lm" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/south)
 "lq" = (
 /obj/burning_barrel,
 /turf/floor/plating,
@@ -781,6 +801,11 @@
 /obj/firedoor_spawn,
 /turf/floor/neutral,
 /area/station/wreckage)
+"lY" = (
+/obj/firedoor_spawn,
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "mb" = (
 /obj/wingrille_spawn/classic,
 /obj/window_blinds/right,
@@ -790,6 +815,10 @@
 /obj/potted_plant/potted_plant5,
 /turf/floor/neutral,
 /area/station/medical/medbay/lobby)
+"mm" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/west)
 "mp" = (
 /turf/wall/auto/jen/dark2,
 /area/station/crew_quarters/lounge)
@@ -953,6 +982,10 @@
 	icon_state = "13"
 	},
 /area/shuttle/arrival/station)
+"po" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/south)
 "pu" = (
 /obj/stool/chair/comfy/purple{
 	dir = 1
@@ -1200,6 +1233,7 @@
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/neutral,
 /area/station/hallway/secondary/entry)
 "tR" = (
@@ -1217,6 +1251,13 @@
 /obj/firedoor_spawn,
 /turf/floor/neutral,
 /area/station/medical/medbay/pharmacy)
+"tY" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/entry)
 "tZ" = (
 /obj/table/reinforced/auto,
 /obj/machinery/phone,
@@ -1293,12 +1334,24 @@
 	},
 /area/shuttle/arrival/station)
 "vp" = (
-/obj/wingrille_spawn/auto,
-/turf/space,
-/area/station/wreckage)
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/northwest)
 "vs" = (
 /turf/wall/auto/jen/dark2,
 /area/station/medical/medbay/lobby)
+"vz" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/entry)
 "vD" = (
 /obj/table/glass,
 /turf/floor/neutral,
@@ -1361,6 +1414,7 @@
 /area/station/crew_quarters/lounge)
 "wJ" = (
 /obj/shrub/random,
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/planter,
 /area/station/hallway/primary/north)
 "wM" = (
@@ -1406,6 +1460,10 @@
 /obj/machinery/computer3/generic/med_data,
 /turf/floor/neutral,
 /area/station/medical/head)
+"xN" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/east)
 "xP" = (
 /obj/potted_plant/potted_plant5,
 /turf/floor/grass/random,
@@ -1498,6 +1556,10 @@
 	},
 /turf/floor/carpet/office,
 /area/station/bridge)
+"zS" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/secondary/southeast)
 "zT" = (
 /turf/floor/black/grime,
 /area/station/security/checkpoint/west)
@@ -1602,6 +1664,12 @@
 	icon_state = "13"
 	},
 /area/shuttle/arrival/station)
+"BJ" = (
+/obj/stool/chair/green{
+	dir = 8
+	},
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "BO" = (
 /obj/submachine/seed_vendor,
 /turf/floor/neutral,
@@ -1614,6 +1682,7 @@
 /area/station/crew_quarters/lounge)
 "BQ" = (
 /obj/shrub/random,
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/planter,
 /area/station/hallway/primary/south)
 "BY" = (
@@ -1652,6 +1721,12 @@
 "CM" = (
 /turf/floor/neutral,
 /area/station/hallway/primary/central)
+"CN" = (
+/obj/stool/chair/comfy/purple{
+	dir = 1
+	},
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "CT" = (
 /turf/floor/plating,
 /area/station/maintenance/northeast)
@@ -1692,6 +1767,10 @@
 /obj/lattice,
 /turf/space,
 /area/space)
+"DF" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/northwest)
 "DH" = (
 /turf/floor/neutral,
 /area/station/hallway/primary/southwest)
@@ -1755,6 +1834,10 @@
 "EY" = (
 /turf/floor,
 /area/station/hallway/secondary/entry)
+"Fa" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/central)
 "Fc" = (
 /obj/health_scanner/floor,
 /turf/floor/neutral,
@@ -1826,6 +1909,10 @@
 /obj/wingrille_spawn/classic,
 /turf/floor/neutral,
 /area/station/medical/medbay/lobby)
+"GD" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/southeast)
 "GF" = (
 /obj/table/auto,
 /turf/floor/neutral,
@@ -1857,9 +1944,9 @@
 	},
 /area/shuttle/arrival/station)
 "Hd" = (
-/obj/wingrille_spawn/auto,
-/turf/space,
-/area/space)
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/northeast)
 "Hk" = (
 /obj/stool/chair,
 /turf/floor/black/grime,
@@ -2080,6 +2167,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/neutral,
 /area/station/hallway/secondary/entry)
 "KV" = (
@@ -2094,6 +2182,12 @@
 	},
 /turf/floor/grass/random,
 /area/station/hydroponics)
+"Ld" = (
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/obj/table/wood/round/auto,
+/obj/random_item_spawner/snacks/one,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "Lh" = (
 /obj/table/auto/desk,
 /turf/floor/black/grime,
@@ -2127,6 +2221,11 @@
 /obj/firedoor_spawn,
 /turf/floor/neutral,
 /area/station/hallway/primary/north)
+"LP" = (
+/obj/firedoor_spawn,
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor/neutral,
+/area/station/hallway/primary/east)
 "LX" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 4;
@@ -2196,9 +2295,9 @@
 /turf/floor/carpet/grime4,
 /area/station/crew_quarters/hop)
 "Ng" = (
-/obj/wingrille_spawn/auto,
-/turf/wall/auto/reinforced/jen/dark2,
-/area/space)
+/obj/machinery/light/fluorescent/ceiling/harsh,
+/turf/floor,
+/area/station/hallway/secondary/entry)
 "Nk" = (
 /turf/floor/carpet/office,
 /area/station/bridge)
@@ -2207,13 +2306,9 @@
 /turf/floor/plating,
 /area/space)
 "No" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/neutral,
-/area/station/hallway/secondary/entry)
+/area/station/hallway/primary/north)
 "Nr" = (
 /turf/floor/planter,
 /area/station/hallway/primary/west)
@@ -2294,6 +2389,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/power/apc/autoname/south,
+/obj/machinery/manufacturer/hop_and_uniform,
 /turf/floor/redblack{
 	dir = 10
 	},
@@ -2367,6 +2464,12 @@
 /obj/machinery/vending/coffee,
 /turf/floor/neutral,
 /area/station/medical/breakroom)
+"OT" = (
+/obj/stool/chair/purple{
+	dir = 4
+	},
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "OU" = (
 /obj/table/reinforced,
 /obj/item/storage/box/evidence,
@@ -2447,6 +2550,10 @@
 /obj/item/pen,
 /turf/floor/neutral,
 /area/station/crew_quarters/hop)
+"Qj" = (
+/obj/table/wood/round/auto,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "Qo" = (
 /obj/item_dispenser/wallmounted/idcarddispenser,
 /obj/machinery/computer/card,
@@ -2464,8 +2571,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southwest)
+"QR" = (
+/obj/stool/chair/moveable{
+	dir = 8
+	},
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "QT" = (
 /obj/shrub/random,
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/planter,
 /area/station/hallway/secondary/south)
 "QX" = (
@@ -2590,6 +2704,7 @@
 /area/station/security/checkpoint/arrivals)
 "SU" = (
 /obj/shrub/random,
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/planter,
 /area/station/hallway/primary/central)
 "SY" = (
@@ -2666,6 +2781,11 @@
 /obj/machinery/computer3/generic/communications,
 /turf/floor/carpet/office,
 /area/station/bridge)
+"Uh" = (
+/obj/table/wood/round/auto,
+/obj/random_item_spawner/snacks/one,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "Uk" = (
 /obj/lattice{
 	dir = 1;
@@ -2711,6 +2831,10 @@
 /area/station/crew_quarters/clown{
 	name = "Clown's Quarters"
 	})
+"UB" = (
+/obj/table/folding,
+/turf/floor/neutral,
+/area/station/hallway/primary/west)
 "US" = (
 /obj/table/reinforced/chemistry/auto,
 /turf/floor/neutral,
@@ -2916,7 +3040,7 @@
 "Xx" = (
 /obj/wingrille_spawn/auto,
 /obj/wingrille_spawn/auto,
-/turf/space,
+/turf/floor/plating,
 /area/space)
 "Xy" = (
 /obj/window/auto/reinforced,
@@ -3053,6 +3177,7 @@
 /area/station/security/checkpoint/arrivals)
 "ZN" = (
 /obj/shrub/random,
+/obj/machinery/light/fluorescent/ceiling/harsh,
 /turf/floor/planter,
 /area/station/hallway/secondary/west)
 "ZR" = (
@@ -23746,7 +23871,7 @@ dR
 dR
 dR
 dR
-dR
+vp
 dR
 dR
 dR
@@ -23758,7 +23883,7 @@ Jr
 Jr
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -24042,7 +24167,7 @@ dR
 dR
 dR
 dR
-dR
+vp
 dR
 dR
 dR
@@ -24066,7 +24191,7 @@ Jr
 Jr
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -24338,7 +24463,7 @@ dR
 dR
 dR
 dR
-dR
+vp
 dR
 dR
 dR
@@ -24372,7 +24497,7 @@ Jr
 Jr
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -24634,7 +24759,7 @@ fK
 fK
 dR
 dR
-dR
+vp
 dR
 dR
 dR
@@ -24679,7 +24804,7 @@ Jr
 Jr
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -24960,7 +25085,7 @@ el
 HN
 as
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -25233,7 +25358,7 @@ LH
 Sh
 Sh
 Sh
-dR
+vp
 dR
 dR
 dR
@@ -25289,7 +25414,7 @@ ao
 Jr
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -25899,7 +26024,7 @@ ao
 Jr
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -26168,7 +26293,7 @@ Ry
 Ry
 aG
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -26811,7 +26936,7 @@ ao
 ao
 Jr
 Jr
-Jr
+kP
 Jr
 Jr
 Jr
@@ -27045,7 +27170,7 @@ eQ
 xT
 xT
 Sb
-dR
+vp
 dR
 eB
 zQ
@@ -27376,7 +27501,7 @@ Ry
 Ry
 aG
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -27723,7 +27848,7 @@ ao
 ao
 Jr
 Jr
-Jr
+kP
 Jr
 fK
 fK
@@ -28584,7 +28709,7 @@ iO
 iO
 iO
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -28857,7 +28982,7 @@ xT
 GF
 US
 Sb
-dR
+vp
 dR
 iO
 kR
@@ -29239,7 +29364,7 @@ RR
 RR
 Iz
 Jr
-Jr
+kP
 Jr
 Jr
 fK
@@ -29792,7 +29917,7 @@ iO
 pY
 iO
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -30367,7 +30492,7 @@ Ou
 dR
 dR
 dR
-dR
+vp
 dR
 iO
 iO
@@ -30452,7 +30577,7 @@ tn
 RR
 Iz
 Jr
-Jr
+kP
 Jr
 fK
 fK
@@ -31000,7 +31125,7 @@ sR
 sR
 MY
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -32179,7 +32304,7 @@ Sb
 Sb
 Sb
 dR
-dR
+vp
 dR
 iO
 kR
@@ -32208,7 +32333,7 @@ Fg
 YE
 YE
 ZT
-ZT
+mm
 ZT
 ao
 Tp
@@ -32270,7 +32395,7 @@ RR
 RR
 Iz
 Jr
-Jr
+kP
 Jr
 fK
 fK
@@ -33114,7 +33239,7 @@ YE
 YE
 YE
 TN
-TN
+ed
 TN
 ao
 ao
@@ -33712,7 +33837,7 @@ us
 us
 us
 us
-us
+DF
 us
 us
 us
@@ -33784,7 +33909,7 @@ au
 fK
 fK
 Jr
-Jr
+kP
 Jr
 fK
 pw
@@ -33991,7 +34116,7 @@ xT
 xT
 xT
 Sb
-us
+DF
 us
 iO
 kR
@@ -34008,7 +34133,7 @@ iO
 us
 us
 us
-us
+DF
 us
 us
 us
@@ -34607,7 +34732,7 @@ Jv
 us
 us
 us
-us
+DF
 us
 us
 us
@@ -34926,7 +35051,7 @@ pw
 pw
 jW
 jt
-jt
+kE
 jt
 jk
 jh
@@ -35206,7 +35331,7 @@ ND
 iO
 us
 us
-us
+DF
 us
 us
 us
@@ -35600,7 +35725,7 @@ au
 fK
 fK
 Jr
-Jr
+kP
 Jr
 fK
 pw
@@ -35803,10 +35928,10 @@ xT
 xT
 xT
 Sb
+DF
 us
 us
-us
-us
+DF
 us
 us
 us
@@ -36738,7 +36863,7 @@ pw
 pw
 jW
 jt
-jt
+kE
 jt
 PK
 WQ
@@ -37009,7 +37134,7 @@ xT
 Sb
 Sb
 us
-us
+DF
 us
 jW
 jW
@@ -37415,7 +37540,7 @@ au
 fK
 fK
 Jr
-Jr
+kP
 Jr
 fK
 pw
@@ -38514,7 +38639,7 @@ Sb
 Sb
 Sb
 us
-us
+DF
 us
 jW
 jW
@@ -38550,7 +38675,7 @@ mp
 mp
 mp
 jt
-jt
+kE
 jt
 zH
 wW
@@ -39229,7 +39354,7 @@ au
 au
 fK
 Jr
-Jr
+kP
 Jr
 fK
 fK
@@ -40020,7 +40145,7 @@ Sb
 Sb
 Sb
 us
-us
+DF
 us
 jW
 jW
@@ -40362,7 +40487,7 @@ Cc
 pu
 mp
 jt
-jt
+kE
 jt
 XR
 iu
@@ -41043,7 +41168,7 @@ au
 au
 fK
 Jr
-Jr
+kP
 Jr
 fK
 fK
@@ -41527,7 +41652,7 @@ xT
 xT
 Sb
 us
-us
+DF
 us
 jW
 pw
@@ -42174,7 +42299,7 @@ Fv
 te
 mp
 jt
-jt
+kE
 jt
 Bz
 Mt
@@ -42857,7 +42982,7 @@ au
 au
 fK
 Jr
-Jr
+kP
 Jr
 fK
 pw
@@ -43035,7 +43160,7 @@ Sb
 Sb
 Sb
 us
-us
+DF
 us
 jW
 pw
@@ -43979,14 +44104,14 @@ tm
 CM
 CM
 CM
-CM
+Fa
 CM
 CM
 CM
 tm
 tm
 Kg
-Kg
+lY
 Kg
 sy
 sy
@@ -44287,7 +44412,7 @@ IC
 bo
 Ia
 fS
-jt
+OT
 jt
 jt
 YO
@@ -44543,7 +44668,7 @@ mw
 mw
 Sb
 us
-us
+DF
 us
 jW
 jW
@@ -44589,7 +44714,7 @@ Ia
 GX
 Dw
 fS
-jt
+Uh
 jt
 jt
 YO
@@ -44670,7 +44795,7 @@ au
 au
 fK
 Jr
-Jr
+kP
 Jr
 fK
 pw
@@ -44891,7 +45016,7 @@ Dw
 oz
 Dw
 fS
-jt
+Qj
 jt
 jt
 YO
@@ -45182,7 +45307,7 @@ pw
 tm
 CM
 CM
-CM
+Fa
 CM
 IC
 na
@@ -45193,8 +45318,8 @@ Dw
 Dw
 Dw
 fS
-jt
-jt
+BJ
+kE
 jt
 sy
 xP
@@ -45497,7 +45622,7 @@ Dw
 fS
 jt
 jt
-jt
+UB
 sy
 NA
 NA
@@ -45751,7 +45876,7 @@ Sb
 Sb
 Sb
 us
-us
+DF
 us
 jW
 pw
@@ -45799,7 +45924,7 @@ Dw
 fS
 jt
 jt
-jt
+QR
 YO
 vY
 NA
@@ -46387,7 +46512,7 @@ jI
 BE
 CM
 CM
-CM
+Fa
 CM
 CM
 CA
@@ -46401,9 +46526,9 @@ Dw
 oz
 ue
 fS
-jt
-jt
-jt
+hU
+Ld
+CN
 YO
 NA
 NA
@@ -46483,7 +46608,7 @@ au
 au
 fK
 Jr
-Jr
+kP
 Jr
 fK
 pw
@@ -46656,7 +46781,7 @@ mw
 mw
 Sb
 us
-us
+DF
 us
 jW
 pw
@@ -48172,30 +48297,30 @@ LN
 TY
 TY
 TY
+No
 TY
 TY
 TY
 TY
 TY
+No
 TY
 TY
 TY
 TY
 TY
+No
 TY
 TY
 TY
 TY
 TY
+No
 TY
 TY
 TY
 TY
-TY
-TY
-TY
-TY
-TY
+No
 LN
 oG
 SU
@@ -48236,30 +48361,30 @@ zn
 Al
 Al
 Al
+lm
 Al
 Al
 Al
 Al
 Al
+lm
 Al
 Al
 Al
 Al
 Al
+lm
 Al
 Al
 Al
 Al
 Al
+lm
 Al
 Al
 Al
 Al
-Al
-Al
-Al
-Al
-Al
+lm
 zn
 Vl
 BQ
@@ -48268,31 +48393,31 @@ cw
 Hu
 Hu
 Hu
+po
 Hu
 Hu
 Hu
 Hu
 Hu
+po
 Hu
 Hu
 Hu
 Hu
 Hu
+po
 Hu
 Hu
 Hu
 Hu
 Hu
+po
 Hu
 Hu
 Hu
 Hu
 Hu
-Hu
-Hu
-Hu
-Hu
-Hu
+po
 cw
 PJ
 QT
@@ -48508,7 +48633,7 @@ ue
 Dw
 Dw
 Dw
-oz
+sq
 ue
 Dw
 Pl
@@ -49676,7 +49801,7 @@ xT
 xT
 iU
 VC
-VC
+Hd
 VC
 jW
 pw
@@ -49739,7 +49864,7 @@ pw
 pw
 jW
 CM
-CM
+Fa
 CM
 jW
 pw
@@ -50011,7 +50136,7 @@ pw
 pw
 jW
 CM
-CM
+Fa
 CM
 CM
 CA
@@ -50074,7 +50199,7 @@ pw
 jW
 jW
 Vy
-Vy
+GD
 Vy
 ao
 pw
@@ -50107,7 +50232,7 @@ pw
 pw
 ao
 pE
-pE
+zS
 pE
 fK
 pw
@@ -50583,7 +50708,7 @@ Rt
 iU
 iU
 VC
-VC
+Hd
 VC
 jW
 pw
@@ -50945,7 +51070,7 @@ pw
 pw
 jW
 CM
-CM
+Fa
 CM
 jW
 pw
@@ -51524,7 +51649,7 @@ pw
 pw
 jW
 CM
-CM
+Fa
 CM
 CM
 eE
@@ -51791,7 +51916,7 @@ XF
 XF
 iU
 VC
-VC
+Hd
 VC
 VC
 jW
@@ -51848,7 +51973,7 @@ jW
 jW
 CM
 CM
-CM
+Fa
 CM
 CM
 jW
@@ -52435,7 +52560,7 @@ CM
 CM
 CM
 CM
-CM
+Fa
 CM
 CM
 CM
@@ -52449,7 +52574,7 @@ jW
 CM
 CM
 CM
-CM
+Fa
 CM
 CM
 CM
@@ -52488,7 +52613,7 @@ pw
 pw
 jW
 Vy
-Vy
+GD
 Vy
 ao
 pw
@@ -53000,7 +53125,7 @@ XF
 XF
 iU
 iU
-VC
+Hd
 VC
 VC
 jW
@@ -53049,7 +53174,7 @@ XA
 wc
 XA
 CM
-CM
+Fa
 CM
 CM
 CM
@@ -53650,7 +53775,7 @@ jW
 jW
 jW
 nc
-nc
+LP
 nc
 jW
 jW
@@ -54210,7 +54335,7 @@ xT
 xT
 iU
 VC
-VC
+Hd
 VC
 jW
 jW
@@ -54298,7 +54423,7 @@ pw
 jW
 jW
 Vy
-Vy
+GD
 Vy
 ao
 pw
@@ -54556,7 +54681,7 @@ pw
 pw
 jW
 gC
-gC
+xN
 gC
 jW
 pw
@@ -55117,7 +55242,7 @@ xT
 xT
 iU
 iU
-VC
+Hd
 VC
 VC
 jW
@@ -55462,7 +55587,7 @@ kN
 EK
 br
 gC
-gC
+xN
 gC
 jW
 pw
@@ -56025,7 +56150,7 @@ xT
 xT
 iU
 VC
-VC
+Hd
 VC
 jW
 jW
@@ -56107,7 +56232,7 @@ pw
 jW
 jW
 Vy
-Vy
+GD
 Vy
 jW
 pw
@@ -56368,7 +56493,7 @@ kN
 wf
 br
 gC
-gC
+xN
 gC
 jW
 pw
@@ -56933,7 +57058,7 @@ xT
 xT
 iU
 VC
-VC
+Hd
 VC
 jW
 jW
@@ -57274,7 +57399,7 @@ To
 To
 To
 nc
-nc
+LP
 nc
 jW
 Dp
@@ -57842,7 +57967,7 @@ Sh
 Sh
 VC
 VC
-VC
+Hd
 VC
 jW
 jW
@@ -57914,7 +58039,7 @@ pw
 jW
 jW
 Vy
-Vy
+GD
 Vy
 Vy
 Vy
@@ -58180,7 +58305,7 @@ iY
 aD
 Jb
 gC
-gC
+xN
 gC
 jW
 pw
@@ -58219,8 +58344,8 @@ Vy
 Vy
 ao
 ao
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -58442,8 +58567,8 @@ Sb
 Sh
 xT
 Sh
-vp
-vp
+gI
+gI
 pw
 ao
 ao
@@ -58522,8 +58647,8 @@ ao
 ao
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -58743,15 +58868,15 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
 ao
 ao
 VC
-VC
+Hd
 VC
 jW
 jW
@@ -58825,8 +58950,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -59044,8 +59169,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -59086,7 +59211,7 @@ iY
 iY
 jW
 gC
-gC
+xN
 gC
 jW
 pw
@@ -59128,8 +59253,8 @@ pw
 pw
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -59345,8 +59470,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -59431,8 +59556,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -59646,8 +59771,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -59660,7 +59785,7 @@ pw
 ao
 ao
 VC
-VC
+Hd
 VC
 VC
 jW
@@ -59720,8 +59845,8 @@ jW
 jW
 Vy
 Vy
+GD
 Vy
-Vy
 ao
 ao
 pw
@@ -59734,8 +59859,8 @@ pw
 pw
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -59947,8 +60072,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -59992,7 +60117,7 @@ iY
 iY
 Jb
 gC
-gC
+xN
 gC
 jW
 pw
@@ -60037,8 +60162,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -60248,8 +60373,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -60267,7 +60392,7 @@ ao
 ao
 VC
 VC
-VC
+Hd
 VC
 VC
 jW
@@ -60340,8 +60465,8 @@ pw
 pw
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -60549,8 +60674,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -60643,8 +60768,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -60850,8 +60975,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -60874,7 +60999,7 @@ ao
 ao
 VC
 VC
-VC
+Hd
 VC
 VC
 VC
@@ -60898,8 +61023,8 @@ iY
 iY
 Jb
 gC
+xN
 gC
-gC
 jW
 pw
 pw
@@ -60922,7 +61047,7 @@ jW
 Vy
 Vy
 Vy
-Vy
+GD
 Vy
 Vy
 ao
@@ -60946,8 +61071,8 @@ pw
 pw
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -61151,8 +61276,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -61179,78 +61304,78 @@ ao
 VC
 VC
 VC
-VC
-VC
-VC
-jW
-jW
-jW
-jW
-pw
-jW
-jW
-jW
-jW
-jW
-jW
-jW
-To
-To
-To
-To
-To
-gC
-gC
-gC
-jW
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-jW
-jW
-jW
-jW
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-ao
-ao
-ao
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
 Hd
-Ng
+VC
+VC
+jW
+jW
+jW
+jW
+pw
+jW
+jW
+jW
+jW
+jW
+jW
+jW
+To
+To
+To
+To
+To
+gC
+gC
+gC
+jW
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+jW
+jW
+jW
+jW
+Vy
+Vy
+Vy
+Vy
+Vy
+Vy
+ao
+ao
+ao
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+Nn
+Nn
 pE
 pE
 pE
@@ -61452,8 +61577,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -61552,8 +61677,8 @@ pw
 pw
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -61753,8 +61878,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -61786,7 +61911,7 @@ ao
 ao
 VC
 VC
-VC
+Hd
 VC
 VC
 VC
@@ -61804,8 +61929,8 @@ lq
 CT
 To
 gC
+xN
 gC
-gC
 jW
 pw
 pw
@@ -61822,7 +61947,7 @@ Vy
 Vy
 Vy
 Vy
-Vy
+GD
 Vy
 Vy
 ao
@@ -61855,8 +61980,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -62054,8 +62179,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -62091,75 +62216,75 @@ ao
 VC
 VC
 VC
-VC
-VC
-VC
-VC
-VC
-VC
-VC
-VC
-VC
-To
-To
-To
-To
-To
-nc
-nc
-nc
-jW
-jW
-jW
-jW
-jW
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-Vy
-ao
-ao
-ao
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
-pw
 Hd
+VC
+VC
+VC
+VC
+VC
+VC
+VC
+VC
+To
+To
+To
+To
+To
+nc
+nc
+nc
+jW
+jW
+jW
+jW
+jW
+Vy
+Vy
+Vy
+Vy
+Vy
+GD
+Vy
+Vy
+Vy
+Vy
+Vy
+Vy
 ao
+ao
+ao
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+pw
+Nn
+Nn
 pE
 pE
 pE
@@ -62355,8 +62480,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -62396,10 +62521,10 @@ ao
 VC
 VC
 VC
+Hd
 VC
 VC
-VC
-VC
+Hd
 VC
 VC
 VC
@@ -62461,8 +62586,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -62656,8 +62781,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -62704,19 +62829,19 @@ VC
 VC
 VC
 VC
+Hd
 VC
 VC
-VC
-VC
+Hd
 ne
 XA
-wc
+ix
 XA
 VV
+GD
 Vy
 Vy
-Vy
-Vy
+GD
 Vy
 Vy
 Vy
@@ -62764,8 +62889,8 @@ pw
 pw
 pw
 pw
-Hd
-ao
+Nn
+Nn
 pE
 pE
 pE
@@ -62957,8 +63082,8 @@ Sb
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -63067,8 +63192,8 @@ pw
 pw
 pw
 pw
-Hd
-Ng
+Nn
+Nn
 pE
 pE
 pE
@@ -63258,8 +63383,8 @@ Sb
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -63313,9 +63438,9 @@ ao
 ao
 ao
 ao
-NZ
+mL
 zl
-HR
+mL
 ti
 ti
 ti
@@ -63370,8 +63495,8 @@ pw
 pw
 pw
 pw
-Hd
-fK
+Nn
+Nn
 pE
 pE
 pE
@@ -63559,8 +63684,8 @@ xT
 xT
 xT
 xT
-LH
-vp
+gI
+gI
 pw
 pw
 pw
@@ -63673,7 +63798,7 @@ pw
 pw
 pw
 pw
-Hd
+Nn
 Xx
 pE
 pE
@@ -63860,8 +63985,8 @@ xT
 xT
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -63923,7 +64048,7 @@ mL
 uY
 mN
 ii
-kE
+NH
 hd
 Vh
 SS
@@ -63976,8 +64101,8 @@ pw
 pw
 pw
 pw
-Hd
-fK
+Nn
+Nn
 pE
 pE
 pE
@@ -64161,7 +64286,7 @@ xT
 xT
 xT
 xT
-LH
+gI
 gI
 pw
 pw
@@ -64279,8 +64404,8 @@ pw
 pw
 pw
 pw
-Hd
-Hd
+Nn
+Nn
 pE
 pE
 pE
@@ -64462,8 +64587,8 @@ LH
 LH
 xT
 xT
-vp
-vp
+gI
+gI
 pw
 pw
 pw
@@ -64522,7 +64647,7 @@ pw
 ao
 Kk
 mL
-zl
+vz
 mL
 zu
 Sp
@@ -64582,7 +64707,7 @@ pw
 pw
 pw
 pw
-Hd
+Nn
 pE
 pE
 fK
@@ -64764,7 +64889,7 @@ pw
 LH
 LH
 LH
-vp
+gI
 pw
 pw
 pw
@@ -64825,7 +64950,7 @@ ao
 up
 mL
 OF
-No
+mL
 zu
 cQ
 oH
@@ -65428,7 +65553,7 @@ pw
 pw
 ao
 NZ
-XS
+tY
 HR
 zu
 aB
@@ -66334,7 +66459,7 @@ wU
 pw
 ao
 WA
-XS
+tY
 mL
 ao
 pw
@@ -67237,13 +67362,13 @@ YU
 YU
 TT
 fm
-EY
+Ng
 Bf
 mL
-XS
+tY
 mL
 Bf
-EY
+Ng
 fm
 pw
 pw
@@ -68143,13 +68268,13 @@ YU
 YU
 TT
 fm
-EY
+Ng
 Bf
 mL
 tI
 mL
 Bf
-EY
+Ng
 fm
 pw
 pw
