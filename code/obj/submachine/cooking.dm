@@ -1145,7 +1145,7 @@ table#cooktime a#start {
 					new/obj/item/reagent_containers/food/snacks/ingredient/rice(src.loc)
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/tomato)
-					new/obj/item/reagent_containers/food/snacks/condiment/ketchup(src.loc)
+					new/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce(src.loc)
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/peanuts)
 					new/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter(src.loc)

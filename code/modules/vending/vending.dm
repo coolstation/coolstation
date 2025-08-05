@@ -143,6 +143,9 @@
 	var/light_g = 1
 	var/light_b = 1
 
+	var/has_glow = TRUE // is this machine emissive?
+	var/image/glow
+
 	var/output_target = null
 
 	power_usage = 50
@@ -150,6 +153,13 @@
 	var/window_size = "400x475"
 
 	New()
+		if(has_glow)
+			src.glow = image(src.icon, src, "[icon_state]_g")
+			src.glow.plane = PLANE_LIGHTING
+			src.glow.layer = LIGHTING_LAYER_BASE
+			src.glow.blend_mode = BLEND_ADD
+			src.UpdateOverlays(glow, "glow")
+
 		src.create_products()
 		AddComponent(/datum/component/mechanics_holder)
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Vend Random", "vendinput")
@@ -428,6 +438,10 @@
 	else
 		boutput(user, "<span class='alert'>No bank account associated with this ID found.</span>")
 		src.scan = null
+
+/* For potential festivities! */
+/obj/machinery/vending/proc/seasonal_check(mob/user as mob, datum/data/vending_product/product)
+	return
 
 /obj/machinery/vending/proc/generate_HTML(var/update_vending = 0, var/update_wire = 0)
 	src.HTML = ""
@@ -785,7 +799,7 @@
 				T.contents -= playervended
 			SPAWN_DBG(src.vend_delay)
 				src.vend_ready = 1 // doin this at the top here just in case something goes fucky and the proc crashes
-
+				src.seasonal_check(usr, R)
 				if (ispath(product_path))
 					var/atom/movable/vended = new product_path(src.get_output_location()) // changed from obj, because it could be a mob, THANKS VALUCHIMP
 					vended.layer = src.layer + 0.1 //So things stop spawning under the fukin thing
@@ -927,16 +941,22 @@
 	if (status & BROKEN)
 		icon_state = icon_broken ? icon_broken : "[initial(icon_state)]-broken"
 		light.disable()
+		if(src.has_glow)
+			src.UpdateOverlays(null, "glow")
 	else
 		if ( powered() )
 			icon_state = initial(icon_state)
 			status &= ~NOPOWER
 			light.enable()
+			if(src.has_glow)
+				src.UpdateOverlays(glow, "glow")
 		else
 			SPAWN_DBG(rand(0, 15))
 				src.icon_state = icon_off ? icon_off : "[initial(icon_state)]-off"
 				status |= NOPOWER
 				light.disable()
+				if(src.has_glow)
+					src.UpdateOverlays(null, "glow")
 
 /obj/machinery/vending/proc/fall(mob/living/carbon/victim)
 	if (can_fall != 1)
@@ -1242,13 +1262,18 @@
 	name = "coffee machine"
 	desc = "A Robust Coffee vending machine."
 	pay = 1
-	vend_delay = 15
+	vend_delay = 25
 	icon_state = "coffee"
-	icon_vend = "coffee-vend"
+	icon_vend = "coffee-vend" //TODO: resprite vend state (along with broken/tipped and tipped glow, other vending machines also require this)
 	icon_panel = "coffee-panel"
-	light_r =1
+	light_r = 1
 	light_g = 0.88
 	light_b = 0.3
+
+	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
+	prevend_effect()
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		return
 
 	create_products()
 		..()
@@ -1271,9 +1296,9 @@
 	"Fill the gap in your stomach right now!",
 	"A fresh delight is only a bite away!",
 	"We feature Discount Dan's Noodle Soups!")
-	light_r =1
-	light_g = 0.4
-	light_b = 0.4
+	light_r =0.6
+	light_g = 0.92
+	light_b = 0.85
 
 	create_products()
 		..()
@@ -1326,9 +1351,9 @@
 	"I'd rather toolbox than switch.",
 	"Smoke!",
 	"Don't believe the reports - smoke today!")
-	light_r =0.55
-	light_g = 1
-	light_b = 0.5
+	light_r =0.7
+	light_g = 0.67
+	light_b = 0.51
 
 	create_products()
 		..()
@@ -1355,12 +1380,14 @@
 	noknobs
 		desc = "If you want to get cancer, might as well do it in style!"
 		icon_state = "cigs"
+		has_glow = FALSE
 
 /obj/machinery/vending/cigarette/schweewa
 	icon_state = "s_cigs_old"
 	icon_panel = "cigs-panel"
 	acceptcard = 0
 	desc = "Who still smokes these?"
+	has_glow = FALSE
 	slogan_list = list("Juicer Schweet's Original Rowdy Rillos, Quality you can crave.",
 	"Fresh Fine Flamable Farmaceuticals.",
 	"Smoke!",
@@ -1528,7 +1555,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
 		product_list += new/datum/data/vending_product(/obj/item/device/flash/turbo, rand(1, 6), hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38, rand(1, 2), hidden=1) // Obtaining a backpack full of lethal ammo required no effort whatsoever, hence why nobody ordered AP speedloaders from the Syndicate (Convair880).
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, rand(1, 2), hidden=1)
 
 /obj/machinery/vending/security_ammo //ass jam time yes
 	name = "AmmoTech"
@@ -1547,11 +1574,11 @@
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 3)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer/three, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts/anti_mutant, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/juicer/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/tranq/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/anti_mutant/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // not sure why this is in here - mylie
 
 /obj/machinery/vending/cola
 	name = "soda machine"
@@ -1603,6 +1630,8 @@
 		light_g = 0.5
 		light_b = 1
 
+
+
 		create_products()
 			..()
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/blue, 10, cost=PAY_UNTRAINED/10)
@@ -1650,6 +1679,7 @@
 	icon_panel = "generic-panel"
 	acceptcard = 0
 	pay = 0
+	has_glow = FALSE
 
 	light_r =1
 	light_g = 0.88
@@ -1923,6 +1953,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
@@ -1967,6 +1998,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
@@ -2051,10 +2083,10 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
 
 	diner
 		name = "Fucile Fusilli"
@@ -2074,7 +2106,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/spicy, 5, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/accurate, 5, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/wizard, 1, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
 
 
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), cost = 15)
@@ -2129,8 +2161,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/juicer/ribbed, 4, cost = PAY_UNTRAINED*0.7)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 3, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, cost = PAY_UNTRAINED*0.9)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/black, 4, cost = PAY_UNTRAINED*0.7)
@@ -2140,8 +2172,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/ten, 10, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer, 10, cost = PAY_UNTRAINED*3)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber, 10, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/juicer, 10, cost = PAY_UNTRAINED*3)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber, 10, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst, 10, cost = PAY_UNTRAINED*3)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, cost = PAY_UNTRAINED*1.1)
 
@@ -2352,6 +2384,7 @@
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
+	has_glow = FALSE
 
 	New()
 		. = ..()
@@ -2721,7 +2754,7 @@
 /obj/machinery/vending/grub //remove this once there's literally any other method of generating grubs
 	name = "Grub Hub"
 	desc = "There's bugs in this here box!"
-	icon_state = "monkey"
+	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
 	acceptcard = 0
@@ -2862,6 +2895,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #else
 	name = "Zoldorf"
 	desc = "A horrid old fortune-telling machine."
@@ -2885,6 +2919,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #endif
 	New()
 		..()
@@ -3030,7 +3065,7 @@
 
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/hobo_wine, 2, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff, 1, hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/abg, 2, cost=PAY_TRADESMAN, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/five, 3, cost=PAY_TRADESMAN, hidden=1)
 
 /obj/machinery/vending/chem
 	name = "ChemDepot"
@@ -3119,6 +3154,7 @@
 	pay = 1
 	acceptcard = 1
 	vend_delay = 20
+	has_glow = FALSE
 	slogan_list = list("Look snappy in seconds!",
 	"Style over substance.")
 

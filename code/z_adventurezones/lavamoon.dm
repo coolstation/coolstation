@@ -1439,6 +1439,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 
 	proc/climb(mob/user as mob)
+		src.tag = "ladder_[id][src.icon_state == "ladder_wall" ? 0 : 1]" //not sure whats going on here but stuff in prefabs sometimes lacks an ID at spawn time, let's Re-Check them so you cant get yourself stranded.
 		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
 		if (!istype(otherLadder))
 			boutput(user, "You try to climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder, but seriously fail! Perhaps there's nowhere to go?")

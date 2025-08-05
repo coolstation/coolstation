@@ -1293,8 +1293,8 @@ DEFINE_FLOORS(snowrough/border,
 	allows_vehicles = 1
 	permadirty = 1
 
-/turf/floor/industrial
-	icon_state = "diamondtile"
+/turf/floor/riveted
+	icon_state = "riveted"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
@@ -2040,6 +2040,14 @@ DEFINE_FLOORS(techfloor/green,
 			return
 		. = ..()
 
+	relaymove(atom/movable/user, direction)
+		. = ..()
+		var/turf/floor/F = get_turf(src)
+		if(istype(F) && F.intact)
+			F.setIntact(FALSE)
+			F.levelupdate()
+			new /obj/item/tile/steel(F)
+			F.icon_state = "[F.burnt ? "panelscorched" : "plating"]"
 
 ////////////////////////////////////////////ADVENTURE SIMULATED FLOORS////////////////////////
 DEFINE_FLOORS_SIMMED_UNSIMMED(racing,

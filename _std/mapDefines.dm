@@ -66,6 +66,10 @@
 
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 
+#elif defined(MAP_OVERRIDE_PERDUTA)
+#define ABOVEWATER_MAP
+#define MAGINDARA_MAP
+
 #elif defined(MAP_OVERRIDE_SPIRIT)
 
 #elif defined(SPACE_PREFAB_RUNTIME_CHECKING)

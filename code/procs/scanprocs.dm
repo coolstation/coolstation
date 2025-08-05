@@ -256,7 +256,7 @@
 			return obfuscate_organ_health(O)
 		else
 			if (damage > 0)
-				return "<br><span style='color:[damage >= 65 ? "red" : "purple"]'><b>[input]</b> - [O.get_damage()]</span>"
+				return "<br><span style='color:[damage >= 65 ? "red" : "purple"]'><b>[O.name]</b> - [O.get_damage()]</span>"
 			else
 				return null
 

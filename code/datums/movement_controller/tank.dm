@@ -102,7 +102,7 @@
 		velocity_dir = owner.dir
 
 		if (next_move > world.time)
-			return min(next_rot-world.time, next_move - world.time)
+			return 0
 
 		if (owner.rcs && input_x == 0 && input_y == 0)
 			accel = -brake_pow
