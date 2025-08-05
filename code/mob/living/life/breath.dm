@@ -300,17 +300,16 @@
 					else
 						human_owner.organHolder.damage_organ(0, 0, scaledoverload, "right_lung")
 				if(co2overload >= 6)
-					if(prob(20))
+					if(prob(20 + co2overload * 0.25))
 						owner.changeStatus("slowed", rand(12, 30) DECI SECONDS)
-					else if(prob(8))
+					else if(prob(8 + scaledoverload))
 						owner.change_misstep_chance(5)
-					else if(prob(5))
+					else if(prob(5 + scaledoverload))
 						owner.change_eye_blurry(3, 10)
 					if(co2overload >= 8 && owner.co2level > 90)
-						owner.take_oxygen_deprivation(scaledoverload)
-						owner.lose_breath(scaledoverload)
-						if(prob(20))
-							owner.changeStatus("paralysis", 2 SECONDS * mult)
+						owner.take_oxygen_deprivation(scaledoverload * 2 * mult)
+						if(prob(20 + co2overload * 0.2))
+							owner.changeStatus("paralysis", 3 SECONDS * mult)
 
 
 		if (Toxins_pp > safe_toxins_max) // Too much toxins
