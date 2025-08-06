@@ -621,6 +621,14 @@
 	dir = 8
 	},
 /area/station/quartermaster/refinery)
+"dk" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/industrial,
+/area/station/hallway/primary/east)
 "dl" = (
 /obj/item/gun/modular/italian/launcher/basic{
 	pixel_y = 8;
@@ -628,10 +636,14 @@
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/item/chem_grenade/fog{
-	pixel_y = 0;
+	pixel_y = -4;
 	pixel_x = 3
 	},
-/turf/floor/riveted,
+/obj/item/chem_grenade/fog{
+	pixel_y = -4;
+	pixel_x = -9
+	},
+/turf/floor/industrial,
 /area/station/security/equipment)
 "dm" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -971,7 +983,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/main)
 "eS" = (
 /obj/machinery/vending/cigarette{
@@ -1885,6 +1897,9 @@
 "ja" = (
 /turf/floor/engine,
 /area/magindara)
+"jb" = (
+/turf/floor/industrial,
+/area/station/security/equipment)
 "jg" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/white/checker,
@@ -2024,7 +2039,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/main)
 "jT" = (
 /obj/lattice{
@@ -3475,7 +3490,7 @@
 /area/magindara)
 "pN" = (
 /obj/machinery/light/fluorescent/warm/very,
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/main)
 "pO" = (
 /obj/shrub/big/big2,
@@ -4117,7 +4132,7 @@
 /area/magindara)
 "sB" = (
 /obj/machinery/vending/pda,
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/hallway/primary/east)
 "sC" = (
 /turf/space/magindara,
@@ -5300,7 +5315,7 @@
 /turf/wall/auto/rivet,
 /area/station/security/checkpoint/medical)
 "yw" = (
-/obj/table/reinforced/auto,
+/obj/table/reinforced/industrial/auto,
 /turf/floor/riveted,
 /area/station/security/main)
 "yC" = (
@@ -5834,6 +5849,9 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"Bl" = (
+/turf/floor/industrial,
+/area/station/security/main)
 "Bn" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -6527,7 +6545,7 @@
 	pixel_y = -3;
 	pixel_x = 1
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/equipment)
 "En" = (
 /obj/decal/cleanable/ketchup,
@@ -6650,7 +6668,7 @@
 /area/station/crew_quarters/clown)
 "EU" = (
 /obj/machinery/door/airlock/security,
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/brig/genpop)
 "EV" = (
 /obj/railing/cool{
@@ -7028,6 +7046,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
 /area/station/crew_quarters/clown)
 "GW" = (
@@ -8680,7 +8699,7 @@
 /area/station/maintenance/southeast)
 "Pf" = (
 /obj/machinery/vending/computer3,
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/hallway/primary/east)
 "Ph" = (
 /obj/wingrille_spawn/reinforced,
@@ -9480,7 +9499,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/main)
 "SL" = (
 /obj/disposalpipe/segment/sewage/horizontal,
@@ -10261,7 +10280,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/main)
 "VV" = (
 /turf/floor/purplewhite/corner{
@@ -10446,6 +10465,14 @@
 "WN" = (
 /turf/wall/auto/rivet,
 /area/station/crew_quarters/arcade)
+"WO" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/industrial,
+/area/station/security/main)
 "WQ" = (
 /obj/table/reinforced/industrial/auto,
 /obj/random_item_spawner/desk_stuff/g_clip_bin_pen/one,
@@ -10827,7 +10854,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/security/main)
 "YO" = (
 /obj/landmark/spawner{
@@ -58040,8 +58067,8 @@ ao
 ao
 ju
 ju
-ao
-ao
+Yt
+Yt
 ju
 ju
 eE
@@ -58347,9 +58374,9 @@ ao
 ao
 ao
 eE
-eE
+KF
 MZ
-eE
+KF
 eE
 KF
 fd
@@ -58662,8 +58689,8 @@ eE
 eE
 gE
 jP
-Io
-Io
+WO
+WO
 eR
 pN
 Yi
@@ -58944,7 +58971,7 @@ ju
 SR
 ao
 ao
-ao
+Yt
 ao
 ao
 ao
@@ -58963,11 +58990,11 @@ Jd
 Jd
 Jd
 dv
-rn
+Bl
 SH
 SH
 QB
-rn
+Bl
 EU
 kN
 WA
@@ -59246,7 +59273,7 @@ ao
 ao
 hE
 zl
-zl
+dk
 Jx
 zl
 zl
@@ -60177,7 +60204,7 @@ rn
 QB
 JM
 Em
-ZW
+jb
 DM
 Vx
 JW

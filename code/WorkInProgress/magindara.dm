@@ -15,16 +15,9 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	color = "#ffffff"
 	special_volume_override = -1
 	turf_flags = MINE_MAP_PRESENTS_EMPTY
-#ifdef MAGINDARA_MAP
-	oxygen = MOLES_O2MAGINDARA
-	nitrogen = MOLES_N2MAGINDARA
-	carbon_dioxide = MOLES_CO2MAGINDARA
-	temperature = MAGINDARA_TEMP
-#else
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	temperature = T20C
-#endif
 
 	var/datum/light/point/light = null
 	var/light_r = 0.55
