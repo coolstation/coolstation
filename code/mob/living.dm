@@ -878,10 +878,12 @@
 
 		switch (message_mode)
 			if ("headset", "secure headset", "right hand", "left hand", "intercom")
+			/*
 				if ((istype(src:wear_suit, /obj/item/clothing/suit/space))&&(istype(src:head, /obj/item/clothing/head/helmet/space)))
 					VT = "spaceradio"
 				else
-					VT = "radio"
+			*/
+				VT = "radio"
 				ending = 0
 
 		if (singing || (src.bioHolder?.HasEffect("elvis")))
