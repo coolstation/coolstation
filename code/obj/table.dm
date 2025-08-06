@@ -485,7 +485,6 @@
 	id = "table_jump"
 	var/const/throw_range = 7
 	var/const/iteration_limit = 5
-	resumable = TRUE
 
 	getLandingLoc()
 		var/iteration = 0

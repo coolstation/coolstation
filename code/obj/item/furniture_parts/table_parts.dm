@@ -2,7 +2,6 @@
 /obj/item/furniture_parts/table
 	name = "table parts"
 	desc = "A collection of parts that can be used to make a table."
-	check_existing_type = /obj/table
 
 	afterattack(atom/target, mob/user)
 		if (isturf(target) && target == get_turf(user))

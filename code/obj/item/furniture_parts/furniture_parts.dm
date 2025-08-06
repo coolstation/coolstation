@@ -104,9 +104,9 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 			qdel(O)
 		..()
 
-	mouse_drop(atom/movable/target)
+	MouseDrop(atom/target, src_location, over_location, over_control, params)
 		. = ..()
-		if (HAS_ATOM_PROPERTY(usr, PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
+		if (HAS_MOB_PROPERTY(usr, PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
 			actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), usr)
 
 
@@ -159,7 +159,7 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 				break
 
 		if (blocker)
-			boutput(user, "<span class='alert'>You try to build \a [furniture_name], but [blocker] is in the way!</span>")
+			boutput(owner, "<span class='alert'>You try to build \a [furniture_name], but [blocker] is in the way!</span>")
 			interrupt(INTERRUPT_ALWAYS)
 		else
 			owner.visible_message("<span class='notice'>[owner] begins constructing \a [furniture_name]!</span>")
