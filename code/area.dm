@@ -76,7 +76,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	var/obj/machinery/power/apc/area_apc = null // okay in certain cases you may have more than one apc, but for my purposes the latest apc works just fine
 
-	var/requires_power = TRUE
+	var/requires_power = FALSE
 	var/tmp/power_equip = 1
 	var/tmp/power_light = 1
 	var/tmp/power_environ = 1
@@ -1631,6 +1631,7 @@ ABSTRACT_TYPE(/area/sim)
 /// Base station area
 ABSTRACT_TYPE(/area/station)
 /area/station
+	requires_power = TRUE
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
 	do_not_irradiate = 0
