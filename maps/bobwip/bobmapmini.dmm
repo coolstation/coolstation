@@ -2544,11 +2544,16 @@
 	},
 /area/space)
 "cFV" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+/obj/machinery/camera{
+	c_tag = "autotag";
+	name = "autoname - SS13";
+	tag = ""
 	},
-/turf/floor/plating,
+/obj/machinery/computer/card,
+/obj/machinery/power/data_terminal,
+/turf/floor/wood{
+	icon_state = "wooden"
+	},
 /area/space)
 "cGn" = (
 /obj/machinery/door/airlock/glass,
@@ -3839,6 +3844,9 @@
 /area/listeningpost)
 "enO" = (
 /obj/machinery/light/fluorescent/auto/cool/very,
+/obj/machinery/shower{
+	dir = 1
+	},
 /turf/floor/grime,
 /area/space)
 "eof" = (
@@ -3981,10 +3989,15 @@
 /turf/floor,
 /area/space)
 "evC" = (
-/obj/machinery/shower{
-	dir = 8
+/obj/rack,
+/obj/item/storage/box/PDAbox,
+/obj/item/storage/box/id_kit,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
 	},
-/turf/floor/grime,
+/turf/floor/wood{
+	icon_state = "wooden"
+	},
 /area/space)
 "ewp" = (
 /obj/machinery/drainage,
@@ -4565,20 +4578,13 @@
 	},
 /area/space)
 "fgm" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	name = "autoname - SS13";
-	tag = ""
+/obj/grille/catwalk{
+	dir = 10
 	},
-/turf/floor/wood{
-	icon_state = "wooden"
-	},
+/turf/space,
 /area/space)
 "fgx" = (
-/obj/rack,
-/obj/item/storage/box/PDAbox,
-/obj/item/storage/box/id_kit,
-/obj/machinery/light/fluorescent/neutral{
+/obj/stool/chair/office/green{
 	dir = 1
 	},
 /turf/floor/wood{
@@ -4606,17 +4612,17 @@
 /turf/floor,
 /area/space)
 "fhg" = (
+/obj/machinery/door/airlock/security,
 /obj/machinery/door/firedoor/border_only,
-/obj/table/reinforced{
-	icon_state = "3"
-	},
+/obj/access_spawn/head_of_personnel,
 /turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "fhM" = (
-/obj/machinery/computer/card,
-/obj/machinery/power/data_terminal,
+/obj/machinery/disposal/small{
+	dir = 4
+	},
 /turf/floor/wood{
 	icon_state = "wooden"
 	},
@@ -4749,20 +4755,20 @@
 	},
 /area/space)
 "flL" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	name = "autoname - SS13";
-	tag = ""
+/obj/machinery/manufacturer/hop_and_uniform,
+/obj/machinery/light/small/neutral{
+	dir = 8
 	},
-/turf/floor,
+/turf/floor/wood{
+	icon_state = "wooden"
+	},
 /area/space)
 "fmo" = (
-/obj/machinery/cashreg,
-/obj/machinery/door/firedoor/border_only,
-/obj/table/reinforced{
-	icon_state = "3"
+/obj/machinery/disposal/mail/autotag,
+/obj/machinery/light/fluorescent/neutral,
+/turf/floor/wood{
+	icon_state = "wooden"
 	},
-/turf/floor/neutral,
 /area/space)
 "fmR" = (
 /obj/item/storage/toilet{
@@ -4838,21 +4844,21 @@
 	},
 /area/space)
 "fpu" = (
-/obj/machinery/door/airlock/security,
-/obj/machinery/door/firedoor/border_only,
-/obj/access_spawn/security,
-/obj/access_spawn/head_of_personnel,
-/turf/floor/wood{
-	icon_state = "wooden"
+/obj/table/reinforced{
+	icon_state = "12"
 	},
+/obj/machinery/cashreg,
+/obj/machinery/door/firedoor/border_only,
+/turf/floor/plating,
 /area/space)
 "fpv" = (
-/obj/machinery/disposal/small{
-	dir = 4
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
 	},
-/turf/floor/wood{
-	icon_state = "wooden"
-	},
+/turf/floor,
 /area/space)
 "fqz" = (
 /obj/machinery/light/small,
@@ -4975,13 +4981,6 @@
 	},
 /turf/space,
 /area/space)
-"fvb" = (
-/obj/machinery/disposal/mail/autotag,
-/obj/machinery/light/fluorescent/neutral,
-/turf/floor/wood{
-	icon_state = "wooden"
-	},
-/area/space)
 "fvw" = (
 /turf/wall/auto/reinforced/gannets,
 /area/listeningpost/power)
@@ -5032,13 +5031,6 @@
 	dir = 1
 	},
 /turf/floor,
-/area/space)
-"fya" = (
-/obj/machinery/door/airlock/glass,
-/obj/machinery/door/firedoor/border_only,
-/turf/floor/neutral/side{
-	dir = 4
-	},
 /area/space)
 "fyp" = (
 /obj/decal/fakeobjects{
@@ -7146,7 +7138,7 @@
 	dir = 8
 	},
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
-/turf/floor/plating,
+/turf/floor,
 /area/space)
 "hYz" = (
 /obj/decal/poster/wallsign/warning1{
@@ -8015,12 +8007,6 @@
 "iXf" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/engine/caution/west,
-/area/space)
-"iXo" = (
-/obj/machinery/light/small/harsh/very{
-	dir = 8
-	},
-/turf/floor/plating,
 /area/space)
 "iYk" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -11353,14 +11339,6 @@
 	dir = 10
 	},
 /area/space)
-"nJl" = (
-/obj/stool/chair/office/green{
-	dir = 1
-	},
-/turf/floor/wood{
-	icon_state = "wooden"
-	},
-/area/space)
 "nJD" = (
 /obj/table/auto,
 /obj/item/device/radio/beacon,
@@ -12266,15 +12244,6 @@
 /obj/stool/bench,
 /turf/floor/white,
 /area/space)
-"qJi" = (
-/obj/machinery/manufacturer/hop_and_uniform,
-/obj/machinery/light/small/neutral{
-	dir = 8
-	},
-/turf/floor/wood{
-	icon_state = "wooden"
-	},
-/area/space)
 "qLN" = (
 /obj/cable{
 	d2 = 8;
@@ -12288,10 +12257,6 @@
 	dir = 1;
 	name = "Technical Storage APC"
 	},
-/turf/floor/plating,
-/area/space)
-"qNv" = (
-/obj/decal/mule/dropoff,
 /turf/floor/plating,
 /area/space)
 "qSi" = (
@@ -12595,12 +12560,6 @@
 "rIa" = (
 /obj/machinery/light/fluorescent/cool,
 /turf/floor/grey/blackgrime,
-/area/space)
-"rIk" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/turf/floor/grime,
 /area/space)
 "rKl" = (
 /obj/machinery/power/apc/autoname/north,
@@ -36548,12 +36507,12 @@ xzG
 xzG
 xzG
 xzG
-syK
-lFt
-fhg
-fmo
-fpu
-lFt
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
 xzG
 xzG
 xzG
@@ -36850,12 +36809,12 @@ xzG
 xzG
 xzG
 xzG
-fgm
-yfM
-fhM
-nJl
-fpv
-qJi
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
 xzG
 xzG
 xzG
@@ -37152,12 +37111,12 @@ xzG
 xzG
 xzG
 xzG
-yfM
-yfM
-yfM
-yfM
-yfM
-yfM
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
 xzG
 xzG
 xzG
@@ -37454,12 +37413,12 @@ xzG
 xzG
 xzG
 xzG
-fgx
-yfM
-yfM
-yfM
-yfM
-fvb
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
 xzG
 xzG
 xzG
@@ -43510,13 +43469,13 @@ xzG
 xzG
 xzG
 syK
+lFt
 syK
+lFt
 syK
+lFt
 syK
-syK
-syK
-syK
-syK
+lFt
 syK
 xzG
 xzG
@@ -44709,11 +44668,11 @@ nWF
 edq
 syK
 syK
+lFt
 syK
 syK
 syK
-syK
-syK
+lFt
 syK
 syK
 ylI
@@ -45011,7 +44970,7 @@ syK
 syK
 syK
 uBe
-evC
+iWM
 eys
 oWy
 eFq
@@ -45619,7 +45578,7 @@ iWM
 ezK
 oWy
 eFG
-rIk
+iWM
 ezn
 syK
 ylI
@@ -50750,14 +50709,14 @@ ykB
 ykB
 ykB
 kVH
-ykB
-ykB
-iXo
+ylI
+ylI
+esw
 hYf
-qNv
-cFV
-ykB
-uUJ
+tYa
+eUf
+ylI
+spi
 yfn
 fWN
 ylI
@@ -51052,15 +51011,15 @@ ykB
 ykB
 ykB
 kVH
-ykB
-ykB
-ykB
-ykB
-ykB
-ykB
-ykB
-ykB
-fya
+ylI
+ylI
+ylI
+ylI
+ylI
+ylI
+ylI
+ylI
+yfn
 ylI
 ylI
 ylI
@@ -51362,7 +51321,7 @@ ylI
 ylI
 ylI
 ylI
-ylI
+oWy
 ylI
 ylI
 ylI
@@ -51658,14 +51617,14 @@ yeP
 yeP
 jQL
 syK
-ylI
-ylI
-ylI
-ylI
-ylI
-ylI
-ylI
-ylI
+syK
+syK
+fhg
+syK
+syK
+syK
+oWy
+fpv
 ylI
 ylI
 lFt
@@ -51960,13 +51919,13 @@ yeP
 yeP
 eNF
 syK
-ylI
-ylI
-ylI
-ylI
-ylI
-ylI
+cFV
+fgx
+yfM
+fhM
 flL
+lFt
+ylI
 ylI
 ylI
 ylI
@@ -52262,12 +52221,12 @@ yeP
 yeP
 yeP
 ePl
-ylI
-ylI
-ylI
-ylI
-ylI
-ylI
+yfM
+yfM
+yfM
+yfM
+yfM
+fpu
 ebn
 ylI
 ylI
@@ -52564,12 +52523,12 @@ yeP
 yeP
 yeP
 syK
-ylI
-ylI
-ylI
-ylI
-ylI
-ylI
+evC
+yfM
+yfM
+yfM
+fmo
+lFt
 xZu
 ylI
 ylI
@@ -52871,7 +52830,7 @@ syK
 syK
 syK
 syK
-lFt
+oWy
 xZu
 ylI
 ylI
@@ -53475,7 +53434,7 @@ pEi
 mAr
 tDP
 ylI
-oWy
+lFt
 xZu
 ylI
 ylI
@@ -58612,8 +58571,8 @@ syK
 syK
 syK
 syK
-syK
-syK
+ykB
+oWy
 ykB
 ykB
 ykB
@@ -58913,10 +58872,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
 syK
-syK
+ykB
+oWy
+oWy
 oWy
 oWy
 oWy
@@ -59215,10 +59174,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
 syK
+ykB
+ykB
+gIE
 gIE
 eet
 eet
@@ -59517,10 +59476,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
 syK
+ykB
+ykB
+gIE
 gKR
 gIE
 gIE
@@ -59819,12 +59778,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
 syK
+ykB
 syK
-syK
-syK
+oWy
+oWy
+oWy
 gIE
 gIE
 gIE
@@ -59842,7 +59801,7 @@ syK
 ykB
 ykB
 ykB
-ykB
+oWy
 wIt
 ylI
 ylI
@@ -60121,12 +60080,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
+syK
+ykB
 syK
 gkN
 gJf
-syK
+oWy
 gIE
 gIE
 gIE
@@ -60144,7 +60103,7 @@ syK
 ykB
 ykB
 ykB
-ykB
+oWy
 xhA
 ylI
 ylI
@@ -60423,8 +60382,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
+syK
+ykB
 syK
 gkO
 gJw
@@ -60446,7 +60405,7 @@ syK
 ykB
 ykB
 cTO
-ykB
+oWy
 wIt
 ylI
 ngC
@@ -60730,7 +60689,7 @@ fXn
 fXn
 glj
 gKR
-syK
+oWy
 gIE
 hDJ
 gIE
@@ -60748,7 +60707,7 @@ syK
 ykB
 ykB
 ykB
-ykB
+oWy
 wIt
 ylI
 ylI
@@ -63738,7 +63697,7 @@ pHX
 xzG
 xzG
 xzG
-xzG
+fgm
 ipG
 ipG
 ipG
