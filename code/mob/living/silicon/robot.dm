@@ -2423,6 +2423,14 @@
 				clothed_image.alpha = U.alpha
 				clothed_image.color = U.color
 				clothed_image.layer = FLOAT_LAYER //MOB_CLOTHING_LAYER
+				//TODO: There's something weird with the layering cause the borg's head is also on the float layer, but I can't figure out how to fix it :V
+				switch(x)
+					if("suit")
+						clothed_image.layer += 1
+					if("mask")
+						clothed_image.layer -= 2
+					if("head")
+						clothed_image.layer -= 1
 				src.i_clothes.overlays += clothed_image
 			UpdateOverlays(src.i_clothes, "clothes")
 		else
