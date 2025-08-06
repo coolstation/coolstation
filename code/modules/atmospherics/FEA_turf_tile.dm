@@ -113,6 +113,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 			#undef _TRANSFER_GAS_TO_AIR
+
+			air.temperature = temperature
 		#else
 		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
@@ -255,6 +257,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			#define _TRANSFER_GAS_TO_AIR(GAS, ...) GM.GAS = GAS;
 			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 			#undef _TRANSFER_GAS_TO_AIR
+
+			GM.temperature = temperature
 		#else
 		#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
