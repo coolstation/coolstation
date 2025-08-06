@@ -2517,7 +2517,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		..()
 		src.access = syndicate_spec_ops_access()
 
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	special_spawn_location = 0
 #else
 	special_spawn_location = 1

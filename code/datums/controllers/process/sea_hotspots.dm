@@ -1,5 +1,5 @@
 
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 /// Controls sea hotspots and their movement
 /datum/controller/process/sea_hotspot_update
 	var/tmp/datum/hotspot_controller/controller

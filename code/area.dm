@@ -1125,7 +1125,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name ="Martian Trade Outpost"
 	icon_state = "yellow"
 	sound_environment = EAX_CAVE
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 
@@ -1185,7 +1185,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Derelict Space Station"
 	icon_state = "derelict"
 	is_atmos_simulated = TRUE
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 
