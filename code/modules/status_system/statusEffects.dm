@@ -1805,7 +1805,7 @@
 /datum/statusEffect/graffiti
 	id = "graffiti_blind"
 	name = "Tagged!"
-	desc = "You've been tagged! <br>Movement speed is reduced. Eyesight reduced. "
+	desc = "You've been tagged! <br>Movement speed is reduced. Eyesight reduced."
 	icon_state = "tagged"
 	unique = TRUE
 	maxDuration = 15 SECONDS
@@ -1850,3 +1850,50 @@
 			playsound(owner, sound, 17, TRUE, 0.4, 1.6)
 			violent_twitch(owner)
 		. = ..(timePassed)
+
+///give lings a timer to look at on this. The ability cooldown already functioned as such, but this is more explicit.
+/datum/statusEffect/regenerative_stasis
+	id = "regenerative_stasis"
+	name = "Regenerating"
+	desc = "You're undergoing regeneration, and will awake again after this time."
+	icon_state = "regenerative_stasis"
+	unique = TRUE
+	var/mob_prop_id
+
+	onAdd(optional)
+		..()
+		mob_prop_id = optional
+
+	onRemove()
+		if (ishuman(owner))
+			var/mob/living/carbon/human/changeling = owner
+			if (!isdead(changeling))
+				changeling_super_heal_step(changeling, 100, 100) //get those limbs back i didn't lay here for 45 seconds to be hopping around on one leg dang it
+				changeling.HealDamage("All", 1000, 1000)
+				changeling.take_brain_damage(-INFINITY)
+				changeling.take_toxin_damage(-INFINITY)
+				changeling.take_oxygen_deprivation(-INFINITY)
+				changeling.delStatus("paralysis")
+				changeling.delStatus("stunned")
+				changeling.delStatus("weakened")
+				changeling.delStatus("radiation")
+				changeling.health = 100
+				changeling.reagents.clear_reagents()
+				changeling.lying = FALSE
+				changeling.canmove = TRUE
+				boutput(changeling, "<span class='notice'>We have regenerated.</span>")
+				logTheThing("combat", changeling, null, "[changeling] finishes regenerative statis as a changeling [log_loc(changeling)].")
+				changeling.visible_message(__red("<B>[changeling] appears to wake from the dead, having healed all wounds.</span>"))
+				for(var/obj/item/implant/I in changeling)
+					if (istype(I, /obj/item/implant/projectile))
+						boutput(changeling, "<span class='alert'>\an [I] falls out of your abdomen.</span>")
+						I.on_remove(changeling)
+						changeling.implant.Remove(I)
+						I.set_loc(changeling.loc)
+						continue
+
+			changeling.set_clothing_icon_dirty()
+			var/datum/abilityHolder/changeling/H = changeling.get_ability_holder(/datum/abilityHolder/changeling)
+			H.in_fakedeath = FALSE
+			REMOVE_MOB_PROPERTY(changeling, PROP_CANTMOVE, mob_prop_id)
+		..()
