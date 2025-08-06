@@ -1054,6 +1054,10 @@ var/global/list/mapNames = list(
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
 
+	job_limits_override = list(
+		/datum/job/special/mime = 1 // yay!!!
+	)
+
 	valid_nuke_targets = list("the medbay" = list(/area/station/medical/staff, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ))
 
 	init()
