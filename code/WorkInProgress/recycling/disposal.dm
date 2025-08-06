@@ -259,6 +259,7 @@
 		..()
 
 	disposing()
+		pilot?.override_movement_controller = null
 		qdel(vision)
 		qdel(movement_controller)
 		vision = null
