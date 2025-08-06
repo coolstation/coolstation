@@ -2353,6 +2353,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	var/mob/M = usr
 	M.set_loc(src)
 	src.rider = M
+	var/mob/guy = src.rider
+	guy.override_movement_controller = src.movement_controller
 	boutput(usr, "You get into [src].")
 	src.update_overlays()
 	if (rider.client)
@@ -2391,6 +2393,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		return
 
 	var/mob/living/rider = src.rider
+	rider.override_movement_controller = null
 	..(ejectall = 0)
 
 	boutput(rider, "You get out of [src].")
@@ -2487,6 +2490,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 			boutput(user, "<span class='notice'>You help [A] onto [src]!</span>")
 		A.set_loc(src)
 		src.rider = A
+		var/mob/guy = src.rider
+		guy.override_movement_controller = src.movement_controller
 		src.update_overlays()
 		if (rider.client)
 			handle_button_addition()

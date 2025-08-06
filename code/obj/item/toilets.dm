@@ -86,6 +86,7 @@ TOILET
 
 			var/obj/disposalholder/crawler/crawl = new()
 			crawl.pilot = user
+			user.override_movement_controller = crawl.movement_controller
 			user.set_loc(crawl)
 			crawl.init_sewer(src)
 			return
