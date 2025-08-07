@@ -28,6 +28,7 @@ var/global/list/mapNames = list(
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"The Crag"=			list("id" = "CRAG",			"settings" = "crag", 			"playerPickable" = 1),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
+	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
@@ -1076,10 +1077,10 @@ var/global/list/mapNames = list(
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
 
 	qm_supply_type = "shuttle"
-	shuttle_map_turf = /turf/space/fluid
+	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
 
 	windows = /obj/window
 	windows_thin = /obj/window
@@ -1096,10 +1097,10 @@ var/global/list/mapNames = list(
 	airlock_style = "fart butt old stuff"
 	firelock_style = /obj/machinery/door/firedoor/border_only
 
-	escape_centcom = /area/shuttle/escape/centcom/cogmap2
-	escape_outpost = /area/shuttle/escape/outpost/cogmap2
-	escape_transit = /area/shuttle/escape/transit/cogmap2
-	escape_station = /area/shuttle/escape/station/cogmap2
+	escape_centcom = /area/shuttle/escape/centcom/destiny
+	escape_outpost = /area/shuttle/escape/outpost/destiny
+	escape_transit = /area/shuttle/escape/transit/destiny
+	escape_station = /area/shuttle/escape/station/destiny
 	escape_def = SHUTTLE_EAST
 	escape_dir = EAST
 
@@ -1116,17 +1117,17 @@ var/global/list/mapNames = list(
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
 			var/area/m_shuttle = locate(/area/shuttle/mining/station)
 			if(m_shuttle)
-				m_shuttle.filler_turf = /turf/space/fluid/noexplosion/nospawn
+				m_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
-				c_shuttle.filler_turf = /turf/space/fluid/noexplosion/nospawn
+				c_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
 
 			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
 			if(t_shuttle_r)
-				t_shuttle_r.filler_turf = /turf/space/fluid/noexplosion/nospawn
+				t_shuttle_r.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
 			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
 			if(t_shuttle_l)
-				t_shuttle_l.filler_turf = /turf/space/fluid/noexplosion/nospawn
+				t_shuttle_l.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
 
 
 /datum/map_settings/wrestlemap

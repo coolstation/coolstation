@@ -19,6 +19,9 @@
 
 /area/shuttle/mining/station
 	icon_state = "shuttle"
+#ifdef UNDERWATER_MAP
+	filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+#endif
 
 /area/shuttle/mining/space
 	icon_state = "shuttle2"
@@ -96,6 +99,9 @@
 
 /area/shuttle/cargo/station
 	icon_state = "shuttle"
+#ifdef UNDERWATER_MAP
+	filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+#endif
 
 /area/shuttle/cargo/hub
 	icon_state = "shuttle2"
