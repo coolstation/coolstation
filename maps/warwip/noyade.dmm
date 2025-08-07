@@ -101,6 +101,13 @@
 /obj/storage/crate/wooden,
 /turf/floor,
 /area/station/security/detectives_office)
+"agE" = (
+/obj/plasticflaps,
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "agU" = (
 /obj/cable/hotpink{
 	icon_state = "0-2"
@@ -3822,6 +3829,12 @@
 	},
 /turf/floor/plating/jen,
 /area/station/turret_protected/ai)
+"fce" = (
+/obj/cable/hotpink{
+	icon_state = "2-4"
+	},
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "fcq" = (
 /obj/grille/catwalk{
 	dir = 9;
@@ -5185,6 +5198,15 @@
 "gWZ" = (
 /turf/floor/red,
 /area/station/security/checkpoint/arrivals)
+"gXp" = (
+/obj/cable/hotpink{
+	icon_state = "2-8"
+	},
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "gXw" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8;
@@ -5919,6 +5941,15 @@
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
+"ian" = (
+/obj/cable/hotpink,
+/obj/machinery/power/data_terminal,
+/obj/machinery/guardbot_dock{
+	autoeject = 1
+	},
+/obj/machinery/bot/guardbot/ranger,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "iav" = (
 /obj/table/reinforced/chemistry/beakers,
 /obj/window/reinforced{
@@ -6012,6 +6043,12 @@
 	},
 /turf/floor/grey,
 /area/station/quartermaster/cargobay)
+"igI" = (
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "igO" = (
 /obj/machinery/drainage,
 /turf/floor/white,
@@ -7353,6 +7390,12 @@
 /obj/machinery/drainage/big,
 /turf/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
+"jOC" = (
+/obj/cable/hotpink,
+/obj/machinery/power/data_terminal,
+/obj/machinery/guardbot_dock,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "jPz" = (
 /obj/window/reinforced{
 	dir = 8
@@ -7779,6 +7822,11 @@
 /obj/random_item_spawner/vendor,
 /turf/floor,
 /area/station/hallway/primary/south)
+"kwN" = (
+/obj/cable/hotpink,
+/obj/machinery/power/apc/autoname/west,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "kwT" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -8573,6 +8621,15 @@
 /obj/shrub/random,
 /turf/floor/planter/strips,
 /area/station/hallway/primary/east)
+"ltK" = (
+/obj/cable/hotpink,
+/obj/machinery/power/data_terminal,
+/obj/machinery/guardbot_dock{
+	autoeject = 1
+	},
+/obj/machinery/bot/guardbot/safety,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "luc" = (
 /obj/machinery/light/small/ceiling/cool,
 /turf/floor,
@@ -11557,6 +11614,10 @@
 	dir = 8
 	},
 /area/station/crew_quarters/market)
+"oLZ" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "oMo" = (
 /obj/machinery/vending/standard,
 /turf/floor/plating,
@@ -11900,6 +11961,19 @@
 /obj/machinery/power/apc/autoname/east,
 /turf/floor/plating,
 /area/station/maintenance/outer/sw)
+"pfN" = (
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/obj/cable/hotpink{
+	icon_state = "1-4"
+	},
+/obj/cable/hotpink{
+	icon_state = "1-8"
+	},
+/obj/machinery/light/small/ceiling/cool,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "pfS" = (
 /obj/machinery/vehicle/tank/minisub/heavy,
 /turf/floor/shuttlebay,
@@ -12367,6 +12441,12 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor,
 /area/station/science/chemistry)
+"pOg" = (
+/obj/cable/hotpink{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "pOk" = (
 /obj/disposalpipe/junction/left/north,
 /turf/floor,
@@ -12729,6 +12809,9 @@
 	dir = 1
 	},
 /area/station/medical/medbay/lobby)
+"qiv" = (
+/turf/wall,
+/area/station/science/bot_storage)
 "qjm" = (
 /obj/machinery/conveyor/oshan_carousel{
 	dir = 8
@@ -12977,6 +13060,13 @@
 /obj/machinery/manufacturer/hangar,
 /turf/floor/shuttlebay,
 /area/station/hangar/sec)
+"qDb" = (
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/obj/plasticflaps,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "qDg" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -13548,6 +13638,15 @@
 	},
 /turf/floor/escape,
 /area/station/hallway/primary/east)
+"rqB" = (
+/obj/cable/hotpink,
+/obj/machinery/power/data_terminal,
+/obj/machinery/guardbot_dock{
+	autoeject = 1
+	},
+/obj/machinery/bot/guardbot/bootleg,
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "rqW" = (
 /obj/disposalpipe/segment/mail{
 	dir = 8;
@@ -13618,6 +13717,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge,
 /turf/floor/plating,
 /area/station/maintenance/outer/sw)
+"ryS" = (
+/obj/cable/hotpink{
+	icon_state = "2-4"
+	},
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "rzJ" = (
 /turf/wall,
 /area/station/hallway/secondary/oshan_arrivals)
@@ -15455,6 +15563,18 @@
 /obj/storage/secure/closet/brig,
 /turf/floor/red,
 /area/station/security/checkpoint/arrivals)
+"ubZ" = (
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
+/obj/cable/hotpink{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/central)
 "ucd" = (
 /obj/machinery/light/small/ceiling/cool,
 /turf/floor,
@@ -16942,6 +17062,9 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"vTH" = (
+/turf/floor/plating,
+/area/station/science/bot_storage)
 "vUe" = (
 /obj/machinery/drainage/big,
 /obj/machinery/door/window/westleft,
@@ -66789,9 +66912,9 @@ xbH
 faT
 efn
 kGa
-xgq
-efn
-mZF
+ubZ
+qDb
+kwN
 dFI
 pex
 ahq
@@ -67092,8 +67215,8 @@ xbH
 efn
 kGa
 xgq
-efn
-mZF
+qiv
+vTH
 dFI
 dFI
 dFI
@@ -67394,11 +67517,11 @@ xbH
 efn
 kGa
 xgq
-efn
-mZF
-mZF
-mZF
-mZF
+qiv
+vTH
+fce
+jOC
+qiv
 mZF
 mZF
 mZF
@@ -67696,11 +67819,11 @@ xbH
 efn
 kGa
 xgq
-efn
-mZF
-mZF
-mZF
-mZF
+qiv
+vTH
+ryS
+rqB
+oLZ
 mZF
 mZF
 mZF
@@ -67997,12 +68120,12 @@ xbH
 xbH
 efn
 kGa
-xgq
-efn
-mZF
-mZF
-mZF
-mZF
+ubZ
+agE
+igI
+pfN
+ian
+oLZ
 mZF
 mZF
 mZF
@@ -68300,11 +68423,11 @@ faT
 efn
 kGa
 xgq
-efn
-mZF
-mZF
-mZF
-mZF
+qiv
+vTH
+gXp
+ltK
+oLZ
 mZF
 mZF
 mZF
@@ -68602,11 +68725,11 @@ xbH
 efn
 kGa
 xgq
-efn
-mZF
-mZF
-mZF
-mZF
+qiv
+vTH
+pOg
+jOC
+qiv
 mZF
 mZF
 mZF
@@ -68905,9 +69028,9 @@ efn
 kGa
 xgq
 iAu
+iAu
 sjG
-sjG
-sjG
+iAu
 iAu
 lAi
 lAi
