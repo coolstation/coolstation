@@ -2376,6 +2376,11 @@
 "dmR" = (
 /turf/floor,
 /area/station/science/lobby)
+"dni" = (
+/obj/table/wood/auto,
+/obj/machinery/light/small/ceiling/cool,
+/turf/floor,
+/area/station/hallway/primary/east)
 "dnC" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -3408,7 +3413,7 @@
 /area/station/engine/monitoring)
 "eDl" = (
 /obj/landmark/latejoin_missile/south,
-/turf/space/fluid/noexplosion/nospawn,
+/turf/space/fluid,
 /area/space)
 "eEh" = (
 /obj/disposalpipe/segment/brig{
@@ -8256,6 +8261,7 @@
 "kVq" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment/ejection,
+/obj/access_spawn/brig,
 /turf/floor/red/side,
 /area/station/security/checkpoint/arrivals)
 "kVs" = (
@@ -11973,6 +11979,7 @@
 "pjL" = (
 /obj/machinery/door/airlock/security,
 /obj/disposalpipe/segment/mail,
+/obj/access_spawn/security,
 /turf/floor/red,
 /area/station/security/checkpoint/arrivals)
 "pkz" = (
@@ -49744,7 +49751,7 @@ jXE
 "}
 (103,1,1) = {"
 jXE
-mZF
+eDl
 mZF
 mZF
 mZF
@@ -50348,7 +50355,7 @@ jXE
 "}
 (105,1,1) = {"
 jXE
-mZF
+eDl
 mZF
 mZF
 mZF
@@ -57294,7 +57301,7 @@ jXE
 "}
 (128,1,1) = {"
 jXE
-eDl
+bvx
 bvx
 bvx
 bvx
@@ -57898,7 +57905,7 @@ jXE
 "}
 (130,1,1) = {"
 jXE
-eDl
+bvx
 bvx
 bvx
 bvx
@@ -78567,7 +78574,7 @@ iWw
 cfN
 bSZ
 aCF
-dSc
+dni
 cfN
 igq
 ylJ
