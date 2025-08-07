@@ -1007,6 +1007,7 @@
 		safety
 			monitored_var = "workplacesafety"
 			maptext_prefix = "<span class='c pixel sh'>Health and Safety Violations:\n<span class='vga'>"
+			ding_sound = "sound/misc/workplacesafety.ogg"
 
 		adminhelps
 			monitored_var = "adminhelps"
