@@ -2376,11 +2376,6 @@
 "dmR" = (
 /turf/floor,
 /area/station/science/lobby)
-"dni" = (
-/obj/table/wood/auto,
-/obj/machinery/light/small/ceiling/cool,
-/turf/floor,
-/area/station/hallway/primary/east)
 "dnC" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -10337,7 +10332,7 @@
 /area/station/chapel/office)
 "nnD" = (
 /obj/machinery/door/airlock/glass,
-/turf/floor/plating,
+/turf/floor,
 /area/station/crew_quarters/market)
 "nnI" = (
 /obj/machinery/light/small{
@@ -10779,6 +10774,11 @@
 /obj/storage/secure/closet/civilian/bartender,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
+"nOp" = (
+/obj/table/wood/auto,
+/obj/machinery/light/small/ceiling/cool,
+/turf/floor,
+/area/station/hallway/primary/east)
 "nOz" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -12846,7 +12846,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/floor,
 /area/station/crew_quarters/market)
 "qrV" = (
 /obj/wingrille_spawn/reinforced,
@@ -78574,7 +78574,7 @@ iWw
 cfN
 bSZ
 aCF
-dni
+nOp
 cfN
 igq
 ylJ
