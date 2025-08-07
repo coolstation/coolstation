@@ -1941,9 +1941,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
-"io" = (
-/turf/space/magindara,
-/area/station/hallway/primary/northwest)
 "ip" = (
 /obj/table/reinforced/bar/auto,
 /turf/floor/wood/five,
@@ -4953,6 +4950,9 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
+/obj/railing/cool{
+	dir = 8
+	},
 /turf/floor/industrial,
 /area/station/hallway/primary/northwest)
 "vc" = (
@@ -6515,6 +6515,7 @@
 	pixel_y = 2
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/decal/cleanable/ketchup,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "Cn" = (
@@ -6669,6 +6670,9 @@
 	},
 /obj/railing/cool{
 	dir = 4
+	},
+/obj/railing/cool{
+	dir = 8
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/northwest)
@@ -7012,7 +7016,6 @@
 /turf/floor/industrial,
 /area/station/security/equipment)
 "En" = (
-/obj/decal/cleanable/ketchup,
 /obj/decal/slipmat/torn,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
@@ -8045,17 +8048,6 @@
 /obj/machinery/vending/snack,
 /turf/floor/white,
 /area/station/medical/staff)
-"Jx" = (
-/obj/machinery/light/fluorescent/warm/very{
-	dir = 4
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/riveted,
-/area/station/hallway/primary/east)
 "JA" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/plating,
@@ -40230,10 +40222,10 @@ SO
 SO
 SO
 SO
-io
-io
-io
-io
+nL
+SO
+SO
+nL
 SO
 SO
 SO
@@ -60174,7 +60166,7 @@ ao
 hE
 zl
 dk
-Jx
+zl
 zl
 Vy
 Uo

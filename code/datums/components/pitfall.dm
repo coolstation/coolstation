@@ -168,7 +168,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					var/turf/T
 					var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
 					if(pit)
-						T = get_turf_to_fall(AM)
+						T = pit.get_turf_to_fall(AM)
 					else
 						T = src.get_turf_to_fall(AM)
 					src.actually_fall(T, AM, brutedamage, old_density)
