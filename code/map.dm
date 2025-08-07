@@ -1076,10 +1076,10 @@ var/global/list/mapNames = list(
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
 
 	qm_supply_type = "shuttle"
-	shuttle_map_turf = /turf/space/fluid
+	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
 
 	windows = /obj/window
 	windows_thin = /obj/window
@@ -1096,10 +1096,10 @@ var/global/list/mapNames = list(
 	airlock_style = "fart butt old stuff"
 	firelock_style = /obj/machinery/door/firedoor/border_only
 
-	escape_centcom = /area/shuttle/escape/centcom/cogmap2
-	escape_outpost = /area/shuttle/escape/outpost/cogmap2
-	escape_transit = /area/shuttle/escape/transit/cogmap2
-	escape_station = /area/shuttle/escape/station/cogmap2
+	escape_centcom = /area/shuttle/escape/centcom/destiny
+	escape_outpost = /area/shuttle/escape/outpost/destiny
+	escape_transit = /area/shuttle/escape/transit/destiny
+	escape_station = /area/shuttle/escape/station/destiny
 	escape_def = SHUTTLE_EAST
 	escape_dir = EAST
 
