@@ -6453,13 +6453,6 @@
 	},
 /turf/floor,
 /area/station/crew_quarters/quartersC)
-"iIb" = (
-/obj/machinery/atmospherics/valve{
-	dir = 4;
-	name = "hot loop outlet valve"
-	},
-/turf/floor,
-/area/station/engine/core)
 "iID" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0;
@@ -8939,13 +8932,6 @@
 	},
 /turf/floor,
 /area/station/security/main)
-"lOC" = (
-/obj/machinery/atmospherics/valve{
-	dir = 4;
-	name = "cold loop outlet valve"
-	},
-/turf/floor,
-/area/station/engine/core)
 "lOI" = (
 /turf/floor/grey/side,
 /area/station/crew_quarters/market)
@@ -12433,9 +12419,9 @@
 /turf/floor,
 /area/station/security/main)
 "pRJ" = (
-/obj/machinery/atmospherics/valve{
-	dir = 4;
-	name = "hot loop inlet valve"
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 8;
+	pixel_y = 1
 	},
 /turf/floor,
 /area/station/engine/core)
@@ -12608,11 +12594,12 @@
 /turf/floor,
 /area/station/chapel/sanctuary)
 "qan" = (
-/obj/cable/yellow{
-	icon_state = "1-2"
-	},
+/obj/cable/yellow,
 /obj/machinery/power/breaker/off,
 /obj/grille/catwalk/jen/twosides,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
 /turf/floor/plating,
 /area/station/engine/core)
 "qaq" = (
@@ -18740,9 +18727,9 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/east)
 "xYs" = (
-/obj/machinery/atmospherics/valve{
+/obj/machinery/atmospherics/binary/passive_gate{
 	dir = 4;
-	name = "cold loop inlet valve"
+	pixel_y = 1
 	},
 /turf/floor,
 /area/station/engine/core)
@@ -45383,7 +45370,7 @@ uXL
 uFe
 rFL
 fgs
-iIb
+xYs
 pRJ
 bOl
 vjI
@@ -47799,7 +47786,7 @@ aOY
 uFe
 xEc
 sYl
-lOC
+pRJ
 xYs
 jRb
 vjI
