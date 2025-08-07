@@ -314,6 +314,18 @@
 "axA" = (
 /turf/floor/carpet/blue/fancy/innercorner/south,
 /area/station/crew_quarters/quartersC)
+"axK" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "ayN" = (
 /obj/cable/hotpink{
 	icon_state = "4-8"
@@ -404,6 +416,13 @@
 	dir = 6
 	},
 /area/station/bridge)
+"aEz" = (
+/obj/grille/catwalk/grey,
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/turf/space/fluid,
+/area/space)
 "aES" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -659,6 +678,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/sw)
+"aSm" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/hallway/primary/east)
 "aTl" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -724,15 +752,6 @@
 "aVQ" = (
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersA)
-"aWE" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 8;
-	name = "autoname  - SS13";
-	tag = null
-	},
-/turf/floor/blue,
-/area/station/medical/medbay/treatment)
 "aWM" = (
 /obj/table/wood/auto,
 /obj/item/pen{
@@ -1054,6 +1073,18 @@
 /obj/machinery/sauna_stove,
 /turf/floor/wood/two,
 /area/station/crew_quarters/sauna)
+"bpy" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/wood/three,
+/area/station/crew_quarters/fitness)
 "bpK" = (
 /obj/submachine/seed_vendor,
 /turf/floor/green,
@@ -1336,18 +1367,6 @@
 	},
 /turf/floor/carpet/nicebrown,
 /area/station/quartermaster/office)
-"bKI" = (
-/obj/machinery/light/fluorescent{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 10;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/hallway/primary/east)
 "bKL" = (
 /obj/table/reinforced/auto,
 /obj/window/reinforced/north,
@@ -1711,15 +1730,15 @@
 "clL" = (
 /turf/floor/black,
 /area/station/security/armory)
-"clR" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
+"cmi" = (
+/obj/cable/hotpink{
+	icon_state = "1-2"
 	},
-/turf/floor/black,
-/area/station/security/armory)
+/obj/cable/hotpink{
+	icon_state = "1-4"
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/se)
 "cnl" = (
 /obj/stool/chair{
 	dir = 4
@@ -2086,6 +2105,16 @@
 /obj/access_spawn/medlab,
 /turf/floor/bluegreen,
 /area/station/medical/dome)
+"cMx" = (
+/obj/storage/secure/closet/security/equipment,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/security/main)
 "cNa" = (
 /obj/cable/hotpink{
 	icon_state = "0-2"
@@ -2693,11 +2722,17 @@
 /turf/space/fluid,
 /area/space)
 "dBQ" = (
-/obj/window/reinforced{
-	dir = 4
+/obj/disposalpipe/segment{
+	dir = 1
 	},
-/turf/floor,
-/area/station/hallway/primary/east)
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/white,
+/area/station/medical/medbay)
 "dCC" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -2871,6 +2906,13 @@
 /obj/disposalpipe/switch_junction/left/west,
 /turf/floor,
 /area/station/hallway/primary/central)
+"dPq" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/hallway/secondary/exit)
 "dPD" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -2987,6 +3029,14 @@
 	},
 /turf/floor/escape,
 /area/station/hallway/primary/east)
+"dUz" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
+/turf/floor,
+/area/station/science/lobby)
 "dUW" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail,
@@ -3125,6 +3175,24 @@
 "edG" = (
 /turf/wall,
 /area/station/crew_quarters/bar)
+"edP" = (
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
+/obj/cable/hotpink{
+	icon_state = "1-4"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/east)
 "edT" = (
 /turf/wall,
 /area/station/crew_quarters/market)
@@ -3239,14 +3307,6 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
-"ekK" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13"
-	},
-/turf/floor/shuttlebay,
-/area/station/mining/dock)
 "ekO" = (
 /obj/cable/hotpink{
 	icon_state = "4-8"
@@ -3260,18 +3320,6 @@
 "ekU" = (
 /turf/floor/carpet/grime3,
 /area/station/mining/lobby)
-"ela" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 10;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/escape,
-/area/station/hallway/primary/east)
 "ell" = (
 /turf/wall,
 /area/station/engine/core)
@@ -3420,18 +3468,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
-"eup" = (
-/obj/disposalpipe/segment/genetics{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/east)
 "euH" = (
 /obj/cable/hotpink{
 	icon_state = "0-8"
@@ -3944,6 +3980,16 @@
 	dir = 8
 	},
 /area/station/mining/lobby)
+"eYo" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/grey/side,
+/area/station/crew_quarters/market)
 "faT" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -4016,6 +4062,18 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
+"fdX" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/escape,
+/area/station/hallway/primary/east)
 "fee" = (
 /obj/morgue/with_bodybag/random_materials{
 	dir = 8
@@ -4084,18 +4142,17 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
-"fhF" = (
-/obj/disposalpipe/segment/ejection{
-	dir = 4
+"fhH" = (
+/obj/grille/catwalk/grey{
+	dir = 6
 	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
+/obj/cable/hotpink,
+/obj/machinery/power/data_terminal,
+/obj/machinery/communications_dish{
+	tag = "AUX_DISH_SS13"
 	},
-/turf/floor,
-/area/station/security/main)
+/turf/space/fluid,
+/area/space)
 "fhY" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -4180,16 +4237,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/turret_protected/ai)
-"foC" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/grey/side,
-/area/station/crew_quarters/market)
 "foG" = (
 /obj/machinery/light/small,
 /obj/disposalpipe/trunk{
@@ -4351,14 +4398,6 @@
 	},
 /turf/floor/carpet/blue,
 /area/station/security/hos/horizon)
-"fAa" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13"
-	},
-/turf/floor,
-/area/station/security/detectives_office)
 "fAy" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -4422,6 +4461,14 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold,
 /turf/floor,
 /area/station/engine/core)
+"fDt" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13"
+	},
+/turf/floor/grey,
+/area/station/mining/refinery)
 "fDM" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment{
@@ -5551,17 +5598,6 @@
 	dir = 6
 	},
 /area/station/crew_quarters/quartersC)
-"hgC" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13"
-	},
-/turf/floor/specialroom/chapel{
-	icon_state = "dark"
-	},
-/area/station/chapel/sanctuary)
 "hgU" = (
 /turf/wall,
 /area/station/medical/medbooth)
@@ -5847,18 +5883,6 @@
 	},
 /turf/floor,
 /area/station/security/main)
-"hBE" = (
-/obj/cable/hotpink{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/industrial,
-/area/station/maintenance/inner/sw)
 "hBY" = (
 /obj/machinery/drone_recharger,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -6051,17 +6075,6 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
-"hPZ" = (
-/obj/machinery/atmospherics/unary/furnace_connector,
-/obj/machinery/power/furnace/thermo,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/engine/core)
 "hQE" = (
 /obj/machinery/computer/arcade,
 /turf/floor/specialroom/arcade,
@@ -6250,14 +6263,6 @@
 	},
 /turf/floor,
 /area/shuttle/sea_elevator_room)
-"iaU" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13"
-	},
-/turf/floor/grey,
-/area/station/mining/refinery)
 "ibk" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
@@ -6366,6 +6371,15 @@
 	},
 /turf/floor/darkpurple,
 /area/station/bridge)
+"iiK" = (
+/obj/grille/catwalk/grey{
+	dir = 4
+	},
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/space/fluid,
+/area/space)
 "iiT" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/cargo,
@@ -6378,6 +6392,14 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
+"ijd" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13"
+	},
+/turf/floor/shuttlebay,
+/area/shuttle/sea_elevator_room)
 "ike" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -6395,15 +6417,6 @@
 /obj/disposalpipe/switch_junction/left/west,
 /turf/floor,
 /area/station/hallway/primary/west)
-"ils" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/industrial,
-/area/station/engine/core)
 "ilN" = (
 /turf/wall,
 /area/station/crew_quarters/arcade)
@@ -6563,18 +6576,6 @@
 	icon_state = "floorgrime_gb2"
 	},
 /area/station/crew_quarters/bar)
-"ivn" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/wood/three,
-/area/station/crew_quarters/fitness)
 "iwb" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -6584,6 +6585,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
+"iwA" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/industrial,
+/area/station/quartermaster/cargobay)
 "iwO" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor,
@@ -6731,6 +6741,18 @@
 	},
 /turf/floor/grey,
 /area/station/hallway/secondary/oshan_arrivals)
+"iDw" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/science/lobby)
 "iEb" = (
 /obj/machinery/power/apc{
 	areastring = "Brig";
@@ -6763,18 +6785,6 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
-"iGx" = (
-/obj/cable/hotpink{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/hallway/primary/east)
 "iHa" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -7412,6 +7422,9 @@
 "joD" = (
 /obj/disposalpipe/switch_junction/right/east,
 /obj/grille/catwalk/jen,
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/mailroom)
 "joT" = (
@@ -7701,24 +7714,6 @@
 	},
 /turf/floor/bot,
 /area/shuttle/sea_elevator/upper)
-"jIk" = (
-/obj/cable/hotpink{
-	icon_state = "4-8"
-	},
-/obj/disposalpipe/segment/genetics{
-	dir = 4
-	},
-/obj/cable/hotpink{
-	icon_state = "1-4"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/east)
 "jJa" = (
 /obj/cable/hotpink{
 	icon_state = "4-8"
@@ -7769,9 +7764,6 @@
 /turf/floor/plating,
 /area/station/science/bot_storage)
 "jPz" = (
-/obj/window/reinforced{
-	dir = 8
-	},
 /obj/disposalpipe/trunk{
 	dir = 1
 	},
@@ -7925,17 +7917,6 @@
 "jXE" = (
 /turf/wall/trench,
 /area/cordon)
-"jZe" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/escape{
-	dir = 4
-	},
-/area/station/hallway/secondary/exit)
 "jZF" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -8208,6 +8189,14 @@
 /obj/random_item_spawner/vendor,
 /turf/floor,
 /area/station/hallway/primary/south)
+"kwi" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13"
+	},
+/turf/floor/shuttlebay,
+/area/station/mining/dock)
 "kwN" = (
 /obj/cable/hotpink,
 /obj/machinery/power/apc/autoname/west,
@@ -8345,15 +8334,18 @@
 /obj/machinery/space_heater,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersC)
-"kHk" = (
+"kHo" = (
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
 /obj/machinery/camera{
 	c_tag = "autotag";
-	dir = 4;
+	dir = 1;
 	name = "autoname - SS13";
 	tag = null
 	},
-/turf/floor/shuttlebay,
-/area/station/hangar/sec)
+/turf/floor,
+/area/station/hallway/primary/east)
 "kIn" = (
 /obj/cable/hotpink{
 	icon_state = "1-4"
@@ -8780,9 +8772,6 @@
 /turf/floor,
 /area/station/science/artifact)
 "lbF" = (
-/obj/window/reinforced{
-	dir = 8
-	},
 /obj/disposalpipe/trunk,
 /obj/machinery/disposal,
 /turf/floor/grey/side{
@@ -8914,16 +8903,10 @@
 /obj/machinery/vehicle/tank/minisub/civilian,
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
-"lml" = (
-/obj/machinery/light/small/ceiling/cool,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/darkpurple,
-/area/station/bridge)
+"lnc" = (
+/obj/machinery/drainage/big,
+/turf/floor,
+/area/station/science/server_room)
 "lnB" = (
 /obj/window/reinforced{
 	dir = 4
@@ -9245,6 +9228,16 @@
 	dir = 4
 	},
 /area/station/medical/medbay)
+"lDg" = (
+/obj/machinery/light/small/ceiling/cool,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/darkpurple,
+/area/station/bridge)
 "lDl" = (
 /obj/machinery/light/small/red{
 	dir = 1
@@ -9523,14 +9516,6 @@
 	},
 /turf/floor/grey,
 /area/station/bridge/customs)
-"lUp" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13"
-	},
-/turf/floor/shuttlebay,
-/area/shuttle/sea_elevator_room)
 "lUA" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -10473,14 +10458,6 @@
 	},
 /turf/floor,
 /area/station/security/detectives_office)
-"mTk" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 0;
-	name = "autoname - SS13"
-	},
-/turf/floor,
-/area/station/science/lobby)
 "mTL" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -10571,15 +10548,6 @@
 	},
 /turf/floor,
 /area/station/science/server_room)
-"mVG" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/hallway/primary/east)
 "mXD" = (
 /obj/machinery/door/airlock/gannets/glass/chemistry,
 /obj/access_spawn/research,
@@ -10688,6 +10656,13 @@
 	},
 /turf/floor,
 /area/station/janitor/office)
+"nco" = (
+/obj/disposalpipe/segment/mail,
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "ncA" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/light/small/ceiling/cool,
@@ -10847,6 +10822,18 @@
 /obj/machinery/light/fluorescent,
 /turf/floor/red,
 /area/station/security/checkpoint/arrivals)
+"nmK" = (
+/obj/disposalpipe/segment/ejection{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/security/main)
 "nnc" = (
 /obj/window/reinforced{
 	dir = 8
@@ -10887,6 +10874,18 @@
 /obj/cabinet/medicalburn,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
+"npf" = (
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/east)
 "npj" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail,
@@ -10925,6 +10924,14 @@
 	},
 /turf/floor,
 /area/station/security/main)
+"nqp" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13"
+	},
+/turf/floor,
+/area/station/security/detectives_office)
 "nqs" = (
 /obj/machinery/light/small,
 /obj/stool/chair{
@@ -11224,7 +11231,7 @@
 /area/station/science/lobby)
 "nJD" = (
 /turf/space/fluid,
-/area/shuttle/escape/outpost/destiny)
+/area/shuttle/escape/station/destiny)
 "nJM" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cell_charger{
@@ -11273,6 +11280,13 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay)
+"nMr" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/se)
 "nMH" = (
 /obj/disposalpipe/segment/mail,
 /obj/disposalpipe/segment{
@@ -11600,6 +11614,18 @@
 /obj/reagent_dispensers/fueltank,
 /turf/floor/plating,
 /area/station/maintenance/outer/sw)
+"ohl" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "ohC" = (
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
@@ -12119,9 +12145,6 @@
 /turf/floor/white,
 /area/station/medical/medbay)
 "oLJ" = (
-/obj/window/reinforced{
-	dir = 8
-	},
 /turf/floor/grey/side{
 	dir = 8
 	},
@@ -12625,6 +12648,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
+"pnF" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "pnN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -12896,6 +12928,18 @@
 /obj/item/extinguisher,
 /turf/floor/grey,
 /area/station/engine/elect)
+"pFF" = (
+/obj/machinery/light/fluorescent{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/hallway/primary/east)
 "pFN" = (
 /obj/disposalpipe/segment/mail{
 	dir = 1;
@@ -13132,18 +13176,6 @@
 "pUs" = (
 /turf/floor/grass,
 /area/station/medical/dome)
-"pUO" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/science/lobby)
 "pUT" = (
 /obj/machinery/flasher/portable,
 /turf/floor,
@@ -13800,6 +13832,15 @@
 	},
 /turf/floor/carpet/nicebrown,
 /area/station/quartermaster/office)
+"qMn" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	name = "autoname  - SS13";
+	tag = null
+	},
+/turf/floor/blue,
+/area/station/medical/medbay/treatment)
 "qNd" = (
 /obj/disposalpipe/segment{
 	dir = 2;
@@ -14289,18 +14330,6 @@
 "rzJ" = (
 /turf/wall,
 /area/station/hallway/secondary/oshan_arrivals)
-"rzV" = (
-/obj/disposalpipe/segment{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/white,
-/area/station/medical/medbay)
 "rAt" = (
 /obj/machinery/power/apc{
 	areastring = "Medical Research";
@@ -14533,6 +14562,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
+"rPx" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/escape{
+	dir = 4
+	},
+/area/station/hallway/secondary/exit)
 "rPH" = (
 /obj/forcefield/energyshield/perma,
 /obj/disposalpipe/segment,
@@ -15213,6 +15253,17 @@
 /obj/access_spawn/cargo,
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
+"sJC" = (
+/obj/machinery/atmospherics/unary/furnace_connector,
+/obj/machinery/power/furnace/thermo,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/engine/core)
 "sJJ" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -15264,18 +15315,6 @@
 /obj/access_spawn/morgue,
 /turf/floor/white,
 /area/station/medical/morgue)
-"sNG" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/hallway/primary/central)
 "sOp" = (
 /turf/wall,
 /area/station/security/armory)
@@ -15559,15 +15598,6 @@
 	},
 /turf/floor/plating,
 /area/station/science/lobby)
-"ths" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/hallway/secondary/exit)
 "tid" = (
 /obj/machinery/dispenser{
 	pltanks = 0
@@ -15656,6 +15686,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/sw)
+"tos" = (
+/obj/disposalpipe/segment{
+	dir = 1
+	},
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "toF" = (
 /obj/decal/tile_edge/stripe/corner/extra_big2{
 	dir = 6
@@ -16152,6 +16191,18 @@
 /area/station/bridge/captain{
 	name = "Captain's Quarters"
 	})
+"tXP" = (
+/obj/grille/catwalk/grey{
+	dir = 5
+	},
+/obj/cable/hotpink{
+	icon_state = "1-8"
+	},
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/turf/space/fluid,
+/area/space)
 "tXW" = (
 /obj/cable/hotpink{
 	icon_state = "4-8"
@@ -16358,15 +16409,6 @@
 	},
 /turf/floor/wood/six,
 /area/station/chapel/sanctuary)
-"ujY" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor/industrial,
-/area/station/quartermaster/cargobay)
 "ukt" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/glass_recycler{
@@ -16789,16 +16831,6 @@
 "uMv" = (
 /turf/wall,
 /area/station/crew_quarters/quartersA)
-"uMJ" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 0;
-	name = "autoname - SS13"
-	},
-/turf/floor/escape{
-	dir = 8
-	},
-/area/station/hallway/secondary/exit)
 "uML" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -17342,6 +17374,16 @@
 /obj/machinery/atmospherics/pipe/simple/junction,
 /turf/floor/industrial,
 /area/station/engine/core)
+"vrc" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
+/turf/floor/escape{
+	dir = 8
+	},
+/area/station/hallway/secondary/exit)
 "vrj" = (
 /obj/machinery/vending/capsule,
 /turf/floor/specialroom/bar,
@@ -17432,6 +17474,15 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor,
 /area/station/hallway/primary/central)
+"vAb" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/black,
+/area/station/security/armory)
 "vAq" = (
 /obj/grille/catwalk,
 /obj/cable/hotpink{
@@ -17469,6 +17520,17 @@
 	dir = 1
 	},
 /area/station/medical/medbay/lobby)
+"vCF" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13"
+	},
+/turf/floor/specialroom/chapel{
+	icon_state = "dark"
+	},
+/area/station/chapel/sanctuary)
 "vCL" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -17671,6 +17733,13 @@
 	dir = 8
 	},
 /area/station/quartermaster/cargooffice)
+"vMX" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable/hotpink{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/mailroom)
 "vNy" = (
 /obj/cable/hotpink{
 	icon_state = "2-4"
@@ -17758,6 +17827,15 @@
 "vTH" = (
 /turf/floor/plating,
 /area/station/science/bot_storage)
+"vTS" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/industrial,
+/area/station/engine/core)
 "vUe" = (
 /obj/machinery/drainage/big,
 /obj/machinery/door/window/westleft,
@@ -18064,13 +18142,14 @@
 /turf/floor/red,
 /area/station/security/main)
 "wmr" = (
-/obj/disposalpipe/segment/mail,
-/obj/grille/catwalk/jen,
-/obj/cable/hotpink{
-	icon_state = "1-4"
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = null
 	},
-/turf/floor/plating,
-/area/station/mailroom)
+/turf/floor/shuttlebay,
+/area/station/hangar/sec)
 "wmU" = (
 /turf/floor/grey,
 /area/station/crew_quarters/market)
@@ -18617,16 +18696,6 @@
 "wMP" = (
 /turf/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
-"wNx" = (
-/obj/storage/secure/closet/security/equipment,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/security/main)
 "wOd" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -18711,6 +18780,18 @@
 "wRq" = (
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"wRt" = (
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor/industrial,
+/area/station/maintenance/inner/sw)
 "wTz" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -19217,18 +19298,6 @@
 /obj/machinery/optable,
 /turf/floor/grey,
 /area/station/medical/robotics)
-"xzk" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = null
-	},
-/turf/floor,
-/area/station/hallway/primary/south)
 "xzA" = (
 /obj/grille/catwalk/grey,
 /obj/disposalpipe/segment{
@@ -19244,7 +19313,9 @@
 /obj/grille/catwalk/grey{
 	dir = 10
 	},
-/obj/machinery/communications_dish,
+/obj/machinery/communications_dish{
+	tag = "ASS_DISH_SS13"
+	},
 /obj/cable/hotpink{
 	icon_state = "0-2"
 	},
@@ -44773,7 +44844,7 @@ cIV
 vgd
 oWV
 oWV
-ils
+vTS
 mSt
 oWV
 oWV
@@ -45956,7 +46027,7 @@ gto
 mio
 ntW
 kgu
-hgC
+vCF
 vEi
 mmy
 bSA
@@ -46277,7 +46348,7 @@ wlN
 xEl
 mwG
 vlF
-hPZ
+sJC
 uFe
 rFL
 fgs
@@ -51123,7 +51194,7 @@ wrR
 wrR
 wrR
 sPn
-ujY
+iwA
 yeq
 mZF
 mZF
@@ -51998,7 +52069,7 @@ hRD
 cDg
 cDg
 snZ
-ivn
+bpy
 mkX
 dQO
 npJ
@@ -53539,7 +53610,7 @@ wrR
 nXE
 wrR
 wrR
-ujY
+iwA
 yeq
 mZF
 mZF
@@ -54737,7 +54808,7 @@ mZF
 mZF
 ukF
 klt
-hBE
+wRt
 ukF
 mdg
 bvx
@@ -56542,7 +56613,7 @@ lMt
 mZF
 mZF
 cWO
-xzk
+axK
 eLV
 cWO
 mZF
@@ -58359,7 +58430,7 @@ kxC
 vON
 dzQ
 sSN
-iaU
+fDt
 oZF
 rDK
 oZF
@@ -60157,7 +60228,7 @@ cgA
 kJZ
 kJZ
 tek
-fAa
+nqp
 mGp
 oYN
 rRZ
@@ -61051,7 +61122,7 @@ edG
 edG
 edG
 edG
-sNG
+ohl
 xbH
 xbH
 efn
@@ -61684,7 +61755,7 @@ mZF
 rtK
 nhi
 rRe
-ekK
+kwi
 dFu
 aNw
 nhi
@@ -63145,7 +63216,7 @@ iPG
 lHB
 mJM
 xgy
-rzV
+dBQ
 xaT
 vNy
 vGw
@@ -63182,7 +63253,7 @@ mZF
 kRF
 kRF
 nYF
-lUp
+ijd
 nYF
 nYF
 xrX
@@ -67684,7 +67755,7 @@ cxQ
 idu
 aVA
 xsg
-aWE
+qMn
 xop
 iEC
 iEC
@@ -69195,7 +69266,7 @@ kaA
 npY
 aBa
 oJd
-wNx
+cMx
 kfe
 wxB
 sGB
@@ -71004,7 +71075,7 @@ fux
 fux
 fux
 kaA
-fhF
+nmK
 aUU
 izr
 mal
@@ -71642,7 +71713,7 @@ kro
 pry
 jxv
 geC
-mTk
+dUz
 dmR
 dmR
 bcs
@@ -72821,7 +72892,7 @@ jTx
 aUU
 sGB
 sOp
-clR
+vAb
 clL
 clL
 clL
@@ -72841,7 +72912,7 @@ vmX
 sVz
 lKn
 iAu
-pUO
+iDw
 mzK
 iwO
 wVA
@@ -74072,7 +74143,7 @@ uFV
 uFV
 uFV
 uFV
-uFV
+cmi
 uFV
 uFV
 mkZ
@@ -74374,7 +74445,7 @@ vLY
 maX
 cZo
 eFP
-eFP
+nMr
 eFP
 cZo
 cZo
@@ -74389,7 +74460,7 @@ hQI
 hQI
 vnM
 vnM
-jZe
+rPx
 tAr
 vql
 tAr
@@ -74676,7 +74747,7 @@ cZo
 cZo
 cZo
 mZF
-mZF
+iiK
 mZF
 mZF
 vnM
@@ -74948,7 +75019,7 @@ xbH
 fdI
 jJQ
 kVQ
-eup
+npf
 lxH
 cNc
 bPE
@@ -74978,7 +75049,7 @@ neG
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -75280,7 +75351,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -75532,7 +75603,7 @@ mZF
 lJf
 pgn
 wFq
-kHk
+wmr
 bmg
 dnC
 bmg
@@ -75582,7 +75653,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -75884,7 +75955,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -76159,7 +76230,7 @@ tbO
 nnN
 mnw
 bdB
-lml
+lDg
 xlz
 vJc
 kXp
@@ -76186,7 +76257,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -76488,7 +76559,7 @@ fJN
 hQI
 hQI
 hQI
-hQI
+dPq
 hQI
 hQI
 hQI
@@ -76790,7 +76861,7 @@ dEz
 ozu
 iJv
 iJv
-iJv
+nco
 iJv
 iJv
 iJv
@@ -77092,7 +77163,7 @@ dRb
 fDM
 lzo
 bvp
-bvp
+tos
 lzo
 bvp
 bvp
@@ -77394,7 +77465,7 @@ fJN
 hQI
 hQI
 hQI
-hQI
+dPq
 hQI
 hQI
 hQI
@@ -77696,7 +77767,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -77998,7 +78069,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -78013,7 +78084,7 @@ hQI
 hQI
 vnM
 vnM
-uMJ
+vrc
 jFl
 hEn
 jFl
@@ -78278,7 +78349,7 @@ pqj
 rfo
 fMC
 toR
-aKI
+lnc
 vlw
 wDA
 jVr
@@ -78300,7 +78371,7 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -78572,7 +78643,7 @@ xbH
 ygJ
 jJQ
 jal
-jIk
+edP
 acD
 syK
 nYg
@@ -78602,12 +78673,12 @@ fJN
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
 vnM
-ths
+pnF
 vJS
 vJS
 vJS
@@ -78899,12 +78970,12 @@ cfN
 cfN
 azv
 fdu
-ela
+fdX
 neG
 mZF
 mZF
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -79206,7 +79277,7 @@ dSz
 dSz
 dSz
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -79508,7 +79579,7 @@ cHv
 oZB
 dSz
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -79810,7 +79881,7 @@ kDF
 qha
 aBq
 mZF
-mZF
+iiK
 mZF
 mZF
 mZF
@@ -80108,19 +80179,19 @@ hIx
 juO
 nlq
 waR
-wmr
+waR
 joD
-aBq
-mZF
-mZF
-mZF
-mZF
-mZF
-mZF
-mZF
-mZF
-mZF
-mZF
+vMX
+aEz
+tXP
+aEz
+aEz
+aEz
+aEz
+aEz
+aEz
+aEz
+fhH
 mZF
 mZF
 mZF
@@ -80387,7 +80458,7 @@ aFG
 aFG
 aFG
 aFG
-mVG
+aSm
 mrZ
 cfN
 cqR
@@ -81281,7 +81352,7 @@ pyY
 fdq
 iNv
 cfN
-iGx
+kHo
 neG
 eXi
 cfN
@@ -81589,7 +81660,7 @@ kuK
 cfN
 cfN
 cfN
-bKI
+pFF
 doY
 doY
 qly
@@ -81602,9 +81673,9 @@ cfN
 igq
 cfN
 xrJ
-dBQ
-dBQ
-dBQ
+cfN
+cfN
+cfN
 xrJ
 cfN
 neG
@@ -82204,7 +82275,7 @@ doY
 iTD
 wHA
 boH
-foC
+eYo
 edT
 xoE
 kVI
