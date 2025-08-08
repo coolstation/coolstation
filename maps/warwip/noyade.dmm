@@ -13284,6 +13284,13 @@
 	},
 /turf/floor,
 /area/listeningpost/power)
+"pmm" = (
+/obj/table/wood/auto,
+/obj/machinery/computer/security/wooden_tv/small{
+	pixel_y = 11
+	},
+/turf/floor,
+/area/station/security/detectives_office)
 "pmw" = (
 /obj/cable/hotpink{
 	icon_state = "1-4"
@@ -13633,6 +13640,10 @@
 	icon_state = "flophole3"
 	},
 /area/listeningpost)
+"pFK" = (
+/obj/machinery/computer/security/wooden_tv,
+/turf/floor/carpet/grime3,
+/area/station/crew_quarters/quartersC)
 "pFN" = (
 /obj/disposalpipe/segment/mail{
 	dir = 1;
@@ -61150,7 +61161,7 @@ ilN
 ruP
 daa
 mYC
-rkO
+pmm
 mGp
 mGp
 mGp
@@ -85024,7 +85035,7 @@ iHS
 wxO
 pdB
 rOH
-jyl
+pFK
 rOH
 jjK
 fFg
