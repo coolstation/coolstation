@@ -1074,6 +1074,7 @@
 /obj/cable/hotpink{
 	icon_state = "4-8"
 	},
+/obj/machinery/light/small/ceiling/cool,
 /turf/floor/shuttlebay,
 /area/station/maintenance/inner/se)
 "bnq" = (
@@ -4519,6 +4520,10 @@
 	},
 /turf/floor/grey,
 /area/station/quartermaster/cargobay)
+"fpb" = (
+/obj/machinery/drainage/big,
+/turf/floor/wood/two,
+/area/station/crew_quarters/sauna)
 "fpl" = (
 /obj/grille/catwalk/grey{
 	dir = 4
@@ -8425,6 +8430,12 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor,
 /area/station/hallway/primary/south)
+"kcf" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/maintenance/outer/sw)
 "kcx" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
 /turf/floor/plating,
@@ -8613,6 +8624,10 @@
 "kpM" = (
 /obj/cable/hotpink{
 	icon_state = "2-8"
+	},
+/obj/machinery/drainage/big,
+/obj/machinery/shower{
+	dir = 4
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/se)
@@ -18838,6 +18853,13 @@
 	dir = 8
 	},
 /area/station/quartermaster/cargooffice)
+"vNj" = (
+/obj/stool/bench/wooden/auto,
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/floor/wood/two,
+/area/station/crew_quarters/sauna)
 "vNy" = (
 /obj/cable/hotpink{
 	icon_state = "2-4"
@@ -48182,7 +48204,7 @@ sfB
 lvV
 tWi
 pJw
-aeE
+naS
 waV
 mmy
 bSA
@@ -48484,7 +48506,7 @@ pTs
 lvV
 tWi
 ptf
-aeE
+kcf
 vEi
 mmy
 bSA
@@ -53308,7 +53330,7 @@ lvV
 jmd
 fnp
 wGS
-uMQ
+fpb
 fwB
 anX
 anX
@@ -53609,7 +53631,7 @@ puT
 lvV
 gCA
 fnp
-uLF
+vNj
 uLF
 fnp
 sGy
