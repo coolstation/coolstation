@@ -4555,6 +4555,10 @@
 /obj/railing/cool,
 /turf/floor/industrial,
 /area/station/hallway/primary/northwest)
+"oI" = (
+/obj/submachine/laundry_machine,
+/turf/floor/plating,
+/area/station/maintenance/northwest)
 "oJ" = (
 /obj/cable{
 	d1 = 1;
@@ -6466,6 +6470,7 @@
 /area/station/engine/thermo)
 "uO" = (
 /obj/machinery/disposal/mail/autoname/security/detective,
+/obj/disposalpipe/trunk/mail/north,
 /turf/floor/industrial,
 /area/station/security/detectives_office)
 "uR" = (
@@ -10904,7 +10909,6 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue/horizontal,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -13570,6 +13574,7 @@
 "RH" = (
 /obj/machinery/door/airlock/command,
 /obj/access_spawn/hos,
+/obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/redblack,
 /area/station/security/hos)
 "RI" = (
@@ -13836,6 +13841,7 @@
 "SE" = (
 /obj/decal/cleanable/edge_grit,
 /obj/disposalpipe/trunk/south,
+/obj/machinery/disposal,
 /turf/floor/plating/damaged3,
 /area/station/security/detectives_office)
 "SF" = (
@@ -47805,7 +47811,7 @@ cL
 ml
 FP
 gT
-Zw
+oI
 Lj
 dR
 vI
