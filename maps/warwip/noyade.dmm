@@ -2007,8 +2007,11 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 8
 	},
+/obj/cable/reinforced{
+	icon_state = "0-4-thick"
+	},
 /obj/cable/hotpink{
-	icon_state = "4-8"
+	icon_state = "0-8"
 	},
 /turf/floor/shuttlebay,
 /area/station/mining/dock)
@@ -5035,8 +5038,11 @@
 /area/listeningpost)
 "fXR" = (
 /obj/wingrille_spawn/reinforced,
+/obj/cable/reinforced{
+	icon_state = "0-8-thick"
+	},
 /obj/cable/hotpink{
-	icon_state = "4-8"
+	icon_state = "0-4"
 	},
 /turf/floor/plating,
 /area/shuttle/sea_elevator_room)
@@ -5605,8 +5611,8 @@
 /obj/grille/catwalk/grey{
 	dir = 10
 	},
-/obj/cable/hotpink{
-	icon_state = "4-8"
+/obj/cable/reinforced{
+	icon_state = "4-8-thick"
 	},
 /turf/space/fluid/noexplosion/nospawn,
 /area/space)
@@ -7652,8 +7658,11 @@
 /area/station/hallway/primary/east)
 "jdR" = (
 /obj/wingrille_spawn/reinforced,
+/obj/cable/reinforced{
+	icon_state = "0-4-thick"
+	},
 /obj/cable/hotpink{
-	icon_state = "4-8"
+	icon_state = "0-8"
 	},
 /turf/floor/plating,
 /area/station/mining/lobby)
@@ -10929,8 +10938,8 @@
 /obj/machinery/conveyor/oshan_carousel{
 	dir = 1
 	},
-/obj/cable/hotpink{
-	icon_state = "4-8"
+/obj/cable/reinforced{
+	icon_state = "4-8-thick"
 	},
 /turf/space/fluid/noexplosion/nospawn,
 /area/space)
@@ -10967,6 +10976,18 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
+"mPw" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = null
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "mPZ" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/cable/hotpink{
@@ -11649,8 +11670,8 @@
 /obj/grille/catwalk/grey{
 	dir = 4
 	},
-/obj/cable/hotpink{
-	icon_state = "4-8"
+/obj/cable/reinforced{
+	icon_state = "4-8-thick"
 	},
 /turf/space/fluid/noexplosion/nospawn,
 /area/space)
@@ -12169,17 +12190,14 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "oda" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
-	dir = 6;
+	dir = 10;
 	name = "autoname - SS13";
 	tag = null
 	},
-/turf/floor,
-/area/station/hallway/primary/central)
+/turf/floor/neutral/side,
+/area/station/hallway/primary/west)
 "odx" = (
 /obj/machinery/light/small/ceiling/cool,
 /turf/floor/plating,
@@ -12590,8 +12608,9 @@
 "oAi" = (
 /obj/machinery/door/airlock/pyro/external,
 /obj/cable/hotpink{
-	icon_state = "1-2"
+	icon_state = "0-2"
 	},
+/obj/cable/reinforced,
 /turf/floor,
 /area/station/turret_protected/ai)
 "oAU" = (
@@ -13515,8 +13534,11 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 8
 	},
+/obj/cable/reinforced{
+	icon_state = "0-8-thick"
+	},
 /obj/cable/hotpink{
-	icon_state = "4-8"
+	icon_state = "0-4"
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/se)
@@ -17557,14 +17579,14 @@
 /obj/grille/catwalk/grey{
 	dir = 10
 	},
-/obj/cable/hotpink{
-	icon_state = "4-8"
+/obj/cable/reinforced{
+	icon_state = "0-2-thick"
 	},
-/obj/cable/hotpink{
-	icon_state = "2-8"
+/obj/cable/reinforced{
+	icon_state = "0-4-thick"
 	},
-/obj/cable/hotpink{
-	icon_state = "2-4"
+/obj/cable/reinforced{
+	icon_state = "0-8-thick"
 	},
 /turf/space/fluid/noexplosion/nospawn,
 /area/space)
@@ -18560,6 +18582,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
+"vxG" = (
+/obj/grille/catwalk/grey,
+/obj/cable/reinforced{
+	icon_state = "1-2-thick"
+	},
+/turf/space/fluid/noexplosion/nospawn,
+/area/space)
 "vyb" = (
 /obj/cable/hotpink{
 	icon_state = "0-4"
@@ -52723,7 +52752,7 @@ iZy
 azH
 tDC
 ikK
-jmd
+oda
 fnp
 tye
 bpx
@@ -62393,7 +62422,7 @@ edG
 edG
 edG
 edG
-oda
+qXJ
 xbH
 xbH
 efn
@@ -63299,7 +63328,7 @@ nOU
 nOU
 nOU
 nOU
-qXJ
+mPw
 xbH
 xbH
 efn
@@ -68464,8 +68493,8 @@ hFn
 hFn
 mZF
 uqv
-scg
-scg
+vxG
+vxG
 oAi
 dbN
 awf
