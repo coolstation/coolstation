@@ -3865,7 +3865,10 @@
 /area/station/security/brig)
 "eFZ" = (
 /obj/table/wood/auto,
-/obj/machinery/computer/security/wooden_tv/small,
+/obj/machinery/computer/security/wooden_tv/small{
+	network = "SS13";
+	pixel_y = 11
+	},
 /turf/floor/carpet/grime2,
 /area/station/crew_quarters/radio/news_office{
 	mail_tag = "escape_radio";
@@ -7818,6 +7821,10 @@
 /obj/disposalpipe/segment/mail{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/computer/security/wooden_tv/small{
+	network = "SS13";
+	pixel_y = 11
 	},
 /turf/floor/darkpurple,
 /area/station/bridge)
@@ -13290,6 +13297,7 @@
 "pmm" = (
 /obj/table/wood/auto,
 /obj/machinery/computer/security/wooden_tv/small{
+	network = "SS13";
 	pixel_y = 11
 	},
 /turf/floor,
@@ -17461,6 +17469,9 @@
 	density = 1;
 	glass_amt = 5;
 	pixel_y = 9
+	},
+/obj/machinery/computer/security/wooden_tv/small{
+	pixel_y = 24
 	},
 /turf/floor/specialroom/bar{
 	icon_state = "floorgrime_gb2"
