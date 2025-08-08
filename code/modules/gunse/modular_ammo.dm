@@ -351,7 +351,7 @@ THE_USUAL_FLAVOURS(rifle/juicer, "\improper Juicer BIG rounds")
 	projectile_type = /datum/projectile/energy_bolt/three
 	stack_type = /obj/item/stackable_ammo/rifle/capacitive/burst
 	ammo_DRM = GUN_NANO
-	icon_state = "nt_stun"
+	icon_state = "nt_incap"
 	ammo_icon_state = "ammofoam"
 	load_time = 0.1 SECONDS
 THE_USUAL_FLAVOURS(rifle/capacitive/burst, "\improper NT In-Capacit-8-or MAX")
