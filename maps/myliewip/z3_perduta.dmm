@@ -6,6 +6,10 @@
 	},
 /turf/floor/plating,
 /area/space)
+"ap" = (
+/mob/living/silicon/hivebot/eyebot,
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "aA" = (
 /obj/lattice{
 	dir = 5;
@@ -13,6 +17,14 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
+"aB" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/turret_protected/ai)
 "aE" = (
 /turf/wall,
 /area/station/medical/robotics)
@@ -70,10 +82,6 @@
 	},
 /turf/floor/darkpurple,
 /area/station/janitor/office)
-"bJ" = (
-/obj/cable,
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
 "bK" = (
 /obj/disposalpipe/segment/vertical,
 /obj/wingrille_spawn/reinforced,
@@ -97,15 +105,6 @@
 	dir = 8
 	},
 /area/station/janitor/office)
-"bZ" = (
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/network,
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
 "ca" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 6
@@ -366,18 +365,6 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
-"hz" = (
-/obj/grille/catwalk/jen/twosides{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
 "hD" = (
 /obj/grille/catwalk/elevator{
 	dir = 9
@@ -648,6 +635,15 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"ni" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/terminal/network,
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "nn" = (
 /obj/decal/tile_edge/stripe/big,
 /obj/window/reinforced/south,
@@ -666,6 +662,18 @@
 	dir = 9
 	},
 /area/station/janitor/office)
+"nu" = (
+/obj/grille/catwalk/jen/twosides{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "nI" = (
 /obj/storage/crate/packing,
 /obj/random_item_spawner/junk/maybe_few,
@@ -842,14 +850,6 @@
 	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/jani_bot)
-"qt" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 0;
-	name = "autoname - SS13"
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "qu" = (
 /obj/cable{
 	d1 = 4;
@@ -1192,6 +1192,21 @@
 "vf" = (
 /turf/floor/plating,
 /area/station/hydroponics/bay)
+"vg" = (
+/obj/grille/catwalk/jen/twosides{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "vj" = (
 /turf/floor/plating,
 /area/magindara)
@@ -1457,6 +1472,11 @@
 	},
 /turf/floor/plating,
 /area/magindara)
+"Au" = (
+/obj/machinery/recharge_station,
+/obj/cable,
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "Aw" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -1706,6 +1726,18 @@
 	},
 /turf/space/fluid/trench,
 /area/station/turret_protected/AIbaseoceanfloor)
+"EH" = (
+/obj/grille/catwalk/jen/side{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "EO" = (
 /obj/railing/cool{
 	dir = 1
@@ -2050,6 +2082,14 @@
 	},
 /turf/floor/plating,
 /area/space)
+"Kb" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Ke" = (
 /obj/storage/closet/janitor,
 /turf/floor/black,
@@ -2101,23 +2141,6 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
-"Ld" = (
-/obj/machinery/recharge_station,
-/obj/cable,
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
-"Lr" = (
-/obj/grille/catwalk/jen/side{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
 "Lx" = (
 /obj/lattice{
 	dir = 10;
@@ -2132,10 +2155,6 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
-"LB" = (
-/mob/living/silicon/hivebot/eyebot,
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
 "LH" = (
@@ -2219,6 +2238,18 @@
 	},
 /turf/space/fluid/trench,
 /area/station/turret_protected/AIbaseoceanfloor)
+"Np" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
+/obj/grille/catwalk/jen/side{
+	dir = 9
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "NG" = (
 /obj/machinery/light/small/red{
 	dir = 4
@@ -2390,14 +2421,14 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "PX" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
 /obj/grille/catwalk/jen/side{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
 /obj/cable{
-	d1 = 1;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "4-8"
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
@@ -2490,21 +2521,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
-"RL" = (
-/obj/grille/catwalk/jen/twosides{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
 "RO" = (
 /obj/machinery/door/airlock/engineering,
 /obj/access_spawn/engineering,
@@ -2526,6 +2542,10 @@
 /obj/decal/cleanable/grit,
 /turf/floor/plating,
 /area/magindara)
+"SO" = (
+/obj/cable,
+/turf/floor/circuit,
+/area/station/turret_protected/ai)
 "SR" = (
 /obj/grille/catwalk/jen/twosides{
 	dir = 8
@@ -2537,14 +2557,6 @@
 	icon_state = "4-8"
 	},
 /turf/floor/circuit,
-/area/station/turret_protected/ai)
-"SU" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/plating,
 /area/station/turret_protected/ai)
 "Td" = (
 /obj/decal/tile_edge/stripe/big,
@@ -2679,19 +2691,6 @@
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/cautionblack,
 /area/station/janitor/office)
-"VA" = (
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 5;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/space/fluid/trench,
-/area/magindara)
 "VE" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -2752,18 +2751,6 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/cautionblack,
 /area/station/hydroponics/bay)
-"Wz" = (
-/obj/grille/catwalk/jen/side{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/floor/circuit,
-/area/station/turret_protected/ai)
 "WL" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
@@ -2876,6 +2863,19 @@
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
+"YV" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 5;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "Zb" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
@@ -43518,7 +43518,7 @@ gB
 LH
 hv
 hv
-VA
+YV
 ka
 BX
 BX
@@ -45640,7 +45640,7 @@ BX
 Od
 Od
 JE
-bZ
+ni
 sf
 dn
 dn
@@ -45942,7 +45942,7 @@ aW
 xo
 JE
 JE
-Lr
+PX
 uy
 na
 KT
@@ -46250,8 +46250,8 @@ lc
 xN
 lc
 na
-hz
-Ld
+nu
+Au
 JE
 Od
 sZ
@@ -46552,8 +46552,8 @@ wa
 po
 lc
 Hg
-hz
-bJ
+nu
+SO
 JE
 Od
 lz
@@ -46848,14 +46848,14 @@ sZ
 EE
 JE
 Lz
-RL
-SU
+vg
+aB
 lc
 xN
 lc
-SU
+aB
 ir
-LB
+ap
 JE
 Od
 sZ
@@ -47151,11 +47151,11 @@ yc
 JE
 JE
 ey
-Wz
+EH
 Hg
 mu
 oN
-PX
+Np
 uy
 JE
 JE
@@ -49271,7 +49271,7 @@ Uo
 Aw
 ad
 xB
-qt
+Kb
 BX
 BX
 BX

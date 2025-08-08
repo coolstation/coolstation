@@ -990,6 +990,7 @@
 /area/station/hallway/primary/central)
 "dD" = (
 /obj/table/reinforced/auto,
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "dE" = (
@@ -1194,6 +1195,16 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
+"eg" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/morgue/vertical,
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/floor/riveted,
+/area/station/hallway/primary/east)
 "eh" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -4383,6 +4394,10 @@
 "nJ" = (
 /turf/floor/riveted,
 /area/station/hallway/primary/west)
+"nK" = (
+/obj/disposalpipe/segment/bent/south,
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "nL" = (
 /turf/wall/auto/rivet,
 /area/station/hallway/primary/northwest)
@@ -5929,6 +5944,7 @@
 /obj/landmark/start{
 	name = "Cargo Technician"
 	},
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "sB" = (
@@ -6700,6 +6716,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal,
+/obj/disposalpipe/trunk/south,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "vb" = (
@@ -7944,6 +7961,11 @@
 /obj/machinery/vending/coffee,
 /turf/floor/industrial,
 /area/station/hallway/primary/north)
+"zj" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/vertical,
+/turf/floor/plating,
+/area/station/quartermaster/cargobay)
 "zl" = (
 /obj/cable{
 	d1 = 1;
@@ -8755,6 +8777,11 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
+"Bv" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/disposalpipe/segment/vertical,
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "Bx" = (
 /obj/table/reinforced/industrial/auto,
 /obj/overlay/magindara_skylight/weather,
@@ -9415,6 +9442,10 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/space/magindara,
 /area/magindara)
+"Dx" = (
+/obj/disposalpipe/segment/vertical,
+/turf/floor/industrial,
+/area/station/hallway/primary/southeast)
 "Dy" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/lattice{
@@ -10416,6 +10447,10 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/hallway/primary/east)
+"GS" = (
+/obj/disposalpipe/segment/vertical,
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "GT" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/lattice,
@@ -10627,6 +10662,7 @@
 	pixel_y = 32
 	},
 /obj/machinery/disposal/mail/autoname/qm,
+/obj/disposalpipe/trunk/mail/west,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "HG" = (
@@ -11526,6 +11562,10 @@
 	dir = 8
 	},
 /area/station/hallway/primary/central)
+"Kt" = (
+/obj/disposalpipe/junction/left/west,
+/turf/floor/riveted,
+/area/station/hallway/primary/southeast)
 "Kv" = (
 /obj/cable{
 	d2 = 4;
@@ -15345,6 +15385,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "VY" = (
@@ -15460,6 +15501,9 @@
 /area/station/crew_quarters/barber_shop)
 "Wq" = (
 /obj/machinery/conveyor/west,
+/obj/railing/cool{
+	dir = 1
+	},
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
 "Wr" = (
@@ -15847,6 +15891,10 @@
 /obj/disposalpipe/junction/left/east,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"XH" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "XI" = (
 /obj/cable{
 	d1 = 1;
@@ -64466,7 +64514,7 @@ iU
 wg
 uX
 sj
-sj
+lf
 sj
 lM
 sj
@@ -64768,7 +64816,7 @@ La
 sM
 dk
 wG
-wG
+eg
 Vy
 Uo
 ao
@@ -65376,8 +65424,8 @@ sA
 fB
 QP
 va
-pj
-Tl
+Bv
+XH
 UL
 QP
 fd
@@ -65679,11 +65727,11 @@ LC
 Qn
 Tl
 pj
-Tl
-UL
-iG
-fd
-FE
+nK
+GS
+zj
+Dx
+Kt
 eE
 VL
 eE
