@@ -213,11 +213,17 @@
 			else
 				smash()
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		// Current windows have 30 HP
 		// Reinforced windows, about 130
 		// Plasma glass, 330 HP
 		// Basically, explosions will pop windows real good now.
+
+		if(turf_safe)
+			if(severity < 6) return
+			src.damage_blunt(rand(severity * 15, severity * 30), 0)
+			src.damage_burn(rand(severity * 15, severity * 30), 0)
+			return
 
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)

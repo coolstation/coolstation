@@ -835,6 +835,7 @@
 	/obj/item/light_parts/floor,
 	/obj/item/screwdriver,
 	/obj/item/spraybottle,
+	/obj/item/spray_paint,
 	/obj/item/spongecaps,
 	/obj/item/storage/toolbox/mechanical,
 	/obj/item/storage/toolbox/electrical,
