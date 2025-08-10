@@ -113,7 +113,7 @@
 //#define MAP_OVERRIDE_CRAG					// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //#define MAP_OVERRIDE_PERDUTA				// Mylie's oceanic oil platform
-#define MAP_OVERRIDE_SUMMIT                   // klushy snow map
+#define MAP_OVERRIDE_SUMMIT                     // klushy snow map *tangent about how all the values are accurate*
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
