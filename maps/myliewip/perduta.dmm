@@ -569,9 +569,6 @@
 /obj/item/storage/box/evidence,
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/gloves/latex,
-/obj/machinery/light/small/red{
-	dir = 8
-	},
 /obj/item/body_bag,
 /obj/item/body_bag,
 /turf/floor/plating/random,
@@ -1550,7 +1547,6 @@
 /obj/machinery/vending/cigarette{
 	pixel_y = 1
 	},
-/obj/disposalpipe/switch_junction/left/east,
 /turf/floor/riveted,
 /area/station/hallway/primary/central)
 "eT" = (
@@ -2620,6 +2616,14 @@
 /obj/random_item_spawner/junk/maybe_few,
 /turf/floor/black,
 /area/station/crew_quarters/clown)
+"hJ" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/stool/bench/red/auto,
+/turf/floor/industrial,
+/area/station/hallway/primary/central)
 "hK" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/decal/tile_edge/stripe/big,
@@ -2869,10 +2873,6 @@
 /obj/disposalpipe/segment/sewage/vertical,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
-"iv" = (
-/obj/stool/bench/red/auto,
-/turf/floor/industrial,
-/area/station/hallway/primary/central)
 "iw" = (
 /obj/railing/cool{
 	dir = 1
@@ -4855,9 +4855,6 @@
 /turf/floor/grass,
 /area/station/medical/research)
 "oe" = (
-/obj/machinery/light/small/red{
-	dir = 4
-	},
 /obj/item/hammer{
 	pixel_y = -4;
 	pixel_x = -7
@@ -6437,7 +6434,6 @@
 "sK" = (
 /obj/machinery/door/window/southleft,
 /obj/access_spawn/head_of_personnel,
-/obj/window/reinforced/west,
 /obj/table/reinforced/industrial/auto,
 /turf/floor/black,
 /area/station/bridge/customs)
@@ -8035,6 +8031,10 @@
 /obj/decal/cleanable/mess/burrito,
 /turf/floor/industrial,
 /area/station/security/checkpoint/medical)
+"xs" = (
+/obj/disposalpipe/switch_junction/left/south,
+/turf/floor/riveted,
+/area/station/hallway/primary/central)
 "xt" = (
 /obj/railing/cool{
 	dir = 4
@@ -8841,7 +8841,6 @@
 /obj/machinery/door/window/westleft{
 	autoclose = 0
 	},
-/obj/window/reinforced/south,
 /obj/access_spawn/medical,
 /obj/machinery/cashreg,
 /obj/item/clipboard/with_pen,
@@ -9099,7 +9098,6 @@
 /turf/floor/engine,
 /area/station/engine/thermo)
 "Aw" = (
-/obj/window/reinforced/east,
 /obj/machinery/door/window/northright,
 /obj/access_spawn/head_of_personnel,
 /obj/table/reinforced/industrial/auto,
@@ -9134,6 +9132,15 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/space/magindara,
 /area/magindara)
+"AD" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail/bent/east,
+/turf/floor/riveted,
+/area/station/hallway/primary/central)
 "AF" = (
 /obj/disposalpipe/segment/sewage/bent/west,
 /obj/stool/bed/moveable,
@@ -9225,7 +9232,6 @@
 "AS" = (
 /obj/machinery/door/window/southright,
 /obj/access_spawn/head_of_personnel,
-/obj/window/reinforced/east,
 /obj/table/reinforced/industrial/auto,
 /turf/floor/black,
 /area/station/bridge/customs)
@@ -9845,7 +9851,7 @@
 /obj/stool/chair/blue{
 	dir = 1
 	},
-/turf/floor/riveted,
+/turf/floor/industrial,
 /area/station/hallway/primary/northwest)
 "CI" = (
 /obj/lattice{
@@ -12088,6 +12094,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/floor/plating/random,
 /area/station/crew_quarters/barber_shop)
 "Jn" = (
@@ -12722,6 +12731,7 @@
 	icon_state = "1-4"
 	},
 /obj/disposalpipe/segment/horizontal,
+/obj/machinery/light/small/red,
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "KR" = (
@@ -13161,10 +13171,10 @@
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
 "LT" = (
-/obj/disposalpipe/segment/mail/horizontal,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
 	},
+/obj/disposalpipe/segment/mail/bent/south,
 /turf/floor/industrial,
 /area/station/hallway/primary/central)
 "LU" = (
@@ -14657,7 +14667,7 @@
 "QA" = (
 /obj/disposalpipe/segment/vertical,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/industrial,
+/turf/floor/riveted,
 /area/station/hallway/primary/central)
 "QB" = (
 /obj/cable{
@@ -15302,6 +15312,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light/sodium,
+/obj/disposalpipe/segment/mail/bent/west,
 /turf/floor/riveted,
 /area/station/hallway/primary/central)
 "Sq" = (
@@ -15746,13 +15757,6 @@
 	dir = 6
 	},
 /area/station/janitor/supply)
-"Tv" = (
-/obj/disposalpipe/segment/vertical,
-/obj/machinery/light/small/red{
-	dir = 8
-	},
-/turf/floor/plating/random,
-/area/station/maintenance/northeast)
 "Tx" = (
 /obj/machinery/power/apc{
 	areastring = "Medbay Restroom";
@@ -16439,7 +16443,6 @@
 /obj/machinery/door/window/northright{
 	autoclose = 0
 	},
-/obj/window/reinforced/east,
 /obj/access_spawn/security,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
@@ -17226,7 +17229,6 @@
 	dir = 1;
 	autoclose = 0
 	},
-/obj/window/reinforced/west,
 /obj/access_spawn/security,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
@@ -58322,9 +58324,9 @@ SO
 Rh
 ME
 YB
-iv
+zK
 LT
-EF
+FY
 SV
 Nl
 Nl
@@ -58626,7 +58628,7 @@ Ua
 LI
 LI
 eS
-TS
+sl
 Ud
 wh
 PK
@@ -58927,9 +58929,9 @@ Rh
 Ua
 SO
 LI
-sl
-TS
-Ud
+ux
+yH
+AD
 wh
 IE
 cS
@@ -59230,7 +59232,7 @@ dH
 LI
 LI
 IU
-EF
+ux
 Sp
 Nl
 Nl
@@ -59530,9 +59532,9 @@ SO
 SO
 Ua
 SO
-WC
+hJ
 Yw
-TS
+xs
 ql
 LL
 jA
@@ -59832,7 +59834,7 @@ SO
 SO
 Ua
 SO
-WC
+hJ
 EF
 EF
 Zf
@@ -63430,7 +63432,7 @@ IN
 Oz
 Lw
 Zh
-Tv
+xl
 JA
 IX
 iI
