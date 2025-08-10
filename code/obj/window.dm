@@ -222,7 +222,7 @@
 		if(turf_safe)
 			if(severity < 6) return
 			src.damage_blunt(rand(severity * 15, severity * 30), 0)
-			src.damage_burn(rand(severity * 15, severity * 30), 0)
+			src.damage_heat(rand(severity * 15, severity * 30), 0)
 			return
 
 		switch(severity)

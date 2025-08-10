@@ -407,7 +407,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 					var/datum/reagent/reagent = src.reagents.reagent_list[reagent_id]
 					if(reagent.evaporates_cleanly)
 						src.reagents.del_reagent(reagent_id)
-				if(src.reagents.total_volume)
+				if(src.reagents.total_volume >= CHEM_EPSILON)
 					src.UpdateName()
 				else
 					qdel(src)

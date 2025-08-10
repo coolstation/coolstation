@@ -159,7 +159,7 @@
 					inserted_lamp = new light_type()
 					current_lamp = inserted_lamp
 		else
-			inserted_lamp = new light_type()
+			inserted_lamp = new light_type(src)
 			current_lamp = inserted_lamp
 
 
@@ -647,6 +647,16 @@
 	ceilingmounted = TRUE
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
 
+/// horrible low pressure sodium lamps that suck
+/obj/machinery/light/sodium
+	name = "low pressure sodium lamp"
+	desc = "A lamp that glows orange by arcing through sodium vapor and mercury. Waterproof, sealed fixture, and awful to look at."
+	has_glow = FALSE
+	removable_bulb = FALSE
+	icon_state = "industrial1"
+	base_state = "industrial"
+	light_type = /obj/item/light/tube/sodium
+
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update()
@@ -882,7 +892,7 @@
 	else if(current_lamp.light_status != LIGHT_BROKEN)
 
 
-		if(prob(1+W.force * 5))
+		if(prob(1+W.force * current_lamp.fragility))
 
 			boutput(user, "You hit the light, and it smashes!")
 			logTheThing("station", user, null, "smashes a light at [log_loc(src)]")
@@ -893,8 +903,8 @@
 			if(on && (W.flags & CONDUCT))
 				if(!user.bioHolder.HasEffect("resist_electric"))
 					src.electrocute(user, 50, null, 20000)
-			broken()
-
+			current_lamp.broken()
+			src.broken()
 
 		else
 			boutput(user, "You hit the light!")
@@ -997,16 +1007,18 @@
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/ex_act(severity)
+/obj/machinery/light/ex_act(severity, last_touched, epicenter, turf_safe)
+	if(turf_safe)
+		severity = severity - 6
 	switch(severity)
 		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
 		if(OLD_EX_SEVERITY_2)
-			if (prob(75))
+			if (prob(15 * current_lamp.fragility))
 				broken()
 		if(OLD_EX_SEVERITY_3)
-			if (prob(50))
+			if (prob(10 * current_lamp.fragility))
 				broken()
 	return
 
@@ -1156,6 +1168,10 @@
 	var/color_g = 1
 	var/color_b = 1
 	var/canberigged = 1
+	var/fragility = 5
+
+/obj/item/light/proc/broken()
+	return
 
 /obj/item/light/tube
 	name = "light tube"
@@ -1167,6 +1183,25 @@
 	color_r = 0.95
 	color_g = 0.95
 	color_b = 1
+
+	sodium
+		name = "low pressure sodium tube"
+		desc = "An industrial light tube."
+		color_r = 2.8 // fucked up
+		color_g = 1.4 // and evil
+		color_b = 0
+		icon_state = "itube-orange"
+		base_state = "itube-orange"
+		fragility = 1
+
+		New()
+			. = ..()
+			src.create_reagents(30)
+			src.reagents.add_reagent("mercury", 5)
+			src.reagents.add_reagent("sodium", 10)
+
+		broken()
+			src.reagents.smoke_start(0)
 
 	red
 		name = "red light tube"

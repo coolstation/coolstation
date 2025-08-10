@@ -96,6 +96,5 @@ ENUMERATE_FIXTURES(small/ceiling, bulb)
 	name = "frosted red fluorescent light fixture"
 	light_type = /obj/item/light/bulb/emergency
 
-
 #undef ENUMERATE_FIXTURES
 
