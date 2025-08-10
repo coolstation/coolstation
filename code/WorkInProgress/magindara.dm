@@ -67,7 +67,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		SPAWN_DBG(0.1)
 			light?.enable()
 
-	disposing()
+	Del()
 		if(light)
 			light.disable()
 			qdel(light)
