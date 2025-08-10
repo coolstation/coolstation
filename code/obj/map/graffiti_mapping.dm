@@ -42,22 +42,18 @@
 			if (NORTH)
 				other_piece.set_loc(get_step(src, EAST))
 				other_piece.icon_state = src.icon_state + "-1"
-				//other_piece.set_dir(NORTH)
 				src.icon_state = src.icon_state + "-2"
 			if (SOUTH)
 				other_piece.set_loc(get_step(src, EAST))
 				other_piece.icon_state = src.icon_state + "-2"
-				//other_piece.set_dir(SOUTH)
 				src.icon_state = src.icon_state + "-1"
 			if (WEST)
 				other_piece.set_loc(get_step(src, NORTH))
 				other_piece.icon_state = src.icon_state + "-1"
-
 				src.icon_state = src.icon_state + "-2"
 			if (EAST)
 				other_piece.set_loc(get_step(src, NORTH))
 				other_piece.icon_state = src.icon_state + "-2"
-				//other_piece.set_dir(SOUTH)
 				src.icon_state = src.icon_state + "-1"
 		other_piece.set_dir(src.dir)
 
