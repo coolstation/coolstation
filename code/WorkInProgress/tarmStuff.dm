@@ -1,5 +1,6 @@
 //rerun checks
 //GUNS GUNS GUNS
+/*
 /obj/item/gun/kinetic/g11
 	name = "\improper Manticore assault rifle"
 	desc = "An assault rifle capable of firing single precise bursts. The magazines holders are embossed with \"Anderson Para-Munitions\""
@@ -122,6 +123,7 @@
 
 /datum/component/holdertargeting/smartgun/nukeop/is_valid_target(mob/user, mob/M)
 	return ..() && !istype(M.get_id(), /obj/item/card/id/syndicate)
+*/
 
 //smart extinguisher
 /obj/item/gun/flamethrower/assembled/loaded/extinguisher
@@ -145,6 +147,7 @@
 /datum/component/holdertargeting/smartgun/extinguisher/is_valid_target(mob/user, mob/M)
 	return (M.hasStatus("burning"))
 
+/*
 /obj/item/gun/kinetic/gyrojet
 	name = "Amaethon gyrojet pistol"
 	desc = "A semi-automatic handgun that fires rocket-propelled bullets, developed by Mabinogi Firearms Company."
@@ -255,6 +258,7 @@
 				if(head)
 					head.throw_at(get_edge_target_turf(head, get_dir(O, H) ? get_dir(O, H) : H.dir),2,1)
 					H.visible_message("<span class='alert'>[H]'s head get's blown right off! Holy shit!</span>", "<span class='alert'>Your head gets blown clean off! Holy shit!</span>")
+*/
 
 //magical crap
 /obj/item/enchantment_scroll

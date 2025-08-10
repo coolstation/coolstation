@@ -29,9 +29,10 @@ VUVUZELA
 	..()
 
 /obj/item/bananapeel/HasEntered(AM as mob|obj)
-	if(istype(src.loc, /turf/space))
-		return
 	if (iscarbon(AM))
+		var/turf/T = get_turf(src)
+		if(istype_exact(T, /turf/space)) // i hate space pathing
+			return
 		var/mob/M =	AM
 		if (M.slip(ignore_actual_delay = 1))
 			M.lastgasp()

@@ -618,14 +618,14 @@ proc/filter_trait_hats(var/type)
 	desc = "What do you mean this is hat isn't fancy?"
 
 /obj/item/clothing/head/fancy/captain
-	name = "Captain's hat"
+	name = "captain's hat"
 	icon_state = "captain-fancy"
 	setupProperties()
 		..()
 		setProperty("meleeprot_head", 3)
 
 /obj/item/clothing/head/fancy/rank
-	name = "Officer's hat"
+	name = "officer's hat"
 	icon_state = "rank-fancy"
 	setupProperties()
 		..()

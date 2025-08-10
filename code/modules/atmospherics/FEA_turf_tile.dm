@@ -103,11 +103,25 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	if(!gas_impermeable)
 		air = new()
 
+		#ifdef MAGINDARA_MAP
+		if(src.z == 1 && src.oxygen == MOLES_O2STANDARD && src.temperature == T20C)
+			air.oxygen = MOLES_O2MAGINDARA
+			air.nitrogen = MOLES_N2MAGINDARA
+			air.carbon_dioxide = MOLES_CO2MAGINDARA
+			air.temperature = MAGINDARA_TEMP
+		else
+			#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
+			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+			#undef _TRANSFER_GAS_TO_AIR
+
+			air.temperature = temperature
+		#else
 		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 		#undef _TRANSFER_GAS_TO_AIR
 
 		air.temperature = temperature
+		#endif
 
 		if(air_master)
 			air_master.tiles_to_update |= src
@@ -233,11 +247,25 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		//  we can't pool the object returned by return_air. Bad news, man.
 		var/datum/gas_mixture/GM = new()
 
+		#ifdef MAGINDARA_MAP
+		if(src.z == 1 && src.oxygen == MOLES_O2STANDARD && src.temperature == T20C)
+			GM.oxygen = MOLES_O2MAGINDARA
+			GM.nitrogen = MOLES_N2MAGINDARA
+			GM.carbon_dioxide = MOLES_CO2MAGINDARA
+			GM.temperature = MAGINDARA_TEMP
+		else
+			#define _TRANSFER_GAS_TO_AIR(GAS, ...) GM.GAS = GAS;
+			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+			#undef _TRANSFER_GAS_TO_AIR
+
+			GM.temperature = temperature
+		#else
 		#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
 		#undef _TRANSFER_GAS_TO_GM
 
 		GM.temperature = temperature
+		#endif
 
 		return GM
 
@@ -577,63 +605,60 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	var/turf/west = get_step(src,WEST)
 
 	if(need_rebuild)
-		if(istype(src)) //Rebuild/update nearby group geometry
+		if(issimulatedturf(src)) //Rebuild/update nearby group geometry
 			if(src.parent)
 				air_master.groups_to_rebuild |= src.parent
 			else
 				air_master.tiles_to_update |= src
 
-		if(istype(north))
+		if(issimulatedturf(north))
 			north.tilenotify(src)
 			if(north.parent)
 				air_master.groups_to_rebuild |= north.parent
 			else
 				air_master.tiles_to_update |= north
-		if(istype(south))
+		if(issimulatedturf(south))
 			south.tilenotify(src)
 			if(south.parent)
 				air_master.groups_to_rebuild |= south.parent
 			else
 				air_master.tiles_to_update |= south
-		if(istype(east))
+		if(issimulatedturf(east))
 			east.tilenotify(src)
 			if(east.parent)
 				air_master.groups_to_rebuild |= east.parent
 			else
 				air_master.tiles_to_update |= east
-		if(istype(west))
+		if(issimulatedturf(west))
 			west.tilenotify(src)
 			if(west.parent)
 				air_master.groups_to_rebuild |= west.parent
 			else
 				air_master.tiles_to_update |= west
 	else
-		if(istype(src)) air_master.tiles_to_update |= src
-		if(istype(north))
+		if(issimulatedturf(src))
+			air_master.tiles_to_update |= src
+		if(issimulatedturf(north))
 			north.tilenotify(src)
 			air_master.tiles_to_update |= north
-		if(istype(south))
+		if(issimulatedturf(south))
 			south.tilenotify(src)
 			air_master.tiles_to_update |= south
-		if(istype(east))
+		if(issimulatedturf(east))
 			east.tilenotify(src)
 			air_master.tiles_to_update |= east
-		if(istype(west))
+		if(issimulatedturf(west))
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
 	if (map_currently_underwater)
-		var/turf/space/fluid/n = get_step(src,NORTH)
-		var/turf/space/fluid/s = get_step(src,SOUTH)
-		var/turf/space/fluid/e = get_step(src,EAST)
-		var/turf/space/fluid/w = get_step(src,WEST)
-		if(istype(n))
-			n.tilenotify(src)
-		if(istype(s))
-			s.tilenotify(src)
-		if(istype(e))
-			e.tilenotify(src)
-		if(istype(w))
-			w.tilenotify(src)
+		if(istype(north, /turf/space/fluid))
+			north.tilenotify(src)
+		if(istype(south, /turf/space/fluid))
+			south.tilenotify(src)
+		if(istype(east, /turf/space/fluid))
+			east.tilenotify(src)
+		if(istype(west, /turf/space/fluid))
+			west.tilenotify(src)
 
 	return 1

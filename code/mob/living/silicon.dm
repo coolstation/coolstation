@@ -36,6 +36,7 @@
 /mob/living/silicon/New()
 	..()
 	src.botcard = new /obj/item/card/id(src)
+	APPLY_MOB_PROPERTY(src, PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING, src)
 
 /mob/living/silicon/disposing()
 	req_access = null

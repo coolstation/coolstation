@@ -679,7 +679,7 @@
 	opensdoors = OBJ_CRITTER_OPENS_DOORS_NONE
 	atksilicon = 1
 	var/overheat = 0
-	var/datum/projectile/my_bullet = new/datum/projectile/bullet/pistol_italian
+	var/datum/projectile/my_bullet = new/datum/projectile/bullet/pistol/italian
 
 	Shoot()
 		if(overheat < 10)

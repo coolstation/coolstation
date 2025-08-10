@@ -222,9 +222,6 @@
 		ai_threatened = world.timeofday
 */
 
-/mob/living/carbon/human/proc/ai_is_valid_target(mob/M)
-	return TRUE
-
 /mob/living/carbon/human/proc/ai_findtarget_new()
 	//Priority-based target finding
 	var/mob/T

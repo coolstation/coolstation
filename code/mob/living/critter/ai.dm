@@ -12,6 +12,10 @@ var/list/ai_move_scheduled = list()
 	var/move_dist = 0
 	var/move_reverse = 0
 	var/move_side = 0 //merge with reverse later ok messy
+	var/move_frustration = 0
+	var/frustration_turn = 0
+
+	var/move_shuffle_at_target = 0 // chance to shuffle when at the right distance
 
 	var/enabled = 1
 	///A client is controlling the mob so the AI should be inactive
@@ -123,14 +127,28 @@ var/list/ai_move_scheduled = list()
 		owner.move_dir = 0 //Fuck you wander task
 
 	proc/move_step()
+		var/atom/old_loc = src.owner.loc
+		var/turn = src.frustration_turn
+		// lil janky, but process_move returns a truthy value when movement was successful
+		var/tried_move = null
+		var/current_dist = GET_DIST(src.owner,get_turf(src.move_target))
+		var/shuffling = FALSE
+		if(src.move_shuffle_at_target && current_dist == src.move_dist && prob(src.move_shuffle_at_target))
+			turn += pick(90,45,-45,-90)
+			shuffling = TRUE
+		switch(src.move_frustration)
+			if(2 to 4)
+				src.frustration_turn = pick(-90,90)
+			if(4 to INFINITY)
+				src.frustration_turn = pick(-90,90,180)
 		if (src.move_side)
-			if (get_dist(src.owner,get_turf(src.move_target)) > src.move_dist)
-				var/turn = src.move_reverse?90:-90
+			if (shuffling || current_dist > src.move_dist)
+				turn += src.move_reverse?90:-90
 				src.owner.move_dir = turn( get_dir(src.owner,get_turf(src.move_target)),turn )
-				src.owner.process_move()
+				tried_move = src.owner.process_move()
 		else if (src.move_reverse)
-			if (get_dist(src.owner,get_turf(src.move_target)) < src.move_dist)
-				var/turn = 180
+			if (shuffling || current_dist < src.move_dist)
+				turn += 180
 				switch(rand(1,4)) //fudge walk away behavior
 					if (1)
 						turn -= 45
@@ -143,12 +161,18 @@ var/list/ai_move_scheduled = list()
 						pass_proc()
 
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
-				src.owner.process_move()
+				tried_move = src.owner.process_move()
 		else
-			if (get_dist(src.owner,get_turf(src.move_target)) > src.move_dist)
-				src.owner.move_dir = get_dir(src.owner,get_turf(src.move_target))
-				src.owner.process_move()
-
+			if (shuffling || current_dist > src.move_dist)
+				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
+				tried_move = src.owner.process_move()
+		if(tried_move)
+			if(src.owner?.loc == old_loc)
+				src.move_frustration++
+			else
+				src.move_frustration = 0
+				if (src.frustration_turn && prob(30))
+					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)
 		.=0

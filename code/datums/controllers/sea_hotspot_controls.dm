@@ -508,7 +508,6 @@
 		.= locate(x,y,z)
 
 
-
 /obj/item/heat_dowsing
 	name = "dowsing rod"
 	icon = 'icons/obj/sealab_power.dmi'

@@ -465,7 +465,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 
 /obj/item/clothing/shoes/detective
 	name = "worn boots"
-	desc = "This pair of leather boots has seen better days."
+	desc = "This pair of snakeskin boots has seen better days."
 	icon_state = "detective"
 
 /obj/item/clothing/shoes/chef

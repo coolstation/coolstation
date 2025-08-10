@@ -239,8 +239,6 @@ TYPEINFO(/datum/component/holdertargeting/windup)
 	var/poy = 0
 	var/target
 	var/atom/point_blank_target
-	resumable = FALSE
-
 
 	New(_gun,  _time, _comp, _do_point_blank = FALSE)
 		ownerGun = _gun

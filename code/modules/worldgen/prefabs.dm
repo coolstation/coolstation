@@ -220,7 +220,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeX = 8
 		prefabSizeY = 8
 
-#if defined(MAP_OVERRIDE_OSHAN)
+#if defined(UNDERWATER_MAP)
 	elevator
 		required = 1
 		underwater = 1
@@ -400,8 +400,9 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 
 	grill //test post do not bonk
 		maxNum = 1
+		required = 1
 		prefabPath = "assets/maps/prefabs/prefab_grill.dmm"
-		probability = 30
+		probability = 100
 		prefabSizeX = 10
 		prefabSizeY = 10
 
@@ -414,7 +415,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeY = 21
 
 
-#if defined(MAP_OVERRIDE_OSHAN)
+#if defined(UNDERWATER_MAP)
 	sea_miner
 		underwater = 1
 		maxNum = 1

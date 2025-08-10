@@ -35,6 +35,8 @@
 
 //The DESERT_MAP one does the same ok:)
 
+//Take a wild guess what the ABOVEWATER_MAP one does
+
 #ifdef UNDERWATER_MAP
 var/global/map_currently_underwater = 1
 #else
@@ -45,6 +47,12 @@ var/global/map_currently_underwater = 0
 var/global/map_currently_very_dusty = 1
 #else
 var/global/map_currently_very_dusty = 0
+#endif
+
+#ifdef ABOVEWATER_MAP
+var/global/map_currently_abovewater = 1
+#else
+var/global/map_currently_abovewater = 0
 #endif
 
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff

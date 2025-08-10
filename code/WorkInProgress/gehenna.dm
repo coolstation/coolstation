@@ -1,4 +1,4 @@
-#define GEHENNA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))*2)
+#define GEHENNA_TIME 10 // (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))*2)
 //the above expression results in about 4 days per month.
 // 10 just beautiful. oh. wow. lovely.
 // 30 is a beautiful, goldenrod gehenna sunrise.
@@ -21,7 +21,10 @@
 #define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
 #define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
 #define GEHENNA_TEMP WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
-
+#define GEHENNA_SKY_R 0.5*(sin(GEHENNA_TIME)+1)
+#define GEHENNA_SKY_G 0.3*(sin(GEHENNA_TIME )+1)
+#define GEHENNA_SKY_B 0.4*(sin(GEHENNA_TIME - 45 )+1)
+#define GEHENNA_SKY_BRIGHT 0.5*(sin(GEHENNA_TIME)+0.8) + 0.25
 
 
 var/global/gehenna_time = GEHENNA_TIME
@@ -197,10 +200,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
-	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
-	var/light_g = 0.3*(sin(GEHENNA_TIME )+1)
-	var/light_b = 0.4*(sin(GEHENNA_TIME - 45 )+1)
-	var/light_brightness = 0.6*(sin(GEHENNA_TIME)+0.8) + 0.3
+	var/light_atten_con = -0.02
+	var/light_r = GEHENNA_SKY_R
+	var/light_g = GEHENNA_SKY_G
+	var/light_b = GEHENNA_SKY_B
+	var/light_brightness = GEHENNA_SKY_BRIGHT
 	var/light_height = 3
 	var/generateLight = 1
 	var/stone_color
@@ -256,6 +260,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		if (!light)
 			light = new
 			light.attach(src)
+		light.atten_con = light_atten_con
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)

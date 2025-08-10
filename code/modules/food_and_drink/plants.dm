@@ -1299,7 +1299,9 @@
 
 	make_reagents()
 		..()
-		reagents.add_reagent("water_holy", 10)
+		reagents.add_reagent("garlic", 10)
+
+	//TODO: add a mutation variant of holy garlic that is "bland" because instead of garlic flavor it's just holy water. no bad breath on that either.
 
 /obj/item/reagent_containers/food/snacks/plant/avocado
 	name = "avocado"

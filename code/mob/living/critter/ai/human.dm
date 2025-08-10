@@ -217,7 +217,7 @@
 
 					holder.ownhuman.hand_attack(M, params)
 				if(prob(25))
-					holder.move_circ(holder.target,2)
+					holder.move_circ(holder.target,1) // trying 2 -> 1
 
 		..()
 

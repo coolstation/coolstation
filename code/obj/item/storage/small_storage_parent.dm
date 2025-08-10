@@ -178,7 +178,7 @@
 		update_icon()
 		add_fingerprint(user)
 		animate_storage_rustle(src)
-		if (!src.sneaky && !istype(W, /obj/item/gun/energy/crossbow))
+		if (!src.sneaky)
 			user.visible_message("<span class='notice'>[user] has added [W] to [src]!</span>", "<span class='notice'>You have added [W] to [src].</span>")
 		playsound(src.loc, "rustle", 50, 1, -5)
 		return
@@ -434,6 +434,37 @@
 	/obj/item/cable_coil/white, //approximately the neutral/live/earth wiring colours for the US
 	/obj/item/cable_coil/black, //don't ask why the cart contents reference that of all things, I thought it'd be a cute thing to do :P
 	/obj/item/cable_coil/green) //anyway we got slots to fill, so
+
+/obj/item/storage/desk_drawer/kitchen_tools //thanks for the example batelite
+	spawn_contents = list(/obj/item/kitchen/utensil/knife/cleaver,
+	/obj/item/kitchen/utensil/knife/pizza_cutter,
+	/obj/item/kitchen/utensil/knife/bread,
+	/obj/item/kitchen/rollingpin,
+	/obj/item/kitchen/sushi_roller,
+	/obj/item/soup_pot,
+	/obj/item/ladle,
+	/obj/item/cigpacket,
+	/obj/item/clothing/gloves/latex)
+
+/obj/item/storage/desk_drawer/kitchen_sink
+	spawn_contents = list(/obj/item/spraybottle/cleaner,
+	/obj/item/reagent_containers/glass/bottle/cleaner,
+	/obj/item/reagent_containers/glass/bottle/ammonia/janitors,
+	/obj/item/sponge,
+	/obj/item/storage/box/mousetraps,
+	/obj/item/clothing/gloves/long,
+	/obj/item/decoration/ashtray,
+	/obj/item/wrench)
+
+/obj/item/storage/desk_drawer/kitchen_plate
+	spawn_contents = list(/obj/item/platestack,
+	/obj/item/platestack,
+	/obj/item/platestack,
+	/obj/item/platestack,
+	/obj/item/plate/tray,
+	/obj/item/plate/tray,
+	/obj/item/plate/tray,
+	/obj/item/plate/tray)
 
 /obj/item/storage/rockit
 	name = "\improper Rock-It Launcher"

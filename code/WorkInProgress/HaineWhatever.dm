@@ -869,7 +869,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			src.equip_new_if_possible(/obj/item/clothing/under/rank/bartender, slot_w_uniform)
 			src.equip_new_if_possible(/obj/item/clothing/suit/wcoat, slot_wear_suit)
 			src.equip_if_possible(new /obj/item/clothing/glasses/thermal/orange, slot_glasses)
-			src.equip_new_if_possible(/obj/item/gun/kinetic/riotgun, slot_in_backpack)
+			src.equip_new_if_possible(/obj/item/gun/modular/NT/shotty, slot_in_backpack)
 			src.equip_new_if_possible(/obj/item/storage/box/glassbox, slot_in_backpack)
 			for (var/obj/item/reagent_containers/food/drinks/drinkingglass/glass in src)
 				src.glassware += glass

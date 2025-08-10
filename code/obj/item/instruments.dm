@@ -207,6 +207,15 @@
 	desc = "Oh, are these back in vogue?"
 	icon_state = "jukebox_new"
 	item_state = "jukebox_new"
+	New()
+		..()
+		var/image/jukebox_overlay = image(src.icon, src, "[src.icon_state]_g")
+		jukebox_overlay.plane = PLANE_LIGHTING
+		jukebox_overlay.layer = LIGHTING_LAYER_BASE
+		jukebox_overlay.blend_mode = BLEND_ADD
+		UpdateOverlays(jukebox_overlay, "jukebox_overlay")
+
+
 
 /* -------------------- OLD SAXO -------------------- */
 /obj/item/saxophone

@@ -78,18 +78,6 @@
 	canRideMailchutes()
 		return src.fits_under_table
 
-	proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
-		remove_lifeprocess(/datum/lifeprocess/blood)
-		remove_lifeprocess(/datum/lifeprocess/canmove)
-		remove_lifeprocess(/datum/lifeprocess/disability)
-		remove_lifeprocess(/datum/lifeprocess/fire)
-		remove_lifeprocess(/datum/lifeprocess/hud)
-		remove_lifeprocess(/datum/lifeprocess/mutations)
-		remove_lifeprocess(/datum/lifeprocess/organs)
-		remove_lifeprocess(/datum/lifeprocess/sight)
-		remove_lifeprocess(/datum/lifeprocess/skin)
-		remove_lifeprocess(/datum/lifeprocess/statusupdate)
-
 	specific_emotes(var/act, var/param = null, var/voluntary = 0) //Oh wait I remember these things are needed
 		switch (act)
 			if ("scream","chitter")

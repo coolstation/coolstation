@@ -568,18 +568,7 @@
 	icon_state = "secbelt"
 	item_state = "secbelt"
 	can_hold = list(/obj/item/baton, // not included in this list are guns that are already small enough to fit (like the detective's gun)
-	//obj/item/gun/energy/taser_gun,
-	//obj/item/gun/energy/phaser_gun,
-	//obj/item/gun/energy/laser_gun,
-	//obj/item/gun/energy/egun,
-	//obj/item/gun/energy/lawbringer,
-	//obj/item/gun/energy/lawbringer/old,
-	//obj/item/gun/energy/wavegun,
-	/obj/item/gun/kinetic/revolver,
-	/obj/item/gun/kinetic/zipgun,
 	/obj/item/clothing/mask/gas/NTSO,
-	//obj/item/gun/energy/tasersmg,
-	//obj/item/gun/energy/signifer2, //added so the NTSO mask can be clipped to the belt, maybe good to do with all gas masks?
 	/obj/item/device/prisoner_scanner,
 	/obj/item/gun/modular ) // in the future this migh be the only gun who knows)
 	in_list_or_max = 1
@@ -595,6 +584,11 @@
 		inspector
 			icon_state = "inspector_holster"
 			item_state = "inspector_holster"
+
+		holster
+			name = "hip holster"
+			icon_state = "holster"
+			item_state = "holster"
 
 
 	standard
@@ -618,7 +612,7 @@
 
 	control
 		spawn_contents = list(/obj/item/gun/modular/NT/shotty,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/stackable_ammo/scatter/slug_rubber/ten)
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/stackable_ammo/shotgun/slug_rubber/ten)
 		New()
 			..()
 
@@ -649,6 +643,7 @@
 	can_hold = list(/obj/item/ammo/bullets)
 	in_list_or_max = 0
 
+/*
 /obj/item/storage/belt/revolver
 	name = "revolver belt"
 	desc = "A stylish leather belt for holstering a revolver and it's ammo."
@@ -678,7 +673,7 @@
 	in_list_or_max = 0
 	can_hold = list(/obj/item/gun/kinetic/pistol/smart/mkII, /obj/item/ammo/bullets/bullet_9mm/smartgun)
 	spawn_contents = list(/obj/item/gun/kinetic/pistol/smart/mkII, /obj/item/ammo/bullets/bullet_9mm/smartgun = 4)
-
+*/
 
 // fancy shoulder sling for grenades
 

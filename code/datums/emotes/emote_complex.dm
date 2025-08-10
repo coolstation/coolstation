@@ -74,14 +74,31 @@
 
 	//april fools end
 
+/datum/emote/birdwell
+/datum/emote/birdwell/enact(mob/user, voluntary = 0, param)
+	playsound(user.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+	return list("<B>[user]</B> birdwells.", "<I>birdwells</I>", MESSAGE_AUDIBLE)
 
 /datum/emote/birdwell/bio //the stinky version humans have
 /datum/emote/birdwell/bio/enact(mob/user, voluntary = 0, param)
-	if ((user.client && user.client.holder))
-		playsound(user.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-		return list("<B>[user]</B> birdwells.", "<I>birdwells</I>", MESSAGE_AUDIBLE)
-	else
-		return
+	if ((user.client && user.client.holder)) //admins only
+		return ..()
+	return
+
+/datum/emote/AI_kick
+/datum/emote/AI_kick/enact(mob/living/silicon/ai/user, voluntary = 0, param)
+	if (!istype(user)) return
+	if(user.has_feet)
+		for (var/mob/living/M in view(1, null))
+			if (M == user)
+				continue
+
+			var/turf/T = get_edge_target_turf(user, get_dir(user, get_step_away(M, user)))
+			if (T && isturf(T))
+				M.throw_at(T, 100, 2)
+				M.changeStatus("weakened", 1 SECOND)
+				M.changeStatus("stunned", 2 SECONDS)
+			return list("<B>[user]</B> kicks [M]!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/uguu
 /datum/emote/uguu/enact(mob/user, voluntary = 0, param)
@@ -330,7 +347,13 @@
 	else
 		return list("<B>[user]</B> makes a very loud noise.", null, MESSAGE_AUDIBLE)
 
-
+/datum/emote/scream/silicon //turns out the above wasn't ready for borgs
+/datum/emote/scream/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
+	if (narrator_mode)
+		playsound(user.loc, 'sound/vox/scream.ogg', 50, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	else
+		playsound(user, user.sound_scream, 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	return list("<b>[user]</b> screams!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/twerk // also shakebutt, shakebooty, shakeass
 /datum/emote/twerk/enact(mob/user, voluntary = 0, param)
@@ -523,16 +546,6 @@
 	for (var/obj/item/C as anything in user.get_equipped_items())
 		if(istype(C, /obj/item/storage)) // HATE
 			continue
-
-		if ((locate(/obj/item/gun/kinetic/derringer) in C) != null)
-			var/obj/item/gun/kinetic/derringer/D = (locate(/obj/item/gun/kinetic/derringer) in C)
-			var/drophand = (user.hand == 0 ? user.slot_r_hand : user.slot_l_hand)
-			user.drop_item()
-			D.set_loc(user)
-			user.equip_if_possible(D, drophand)
-			user.visible_message("<span class='alert'><B>[user] pulls a derringer out of \the [C]!</B></span>")
-			playsound(user.loc, "rustle", 60, 1)
-			break
 
 		if ((locate(/obj/item/gun/modular) in C) != null)
 			var/obj/item/gun/modular/gunse = (locate(/obj/item/gun/modular) in C)
