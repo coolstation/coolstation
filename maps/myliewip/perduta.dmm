@@ -1109,6 +1109,11 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/floor/black,
 /area/station/bridge)
 "dG" = (
@@ -2350,14 +2355,6 @@
 "gT" = (
 /turf/wall/auto/rivet,
 /area/station/crew_quarters/clown)
-"gU" = (
-/obj/machinery/computer/announcement{
-	announces_arrivals = 1;
-	dir = 4;
-	name = "Bridge Announcement Computer"
-	},
-/turf/floor/black,
-/area/station/bridge)
 "gV" = (
 /obj/machinery/power/apc{
 	areastring = "Kitchen";
@@ -3188,6 +3185,11 @@
 /area/station/maintenance/west)
 "jD" = (
 /obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor/industrial,
 /area/station/bridge)
 "jE" = (
@@ -6001,6 +6003,11 @@
 /obj/machinery/computer/security{
 	dir = 4
 	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/bridge)
 "rv" = (
@@ -6716,6 +6723,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/floor/industrial,
 /area/station/bridge)
@@ -7778,11 +7790,12 @@
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 1
 	},
-/obj/machinery/computer/general_alert,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/computer/general_alert,
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/bridge)
 "wE" = (
@@ -8744,6 +8757,11 @@
 /obj/access_spawn/morgue,
 /turf/floor/plating/random,
 /area/station/medical/morgue)
+"zI" = (
+/obj/machinery/door/airlock/glass/command,
+/obj/access_spawn/heads,
+/turf/floor/black,
+/area/station/bridge)
 "zJ" = (
 /obj/landmark/start{
 	name = "Botanist"
@@ -9292,6 +9310,8 @@
 /area/station/hallway/primary/northeast)
 "AZ" = (
 /obj/machinery/space_heater,
+/obj/machinery/power/data_terminal,
+/obj/cable,
 /turf/floor/industrial,
 /area/station/bridge)
 "Ba" = (
@@ -10822,6 +10842,19 @@
 	},
 /turf/floor/black,
 /area/station/security/main)
+"Fq" = (
+/obj/machinery/computer/announcement{
+	announces_arrivals = 1;
+	dir = 4;
+	name = "Bridge Announcement Computer"
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/turf/floor/black,
+/area/station/bridge)
 "Fr" = (
 /obj/cable{
 	d1 = 1;
@@ -11127,11 +11160,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /turf/floor/black,
 /area/station/bridge)
@@ -11590,11 +11618,6 @@
 	},
 /turf/space/magindara,
 /area/magindara)
-"HQ" = (
-/obj/machinery/door/airlock/glass/command,
-/obj/access_spawn/heads,
-/turf/floor/riveted,
-/area/station/bridge)
 "HR" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /turf/floor/redblack{
@@ -16577,6 +16600,7 @@
 "VI" = (
 /obj/submachine/laundry_machine,
 /obj/cable,
+/obj/machinery/power/data_terminal,
 /turf/floor/riveted,
 /area/station/bridge)
 "VJ" = (
@@ -17380,6 +17404,11 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/bent/north,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/industrial,
 /area/station/bridge)
 "Yi" = (
@@ -17957,6 +17986,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/bridge)
 "ZQ" = (
@@ -54367,7 +54397,7 @@ SO
 SO
 SO
 SO
-SO
+gl
 ft
 rg
 fj
@@ -58284,7 +58314,7 @@ SO
 SO
 SO
 SO
-SO
+Uh
 HZ
 Pr
 Pr
@@ -63120,9 +63150,9 @@ NS
 NS
 NS
 NS
-HQ
-eW
 es
+eW
+zI
 es
 es
 wa
@@ -63422,9 +63452,9 @@ NS
 Ea
 hN
 NS
-qr
+Fq
 At
-gU
+qr
 ru
 es
 ND
@@ -63724,7 +63754,7 @@ bf
 dE
 Ec
 ZG
-qr
+mf
 dF
 Gu
 Wd

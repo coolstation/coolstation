@@ -197,6 +197,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
+	var/light_atten_con = -0.02
 	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
 	var/light_g = 0.3*(sin(GEHENNA_TIME )+1)
 	var/light_b = 0.4*(sin(GEHENNA_TIME - 45 )+1)
@@ -256,6 +257,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		if (!light)
 			light = new
 			light.attach(src)
+		light.atten_con = light_atten_con
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)

@@ -132,6 +132,7 @@
 	New()
 		..()
 		light = new
+		light.set_atten_con(initial(src.light_type.atten_con))
 		light.set_brightness(brightness)
 		light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
 		light.set_height(2.4)
@@ -156,7 +157,7 @@
 				if (istype(inserted_lamp, allowed_type)) //also catches null
 					insert(null, inserted_lamp) // a lil backwards going by names but shh
 				else
-					inserted_lamp = new light_type()
+					inserted_lamp = new light_type(src)
 					current_lamp = inserted_lamp
 		else
 			inserted_lamp = new light_type(src)
@@ -652,11 +653,11 @@
 	name = "low pressure sodium lamp"
 	desc = "A lamp that glows orange by arcing through sodium vapor and mercury. Waterproof, sealed fixture, and awful to look at."
 	has_glow = FALSE
+	has_bulb_overlay = TRUE
 	removable_bulb = FALSE
 	icon_state = "industrial1"
 	base_state = "industrial"
 	light_type = /obj/item/light/tube/sodium
-
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update()
@@ -783,6 +784,7 @@
 	inserted_lamp = newlamp
 	current_lamp = inserted_lamp
 	current_lamp.set_loc(null)
+	light.set_atten_con(current_lamp.atten_con)
 	light.set_color(current_lamp.color_r, current_lamp.color_g, current_lamp.color_b)
 	if(src.bulb_overlay)
 		src.bulb_overlay.color = rgb(clamp(current_lamp.color_r * 255, 150, 255), clamp(current_lamp.color_g * 255, 150, 255), clamp(current_lamp.color_b * 220, 150, 255))
@@ -1164,6 +1166,7 @@
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible
 	mats = 1
+	var/atten_con = RL_Atten_Constant
 	var/color_r = 1
 	var/color_g = 1
 	var/color_b = 1
@@ -1187,12 +1190,13 @@
 	sodium
 		name = "low pressure sodium tube"
 		desc = "An industrial light tube."
-		color_r = 2.8 // fucked up
-		color_g = 1.4 // and evil
+		color_r = 1.4 // fucked up and evil
+		color_g = 0.6
 		color_b = 0
 		icon_state = "itube-orange"
 		base_state = "itube-orange"
 		fragility = 1
+		atten_con = -0.045
 
 		New()
 			. = ..()

@@ -27,10 +27,11 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 #endif
 
 	var/datum/light/point/light = null
+	var/light_atten_con = -0.01
 	var/light_r = 0.55
 	var/light_g = 0.4
 	var/light_b = 0.6
-	var/light_brightness = 1.1
+	var/light_brightness = 0.4
 	var/light_height = 3
 	var/generateLight = 1
 
@@ -61,6 +62,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		if (!light)
 			light = new
 			light.attach(src)
+		light.atten_con = light_atten_con
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
