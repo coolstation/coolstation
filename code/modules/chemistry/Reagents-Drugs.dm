@@ -22,7 +22,7 @@ datum
 			depletion_rate = 0.6
 			energy_value = 1
 			hunger_value = -0.1
-			bladder_value = -0.1
+			kidney_multiplier = 1.4
 			thirst_value = -0.05
 			contraband = 8
 			var/static/list/halluc_attackers = list(
@@ -199,7 +199,7 @@ datum
 			addiction_min = 5
 			value = 2 // 1 1  :I
 			viscosity = 0.4
-			bladder_value = -0.03
+			kidney_multiplier = 0.9
 			hunger_value = -0.04
 			hygiene_value = -0.5
 			thirst_value = -0.04
@@ -229,7 +229,7 @@ datum
 			overdose = 20
 			value = 20 // 10 2 1 3 1 heat explosion :v
 			energy_value = 1.5
-			bladder_value = -0.1
+			kidney_multiplier = 0.9
 			hunger_value = -0.05
 			thirst_value = -0.05
 			stun_resist = 60
@@ -995,7 +995,7 @@ datum
 			depletion_rate = 0.2
 			value = 39 // 13c * 3  :v
 			energy_value = 3
-			bladder_value = -0.1
+			kidney_multiplier = 3
 			hunger_value = -0.3
 			thirst_value = -0.2
 			contraband = 18
@@ -1076,7 +1076,7 @@ datum
 			depletion_rate = 0.6
 			value = 13 // 9c + 1c + 1c + 1c + heat
 			energy_value = 1.5
-			bladder_value = -0.09
+			kidney_multiplier = 0.8
 			hunger_value = -0.09
 			thirst_value = -0.09
 			stun_resist = 50

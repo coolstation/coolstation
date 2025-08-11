@@ -94,7 +94,7 @@
 			actions += "Make balloon animal"
 		if (src.reagents.total_volume > 0)
 			actions += "Inhale"
-		if (H.urine >= 2)
+		if (H.urine >= 30)
 			actions += "Pee in it"
 		if (!actions.len)
 			user.show_text("You can't think of anything to do with [src].", "red")
@@ -166,8 +166,8 @@
 				H.visible_message("<span class='alert'><B>[H] pees in [src]!</B></span>",\
 				"<span class='alert'><b>You pee in [src]!</b></span>")
 				playsound(H.loc, 'sound/misc/pourdrink.ogg', 50, 1)
-				H.urine -= 2
-				src.reagents.add_reagent("urine", 8)
+				src.reagents.add_reagent("urine", min(H.urine, 80))
+				H.urine = 0
 				return
 
 	afterattack(obj/target, mob/user)

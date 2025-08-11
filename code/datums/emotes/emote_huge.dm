@@ -882,20 +882,20 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 		var/obj/item/storage/toilet/toilet = locate() in user.loc
 
 		if (toilet && (user.buckled != null))
-			if (user.urine >= 1)
+			if (user.urine >= 20)
 				for (var/obj/item/storage/toilet/terlet in user.loc)
 					message = pick("<B>[user]</B> unzips [his_or_her(user)] pants and pees in the toilet.", "<B>[user]</B> empties [his_or_her(user)] bladder.", "<span class='notice'>Ahhh, sweet relief.</span>")
-					user.urine = 0
 					user.cleanhands = 0
-					terlet.reagents.add_reagent("urine", 20)
+					terlet.reagents.add_reagent("urine", min(user.urine, 80))
+					user.urine = 0
 					break
 			else
 				message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't pee in the toilet!"
-		else if (user.urine < 1)
+		else if (user.urine < 20)
 			message = "<B>[user]</B> pees [himself_or_herself(user)] a little bit."
 		else
-			user.urine--
 			user.urinate()
+			user.urine = 0
 	return list(message, null, MESSAGE_VISIBLE)
 
 
