@@ -959,7 +959,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_dry = 1
 	slippery = 80
 	can_sample = 1
-	sample_amt = 20
+	sample_amt = 5
 	sample_reagent = "urine"
 	stain = "piss-soaked"
 	gross = 1
@@ -987,15 +987,15 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 				switch (thrice_drunk)
 					if (0)
-						W.reagents.add_reagent("urine", 10)
+						W.reagents.add_reagent("urine", min(sample_amt, 10))
 					if (1)
-						W.reagents.add_reagent("urine", 9)
+						W.reagents.add_reagent("urine", min(sample_amt, 9))
 						W.reagents.add_reagent("toeoffrog", 1)
 					if (2)
-						W.reagents.add_reagent("urine", 9)
+						W.reagents.add_reagent("urine", min(sample_amt, 9))
 						W.reagents.add_reagent("woolofbat", 1)
 					if (3)
-						W.reagents.add_reagent("urine", 9)
+						W.reagents.add_reagent("urine", min(sample_amt, 9))
 						W.reagents.add_reagent("tongueofdog", 1)
 					if (4)
 						W.reagents.add_reagent("triplepiss",1)

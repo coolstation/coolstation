@@ -3269,7 +3269,8 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/urine) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable( /obj/decal/cleanable/urine,T)
+						var/obj/decal/cleanable/urine/U = make_cleanable( /obj/decal/cleanable/urine,T)
+						U.sample_amt = volume
 
 		triplepiss
 			name = "triplepiss"
