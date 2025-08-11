@@ -65,12 +65,12 @@ var/global/crew_creds = null
 					continue
 
 				// Logistics?
-				if("Quartermaster","Cargo Technician","Miner","Mailcarrier")
+				if("Quartermaster","Janitor","Cargo Technician","Miner","Mailcarrier")
 					round_logistics.Add(M)
 					continue
 
 				// Civilian?
-				if("Head of Personnel","Communications Officer","Botanist","Apiculturist","Rancher","Bartender","Chef","Sous-Chef","Waiter","Clown","Mime","Chaplain","Musician","Janitor","Coach","Boxer","Barber","Staff Assistant")
+				if("Head of Personnel","Communications Officer","Botanist","Apiculturist","Rancher","Bartender","Chef","Sous-Chef","Waiter","Clown","Mime","Chaplain","Musician","Coach","Boxer","Barber","Staff Assistant")
 					round_civilian.Add(M)
 					continue
 
