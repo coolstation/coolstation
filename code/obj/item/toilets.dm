@@ -173,7 +173,7 @@ TOILET
 	else
 		if(src.needs_plunged)
 			boutput(user, SPAN_NOTICE("Oh thank fuck."))
-		else if(src.clogged + src.contents.len >= 1 && (src.clogged + src.contents.len >= 10 || prob((src.clogged + src.contents.len) * 10)))
+		else if(src.clogged + src.contents.len >= 3 && (src.clogged + src.contents.len >= 10 || prob((src.clogged + src.contents.len) * 10)))
 			src.needs_plunged = TRUE
 			boutput(user, SPAN_ALERT("The toilet clogs!"))
 			user.unlock_medal("Where's the poop knife?",1)
