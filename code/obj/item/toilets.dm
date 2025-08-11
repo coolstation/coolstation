@@ -9,6 +9,7 @@ TOILET
 	anchored = 1.0
 	density = 0.0
 	mats = 5
+	flags = OPENCONTAINER | FPRINT | TABLEPASS | NOSPLASH
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER
 	var/obj/disposalpipe/trunk/trunk = null
 	anchored = 1.0
