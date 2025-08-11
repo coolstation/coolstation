@@ -16,6 +16,8 @@ TOILET
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "toilet"
 	rand_pos = 0
+	burn_point = 15000
+	burn_output = 1000
 	var/clogged = 0 // clogs at 10 guaranteed or earlier at random, items inside effectively add 1
 	var/needs_plunged = 0
 	var/last_flush = 0
@@ -42,8 +44,6 @@ TOILET
 
 /obj/item/storage/toilet/attackby(obj/item/W as obj, mob/user as mob, obj/item/storage/T)
 	if (src.contents.len >= 7)
-		return
-	if (istype(W, /obj/item/storage))
 		return
 	if ((istype(W, /obj/item/reagent_containers/glass)) || (istype(W, /obj/item/reagent_containers/food/drinks)))
 		/*if(src.reagents && (src.reagents.total_volume >= src.reagents.maximum_volume))
