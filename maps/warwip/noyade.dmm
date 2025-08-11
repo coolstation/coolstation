@@ -419,7 +419,7 @@
 /turf/floor,
 /area/station/security/main)
 "aBa" = (
-/obj/storage/secure/closet/brig,
+/obj/machinery/port_a_brig,
 /turf/floor,
 /area/station/security/main)
 "aBq" = (
@@ -515,6 +515,7 @@
 "aHq" = (
 /obj/table/reinforced/auto,
 /obj/item/rods/steel/fullstack,
+/obj/item/storage/toolbox/mechanical,
 /turf/floor,
 /area/station/engine/storage)
 "aHU" = (
@@ -587,6 +588,13 @@
 "aKI" = (
 /turf/floor,
 /area/station/science/server_room)
+"aKN" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/item/storage/toolbox/electrical,
+/turf/floor,
+/area/station/engine/storage)
 "aLa" = (
 /obj/cable/hotpink{
 	icon_state = "2-4"
@@ -3028,6 +3036,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 1
 	},
+/obj/storage/secure/closet/brig,
 /turf/floor,
 /area/station/security/main)
 "dFu" = (
@@ -3728,6 +3737,10 @@
 	},
 /turf/floor/sanitary/blue,
 /area/station/turret_protected/ai)
+"euh" = (
+/obj/item/storage/toolbox/emergency,
+/turf/floor/shuttlebay,
+/area/station/maintenance/inner/se)
 "eui" = (
 /obj/cable/hotpink{
 	icon_state = "0-8"
@@ -4525,6 +4538,11 @@
 	dir = 4
 	},
 /area/station/science/chemistry)
+"fmG" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/purge,
+/obj/item/storage/toolbox/emergency,
+/turf/floor/plating,
+/area/station/maintenance/outer/sw)
 "fmM" = (
 /obj/forcefield/energyshield/perma,
 /obj/cable/hotpink{
@@ -5184,6 +5202,14 @@
 	},
 /turf/floor/plating,
 /area/station/engine/monitoring)
+"fZl" = (
+/obj/machinery/light/fluorescent,
+/obj/item/storage/toolbox/mechanical,
+/turf/floor/plating,
+/area/station/maintenance/outer/ne{
+	icon_state = "green";
+	name = "Northeast Terminal Room"
+	})
 "fZH" = (
 /turf/wall,
 /area/station/quartermaster/cargooffice)
@@ -5765,6 +5791,10 @@
 	dir = 1
 	},
 /area/station/medical/medbay/lobby)
+"gJJ" = (
+/obj/machinery/manufacturer/general,
+/turf/floor/shuttlebay,
+/area/shuttle/sea_elevator_room)
 "gKe" = (
 /obj/table/reinforced/auto,
 /obj/item/chem_grenade/firefighting{
@@ -5886,6 +5916,10 @@
 	},
 /turf/floor/carpet/blue/standard/edge/east,
 /area/station/security/hos/horizon)
+"gUt" = (
+/obj/item/storage/toolbox/emergency,
+/turf/floor/plating,
+/area/station/construction)
 "gUA" = (
 /obj/table/reinforced/auto,
 /obj/machinery/light/fluorescent{
@@ -6555,6 +6589,10 @@
 	icon_state = "green";
 	name = "Southwest Terminal Room"
 	})
+"hKD" = (
+/obj/machinery/manufacturer/general,
+/turf/floor/plating,
+/area/station/maintenance/outer/north)
 "hKQ" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor,
@@ -8931,6 +8969,10 @@
 /obj/access_spawn/cargo,
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice)
+"kyn" = (
+/obj/item/storage/toolbox/mechanical,
+/turf/floor/shuttlebay,
+/area/shuttle/sea_elevator_room)
 "kyI" = (
 /obj/machinery/light/small/ceiling/cool,
 /turf/floor/carpet/blue/fancy/edge{
@@ -9130,6 +9172,9 @@
 	name = "Crew Quarters A APC";
 	pixel_x = -24
 	},
+/obj/table/auto,
+/obj/item/storage/firstaid/oxygen,
+/obj/item/storage/toolbox/emergency,
 /turf/floor/grey,
 /area/station/hallway/secondary/oshan_arrivals)
 "kLf" = (
@@ -9301,6 +9346,16 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
+"kQY" = (
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/obj/item/storage/toolbox/emergency,
+/turf/floor/plating,
+/area/station/maintenance/inner/central{
+	icon_state = "green";
+	name = "Central Terminal Room"
+	})
 "kRA" = (
 /obj/stool/bed/brig,
 /obj/item/device/radio/intercom/loudspeaker/speaker/east{
@@ -10106,6 +10161,10 @@
 	icon_state = "floorgrime_gb2"
 	},
 /area/station/crew_quarters/bar)
+"lLL" = (
+/obj/machinery/manufacturer/glasswares,
+/turf/floor/plating,
+/area/station/maintenance/outer/north)
 "lMb" = (
 /obj/machinery/light/fluorescent/blueish{
 	dir = 1
@@ -14387,6 +14446,7 @@
 	pixel_x = 10;
 	pixel_y = 7
 	},
+/obj/item/storage/toolbox/emergency,
 /turf/floor,
 /area/station/science/lobby)
 "qgg" = (
@@ -16389,6 +16449,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
+/obj/item/storage/toolbox/emergency,
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
 "sCQ" = (
@@ -17750,6 +17811,11 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/ne)
+"ugu" = (
+/obj/wingrille_spawn/reinforced,
+/obj/neon_sign/toolbox,
+/turf/floor/plating,
+/area/station/engine/storage)
 "ugz" = (
 /obj/machinery/power/furnace{
 	active = 1;
@@ -17984,6 +18050,7 @@
 /obj/cable/hotpink{
 	icon_state = "2-8"
 	},
+/obj/item/storage/toolbox/emergency,
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
 "uts" = (
@@ -19780,6 +19847,11 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/autoname/west,
+/obj/table/auto,
+/obj/item/tank/emergency_oxygen,
+/obj/item/reagent_containers/pill/salbutamol{
+	pixel_x = 6
+	},
 /turf/floor/grey,
 /area/station/hallway/secondary/oshan_arrivals)
 "wrR" = (
@@ -20936,6 +21008,10 @@
 	},
 /turf/space/fluid/noexplosion/nospawn,
 /area/space)
+"xzE" = (
+/obj/item/storage/toolbox/emergency,
+/turf/floor/plating,
+/area/station/maintenance/outer/sw)
 "xAP" = (
 /obj/machinery/drainage/big,
 /turf/floor/shuttlebay,
@@ -43799,7 +43875,7 @@ sGs
 sGs
 sGs
 aeE
-aeE
+xzE
 vEi
 xen
 wvy
@@ -48310,7 +48386,7 @@ sfB
 lvV
 tWi
 uLw
-aeE
+xzE
 vEi
 mmy
 bSA
@@ -49554,7 +49630,7 @@ ryR
 pgp
 sbA
 ryR
-ryR
+fmG
 sbA
 pDa
 nDu
@@ -50738,7 +50814,7 @@ nhY
 aHq
 riL
 gjk
-gjk
+aKN
 nhY
 eoB
 jqE
@@ -51642,7 +51718,7 @@ nLT
 oyI
 nhY
 tKp
-tKp
+ugu
 olg
 cAY
 dwK
@@ -64025,7 +64101,7 @@ mZF
 mZF
 kRF
 kRF
-nYF
+gJJ
 nYF
 nYF
 nYF
@@ -64319,7 +64395,7 @@ agU
 ewv
 sjK
 geZ
-sSW
+kQY
 sSW
 uLm
 mZF
@@ -64931,7 +65007,7 @@ mZF
 mZF
 kRF
 kRF
-nYF
+kyn
 gMX
 nYF
 nYF
@@ -69443,7 +69519,7 @@ iEC
 iEC
 dTd
 frp
-iEC
+hKD
 qYZ
 qXJ
 xbH
@@ -69745,7 +69821,7 @@ oXr
 oXr
 cvl
 dSh
-iEC
+lLL
 qYZ
 qXJ
 xbH
@@ -74004,7 +74080,7 @@ xXl
 fME
 ffl
 dIq
-oiw
+euh
 oBm
 oiw
 wVK
@@ -83319,7 +83395,7 @@ cOC
 hWX
 mBB
 xZQ
-qJL
+fZl
 mIS
 gAy
 tVS
@@ -85454,7 +85530,7 @@ mZF
 mZF
 mZF
 doY
-hEG
+gUt
 iYp
 hEG
 hEG
