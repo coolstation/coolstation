@@ -895,7 +895,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			message = "<B>[user]</B> pees [himself_or_herself(user)] a little bit."
 		else
 			user.urinate()
-			user.urine = 0
 	return list(message, null, MESSAGE_VISIBLE)
 
 

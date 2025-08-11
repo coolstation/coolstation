@@ -194,6 +194,7 @@
 		src.cleanhands = 0
 		var/obj/decal/cleanable/urine/U = make_cleanable(/obj/decal/cleanable/urine, src.loc)
 		U.sample_amt = min(src.urine, 80)
+		src.urine = 0
 
 		// Flag the urine stain if the pisser is trying to make fake initropidril
 		if(src.reagents.has_reagent("tongueofdog"))
