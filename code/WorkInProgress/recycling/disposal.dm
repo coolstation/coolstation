@@ -74,33 +74,6 @@
 				var/mob/living/carbon/human/H = AM
 				H.unlock_medal("It'sa me, Mario", 1)
 
-	proc/init_sewer(var/obj/item/storage/toilet/toilet)
-		if(toilet.trunk)		//copypasted
-			src.set_loc(toilet.trunk)
-		else
-			src.set_loc(toilet)
-
-		if(!src.reagents)
-			src.reagents = new(1000)
-
-		src.reagents.add_reagent("water", 50)
-		src.reagents.add_reagent("sewage", rand(10,55))
-
-		if(toilet.poops)
-			src.reagents.add_reagent("poo",toilet.poops*25)
-			toilet.poops = 0
-		if(toilet.peeps)
-			src.reagents.add_reagent("urine",toilet.peeps*25)
-			toilet.peeps = 0
-
-		if(toilet.reagents && toilet.reagents.total_volume)
-			toilet.reagents.trans_to(src, toilet.reagents.total_volume)
-
-
-		for(var/atom/movable/AM in toilet)
-			AM.set_loc(src)
-
-
 	// start the movement process
 	// argument is the disposal unit the holder started in
 	proc/start(var/obj/machinery/disposal/D)
