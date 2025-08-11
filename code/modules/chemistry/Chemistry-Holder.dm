@@ -665,8 +665,12 @@ datum
 			if (src.combustible_volume)
 				src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays pressurized flames everywhere!</span>",blind_message = "<span class='alert'>You hear a fiery hiss!", group = "pressure_venting_\ref[src]")
 				var/fireflash_size = clamp(src.combustible_pressure * src.composite_volatility / 50, 0, 4)
-				fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_speed / (2 * fireflash_size))
-				src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 15)
+				var/turf/T = get_turf(src.my_atom)
+				fireflash_sm(T, fireflash_size, src.composite_combust_temp, src.composite_combust_speed / (2 * fireflash_size))
+				if(issimulatedturf(T))
+					src.trans_to(T,src.combustible_volume * src.combustible_pressure / 15, do_fluid_react = TRUE)
+				else
+					src.remove_any(src.combustible_volume * src.combustible_pressure / 15)
 			src.combustible_pressure = 0
 
 		proc/process_combustion(mult = 1) //Handles any chem that burns
@@ -763,7 +767,11 @@ datum
 
 				if (src.combustible_volume >= 5 && !ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
 					src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays burning chemicals!</span>", blind_message = "<span class='alert'>You hear a hissing splatter!</span>", group = "splatter_chem_fire_\ref[src]")
-					src.trans_to(src.my_atom.loc,max(src.combustible_volume * burn_volatility / 200, 5))
+					var/turf/T = get_turf(src.my_atom)
+					if(issimulatedturf(T))
+						src.trans_to(T,max(src.combustible_volume * burn_volatility / 200, 5))
+					else
+						src.remove_any(max(src.combustible_volume * burn_volatility / 200, 5))
 					if(QDELETED(src.my_atom))
 						return
 
@@ -850,10 +858,14 @@ datum
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
 							var/fireflash_size = max(round(src.combustible_pressure) / 3 - 2, 0)
-							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
+							var/turf/T = get_turf(src.my_atom)
+							fireflash_s(T, fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
-							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
+							if(issimulatedturf(T))
+								src.trans_to(T,src.combustible_volume * src.combustible_pressure / 100)
+							else
+								src.remove_any(src.combustible_volume * src.combustible_pressure / 100)
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
