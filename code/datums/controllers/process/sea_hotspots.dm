@@ -21,8 +21,8 @@
 				controller = 0
 				global.hotspot_controller.clear()
 #endif
-#ifdef MAP_OVERRIDE_PERDUTA
-/// Controls Perduta's storms and their movement.
+#ifdef MAGINDARA_MAP
+/// Controls Magindara's storms and their movement.
 /datum/controller/process/storm_cell_update
 	var/tmp/datum/storm_controller/controller
 

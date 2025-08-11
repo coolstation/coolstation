@@ -407,7 +407,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 					var/datum/reagent/reagent = src.reagents.reagent_list[reagent_id]
 					if(reagent.evaporates_cleanly)
 						src.reagents.del_reagent(reagent_id)
-				if(src.reagents.total_volume)
+				if(src.reagents.total_volume >= CHEM_EPSILON)
 					src.UpdateName()
 				else
 					qdel(src)
@@ -1288,11 +1288,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "sakura_overlay"
 
-/obj/decal/cleanable/bigchallenges
-	name = "Big Challenges"
-	desc = "They're really big challenges. They're really consequential challenges."
-	icon = 'icons/obj/decals/graffiti.dmi'
-	icon_state = "bigchallenges"
+
 
 /obj/decal/cleanable/slime // made by slugs and snails
 	name = "slime"
@@ -1932,11 +1928,6 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			T.tagged = 0
 		..()
 
-/obj/decal/cleanable/greenface
-	name = "graffiti"
-	desc = "What a funky dude. He'll never attain political power."
-	icon = 'icons/obj/decals/graffiti.dmi'
-	icon_state = "graffiti-single-1"
 
 /// Input a cardinal direction, it'll throw it somewhere within +-45 degrees of that direction. More or less.
 /obj/decal/cleanable/proc/streak_cleanable(var/list/directions, var/randcolor = 0, var/full_streak)

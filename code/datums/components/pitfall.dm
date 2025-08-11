@@ -217,7 +217,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 								continue
 							if(landed_on.density)
 								AM.throw_impact(landed_on, null)
-							if(isliving(landed_on) && landed_on != src)
+							if(isliving(landed_on) && landed_on != AM)
 								var/mob/living/L = landed_on
 								M.show_message("<span class='alert'>You use [L] to cushion your fall!</span>")
 								L.visible_message("<span class='combat'>[M] crashes down onto [L]!</span>", "<span class='combat'>[M] crashes down onto you!</span>")

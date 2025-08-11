@@ -27,10 +27,11 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 #endif
 
 	var/datum/light/point/light = null
+	var/light_atten_con = -0.01
 	var/light_r = 0.55
 	var/light_g = 0.4
 	var/light_b = 0.6
-	var/light_brightness = 1.1
+	var/light_brightness = 0.4
 	var/light_height = 3
 	var/generateLight = 1
 
@@ -38,6 +39,8 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		..()
 		if (generateLight)
 			src.make_light()
+		if (current_state > GAME_STATE_PREGAME)
+			src.initialise_component()
 		if(!magindara_global_fog)
 			update_magindaran_weather()
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
@@ -45,7 +48,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		if(skylight)
 			qdel(skylight)
 
-	/// Adds the pitfall, handled in map setup on Perduta. If you wanna spawn this turf, call this soon after!
+	/// Adds the pitfall, handled in a portion of map setup if game isnt setup yet, to prevent freezes
 	proc/initialise_component()
 		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
@@ -53,17 +56,24 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 			HangTime = 0.3 SECONDS,\
 			FallTime = 1.2 SECONDS,\
 			DepthScale = 0.4,\
-			TargetZ = 5)
+			TargetZ = 3)
 
 	make_light()
 		if (!light)
 			light = new
 			light.attach(src)
+		light.atten_con = light_atten_con
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
 		SPAWN_DBG(0.1)
 			light?.enable()
+
+	Del()
+		if(light)
+			light.disable()
+			qdel(light)
+		. = ..()
 
 /obj/overlay/magindara_fog
 	name = "thick smog"
