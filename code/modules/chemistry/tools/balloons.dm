@@ -94,7 +94,7 @@
 			actions += "Make balloon animal"
 		if (src.reagents.total_volume > 0)
 			actions += "Inhale"
-		if (H.urine >= 30)
+		if (H.urine >= 20)
 			actions += "Pee in it"
 		if (!actions.len)
 			user.show_text("You can't think of anything to do with [src].", "red")

@@ -639,7 +639,6 @@
 				SPAWN_DBG(0.5 SECONDS)
 					if (src?.reagents && M?.reagents)
 						src.reagents.trans_to(M, min(reagents.total_volume, gulp_size))
-						M.urine += 2
 
 			playsound(M.loc,"sound/items/drink.ogg", rand(10,50), 1)
 			eat_twitch(M)
@@ -1368,7 +1367,7 @@
 		var/list/choices = list()
 
 		var/bladder = H.sims?.getValue("Bladder")
-		if ((!isnull(bladder) && (bladder <= 65)) || (isnull(bladder) && (H.urine >= 30)))
+		if ((!isnull(bladder) && (bladder <= 65)) || (isnull(bladder) && (H.urine >= 20)))
 			choices += "pee in it"
 		if (src.in_glass)
 			choices += "remove [src.in_glass]"
@@ -1526,7 +1525,6 @@
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
 			glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
-			target.urine += 2
 			eat_twitch(target)
 
 		if(glass.reagents.total_volume <= 0)
