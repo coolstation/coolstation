@@ -766,6 +766,21 @@ window "joinmenu"
 		text = ""
 		image = 'icons\\ui\\declare-ready-antag.png'
 		command = ".ready_antag"
+	elem "button_ready_sec"
+		type = BUTTON
+		pos = 18,136
+		size = 200x40
+		anchor1 = none
+		anchor2 = none
+		font-family = "Verdana"
+		font-size = 10
+		font-style = "bold"
+		saved-params = "is-checked"
+		is-visible = false
+		is-disabled = true
+		text = ""
+		image = 'icons\\ui\\declare-ready-sec.png'
+		command = ".declare_ready_as_sec"
 	elem "button_cancel"
 		type = BUTTON
 		pos = 18,80

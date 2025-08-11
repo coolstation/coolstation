@@ -70,6 +70,7 @@
 /// Has a click delay for attack_self()
 #define ATTACK_SELF_DELAY		 (1<<7)
 
+
 //tool flags
 #define TOOL_CLAMPING (1<<0)
 #define TOOL_CUTTING (1<<1)

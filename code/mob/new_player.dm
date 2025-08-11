@@ -139,13 +139,20 @@ mob/new_player
 			winset(src, "joinmenu.button_cancel", "is-disabled=true;is-visible=false")
 		if(client)
 			winshow(src, "joinmenu", 1)
-		if(client?.antag_tokens > 0 && (!ticker || current_state <= GAME_STATE_PREGAME))
+		if(client?.antag_tokens > 0 && (!ticker || current_state <= GAME_STATE_PREGAME) && master_mode != "grigori_v_drac")
 			winset(src, "joinmenu.button_ready_antag", "is-disabled=false;is-visible=true")
+			winset(src, "joinmenu.button_ready_sec", "is-disabled=true;is-visible=false")
 			winset(src, "joinmenu", "size=240x256")
 			winset(src, "joinmenu.observe", "pos=18,192")
+		else if(client && master_mode == "grigori_v_drac")
+			winset(src, "joinmenu", "size=240x200")
+			winset(src, "joinmenu.observe", "pos=18,136")
+			winset(src, "joinmenu.button_ready_sec", "is-disabled=false;is-visible=true")
+			winset(src, "joinmenu.button_ready_antag", "is-disabled=true;is-visible=false")
 		else if(client) // this shouldn't be necessary but it is
 			winset(src, "joinmenu", "size=240x200")
 			winset(src, "joinmenu.observe", "pos=18,136")
+			winset(src, "joinmenu.button_ready_sec", "is-disabled=true;is-visible=false")
 			winset(src, "joinmenu.button_ready_antag", "is-disabled=true;is-visible=false")
 		if(src.ready)
 			if (client) winset(src, "joinmenu.button_charsetup", "is-disabled=true")
@@ -717,6 +724,11 @@ a.latejoin-card:hover {
 			makebad(new_character, bad_type)
 			new_character.mind.late_special_role = 1
 			logTheThing("debug", new_character, null, "<b>Late join</b>: assigned antagonist role: [bad_type].")
+		else if (ticker?.mode && istype(ticker.mode, /datum/game_mode/grigori_v_drac) && allow_late_antagonist && current_state == GAME_STATE_PLAYING) //why not just do a dirty elif
+			var/bad_type = pick(ticker.mode.latejoin_antag_roles)
+			makebad(new_character, bad_type)
+			new_character.mind.late_special_role = 1
+			logTheThing("debug", new_character, null, "<b>Late join</b>: assigned antagonist role: [bad_type].")
 		else
 			if (ishuman(new_character) && allow_late_antagonist && current_state == GAME_STATE_PLAYING && ticker.round_elapsed_ticks >= 6000 && emergency_shuttle.timeleft() >= 300 && !C.hellbanned) // no new evils for the first 10 minutes or last 5 before shuttle
 				if (late_traitors && ticker.mode && ticker.mode.latejoin_antag_compatible == 1)
@@ -815,7 +827,17 @@ a.latejoin-card:hover {
 				traitormob.make_wraith()
 				generate_wraith_objectives(traitor)
 
+			if (ROLE_GRIGORI)
+				traitor.special_role = ROLE_GRIGORI
+				objective_set_path = pick(typesof(/datum/objective_set/grigori))
+				traitor.current.make_grigori()
+				boutput(traitor.current, "<B>You are a Grigori! Bring the hearts of Dracs to the chaple to create traps with your abilities.</B>")
 
+			if (ROLE_LESSERVAMP)
+				traitor.special_role = ROLE_LESSERVAMP
+				objective_set_path = pick(typesof(/datum/objective_set/drac))
+				traitor.current.make_vampire(lesser = TRUE)
+				boutput(traitor.current, "<B>You are a Drac! Drink the blood of Grigoris to unlock more abilities.</B>")
 
 			else // Fallback if role is unrecognized.
 				traitor.special_role = ROLE_TRAITOR
@@ -862,6 +884,20 @@ a.latejoin-card:hover {
 		else
 			src.show_text("You don't even have any tokens. How did you get here?", "red")
 
+		src.declare_ready()
+
+	verb/declare_ready_as_sec() //used for special round types where sec is selected before antags
+		set hidden = 1
+		set name = ".declare_ready_as_sec"
+
+		if(src.client.has_login_notice_pending(TRUE))
+			return
+
+		if(!(!ticker || current_state <= GAME_STATE_PREGAME))
+			src.show_text("The round has already started. To join security now, you must join via the latejoin menu.","red")
+		else
+			src.client.using_cop_token = 1
+			src.show_text("Cop mode activated, oink oink.", "red")
 		src.declare_ready()
 
 	verb/declare_ready()

@@ -42,6 +42,9 @@
 	/// If atmos should be blocked by this - special behaviours handled in gas_cross() overrides
 	var/gas_impermeable = FALSE
 
+	var/isTrapped = 0
+	var/datum/grigori_trap/linked_trap = null //the only reason this is at such a high level is for name purposes, which I WILL move down once i get it working(if I don't, remind me - klushy)
+
 /* -------------------- name stuff -------------------- */
 	/*
 	to change names: either add or remove something with the appropriate proc(s) and then call atom.UpdateName()
@@ -54,6 +57,7 @@
 		if num is a number it'll remove that many things from the total amount of pre/suffixes, starting from the earliest one
 		if num is text, it'll remove that specific text from the list, once
 	*/
+
 
 
 	var/list/name_prefixes = null// = list()
@@ -667,6 +671,13 @@
 				. += "<br>[src.desc] <span class='alert'>It seems to be covered in an odd azure liquid!</span>"
 			else
 				. += "<br>[src.desc] <span class='alert'>It seems to be covered in blood!</span>"
+
+	if (src.isTrapped) //for disarming grigori traps, but can be used for other trap systems if they are made
+		. = list("<span class='alert'>This is a trapped [src.name].</span>")
+		if(src.desc)
+			if (src.desc && src.linked_trap)
+				. += "<br>[src.desc] <span class='alert'> It's a trap! [linked_trap.disarm_hint]</span>"
+
 	else if (src.desc)
 		. += "<br>[src.desc]"
 

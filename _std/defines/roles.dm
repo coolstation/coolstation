@@ -10,6 +10,8 @@
 #define ROLE_WRAITH "wraith"
 #define ROLE_HEAD_REV "head_rev"
 #define ROLE_CONSPIRATOR "conspirator"
+#define ROLE_GRIGORI "grigori"
+#define ROLE_LESSERVAMP "lesser_vamp"
 
 
 // special antagonist roles

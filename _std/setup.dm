@@ -174,6 +174,8 @@ var/ZLOG_START_TIME
 	#define OVERRIDDEN_MODE "blob"
 #elif defined(MODE_OVERRIDE_GANG)
 	#define OVERRIDDEN_MODE "gang"
+#elif defined(MODE_OVERRIDE_GRIGORI_V_DRAC)
+	#define OVERRIDDEN_MODE "grigori_v_drac"
 #elif defined(MODE_OVERRIDE_CONSPIRACY)
 	#define OVERRIDDEN_MODE "conspiracy"
 #elif defined(MODE_OVERRIDE_DISASTER)

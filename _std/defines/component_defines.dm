@@ -95,6 +95,8 @@
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
 /// when an AM is revealed from under a floor tile (turf revealed from)
 #define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
+// when a mob buckles in our out of a chair type
+#define COMSIG_MOVABLE_CHAIR_BUCKLE "mov_chair_buckle"
 // ---- item signals ----
 
 /// When an item is equipped (user, slot)
@@ -198,6 +200,8 @@
 // ---- mob property signals ----
 /// When invisibility of a mob gets updated (old_value)
 #define COMSIG_MOB_PROP_INVISIBILITY "mob_prop_invis"
+//when a mob bumps into a door
+#define COMSIG_MOB_DOORBUMP "mob_doorbump"
 
 // ---- attack_X signals ----
 
