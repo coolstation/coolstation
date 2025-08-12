@@ -132,7 +132,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		return 1
 
 	/// a proc that makes a movable atom 'AM' animate a fall with 'brutedamage' brute damage then actually fall
-	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50, iterations = 1)
+	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50, iterations = 0)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
 			return
 		#ifdef CHECK_PITFALL_INITIALIZATION
@@ -171,12 +171,12 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						T = pit.get_turf_to_fall(AM)
 					else
 						T = src.get_turf_to_fall(AM)
-					src.actually_fall(T, AM, brutedamage, old_density, )
+					src.actually_fall(T, AM, brutedamage, old_density, iterations + 1)
 		else
 			if(ismob(AM))
 				var/mob/M = AM
 				M.lastgasp()
-			src.actually_fall(src.get_turf_to_fall(AM), AM, brutedamage)
+			src.actually_fall(src.get_turf_to_fall(AM), AM, brutedamage, iterations + 1)
 
 	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50, reset_density = 0, iterations = 1)
 		if (isturf(T))
@@ -260,7 +260,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				AM.throwing = 0
 				animate(AM)
 				if(keep_falling)
-					next_pit.fall_to(AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
+					next_pit.fall_to(AM,next_pit.BruteDamageMax + brutedamage, iterations) // lets just be evil
 				else
 					AM.event_handler_flags &= ~IS_PITFALLING
 					if(reset_density)
