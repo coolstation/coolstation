@@ -887,12 +887,13 @@ var/list/special_pa_observing_verbs = list(
 	logTheThing("diary", src.owner, null, "has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]", "admin")
 	message_admins("[key_name(src.owner)] has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]")
 
-	if (src.owner:stealth)
-		var/ircmsg[] = new()
-		ircmsg["key"] = src.owner:key
-		ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
-		ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
-		ircbot.export("admin", ircmsg)
+	// SHUT UP ABOUT THE STEALTH MODE
+	// if (src.owner:stealth)
+	// 	var/ircmsg[] = new()
+	// 	ircmsg["key"] = src.owner:key
+	// 	ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
+	// 	ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
+	// 	ircbot.export("admin", ircmsg)
 
 /client/proc/alt_key()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
