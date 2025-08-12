@@ -542,7 +542,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 				boutput(world, "<span class='bold notice'>A new round will begin soon.</span>")
 
-				var/datum/hud/roundend/roundend_countdown = new()
+				var/datum/hud/roundend/roundend_countdown = get_singleton(/datum/hud/roundend)
 
 				for (var/client/C in clients)
 					roundend_countdown.add_client(C)
