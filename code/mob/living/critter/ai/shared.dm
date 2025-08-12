@@ -225,7 +225,7 @@
 // LA VIOLENCIA
 
 /datum/aiHolder/violent
-	move_shuffle_at_target = 20
+	move_shuffle_at_target = 8
 
 /datum/aiHolder/violent/New()
 	..()
