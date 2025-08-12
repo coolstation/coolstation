@@ -692,8 +692,6 @@
 				HS.changeling.owner = HS
 				HS.changeling.reassign_hivemind_target_mob()
 
-				HS.ai.tick() //A little kickstart to get you out into the big world (and some chump), li'l guy! O7
-
 				return
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			NORMAL BUSINESS

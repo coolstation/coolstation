@@ -168,13 +168,14 @@ var/list/ai_move_scheduled = list()
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				tried_move = src.owner.process_move()
 		if(tried_move)
+			src.current_task.on_move()
 			if(shuffling)
 				src.next_move_shuffle = world.time + rand(6,14) DECI SECONDS
 			if(src.owner?.loc == old_loc)
 				src.move_frustration++
 			else
 				src.move_frustration = 0
-				if (src.frustration_turn && prob(30))
+				if (src.frustration_turn && prob(20))
 					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)
@@ -195,6 +196,8 @@ var/list/ai_move_scheduled = list()
 		..()
 
 	proc/on_tick()
+
+	proc/on_move()
 
 	proc/next_task()
 		return null
