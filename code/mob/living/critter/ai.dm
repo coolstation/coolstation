@@ -134,7 +134,7 @@ var/list/ai_move_scheduled = list()
 		var/tried_move = null
 		var/current_dist = GET_DIST(src.owner,get_turf(src.move_target))
 		var/shuffling = FALSE
-		if(src.move_shuffle_at_target && current_dist == src.move_dist && src.next_move_shuffle <= world.time && prob(src.move_shuffle_at_target))
+		if(src.move_shuffle_at_target && current_dist <= src.move_dist && src.next_move_shuffle <= world.time && prob(src.move_shuffle_at_target))
 			turn += pick(90,45,-45,-90)
 			shuffling = TRUE
 		switch(src.move_frustration)
