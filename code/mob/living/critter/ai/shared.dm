@@ -267,6 +267,7 @@
 	if(src.holder.target)
 		var/mob/living/M = src.holder.target
 		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z)
+			src.queued_target = null
 			src.holder.target = null
 			return ..()
 
