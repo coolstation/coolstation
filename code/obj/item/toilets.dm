@@ -173,6 +173,7 @@ TOILET
 	else
 		if(src.needs_plunged)
 			boutput(user, SPAN_NOTICE("Oh thank fuck."))
+			src.needs_plunged = FALSE
 		else if(src.clogged + src.contents.len >= 3 && (src.clogged + src.contents.len >= 10 || prob((src.clogged + src.contents.len) * 10)))
 			src.needs_plunged = TRUE
 			boutput(user, SPAN_ALERT("The toilet clogs!"))
