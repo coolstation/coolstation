@@ -677,6 +677,8 @@
 				M.transfer_to(HS)
 				HS.owner = M //In case we ghosted ourselves then the body won't hold the mind. Bad times.
 				HS.changeling = C
+				HS.ai = new /datum/aiHolder/violent(HS)
+				HS.is_npc = TRUE
 				remove_ability_holder(/datum/abilityHolder/changeling/)
 
 				if(src.client)
@@ -690,7 +692,7 @@
 				HS.changeling.owner = HS
 				HS.changeling.reassign_hivemind_target_mob()
 
-				//HS.process() //A little kickstart to get you out into the big world (and some chump), li'l guy! O7
+				HS.ai.tick() //A little kickstart to get you out into the big world (and some chump), li'l guy! O7
 
 				return
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
