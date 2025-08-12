@@ -1539,6 +1539,7 @@ obj/decoration/ceilingfan
 	anchored = 1
 	density = 0
 	mouse_opacity = 0
+	bound_height = 64
 	plane = PLANE_NOSHADOW_BELOW
 	layer = TURF_LAYER - 0.1
 	//Grabs turf color set in gehenna.dm for sand

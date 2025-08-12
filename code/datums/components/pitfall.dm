@@ -132,7 +132,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		return 1
 
 	/// a proc that makes a movable atom 'AM' animate a fall with 'brutedamage' brute damage then actually fall
-	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50)
+	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50, iterations = 1)
 		if(istype(AM, /obj/overlay) || AM.anchored == 2)
 			return
 		#ifdef CHECK_PITFALL_INITIALIZATION
@@ -160,7 +160,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
 			animate_fall(AM,fall_time,src.DepthScale)
 			var/old_density = AM.density // dont block other fools from falling in
-			AM.density = 0
+			AM.set_density(0)
 			SPAWN_DBG(fall_time)
 				if (!QDELETED(AM))
 					if(M)
@@ -171,29 +171,33 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 						T = pit.get_turf_to_fall(AM)
 					else
 						T = src.get_turf_to_fall(AM)
-					src.actually_fall(T, AM, brutedamage, old_density)
+					src.actually_fall(T, AM, brutedamage, old_density, )
 		else
 			if(ismob(AM))
 				var/mob/M = AM
 				M.lastgasp()
 			src.actually_fall(src.get_turf_to_fall(AM), AM, brutedamage)
 
-	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50, reset_density = 0)
+	proc/actually_fall(var/turf/T, var/atom/movable/AM, var/brutedamage = 50, reset_density = 0, iterations = 1)
 		if (isturf(T))
 			var/datum/component/pitfall/next_pit = T.GetComponent(/datum/component/pitfall)
 			var/keep_falling = TRUE
 			if(!next_pit || AM.anchored > next_pit.AnchoredAllowed || (locate(/obj/lattice) in next_pit.typecasted_parent()) || (locate(/obj/grille/catwalk) in next_pit.typecasted_parent()))
 				keep_falling = FALSE
-			else if(next_pit == src && (src.FallTime < 0.3 SECONDS)) // a limit on infinite falls, for server's sake
+			else if(iterations > 69) // a limit on infinite falls, for server's sake. fall down 70 or more pits in a row and you get lost
 				keep_falling = FALSE
+				if(ismob(AM))
+					var/mob/M = AM
+					M.remove()
+					return
+				qdel(AM)
+				return
 			AM.set_loc(T)
 			AM.pixel_y = AM.pixel_y + 320
 			animate(AM, pixel_y = AM.pixel_y - 320, time = 0.3 SECONDS)
 			SPAWN_DBG(0.3 SECONDS)
 				if(QDELETED(AM) || !T)
 					return
-				if(reset_density)
-					AM.density = reset_density
 				if (ismob(AM))
 					var/mob/M = AM
 					var/safe = FALSE
@@ -259,6 +263,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					next_pit.fall_to(AM,next_pit.BruteDamageMax + brutedamage) // lets just be evil
 				else
 					AM.event_handler_flags &= ~IS_PITFALLING
+					if(reset_density)
+						AM.set_density(reset_density)
 				return
 		else
 			AM.event_handler_flags &= ~IS_PITFALLING

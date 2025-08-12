@@ -682,3 +682,11 @@ obj/decal/fakeobjects
 	volume = 0
 	alpha = 128
 
+/obj/decal/myliemural
+	name = "floor mural"
+	desc = "Someone, presumably the owner of this office, has painted a massive wine glass across the floor."
+	icon = 'icons/obj/large/128x160.dmi'
+	icon_state = "myliemural"
+	bound_height = 160
+	bound_width = 128
+	plane = PLANE_NOSHADOW_BELOW

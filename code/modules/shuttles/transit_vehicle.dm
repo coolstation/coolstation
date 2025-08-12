@@ -164,11 +164,13 @@ var/global/datum/transit_controller/transit_controls
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 	var/datum/light/point/emergency_light
+	var/autoset_direction = TRUE
 
 	New()
 		START_TRACKING
 		..()
-		src.calculate_direction()
+		if(src.autoset_direction)
+			src.calculate_direction()
 		src.toggle_lights()
 		src.initialise_component()
 
