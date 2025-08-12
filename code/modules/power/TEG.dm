@@ -79,6 +79,7 @@
 	var/repair_desc = ""
 	var/variant_b_active = FALSE
 	var/warning_active = FALSE
+	layer = 3
 
 	anchored = 1.0
 	density = 1
@@ -565,6 +566,7 @@ datum/pump_ui/circulator_ui
 	icon_state = "teg"
 	anchored = 1
 	density = 1
+
 	//var/lightsbusted = 0
 
 	var/obj/machinery/atmospherics/binary/circulatorTemp/circ1
