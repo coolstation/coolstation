@@ -345,15 +345,10 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 		src.reagents.add_reagent(reagent_id, amt)
 
 	proc/update_color()
-		if(src.reagents?.total_volume > 0.01)
+		if(src.reagents?.total_volume >= CHEM_EPSILON)
 			var/datum/color/average = src.reagents.get_average_color()
 			src.color = rgb(average.r, average.g, average.b)
 			src.alpha = average.a
-		else
-			var/datum/reagent/reagent = reagents_cache[src.sample_reagent]
-			if(reagent)
-				src.color = rgb(reagent.fluid_r, reagent.fluid_g, reagent.fluid_b)
-				src.alpha = reagent.transparency
 
 	HasEntered(var/mob/living/L as mob)
 		..()
@@ -565,7 +560,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 /obj/decal/cleanable/tracked_reagents/blood
 	sample_reagent = "blood"
-
+	#ifdef IN_MAP_EDITOR
+	color = DEFAULT_BLOOD_COLOR
+	#endif
 	New()
 		src.create_reagents(reagents_max)
 		src.reagents.add_reagent("blood", 10)
@@ -2130,7 +2127,9 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	desc = "Ewww, doesn't this violate health code?"
 	sample_reagent = "poo"
 	can_sample = 1
+	#ifdef IN_MAP_EDITOR
 	color = DEFAULT_MUD_COLOR
+	#endif
 	icon = 'icons/obj/decals/not_poo.dmi'
 	icon_state = "floor1"
 	var/datum/ailment/disease/virus = null
