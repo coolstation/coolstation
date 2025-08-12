@@ -254,8 +254,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							M.visible_message("<span class='alert'>[M] [keep_falling ? "tumbles through" : "slams down into"] [T]!</span>", "<span class='alert'>You [keep_falling ? "tumble through" : "slam down into"] [T]!</span>")
 				else
 					for(var/mob/living/L in T)
-						L.visible_message("<span class='alert'>[AM] crashes down onto [L]!</span>", "<span class='alert'>[AM] crashes down onto you!</span>")
-						AM.throw_impact(L, null)
+						if(!(L.event_handler_flags & IS_PITFALLING))
+							L.visible_message("<span class='alert'>[AM] crashes down onto [L]!</span>", "<span class='alert'>[AM] crashes down onto you!</span>")
+							AM.throw_impact(L, null)
 				T.hitby(AM, null)
 				AM.throwing = 0
 				animate(AM)
