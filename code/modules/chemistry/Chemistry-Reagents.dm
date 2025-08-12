@@ -61,6 +61,9 @@ datum
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
 
+		//	Used to influence the weight of each reagent, by default 1
+		var/color_multiplier = 1
+
 		New()
 			..()
 			if (src.viscosity == 0 && src.reagent_state == SOLID)
