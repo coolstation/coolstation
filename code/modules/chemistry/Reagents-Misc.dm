@@ -4004,6 +4004,18 @@ datum
 			fluid_b = 40
 			fluid_g = 9
 
+		reagent_dye
+			name = "Coloring agent"
+			description = "An inert dye used to color reagent mixes."
+			color_multiplier = 15
+
+		reagent_dye/red
+			id = "rdye_red"
+			fluid_r = 200
+			fluid_b = 0
+			fluid_g = 0
+			transparency = 255
+
 		//=-=-=-=-=-=-=-=-=
 		//|| C E M E N T ||
 		//=-=-=-=-=-=-=-=-=
