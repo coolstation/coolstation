@@ -16,6 +16,7 @@ var/list/ai_move_scheduled = list()
 	var/frustration_turn = 0
 
 	var/move_shuffle_at_target = 0 // chance to shuffle when at the right distance
+	var/next_move_shuffle = 0
 
 	var/enabled = 1
 	///A client is controlling the mob so the AI should be inactive
@@ -133,7 +134,7 @@ var/list/ai_move_scheduled = list()
 		var/tried_move = null
 		var/current_dist = GET_DIST(src.owner,get_turf(src.move_target))
 		var/shuffling = FALSE
-		if(src.move_shuffle_at_target && current_dist == src.move_dist && prob(src.move_shuffle_at_target))
+		if(src.move_shuffle_at_target && current_dist == src.move_dist && src.next_move_shuffle <= world.time && prob(src.move_shuffle_at_target))
 			turn += pick(90,45,-45,-90)
 			shuffling = TRUE
 		switch(src.move_frustration)
@@ -167,6 +168,8 @@ var/list/ai_move_scheduled = list()
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				tried_move = src.owner.process_move()
 		if(tried_move)
+			if(shuffling)
+				src.next_move_shuffle = world.time + rand(6,14) DECI SECONDS
 			if(src.owner?.loc == old_loc)
 				src.move_frustration++
 			else
