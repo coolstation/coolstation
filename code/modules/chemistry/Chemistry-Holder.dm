@@ -1289,28 +1289,87 @@ datum
 
 			return .
 
+		//	Returns the concentration multiplier
+		//	Wrapped function to make it easier change how the mult is calculated
+		proc/get_concentration_multiplier(datum/reagent/curr)
+			var/mult = 1
+			if (curr.volume <= curr.color_multiplier_threshold_min)
+				//	the color reduction when there's little reagent
+				mult = 0
+			else if (curr.volume >= curr.color_multiplier_threshold_max)
+				//	the color reduction when there's a lot of reagent
+				mult = 1
+			else
+				//	middle ground
+				var/m = 1 / (curr.color_multiplier_threshold_max - curr.color_multiplier_threshold_min)
+				var/q = curr.color_multiplier_threshold_max / m
+				mult = q-m*curr.volume
+
+			return mult * curr.color_multiplier_concentration
 
 		// returns the average color of the reagents
 		// taking into account concentration and transparency
-
 		proc/get_average_color()
 			RETURN_TYPE(/datum/color)
-			var/datum/color/average = new(0,0,0,0)
+
 			var/total_weight = 0
+			var/total_volume = 0
+
+			var/has_reduction = 0
+			var/datum/color/base = new(0,0,0,0)
+			var/datum/color/sub = new(0,0,0,0)
 
 			for(var/id in reagent_list)
-
 				var/datum/reagent/current_reagent = reagent_list[id]
 
-				// weigh contribution of each reagent to the average color by amount present and it's transparency
-
-				var/weight = current_reagent.color_multiplier * current_reagent.volume * current_reagent.transparency / 255.0
+				//	weight contribution of each reagent to the average color by amount present and it's transparency
+				var/weight = current_reagent.color_multiplier_weight * current_reagent.volume * current_reagent.transparency / 255.0
 				total_weight += weight
 
-				average.r += weight * current_reagent.fluid_r
-				average.g += weight * current_reagent.fluid_g
-				average.b += weight * current_reagent.fluid_b
-				average.a += weight * current_reagent.transparency
+				//	add reductions to the weight here
+
+				//	adds the reaget's color to the base colod
+				base.r += weight * current_reagent.fluid_r
+				base.g += weight * current_reagent.fluid_g
+				base.b += weight * current_reagent.fluid_b
+				base.a += weight * current_reagent.transparency
+
+				//	reduction multiplier
+				if (current_reagent.color_multiplier_concentration != 0)
+					has_reduction = 1
+
+					//
+					var/concentration_multiplier = get_concentration_multiplier(current_reagent)
+					if (concentration_multiplier != 0)
+						//	computes reduction weight here
+						var/wc = weight * concentration_multiplier * (current_reagent.volume**4)
+
+						sub.r += wc * current_reagent.fluid_r
+						sub.g += wc * current_reagent.fluid_g
+						sub.b += wc * current_reagent.fluid_b
+//						sub.a += weight * current_reagent.transparency
+
+				total_volume += current_reagent.volume
+
+			//
+			var/datum/color/average
+			if (has_reduction != 0 && total_volume != 0)
+				//	compute the divider here
+				var/v = total_volume**4
+
+				sub.r /= v
+				sub.g /= v
+				sub.b /= v
+				sub.a /= v
+
+				average = new/datum/color(0,0,0,0)
+
+				average.r = base.r - sub.r
+				average.g = base.g - sub.g
+				average.b = base.b - sub.b
+				average.a = base.a - sub.a
+			else
+				average = base;
 
 			// now divide by total weight to get average color
 			if(total_weight > 0)

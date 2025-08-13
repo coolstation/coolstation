@@ -61,8 +61,10 @@ datum
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
 
-		//	Used to influence the weight of each reagent, by default 1
-		var/color_multiplier = 1
+		var/color_multiplier_weight = 1
+		var/color_multiplier_concentration = 0
+		var/color_multiplier_threshold_min = 0
+		var/color_multiplier_threshold_max = 0
 
 		New()
 			..()
