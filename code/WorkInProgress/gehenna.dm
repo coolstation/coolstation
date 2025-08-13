@@ -260,11 +260,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		if (!light)
 			light = new
 			light.attach(src)
-		light.atten_con = light_atten_con
+		light.set_atten_con(light_atten_con)
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		SPAWN_DBG(0.1)
+		SPAWN_DBG(1 DECI SECOND)
 			light?.enable()
 
 	tunnel_surface

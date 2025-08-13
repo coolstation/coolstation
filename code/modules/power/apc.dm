@@ -4,7 +4,7 @@
 #define APC_WIRE_AI_CONTROL 4
 
 var/zapLimiter = 0
-#define APC_ZAP_LIMIT_PER_5 2
+#define APC_ZAP_LIMIT_PER_5 4
 
 // the Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 // one per area, needs wire conection to power network
@@ -214,7 +214,9 @@ var/zapLimiter = 0
 						netexcess = max(netexcess, S.terminal.powernet.netexcess)
 	return netexcess
 
-/obj/machinery/power/apc/proc/zapStuff() // COGWERKS NOTE: disabling calls to this proc for now, it is ruining the live servers
+ // COGWERKS NOTE: disabling calls to this proc for now, it is ruining the live servers
+ // MYLIE NOTE: this proc is really funny, time to zap people again
+/obj/machinery/power/apc/proc/zapStuff(var/zap_amt)
 	var/atom/target = null
 	var/atom/last = src
 
@@ -223,11 +225,16 @@ var/zapLimiter = 0
 		if(M.invisibility) continue
 		starts.Add(M)
 
-	if(!starts.len) return 0
+	if(!starts.len)
+		var/turf/T = locate(src.x + rand(-5,5), src.y + rand(-5,5), src.z)
+		if(!T)
+			return 0
+		arcFlashTurf(last, T, zap_amt)
+		return 1
 
 	target = pick(starts)
 
-	arcFlash(last, target, 500000)
+	arcFlash(last, target, zap_amt)
 
 	return 1
 
@@ -1218,12 +1225,14 @@ var/zapLimiter = 0
 	if(terminal?.powernet)
 		perapc = terminal.powernet.perapc
 
-	if(zapLimiter < APC_ZAP_LIMIT_PER_5 && prob(6) && !shorted && avail() > 3000000)
-		SPAWN_DBG(0)
-			if(zapStuff())
-				zapLimiter += 1
-				sleep(5 SECONDS)
-				zapLimiter -= 1
+		if(zapLimiter < APC_ZAP_LIMIT_PER_5 && !shorted && perapc >= 20 KILO WATTS && (perapc >= 10 GIGA WATTS || prob(log(perapc, 10) * 10)))
+			var/zap_amt = rand(perapc * 0.7, perapc)
+			SPAWN_DBG(0)
+				if(zapStuff(zap_amt))
+					terminal.powernet.newload += zap_amt
+					zapLimiter += 1
+					sleep(5 SECONDS)
+					zapLimiter -= 1
 
 	if(cell && !shorted)
 

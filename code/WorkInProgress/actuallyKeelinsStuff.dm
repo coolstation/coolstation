@@ -2520,6 +2520,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_SELFILLUM
 
 /obj/elec_trg_dummy
 	name = ""
