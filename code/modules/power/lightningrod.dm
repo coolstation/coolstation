@@ -15,9 +15,7 @@
 	name = "lightning rod"
 	desc = "A spire of steel supporting cables and coils designed to catch lightning."
 	icon = 'icons/obj/large/32x96.dmi'
-	icon_state = "lightning_rod"
-	layer = EFFECTS_LAYER_UNDER_1
-	plane = PLANE_NOSHADOW_ABOVE
+	icon_state = "lightning_rod_base"
 	anchored = UNANCHORED
 	density = 1
 	_health = 100
@@ -30,6 +28,9 @@
 /obj/lightning_rod/New()
 	START_TRACKING
 	..()
+	var/image/spike = image('icons/obj/large/32x96.dmi', src, "lightning_rod_spike")
+	spike.plane = PLANE_NOSHADOW_ABOVE
+	src.UpdateOverlays(spike, "spike")
 	SPAWN_DBG(0.6 SECONDS)
 		if(!src.attached && (src.state != UNWRENCHED))
 			src.attach()
