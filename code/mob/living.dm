@@ -1799,17 +1799,17 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/proc/was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
 	SHOULD_CALL_PARENT(TRUE)
+	if(src.ai)
+		src.ai.was_harmed(weapon,M)
 	.= 0
 
 //left this here to standardize into living later
 /mob/living/critter/was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
-	if (src.ai)
-		src.ai.was_harmed(weapon,M)
-		if(src.is_hibernating)
-			if (src.registered_area)
-				src.registered_area.wake_critters()
-			else
-				src.wake_from_hibernation()
+	if (src.ai && src.is_hibernating)
+		if (src.registered_area)
+			src.registered_area.wake_critters()
+		else
+			src.wake_from_hibernation()
 	..()
 
 /mob/living/bullet_act(var/obj/projectile/P)
@@ -2261,10 +2261,12 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			// Added log_reagents() call for drinking glasses. Also the location (Convair880).
 			logTheThing("combat", src, null, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] at [log_loc(src)].")
-		if (istype_exact(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction
+		var/turf/T = get_turf(src)
+		if (T.throw_unlimited || src.no_gravity) //they're in space, move em one space in the opposite direction
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
-		if ((istype_exact(I.loc, /turf/space) || I.no_gravity)  && ismob(I))
+		T = get_turf(I)
+		if ((T.throw_unlimited || I.no_gravity) && ismob(I))
 			var/mob/M = I
 			M.inertia_dir = get_dir(src,target)
 

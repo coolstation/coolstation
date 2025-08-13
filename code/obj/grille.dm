@@ -396,7 +396,9 @@
 	blob_act(var/power)
 		src.damage_blunt(3 * power / 20)
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 4
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				src.damage_blunt(40)

@@ -185,7 +185,7 @@
 		if(istype(pee_target) && pee_target.reagents && pee_target.reagents.total_volume < pee_target.reagents.maximum_volume && pee_target.is_open_container())
 			src.visible_message("<span class='alert'><B>[src] pees in [pee_target]!</B></span>")
 			playsound(src, "sound/misc/pourdrink.ogg", 50, 1)
-			pee_target.reagents.add_reagent("urine", 4)
+			pee_target.reagents.add_reagent("urine", min(src.urine, 80))
 			src.cleanhands = 0 //probably made a mess, gross, wash em
 			return
 
@@ -193,6 +193,8 @@
 		src.visible_message(pick("<B>[src]</B> unzips their pants and pees on the floor.", "<B>[src]</B> pisses all over the floor!", "<B>[src]</B> makes a big piss puddle on the floor."))
 		src.cleanhands = 0
 		var/obj/decal/cleanable/urine/U = make_cleanable(/obj/decal/cleanable/urine, src.loc)
+		U.sample_amt = min(src.urine, 80)
+		src.urine = 0
 
 		// Flag the urine stain if the pisser is trying to make fake initropidril
 		if(src.reagents.has_reagent("tongueofdog"))

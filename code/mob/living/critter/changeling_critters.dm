@@ -563,7 +563,7 @@
 	icon_state_dead = "headspider-dead"
 	hand_count = 1
 	hat_y_offset = 5
-
+	density = 0
 
 	var/datum/abilityHolder/changeling/changeling = null
 	var/datum/mind/owner = null
@@ -604,9 +604,9 @@
 		add_health_holder(/datum/healthHolder/toxin)
 
 
-/mob/living/critter/changeling/headspider/proc/filter_target(var/mob/living/C)
-		//Don't want a dead mob, don't want a mob with the same mind as the owner
-		return ismob(C) && !isdead(C) && (!owner || C.mind != owner) && src.loc != C
+/mob/living/critter/changeling/headspider/ai_is_valid_target(var/mob/M)
+		//we want a human that isnt dead and isnt already sorta taken over
+		return ishuman(M) && !isdead(M) && (!owner || M.mind != owner) && src.loc != M
 
 /mob/living/critter/changeling/headspider/proc/infect_target(mob/M)
 	if(ishuman(M) && isalive(M))
@@ -632,7 +632,7 @@
 		return
 
 /mob/living/critter/changeling/headspider/hand_attack(atom/target)
-	if (filter_target(target))
+	if (ai_is_valid_target(target))
 		infect_target(target)
 		return
 

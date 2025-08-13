@@ -240,7 +240,7 @@ THROWING DARTS
 	implanted(mob/M, mob/I)
 		..()
 		if (!isdead(M) && M.client)
-			JOB_XP(I, "Medical Doctor", 5)
+			JOB_XP_DEPT(I, "Medical Doctor", "medical", 5)
 
 	proc/sensehealth()
 		if (!src.implanted)

@@ -230,6 +230,7 @@
 /datum/aiHolder/violent/New()
 	..()
 	src.default_task = get_instance(/datum/aiTask/timed/targeted/violence, list(src))
+	src.tick()
 
 /datum/aiHolder/violent/was_harmed(obj/item/W, mob/M)
 	if(src.owner.ai_is_valid_target(M))
@@ -238,18 +239,21 @@
 // this task causes violence for a while
 /datum/aiTask/timed/targeted/violence
 	name = "violence"
-	minimum_task_ticks = 30
-	maximum_task_ticks = 50
+	minimum_task_ticks = 20
+	maximum_task_ticks = 30
+	target_range = 10
 	var/last_seek = 0
 	var/seek_every = 3 SECONDS
 	var/approach_range = 1
 	var/ability_cooldown = 4 SECONDS
+	var/mob/living/queued_target = null
+	var/ticks_since_combat = 0
 
 /datum/aiTask/timed/targeted/violence/get_targets()
 	. = list()
 	if(src.holder.owner)
 		for(var/mob/living/M in view(src.target_range, src.holder.owner))
-			if(isalive(M) && src.holder.owner.ai_is_valid_target(M))
+			if(!isdead(M) && src.holder.owner.ai_is_valid_target(M))
 				. += M
 
 /datum/aiTask/timed/targeted/violence/on_tick()
@@ -263,9 +267,14 @@
 
 	if(src.holder.target)
 		var/mob/living/M = src.holder.target
-		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z)
+		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.maximum_task_ticks)
+			src.queued_target = null
 			src.holder.target = null
-			return ..()
+			if(!src.holder.target && world.time > src.last_seek + src.seek_every)
+				src.last_seek = world.time
+				src.holder.target = src.get_best_target(get_targets())
+			if(!src.holder.target)
+				return ..()
 
 		src.holder.move_to(M,src.approach_range)
 
@@ -273,15 +282,31 @@
 
 		owncritter.hud.update_intent() // god i hate this
 
+		if(src.holder.owner.next_click > world.time)
+			return ..()
+
 		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(M))
+			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
 			return ..()
 
 		if(GET_DIST(src.holder.owner, M) <= 1)
 			src.holder.owner.hand_attack(M)
+			src.ticks_since_combat = 0
+			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+			src.queued_target = null
 		else if(istype(owncritter))
 			var/datum/handHolder/HH = owncritter.get_active_hand()
 			if(HH.can_range_attack)
 				src.holder.owner.hand_attack(M)
+				src.ticks_since_combat = 0
+				src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+				src.queued_target = null
+			else
+				src.queued_target = M
+				src.ticks_since_combat++
+		else
+			src.queued_target = M
+			src.ticks_since_combat++
 
 		if(prob(40)) // may do a more intelligent check later, but this is decent
 			src.holder.owner.swap_hand()
@@ -289,3 +314,9 @@
 		src.holder.move_to(locate(src.holder.owner.x + rand(-4, 4), src.holder.owner.y + rand(-4, 4), src.holder.owner.z))
 
 	..()
+
+/datum/aiTask/timed/targeted/violence/on_move()
+	if(src.queued_target && src.holder.owner.next_click <= world.time && GET_DIST(src.holder.owner, src.queued_target) <= 1 && prob(80))
+		src.ticks_since_combat = 0
+		src.holder.owner.hand_attack(src.queued_target)
+		src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY

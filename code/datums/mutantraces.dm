@@ -1918,9 +1918,10 @@
 		if (!can_output)
 			.= "<B>[mob]</B> strains, but fails to output milk!"
 		else if (toilet && (mob.buckled != null))
-			for (var/obj/item/storage/toilet/T in mob.loc)
+			for (var/obj/item/storage/toilet/terlet in mob.loc)
 				.= "<B>[mob]</B> dispenses milk into the toilet. What a waste."
-				T.clogged += 0.10
+				terlet.clogged += 0.25
+				transfer_blood(mob, terlet, 10)
 				break
 		else if (beaker)
 			.= pick("<B>[mob]</B> takes aim and dispenses some milk into the beaker.", "<B>[mob]</B> takes aim and dispenses milk into the beaker!", "<B>[mob]</B> fills the beaker with milk!")

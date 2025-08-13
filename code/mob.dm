@@ -148,6 +148,7 @@
 	var/deathhunted = null
 
 	var/job = null
+	var/department = null
 
 	var/nodamage = 0
 
