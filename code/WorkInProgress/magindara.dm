@@ -37,7 +37,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 	New()
 		..()
-		if (generateLight)
+		if (src.generateLight)
 			src.make_light()
 		if (current_state > GAME_STATE_PREGAME)
 			src.initialise_component()
@@ -66,8 +66,9 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		SPAWN_DBG(0.1)
-			light?.enable()
+		if (current_state > GAME_STATE_PREGAME)
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
 
 	Del()
 		if(light)
@@ -202,6 +203,15 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		return
 	if(!istype(target))
 		target = get_turf(target)
+	var/rodded = FALSE
+	for (var/obj/lightning_rod/rod in by_type[/obj/lightning_rod])
+		if(rod.attached && GET_DIST(rod, target) <= 16)
+			target = get_turf(rod)
+			SPAWN_DBG(warning_time + 0.2 SECONDS)
+				if(!QDELETED(rod))
+					rod.struck(floor(power * 100 MEGA))
+			rodded = TRUE
+			break
 	logTheThing("bombing", null, null, "Lightning[is_turf_safe ? "" : " (turf destroying)"] with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.")
 	logTheThing("diary", null, null, "Lightning[is_turf_safe ? "" : " (turf destroying)"] with power [power] started striking [log_loc(target)], warning time [warning_time / 10] seconds.", "combat")
 	SPAWN_DBG(0)
@@ -221,8 +231,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color=
 		if(QDELETED(target))
 			return
 		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
-		new /obj/decal/lightning(target)
-		explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
+		new /obj/decal/lightning(target, rodded ? 64 : 0)
+		if(!rodded)
+			explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
 		for(var/mob/living/L in orange(2, target)) // some more mean effects
 			L.changeStatus("disorient",min(15 * power,30 SECONDS))
 			L.change_misstep_chance(min(power, 30))

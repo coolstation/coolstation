@@ -658,12 +658,12 @@ obj/decal/fakeobjects
 	var/strike_time = 1 SECOND
 	var/volume = 50
 
-	New()
+	New(atom/newLoc, var/y_offset)
 		..()
-		src.pixel_y =  abs(src.height * 32)
+		src.pixel_y = abs(src.height * 32) + y_offset
 		if(src.volume)
 			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
-		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8), flags = ANIMATION_PARALLEL)
+		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8) + y_offset, flags = ANIMATION_PARALLEL)
 		animate(time = src.strike_time / 8, transform = matrix(1,src.height,MATRIX_SCALE))
 		animate_ripple(src,8,shake_intensity,0.2)
 		SPAWN_DBG(strike_time)
