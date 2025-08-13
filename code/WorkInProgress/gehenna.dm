@@ -264,9 +264,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		if (current_state > GAME_STATE_PREGAME)
-			SPAWN_DBG(1 DECI SECOND)
-				light?.enable()
+		SPAWN_DBG(1 DECI SECOND)
+			light?.enable()
 
 	tunnel_surface
 		name = "bored tunnel floor"
