@@ -2064,7 +2064,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			if (T)
 				T.hotspot_expose(5000,125)
 				explosion(origin, T, -1,-1,1,2)
-			if (prob(20))
+			if (shock_damage >= 300 && prob(30))
 				boutput(src, "<span class='alert'><b>[origin] vaporizes you with a lethal arc of electricity!</b></span>")
 				if (H?.shoes)
 					H.drop_from_slot(H.shoes)

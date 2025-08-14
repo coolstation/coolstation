@@ -97,9 +97,10 @@ var/global/obj/flashDummy
 /proc/getFlashDummy()
 	if (!flashDummy)
 		flashDummy = new /obj(null)
+		flashDummy.event_handler_flags |= Z_ANCHORED
 		flashDummy.set_density(0)
 		flashDummy.opacity = 0
-		flashDummy.anchored = 1
+		flashDummy.anchored = ANCHORED_ALWAYS
 		flashDummy.mouse_opacity = 0
 	return flashDummy
 

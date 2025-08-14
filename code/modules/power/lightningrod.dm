@@ -21,7 +21,7 @@
 	_health = 100
 	_max_health = 100
 	p_class = 3
-	var/efficiency = 0.9
+	var/efficiency = 0.6
 	var/obj/cable/attached
 	var/state = UNWRENCHED
 
