@@ -4007,12 +4007,13 @@ datum
 		reagent_dye
 			name = "Coloring agent"
 			description = "An inert dye used to color reagent mixes."
-			color_multiplier_weight = 20
-
-			color_multiplier_concentration = 0.8
-
-			color_multiplier_threshold_min = 10
-			color_multiplier_threshold_max = 15
+			fluid_r2 = 0
+			fluid_g2 = 0
+			fluid_b2 = 0
+			color_multiplier_weight = 100
+			color_transition_concentration = 0.8
+			color_transition_threshold_min = 10
+			color_transition_threshold_max = 15
 
 		reagent_dye/red
 			id = "rdye_red"

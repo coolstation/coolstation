@@ -61,10 +61,24 @@ datum
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
 
+		//	modifies the weight of the reagent
+		//	"fakes" the volume by making it act as if theres x times more
 		var/color_multiplier_weight = 1
-		var/color_multiplier_concentration = 0
-		var/color_multiplier_threshold_min = 0
-		var/color_multiplier_threshold_max = 0
+
+		//	reagent second color
+		var/fluid_r2 = 0
+		var/fluid_b2 = 0
+		var/fluid_g2 = 0
+		var/fluid_a2 = 255
+		//	those parameters regulate how the color transitions to the second one with concentration
+		//	how much it should transition with concentration, can be in [0,1]
+		var/color_transition_concentration = 0
+		//	under this limit, no transition even with 100% concentration
+		var/color_transition_threshold_min = 0
+		//	above this limit, color_transition_concentration is the multiplier
+		//	between the two limits, there's a linear scale between color_transition_concentration and 0
+		var/color_transition_threshold_max = 0
+
 
 		New()
 			..()
