@@ -562,6 +562,15 @@ var/obj/item/dummy/click_dummy = new
 	proc/to_rgba()
 		return rgb(r,g,b,a)
 
+	proc/operator/(var/right)
+		return new/datum/color (src.r/right,src.g/right,src.b/right,src.a/right)
+
+	proc/operator/=(var/right)
+		src.r /= right
+		src.g /= right
+		src.b /= right
+		src.a /= right
+
 /proc/gib_area(var/area/A)
 	var/list/turfs = get_area_turfs(A.type)
 	for(var/turf/S in turfs)
