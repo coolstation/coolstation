@@ -81,6 +81,7 @@
 		name = "catwalk surface"
 		icon = 'icons/obj/grille.dmi'
 		icon_state = "catwalk"
+		var/icon_base = "catwalk"
 		density = 0
 		desc = "This doesn't look very safe at all!"
 		layer = CATWALK_LAYER
@@ -91,24 +92,28 @@
 		connects_to_turf = null
 		flags = FPRINT | CONDUCT | USEDELAY | MINERAL_MAGNET_SAFE
 
+		New()
+			..()
+			icon_base = icon_state //make varedited catwalks not change when at all damaged
+
 		update_icon(special_icon_state)
 			if (ruined)
 				return
 
 			if (istext(special_icon_state))
-				icon_state = initial(src.icon_state) + "-" + special_icon_state
+				icon_state = icon_base + "-" + special_icon_state
 				return
 
 			var/diff = get_fraction_of_percentage_and_whole(health,health_max)
 			switch(diff)
 				if(-INFINITY to 25)
-					icon_state = initial(src.icon_state) + "-3"
+					icon_state = icon_base + "-3"
 				if(26 to 50)
-					icon_state = initial(src.icon_state) + "-2"
+					icon_state = icon_base + "-2"
 				if(51 to 75)
-					icon_state = initial(src.icon_state) + "-1"
+					icon_state = icon_base + "-1"
 				if(76 to INFINITY)
-					icon_state = initial(src.icon_state) + "-0"
+					icon_state = icon_base + "-0"
 
 		//If we're an elevator platform that got borked, see that the things we were "carrying" fall down the shaft
 		//Can't do this in exited() on the elevator shaft because these catwalks already only function as they do
