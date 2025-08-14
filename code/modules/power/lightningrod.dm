@@ -58,8 +58,16 @@
 	fullbright_overlay.icon_state = "empty"
 	fullbright_overlay.plane = PLANE_SELFILLUM
 	flick("lightning_rod_struck", fullbright_overlay)
+	var/obj/overlay/lighting_overlay = new(src.loc)
+	lighting_overlay.icon = src.icon
+	fullbright_overlay.icon_state = "empty"
+	lighting_overlay.plane = PLANE_LIGHTING
+	lighting_overlay.blend_mode = BLEND_ADD
+	lighting_overlay.layer = LIGHTING_LAYER_BASE
+	flick("lightning_rod_glow", lighting_overlay)
 	SPAWN_DBG(0.6 SECONDS)
 		qdel(fullbright_overlay)
+		qdel(lighting_overlay)
 	if(attached)
 		var/datum/powernet/PN = attached.get_powernet()
 		if(PN)
