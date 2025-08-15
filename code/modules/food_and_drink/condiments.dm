@@ -379,14 +379,14 @@
 /obj/item/reagent_containers/glass/food_dye/red
 	name = "red coloring bottle"
 	icon_state = "food_coloring_red"
-	initial_reagents = "red_dye"
+	initial_reagents = "dye_red"
 
 /obj/item/reagent_containers/glass/food_dye/green
 	name = "green coloring bottle"
 	icon_state = "food_coloring_green"
-	initial_reagents = "green_dye"
+	initial_reagents = "dye_green"
 
 /obj/item/reagent_containers/glass/food_dye/blue
 	name = "blue coloring bottle"
 	icon_state = "food_coloring_blue"
-	initial_reagents = "blue_dye"
+	initial_reagents = "dye_blue"
