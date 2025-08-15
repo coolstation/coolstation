@@ -61,7 +61,8 @@ datum
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
 
-		//	Used to influence the weight of each reagent, by default 1
+		//	Increases the weight of the reagent in the color calculation
+		//	A multiplier of 2 makes the color as if the reagent's volume was twice as much
 		var/color_multiplier = 1
 
 		New()
