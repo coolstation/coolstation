@@ -137,6 +137,9 @@
 					user.drop_juggle()
 				else
 					user.add_juggle(thing)
+			else
+				user.add_juggle(thing)
+		return list(,,)
 
 /datum/emote/twirl //also spin
 	cooldown = 2.5 SECONDS
