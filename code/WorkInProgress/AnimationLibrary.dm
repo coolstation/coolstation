@@ -1083,9 +1083,29 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		return
 	var/punchstr = rand(10, 20)
 	var/original_y = A.pixel_y
-	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = BOUNCE_EASING)
-	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = BOUNCE_EASING)
-	animate(transform = null, time = 3, easing = BOUNCE_EASING)
+	var/matrix/original_matrix = A.transform
+	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = ELASTIC_EASING)
+	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = ELASTIC_EASING)
+	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
+	playsound()
+	return
+
+/proc/animate_stairs(var/atom/A)
+	if (!istype(A))
+		return
+	var/punchstr = rand(10, 20)
+	var/original_y = A.pixel_y
+	var/matrix/original_matrix = A.transform
+	playsound(A.loc, "sound/impact_sounds/stair_hit.ogg", 80, 1)
+	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = original_y + 8, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = original_y + 2, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = original_y + 6, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = original_y + 4, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
 	return
 
 /proc/animate_glitchy_fuckup1(var/atom/A)
