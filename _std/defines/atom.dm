@@ -32,6 +32,7 @@
 #define IN_COYOTE_TIME				(1<<15) // its coyote timing OVER a pitfall - might be replaced by atom property
 #define CAN_UPDRAFT					(1<<16) // this thing will float up an updraft and refuse to fall down a pitfall
 #define Z_ANCHORED					(1<<17) // this thing wont be moved by elevators and pitfalls in general
+#define STAIR_ANIM					(1<<18)// This thing will play an animation when moving over stairs
 //TBD the rest
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)
