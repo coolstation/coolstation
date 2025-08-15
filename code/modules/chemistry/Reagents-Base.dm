@@ -601,7 +601,7 @@ datum
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				M.make_jittery(2 )
+				M.make_jittery(2)
 				M.drowsyness = max(M.drowsyness-(5), 0)
 				if(prob(4))
 					M.reagents.add_reagent("epinephrine", 1.2 * mult) // let's not metabolize into meth anymore

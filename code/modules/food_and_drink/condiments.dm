@@ -361,3 +361,32 @@
 	//todo: add ranch, bbq
 
 	//also todo: revamp self-mob interactions so you can fuckin' slurp down mayo and ranch straight from the bottle
+
+/// the present implementation of condiment bottles isnt my favorite, i might reinvent the wheel about it later - mylie
+/obj/item/reagent_containers/glass/food_dye
+	name = "food coloring bottle"
+	desc = "A bottle of potent food coloring."
+	item_state = "beaker"
+	initial_volume = 10
+	splash_all_contents = 0
+	amount_per_transfer_from_this = 0.5
+	can_mousedrop = FALSE
+	can_recycle = FALSE
+	w_class = W_CLASS_TINY
+	flags = FPRINT | TABLEPASS | OPENCONTAINER
+	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+
+/obj/item/reagent_containers/glass/food_dye/red
+	name = "red coloring bottle"
+	icon_state = "food_coloring_red"
+	initial_reagents = "red_dye"
+
+/obj/item/reagent_containers/glass/food_dye/green
+	name = "green coloring bottle"
+	icon_state = "food_coloring_green"
+	initial_reagents = "green_dye"
+
+/obj/item/reagent_containers/glass/food_dye/blue
+	name = "blue coloring bottle"
+	icon_state = "food_coloring_blue"
+	initial_reagents = "blue_dye"

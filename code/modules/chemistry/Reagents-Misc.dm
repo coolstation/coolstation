@@ -4004,17 +4004,98 @@ datum
 			fluid_b = 40
 			fluid_g = 9
 
-		reagent_dye
-			name = "Coloring agent"
-			description = "An inert dye used to color reagent mixes."
-			color_multiplier = 15
+		//=-=-=-=-=-=-=-=-=-=
+		//|| COLORS N SUCH ||
+		//=-=-=-=-=-=-=-=-=-=
 
-		reagent_dye/red
-			id = "rdye_red"
-			fluid_r = 200
-			fluid_b = 0
+		dye_red
+			name = "Red 40"
+			id = "dye_red"
+			depletion_rate = 0.02
+			fluid_r = 240
 			fluid_g = 0
+			fluid_b = 0
+			viscosity = 0.6
+			blocks_sight_gas = 1
+			color_multiplier = 100
 			transparency = 255
+			reagent_state = SOLID
+			overdose = 5
+			target_organs = list("pancreas", "left_kidney", "right_kidney")
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(probmult(30 * severity))
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						H.organHolder.damage_organs(severity, 0, severity, target_organs, 50)
+						if(prob(50))
+							H.make_jittery(40)
+				var/list/dyed_rgb = rgb2num(M.color)
+				dyed_rgb[1] = min(dyed_rgb[1] + severity, 255)
+				dyed_rgb[2] = max(dyed_rgb[2] - severity, 0)
+				dyed_rgb[3] = max(dyed_rgb[3] - severity, 0)
+				M.color = rgb(dyed_rgb[1], dyed_rgb[2], dyed_rgb[3])
+
+		dye_green
+			name = "Aniline Green"
+			id = "dye_green"
+			depletion_rate = 0.005
+			fluid_r = 0
+			fluid_g = 230
+			fluid_b = 0
+			viscosity = 0.6
+			blocks_sight_gas = 1
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
+			overdose = 5
+			target_organs = list("left_lung", "right_lung", "liver")
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(probmult(15 * severity))
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						H.organHolder.damage_organs(severity, 0, severity, target_organs, 50)
+				var/list/dyed_rgb = rgb2num(M.color)
+				dyed_rgb[1] = max(dyed_rgb[1] - severity, 0)
+				dyed_rgb[2] = min(dyed_rgb[2] + severity, 255)
+				dyed_rgb[3] = max(dyed_rgb[3] - severity, 0)
+				M.color = rgb(dyed_rgb[1], dyed_rgb[2], dyed_rgb[3])
+
+		dye_blue
+			name = "Indigo Carmine"
+			id = "dye_blue"
+			depletion_rate = 0.03
+			fluid_r = 0
+			fluid_g = 0
+			fluid_b = 230
+			viscosity = 0.8
+			blocks_sight_gas = 1
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
+			overdose = 5
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(probmult(25 * severity))
+					M.take_oxygen_deprivation(severity)
+				var/list/dyed_rgb = rgb2num(M.color)
+				dyed_rgb[1] = max(dyed_rgb[1] - severity, 0)
+				dyed_rgb[2] = max(dyed_rgb[2] - severity, 0)
+				dyed_rgb[3] = min(dyed_rgb[3] + severity, 255)
+				M.color = rgb(dyed_rgb[1], dyed_rgb[2], dyed_rgb[3])
+
+		cuprorivaite
+			name = "cuprorivaite"
+			id = "cuprorivaite"
+			description = "The very first synthetic dye, recreated a few thousand years later."
+			fluid_r = 0
+			fluid_g = 5
+			fluid_b = 230
+			viscosity = 0.9
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
 
 		//=-=-=-=-=-=-=-=-=
 		//|| C E M E N T ||

@@ -4054,3 +4054,12 @@ datum
 			mix_phrase = "The mixture comes together slowly. It doesn't seem like it wants to be here."
 			required_reagents = list("poor_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
 			result_amount = 7
+
+		cuprorivaite
+			name = "cuprorivaite"
+			id = "cuprorivaite"
+			result = "cuprorivaite"
+			mix_phrase = "A puff of smoke escapes the mixture as blue crystals form."
+			required_reagents = list("calcium_carbonate" = 2, "silicon_dioxide" = 8, "copper_nitrate" = 1)
+			required_temperature = T0C + 175
+			result_amount = 11
