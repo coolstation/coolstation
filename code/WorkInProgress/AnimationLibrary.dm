@@ -1081,7 +1081,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 /proc/animate_shockwave(var/atom/A)
 	if (!istype(A))
 		return
-	var/punchstr = rand(10, 20)
+	var/punchstr = rand(10, 20) * pick(-1, 1)
 	var/original_y = A.pixel_y
 	var/matrix/original_matrix = A.transform
 	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = ELASTIC_EASING)
@@ -1092,7 +1092,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 /proc/animate_stairs(var/atom/A)
 	if (!istype(A))
 		return
-	var/punchstr = rand(13, 18)
+	var/punchstr = rand(13, 18) * pick(-1, 1)
 	var/original_y = A.pixel_y
 	var/matrix/original_matrix = A.transform
 	playsound(A.loc, "sound/impact_sounds/stair_hit.ogg", 25, 1, extrarange = -23)
