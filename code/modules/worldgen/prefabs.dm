@@ -23,8 +23,8 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 
 		var/turf/T = locate(adjustX, adjustY, target.z)
 
-		for(var/x=0, x<prefabSizeX; x++)
-			for(var/y=0, y<prefabSizeY; y++)
+		for(var/x=0, x<prefabSizeX, x++)
+			for(var/y=0, y<prefabSizeY, y++)
 				var/turf/L = locate(T.x+x, T.y+y, T.z)
 				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate) && !istype(L.loc, /area/gehenna/underground))) // istype(L.loc, /area/noGenerate)
 					return 0
