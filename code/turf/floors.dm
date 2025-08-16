@@ -1092,7 +1092,7 @@ DEFINE_FLOORS(marble/border_wb,
 				animate_stairs(AM)
 				if (istype(AM, /obj/stool/chair))
 					var/obj/stool/chair/W = AM
-					if(W.stool_user)
+					if(W.stool_user && prob(98))
 						if(prob(20))
 							W.stool_user.changeStatus("weakened", 1 SECONDS)
 						SPAWN_DBG(rand(1,2))
