@@ -1077,19 +1077,17 @@ DEFINE_FLOORS(marble/border_wb,
 	icon_state = "Stairs_alone"
 
 	Entered(atom/movable/A as mob|obj, atom/oldLoc)
-
 		if(A.event_handler_flags & STAIR_ANIM)
 			if(A.dir & src.dir)
 				animate_stairs(A)
 				if (istype(A, /obj/stool/chair))
 					var/obj/stool/chair/W = A
-					if (!W.lying && prob(70))
-						if (W.stool_user && W.stool_user.m_intent == "walk")
-							return ..()
-						else
-							var/turf/target = get_edge_target_turf(W, src.dir)
-							W.fall_over(src)
-							W.throw_at(target, rand(1,2), 0.5)
+					if (W.stool_user && W.stool_user.m_intent == "walk")
+						return ..()
+					else
+						var/turf/target = get_edge_target_turf(W, src.dir)
+						W.fall_over(src)
+						W.throw_at(target, rand(1,3), 0.5)
 			else
 				animate_stairs(A)
 				if (istype(A, /obj/stool/chair))
@@ -1100,14 +1098,7 @@ DEFINE_FLOORS(marble/border_wb,
 						step(W, src.dir)
 					else if(prob(65))
 						step(W, src.dir)
-
-
-
-
-
-
 		..()
-
 
 /turf/floor/stairs/wide
 	icon_state = "Stairs_wide"

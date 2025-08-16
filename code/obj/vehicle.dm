@@ -233,6 +233,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	name = "\improper Space Segway"
 	desc = "Now you too can look like a complete tool in space!"
 	icon_state = "segway"
+	event_handler_flags = USE_FLUID_ENTER | STAIR_ANIM
 	var/icon_base = "segway"
 	var/icon_rider_state = 1
 	var/image/image_under = null
