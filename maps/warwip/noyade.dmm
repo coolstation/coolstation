@@ -1135,7 +1135,6 @@
 /area/station/hangar/sec)
 "bmp" = (
 /obj/submachine/ATM{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /obj/machinery/door/window,
@@ -1645,7 +1644,6 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/furnace{
-	active = 0;
 	fuel = 600
 	},
 /turf/floor/plating,
@@ -1805,6 +1803,10 @@
 	},
 /turf/floor,
 /area/station/security/main)
+"bYk" = (
+/obj/storage/secure/closet/fridge/blood,
+/turf/floor/white,
+/area/station/medical/medbay/surgery)
 "bYE" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -2432,6 +2434,10 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"cHt" = (
+/obj/item/diary,
+/turf/floor/plating,
+/area/station/security/beepsky)
 "cHv" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -2821,6 +2827,10 @@
 /obj/machinery/shower,
 /turf/floor/shuttlebay,
 /area/station/science/lobby)
+"dfy" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/floor/plating,
+/area/station/crew_quarters/clown)
 "dgk" = (
 /obj/table/wood/auto,
 /obj/machinery/cashreg,
@@ -3550,7 +3560,6 @@
 	},
 /obj/plasticflaps,
 /obj/machinery/door/poddoor/pyro{
-	dir = 2;
 	id = "cargosto";
 	name = "Storage Door"
 	},
@@ -5085,7 +5094,6 @@
 "fyP" = (
 /obj/machinery/atmospherics/valve{
 	desc = "cold radiator outlet valve";
-	dir = 2;
 	name = "cold radiator outlet valve"
 	},
 /turf/floor,
@@ -6036,7 +6044,6 @@
 /area/station/hangar/main)
 "gAG" = (
 /obj/submachine/ATM{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/floor/grey/side{
@@ -7557,7 +7564,6 @@
 /obj/table/wood/auto,
 /obj/machinery/light/lamp/bright{
 	on = 1;
-	pixel_x = 0;
 	pixel_y = 10
 	},
 /turf/floor/carpet/grime3,
@@ -7569,6 +7575,9 @@
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /obj/machinery/power/data_terminal,
+/obj/cable/hotpink{
+	icon_state = "0-8"
+	},
 /turf/floor,
 /area/station/science/artifact)
 "ioL" = (
@@ -10218,6 +10227,7 @@
 /area/station/engine/core)
 "ldB" = (
 /obj/machinery/space_heater,
+/obj/item/clothing/shoes/flippers,
 /turf/floor/plating,
 /area/station/crew_quarters/clown)
 "ldE" = (
@@ -11037,6 +11047,7 @@
 "mab" = (
 /obj/table/auto,
 /obj/item/clipboard/with_pen,
+/obj/item/reagent_containers/iv_drip/saline,
 /turf/floor/blue,
 /area/station/medical/medbay/treatment)
 "maj" = (
@@ -11687,7 +11698,6 @@
 "mBe" = (
 /obj/machinery/atmospherics/valve{
 	desc = "cold radiator inlet valve";
-	dir = 2;
 	name = "cold radiator inlet valve"
 	},
 /turf/floor,
@@ -12023,6 +12033,7 @@
 	icon_state = "3"
 	},
 /obj/machinery/door/window/westleft,
+/obj/access_spawn/engineering_mechanic,
 /turf/floor,
 /area/station/hallway/primary/west)
 "mSA" = (
@@ -12343,6 +12354,7 @@
 /area/shuttle/sea_elevator/upper)
 "nfs" = (
 /obj/machinery/door/airlock/security,
+/obj/access_spawn/brig,
 /turf/floor/carpet/red,
 /area/station/security/quarters)
 "ngP" = (
@@ -12618,6 +12630,7 @@
 /area/station/crew_quarters/bar)
 "nrA" = (
 /obj/machinery/door/airlock/medical,
+/obj/access_spawn/medical,
 /turf/floor/carpet/grime,
 /area/station/medical/staff)
 "nrB" = (
@@ -13051,6 +13064,10 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/crematorium,
+/obj/machinery/door_control{
+	id = "medbay";
+	pixel_x = 20
+	},
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "nRI" = (
@@ -13436,7 +13453,7 @@
 /turf/floor,
 /area/station/engine/storage)
 "oln" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass/medical,
 /obj/cable/hotpink{
 	icon_state = "1-2"
 	},
@@ -14562,7 +14579,9 @@
 /turf/floor,
 /area/station/mining/lobby)
 "prf" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass{
+	id = "medbay"
+	},
 /obj/disposalpipe/segment/mail,
 /obj/access_spawn/medical,
 /turf/floor/white,
@@ -14581,7 +14600,6 @@
 	name = "grimy old ashtray"
 	},
 /obj/decal/tile_edge/carpet{
-	dir = 2;
 	icon_state = "rug1"
 	},
 /turf/floor/carpet/grime2,
@@ -16337,7 +16355,6 @@
 "rkO" = (
 /obj/table/wood/auto,
 /obj/decal/tile_edge/carpet{
-	dir = 2;
 	icon_state = "rug1"
 	},
 /turf/floor/carpet/grime2,
@@ -16800,7 +16817,7 @@
 	find_in_range = 0;
 	id = "lobby";
 	name = "lobby health status screen";
-	pixel_y = 8
+	pixel_x = 5
 	},
 /turf/floor/plating,
 /area/station/medical/medbay/pharmacy)
@@ -19047,7 +19064,9 @@
 /turf/wall/r_wall,
 /area/station/maintenance/inner/sw)
 "uls" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass{
+	id = "medbay"
+	},
 /obj/disposalpipe/segment{
 	dir = 1
 	},
@@ -21227,6 +21246,7 @@
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
+/obj/item/reagent_containers/iv_drip/saline,
 /turf/floor/blue,
 /area/station/medical/medbay/treatment)
 "wwM" = (
@@ -21448,6 +21468,7 @@
 /obj/cable/hotpink{
 	icon_state = "0-8"
 	},
+/obj/item/clothing/shoes/flippers,
 /turf/floor,
 /area/shuttle/sea_elevator_room)
 "wDA" = (
@@ -21813,7 +21834,7 @@
 /turf/floor,
 /area/station/crew_quarters/bar)
 "wUu" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
@@ -22686,7 +22707,6 @@
 /area/station/engine/core)
 "xQR" = (
 /obj/submachine/ATM{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /obj/disposalpipe/segment{
@@ -67277,7 +67297,7 @@ mZF
 tZI
 ebM
 suV
-suV
+bYk
 qhE
 gBv
 awi
@@ -74580,7 +74600,7 @@ mQL
 mQL
 xXl
 vVb
-kOo
+dfy
 xXl
 mZF
 nvW
@@ -74881,7 +74901,7 @@ dmR
 dmR
 bcs
 xXl
-vVb
+asY
 qpz
 xXl
 mZF
@@ -76644,7 +76664,7 @@ mZF
 mZF
 xrb
 won
-dZt
+cHt
 xrb
 srO
 qye
