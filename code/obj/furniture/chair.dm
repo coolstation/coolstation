@@ -215,6 +215,14 @@
 		return 1
 
 	buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0)
+		if (src.lying)
+			user.visible_message("[user] sets [src] back on its wheels.",\
+			"You set [src] back on its wheels.")
+			src.lying = 0
+			animate_rest(src, !src.lying)
+			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
+			src.scoot_sounds = src.scoot_sounds_original
+			return
 		if(!istype(to_buckle))
 			return
 		if(user.hasStatus("weakened"))
@@ -444,8 +452,6 @@
 
 
 	buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0)
-		if (src.lying)
-			return
 		..()
 		if (src.stool_user == to_buckle)
 			APPLY_MOVEMENT_MODIFIER(to_buckle, /datum/movement_modifier/wheelchair, src.type)
