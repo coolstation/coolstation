@@ -562,6 +562,12 @@ var/obj/item/dummy/click_dummy = new
 	proc/to_rgba()
 		return rgb(r,g,b,a)
 
+/* Hey! WARC from SS13 from 2025 here!
+// Don't override operators unless you have an absolutely airtight reason to do so, and if you think you do:
+// You probably DONT!!!
+// This severely fucks up some external interpreters such as the one in older versions of StrongDMM
+// If you think you need to do this: Do something else! its not worth it.
+
 	proc/operator/(var/right)
 		return new/datum/color (src.r/right,src.g/right,src.b/right,src.a/right)
 
@@ -570,7 +576,7 @@ var/obj/item/dummy/click_dummy = new
 		src.g /= right
 		src.b /= right
 		src.a /= right
-
+*/
 /proc/gib_area(var/area/A)
 	var/list/turfs = get_area_turfs(A.type)
 	for(var/turf/S in turfs)
