@@ -1937,3 +1937,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					</div>
 				</body>
 			</html>"}
+
+#undef UNWRENCHED
+#undef WRENCHED
+#undef WELDED

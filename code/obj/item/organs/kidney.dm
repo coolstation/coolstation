@@ -10,10 +10,22 @@
 	// this is just used for setting them, so I will use the *100 values
 	var/min_chem_metabolism_modifier = 100
 	var/max_chem_metabolism_modifier = 100
+	var/to_process = 0
+	var/efficiency = 0.5
 
 	on_life(var/mult = 1)
 		if (!..())
+
 			return 0
+		if(src.to_process)
+			var/processing = min(src.to_process, src.efficiency * mult)
+			src.to_process -= processing
+			 // actually urinating is capped at 80u, but voids it all, and there is no cap here to avoid
+			 // forcing players to piss if they think its dumb. for now, the only way to damage kidneys with drinks
+			 // is overindulgence at one time
+			donor.urine += processing
+			if(src.to_process > 20)
+				src.take_damage(0, 0, rand(3, 10) * 0.1)
 		if (body_side == L_ORGAN)
 			if (src.holder.left_kidney && src.holder.left_kidney.get_damage() > FAIL_DAMAGE && prob(src.get_damage() * 0.2))
 				donor.contract_disease(failure_disease,null,null,1)
@@ -124,14 +136,14 @@
 	failure_disease = /datum/ailment/disease/kidney_failure/right
 
 /obj/item/organ/kidney/synth
-	name = "synthkidney"
-	organ_name = "synthkidney"
-	icon_state = "plant"
 	desc = "A bean based kidney!"
+	icon_state = "plant"
+	name = "synthkidney"
 	synthetic = 1
+	efficiency = 1.25
 	New()
 		..()
-		src.icon_state = pick("plant_appendix", "plant_appendix_bloom")
+		src.icon_state = pick("plant_kidney_R", "plant_kidney_R_bloom", "plant_kidney_L", "plant_kidney_L_bloom")
 
 /obj/item/organ/kidney/cyber
 	name = "cyberkidney"
@@ -143,8 +155,8 @@
 	created_decal = /obj/decal/cleanable/oil
 	edible = 0
 	mats = 6
-	min_chem_metabolism_modifier = 75
-	max_chem_metabolism_modifier = 150
+	min_chem_metabolism_modifier = 90
+	max_chem_metabolism_modifier = 160
 
 	emag_act(mob/user, obj/item/card/emag/E)
 		. = ..()
@@ -195,8 +207,6 @@
 /obj/item/organ/kidney/synth/left
 	name = "left kidney"
 	desc = "A bean based kidney! It's the left kidney!"
-	synthetic = 1
-	icon_state = "plant"
 	organ_name = "synthkidney_L"
 	organ_holder_name = "left_kidney"
 	body_side = L_ORGAN
@@ -208,7 +218,6 @@
 /obj/item/organ/kidney/synth/right
 	name = "right kidney"
 	desc = "A bean based kidney! It's the right kidney!"
-	synthetic = 1
 	icon_state = "plant"
 	organ_name = "synthkidney_R"
 	organ_holder_name = "right_kidney"

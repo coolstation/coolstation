@@ -138,6 +138,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "spread shot"
 	sname = "spread shot"
 	shot_sound = 'sound/weapons/grenade.ogg'
+	implanted = null
 	var/pellets_to_fire = 15
 	var/spread_projectile_type = /datum/projectile/bullet/flak_chunk
 	var/split_type = 0
@@ -150,7 +151,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		if(split_type == 0)
 			split(P)
 
-	on_hit(var/atom/A,var/obj/projectile/P)
+	on_end(var/obj/projectile/P)
 		if(split_type == 1)
 			split(P)
 
@@ -164,6 +165,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		while (pellets > 0)
 			pellets--
 			var/obj/projectile/FC = initialize_projectile(PT, F, O.xo, O.yo, O.shooter)
+			FC.was_pointblank = TRUE
 			hit_with_existing_projectile(FC, target)
 
 
@@ -196,6 +198,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
 		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
+		FC.power = FC.power * P.power / src.power // scaling with barrels etc
 		FC.rotateDirection(current_angle)
 		FC.launch()
 		current_angle += angle_adjust_per_pellet
@@ -204,8 +207,9 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	name = "juicer jr tandem shot"
 	sname = "juicer jr tandem shot"
 	cost = 1
+	power = 40
 	pellets_to_fire = 2
-	spread_projectile_type = /datum/projectile/bullet/pistol_heavy //60 (30x2)
+	spread_projectile_type = /datum/projectile/bullet/pistol/juicer //40 (20x2)
 	spread_angle = 10
 
 /datum/projectile/special/spreader/buckshot_burst
@@ -213,41 +217,48 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "buckshot"
 	cost = 1
 	pellets_to_fire = 12 //4 per
-	spread_projectile_type = /datum/projectile/bullet/shot_weak
+	power = 48
+	spread_projectile_type = /datum/projectile/bullet/shot
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	var/speed_max = 5
-	var/speed_min = 60
+	ignores_spread = TRUE
+	var/speed_max = 30
+	var/speed_min = 15
 	var/spread_angle_variance = 5
 	var/dissipation_variance = 32
 
 	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
 		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
-		FC.rotateDirection(rand(0-spread_angle_variance,spread_angle_variance))
-		FC.internal_speed = rand(speed_min,speed_max)
-		FC.travelled = rand(0,dissipation_variance)
+		FC.power = FC.power * P.initial_power / src.power // scaling with barrels etc
+
+		src.spread_angle_variance += P.max_spread / src.pellets_to_fire // buckshotty spread?
+		FC.rotateDirection(rand(0-src.spread_angle_variance,src.spread_angle_variance))
+		FC.max_spread += src.spread_angle_variance
+
+		FC.internal_speed = rand(src.speed_min,src.speed_max)
+		FC.travelled = rand(0,src.dissipation_variance)
 		FC.launch()
+
 //NT shot is plastic
-/datum/projectile/special/spreader/buckshot_burst/nt
+/datum/projectile/special/spreader/buckshot_burst/NT
 	name = "buckshot"
 	sname = "buckshot"
-	cost = 1
 	pellets_to_fire = 10
-	spread_projectile_type = /datum/projectile/bullet/shot_weak
+	power = 40
+	spread_projectile_type = /datum/projectile/bullet/shot/NT
 	casing = /obj/item/casing/shotgun/blue
-	speed_max = 5
-	speed_min = 60
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 10
 	dissipation_variance = 20
 
-/datum/projectile/special/spreader/buckshot_burst/nt/short
+/datum/projectile/special/spreader/buckshot_burst/NT/short
 	name = "ratshot"
 	sname = "ratshot"
-	cost = 1
-	pellets_to_fire = 5
-	spread_projectile_type = /datum/projectile/bullet/shot_weak/mini
-	casing = /obj/item/casing/shotgun/blue
-	speed_max = 5
-	speed_min = 60
+	pellets_to_fire = 8
+	power = 24
+	spread_projectile_type = /datum/projectile/bullet/shot/NT/mini
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 5
 	dissipation_variance = 20
 
@@ -255,13 +266,12 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader/buckshot_burst/juicer
 	name = "juicershot"
 	sname = "juicershot"
-	cost = 1
 	pellets_to_fire = 8 //10 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	power = 80
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer
 	casing = /obj/item/casing/shotgun/red
-	speed_max = 5
-	speed_min = 60
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 15
 	dissipation_variance = 32
 
@@ -270,10 +280,11 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicershot"
 	cost = 1
 	pellets_to_fire = 8 //12 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy/denim
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	speed_max = 5
-	speed_min = 60
+	power = 106
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer/denim
+	casing = /obj/item/casing/shotgun/blue
+	speed_max = 30
+	speed_min = 15
 	spread_angle_variance = 20
 	dissipation_variance = 32
 
@@ -282,24 +293,23 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "juicer scrap"
 	cost = 1
 	pellets_to_fire = 6 // 6 per
-	spread_projectile_type = /datum/projectile/bullet/shot_heavy/scrap
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	speed_max = 12
-	speed_min = 36
+	power = 36
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer/scrap
+	casing = /obj/item/casing/shotgun/gray
+	speed_max = 36
+	speed_min = 12
 	spread_angle_variance = 15
 	dissipation_variance = 64
 
 /datum/projectile/special/spreader/buckshot_burst/salt
 	name = "rock salt"
 	sname = "rock salt"
-	shot_sound = 'sound/weapons/shotgunshot.ogg'
-	power = 20
-	implanted = null
+	power = 24
 	caliber = 0.62
 	casing = /obj/item/casing/shotgun/gray
-	spread_projectile_type = /datum/projectile/bullet/shot_salt
-	speed_min = 28
+	spread_projectile_type = /datum/projectile/bullet/shot/salt
 	speed_max = 36
+	speed_min = 28
 	dissipation_variance = 64
 	spread_angle_variance = 3
 	pellets_to_fire = 4
@@ -307,13 +317,13 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader/buckshot_burst/nails
 	name = "nails"
 	sname = "nails"
-	cost = 1
+	power = 32
 	pellets_to_fire = 8
-	spread_projectile_type = /datum/projectile/bullet/nails
+	speed_max = 45
+	speed_min = 36
+	spread_projectile_type = /datum/projectile/bullet/shot/juicer/nail
 	casing = /obj/item/casing/shotgun/gray
 	spread_angle_variance = 10
-	damage_type = D_SPECIAL
-	power = 32
 
 //Used by: battle bus, stinger grenades (shrapnel)
 /datum/projectile/special/spreader/uniform_burst/circle
@@ -486,7 +496,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			playsound_global(world, 'sound/effects/creaking_metal1.ogg', 40)
 
 // A weapon by Sovexe
-//Used by: Meowitzer (unsafe)
+//Used by: Meowitzer shell (unsafe)
 /datum/projectile/special/meowitzer //what have I done
 	shot_sound = 'sound/misc/boing/6.ogg'
 	name  = "meowitzer"
@@ -518,7 +528,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 				explosion_new(projectile, T, explosion_power, 1)
 		return
 
-//Used by: Meowitzer (safe)
+//Used by: Meowitzer shell (safe)
 /datum/projectile/special/meowitzer/inert
 	explosive_hits = 0
 
@@ -1040,7 +1050,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	implanted= null
 	casing = null
 	icon_turf_hit = null
-	typetospawn = /obj/item/gun/kinetic/derringer
+	typetospawn = /obj/item/gun/modular/NT/pistol
 
 
 /datum/projectile/special/spawner/wasp //shoot wasps
@@ -1134,8 +1144,6 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	hit_ground_chance = 0 // burn right over em
 	max_range = 10
 	silentshot = 1 // Mr. Muggles is hit by the chemical bolt x99999
-	fullauto_valid = 0
-
 
 	/// Releases some of the projectile's gas into the turf
 	proc/emit_gas(turf/T, all_of_it = 0)

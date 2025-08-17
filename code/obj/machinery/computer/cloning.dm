@@ -273,7 +273,7 @@
 	src.records += R
 	show_message("Subject successfully scanned.", "success")
 	playsound(src.loc, sound_ping, 50, 1)
-	JOB_XP(usr, "Medical Doctor", 10)
+	JOB_XP_DEPT(usr, "Medical Doctor", "medical", 10)
 
 //Find a specific record by key.
 /obj/machinery/computer/cloning/proc/find_record(var/find_key)
@@ -369,7 +369,7 @@
 		show_message("Cloning cycle activated.", "success")
 		src.records.Remove(C)
 		qdel(C)
-		JOB_XP(usr, "Medical Doctor", 15)
+		JOB_XP_DEPT(usr, "Medical Doctor", "medical", 10)
 		src.menu = 1
 
 /// find a ghost mob (or a ghost respawned as critter in vr/afterlife bar)

@@ -16,3 +16,7 @@
 
 /// areas where we will skip searching for shit like APCs and that do not have innate power
 #define area_space_nopower(x) (x.type == /area/space || x.type == /area/allowGenerate || x.type == /area/allowGenerate/trench)
+
+//I've been putting this in enough places that I might as well macrofy it
+///if worldgen_hold is on, add ourself to the next worldgen generation. Otherwise do the worldgen immediately
+#define STANDARD_WORLDGEN_HOLD if (worldgen_hold) {worldgen_candidates[worldgen_generation] += src};	else {src.generate_worldgen()}

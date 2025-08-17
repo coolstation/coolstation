@@ -88,8 +88,8 @@
 		if (isrobot(src.occupant))
 			var/mob/living/silicon/robot/R = src.occupant
 			dat += "<u><b>Occupant Name:</b></u> [R.name] "
-			if (user != src.occupant)
-				dat += "<A href='byond://?src=\ref[src];rename=1'>(Rename)</A>"
+			//if (user != src.occupant)
+			dat += "<A href='byond://?src=\ref[src];rename=1'>(Rename)</A>"
 			dat += "<BR>"
 
 			var/dmgalerts = 0
@@ -305,12 +305,12 @@
 			return
 
 		if (href_list["rename"])
-			if (usr == src.occupant)
+			/*if (usr == src.occupant) //hush, let em
 				boutput(usr, "<span class='alert'>You may not rename yourself!</span>")
 				src.updateUsrDialog()
-				return
+				return*/
 			var/mob/living/silicon/robot/R = src.occupant
-			var/newname = copytext(strip_html(sanitize(input(usr, "What do you want to rename [R]?", "Cyborg Maintenance", R.name) as null|text)), 1, 64)
+			var/newname = copytext(strip_html(sanitize(input(usr, "What do you want to rename [R == usr ? "yourself" : R]?", "Cyborg Maintenance", R.name) as null|text)), 1, 64)
 			if ((!issilicon(usr) && (get_dist(usr, src) > 1)) || usr.stat || !newname)
 				return
 			if (url_regex?.Find(newname))
@@ -386,38 +386,23 @@
 			var/mob/living/silicon/robot/R = src.occupant
 			var/obj/item/O = locate(href_list["install"]) in src
 
-			// My apologies for this ugly code.
+			// My apologies for this ugly code. <- it's less ugly now :3
 			if (src.allow_clothes && istype(O, /obj/item/clothing))
+				var/slot = "reject"
 				if (istype(O, /obj/item/clothing/under))
-					if (R.clothes["under"] != null)
-						var/obj/old = R.clothes["under"]
-						src.clothes.Add(old)
-						old.set_loc(src)
-					R.clothes["under"] = O
-					src.clothes.Remove(O)
-					O.set_loc(R)
+					slot ="under"
 				else if (istype(O, /obj/item/clothing/suit))
-					if (R.clothes["suit"] != null)
-						var/obj/old = R.clothes["suit"]
-						src.clothes.Add(old)
-						old.set_loc(src)
-					R.clothes["suit"] = O
-					src.clothes.Remove(O)
-					O.set_loc(R)
+					slot ="suit"
 				else if (istype(O, /obj/item/clothing/mask))
-					if (R.clothes["mask"] != null)
-						var/obj/old = R.clothes["mask"]
-						src.clothes.Add(old)
-						old.set_loc(src)
-					R.clothes["mask"] = O
-					src.clothes.Remove(O)
-					O.set_loc(R)
+					slot ="mask"
 				else if (istype(O, /obj/item/clothing/head))
-					if (R.clothes["head"] != null)
-						var/obj/old = R.clothes["head"]
+					slot ="head"
+				if (slot != "reject")
+					if (R.clothes[slot] != null)
+						var/obj/old = R.clothes[slot]
 						src.clothes.Add(old)
 						old.set_loc(src)
-					R.clothes["head"] = O
+					R.clothes[slot] = O
 					src.clothes.Remove(O)
 					O.set_loc(R)
 			if (istype(O, /obj/item/cell))

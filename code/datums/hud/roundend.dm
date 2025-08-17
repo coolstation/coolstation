@@ -1,6 +1,7 @@
 /datum/hud/roundend
 	click_check = 0
 	var/atom/movable/screen/countdown
+	var/countdown_text = "This round will end in"
 
 	New()
 
@@ -14,7 +15,7 @@
 		..()
 
 	proc/update_time(var/seconds)
-		countdown.maptext = "<span class='c ol vga vt' style='background: #00000080;'>This round will end in<br><span style='font-size: 24px;'>[seconds]</span></span>"
+		countdown.maptext = "<span class='c ol vga vt' style='background: #00000080;'>[countdown_text]<br><span style='font-size: 24px;'>[seconds]</span></span>"
 
 	proc/update_delayed()
 		countdown.maptext = "<span class='c ol vga vt' style='background: #00000080;'>The round end has been delayed by an admin.<br>It will end once they remove the delay.</span>"

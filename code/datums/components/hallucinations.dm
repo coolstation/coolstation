@@ -462,10 +462,10 @@ ABSTRACT_TYPE(/datum/component/hallucination)
 		fake_icon_state = "snake_green"
 		get_name()
 			return pick("snek", "WHY DID IT HAVE TO BE SNAKES?!", "rattlesnake", "OH SHIT A SNAKE")
-	/*scorpion
-		fake_icon_state = "spacescorpion"
+	scorpion
+		fake_icon_state = "scorpion"
 		get_name()
-			return "space scorpion"*/
+			return "scorpion"
 	aberration
 		fake_icon_state = "aberration"
 		should_attack = FALSE

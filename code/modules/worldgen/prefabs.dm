@@ -23,8 +23,8 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 
 		var/turf/T = locate(adjustX, adjustY, target.z)
 
-		for(var/x=0, x<prefabSizeX; x++)
-			for(var/y=0, y<prefabSizeY; y++)
+		for(var/x=0, x<prefabSizeX, x++)
+			for(var/y=0, y<prefabSizeY, y++)
 				var/turf/L = locate(T.x+x, T.y+y, T.z)
 				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate) && !istype(L.loc, /area/gehenna/underground))) // istype(L.loc, /area/noGenerate)
 					return 0
@@ -220,7 +220,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeX = 8
 		prefabSizeY = 8
 
-#if defined(MAP_OVERRIDE_OSHAN)
+#if defined(UNDERWATER_MAP)
 	elevator
 		required = 1
 		underwater = 1
@@ -400,8 +400,9 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 
 	grill //test post do not bonk
 		maxNum = 1
+		required = 1
 		prefabPath = "assets/maps/prefabs/prefab_grill.dmm"
-		probability = 30
+		probability = 100
 		prefabSizeX = 10
 		prefabSizeY = 10
 
@@ -414,7 +415,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeY = 21
 
 
-#if defined(MAP_OVERRIDE_OSHAN)
+#if defined(UNDERWATER_MAP)
 	sea_miner
 		underwater = 1
 		maxNum = 1

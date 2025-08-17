@@ -104,7 +104,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 	density = TRUE
 	anchored = ANCHORED
 	throw_spin = FALSE
-	event_handler_flags = Z_ANCHORED
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	animate_movement = SYNC_STEPS
 	dir = WEST
 	var/traincar_length = 8

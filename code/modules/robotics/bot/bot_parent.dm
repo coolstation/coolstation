@@ -3,7 +3,7 @@
 /obj/machinery/bot
 	icon = 'icons/obj/bots/aibots.dmi'
 	layer = MOB_LAYER
-	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
+	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS | STAIR_ANIM
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
 	object_flags = CAN_REPROGRAM_ACCESS
 	machine_registry_idx = MACHINES_BOTS
@@ -136,6 +136,9 @@
 			if(M.client)
 				return TRUE
 		return FALSE
+
+	proc/bumpy()
+		animate_shockwave(src)
 
 	// Generic default. Override for specific bots as needed.
 	bullet_act(var/obj/projectile/P)

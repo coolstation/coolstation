@@ -29,7 +29,7 @@ var/list/ban_from_airborne_fluid = list()
 	mouse_opacity = 1
 	opacity = 0
 	layer = FLUID_AIR_LAYER
-	event_handler_flags = Z_ANCHORED
+	event_handler_flags = USE_HASENTERED | Z_ANCHORED
 
 	set_up(var/newloc, var/do_enters = 1)
 		if (is_setup) return

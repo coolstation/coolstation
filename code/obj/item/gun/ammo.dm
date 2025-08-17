@@ -1,4 +1,4 @@
-//////////////////////////////// Parent ////////////////////////////
+///////////////// this type of ammo is being removed /////////////////
 
 /obj/item/ammo
 	name = "ammo"
@@ -44,7 +44,6 @@
 	// 1.57 - 40mm grenade shell
 	// 1.58 - RPG-7 (Tube is 40mm too, though warheads are usually larger in diameter.)
 
-	//cartridge_length = 20 is pistol (short) 40 is rifle (long)
 
 /obj/item/ammo/bullets
 	name = "Ammo box"
@@ -291,6 +290,7 @@
 	get_desc()
 		return . += "There [src.amount_left == 1 ? "is" : "are"] [src.amount_left][ammo_type.material && istype(ammo_type.material, /datum/material/metal/silver) ? " silver " : " "]bullet\s left!"
 
+/*
 /obj/item/ammo/bullets/derringer
 	sname = ".41 RF"
 	name = ".41 ammo box"
@@ -382,7 +382,7 @@
 	icon_state = "38-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/pistol_medium
+	ammo_type = new/datum/projectile/bullet/pistol_italian
 	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "38"
@@ -394,7 +394,7 @@
 	icon_state = "38A-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/pistol_medium/AP
+	ammo_type = new/datum/projectile/bullet/pistol_italian/AP
 	icon_dynamic = 1
 	icon_short = "38A"
 	icon_empty = "speedloader_empty"
@@ -650,6 +650,8 @@
 		amount_left = 1
 		max_amount = 1
 
+*/
+
 /obj/item/ammo/bullets/autocannon
 	sname = "40mm HE"
 	name = "40mm HE shells"
@@ -818,6 +820,7 @@
 			AMMO.unload_nade()
 			qdel(src)
 
+/*
 // Ported from old, non-gun RPG-7 object class (Convair880).
 /obj/item/ammo/bullets/rpg
 	sname = "MPRT rocket"
@@ -886,7 +889,7 @@
 		ammo_type = new/datum/projectile/bullet/lmg/weak
 		amount_left = 25.0
 		max_amount = 25.0
-
+*/
 
 //////////////////////////////////// Power cells for eguns //////////////////////////
 
@@ -1095,6 +1098,7 @@
 	charge = 2500.0
 	max_charge = 2500.0
 
+/*
 /obj/item/ammo/bullets/flintlock //Flintlock cant be reloaded so this is only for the initial bullet.
 	sname = ".58 Flintlock"
 	name = ".58 Flintlock"
@@ -1177,6 +1181,8 @@
 /obj/item/ammo/bullets/foamdarts/ten
 	amount_left = 10
 	max_amount = 10
+
+*/
 
 /obj/item/ammo/bullets/dueling
 	sname = "dueling rounds"

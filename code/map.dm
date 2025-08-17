@@ -28,6 +28,7 @@ var/global/list/mapNames = list(
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"The Crag"=			list("id" = "CRAG",			"settings" = "crag", 			"playerPickable" = 1),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
+	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
@@ -36,6 +37,7 @@ var/global/list/mapNames = list(
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
+	"Perduta Oil Spar" = list("id" = "PERDUTA",	"settings" = "perduta", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	//"1 pamgoC" = 		list("id" = "PAMGOC", 		"settings" = "pamgoc", 			"playerPickable" = ASS_JAM),
 	//"Kondaru" = 		list("id" = "KONDARU", 		"settings" = "kondaru", 		"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
 	//"Ozymandias" = 	list("id" = "OZYMANDIAS", 	"settings" = "ozymandias", 		"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
@@ -132,8 +134,10 @@ var/global/list/mapNames = list(
 		"the robotics lab" = list(/area/station/medical/robotics))
 //		"the public pool" = list(/area/station/crew_quarters/pool))
 
-	var/job_limits_from_landmarks = FALSE /// if TRUE each job with a landmark will get as many slots as many landmarks there are (jobs without a landmark left on default)
-	var/list/job_limits_override = list() /// assoc list of the form `job_type=limit` to override other job settings, works on gimmick jobs too
+	/// if TRUE each job with a landmark will get as many slots as many landmarks there are (jobs without a landmark left on default)
+	var/job_limits_from_landmarks = FALSE
+	/// assoc list of the form `job_type=limit` to override other job settings, works on gimmick jobs too
+	var/list/job_limits_override = list()
 
 	proc/init() /// Map-specific initialization, feel free to override for your map!
 		// map limits
@@ -1010,6 +1014,121 @@ var/global/list/mapNames = list(
 		"the crew quarters" = list(/area/station/crew_quarters/quartersA),
 		"the mining staff room" = list(/area/station/mining/staff_room))
 		//"the radio lab" = list(/area/station/crew_quarters/radio))
+
+/datum/map_settings/perduta
+	name = "PERDUTA"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
+	goonhub_map = ""
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	/*
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
+
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_right_station = /area/shuttle/merchant_shuttle/left_station/destiny
+	*/
+
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_WEST
+	escape_dir = WEST
+
+	job_limits_override = list(
+		/datum/job/special/mime = 1 // yay!!!
+	)
+
+	valid_nuke_targets = list("the medbay" = list(/area/station/medical/staff, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ))
+
+	init()
+		..()
+		for(var/turf/space/magindara/pitfall_turf)
+			pitfall_turf.initialise_component()
+			LAGCHECK(LAG_HIGH)
+
+
+/datum/map_settings/noyade
+	name = "NOYADE"
+	goonhub_map = "https://goonhub.com/maps/oshan"
+
+	arrivals_type = MAP_SPAWN_MISSILE
+
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
+	auto_walls = 0
+	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
+
+	qm_supply_type = "shuttle"
+	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
+
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/destiny
+	escape_outpost = /area/shuttle/escape/outpost/destiny
+	escape_transit = /area/shuttle/escape/transit/destiny
+	escape_station = /area/shuttle/escape/station/destiny
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+	valid_nuke_targets = list()
+	//job_limits_override = list()
+
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+
+			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
+			if(t_shuttle_r)
+				t_shuttle_r.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
+			if(t_shuttle_l)
+				t_shuttle_l.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+
 
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"

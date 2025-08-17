@@ -154,6 +154,39 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	target_area = /area/transit_vehicle/elevator/ntfc_bot
 	current_occupant = "ntfc_elevator"
 
+/datum/transit_stop/elevator/robo_top
+	stop_id 	= "robo_top"
+	name		= "Cyborg Descent Chute"
+	target_area = /area/transit_vehicle/elevator/robo_top
+	current_occupant = "robo_elevator"
+
+/datum/transit_stop/elevator/robo_bot
+	stop_id 	= "robo_bot"
+	name		= "Cyborg Ascent Chute"
+	target_area = /area/transit_vehicle/elevator/robo_bot
+
+/datum/transit_stop/elevator/hydro_top
+	stop_id = "hydro_top"
+	name = "Botany Lobby"
+	target_area = /area/transit_vehicle/elevator/hydro_top
+	current_occupant = "hydro_elevator"
+
+/datum/transit_stop/elevator/hydro_bot
+	stop_id = "hydro_bot"
+	name = "Hydroponics Bay"
+	target_area = /area/transit_vehicle/elevator/hydro_bot
+
+/datum/transit_stop/elevator/jani_top
+	stop_id = "jani_top"
+	name = "Janitor"
+	target_area = /area/transit_vehicle/elevator/jani_top
+
+/datum/transit_stop/elevator/jani_bot
+	stop_id = "jani_bot"
+	name = "The Sea Sponge"
+	target_area = /area/transit_vehicle/elevator/jani_bot
+	current_occupant = "jani_elevator"
+
 /*
 /datum/transit_stop/elevator/
 	stop_id 	= ""
@@ -211,6 +244,18 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /datum/transit_vehicle/elevator/ntfc
 	vehicle_id = "ntfc_elevator"
 	stop_ids = list("ntfc_top","ntfc_mid","ntfc_bot")
+
+/datum/transit_vehicle/elevator/robo
+	vehicle_id = "robo_elevator"
+	stop_ids = list("robo_top","robo_bot")
+
+/datum/transit_vehicle/elevator/hydro
+	vehicle_id = "hydro_elevator"
+	stop_ids = list("hydro_top","hydro_bot")
+
+/datum/transit_vehicle/elevator/jani
+	vehicle_id = "jani_elevator"
+	stop_ids = list("jani_top", "jani_bot")
 
 // computers
 
@@ -298,6 +343,21 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	vehicle_id = "qmdum_elevator"
 	stop_top_id = "qmdum_top"
 	stop_bottom_id = "qmdum_bot"
+
+/obj/machinery/button/elevator/robo
+	vehicle_id = "robo_elevator"
+	stop_top_id = "robo_top"
+	stop_bottom_id = "robo_bot"
+
+/obj/machinery/button/elevator/hydro
+	vehicle_id = "hydro_elevator"
+	stop_top_id = "hydro_top"
+	stop_bottom_id = "hydro_bot"
+
+/obj/machinery/button/elevator/jani
+	vehicle_id = "jani_elevator"
+	stop_top_id = "jani_top"
+	stop_bottom_id = "jani_bot"
 
       //|\\
      // | \\
@@ -407,6 +467,36 @@ _________ _______  _______  _        _______ __________________   _______ ______
 
 /area/transit_vehicle/elevator/ntfc_bot
 	name = "Space Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/plating"
+
+/area/transit_vehicle/elevator/robo_top
+	name = "Robotics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/robo_bot
+	name = "Robotics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/cautionblack"
+
+/area/transit_vehicle/elevator/hydro_top
+	name = "Hydroponics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/hydro_bot
+	name = "Hydroponics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/plating"
+
+/area/transit_vehicle/elevator/jani_top
+	name = "Sanitation Center"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/jani_bot
+	name = "Sanitation Center"
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/plating"
 

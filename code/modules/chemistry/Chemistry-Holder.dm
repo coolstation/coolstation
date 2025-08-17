@@ -665,12 +665,16 @@ datum
 			if (src.combustible_volume)
 				src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays pressurized flames everywhere!</span>",blind_message = "<span class='alert'>You hear a fiery hiss!", group = "pressure_venting_\ref[src]")
 				var/fireflash_size = clamp(src.combustible_pressure * src.composite_volatility / 50, 0, 4)
-				fireflash_sm(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_speed / (2 * fireflash_size))
-				src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 15)
+				var/turf/T = get_turf(src.my_atom)
+				fireflash_sm(T, fireflash_size, src.composite_combust_temp, src.composite_combust_speed / (2 * fireflash_size))
+				if(issimulatedturf(T))
+					src.trans_to(T,src.combustible_volume * src.combustible_pressure / 15, do_fluid_react = TRUE)
+				else
+					src.remove_any(src.combustible_volume * src.combustible_pressure / 15)
 			src.combustible_pressure = 0
 
 		proc/process_combustion(mult = 1) //Handles any chem that burns
-			if (src.composite_volatility <= 0.5)
+			if (src.composite_volatility <= 0.5 || !src.combustible_volume)
 				src.stop_combusting()
 				return
 
@@ -763,7 +767,11 @@ datum
 
 				if (src.combustible_volume >= 5 && !ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
 					src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays burning chemicals!</span>", blind_message = "<span class='alert'>You hear a hissing splatter!</span>", group = "splatter_chem_fire_\ref[src]")
-					src.trans_to(src.my_atom.loc,max(src.combustible_volume * burn_volatility / 200, 5))
+					var/turf/T = get_turf(src.my_atom)
+					if(issimulatedturf(T))
+						src.trans_to(T,max(src.combustible_volume * burn_volatility / 200, 5))
+					else
+						src.remove_any(max(src.combustible_volume * burn_volatility / 200, 5))
 					if(QDELETED(src.my_atom))
 						return
 
@@ -777,6 +785,7 @@ datum
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
+							burn_speed = INFINITY
 							if(QDELETED(src.my_atom))
 								return
 					if (14 to INFINITY) // splatter chems and break
@@ -788,6 +797,7 @@ datum
 						if (istype(src.my_atom, /obj))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
+							burn_speed = INFINITY
 							if(QDELETED(src.my_atom))
 								return
 						else
@@ -848,10 +858,14 @@ datum
 					if (src.combustible_pressure >= 3) // drain pressure
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
 							var/fireflash_size = max(round(src.combustible_pressure) / 3 - 2, 0)
-							fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
+							var/turf/T = get_turf(src.my_atom)
+							fireflash_s(T, fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
-							src.trans_to(src.my_atom.loc,src.combustible_volume * src.combustible_pressure / 100)
+							if(issimulatedturf(T))
+								src.trans_to(T,src.combustible_volume * src.combustible_pressure / 100)
+							else
+								src.remove_any(src.combustible_volume * src.combustible_pressure / 100)
 
 					if (src.combustible_pressure >= 10) // kaboom
 						var/turf/T = get_turf(my_atom)
@@ -861,8 +875,8 @@ datum
 						fireflash_sm(T, 1 + explosion_size / 2, src.composite_combust_temp, src.composite_combust_temp / (2 * explosion_size + 1), energy = src.composite_combust_energy * burn_speed / src.combustible_volume)
 						if (isobj(my_atom))
 							var/obj/O = my_atom
-							if (!O.shatter_chemically(projectiles = TRUE))
-								src.clear_reagents()
+							O.shatter_chemically(projectiles = TRUE)
+							burn_speed = INFINITY
 
 				for (var/reagent_id in src.reagent_list)
 					var/datum/reagent/reagent = src.reagent_list[reagent_id]
@@ -1063,11 +1077,11 @@ datum
 			var/added_new = 0
 			if (!donotupdate)
 				update_total()
-			amount = round(amount, CHEM_EPSILON)
-			if(amount < CHEM_EPSILON)
-				return 0
 			if(total_volume + amount > maximum_volume)
 				amount = (maximum_volume - total_volume) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
+			if(amount < CHEM_EPSILON)
+				return 0
+			amount = round(amount, CHEM_EPSILON)
 
 			var/datum/reagent/current_reagent = reagent_list[reagent]
 
@@ -1290,7 +1304,7 @@ datum
 
 				// weigh contribution of each reagent to the average color by amount present and it's transparency
 
-				var/weight = current_reagent.volume * current_reagent.transparency / 255.0
+				var/weight = current_reagent.color_multiplier * current_reagent.volume * current_reagent.transparency / 255.0
 				total_weight += weight
 
 				average.r += weight * current_reagent.fluid_r

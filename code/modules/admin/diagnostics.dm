@@ -29,10 +29,10 @@ proc/debug_map_apc_count(delim,zlim)
 		if (!area.requires_power)
 			continue
 
-		if(zlim)
-			var/turf/T = locate() in area
-			if(T?.z != zlim)
-				continue
+		var/turf/T = locate() in area
+		if(!T || (T?:z==2)|| (T?:z==4))
+			continue
+
 
 		for(var/obj/machinery/power/apc/current_apc in area)
 			if (!apcs.Find(current_apc) && !current_apc.areastring) apcs += current_apc
@@ -50,7 +50,7 @@ proc/debug_map_apc_count(delim,zlim)
 
 /client/proc
 	map_debug_panel()
-		set name = "Map Debug Panel"
+		set name = "Map APC Panel"
 		SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 
 		var/area_txt = "<B>APC LOCATION REPORT</B><HR>"
@@ -714,6 +714,16 @@ proc/debug_map_apc_count(delim,zlim)
 
 			if(val)
 				img.app.overlays = list(src.makeText(round(val), RESET_ALPHA))
+
+	perduta_storms
+		name = "Perduta storms"
+		help = {"Storm overlay. Color indicates pressure and potential. Number corresponds to lightning strike power at this turf."}
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			. = ..()
+			var/val = storm_controller.calculate_potential_in_turf(theTurf)
+			img.app.color = hsv2rgb(clamp(180 - (val * 7.5),0,275), 100, 50)
+			if(val > 2)
+				img.app.overlays = list(src.makeText(round(val, 0.1), RESET_ALPHA))
 
 	trace_gases // also known as Fart-o-Vision
 		name = "trace gases active"

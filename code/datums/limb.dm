@@ -220,8 +220,11 @@
 			return
 		if (current_shots > 0)
 			current_shots--
-			var/pox = text2num(params["icon-x"]) - 16
-			var/poy = text2num(params["icon-y"]) - 16
+			var/pox = 0
+			var/poy = 0
+			if(params)
+				pox = text2num(params["icon-x"]) - 16
+				poy = text2num(params["icon-y"]) - 16
 			shoot_projectile_ST_pixel(user, proj, target, pox, poy)
 			user.visible_message("<b class='alert'>[user] fires at [target] with the [holder.name]!</b>")
 			next_shot_at = ticker.round_elapsed_ticks + cooldown
@@ -236,14 +239,14 @@
 		return 0
 
 	arm38
-		proj = new/datum/projectile/bullet/pistol_medium
+		proj = new/datum/projectile/bullet/pistol/italian
 		shots = 3
 		current_shots = 3
 		cooldown = 30
 		reload_time = 200
 
 	abg
-		proj = new/datum/projectile/bullet/slug_rubber
+		proj = new/datum/projectile/bullet/slug/rubber
 		shots = 6
 		current_shots = 6
 		cooldown = 30
@@ -285,7 +288,7 @@
 		reload_time = 40
 
 	fire_elemental
-		proj = new/datum/projectile/bullet/flare
+		proj = new/datum/projectile/bullet/slug/flare
 		shots = 1
 		current_shots = 1
 		cooldown = 40
@@ -1287,10 +1290,9 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 	/obj/machinery/atmospherics/valve,\
 	/obj/machinery/vending,\
 	/obj/machinery/nuclearbomb,\
-	/obj/item/gun/kinetic/airzooka,\
 	/obj/machinery/computer,\
-	/obj/machinery/power/smes,
-	/obj/item/tinyhammer,
+	/obj/machinery/power/smes,\
+	/obj/item/tinyhammer,\
 	/obj/item/device/light/zippo) //Items that ghostcritters simply cannot interact, regardless of w_class
 	. = list()
 	for (var/blocked_type in blocked_types)

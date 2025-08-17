@@ -516,6 +516,15 @@
 		if(old_loc)
 			old_loc.contents -= src.loc
 	*/
+	if ((map_currently_abovewater && what == "Space")  && (src.z == 1 || src.z == 3))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Above Ocean"
+			keep_old_material = 0
+
 	if ((map_currently_underwater && what == "Space")  && (src.z == 1 || src.z == 5))
 		var/area/area = src.loc
 		if(istype(area, /area/shuttle/))
@@ -551,6 +560,13 @@
 			new_turf = new /turf/space(src, src.turf_persistent)
 
 	else switch(what)
+		if ("Above Ocean")
+			if(src.z==3)
+				new_turf = new /turf/space/fluid(src, src.turf_persistent)
+			else
+				new_turf = new /turf/space/magindara(src, src.turf_persistent)
+				var/turf/space/magindara/new_pitfall = new_turf
+				new_pitfall.initialise_component()
 		if ("Desert")
 			if(src.z==3)
 				new_turf = new /turf/floor/plating/gehenna(src, src.turf_persistent)
@@ -1008,18 +1024,21 @@ proc/generate_space_color()
 	if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
 		boutput(user, "<span class='alert'>You can't build here.</span>")
 		return
-	var/obj/item/rods/R = C
-	if (istype(R))
-		//no more stacking lattices thx
+	if (istype(C, /obj/item/rods))
+		var/obj/item/rods/R = C
 		var/obj/lattice/lat = locate() in src
 		if (lat)
+			boutput(user, "<span class='alert'>There's already a lattice there.</span>")
 			return //lat.Attackby(R, user)
-		else if (R.change_stack_amount(-1))
-			boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
+		else if (R.change_stack_amount(-2))
+			boutput(user, "<span class='notice'>You build a support lattice!</span>")
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-			ReplaceWithLattice()
-			if (R.material)
-				src.setMaterial(C.material)
+			lat = new(src)
+			if(R.material)
+				lat.setMaterial(R.material)
+			return
+		else
+			boutput(user, "<span class='alert'>You need two rods to build a lattice.</span>")
 			return
 
 	if (istype(C, /obj/item/tile))
@@ -1030,6 +1049,7 @@ proc/generate_space_color()
 				qdel(L)
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
 			T.build(src)
+			return
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -835,6 +835,7 @@
 	/obj/item/light_parts/floor,
 	/obj/item/screwdriver,
 	/obj/item/spraybottle,
+	/obj/item/spray_paint,
 	/obj/item/spongecaps,
 	/obj/item/storage/toolbox/mechanical,
 	/obj/item/storage/toolbox/electrical,
@@ -1779,7 +1780,7 @@
 	amt2spawn = 1
 	items2spawn = null
 	New()
-		items2spawn = concrete_typesof(/obj/item/gun/kinetic) - /obj/item/gun/kinetic/meowitzer //No, just no
+		items2spawn = concrete_typesof(/obj/item/gun/kinetic)// - /obj/item/gun/kinetic/meowitzer //No, just no
 		. = ..()
 
 /obj/random_item_spawner/ai_experimental //used to spawn 'experimental' AI law modules

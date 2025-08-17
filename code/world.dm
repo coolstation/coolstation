@@ -35,6 +35,8 @@
 
 //The DESERT_MAP one does the same ok:)
 
+//Take a wild guess what the ABOVEWATER_MAP one does
+
 #ifdef UNDERWATER_MAP
 var/global/map_currently_underwater = 1
 #else
@@ -45,6 +47,12 @@ var/global/map_currently_underwater = 0
 var/global/map_currently_very_dusty = 1
 #else
 var/global/map_currently_very_dusty = 0
+#endif
+
+#ifdef ABOVEWATER_MAP
+var/global/map_currently_abovewater = 1
+#else
+var/global/map_currently_abovewater = 0
 #endif
 
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
@@ -816,7 +824,7 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	var/newround = 'sound/misc/NewRound.ogg'
 	if (prob(40))
-		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/TimeForANewRound.ogg')
+		newround = pick('sound/misc/NewRound0.ogg','sound/misc/NewRound1.ogg','sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)

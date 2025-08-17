@@ -8,7 +8,7 @@ var/global/datum/color/ocean_color = 0
 /// Processes fluid turfs
 /datum/controller/process/fluid_turfs
 	var/tmp/list/processing_fluid_turfs
-	var/add_reagent_amount = 500
+	var/add_reagent_amount = 2500
 	var/do_light_gen = 1
 
 	proc/handle_light_generating_turfs(lagcheck_at = LAG_REALTIME)

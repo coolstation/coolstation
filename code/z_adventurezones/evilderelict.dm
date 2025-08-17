@@ -178,7 +178,7 @@ var/maniac_previous_victim = "Unknown"
 	icon_state = "derelict"
 	teleport_blocked = 1
 	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 	is_construction_allowed = FALSE

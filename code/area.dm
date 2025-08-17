@@ -76,7 +76,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	var/obj/machinery/power/apc/area_apc = null // okay in certain cases you may have more than one apc, but for my purposes the latest apc works just fine
 
-	var/requires_power = TRUE
+	var/requires_power = FALSE
 	var/tmp/power_equip = 1
 	var/tmp/power_light = 1
 	var/tmp/power_environ = 1
@@ -1125,7 +1125,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name ="Martian Trade Outpost"
 	icon_state = "yellow"
 	sound_environment = EAX_CAVE
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 
@@ -1185,7 +1185,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Derelict Space Station"
 	icon_state = "derelict"
 	is_atmos_simulated = TRUE
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 
@@ -1631,6 +1631,7 @@ ABSTRACT_TYPE(/area/sim)
 /// Base station area
 ABSTRACT_TYPE(/area/station)
 /area/station
+	requires_power = TRUE
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
 	do_not_irradiate = 0
@@ -1679,6 +1680,9 @@ ABSTRACT_TYPE(/area/station/atmos/hookups)
 
 /area/station/atmos/hookups/central
 	name = "Central Air Hookups"
+
+/area/station/atmos/hookups/ai
+	name = "AI Cooling Hookups"
 
 ABSTRACT_TYPE(/area/station/communications)
 /area/station/communications
@@ -1770,6 +1774,26 @@ ABSTRACT_TYPE(/area/station/maintenance/inner)
 
 /area/station/maintenance/inner/central
   name = "Central Inner Maintenance"
+
+ABSTRACT_TYPE(/area/station/maintenance/sublevel)
+/area/station/maintenance/sublevel
+	name = "Sublevel Maintenance"
+
+/area/station/maintenance/sublevel/north
+	name = "North Sublevel Maintenance"
+	icon_state = "Nmaint"
+
+/area/station/maintenance/sublevel/east
+	name = "East Sublevel Maintenance"
+	icon_state = "Emaint"
+
+/area/station/maintenance/sublevel/south
+	name = "South Sublevel Maintenance"
+	icon_state = "Smaint"
+
+/area/station/maintenance/sublevel/west
+	name = "West Sublevel Maintenance"
+	icon_state = "Wmaint"
 
 // Donut 3 specific areas //
 
@@ -3901,6 +3925,12 @@ ABSTRACT_TYPE(/area/station/turret_protected)
 	requires_power = 0
 	sound_environment = EAX_HALLWAY
 	force_fullbright = 1
+
+/area/station/turret_protected/AIbaseoceanfloor
+	name = "AI Perimeter Defenses"
+	icon_state = "AIt"
+	requires_power = 0
+	sound_environment = EAX_HALLWAY
 
 /area/station/turret_protected/AIbasecore2
 	name = "AI Core 2"

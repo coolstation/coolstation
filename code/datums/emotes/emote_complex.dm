@@ -74,14 +74,31 @@
 
 	//april fools end
 
+/datum/emote/birdwell
+/datum/emote/birdwell/enact(mob/user, voluntary = 0, param)
+	playsound(user.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+	return list("<B>[user]</B> birdwells.", "<I>birdwells</I>", MESSAGE_AUDIBLE)
 
 /datum/emote/birdwell/bio //the stinky version humans have
 /datum/emote/birdwell/bio/enact(mob/user, voluntary = 0, param)
-	if ((user.client && user.client.holder))
-		playsound(user.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-		return list("<B>[user]</B> birdwells.", "<I>birdwells</I>", MESSAGE_AUDIBLE)
-	else
-		return
+	if ((user.client && user.client.holder)) //admins only
+		return ..()
+	return
+
+/datum/emote/AI_kick
+/datum/emote/AI_kick/enact(mob/living/silicon/ai/user, voluntary = 0, param)
+	if (!istype(user)) return
+	if(user.has_feet)
+		for (var/mob/living/M in view(1, null))
+			if (M == user)
+				continue
+
+			var/turf/T = get_edge_target_turf(user, get_dir(user, get_step_away(M, user)))
+			if (T && isturf(T))
+				M.throw_at(T, 100, 2)
+				M.changeStatus("weakened", 1 SECOND)
+				M.changeStatus("stunned", 2 SECONDS)
+			return list("<B>[user]</B> kicks [M]!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/uguu
 /datum/emote/uguu/enact(mob/user, voluntary = 0, param)
@@ -120,6 +137,9 @@
 					user.drop_juggle()
 				else
 					user.add_juggle(thing)
+			else
+				user.add_juggle(thing)
+		return list(,,)
 
 /datum/emote/twirl //also spin
 	cooldown = 2.5 SECONDS
@@ -330,7 +350,13 @@
 	else
 		return list("<B>[user]</B> makes a very loud noise.", null, MESSAGE_AUDIBLE)
 
-
+/datum/emote/scream/silicon //turns out the above wasn't ready for borgs
+/datum/emote/scream/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
+	if (narrator_mode)
+		playsound(user.loc, 'sound/vox/scream.ogg', 50, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	else
+		playsound(user, user.sound_scream, 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	return list("<b>[user]</b> screams!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/twerk // also shakebutt, shakebooty, shakeass
 /datum/emote/twerk/enact(mob/user, voluntary = 0, param)
@@ -521,13 +547,16 @@
 /datum/emote/wink/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user)) return
 	for (var/obj/item/C as anything in user.get_equipped_items())
-		if ((locate(/obj/item/gun/kinetic/derringer) in C) != null)
-			var/obj/item/gun/kinetic/derringer/D = (locate(/obj/item/gun/kinetic/derringer) in C)
+		if(istype(C, /obj/item/storage)) // HATE
+			continue
+
+		if ((locate(/obj/item/gun/modular) in C) != null)
+			var/obj/item/gun/modular/gunse = (locate(/obj/item/gun/modular) in C)
 			var/drophand = (user.hand == 0 ? user.slot_r_hand : user.slot_l_hand)
 			user.drop_item()
-			D.set_loc(user)
-			user.equip_if_possible(D, drophand)
-			user.visible_message("<span class='alert'><B>[user] pulls a derringer out of \the [C]!</B></span>")
+			gunse.set_loc(user)
+			user.equip_if_possible(gunse, drophand)
+			user.visible_message("<span class='alert'><B>[user] pulls a gun out of \the [C]!</B></span>")
 			playsound(user.loc, "rustle", 60, 1)
 			break
 
@@ -596,21 +625,21 @@
 
 	if (toilet && (user.buckled != null))
 		if (user.poops >= 1)
-			for (var/obj/item/storage/toilet/T in user.loc)
+			for (var/obj/item/storage/toilet/terlet in user.loc)
 				message = pick("<B>[user]</B> unzips [his_or_her(user)] pants and [pick("shits","turds","craps","poops","pooes")] in the toilet.", "<B>[user]</B> empties [his_or_her(user)] bladder.", "<span class='notice'>Ahhh, sweet relief.</span>")
-				var/load = (rand(1,user.poops))/5 //if you got five or more poops (ten bites) stored up, you might clog the pipes!
+				var/load = (rand(1,user.poops))*2 //if you got five or more poops (ten bites) stored up, you might clog the pipes!
 				user.poops = 0 //empty out the shitbutt!
-				if(load >= 1)
+				if(load >= 10)
 					message = "<B>[user]</B> grunts for a moment- Then really fills the bowl!"
 					var/turf/terf = get_turf(user)
 					terf.fluid_react_single("miasma", 5, airborne = 1)
-					T.poops++
-					var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(T, user.poop_amount)
-					T.add_contents(shit)
-				T.clogged += load
-				T.poops++
-				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(T, user.poop_amount)
-				T.add_contents(shit)
+					var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
+					terlet.add_contents(shit)
+					terlet.reagents.add_reagent("miasma", 5)
+				terlet.clogged += load
+				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
+				terlet.reagents.add_reagent("poo", user.poop_amount)
+				terlet.add_contents(shit)
 				playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
 			user.wiped = 0

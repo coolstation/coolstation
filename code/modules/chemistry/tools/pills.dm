@@ -341,7 +341,7 @@
 			adulterants--
 			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), 3)
 
-		reagents.add_reagent("cloak_juice", 5) //listed ingredients on packaging may differ
+		reagents.add_reagent("cloak_juice", 10) //listed ingredients on packaging may differ
 		reagents.add_reagent("grime", 5)
 		reagents.add_reagent("bonerjuice", 30) //active ingredient
 		reagents.add_reagent("bhjuice", 10) //also active ingredient

@@ -251,7 +251,7 @@
 				else
 					thetans = rand(1,10)
 					reading_cache[M.name] = thetans
-			user.visible_message("<b>[user]</b> takes a reading with the [src].",\
+			user.visible_message("<b>[user]</b> takes a reading with [src].",\
 			"[M]'s Thetan Level: [thetans]")
 			if (thetans > 0)
 				boutput(M, "Dang, that's not good. Maybe you oughta spend some cash on therapy...")

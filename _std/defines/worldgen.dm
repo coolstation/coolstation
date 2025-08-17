@@ -18,6 +18,11 @@
 #define AST_NUMPREFABS 18
 /// Up to how many extra prefabs to place randomly. You might or might not get these extra ones.
 #define AST_NUMPREFABSEXTRA 6
+#elif defined(ABOVEWATER_MAP)
+/// How many prefabs to place. It'll try it's hardest to place this many at the very least. You're basically guaranteed this amount of prefabs.
+#define AST_NUMPREFABS 0
+/// Up to how many extra prefabs to place randomly. You might or might not get these extra ones.
+#define AST_NUMPREFABSEXTRA 0
 #else
 /// How many prefabs to place. It'll try it's hardest to place this many at the very least. You're basically guaranteed this amount of prefabs.
 #define AST_NUMPREFABS 11

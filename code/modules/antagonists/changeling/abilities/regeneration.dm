@@ -28,9 +28,6 @@
 		if(!H.in_fakedeath)
 			boutput(holder.owner, __blue("Repairing our wounds."))
 			logTheThing("combat", holder.owner, null, "enters regenerative stasis as a changeling [log_loc(holder.owner)].")
-			var/list/implants = list()
-			for (var/obj/item/implant/I in holder.owner) //Still preserving implants
-				implants += I
 
 			H.in_fakedeath = 1
 			APPLY_MOB_PROPERTY(C, PROP_CANTMOVE, src.type)
@@ -41,35 +38,9 @@
 
 			C.emote("deathgasp")
 
-			SPAWN_DBG(cooldown)
-				changeling_super_heal_step(C, 100, 100) //get those limbs back i didn't lay here for 45 seconds to be hopping around on one leg dang it
-				if (C && !isdead(C))
-					C.HealDamage("All", 1000, 1000)
-					C.take_brain_damage(-INFINITY)
-					C.take_toxin_damage(-INFINITY)
-					C.take_oxygen_deprivation(-INFINITY)
-					C.delStatus("paralysis")
-					C.delStatus("stunned")
-					C.delStatus("weakened")
-					C.delStatus("radiation")
-					C.health = 100
-					C.reagents.clear_reagents()
-					C.lying = 0
-					C.canmove = 1
-					boutput(C, "<span class='notice'>We have regenerated.</span>")
-					logTheThing("combat", C, null, "[C] finishes regenerative statis as a changeling [log_loc(C)].")
-					C.visible_message(__red("<B>[C] appears to wake from the dead, having healed all wounds.</span>"))
-					for(var/obj/item/implant/I in implants)
-						if (istype(I, /obj/item/implant/projectile))
-							boutput(C, "<span class='alert'>\an [I] falls out of your abdomen.</span>")
-							I.on_remove(C)
-							C.implant.Remove(I)
-							I.set_loc(C.loc)
-							continue
+			//src.type passed along so we can remove that mob property up above in the status effect ending.
+			C.setStatus("regenerative_stasis", src.cooldown, src.type)
 
-				C.set_clothing_icon_dirty()
-				H.in_fakedeath = 0
-				REMOVE_MOB_PROPERTY(C, PROP_CANTMOVE, src.type)
 		return 0
 
 /proc/changeling_super_heal_step(var/mob/living/carbon/human/healed, var/limb_regen_prob = 25, var/eye_regen_prob = 25, var/mult = 1, var/changer = 1)

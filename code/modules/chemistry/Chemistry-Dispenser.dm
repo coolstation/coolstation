@@ -461,7 +461,7 @@
 	name = "kitchen fountain"
 	desc = "A soda fountain that definitely does not have a suspicious similarity to the alcohol and chemical dispensers OR the soda fountain. No sir."
 	dispensable_reagents = list("cola", "juice_lime", "juice_lemon", "juice_orange", "mint", "mustard", "pepper", \
-								"juice_cran", "juice_cherry", "juice_pineapple","coconut_milk", "ketchup", \
+								"juice_cran", "juice_cherry", "juice_pineapple","coconut_milk", "ketchup", "tomato_sauce", \
 								"sugar", "water", "vanilla", "tea", "chocolate", "chocolate_milk","strawberry_milk")
 	icon_state = "alc_dispenser"
 	icon_base = "alc_dispenser"
@@ -470,6 +470,14 @@
 	dispenser_name = "Soda"
 
 	dispense_sound = 'sound/effects/splort.ogg'
+
+/obj/machinery/chem_dispenser/pharmacy
+	name = "pharmaceutical dispenser"
+	desc = "A chemical supplier tailored to the needs of medical staff."
+	dispensable_reagents = list(
+		"aluminium","carbon","ethanol","hydrogen","oxygen","silver",\
+		"sugar","sulfur","water","ammonia","anti_rad","salt")
+	dispenser_name = "Pharmacy"
 
 /obj/machinery/chem_dispenser/old
 	name = "old alcohol dispenser"

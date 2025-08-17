@@ -15,6 +15,7 @@
 /obj/machinery/power/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "smes"
 	density = 1
 	anchored = 1
@@ -133,6 +134,9 @@
 		icon_state = "smes"
 
 	var/image/I = SafeGetOverlayImage("operating", 'icons/obj/machines/power.dmi', "smes-op[online]")
+	I.plane = PLANE_LIGHTING
+	I.layer = LIGHTING_LAYER_BASE
+	I.blend_mode = BLEND_ADD
 	UpdateOverlays(I, "operating")
 
 	I = SafeGetOverlayImage("chargemode",'icons/obj/machines/power.dmi', "smes-oc1")

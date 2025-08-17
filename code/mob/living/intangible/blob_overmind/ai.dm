@@ -142,7 +142,7 @@
 		if (!has_adjacent_blob(C))
 			return -1
 		var/cl
-		if (C.density || istype(C, /turf/space))
+		if (C.density || istype(C, /turf/space) || !issimulatedturf(C))
 			cl = 3
 		else
 			cl = 0
