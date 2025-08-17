@@ -136,11 +136,7 @@
 	pixel_x = -24
 	},
 /obj/table/reinforced/industrial/auto,
-/obj/item/device/transfer_valve{
-	pixel_y = -3;
-	pixel_x = 4
-	},
-/obj/random_item_spawner/tools_w_igloves/one_or_zero,
+/obj/machinery/recharger,
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
 "aw" = (
@@ -174,8 +170,8 @@
 /area/station/hallway/primary/northeast)
 "aC" = (
 /obj/overlay/magindara_skylight/weather,
-/turf/floor/stairs/dark{
-	dir = 6
+/turf/floor/stairs/dark/middle{
+	dir = 2
 	},
 /area/station/hydroponics/bay)
 "aD" = (
@@ -372,6 +368,7 @@
 /obj/machinery/door/airlock/medical{
 	id = "cloning-exit"
 	},
+/obj/access_spawn/medical,
 /turf/floor/blackwhite,
 /area/station/medical/medbay/cloner)
 "bi" = (
@@ -2525,7 +2522,10 @@
 /area/station/medical/medbay/treatment)
 "hb" = (
 /obj/disposalpipe/segment/morgue/bent/east,
-/turf/floor/riveted,
+/obj/shrub/big,
+/turf/floor/planter/edges{
+	dir = 6
+	},
 /area/station/hallway/primary/east)
 "hc" = (
 /obj/cable{
@@ -2650,8 +2650,8 @@
 /area/magindara)
 "ht" = (
 /obj/machinery/door/airlock/classic,
-/obj/access_spawn/janitor,
 /obj/disposalpipe/segment/sewage/horizontal,
+/obj/access_spawn/maint,
 /turf/floor/riveted,
 /area/station/janitor/office)
 "hu" = (
@@ -4585,7 +4585,7 @@
 "mO" = (
 /obj/machinery/door/airlock/external,
 /obj/disposalpipe/segment/vertical,
-/obj/access_spawn/janitor,
+/obj/access_spawn/maint,
 /turf/floor/industrial,
 /area/station/janitor/office)
 "mP" = (
@@ -4767,6 +4767,7 @@
 	pixel_x = 24
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/random_item_spawner/tools_w_igloves/one_or_zero,
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
 "nt" = (
@@ -5713,8 +5714,8 @@
 /area/station/medical/medbay/surgery)
 "pV" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/stairs/dark/wide{
-	dir = 9
+/turf/floor/stairs/dark/wide2{
+	dir = 8
 	},
 /area/station/quartermaster/refinery)
 "pW" = (
@@ -6480,8 +6481,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/stairs/dark{
-	dir = 6
+/turf/floor/stairs/dark/middle{
+	dir = 2
 	},
 /area/station/bridge)
 "sg" = (
@@ -8585,6 +8586,7 @@
 "yw" = (
 /obj/table/reinforced/industrial/auto,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/recharger,
 /turf/floor/black,
 /area/station/security/main)
 "yz" = (
@@ -10141,9 +10143,6 @@
 "CN" = (
 /obj/storage/closet/emergency,
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/railing/cool{
 	dir = 4
 	},
 /obj/railing/cool{
@@ -12805,6 +12804,10 @@
 /obj/table/tool_cart,
 /obj/machinery/light/sodium,
 /obj/random_item_spawner/tools/maybe_few,
+/obj/item/device/transfer_valve{
+	pixel_y = -3;
+	pixel_x = 4
+	},
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
 "Kx" = (
@@ -14209,8 +14212,8 @@
 /area/station/crew_quarters/kitchen/freezer)
 "Oq" = (
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/stairs/dark/wide{
-	dir = 6
+/turf/floor/stairs/dark/wide2{
+	dir = 2
 	},
 /area/station/bridge)
 "Or" = (
@@ -16637,8 +16640,8 @@
 /area/station/hallway/primary/northwest)
 "UU" = (
 /obj/overlay/magindara_skylight/weather,
-/turf/floor/stairs/dark/wide{
-	dir = 6
+/turf/floor/stairs/dark/wide2{
+	dir = 2
 	},
 /area/station/hydroponics/bay)
 "UV" = (
@@ -16716,8 +16719,8 @@
 /area/magindara)
 "Ve" = (
 /obj/railing/cool,
-/turf/floor/stairs/dark/wide{
-	dir = 5
+/turf/floor/stairs/dark/wide2{
+	dir = 4
 	},
 /area/station/hallway/primary/north)
 "Vf" = (
@@ -17048,8 +17051,8 @@
 	},
 /area/station/bridge/customs)
 "Wa" = (
-/turf/floor/stairs/dark/wide{
-	dir = 10
+/turf/floor/stairs/dark/wide2{
+	dir = 1
 	},
 /area/station/hallway/primary/northwest)
 "Wc" = (

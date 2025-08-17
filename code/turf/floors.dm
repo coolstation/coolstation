@@ -1175,7 +1175,13 @@ DEFINE_FLOORS(marble/border_wb,
 	icon_state = "dark_stairs"
 
 /turf/floor/stairs/dark/wide
-	icon_state = "dark_stairs2"
+	icon_state = "dark_stairs_wide"
+
+/turf/floor/stairs/dark/wide2
+	icon_state = "dark_stairs_wide2"
+
+/turf/floor/stairs/dark/middle
+	icon_state = "dark_stairs_middle"
 
 /////////////////////////////////////////
 
