@@ -247,7 +247,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 						rock.color = src.color
 
 		if (generateLight)
-			src.make_light()
+			STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen() //this is a trick to stop sand turfs from runtiming if they're immediately replaced with something else
+		..()
+		src.make_light()
 
 	proc/create_rocks()
 		rocks = list()
