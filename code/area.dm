@@ -1681,6 +1681,9 @@ ABSTRACT_TYPE(/area/station/atmos/hookups)
 /area/station/atmos/hookups/central
 	name = "Central Air Hookups"
 
+/area/station/atmos/hookups/ai
+	name = "AI Cooling Hookups"
+
 ABSTRACT_TYPE(/area/station/communications)
 /area/station/communications
 	name = "Communications Office"
@@ -1771,6 +1774,26 @@ ABSTRACT_TYPE(/area/station/maintenance/inner)
 
 /area/station/maintenance/inner/central
   name = "Central Inner Maintenance"
+
+ABSTRACT_TYPE(/area/station/maintenance/sublevel)
+/area/station/maintenance/sublevel
+	name = "Sublevel Maintenance"
+
+/area/station/maintenance/sublevel/north
+	name = "North Sublevel Maintenance"
+	icon_state = "Nmaint"
+
+/area/station/maintenance/sublevel/east
+	name = "East Sublevel Maintenance"
+	icon_state = "Emaint"
+
+/area/station/maintenance/sublevel/south
+	name = "South Sublevel Maintenance"
+	icon_state = "Smaint"
+
+/area/station/maintenance/sublevel/west
+	name = "West Sublevel Maintenance"
+	icon_state = "Wmaint"
 
 // Donut 3 specific areas //
 

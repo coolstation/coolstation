@@ -973,6 +973,7 @@
 /obj/railing/cool{
 	dir = 1
 	},
+/obj/disposalpipe/segment/morgue/horizontal,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "dd" = (
@@ -1480,6 +1481,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/engineering,
+/obj/access_spawn/engineering,
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
 "ev" = (
@@ -2218,7 +2220,7 @@
 /area/station/engine/thermo)
 "gr" = (
 /obj/machinery/power/data_terminal/cable_tray{
-	target_z = 5;
+	target_z = 3;
 	id = "janitor"
 	},
 /obj/cable{
@@ -2970,6 +2972,14 @@
 /area/station/security/equipment)
 "ip" = (
 /obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
+	pixel_y = 5;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff{
+	pixel_y = 6;
+	pixel_x = 4
+	},
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
 "iq" = (
@@ -4377,7 +4387,7 @@
 /area/station/bridge)
 "mg" = (
 /obj/wingrille_spawn,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/hydroponics/lobby)
 "mh" = (
 /obj/shrub/random,
@@ -4511,6 +4521,20 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"mz" = (
+/obj/grille/catwalk,
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/railing/cool{
+	dir = 8
+	},
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/railing/cool{
+	dir = 4
+	},
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "mB" = (
 /obj/railing/cool,
 /obj/machinery/door_control{
@@ -5373,6 +5397,7 @@
 /obj/railing/cool{
 	dir = 1
 	},
+/obj/table/reinforced/industrial/auto,
 /turf/floor/industrial,
 /area/station/quartermaster/refinery)
 "pb" = (
@@ -6997,6 +7022,7 @@
 /area/station/hydroponics/bay)
 "tG" = (
 /obj/disposalpipe/segment/morgue/vertical,
+/obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "tH" = (
@@ -7784,7 +7810,7 @@
 "vT" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/food/vertical,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/hydroponics/bay)
 "vV" = (
 /turf/floor/industrial,
@@ -7942,7 +7968,10 @@
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "ww" = (
-/obj/disposalpipe/segment/sewage/bent/east,
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/railing/cool{
+	dir = 8
+	},
 /turf/floor/industrial,
 /area/station/hallway/primary/northeast)
 "wx" = (
@@ -8626,7 +8655,7 @@
 "yC" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 4;
-	target_z = 1
+	target_z = 3
 	},
 /turf/floor/black,
 /area/station/janitor/office)
@@ -8906,7 +8935,7 @@
 "zy" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/vertical,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/hydroponics/bay)
 "zz" = (
 /obj/disposalpipe/segment/sewage/vertical,
@@ -10179,7 +10208,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/hydroponics/lobby)
 "CT" = (
 /obj/cable{
@@ -10312,7 +10341,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal/cable_tray{
-	target_z = 5;
+	target_z = 3;
 	id = "ai"
 	},
 /turf/floor/plating/random,
@@ -10413,6 +10442,14 @@
 	dir = 9
 	},
 /area/station/bridge/customs)
+"DB" = (
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/station/hallway/primary/northeast)
 "DC" = (
 /obj/machinery/disposal/mail/autoname/public/medbay_lobby,
 /obj/disposalpipe/trunk/mail/north,
@@ -10541,6 +10578,18 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/hallway/primary/northwest)
+"DZ" = (
+/obj/random_item_spawner/junk/one_or_zero,
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 3;
+	id = "southmaints"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/central)
 "Ea" = (
 /obj/disposalpipe/trunk/sewage{
 	dir = 4
@@ -12810,10 +12859,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
-"Kx" = (
-/obj/wingrille_spawn,
-/turf/floor/plating/random,
-/area/station/medical/medbay/treatment)
 "Ky" = (
 /obj/lattice,
 /obj/grille/catwalk,
@@ -13148,6 +13193,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/railing/cool,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "Lh" = (
@@ -13389,7 +13435,7 @@
 "LK" = (
 /obj/wingrille_spawn,
 /obj/disposalpipe/segment/sewage/horizontal,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/medical/medbay/lobby)
 "LM" = (
 /obj/storage/closet/fire,
@@ -14576,7 +14622,7 @@
 "Pw" = (
 /obj/wingrille_spawn,
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/medical/medbay/lobby)
 "Px" = (
 /obj/cable{
@@ -16034,7 +16080,7 @@
 /area/station/hallway/primary/southeast)
 "To" = (
 /obj/wingrille_spawn,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/medical/medbay/lobby)
 "Tp" = (
 /obj/stool/bench/red/auto,
@@ -16176,7 +16222,7 @@
 	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/obj/disposalpipe/segment/sewage/bent/south,
+/obj/disposalpipe/segment/sewage/horizontal,
 /turf/space/magindara,
 /area/magindara)
 "TM" = (
@@ -16978,7 +17024,7 @@
 /area/station/maintenance/north)
 "VQ" = (
 /obj/wingrille_spawn/reinforced,
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/hydroponics/bay)
 "VR" = (
 /obj/machinery/door/airlock/classic,
@@ -17587,6 +17633,11 @@
 	icon_state = "2-8"
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "XJ" = (
@@ -18367,7 +18418,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating/random,
+/turf/floor/plating,
 /area/station/hydroponics/lobby)
 "ZW" = (
 /obj/disposalpipe/segment/morgue/bent/west,
@@ -52952,7 +53003,7 @@ WZ
 DY
 oi
 oi
-Kx
+Nq
 fE
 wo
 Zu
@@ -53857,7 +53908,7 @@ Pw
 FL
 mC
 Yq
-Kx
+Nq
 QH
 JP
 uJ
@@ -55689,7 +55740,7 @@ Xo
 PE
 yv
 bd
-vu
+DZ
 Db
 gV
 Et
@@ -64733,7 +64784,7 @@ gl
 SO
 SO
 Qu
-PQ
+mz
 hd
 Jk
 GG
@@ -65035,7 +65086,7 @@ gl
 TP
 TP
 Lg
-TP
+DB
 hd
 hd
 iK
