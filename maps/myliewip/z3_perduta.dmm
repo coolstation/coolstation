@@ -26,7 +26,7 @@
 /turf/floor/plating,
 /area/station/turret_protected/ai)
 "aE" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/medical/robotics)
 "aT" = (
 /obj/decal/tile_edge/stripe/extra_big,
@@ -172,7 +172,7 @@
 /turf/floor/industrial,
 /area/station/maintenance/sublevel/south)
 "cL" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/maintenance/sublevel/south)
 "cT" = (
 /obj/decal/tile_edge/stripe/big{
@@ -370,7 +370,7 @@
 	},
 /area/station/janitor/office)
 "gB" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/janitor/office)
 "gD" = (
 /obj/machinery/vending/janitor,
@@ -490,7 +490,7 @@
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
 "iu" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/atmos/hookups/ai)
 "iU" = (
 /obj/machinery/light/fluorescent/ceiling/warm/very,
@@ -563,7 +563,7 @@
 /area/station/turret_protected/ai)
 "jK" = (
 /turf/floor/black,
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/maintenance/disposal)
 "jN" = (
 /obj/decal/poster/wallsign/hazard_exheat,
@@ -937,7 +937,7 @@
 	},
 /area/station/janitor/office)
 "pY" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/maintenance/disposal)
 "qd" = (
 /obj/lattice{
@@ -1752,6 +1752,13 @@
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
+"Dn" = (
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/obj/random_item_spawner/junk/one_or_zero,
+/turf/floor/plating/random,
+/area/station/maintenance/sublevel/south)
 "Dx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
 /turf/space/fluid/trench,
@@ -2018,7 +2025,7 @@
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)
 "HX" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/magindara)
 "HY" = (
 /turf/floor/cautionblack,
@@ -2288,10 +2295,10 @@
 /area/station/maintenance/sublevel/south)
 "Ln" = (
 /obj/machinery/button/elevator/jani,
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/janitor/office)
 "Lp" = (
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/maintenance/sublevel/north)
 "Lz" = (
 /obj/machinery/computer/supplycomp,
@@ -2327,7 +2334,7 @@
 /area/station/janitor/office)
 "Mj" = (
 /obj/machinery/button/elevator/hydro,
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/maintenance/sublevel/south)
 "Mt" = (
 /obj/disposalpipe/segment/horizontal,
@@ -2659,7 +2666,7 @@
 /area/station/atmos/hookups/ai)
 "RA" = (
 /obj/decal/poster/wallsign/danger_highvolt,
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/medical/robotics)
 "RC" = (
 /obj/decal/tile_edge/stripe/big{
@@ -2733,6 +2740,7 @@
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 4
 	},
+/obj/decal/cleanable/rust/jen,
 /turf/floor/cautionblack,
 /area/station/janitor/office)
 "Te" = (
@@ -2929,7 +2937,7 @@
 /area/shuttle/arrival/station)
 "Xj" = (
 /obj/decal/poster/wallsign/warning3,
-/turf/wall,
+/turf/wall/auto/rivet,
 /area/station/maintenance/sublevel/south)
 "Xz" = (
 /obj/random_item_spawner/junk/one_or_zero,
@@ -40093,7 +40101,7 @@ cL
 JC
 cL
 Ey
-hV
+vj
 hV
 JG
 BO
@@ -40393,7 +40401,7 @@ BX
 BX
 cL
 mw
-hV
+vj
 hV
 hV
 EV
@@ -40694,8 +40702,8 @@ BX
 BX
 BX
 cL
-Ce
-hV
+Dn
+vj
 cL
 cL
 JC
