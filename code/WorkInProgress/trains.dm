@@ -139,7 +139,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 			src.my_conductor.potential_crushes.Add(AM)
 			var/turf/target = get_turf(AM)
 			var/y_variance = get_dir(src, AM) & NORTH ? 1 : -1
-			if(ON_COOLDOWN(AM, "trainvacuumsucc", 0.3 SECONDS)) // hit twice within 0.3 seconds, excluding the 0.1 second invuln, to get sucked under
+			if(ON_COOLDOWN(AM, "trainvacuumsucc", 0.6 SECONDS)) // hit twice within 0.6 seconds, excluding the 0.1 second invuln, to get sucked under
 				AM.set_loc(locate(target.x, clamp(target.y + y_variance, 1, world.maxy - 1), target.z))
 			y_variance = y_variance * rand(-4, 15)
 			if(src.my_conductor.train_direction & EAST)
@@ -319,7 +319,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 					H.sever_limb(pick("l_arm","r_arm","l_leg","r_leg"))
 
 			// spray gibs
-			if(!ON_COOLDOWN(L, "trainsquishgibs", rand(15,20)))
+			if(!ON_COOLDOWN(L, "trainsquishgibs", rand(15,20)) && L.get_brute_damage() <= 900)
 				var/list/viral_list = list()
 				for (var/datum/ailment_data/AD in L.ailments)
 					viral_list += AD
