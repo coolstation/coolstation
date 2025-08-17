@@ -630,7 +630,7 @@ obj/decal/fakeobjects
 	density = 1
 	opacity = 0
 	anchored = 1
-	plane = PLANE_NOSHADOW_ABOVE
+	//plane = PLANE_NOSHADOW_ABOVE
 
 	New()
 		..()
