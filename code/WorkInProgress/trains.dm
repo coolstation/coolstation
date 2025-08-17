@@ -9,7 +9,7 @@
 	density = TRUE
 	anchored = ANCHORED
 	throw_spin = FALSE
-	event_handler_flags = Z_ANCHORED
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/step_delay = 0.5
 	var/in_motion = FALSE
 	var/in_bump = 0
