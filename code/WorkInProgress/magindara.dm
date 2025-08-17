@@ -53,7 +53,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = TRUE,\
-			HangTime = 0.3 SECONDS,\
+			HangTime = 0.2 SECONDS,\
 			FallTime = 1.2 SECONDS,\
 			DepthScale = 0.4,\
 			TargetZ = 3)
@@ -68,6 +68,12 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		light.set_height(light_height)
 		SPAWN_DBG(1 DECI SECOND)
 			light?.enable()
+
+	ReplaceWith(what, keep_old_material, handle_air, handle_dir, force)
+		. = ..()
+		if(!istype(., /turf/space))
+			new/obj/overlay/magindara_skylight/weather(src)
+
 
 	Del()
 		if(light)

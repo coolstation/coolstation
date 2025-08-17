@@ -435,7 +435,7 @@ obj/decal/fakeobjects
 	layer = OBJ_LAYER
 
 /obj/decal/slipmat
-	name = "Anti Slip mat"
+	name = "anti slip mat"
 	desc = "A ratty rubber mat that protects you from slipping. Probably."
 	density = 0
 	anchored = 1
@@ -444,7 +444,7 @@ obj/decal/fakeobjects
 	layer = OBJ_LAYER
 
 /obj/decal/slipmat/torn
-	name = "Torn anti slip mat"
+	name = "torn anti slip mat"
 	icon_state = "slipmat_torn"
 
 /obj/decal/alienflower
