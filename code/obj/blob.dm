@@ -615,8 +615,10 @@
 		START_TRACKING
 
 	disposing()
-		. = ..()
+		if (src in blob_holder.nuclei)
+			src.onKilled()
 		STOP_TRACKING
+		. = ..()
 
 	bullet_act(var/obj/projectile/P)
 		if (P.proj_data.damage_type == D_ENERGY && src.blob_holder && prob(src.blob_holder.nucleus_reflectivity))

@@ -207,6 +207,53 @@
 			for(var/datum/targetable/blob/evolution/B in src.abilities)
 				B.object.invisibility = 101
 
+	disposing()
+		// if blob disposal is too weird, comment this out - mylie
+		src.wither(TRUE)
+
+		SPAWN_DBG(2.5 SECONDS) // gives wither the time to delete the blobs so we dont run material changes or life ticks on them
+
+		// make sure to enable this if you comment out wither
+		//for(var/obj/blob/blob in src.blobs)
+		//	qdel(blob)
+
+			src.lipids = null
+			src.nuclei = null
+			qdel(src.my_material)
+			src.my_material = null
+			qdel(src.initial_material)
+			src.initial_material = null
+			qdel(src.hat)
+			src.hat = null
+			qdel(src.tutorial)
+			src.tutorial = null
+			qdel(src.nucleus_overlay)
+			src.nucleus_overlay = null
+		. = ..()
+
+	proc/wither(var/death_time = FALSE)
+		SPAWN_DBG(0)
+			var/i = 0
+			for(var/obj/blob/blob in src.blobs)
+				i++
+				blob.ClearAllOverlays()
+				var/turf/T = get_turf(blob)
+				T.fluid_react_single("denatured_enzyme", 75)
+				if(!(i % 6))
+					particleMaster.SpawnSystem(new /datum/particleSystem/blobattack(T,"#a8986a"))
+				else if(blob.special_icon)
+					particleMaster.SpawnSystem(new /datum/particleSystem/blobheal(T,"#a88a3d"))
+				animate(blob, time = rand(12, 18), color = "#2a2413", alpha = 0)
+
+				LAGCHECK(LAG_HIGH)
+			sleep(2 SECONDS)
+			for(var/obj/blob/blob in src.blobs)
+				qdel(blob)
+			if(death_time)
+				src.blobs = null
+			else
+				src.blobs = new()
+
 	proc/reset()
 		src.attack_power = initial(src.attack_power)
 		src.points = 0
@@ -787,7 +834,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		//damage thing a bit
-		mob_owner.TakeDamage(burn=rand(2,4) * src.blob_holder.attack_power, tox=rand(1,3) * src.blob_holder.attack_power)
+		mob_owner.TakeDamage(zone = "All", burn=rand(1,3) * src.blob_holder.attack_power, tox=rand(1,3) * src.blob_holder.attack_power, damage_type = DAMAGE_BURN)
 		//if theyre unconscious or dead, eat faster!
 		if(!isalive(mob_owner) && src.duration > 10 SECONDS)
 			src.duration -= rand(4, 8) // deciseconds

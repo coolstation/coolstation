@@ -2738,6 +2738,7 @@
 		var/datum/abilityHolder/composite/C = abilityHolder
 		return C.removeHolder(H)
 	else if (abilityHolder && abilityHolder == H)
+		qdel(abilityHolder)
 		abilityHolder = null
 
 /mob/proc/add_existing_ability_holder(var/datum/abilityHolder/H)

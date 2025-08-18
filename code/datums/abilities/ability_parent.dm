@@ -57,6 +57,9 @@
 		hud.clear_master()
 		hud.mobs -= src
 
+		for (var/datum/targetable/A in src.abilities)
+			src.removeAbilityInstance()
+
 		if (owner)
 			owner.huds -= hud
 			owner = null
@@ -1100,6 +1103,7 @@
 		for (var/datum/abilityHolder/H in holders)
 			if (H.type == holderType)
 				H.composite_owner = 0
+				qdel(H)
 				holders -= H
 		updateButtons()
 
