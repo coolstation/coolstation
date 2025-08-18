@@ -417,7 +417,7 @@
 
 		var/last_prefix = src.viscosity_prefix
 
-		if(solid / reagents > 0.8)
+		if(reagents && solid / reagents > 0.8)
 			src.viscosity_prefix = "powder"
 		else if(src.avg_viscosity > HALF_MAX_VISCOSITY)
 			src.viscosity_prefix = "globby"

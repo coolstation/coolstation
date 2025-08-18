@@ -70,6 +70,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_remove_all_labels,
 		/client/proc/game_panel,
 		/client/proc/game_panel_but_called_secrets,
+		/client/proc/change_magindaran_weather, // mylie note - maybe move somewhere else?
 		//client/proc/admin_force_ambience,
 
 		//toggles
@@ -323,6 +324,7 @@ var/list/admin_verbs = list(
 		/datum/admins/proc/enable_pixelexplosion,
 		/datum/admins/proc/disable_pixelexplosion,
 
+		/client/proc/strike_lightning_here,
 		/client/proc/sega_bass_fishing,
 		/client/proc/cmd_customgrenade,
 		/client/proc/open_dj_panel,
@@ -411,6 +413,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_crusher_walls,
 		/client/proc/cmd_disco_lights,
 		/client/proc/cmd_blindfold_monkeys,
+		/client/proc/cmd_no_evil_players,
 		/client/proc/cmd_swampify_station,
 		/client/proc/cmd_trenchify_station,
 		/client/proc/cmd_special_shuttle,
@@ -884,12 +887,13 @@ var/list/special_pa_observing_verbs = list(
 	logTheThing("diary", src.owner, null, "has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]", "admin")
 	message_admins("[key_name(src.owner)] has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]")
 
-	if (src.owner:stealth)
-		var/ircmsg[] = new()
-		ircmsg["key"] = src.owner:key
-		ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
-		ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
-		ircbot.export("admin", ircmsg)
+	// SHUT UP ABOUT THE STEALTH MODE
+	// if (src.owner:stealth)
+	// 	var/ircmsg[] = new()
+	// 	ircmsg["key"] = src.owner:key
+	// 	ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
+	// 	ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
+	// 	ircbot.export("admin", ircmsg)
 
 /client/proc/alt_key()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)

@@ -1885,3 +1885,25 @@ window "winJobRewards"
 		cells = 1x1
 		current-cell = 1,1
 		highlight-color = #80ffff
+
+window "sillytexts"
+	elem "sillytexts"
+		type = MAIN
+		pos = 281,0
+		size = 720x480
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "ANCIENT JEDI TEXTS"
+		statusbar = false
+		can-resize = true
+	elem "texto"
+		type = BROWSER
+		pos = 0,0
+		size = 720x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #6f7961
+		saved-params = ""
+		is-visible = true

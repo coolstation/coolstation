@@ -535,7 +535,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 /obj/deployable_turret/syndicate
 	name = "NAS-T"
 	desc = "A Nuclear Agent Sentry Turret."
-	projectile_type = /datum/projectile/bullet/rifle_medium
+	projectile_type = /datum/projectile/bullet/rifle/soviet
 	icon_tag = "st"
 	associated_deployer = /obj/item/turret_deployer/syndicate
 
@@ -555,7 +555,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 125
 	max_health = 125
 	range = 5
-	projectile_type = /datum/projectile/bullet/slug_rubber
+	projectile_type = /datum/projectile/bullet/slug/rubber
 	burst_size = 1
 	fire_rate = 1
 	angle_arc_size = 60
@@ -584,7 +584,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 125
 	max_health = 125
 	range = 7
-	projectile_type = /datum/projectile/bullet/pistol_medium
+	projectile_type = /datum/projectile/bullet/rifle/soviet
 	burst_size = 2
 	fire_rate = 1
 	angle_arc_size = 90
@@ -699,7 +699,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 120
 	max_health = 120
 	range = 12
-	projectile_type = /datum/projectile/bullet/rifle_medium/slow
+	projectile_type = /datum/projectile/bullet/rifle/soviet/slow
 	spread = 3
 	burst_size = 1
 	fire_rate = 2

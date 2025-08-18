@@ -59,7 +59,6 @@ TYPEINFO(/datum/component/holdertargeting/windup)
 			RegisterSignal(G, COMSIG_ITEM_SWAP_TO, PROC_REF(init_aim_mode))
 			RegisterSignal(G, COMSIG_ITEM_SWAP_AWAY, PROC_REF(end_aim_mode))
 			RegisterSignal(G, COMSIG_GUN_TRY_SHOOT, PROC_REF(forced_shoot))
-			RegisterSignal(G, COMSIG_GUN_TRY_POINTBLANK, PROC_REF(try_pointblank))
 			RegisterSignal(G, COMSIG_SCOPE_TOGGLED, PROC_REF(scope_toggled))
 			if(ismob(G.loc))
 				on_pickup(null, G.loc)
@@ -68,7 +67,6 @@ TYPEINFO(/datum/component/holdertargeting/windup)
 		UnregisterSignal(parent, list(COMSIG_ITEM_SWAP_TO,\
 			COMSIG_ITEM_SWAP_AWAY,\
 			COMSIG_GUN_TRY_SHOOT,\
-			COMSIG_GUN_TRY_POINTBLANK,\
 			COMSIG_SCOPE_TOGGLED))
 		for(var/hudSquare in hudSquares)
 			aimer?.screen -= hudSquare
@@ -217,30 +215,17 @@ TYPEINFO(/datum/component/holdertargeting/windup)
 		aimer.screen -= hudCenter
 
 
-
 //try_shoot - return 1 prevents normal shooting behaviour
-/datum/component/holdertargeting/windup/proc/forced_shoot(source, atom/target, atom/start, shooter)
+/datum/component/holdertargeting/windup/proc/forced_shoot(source, atom/target, atom/start, shooter, pox, poy, is_dual_wield, point_blank_target)
 	. = 0
 	if(QDELETED(winder) || winder.state == ACTIONSTATE_DELETE)
 		. = 1
 
 	if(.)
 		var/obj/item/gun/G = parent
-		winder = new/datum/action/bar/icon/windup(G, duration)
+		winder = new/datum/action/bar/icon/windup(G, duration, point_blank_target)
 		winder.target = target
 		actions.start(winder, shooter)
-
-
-/datum/component/holdertargeting/windup/proc/try_pointblank(obj/source, atom/target, user, second_shot)
-	. = 0
-	if(QDELETED(winder) || winder.state == ACTIONSTATE_DELETE)
-		. = 1
-
-	if(.)
-		var/obj/item/gun/G = parent
-		winder = new/datum/action/bar/icon/windup(G, duration, TRUE)
-		winder.target = target
-		actions.start(winder, user)
 
 /datum/action/bar/icon/windup
 	duration = 1 SECOND
@@ -253,9 +238,7 @@ TYPEINFO(/datum/component/holdertargeting/windup)
 	var/pox = 0
 	var/poy = 0
 	var/target
-	var/do_point_blank = FALSE
-	resumable = FALSE
-
+	var/atom/point_blank_target
 
 	New(_gun,  _time, _comp, _do_point_blank = FALSE)
 		ownerGun = _gun
@@ -266,8 +249,8 @@ TYPEINFO(/datum/component/holdertargeting/windup)
 		..()
 
 	onEnd()
-		if(BOUNDS_DIST(owner, target) <= 1 && do_point_blank)
-			ownerGun.ShootPointBlank(target, owner)
+		if(point_blank_target && BOUNDS_DIST(owner, target) <= 1)
+			ownerGun.Shoot(get_turf(target), get_turf(ownerGun), owner, pox, poy, point_blank_target = point_blank_target)
 		else
 			ownerGun.Shoot(get_turf(target), get_turf(ownerGun), owner, pox, poy)
 		..()

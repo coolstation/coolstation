@@ -821,7 +821,7 @@ var/global/noir = 0
 							<A href='byond://?src=\ref[src];action=[cmd];type=assday'>Ass Day Classic (For testing only.)</A><br>
 							<A href='byond://?src=\ref[src];action=[cmd];type=construction'>Construction (For testing only. Don't select this!)</A><br>
 							"})
-#if FOOTBALL_MODE
+#ifdef FOOTBALL_MODE
 				dat += "<A href='byond://?src=\ref[src];action=[cmd];type=football'>Football</A>"
 #endif
 				dat += "</body></html>"
@@ -1797,6 +1797,37 @@ var/global/noir = 0
 			if(!M) return
 			usr.client.cmd_admin_alert(M)
 
+		if ("disableai")
+			if( src.level < LEVEL_PA )
+				alert("You must be at least a Primary Administrator to edit AI.")
+				return
+			var/mob/M = locate(href_list["target"])
+			if (!M) return
+			message_admins("[key_name(usr)] removed AI from [key_name(M)].")
+			logTheThing("admin", usr, M, "removed AI from [constructTarget(M,"admin")].")
+			qdel(M.ai)
+			M.ai = null
+			if(isliving(M))
+				var/mob/living/L = M
+				L.is_npc = FALSE
+
+		if ("violentai")
+			if( src.level < LEVEL_PA )
+				alert("You must be at least a Primary Administrator to edit AI.")
+				return
+			var/mob/M = locate(href_list["target"])
+			if (!M) return
+			message_admins("[key_name(usr)] added violent AI to [key_name(M)].")
+			logTheThing("admin", usr, M, "added violent AI to [constructTarget(M,"admin")].")
+			qdel(M.ai)
+			M.ai = new /datum/aiHolder/violent(M)
+			if(isliving(M))
+				var/mob/living/L = M
+				L.is_npc = TRUE
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					H.uses_mobai = TRUE
+
 		if ("makewraith")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a wraith.")
@@ -1897,7 +1928,6 @@ var/global/noir = 0
 						i++
 					ticker.mode.Agimmicks += M.mind
 					M.antagonist_overlay_refresh(1, 0)
-
 
 		if ("makemacho")
 			if( src.level < LEVEL_PA )
@@ -3364,6 +3394,8 @@ var/global/noir = 0
 						valiant_controls?.debug_panel()
 					if("sun_solar") //tired of having to dig the global vars for this fucker
 						src.owner:debug_variables(sun)
+					if("trains")
+						train_spotter.config()
 			else
 				alert("You need to be at least a Coder to use debugging secrets.")
 
@@ -4347,6 +4379,7 @@ var/global/noir = 0
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=sun_solar'>Sun</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=trains'>Trains</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=world'>World</A>

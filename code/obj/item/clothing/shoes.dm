@@ -455,6 +455,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	permeability_coefficient = 1
 	step_sound = "step_flipflop"
 	step_priority = STEP_PRIORITY_LOW
+	laces = LACES_NONE
 
 	setupProperties()
 		..()
@@ -464,7 +465,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 
 /obj/item/clothing/shoes/detective
 	name = "worn boots"
-	desc = "This pair of leather boots has seen better days."
+	desc = "This pair of snakeskin boots has seen better days."
 	icon_state = "detective"
 
 /obj/item/clothing/shoes/chef
@@ -791,6 +792,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	permeability_coefficient = 1
 	var/possible_names = list("sandals", "flip-flops", "thongs", "rubber slippers", "jandals", "slops", "chanclas")
 	var/stapled = FALSE
+	laces = LACES_NONE
 
 	examine()
 		. = ..()
@@ -816,3 +818,37 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 		setProperty("coldprot", 0)
 		setProperty("heatprot", 0)
 		setProperty("conductivity", 1)
+
+/obj/item/clothing/shoes/mousetraps
+	name = "mousetrap flip-flops"
+	desc = "VERDAMMT NOCH MAL!! AAAAAAAAAAAA!! SCHEIßE!!"
+	icon_state = "mouseflops"
+	protective_temperature = 0
+	permeability_coefficient = 1
+	laces = LACES_NONE
+	var/obj/item/mousetrap/left_trap
+	var/obj/item/mousetrap/right_trap
+
+	New(obj/trap1, obj/trap2)
+		left_trap = trap1
+		right_trap = trap2
+		..()
+
+	disposing()
+		left_trap = null
+		right_trap = null
+		..()
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 0)
+		setProperty("heatprot", 0)
+		setProperty("conductivity", 1)
+
+	unequipped(mob/user)
+		..()
+		user.put_in_hand_or_drop(left_trap)
+		user.put_in_hand_or_drop(right_trap)
+		SPAWN_DBG(0)
+			qdel(src)
+

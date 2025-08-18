@@ -2520,6 +2520,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_SELFILLUM
 
 /obj/elec_trg_dummy
 	name = ""
@@ -2883,14 +2884,14 @@ Returns:
 			new/obj/item/plank(T)
 			new/obj/item/plank(T)
 		else if(prob(1) && prob(40))
-			new/obj/item/gun/kinetic/spes(T)
-			new/obj/item/ammo/bullets/a12(T)
-			new/obj/item/ammo/bullets/a12(T)
+			new/obj/item/gun/modular/juicer/blunder(T)
+			new/obj/item/stackable_ammo/shotgun/juicer/denim/ten(T)
+			new/obj/item/stackable_ammo/shotgun/juicer/ten(T)
 
 		else if(prob(1) && prob(40))
-			new/obj/item/gun/kinetic/flaregun(T)
-			new/obj/item/ammo/bullets/flare(T)
-			new/obj/item/ammo/bullets/flare(T)
+			new/obj/item/gun/modular/NT/flare_gun(T)
+			new/obj/item/stackable_ammo/shotgun/slug_flare/ten(T)
+			new/obj/item/stackable_ammo/shotgun/slug_flare/ten(T)
 
 /mob/living/carbon/human/proc/zombify()
 	var/datum/ailment_data/disease/ZOM = contract_disease(/datum/ailment/disease/necrotic_degeneration, null, null, 1)

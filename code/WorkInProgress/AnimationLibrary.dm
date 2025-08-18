@@ -477,7 +477,11 @@ var/global/list/default_muzzle_flash_colors = list(
 
 proc/muzzle_flash_attack_particle(var/mob/M, var/turf/origin, var/turf/target, var/muzzle_anim, var/muzzle_light_color=null, var/offset=25)
 	if (!M || !origin || !target || !muzzle_anim) return
-	var/firing_angle = get_angle(origin, target)
+	var/firing_angle
+	if(origin == target)
+		firing_angle = dir_to_angle(M.dir)
+	else
+		firing_angle = get_angle(origin, target)
 	muzzle_flash_any(M, firing_angle, muzzle_anim, muzzle_light_color, offset)
 
 proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var/muzzle_light_color, var/offset=25)
@@ -1077,11 +1081,30 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 /proc/animate_shockwave(var/atom/A)
 	if (!istype(A))
 		return
-	var/punchstr = rand(10, 20)
+	var/punchstr = rand(10, 20) * pick(-1, 1)
 	var/original_y = A.pixel_y
-	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = BOUNCE_EASING)
-	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = BOUNCE_EASING)
-	animate(transform = null, time = 3, easing = BOUNCE_EASING)
+	var/matrix/original_matrix = A.transform
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = ELASTIC_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = ELASTIC_EASING)
+	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
+	return
+
+/proc/animate_stairs(var/atom/A)
+	if (!istype(A))
+		return
+	var/punchstr = rand(13, 18) * pick(-1, 1)
+	var/original_y = A.pixel_y
+	var/matrix/original_matrix = A.transform
+	playsound(A.loc, "sound/impact_sounds/stair_hit.ogg", 25, 1, extrarange = -23)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 8, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 2, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 6, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 4, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
 	return
 
 /proc/animate_glitchy_fuckup1(var/atom/A)
@@ -1521,13 +1544,13 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 		animate(f, offset=f:offset, time=0, loop=-1, flags=ANIMATION_PARALLEL)
 		animate(offset=f:offset-1, time=rand()*20+10)
 
-/proc/animate_ripple(atom/A, ripples=1)
+/proc/animate_ripple(atom/A, ripples=1, intensity=1, falloff = 1)
 	if (!istype(A))
 		return
 	var/filter,size
 	for(var/i=1, i<=ripples, ++i)
-		size=rand()*2.5+1
-		A.filters += filter(type="ripple", x=0, y=0, size=size, repeat=rand()*2.5+1, radius=0)
+		size=rand()*2.5*intensity+1
+		A.filters += filter(type="ripple", x=0, y=0, size=size, repeat=rand()*2.5+1, radius=0, falloff=falloff)
 		filter = A.filters[A.filters.len]
 		animate(filter, size=size, time=0, loop=-1, radius=0, flags=ANIMATION_PARALLEL)
 		animate(size=0, radius=rand()*10+10, time=rand()*20+10)

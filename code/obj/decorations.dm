@@ -1,3 +1,7 @@
+//	Put to 1 to make reagent storage on object creation
+#define ENV_BUSH_REAG_STORAGE_ON_NEW 0
+//	Put to 1 to always make reagent storage regardless of edible or not
+#define ENV_BUSH_REAG_STORAGE_ALWAYS 0
 
 /obj/poolwater
 	name = "water"
@@ -49,7 +53,7 @@
 	icon = 'icons/effects/96x96.dmi' // changed from worlds.dmi
 	icon_state = "tree" // changed from 0.0
 	anchored = 1
-	layer = EFFECTS_LAYER_UNDER_3
+	layer = EFFECTS_LAYER_UNDER_2
 	pixel_x = -20
 	density = 1
 	opacity = 0 // this causes some of the super ugly lighting issues too
@@ -175,15 +179,13 @@
 		density = 0
 		icon_state = "lava9"
 
-
-
 /obj/shrub
 	name = "shrub"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "shrub"
 	anchored = 1
 	density = 0
-	layer = EFFECTS_LAYER_UNDER_1
+	layer = EFFECTS_LAYER_UNDER_3
 	flags = FLUID_SUBMERGE
 	text = "<font color=#5c5>s"
 	var/health = 50
@@ -197,13 +199,60 @@
 	var/base_x = 0
 	var/base_y = 0
 
+	//	edible bushes
+	//	max amount of reagent a bush can contain
+	var/const/REAG_MAX_VOLUME = 50
+	//	probability (in %) that its an edible shrub
+	var/const/EDIBLE_PROB = 50
+	//	limits for the random max_uses when edible
+	var/const/MIN_MUNCHES = 2
+	var/const/MAX_MUNCHES = 10
+	//	probability (in %) to much
+	var/const/MUNCH_PROB = 65
+	//	time (in 1/10 seconds) between munches
+	var/const/MUNCH_COOLDOWN = 50
+	//	enabling this replaces the drop function with eat function
+	var/edible = 0
+	//	flavor of the bush
+	var/flavor = "menthol"
+	//	amount of flavor
+	var/flavor_amount = 10
+	//	amount of food to give a player cow
+	var/food = 10
+	//	feed multiplier, scales how much it feeds a cow
+	var/feed_mult = 6
+	//	bladder multiplier, scales how much it unbladders a cow (not even sure if cows have bladders)
+	var/bladder_mult = -0.2
 
 	New()
 		..()
-		max_uses = rand(0, 5)
-		spawn_chance = rand(1, 40)
+
+		if (prob(EDIBLE_PROB))
+			edible = 1
+			max_uses = rand(MIN_MUNCHES, MAX_MUNCHES)
+			//	when edible, its the chance of munching
+			spawn_chance = MUNCH_PROB
+			//	when edible,
+			time_between_uses = MUNCH_COOLDOWN
+		else
+			edible = 0
+			max_uses = rand(0, 5)
+			spawn_chance = rand(1, 40)
+
 		base_x = pixel_x
 		base_y = pixel_y
+
+//	Allows for easier control at compile time
+#if defined(ENV_BUSH_REAG_STORAGE_ON_NEW) && ENV_BUSH_REAG_STORAGE_ON_NEW
+#if defined(ENV_BUSH_REAG_STORAGE_ALWAYS) && ENV_BUSH_REAG_STORAGE_ALWAYS
+		//	I hope the compiler removes it directly
+		if (1)
+#else
+		if (edible)
+#endif
+			src.create_reagents(REAG_MAX_VOLUME)
+#endif
+
 	ex_act(var/severity)
 		switch(severity)
 			if(1,2)
@@ -220,18 +269,47 @@
 		src.shake_bush(50)
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
-			var/something = null
+			//	allows user to eat the shrub
+			if (src.edible)
+				if (user.a_intent == "harm")
+					//	TODO: Add some compile-time checks
+					//	This might be skipped if the define FLAGS are properly set
+					if (!src.reagents)
+						src.create_reagents(REAG_MAX_VOLUME);
 
-			if (override_default_behaviour && islist(additional_items) && length(additional_items))
-				something = pick(additional_items)
+					//	adds the flavor to this object before moving it to the eater and forcing a reaction
+					src.reagents.add_reagent(flavor, flavor_amount)
+					src.reagents.trans_to(user, flavor_amount)
+					src.reagents.reaction(user, INGEST, flavor_amount)
+
+					//	a player with mutant race "cow" will also be fed from it
+					if (istype(user, /mob/living/carbon/human/))
+						var/mob/living/carbon/human/h = user
+						if (h.mutantrace && h.mutantrace.name == "cow")
+							if (h.sims)
+								h.sims.affectMotive("Hunger", food*feed_mult)
+								h.sims.affectMotive("Bladder", food*bladder_mult)
+
+					//	TODO: Visual effects
+					//	Some effects of the bush being eaten would be cool
+
+					//	shows message AFTER applying effects
+					visible_message("<b><span class='alert'>[user] plucks some leafs from [src] and eats them!</span></b>", 1)
+				else
+					visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
 			else
-				something = pick(trinket_safelist)
+				var/something = null
 
-			if (ispath(something))
-				var/thing = new something(src.loc)
-				visible_message("<b><span class='alert'>[user] violently shakes [src] around! \An [thing] falls out!</span></b>", 1)
-				last_use = world.time
-				max_uses--
+				if (override_default_behaviour && islist(additional_items) && length(additional_items))
+					something = pick(additional_items)
+				else
+					something = pick(trinket_safelist)
+
+				if (ispath(something))
+					var/thing = new something(src.loc)
+					visible_message("<b><span class='alert'>[user] violently shakes [src] around! \An [thing] falls out!</span></b>", 1)
+					last_use = world.time
+					max_uses--
 		else
 			visible_message("<b><span class='alert'>[user] violently shakes [src] around![prob(20) ? " A few leaves fall out!" : null]</span></b>", 1)
 
@@ -326,7 +404,6 @@
 		//humans are much louder than thrown items and mobs
 		//Only players will trigger this
 		src.shake_bush(50)
-
 
 /obj/shrub/big/big2
 	icon_state = "fern2"
@@ -926,6 +1003,19 @@ obj/decoration/ceilingfan
 	icon_state = "detectivefan"
 	anchored = 1
 	layer = EFFECTS_LAYER_BASE
+	alpha = 255
+	plane = PLANE_NOSHADOW_ABOVE
+	#ifdef IN_MAP_EDITOR
+	color = "#FFFFFF"
+	alpha = 128
+	#endif
+	New()
+		..()
+		var/image/fanimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE,src.dir)
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(fanimage)
+		fanimage.alpha = 120
+		src.alpha = 0
+
 
 /obj/decoration/candles
 	name = "wall mounted candelabra"
@@ -1292,12 +1382,6 @@ obj/decoration/ceilingfan
 		..()
 		BLOCK_SETUP(BLOCK_SOFT)
 
-	attackby(obj/item/W, mob/user, params)
-		if(iswrenchingtool(W))
-			actions.start(new /datum/action/bar/icon/anchor_or_unanchor(src, W, duration=2 SECONDS), user)
-			return
-		. = ..()
-
 	get_desc()
 		if (islist(src.proj_impacts) && length(src.proj_impacts))
 			var/shots_taken = 0
@@ -1441,7 +1525,7 @@ obj/decoration/ceilingfan
 		return
 
 
-obj/decoration/floralarrangement
+/obj/decoration/floralarrangement
 	name = "floral arrangement"
 	desc = "These look... Very plastic. Huh."
 	icon = 'icons/obj/furniture/walp_decor.dmi'
@@ -1449,3 +1533,252 @@ obj/decoration/floralarrangement
 	anchored = 1
 	density = 1
 
+/obj/decoration/railbed
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "railbed"
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	bound_height = 64
+	plane = PLANE_NOSHADOW_BELOW
+	layer = TURF_LAYER - 0.1
+	//Grabs turf color set in gehenna.dm for sand
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		src.color = T.color
+
+/obj/decoration/railbed/cracked1
+	icon_state = "railbedcracked1"
+
+/obj/decoration/railbed/cracked2
+	icon_state = "railbedcracked2"
+
+/obj/decoration/railbed/trans
+	icon_state = "railbedtrans"
+	New()
+		..()
+		src.color = null
+
+/obj/decoration/railbed/trans/cracked1
+	icon_state = "railbedcracked1trans"
+
+/obj/decoration/railbed/trans/cracked2
+	icon_state = "railbedcracked2trans"
+
+/obj/decoration/train_signal
+	icon = 'icons/obj/large/32x64.dmi'
+	icon_state = "trainsignal"
+	anchored = 1
+	density = 0
+	plane = PLANE_NOSHADOW_BELOW
+	//this is just a dummy until it gets logic
+
+/obj/neon_sign
+	name = "neon sign"
+	desc = "A neon sign that lights up the area with a soft glow."
+	icon = 'icons/obj/neonsigns.dmi'
+	icon_state = "git"
+	var/base_icon_state = "git"
+	var/animated = FALSE
+	var/light_brightness = 0.5
+	var/light_r = 1
+	var/light_g = 1
+	var/light_b = 1
+	var/datum/light/light
+	plane = BLEND_OVERLAY
+	layer = PLANE_SELFILLUM
+
+	New()
+		..()
+		if(animated)
+			icon_state = "[base_icon_state]-a"
+		else
+			icon_state = base_icon_state
+		light = new /datum/light/point
+		light.set_brightness(light_brightness)
+		light.set_color(light_r, light_g, light_b)
+		light.attach(src)
+		light.enable()
+
+
+/obj/neon_sign/toolbox
+	name = "toolbox neon sign"
+	desc = "A neon sign shaped like a toolbox."
+	icon_state = "toolbox"
+	base_icon_state = "toolbox"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/exit
+	name = "exit neon sign"
+	desc = "A neon exit sign."
+	icon_state = "exit"
+	base_icon_state = "exit"
+	animated = FALSE
+	light_r = 0.3
+	light_g = 0.9
+	light_b = 0.39
+/obj/neon_sign/nt
+	name = "nanotrasen neon sign"
+	desc = "A neon sign with the Nanotrasen logo."
+	icon_state = "nt"
+	base_icon_state = "nt"
+	animated = FALSE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/syndie
+	name = "syndicate neon sign"
+	desc = "A neon sign with the Syndicate logo."
+	icon_state = "syndie"
+	base_icon_state = "syndie"
+	animated = FALSE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/open
+	name = "open neon sign"
+	desc = "A neon sign that says 'OPEN'."
+	icon_state = "open"
+	base_icon_state = "open"
+	animated = TRUE
+	light_r = 0.52
+	light_g = 0.2
+	light_b = 1
+/obj/neon_sign/hearts
+	name = "heart neon sign"
+	desc = "A heart shaped neon sign."
+	icon_state = "hearts"
+	base_icon_state = "hearts"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/diamonds
+	name = "diamond neon sign"
+	desc = "A diamond shaped neon sign."
+	icon_state = "diamonds"
+	base_icon_state = "diamonds"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/spades
+	name = "spade neon sign"
+	desc = "A spade shaped neon sign."
+	icon_state = "spades"
+	base_icon_state = "spades"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/clubs
+	name = "club neon sign"
+	desc = "A club shaped neon sign."
+	icon_state = "clubs"
+	base_icon_state = "clubs"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/sun
+	name = "sun neon sign"
+	desc = "A neon sign shaped like a sun."
+	icon_state = "sun"
+	base_icon_state = "sun"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 1
+	light_b = 0.78
+/obj/neon_sign/medical
+	name = "medical neon sign"
+	desc = "A neon sign with a medical cross."
+	icon_state = "medical"
+	base_icon_state = "medical"
+	animated = FALSE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/medical/weed
+	name = "weed neon sign"
+	desc = "A neon sign with a green 'medical' cross."
+	icon_state = "weedzone"
+	base_icon_state = "weedzone"
+	animated = TRUE
+	light_r = 0.3
+	light_g = 0.9
+	light_b = 0.39
+/obj/neon_sign/peace
+	name = "peace neon sign"
+	desc = "A neon sign with a peace symbol."
+	icon_state = "peace"
+	base_icon_state = "peace"
+	animated = TRUE
+	light_r = 0.3
+	light_g = 0.9
+	light_b = 0.39
+/obj/neon_sign/bees
+	name = "bees neon sign"
+	desc = "A neon sign spelling out BIG BEES."
+	icon_state = "bees"
+	base_icon_state = "bees"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 1
+	light_b = 0.78
+/obj/neon_sign/syringe
+	name = "syringe neon sign"
+	desc = "A neon sign shaped like a syringe."
+	icon_state = "syringe"
+	base_icon_state = "syringe"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/knife
+	name = "knife neon sign"
+	desc = "A neon sign shaped like a knife."
+	icon_state = "knife"
+	base_icon_state = "knife"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/gun
+	name = "gun neon sign"
+	desc = "A neon sign shaped like a gun."
+	icon_state = "gun"
+	base_icon_state = "gun"
+	animated = FALSE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/flaming
+	name = "flamingo neon sign"
+	desc = "A neon sign shaped like a flamingo."
+	icon_state = "flaming"
+	base_icon_state = "flaming"
+	animated = TRUE
+	light_r = 0.9
+	light_g = 0.3
+	light_b = 0.86
+/obj/neon_sign/caviar
+	name = "cocktail neon sign"
+	desc = "A neon sign shaped like a cocktail glass."
+	icon_state = "caviar"
+	base_icon_state = "caviar"
+	animated = TRUE
+	light_r = 0.2
+	light_g = 0.5
+	light_b = 1
+/obj/neon_sign/beer
+	name = "beer neon sign"
+	desc = "A neon sign shaped like a beer mug."
+	icon_state = "beer"
+	base_icon_state = "beer"
+	animated = TRUE
+	light_r = 0.94
+	light_g = 0.98
+	light_b = 0.02

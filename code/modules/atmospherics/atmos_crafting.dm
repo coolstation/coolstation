@@ -372,7 +372,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		if (istype(W, /obj/item/atmospherics/module/))
 			stack_item(W)
 		else if (istype(W, /obj/item/atmospherics/pipeframe))
-			W.attackby(src, user, params, is_special) //fuck crafting recipes that demand you slap A on B but not B on A
+			W.Attackby(src, user, params, is_special) //fuck crafting recipes that demand you slap A on B but not B on A
 		..()
 
 ///Here's where you sort out the direction your specific thing should get placed at.

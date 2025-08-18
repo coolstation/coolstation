@@ -107,6 +107,7 @@
 	cooldown = 100
 	targeted = 1
 	target_anything = 1
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -118,11 +119,7 @@
 			return 1
 		var/mob/M = holder.owner
 		var/turf/S = get_turf(M)
-		var/obj/projectile/O = initialize_projectile_ST(S, proj, T)
-		if (!O)
-			return 1
-		if (!O.was_setup)
-			O.setup()
+		var/obj/projectile/O = initialize_projectile_pixel_spread(S, proj, T)
 		O.special_data["owner"] = src
 		O.launch()
 		return 0

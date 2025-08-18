@@ -284,7 +284,9 @@
 
 	return src.electrocute(user, prb, netnum)
 
-/obj/cable/ex_act(severity)
+/obj/cable/ex_act(severity, last_touched, epicenter, turf_safe)
+	if(turf_safe)
+		severity = severity - 8
 	switch (severity)
 		if (OLD_EX_SEVERITY_1)
 			qdel(src)

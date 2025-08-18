@@ -202,10 +202,10 @@
 
 ///Listening post gear
 /obj/item/shipcomponent/mainweapon/gun
-	name = "SPE-12 Ballistic System"
-	desc = "A one of it's kind kinetic podweapon, designed to fire shotgun rounds similar to those in a SPES-12."
+	name = "D3N-1M Ballistic System"
+	desc = "A one of it's kind kinetic podweapon, packed with jean scraps and shotgun shells."
 	weapon_score = 1.25
-	current_projectile = new/datum/projectile/bullet/shot_heavy/weak
+	current_projectile = new/datum/projectile/special/spreader/buckshot_burst/juicer/denim
 	appearanceString = "pod_weapon_gun_off"
 	firerate = 10
 	icon_state = "spes"
@@ -269,7 +269,7 @@
 	name = "UFO Blaster"
 	desc = "An extraterrestrial weapons system."
 	weapon_score = 1.1
-	var/datum/projectile/ufo = new/datum/projectile/bullet/flare/UFO
+	var/datum/projectile/ufo = new/datum/projectile/bullet/slug/flare/UFO
 	var/datum/projectile/hlaser = new/datum/projectile/laser/heavy
 	var/mode = 0
 

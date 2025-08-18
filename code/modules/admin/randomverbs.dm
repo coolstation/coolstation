@@ -1202,14 +1202,14 @@
 	// button_4.max_ammo_capacity = 400	// boolet
 	// button_4.ammo.amount_left = 400
 	// button_4.cant_other_remove = 1
-
+/*
 	var/obj/item/gun/kinetic/rpg7/loaded/button_5 = new()
 	button_5.name = "rocket launcher"
 	button_5.desc = "Splash damage zone!"
 	button_5.ammo.amount_left = 100
 	button_5.max_ammo_capacity = 100
 	button_5.cant_other_remove = 1
-
+*/
 	// were you expecting a plasma gun or something?
 	var/obj/item/breaching_hammer/button_6 = new()
 	button_6.name = "doomhammer"
@@ -1230,7 +1230,7 @@
 	// backpack_full_of_ammo.add_contents(button_2)
 	// backpack_full_of_ammo.add_contents(button_3)
 	// backpack_full_of_ammo.add_contents(button_4)
-	backpack_full_of_ammo.add_contents(button_5)
+	// backpack_full_of_ammo.add_contents(button_5)
 	backpack_full_of_ammo.add_contents(button_6)
 	backpack_full_of_ammo.add_contents(button_7)
 	backpack_full_of_ammo.add_contents(fancy_keys)
@@ -2859,6 +2859,67 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	else
 		boutput(src, "You must be at least an Administrator to use this command.")
 
+/client/proc/cmd_no_evil_players()
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set name = "No Evil (Players)"
+	set desc = "Blindfolds, deafens, or muzzles all players."
+	if(holder && src.holder.level >= LEVEL_ADMIN)
+		var/sense = alert("Blindfold, earmuff, or muzzle all players?",,"See no Evil","Hear no Evil", "Speak no Evil")
+		var/evil = alert("Are we making them impossible to remove?",, "Yes", "No") == "Yes"
+		if (alert("Are you sure you want to do this?",,"Yes","No") == "No")
+			return
+
+		switch(sense)
+			if("See no Evil")
+				for (var/mob/living/carbon/human/H in mobs)
+					if (H.client)
+						var/obj/item/clothing/glasses/eyeslot = H.glasses
+						if (eyeslot)
+							H.u_equip(eyeslot)
+							eyeslot.set_loc(H.loc)
+						var/obj/item/clothing/glasses/blindfold/blindfold = new()
+						H.force_equip(blindfold, H.slot_glasses)
+						if (evil)
+							blindfold.cant_self_remove = TRUE
+							blindfold.cant_other_remove = TRUE
+
+				logTheThing("admin", src, null, "has blindfolded every player[evil ? " irremovably" : ""].")
+				logTheThing("diary", src, null, "has blindfolded every player[evil ? " irremovably" : ""].", "admin")
+
+			if("Hear no Evil")
+				for (var/mob/living/carbon/human/H in mobs)
+					if (H.client)
+						var/obj/item/earslot = H.ears
+						if (earslot)
+							H.u_equip(earslot)
+							earslot.set_loc(H.loc)
+						var/obj/item/clothing/ears/earmuffs/earmuffs = new()
+						H.force_equip(earmuffs, H.slot_ears)
+						if (evil)
+							earmuffs.cant_self_remove = TRUE
+							earmuffs.cant_other_remove = TRUE
+
+				logTheThing("admin", src, null, "has earmuffed every player[evil ? " irremovably" : ""].")
+				logTheThing("diary", src, null, "has earmuffed every player[evil ? " irremovably" : ""].", "admin")
+
+			if("Speak no Evil")
+				for (var/mob/living/carbon/human/H in mobs)
+					if (H.client)
+						var/obj/item/clothing/mask/maskslot = H.wear_mask
+						if (maskslot)
+							H.u_equip(maskslot)
+							maskslot.set_loc(H.loc)
+						var/obj/item/clothing/mask/muzzle/muzzle = new()
+						H.force_equip(muzzle, H.slot_wear_mask)
+						if (evil)
+							muzzle.cant_self_remove = TRUE
+							muzzle.cant_other_remove = TRUE
+
+				logTheThing("admin", src, null, "has muzzled every player[evil ? " irremovably" : ""].")
+				logTheThing("diary", src, null, "has muzzled every player[evil ? " irremovably" : ""].", "admin")
+
+	else
+		boutput(src, "You must be at least an Administrator to use this command.")
 
 /client/proc/cmd_swampify_station()
 	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)

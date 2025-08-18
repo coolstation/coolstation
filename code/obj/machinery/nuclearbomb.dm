@@ -15,7 +15,7 @@
 	var/done = 0
 	var/debugmode = 0
 	var/datum/hud/nukewires/wirepanel
-	var/datum/hud/nuclear/nuclear_countdown
+	var/datum/hud/roundend/nuclear_countdown
 	var/obj/item/disk/data/floppy/read_only/authentication/disk = null
 	var/isitspacemas = 0
 
@@ -76,7 +76,6 @@
 		if (det_time && ticker.round_elapsed_ticks >= det_time)
 			SPAWN_DBG(0)
 				explode()
-				nuclear_countdown.you_lose()
 			src.maptext = "<span style=\"color: red; font-family: Fixedsys, monospace; text-align: center; vertical-align: top; -dm-text-outline: 1 black;\">--:--</span>"
 		else
 			src.maptext = "<span style=\"color: red; font-family: Fixedsys, monospace; text-align: center; vertical-align: top; -dm-text-outline: 1 black;\">[get_countdown_timer()]</span>"
@@ -157,7 +156,8 @@
 								//This is the most straightforward spot to do this, but yes it is silly that the bomb itself is sending out the emergency alert
 								var/datum/directed_broadcast/emergency/broadcast = new(station_name, prob(95) ? "Nuclear Detonation" : "Open-Source Aggression", "Ten Minutes")
 								broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
-								nuclear_countdown = new()
+								nuclear_countdown = get_singleton(/datum/hud/roundend)
+								nuclear_countdown.countdown_text = "Your employment contract will end in"
 								for (var/client/C in clients)
 									nuclear_countdown.add_client(C)	// New Hud
 								logTheThing("bombing", user, null, "armed [src] at [log_loc(src)].")

@@ -256,7 +256,7 @@
 			return obfuscate_organ_health(O)
 		else
 			if (damage > 0)
-				return "<br><span style='color:[damage >= 65 ? "red" : "purple"]'><b>[input]</b> - [O.get_damage()]</span>"
+				return "<br><span style='color:[damage >= 65 ? "red" : "purple"]'><b>[O.name]</b> - [O.get_damage()]</span>"
 			else
 				return null
 
@@ -391,7 +391,7 @@
 		if (reagents.reagent_list.len > 0)
 			if("cloak_juice" in reagents.reagent_list)
 				var/datum/reagent/cloaker = reagents.reagent_list["cloak_juice"]
-				if(cloaker.volume >= 1)
+				if(cloaker.volume >= 0.05 * reagents.total_volume)
 					data = "<span class='alert'>ERR: SPECTROSCOPIC ANALYSIS OF THIS SUBSTANCE IS NOT POSSIBLE.</span>"
 					return data
 

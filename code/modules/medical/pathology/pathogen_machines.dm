@@ -1712,6 +1712,7 @@
 	icon_off = "med-off"
 	icon_broken = "med-broken"
 	icon_fallen = "med-fallen"
+	has_glow = FALSE
 
 	New()
 		..()

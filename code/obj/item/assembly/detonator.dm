@@ -143,7 +143,9 @@
 				W.master = src
 				W.layer = initial(src.layer)
 				src.part_fs = W
-				src.part_fs.time = 90 //Minimum det time
+				src.part_fs.set_time(src.part_fs.time)
+				src.part_fs.min_time = src.part_fs.min_detonator_time //Minimum det time
+				src.part_fs.lock_manual_adjustment = TRUE
 				src.add_fingerprint(user)
 				user.show_message("<span class='notice'>You wire the timer failsafe to the assembly, disabling its external controls.</span>")
 			else if (issnippingtool(W))
@@ -155,6 +157,8 @@
 			if (issnippingtool(W))
 				src.setDetState(3)
 				src.part_fs.set_loc(user.loc)
+				src.part_fs.lock_manual_adjustment = FALSE
+				src.part_fs.min_time = 0
 				src.part_fs.master = null
 				src.part_fs = null
 				if (src.trigger)

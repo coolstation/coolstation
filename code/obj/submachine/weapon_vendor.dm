@@ -152,6 +152,7 @@
 	New()
 		..()
 		// List of avaliable objects for purchase
+		/*
 		materiel_stock += new/datum/materiel/sidearm/smartgun
 		materiel_stock += new/datum/materiel/sidearm/pistol
 		materiel_stock += new/datum/materiel/sidearm/revolver
@@ -167,6 +168,7 @@
 		materiel_stock += new/datum/materiel/loadout/marksman
 		materiel_stock += new/datum/materiel/loadout/knight
 		materiel_stock += new/datum/materiel/loadout/custom
+		*/
 /*
 		materiel_stock += new/datum/materiel/storage/rucksack
 		materiel_stock += new/datum/materiel/storage/belt
@@ -300,7 +302,7 @@
 	description = "One belt containing a security barrier, a forensic scanner, and a security ticket writer."
 */
 //SYNDIE
-
+/*
 /datum/materiel/sidearm/smartgun
 	name = "Hydra Smart Pistol"
 	path = /obj/item/storage/belt/smartgun
@@ -365,7 +367,7 @@
 	name = "Knight (Prototype)"
 	path = /obj/storage/crate/classcrate/melee
 	description = "A prototype melee focused class. Equipped with massive, heavy armour and a versatile sword that can switch special attack modes."
-
+*/
 /datum/materiel/loadout/custom
 	name = "Custom Class Uplink"
 	path = /obj/item/uplink/syndicate

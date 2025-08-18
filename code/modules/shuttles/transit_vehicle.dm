@@ -132,6 +132,7 @@ var/global/datum/transit_controller/transit_controls
 		vehicle.in_transit = TRUE
 		logTheThing("station", user, null, "began departure for vehicle [vehicle_id] to [stop_id] at [log_loc(usr)]")
 		SPAWN_DBG(0)
+			worldgen_hold = TRUE
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
@@ -146,6 +147,7 @@ var/global/datum/transit_controller/transit_controls
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
 			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
+			initialize_worldgen()
 			vehicle.arriving(stop) //This may sleep, intentionally holding up this code
 			vehicle.current_location = stop
 			current.current_occupant = null
@@ -164,11 +166,13 @@ var/global/datum/transit_controller/transit_controls
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 	var/datum/light/point/emergency_light
+	var/autoset_direction = TRUE
 
 	New()
 		START_TRACKING
 		..()
-		src.calculate_direction()
+		if(src.autoset_direction)
+			src.calculate_direction()
 		src.toggle_lights()
 		src.initialise_component()
 
@@ -281,6 +285,8 @@ var/global/datum/transit_controller/transit_controls
 			TargetZ = target_z,\
 			LandingRange = 0)
 
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five
+	target_z = 5
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator
@@ -408,10 +414,16 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	//This button exists to save navigating the UI for elevators that just shuttle between two locations, if you want more than that you're better off using transit_terminal instead.
 	var/stop_top_id
 	var/stop_bottom_id
+	var/image/glow
 
 	New()
 		..()
 		SPAWN_DBG(1 SECOND)
+			glow = image(src.icon)
+			glow.alpha = 180
+			glow.plane = PLANE_LIGHTING
+			glow.layer = LIGHTING_LAYER_BASE
+			glow.blend_mode = BLEND_ADD
 			our_vehicle = transit_controls.vehicles[src.vehicle_id]
 			if (!our_vehicle) //RIP
 				status |= BROKEN //Safety permabrick ourselves
@@ -439,6 +451,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	proc/update_icon(dummy = null, datum/transit_vehicle/vehicle = null ,direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
 		if (status & (NOPOWER|BROKEN))
 			icon_state = "elev_offline"
+			UpdateOverlays(null, "glow")
 			return
 		switch(direction)
 			if ("up")
@@ -448,9 +461,12 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 			else//This handles signal-based calls
 				if (vehicle == our_vehicle)
 					icon_state = (our_vehicle.in_transit ? "elev_cooldown" : "elev_idle")
+		glow.icon_state = "[src.icon_state]-glow"
+		UpdateOverlays(glow, "glow")
 
 	disposing()
 		UnregisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED)
 		UnregisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY)
 		our_vehicle = null
+		qdel(glow)
 		..()

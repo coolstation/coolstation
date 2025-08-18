@@ -869,7 +869,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			src.equip_new_if_possible(/obj/item/clothing/under/rank/bartender, slot_w_uniform)
 			src.equip_new_if_possible(/obj/item/clothing/suit/wcoat, slot_wear_suit)
 			src.equip_if_possible(new /obj/item/clothing/glasses/thermal/orange, slot_glasses)
-			src.equip_new_if_possible(/obj/item/gun/kinetic/riotgun, slot_in_backpack)
+			src.equip_new_if_possible(/obj/item/gun/modular/NT/shotty, slot_in_backpack)
 			src.equip_new_if_possible(/obj/item/storage/box/glassbox, slot_in_backpack)
 			for (var/obj/item/reagent_containers/food/drinks/drinkingglass/glass in src)
 				src.glassware += glass
@@ -1357,9 +1357,6 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			bling.throw_at(target, 8, 2)
 			playsound(T, "sound/effects/bamf.ogg", 40, 1)
 			user.visible_message("<span class='success'><b>[user]</b> blasts some bling at [target]!</span>")
-
-	shoot_point_blank(atom/target, mob/user, second_shot)
-		Shoot(get_turf(target), get_turf(user), user, 0, 0)
 
 	attackby(var/obj/item/spacecash/C, mob/user)
 		if (!istype(C))
