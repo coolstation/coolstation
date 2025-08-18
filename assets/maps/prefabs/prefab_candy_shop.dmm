@@ -17,13 +17,18 @@
 	pixel_x = -2;
 	pixel_y = 1
 	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "dg" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/dirt/mars,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "du" = (
 /obj/decal/poster/wallsign/stencil/right/a{
@@ -34,6 +39,12 @@
 	},
 /turf/wall/auto/reinforced/jen/cyan,
 /area/prefab/candy_shop)
+"hb" = (
+/obj/table/wood/round/auto,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
+/area/prefab/candy_shop)
 "hD" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
@@ -41,10 +52,6 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/variableTurf/clear,
 /area/noGenerate)
-"hV" = (
-/obj/random_pod_spawner/random_putt_spawner,
-/turf/floor/engine/glow,
-/area/prefab/candy_shop)
 "iU" = (
 /obj/lattice,
 /obj/warp_beacon{
@@ -52,14 +59,6 @@
 	},
 /turf/variableTurf/clear,
 /area/noGenerate)
-"jp" = (
-/obj/forcefield/energyshield/perma,
-/obj/machinery/door/poddoor/blast/pyro/podbay_autoclose{
-	id = "Candy Shop";
-	name = "Carlisle's Confections Parking"
-	},
-/turf/floor/engine/glow,
-/area/prefab/candy_shop)
 "jE" = (
 /obj/lattice{
 	dir = 9;
@@ -68,6 +67,14 @@
 /obj/machinery/light/runway_light/delay2,
 /turf/variableTurf/clear,
 /area/noGenerate)
+"kn" = (
+/obj/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/mars,
+/turf/floor/wood/five,
+/area/prefab/candy_shop)
 "kr" = (
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 4;
@@ -90,11 +97,12 @@
 /obj/neon_lining{
 	dir = 8
 	},
-/obj/neon_lining{
-	dir = 4;
-	lining_color = "pink"
-	},
 /turf/floor/sanitary/white,
+/area/prefab/candy_shop)
+"kP" = (
+/obj/table/wood/round/auto,
+/obj/item/reagent_containers/food/snacks/candy/chocolate,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "kR" = (
 /obj/decoration/toiletholder{
@@ -114,43 +122,6 @@
 "nb" = (
 /turf/wall/auto/reinforced/jen/cyan,
 /area/prefab/candy_shop)
-"ng" = (
-/obj/table/wood/round/auto,
-/obj/item/clothing/under/suit/purple/dress{
-	pixel_x = 8;
-	pixel_y = -7
-	},
-/obj/item/clothing/under/suit/purple{
-	pixel_x = -8;
-	pixel_y = -7
-	},
-/obj/item/clothing/head/that/purple{
-	pixel_x = -8;
-	pixel_y = 7
-	},
-/obj/item/clothing/head/that/purple{
-	pixel_x = 8;
-	pixel_y = 7
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"nz" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/candy/candy_apple{
-	pixel_x = -6;
-	pixel_y = 5;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/candy_apple{
-	pixel_x = 6;
-	pixel_y = 3;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/candy_apple{
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
 "nE" = (
 /obj/decal/poster/wallsign/stencil/left/n{
 	pixel_x = -7;
@@ -166,39 +137,6 @@
 	},
 /turf/wall/auto/reinforced/jen/cyan,
 /area/prefab/candy_shop)
-"nQ" = (
-/obj/table/wood/round/auto,
-/obj/machinery/light/fluorescent/warm/very{
-	dir = 4
-	},
-/obj/item/reagent_containers/food/snacks/pie/pumpkin{
-	pixel_y = -7;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/yellow_cake_uranium_cake{
-	pixel_x = 5;
-	pixel_y = 5;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/moon_pie/spooky{
-	pixel_x = -9;
-	pixel_y = 12;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"oK" = (
-/obj/machinery/light/small/floor/neutral,
-/turf/floor/engine/glow/blue,
-/area/prefab/candy_shop)
-"oP" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/breadloaf/corn/sweet/honey{
-	pixel_y = 7;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
 "qz" = (
 /obj/neon_lining{
 	dir = 8
@@ -208,11 +146,13 @@
 	name = "Spinning Candy Cane Pole";
 	pixel_x = -28
 	},
-/turf/floor/engine/glow,
+/turf/floor/engine,
 /area/prefab/candy_shop)
 "qN" = (
 /obj/machinery/light/flamp,
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "ry" = (
 /obj/submachine/cargopad{
@@ -239,19 +179,9 @@
 	desc = "Buy one, get the rest free.";
 	name = "bargain bin"
 	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"rV" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/cake/chocolate/gateau{
-	pixel_y = 10;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"tf" = (
-/obj/machinery/light/small/floor/neutral,
-/turf/floor/engine/glow,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/mars,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "th" = (
 /obj/lattice{
@@ -265,103 +195,58 @@
 "tB" = (
 /turf/variableTurf/clear,
 /area/noGenerate)
-"uR" = (
-/obj/table/wood/auto/desk,
-/obj/item/kitchen/food_box/lollipop{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/turf/floor/wood/four,
+"tU" = (
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
-"we" = (
-/obj/table/wood/round/auto,
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/bagel{
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
+"uR" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/snacks/crumpet,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "xC" = (
-/obj/cabinet/taffy,
-/turf/floor/wood/four,
+/obj/decal/cleanable/cobwebFloor,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "xF" = (
-/obj/table/wood/auto/desk,
-/obj/item/kitchen/food_box/donut_box{
-	desc = "A box of Dunkin-Kreme donuts.  The brand name made a lot more sense before the companies merged in 2038.";
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/turf/floor/wood/four,
+/obj/table/wood/auto,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "xI" = (
-/turf/floor/wood/four,
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "xQ" = (
-/obj/table/wood/round/auto,
-/obj/item/item_box/swedish_bag{
-	pixel_x = 3;
-	pixel_y = -2
-	},
-/obj/item/item_box/swedish_bag,
-/obj/item/item_box/swedish_bag{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "xT" = (
-/obj/table/wood/round/auto,
-/obj/machinery/light/fluorescent/warm/very{
-	dir = 4
-	},
-/obj/item/reagent_containers/food/snacks/candy/jellybean/everyflavor{
-	pixel_x = 5;
-	pixel_y = 7;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/jellybean/everyflavor{
-	pixel_x = -4;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "yk" = (
-/obj/table/wood/auto/desk,
-/turf/floor/wood/four,
+/obj/table/wood/auto,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "yA" = (
 /obj/neon_lining{
 	dir = 4;
 	lining_color = "pink"
 	},
-/turf/floor/engine/glow/blue,
+/turf/floor/engine,
 /area/prefab/candy_shop)
 "zn" = (
 /obj/window/cubicle{
 	dir = 9
 	},
+/obj/item/gimmickbomb/butt/dirty/prearmed,
 /turf/floor/sanitary/blue,
-/area/prefab/candy_shop)
-"Ag" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/candy/wrapped_pbcup{
-	pixel_x = 6;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/wrapped_pbcup{
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/wrapped_pbcup{
-	pixel_x = -4;
-	pixel_y = 6;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"AK" = (
-/obj/machinery/light/small/floor/warm/very,
-/turf/floor/wood/four,
 /area/prefab/candy_shop)
 "AU" = (
 /obj/neon_lining{
@@ -377,7 +262,7 @@
 	pixel_x = -26;
 	pixel_y = 2
 	},
-/turf/floor/engine/glow,
+/turf/floor/engine,
 /area/prefab/candy_shop)
 "Cu" = (
 /obj/decal/poster/wallsign/stencil/right/y{
@@ -404,7 +289,16 @@
 	pixel_x = -9;
 	pixel_y = 9
 	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/tracked_reagents/blood,
+/turf/floor/wood/five,
+/area/prefab/candy_shop)
+"DH" = (
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "DL" = (
 /obj/neon_lining{
@@ -413,63 +307,31 @@
 /obj/neon_lining{
 	dir = 8
 	},
-/turf/floor/engine/glow,
+/turf/floor/engine,
+/area/prefab/candy_shop)
+"Fd" = (
+/obj/machinery/light/flamp,
+/obj/decal/cleanable/cobwebFloor,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Fq" = (
 /obj/table/wood/auto/desk,
 /obj/machinery/cashreg,
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Fw" = (
 /obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/candy/candy_cane{
-	dir = 8;
-	pixel_x = 4;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/candy_cane{
-	dir = 8;
-	pixel_x = 13;
-	pixel_y = -6;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/candy_cane{
-	dir = 8;
-	pixel_x = 14;
-	pixel_y = 4;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/candy_cane{
-	dir = 8;
-	pixel_x = 5;
-	pixel_y = 6;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/candy_cane{
-	dir = 8;
-	pixel_x = 14;
-	pixel_y = 10;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"FS" = (
-/obj/table/wood/round/auto,
-/obj/machinery/light/lamp/green{
-	pixel_x = -5;
-	pixel_y = 9
-	},
-/obj/item/storage/goodybag{
-	pixel_x = 5;
-	pixel_y = -7
-	},
-/turf/floor/wood/four,
+/obj/item/reagent_containers/food/snacks/candy/caramel,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Hn" = (
 /obj/item/storage/secure/ssafe/candy_shop{
 	pixel_y = 28
 	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Ht" = (
 /obj/item/storage/toilet/random{
@@ -480,23 +342,19 @@
 	},
 /turf/floor/sanitary/blue,
 /area/prefab/candy_shop)
-"HJ" = (
+"Ii" = (
 /obj/table/wood/round/auto,
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
-/obj/item/reagent_containers/food/snacks/candy/butterscotch{
-	pixel_y = 8;
+/obj/item/reagent_containers/food/snacks/candy/candy_cane{
+	dir = 8;
+	pixel_x = 4;
 	rand_pos = 0
 	},
-/obj/item/reagent_containers/food/snacks/candy/butterscotch{
-	pixel_y = 4;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/butterscotch{
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
+/turf/floor/wood/five,
+/area/prefab/candy_shop)
+"Je" = (
+/obj/table/wood/round/auto,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Jr" = (
 /obj/window/auto/hardened/the_tuff_stuff,
@@ -505,12 +363,15 @@
 	},
 /turf/floor/wood/four,
 /area/prefab/candy_shop)
-"JQ" = (
-/turf/floor/engine/glow/blue,
-/area/prefab/candy_shop)
 "Kb" = (
 /obj/random_pod_spawner/random_putt_spawner,
-/turf/floor/engine/glow/blue,
+/turf/floor/engine,
+/area/prefab/candy_shop)
+"Kp" = (
+/obj/item/reagent_containers/food/snacks/candy/negativeonebar,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "KG" = (
 /obj/forcefield/energyshield/perma,
@@ -518,7 +379,7 @@
 	id = "Candy Shop";
 	name = "Carlisle's Confections Parking"
 	},
-/turf/floor/engine/glow/blue,
+/turf/floor/engine,
 /area/prefab/candy_shop)
 "Ne" = (
 /obj/neon_lining{
@@ -530,57 +391,38 @@
 	name = "Spinning Candy Cane Pole";
 	pixel_x = 28
 	},
-/turf/floor/engine/glow/blue,
+/turf/floor/engine,
 /area/prefab/candy_shop)
 "Nj" = (
-/turf/floor/engine/glow,
+/turf/floor/engine,
 /area/prefab/candy_shop)
 "NI" = (
 /obj/machinery/light/small/floor/cool,
-/obj/neon_lining{
-	dir = 8
+/turf/floor/sanitary/blue,
+/area/prefab/candy_shop)
+"NL" = (
+/obj/submachine/chef_sink/chem_sink{
+	dir = 4;
+	pixel_x = -4
 	},
+/obj/decal/cleanable/cobwebFloor,
 /turf/floor/sanitary/blue,
 /area/prefab/candy_shop)
 "Pp" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/candy/negativeonebar{
-	pixel_y = 8;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/negativeonebar{
-	pixel_y = 4;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/negativeonebar{
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "RU" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 4;
 	pixel_x = -4
 	},
+/obj/item/reagent_containers/food/snacks/candy/peach_ring,
 /turf/floor/sanitary/blue,
 /area/prefab/candy_shop)
 "Tk" = (
-/obj/table/wood/round/auto,
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
-/obj/item/reagent_containers/food/snacks/candy/nougat{
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/nougat{
-	pixel_y = 4;
-	rand_pos = 0
-	},
-/obj/item/reagent_containers/food/snacks/candy/nougat{
-	pixel_y = 8;
-	rand_pos = 0
-	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt/mars,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "TX" = (
 /obj/decal/poster/wallsign/stencil/left/c{
@@ -598,20 +440,7 @@
 /obj/decal/tile_edge/stripe/big{
 	icon_state = "xtra_bigstripe-edge"
 	},
-/turf/floor/wood/four,
-/area/prefab/candy_shop)
-"UE" = (
-/obj/rack/lunar,
-/obj/item/item_box/heartcandy{
-	desc = "Wow, you haven't seen this brand in ages.";
-	name = "Carlisle's Candy Hearts";
-	pixel_y = -7
-	},
-/obj/item/kitchen/peach_rings{
-	desc = "A bag of gummy peach rings. Woah! Carlisle Confection brand! You thought they went out of business!";
-	pixel_y = 7
-	},
-/turf/floor/wood/four,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Vt" = (
 /obj/item/reagent_containers/food/snacks/candy/candy_corn{
@@ -624,6 +453,12 @@
 	},
 /turf/floor/sanitary/blue,
 /area/prefab/candy_shop)
+"Wi" = (
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/mars,
+/turf/floor/wood/five,
+/area/prefab/candy_shop)
 "Wk" = (
 /obj/lattice{
 	dir = 1;
@@ -633,33 +468,27 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/variableTurf/clear,
 /area/noGenerate)
+"XZ" = (
+/obj/item/reagent_containers/food/snacks/candy/caramel,
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/wood/five,
+/area/prefab/candy_shop)
 "Yo" = (
 /obj/window/auto/hardened/the_tuff_stuff,
 /turf/floor/wood/four,
 /area/prefab/candy_shop)
 "YM" = (
-/obj/rack/lunar,
-/obj/item/kitchen/peach_rings{
-	desc = "A bag of gummy peach rings. Woah! Carlisle Confection brand! You thought they went out of business!";
-	pixel_y = 7
-	},
-/obj/item/item_box/heartcandy{
-	desc = "Wow, you haven't seen this brand in ages.";
-	name = "Carlisle's Candy Hearts";
-	pixel_y = -7
-	},
-/turf/floor/wood/four,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "YO" = (
-/obj/neon_lining{
-	dir = 4;
-	lining_color = "pink"
-	},
-/turf/floor/wood/four,
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt/jen,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 "Zb" = (
 /obj/machinery/light/small/floor/cool/very,
-/turf/floor/wood/four,
+/turf/floor/wood/five,
 /area/prefab/candy_shop)
 
 (1,1,1) = {"
@@ -803,16 +632,16 @@ xI
 xQ
 Tk
 Fw
-Ag
-nz
-HJ
-we
-qN
+YM
+YM
+YM
+YM
+Fd
 Jr
 qz
 AU
 DL
-jp
+KG
 tB
 tB
 "}
@@ -820,20 +649,20 @@ tB
 tB
 tB
 nb
-xC
-xI
-xI
-xI
-xI
-xI
-xI
-xI
-xI
-xI
+DH
+tU
+Tk
+YM
+YM
+YM
+YM
+YM
+YM
+YM
 Jr
-JQ
+Nj
 Kb
-JQ
+Nj
 KG
 tB
 tB
@@ -845,18 +674,18 @@ Yo
 qN
 cN
 uR
-xI
+xQ
 YM
 YM
-UE
-xI
-xI
-xI
+YM
+YM
+YM
+YM
 Us
 Nj
 Nj
 Nj
-jp
+KG
 tB
 tB
 "}
@@ -867,17 +696,17 @@ nb
 Hn
 Df
 Fq
-xI
-xI
-AK
-xI
-xI
-xI
-AK
+tU
+YM
+YM
+YM
+kP
+YM
+YM
 Jr
-JQ
-oK
-JQ
+Nj
+Nj
+Nj
 KG
 tB
 tB
@@ -887,20 +716,20 @@ tB
 tB
 nb
 dg
-xI
+YO
 yk
-xI
-xI
+Pp
+xQ
 Zb
-xI
-xI
-xI
-Zb
+YM
+Ii
+YM
+YM
 Jr
 Nj
-tf
 Nj
-jp
+Nj
+KG
 tB
 tB
 "}
@@ -909,19 +738,19 @@ tB
 tB
 Yo
 ry
-xI
+YO
 xF
-xI
+Pp
+Pp
+Pp
 YM
 YM
 YM
-xI
-xI
-xI
+YM
 Us
-JQ
-JQ
-JQ
+Nj
+Nj
+Nj
 KG
 tB
 tB
@@ -930,21 +759,21 @@ tB
 tB
 tB
 nb
-xC
-xI
-xI
-xI
-xI
-xI
-xI
-xI
-xI
-xI
+Wi
+YO
+Kp
+Pp
+Je
+hb
+XZ
+YM
+YM
+YM
 Jr
 Nj
-hV
+Kb
 Nj
-jp
+KG
 tB
 tB
 "}
@@ -952,16 +781,16 @@ tB
 tB
 tB
 du
-xC
+kn
 YO
-FS
+YO
 xT
-rV
-ng
-oP
-nQ
 Pp
-qN
+Pp
+Pp
+Pp
+Pp
+Pp
 Jr
 Ne
 yA
@@ -998,7 +827,7 @@ tB
 nb
 RU
 NI
-RU
+NL
 nb
 tB
 tB
