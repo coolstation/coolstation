@@ -125,35 +125,9 @@
 			src.post_radio_status()
 
 	flush()
-
 		if(!src.destination_tag)
 			return
-
-		flushing = 1
-		if (istype(src, /obj/machinery/disposal/mail)) flick("mailchute-flush", src)
-		else flick("disposal-flush", src)
-
-		var/obj/disposalholder/H = new()	// virtual holder object which actually
-																// travels through the pipes.
-
-		H.init(src)	// copy the contents of disposer to holder
-		H.mail_tag = src.destination_tag
-
-		air_contents.zero()		// new empty gas resv.
-
-		sleep(1 SECOND)
-		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
-		sleep(0.5 SECONDS) // wait for animation to finish
-
-
-		H.start(src) // start the holder processing movement
-		flushing = 0
-		// now reset disposal state
-		flush = 0
-		if(mode == 2)	// if was ready,
-			mode = 1	// switch to charging
-		update()
-		return
+		..()
 
 
 
