@@ -9,10 +9,10 @@
 	color = "#FF0000"
 	var/original_color = "#FF0000"
 	alpha = 180
-	density = 1
+	density = 0
 	opacity = 0
 	anchored = 1
-	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED
 	var/evolution_flags = 0
 	var/health = 30         // current health of the blob
 	var/health_max = 30     // health cap
@@ -62,13 +62,14 @@
 			if (istype(src.loc.loc,/area))
 				src.loc.loc.Entered(src)
 
-		SPAWN_DBG(0.1 SECONDS)
-			for (var/mob/living/carbon/human/H in src.loc)
-				if (H.decomp_stage == 4 || check_target_immunity(H))//too decomposed or too cool to be eaten
-					continue
-				src.visible_message("<span class='alert'><b>The blob starts trying to absorb [H.name]!</b></span>")
-				actions.start(new /datum/action/bar/blob_absorb(H, blob_holder), src)
-				playsound(src.loc, "sound/voice/blob/blobsucc[rand(1, 3)].ogg", 10, 1)
+		if(src.can_absorb)
+			SPAWN_DBG(0.1 SECONDS)
+				for (var/mob/living/carbon/human/H in src.loc)
+					if (H == src.blob_holder.owner || H.decomp_stage == 4 || check_target_immunity(H)) //too decomposed or too cool to be eaten
+						continue
+					src.visible_message("<span class='alert'><b>The blob starts trying to absorb [H.name]!</b></span>")
+					actions.start(new /datum/action/bar/blob_absorb(H, blob_holder), src)
+					playsound(src.loc, "sound/voice/blob/blobsucc[rand(1, 3)].ogg", 10, 1)
 
 	proc/right_click_action()
 		usr.examine_verb(src)
@@ -82,16 +83,43 @@
 		else
 			..()
 
+/*
 	CanPass(atom/movable/mover, turf/target)
 		. = ..()
-		if(mover == src.blob_holder.owner)
-			return 1
 		var/obj/projectile/P = mover
 		if (istype(P) && P.proj_data) //Wire note: Fix for Cannot read null.type
 			if (P.proj_data.type == /datum/projectile/slime)
 				return 1
 		if (istype(mover, /obj/decal))
 			return 1
+*/
+
+	HasEntered(atom/movable/AM, atom/OldLoc)
+		. = ..()
+		if(src.can_absorb && isliving(AM))
+			var/mob/living/L = AM
+			if(L == src.blob_holder.owner || check_target_immunity(L)) //too cool to be eaten
+				return
+			if(!actions.hasAction(L, "blobabsorb"))
+				src.visible_message("<span class='alert'><b>The blob starts absorbing [L.name]!</b></span>")
+				actions.start(new /datum/action/bar/blob_absorb(L, blob_holder), L)
+		else if(istype(AM, /obj/projectile))
+			var/obj/projectile/P = AM
+			if (!P.proj_data || P.proj_data.type == /datum/projectile/slime)
+				return
+			if(isnull(P.internal_speed))
+				P.internal_speed = P.proj_data.projectile_speed
+			P.internal_speed = P.internal_speed * 0.85
+			P.travelled = P.travelled * 1.25
+			src.bullet_act(P)
+
+	Exited(atom/movable/AM, newloc)
+		. = ..()
+		if(isliving(AM))
+			var/mob/living/L = AM
+			if((!locate(/obj/blob) in newloc) && actions.hasAction(L, "blobabsorb"))
+				actions.stopId("blobabsorb", L)
+
 
 	proc/setHolder(var/datum/abilityHolder/blob/AH)
 		if (blob_holder == AH)
@@ -584,6 +612,7 @@
 	state_overlay = "nucleus"
 	anim_overlay = "nucleus_blink"
 	special_icon = 1
+	density = 1
 	desc = "The core of the blob. Destroying all nuclei effectively stops the organism dead in its tracks."
 	armor = 1.5
 	health_max = 500
@@ -1215,6 +1244,7 @@
 	desc = "This blob is encased in a tough membrane. It'll be harder to get rid of."
 	state_overlay = "wall"
 	opacity = 1
+	density = 1
 	special_icon = 1
 	armor = 2
 	health = 75
@@ -1238,6 +1268,7 @@
 	desc = "This blob is encased in a fireproof and gas impermeable membrane."
 	state_overlay = "firewall"
 	opacity = 1
+	density = 1
 	special_icon = 1
 	armor = 1
 	can_absorb = 0

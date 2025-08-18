@@ -377,13 +377,14 @@
 			return
 
 		if (!isadmin(src.holder.owner)) //admins can spawn wherever
-			if (!istype(T.loc, /area/station/) && !istype(T.loc, /area/blob/))
-				boutput(src.holder.owner, __red("You need to start on the [station_or_ship()]!"))
-				return
+			if(!istype(T.loc, /area/blob/))
+				if (!istype(T.loc, /area/station/))
+					boutput(src.holder.owner, __red("You need to start on the [station_or_ship()]!"))
+					return
 
-			if (!issimulatedturf(T))
-				boutput(src.holder.owner, "<span class='alert'>This kind of tile cannot support a blob.</span>")
-				return
+				if (!issimulatedturf(T))
+					boutput(src.holder.owner, "<span class='alert'>This kind of tile cannot support a blob.</span>")
+					return
 
 			if (T.density)
 				boutput(src.holder.owner, "<span class='alert'>You can't start inside a wall!</span>")
@@ -394,7 +395,7 @@
 					boutput(src.holder.owner, "<span class='alert'>That tile is blocked by [O].</span>")
 					return
 
-			for (var/mob/M in viewers(T, 7))
+			for (var/mob/M in viewers(T, 5))
 				if (isrobot(M) || ishuman(M))
 					if (!isdead(M))
 						boutput(src.holder.owner, "<span class='alert'>You are being watched.</span>")
@@ -754,59 +755,68 @@
 		B.visible_message("<span class='alert'><b>The blob starts trying to absorb [M.name]!</b></span>")
 		actions.start(new /datum/action/bar/blob_absorb(M, src.holder.owner), B)
 
-//The owner is the blob tile object...
+//The owner is now the person being eaten
 /datum/action/bar/blob_absorb
 	bar_icon_state = "bar-blob"
 	border_icon_state = "border-blob"
 	color_active = "#d73715"
 	color_success = "#167935"
 	color_failure = "#8d1422"
-	duration = 10 SECONDS
+	duration = 40 SECONDS
 
 	interrupt_flags = 0
 	id = "blobabsorb"
-	var/mob/living/target
 	var/datum/abilityHolder/blob/blob_holder
+	var/mob/living/mob_owner
 
-	New(Target, var/datum/abilityHolder/blob/blob_holder)
+	New(var/mob/living/target, var/datum/abilityHolder/blob/blob_holder)
 		..()
-		target = Target
-		if (!istype(target))
+		if(!target || !blob_holder)
 			interrupt(INTERRUPT_ALWAYS)
 			return
+		src.mob_owner = target
 		src.blob_holder = blob_holder
+		APPLY_MOVEMENT_MODIFIER(mob_owner, /datum/movement_modifier/blobbed, src.blob_holder)
 
 	onUpdate()
-		..()
-		if(!target || !owner || GET_DIST(owner, target) > 0 || !blob_holder)
+		if(!mob_owner || !blob_holder || !(locate(/obj/blob) in get_turf(mob_owner)))
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		if (ishuman(target) && target:decomp_stage == 4)
+		if (ishuman(mob_owner) && mob_owner:decomp_stage == 4)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		//damage thing a bit
-		target.TakeDamage(burn=rand(2,4), tox=rand(2,4))
+		mob_owner.TakeDamage(burn=rand(2,4) * src.blob_holder.attack_power, tox=rand(1,3) * src.blob_holder.attack_power)
+		//if theyre unconscious or dead, eat faster!
+		if(!isalive(mob_owner) && src.duration > 10 SECONDS)
+			src.duration -= rand(4, 8) // deciseconds
+		. = ..()
+
+
+	onInterrupt()
+		. = ..()
+		if(src.mob_owner)
+			REMOVE_MOVEMENT_MODIFIER(mob_owner, /datum/movement_modifier/blobbed, src.blob_holder)
 
 	onEnd()
 		..()
-		//owner type actually matters here. But it should never not be this anyway...
-		if(!target || !owner || GET_DIST(owner, target) > 0 || !istype(blob_holder))
+		if(!mob_owner || !blob_holder || !(locate(/obj/blob) in get_turf(mob_owner)))
 			return
 
 		//This whole first bit is all still pretty ugly cause this ability works on both critters and humans. I didn't have it in me to rewrite the whole thing - kyle
-		if (ismobcritter(target))
-			target.gib()
-			target.visible_message("<span class='alert'><b>The blob tries to absorb [target.name], but something goes horribly right!</b></span>")
+		if (ismobcritter(mob_owner))
+			mob_owner.gib()
+			mob_owner.visible_message("<span class='alert'><b>The blob tries to absorb [mob_owner.name], but something goes horribly right!</b></span>")
 			if (blob_holder.owner?.mind) //ahem ahem AI blobs exist
-				blob_holder.owner.mind.blob_absorb_victims += target
+				blob_holder.owner.mind.blob_absorb_victims += owner
 			return
 
-		if (!ishuman(target))
-			target.ghostize()
-			qdel(target)
+		if (!ishuman(mob_owner))
+			mob_owner.ghostize()
+			qdel(owner)
 			return
 
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = mob_owner
 		if (H?.decomp_stage == 4)
 			H.decomp_stage = 4
 

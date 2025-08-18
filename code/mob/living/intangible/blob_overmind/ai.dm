@@ -22,7 +22,6 @@
 	var/datum/targetable/blob/build/ribosome = null
 	var/datum/targetable/blob/build/mito = null
 	var/datum/targetable/blob/build/wall = null
-	var/datum/targetable/blob/absorb = null
 	var/datum/targetable/blob/promote = null
 	var/datum/targetable/blob/evolution/spread_up = null
 	var/datum/targetable/blob/evolution/gen_up = null
@@ -267,33 +266,31 @@
 					fireres_up = null
 					logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Took fire resistance upgrade.")
 
-			if (absorb)
-				for (var/mob/living/carbon/human/H in (mobs + ai_mobs))
-					if (!isturf(H.loc))
-						continue
-					if (isdead(H))
-						continue
-					if (H.decomp_stage >= 4)
-						continue
-					if (!(locate(/obj/blob) in H.loc))
-						var/turf/T = get_turf(H)
-						if (has_adjacent_blob(T) && prob(50))
-							attack_now(T)
-							if (T.can_blob_spread_here())
+			for (var/mob/living/carbon/human/H in (mobs + ai_mobs))
+				if (!isturf(H.loc))
+					continue
+				if (isdead(H))
+					continue
+				if (H.decomp_stage >= 4)
+					continue
+				if (!(locate(/obj/blob) in H.loc))
+					var/turf/T = get_turf(H)
+					if (has_adjacent_blob(T) && prob(50))
+						attack_now(T)
+						if (T.can_blob_spread_here())
+							spread_to(T, 0)
+						logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Can't absorb [H] (no blob on tile), attacking instead at [log_loc(H)].")
+					continue
+				else
+					var/turf/H_turf = H.loc
+					SPAWN_DBG(-1)
+						for(var/dir in cardinal)
+							var/turf/T = get_step(H, dir)
+							if(H.loc != H_turf)
+								break
+							if(T.can_blob_spread_here())
 								spread_to(T, 0)
-							logTheThing("debug", src, null, "<b>Marquesas/AI Blob:</b> Can't absorb [H] (no blob on tile), attacking instead at [log_loc(H)].")
-						continue
-					else
-						var/turf/H_turf = H.loc
-						SPAWN_DBG(-1)
-							for(var/dir in cardinal)
-								var/turf/T = get_step(H, dir)
-								if(H.loc != H_turf)
-									break
-								if(T.can_blob_spread_here())
-									spread_to(T, 0)
-									sleep(spread.cooldown + 1)
-					// no explicit `absorb.cast` call because absorption is now automatic
+								sleep(spread.cooldown + 1)
 
 		switch (state)
 			if (STATE_DEAD)
@@ -332,7 +329,6 @@
 					ribosome = blob_holder.getAbility(/datum/targetable/blob/build/ribosome)
 					mito = blob_holder.getAbility(/datum/targetable/blob/build/mitochondria)
 					wall = blob_holder.getAbility(/datum/targetable/blob/build/wall)
-					absorb = blob_holder.getAbility(/datum/targetable/blob/absorb)
 					promote = blob_holder.getAbility(/datum/targetable/blob/promote_nucleus)
 					spread_up = blob_holder.getAbility(/datum/targetable/blob/evolution/quick_spread)
 					gen_up = blob_holder.getAbility(/datum/targetable/blob/evolution/extra_genrate)
