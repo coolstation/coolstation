@@ -1408,6 +1408,11 @@
 			boutput(feedback, "<span class='alert'>You can't spread the blob into space.</span>")
 		return 0
 
+	if (locate(/obj/blob) in src)
+		if (feedback)
+			boutput(feedback, "<span class='alert'>There's already blob there.</span>")
+		return 0
+
 	if (!admin_overmind) //admins can spread wherever (within reason)
 		if (!issimulatedturf(src))
 			if (feedback)
