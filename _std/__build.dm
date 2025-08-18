@@ -113,8 +113,8 @@
 //#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
-//#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
-#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
+#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
+//#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP

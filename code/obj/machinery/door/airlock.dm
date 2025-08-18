@@ -569,6 +569,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	health = 500
 	health_max = 500
 	layer = 3.5
+	flags = FPRINT | IS_PERSPECTIVE_FLUID
 	object_flags = BOTS_DIRBLOCK | CAN_REPROGRAM_ACCESS | HAS_DIRECTIONAL_BLOCKING
 
 	bumpopen(mob/user as mob)

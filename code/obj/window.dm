@@ -6,7 +6,7 @@
 	density = 1
 	stops_space_move = 1
 	dir = 5 //full tile
-	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID
+	flags = FPRINT | USEDELAY | ON_BORDER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	object_flags = HAS_DIRECTIONAL_BLOCKING
 	text = "<font color=#aaf>#"
@@ -902,7 +902,7 @@
 	//deconstruct_time = 20
 	object_flags = 0 // so they don't inherit the HAS_DIRECTIONAL_BLOCKING flag from thindows
 	// but let's see what happens if directional blocking IS on? ANSWER: YOU GAS FALL OUT
-	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID
+	flags = FPRINT | USEDELAY | ON_BORDER
 
 	var/list/connects_to = list(/obj/window/thindow/auto, /obj/window/thindow/auto/reinforced)
 	var/mod = null

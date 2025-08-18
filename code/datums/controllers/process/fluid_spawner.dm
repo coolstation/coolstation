@@ -1,5 +1,5 @@
 
-#define FLUID_SPAWNER_TURF_BLOCKED(t) (!t || (t.active_liquid && t.active_liquid.group && t.active_liquid.group.amt_per_tile >= 300) || !t.ocean_canpass())
+#define FLUID_SPAWNER_TURF_BLOCKED(T, t) (!t || (t.active_liquid && t.active_liquid.group && t.active_liquid.group.amt_per_tile >= 300) || !t.gas_cross(T))
 
 var/global/ocean_reagent_id = "water"
 var/global/ocean_name = "ocean"
@@ -73,7 +73,7 @@ var/global/datum/color/ocean_color = 0
 					adjacent_space += 1
 					continue
 
-				if (FLUID_SPAWNER_TURF_BLOCKED(t))
+				if (FLUID_SPAWNER_TURF_BLOCKED(T, t))
 					adjacent_block += 1
 					continue
 
