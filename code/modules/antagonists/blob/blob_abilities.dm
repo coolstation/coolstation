@@ -475,13 +475,16 @@
 		src.holder.addAbility(/datum/targetable/blob/evolution/quick_spread)
 		src.holder.addAbility(/datum/targetable/blob/evolution/spread)
 		src.holder.addAbility(/datum/targetable/blob/evolution/attack)
-		src.holder.addAbility(/datum/targetable/blob/evolution/fire_resist)
 		src.holder.addAbility(/datum/targetable/blob/evolution/poison_resist)
 		src.holder.addAbility(/datum/targetable/blob/evolution/devour_item)
 		src.holder.addAbility(/datum/targetable/blob/evolution/bridge)
 		src.holder.addAbility(/datum/targetable/blob/evolution/launcher)
-		src.holder.addAbility(/datum/targetable/blob/evolution/plasmaphyll)
+
 		src.holder.addAbility(/datum/targetable/blob/evolution/ectothermid)
+		src.holder.addAbility(/datum/targetable/blob/evolution/fire_resist)
+		src.holder.addAbility(/datum/targetable/blob/evolution/plasmaphyll)
+
+
 		src.holder.addAbility(/datum/targetable/blob/evolution/reflective)
 
 		if (!src.blob_holder.tutorial)
@@ -1670,7 +1673,7 @@
 	name = "Structural: Plasmaphyll"
 	icon_state = "blob-plasmaphyll"
 	desc = "Unlocks the plasmaphyll blob bit, which passively protects an area from plasma by converting it to biopoints."
-	evo_point_cost = 1
+	evo_point_cost = 2
 	id = "upgrade-plasmaphyll"
 
 	take_upgrade()
@@ -1682,7 +1685,7 @@
 	name = "Structural: Ectothermid"
 	icon_state = "blob-ectothermid"
 	desc = "Unlocks the ectothermid blob bit, which passively protects an area from temperature. This protection consumes biopoints."
-	evo_point_cost = 2
+	evo_point_cost = 1
 	id = "upgrade-ectothermid"
 
 	take_upgrade()
