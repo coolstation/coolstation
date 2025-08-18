@@ -307,6 +307,8 @@
 			return 1
 
 	gas_cross(turf/target)
+		if(!src.density)
+			return TRUE
 		. = TRUE
 		if ((src.dir in ordinal) || get_dir(loc, target) == dir)
 			. = ..()
