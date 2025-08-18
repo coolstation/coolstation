@@ -82,6 +82,9 @@
 #elif defined(MAP_OVERRIDE_PERDUTA)
 #include "perduta.dm"
 
+#elif defined(MAP_OVERRIDE_SAXUM)
+#include "saxum.dm"
+
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 
