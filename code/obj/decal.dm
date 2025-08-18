@@ -657,6 +657,13 @@ obj/decal/fakeobjects
 	var/shake_intensity = 10
 	var/strike_time = 1 SECOND
 	var/volume = 50
+	var/datum/light/point/light = null
+	var/light_brightness = 0.8
+	var/light_atten_con = -0.06
+	var/light_height = 3
+	var/light_r = 120
+	var/light_g = 120
+	var/light_b = 125
 
 	New(atom/newLoc, var/y_offset)
 		..()
@@ -666,8 +673,18 @@ obj/decal/fakeobjects
 		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8) + y_offset, flags = ANIMATION_PARALLEL)
 		animate(time = src.strike_time / 8, transform = matrix(1,src.height,MATRIX_SCALE))
 		animate_ripple(src,8,shake_intensity,0.2)
+		light = new
+		light.attach(src)
+		light.set_atten_con(light_atten_con)
+		light.set_brightness(light_brightness)
+		light.set_height(light_height)
+		light.set_color(light_r, light_g, light_b)
+		SPAWN_DBG(1 DECI SECOND)
+			light?.enable()
+
 		SPAWN_DBG(strike_time)
 			qdel(src)
+
 
 	ex_act(severity) // cant have lightning blowing itself up
 		return

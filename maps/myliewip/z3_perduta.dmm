@@ -340,6 +340,12 @@
 "fE" = (
 /turf/floor/cautionblack,
 /area/shuttle/arrival/station)
+"fQ" = (
+/obj/machinery/light/sodium{
+	dir = 1
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "gc" = (
 /obj/cable{
 	d1 = 1;
@@ -968,6 +974,9 @@
 "qw" = (
 /obj/storage/cart/trash,
 /obj/random_item_spawner/junk/lots,
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)
 "qy" = (
@@ -989,6 +998,12 @@
 /obj/decal/cleanable/rust/jen,
 /turf/floor/riveted,
 /area/station/maintenance/sublevel/south)
+"qP" = (
+/obj/machinery/light/sodium{
+	dir = 8
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "qT" = (
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 4
@@ -1354,6 +1369,9 @@
 "wm" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/floor/industrial,
 /area/station/maintenance/sublevel/south)
 "wr" = (
@@ -2291,6 +2309,9 @@
 	pixel_x = -2
 	},
 /obj/random_item_spawner/circuitboards/one_or_zero,
+/obj/machinery/light/small/red{
+	dir = 8
+	},
 /turf/floor/riveted,
 /area/station/maintenance/sublevel/south)
 "Ln" = (
@@ -2857,6 +2878,12 @@
 /obj/machinery/light/fluorescent/ceiling/warm/very,
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
+"UG" = (
+/obj/machinery/light/sodium{
+	dir = 4
+	},
+/turf/space/fluid/trench,
+/area/magindara)
 "UP" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -3103,7 +3130,7 @@
 /turf/space/fluid/trench,
 /area/magindara)
 "ZX" = (
-/obj/machinery/light/fluorescent/warm/very,
+/obj/machinery/light/sodium,
 /turf/space/fluid/trench,
 /area/magindara)
 
@@ -37690,7 +37717,7 @@ aE
 aE
 cL
 cL
-BX
+fQ
 BX
 BX
 BX
@@ -39774,7 +39801,7 @@ BX
 BX
 BX
 BX
-BX
+UG
 Lp
 Lp
 sh
@@ -40086,7 +40113,7 @@ ll
 Lp
 xL
 Lp
-BX
+fQ
 BX
 BX
 BX
@@ -40103,7 +40130,7 @@ cL
 Ey
 vj
 hV
-JG
+hV
 BO
 hV
 JG
@@ -41002,7 +41029,7 @@ BX
 BX
 BX
 BX
-BX
+ZX
 cL
 cK
 JC
@@ -41620,7 +41647,7 @@ BO
 cL
 cL
 cL
-BX
+fQ
 BX
 BX
 BX
@@ -43702,7 +43729,7 @@ BX
 BX
 BX
 BX
-BX
+qP
 BX
 BX
 BX
@@ -49160,7 +49187,7 @@ BX
 BX
 BX
 BX
-BX
+ZX
 cL
 HY
 cK
@@ -49775,7 +49802,7 @@ BX
 BX
 BX
 BX
-BX
+qP
 BX
 BX
 BX

@@ -1017,7 +1017,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/perduta
 	name = "PERDUTA"
-	walls = /turf/wall/
+	walls = /turf/wall/auto/rivet
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
