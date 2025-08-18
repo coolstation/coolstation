@@ -615,6 +615,7 @@
 	fire_coefficient = 0.5
 	poison_coefficient = 0.5
 	poison_depletion = 3
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
 	var/nextAttackMsg = 0
 
 	New()
@@ -631,6 +632,13 @@
 			playsound(src.loc, "sound/voice/blob/blobreflect[rand(1, 5)].ogg", 100, 1)
 		else
 			..()
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	onAttach(var/datum/abilityHolder/blob/AH)
 		..()
@@ -1073,7 +1081,7 @@
 	name = "reflective membrane"
 	state_overlay = "reflective"
 	special_icon = 1
-	desc = "This membrane is designed to reflect kinetic and energy projectiles."
+	desc = "This membrane is designed to reflect kinetic and energy projectiles, but will allow fluids through."
 	armor = 0
 	gen_rate_value = 0
 	can_absorb = 0
