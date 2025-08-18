@@ -339,7 +339,6 @@ var/mutable_appearance/fluid_ma
 		var/turf/t
 		if(!waterflow_enabled) return
 		for( var/dir in cardinal )
-			LAGCHECK(LAG_MED)
 			if (!src.group)
 				src.removed()
 				return
@@ -363,7 +362,6 @@ var/mutable_appearance/fluid_ma
 				var/suc = 1
 				var/push_thing = 0
 				for(var/obj/thing in t.contents)
-					LAGCHECK(LAG_HIGH)
 					var/found = 0
 					if (IS_SOLID_TO_FLUID(thing))
 						found = 1
@@ -384,7 +382,6 @@ var/mutable_appearance/fluid_ma
 							break
 
 				if(suc && src.group) //group went missing? ok im doin a check here lol
-					LAGCHECK(LAG_HIGH)
 					spawned_any = 1
 					src.icon_state = src.group.viscosity_prefix + "15"
 					var/obj/fluid/F = new()
@@ -518,7 +515,6 @@ var/mutable_appearance/fluid_ma
 			if (!t.active_liquid || t.active_liquid.pooled) continue
 			if (t.active_liquid && t.active_liquid.group && src.group != t.active_liquid.group)
 				t.active_liquid.group.join(src.group)
-			LAGCHECK(LAG_HIGH)
 
 	//hey this isn't being called at all right now. Moved its blood spread shit up into spread() so we don't call this function that basically does nothing
 	/*proc/flow_towards(var/list/obj/Flist, var/push_stuff = 1)
