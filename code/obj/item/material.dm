@@ -944,6 +944,11 @@
 	default_material = "cotton"
 	value = 20 //processed
 
+/obj/item/material_piece/cloth/cottonfabric/randomcolor
+	New()
+		. = ..()
+		src.color = random_hex(6)
+
 /obj/item/material_piece/cloth/brullbarhide
 	name = "brullbar hide"
 	desc = "The hide of a brüllbär"
