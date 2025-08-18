@@ -10,8 +10,12 @@
 
 //Used in obj/fluid procs only:
 #define IS_SOLID_TO_FLUID(A) (A.flags & ALWAYS_SOLID_FLUID || A.flags & IS_PERSPECTIVE_FLUID)
-#define IS_PERSPECTIVE_WALL(T) (T.flags & IS_PERSPECTIVE_FLUID)
+
+#define STRICT_PERSPECTIVE_FLUID
+
+#ifdef STRICT_PERSPECTIVE_FLUID
 #define IS_PERSPECTIVE_BLOCK(A) (A.flags & IS_PERSPECTIVE_FLUID)
 
+#endif
 /// Check if object or mobs gets a submerge overlay
 #define IS_VALID_SUBMERGE_OBJ(O) (O.flags & FLUID_SUBMERGE)

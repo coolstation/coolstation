@@ -5,7 +5,7 @@
 	icon_state = "door1"
 	opacity = 1
 	density = 1
-	flags = FPRINT | ALWAYS_SOLID_FLUID
+	flags = FPRINT | ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	object_flags = BOTS_DIRBLOCK
 	text = "<font color=#D2691E>+"

@@ -348,15 +348,21 @@ var/mutable_appearance/fluid_ma
 			t = get_step( src, dir )
 			if (!t) //the fuck? how
 				continue
+#ifdef STRICT_PERSPECTIVE_FLUID
 			if (!IS_VALID_FLUID_TURF(t))
 				blocked_dirs++
-				if (IS_PERSPECTIVE_WALL(t))
+				if (IS_PERSPECTIVE_BLOCK(t))
 					blocked_perspective_objects["[dir]"] = 1
 				continue
 
 			if(!t.gas_cross(T))
 				continue
-
+#else
+			if(!IS_VALID_FLUID_TURF(t) || !t.gas_cross(T))
+				blocked_dirs++
+				blocked_perspective_objects["[dir]"] = 1
+				continue
+#endif
 			if(t.active_liquid && !t.active_liquid.pooled)
 				blocked_dirs++
 				if (t.active_liquid.group && t.active_liquid.group != src.group)
@@ -378,8 +384,10 @@ var/mutable_appearance/fluid_ma
 					if( thing.density )
 						suc=0
 						blocked_dirs++
+#ifdef STRICT_PERSPECTIVE_FLUID
 						if (IS_PERSPECTIVE_BLOCK(thing))
 							blocked_perspective_objects["[dir]"] = 1
+#endif
 						break
 
 					if (istype(thing,/obj/channel))
