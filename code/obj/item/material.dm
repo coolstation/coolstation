@@ -779,10 +779,10 @@
 				user.visible_message("<span class='notice'>[user] hangs up a [B.name] in [A]!.</span>", "<span class='notice'>You hang up a [B.name] in [A]!</span>")
 
 /obj/item/material_piece/wad // LOAD BEARING WAD!? SERIOUSLY!?
-		// organic
-		icon_state = "wad"
-		name = "clump"
-		desc = "A clump of some kind of material."
+	// organic
+	icon_state = "wad"
+	name = "clump"
+	desc = "A clump of some kind of material."
 
 /obj/item/material_piece/frozenfart
 	icon_state = "fart"

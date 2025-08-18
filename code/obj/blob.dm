@@ -98,7 +98,7 @@
 			blob_holder.blobs -= src
 		if (AH)
 			blob_holder = AH
-			setMaterial(AH.my_material)
+			setMaterial(AH.my_material, appearance = FALSE)
 			color = blob_holder.color
 			original_color = blob_holder.color
 			blob_holder.blobs |= src
@@ -306,7 +306,7 @@
 
 	proc/create_chunk(var/turf/T)
 		var/obj/item/material_piece/blob/BC = new(T)
-		BC.name = "chunk of blob"
+		BC.color = blob_holder.color
 
 	proc/take_damage(var/amount,var/damage_mult = 1,var/damtype = "brute",var/mob/user)
 		if (!isnum(amount) || amount <= 0)
@@ -440,7 +440,7 @@
 		//	else
 
 
-		src.setMaterial(src.material)
+		src.setMaterial(src.material, appearance = FALSE)
 		var/healthperc = get_fraction_of_percentage_and_whole(src.health,src.health_max)
 		switch(healthperc)
 			if (-INFINITY to 33)
@@ -718,7 +718,7 @@
 		B.reagents.my_atom = B
 		B.update_reagent_overlay()
 		src.reagents = null
-		B.setMaterial(src.material)
+		B.setMaterial(src.material, appearance = FALSE)
 		src.material = null
 		qdel(src)
 
@@ -733,7 +733,7 @@
 		B.set_master_reagent()
 		B.update_reagent_overlay()
 		src.reagents = null
-		B.setMaterial(src.material)
+		B.setMaterial(src.material, appearance = FALSE)
 		src.material = null
 		qdel(src)
 
