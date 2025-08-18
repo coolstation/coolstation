@@ -74,7 +74,7 @@
 		return
 
 	disposing()
-		density = 0
+		set_density(0) //dammit
 		update_nearby_tiles(need_rebuild=1, selfnotify = 1)
 		. = ..()
 
@@ -964,7 +964,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isscrewingtool(W))
 			src.anchored = !( src.anchored )
-			src.density = src.anchored
+			set_density(src.anchored)
 			src.stops_space_move = !(src.stops_space_move)
 			playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
 			user << (src.anchored ? "You have fastened [src] to the floor." : "You have unfastened [src].")
