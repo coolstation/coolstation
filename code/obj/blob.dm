@@ -68,7 +68,7 @@
 					if (H == src.blob_holder.owner || H.decomp_stage == 4 || check_target_immunity(H)) //too decomposed or too cool to be eaten
 						continue
 					src.visible_message("<span class='alert'><b>The blob starts trying to absorb [H.name]!</b></span>")
-					actions.start(new /datum/action/bar/blob_absorb(H, blob_holder), src)
+					actions.start(new /datum/action/bar/blob_absorb(H, blob_holder), H)
 					playsound(src.loc, "sound/voice/blob/blobsucc[rand(1, 3)].ogg", 10, 1)
 
 	proc/right_click_action()
