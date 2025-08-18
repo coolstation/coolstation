@@ -476,7 +476,7 @@
 		src.alpha = max(src.alpha * src.health / src.health_max, 50)
 
 	proc/spread(var/turf/T)
-		if (!istype(T) || !T.can_blob_spread_here(null, null, isadmin(blob_holder.owner)))
+		if (!istype(T) || !T.can_blob_spread_here(null, null))
 			return
 
 		var/blob_type = /obj/blob/
@@ -1417,7 +1417,7 @@
 
 	return null
 
-/turf/proc/can_blob_spread_here(var/mob/feedback, var/skip_adjacent, var/admin_overmind = 0)
+/turf/proc/can_blob_spread_here(var/mob/feedback, var/skip_adjacent)
 	if (!src)
 		return 0
 
@@ -1431,11 +1431,10 @@
 			boutput(feedback, "<span class='alert'>There's already blob there.</span>")
 		return 0
 
-	if (!admin_overmind) //admins can spread wherever (within reason)
-		if (!issimulatedturf(src))
-			if (feedback)
-				boutput(feedback, "<span class='alert'>You can't spread the blob onto that kind of tile.</span>")
-			return 0
+	if (!issimulatedturf(src) && !istype(src.loc, /area/shuttle/escape))
+		if (feedback)
+			boutput(feedback, "<span class='alert'>You can't spread the blob onto unsimulated tiles.</span>")
+		return 0
 
 	if (src.density)
 		if (feedback)

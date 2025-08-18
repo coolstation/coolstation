@@ -355,7 +355,7 @@
 			if (currentTurfs > maxTurfs)
 				return
 
-			if (T.can_blob_spread_here(null, null, isadmin(owner)))
+			if (T.can_blob_spread_here(null, null))
 				var/obj/blob/B
 				if (prob(5))
 					B = new /obj/blob/lipid(T)
@@ -423,30 +423,29 @@
 			boutput(src.holder.owner, "<span class='alert'>You can't start in space!</span>")
 			return
 
-		if (!isadmin(src.holder.owner)) //admins can spawn wherever
-			if(!istype(T.loc, /area/blob/))
-				if (!istype(T.loc, /area/station/))
-					boutput(src.holder.owner, __red("You need to start on the [station_or_ship()]!"))
-					return
-
-				if (!issimulatedturf(T))
-					boutput(src.holder.owner, "<span class='alert'>This kind of tile cannot support a blob.</span>")
-					return
-
-			if (T.density)
-				boutput(src.holder.owner, "<span class='alert'>You can't start inside a wall!</span>")
+		if(!istype(T.loc, /area/blob/))
+			if (!istype(T.loc, /area/station/))
+				boutput(src.holder.owner, __red("You need to start on the [station_or_ship()]!"))
 				return
 
-			for (var/atom/O in T.contents)
-				if (O.density)
-					boutput(src.holder.owner, "<span class='alert'>That tile is blocked by [O].</span>")
-					return
+			if (!issimulatedturf(T))
+				boutput(src.holder.owner, "<span class='alert'>An unsimulated tile cannot support a blob.</span>")
+				return
 
-			for (var/mob/M in viewers(T, 5))
-				if (isrobot(M) || ishuman(M))
-					if (!isdead(M))
-						boutput(src.holder.owner, "<span class='alert'>You are being watched.</span>")
-						return
+		if (T.density)
+			boutput(src.holder.owner, "<span class='alert'>You can't start inside a wall!</span>")
+			return
+
+		for (var/atom/O in T.contents)
+			if (O.density)
+				boutput(src.holder.owner, "<span class='alert'>That tile is blocked by [O].</span>")
+				return
+
+		for (var/mob/M in viewers(T, 5))
+			if (isrobot(M) || ishuman(M))
+				if (!isdead(M))
+					boutput(src.holder.owner, "<span class='alert'>You are being watched.</span>")
+					return
 
 		if (!src.blob_holder.tutorial_check("deploy", T))
 			return
@@ -561,7 +560,7 @@
 
 				return 1
 
-		var/obj/blob/B1 = T.can_blob_spread_here(src.holder.owner, null, isadmin(src.holder.owner))
+		var/obj/blob/B1 = T.can_blob_spread_here(src.holder.owner, null)
 		if (!istype(B1))
 			return 1
 
@@ -588,7 +587,7 @@
 			for (var/turf/floor/Q in view(7, src.holder.owner))
 				if (locate(/obj/blob) in Q)
 					continue
-				var/obj/blob/B3 = Q.can_blob_spread_here(null, null, isadmin(src.holder.owner))
+				var/obj/blob/B3 = Q.can_blob_spread_here(null, null)
 				if (B3)
 					spreadability += Q
 
