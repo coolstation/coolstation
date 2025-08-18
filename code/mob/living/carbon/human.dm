@@ -2337,6 +2337,9 @@
 
 	..()
 
+	decomp_stage = 0
+	time_until_decomposition = 0
+
 	if (src.bioHolder)
 		bioHolder.RemoveAllEffects(EFFECT_TYPE_DISABILITY)
 
