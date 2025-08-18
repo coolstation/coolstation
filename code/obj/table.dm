@@ -5,7 +5,7 @@
 	icon_state = "0"
 	density = 1
 	anchored = 1.0
-	flags = NOSPLASH
+	flags = NOSPLASH | FLUID_SUBMERGE
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	layer = OBJ_LAYER-0.1
 	stops_space_move = TRUE

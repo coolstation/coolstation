@@ -579,7 +579,7 @@ var/mutable_appearance/fluid_ma
 
 		var/color_changed = 0
 		var/datum/color/average = src.group.average_color ? src.group.average_color : src.group.reagents.get_average_color()
-		src.finalalpha = max(25, (average.a / 255) * src.group.max_alpha)
+		src.finalalpha = clamp((average.a / 255) * src.group.max_alpha, 25, MAX_FLUID_ALPHA)
 		src.finalcolor = rgb(average.r, average.g, average.b)
 		if (src.color != finalcolor)
 			color_changed = 1
