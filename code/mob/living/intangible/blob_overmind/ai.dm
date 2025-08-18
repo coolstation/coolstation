@@ -308,10 +308,10 @@
 						return
 
 					blob_holder.color = random_color()
-					blob_holder.my_material.color = color
-					blob_holder.initial_material.color = color
 					blob_holder.organ_color = random_color()
 					color = blob_holder.color
+					blob_holder.my_material.color = color
+					blob_holder.initial_material.color = color
 
 					if (istype(T, /turf/space))
 						return // Do not deploy on space.
