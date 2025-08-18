@@ -84,6 +84,8 @@
 
 	CanPass(atom/movable/mover, turf/target)
 		. = ..()
+		if(mover == src.blob_holder.owner)
+			return 1
 		var/obj/projectile/P = mover
 		if (istype(P) && P.proj_data) //Wire note: Fix for Cannot read null.type
 			if (P.proj_data.type == /datum/projectile/slime)
