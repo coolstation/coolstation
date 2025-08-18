@@ -876,6 +876,9 @@
 	else
 		UpdateOverlays(null, "starlight")
 
+/turf/space/assume_air(datum/gas_mixture/giver)
+	qdel(giver)
+	return 1
 
 /turf/space/no_replace
 
