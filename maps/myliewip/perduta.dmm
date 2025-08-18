@@ -181,9 +181,7 @@
 /area/station/hallway/primary/northeast)
 "aC" = (
 /obj/overlay/magindara_skylight/weather,
-/turf/floor/stairs/dark/middle{
-	dir = 2
-	},
+/turf/floor/stairs/dark/middle,
 /area/station/hydroponics/bay)
 "aD" = (
 /obj/cable{
@@ -4423,7 +4421,6 @@
 /area/station/maintenance/northeast)
 "lq" = (
 /obj/item/storage/wall/emergency{
-	pixel_y = 0;
 	pixel_x = -28
 	},
 /obj/machinery/light/fluorescent/warm/very{
@@ -4482,7 +4479,6 @@
 /area/station/maintenance/north)
 "lw" = (
 /obj/machinery/computer/riotgear{
-	pixel_y = 0;
 	pixel_x = 32
 	},
 /obj/machinery/light/fluorescent/warm/very{
@@ -7092,10 +7088,13 @@
 "rY" = (
 /obj/table/reinforced/chemistry/auto,
 /obj/machinery/phone{
-	pixel_y = 0;
 	pixel_x = 1
 	},
 /obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/purple/checker,
 /area/station/science/chemistry)
 "rZ" = (
@@ -7151,9 +7150,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/stairs/dark/middle{
-	dir = 2
-	},
+/turf/floor/stairs/dark/middle,
 /area/station/bridge)
 "sg" = (
 /obj/grille/catwalk/elevator{
@@ -8529,13 +8526,6 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/cautionblack,
 /area/station/maintenance/west)
-"vN" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/turf/space/magindara,
-/area/magindara)
 "vP" = (
 /obj/cable{
 	d1 = 1;
@@ -9309,8 +9299,7 @@
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 5;
-	name = "autoname - SS13";
-	tag = null
+	name = "autoname - SS13"
 	},
 /turf/floor/riveted,
 /area/station/security/armory)
@@ -10448,7 +10437,6 @@
 /area/magindara)
 "AQ" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/railing/cool{
@@ -10934,8 +10922,7 @@
 	pixel_y = 2
 	},
 /obj/item/gun/modular/italian/sniper/improved{
-	pixel_x = 2;
-	pixel_y = 0
+	pixel_x = 2
 	},
 /turf/floor/industrial,
 /area/station/security/armory)
@@ -11044,8 +11031,7 @@
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 5;
-	name = "autoname - SS13";
-	tag = null
+	name = "autoname - SS13"
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
@@ -11961,7 +11947,6 @@
 /area/station/hallway/primary/central)
 "EG" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/railing/cool{
@@ -12446,14 +12431,6 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
-"FR" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/obj/disposalpipe/segment/vertical,
-/turf/space/magindara,
-/area/magindara)
 "FT" = (
 /obj/machinery/space_heater,
 /obj/disposalpipe/segment/vertical,
@@ -12597,7 +12574,6 @@
 /area/station/science/chemistry)
 "Gt" = (
 /obj/barber_pole{
-	pixel_y = 0;
 	density = 0
 	},
 /turf/wall/auto/rivet,
@@ -14174,14 +14150,6 @@
 /obj/machinery/disposal/morgue,
 /turf/floor/industrial,
 /area/station/security/interrogation)
-"KC" = (
-/obj/disposalpipe/segment/morgue/vertical,
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/turf/space/magindara,
-/area/magindara)
 "KD" = (
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/cable{
@@ -15045,7 +15013,6 @@
 /obj/table/reinforced/industrial/auto,
 /obj/item/paper_bin,
 /obj/item/device/radio/intercom/brig{
-	dir = 2;
 	pixel_y = 28
 	},
 /obj/machinery/camera{
@@ -15205,7 +15172,6 @@
 /area/station/hallway/primary/northeast)
 "MV" = (
 /obj/item/device/radio/intercom/brig{
-	dir = 2;
 	pixel_y = 28
 	},
 /obj/fitness/weightlifter,
@@ -15664,9 +15630,7 @@
 /area/station/crew_quarters/kitchen/freezer)
 "Oq" = (
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/stairs/dark/wide2{
-	dir = 2
-	},
+/turf/floor/stairs/dark/wide2,
 /area/station/bridge)
 "Or" = (
 /obj/disposalpipe/segment/vertical,
@@ -15681,7 +15645,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/coffeemaker/command{
-	pixel_y = 0;
 	pixel_x = -3
 	},
 /obj/mug_rack{
@@ -16950,7 +16913,6 @@
 /area/station/science/artifact)
 "RU" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/railing/cool{
@@ -17080,7 +17042,6 @@
 /area/station/hallway/primary/northeast)
 "Sk" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/railing/cool{
@@ -17315,7 +17276,6 @@
 /area/station/medical/medbay/treatment)
 "SM" = (
 /obj/item/storage/wall/emergency{
-	pixel_y = 0;
 	pixel_x = 28
 	},
 /obj/disposalpipe/segment/vertical,
@@ -18203,9 +18163,7 @@
 /area/station/hallway/primary/northwest)
 "UU" = (
 /obj/overlay/magindara_skylight/weather,
-/turf/floor/stairs/dark/wide2{
-	dir = 2
-	},
+/turf/floor/stairs/dark/wide2,
 /area/station/hydroponics/bay)
 "UV" = (
 /obj/disposalpipe/segment/horizontal,
@@ -18396,14 +18354,6 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/black,
 /area/station/bridge)
-"Vu" = (
-/obj/disposalpipe/segment/vertical,
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/turf/space/magindara,
-/area/magindara)
 "Vv" = (
 /turf/floor/purpleblack,
 /area/station/science/artifact)
@@ -19550,8 +19500,7 @@
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 5;
-	name = "autoname - SS13";
-	tag = null
+	name = "autoname - SS13"
 	},
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
@@ -19755,14 +19704,6 @@
 /obj/neon_sign/syringe,
 /turf/wall/auto/rivet,
 /area/station/science/chemistry)
-"Zc" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/obj/disposalpipe/segment/mail/vertical,
-/turf/space/magindara,
-/area/magindara)
 "Zd" = (
 /turf/floor/riveted,
 /area/station/hallway/primary/northwest)
@@ -49581,7 +49522,7 @@ Me
 Me
 SO
 Ut
-vN
+VL
 sp
 SO
 SO
@@ -60080,9 +60021,9 @@ SO
 SO
 SO
 Uh
-vN
-vN
-vN
+VL
+VL
+VL
 sp
 SO
 SO
@@ -60379,14 +60320,14 @@ SO
 SO
 SO
 Uh
-vN
+VL
 TV
 HZ
 Pr
 Pr
 Pr
 HZ
-vN
+VL
 sp
 SO
 SO
@@ -60998,7 +60939,7 @@ SO
 CI
 SO
 bB
-Zc
+RF
 CE
 QF
 lv
@@ -62201,8 +62142,8 @@ HZ
 iF
 TF
 UI
-Zc
-Zc
+RF
+RF
 Eq
 RF
 KZ
@@ -64000,13 +63941,13 @@ SO
 SO
 Ut
 AJ
-vN
+VL
 ud
-FR
+FZ
 Ra
 cK
-FR
-FR
+FZ
+FZ
 NP
 Ou
 pG
@@ -64606,7 +64547,7 @@ gl
 SO
 SO
 OQ
-vN
+VL
 Zs
 Sk
 Sk
@@ -64645,9 +64586,9 @@ UV
 aO
 QJ
 xq
-KC
+Jg
 pc
-KC
+Jg
 Uq
 EF
 Yw
@@ -64905,8 +64846,8 @@ SO
 SO
 SO
 Ut
-vN
-vN
+VL
+VL
 TW
 SO
 yA
@@ -65249,9 +65190,9 @@ Bc
 Ms
 FF
 ne
-Zc
+RF
 VU
-Zc
+RF
 Bb
 yH
 EF
@@ -65811,7 +65752,7 @@ SO
 SO
 SO
 VE
-Vu
+Xn
 wN
 Ou
 IO
@@ -65871,7 +65812,7 @@ lC
 SO
 Rv
 wi
-vN
+VL
 zO
 SO
 BJ
@@ -66175,7 +66116,7 @@ SO
 Rh
 SO
 Ut
-vN
+VL
 tp
 SO
 SO
@@ -66452,7 +66393,7 @@ Jk
 GG
 Zk
 hd
-vN
+VL
 AJ
 mm
 ju
@@ -67623,7 +67564,7 @@ SO
 SO
 SO
 eJ
-Vu
+Xn
 PS
 aR
 Eh
@@ -68532,7 +68473,7 @@ SO
 SO
 rP
 Lz
-Vu
+Xn
 Ra
 aU
 Lq
