@@ -321,7 +321,6 @@
 	dir = 8
 	},
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
@@ -424,7 +423,6 @@
 /area/station/maintenance/sublevel/south)
 "hv" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
@@ -828,7 +826,6 @@
 /area/station/turret_protected/ai)
 "ox" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/cable{
@@ -1238,7 +1235,6 @@
 	pixel_y = 3
 	},
 /obj/item/chem_grenade/cleaner{
-	pixel_x = 0;
 	pixel_y = -2
 	},
 /obj/item/caution{
@@ -1334,6 +1330,12 @@
 /obj/machinery/power/data_terminal,
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
+"vw" = (
+/obj/stool/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "vy" = (
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/plating,
@@ -1431,7 +1433,6 @@
 /area/station/maintenance/sublevel/south)
 "xo" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/small/red,
@@ -1442,10 +1443,7 @@
 /area/magindara)
 "xt" = (
 /obj/decal/cleanable/dirt/random,
-/turf/floor/darkpurple{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/turf/floor/darkpurple,
 /area/station/janitor/office)
 "xw" = (
 /obj/stool/chair/couch{
@@ -1495,7 +1493,6 @@
 /area/station/medical/robotics)
 "yc" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/cable{
@@ -1751,6 +1748,11 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
+"CW" = (
+/obj/machinery/door/airlock/glass/command,
+/obj/access_spawn/heads,
+/turf/floor/industrial,
+/area/shuttle/arrival/station)
 "Da" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 1
@@ -2007,6 +2009,12 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"Hh" = (
+/obj/stool/chair/comfy/shuttle/pilot{
+	dir = 1
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "Hs" = (
 /obj/random_item_spawner/junk/one_or_zero,
 /obj/cable{
@@ -2150,7 +2158,6 @@
 	icon_state = "1-4"
 	},
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/trench,
@@ -2164,7 +2171,6 @@
 /area/station/maintenance/disposal)
 "Js" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/power/apc{
@@ -2790,7 +2796,6 @@
 /area/station/medical/robotics)
 "Tl" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/small/red{
@@ -2836,7 +2841,6 @@
 /area/station/janitor/office)
 "TV" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/cable{
@@ -52177,7 +52181,7 @@ BX
 BX
 BX
 BX
-BX
+UG
 BX
 cs
 Gb
@@ -52186,7 +52190,7 @@ pb
 Gb
 yz
 BX
-BX
+UG
 BX
 BX
 BX
@@ -52472,7 +52476,7 @@ BX
 BX
 BX
 BX
-BX
+ZX
 cs
 yz
 yz
@@ -52495,7 +52499,7 @@ cs
 cs
 cs
 BX
-BX
+UG
 BX
 BX
 BX
@@ -52780,7 +52784,7 @@ Gb
 Gb
 Gb
 ER
-Wx
+CW
 aT
 Gb
 Gb
@@ -53077,8 +53081,8 @@ BX
 BX
 cs
 cs
-Gb
-Uz
+bN
+iU
 qy
 Gb
 cs
@@ -53378,11 +53382,11 @@ BX
 BX
 BX
 yz
+bN
+bN
+vw
 Gb
-Gb
-Gb
-Gb
-Gb
+vw
 cs
 Xi
 jT
@@ -53680,11 +53684,11 @@ BX
 BX
 BX
 yz
+bN
+Hh
 Gb
 Gb
-Gb
-Gb
-Gb
+vw
 cs
 Xi
 Fu
@@ -53982,11 +53986,11 @@ BX
 BX
 BX
 yz
+bN
+bN
+vw
 Gb
-Gb
-Gb
-Gb
-Gb
+vw
 cs
 Xi
 Fu
@@ -54285,8 +54289,8 @@ BX
 BX
 cs
 cs
-Gb
-Uz
+bN
+iU
 qy
 Gb
 cs
@@ -54592,7 +54596,7 @@ Gb
 Gb
 Gb
 ER
-Wx
+CW
 aT
 Gb
 Gb
@@ -54888,7 +54892,7 @@ BX
 BX
 BX
 BX
-BX
+ZX
 cs
 yz
 yz
@@ -54911,7 +54915,7 @@ cs
 cs
 cs
 BX
-BX
+qP
 BX
 BX
 BX
@@ -55197,7 +55201,7 @@ BX
 BX
 BX
 BX
-BX
+qP
 BX
 cs
 Gb
@@ -55206,7 +55210,7 @@ Kn
 Gb
 yz
 BX
-BX
+qP
 BX
 BX
 BX

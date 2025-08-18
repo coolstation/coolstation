@@ -1748,6 +1748,9 @@
 	text = "chapel";
 	pixel_y = -24
 	},
+/obj/landmark/start{
+	name = "Cargo Technician"
+	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "eI" = (
@@ -3402,6 +3405,7 @@
 /area/station/maintenance/northeast)
 "iJ" = (
 /obj/disposalpipe/segment/mail/bent/west,
+/obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
 "iK" = (
@@ -4405,6 +4409,14 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
+"lo" = (
+/obj/plasticflaps,
+/obj/machinery/conveyor/west{
+	id = "cargo_in";
+	operating = 1
+	},
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "lp" = (
 /obj/machinery/power/apc{
 	areastring = "Barber Shop";
@@ -4674,8 +4686,11 @@
 /turf/floor/industrial,
 /area/station/hallway/primary/southwest)
 "lS" = (
-/obj/machinery/conveyor/north,
 /obj/plasticflaps,
+/obj/machinery/conveyor/north{
+	id = "refinery";
+	operating = 1
+	},
 /turf/floor/plating/random,
 /area/station/quartermaster/cargobay)
 "lT" = (
@@ -5524,7 +5539,10 @@
 /turf/floor/riveted,
 /area/station/crew_quarters/barber_shop)
 "of" = (
-/obj/machinery/conveyor/east,
+/obj/machinery/conveyor/east{
+	id = "refinery";
+	operating = 1
+	},
 /obj/railing/cool{
 	dir = 8
 	},
@@ -6590,7 +6608,10 @@
 	},
 /area/station/science/research_director)
 "qF" = (
-/obj/machinery/conveyor/north,
+/obj/machinery/conveyor/north{
+	id = "refinery";
+	operating = 1
+	},
 /obj/railing/cool,
 /turf/floor/plating/random,
 /area/station/quartermaster/cargobay)
@@ -11167,8 +11188,9 @@
 /turf/space/magindara,
 /area/magindara)
 "CG" = (
-/obj/landmark/start{
-	name = "Cargo Technician"
+/obj/machinery/conveyor_switch{
+	id = "refinery";
+	position = 1
 	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
@@ -11416,6 +11438,13 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
+"Dm" = (
+/obj/machinery/conveyor_switch{
+	id = "cargo_in";
+	position = 1
+	},
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "Dn" = (
 /obj/lattice{
 	dir = 1;
@@ -11552,6 +11581,16 @@
 	},
 /turf/floor/industrial,
 /area/station/science/artifact)
+"DF" = (
+/obj/railing/cool{
+	dir = 1
+	},
+/obj/machinery/conveyor/west{
+	id = "cargo_in";
+	operating = 1
+	},
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "DG" = (
 /obj/machinery/plantpot{
 	anchored = 1
@@ -11568,11 +11607,14 @@
 /turf/wall/auto/rivet,
 /area/station/security/checkpoint/medical)
 "DJ" = (
-/obj/machinery/conveyor/west,
 /obj/railing/cool{
 	dir = 1
 	},
 /obj/overlay/magindara_skylight/weather,
+/obj/machinery/conveyor/west{
+	id = "cargo_in";
+	operating = 1
+	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "DK" = (
@@ -12488,7 +12530,10 @@
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "Ge" = (
-/obj/machinery/conveyor/north,
+/obj/machinery/conveyor/north{
+	id = "refinery";
+	operating = 1
+	},
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
 "Gf" = (
@@ -15701,8 +15746,11 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "OA" = (
-/obj/machinery/conveyor/west,
 /obj/plasticflaps,
+/obj/machinery/conveyor/west{
+	operating = 1;
+	id = "cargo_out"
+	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "OB" = (
@@ -15769,6 +15817,9 @@
 /area/station/crew_quarters/clown)
 "OO" = (
 /obj/disposalpipe/segment/morgue/bent/south,
+/obj/vehicle/forklift{
+	dir = 8
+	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "OQ" = (
@@ -15938,7 +15989,9 @@
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Pq" = (
-/obj/machinery/arc_electroplater,
+/obj/machinery/arc_electroplater{
+	dir = 8
+	},
 /turf/floor/industrial,
 /area/station/quartermaster/refinery)
 "Pr" = (
@@ -16305,7 +16358,6 @@
 	dir = 5;
 	name = "autoname - SS13"
 	},
-/obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "Qp" = (
@@ -16488,11 +16540,14 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/kitchen/freezer)
 "QT" = (
-/obj/machinery/conveyor/west,
 /obj/railing/cool{
 	dir = 1
 	},
 /obj/machinery/light/fluorescent/warm/very,
+/obj/machinery/conveyor/west{
+	id = "cargo_in";
+	operating = 1
+	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "QU" = (
@@ -18085,9 +18140,12 @@
 	},
 /area/station/hallway/primary/northwest)
 "UL" = (
-/obj/machinery/conveyor/west,
 /obj/railing/cool{
 	dir = 1
+	},
+/obj/machinery/conveyor/west{
+	operating = 1;
+	id = "cargo_out"
 	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
@@ -18698,9 +18756,12 @@
 /turf/floor/riveted,
 /area/station/crew_quarters/barber_shop)
 "Wq" = (
-/obj/machinery/conveyor/west,
 /obj/railing/cool{
 	dir = 1
+	},
+/obj/machinery/conveyor/west{
+	operating = 1;
+	id = "cargo_out"
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
@@ -19148,6 +19209,10 @@
 /area/station/medical/medbay/treatment)
 "XH" = (
 /obj/disposalpipe/segment/bent/north,
+/obj/machinery/conveyor_switch{
+	id = "cargo_out";
+	position = 1
+	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "XI" = (
@@ -70029,8 +70094,8 @@ HV
 CG
 Xh
 pj
-Tl
-UL
+Dm
+DF
 iG
 SO
 CI
@@ -70634,7 +70699,7 @@ QP
 dP
 db
 QP
-OA
+lo
 QP
 QP
 SO
