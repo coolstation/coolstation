@@ -54,6 +54,19 @@
 /obj/grille/catwalk,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"aj" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/cable/blue{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "ak" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/white/checker2,
@@ -184,11 +197,6 @@
 /turf/floor/stairs/dark/middle,
 /area/station/hydroponics/bay)
 "aD" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/manufacturer/general,
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
@@ -420,6 +428,19 @@
 /obj/access_spawn/medical,
 /turf/floor/blackwhite,
 /area/station/medical/medbay/cloner)
+"bh" = (
+/obj/cable/blue{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable/blue{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "bi" = (
 /turf/wall/auto/rivet,
 /area/station/maintenance/northeast)
@@ -1580,14 +1601,14 @@
 /area/station/science/chemistry)
 "em" = (
 /obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
@@ -3539,6 +3560,15 @@
 /obj/random_item_spawner/tools/one_or_zero,
 /turf/floor/industrial,
 /area/station/quartermaster/refinery)
+"jd" = (
+/obj/disposalpipe/segment/bent/south,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/northeast)
 "je" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/disk/data/tape/master/readonly{
@@ -4032,6 +4062,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/riveted,
 /area/station/crew_quarters/bar)
 "ky" = (
@@ -4267,6 +4300,11 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/science/chemistry)
+"kZ" = (
+/obj/disposalpipe/segment/vertical,
+/obj/item/paper/book/from_file/pocketguide/gunsmith,
+/turf/floor/plating/random,
+/area/station/maintenance/north)
 "la" = (
 /obj/storage/secure/closet/command/captain,
 /obj/machinery/camera{
@@ -5079,7 +5117,6 @@
 /area/station/hallway/primary/north)
 "mT" = (
 /obj/table/reinforced/industrial/auto,
-/obj/item/wirecutters,
 /obj/item/tweezers{
 	pixel_y = 5;
 	pixel_x = -3
@@ -6097,6 +6134,14 @@
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"py" = (
+/obj/cable/blue{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "pz" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -6367,6 +6412,13 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"qc" = (
+/obj/disposalpipe/segment/bent/west,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/north)
 "qd" = (
 /obj/machinery/computer3/generic/personal{
 	pixel_y = 8;
@@ -7326,13 +7378,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
-"sB" = (
-/obj/cable/blue{
-	icon_state = "0-2";
-	d2 = 2
-	},
-/turf/floor/industrial,
-/area/station/hallway/primary/east)
 "sC" = (
 /turf/space/magindara,
 /area/station/crew_quarters/clown)
@@ -7530,6 +7575,11 @@
 /area/station/quartermaster/refinery)
 "te" = (
 /obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "tf" = (
@@ -8401,11 +8451,6 @@
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/north)
-"vt" = (
-/obj/landmark/start/latejoin,
-/obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/riveted,
-/area/station/hallway/primary/northeast)
 "vu" = (
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/plating/random,
@@ -8705,9 +8750,9 @@
 /area/station/bridge)
 "wl" = (
 /obj/cable/blue{
-	d1 = 1;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "4-8"
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/east)
@@ -12216,6 +12261,7 @@
 	},
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/table/reinforced/industrial/auto,
+/obj/item/paper/book/from_file/teg_guide,
 /turf/floor/industrial,
 /area/station/hallway/primary/south)
 "Fj" = (
@@ -12877,6 +12923,7 @@
 	dir = 1
 	},
 /obj/table/wood/auto,
+/obj/item/paper/book/numbers_station_hydroguide,
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
 "Hc" = (
@@ -16053,6 +16100,12 @@
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/west)
+"Pz" = (
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/northeast)
 "PA" = (
 /obj/cable{
 	d1 = 2;
@@ -17609,6 +17662,19 @@
 	dir = 6
 	},
 /area/station/janitor/supply)
+"Tv" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable/blue{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/east)
 "Tx" = (
 /obj/machinery/power/apc{
 	areastring = "Medbay Restroom";
@@ -17738,10 +17804,14 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/space/magindara,
 /area/magindara)
-"TM" = (
-/obj/landmark/start/latejoin,
+"TN" = (
+/obj/stool/bar,
+/obj/overlay/magindara_skylight/weather,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/riveted,
-/area/station/hallway/primary/northeast)
+/area/station/crew_quarters/bar)
 "TO" = (
 /obj/disposalpipe/segment/vertical,
 /obj/table/reinforced/industrial/auto,
@@ -18861,6 +18931,7 @@
 "WF" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent/ceiling/warm/very,
+/obj/item/paper/book/from_file/medical_surgery_guide,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
 "WG" = (
@@ -55865,7 +55936,7 @@ Vd
 FZ
 Hg
 HO
-da
+kZ
 xI
 xB
 nL
@@ -60143,9 +60214,9 @@ SO
 Sm
 Ok
 Ok
-xo
-Zt
-Uu
+bh
+py
+aj
 jS
 jS
 jS
@@ -63738,7 +63809,7 @@ SO
 ET
 bx
 SB
-zw
+TN
 zw
 kx
 xu
@@ -65817,7 +65888,7 @@ SO
 VE
 Xn
 wN
-Ou
+qc
 IO
 vs
 bf
@@ -67347,7 +67418,7 @@ UN
 TP
 TP
 aD
-vm
+jd
 gk
 Oj
 Ia
@@ -67370,7 +67441,7 @@ ao
 ob
 ws
 ju
-sB
+wX
 wl
 ws
 ao
@@ -67673,7 +67744,7 @@ ob
 ws
 ju
 Pf
-zl
+Tv
 yn
 hE
 YH
@@ -68855,10 +68926,10 @@ Yp
 Yp
 Yp
 Yp
-TM
-TM
-vt
-TM
+Yp
+Yp
+Ye
+Yp
 tI
 Oc
 Oc
@@ -69457,7 +69528,7 @@ VL
 AJ
 TP
 kh
-Yp
+Pz
 Yp
 Yp
 Yp
