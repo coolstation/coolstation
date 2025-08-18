@@ -658,12 +658,12 @@ obj/decal/fakeobjects
 	var/strike_time = 1 SECOND
 	var/volume = 50
 	var/datum/light/point/light = null
-	var/light_brightness = 0.8
-	var/light_atten_con = -0.06
+	var/light_brightness = 1.3
+	var/light_atten_con = -0.03
 	var/light_height = 3
-	var/light_r = 120
-	var/light_g = 120
-	var/light_b = 125
+	var/light_r = 0.8
+	var/light_g = 0.8
+	var/light_b = 0.85
 
 	New(atom/newLoc, var/y_offset)
 		..()
