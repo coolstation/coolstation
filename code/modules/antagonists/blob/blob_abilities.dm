@@ -414,7 +414,6 @@
 		src.holder.addAbility(/datum/targetable/blob/attack)
 		src.holder.addAbility(/datum/targetable/blob/consume)
 		src.holder.addAbility(/datum/targetable/blob/repair)
-		src.holder.addAbility(/datum/targetable/blob/absorb)
 		src.holder.addAbility(/datum/targetable/blob/promote_nucleus)
 	#ifdef Z3_IS_A_STATION_LEVEL
 		src.holder.addAbility(/datum/targetable/blob/blob_level_transfer)
@@ -704,6 +703,7 @@
 			boutput(src.holder.owner, "<span class='alert'>There is no blob there to repair.</span>")
 			return 1
 
+/*
 /datum/targetable/blob/absorb
 	name = "Absorb"
 	icon_state = "blob-absorb"
@@ -753,7 +753,8 @@
 			return
 
 		B.visible_message("<span class='alert'><b>The blob starts trying to absorb [M.name]!</b></span>")
-		actions.start(new /datum/action/bar/blob_absorb(M, src.holder.owner), B)
+		actions.start(new /datum/action/bar/blob_absorb(M, src.holder.owner), M)
+*/
 
 //The owner is now the person being eaten
 /datum/action/bar/blob_absorb
