@@ -592,11 +592,6 @@
 				var/pc_new = pc_orig * (om_corr / c_corr)
 				poison_coefficient = pc_new
 
-			if (material.alpha > 210)
-				opacity = 1
-			else
-				opacity = initial(opacity)
-
 		else
 			src.name = initial(src.name)
 			var/hm_curr = health_max
@@ -604,7 +599,6 @@
 			health *= health_max / hm_curr
 			heat_divisor = initial(heat_divisor)
 			fire_coefficient = initial(fire_coefficient)
-			opacity = initial(opacity)
 		original_color = color
 
 /obj/blob/nucleus
@@ -1079,16 +1073,23 @@
 	name = "reflective membrane"
 	state_overlay = "reflective"
 	special_icon = 1
-	desc = "This cell seems to reflect light."
+	desc = "This membrane is designed to reflect kinetic and energy projectiles."
 	armor = 0
 	gen_rate_value = 0
 	can_absorb = 0
-	opacity = 1
-	health = 85
-	health_max = 85
+	health = 75
+	health_max = 75
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	bullet_act(var/obj/projectile/P)
-		if (P.proj_data.damage_type == D_ENERGY)
+		if (P.proj_data.damage_type & (D_KINETIC | D_ENERGY))
 			shoot_reflected_to_sender(P, src)
 			playsound(src.loc, "sound/voice/blob/blobreflect[rand(1, 5)].ogg", 100, 1)
 		else
@@ -1243,7 +1244,6 @@
 	name = "thick membrane"
 	desc = "This blob is encased in a tough membrane. It'll be harder to get rid of."
 	state_overlay = "wall"
-	opacity = 1
 	density = 1
 	special_icon = 1
 	armor = 2
@@ -1251,6 +1251,14 @@
 	health_max = 75
 	can_absorb = 0
 	flags = ALWAYS_SOLID_FLUID
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	take_damage(var/amount,var/damage_mult = 1,var/damtype,var/mob/user)
 		if (damage_mult == 0)
@@ -1267,12 +1275,20 @@
 	name = "fire-resistant membrane"
 	desc = "This blob is encased in a fireproof and gas impermeable membrane."
 	state_overlay = "firewall"
-	opacity = 1
 	density = 1
 	special_icon = 1
 	armor = 1
 	can_absorb = 0
 	gas_impermeable = TRUE
+	flags = ALWAYS_SOLID_FLUID
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	take_damage(amount, mult, damtype, mob/user)
 		if (damtype == "burn")
