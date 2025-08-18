@@ -473,15 +473,7 @@
 
 
 		src.setMaterial(src.material)
-		var/healthperc = get_fraction_of_percentage_and_whole(src.health,src.health_max)
-		switch(healthperc)
-			if (-INFINITY to 33)
-				src.alpha *= 0.25
-			if (34 to 66)
-				src.alpha *= 0.5
-			if (66 to 99)
-				src.alpha *= 0.8
-		src.alpha = max(src.alpha, 32)
+		src.alpha = max(src.alpha * src.health / src.health_max, 50)
 
 	proc/spread(var/turf/T)
 		if (!istype(T) || !T.can_blob_spread_here(null, null, isadmin(blob_holder.owner)))
