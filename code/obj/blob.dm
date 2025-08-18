@@ -98,7 +98,7 @@
 		. = ..()
 		if(src.can_absorb && isliving(AM))
 			var/mob/living/L = AM
-			if(L == src.blob_holder.owner || check_target_immunity(L)) //too cool to be eaten
+			if(L == src.blob_holder.owner || isintangible(L) || check_target_immunity(L)) //too cool to be eaten
 				return
 			if(!actions.hasAction(L, "blobabsorb"))
 				src.visible_message("<span class='alert'><b>The blob starts absorbing [L.name]!</b></span>")
