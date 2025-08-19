@@ -84,14 +84,6 @@ What are the archived variables for?
 /datum/gas_mixture/proc/zero()
 	clear_trace_gases()
 	ZERO_BASE_GASES(src)
-	if (map_currently_underwater)
-		oxygen = MOLES_O2STANDARD * 0.5
-		nitrogen = MOLES_N2STANDARD * 0.5
-		temperature = OCEAN_TEMP
-
-/datum/gas_mixture/proc/vacuum() //yknow, for when you want "zero" to actually mean "zero".
-	clear_trace_gases()
-	ZERO_BASE_GASES(src)
 
 /// Perform all handeling required to clear out trace gases
 /datum/gas_mixture/proc/clear_trace_gases()

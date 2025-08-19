@@ -1642,7 +1642,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	proc/expel_fart_gas() //only for pine fartens
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/gas = new()
-		//gas.vacuum()
+		//gas.zero()
 		if(src.reagents && src.reagents.get_reagent_amount("fartonium") > 6.9)
 			gas.farts = 6.9
 		else if(src.reagents && src.reagents.get_reagent_amount("egg") > 6.9)

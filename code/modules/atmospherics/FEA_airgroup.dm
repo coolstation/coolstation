@@ -407,7 +407,8 @@
 
 /datum/air_group/proc/space_group()
 	for(var/turf/member as anything in members)
-		member.air?.zero()
+		member.air?.clear_trace_gases()
+		ZERO_BASE_GASES(member.air)
 	if (length_space_border)
 		spaced = TRUE
 		if(!group_processing)
