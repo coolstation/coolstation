@@ -91,6 +91,8 @@
 						submerged.color = F.finalcolor
 						submerged.alpha = F.finalalpha
 						owner.show_submerged_image(4)
+				else if(owner.lying && owner.dir & SOUTH)
+					underwater = F
 
 			else if (T.active_airborne_liquid)
 				if (!issmokeimmune(owner))
