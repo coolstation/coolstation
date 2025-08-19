@@ -1996,15 +1996,15 @@
 		/datum/manufacture/chemicalcan,
 #endif
 		/datum/manufacture/patch)
-	hidden = list(/datum/manufacture/RCDammo,
-		/datum/manufacture/RCDammomedium,
-		/datum/manufacture/RCDammolarge,
+	hidden = list(//datum/manufacture/RCDammo,
+		//datum/manufacture/RCDammomedium,
+		//datum/manufacture/RCDammolarge,
 		/datum/manufacture/bottle,
 		/datum/manufacture/vuvuzela,
 		/datum/manufacture/harmonica,
 		/datum/manufacture/bikehorn,
 		//datum/manufacture/bullet_22,
-		//datum/manufacture/bullet_smoke,
+		//datum/manufacture/fog_grenade,
 		/datum/manufacture/stapler)
 
 /obj/machinery/manufacturer/glasswares

@@ -61,6 +61,7 @@
 	pixel_y = -6;
 	pixel_x = -4
 	},
+/obj/random_item_spawner/snacks/one_or_zero,
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "bF" = (
@@ -513,6 +514,7 @@
 /obj/machinery/drainage/big/off_station,
 /obj/table/reinforced/industrial/auto,
 /obj/random_item_spawner/med_kit/maybe_few,
+/obj/random_item_spawner/snacks/one_or_zero,
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "ir" = (
@@ -2206,6 +2208,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"ID" = (
+/obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/shoe/one_or_zero,
+/obj/random_item_spawner/snacks/one_or_zero,
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "IR" = (
 /obj/cable{
 	d1 = 4;
@@ -2431,6 +2439,11 @@
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
+"LA" = (
+/obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/snacks/one_or_zero,
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "LH" = (
 /obj/lattice{
 	dir = 6;
@@ -3033,6 +3046,7 @@
 /obj/machinery/drainage/big/off_station,
 /obj/table/reinforced/industrial/auto,
 /obj/random_item_spawner/med_kit/one,
+/obj/random_item_spawner/snacks/one_or_zero,
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "Wa" = (
@@ -3181,6 +3195,7 @@
 "Za" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/storage/toolbox/emergency,
+/obj/random_item_spawner/medicine/one_or_zero,
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "Zb" = (
@@ -53814,8 +53829,8 @@ Wx
 Wx
 Wx
 Wx
-bN
-bN
+ID
+LA
 Gb
 em
 cs
@@ -54418,7 +54433,7 @@ Wx
 RJ
 Wx
 eO
-Ct
+ID
 Ct
 VO
 cs
