@@ -395,15 +395,9 @@
 
 		LAGCHECK(LAG_REALTIME)
 
-	//mbc : bringing this silly fix back in for now
-	if (map_currently_underwater)
-		if (totalPressure / members.len < 65)
-			space_group()
-			return 1
-	else
-		if (totalPressure / members.len < 5)
-			space_group()
-			return 1
+	if (totalPressure / members.len < 5)
+		space_group()
+		return 1
 
 /datum/air_group/proc/space_group()
 	for(var/turf/member as anything in members)
