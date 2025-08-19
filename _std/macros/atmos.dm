@@ -41,14 +41,14 @@
 #define ONE_ATMOSPHERE		101.325
 
 #define CELL_VOLUME 2500	//liters in a cell
-#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC
+#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC, should be 103.983803
 
 #define O2STANDARD 0.21
 #define N2STANDARD 0.79
 
-/// O2 standard value (21%)
+/// O2 standard value (21%), should be 21.8365986
 #define MOLES_O2STANDARD MOLES_CELLSTANDARD*O2STANDARD
-/// N2 standard value (79%)
+/// N2 standard value (79%), should be 82.1472044
 #define MOLES_N2STANDARD MOLES_CELLSTANDARD*N2STANDARD
 
 #ifdef MAGINDARA_MAP
