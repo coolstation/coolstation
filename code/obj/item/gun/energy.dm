@@ -514,7 +514,7 @@
 	m_amt = 4000
 	force = 6.0
 	desc = "I think it stands for Banned For Griefing?"
-	cell_type = /obj/item/ammo/power_cell/high_power
+	cell_type = /obj/item/ammo/power_cell/self_charging
 
 	New()
 		set_current_projectile(new/datum/projectile/bfg)
@@ -525,11 +525,11 @@
 		..()
 		return
 
-	shoot(var/target,var/start,var/mob/user)
+	shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/point_blank_target = null)
 		if (canshoot()) // No more attack messages for empty guns (Convair880).
 			playsound(user, "sound/weapons/DSBFG.ogg", 75)
 			sleep(0.9 SECONDS)
-		return ..(target, start, user)
+		return ..(target, start, user, POX, POY, is_dual_wield, point_blank_target)
 
 /obj/item/gun/energy/bfg/vr
 	icon = 'icons/effects/VR.dmi'

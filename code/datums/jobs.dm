@@ -2525,7 +2525,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_rhan = list(/obj/item/tank/jetpack)
 	items_in_backpack = list(///obj/item/gun/kinetic/assault_rifle,
 							/obj/item/device/pda2,
-							/obj/item/old_grenade/stinger/frag,
+							/obj/item/old_grenade/projectile/stinger/frag,
 							/obj/item/breaching_charge)
 
 	New()
@@ -2570,7 +2570,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_poc2 = list(/obj/item/rubberduck)
 	items_in_backpack = list(/obj/item/gun/modular/NT/pistol_sec,
 							/obj/item/device/pda2/heads,
-							/obj/item/old_grenade/stinger/frag,
+							/obj/item/old_grenade/projectile/stinger/frag,
 							/obj/item/storage/firstaid/regular,
 							/obj/item/stackable_ammo/pistol/NT/HP/ten,
 							/obj/item/gun/modular/italian/revolver/basic)

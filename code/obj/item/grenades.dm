@@ -8,7 +8,7 @@ PIPE BOMBS + CONSTRUCTION
 */
 
 ////////////////////////////// Old-style grenades ///////////////////////////////////////
-
+ABSTRACT_TYPE(/obj/item/old_grenade)
 /obj/item/old_grenade
 	desc = "You shouldn't be able to see this!"
 	name = "old grenade"
@@ -343,8 +343,34 @@ PIPE BOMBS + CONSTRUCTION
 			qdel(src)
 		return
 
+ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
+/obj/item/old_grenade/projectile
+	name = "projectile grenade"
+	desc = "It is set to detonate in 3 seconds."
+	icon_state = "fragnade"
+	det_time = 3 SECONDS
+	org_det_time = 3 SECONDS
+	alt_det_time = 6 SECONDS
+	item_state = "fragnade"
+	sound_armed = "sound/weapons/pindrop.ogg"
+	var/projectile_type = /datum/projectile/bullet/flak_chunk
+	var/pellets_to_fire = 20
 
-/obj/item/old_grenade/stinger
+
+	prime()
+		. = ..()
+		var/turf/T = .
+		var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
+		if(src.projectile_type)
+			PJ.spread_projectile_type = src.projectile_type
+			PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
+		PJ.pellets_to_fire = src.pellets_to_fire
+		var/targetx = src.y - rand(-5,5)
+		var/targety = src.y - rand(-5,5)
+		var/turf/newtarget = locate(targetx, targety, src.z)
+		shoot_projectile_ST(src, PJ, newtarget)
+
+/obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"
 	desc = "It is set to detonate in 3 seconds."
 	icon_state = "fragnade"
@@ -355,11 +381,11 @@ PIPE BOMBS + CONSTRUCTION
 	is_syndicate = 0
 	sound_armed = "sound/weapons/pindrop.ogg"
 	icon_state_armed = "fragnade1"
-	var/custom_projectile_type = null
-	var/pellets_to_fire = 20
+	projectile_type = /datum/projectile/bullet/flak_chunk
 
 	prime()
-		var/turf/T = ..()
+		. = ..()
+		var/turf/T = .
 		if (T)
 			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			explosion(src, T, -1, -1, -0.25, 1)
@@ -369,33 +395,13 @@ PIPE BOMBS + CONSTRUCTION
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
 			O.icon_state = "explo_fiery"
-			var/obj/item/old_grenade/stinger/frag/F = null
-			if (istype(src, /obj/item/old_grenade/stinger/frag))
-				F = src
-			if (F)
-				playsound(T, "sound/effects/smoke.ogg", 20, 1, -2)
-				SPAWN_DBG(0)
-					if (F?.smoke) //Wire note: Fix for Cannot execute null.start()
-						for(var/i = 1 to 6)
-							F.smoke.start()
-							sleep(1 SECOND)
-			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
-			if(src.custom_projectile_type)
-				PJ.spread_projectile_type = src.custom_projectile_type
-				PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
-			PJ.pellets_to_fire = src.pellets_to_fire
-			var/targetx = src.y - rand(-5,5)
-			var/targety = src.y - rand(-5,5)
-			var/turf/newtarget = locate(targetx, targety, src.z)
-			shoot_projectile_ST(src, PJ, newtarget)
 			SPAWN_DBG(0.5 SECONDS)
 				qdel(O)
-				qdel(src)
 		else
 			qdel(src)
 		return
 
-/obj/item/old_grenade/stinger/frag
+/obj/item/old_grenade/projectile/stinger/frag
 	name = "frag grenade"
 	icon_state = "fragnade-alt"
 	icon_state_armed = "fragnade-alt1"
@@ -406,6 +412,16 @@ PIPE BOMBS + CONSTRUCTION
 		src.smoke = new /datum/effects/system/bad_smoke_spread/
 		src.smoke.attach(src)
 		src.smoke.set_up(7, 1, src.loc)
+
+	prime()
+		. = ..()
+		var/turf/T = .
+		playsound(T, "sound/effects/smoke.ogg", 20, 1, -2)
+		SPAWN_DBG(0)
+			if (src.smoke) //Wire note: Fix for Cannot execute null.start()
+				for(var/i = 1 to 6)
+					src.smoke.start()
+					sleep(1 SECOND)
 
 /obj/item/old_grenade/high_explosive
 	name = "HE grenade"

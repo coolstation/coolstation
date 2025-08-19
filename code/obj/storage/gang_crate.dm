@@ -644,9 +644,9 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/short)
 		weight=2
 		tier = ILLICIT_LOOT_GUN
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
-			spawn_item(C,I,/obj/item/old_grenade/stinger/frag,off_y=0,scale_x=0.6,scale_y=0.6)
-			spawn_item(C,I,/obj/item/old_grenade/stinger/frag,off_y=0,scale_x=0.6,scale_y=0.6)
-			spawn_item(C,I,/obj/item/old_grenade/stinger/frag,off_y=0,scale_x=0.6,scale_y=0.6)
+			spawn_item(C,I,/obj/item/old_grenade/projectile/stinger/frag,off_y=0,scale_x=0.6,scale_y=0.6)
+			spawn_item(C,I,/obj/item/old_grenade/projectile/stinger/frag,off_y=0,scale_x=0.6,scale_y=0.6)
+			spawn_item(C,I,/obj/item/old_grenade/projectile/stinger/frag,off_y=0,scale_x=0.6,scale_y=0.6)
 
 	// ILLICIT_LOOT_GEAR
 	spraypaint
@@ -938,8 +938,8 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/short_tall)
 	frags
 		tier = ILLICIT_LOOT_GUN
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
-			spawn_item(C,I,	/obj/item/old_grenade/stinger/frag,off_y=5,scale_x=0.8,scale_y=0.8)
-			spawn_item(C,I,	/obj/item/old_grenade/stinger/frag,off_y=5,scale_x=0.8,scale_y=0.8)
+			spawn_item(C,I,	/obj/item/old_grenade/projectile/stinger/frag,off_y=5,scale_x=0.8,scale_y=0.8)
+			spawn_item(C,I,	/obj/item/old_grenade/projectile/stinger/frag,off_y=5,scale_x=0.8,scale_y=0.8)
 
 	// ILLICIT_LOOT_GEAR
 	robusttecs
@@ -1094,8 +1094,8 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/long_tall)
 			spawn_item(C,I,/obj/item/old_grenade/smoke,off_x=-6,off_y=4)
 			spawn_item(C,I,/obj/item/chem_grenade/flashbang,off_x=6,off_y=4)
 			spawn_item(C,I,/obj/item/chem_grenade/flashbang,off_x=6,off_y=-4)
-			spawn_item(C,I,/obj/item/old_grenade/stinger,off_y=-4)
-			spawn_item(C,I,/obj/item/old_grenade/stinger,off_y=4)
+			spawn_item(C,I,/obj/item/old_grenade/projectile/stinger,off_y=-4)
+			spawn_item(C,I,/obj/item/old_grenade/projectile/stinger,off_y=4)
 	// GIMMICKS
 	money
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
