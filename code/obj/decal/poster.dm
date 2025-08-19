@@ -582,6 +582,12 @@
 			icon_state = "wall_poster_cool3"
 			random_icon_states = list("wall_poster_cool", "wall_poster_cool2", "wall_poster_cool3")
 
+		poster_cig_moose
+			name = "cigarette ad"
+			desc = "There's a sexy shirtless moose mascot smoking three cigarettes, with several more lit cigarettes tucked in his antlers. You haven't seen this brand of cigarettes around in a long time..."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "cig_moose"
+
 		poster_human
 			name = "poster"
 			desc = "There's a person pictured on this poster. Some sort of celebrity."
