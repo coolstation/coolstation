@@ -851,7 +851,7 @@
 	/obj/item/screwdriver,
 	/obj/item/spraybottle,
 	/obj/item/spray_paint,
-	/obj/item/sponge/starwipe
+	/obj/item/sponge/starwipe,
 	/obj/item/spongecaps,
 	/obj/item/staple_gun/red,
 //	/obj/item/storage/toolbox/mechanical,
