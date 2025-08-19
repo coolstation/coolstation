@@ -54,7 +54,13 @@
 /area/station/maintenance/disposal)
 "bt" = (
 /obj/table/reinforced/industrial/auto,
-/obj/random_item_spawner/med_kit/one,
+/obj/item/tank/emergency_oxygen{
+	pixel_x = 7
+	},
+/obj/item/tank/emergency_oxygen{
+	pixel_y = -6;
+	pixel_x = -4
+	},
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "bF" = (
@@ -238,6 +244,12 @@
 /area/station/maintenance/sublevel/north)
 "eb" = (
 /obj/storage/closet/wardrobe/pride,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 5;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "ee" = (
@@ -253,6 +265,18 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
+"em" = (
+/obj/machinery/light/fluorescent/ceiling/warm/very,
+/obj/table/reinforced/industrial/auto,
+/obj/item/tank/air{
+	pixel_y = 9;
+	pixel_x = -2
+	},
+/obj/item/tank/air{
+	pixel_y = -4
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "et" = (
 /mob/living/silicon/hivebot/eyebot,
 /turf/floor/plating,
@@ -840,6 +864,17 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
+"oA" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/tank/air{
+	pixel_y = -4
+	},
+/obj/item/tank/air{
+	pixel_y = 9;
+	pixel_x = -5
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "oB" = (
 /obj/stool/chair/couch{
 	dir = 9;
@@ -1103,13 +1138,14 @@
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/north)
 "sp" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 5;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/floor/riveted,
+/obj/storage/crate/internals,
+/obj/random_item_spawner/medicine/one_or_zero,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/turf/floor/industrial,
 /area/shuttle/arrival/station)
 "sq" = (
 /obj/cable{
@@ -1388,6 +1424,10 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"wj" = (
+/obj/storage/closet/wardrobe/specialty_janitor,
+/turf/floor/darkpurpleblack,
+/area/station/janitor/office)
 "wm" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/decal/tile_edge/stripe/extra_big,
@@ -1667,6 +1707,18 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/maintenance/sublevel/north)
+"Bn" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/tank/air{
+	pixel_x = 2;
+	pixel_y = -5
+	},
+/obj/item/tank/air{
+	pixel_y = 9;
+	pixel_x = -3
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "By" = (
 /obj/random_item_spawner/junk/one_or_zero,
 /obj/cable{
@@ -1747,6 +1799,11 @@
 /obj/random_item_spawner/med_tool/one_or_zero,
 /turf/floor/riveted,
 /area/station/maintenance/sublevel/south)
+"Ct" = (
+/obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/medicine/one_or_zero,
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "CI" = (
 /obj/cable{
 	d1 = 1;
@@ -1926,6 +1983,16 @@
 /obj/random_item_spawner/medicine/one_or_zero,
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)
+"EZ" = (
+/obj/storage/crate/internals,
+/obj/random_item_spawner/medicine/one_or_zero,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/floor/industrial,
+/area/shuttle/arrival/station)
 "Fc" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
@@ -3111,6 +3178,11 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
+"Za" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/storage/toolbox/emergency,
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "Zb" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 5
@@ -39852,7 +39924,7 @@ Lp
 Lp
 Lp
 Lp
-BX
+fQ
 BX
 BX
 BX
@@ -40154,7 +40226,7 @@ ll
 Lp
 xL
 Lp
-fQ
+BX
 BX
 BX
 BX
@@ -41339,7 +41411,7 @@ BX
 BX
 BX
 BX
-BX
+UG
 BX
 BX
 BX
@@ -41942,7 +42014,7 @@ BX
 BX
 gB
 gB
-eN
+wj
 BI
 XP
 gB
@@ -41962,7 +42034,7 @@ ll
 ll
 ll
 Lp
-BX
+fQ
 BX
 BX
 BX
@@ -47982,7 +48054,7 @@ BX
 BX
 BX
 BX
-BX
+qP
 BX
 BX
 BX
@@ -53138,7 +53210,7 @@ Wx
 RJ
 Wx
 eO
-bN
+Za
 bt
 ik
 cs
@@ -53443,7 +53515,7 @@ Wx
 Gb
 Gb
 Gb
-bN
+oA
 cs
 BX
 BX
@@ -53745,7 +53817,7 @@ Wx
 bN
 bN
 Gb
-iU
+em
 cs
 BX
 BX
@@ -54047,7 +54119,7 @@ Wx
 Gb
 Gb
 Gb
-bN
+Bn
 cs
 BX
 BX
@@ -54346,8 +54418,8 @@ Wx
 RJ
 Wx
 eO
-bN
-bt
+Ct
+Ct
 VO
 cs
 cs
@@ -54646,7 +54718,7 @@ tv
 tv
 tv
 tv
-Gb
+EZ
 Ff
 cs
 cs

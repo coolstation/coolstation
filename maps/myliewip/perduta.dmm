@@ -386,6 +386,13 @@
 /area/station/medical/medbay/cloner)
 "ba" = (
 /obj/storage/crate/internals,
+/obj/random_item_spawner/medicine/one_or_zero,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "bb" = (
@@ -4912,6 +4919,7 @@
 "mq" = (
 /obj/random_item_spawner/junk/one_or_zero,
 /obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/tools/one,
 /turf/floor/industrial,
 /area/station/hallway/primary/northeast)
 "mr" = (
@@ -6493,6 +6501,11 @@
 /obj/access_spawn/research,
 /turf/floor/plating/random,
 /area/station/science/artifact)
+"qn" = (
+/obj/disposalpipe/segment/vertical,
+/obj/random_item_spawner/medicine/one_or_zero,
+/turf/floor/plating/random,
+/area/station/maintenance/northeast)
 "qo" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -7000,6 +7013,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	name = "autoname - SS13"
+	},
 /turf/floor/plating/random,
 /area/station/turret_protected/ai_upload)
 "rC" = (
@@ -8237,6 +8254,10 @@
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/central)
+"uQ" = (
+/obj/item/caution,
+/turf/floor/riveted,
+/area/station/hallway/primary/northeast)
 "uR" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/cable/blue{
@@ -8603,6 +8624,10 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/cautionblack,
 /area/station/maintenance/west)
+"vO" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall/auto/rivet,
+/area/station/hallway/primary/northwest)
 "vP" = (
 /obj/cable{
 	d1 = 1;
@@ -10165,6 +10190,7 @@
 /obj/disposalpipe/segment/mail/bent/east,
 /obj/machinery/light_switch/north,
 /obj/item/clothing/under/misc/mail,
+/obj/random_item_spawner/medicine/one_or_zero,
 /turf/floor/riveted,
 /area/station/crew_quarters/barber_shop)
 "Ab" = (
@@ -12255,6 +12281,7 @@
 /area/magindara)
 "Ff" = (
 /obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/tools_w_igloves/one_or_zero,
 /turf/floor/industrial,
 /area/station/hallway/primary/northeast)
 "Fh" = (
@@ -12869,6 +12896,7 @@
 	dir = 4
 	},
 /obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/medicine/one_or_zero,
 /turf/floor/industrial,
 /area/station/hallway/primary/northeast)
 "GV" = (
@@ -13674,6 +13702,17 @@
 "Jd" = (
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
+"Je" = (
+/obj/storage/crate/internals,
+/obj/random_item_spawner/medicine/one_or_zero,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/tank/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/floor/industrial,
+/area/station/quartermaster/refinery)
 "Jf" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/machinery/light/fluorescent/warm/very,
@@ -14197,6 +14236,10 @@
 /obj/disposalpipe/junction/left/west,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
+"Ku" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall/auto/rivet,
+/area/station/quartermaster/cargobay)
 "Kv" = (
 /obj/cable{
 	d2 = 4;
@@ -15073,7 +15116,9 @@
 /turf/floor/riveted,
 /area/station/bridge)
 "Mp" = (
-/obj/decal/poster/wallsign/warning3,
+/obj/neon_sign/beer{
+	animated = 0
+	},
 /turf/wall/auto/rivet,
 /area/magindara)
 "Mq" = (
@@ -15116,6 +15161,11 @@
 /obj/disposalpipe/segment/sewage/bent/east,
 /turf/floor/riveted,
 /area/station/hallway/primary/southwest)
+"Mw" = (
+/obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/tools/one,
+/turf/floor/industrial,
+/area/station/hallway/primary/northeast)
 "Mx" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/paper_bin,
@@ -15160,6 +15210,10 @@
 "MB" = (
 /turf/wall/auto/rivet,
 /area/station/crew_quarters/kitchen/freezer)
+"MC" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall/auto/rivet,
+/area/station/hallway/primary/southwest)
 "MD" = (
 /turf/wall/auto/rivet,
 /area/station/maintenance/inner/hydroponics)
@@ -15986,6 +16040,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/vending/computer3,
 /turf/floor/industrial,
 /area/station/hallway/primary/east)
 "Pg" = (
@@ -16408,6 +16463,10 @@
 /obj/machinery/clone_scanner,
 /turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
+"Qk" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall/auto/rivet,
+/area/station/maintenance/north)
 "Ql" = (
 /obj/machinery/power/apc{
 	areastring = "Interrogation Room";
@@ -16634,6 +16693,10 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
+"QW" = (
+/obj/decal/poster/wallsign/warning3,
+/turf/wall/auto/rivet,
+/area/station/hallway/primary/south)
 "QX" = (
 /obj/lattice{
 	dir = 9;
@@ -17203,12 +17266,6 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/industrial,
 /area/station/hallway/primary/northeast)
-"So" = (
-/obj/neon_sign/beer{
-	animated = 0
-	},
-/turf/wall/auto/rivet,
-/area/station/hallway/primary/central)
 "Sp" = (
 /obj/cable{
 	d1 = 4;
@@ -19031,6 +19088,10 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/riveted,
 /area/station/hallway/primary/west)
+"WT" = (
+/obj/machinery/vending/floppy,
+/turf/floor/riveted,
+/area/station/hallway/primary/northeast)
 "WU" = (
 /obj/ladder{
 	icon_state = "ladder-square";
@@ -20038,6 +20099,10 @@
 "ZD" = (
 /turf/wall/auto/rivet,
 /area/station/medical/medbay/lobby)
+"ZE" = (
+/obj/machinery/vending/pda,
+/turf/floor/industrial,
+/area/station/hallway/primary/east)
 "ZF" = (
 /obj/decal/slipmat,
 /obj/decal/cleanable/dirt/random,
@@ -48427,7 +48492,7 @@ SO
 SO
 SO
 SO
-nL
+vO
 SO
 SO
 nL
@@ -50569,7 +50634,7 @@ SO
 Be
 Te
 TV
-VG
+MC
 VL
 VL
 Me
@@ -61414,7 +61479,7 @@ By
 cs
 hc
 Uz
-ft
+Qk
 Cx
 SO
 SO
@@ -61749,7 +61814,7 @@ VL
 TV
 AJ
 AJ
-Ok
+QW
 wi
 VL
 wi
@@ -62632,7 +62697,7 @@ Rh
 SO
 SO
 KY
-So
+LI
 dC
 EF
 Br
@@ -66534,7 +66599,7 @@ Ls
 Df
 fG
 gC
-xl
+qn
 cG
 bi
 bi
@@ -67465,7 +67530,7 @@ ao
 ob
 ws
 ju
-wX
+ZE
 wl
 ws
 ao
@@ -68346,7 +68411,7 @@ Sj
 yP
 Yp
 Yp
-Ff
+Mw
 Ff
 Yp
 Yp
@@ -69264,7 +69329,7 @@ nd
 yu
 Yp
 Yp
-Yp
+tl
 Cz
 Cz
 Cz
@@ -69566,7 +69631,7 @@ nd
 tI
 Yp
 Yp
-tl
+WT
 Cz
 wq
 zS
@@ -70796,7 +70861,7 @@ db
 QP
 lo
 QP
-QP
+Ku
 SO
 SO
 gl
@@ -71080,7 +71145,7 @@ VL
 VL
 AX
 gI
-wq
+Je
 Cz
 Cz
 MW
@@ -71367,7 +71432,7 @@ SO
 TP
 Yp
 Yp
-Yp
+uQ
 Fu
 TP
 VL
