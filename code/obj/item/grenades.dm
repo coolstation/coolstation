@@ -369,6 +369,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		var/targety = src.y - rand(-5,5)
 		var/turf/newtarget = locate(targetx, targety, src.z)
 		shoot_projectile_ST(src, PJ, newtarget)
+		SPAWN_DBG(0.5 SECONDS)
+			qdel(src)
 
 /obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"
