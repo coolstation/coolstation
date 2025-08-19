@@ -91,7 +91,8 @@
 						submerged.color = F.finalcolor
 						submerged.alpha = F.finalalpha
 						owner.show_submerged_image(4)
-				else if(owner.lying && (6 + 2 * owner.rest_mult) & owner.dir)
+				// if lying facedown, always drown. funy.
+				else if(owner.lying && (6 - 2 * owner.rest_mult) & owner.dir)
 					underwater = F
 
 			else if (T.active_airborne_liquid)
