@@ -87,6 +87,9 @@
 				if (F.amt >= depth_levels[depth_to_breathe_from])
 					underwater = F
 					if (owner.is_submerged != 4)
+						var/image/submerged = owner.submerged_images[4]
+						submerged.color = F.finalcolor
+						submerged.alpha = F.finalalpha
 						owner.show_submerged_image(4)
 
 			else if (T.active_airborne_liquid)
