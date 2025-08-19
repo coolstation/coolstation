@@ -608,7 +608,7 @@ var/mutable_appearance/fluid_ma
 			src.update_perspective_overlays()
 
 	proc/update_perspective_overlays() // fancy perspective overlaying
-		if (icon_state != "15") return
+		//if (icon_state != "15") return
 		var/blocked = 0
 		for( var/dir in cardinal )
 			if (dir == SOUTH) //No south perspective
