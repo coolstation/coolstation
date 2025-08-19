@@ -82,7 +82,7 @@
 
 				var/depth_to_breathe_from = length(depth_levels)
 				if (owner.lying)
-					depth_to_breathe_from = depth_levels.len-1
+					depth_to_breathe_from = depth_levels.len-2
 
 				if (F.amt >= depth_levels[depth_to_breathe_from])
 					underwater = F
