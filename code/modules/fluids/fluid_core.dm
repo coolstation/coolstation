@@ -627,11 +627,11 @@ var/mutable_appearance/fluid_ma
 			clear_overlay()
 
 		if (src.overlay_refs && length(src.overlay_refs))
-			if (src.overlay_refs["1"] && src.overlay_refs["8"]) //north, east
+			if (src.overlay_refs["1"] && src.overlay_refs["8"] && last_depth_level > 1) //north, east
 				display_overlay("9",-32,32) //northeast
 			else
 				clear_overlay("9")  //northeast
-			if (src.overlay_refs["1"] && src.overlay_refs["4"]) //north, west
+			if (src.overlay_refs["1"] && src.overlay_refs["4"] && last_depth_level > 1) //north, west
 				display_overlay("5",32,32) //northwest
 			else
 				clear_overlay("5") //northwest
