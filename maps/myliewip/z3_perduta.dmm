@@ -183,6 +183,11 @@
 "cZ" = (
 /obj/decal/tile_edge/stripe/big,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
 /turf/floor/darkpurple,
 /area/station/janitor/office)
 "dc" = (
@@ -1050,6 +1055,12 @@
 /area/station/maintenance/disposal)
 "rq" = (
 /obj/storage/crate/robotics_supplies,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	name = "autoname - SS13";
+	tag = "";
+	dir = 6
+	},
 /turf/floor/engine,
 /area/station/medical/robotics)
 "rM" = (
@@ -1091,6 +1102,15 @@
 /obj/random_item_spawner/junk/maybe_few,
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/north)
+"sp" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 5;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "sq" = (
 /obj/cable{
 	d1 = 1;
@@ -1930,6 +1950,14 @@
 "Fu" = (
 /turf/floor/engine/caution/south,
 /area/shuttle/arrival/station)
+"FN" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "FP" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/darkpurpleblack{
@@ -2449,6 +2477,15 @@
 	},
 /turf/floor/plating,
 /area/transit_vehicle/elevator/jani_bot)
+"NS" = (
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
+/turf/floor/riveted,
+/area/shuttle/arrival/station)
 "Oj" = (
 /obj/cable{
 	d2 = 8;
@@ -52797,7 +52834,7 @@ cw
 cw
 cw
 cw
-Gb
+sp
 eb
 cs
 cs
@@ -53081,7 +53118,7 @@ BX
 BX
 cs
 cs
-bN
+NS
 iU
 qy
 Gb
@@ -54296,7 +54333,7 @@ Gb
 cs
 cs
 cs
-Gb
+FN
 Gb
 qy
 cs

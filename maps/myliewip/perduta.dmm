@@ -141,6 +141,10 @@
 /obj/disposalpipe/segment/mail/bent/south,
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
+"au" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/floor/industrial,
+/area/station/hallway/primary/northwest)
 "av" = (
 /obj/cable{
 	d2 = 4;
@@ -4778,9 +4782,6 @@
 	pixel_y = -7;
 	pixel_x = 2
 	},
-/obj/machinery/light/fluorescent/warm/very{
-	dir = 1
-	},
 /turf/floor/greenblack/corner{
 	dir = 1
 	},
@@ -5173,6 +5174,9 @@
 "nb" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk/south,
+/obj/machinery/light/fluorescent/warm/very{
+	dir = 1
+	},
 /turf/floor/greenblack{
 	dir = 1
 	},
@@ -5422,6 +5426,7 @@
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "nH" = (
+/obj/disposalpipe/segment/mail/vertical,
 /turf/floor/greenblack,
 /area/station/medical/research)
 "nI" = (
@@ -6667,6 +6672,10 @@
 /obj/railing/cool,
 /turf/floor/plating/random,
 /area/station/quartermaster/cargobay)
+"qG" = (
+/obj/disposalpipe/switch_junction/left/south,
+/turf/floor/riveted,
+/area/station/hallway/primary/northwest)
 "qH" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -7053,6 +7062,10 @@
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
+"rI" = (
+/obj/disposalpipe/segment/mail/vertical,
+/turf/floor/black,
+/area/station/medical/research)
 "rJ" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
@@ -13789,6 +13802,10 @@
 /obj/machinery/vending/snack,
 /turf/floor/white,
 /area/station/medical/staff)
+"Jv" = (
+/obj/disposalpipe/segment/mail/bent/north,
+/turf/floor/black,
+/area/station/medical/research)
 "Jw" = (
 /obj/disposalpipe/segment/mail/bent/east,
 /obj/cable{
@@ -17645,6 +17662,10 @@
 	},
 /turf/floor/wood/eight,
 /area/station/quartermaster/cargooffice)
+"Ts" = (
+/obj/disposalpipe/segment/mail/bent/south,
+/turf/floor/black,
+/area/station/medical/research)
 "Tt" = (
 /obj/machinery/door/airlock/command,
 /obj/access_spawn/head_of_personnel,
@@ -17896,6 +17917,7 @@
 	c_tag = "autotag";
 	name = "autoname - SS13"
 	},
+/obj/disposalpipe/trunk/mail/east,
 /turf/floor/greenblack{
 	dir = 9
 	},
@@ -19068,6 +19090,7 @@
 	name = "Medical Research"
 	},
 /obj/access_spawn/medical,
+/obj/disposalpipe/segment/mail/vertical,
 /turf/floor/riveted,
 /area/station/medical/research)
 "Xd" = (
@@ -19736,6 +19759,7 @@
 /turf/floor/grass,
 /area/station/medical/research)
 "YP" = (
+/obj/disposalpipe/segment/mail/bent/south,
 /turf/floor/greenblack/corner{
 	dir = 1
 	},
@@ -52620,8 +52644,8 @@ dR
 nq
 vK
 YP
-JT
-JT
+rI
+Jv
 gK
 dR
 dR
@@ -52923,10 +52947,10 @@ pb
 Zl
 JT
 hx
-JT
+Ts
 nH
 Xc
-QC
+KI
 xh
 ML
 nU
@@ -53228,7 +53252,7 @@ JE
 rZ
 UB
 TA
-QC
+au
 Zd
 WZ
 Zd
@@ -53530,7 +53554,7 @@ mN
 XE
 dR
 EX
-QC
+au
 Zd
 WZ
 Zd
@@ -53832,7 +53856,7 @@ TA
 TA
 Ns
 Mi
-wr
+qG
 wr
 vw
 Kz
