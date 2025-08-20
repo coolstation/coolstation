@@ -51,7 +51,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 					return
 			else
 				boutput(user, "<span class='alert'>You prime [src]! [det_time/10] seconds!</span>")
-				src.icon_state = src.icon_state_armed
+				src.armed_fx()
 				playsound(src.loc, src.sound_armed, 75, 1, -3)
 				src.add_fingerprint(user)
 				SPAWN_DBG(src.det_time)
@@ -94,6 +94,9 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 		else if (istype(W, /obj/item/gun/modular))
 			actions.start(new/datum/action/bar/private/load_grenade(W, src), user)
 		return
+
+	proc/armed_fx()
+		src.icon_state = src.icon_state_armed
 
 	proc/prime() // Most grenades require a turf reference.
 		var/turf/T = get_turf(src)
@@ -381,9 +384,29 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 /obj/item/old_grenade/projectile/vortex
 	name = "vortex grenade"
+	icon_state = "vortex"
+	icon_state_armed = "vortex_pull"
 	projectile_type = /datum/projectile/special/spreader/uniform_burst/listed/vortex_blast
 	pellets_to_fire = 1 // hate this
 	sound_detonation = "sound/weapons/nano-blade-5.ogg"
+	var/datum/light/point/light
+
+	armed_fx()
+		..()
+		SPAWN_DBG(max(src.det_time - 1.4 SECONDS, 0))
+			src.icon_state = "vortex_crush"
+			sleep(0.6 SECONDS)
+			var/obj/overlay/fullbright_overlay = new(src)
+			fullbright_overlay.icon = src.icon
+			fullbright_overlay.plane = PLANE_SELFILLUM
+			src.vis_contents += fullbright_overlay
+			fullbright_overlay.icon_state = "vortex_overlay"
+			src.light = new
+			light.attach(src)
+			light.set_brightness(1)
+			light.set_color(0.2, 1, 0.2)
+			sleep(0.2 SECONDS)
+			light.enable()
 
 /obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"
