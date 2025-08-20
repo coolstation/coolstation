@@ -381,8 +381,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 /obj/item/old_grenade/projectile/vortex
 	name = "vortex grenade"
-	projectile_type = /datum/projectile/special/vortex
-	pellets_to_fire = 18
+	projectile_type = /datum/projectile/special/spreader/uniform_burst/listed/vortex_blast
+	pellets_to_fire = 1 // hate this
 	sound_detonation = "sound/weapons/nano-blade-5.ogg"
 
 /obj/item/old_grenade/projectile/stinger

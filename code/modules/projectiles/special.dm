@@ -203,6 +203,61 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.launch()
 		current_angle += angle_adjust_per_pellet
 
+//Also a parent type
+/datum/projectile/special/spreader/uniform_burst/listed
+	name = "listed uniform spread"
+	sname = "listed uniform spread"
+	var/angle_adjust_per_type = 0
+
+	New()
+		. = ..()
+		if(!islist(spread_projectile_type))
+			logTheThing("debug", src, null, "List-based uniform burst spread_projectile_type is [spread_projectile_type] instead of a list!" )
+			qdel(src)
+
+	on_pointblank(obj/projectile/O, mob/target)
+		if(split_type) //don't multihit on pointblank unless we'd be splitting on launch
+			return
+		var/list_length = length(src.spread_projectile_type)
+		for(var/projectile_type in src.spread_projectile_type)
+			var/datum/projectile/F = new projectile_type()
+			F.shot_volume = pellet_shot_volume //optional anti-ear destruction
+			var/turf/PT = get_turf(O)
+			var/pellets = pellets_to_fire / list_length
+			while (pellets > 0)
+				pellets--
+				var/obj/projectile/FC = initialize_projectile(PT, F, O.xo, O.yo, O.shooter)
+				FC.was_pointblank = TRUE
+				hit_with_existing_projectile(FC, target)
+
+	split(var/obj/projectile/P)
+		var/list_length = length(src.spread_projectile_type)
+		var/stored_angle = 0
+		for(var/projectile_type in src.spread_projectile_type)
+			current_angle = stored_angle
+			var/datum/projectile/F = new projectile_type()
+			F.shot_volume = pellet_shot_volume //optional anti-ear destruction
+			var/turf/PT = get_turf(P)
+			var/pellets = pellets_to_fire / list_length
+			while (pellets > 0)
+				pellets--
+				new_pellet(P,PT,F, list_length)
+			stored_angle += angle_adjust_per_type
+		P.die()
+
+	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F, var/list_length)
+		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
+		FC.power = FC.power * P.power / src.power // scaling with barrels etc
+		FC.rotateDirection(current_angle)
+		FC.launch()
+		current_angle += angle_adjust_per_pellet * list_length
+
+/datum/projectile/special/spreader/uniform_burst/listed/vortex_blast
+	spread_projectile_type = list(/datum/projectile/special/vortex, /datum/projectile/special/vortex/slow, /datum/projectile/special/vortex/reverse, /datum/projectile/special/vortex/reverse/slow)
+	spread_angle = 180
+	pellets_to_fire = 20
+	angle_adjust_per_type = 90
+
 /datum/projectile/special/spreader/uniform_burst/juicer_jr
 	name = "juicer jr tandem shot"
 	sname = "juicer jr tandem shot"
@@ -1168,6 +1223,16 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			var/mob/living/L = hit
 			L.throw_at(origin, 1, 0.25, throw_type = THROW_GUNIMPACT)
 
+/datum/projectile/special/vortex/slow
+	speed_per_tick = 0.2
+	max_range = 56
+
+/datum/projectile/special/vortex/reverse
+	rotate_per_tick = -30
+
+/datum/projectile/special/vortex/reverse/slow
+	speed_per_tick = 0.2
+	max_range = 56
 
 /datum/projectile/special/shotchem // how do i shot chem
 	name = "chemical bolt"
