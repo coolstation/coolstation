@@ -36,6 +36,12 @@
   speechverb_ask = "pulls"
   blood_id = "ldmatter"
   metabolizes = 0
+  health_brute = 150
+  health_brute_vuln = 1.15
+  health_burn = 0
+  takes_tox = FALSE
+  takes_brain = FALSE
+  robotic = TRUE
   add_abilities = list(/datum/targetable/critter/zzzap, /datum/targetable/critter/bholerip, /datum/targetable/critter/toxmob, /datum/targetable/critter/mezzer)
   var/datum/light/glow
   var/grav_pull = 3
@@ -143,6 +149,3 @@
     if ("scream", "twirl", "snap")
       return 2
   return ..()
-
-/mob/living/critter/singularity/setup_healths()
-  add_hh_robot(150, 1.15)

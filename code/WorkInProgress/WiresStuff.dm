@@ -156,6 +156,12 @@ var/global/deathConfettiActive = 0
 	speechverb_ask = "spots"
 	blood_id = "phlogiston"
 	metabolizes = 0
+	robotic = TRUE
+	health_brute = 150
+	health_brute_vuln = 1
+	health_burn = 0
+	takes_tox = FALSE
+	takes_brain = FALSE
 	var/datum/light/glow
 
 	New()
@@ -191,10 +197,6 @@ var/global/deathConfettiActive = 0
 			if ("flare", "pulsar")
 				return 2
 		return ..()
-
-	setup_healths()
-		add_hh_robot(150, 1.15)
-
 
 /client/proc/ghostdroneAll()
 	set name = "Ghostdrone All"

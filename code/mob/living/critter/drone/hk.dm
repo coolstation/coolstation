@@ -2,6 +2,8 @@
 	drone_designation = "HK"
 	desc = "A heavily-armed Syndicate hunter-killer drone."
 	icon_state = "drone2"
+	health_brute = 200
+	health_burn = 200
 
 	setup_hands()
 		..()
@@ -14,7 +16,3 @@
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_robot(200, 1)
-		add_hh_robot_burn(200, 1)

@@ -15,10 +15,13 @@
 	custom_gib_handler = /proc/flockdronegibs
 	custom_vomit_type = /obj/decal/cleanable/flockdrone_debris/fluid
 	// HEALTHS
-	var/health_brute = 1
-	var/health_brute_vuln = 1.2 // glass
-	var/health_burn = 1
-	var/health_burn_vuln = 0.2 // don't burn very well at all
+	health_brute = 1
+	health_brute_vuln = 1.2 // glass
+	health_burn = 1
+	health_burn_vuln = 0.2 // don't burn very well at all
+	takes_tox = FALSE
+	takes_brain = FALSE
+	robotic = TRUE
 	// if we're extinguishing ourselves don't extinguish ourselves repeatedly
 	var/extinguishing = 0
 	// FLOCK-SPECIFIC STUFF
@@ -33,10 +36,6 @@
 	use_stamina = 0 //haha no
 
 	can_lie = 0 // no rotate when dead
-
-/mob/living/critter/flock/setup_healths()
-	add_hh_robot(src.health_brute, src.health_brute_vuln)
-	add_hh_robot_burn(src.health_burn, src.health_burn_vuln)
 
 /mob/living/critter/flock/New(var/atom/L, var/datum/flock/F=null)
 	..()

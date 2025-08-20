@@ -12,6 +12,10 @@
 	can_disarm = 1
 	blood_id = "beff"
 	burning_suffix = "humanoid"
+	health_brute = 100
+	health_brute_vuln = 0.85
+	health_burn = 100
+	health_burn_vuln = 1.4
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
@@ -53,9 +57,3 @@
 		abilityHolder.addAbility(/datum/targetable/critter/fadeout/brullbar)
 		abilityHolder.addAbility(/datum/targetable/critter/tackle)
 		abilityHolder.addAbility(/datum/targetable/critter/frenzy)
-
-	setup_healths()
-		add_hh_flesh(100, 0.85)
-		add_hh_flesh_burn(100, 1.4)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/brain)

@@ -18,10 +18,10 @@
 	base_walk_delay = 3
 	stepsound = "sound/misc/step/step_gnome_1.ogg"
 	pass_through_mobs = TRUE
-	var/health_brute = 30 // duped from small_animal, will think about if this should go on critter later
-	var/health_brute_vuln = 1
-	var/health_burn = 30
-	var/health_burn_vuln = 1.5
+	health_brute = 30
+	health_brute_vuln = 1
+	health_burn = 30
+	health_burn_vuln = 1.5
 
 	New()
 		..()
@@ -33,12 +33,6 @@
 	setup_equipment_slots()
 		equipment += new /datum/equipmentHolder/ears(src)
 		. = ..()
-
-	setup_healths()
-		add_hh_flesh(src.health_brute, src.health_brute_vuln)
-		add_hh_flesh_burn(src.health_burn, src.health_burn_vuln)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/brain)
 
 	Life(datum/controller/process/mobs/parent)
 		if(..(parent))
