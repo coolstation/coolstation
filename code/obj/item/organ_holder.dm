@@ -1315,8 +1315,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (!isturf(usr.loc))
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr:targeting_ability = null
 			usr.update_cursor()
@@ -1336,6 +1334,7 @@
 	cooldown = 0
 	last_cast = 0
 	preferred_holder_type = /datum/abilityHolder/organ
+	turf_check = TRUE
 	var/disabled = 0
 	var/toggled = 0
 	var/is_on = 0   // used if a toggle ability

@@ -830,6 +830,7 @@
 		target_selection_check = 0 // See comment in /atom/movable/screen/ability.
 		dont_lock_holder = 0 // Bypass holder lock when we cast this spell.
 		ignore_holder_lock = 0 // Can we cast this spell when the holder is locked?
+		turf_check = 1 // Are we prohibited from using this ability when our loc is not a turf?
 		restricted_area_check = 0 // Are we prohibited from casting this spell in 1 (all of Z2) or 2 (only the VR)?
 		can_target_ghosts = 0 // Can we target observers if we see them (ectogoggles)?
 		check_range = 1 //Does this check for range at all?
@@ -915,6 +916,10 @@
 				return 999
 			if (last_cast > world.time)
 				boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [floor((last_cast - world.time) / 10)] seconds.</span>")
+				src.holder.locked = 0
+				return 999
+			if (src.turf_check && !isturf(holder.owner.loc))
+				boutput(holder.owner, "<span class='alert'>You cannot cast this ability inside \the [holder.owner.loc].</span>")
 				src.holder.locked = 0
 				return 999
 			if (src.restricted_area_check)

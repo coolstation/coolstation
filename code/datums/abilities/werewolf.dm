@@ -346,9 +346,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -368,6 +365,7 @@
 	regenRate = 0
 	tabName = "Werewolf"
 	notEnoughPointsMessage = "<span class='alert'>You aren't strong enough to use this ability.</span>"
+	turf_check = TRUE
 	var/datum/objective/specialist/werewolf/feed/feed_objective = null
 	var/datum/reagents/tainted_saliva_reservoir = null
 	var/awaken_time //don't really need this here, but admins might want to know when the werewolf's awaken time is.
