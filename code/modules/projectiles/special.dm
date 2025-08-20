@@ -1198,7 +1198,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	dissipation_delay = 0
 	pierces = 3
 	window_pass = TRUE
-	silent_shot = TRUE // currently these only belong to a grenade that does a lot of hits sometimes
+	silentshot = TRUE // currently these only belong to a grenade that does a lot of hits sometimes
 	time_between_same_mob_hit = 1 SECOND
 	ticks_between_mob_hits = 2
 	damage_type = D_ENERGY
