@@ -82,8 +82,6 @@ var/list/prefab_shuttles = list()
 
 	dojo
 		prefab_path = "assets/maps/escape_shuttles/cog1/cog1-dojo.dmm"
-	dream
-		prefab_path = "assets/maps/escape_shuttles/cog1/cog1-dream.dmm"
 	iomoon
 		prefab_path = "assets/maps/escape_shuttles/cog1/cog1-iomoon.dmm"
 	martian
