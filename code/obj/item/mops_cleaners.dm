@@ -976,6 +976,7 @@ WET FLOOR SIGN
 		src.setItemSpecial(/datum/item_special/suck)
 		src.bucket = new(src)
 		src.trashbag = new(src)
+		update_icon()
 
 	get_desc(dist, mob/user)
 		. = ..()
@@ -1017,6 +1018,7 @@ WET FLOOR SIGN
 			user.put_in_hand_or_drop(src.trashbag)
 			boutput(user, "<span class='notice'>You remove \the [src.trashbag] from \the [src]</span>")
 			src.trashbag = null
+			update_icon()
 		else if(src.bucket)
 			src.bucket.set_loc(user.loc)
 			user.put_in_hand_or_drop(src.bucket)
@@ -1151,6 +1153,8 @@ WET FLOOR SIGN
 
 	attackby(obj/item/W, mob/user, params, is_special=0)
 		if(istype(W, /obj/item/clothing/under/trash_bag))
+			user.u_equip(W) //doing this early because we succeed anyway, lets the put_in_hand_or_drop work nicer.
+			W.dropped()
 			if(isnull(src.trashbag))
 				boutput(user, "<span class='notice'>You insert \the [W] into \the [src].")
 				src.trashbag = W
@@ -1162,9 +1166,8 @@ WET FLOOR SIGN
 				src.trashbag.set_loc(src)
 				old_trashbag.set_loc(user.loc)
 				user.put_in_hand_or_drop(old_trashbag)
-			user.u_equip(W)
-			W.dropped()
 			src.tooltip_rebuild = 1
+			update_icon()
 		else if(istype(W, /obj/item/reagent_containers/glass/bucket))
 			if(isnull(src.bucket))
 				boutput(user, "<span class='notice'>You insert \the [W] into \the [src].")
@@ -1182,6 +1185,14 @@ WET FLOOR SIGN
 			src.tooltip_rebuild = 1
 		else
 			. = ..()
+
+/obj/item/handheld_vacuum/proc/update_icon()
+	if (trashbag)
+		var/image/I = image(src.icon, "handvac-bag")
+		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#FF4422" : "#888888"
+		UpdateOverlays(I, "bag")
+	else
+		UpdateOverlays(null, "bag")
 
 /obj/item/handheld_vacuum/overcharged
 	name = "overcharged handheld vacuum"
