@@ -5970,7 +5970,7 @@
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "dDy" = (
-/obj/item/gun_parts/magazine/juicer,
+/obj/item/gun_parts/accessory/magazine/juicer,
 /obj/lattice,
 /turf/floor/plating/gehenna,
 /area/noGenerate)
@@ -8751,8 +8751,8 @@
 	icon_state = "bot2"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	beacon_id = "Mechlab #2"
+	beacon_id = "Mechlab #2";
+	codes_txt = "delivery;dir=4"
 	},
 /obj/item/storage/box/cablesbox{
 	pixel_x = -3;
@@ -10573,8 +10573,8 @@
 	icon_state = "bot2"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	beacon_id = "Mechlab #1"
+	beacon_id = "Mechlab #1";
+	codes_txt = "delivery;dir=4"
 	},
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
@@ -26252,7 +26252,7 @@
 "ppc" = (
 /obj/table/wood/auto,
 /obj/displaycase{
-	displayed = new/obj/item/captaingun;
+	displayed = new/obj/item/saxophone;
 	pixel_y = 6
 	},
 /turf/floor/carpet/arcade/half,
