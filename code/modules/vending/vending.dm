@@ -887,16 +887,19 @@
 			src.generate_HTML(1)
 
 		if (href_list["return_credits"])
-			SPAWN_DBG(src.vend_delay)
-				src.printReceipt()
-				if (src.credit > 0)
-					var/obj/item/spacecash/returned = new()
-					returned.setup(src.get_output_location(), src.credit)
+			if(src.vend_ready)
+				src.vend_ready = 0
+				SPAWN_DBG(src.vend_delay)
+					src.vend_ready = 1
+					src.printReceipt()
+					if (src.credit > 0)
+						var/obj/item/spacecash/returned = new()
+						returned.setup(src.get_output_location(), src.credit)
 
-					usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
-					src.credit = 0
-					boutput(usr, "<span class='notice'>You receive [returned].</span>")
-					src.generate_HTML(1)
+						usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
+						src.credit = 0
+						boutput(usr, "<span class='notice'>You receive [returned].</span>")
+						src.generate_HTML(1)
 
 		if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
