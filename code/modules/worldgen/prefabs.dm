@@ -238,14 +238,6 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeX = 20
 		prefabSizeY = 28
 
-	racetrack
-		underwater = 1
-		maxNum = 1
-		probability = 10
-		prefabPath = "assets/maps/prefabs/prefab_water_racetrack.dmm"
-		prefabSizeX = 24
-		prefabSizeY = 25
-
 	zoo
 		underwater = 1
 		maxNum = 1
@@ -389,7 +381,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_beesanctuary.dmm"
 		prefabSizeX = 34
 		prefabSizeY = 19
-
+/*
 	danktrench //the marijuana trench
 		underwater = 1
 		maxNum = 1
@@ -397,7 +389,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_danktrench.dmm"
 		prefabSizeX = 16
 		prefabSizeY = 9
-
+*/
 	grill //test post do not bonk
 		maxNum = 1
 		required = 1
