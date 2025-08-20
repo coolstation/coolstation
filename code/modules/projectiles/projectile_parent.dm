@@ -91,7 +91,7 @@
 
 	proc/process()
 		if(hitlist.len)
-			hitlist.len = 0
+			hitlist.Cut()
 		is_processing = 1
 		while (!QDELETED(src))
 

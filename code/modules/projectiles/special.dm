@@ -1192,7 +1192,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	projectile_speed = 16
 	power = 1
 	max_range = 72
-	dissipation_rate = -0.5
+	dissipation_rate = -0.1
 	dissipation_delay = 0
 	pierces = 3
 	window_pass = TRUE

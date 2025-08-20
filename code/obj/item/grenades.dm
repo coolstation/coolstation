@@ -364,7 +364,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		var/turf/T = .
 		if(T)
 			if(sound_detonation)
-				playsound(T, sound_detonation)
+				playsound(T, sound_detonation, 25, 1)
 			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
 			if(src.projectile_type)
 				PJ.spread_projectile_type = src.projectile_type
@@ -402,7 +402,6 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		. = ..()
 		var/turf/T = .
 		if (T)
-			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			explosion(src, T, -1, -1, -0.25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
 			O.anchored = 1
