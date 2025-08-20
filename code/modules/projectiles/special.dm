@@ -1139,9 +1139,13 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	max_range = 72
 	dissipation_rate = -0.5
 	dissipation_delay = 0
+	pierces = 3
+	window_pass = TRUE
+	ticks_between_mob_hits = 3
 	damage_type = D_ENERGY
 	hit_ground_chance = 100
 	precalculated = 0
+
 	var/turf/origin
 	var/rotate_per_tick = 30
 	var/speed_per_tick = 0.5
@@ -1163,6 +1167,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		if (isliving(hit) && origin)
 			var/mob/living/L = hit
 			L.throw_at(origin, 1, 0.25, throw_type = THROW_GUNIMPACT)
+
 
 /datum/projectile/special/shotchem // how do i shot chem
 	name = "chemical bolt"
