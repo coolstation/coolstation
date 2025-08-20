@@ -461,6 +461,7 @@
 	pointCost = 2500
 	cooldown = 1 MINUTE
 	special_screen_loc = "NORTH-1,WEST+4"
+	turf_check = TRUE
 
 	cast(atom/target)
 		playsound(target.loc, "sound/voice/wraith/revfocus.ogg", 80, 0)
@@ -468,9 +469,6 @@
 			holder.owner.show_message("<span class='alert'>You must target a human with this ability.</span>")
 			return 1
 		var/mob/living/carbon/human/H = target
-		if (!isturf(holder.owner.loc))
-			holder.owner.show_message("<span class='alert'>You cannot cast this ability inside a [holder.owner.loc].</span>")
-			return 1
 		if (holder.owner.equipped())
 			holder.owner.show_message("<span class='alert'>You require a free hand to cast this ability.</span>")
 			return 1

@@ -211,6 +211,8 @@
 	var/image/default_obscurer
 
 	attack_range(atom/target, var/mob/user, params)
+		if(!isturf(user.loc))
+			return
 		if (reloaded_at > ticker.round_elapsed_ticks && !current_shots)
 			boutput(user, "<span class='alert'>The [holder.name] is [reloading_str]!</span>")
 			return

@@ -68,9 +68,6 @@
 				boutput(usr, "<span class='notice'>Please press a number to bind this ability to...</span>")
 				return
 
-		if (!isturf(owner.holder.owner.loc) && !spell.can_use_in_container)
-			boutput(owner.holder.owner, "<span class='alert'>Using that in here will do just about no good for you.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -344,7 +341,7 @@
 	last_cast = 0
 	var/abomination_only = 0
 	var/human_only = 0
-	var/can_use_in_container = 0
+	turf_check = TRUE
 	preferred_holder_type = /datum/abilityHolder/changeling
 
 	New()
