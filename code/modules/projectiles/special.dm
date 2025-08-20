@@ -1137,13 +1137,14 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	projectile_speed = 16
 	power = 1
 	max_range = 72
-	dissipation_rate = -0.3
+	dissipation_rate = -0.5
 	dissipation_delay = 0
 	damage_type = D_ENERGY
 	hit_ground_chance = 100
 	precalculated = 0
 	var/turf/origin
 	var/rotate_per_tick = 30
+	var/speed_per_tick = 0.5
 
 	on_launch(obj/projectile/O)
 		O.internal_speed = projectile_speed
@@ -1151,7 +1152,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 	tick(obj/projectile/O)
 		O.rotateDirection(src.rotate_per_tick)
-		O.internal_speed += 0.5
+		O.internal_speed += speed_per_tick
 		. = ..()
 
 	post_setup(obj/projectile/O)
@@ -1161,7 +1162,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	on_hit(atom/hit, angle, obj/projectile/P)
 		if (isliving(hit) && origin)
 			var/mob/living/L = hit
-			L.throw_at(origin, 2, 0.5, throw_type = THROW_GUNIMPACT)
+			L.throw_at(origin, 1, 0.25, throw_type = THROW_GUNIMPACT)
 
 /datum/projectile/special/shotchem // how do i shot chem
 	name = "chemical bolt"
