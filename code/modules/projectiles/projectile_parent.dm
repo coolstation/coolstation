@@ -107,14 +107,16 @@
 			return // Our bullet doesnt want to hit this
 		if (A in hitlist)
 			return
-		else
-			hitlist += A
 		if (A == shooter && !src.was_pointblank) return // only collide with the original shooter if they pointblank themself
 		if (ismob(A)) //don't doublehit
+			if (proj_data.time_between_same_mob_hit && ON_COOLDOWN(A, "proj_rehit_\ref[src]", proj_data.time_between_same_mob_hit))
+				return
 			if (ticks_until_can_hit_mob > 0 || goes_through_mobs)
 				return
 			if (src.proj_data) //ZeWaka: Fix for null.ticks_between_mob_hits
 				ticks_until_can_hit_mob = src.proj_data.ticks_between_mob_hits
+		else
+			hitlist += A
 		var/turf/T = get_turf(A)
 		src.power = src.proj_data.get_power(src, A)
 		if(src.power <= 0 && src.proj_data.power != 0) return //we have run out of power
@@ -539,6 +541,7 @@ datum/projectile
 	var/goes_through_walls = 0
 	var/goes_through_mobs = 0
 	var/pierces = 0
+	var/time_between_same_mob_hit = 0
 	var/ticks_between_mob_hits = 0
 	var/is_magical = 0              //magical projectiles, i.e. the chaplain is immune to these
 	var/ie_type = "T"	//K, E, T

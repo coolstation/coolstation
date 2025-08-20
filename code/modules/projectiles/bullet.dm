@@ -803,6 +803,7 @@ toxic - poisons
 	icon_turf_hit = "bhole-large"
 	casing = /obj/item/casing/cannon
 	pierces = 4
+	time_between_same_mob_hit = 2 SECONDS
 	shot_sound_extrarange = 1
 
 	on_launch(obj/projectile/proj)

@@ -118,7 +118,8 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	dissipation_delay = 3
 	damage_type = D_ENERGY
 	pierces = -1
-	ticks_between_mob_hits = 10
+	ticks_between_mob_hits = 3
+	time_between_same_mob_hit = 1 SECOND
 
 //Unused
 /datum/projectile/special/wallhax
@@ -513,6 +514,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	impact_range = 32
 	caliber = 40
 	pierces = -1
+	time_between_same_mob_hit = 0 // intentional
 	goes_through_walls = 1
 	color_red = 1
 	color_green = 1
@@ -1196,7 +1198,9 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	dissipation_delay = 0
 	pierces = 3
 	window_pass = TRUE
-	ticks_between_mob_hits = 3
+	silent_shot = TRUE // currently these only belong to a grenade that does a lot of hits sometimes
+	time_between_same_mob_hit = 1 SECOND
+	ticks_between_mob_hits = 2
 	damage_type = D_ENERGY
 	hit_ground_chance = 100
 	precalculated = 0
