@@ -745,8 +745,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -758,8 +756,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay_pixel(S, DATA, T, pox, poy, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -771,8 +767,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST_pixel_spread(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/spread_angle, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay_pixel_spread(S, DATA, T, pox, poy, spread_angle, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -784,8 +778,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_DIR(var/atom/movable/S, var/datum/projectile/DATA, var/dir, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/turf/T = get_step(get_turf(S), dir)
 	if (T)
 		return shoot_projectile_ST(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
@@ -793,8 +785,6 @@ datum/projectile/snowball
 
 /proc/shoot_projectile_relay(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/obj/projectile/P = initialize_projectile_ST(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
 	if (P)
@@ -804,8 +794,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_relay_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile_pixel(S, DATA, T, pox, poy, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -814,8 +802,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_relay_pixel_spread(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/spread_angle, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile_pixel_spread(S, DATA, T, pox, poy, spread_angle, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -823,8 +809,6 @@ datum/projectile/snowball
 
 /proc/shoot_projectile_XY(var/atom/movable/S, var/datum/projectile/DATA, var/xo, var/yo, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/obj/projectile/Q = shoot_projectile_XY_relay(S, DATA, xo, yo, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
@@ -837,8 +821,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_XY_relay(var/atom/movable/S, var/datum/projectile/DATA, var/xo, var/yo, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile(get_turf(S), DATA, xo, yo, S, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -846,8 +828,6 @@ datum/projectile/snowball
 
 /proc/initialize_projectile_ST(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/turf/Q1 = get_turf(S)
 	var/turf/Q2 = get_turf(T)
@@ -857,8 +837,6 @@ datum/projectile/snowball
 
 /proc/initialize_projectile_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/turf/Q1 = get_turf(S)
 	var/turf/Q2 = get_turf(T)
