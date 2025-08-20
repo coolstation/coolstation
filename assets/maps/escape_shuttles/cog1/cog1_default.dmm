@@ -23,7 +23,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 8
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "eB" = (
 /obj/wingrille_spawn/auto,
@@ -35,7 +35,7 @@
 	},
 /area/shuttle/escape/centcom/cogmap)
 "gq" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "hJ" = (
 /turf/wall/auto/shuttle{
@@ -66,7 +66,7 @@
 /area/shuttle/escape/centcom/cogmap)
 "kA" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "lc" = (
 /obj/machinery/light/small/floor,
@@ -82,8 +82,8 @@
 	},
 /area/shuttle/escape/centcom/cogmap)
 "nf" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "nz" = (
 /turf/shuttle/wall/cockpit{
 	dir = 1
@@ -93,14 +93,14 @@
 /obj/indestructible/shuttle_corner{
 	dir = 4
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "qj" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "ri" = (
 /obj/stool/chair/comfy/shuttle,
@@ -111,6 +111,12 @@
 	},
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom/cogmap)
+"ux" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "vr" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 1;
@@ -152,7 +158,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 0
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "xZ" = (
 /obj/table/reinforced/auto,
@@ -167,7 +173,7 @@
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "zJ" = (
 /obj/stool/chair/comfy/shuttle/brown,
@@ -217,14 +223,15 @@
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "LU" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "MN" = (
 /obj/machinery/door/airlock/pyro/command,
 /turf/floor/shuttle{
@@ -267,6 +274,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/cogmap)
+"Wo" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "WZ" = (
 /obj/stool/chair/comfy/shuttle,
 /turf/floor/shuttle,
@@ -284,7 +298,7 @@
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "Yp" = (
 /turf/wall/auto/shuttle{
@@ -298,7 +312,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 1
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "YO" = (
 /obj/stool/chair/comfy/shuttle,
@@ -332,8 +346,8 @@ Ke
 pC
 KN
 LU
-LU
-LU
+ux
+ux
 "}
 (2,1,1) = {"
 qj
@@ -483,7 +497,7 @@ eB
 Ke
 es
 KN
-LU
-LU
-LU
+Wo
+ux
+ux
 "}

@@ -27,6 +27,13 @@
 	icon_state = "12"
 	},
 /area/shuttle/escape/centcom/cogmap)
+"cM" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "dr" = (
 /turf/floor/plating/damaged3,
 /area/shuttle/escape/centcom/cogmap)
@@ -38,10 +45,10 @@
 /obj/indestructible/shuttle_corner{
 	dir = 8
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "gq" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "hf" = (
 /obj/stool/chair/comfy/shuttle/brown,
@@ -87,7 +94,7 @@
 /area/shuttle/escape/centcom/cogmap)
 "kA" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "kO" = (
 /obj/machinery/sleeper/compact,
@@ -105,8 +112,8 @@
 /turf/floor/plating/damaged3,
 /area/shuttle/escape/centcom/cogmap)
 "nf" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "nq" = (
 /obj/decal/skeleton{
 	desc = "Eugh, the stench is horrible!";
@@ -129,14 +136,14 @@
 /obj/indestructible/shuttle_corner{
 	dir = 4
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "qj" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "ri" = (
 /obj/stool/chair/comfy/shuttle,
@@ -207,7 +214,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 0
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "xZ" = (
 /obj/table/reinforced/auto,
@@ -226,12 +233,18 @@
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "zJ" = (
 /obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/void,
 /area/shuttle/escape/centcom/cogmap)
+"Ac" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "Er" = (
 /obj/critter/crunched,
 /turf/floor/void,
@@ -273,14 +286,15 @@
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "LU" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "OB" = (
 /obj/decal/cleanable/dirt,
 /turf/floor/plating,
@@ -347,7 +361,7 @@
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "Yp" = (
 /turf/wall/auto/shuttle{
@@ -361,7 +375,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 1
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "YO" = (
 /obj/stool/chair/comfy/shuttle,
@@ -393,8 +407,8 @@ Ke
 pC
 KN
 LU
-LU
-LU
+Ac
+Ac
 "}
 (2,1,1) = {"
 qj
@@ -544,7 +558,7 @@ Zz
 Ke
 es
 KN
-LU
-LU
-LU
+cM
+Ac
+Ac
 "}

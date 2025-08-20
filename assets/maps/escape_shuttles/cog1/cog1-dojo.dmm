@@ -50,7 +50,7 @@
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "lQ" = (
 /obj/lantern{
@@ -65,20 +65,20 @@
 /turf/floor/dojo/sand/vertical,
 /area/shuttle/escape/centcom/cogmap)
 "oQ" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "pk" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space
 "sm" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "uH" = (
 /obj/machinery/door/unpowered/wood/pyro{
@@ -126,6 +126,13 @@
 "zF" = (
 /turf/floor/dojo/stone,
 /area/shuttle/escape/centcom/cogmap)
+"Aa" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "AD" = (
 /turf/wall/auto/paper{
 	opacity = 0
@@ -160,14 +167,14 @@
 /area/shuttle/escape/centcom/cogmap)
 "IL" = (
 /obj/stool/chair/comfy/shuttle/brown,
-/turf/floor/dojo/sand/circle,
+/area/space/circle,
 /area/shuttle/escape/centcom/cogmap)
 "Ny" = (
 /turf/floor/dojo/sand,
 /area/shuttle/escape/centcom/cogmap)
 "Rb" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "RH" = (
 /obj/stool/chair/comfy/shuttle/brown,
 /obj/lantern{
@@ -179,14 +186,21 @@
 /obj/decal/fakeobjects/lotus{
 	icon_state = "lotus_2"
 	},
-/turf/wall/water/border,
+/area/spaceer,
 /area/shuttle/escape/centcom/cogmap)
 "UH" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
+"UL" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "XZ" = (
 /obj/decal/wallscroll{
 	pixel_y = 32
@@ -217,7 +231,7 @@
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "ZU" = (
 /obj/machinery/shuttle/engine/heater{
@@ -244,8 +258,8 @@ ib
 ib
 pk
 UH
-UH
-UH
+UL
+UL
 "}
 (2,1,1) = {"
 kM
@@ -395,7 +409,7 @@ ik
 ib
 ib
 pk
-UH
-UH
-UH
+Aa
+UL
+UL
 "}
