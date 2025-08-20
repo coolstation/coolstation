@@ -765,7 +765,7 @@
 
 
 // I moved the log entries from human.dm to make them global (Convair880).
-/mob/ex_act(severity, last_touched)
+/mob/ex_act(severity, last_touched, epicenter, turf_safe)
 	logTheThing("combat", src, null, "is hit by an explosion (Severity: [severity]) at [log_loc(src)]. Explosion source last touched by [last_touched]")
 	return
 

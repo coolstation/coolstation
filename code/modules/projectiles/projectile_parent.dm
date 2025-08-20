@@ -230,6 +230,7 @@
 			src.icon_state = proj_data.icon_state
 			if (!proj_data.override_color)
 				src.color = proj_data.color_icon
+			src.plane = proj_data.override_plane
 		else
 			src.icon = 'icons/obj/projectiles.dmi'
 			src.icon_state = null
@@ -545,6 +546,7 @@ datum/projectile
 	var/ticks_between_mob_hits = 0
 	var/is_magical = 0              //magical projectiles, i.e. the chaplain is immune to these
 	var/ie_type = "T"	//K, E, T
+	var/override_plane = PLANE_DEFAULT
 	// var/type = "K"					//3 types, K = Kinetic, E = Energy, T = Taser
 
 	/// for on_pre_hit. Causes it to early-return TRUE if the thing checked was already cleared for pass-thru

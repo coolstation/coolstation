@@ -134,9 +134,8 @@
 		icon_state = "smes"
 
 	var/image/I = SafeGetOverlayImage("operating", 'icons/obj/machines/power.dmi', "smes-op[online]")
-	I.plane = PLANE_LIGHTING
-	I.layer = LIGHTING_LAYER_BASE
-	I.blend_mode = BLEND_ADD
+	I.plane = PLANE_SELFILLUM
+	I.blend_mode = BLEND_OVERLAY
 	UpdateOverlays(I, "operating")
 
 	I = SafeGetOverlayImage("chargemode",'icons/obj/machines/power.dmi', "smes-oc1")
@@ -148,11 +147,15 @@
 	else
 		I = null
 
+	I.plane = PLANE_SELFILLUM
+	I.blend_mode = BLEND_OVERLAY
 	UpdateOverlays(I, "chargemode", 0, 1)
 
 	var/clevel = chargedisplay()
 	if (clevel>0)
 		I = SafeGetOverlayImage("chargedisp",'icons/obj/machines/power.dmi',"smes-og[clevel]")
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_OVERLAY
 		UpdateOverlays(I, "chargedisp")
 
 /obj/machinery/power/smes/proc/chargedisplay()

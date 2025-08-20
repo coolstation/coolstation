@@ -64,7 +64,7 @@ var/datum/explosion_controller/explosions
 			last_touched = queued_turfs_blame[T]
 			center = queued_turfs_center[T]
 			for (var/mob/M in T)
-				M.ex_act(p, last_touched, center)
+				M.ex_act(p, last_touched, center, !queued_turfs[T])
 
 		LAGCHECK(LAG_HIGH)
 

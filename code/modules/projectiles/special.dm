@@ -1192,11 +1192,15 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	shot_sound = "sound/weapons/nano-blade-4.ogg"
 	shot_volume = 40
 	projectile_speed = 16
-	power = 1
+	power = 3
+	ks_ratio = 0.8
 	max_range = 72
-	dissipation_rate = -0.1
+	dissipation_rate = -0.125
 	dissipation_delay = 0
 	pierces = 3
+	brightness = 0.3
+	color_red = 0.3
+	color_green = 0.8
 	window_pass = TRUE
 	silentshot = TRUE // currently these only belong to a grenade that does a lot of hits sometimes
 	time_between_same_mob_hit = 1 SECOND
@@ -1204,6 +1208,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	damage_type = D_ENERGY
 	hit_ground_chance = 100
 	precalculated = 0
+	override_plane = PLANE_SELFILLUM
 
 	var/turf/origin
 	var/rotate_per_tick = 30
