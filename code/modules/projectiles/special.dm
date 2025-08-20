@@ -1143,13 +1143,14 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	hit_ground_chance = 100
 	precalculated = 0
 	var/turf/origin
+	var/rotate_per_tick = 30
 
 	on_launch(obj/projectile/O)
 		O.internal_speed = projectile_speed
 		. = ..()
 
 	tick(obj/projectile/O)
-		O.rotateDirection(30)
+		O.rotateDirection(src.rotate_per_tick)
 		O.internal_speed += 0.5
 		. = ..()
 
