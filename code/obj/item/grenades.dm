@@ -348,6 +348,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	name = "projectile grenade"
 	desc = "It is set to detonate in 3 seconds."
 	icon_state = "fragnade"
+	icon_state_armed = "fragnade1"
 	det_time = 3 SECONDS
 	org_det_time = 3 SECONDS
 	alt_det_time = 6 SECONDS
@@ -355,22 +356,34 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	sound_armed = "sound/weapons/pindrop.ogg"
 	var/projectile_type = /datum/projectile/bullet/flak_chunk
 	var/pellets_to_fire = 20
+	var/sound_detonation = "sound/weapons/grenade.ogg"
 
 
 	prime()
 		. = ..()
 		var/turf/T = .
-		var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
-		if(src.projectile_type)
-			PJ.spread_projectile_type = src.projectile_type
-			PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
-		PJ.pellets_to_fire = src.pellets_to_fire
-		var/targetx = src.y - rand(-5,5)
-		var/targety = src.y - rand(-5,5)
-		var/turf/newtarget = locate(targetx, targety, src.z)
-		shoot_projectile_ST(src, PJ, newtarget)
-		SPAWN_DBG(0.5 SECONDS)
+		if(T)
+			if(sound_detonation)
+				playsound(T, sound_detonation)
+			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
+			if(src.projectile_type)
+				PJ.spread_projectile_type = src.projectile_type
+				PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
+			PJ.pellets_to_fire = src.pellets_to_fire
+			var/targetx = src.y - rand(-5,5)
+			var/targety = src.y - rand(-5,5)
+			var/turf/newtarget = locate(targetx, targety, src.z)
+			shoot_projectile_ST(src, PJ, newtarget)
+			SPAWN_DBG(0.5 SECONDS)
+				qdel(src)
+		else
 			qdel(src)
+
+/obj/item/old_grenade/projectile/vortex
+	name = "vortex grenade"
+	projectile_type = /datum/projectile/special/vortex
+	pellets_to_fire = 18
+	sound_detonation = "sound/weapons/nano-blade-5.ogg"
 
 /obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"

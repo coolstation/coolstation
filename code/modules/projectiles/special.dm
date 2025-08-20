@@ -137,7 +137,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 /datum/projectile/special/spreader
 	name = "spread shot"
 	sname = "spread shot"
-	shot_sound = 'sound/weapons/grenade.ogg'
+	shot_sound = null
 	implanted = null
 	var/pellets_to_fire = 15
 	var/spread_projectile_type = /datum/projectile/bullet/flak_chunk
@@ -1127,6 +1127,40 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	on_hit(atom/hit, direction, projectile)
 		explosion_new(projectile, get_turf(hit), explosion_power, 1)
 		..()
+
+/datum/projectile/special/vortex
+	name = "vortex wave"
+	sname = "vortex"
+	icon_state = "crescent"
+	shot_sound = "sound/weapons/nano-blade-4.ogg"
+	shot_volume = 40
+	projectile_speed = 16
+	power = 1
+	max_range = 72
+	dissipation_rate = -0.3
+	dissipation_delay = 0
+	damage_type = D_ENERGY
+	hit_ground_chance = 100
+	precalculated = 0
+	var/turf/origin
+
+	on_launch(obj/projectile/O)
+		O.internal_speed = projectile_speed
+		. = ..()
+
+	tick(obj/projectile/O)
+		O.rotateDirection(30)
+		O.internal_speed += 0.5
+		. = ..()
+
+	post_setup(obj/projectile/O)
+		src.origin = get_turf(O)
+		. = ..()
+
+	on_hit(atom/hit, angle, obj/projectile/P)
+		if (isliving(hit) && origin)
+			var/mob/living/L = hit
+			L.throw_at(origin, 2, 0.5, throw_type = THROW_GUNIMPACT)
 
 /datum/projectile/special/shotchem // how do i shot chem
 	name = "chemical bolt"
