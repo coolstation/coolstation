@@ -365,7 +365,6 @@
 	regenRate = 0
 	tabName = "Werewolf"
 	notEnoughPointsMessage = "<span class='alert'>You aren't strong enough to use this ability.</span>"
-	turf_check = TRUE
 	var/datum/objective/specialist/werewolf/feed/feed_objective = null
 	var/datum/reagents/tainted_saliva_reservoir = null
 	var/awaken_time //don't really need this here, but admins might want to know when the werewolf's awaken time is.
@@ -401,6 +400,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/werewolf
+	turf_check = TRUE
 	var/when_stunned = 0 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 	var/werewolf_only = 0
