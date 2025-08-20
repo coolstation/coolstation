@@ -2226,10 +2226,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		I = LT.our_thing
 		LT.place_the_thing(get_turf(src), src)
 
+	I.set_loc(src.loc)
 
 	u_equip(I)
-
-	I.set_loc(src.loc)
 
 	if (get_dist(src, target) > 0)
 		src.set_dir(get_dir(src, target))
