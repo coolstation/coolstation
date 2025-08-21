@@ -331,6 +331,30 @@ What are the archived variables for?
 
 	return removed
 
+//Used purely for the neverending flamethrower gimmick. works like remove_ratio but doesn't consume gas from src
+/datum/gas_mixture/proc/copy_ratio(ratio)
+	if(ratio <= 0)
+		return null
+
+	ratio = min(ratio, 1)
+
+	var/datum/gas_mixture/removed = new()
+
+	#define _REMOVE_GAS_RATIO(GAS, ...) \
+		removed.GAS = min(QUANTIZE(GAS*ratio), GAS); \
+	APPLY_TO_GASES(_REMOVE_GAS_RATIO)
+	#undef _REMOVE_GAS_RATIO
+
+	if(length(trace_gases))
+		for(var/datum/gas/trace_gas as anything in trace_gases)
+			var/datum/gas/corresponding = removed.get_or_add_trace_gas_by_type(trace_gas.type)
+			corresponding.moles = trace_gas.moles*ratio
+
+	removed.temperature = temperature
+
+	return removed
+
+
 //Similar to remove(...) but first checks to see if the amount of air removed is small enough
 //	that group processing is still accurate for source (aborts if not)
 //Returns: gas_mixture with the gases removed or null
