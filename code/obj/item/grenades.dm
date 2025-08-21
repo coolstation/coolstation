@@ -388,12 +388,14 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	icon_state_armed = "vortex_pull"
 	projectile_type = /datum/projectile/special/spreader/uniform_burst/listed/vortex_blast
 	pellets_to_fire = 1 // hate this
-	sound_detonation = "sound/weapons/nano-blade-5.ogg"
+	sound_detonation = null
+	sound_armed = "sound/effects/ripcord.ogg"
 	var/datum/light/point/light
 
 	armed_fx()
 		..()
 		SPAWN_DBG(max(src.det_time - 1.4 SECONDS, 0))
+			playsound(src.loc, "sound/effects/splode2.ogg", 50, 1)
 			src.icon_state = "vortex_crush"
 			sleep(0.6 SECONDS)
 			var/obj/overlay/fullbright_overlay = new(src)
