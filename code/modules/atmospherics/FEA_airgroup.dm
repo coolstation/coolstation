@@ -394,11 +394,10 @@
 			var/the_oomph = member_air.mimic(sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1))
 			if(the_oomph > DEPRESSURIZE_THROW_AT_SPACE_REQUIRED)
 				the_oomph = min(floor(the_oomph / DEPRESSURIZE_THROW_AT_SPACE_REQUIRED), DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE)
-				var/the_speed = min(the_oomph, 2)
 				for(var/AM in member)
 					SPAWN_DBG(member.dist_to_space)
 						var/atom/movable/thrown = AM
-						thrown.throw_at(member.nearest_space, the_oomph, the_speed, throw_type = THROW_SPACED)
+						thrown.throw_at(member.nearest_space, the_oomph, 0.5, throw_type = THROW_SPACED)
 #else
 			member_air.mimic(sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1))
 #endif
