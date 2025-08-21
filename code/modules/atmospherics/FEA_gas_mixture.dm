@@ -646,7 +646,7 @@ What are the archived variables for?
 
 		temperature_mimic(model, model.thermal_conductivity, border_multiplier)
 
-	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE))
+	if((abs(delta_temperature) > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
 		var/delta_pressure = ARCHIVED(temperature)*(TOTAL_MOLES(src) + moved_moles) - model.temperature*BASE_GASES_TOTAL_MOLES(model)
 		return (delta_pressure*R_IDEAL_GAS_EQUATION/volume)
 	else

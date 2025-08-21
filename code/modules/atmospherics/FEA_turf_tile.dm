@@ -50,6 +50,10 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 	var/tmp/dist_to_space = null
 
+#ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
+	var/tmp/turf/space/nearest_space = null
+#endif
+
 	var/tmp
 		datum/gas_mixture/air
 
@@ -97,6 +101,9 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			gas_icon_overlay = null
 		air = null
 		parent = null
+#ifdef DEPRESSURIZE_THROW_TO_SPACE
+		nearest_space = null
+#endif
 		..()
 
 /turf/proc/instantiate_air()

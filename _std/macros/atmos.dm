@@ -188,6 +188,11 @@
 
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
 
+// comment out to remove throwing shit into space when breaches happen
+// this is the pressure delta that said throwing scales on
+#define DEPRESSURIZE_THROW_AT_SPACE_REQUIRED 20
+#define DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE 7
+
 // archiving
 
 // comment out to make atmos a bit less precise but less memory intensive and maybe a bit faster, may cause bugs
