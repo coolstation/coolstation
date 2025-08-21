@@ -2,6 +2,8 @@
 	drone_designation = "X"
 	desc = "An experimental and extremely dangerous Syndicate railgun drone."
 	icon_state = "drone3"
+	health_brute = 500
+	health_burn = 500
 
 	setup_hands()
 		..()
@@ -18,7 +20,3 @@
 	setup_loot_table()
 		..()
 		loot_table[/obj/item/spacecash/buttcoin] = 500
-
-	setup_healths()
-		add_hh_robot(500, 1)
-		add_hh_robot_burn(500, 1)

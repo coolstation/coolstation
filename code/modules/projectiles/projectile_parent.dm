@@ -91,7 +91,7 @@
 
 	proc/process()
 		if(hitlist.len)
-			hitlist.len = 0
+			hitlist.Cut()
 		is_processing = 1
 		while (!QDELETED(src))
 
@@ -107,14 +107,16 @@
 			return // Our bullet doesnt want to hit this
 		if (A in hitlist)
 			return
-		else
-			hitlist += A
 		if (A == shooter && !src.was_pointblank) return // only collide with the original shooter if they pointblank themself
 		if (ismob(A)) //don't doublehit
+			if (proj_data.time_between_same_mob_hit && ON_COOLDOWN(A, "proj_rehit_\ref[src]", proj_data.time_between_same_mob_hit))
+				return
 			if (ticks_until_can_hit_mob > 0 || goes_through_mobs)
 				return
 			if (src.proj_data) //ZeWaka: Fix for null.ticks_between_mob_hits
 				ticks_until_can_hit_mob = src.proj_data.ticks_between_mob_hits
+		else
+			hitlist += A
 		var/turf/T = get_turf(A)
 		src.power = src.proj_data.get_power(src, A)
 		if(src.power <= 0 && src.proj_data.power != 0) return //we have run out of power
@@ -228,6 +230,7 @@
 			src.icon_state = proj_data.icon_state
 			if (!proj_data.override_color)
 				src.color = proj_data.color_icon
+			src.plane = proj_data.override_plane
 		else
 			src.icon = 'icons/obj/projectiles.dmi'
 			src.icon_state = null
@@ -539,9 +542,11 @@ datum/projectile
 	var/goes_through_walls = 0
 	var/goes_through_mobs = 0
 	var/pierces = 0
+	var/time_between_same_mob_hit = 0
 	var/ticks_between_mob_hits = 0
 	var/is_magical = 0              //magical projectiles, i.e. the chaplain is immune to these
 	var/ie_type = "T"	//K, E, T
+	var/override_plane = PLANE_DEFAULT
 	// var/type = "K"					//3 types, K = Kinetic, E = Energy, T = Taser
 
 	/// for on_pre_hit. Causes it to early-return TRUE if the thing checked was already cleared for pass-thru
@@ -740,8 +745,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -753,8 +756,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay_pixel(S, DATA, T, pox, poy, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -766,8 +767,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST_pixel_spread(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/spread_angle, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay_pixel_spread(S, DATA, T, pox, poy, spread_angle, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -779,8 +778,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_DIR(var/atom/movable/S, var/datum/projectile/DATA, var/dir, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/turf/T = get_step(get_turf(S), dir)
 	if (T)
 		return shoot_projectile_ST(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
@@ -788,8 +785,6 @@ datum/projectile/snowball
 
 /proc/shoot_projectile_relay(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/obj/projectile/P = initialize_projectile_ST(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
 	if (P)
@@ -799,8 +794,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_relay_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile_pixel(S, DATA, T, pox, poy, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -809,8 +802,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_relay_pixel_spread(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/spread_angle, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile_pixel_spread(S, DATA, T, pox, poy, spread_angle, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -818,8 +809,6 @@ datum/projectile/snowball
 
 /proc/shoot_projectile_XY(var/atom/movable/S, var/datum/projectile/DATA, var/xo, var/yo, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/obj/projectile/Q = shoot_projectile_XY_relay(S, DATA, xo, yo, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
@@ -832,8 +821,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_XY_relay(var/atom/movable/S, var/datum/projectile/DATA, var/xo, var/yo, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile(get_turf(S), DATA, xo, yo, S, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -841,8 +828,6 @@ datum/projectile/snowball
 
 /proc/initialize_projectile_ST(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/turf/Q1 = get_turf(S)
 	var/turf/Q2 = get_turf(T)
@@ -852,8 +837,6 @@ datum/projectile/snowball
 
 /proc/initialize_projectile_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/turf/Q1 = get_turf(S)
 	var/turf/Q2 = get_turf(T)

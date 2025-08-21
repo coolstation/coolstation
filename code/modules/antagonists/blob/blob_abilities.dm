@@ -206,6 +206,53 @@
 			for(var/datum/targetable/blob/evolution/B in src.abilities)
 				B.object.invisibility = 101
 
+	disposing()
+		// if blob disposal is too weird, comment this out - mylie
+		src.wither(TRUE)
+
+		SPAWN_DBG(2.5 SECONDS) // gives wither the time to delete the blobs so we dont run material changes or life ticks on them
+
+		// make sure to enable this if you comment out wither
+		//for(var/obj/blob/blob in src.blobs)
+		//	qdel(blob)
+
+			src.lipids = null
+			src.nuclei = null
+			qdel(src.my_material)
+			src.my_material = null
+			qdel(src.initial_material)
+			src.initial_material = null
+			qdel(src.hat)
+			src.hat = null
+			qdel(src.tutorial)
+			src.tutorial = null
+			qdel(src.nucleus_overlay)
+			src.nucleus_overlay = null
+		. = ..()
+
+	proc/wither(var/death_time = FALSE)
+		SPAWN_DBG(0)
+			var/i = 0
+			for(var/obj/blob/blob in src.blobs)
+				i++
+				blob.ClearAllOverlays()
+				var/turf/T = get_turf(blob)
+				T.fluid_react_single("denatured_enzyme", 75)
+				if(!(i % 6))
+					particleMaster.SpawnSystem(new /datum/particleSystem/blobattack(T,"#a8986a"))
+				else if(blob.special_icon)
+					particleMaster.SpawnSystem(new /datum/particleSystem/blobheal(T,"#a88a3d"))
+				animate(blob, time = rand(12, 18), color = "#2a2413", alpha = 0)
+
+				LAGCHECK(LAG_HIGH)
+			sleep(2 SECONDS)
+			for(var/obj/blob/blob in src.blobs)
+				qdel(blob)
+			if(death_time)
+				src.blobs = null
+			else
+				src.blobs = new()
+
 	proc/reset()
 		src.attack_power = initial(src.attack_power)
 		src.points = 0
@@ -306,7 +353,7 @@
 			if (currentTurfs > maxTurfs)
 				return
 
-			if (T.can_blob_spread_here(null, null, isadmin(owner)))
+			if (T.can_blob_spread_here(null, null))
 				var/obj/blob/B
 				if (prob(5))
 					B = new /obj/blob/lipid(T)
@@ -374,29 +421,29 @@
 			boutput(src.holder.owner, "<span class='alert'>You can't start in space!</span>")
 			return
 
-		if (!isadmin(src.holder.owner)) //admins can spawn wherever
-			if (!istype(T.loc, /area/station/) && !istype(T.loc, /area/blob/))
+		if(!istype(T.loc, /area/blob/))
+			if (!istype(T.loc, /area/station/))
 				boutput(src.holder.owner, __red("You need to start on the [station_or_ship()]!"))
 				return
 
 			if (!issimulatedturf(T))
-				boutput(src.holder.owner, "<span class='alert'>This kind of tile cannot support a blob.</span>")
+				boutput(src.holder.owner, "<span class='alert'>An unsimulated tile cannot support a blob.</span>")
 				return
 
-			if (T.density)
-				boutput(src.holder.owner, "<span class='alert'>You can't start inside a wall!</span>")
+		if (T.density)
+			boutput(src.holder.owner, "<span class='alert'>You can't start inside a wall!</span>")
+			return
+
+		for (var/atom/O in T.contents)
+			if (O.density)
+				boutput(src.holder.owner, "<span class='alert'>That tile is blocked by [O].</span>")
 				return
 
-			for (var/atom/O in T.contents)
-				if (O.density)
-					boutput(src.holder.owner, "<span class='alert'>That tile is blocked by [O].</span>")
+		for (var/mob/M in viewers(T, 5))
+			if (isrobot(M) || ishuman(M))
+				if (!isdead(M))
+					boutput(src.holder.owner, "<span class='alert'>You are being watched.</span>")
 					return
-
-			for (var/mob/M in viewers(T, 7))
-				if (isrobot(M) || ishuman(M))
-					if (!isdead(M))
-						boutput(src.holder.owner, "<span class='alert'>You are being watched.</span>")
-						return
 
 		if (!src.blob_holder.tutorial_check("deploy", T))
 			return
@@ -411,7 +458,6 @@
 		src.holder.addAbility(/datum/targetable/blob/attack)
 		src.holder.addAbility(/datum/targetable/blob/consume)
 		src.holder.addAbility(/datum/targetable/blob/repair)
-		src.holder.addAbility(/datum/targetable/blob/absorb)
 		src.holder.addAbility(/datum/targetable/blob/promote_nucleus)
 	#ifdef Z3_IS_A_STATION_LEVEL
 		src.holder.addAbility(/datum/targetable/blob/blob_level_transfer)
@@ -426,13 +472,16 @@
 		src.holder.addAbility(/datum/targetable/blob/evolution/quick_spread)
 		src.holder.addAbility(/datum/targetable/blob/evolution/spread)
 		src.holder.addAbility(/datum/targetable/blob/evolution/attack)
-		src.holder.addAbility(/datum/targetable/blob/evolution/fire_resist)
 		src.holder.addAbility(/datum/targetable/blob/evolution/poison_resist)
 		src.holder.addAbility(/datum/targetable/blob/evolution/devour_item)
 		src.holder.addAbility(/datum/targetable/blob/evolution/bridge)
 		src.holder.addAbility(/datum/targetable/blob/evolution/launcher)
-		src.holder.addAbility(/datum/targetable/blob/evolution/plasmaphyll)
+
 		src.holder.addAbility(/datum/targetable/blob/evolution/ectothermid)
+		src.holder.addAbility(/datum/targetable/blob/evolution/fire_resist)
+		src.holder.addAbility(/datum/targetable/blob/evolution/plasmaphyll)
+
+
 		src.holder.addAbility(/datum/targetable/blob/evolution/reflective)
 
 		if (!src.blob_holder.tutorial)
@@ -509,7 +558,7 @@
 
 				return 1
 
-		var/obj/blob/B1 = T.can_blob_spread_here(src.holder.owner, null, isadmin(src.holder.owner))
+		var/obj/blob/B1 = T.can_blob_spread_here(src.holder.owner, null)
 		if (!istype(B1))
 			return 1
 
@@ -536,7 +585,7 @@
 			for (var/turf/floor/Q in view(7, src.holder.owner))
 				if (locate(/obj/blob) in Q)
 					continue
-				var/obj/blob/B3 = Q.can_blob_spread_here(null, null, isadmin(src.holder.owner))
+				var/obj/blob/B3 = Q.can_blob_spread_here(null, null)
 				if (B3)
 					spreadability += Q
 
@@ -701,6 +750,7 @@
 			boutput(src.holder.owner, "<span class='alert'>There is no blob there to repair.</span>")
 			return 1
 
+/*
 /datum/targetable/blob/absorb
 	name = "Absorb"
 	icon_state = "blob-absorb"
@@ -750,61 +800,71 @@
 			return
 
 		B.visible_message("<span class='alert'><b>The blob starts trying to absorb [M.name]!</b></span>")
-		actions.start(new /datum/action/bar/blob_absorb(M, src.holder.owner), B)
+		actions.start(new /datum/action/bar/blob_absorb(M, src.holder.owner), M)
+*/
 
-//The owner is the blob tile object...
+//The owner is now the person being eaten
 /datum/action/bar/blob_absorb
 	bar_icon_state = "bar-blob"
 	border_icon_state = "border-blob"
 	color_active = "#d73715"
 	color_success = "#167935"
 	color_failure = "#8d1422"
-	duration = 10 SECONDS
+	duration = 40 SECONDS
 
 	interrupt_flags = 0
 	id = "blobabsorb"
-	var/mob/living/target
 	var/datum/abilityHolder/blob/blob_holder
+	var/mob/living/mob_owner
 
-	New(Target, var/datum/abilityHolder/blob/blob_holder)
+	New(var/mob/living/target, var/datum/abilityHolder/blob/blob_holder)
 		..()
-		target = Target
-		if (!istype(target))
+		if(!target || !blob_holder)
 			interrupt(INTERRUPT_ALWAYS)
 			return
+		src.mob_owner = target
 		src.blob_holder = blob_holder
+		APPLY_MOVEMENT_MODIFIER(mob_owner, /datum/movement_modifier/blobbed, src.blob_holder)
 
 	onUpdate()
-		..()
-		if(!target || !owner || GET_DIST(owner, target) > 0 || !blob_holder)
+		if(!mob_owner || !blob_holder || !(locate(/obj/blob) in get_turf(mob_owner)))
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		if (ishuman(target) && target:decomp_stage == 4)
+		if (ishuman(mob_owner) && mob_owner:decomp_stage == 4)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		//damage thing a bit
-		target.TakeDamage(burn=rand(2,4), tox=rand(2,4))
+		mob_owner.TakeDamage(zone = "All", burn=rand(1,3) * src.blob_holder.attack_power, tox=rand(1,3) * src.blob_holder.attack_power, damage_type = DAMAGE_BURN)
+		//if theyre unconscious or dead, eat faster!
+		if(!isalive(mob_owner) && src.duration > 10 SECONDS)
+			src.duration -= rand(4, 8) // deciseconds
+		. = ..()
+
+
+	onInterrupt()
+		. = ..()
+		if(src.mob_owner)
+			REMOVE_MOVEMENT_MODIFIER(mob_owner, /datum/movement_modifier/blobbed, src.blob_holder)
 
 	onEnd()
 		..()
-		//owner type actually matters here. But it should never not be this anyway...
-		if(!target || !owner || GET_DIST(owner, target) > 0 || !istype(blob_holder))
+		if(!mob_owner || !blob_holder || !(locate(/obj/blob) in get_turf(mob_owner)))
 			return
 
 		//This whole first bit is all still pretty ugly cause this ability works on both critters and humans. I didn't have it in me to rewrite the whole thing - kyle
-		if (ismobcritter(target))
-			target.gib()
-			target.visible_message("<span class='alert'><b>The blob tries to absorb [target.name], but something goes horribly right!</b></span>")
+		if (ismobcritter(mob_owner))
+			mob_owner.gib()
+			mob_owner.visible_message("<span class='alert'><b>The blob tries to absorb [mob_owner.name], but something goes horribly right!</b></span>")
 			if (blob_holder.owner?.mind) //ahem ahem AI blobs exist
-				blob_holder.owner.mind.blob_absorb_victims += target
+				blob_holder.owner.mind.blob_absorb_victims += owner
 			return
 
-		if (!ishuman(target))
-			target.ghostize()
-			qdel(target)
+		if (!ishuman(mob_owner))
+			mob_owner.ghostize()
+			qdel(owner)
 			return
 
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = mob_owner
 		if (H?.decomp_stage == 4)
 			H.decomp_stage = 4
 
@@ -1610,7 +1670,7 @@
 	name = "Structural: Plasmaphyll"
 	icon_state = "blob-plasmaphyll"
 	desc = "Unlocks the plasmaphyll blob bit, which passively protects an area from plasma by converting it to biopoints."
-	evo_point_cost = 1
+	evo_point_cost = 2
 	id = "upgrade-plasmaphyll"
 
 	take_upgrade()
@@ -1622,7 +1682,7 @@
 	name = "Structural: Ectothermid"
 	icon_state = "blob-ectothermid"
 	desc = "Unlocks the ectothermid blob bit, which passively protects an area from temperature. This protection consumes biopoints."
-	evo_point_cost = 2
+	evo_point_cost = 1
 	id = "upgrade-ectothermid"
 
 	take_upgrade()

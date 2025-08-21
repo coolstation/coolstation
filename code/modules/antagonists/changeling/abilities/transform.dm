@@ -5,7 +5,7 @@
 	cooldown = 50
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	var/last_used_name = null
 
 	onAttach(var/datum/abilityHolder/H)
@@ -76,7 +76,7 @@
 	targeted = 0
 	target_anything = 0
 	human_only = 1
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 1
 
 	cast(atom/target)

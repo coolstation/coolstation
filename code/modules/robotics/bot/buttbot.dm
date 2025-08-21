@@ -314,7 +314,7 @@
 /obj/machinery/bot/buttbot/proc/robo_expel_fart_gas(var/gross)
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/gas = new()
-	gas.vacuum()
+	gas.zero()
 	if(gross == 1)
 		gas.farts = 0.5
 	else if(gross == 2)

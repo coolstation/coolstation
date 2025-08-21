@@ -286,6 +286,11 @@
 	fits_under_table = 1
 	blood_id = "iron"
 	metabolizes = 0
+	robotic = TRUE
+	health_brute = 150
+	health_burn = 0
+	takes_tox = FALSE
+	takes_brain = FALSE
 	var/size = 0
 	var/obj/item/implant/access/access
 	var/obj/item/last_item_bump
@@ -376,10 +381,6 @@
 		if(size > 140 && !found && new_turf.density && !isrestrictedz(new_turf.z) && prob(20))
 			new_turf.ex_act(prob(1) ? 1 : 2)
 		. = ..()
-
-	setup_healths()
-		add_hh_robot(150, 1.15)
-
 
 // A belt which gives you big muscles (visual only)
 

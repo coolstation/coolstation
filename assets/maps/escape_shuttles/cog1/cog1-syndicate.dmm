@@ -52,14 +52,14 @@
 /turf/floor/black,
 /area/shuttle/escape/centcom/cogmap)
 "fR" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "fX" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "gO" = (
 /obj/table/auto,
@@ -121,7 +121,7 @@
 /area/shuttle/escape/centcom/cogmap)
 "qb" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "sS" = (
 /turf/floor/black{
@@ -145,6 +145,13 @@
 	},
 /turf/floor/black,
 /area/shuttle/escape/centcom/cogmap)
+"uZ" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "vi" = (
 /obj/decal/poster/wallsign/stencil/right/i{
 	pixel_x = 5;
@@ -171,14 +178,14 @@
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "xo" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "zN" = (
 /obj/wingrille_spawn/auto/crystal,
@@ -191,8 +198,8 @@
 	},
 /area/shuttle/escape/centcom/cogmap)
 "AE" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "Ce" = (
 /obj/stool/chair/comfy/shuttle/red,
 /turf/floor/black,
@@ -229,10 +236,11 @@
 /area/shuttle/escape/centcom/cogmap)
 "Fn" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "FM" = (
 /obj/decal/poster/wallsign/stencil/right/a{
 	pixel_x = -11;
@@ -300,6 +308,12 @@
 	icon_state = "cairngorm2"
 	},
 /area/shuttle/escape/centcom/cogmap)
+"Nx" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "Pt" = (
 /turf/floor/black{
 	icon_state = "cairngorm19"
@@ -358,8 +372,8 @@
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "UP" = (
 /turf/floor/red,
 /area/shuttle/escape/centcom/cogmap)
@@ -427,8 +441,8 @@ QY
 Px
 UI
 Fn
-Fn
-Fn
+Nx
+Nx
 "}
 (2,1,1) = {"
 fX
@@ -578,7 +592,7 @@ zN
 QY
 GX
 UI
-Fn
-Fn
-Fn
+uZ
+Nx
+Nx
 "}

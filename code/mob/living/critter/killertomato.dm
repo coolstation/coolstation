@@ -32,6 +32,11 @@
 	hand_count = 1
 	can_throw = 0
 	blood_id = "juice_tomato"
+	health_brute = 25
+	health_brute_vuln = 1
+	health_burn = 25
+	health_burn_vuln = 1.5
+	takes_brain = FALSE
 	add_abilities = list(/datum/targetable/critter/slam,
 						/datum/targetable/critter/bite)
 
@@ -71,8 +76,3 @@
 			qdel(src)
 		else
 			..()
-
-	setup_healths()
-		add_hh_flesh(25, 1)
-		add_hh_flesh_burn(25, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)

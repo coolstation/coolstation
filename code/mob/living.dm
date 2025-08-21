@@ -80,6 +80,8 @@
 	var/throws_can_hit_me = 1
 	var/can_throw = 1
 
+	var/grounded_for_projectiles = FALSE
+
 	var/last_heard_name = null
 	var/last_chat_color = null
 
@@ -356,7 +358,7 @@
 
 /mob/living/projCanHit(datum/projectile/P)
 	if (!P) return 0
-	if (!src.lying || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (src.lying && prob(P.hit_ground_chance))) return 1
+	if (!(src.lying || src.grounded_for_projectiles) || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (prob(P.hit_ground_chance))) return 1
 	return 0
 
 /mob/living/proc/hand_attack(atom/target, params, location, control, origParams)
@@ -2226,10 +2228,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		I = LT.our_thing
 		LT.place_the_thing(get_turf(src), src)
 
+	I.set_loc(src.loc)
 
 	u_equip(I)
-
-	I.set_loc(src.loc)
 
 	if (get_dist(src, target) > 0)
 		src.set_dir(get_dir(src, target))

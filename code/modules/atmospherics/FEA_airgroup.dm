@@ -354,7 +354,7 @@
 // If the average pressure in the group is < 5kpa, the group will be zeroed
 // returns: 1 if the group is zeroed, 0 if not
 /datum/air_group/proc/space_fastpath(var/datum/controller/process/parent_controller)
-	var/minDist
+//	var/minDist
 	var/turf/space/sample
 	. = 0
 	sample = air_master.space_sample
@@ -379,35 +379,40 @@
 			var/dist = get_dist(b, member)
 			if (minDist == null || dist < minDist)
 				minDist = dist
-*/
-		minDist = member.dist_to_space
 
+		minDist = member.dist_to_space
+*/
 		// Don't space hotspots, it breaks them
 		if(member.active_hotspot)
 			return 0
 
-		if (member.air && !isnull(minDist))
+		if (member.air && !isnull(member.dist_to_space))
 			var/datum/gas_mixture/member_air = member.air
 			// Todo - retain nearest space tile border and apply force proportional to amount
 			// of air leaving through it
-			member_air.mimic(sample, clamp(length_space_border / (2 * max(1, minDist)), 0.1, 1))
+#ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
+			var/the_oomph = member_air.mimic(sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1))
+			if(the_oomph > DEPRESSURIZE_THROW_AT_SPACE_REQUIRED)
+				the_oomph = min(floor(the_oomph / DEPRESSURIZE_THROW_AT_SPACE_REQUIRED), DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE)
+				for(var/AM in member)
+					SPAWN_DBG(member.dist_to_space)
+						var/atom/movable/thrown = AM
+						thrown.throw_at(member.nearest_space, the_oomph, 0.5, throw_type = THROW_SPACED)
+#else
+			member_air.mimic(sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1))
+#endif
 			ADD_MIXTURE_PRESSURE(member_air, totalPressure) // Build your own atmos disaster
 
 		LAGCHECK(LAG_REALTIME)
 
-	//mbc : bringing this silly fix back in for now
-	if (map_currently_underwater)
-		if (totalPressure / members.len < 65)
-			space_group()
-			return 1
-	else
-		if (totalPressure / members.len < 5)
-			space_group()
-			return 1
+	if (totalPressure / members.len < 5)
+		space_group()
+		return 1
 
 /datum/air_group/proc/space_group()
 	for(var/turf/member as anything in members)
-		member.air?.zero()
+		member.air?.clear_trace_gases()
+		ZERO_BASE_GASES(member.air)
 	if (length_space_border)
 		spaced = TRUE
 		if(!group_processing)

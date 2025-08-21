@@ -765,7 +765,7 @@
 
 
 // I moved the log entries from human.dm to make them global (Convair880).
-/mob/ex_act(severity, last_touched)
+/mob/ex_act(severity, last_touched, epicenter, turf_safe)
 	logTheThing("combat", src, null, "is hit by an explosion (Severity: [severity]) at [log_loc(src)]. Explosion source last touched by [last_touched]")
 	return
 
@@ -2738,6 +2738,7 @@
 		var/datum/abilityHolder/composite/C = abilityHolder
 		return C.removeHolder(H)
 	else if (abilityHolder && abilityHolder == H)
+		qdel(abilityHolder)
 		abilityHolder = null
 
 /mob/proc/add_existing_ability_holder(var/datum/abilityHolder/H)

@@ -80,6 +80,14 @@
 
 	var/pull_w_class = W_CLASS_SMALL
 
+	var/health_brute = 20
+	var/health_brute_vuln = 1
+	var/health_burn = 20
+	var/health_burn_vuln = 1
+	var/takes_tox = TRUE
+	var/takes_brain = TRUE
+	var/robotic = FALSE
+
 	blood_id = "blood"
 
 	New()
@@ -186,8 +194,20 @@
 			src.is_hibernating = FALSE
 
 	proc/setup_healths()
-		// add_health_holder(/datum/healthHolder/flesh)
-		// etc..
+		if(src.robotic)
+			if(src.health_brute)
+				add_hh_robot(src.health_brute, src.health_brute_vuln)
+			if(src.health_burn)
+				add_hh_robot_burn(src.health_burn, src.health_burn_vuln)
+		else
+			if(src.health_brute)
+				add_hh_flesh(src.health_brute, src.health_brute_vuln)
+			if(src.health_burn)
+				add_hh_flesh_burn(src.health_burn, src.health_burn_vuln)
+		if(src.takes_tox)
+			add_health_holder(/datum/healthHolder/toxin)
+		if(src.takes_brain)
+			add_health_holder(/datum/healthHolder/brain)
 
 	proc/setup_overlays()
 		//used for critters that have overlays for their bioholder (hair color eye color etc)
@@ -368,6 +388,9 @@
 			else
 				return (src.pull_w_class >= W_CLASS_BULKY)
 		return 0
+
+	canRideMailchutes()
+		return src.fits_under_table
 
 	click(atom/target, list/params)
 		if (((src.client && src.client.check_key(KEY_THROW)) || src.in_throw_mode) && src.can_throw)

@@ -147,7 +147,7 @@
 	name = "stinger grenade box"
 	desc = "<FONT color=red><B>WARNING: Do not use without reading these preautions!</B></FONT><br><B>These devices are extremely dangerous and can cause limbs to experience severe damage!</B><br>Excercise extreme care when detonating in closed spaces.<br>&emsp;Make an attempt to not to detonate closer than 2 meters of the intended target. It is imperative<br>&emsp;that the targets visit a medical professional after usage. <B>EXERCISE CAUTION REGARDLESS OF CIRCUMSTANCES</B><br>Operating Directions:<br>&emsp;1. Pull detonnation pin. <B>ONCE THE PIN IS PULLED THE GRENADE CAN NOT BE DISARMED!</B><br>&emsp;2. Throw grenade. <br>&emsp;3. The grenade will detonate 3 seconds after being primed. <br><B>Never prime another grenade until after the first is detonated</B><br>Default 3 second wait till from prime to detonation. This can be switched with a screwdriver to 6 seconds.<br>Copyright of Nanotrasen Industries- Military Armnaments Division"
 	icon_state = "flashbang"
-	spawn_contents = list(/obj/item/old_grenade/stinger = 7)
+	spawn_contents = list(/obj/item/old_grenade/projectile/stinger = 7)
 
 /obj/item/storage/box/tactical_kit // cogwerks - tactical as heck
 	name = "tactical grenade box"
@@ -156,7 +156,7 @@
 	spawn_contents = list(/obj/item/chem_grenade/incendiary = 2,\
 	/obj/item/chem_grenade/shock,\
 	/obj/item/old_grenade/smoke = 1,\
-	/obj/item/old_grenade/stinger/frag,\
+	/obj/item/old_grenade/projectile/stinger/frag,\
 	/obj/item/chem_grenade/flashbang,\
 	/obj/item/old_grenade/graviton)
 
@@ -212,7 +212,7 @@
 	spawn_contents = list(/obj/item/chem_grenade/pepper = 2,\
 	/obj/item/old_grenade/smoke = 2,\
 	/obj/item/chem_grenade/flashbang,\
-	/obj/item/old_grenade/stinger,\
+	/obj/item/old_grenade/projectile/stinger,\
 	/obj/item/chem_grenade/shock)
 
 // For QM crate "Experimental Weapons" (Convair880).

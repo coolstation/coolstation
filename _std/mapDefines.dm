@@ -1,4 +1,7 @@
-#if defined(MAP_OVERRIDE_CONSTRUCTION)
+#if defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+
+
+#elif defined(MAP_OVERRIDE_CONSTRUCTION)
 
 
 #elif defined(MAP_OVERRIDE_DESTINY)

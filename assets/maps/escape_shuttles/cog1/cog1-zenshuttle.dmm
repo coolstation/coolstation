@@ -1,16 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "b" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "c" = (
 /turf/wall/auto/shuttle,
@@ -27,14 +28,14 @@
 /obj/indestructible/shuttle_corner{
 	dir = 8
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "f" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "g" = (
 /obj/decal/tile_edge/line/black{
@@ -50,20 +51,35 @@
 /turf/floor/dojo/sand/vertical,
 /area/shuttle/escape/centcom/cogmap)
 "k" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "m" = (
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
 	},
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom/cogmap)
+"n" = (
+/turf/space,
+/area/shuttle/escape/centcom/cogmap)
+"o" = (
+/obj/indestructible/shuttle_corner{
+	dir = 0
+	},
+/turf/space,
+/area/shuttle/escape/centcom/cogmap)
+"p" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "q" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "r" = (
 /turf/shuttle/wall/cockpit{
 	dir = 1
@@ -71,13 +87,19 @@
 /area/shuttle/escape/centcom/cogmap)
 "t" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "u" = (
 /obj/stool/chair/comfy/green{
 	dir = 8
 	},
 /turf/floor/dojo/sand/circle,
+/area/shuttle/escape/centcom/cogmap)
+"v" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1
+	},
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "w" = (
 /obj/machinery/computer/shuttle/embedded/south,
@@ -145,6 +167,13 @@
 "H" = (
 /turf/floor/dojo/sand/horizontal,
 /area/shuttle/escape/centcom/cogmap)
+"I" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "J" = (
 /obj/indestructible/shuttle_corner{
 	dir = 0
@@ -163,7 +192,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 4
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "N" = (
 /obj/stool/chair/comfy/green{
@@ -210,7 +239,7 @@
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "X" = (
 /obj/stool/chair/comfy/green{
@@ -226,8 +255,8 @@
 /area/shuttle/escape/centcom/cogmap)
 
 (1,1,1) = {"
-Q
-S
+n
+o
 O
 O
 O
@@ -241,8 +270,8 @@ O
 M
 q
 a
-a
-a
+p
+p
 "}
 (2,1,1) = {"
 W
@@ -378,8 +407,8 @@ k
 k
 "}
 (9,1,1) = {"
-Q
-A
+n
+v
 O
 O
 O
@@ -392,7 +421,7 @@ O
 O
 e
 q
-a
-a
-a
+I
+p
+p
 "}

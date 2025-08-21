@@ -82,12 +82,18 @@
 
 				var/depth_to_breathe_from = length(depth_levels)
 				if (owner.lying)
-					depth_to_breathe_from = depth_levels.len-1
+					depth_to_breathe_from = depth_levels.len-2
 
 				if (F.amt >= depth_levels[depth_to_breathe_from])
 					underwater = F
 					if (owner.is_submerged != 4)
+						var/image/submerged = owner.submerged_images[4]
+						submerged.color = F.finalcolor
+						submerged.alpha = F.finalalpha
 						owner.show_submerged_image(4)
+				// if lying facedown, always drown. funy.
+				else if(owner.lying && (6 - 2 * owner.rest_mult) & owner.dir)
+					underwater = F
 
 			else if (T.active_airborne_liquid)
 				if (!issmokeimmune(owner))

@@ -807,6 +807,7 @@ Frequency:
 
 	update_clothing()
 	updateicon()
+	APPLY_MOB_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 	if (src.mainframe)
 		src.real_name = "SHELL/[src.mainframe]"
@@ -822,6 +823,7 @@ Frequency:
 /mob/living/silicon/hivebot/Logout()
 	..()
 	updateicon()
+	REMOVE_MOB_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 	src.real_name = "AI Shell [copytext("\ref[src]", 6, 11)]"
 	src.name = src.real_name

@@ -12,6 +12,9 @@
 	can_disarm = 1
 	blood_id = "phlogiston"
 	burning_suffix = "humanoid"
+	health_brute = 150
+	health_brute_vuln = 1.15
+	health_burn = 0
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
@@ -44,10 +47,6 @@
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_flesh(150, 1.15)
-		add_health_holder(/datum/healthHolder/brain)
 
 	New()
 		..()

@@ -306,6 +306,8 @@
 			is_sealed = 0
 			can_chug = 1
 			playsound(src.loc, "sound/items/can_open.ogg", 50, 1)
+			if(prob(0.25))
+				boutput(user, "<span class='alert'>You agree to the binding arbitration clause</span>")
 			return
 		if (!src.reagents || !src.reagents.total_volume)
 			var/zone = user.zone_sel.selecting

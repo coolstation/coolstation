@@ -973,9 +973,12 @@ WET FLOOR SIGN
 
 	New()
 		..()
+		if (prob(50))
+			icon_state = "handvac-O"
 		src.setItemSpecial(/datum/item_special/suck)
 		src.bucket = new(src)
 		src.trashbag = new(src)
+		update_icon()
 
 	get_desc(dist, mob/user)
 		. = ..()
@@ -1017,6 +1020,7 @@ WET FLOOR SIGN
 			user.put_in_hand_or_drop(src.trashbag)
 			boutput(user, "<span class='notice'>You remove \the [src.trashbag] from \the [src]</span>")
 			src.trashbag = null
+			update_icon()
 		else if(src.bucket)
 			src.bucket.set_loc(user.loc)
 			user.put_in_hand_or_drop(src.bucket)
@@ -1070,12 +1074,20 @@ WET FLOOR SIGN
 		if(isnull(T)) // fluids getting disposed or something????
 			return
 		new/obj/effect/suck(T, get_dir(T, user))
-		if(src.suck(T, user))
+		if(src.suck(user, T))
 			playsound(T, "sound/effects/suck.ogg", 20, TRUE, 0, 1.5)
 		else
 			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, 0, 0.8)
 
-	proc/suck(turf/T, mob/user)
+	pickup(mob/M)
+		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(suck))
+		..()
+
+	dropped(mob/user)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		..()
+
+	proc/suck(mob/user, turf/T)
 		. = TRUE
 		var/success = FALSE
 		if(T.active_airborne_liquid)
@@ -1121,21 +1133,30 @@ WET FLOOR SIGN
 				boutput(user, "<span class='alert'>\The [src] tries to suck up [item_desc] but its [src.trashbag] is full!</span>")
 				. = FALSE
 			else
-				for(var/obj/item/I as anything in items_to_suck)
-					I.set_loc(get_turf(user))
-				success = TRUE
-				SPAWN_DBG(0.5 SECONDS)
+				if (T != get_turf(user))
+					for(var/obj/item/I as anything in items_to_suck)
+						I.set_loc(get_turf(user))
+					SPAWN_DBG(0.5 SECONDS)
+						for(var/obj/item/I as anything in items_to_suck) // yes, this can go over capacity of the bag, that's intended
+							I.set_loc(src.trashbag)
+						src.trashbag.calc_w_class(null)
+						if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
+							boutput(user, "<span class='notice'>[src]'s [src.trashbag] is now full.</span>")
+				else //do it immediately if it's our own turf
 					for(var/obj/item/I as anything in items_to_suck) // yes, this can go over capacity of the bag, that's intended
 						I.set_loc(src.trashbag)
 					src.trashbag.calc_w_class(null)
 					if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
 						boutput(user, "<span class='notice'>[src]'s [src.trashbag] is now full.</span>")
+				success = TRUE
 
 		src.tooltip_rebuild = 1
 		. |= success
 
 	attackby(obj/item/W, mob/user, params, is_special=0)
 		if(istype(W, /obj/item/clothing/under/trash_bag))
+			user.u_equip(W) //doing this early because we succeed anyway, lets the put_in_hand_or_drop work nicer.
+			W.dropped()
 			if(isnull(src.trashbag))
 				boutput(user, "<span class='notice'>You insert \the [W] into \the [src].")
 				src.trashbag = W
@@ -1147,9 +1168,8 @@ WET FLOOR SIGN
 				src.trashbag.set_loc(src)
 				old_trashbag.set_loc(user.loc)
 				user.put_in_hand_or_drop(old_trashbag)
-			user.u_equip(W)
-			W.dropped()
 			src.tooltip_rebuild = 1
+			update_icon()
 		else if(istype(W, /obj/item/reagent_containers/glass/bucket))
 			if(isnull(src.bucket))
 				boutput(user, "<span class='notice'>You insert \the [W] into \the [src].")
@@ -1167,6 +1187,14 @@ WET FLOOR SIGN
 			src.tooltip_rebuild = 1
 		else
 			. = ..()
+
+/obj/item/handheld_vacuum/proc/update_icon()
+	if (trashbag)
+		var/image/I = image(src.icon, "handvac-bag")
+		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#ff4459" : "#777777"
+		UpdateOverlays(I, "bag")
+	else
+		UpdateOverlays(null, "bag")
 
 /obj/item/handheld_vacuum/overcharged
 	name = "overcharged handheld vacuum"

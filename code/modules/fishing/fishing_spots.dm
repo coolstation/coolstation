@@ -68,8 +68,6 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 /datum/fishing_spot/sea/watertanks
 	fishing_atom_type = /obj/reagent_dispensers/watertank
 
-/datum/fishing_spot/sea/deeptrench
-	fishing_atom_type = /turf/floor/polarispit
 
 /datum/fishing_spot/test
 	fishing_atom_type = /turf/floor/ancient

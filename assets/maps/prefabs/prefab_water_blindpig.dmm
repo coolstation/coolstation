@@ -1,13 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/blind_pig)
 "ab" = (
 /turf/variableTurf/clear,
 /area/space)
 "ac" = (
 /obj/stool/chair/wooden{
-	icon_state = "chair_wooden";
 	dir = 4
 	},
 /turf/floor/carpet/purple/fancy/edge/nw,
@@ -36,7 +35,6 @@
 /area/prefab/blind_pig)
 "ag" = (
 /obj/shrub{
-	icon_state = "shrub";
 	dir = 10
 	},
 /turf/floor/wood,
@@ -55,14 +53,12 @@
 /area/prefab/blind_pig)
 "aj" = (
 /obj/stool/chair/wooden{
-	icon_state = "chair_wooden";
 	dir = 4
 	},
 /turf/floor/carpet/purple/fancy/edge/sw,
 /area/prefab/blind_pig)
 "ak" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/card_group/plain,
 /turf/floor/carpet/purple/fancy/edge/south,
 /area/prefab/blind_pig)
 "al" = (
@@ -80,7 +76,6 @@
 /area/prefab/blind_pig)
 "ao" = (
 /obj/submachine/chef_sink/chem_sink{
-	layer = 3;
 	pixel_y = 8
 	},
 /turf/floor/sanitary,
@@ -100,14 +95,12 @@
 /area/prefab/blind_pig)
 "as" = (
 /obj/shrub{
-	icon_state = "shrub";
 	dir = 8
 	},
 /turf/floor/wood,
 /area/prefab/blind_pig)
 "at" = (
 /obj/stool/chair/wooden{
-	icon_state = "chair_wooden";
 	dir = 4
 	},
 /obj/machinery/light/fluorescent/warm/very,
@@ -253,7 +246,6 @@
 	dir = 8
 	},
 /turf/floor/stairs/wood2/wide{
-	icon_state = "wood2_stairs2";
 	dir = 9
 	},
 /area/prefab/blind_pig)
@@ -289,7 +281,6 @@
 	dir = 8
 	},
 /turf/floor/stairs/wood2/wide{
-	icon_state = "wood2_stairs2";
 	dir = 8
 	},
 /area/prefab/blind_pig)
@@ -313,7 +304,6 @@
 /area/prefab/blind_pig)
 "bg" = (
 /obj/stool/chair/wooden{
-	icon_state = "chair_wooden";
 	dir = 4
 	},
 /turf/floor/carpet/red/fancy/edge/south,
@@ -341,16 +331,15 @@
 /area/prefab/blind_pig)
 "bk" = (
 /obj/shrub{
+	dir = 4;
 	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant";
-	dir = 4
+	icon_state = "plant"
 	},
 /turf/floor/black,
 /area/prefab/blind_pig)
 "bl" = (
 /obj/shrub{
 	desc = "It's probably not suspicious that this plant is not only still alive, but thriving.";
-	dir = 2;
 	icon = 'icons/obj/stationobjs.dmi';
 	icon_state = "plant"
 	},
@@ -358,7 +347,6 @@
 /area/prefab/blind_pig)
 "bm" = (
 /obj/stool/chair/wooden{
-	icon_state = "chair_wooden";
 	dir = 4
 	},
 /turf/floor/wood,
@@ -393,7 +381,6 @@
 "br" = (
 /obj/machinery/door/unpowered/wood/pyro,
 /turf/floor/stairs/wood2{
-	icon_state = "wood2_stairs";
 	dir = 1
 	},
 /area/prefab/blind_pig)
@@ -443,7 +430,6 @@
 /area/prefab/blind_pig)
 "by" = (
 /obj/stool/chair/wooden{
-	icon_state = "chair_wooden";
 	dir = 4
 	},
 /turf/floor/carpet/blue/fancy/edge/nw,
@@ -458,15 +444,8 @@
 "bA" = (
 /turf/floor/carpet/blue/fancy/edge/ne,
 /area/prefab/blind_pig)
-"bB" = (
-/obj/landmark/spawner{
-	name = "waiter"
-	},
-/turf/floor/plating/random,
-/area/prefab/blind_pig)
 "bC" = (
 /obj/shrub{
-	icon_state = "shrub";
 	dir = 1
 	},
 /turf/floor/wood,
@@ -861,7 +840,7 @@ bk
 aa
 bs
 bs
-bB
+bs
 aa
 ab
 ab
