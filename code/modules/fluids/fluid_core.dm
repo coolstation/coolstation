@@ -337,6 +337,7 @@ var/mutable_appearance/fluid_ma
 		spawned_any = 0
 
 		var/turf/t
+		var/turf/T = get_turf(src)
 		if(!waterflow_enabled) return
 		for( var/dir in cardinal )
 			LAGCHECK(LAG_MED)
@@ -347,80 +348,91 @@ var/mutable_appearance/fluid_ma
 			t = get_step( src, dir )
 			if (!t) //the fuck? how
 				continue
+#ifdef STRICT_PERSPECTIVE_FLUID
 			if (!IS_VALID_FLUID_TURF(t))
 				blocked_dirs++
-				if (IS_PERSPECTIVE_WALL(t))
+				if (IS_PERSPECTIVE_BLOCK(t))
 					blocked_perspective_objects["[dir]"] = 1
 				continue
-			if (t.active_liquid && !t.active_liquid.pooled)
+
+			if(!t.gas_cross(T))
+				continue
+#else
+			if(!IS_VALID_FLUID_TURF(t) || !t.gas_cross(T))
+				blocked_dirs++
+				blocked_perspective_objects["[dir]"] = 1
+				continue
+#endif
+			if(t.active_liquid && !t.active_liquid.pooled)
 				blocked_dirs++
 				if (t.active_liquid.group && t.active_liquid.group != src.group)
 					touched_other_group = t.active_liquid.group
 					t.active_liquid.icon_state = src.group.viscosity_prefix + "15"
 				continue
 
-			if(! t.density )
-				var/suc = 1
-				var/push_thing = 0
-				for(var/obj/thing in t.contents)
-					LAGCHECK(LAG_HIGH)
-					var/found = 0
-					if (IS_SOLID_TO_FLUID(thing))
-						found = 1
-					else if (!push_thing && !thing.anchored)
-						push_thing = thing
+			var/suc = 1
+			var/push_thing = 0
+			for(var/obj/thing in t.contents)
+				LAGCHECK(LAG_HIGH)
+				var/found = 0
+				if (IS_SOLID_TO_FLUID(thing))
+					found = 1
+				else if (!push_thing && !thing.anchored)
+					push_thing = thing
 
-					if (found)
-						if( thing.density )
-							suc=0
-							blocked_dirs++
-							if (IS_PERSPECTIVE_BLOCK(thing))
-								blocked_perspective_objects["[dir]"] = 1
-							break
+				if (found)
+					if( thing.density )
+						suc=0
+						blocked_dirs++
+#ifdef STRICT_PERSPECTIVE_FLUID
+						if (IS_PERSPECTIVE_BLOCK(thing))
+							blocked_perspective_objects["[dir]"] = 1
+#endif
+						break
 
-						if (istype(thing,/obj/channel))
-							src.touched_channel = thing //Save this for later, we can't make use of it yet
-							suc=0
-							break
+					if (istype(thing,/obj/channel))
+						src.touched_channel = thing //Save this for later, we can't make use of it yet
+						suc=0
+						break
 
-				if(suc && src.group) //group went missing? ok im doin a check here lol
-					LAGCHECK(LAG_HIGH)
-					spawned_any = 1
-					src.icon_state = src.group.viscosity_prefix + "15"
-					var/obj/fluid/F = new()
-					F.set_up(t,0)
-					if (!F || !src.group) continue //set_up may decide to remove F
+			if(suc && src.group) //group went missing? ok im doin a check here lol
+				LAGCHECK(LAG_HIGH)
+				spawned_any = 1
+				src.icon_state = src.group.viscosity_prefix + "15"
+				var/obj/fluid/F = new()
+				F.set_up(t,0)
+				if (!F || !src.group) continue //set_up may decide to remove F
 
-					F.amt = src.group.amt_per_tile
-					F.name = src.name
-					F.color = src.finalcolor
-					F.finalcolor = src.finalcolor
-					F.alpha = src.finalalpha
-					F.finalalpha = src.finalalpha
-					F.last_depth_level = src.last_depth_level
-					F.step_sound = src.step_sound
-					F.movement_speed_mod = src.movement_speed_mod
+				F.amt = src.group.amt_per_tile
+				F.name = src.name
+				F.color = src.finalcolor
+				F.finalcolor = src.finalcolor
+				F.alpha = src.finalalpha
+				F.finalalpha = src.finalalpha
+				F.last_depth_level = src.last_depth_level
+				F.step_sound = src.step_sound
+				F.movement_speed_mod = src.movement_speed_mod
 
-					if (src.group)
-						F.group = src.group
-						. += F
+				if (src.group)
+					F.group = src.group
+					. += F
+				else
+					var/datum/fluid_group/FG = new
+					FG.add(F, src.group.amt_per_tile)
+					F.group = FG
+
+				F.done_init()
+
+				last_spread_was_blocked = 0
+
+				if (push_thing && prob(50))
+					if (src.last_depth_level <= 3)
+						if (isitem(push_thing))
+							var/obj/item/I = push_thing
+							if (I.w_class <= src.last_depth_level)
+								step_away(I,src)
 					else
-						var/datum/fluid_group/FG = new
-						FG.add(F, src.group.amt_per_tile)
-						F.group = FG
-
-					F.done_init()
-
-					last_spread_was_blocked = 0
-
-					if (push_thing && prob(50))
-						if (src.last_depth_level <= 3)
-							if (isitem(push_thing))
-								var/obj/item/I = push_thing
-								if (I.w_class <= src.last_depth_level)
-									step_away(I,src)
-						else
-							step_away(push_thing,src)
+						step_away(push_thing,src)
 
 		if (spawned_any && prob(40))
 			playsound( src.loc, 'sound/misc/waterflow.ogg', 30,0.7,7)
@@ -567,7 +579,7 @@ var/mutable_appearance/fluid_ma
 
 		var/color_changed = 0
 		var/datum/color/average = src.group.average_color ? src.group.average_color : src.group.reagents.get_average_color()
-		src.finalalpha = max(25, (average.a / 255) * src.group.max_alpha)
+		src.finalalpha = clamp((average.a / 255) * src.group.max_alpha, 25, MAX_FLUID_ALPHA)
 		src.finalcolor = rgb(average.r, average.g, average.b)
 		if (src.color != finalcolor)
 			color_changed = 1
@@ -596,7 +608,7 @@ var/mutable_appearance/fluid_ma
 			src.update_perspective_overlays()
 
 	proc/update_perspective_overlays() // fancy perspective overlaying
-		if (icon_state != "15") return
+		//if (icon_state != "15") return
 		var/blocked = 0
 		for( var/dir in cardinal )
 			if (dir == SOUTH) //No south perspective
@@ -615,11 +627,11 @@ var/mutable_appearance/fluid_ma
 			clear_overlay()
 
 		if (src.overlay_refs && length(src.overlay_refs))
-			if (src.overlay_refs["1"] && src.overlay_refs["8"]) //north, east
+			if (src.overlay_refs["1"] && src.overlay_refs["8"] && last_depth_level > 1) //north, east
 				display_overlay("9",-32,32) //northeast
 			else
 				clear_overlay("9")  //northeast
-			if (src.overlay_refs["1"] && src.overlay_refs["4"]) //north, west
+			if (src.overlay_refs["1"] && src.overlay_refs["4"] && last_depth_level > 1) //north, west
 				display_overlay("5",32,32) //northwest
 			else
 				clear_overlay("5") //northwest

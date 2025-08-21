@@ -5,7 +5,7 @@
 	icon_state = "door1"
 	opacity = 1
 	density = 1
-	flags = FPRINT | ALWAYS_SOLID_FLUID
+	flags = FPRINT | IS_PERSPECTIVE_FLUID | ALWAYS_SOLID_FLUID
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	object_flags = BOTS_DIRBLOCK
 	text = "<font color=#D2691E>+"
@@ -308,8 +308,8 @@
 
 	if (src.isblocked() == 1)
 		if (src.density && src.operating != 1 && I)
-			if (I.tool_flags & TOOL_CHOPPING)
-				src.take_damage(I.force*4, user)
+			if (ischoppingtool(I))
+				src.take_damage(I.force*5, user, TRUE)
 			else
 				src.take_damage(I.force, user)
 			user.lastattacked = src
@@ -353,25 +353,15 @@
 		if (src.sound_deny)
 			playsound(src.loc, src.sound_deny, 25, 0)
 
-	if (src.density && !src.operating && I)
+		var/resolvedForce = I.force
+		var/chopped = FALSE
+		if (ischoppingtool(I))
+			resolvedForce *= 5
+			chopped = TRUE
 		user.lastattacked = src
 		attack_particle(user,src)
 		playsound(src.loc, src.hitsound , 50, 1, pitch = 1.6)
-		src.take_damage(I.force, user)
-/*
-		var/resolvedForce = I.force
-		if (I.tool_flags & TOOL_CHOPPING)
-			resolvedForce *= 4
-*/
-
-		var/resolvedForce = I.force
-		if (I.tool_flags & TOOL_CHOPPING)
-			resolvedForce *= 4
-			user.lastattacked = src
-			attack_particle(user,src)
-			playsound(src.loc, src.hitsound , 50, 1, pitch = 1.6)
-			src.take_damage(resolvedForce, user)
-
+		src.take_damage(resolvedForce, user, chopped)
 
 	return ..(I,user)
 
@@ -426,7 +416,7 @@
 /obj/machinery/door/proc/heal_damage()
 	src.health = src.health_max
 
-/obj/machinery/door/proc/take_damage(var/amount, var/mob/user = 0)
+/obj/machinery/door/proc/take_damage(var/amount, var/mob/user = 0, var/chopping = FALSE)
 	if (!isnum(amount) || amount <= 0)
 		return
 	if (src.cant_emag)
@@ -446,25 +436,16 @@
 
 	if (src.health <= 0)
 		break_me_complitely()
-	else
-		if(prob(30))
-			elecflash(src,power=2)
-
-		if (user && src.health <= health_max * 0.55 && istype(src, /obj/machinery/door/airlock) )
-			var/obj/machinery/door/airlock/A = src
-			A.shock(user, 3)
-			elecflash(src,power=2)
-
-		if (prob(2) && src.health <= health_max * 0.35 && istype(src, /obj/machinery/door/airlock) )
-			SPAWN_DBG(0)
-				src.open()
+		return TRUE
+	if(!chopping && prob(20 + amount * 0.2))
+		elecflash(src,power=2)
 
 
 /obj/machinery/door/bullet_act(var/obj/projectile/P)
-	var/damage = 0
-	if (!P || !istype(P.proj_data,/datum/projectile/))
+	if (!P || !istype(P.proj_data,/datum/projectile/) || src.cant_emag)
 		return
-	damage = round((P.power*P.proj_data.ks_ratio), 1.0)
+	// electric rounds still damage our electric doors a bit
+	var/damage = round((P.power*P.proj_data.ks_ratio * 0.75 + P.power * 0.25), 1.0)
 	if (damage < 1)
 		return
 
@@ -475,6 +456,8 @@
 			take_damage(round(damage * 1.5))
 		if(D_PIERCING)
 			take_damage(damage * 2)
+		if(D_SLASHING)
+			take_damage(damage)
 		if(D_ENERGY)
 			take_damage(damage)
 		if(D_BURNING)

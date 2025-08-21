@@ -66,13 +66,6 @@
 /obj/machinery/light/small/floor,
 /turf/floor/black,
 /area/shuttle/escape/centcom/donut2)
-"gI" = (
-/turf/wall{
-	dir = 1;
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
 "gX" = (
 /turf/floor/black{
 	icon_state = "cairngorm6"
@@ -292,7 +285,7 @@
 /area/shuttle/escape/centcom/donut2)
 "Gd" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "Go" = (
 /obj/stool/chair/comfy/shuttle/red{
@@ -321,17 +314,14 @@
 	dir = 4;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "If" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "Io" = (
-/turf/wall{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
+/turf/wall/auto,
+/area/centcom/outpost/docks)
 "JS" = (
 /obj/machinery/computer/shuttle/embedded/west,
 /obj/stool/chair/comfy/shuttle/pilot{
@@ -371,8 +361,8 @@
 	},
 /area/shuttle/escape/centcom/donut2)
 "Od" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "Oi" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 8
@@ -451,10 +441,10 @@
 /turf/floor/stairs{
 	dir = 1
 	},
-/area/centcom)
+/area/centcom/outpost/docks)
 "YA" = (
 /turf/floor/stairs,
-/area/centcom)
+/area/centcom/outpost/docks)
 
 (1,1,1) = {"
 Od
@@ -545,7 +535,7 @@ br
 fV
 He
 Gb
-gI
+Io
 "}
 (8,1,1) = {"
 YA
@@ -571,7 +561,7 @@ wm
 HA
 br
 Gb
-gI
+Io
 "}
 (10,1,1) = {"
 Od
@@ -610,7 +600,7 @@ xV
 if
 br
 Gb
-gI
+Io
 "}
 (13,1,1) = {"
 YA
@@ -636,7 +626,7 @@ br
 pv
 dv
 Gb
-gI
+Io
 "}
 (15,1,1) = {"
 NM

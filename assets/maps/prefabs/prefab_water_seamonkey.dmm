@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "ab" = (
 /turf/variableTurf/clear,
@@ -39,15 +39,15 @@
 /area/prefab/sea_monkey_hideout)
 "ai" = (
 /obj/decal/poster/wallsign/hazard_danger,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "aj" = (
 /obj/decal/poster/wallsign/biohazard,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "ak" = (
 /obj/decal/poster/wallsign/hazard_caution,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "al" = (
 /obj/item/reagent_containers/food/snacks/plant/banana,
@@ -85,7 +85,6 @@
 /obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
-/obj/item/ammo/bullets/a38/stun,
 /turf/floor/black,
 /area/prefab/sea_monkey_hideout)
 "as" = (
@@ -200,23 +199,20 @@
 /area/prefab/sea_monkey_hideout)
 "aL" = (
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /obj/decal/poster/wallsign/hazard_danger,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "aM" = (
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /obj/decal/poster/wallsign/hazard_caution,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "aN" = (
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /obj/table/auto,
@@ -224,7 +220,6 @@
 /area/prefab/sea_monkey_hideout)
 "aO" = (
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /obj/table/auto,
@@ -232,10 +227,9 @@
 /area/prefab/sea_monkey_hideout)
 "aP" = (
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "aQ" = (
 /obj/machinery/disposal/sci,
@@ -255,7 +249,6 @@
 /area/prefab/sea_monkey_hideout)
 "aT" = (
 /obj/stool/chair/office{
-	icon_state = "office_chair";
 	dir = 1
 	},
 /turf/floor/white,
@@ -291,7 +284,6 @@
 /area/prefab/sea_monkey_hideout)
 "ba" = (
 /obj/decal/fakeobjects/palmtree{
-	icon_state = "palm";
 	dir = 1
 	},
 /turf/floor/grass,
@@ -363,7 +355,7 @@
 /area/prefab/sea_monkey_hideout)
 "bo" = (
 /obj/decal/poster/wallsign/poster_rand,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "bp" = (
 /obj/machinery/door/airlock/pyro,
@@ -378,7 +370,6 @@
 "br" = (
 /obj/machinery/light/fluorescent/warm/very,
 /obj/decal/fakeobjects/palmtree{
-	icon_state = "palm";
 	dir = 1
 	},
 /turf/floor/grass,
@@ -427,7 +418,6 @@
 /area/prefab/sea_monkey_hideout)
 "bA" = (
 /obj/machinery/computer/security{
-	icon_state = "security";
 	dir = 8
 	},
 /turf/floor/black/grime,
@@ -492,21 +482,18 @@
 	name = "meat of questionable origin"
 	},
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 8
 	},
 /turf/floor/black/grime,
 /area/prefab/sea_monkey_hideout)
 "bK" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 8
 	},
 /turf/floor/plating/random,
 /area/prefab/sea_monkey_hideout)
 "bL" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 1
 	},
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
@@ -529,7 +516,6 @@
 "bP" = (
 /obj/item/bananapeel,
 /obj/decal/fakeobjects/palmtree{
-	icon_state = "palm";
 	dir = 1
 	},
 /turf/floor/grass,
@@ -586,7 +572,6 @@
 /area/prefab/sea_monkey_hideout)
 "bW" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 1
 	},
 /turf/floor/black/grime,
@@ -692,8 +677,8 @@
 /area/prefab/sea_monkey_hideout)
 "cp" = (
 /turf/floor/stairs{
-	icon_state = "Stairs_wide";
-	dir = 4
+	dir = 4;
+	icon_state = "Stairs_wide"
 	},
 /area/prefab/sea_monkey_hideout)
 "cq" = (
@@ -716,14 +701,12 @@
 /obj/item/reagent_containers/food/snacks/ingredient/flour,
 /obj/item/reagent_containers/food/snacks/ingredient/flour,
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/floor/plating/random,
 /area/prefab/sea_monkey_hideout)
 "cu" = (
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/floor/plating/random,
@@ -732,18 +715,15 @@
 /obj/item/parts/human_parts/arm/left,
 /obj/item/kitchen/utensil/knife,
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/floor/plating/random,
 /area/prefab/sea_monkey_hideout)
 "cw" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 1
 	},
 /obj/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/floor/plating/random,
@@ -801,15 +781,14 @@
 /area/prefab/sea_monkey_hideout)
 "cC" = (
 /obj/shrub{
-	icon_state = "shrub";
 	dir = 4
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
 "cD" = (
 /turf/floor/stairs{
-	icon_state = "stairs_middle";
-	dir = 4
+	dir = 4;
+	icon_state = "stairs_middle"
 	},
 /area/prefab/sea_monkey_hideout)
 "cE" = (
@@ -847,7 +826,6 @@
 /area/prefab/sea_monkey_hideout)
 "cL" = (
 /obj/shrub{
-	icon_state = "shrub";
 	dir = 8
 	},
 /turf/floor/grass,
@@ -878,7 +856,6 @@
 /area/prefab/sea_monkey_hideout)
 "cQ" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 10
 	},
 /turf/floor/black/grime,
@@ -927,17 +904,15 @@
 /area/prefab/sea_monkey_hideout)
 "cX" = (
 /obj/pool/perspective{
-	tag = "icon-pool (NORTHWEST)";
-	icon_state = "pool";
-	dir = 9
+	dir = 9;
+	tag = "icon-pool (NORTHWEST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
 "cY" = (
 /obj/pool/perspective{
-	tag = "icon-pool (NORTH)";
-	icon_state = "pool";
-	dir = 1
+	dir = 1;
+	tag = "icon-pool (NORTH)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
@@ -945,7 +920,6 @@
 /obj/pool/perspective{
 	density = 0;
 	dir = 1;
-	icon_state = "pool";
 	tag = "icon-pool (NORTH)"
 	},
 /obj/channel{
@@ -956,21 +930,19 @@
 /area/prefab/sea_monkey_hideout)
 "da" = (
 /obj/pool/perspective{
-	tag = "icon-pool (NORTHEAST)";
-	icon_state = "pool";
-	dir = 5
+	dir = 5;
+	tag = "icon-pool (NORTHEAST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
 "db" = (
 /obj/disposalpipe/segment,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_monkey_hideout)
 "dc" = (
 /obj/pool/perspective{
-	tag = "icon-pool (WEST)";
-	icon_state = "pool";
-	dir = 8
+	dir = 8;
+	tag = "icon-pool (WEST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
@@ -983,9 +955,8 @@
 /area/prefab/sea_monkey_hideout)
 "df" = (
 /obj/pool/perspective{
-	tag = "icon-pool (EAST)";
-	icon_state = "pool";
-	dir = 4
+	dir = 4;
+	tag = "icon-pool (EAST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
@@ -994,15 +965,14 @@
 	name = "seamonkeyspawn_gang_gun"
 	},
 /turf/floor/stairs{
-	icon_state = "stairs_middle";
-	dir = 4
+	dir = 4;
+	icon_state = "stairs_middle"
 	},
 /area/prefab/sea_monkey_hideout)
 "dh" = (
 /obj/pool/perspective{
-	tag = "icon-pool (WEST)";
-	icon_state = "pool";
-	dir = 8
+	dir = 8;
+	tag = "icon-pool (WEST)"
 	},
 /obj/decal/fakeobjects/palmtree,
 /turf/floor/grass,
@@ -1023,9 +993,8 @@
 /area/prefab/sea_monkey_hideout)
 "dl" = (
 /obj/pool/perspective{
-	tag = "icon-pool (EAST)";
-	icon_state = "pool";
-	dir = 4
+	dir = 4;
+	tag = "icon-pool (EAST)"
 	},
 /obj/pool_springboard,
 /turf/floor/grass,
@@ -1047,9 +1016,8 @@
 "dp" = (
 /obj/pool_springboard,
 /obj/pool/perspective{
-	tag = "icon-pool (EAST)";
-	icon_state = "pool";
-	dir = 4
+	dir = 4;
+	tag = "icon-pool (EAST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
@@ -1070,16 +1038,14 @@
 /area/prefab/sea_monkey_hideout)
 "dt" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 1
 	},
 /turf/floor,
 /area/prefab/sea_monkey_hideout)
 "du" = (
 /obj/pool/perspective{
-	tag = "icon-pool (SOUTHWEST)";
-	icon_state = "pool";
-	dir = 10
+	dir = 10;
+	tag = "icon-pool (SOUTHWEST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
@@ -1089,15 +1055,13 @@
 /area/prefab/sea_monkey_hideout)
 "dw" = (
 /obj/pool/perspective{
-	tag = "icon-pool (SOUTHEAST)";
-	icon_state = "pool";
-	dir = 6
+	dir = 6;
+	tag = "icon-pool (SOUTHEAST)"
 	},
 /turf/floor/grass,
 /area/prefab/sea_monkey_hideout)
 "dx" = (
 /obj/stool/chair{
-	icon_state = "chair";
 	dir = 8
 	},
 /obj/storage/crate,
@@ -1130,7 +1094,6 @@
 /area/prefab/sea_monkey_hideout)
 "dC" = (
 /obj/shrub{
-	icon_state = "shrub";
 	dir = 8
 	},
 /obj/item/football,

@@ -1,12 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "b" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "d" = (
 /obj/indestructible/shuttle_corner{
@@ -24,8 +25,8 @@
 /turf/floor/setpieces/martian,
 /area/shuttle/escape/centcom/cogmap)
 "h" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "i" = (
 /obj/machinery/door/airlock/pyro/medical{
 	name = "First-Aid Station"
@@ -37,7 +38,7 @@
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "k" = (
 /obj/machinery/shuttle/engine/heater{
@@ -53,6 +54,12 @@
 	},
 /turf/floor/setpieces/martian,
 /area/shuttle/escape/centcom/cogmap)
+"o" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "p" = (
 /turf/wall/setpieces/martian{
 	dir = 6;
@@ -64,7 +71,7 @@
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "s" = (
 /obj/stool/chair/comfy/shuttle,
@@ -101,7 +108,7 @@
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "B" = (
 /obj/stool/chair/comfy/shuttle,
@@ -129,14 +136,21 @@
 /area/shuttle/escape/centcom/cogmap)
 "H" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
+"I" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "J" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "K" = (
 /obj/machinery/sleeper/compact,
 /turf/floor/setpieces/martian,
@@ -211,8 +225,8 @@ Y
 R
 J
 a
-a
-a
+o
+o
 "}
 (2,1,1) = {"
 A
@@ -362,7 +376,7 @@ N
 Y
 Z
 J
-a
-a
-a
+I
+o
+o
 "}

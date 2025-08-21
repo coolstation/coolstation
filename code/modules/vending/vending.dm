@@ -128,6 +128,9 @@
 	var/print_receipts = TRUE
 	var/print_receipts_long = FALSE
 	var/receipt_count = 20 // TODO: Printer rolls for receipts?
+	var/current_receipt // Where we're building the HTML receipt for the current transaction
+	var/current_receipt_subtotal // how many bux is this current receipt
+	var/receipt_serv_chg_total   // How much has been racked up in service charges?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
 	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
@@ -176,24 +179,41 @@
 
 	var/lastvend = 0
 
-	proc/printReceipt(var/datum/data/record/accountFrom, item, amount, serv_chg_amount)
+	proc/newReceipt()
+		// Reset everythin'
 		if(!print_receipts)
 			return
 
-		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
-		receiptText += "[item]: $[amount]<br>"
-		if(serv_chg_amount > 0 || amount != 0)
-			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
-		else
-			receiptText += "<b>-Service Charge Waived-</b><br>"
-			serv_chg_amount = 0
+		src.current_receipt = "<html><head><style>body{background-color: #B3AFA9; color: #3B3632; font-family: monospace;}</style></head><body><center><b>[src.name] Receipt</b><br>"
+		src.current_receipt += "<i>Please keep this receipt for departmental records</i><br></center><hr><br>"
+		src.current_receipt_subtotal = 0
+		src.receipt_serv_chg_total   = 0
 
-		receiptText += "<hr>"
+	proc/addToReceipt(productName, productCost, serviceCharge)
+		if(!print_receipts)
+			return
 
-		if(!istype(accountFrom))
-			receiptText += "<b>Total</b>: $[amount + serv_chg_amount]"
+		src.current_receipt += "[productName]: $[productCost]<br>"
+		src.current_receipt_subtotal += productCost
+		src.receipt_serv_chg_total += serviceCharge
+
+	proc/printReceipt()
+		// Transactions done, dump the paperwork
+		if(!print_receipts || receipt_count <= 0 || current_receipt_subtotal <= 0)
+			return
+
+		src.current_receipt += "<hr><br>"
+
+		if(receipt_serv_chg_total > 0)
+			src.current_receipt += "<b>Service Charge</b>: $[receipt_serv_chg_total]<br>"
 		else
-			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
+			current_receipt += "<center><b>-Service Charge Waived-</b></center><br>"
+			receipt_serv_chg_total = 0
+
+
+		current_receipt += "<b>Total</b>: $[current_receipt_subtotal + receipt_serv_chg_total]<br><hr>"
+
+		current_receipt += "<b><i>Thank-you for your [pick("trade", "custom", "money")].</i></b></body></html>"
 
 		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 
@@ -202,13 +222,21 @@
 			P.set_loc(src.loc)
 			if(print_receipts_long)
 				P.icon_state = "thermal_paper_med"
-				P.desc = "Holy crap, how long does a receipt need to be?!"
+				P.desc = pick("Holy crap, how long does a receipt need to be?!",
+						"Ooh, nice, this one has a coupon!",
+						"...Did this really need to be this big?",
+						"an excessive thermal-paper receipt")
 			else
 				P.icon_state = "thermal_paper"
+				P.desc = "a flimsy thermal-paper receipt"
 
-			P.name = "'[item]' receipt"
-			P.info = receiptText
+			P.name = "[src.name] receipt"
+			P.info = current_receipt
+			current_receipt = ""
+			current_receipt_subtotal = 0
+			receipt_serv_chg_total = 0
 
+		// Todo: When we have receipt printer re-stocking
 		// receipt_count--
 
 
@@ -218,8 +246,6 @@
 		var/datum/data/vending_product/R = throw_item()
 		if (!R) //pizza machine = special
 			return
-		var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost * serv_chg_pct)
-		printReceipt(0, R.product_name, R.product_cost, service_charge)
 		if(R?.logged_on_vend)
 			logTheThing("station", usr, null, "randomly vended a logged product ([R.product_name]) using mechcomp from [src] at [log_loc(src)].")
 
@@ -333,8 +359,10 @@
 		sleep(1.5 SECONDS)
 		if(prob(50)) // Additionally, fuck you. *smack*
 			var/datum/data/vending_product/R = throw_item()
+			newReceipt()
 			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
-			printReceipt(0, R.product_name, R.product_cost, service_charge)
+			addToReceipt(R.product_name, R.product_cost, service_charge)
+			printReceipt()
 
 
 	proc/get_output_location()
@@ -465,6 +493,8 @@
 		src.paying_for = null
 
 	if (src.pay && src.acceptcard)
+		if(src.min_serv_chg)
+			html_parts += "<i>This machine charges a minimum $[src.min_serv_chg] service charge</i><br>"
 		if (src.paying_for && !src.scan)
 			html_parts += "<B>You have selected the following item:</b><br>"
 			html_parts += "&emsp;<b>[src.paying_for.product_name]</b><br>"
@@ -553,6 +583,8 @@
 		return
 	if (istype(W, /obj/item/spacecash))
 		if (src.pay)
+			if(!length(src.current_receipt))
+				src.newReceipt()
 			src.credit += W.amount
 			W.amount = 0
 			boutput(user, "<span class='notice'>You insert [W].</span>")
@@ -569,6 +601,7 @@
 	if (istype(W, /obj/item/card/id))
 		if (src.acceptcard)
 			src.scan_card(W, user)
+			src.newReceipt()
 			src.generate_HTML(1)
 			return
 			/*var/amount = input(user, "How much money would you like to deposit?", "Deposit", 0) as null|num
@@ -733,8 +766,10 @@
 				return
 
 			var/datum/data/record/account = null
+			var/service_charge
 			if (src.pay)
 				if (src.acceptcard && src.scan)
+					service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
 					account = FindBankAccountById(src.scan.registered_id)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
@@ -743,7 +778,7 @@
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
-					if (account.fields["current_money"] < R.product_cost)
+					if (account.fields["current_money"] < (R.product_cost+service_charge))
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
 						account.fields["current_money"] -= min_serv_chg
 						servicechgaccount.fields["current_money"] += min_serv_chg
@@ -753,6 +788,7 @@
 						src.generate_HTML(1)
 						return
 				else
+					service_charge = 0 // No service charge for using cash
 					if (src.credit < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient Credit.</span>")
 						flick(src.icon_deny,src)
@@ -773,7 +809,6 @@
 			src.prevend_effect()
 			if(!src.freestuff) R.product_amount--
 
-			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
 			if (src.pay)
 				if (src.acceptcard && account)
 					account.fields["current_money"] -= R.product_cost
@@ -781,7 +816,6 @@
 					servicechgaccount.fields["current_money"] += service_charge
 				else
 					src.credit -= R.product_cost
-					service_charge = 0
 				if (!isplayer)
 					wagesystem.shipping_budget += round(R.product_cost * profit) // cogwerks - maybe money shouldn't just vanish into the aether idk
 				else
@@ -827,8 +861,10 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				if(account || print_receipts_long)//trying out no receipts for cash transactions - warc
-					printReceipt(account, R.product_name, R.product_cost, service_charge)
+				if(print_receipts)
+					addToReceipt(R.product_name, R.product_cost, service_charge)
+					if(!(src.acceptcard && account) && (credit < 1))
+						printReceipt()
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -842,6 +878,7 @@
 			if(player_list)
 				logTheThing("station", usr, null, "vended a player product ([R.product_name]) from [src] at [log_loc(src)].")
 		if (href_list["logout"])
+			src.printReceipt()
 			src.scan = null
 			src.generate_HTML(1)
 
@@ -850,15 +887,19 @@
 			src.generate_HTML(1)
 
 		if (href_list["return_credits"])
-			SPAWN_DBG(src.vend_delay)
-				if (src.credit > 0)
-					var/obj/item/spacecash/returned = new()
-					returned.setup(src.get_output_location(), src.credit)
+			if(src.vend_ready)
+				src.vend_ready = 0
+				SPAWN_DBG(src.vend_delay)
+					src.vend_ready = 1
+					src.printReceipt()
+					if (src.credit > 0)
+						var/obj/item/spacecash/returned = new()
+						returned.setup(src.get_output_location(), src.credit)
 
-					usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
-					src.credit = 0
-					boutput(usr, "<span class='notice'>You receive [returned].</span>")
-					src.generate_HTML(1)
+						usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
+						src.credit = 0
+						boutput(usr, "<span class='notice'>You receive [returned].</span>")
+						src.generate_HTML(1)
 
 		if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
@@ -1262,13 +1303,18 @@
 	name = "coffee machine"
 	desc = "A Robust Coffee vending machine."
 	pay = 1
-	vend_delay = 15
+	vend_delay = 25
 	icon_state = "coffee"
-	icon_vend = "coffee-vend"
+	icon_vend = "coffee-vend" //TODO: resprite vend state (along with broken/tipped and tipped glow, other vending machines also require this)
 	icon_panel = "coffee-panel"
-	light_r =1
+	light_r = 1
 	light_g = 0.88
 	light_b = 0.3
+
+	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
+	prevend_effect()
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		return
 
 	create_products()
 		..()
@@ -1550,7 +1596,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
 		product_list += new/datum/data/vending_product(/obj/item/device/flash/turbo, rand(1, 6), hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38, rand(1, 2), hidden=1) // Obtaining a backpack full of lethal ammo required no effort whatsoever, hence why nobody ordered AP speedloaders from the Syndicate (Convair880).
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, rand(1, 2), hidden=1)
 
 /obj/machinery/vending/security_ammo //ass jam time yes
 	name = "AmmoTech"
@@ -1569,11 +1615,11 @@
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 3)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer/three, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts/anti_mutant, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/juicer/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/tranq/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/anti_mutant/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // not sure why this is in here - mylie
 
 /obj/machinery/vending/cola
 	name = "soda machine"
@@ -1948,6 +1994,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
@@ -1992,6 +2039,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
@@ -2076,10 +2124,10 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
 
 	diner
 		name = "Fucile Fusilli"
@@ -2099,7 +2147,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/spicy, 5, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/accurate, 5, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/wizard, 1, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
 
 
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), cost = 15)
@@ -2154,8 +2202,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/juicer/ribbed, 4, cost = PAY_UNTRAINED*0.7)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 3, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, cost = PAY_UNTRAINED*0.9)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/black, 4, cost = PAY_UNTRAINED*0.7)
@@ -2165,8 +2213,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/ten, 10, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer, 10, cost = PAY_UNTRAINED*3)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber, 10, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/juicer, 10, cost = PAY_UNTRAINED*3)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber, 10, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst, 10, cost = PAY_UNTRAINED*3)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, cost = PAY_UNTRAINED*1.1)
 
@@ -3058,7 +3106,7 @@
 
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/hobo_wine, 2, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff, 1, hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/abg, 2, cost=PAY_TRADESMAN, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/five, 3, cost=PAY_TRADESMAN, hidden=1)
 
 /obj/machinery/vending/chem
 	name = "ChemDepot"

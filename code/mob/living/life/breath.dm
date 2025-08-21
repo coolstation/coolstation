@@ -1,3 +1,4 @@
+#define CO2_LEVEL_DECREASE 2
 
 /datum/lifeprocess/breath
 	var/breathtimer = 0
@@ -81,12 +82,18 @@
 
 				var/depth_to_breathe_from = length(depth_levels)
 				if (owner.lying)
-					depth_to_breathe_from = depth_levels.len-1
+					depth_to_breathe_from = depth_levels.len-2
 
 				if (F.amt >= depth_levels[depth_to_breathe_from])
 					underwater = F
 					if (owner.is_submerged != 4)
+						var/image/submerged = owner.submerged_images[4]
+						submerged.color = F.finalcolor
+						submerged.alpha = F.finalalpha
 						owner.show_submerged_image(4)
+				// if lying facedown, always drown. funy.
+				else if(owner.lying && (6 - 2 * owner.rest_mult) & owner.dir)
+					underwater = F
 
 			else if (T.active_airborne_liquid)
 				if (!issmokeimmune(owner))
@@ -236,7 +243,7 @@
 		var/has_cyberlungs = (human_owner?.organHolder && (human_owner.organHolder.left_lung && human_owner.organHolder.right_lung) && (human_owner.organHolder.left_lung.robotic && human_owner.organHolder.right_lung.robotic)) //gotta prevent null pointers...
 		var/safe_oxygen_min = 17 // Minimum safe partial pressure of O2, in kPa
 		//var/safe_oxygen_max = 140 // Maximum safe partial pressure of O2, in kPa (Not used for now)
-		var/safe_co2_max = 9 // Yes it's an arbitrary value who cares?
+		var/safe_co2_max = 3 // this is very low, but the low effects are not too deadly
 		var/safe_toxins_max = 0.4
 		var/SA_para_min = 1
 		var/SA_sleep_min = 5
@@ -250,14 +257,14 @@
 		var/O2_pp = (breath.oxygen/TOTAL_MOLES(breath))*breath_pressure
 		// Same, but for the toxins
 		var/Toxins_pp = (breath.toxins/TOTAL_MOLES(breath))*breath_pressure
-		// And CO2, lets say a PP of more than 10 will be bad (It's a little less really, but eh, being passed out all round aint no fun)
+		// And CO2, lets say a PP of more than 7 will start co2 toxicity
 		var/CO2_pp = (breath.carbon_dioxide/TOTAL_MOLES(breath))*breath_pressure
 
 
 		//change safe gas levels for cyberlungs
 		if (has_cyberlungs)
 			safe_oxygen_min = 9
-			safe_co2_max = 18
+			safe_co2_max = 9
 			safe_toxins_max = 5		//making it a lot higher than regular, because even doubling the regular value is pitifully low. This is still reasonably low, but it might be noticable
 
 		if (O2_pp < safe_oxygen_min) 			// Too little oxygen
@@ -269,6 +276,7 @@
 			if (O2_pp > 0)
 				var/ratio = floor(safe_oxygen_min/(O2_pp + 0.1))
 				owner.take_oxygen_deprivation(min(5*ratio, 5)) // Don't fuck them up too fast (space only does 7 after all!)
+				owner.co2level = max(0, owner.co2level - CO2_LEVEL_DECREASE * O2_pp / safe_oxygen_min)
 				oxygen_used = breath.oxygen*ratio/6
 			else
 				owner.take_oxygen_deprivation(3 * mult)
@@ -279,23 +287,36 @@
 
 			owner.take_oxygen_deprivation(-6 * mult)
 			oxygen_used = breath.oxygen/6
+			owner.co2level = max(0, owner.co2level - CO2_LEVEL_DECREASE)
 			update_oxy(0)
 
 		breath.oxygen -= oxygen_used
 		breath.carbon_dioxide += oxygen_used
 
 		if (CO2_pp > safe_co2_max)
-			if (!owner.co2overloadtime) // If it's the first breath with too much CO2 in it, lets start a counter, then have them pass out after 12s or so.
-				owner.co2overloadtime = world.time
-			else if (world.time - owner.co2overloadtime > 120)
-				owner.changeStatus("paralysis", 4 SECONDS * mult)
-				owner.take_oxygen_deprivation(1.8 * mult) // Lets hurt em a little, let them know we mean business
-				if (world.time - owner.co2overloadtime > 300) // They've been in here 30s now, lets start to kill them for their own good!
-					owner.take_oxygen_deprivation(7 * mult)
-			if (prob(percentmult(20, mult))) // Lets give them some chance to know somethings not right though I guess.
-				owner.emote("cough")
-		else
-			owner.co2overloadtime = 0
+			var/co2overload = floor(CO2_pp - safe_co2_max)
+			var/scaledoverload = min(co2overload, 40) / 10
+			owner.co2level = clamp(owner.co2level + min(co2overload, 20), 0, 100) // 20% too much co2 is as fast as 100% co2
+			if(owner.co2level > 50 && probmult(owner.co2level * 0.25 + co2overload))
+				if(prob(co2overload))
+					owner.emote("cough")
+				if(human_owner?.organHolder && prob(20))
+					if(prob(52))
+						human_owner.organHolder.damage_organ(0, 0, scaledoverload, "left_lung")
+					else
+						human_owner.organHolder.damage_organ(0, 0, scaledoverload, "right_lung")
+				if(co2overload >= 6)
+					if(prob(20 + co2overload * 0.25))
+						owner.changeStatus("slowed", rand(12, 30) DECI SECONDS)
+					else if(prob(8 + scaledoverload))
+						owner.change_misstep_chance(5)
+					else if(prob(5 + scaledoverload))
+						owner.change_eye_blurry(3, 10)
+					if(co2overload >= 8 && owner.co2level > 90)
+						owner.take_oxygen_deprivation(scaledoverload * 2 * mult)
+						if(prob(20 + co2overload * 0.2))
+							owner.changeStatus("paralysis", 3 SECONDS * mult)
+
 
 		if (Toxins_pp > safe_toxins_max) // Too much toxins
 			var/ratio = breath.toxins/safe_toxins_max
@@ -369,3 +390,4 @@
 
 		return 1
 
+#undef CO2_LEVEL_DECREASE

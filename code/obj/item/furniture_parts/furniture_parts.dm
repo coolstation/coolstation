@@ -6,6 +6,7 @@ RACK PARTS
 */
 
 /* -------------------- Furniture Parts-------------------- */
+ABSTRACT_TYPE(/obj/item/furniture_parts)
 /obj/item/furniture_parts
 	name = "furniture parts"
 	desc = "A collection of parts that can be used to make some kind of furniture."
@@ -85,7 +86,13 @@ RACK PARTS
 			return ..()
 
 	attack_self(mob/user as mob)
-		actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration), user)
+		actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, get_turf(user)), user)
+
+
+	afterattack(atom/target, mob/user)
+		if (!isturf(target) || target.density)
+			return ..()
+		actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), user)
 
 	disposing()
 		if (src.contained_storage && length(src.contained_storage.contents))
@@ -97,22 +104,31 @@ RACK PARTS
 			qdel(O)
 		..()
 
+	MouseDrop(atom/target, src_location, over_location, over_control, params)
+		. = ..()
+		if (HAS_MOB_PROPERTY(usr, PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
+			actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), usr)
+
+
 /* -------------------- Furniture Actions -------------------- */
 /datum/action/bar/icon/furniture_build
 	id = "furniture_build"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	duration = 50
+	duration = 5 SECONDS
+	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
-	var/obj/item/furniture_parts/fparts
-	var/fname = "piece of furniture"
+	var/obj/item/furniture_parts/parts //! The parts we're building from
+	var/furniture_name = "piece of furniture" //! Displayed name for the thing we're building (for chat)
+	var/target_turf = null //! The turf we're trying to build on
 
-	New(var/obj/item/furniture_parts/fp, var/fn, var/duration_i)
+	New(var/obj/item/furniture_parts/parts, var/name, var/duration, var/target_turf)
 		..()
-		fparts = fp
-		fname = fn
-		if (duration_i)
-			duration = duration_i
+		src.parts = parts
+		src.furniture_name = name
+		src.target_turf = target_turf
+		if (duration)
+			src.duration = duration
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			if (H.traitHolder.hasTrait("carpenter") || H.traitHolder.hasTrait("training_engineer"))
@@ -120,7 +136,7 @@ RACK PARTS
 
 	onUpdate()
 		..()
-		if (fparts == null || owner == null || get_dist(owner, fparts) > 1)
+		if (parts == null || owner == null || BOUNDS_DIST(owner, parts) > 0 || BOUNDS_DIST(owner, target_turf) > 0)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		var/mob/source = owner
@@ -129,19 +145,34 @@ RACK PARTS
 			if(istype(source.equipped(), /obj/item/magtractor))
 				// check to see it's holding the right thing
 				var/obj/item/magtractor/M = source.equipped()
-				if(fparts != M.holding)
+				if(parts != M.holding)
 					interrupt(INTERRUPT_ALWAYS)
-			else if (fparts != source.equipped())
+			else if (parts != source.equipped())
 				interrupt(INTERRUPT_ALWAYS)
 
 	onStart()
 		..()
-		owner.visible_message("<span class='notice'>[owner] begins constructing \an [fname]!</span>")
+		var/mob/living/blocker
+		for (var/mob/living/L in target_turf)
+			if (!(L.flags & TABLEPASS))
+				blocker = L
+				break
+
+		if (blocker)
+			boutput(owner, "<span class='alert'>You try to build \a [furniture_name], but [blocker] is in the way!</span>")
+			interrupt(INTERRUPT_ALWAYS)
+		else
+			owner.visible_message("<span class='notice'>[owner] begins constructing \a [furniture_name]!</span>")
+
+	onResume(datum/action/bar/icon/furniture_build/attempted) //guaranteed since we only resume with the same type
+		..()
+		if (attempted.target_turf != src.target_turf)
+			interrupt(INTERRUPT_ALWAYS)
 
 	onEnd()
 		..()
-		owner.visible_message("<span class='notice'>[owner] constructs \an [fname]!</span>")
-		fparts.construct(owner)
+		owner.visible_message("<span class='notice'>[owner] constructs \a [furniture_name]!</span>")
+		parts.construct(owner, target_turf)
 
 /datum/action/bar/icon/furniture_deconstruct
 	id = "furniture_deconstruct"

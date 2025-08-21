@@ -275,6 +275,35 @@ ABSTRACT_TYPE(/obj/item/mine) //To be safe I guess
 		explosion(src, src.loc, 0, 1, 2, 3)
 		return
 
+/obj/item/mine/plasmafire
+	name = "incendiary plasma land mine"
+	desc = "An anti-personnel mine equipped with an incendiary plasma payload."
+	icon_state = "mine_incendiary" //needs its own sprite
+	//both in moles
+	var/payload_plasma = 25
+	var/payload_farts = 10
+
+	armed
+		armed = 1
+
+	custom_stuff(var/atom/M)
+		if (!src || !istype(src))
+			return
+
+		if (!issimulatedturf(src.loc))
+			return
+
+		var/datum/gas_mixture/plasma = new()
+		plasma.temperature = T20C + 15
+		plasma.toxins = payload_plasma
+		plasma.farts = payload_farts
+
+		src.loc.assume_air(plasma)
+
+		fireflash_sm(get_turf(src), 1, 3000, 500)
+		playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)
+		return
+
 /obj/item/mine/gibs
 	name = "pustule"
 	desc = "Some kind of weird little meat balloon."

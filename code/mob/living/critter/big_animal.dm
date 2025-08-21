@@ -17,14 +17,12 @@
 	butcherable = 1
 	name_the_meat = 1
 	max_skins = 1
+	health_brute = 20
+	health_brute_vuln = 0.5
+	health_burn = 20
+	health_burn_vuln = 0.5
 	add_abilities = list(/datum/targetable/critter/slam,
 						/datum/targetable/critter/bite/big)
-
-	setup_healths()
-		add_hh_flesh(20, 0.5)
-		add_hh_flesh_burn(20, 0.5)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/brain)
 
 	setup_hands()
 		..()

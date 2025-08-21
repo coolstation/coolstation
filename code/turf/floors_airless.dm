@@ -836,7 +836,13 @@
 	icon_state = "dark_stairs"
 
 /turf/floor/airless/stairs/dark/wide
-	icon_state = "dark_stairs2"
+	icon_state = "dark_stairs_wide"
+
+/turf/floor/airless/stairs/dark/wide2
+	icon_state = "dark_stairs_wide2"
+
+/turf/floor/airless/stairs/dark/middle
+	icon_state = "dark_stairs_middle"
 
 /////////////////////////////////////////
 

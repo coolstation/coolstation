@@ -9,6 +9,8 @@
 	pointCost = 0
 	when_stunned = 2
 	not_when_handcuffed = 0
+	attack_mobs = TRUE // fuck it
+	turf_check = FALSE
 
 	proc/remove_stuns(var/message_type = 1)
 		if (!holder)

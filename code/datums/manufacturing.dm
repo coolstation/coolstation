@@ -224,6 +224,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
+/*
 /datum/manufacture/stunrounds
 	name = ".38 Stunner Rounds"
 	item_paths = list("MET-1","CON-1", "CRY-1")
@@ -250,15 +251,17 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 30 SECONDS
 	create = 1
 	category = "Resource"
+*/
 
-/datum/manufacture/bullet_smoke
-	name = "40mm Smoke Grenade"
+/datum/manufacture/fog_grenade
+	name = "Fog Grenade"
 	item_paths = list("MET-2","CON-1")
 	item_amounts = list(30,25)
-	item_outputs = list(/obj/item/ammo/bullets/smoke)
+	item_outputs = list(/obj/item/chem_grenade/fog)
 	time = 35 SECONDS
 	create = 1
 	category = "Resource"
+
 
 /datum/manufacture/extinguisher
 	name = "Fire Extinguisher"
@@ -3013,17 +3016,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
-/******************** GUNS *******************/
-
-/datum/manufacture/alastor
-	name = "Alastor pattern laser rifle"
-	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
-	item_amounts = list(1,10,20,20)
-	item_outputs = list(/obj/item/gun/energy/alastor)
-	time = 30 SECONDS
-	create = 1
-	category = "Tool"
-
 /************ INTERDICTOR STUFF ************/
 
 /datum/manufacture/interdictor_frame
@@ -3063,6 +3055,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Weapon"
 
+/*
 /datum/manufacture/saa	//
 	name = "Colt SAA"
 	item_paths = list("MET-2")
@@ -3112,7 +3105,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "ammo"
-
 /datum/manufacture/riot_launcher	//
 	name = "Riot Launcher"
 	item_paths = list("MET-1")
@@ -3145,7 +3137,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 10 SECONDS
 	create = 1
 	category = "ammo"
-
 /datum/manufacture/sniper	//
 	name = "Sniper"
 	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
@@ -3194,6 +3185,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "Ammo"
+*/
 /datum/manufacture/plank	//
 	name = "Plank/Barricade"
 	item_paths = list("MET-1")

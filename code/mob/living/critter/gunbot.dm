@@ -16,6 +16,11 @@
 	speechverb_stammer = "states"
 	speechverb_exclaim = "declares"
 	speechverb_ask = "queries"
+	robotic = TRUE
+	health_brute = 60
+	health_brute_vuln = 1
+	health_burn = 60
+	health_burn_vuln = 1
 	metabolizes = 0
 
 	death(var/gibbed)
@@ -74,10 +79,6 @@
 		HH.icon_state = "handn"
 		HH.name = "gunbothand"
 		HH.limb_name = "gunbot hands"
-
-	setup_healths()
-		add_hh_robot(75, 1)
-		add_hh_robot_burn(50, 1)
 
 	get_melee_protection(zone, damage_type)
 		return 6

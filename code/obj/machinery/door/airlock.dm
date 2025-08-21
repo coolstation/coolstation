@@ -569,6 +569,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	health = 500
 	health_max = 500
 	layer = 3.5
+	flags = FPRINT | IS_PERSPECTIVE_FLUID | ALWAYS_SOLID_FLUID
 	object_flags = BOTS_DIRBLOCK | CAN_REPROGRAM_ACCESS | HAS_DIRECTIONAL_BLOCKING
 
 	bumpopen(mob/user as mob)
@@ -1852,6 +1853,20 @@ obj/machinery/door/airlock
 		if (radio_controller)
 			set_frequency(null)
 		..()
+
+/obj/machinery/door/airlock/take_damage(amount, mob/user = null, chopping = FALSE)
+	if (!(..()) && src.health <= health_max * 0.9)
+		if(!chopping && prob(3 + amount * 0.2))
+			src.pulse(rand(1,10))
+		else if(prob(1 + amount * 0.2))
+			src.cut(rand(1,10))
+		if(src.health <= health_max * 0.35)
+			if (user && prob(3))
+				src.shock(user, 3)
+				elecflash(src,power=2)
+			if(prob(floor(amount)))
+				SPAWN_DBG(0)
+					src.open()
 
 /obj/machinery/door/airlock/emp_act()
 	..()

@@ -57,6 +57,9 @@
 		hud.clear_master()
 		hud.mobs -= src
 
+		for (var/datum/targetable/A in src.abilities)
+			src.removeAbilityInstance()
+
 		if (owner)
 			owner.huds -= hud
 			owner = null
@@ -71,7 +74,7 @@
 		.= 0
 		if (points_last != points)
 			points_last = points
-			src.updateText(0, src.x_occupied, src.y_occupied)
+			src.updateText()
 
 	proc/updateCounters()
 		// this is probably dogshit but w/e
@@ -135,7 +138,7 @@
 			x_occupied = pos_x
 			y_occupied = pos_y
 
-			src.updateText(0, x_occupied, y_occupied)
+			src.updateText()
 			src.abilitystat?.update_on_hud(x_occupied,y_occupied)
 			return
 
@@ -148,8 +151,11 @@
 					B.object.updateIcon()
 			return
 
-	proc/updateText(var/called_by_owner = 0)
-		if (composite_owner && !called_by_owner)
+	proc/updateText()
+		if (composite_owner)
+			if (abilitystat)
+				qdel(abilitystat)
+				abilitystat = null
 			composite_owner.updateText()
 			return
 
@@ -517,6 +523,7 @@
 	disposing()
 		if(owner?.hud)
 			owner.hud.remove_object(src)
+		owner = null
 		..()
 
 	proc/get_controlling_mob()
@@ -808,6 +815,7 @@
 		targeted = 0
 		target_anything = 0
 		target_in_inventory = 0
+		attack_mobs = FALSE // if true, ai mobs will use this to attack other mobs
 		last_cast = 0
 		cooldown = 100
 		start_on_cooldown = 0
@@ -822,6 +830,7 @@
 		target_selection_check = 0 // See comment in /atom/movable/screen/ability.
 		dont_lock_holder = 0 // Bypass holder lock when we cast this spell.
 		ignore_holder_lock = 0 // Can we cast this spell when the holder is locked?
+		turf_check = 1 // Are we prohibited from using this ability when our loc is not a turf?
 		restricted_area_check = 0 // Are we prohibited from casting this spell in 1 (all of Z2) or 2 (only the VR)?
 		can_target_ghosts = 0 // Can we target observers if we see them (ectogoggles)?
 		check_range = 1 //Does this check for range at all?
@@ -875,6 +884,7 @@
 				doCooldown()
 			afterCast()
 			holder.updateButtons()
+			return result
 
 		cast(atom/target)
 			if(interrupt_action_bars) actions.interrupt(holder.owner, INTERRUPT_ACT)
@@ -906,6 +916,10 @@
 				return 999
 			if (last_cast > world.time)
 				boutput(holder.owner, "<span class='alert'>That ability is on cooldown for [floor((last_cast - world.time) / 10)] seconds.</span>")
+				src.holder.locked = 0
+				return 999
+			if (src.turf_check && !isturf(holder.owner.loc))
+				boutput(holder.owner, "<span class='alert'>You cannot cast this ability inside \the [holder.owner.loc].</span>")
 				src.holder.locked = 0
 				return 999
 			if (src.restricted_area_check)
@@ -1094,6 +1108,7 @@
 		for (var/datum/abilityHolder/H in holders)
 			if (H.type == holderType)
 				H.composite_owner = 0
+				qdel(H)
 				holders -= H
 		updateButtons()
 
@@ -1155,10 +1170,10 @@
 
 
 		if (src.topBarRendered)
-			src.updateText(0, x_occupied, y_occupied)
+			src.updateText()
 			src.abilitystat?.update_on_hud(x_occupied,y_occupied)
 
-	updateText(var/called_by_owner = 0)
+	updateText()
 		if (!abilitystat)
 			abilitystat = new
 			abilitystat.owner = src

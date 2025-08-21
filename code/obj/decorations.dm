@@ -53,7 +53,7 @@
 	icon = 'icons/effects/96x96.dmi' // changed from worlds.dmi
 	icon_state = "tree" // changed from 0.0
 	anchored = 1
-	layer = EFFECTS_LAYER_UNDER_3
+	layer = EFFECTS_LAYER_UNDER_2
 	pixel_x = -20
 	density = 1
 	opacity = 0 // this causes some of the super ugly lighting issues too
@@ -185,7 +185,7 @@
 	icon_state = "shrub"
 	anchored = 1
 	density = 0
-	layer = EFFECTS_LAYER_UNDER_1
+	layer = EFFECTS_LAYER_UNDER_3
 	flags = FLUID_SUBMERGE
 	text = "<font color=#5c5>s"
 	var/health = 50
@@ -1382,12 +1382,6 @@ obj/decoration/ceilingfan
 		..()
 		BLOCK_SETUP(BLOCK_SOFT)
 
-	attackby(obj/item/W, mob/user, params)
-		if(iswrenchingtool(W))
-			actions.start(new /datum/action/bar/icon/anchor_or_unanchor(src, W, duration=2 SECONDS), user)
-			return
-		. = ..()
-
 	get_desc()
 		if (islist(src.proj_impacts) && length(src.proj_impacts))
 			var/shots_taken = 0
@@ -1545,6 +1539,7 @@ obj/decoration/ceilingfan
 	anchored = 1
 	density = 0
 	mouse_opacity = 0
+	bound_height = 64
 	plane = PLANE_NOSHADOW_BELOW
 	layer = TURF_LAYER - 0.1
 	//Grabs turf color set in gehenna.dm for sand

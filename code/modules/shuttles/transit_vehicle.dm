@@ -132,6 +132,7 @@ var/global/datum/transit_controller/transit_controls
 		vehicle.in_transit = TRUE
 		logTheThing("station", user, null, "began departure for vehicle [vehicle_id] to [stop_id] at [log_loc(usr)]")
 		SPAWN_DBG(0)
+			worldgen_hold = TRUE
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
@@ -146,6 +147,7 @@ var/global/datum/transit_controller/transit_controls
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
 			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
+			initialize_worldgen()
 			vehicle.arriving(stop) //This may sleep, intentionally holding up this code
 			vehicle.current_location = stop
 			current.current_occupant = null
@@ -164,11 +166,13 @@ var/global/datum/transit_controller/transit_controls
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 	var/datum/light/point/emergency_light
+	var/autoset_direction = TRUE
 
 	New()
 		START_TRACKING
 		..()
-		src.calculate_direction()
+		if(src.autoset_direction)
+			src.calculate_direction()
 		src.toggle_lights()
 		src.initialise_component()
 
@@ -281,6 +285,8 @@ var/global/datum/transit_controller/transit_controls
 			TargetZ = target_z,\
 			LandingRange = 0)
 
+/turf/floor/specialroom/elevator_shaft/straight_down/z_five
+	target_z = 5
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator

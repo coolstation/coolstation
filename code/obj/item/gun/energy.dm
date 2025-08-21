@@ -100,7 +100,7 @@
 				playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
 			return 0
 
-
+/*
 /obj/item/gun/energy/heavyion
 	name = "heavy ion blaster"
 	icon_state = "heavyion"
@@ -505,7 +505,7 @@
 		..()
 		update_icon()
 		user.update_inhands()
-
+*/
 ////////////////////////////////////BFG
 /obj/item/gun/energy/bfg
 	name = "BFG 9000"
@@ -514,7 +514,7 @@
 	m_amt = 4000
 	force = 6.0
 	desc = "I think it stands for Banned For Griefing?"
-	cell_type = /obj/item/ammo/power_cell/high_power
+	cell_type = /obj/item/ammo/power_cell/self_charging
 
 	New()
 		set_current_projectile(new/datum/projectile/bfg)
@@ -525,11 +525,11 @@
 		..()
 		return
 
-	shoot(var/target,var/start,var/mob/user)
+	shoot(turf/target, turf/start, mob/user, POX, POY, is_dual_wield, atom/point_blank_target = null)
 		if (canshoot()) // No more attack messages for empty guns (Convair880).
 			playsound(user, "sound/weapons/DSBFG.ogg", 75)
 			sleep(0.9 SECONDS)
-		return ..(target, start, user)
+		return ..(target, start, user, POX, POY, is_dual_wield, point_blank_target)
 
 /obj/item/gun/energy/bfg/vr
 	icon = 'icons/effects/VR.dmi'
@@ -672,7 +672,8 @@
 		projectiles = list(current_projectile)
 		..()
 
-///////////////////////////////////////Modular Blasters
+///////////////////////////////////////Not Modular Blasters
+/*
 /obj/item/gun/energy/blaster_pistol
 	name = "blaster pistol"
 	desc = "A dangerous-looking blaster pistol. It's self-charging by a radioactive power cell."
@@ -682,7 +683,7 @@
 	force = 5.0
 	mats = 0
 	cell_type = /obj/item/ammo/power_cell/self_charging/medium
-
+*/
 
 	/*
 	var/obj/item/gun_parts/emitter/emitter = null
@@ -702,7 +703,7 @@
 
 
 	//handle gun mods at a workbench
-
+/*
 
 	New()
 		set_current_projectile(new /datum/projectile/laser/blaster)
@@ -718,7 +719,7 @@
 			ratio = round(ratio, 0.25) * 100
 			src.icon_state = "pistol[ratio]"
 			return
-
+*/
 
 
 
@@ -743,7 +744,7 @@
 			src.overlays += icon('icons/obj/items/gun_mod.dmi',extension_mod.overlay_name)
 		if(converter_mod)
 			src.overlays += icon('icons/obj/items/gun_mod.dmi',converter_mod.overlay_name)*/
-
+/*
 /obj/item/gun/energy/blaster_smg
 	name = "burst blaster"
 	desc = "A special issue blaster weapon, configured for burst fire. It's self-charging by a radioactive power cell."
@@ -799,7 +800,7 @@
 			ratio = round(ratio, 0.25) * 100
 			src.icon_state = "cannon[ratio]"
 			return
-
+*/
 
 ///////////modular components - putting them here so it's easier to work on for now////////
 /*
@@ -861,6 +862,7 @@
 		icon_state = "mod-grip"
 */
 ///////////////////////////////////////Owl Gun
+/*
 /obj/item/gun/energy/owl
 	name = "Owl gun"
 	desc = "Its a gun that has two modes, Owl and Owler"
@@ -905,7 +907,7 @@
 			ratio = round(ratio, 0.25) * 100
 			src.icon_state = "ghost[ratio]"
 
-///////////////////////////////////////Frog Gun (Shoots :getin: and :getout:)
+/////////////////////////////////////Frog Gun (Shoots :getin: and :getout:)
 /obj/item/gun/energy/frog
 	name = "Frog Gun"
 	item_state = "gun"
@@ -919,7 +921,7 @@
 		set_current_projectile(new/datum/projectile/bullet/frog)
 		projectiles = list(current_projectile,new/datum/projectile/bullet/frog/getout)
 		..()
-
+*/
 
 ///////////////////////////////////////Shrink Ray
 /obj/item/gun/energy/shrinkray
@@ -972,6 +974,7 @@
 		return ..(target, start, user)
 
 ///////////////////////////////////////Hunter
+/*
 /obj/item/gun/energy/laser_gun/pred // Made use of a spare sprite here (Convair880).
 	name = "laser rifle"
 	desc = "This advanced bullpup rifle contains a self-recharging power cell."
@@ -1004,7 +1007,7 @@
 
 	update_icon() // Necessary. Parent's got a different sprite now (Convair880).
 		return
-
+*/
 /////////////////////////////////////// Pickpocket Grapple, Grayshift's grif gun
 /obj/item/gun/energy/pickpocket
 	name = "pickpocket grapple gun" // absurdly shitty name
@@ -1109,6 +1112,7 @@
 /obj/item/gun/energy/pickpocket/testing // has a beefier cell in it
 	cell_type = /obj/item/ammo/power_cell/self_charging/big
 
+/*
 /obj/item/gun/energy/alastor
 	name = "Alastor pattern laser rifle"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
@@ -1136,11 +1140,13 @@
 			ratio = round(ratio, 0.25) * 100
 			src.icon_state = "alastor[ratio]"
 			return
-
+*/
 ///////////////////////////////////////////////////
 
 //turn these into switchable foam dart/water/noisemaker gun toys just in my imo
 //space cop playset comes with unassailable plastic badge and ignorable consent decree
+
+/*
 /obj/item/gun/energy/lawbringer/old
 	name = "Antique Lawbringer"
 	icon = 'icons/obj/items/gun.dmi'
@@ -1408,10 +1414,11 @@
 		if (get_dist(user,F) > range)
 			continue
 		tfireflash(F,0.5,2400)
+*/
 
 // Pulse Rifle //
 // An energy gun that uses the lawbringer's Pulse setting, to beef up the current armory.
-
+/*
 /obj/item/gun/energy/pulse_rifle
 	name = "pulse rifle"
 	desc = "A sleek energy rifle with two different pulse settings: Kinetic and Electromagnetic."
@@ -1438,7 +1445,7 @@
 			src.icon_state = "pulse_rifle[ratio]"
 			return
 
-
+*/
 ///////////////////////////////////////Wasp Gun
 /obj/item/gun/energy/wasp
 	name = "mini wasp-egg-crossbow"
@@ -1460,7 +1467,7 @@
 		set_current_projectile(new/datum/projectile/special/spreader/quadwasp)
 		projectiles = list(current_projectile)
 		..()
-
+/*
 // HOWIZTER GUN
 // dumb meme admin item. not remotely fair, will probably kill person firing it.
 /obj/item/gun/energy/howitzer
@@ -1614,3 +1621,4 @@
 				user.do_disorient(stamina_damage = 20, disorient = 3 SECONDS)
 				ON_COOLDOWN(src, "raygun_cooldown", 2 SECONDS)
 		return ..(target, start, user)
+*/

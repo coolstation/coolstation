@@ -2,7 +2,7 @@
 /obj/smes_spawner
 	name = "power storage unit"
 	icon = 'icons/obj/machines/power.dmi'
-	icon_state = "smes"
+	icon_state = "smes-lessold"
 	density = 1
 	anchored = 1
 	New()

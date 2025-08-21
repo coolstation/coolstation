@@ -4,6 +4,8 @@
 	desc = "A highly dÄ:;g$r+us $yn§i#a{e $'+~`?? ???? ? ???? ??"
 	icon_state = "glitchdrone"
 	alert_sounds = list('sound/machines/glitch1.ogg', 'sound/machines/glitch2.ogg')
+	health_brute = 4000
+	health_burn = 4000
 
 	setup_hands()
 		..()
@@ -16,7 +18,3 @@
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_robot(4000, 1)
-		add_hh_robot_burn(4000, 1)

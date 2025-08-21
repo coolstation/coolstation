@@ -1104,7 +1104,7 @@ MATERIAL
 				if (istype(T, /turf/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
 					var/turf/floor/F = T
-					F.attackby(src, user)
+					F.Attackby(src, user)
 					tooltip_rebuild = 1
 
 		src.add_fingerprint(user)

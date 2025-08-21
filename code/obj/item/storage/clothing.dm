@@ -8,12 +8,12 @@
 
 /obj/item/storage/box/clothing/captain
 	name = "\improper Captain's clothing"
-	spawn_contents = list(/obj/item/clothing/under/rank/captain,
-	/obj/item/clothing/under/rank/captain/dress,
+	spawn_contents = list(/obj/item/clothing/suit/cap_coat,
 	/obj/item/clothing/head/fancy/captain,
-	/obj/item/clothing/under/rank/captain/fancy,
-	/obj/item/clothing/under/suit/captain,
-	/obj/item/clothing/under/suit/captain/dress,
+	/obj/item/clothing/under/gimmick/shirtnjeans,
+	/obj/item/clothing/under/shirt_pants_w/captain,
+	/obj/item/clothing/under/rank/captain/blue,
+	/obj/item/clothing/head/caphat,
 	/obj/item/clothing/suit/wintercoat/command)
 
 /obj/item/storage/box/clothing/hos

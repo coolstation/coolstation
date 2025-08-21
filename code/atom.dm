@@ -262,7 +262,7 @@
 /atom/proc/deserialize_postprocess()
 	return
 
-/atom/proc/ex_act(severity=0,last_touched=0, epicenter = null)
+/atom/proc/ex_act(severity=0,last_touched=0, epicenter = null, turf_safe = FALSE)
 	return
 
 /atom/proc/reagent_act(var/reagent_id,var/volume)

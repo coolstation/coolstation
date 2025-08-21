@@ -56,10 +56,11 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	butcherable = 1
 	name_the_meat = 1
 	max_skins = 1
-	var/health_brute = 20 // moved up from birds since more than just they can use this, really
-	var/health_brute_vuln = 1
-	var/health_burn = 20
-	var/health_burn_vuln = 1
+
+	takes_tox = TRUE
+	takes_brain = TRUE
+
+	grounded_for_projectiles = TRUE
 
 	var/fur_color = 0
 	var/eye_color = 0
@@ -84,37 +85,10 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 			STOP_TRACKING_CAT(TR_CAT_PETS)
 		..()
 
-	setup_healths()
-		add_hh_flesh(src.health_brute, src.health_brute_vuln)
-		add_hh_flesh_burn(src.health_burn, src.health_burn_vuln)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/brain)
-
-	CanPass(atom/mover, turf/target)
-		if (!src.density && istype(mover, /obj/projectile))
-			return prob(50)
-		else
-			return ..()
-
 	death(var/gibbed)
 		if (!gibbed)
 			src.unequip_all()
 		..()
-
-	canRideMailchutes()
-		return src.fits_under_table
-
-	proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
-		remove_lifeprocess(/datum/lifeprocess/blood)
-		remove_lifeprocess(/datum/lifeprocess/canmove)
-		remove_lifeprocess(/datum/lifeprocess/disability)
-		remove_lifeprocess(/datum/lifeprocess/fire)
-		remove_lifeprocess(/datum/lifeprocess/hud)
-		remove_lifeprocess(/datum/lifeprocess/mutations)
-		remove_lifeprocess(/datum/lifeprocess/organs)
-		remove_lifeprocess(/datum/lifeprocess/sight)
-		remove_lifeprocess(/datum/lifeprocess/skin)
-		remove_lifeprocess(/datum/lifeprocess/statusupdate)
 
 /* =============================================== */
 /* -------------------- Mouse -------------------- */
@@ -1349,11 +1323,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_burn = 5
 	flags = TABLEPASS | DOORPASS
 	fits_under_table = 1
-
-	setup_healths()
-		. = ..()
-		qdel(src.healthlist["toxin"])
-		src.healthlist -= "toxin"
+	takes_tox = FALSE
 
 	setup_overlays()
 		fur_color = src.client?.preferences.AH.customization_first_color
@@ -1654,7 +1624,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	proc/expel_fart_gas() //only for pine fartens
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/gas = new()
-		//gas.vacuum()
+		//gas.zero()
 		if(src.reagents && src.reagents.get_reagent_amount("fartonium") > 6.9)
 			gas.farts = 6.9
 		else if(src.reagents && src.reagents.get_reagent_amount("egg") > 6.9)

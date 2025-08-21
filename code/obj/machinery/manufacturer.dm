@@ -1924,14 +1924,6 @@
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/thrusters
 
-/******************** Alastor Pattern Thruster Blueprints *******************/
-/obj/item/paper/manufacturer_blueprint/alastor
-	icon = 'icons/obj/items/writing.dmi'
-	icon_state = "blueprint"
-	desc = "Seems like theres traces of charcoal on the paper. Huh."
-	blueprint = /datum/manufacture/alastor
-
-
 /******************** Spatial Interdictor *******************/
 
 /obj/item/paper/manufacturer_blueprint/interdictor_frame
@@ -2004,15 +1996,15 @@
 		/datum/manufacture/chemicalcan,
 #endif
 		/datum/manufacture/patch)
-	hidden = list(/datum/manufacture/RCDammo,
-		/datum/manufacture/RCDammomedium,
-		/datum/manufacture/RCDammolarge,
+	hidden = list(//datum/manufacture/RCDammo,
+		//datum/manufacture/RCDammomedium,
+		//datum/manufacture/RCDammolarge,
 		/datum/manufacture/bottle,
 		/datum/manufacture/vuvuzela,
 		/datum/manufacture/harmonica,
 		/datum/manufacture/bikehorn,
 		//datum/manufacture/bullet_22,
-		//datum/manufacture/bullet_smoke,
+		//datum/manufacture/fog_grenade,
 		/datum/manufacture/stapler)
 
 /obj/machinery/manufacturer/glasswares
@@ -2559,9 +2551,9 @@
 	/datum/manufacture/scalpel,
 	/datum/manufacture/flashlight,
 	/datum/manufacture/armor_vest,
-	/datum/manufacture/bullet_22,
+//	/datum/manufacture/bullet_22,
 	/datum/manufacture/harmonica,
-	/datum/manufacture/riot_shotgun,
+/*	datum/manufacture/riot_shotgun,
 	/datum/manufacture/riot_shotgun_ammo,
 	/datum/manufacture/clock,
 	/datum/manufacture/clock_ammo,
@@ -2575,7 +2567,7 @@
 	/datum/manufacture/tac_shotgun,
 	/datum/manufacture/tac_shotgun_ammo,
 	/datum/manufacture/gyrojet,
-	/datum/manufacture/gyrojet_ammo,
+	/datum/manufacture/gyrojet_ammo,*/
 	/datum/manufacture/plank,
 	/datum/manufacture/brute_kit,
 	/datum/manufacture/burn_kit,

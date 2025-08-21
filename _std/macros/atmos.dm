@@ -41,15 +41,24 @@
 #define ONE_ATMOSPHERE		101.325
 
 #define CELL_VOLUME 2500	//liters in a cell
-#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC
+#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC, should be 103.983803
 
 #define O2STANDARD 0.21
 #define N2STANDARD 0.79
 
-/// O2 standard value (21%)
+/// O2 standard value (21%), should be 21.8365986
 #define MOLES_O2STANDARD MOLES_CELLSTANDARD*O2STANDARD
-/// N2 standard value (79%)
+/// N2 standard value (79%), should be 82.1472044
 #define MOLES_N2STANDARD MOLES_CELLSTANDARD*N2STANDARD
+
+#ifdef MAGINDARA_MAP
+#define O2MAGINDARA 0.18
+#define N2MAGINDARA 0.74
+#define CO2MAGINDARA 0.08
+#define MOLES_O2MAGINDARA MOLES_CELLSTANDARD*O2MAGINDARA
+#define MOLES_N2MAGINDARA MOLES_CELLSTANDARD*N2MAGINDARA
+#define MOLES_CO2MAGINDARA MOLES_CELLSTANDARD*CO2MAGINDARA
+#endif
 
 /// Moles in a standard cell after which visible gases are visible
 #define MOLES_GAS_VISIBLE	1
@@ -178,6 +187,11 @@
 #define HEATPIPERATE 7					//heat-exch pipe insulation - was 8
 
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
+
+// comment out to remove throwing shit into space when breaches happen
+// this is the pressure delta that said throwing scales on
+#define DEPRESSURIZE_THROW_AT_SPACE_REQUIRED 20
+#define DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE 7
 
 // archiving
 

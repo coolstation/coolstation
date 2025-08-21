@@ -22,6 +22,10 @@
 	speechverb_ask = "screeches"
 	speechverb_gasp = "screeches"
 	speechverb_stammer = "screeches"
+	health_brute = 35
+	health_brute_vuln = 0.5
+	health_burn = 35
+	health_burn_vuln = 1
 	var/leader = 0
 
 	understands_language(var/langname)
@@ -39,11 +43,8 @@
 		HH.name = "tentacles"
 
 	setup_healths()
-		add_hh_flesh(35, 0.5)
-		add_hh_flesh_burn(35, 1)
-		add_health_holder(/datum/healthHolder/toxin)
-		//add_health_holder(/datum/healthHolder/suffocation) // this is broken as hell
-		var/datum/healthHolder/Brain = add_health_holder(/datum/healthHolder/brain)
+		..()
+		var/datum/healthHolder/Brain = get_health_holder("brain")
 		Brain.maximum_value = 0
 		Brain.value = 0
 		Brain.minimum_value = -250
@@ -249,6 +250,10 @@ proc/martian_speak(var/mob/speaker, var/message as text, var/speak_as_admin=0)
 	icon_state = "martianI"
 	icon_state_dead = "martianI-dead"
 	hand_count = 2
+	health_brute = 50
+	health_brute_vuln = 0.5
+	health_burn = 50
+	health_burn_vuln = 1
 
 	setup_equipment_slots()
 		equipment += new /datum/equipmentHolder/ears(src)
@@ -267,17 +272,6 @@ proc/martian_speak(var/mob/speaker, var/message as text, var/speak_as_admin=0)
 		HH.suffix = "-R"
 		HH.icon_state = "handr"
 		HH.limb_name = "right tentacles"
-
-	setup_healths()
-		add_hh_flesh(50, 0.5)
-		add_hh_flesh_burn(50, 1)
-		add_health_holder(/datum/healthHolder/toxin)
-		var/datum/healthHolder/Brain = add_health_holder(/datum/healthHolder/brain)
-		Brain.maximum_value = 0
-		Brain.value = 0
-		Brain.minimum_value = -250
-		Brain.depletion_threshold = -100
-		Brain.last_value = 0
 
 	New()
 		..()

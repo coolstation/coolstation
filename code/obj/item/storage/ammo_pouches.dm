@@ -11,8 +11,9 @@
 	max_wclass = 1
 	slots = 5
 	does_not_open_in_pocket = 0
-	can_hold = list(/obj/item/ammo)
+	can_hold = list(/obj/item/stackable_ammo)
 
+/*
 	assault_rifle
 		name = "rifle magazine pouch"
 		icon_state = "ammopouch-large"
@@ -79,11 +80,12 @@
 		slots = 4
 		spawn_contents = list(/obj/item/ammo/bullets/grenade_round/explosive = 2,
 		/obj/item/ammo/bullets/grenade_round/high_explosive = 2)
+*/
 
 	rpg
 		name = "MPRT rocket pouch"
 		slots = 4
-		spawn_contents = list(/obj/item/ammo/bullets/rpg = 2)
+		spawn_contents = list(/obj/item/stackable_ammo/he_rocket = 2)
 
 /obj/item/storage/grenade_pouch
 	name = "grenade pouch"
@@ -96,11 +98,11 @@
 
 	frag
 		name = "frag grenade pouch"
-		spawn_contents = list(/obj/item/old_grenade/stinger/frag = 6)
+		spawn_contents = list(/obj/item/old_grenade/projectile/stinger/frag = 6)
 
 	stinger
 		name = "stinger grenade pouch"
-		spawn_contents = list(/obj/item/old_grenade/stinger = 6)
+		spawn_contents = list(/obj/item/old_grenade/projectile/stinger = 6)
 
 	incendiary
 		name = "incendiary grenade pouch"
@@ -117,13 +119,13 @@
 	mixed_standard
 		name = "mixed grenade pouch"
 		spawn_contents = list(/obj/item/chem_grenade/flashbang = 2,
-		/obj/item/old_grenade/stinger/frag = 2,
-		/obj/item/old_grenade/stinger = 2)
+		/obj/item/old_grenade/projectile/stinger/frag = 2,
+		/obj/item/old_grenade/projectile/stinger = 2)
 
 	mixed_explosive
 		name = "mixed grenade pouch"
-		spawn_contents = list(/obj/item/old_grenade/stinger/frag = 3,
-		/obj/item/old_grenade/stinger = 3)
+		spawn_contents = list(/obj/item/old_grenade/projectile/stinger/frag = 3,
+		/obj/item/old_grenade/projectile/stinger = 3)
 	napalm
 		name = "napalm smoke grenade pouch"
 		spawn_contents = list(/obj/item/chem_grenade/napalm = 6)
@@ -188,7 +190,7 @@
 	spawn_contents = list(/obj/item/chem_grenade/incendiary = 2,\
 	/obj/item/chem_grenade/shock,\
 	/obj/item/old_grenade/smoke = 1,\
-	/obj/item/old_grenade/stinger/frag,\
+	/obj/item/old_grenade/projectile/stinger/frag,\
 	/obj/item/chem_grenade/flashbang,\
 	/obj/item/old_grenade/graviton)
 

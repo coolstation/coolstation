@@ -23,6 +23,11 @@ var/HasturPresent = 0
 	bound_width = 32
 	speech_void = 1
 	layer = 40
+	health_brute = 6500
+	health_brute_vuln = 0.5
+	health_burn = 6500
+	health_burn_vuln = 0.5
+	takes_brain = FALSE
 	var/icon/northsouth = null
 	var/icon/eastwest = null
 	var/lastdir = null
@@ -108,11 +113,6 @@ var/HasturPresent = 0
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_flesh(6500, 0.5)
-		add_hh_flesh_burn(6500, 0.5)
-		add_health_holder(/datum/healthHolder/toxin)
 
 	death(var/gibbed)
 		HasturPresent = 0

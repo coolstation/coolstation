@@ -292,6 +292,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			maxboom = 0
 	maxboom = max(severity, maxboom)
 
+/obj/machinery/the_singularity/blob_act(power)
+	return
+
 /obj/machinery/the_singularity/Bumped(atom/A)
 	var/gain = 0
 
@@ -1937,3 +1940,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					</div>
 				</body>
 			</html>"}
+
+#undef UNWRENCHED
+#undef WRENCHED
+#undef WELDED

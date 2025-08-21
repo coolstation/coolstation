@@ -74,33 +74,6 @@
 				var/mob/living/carbon/human/H = AM
 				H.unlock_medal("It'sa me, Mario", 1)
 
-	proc/init_sewer(var/obj/item/storage/toilet/toilet)
-		if(toilet.trunk)		//copypasted
-			src.set_loc(toilet.trunk)
-		else
-			src.set_loc(toilet)
-
-		if(!src.reagents)
-			src.reagents = new(1000)
-
-		src.reagents.add_reagent("water", 50)
-		src.reagents.add_reagent("sewage", rand(10,55))
-
-		if(toilet.poops)
-			src.reagents.add_reagent("poo",toilet.poops*25)
-			toilet.poops = 0
-		if(toilet.peeps)
-			src.reagents.add_reagent("urine",toilet.peeps*25)
-			toilet.peeps = 0
-
-		if(toilet.reagents && toilet.reagents.total_volume)
-			toilet.reagents.trans_to(src, toilet.reagents.total_volume)
-
-
-		for(var/atom/movable/AM in toilet)
-			AM.set_loc(src)
-
-
 	// start the movement process
 	// argument is the disposal unit the holder started in
 	proc/start(var/obj/machinery/disposal/D)
@@ -259,6 +232,7 @@
 		..()
 
 	disposing()
+		pilot?.override_movement_controller = null
 		qdel(vision)
 		qdel(movement_controller)
 		vision = null
@@ -497,8 +471,9 @@
 
 
 	// pipe affected by explosion
-	ex_act(severity)
-
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				broken(0)
@@ -622,60 +597,252 @@
 		desc = "An underfloor brig pipe. Bripe."
 		color = PIPEC_BRIG
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	ejection
 		name = "ejection pipe"
 		desc = "An underfloor ejection pipe."
 		color = PIPEC_EJECTION
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	morgue
 		name = "morgue pipe"
 		desc = "An underfloor morgue pipe, for dead people."
 		color = PIPEC_MORGUE
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	quarantine
 		name = "quarantine pipe"
 		desc = "An underfloor quarantine pipe."
 		color = PIPEC_QUARANTINE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	genetics
 		name = "genetics pipe"
 		desc = "An underfloor genetics pipe, for dead people."
 		color = PIPEC_GENETICS
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	crematorium
 		name = "crematorium pipe"
 		desc = "An underfloor crematorium pipe, for dead people."
 		color = PIPEC_CREMATORIUM
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	food
 		name = "food pipe"
 		desc = "An underfloor food pipe lined with non-stick, probably-food-safe materials."
 		color = PIPEC_FOOD
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	produce
 		name = "produce pipe"
 		desc = "An underfloor produce pipe."
 		color = PIPEC_PRODUCE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	transport
 		name = "transport pipe"
 		desc = "An underfloor transport pipe."
 		color = PIPEC_TRANSPORT
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	mineral
 		name = "mineral pipe"
 		desc = "An underfloor mineral pipe."
 		color = PIPEC_MINERAL
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	cargo
 		name = "cargo pipe"
 		desc = "An underfloor cargo pipe."
 		color = PIPEC_CARGO
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	sewage // sewer
 		name = "sewer pipe"
 		desc = "... we have those?"
 		color = PIPEC_SEWAGE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	New()
 		..()
@@ -2007,7 +2174,9 @@
 	var/datum/radio_frequency/radio_connection
 	throw_speed = 1
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				qdel(src)

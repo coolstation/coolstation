@@ -36,6 +36,11 @@
 	icon_state_dead = "maneater-dead"
 	custom_gib_handler = /proc/vegetablegibs
 	blood_id = "poo"
+	health_brute = 50
+	health_brute_vuln = 1
+	health_burn = 50
+	health_burn_vuln = 1.5
+	takes_brain = FALSE
 	hand_count = 2
 	can_throw = 1
 	can_grab = 1
@@ -75,8 +80,3 @@
 		..()
 		abilityHolder.addAbility(/datum/targetable/critter/slam)
 		abilityHolder.addAbility(/datum/targetable/critter/devour)
-
-	setup_healths()
-		add_hh_flesh(50, 1)
-		add_hh_flesh_burn(50, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)

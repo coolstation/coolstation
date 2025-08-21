@@ -20,6 +20,13 @@
 	speechverb_exclaim = "declares"
 	speechverb_ask = "queries"
 	metabolizes = 0
+	health_brute = 50
+	health_brute_vuln = 1
+	health_burn = 50
+	health_burn_vuln = 1
+	takes_tox = FALSE
+	takes_brain = FALSE
+	robotic = TRUE
 	var/list/loot_table = list()
 	var/smashes_shit = 1
 	var/list/alert_sounds = list('sound/machines/whistlealert.ogg', 'sound/machines/whistlebeep.ogg')
@@ -124,7 +131,3 @@
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_robot(50, 1)
-		add_hh_robot_burn(50, 1)
