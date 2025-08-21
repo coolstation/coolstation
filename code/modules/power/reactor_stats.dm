@@ -525,8 +525,6 @@
 							ret["n2o"] = T.moles
 						else if(istype(T, /datum/gas/oxygen_agent_b))
 							ret["o2_b"] = T.moles
-						else if(istype(T, /datum/gas/volatile_fuel))
-							ret["fuel"] = T.moles
 						else
 							ret["rad"] = T.moles
 
@@ -550,8 +548,6 @@
 							ret["n2o"] = T.ARCHIVED(moles)
 						else if(istype(T, /datum/gas/oxygen_agent_b))
 							ret["o2_b"] = T.ARCHIVED(moles)
-						else if(istype(T, /datum/gas/volatile_fuel))
-							ret["fuel"] = T.ARCHIVED(moles)
 						else
 							ret["rad"] = T.ARCHIVED(moles)
 
