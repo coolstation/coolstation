@@ -409,6 +409,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			light.set_color(0.2, 1, 0.2)
 			sleep(0.2 SECONDS)
 			light.enable()
+			sleep(1 SECOND)
+			qdel(fullbright_overlay)
 
 /obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"
