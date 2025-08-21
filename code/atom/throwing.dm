@@ -30,12 +30,16 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 /atom/movable/proc/throw_end(list/params, turf/thrown_from) //throw ends (callback regardless of whether we impacted something)
+	if (throw_pixel && islist(params) && params["icon-y"] && params["icon-x"])
+		src.pixel_x = text2num(params["icon-x"]) - 16
+		src.pixel_y = text2num(params["icon-y"]) - 16
+
+/obj/item/throw_end(list/params, turf/thrown_from)
 	if(src.throwing & THROW_SPACED)
 		src.pixel_x = rand(-14, 14)
 		src.pixel_y = rand(-14, 14)
-	else if (throw_pixel && islist(params) && params["icon-y"] && params["icon-x"])
-		src.pixel_x = text2num(params["icon-x"]) - 16
-		src.pixel_y = text2num(params["icon-y"]) - 16
+	else
+		..()
 
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrown_thing/thr=null)
 	var/area/AR = get_area(hit_atom)
