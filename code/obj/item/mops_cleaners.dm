@@ -973,6 +973,8 @@ WET FLOOR SIGN
 
 	New()
 		..()
+		if (prob(50))
+			icon_state = "handvac-O"
 		src.setItemSpecial(/datum/item_special/suck)
 		src.bucket = new(src)
 		src.trashbag = new(src)
