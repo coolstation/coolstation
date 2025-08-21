@@ -2333,7 +2333,7 @@
 		available += new /datum/manufacture/gas_extract/co2_can()
 		available += new /datum/manufacture/gas_extract/n2_can()
 		available += new /datum/manufacture/gas_extract/plasma_can()
-		available += new /datum/manufacture/gas_extract/agent_b_can()
+		//available += new /datum/manufacture/gas_extract/agent_b_can()
 
 	//override to allow the thing to refill canisters :)
 	check_enough_materials(datum/manufacture/M)
@@ -2378,12 +2378,14 @@
 							target_can.air_contents.oxygen 	+= added_moles
 
 						if(/obj/machinery/portable_atmospherics/canister/sleeping_agent)
-							var/datum/gas/oxygen_agent_b/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
+							var/datum/gas/sleeping_agent/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
 							trace_gas.moles += added_moles
 
+/*
 						if(/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
 							var/datum/gas/oxygen_agent_b/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
 							trace_gas.moles += added_moles
+*/
 
 						if(/obj/machinery/portable_atmospherics/canister/nitrogen)
 							target_can.air_contents.nitrogen += added_moles

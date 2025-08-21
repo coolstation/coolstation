@@ -1908,8 +1908,7 @@
 	amt2spawn = 1
 	rare_chance = 5
 	rare_items2spawn = list(/obj/machinery/portable_atmospherics/canister/farts/filled,
-						/obj/machinery/portable_atmospherics/canister/sleeping_agent,
-						/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+						/obj/machinery/portable_atmospherics/canister/sleeping_agent)
 	items2spawn = list(/obj/machinery/portable_atmospherics/canister/nitrogen,
 						/obj/machinery/portable_atmospherics/canister/oxygen,
 						/obj/machinery/portable_atmospherics/canister/toxins,

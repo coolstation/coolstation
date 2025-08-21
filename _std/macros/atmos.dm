@@ -153,15 +153,10 @@
 #define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	30
 #define PLASMA_OXYGEN_FULLBURN				10
 
-/// Hotspot Maximum Temperature without a catalyst
-#define HOTSPOT_MAX_NOCAT_TEMPERATURE (100000) // increase from 80000
-/// Hotspot Maximum Temperature to maintain maths works to 1e35-sh in practice)
-#define HOTSPOT_MAX_CAT_TEMPERATURE (INFINITY)
-
 //Gas Reaction Flags
 #define REACTION_ACTIVE (1<<0) 	//! Reaction is Active
 #define COMBUSTION_ACTIVE (1<<1) //! Combustion is Active
-#define CATALYST_ACTIVE (1<<2)	//! Hotspot Catalyst is Active
+//#define CATALYST_ACTIVE (1<<2)	//! Hotspot Catalyst is Active
 
 // tank properties
 

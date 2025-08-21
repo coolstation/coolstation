@@ -13,8 +13,10 @@ What are the archived variables for?
 
 /datum/gas/sleeping_agent
 	specific_heat = 40
+/*
 /datum/gas/oxygen_agent_b
 	specific_heat = 300
+*/
 /datum/gas/rad_particles
 	specific_heat = 20
 
@@ -135,6 +137,7 @@ What are the archived variables for?
 	. = 0 //set to non-zero if a notable reaction occured (used by pipe_network and hotspots)
 	var/reaction_rate
 
+/*
 	if(length(src.trace_gases))
 		if(src.temperature > 900 && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
 			// refs are accessed directly to optimize functions as trace_gases
@@ -154,6 +157,7 @@ What are the archived variables for?
 				if(reaction_rate > MINIMUM_REACT_QUANTITY)
 					. |= CATALYST_ACTIVE
 				. |= REACTION_ACTIVE
+*/
 
 	if(src.temperature > 900 && src.farts > MINIMUM_REACT_QUANTITY && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
 		reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.farts*0.05)

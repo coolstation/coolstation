@@ -519,6 +519,7 @@
 				ret["thermal_energy"] = THERMAL_ENERGY(G)
 				ret["moles"] = TOTAL_MOLES(G)
 
+/*
 				if(length(G.trace_gases))
 					for(var/datum/gas/T as anything in G.trace_gases)
 						if(istype(T, /datum/gas/sleeping_agent))
@@ -527,6 +528,7 @@
 							ret["o2_b"] = T.moles
 						else
 							ret["rad"] = T.moles
+*/
 
 			else
 				if(G?.ARCHIVED(oxygen)) ret["o2"] = G.ARCHIVED(oxygen)
@@ -542,6 +544,7 @@
 					ret["thermal_energy"] = THERMAL_ENERGY(G)
 					ret["moles"] = TOTAL_MOLES(G)
 
+/*
 				if(G && length(G.trace_gases))
 					for(var/datum/gas/T as anything in G.trace_gases)
 						if(istype(T, /datum/gas/sleeping_agent))
@@ -550,6 +553,7 @@
 							ret["o2_b"] = T.ARCHIVED(moles)
 						else
 							ret["rad"] = T.ARCHIVED(moles)
+*/
 
 			return ret
 

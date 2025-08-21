@@ -215,6 +215,7 @@
 		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/*
 /obj/item/raw_material/molitz_beta
 	name = "molitz crystal"
 	desc = "An unusual crystal of Molitz."
@@ -226,6 +227,7 @@
 	setup_material()
 		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE)
 		return ..()
+*/
 
 /obj/item/raw_material/pharosium
 	name = "pharosium ore"

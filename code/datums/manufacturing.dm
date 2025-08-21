@@ -632,6 +632,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/*
 /datum/manufacture/gas_extract/agent_b_can
 	name = "Agent B"
 	item_paths = list("MET-2","molitz_b")
@@ -640,6 +641,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 100 SECONDS
 	create = 1
 	category = "Machinery"
+*/
 
 /datum/manufacture/gas_extract/n2_can
 	name = "N2"
