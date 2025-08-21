@@ -1191,7 +1191,7 @@ WET FLOOR SIGN
 /obj/item/handheld_vacuum/proc/update_icon()
 	if (trashbag)
 		var/image/I = image(src.icon, "handvac-bag")
-		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#FF4422" : "#888888"
+		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#ff4459" : "#777777"
 		UpdateOverlays(I, "bag")
 	else
 		UpdateOverlays(null, "bag")
