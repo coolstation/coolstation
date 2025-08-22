@@ -261,6 +261,8 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 			qdel(src)
 			return
 
-		location.air.temperature += src.thermal_energy / HEAT_CAPACITY(location.air) * 0.6
+		REAGENT_COMBUST(location.air, src.thermal_energy)
 
-		src.thermal_energy = src.thermal_energy * 0.4
+		if(_energy_released)
+			location.parent.suspend_group_processing()
+			src.thermal_energy -= _energy_released

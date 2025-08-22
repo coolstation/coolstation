@@ -331,6 +331,19 @@ proc/gas_text_color(gas_id)
 
 #define THERMAL_ENERGY(MIXTURE) ((MIXTURE).temperature * HEAT_CAPACITY(MIXTURE))
 
+/// reagent fire oxygen -> co2 and heat IF theres enough oxygen. defines _energy_released
+#define REAGENT_COMBUST(MIXTURE, ENERGY) var/_energy_released = 0; \
+	if(MIXTURE.oxygen >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_NEEDED) { \
+		var/_percent_oxy = MIXTURE.oxygen / MIXTURE_PRESSURE(MIXTURE); \
+		if(_percent_oxy >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_PERCENTAGE) { \
+			var/_combustion_rate = min(min(_percent_oxy, 0.30) * 0.0000025 * ENERGY, MIXTURE.oxygen * 0.01); \
+			MIXTURE.oxygen -= _combustion_rate; \
+			MIXTURE.carbon_dioxide += _combustion_rate; \
+			_energy_released = 400000 * _combustion_rate; \
+			MIXTURE.temperature += _energy_released / HEAT_CAPACITY(MIXTURE); \
+		} \
+	}
+
 // air stats
 
 #define _MOLES_REPORT(GAS, _, NAME, MIXTURE) "[NAME]: [MIXTURE.GAS]<br>" +
