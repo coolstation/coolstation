@@ -40,17 +40,17 @@
 		..()
 		var/datum/handHolder/HH = hands[1]
 		HH.icon = 'icons/ui/hud_human.dmi'
-		HH.limb = new /datum/limb/brullbar
+		HH.limb = new /datum/limb/brullbar(src)
 		HH.icon_state = "handl"				// the icon state of the hand UI background
-		HH.limb_name = "left brüllbär arm"
+		HH.limb.name = "left brüllbär arm"
 
 		HH = hands[2]
 		HH.icon = 'icons/ui/hud_human.dmi'
-		HH.limb = new /datum/limb/brullbar
+		HH.limb = new /datum/limb/brullbar(src)
 		HH.name = "right hand"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"				// the icon state of the hand UI background
-		HH.limb_name = "right brüllbär arm"
+		HH.limb.name = "right brüllbär arm"
 
 	New()
 		..()

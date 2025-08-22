@@ -40,10 +40,10 @@
 		..()
 		var/datum/handHolder/HH = hands[3]
 		HH.name = "control of fire"
-		HH.limb = new /datum/limb/gun/fire_elemental
+		HH.limb = new /datum/limb/gun/fire_elemental(src)
 		HH.icon_state = "fire_essence"
 		HH.icon = 'icons/ui/critter_ui.dmi'
-		HH.limb_name = "fire essence"
+		HH.limb.name = "fire essence"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1

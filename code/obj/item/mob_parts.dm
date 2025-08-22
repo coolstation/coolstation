@@ -80,13 +80,12 @@ ABSTRACT_TYPE(/obj/item/parts)
 		..()
 		if(istype(new_holder, /mob/living))
 			src.holder = new_holder
-		src.limb_data = new src.limb_type(src)
+		src.limb_data = new src.limb_type(src.holder)
 		if (holder && movement_modifier)
 			APPLY_MOVEMENT_MODIFIER(holder, movement_modifier, src.type)
 
 	disposing()
-		if (limb_data)
-			limb_data.holder = null
+		qdel(limb_data)
 		limb_data = null
 
 		if (holder)
@@ -153,6 +152,8 @@ ABSTRACT_TYPE(/obj/item/parts)
 
 		if(show_message) holder.visible_message("<span class='alert'>[holder.name]'s [object.name] falls off!</span>")
 
+		src.limb_data.owner = null
+
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder
 			H.limbs.vars[src.slot] = null
@@ -206,6 +207,8 @@ ABSTRACT_TYPE(/obj/item/parts)
 		object.add_fingerprint(src.holder)
 
 		holder.visible_message("<span class='alert'>[holder.name]'s [object.name] flies off in a [src.streak_descriptor] arc!</span>")
+
+		src.limb_data.owner = null
 
 		switch(direction)
 			if(NORTH)
@@ -318,6 +321,9 @@ ABSTRACT_TYPE(/obj/item/parts)
 		attachee.UpdateDamageIcon()
 		if (src.slot == "l_arm" || src.slot == "r_arm")
 			attachee.hud.update_hands()
+
+		if(src.limb_data)
+			src.limb_data.owner = attachee
 
 		return TRUE
 

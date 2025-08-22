@@ -620,8 +620,7 @@
 		if (hand_count)
 			for (var/datum/handHolder/HH in hands)
 				if (!HH.limb)
-					HH.limb = new /datum/limb
-				HH.spawn_dummy_holder()
+					HH.limb = new /datum/limb(src)
 
 	proc/setup_equipment_slots()
 

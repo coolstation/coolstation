@@ -125,7 +125,7 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new/datum/limb/thief
+		HH.limb = new /datum/limb/thief(src)
 
 	proc/fix_pulling_sprite()
 		if(src.pulling)

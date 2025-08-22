@@ -10,11 +10,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/gun/glitch
+		HH.limb = new /datum/limb/gun/glitch(src)
 		HH.name = "C&z !!!!!!ERROR!!!!!!!--~$!'S"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handglitch"
-		HH.limb_name = "C&z !!!!!!ERROR!!!!!!!--~$!'S"
+		HH.limb.name = "C&z !!!!!!ERROR!!!!!!!--~$!'S"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1

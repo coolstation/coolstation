@@ -75,11 +75,11 @@
 /mob/living/critter/singularity/setup_hands()
   ..()
   var/datum/handHolder/HH = hands[1]
-  HH.limb = new /datum/limb/singularity
+  HH.limb = new /datum/limb/singularity(src)
   HH.icon = 'icons/ui/critter_ui.dmi'
   HH.icon_state = "handzap"
   HH.name = "gravitational pull"
-  HH.limb_name = "gravitational pull"
+  HH.limb.name = "gravitational pull"
   HH.can_range_attack = 1
 
 /mob/living/critter/singularity/attackby(var/obj/item/I as obj, var/mob/user as mob)

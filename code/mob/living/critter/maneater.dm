@@ -72,8 +72,8 @@
 		HH.name = "mouth"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"				// the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
-		HH.limb = new /datum/limb/mouth		// if not null, the special limb to use when attack_handing
+		HH.limb.name = "teeth"					// name for the dummy holder
+		HH.limb = new /datum/limb/mouth(src)		// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 
 	New()
