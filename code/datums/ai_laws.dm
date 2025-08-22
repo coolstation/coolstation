@@ -1,6 +1,7 @@
 //var/datum/ai_laws/centralized_ai_laws
 
 /datum/ai_laws
+	var/hash
 	var/randomly_selectable = 0
 	var/show_zeroth = 1
 	var/zeroth = null
@@ -112,6 +113,7 @@
 /datum/ai_laws/proc/set_zeroth_law(var/law)
 	src.zeroth = law
 	statlog_ailaws(1, law, (usr ? usr : "Ion Storm"))
+	hash_laws(global.server_start_time)
 
 /datum/ai_laws/proc/add_default_law(var/law)
 	if (!(law in src.default))
@@ -121,10 +123,12 @@
 /datum/ai_laws/proc/add_inherent_law(var/law)
 	if (!(law in src.inherent))
 		src.inherent += law
+	hash_laws(global.server_start_time)
 
 /datum/ai_laws/proc/clear_inherent_laws()
 	src.inherent = list()
 	src.inherent += src.default
+	hash_laws(global.server_start_time)
 
 /datum/ai_laws/proc/replace_inherent_law(var/number, var/law)
 	if (number < 1)
@@ -134,6 +138,7 @@
 		src.inherent.len = number
 
 	src.inherent[number] = law
+	hash_laws(global.server_start_time)
 
 /datum/ai_laws/proc/add_supplied_law(var/number, var/law)
 	while (src.supplied.len < number + 1)
@@ -141,13 +146,18 @@
 
 	src.supplied[number + 1] = law
 	statlog_ailaws(1, law, (usr ? usr : "Ion Storm"))
+	hash_laws(global.server_start_time)
 
 /datum/ai_laws/proc/clear_supplied_laws()
 	src.supplied = list()
+	hash_laws(global.server_start_time)
 
 /datum/ai_laws/proc/laws_sanity_check()
 	if (!ticker.centralized_ai_laws)
 		ticker.centralized_ai_laws = new /datum/ai_laws/asimov
+
+/datum/ai_laws/proc/hash_laws(var/salty)
+	src.hash = md5("[salty ? salty : rand(100, 200)][src.format_for_logs()]")
 
 /datum/ai_laws/proc/show_laws(var/who)
 	var/list/L = who
