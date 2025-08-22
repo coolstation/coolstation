@@ -133,8 +133,10 @@
 					continue
 				nerdlist += M
 			user.visible_message("<span class='notice'>[user] holds out [src] and stares into it.</span>")
-			if(src.donor_name && user?.traitHolder.hasTrait("organ_connoisseur"))
+			if(src.donor_name && (user?.traitHolder.hasTrait("organ_connoisseur") || user?.traitHolder.hasTrait("training_medical")))
 				user.say("Alas, poor [src.donor_name]! I knew him, [length(nerdlist) != 0 ? pick(nerdlist) : "Horatio"], a fellow of infinite jest, of most excellent fancy.")
+				src.real_name = "[src.donor_name]'s skull"
+				src.name = src.real_name
 			else
 				user.say("Alas, poor Yorick! I knew him, [length(nerdlist) != 0 ? pick(nerdlist) : "Horatio"], a fellow of infinite jest, of most excellent fancy.")
 			last_use = world.time
