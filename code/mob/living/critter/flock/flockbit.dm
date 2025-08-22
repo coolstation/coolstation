@@ -48,21 +48,21 @@
 /mob/living/critter/flock/bit/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
-	HH.limb = new /datum/limb/flock_grip
+	HH.limb = new /datum/limb/flock_grip(src)
 	HH.name = "grip tool"
 	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "griptool"
-	HH.limb_name = HH.name
+	HH.limb.name = HH.name
 	HH.can_hold_items = 1
 	HH.can_attack = 1
 	HH.can_range_attack = 0
 
 	HH = hands[2]
-	HH.limb = new /datum/limb/flockbit_converter
+	HH.limb = new /datum/limb/flockbit_converter(src)
 	HH.name = "nanite spray"
 	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "converter"
-	HH.limb_name = HH.name
+	HH.limb.name = HH.name
 	HH.can_hold_items = 0
 	HH.can_attack = 1
 	HH.can_range_attack = 0
@@ -99,8 +99,6 @@
 /datum/limb/flockbit_converter // can only convert turfs but can do it for free and faster
 
 /datum/limb/flockbit_converter/attack_hand(atom/target, var/mob/living/critter/flock/bit/user, var/reach, params, location, control)
-	if (!holder)
-		return
 	if(check_target_immunity( target ))
 		return
 	if (!istype(user))

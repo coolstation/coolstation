@@ -119,13 +119,13 @@
 			var/datum/handHolder/HH = hands[1]
 			HH.icon = 'icons/ui/hud_human.dmi'
 			HH.icon_state = "handl"
-			HH.limb_name = "left tentacles"
+			HH.limb.name = "left tentacles"
 
 			HH = hands[2]
 			HH.name = "right tentacles"
 			HH.suffix = "-R"
 			HH.icon_state = "handr"
-			HH.limb_name = "right tentacles"
+			HH.limb.name = "right tentacles"
 
 	soldier
 		name = "martian soldier"
@@ -139,11 +139,11 @@
 			..()
 
 			var/datum/handHolder/HH = hands[2]
-			HH.limb = new /datum/limb/hitscan
+			HH.limb = new /datum/limb/hitscan(src)
 			HH.name = "Martian Psychokinetic Blaster"
 			HH.icon = 'icons/ui/critter_ui.dmi'
 			HH.icon_state = "hand_martian"
-			HH.limb_name = "Martian Psychokinetic Blaster"
+			HH.limb.name = "Martian Psychokinetic Blaster"
 			HH.can_hold_items = 0
 			HH.can_attack = 0
 			HH.can_range_attack = 1
@@ -152,7 +152,7 @@
 			HH.name = "right tentacles"
 			HH.suffix = "-R"
 			HH.icon_state = "handr"
-			HH.limb_name = "right tentacles"
+			HH.limb.name = "right tentacles"
 
 	mutant
 		name = "martian mutant"
@@ -265,13 +265,13 @@ proc/martian_speak(var/mob/speaker, var/message as text, var/speak_as_admin=0)
 		var/datum/handHolder/HH = hands[1]
 		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
-		HH.limb_name = "left tentacles"
+		HH.limb.name = "left tentacles"
 
 		HH = hands[2]
 		HH.name = "right tentacles"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"
-		HH.limb_name = "right tentacles"
+		HH.limb.name = "right tentacles"
 
 	New()
 		..()

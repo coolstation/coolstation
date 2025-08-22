@@ -85,11 +85,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/small_critter
+		HH.limb = new /datum/limb/small_critter(src)
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "mouth"
 		HH.name = "pincers"
-		HH.limb_name = "pincers"
+		HH.limb.name = "pincers"
 
 
 /mob/living/critter/grub/wildgrub //Wild grubs don't have any relevance to any domestic grub breeding stuff. It's just an excuse to show off all the funny overlays

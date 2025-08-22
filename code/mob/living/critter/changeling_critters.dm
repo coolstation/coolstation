@@ -234,7 +234,7 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 1
 
@@ -437,8 +437,8 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
-		HH.limb = new /datum/limb/leg_hand
+		HH.limb.name = "teeth"					// name for the dummy holder
+		HH.limb = new /datum/limb/leg_hand(src)
 		HH.can_hold_items = 0
 
 	New()
@@ -586,7 +586,7 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 0
 
