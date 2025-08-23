@@ -220,7 +220,7 @@
 /mob/proc/get_disorient_protection()
 	return clamp(GET_MOB_PROPERTY(src, PROP_DISORIENT_RESIST_BODY), 0, GET_MOB_PROPERTY(src, PROP_DISORIENT_RESIST_BODY_MAX))
 
-/mob/living/get_disorient_protection_eye()
+/mob/proc/get_disorient_protection_eye()
 	return clamp(GET_MOB_PROPERTY(src, PROP_DISORIENT_RESIST_EYE), 0, GET_MOB_PROPERTY(src, PROP_DISORIENT_RESIST_EYE_MAX))
 
 /mob/proc/get_disorient_protection_ear()

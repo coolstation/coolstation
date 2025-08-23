@@ -581,6 +581,18 @@ to say if there's demand for that.
 
 	ASSOCIATE_MOB_PROPERTY(PROP_DISARM_RESIST)
 
+/datum/objectProperty/equipment/disorient_resist
+	name = "Body Insulation (Disorient Resist)"
+	id = "disorient_resist"
+	desc = "Reduces disorient effects on the wearer." //Value is % protection.
+	tooltipImg = "protdisorient.png"
+	defaultValue = 0
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal]%"
+
+	ASSOCIATE_MOB_PROPERTY(PROP_DISORIENT_RESIST_BODY)
+	ASSOCIATE_MOB_PROPERTY(PROP_DISORIENT_RESIST_BODY_MAX)
+
 	inline
 		inline = 1
 		hidden = 1
@@ -601,8 +613,8 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal]%"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_DISORIENT_RESIST_EYE)
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_DISORIENT_RESIST_EYE_MAX)
+	ASSOCIATE_MOB_PROPERTY(PROP_DISORIENT_RESIST_EYE)
+	ASSOCIATE_MOB_PROPERTY(PROP_DISORIENT_RESIST_EYE_MAX)
 
 /datum/objectProperty/equipment/disorient_resist_ear
 	name = "Ear Insulation (Disorient Resist)"
@@ -613,8 +625,8 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal]%"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_DISORIENT_RESIST_EAR)
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_DISORIENT_RESIST_EAR_MAX)
+	ASSOCIATE_MOB_PROPERTY(PROP_DISORIENT_RESIST_EAR)
+	ASSOCIATE_MOB_PROPERTY(PROP_DISORIENT_RESIST_EAR_MAX)
 
 /datum/objectProperty/equipment/vault_speed
 	name = "Vault Speed"
@@ -624,7 +636,7 @@ to say if there's demand for that.
 	defaultValue = 1
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "+[propVal]x"
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_VAULT_SPEED)
+	ASSOCIATE_MOB_PROPERTY(PROP_VAULT_SPEED)
 
 /datum/objectProperty/equipment/movement
 	name = "Speed"
@@ -635,7 +647,7 @@ to say if there's demand for that.
 	goodDirection = -1
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal] movement delay"
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_EQUIPMENT_MOVESPEED)
+	ASSOCIATE_MOB_PROPERTY(PROP_EQUIPMENT_MOVESPEED)
 
 /datum/objectProperty/equipment/movement/in_hand
 	name = "Speed"
@@ -661,7 +673,7 @@ to say if there's demand for that.
 
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal] movement delay - 0 when worn in space."
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_EQUIPMENT_MOVESPEED_SPACE)
+	ASSOCIATE_MOB_PROPERTY(PROP_EQUIPMENT_MOVESPEED_SPACE)
 
 /datum/objectProperty/equipment/movement/fluid //important : delay added to dry land!
 	name = "Fluid movement"
@@ -671,6 +683,6 @@ to say if there's demand for that.
 	defaultValue = 1
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "Negates fluid speed penalties.<br>+[propVal] movement delay on dry land."
-	ASSOCIATE_MOB_PROPERTY(PROP_MOB_EQUIPMENT_MOVESPEED_FLUID)
+	ASSOCIATE_MOB_PROPERTY(PROP_EQUIPMENT_MOVESPEED_FLUID)
 
 #undef ASSOCIATE_MOB_PROPERTY
