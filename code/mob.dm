@@ -2885,9 +2885,9 @@
 		APPLY_MOVEMENT_MODIFIER(src, equipment_proxy, /obj/item)
 
 	// reset the modifiers to defaults
-	equipment_proxy.additive_slowdown = GET_ATOM_PROPERTY(src, PROP_MOB_EQUIPMENT_MOVESPEED)
-	equipment_proxy.space_movement = GET_ATOM_PROPERTY(src, PROP_MOB_EQUIPMENT_MOVESPEED_SPACE)
-	equipment_proxy.aquatic_movement = GET_ATOM_PROPERTY(src, PROP_MOB_EQUIPMENT_MOVESPEED_FLUID)
+	equipment_proxy.additive_slowdown = GET_MOB_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED)
+	equipment_proxy.space_movement = GET_MOB_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED_SPACE)
+	equipment_proxy.aquatic_movement = GET_MOB_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED_FLUID)
 
 // alright this is copy pasted a million times across the code, time for SOME unification - cirr
 // no text description though, because it's all different everywhere
