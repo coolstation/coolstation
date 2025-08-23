@@ -716,7 +716,6 @@ datum
 				var/burn_speed = src.composite_combust_speed
 				var/energy_per_tile = src.composite_combust_energy * burn_speed / src.combustible_volume / length(covered_cache)
 
-				var/max_oxy_percent_found = 0
 				switch (burn_volatility)
 					if (0 to 6)
 						for (var/turf/T in covered_cache)
