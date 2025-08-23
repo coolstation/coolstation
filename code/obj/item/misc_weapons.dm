@@ -1577,13 +1577,13 @@ obj/item/whetstone
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 
 	w_class = W_CLASS_BULKY
-	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD
+	c_flags = EQUIPPED_WHILE_HELD
 
 	force = 45
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 1.2)
+		setProperty("carried_movespeed", 1.2)
 
 /obj/item/machete
 	name = "rusty machete"

@@ -139,9 +139,15 @@
 	color_g = 0.95
 	color_b = 0.975 // kinda blue
 
-	setupProperties()
-		..()
-		setProperty("disorient_resist_eye", 100)
+	on_transplant(mob/M)
+		. = ..()
+		APPLY_MOB_PROPERTY(M, PROP_DISORIENT_RESIST_EYE, src, 100)
+		APPLY_MOB_PROPERTY(M, PROP_DISORIENT_RESIST_EYE_MAX, src, 100)
+
+	on_removal()
+		REMOVE_MOB_PROPERTY(donor, PROP_DISORIENT_RESIST_EYE, src)
+		REMOVE_MOB_PROPERTY(donor, PROP_DISORIENT_RESIST_EYE_MAX, src)
+		. = ..()
 
 /obj/item/organ/eye/cyber/sechud
 	name = "\improper Security HUD cybereye"
