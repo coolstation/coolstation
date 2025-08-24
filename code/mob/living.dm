@@ -33,6 +33,7 @@
 	var/mob/living/ai_target = null
 	var/list/mob/living/ai_target_old = list()
 	var/is_npc = 0
+	var/ai_type
 
 	var/move_laying = null
 	var/static/mutable_appearance/speech_bubble = living_speech_bubble
@@ -145,10 +146,9 @@
 	if (blood_id)
 		all_blood_reagents |= blood_id
 
-//	if (src.use_stamina)
-//		src.stamina_bar = new(src)
-		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
-		//eventual hud merger pls
+	if(src.ai_type)
+		src.is_npc = TRUE
+		src.ai = new ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()

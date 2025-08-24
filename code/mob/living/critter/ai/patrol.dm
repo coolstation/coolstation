@@ -33,7 +33,7 @@
 
 	var/mob/living/critter/C = src.holder.owner
 	var/mob/living/combat_target
-	if(src.holder.target && isliving(src.holder.target) && C.valid_target(src.holder.target))
+	if(src.holder.target && isliving(src.holder.target) && C.ai_is_valid_target(src.holder.target))
 		combat_target = src.holder.target
 	else
 		var/list/mob/living/potential_targets = C.seek_target(src.max_dist)
@@ -120,7 +120,7 @@
 		FALSE \
 	)
 
-	SPAWN(1 SECOND)
+	SPAWN_DBG(1 SECOND)
 		if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
 			var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
 			src.control_freq = securitron_owner.control_freq
@@ -185,7 +185,7 @@
 			src.nearest_beacon = signal.source
 			src.nearest_beacon_id = signal.data["beacon"]
 			src.nearest_dist = dist
-			SPAWN(3 DECI SECONDS) // nav beacons have a decisecond delay before responding
+			SPAWN_DBG(3 DECI SECONDS) // nav beacons have a decisecond delay before responding
 				src.holder.target = src.nearest_beacon
 				src.next_patrol_id = src.nearest_beacon_id
 				src.nearest_beacon = null

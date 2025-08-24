@@ -576,12 +576,14 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 
 /mob/living/critter/robotic/securitron/death(var/gibbed)
 	for (var/datum/handHolder/HH in hands)
-		if (HH.limb.holder.remove_object && src.drop_limb_item)
-			var/obj/item/I = HH.limb.holder.remove_object
-			I.temp_flags &= ~IS_LIMB_ITEM
-			I.cant_drop = initial(I.cant_drop)
-			I.cant_self_remove = initial(I.cant_self_remove)
-			I.cant_other_remove = initial(I.cant_other_remove)
+		if(istype(HH.limb, /datum/limb/item))
+			var/datum/limb/item/item_limb = HH.limb
+			if (item_limb.my_item && src.drop_limb_item)
+				var/obj/item/I = item_limb.my_item
+				I.temp_flags &= ~IS_LIMB_ITEM
+				I.cant_drop = initial(I.cant_drop)
+				I.cant_self_remove = initial(I.cant_self_remove)
+				I.cant_other_remove = initial(I.cant_other_remove)
 	..(gibbed, 0)
 	if (!gibbed)
 		gib(src)
@@ -607,12 +609,6 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		boutput(user, "<span class='alert'>[src] refuses your authority!</span>")
 		return
 	user.showContextActions(src.contexts, src, src.configContextLayout)
-
-/mob/living/critter/robotic/securitron/pull(mob/user)
-	if (src.power)
-		boutput(user,SPAN_ALERT("<b>[src] resists being pulled around! Maybe deactivate it first.</b>"))
-		return 1
-	..()
 
 /mob/living/critter/robotic/securitron/specific_emotes(var/act, var/param = null, var/voluntary = 0)
 	if (act == "scream")
@@ -660,7 +656,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 /mob/living/critter/robotic/securitron/proc/siren()
 	if(siren_active)
 		return
-	SPAWN(0)
+	SPAWN_DBG(0)
 		siren_active = TRUE
 		var/weeoo = 10
 		playsound(src, 'sound/machines/siren_police.ogg', 50, TRUE)
@@ -690,8 +686,6 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		src.say("TEN-FORTY ONE. [uppertext(src.name)]: ONLINE.")
 		add_simple_light("secbot", list(255, 255, 255, 0.4 * 255))
 		ai.enable()
-		if (src.pulled_by)
-			src.pulled_by.remove_pulling()
 	else
 		src.say("TEN-FORTY TWO. [uppertext(src.name)]: OFFLINE.")
 		remove_simple_light("secbot")
@@ -836,7 +830,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	if (I && istype(I,/obj/item/baton))
 		var/obj/item/baton/baton = I
 		if(!baton.is_active)
-			baton.AttackSelf(src)
+			baton.attack_self(src)
 			return
 	..()
 
@@ -851,19 +845,12 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		src.set_a_intent(INTENT_DISARM)
 	src.hand_attack(target)
 	var/bonus_hits = src.emagged - 1
-	SPAWN(0)
+	SPAWN_DBG(0)
 		while(bonus_hits >= 1)
 			sleep(2)
 			src.next_click = 0
 			src.hand_attack(target)
 			bonus_hits--
-	if(istype(I,/obj/item/gun/kinetic/pumpweapon))
-		var/obj/item/gun/kinetic/pumpweapon/gun_to_rack = I
-		gun_to_rack.AttackSelf(src) // causes it to rack riot shotguns (and kuvaldas) after firing
-	if(istype(I,/obj/item/gun/kinetic/single_action))
-		var/obj/item/gun/kinetic/single_action/gun_to_cock = I
-		if(!gun_to_cock.hammer_cocked)
-			gun_to_cock.AttackSelf(src) // causes it to cock colt saas (and flintlocks) after firing
 	return TRUE
 
 /mob/living/critter/robotic/securitron/proc/check_access(obj/item/I)
@@ -925,7 +912,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	if (src.emagged > 5)
 		playsound(src, 'sound/effects/glitchy1.ogg', 50, FALSE, 0, 1)
 		src.say("I WAS THE LAW.")
-		SPAWN(5 DECI SECONDS)
+		SPAWN_DBG(5 DECI SECONDS)
 			src.blowthefuckup(3)
 
 	logTheThing(LOG_STATION, user, "emagged securitron ([src]) at [log_loc(src)].")
@@ -1039,23 +1026,19 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	real_name = "bowlatron"
 	throw_speed = 0.75
 
-/mob/living/critter/robotic/securitron/bowling/New()
-	. = ..()
-
-	RegisterSignal(src, COMSIG_MOVABLE_HIT_THROWN, PROC_REF(electric_bowling_strike))
-
 /mob/living/critter/robotic/securitron/bowling/throw_at(atom/target, range, speed, list/params, turf/thrown_from, mob/thrown_by, throw_type = 1,
 			allow_anchored = UNANCHORED, bonus_throwforce = 0, end_throw_callback = null)
 	throw_unlimited = TRUE
 	..()
 
-/mob/living/critter/robotic/securitron/bowling/proc/electric_bowling_strike(mob/thrown_mob, atom/target, datum/thrown_thing/thrown_thing)
-	if	(isturf(target) && !target.density)
+/mob/living/critter/robotic/securitron/bowling/throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+	. = ..()
+	if	(isturf(hit_atom) && !hit_atom.density)
 		return
-	thrown_mob.visible_message("<span class='alert'>[thrown_mob] unleashes a flash of electricity on impact!</span>")
-	elecflash(src.loc, 1, 2, 1)
-	if (ismob(target))
-		var/mob/M = target
+	src.visible_message("<span class='alert'>[src] unleashes a flash of electricity on impact!</span>")
+	elecflash(get_turf(hit_atom), 1, 2, 1)
+	if (ismob(hit_atom))
+		var/mob/M = hit_atom
 		M.do_disorient(150, weakened = 120, disorient = 60)
 
 /mob/living/critter/robotic/securitron/weed_seeking
@@ -1087,11 +1070,6 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	desc = "A little security robot, apparently carved out of a pumpkin.  He looks...spooky?"
 	icon = 'icons/misc/halloween.dmi'
 
-/mob/living/critter/robotic/securitron/neon
-	name = "Beepsky (Mall Edition)"
-	desc = "This little security robot appears to have been redesigned to appeal to civilians. How colourful!"
-	icon = 'icons/misc/walp_decor.dmi'
-
 /mob/living/critter/robotic/securitron/emagged
 	desc = "A tattered and rusted security bot, held together only by the will of some wretched elder god."
 	health_brute = 5
@@ -1103,7 +1081,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	New()
 		..()
 		src.name = pick("Commissar Beepevich","The Beeper","Murderbot","Killtron","Lawmaker")
-		SPAWN(1 MINUTE)
+		SPAWN_DBG(1 MINUTE)
 			if (src?.blow_up == 1)
 				src.blowthefuckup(0)
 		return

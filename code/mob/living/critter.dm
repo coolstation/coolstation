@@ -123,10 +123,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
-/*
-		if (src.stamina_bar)
-			hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-*/
 
 		health_update_queue |= src
 
@@ -275,23 +271,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		return Burn
 
 	// end convenience procs
-	was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
-		if (src.ai)
-			src._ai_patience_count--
-			src.ai.was_harmed(weapon,M)
-			if(src.is_hibernating)
-				if (src.registered_area)
-					src.registered_area.wake_critters(M)
-				else
-					src.wake_from_hibernation()
-			// We were harmed, and our ai wants to fight back. Also we don't have anything else really important going on
-			if (src.ai_retaliates && src.ai.enabled && length(src.ai.priority_tasks) <= 0 && src.should_critter_retaliate(M, weapon) && M != src && src.is_npc)
-				var/datum/aiTask/sequence/goalbased/retaliate/task_instance = src.ai.get_instance(/datum/aiTask/sequence/goalbased/retaliate, list(src.ai, src.ai.default_task))
-				task_instance.targetted_mob = M
-				task_instance.start_time = TIME
-				src.ai.priority_tasks += task_instance
-				src.ai.interrupt()
-		..()
 
 	on_reagent_react(var/datum/reagents/R, var/method = 1, var/react_volume)
 		for (var/T in healthlist)
@@ -852,31 +831,23 @@ ABSTRACT_TYPE(/mob/living/critter)
 	proc/specific_emote_type(var/act)
 		return 1
 
-/mob/living/critter/update_inhands()
-	var/handcount = 0
-	for (var/datum/handHolder/HH as anything in src.hands)
-		handcount++
-		if (HH.object_for_inhand)
-			var/obj/item/I = new HH.object_for_inhand
-			var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
-			var/image/inhand = image(icon = I.inhand_image_icon, icon_state = "[I.item_state][suffix]",
-									layer = HH.render_layer, pixel_x = HH.offset_x, pixel_y = HH.offset_y)
-			qdel(I)
-			src.UpdateOverlays(inhand, "inhands_[handcount]")
-			continue // If we have inhands we probably can't hold things
-		var/obj/item/I = HH.item
-		if (HH.show_inhands)
-			if (!I)
-				src.UpdateOverlays(null, "inhands_[handcount]")
-				continue
-			if (!I.inhand_image)
-				I.inhand_image = image(I.inhand_image_icon, "", HH.render_layer)
-			var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
-			I.inhand_image.icon_state = I.item_state ? "[I.item_state][suffix]" : "[I.icon_state][suffix]"
-			I.inhand_image.pixel_x = HH.offset_x
-			I.inhand_image.pixel_y = HH.offset_y
-			I.inhand_image.layer = HH.render_layer
-			src.UpdateOverlays(I.inhand_image, "inhands_[handcount]")
+	update_inhands()
+		var/handcount = 0
+		for (var/datum/handHolder/HH as anything in src.hands)
+			handcount++
+			var/obj/item/I = HH.item
+			if (HH.show_inhands)
+				if (!I)
+					src.UpdateOverlays(null, "inhands_[handcount]")
+					continue
+				if (!I.inhand_image)
+					I.inhand_image = image(I.inhand_image_icon, "", HH.render_layer)
+				var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
+				I.inhand_image.icon_state = I.item_state ? "[I.item_state][suffix]" : "[I.icon_state][suffix]"
+				I.inhand_image.pixel_x = HH.offset_x
+				I.inhand_image.pixel_y = HH.offset_y
+				I.inhand_image.layer = HH.render_layer
+				src.UpdateOverlays(I.inhand_image, "inhands_[handcount]")
 
 	// helper proc for AI
 	proc/empty_hand(var/hand_to_empty)
@@ -1292,9 +1263,9 @@ ABSTRACT_TYPE(/mob/living/critter/robotic)
 
 	New()
 		..()
-		APPLY_ATOM_PROPERTY(src, PROP_MOB_RADPROT, src, 100)
-		APPLY_ATOM_PROPERTY(src, PROP_MOB_HEATPROT, src, 100)
-		APPLY_ATOM_PROPERTY(src, PROP_MOB_COLDPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_RADPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_HEATPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_COLDPROT, src, 100)
 
 	/// EMP does 10 brute and 10 burn by default, can be adjusted linearly with emp_vuln
 	emp_act()

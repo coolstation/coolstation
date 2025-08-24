@@ -281,17 +281,17 @@
 		src.is_active = TRUE
 		boutput(user, "<span class='notice'>The [src.name] is now on.</span>")
 		playsound(src, "sparks", 75, 1, -1)
-		src.UpdateIcon()
+		src.update_icon()
 		user.update_inhands()
 		if(src.active_time)
-			SPAWN(src.active_time)
+			SPAWN_DBG(src.active_time)
 				src.turn_off(user)
 
 	proc/turn_off(mob/user)
 		src.is_active = FALSE
 		boutput(user, "<span class='notice'>The [src.name] is now off.</span>")
 		playsound(src, "sparks", 75, 1, -1)
-		src.UpdateIcon()
+		src.update_icon()
 		user.update_inhands()
 
 	attack(mob/M as mob, mob/user as mob)
@@ -368,9 +368,6 @@
 
 /////////////////////////////////////////////// Subtypes //////////////////////////////////////////////////////
 
-TYPEINFO(/obj/item/baton/mobsecbot)
-	mats = 0 //no
-
 /obj/item/baton/mobsecbot
 	name = "securitron stun baton"
 	desc = "A stun baton that's been modified to be used more effectively by security robots. There's a small parallel port on the bottom of the handle."
@@ -378,6 +375,7 @@ TYPEINFO(/obj/item/baton/mobsecbot)
 	is_active = FALSE
 	cost_normal = 25
 	can_swap_cell = 0
+	mats = 0
 	rechargable = 0
 	charge_time = 0.6 SECONDS
 	active_time = 3.4 SECONDS
