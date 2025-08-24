@@ -6,6 +6,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = PLANE_DEFAULT
+	var/list/atom_properties
 	var/level = 2
 	var/flags = FPRINT
 	var/event_handler_flags = 0
@@ -170,6 +171,7 @@
 			for(var/datum/statusEffect/effect as anything in src.statusEffects)
 				src.delStatus(effect)
 			src.statusEffects = null
+		atom_properties = null
 		..()
 
 	proc/Turn(var/rot)
@@ -507,7 +509,7 @@
 					src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
 				else if (ismob(src))
 					var/mob/M = src
-					if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+					if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 						src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
 		else
 			if(!istype(T))
@@ -517,7 +519,7 @@
 				return
 			if (ismob(src))
 				var/mob/M = src
-				if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+				if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 					return
 
 	var/atom/A = src.loc

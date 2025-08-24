@@ -149,12 +149,12 @@
 		onAdd(optional=null)
 			..()
 			var/mob/M = owner
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id, change)
+			APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id, change)
 
 		onRemove()
 			..()
 			var/mob/M = owner
-			REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id)
+			REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id)
 
 	maxhealth
 		id = "maxhealth"
@@ -289,7 +289,7 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
+				APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
 				M.add_stam_mod_max("stims", 50)
 				M.add_stun_resist_mod("stims", 1000)
 				M.filters += filter(type="displace", icon=icon('icons/effects/distort.dmi', "muscly"), size=0)
@@ -301,7 +301,7 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims")
+				REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims")
 				M.remove_stam_mod_max("stims")
 				M.remove_stun_resist_mod("stims")
 				animate(filter, size=0, time=1 SECOND, easing=SINE_EASING)
@@ -696,12 +696,12 @@
 				. = ..()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					APPLY_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					APPLY_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 
 			onRemove()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					REMOVE_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					REMOVE_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 				. = ..()
 
 		weakened
@@ -716,12 +716,12 @@
 				. = ..()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					APPLY_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					APPLY_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 
 			onRemove()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					REMOVE_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					REMOVE_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 				. = ..()
 
 			pinned
@@ -773,12 +773,12 @@
 				. = ..()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					APPLY_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					APPLY_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 
 			onRemove()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					REMOVE_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					REMOVE_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 				. = ..()
 
 		dormant
@@ -1144,7 +1144,7 @@
 			H.max_health += max_health
 			health_update_queue |= H
 			H.add_stam_mod_max("ganger_max", max_stam)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen", regen_stam)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen", regen_stam)
 			if (ismob(owner))
 				var/mob/M = owner
 				if (M.mind)
@@ -1155,7 +1155,7 @@
 			H.max_health -= max_health
 			health_update_queue |= H
 			H.remove_stam_mod_max("ganger_max")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen")
 			gang = null
 
 		onUpdate(timePassed)
@@ -1282,14 +1282,14 @@
 			H.max_health += max_health
 			health_update_queue |= H
 			H.add_stam_mod_max("mutiny_max", max_stam)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen", regen_stam)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen", regen_stam)
 
 		onRemove()
 			. = ..()
 			H.max_health -= max_health
 			health_update_queue |= H
 			H.remove_stam_mod_max("mutiny_max")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen")
 
 		getTooltip()
 			. = "Your max health, max stamina, and stamina regen have been increased because of your bossy attitude."
@@ -1316,14 +1316,14 @@
 			H.max_health += max_health
 			health_update_queue |= H
 			H.add_stam_mod_max("revspirit_max", max_stam)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen", regen_stam)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen", regen_stam)
 
 		onRemove()
 			. = ..()
 			H.max_health -= max_health
 			health_update_queue |= H
 			H.remove_stam_mod_max("revspirit_max")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen")
 
 		getTooltip()
 			. = "Your max stamina and stamina regen have been increased slightly."
@@ -1731,15 +1731,15 @@
 		//No atom properties around these parts :V
 		var/mob/ffs = owner
 		animate_swim(owner)
-		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
-		APPLY_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
+		APPLY_ATOM_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
+		APPLY_ATOM_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		..()
 
 	onRemove()
 		var/mob/ffs = owner
 		animate(owner, pixel_y = 0)
-		REMOVE_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
-		REMOVE_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
+		REMOVE_ATOM_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
+		REMOVE_ATOM_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		var/turf/space/fluid/warp_z5/trenchhole = owner.loc
 		ON_COOLDOWN(owner,"re-swim", 0.5 SECONDS) //Small cooldown so the trench hole doesn't immediately put the mob on swimming again (they plummet instead :D)
 		var/end_z_cross = TRUE
@@ -1895,5 +1895,5 @@
 			changeling.set_clothing_icon_dirty()
 			var/datum/abilityHolder/changeling/H = changeling.get_ability_holder(/datum/abilityHolder/changeling)
 			H.in_fakedeath = FALSE
-			REMOVE_MOB_PROPERTY(changeling, PROP_CANTMOVE, mob_prop_id)
+			REMOVE_ATOM_PROPERTY(changeling, PROP_CANTMOVE, mob_prop_id)
 		..()

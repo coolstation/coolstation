@@ -250,7 +250,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 		. = ..()
 		var/datum/abilityHolder/critter/abilityHolder = src.add_ability_holder(/datum/abilityHolder/critter)
 		abilityHolder.addAbility(/datum/targetable/ankle_bite)
-		APPLY_MOB_PROPERTY(src, PROP_LIFT_ANYTHING, src)
+		APPLY_ATOM_PROPERTY(src, PROP_LIFT_ANYTHING, src)
 		src.ai = null
 
 /mob/living/critter/small_animal/mouse/mickey

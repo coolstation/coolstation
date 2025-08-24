@@ -166,7 +166,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	..(loc)
 	START_TRACKING
 
-	APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+	APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 
 	light = new /datum/light/point
 	light.set_color(0.4, 0.7, 0.95)

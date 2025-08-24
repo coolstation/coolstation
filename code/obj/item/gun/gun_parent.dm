@@ -419,11 +419,11 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	user.visible_message("<span class='alert'><b>[user] places [src] against [his_or_her(user)] head!</b></span>")
 	var/dmg = user.get_brute_damage() + user.get_burn_damage()
 	var/turf/T = get_turf(user)
-	APPLY_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide", 0.1 - user.get_ranged_protection()) // take 10x damage from projectiles for 1 second
+	APPLY_ATOM_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide", 0.1 - user.get_ranged_protection()) // take 10x damage from projectiles for 1 second
 	src.Shoot(T, T, user, point_blank_target = user)
 	SPAWN_DBG(1 SECOND)
 		if(!QDELETED(user)) // i sincerely hope someone makes this check matter
-			REMOVE_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
+			REMOVE_ATOM_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
 			var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
 			if (new_dmg < (dmg + 30)) // BOOOO!
 				user.visible_message("<span class='alert'>[user] hangs [his_or_her(user)] head in shame.</span>")

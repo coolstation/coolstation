@@ -881,7 +881,7 @@
 	else
 		src.unkillable = 0
 		src.spell_soulguard = 0
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 		SPAWN_DBG(2.2 SECONDS) // Has to at least match the organ/limb replacement stuff (Convair880).
 			if (src) qdel(src)
 
@@ -2559,7 +2559,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (ishuman(src))
 		animation = new(src.loc)
@@ -3160,7 +3160,7 @@
 	if (move_dir & (move_dir-1))
 		steps *= DIAG_MOVE_DELAY_MULT
 
-	if (HAS_MOB_PROPERTY(src, PROP_ATOM_FLOATING)) //swimming
+	if (HAS_ATOM_PROPERTY(src, PROP_ATOM_FLOATING)) //swimming
 		return ..()
 
 	//STEP SOUND HANDLING

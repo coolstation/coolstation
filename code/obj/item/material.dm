@@ -640,7 +640,7 @@
 			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(isabomination(H))
 				return
-			if(H.throwing || HAS_MOB_PROPERTY(H, PROP_ATOM_FLOATING))
+			if(H.throwing || HAS_ATOM_PROPERTY(H, PROP_ATOM_FLOATING))
 				return
 			if(H.lying)
 				boutput(H, "<span class='alert'><B>You crawl on [src]! Ouch!</B></span>")

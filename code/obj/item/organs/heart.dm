@@ -34,11 +34,11 @@
 
 		if (src.robotic)
 			if (src.emagged)
-				APPLY_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 15)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 15)
 				src.donor.add_stam_mod_max("heart", 90)
 				src.donor.add_stun_resist_mod("heart", 30)
 			else
-				APPLY_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 5)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 5)
 				src.donor.add_stam_mod_max("heart", 40)
 				src.donor.add_stun_resist_mod("heart", 15)
 
@@ -63,7 +63,7 @@
 			src.blood_id = src.donor.blood_id //keep our owner's blood (for mutantraces etc)
 
 			if (src.robotic)
-				REMOVE_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
+				REMOVE_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
 				src.donor.remove_stam_mod_max("heart")
 				src.donor.remove_stun_resist_mod("heart")
 

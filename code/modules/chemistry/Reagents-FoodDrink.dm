@@ -2150,13 +2150,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
 				. = ..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
 				. = ..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2195,13 +2195,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
 				. = ..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
 				. = ..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -3491,7 +3491,7 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
 
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -3516,7 +3516,7 @@ datum
 
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)

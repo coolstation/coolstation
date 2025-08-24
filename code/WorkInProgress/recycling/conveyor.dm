@@ -108,7 +108,7 @@
 		return
 	if (ismob(A))
 		var/mob/peep = A
-		if(HAS_MOB_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
+		if(HAS_ATOM_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
 			return
 	var/movedir = dir	// base movement dir
 	if(divert && dir == divdir)	// update if diverter present

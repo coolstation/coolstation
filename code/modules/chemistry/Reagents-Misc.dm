@@ -228,7 +228,7 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					holder.my_atom:add_stam_mod_max("aranesp", 25)
 				return
@@ -236,7 +236,7 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
 					M.remove_stam_mod_max("aranesp")
 				return
 
@@ -288,14 +288,14 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
 					M.add_stam_mod_max("omegazine", 50)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
 					M.remove_stam_mod_max("omegazine")
 				..()
 
@@ -2322,13 +2322,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
 				if (istype(holder) && istype(holder.my_atom))
 					animate(holder.my_atom)
 				..()
@@ -2451,13 +2451,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
 				if (istype(holder) && istype(holder.my_atom))
 					animate(holder.my_atom)
 				..()
