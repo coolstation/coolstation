@@ -543,9 +543,10 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 
 /mob/living/critter/robotic/securitron/proc/change_hand_item()
 	set name = "Change hand item"
-	var/type = get_one_match(tgui_input_text(usr, "Item type", "Item type"), /obj/item)
+	var/type = input(usr, "Item type", "Item type")
 	if (!type)
 		return
+	type = get_one_match(type, /obj/item)
 	var/datum/handHolder/HH = hands[1]
 	if(!istype(HH.limb, /datum/limb/item))
 		HH.limb.dispose()
@@ -557,7 +558,8 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	I.cant_drop = 1
 	I.cant_self_remove = 1
 	I.cant_other_remove = 1
-	HH.limb.holder.remove_object = HH.item
+	var/datum/limb/item/itemlimb = HH.limb
+	itemlimb.my_item = HH.item
 	src.hud.remove_object(old_item)
 	qdel(old_item)
 	src.hud.add_object(I, HUD_LAYER+2, HH.screenObj.screen_loc)
