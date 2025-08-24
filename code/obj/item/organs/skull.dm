@@ -100,9 +100,9 @@
 
 		if (istype(W, /obj/item/device/analyzer/healthanalyzer))
 			animate_scanning(src, "#0AEFEF")
-			var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "name", src.donor_name)
+			var/datum/db_record/MR = data_core.general.find_record("name", src.donor_name)
 			if(MR)
-				boutput(user, "<span style='color:purple'><b>Dental records on file</b> -  [MR.fields["name"]]</span>")
+				boutput(user, "<span style='color:purple'><b>Dental records on file</b> -  [MR["name"]]</span>")
 			else
 				boutput(user, "<span style='color:purple'><b>No dental match found</b></span>")
 			return

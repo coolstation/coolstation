@@ -195,20 +195,18 @@
 	generated_moolah += undistributed_earnings
 	undistributed_earnings = 0
 
-	var/list/accounts = list()
-	for(var/datum/data/record/t in data_core.bank)
-		if(t.fields["job"] == "Chief Engineer")
-			accounts += t
-			accounts += t //fuck it
-		else if(t.fields["job"] == "Engineer")
-			accounts += t
+	// the double chief engineer seems to be intentional however silly it may seem
+	var/list/accounts = \
+		data_core.bank.find_records("job", "Chief Engineer") + \
+		data_core.bank.find_records("job", "Chief Engineer") + \
+		data_core.bank.find_records("job", "Engineer")
 // check we actually have accounts.len, or thats a runtime bucko.
 	if((accounts.len) && (abs(generated_moolah) >= accounts.len*2)) //otherwise not enough to split evenly so don't bother I guess
 		wagesystem.station_budget += round(generated_moolah/2)
 		generated_moolah -= round(generated_moolah/2) //no coming up with $$$ out of air!
 
-		for(var/datum/data/record/t in accounts)
-			t.fields["current_money"] += round(generated_moolah/accounts.len)
+		for(var/datum/db_record/t as anything in accounts)
+			t["current_money"] += round(generated_moolah/accounts.len)
 		undistributed_earnings += generated_moolah-(round(generated_moolah/accounts.len) * (length(accounts)))
 	else
 		undistributed_earnings += generated_moolah

@@ -100,8 +100,8 @@
 		if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 			if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 			boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
-			var/datum/data/record/account = null
-			account = FindBankAccountById(I:registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(I:registered)
 			if(account)
 				var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 				if (enterpin == I:pin)
@@ -165,8 +165,8 @@
 			if (src.scan.registered_id in FrozenAccounts)
 				boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 				return
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			if (account)
 				var/quantity = 1
 				quantity = input("How many units do you want to purchase? Maximum: 50", "Trader Purchase", null, null) as num
@@ -182,9 +182,9 @@
 				if(P)
 					if(shopping_cart.len + quantity > 50)
 						src.temp = {"Error. Maximum purchase limit of 50 items exceeded.<BR>
-						<BR><A href='byond://?src=\ref[src];purchase=1'>OK</A>"}
-					else if(account.fields["current_money"] >= P.price * quantity)
-						account.fields["current_money"] -= P.price * quantity
+						<BR><A href='?src=\ref[src];purchase=1'>OK</A>"}
+					else if(account["current_money"] >= P.price * quantity)
+						account["current_money"] -= P.price * quantity
 						while(quantity-- > 0)
 							shopping_cart += new P.comtype()
 						src.temp = {"[pick(successful_purchase_dialogue)]<BR>
@@ -311,8 +311,8 @@
 				return
 			var/datum/commodity/tradetype = most_applicable_trade(src.goods_buy, src.sellitem)
 			if(tradetype)
-				var/datum/data/record/account = null
-				account = FindBankAccountById(src.scan.registered_id)
+				var/datum/db_record/account = null
+				account = FindBankAccountByName(src.scan.registered)
 				if (!account)
 					src.temp = {" [src] looks slightly agitated when he realizes there is no bank account associated with the ID card.<BR>
 								<BR><A href='byond://?src=\ref[src];sell=1'>OK</A>"}
@@ -322,8 +322,8 @@
 				else
 					doing_a_thing = 1
 					src.temp = pick(src.successful_sale_dialogue) + "<BR>"
-					src.temp += "<BR><A href='byond://?src=\ref[src];sell=1'>OK</A>"
-					account.fields["current_money"] += tradetype.price * src.sellitem.amount
+					src.temp += "<BR><A href='?src=\ref[src];sell=1'>OK</A>"
+					account["current_money"] += tradetype.price * src.sellitem.amount
 					qdel (src.sellitem)
 					src.sellitem = null
 					src.add_fingerprint(usr)
@@ -343,8 +343,8 @@
 				if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 					if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 					boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
-					var/datum/data/record/account = null
-					account = FindBankAccountById(I:registered_id)
+					var/datum/db_record/account = null
+					account = FindBankAccountByName(I:registered)
 					if(account)
 						var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 						if (enterpin == I:pin)
@@ -391,10 +391,10 @@
 		dat = portrait_setup
 		dat +="<B>Scanned Card:</B> <A href='byond://?src=\ref[src];card=1'>([src.scan])</A><BR>"
 		if(scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			if (account)
-				dat+="<B>Current Funds</B>: [account.fields["current_money"]] Credits<HR>"
+				dat+="<B>Current Funds</B>: [account["current_money"]] Credits<HR>"
 			else
 				dat+="<HR>"
 		else
@@ -521,8 +521,8 @@
 		if(!alive)
 			boutput(user, "<span class='alert'>[src] is dead!</span>")
 			return
-		var/datum/data/record/account = null
-		account = FindBankAccountById(src.scan.registered_id)
+		var/datum/db_record/account = null
+		account = FindBankAccountByName(src.scan.registered)
 		if(!account)
 			boutput(user, "<span class='alert'>[src]There is no account registered with this card!</span>")
 			return
@@ -533,7 +533,7 @@
 				if (N.comtype == O.type)
 					user.visible_message("<span class='notice'>[src] is willing to buy all of [O].</span>")
 					for(N.comtype in view(1,user))
-						account.fields["current_money"] += N.price
+						account["current_money"] += N.price
 						qdel(N.comtype)
 						sleep(0.2 SECONDS)
 						if (user.loc != staystill) break*/
@@ -552,7 +552,7 @@
 						qdel(sellitem)
 				if(cratevalue)
 					boutput(user, "<span class='notice'>[src] takes what they want from [O]. [cratevalue] credits have been transferred to your account.</span>")
-					account.fields["current_money"] += cratevalue
+					account["current_money"] += cratevalue
 				else
 					boutput(user, "<span class='notice'>[src] finds nothing of interest in [O].</span>")
 
