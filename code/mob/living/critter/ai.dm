@@ -124,6 +124,7 @@ var/list/ai_move_scheduled = list()
 		move_side = 1
 
 	proc/stop_move()
+		target_path = null
 		move_target = null
 		ai_move_scheduled -= src
 		walk(owner,0)

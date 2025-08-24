@@ -250,8 +250,15 @@
 			// follow the path
 			src.found_path.Cut(1, 2)
 			var/turf/next
-			if(src.found_path.len >= 1)
+			if(src.found_path.len > 1)
 				next = src.found_path[1]
+				var/i = 2
+				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+				while(get_dir(next, src.found_path[i]) == dir_line)
+					next = src.found_path[i]
+					i++
+					if(i > length(src.found_path))
+						break
 			else
 				next = src.move_target
 			holder.move_to(next)
