@@ -488,6 +488,34 @@ Code:
 
 		return dat
 
+	on_activated(obj/item/device/pda2/pda)
+		pda.AddComponent(/datum/component/packet_connected/radio, \
+			"report",\
+			1149, \
+			pda.net_id, \
+			null, \
+			null \
+		)
+		RegisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET, .proc/receive_signal)
+
+	on_deactivated(obj/item/device/pda2/pda)
+		qdel(get_radio_connection_by_id(pda, "report"))
+		UnregisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET)
+
+	proc/receive_signal(obj/item/device/pda2/pda, datum/signal/signal, transmission_method, range, connection_id)
+		if(!src.temp || connection_id != "report" || signal.encryption)
+			return
+
+		if(signal.data["command"] == "reply_alerts")
+			src.temp = null
+
+			if(signal.data["severe_list"])
+				src.severe_alerts = splittext(signal.data["severe_list"], ";")
+			if(signal.data["minor_list"])
+				src.minor_alerts = splittext(signal.data["minor_list"], ";")
+
+			src.master.updateSelfDialog()
+
 	Topic(href, href_list)
 		if(..())
 			return
@@ -505,22 +533,6 @@ Code:
 
 		src.master.add_fingerprint(usr)
 		src.master.updateSelfDialog()
-		return
-
-	receive_signal(datum/signal/signal)
-		if(..() || !src.temp)
-			return
-
-		if(signal.data["command"] == "reply_alerts")
-			src.temp = null
-
-			if(signal.data["severe_list"])
-				src.severe_alerts = splittext(signal.data["severe_list"], ";")
-			if(signal.data["minor_list"])
-				src.minor_alerts = splittext(signal.data["minor_list"], ";")
-
-			src.master.updateSelfDialog()
-
 		return
 
 
@@ -641,9 +653,17 @@ Code:
 
 		src.post_signal(signal, report_freq)
 
-	init()
-		//boutput(world, "<h5>Adding [master]@[master.loc]:[report_freq]")
-		radio_controller.add_object(master, "[report_freq]")
+	on_activated(obj/item/device/pda2/pda)
+		pda.AddComponent(/datum/component/packet_connected/radio, \
+			"hydro_report",\
+			report_freq, \
+			pda.net_id, \
+			null, \
+			null \
+		)
+
+	on_deactivated(obj/item/device/pda2/pda)
+		qdel(get_radio_connection_by_id(pda, "hydro_report"))
 
 	return_text()
 		if(..())
@@ -755,7 +775,6 @@ Code:
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src.master
-		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["address_1"] = "00000000"
 		signal.data["command"] = "text_message"
 		signal.data["sender_name"] = src.master.owner
@@ -1183,12 +1202,10 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 			// pda alert ////////
 			if (!antispam || (antispam < (ticker.round_elapsed_ticks)) )
 				antispam = ticker.round_elapsed_ticks + SPAM_DELAY
-				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 				var/datum/signal/pdaSignal = get_free_signal()
 				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_CARGOREQUEST), "sender"="00000000", "message"="Notification: [O.object] requested by [O.orderedby] at [O.console_location].")
-				pdaSignal.transmission_method = TRANSMISSION_RADIO
-				if(transmit_connection != null)
-					transmit_connection.post_signal(src, pdaSignal)
+				SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, pdaSignal, null, "pda")
+
 			//////////////////
 			src.temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 

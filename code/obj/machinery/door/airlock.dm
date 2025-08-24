@@ -1605,7 +1605,6 @@ obj/machinery/door/airlock
 	var/last_radio_login = 0
 	mats = 18
 
-	var/datum/radio_frequency/radio_connection
 
 	receive_signal(datum/signal/signal)
 		if(!signal || signal.encryption)
@@ -1623,9 +1622,8 @@ obj/machinery/door/airlock
 				pingsignal.data["sender"] = src.net_id
 				pingsignal.data["address_1"] = signal.data["sender"]
 				pingsignal.data["command"] = "ping_reply"
-				pingsignal.transmission_method = TRANSMISSION_RADIO
 
-				radio_connection.post_signal(src, pingsignal, radiorange)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pingsignal, radiorange)
 				return
 
 			else if (!id_tag || id_tag != signal.data["tag"])
@@ -1634,7 +1632,6 @@ obj/machinery/door/airlock
 		if (signal.data["command"] && signal.data["command"] == "help")
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["sender"] = src.net_id
 			reply.data["address_1"] = signal.data["sender"]
 			if (!signal.data["topic"])
@@ -1663,7 +1660,7 @@ obj/machinery/door/airlock
 						reply.data["args"] = "access_code"
 					else
 						reply.data["description"] = "ERROR: UNKNOWN TOPIC"
-			radio_connection.post_signal(src, reply, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, radiorange)
 			return
 
 		var/sent_code = text2num(signal.data["access_code"])
@@ -1678,9 +1675,8 @@ obj/machinery/door/airlock
 			rejectsignal.data["command"] = "nack"
 			rejectsignal.data["data"] = "badpass"
 			rejectsignal.data["sender"] = src.net_id
-			rejectsignal.transmission_method = TRANSMISSION_RADIO
 
-			radio_connection.post_signal(src, rejectsignal, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, rejectsignal, radiorange)
 			return
 
 		if (!signal.data["command"])
@@ -1739,28 +1735,26 @@ obj/machinery/door/airlock
 					send_status(,senderid)
 
 	proc/send_status(userid,target)
-		if(radio_connection)
-			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
-			signal.source = src
-			if (id_tag)
-				signal.data["tag"] = id_tag
-			signal.data["sender"] = net_id
-			signal.data["timestamp"] = "[air_master.current_cycle]"
+		var/datum/signal/signal = get_free_signal()
+		signal.source = src
+		if (id_tag)
+			signal.data["tag"] = id_tag
+		signal.data["sender"] = net_id
+		signal.data["timestamp"] = "[air_master.current_cycle]"
+		signal.data["address_tag"] = "door" // prevents other doors from receiving this packet unnecessarily
 
-			if (userid)
-				signal.data["user_id"] = "[userid]"
-			if (target)
-				signal.data["address_1"] = target
-			signal.data["door_status"] = density?("closed"):("open")
-			signal.data["lock_status"] = locked?("locked"):("unlocked")
+		if (userid)
+			signal.data["user_id"] = "[userid]"
+		if (target)
+			signal.data["address_1"] = target
+		signal.data["door_status"] = density?("closed"):("open")
+		signal.data["lock_status"] = locked?("locked"):("unlocked")
 
-			radio_connection.post_signal(src, signal, radiorange)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, radiorange)
 
 	proc/send_packet(userid,target,message) //For unique conditions like a rejection message instead of overall status
-		if(radio_connection && message)
+		if(message)
 			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
 			signal.source = src
 			if (id_tag)
 				signal.data["tag"] = id_tag
@@ -1771,10 +1765,11 @@ obj/machinery/door/airlock
 				signal.data["user_id"] = "[userid]"
 			if (target)
 				signal.data["address_1"] = target
+			signal.data["address_tag"] = "door" // prevents other doors from receiving this packet unnecessarily
 
 			signal.data["data"] = "[message]"
 
-			radio_connection.post_signal(src, signal, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, radiorange)
 
 	open(surpress_send)
 		. = ..()
@@ -1830,29 +1825,13 @@ obj/machinery/door/airlock
 				send_packet(user_name, ,"denied")
 			src.last_update_time = ticker.round_elapsed_ticks
 
-	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, "[frequency]")
-		if(new_frequency)
-			frequency = new_frequency
-			radio_connection = radio_controller.add_object(src, "[frequency]")
-
 	initialize()
 		..()
-		if(frequency)
-			set_frequency(frequency)
-
 		update_icon()
 
 	New()
 		..()
-
-		if(radio_controller)
-			set_frequency(frequency)
-
-	disposing()
-		if (radio_controller)
-			set_frequency(null)
-		..()
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 /obj/machinery/door/airlock/take_damage(amount, mob/user = null, chopping = FALSE)
 	if (!(..()) && src.health <= health_max * 0.9)

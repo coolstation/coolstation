@@ -10,7 +10,6 @@
 	//var/destination_tag = null // dropped to parent /obj/machinery/disposal
 	var/list/destinations = list()
 	var/frequency = FREQ_MAIL
-	var/datum/radio_frequency/radio_connection
 	var/last_inquire = 0 //No signal spamming etc
 	var/autoname = 0
 	var/autotag = 0 //get mail tag from area it's placed on. 2 goes by area.name
@@ -20,7 +19,6 @@
 	var/mailgroup2 = null
 	var/net_id = null
 	var/pdafrequency = FREQ_PDA
-	var/datum/radio_frequency/pda_connection
 	var/router_distance = 0 // tracks the highest-yet Count on configuration packets recieved to date.
 	var/list/routerlist = list() // routerlists we got from those packets.
 
@@ -45,21 +43,12 @@
 
 		//TODO for later: do a datumized lookup for mailgroups/notifications based on mailtags so those can be set automatically too
 
+		if (!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("main", frequency)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("pda", pdafrequency)
 		SPAWN_DBG(10 SECONDS)
-			if (src)
-				if (radio_controller)
-					radio_connection = radio_controller.add_object(src, "[frequency]")
-					pda_connection = radio_controller.add_object(src, "[pdafrequency]")
-					src.post_radio_status()
-				if (!src.net_id)
-					src.net_id = generate_net_id(src)
-
-		return
-
-	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		radio_controller.remove_object(src, "[pdafrequency]")
-		..()
+			src.post_radio_status()
 
 	rechecktrunk()
 		. = ..()
@@ -90,21 +79,18 @@
 				destinations = null
 				var/datum/signal/signal = get_free_signal()
 				signal.source = src
-				signal.transmission_method = TRANSMISSION_RADIO
 				signal.data["command"] = "mail_inquire"
 
-				if (radio_connection)
-					radio_connection.post_signal(src, signal)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "main")
 
 	proc/post_radio_status()
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["command"] = "mail_reply"
 		signal.data["data"] = src.mail_tag
 
-		radio_connection.post_signal(src, signal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "main")
 		return
 
 	receive_signal(datum/signal/signal)
@@ -163,7 +149,7 @@
 			var/myarea = get_area(src)
 			message = "Mail delivery alert in [myarea]."
 
-			if (message && (mailgroup || mailgroup2) && pda_connection)
+			if (message && (mailgroup || mailgroup2))
 				var/groups = list()
 				if (mailgroup)
 					groups += mailgroup
@@ -173,7 +159,6 @@
 
 				var/datum/signal/newsignal = get_free_signal()
 				newsignal.source = src
-				newsignal.transmission_method = TRANSMISSION_RADIO
 				newsignal.data["command"] = "text_message"
 				newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 				newsignal.data["message"] = "[message]"
@@ -181,7 +166,7 @@
 				newsignal.data["group"] = groups
 				newsignal.data["sender"] = src.net_id
 
-				pda_connection.post_signal(src, newsignal)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "pda")
 
 		..()
 		return

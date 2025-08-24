@@ -34,22 +34,18 @@ THROWING DARTS
 	var/list/mailgroups = null
 	var/net_id = null
 	var/pda_alert_frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		..()
 		if (uses_radio)
-			SPAWN_DBG(10 SECONDS)
-				if (radio_controller)
-					radio_connection = radio_controller.add_object(src, "[pda_alert_frequency]")
-				if (!src.net_id)
-					src.net_id = generate_net_id(src)
+			if (!src.net_id)
+				src.net_id = generate_net_id(src)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, pda_alert_frequency)
 
 	disposing()
 		owner = null
 		former_implantee = null
 		if (uses_radio)
-			radio_controller.remove_object(src, "[pda_alert_frequency]")
 			mailgroups.Cut()
 		. = ..()
 
@@ -135,11 +131,8 @@ THROWING DARTS
 
 	proc/send_message(var/message, var/alertgroup, var/sender_name)
 		DEBUG_MESSAGE("sending message: [message]")
-		if(!radio_connection)
-			return
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		newsignal.data["command"] = "text_message"
 		newsignal.data["sender_name"] = sender_name
 		newsignal.data["message"] = "[message]"
@@ -148,7 +141,7 @@ THROWING DARTS
 		newsignal.data["group"] = mailgroups + alertgroup
 		newsignal.data["sender"] = src.net_id
 
-		radio_connection.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if (!istype(src, /obj/item/implant/projectile))

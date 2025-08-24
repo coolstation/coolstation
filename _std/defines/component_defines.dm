@@ -93,6 +93,10 @@
 #define COMSIG_MOVABLE_SET_LOC "mov_set_loc"
 /// when an AM ends throw (thing, /datum/thrown_thing)
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
+/// when an AM receives a packet (datum/signal/signal, receive_method, receive_param / range, connection_id)
+#define COMSIG_MOVABLE_RECEIVE_PACKET "mov_receive_packet"
+/// send this signal to send a radio packet (datum/signal/signal, receive_param / range, frequency), if frequency is null all registered frequencies are used
+#define COMSIG_MOVABLE_POST_RADIO_PACKET "mov_post_radio_packet"
 /// when an AM is revealed from under a floor tile (turf revealed from)
 #define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
 /// when an AM changes contraband level (self_applied)
