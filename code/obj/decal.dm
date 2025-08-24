@@ -658,9 +658,8 @@ obj/decal/fakeobjects
 	var/strike_time = 1 SECOND
 	var/volume = 50
 	var/datum/light/point/light = null
-	var/light_brightness = 1.3
+	var/light_brightness = 1.2
 	var/light_atten_con = -0.03
-	var/light_height = 3
 	var/light_r = 0.8
 	var/light_g = 0.8
 	var/light_b = 0.85
@@ -677,7 +676,6 @@ obj/decal/fakeobjects
 		light.attach(src)
 		light.set_atten_con(light_atten_con)
 		light.set_brightness(light_brightness)
-		light.set_height(light_height)
 		light.set_color(light_r, light_g, light_b)
 		SPAWN_DBG(1 DECI SECOND)
 			light?.enable()

@@ -7,7 +7,7 @@
 	target_anything = 0
 	human_only = 0
 	pointCost = 4
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 0
 
 	incapacitationCheck()
@@ -109,7 +109,7 @@
 	target_anything = 0
 	human_only = 0
 	pointCost = 0 // free for now, given you have to lose a fuckin' EYE
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 0
 
 	incapacitationCheck()
@@ -202,7 +202,7 @@
 	target_anything = 0
 	human_only = 0
 	pointCost = 5// was 6
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 0
 
 	incapacitationCheck()
@@ -294,7 +294,7 @@
 	target_anything = 0
 	human_only = 0
 	pointCost = 1
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 0
 
 	incapacitationCheck()
@@ -377,7 +377,7 @@
 	targeted = 0
 	target_anything = 0
 	human_only = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	interrupt_action_bars = 0
 	dont_lock_holder = 1
 	incapacitationCheck()
@@ -405,7 +405,7 @@
 	target_anything = 0
 	human_only = 0
 	pointCost = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 1
 	interrupt_action_bars = 0
 
@@ -457,7 +457,7 @@
 	target_anything = 0
 	human_only = 0
 	pointCost = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 1
 	interrupt_action_bars = 0
 

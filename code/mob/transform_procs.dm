@@ -81,7 +81,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[t])
 		src.organs[t] = null
@@ -217,7 +217,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs) qdel(src.organs[text("[t]")])
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot/(src.loc,null,1)
@@ -273,7 +273,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[t])
 //	var/atom/movable/overlay/animation = new /atom/movable/overlay( src.loc )
@@ -306,7 +306,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[t])
 //	var/atom/movable/overlay/animation = new /atom/movable/overlay( src.loc )
@@ -339,7 +339,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[text("[t]")])
 
@@ -522,7 +522,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs) qdel(src.organs[text("[t]")])
 
 	var/mob/living/critter/mechmonstrosity/suffering/O = new /mob/living/critter/mechmonstrosity/suffering/(src.loc,null,1)

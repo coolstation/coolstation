@@ -88,17 +88,17 @@ datum
 */
 
 		proc/on_add()
-			if (stun_resist > 0)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					M.add_stun_resist_mod("reagent_[src.id]", stun_resist)
+			if (stun_resist > 0 && ismob(holder?.my_atom))
+				var/mob/M = holder.my_atom
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]", stun_resist)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]", stun_resist)
 			return
 
 		proc/on_remove()
-			if (stun_resist > 0)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					M.remove_stun_resist_mod("reagent_[src.id]")
+			if (stun_resist > 0 && ismob(holder?.my_atom))
+				var/mob/M = holder.my_atom
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]")
 			return
 
 		proc/on_copy(var/datum/reagent/new_reagent)

@@ -258,7 +258,7 @@
 
 /datum/aiTask/timed/targeted/violence/on_tick()
 	var/mob/living/critter/owncritter = src.holder.owner
-	if (!src.holder.owner || HAS_MOB_PROPERTY(src.holder.owner, PROP_CANTMOVE))
+	if (!src.holder.owner || HAS_ATOM_PROPERTY(src.holder.owner, PROP_CANTMOVE))
 		return
 
 	if(!src.holder.target && world.time > src.last_seek + src.seek_every)

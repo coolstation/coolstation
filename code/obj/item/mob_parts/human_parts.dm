@@ -499,6 +499,8 @@
 			handlistPart += "r_arm_[I.arm_icon]"
 			override_attack_hand = I.override_attack_hand
 			can_hold_items = I.can_hold_items
+			var/datum/limb/item/item_limb = limb_data
+			item_limb.my_item = I
 
 			if (I.cant_drop)
 				original_flags |= ORIGINAL_FLAGS_CANT_DROP

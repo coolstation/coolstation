@@ -133,7 +133,8 @@
 					if (95 to 97)
 						shit_in_the_open += new /obj/machinery/portable_atmospherics/canister/farts
 					if (98 to 100)
-						shit_in_the_open += new /obj/machinery/portable_atmospherics/canister/oxygen_agent_b
+						//shit_in_the_open += new /obj/machinery/portable_atmospherics/canister/oxygen_agent_b
+						shit_in_the_open += new /obj/machinery/portable_atmospherics/pump
 		if ("contraband") //traitor gear, cause
 		if ("mechanics") //prefabbed mechanics frames
 			//Okay so it turns out that there's only 4 predefined mechanics frames. All the department in a crate kits from cargo make the frames dynamically

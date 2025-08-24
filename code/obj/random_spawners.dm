@@ -789,7 +789,7 @@
 	/obj/item/casing/small,
 	/obj/item/cigbutt,
 	/obj/item/clothing/head/paper_hat,
-	/obj/item/clothing/mask/gas,
+	/obj/item/clothing/mask/breath,
 	/obj/item/clothing/mask/medical,
 	/obj/item/clothing/mask/surgical,
 	/obj/item/clothing/shoes/blue,
@@ -805,6 +805,8 @@
 	/obj/item/mining_tool,
 	/obj/item/mousetrap,
 	/obj/item/mousetrap/armed,
+	/obj/item/paper/folded/ball,
+	/obj/item/paper/folded/plane,
 	/obj/item/paper,
 	/obj/item/plank,
 	/obj/item/plate,
@@ -812,6 +814,7 @@
 	/obj/item/pen/crayon/random,
 	/obj/item/raw_material/shard/glass,
 	/obj/item/reagent_containers/food/drinks/paper_cup,
+	/obj/item/reagent_containers/syringe,
 	/obj/item/rods/steel,
 	/obj/item/rubberduck,
 	/obj/item/scissors,
@@ -823,27 +826,42 @@
 	/obj/item/spacecash/random/small,
 	/obj/item/stamp,
 	/obj/item/stick,
-	/obj/item/tile/steel)
+	/obj/item/tile/steel,
+	/obj/random_item_spawner/snacks/one_or_zero)
 
-	rare_items2spawn = list(/obj/item/bluntwrap,
+	rare_items2spawn = list(/obj/item/bananapeel,
+	/obj/item/bluntwrap,
+	/obj/item/casing/grenade,
 	/obj/item/cell,
+	/obj/item/chem_grenade,
+	/obj/item/clothing/mask/gas/emergency,
 	/obj/item/crowbar,
+	/obj/item/device/light/flashlight,
+	/obj/item/device/light/glowstick,
 	/obj/item/electronics/scanner,
 	/obj/item/electronics/soldering,
+	/obj/item/firework,
+	/obj/item/grenade_fuse,
+	/obj/item/hammer,
 	/obj/item/light_parts,
 	/obj/item/light_parts/bulb,
 	/obj/item/light_parts/floor,
+	/obj/item/reagent_containers/balloon,
+	/obj/item/reagent_containers/pill/cyberpunk,
 	/obj/item/screwdriver,
 	/obj/item/spraybottle,
 	/obj/item/spray_paint,
+	/obj/item/sponge/starwipe,
 	/obj/item/spongecaps,
-	/obj/item/storage/toolbox/mechanical,
-	/obj/item/storage/toolbox/electrical,
+	/obj/item/staple_gun/red,
+//	/obj/item/storage/toolbox/mechanical,
+//	/obj/item/storage/toolbox/electrical,
 	/obj/item/storage/toolbox/emergency,
 	/obj/item/tank/air,
 	/obj/item/tank/emergency_oxygen,
 	/obj/item/weldingtool,
-	/obj/item/wrench)
+	/obj/item/wrench,
+	/obj/random_item_spawner/snacks/two)
 
 	one
 		amt2spawn = 1
@@ -1890,8 +1908,7 @@
 	amt2spawn = 1
 	rare_chance = 5
 	rare_items2spawn = list(/obj/machinery/portable_atmospherics/canister/farts/filled,
-						/obj/machinery/portable_atmospherics/canister/sleeping_agent,
-						/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+						/obj/machinery/portable_atmospherics/canister/sleeping_agent)
 	items2spawn = list(/obj/machinery/portable_atmospherics/canister/nitrogen,
 						/obj/machinery/portable_atmospherics/canister/oxygen,
 						/obj/machinery/portable_atmospherics/canister/toxins,

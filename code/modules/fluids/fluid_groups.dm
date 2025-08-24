@@ -8,6 +8,14 @@
 	var/datum/fluid_group/my_group = null
 	var/last_reaction_loc = 0
 	var/skip_next_update = 0
+
+/*
+	start_combusting()
+		for(var/turf/T in src.covered_turf())
+			if(T.air && T.air.oxygen >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_NEEDED && (T.air.oxygen / MIXTURE_PRESSURE(T.air) >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_PERCENTAGE))
+				return ..()
+*/
+
 	covered_turf()
 		.= list()
 		if (my_group)
@@ -329,17 +337,18 @@
 	proc/displace(var/obj/fluid/F) //fluid has been displaced from its tile - delete this object and try to move my contents to adjacent tiles
 		if (!members || !F) return
 		if (length(src.members) == 1)
-			var/turf/T
+			var/turf/T = get_turf(F)
+			var/turf/T2
 			for( var/dir in cardinal )
 				T = get_step( F, dir )
-				if (!istype(T,/turf/floor)) continue
-				if (T.canpass())
-					if (T.active_liquid && T.active_liquid.group)
-						T.active_liquid.group.join(src)
+				if (!istype(T2,/turf/floor)) continue
+				if (T.gas_cross(T2))
+					if (T2.active_liquid && T2.active_liquid.group)
+						T2.active_liquid.group.join(src)
 					else
 						F.turf_remove_cleanup(F.loc)
 						F.set_loc(T)
-						T.active_liquid = F
+						T2.active_liquid = F
 					break
 		else
 			var/turf/T

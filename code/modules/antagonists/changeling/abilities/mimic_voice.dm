@@ -6,7 +6,7 @@
 	targeted = 0
 	target_anything = 0
 	human_only = 1
-	can_use_in_container = 1
+	turf_check = FALSE
 	interrupt_action_bars = 0
 	var/last_mimiced_name = ""
 	cast(atom/target)

@@ -12,6 +12,7 @@
 	can_disarm = 1
 	blood_id = "bloodc"
 	table_hide = 0
+	takes_brain = FALSE
 	var/datum/abilityHolder/changeling/hivemind_owner = 0
 	var/icon_prefix = ""
 
@@ -123,6 +124,10 @@
 	can_grab = 1
 	can_disarm = 1
 	hand_count = 1
+	health_brute = 5
+	health_brute_vuln = 1
+	health_burn = 4
+	health_burn_vuln = 1.25
 	var/absorbed_dna = 0
 
 	New()
@@ -142,16 +147,16 @@
 		..()
 
 	proc/stop_sprint()
-		APPLY_MOB_PROPERTY(src, PROP_CANTSPRINT, src.type)
+		APPLY_ATOM_PROPERTY(src, PROP_CANTSPRINT, src.type)
 
 	proc/enable_sprint()
-		REMOVE_MOB_PROPERTY(src, PROP_CANTSPRINT, src.type)
+		REMOVE_ATOM_PROPERTY(src, PROP_CANTSPRINT, src.type)
 
 	special_movedelay_mod(delay,space_movement,aquatic_movement)
 		.= delay
 		if (src.lying)
 			. += 14
-		if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+		if (HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT))
 			. += 7
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
@@ -229,15 +234,9 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 1
-
-	setup_healths()
-		add_hh_flesh(5, 1)
-		add_hh_flesh_burn(4, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)
-
 
 	//Give master the DNA we collected, the DNA points it cost to create us, and their arm back!
 	return_to_master()
@@ -316,6 +315,10 @@
 	icon_state_dead = "eyespider-dead"
 	abilityHolder
 	var/marked_target = null
+	health_brute = 3
+	health_brute_vuln = 1
+	health_burn = 2
+	health_burn_vuln = 1.25
 	base_move_delay = 1.65
 	base_walk_delay = 3
 	layer = 2.89
@@ -334,12 +337,6 @@
 		src.sight |= SEE_MOBS | SEE_TURFS | SEE_OBJS
 		src.see_in_dark = SEE_DARK_FULL
 		src.see_invisible = 2
-
-	// a slight breeze will kill these guys, such is life as a squishy li'l eye
-	setup_healths()
-		add_hh_flesh(3, 1)
-		add_hh_flesh_burn(2, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)
 
 	return_to_master()
 		var/dna_gain = 0
@@ -381,6 +378,10 @@
 	base_move_delay = 4
 	base_walk_delay = 5
 	hat_y_offset = 5
+	health_brute = 16
+	health_brute_vuln = 1
+	health_burn = 5
+	health_burn_vuln = 1.25
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
@@ -436,8 +437,8 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
-		HH.limb = new /datum/limb/leg_hand
+		HH.limb.name = "teeth"					// name for the dummy holder
+		HH.limb = new /datum/limb/leg_hand(src)
 		HH.can_hold_items = 0
 
 	New()
@@ -448,12 +449,6 @@
 		abilityHolder.updateButtons()
 		src.flags ^= TABLEPASS
 		src.add_stam_mod_max("small_animal", 25)
-
-	setup_healths()
-		add_hh_flesh(16, 1)
-		add_hh_flesh_burn(5, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)
-
 
 	return_to_master()
 		if (ishuman(hivemind_owner.owner))
@@ -502,6 +497,10 @@
 	base_move_delay = 4
 	base_walk_delay = 5
 	hat_y_offset = -2
+	health_brute = 16
+	health_brute_vuln = 1
+	health_burn = 5
+	health_burn_vuln = 1.25
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
@@ -525,11 +524,6 @@
 		abilityHolder.addAbility(/datum/targetable/changeling/sting/simethicone)
 		abilityHolder.updateButtons()
 		src.flags ^= TABLEPASS
-
-	setup_healths()
-		add_hh_flesh(16, 1)
-		add_hh_flesh_burn(5, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)
 
 	return_to_master()
 		if (ishuman(hivemind_owner.owner))
@@ -564,6 +558,10 @@
 	hand_count = 1
 	hat_y_offset = 5
 	density = 0
+	health_brute = 15
+	health_brute_vuln = 1
+	health_burn = 15
+	health_burn_vuln = 1.25
 
 	var/datum/abilityHolder/changeling/changeling = null
 	var/datum/mind/owner = null
@@ -588,7 +586,7 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 0
 
@@ -597,12 +595,6 @@
 		abilityHolder.addAbility(/datum/targetable/critter/slam)
 		abilityHolder.updateButtons()
 		src.flags ^= TABLEPASS | DOORPASS
-
-	setup_healths()
-		add_hh_flesh(40, 1)
-		add_hh_flesh_burn(20, 1.25)
-		add_health_holder(/datum/healthHolder/toxin)
-
 
 /mob/living/critter/changeling/headspider/ai_is_valid_target(var/mob/M)
 		//we want a human that isnt dead and isnt already sorta taken over

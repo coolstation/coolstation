@@ -359,7 +359,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 
 /datum/materialProc/plasmastone_on_hit
 	execute(var/atom/owner)
-		owner.material.triggerTemp(locate(owner))
+		owner.material.triggerTemp(owner)
 /*
 /datum/materialProc/molitz_temp
 	var/unresonant = 1

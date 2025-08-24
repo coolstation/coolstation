@@ -211,7 +211,7 @@
 			var/show = 1
 
 			if (!lastTooltipContent || !lastTooltipTitle || tooltip_flags & REBUILD_ALWAYS\
-			 || (HAS_MOB_PROPERTY(usr, PROP_SPECTRO) && tooltip_flags & REBUILD_SPECTRO)\
+			 || (HAS_ATOM_PROPERTY(usr, PROP_SPECTRO) && tooltip_flags & REBUILD_SPECTRO)\
 			 || (usr != lastTooltipUser && tooltip_flags & REBUILD_USER)\
 			 || (get_dist(src, usr) != lastTooltipDist && tooltip_flags & REBUILD_DIST))
 				tooltip_rebuild = 1
@@ -300,49 +300,17 @@
 		if (src.amount != 1)
 			// this is a gross hack to make things not just show "1" by default
 			src.inventory_counter.update_number(src.amount)
-	..()
-/*
-/obj/item/unpooled()
-	..()
-	src.amount = initial(src.amount)
 
-	// Reset scaling/transforms/etc.
-	src.transform = initial(transform)
+	if (isnull(initial(src.health))) // if not overridden
+		src.health = get_initial_item_health(src.type)
 
-	// @TODO should we just like. clear all overlays? this seems particularly hacky
-	// or maybe this should be done in pooled / disposing???
-	if (src.burning)
-		if (src.burn_output >= 1000)
-			src.overlays -= image('icons/effects/fire.dmi', "2old")
+	..()
+	if (src.contraband > 0)
+		if (istype(src, /obj/item/gun))
+			AddComponent(/datum/component/contraband, 0, src.contraband)
 		else
-			src.overlays -= image('icons/effects/fire.dmi', "1old")
-	src.burning = 0
+			AddComponent(/datum/component/contraband, src.contraband, 0)
 
-	if (inventory_counter_enabled)
-		src.create_inventory_counter()
-
-/obj/item/pooled()
-	src.amount = 0
-	src.health = initial(src.health)
-
-	if (src.burning)
-		if (src.burn_output >= 1000)
-			src.overlays -= image('icons/effects/fire.dmi', "2old")
-		else
-			src.overlays -= image('icons/effects/fire.dmi', "1old")
-	src.burning = 0
-
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.u_equip(src)
-
-	if (src.inventory_counter)
-		src.vis_contents -= src.inventory_counter
-		qdel(src.inventory_counter)
-		src.inventory_counter = null
-
-	..()
-*/
 /obj/item/set_loc(var/newloc as turf|mob|obj in world)
 	if (src.temp_flags & IS_LIMB_ITEM)
 		if (istype(newloc,/obj/item/parts/human_parts/arm/left/item) || istype(newloc,/obj/item/parts/human_parts/arm/right/item))
@@ -939,51 +907,23 @@
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	SHOULD_CALL_PARENT(1)
-	if(src.c_flags & NOT_EQUIPPED_WHEN_WORN && slot != SLOT_L_HAND && slot != SLOT_R_HAND)
-		return
 	#ifdef COMSIG_ITEM_EQUIPPED
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	#endif
 	src.equipped_in_slot = slot
 	for(var/datum/objectProperty/equipment/prop in src.properties)
-		prop.onEquipped(src, user, src.properties[prop])
-	var/datum/movement_modifier/equipment/equipment_proxy = locate() in user.movement_modifiers
-	if (!equipment_proxy)
-		equipment_proxy = new
-		APPLY_MOVEMENT_MODIFIER(user, equipment_proxy, /obj/item)
-	equipment_proxy.additive_slowdown += src.getProperty("movespeed")
-	var/fluidmove = src.getProperty("negate_fluid_speed_penalty")
-	if (fluidmove)
-		equipment_proxy.additive_slowdown += fluidmove // compatibility hack for old code treating space & fluid movement capability as a slowdown
-		equipment_proxy.aquatic_movement += fluidmove
-	var/spacemove = src.getProperty("space_movespeed")
-	if (spacemove)
-		equipment_proxy.additive_slowdown += spacemove // compatibility hack for old code treating space & fluid movement capability as a slowdown
-		equipment_proxy.space_movement += spacemove
+		prop.onEquipped(src, user, src.properties[prop], slot)
+	user.update_equipped_modifiers()
 
 /obj/item/proc/unequipped(var/mob/user)
 	SHOULD_CALL_PARENT(1)
-	if(src.c_flags & NOT_EQUIPPED_WHEN_WORN && src.equipped_in_slot != SLOT_L_HAND && src.equipped_in_slot != SLOT_R_HAND)
-		return
 	#ifdef COMSIG_ITEM_UNEQUIPPED
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, user)
 	#endif
 	for(var/datum/objectProperty/equipment/prop in src.properties)
 		prop.onUnequipped(src, user, src.properties[prop])
 	src.equipped_in_slot = null
-	var/datum/movement_modifier/equipment/equipment_proxy = locate() in user.movement_modifiers
-	if (!equipment_proxy)
-		equipment_proxy = new
-		APPLY_MOVEMENT_MODIFIER(user, equipment_proxy, /obj/item)
-	equipment_proxy.additive_slowdown -= src.getProperty("movespeed")
-	var/fluidmove = src.getProperty("negate_fluid_speed_penalty")
-	if (fluidmove)
-		equipment_proxy.additive_slowdown -= fluidmove
-		equipment_proxy.aquatic_movement -= fluidmove
-	var/spacemove = src.getProperty("space_movespeed")
-	if (spacemove)
-		equipment_proxy.additive_slowdown -= spacemove
-		equipment_proxy.space_movement -= spacemove
+	user.update_equipped_modifiers()
 
 /obj/item/proc/afterattack(atom/target, mob/user, reach, params)
 	return

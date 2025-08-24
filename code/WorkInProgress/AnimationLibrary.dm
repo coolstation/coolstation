@@ -1263,7 +1263,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	lightbeam.alpha = 0
 	if (ismob(A))
 		var/mob/M = A
-		APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+		APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 	playsound(A.loc,"sound/voice/heavenly3.ogg",50,0)
 	animate(lightbeam, alpha=255, time=45)
 	animate(A,alpha=255,time=45)
@@ -1277,7 +1277,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	qdel(lightbeam)
 	if (ismob(A))
 		var/mob/M = A
-		REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+		REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 
 /obj/heavenly_light
 	icon = 'icons/obj/large/32x192.dmi'
@@ -1300,7 +1300,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	A.density = FALSE
 	if (ismob(A))
 		var/mob/M = A
-		APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+		APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 	if (play_sound)
 		playsound(center,"sound/effects/darkspawn.ogg",50,0)
 	SPAWN_DBG(5 SECONDS)
@@ -1324,7 +1324,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		A.density = original_density
 		if (ismob(A))
 			var/mob/M = A
-			REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+			REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 		for (var/turf/T in block(TA, TB))
 			animate(T, transform = null, pixel_x = 0, pixel_y = 0, 7.5 SECONDS, easing = SINE_EASING)
 		sleep(7.5 SECONDS)

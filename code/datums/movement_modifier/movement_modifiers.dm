@@ -159,7 +159,7 @@
 	ask_proc = 1
 
 /datum/movement_modifier/vampiric_thrall/modifiers(mob/user, move_target, running)
-	. = list(4,0)
+	. = list(4,1)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/datum/mutantrace/vampiric_thrall/vampiric_thrall = H.mutantrace
@@ -195,8 +195,8 @@
 		missing_legs = 2
 
 	if (missing_arms == 2)
-		return list(100,0) // this was snowflaked in as 300 in previous movement delay code
-	else
+		return list(16,1) // this was snowflaked in as 300 in previous movement delay code - then it was set to (100,0)
+	else // meaning you had 0 multiplier and moved instantly.
 		var/applied_modifier = 0
 		if (missing_legs == 2)
 			applied_modifier = 14 - ((2-missing_arms) * 2) // each missing leg adds 7 of movement delay. Each functional arm reduces this by 2.
@@ -204,7 +204,7 @@
 			applied_modifier = 7*missing_legs
 
 		// apply a negative modifier to balance out what movement_delay would set, times half times the number of arms
-		// (2 arms get full negation, 1 negates half, 0 would get nothing except hardcoded to be 100 earlier)
+		// (2 arms get full negation, 1 negates half, 0 would get nothing except hardcoded to be 16 earlier)
 		return list(0-(applied_modifier*((2-missing_arms)*0.5)),1)
 
 // pathogen stuff
@@ -220,3 +220,12 @@
 //carrying a big object
 /datum/movement_modifier/lifting
 	additive_slowdown = 0.5
+
+//in the blob!
+/datum/movement_modifier/blobbed
+	multiplicative_slowdown = 2.25
+	mob_pull_multiplier = 2.5
+	lying_multiplier = 2
+	pushpull_multiplier = 2.5
+
+

@@ -18,18 +18,16 @@
 	speechverb_stammer = "states"
 	speechverb_exclaim = "declares"
 	speechverb_ask = "queries"
+	health_brute = 50
+	health_brute_vuln = 1
+	health_burn = 50
+	health_burn_vuln = 1
+	var/suffocates = TRUE
 
 	setup_healths()
-		add_hh_robot(100, 1)
-		add_hh_robot_burn(100, 1)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/suffocation)
-		var/datum/healthHolder/Brain = add_health_holder(/datum/healthHolder/brain)
-		Brain.maximum_value = 0
-		Brain.value = 0
-		Brain.minimum_value = -250
-		Brain.depletion_threshold = -100
-		Brain.last_value = 0
+		..()
+		if(src.suffocates)
+			add_health_holder(/datum/healthHolder/suffocation)
 
 	New()
 		..()
@@ -63,6 +61,10 @@
 		return ..()
 
 /mob/living/critter/mechmonstrosity/suffering
+	health_brute = 25
+	health_brute_vuln = 1
+	health_burn = 25
+	health_burn_vuln = 1
 
 	Life(datum/controller/process/mobs/parent)
 		var/speech_type = rand(1,50)
@@ -96,6 +98,10 @@
 	can_grab = 1
 	can_disarm = 1
 	can_help = 1
+	robotic = TRUE
+	health_brute = 200
+	health_burn = 200
+	suffocates = FALSE
 
 	setup_hands()
 		..()
@@ -103,7 +109,7 @@
 		HH.name = "Syringe Injector"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "syringegun"				// the icon state of the hand UI background
-		HH.limb_name = "Injector"					// name for the dummy holder
+		HH.limb.name = "Injector"					// name for the dummy holder
 		HH.limb = new /datum/limb/gun/syringe	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
@@ -113,7 +119,7 @@
 		HH.name = "Dual Saw"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "saw"				// the icon state of the hand UI background
-		HH.limb_name = "Dual Saw"					// name for the dummy holder
+		HH.limb.name = "Dual Saw"					// name for the dummy holder
 		HH.limb = new /datum/limb/dualsaw	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 1
@@ -139,10 +145,6 @@
 				playsound(src.loc, 'sound/effects/exlow.ogg', 70,1)
 				src.visible_message("<span class='alert'><B>[src]</B> smashes through \the [AM]!</span>")
 		..()
-
-	setup_healths()
-		add_hh_robot(500, 1)
-		add_hh_robot_burn(500, 1)
 
 	death(var/gibbed)
 		src.visible_message("<b>[src]</b> collapses into broken components...")

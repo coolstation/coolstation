@@ -862,7 +862,7 @@
 	icon_state = "fireaxe"
 	item_state = "fireaxe"
 	flags = FPRINT | CONDUCT | TABLEPASS | USEDELAY | ONBELT
-	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items to 4 times as much damage to doors.
+	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items do 5 times as much damage to doors.
 	hit_type = DAMAGE_CUT
 	click_delay = 10
 	two_handed = 0
@@ -1559,7 +1559,7 @@ obj/item/whetstone
 	two_handed = 1
 	click_delay = 3 SECONDS
 
-	force = 30 //this number is multiplied by 4 when attacking doors.
+	force = 30 //this number is multiplied by 5 when attacking doors.
 	stamina_damage = 60
 	stamina_cost = 30
 
@@ -1577,13 +1577,13 @@ obj/item/whetstone
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 
 	w_class = W_CLASS_BULKY
-	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD
+	c_flags = EQUIPPED_WHILE_HELD
 
 	force = 45
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 1.2)
+		setProperty("carried_movespeed", 1.2)
 
 /obj/item/machete
 	name = "rusty machete"

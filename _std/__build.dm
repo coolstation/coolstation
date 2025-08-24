@@ -116,7 +116,7 @@
 #define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //---------------------- Maps that exist but maybe not up to date --------------------//
-//#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
+//#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
 //#define MAP_OVERRIDE_DONUT3 			// Donut3 by Ryumi

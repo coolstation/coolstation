@@ -757,6 +757,7 @@ obj/machinery/atmospherics/pipe
 
 				..()
 
+/*
 		oxygen_agent_b
 			icon = 'icons/obj/atmospherics/tanks/red_orange_pipe_tank.dmi'
 			name = "Pressure Tank (Oxygen Agent B)"
@@ -779,6 +780,7 @@ obj/machinery/atmospherics/pipe
 				trace_gas.moles = (50*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature)
 
 				..()
+*/
 
 		rad_particles
 			icon = 'icons/obj/atmospherics/tanks/green_pipe_tank.dmi'

@@ -236,10 +236,10 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
 					if (accident)
-						if (HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+						if (HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)
 					else
-						if ((firepower > 2 && firepower < 10) || HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+						if ((firepower > 2 && firepower < 10) || HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.inertia_dir = user.dir
 							//step(user, user.inertia_dir) <- seemed kinda unnecessary, you moved forward 2 tiles from one fart? - Bat
 							SPAWN_DBG(1 DECI SECOND)

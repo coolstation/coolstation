@@ -87,8 +87,9 @@
 
 	New()
 		..()
-		if(src.is_reinforced)
-			src.flags |= ALWAYS_SOLID_FLUID
+// so why exactly were railings fluid tight?
+//		if(src.is_reinforced)
+//			src.flags |= ALWAYS_SOLID_FLUID
 		layerify()
 
 	Turn()

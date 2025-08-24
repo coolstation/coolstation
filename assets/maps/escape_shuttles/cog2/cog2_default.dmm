@@ -1,37 +1,22 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ap" = (
-/obj/indestructible/shuttle_corner{
-	dir = 0
-	},
-/turf/floor/shuttle{
-	dir = 8
-	},
-/area/shuttle/escape/centcom/cogmap2)
 "bl" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular,
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "bv" = (
 /obj/item/storage/wall/medical{
 	pixel_z = -1
 	},
-/turf/wall/auto/shuttle{
-	icon_state = "12"
-	},
+/turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "dw" = (
-/obj/machinery/door/airlock/pyro/command{
-	dir = 4;
-	opacity = 0
+/obj/machinery/door/airlock/pyro/glass/command{
+	dir = 4
 	},
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
+/obj/access_spawn/heads,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "eY" = (
 /obj/grille/steel,
@@ -44,8 +29,7 @@
 /area/shuttle/escape/centcom/cogmap2)
 "fa" = (
 /obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	dir = 8;
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/cogmap2)
@@ -54,35 +38,33 @@
 	icon_state = "Stairs_wide"
 	},
 /area/centcom)
-"ii" = (
-/turf/wall/auto/shuttle{
-	icon_state = "4"
-	},
-/area/shuttle/escape/centcom/cogmap2)
 "kK" = (
 /obj/indestructible/shuttle_corner{
-	dir = 4
+	icon_state = "wall_trans"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "kS" = (
-/obj/indestructible/shuttle_corner,
-/turf/outdoors/grass,
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall_trans"
+	},
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "lu" = (
 /obj/machinery/sleeper/compact{
 	dir = 4
 	},
-/turf/floor/shuttle{
-	dir = 8;
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "on" = (
 /obj/indestructible/shuttle_corner{
-	dir = 8
+	dir = 4;
+	icon_state = "wall_trans"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "qz" = (
 /obj/stool/chair/comfy/shuttle{
@@ -90,34 +72,40 @@
 	},
 /obj/machinery/light{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = null
 	},
-/turf/floor/shuttle{
-	dir = 8
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "rz" = (
 /obj/lattice{
 	dir = 9;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "sc" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 4
 	},
-/turf/floor/shuttle{
-	dir = 8;
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor4"
 	},
+/area/shuttle/escape/centcom/cogmap2)
+"sd" = (
+/obj/stool/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "tw" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "tW" = (
 /obj/grille/steel,
@@ -129,29 +117,21 @@
 /turf/floor/plating,
 /area/shuttle/escape/centcom/cogmap2)
 "wA" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "wS" = (
 /obj/item/storage/wall/emergency{
 	pixel_y = 4;
 	pixel_z = -5
 	},
-/turf/wall/auto/shuttle{
-	icon_state = "13"
-	},
-/area/shuttle/escape/centcom/cogmap2)
-"xH" = (
-/obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	dir = 8
-	},
+/turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "xJ" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "yj" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "zX" = (
 /turf/floor/stairs{
@@ -161,50 +141,25 @@
 /area/centcom)
 "CG" = (
 /obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/centcom/cogmap2)
-"Db" = (
-/turf/wall{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
-"De" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4
-	},
-/turf/floor/shuttle{
-	dir = 8
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "Dj" = (
-/obj/machinery/door/airlock/pyro/external,
-/turf/floor/shuttle{
-	dir = 8
-	},
-/area/shuttle/escape/centcom/cogmap2)
-"DG" = (
-/turf/wall/auto/shuttle{
-	icon_state = "13"
-	},
+/obj/machinery/door/airlock/pyro/external/shuttle_connect,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "DY" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/floor/shuttle{
-	dir = 8
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "Ex" = (
 /obj/indestructible/shuttle_corner{
-	dir = 1
+	dir = 1;
+	icon_state = "wall_trans"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "Fy" = (
 /obj/machinery/door/airlock/pyro/medical{
@@ -212,8 +167,8 @@
 	name = "First-Aid Station";
 	opacity = 0
 	},
-/turf/floor/shuttle{
-	dir = 8
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "Gp" = (
@@ -225,8 +180,7 @@
 "He" = (
 /obj/table/auto,
 /obj/random_item_spawner/med_kit,
-/turf/floor/shuttle{
-	dir = 8;
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/cogmap2)
@@ -235,131 +189,83 @@
 	icon_state = "Stairs2_wide"
 	},
 /area/centcom)
-"Hx" = (
-/obj/wingrille_spawn/auto,
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/centcom/cogmap2)
 "Ii" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	dir = 8
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "Jz" = (
-/obj/wingrille_spawn/auto,
-/turf/floor/shuttle{
-	dir = 8
+/obj/wingrille_spawn/reinforced,
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "KD" = (
-/turf/floor/shuttle{
-	dir = 8
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "KG" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/toolbox/emergency,
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "Lt" = (
-/turf/shuttle/wall/cockpit,
+/turf/shuttle/wall/cockpit{
+	icon_state = "shuttlecock_busted"
+	},
 /area/shuttle/escape/centcom/cogmap2)
 "LV" = (
-/turf/wall{
-	dir = 1;
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
+/turf/wall/auto,
 /area/centcom)
-"Mw" = (
-/turf/wall/auto/shuttle{
-	icon_state = "14"
-	},
-/area/shuttle/escape/centcom/cogmap2)
 "Om" = (
 /obj/lattice{
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "OG" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
 	name = "Secure Transport";
 	opacity = 0
 	},
-/turf/floor/shuttle{
-	dir = 8
-	},
-/area/shuttle/escape/centcom/cogmap2)
-"OT" = (
-/turf/wall/auto/shuttle{
-	icon_state = "15"
+/obj/access_spawn/security,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor4"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "RS" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4
-	},
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall_floor"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "Sh" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
 	},
-/turf/floor/shuttle{
-	dir = 8
-	},
-/area/shuttle/escape/centcom/cogmap2)
-"St" = (
-/turf/wall/auto/shuttle{
-	icon_state = "2"
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "Vt" = (
 /obj/stool/chair/comfy/shuttle/green{
 	dir = 4
 	},
-/turf/floor/shuttle{
-	dir = 8;
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/cogmap2)
-"VN" = (
-/turf/wall/auto/shuttle{
-	icon_state = "1"
-	},
-/area/shuttle/escape/centcom/cogmap2)
 "WY" = (
-/obj/indestructible/shuttle_corner{
-	dir = 0
-	},
-/turf/floor/shuttle{
+/turf/wall/r_wall/shuttle_noprotections{
 	dir = 8;
-	icon_state = "floor2"
+	icon_state = "wall_floor"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "Xc" = (
 /obj/stool/chair/comfy/shuttle/brown{
 	dir = 4
 	},
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "Xr" = (
 /turf/wall/auto/shuttle{
@@ -371,27 +277,16 @@
 /obj/stool/chair/comfy/shuttle/pilot{
 	dir = 4
 	},
-/turf/floor/shuttle{
-	dir = 8;
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/centcom/cogmap2)
-"XN" = (
-/turf/wall/auto/shuttle{
-	icon_state = "12"
-	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "XZ" = (
 /obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	dir = 8;
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "YS" = (
-/turf/wall/auto/shuttle{
-	icon_state = "11"
-	},
+/turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 "ZJ" = (
 /obj/grille/steel,
@@ -406,9 +301,7 @@
 /obj/item/storage/wall/fire{
 	pixel_z = -1
 	},
-/turf/wall/auto/shuttle{
-	icon_state = "12"
-	},
+/turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/centcom/cogmap2)
 
 (1,1,1) = {"
@@ -430,7 +323,7 @@ kS
 ZJ
 tW
 eY
-ii
+YS
 ZJ
 tW
 eY
@@ -439,41 +332,41 @@ wA
 "}
 (3,1,1) = {"
 tw
-XN
+YS
 lu
 He
 lu
-XN
+YS
 sc
 sc
 sc
-XN
+YS
 tw
 "}
 (4,1,1) = {"
-ii
+YS
 bv
 Vt
 fa
 Vt
-XN
+YS
 sc
 XZ
 sc
-XN
-ii
+YS
+YS
 "}
 (5,1,1) = {"
 Ex
-OT
-Xr
-Fy
-Xr
 YS
-Xr
+YS
+Fy
+YS
+YS
+YS
 OG
-Xr
-OT
+YS
+YS
 on
 "}
 (6,1,1) = {"
@@ -486,7 +379,7 @@ Sh
 Sh
 KD
 Sh
-XN
+YS
 wA
 "}
 (7,1,1) = {"
@@ -503,16 +396,16 @@ Jz
 wA
 "}
 (8,1,1) = {"
-Db
+LV
 wS
 qz
 KD
-St
+YS
 Jz
-VN
+YS
 KD
 DY
-Mw
+YS
 LV
 "}
 (9,1,1) = {"
@@ -534,7 +427,7 @@ Dj
 KD
 KD
 KD
-xH
+CG
 KD
 KD
 KD
@@ -542,8 +435,8 @@ Dj
 Gp
 "}
 (11,1,1) = {"
-Db
-DG
+LV
+YS
 Sh
 Sh
 KD
@@ -551,7 +444,7 @@ KD
 KD
 Sh
 Sh
-Mw
+YS
 LV
 "}
 (12,1,1) = {"
@@ -582,40 +475,40 @@ wA
 "}
 (14,1,1) = {"
 wA
-Mw
-De
+YS
+RS
 Sh
-Sh
+sd
 KD
+sd
 Sh
-Sh
-ap
-DG
+WY
+YS
 wA
 "}
 (15,1,1) = {"
 wA
 Ex
-OT
-Hx
-Xr
+YS
+Jz
+YS
 dw
-Xr
-Hx
-OT
+YS
+Jz
+YS
 on
 wA
 "}
 (16,1,1) = {"
 wA
 rz
-Hx
+Jz
 KG
 Xc
 CG
 Xc
 bl
-Hx
+Jz
 rz
 wA
 "}

@@ -628,10 +628,9 @@ datum
 
 		proc/start_combusting() // Starts combustion
 			if (!src.is_combusting && src.composite_volatility > 0.5)
+				var/turf/T = get_turf(src.my_atom)
 				if(ismob(src.my_atom))
 					src.my_atom.visible_message("<span class='alert'>The chemicals in [src.my_atom] begin burning!</span>",blind_message = "<span class='alert'>You hear flames roar to life!</span>")
-
-				var/turf/T = get_turf(src.my_atom)
 				var/mob/our_user = null
 				var/our_fingerprints = null
 
@@ -708,33 +707,35 @@ datum
 
 			// Smoke and pools burning
 			if (istype(src,/datum/reagents/fluid_group))
-				var/covered_area = length(src.covered_turf())
+				src.cache_covered_turf()
+				var/covered_area = length(src.covered_cache)
 
 				var/continue_burn = FALSE
 				var/burn_volatility = src.composite_volatility *  clamp(src.combustible_volume / (40 * max(1, covered_area)), 0.3, 1)
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
+				var/energy_per_tile = src.composite_combust_energy * burn_speed / src.combustible_volume / length(covered_cache)
 
 				switch (burn_volatility)
 					if (0 to 6)
-						for (var/turf/T in src.covered_turf())
-							fireflash_s(T, 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
+						for (var/turf/T in covered_cache)
+							fireflash_s(T, 0, src.composite_combust_temp, 0, energy_per_tile)
 					if (6 to 15)
 						burn_speed *= 1.25
-						for (var/turf/T in src.covered_turf())
-							fireflash_s(T, 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
-						if (prob(burn_volatility * 5) && length(src.covered_turf())) // from 30 to 75% chance to cause an additional, brighter fireball
-							var/turf/chosen_turf = pick(src.covered_turf()) // intentionally no thermal energy
+						for (var/turf/T in covered_cache)
+							fireflash_s(T, 0, src.composite_combust_temp, 0, energy_per_tile)
+						if (prob(burn_volatility * 5) && length(covered_cache)) // from 30 to 75% chance to cause an additional, brighter fireball
+							var/turf/chosen_turf = pick(covered_cache) // intentionally no thermal energy
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 					if (15 to INFINITY)
 						burn_speed *= 2
-						for (var/turf/T in src.covered_turf())
-							fireflash_sm(T, 0, src.composite_combust_temp, 0, energy = src.composite_combust_energy * burn_speed / src.combustible_volume)
-						if (prob((burn_volatility) * 2 + 40) && length(src.covered_turf())) // from 70 to 100% chance to cause an additional, brighter fireball
-							var/turf/chosen_turf = pick(src.covered_turf()) // intentionally no thermal energy
+						for (var/turf/T in covered_cache)
+							fireflash_sm(T, 0, src.composite_combust_temp, 0, energy = energy_per_tile)
+						if (prob((burn_volatility) * 2 + 40) && length(covered_cache)) // from 70 to 100% chance to cause an additional, brighter fireball
+							var/turf/chosen_turf = pick(covered_cache) // intentionally no thermal energy
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 							if (prob(50))
-								chosen_turf = pick(src.covered_turf()) // and 50% after that to cause an additional small explosion
+								chosen_turf = pick(covered_cache) // and 50% after that to cause an additional small explosion
 								explosion(chosen_turf, chosen_turf, -1,-1,(burn_volatility - 14)/6, (burn_volatility - 14)/3)
 
 				for (var/reagent_id in src.reagent_list)
@@ -775,13 +776,15 @@ datum
 					if(QDELETED(src.my_atom))
 						return
 
+				var/turf/T = get_turf(src.my_atom)
+
 				switch(burn_volatility)
 					if (2 to 5) // Unsafe, leaking flames
-						fireflash_s(get_turf(src.my_atom), 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
+						fireflash_s(T, 0, src.composite_combust_temp, 0, src.composite_combust_energy * burn_speed / src.combustible_volume)
 					if (5 to 14) // Very spicy fire that maybe breaks stuff
 						burn_speed *= 2
 						var/fireflash_size = clamp(((burn_volatility - 5) / 3), 0, 2)
-						fireflash_s(get_turf(src.my_atom), fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
+						fireflash_s(T, fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
 						if (istype(src.my_atom, /obj) && prob(burn_volatility * (src.total_temperature / 10000)))
 							var/obj/O = src.my_atom
 							O.shatter_chemically(projectiles = TRUE)
@@ -789,7 +792,6 @@ datum
 							if(QDELETED(src.my_atom))
 								return
 					if (14 to INFINITY) // splatter chems and break
-						var/turf/T = get_turf(src.my_atom)
 						var/explosion_size = clamp(((burn_volatility - 5) / 3), 0, 4)
 						fireflash_sm(T, explosion_size, src.composite_combust_temp, src.composite_combust_temp / (3 * explosion_size + 1), energy = src.composite_combust_energy)
 						explosion_size = clamp(((burn_volatility - 14) * (combustible_volume ** 0.33) / 3), 0, 6)
@@ -859,7 +861,7 @@ datum
 						if (prob(src.combustible_pressure * 5) && !ON_COOLDOWN(my_atom, "pressure_vent", (rand(80, 140) - burn_volatility * 2) DECI SECONDS))
 							var/fireflash_size = max(round(src.combustible_pressure) / 3 - 2, 0)
 							var/turf/T = get_turf(src.my_atom)
-							fireflash_s(T, fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1), src.composite_combust_energy * burn_speed / src.combustible_volume)
+							fireflash_s(T, fireflash_size, src.composite_combust_temp, src.composite_combust_temp / (2 * fireflash_size + 1))
 							src.my_atom.visible_message("<span class='alert'>[src.my_atom] vents flames violently!</span>", blind_message = "<span class='alert'>You hear a fiery hiss!</span>", group = "pressure_venting_\ref[src]")
 							src.combustible_pressure *= 0.9
 							if(issimulatedturf(T))
@@ -1229,7 +1231,7 @@ datum
 
 			// check to see if user wearing the spectoscopic glasses (or similar)
 			// if so give exact readout on what reagents are present
-			if (HAS_MOB_PROPERTY(user, PROP_SPECTRO))
+			if (HAS_ATOM_PROPERTY(user, PROP_SPECTRO))
 				if("cloak_juice" in reagent_list)
 					var/datum/reagent/cloaker = reagent_list["cloak_juice"]
 					if(cloaker.volume >= 5)

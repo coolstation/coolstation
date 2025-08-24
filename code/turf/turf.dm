@@ -1140,7 +1140,6 @@ proc/generate_space_color()
 	text = "<font color=#aaa>#"
 	density = 1
 	pathable = 0
-	turf_flags = ALWAYS_SOLID_FLUID
 #ifndef IN_MAP_EDITOR // display disposal pipes etc. above walls in map editors
 	plane = PLANE_WALL
 #else

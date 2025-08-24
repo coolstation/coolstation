@@ -346,9 +346,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -403,6 +400,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/werewolf
+	turf_check = TRUE
 	var/when_stunned = 0 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 	var/werewolf_only = 0

@@ -1,18 +1,25 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
-"c" = (
-/obj/indestructible/shuttle_corner{
+/turf/space,
+/area/space)
+"b" = (
+/obj/stool/chair/comfy/shuttle{
 	dir = 1
 	},
-/turf/outdoors/grass,
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/centcom/destiny)
+"c" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
 /area/shuttle/escape/centcom/destiny)
 "d" = (
-/obj/machinery/door/airlock/pyro/external{
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
 	dir = 4
 	},
-/turf/floor/shuttle,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/destiny)
 "e" = (
 /turf/shuttle/wall/cockpit{
@@ -20,116 +27,263 @@
 	},
 /area/shuttle/escape/centcom/destiny)
 "f" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced,
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-L"
 	},
-/turf/floor/plating,
-/area/shuttle/escape/centcom/destiny)
-"g" = (
-/turf/wall/auto/shuttle{
-	icon_state = "13"
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
 	},
 /area/shuttle/escape/centcom/destiny)
-"i" = (
-/turf/wall/auto/shuttle{
-	icon_state = "3"
+"h" = (
+/obj/stool/chair/comfy/shuttle{
+	dir = 1
 	},
+/obj/machinery/light{
+	dir = 8;
+	layer = 9.1;
+	pixel_x = -10
+	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/destiny)
 "k" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
+/area/shuttle/escape/centcom/destiny)
+"l" = (
+/obj/table/auto,
+/obj/random_item_spawner/med_kit,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
 /area/shuttle/escape/centcom/destiny)
 "m" = (
 /obj/machinery/computer/shuttle/embedded/north,
-/turf/floor/shuttle,
+/obj/stool/chair/comfy/shuttle/pilot{
+	dir = 1
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
 /area/shuttle/escape/centcom/destiny)
 "o" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3_floor2"
 	},
-/turf/floor/shuttle,
 /area/shuttle/escape/centcom/destiny)
-"q" = (
-/turf/wall/auto/shuttle{
-	icon_state = "7"
+"p" = (
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor4"
+	},
+/area/shuttle/escape/centcom/destiny)
+"r" = (
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
+/area/shuttle/escape/centcom/destiny)
+"t" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor4"
+	},
+/area/shuttle/escape/centcom/destiny)
+"u" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/destiny)
 "v" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8
+/turf/wall/r_wall/shuttle_noprotections{
+	dir = 4;
+	icon_state = "wall3_floor2"
 	},
-/turf/floor/shuttle,
 /area/shuttle/escape/centcom/destiny)
 "w" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "x" = (
-/turf/floor/shuttle,
+/obj/stool/chair/comfy/shuttle/brown{
+	dir = 1
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/centcom/destiny)
+"y" = (
+/obj/stool/chair/comfy/shuttle/red{
+	dir = 1
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor4"
+	},
 /area/shuttle/escape/centcom/destiny)
 "z" = (
 /obj/indestructible/shuttle_corner{
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/escape/centcom/destiny)
+"A" = (
+/obj/machinery/sleeper/compact{
 	dir = 4
 	},
-/turf/outdoors/grass,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
+/area/shuttle/escape/centcom/destiny)
+"B" = (
+/obj/stool/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1;
+	pixel_x = 10
+	},
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/destiny)
 "C" = (
-/obj/wingrille_spawn/auto,
-/turf/floor/shuttle,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
+	},
+/area/shuttle/escape/centcom/destiny)
+"D" = (
+/obj/stool/chair/comfy/shuttle,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/centcom/destiny)
 "E" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced,
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-M"
 	},
-/turf/floor/plating,
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
+	},
+/area/shuttle/escape/centcom/destiny)
+"F" = (
+/obj/machinery/door/airlock/pyro/glass/command{
+	dir = 1
+	},
+/obj/access_spawn/heads,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/centcom/destiny)
+"G" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/centcom/destiny)
+"H" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/shuttle{
+	icon_state = "plating"
+	},
 /area/shuttle/escape/centcom/destiny)
 "I" = (
 /obj/machinery/shuttle/engine/propulsion{
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/destiny)
 "K" = (
 /obj/indestructible/shuttle_corner{
-	dir = 8
+	dir = 4;
+	icon_state = "wall3_trans"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/destiny)
 "L" = (
-/turf/wall/auto/shuttle,
+/turf/wall/r_wall/shuttle_noprotections,
+/area/shuttle/escape/centcom/destiny)
+"M" = (
+/obj/stool/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 8;
+	layer = 9.1;
+	pixel_x = -10
+	},
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/centcom/destiny)
+"N" = (
+/obj/stool/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1;
+	pixel_x = 10
+	},
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/centcom/destiny)
+"O" = (
+/obj/machinery/door/airlock/pyro/medical{
+	name = "First-Aid Station"
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
+/area/shuttle/escape/centcom/destiny)
+"Q" = (
+/obj/table/reinforced/auto,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/centcom/destiny)
+"R" = (
+/obj/stool/chair/comfy/shuttle/green{
+	dir = 8
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
 /area/shuttle/escape/centcom/destiny)
 "S" = (
 /obj/lattice{
 	dir = 1;
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
+"T" = (
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/centcom/destiny)
 "U" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced,
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-R"
 	},
-/turf/floor/plating,
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
+	},
 /area/shuttle/escape/centcom/destiny)
-"V" = (
-/turf/wall/auto/shuttle{
-	icon_state = "1"
+"W" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/centcom/destiny)
+"X" = (
+/obj/machinery/door/airlock/pyro/security{
+	name = "Secure Transport"
+	},
+/obj/access_spawn/security,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor4"
 	},
 /area/shuttle/escape/centcom/destiny)
 "Y" = (
 /obj/indestructible/shuttle_corner{
-	dir = 0
+	dir = 8;
+	icon_state = "wall3_trans"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/destiny)
 "Z" = (
-/turf/wall/auto/shuttle{
-	icon_state = "11"
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
 	},
 /area/shuttle/escape/centcom/destiny)
 
@@ -146,10 +300,10 @@ C
 C
 d
 Z
-q
-i
-i
-i
+Z
+Z
+Z
+Z
 z
 a
 "}
@@ -158,18 +312,18 @@ a
 a
 Y
 C
-g
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Z
+M
+T
+b
+b
+b
+T
+h
+Z
+A
+A
+A
 f
 I
 "}
@@ -177,19 +331,19 @@ I
 S
 Y
 v
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Q
+H
+D
+T
+b
+b
+b
+T
+T
+O
+r
+u
+r
 E
 I
 "}
@@ -198,18 +352,18 @@ k
 L
 x
 x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Z
+D
+T
+b
+b
+b
+T
+b
+Z
+R
+l
+R
 U
 I
 "}
@@ -217,20 +371,20 @@ I
 e
 L
 m
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-V
+G
+F
+T
+T
+T
+W
+T
+T
+b
+Z
+Z
+Z
+Z
+Z
 a
 "}
 (6,1,1) = {"
@@ -238,18 +392,18 @@ k
 L
 x
 x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Z
+D
+T
+b
+b
+b
+T
+b
+Z
+y
+y
+y
 f
 I
 "}
@@ -257,19 +411,19 @@ I
 S
 c
 o
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Q
+C
+D
+T
+b
+b
+b
+T
+T
+X
+p
+t
+p
 E
 I
 "}
@@ -278,18 +432,18 @@ a
 a
 c
 C
-g
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Z
+B
+T
+b
+b
+b
+T
+N
+Z
+y
+y
+y
 U
 I
 "}
@@ -299,17 +453,17 @@ w
 w
 S
 c
-q
-d
-C
-C
-C
-d
-q
 Z
-i
-i
-i
+d
+C
+C
+C
+d
+Z
+Z
+Z
+Z
+Z
 K
 a
 "}

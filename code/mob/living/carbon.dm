@@ -290,7 +290,7 @@
 	if (..())
 		return
 
-	if (HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.oxyloss = 0
 		return
 
@@ -304,7 +304,7 @@
 	if (!losebreath && amount < 0)
 		return
 
-	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (ischangeling(src) || HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.losebreath = 0
 		return
 

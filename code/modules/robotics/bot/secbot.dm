@@ -931,53 +931,20 @@
 		if((src.idcheck)) // bot is set to actively search for contraband
 			var/obj/item/card/id/perp_id = perp.equipped()
 			if (!istype(perp_id))
-				perp_id = perp.wear_id
+				perp_id = perp.get_id()
 
-			var/has_carry_permit = 0
-			var/has_contraband_permit = 0
+			//Agent cards lower threat level
+			if(istype(perp_id, /obj/item/card/id/syndicate))
+				threatcount -= 2
 
-			if(perp_id) //Checking for permits
-				if(weapon_access in perp_id.access)
-					has_carry_permit = 1
-				if(contraband_access in perp_id.access)
-					has_contraband_permit = 1
-
-			if (istype(perp.l_hand))
-				if (istype(perp.l_hand, /obj/item/gun/)) // perp is carrying a gun
-					if(!has_carry_permit)
-						threatcount += perp.l_hand.contraband
-				else // not carrying a gun, but potential contraband?
-					if(!has_contraband_permit)
-						threatcount += perp.l_hand.contraband
-
-			if (istype(perp.r_hand))
-				if (istype(perp.r_hand, /obj/item/gun/)) // perp is carrying a gun
-					if(!has_carry_permit)
-						threatcount += perp.r_hand.contraband
-				else // not carrying a gun, but potential contraband?
-					if(!has_contraband_permit)
-						threatcount += perp.r_hand.contraband
-
-			if (istype(perp.belt))
-				if (istype(perp.belt, /obj/item/gun/))
-					if (!has_carry_permit)
-						threatcount += perp.belt.contraband * 0.5
-				else
-					if (!has_contraband_permit)
-						threatcount += perp.belt.contraband * 0.5
-
-			if (istype(perp.wear_suit))
-				if (!has_contraband_permit)
-					threatcount += perp.wear_suit.contraband
-
-			if (istype(perp.back))
-				if (istype(perp.back, /obj/item/gun/)) // some weapons can be put on backs
-					if (!has_carry_permit)
-						threatcount += perp.back.contraband * 0.5
-				else // at moment of doing this we don't have other contraband back items, but maybe that'll change
-					if (!has_contraband_permit)
-						threatcount += perp.back.contraband * 0.5
-
+			if(perp_id) //Checking for targets and permits
+				var/list/contraband_returned = list()
+				if (SEND_SIGNAL(perp, COMSIG_MOVABLE_GET_CONTRABAND, contraband_returned, !(contraband_access in perp_id.access), !(weapon_access in perp_id.access)))
+					threatcount += max(contraband_returned)
+			else
+				var/list/contraband_returned = list()
+				if (SEND_SIGNAL(perp, COMSIG_MOVABLE_GET_CONTRABAND, contraband_returned, TRUE, TRUE))
+					threatcount += max(contraband_returned)
 
 		if(istype(perp.mutantrace, /datum/mutantrace/abomination))
 			threatcount += 5
@@ -987,10 +954,6 @@
 			for (var/datum/data/record/R as anything in data_core.security)
 				if (R.fields["name"] == perp.name)
 					threatcount -= 5
-
-		//Agent cards lower threat level
-		if((istype(perp.wear_id, /obj/item/card/id/syndicate)))
-			threatcount -= 2
 
 		// we have grounds to make an arrest, don't bother with further analysis
 		if(threatcount >= 4)

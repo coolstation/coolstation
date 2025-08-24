@@ -53,7 +53,7 @@
 /mob/living/carbon/human/proc/expel_fart_gas(var/oxyplasmafart)
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/gas = new()
-	//gas.vacuum()
+	//gas.zero()
 	if(oxyplasmafart == 1)
 		gas.toxins += 1
 	if(oxyplasmafart == 2)
@@ -89,7 +89,7 @@
 	torso.render_source = src.render_target
 	torso.filters += filter(type="alpha", icon=icon('icons/mob/humanmasks.dmi', "torso"))
 	torso.appearance_flags = KEEP_APART
-	APPLY_MOB_PROPERTY(src, PROP_CANTMOVE, "dabbify")
+	APPLY_ATOM_PROPERTY(src, PROP_CANTMOVE, "dabbify")
 	src.update_canmove()
 	src.set_dir(SOUTH)
 	src.dir_locked = TRUE
@@ -112,7 +112,7 @@
 		qdel(torso)
 		qdel(right_arm)
 		qdel(left_arm)
-		REMOVE_MOB_PROPERTY(src, PROP_CANTMOVE, "dabbify")
+		REMOVE_ATOM_PROPERTY(src, PROP_CANTMOVE, "dabbify")
 		src.update_canmove()
 		src.dir_locked = FALSE
 		src.render_target = "\ref[src]"

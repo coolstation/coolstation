@@ -183,9 +183,12 @@ datum/controller/air_system
 							else
 								LAZYLISTINIT(possible_borders)
 								possible_borders |= test
-						else if(istype_exact(T, /turf/space))
+						else if(T.turf_flags & CAN_BE_SPACE_SAMPLE)
 							LAZYLISTINIT(possible_space_borders)
 							possible_space_borders |= test
+#ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
+							test.nearest_space = T
+#endif
 							test.length_space_border++
 
 				if(test.length_space_border > 0)
@@ -215,6 +218,9 @@ datum/controller/air_system
 					dist = get_dist(b, test)
 					if ((test.dist_to_space == null) || (dist < test.dist_to_space))
 						test.dist_to_space = dist
+#ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
+						test.nearest_space = b.nearest_space
+#endif
 
 			// Allow groups to determine if group processing is applicable after FEA setup
 			if(current_cycle) group.group_processing = FALSE

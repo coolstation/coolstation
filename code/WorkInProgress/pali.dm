@@ -125,7 +125,7 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new/datum/limb/thief
+		HH.limb = new /datum/limb/thief(src)
 
 	proc/fix_pulling_sprite()
 		if(src.pulling)
@@ -286,6 +286,11 @@
 	fits_under_table = 1
 	blood_id = "iron"
 	metabolizes = 0
+	robotic = TRUE
+	health_brute = 150
+	health_burn = 0
+	takes_tox = FALSE
+	takes_brain = FALSE
 	var/size = 0
 	var/obj/item/implant/access/access
 	var/obj/item/last_item_bump
@@ -327,7 +332,7 @@
 			src.transforming = 1
 			src.canmove = 0
 			src.icon = null
-			APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+			APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 			if (src.mind || src.client)
 				src.ghostize()
 			qdel(src)
@@ -376,10 +381,6 @@
 		if(size > 140 && !found && new_turf.density && !isrestrictedz(new_turf.z) && prob(20))
 			new_turf.ex_act(prob(1) ? 1 : 2)
 		. = ..()
-
-	setup_healths()
-		add_hh_robot(150, 1.15)
-
 
 // A belt which gives you big muscles (visual only)
 

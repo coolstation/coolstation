@@ -160,7 +160,7 @@
 
 
 
-
+ABSTRACT_TYPE(/datum/artifact_augmentation) //Here let me help you angry lil bean
 /datum/artifact_augmentation // DO NOT INSTANTIATE
 	var/list/left_arm = list()
 	var/list/right_arm = list()

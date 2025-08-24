@@ -110,13 +110,13 @@
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			APPLY_MOB_PROPERTY(M, PROP_RADPROT, src, 100)
+			APPLY_ATOM_PROPERTY(M, PROP_RADPROT, src, 100)
 
 	OnRemove()
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			REMOVE_MOB_PROPERTY(M, PROP_RADPROT, src)
+			REMOVE_ATOM_PROPERTY(M, PROP_RADPROT, src)
 
 /datum/bioEffect/alcres
 	name = "Alcohol Resistance"
@@ -180,12 +180,12 @@
 		var/mob/living/carbon/human/H = owner
 		H.oxyloss = 0
 		H.losebreath = 0
-		APPLY_MOB_PROPERTY(H, PROP_BREATHLESS, src.type)
+		APPLY_ATOM_PROPERTY(H, PROP_BREATHLESS, src.type)
 		health_update_queue |= H
 
 	OnRemove()
 		. = ..()
-		REMOVE_MOB_PROPERTY(owner, PROP_BREATHLESS, src.type)
+		REMOVE_ATOM_PROPERTY(owner, PROP_BREATHLESS, src.type)
 
 /datum/bioEffect/breathless/contract
 	name = "Airless Breathing"
@@ -324,11 +324,11 @@
 
 	OnAdd()
 		. = ..()
-		APPLY_MOB_PROPERTY(owner, PROP_CHEM_PURGE, src.type, remove_per_tick)
+		APPLY_ATOM_PROPERTY(owner, PROP_CHEM_PURGE, src.type, remove_per_tick)
 
 	OnRemove()
 		. = ..()
-		REMOVE_MOB_PROPERTY(owner, PROP_CHEM_PURGE, src.type)
+		REMOVE_ATOM_PROPERTY(owner, PROP_CHEM_PURGE, src.type)
 
 /////////////
 // Stealth //
@@ -547,10 +547,10 @@ var/list/radio_brains = list()
 	icon_state  = "eye"
 
 	OnAdd()
-		APPLY_MOB_PROPERTY(owner, PROP_NIGHTVISION, src)
+		APPLY_ATOM_PROPERTY(owner, PROP_NIGHTVISION, src)
 
 	OnRemove()
-		REMOVE_MOB_PROPERTY(owner, PROP_NIGHTVISION, src)
+		REMOVE_ATOM_PROPERTY(owner, PROP_NIGHTVISION, src)
 
 /datum/bioEffect/toxic_farts
 	name = "High Decay Digestion"
@@ -589,11 +589,11 @@ var/list/radio_brains = list()
 	icon_state  = "strong"
 
 	OnAdd()
-		APPLY_MOB_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-buff", 2)
+		APPLY_ATOM_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-buff", 2)
 		src.owner.add_stam_mod_max("g-fitness-buff", 30)
 
 	OnRemove()
-		REMOVE_MOB_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-buff")
+		REMOVE_ATOM_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-buff")
 		src.owner.remove_stam_mod_max("g-fitness-buff")
 
 /datum/bioEffect/blood_overdrive
@@ -673,12 +673,12 @@ var/list/radio_brains = list()
 		if (probmult(20))
 			src.active = !src.active
 		if (src.active)
-			APPLY_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src, INVIS_INFRA)
+			APPLY_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src, INVIS_INFRA)
 		else
-			REMOVE_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src)
 
 	OnRemove()
-		REMOVE_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src)
+		REMOVE_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src)
 		. = ..()
 
 //return of space farting (okay, it was back as a food thing already, but)
@@ -703,8 +703,8 @@ var/list/radio_brains = list()
 	icon_state  = "haze"
 
 	OnLife(var/mult)
-		APPLY_MOB_PROPERTY(src.owner, PROP_SPACEFARTS, src)
+		APPLY_ATOM_PROPERTY(src.owner, PROP_SPACEFARTS, src)
 
 	OnRemove()
-		REMOVE_MOB_PROPERTY(src.owner, PROP_SPACEFARTS, src)
+		REMOVE_ATOM_PROPERTY(src.owner, PROP_SPACEFARTS, src)
 		. = ..()

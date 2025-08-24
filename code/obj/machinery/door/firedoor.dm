@@ -200,6 +200,7 @@
 	..()
 	check_nextstate()
 
+/*
 /obj/machinery/door/firedoor/border_only
 	gas_cross(turf/target)
 		return (dir != get_dir(src,target))
@@ -227,6 +228,7 @@
 			if(istype(destination)) air_master.tiles_to_update |= destination
 
 		return 1
+*/
 
 /obj/machinery/door/firedoor/update_icon(var/toggling = 0)
 	if(toggling? !density : density)

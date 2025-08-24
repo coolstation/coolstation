@@ -231,20 +231,21 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		var/b = floor(rock_chance * 125 + 130)
 		src.color = rgb(255,g,b)
 		src.stone_color = src.color
-		if(src.rock_mult)
-			if(!src.rocks)
-				src.create_rocks()
-			if(prob(floor(src.rock_mult * rock_chance)))
-				UpdateOverlays(pick(src.rocks), "rock_overlay")
-			if(prob(big_rock_chance * (1.2 - rock_chance))) // ouuugh i hate mapgen
-				SPAWN_DBG(0.5)
-					var/create_rock = TRUE
-					for(var/obj/decal/cragrock/rock in range(5, src))
-						create_rock = FALSE
-						break
-					if(create_rock)
-						var/obj/decal/cragrock/rock = new(src)
-						rock.color = src.color
+		if (current_state <= GAME_STATE_PREGAME) //please stop generating giant spikes of rock when a floor blows up
+			if(src.rock_mult)
+				if(!src.rocks)
+					src.create_rocks()
+				if(prob(floor(src.rock_mult * rock_chance)))
+					UpdateOverlays(pick(src.rocks), "rock_overlay")
+				if(prob(big_rock_chance * (1.2 - rock_chance))) // ouuugh i hate mapgen
+					SPAWN_DBG(0.5)
+						var/create_rock = TRUE
+						for(var/obj/decal/cragrock/rock in range(5, src))
+							create_rock = FALSE
+							break
+						if(create_rock)
+							var/obj/decal/cragrock/rock = new(src)
+							rock.color = src.color
 
 		if (generateLight)
 			STANDARD_WORLDGEN_HOLD
