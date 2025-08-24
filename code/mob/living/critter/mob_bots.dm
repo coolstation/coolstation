@@ -43,7 +43,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 		HH.icon = 'icons/mob/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "grabber"
-		HH.limb_name = "grabber"
+		HH.limb.name = "grabber"
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 		HH.can_range_attack = 0
@@ -303,7 +303,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	targeted = TRUE
 	target_anything = TRUE
 	cooldown = 5 SECONDS
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "firebot_foam"
 	var/const/num_water_effects = 5
 	/// list of reagents to spray and their quantities
@@ -366,7 +366,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	targeted = TRUE
 	target_anything = TRUE
 	cooldown = 10 SECONDS
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "firebot_fire"
 	var/max_fire_range = 3
 	cooldown = 10 SECONDS
@@ -476,9 +476,8 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 
 	remove_lifeprocess(/datum/lifeprocess/blindness)
 	remove_lifeprocess(/datum/lifeprocess/blood)
-	remove_lifeprocess(/datum/lifeprocess/radiation)
 
-	new /obj/item/implant/access/infinite/captain(src)
+	new /obj/item/implant/access/infinite/secoff(src)
 
 	src.abilityHolder.addAbility(/datum/targetable/critter/bot/handcuff)
 

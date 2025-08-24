@@ -975,6 +975,10 @@ THROWING DARTS
 				..()
 				access.access = get_access("Medical Doctor") + get_access("Janitor") + get_access("Botanist") + get_access("Chef") + get_access("Scientist")
 
+		secoff
+			New()
+				..()
+				access.access = get_access("Security Officer")
 
 /* ============================================================= */
 /* ------------------------- Implanter ------------------------- */
