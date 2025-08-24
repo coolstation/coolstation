@@ -341,7 +341,7 @@
 			qdel(src)
 			return
 
-		SPAWN(0)
+		SPAWN_DBG(0)
 			if (!istype(master) || (master && (!length(master.path) || !src.the_target)))
 				qdel(src)
 				return
@@ -370,7 +370,7 @@
 						I.icon_state = "blank"
 						I.pixel_x = master.pixel_x
 						I.pixel_y = master.pixel_y
-						SPAWN(2 SECONDS)
+						SPAWN_DBG(2 SECONDS)
 							if (I && !I.disposed) qdel(I)
 
 					step_to(master, master?.path[1])
