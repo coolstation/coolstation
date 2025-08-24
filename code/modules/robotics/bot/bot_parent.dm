@@ -336,7 +336,7 @@
 			return
 
 		master.path = get_path_to(src.master, src.the_target, mintargetdist = adjacent ? 1 : 0, \
-			max_distance=src.max_dist, max_seen=src.max_seen, id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
+			max_distance=src.max_dist, max_seen=src.max_seen, id=master.botcard, skip_first=FALSE, move_through_space=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
 		if(!length(master.path))
 			qdel(src)
 			return

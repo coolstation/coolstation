@@ -14,7 +14,7 @@
 /// Pathfind option key; An ID card representing what access we have and what doors we can open. Its location relative to the pathing atom is irrelevant
 #define POP_ID "id"
 /// Pathfind option key; Whether we consider turfs without atmos simulation (AKA do we want to ignore space)
-#define POP_SIMULATED_ONLY "simulated_only"
+#define POP_MOVE_SPACE "move_through_space"
 /// Pathfind option key; If we want to avoid a specific turf, like if we're a mulebot who already got blocked by some turf
 #define POP_EXCLUDE "exclude"
 /// Pathfind option key; Whether to find only paths consisting of cardinal steps.
@@ -37,14 +37,14 @@
  * * max_distance: The maximum number of steps we can take in a given path to search (default: 30, 0 = infinite)
  * * mintargetdistance: Minimum distance to the target before path returns, could be used to get near a target, but not right to it - for an AI mob with a gun, for example.
  * * id: An ID card representing what access we have and what doors we can open. Its location relative to the pathing atom is irrelevant
- * * simulated_only: Whether we consider turfs without atmos simulation (AKA do we want to ignore space)
+ * * move_through_space: Will we consider turfs that can be space samples
  * * exclude: If we want to avoid a specific turf, like if we're a mulebot who already got blocked by some turf
  * * skip_first: Whether or not to delete the first item in the path. This would be done because the first item is the starting tile, which can break movement for some creatures.
  * * cardinal_only: Whether to find only paths consisting of cardinal steps.
  * * required_goals: How many goals to find to succeed. Null for all.
  * * do_doorcheck: Whether or not to check if doors are blocked (welded, out of power, locked, etc...)
  */
-/proc/get_path_to(caller, ends, max_distance = 30, max_seen = null, mintargetdist, id=null, simulated_only=TRUE, turf/exclude=null, skip_first=FALSE, cardinal_only=TRUE, required_goals=null, do_doorcheck=FALSE)
+/proc/get_path_to(caller, ends, max_distance = 30, max_seen = null, mintargetdist, id=null, move_through_space=FALSE, turf/exclude=null, skip_first=FALSE, cardinal_only=TRUE, required_goals=null, do_doorcheck=FALSE)
 	if(isnull(ends))
 		return
 	var/single_end = !islist(ends)
@@ -58,12 +58,12 @@
 		POP_MAX_SEEN=max_seen,
 		POP_MIN_DIST=mintargetdist,
 		POP_ID=id,
-		POP_SIMULATED_ONLY=simulated_only,
+		POP_MOVE_SPACE=move_through_space,
 		POP_EXCLUDE=exclude,
 		POP_CARDINAL_ONLY=cardinal_only,
 		POP_DOOR_CHECK=do_doorcheck,
 	)
-	if(istype(caller, /obj/machinery/bot) && isnull(id)) // Stonepillar: remove this when amy finishes mob-ifying /obj/machinery/bot
+	if(istype(caller, /obj/machinery/bot) && isnull(id))
 		var/obj/machinery/bot/bot = caller
 		options[POP_ID] = bot.botcard
 	if(istype(caller, /obj/machinery/vehicle))
@@ -102,7 +102,7 @@
  * Note that this can only be used inside the [datum/pathfind][pathfind datum] since it uses variables from said datum.
  * If you really want to optimize things, optimize this, cuz this gets called a lot.
  */
-#define CAN_STEP(cur_turf, next) (next && jpsTurfPassable(next, cur_turf, caller, options) && !(simulated_only && !issimulatedturf(next)) && (next != avoid))
+#define CAN_STEP(cur_turf, next) (next && jpsTurfPassable(next, cur_turf, caller, options) && (!(next.turf_flags & CAN_BE_SPACE_SAMPLE) || move_through_space) && (next != avoid))
 /// Another helper macro for JPS, for telling when a node has forced neighbors that need expanding
 #define STEP_NOT_HERE_BUT_THERE(cur_turf, dirA, dirB) ((!CAN_STEP(cur_turf, get_step(cur_turf, dirA)) && CAN_STEP(cur_turf, get_step(cur_turf, dirB))))
 
@@ -186,8 +186,8 @@
 	var/max_distance = 30
 	/// Max number of tiles seen, null skips the check
 	var/max_seen = null
-	/// Space is big and empty, if this is TRUE then we ignore pathing through unsimulated tiles
-	var/simulated_only
+	/// Space is big and empty, if this is FALSE then we just dont move through it
+	var/move_through_space
 	/// A specific turf we're avoiding, like if a mulebot is being blocked by someone t-posing in a doorway we're trying to get through
 	var/turf/avoid
 	/// Whether we only want cardinal steps
@@ -215,7 +215,7 @@
 	src.max_distance = options[POP_MAX_DIST]
 	src.max_seen = options[POP_MAX_SEEN]
 	src.mintargetdist = options[POP_MIN_DIST]
-	src.simulated_only = options[POP_SIMULATED_ONLY]
+	src.move_through_space = options[POP_MOVE_SPACE]
 	src.avoid = options[POP_EXCLUDE]
 	src.cardinal_only = options[POP_CARDINAL_ONLY]
 	src.paths = list()
