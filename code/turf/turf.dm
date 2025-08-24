@@ -28,6 +28,11 @@
 
 	#undef _UNSIM_TURF_GAS_DEF
 
+	/// Sum of all unstable atoms on the turf.
+	pass_unstable = TRUE
+	/// Whether this turf is passable. Used in the pathfinding system.
+	var/tmp/passability_cache
+
 	//Properties for both
 	var/temperature = T20C
 
@@ -552,6 +557,7 @@
 	var/old_opacity = src.opacity
 
 	var/old_checkinghasproximity = src.checkinghasproximity
+	var/old_pass_unstable = src.pass_unstable
 
 	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
 	if (new_type)
@@ -612,6 +618,8 @@
 	new_turf.levelupdate()
 
 	new_turf.checkinghasproximity = old_checkinghasproximity
+	new_turf.pass_unstable += old_pass_unstable
+
 
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.

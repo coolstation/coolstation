@@ -1718,7 +1718,8 @@
 						/obj/item/furniture_parts/table/regal,
 						/obj/item/furniture_parts/table/clothred,
 						/obj/item/furniture_parts/table/checkercloth,
-						/obj/item/furniture_parts/table/flock)
+//						/obj/item/furniture_parts/table/flock
+						)
 	items2spawn = list(/obj/item/furniture_parts/IVstand,
 						/obj/item/furniture_parts/surgery_tray,
 						/obj/item/furniture_parts/table/desk,

@@ -3,6 +3,7 @@
 /////////////////
 // Unlike the flockmind, when player drones exit their corporeal body to jump into another one,
 // they're tiny little flickers of thought.
+/*
 /mob/living/intangible/flock/trace
 	name = "weird radio ghost bird"
 	real_name = "Flocktrace"
@@ -92,3 +93,4 @@
 	animate_bumble(O) // bob up and down
 	O.alpha = 160
 	return O
+*/

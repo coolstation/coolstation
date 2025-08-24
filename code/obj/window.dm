@@ -1170,6 +1170,7 @@
 
 
 // Flockdrone BS goes here - cirr
+/*
 /obj/window/feather
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "window"
@@ -1201,3 +1202,4 @@
 
 /obj/window/feather/south
 	dir = SOUTH
+*/

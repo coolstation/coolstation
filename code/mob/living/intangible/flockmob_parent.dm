@@ -1,6 +1,6 @@
 // FLOCK INTANGIBLE MOB PARENT
 // for shared things, like references to flocks and vision modes and general intangibility and swapping into drones
-
+/*
 /mob/living/intangible/flock
 	name = "caw"
 	desc = "please report this to a coder you shouldn't see this"
@@ -198,3 +198,4 @@
 /mob/living/intangible/flock/proc/createstructure(var/T, var/resources = 0)
 	//todo check for flocktile underneath flockmind cheers
 	new /obj/flock_structure/ghost(src.loc, T, src.flock, resources)
+*/

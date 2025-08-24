@@ -247,6 +247,48 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			img.app.color = issimulatedturf(theTurf) ? "#0f0" : "#f00"
 
+	jps_inconsistent
+		name = "jps inconsistent"
+		help = "Uses a slightly expensive check to see whether turf instability is valid. Errors shown in red, number shows error (i.e. -1 is missing 1 atom)"
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			var/trueUnstable = initial(theTurf.pass_unstable)
+			for(var/atom/A as anything in theTurf.contents)
+				trueUnstable += A.pass_unstable
+			if(trueUnstable != theTurf.pass_unstable)
+				img.app.overlays = list(src.makeText(theTurf.pass_unstable - trueUnstable, RESET_ALPHA | RESET_COLOR))
+				img.app.color = "#f00"
+			else
+				img.app.alpha = 0
+
+	jps_unstable
+		name = "jps unstable"
+		help = "Red is unstable, green is stable, purple is illegal value"
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.overlays = list(src.makeText(theTurf.pass_unstable, RESET_ALPHA | RESET_COLOR))
+			img.app.color = theTurf.pass_unstable >= 1 ? "#f00" : theTurf.pass_unstable ? "#70f" : "#0f0"
+
+	jps_cache
+		name = "jps cache"
+		help = "Grey is no cache. Green is passable, red is not."
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			if(theTurf.passability_cache != null)
+				img.app.color = theTurf.passability_cache ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
+
+	jps_passable_turfs
+		name = "jps passable turfs"
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.alpha = 0
+			for(var/dir in alldirs)
+				var/turf/neigh = get_step(theTurf, dir)
+				if(!neigh || neigh == theTurf) continue
+				if(jpsTurfPassable(neigh, theTurf, usr))
+					var/image/I = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
+					I.alpha = 100
+					I.appearance_flags |= RESET_ALPHA
+					img.app.overlays += I
+
 	blowout
 		name = "radstorm safezones"
 		help = "Green tiles are safe from irradiation, red tiles are ones that are not."
@@ -1132,20 +1174,6 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.color = rgb((val*255), 0, (255-val*255))
 			if(!isnull(val))
 				img.app.overlays = list(src.makeText(round(val*100)/100, RESET_ALPHA))
-/*
-	jps_passable_turfs
-		name = "jps passable turfs"
-		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.alpha = 0
-			for(var/dir in alldirs)
-				var/turf/neigh = get_step(theTurf, dir)
-				if(!neigh || neigh == theTurf) continue
-				if(jpsTurfPassable(neigh, theTurf, usr))
-					var/image/I = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
-					I.alpha = 100
-					I.appearance_flags |= RESET_ALPHA
-					img.app.overlays += I
-*/
 
 	blob_AI
 		name = "blob AI"

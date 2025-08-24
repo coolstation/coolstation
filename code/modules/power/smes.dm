@@ -141,14 +141,16 @@
 	I = SafeGetOverlayImage("chargemode",'icons/obj/machines/power.dmi', "smes-oc1")
 	if (charging)
 		I.icon_state = "smes-oc1"
-
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_OVERLAY
 	else if (chargemode)
 		I.icon_state = "smes-oc0"
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_OVERLAY
 	else
 		I = null
 
-	I.plane = PLANE_SELFILLUM
-	I.blend_mode = BLEND_OVERLAY
+
 	UpdateOverlays(I, "chargemode", 0, 1)
 
 	var/clevel = chargedisplay()

@@ -43,6 +43,9 @@
 	/// If atmos should be blocked by this - special behaviours handled in gas_cross() overrides
 	var/gas_impermeable = FALSE
 
+	/// Whether pathfinding is forbidden from caching the passability of this atom. See [/turf/passability_cache]
+	var/tmp/pass_unstable = TRUE
+
 /* -------------------- name stuff -------------------- */
 	/*
 	to change names: either add or remove something with the appropriate proc(s) and then call atom.UpdateName()
@@ -361,6 +364,7 @@
 /atom/movable/overlay
 	var/atom/master = null
 	anchored = 1
+	pass_unstable = FALSE
 
 /atom/movable/overlay/gibs
 	icon_state = "blank"
@@ -422,6 +426,9 @@
 			T.checkinghasproximity++
 		if(src.opacity)
 			T.turf_persistent.opaque_atom_count++
+		for(var/turf/covered_turf as anything in src.locs)
+			covered_turf.pass_unstable += src.pass_unstable
+			covered_turf.passability_cache = null
 	if(!isnull(src.loc))
 		src.loc.Entered(src, null)
 		if(isturf(src.loc)) // call it on the area too
@@ -522,6 +529,7 @@
 				if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 					return
 
+	var/list/old_locs = src.locs
 	var/atom/A = src.loc
 	. = ..()
 	src.move_speed = TIME - src.l_move_time
@@ -539,34 +547,31 @@
 
 	// sometimes last_turf isnt a turf. ok.
 	if (last_turf && isturf(last_turf))
-		if (src.event_handler_flags & USE_CHECKEXIT)
-			last_turf.turf_persistent.checkingexit = max(last_turf.turf_persistent.checkingexit-1, 0)
-		if (src.event_handler_flags & USE_CANPASS || src.density)
-			if (bound_width + bound_height > 64)
-				for(var/turf/T in bounds(last_turf.x*32, last_turf.y*32, bound_width/2, bound_height/2, last_turf.z))
-					T.turf_persistent.checkingcanpass = max(T.turf_persistent.checkingcanpass-1, 0)
-			else
-				last_turf.turf_persistent.checkingcanpass = max(last_turf.turf_persistent.checkingcanpass-1, 0)
-		if (src.event_handler_flags & USE_HASENTERED)
-			last_turf.turf_persistent.checkinghasentered = max(last_turf.turf_persistent.checkinghasentered-1, 0)
-		if (src.event_handler_flags & USE_PROXIMITY)
-			last_turf.checkinghasproximity = max(last_turf.checkinghasproximity-1, 0)
+		for(var/turf/covered_turf as anything in old_locs)
+			covered_turf.pass_unstable -= src.pass_unstable
+			covered_turf.passability_cache = null
+			if (src.event_handler_flags & USE_CHECKEXIT)
+				covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
+			if (src.event_handler_flags & USE_CANPASS || src.density)
+				covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
+			if (src.event_handler_flags & USE_HASENTERED)
+				covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
+			if (src.event_handler_flags & USE_PROXIMITY)
+				covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
 	if (isturf(src.loc))
 		last_turf = src.loc
-		var/turf/T = src.loc
-		if (src.event_handler_flags & USE_CHECKEXIT)
-			T.turf_persistent.checkingexit++
-		if (src.event_handler_flags & USE_CANPASS || src.density)
-			if (bound_width + bound_height > 64)
-				for(var/turf/BT in bounds(src))
-					BT.turf_persistent.checkingcanpass++
-			else
-				T.turf_persistent.checkingcanpass++
-		if (src.event_handler_flags & USE_HASENTERED)
-			T.turf_persistent.checkinghasentered++
-		if (src.event_handler_flags & USE_PROXIMITY)
-			T.checkinghasproximity++
+		for(var/turf/covered_turf as anything in src.locs)
+			if (src.event_handler_flags & USE_CHECKEXIT)
+				covered_turf.turf_persistent.checkingexit++
+			if (src.event_handler_flags & USE_CANPASS || src.density)
+				covered_turf.turf_persistent.checkingcanpass++
+			if (src.event_handler_flags & USE_HASENTERED)
+				covered_turf.turf_persistent.checkinghasentered++
+			if (src.event_handler_flags & USE_PROXIMITY)
+				covered_turf.checkinghasproximity++
+			covered_turf.pass_unstable += src.pass_unstable
+			covered_turf.passability_cache = null
 	else
 		last_turf = 0
 
@@ -880,6 +885,7 @@
 	var/area/new_area = get_area(newloc)
 
 	var/atom/oldloc = loc
+	var/atom/oldlocs = src.locs
 	loc = newloc
 
 	src.last_move = 0
@@ -888,11 +894,27 @@
 
 	oldloc?.Exited(src, newloc)
 
+	if(isturf(oldloc))
+		for(var/turf/covered_turf as anything in oldlocs)
+			covered_turf.pass_unstable -= src.pass_unstable
+			covered_turf.passability_cache = null
+		for(var/atom/A in oldloc)
+			if(A != src)
+				A.Uncrossed(src)
+
 	// area.Exited called if we are on turfs and changing areas or if exiting a turf into a non-turf (just like Move does it internally)
 	if((my_area != new_area || !isturf(newloc)) && isturf(oldloc))
 		my_area.Exited(src, newloc)
 
 	newloc?.Entered(src, oldloc)
+
+	if(isturf(newloc))
+		for(var/turf/covered_turf as anything in src.locs)
+			covered_turf.pass_unstable += src.pass_unstable
+			covered_turf.passability_cache = null
+		for(var/atom/A in newloc)
+			if(A != src)
+				A.Crossed(src)
 
 	// area.Entered called if we are on turfs and changing areas or if entering a turf from a non-turf (just like Move does it internally)
 	if((my_area != new_area || !isturf(oldloc)) && isturf(newloc))
@@ -907,33 +929,26 @@
 	var/do_checks = (src.event_handler_flags & (USE_CHECKEXIT | USE_CANPASS | USE_HASENTERED | USE_HASENTERED | USE_PROXIMITY)) || src.density == 1
 
 	if (do_checks && last_turf && isturf(last_turf))
-		if (src.event_handler_flags & USE_CHECKEXIT)
-			last_turf.turf_persistent.checkingexit = max(last_turf.turf_persistent.checkingexit-1, 0)
-		if (src.event_handler_flags & USE_CANPASS || src.density)
-			if (bound_width + bound_height > 64)
-				for(var/turf/T in bounds(last_turf.x*32, last_turf.y*32, bound_width/2, bound_height/2, last_turf.z))
-					T.turf_persistent.checkingcanpass = max(T.turf_persistent.checkingcanpass-1, 0)
-			else
-				last_turf.turf_persistent.checkingcanpass = max(last_turf.turf_persistent.checkingcanpass-1, 0)
-		if (src.event_handler_flags & USE_HASENTERED)
-			last_turf.turf_persistent.checkinghasentered = max(last_turf.turf_persistent.checkinghasentered-1, 0)
-		if (src.event_handler_flags & USE_PROXIMITY)
-			last_turf.checkinghasproximity = max(last_turf.checkinghasproximity-1, 0)
+		for(var/turf/covered_turf in oldlocs)
+			if (src.event_handler_flags & USE_CHECKEXIT)
+				covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
+			if (src.event_handler_flags & USE_CANPASS || src.density)
+				covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
+			if (src.event_handler_flags & USE_HASENTERED)
+				covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
+			if (src.event_handler_flags & USE_PROXIMITY)
+				covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
 	if (do_checks && isturf(src.loc))
-		last_turf = src.loc
-		if (src.event_handler_flags & USE_CHECKEXIT)
-			last_turf.turf_persistent.checkingexit++
-		if (src.event_handler_flags & USE_CANPASS || src.density)
-			if (bound_width + bound_height > 64)
-				for(var/turf/T in bounds(src))
-					T.turf_persistent.checkingcanpass++
-			else
-				last_turf.turf_persistent.checkingcanpass++
-		if (src.event_handler_flags & USE_HASENTERED)
-			last_turf.turf_persistent.checkinghasentered++
-		if (src.event_handler_flags & USE_PROXIMITY)
-			last_turf.checkinghasproximity++
+		for(var/turf/covered_turf in src.locs)
+			if (src.event_handler_flags & USE_CHECKEXIT)
+				covered_turf.turf_persistent.checkingexit++
+			if (src.event_handler_flags & USE_CANPASS || src.density)
+				covered_turf.turf_persistent.checkingcanpass++
+			if (src.event_handler_flags & USE_HASENTERED)
+				covered_turf.turf_persistent.checkinghasentered++
+			if (src.event_handler_flags & USE_PROXIMITY)
+				covered_turf.checkinghasproximity++
 	else
 		last_turf = 0
 
@@ -947,6 +962,9 @@
 //reason for having this proc is explained below
 /atom/proc/set_density(var/newdensity)
 	src.density = newdensity
+	if(src.density != newdensity)
+		var/turf/loc = src.loc // invalidate JPS cache on density changes
+		loc.passability_cache = null
 
 /atom/movable/set_density(var/newdensity)
 	//BASICALLY : if we dont have the USE_CANPASS flag, turf's checkingcanpass value relies entirely on our density.

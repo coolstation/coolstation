@@ -12,6 +12,7 @@
 ////////////////////////////
 // TABLE & PARTS
 ///////////////////////////
+/*
 /obj/table/flock
 	name = "humming surface"
 	desc = "A table? An alien supercomputer? Well, it's flat, you can put stuff on it."
@@ -299,3 +300,4 @@
 		<br><span class='bold'>###=-</span></span>"}
 	else
 		return null // give the standard description
+*/

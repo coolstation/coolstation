@@ -305,6 +305,7 @@ A Flamethrower in various states of assembly
 	item_state = "syndthrower_0"
 	uses_multiple_icon_states = 1
 	force = 6
+	contraband = 7
 	two_handed = 1
 	swappable_tanks = 0 // Backpack or bust
 	spread_angle = 10

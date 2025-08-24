@@ -124,6 +124,7 @@
 			boutput(donor, "<span class='alert'><B>Your cyberheart malfunctions and shuts down!</B></span>")
 			donor.contract_disease(/datum/ailment/malady/flatline,null,null,1)
 
+/*
 /obj/item/organ/heart/flock
 	name = "pulsing octahedron"
 	desc = "It beats ceaselessly to a peculiar rhythm. Like it's trying to tap out a distress signal."
@@ -171,3 +172,4 @@
 		<br><span class='bold'>###=-</span></span>"}
 	else
 		return null // give the standard description
+*/

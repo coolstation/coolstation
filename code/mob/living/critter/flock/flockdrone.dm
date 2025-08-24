@@ -1,3 +1,4 @@
+/*
 /mob/living/critter/flock/drone
 	name = "weird glowy thing"
 	desc = "Is it broccoli? A glass chicken? A peacock? A green roomba? A shiny discobot? A crystal turkey? A bugbird? A radio pigeon??"
@@ -892,3 +893,4 @@
 	if(temp)
 		animate(temp) // cancel animation
 	..()
+*/

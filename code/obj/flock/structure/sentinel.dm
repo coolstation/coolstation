@@ -1,6 +1,7 @@
 //
 /// # Sentinel structure,
 //
+/*
 #define NOT_CHARGED -1 //! The sentinel is without charge
 #define LOSING_CHARGE 0 //! The sentinel is losing charge
 #define CHARGING 1 //! The sentinel is gaining charge
@@ -120,3 +121,4 @@
 #undef LOSING_CHARGE
 #undef CHARGING
 #undef CHARGED
+*/

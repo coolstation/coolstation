@@ -1476,7 +1476,7 @@ obj/item/whetstone
 	hit_type = DAMAGE_CUT | DAMAGE_STAB
 	tool_flags = TOOL_CUTTING | TOOL_CHOPPING
 	object_flags = NO_ARM_ATTACH
-	contraband = 5
+	contraband = 8
 	w_class = W_CLASS_BULKY
 	force = 25
 	throwforce = 25

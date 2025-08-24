@@ -1,6 +1,7 @@
 /////////////////
 // FLOCKMIND MOB
 /////////////////
+/*
 /mob/living/intangible/flock/flockmind
 	name = "Flockmind"
 	real_name = "Flockmind"
@@ -149,3 +150,4 @@
 	ghost_notifier.send_notification(src, src, /datum/ghost_notification/respawn/flockdrone)
 	boutput(src, "<span class='notice'>Partitioning initiated. Stand by.</span>")
 
+*/

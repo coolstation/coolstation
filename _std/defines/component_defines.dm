@@ -95,7 +95,7 @@
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
 /// when an AM is revealed from under a floor tile (turf revealed from)
 #define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
-/// when an AM changes contraband level, propagating up
+/// when an AM changes contraband level (self_applied)
 #define COMSIG_MOVABLE_CONTRABAND_CHANGED "mov_contraband_changed"
 // ---- item signals ----
 

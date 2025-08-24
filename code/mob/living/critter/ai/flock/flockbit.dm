@@ -1,3 +1,4 @@
+/*
 /datum/aiHolder/flock/bit
 
 /datum/aiHolder/flock/bit/New()
@@ -12,6 +13,7 @@
 
 /datum/aiTask/prioritizer/flock/bit/New()
 	..()
-	// populate the list of tasks		
+	// populate the list of tasks
 	transition_tasks += holder.get_instance(/datum/aiTask/sequence/goalbased/build, list(holder, src))
 	transition_tasks += holder.get_instance(/datum/aiTask/timed/wander, list(holder, src))
+*/

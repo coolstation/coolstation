@@ -2075,6 +2075,7 @@ datum
 					if(method == TOUCH)
 						boutput(M, "<span class='alert'>Well, that was gross.</span>")
 
+/*
 		flockdrone_fluid
 			name = "coagulated gnesis"
 			id = "flockdrone_fluid"
@@ -2180,6 +2181,7 @@ datum
 						return
 				// otherwise we didn't have enough
 				T.visible_message("<span class='notice'>The substance flows out, spread too thinly.</span>")
+*/
 
 		black_goop
 			name = "gross black goop"

@@ -8,6 +8,7 @@
 	flags = FPRINT | IS_PERSPECTIVE_FLUID | ALWAYS_SOLID_FLUID
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	object_flags = BOTS_DIRBLOCK
+	pass_unstable = TRUE
 	text = "<font color=#D2691E>+"
 	var/secondsElectrified = 0
 	var/visible = 1
@@ -306,8 +307,13 @@
 	if(istype(I, /obj/item/grab))
 		return ..() // handled in grab.dm + Bumped
 
+	src.add_fingerprint(user)
+
+	if(!I)
+		return ..()
+
 	if (src.isblocked() == 1)
-		if (src.density && src.operating != 1 && I)
+		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
 				src.take_damage(I.force*5, user, TRUE)
 			else
@@ -322,8 +328,6 @@
 		return
 	if (world.time - src.last_used <= 10)
 		return
-
-	src.add_fingerprint(user)
 
 	if (src.density && src.brainloss_stumble && src.do_brainstumble(user) == 1)
 		return
