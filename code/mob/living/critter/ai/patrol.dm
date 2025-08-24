@@ -13,8 +13,9 @@
 	var/combat_subtask_type = /datum/aiTask/concurrent/violence/fixed_target
 	var/targeting_subtask_type = /datum/aiTask/succeedable/patrol_target_locate/spider_hunter
 	var/datum/aiTask/succeedable/move/move_subtask
-	var/datum/aiTask/sequence/goalbased/critter/attack/fixed_target/combat_subtask
-	var/datum/aiTask/succeedable/targeting_subtask
+	var/datum/aiTask/concurrent/violence/fixed_target/combat_subtask
+	var/datum/aiTask/succeedable/patrol_target_locate/targeting_subtask
+	var/atom/movement_target
 
 /datum/aiTask/patrol/New(parentHolder, transTask)
 	. = ..()
@@ -28,43 +29,48 @@
 	if(GET_COOLDOWN(src.holder.owner, "HALT_FOR_INTERACTION"))
 		return
 
-	if(!ismobcritter(src.holder.owner))
-		return
-
-	var/mob/living/critter/C = src.holder.owner
 	var/mob/living/combat_target
-	if(src.holder.target && isliving(src.holder.target) && C.ai_is_valid_target(src.holder.target))
+	if(src.holder.target && isliving(src.holder.target) && src.holder.owner.ai_is_valid_target(src.holder.target))
 		combat_target = src.holder.target
 	else
-		var/list/mob/living/potential_targets = src.get_targets(src.max_dist)
+		var/list/mob/living/potential_targets = src.combat_subtask.get_targets(src.max_dist)
 		if(length(potential_targets) >= 1)
-			combat_target = src.get_best_target(potential_targets)
+			combat_target = src.combat_subtask.get_best_target(potential_targets)
 
-	if(combat_target) // interrupt into combat_interrupt_type
-		if(src.combat_subtask.precondition())
-			src.holder.stop_move()
-			src.combat_subtask.fixed_target = combat_target
-			src.holder.interrupt_to_task(src.combat_subtask)
-			return
+	if(combat_target) // COMBAT TASK
+		src.holder.stop_move()
+		src.movement_target = null
+		src.combat_subtask.reset()
+		src.combat_subtask.fixed_target = combat_target
+		src.holder.current_task = src.combat_subtask
+		src.combat_subtask.tick()
+		return
 
-	if(istype(C, /mob/living/critter/robotic/securitron))
-		var/mob/living/critter/robotic/securitron/securitron_owner = C
+	if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
+		var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
 		if(!securitron_owner.patrolling)
 			return
 
-	if(src.holder.target) // MOVE TASK
-		// make sure we both set our target and move to our target correctly
+	if(src.movement_target) // MOVE TASK
 		if(src.move_subtask)
 			src.move_subtask.distance_from_target = src.distance_from_target
-			src.move_subtask.move_target = get_turf(src.holder.target)
+			src.move_subtask.move_target = src.movement_target
 			src.move_subtask.on_tick()
 			if(src.move_subtask.succeeded())
-				src.holder.target = null
+				src.move_subtask.reset()
+				src.movement_target = null
 
-	if(!src.holder.target)
+	if(!src.movement_target) // TARGETING TASK
 		src.targeting_subtask.on_tick()
+		if(src.targeting_subtask.succeeded())
+			src.movement_target = src.targeting_subtask.target
+			src.targeting_subtask.reset()
 
 	. = ..()
+
+/datum/aiTask/patrol/on_reset()
+	. = ..()
+	src.movement_target = null
 
 /datum/aiTask/succeedable/patrol_target_locate
 	max_dist = 120
@@ -160,8 +166,7 @@
 	if(connection_id != "nav_beacon") // its pda stuff
 		return TRUE
 
-	var/mob/living/critter/C = src.holder.owner
-	if(isliving(src.combat_subtask.fixed_target) && C.valid_target(src.combat_subtask.fixed_target)) // we are in a chase or something
+	if(isliving(src.combat_subtask.fixed_target) && src.holder.owner.ai_is_valid_target(src.combat_subtask.fixed_target)) // we are in a chase or something
 		return FALSE
 
 	if(signal.data["address_1"] != src.net_id) // commanding the bot requires directly addressing it
@@ -218,7 +223,7 @@
 	var/is_detaining = FALSE
 
 /datum/aiTask/patrol/packet_based/securitron
-	combat_subtask_type = /datum/aiTask/sequence/goalbased/critter/attack/fixed_target/securitron
+	combat_subtask_type = /datum/aiTask/concurrent/violence/fixed_target/securitron
 
 /datum/aiTask/patrol/packet_based/securitron/proc/send_status()
 	var/datum/signal/signal = get_free_signal()
@@ -306,15 +311,20 @@
 	var/mob/living/fixed_target
 
 /datum/aiTask/concurrent/violence/fixed_target/on_tick()
-	src.target = fixed_target
-	..()
+	src.holder.target = fixed_target
+	. = ..()
+
+/datum/aiTask/concurrent/violence/fixed_target/on_reset()
+	src.fixed_target = null
+	src.holder.target = null
+	. = ..()
 
 /// and lastly, the actual securitron attack task
 /datum/aiTask/concurrent/violence/fixed_target/securitron
 	name = "apprehending perp"
 	max_dist = 40
 
-/datum/aiTask/sequence/goalbased/critter/attack/fixed_target/securitron/on_tick()
+/datum/aiTask/concurrent/violence/fixed_target/securitron/on_tick()
 	if(GET_COOLDOWN(src.holder.owner, "HALT_FOR_INTERACTION"))
 		return
 	. = ..()
@@ -333,4 +343,6 @@
 		src.holder.target = null
 		src.transition_task = src.holder.default_task
 		src.fixed_target = null
-		src.holder.interrupt_to_task(src.holder.default_task)
+		src.holder.current_task = src.holder.default_task
+		src.holder.current_task.reset()
+		src.holder.stop_move()

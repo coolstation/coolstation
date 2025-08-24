@@ -235,6 +235,7 @@
 	size = 16.0
 	var/list/beacons
 	var/obj/machinery/bot/mulebot/active
+	var/list/pdas = list()
 
 	return_text()
 		if(..())

@@ -395,7 +395,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 				continue
 			tfireflash(F,0.5,temp)
 
-ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_item)
 /mob/living/critter/robotic/securitron
 	name = "securitron"
 	real_name = "securitron"
@@ -500,9 +499,6 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	START_TRACKING_CAT(TR_CAT_DELETE_ME)
 	#endif
 
-/mob/living/critter/robotic/securitron/get_fingertip_color() // so flashing a badge gives the right fingertip tone
-	return "#656565"
-
 /mob/living/critter/robotic/securitron/disposing()
 	STOP_TRACKING
 	qdel(src.camera)
@@ -531,7 +527,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	HH.suffix = "-R"
 	HH.name = "long arm"
 	HH.icon_state = "handn"
-	HH.icon = 'icons/mob/critter_ui.dmi'
+	HH.icon = 'icons/ui/critter_ui.dmi'
 	src.update_inhands()
 
 /mob/living/critter/robotic/securitron/proc/change_hand_item()
@@ -820,6 +816,10 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		src.a_intent = INTENT_HARM
 	else
 		src.a_intent = INTENT_DISARM
+		if(istype(I,/obj/item/baton))
+			var/obj/item/baton/batong = I
+			if(!batong.is_active)
+				batong.attack_self(src)
 	src.hud.update_intent()
 	..(target)
 	var/bonus_hits = src.emagged - 1
@@ -834,15 +834,17 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 /mob/living/critter/robotic/securitron/proc/check_access(obj/item/I)
 	if(!istype(src.req_access, /list)) //something's very wrong
 		return 1
-
-	var/obj/item/card/id/id_card = get_id_card(I)
 	var/list/L = src.req_access
 	if(!L.len) //no requirements
 		return 1
-	if(!istype(id_card, /obj/item/card/id) || !id_card:access) //not ID or no access
+	if (istype(I, /obj/item/device/pda2) && I:ID_card)
+		I = I:ID_card
+	if (!istype(I, /obj/item/card/id))
+		return 0
+	if(!I:access) //not ID or no access
 		return 0
 	for(var/req in src.req_access)
-		if(!(req in id_card:access)) //doesn't have this access
+		if(!(req in I:access)) //doesn't have this access
 			return 0
 	return 1
 
@@ -902,6 +904,8 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	desc = "Attempts to handcuff a target."
 	targeted = TRUE
 	target_anything = TRUE
+	attack_mobs = TRUE
+	max_range = 1
 	cooldown = 4 SECONDS
 	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "firebot_fire"
@@ -1017,21 +1021,16 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		var/mob/M = hit_atom
 		M.do_disorient(150, weakened = 120, disorient = 60)
 
-/mob/living/critter/robotic/securitron/weed_seeking
-	name = "weedhound"
-	real_name = "weedhound"
+/mob/living/critter/robotic/securitron/spiderseeking
+	name = "spiderhound"
+	real_name = "spiderhound"
 	ai_type = /datum/aiHolder/patroller
-
-/mob/living/critter/robotic/securitron/weed_seeking/assess_perp(mob/living/perp)
-	if(perp.reagents && perp.reagents.has_reagent("THC"))
-		EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
-		return 420
-	. = ..()
 
 /mob/living/critter/robotic/securitron/beepsky
 	name = "Officer Beepsky"
 	desc = "It's Officer Beepsky! He's a loose cannon but he gets the job done."
 	initial_limb = /obj/item/baton/mobsecbot/beepsky
+	gender = MALE
 	patrolling = TRUE
 	drop_limb_item = TRUE
 	chase_speed_bonus = 1.3

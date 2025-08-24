@@ -183,6 +183,14 @@ var/list/ai_move_scheduled = list()
 	proc/was_harmed(obj/item/W, mob/M)
 		.=0
 
+	proc/disable()
+		src.enabled = FALSE
+		src.stop_move()
+
+	proc/enable()
+		src.enabled = TRUE
+		src.interrupt()
+
 /datum/aiTask
 	var/name = "task"
 	var/max_dist = 12
