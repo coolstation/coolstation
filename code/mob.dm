@@ -3034,6 +3034,9 @@
 /mob/proc/get_random_equipped_thing_name() //FOR FLAVOR USE ONLY
 	.= 0
 
+/mob/proc/handle_stamina_updates()
+	.= 0
+
 /mob/proc/update_canmove()
 	return
 

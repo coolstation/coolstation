@@ -4,6 +4,11 @@
 /datum/aiHolder/patroller/New()
 	..()
 	default_task = get_instance(src.default_task_type, list(src))
+	src.owner.mob_flags |= HEAVYWEIGHT_AI_MOB
+
+/datum/aiHolder/patroller/disposing()
+	src.owner.mob_flags &= ~HEAVYWEIGHT_AI_MOB
+	..()
 
 /// move between targets found with targeting_instance, interrupting to combat_interrupt if seek_target on owner finds a combat target
 /datum/aiTask/patrol
