@@ -39,6 +39,7 @@
 	var/cost_cyborg = 500 // Battery charge to drain when user is a cyborg.
 	var/is_active = TRUE
 
+	var/rechargable = TRUE
 	var/charge_time = 0
 	var/active_time
 	var/recharge_time
@@ -249,7 +250,7 @@
 			if(!src.is_active)
 				user.visible_message("<span class='alert'>[user] begins to charge up \the [src].</span>", "<span class='notice'>You start charging up \the [src].</span>", "<span class='alert'>You hear a sharp spark.</span>")
 				playsound(src, "sparks", 75, 1, -1)
-				SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(finish_charge), user, src.icon, "[src.icon_on]", null, INTERRUPT_NONE)
+				SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(turn_on), user, src.icon, "[src.icon_on]", null, INTERRUPT_NONE)
 				return
 		else
 			src.is_active = !src.is_active
@@ -380,7 +381,7 @@
 	charge_time = 0.6 SECONDS
 	active_time = 3.4 SECONDS
 	recharge_time = 7 SECONDS
-	cell_type = /obj/item/ammo/power_cell/med_minus_power
+	cell_type = /obj/item/ammo/power_cell
 	w_class = W_CLASS_SMALL
 
 /obj/item/baton/mobsecbot/beepsky

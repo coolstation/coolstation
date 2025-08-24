@@ -40,7 +40,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 		..()
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/small_critter
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "grabber"
 		HH.limb.name = "grabber"
@@ -430,12 +430,9 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	health_brute_vuln = 1
 	health_burn = 25
 	health_burn_vuln = 1.25
-	ai_retaliates = FALSE // this is a lie- special retaliation behavior in was_harmed and whistles
-	ai_retaliate_persistence = RETALIATE_UNTIL_INCAP
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
 	is_npc = TRUE
-	ai_attacks_neutral = TRUE
-	reagent_capacity = 0
+	reagent_capacity = 20
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.9
@@ -481,13 +478,13 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 
 	src.abilityHolder.addAbility(/datum/targetable/critter/bot/handcuff)
 
-	APPLY_MOVEMENT_MODIFIER(src, /datum/movement_modifier/robot_part/robot_base, "robot_health_slow_immunity")
+	APPLY_MOVEMENT_MODIFIER(src, /datum/movement_modifier/robot_base, "robot_health_slow_immunity")
 
 	get_image_group(CLIENT_IMAGE_GROUP_ARREST_ICONS).add_mob(src)
 
 	add_simple_light("secbot", list(255, 255, 255, 0.4 * 255))
 
-	MAKE_SENDER_RADIO_PACKET_COMPONENT(src.net_id, "pda", FREQ_PDA)
+	MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 	if(!src.no_camera)
 		src.camera = new /obj/machinery/camera(src)
@@ -519,27 +516,23 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	..()
 	var/datum/handHolder/HH = hands[1]
 	if (src.initial_limb)
-		HH.limb = new /datum/limb/item
+		var/datum/limb/item/itemlimb = new
+		HH.limb = itemlimb
 		HH.item = new src.initial_limb(src)
 		var/obj/item/I = HH.item
 		I.temp_flags |= IS_LIMB_ITEM
 		I.cant_drop = 1
 		I.cant_self_remove = 1
 		I.cant_other_remove = 1
+		itemlimb.my_item = I
 	else
 		HH.limb = new /datum/limb/small_critter/med
-	HH.limb_name = "long arm"
+		HH.limb.name = "long arm"
 	HH.suffix = "-R"
 	HH.name = "long arm"
 	HH.icon_state = "handn"
 	HH.icon = 'icons/mob/critter_ui.dmi'
 	src.update_inhands()
-
-/mob/living/critter/robotic/securitron/post_setup_hands()
-	..()
-	var/datum/handHolder/HH = hands[1]
-	if (src.initial_limb)
-		HH.limb.holder.remove_object = HH.item
 
 /mob/living/critter/robotic/securitron/proc/change_hand_item()
 	set name = "Change hand item"
@@ -721,22 +714,22 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 			src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"]")
 			return src.patrolling
 
-/mob/living/critter/robotic/securitron/valid_target(var/mob/living/C)
-	if (ishuman(C))
-		if (C.hasStatus("handcuffed"))
+/mob/living/critter/robotic/securitron/ai_is_valid_target(mob/M)
+	if (ishuman(M))
+		if (M.hasStatus("handcuffed"))
 			return FALSE // already cuffed
-	else if (is_incapacitated(C))
+	else if (is_incapacitated(M))
 		return FALSE // already stunned
-	if (GET_COOLDOWN(C, "ARRESTED_BY_SECURITRON_\ref[src]"))
+	if (GET_COOLDOWN(M, "ARRESTED_BY_SECURITRON_\ref[src]"))
 		return FALSE // we JUST arrested this jerk
 	. = ..()
 	if (!.)
 		return FALSE
-	var/threat_level = assess_perp(C)
-	if (!GET_COOLDOWN(C, "MARKED_FOR_SECURITRON_ARREST")) // set in assess_perp
+	var/threat_level = assess_perp(M)
+	if (!GET_COOLDOWN(M, "MARKED_FOR_SECURITRON_ARREST")) // set in assess_perp
 		return FALSE // not a threat
 	if (threat_level >= 4 && !ON_COOLDOWN(src, "SECURITRON_EMOTE", src.emote_cooldown))
-		src.accuse_perp(C, threat_level)
+		src.accuse_perp(M, threat_level)
 		src.siren()
 	return TRUE
 
@@ -775,12 +768,13 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		if(src.emagged)
 			threatcount = rand(7,15)
 			EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", threatcount * 1.5 SECONDS)
-			return threatcount //Everyone's a crimer!
+			return threatcount //this cannons loose as fuck!
 		var/mob/living/carbon/human/H_perp = perp
 		if(istype(H_perp.mutantrace, /datum/mutantrace/abomination))
 			threatcount += 5
 
-		perpname = H_perp.face_visible() ? H_perp.real_name : perpname
+		if (((H_perp.wear_mask && H_perp.wear_mask.see_face) || !H_perp.wear_mask) && ((H_perp.head && H_perp.head.see_face) || !H_perp.head))
+			perpname = H_perp.real_name
 		if(perp.traitHolder?.hasTrait("stowaway") && perp.traitHolder?.hasTrait("jailbird"))
 			if(isnull(data_core.security.find_record("name", perpname)))
 				threatcount += 5
@@ -817,40 +811,23 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 			return 1
 	return 0
 
-/mob/living/critter/robotic/securitron/critter_attack(mob/target)
-	if(actions.hasAction(src,/datum/action/bar/icon/mob_secbot_cuff,FALSE))
-		return
-
-	if(!src.is_detaining && ishuman(target) && (target.lying) && !target.hasStatus("handcuffed"))
-		var/datum/targetable/critter/handcuff = src.abilityHolder.getAbility(/datum/targetable/critter/bot/handcuff)
-		if(handcuff && !handcuff.disabled && handcuff.cooldowncheck())
-			handcuff.handleCast(target)
-			return
-
-	var/obj/item/I = src.equipped()
-	if (I && istype(I,/obj/item/baton))
-		var/obj/item/baton/baton = I
-		if(!baton.is_active)
-			baton.attack_self(src)
-			return
-	..()
-
-/mob/living/critter/robotic/securitron/critter_basic_attack(mob/target)
+/mob/living/critter/robotic/securitron/hand_attack(mob/target)
 	EXTEND_COOLDOWN(target, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
 	var/obj/item/I = src.equipped()
 	if(!I)
 		return FALSE
 	if (istype(I,/obj/item/gun))
-		src.set_a_intent(INTENT_HARM)
+		src.a_intent = INTENT_HARM
 	else
-		src.set_a_intent(INTENT_DISARM)
-	src.hand_attack(target)
+		src.a_intent = INTENT_DISARM
+	src.hud.update_intent()
+	..(target)
 	var/bonus_hits = src.emagged - 1
 	SPAWN_DBG(0)
 		while(bonus_hits >= 1)
 			sleep(2)
 			src.next_click = 0
-			src.hand_attack(target)
+			..(target)
 			bonus_hits--
 	return TRUE
 
@@ -916,7 +893,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		SPAWN_DBG(5 DECI SECONDS)
 			src.blowthefuckup(3)
 
-	logTheThing(LOG_STATION, user, "emagged securitron ([src]) at [log_loc(src)].")
+	logTheThing("station", user, "emagged securitron ([src]) at [log_loc(src)].")
 	return 1
 
 
@@ -926,7 +903,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	targeted = TRUE
 	target_anything = TRUE
 	cooldown = 4 SECONDS
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "firebot_fire"
 
 /datum/targetable/critter/bot/handcuff/cast(atom/target)
@@ -973,6 +950,9 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 	..()
 
 /datum/action/bar/icon/mob_secbot_cuff/onStart()
+	if ((BOUNDS_DIST(master, target) > 0) || master == null || target == null || target.hasStatus("handcuffed"))
+		interrupt(INTERRUPT_ALWAYS)
+		return
 	..()
 	playsound(master, 'sound/weapons/handcuffs.ogg', 30, TRUE, -2)
 	master.visible_message("<span class='alert'><B>[master] is trying to put handcuffs on [target]!</B></span>")
@@ -984,7 +964,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		OVERRIDE_COOLDOWN(target,"MARKED_FOR_SECURITRON_ARREST",0)
 		target.handcuffs = new /obj/item/handcuffs/guardbot(target)
 		target.setStatus("handcuffed", duration = INFINITE_STATUS)
-		logTheThing(LOG_COMBAT, master, "handcuffs [constructTarget(target,"combat")] at [log_loc(master)].")
+		logTheThing("combat", master, "handcuffs [constructTarget(target,"combat")] at [log_loc(master)].")
 
 		if(istype(master,/mob/living/critter/robotic/securitron))
 			var/mob/living/critter/robotic/securitron/secbot = master
@@ -1013,11 +993,6 @@ ADMIN_INTERACT_PROCS(/mob/living/critter/robotic/securitron, proc/change_hand_it
 		signal.data["address_1"] = "00000000"
 		signal.data["message"] = message2send
 		SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
-
-/datum/action/bar/icon/mob_secbot_cuff/canRunCheck(in_start)
-	. = ..()
-	if ((BOUNDS_DIST(master, target) > 0) || master == null || target == null || target.hasStatus("handcuffed"))
-		interrupt(INTERRUPT_ALWAYS)
 
 /mob/living/critter/robotic/securitron/autopatrol
 	patrolling = TRUE

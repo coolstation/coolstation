@@ -10,8 +10,8 @@
 	name = "patrolling"
 	distance_from_target = 0
 	max_dist = 7
-	var/combat_subtask_type = /datum/aiTask/sequence/goalbased/critter/attack/fixed_target
-	var/targeting_subtask_type = /datum/aiTask/succeedable/patrol_target_locate/global_cannabis
+	var/combat_subtask_type = /datum/aiTask/concurrent/violence/fixed_target
+	var/targeting_subtask_type = /datum/aiTask/succeedable/patrol_target_locate/spider_hunter
 	var/datum/aiTask/succeedable/move/move_subtask
 	var/datum/aiTask/sequence/goalbased/critter/attack/fixed_target/combat_subtask
 	var/datum/aiTask/succeedable/targeting_subtask
@@ -36,7 +36,7 @@
 	if(src.holder.target && isliving(src.holder.target) && C.ai_is_valid_target(src.holder.target))
 		combat_target = src.holder.target
 	else
-		var/list/mob/living/potential_targets = C.seek_target(src.max_dist)
+		var/list/mob/living/potential_targets = src.get_targets(src.max_dist)
 		if(length(potential_targets) >= 1)
 			combat_target = src.get_best_target(potential_targets)
 
@@ -69,6 +69,7 @@
 /datum/aiTask/succeedable/patrol_target_locate
 	max_dist = 120
 	max_fails = 3
+	var/atom/target
 
 /datum/aiTask/succeedable/patrol_target_locate/succeeded()
 	var/distance = GET_DIST(get_turf(src.holder.owner), get_turf(src.target))
@@ -83,12 +84,11 @@
 	src.target = null
 
 /// magically hunt down a weed
-/datum/aiTask/succeedable/patrol_target_locate/global_cannabis/on_tick()
+/datum/aiTask/succeedable/patrol_target_locate/spider_hunter/on_tick()
 	. = ..()
-	for(var/obj/item/X in by_cat[TR_CAT_CANNABIS_OBJ_ITEMS])
-		var/obj/item/plant/herb/cannabis/C = X
-		if (istype(C) && C.z == holder.owner.z)
-			src.holder.target = C
+	for(var/mob/M in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
+		if (M.z == holder.owner.z)
+			src.holder.target = M
 			break
 
 /// packet based patrol pattern
@@ -112,7 +112,7 @@
 	src.holder.owner.AddComponent(
 		/datum/component/packet_connected/radio, \
 		"nav_beacon",\
-		FREQ_NAVBEACON, \
+		FREQ_BOT_NAV, \
 		src.net_id, \
 		null, \
 		FALSE, \
@@ -302,8 +302,15 @@
 		src.holder.target = pick(turfs)
 	. = ..()
 
+/datum/aiTask/concurrent/violence/fixed_target
+	var/mob/living/fixed_target
+
+/datum/aiTask/concurrent/violence/fixed_target/on_tick()
+	src.target = fixed_target
+	..()
+
 /// and lastly, the actual securitron attack task
-/datum/aiTask/sequence/goalbased/critter/attack/fixed_target/securitron
+/datum/aiTask/concurrent/violence/fixed_target/securitron
 	name = "apprehending perp"
 	max_dist = 40
 
