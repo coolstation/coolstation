@@ -7,6 +7,8 @@
 	var/data = list()
 	///Set to the error message displayed when sniffing the encrypted packet
 	var/encryption
+	///The percentage of visible characters when sniffing this packet, if encrypted
+	var/encryption_obfuscation = 0
 	var/datum/computer/file/data_file
 
 	proc/copy_from(datum/signal/model)
