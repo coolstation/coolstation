@@ -20,7 +20,10 @@
 	return 0
 
 /mob/living/add_stam_mod_max(var/key, var/value)
-	if (!src.use_stamina) return add_stun_resist_mod(key, value/2)
+	if (!src.use_stamina)
+		APPLY_ATOM_PROPERTY(src, PROP_STUN_RESIST, "[key]_stam_max", value / 2)
+		APPLY_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX, "[key]_stam_max", value / 2)
+		return 1
 	if(!isnum(value)) return
 	if(key in stamina_mods_max)
 		return 0
@@ -33,7 +36,10 @@
 	return 0
 
 /mob/living/remove_stam_mod_max(var/key)
-	if (!src.use_stamina) return remove_stun_resist_mod(key)
+	if (!src.use_stamina)
+		REMOVE_ATOM_PROPERTY(src, PROP_STUN_RESIST, "[key]_stam_max")
+		REMOVE_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX, "[key]_stam_max")
+		return 1
 	if(!(key in stamina_mods_max))
 		return 0
 	stamina_mods_max.Remove(key)
@@ -55,35 +61,9 @@
 
 	return (val + stam_mod_items)
 
-/mob/proc/add_stun_resist_mod(var/key, var/value)
-	if(!isnum(value)) return
-	if(stun_resist_mods.Find(key)) return 0
-	stun_resist_mods.Add(key)
-	stun_resist_mods[key] = value
-	return 1
-
-//Removes a stamina max modifier with the given key.
-/mob/proc/remove_stun_resist_mod(var/key)
-	if(!stun_resist_mods.Find(key)) return 0
-	stun_resist_mods.Remove(key)
-	return 1
-
 //Returns the total modifier for stamina max
 /mob/proc/get_stun_resist_mod()
-	.= 0
-	var/highest = 0
-	for(var/x in stun_resist_mods)
-		. += stun_resist_mods[x]
-		if (stun_resist_mods[x] > highest)
-			highest = stun_resist_mods[x]
-
-
-	var/max_allowed = 80 //basically if we dont have a singular 100% or above protection moddifier, we wont allow the user to completely ignore stuns
-	if (highest > 80)
-		max_allowed = min(highest, 100)
-
-	.= clamp(., 0, max_allowed)
-
+	return clamp(GET_ATOM_PROPERTY(src, PROP_STUN_RESIST), 0, GET_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX))
 
 //Restores stamina
 /mob/proc/add_stamina(var/x)

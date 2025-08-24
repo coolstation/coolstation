@@ -36,13 +36,13 @@
 			if (src.emagged)
 				APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 15)
 				src.donor.add_stam_mod_max("heart", 90)
-				APPLY_MOB_PROPERTY(src.donor, PROP_STUN_RESIST, "heart", 30)
-				APPLY_MOB_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart", 30)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST, "heart", 30)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart", 30)
 			else
 				APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 5)
 				src.donor.add_stam_mod_max("heart", 40)
-				APPLY_MOB_PROPERTY(src.donor, PROP_STUN_RESIST, "heart", 15)
-				APPLY_MOB_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart", 15)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST, "heart", 15)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart", 15)
 
 		if (src.donor)
 			for (var/datum/ailment_data/disease in src.donor.ailments)
@@ -67,8 +67,8 @@
 			if (src.robotic)
 				REMOVE_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
 				src.donor.remove_stam_mod_max("heart")
-				REMOVE_MOB_PROPERTY(src.donor, PROP_STUN_RESIST, "heart")
-				REMOVE_MOB_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart")
+				REMOVE_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST, "heart")
+				REMOVE_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart")
 
 			var/datum/ailment_data/malady/HD = donor.find_ailment_by_type(/datum/ailment/malady/heartdisease)
 			if (HD)

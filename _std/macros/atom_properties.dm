@@ -215,6 +215,9 @@ To remove:
 #define PROP_DISORIENT_RESIST_EYE_MAX(x) x("disorient_resist_eye_max", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
 #define PROP_DISORIENT_RESIST_EAR(x) x("disorient_resist_eye", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM)
 #define PROP_DISORIENT_RESIST_EAR_MAX(x) x("disorient_resist_eye_max", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
+//stunresist props
+#define PROP_STUN_RESIST(x) x("stun_resist", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM)
+#define PROP_STUN_RESIST_MAX(x) x("stun_resist_max", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
 //other stuff
 #define PROP_METABOLIC_RATE(x) x("chem_metabolism", APPLY_ATOM_PROPERTY_PRODUCT, REMOVE_ATOM_PROPERTY_PRODUCT)
 #define PROP_DIGESTION_EFFICIENCY(x) x("digestion_efficiency", APPLY_ATOM_PROPERTY_PRODUCT, REMOVE_ATOM_PROPERTY_PRODUCT)
@@ -261,6 +264,7 @@ To remove:
 
 #define APPLY_ATOM_PROPERTY_MAX(target, property, do_update, update_macro, source, value) \
 	do { \
+		LAZYLISTINIT(target.atom_properties); \
 		var/list/_L = target.atom_properties; \
 		var/_V = value; \
 		var/_S = source; \
@@ -306,6 +310,7 @@ To remove:
 
 #define APPLY_ATOM_PROPERTY_SIMPLE(target, property, do_update, update_macro, source) \
 	do { \
+		LAZYLISTINIT(target.atom_properties); \
 		var/list/_L = target.atom_properties; \
 		var/_S = source; \
 		if (_L) { \
@@ -332,6 +337,7 @@ To remove:
 
 #define APPLY_ATOM_PROPERTY_SUM(target, property, do_update, update_macro, source, value) \
 	do { \
+		LAZYLISTINIT(target.atom_properties); \
 		var/list/_L = target.atom_properties; \
 		var/_V = value; \
 		var/_S = source; \
@@ -376,6 +382,7 @@ To remove:
 
 #define APPLY_ATOM_PROPERTY_PRODUCT(target, property, do_update, update_macro, source, value) \
 	do { \
+		LAZYLISTINIT(target.atom_properties); \
 		var/list/_L = target.atom_properties; \
 		var/_V = value; \
 		var/_S = source; \
@@ -420,6 +427,7 @@ To remove:
 
 #define APPLY_ATOM_PROPERTY_PRIORITY(target, property, source, do_update, update_macro, value, priority) \
 	do { \
+		LAZYLISTINIT(target.atom_properties); \
 		var/list/_L = target.atom_properties; \
 		var/_V = value; \
 		var/_P = priority; \
