@@ -21,13 +21,14 @@ proc/is_teleportation_allowed(var/turf/T)
 				continue
 			if(IN_RANGE(TJ, T, TJ.range))
 				return 0
+/*
 		if (istype(atom, /obj/item/device/flockblocker))
 			var/obj/item/device/flockblocker/F = atom
 			if (!F.active)
 				continue
 			if(IN_RANGE(F, T, F.range))
 				return 0
-
+*/
 	for_by_tcl(N, /obj/blob/nucleus)
 		if(IN_RANGE(N, T, 3))
 			return 0

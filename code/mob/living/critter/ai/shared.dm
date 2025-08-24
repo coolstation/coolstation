@@ -10,7 +10,7 @@
 /datum/aiTask/sequence/goalbased/
 	name = "goal parent"
 	var/weight = 1 // for weighting the importance of the goal this sequence is in charge of
-	var/max_dist = 5 // the maximum tile distance that we look for targets
+	max_dist = 5 // the maximum tile distance that we look for targets
 	var/can_be_adjacent_to_target = 1 // do we need to be AT the target specifically, or is being in 1 tile of it fine?
 
 /datum/aiTask/sequence/goalbased/New(parentHolder, transTask)
@@ -20,26 +20,6 @@
 
 /datum/aiTask/sequence/goalbased/evaluate()
 	. = score_goal() * weight
-
-/datum/aiTask/sequence/goalbased/proc/get_best_target(var/list/targets)
-	. = null
-	var/best_score = -1.#INF
-	if(length(targets))
-		for(var/atom/A in targets)
-			var/score = src.score_target(A)
-			if(score > best_score)
-				best_score = score
-				. = A
-	holder.target = .
-
-/datum/aiTask/sequence/goalbased/proc/get_targets()
-	// obviously a specific goal will have specific requirements for targets
-	. = list()
-
-/datum/aiTask/sequence/goalbased/proc/score_target(var/atom/target)
-	. = 0
-	if(target)
-		return max_dist - GET_MANHATTAN_DIST(get_turf(holder.owner), get_turf(target))
 
 /datum/aiTask/sequence/goalbased/proc/precondition()
 	// useful for goals that have a requirement, return 0 to instantly make this state score 0 and not be picked
@@ -114,33 +94,13 @@
 	name = "targeted"
 	var/target_range = 8
 
-/datum/aiTask/timed/targeted/proc/get_best_target(var/list/targets)
-	. = null
-	var/best_score = -1.#INF
-	if(length(targets))
-		for(var/atom/A in targets)
-			var/score = src.score_target(A)
-			if(score > best_score)
-				best_score = score
-				. = A
-	holder.target = .
-
-// vvv OVERRIDE THE PROCS BELOW AS REQUIRED vvv
-
-/datum/aiTask/timed/targeted/proc/get_targets()
-	. = list()
-
-/datum/aiTask/timed/targeted/proc/score_target(var/atom/target)
-	. = 0
-	if(target)
-		return target_range - GET_MANHATTAN_DIST(get_turf(holder.owner), get_turf(target))
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MOVE TASK
 // target: holder target assigned by a sequence task
 /datum/aiTask/succeedable/move
 	name = "moving"
 	max_fails = 5
+	var/max_path_dist = 20
 	var/list/found_path = null
 	var/atom/move_target = null
 

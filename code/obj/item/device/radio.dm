@@ -353,6 +353,7 @@ var/list/headset_channel_lookup
 
 	// hi it's me cirr here to shoehorn in another thing
 	// flockdrones and flockmind should hear all channels, but with terrible corruption
+/*
 		if(length(flocks))
 			for(var/F in flocks)
 				var/datum/flock/flock = flocks[F]
@@ -363,6 +364,7 @@ var/list/headset_channel_lookup
 						for(var/mob/living/D in flock.units)
 							if(D)
 								heard_flock |= D
+*/
 
 	for (var/client/C)
 		if (!C.mob) continue
@@ -388,8 +390,10 @@ var/list/headset_channel_lookup
 				heard_masked += R
 			else if (isghostdrone(R))
 				heard_voice += R
+/*
 			else if(!isflock(R)) // a special exemption for flockdrones/flockminds who never get to hear normal radio
 				heard_normal += R
+*/
 		else
 			if (M.voice_message)
 				heard_voice += R

@@ -508,26 +508,26 @@
 	if (src.event_handler_flags & IS_PITFALLING)
 		var/turf/T = NewLoc
 		if(src.event_handler_flags & IN_COYOTE_TIME)
-				if(!istype(T))
-					src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
-				else
-					var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
-					if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
-						src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
-					else if (ismob(src))
-						var/mob/M = src
-						if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
-							src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+			if(!istype(T))
+				src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
 			else
-				if(!istype(T))
-					return
 				var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
 				if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
-					return
-				if (ismob(src))
+					src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+				else if (ismob(src))
 					var/mob/M = src
 					if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
-						return
+						src.event_handler_flags &= ~IS_PITFALLING & ~IN_COYOTE_TIME
+		else
+			if(!istype(T))
+				return
+			var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
+			if(!pit || src.anchored > pit.AnchoredAllowed || (locate(/obj/lattice) in T) || (locate(/obj/grille/catwalk) in T))
+				return
+			if (ismob(src))
+				var/mob/M = src
+				if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
+					return
 
 	var/list/old_locs = src.locs
 	var/atom/A = src.loc
@@ -557,7 +557,7 @@
 			if (src.event_handler_flags & USE_HASENTERED)
 				covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
 			if (src.event_handler_flags & USE_PROXIMITY)
-				last_tcovered_turfurf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
+				covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
 	if (isturf(src.loc))
 		last_turf = src.loc

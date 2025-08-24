@@ -18,6 +18,7 @@
 ////////////////
 // SHUTTLE WALL
 ////////////////
+/*
 /turf/shuttle/wall/flock
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "shuttle-wall"
@@ -453,3 +454,4 @@
 	/obj/item/furniture_parts/table/flock,
 	/obj/item/furniture_parts/flock_chair
 )
+*/

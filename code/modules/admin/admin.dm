@@ -1986,7 +1986,7 @@ var/global/noir = 0
 					if(!amt)
 						amt = INFINITY
 					M.cubeize(amt, CT)
-
+/*
 		if ("makeflock")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a flockmind or flocktrace.")
@@ -2024,7 +2024,7 @@ var/global/noir = 0
 					mind.special_role = "flocktrace"
 				ticker.mode.Agimmicks += mind
 				F.antagonist_overlay_refresh(1, 0)
-
+*/
 		if("makefloorgoblin")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a floor goblin.")

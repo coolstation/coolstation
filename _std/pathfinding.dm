@@ -102,7 +102,7 @@
  * Note that this can only be used inside the [datum/pathfind][pathfind datum] since it uses variables from said datum.
  * If you really want to optimize things, optimize this, cuz this gets called a lot.
  */
-#define CAN_STEP(cur_turf, next) (next && jpsTurfPassable(next, cur_turf, caller, options) && !(simulated_only && !istype(next, /turf/simulated)) && (next != avoid))
+#define CAN_STEP(cur_turf, next) (next && jpsTurfPassable(next, cur_turf, caller, options) && !(simulated_only && !issimulatedturf(next)) && (next != avoid))
 /// Another helper macro for JPS, for telling when a node has forced neighbors that need expanding
 #define STEP_NOT_HERE_BUT_THERE(cur_turf, dirA, dirB) ((!CAN_STEP(cur_turf, get_step(cur_turf, dirA)) && CAN_STEP(cur_turf, get_step(cur_turf, dirB))))
 
@@ -338,7 +338,7 @@
 		var/list/reached_target_goals = null
 		if(mintargetdist)
 			for(var/turf/T as anything in ends)
-				if(GET_DIST(current_turf, T) <= mintargetdist && !istype(current_turf, /turf/simulated/wall) && !is_blocked_turf(current_turf))
+				if(GET_DIST(current_turf, T) <= mintargetdist && !is_blocked_turf(current_turf))
 					LAZYLISTADD(reached_target_goals, ends[T])
 					ends -= T
 		else if(current_turf in ends)
@@ -489,11 +489,11 @@
 		return jpsTurfPassable(corner_1, source, passer, options) && jpsTurfPassable(T, corner_1, passer, options) || \
 				jpsTurfPassable(corner_2, source, passer, options) && jpsTurfPassable(T, corner_2, passer, options)
 	// if a source turf was included check for directional blocks between the two turfs
-	if (source && (T.blocked_dirs || source.blocked_dirs))
+	if (source && (T.turf_persistent.blocked_dirs || source.turf_persistent.blocked_dirs))
 		// do either of these turfs explicitly block entry or exit to the other?
-		if (HAS_ALL_FLAGS(T.blocked_dirs, turn(direction, 180)))
+		if (HAS_ALL_FLAGS(T.turf_persistent.blocked_dirs, turn(direction, 180)))
 			return FALSE
-		else if (source && HAS_ALL_FLAGS(source.blocked_dirs, direction))
+		else if (source && HAS_ALL_FLAGS(source.turf_persistent.blocked_dirs, direction))
 			return FALSE
 	var/id = options[POP_ID]
 	for(var/atom/A as anything in T.contents)
@@ -716,8 +716,8 @@
 /turf/proc/AdjacentTurfs()
 	. = list()
 	for(var/turf/t in oview(src,1))
-			if (istype_exact(t, /turf/space)) //Judging from this previously looking for simmed turfs and the proc names here, I presume this is correct
-				continue
+		if (istype_exact(t, /turf/space)) //Judging from this previously looking for simmed turfs and the proc names here, I presume this is correct
+			continue
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				. += t

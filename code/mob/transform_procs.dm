@@ -865,7 +865,7 @@ var/respawn_arena_enabled = 0
 // FLOCKMIND
 ///////////////////
 // flockdrones are critters, just critterize someone
-
+/*
 /mob/proc/flockerize(var/datum/flock/flock) // this will not host your web apps for you
 	if (src.mind || src.client)
 		if(flock == null)
@@ -942,3 +942,4 @@ var/respawn_arena_enabled = 0
 		boutput(O, "<span class='notice'>You are part of the <span class='bold'>[flock.name]</span> flock.</span>")
 		return O
 	return null
+*/

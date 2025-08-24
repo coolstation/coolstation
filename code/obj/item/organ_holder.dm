@@ -1287,6 +1287,7 @@
 
 
 // HI IT'S ME CIRR AGAIN COMMANDEERING CODE
+/*
 /datum/organHolder/critter/flock
 
 	create_organs(var/obj/item/organ/brain/custom_brain_type)
@@ -1298,6 +1299,7 @@
 			SPAWN_DBG(2 SECONDS) // god damn i wish i didn't need to have these spawns here, it's gross, i'm sorry, i'm really sorry
 				if (src.heart && src.donor)
 					src.heart.name = initial(src.heart.name)
+*/
 
 /*===============================*/
 /*---------- Abilities ----------*/

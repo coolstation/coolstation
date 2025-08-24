@@ -125,8 +125,10 @@ TYPEINFO(/datum/component/consume/organpoints)
 					boutput(L, "<span class='notice'>Full of iron!</span>")
 				if (/obj/item/organ/heart/synth)
 					boutput(L, "<span class='notice'>Full of pharosium!</span>")
+/*
 				if (/obj/item/organ/heart/flock)
 					boutput(L, "<span class='notice'>Tastes like chicken. [pick(flock_adjectives_1)], [pick(flock_adjectives_2)], [pick(flock_adjectives_3)] chicken.</span>")
+*/
 				if (/obj/item/organ/appendix)
 					boutput(L, "<span class='alert'>Urgh, that tasted like a thumb made out of Discount Dan's.</span>")
 				if (/obj/item/clothing/head/butt)
@@ -235,8 +237,10 @@ TYPEINFO(/datum/component/consume/organheal)
 					boutput(M, "<span class='notice'>Full of iron!</span>")
 				if (/obj/item/organ/heart/synth)
 					boutput(M, "<span class='notice'>Full of pharosium!</span>")
+/*
 				if (/obj/item/organ/heart/flock)
 					boutput(M, "<span class='notice'>Tastes like chicken. [pick(flock_adjectives_1)], [pick(flock_adjectives_2)], [pick(flock_adjectives_3)] chicken.</span>")
+*/
 				if (/obj/item/organ/appendix)
 					boutput(M, "<span class='alert'>Urgh, that tasted like a thumb made out of Discount Dan's.</span>")
 				if (/obj/item/clothing/head/butt)

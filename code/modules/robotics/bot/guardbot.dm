@@ -18,7 +18,8 @@
 /datum/guardbot_mover
 	var/obj/machinery/bot/guardbot/master = null
 	var/delay = 3
-	var/max_seen = 1000
+	var/max_dist = 200
+	var/max_seen = 500
 
 	New(var/newmaster)
 		..()
@@ -38,7 +39,7 @@
 		if(!isturf(master.loc))
 			qdel(src)
 			return 1
-		var/target_turf = null
+		var/turf/target_turf = null
 		if(isturf(the_target))
 			target_turf = the_target
 		else

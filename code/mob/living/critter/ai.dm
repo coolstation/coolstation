@@ -6,6 +6,7 @@ var/list/ai_move_scheduled = list()
 	var/atom/target = null // the simplest blackboard ever
 	var/datum/aiTask/current_task = null  // what the critter is currently doing
 	var/datum/aiTask/default_task = null  // what behavior the critter will fall back on
+	var/list/target_path = list()
 	var/list/task_cache = list()
 	var/move_target = null
 
@@ -183,7 +184,11 @@ var/list/ai_move_scheduled = list()
 
 /datum/aiTask
 	var/name = "task"
+	var/max_dist = 12
+	var/distance_from_target = 1
 	var/datum/aiHolder/holder = null
+	var/move_through_space = FALSE
+	var/score_by_distance_only = FALSE
 
 	New(parentHolder)
 		..()
