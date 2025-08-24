@@ -307,8 +307,13 @@
 	if(istype(I, /obj/item/grab))
 		return ..() // handled in grab.dm + Bumped
 
+	src.add_fingerprint(user)
+
+	if(!I)
+		return ..()
+
 	if (src.isblocked() == 1)
-		if (src.density && src.operating != 1 && I)
+		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
 				src.take_damage(I.force*5, user, TRUE)
 			else
@@ -323,8 +328,6 @@
 		return
 	if (world.time - src.last_used <= 10)
 		return
-
-	src.add_fingerprint(user)
 
 	if (src.density && src.brainloss_stumble && src.do_brainstumble(user) == 1)
 		return

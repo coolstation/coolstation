@@ -276,6 +276,19 @@ proc/debug_map_apc_count(delim,zlim)
 			else
 				img.app.alpha = 0
 
+	jps_passable_turfs
+		name = "jps passable turfs"
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.alpha = 0
+			for(var/dir in alldirs)
+				var/turf/neigh = get_step(theTurf, dir)
+				if(!neigh || neigh == theTurf) continue
+				if(jpsTurfPassable(neigh, theTurf, usr))
+					var/image/I = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
+					I.alpha = 100
+					I.appearance_flags |= RESET_ALPHA
+					img.app.overlays += I
+
 	blowout
 		name = "radstorm safezones"
 		help = "Green tiles are safe from irradiation, red tiles are ones that are not."
@@ -1161,20 +1174,6 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.color = rgb((val*255), 0, (255-val*255))
 			if(!isnull(val))
 				img.app.overlays = list(src.makeText(round(val*100)/100, RESET_ALPHA))
-/*
-	jps_passable_turfs
-		name = "jps passable turfs"
-		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.alpha = 0
-			for(var/dir in alldirs)
-				var/turf/neigh = get_step(theTurf, dir)
-				if(!neigh || neigh == theTurf) continue
-				if(jpsTurfPassable(neigh, theTurf, usr))
-					var/image/I = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
-					I.alpha = 100
-					I.appearance_flags |= RESET_ALPHA
-					img.app.overlays += I
-*/
 
 	blob_AI
 		name = "blob AI"

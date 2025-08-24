@@ -13,7 +13,7 @@
 #define POP_MIN_DIST "min_distance"
 /// Pathfind option key; An ID card representing what access we have and what doors we can open. Its location relative to the pathing atom is irrelevant
 #define POP_ID "id"
-/// Pathfind option key; Whether we consider turfs without atmos simulation (AKA do we want to ignore space)
+/// Pathfind option key; Whether we move through space flagged turfs
 #define POP_MOVE_SPACE "move_through_space"
 /// Pathfind option key; If we want to avoid a specific turf, like if we're a mulebot who already got blocked by some turf
 #define POP_EXCLUDE "exclude"
@@ -187,7 +187,7 @@
 	/// Max number of tiles seen, null skips the check
 	var/max_seen = null
 	/// Space is big and empty, if this is FALSE then we just dont move through it
-	var/move_through_space
+	var/move_through_space = FALSE
 	/// A specific turf we're avoiding, like if a mulebot is being blocked by someone t-posing in a doorway we're trying to get through
 	var/turf/avoid
 	/// Whether we only want cardinal steps
@@ -227,18 +227,18 @@
  * return null, which [/proc/get_path_to] translates to an empty list (notable for simple bots, who need empty lists)
  */
 /datum/pathfind/proc/search()
-	start = get_turf(caller)
-	if(!start || !length(ends))
-		stack_trace("Invalid A* start or destination")
+	src.start = get_turf(src.caller)
+	if(!src.start || !length(ends))
+		stack_trace("Invalid JPS pathfinding start or destination")
 		return
-	var/search_z = start.z
+	var/search_z = src.start.z
 	var/possible_goal_count = 0
 	for(var/turf/end as anything in ends)
-		if(end.z != search_z || max_distance && (max_distance < GET_DIST(start, end)))
+		if(end.z != search_z || max_distance && (max_distance < GET_DIST(src.start, end)))
 			ends -= end
-		else if(end == start)
+		else if(end == src.start)
 			for(var/goal in ends[end])
-				src.paths[goal] = list(start)
+				src.paths[goal] = list(src.start)
 			ends -= end
 		else
 			possible_goal_count += length(ends[end])
@@ -247,9 +247,9 @@
 		return
 
 	//initialization
-	var/datum/jps_node/current_processed_node = new (start, -1, 0, ends)
+	var/datum/jps_node/current_processed_node = new (src.start, -1, 0, ends)
 	open.insert(current_processed_node)
-	sources[start] = start // i'm sure this is fine
+	sources[src.start] = src.start // i'm sure this is fine
 
 	//then run the main loop
 	while(!open.is_empty() && !FINISHED_SEARCH)

@@ -271,7 +271,7 @@
 			if(checkTurfPassable(T))
 				return T
 
-/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=60)
+/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, var/turf/exclude = null, var/max_dist=60)
 	var/target_turf = get_pathable_turf(the_target)
 	if((BOUNDS_DIST(the_target, src) < 0))
 		return
@@ -281,7 +281,7 @@
 		return 0
 
 	src.KillPathAndGiveUp(0)
-	var/datum/robot_mover/mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _scanrate = scanrate, _max_dist = max_dist)
+	var/datum/robot_mover/mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _exclude = exclude, _scanrate = scanrate, _max_dist = max_dist)
 	src.bot_mover = !QDELETED(mover) ? mover : null
 	return 0
 
@@ -291,11 +291,12 @@
 	var/delay = 3
 	var/atom/the_target
 	var/list/current_movepath
+	var/turf/exclude
 	var/adjacent = 0
 	var/scanrate = 10
 	var/max_dist = 600
 
-	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _scanrate = 10, _max_dist = 80)
+	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _exclude = null, _scanrate = 10, _max_dist = 80)
 		..()
 		if(istype(newmaster))
 			src.master = newmaster
@@ -308,6 +309,7 @@
 					return
 				else
 					qdel(src)
+			src.exclude = exclude
 			src.current_movepath = _current_movepath
 			src.adjacent = _adjacent
 			src.scanrate = _scanrate
@@ -336,7 +338,7 @@
 			master.KillPathAndGiveUp(0)
 			return
 		var/compare_movepath = src.current_movepath
-		master.path = get_path_to(src.master, src.the_target, max_distance=src.max_dist, id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
+		master.path = get_path_to(src.master, src.the_target, max_distance=src.max_dist, id=master.botcard, skip_first=FALSE, move_through_space=FALSE, exclude = exclude, cardinal_only=TRUE, do_doorcheck=TRUE)
 		if(!length(master.path))
 			qdel(src)
 			return
