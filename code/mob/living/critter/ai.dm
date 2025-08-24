@@ -9,6 +9,7 @@ var/list/ai_move_scheduled = list()
 	var/list/target_path = list()
 	var/list/task_cache = list()
 	var/move_target = null
+	var/seek_cooldown = 2 SECONDS
 
 	var/move_dist = 0
 	var/move_reverse = 0
@@ -189,6 +190,7 @@ var/list/ai_move_scheduled = list()
 	var/datum/aiHolder/holder = null
 	var/move_through_space = FALSE
 	var/score_by_distance_only = FALSE
+	var/terminated = 0
 
 	New(parentHolder)
 		..()
@@ -208,6 +210,7 @@ var/list/ai_move_scheduled = list()
 		return null
 
 	proc/on_reset()
+		src.terminated = FALSE
 
 	proc/evaluate() // evaluate the current environment and assign priority to switching to this task
 		return 0
@@ -371,7 +374,6 @@ var/list/ai_move_scheduled = list()
 	var/datum/aiTask/succeedable/current_subtask = null
 	var/subtask_index = 1
 	var/datum/aiTask/transition_task = null // the task to go to after our sequence either fails or ends
-	var/terminated = 0
 
 	New(parentHolder, transTask)
 		transition_task = transTask
@@ -396,6 +398,7 @@ var/list/ai_move_scheduled = list()
 		current_subtask.tick()
 		if(current_subtask.succeeded())
 			// advance to the next step in the sequence
+			current_subtask.terminated = TRUE
 			subtask_index++
 			if(subtask_index > subtasks.len)
 				// sequence complete
@@ -407,8 +410,9 @@ var/list/ai_move_scheduled = list()
 				// ready to run this immediately next tick
 				return
 		else if(current_subtask.failed())
-			// the sequence is ruined
-			terminated = 1
+			current_subtask.terminated = TRUE
+			// and the sequence is ruined
+			terminated = TRUE
 			return
 
 	reset()
@@ -417,7 +421,6 @@ var/list/ai_move_scheduled = list()
 			current_subtask = subtasks[1]
 			current_subtask.reset()
 		subtask_index = 1
-		terminated = 0
 
 // an AI task that runs forever until it either succeeds or fails
 // exists pretty much solely for the sequence
@@ -442,3 +445,39 @@ var/list/ai_move_scheduled = list()
 		fails = 0
 
 
+// an AI task that ticks all its subtasks each tick
+/datum/aiTask/concurrent
+	name = "concurrent"
+
+	var/list/subtasks = list()
+	var/datum/aiTask/transition_task = null // the task to go to after our sequence either fails or ends
+
+	New(parentHolder, transTask)
+		transition_task = transTask
+		..()
+
+	proc/add_task(var/datum/aiTask/T)
+		if(T)
+			subtasks += T // add it!
+
+	next_task()
+		if(terminated)
+			return transition_task
+		else
+			return null
+
+	tick()
+		..()
+		var/all_terminated = TRUE
+		for(var/datum/aiTask/task in subtasks)
+			if(!task.terminated)
+				task.tick()
+				all_terminated = FALSE
+		if(!subtasks || subtasks.len < 1 || all_terminated)
+			terminated = TRUE // all of em are done
+			return
+
+	reset()
+		..()
+		for(var/datum/aiTask/task in subtasks)
+			task.reset()
