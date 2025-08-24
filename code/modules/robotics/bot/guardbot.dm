@@ -2905,7 +2905,7 @@
 				if(ckey(perp.name) in target_names)
 					return 7
 
-				if(perp?.mutantrace?.jerk)
+				if(perp.mutantrace?.jerk)
 					return 5
 
 				var/obj/item/card/id/perp_id = perp.equipped()
