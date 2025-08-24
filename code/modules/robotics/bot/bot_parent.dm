@@ -271,13 +271,18 @@
 			if(checkTurfPassable(T))
 				return T
 
-/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=120, turf/exclude = null)
+/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=60)
 	var/target_turf = get_pathable_turf(the_target)
+	if((BOUNDS_DIST(the_target, src) < 0))
+		return
+	if(src.bot_mover?.the_target == target_turf && frustration == 0)
+		return 0
 	if(!target_turf)
 		return 0
 
 	src.KillPathAndGiveUp(0)
-	src.bot_mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _scanrate = scanrate, _max_dist = max_dist, _exclude = exclude)
+	var/datum/robot_mover/mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _scanrate = scanrate, _max_dist = max_dist)
+	src.bot_mover = !QDELETED(mover) ? mover : null
 	return 0
 
 /// movement control datum. Why yes, this is copied from secbot.dm. Which was copied from guardbot.dm
@@ -285,20 +290,17 @@
 	var/obj/machinery/bot/master = null
 	var/delay = 3
 	var/atom/the_target
-	var/travelled_to_stop = 0
-	var/last_stop_net_id
 	var/list/current_movepath
 	var/adjacent = 0
 	var/scanrate = 10
-	var/max_dist = 200
-	var/max_seen = 400
-	var/turf/exclude
+	var/max_dist = 600
 
-	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _scanrate = 10, _max_dist = 150, turf/_exclude = null)
+	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _scanrate = 10, _max_dist = 80)
 		..()
 		if(istype(newmaster))
 			src.master = newmaster
 			src.delay = _move_delay
+			src.current_movepath = world.time
 			src.the_target = get_turf(_target_turf)
 			if(!isturf(src.the_target))
 				if(istype(master))
@@ -306,10 +308,10 @@
 					return
 				else
 					qdel(src)
+			src.current_movepath = _current_movepath
 			src.adjacent = _adjacent
 			src.scanrate = _scanrate
 			src.max_dist = _max_dist
-			src.exclude = _exclude
 			src.master_move()
 		else
 			qdel(src)
@@ -322,7 +324,6 @@
 			master.moving = FALSE
 		src.master = null
 		src.the_target = null
-		src.exclude = null
 		..()
 
 	proc/master_move()
@@ -334,14 +335,13 @@
 		if(!isturf(master.loc) || !istype(src.the_target))
 			master.KillPathAndGiveUp(0)
 			return
-
-		master.path = get_path_to(src.master, src.the_target, mintargetdist = adjacent ? 1 : 0, \
-			max_distance=src.max_dist, max_seen=src.max_seen, id=master.botcard, skip_first=FALSE, move_through_space=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
+		var/compare_movepath = src.current_movepath
+		master.path = get_path_to(src.master, src.the_target, max_distance=src.max_dist, id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
 		if(!length(master.path))
 			qdel(src)
 			return
 
-		SPAWN_DBG(0)
+		SPAWN(0)
 			if (!istype(master) || (master && (!length(master.path) || !src.the_target)))
 				qdel(src)
 				return
@@ -352,35 +352,28 @@
 			master?.moving = 1
 
 			while(length(master?.path) && src.the_target && !QDELETED(src))
+				if(compare_movepath != current_movepath) break
 				if(!master) break
 				if(!length(master.path)) break
 				if(!master.on)
 					master.frustration = 0
 					break
 
-				if(master.DoWhileMoving()) // We're here! Or something!
-					master.moving = 0
-					master.bot_mover = null
-					master.process() // responsive, robust AI = calling process() a million zillion times
-					master = null
-					qdel(src)
-					return
-
-				src.travelled_to_stop++
+				if(master.DoWhileMoving()) break	// We're here! Or something!
 
 				if(length(master?.path) && master.path[1])
 					if(istype(get_turf(master), /turf/space)) // frick it, duckie toys get jetpacks
-						var/obj/effects/ion_trails/I = new()
+						var/obj/effects/ion_trails/I = new /obj/effects/ion_trails
 						I.set_loc(get_turf(master))
 						I.set_dir(master.dir)
 						flick("ion_fade", I)
 						I.icon_state = "blank"
 						I.pixel_x = master.pixel_x
 						I.pixel_y = master.pixel_y
-						SPAWN_DBG( 20 )
+						SPAWN(2 SECONDS)
 							if (I && !I.disposed) qdel(I)
 
-					step(master, get_dir(master, master?.path[1]))
+					step_to(master, master?.path[1])
 					if(isnull(master))
 						break
 					if(length(master?.path) && master.loc != master.path[1])
@@ -400,4 +393,3 @@
 				master.process() // responsive, robust AI = calling process() a million zillion times
 				master = null
 				qdel(src)
-
