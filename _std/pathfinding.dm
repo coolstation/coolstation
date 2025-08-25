@@ -25,11 +25,11 @@
 #define POP_IGNORE_CACHE "ignore_cache"
 
 // uncomment for debugging pathfinding
-//#define VISUALIZE_PATHFINDING
+#define VISUALIZE_PATHFINDING
 
 // uncomment for jps instability debugging, DO NOT LEAVE ENABLED
 // please
-//#define JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+#define JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 /// defined on turf when jps instability debugging, this stores all unstable passes in the turf

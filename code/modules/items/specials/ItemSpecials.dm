@@ -2157,6 +2157,7 @@
 
 
 /obj/itemspecialeffect
+	pass_unstable = FALSE
 	name = ""
 	desc = ""
 	icon = 'icons/effects/160x160.dmi'

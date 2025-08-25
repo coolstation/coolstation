@@ -427,7 +427,7 @@
 			T.checkinghasproximity++
 		if(src.opacity)
 			T.turf_persistent.opaque_atom_count++
-		for(var/turf/covered_turf as anything in src.locs)
+		for(var/turf/covered_turf in src.locs)
 			covered_turf.pass_unstable += src.pass_unstable
 			covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
@@ -539,54 +539,54 @@
 	. = ..()
 	src.move_speed = TIME - src.l_move_time
 	src.l_move_time = TIME
-	if (A != src.loc && A?.z == src.z)
-		src.last_move = get_dir(A, src.loc)
-		if (length(src.attached_objs))
-			for (var/atom/movable/M as anything in attached_objs)
-				M.set_loc(src.loc)
-		actions.interrupt(src, INTERRUPT_MOVE)
-		#ifdef COMSIG_MOVABLE_MOVED
-		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
-		#endif
-	//note : move is still called when we are steping into a wall. sometimes these are unnecesssary i think
+	if (A != src.loc)
+		if(A?.z == src.z)
+			src.last_move = get_dir(A, src.loc)
+			if (length(src.attached_objs))
+				for (var/atom/movable/M as anything in attached_objs)
+					M.set_loc(src.loc)
+			actions.interrupt(src, INTERRUPT_MOVE)
+			#ifdef COMSIG_MOVABLE_MOVED
+			SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
+			#endif
+			//note : move is still called when we are steping into a wall. sometimes these are unnecesssary i think
 
-	// sometimes last_turf isnt a turf. ok.
-	if (last_turf && isturf(last_turf))
-		for(var/turf/covered_turf as anything in old_locs)
-			covered_turf.pass_unstable -= src.pass_unstable
-			covered_turf.passability_cache = null
-#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-			if(src.pass_unstable)
-				covered_turf.pass_unstable_debug -= src
-#endif
-			if (src.event_handler_flags & USE_CHECKEXIT)
-				covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
-			if (src.event_handler_flags & USE_CANPASS || src.density)
-				covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
-			if (src.event_handler_flags & USE_HASENTERED)
-				covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
-			if (src.event_handler_flags & USE_PROXIMITY)
-				covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
+		if (old_locs && length(old_locs))
+			for(var/turf/covered_turf in old_locs)
+				covered_turf.pass_unstable -= src.pass_unstable
+				covered_turf.passability_cache = null
+	#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+				if(src.pass_unstable)
+					covered_turf.pass_unstable_debug -= src
+	#endif
+				if (src.event_handler_flags & USE_CHECKEXIT)
+					covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
+				if (src.event_handler_flags & USE_CANPASS || src.density)
+					covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
+				if (src.event_handler_flags & USE_HASENTERED)
+					covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
+				if (src.event_handler_flags & USE_PROXIMITY)
+					covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
-	if (isturf(src.loc))
-		last_turf = src.loc
-		for(var/turf/covered_turf as anything in src.locs)
-			if (src.event_handler_flags & USE_CHECKEXIT)
-				covered_turf.turf_persistent.checkingexit++
-			if (src.event_handler_flags & USE_CANPASS || src.density)
-				covered_turf.turf_persistent.checkingcanpass++
-			if (src.event_handler_flags & USE_HASENTERED)
-				covered_turf.turf_persistent.checkinghasentered++
-			if (src.event_handler_flags & USE_PROXIMITY)
-				covered_turf.checkinghasproximity++
-			covered_turf.pass_unstable += src.pass_unstable
-			covered_turf.passability_cache = null
+		if (isturf(src.loc))
+			last_turf = src.loc
+			for(var/turf/covered_turf as anything in src.locs)
+				if (src.event_handler_flags & USE_CHECKEXIT)
+					covered_turf.turf_persistent.checkingexit++
+				if (src.event_handler_flags & USE_CANPASS || src.density)
+					covered_turf.turf_persistent.checkingcanpass++
+				if (src.event_handler_flags & USE_HASENTERED)
+					covered_turf.turf_persistent.checkinghasentered++
+				if (src.event_handler_flags & USE_PROXIMITY)
+					covered_turf.checkinghasproximity++
+				covered_turf.pass_unstable += src.pass_unstable
+				covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-			if(src.pass_unstable)
-				covered_turf.pass_unstable_debug += src
+				if(src.pass_unstable)
+					covered_turf.pass_unstable_debug += src
 #endif
-	else
-		last_turf = 0
+		else
+			last_turf = 0
 
 	if (!ignore_simple_light_updates)
 		if(src.medium_lights)
@@ -898,7 +898,7 @@
 	var/area/new_area = get_area(newloc)
 
 	var/atom/oldloc = loc
-	var/atom/oldlocs = src.locs
+	var/list/atom/oldlocs = src.locs
 	loc = newloc
 
 	src.last_move = 0
@@ -908,13 +908,6 @@
 	oldloc?.Exited(src, newloc)
 
 	if(isturf(oldloc))
-		for(var/turf/covered_turf as anything in oldlocs)
-			covered_turf.pass_unstable -= src.pass_unstable
-			covered_turf.passability_cache = null
-#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-			if(src.pass_unstable)
-				covered_turf.pass_unstable_debug -= src
-#endif
 		for(var/atom/A in oldloc)
 			if(A != src)
 				A.Uncrossed(src)
@@ -926,13 +919,6 @@
 	newloc?.Entered(src, oldloc)
 
 	if(isturf(newloc))
-		for(var/turf/covered_turf as anything in src.locs)
-			covered_turf.pass_unstable += src.pass_unstable
-			covered_turf.passability_cache = null
-#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-			if(src.pass_unstable)
-				covered_turf.pass_unstable_debug += src
-#endif
 		for(var/atom/A in newloc)
 			if(A != src)
 				A.Crossed(src)
@@ -947,23 +933,36 @@
 
 
 	// We only need to do any of these checks if one of the flags is set OR density = 1
-	var/do_checks = (src.event_handler_flags & (USE_CHECKEXIT | USE_CANPASS | USE_HASENTERED | USE_HASENTERED | USE_PROXIMITY)) || src.density == 1
+	var/do_checks = (src.event_handler_flags & (USE_CHECKEXIT | USE_CANPASS | USE_HASENTERED | USE_PROXIMITY)) || src.density == 1
 
-	if (do_checks && last_turf && isturf(last_turf))
+	if (oldlocs && length(oldlocs))
 		for(var/turf/covered_turf in oldlocs)
-			if (src.event_handler_flags & USE_CHECKEXIT)
-				covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
-			if (src.event_handler_flags & USE_CANPASS || src.density)
-				covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
-			if (src.event_handler_flags & USE_HASENTERED)
-				covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
-			if (src.event_handler_flags & USE_PROXIMITY)
-				covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
+			covered_turf.pass_unstable -= src.pass_unstable
+			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug -= src
+#endif
+			if(do_checks)
+				if (src.event_handler_flags & USE_CHECKEXIT)
+					covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
+				if (src.event_handler_flags & USE_CANPASS || src.density)
+					covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
+				if (src.event_handler_flags & USE_HASENTERED)
+					covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
+				if (src.event_handler_flags & USE_PROXIMITY)
+					covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
 	if (isturf(src.loc))
 		last_turf = src.loc
-		if(do_checks)
-			for(var/turf/covered_turf in src.locs)
+		for(var/turf/covered_turf in src.locs)
+			covered_turf.pass_unstable += src.pass_unstable
+			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug += src
+#endif
+			if(do_checks)
 				if (src.event_handler_flags & USE_CHECKEXIT)
 					covered_turf.turf_persistent.checkingexit++
 				if (src.event_handler_flags & USE_CANPASS || src.density)
@@ -987,8 +986,8 @@
 /atom/proc/set_density(var/newdensity)
 	src.density = newdensity
 	if(src.density != newdensity)
-		var/turf/loc = src.loc // invalidate JPS cache on density changes
-		loc.passability_cache = null
+		var/turf/the_loc = src.loc // invalidate JPS cache on density changes
+		the_loc.passability_cache = null
 
 /atom/movable/set_density(var/newdensity)
 	//BASICALLY : if we dont have the USE_CANPASS flag, turf's checkingcanpass value relies entirely on our density.
