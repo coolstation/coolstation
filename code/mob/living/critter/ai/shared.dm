@@ -42,7 +42,7 @@
 		var/datum/aiTask/succeedable/move/M = subtasks[subtask_index]
 		if(M && !M.move_target)
 			var/target_turf = get_turf(holder.target)
-			var/list/tempPath = get_path_to(holder.owner, target_turf, 40, can_be_adjacent_to_target)
+			var/list/tempPath = get_path_to(holder.owner, target_turf, 40, can_be_adjacent_to_target, do_doorcheck = TRUE)
 			var/length_of_path = length(tempPath)
 			if(length_of_path) // fix runtime Cannot read length(null)
 				M.move_target = tempPath[length_of_path]
@@ -105,21 +105,7 @@
 	var/move_adjacent = TRUE
 	var/list/found_path = null
 	var/atom/move_target = null
-	var/owner_id = null
-
-/datum/aiTask/succeedable/move/New()
-	. = ..()
-	if(isliving(src.holder.owner)) // todo: find out why the hell critters have "implants", which is where their implants are kept
-		var/mob/living/L = src.holder.owner // instead of in mob/living's implant list... and fix it
-		var/list/implants = L.implant
-		if (ismobcritter(L))
-			var/mob/living/critter/C = L
-			implants = C.implants
-		for (var/obj/item/implant/access/access_implant in implants)
-			if(istype(access_implant)) // uses the first access implant found, dont think you need two in an npc
-				src.owner_id = access_implant.access
-				break
-
+	var/turf/next_turf = null
 
 // use the target from our holder
 /datum/aiTask/succeedable/move/proc/get_path()
@@ -129,7 +115,7 @@
 	if(length(holder.target_path) && GET_DIST(holder.target_path[length(holder.target_path)], src.move_target) >= distance_from_target)
 		src.found_path = holder.target_path
 	else
-		src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space)
+		src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space,do_doorcheck = TRUE)
 		if(GET_DIST(get_turf(holder.target), src.move_target) >= distance_from_target)
 			holder.target_path = src.found_path
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
@@ -139,38 +125,33 @@
 	..()
 	src.found_path = null
 	src.move_target = null
+	src.next_turf = null
 
 /datum/aiTask/succeedable/move/on_tick()
 	if(src.found_path)
 		if(src.found_path.len > 0)
 			// follow the path
-			src.found_path.Cut(1, 2)
-			var/turf/next
-			if(src.found_path.len >= 3)
-				next = src.found_path[1]
-				var/i = 2
-				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
-				while(get_dir(next, src.found_path[i]) == dir_line)
-					next = src.found_path[i]
-					i++
-					if(i > length(src.found_path))
-						break
-			else
-				next = src.move_target
-			holder.move_to(next)
-			if(GET_DIST(get_turf(holder.owner), next) <= 1)
-				fails = 0
-			else
-				// we aren't where we ought to be
-				fails++
-				get_path()
+			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
+				if(src.found_path.len >= 2)
+					src.next_turf = src.found_path[1]
+					var/i = 2
+					var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+					while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
+						src.next_turf = src.found_path[i]
+						i++
+						if(i > length(src.found_path))
+							break
+					src.found_path.Cut(1, i)
+				else
+					src.next_turf = get_turf(src.move_target)
+			holder.move_to(src.next_turf)
 	else
 		// get a path
 		get_path()
 
 /datum/aiTask/succeedable/move/succeeded()
 	if(src.move_target)
-		return ((GET_DIST(get_turf(holder.owner), get_turf(src.move_target)) == 0) || (src.found_path && src.found_path.len <= 0))
+		return ((GET_DIST(get_turf(holder.owner), get_turf(src.move_target)) <= distance_from_target) || (src.found_path && src.found_path.len <= distance_from_target))
 
 /datum/aiTask/succeedable/move/inherit_target
 
@@ -229,6 +210,7 @@
 	var/move_adjacent = TRUE
 	var/list/found_path = null
 	var/atom/move_target = null
+	var/turf/next_turf = null
 
 // use the target from our holder
 /datum/aiTask/endless/move/proc/get_path()
@@ -238,7 +220,7 @@
 	if(length(holder.target_path) && GET_DIST(holder.target_path[length(holder.target_path)], src.move_target) <= distance_from_target)
 		src.found_path = holder.target_path
 	else
-		src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space)
+		src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
 		if(GET_DIST(get_turf(holder.target), src.move_target) <= distance_from_target)
 			holder.target_path = src.found_path
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
@@ -248,28 +230,26 @@
 	..()
 	src.found_path = null
 	src.move_target = null
+	src.next_turf = null
 
 /datum/aiTask/endless/move/on_tick()
 	if(src.found_path)
 		if(src.found_path.len > 0)
-			// follow the path
-			src.found_path.Cut(1, 2)
-			var/turf/next
-			if(src.found_path.len >= 3)
-				next = src.found_path[1]
-				var/i = 2
-				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
-				while(get_dir(next, src.found_path[i]) == dir_line)
-					next = src.found_path[i]
-					i++
-					if(i > length(src.found_path))
-						break
-			else
-				next = src.move_target
-			holder.move_to(next)
-			if(GET_DIST(get_turf(holder.owner), next) > 1)
-				// we aren't where we ought to be
-				get_path()
+			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
+				// follow the path
+				if(src.found_path.len >= 2)
+					src.next_turf = src.found_path[1]
+					var/i = 2
+					var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+					while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
+						src.next_turf = src.found_path[i]
+						i++
+						if(i > length(src.found_path))
+							break
+					src.found_path.Cut(1, i)
+				else
+					src.next_turf = get_turf(src.move_target)
+			holder.move_to(src.next_turf)
 		else
 			get_path()
 	else

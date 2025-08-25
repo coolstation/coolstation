@@ -343,7 +343,7 @@ var/datum/score_tracker/score_tracker
 					command_pets_escaped += pet
 		*/
 
-		if (length(by_type[/mob/living/critter/robotic/securitron/beepsky]))
+		if (length(by_type[/mob/living/critter/robotic/bot/securitron/beepsky]))
 			beepsky_alive = 1
 
 		return

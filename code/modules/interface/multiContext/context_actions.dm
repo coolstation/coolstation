@@ -1331,14 +1331,14 @@
 	var/base_icon_state = "secbot_power_"
 	var/setting
 
-	execute(var/mob/living/critter/robotic/securitron/securitron, var/mob/user)
+	execute(var/mob/living/critter/robotic/bot/securitron/securitron, var/mob/user)
 		if (!istype(securitron) || !securitron.allowed(user))
 			return
 		var/toggled_result = securitron.configure(setting, user)
 		src.icon_state = "[src.base_icon_state][toggled_result ? "on" : "off"]"
 		OVERRIDE_COOLDOWN(securitron, "HALT_FOR_INTERACTION", 1.2 SECONDS)
 
-	checkRequirements(var/mob/living/critter/robotic/securitron/securitron, var/mob/user)
+	checkRequirements(var/mob/living/critter/robotic/bot/securitron/securitron, var/mob/user)
 		if (!issilicon(user) && !isAIeye(user) && GET_DIST(securitron, user) > 1)
 			return FALSE
 		else

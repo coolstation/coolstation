@@ -51,8 +51,8 @@
 		src.combat_subtask.tick()
 		return
 
-	if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
-		var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
+	if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
+		var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 		if(!securitron_owner.patrolling)
 			return
 
@@ -83,18 +83,17 @@
 	var/atom/target
 
 /datum/aiTask/succeedable/patrol_target_locate/succeeded()
-	var/distance = GET_DIST(get_turf(src.holder.owner), get_turf(src.target))
-	if(distance <= src.max_dist)
-		src.holder.target = get_turf(src.target)
-
-	if(src.holder.target)
+	var/distance = GET_DIST(src.holder.owner, src.target)
+	if(distance > src.max_dist)
+		src.target = null
+	if(src.target)
 		return 1
 
 /datum/aiTask/succeedable/patrol_target_locate/on_reset()
 	. = ..()
 	src.target = null
 
-/// magically hunt down a weed
+/// magically hunt down a spider
 /datum/aiTask/succeedable/patrol_target_locate/spider_hunter/on_tick()
 	. = ..()
 	for(var/mob/M in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
@@ -132,8 +131,8 @@
 	)
 
 	SPAWN_DBG(1 SECOND)
-		if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
+		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			src.control_freq = securitron_owner.control_freq
 
 		if(src.control_freq)
@@ -203,7 +202,7 @@
 				src.nearest_dist = null
 
 	else if(signal.data["beacon"] == src.next_patrol_id) // destination reached, or nerd successful
-		src.holder.target = signal.source
+		src.movement_target = signal.source
 		src.next_patrol_id = signal.data["next_patrol"]
 
 	return FALSE
@@ -219,6 +218,7 @@
 		signal.data["sender"] = src.packet_holder.net_id
 		if(src.packet_holder.next_patrol_id)
 			signal.data["findbeacon"] = src.packet_holder.next_patrol_id
+			src.packet_holder.next_patrol_id = null
 		else
 			signal.data["findbeacon"] = "patrol"
 		SEND_SIGNAL(src.holder.owner, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "nav_beacon")
@@ -259,8 +259,8 @@
 		var/datum/aiTask/succeedable/patrol_target_locate/guard/guard_subtask = src.holder.get_instance(/datum/aiTask/succeedable/patrol_target_locate/guard, list(src.holder, src))
 		guard_subtask.guard_area = potential_area
 		src.targeting_subtask = guard_subtask
-		if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
+		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			securitron_owner.patrolling = TRUE
 			if(signal.data["command"] == "lockdown")
 				securitron_owner.lockdown = TRUE
@@ -276,15 +276,15 @@
 		src.holder.target = null
 		src.targeting_subtask = src.holder.get_instance(src.targeting_subtask_type, list(src.holder, src))
 		src.holder.target = potential_turf
-		if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
+		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			securitron_owner.patrolling = TRUE
 			securitron_owner.lockdown = FALSE
 		return
 
 	if(signal.data["command"] == "stop")
-		if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
+		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			securitron_owner.patrolling = FALSE
 			src.holder.stop_move()
 			securitron_owner.lockdown = FALSE
@@ -293,8 +293,8 @@
 		return
 
 	if(signal.data["command"] == "go")
-		if(istype(src.holder.owner, /mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/securitron_owner = src.holder.owner
+		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			securitron_owner.patrolling = TRUE
 			securitron_owner.lockdown = FALSE
 		src.holder.target = null

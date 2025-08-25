@@ -382,6 +382,14 @@ ABSTRACT_TYPE(/mob/living/critter)
 				return (src.pull_w_class >= W_CLASS_BULKY)
 		return 0
 
+	initializeBioholder()
+		switch(src.gender) // default is they/them, this catches stuff like beepsky!
+			if("male")
+				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/heHim)
+			if("female")
+				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/sheHer)
+		. = ..()
+
 	canRideMailchutes()
 		return src.fits_under_table
 
@@ -1259,6 +1267,11 @@ ABSTRACT_TYPE(/mob/living/critter/robotic)
 /// Parent for robotic critters. Handles some traits that robots should have- damaged by EMPs, immune to fire and rads
 /mob/living/critter/robotic
 	name = "a fucked up robot"
+	robotic = TRUE
+	can_burn = FALSE
+	dna_to_absorb = 0
+	butcherable = FALSE
+	metabolizes = FALSE
 	var/emp_vuln = 1
 
 	New()

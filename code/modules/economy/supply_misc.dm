@@ -64,7 +64,7 @@
 			return 1
 		else if (istype(A,/mob/living/critter/changeling/handspider) || istype(A,/mob/living/critter/changeling/eyespider))
 			return 1
-		else if (istype(A,/mob/living/critter/robotic/securitron))
+		else if (istype(A,/mob/living/critter/robotic/bot/securitron))
 			return 1
 		else if (!M.can_lie && isdead(M))
 			return 1

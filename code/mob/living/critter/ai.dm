@@ -238,7 +238,7 @@ var/list/ai_move_scheduled = list()
 			var/required_goals = null // find all targets
 			if(score_by_distance_only)
 				required_goals = 1 // we only need to find the first one
-			var/list/atom/paths_found = get_path_to(holder.owner, targets, max_distance=max_dist*2, mintargetdist=distance_from_target, move_through_space=move_through_space, required_goals=required_goals)
+			var/list/atom/paths_found = get_path_to(holder.owner, targets, max_distance=max_dist*2, mintargetdist=distance_from_target, move_through_space=move_through_space, required_goals=required_goals, do_doorcheck = TRUE)
 			if(score_by_distance_only)
 				if(length(paths_found))
 					. = paths_found[1]

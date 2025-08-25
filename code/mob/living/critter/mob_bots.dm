@@ -14,17 +14,17 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	stepsound = "step_plating"
 	robot_talk_understand = TRUE
 	hand_count = 1
-	can_burn = FALSE
-	dna_to_absorb = 0
-	butcherable = FALSE
-	metabolizes = FALSE
+	density = FALSE
 	custom_gib_handler = /proc/robogibs
 	stepsound = null
+	flags = FPRINT | FLUID_SUBMERGE | STAIR_ANIM
 	/// defined in new, this is the base of the icon_state with the suffix removed, i.e. "cleanbot" without the "1"
 	var/icon_state_base = null
-	var/brute_hp = 25
-	var/burn_hp = 25
 	var/emagged = FALSE
+	health_brute = 25
+	health_burn = 25
+	takes_tox = FALSE
+	takes_brain = FALSE
 
 	New()
 		. = ..()
@@ -50,10 +50,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 		if(src.emagged == TRUE)
 			var/datum/limb/small_critter/L = HH.limb
 			L.max_wclass = W_CLASS_SMALL
-
-	setup_healths()
-		add_hh_robot(brute_hp, 1)
-		add_hh_robot_burn(burn_hp, 1)
 
 	get_melee_protection(zone, damage_type)
 		return 3
@@ -86,7 +82,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	cleanbot
 		name = "cleanbot"
 		real_name = "cleanbot"
-		desc = "A little cleaning robot, he looks so excited!"
+		desc = "A little cleaning robot, it looks so excited!"
 		icon_state = "cleanbot1"
 		icon_state_base = "cleanbot"
 
@@ -123,8 +119,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 			return TRUE
 
 		emagged
-			brute_hp = 50
-			burn_hp = 50
 			emagged = TRUE
 			New()
 				. = ..()
@@ -259,7 +253,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 /mob/living/critter/robotic/bot/firebot
 	name = "firebot"
 	real_name = "firebot"
-	desc = "A little fire-fighting robot!  He looks so darn chipper."
+	desc = "A little fire-fighting robot! It looks so darn chipper."
 	icon_state = "firebot1"
 	icon_state_base = "firebot"
 
@@ -281,18 +275,14 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		if(!src.emagged)
 			playsound(src, "sound/effects/sparks4.ogg", 50)
 			src.audible_message("<span class='alert'><B>[src] buzzes oddly!</B></span>")
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_fire)
 			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/fuel)
 			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/throw_humans)
 			src.emagged = TRUE
 
 	emagged
-		brute_hp = 50
-		burn_hp = 50
 		emagged = TRUE
 		New()
 			. = ..()
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_fire)
 			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/fuel)
 			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/throw_humans)
 
@@ -303,6 +293,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	targeted = TRUE
 	target_anything = TRUE
 	cooldown = 5 SECONDS
+	max_range = 4
 	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "firebot_foam"
 	var/const/num_water_effects = 5
@@ -341,61 +332,31 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		name = "Spray Burning Fuel"
 		desc = "Spray burning fuel all over the place. Highly flammable but near useless in flooded areas."
 		icon_state = "firebot_fire"
-		spray_reagents = list("fuel"=5)
-		spray_temperature = T0C + 200
+		spray_reagents = list("fuel"=8)
+		spray_temperature = T0C + 300
+		attack_mobs = TRUE
+		max_range = 4
 		cooldown = 15 SECONDS
 
 	throw_humans
 		name = "High Pressure Foam"
-		desc = "Unleash your spray foam cannon to send humans flying."
+		desc = "Unleash your spray foam cannon to send mobs flying."
+		attack_mobs = TRUE
+		max_range = 3
 		cooldown = 10 SECONDS
 
 		cast(atom/target)
 			if(..())
 				return TRUE
-			for(var/mob/living/carbon/human/H in view(1, target))
-				var/atom/targetTurf = get_edge_target_turf(H, get_dir(holder.owner, get_step_away(H, holder.owner)))
-				boutput(H, "<span class='alert'><b>[holder.owner] knocks you back!</b></span>")
-				H.changeStatus("weakened", 2 SECONDS)
-				H.throw_at(targetTurf, 200, 4)
+			for(var/mob/living/L in view(1, target))
+				if(L == src.holder.owner)
+					continue
+				var/atom/targetTurf = get_edge_target_turf(L, get_dir(holder.owner, get_step_away(L, holder.owner)))
+				boutput(L, "<span class='alert'><b>[holder.owner] knocks you back!</b></span>")
+				L.changeStatus("weakened", 2 SECONDS)
+				L.throw_at(targetTurf, 25, 4)
 
-
-/datum/targetable/critter/bot/spray_fire
-	name = "Spray Flames"
-	desc = "Sometimes you gotta make your own fun. Spray a short range flammable aerosol. Works in flooded areas."
-	targeted = TRUE
-	target_anything = TRUE
-	cooldown = 10 SECONDS
-	icon = 'icons/ui/critter_ui.dmi'
-	icon_state = "firebot_fire"
-	var/max_fire_range = 3
-	cooldown = 10 SECONDS
-	var/temp = 7000
-
-	cast(atom/target)
-		if (..())
-			return 1
-
-		var/turf/T = get_turf(target)
-		var/list/affected_turfs = getline(holder.owner, T)
-		flick("firebot-c", holder.owner)
-		playsound(holder.owner.loc, "sound/effects/mag_fireballlaunch.ogg", 50, 0)
-		var/turf/currentturf
-		var/turf/previousturf
-		for(var/turf/F in affected_turfs)
-			previousturf = currentturf
-			currentturf = F
-			if(currentturf.density || istype(currentturf, /turf/space))
-				break
-			if(previousturf && LinkBlocked(previousturf, currentturf))
-				break
-			if (F == get_turf(holder.owner))
-				continue
-			if (get_dist(holder.owner,F) > max_fire_range)
-				continue
-			tfireflash(F,0.5,temp)
-
-/mob/living/critter/robotic/securitron
+/mob/living/critter/robotic/bot/securitron
 	name = "securitron"
 	real_name = "securitron"
 #ifdef HALLOWEEN
@@ -407,41 +368,25 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 #endif
 	icon_state = "secbot0"
 	blood_id = "oil"
-	speechverb_say = "beeps"
-	speechverb_gasp = "warbles"
-	speechverb_stammer = "bleeps"
-	speechverb_exclaim = "boops"
-	speechverb_ask = "bloops"
-	robot_talk_understand = TRUE
-	density = FALSE
 	hand_count = 1
 	base_move_delay = 3.25
 	base_walk_delay = 4.25
-	can_burn = FALSE
 	can_grab = TRUE
 	can_disarm = TRUE
 	can_help = TRUE
-	dna_to_absorb = 0
 	metabolizes = FALSE
-	custom_gib_handler = /proc/robogibs
 	stepsound = null
-	health_brute = 25
-	health_brute_vuln = 1
-	health_burn = 25
-	health_burn_vuln = 1.25
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
-	is_npc = TRUE
 	reagent_capacity = 20
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
-	var/chase_speed_bonus = 0.9
+	var/chase_speed_bonus = 0.3
 	var/obj/machinery/camera/camera = null
 	var/no_camera = FALSE
 	var/initial_limb = /obj/item/baton/mobsecbot
 	var/drop_limb_item = FALSE
 	var/net_id
 	var/power = TRUE
-	var/emagged = 0
 	var/emote_cooldown = 7 SECONDS
 	var/arrest_cooldown = 10 SECONDS
 	var/siren_active = FALSE
@@ -457,7 +402,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	var/list/datum/contextAction/contexts = list()
 	var/datum/contextLayout/configContextLayout = new /datum/contextLayout/experimentalcircle
 
-/mob/living/critter/robotic/securitron/New()
+/mob/living/critter/robotic/bot/securitron/New()
 	. = ..()
 
 	if(src.name == "securitron")
@@ -473,7 +418,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	remove_lifeprocess(/datum/lifeprocess/blindness)
 	remove_lifeprocess(/datum/lifeprocess/blood)
 
-	new /obj/item/implant/access/infinite/secoff(src)
+	var/obj/item/implant/access/infinite/secoff/O = new /obj/item/implant/access/infinite/secoff(src)
+	O.owner = src
+	O.implanted = 1
 
 	src.abilityHolder.addAbility(/datum/targetable/critter/bot/handcuff)
 
@@ -499,7 +446,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	START_TRACKING_CAT(TR_CAT_DELETE_ME)
 	#endif
 
-/mob/living/critter/robotic/securitron/disposing()
+/mob/living/critter/robotic/bot/securitron/disposing()
 	STOP_TRACKING
 	qdel(src.camera)
 
@@ -508,7 +455,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	#endif
 	..()
 
-/mob/living/critter/robotic/securitron/setup_hands()
+/mob/living/critter/robotic/bot/securitron/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
 	if (src.initial_limb)
@@ -530,7 +477,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	HH.icon = 'icons/ui/critter_ui.dmi'
 	src.update_inhands()
 
-/mob/living/critter/robotic/securitron/proc/change_hand_item()
+/mob/living/critter/robotic/bot/securitron/proc/change_hand_item()
 	set name = "Change hand item"
 	var/type = input(usr, "Item type", "Item type")
 	if (!type)
@@ -554,17 +501,17 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	src.hud.add_object(I, HUD_LAYER+2, HH.screenObj.screen_loc)
 	src.update_inhands()
 
-/mob/living/critter/robotic/securitron/setup_healths()
+/mob/living/critter/robotic/bot/securitron/setup_healths()
 	add_hh_robot(src.health_brute, src.health_brute_vuln)
 	add_hh_robot_burn(src.health_burn, src.health_burn_vuln)
 
-/mob/living/critter/robotic/securitron/get_melee_protection(zone, damage_type)
+/mob/living/critter/robotic/bot/securitron/get_melee_protection(zone, damage_type)
 	return 3
 
-/mob/living/critter/robotic/securitron/get_ranged_protection()
+/mob/living/critter/robotic/bot/securitron/get_ranged_protection()
 	return 2
 
-/mob/living/critter/robotic/securitron/death(var/gibbed)
+/mob/living/critter/robotic/bot/securitron/death(var/gibbed)
 	for (var/datum/handHolder/HH in hands)
 		if(istype(HH.limb, /datum/limb/item))
 			var/datum/limb/item/item_limb = HH.limb
@@ -581,26 +528,26 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		playsound(src.loc, 'sound/impact_sounds/Machinery_Break_1.ogg', 50, 1)
 		make_cleanable(/obj/decal/cleanable/oil,src.loc)
 
-/mob/living/critter/robotic/securitron/emp_act()
+/mob/living/critter/robotic/bot/securitron/emp_act()
 	if(src.emagged)
 		src.death(TRUE)
 	else
 		..()
 
-/mob/living/critter/robotic/securitron/special_movedelay_mod(delay, space_movement, aquatic_movement)
+/mob/living/critter/robotic/bot/securitron/special_movedelay_mod(delay, space_movement, aquatic_movement)
 	var/chase_delay = BASE_SPEED
 	if (src.is_npc && src.ai && src.ai.target && isliving(src.ai.target))
 		chase_delay -= src.chase_speed_bonus
 	. = ..(chase_delay, space_movement, aquatic_movement)
 
 
-/mob/living/critter/robotic/securitron/attack_ai(mob/user as mob)
+/mob/living/critter/robotic/bot/securitron/attack_ai(mob/user as mob)
 	if (src.power && src.emagged)
 		boutput(user, "<span class='alert'>[src] refuses your authority!</span>")
 		return
 	user.showContextActions(src.contexts, src, src.configContextLayout)
 
-/mob/living/critter/robotic/securitron/specific_emotes(var/act, var/param = null, var/voluntary = 0)
+/mob/living/critter/robotic/bot/securitron/specific_emotes(var/act, var/param = null, var/voluntary = 0)
 	if (act == "scream")
 		src.siren()
 		return null
@@ -608,7 +555,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		return null
 	src.trash_talk(act)
 
-/mob/living/critter/robotic/securitron/proc/trash_talk(var/emote = null)
+/mob/living/critter/robotic/bot/securitron/proc/trash_talk(var/emote = null)
 	if(!emote)
 		emote = pick("laugh","fart","salute","snap","flex")
 	switch (emote)
@@ -629,7 +576,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			playsound(src, 'sound/voice/biamthelaw.ogg', 50, FALSE, 0, 1)
 	return
 
-/mob/living/critter/robotic/securitron/proc/accuse_perp(atom/target, threat = 4)
+/mob/living/critter/robotic/bot/securitron/proc/accuse_perp(atom/target, threat = 4)
 	src.point_at(target)
 	src.say("LEVEL [threat] INFRACTION ALERT.")
 	switch(rand(1,3))
@@ -643,7 +590,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			src.say("FREEZE. SCUMBAG.")
 			playsound(src, 'sound/voice/bfreeze.ogg', 50, FALSE, 0, 1)
 
-/mob/living/critter/robotic/securitron/proc/siren()
+/mob/living/critter/robotic/bot/securitron/proc/siren()
 	if(siren_active)
 		return
 	SPAWN_DBG(0)
@@ -660,7 +607,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		add_simple_light("secbot", list(255, 255, 255, 0.4 * 255))
 		siren_active = FALSE
 
-/mob/living/critter/robotic/securitron/attack_hand(mob/user, params)
+/mob/living/critter/robotic/bot/securitron/attack_hand(mob/user, params)
 	if (user.a_intent == INTENT_HELP && src.allowed(user))
 		src.ai.stop_move()
 		EXTEND_COOLDOWN(src, "HALT_FOR_INTERACTION", 4 SECONDS)
@@ -668,7 +615,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	else
 		..()
 
-/mob/living/critter/robotic/securitron/proc/set_power(var/on_off)
+/mob/living/critter/robotic/bot/securitron/proc/set_power(var/on_off)
 	if(src.power == on_off)
 		return
 	src.power = on_off
@@ -681,7 +628,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		remove_simple_light("secbot")
 		ai.disable()
 
-/mob/living/critter/robotic/securitron/proc/configure(var/setting, var/mob/M)
+/mob/living/critter/robotic/bot/securitron/proc/configure(var/setting, var/mob/M)
 	switch(setting)
 		if ("power")
 			src.set_power(!src.power)
@@ -710,7 +657,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"]")
 			return src.patrolling
 
-/mob/living/critter/robotic/securitron/ai_is_valid_target(mob/M)
+/mob/living/critter/robotic/bot/securitron/ai_is_valid_target(mob/M)
 	if (ishuman(M))
 		if (M.hasStatus("handcuffed"))
 			return FALSE // already cuffed
@@ -731,7 +678,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 //If the security records say to arrest them, arrest them
 //Or if they have weapons and aren't security, arrest them.
-/mob/living/critter/robotic/securitron/proc/assess_perp(mob/living/perp)
+/mob/living/critter/robotic/bot/securitron/proc/assess_perp(mob/living/perp)
 	var/threatcount = 0
 
 	if(src.emagged > 1)
@@ -790,7 +737,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 	return threatcount
 
-/mob/living/critter/robotic/securitron/proc/allowed(mob/M)
+/mob/living/critter/robotic/bot/securitron/proc/allowed(mob/M)
 	if(isghostdrone(M))
 		return 0
 	if(issilicon(M) || isAIeye(M))
@@ -807,7 +754,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return 1
 	return 0
 
-/mob/living/critter/robotic/securitron/hand_attack(mob/target)
+/mob/living/critter/robotic/bot/securitron/hand_attack(mob/target)
 	EXTEND_COOLDOWN(target, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
 	var/obj/item/I = src.equipped()
 	if(!I)
@@ -833,7 +780,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			bonus_hits--
 	return TRUE
 
-/mob/living/critter/robotic/securitron/proc/check_access(obj/item/I)
+/mob/living/critter/robotic/bot/securitron/proc/check_access(obj/item/I)
 	if(!istype(src.req_access, /list)) //something's very wrong
 		return 1
 	var/list/L = src.req_access
@@ -850,9 +797,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return 0
 	return 1
 
-/mob/living/critter/robotic/securitron/was_harmed(mob/attacker, obj/attacked_with, special, intent)
+/mob/living/critter/robotic/bot/securitron/was_harmed(mob/attacker, obj/attacked_with, special, intent)
 	..()
-	if(!src.ai.enabled || istype(attacker, /mob/living/critter/robotic/securitron))
+	if(!src.ai.enabled || istype(attacker, /mob/living/critter/robotic/bot/securitron))
 		return
 	if(attacker.hasStatus("handcuffed") && !src.is_detaining)
 		return
@@ -870,7 +817,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		src.accuse_perp(attacker, rand(5,8))
 		src.siren()
 
-/mob/living/critter/robotic/securitron/emag_act(var/mob/user, var/obj/item/card/emag/E)
+/mob/living/critter/robotic/bot/securitron/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if(ON_COOLDOWN(src,"EMAG_COOLDOWN",12 SECONDS)) // no rapid double emags
 		if (user)
 			boutput(user, SPAN_ALERT("\The [src] can't be shorted out again this soon!"))
@@ -972,14 +919,14 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		target.setStatus("handcuffed", duration = INFINITE_STATUS)
 		logTheThing("combat", master, "handcuffs [constructTarget(target,"combat")] at [log_loc(master)].")
 
-		if(istype(master,/mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/secbot = master
+		if(istype(master,/mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/secbot = master
 			if(secbot.ai?.enabled)
 				secbot.trash_talk()
 
 		//////PDA NOTIFY/////
-		if(istype(master, /mob/living/critter/robotic/securitron))
-			var/mob/living/critter/robotic/securitron/secbot = master
+		if(istype(master, /mob/living/critter/robotic/bot/securitron))
+			var/mob/living/critter/robotic/bot/securitron/secbot = master
 			if(!secbot.report_arrests)
 				return
 
@@ -1000,20 +947,20 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		signal.data["message"] = message2send
 		SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
 
-/mob/living/critter/robotic/securitron/autopatrol
+/mob/living/critter/robotic/bot/securitron/autopatrol
 	patrolling = TRUE
 
-/mob/living/critter/robotic/securitron/bowling
+/mob/living/critter/robotic/bot/securitron/bowling
 	name = "bowlatron"
 	real_name = "bowlatron"
 	throw_speed = 0.75
 
-/mob/living/critter/robotic/securitron/bowling/throw_at(atom/target, range, speed, list/params, turf/thrown_from, mob/thrown_by, throw_type = 1,
+/mob/living/critter/robotic/bot/securitron/bowling/throw_at(atom/target, range, speed, list/params, turf/thrown_from, mob/thrown_by, throw_type = 1,
 			allow_anchored = UNANCHORED, bonus_throwforce = 0, end_throw_callback = null)
 	throw_unlimited = TRUE
 	..()
 
-/mob/living/critter/robotic/securitron/bowling/throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+/mob/living/critter/robotic/bot/securitron/bowling/throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 	. = ..()
 	if	(isturf(hit_atom) && !hit_atom.density)
 		return
@@ -1023,31 +970,31 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		var/mob/M = hit_atom
 		M.do_disorient(150, weakened = 120, disorient = 60)
 
-/mob/living/critter/robotic/securitron/spiderseeking
+/mob/living/critter/robotic/bot/securitron/spiderseeking
 	name = "spiderhound"
 	real_name = "spiderhound"
 	ai_type = /datum/aiHolder/patroller
 
-/mob/living/critter/robotic/securitron/beepsky
+/mob/living/critter/robotic/bot/securitron/beepsky
 	name = "Officer Beepsky"
 	desc = "It's Officer Beepsky! He's a loose cannon but he gets the job done."
 	initial_limb = /obj/item/baton/mobsecbot/beepsky
 	gender = MALE
 	patrolling = TRUE
 	drop_limb_item = TRUE
-	chase_speed_bonus = 1.3
+	chase_speed_bonus = 0.5
 
-/mob/living/critter/robotic/securitron/formal
+/mob/living/critter/robotic/bot/securitron/formal
 	name = "Lord Beepingshire"
 	desc = "The most distinguished of security robots."
 	// icon_state = 'like a formal sprite or somethin'
 
-/mob/living/critter/robotic/securitron/haunted
+/mob/living/critter/robotic/bot/securitron/haunted
 	name = "Beep-o-Lantern"
 	desc = "A little security robot, apparently carved out of a pumpkin.  He looks...spooky?"
 	icon = 'icons/misc/halloween.dmi'
 
-/mob/living/critter/robotic/securitron/emagged
+/mob/living/critter/robotic/bot/securitron/emagged
 	desc = "A tattered and rusted security bot, held together only by the will of some wretched elder god."
 	health_brute = 5
 	health_burn = 5
@@ -1057,11 +1004,12 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 	New()
 		..()
-		src.name = pick("Commissar Beepevich","The Beeper","Murderbot","Killtron","Lawmaker")
-		SPAWN_DBG(1 MINUTE)
-			if (src?.blow_up == 1)
-				src.blowthefuckup(0)
+		src.name = pick("Commissar Oinkovich","The Oppressor","Assigned Cop At Birth","Donut Destroyer","Bastard")
+		if (src.blow_up == 1)
+			SPAWN_DBG(1 MINUTE)
+				if(!QDELETED(src))
+					src.blowthefuckup(0)
 		return
 
-/mob/living/critter/robotic/securitron/emagged/no_selfdestruct
+/mob/living/critter/robotic/bot/securitron/emagged/no_selfdestruct
 	blow_up = 0

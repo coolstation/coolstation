@@ -1475,7 +1475,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	name = "Security Drone"
 	item_paths = list("MET-2","CON-2","POW-1")
 	item_amounts = list(30,20,20)
-	item_outputs = list(/mob/living/critter/robotic/securitron)
+	item_outputs = list(/mob/living/critter/robotic/bot/securitron)
 	time = 120 SECONDS
 	create = 1
 	category = "Machinery"

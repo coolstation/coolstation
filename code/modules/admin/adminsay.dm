@@ -153,7 +153,7 @@
 	if (!msg)
 		return
 
-	for_by_tcl(maybeBeepsky, /mob/living/critter/robotic/securitron)
+	for_by_tcl(maybeBeepsky, /mob/living/critter/robotic/bot/securitron)
 		maybeBeepsky.say(msg)
 		break
 

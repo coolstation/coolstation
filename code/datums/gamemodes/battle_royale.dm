@@ -63,7 +63,7 @@ var/global/list/datum/mind/battle_pass_holders = list()
 	current_battle_spawn_name = pick(drop_locations)
 	current_battle_spawn = drop_locations[current_battle_spawn_name]
 
-	for_by_tcl(secbot, /mob/living/critter/robotic/securitron)
+	for_by_tcl(secbot, /mob/living/critter/robotic/bot/securitron)
 		qdel(secbot)
 
 	hide_weapons_everywhere()

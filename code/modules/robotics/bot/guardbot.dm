@@ -2282,7 +2282,7 @@
 		var/tmp/state = 0
 		var/tmp/party_counter = 90
 		var/tmp/party_idle_counter = 0
-		var/tmp/mob/living/critter/robotic/securitron/its_beepsky = null
+		var/tmp/mob/living/critter/robotic/bot/securitron/its_beepsky = null
 
 		var/rumpus_emotion = "joy" //Emotion to express during buddytime.
 		var/rumpus_location_tag = "buddytime" //Tag of the bar beacon
@@ -2445,7 +2445,7 @@
 			if (src.its_beepsky) //Huh? We haven't lost him.
 				return
 
-			for_by_tcl(possibly_beepsky, /mob/living/critter/robotic/securitron)
+			for_by_tcl(possibly_beepsky, /mob/living/critter/robotic/bot/securitron)
 				if (ckey(possibly_beepsky.name) == "officerbeepsky")
 					src.its_beepsky = possibly_beepsky //Definitely beepsky in this case.
 					break
@@ -3661,7 +3661,7 @@
 						src.speak_with_maptext("Why, if it isn't beloved station canine, George!  Who's a good doggy?  You are!  Yes, you!")
 						END_NEAT
 
-				else if (istype(AM, /mob/living/critter/robotic/securitron))
+				else if (istype(AM, /mob/living/critter/robotic/bot/securitron))
 					if (AM.name == "Officer Beepsky" && !(src.neat_things & NT_BEEPSKY))
 						FOUND_NEAT(NT_BEEPSKY)
 							src.speak_with_maptext("And here comes Officer Beepsky, the proud guard of this station. Proud.")

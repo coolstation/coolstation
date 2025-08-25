@@ -86,7 +86,7 @@
 					. += "No bots found.<BR>"
 
 				else
-					for(var/mob/living/critter/robotic/securitron/B in src.botlist)
+					for(var/mob/living/critter/robotic/bot/securitron/B in src.botlist)
 						. += "[B] at [get_area(B)]</A><BR>"
 						. += "Health: " + "[round(B.health)]/[B.max_health]"
 						. += "<br>"
@@ -211,7 +211,7 @@
 			if(!botlist)
 				botlist = new()
 
-			if(istype(signal.source,/mob/living/critter/robotic/securitron) || istype(signal.source,/obj/machinery/bot/secbot)) // avoid putting random shit in the list
+			if(istype(signal.source,/mob/living/critter/robotic/bot/securitron) || istype(signal.source,/obj/machinery/bot/secbot)) // avoid putting random shit in the list
 				botlist |= signal.source
 
 			src.master.updateSelfDialog()

@@ -25,7 +25,7 @@
 #define POP_IGNORE_CACHE "ignore_cache"
 
 // uncomment for debugging pathfinding
-//#define VISUALIZE_PATHFINDING
+#define VISUALIZE_PATHFINDING
 
 /**
  * This is the proc you use whenever you want to have pathfinding more complex than "try stepping towards the thing".

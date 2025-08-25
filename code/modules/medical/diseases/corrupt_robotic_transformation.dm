@@ -73,7 +73,7 @@
 
 				if (ismonkey(affected_mob))
 					affected_mob.ghostize()
-					var/robopath = pick(/obj/machinery/bot/guardbot,/mob/living/critter/robotic/securitron,/obj/machinery/bot/medbot,/obj/machinery/bot/firebot,/obj/machinery/bot/cleanbot,/obj/machinery/bot/floorbot)
+					var/robopath = pick(/obj/machinery/bot/guardbot,/mob/living/critter/robotic/bot/securitron,/obj/machinery/bot/medbot,/obj/machinery/bot/firebot,/obj/machinery/bot/cleanbot,/obj/machinery/bot/floorbot)
 					new robopath (T)
 					qdel(affected_mob)
 				else if (ishuman(affected_mob))

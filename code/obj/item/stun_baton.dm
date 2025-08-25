@@ -102,7 +102,7 @@
 		if (amount <= 0)
 			return 0
 
-		if (user && istype(user, /mob/living/critter/robotic/securitron))
+		if (user && istype(user, /mob/living/critter/robotic/bot/securitron))
 			return 1
 
 		if (user && isrobot(user))
@@ -127,7 +127,7 @@
 	proc/process_charges(var/amount = -1, var/mob/user)
 		if (!src || !istype(src) || amount == 0)
 			return
-		if (user && istype(user, /mob/living/critter/robotic/securitron))
+		if (user && istype(user, /mob/living/critter/robotic/bot/securitron))
 			return
 		if (user && isrobot(user))
 			var/mob/living/silicon/robot/R = user
