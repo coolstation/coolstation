@@ -25,7 +25,7 @@
 #define POP_IGNORE_CACHE "ignore_cache"
 
 // uncomment for debugging pathfinding
-#define VISUALIZE_PATHFINDING
+//#define VISUALIZE_PATHFINDING
 
 // uncomment for jps instability debugging, DO NOT LEAVE ENABLED
 // please
