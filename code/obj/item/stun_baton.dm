@@ -378,7 +378,7 @@
 	can_swap_cell = 0
 	mats = 0
 	rechargable = 0
-	charge_time = 0.6 SECONDS
+	charge_time = 0.2 SECONDS
 	active_time = 3.4 SECONDS
 	recharge_time = 7 SECONDS
 	cell_type = /obj/item/ammo/power_cell
