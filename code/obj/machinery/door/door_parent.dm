@@ -338,9 +338,6 @@
 			src.close()
 		return
 
-	if(!I)
-		return ..()
-
 	if(istype(I, /obj/item/card/emag) && !src.cant_emag)
 		return
 
@@ -357,9 +354,9 @@
 		if (src.sound_deny)
 			playsound(src.loc, src.sound_deny, 25, 0)
 
-		var/resolvedForce = I.force
+		var/resolvedForce = I?.force
 		var/chopped = FALSE
-		if (ischoppingtool(I))
+		if (I && ischoppingtool(I))
 			resolvedForce *= 5
 			chopped = TRUE
 		user.lastattacked = src
