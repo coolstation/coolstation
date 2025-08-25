@@ -141,17 +141,23 @@
 	src.move_target = null
 
 /datum/aiTask/succeedable/move/on_tick()
-	walk(holder.owner, 0)
 	if(src.found_path)
 		if(src.found_path.len > 0)
 			// follow the path
 			src.found_path.Cut(1, 2)
 			var/turf/next
-			if(src.found_path.len >= 1)
+			if(src.found_path.len >= 3)
 				next = src.found_path[1]
+				var/i = 2
+				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+				while(get_dir(next, src.found_path[i]) == dir_line)
+					next = src.found_path[i]
+					i++
+					if(i > length(src.found_path))
+						break
 			else
 				next = src.move_target
-			walk_to(holder.owner, next, 0, 4)
+			holder.move_to(next)
 			if(GET_DIST(get_turf(holder.owner), next) <= 1)
 				fails = 0
 			else
@@ -169,8 +175,7 @@
 /datum/aiTask/succeedable/move/inherit_target
 
 /datum/aiTask/succeedable/move/inherit_target/tick()
-	var/target_turf = get_turf(holder.target)
-	src.move_target = target_turf
+	src.move_target = holder.target
 	return ..()
 
 
@@ -250,7 +255,7 @@
 			// follow the path
 			src.found_path.Cut(1, 2)
 			var/turf/next
-			if(src.found_path.len > 1)
+			if(src.found_path.len >= 3)
 				next = src.found_path[1]
 				var/i = 2
 				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
@@ -275,8 +280,7 @@
 /datum/aiTask/endless/move/inherit_target
 
 /datum/aiTask/endless/move/inherit_target/tick()
-	var/target_turf = get_turf(holder.target)
-	src.move_target = target_turf
+	src.move_target = holder.target
 	return ..()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////

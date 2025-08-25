@@ -820,6 +820,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			var/obj/item/baton/batong = I
 			if(!batong.is_active)
 				batong.attack_self(src)
+				src.hud.update_intent()
+				return FALSE
 	src.hud.update_intent()
 	..(target)
 	var/bonus_hits = src.emagged - 1

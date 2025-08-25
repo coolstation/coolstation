@@ -65,7 +65,7 @@
 	var/all_guard = 0
 	var/lockdown = 0
 	var/can_summon_all = 0
-	var/mob/living/critter/robotic/securitron/active 	// the active secbot; if null, show bot list
+	var/active 	// the active secbot; if null, show bot list
 
 	return_text()
 		if(..())
@@ -150,12 +150,12 @@
 				if(guardthis)
 					if(!src.all_guard)
 						if(src.lockdown)
-							post_status("bot_control", "command", "lockdown", "address_1", active.net_id, "target", guardthis)
+							post_status("bot_control", "command", "lockdown", "address_1", active:net_id, "target", guardthis)
 							self_text("[active] ordered to lockdown [guardthis].")
 						else
-							post_status("bot_control", "command", "guard", "address_1", active.net_id, "target", guardthis)
+							post_status("bot_control", "command", "guard", "address_1", active:net_id, "target", guardthis)
 							self_text("[active] ordered to guard [guardthis].")
-						post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
+						post_status("bot_control", "command", "bot_status", "address_1", active:net_id)
 					else
 						src.all_guard = 0
 						if (!botlist.len)
@@ -164,29 +164,26 @@
 						var/stored_lockdown = src.lockdown
 						SPAWN_DBG(0)
 							// we are gonna try to do this for real, but with a sleep - mylie
-							var/list/bots = list()
-							for(var/mob/living/critter/robotic/securitron/bot in src.botlist)
+							for(var/bot in src.botlist)
 								if(stored_lockdown)
-									post_status("bot_control", "command", "lockdown", "address_1", bot.net_id, "target", guardthis)
+									post_status("bot_control", "command", "lockdown", "address_1", bot:net_id, "target", guardthis)
 									self_text("[bot] ordered to lockdown [guardthis].")
 								else
-									post_status("bot_control", "command", "guard", "address_1", bot.net_id, "target", guardthis)
+									post_status("bot_control", "command", "guard", "address_1", bot:net_id, "target", guardthis)
 									self_text("[bot] ordered to guard [guardthis].")
 								sleep(2 DECI SECONDS)
-							if(length(bots) >= 1)
-								self_text("[english_list(bots)] ordered to guard [guardthis].")
 
 			if("stop", "go")
-				post_status("bot_control", "command", href_list["op"], "address_1", active.net_id)
-				post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
+				post_status("bot_control", "command", href_list["op"], "address_1", active:net_id)
+				post_status("bot_control", "command", "bot_status", "address_1", active:net_id)
 				if(href_list["op"] == "go")
 					self_text("[active] set to patrol.")
 				else
 					self_text("[active] set to not patrol.")
 
 			if("summon") // not spoofable
-				post_status("bot_control", "command", "summon", "address_1", active.net_id, "target", summon_turf)
-				post_status("bot_control", "command", "bot_status", "address_1", active.net_id)
+				post_status("bot_control", "command", "summon", "address_1", active:net_id, "target", summon_turf)
+				post_status("bot_control", "command", "bot_status", "address_1", active:net_id)
 				self_text("[active] summoned to [summon_turf.loc].")
 
 			if("summonall") // also not spoofable
@@ -195,25 +192,22 @@
 					return
 				SPAWN_DBG(0)
 					// trying this for real - mylie
-					var/list/bots = list()
-					for(var/mob/living/critter/robotic/securitron/bot in src.botlist)
-						post_status("bot_control", "command", "summon", "address_1", bot.net_id, "target", summon_turf)
-						post_status("bot_control", "command", "bot_status", "address_1", bot.net_id)
+					for(var/bot in src.botlist)
+						post_status("bot_control", "command", "summon", "address_1", bot:net_id, "target", summon_turf)
+						post_status("bot_control", "command", "bot_status", "address_1", bot:net_id)
 						self_text("[bot] summoned to [summon_turf.loc].")
 						sleep(2 DECI SECONDS)
-					if(length(bots) >= 1)
-						self_text("[english_list(bots)] summoned to [summon_turf.loc].")
 
 		src.lockdown = 0
 		src.all_guard = 0
 		PDA.updateSelfDialog()
 
 	receive_signal(obj/item/device/pda2/pda, datum/signal/signal, transmission_method, range, connection_id)
-		if(connection_id == "bot_control" && signal.data["type"] == "secbot" && !signal.encryption)
+		if(connection_id == "bot_control" && signal.data["type"] == "secbot")
 			if(!botlist)
 				botlist = new()
 
-			if(istype(signal.source,/mob/living/critter/robotic/securitron)) // avoid putting random shit in the list
+			if(istype(signal.source,/mob/living/critter/robotic/securitron) || istype(signal.source,/obj/machinery/bot/secbot)) // avoid putting random shit in the list
 				botlist |= signal.source
 
 			src.master.updateSelfDialog()
