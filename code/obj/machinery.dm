@@ -6,7 +6,9 @@
  *
  *
  */
-
+ABSTRACT_TYPE(/obj/submachine)
+/obj/submachine
+	pass_unstable = FALSE
 
 /obj/machinery
 	name = "machinery"

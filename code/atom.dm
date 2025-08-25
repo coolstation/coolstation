@@ -412,6 +412,7 @@
 	//hey this is mbc, there is probably a faster way to do this but i couldnt figure it out yet
 	if (isturf(src.loc))
 		var/turf/T = src.loc
+		src.last_turf = T
 		if (src.event_handler_flags & USE_CHECKEXIT)
 			T.turf_persistent.checkingexit++
 		if (src.event_handler_flags & USE_CANPASS || src.density)
@@ -429,6 +430,10 @@
 		for(var/turf/covered_turf as anything in src.locs)
 			covered_turf.pass_unstable += src.pass_unstable
 			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug += src
+#endif
 	if(!isnull(src.loc))
 		src.loc.Entered(src, null)
 		if(isturf(src.loc)) // call it on the area too
@@ -550,6 +555,10 @@
 		for(var/turf/covered_turf as anything in old_locs)
 			covered_turf.pass_unstable -= src.pass_unstable
 			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug -= src
+#endif
 			if (src.event_handler_flags & USE_CHECKEXIT)
 				covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
 			if (src.event_handler_flags & USE_CANPASS || src.density)
@@ -572,6 +581,10 @@
 				covered_turf.checkinghasproximity++
 			covered_turf.pass_unstable += src.pass_unstable
 			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug += src
+#endif
 	else
 		last_turf = 0
 
@@ -898,6 +911,10 @@
 		for(var/turf/covered_turf as anything in oldlocs)
 			covered_turf.pass_unstable -= src.pass_unstable
 			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug -= src
+#endif
 		for(var/atom/A in oldloc)
 			if(A != src)
 				A.Uncrossed(src)
@@ -912,6 +929,10 @@
 		for(var/turf/covered_turf as anything in src.locs)
 			covered_turf.pass_unstable += src.pass_unstable
 			covered_turf.passability_cache = null
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+			if(src.pass_unstable)
+				covered_turf.pass_unstable_debug += src
+#endif
 		for(var/atom/A in newloc)
 			if(A != src)
 				A.Crossed(src)
@@ -939,18 +960,21 @@
 			if (src.event_handler_flags & USE_PROXIMITY)
 				covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
-	if (do_checks && isturf(src.loc))
-		for(var/turf/covered_turf in src.locs)
-			if (src.event_handler_flags & USE_CHECKEXIT)
-				covered_turf.turf_persistent.checkingexit++
-			if (src.event_handler_flags & USE_CANPASS || src.density)
-				covered_turf.turf_persistent.checkingcanpass++
-			if (src.event_handler_flags & USE_HASENTERED)
-				covered_turf.turf_persistent.checkinghasentered++
-			if (src.event_handler_flags & USE_PROXIMITY)
-				covered_turf.checkinghasproximity++
+	if (isturf(src.loc))
+		last_turf = src.loc
+		if(do_checks)
+			for(var/turf/covered_turf in src.locs)
+				if (src.event_handler_flags & USE_CHECKEXIT)
+					covered_turf.turf_persistent.checkingexit++
+				if (src.event_handler_flags & USE_CANPASS || src.density)
+					covered_turf.turf_persistent.checkingcanpass++
+				if (src.event_handler_flags & USE_HASENTERED)
+					covered_turf.turf_persistent.checkinghasentered++
+				if (src.event_handler_flags & USE_PROXIMITY)
+					covered_turf.checkinghasproximity++
 	else
 		last_turf = 0
+
 
 	if(src.medium_lights)
 		update_medium_light_visibility()

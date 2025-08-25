@@ -2215,7 +2215,7 @@
 		layer = EFFECTS_LAYER_1 + 1
 
 		setup(atom/location)
-			loc = location
+			src.set_loc(location)
 			var/matrix/M = matrix()
 			M.Scale(0.01)
 			animate(src, transform=M, time=0)
@@ -2391,7 +2391,7 @@
 		mouse_opacity = 0
 
 		setup(atom/location, forced = 0)
-			loc = location
+			src.set_loc(location)
 			if (del_self)
 				SPAWN_DBG(5 SECONDS)
 					qdel(src)

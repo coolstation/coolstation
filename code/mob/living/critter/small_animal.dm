@@ -477,10 +477,6 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	pull_w_class = W_CLASS_BULKY
 
 	OnMove()
-		if(client?.player?.shamecubed)
-			loc = client.player.shamecubed
-			return
-
 		makeWaddle(src)
 		.=..()
 

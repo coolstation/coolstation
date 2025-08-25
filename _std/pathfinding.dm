@@ -27,6 +27,15 @@
 // uncomment for debugging pathfinding
 #define VISUALIZE_PATHFINDING
 
+// uncomment for jps instability debugging, DO NOT LEAVE ENABLED
+// please
+//#define JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+
+#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+/// defined on turf when jps instability debugging, this stores all unstable passes in the turf
+/turf/var/list/pass_unstable_debug = list()
+#endif
+
 /**
  * This is the proc you use whenever you want to have pathfinding more complex than "try stepping towards the thing".
  * If no path was found, returns an empty list, which is important for bots like medibots who expect an empty list rather than nothing.
