@@ -124,7 +124,6 @@ var/list/ai_move_scheduled = list()
 		move_side = 1
 
 	proc/stop_move()
-		target_path = null
 		move_target = null
 		ai_move_scheduled -= src
 		walk(owner,0)
@@ -238,7 +237,7 @@ var/list/ai_move_scheduled = list()
 			var/required_goals = null // find all targets
 			if(score_by_distance_only)
 				required_goals = 1 // we only need to find the first one
-			var/list/atom/paths_found = get_path_to(holder.owner, targets, max_distance=max_dist*2, mintargetdist=distance_from_target, move_through_space=move_through_space, required_goals=required_goals, do_doorcheck = TRUE)
+			var/list/atom/paths_found = get_path_to(holder.owner, targets, max_distance=max_dist*2, mintargetdist=distance_from_target, move_through_space=move_through_space, required_goals=required_goals)
 			if(score_by_distance_only)
 				if(length(paths_found))
 					. = paths_found[1]
@@ -394,7 +393,6 @@ var/list/ai_move_scheduled = list()
 
 	next_task()
 		if(terminated)
-			src.reset()
 			return transition_task
 		else
 			return null

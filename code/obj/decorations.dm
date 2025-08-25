@@ -188,6 +188,7 @@
 	layer = EFFECTS_LAYER_UNDER_3
 	flags = FLUID_SUBMERGE
 	text = "<font color=#5c5>s"
+	pass_unstable = FALSE
 	var/health = 50
 	var/destroyed = 0 // Broken shrubs are unable to vend prizes, this is also used to track a objective.
 	var/max_uses = 0 // The maximum amount of time one can try to shake this shrub for something.

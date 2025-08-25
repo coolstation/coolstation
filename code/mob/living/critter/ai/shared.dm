@@ -126,6 +126,7 @@
 	src.found_path = null
 	src.move_target = null
 	src.next_turf = null
+	src.holder.stop_move()
 
 /datum/aiTask/succeedable/move/on_tick()
 	if(src.found_path)
@@ -144,10 +145,11 @@
 					src.found_path.Cut(1, i)
 				else
 					src.next_turf = get_turf(src.move_target)
-			holder.move_to(src.next_turf)
+			holder.move_to(src.next_turf, 0)
 	else
 		// get a path
 		get_path()
+		holder.move_to(src.move_target, distance_from_target) // fuck it!
 
 /datum/aiTask/succeedable/move/succeeded()
 	if(src.move_target)
@@ -231,6 +233,7 @@
 	src.found_path = null
 	src.move_target = null
 	src.next_turf = null
+	src.holder.stop_move()
 
 /datum/aiTask/endless/move/on_tick()
 	if(src.found_path)
@@ -249,13 +252,14 @@
 					src.found_path.Cut(1, i)
 				else
 					src.next_turf = get_turf(src.move_target)
-			holder.move_to(src.next_turf)
+			holder.move_to(src.next_turf, 0)
 		else
 			get_path()
+			holder.move_to(src.move_target, distance_from_target) // fuck it!
 	else
 		// get a path
 		get_path()
-		holder.move_to(src.move_target) // fuck it!
+		holder.move_to(src.move_target, distance_from_target) // fuck it!
 
 /datum/aiTask/endless/move/inherit_target
 

@@ -442,17 +442,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 	START_TRACKING
 
-	#ifdef I_AM_ABOVE_THE_LAW
-	START_TRACKING_CAT(TR_CAT_DELETE_ME)
-	#endif
-
 /mob/living/critter/robotic/bot/securitron/disposing()
 	STOP_TRACKING
 	qdel(src.camera)
-
-	#ifdef I_AM_ABOVE_THE_LAW
-	STOP_TRACKING_CAT(TR_CAT_DELETE_ME)
-	#endif
 	..()
 
 /mob/living/critter/robotic/bot/securitron/setup_hands()

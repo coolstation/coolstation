@@ -67,6 +67,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	mat_changename = 0
 	mat_changedesc = 0
 	text = ""
+	//if this isnt set here, the bottom left turf of each area gets confused about passability caching
+	pass_unstable = FALSE
 	var/lightswitch = 1
 
 	/// If the area is on a restricted z leve, this controls if people can eat within it. (The reason for this might shock you!)

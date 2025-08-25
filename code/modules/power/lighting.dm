@@ -81,6 +81,7 @@
 /obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
+	pass_unstable = FALSE
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1

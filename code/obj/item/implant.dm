@@ -934,6 +934,11 @@ THROWING DARTS
 		if (dist <= 1)
 			. += "This one has [uses] charges remaining."
 
+	disposing()
+		qdel(access)
+		access = null
+		. = ..()
+
 	proc/used()
 		if (uses < 0) //infinite
 			return 1

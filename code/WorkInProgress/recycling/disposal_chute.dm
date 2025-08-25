@@ -18,6 +18,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE | NOSPLASH | TGUI_INTERACTIVE
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = DISPOSAL_CHUTE_CHARGING	// item mode 0=off 1=charging 2=charged

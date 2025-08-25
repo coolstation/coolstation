@@ -503,13 +503,13 @@
 			if (source && HAS_FLAG(O.object_flags, HAS_DIRECTIONAL_BLOCKING))
 				continue // we already handled these above with the blocked_dirs
 			if (istype(A, /obj/overlay) || istype(A, /obj/effects)) continue
-			if ((passer || id) && A.density)
-				if (O.object_flags & BOTS_DIRBLOCK) //NEW - are we a door-like-openable-thing?
+			if (A.density)
+				if (O.object_flags & BOTS_DIRBLOCK) //are we a door-like-openable-thing?
 					if(options[POP_DOOR_CHECK] && istype(O, /obj/machinery/door))
 						var/obj/machinery/door/door = O
 						if (door.isblocked())
 							return FALSE
-					if (ismob(passer) && O.allowed(passer) || id && O.check_access(id)) // do you have explicit access
+					if ((id && O.check_access(id)) || (ismob(passer) && O.allowed(passer))) // do you have explicit access
 						continue
 					else
 						return FALSE
