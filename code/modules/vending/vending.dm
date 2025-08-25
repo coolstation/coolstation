@@ -780,8 +780,8 @@
 						return
 					if (account["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
-						account.fields["current_money"] -= min_serv_chg
-						servicechgaccount.fields["current_money"] += min_serv_chg
+						account["current_money"] -= min_serv_chg
+						servicechgaccount["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
@@ -3472,7 +3472,7 @@
 			var/datum/db_record/account = null
 			account = FindBankAccountByName(src.scan.registered)
 			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 
