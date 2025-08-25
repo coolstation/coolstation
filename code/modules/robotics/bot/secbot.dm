@@ -859,7 +859,7 @@
 
 			var/datum/signal/signal = get_free_signal()
 			signal.source = src
-			signal.data["sender"] = src.botnet_id
+			signal.data["sender"] = src.net_id
 			signal.data["command"] = "text_message"
 			signal.data["sender_name"] = src
 			signal.data["group"] = list(MGD_SECURITY, MGA_ARREST)
@@ -1159,7 +1159,7 @@
 	proc/post_signal_multiple(var/freq, var/list/keyval)
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.data["sender"] = src.botnet_id
+		signal.data["sender"] = src.net_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, freq)

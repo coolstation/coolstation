@@ -168,7 +168,6 @@
 
 	var/control_freq = FREQ_ROBUDDY		// bot control frequency
 	var/beacon_freq = FREQ_BOT_NAV
-	var/net_id = null
 	var/last_comm = 0 //World time of last transmission
 	var/reply_wait = 0
 

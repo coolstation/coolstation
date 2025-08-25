@@ -810,7 +810,7 @@
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.data["sender"] = src.botnet_id
+		signal.data["sender"] = src.net_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, freq)

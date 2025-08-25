@@ -286,8 +286,6 @@ Handsaw
 	//net_id block, except computers, where we do it all in one go
 	if (hasvar(target, "net_id"))
 		net_id = target:net_id
-	else if (hasvar(target, "botnet_id"))
-		net_id = target:botnet_id
 	else if (istype(target,/obj/machinery/computer3))
 		var/obj/computer = target
 		var/obj/item/peripheral/network/peripheral = locate(/obj/item/peripheral/network) in computer.contents

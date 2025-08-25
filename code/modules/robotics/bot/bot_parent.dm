@@ -21,7 +21,7 @@
 	var/emagged = 0
 	var/mob/emagger = null
 	/// The bot's net ID
-	var/botnet_id = null
+	var/net_id = null
 	/// What's it talk like?
 	var/list/speakverbs = list("beeps", "boops")
 	var/text2speech = 0 // dectalk!
@@ -93,7 +93,7 @@
 		SPAWN_DBG(0.5 SECONDS)
 			src.botcard = new /obj/item/card/id(src)
 			src.botcard.access = get_access(src.access_lookup)
-			src.botnet_id = format_net_id("\ref[src]")
+			src.net_id = format_net_id("\ref[src]")
 
 	disposing()
 		botcard = null
