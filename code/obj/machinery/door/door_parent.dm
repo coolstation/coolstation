@@ -309,9 +309,6 @@
 
 	src.add_fingerprint(user)
 
-	if(!I)
-		return ..()
-
 	if (src.isblocked() == 1)
 		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
@@ -340,6 +337,9 @@
 			src.last_used = world.time
 			src.close()
 		return
+
+	if(!I)
+		return ..()
 
 	if(istype(I, /obj/item/card/emag) && !src.cant_emag)
 		return
