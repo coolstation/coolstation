@@ -210,7 +210,7 @@
 		M.attack_particle.icon_state = "[M.a_intent]"
 
 	M.attack_particle.alpha = 180
-	M.attack_particle.loc = M.loc
+	M.attack_particle.set_loc(M.loc)
 	var/image/fake
 	if(hidden)
 		fake = image(M.attack_particle.icon,M.attack_particle,M.attack_particle.icon_state)
@@ -261,7 +261,7 @@
 		M.attack_particle.icon_state = "interact"
 
 		M.attack_particle.alpha = 180
-		M.attack_particle.loc = M.loc
+		M.attack_particle.set_loc(M.loc)
 		M.attack_particle.pixel_x = 0
 		M.attack_particle.pixel_y = 0
 
@@ -310,7 +310,7 @@
 			M.attack_particle.icon_state = "[M.a_intent]"
 
 		M.attack_particle.alpha = 200
-		M.attack_particle.loc = thing.loc
+		M.attack_particle.set_loc(thing.loc)
 		M.attack_particle.pixel_x = I.pixel_x + (diff_x*32)
 		M.attack_particle.pixel_y = I.pixel_y + (diff_y*32)
 
@@ -347,7 +347,7 @@
 		M.attack_particle.icon_state = "pull"
 
 		M.attack_particle.alpha = 200
-		M.attack_particle.loc = M.loc
+		M.attack_particle.set_loc(M.loc)
 		M.attack_particle.pixel_x = I.pixel_x + (diff_x*32)
 		M.attack_particle.pixel_y = I.pixel_y + (diff_y*32)
 
@@ -385,7 +385,7 @@
 		M.attack_particle.icon_state = "unpull"
 
 		M.attack_particle.alpha = 200
-		M.attack_particle.loc = M.loc
+		M.attack_particle.set_loc(M.loc)
 		M.attack_particle.pixel_x = M.get_hand_pixel_x()
 		M.attack_particle.pixel_y = M.get_hand_pixel_y()
 
@@ -410,7 +410,7 @@
 	M.attack_particle.icon_state = "block"
 
 	M.attack_particle.alpha = 255
-	M.attack_particle.loc = M.loc
+	M.attack_particle.set_loc(M.loc)
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -441,7 +441,7 @@
 	M.attack_particle.icon_state = state_string
 
 	M.attack_particle.alpha = 255
-	M.attack_particle.loc = M.loc
+	M.attack_particle.set_loc(M.loc)
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -519,9 +519,9 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 /proc/sprint_particle(var/mob/M, var/turf/T = null)
 	if (!M || !M.sprint_particle) return
 	if (T)
-		M.sprint_particle.loc = T
+		M.sprint_particle.set_loc(T)
 	else
-		M.sprint_particle.loc = M.loc
+		M.sprint_particle.set_loc(M.loc)
 
 	M.sprint_particle.set_dir(null)
 	if (M.sprint_particle.icon_state == "sprint_cloud")
@@ -531,14 +531,14 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.6 SECONDS)
 		if (M.sprint_particle.loc == T)
-			M.sprint_particle.loc = null
+			M.sprint_particle.set_loc(null)
 
 /proc/sprint_particle_small(var/mob/M, var/turf/T = null, var/direct = null)
 	if (!M || !M.sprint_particle) return
 	if (T)
-		M.sprint_particle.loc = T
+		M.sprint_particle.set_loc(T)
 	else
-		M.sprint_particle.loc = M.loc
+		M.sprint_particle.set_loc(M.loc)
 
 	M.sprint_particle.set_dir(direct)
 	if (M.sprint_particle.icon_state == "sprint_cloud_small")
@@ -547,14 +547,14 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.4 SECONDS)
 		if (M.sprint_particle?.loc == T)
-			M.sprint_particle.loc = null
+			M.sprint_particle.set_loc(null)
 
 /proc/sprint_particle_tiny(var/mob/M, var/turf/T = null, var/direct = null)
 	if (!M || !M.sprint_particle) return
 	if (T)
-		M.sprint_particle.loc = T
+		M.sprint_particle.set_loc(T)
 	else
-		M.sprint_particle.loc = M.loc
+		M.sprint_particle.set_loc(M.loc)
 
 	M.sprint_particle.set_dir(direct)
 	if (M.sprint_particle.icon_state == "sprint_cloud_tiny")
@@ -563,7 +563,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.3 SECONDS)
 		if (M.sprint_particle.loc == T)
-			M.sprint_particle.loc = null
+			M.sprint_particle.set_loc(null)
 
 /proc/attack_twitch(var/atom/A)
 	if (!istype(A) || istype(A, /mob/living/object))

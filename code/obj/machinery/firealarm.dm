@@ -7,6 +7,7 @@
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "fire0"
 	plane = PLANE_NOSHADOW_ABOVE
+	pass_unstable = FALSE
 	deconstruct_flags = DECON_WIRECUTTERS | DECON_MULTITOOL
 	machine_registry_idx = MACHINES_FIREALARMS
 	power_usage = 10

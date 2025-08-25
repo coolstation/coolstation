@@ -148,7 +148,7 @@ var/datum/particleMaster/particleMaster = new
 
 		if (istype(pType))
 			var/obj/particle/p = new_particle(particleTime)
-			p.loc = get_turf(location)
+			p.set_loc(get_turf(location))
 			p.color = particleColor
 			if (particleSprite)
 				p.override_state = particleSprite

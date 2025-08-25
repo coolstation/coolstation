@@ -300,7 +300,7 @@
 		if (!grab_item.special_grab)
 			return
 		var/obj/item/grab/G = new grab_item.special_grab(grab_item, src, target)
-		G.loc = grab_item
+		G.set_loc(grab_item)
 		.= G
 
 	for (var/obj/item/grab/block/G in target.equipped_list(check_for_magtractor = 0)) //being grabbed breaks a block

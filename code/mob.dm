@@ -245,7 +245,7 @@
 // mob procs
 /mob/New(loc, datum/appearanceHolder/AH_passthru)	// I swear Adhara is the reason half my code even comes close to working
 	src.AH_we_spawned_with = AH_passthru
-	src.loc = loc
+	src.set_loc(loc)
 	organs = new
 	grabbed_by = new
 	resistances = new

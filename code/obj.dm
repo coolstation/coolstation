@@ -290,6 +290,7 @@
 		return
 
 /obj/lattice
+	pass_unstable = FALSE
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'

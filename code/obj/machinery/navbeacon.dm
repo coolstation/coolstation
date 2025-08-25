@@ -11,6 +11,7 @@
 	layer = CABLE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
 	anchored = 1
+	pass_unstable = FALSE
 
 	var/open = 0		// true if cover is open
 	var/locked = 1		// true if controls are locked

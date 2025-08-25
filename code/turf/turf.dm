@@ -29,7 +29,7 @@
 	#undef _UNSIM_TURF_GAS_DEF
 
 	/// Sum of all unstable atoms on the turf.
-	pass_unstable = TRUE
+	pass_unstable = FALSE
 	/// Whether this turf is passable. Used in the pathfinding system.
 	var/tmp/passability_cache
 

@@ -12,6 +12,7 @@
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
+	pass_unstable = FALSE
 
 	var/machinery_flags = 0
 	var/status = 0
