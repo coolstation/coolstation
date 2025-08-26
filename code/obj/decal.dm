@@ -322,6 +322,7 @@ obj/decal/fakeobjects
 	icon ='icons/obj/objects.dmi'
 	icon_state = "statuepupkin"
 	density = 1
+	pass_unstable = FALSE
 
 	New()
 		..()
@@ -346,6 +347,7 @@ obj/decal/fakeobjects
 	name = "Boxing Ropes"
 	desc = "Do not exit the ring."
 	density = 1
+	pass_unstable = FALSE
 	anchored = 1
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
@@ -630,6 +632,7 @@ obj/decal/fakeobjects
 	icon_state = "cragrock1"
 	pixel_x = -16
 	density = 1
+	pass_unstable = FALSE
 	opacity = 0
 	anchored = 1
 	//plane = PLANE_NOSHADOW_ABOVE

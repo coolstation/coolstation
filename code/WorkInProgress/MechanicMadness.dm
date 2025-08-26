@@ -293,7 +293,7 @@
 	icon_state = "comp_button"
 	var/icon_up = "comp_button"
 	var/icon_down = "comp_button1"
-	density = 1
+	density = 0
 	anchored= 1
 	level=1
 	w_class = W_CLASS_BULKY

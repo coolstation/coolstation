@@ -2,8 +2,10 @@
 	/// List of types which are permitted to violate certain stability rules.
 	var/permitted_instability = list(
 		/atom = list("CanPass"), // Density check, handled in jpsTurfPassable.
-		/turf = list("Enter", "Exit"), // newloc smuggling, optimizations & vismirrors
+		/turf = list("Enter", "Exit", "CanPass"), // newloc smuggling, optimizations & vismirrors
+		/turf/cordon = list("Enter"), // cordons are never crossable
 		/turf/floor = list("CanPass"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
+		/turf/null_hole = list("Enter"), // null holes arent pathable
 		/obj/grille/catwalk = list("CanPass"), //catwalks are the nondense variant that never blocks
 		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
 		/mob/living/critter/robotic/bot = list("CanPass"), // likewise
@@ -40,8 +42,11 @@
 			var/unstable_parent = predecessor_path_in_list(type, unstable_types)
 			if(unstable_parent)
 				var/list/blocking_procs_list = unstable_types[unstable_parent]
-				var/blocking_procs = istype(blocking_procs_list) ? blocking_procs_list.Join(", ") : "forbidden procs"
-				Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_procs]")
+				var/parents_permitted_procs = src.permitted_instability[unstable_parent]
+				for(var/blocking_proc in blocking_procs_list)
+					if(blocking_proc in parents_permitted_procs)
+						continue
+					Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_procs]")
 
 		var/procs = procs_by_type[type]
 		if(!procs)
@@ -54,7 +59,7 @@
 				if(forbidden_proc in permitted_procs)
 					continue // Don't track permitted instability
 				LAZYLISTADD(unstable_types[type], forbidden_proc)
-				if(!instability)
+				if(instability != TRUE)
 					Fail("[type] is stable and must not implement [forbidden_proc]")
 
 		// Fail if this type preserves the cache but can alter passability - maybe expand this check to instantiation and CanPass later?

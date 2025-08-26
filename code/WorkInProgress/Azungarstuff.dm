@@ -229,6 +229,7 @@
 	icon_state = "smallrocks"
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/mining_tool/power_pick))
@@ -244,7 +245,7 @@
 	icon_state = "bigrocks"
 	anchored = 1
 	density = 1
-
+	pass_unstable = FALSE
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/mining_tool/power_pick))
@@ -677,6 +678,7 @@
 	icon_state = "manta"
 	anchored = 2
 	density = 1
+	pass_unstable = FALSE
 	bound_height = 32
 	bound_width = 96
 	layer = EFFECTS_LAYER_BASE

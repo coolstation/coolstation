@@ -1076,6 +1076,7 @@ proc/generate_space_color()
 	invisibility = 101
 	explosion_resistance = 999999
 	density = 1
+	pathable = FALSE
 	opacity = 1
 
 	Enter()
@@ -1345,6 +1346,7 @@ proc/generate_space_color()
 	name = "expedition chute"
 	icon = 'icons/obj/machines/delivery.dmi'
 	icon_state = "floorflush_o"
+	pathable = FALSE
 
 	Enter(atom/movable/mover, atom/forget)
 		. = ..()
