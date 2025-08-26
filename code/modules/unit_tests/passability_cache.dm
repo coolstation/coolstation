@@ -4,10 +4,11 @@
 		/atom = list("CanPass"), // Density check, handled in jpsTurfPassable.
 		/turf = list("Enter", "Exit"), // newloc smuggling, optimizations & vismirrors
 		/turf/floor = list("CanPass"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
-		/obj/machinery/bot = list("CanPass"), // only blocks projectiles, probably
+		/obj/grille/catwalk = list("CanPass"), //catwalks are the nondense variant that never blocks
 		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
 		/mob/living/critter/robotic/bot = list("CanPass"), // likewise
 		/mob/living/intangible = list("CanPass"), // dont even break cache for these
+		/obj/machinery/bot = list("CanPass"), // only blocks projectiles, probably
 		/turf/floor/setpieces/gauntlet = list("CanPass"), //pods
 		/turf/floor/setpieces/gauntlet/pod = list("CanPass"), //pods
 	)
@@ -35,7 +36,7 @@
 		var/stability = initial(atom_type.pass_unstable)
 
 		// Fail if this type is the first descendant of a unstable lineage to claim to be stable.
-		if(!stability && direct_parent && initial(direct_parent.pass_unstable))
+		if(!instability && direct_parent && initial(direct_parent.pass_unstable))
 			var/unstable_parent = predecessor_path_in_list(type, unstable_types)
 			if(unstable_parent)
 				var/list/blocking_procs_list = unstable_types[unstable_parent]
@@ -53,11 +54,11 @@
 				if(forbidden_proc in permitted_procs)
 					continue // Don't track permitted instability
 				LAZYLISTADD(unstable_types[type], forbidden_proc)
-				if(stability)
+				if(!instability)
 					Fail("[type] is stable and must not implement [forbidden_proc]")
 
 		// Fail if this type preserves the cache but can alter passability - maybe expand this check to instantiation and CanPass later?
-		if(stability & PRESERVE_CACHE)
+		if(instability & PRESERVE_CACHE)
 			if(initial(atom_type.density))
 				Fail("[type] is JPS cache preserving and must not be dense")
 

@@ -80,6 +80,7 @@
 	icon_state = "reaverbot"
 	health = 50
 	density = 1
+	pass_unstable = FALSE
 	emagged = 1
 	terrifying = 1
 	anchored = 1 // don't drag it into space goddamn jerks

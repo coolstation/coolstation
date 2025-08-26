@@ -379,6 +379,7 @@ obj/decal/fakeobjects
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
+	pass_unstable = TRUE
 
 	rotatable = 0
 	foldable = 0

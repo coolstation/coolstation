@@ -1366,6 +1366,7 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	item_state = "table_parts"
 	density = 1
+	pass_unstable = FALSE
 	force = 1.0
 	throwforce = 3.0
 	throw_speed = 1

@@ -215,6 +215,7 @@
 		.+="[src.welded ? " It is welded shut." : ""][src.open ? " Its cover has been opened." : ""]\
 		[src.anchored ? "It is [src.open || src.welded ? "also" : ""] anchored to the ground." : ""]"
 	housing_large // chonker
+		pass_unstable = FALSE
 		can_be_welded=true
 		can_be_anchored=true
 		slots=CABINET_CAPACITY // wew, dont use this in-hand or equipped!
@@ -2747,6 +2748,7 @@
 	var/icon_down = "comp_button1"
 	plane = PLANE_DEFAULT
 	density = 1
+	pass_unstable = FALSE
 
 	New()
 		..()

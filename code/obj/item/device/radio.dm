@@ -1016,6 +1016,7 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 	broadcasting = 0
 	listening = 0		//maybe this doesn't need to be on. It shouldn't be relaying signals.
 	density = 1
+	pass_unstable = FALSE
 	rand_pos = 0
 	desc = "A HAM radio transmitter...Basically...It only transmits to loudspeakers on a secure frequency."
 	frequency = R_FREQ_LOUDSPEAKERS
