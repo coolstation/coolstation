@@ -46,7 +46,7 @@
 				for(var/blocking_proc in blocking_procs_list)
 					if(blocking_proc in parents_permitted_procs)
 						continue
-					Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_procs]")
+					Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_proc]")
 
 		var/procs = procs_by_type[type]
 		if(!procs)
