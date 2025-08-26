@@ -169,20 +169,20 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	desc = "Scan yourself for reagents."
 	targeted = FALSE
 	cooldown = 5 SECONDS
-	icon_state = "clean_scan"
+	icon_state = "cleanbot_scan"
 	var/reagent_id = null
 
 	cast(atom/target)
 		if(!holder?.owner?.reagents)
 			return TRUE
-		boutput(holder.owner, "[scan_reagents(holder.owner, visible = 1)]")
+		boutput(holder.owner, "[scan_reagents(holder.owner, show_temp = 1, visible = 1, show_volume = 1)]")
 
 /datum/targetable/critter/bot/dump_reagents
 	name = "Dump Reagents"
 	desc = "Dump all your reagents on the floor."
 	targeted = FALSE
 	cooldown = 10 SECONDS
-	icon_state = "clean_dump"
+	icon_state = "cleanbot_spill"
 
 	cast()
 		if (!holder?.owner?.reagents)
@@ -528,7 +528,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 /mob/living/critter/robotic/bot/securitron/special_movedelay_mod(delay, space_movement, aquatic_movement)
 	var/chase_delay = BASE_SPEED
-	if (src.is_npc && src.ai && src.ai.target && isliving(src.ai.target))
+	if (src.client || (src.is_npc && src.ai && src.ai.target && isliving(src.ai.target)))
 		chase_delay -= src.chase_speed_bonus
 	. = ..(chase_delay, space_movement, aquatic_movement)
 
@@ -791,7 +791,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 /mob/living/critter/robotic/bot/securitron/was_harmed(mob/attacker, obj/attacked_with, special, intent)
 	..()
-	if(!src.ai.enabled || istype(attacker, /mob/living/critter/robotic/bot/securitron))
+	if(!src.ai?.enabled || istype(attacker, /mob/living/critter/robotic/bot/securitron))
 		return
 	if(attacker.hasStatus("handcuffed") && !src.is_detaining)
 		return
@@ -849,7 +849,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	max_range = 1
 	cooldown = 4 SECONDS
 	icon = 'icons/ui/critter_ui.dmi'
-	icon_state = "firebot_fire"
+	icon_state = "secbot_detain"
 
 /datum/targetable/critter/bot/handcuff/cast(atom/target)
 	if (..())
@@ -962,9 +962,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		var/mob/M = hit_atom
 		M.do_disorient(150, weakened = 120, disorient = 60)
 
-/mob/living/critter/robotic/bot/securitron/spiderseeking
-	name = "spiderhound"
-	real_name = "spiderhound"
+/mob/living/critter/robotic/bot/securitron/weedhound
+	name = "weedhound"
+	real_name = "weedhound"
 	ai_type = /datum/aiHolder/patroller
 
 /mob/living/critter/robotic/bot/securitron/beepsky
@@ -987,7 +987,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	icon = 'icons/misc/halloween.dmi'
 
 /mob/living/critter/robotic/bot/securitron/emagged
-	desc = "A tattered and rusted security bot, held together only by the will of some wretched elder god."
+	desc = "A tattered and rusted security bot, held together only by hate."
 	health_brute = 5
 	health_burn = 5
 	emagged = 1

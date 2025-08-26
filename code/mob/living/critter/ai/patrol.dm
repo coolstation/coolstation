@@ -16,7 +16,7 @@
 	distance_from_target = 0
 	max_dist = 7
 	var/combat_subtask_type = /datum/aiTask/concurrent/violence/fixed_target
-	var/targeting_subtask_type = /datum/aiTask/succeedable/patrol_target_locate/spider_hunter
+	var/targeting_subtask_type = /datum/aiTask/succeedable/patrol_target_locate/weedhound
 	var/datum/aiTask/succeedable/move/move_subtask
 	var/datum/aiTask/concurrent/violence/fixed_target/combat_subtask
 	var/datum/aiTask/succeedable/patrol_target_locate/targeting_subtask
@@ -93,12 +93,13 @@
 	. = ..()
 	src.target = null
 
-/// magically hunt down a spider
-/datum/aiTask/succeedable/patrol_target_locate/spider_hunter/on_tick()
+/// magically hunt down a weed
+/datum/aiTask/succeedable/patrol_target_locate/weedhound/on_tick()
 	. = ..()
-	for(var/mob/M in by_cat[TR_CAT_SPIDER_FILTER_MOBS])
-		if (M.z == holder.owner.z)
-			src.holder.target = M
+	for(var/C in by_type[/obj/item/plant/herb/cannabis])
+		var/turf/T = get_turf(C)
+		if (T.z == holder.owner.z)
+			src.holder.target = C
 			break
 
 /// packet based patrol pattern
