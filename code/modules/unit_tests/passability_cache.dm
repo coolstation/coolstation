@@ -6,6 +6,7 @@
 		/turf/cordon = list("Enter"), // cordons are never crossable
 		/turf/floor = list("CanPass"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
 		/turf/null_hole = list("Enter"), // null holes arent pathable
+		/turf/shuttle = list("CanPass"), // yet again, pods
 		/obj/grille/catwalk = list("CanPass"), //catwalks are the nondense variant that never blocks
 		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
 		/mob/living/critter/robotic/bot = list("CanPass"), // likewise
@@ -42,9 +43,9 @@
 			var/unstable_parent = predecessor_path_in_list(type, unstable_types)
 			if(unstable_parent)
 				var/list/blocking_procs_list = unstable_types[unstable_parent]
-				var/parents_permitted_procs = src.permitted_instability[unstable_parent]
+				var/permitted_procs = src.permitted_instability[type]
 				for(var/blocking_proc in blocking_procs_list)
-					if(blocking_proc in parents_permitted_procs)
+					if(blocking_proc in permitted_procs)
 						continue
 					Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_proc]")
 

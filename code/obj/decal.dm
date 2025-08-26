@@ -347,7 +347,7 @@ obj/decal/fakeobjects
 	name = "Boxing Ropes"
 	desc = "Do not exit the ring."
 	density = 1
-	pass_unstable = FALSE
+	pass_unstable = TRUE
 	anchored = 1
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
