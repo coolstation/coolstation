@@ -690,6 +690,7 @@
 			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing && !(src.pulling && src.pulling.density)) // mutual brohugs all around!
 				var/turf/oldloc = src.loc
 				var/turf/newloc = tmob.loc
+				src.skip_loc_change_updates = TRUE
 
 				src.set_loc(newloc)
 				tmob.set_loc(oldloc)
@@ -702,6 +703,7 @@
 				tmob.deliver_move_trigger("swap")
 				tmob.update_grab_loc()
 				src.now_pushing = 0
+				src.skip_loc_change_updates = FALSE
 
 				return
 
@@ -730,7 +732,9 @@
 			else if (locate(/obj/hotspot) in victim.loc)
 				logTheThing("combat", src, victim, "pushes [constructTarget(victim,"combat")] into a fire.")
 
+		src.skip_loc_change_updates = TRUE
 		step(src,t)
+		src.skip_loc_change_updates = FALSE
 		AM.OnMove(src)
 		//src.OnMove(src) //dont do this here - this Bump() is called from a process_move which sould be calling onmove for us already
 		AM.glide_size = src.glide_size

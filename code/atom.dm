@@ -391,6 +391,8 @@
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/throwforce = 1
+	/// while this is set, the AM doesnt update flags while moving. pushing and mob swapping made this necessary
+	var/skip_loc_change_updates = FALSE
 
 	var/soundproofing = 5
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE
@@ -539,7 +541,7 @@
 	. = ..()
 	src.move_speed = TIME - src.l_move_time
 	src.l_move_time = TIME
-	if (A != src.loc)
+	if (A != src.loc &&  !src.skip_loc_change_updates)
 		if(A?.z == src.z)
 			src.last_move = get_dir(A, src.loc)
 			if (length(src.attached_objs))
@@ -935,44 +937,45 @@
 	// We only need to do any of these checks if one of the flags is set OR density = 1
 	var/do_checks = (src.event_handler_flags & (USE_CHECKEXIT | USE_CANPASS | USE_HASENTERED | USE_PROXIMITY)) || src.density == 1
 
-	if (oldlocs && length(oldlocs))
-		for(var/turf/covered_turf in oldlocs)
-			covered_turf.pass_unstable -= src.pass_unstable
-			covered_turf.passability_cache = null
+	if(!src.skip_loc_change_updates)
+		if (oldlocs && length(oldlocs))
+			for(var/turf/covered_turf in oldlocs)
+				covered_turf.pass_unstable -= src.pass_unstable
+				covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-			if(src.pass_unstable)
-				covered_turf.pass_unstable_debug -= src
+				if(src.pass_unstable)
+					covered_turf.pass_unstable_debug -= src
 #endif
-			if(do_checks)
-				if (src.event_handler_flags & USE_CHECKEXIT)
-					covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
-				if (src.event_handler_flags & USE_CANPASS || src.density)
-					covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
-				if (src.event_handler_flags & USE_HASENTERED)
-					covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
-				if (src.event_handler_flags & USE_PROXIMITY)
-					covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
+				if(do_checks)
+					if (src.event_handler_flags & USE_CHECKEXIT)
+						covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
+					if (src.event_handler_flags & USE_CANPASS || src.density)
+						covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
+					if (src.event_handler_flags & USE_HASENTERED)
+						covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
+					if (src.event_handler_flags & USE_PROXIMITY)
+						covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
 
-	if (isturf(src.loc))
-		last_turf = src.loc
-		for(var/turf/covered_turf in src.locs)
-			covered_turf.pass_unstable += src.pass_unstable
-			covered_turf.passability_cache = null
+		if (isturf(src.loc))
+			last_turf = src.loc
+			for(var/turf/covered_turf in src.locs)
+				covered_turf.pass_unstable += src.pass_unstable
+				covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-			if(src.pass_unstable)
-				covered_turf.pass_unstable_debug += src
+				if(src.pass_unstable)
+					covered_turf.pass_unstable_debug += src
 #endif
-			if(do_checks)
-				if (src.event_handler_flags & USE_CHECKEXIT)
-					covered_turf.turf_persistent.checkingexit++
-				if (src.event_handler_flags & USE_CANPASS || src.density)
-					covered_turf.turf_persistent.checkingcanpass++
-				if (src.event_handler_flags & USE_HASENTERED)
-					covered_turf.turf_persistent.checkinghasentered++
-				if (src.event_handler_flags & USE_PROXIMITY)
-					covered_turf.checkinghasproximity++
-	else
-		last_turf = 0
+				if(do_checks)
+					if (src.event_handler_flags & USE_CHECKEXIT)
+						covered_turf.turf_persistent.checkingexit++
+					if (src.event_handler_flags & USE_CANPASS || src.density)
+						covered_turf.turf_persistent.checkingcanpass++
+					if (src.event_handler_flags & USE_HASENTERED)
+						covered_turf.turf_persistent.checkinghasentered++
+					if (src.event_handler_flags & USE_PROXIMITY)
+						covered_turf.checkinghasproximity++
+		else
+			last_turf = 0
 
 
 	if(src.medium_lights)
