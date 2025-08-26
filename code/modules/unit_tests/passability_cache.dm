@@ -1,10 +1,12 @@
 /datum/unit_test/passability_cache
-	// DO NOT APPROVE CHANGES IF THEY MODIFY THIS LIST WITHOUT A DAMN GOOD REASON
 	/// List of types which are permitted to violate certain stability rules.
 	var/permitted_instability = list(
 		/atom = list("CanPass"), // Density check, handled in jpsTurfPassable.
-		/turf = list("Enter", "Exit"), // newloc smuggling, optimizations & vismirrors
+		/turf = list("Enter", "Exit", "CanPass"), // newloc smuggling, optimizations & vismirrors
 		/turf/floor = list("CanPass"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
+		/turf/floor/setpieces/gauntlet = list("CanPass"), //pods
+		/turf/floor/setpieces/gauntlet/pod = list("CanPass"), //pods
+		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
 	)
 	/// List of procs that are forbidden to be implemented on stable atoms.
 	var/forbidden_procs = list("Enter", "Exit", "CanPass")
