@@ -33,7 +33,7 @@
 		var/atom/direct_parent
 		if(ispath(direct_parent_path, /atom))
 			direct_parent = direct_parent_path
-		var/stability = initial(atom_type.pass_unstable)
+		var/instability = initial(atom_type.pass_unstable)
 
 		// Fail if this type is the first descendant of a unstable lineage to claim to be stable.
 		if(!instability && direct_parent && initial(direct_parent.pass_unstable))
