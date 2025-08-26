@@ -1,5 +1,5 @@
 /obj/decal
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	text = ""
 	var/list/random_icon_states = list()
 	var/random_dir = 0

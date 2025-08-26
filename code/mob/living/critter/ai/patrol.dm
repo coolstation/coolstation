@@ -1,4 +1,5 @@
 /datum/aiHolder/patroller
+	move_frustration_increase = 0
 	var/datum/aiTask/default_task_type = /datum/aiTask/patrol
 
 /datum/aiHolder/patroller/New()

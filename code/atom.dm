@@ -44,6 +44,7 @@
 	var/gas_impermeable = FALSE
 
 	/// Whether pathfinding is forbidden from caching the passability of this atom. See [/turf/passability_cache]
+	/// can be either FALSE, TRUE, or PRESERVE_CACHE
 	var/tmp/pass_unstable = TRUE
 
 /* -------------------- name stuff -------------------- */
@@ -364,7 +365,7 @@
 /atom/movable/overlay
 	var/atom/master = null
 	anchored = 1
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 
 /atom/movable/overlay/gibs
 	icon_state = "blank"
@@ -430,8 +431,9 @@
 		if(src.opacity)
 			T.turf_persistent.opaque_atom_count++
 		for(var/turf/covered_turf in src.locs)
-			covered_turf.pass_unstable += src.pass_unstable
-			covered_turf.passability_cache = null
+			if(!(src.pass_unstable & PRESERVE_CACHE))
+				covered_turf.pass_unstable += src.pass_unstable
+				covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 			if(src.pass_unstable)
 				covered_turf.pass_unstable_debug += src
@@ -555,8 +557,9 @@
 
 		if (old_locs && length(old_locs))
 			for(var/turf/covered_turf in old_locs)
-				covered_turf.pass_unstable -= src.pass_unstable
-				covered_turf.passability_cache = null
+				if(!(src.pass_unstable & PRESERVE_CACHE))
+					covered_turf.pass_unstable -= src.pass_unstable
+					covered_turf.passability_cache = null
 	#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 				if(src.pass_unstable)
 					covered_turf.pass_unstable_debug -= src
@@ -581,8 +584,9 @@
 					covered_turf.turf_persistent.checkinghasentered++
 				if (src.event_handler_flags & USE_PROXIMITY)
 					covered_turf.checkinghasproximity++
-				covered_turf.pass_unstable += src.pass_unstable
-				covered_turf.passability_cache = null
+				if(!(src.pass_unstable & PRESERVE_CACHE))
+					covered_turf.pass_unstable += src.pass_unstable
+					covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 				if(src.pass_unstable)
 					covered_turf.pass_unstable_debug += src
@@ -940,8 +944,9 @@
 	if(!src.skip_loc_change_updates)
 		if (oldlocs && length(oldlocs))
 			for(var/turf/covered_turf in oldlocs)
-				covered_turf.pass_unstable -= src.pass_unstable
-				covered_turf.passability_cache = null
+				if(!(src.pass_unstable & PRESERVE_CACHE))
+					covered_turf.pass_unstable -= src.pass_unstable
+					covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 				if(src.pass_unstable)
 					covered_turf.pass_unstable_debug -= src
@@ -959,8 +964,9 @@
 		if (isturf(src.loc))
 			last_turf = src.loc
 			for(var/turf/covered_turf in src.locs)
-				covered_turf.pass_unstable += src.pass_unstable
-				covered_turf.passability_cache = null
+				if(!(src.pass_unstable & PRESERVE_CACHE))
+					covered_turf.pass_unstable += src.pass_unstable
+					covered_turf.passability_cache = null
 #ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 				if(src.pass_unstable)
 					covered_turf.pass_unstable_debug += src

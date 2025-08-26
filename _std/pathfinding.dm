@@ -36,6 +36,9 @@
 /turf/var/list/pass_unstable_debug = list()
 #endif
 
+/// atoms with PRESERVE_CACHE will not invalidate the pathfinding cache while moving
+#define PRESERVE_CACHE (1<<1)
+
 /**
  * This is the proc you use whenever you want to have pathfinding more complex than "try stepping towards the thing".
  * If no path was found, returns an empty list, which is important for bots like medibots who expect an empty list rather than nothing.
@@ -491,6 +494,7 @@
 			is_cardinal(direction))
 		return T.passability_cache
 	if(T.density || !T.pathable)
+		T.passability_cache = FALSE
 		return FALSE
 	if(!is_cardinal(direction))
 		var/turf/corner_1 = get_step(source, turn(direction, 45))
@@ -522,7 +526,7 @@
 						continue
 					else
 						return FALSE
-		if(!A.Cross(passer))
+		if(!A.CanPass(passer))
 			. = FALSE
 	if(!T.pass_unstable && !source.pass_unstable) // Only these are cached, the rest are speical cases for unstable interactibles.
 		T.passability_cache = .

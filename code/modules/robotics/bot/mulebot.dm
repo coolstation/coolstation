@@ -15,6 +15,7 @@
 	on = 1
 	locked = 1
 	access_lookup = "Captain"
+	pass_unstable = FALSE
 	var/atom/movable/load = null		// the loaded crate (usually)
 
 	var/beacon_freq = FREQ_BOT_NAV

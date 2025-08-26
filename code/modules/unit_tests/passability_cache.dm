@@ -2,14 +2,15 @@
 	// DO NOT APPROVE CHANGES IF THEY MODIFY THIS LIST WITHOUT A DAMN GOOD REASON
 	/// List of types which are permitted to violate certain stability rules.
 	var/permitted_instability = list(
-		/atom = list("Cross"), // Density check, handled in jpsTurfPassable.
+		/atom = list("CanPass"), // Density check, handled in jpsTurfPassable.
 		/turf = list("Enter", "Exit"), // newloc smuggling, optimizations & vismirrors
-		/turf/simulated/floor = list("Cross"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
-		/turf/simulated/shuttle = list("Cross"), // ditto
-		/turf/unsimulated/floor = list("Cross") // ditto
+		/turf/floor = list("CanPass"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
+		/obj/machinery/bot = list("CanPass"), // only blocks projectiles, probably
+		/mob/living/critter/robotic/bot = list("CanPass"), // likewise
+		/mob/living/intangible  = list("CanPass"), // dont even break cache for these
 	)
 	/// List of procs that are forbidden to be implemented on stable atoms.
-	var/forbidden_procs = list("Enter", "Exit", "Cross", "Uncross")
+	var/forbidden_procs = list("Enter", "Exit", "CanPass")
 
 /**
  * JPS Passability cache flag [/atom/var/pass_unstable] correctness checking.
@@ -29,15 +30,15 @@
 		var/atom/direct_parent
 		if(ispath(direct_parent_path, /atom))
 			direct_parent = direct_parent_path
-		var/stable = !initial(atom_type.pass_unstable)
+		var/stability = initial(atom_type.pass_unstable)
 
 		// Fail if this type is the first descendant of a unstable lineage to claim to be stable.
-		if(stable && direct_parent && initial(direct_parent.pass_unstable))
+		if(!stability && direct_parent && initial(direct_parent.pass_unstable))
 			var/unstable_parent = predecessor_path_in_list(type, unstable_types)
 			if(unstable_parent)
 				var/list/blocking_procs_list = unstable_types[unstable_parent]
 				var/blocking_procs = istype(blocking_procs_list) ? blocking_procs_list.Join(", ") : "forbidden procs"
-				Fail("[type] cannot possibly be stable because [unstable_parent] implements [blocking_procs]")
+				Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_procs]")
 
 		var/procs = procs_by_type[type]
 		if(!procs)
@@ -50,5 +51,11 @@
 				if(forbidden_proc in permitted_procs)
 					continue // Don't track permitted instability
 				LAZYLISTADD(unstable_types[type], forbidden_proc)
-				if(stable)
+				if(stability)
 					Fail("[type] is stable and must not implement [forbidden_proc]")
+
+		// Fail if this type preserves the cache but can alter passability - maybe expand this check to instantiation and CanPass later?
+		if(stability & PRESERVE_CACHE)
+			if(initial(atom_type.density))
+				Fail("[type] is JPS cache preserving and must not be dense")
+

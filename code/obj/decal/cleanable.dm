@@ -16,7 +16,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 /obj/decal/cleanable
 	density = 0
 	anchored = 1
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	var/can_sample = 0
 	var/sampled = 0
 	var/sample_amt = 10

@@ -112,12 +112,7 @@
 	if(!src.move_target)
 		fails++
 		return
-	if(length(holder.target_path) && GET_DIST(holder.target_path[length(holder.target_path)], src.move_target) >= distance_from_target)
-		src.found_path = holder.target_path
-	else
-		src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
-		if(GET_DIST(get_turf(holder.target), src.move_target) >= distance_from_target)
-			holder.target_path = src.found_path
+	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
 		fails++
 
@@ -153,7 +148,7 @@
 
 /datum/aiTask/succeedable/move/succeeded()
 	if(src.move_target)
-		return ((GET_DIST(get_turf(holder.owner), get_turf(src.move_target)) <= distance_from_target) || (src.found_path && src.found_path.len <= distance_from_target))
+		return ((GET_DIST(get_turf(holder.owner), get_turf(src.move_target)) <= distance_from_target))
 
 /datum/aiTask/succeedable/move/inherit_target
 
@@ -218,13 +213,7 @@
 /datum/aiTask/endless/move/proc/get_path()
 	if(!src.move_target)
 		return
-	src.found_path = null
-	if(length(holder.target_path) && GET_DIST(holder.target_path[length(holder.target_path)], src.move_target) <= distance_from_target)
-		src.found_path = holder.target_path
-	else
-		src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
-		if(GET_DIST(get_turf(holder.target), src.move_target) <= distance_from_target)
-			holder.target_path = src.found_path
+	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
 		return
 

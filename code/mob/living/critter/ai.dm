@@ -15,6 +15,7 @@ var/list/ai_move_scheduled = list()
 	var/move_reverse = 0
 	var/move_side = 0 //merge with reverse later ok messy
 	var/move_frustration = 0
+	var/move_frustration_increase = 1
 	var/frustration_turn = 0
 
 	var/move_shuffle_at_target = 0 // chance to shuffle when at the right distance
@@ -174,7 +175,7 @@ var/list/ai_move_scheduled = list()
 			if(shuffling)
 				src.next_move_shuffle = world.time + rand(6,14) DECI SECONDS
 			if(src.owner?.loc == old_loc)
-				src.move_frustration++
+				src.move_frustration += src.move_frustration_increase
 			else
 				src.move_frustration = 0
 				if (src.frustration_turn && prob(20))

@@ -17,6 +17,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	density = FALSE
 	custom_gib_handler = /proc/robogibs
 	stepsound = null
+	pass_unstable = PRESERVE_CACHE
 	flags = FPRINT | FLUID_SUBMERGE | STAIR_ANIM
 	/// defined in new, this is the base of the icon_state with the suffix removed, i.e. "cleanbot" without the "1"
 	var/icon_state_base = null
@@ -332,7 +333,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		name = "Spray Burning Fuel"
 		desc = "Spray burning fuel all over the place. Highly flammable but near useless in flooded areas."
 		icon_state = "firebot_fire"
-		spray_reagents = list("fuel"=8)
+		spray_reagents = list("fuel"=5)
 		spray_temperature = T0C + 300
 		attack_mobs = TRUE
 		max_range = 4
@@ -343,7 +344,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		desc = "Unleash your spray foam cannon to send mobs flying."
 		attack_mobs = TRUE
 		max_range = 3
-		cooldown = 10 SECONDS
+		cooldown = 15 SECONDS
 
 		cast(atom/target)
 			if(..())
