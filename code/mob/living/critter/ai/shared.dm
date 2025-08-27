@@ -113,7 +113,7 @@
 		fails++
 		return
 	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
-	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
+	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
 		fails++
 
 /datum/aiTask/succeedable/move/on_reset()
@@ -214,7 +214,7 @@
 	if(!src.move_target)
 		return
 	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
-	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
+	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
 		return
 
 /datum/aiTask/endless/move/on_reset()
@@ -242,13 +242,9 @@
 				else
 					src.next_turf = get_turf(src.move_target)
 			holder.move_to(src.next_turf, 0)
-		else
-			get_path()
-			holder.move_to(src.move_target, distance_from_target) // fuck it!
-	else
-		// get a path
-		get_path()
-		holder.move_to(src.move_target, distance_from_target) // fuck it!
+			return
+	get_path()
+	holder.move_to(src.move_target, distance_from_target) // fuck it!
 
 /datum/aiTask/endless/move/inherit_target
 

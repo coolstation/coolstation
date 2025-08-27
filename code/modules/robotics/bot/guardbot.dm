@@ -1647,21 +1647,13 @@
 
 		return
 
-	navigate_to(atom/the_target,var/move_delay=3,var/adjacent=0,var/clear_frustration=1)
+	navigate_to(atom/the_target, var/move_delay = 3, var/adjacent = 0, var/turf/exclude = null, var/max_dist=120, var/clear_frustration = TRUE)
 		if(src.moving)
 			return 1
 		src.moving = 1
 		if (clear_frustration)
 			src.frustration = 0
-		if(src.mover)
-			qdel(src.mover)
-
-		src.mover = new /datum/guardbot_mover(src)
-
-		src.mover.delay = max(min(move_delay,5),2)
-		src.mover.master_move(the_target,adjacent)
-
-		return 0
+		. = ..()
 
 //Buddy handcuff bar thing
 /datum/action/bar/icon/buddy_cuff
@@ -2619,7 +2611,7 @@
 						if (master.mover)
 							qdel(master.mover)
 						master.moving = 0
-						master.navigate_to(arrest_target,ARREST_DELAY, 0, 0)
+						master.navigate_to(arrest_target,ARREST_DELAY, 0, clear_frustration = FALSE)
 						//master.current_movepath = "HEH" //Stop any current movement.
 
 		task_input(input)
@@ -3091,7 +3083,7 @@
 					master.frustration++
 					if (master.mover)
 						qdel(master.mover)
-					master.navigate_to(protected,3,1,1)
+					master.navigate_to(protected,3,1,clear_frustration = TRUE)
 					return
 				else
 
@@ -3107,7 +3099,7 @@
 						master.moving = 0
 						if (master.mover)
 							qdel(master.mover)
-						master.navigate_to(protected,3,1,1)
+						master.navigate_to(protected,3,1,clear_frustration = TRUE)
 
 			return
 

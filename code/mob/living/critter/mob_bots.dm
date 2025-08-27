@@ -18,7 +18,8 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	custom_gib_handler = /proc/robogibs
 	stepsound = null
 	pass_unstable = PRESERVE_CACHE
-	flags = FPRINT | FLUID_SUBMERGE | STAIR_ANIM
+	flags = FPRINT | FLUID_SUBMERGE
+	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS | IS_FARTABLE | STAIR_ANIM
 	/// defined in new, this is the base of the icon_state with the suffix removed, i.e. "cleanbot" without the "1"
 	var/icon_state_base = null
 	var/emagged = FALSE
@@ -130,7 +131,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot)
 /datum/targetable/critter/bot/mop_floor
 	name = "Mop Floor"
 	desc = "Clean the floor of dirt and other grime."
-	icon_state = "clean_mop"
+	icon_state = "cleanbot_mop"
 	targeted = TRUE
 	target_anything = TRUE
 	cooldown = 3 SECONDS
