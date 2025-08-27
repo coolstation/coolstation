@@ -1382,7 +1382,7 @@
 	patrolling
 		name = "Patrol"
 		desc = "Toggle patrolling"
-		icon_state = "secbot_patrol_off"
+		icon_state = "secbot_patrol_on"
 		base_icon_state = "secbot_patrol_"
 		setting = "patrolling"
 

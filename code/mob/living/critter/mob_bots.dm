@@ -368,7 +368,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	desc = "A little security robot.  It looks less than thrilled."
 	icon = 'icons/obj/bots/aibots.dmi'
 #endif
-	icon_state = "secbot0"
+	icon_state = "secbot1"
+	icon_state_base = "secbot"
 	blood_id = "oil"
 	hand_count = 1
 	base_move_delay = 3.25
@@ -613,6 +614,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if(src.power == on_off)
 		return
 	src.power = on_off
+	src.icon_state = "[src.icon_state_base][src.power]"
 	if (src.power)
 		src.say("TEN-FORTY ONE. [uppertext(src.name)]: ONLINE.")
 		add_simple_light("secbot", list(255, 255, 255, 0.4 * 255))
@@ -629,26 +631,31 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return src.power
 		if ("check_contraband")
 			src.check_contraband = !src.check_contraband
-			src.say("TEN-FOUR. CONTRABAND CHECKS: [src.check_contraband ? "ENGAGED" : "DISENGAGED"].")
+			if(src.power)
+				src.say("TEN-FOUR. CONTRABAND CHECKS: [src.check_contraband ? "ENGAGED" : "DISENGAGED"].")
 			return src.check_contraband
 		if ("check_records")
 			src.check_records = !src.check_records
-			src.say("TEN-FOUR. SECURITY RECORDS: [src.check_records ? "REFERENCED" : "IGNORED"].")
+			if(src.power)
+				src.say("TEN-FOUR. SECURITY RECORDS: [src.check_records ? "REFERENCED" : "IGNORED"].")
 			return src.check_records
 		if ("arrest_type")
 			src.is_detaining = !src.is_detaining
-			src.say("TEN-FOUR. ENGAGEMENT MODE: [src.is_detaining ? "DETAIN" : "RESTRAIN"].")
+			if(src.power)
+				src.say("TEN-FOUR. ENGAGEMENT MODE: [src.is_detaining ? "DETAIN" : "RESTRAIN"].")
 			if (istype(src.ai,/datum/aiHolder/patroller/packet_based/securitron))
 				var/datum/aiHolder/patroller/packet_based/securitron/securitron_ai = src.ai
 				securitron_ai.is_detaining = src.is_detaining
 			return src.is_detaining
 		if ("report_arrests")
 			src.report_arrests = !src.report_arrests
-			src.say("TEN-FOUR. [src.report_arrests ? "REPORTING ARRESTS ON: [FREQ_PDA]" : "LONE RANGER PROTOCOL ENGAGED."]")
+			if(src.power)
+				src.say("TEN-FOUR. [src.report_arrests ? "REPORTING ARRESTS ON: [FREQ_PDA]" : "LONE RANGER PROTOCOL ENGAGED."]")
 			return src.report_arrests
 		if ("patrolling")
 			src.patrolling = !src.patrolling
-			src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"]")
+			if(src.power)
+				src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"]")
 			return src.patrolling
 
 /mob/living/critter/robotic/bot/securitron/ai_is_valid_target(mob/M)
@@ -678,7 +685,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if(src.emagged > 1)
 		threatcount = rand(7,15)
 		EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", threatcount * 1.5 SECONDS)
-		return threatcount //Everything that moves is a crimer!
+		return threatcount //Everything that moves is a target!
 
 	if((src.check_contraband) || (ishuman(perp) && src.lockdown)) // bot is set to actively search for contraband or we need id due to lockdown
 		var/obj/item/card/id/perp_id = perp.equipped()
@@ -814,7 +821,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 /mob/living/critter/robotic/bot/securitron/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if(ON_COOLDOWN(src,"EMAG_COOLDOWN",12 SECONDS)) // no rapid double emags
 		if (user)
-			boutput(user, SPAN_ALERT("\The [src] can't be shorted out again this soon!"))
+			boutput(user, SPAN_ALERT("\The [src] is still sparking from the last time!"))
 		return 0
 
 	if (user)
@@ -823,7 +830,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 3 SECONDS) // just enough time to book it
 		else if(src.emagged == 1)
 			boutput(user, SPAN_ALERT("You scramble [src]'s target verification circuits!"))
-			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 0.5 SECONDS) // run fast
+			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 0.3 SECONDS) // run fast
+			src.AddComponent(/datum/component/waddling)
 		else
 			boutput(user, SPAN_ALERT("You mess with \the [src] a bit more, just for kicks."))
 	playsound(src, 'sound/effects/sparks4.ogg', 50, FALSE, 0, 1)
