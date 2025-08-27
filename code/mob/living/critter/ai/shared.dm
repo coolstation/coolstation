@@ -139,12 +139,11 @@
 							break
 					src.found_path.Cut(1, i)
 				else
-					src.next_turf = get_turf(src.move_target)
+					src.next_turf = get_turf(src.found_path[1])
 			holder.move_to(src.next_turf, 0)
-	else
-		// get a path
-		get_path()
-		holder.move_to(src.move_target, distance_from_target) // fuck it!
+			return
+	get_path()
+	holder.move_to(src.move_target, distance_from_target) // fuck it!
 
 /datum/aiTask/succeedable/move/succeeded()
 	if(src.move_target)
@@ -240,7 +239,7 @@
 							break
 					src.found_path.Cut(1, i)
 				else
-					src.next_turf = get_turf(src.move_target)
+					src.next_turf = get_turf(src.found_path[1])
 			holder.move_to(src.next_turf, 0)
 			return
 	get_path()
