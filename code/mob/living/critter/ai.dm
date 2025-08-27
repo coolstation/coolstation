@@ -131,6 +131,8 @@ var/list/ai_move_scheduled = list()
 		owner.move_dir = 0 //Fuck you wander task
 
 	proc/move_step()
+		if(GET_COOLDOWN(src.owner, "ACTION_BLOCKING_AI_MOVEMENT"))
+			return
 		var/atom/old_loc = src.owner.loc
 		var/turn = src.frustration_turn
 		// lil janky, but process_move returns a truthy value when movement was successful

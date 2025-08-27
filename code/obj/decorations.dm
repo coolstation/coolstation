@@ -933,7 +933,7 @@
 			icon_state = "ss10"
 
 obj/decoration
-
+	pass_unstable = FALSE
 
 obj/decoration/decorativeplant
 	name = "decorative plant"

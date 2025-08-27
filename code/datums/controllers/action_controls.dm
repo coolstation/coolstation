@@ -103,6 +103,10 @@ var/datum/action_controller/actions
 
 	proc/onStart()				   //Called when the action begins
 		state = ACTIONSTATE_RUNNING
+		if((src.interrupt_flags & INTERRUPT_MOVE) && isliving(src.owner))
+			var/mob/living/L = src.owner
+			if(L.ai)
+				OVERRIDE_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT", max(GET_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT"), src.duration + 1))
 		return
 
 	proc/onRestart()			   //Called when the action restarts (for example: automenders)
@@ -480,8 +484,7 @@ var/datum/action_controller/actions
 			CRASH("icon state set for action bar, but no icon was set")
 		if (end_message)
 			src.end_message = end_message
-		if (interrupt_flags)
-			src.interrupt_flags = interrupt_flags
+		src.interrupt_flags = interrupt_flags
 		//generate a id
 		if (src.proc_path)
 			src.id = "[src.proc_path]"

@@ -9,8 +9,12 @@
 		/turf/shuttle = list("CanPass"), // yet again, pods
 		/obj/grille/catwalk = list("CanPass"), //catwalks are the nondense variant that never blocks
 		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
+		/mob/dead = list("CanPass"), // ghooooosts
+		/mob/dead/observer = list("CanPass"), // spooooky
 		/mob/living/critter/robotic/bot = list("CanPass"), // likewise
 		/mob/living/intangible = list("CanPass"), // dont even break cache for these
+		/mob/living/seanceghost = list("CanPass"), // why isnt this intangible lol
+		/mob/zoldorf = list("CanPass"), // hate you zoldorf
 		/obj/machinery/bot = list("CanPass"), // only blocks projectiles, probably
 		/turf/floor/setpieces/gauntlet = list("CanPass"), //pods
 		/turf/floor/setpieces/gauntlet/pod = list("CanPass"), //pods

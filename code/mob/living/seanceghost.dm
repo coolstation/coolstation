@@ -9,6 +9,7 @@
 	blinded = 0
 	anchored = 1
 	alpha = 180
+	pass_unstable = PRESERVE_CACHE
 	var/obj/machinery/playerzoldorf/homebooth
 	var/mob/originalmob
 

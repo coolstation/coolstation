@@ -1,6 +1,7 @@
 /mob/dead
 	stat = 2
 	event_handler_flags = USE_CANPASS
+	pass_unstable = PRESERVE_CACHE
 
 // dead
 

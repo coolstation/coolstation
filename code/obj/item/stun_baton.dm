@@ -243,17 +243,14 @@
 			boutput(user, "<span class='alert'>The [src.name] doesn't have enough power to be turned on.</span>")
 			return
 
-		if (src.charge_time > 0)
+		if (src.charge_time > 0 && !src.is_active)
 			if(ON_COOLDOWN(src, "baton_cooldown", src.recharge_time))
 				user.show_text("[src] is recharging!", "red")
 				return
-			if(!src.is_active)
-				user.visible_message("<span class='alert'>[user] begins to charge up \the [src].</span>", "<span class='notice'>You start charging up \the [src].</span>", "<span class='alert'>You hear a sharp spark.</span>")
-				playsound(src, "sparks", 75, 1, -1)
-				SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(turn_on), user, src.icon, "[src.icon_on]", null, INTERRUPT_NONE)
-				return
-		else
-			src.is_active = !src.is_active
+			user.visible_message("<span class='alert'>[user] begins to charge up \the [src].</span>", "<span class='notice'>You start charging up \the [src].</span>", "<span class='alert'>You hear a sharp spark.</span>")
+			playsound(src, "sparks", 75, 1, -1)
+			SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(turn_on), user, src.icon, "[src.icon_on]", null, null)
+			return
 
 		if (src.can_stun() == 1 && user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(30))
 			src.do_stun(user, user, "failed", 1)
@@ -261,18 +258,9 @@
 			return
 
 		if (!src.is_active)
-			if(src.charge_time)
-				if(ON_COOLDOWN(src, "baton_cooldown", src.recharge_time))
-					user.show_text("[src] is recharging!", "red")
-					return
-				user.visible_message("<span class='alert'>[user] begins to charge up \the [src].</span>", "<span class='notice'>You start charging up \the [src].</span>", "<span class='alert'>You hear a sharp spark.</span>")
-				playsound(src, "sparks", 75, 1, -1)
-				SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(turn_on), user, src.icon, "[src.icon_on]", null, INTERRUPT_NONE)
-				return
-
 			src.turn_on(user)
 		else
-			if(src.charge_time)
+			if(src.active_time)
 				user.show_text("[src] can't be powered down manually!", "red")
 				return
 			src.turn_off(user)
@@ -379,13 +367,17 @@
 	mats = 0
 	rechargable = 0
 	charge_time = 0.2 SECONDS
-	active_time = 3.4 SECONDS
-	recharge_time = 7 SECONDS
+	active_time = 3.4 SECONDS // shove this mf
+	recharge_time = 5 SECONDS
 	cell_type = /obj/item/ammo/power_cell
 	w_class = W_CLASS_SMALL
 
 /obj/item/baton/mobsecbot/beepsky
-	active_time = 4.4 SECONDS
+	can_swap_cell = FALSE
+	rechargable = TRUE
+	charge_time = 0
+	active_time = 2.4 SECONDS // hes more careful
+	recharge_time = 4 SECONDS
 
 /obj/item/baton/secbot
 	cost_normal = 0

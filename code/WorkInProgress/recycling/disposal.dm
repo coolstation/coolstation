@@ -2162,6 +2162,7 @@
 	icon_state = "outlet"
 	density = 1
 	anchored = 1
+	pass_unstable = FALSE
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	mats = 12
