@@ -1093,7 +1093,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		name = "Replacement Mulebot"
 		desc = "For bolstering logistics delivery capacity, or if you joyrode the last one into space and lost it."
 		contents = "x1 Mulebot"
-		contains = list("/obj/machinery/bot/mulebot")
+		contains = list(/obj/machinery/bot/mulebot)
 		cost = 750
 		containertype = /obj/storage/crate
 		containername = "Replacement Mulebot Crate"
