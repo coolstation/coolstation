@@ -111,9 +111,9 @@
 	var/net_id
 	var/control_freq = FREQ_BOT_CONTROL
 	var/next_patrol_id
-	var/atom/nearest_beacon
+	var/turf/nearest_beacon_turf
 	var/nearest_beacon_id
-	var/nearest_dist
+	var/nearest_dist = INFINITY
 	targeting_subtask_type = /datum/aiTask/succeedable/patrol_target_locate/packet_based
 
 /datum/aiTask/patrol/packet_based/New()
@@ -184,28 +184,33 @@
 	if(signal.data["command"] == "patrol" && (!signal.data["beacon"] || !signal.data["patrol"] || !signal.data["next_patrol"]))
 		return FALSE
 
-	if(!src.next_patrol_id) // we have not yet found a beacon
-		var/dist = GET_DIST(get_turf(src.holder.owner),get_turf(signal.source))
-		if(nearest_beacon) // try to find a better beacon
+	if(!src.next_patrol_id && signal.data["x"] && signal.data["y"] && signal.data["z"]) // we have not yet found a beacon
+		var/turf/alleged_turf = locate(text2num_safe(signal.data["x"]), text2num_safe(signal.data["y"]), text2num_safe(signal.data["z"]))
+		if(!alleged_turf)
+			return
+		var/dist = GET_DIST(get_turf(src.holder.owner),alleged_turf)
+		if(nearest_beacon_turf) // try to find a better beacon
 			if(dist < nearest_dist)
-				src.nearest_beacon = signal.source
+				src.nearest_beacon_turf = alleged_turf
 				src.nearest_beacon_id = signal.data["beacon"]
 				src.nearest_dist = dist
 			return FALSE
 		else // start the 0.3 second countdown to assigning best found beacon as target
-			src.nearest_beacon = signal.source
+			src.nearest_beacon_turf = alleged_turf
 			src.nearest_beacon_id = signal.data["beacon"]
 			src.nearest_dist = dist
 			SPAWN_DBG(3 DECI SECONDS) // nav beacons have a decisecond delay before responding
-				src.holder.target = src.nearest_beacon
+				src.holder.target = src.nearest_beacon_turf
 				src.next_patrol_id = src.nearest_beacon_id
-				src.nearest_beacon = null
+				src.nearest_beacon_turf = null
 				src.nearest_beacon_id = null
-				src.nearest_dist = null
+				src.nearest_dist = INFINITY
 
-	else if(signal.data["beacon"] == src.next_patrol_id) // destination reached, or nerd successful
-		src.movement_target = signal.source
-		src.next_patrol_id = signal.data["next_patrol"]
+	else if(signal.data["beacon"] == src.next_patrol_id && signal.data["next_patrol"] && signal.data["x"] && signal.data["y"] && signal.data["z"]) // destination reached, or nerd successful
+		var/turf/alleged_turf = locate(text2num_safe(signal.data["x"]), text2num_safe(signal.data["y"]), text2num_safe(signal.data["z"]))
+		if(alleged_turf)
+			src.movement_target = alleged_turf
+			src.next_patrol_id = signal.data["next_patrol"]
 
 	return FALSE
 
