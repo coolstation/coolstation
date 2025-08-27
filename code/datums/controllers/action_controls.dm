@@ -106,7 +106,7 @@ var/datum/action_controller/actions
 		if((src.interrupt_flags & INTERRUPT_MOVE) && isliving(src.owner))
 			var/mob/living/L = src.owner
 			if(L.ai)
-				OVERRIDE_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT", max(GET_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT"), src.duration + 1))
+				OVERRIDE_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT", max(GET_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT"), src.duration + 0.5 SECONDS))
 		return
 
 	proc/onRestart()			   //Called when the action restarts (for example: automenders)

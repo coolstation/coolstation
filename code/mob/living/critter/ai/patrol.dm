@@ -263,49 +263,68 @@
 		var/area/potential_area = signal.data["target"]
 		if(!istype(potential_area) || potential_area.name == "Space" || potential_area.name == "Ocean") // we are NOT Podsky
 			return FALSE
+		src.targeting_subtask.terminated = TRUE
 		var/datum/aiTask/succeedable/patrol_target_locate/guard/guard_subtask = src.holder.get_instance(/datum/aiTask/succeedable/patrol_target_locate/guard, list(src.holder, src))
 		guard_subtask.guard_area = potential_area
 		src.targeting_subtask = guard_subtask
+		src.holder.stop_move()
+		src.move_subtask.reset()
 		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
 			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			securitron_owner.patrolling = TRUE
 			if(signal.data["command"] == "lockdown")
+				securitron_owner.say("TEN-FORTY FOUR. LOCKING DOWN [uppertext(potential_area.name)].")
 				securitron_owner.lockdown = TRUE
+				securitron_owner.guard_area_name = potential_area.name
 			else
+				securitron_owner.say("TEN-FOUR. GUARDING [uppertext(potential_area.name)].")
 				securitron_owner.lockdown = FALSE
+				securitron_owner.guard_area_name = potential_area.name
 		return
 
 	if(signal.data["command"] == "summon" && signal.data["target"])
 		var/turf/potential_turf = signal.data["target"]
-		if(!istype(potential_turf))
+		if(!istype(potential_turf) || src.movement_target == potential_turf)
 			return FALSE
 		src.holder.stop_move()
+		src.move_subtask.reset()
 		src.holder.target = null
-		src.targeting_subtask = src.holder.get_instance(src.targeting_subtask_type, list(src.holder, src))
-		src.holder.target = potential_turf
+		src.movement_target = potential_turf
 		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
 			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
+			if(!securitron_owner.patrolling)
+				securitron_owner.say("TEN-SEVENTEEN. ENROUTE TO SUMMONS.")
 			securitron_owner.patrolling = TRUE
+			securitron_owner.guard_area_name = null
 			securitron_owner.lockdown = FALSE
 		return
 
 	if(signal.data["command"] == "stop")
 		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
 			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
+			if(securitron_owner.patrolling)
+				securitron_owner.say("TEN-FOUR. PATROL ROUTE: HALTED.")
 			securitron_owner.patrolling = FALSE
+			securitron_owner.guard_area_name = null
 			src.holder.stop_move()
+			src.move_subtask.reset()
 			securitron_owner.lockdown = FALSE
 		src.holder.target = null
 		src.targeting_subtask = src.holder.get_instance(src.targeting_subtask_type, list(src.holder, src))
+		src.targeting_subtask.reset()
 		return
 
 	if(signal.data["command"] == "go")
 		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
 			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
+			if(!securitron_owner.patrolling)
+				securitron_owner.say("TEN-FOUR. PATROL ROUTE: IN PROGRESS.")
 			securitron_owner.patrolling = TRUE
+			securitron_owner.guard_area_name = null
 			securitron_owner.lockdown = FALSE
 		src.holder.target = null
 		src.targeting_subtask = src.holder.get_instance(src.targeting_subtask_type, list(src.holder, src))
+		src.targeting_subtask.reset()
 		return
 
 /datum/aiTask/succeedable/patrol_target_locate/guard
@@ -315,8 +334,8 @@
 	if(!istype(src.guard_area) || src.guard_area.name == "Space" || src.guard_area.name == "Ocean") // we are STILL not Podsky
 		src.guard_area = null
 	var/list/turf/turfs = get_area_turfs(src.guard_area, 1)
-	if(length(turfs) >= 1)
-		src.holder.target = pick(turfs)
+	if(length(turfs))
+		src.target = pick(turfs)
 	. = ..()
 
 /datum/aiTask/concurrent/violence/fixed_target

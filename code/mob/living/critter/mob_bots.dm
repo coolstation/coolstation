@@ -402,6 +402,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	var/report_arrests = TRUE
 	var/patrolling = FALSE
 	var/lockdown = FALSE
+	var/guard_area_name = null
 	var/list/datum/contextAction/contexts = list()
 	var/datum/contextLayout/configContextLayout = new /datum/contextLayout/experimentalcircle
 
@@ -627,6 +628,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 /mob/living/critter/robotic/bot/securitron/proc/configure(var/setting, var/mob/M)
 	switch(setting)
 		if ("power")
+			src.guard_area_name = null
 			src.set_power(!src.power)
 			return src.power
 		if ("check_contraband")
@@ -653,9 +655,10 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 				src.say("TEN-FOUR. [src.report_arrests ? "REPORTING ARRESTS ON: [FREQ_PDA]" : "LONE RANGER PROTOCOL ENGAGED."]")
 			return src.report_arrests
 		if ("patrolling")
+			src.guard_area_name = null
 			src.patrolling = !src.patrolling
 			if(src.power)
-				src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"]")
+				src.say("TEN-FOUR. PATROL ROUTE: [src.patrolling ? "IN PROGRESS" : "HALTED"].")
 			return src.patrolling
 
 /mob/living/critter/robotic/bot/securitron/ai_is_valid_target(mob/M)
@@ -693,10 +696,12 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			perp_id = perp.get_id()
 
 		if(src.lockdown)
-			if(!perp_id || !((access_security in perp_id) || (access_heads in perp_id.access)))
-				threatcount = 10
-				EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
-				return threatcount
+			var/area/perp_area = get_area(perp)
+			if(perp_area.name == src.guard_area_name)
+				if(!perp_id || !((access_security in perp_id) || (access_heads in perp_id.access)))
+					threatcount = 10
+					EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
+					return threatcount
 
 		//Agent cards lower threat level
 		if(istype(perp_id, /obj/item/card/id/syndicate))
@@ -768,8 +773,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			var/obj/item/baton/batong = I
 			if(!batong.is_active)
 				batong.attack_self(src)
-				src.hud.update_intent()
-				return FALSE
 	src.hud.update_intent()
 	..(target)
 	var/bonus_hits = src.emagged - 1

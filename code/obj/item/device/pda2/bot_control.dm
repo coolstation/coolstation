@@ -87,9 +87,10 @@
 
 				else
 					for(var/mob/living/critter/robotic/bot/securitron/B in src.botlist)
-						. += "[B] at [get_area(B)]</A><BR>"
-						. += "Health: " + "[round(B.health)]/[B.max_health]"
-						. += "<br>"
+						. += "[B] at [get_area(B)]<BR>"
+						. += "Health: " + "[round(B.health)]/[B.max_health]<BR>"
+						if(B.guard_area_name)
+							. += "[B.lockdown ? "Locking down:" : "Guarding:"] [B.guard_area_name]<BR>"
 						switch(B.patrolling)
 							if(FALSE) // Not doing something?
 								. += "<A href='byond://?src=\ref[src];op=go;active=\ref[B]'>Patrol</A> " // Go patrol!
