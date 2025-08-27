@@ -144,6 +144,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	var/obj/item/gun_parts/part = null
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "anvil"
 	w_class = W_CLASS_BULKY
@@ -151,6 +152,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 	portable
 		density = 0
+		pass_unstable = PRESERVE_CACHE
 		anchored = 0
 		w_class = W_CLASS_SMALL
 		contraband = 1

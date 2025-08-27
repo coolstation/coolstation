@@ -10,7 +10,6 @@
 // cardinal directions only
 
 //Todo: junctions where more than one firsthalves come together get one very bright light because of overlaps
-
 /obj/pathlights/shuttle
 	name = "shuttle evacuation light"
 	desc = "A small light that directs the way to the departing shuttle bay."
@@ -20,6 +19,7 @@
 	#else
 	icon_state = "blank"
 	#endif IN_MAP_EDITOR
+	pass_unstable = FALSE
 	plane = PLANE_FLOOR
 	mouse_opacity = 1 //you can't click this because that'd kinda suck
 	var/halves = 3 //1 for first, 2 for second, 3 for both

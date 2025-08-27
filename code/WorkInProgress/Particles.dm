@@ -13,7 +13,7 @@
 	name = ""
 	desc = ""
 	mouse_opacity = 0
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	anchored = 1
 	density = 0
 	opacity = 0
@@ -148,7 +148,7 @@ var/datum/particleMaster/particleMaster = new
 
 		if (istype(pType))
 			var/obj/particle/p = new_particle(particleTime)
-			p.loc = get_turf(location)
+			p.set_loc(get_turf(location))
 			p.color = particleColor
 			if (particleSprite)
 				p.override_state = particleSprite

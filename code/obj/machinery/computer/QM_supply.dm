@@ -149,7 +149,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 	New()
 		..()
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, 1435)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, FREQ_STATUS)
 
 /obj/machinery/computer/supplycomp/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if(!hacked)
@@ -182,7 +182,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 	var/timer = shippingmarket.get_market_timeleft()
 	src.add_dialog(user)
-	post_signal("supply")
+	// post_signal("supply") // I'm pretty sure this doesn't do anything except create lag every time someone clicks it
 	var/HTML
 
 	var/header_thing_chui_toggle = true ? {"
@@ -1325,4 +1325,4 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	status_signal.transmission_method = 1
 	status_signal.data["command"] = command
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, status_signal, null, 1435)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, status_signal, null, FREQ_STATUS)

@@ -709,12 +709,14 @@ datum
 			if (istype(src,/datum/reagents/fluid_group))
 				src.cache_covered_turf()
 				var/covered_area = length(src.covered_cache)
+				if(!covered_area) // we aint set up yet
+					return
 
 				var/continue_burn = FALSE
 				var/burn_volatility = src.composite_volatility *  clamp(src.combustible_volume / (40 * max(1, covered_area)), 0.3, 1)
 				burn_volatility = clamp(burn_volatility, 0, 30)
 				var/burn_speed = src.composite_combust_speed
-				var/energy_per_tile = src.composite_combust_energy * burn_speed / src.combustible_volume / length(covered_cache)
+				var/energy_per_tile = src.composite_combust_energy * burn_speed / src.combustible_volume / covered_area
 
 				switch (burn_volatility)
 					if (0 to 6)
@@ -724,14 +726,14 @@ datum
 						burn_speed *= 1.25
 						for (var/turf/T in covered_cache)
 							fireflash_s(T, 0, src.composite_combust_temp, 0, energy_per_tile)
-						if (prob(burn_volatility * 5) && length(covered_cache)) // from 30 to 75% chance to cause an additional, brighter fireball
+						if (prob(burn_volatility * 5) && covered_area) // from 30 to 75% chance to cause an additional, brighter fireball
 							var/turf/chosen_turf = pick(covered_cache) // intentionally no thermal energy
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 					if (15 to INFINITY)
 						burn_speed *= 2
 						for (var/turf/T in covered_cache)
 							fireflash_sm(T, 0, src.composite_combust_temp, 0, energy = energy_per_tile)
-						if (prob((burn_volatility) * 2 + 40) && length(covered_cache)) // from 70 to 100% chance to cause an additional, brighter fireball
+						if (prob((burn_volatility) * 2 + 40) && covered_area) // from 70 to 100% chance to cause an additional, brighter fireball
 							var/turf/chosen_turf = pick(covered_cache) // intentionally no thermal energy
 							fireflash_sm(chosen_turf, 1, src.composite_combust_temp * 1.5, src.composite_combust_temp / 3)
 							if (prob(50))

@@ -2162,6 +2162,7 @@
 	icon_state = "outlet"
 	density = 1
 	anchored = 1
+	pass_unstable = FALSE
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	mats = 12
@@ -2207,7 +2208,7 @@
 			target = get_ranged_target_turf(src, dir, range)
 		if(!src.net_id)
 			src.net_id = generate_net_id(src)
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	disposing()
 		var/obj/disposalpipe/trunk/trunk = locate() in src.loc

@@ -9,7 +9,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
 	flags = TECHNICAL_ATOM | TABLEPASS
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	desc = null
 /*
 	pooled()

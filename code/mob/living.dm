@@ -33,6 +33,7 @@
 	var/mob/living/ai_target = null
 	var/list/mob/living/ai_target_old = list()
 	var/is_npc = 0
+	var/ai_type
 
 	var/move_laying = null
 	var/static/mutable_appearance/speech_bubble = living_speech_bubble
@@ -145,10 +146,9 @@
 	if (blood_id)
 		all_blood_reagents |= blood_id
 
-//	if (src.use_stamina)
-//		src.stamina_bar = new(src)
-		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
-		//eventual hud merger pls
+	if(src.ai_type)
+		src.is_npc = TRUE
+		src.ai = new ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()
@@ -2148,9 +2148,14 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 								secbot.threatlevel = 2
 								secbot.EngageTarget(src)
 
+						for (var/mob/living/critter/robotic/bot/securitron/secbot in target_turf) // punt that beepsky (was_harmed handles anger)
+							src.visible_message("<span class='alert'><b>[src]</b> kicks [secbot] like the football!</span>")
+							var/atom/throw_target = get_edge_target_turf(secbot, target_dir)
+							secbot.throw_at(throw_target, 6, 2)
+
 						if (dive_attack_hit)
-							dive_attack_hit.was_harmed(src, special = "slidekick")
 							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
+							dive_attack_hit.was_harmed(src, special = "slidekick")
 							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
 							for (var/mob/O in AIviewers(src))
 								O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)

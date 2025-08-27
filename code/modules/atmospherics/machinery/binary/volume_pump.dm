@@ -29,10 +29,6 @@ Thus, the two variables affect pump operation are set in New():
 	var/datum/pump_ui/volume_pump_ui/ui
 	pixel_y = -1
 
-	New()
-		..()
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
-
 	update_icon()
 		if(node1&&node2)
 			icon_state = "intact_[on?("on"):("off")]"
@@ -81,6 +77,7 @@ Thus, the two variables affect pump operation are set in New():
 	initialize()
 		..()
 		ui = new/datum/pump_ui/volume_pump_ui(src)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	receive_signal(datum/signal/signal)
 		if(signal.data["tag"] && (signal.data["tag"] != id))

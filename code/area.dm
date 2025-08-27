@@ -67,6 +67,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	mat_changename = 0
 	mat_changedesc = 0
 	text = ""
+	//if this isnt set here, the bottom left turf of each area gets confused about passability caching
+	pass_unstable = FALSE
 	var/lightswitch = 1
 
 	/// If the area is on a restricted z leve, this controls if people can eat within it. (The reason for this might shock you!)
@@ -260,7 +262,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							var/target = get_turf(oldloc)
 							if( !target && blocked_waypoint )
 								target = get_turf(locate(blocked_waypoint) in world)
-							enteringM.loc = target
+							enteringM.set_loc(target)
 						var/area/oldarea = get_area(oldloc)
 						if( sanctuary && !blocked && !(oldarea.sanctuary))
 							boutput( enteringM, "<b style='color:#31BAE8'>You are entering a sanctuary zone. You cannot be harmed by other players here.</b>" )
@@ -278,7 +280,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							enteringM.unlock_medal("Jimi Heselden", 1)
 */
 		else if(oldloc && !ismob(A) && !CanEnter( A ))
-			A.loc = oldloc
+			A.set_loc(oldloc)
 		..()
 
 	/// Gets called when a movable atom exits an area.
@@ -479,7 +481,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			light_manager = new
 			light_manager.my_area = src
 			for(var/turf/T in src)
-				light_manager.loc = T
+				light_manager.set_loc(T)
 				break
 		light_manager.lights += L
 

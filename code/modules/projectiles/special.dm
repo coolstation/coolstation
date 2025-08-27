@@ -1154,19 +1154,19 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	caliber = 2
 	icon_turf_hit = "secbot1-wild"
 	implanted = null
-	typetospawn = /obj/machinery/bot/secbot
+	typetospawn = /mob/living/critter/robotic/bot/securitron
 
 	on_hit(atom/hit)
-		var/obj/machinery/bot/secbot/beepsky = ..()
+		var/mob/living/critter/robotic/bot/securitron/beepsky = ..()
 		if(istype(beepsky) && ismob(hit))
 			var/mob/hitguy = hit
 			hitguy.do_disorient(15, weakened = 20 * 10, disorient = 80)
 			beepsky.emagged = 1
 			if(istype(hitguy, /mob/living/carbon))
-				beepsky.target = hitguy
+				EXTEND_COOLDOWN(hitguy, "MARKED_FOR_SECURITRON_ARREST", 100 SECONDS)
 
 	on_end(obj/projectile/O)
-		var/obj/machinery/bot/secbot/beepsky = ..()
+		var/mob/living/critter/robotic/bot/securitron/beepsky = ..()
 		if(istype(beepsky))
 			beepsky.emagged = 1
 

@@ -59,6 +59,10 @@ Filter types:
 		air_out1.volume = 200
 		air_out2.volume = 200
 
+	proc/set_frequency(new_frequency)
+		get_radio_connection_by_id(src, frequency).update_frequency(new_frequency)
+		frequency = new_frequency
+
 	disposing()
 
 		if (network_in)

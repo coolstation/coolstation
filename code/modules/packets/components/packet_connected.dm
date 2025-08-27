@@ -30,12 +30,12 @@
 			!isnull(connection_id) && connection_id == src.connection_id
 	if(.)
 		src.network?.unregister(src)
-		src.address = C.address
-		src.net_tags = C.net_tags
-		src.all_hearing = C.all_hearing
-		src.receive_packet_proc = C.receive_packet_proc
-		src.network = C.network
-		src.send_only = send_only
+		src.address = C?.address || address
+		src.net_tags = C?.net_tags || net_tags
+		src.all_hearing = C?.all_hearing || all_hearing
+		src.receive_packet_proc = C?.receive_packet_proc || receive_packet_proc
+		src.network = C?.network || network
+		src.send_only = C?.send_only || send_only
 		if(src.send_only)
 			src.network?.register(src)
 
@@ -91,7 +91,8 @@
 	if(!src.send_only) src.network?.register(src)
 
 /datum/component/packet_connected/disposing()
-	src.network?.unregister(src)
+	if(!src.send_only)
+		src.network?.unregister(src)
 	src.network = null
 	..()
 
@@ -113,11 +114,6 @@
 	. = ..(connection_id, network, address, receive_packet_proc, send_only, net_tags, all_hearing)
 	RegisterSignal(parent, COMSIG_MOVABLE_POST_RADIO_PACKET, .proc/send_radio_packet)
 
-/datum/component/packet_connected/radio/CheckDupeComponent(datum/component/packet_connected/C, connection_id, datum/packet_network/network, address=null, receive_packet_proc=null, send_only=FALSE, net_tags=null, all_hearing=FALSE)
-	if(isnum(network) || istext(network))
-		network = radio_controller.get_frequency(network).packet_network
-	. = ..(C, connection_id, network, address, receive_packet_proc, send_only, net_tags, all_hearing)
-
 /datum/component/packet_connected/radio/proc/send_radio_packet(atom/movable/sender, datum/signal/signal, range=null, frequency_or_id=null)
 	var/datum/packet_network/radio/radio_network = src.network
 	if(isnum(frequency_or_id))
@@ -132,9 +128,3 @@
 /datum/component/packet_connected/radio/proc/get_frequency()
 	var/datum/packet_network/radio/radio_network = src.network
 	return radio_network?.frequency
-
-/datum/component/packet_connected/radio/UnregisterFromParent()
-	if(!src.send_only)
-		src.network?.unregister(src)
-	UnregisterSignal(src.parent, COMSIG_MOVABLE_POST_RADIO_PACKET)
-	. = ..()

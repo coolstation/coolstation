@@ -540,7 +540,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	associated_deployer = /obj/item/turret_deployer/syndicate
 
 	is_friend(var/mob/living/C)
-		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/gunbot/) //dumb lazy
+		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/robotic/gunbot) //dumb lazy
 
 /obj/deployable_turret/syndicate/active
 	anchored = 1

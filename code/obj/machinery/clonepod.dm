@@ -80,7 +80,7 @@
 
 		if (!src.net_id)
 			src.net_id = generate_net_id(src)
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 		if (current_state <= GAME_STATE_PREGAME && src.z == Z_LEVEL_STATION)
 			object_flags |= ROUNDSTART_CLONER_PART

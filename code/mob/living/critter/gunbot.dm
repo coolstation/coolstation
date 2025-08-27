@@ -1,4 +1,4 @@
-/mob/living/critter/gunbot
+/mob/living/critter/robotic/gunbot
 	name = "robot"
 	real_name = "robot"
 	desc = "A Security Robot, something seems a bit off."

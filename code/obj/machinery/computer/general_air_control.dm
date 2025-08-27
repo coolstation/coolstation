@@ -354,7 +354,7 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 	New()
 		..()
 		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", frequency)
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("respond", respond_frequency)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("respond", respond_frequency)
 		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("receive", receive_frequency)
 
 	receive_signal(datum/signal/signal)
@@ -466,7 +466,16 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 
 	New()
 		..()
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
+		src.AddComponent( \
+			/datum/component/packet_connected/radio, \
+			null, \
+			frequency, \
+			null, \
+			"receive_signal", \
+			FALSE, \
+			"mixercontrol", \
+			FALSE \
+	)
 
 	special_deconstruct(obj/computerframe/frame as obj)
 		frame.circuit.frequency = src.frequency

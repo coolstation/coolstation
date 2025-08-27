@@ -7,6 +7,7 @@
 	blinded = 0
 	anchored = 1
 	event_handler_flags = USE_CANPASS
+	pass_unstable = PRESERVE_CACHE
 
 	New()
 		. = ..()

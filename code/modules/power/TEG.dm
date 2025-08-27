@@ -1696,7 +1696,16 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 
 	initialize()
 		..()
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
+		src.AddComponent( \
+			/datum/component/packet_connected/radio, \
+			null, \
+			frequency, \
+			null, \
+			"receive_signal", \
+			FALSE, \
+			"pumpcontrol", \
+			FALSE \
+		)
 
 #undef PUMP_POWERLEVEL_1
 #undef PUMP_POWERLEVEL_2

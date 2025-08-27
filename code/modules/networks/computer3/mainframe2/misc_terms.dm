@@ -1396,8 +1396,8 @@
 		SPAWN_DBG(0.5 SECONDS)
 
 			if (radio_controller)
-				frequencies["[FREQ_AIRLOCK_REMOTE]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("[FREQ_AIRLOCK_REMOTE]", FREQ_AIRLOCK_REMOTE)
-				frequencies["[FREQ_WLNET]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("f[FREQ_WLNET]", FREQ_WLNET)
+				add_frequency(FREQ_AIRLOCK_REMOTE)
+				add_frequency(FREQ_WLNET)
 
 			if(!src.link)
 				var/turf/T = get_turf(src)
@@ -1405,6 +1405,10 @@
 				if(test_link && !DATA_TERMINAL_IS_VALID_MASTER(test_link, test_link.master))
 					src.link = test_link
 					src.link.master = src
+
+	proc/add_frequency(newFreq)
+		frequencies["[newFreq]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("[newFreq]", newFreq)
+		get_radio_connection_by_id(src, "[newFreq]").update_all_hearing(TRUE)
 
 	attack_hand(mob/user as mob)
 		if(..() || (status & (NOPOWER|BROKEN)))
@@ -1537,7 +1541,7 @@
 						var/datum/signal/rsignal = get_free_signal()
 						rsignal.source = src
 						rsignal.data = list("address_1"=target, "command"="ping_reply", "device"=src.device_tag, "netid"=src.net_id, "net"="[net_number]", "sender" = src.net_id)
-						SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, connection_id)
+						SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, rsignal, null, connection_id)
 					else
 						src.post_status(target, "command", "ping_reply", "device", src.device_tag, "netid", src.net_id, "net", "[net_number]")
 				return
@@ -1628,7 +1632,7 @@
 						if ("add")
 							var/newFreq = "[round(max(1000, min(text2num(data["_freq"]), 1500)))]"
 							if (newFreq && !(newFreq in frequencies))
-								frequencies[newFreq] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("f[newFreq]", newFreq)
+								add_frequency(newFreq)
 
 						if ("remove")
 							var/newFreq = "[round(max(1000, min(text2num(data["_freq"]), 1500)))]"
@@ -1663,7 +1667,7 @@
 				rsignal.data["sender"] = src.net_id
 
 				SPAWN_DBG(0)
-					SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, transmission_range, "f[newFreq]")
+					SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, rsignal, transmission_range, "f[newFreq]")
 					flick("net_radio-blink", src)
 				src.post_status(target,"command","term_message","data","command=status&status=success")
 

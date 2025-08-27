@@ -170,7 +170,7 @@
 		if(WEST)
 			target_dir = EAST
 
-	shit.loc = C.loc
+	shit.set_loc(C.loc)
 	shit.throw_at(get_turf(get_steps(C, target_dir, rand(2,5))), rand(2,5), rand(1,4))
 	C.visible_message("<span class='alert'><b>[C] [pick("hurls a loaf",\
 		"unloads at speed", "lobs a loaf", "shits with gusto", \

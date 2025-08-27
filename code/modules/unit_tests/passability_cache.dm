@@ -3,10 +3,21 @@
 	var/permitted_instability = list(
 		/atom = list("CanPass"), // Density check, handled in jpsTurfPassable.
 		/turf = list("Enter", "Exit", "CanPass"), // newloc smuggling, optimizations & vismirrors
+		/turf/cordon = list("Enter"), // cordons are never crossable
 		/turf/floor = list("CanPass"), // 2x2 pod collision handling (handled in /datum/pathfind by disabling cache for pods)
+		/turf/null_hole = list("Enter"), // null holes arent pathable
+		/turf/shuttle = list("CanPass"), // yet again, pods
+		/obj/grille/catwalk = list("CanPass"), //catwalks are the nondense variant that never blocks
+		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
+		/mob/dead = list("CanPass"), // ghooooosts
+		/mob/dead/observer = list("CanPass"), // spooooky
+		/mob/living/critter/robotic/bot = list("CanPass"), // likewise
+		/mob/living/intangible = list("CanPass"), // dont even break cache for these
+		/mob/living/seanceghost = list("CanPass"), // why isnt this intangible lol
+		/mob/zoldorf = list("CanPass"), // hate you zoldorf
+		/obj/machinery/bot = list("CanPass"), // only blocks projectiles, probably
 		/turf/floor/setpieces/gauntlet = list("CanPass"), //pods
 		/turf/floor/setpieces/gauntlet/pod = list("CanPass"), //pods
-		/obj/item/scrap = list("CanPass"), // it eats other scrap that enters it
 	)
 	/// List of procs that are forbidden to be implemented on stable atoms.
 	var/forbidden_procs = list("Enter", "Exit", "CanPass")
@@ -29,15 +40,18 @@
 		var/atom/direct_parent
 		if(ispath(direct_parent_path, /atom))
 			direct_parent = direct_parent_path
-		var/stable = !initial(atom_type.pass_unstable)
+		var/instability = initial(atom_type.pass_unstable)
 
 		// Fail if this type is the first descendant of a unstable lineage to claim to be stable.
-		if(stable && direct_parent && initial(direct_parent.pass_unstable))
+		if(!instability && direct_parent && initial(direct_parent.pass_unstable))
 			var/unstable_parent = predecessor_path_in_list(type, unstable_types)
 			if(unstable_parent)
 				var/list/blocking_procs_list = unstable_types[unstable_parent]
-				var/blocking_procs = istype(blocking_procs_list) ? blocking_procs_list.Join(", ") : "forbidden procs"
-				Fail("[type] cannot possibly be stable because [unstable_parent] implements [blocking_procs]")
+				var/permitted_procs = src.permitted_instability[type]
+				for(var/blocking_proc in blocking_procs_list)
+					if(blocking_proc in permitted_procs)
+						continue
+					Fail("[type] claims stability but cannot be because [unstable_parent] implements [blocking_proc]")
 
 		var/procs = procs_by_type[type]
 		if(!procs)
@@ -50,5 +64,11 @@
 				if(forbidden_proc in permitted_procs)
 					continue // Don't track permitted instability
 				LAZYLISTADD(unstable_types[type], forbidden_proc)
-				if(stable)
+				if(instability != TRUE)
 					Fail("[type] is stable and must not implement [forbidden_proc]")
+
+		// Fail if this type preserves the cache but can alter passability - maybe expand this check to instantiation and CanPass later?
+		if(instability & PRESERVE_CACHE)
+			if(initial(atom_type.density))
+				Fail("[type] is JPS cache preserving and must not be dense")
+

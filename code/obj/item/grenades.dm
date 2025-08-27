@@ -1949,22 +1949,23 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 /mob/proc/blowthefuckup(var/strength = 1,var/visible_message = 1) // similar proc for mobs
 	var/T = get_turf(src)
 	if(visible_message) src.visible_message("<span class='alert'>[src] explodes!</span>")
-	var/sqstrength = sqrt(strength)
-	var/shrapnel_range = 3 + sqstrength
-	for (var/mob/living/carbon/human/M in view(T, shrapnel_range))
-		if(check_target_immunity(M)) continue
-		if (M != src)
-			M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
-			if (M.get_ranged_protection()>=1.5)
-				boutput(M, "<span class='alert'><b>Your armor blocks the chunks of [src.name]!</b></span>")
-			else
-				var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
-				implanted.owner = M
-				M.implant += implanted
-				implanted.implanted(M, null, 25 * sqstrength)
-				boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
-				if (!M.stat)
-					M.emote("scream")
+	if(strength)
+		var/sqstrength = sqrt(strength)
+		var/shrapnel_range = 3 + sqstrength
+		for (var/mob/living/carbon/human/M in view(T, shrapnel_range))
+			if(check_target_immunity(M)) continue
+			if (M != src)
+				M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
+				if (M.get_ranged_protection()>=1.5)
+					boutput(M, "<span class='alert'><b>Your armor blocks the chunks of [src.name]!</b></span>")
+				else
+					var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
+					implanted.owner = M
+					M.implant += implanted
+					implanted.implanted(M, null, 25 * sqstrength)
+					boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
+					if (!M.stat)
+						M.emote("scream")
 
 	explosion_new(src, T, strength, 1)
 	src.gib()
