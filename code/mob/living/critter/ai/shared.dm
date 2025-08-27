@@ -144,7 +144,6 @@
 			holder.move_to(src.next_turf, 0)
 			return
 	get_path()
-	holder.move_to(src.move_target, distance_from_target) // fuck it!
 
 /datum/aiTask/succeedable/move/succeeded()
 	if(src.move_target)
@@ -245,7 +244,6 @@
 			holder.move_to(src.next_turf, 0)
 			return
 	get_path()
-	holder.move_to(src.move_target, distance_from_target) // fuck it!
 
 /datum/aiTask/endless/move/inherit_target
 
