@@ -140,6 +140,7 @@
 					src.found_path.Cut(1, i)
 				else
 					src.next_turf = get_turf(src.found_path[1])
+					src.found_path.Cut()
 			holder.move_to(src.next_turf, 0)
 			return
 	get_path()
@@ -240,6 +241,7 @@
 					src.found_path.Cut(1, i)
 				else
 					src.next_turf = get_turf(src.found_path[1])
+					src.found_path.Cut()
 			holder.move_to(src.next_turf, 0)
 			return
 	get_path()
