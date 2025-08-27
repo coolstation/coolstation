@@ -303,7 +303,7 @@
 
 	if(src.holder.target)
 		var/mob/living/M = src.holder.target
-		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks)
+		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
 			src.queued_target = null
 			src.holder.target = null
 			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))

@@ -20,6 +20,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	pass_unstable = PRESERVE_CACHE
 	flags = FPRINT | FLUID_SUBMERGE
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS | IS_FARTABLE | STAIR_ANIM
+	grounded_for_projectiles = TRUE
 	/// defined in new, this is the base of the icon_state with the suffix removed, i.e. "cleanbot" without the "1"
 	var/icon_state_base = null
 	var/emagged = FALSE
@@ -517,12 +518,12 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 				I.cant_drop = initial(I.cant_drop)
 				I.cant_self_remove = initial(I.cant_self_remove)
 				I.cant_other_remove = initial(I.cant_other_remove)
-	..(gibbed, 0)
 	if (!gibbed)
 		gib(src)
 	else
 		playsound(src.loc, 'sound/impact_sounds/Machinery_Break_1.ogg', 50, 1)
 		make_cleanable(/obj/decal/cleanable/oil,src.loc)
+	..(gibbed, 0)
 
 /mob/living/critter/robotic/bot/securitron/emp_act()
 	if(src.emagged)
@@ -974,11 +975,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if (ismob(hit_atom))
 		var/mob/M = hit_atom
 		M.do_disorient(150, weakened = 120, disorient = 60)
-
-/mob/living/critter/robotic/bot/securitron/weedhound
-	name = "weedhound"
-	real_name = "weedhound"
-	ai_type = /datum/aiHolder/patroller
 
 /mob/living/critter/robotic/bot/securitron/beepsky
 	name = "Officer Beepsky"

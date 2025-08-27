@@ -2148,12 +2148,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 								secbot.threatlevel = 2
 								secbot.EngageTarget(src)
 
-						for (var/mob/living/critter/robotic/bot/securitron/secbot in target_turf) // punt that beepsky
+						for (var/mob/living/critter/robotic/bot/securitron/secbot in target_turf) // punt that beepsky (was_harmed handles anger)
 							src.visible_message("<span class='alert'><b>[src]</b> kicks [secbot] like the football!</span>")
 							var/atom/throw_target = get_edge_target_turf(secbot, target_dir)
 							secbot.throw_at(throw_target, 6, 2)
-							SPAWN_DBG(1 SECOND) //the football fly!
-								EXTEND_COOLDOWN(src, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
 
 						if (dive_attack_hit)
 							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)

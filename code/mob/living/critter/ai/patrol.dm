@@ -188,7 +188,7 @@
 		var/turf/alleged_turf = locate(text2num_safe(signal.data["x"]), text2num_safe(signal.data["y"]), text2num_safe(signal.data["z"]))
 		if(!alleged_turf)
 			return
-		var/dist = GET_DIST(get_turf(src.holder.owner),alleged_turf)
+		var/dist = GET_DIST(src.holder.owner,alleged_turf)
 		if(nearest_beacon_turf) // try to find a better beacon
 			if(dist < nearest_dist)
 				src.nearest_beacon_turf = alleged_turf
@@ -219,13 +219,12 @@
 
 /datum/aiTask/succeedable/patrol_target_locate/packet_based/on_tick()
 	. = ..()
-	if(istype(src.packet_holder))
+	if(istype(src.packet_holder) && !ON_COOLDOWN(src.holder.owner, "NAVBEACON_PATROL_TARGETING", 2 SECONDS))
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src.holder.owner
 		signal.data["sender"] = src.packet_holder.net_id
 		if(src.packet_holder.next_patrol_id)
 			signal.data["findbeacon"] = src.packet_holder.next_patrol_id
-			src.packet_holder.next_patrol_id = null
 		else
 			signal.data["findbeacon"] = "patrol"
 		SEND_SIGNAL(src.holder.owner, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "nav_beacon")
@@ -269,6 +268,7 @@
 		src.targeting_subtask = guard_subtask
 		src.holder.stop_move()
 		src.move_subtask.reset()
+		src.combat_subtask.reset()
 		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
 			var/mob/living/critter/robotic/bot/securitron/securitron_owner = src.holder.owner
 			securitron_owner.patrolling = TRUE
@@ -288,6 +288,7 @@
 			return FALSE
 		src.holder.stop_move()
 		src.move_subtask.reset()
+		src.combat_subtask.reset()
 		src.holder.target = null
 		src.movement_target = potential_turf
 		if(istype(src.holder.owner, /mob/living/critter/robotic/bot/securitron))
@@ -312,6 +313,7 @@
 		src.holder.target = null
 		src.targeting_subtask = src.holder.get_instance(src.targeting_subtask_type, list(src.holder, src))
 		src.targeting_subtask.reset()
+		src.combat_subtask.reset()
 		return
 
 	if(signal.data["command"] == "go")
@@ -325,6 +327,7 @@
 		src.holder.target = null
 		src.targeting_subtask = src.holder.get_instance(src.targeting_subtask_type, list(src.holder, src))
 		src.targeting_subtask.reset()
+		src.combat_subtask.reset()
 		return
 
 /datum/aiTask/succeedable/patrol_target_locate/guard
