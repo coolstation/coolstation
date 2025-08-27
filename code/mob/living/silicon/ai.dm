@@ -166,7 +166,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	..(loc)
 	START_TRACKING
 
-	APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+	APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 
 	light = new /datum/light/point
 	light.set_color(0.4, 0.7, 0.95)
@@ -1077,8 +1077,8 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	set name = "View Crew Manifest"
 
 	var/crew = ""
-	for(var/datum/data/record/t in data_core.general)
-		crew += "[t.fields["name"]] - [t.fields["rank"]]<br>"
+	for(var/datum/db_record/t as anything in data_core.general.records)
+		crew += "[t["name"]] - [t["rank"]]<br>"
 
 	usr.Browse("<head><title>Crew Manifest</title></head><body><tt><b>Crew Manifest:</b><hr>[crew]</tt></body>", "window=aimanifest")
 

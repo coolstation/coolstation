@@ -19,6 +19,7 @@ proc/add_landmark(var/turf/T, var/name, var/data = null)
 	name = "landmark"
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
+	pass_unstable = FALSE
 	anchored = 1
 	invisibility = 101
 	var/deleted_on_start = TRUE

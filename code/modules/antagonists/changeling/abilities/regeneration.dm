@@ -30,7 +30,7 @@
 			logTheThing("combat", holder.owner, null, "enters regenerative stasis as a changeling [log_loc(holder.owner)].")
 
 			H.in_fakedeath = 1
-			APPLY_MOB_PROPERTY(C, PROP_CANTMOVE, src.type)
+			APPLY_ATOM_PROPERTY(C, PROP_CANTMOVE, src.type)
 
 			C.lying = 1
 			C.canmove = 0

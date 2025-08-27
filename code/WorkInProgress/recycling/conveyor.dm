@@ -12,6 +12,7 @@
 #endif
 	name = "conveyor belt"
 	desc = "A conveyor belt."
+	pass_unstable = TRUE
 	anchored = 1
 	power_usage = 100
 	layer = 2
@@ -108,7 +109,7 @@
 		return
 	if (ismob(A))
 		var/mob/peep = A
-		if(HAS_MOB_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
+		if(HAS_ATOM_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
 			return
 	var/movedir = dir	// base movement dir
 	if(divert && dir == divdir)	// update if diverter present
@@ -269,6 +270,7 @@
 	icon_state = "diverter0"
 	name = "diverter"
 	desc = "A diverter arm for a conveyor belt."
+	pass_unstable = TRUE
 	anchored = 1
 	layer = FLY_LAYER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT

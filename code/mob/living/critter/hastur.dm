@@ -80,8 +80,8 @@ var/HasturPresent = 0
 		HH.name = "right tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacler"				// the icon state of the hand UI background
-		HH.limb_name = "right tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "right tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/abomination/hastur(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 
@@ -89,8 +89,8 @@ var/HasturPresent = 0
 		HH.name = "left tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclel"				// the icon state of the hand UI background
-		HH.limb_name = "left tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "left tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/abomination/hastur(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 
@@ -98,8 +98,8 @@ var/HasturPresent = 0
 		HH.name = "long range tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclek"				// the icon state of the hand UI background
-		HH.limb_name = "long range tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/longtentacle	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "long range tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/longtentacle(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
@@ -108,8 +108,8 @@ var/HasturPresent = 0
 		HH.name = "long range stun tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacles"				// the icon state of the hand UI background
-		HH.limb_name = "long range stun tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/longtentaclestun	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "long range stun tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/longtentaclestun(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
@@ -225,7 +225,7 @@ var/HasturPresent = 0
 		var/mob/living/critter/hastur/H = src.holder.owner
 		if (stage == 1)
 			H.set_density(1)
-			REMOVE_MOB_PROPERTY(H, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(H, PROP_INVISIBILITY, src)
 			H.alpha = 255
 			H.stepsound = "sound/misc/hastur/tentacle_walk.ogg"
 			H.visible_message(pick("<span class='alert'>A horrible apparition fades into view!</span>", "<span class='alert'>A pool of shadow forms and manifests into shape!</span>"), pick("<span class='alert'>Void manifests around you, giving you your physical form back.</span>", "<span class='alert'>Energies of the void allow you to manifest back in a physical form.</span>"))
@@ -233,7 +233,7 @@ var/HasturPresent = 0
 		else
 			H.visible_message(pick("<span class='alert'>[H] vanishes from sight!</span>", "<span class='alert'>[H] dissolves into the void!</span>"), pick("<span class='notice'>You are enveloped by the void, hiding your physical manifestation.</span>", "<span class='notice'>You fade into the void!</span>"))
 			H.set_density(0)
-			APPLY_MOB_PROPERTY(H, PROP_INVISIBILITY, src, INVIS_GHOST)
+			APPLY_ATOM_PROPERTY(H, PROP_INVISIBILITY, src, INVIS_GHOST)
 			H.alpha = 160
 			H.stepsound = null
 			H.see_invisible = 16

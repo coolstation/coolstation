@@ -348,13 +348,13 @@
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			APPLY_MOB_PROPERTY(M, PROP_EXPLOPROT, src, optional)
+			APPLY_ATOM_PROPERTY(M, PROP_EXPLOPROT, src, optional)
 
 	onRemove()
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			REMOVE_MOB_PROPERTY(M, PROP_EXPLOPROT, src)
+			REMOVE_ATOM_PROPERTY(M, PROP_EXPLOPROT, src)
 
 /datum/statusEffect/disease_resist
 	id = "food_disease_resist"
@@ -378,13 +378,13 @@
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			APPLY_MOB_PROPERTY(M, PROP_RADPROT, src, optional)
+			APPLY_ATOM_PROPERTY(M, PROP_RADPROT, src, optional)
 
 	onRemove()
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			REMOVE_MOB_PROPERTY(M, PROP_RADPROT, src)
+			REMOVE_ATOM_PROPERTY(M, PROP_RADPROT, src)
 
 /datum/statusEffect/space_farts
 	id = "food_space_farts"
@@ -399,13 +399,13 @@
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			APPLY_MOB_PROPERTY(M, PROP_SPACEFARTS, src)
+			APPLY_ATOM_PROPERTY(M, PROP_SPACEFARTS, src)
 
 	onRemove()
 		. = ..()
 		if(ismob(owner))
 			var/mob/M = owner
-			REMOVE_MOB_PROPERTY(M, PROP_SPACEFARTS, src)
+			REMOVE_ATOM_PROPERTY(M, PROP_SPACEFARTS, src)
 
 /datum/statusEffect/bad_breath
 	id = "food_bad_breath"

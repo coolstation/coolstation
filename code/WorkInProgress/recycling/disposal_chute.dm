@@ -18,6 +18,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE | NOSPLASH | TGUI_INTERACTIVE
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = DISPOSAL_CHUTE_CHARGING	// item mode 0=off 1=charging 2=charged
@@ -595,27 +596,19 @@
 
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		..()
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
-
-	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		..()
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	expel(var/obj/disposalholder/H)
 		..(H)
 
-		if (message && mailgroup && radio_connection)
+		if (message && mailgroup)
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "text_message"
 			newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 			newsignal.data["message"] = "[message]"
@@ -623,7 +616,7 @@
 			newsignal.data["group"] = list(mailgroup, MGA_MAIL)
 			newsignal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 /obj/machinery/disposal/cart_port
 	name = "disposal cart port"

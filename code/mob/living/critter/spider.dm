@@ -56,9 +56,9 @@
 		for (var/i=src.hand_count, i>0, i--)
 			HH = hands[i]
 			if (src.good_grip)
-				HH.limb = new /datum/limb // todo: make spider hands. feet? weird spindly bug appendage??
+				HH.limb = new /datum/limb(src) // todo: make spider hands. feet? weird spindly bug appendage??
 			else
-				HH.limb = new /datum/limb/small_critter
+				HH.limb = new /datum/limb/small_critter(src)
 			HH.icon = 'icons/ui/hud_human.dmi'
 			if (i > (src.hand_count / 2)) // if we're halfway through making our hands, start making right-facing ones
 				HH.icon_state = "handr"
@@ -66,7 +66,7 @@
 			else
 				HH.icon_state = "handl"
 			HH.name = "leg [get_english_num(i)]"
-			HH.limb_name = "spider leg"
+			HH.limb.name = "spider leg"
 
 	on_pet()
 		if (..())

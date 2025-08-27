@@ -1162,10 +1162,19 @@
 "cW" = (
 /turf/wall/auto/rivet,
 /area/station/security/detectives_office)
+"cX" = (
+/obj/disposalpipe/segment/morgue/horizontal,
+/obj/landmark/gps_waypoint,
+/turf/floor/black/grime,
+/area/station/security/interrogation)
 "cY" = (
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
+"cZ" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/security/armory)
 "da" = (
 /obj/disposalpipe/segment/vertical,
 /turf/floor/plating/random,
@@ -1318,6 +1327,13 @@
 /obj/disposalpipe/segment/food/vertical,
 /turf/floor/riveted,
 /area/station/security/brig/genpop)
+"dr" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/north)
 "ds" = (
 /obj/cable{
 	d1 = 4;
@@ -1664,6 +1680,10 @@
 	},
 /turf/floor/black,
 /area/station/medical/medbay/restroom)
+"ek" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon20_to_1_end,
+/turf/floor/plating/random,
+/area/station/maintenance/northwest)
 "el" = (
 /obj/table/reinforced/chemistry/auto,
 /obj/mug_rack{
@@ -2330,6 +2350,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/landmark/gps_waypoint,
 /turf/floor/riveted,
 /area/station/quartermaster/refinery)
 "fP" = (
@@ -3761,6 +3782,7 @@
 /area/station/maintenance/northwest)
 "jp" = (
 /obj/disposalpipe/segment/sewage/bent/east,
+/obj/landmark/gps_waypoint,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
 "jq" = (
@@ -3850,6 +3872,13 @@
 /obj/table/glass/reinforced/auto,
 /turf/floor/carpet/blue/fancy/edge/nw,
 /area/station/medical/staff)
+"jF" = (
+/obj/machinery/atmospherics/pipe/simple/junction{
+	dir = 4
+	},
+/obj/landmark/gps_waypoint,
+/turf/floor/sanitary/blue,
+/area/station/medical/morgue)
 "jG" = (
 /obj/cable{
 	d1 = 1;
@@ -3946,6 +3975,10 @@
 	dir = 9
 	},
 /area/station/security/main)
+"jQ" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon19,
+/turf/floor/riveted,
+/area/station/hallway/primary/west)
 "jR" = (
 /obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/riveted,
@@ -4052,6 +4085,11 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
+"kg" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/landmark/gps_waypoint,
+/turf/floor/industrial,
+/area/station/engine/elect)
 "kh" = (
 /obj/machinery/vending/cola/blue,
 /turf/floor/industrial,
@@ -4556,6 +4594,7 @@
 /turf/floor/wood/eight,
 /area/station/hydroponics/lobby)
 "ll" = (
+/obj/landmark/gps_waypoint,
 /turf/floor/wood/eight,
 /area/station/quartermaster/cargooffice)
 "lm" = (
@@ -4642,6 +4681,11 @@
 	dir = 0;
 	name = "autoname - SS13"
 	},
+/turf/floor/industrial,
+/area/station/hallway/primary/southwest)
+"lu" = (
+/obj/railing/cool,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon6,
 /turf/floor/industrial,
 /area/station/hallway/primary/southwest)
 "lv" = (
@@ -4886,6 +4930,10 @@
 	},
 /turf/floor/industrial,
 /area/station/crew_quarters/barber_shop)
+"lX" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/black,
+/area/station/medical/research)
 "lY" = (
 /obj/cable{
 	d1 = 1;
@@ -5207,6 +5255,7 @@
 	icon_state = "2-4"
 	},
 /obj/disposalpipe/segment/horizontal,
+/obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/science/research_director)
 "mN" = (
@@ -5407,6 +5456,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/landmark/gps_waypoint,
 /turf/floor/riveted,
 /area/station/crew_quarters/barber_shop)
 "no" = (
@@ -5958,6 +6008,7 @@
 	dir = 1
 	},
 /obj/railing/cool,
+/obj/landmark/gps_waypoint,
 /turf/space/magindara,
 /area/station/crew_quarters/clown)
 "oB" = (
@@ -6093,6 +6144,10 @@
 /obj/disposalpipe/switch_junction/left/east,
 /turf/floor/riveted,
 /area/station/hallway/primary/southwest)
+"oS" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon7,
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "oT" = (
 /turf/floor/darkblueblack{
 	dir = 4
@@ -6245,6 +6300,7 @@
 /area/station/medical/medbay/treatment)
 "pn" = (
 /obj/disposalpipe/segment/bent/east,
+/obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/security/main)
 "po" = (
@@ -7137,6 +7193,11 @@
 	},
 /turf/floor/industrial,
 /area/station/crew_quarters/bar)
+"rr" = (
+/obj/machinery/light/fluorescent/warm/very,
+/obj/landmark/gps_waypoint,
+/turf/floor/industrial,
+/area/station/security/brig/genpop)
 "rs" = (
 /obj/cable{
 	d1 = 2;
@@ -7197,6 +7258,10 @@
 /obj/machinery/vending/cola/red,
 /turf/floor/riveted,
 /area/station/hallway/primary/northwest)
+"ry" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon9,
+/turf/floor/riveted,
+/area/station/hallway/primary/central)
 "rz" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/decal/tile_edge/stripe/big,
@@ -7315,6 +7380,7 @@
 /turf/space/magindara,
 /area/magindara)
 "rM" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
 "rN" = (
@@ -7510,6 +7576,11 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/medical/medbay/cloner)
+"sn" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/landmark/gps_waypoint,
+/turf/floor/white/checker2,
+/area/station/crew_quarters/kitchen)
 "so" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/disposalpipe/segment/mail/vertical,
@@ -7614,6 +7685,10 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
+"sB" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon17,
+/turf/floor/riveted,
+/area/station/hallway/primary/central)
 "sC" = (
 /turf/space/magindara,
 /area/station/crew_quarters/clown)
@@ -7876,6 +7951,10 @@
 /obj/table/reinforced/industrial/auto,
 /turf/floor/black,
 /area/station/crew_quarters/hop)
+"tk" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
+/turf/floor/riveted,
+/area/station/hallway/primary/east)
 "tl" = (
 /obj/random_item_spawner/junk/maybe_few,
 /turf/floor/riveted,
@@ -7933,6 +8012,10 @@
 	dir = 10
 	},
 /area/transit_vehicle/elevator/jani_top)
+"tt" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/bluegreen,
+/area/station/medical/medbay/cloner)
 "tu" = (
 /obj/decal/tile_edge/stripe,
 /obj/cable{
@@ -7992,6 +8075,7 @@
 /turf/floor/industrial,
 /area/station/bridge)
 "tA" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon1_start,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -8108,6 +8192,7 @@
 /turf/floor/cautionblack,
 /area/station/science/chemistry)
 "tS" = (
+/obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
 "tT" = (
@@ -8560,6 +8645,11 @@
 	},
 /turf/floor/industrial,
 /area/station/security/checkpoint/medical)
+"uZ" = (
+/obj/disposalpipe/segment/sewage/vertical,
+/obj/landmark/gps_waypoint,
+/turf/floor/blue,
+/area/station/medical/medbay/lobby)
 "va" = (
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 8
@@ -8860,6 +8950,10 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/cautionblack,
 /area/station/maintenance/west)
+"vN" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/northeast)
 "vO" = (
 /obj/decal/poster/wallsign/warning3,
 /turf/wall/auto/rivet,
@@ -8973,6 +9067,10 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/floor/engine,
 /area/station/engine/thermo)
+"wd" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon14,
+/turf/floor/riveted,
+/area/station/hallway/primary/northeast)
 "we" = (
 /obj/railing/cool{
 	dir = 4
@@ -9264,6 +9362,7 @@
 /area/station/hallway/primary/northeast)
 "wM" = (
 /obj/disposalpipe/segment/mail/bent/east,
+/obj/landmark/gps_waypoint,
 /turf/floor/stairs/wide/middle{
 	dir = 4
 	},
@@ -9511,6 +9610,7 @@
 	name = "Security Assistant"
 	},
 /obj/decal/cleanable/mess/burrito,
+/obj/landmark/gps_waypoint,
 /turf/floor/industrial,
 /area/station/security/checkpoint/medical)
 "xs" = (
@@ -9701,6 +9801,10 @@
 	},
 /turf/floor/riveted,
 /area/station/security/armory)
+"xQ" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/west)
 "xR" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
@@ -10262,6 +10366,7 @@
 /obj/machinery/light/small/warm{
 	dir = 8
 	},
+/obj/landmark/gps_waypoint,
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
 "zs" = (
@@ -10367,6 +10472,7 @@
 	dir = 1;
 	icon_state = "rug1"
 	},
+/obj/landmark/gps_waypoint,
 /turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/captain)
 "zG" = (
@@ -11656,6 +11762,10 @@
 /obj/lattice,
 /turf/space/magindara,
 /area/magindara)
+"CF" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/northwest)
 "CG" = (
 /obj/machinery/conveyor_switch{
 	id = "refinery";
@@ -11846,6 +11956,11 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/riveted,
 /area/station/hallway/primary/southwest)
+"De" = (
+/obj/disposalpipe/segment/sewage/vertical,
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/east)
 "Df" = (
 /obj/storage/secure/closet/personal,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -11867,6 +11982,7 @@
 /area/station/maintenance/northwest)
 "Dh" = (
 /obj/stool,
+/obj/landmark/gps_waypoint,
 /turf/floor/plating/random,
 /area/station/security/detectives_office)
 "Di" = (
@@ -11953,6 +12069,10 @@
 	},
 /turf/floor/redblack,
 /area/station/security/equipment)
+"Dt" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
+/turf/floor/riveted,
+/area/station/hallway/primary/central)
 "Du" = (
 /obj/machinery/computer/operating{
 	id = "OR1"
@@ -12451,6 +12571,7 @@
 /area/station/maintenance/north)
 "ED" = (
 /obj/disposalpipe/segment/mail/bent/south,
+/obj/landmark/gps_waypoint,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
 "EE" = (
@@ -13271,6 +13392,10 @@
 /obj/machinery/portable_reclaimer,
 /turf/floor/industrial,
 /area/station/medical/robotics)
+"GI" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/black,
+/area/station/crew_quarters/hop)
 "GJ" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -13386,6 +13511,7 @@
 /area/station/catwalk/simulated)
 "GY" = (
 /obj/disposalpipe/segment/vertical,
+/obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/janitor/office)
 "GZ" = (
@@ -13542,6 +13668,10 @@
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/east)
+"Hu" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
+/turf/floor/riveted,
+/area/station/hallway/primary/north)
 "Hv" = (
 /turf/wall/auto/rivet,
 /area/station/science/research_director)
@@ -13642,6 +13772,11 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/floor/plating/random,
 /area/station/engine/elect)
+"HI" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hydroponics/bay)
 "HJ" = (
 /obj/railing/cool{
 	dir = 8
@@ -14244,6 +14379,7 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/east)
 "Jk" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
 "Jl" = (
@@ -14747,6 +14883,16 @@
 	},
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
+"Kw" = (
+/obj/decal/tile_edge/stripe,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/landmark/gps_waypoint,
+/turf/floor/carpet/grime2,
+/area/station/hydroponics/lobby)
 "Kx" = (
 /obj/machinery/vending/mechanics,
 /turf/floor/industrial,
@@ -15110,6 +15256,13 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"Li" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
+/turf/floor/riveted,
+/area/station/maintenance/north)
 "Lj" = (
 /obj/cable{
 	d2 = 8;
@@ -15771,6 +15924,7 @@
 /area/station/crew_quarters/captain)
 "MI" = (
 /obj/disposalpipe/segment/morgue/bent/west,
+/obj/landmark/gps_waypoint,
 /turf/floor/red/redblackchecker,
 /area/station/security/hos)
 "MJ" = (
@@ -15993,6 +16147,7 @@
 /area/station/catwalk/simulated)
 "Np" = (
 /obj/overlay/magindara_skylight/weather,
+/obj/landmark/gps_waypoint,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Nq" = (
@@ -17068,6 +17223,10 @@
 /obj/reagent_dispensers/heliumtank,
 /turf/floor/sand,
 /area/station/crew_quarters/clown)
+"Qr" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/southwest)
 "Qs" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northwest,
 /turf/floor/sanitary,
@@ -17095,6 +17254,10 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"Qv" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon18,
+/turf/floor/riveted,
+/area/station/hallway/primary/west)
 "Qw" = (
 /obj/cable{
 	d1 = 1;
@@ -17208,6 +17371,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
 /turf/floor/industrial,
 /area/station/engine/thermo)
+"QO" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
+/turf/floor/riveted,
+/area/station/hallway/primary/southwest)
 "QP" = (
 /turf/wall/auto/rivet,
 /area/station/quartermaster/cargobay)
@@ -17563,6 +17730,10 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"RE" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "RF" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -17601,6 +17772,10 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
+"RK" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/white,
+/area/station/medical/staff)
 "RL" = (
 /obj/cable{
 	d1 = 4;
@@ -18349,6 +18524,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/landmark/gps_waypoint,
 /turf/floor/darkpurpleblack{
 	dir = 6
 	},
@@ -19116,6 +19292,10 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"Vl" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon13,
+/turf/floor/riveted,
+/area/station/quartermaster/refinery)
 "Vm" = (
 /obj/machinery/vending/juice,
 /obj/disposalpipe/segment/mail/bent/east,
@@ -19177,6 +19357,12 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/black,
 /area/station/bridge)
+"Vu" = (
+/obj/stool/bar,
+/obj/overlay/magindara_skylight/weather,
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/crew_quarters/bar)
 "Vv" = (
 /turf/floor/purpleblack,
 /area/station/science/artifact)
@@ -19297,6 +19483,10 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/space/magindara,
 /area/magindara)
+"VK" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon3,
+/turf/floor/riveted,
+/area/station/hallway/primary/northwest)
 "VL" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -19432,6 +19622,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/landmark/gps_waypoint,
 /turf/floor/black,
 /area/station/bridge)
 "We" = (
@@ -19507,6 +19698,10 @@
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/northwest)
+"Wn" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/black,
+/area/station/science/artifact)
 "Wo" = (
 /obj/cable{
 	d1 = 1;
@@ -19689,6 +19884,10 @@
 	dir = 8
 	},
 /area/station/security/main)
+"WP" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "WQ" = (
 /obj/table/reinforced/industrial/auto,
 /obj/random_item_spawner/desk_stuff/g_clip_bin_pen/one,
@@ -19767,6 +19966,10 @@
 /obj/disposalpipe/segment/morgue/bent/north,
 /turf/floor/riveted,
 /area/station/crew_quarters/bar)
+"Xb" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon4,
+/turf/floor/riveted,
+/area/station/hallway/primary/west)
 "Xc" = (
 /obj/machinery/door/airlock/glass/medical{
 	name = "Medical Research"
@@ -19786,6 +19989,10 @@
 /obj/random_item_spawner/med_tool/maybe_few,
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"Xe" = (
+/obj/landmark/gps_waypoint,
+/turf/floor/darkblue,
+/area/station/bridge/customs)
 "Xf" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -20176,6 +20383,10 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
+"Yf" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon5,
+/turf/floor/riveted,
+/area/station/hallway/primary/southwest)
 "Yg" = (
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 8
@@ -20596,6 +20807,7 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "Zi" = (
+/obj/landmark/gps_waypoint,
 /turf/floor/purplewhite{
 	dir = 5
 	},
@@ -51231,7 +51443,7 @@ jo
 Zw
 oI
 vf
-fR
+ek
 xO
 fR
 qh
@@ -52157,7 +52369,7 @@ SO
 Ln
 cw
 XD
-nJ
+Xb
 PV
 oB
 oB
@@ -52178,7 +52390,7 @@ ik
 ik
 ik
 ik
-ik
+Yf
 VM
 pe
 pe
@@ -52486,7 +52698,7 @@ pe
 nj
 JG
 uM
-sL
+Wn
 Ty
 LO
 pe
@@ -52769,7 +52981,7 @@ as
 as
 as
 LB
-nJ
+xQ
 jX
 oJ
 GO
@@ -53080,7 +53292,7 @@ NF
 NF
 Gl
 yg
-ik
+QO
 VG
 lt
 yg
@@ -53645,7 +53857,7 @@ KU
 TB
 pb
 Zl
-JT
+lX
 hx
 Ts
 nH
@@ -53666,7 +53878,7 @@ kv
 kv
 vV
 nJ
-nJ
+jQ
 fh
 rv
 ZQ
@@ -53688,7 +53900,7 @@ SO
 VG
 cM
 yg
-ik
+Qr
 ER
 sx
 qU
@@ -53958,7 +54170,7 @@ WZ
 Zd
 Zd
 Zd
-Zd
+VK
 Zd
 Zd
 Zd
@@ -54258,7 +54470,7 @@ au
 Zd
 WZ
 Zd
-Zd
+CF
 Zd
 Zd
 Zd
@@ -55151,7 +55363,7 @@ SO
 SO
 Rh
 Uc
-Xf
+Li
 gZ
 gZ
 Wa
@@ -55813,7 +56025,7 @@ LZ
 tM
 Fv
 hs
-fK
+lu
 FN
 SO
 SO
@@ -56669,7 +56881,7 @@ DY
 Zd
 xJ
 VH
-Vc
+uZ
 Vc
 mi
 NZ
@@ -56691,7 +56903,7 @@ nJ
 nJ
 nJ
 nJ
-nJ
+Qv
 sT
 Ob
 ah
@@ -58180,7 +58392,7 @@ Yv
 OW
 oc
 Jl
-hD
+RK
 hD
 HL
 Pn
@@ -59096,11 +59308,11 @@ tT
 FA
 Jr
 sk
-xX
+tt
 wb
 sm
 Fo
-EF
+ry
 EF
 EF
 EF
@@ -59433,7 +59645,7 @@ KK
 eL
 cI
 We
-ZU
+kg
 HF
 HF
 nT
@@ -60923,7 +61135,7 @@ EF
 SV
 sG
 mE
-ak
+sn
 Ww
 PB
 kT
@@ -61242,7 +61454,7 @@ VL
 Vg
 xo
 Zt
-Zt
+RE
 Zt
 Zt
 Zt
@@ -61806,7 +62018,7 @@ ab
 BN
 cs
 sa
-NM
+jF
 NM
 By
 cs
@@ -61844,7 +62056,7 @@ SO
 SO
 SO
 uF
-Zt
+oS
 Ok
 Ok
 Ok
@@ -62733,7 +62945,7 @@ hJ
 EF
 EF
 Zf
-EF
+Dt
 xa
 dM
 uu
@@ -63334,7 +63546,7 @@ SO
 KY
 LI
 dC
-EF
+sB
 Br
 uC
 bZ
@@ -63943,7 +64155,7 @@ Xw
 uC
 Hb
 aq
-tu
+Kw
 ee
 Pv
 mP
@@ -64506,8 +64718,8 @@ SO
 YS
 YS
 ih
-pG
-yW
+dr
+Hu
 Ey
 Hr
 Hr
@@ -64534,7 +64746,7 @@ ET
 bx
 SB
 TN
-zw
+Vu
 kx
 xu
 jr
@@ -64856,7 +65068,7 @@ KV
 VQ
 Cp
 tQ
-Xk
+HI
 Xk
 aC
 CY
@@ -68491,7 +68703,7 @@ WO
 AG
 pN
 Yi
-sW
+rr
 SY
 aa
 SY
@@ -69044,7 +69256,7 @@ at
 Sj
 Sj
 yP
-Yp
+wd
 Yp
 Mw
 Ff
@@ -69052,7 +69264,7 @@ Yp
 Yp
 WG
 Yp
-Yp
+vN
 zV
 yl
 gy
@@ -69075,7 +69287,7 @@ wG
 eg
 Vy
 Uo
-ao
+tk
 ZH
 Jd
 Wq
@@ -69337,7 +69549,7 @@ aU
 Lq
 Aq
 Qi
-MX
+GI
 IM
 Ta
 ua
@@ -69367,7 +69579,7 @@ iW
 GR
 jx
 GR
-gx
+De
 gx
 gx
 sb
@@ -69399,7 +69611,7 @@ vk
 SY
 yz
 Hx
-Vx
+cX
 SY
 MV
 Sw
@@ -69981,7 +70193,7 @@ Re
 VX
 LC
 Qn
-Tl
+WP
 pj
 nK
 GS
@@ -70864,7 +71076,7 @@ JH
 cg
 Ov
 mr
-kP
+Xe
 IG
 AS
 tI
@@ -71176,7 +71388,7 @@ VL
 VL
 pa
 zS
-zS
+Vl
 wT
 wT
 jc
@@ -72113,7 +72325,7 @@ Ka
 eV
 Ko
 pZ
-mb
+cZ
 mb
 UE
 Ko

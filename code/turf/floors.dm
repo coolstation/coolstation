@@ -10,6 +10,7 @@
 	icon_state = "floor"
 	thermal_conductivity = 0.040
 	heat_capacity = 225000
+	pass_unstable = FALSE
 
 	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP
 

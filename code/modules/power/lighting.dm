@@ -59,6 +59,7 @@
 	event_handler_flags = IMMUNE_SINGULARITY | USE_FLUID_ENTER
 	invisibility = INVIS_ALWAYS_ISH
 	flags = TECHNICAL_ATOM
+	pass_unstable = FALSE
 	var/area/my_area = null
 	var/list/lights = list()
 	var/brightness_placeholder = 1	//hey, maybe later use this in a way that is more optimized than iterating through each individual light
@@ -81,6 +82,7 @@
 /obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
+	pass_unstable = FALSE
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1

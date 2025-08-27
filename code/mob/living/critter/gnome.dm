@@ -69,11 +69,10 @@
 			src.visible_message(SPAN_COMBAT("[src] slams against [hit_atom] and screams in agony!"))
 
 /mob/living/critter/gnome/ai_controlled
-	is_npc = 1
+	ai_type = /datum/aiHolder/gnome
 
 	New()
 		..()
-		src.ai = new /datum/aiHolder/gnome(src)
 		remove_lifeprocess(/datum/lifeprocess/blindness)
 		remove_lifeprocess(/datum/lifeprocess/viruses)
 

@@ -58,7 +58,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt install libstdc++6:i386
+          sudo apt install libstdc++6:i386 libcurl4:i386
 
       - name: Cache BYOND
         uses: actions/cache@v3
@@ -105,7 +105,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt install libstdc++6:i386
+          sudo apt install libstdc++6:i386 libcurl4:i386
 
       - name: Cache BYOND
         uses: actions/cache@v3

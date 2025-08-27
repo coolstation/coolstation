@@ -33,6 +33,7 @@
 	var/mob/living/ai_target = null
 	var/list/mob/living/ai_target_old = list()
 	var/is_npc = 0
+	var/ai_type
 
 	var/move_laying = null
 	var/static/mutable_appearance/speech_bubble = living_speech_bubble
@@ -145,10 +146,9 @@
 	if (blood_id)
 		all_blood_reagents |= blood_id
 
-//	if (src.use_stamina)
-//		src.stamina_bar = new(src)
-		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
-		//eventual hud merger pls
+	if(src.ai_type)
+		src.is_npc = TRUE
+		src.ai = new ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()
@@ -428,7 +428,7 @@
 	///lifting non-item objects that have CAN_BE_LIFTED (or we are epic and have the PROP_LIFT_ANYTHING mob property)
 	if(isobj(dropped))
 		var/obj/O = dropped
-		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_MOB_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
+		if (dropping_user == src && ((O.object_flags & CAN_BE_LIFTED) || (HAS_ATOM_PROPERTY(src,PROP_LIFT_ANYTHING) && !isitem(O))))
 			if (can_reach(src, O))
 				new /obj/item/lifted_thing(O, src)
 			return
@@ -1568,16 +1568,16 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 		if (world.time < src.next_move + SUSTAINED_RUN_GRACE)
 			if(move_dir & last_move_dir)
-				if (sustained_moves < SUSTAINED_RUN_REQ+1 && sustained_moves + steps >= SUSTAINED_RUN_REQ+1 && !HAS_MOB_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
+				if (sustained_moves < SUSTAINED_RUN_REQ+1 && sustained_moves + steps >= SUSTAINED_RUN_REQ+1 && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 					sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),move_dir)
 					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.5)
 				sustained_moves += steps
 			else
-				if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !isFlying && !HAS_MOB_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
+				if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !isFlying && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 					sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
 					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.8)
 				else if (move_dir == turn(last_move_dir,180) && !isFlying)
-					if(!HAS_MOB_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
+					if(!HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 						sprint_particle_tiny(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
 						playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.9)
 					if(src.bioHolder.HasEffect("magnets_pos") || src.bioHolder.HasEffect("magnets_neg"))
@@ -1602,7 +1602,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 /mob/living/Move(var/turf/NewLoc, direct)
 	. = ..()
 	if (. && move_dir && !(direct & move_dir) && src.use_stamina)
-		if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !HAS_MOB_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
+		if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 			sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
 			playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.8)
 		sustained_moves = 0
@@ -1617,7 +1617,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	. += base_speed
 	. += movement_delay_modifier
-	. *= (1.1 - (min(src.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
+	. *= (1.1 - (min(src.stamina_regen + GET_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
 
 	var/multiplier = 1 // applied before running multiplier
 	var/health_deficiency_adjustment = 0
@@ -1740,7 +1740,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 /mob/living/critter/keys_changed(keys, changed)
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
-		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+		if (hud && !HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT))
 			if((keys & KEY_RUN && SEND_SIGNAL(src, COMSIG_MOB_SPRINT)) || src.override_movement_controller)
 				return
 			m_intent = (m_intent == "walk") ? "run" : "walk"
@@ -1750,7 +1750,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 /mob/living/carbon/human/keys_changed(keys, changed)
 	..()
 	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
-		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+		if (hud && !HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT))
 			if((keys & KEY_RUN && SEND_SIGNAL(src, COMSIG_MOB_SPRINT)) || src.override_movement_controller)
 				return
 			m_intent = (m_intent == "walk") ? "run" : "walk"
@@ -1758,7 +1758,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			//src.hud.set_sprint(keys & KEY_RUN) - SPRINTING REMOVAL (delete the lines about m_intent above the revert)
 
 /mob/living/proc/start_sprint()
-	if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+	if (HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT))
 		return
 	if (special_sprint && src.client)
 		if (special_sprint & SPRINT_BAT)
@@ -1772,7 +1772,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	//look in /mob/proc/process_move() for the sustained speed boost.
 	/*else if (src.use_stamina)
 		if (!next_step_delay && world.time >= next_sprint_boost)
-			if (!HAS_MOB_PROPERTY(src, PROP_CANTMOVE))
+			if (!HAS_ATOM_PROPERTY(src, PROP_CANTMOVE))
 				//if (src.hasStatus("blocking"))
 				//	for (var/obj/item/grab/block/G in src.equipped_list(check_for_magtractor = 0)) //instant break blocks when we start a sprint
 				//		qdel(G)
@@ -1785,7 +1785,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				attempt_move(src)
 				next_sprint_boost = world.time + max(src.next_move - world.time,BASE_SPEED) * 2
 
-				if ((src.loc != last || force_puff) && !HAS_MOB_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS)) //ugly check to prevent stationary sprint weirds
+				if ((src.loc != last || force_puff) && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS)) //ugly check to prevent stationary sprint weirds
 					sprint_particle(src, last)
 					if (!isFlying)
 						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,extrarange = -4)*/
@@ -1833,7 +1833,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			S.active = 0
 			S.icon_state = "shield0"
 
-	if (!P.was_pointblank && HAS_MOB_PROPERTY(src, PROP_REFLECTPROT))
+	if (!P.was_pointblank && HAS_ATOM_PROPERTY(src, PROP_REFLECTPROT))
 		var/obj/item/equipped = src.equipped()
 		if (equipped && istype(equipped,/obj/item/sword))
 			var/obj/item/sword/S = equipped
@@ -1944,11 +1944,11 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 					src.stamina_stun()
 
 				src.changeStatus("radiation", damage SECONDS)
-				var/orig_val = GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS)
-				APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "projectile", -5)
-				if(GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS) != orig_val)
+				var/orig_val = GET_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS)
+				APPLY_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "projectile", -5)
+				if(GET_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS) != orig_val)
 					SPAWN_DBG(30 SECONDS)
-						REMOVE_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "projectile")
+						REMOVE_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "projectile")
 				if(rangedprot > 1)
 					armor_msg = ", but your armor softens the hit!"
 
@@ -2107,10 +2107,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		var/did_any_dive_hit = FALSE
 		if(!target_dir)
 			target_dir = src.dir
-		var/slidekick_range = max(1 + min(GET_MOB_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
+		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
 			src.next_click = world.time + src.combat_click_delay
-			if (!HAS_MOB_PROPERTY(src, PROP_SLIDEKICK_TURBO))
+			if (!HAS_ATOM_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
 			else
@@ -2148,9 +2148,14 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 								secbot.threatlevel = 2
 								secbot.EngageTarget(src)
 
+						for (var/mob/living/critter/robotic/bot/securitron/secbot in target_turf) // punt that beepsky (was_harmed handles anger)
+							src.visible_message("<span class='alert'><b>[src]</b> kicks [secbot] like the football!</span>")
+							var/atom/throw_target = get_edge_target_turf(secbot, target_dir)
+							secbot.throw_at(throw_target, 6, 2)
+
 						if (dive_attack_hit)
-							dive_attack_hit.was_harmed(src, special = "slidekick")
 							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
+							dive_attack_hit.was_harmed(src, special = "slidekick")
 							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
 							for (var/mob/O in AIviewers(src))
 								O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)

@@ -42,17 +42,17 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/bear
+		HH.limb = new /datum/limb/bear(src)
 		HH.icon_state = "handl"				// the icon state of the hand UI background
-		HH.limb_name = "left bear arm"
+		HH.limb.name = "left bear arm"
 
 		HH = hands[2]
 		HH.icon = 'icons/ui/hud_human.dmi'
-		HH.limb = new /datum/limb/bear
+		HH.limb = new /datum/limb/bear(src)
 		HH.name = "right hand"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"				// the icon state of the hand UI background
-		HH.limb_name = "right bear arm"
+		HH.limb.name = "right bear arm"
 
 	setup_healths()
 		..()

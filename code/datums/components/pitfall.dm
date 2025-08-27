@@ -84,7 +84,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
 					peep.attempt_swim() //should do nothing if they're already swimming I think?
 			var/mob/M = AM
-			if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+			if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 				return
 			if (M.client?.flying || isobserver(AM) || isintangible(AM) || istype(AM, /mob/wraith))
 				return
@@ -112,7 +112,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							return
 						if (ismob(AM))
 							var/mob/M = AM
-							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+							if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 								AM.event_handler_flags &= ~IS_PITFALLING
 								return
 						pit.fall_to(AM, src.BruteDamageMax)
@@ -157,7 +157,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 					game_stats.Increment("clownabuse")
 #endif
 				M.emote("scream")
-				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+				APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
 			animate_fall(AM,fall_time,src.DepthScale)
 			var/old_density = AM.density // dont block other fools from falling in
 			AM.set_density(0)
@@ -201,8 +201,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (ismob(AM))
 					var/mob/M = AM
 					var/safe = FALSE
-					REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-					if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+					REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
+					if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 						keep_falling = FALSE
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
@@ -210,7 +210,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							safe = TRUE
 						if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
 							safe = TRUE
-						if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+						if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 							safe = TRUE
 					if(safe)
 						M.visible_message("<span class='notice'>[AM] [keep_falling ? "glides down through" : "lands gently on"] [T].</span>","<span class='notice'>You [keep_falling ? "glide down through" : "land gently on"] [T].</span>")
@@ -272,7 +272,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			AM.event_handler_flags &= ~IN_COYOTE_TIME
 			if(ismob(AM))
 				var/mob/M = AM
-				REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+				REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
 				M.show_message("<span class='alert bold'>That pit is MAJORLY fucked up! Tell a coder!</span>")
 
 // ====================== SUBTYPES OF PITFALL ======================

@@ -201,7 +201,7 @@
 					continue
 				m_blocked = 1
 				break
-
+/*
 		if (get_dist(tmploc,A) <= 4)
 			if (istype(atom, /obj/item/device/flockblocker))
 				var/obj/item/device/flockblocker/F = atom
@@ -212,6 +212,7 @@
 					continue
 				m_blocked = 1
 				break
+*/
 
 	//if((istype(tmploc,/area/wizard_station)) || (istype(tmploc,/area/syndicate_station)))
 	var/area/myArea = get_area(tmploc)

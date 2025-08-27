@@ -588,6 +588,12 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "cig_moose"
 
+		poster_grub
+			name = "grub breeder ad"
+			desc = "There's a bunch of sicker-than-usual-looking grubs on this poster. It says 2X PUNPY 3X BRAP in big bold letters at the top."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "grubs"
+
 		poster_human
 			name = "poster"
 			desc = "There's a person pictured on this poster. Some sort of celebrity."

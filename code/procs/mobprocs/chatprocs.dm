@@ -1080,6 +1080,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 //#define FLOCK_SPEAKER_FLOCKTRACE 4
 //#define FLOCK_SPEAKER_NPC 5
 
+/*
 /proc/flock_speak(var/mob/speaker, var/message as text, var/datum/flock/flock, var/speak_as_admin=0)
 
 	var/client/C = null
@@ -1149,3 +1150,5 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 			thisR = "<span class='adminHearing' data-ctx='[M.client.chatOutput.getContextFlags()]'>[thisR]</span>"
 		if(thisR != "")
 			M.show_message(thisR, 2)
+
+*/

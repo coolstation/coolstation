@@ -484,7 +484,8 @@
 	name = "Wrestling bell"
 	desc = "A bell used to signal the start of a wrestling match"
 	anchored = 1
-	density = 1
+	density = FALSE
+	pass_unstable = FALSE
 	icon = 'icons/obj/wrestlingbell.dmi'
 	icon_state = "wrestlingbell"
 	deconstruct_flags = DECON_WRENCH
@@ -604,6 +605,7 @@
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "sarc_0"
 	density = 1
+	pass_unstable = FALSE
 	var/gnome = 1
 
 	attackby(obj/item/W as obj, mob/user as mob)

@@ -13,6 +13,7 @@
 	mob_flags = IGNORE_SHIFT_CLICK_MODIFIER
 
 	var/dump_contents_chance = 20
+	var/datacore_id = null
 
 	var/image/health_mon = null
 	var/image/health_implant = null
@@ -250,6 +251,8 @@
 
 	src.text = "<font color=#[random_hex(3)]>@"
 	src.update_colorful_parts()
+
+	AddComponent(/datum/component/contraband, 0, 0)
 
 /datum/human_limbs
 	var/mob/living/carbon/human/holder = null
@@ -881,7 +884,7 @@
 	else
 		src.unkillable = 0
 		src.spell_soulguard = 0
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 		SPAWN_DBG(2.2 SECONDS) // Has to at least match the organ/limb replacement stuff (Convair880).
 			if (src) qdel(src)
 
@@ -1794,28 +1797,6 @@
 		W.dropped(src)
 		src.update_inhands()
 
-/mob/living/carbon/human/update_equipped_modifiers() // A bruteforce approach, for things like the garrote that like to change their modifier while equipped
-	var/datum/movement_modifier/equipment/equipment_proxy = locate() in src.movement_modifiers
-	if (!equipment_proxy)
-		equipment_proxy = new
-		APPLY_MOVEMENT_MODIFIER(src, equipment_proxy, /obj/item)
-
-	// reset the modifiers to defaults
-	equipment_proxy.additive_slowdown = 0
-	equipment_proxy.aquatic_movement = 0
-	equipment_proxy.space_movement = 0
-
-	for (var/obj/item/I in src.get_equipped_items())
-		equipment_proxy.additive_slowdown += I.getProperty("movespeed")
-		var/fluidmove = I.getProperty("negate_fluid_speed_penalty")
-		if (fluidmove)
-			equipment_proxy.additive_slowdown += fluidmove // compatibility hack for old code treating space & fluid movement capability as a slowdown
-			equipment_proxy.aquatic_movement += fluidmove
-		var/spacemove = I.getProperty("space_movespeed")
-		if (spacemove)
-			equipment_proxy.additive_slowdown += spacemove // compatibility hack for old code treating space & fluid movement capability as a slowdown
-			equipment_proxy.space_movement += spacemove
-
 
 /mob/living/carbon/human/updateTwoHanded(var/obj/item/I, var/twoHanded = 1)
 	if(!(I in src) || (src.l_hand != I && src.r_hand != I)) return 0
@@ -2581,7 +2562,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (ishuman(src))
 		animation = new(src.loc)
@@ -3182,7 +3163,7 @@
 	if (move_dir & (move_dir-1))
 		steps *= DIAG_MOVE_DELAY_MULT
 
-	if (HAS_MOB_PROPERTY(src, PROP_ATOM_FLOATING)) //swimming
+	if (HAS_ATOM_PROPERTY(src, PROP_ATOM_FLOATING)) //swimming
 		return ..()
 
 	//STEP SOUND HANDLING

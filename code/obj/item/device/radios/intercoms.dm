@@ -196,6 +196,7 @@
 /obj/item/device/radio/intercom/adventure/owlery
 	name = "Owlery Intercom"
 	frequency = R_FREQ_INTERCOM_OWLERY
+	locked_frequency = TRUE
 	broadcasting = 0
 	device_color = "#3344AA"
 
@@ -205,6 +206,7 @@
 /obj/item/device/radio/intercom/adventure/syndcommand
 	name = "Suspicious Intercom"
 	frequency = R_FREQ_INTERCOM_SYNDCOMMAND
+	locked_frequency = TRUE
 	broadcasting = 1
 	device_color = "#BB3333"
 

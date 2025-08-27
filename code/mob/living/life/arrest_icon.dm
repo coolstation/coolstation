@@ -9,7 +9,6 @@
 
 			//TODO : move this code somewhere else that updates from an event trigger instead of constantly
 			var/arrestState = ""
-			var/added_to_records = FALSE
 			var/see_face = 1
 			if (istype(H.wear_mask) && !H.wear_mask.see_face)
 				see_face = 0
@@ -19,21 +18,15 @@
 				see_face = 0
 			var/visibleName = see_face ? H.real_name : H.name
 
-			for (var/datum/data/record/R as anything in data_core.security)
-				if (R.fields["name"] != H.name && H.traitHolder.hasTrait("immigrant") && H.traitHolder.hasTrait("jailbird"))
-					if(!added_to_records)
-						arrestState = "*Arrest*"
-				else if (R.fields["name"] == H.name && H.traitHolder.hasTrait("immigrant") && H.traitHolder.hasTrait("jailbird"))
-					if(!added_to_records)
-						arrestState = ""
-						added_to_records = TRUE
-
-				if ((R.fields["name"] == visibleName) && ((R.fields["criminal"] == "*Arrest*") || R.fields["criminal"] == "Parolled" || R.fields["criminal"] == "Incarcerated" || R.fields["criminal"] == "Released"))
-					arrestState = R.fields["criminal"] // Found a record of some kind
-					break
+			var/datum/db_record/record = data_core.security.find_record("name", visibleName)
+			if(record)
+				var/criminal = record["criminal"]
+				if(criminal == "*Arrest*" || criminal == "Parolled" || criminal == "Incarcerated" || criminal == "Released")
+					arrestState = criminal
+			else if(H.traitHolder.hasTrait("immigrant") && H.traitHolder.hasTrait("jailbird"))
+				arrestState = "*Arrest*"
 
 			if (arrestState != "*Arrest*") // Contraband overrides non-arrest statuses, now check for contraband
-
 				if (locate(/obj/item/implant/antirev) in H.implant)
 					if (ticker.mode && ticker.mode.type == /datum/game_mode/revolution)
 						var/datum/game_mode/revolution/R = ticker.mode
@@ -45,7 +38,6 @@
 							arrestState = "Loyal"
 					else
 						arrestState = "Loyal"
-
 				else
 					var/obj/item/card/id/myID = 0
 					//mbc : its faster to check if the item in either hand has a registered owner than doing istype on equipped()
@@ -57,64 +49,14 @@
 
 					if (!myID)
 						myID = H.wear_id
-					if (myID && (access_carrypermit in myID.access) && (access_contrabandpermit in myID.access)) // has all permissions for contraband, don't check
-						myID = null
-					else
-						var/contrabandLevel = 0
-						if (myID)
-							var/has_carry_permit = (access_carrypermit in myID.access)
-							var/has_contraband_permit = (access_contrabandpermit in myID.access)
-							if (H.l_hand)
-								if (istype(H.l_hand, /obj/item/gun/))
-									if(!has_carry_permit)
-										contrabandLevel += H.l_hand.contraband
-								else
-									if(!has_contraband_permit)
-										contrabandLevel += H.l_hand.contraband
 
-							if (!contrabandLevel && H.r_hand)
-								if (istype(H.r_hand, /obj/item/gun/))
-									if(!has_carry_permit)
-										contrabandLevel += H.r_hand.contraband
-								else
-									if(!has_contraband_permit)
-										contrabandLevel += H.r_hand.contraband
-
-							if (!contrabandLevel && H.belt)
-								if (istype(H.belt, /obj/item/gun/))
-									if(!has_carry_permit)
-										contrabandLevel += H.belt.contraband
-								else
-									if(!has_contraband_permit)
-										contrabandLevel += H.belt.contraband
-
-							if (!contrabandLevel && H.wear_suit)
-								if(!has_contraband_permit)
-									contrabandLevel += H.wear_suit.contraband
-
-							if (!contrabandLevel && H.back)
-								if (istype(H.back, /obj/item/gun/))
-									if (!has_carry_permit)
-										contrabandLevel += H.back.contraband
-								else
-									if (!has_contraband_permit)
-										contrabandLevel += H.back.contraband
-
-						else
-							if (H.l_hand)
-								contrabandLevel += H.l_hand.contraband
-							if (!contrabandLevel && H.r_hand)
-								contrabandLevel += H.r_hand.contraband
-							if (!contrabandLevel && H.belt)
-								contrabandLevel += H.belt.contraband
-							if (!contrabandLevel && H.wear_suit)
-								contrabandLevel += H.wear_suit.contraband
-							if (!contrabandLevel && H.back)
-								contrabandLevel += H.back.contraband
-
-						if (contrabandLevel > 0)
-							arrestState = "Contraband"
-
+					var/has_contraband_permit = 0
+					var/has_carry_permit = 0
+					if (myID)
+						has_contraband_permit = (access_contrabandpermit in myID.access)
+						has_carry_permit = (access_carrypermit in myID.access)
+					if ((!has_contraband_permit && GET_ATOM_PROPERTY(H,PROP_MOVABLE_VISIBLE_CONTRABAND) > 0) || (!has_carry_permit && GET_ATOM_PROPERTY(H,PROP_MOVABLE_VISIBLE_GUNS) > 0))
+						arrestState = "Contraband"
 			if (H.arrestIcon.icon_state != arrestState)
 				H.arrestIcon.icon_state = arrestState
 

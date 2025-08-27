@@ -1,3 +1,4 @@
+ABSTRACT_TYPE(/mob/living/critter)
 /mob/living/critter
 	name = "critter"
 	desc = "A beastie!"
@@ -91,10 +92,6 @@
 	blood_id = "blood"
 
 	New()
-//		if (ispath(default_task))
-//			default_task = new default_task
-//		if (ispath(current_task))
-//			current_task = new current_task
 
 		setup_hands()
 		post_setup_hands()
@@ -102,7 +99,7 @@
 		setup_reagents()
 		setup_healths()
 		if (!healthlist.len)
-			message_coders("ALERT: Critter [type] ([name]) does not have health holders.")
+			stack_trace("Critter [type] ([name]) \[\ref[src]\] does not have health holders.")
 		count_healths()
 
 		SPAWN_DBG(0)
@@ -126,10 +123,6 @@
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
-/*
-		if (src.stamina_bar)
-			hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-*/
 
 		health_update_queue |= src
 
@@ -389,6 +382,14 @@
 				return (src.pull_w_class >= W_CLASS_BULKY)
 		return 0
 
+	initializeBioholder()
+		switch(src.gender) // default is they/them, this catches stuff like beepsky!
+			if("male")
+				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/heHim)
+			if("female")
+				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/sheHer)
+		. = ..()
+
 	canRideMailchutes()
 		return src.fits_under_table
 
@@ -556,30 +557,17 @@
 			return
 		if (!HH.can_attack && (HH.can_range_attack || HH.can_special_attack()))
 			hand_range_attack(target, params)
-		else if (HH.can_attack)
-			if (ismob(target))
-				if (a_intent != INTENT_HELP)
-					if (mob_flags & AT_GUNPOINT)
-						for(var/obj/item/grab/gunpoint/G in grabbed_by)
-							G.shoot()
-				switch (a_intent)
-					if (INTENT_HELP)
-						if (can_help)
-							L.help(target, src)
-					if (INTENT_DISARM)
-						if (can_disarm)
-							L.disarm(target, src)
-					if (INTENT_HARM)
-						if (HH.can_attack)
-							L.harm(target, src)
-					if (INTENT_GRAB)
-						if (HH.can_hold_items && can_grab)
-							L.grab(target, src)
+			return
+		if (HH.can_attack)
+			var/obj/item/equipped = src.equipped()
+			if(equipped && src.next_click <= world.time)
+				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay)
+				target.Attackby(equipped, src, params)
 			else
 				L.attack_hand(target, src)
 				HH.set_cooldown_overlay()
 		else
-			boutput(src, "<span class='alert'>You cannot attack with your [HH.name]!</span>")
+			boutput(src, SPAN_ALERT("You cannot attack with your [HH.name]!"))
 
 	can_strip(mob/M, showInv = 0)
 		var/datum/handHolder/HH = get_active_hand()
@@ -620,8 +608,7 @@
 		if (hand_count)
 			for (var/datum/handHolder/HH in hands)
 				if (!HH.limb)
-					HH.limb = new /datum/limb
-				HH.spawn_dummy_holder()
+					HH.limb = new /datum/limb(src)
 
 	proc/setup_equipment_slots()
 
@@ -854,7 +841,7 @@
 
 	update_inhands()
 		var/handcount = 0
-		for (var/datum/handHolder/HH in hands)
+		for (var/datum/handHolder/HH as anything in src.hands)
 			handcount++
 			var/obj/item/I = HH.item
 			if (HH.show_inhands)
@@ -863,7 +850,8 @@
 					continue
 				if (!I.inhand_image)
 					I.inhand_image = image(I.inhand_image_icon, "", HH.render_layer)
-				I.inhand_image.icon_state = I.item_state ? "[I.item_state][HH.suffix]" : "[I.icon_state][HH.suffix]"
+				var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
+				I.inhand_image.icon_state = I.item_state ? "[I.item_state][suffix]" : "[I.icon_state][suffix]"
 				I.inhand_image.pixel_x = HH.offset_x
 				I.inhand_image.pixel_y = HH.offset_y
 				I.inhand_image.layer = HH.render_layer
@@ -1274,6 +1262,28 @@
 
 	src.TakeDamage("All", damage, 0)
 	return
+
+ABSTRACT_TYPE(/mob/living/critter/robotic)
+/// Parent for robotic critters. Handles some traits that robots should have- damaged by EMPs, immune to fire and rads
+/mob/living/critter/robotic
+	name = "a fucked up robot"
+	robotic = TRUE
+	can_burn = FALSE
+	dna_to_absorb = 0
+	butcherable = FALSE
+	metabolizes = FALSE
+	var/emp_vuln = 1
+
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_RADPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_HEATPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_COLDPROT, src, 100)
+
+	/// EMP does 10 brute and 10 burn by default, can be adjusted linearly with emp_vuln
+	emp_act()
+		src.emag_act() // heh
+		src.TakeDamage(10 * emp_vuln, 10 * emp_vuln)
 
 //crummy hack but I'm not the one leaving critters visually broken for years
 /mob/living/critter/animate_lying()

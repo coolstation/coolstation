@@ -193,7 +193,7 @@
 
 				else
 					failed = 1
-
+/*
 			if ("Flockmind")
 				var/mob/living/intangible/flock/flockmind/F = M3.make_flockmind()
 				if (F && istype(F))
@@ -203,7 +203,7 @@
 					send_to = 3
 				else
 					failed = 1
-
+*/
 			if ("Wraith")
 				var/mob/wraith/W = M3.make_wraith()
 				if (W && istype(W))

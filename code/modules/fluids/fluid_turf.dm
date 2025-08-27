@@ -18,6 +18,7 @@
 	icon_state = "sand_other"
 	color = OCEAN_COLOR
 	pathable = 0
+	pass_unstable = FALSE
 	mat_changename = 0
 	mat_changedesc = 0
 	fullbright = 0

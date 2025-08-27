@@ -153,15 +153,10 @@
 #define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	30
 #define PLASMA_OXYGEN_FULLBURN				10
 
-/// Hotspot Maximum Temperature without a catalyst
-#define HOTSPOT_MAX_NOCAT_TEMPERATURE (100000) // increase from 80000
-/// Hotspot Maximum Temperature to maintain maths works to 1e35-sh in practice)
-#define HOTSPOT_MAX_CAT_TEMPERATURE (INFINITY)
-
 //Gas Reaction Flags
 #define REACTION_ACTIVE (1<<0) 	//! Reaction is Active
 #define COMBUSTION_ACTIVE (1<<1) //! Combustion is Active
-#define CATALYST_ACTIVE (1<<2)	//! Hotspot Catalyst is Active
+//#define CATALYST_ACTIVE (1<<2)	//! Hotspot Catalyst is Active
 
 // tank properties
 
@@ -335,6 +330,19 @@ proc/gas_text_color(gas_id)
 #define HEAT_CAPACITY_ARCHIVED(MIXTURE) (length((MIXTURE).trace_gases) ? (MIXTURE).heat_capacity_archived_full() : BASE_GASES_ARCH_HEAT_CAPACITY(MIXTURE))
 
 #define THERMAL_ENERGY(MIXTURE) ((MIXTURE).temperature * HEAT_CAPACITY(MIXTURE))
+
+/// reagent fire oxygen -> co2 and heat IF theres enough oxygen. defines _energy_released
+#define REAGENT_COMBUST(MIXTURE, ENERGY) var/_energy_released = 0; \
+	if(MIXTURE.oxygen >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_NEEDED) { \
+		var/_percent_oxy = MIXTURE.oxygen / MIXTURE_PRESSURE(MIXTURE); \
+		if(_percent_oxy >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_PERCENTAGE) { \
+			var/_combustion_rate = min(min(_percent_oxy, 0.30) * 0.0000025 * ENERGY, MIXTURE.oxygen * 0.01); \
+			MIXTURE.oxygen -= _combustion_rate; \
+			MIXTURE.carbon_dioxide += _combustion_rate; \
+			_energy_released = 400000 * _combustion_rate; \
+			MIXTURE.temperature += _energy_released / HEAT_CAPACITY(MIXTURE); \
+		} \
+	}
 
 // air stats
 

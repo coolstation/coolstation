@@ -147,16 +147,16 @@
 		..()
 
 	proc/stop_sprint()
-		APPLY_MOB_PROPERTY(src, PROP_CANTSPRINT, src.type)
+		APPLY_ATOM_PROPERTY(src, PROP_CANTSPRINT, src.type)
 
 	proc/enable_sprint()
-		REMOVE_MOB_PROPERTY(src, PROP_CANTSPRINT, src.type)
+		REMOVE_ATOM_PROPERTY(src, PROP_CANTSPRINT, src.type)
 
 	special_movedelay_mod(delay,space_movement,aquatic_movement)
 		.= delay
 		if (src.lying)
 			. += 14
-		if (HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+		if (HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT))
 			. += 7
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
@@ -234,7 +234,7 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 1
 
@@ -437,8 +437,8 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
-		HH.limb = new /datum/limb/leg_hand
+		HH.limb.name = "teeth"					// name for the dummy holder
+		HH.limb = new /datum/limb/leg_hand(src)
 		HH.can_hold_items = 0
 
 	New()
@@ -586,7 +586,7 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 0
 

@@ -1330,6 +1330,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	icon_state = "tallsmes0"
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 
 	New()
 		..()

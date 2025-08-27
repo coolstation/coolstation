@@ -1,4 +1,4 @@
-/mob/living/critter/drone
+/mob/living/critter/robotic/drone
 	name = "Drone"
 	real_name = "Drone"
 	var/drone_designation = "SC"
@@ -123,11 +123,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/gun/phaser
+		HH.limb = new /datum/limb/gun/phaser(src)
 		HH.name = "S-1 Light Anti-Personnel Energy Sling"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handphs"
-		HH.limb_name = "S-1 Light Anti-Personnel Energy Sling"
+		HH.limb.name = "S-1 Light Anti-Personnel Energy Sling"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1

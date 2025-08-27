@@ -619,6 +619,7 @@ Only trained personnel should operate station systems. Follow all procedures car
 		STOP_TRACKING
 		. = ..()
 
+/*
 /obj/item/paper/hellburn
 	name = "paper- 'memo #R13-08-A'"
 	info = {"<h3 style="border-bottom: 1px solid black; width: 80%;">Nanotrasen Toxins Research</h3>
@@ -642,6 +643,7 @@ as it may become compromised.
 </p>
 </tt>
 <center><span style="font-family: 'Dancing Script';">Is this a Hellburn???!!?</span></center>"}
+*/
 
 /obj/item/paper/zeta_boot_kit
 	name = "Paper-'Instructions'"
@@ -909,8 +911,8 @@ as it may become compromised.
 
 		if(!initialized)
 			initialized = TRUE
-			for(var/datum/data/record/t in data_core.general)
-				who += "[t.fields["name"]]"
+			for(var/datum/db_record/t as anything in data_core.general.records)
+				who += "[t["name"]]"
 
 		switch(randme)
 			if(1)

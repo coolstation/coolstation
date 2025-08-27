@@ -1476,7 +1476,7 @@ obj/item/whetstone
 	hit_type = DAMAGE_CUT | DAMAGE_STAB
 	tool_flags = TOOL_CUTTING | TOOL_CHOPPING
 	object_flags = NO_ARM_ATTACH
-	contraband = 5
+	contraband = 8
 	w_class = W_CLASS_BULKY
 	force = 25
 	throwforce = 25
@@ -1577,13 +1577,13 @@ obj/item/whetstone
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 
 	w_class = W_CLASS_BULKY
-	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD
+	c_flags = EQUIPPED_WHILE_HELD
 
 	force = 45
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 1.2)
+		setProperty("carried_movespeed", 1.2)
 
 /obj/item/machete
 	name = "rusty machete"

@@ -1,7 +1,3 @@
-#define CLIENT_IMAGE_GROUP_ARREST_ICONS "arrest_icons"
-#define CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS "health_mon_icons"
-#define CLIENT_IMAGE_GROUP_CEILING_ICONS "ceiling_icons"
-
 var/global/list/datum/client_image_group/client_image_groups
 
 /datum/client_image_group
@@ -24,7 +20,7 @@ var/global/list/datum/client_image_group/client_image_groups
 			mob_to_associated_images_lookup[img.loc] += img
 		else // first time a mob's image is added, on top of adding it to the lookup list a signal is registered on the mob to track invisibility changes.
 			mob_to_associated_images_lookup[img.loc] = list(img)
-			RegisterSignal(img.loc, COMSIG_MOB_PROP_INVISIBILITY, PROC_REF(on_mob_invisibility_changed))
+			RegisterSignal(img.loc, COMSIG_ATOM_PROP_INVISIBILITY, .proc/on_mob_invisibility_changed)
 
 		for (var/mob/iterated_mob as() in subscribed_mobs_with_subcount)
 			if (!img.loc.invisibility || (img.loc == iterated_mob) || istype(iterated_mob, /mob/dead/observer))
@@ -36,7 +32,7 @@ var/global/list/datum/client_image_group/client_image_groups
 		mob_to_associated_images_lookup[img.loc] -= img
 		if (!length(mob_to_associated_images_lookup[img.loc])) // no images of a mob remain, removing from lookup and unregistering mob's invisibility update signal.
 			mob_to_associated_images_lookup.Remove(img.loc)
-			UnregisterSignal(img.loc, COMSIG_MOB_PROP_INVISIBILITY)
+			UnregisterSignal(img.loc, COMSIG_ATOM_PROP_INVISIBILITY)
 		for (var/mob/iterated_mob as() in subscribed_mobs_with_subcount)
 			iterated_mob.client?.images.Remove(img)
 

@@ -158,20 +158,14 @@ datum
 				var/mob/living/carbon/human/H = holder.my_atom
 				if(H.bioHolder.age < 21) // Yes. Its 21. This is Space America. That is canon now.
 					if(seen_by_camera(H))
-					// determine the name of the perp (goes by ID if wearing one)
+						// determine the name of the perp (goes by ID if wearing one)
 						var/perpname = H.name
 						if(H:wear_id && H:wear_id:registered)
 							perpname = H:wear_id:registered
-						// find the matching security record
-						for(var/datum/data/record/R in data_core.general)
-							if(R.fields["name"] == perpname)
-								for (var/datum/data/record/S in data_core.security)
-									if (S.fields["id"] == R.fields["id"])
-										// now add to rap sheet
-										S.fields["criminal"] = "*Arrest*"
-										S.fields["mi_crim"] = "Underage drinking."
-
-									break
+						var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+						if(sec_record && sec_record["criminal"] != "*Arrest*")
+							sec_record["criminal"] = "*Arrest*"
+							sec_record["mi_crim"] = "Underage drinking."
 
 		fooddrink/alcoholic/hard_punch
 			name = "hard punch"
@@ -2150,13 +2144,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
 				. = ..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
 				. = ..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2195,13 +2189,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
 				. = ..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
 				. = ..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -3491,7 +3485,7 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
 
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -3516,7 +3510,7 @@ datum
 
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)

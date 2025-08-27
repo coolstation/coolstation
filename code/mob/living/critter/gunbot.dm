@@ -1,4 +1,4 @@
-/mob/living/critter/gunbot
+/mob/living/critter/robotic/gunbot
 	name = "robot"
 	real_name = "robot"
 	desc = "A Security Robot, something seems a bit off."
@@ -54,31 +54,31 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/gun/arm38
+		HH.limb = new /datum/limb/gun/arm38(src)
 		HH.name = ".38 Anti-Personnel Arm"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "hand38"
-		HH.limb_name = ".38 Anti-Personnel Arm"
+		HH.limb.name = ".38 Anti-Personnel Arm"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
 
 		HH = hands[2]
-		HH.limb = new /datum/limb/gun/abg
+		HH.limb = new /datum/limb/gun/abg(src)
 		HH.name = "ABG Riot Suppression Appendage"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handabg"
-		HH.limb_name = "ABG Riot Suppression Appendage"
+		HH.limb.name = "ABG Riot Suppression Appendage"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
 
 		HH = hands[3]
-		HH.limb = new /datum/limb/small_critter/strong
+		HH.limb = new /datum/limb/small_critter/strong(src)
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "gunbothand"
-		HH.limb_name = "gunbot hands"
+		HH.limb.name = "gunbot hands"
 
 	get_melee_protection(zone, damage_type)
 		return 6

@@ -27,13 +27,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_REBREATHING, src.type)
+					APPLY_ATOM_PROPERTY(M, PROP_REBREATHING, src.type)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_REBREATHING, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_REBREATHING, src.type)
 				return
 
 
@@ -85,16 +85,16 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
-					APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
-					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -150,14 +150,14 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -189,13 +189,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether", -5)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether", -5)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -400,7 +400,7 @@ datum
 				if(!M) M = holder.my_atom
 				if(src.fake_health < 45)
 					src.fake_health += mult
-				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
+				APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
 				if(prob(55))
 					M.HealDamage("All", 2 * mult, 0)
 				//set it so it only slowly reduces mild fevers from disease and not, you know, burn victims
@@ -419,7 +419,7 @@ datum
 				src.fake_health = -10
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 		//hmm. well.
@@ -603,13 +603,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine", 4)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine", 4)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -789,13 +789,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt", 5)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt", 5)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt")
 				return
 
 			on_mob_life(var/mob/M, var/method=INGEST, var/mult = 1)
@@ -885,14 +885,14 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 					M.change_misstep_chance(25)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					REMOVE_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
@@ -956,7 +956,7 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine", 3)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/epinepherine, src.type)
 				..()
 
@@ -965,7 +965,7 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/epinepherine, src.type)
 				..()
 
@@ -1271,13 +1271,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine", 2)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -1370,13 +1370,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine", -3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine", -3)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
