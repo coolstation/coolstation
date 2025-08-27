@@ -1,7 +1,7 @@
 var/list/observers = list()
 
 /mob/dead/target_observer
-	density = 1
+	density = FALSE
 	name = "spooky ghost"
 	icon = null
 	event_handler_flags = 0

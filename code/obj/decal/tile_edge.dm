@@ -136,6 +136,7 @@
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "curtainthing"
 	density = 1
+	pass_unstable = TRUE
 	anchored = 1
 	dir = NORTH
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS

@@ -18,7 +18,9 @@
 			send_freq, \
 			pda.net_id, \
 			null, \
-			null \
+			FALSE, \
+			null, \
+			FALSE \
 		)
 		RegisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET, .proc/receive_signal)
 
@@ -85,7 +87,7 @@
 
 				mode = 1
 				master.updateSelfDialog()
-				SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "ping")
+				SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, range, "ping")
 				sleep(2 SECONDS)
 				mode = 0
 				master.updateSelfDialog()
@@ -123,8 +125,7 @@
 		if(signal.data["address_1"] == master.net_id && signal.data["command"] == "ping_reply")
 			if(!result)
 				result = new/list()
-			if(get_dist(master,signal.source) <= range)
-				result += "[signal.data["device"]] \[[signal.data["netid"]]\] [signal.data["data"]]<BR>"
+			result += "[signal.data["device"]] \[[signal.data["netid"]]\] [signal.data["data"]]<BR>"
 
 	proc/adjust_frequency(var/old_freq, var/new_freq)
 		get_radio_connection_by_id(src.master, "ping").update_frequency(new_freq)
@@ -146,6 +147,7 @@
 			scan_freq, \
 			pda.net_id, \
 			null, \
+			FALSE, \
 			null, \
 			TRUE \
 		)
@@ -258,15 +260,10 @@
 		for(var/d in signal.data)
 			t2 += "[d]=[signal.data[d]]; "
 
-		// look for detomax packet and obscure it (so it won't be easy to copy)
-		if(signal.data["command"] == "text_message" && signal.data["batt_adjust"] == netpass_syndicate)
-			t += "ERR_12939_CORRUPT_PACKET:"
-			t2 = stars(t2, 15)
-
-		// ruck kit lock packets use this
+		// look for encrypted packets and obscure them (but leave a bit visible, if they say to)
 		if(signal.encryption)
 			t += "[signal.encryption]"
-			t2 = stars(t2, 15)
+			t2 = stars(t2, signal.encryption_obfuscation)
 
 		result += "[t][t2]"
 
@@ -296,6 +293,7 @@
 			send_freq, \
 			pda.net_id, \
 			null, \
+			TRUE, \
 			null, \
 			TRUE \
 		)

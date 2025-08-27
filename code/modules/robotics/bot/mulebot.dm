@@ -15,6 +15,7 @@
 	on = 1
 	locked = 1
 	access_lookup = "Captain"
+	pass_unstable = FALSE
 	var/atom/movable/load = null		// the loaded crate (usually)
 
 	var/beacon_freq = FREQ_BOT_NAV
@@ -574,7 +575,7 @@
 		SPAWN_DBG(0)
 			KillPathAndGiveUp()
 			new_destination = new_dest
-			post_signal(beacon_freq, "findbeacon", new_dest)
+			post_signal_multiple("beacon", list("findbeacon" = "delivery", "address_tag" = "delivery"))
 			updateDialog()
 
 	proc/set_destination_pda(var/net_id)
@@ -810,8 +811,7 @@
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.transmission_method = 1
-		signal.data["sender"] = src.botnet_id
+		signal.data["sender"] = src.net_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, freq)

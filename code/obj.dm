@@ -290,6 +290,7 @@
 		return
 
 /obj/lattice
+	pass_unstable = FALSE
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
@@ -516,7 +517,7 @@
 /obj/overlay
 	name = "overlay"
 	anchored = TRUE
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	mat_changename = 0
 	mat_changedesc = 0
 	density = 0

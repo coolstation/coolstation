@@ -265,9 +265,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	gender = MALE
 
 	is_npc = TRUE
-	New()
-		. = ..()
-		src.ai = new /datum/aiHolder/wandererf(src)
+	ai_type = /datum/aiHolder/wandererf
 
 	setup_overlays()
 		return
@@ -479,10 +477,6 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	pull_w_class = W_CLASS_BULKY
 
 	OnMove()
-		if(client?.player?.shamecubed)
-			loc = client.player.shamecubed
-			return
-
 		makeWaddle(src)
 		.=..()
 
@@ -2944,9 +2938,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 	ai_controlled
 		is_npc = 1
+		ai_type = /datum/aiHolder/trilobite
 		New()
 			..()
-			src.ai = new /datum/aiHolder/trilobite(src)
 			//todo later : move this lifeprocess stuff to a component
 			remove_lifeprocess(/datum/lifeprocess/blindness)
 			remove_lifeprocess(/datum/lifeprocess/viruses)
@@ -3017,9 +3011,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 	ai_controlled
 		is_npc = 1
+		ai_type = /datum/aiHolder/spike
 		New()
 			..()
-			src.ai = new /datum/aiHolder/spike(src)
 			remove_lifeprocess(/datum/lifeprocess/blindness)
 			remove_lifeprocess(/datum/lifeprocess/viruses)
 
@@ -3109,9 +3103,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 	ai_controlled
 		is_npc = 1
+		ai_type = /datum/aiHolder/pikaia
 		New()
 			..()
-			src.ai = new /datum/aiHolder/pikaia(src)
 			remove_lifeprocess(/datum/lifeprocess/blindness)
 			remove_lifeprocess(/datum/lifeprocess/viruses)
 

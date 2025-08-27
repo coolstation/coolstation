@@ -174,7 +174,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	// todo: skinresult of scales, custom_brain_type of fish egg item (caviar?)
 
 	throws_can_hit_me = 0
-	ai = null
+	ai_type = /datum/aiHolder/aquatic/fish
 
 	var/swimming_away = 0
 
@@ -191,7 +191,6 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 
 /mob/living/critter/aquatic/fish/New()
 	..()
-	src.ai = new /datum/aiHolder/aquatic/fish(src)
 	animate_bumble(src)
 
 	/*SPAWN_DBG(0)

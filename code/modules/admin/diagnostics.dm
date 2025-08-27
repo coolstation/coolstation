@@ -253,7 +253,8 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			var/trueUnstable = initial(theTurf.pass_unstable)
 			for(var/atom/A as anything in theTurf.contents)
-				trueUnstable += A.pass_unstable
+				if(A.pass_unstable & TRUE)
+					trueUnstable++
 			if(trueUnstable != theTurf.pass_unstable)
 				img.app.overlays = list(src.makeText(theTurf.pass_unstable - trueUnstable, RESET_ALPHA | RESET_COLOR))
 				img.app.color = "#f00"

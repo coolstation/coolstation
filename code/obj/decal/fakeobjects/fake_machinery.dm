@@ -14,6 +14,7 @@
 	icon_state = "governor_body-damaged"
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 	var/stripe_colour = "#AA0000"
 	New()
 		..()

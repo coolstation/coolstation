@@ -12,6 +12,7 @@
 	alpha = 180
 	stat = 0
 	suicide_can_succumb = 0
+	pass_unstable = PRESERVE_CACHE
 	var/autofree = 0
 	var/firstfortune = 1
 	var/free = 0

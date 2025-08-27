@@ -85,11 +85,6 @@
 
 			air_contents.volume = 1000
 
-	New()
-		..()
-		if(frequency)
-			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
-
 	update_icon()
 		if(on&&node)
 			if(pump_direction)
@@ -176,6 +171,8 @@
 	initialize()
 		..()
 		update_icon()
+		if(frequency)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	receive_signal(datum/signal/signal)
 		if(signal.data["tag"] && (signal.data["tag"] != id))

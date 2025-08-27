@@ -1034,6 +1034,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 	icon_state = "moon"
 	anchored = 1
 	density = 1
+	pass_unstable = FALSE
 	layer = MOB_LAYER + 1
 
 	New()

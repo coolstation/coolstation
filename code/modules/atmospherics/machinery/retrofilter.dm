@@ -43,7 +43,12 @@ obj/machinery/atmospherics/retrofilter
 	var/emagged = 0
 
 	var/frequency = 0
+	var/datum/radio_frequency/radio_connection
 	var/net_id = null
+
+	proc/set_frequency(new_frequency)
+		get_radio_connection_by_id(src, frequency).update_frequency(new_frequency)
+		frequency = new_frequency
 
 	New()
 		..()

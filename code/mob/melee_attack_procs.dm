@@ -300,7 +300,7 @@
 		if (!grab_item.special_grab)
 			return
 		var/obj/item/grab/G = new grab_item.special_grab(grab_item, src, target)
-		G.loc = grab_item
+		G.set_loc(grab_item)
 		.= G
 
 	for (var/obj/item/grab/block/G in target.equipped_list(check_for_magtractor = 0)) //being grabbed breaks a block
@@ -764,6 +764,12 @@
 		damage = 0
 		if (istext(attack_resistance))
 			msgs.show_message_target(attack_resistance)
+
+	if(isliving(target))
+		var/mob/living/L = target
+		L.was_harmed(src)
+
+	//clamp damage to non-negative values
 	msgs.damage = max(damage, 0)
 
 	return msgs

@@ -47,6 +47,7 @@ var/mutable_appearance/fluid_ma
 	anchored = 1
 	mouse_opacity = 1
 	layer = FLUID_LAYER
+	pass_unstable = FALSE
 
 	event_handler_flags = USE_HASENTERED
 

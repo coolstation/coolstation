@@ -1,4 +1,5 @@
 /obj/decal
+	pass_unstable = PRESERVE_CACHE
 	text = ""
 	var/list/random_icon_states = list()
 	var/random_dir = 0
@@ -321,6 +322,7 @@ obj/decal/fakeobjects
 	icon ='icons/obj/objects.dmi'
 	icon_state = "statuepupkin"
 	density = 1
+	pass_unstable = FALSE
 
 	New()
 		..()
@@ -345,6 +347,7 @@ obj/decal/fakeobjects
 	name = "Boxing Ropes"
 	desc = "Do not exit the ring."
 	density = 1
+	pass_unstable = TRUE
 	anchored = 1
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
@@ -378,6 +381,7 @@ obj/decal/fakeobjects
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
+	pass_unstable = TRUE
 
 	rotatable = 0
 	foldable = 0
@@ -628,6 +632,7 @@ obj/decal/fakeobjects
 	icon_state = "cragrock1"
 	pixel_x = -16
 	density = 1
+	pass_unstable = FALSE
 	opacity = 0
 	anchored = 1
 	//plane = PLANE_NOSHADOW_ABOVE

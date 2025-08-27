@@ -6,7 +6,7 @@
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
 	text = ""
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	var/icon_old = null
 	var/uses_multiple_icon_states = 0
 	var/item_state = null

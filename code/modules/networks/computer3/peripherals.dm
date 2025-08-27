@@ -128,6 +128,7 @@
 	var/setup_netmode_norange = 1 //If set, there is no range limit in network mode.
 	var/net_mode = 0 //If 1, act like a powernet card (ignore tranmissions not addressed to us.)
 	//var/logstring = null //Log incoming transmissions.  With a string.
+	var/send_only = FALSE
 
 	locked //Locked wireless card
 		name = "Limited Wireless card"
@@ -141,6 +142,9 @@
 			/*net_mode = 1
 			func_tag = "NET_ADAPTER"*/
 
+			transmit_only
+				send_only = TRUE
+
 		status //This one is for status display control.
 			frequency = FREQ_STATUS
 			setup_netmode_norange = 0
@@ -148,8 +152,10 @@
 	New()
 		..()
 		src.net_id = format_net_id("\ref[src]")
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("wireless", frequency)
-		get_radio_connection_by_id(src, "wireless").update_all_hearing(TRUE) // I guess
+		if(send_only)
+			MAKE_SENDER_RADIO_PACKET_COMPONENT("wireless", frequency)
+		else
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("wireless", frequency)
 
 	receive_command(obj/source, command, datum/signal/signal)
 		if(..())
@@ -157,7 +163,7 @@
 
 		var/broadcast_range = src.range //No range in network mode!!
 		if(setup_netmode_norange && src.net_mode)
-			broadcast_range = 0
+			broadcast_range = null
 
 		switch(command)
 			if("transmit")
@@ -184,10 +190,12 @@
 			if("mode_net")
 				src.net_mode = 1
 				func_tag = "NET_ADAPTER" //Pretend to be that fukken wired card.
+				get_radio_connection_by_id(src, "wireless").update_all_hearing(TRUE)
 				return 0
 
 			if("mode_free")
 				src.net_mode = 0
+				get_radio_connection_by_id(src, "wireless").update_all_hearing(FALSE)
 				func_tag = "RAD_ADAPTER"
 				return 0
 
@@ -561,7 +569,6 @@
 			//Let's blindy attempt to generate a unique network ID!
 		src.net_id = format_net_id("\ref[src]")
 		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("wireless", frequency)
-		get_radio_connection_by_id(src, "wireless").update_all_hearing(TRUE)
 
 
 	receive_command(obj/source, command, datum/signal/signal)
@@ -606,16 +613,19 @@
 
 			if ("mode_free")
 				src.mode = 0
+				get_radio_connection_by_id(src, "wireless").update_all_hearing(TRUE)
 				func_tag = "RAD_ADAPTER"
 				return 0
 
 			if ("mode_net")
 				src.mode = 1
+				get_radio_connection_by_id(src, "wireless").update_all_hearing(FALSE)
 				func_tag = "NET_ADAPTER"
 				return 0
 
 			if ("mode_wire")
 				src.mode = 2
+				get_radio_connection_by_id(src, "wireless").update_all_hearing(FALSE)
 				func_tag = "NET_ADAPTER"
 				return 0
 

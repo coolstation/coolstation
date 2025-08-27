@@ -8,11 +8,13 @@
 #define FREQ_DEFAULT 1457 //Default door signal, frequency that signallers start on
 #define FREQ_PDA 1149 //The number to make someone's PDA go BEEP BEEP
 #define FREQ_WLNET 1419 //Wireless networking
+#define FREQ_COMM_DISH 1113
 //door shit
-#define FREQ_POD 1142 //Pod bay door control
+#define FREQ_POD 1143 //Pod bay door control
 #define FREQ_AIRLOCK_REMOTE 1411 //remote door access i guess
 #define FREQ_AIRLOCK 1449 //Complicated airlock interactions
 #define FREQ_ARMORY 1461 //Armory door unlock auth signal
+#define FREQ_SECURE_STORAGE 1463
 //atmos shit
 #define FREQ_ATMOS 1225 //Atmos Control
 #define FREQ_ENGINE 1227 //Engineering Equipment (TEG)

@@ -40,7 +40,7 @@ THROWING DARTS
 		if (uses_radio)
 			if (!src.net_id)
 				src.net_id = generate_net_id(src)
-			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, pda_alert_frequency)
+			MAKE_SENDER_RADIO_PACKET_COMPONENT(null, pda_alert_frequency)
 
 	disposing()
 		owner = null
@@ -934,6 +934,11 @@ THROWING DARTS
 		if (dist <= 1)
 			. += "This one has [uses] charges remaining."
 
+	disposing()
+		qdel(access)
+		access = null
+		. = ..()
+
 	proc/used()
 		if (uses < 0) //infinite
 			return 1
@@ -964,6 +969,10 @@ THROWING DARTS
 				..()
 				access.access = get_access("Medical Doctor") + get_access("Janitor") + get_access("Botanist") + get_access("Chef") + get_access("Scientist")
 
+		secoff
+			New()
+				..()
+				access.access = get_access("Security Officer")
 
 /* ============================================================= */
 /* ------------------------- Implanter ------------------------- */

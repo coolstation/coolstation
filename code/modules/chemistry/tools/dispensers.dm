@@ -10,6 +10,7 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
+	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	p_class = 1.5

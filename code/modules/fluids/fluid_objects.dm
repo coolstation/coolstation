@@ -12,6 +12,7 @@
 /obj/machinery/drainage
 	anchored = 1
 	density = 0
+	pass_unstable = FALSE
 	icon = 'icons/obj/fluid.dmi'
 	var/base_icon = "drain"
 	icon_state = "drain"

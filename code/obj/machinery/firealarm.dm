@@ -7,6 +7,7 @@
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "fire0"
 	plane = PLANE_NOSHADOW_ABOVE
+	pass_unstable = FALSE
 	deconstruct_flags = DECON_WIRECUTTERS | DECON_MULTITOOL
 	machine_registry_idx = MACHINES_FIREALARMS
 	power_usage = 10
@@ -69,6 +70,7 @@
 		else
 			src.UpdateOverlays(null, "fire0")
 			src.UpdateOverlays(null, "fire1")
+	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, alarm_frequency)
 
 /obj/machinery/firealarm/disposing()
 	STOP_TRACKING
@@ -205,7 +207,7 @@
 /obj/machinery/firealarm/proc/post_alert(var/alarm, var/specific_target)
 	var/datum/signal/alert_signal = get_free_signal()
 	alert_signal.source = src
-	alert_signal.data["zone"] = alarm_zone
+	alert_signal.data["address_tag"] = alarm_zone
 	alert_signal.data["type"] = "Fire"
 	alert_signal.data["netid"] = net_id
 	alert_signal.data["sender"] = net_id
