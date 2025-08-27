@@ -26,11 +26,14 @@ datum/controller/process/mob_ai
 				scheck()
 
 			if((M.mob_flags & HEAVYWEIGHT_AI_MOB) || (ticknum % 5) == 0) //either we can tick every time, or we tick every 1 second
-				var/mob/living/L = M
-				if((isliving(M) && (L.is_npc || L.ai_active) || !isliving(M)))
-					if(M.ai)
-						M.ai.tick()
-						scheck()
+				var/mob/living/L = X
+				if(isliving(L) && L.is_npc && M.ai)
+					M.ai.tick()
+				// i cant wait to remove this - this does monkey ai, mostly
+				var/mob/living/carbon/human/H = M
+				if(ishuman(H) && H.ai_active)
+					H.ai_process()
+				scheck()
 
 			if ((ticknum % 15) == 0)
 				M.handle_stamina_updates()
