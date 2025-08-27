@@ -11,6 +11,7 @@
 	throw_range = 10
 	throwforce = 0
 	var/obj/item/plutonium_core/payload = null
+	var/impactsound = 'sound/items/bball_bounce.ogg'
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 5
@@ -33,7 +34,7 @@
 	..(hit_atom)
 	src.icon_state = "bball"
 	if(hit_atom)
-		playsound(src.loc, "sound/items/bball_bounce.ogg", 65, 1)
+		playsound(src.loc, src.impactsound, 65, 1)
 		if(ismob(hit_atom))
 			var/mob/M = hit_atom
 			if(ishuman(M))
