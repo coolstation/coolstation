@@ -692,7 +692,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if (!.)
 		return FALSE
 	var/threat_level = assess_perp(M)
-	if (!GET_COOLDOWN(M, "MARKED_FOR_SECURITRON_ARREST")) // set in assess_perp
+	if (!GET_COOLDOWN(M, "MARKED_FOR_SECURITRON_ARREST") || (istype(M, /mob/living/critter/robotic/bot/securitron) && !src.emagged)) // set in assess_perp
 		return FALSE // not a threat
 	if (threat_level >= 4 && !ON_COOLDOWN(src, "SECURITRON_EMOTE", src.emote_cooldown))
 		src.accuse_perp(M, threat_level)
