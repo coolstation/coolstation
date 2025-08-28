@@ -239,7 +239,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 
 /atom/movable/screen/buildmode/builddir
 	name = "Set direction"
-	density = 1
+	//density = 1 what the fuck
 	anchored = 1
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
