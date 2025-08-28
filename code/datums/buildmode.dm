@@ -239,7 +239,6 @@ ABSTRACT_TYPE(/datum/buildmode)
 
 /atom/movable/screen/buildmode/builddir
 	name = "Set direction"
-	//density = 1 what the fuck
 	anchored = 1
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
@@ -280,7 +279,6 @@ ABSTRACT_TYPE(/datum/buildmode)
 
 /atom/movable/screen/buildmode/buildhelp
 	name = "Click for help"
-	density = 1
 	anchored = 1
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
@@ -299,7 +297,6 @@ ABSTRACT_TYPE(/datum/buildmode)
 
 /atom/movable/screen/buildmode/buildquit
 	name = "Click to exit build mode"
-	density = 1
 	anchored = 1
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
@@ -318,7 +315,6 @@ ABSTRACT_TYPE(/datum/buildmode)
 
 /atom/movable/screen/buildmode/buildmode
 	name = "Click to select mode"
-	density = 1
 	anchored = 1
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
@@ -344,7 +340,6 @@ ABSTRACT_TYPE(/datum/buildmode)
 			holder.mode.click_mode_right(pa.Find("ctrl"), pa.Find("alt"), pa.Find("shift"))
 
 /atom/movable/screen/buildmode/hotkey
-	density = 1
 	anchored = 1
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
