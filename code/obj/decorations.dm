@@ -695,6 +695,7 @@
 	icon_state = "light1"
 	anchored = 1
 	density = 0
+	pass_unstable = FALSE
 	var/on = 0
 	var/id = null
 	var/list/myBlinds = list()
