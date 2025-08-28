@@ -313,7 +313,7 @@
 
 	// log account information for QM sales
 	var/obj/item/card/id/scan = null
-	var/datum/data/record/account = null
+	var/datum/db_record/account = null
 
 
 	var/list/destinations = list("Airbridge", "Cafeteria", "EVA", "Engine", "Disposals", "QM", "Catering", "MedSci", "Security") //These have to match the ones on the cargo routers for the routers to work.
@@ -339,7 +339,7 @@
 		if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 			if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 			boutput(user, "<span class='notice'>You swipe the ID card.</span>")
-			account = FindBankAccountById(I:registered_id)
+			account = FindBankAccountByName(I:registered)
 			if(account)
 				var/enterpin = input(user, "Please enter your PIN number.", "Order Console", 0) as null|num
 				if (enterpin == I:pin)
@@ -436,7 +436,7 @@
 
 	// log account information for QM sales
 	var/obj/item/card/id/scan = null
-	var/datum/data/record/account = null
+	var/datum/db_record/account = null
 
 	attack()
 		return

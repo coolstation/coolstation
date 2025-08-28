@@ -41,6 +41,12 @@
 	blood_id = "calcium"
 	burning_suffix = "humanoid"
 	metabolizes = 0
+	takes_tox = FALSE
+	takes_brain = FALSE
+	health_brute = 40
+	health_brute_vuln = 1
+	health_burn = 40
+	health_burn_vuln = 0.7
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
@@ -78,7 +84,3 @@
 		HH.name = "right hand"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"
-
-	setup_healths()
-		add_hh_flesh(50, 1)
-		add_hh_flesh_burn(50, 0.7)

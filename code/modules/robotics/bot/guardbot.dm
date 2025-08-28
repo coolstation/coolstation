@@ -18,6 +18,8 @@
 /datum/guardbot_mover
 	var/obj/machinery/bot/guardbot/master = null
 	var/delay = 3
+	var/max_dist = 200
+	var/max_seen = 500
 
 	New(var/newmaster)
 		..()
@@ -25,14 +27,19 @@
 			src.master = newmaster
 		return
 
+	disposing()
+		if(src.master.mover == src)
+			src.master.mover = null
+		src.master = null
+		..()
+
 	proc/master_move(var/atom/the_target as obj|mob,var/adjacent=0)
 		if(!master)
 			return 1
 		if(!isturf(master.loc))
-			master.mover = null
-			master = null
+			qdel(src)
 			return 1
-		var/target_turf = null
+		var/turf/target_turf = null
 		if(isturf(the_target))
 			target_turf = the_target
 		else
@@ -45,7 +52,8 @@
 
 			// Same distance cap as the MULE because I'm really tired of various pathfinding issues. Buddy time and docking stations are often way more than 150 steps away.
 			// It's 200 something steps alone to get from research to the bar on COG2 for instance, and that's pretty much in a straight line.
-			var/list/thePath = AStar(get_turf(master), target_turf, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 500, master.botcard)
+			var/list/thePath = get_path_to(src.master, target_turf, max_distance=src.max_dist, max_seen=src.max_seen, \
+				move_through_space=FALSE, id=src.master.botcard, skip_first=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
 			if (!master)
 				return
 
@@ -56,15 +64,10 @@
 				master.task?.task_input("path_error")
 
 				master.moving = 0
-				//dispose()
-				master.mover = null
-				src.master = null
+				qdel(src)
 				return
 
 			while(length(master?.path) && target_turf && master.moving)
-//				boutput(world, "[compare_movepath] : [current_movepath]")
-				//if(compare_movepath != current_movepath)
-				//	break
 				if(master.frustration >= 10 || master.stunned || master.idle || !master.on)
 					master.frustration = 0
 					master.task?.task_input("path_blocked")
@@ -79,9 +82,7 @@
 
 			if (src.master)
 				master.moving = 0
-				master.mover = null
-				src.master = null
-			//dispose()
+				qdel(src)
 
 		return 0
 
@@ -165,11 +166,8 @@
 	//
 	////////////////////// GUN STUFF -^
 
-	var/datum/radio_frequency/radio_connection
-	var/datum/radio_frequency/beacon_connection
 	var/control_freq = FREQ_ROBUDDY		// bot control frequency
 	var/beacon_freq = FREQ_BOT_NAV
-	var/net_id = null
 	var/last_comm = 0 //World time of last transmission
 	var/reply_wait = 0
 
@@ -194,8 +192,6 @@
 			task.dispose()
 		if (model_task)
 			model_task.dispose()
-		radio_controller.remove_object(src, "[control_freq]")
-		radio_controller.remove_object(src, "[beacon_freq]")
 		..()
 
 	ranger
@@ -400,11 +396,11 @@
 				src.gun = budgun.name
 				update_icon()
 
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[control_freq]")
-				beacon_connection = radio_controller.add_object(src, "[beacon_freq]")
-
 			src.net_id = generate_net_id(src)
+
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", control_freq)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("beacon", beacon_freq)
+			MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 			var/obj/machinery/guardbot_dock/dock = null
 			if(setup_spawn_dock)
@@ -1071,7 +1067,7 @@
 		src.updateUsrDialog()
 		return
 
-	receive_signal(datum/signal/signal, receive_method, receive_param)
+	receive_signal(datum/signal/signal, receive_method, receive_param, connection_id)
 		if(!src.on || src.stunned)
 			return
 
@@ -1083,7 +1079,7 @@
 			targaddress = src.net_id
 			last_dock_id = null
 
-		var/is_beacon = (receive_param == "[src.beacon_freq]")
+		var/is_beacon = connection_id == "beacon"
 		if(!is_beacon)
 			if( ((targaddress != src.net_id) && (signal.data["acc_code"] != netpass_heads) ) || !signal.data["sender"])
 				if(signal.data["address_1"] == "ping" && signal.data["sender"])
@@ -1200,9 +1196,7 @@
 		playsound(src.loc, "sound/impact_sounds/Machinery_Break_1.ogg", 40, 1)
 		var/turf/T = get_turf(src)
 		if(src.mover)
-			src.mover.master = null
-			//qdel(src.mover)
-			src.mover = null
+			qdel(src.mover)
 		if((allow_big_explosion && cell && (cell.charge / cell.maxcharge > 0.85) && prob(25)) || istype(src.cell, /obj/item/cell/erebite))
 			src.invisibility = 100
 			var/obj/overlay/Ov = new/obj/overlay(T)
@@ -1427,12 +1421,8 @@
 			return
 
 		post_status(var/target_id, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
-			if(!radio_connection)
-				return
-
 			var/datum/signal/signal = get_free_signal()
 			signal.source = src
-			signal.transmission_method = TRANSMISSION_RADIO
 			signal.data[key] = value
 			if(key2)
 				signal.data[key2] = value2
@@ -1445,9 +1435,19 @@
 
 			src.last_comm = world.time
 			if(target_id == "!BEACON!")
-				beacon_connection.post_signal(src, signal)//, GUARDBOT_RADIO_RANGE)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, GUARDBOT_RADIO_RANGE, "beacon")
 			else
-				radio_connection.post_signal(src, signal, GUARDBOT_RADIO_RANGE)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, GUARDBOT_RADIO_RANGE, "control")
+
+		post_find_beacon(var/type)
+			var/datum/signal/signal = get_free_signal()
+			signal.source = src
+			signal.data["findbeacon"] = type
+			signal.data["address_tag"] = type
+			signal.data["sender"] = src.net_id
+
+			src.last_comm = world.time
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, GUARDBOT_RADIO_RANGE, "beacon")
 
 		add_task(var/datum/computer/file/guardbot_task/newtask, var/high_priority = 0, var/clear_others = 0)
 			if(clear_others)
@@ -1589,16 +1589,14 @@
 		set_beacon_freq(var/newfreq)
 			if (!newfreq) return
 			newfreq = sanitize_frequency(newfreq)
-			radio_controller.remove_object(src, "[src.beacon_freq]")
 			src.beacon_freq = newfreq
-			src.beacon_connection = radio_controller.add_object(src, "[src.beacon_freq]")
+			get_radio_connection_by_id(src, "beacon").update_frequency(newfreq)
 
 		set_control_freq(var/newfreq)
 			if (!newfreq) return
 			newfreq = sanitize_frequency(newfreq)
-			radio_controller.remove_object(src, "[src.control_freq]")
 			src.control_freq = newfreq
-			src.radio_connection = radio_controller.add_object(src, "[src.control_freq]")
+			get_radio_connection_by_id(src, "control").update_frequency(newfreq)
 
 	process()
 		. = ..()
@@ -1649,28 +1647,13 @@
 
 		return
 
-	navigate_to(atom/the_target,var/move_delay=3,var/adjacent=0,var/clear_frustration=1)
+	navigate_to(atom/the_target, var/move_delay = 3, var/adjacent = 0, var/turf/exclude = null, var/max_dist=120, var/clear_frustration = TRUE)
 		if(src.moving)
 			return 1
 		src.moving = 1
 		if (clear_frustration)
 			src.frustration = 0
-		if(src.mover)
-			src.mover.master = null
-			//qdel(src.mover)
-			src.mover = null
-		//boutput(world, "TEST: Navigate to [target]")
-
-		//current_movepath = world.time
-
-		src.mover = new /datum/guardbot_mover(src)
-
-		// drsingh for cannot modify null.delay
-		if (!isnull(src.mover))
-			src.mover.delay = max(min(move_delay,5),2)
-			src.mover.master_move(the_target,adjacent)
-
-		return 0
+		. = ..()
 
 //Buddy handcuff bar thing
 /datum/action/bar/icon/buddy_cuff
@@ -1751,7 +1734,6 @@
 		if(!LT_loc)
 			LT_loc = get_turf(master)
 		//////PDA NOTIFY/////
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 		var/message2send
 		if (prob(5))
@@ -1761,9 +1743,7 @@
 		else
 			message2send ="Notification: [last_target] detained by [master] in [bot_location] at coordinates [LT_loc.x], [LT_loc.y]."
 		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="BUDDY-MAILBOT", "group"=list(MGD_SCIENCE), "sender"="00000000", "message"="[message2send]")
-		pdaSignal.transmission_method = TRANSMISSION_RADIO
-		if(transmit_connection != null)
-			transmit_connection.post_signal(master, pdaSignal)
+		SEND_SIGNAL(master, COMSIG_MOVABLE_POST_RADIO_PACKET, pdaSignal, null, "pda")
 
 	/// Interrupts the action if the bot cant (or shouldnt be able to) continue cuffing
 	proc/failchecks()
@@ -2294,7 +2274,7 @@
 		var/tmp/state = 0
 		var/tmp/party_counter = 90
 		var/tmp/party_idle_counter = 0
-		var/tmp/obj/machinery/bot/secbot/its_beepsky = null
+		var/tmp/mob/living/critter/robotic/bot/securitron/its_beepsky = null
 
 		var/rumpus_emotion = "joy" //Emotion to express during buddytime.
 		var/rumpus_location_tag = "buddytime" //Tag of the bar beacon
@@ -2334,7 +2314,7 @@
 					else
 						if(!master.last_comm || (world.time >= master.last_comm + 100) )
 							src.awaiting_beacon = 10
-							master.post_status("!BEACON!", "findbeacon", "patrol")
+							master.post_find_beacon("patrol")
 							master.reply_wait = 2
 
 				if (2)	//Seeking a seat.
@@ -2457,7 +2437,7 @@
 			if (src.its_beepsky) //Huh? We haven't lost him.
 				return
 
-			for (var/obj/machinery/bot/secbot/possibly_beepsky in machine_registry[MACHINES_BOTS])
+			for_by_tcl(possibly_beepsky, /mob/living/critter/robotic/bot/securitron)
 				if (ckey(possibly_beepsky.name) == "officerbeepsky")
 					src.its_beepsky = possibly_beepsky //Definitely beepsky in this case.
 					break
@@ -2575,10 +2555,8 @@
 							return
 
 						if((!(hug_target in view(7,master)) && (!master.mover || !master.moving)) || !master.path || !master.path.len || (4 < get_dist(hug_target,master.path[master.path.len])) )
-							//qdel(master.mover)
 							if (master.mover)
-								master.mover.master = null
-								master.mover = null
+								qdel(master.mover)
 							master.moving = 0
 							master.navigate_to(hug_target,ARREST_DELAY)
 							return
@@ -2631,10 +2609,9 @@
 					// Otherwise, go get them!
 					else
 						if (master.mover)
-							master.mover.master = null
-							master.mover = null
+							qdel(master.mover)
 						master.moving = 0
-						master.navigate_to(arrest_target,ARREST_DELAY, 0, 0)
+						master.navigate_to(arrest_target,ARREST_DELAY, 0, clear_frustration = FALSE)
 						//master.current_movepath = "HEH" //Stop any current movement.
 
 		task_input(input)
@@ -2889,7 +2866,7 @@
 			find_nearest_beacon()
 				nearest_beacon = null
 				new_destination = "__nearest__"
-				master.post_status("!BEACON!", "findbeacon", "patrol")
+				master.post_find_beacon("patrol")
 				awaiting_beacon = 5
 				SPAWN_DBG(1 SECOND)
 					if(!master || !master.on || master.stunned || master.idle) return
@@ -2904,7 +2881,7 @@
 
 			set_destination(var/new_dest)
 				new_destination = new_dest
-				master.post_status("!BEACON!", "findbeacon", "patrol")
+				master.post_find_beacon(new_dest || "patrol")
 				awaiting_beacon = 5
 
 			assess_perp(mob/living/carbon/human/perp as mob)
@@ -2916,64 +2893,21 @@
 				if(ckey(perp.name) in target_names)
 					return 7
 
+				if(perp.mutantrace?.jerk)
+					return 5
+
 				var/obj/item/card/id/perp_id = perp.equipped()
 				if (!istype(perp_id))
 					perp_id = perp.wear_id
 
-				var/has_carry_permit = 0
-				var/has_contraband_permit = 0
-
 				if(perp_id) //Checking for targets and permits
 					if(ckey(perp_id.registered) in target_names)
 						return 7
-					if(weapon_access in perp_id.access)
-						has_carry_permit = 1
-					if(contraband_access in perp_id.access)
-						has_contraband_permit = 1
 
-				if (istype(perp.l_hand))
-					if (istype(perp.l_hand, /obj/item/gun/)) // perp is carrying a gun
-						if(!has_carry_permit)
-							. += perp.l_hand.contraband
-					else // not carrying a gun, but potential contraband?
-						if(!has_contraband_permit)
-							. += perp.l_hand.contraband
-
-				if (istype(perp.r_hand))
-					if (istype(perp.r_hand, /obj/item/gun/)) // perp is carrying a gun
-						if(!has_carry_permit)
-							. += perp.r_hand.contraband
-					else // not carrying a gun, but potential contraband?
-						if(!has_contraband_permit)
-							. += perp.r_hand.contraband
-
-				if (istype(perp.belt))
-					if (istype(perp.belt, /obj/item/gun/))
-						if (!has_carry_permit)
-							. += perp.belt.contraband * 0.5
-					else
-						if (!has_contraband_permit)
-							. += perp.belt.contraband * 0.5
-
-				if (istype(perp.wear_suit))
-					if (!has_contraband_permit)
-						. += perp.wear_suit.contraband
-
-				if (istype(perp.back))
-					if (istype(perp.back, /obj/item/gun/)) // some weapons can be put on backs
-						if (!has_carry_permit)
-							. += perp.back.contraband * 0.5
-					else // at moment of doing this we don't have other contraband back items, but maybe that'll change
-						if (!has_contraband_permit)
-							. += perp.back.contraband * 0.5
-
-				if(perp.mutantrace && perp.mutantrace.jerk)
-//					if(istype(perp.mutantrace, /datum/mutantrace/zombie))
-//						return 5 //Zombies are bad news!
-
-//					threatcount += 2
-
-					return 5
+				if(!perp_id || !(contraband_access in perp_id.access))
+					. += GET_ATOM_PROPERTY(perp, PROP_MOVABLE_VISIBLE_CONTRABAND)
+				if(!perp_id || !(weapon_access in perp_id.access))
+					. += GET_ATOM_PROPERTY(perp, PROP_MOVABLE_VISIBLE_GUNS)
 
 
 		halloween //Go trick or treating!
@@ -3041,10 +2975,8 @@
 						return
 
 					if((!(hug_target in view(7,master)) && (!master.mover || !master.moving)) || !master.path || !master.path.len || (4 < get_dist(hug_target,master.path[master.path.len])) )
-						//qdel(master.mover)
 						if (master.mover)
-							master.mover.master = null
-							master.mover = null
+							qdel(master.mover)
 						master.moving = 0
 						master.navigate_to(hug_target,ARREST_DELAY)
 						return
@@ -3150,9 +3082,8 @@
 					//qdel(master.mover)
 					master.frustration++
 					if (master.mover)
-						master.mover.master = null
-						master.mover = null
-					master.navigate_to(protected,3,1,1)
+						qdel(master.mover)
+					master.navigate_to(protected,3,1,clear_frustration = TRUE)
 					return
 				else
 
@@ -3166,11 +3097,9 @@
 
 					if(!master.path || !master.path.len || (3 < get_dist(protected,master.path[master.path.len])) )
 						master.moving = 0
-						//qdel(master.mover)
 						if (master.mover)
-							master.mover.master = null
-							master.mover = null
-						master.navigate_to(protected,3,1,1)
+							qdel(master.mover)
+						master.navigate_to(protected,3,1,clear_frustration = TRUE)
 
 			return
 
@@ -3258,10 +3187,8 @@
 				if(protected.lastattacker && (protected.lastattackertime + 40) >= world.time)
 					if(protected.lastattacker != protected)
 						master.moving = 0
-						//qdel(master.mover)
 						if (master.mover)
-							master.mover.master = null
-							master.mover = null
+							qdel(master.mover)
 						src.arrest_target = protected.lastattacker
 						src.follow_attempts = 0
 						src.arrest_attempts = 0
@@ -3418,7 +3345,7 @@
 					if (src.distracted)
 						awaiting_beacon += 2
 
-					master.post_status("!BEACON!", "findbeacon", "tour")
+					master.post_find_beacon("[next_beacon_id]" || "tour")
 					return
 
 				if (STATE_PATHING_TO_BEACON)
@@ -3726,6 +3653,22 @@
 						src.speak_with_maptext("Why, if it isn't beloved station canine, George!  Who's a good doggy?  You are!  Yes, you!")
 						END_NEAT
 
+				else if (istype(AM, /mob/living/critter/robotic/bot/securitron))
+					if (AM.name == "Officer Beepsky" && !(src.neat_things & NT_BEEPSKY))
+						FOUND_NEAT(NT_BEEPSKY)
+							src.speak_with_maptext("And here comes Officer Beepsky, the proud guard of this station. Proud.")
+							sleep(5 SECONDS)
+							src.speak_with_maptext("Not at all terrible.  No Sir.  Not at all.")
+							if (prob(10))
+								sleep(6.5 SECONDS)
+								src.speak_with_maptext("Well okay, maybe a little.")
+							END_NEAT
+
+					else if (!(src.neat_things & NT_SECBOT))
+						FOUND_NEAT(NT_SECBOT)
+							src.speak_with_maptext("And if you look over now, you'll see a securitron, an ace security robot originally developed \"in the field\" from spare parts in a security office!")
+							END_NEAT
+
 				else if (istype(AM, /obj/critter/gunbot/drone) && !(src.neat_things & NT_DRONE))
 					FOUND_NEAT(NT_DRONE)
 						src.speak_with_maptext( pick("Oh dear, a syndicate autonomous drone!  These nasty things have been shooting up innocent space-folk for a couple of years now.", "Watch out, folks!  That's a syndicate drone, they're nasty buggers!", "Ah, a syhndicate drone!  They're made in a secret factory, one located at--oh dear, we better get hurrying before it becomes upset.", "Watch out, that's a syndicate drone!  They're made in a secret factory. There was a guy who knew where it was on my first tour, but he took the secret...to his grave!!  Literally.  It's with him.  In his crypt.") )
@@ -3739,107 +3682,90 @@
 						src.speak_with_maptext(.)
 						END_NEAT
 
-				else if (istype(AM, /obj/machinery/bot))
-					if (istype(AM, /obj/machinery/bot/secbot))
-						if (AM.name == "Officer Beepsky" && !(src.neat_things & NT_BEEPSKY))
-							FOUND_NEAT(NT_BEEPSKY)
-								src.speak_with_maptext("And here comes Officer Beepsky, the proud guard of this station. Proud.")
-								sleep(5 SECONDS)
-								src.speak_with_maptext("Not at all terrible.  No Sir.  Not at all.")
-								if (prob(10))
-									sleep(6.5 SECONDS)
-									src.speak_with_maptext("Well okay, maybe a little.")
-								END_NEAT
+				else if (istype(AM, /obj/machinery/bot/guardbot) && AM != src.master)
+					var/obj/machinery/bot/guardbot/otherBuddy = AM
+					if (!(src.neat_things & NT_CAPTAIN) && istype(otherBuddy.hat, /obj/item/clothing/head/caphat))
+						FOUND_NEAT(NT_CAPTAIN)
+							src.speak_with_maptext("Good day, Captain!  You look a little different today, did you get a haircut?")
+							var/otherBuddyID = otherBuddy.net_id
+							//Notify other buddy
+							sleep(1 SECOND)
+							if (src.master)
+								src.master.post_status("[otherBuddyID]", "command", "captain_greet")
+							END_NEAT
 
-						else if (!(src.neat_things & NT_SECBOT))
-							FOUND_NEAT(NT_SECBOT)
-								src.speak_with_maptext("And if you look over now, you'll see a securitron, an ace security robot originally developed \"in the field\" from spare parts in a security office!")
-								END_NEAT
+					else if (!(src.neat_things & NT_WIZARD) && istype(otherBuddy.hat, /obj/item/clothing/head/wizard))
+						FOUND_NEAT(NT_WIZARD)
+							src.speak_with_maptext("Look, a space wizard!  Please stand back, I am going to attempt to communicate with it.")
+							sleep(5 SECONDS)
+							src.speak_with_maptext("Hello, Mage, Seer, Wizard, Wizzard, or other magic-user.  We mean you no harm!  We ask you humbly for your WIZARDLY WIZ-DOM.")
+							if (prob(25))
+								sleep(6 SECONDS)
+								src.speak_with_maptext("We hope that we aren't disrupting any sort of wiz-biz or wizness deal.")
+							//As before, notify the other buddy
+							var/otherBuddyID = otherBuddy.net_id
+							if (src.master)
+								src.master.post_status("[otherBuddyID]", "command", "wizard_greet")
+							END_NEAT
 
-					else if (istype(AM, /obj/machinery/bot/guardbot) && AM != src.master)
-						var/obj/machinery/bot/guardbot/otherBuddy = AM
-						if (!(src.neat_things & NT_CAPTAIN) && istype(otherBuddy.hat, /obj/item/clothing/head/caphat))
-							FOUND_NEAT(NT_CAPTAIN)
-								src.speak_with_maptext("Good day, Captain!  You look a little different today, did you get a haircut?")
-								var/otherBuddyID = otherBuddy.net_id
-								//Notify other buddy
-								sleep(1 SECOND)
-								if (src.master)
-									src.master.post_status("[otherBuddyID]", "command", "captain_greet")
-								END_NEAT
+					else if (!(src.neat_things & NT_OTHERBUDDY))
+						FOUND_NEAT(NT_OTHERBUDDY)
+							if (istype(otherBuddy, /obj/machinery/bot/guardbot/future))
+								src.speak_with_maptext("The PR line of personal robot has been--wait! Hold the phone! Is that a PR-7? Oh man, I feel old!")
 
-						else if (!(src.neat_things & NT_WIZARD) && istype(otherBuddy.hat, /obj/item/clothing/head/wizard))
-							FOUND_NEAT(NT_WIZARD)
-								src.speak_with_maptext("Look, a space wizard!  Please stand back, I am going to attempt to communicate with it.")
-								sleep(5 SECONDS)
-								src.speak_with_maptext("Hello, Mage, Seer, Wizard, Wizzard, or other magic-user.  We mean you no harm!  We ask you humbly for your WIZARDLY WIZ-DOM.")
-								if (prob(25))
-									sleep(6 SECONDS)
-									src.speak_with_maptext("We hope that we aren't disrupting any sort of wiz-biz or wizness deal.")
-								//As before, notify the other buddy
-								var/otherBuddyID = otherBuddy.net_id
-								if (src.master)
-									src.master.post_status("[otherBuddyID]", "command", "wizard_greet")
-								END_NEAT
+							else if (istype(otherBuddy, /obj/machinery/bot/guardbot/soviet))
+								src.speak_with_maptext("That's...that's one of those eastern bloc robuddies.  Um...hello?")
+								src.master.visible_message("<b>[master]</b> gives [otherBuddy] a slow, confused wave.")
 
-						else if (!(src.neat_things & NT_OTHERBUDDY))
-							FOUND_NEAT(NT_OTHERBUDDY)
-								if (istype(otherBuddy, /obj/machinery/bot/guardbot/future))
-									src.speak_with_maptext("The PR line of personal robot has been--wait! Hold the phone! Is that a PR-7? Oh man, I feel old!")
-
-								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/soviet))
-									src.speak_with_maptext("That's...that's one of those eastern bloc robuddies.  Um...hello?")
-									src.master.visible_message("<b>[master]</b> gives [otherBuddy] a slow, confused wave.")
-
-								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/bootleg))
-									var/emotion
-									var/obj/machinery/bot/guardbot/bootleg/dweeb = otherBuddy
-									emotion = desired_emotion //Constant disgust
-									desired_emotion = "ugh"
-									master.set_emotion(desired_emotion)
-									if (prob(95))
-										src.speak_with_maptext("Oh no, no, please, don't make eye conta-")
-										sleep(3 SECOND)
-										dweeb.speak(pick("WOW HEY HELLO HI HI HEY","AAAAAAAAAAAAAAAAAAAAAA","HELLOOOOOOOOOOOO","YOU ARE THANK FOR NOTICE ME","NEW FRIENDS IS TRUE???????"))
-										dweeb.set_emotion(pick("cool","joy","love","smug","look"))
-										sleep(3 SECONDS)
-										src.speak_with_maptext("No thank you! Not interested! Goodbye!")
-										if(prob(50))
-											sleep(5 SECOND)
-											src.speak_with_maptext(pick("I thought they recalled all of those things...","They'll stick robot arms on anything these days...","Waste of a perfectly good microwave..."))
-									else
-										dweeb.speak("HEYYYYYY GUYSSSSSSSS")
-										dweeb.set_emotion(pick("joy","look"))
-										sleep(2 SECONDS)
-										src.speak_with_maptext("Uegh, not this [pick("clownshoe","doofus","dork","dweeb","copycat")] again...") //DEEP LORE FACTS: they have a history
-										sleep(5 SECONDS)
-										src.speak_with_maptext("Gosh dang, what a dummy!")
-									if(prob(30)) //small chance to hear and be offended
-										if (dweeb.emotion == "cool")
-											dweeb.set_emotion("coolugh")
-										else
-											dweeb.set_emotion(pick("sad","angry","ugh"))
+							else if (istype(otherBuddy, /obj/machinery/bot/guardbot/bootleg))
+								var/emotion
+								var/obj/machinery/bot/guardbot/bootleg/dweeb = otherBuddy
+								emotion = desired_emotion //Constant disgust
+								desired_emotion = "ugh"
+								master.set_emotion(desired_emotion)
+								if (prob(95))
+									src.speak_with_maptext("Oh no, no, please, don't make eye conta-")
+									sleep(3 SECOND)
+									dweeb.speak(pick("WOW HEY HELLO HI HI HEY","AAAAAAAAAAAAAAAAAAAAAA","HELLOOOOOOOOOOOO","YOU ARE THANK FOR NOTICE ME","NEW FRIENDS IS TRUE???????"))
+									dweeb.set_emotion(pick("cool","joy","love","smug","look"))
 									sleep(3 SECONDS)
-									desired_emotion = emotion
-									master.set_emotion(desired_emotion) //back to normal
-
-								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
-									src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
-
+									src.speak_with_maptext("No thank you! Not interested! Goodbye!")
+									if(prob(50))
+										sleep(5 SECOND)
+										src.speak_with_maptext(pick("I thought they recalled all of those things...","They'll stick robot arms on anything these days...","Waste of a perfectly good microwave..."))
 								else
-									src.speak_with_maptext("The PR line of personal robot has been Thinktronic Data Systems' flagship robot line for over 15 years.  It's easy to see their appeal!")
+									dweeb.speak("HEYYYYYY GUYSSSSSSSS")
+									dweeb.set_emotion(pick("joy","look"))
+									sleep(2 SECONDS)
+									src.speak_with_maptext("Uegh, not this [pick("clownshoe","doofus","dork","dweeb","copycat")] again...") //DEEP LORE FACTS: they have a history
 									sleep(5 SECONDS)
-									switch (rand(1,4))
-										if (1)
-											src.speak_with_maptext("Buddy Fact: In 2051, Robuddies were conclusively determined to have a[prob(40) ? "t least three-fourths of a" : ""] soul.")
-										if (2)
-											src.speak_with_maptext("Buddy Fact: Robuddies cannot jump.  We just can't, sorry!")
-										if (3)
-											src.speak_with_maptext("Buddy Fact: Our hug protocols have been extensively revised through thousands of rounds of testing and simulation to deliver Peak Cuddle.")
-										if (4)
-											src.speak_with_maptext("Buddy Fact: Robuddies are programmed to be avid fans of hats and similar headgear.")
-									sleep(5 SECONDS)
-								END_NEAT
+									src.speak_with_maptext("Gosh dang, what a dummy!")
+								if(prob(30)) //small chance to hear and be offended
+									if (dweeb.emotion == "cool")
+										dweeb.set_emotion("coolugh")
+									else
+										dweeb.set_emotion(pick("sad","angry","ugh"))
+								sleep(3 SECONDS)
+								desired_emotion = emotion
+								master.set_emotion(desired_emotion) //back to normal
+
+							else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
+								src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
+
+							else
+								src.speak_with_maptext("The PR line of personal robot has been Thinktronic Data Systems' flagship robot line for over 15 years.  It's easy to see their appeal!")
+								sleep(5 SECONDS)
+								switch (rand(1,4))
+									if (1)
+										src.speak_with_maptext("Buddy Fact: In 2051, Robuddies were conclusively determined to have a[prob(40) ? "t least three-fourths of a" : ""] soul.")
+									if (2)
+										src.speak_with_maptext("Buddy Fact: Robuddies cannot jump.  We just can't, sorry!")
+									if (3)
+										src.speak_with_maptext("Buddy Fact: Our hug protocols have been extensively revised through thousands of rounds of testing and simulation to deliver Peak Cuddle.")
+									if (4)
+										src.speak_with_maptext("Buddy Fact: Robuddies are programmed to be avid fans of hats and similar headgear.")
+								sleep(5 SECONDS)
+							END_NEAT
 
 				else if ((istype(AM, /obj/item/luggable_computer/cheget) || istype(AM, /obj/machinery/computer3/luggable/cheget)) && !(src.neat_things & NT_CHEGET))
 					FOUND_NEAT(NT_CHEGET)
@@ -4155,7 +4081,6 @@
 	var/timeout = 45
 	var/timeout_alert = 0
 	var/obj/machinery/bot/guardbot/current = null
-	var/datum/radio_frequency/radio_connection
 	var/obj/machinery/power/data_terminal/link = null
 
 	//A reset button is useful for when the system gets all confused.
@@ -4164,10 +4089,9 @@
 	New()
 		..()
 		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
 			if(!src.net_id)
 				src.net_id = generate_net_id(src)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 			if(!src.link)
 				var/turf/T = get_turf(src)
 				var/obj/machinery/power/data_terminal/test_link = locate() in T
@@ -4534,8 +4458,6 @@
 	disposing()
 		src.current?.wakeup()
 		current = null
-		radio_controller?.remove_object(src, "[frequency]")
-		radio_connection = null
 		if (link)
 			link.master = null
 			link = null
@@ -4596,12 +4518,8 @@
 			return 1
 
 		post_status(var/target_id, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
-			if(!radio_connection)
-				return
-
 			var/datum/signal/signal = get_free_signal()
 			signal.source = src
-			signal.transmission_method = TRANSMISSION_RADIO
 			signal.data[key] = value
 			if(key2)
 				signal.data[key2] = value2
@@ -4612,7 +4530,7 @@
 				signal.data["address_1"] = target_id
 			signal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, signal, GUARDBOT_RADIO_RANGE)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, GUARDBOT_RADIO_RANGE)
 
 		post_wire_status(var/target_id, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
 			if(!src.link || !target_id)
@@ -4754,7 +4672,6 @@
 		src.visible_message("<span class='alert'><b>[src] blows apart!</b></span>")
 		var/turf/T = get_turf(src)
 		if(src.mover)
-			src.mover.master = null
 			qdel(src.mover)
 
 		src.invisibility = 100

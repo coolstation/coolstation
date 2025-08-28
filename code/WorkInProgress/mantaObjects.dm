@@ -296,7 +296,7 @@
 	desc = "A flight recorder is an electronic recording device placed in an spacecraft for the purpose of facilitating the investigation of accidents and incidents. Someone from Nanotrasen would surely want to see this."
 	item_state = "electropack"
 	force = 5.0
-
+/*
 /turf/floor/polarispit
 	name = "deep abyss"
 	desc = "You can't see the bottom."
@@ -323,7 +323,7 @@
 
 		pitwall
 			icon_state = "pit_wall"
-
+*/
 //-------------------------------------------- NSS MANTA SECRET VAULT --------------------------------------------
 
 /obj/vaultdoor

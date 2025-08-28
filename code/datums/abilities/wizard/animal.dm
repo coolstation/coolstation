@@ -36,6 +36,7 @@ var/list/animal_spell_critter_paths = list(/mob/living/critter/small_animal/mous
 	icon_state = "animal"
 	targeted = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 1350
 	requires_robes = 1
 	offensive = 1

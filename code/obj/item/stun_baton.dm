@@ -39,6 +39,11 @@
 	var/cost_cyborg = 500 // Battery charge to drain when user is a cyborg.
 	var/is_active = TRUE
 
+	var/rechargable = TRUE
+	var/charge_time = 0
+	var/active_time
+	var/recharge_time
+
 	var/stun_normal_weakened = 15
 
 	var/disorient_stamina_damage = 130 // Amount of stamina drained.
@@ -97,6 +102,9 @@
 		if (amount <= 0)
 			return 0
 
+		if (user && istype(user, /mob/living/critter/robotic/bot/securitron))
+			return 1
+
 		if (user && isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			if (R.cell && R.cell.charge >= (src.cost_cyborg * amount))
@@ -118,6 +126,8 @@
 
 	proc/process_charges(var/amount = -1, var/mob/user)
 		if (!src || !istype(src) || amount == 0)
+			return
+		if (user && istype(user, /mob/living/critter/robotic/bot/securitron))
 			return
 		if (user && isrobot(user))
 			var/mob/living/silicon/robot/R = user
@@ -233,24 +243,45 @@
 			boutput(user, "<span class='alert'>The [src.name] doesn't have enough power to be turned on.</span>")
 			return
 
-		src.is_active = !src.is_active
+		if (src.charge_time > 0 && !src.is_active)
+			if(ON_COOLDOWN(src, "baton_cooldown", src.recharge_time))
+				user.show_text("[src] is recharging!", "red")
+				return
+			user.visible_message("<span class='alert'>[user] begins to charge up \the [src].</span>", "<span class='notice'>You start charging up \the [src].</span>", "<span class='alert'>You hear a sharp spark.</span>")
+			playsound(src, "sparks", 75, 1, -1)
+			SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(turn_on), user, src.icon, "[src.icon_on]", null, null)
+			return
 
 		if (src.can_stun() == 1 && user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(30))
 			src.do_stun(user, user, "failed", 1)
 			JOB_XP(user, "Clown", 2)
 			return
 
-		if (src.is_active)
-			boutput(user, "<span class='notice'>The [src.name] is now on.</span>")
-			playsound(src, "sparks", 75, 1, -1)
+		if (!src.is_active)
+			src.turn_on(user)
 		else
-			boutput(user, "<span class='notice'>The [src.name] is now off.</span>")
-			playsound(src, "sparks", 75, 1, -1)
+			if(src.active_time)
+				user.show_text("[src] can't be powered down manually!", "red")
+				return
+			src.turn_off(user)
+		return
 
+	proc/turn_on(mob/user)
+		src.is_active = TRUE
+		boutput(user, "<span class='notice'>The [src.name] is now on.</span>")
+		playsound(src, "sparks", 75, 1, -1)
 		src.update_icon()
 		user.update_inhands()
+		if(src.active_time)
+			SPAWN_DBG(src.active_time)
+				src.turn_off(user)
 
-		return
+	proc/turn_off(mob/user)
+		src.is_active = FALSE
+		boutput(user, "<span class='notice'>The [src.name] is now off.</span>")
+		playsound(src, "sparks", 75, 1, -1)
+		src.update_icon()
+		user.update_inhands()
 
 	attack(mob/M as mob, mob/user as mob)
 		src.add_fingerprint(user)
@@ -325,6 +356,28 @@
 		..()
 
 /////////////////////////////////////////////// Subtypes //////////////////////////////////////////////////////
+
+/obj/item/baton/mobsecbot
+	name = "securitron stun baton"
+	desc = "A stun baton that's been modified to be used more effectively by security robots. There's a small parallel port on the bottom of the handle."
+	force = 5
+	is_active = FALSE
+	cost_normal = 25
+	can_swap_cell = 0
+	mats = 0
+	rechargable = 0
+	charge_time = 0
+	active_time = 3.5 SECONDS // shove this mf
+	recharge_time = 5 SECONDS
+	cell_type = /obj/item/ammo/power_cell
+	w_class = W_CLASS_SMALL
+
+/obj/item/baton/mobsecbot/beepsky
+	can_swap_cell = FALSE
+	rechargable = TRUE
+	charge_time = 0
+	active_time = 2.4 SECONDS // hes more careful
+	recharge_time = 4 SECONDS
 
 /obj/item/baton/secbot
 	cost_normal = 0

@@ -34,7 +34,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 		src.equip_new_if_possible(/obj/item/device/radio/headset, slot_ears)
 
 		if(!shitty)
-			APPLY_MOB_PROPERTY(src, PROP_LIFT_ANYTHING, src)
+			APPLY_ATOM_PROPERTY(src, PROP_LIFT_ANYTHING, src)
 			for (var/datum/targetable/macho/A as() in concrete_typesof(/datum/targetable/macho))
 				src.abilityHolder.addAbility(A)
 			src.abilityHolder.updateButtons()
@@ -1653,6 +1653,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	targeted = 1
 	attack_mobs = TRUE
 	max_range = 1
+	ai_range = 1
 
 	cast(atom/target)
 		var/mob/M = target
@@ -2479,6 +2480,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	targeted = 1
 	attack_mobs = TRUE
 	max_range = 1
+	ai_range = 1
 
 	cast(atom/target)
 		var/mob/M = target

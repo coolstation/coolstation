@@ -5,7 +5,8 @@
 	icon_state = "0"
 	density = 1
 	anchored = 1.0
-	flags = NOSPLASH
+	flags = NOSPLASH // | FLUID_SUBMERGE
+	pass_unstable = TRUE
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	layer = OBJ_LAYER-0.1
 	stops_space_move = TRUE
@@ -784,6 +785,7 @@
 	mat_appearances_to_ignore = list("glass")
 	parts_type = /obj/item/furniture_parts/table/glass
 	auto_type = /obj/table/glass // has to be the base type here or else regular glass tables won't connect to reinforced ones
+	pass_unstable = TRUE
 	var/glass_broken = GLASS_INTACT
 	var/reinforced = 0
 	var/default_material = "glass"

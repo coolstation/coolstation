@@ -20,7 +20,10 @@
 	return 0
 
 /mob/living/add_stam_mod_max(var/key, var/value)
-	if (!src.use_stamina) return add_stun_resist_mod(key, value/2)
+	if (!src.use_stamina)
+		APPLY_ATOM_PROPERTY(src, PROP_STUN_RESIST, "[key]_stam_max", value / 2)
+		APPLY_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX, "[key]_stam_max", value / 2)
+		return 1
 	if(!isnum(value)) return
 	if(key in stamina_mods_max)
 		return 0
@@ -33,7 +36,10 @@
 	return 0
 
 /mob/living/remove_stam_mod_max(var/key)
-	if (!src.use_stamina) return remove_stun_resist_mod(key)
+	if (!src.use_stamina)
+		REMOVE_ATOM_PROPERTY(src, PROP_STUN_RESIST, "[key]_stam_max")
+		REMOVE_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX, "[key]_stam_max")
+		return 1
 	if(!(key in stamina_mods_max))
 		return 0
 	stamina_mods_max.Remove(key)
@@ -55,35 +61,9 @@
 
 	return (val + stam_mod_items)
 
-/mob/proc/add_stun_resist_mod(var/key, var/value)
-	if(!isnum(value)) return
-	if(stun_resist_mods.Find(key)) return 0
-	stun_resist_mods.Add(key)
-	stun_resist_mods[key] = value
-	return 1
-
-//Removes a stamina max modifier with the given key.
-/mob/proc/remove_stun_resist_mod(var/key)
-	if(!stun_resist_mods.Find(key)) return 0
-	stun_resist_mods.Remove(key)
-	return 1
-
 //Returns the total modifier for stamina max
 /mob/proc/get_stun_resist_mod()
-	.= 0
-	var/highest = 0
-	for(var/x in stun_resist_mods)
-		. += stun_resist_mods[x]
-		if (stun_resist_mods[x] > highest)
-			highest = stun_resist_mods[x]
-
-
-	var/max_allowed = 80 //basically if we dont have a singular 100% or above protection moddifier, we wont allow the user to completely ignore stuns
-	if (highest > 80)
-		max_allowed = min(highest, 100)
-
-	.= clamp(., 0, max_allowed)
-
+	return clamp(GET_ATOM_PROPERTY(src, PROP_STUN_RESIST), 0, GET_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX))
 
 //Restores stamina
 /mob/proc/add_stamina(var/x)
@@ -218,70 +198,13 @@
 #define DISORIENT_EAR 4
 
 /mob/proc/get_disorient_protection()
-	. = 0
-
-	var/res = 0
-	for (var/obj/item/C as anything in src.get_equipped_items())
-		if(C.hasProperty("disorient_resist"))
-			res = C.getProperty("disorient_resist")
-			if (res >= 100)
-				return 100 //a singular item with resistance 100 or higher will block ALL
-			. += res
-		if(C.hasProperty("I_disorient_resist")) //cursed
-			res = C.getProperty("I_disorient_resist")
-			if (res >= 100)
-				return 100 //a singular item with resistance 100 or higher will block ALL
-			. += res
-
-
-	. = clamp(.,0,90) //0 to 90 range
+	return clamp(GET_ATOM_PROPERTY(src, PROP_DISORIENT_RESIST_BODY), 0, GET_ATOM_PROPERTY(src, PROP_DISORIENT_RESIST_BODY_MAX))
 
 /mob/proc/get_disorient_protection_eye()
-	. = 0
-
-	var/res = 0
-	for (var/obj/item/C as anything in src.get_equipped_items())
-		if(C.hasProperty("disorient_resist_eye"))
-			res = C.getProperty("disorient_resist_eye")
-			if (res >= 100)
-				return 100 //a singular item with resistance 100 or higher will block ALL
-			. += res
-
-	.= clamp(.,0,90) //90 max!
-
-/mob/living/get_disorient_protection_eye()
-	.= ..()
-
-	if (. >= 100)
-		return .
-
-	if (organHolder)//factor in me eyes
-		if (organHolder.left_eye)
-			var/res = organHolder.left_eye.getProperty("disorient_resist_eye")
-			if (res >= 100)
-				return 100
-			.+= res
-		if (organHolder.right_eye)
-			var/res = organHolder.right_eye.getProperty("disorient_resist_eye")
-			if (res >= 100)
-				return 100
-			.+= res
-
-	.= clamp(.,0,90)
+	return clamp(GET_ATOM_PROPERTY(src, PROP_DISORIENT_RESIST_EYE), 0, GET_ATOM_PROPERTY(src, PROP_DISORIENT_RESIST_EYE_MAX))
 
 /mob/proc/get_disorient_protection_ear()
-	.= 0
-
-	var/res = 0
-	for (var/obj/item/C as anything in src.get_equipped_items())
-		if(C.hasProperty("disorient_resist_ear"))
-			res = C.getProperty("disorient_resist_ear")
-			if (res >= 100)
-				return 100 //a singular item with resistance 100 or higher will block ALL
-			. += res
-
-	.= clamp(.,0,90) //0 to 90 range
-
+	return clamp(GET_ATOM_PROPERTY(src, PROP_DISORIENT_RESIST_EAR), 0, GET_ATOM_PROPERTY(src, PROP_DISORIENT_RESIST_EAR_MAX))
 
 /mob/proc/force_laydown_standup() //the real force laydown lives in Life.dm
 	.=0

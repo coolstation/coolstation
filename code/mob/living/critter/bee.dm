@@ -113,21 +113,21 @@
 		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
 		HH.name = "left feet"
-		HH.limb_name = "foot"
+		HH.limb.name = "foot"
 
 		HH = hands[2]
 		HH.limb = new src.limb_path
 		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handr"
 		HH.name = "right feet"
-		HH.limb_name = "foot"
+		HH.limb.name = "foot"
 
 		HH = hands[3]
 		HH.limb = new src.mouth_path
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "mouth"
 		HH.name = "mouth"
-		HH.limb_name = "mandibles"
+		HH.limb.name = "mandibles"
 		HH.can_hold_items = 0
 
 	Life(datum/controller/process/mobs/parent)

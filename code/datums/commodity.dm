@@ -2477,6 +2477,7 @@
 	lowerfluc = -200
 
 // FLOCKTRADER COMMODITIES AND PRICES
+/*
 /datum/commodity/flock/
 	desc = "Goods that the Flocktrader sells or wants."
 	onmarket = 0
@@ -2633,7 +2634,6 @@
 	upperfluc = 15000
 	lowerfluc = -15000
 
-/*
 /datum/commodity/flock/tech/incapacitor
 	comname = "Incapacitor"
 	comtype = /obj/item/gun/energy/flock
@@ -2642,7 +2642,6 @@
 	upperfluc = 12500
 	lowerfluc = -12500
 */
-
 /////////////////////////////////
 ///////skeleton trader //////////
 /////////////////////////////////

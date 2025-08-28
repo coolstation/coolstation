@@ -77,11 +77,6 @@
 	},
 /turf/floor/dojo,
 /area/prefab/shooting_range)
-"dz" = (
-/obj/rack,
-/obj/item/gun/laser_pistol/prototype,
-/turf/floor/wood/three,
-/area/prefab/shooting_range)
 "dA" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1;
@@ -167,11 +162,6 @@
 	},
 /turf/floor/racing,
 /area/prefab/shooting_range)
-"hm" = (
-/obj/rack,
-/obj/item/gun/laser_pistol,
-/turf/floor/wood/three,
-/area/prefab/shooting_range)
 "ic" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4;
@@ -187,7 +177,7 @@
 /turf/floor/dojo,
 /area/prefab/shooting_range)
 "iE" = (
-/obj/cabinet/ammo,
+/obj/machinery/vending/gunse/juicer,
 /turf/floor/wood/three,
 /area/prefab/shooting_range)
 "iM" = (
@@ -360,14 +350,6 @@
 	requires_power = 0
 	},
 /turf/floor/engine/caution,
-/area/prefab/shooting_range)
-"wI" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8;
-	pixel_x = -10
-	},
-/obj/machinery/weapon_stand/taser_rack/recharger/empty,
-/turf/floor/wood/three,
 /area/prefab/shooting_range)
 "xl" = (
 /obj/decal/tile_edge/stripe{
@@ -798,7 +780,7 @@ mE
 ji
 te
 aw
-wI
+lC
 Xo
 Xo
 VY
@@ -918,7 +900,7 @@ wt
 MH
 tW
 Fe
-hm
+bL
 Fe
 bL
 Fe
@@ -968,7 +950,7 @@ Fe
 Fe
 bL
 Fe
-dz
+bL
 Fe
 Xo
 VY

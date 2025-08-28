@@ -145,6 +145,7 @@
 		)
 
 /obj/artifact_paper_dispenser
+	pass_unstable = FALSE
 	name = "artifact analysis form tray"
 	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "artifact_form_tray"

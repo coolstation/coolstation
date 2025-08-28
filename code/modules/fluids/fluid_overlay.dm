@@ -4,11 +4,13 @@
 
 //Ok, so what happens here is
 //Every mob has a list of overlays for being submerged
-//When the mob is created / changes their clothing, this list is updated. (This part does some icon blend operations so we wanna keep those down!)
+//When the mob is created / ~~changes their clothing~~, this list is updated. (This part does some icon blend operations so we wanna keep those down!)
 //The submerged_images list is built by blending different submerged height graphics with the mob's clothing + body icons
 //lastly we use show_submerged_image() as the mob enters and exits fluid tiles to add/remove a submerged image from the mob's overlays.
 //Hopefully this operation (adding/removing overlays) isn't too costly - it doesn't seem like it is that bad so far? otherwise I can do the lame old pool overlays i guess
 
+#define SUBMERGED_BLEND_MODE BLEND_OVERLAY
+//#define SUBMERGED_BLEND_MODE BLEND_MULTIPLY
 
 /mob/var/list/submerged_images = list()
 /mob/var/is_submerged = 0
@@ -18,23 +20,24 @@
 	src.create_submerged_images()
 
 //yeh, i care again
+/*
 /mob/living/carbon/human/update_clothing()
 	if ( clothing_dirty & (C_SUIT|C_BACK|C_HEAD) )
 		SPAWN_DBG(0) src.create_submerged_images()
 	..()
-
+*/
 
 /mob/living/proc/create_submerged_images()
 	submerged_images.len = 0
 	for(var/i = 1, i <= 4, i++)
 		var/icon/I = new /icon('icons/obj/fluid.dmi', "overlay_[i]")
-		I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
+		I.Blend(new /icon(src.icon, src.icon_state),ICON_AND)
 
 		var/image/submerged_image = image(I)
 		submerged_image.layer = src.layer + 1
 		submerged_image.appearance_flags = RESET_COLOR
 		submerged_image.icon = I
-		submerged_image.blend_mode = BLEND_MULTIPLY
+		submerged_image.blend_mode = SUBMERGED_BLEND_MODE
 		submerged_images += submerged_image
 
 /mob/living/carbon/human/create_submerged_images()
@@ -46,21 +49,23 @@
 		var/icon/I = new /icon('icons/obj/fluid.dmi', "overlay_[i]")
 		var/icon/body = new /icon('icons/mob/human.dmi', "submerged_fill")
 
+/*
 		if (src.wear_suit)
-			body.Blend(src.wear_suit.wear_image.icon,ICON_OVERLAY)
+			body.Blend(src.wear_suit.wear_image,ICON_OVERLAY)
 		if (src.back)
-			body.Blend(src.back.wear_image.icon,ICON_OVERLAY)
+			body.Blend(src.back.wear_image,ICON_OVERLAY)
 		if (src.head)
-			body.Blend(src.head.wear_image.icon,ICON_OVERLAY)
+			body.Blend(src.head.wear_image,ICON_OVERLAY)
+*/
 
-		I.Blend(body, ICON_MULTIPLY)
+		I.Blend(body, ICON_AND)
 
 		var/image/submerged_image = image(I)
 		ma = new(submerged_image)
 		ma.layer = src.layer + 0.1
 		ma.appearance_flags = RESET_COLOR
 		ma.icon = I
-		ma.blend_mode = BLEND_MULTIPLY
+		ma.blend_mode = SUBMERGED_BLEND_MODE
 		submerged_image.appearance = ma
 		submerged_images += submerged_image
 
@@ -101,14 +106,14 @@
 
 	for(var/i = 1, i <= 4, i++)
 		var/icon/I = new /icon('icons/obj/fluid.dmi', "overlay_[i]")
-		I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
+		I.Blend(new /icon(src.icon, src.icon_state),ICON_AND)
 
 		var/image/submerged_image = image(I)
 		ma = new(submerged_image)
 		ma.layer = src.layer + 1
 		ma.appearance_flags = RESET_COLOR
 		ma.icon = I
-		ma.blend_mode = BLEND_MULTIPLY
+		ma.blend_mode = SUBMERGED_BLEND_MODE
 		submerged_image.appearance = ma
 		submerged_images += submerged_image
 

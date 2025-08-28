@@ -96,6 +96,14 @@
 	value = -5 //small crime
 	alt_value = 50 //but why not
 
+	New()
+		. = ..()
+		START_TRACKING
+
+	disposing()
+		STOP_TRACKING
+		. = ..()
+
 /obj/item/plant/herb/cannabis/spawnable
 	make_reagents()
 		src.create_reagents(85)

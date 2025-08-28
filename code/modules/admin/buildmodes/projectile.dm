@@ -12,12 +12,13 @@ Left Mouse Button                      = FIRE!<br>
 		if (ctrl && P)
 			usr.client.debug_variables(P)
 		else
-			var/projtype = input("Select projectile type.", "Projectile type", P) in childrentypesof(/datum/projectile)
+			var/projtype = get_one_match(input("Enter projectile type path.", "Projectile type", "/datum/projectile"), /datum/projectile)
 			if (P)
 				if (projtype == P.type)
 					return
-			P = new projtype()
-			update_button_text(projtype)
+			if(projtype)
+				P = new projtype()
+				update_button_text(projtype)
 
 	click_left(atom/object, var/ctrl, var/alt, var/shift)
 		if (!P || !object.loc) return

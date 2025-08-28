@@ -1,4 +1,5 @@
 // flockdrone door
+/*
 /obj/machinery/door/feather
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "door1"
@@ -114,3 +115,4 @@
 
 /obj/machinery/door/feather/friendly/allowed(mob/M)
 	return 1 // everyone welcome
+*/

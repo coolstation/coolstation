@@ -11,7 +11,7 @@
 	density = 1
 	gas_impermeable = 1
 	pathable = 1
-	flags = ALWAYS_SOLID_FLUID
+	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 	text = "<font color=#aaa>#"
 
 	var/health = 100

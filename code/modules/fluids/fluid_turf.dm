@@ -18,6 +18,7 @@
 	icon_state = "sand_other"
 	color = OCEAN_COLOR
 	pathable = 0
+	pass_unstable = FALSE
 	mat_changename = 0
 	mat_changedesc = 0
 	fullbright = 0
@@ -86,7 +87,7 @@
 		if(current_state > GAME_STATE_WORLD_INIT)
 			for(var/dir in cardinal)
 				var/turf/T = get_step(src, dir)
-				if(T?.ocean_canpass() && !istype(T, /turf/space))
+				if(T?.gas_cross(src) && issimulatedturf(T))
 					src.tilenotify(T)
 					break
 
@@ -221,7 +222,7 @@
 
 	tilenotify(turf/notifier)
 		if (istype(notifier, /turf/space)) return
-		if(notifier.ocean_canpass())
+		if(notifier.gas_cross(src))
 			processing_fluid_turfs |= src
 		else
 			if (processing_fluid_turfs.Remove(src))

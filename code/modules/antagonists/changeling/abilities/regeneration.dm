@@ -6,7 +6,7 @@
 	cooldown = 450
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 
 	incapacitationCheck()
 		return 0
@@ -30,7 +30,7 @@
 			logTheThing("combat", holder.owner, null, "enters regenerative stasis as a changeling [log_loc(holder.owner)].")
 
 			H.in_fakedeath = 1
-			APPLY_MOB_PROPERTY(C, PROP_CANTMOVE, src.type)
+			APPLY_ATOM_PROPERTY(C, PROP_CANTMOVE, src.type)
 
 			C.lying = 1
 			C.canmove = 0
@@ -129,7 +129,7 @@
 	pointCost = 10
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 

@@ -253,14 +253,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	category = "Resource"
 */
 
-/datum/manufacture/bullet_smoke
-	name = "40mm Smoke Grenade"
+/datum/manufacture/fog_grenade
+	name = "Fog Grenade"
 	item_paths = list("MET-2","CON-1")
 	item_amounts = list(30,25)
-	item_outputs = list(/obj/item/ammo/bullets/smoke)
+	item_outputs = list(/obj/item/chem_grenade/fog)
 	time = 35 SECONDS
 	create = 1
 	category = "Resource"
+
 
 /datum/manufacture/extinguisher
 	name = "Fire Extinguisher"
@@ -631,6 +632,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/*
 /datum/manufacture/gas_extract/agent_b_can
 	name = "Agent B"
 	item_paths = list("MET-2","molitz_b")
@@ -639,6 +641,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 100 SECONDS
 	create = 1
 	category = "Machinery"
+*/
 
 /datum/manufacture/gas_extract/n2_can
 	name = "N2"
@@ -1472,7 +1475,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	name = "Security Drone"
 	item_paths = list("MET-2","CON-2","POW-1")
 	item_amounts = list(30,20,20)
-	item_outputs = list(/obj/machinery/bot/secbot)
+	item_outputs = list(/mob/living/critter/robotic/bot/securitron)
 	time = 120 SECONDS
 	create = 1
 	category = "Machinery"

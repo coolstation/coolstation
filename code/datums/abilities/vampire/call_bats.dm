@@ -14,7 +14,7 @@
 	icon_state = "frostbats"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 5 // so that ai uses correctly
+	ai_range = 5
 	cooldown = 600
 	pointCost = 0//150
 	when_stunned = 0

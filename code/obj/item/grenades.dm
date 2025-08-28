@@ -8,7 +8,7 @@ PIPE BOMBS + CONSTRUCTION
 */
 
 ////////////////////////////// Old-style grenades ///////////////////////////////////////
-
+ABSTRACT_TYPE(/obj/item/old_grenade)
 /obj/item/old_grenade
 	desc = "You shouldn't be able to see this!"
 	name = "old grenade"
@@ -51,7 +51,7 @@ PIPE BOMBS + CONSTRUCTION
 					return
 			else
 				boutput(user, "<span class='alert'>You prime [src]! [det_time/10] seconds!</span>")
-				src.icon_state = src.icon_state_armed
+				src.armed_fx()
 				playsound(src.loc, src.sound_armed, 75, 1, -3)
 				src.add_fingerprint(user)
 				SPAWN_DBG(src.det_time)
@@ -94,6 +94,9 @@ PIPE BOMBS + CONSTRUCTION
 		else if (istype(W, /obj/item/gun/modular))
 			actions.start(new/datum/action/bar/private/load_grenade(W, src), user)
 		return
+
+	proc/armed_fx()
+		src.icon_state = src.icon_state_armed
 
 	proc/prime() // Most grenades require a turf reference.
 		var/turf/T = get_turf(src)
@@ -343,8 +346,73 @@ PIPE BOMBS + CONSTRUCTION
 			qdel(src)
 		return
 
+ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
+/obj/item/old_grenade/projectile
+	name = "projectile grenade"
+	desc = "It is set to detonate in 3 seconds."
+	icon_state = "fragnade"
+	icon_state_armed = "fragnade1"
+	det_time = 3 SECONDS
+	org_det_time = 3 SECONDS
+	alt_det_time = 6 SECONDS
+	item_state = "fragnade"
+	sound_armed = "sound/weapons/pindrop.ogg"
+	var/projectile_type = /datum/projectile/bullet/flak_chunk
+	var/pellets_to_fire = 20
+	var/sound_detonation = "sound/weapons/grenade.ogg"
 
-/obj/item/old_grenade/stinger
+
+	prime()
+		. = ..()
+		var/turf/T = .
+		if(T)
+			if(sound_detonation)
+				playsound(T, sound_detonation, 25, 1)
+			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
+			if(src.projectile_type)
+				PJ.spread_projectile_type = src.projectile_type
+				PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
+			PJ.pellets_to_fire = src.pellets_to_fire
+			var/targetx = src.y - rand(-5,5)
+			var/targety = src.y - rand(-5,5)
+			var/turf/newtarget = locate(targetx, targety, src.z)
+			shoot_projectile_ST(src, PJ, newtarget)
+			SPAWN_DBG(0.5 SECONDS)
+				qdel(src)
+		else
+			qdel(src)
+
+/obj/item/old_grenade/projectile/vortex
+	name = "vortex grenade"
+	icon_state = "vortex"
+	icon_state_armed = "vortex_pull"
+	projectile_type = /datum/projectile/special/spreader/uniform_burst/listed/vortex_blast
+	pellets_to_fire = 1 // hate this
+	sound_detonation = null
+	sound_armed = "sound/effects/ripcord.ogg"
+	var/datum/light/point/light
+
+	armed_fx()
+		..()
+		SPAWN_DBG(max(src.det_time - 1.4 SECONDS, 0))
+			playsound(src.loc, "sound/effects/splode2.ogg", 50, 1)
+			src.icon_state = "vortex_crush"
+			sleep(0.6 SECONDS)
+			var/obj/overlay/fullbright_overlay = new(src)
+			fullbright_overlay.icon = src.icon
+			fullbright_overlay.plane = PLANE_SELFILLUM
+			src.vis_contents += fullbright_overlay
+			fullbright_overlay.icon_state = "vortex_overlay"
+			src.light = new
+			light.attach(src)
+			light.set_brightness(1)
+			light.set_color(0.2, 1, 0.2)
+			sleep(0.2 SECONDS)
+			light.enable()
+			sleep(1 SECOND)
+			qdel(fullbright_overlay)
+
+/obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"
 	desc = "It is set to detonate in 3 seconds."
 	icon_state = "fragnade"
@@ -355,13 +423,12 @@ PIPE BOMBS + CONSTRUCTION
 	is_syndicate = 0
 	sound_armed = "sound/weapons/pindrop.ogg"
 	icon_state_armed = "fragnade1"
-	var/custom_projectile_type = null
-	var/pellets_to_fire = 20
+	projectile_type = /datum/projectile/bullet/flak_chunk
 
 	prime()
-		var/turf/T = ..()
+		. = ..()
+		var/turf/T = .
 		if (T)
-			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			explosion(src, T, -1, -1, -0.25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
 			O.anchored = 1
@@ -369,33 +436,13 @@ PIPE BOMBS + CONSTRUCTION
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
 			O.icon_state = "explo_fiery"
-			var/obj/item/old_grenade/stinger/frag/F = null
-			if (istype(src, /obj/item/old_grenade/stinger/frag))
-				F = src
-			if (F)
-				playsound(T, "sound/effects/smoke.ogg", 20, 1, -2)
-				SPAWN_DBG(0)
-					if (F?.smoke) //Wire note: Fix for Cannot execute null.start()
-						for(var/i = 1 to 6)
-							F.smoke.start()
-							sleep(1 SECOND)
-			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
-			if(src.custom_projectile_type)
-				PJ.spread_projectile_type = src.custom_projectile_type
-				PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
-			PJ.pellets_to_fire = src.pellets_to_fire
-			var/targetx = src.y - rand(-5,5)
-			var/targety = src.y - rand(-5,5)
-			var/turf/newtarget = locate(targetx, targety, src.z)
-			shoot_projectile_ST(src, PJ, newtarget)
 			SPAWN_DBG(0.5 SECONDS)
 				qdel(O)
-				qdel(src)
 		else
 			qdel(src)
 		return
 
-/obj/item/old_grenade/stinger/frag
+/obj/item/old_grenade/projectile/stinger/frag
 	name = "frag grenade"
 	icon_state = "fragnade-alt"
 	icon_state_armed = "fragnade-alt1"
@@ -406,6 +453,16 @@ PIPE BOMBS + CONSTRUCTION
 		src.smoke = new /datum/effects/system/bad_smoke_spread/
 		src.smoke.attach(src)
 		src.smoke.set_up(7, 1, src.loc)
+
+	prime()
+		. = ..()
+		var/turf/T = .
+		playsound(T, "sound/effects/smoke.ogg", 20, 1, -2)
+		SPAWN_DBG(0)
+			if (src.smoke) //Wire note: Fix for Cannot execute null.start()
+				for(var/i = 1 to 6)
+					src.smoke.start()
+					sleep(1 SECOND)
 
 /obj/item/old_grenade/high_explosive
 	name = "HE grenade"
@@ -1892,22 +1949,23 @@ PIPE BOMBS + CONSTRUCTION
 /mob/proc/blowthefuckup(var/strength = 1,var/visible_message = 1) // similar proc for mobs
 	var/T = get_turf(src)
 	if(visible_message) src.visible_message("<span class='alert'>[src] explodes!</span>")
-	var/sqstrength = sqrt(strength)
-	var/shrapnel_range = 3 + sqstrength
-	for (var/mob/living/carbon/human/M in view(T, shrapnel_range))
-		if(check_target_immunity(M)) continue
-		if (M != src)
-			M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
-			if (M.get_ranged_protection()>=1.5)
-				boutput(M, "<span class='alert'><b>Your armor blocks the chunks of [src.name]!</b></span>")
-			else
-				var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
-				implanted.owner = M
-				M.implant += implanted
-				implanted.implanted(M, null, 25 * sqstrength)
-				boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
-				if (!M.stat)
-					M.emote("scream")
+	if(strength)
+		var/sqstrength = sqrt(strength)
+		var/shrapnel_range = 3 + sqstrength
+		for (var/mob/living/carbon/human/M in view(T, shrapnel_range))
+			if(check_target_immunity(M)) continue
+			if (M != src)
+				M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
+				if (M.get_ranged_protection()>=1.5)
+					boutput(M, "<span class='alert'><b>Your armor blocks the chunks of [src.name]!</b></span>")
+				else
+					var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
+					implanted.owner = M
+					M.implant += implanted
+					implanted.implanted(M, null, 25 * sqstrength)
+					boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
+					if (!M.stat)
+						M.emote("scream")
 
 	explosion_new(src, T, strength, 1)
 	src.gib()

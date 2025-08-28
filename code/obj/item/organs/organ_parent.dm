@@ -90,9 +90,9 @@
 			if(HA.organ_scan)
 				animate_scanning(src, "#0AEFEF")
 				boutput(user, "<span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
-				var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.donor_DNA)
+				var/datum/db_record/MR = data_core.general.find_record("dna", src.donor_DNA)
 				if(MR)
-					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]])</span>")
+					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR["name"]] ([MR["dna"]])</span>")
 				else
 					boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
 				return
@@ -122,6 +122,8 @@
 			if(usr.traitHolder.hasTrait("organ_connoisseur"))
 				if (src.donor_name && well_known)
 					. += "<br>You know this one well, it belongs to [src.donor_name]."
+					src.name = "[src.donor_name]'s [initial(src.name)]"
+					src.real_name = src.name
 				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to sell."]"
 			else if(usr.traitHolder.hasTrait("training_medical"))
 				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days." : "Seems good enough to reuse!"]"

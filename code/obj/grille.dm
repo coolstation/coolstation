@@ -83,6 +83,7 @@
 		icon_state = "catwalk"
 		var/icon_base = "catwalk"
 		density = 0
+		pass_unstable = FALSE
 		desc = "This doesn't look very safe at all!"
 		layer = CATWALK_LAYER
 		shock_when_entered = 0

@@ -58,11 +58,13 @@
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	casecolor = "blue"
+/*
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b
 	name = "Canister: \[Agent B\]"
 	icon_state = "bluish"
 	casecolor = "bluish"
 	volume = 500
+*/
 /obj/machinery/portable_atmospherics/canister/toxins
 	name = "Canister \[Plasma\]"
 	icon_state = "orange"
@@ -747,6 +749,7 @@
 	src.update_icon()
 	return 1
 
+/*
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
 
 	..()
@@ -756,6 +759,7 @@
 
 	src.update_icon()
 	return 1
+*/
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
 

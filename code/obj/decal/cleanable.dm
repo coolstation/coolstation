@@ -16,6 +16,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 /obj/decal/cleanable
 	density = 0
 	anchored = 1
+	pass_unstable = PRESERVE_CACHE
 	var/can_sample = 0
 	var/sampled = 0
 	var/sample_amt = 10
@@ -1401,12 +1402,11 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	event_handler_flags = USE_CANPASS
 	gross = 1
 
-	CanPass(atom/A, turf/T)
-		if (ismob(A))
-			A.changeStatus("slowed", 0.2 SECONDS)
+	Entered(atom/movable/AM)
+		if (ismob(AM))
+			AM.changeStatus("slowed", 0.2 SECONDS)
 			SPAWN_DBG(-1)
 				qdel(src)		//break when walked over
-		else return 1
 		..()
 
 
@@ -1930,6 +1930,8 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 /// Input a cardinal direction, it'll throw it somewhere within +-45 degrees of that direction. More or less.
 /obj/decal/cleanable/proc/streak_cleanable(var/list/directions, var/randcolor = 0, var/full_streak)
+	if(src.disposed)
+		return
 	if(isnull(get_turf(src)))
 		CRASH("Attempting to streak cleanable [src] which is in null.")
 

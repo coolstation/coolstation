@@ -215,6 +215,7 @@
 		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/*
 /obj/item/raw_material/molitz_beta
 	name = "molitz crystal"
 	desc = "An unusual crystal of Molitz."
@@ -226,6 +227,7 @@
 	setup_material()
 		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE)
 		return ..()
+*/
 
 /obj/item/raw_material/pharosium
 	name = "pharosium ore"
@@ -638,7 +640,7 @@
 			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(isabomination(H))
 				return
-			if(H.throwing || HAS_MOB_PROPERTY(H, PROP_ATOM_FLOATING))
+			if(H.throwing || HAS_ATOM_PROPERTY(H, PROP_ATOM_FLOATING))
 				return
 			if(H.lying)
 				boutput(H, "<span class='alert'><B>You crawl on [src]! Ouch!</B></span>")

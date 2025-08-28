@@ -1,6 +1,7 @@
 //
 // rift thingymabob
 //
+/*
 /obj/flock_structure/rift
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "rift"
@@ -55,3 +56,4 @@
 	else
 		var/severity = round(((build_time - elapsed)/build_time) * 5)
 		animate_shake(src, severity, severity)
+*/

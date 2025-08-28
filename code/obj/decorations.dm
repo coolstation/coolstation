@@ -188,6 +188,7 @@
 	layer = EFFECTS_LAYER_UNDER_3
 	flags = FLUID_SUBMERGE
 	text = "<font color=#5c5>s"
+	pass_unstable = FALSE
 	var/health = 50
 	var/destroyed = 0 // Broken shrubs are unable to vend prizes, this is also used to track a objective.
 	var/max_uses = 0 // The maximum amount of time one can try to shake this shrub for something.
@@ -694,6 +695,7 @@
 	icon_state = "light1"
 	anchored = 1
 	density = 0
+	pass_unstable = FALSE
 	var/on = 0
 	var/id = null
 	var/list/myBlinds = list()
@@ -932,7 +934,7 @@
 			icon_state = "ss10"
 
 obj/decoration
-
+	pass_unstable = FALSE
 
 obj/decoration/decorativeplant
 	name = "decorative plant"
@@ -1365,6 +1367,7 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	item_state = "table_parts"
 	density = 1
+	pass_unstable = FALSE
 	force = 1.0
 	throwforce = 3.0
 	throw_speed = 1

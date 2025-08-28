@@ -20,10 +20,6 @@
 	max_skins = 1
 	meat_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
 	// blood_color = "#33C370" This doesn't work and I don't know enough to make it work.
-	var/health_brute = 20 // these values are unchanged from critter base. Do I still need these???? I don't know
-	var/health_brute_vuln = 1
-	var/health_burn = 20
-	var/health_burn_vuln = 1
 	health_brute = 8 // these values are unchanged from critter base
 	health_burn = 8
 	flags = TABLEPASS
@@ -58,12 +54,6 @@
 			STOP_TRACKING_CAT(TR_CAT_PETS)
 		..()
 
-	setup_healths()
-		add_hh_flesh(src.health_brute, src.health_brute_vuln)
-		add_hh_flesh_burn(src.health_burn, src.health_burn_vuln)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/brain)
-
 	CanPass(atom/mover, turf/target, height=0, air_group=0)
 		if (!src.density && istype(mover, /obj/projectile))
 			return prob(50)
@@ -95,11 +85,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/small_critter
+		HH.limb = new /datum/limb/small_critter(src)
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "mouth"
 		HH.name = "pincers"
-		HH.limb_name = "pincers"
+		HH.limb.name = "pincers"
 
 
 /mob/living/critter/grub/wildgrub //Wild grubs don't have any relevance to any domestic grub breeding stuff. It's just an excuse to show off all the funny overlays
