@@ -609,6 +609,20 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		src.ai.stop_move()
 		EXTEND_COOLDOWN(src, "HALT_FOR_INTERACTION", 4 SECONDS)
 		user.showContextActions(src.contexts, src, src.configContextLayout)
+	else if (user.a_intent == INTENT_HARM && ishuman(user))
+		var/damage = 1
+		var/mob/living/carbon/human/H = user
+		if (H.shoes)
+			damage += H.shoes.kick_bonus
+		else if (H.limbs.r_leg)
+			damage += H.limbs.r_leg.limb_hit_bonus
+		else if (H.limbs.l_leg)
+			damage += H.limbs.l_leg.limb_hit_bonus
+		random_brute_damage(src, damage)
+		user.visible_message("<span class='alert'><b>[user]</b> kicks [src] like the football!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, target_dir)
+		if(throw_target)
+			src.throw_at(throw_target, 6, 2)
 	else
 		..()
 
