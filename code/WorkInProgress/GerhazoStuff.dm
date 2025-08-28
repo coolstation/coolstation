@@ -433,6 +433,7 @@
 	targeted = 1
 	target_anything = 0
 	max_range = 8
+	ai_range = 8
 	cooldown = 20 SECONDS
 	pointCost = 25
 	var/radius = 2

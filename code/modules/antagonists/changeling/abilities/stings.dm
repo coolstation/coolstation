@@ -10,6 +10,7 @@
 	target_in_inventory = 1
 	sticky = 1
 	max_range = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	cast(atom/target)

@@ -213,6 +213,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 14
+	ai_range = 6
 	cooldown = 600
 	attack_mobs = TRUE
 
@@ -335,6 +336,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 600
 	//attack_mobs = TRUE // eek
 

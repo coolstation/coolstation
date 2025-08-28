@@ -10,6 +10,7 @@
   desc = "Send out an electromagnetic pulse."
   icon_state = "zzzap"
   cooldown = 1200
+  ai_range = 5
   attack_mobs = TRUE
 
 /datum/targetable/critter/zzzap/cast(atom/target)

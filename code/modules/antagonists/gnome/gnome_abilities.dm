@@ -345,6 +345,7 @@
 	pointCost = 0
 	cooldown = 20 SECONDS
 	max_range = 1
+	ai_range = 1
 	attack_mobs = TRUE
 	turf_check = FALSE
 

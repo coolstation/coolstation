@@ -5,6 +5,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 2
+	ai_range = 2
 	cooldown = 700
 	pointCost = 0
 	when_stunned = 0

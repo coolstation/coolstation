@@ -2379,7 +2379,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	var/dist = GET_DIST(src, target)
 	if(src.abilityHolder)
 		for(var/datum/targetable/ability in src.abilityHolder.abilities)
-			if(ability.attack_mobs && dist <= ability.max_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+			if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
 				return 1
 	return 0
 

@@ -1653,6 +1653,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	targeted = 1
 	attack_mobs = TRUE
 	max_range = 1
+	ai_range = 1
 
 	cast(atom/target)
 		var/mob/M = target
@@ -2479,6 +2480,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	targeted = 1
 	attack_mobs = TRUE
 	max_range = 1
+	ai_range = 1
 
 	cast(atom/target)
 		var/mob/M = target

@@ -4,6 +4,7 @@
 	icon_state = "grasp"
 	targeted = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 600
 	requires_robes = 1
 	offensive = 1

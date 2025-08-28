@@ -137,6 +137,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot)
 	target_anything = TRUE
 	cooldown = 3 SECONDS
 	max_range = 1
+	ai_range = 1
 
 	cast(atom/target)
 		if(!holder?.owner)
@@ -296,7 +297,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	targeted = TRUE
 	target_anything = TRUE
 	cooldown = 5 SECONDS
-	max_range = 4
+	max_range = 30
+	ai_range = 4
 	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "firebot_foam"
 	var/const/num_water_effects = 5
@@ -338,14 +340,16 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		spray_reagents = list("fuel"=5)
 		spray_temperature = T0C + 300
 		attack_mobs = TRUE
-		max_range = 4
+		max_range = 30
+		ai_range = 4
 		cooldown = 15 SECONDS
 
 	throw_humans
 		name = "High Pressure Foam"
 		desc = "Unleash your spray foam cannon to send mobs flying."
 		attack_mobs = TRUE
-		max_range = 3
+		max_range = 30
+		ai_range = 3
 		cooldown = 15 SECONDS
 
 		cast(atom/target)
@@ -875,6 +879,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	target_anything = TRUE
 	attack_mobs = TRUE
 	max_range = 1
+	ai_range = 1
 	cooldown = 4 SECONDS
 	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "secbot_detain"
