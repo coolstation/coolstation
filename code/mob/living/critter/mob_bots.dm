@@ -620,7 +620,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			damage += H.limbs.l_leg.limb_hit_bonus
 		random_brute_damage(src, damage)
 		user.visible_message("<span class='alert'><b>[user]</b> kicks [src] like the football!</span>")
-		var/atom/throw_target = get_edge_target_turf(src, target_dir)
+		var/atom/throw_target = get_edge_target_turf(src, get_dir(user, src))
 		if(throw_target)
 			src.throw_at(throw_target, 6, 2)
 	else
