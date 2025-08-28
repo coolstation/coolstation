@@ -93,11 +93,11 @@
 			for (var/neighbour_node in C.is_a_node.adjacent_nodes)
 				if (istype(C.is_a_node.adjacent_nodes[neighbour_node], /datum/powernet_graph_link))
 					var/datum/powernet_graph_link/a_linke = C.is_a_node.adjacent_nodes[neighbour_node]
-					a_linke.active++
+					a_linke.reactivate()
 				else
 					var/bwebbo = C.is_a_node.adjacent_nodes[neighbour_node]
 					for(var/datum/powernet_graph_link/an_linke in bwebbo)
-						an_linke.active++
+						an_linke.reactivate()
 
 			//We broke direct node connections so restoring time
 			var/list/connections = C.get_connections()
@@ -113,7 +113,8 @@
 							C2.is_a_node.adjacent_nodes[C.is_a_node] = list(C2.is_a_node.adjacent_nodes[C.is_a_node],null)
 		else if (C.is_a_link)
 			dirty_pnet_nodes |= C.is_a_link.adjacent_nodes
-			C.is_a_link.active++
+			C.is_a_link.reactivate()
+
 
 
 	if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes))

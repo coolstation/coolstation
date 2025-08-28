@@ -71,6 +71,7 @@ var/global/list/dirty_power_machines = list()
 			qdel()
 		return
 
+	var/actual_links_left = length(adjacent_nodes) //We have to keep track of adjacent nodes that we are only temporarily broken off from
 	var/list/datum/powernet_graph_node/previous_adjacent_nodes = adjacent_nodes.Copy()
 	for (var/datum/powernet_graph_node/other_node as anything in adjacent_nodes)
 		var/datum/powernet_graph_link/relevant_link = adjacent_nodes[other_node]
@@ -84,6 +85,7 @@ var/global/list/dirty_power_machines = list()
 		//vars for sadness
 		var/how_many_links = 1
 		var/unbroken_links = 1
+		var/inactive_links = 0
 		var/list/links
 		if (islist(relevant_link))
 			unbroken_links = how_many_links = length(relevant_link)
@@ -98,6 +100,7 @@ var/global/list/dirty_power_machines = list()
 					relevant_link.dissolve()
 				else if (relevant_link.active <= 0)
 					unbroken_links--
+					inactive_links++
 
 			if (--how_many_links > 0)
 				relevant_link = links[how_many_links]
@@ -105,11 +108,13 @@ var/global/list/dirty_power_machines = list()
 		while (how_many_links > 0)
 
 		if (delete_link || unbroken_links == 0) //break list linking
-			other_node.adjacent_nodes -= src
+			if (!inactive_links)
+				actual_links_left--
+				other_node.adjacent_nodes -= src //probably faster to do it now, but breaks things if there's inactive links
 			adjacent_nodes -= other_node
 
 	//we're now basically a straight run and don't need to be a node anymore (I figured doing it here is easier than in dissolving the link)
-	if (length(adjacent_nodes) == 2) // && !dissolve_self (shouldn't be necessary)
+	if (actual_links_left == 2) // && !dissolve_self (shouldn't be necessary)
 		dissolve_self = TRUE
 		var/datum/powernet_graph_node/node_one = adjacent_nodes[1]
 		var/datum/powernet_graph_node/node_two = adjacent_nodes[2]
@@ -259,3 +264,17 @@ var/global/list/dirty_power_machines = list()
 			cables -= L.cables
 		else cables -= C
 	qdel(src)
+
+///Used with cable switches/breaker boxes. Let our nodes know about each other again so they validate sorta properly.
+/datum/powernet_graph_link/proc/reactivate()
+	if (src.active > 0) return //we're not inactive? let's not mess with the topography then
+	src.active++
+	if (src.active <= 0) return //multiple boxes on one link? It's possible
+	var/datum/powernet_graph_node/node_1 = adjacent_nodes[1]
+	var/datum/powernet_graph_node/node_2 = adjacent_nodes[2]
+	if (node_2 in node_1.adjacent_nodes)
+		node_1.adjacent_nodes[node_2] += src
+		node_2.adjacent_nodes[node_1] += src
+	else
+		node_1.adjacent_nodes[node_2] = src
+		node_2.adjacent_nodes[node_1] = src
