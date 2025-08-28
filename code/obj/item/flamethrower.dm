@@ -36,6 +36,8 @@ A Flamethrower in various states of assembly
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_BULKY
+	///admin var, set to true for the flamethrower to not consume ammo
+	var/neverending = FALSE
 	var/mode = FLAMER_MODE_SINGLE
 	var/processing = 0
 	var/lit = 0	//on or off
@@ -98,8 +100,6 @@ A Flamethrower in various states of assembly
 
 	/// check for tank, pressure in tank, fuelltank, fuel in tank, and... then dump the stuff into it!
 	process_ammo(var/mob/user)
-		var/turf/T = get_turf(src)
-		var/datum/gas_mixture/T_env = T.return_air()
 		if(!src.fueltank)
 			boutput(user, "<span class='alert'>[capitalize("[src]")] doesn't have a fuel source!</span>")
 			return FALSE
@@ -109,10 +109,13 @@ A Flamethrower in various states of assembly
 		else if(src.fueltank?.reagents.total_volume <= 0)
 			boutput(user, "<span class='alert'>[capitalize("[src]")]'s fuel source is empty!</span>")
 			return FALSE
-		else if(T_env && src.gastank?.air_contents && ((src.gastank in src.contents) || (src.gastank in user.get_equipped_items())))
-			if(MIXTURE_PRESSURE(T_env) > MIXTURE_PRESSURE(gastank.air_contents))
-				boutput(user, "<span class='alert'>Not enough pressure in [src]'s gas tank to operate!</span>")
-				return FALSE
+		else if (!neverending) //turns out fullautoing a neverending flamethrower increases local pressures enough to trip this check
+			var/turf/T = get_turf(src)
+			var/datum/gas_mixture/T_env = T.return_air()
+			if(T_env && src.gastank?.air_contents && ((src.gastank in src.contents) || (src.gastank in user.get_equipped_items())))
+				if(MIXTURE_PRESSURE(T_env) > MIXTURE_PRESSURE(gastank.air_contents))
+					boutput(user, "<span class='alert'>Not enough pressure in [src]'s gas tank to operate!</span>")
+					return FALSE
 		return TRUE
 
 	alter_projectile(var/obj/projectile/P)
@@ -130,7 +133,11 @@ A Flamethrower in various states of assembly
 		var/datum/reagents/chems = new(chem_amount)
 		if(!P.reagents)
 			P.create_reagents(chem_amount)
-		fueltank_reagents.trans_to_direct(P.reagents, chem_amount)
+		if (neverending)
+			fueltank_reagents.copy_to(P.reagents, chem_amount)
+		else
+			fueltank_reagents.trans_to_direct(P.reagents, chem_amount)
+			inventory_counter?.update_percent(src.fueltank?.reagents?.total_volume, src.fueltank?.reagents?.maximum_volume)
 
 		P_special_data["proj_color"] = chems.get_average_color()
 		P_special_data["IS_LIT"] = src.lit //100
@@ -149,8 +156,12 @@ A Flamethrower in various states of assembly
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/airgas = new()
 		airgas.volume = 1
-		airgas.merge(gastank_aircontents.remove_ratio(rem_ratio * 0.9))
-		T.assume_air(gastank_aircontents.remove_ratio(rem_ratio * 0.1))
+		if (neverending)
+			airgas.merge(gastank_aircontents.copy_ratio(rem_ratio * 0.9))
+			T.assume_air(gastank_aircontents.copy_ratio(rem_ratio * 0.1))
+		else
+			airgas.merge(gastank_aircontents.remove_ratio(rem_ratio * 0.9))
+			T.assume_air(gastank_aircontents.remove_ratio(rem_ratio * 0.1))
 		if(src.lit)
 			airgas.temperature = P_special_data["burn_temp"]
 		P_special_data["airgas"] = airgas
@@ -171,7 +182,6 @@ A Flamethrower in various states of assembly
 			else //default to backtank??
 				P_special_data["speed_mult"] = 0.6
 				P_special_data["chem_pct_app_tile"] = 0.15
-		inventory_counter?.update_percent(src.fueltank?.reagents?.total_volume, src.fueltank?.reagents?.maximum_volume)
 		src.updateSelfDialog()
 
 /obj/item/gun/flamethrower/assembled
@@ -180,8 +190,9 @@ A Flamethrower in various states of assembly
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	desc = "You are a firestarter!"
 	flags = FPRINT | TABLEPASS | CONDUCT | EXTRADELAY
-	force = 3.0
-	throwforce = 10.0
+	c_flags = EQUIPPED_WHILE_HELD
+	force = 3
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_BULKY
@@ -189,6 +200,10 @@ A Flamethrower in various states of assembly
 	var/obj/item/rods/rod = null
 	var/obj/item/device/igniter/igniter = null
 	inventory_counter_enabled = 1
+
+	setupProperties()
+		. = ..()
+		setProperty("carried_movespeed", 0.2)
 
 /obj/item/tank/jetpack/backtank
 	name = "fuelpack"
@@ -290,6 +305,7 @@ A Flamethrower in various states of assembly
 	item_state = "syndthrower_0"
 	uses_multiple_icon_states = 1
 	force = 6
+	contraband = 7
 	two_handed = 1
 	swappable_tanks = 0 // Backpack or bust
 	spread_angle = 10

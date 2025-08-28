@@ -18,8 +18,7 @@
 /area/noGenerate)
 "ak" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 2
+	icon_state = "lattice-dir"
 	},
 /turf/space,
 /area/noGenerate)
@@ -29,8 +28,8 @@
 /area/noGenerate)
 "am" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 4
+	dir = 4;
+	icon_state = "lattice-dir"
 	},
 /turf/space,
 /area/noGenerate)
@@ -43,8 +42,8 @@
 /area/noGenerate)
 "ao" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 4
+	dir = 4;
+	icon_state = "lattice-dir"
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -62,8 +61,8 @@
 /obj/machinery/communications_dish,
 /obj/lattice,
 /obj/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/space,
 /area/noGenerate)
@@ -72,8 +71,8 @@
 /area/noGenerate)
 "at" = (
 /obj/decal/floatingtiles{
-	icon_state = "floattiles3";
-	dir = 8
+	dir = 8;
+	icon_state = "floattiles3"
 	},
 /turf/space,
 /area/noGenerate)
@@ -85,13 +84,12 @@
 /area/noGenerate)
 "av" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 2
+	icon_state = "lattice-dir"
 	},
 /obj/cable{
-	icon_state = "1-2";
 	d1 = 1;
-	d2 = 2
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/space,
 /area/noGenerate)
@@ -101,8 +99,8 @@
 /area/noGenerate)
 "ax" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 8
+	dir = 8;
+	icon_state = "lattice-dir"
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -116,8 +114,8 @@
 /area/noGenerate)
 "ay" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 8
+	dir = 8;
+	icon_state = "lattice-dir"
 	},
 /obj/decal/fakeobjects{
 	desc = "What was this thing even supposed to do?";
@@ -129,8 +127,8 @@
 /area/noGenerate)
 "aA" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 5
+	dir = 5;
+	icon_state = "lattice-dir"
 	},
 /turf/space,
 /area/noGenerate)
@@ -159,8 +157,8 @@
 /area/noGenerate)
 "aG" = (
 /obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 10
+	dir = 10;
+	icon_state = "lattice-dir-b"
 	},
 /turf/space,
 /area/noGenerate)
@@ -182,11 +180,11 @@
 "aO" = (
 /obj/table/auto,
 /obj/decal/fakeobjects{
-	name = "broken computer";
+	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
 	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "oldb";
-	anchored = 1
+	name = "broken computer"
 	},
 /turf/floor/airless/damaged5,
 /area/noGenerate)
@@ -201,8 +199,8 @@
 /area/noGenerate)
 "aS" = (
 /obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 6
+	dir = 6;
+	icon_state = "lattice-dir-b"
 	},
 /turf/wall/asteroid,
 /area/noGenerate)
@@ -212,8 +210,8 @@
 /area/noGenerate)
 "aU" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 8
+	dir = 8;
+	icon_state = "lattice-dir"
 	},
 /obj/decal/fakeobjects/pipe{
 	dir = 4;
@@ -224,8 +222,8 @@
 /area/noGenerate)
 "aV" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 8
+	dir = 8;
+	icon_state = "lattice-dir"
 	},
 /obj/decal/fakeobjects/pipe{
 	dir = 4;
@@ -245,14 +243,13 @@
 	name = "broken vending machine"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 9
+	dir = 9;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "aY" = (
 /obj/storage/secure/closet/fridge{
 	desc = "I'm sure the food in this is still good.";
-	icon_state = "fridge";
 	locked = 0;
 	name = "gross ugly and not good refrigerator"
 	},
@@ -279,7 +276,6 @@
 "bg" = (
 /obj/decal/cleanable/dirt,
 /obj/machinery/shower{
-	icon_state = "showerhead";
 	dir = 4
 	},
 /obj/machinery/drainage,
@@ -316,8 +312,8 @@
 	name = "broken vending machine"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 8
+	dir = 8;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "bn" = (
@@ -332,8 +328,8 @@
 	name = "broken microwave oven"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 10
+	dir = 10;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "bo" = (
@@ -360,11 +356,9 @@
 /area/noGenerate)
 "bt" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 4
 	},
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 8
 	},
 /obj/item/mousetrap/armed,
@@ -407,7 +401,6 @@
 /area/noGenerate)
 "bA" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 8
 	},
 /obj/decal/cleanable/dirt,
@@ -415,7 +408,6 @@
 /area/noGenerate)
 "bB" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 4
 	},
 /obj/decal/fakeobjects{
@@ -478,11 +470,9 @@
 /area/noGenerate)
 "bM" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 4
 	},
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 8
 	},
 /obj/decal/fakeobjects/lighttube_broken,
@@ -495,7 +485,6 @@
 /area/noGenerate)
 "bO" = (
 /obj/decal/fakeobjects/lighttube_broken{
-	icon_state = "tube-broken";
 	dir = 8
 	},
 /turf/floor/airless/engine,
@@ -517,7 +506,6 @@
 /area/noGenerate)
 "bS" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 8
 	},
 /obj/decal/cleanable/dirt,
@@ -527,7 +515,6 @@
 /area/noGenerate)
 "bT" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "xtra_bigstripe-edge";
 	dir = 4
 	},
 /obj/decal/fakeobjects/lighttube_broken,
@@ -545,8 +532,8 @@
 /area/noGenerate)
 "bV" = (
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 8
+	dir = 8;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "bX" = (
@@ -564,9 +551,9 @@
 /obj/lattice,
 /obj/item/cable_coil/cut,
 /obj/decal/fakeobjects{
-	name = "power cable";
 	icon = 'icons/obj/machines/power_cond.dmi';
-	icon_state = "4-8"
+	icon_state = "4-8";
+	name = "power cable"
 	},
 /turf/space,
 /area/noGenerate)
@@ -576,22 +563,22 @@
 	dir = 1
 	},
 /obj/decal/fakeobjects{
-	name = "power cable";
 	icon = 'icons/obj/machines/power_cond.dmi';
-	icon_state = "4-8"
+	icon_state = "4-8";
+	name = "power cable"
 	},
 /turf/space,
 /area/noGenerate)
 "cb" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 8
+	dir = 8;
+	icon_state = "lattice-dir"
 	},
 /obj/item/raw_material/shard/glass,
 /obj/decal/fakeobjects{
-	name = "power cable";
 	icon = 'icons/obj/machines/power_cond.dmi';
-	icon_state = "4-8"
+	icon_state = "4-8";
+	name = "power cable"
 	},
 /turf/space,
 /area/noGenerate)
@@ -625,15 +612,15 @@
 	name = "broken vending machine"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 8
+	dir = 8;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "ci" = (
 /obj/decal/cleanable/dirt,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 4
+	dir = 4;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "cj" = (
@@ -645,8 +632,8 @@
 /area/noGenerate)
 "cl" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 5
+	dir = 5;
+	icon_state = "lattice-dir"
 	},
 /obj/item/tile/steel,
 /turf/space,
@@ -684,16 +671,16 @@
 /area/noGenerate)
 "cr" = (
 /obj/lattice{
-	tag = "icon-lattice-dir-b (NORTHWEST)";
+	dir = 9;
 	icon_state = "lattice-dir-b";
-	dir = 9
+	tag = "icon-lattice-dir-b (NORTHWEST)"
 	},
 /turf/wall/asteroid,
 /area/noGenerate)
 "cs" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 10
+	dir = 10;
+	icon_state = "lattice-dir"
 	},
 /obj/item/raw_material/shard/glass,
 /turf/wall/asteroid,
@@ -704,8 +691,8 @@
 /area/noGenerate)
 "cu" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 10
+	dir = 10;
+	icon_state = "lattice-dir"
 	},
 /obj/item/raw_material/shard/glass,
 /obj/decal/cleanable/dirt,
@@ -717,8 +704,8 @@
 /area/noGenerate)
 "cw" = (
 /obj/lattice{
-	icon_state = "lattice-dir";
-	dir = 10
+	dir = 10;
+	icon_state = "lattice-dir"
 	},
 /obj/item/old_grenade/graviton,
 /turf/floor/plating/airless/asteroid,
@@ -733,15 +720,15 @@
 	name = "broken vending machine"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 10
+	dir = 10;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "cy" = (
 /obj/decal/cleanable/dirt,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 6
+	dir = 6;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "cz" = (
@@ -759,28 +746,26 @@
 /obj/decal/cleanable/dirt,
 /obj/shrub/dead{
 	dir = 8;
-	name = "Dead plant";
-	pixel_y = 0
+	name = "Dead plant"
 	},
 /turf/floor/airless/plating,
 /area/noGenerate)
 "cC" = (
 /obj/table/wood/auto,
 /obj/decal/fakeobjects{
-	tag = "icon-offbroken (EAST)";
-	name = "broken computer";
+	anchored = 1;
+	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
+	dir = 4;
 	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
-	dir = 4;
-	density = 1;
-	anchored = 1
+	name = "broken computer";
+	tag = "icon-offbroken (EAST)"
 	},
 /turf/floor/airless/wood,
 /area/noGenerate)
 "cD" = (
 /obj/stool/chair{
-	icon_state = "chair";
 	dir = 8
 	},
 /obj/decal/cleanable/dirt,
@@ -808,33 +793,32 @@
 /area/noGenerate)
 "cH" = (
 /obj/decal/fakeobjects/firelock_broken{
-	tag = "icon-bdoorbroken (EAST)";
-	name = "rusty blastdoor";
 	desc = "This blast door looks rusted over.  Junk.";
+	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorbroken";
-	dir = 4
+	name = "rusty blastdoor";
+	tag = "icon-bdoorbroken (EAST)"
 	},
 /turf/floor/airless/engine,
 /area/noGenerate)
 "cI" = (
 /obj/decal/fakeobjects/firelock_broken{
-	name = "rusty blastdoor";
 	desc = "This blast door looks rusted over.  Junk.";
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorbroken";
-	dir = 2
+	name = "rusty blastdoor"
 	},
 /turf/floor/airless/engine,
 /area/noGenerate)
 "cJ" = (
 /obj/decal/fakeobjects/firelock_broken{
-	tag = "icon-bdoorbroken (SOUTHEAST)";
-	name = "rusty blastdoor";
 	desc = "This blast door looks rusted over.  Junk.";
+	dir = 6;
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorbroken";
-	dir = 6
+	name = "rusty blastdoor";
+	tag = "icon-bdoorbroken (SOUTHEAST)"
 	},
 /turf/floor/airless/engine,
 /area/noGenerate)
@@ -962,28 +946,26 @@
 /area/noGenerate)
 "de" = (
 /obj/decal/floatingtiles{
-	icon_state = "floattiles4";
-	dir = 1
+	dir = 1;
+	icon_state = "floattiles4"
 	},
 /turf/space,
 /area/noGenerate)
 "du" = (
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 5
 	},
 /turf/floor/airless/plating,
 /area/noGenerate)
 "eH" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 8
 	},
 /obj/item/cigbutt,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 9
+	dir = 9;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "hV" = (
@@ -997,8 +979,8 @@
 	},
 /obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 4
+	dir = 4;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "hW" = (
@@ -1019,25 +1001,24 @@
 "oK" = (
 /obj/grille/catwalk,
 /obj/decal/fakeobjects{
-	name = "power conduit";
+	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
+	dir = 9;
 	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
-	dir = 9;
 	layer = 2.5;
-	anchored = 1
+	name = "power conduit"
 	},
 /turf/floor/airless/plating/catwalk,
 /area/noGenerate)
 "qY" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 4
 	},
 /obj/item/casing/rifle,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 4
+	dir = 4;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "vw" = (
@@ -1050,13 +1031,13 @@
 	name = "power conduit"
 	},
 /obj/decal/fakeobjects{
-	name = "power conduit";
+	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
+	dir = 9;
 	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
-	dir = 9;
 	layer = 2.5;
-	anchored = 1
+	name = "power conduit"
 	},
 /turf/floor/airless/plating/catwalk,
 /area/noGenerate)
@@ -1068,7 +1049,6 @@
 "yP" = (
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 10
 	},
 /turf/floor/airless/carpet,
@@ -1086,16 +1066,16 @@
 	name = "replacewith_records"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 6
+	dir = 6;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "zL" = (
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 5
+	dir = 5;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "Aa" = (
@@ -1123,16 +1103,14 @@
 	base_state = "radio";
 	brightness = 1.1;
 	desc = "Are we live?";
-	dir = 2;
 	icon_state = "radio0";
 	name = "sign";
-	pixel_x = 0;
 	pixel_y = -6;
 	removable_bulb = 0
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 4
+	dir = 4;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "Ci" = (
@@ -1143,8 +1121,7 @@
 /area/noGenerate)
 "Fj" = (
 /turf/floor/airless/plating/catwalk{
-	dir = 4;
-	intact = 0
+	dir = 4
 	},
 /area/noGenerate)
 "Fz" = (
@@ -1161,14 +1138,11 @@
 /turf/floor/airless/wood,
 /area/noGenerate)
 "JE" = (
-/obj/decal/cleanable/tracked_reagents/blood{
-	icon_state = "u_ketchup_l"
-	},
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/airless/plating,
 /area/noGenerate)
 "Km" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 4
 	},
 /obj/decal/cleanable/tracked_reagents/blood{
@@ -1186,12 +1160,12 @@
 	name = "power conduit"
 	},
 /obj/decal/fakeobjects{
-	name = "power conduit";
+	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
+	dir = 5;
 	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
-	dir = 5;
-	anchored = 1
+	name = "power conduit"
 	},
 /turf/floor/airless/plating/catwalk,
 /area/noGenerate)
@@ -1199,8 +1173,8 @@
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 4
+	dir = 4;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "OA" = (
@@ -1227,7 +1201,6 @@
 	},
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 4
 	},
 /turf/floor/airless/wood,
@@ -1242,7 +1215,6 @@
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/oil/streak,
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
-	icon_state = "tracks";
 	dir = 8
 	},
 /turf/floor/airless/wood,
@@ -1252,8 +1224,8 @@
 	icon_state = "gibdown1"
 	},
 /turf/floor/airless/carpet{
-	icon_state = "fred2";
-	dir = 8
+	dir = 8;
+	icon_state = "fred2"
 	},
 /area/noGenerate)
 "TF" = (

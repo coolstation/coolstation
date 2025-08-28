@@ -92,11 +92,11 @@
 /obj/indestructible/shuttle_corner{
 	dir = 4
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "kS" = (
 /obj/indestructible/shuttle_corner,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "lu" = (
 /obj/machinery/sleeper/compact{
@@ -112,7 +112,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 8
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "oy" = (
 /obj/stool/chair/comfy/shuttle/red{
@@ -153,8 +153,8 @@
 	dir = 9;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "rJ" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
@@ -176,7 +176,7 @@
 	dir = 8;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "tS" = (
 /obj/decal/cleanable/tracked_reagents/blood/splatter{
@@ -211,8 +211,8 @@
 /turf/floor/plating,
 /area/shuttle/escape/centcom/cogmap2)
 "wA" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "wS" = (
 /obj/item/storage/wall/emergency{
 	pixel_y = 4;
@@ -228,7 +228,7 @@
 /area/shuttle/escape/centcom/cogmap2)
 "xJ" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "xT" = (
 /obj/decal/cleanable/tracked_reagents/blood/splatter,
@@ -242,7 +242,7 @@
 /turf/floor/plating/damaged1,
 /area/shuttle/escape/centcom/cogmap2)
 "yj" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "zi" = (
 /obj/stool/chair/comfy/shuttle/red{
@@ -272,12 +272,6 @@
 	},
 /turf/floor/plating,
 /area/shuttle/escape/centcom/cogmap2)
-"Db" = (
-/turf/wall{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
 "Dj" = (
 /obj/machinery/door/airlock/pyro/external,
 /turf/floor/plating,
@@ -299,7 +293,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 1
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "Fy" = (
 /obj/machinery/door/airlock/pyro/medical{
@@ -403,11 +397,7 @@
 /turf/floor/plating/damaged1,
 /area/shuttle/escape/centcom/cogmap2)
 "LV" = (
-/turf/wall{
-	dir = 1;
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
+/turf/wall/auto,
 /area/centcom)
 "Mw" = (
 /turf/wall/auto/shuttle{
@@ -419,8 +409,8 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "OG" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
@@ -656,7 +646,7 @@ Jz
 wA
 "}
 (8,1,1) = {"
-Db
+LV
 wS
 qz
 FJ
@@ -695,7 +685,7 @@ Dj
 Gp
 "}
 (11,1,1) = {"
-Db
+LV
 DG
 HX
 HX

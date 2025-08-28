@@ -82,12 +82,18 @@
 
 				var/depth_to_breathe_from = length(depth_levels)
 				if (owner.lying)
-					depth_to_breathe_from = depth_levels.len-1
+					depth_to_breathe_from = depth_levels.len-2
 
 				if (F.amt >= depth_levels[depth_to_breathe_from])
 					underwater = F
 					if (owner.is_submerged != 4)
+						var/image/submerged = owner.submerged_images[4]
+						submerged.color = F.finalcolor
+						submerged.alpha = F.finalalpha
 						owner.show_submerged_image(4)
+				// if lying facedown, always drown. funy.
+				else if(owner.lying && (6 - 2 * owner.rest_mult) & owner.dir)
+					underwater = F
 
 			else if (T.active_airborne_liquid)
 				if (!issmokeimmune(owner))
@@ -106,7 +112,7 @@
 
 		//if (istype(loc, /obj/machinery/clonepod)) return
 
-		if (HAS_MOB_PROPERTY(owner, PROP_REBREATHING))
+		if (HAS_ATOM_PROPERTY(owner, PROP_REBREATHING))
 			return
 
 		// Changelings generally can't take OXY/LOSEBREATH damage...except when they do.
@@ -116,7 +122,7 @@
 		// If you have the breathless effect, same deal - you'd never heal oxy damage
 		// If your mutant race doesn't need oxygen from breathing, ya no losebreath
 		// so, now you do
-		if (ischangeling(owner) || HAS_MOB_PROPERTY(owner, PROP_BREATHLESS))
+		if (ischangeling(owner) || HAS_ATOM_PROPERTY(owner, PROP_BREATHLESS))
 			if (owner.losebreath)
 				owner.losebreath = 0
 			if (owner.get_oxygen_deprivation())
@@ -300,17 +306,16 @@
 					else
 						human_owner.organHolder.damage_organ(0, 0, scaledoverload, "right_lung")
 				if(co2overload >= 6)
-					if(prob(20))
+					if(prob(20 + co2overload * 0.25))
 						owner.changeStatus("slowed", rand(12, 30) DECI SECONDS)
-					else if(prob(8))
+					else if(prob(8 + scaledoverload))
 						owner.change_misstep_chance(5)
-					else if(prob(5))
+					else if(prob(5 + scaledoverload))
 						owner.change_eye_blurry(3, 10)
 					if(co2overload >= 8 && owner.co2level > 90)
-						owner.take_oxygen_deprivation(scaledoverload)
-						owner.lose_breath(scaledoverload)
-						if(prob(20))
-							owner.changeStatus("paralysis", 2 SECONDS * mult)
+						owner.take_oxygen_deprivation(scaledoverload * 2 * mult)
+						if(prob(20 + co2overload * 0.2))
+							owner.changeStatus("paralysis", 3 SECONDS * mult)
 
 
 		if (Toxins_pp > safe_toxins_max) // Too much toxins

@@ -248,6 +248,7 @@ Contents:
 /obj/decal/fakeobjects/birdhouse // i literally cannot find the correct name for this.
 	name = "small shrine"
 	density = 1
+	pass_unstable = FALSE
 	anchored = 1
 	opacity = 0
 	layer = OBJ_LAYER

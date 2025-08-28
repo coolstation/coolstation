@@ -1,6 +1,7 @@
 /obj/machinery/crusher
 	name = "crusher unit"
 	desc = "Breaks things down into metal/glass/waste"
+	pass_unstable = FALSE
 	density = 1
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "Crusher_1"
@@ -8,7 +9,7 @@
 	anchored = 1.0
 	mats = 20
 	is_syndicate = 1
-	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
+	event_handler_flags = USE_FLUID_ENTER
 	var/osha_prob = 40 //How likely it is anyone touching it is to get dragged in
 	var/list/poking_jerks = null //Will be a list if need be
 

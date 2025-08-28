@@ -213,6 +213,7 @@
 	name = "clothing rack"
 	icon = 'icons/obj/large_storage.dmi'
 	density = 1
+	pass_unstable = FALSE
 	slots = 7
 	anchored = 1
 	icon_state = "clothingrack" //They start full so might as well

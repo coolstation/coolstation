@@ -1,6 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 // RELAY
 /////////////////////////////////////////////////////////////////////////////////
+/*
 /obj/flock_structure/relay
 	icon = 'icons/misc/featherzone-160x160.dmi'
 	icon_state = "structure-relay"
@@ -98,3 +99,4 @@
 			flockdronegibs(locate(location.x + x, location.y + y, location.z))
 	explosion_new(src, location, 2000)
 	gib(location)
+*/

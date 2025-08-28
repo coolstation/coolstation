@@ -170,7 +170,7 @@
 		if(WEST)
 			target_dir = EAST
 
-	shit.loc = C.loc
+	shit.set_loc(C.loc)
 	shit.throw_at(get_turf(get_steps(C, target_dir, rand(2,5))), rand(2,5), rand(1,4))
 	C.visible_message("<span class='alert'><b>[C] [pick("hurls a loaf",\
 		"unloads at speed", "lobs a loaf", "shits with gusto", \
@@ -185,7 +185,7 @@
 		if(istype(pee_target) && pee_target.reagents && pee_target.reagents.total_volume < pee_target.reagents.maximum_volume && pee_target.is_open_container())
 			src.visible_message("<span class='alert'><B>[src] pees in [pee_target]!</B></span>")
 			playsound(src, "sound/misc/pourdrink.ogg", 50, 1)
-			pee_target.reagents.add_reagent("urine", 4)
+			pee_target.reagents.add_reagent("urine", min(src.urine, 80))
 			src.cleanhands = 0 //probably made a mess, gross, wash em
 			return
 
@@ -193,6 +193,8 @@
 		src.visible_message(pick("<B>[src]</B> unzips their pants and pees on the floor.", "<B>[src]</B> pisses all over the floor!", "<B>[src]</B> makes a big piss puddle on the floor."))
 		src.cleanhands = 0
 		var/obj/decal/cleanable/urine/U = make_cleanable(/obj/decal/cleanable/urine, src.loc)
+		U.sample_amt = min(src.urine, 80)
+		src.urine = 0
 
 		// Flag the urine stain if the pisser is trying to make fake initropidril
 		if(src.reagents.has_reagent("tongueofdog"))
@@ -213,19 +215,11 @@
 			var/perpname = src.name
 			if(src:wear_id && src:wear_id:registered)
 				perpname = src:wear_id:registered
-			// find the matching security record
-			for(var/datum/data/record/R in data_core.general)
-				if(R.fields["name"] == perpname)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							// now add to rap sheet
 
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Public urination."
-
-							break
-
-
+			var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Public urination."
 
 /mob/living/carbon/swap_hand()
 	var/obj/item/grab/block/B = src.check_block(ignoreStuns = 1)
@@ -288,7 +282,7 @@
 	if (..())
 		return
 
-	if (HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.oxyloss = 0
 		return
 
@@ -302,7 +296,7 @@
 	if (!losebreath && amount < 0)
 		return
 
-	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (ischangeling(src) || HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.losebreath = 0
 		return
 

@@ -27,7 +27,7 @@ var/datum/explosion_controller/explosions
 		if (epicenter.loc:sanctuary)
 			return//no boom boom in sanctuary
 		queued_explosions += new/datum/explosion(source, epicenter, power, brisance, angle, width, usr, turf_safe, no_effects)
-		#ifdef Z3_IS_A_STATION_LEVEL
+		#ifdef Z3_IS_CAVES
 		if (epicenter.z == Z_LEVEL_DEBRIS && power > 30 && !istype(epicenter.loc, /area/station)) //large explosions cause cave-ins
 			random_events.force_event("Cave-In", "Underground Explosion In Caverns", epicenter)
 		#endif
@@ -63,7 +63,7 @@ var/datum/explosion_controller/explosions
 			last_touched = queued_turfs_blame[T]
 			center = queued_turfs_center[T]
 			for (var/mob/M in T)
-				M.ex_act(p, last_touched, center)
+				M.ex_act(p, last_touched, center, !queued_turfs[T])
 
 		LAGCHECK(LAG_HIGH)
 

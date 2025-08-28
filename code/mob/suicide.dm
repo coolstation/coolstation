@@ -203,6 +203,7 @@
 	src.unlock_medal("Damned", 1)
 	src.death()
 
+/*
 // instead of dying, flockdrone suicide should hand control back to the mobcritter AI
 /mob/living/critter/flock/drone/do_suicide()
 	emote("beep")
@@ -212,3 +213,4 @@
 	if(C)
 		C.suicide()
 		C.unlock_medal("Damned", 1)
+*/

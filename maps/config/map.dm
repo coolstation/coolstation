@@ -4,6 +4,9 @@
 #elif defined(UNDERWATER_PREFAB_RUNTIME_CHECKING)
 #include "blank_underwater.dm"
 
+#elif defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+#include "gottagofast.dm"
+
 #elif defined(MAP_OVERRIDE_CONSTRUCTION)
 #include "construction.dm"
 
@@ -43,6 +46,9 @@
 #elif defined(MAP_OVERRIDE_OSHAN)
 #include "oshan.dm"
 
+#elif defined(MAP_OVERRIDE_NOYADE)
+#include "noyade.dm"
+
 #elif defined(MAP_OVERRIDE_HORIZON)
 #include "horizon.dm"
 
@@ -79,14 +85,14 @@
 #elif defined(MAP_OVERRIDE_PERDUTA)
 #include "perduta.dm"
 
+#elif defined(MAP_OVERRIDE_SAXUM)
+#include "saxum.dm"
+
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 
 #elif defined(MAP_OVERRIDE_POD_WARS)
 #include "pod_wars.dm"
-
-#elif defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
-#include "gottagofast.dm"
 
 #elif defined(MAP_OVERRIDE_SPIRIT)
 #include "spirit.dm"

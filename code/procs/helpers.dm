@@ -97,15 +97,25 @@ var/global/obj/flashDummy
 /proc/getFlashDummy()
 	if (!flashDummy)
 		flashDummy = new /obj(null)
+		flashDummy.event_handler_flags |= Z_ANCHORED
 		flashDummy.set_density(0)
 		flashDummy.opacity = 0
-		flashDummy.anchored = 1
+		flashDummy.anchored = ANCHORED_ALWAYS
 		flashDummy.mouse_opacity = 0
 	return flashDummy
 
 /proc/arcFlashTurf(var/atom/from, var/turf/target, var/wattage, var/volume = 30)
+	var/turf/target_r = target
 	var/obj/O = getFlashDummy()
-	O.set_loc(target)
+	for (var/obj/lightning_rod/rod in by_type[/obj/lightning_rod])
+		if(rod.attached && GET_DIST(rod, target) <= 8)
+			var/turf/T = get_turf(rod)
+			var/turf/T2 = locate(T.x, T.y + 2, T.z)
+			target_r = T2 ? T2 : T
+			target = rod
+			rod.struck(wattage)
+			break
+	O.set_loc(target_r)
 	playsound(target, "sound/effects/elec_bigzap.ogg", volume, 1)
 
 	var/list/affected = DrawLine(from, O, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
@@ -133,9 +143,17 @@ var/global/obj/flashDummy
 
 /proc/arcFlash(var/atom/from, var/atom/target, var/wattage)
 	var/target_r = target
-	if (isturf(target))
+	for (var/obj/lightning_rod/rod in by_type[/obj/lightning_rod])
+		if(rod.attached && GET_DIST(rod, target) <= 8)
+			var/turf/T = get_turf(rod)
+			var/turf/T2 = locate(T.x, T.y + 2, T.z)
+			target_r = T2 ? T2 : T
+			target = rod
+			rod.struck(wattage)
+			break
+	if (isturf(target_r))
 		var/obj/O = getFlashDummy()
-		O.set_loc(target)
+		O.set_loc(target_r)
 		target_r = O
 
 	playsound(target, "sound/effects/elec_bigzap.ogg", 30, 1)
@@ -2417,8 +2435,10 @@ proc/illiterateGarbleText(var/message)
 /**
   * Returns given text replaced by nonsense but its based off of a modifier + flock's garblyness
   */
+/*
 proc/flockBasedGarbleText(var/message, var/modifier, var/datum/flock/f = null)
 	if(f?.snooping) . = radioGarbleText(message, f.snoop_clarity + modifier)
+*/
 
 /**
   * Returns the time in seconds since a given timestamp

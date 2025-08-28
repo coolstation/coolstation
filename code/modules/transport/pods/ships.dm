@@ -89,6 +89,7 @@
 	desc = "A little solo vehicle for scouting and exploration work."
 	icon_state = "miniputt"
 	capacity = 1
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/armor_score_multiplier = 0.5
 	health = 125
 	maxhealth = 125
@@ -796,6 +797,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "pod_civ"
 	uses_weapon_overlays = 1
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/armor_score_multiplier = 0.2
 	capacity = 2
 	weapon_class = 1

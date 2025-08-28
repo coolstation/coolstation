@@ -1,4 +1,5 @@
 /obj/decal
+	pass_unstable = PRESERVE_CACHE
 	text = ""
 	var/list/random_icon_states = list()
 	var/random_dir = 0
@@ -321,6 +322,7 @@ obj/decal/fakeobjects
 	icon ='icons/obj/objects.dmi'
 	icon_state = "statuepupkin"
 	density = 1
+	pass_unstable = FALSE
 
 	New()
 		..()
@@ -345,6 +347,7 @@ obj/decal/fakeobjects
 	name = "Boxing Ropes"
 	desc = "Do not exit the ring."
 	density = 1
+	pass_unstable = TRUE
 	anchored = 1
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
@@ -378,6 +381,7 @@ obj/decal/fakeobjects
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
+	pass_unstable = TRUE
 
 	rotatable = 0
 	foldable = 0
@@ -435,7 +439,7 @@ obj/decal/fakeobjects
 	layer = OBJ_LAYER
 
 /obj/decal/slipmat
-	name = "Anti Slip mat"
+	name = "anti slip mat"
 	desc = "A ratty rubber mat that protects you from slipping. Probably."
 	density = 0
 	anchored = 1
@@ -444,7 +448,7 @@ obj/decal/fakeobjects
 	layer = OBJ_LAYER
 
 /obj/decal/slipmat/torn
-	name = "Torn anti slip mat"
+	name = "torn anti slip mat"
 	icon_state = "slipmat_torn"
 
 /obj/decal/alienflower
@@ -628,9 +632,10 @@ obj/decal/fakeobjects
 	icon_state = "cragrock1"
 	pixel_x = -16
 	density = 1
+	pass_unstable = FALSE
 	opacity = 0
 	anchored = 1
-	plane = PLANE_NOSHADOW_ABOVE
+	//plane = PLANE_NOSHADOW_ABOVE
 
 	New()
 		..()
@@ -657,17 +662,32 @@ obj/decal/fakeobjects
 	var/shake_intensity = 10
 	var/strike_time = 1 SECOND
 	var/volume = 50
+	var/datum/light/point/light = null
+	var/light_brightness = 1.2
+	var/light_atten_con = -0.03
+	var/light_r = 0.8
+	var/light_g = 0.8
+	var/light_b = 0.85
 
-	New()
+	New(atom/newLoc, var/y_offset)
 		..()
-		src.pixel_y =  abs(src.height * 32)
+		src.pixel_y = abs(src.height * 32) + y_offset
 		if(src.volume)
 			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
-		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8), flags = ANIMATION_PARALLEL)
+		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8) + y_offset, flags = ANIMATION_PARALLEL)
 		animate(time = src.strike_time / 8, transform = matrix(1,src.height,MATRIX_SCALE))
 		animate_ripple(src,8,shake_intensity,0.2)
+		light = new
+		light.attach(src)
+		light.set_atten_con(light_atten_con)
+		light.set_brightness(light_brightness)
+		light.set_color(light_r, light_g, light_b)
+		SPAWN_DBG(1 DECI SECOND)
+			light?.enable()
+
 		SPAWN_DBG(strike_time)
 			qdel(src)
+
 
 	ex_act(severity) // cant have lightning blowing itself up
 		return
@@ -682,3 +702,11 @@ obj/decal/fakeobjects
 	volume = 0
 	alpha = 128
 
+/obj/decal/myliemural
+	name = "floor mural"
+	desc = "Someone, presumably the owner of this office, has painted a massive wine glass across the floor."
+	icon = 'icons/obj/large/128x160.dmi'
+	icon_state = "myliemural"
+	bound_height = 160
+	bound_width = 128
+	plane = PLANE_NOSHADOW_BELOW

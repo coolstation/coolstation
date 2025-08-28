@@ -1,12 +1,14 @@
 /mob/dead
+	density = FALSE
 	stat = 2
 	event_handler_flags = USE_CANPASS
+	pass_unstable = PRESERVE_CACHE
 
 // dead
 
 /mob/dead/New()
 	..()
-	APPLY_MOB_PROPERTY(src, PROP_ATOM_FLOATING, src)
+	APPLY_ATOM_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 // No log entries for unaffected mobs (Convair880).
 /mob/dead/ex_act(severity)

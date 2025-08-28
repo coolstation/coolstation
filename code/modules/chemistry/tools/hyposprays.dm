@@ -139,7 +139,7 @@ var/global/list/chem_whitelist = list("antihol", "charcoal", "epinephrine", "ins
 		src.reagents.trans_to(M, amt_prop)
 
 		if (src.safe && M.health < 90)
-			JOB_XP(user, "Medical Doctor", 2)
+			JOB_XP_DEPT(user, "Medical Doctor", "medical", 2)
 
 		playsound(M, src.sound_inject, 80, 0)
 

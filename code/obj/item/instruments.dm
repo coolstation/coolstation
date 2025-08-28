@@ -107,6 +107,7 @@
 	throw_range = 4
 	throwforce = 25
 	density = 1
+	pass_unstable = FALSE
 	anchored = 1
 	desc_verb = list("plays", "performs", "composes", "arranges")
 	desc_sound = list("nice", "classic", "classical", "great", "impressive", "terrible", "awkward", "striking", "grand", "majestic")

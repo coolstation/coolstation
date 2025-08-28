@@ -156,7 +156,7 @@
 					boutput(owner, "<span class='alert'><b>You feel [feeling]!</b></span>")
 					owner.changeStatus("weakened", 4 SECONDS * mult)
 				owner.contract_disease(/datum/ailment/malady/shock, null, null, 1) // if you have no blood you're gunna be in shock
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -3)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -3)
 				owner.add_stam_mod_max("hypotension", -15)
 
 			if (1 to 370) // very low (90/60)
@@ -175,7 +175,7 @@
 					owner.changeStatus("weakened", 3 SECONDS * mult)
 				if (prob(25))
 					owner.contract_disease(/datum/ailment/malady/shock, null, null, 1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -2)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -2)
 				owner.add_stam_mod_max("hypotension", -10)
 
 			if (370 to 415) // low (100/65)
@@ -190,12 +190,12 @@
 				if (probmult(12))
 					owner.change_eye_blurry(6, 6)
 					owner.stuttering = max(owner.stuttering, 15)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -1)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -1)
 				owner.add_stam_mod_max("hypotension", -5)
 
 			if (415 to 584) // normal (120/80)
-				REMOVE_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension")
-				REMOVE_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension")
+				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension")
+				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension")
 				owner.remove_stam_mod_max("hypertension")
 				owner.remove_stam_mod_max("hypotension")
 				return ..()
@@ -212,7 +212,7 @@
 					owner.emote("gasp")
 				if (prob(1) && prob(10))
 					owner.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -1)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -1)
 				owner.add_stam_mod_max("hypertension", -5)
 
 			if (666 to 749) // very high (160/100)
@@ -228,7 +228,7 @@
 					owner.emote("gasp")
 				if (prob(1))
 					owner.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -2)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -2)
 				owner.add_stam_mod_max("hypertension", -10)
 
 			if (750 to INFINITY) // critically high (180/110)
@@ -251,7 +251,7 @@
 					owner.visible_message("<span class='alert'>[owner] coughs up a little blood!</span>")
 					playsound(owner, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
 					bleed(owner, rand(1,2) * mult)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -3)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -3)
 				owner.add_stam_mod_max("hypertension", -15)
 
 		..()

@@ -8,6 +8,7 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "frenzy"
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new

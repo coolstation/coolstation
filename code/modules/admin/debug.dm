@@ -1186,7 +1186,7 @@ proc/display_camera_paths()
 	for(var/i=0, i<amount, i++)
 		. += rand_deci(-range,range,0,9)
 
-
+/*
 /client/proc/test_mass_flock_convert()
 	set name = "Test Mass Flock Convert"
 	set desc = "Don't fucking use this EVER"
@@ -1210,7 +1210,7 @@ var/datum/flock/testflock
 
 	var/chui/window/flockpanel/panel = testflock.panel
 	panel.Subscribe(usr.client)
-
+*/
 /client/proc/clear_string_cache()
 	set name = "Clear String Cache"
 	set desc = "Invalidates/clears the string cache to allow for files to be reloaded."

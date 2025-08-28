@@ -470,10 +470,6 @@
 				cancel_fleeing = TRUE
 			else if(ismob(src.ai_target) && !isalive(src.ai_target))
 				cancel_fleeing = TRUE
-			else if(istype(src.ai_target, /obj/machinery/bot/secbot))
-				var/obj/machinery/bot/secbot/securitron = src.ai_target
-				if(securitron.target != src)
-					cancel_fleeing = TRUE
 			else if(istype(src.ai_target, /obj/machinery/bot/guardbot))
 				var/obj/machinery/bot/guardbot/guardbuddy = src.ai_target
 				if(guardbuddy.arrest_target != src)
@@ -722,7 +718,7 @@
 			var/obj/item/clothing/mask/cigarette/cigarette = src.wear_mask
 			if(!cigarette.on && (istype(G, /obj/item/device/light/zippo) || istype(G, /obj/item/weldingtool) || istype(G, /obj/item/device/igniter)))
 				score += 8
-		score += G.contraband
+		score += G.contraband // this doesn't use contraband signals because monkeys aren't pigs
 		score += rand(-2, 2)
 		if(score > pickup_score)
 			pickup_score = score

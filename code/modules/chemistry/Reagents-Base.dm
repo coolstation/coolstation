@@ -144,7 +144,7 @@ datum
 			burn_temperature = 900
 			burn_volatility = 4
 			thirst_value = -0.02
-			bladder_value = -0.2
+			kidney_multiplier = 0.3
 			hygiene_value = 1
 			target_organs = list("liver")	//heart,  "stomach", "intestines", "left_kidney", "right_kidney"
 			evaporates_cleanly = TRUE
@@ -590,18 +590,18 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				M.make_jittery(2 )
+				M.make_jittery(2)
 				M.drowsyness = max(M.drowsyness-(5), 0)
 				if(prob(4))
 					M.reagents.add_reagent("epinephrine", 1.2 * mult) // let's not metabolize into meth anymore
@@ -798,7 +798,7 @@ datum
 			pathogen_nutrition = list("water")
 			thirst_value = 0.8909
 			hygiene_value = 1.33
-			bladder_value = -0.2
+			kidney_multiplier = 0.3
 			taste = "bland"
 			minimum_reaction_temperature = -INFINITY
 			target_organs = list("left_kidney", "right_kidney")
@@ -897,7 +897,7 @@ datum
 			transparency = 90
 			thirst_value = -0.5
 			hygiene_value = 0.8
-			bladder_value = -0.2
+			kidney_multiplier = 0.2
 			taste = "musty"
 
 			on_mob_life(var/mob/living/L, var/mult = 1)
@@ -961,7 +961,7 @@ datum
 			reagent_state = LIQUID
 			thirst_value = 0.8909
 			hygiene_value = 0.75
-			bladder_value = -0.25
+			kidney_multiplier = 0.25
 			taste = "bitter"
 
 			reaction_temperature(exposed_temperature, exposed_volume) //Just an example.
@@ -1001,7 +1001,7 @@ datum
 			reagent_state = LIQUID
 			thirst_value = -0.3 //Sea water actually slowly dehydrates you because you use more liquid to get rid of the salt then you gain.
 			hygiene_value = 0.3
-			bladder_value = -0.5
+			kidney_multiplier = 0.5
 			taste = "gross"
 
 		ice
@@ -1014,7 +1014,7 @@ datum
 			fluid_b = 250
 			transparency = 200
 			thirst_value = 0.8909
-			bladder_value = -0.2
+			kidney_multiplier = 0.2
 			minimum_reaction_temperature = T0C+1 // if it adds 1'C water, 1'C is good enough.
 			taste = "cold"
 			evaporates_cleanly = TRUE

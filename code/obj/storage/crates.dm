@@ -845,7 +845,7 @@
 	weapons
 		spawn_contents = list(/obj/item/gun/modular/soviet/short/covert,
 		/obj/item/stackable_ammo/pistol/zaubertube/five,
-		/obj/item/old_grenade/stinger = 2,)
+		/obj/item/old_grenade/projectile/stinger = 2,)
 
 	weapons2
 		spawn_contents = list(/obj/item/gun/modular/soviet/long/advanced,

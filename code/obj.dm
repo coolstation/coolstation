@@ -127,7 +127,7 @@
 	onMaterialChanged()
 		..()
 		if(istype(src.material))
-			pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
+			//pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
 			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
@@ -290,6 +290,7 @@
 		return
 
 /obj/lattice
+	pass_unstable = FALSE
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
@@ -516,6 +517,7 @@
 /obj/overlay
 	name = "overlay"
 	anchored = TRUE
+	pass_unstable = PRESERVE_CACHE
 	mat_changename = 0
 	mat_changedesc = 0
 	density = 0

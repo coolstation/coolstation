@@ -128,9 +128,12 @@
 	var/print_receipts = TRUE
 	var/print_receipts_long = FALSE
 	var/receipt_count = 20 // TODO: Printer rolls for receipts?
+	var/current_receipt // Where we're building the HTML receipt for the current transaction
+	var/current_receipt_subtotal // how many bux is this current receipt
+	var/receipt_serv_chg_total   // How much has been racked up in service charges?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
-	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
+	var/datum/db_record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -176,24 +179,41 @@
 
 	var/lastvend = 0
 
-	proc/printReceipt(var/datum/data/record/accountFrom, item, amount, serv_chg_amount)
+	proc/newReceipt()
+		// Reset everythin'
 		if(!print_receipts)
 			return
 
-		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
-		receiptText += "[item]: $[amount]<br>"
-		if(serv_chg_amount > 0 || amount != 0)
-			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
-		else
-			receiptText += "<b>-Service Charge Waived-</b><br>"
-			serv_chg_amount = 0
+		src.current_receipt = "<html><head><style>body{background-color: #B3AFA9; color: #3B3632; font-family: monospace;}</style></head><body><center><b>[src.name] Receipt</b><br>"
+		src.current_receipt += "<i>Please keep this receipt for departmental records</i><br></center><hr><br>"
+		src.current_receipt_subtotal = 0
+		src.receipt_serv_chg_total   = 0
 
-		receiptText += "<hr>"
+	proc/addToReceipt(productName, productCost, serviceCharge)
+		if(!print_receipts)
+			return
 
-		if(!istype(accountFrom))
-			receiptText += "<b>Total</b>: $[amount + serv_chg_amount]"
+		src.current_receipt += "[productName]: $[productCost]<br>"
+		src.current_receipt_subtotal += productCost
+		src.receipt_serv_chg_total += serviceCharge
+
+	proc/printReceipt()
+		// Transactions done, dump the paperwork
+		if(!print_receipts || receipt_count <= 0 || current_receipt_subtotal <= 0)
+			return
+
+		src.current_receipt += "<hr><br>"
+
+		if(receipt_serv_chg_total > 0)
+			src.current_receipt += "<b>Service Charge</b>: $[receipt_serv_chg_total]<br>"
 		else
-			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
+			current_receipt += "<center><b>-Service Charge Waived-</b></center><br>"
+			receipt_serv_chg_total = 0
+
+
+		current_receipt += "<b>Total</b>: $[current_receipt_subtotal + receipt_serv_chg_total]<br><hr>"
+
+		current_receipt += "<b><i>Thank-you for your [pick("trade", "custom", "money")].</i></b></body></html>"
 
 		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 
@@ -202,13 +222,21 @@
 			P.set_loc(src.loc)
 			if(print_receipts_long)
 				P.icon_state = "thermal_paper_med"
-				P.desc = "Holy crap, how long does a receipt need to be?!"
+				P.desc = pick("Holy crap, how long does a receipt need to be?!",
+						"Ooh, nice, this one has a coupon!",
+						"...Did this really need to be this big?",
+						"an excessive thermal-paper receipt")
 			else
 				P.icon_state = "thermal_paper"
+				P.desc = "a flimsy thermal-paper receipt"
 
-			P.name = "'[item]' receipt"
-			P.info = receiptText
+			P.name = "[src.name] receipt"
+			P.info = current_receipt
+			current_receipt = ""
+			current_receipt_subtotal = 0
+			receipt_serv_chg_total = 0
 
+		// Todo: When we have receipt printer re-stocking
 		// receipt_count--
 
 
@@ -218,8 +246,6 @@
 		var/datum/data/vending_product/R = throw_item()
 		if (!R) //pizza machine = special
 			return
-		var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost * serv_chg_pct)
-		printReceipt(0, R.product_name, R.product_cost, service_charge)
 		if(R?.logged_on_vend)
 			logTheThing("station", usr, null, "randomly vended a logged product ([R.product_name]) using mechcomp from [src] at [log_loc(src)].")
 
@@ -333,8 +359,10 @@
 		sleep(1.5 SECONDS)
 		if(prob(50)) // Additionally, fuck you. *smack*
 			var/datum/data/vending_product/R = throw_item()
+			newReceipt()
 			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
-			printReceipt(0, R.product_name, R.product_cost, service_charge)
+			addToReceipt(R.product_name, R.product_cost, service_charge)
+			printReceipt()
 
 
 	proc/get_output_location()
@@ -425,8 +453,8 @@
 	if (!card || !user || !src.acceptcard)
 		return
 	boutput(user, "<span class='notice'>You swipe [card].</span>")
-	var/datum/data/record/account = null
-	account = FindBankAccountById(card.registered_id)
+	var/datum/db_record/account = null
+	account = FindBankAccountByName(card.registered)
 	if (account)
 		var/enterpin = input(user, "Please enter your PIN number.", "Enter PIN", 0) as null|num
 		if (enterpin == card.pin)
@@ -465,6 +493,8 @@
 		src.paying_for = null
 
 	if (src.pay && src.acceptcard)
+		if(src.min_serv_chg)
+			html_parts += "<i>This machine charges a minimum $[src.min_serv_chg] service charge</i><br>"
 		if (src.paying_for && !src.scan)
 			html_parts += "<B>You have selected the following item:</b><br>"
 			html_parts += "&emsp;<b>[src.paying_for.product_name]</b><br>"
@@ -475,10 +505,10 @@
 				html_parts += "<B>You have selected the following item for purchase:</b><br>"
 				html_parts += "&emsp;[src.paying_for.product_name]<br>"
 				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
-			html_parts += "<B>Credits on Account: [account.fields["current_money"]] Credits</B> <BR>"
+			html_parts += "<B>Credits on Account: [account["current_money"]] Credits</B> <BR>"
 		else
 			html_parts += "<B>Current ID:</B> None<BR>"
 
@@ -553,6 +583,8 @@
 		return
 	if (istype(W, /obj/item/spacecash))
 		if (src.pay)
+			if(!length(src.current_receipt))
+				src.newReceipt()
 			src.credit += W.amount
 			W.amount = 0
 			boutput(user, "<span class='notice'>You insert [W].</span>")
@@ -569,6 +601,7 @@
 	if (istype(W, /obj/item/card/id))
 		if (src.acceptcard)
 			src.scan_card(W, user)
+			src.newReceipt()
 			src.generate_HTML(1)
 			return
 			/*var/amount = input(user, "How much money would you like to deposit?", "Deposit", 0) as null|num
@@ -732,10 +765,12 @@
 				trigger_anti_cheat(usr, "tried to href exploit [src] to spawn an invalid item.")
 				return
 
-			var/datum/data/record/account = null
+			var/datum/db_record/account = null
+			var/service_charge = 0
 			if (src.pay)
 				if (src.acceptcard && src.scan)
-					account = FindBankAccountById(src.scan.registered_id)
+					service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
+					account = FindBankAccountByName(src.scan.registered)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
 						flick(src.icon_deny,src)
@@ -743,16 +778,17 @@
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
-					if (account.fields["current_money"] < R.product_cost)
+					if (account["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
-						account.fields["current_money"] -= min_serv_chg
-						servicechgaccount.fields["current_money"] += min_serv_chg
+						account["current_money"] -= min_serv_chg
+						servicechgaccount["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
 				else
+					service_charge = 0 // No service charge for using cash
 					if (src.credit < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient Credit.</span>")
 						flick(src.icon_deny,src)
@@ -773,21 +809,17 @@
 			src.prevend_effect()
 			if(!src.freestuff) R.product_amount--
 
-			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
 			if (src.pay)
 				if (src.acceptcard && account)
-					account.fields["current_money"] -= R.product_cost
-					account.fields["current_money"] -= service_charge
-					servicechgaccount.fields["current_money"] += service_charge
+					account["current_money"] -= R.product_cost
 				else
 					src.credit -= R.product_cost
-					service_charge = 0
 				if (!isplayer)
 					wagesystem.shipping_budget += round(R.product_cost * profit) // cogwerks - maybe money shouldn't just vanish into the aether idk
 				else
 					//Players get 90% of profit from player vending machines QMs get 10%
 					var/obj/machinery/vending/player/T = src
-					T.owneraccount.fields["current_money"] += round(R.product_cost * profit)
+					T.owneraccount["current_money"] += round(R.product_cost * profit)
 					wagesystem.shipping_budget += round(R.product_cost * (1 - profit))
 				if(R.product_amount <= 0 && !isplayer == 0)
 					src.player_list -= R
@@ -827,8 +859,10 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				if(account || print_receipts_long)//trying out no receipts for cash transactions - warc
-					printReceipt(account, R.product_name, R.product_cost, service_charge)
+				if(print_receipts)
+					addToReceipt(R.product_name, R.product_cost, service_charge)
+					if(!(src.acceptcard && account) && (credit < 1))
+						printReceipt()
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -842,6 +876,7 @@
 			if(player_list)
 				logTheThing("station", usr, null, "vended a player product ([R.product_name]) from [src] at [log_loc(src)].")
 		if (href_list["logout"])
+			src.printReceipt()
 			src.scan = null
 			src.generate_HTML(1)
 
@@ -850,15 +885,19 @@
 			src.generate_HTML(1)
 
 		if (href_list["return_credits"])
-			SPAWN_DBG(src.vend_delay)
-				if (src.credit > 0)
-					var/obj/item/spacecash/returned = new()
-					returned.setup(src.get_output_location(), src.credit)
+			if(src.vend_ready)
+				src.vend_ready = 0
+				SPAWN_DBG(src.vend_delay)
+					src.vend_ready = 1
+					src.printReceipt()
+					if (src.credit > 0)
+						var/obj/item/spacecash/returned = new()
+						returned.setup(src.get_output_location(), src.credit)
 
-					usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
-					src.credit = 0
-					boutput(usr, "<span class='notice'>You receive [returned].</span>")
-					src.generate_HTML(1)
+						usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
+						src.credit = 0
+						boutput(usr, "<span class='notice'>You receive [returned].</span>")
+						src.generate_HTML(1)
 
 		if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
@@ -2380,7 +2419,7 @@
 	//card display name
 	var/cardname
 	//Bank account
-	var/datum/data/record/owneraccount = null
+	var/datum/db_record/owneraccount = null
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
@@ -2558,7 +2597,7 @@
 				src.generate_HTML(0, 1)
 		else if (href_list["unlock"] && src.panel_open)
 			if (!owner && src.scan?.registered)
-				owneraccount = FindBankAccountById(src.scan.registered_id)
+				owneraccount = FindBankAccountByName(src.scan.registered)
 				owner = src.scan.registered
 				cardname = src.scan.name
 				unlocked = TRUE
@@ -3316,10 +3355,10 @@
 		html += "<TT><b>Welcome!</b><br>"
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
+			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 		if(src.holding)
@@ -3360,9 +3399,9 @@
 					src.updateUsrDialog()
 					return
 				else if(scan)
-					var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-					if (account && account.fields["current_money"] >= cost)
-						account.fields["current_money"] -= cost
+					var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+					if (account && account["current_money"] >= cost)
+						account["current_money"] -= cost
 						src.fill()
 						boutput(usr, "<span class='notice'>You fill up the [src.holding].</span>")
 						src.updateUsrDialog()
@@ -3430,10 +3469,10 @@
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		//bank balance
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 
@@ -3465,9 +3504,9 @@
 				src.updateUsrDialog()
 				return
 			else if(scan)
-				var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-				if (account && account.fields["current_money"] >= cost)
-					account.fields["current_money"] -= cost
+				var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+				if (account && account["current_money"] >= cost)
+					account["current_money"] -= cost
 					src.fill()
 					boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
 					src.updateUsrDialog()

@@ -5,7 +5,7 @@
 	cooldown = 50
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	var/last_used_name = null
 
 	onAttach(var/datum/abilityHolder/H)
@@ -29,7 +29,7 @@
 				H.transforming = 1
 				H.canmove = 0
 				H.icon = null
-				APPLY_MOB_PROPERTY(H, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+				APPLY_ATOM_PROPERTY(H, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 				var/atom/movable/overlay/animation = new /atom/movable/overlay( usr.loc )
 				animation.icon_state = "blank"
 				animation.icon = 'icons/mob/mob.dmi'
@@ -42,7 +42,7 @@
 				H.transforming = 0
 				H.canmove = 1
 				H.icon = initial(H.icon)
-				REMOVE_MOB_PROPERTY(H, PROP_INVISIBILITY, "transform")
+				REMOVE_ATOM_PROPERTY(H, PROP_INVISIBILITY, "transform")
 				H.update_face()
 				H.update_body()
 				H.update_clothing()
@@ -76,7 +76,7 @@
 	targeted = 0
 	target_anything = 0
 	human_only = 1
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 1
 
 	cast(atom/target)

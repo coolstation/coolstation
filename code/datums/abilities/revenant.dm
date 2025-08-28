@@ -83,14 +83,16 @@
 		owner.set_body_icon_dirty()
 		animate_levitate(owner)
 
-		owner.add_stun_resist_mod("revenant", 1000)
+		APPLY_ATOM_PROPERTY(owner, PROP_STUN_RESIST, "revenant", 1000)
+		APPLY_ATOM_PROPERTY(owner, PROP_STUN_RESIST_MAX, "revenant", 1000)
 		APPLY_MOVEMENT_MODIFIER(owner, /datum/movement_modifier/revenant, src.type)
 
 		..()
 
 	OnRemove()
 		if (owner)
-			owner.remove_stun_resist_mod("revenant")
+			REMOVE_ATOM_PROPERTY(owner, PROP_STUN_RESIST, "revenant")
+			REMOVE_ATOM_PROPERTY(owner, PROP_STUN_RESIST_MAX, "revenant")
 			REMOVE_MOVEMENT_MODIFIER(owner, /datum/movement_modifier/revenant, src.type)
 		..()
 
@@ -123,7 +125,7 @@
 			owner.ghost.corpse = null
 			owner.ghost = null
 		src.wraith = W
-		APPLY_MOB_PROPERTY(W, PROP_INVISIBILITY, W, INVIS_WRAITH_VERY)
+		APPLY_ATOM_PROPERTY(W, PROP_INVISIBILITY, W, INVIS_WRAITH_VERY)
 		W.set_loc(src.owner)
 		W.abilityHolder.suspendAllAbilities()
 
@@ -159,7 +161,7 @@
 			owner.mind.transfer_to(src.wraith)
 		else if (owner.client)
 			owner.client.mob = src.wraith
-		APPLY_MOB_PROPERTY(src.wraith, PROP_INVISIBILITY, src.wraith, INVIS_GHOST)
+		APPLY_ATOM_PROPERTY(src.wraith, PROP_INVISIBILITY, src.wraith, INVIS_GHOST)
 		src.wraith.set_loc(get_turf(owner))
 		src.wraith.abilityHolder.resumeAllAbilities()
 		src.wraith.abilityHolder.regenRate /= 3
@@ -461,6 +463,7 @@
 	pointCost = 2500
 	cooldown = 1 MINUTE
 	special_screen_loc = "NORTH-1,WEST+4"
+	turf_check = TRUE
 
 	cast(atom/target)
 		playsound(target.loc, "sound/voice/wraith/revfocus.ogg", 80, 0)
@@ -468,9 +471,6 @@
 			holder.owner.show_message("<span class='alert'>You must target a human with this ability.</span>")
 			return 1
 		var/mob/living/carbon/human/H = target
-		if (!isturf(holder.owner.loc))
-			holder.owner.show_message("<span class='alert'>You cannot cast this ability inside a [holder.owner.loc].</span>")
-			return 1
 		if (holder.owner.equipped())
 			holder.owner.show_message("<span class='alert'>You require a free hand to cast this ability.</span>")
 			return 1

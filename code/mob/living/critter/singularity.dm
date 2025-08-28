@@ -36,6 +36,12 @@
   speechverb_ask = "pulls"
   blood_id = "ldmatter"
   metabolizes = 0
+  health_brute = 150
+  health_brute_vuln = 1.15
+  health_burn = 0
+  takes_tox = FALSE
+  takes_brain = FALSE
+  robotic = TRUE
   add_abilities = list(/datum/targetable/critter/zzzap, /datum/targetable/critter/bholerip, /datum/targetable/critter/toxmob, /datum/targetable/critter/mezzer)
   var/datum/light/glow
   var/grav_pull = 3
@@ -69,11 +75,11 @@
 /mob/living/critter/singularity/setup_hands()
   ..()
   var/datum/handHolder/HH = hands[1]
-  HH.limb = new /datum/limb/singularity
+  HH.limb = new /datum/limb/singularity(src)
   HH.icon = 'icons/ui/critter_ui.dmi'
   HH.icon_state = "handzap"
   HH.name = "gravitational pull"
-  HH.limb_name = "gravitational pull"
+  HH.limb.name = "gravitational pull"
   HH.can_range_attack = 1
 
 /mob/living/critter/singularity/attackby(var/obj/item/I as obj, var/mob/user as mob)
@@ -143,6 +149,3 @@
     if ("scream", "twirl", "snap")
       return 2
   return ..()
-
-/mob/living/critter/singularity/setup_healths()
-  add_hh_robot(150, 1.15)

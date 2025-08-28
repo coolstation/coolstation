@@ -10,6 +10,7 @@
 /////////////////////
 // GNESIS CONTAINER
 /////////////////////
+/*
 /obj/item/reagent_containers/gnesis
 	name = "fluid-filled octahedron"
 	desc = "An octahedral container with a moving fluid inside it. It's not clear how to get the contents of it out."
@@ -106,3 +107,4 @@
 		<br><span class='bold'>###=-</span></span>"}
 	else
 		return null
+*/

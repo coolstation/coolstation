@@ -6,6 +6,7 @@
 	icon_state = "c_box"
 	item_state = "c_box"
 	density = 1
+	pass_unstable = FALSE
 	see_face = 0
 	over_hair = 1
 	wear_layer = MOB_OVERLAY_BASE

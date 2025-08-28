@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/mobius)
 "ab" = (
 /turf/variableTurf/clear,
@@ -19,9 +19,9 @@
 	pixel_y = 28
 	},
 /obj/shrub{
+	dir = 1;
 	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant";
-	dir = 1
+	icon_state = "plant"
 	},
 /turf/floor/red/checker,
 /area/prefab/mobius)
@@ -89,9 +89,9 @@
 	pixel_y = 28
 	},
 /obj/shrub{
+	dir = 1;
 	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant";
-	dir = 1
+	icon_state = "plant"
 	},
 /obj/item/device/gps{
 	identifier = "MALL"
@@ -132,7 +132,6 @@
 /area/prefab/mobius)
 "ar" = (
 /obj/submachine/ATM{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/floor/purple/checker,
@@ -252,7 +251,7 @@
 /turf/floor/green/checker,
 /area/prefab/mobius)
 "aQ" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/mobius/mfortuna)
 "aR" = (
 /obj/machinery/door/airlock/pyro,
@@ -345,7 +344,6 @@
 /area/prefab/mobius)
 "bf" = (
 /obj/stool/chair/comfy/blue{
-	icon_state = "chair_comfy-blue";
 	dir = 4
 	},
 /obj/decal/float/clock,
@@ -370,7 +368,6 @@
 /area/prefab/mobius/mfortuna)
 "bi" = (
 /obj/stool/chair/comfy/blue{
-	icon_state = "chair_comfy-blue";
 	dir = 8
 	},
 /turf/floor/blue/checker,
@@ -383,7 +380,6 @@
 /area/prefab/mobius)
 "bk" = (
 /obj/stool/chair/office/green{
-	icon_state = "office_chair_green";
 	dir = 8
 	},
 /turf/floor/green/checker,

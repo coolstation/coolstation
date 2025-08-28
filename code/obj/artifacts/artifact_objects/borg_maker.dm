@@ -94,8 +94,8 @@
 			if (ismonkey(user) || jobban_isbanned(user, "Cyborg"))
 				user.death()
 				user.ghostize()
-				var/robopath = pick(/obj/machinery/bot/guardbot,/obj/machinery/bot/secbot,
-				/obj/machinery/bot/medbot,/obj/machinery/bot/firebot,/obj/machinery/bot/cleanbot,
+				var/robopath = pick(/obj/machinery/bot/guardbot,/obj/machinery/bot/medbot,
+				/obj/machinery/bot/firebot,/obj/machinery/bot/cleanbot,
 				/obj/machinery/bot/floorbot,/obj/machinery/bot/mining)
 				new robopath (T)
 				qdel(user)

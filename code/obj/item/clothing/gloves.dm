@@ -561,9 +561,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+		APPLY_ATOM_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 

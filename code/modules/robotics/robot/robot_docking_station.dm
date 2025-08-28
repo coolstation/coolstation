@@ -4,7 +4,7 @@
 	desc = "A station which allows cyborgs to repair damage, recharge their cells, and have upgrades installed if they are present in the station."
 	icon_state = "station"
 	density = 1
-	anchored = 1.0
+	anchored = 1
 	mats = 10
 	event_handler_flags = NO_MOUSEDROP_QOL | USE_FLUID_ENTER
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_MULTITOOL
@@ -386,38 +386,23 @@
 			var/mob/living/silicon/robot/R = src.occupant
 			var/obj/item/O = locate(href_list["install"]) in src
 
-			// My apologies for this ugly code.
+			// My apologies for this ugly code. <- it's less ugly now :3
 			if (src.allow_clothes && istype(O, /obj/item/clothing))
+				var/slot = "reject"
 				if (istype(O, /obj/item/clothing/under))
-					if (R.clothes["under"] != null)
-						var/obj/old = R.clothes["under"]
-						src.clothes.Add(old)
-						old.set_loc(src)
-					R.clothes["under"] = O
-					src.clothes.Remove(O)
-					O.set_loc(R)
+					slot ="under"
 				else if (istype(O, /obj/item/clothing/suit))
-					if (R.clothes["suit"] != null)
-						var/obj/old = R.clothes["suit"]
-						src.clothes.Add(old)
-						old.set_loc(src)
-					R.clothes["suit"] = O
-					src.clothes.Remove(O)
-					O.set_loc(R)
+					slot ="suit"
 				else if (istype(O, /obj/item/clothing/mask))
-					if (R.clothes["mask"] != null)
-						var/obj/old = R.clothes["mask"]
-						src.clothes.Add(old)
-						old.set_loc(src)
-					R.clothes["mask"] = O
-					src.clothes.Remove(O)
-					O.set_loc(R)
+					slot ="mask"
 				else if (istype(O, /obj/item/clothing/head))
-					if (R.clothes["head"] != null)
-						var/obj/old = R.clothes["head"]
+					slot ="head"
+				if (slot != "reject")
+					if (R.clothes[slot] != null)
+						var/obj/old = R.clothes[slot]
 						src.clothes.Add(old)
 						old.set_loc(src)
-					R.clothes["head"] = O
+					R.clothes[slot] = O
 					src.clothes.Remove(O)
 					O.set_loc(R)
 			if (istype(O, /obj/item/cell))

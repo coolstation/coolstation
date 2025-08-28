@@ -1,13 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_prison)
 "ab" = (
 /turf/variableTurf/clear,
 /area/space)
 "ac" = (
 /obj/machinery/deep_fryer{
-	icon_state = "fryer0";
 	dir = 4
 	},
 /turf/floor/black,
@@ -87,7 +86,6 @@
 "at" = (
 /obj/machinery/shower{
 	dir = 8;
-	icon_state = "showerhead";
 	pixel_x = -6
 	},
 /obj/item/item_box/medical_patches/synthflesh,
@@ -99,7 +97,6 @@
 "av" = (
 /obj/machinery/shower{
 	dir = 4;
-	icon_state = "showerhead";
 	pixel_x = 6
 	},
 /obj/decal/cleanable/dirt,
@@ -141,7 +138,6 @@
 "aD" = (
 /obj/machinery/shower{
 	dir = 8;
-	icon_state = "showerhead";
 	pixel_x = -6
 	},
 /obj/decal/cleanable/dirt,
@@ -154,7 +150,6 @@
 "aF" = (
 /obj/machinery/shower{
 	dir = 4;
-	icon_state = "showerhead";
 	pixel_x = 6
 	},
 /turf/floor/sanitary,
@@ -213,18 +208,16 @@
 "aO" = (
 /obj/disposalpipe/segment{
 	dir = 4;
-	level = -1;
-	pixel_y = 0
+	level = -1
 	},
 /turf/variableTurf/clear,
 /area/noGenerate)
 "aP" = (
 /obj/disposalpipe/segment{
 	dir = 4;
-	level = -1;
-	pixel_y = 0
+	level = -1
 	},
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_prison)
 "aQ" = (
 /obj/table/auto,
@@ -232,8 +225,7 @@
 /obj/item/baton,
 /obj/disposalpipe/segment{
 	dir = 4;
-	level = -1;
-	pixel_y = 0
+	level = -1
 	},
 /turf/floor/red,
 /area/prefab/sea_prison)
@@ -242,8 +234,7 @@
 /obj/machinery/recharger,
 /obj/disposalpipe/segment{
 	dir = 4;
-	level = -1;
-	pixel_y = 0
+	level = -1
 	},
 /turf/floor/red,
 /area/prefab/sea_prison)
@@ -261,7 +252,7 @@
 /area/prefab/sea_prison)
 "aV" = (
 /obj/disposalpipe/segment,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/sea_prison)
 "aW" = (
 /obj/decal/skeleton,
@@ -314,7 +305,6 @@
 "bf" = (
 /obj/item/storage/toilet{
 	dir = 4;
-	icon_state = "toilet";
 	tag = ""
 	},
 /turf/floor,
@@ -395,8 +385,7 @@
 /area/prefab/sea_prison)
 "bu" = (
 /obj/stool/chair/office/red{
-	dir = 8;
-	icon_state = "office_chair_red"
+	dir = 8
 	},
 /turf/floor,
 /area/prefab/sea_prison)

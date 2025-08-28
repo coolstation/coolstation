@@ -4,22 +4,6 @@
 
 /turf/var/tmp/obj/fluid/active_liquid
 
-//this is messy!
-//this is for turf/space/fluid oceans. Using this in place of turf/canpass() because this one can account for shitt like windows and tables.
-/turf/proc/ocean_canpass()
-	if( density )
-		return 0
-	for( var/A in contents )
-		var/atom/thing = A
-		if (!A)
-			continue
-		if(IS_SOLID_TO_FLUID(thing) && thing.density)
-			return 0 // && !istype(thing,/obj/grille) && !istype(thing,/obj/table) && !istype(thing,/obj/structure/girder)) return 0
-	return 1
-
-turf/floor/plating/airless/ocean_canpass()
-	.= 0
-
 /turf/selftilenotify()
 	if (src.active_liquid && src.active_liquid.group && !canpass())
 		src.active_liquid.group.displace(src.active_liquid)

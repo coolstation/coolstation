@@ -335,6 +335,9 @@
 	dir = 1
 	},
 /obj/machinery/light_switch/south,
+/obj/machinery/light/small/cool{
+	dir = 4
+	},
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
 "als" = (
@@ -6150,6 +6153,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light/small/ceiling,
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
 "eLZ" = (
@@ -24452,15 +24456,15 @@
 /area/station/security/hos)
 "sqb" = (
 /obj/decal/poster/wallsign/stencil/right/p{
-	pixel_y = 20;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 20
 	},
 /obj/decal/poster/wallsign/stencil/right/i{
 	pixel_x = 5
 	},
 /obj/decal/poster/wallsign/stencil/right/z{
-	pixel_y = -1;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = -1
 	},
 /turf/wall,
 /area/station/crew_quarters/kitchen)
@@ -26968,8 +26972,8 @@
 	pixel_y = -3
 	},
 /obj/item/device/narco{
-	pixel_y = 8;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/machinery/light/small/warm,
 /turf/floor/red/side{
@@ -28315,6 +28319,9 @@
 	name = "Exit";
 	pixel_x = -25;
 	pixel_y = 0
+	},
+/obj/machinery/light/small/cool{
+	dir = 1
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay)
@@ -31128,8 +31135,8 @@
 /area/station/medical/robotics)
 "xrt" = (
 /obj/decal/poster/wallsign/stencil/right/z{
-	pixel_y = 20;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 20
 	},
 /obj/decal/poster/wallsign/stencil/right/a{
 	pixel_x = 1

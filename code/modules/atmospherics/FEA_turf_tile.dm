@@ -50,6 +50,10 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 	var/tmp/dist_to_space = null
 
+#ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
+	var/tmp/turf/space/nearest_space = null
+#endif
+
 	var/tmp
 		datum/gas_mixture/air
 
@@ -97,6 +101,9 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			gas_icon_overlay = null
 		air = null
 		parent = null
+#ifdef DEPRESSURIZE_THROW_TO_SPACE
+		nearest_space = null
+#endif
 		..()
 
 /turf/proc/instantiate_air()
@@ -113,6 +120,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 			#undef _TRANSFER_GAS_TO_AIR
+
+			air.temperature = temperature
 		#else
 		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
@@ -255,6 +264,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			#define _TRANSFER_GAS_TO_AIR(GAS, ...) GM.GAS = GAS;
 			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 			#undef _TRANSFER_GAS_TO_AIR
+
+			GM.temperature = temperature
 		#else
 		#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
@@ -402,11 +413,12 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		air_master.active_singletons -= src //not active if not processing!
 		return
 
-
+/*
 	if(src.air.react() & CATALYST_ACTIVE)
 		src.active_hotspot?.catalyst_active = TRUE
 	else
 		src.active_hotspot?.catalyst_active = FALSE
+*/
 
 	if(src.active_hotspot && possible_fire_spreads)
 		src.active_hotspot.process(possible_fire_spreads)
@@ -647,7 +659,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
-	if (map_currently_underwater)
+	if (map_currently_underwater || (map_currently_abovewater && src.z == Z_LEVEL_DEBRIS))
 		if(istype(north, /turf/space/fluid))
 			north.tilenotify(src)
 		if(istype(south, /turf/space/fluid))

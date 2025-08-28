@@ -1,6 +1,6 @@
 // FLOCK INTANGIBLE MOB PARENT
 // for shared things, like references to flocks and vision modes and general intangibility and swapping into drones
-
+/*
 /mob/living/intangible/flock
 	name = "caw"
 	desc = "please report this to a coder you shouldn't see this"
@@ -20,7 +20,7 @@
 	..()
 	src.appearance_flags |= NO_CLIENT_COLOR
 	src.blend_mode = BLEND_ADD
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_FLOCKMIND)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_FLOCKMIND)
 	src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	src.see_invisible = 15
 	src.see_in_dark = SEE_DARK_FULL
@@ -198,3 +198,4 @@
 /mob/living/intangible/flock/proc/createstructure(var/T, var/resources = 0)
 	//todo check for flocktile underneath flockmind cheers
 	new /obj/flock_structure/ghost(src.loc, T, src.flock, resources)
+*/

@@ -1,5 +1,5 @@
 
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 /// Controls sea hotspots and their movement
 /datum/controller/process/sea_hotspot_update
 	var/tmp/datum/hotspot_controller/controller
@@ -21,8 +21,8 @@
 				controller = 0
 				global.hotspot_controller.clear()
 #endif
-#ifdef MAP_OVERRIDE_PERDUTA
-/// Controls Perduta's storms and their movement.
+#ifdef MAGINDARA_MAP
+/// Controls Magindara's storms and their movement.
 /datum/controller/process/storm_cell_update
 	var/tmp/datum/storm_controller/controller
 

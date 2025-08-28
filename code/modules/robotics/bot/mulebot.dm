@@ -15,6 +15,7 @@
 	on = 1
 	locked = 1
 	access_lookup = "Captain"
+	pass_unstable = FALSE
 	var/atom/movable/load = null		// the loaded crate (usually)
 
 	var/beacon_freq = FREQ_BOT_NAV
@@ -86,11 +87,9 @@
 			cell.maxcharge = 2000
 		setup_wires()
 
-		SPAWN_DBG(0.5 SECONDS)	// must wait for map loading to finish
-			if(radio_controller)
-				radio_controller.add_object(src, "[control_freq]")
-				radio_controller.add_object(src, "[beacon_freq]")
-				radio_controller.add_object(src, "[pda_freq]")
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", control_freq)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("beacon", beacon_freq)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("pda", pda_freq)
 
 	// set up the wire colours in random order
 	// and the random wire display order
@@ -558,7 +557,7 @@
 
 				mode = 6
 				SPAWN_DBG(0.2 SECONDS)
-					src.navigate_with_navbeacons(src.target, src.bot_move_delay, exclude = src.path[1])
+					src.navigate_to(src.target, src.bot_move_delay, exclude = src.path[1])
 					if(path)
 						blockcount = 0
 						src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
@@ -576,7 +575,7 @@
 		SPAWN_DBG(0)
 			KillPathAndGiveUp()
 			new_destination = new_dest
-			post_signal(beacon_freq, "findbeacon", new_dest)
+			post_signal_multiple("beacon", list("findbeacon" = "delivery", "address_tag" = "delivery"))
 			updateDialog()
 
 	proc/set_destination_pda(var/net_id)
@@ -596,7 +595,7 @@
 				reached_target = 0
 				mode = 2
 			KillPathAndGiveUp()
-			src.navigate_with_navbeacons(src.target, src.bot_move_delay)
+			src.navigate_to(src.target, src.bot_move_delay)
 			if(src.path)
 				icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
 				return
@@ -810,18 +809,12 @@
 		if((freq == control_freq || freq == pda_freq) && !(wires & wire_remote_tx))
 			return
 
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[freq]")
-
-		if(!frequency) return
-
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.transmission_method = 1
-		signal.data["sender"] = src.botnet_id
+		signal.data["sender"] = src.net_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
-			//boutput(world, "sent [key],[keyval[key]] on [freq]")
-		frequency.post_signal(src, signal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, freq)
 
 	// signals bot status etc. to controller
 	proc/send_status()

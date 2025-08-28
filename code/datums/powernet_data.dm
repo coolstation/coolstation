@@ -2,19 +2,6 @@
 	var/name = "data"
 	var/size = 1.0
 
-/datum/data/record
-	name = "record"
-	size = 5.0
-	/// associated list of various data fields
-	var/list/fields = list(  )
-
-proc/FindRecordByFieldValue(var/list/datum/data/record/L, var/field, var/value)
-	if (!value) return
-	for(var/datum/data/record/R in L)
-		if(R.fields[field] == value)
-			return R
-	return
-
 //powernet nodes that are involved in a cable break (either the node cable itself or a cable connecting it to an adjacent node.)
 var/global/list/dirty_pnet_nodes = list()
 var/global/list/dirty_power_machines = list()

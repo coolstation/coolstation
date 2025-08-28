@@ -1158,7 +1158,7 @@
 		if(prob(power))
 			src.damage_asteroid(7)
 
-	dismantle_wall()
+	dismantle_wall(var/devastated = 0, var/keep_material = 1)
 		return src.destroy_asteroid()
 
 	get_desc(dist)

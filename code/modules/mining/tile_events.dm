@@ -37,6 +37,7 @@
 		I.quality = AST.quality + rand(-50,50)
 		I.name = "[getGemQualityName(I.quality)] [I.name]"
 
+/*
 /datum/ore/event/gem/molitz_b
 	name = "molitz B"
 	analysis_string = "Small unusual crystalline deposit detected."
@@ -51,7 +52,7 @@
 		var/quantity = rand(2,3)
 		for(var/i in 1 to quantity)
 			..()
-
+*/
 
 /datum/ore/event/rock_worm
 	name = "rock worm"

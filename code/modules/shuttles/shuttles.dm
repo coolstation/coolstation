@@ -19,6 +19,9 @@
 
 /area/shuttle/mining/station
 	icon_state = "shuttle"
+#ifdef UNDERWATER_MAP
+	filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+#endif
 
 /area/shuttle/mining/space
 	icon_state = "shuttle2"
@@ -96,6 +99,9 @@
 
 /area/shuttle/cargo/station
 	icon_state = "shuttle"
+#ifdef UNDERWATER_MAP
+	filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+#endif
 
 /area/shuttle/cargo/hub
 	icon_state = "shuttle2"
@@ -153,18 +159,13 @@
 				no_of_crates++
 
 		if ((no_of_arts + no_of_crates)) //any amount of shit sold
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			//TODO: We lose a bunch of information players would enjoy summarising things this way. Ideally we'd have a report for individual arts/crates somewhere.
 			//but that's way too much for a single PDA blip, and also most of *that* info is lost because the selling procs delete our shit.
 			var/message = "Notification: [artifact_ducats + other_ducats + pilfered_ducats] credits earned from combined shuttle cargo[pilfered_ducats ? ", of which [pilfered_ducats] have gone to crewmembers." : "."]"
 
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE, MGA_SALES), "sender"="00000000", "message"=message)
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			if(transmit_connection != null)
-				transmit_connection.post_signal(null, pdaSignal)
-
-
+			radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 
 
 /obj/machinery/computer/transit_terminal/cargo

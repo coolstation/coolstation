@@ -49,7 +49,7 @@ var/list/admin_verbs = list(
 		/client/proc/dronesay,
 		/client/proc/hivesay,
 		/client/proc/marsay,
-		/client/proc/flocksay,
+//		/client/proc/flocksay,
 		/client/proc/silisay,
 		/client/proc/toggle_hearing_all_looc,
 		/client/proc/cmd_admin_alert,
@@ -432,6 +432,7 @@ var/list/admin_verbs = list(
 		/client/proc/dereplace_space,
 		/client/proc/ghostdroneAll,
 		/client/proc/showPregameHTML,
+		/client/proc/dbg_radio_controller,
 
 		/client/proc/call_proc,
 		/client/proc/call_proc_all,
@@ -507,8 +508,8 @@ var/list/admin_verbs = list(
 		/client/proc/debug_pools,
 		/client/proc/debug_variables,
 		/client/proc/debug_global_variable,
-		/client/proc/test_mass_flock_convert,
-		/client/proc/test_flock_panel,
+//		/client/proc/test_mass_flock_convert,
+//		/client/proc/test_flock_panel,
 		/client/proc/player_panel_tgui, //testing
 		// /client/proc/debug_check_possible_reactions,
 		// /client/proc/show_runtime_window,
@@ -887,12 +888,13 @@ var/list/special_pa_observing_verbs = list(
 	logTheThing("diary", src.owner, null, "has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]", "admin")
 	message_admins("[key_name(src.owner)] has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]")
 
-	if (src.owner:stealth)
-		var/ircmsg[] = new()
-		ircmsg["key"] = src.owner:key
-		ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
-		ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
-		ircbot.export("admin", ircmsg)
+	// SHUT UP ABOUT THE STEALTH MODE
+	// if (src.owner:stealth)
+	// 	var/ircmsg[] = new()
+	// 	ircmsg["key"] = src.owner:key
+	// 	ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
+	// 	ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
+	// 	ircbot.export("admin", ircmsg)
 
 /client/proc/alt_key()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
@@ -1574,6 +1576,7 @@ var/list/fun_images = list()
 		return
 	martian_speak(src.mob, msg, 1)
 
+/*
 /client/proc/flocksay(msg as text)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "flocksay"
@@ -1590,7 +1593,7 @@ var/list/fun_images = list()
 	if (!msg)
 		return
 	flock_speak(src.mob, msg, null, 1)
-
+*/
 
 /client/proc/cmd_dectalk()
 	set name = "Dectalk"

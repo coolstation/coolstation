@@ -1289,7 +1289,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 1)
+		setProperty("carried_movespeed", 1)
 
 
 /obj/item/gun/kinetic/cannon
@@ -1325,7 +1325,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	setupProperties()
 		..()
-		setProperty("movespeed", 0.3)
+		setProperty("carried_movespeed", 0.3)
 
 
 

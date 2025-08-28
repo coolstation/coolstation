@@ -74,33 +74,6 @@
 				var/mob/living/carbon/human/H = AM
 				H.unlock_medal("It'sa me, Mario", 1)
 
-	proc/init_sewer(var/obj/item/storage/toilet/toilet)
-		if(toilet.trunk)		//copypasted
-			src.set_loc(toilet.trunk)
-		else
-			src.set_loc(toilet)
-
-		if(!src.reagents)
-			src.reagents = new(1000)
-
-		src.reagents.add_reagent("water", 50)
-		src.reagents.add_reagent("sewage", rand(10,55))
-
-		if(toilet.poops)
-			src.reagents.add_reagent("poo",toilet.poops*25)
-			toilet.poops = 0
-		if(toilet.peeps)
-			src.reagents.add_reagent("urine",toilet.peeps*25)
-			toilet.peeps = 0
-
-		if(toilet.reagents && toilet.reagents.total_volume)
-			toilet.reagents.trans_to(src, toilet.reagents.total_volume)
-
-
-		for(var/atom/movable/AM in toilet)
-			AM.set_loc(src)
-
-
 	// start the movement process
 	// argument is the disposal unit the holder started in
 	proc/start(var/obj/machinery/disposal/D)
@@ -259,6 +232,7 @@
 		..()
 
 	disposing()
+		pilot?.override_movement_controller = null
 		qdel(vision)
 		qdel(movement_controller)
 		vision = null
@@ -287,7 +261,8 @@
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
 	anchored = 1
-	density = 0
+	density = FALSE
+	pass_unstable = FALSE
 	text = ""
 
 	level = 1			// underfloor only
@@ -2187,6 +2162,7 @@
 	icon_state = "outlet"
 	density = 1
 	anchored = 1
+	pass_unstable = FALSE
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	mats = 12
@@ -2197,7 +2173,6 @@
 	var/mailgroup2 = null //Do not refactor into a list, maps override these properties
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 	throw_speed = 1
 
 	ex_act(severity, last_touched, epicenter, turf_safe)
@@ -2231,25 +2206,21 @@
 
 		SPAWN_DBG(1 DECI SECOND)
 			target = get_ranged_target_turf(src, dir, range)
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	disposing()
 		var/obj/disposalpipe/trunk/trunk = locate() in src.loc
 		if (trunk && trunk.linked == src)
 			trunk.linked = null
 		trunk = null
-
-		radio_controller.remove_object(src, "[frequency]")
 		..()
 
 	// expel the contents of the holder object, then delete it
 	// called when the holder exits the outlet
 	proc/expel(var/obj/disposalholder/H)
-		if (message && (mailgroup || mailgroup2) && radio_connection)
+		if (message && (mailgroup || mailgroup2))
 			var/groups = list()
 			if (mailgroup)
 				groups += mailgroup
@@ -2259,7 +2230,6 @@
 
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "text_message"
 			newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 			newsignal.data["message"] = "[message]"
@@ -2267,7 +2237,7 @@
 			newsignal.data["group"] = groups
 			newsignal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 		flick("outlet-open", src)
 		playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, 0)

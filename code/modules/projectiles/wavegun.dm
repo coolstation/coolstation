@@ -43,6 +43,7 @@
 	cost = 40
 	hit_ground_chance = 100 //no escape
 	pierces = -1 //no limits
+	time_between_same_mob_hit = 1 SECOND
 	goes_through_walls = 1
 	window_pass = 1
 	ticks_between_mob_hits = 1

@@ -228,7 +228,7 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					holder.my_atom:add_stam_mod_max("aranesp", 25)
 				return
@@ -236,7 +236,7 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
 					M.remove_stam_mod_max("aranesp")
 				return
 
@@ -288,14 +288,14 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
 					M.add_stam_mod_max("omegazine", 50)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
 					M.remove_stam_mod_max("omegazine")
 				..()
 
@@ -2025,14 +2025,16 @@ datum
 				if (ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
-						M.add_stun_resist_mod("reagent_martian_flesh", 15)
+						APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh", 15)
+						APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_martian_flesh", 15)
 				..()
 
 			on_remove()
 				if (ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
-						M.remove_stun_resist_mod("reagent_martian_flesh")
+						REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh")
+						REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_martian_flesh")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2073,6 +2075,7 @@ datum
 					if(method == TOUCH)
 						boutput(M, "<span class='alert'>Well, that was gross.</span>")
 
+/*
 		flockdrone_fluid
 			name = "coagulated gnesis"
 			id = "flockdrone_fluid"
@@ -2178,6 +2181,7 @@ datum
 						return
 				// otherwise we didn't have enough
 				T.visible_message("<span class='notice'>The substance flows out, spread too thinly.</span>")
+*/
 
 		black_goop
 			name = "gross black goop"
@@ -2322,13 +2326,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
 				if (istype(holder) && istype(holder.my_atom))
 					animate(holder.my_atom)
 				..()
@@ -2451,13 +2455,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
 				if (istype(holder) && istype(holder.my_atom))
 					animate(holder.my_atom)
 				..()
@@ -3269,7 +3273,8 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/urine) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable( /obj/decal/cleanable/urine,T)
+						var/obj/decal/cleanable/urine/U = make_cleanable( /obj/decal/cleanable/urine,T)
+						U.sample_amt = volume
 
 		triplepiss
 			name = "triplepiss"
@@ -4002,6 +4007,99 @@ datum
 			fluid_r = 112
 			fluid_b = 40
 			fluid_g = 9
+
+		//=-=-=-=-=-=-=-=-=-=
+		//|| COLORS N SUCH ||
+		//=-=-=-=-=-=-=-=-=-=
+
+		dye_red
+			name = "Red 40"
+			id = "dye_red"
+			depletion_rate = 0.02
+			fluid_r = 240
+			fluid_g = 0
+			fluid_b = 0
+			viscosity = 0.6
+			blocks_sight_gas = 1
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
+			overdose = 5
+			target_organs = list("pancreas", "left_kidney", "right_kidney")
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(probmult(30 * severity))
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						H.organHolder.damage_organs(severity, 0, severity, target_organs, 50)
+						if(prob(50))
+							H.make_jittery(40)
+				var/list/dyed_rgb = rgb2num(M.color)
+				dyed_rgb[1] = min(dyed_rgb[1] + severity, 255)
+				dyed_rgb[2] = max(dyed_rgb[2] - severity, 0)
+				dyed_rgb[3] = max(dyed_rgb[3] - severity, 0)
+				M.color = rgb(dyed_rgb[1], dyed_rgb[2], dyed_rgb[3])
+
+		dye_green
+			name = "Aniline Green"
+			id = "dye_green"
+			depletion_rate = 0.005
+			fluid_r = 0
+			fluid_g = 230
+			fluid_b = 0
+			viscosity = 0.6
+			blocks_sight_gas = 1
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
+			overdose = 5
+			target_organs = list("left_lung", "right_lung", "liver")
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(probmult(15 * severity))
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						H.organHolder.damage_organs(severity, 0, severity, target_organs, 50)
+				var/list/dyed_rgb = rgb2num(M.color)
+				dyed_rgb[1] = max(dyed_rgb[1] - severity, 0)
+				dyed_rgb[2] = min(dyed_rgb[2] + severity, 255)
+				dyed_rgb[3] = max(dyed_rgb[3] - severity, 0)
+				M.color = rgb(dyed_rgb[1], dyed_rgb[2], dyed_rgb[3])
+
+		dye_blue
+			name = "Indigo Carmine"
+			id = "dye_blue"
+			depletion_rate = 0.03
+			fluid_r = 0
+			fluid_g = 0
+			fluid_b = 230
+			viscosity = 0.8
+			blocks_sight_gas = 1
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
+			overdose = 5
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(probmult(25 * severity))
+					M.take_oxygen_deprivation(severity)
+				var/list/dyed_rgb = rgb2num(M.color)
+				dyed_rgb[1] = max(dyed_rgb[1] - severity, 0)
+				dyed_rgb[2] = max(dyed_rgb[2] - severity, 0)
+				dyed_rgb[3] = min(dyed_rgb[3] + severity, 255)
+				M.color = rgb(dyed_rgb[1], dyed_rgb[2], dyed_rgb[3])
+
+		cuprorivaite
+			name = "cuprorivaite"
+			id = "cuprorivaite"
+			description = "The very first synthetic dye, recreated a few thousand years later."
+			fluid_r = 0
+			fluid_g = 5
+			fluid_b = 230
+			viscosity = 0.9
+			color_multiplier = 100
+			transparency = 255
+			reagent_state = SOLID
 
 		//=-=-=-=-=-=-=-=-=
 		//|| C E M E N T ||

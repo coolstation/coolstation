@@ -236,10 +236,10 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
 					if (accident)
-						if (HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+						if (HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)
 					else
-						if ((firepower > 2 && firepower < 10) || HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+						if ((firepower > 2 && firepower < 10) || HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.inertia_dir = user.dir
 							//step(user, user.inertia_dir) <- seemed kinda unnecessary, you moved forward 2 tiles from one fart? - Bat
 							SPAWN_DBG(1 DECI SECOND)
@@ -807,8 +807,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					message = "<B>[user]</B> unzips [his_or_her(user)] pants and pees in the toilet."
 				else
 					message = "<B>[user]</B> pees in the toilet."
-				toilet.clogged += 0.10
-				toilet.peeps++
+				toilet.reagents.add_reagent("urine", 20)
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -5)
 				user.cleanhands = 0
@@ -825,8 +824,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					message = "<B>[user]</B> unzips [his_or_her(user)] pants and pees in the toilet."
 				else
 					message = "<B>[user]</B> pees in the toilet."
-				toilet.clogged += 0.10
-				toilet.peeps+=2
+				toilet.reagents.add_reagent("urine", 40)
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -5)
 				user.cleanhands = 0
@@ -835,7 +833,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					message = "<B>[user]</B> unzips [his_or_her(user)] pants, takes aim, and pees in the beaker."
 				else
 					message = "<B>[user]</B> takes aim and pees in the beaker."
-				beaker.reagents.add_reagent("urine", 4)
+				beaker.reagents.add_reagent("urine", 40)
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -25)
 				user.cleanhands = 0
@@ -853,8 +851,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					message = "<B>[user]</B> unzips [his_or_her(user)] pants and pees in the toilet."
 				else
 					message = "<B>[user]</B> pees in the toilet."
-				toilet.clogged += 0.10
-				toilet.peeps+=3
+				toilet.reagents.add_reagent("urine", 70)
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -5)
 				user.cleanhands = 0
@@ -865,7 +862,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					message = "<B>[user]</B> takes aim and fills the beaker with pee."
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -25)
-				beaker.reagents.add_reagent("urine", 4)
+				beaker.reagents.add_reagent("urine", 70)
 				user.cleanhands = 0
 			else
 				if (user.wear_suit || user.w_uniform)
@@ -885,20 +882,18 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 		var/obj/item/storage/toilet/toilet = locate() in user.loc
 
 		if (toilet && (user.buckled != null))
-			if (user.urine >= 1)
-				for (var/obj/item/storage/toilet/T in user.loc)
+			if (user.urine >= 5)
+				for (var/obj/item/storage/toilet/terlet in user.loc)
 					message = pick("<B>[user]</B> unzips [his_or_her(user)] pants and pees in the toilet.", "<B>[user]</B> empties [his_or_her(user)] bladder.", "<span class='notice'>Ahhh, sweet relief.</span>")
-					user.urine = 0
 					user.cleanhands = 0
-					T.clogged += 0.10
-					T.peeps++
+					terlet.reagents.add_reagent("urine", min(user.urine, 80))
+					user.urine = 0
 					break
 			else
 				message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't pee in the toilet!"
-		else if (user.urine < 1)
+		else if (user.urine < 5)
 			message = "<B>[user]</B> pees [himself_or_herself(user)] a little bit."
 		else
-			user.urine--
 			user.urinate()
 	return list(message, null, MESSAGE_VISIBLE)
 
@@ -925,16 +920,11 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			dab_id.dab_count++
 			dab_id.tooltip_rebuild = 1
 		user.add_karma(-4)
-		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(user)))
-			for(var/datum/data/record/R in data_core.general) //copy paste from public urination, hope it works
-				if(R.fields["name"] == user.name)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							// now add to rap sheet
-
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Public dabbing."
-							break
+		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(src)))
+			var/datum/db_record/sec_record = data_core.security.find_record("name", user.name)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Public dabbing."
 
 		if(user.reagents) user.reagents.add_reagent("dabs",5)
 

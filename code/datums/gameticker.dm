@@ -195,9 +195,6 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 	//Tell the participation recorder to queue player data while the round starts up
 	participationRecorder.setHold()
 
-	//initiliase this fucker in case we get spies (hard to say at this stage, since they also show up in mixed modes)
-	ALL_ACCESS_CARD = new /obj/item/card/id/captains_spare()
-
 #ifdef RP_MODE
 	looc_allowed = 1
 	boutput(world, "<B>LOOC has been automatically enabled.</B>")
@@ -412,7 +409,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 						B.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", B, null, "<b>Late join</b>: assigned antagonist role: blob.")
 						antagWeighter.record(role = ROLE_BLOB, ckey = B.ckey)
-
+/*
 				else if (player.mind && player.mind.special_role == ROLE_FLOCKMIND)
 					player.close_spawn_windows()
 					var/mob/living/intangible/flock/flockmind/F = player.make_flockmind()
@@ -420,7 +417,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 						F.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", F, null, "<b>Late join</b>: assigned antagonist role: flockmind.")
 						antagWeighter.record(role = ROLE_FLOCKMIND, ckey = F.ckey)
-
+*/
 				else if (player.mind)
 					if (player.client.using_antag_token)
 						player.client.use_antag_token()	//Removes a token from the player
@@ -542,7 +539,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 
 				boutput(world, "<span class='bold notice'>A new round will begin soon.</span>")
 
-				var/datum/hud/roundend/roundend_countdown = new()
+				var/datum/hud/roundend/roundend_countdown = get_singleton(/datum/hud/roundend)
 
 				for (var/client/C in clients)
 					roundend_countdown.add_client(C)

@@ -15,6 +15,9 @@
 	var/buckle_move_delay = 6 // this should have been a var somepotato WHY WASN'T IT A VAR
 	var/obj/item/clothing/head/butt/has_butt = null // time for mature humour
 	var/image/butt_img
+	var/lying = FALSE
+	var/list/scoot_sounds_original
+	event_handler_flags = STAIR_ANIM | USE_FLUID_ENTER
 	securable = 1
 	anchored = 1
 	scoot_sounds = list( 'sound/misc/chair/normal/scoot1.ogg', 'sound/misc/chair/normal/scoot2.ogg', 'sound/misc/chair/normal/scoot3.ogg', 'sound/misc/chair/normal/scoot4.ogg', 'sound/misc/chair/normal/scoot5.ogg' )
@@ -28,8 +31,33 @@
 			src.layer = FLY_LAYER+1
 		butt_img = image('icons/obj/furniture/chairs.dmi')
 		butt_img.layer = OBJ_LAYER + 0.5 //In between OBJ_LAYER and MOB_LAYER
+		src.scoot_sounds_original = src.scoot_sounds
 		..()
 		return
+
+
+	proc/fall_over(var/turf/T)
+		if (src.lying)
+			return
+		if (src.stool_user)
+			var/mob/living/M = src.stool_user
+			src.unbuckle()
+			if (M && !src.stool_user)
+				M.visible_message("<span class='alert'>[M] is tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>",\
+				"<span class='alert'>You're tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>")
+				var/turf/target = get_edge_target_turf(src, src.dir)
+				M.throw_at(target, 5, 1)
+				M.changeStatus("stunned", 8 SECONDS)
+				M.changeStatus("weakened", 5 SECONDS)
+				M.force_laydown_standup()
+			else
+				src.visible_message("<span class='alert'>[src] tips [T ? "as it rolls over [T]" : "over"]!</span>")
+		else
+			src.visible_message("<span class='alert'>[src] tips [T ? "as it rolls over [T]" : "over"]!</span>")
+		src.lying = 1
+		animate_rest(src, !src.lying)
+		src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
+		src.scoot_sounds = list("sound/misc/chair/normal/scoot1.ogg", "sound/misc/chair/normal/scoot2.ogg", "sound/misc/chair/normal/scoot3.ogg", "sound/misc/chair/normal/scoot4.ogg", "sound/misc/chair/normal/scoot5.ogg")
 
 	Move()
 		. = ..()
@@ -89,6 +117,14 @@
 			return ..()
 
 	attack_hand(mob/user as mob)
+		if (src.lying)
+			user.visible_message("[user] sets [src] back on its wheels.",\
+			"You set [src] back on its wheels.")
+			src.lying = 0
+			animate_rest(src, !src.lying)
+			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
+			src.scoot_sounds = src.scoot_sounds_original
+			return
 		if (!ishuman(user)) return
 		var/mob/living/carbon/human/H = user
 		var/mob/living/carbon/human/chump = null
@@ -179,6 +215,14 @@
 		return 1
 
 	buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0)
+		if (src.lying)
+			user.visible_message("[user] sets [src] back on its wheels.",\
+			"You set [src] back on its wheels.")
+			src.lying = 0
+			animate_rest(src, !src.lying)
+			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
+			src.scoot_sounds = src.scoot_sounds_original
+			return
 		if(!istype(to_buckle))
 			return
 		if(user.hasStatus("weakened"))
@@ -392,11 +436,9 @@
 	buckle_move_delay = 1
 	p_class = 2
 	scoot_sounds = list("sound/misc/chair/office/scoot1.ogg", "sound/misc/chair/office/scoot2.ogg", "sound/misc/chair/office/scoot3.ogg", "sound/misc/chair/office/scoot4.ogg", "sound/misc/chair/office/scoot5.ogg")
-	var/lying = 0 // didja get knocked over? fall down some stairs?
 	parts_type = /obj/item/furniture_parts/wheelchair
 	mat_appearances_to_ignore = list("steel")
 	mats = 15
-
 	New()
 		..()
 		if (src.lying)
@@ -408,43 +450,8 @@
 		src.arm_image.layer = FLY_LAYER+1
 		src.UpdateOverlays(src.arm_image, "arm")
 
-	proc/fall_over(var/turf/T)
-		if (src.lying)
-			return
-		if (src.stool_user)
-			var/mob/living/M = src.stool_user
-			src.unbuckle()
-			if (M && !src.stool_user)
-				M.visible_message("<span class='alert'>[M] is tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>",\
-				"<span class='alert'>You're tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>")
-				var/turf/target = get_edge_target_turf(src, src.dir)
-				M.throw_at(target, 5, 1)
-				M.changeStatus("stunned", 8 SECONDS)
-				M.changeStatus("weakened", 5 SECONDS)
-			else
-				src.visible_message("<span class='alert'>[src] tips [T ? "as it rolls over [T]" : "over"]!</span>")
-		else
-			src.visible_message("<span class='alert'>[src] tips [T ? "as it rolls over [T]" : "over"]!</span>")
-		src.lying = 1
-		animate_rest(src, !src.lying)
-		src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
-		src.scoot_sounds = list("sound/misc/chair/normal/scoot1.ogg", "sound/misc/chair/normal/scoot2.ogg", "sound/misc/chair/normal/scoot3.ogg", "sound/misc/chair/normal/scoot4.ogg", "sound/misc/chair/normal/scoot5.ogg")
-
-	attack_hand(mob/user as mob)
-		if (src.lying)
-			user.visible_message("[user] sets [src] back on its wheels.",\
-			"You set [src] back on its wheels.")
-			src.lying = 0
-			animate_rest(src, !src.lying)
-			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
-			src.scoot_sounds = scoot_sounds = list("sound/misc/chair/office/scoot1.ogg", "sound/misc/chair/office/scoot2.ogg", "sound/misc/chair/office/scoot3.ogg", "sound/misc/chair/office/scoot4.ogg", "sound/misc/chair/office/scoot5.ogg")
-			return
-		else
-			return ..()
 
 	buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0)
-		if (src.lying)
-			return
 		..()
 		if (src.stool_user == to_buckle)
 			APPLY_MOVEMENT_MODIFIER(to_buckle, /datum/movement_modifier/wheelchair, src.type)
@@ -454,10 +461,10 @@
 			REMOVE_MOVEMENT_MODIFIER(src.stool_user, /datum/movement_modifier/wheelchair, src.type)
 		return ..()
 
-	set_loc(newloc)
+	/*set_loc(newloc)
 		. = ..()
 		unbuckle()
-
+	*/
 /* ======================================================= */
 /* -------------------- Wooden Chairs -------------------- */
 /* ======================================================= */

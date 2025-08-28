@@ -80,6 +80,7 @@
 	icon_state = "reaverbot"
 	health = 50
 	density = 1
+	pass_unstable = FALSE
 	emagged = 1
 	terrifying = 1
 	anchored = 1 // don't drag it into space goddamn jerks
@@ -123,8 +124,8 @@
 /obj/item/firstaid_arm_assembly
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
-	icon = 'icons/obj/bots/medbots.dmi'
-	icon_state = "medskin-firstaid1" //now does what the removed skin var did previously, therefore load-bearing in medbot crafting
+	icon = 'icons/obj/items/storage.dmi'
+	icon_state = "firstaid1" //now does what the removed skin var did previously, therefore load-bearing in medbot crafting
 	item_state = "firstaid"
 	pixel_y = 4 // so we don't have to have two sets of the skin sprites, we're just gunna bump this up a bit
 	var/build_step = 0
@@ -133,7 +134,7 @@
 
 /obj/item/firstaid_arm_assembly/New(use_skin = "firstaid1")
 	..()
-	icon_state = "medskin-[use_skin]"
+	icon_state = use_skin
 	UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm"), "arm")
 
 /obj/machinery/bot/medbot/proc/update_icon(var/stun = 0, var/heal = 0)
@@ -160,15 +161,19 @@
 		*/
 	return
 
-/obj/machinery/bot/medbot/New(use_skin = "medskin-firstaid1")
+/obj/machinery/bot/medbot/New(use_skin = "firstaid1")
 	..()
-	src.skin = use_skin
+	if (isnull(skin))
+		if (isturf(use_skin)) //when admin spawning in a medbot, the one argument passed is the turf it's being spawned on
+			src.skin = pick("firstaid", "brute", "burn", "toxin", "brain", "O2") + pick("1","2","3") //ignoring the 4th variants for simplicity, and berserk because that's an uncommon type of kit
+		else
+			src.skin = use_skin
 	add_simple_light("medbot", list(220, 220, 255, 0.5*255))
 	//hi we're assuming only the humanoid ones are ever terrifying, sorry
 	if (!src.terrifying)
 		//The skin never changes, so we might as well pull it out of update_icon
-		//The medbot crafting assembly already compiled the "medskin-[variant]" path so we can reuse that
-		UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = src.skin), "skin")
+		//Now pulling straight from the storage dmi. :3
+		UpdateOverlays(image('icons/obj/items/storage.dmi', icon_state = src.skin), "skin")
 	src.update_icon()
 	return
 
@@ -781,7 +786,8 @@
 	playsound(src.loc, "sound/impact_sounds/Machinery_Break_1.ogg", 40, 1)
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/storage/firstaid(Tsec)
+	var/obj/item/storage/firstaid/kit = new(Tsec)
+	kit.icon_state = src.skin
 
 	new /obj/item/device/prox_sensor(Tsec)
 
@@ -833,7 +839,7 @@
 
 	else if ((istype(W, /obj/item/device/prox_sensor)) && (src.build_step == 1))
 		src.build_step++
-		boutput(user, "You complete the Medibot! Beep boop.")
+		boutput(user, "You complete [src.created_name ? src.created_name : "the Medibot"]! Beep boop.")
 		var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(src.icon_state)
 		S.set_loc(get_turf(src))
 		S.name = src.created_name
@@ -854,5 +860,8 @@
 			return
 
 		src.created_name = t
+		src.create_inventory_counter()
+		src.inventory_counter.update_text(src.created_name)
+		src.inventory_counter.show_count()
 
 #undef MEDBOT_MOVE_SPEED
