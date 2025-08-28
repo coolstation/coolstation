@@ -113,7 +113,7 @@
 							C2.is_a_node.adjacent_nodes[C.is_a_node] = list(C2.is_a_node.adjacent_nodes[C.is_a_node],null)
 		else if (C.is_a_link)
 			dirty_pnet_nodes |= C.is_a_link.adjacent_nodes
-			C.is_a_link.active--
+			C.is_a_link.active++
 
 
 	if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes))

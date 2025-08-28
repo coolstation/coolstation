@@ -601,13 +601,13 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.color = "#00000000"
 			for(var/obj/cable/C in theTurf)
 				if(C.is_a_node)
-					img.app.color = "#ffffff"
+					img.app.color = "#ffffff80"
 					return
 				else if (C.is_a_link?.active <= 0)
-					img.app.color = "#ff0000"
+					img.app.color = "#ff000080"
 					return
 				else
-					img.app.color = "#00ff00"
+					img.app.color = "#00ff0080"
 
 	disposals
 		name = "disposal pipes"
