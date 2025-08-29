@@ -113,6 +113,8 @@
 		enact(mob/user, voluntary, param)
 			if (!user.restrained())
 				playsound(user.loc, "sound/impact_sounds/Slap.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				if(prob(5))
+					user.TakeDamage(pick("l_arm", "r_arm"), 1, damage_type = DAMAGE_BLUNT)
 			. = ..()
 	salute
 		emote_string = "salutes"
