@@ -178,6 +178,7 @@
 	cooldown = 600
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	cast(atom/target)
