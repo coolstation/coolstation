@@ -670,7 +670,7 @@
 
 		for(var/obj/cable/C in T)
 			if(C.d1 == 0)
-				return C.netnum
+				return C.get_netnumber()
 
 		return 0
 
