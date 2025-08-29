@@ -110,6 +110,10 @@
 	clap
 		emote_string = "claps"
 		emote_fail = "struggles to move"
+		enact(mob/user, voluntary, param)
+			if (!user.restrained())
+				playsound(user.loc, "sound/impact_sounds/Slap.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+			. = ..()
 	salute
 		emote_string = "salutes"
 		emote_fail = "struggles to move"
