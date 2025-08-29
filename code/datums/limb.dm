@@ -1460,6 +1460,29 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 		msgs.flush(SUPPRESS_LOGS)
 		user.lastattacked = target
 
+/datum/limb/pincers
+	name = "pincers"
+
+
+
+	grab(mob/target, var/mob/living/user)
+		if (!istype(user) || !ismob(target))
+			target.Attackhand(user)
+			return
+
+		if(check_target_immunity( target ))
+			return 0
+
+		user.grab_other(target, 1, grab_the_ungrabbable = TRUE)
+
+		var/obj/item/grab/GD = user.equipped()
+		if (GD && istype(GD) && (GD.affecting && GD.affecting == target))
+			GD.state = GRAB_AGGRESSIVE
+			GD.update_icon()
+			user.visible_message("<span class='alert'>[user] snaps [his_or_her(user)] [src] around [target]!</span>")
+
+		return
+
 
 //test for crab attack thing
 /datum/limb/swipe_quake
