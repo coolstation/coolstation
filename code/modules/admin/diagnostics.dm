@@ -234,7 +234,7 @@ proc/debug_map_apc_count(delim,zlim)
 			mt.maptext_x = -3
 		mt.appearance_flags = RESET_COLOR | additional_flags
 		return mt
-
+/*
 	teleblocked
 		name = "teleblocked areas"
 		help = "Red tiles are ones that are teleblocked, green ones can be teleported to."
@@ -322,7 +322,7 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.desc = "Area: [area.name]<br/>Type: [area.type]"
 			img.app.icon = initial(theTurf.loc.icon)
 			img.app.icon_state = initial(theTurf.loc.icon_state)
-
+*/
 	area_power
 		name = "area power"
 		help = "Shows how charged the APC powercell is in an area. Also shows when the APC is off etc. Colour is based on charge level."
@@ -569,22 +569,45 @@ proc/debug_map_apc_count(delim,zlim)
 		help = {"red - contains 0 (no powernet), that's probably bad<br>white - contains multiple powernets<br>other - coloured based on the single powernet<br>numbers - ids of all powernets on the tile"}
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/list/netnums = list()
+			var/link_col
 			for(var/obj/machinery/power/M in theTurf)
 				if(M.netnum >= 0)
 					netnums |= M.netnum
 			for(var/obj/cable/C in theTurf)
-				if(C.netnum >= 0)
-					netnums |= C.netnum
+				if(C.is_a_node?.pnet?.number > 0)
+					netnums |= C.is_a_node.pnet.number
+				else if (C.is_a_link)
+					link_col = debug_color_of(C.is_a_link)
 			img.app.overlays = list(src.makeText(jointext(netnums, " ")))
-			if(!netnums.len)
-				img.app.color = "#00000000"
-				img.app.alpha = 0
+			if(!length(netnums))
+				if (link_col)
+					img.app.color = link_col
+					img.app.alpha = 90
+				else
+					img.app.color = "#00000000"
+					img.app.alpha = 0
 			else if(0 in netnums)
 				img.app.color = "#ff0000"
 			else if(netnums.len >= 2)
 				img.app.color = "#ffffff"
 			else
 				img.app.color = debug_color_of(netnums[1])
+
+	powernet_link_status
+		name = "power active links"
+		help = {"green- active node<br>red - deactivated link<br>white - node<br>"}
+
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.color = "#00000000"
+			for(var/obj/cable/C in theTurf)
+				if(C.is_a_node)
+					img.app.color = "#ffffff80"
+					return
+				else if (C.is_a_link?.active <= 0)
+					img.app.color = "#ff000080"
+					return
+				else
+					img.app.color = "#00ff0080"
 
 	disposals
 		name = "disposal pipes"
