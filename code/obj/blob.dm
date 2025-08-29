@@ -36,7 +36,7 @@
 	var/poison_spread_coefficient = 0.5
 	var/poison_depletion = 1
 	var/heat_divisor = 15
-	var/temp_tolerance = 40
+	var/temp_tolerance = 70
 	mat_changename = 0
 	mat_changedesc = 0
 	var/runOnLife = 0 //Should this obj run Life?
