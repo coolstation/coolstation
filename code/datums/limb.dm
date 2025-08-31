@@ -1463,8 +1463,6 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 /datum/limb/pincers
 	name = "pincers"
 
-
-
 	grab(mob/target, var/mob/living/user)
 		if (!istype(user) || !ismob(target))
 			target.Attackhand(user)

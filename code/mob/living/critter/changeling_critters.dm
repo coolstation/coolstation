@@ -597,8 +597,8 @@
 		src.flags ^= TABLEPASS | DOORPASS
 
 /mob/living/critter/changeling/headspider/ai_is_valid_target(var/mob/M)
-		//we want a human that isnt dead and isnt already sorta taken over
-		return ishuman(M) && !isdead(M) && (!owner || M.mind != owner) && src.loc != M
+	//we want a human that isnt dead and isnt already sorta taken over
+	return ishuman(M) && !isdead(M) && (!owner || M.mind != owner) && src.loc != M
 
 /mob/living/critter/changeling/headspider/proc/infect_target(mob/M)
 	if(ishuman(M) && isalive(M))

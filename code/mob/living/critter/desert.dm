@@ -31,8 +31,17 @@
 /mob/living/critter/maulworm/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
-	HH.limb = new /datum/limb/claw(src)
+	HH.limb = new /datum/limb/pincers(src)
 	HH.icon = 'icons/ui/critter_ui.dmi'
 	HH.icon_state = "mouth"
-	HH.name = "paw"
+	HH.name = "mandibles"
 	HH.limb.name = "mandibles"
+
+/mob/living/critter/maulworm/ai_rate_target(mob/living/L)
+	if(!istype(L))
+		return 0
+	if(issilicon(L))
+		return 1
+	if(istype(L, /mob/living/critter/maulworm))
+		return 1
+	return 2 + L.bleeding
