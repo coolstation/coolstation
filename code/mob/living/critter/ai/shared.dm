@@ -263,10 +263,6 @@
 	default_task = get_instance(/datum/aiTask/concurrent/violence, list(src))
 	src.tick()
 
-/datum/aiHolder/violent/was_harmed(obj/item/W, mob/M)
-	if(src.owner.ai_is_valid_target(M))
-		src.target = M
-
 /datum/aiTask/concurrent/violence
 	name = "violence"
 	max_dist = 9
