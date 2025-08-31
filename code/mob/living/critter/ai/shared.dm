@@ -270,6 +270,7 @@
 /datum/aiTask/concurrent/violence
 	name = "violence"
 	max_dist = 9
+	score_by_distance_only = FALSE
 
 /datum/aiTask/concurrent/violence/New(parentHolder, transTask)
 	..(parentHolder, transTask)
@@ -286,6 +287,11 @@
 	if(!src.holder.target && !ON_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown", src.holder.seek_cooldown))
 		src.holder.target = src.get_best_target(get_targets())
 	. = ..()
+
+/datum/aiTask/concurrent/violence/score_target(atom/target)
+	. = ..()
+	if(.)
+		. *= src.holder.owner.ai_rate_target(target)
 
 // this task causes violence forever
 /datum/aiTask/endless/violence_subtask
