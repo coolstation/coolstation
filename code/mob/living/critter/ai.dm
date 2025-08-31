@@ -184,7 +184,10 @@ var/list/ai_move_scheduled = list()
 					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)
-		.=0
+		if(src.owner.ai_is_valid_target(M))
+			src.target = M
+			return TRUE
+		return FALSE
 
 	proc/disable()
 		src.enabled = FALSE

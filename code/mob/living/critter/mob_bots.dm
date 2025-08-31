@@ -497,6 +497,15 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	I.cant_other_remove = 1
 	var/datum/limb/item/itemlimb = HH.limb
 	itemlimb.my_item = HH.item
+	if(istype(I, /obj/item/gun/modular))
+		var/obj/item/gun/modular/gunse = I
+		if(gunse.accessory && !istype(gunse.accessory, /obj/item/gun_parts/accessory/ammofab))
+			qdel(gunse.accessory)
+			gunse.accessory.remove_part_from_gun()
+		if(!gunse.accessory)
+			gunse.accessory = new /obj/item/gun_parts/accessory/ammofab(gunse)
+			gunse.accessory.add_part_to_gun(gunse)
+	HH.can_range_attack = istype(I, /obj/item/gun)
 	src.hud.remove_object(old_item)
 	qdel(old_item)
 	src.hud.add_object(I, HUD_LAYER+2, HH.screenObj.screen_loc)
@@ -627,6 +636,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		var/atom/throw_target = get_edge_target_turf(src, get_dir(user, src))
 		if(throw_target)
 			src.throw_at(throw_target, 6, 2)
+		src.was_harmed(user)
 	else
 		..()
 
@@ -786,6 +796,10 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		return FALSE
 	if (istype(I,/obj/item/gun))
 		src.a_intent = INTENT_HARM
+		if(istype(I,/obj/item/gun/modular))
+			var/obj/item/gun/modular/gunse = I
+			if(gunse.jammed)
+				gunse.attack_self(src)
 	else
 		src.a_intent = INTENT_DISARM
 		if(istype(I,/obj/item/baton))
@@ -821,7 +835,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	return 1
 
 /mob/living/critter/robotic/bot/securitron/was_harmed(mob/attacker, obj/attacked_with, special, intent)
-	..()
 	if(!src.ai?.enabled || istype(attacker, /mob/living/critter/robotic/bot/securitron))
 		return
 	if(attacker.hasStatus("handcuffed") && !src.is_detaining)
@@ -830,15 +843,16 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if(ishuman(attacker))
 		var/mob/living/carbon/human/H = attacker
 		if(istype(H.wear_suit,/obj/item/clothing/suit/security_badge))
-			aggression_hp -= 0.3 // 15 damage allowed because beepsky thinks youre a cop
+			aggression_hp -= 0.2 // 10 damage allowed because beepsky thinks youre a cop
 	if(src.allowed(attacker))
-		aggression_hp -= 0.2 // 10 damage allowed
+		aggression_hp -= 0.1 // 5 damage allowed
 	if(src.get_health_percentage() > aggression_hp) // if health is still high enough, assume it was friendly fire or a 0 damage hit
 		return
 	EXTEND_COOLDOWN(attacker, "MARKED_FOR_SECURITRON_ARREST", 15 SECONDS)
 	if(!ON_COOLDOWN(src, "SECURITRON_EMOTE", src.emote_cooldown))
 		src.accuse_perp(attacker, rand(5,8))
 		src.siren()
+	..()
 
 /mob/living/critter/robotic/bot/securitron/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if(ON_COOLDOWN(src,"EMAG_COOLDOWN",12 SECONDS)) // no rapid double emags

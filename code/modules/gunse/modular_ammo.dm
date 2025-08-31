@@ -152,6 +152,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	caliber = 0
 
+/// used by the ammofab
+/obj/item/stackable_ammo/pistol/ammofab
+	name = "printed pellet"
+	real_name = "printed pellet"
+	desc = "A glob of fabricated plastic in the rough shape of a bullet."
+	projectile_type = /datum/projectile/bullet/pistol/ammofab
+	stack_type = /obj/item/stackable_ammo/pistol/ammofab
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "generic"
+	ammo_icon_state = "ammopaper"
+
 /obj/item/stackable_ammo/pistol/NT
 	name = "\improper NT pistol round"
 	real_name = "\improper NT pistol round"
