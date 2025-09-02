@@ -115,7 +115,7 @@ proc/debug_map_apc_count(delim,zlim)
 <B>Special Processing Data</B><BR>
 <B>Hotspot Processing:</B> [hotspots]<BR>
 <B>High Temperature Processing:</B> [air_master.active_super_conductivity.len]<BR>
-<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len] (not yet implemented)<BR>
+<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len]<BR>
 <BR>
 <B>Geometry Processing Data</B><BR>
 <B>Group Rebuild:</B> [air_master.groups_to_rebuild.len]<BR>

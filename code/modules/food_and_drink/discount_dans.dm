@@ -361,7 +361,7 @@
 
 		var/i = 3
 		while(i-- > 0)
-			reagents.add_reagent(pick("beff","sugar","eggnog","chocolate","vanilla","cleaner","luminol","poo","urine","nicotine","weedkiller","venom","jenkem","ethanol","ectoplasm","itching","infernite","histamine","foof","pancuronium","cyanide"), 5)
+			reagents.add_reagent(pick("beff","sugar","eggnog","chocolate","vanilla","cleaner","luminol","poo","urine","nicotine","weedkiller","venom","jenkem","ethanol","ectoplasm","itching","infernite","histamine","ghostchilijuice","pancuronium","cyanide"), 5)
 
 		if (prob(color_prob))
 			src.color = random_saturated_hex_color()
