@@ -61,6 +61,9 @@ THROWING DARTS
 		implanted = 1
 		SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, M)
 		owner = M
+		if (isliving(M))
+			var/mob/living/living = M
+			LAZYLISTADD(living.implant, src)
 		if (implant_overlay)
 			M.update_clothing()
 		activate()
@@ -69,10 +72,12 @@ THROWING DARTS
 	// called when an implant is removed from M
 	proc/on_remove(var/mob/M)
 		deactivate()
-		SEND_SIGNAL(src, COMSIG_IMPLANT_REMOVED, M)
-		if (ishuman(src.owner))
-			var/mob/living/carbon/human/H = owner
-			H.implant -= src
+		SEND_SIGNAL(src, COMSIG_ITEM_IMPLANT_REMOVED, M)
+		if (isliving(M))
+			var/mob/living/living = M
+			living.implant -= src
+		if (implant_overlay)
+			M.update_clothing()
 		src.owner = null
 		src.implanted = 0
 		return
@@ -116,18 +121,13 @@ THROWING DARTS
 		deactivate()
 
 	proc/get_coords()
-		if (ishuman(src.owner))
-			var/mob/living/carbon/human/H = src.owner
-			if (locate(src) in H.implant)
-				var/turf/T = get_turf(H)
-				if (istype(T))
-					return " at [T.x],[T.y],[T.z]"
-		else if (ismobcritter(src.owner))
-			var/mob/living/critter/C = src.owner
-			if (locate(src) in C.implants)
-				var/turf/T = get_turf(C)
-				if (istype(T))
-					return " at [T.x],[T.y],[T.z]"
+		if (!isliving(src.owner))
+			return
+		var/mob/living/living_owner = src.owner
+		if (locate(src) in living_owner.implant)
+			var/turf/T = get_turf(src.owner)
+			if (istype(T))
+				return " at [T.x],[T.y],[T.z]"
 
 	proc/send_message(var/message, var/alertgroup, var/sender_name)
 		DEBUG_MESSAGE("sending message: [message]")

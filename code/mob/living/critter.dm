@@ -46,8 +46,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 	var/list/inhands = list()
 	var/list/healthlist = list()
 
-	var/list/implants = list()
-	var/can_implant = 1
+	var/can_implant = TRUE
 
 	var/death_text = null // can use %src%
 	var/pet_text = "pets" // can be a list
@@ -154,10 +153,10 @@ ABSTRACT_TYPE(/mob/living/critter)
 		equipment.len = 0
 		equipment = null
 
-		for(var/obj/item/I in implants)
+		for(var/obj/item/I in implant)
 			I.dispose()
-		implants.len = 0
-		implants = null
+		implant.len = 0
+		implant = null
 
 		for(var/damage_type in healthlist)
 			var/datum/healthHolder/hh = healthlist[damage_type]
