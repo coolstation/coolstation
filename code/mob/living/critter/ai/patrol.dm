@@ -375,7 +375,6 @@
 			return
 		OVERRIDE_COOLDOWN(src.holder.owner, "HALT_FOR_INTERACTION", 0)
 		src.holder.target = null
-		src.transition_task = src.holder.default_task
 		src.fixed_target = null
 		src.holder.current_task = src.holder.default_task
 		src.holder.current_task.reset()

@@ -12,9 +12,9 @@
 	can_disarm = 1
 	blood_id = "beff"
 	burning_suffix = "humanoid"
-	health_brute = 100
+	health_brute = 75
 	health_brute_vuln = 0.85
-	health_burn = 100
+	health_burn = 75
 	health_burn_vuln = 1.4
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)

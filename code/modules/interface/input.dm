@@ -297,6 +297,7 @@ var/list/dirty_keystates = list()
 
 	// returns TRUE if it schedules a move
 	proc/internal_process_move(keys)
+		SHOULD_NOT_SLEEP(TRUE)
 		. = FALSE
 		var/delay = src.process_move(keys)
 		if (isnull(delay))
@@ -306,6 +307,7 @@ var/list/dirty_keystates = list()
 			. = TRUE
 
 /proc/process_keystates()
+	SHOULD_NOT_SLEEP(TRUE)
 	for (var/client/C in dirty_keystates)
 		var/new_state = C.key_state
 		if(C.hellbanned && prob(C.move_drops))

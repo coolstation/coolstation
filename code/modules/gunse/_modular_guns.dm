@@ -109,7 +109,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/gun_parts/barrel/barrel = null
 	var/obj/item/gun_parts/grip/grip = null //need either a grip or a stock to sensibly use
 	var/obj/item/gun_parts/stock/stock = null //optional
-	var/obj/item/gun_parts/grip/foregrip = null // optional
 	var/obj/item/gun_parts/accessory/accessory = null
 	var/list/obj/item/gun_parts/parts = list()
 	var/built = 0

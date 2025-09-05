@@ -263,10 +263,6 @@
 	default_task = get_instance(/datum/aiTask/concurrent/violence, list(src))
 	src.tick()
 
-/datum/aiHolder/violent/was_harmed(obj/item/W, mob/M)
-	if(src.owner.ai_is_valid_target(M))
-		src.target = M
-
 /datum/aiTask/concurrent/violence
 	name = "violence"
 	max_dist = 9
@@ -296,7 +292,7 @@
 // this task causes violence forever
 /datum/aiTask/endless/violence_subtask
 	name = "violence subtask"
-	var/boredom_ticks = 60
+	var/boredom_ticks = 120
 	var/ability_cooldown = 4 SECONDS
 	var/mob/living/queued_target = null
 	var/ticks_since_combat = 0
@@ -311,6 +307,7 @@
 		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
 			src.queued_target = null
 			src.holder.target = null
+			src.ticks_since_combat = 0
 			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
 				src.holder.target = src.get_best_target(get_targets())
 			if(!src.holder.target)
@@ -349,8 +346,6 @@
 
 		if(prob(40)) // may do a more intelligent check later, but this is decent
 			src.holder.owner.swap_hand()
-	else
-		src.holder.target = locate(src.holder.owner.x + rand(-4, 4), src.holder.owner.y + rand(-4, 4), src.holder.owner.z)
 
 	..()
 

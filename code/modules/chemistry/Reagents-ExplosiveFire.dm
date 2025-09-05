@@ -504,7 +504,7 @@ datum
 			burn_energy = 1500000
 			burn_temperature = 9000
 			burn_volatility = 20
-			minimum_reaction_temperature = -INFINITY
+			minimum_reaction_temperature = T0C - 160
 			evaporates_cleanly = TRUE
 
 			reaction_turf(var/turf/T, var/volume)
@@ -530,7 +530,6 @@ datum
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
-
 				var/mob/living/L = M
 				if(istype(L))
 					L.update_burning(50 * mult)
