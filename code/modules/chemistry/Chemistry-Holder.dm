@@ -49,6 +49,7 @@ datum
 
 		var/last_charge = 0
 		var/total_charge = 0
+		var/max_charge = 0
 		var/composite_charge_capacity = 0
 
 		var/last_temp = T20C
@@ -916,6 +917,7 @@ datum
 						current_reagent.volume = max(round(current_reagent.volume, 0.001), 0.001)
 						composite_heat_capacity = total_volume/(total_volume+current_reagent.volume)*composite_heat_capacity + current_reagent.volume/(total_volume+current_reagent.volume)*current_reagent.heat_capacity
 						composite_charge_capacity = total_volume/(total_volume+current_reagent.volume)*composite_charge_capacity + current_reagent.volume/(total_volume+current_reagent.volume)*current_reagent.charge_capacity
+						max_charge = max(round(total_volume * composite_charge_capacity,0.001),0.001)
 						total_volume += current_reagent.volume
 						if (current_reagent.flammable_influence)
 							combustible_volume += current_reagent.volume
@@ -1127,7 +1129,7 @@ datum
 			if (temp_divison_amount > 0)
 				src.total_temperature = temp_temperature / temp_divison_amount
 			if (charge_division_amount > 0)
-				src.total_charge = temp_charge / charge_division_amount
+				src.total_charge = clamp(temp_charge / charge_division_amount,0,max_charge) //should be impossible to übercharge something (can code in special circumstances later)
 
 			if (!donotupdate)
 				update_total()
@@ -1175,6 +1177,11 @@ datum
 				if(C.id == reaction_id)
 					return C && C.result_amount >= amount
 			return FALSE
+
+		proc/charge_reagents(var/amount=0)
+			if(src.total_charge < max_charge)
+				src.total_charge += amount * composite_charge_capacity
+				update_total()
 
 		proc/get_reagent(var/reagent_id)
 			return reagent_list[reagent_id]
