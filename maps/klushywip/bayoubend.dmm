@@ -6056,6 +6056,12 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/securearea{
+	desc = "";
+	icon_state = "shock";
+	name = "Danger: High Voltage";
+	pixel_x = -31
+	},
 /turf/floor,
 /area/station/hallway/primary/south)
 "eFg" = (
@@ -6098,6 +6104,9 @@
 	c_tag = "autotag";
 	dir = 0;
 	name = "autoname - SS13"
+	},
+/obj/neon_sign/medical{
+	pixel_y = 32
 	},
 /turf/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -11482,9 +11491,6 @@
 	},
 /obj/pathlights/shuttle{
 	dir = 1
-	},
-/obj/decal/poster/wallsign/bar{
-	pixel_y = 27
 	},
 /obj/machinery/light/small/warm{
 	dir = 1
@@ -18027,6 +18033,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/neon_sign/exit{
+	pixel_y = -25
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
 "nNb" = (
@@ -19030,6 +19039,10 @@
 	dir = 1
 	},
 /obj/machinery/light/small/warm,
+/obj/neon_sign/beer{
+	pixel_x = -1;
+	pixel_y = -29
+	},
 /turf/floor,
 /area/station/hallway/primary/east)
 "oxS" = (
@@ -22159,6 +22172,12 @@
 	dir = 8
 	},
 /area/station/janitor/office)
+"qGY" = (
+/obj/neon_sign/nt{
+	pixel_x = 32
+	},
+/turf/floor,
+/area/station/hallway/primary/east)
 "qHb" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/black,
@@ -24053,6 +24072,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/wall/r_wall,
 /area/station/engine/power)
+"saf" = (
+/obj/reagent_dispensers/foamtank,
+/turf/wall/r_wall,
+/area/station/maintenance/east)
 "saY" = (
 /obj/item/constructioncone,
 /turf/floor/plating/random,
@@ -27671,9 +27694,14 @@
 	},
 /area/station/science/chemistry)
 "uIV" = (
-/obj/reagent_dispensers/foamtank,
-/turf/floor/plating/random,
-/area/station/maintenance/east)
+/obj/disposalpipe/segment/sewage{
+	dir = 1
+	},
+/obj/neon_sign/open{
+	pixel_x = -33
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "uJC" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment,
@@ -30557,6 +30585,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/neon_sign/exit{
+	pixel_y = -25
 	},
 /turf/floor/grime,
 /area/station/maintenance/southeast)
@@ -65895,7 +65926,7 @@ xJQ
 pjn
 rCu
 uKb
-fKq
+uIV
 fKq
 owL
 qwf
@@ -77136,7 +77167,7 @@ rqL
 rqL
 rqL
 nMF
-hCs
+nYF
 nYF
 seQ
 seQ
@@ -77685,12 +77716,12 @@ aas
 aas
 aas
 asf
-aas
+qGY
 aas
 xzr
 ioK
 kNW
-aas
+qGY
 aas
 aas
 aas
@@ -77740,7 +77771,7 @@ pTb
 szc
 rqL
 wRz
-hCs
+nYF
 nYF
 gVG
 isJ
@@ -81924,7 +81955,7 @@ unw
 kPR
 eQO
 sAf
-uIV
+jBz
 pvO
 vxY
 xcP
@@ -82226,7 +82257,7 @@ yez
 sbS
 nqe
 sAf
-uLa
+saf
 pvO
 tpt
 fRi

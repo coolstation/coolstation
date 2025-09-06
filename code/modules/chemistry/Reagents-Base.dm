@@ -321,6 +321,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			charge_capacity = 10
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom

@@ -47,6 +47,10 @@ datum
 		var/composite_volatility = 0
 		var/combustible_pressure = 0
 
+		var/last_charge = 0
+		var/total_charge = 0
+		var/composite_charge_capacity = 0
+
 		var/last_temp = T20C
 		var/total_temperature = T20C
 		var/total_volume = 0
@@ -911,6 +915,7 @@ datum
 					else
 						current_reagent.volume = max(round(current_reagent.volume, 0.001), 0.001)
 						composite_heat_capacity = total_volume/(total_volume+current_reagent.volume)*composite_heat_capacity + current_reagent.volume/(total_volume+current_reagent.volume)*current_reagent.heat_capacity
+						composite_charge_capacity = total_volume/(total_volume+current_reagent.volume)*composite_charge_capacity + current_reagent.volume/(total_volume+current_reagent.volume)*current_reagent.charge_capacity
 						total_volume += current_reagent.volume
 						if (current_reagent.flammable_influence)
 							combustible_volume += current_reagent.volume
@@ -1075,7 +1080,7 @@ datum
 				temp_fluid_reagents.update_total()
 				fluid_turf.fluid_react(temp_fluid_reagents, temp_fluid_reagents.total_volume)
 
-		proc/add_reagent(var/reagent, var/amount, var/sdata, var/temp_new=T20C, var/donotreact = 0, var/donotupdate = 0)
+		proc/add_reagent(var/reagent, var/amount, var/sdata, var/temp_new=T20C, var/donotreact = 0, var/donotupdate = 0, var/charge_new=0)
 			if(!isnum(amount) || amount <= 0 || src.disposed)
 				return 1
 			var/added_new = 0
@@ -1110,13 +1115,19 @@ datum
 			current_reagent.volume = new_amount
 			if(!current_reagent.data) current_reagent.data = sdata
 
+			src.last_charge = src.total_charge
+			var/temp_charge = src.total_charge*src.total_volume*src.composite_charge_capacity + charge_new*new_amount*current_reagent.charge_capacity
 
 			src.last_temp = src.total_temperature
 			var/temp_temperature = src.total_temperature*src.total_volume*src.composite_heat_capacity + temp_new*new_amount*current_reagent.heat_capacity
 
-			var/divison_amount = src.total_volume * src.composite_heat_capacity + new_amount * current_reagent.heat_capacity
-			if (divison_amount > 0)
-				src.total_temperature = temp_temperature / divison_amount
+			var/temp_divison_amount = src.total_volume * src.composite_heat_capacity + new_amount * current_reagent.heat_capacity
+			var/charge_division_amount = src.total_volume * src.composite_charge_capacity + new_amount * current_reagent.charge_capacity
+
+			if (temp_divison_amount > 0)
+				src.total_temperature = temp_temperature / temp_divison_amount
+			if (charge_division_amount > 0)
+				src.total_charge = temp_charge / charge_division_amount
 
 			if (!donotupdate)
 				update_total()

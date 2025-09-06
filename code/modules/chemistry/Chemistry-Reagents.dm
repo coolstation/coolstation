@@ -60,6 +60,7 @@ datum
 		var/can_crack = 0 // used by organic chems
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
+		var/charge_capacity = 0
 
 		//	Increases the weight of the reagent in the color calculation
 		//	A multiplier of 2 makes the color as if the reagent's volume was twice as much
