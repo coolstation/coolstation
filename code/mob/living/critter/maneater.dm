@@ -43,8 +43,6 @@
 	takes_brain = FALSE
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)

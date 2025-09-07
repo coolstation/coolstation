@@ -29,8 +29,6 @@
   custom_gib_handler = /proc/gibs
   hand_count = 1
   can_throw = 1
-  can_grab = 1
-  can_disarm = 1
   speechverb_say = "sucks"
   speechverb_exclaim = "roars"
   speechverb_ask = "pulls"

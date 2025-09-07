@@ -245,7 +245,7 @@
 		src.next_click = world.time + (COMBAT_CLICK_DELAY)
 */
 
-/mob/living/proc/grab_other(var/mob/living/target, var/suppress_final_message = 0, var/obj/item/grab_item = null)
+/mob/living/proc/grab_other(var/mob/living/target, var/suppress_final_message = 0, var/obj/item/grab_item = null, var/grab_the_ungrabbable = FALSE)
 	if(!src || !target)
 		return 0
 
@@ -261,7 +261,7 @@
 		target.visible_message("<span class='alert'><B>[src] tries to grab [target], but can't get a good grip!</B></span>")
 		return
 
-	if (!target.canbegrabbed)
+	if (!target.canbegrabbed && !grab_the_ungrabbable)
 		if (target.grabresistmessage)
 			target.visible_message("<span class='alert'><B>[src] tries to grab [target], [target.grabresistmessage]</B></span>")
 		return

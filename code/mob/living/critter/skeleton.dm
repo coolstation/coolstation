@@ -36,8 +36,6 @@
 	custom_gib_handler = /proc/bonegibs
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	blood_id = "calcium"
 	burning_suffix = "humanoid"
 	metabolizes = 0

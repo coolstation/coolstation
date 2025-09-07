@@ -83,6 +83,9 @@
 
 	var/grounded_for_projectiles = FALSE
 
+	/// Currently used only in critter setup. Mylie plans to make this an actual thing.
+	var/hand_count = 0
+
 	var/last_heard_name = null
 	var/last_chat_color = null
 
@@ -2383,8 +2386,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				return 1
 	return 0
 
+/// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well
 /mob/living/proc/ai_is_valid_target(mob/M)
 	return M != src
+
+/// the higher the returned value, the better the target is. assume that the target is valid.
+/mob/living/proc/ai_rate_target(mob/M)
+	return 1
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)
