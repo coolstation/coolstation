@@ -2,9 +2,6 @@
 	name = "gnome"
 	desc = "A horrifying sewer-dwelling shapeshifter. The hat and clothes are made of chitin."
 	icon_state = "gnome"
-	can_help = TRUE
-	can_grab = TRUE
-	can_disarm = TRUE
 	can_throw = TRUE
 	flags = TABLEPASS
 	fits_under_table = TRUE

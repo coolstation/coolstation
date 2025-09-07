@@ -14,7 +14,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 	var/datum/hud/critter/custom_hud_type = /datum/hud/critter
 	var/datum/organHolder/custom_organHolder_type = null
 
-	var/hand_count = 0		// Used to ease setup. Setting this in-game has no effect.
 	var/list/hands = list()
 	var/list/equipment = list()
 	var/image/equipment_image = new
@@ -36,9 +35,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 	//this is probably crap but I can't be arsed to refactor
 	var/lie_on_death = TRUE
 
-	var/can_help = 0
-	var/can_grab = 0
-	var/can_disarm = 0
 
 	var/reagent_capacity = 50
 	max_health = 0

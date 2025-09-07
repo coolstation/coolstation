@@ -83,6 +83,9 @@
 
 	var/grounded_for_projectiles = FALSE
 
+	/// Currently used only in critter setup. Mylie plans to make this an actual thing.
+	var/hand_count = 0
+
 	var/last_heard_name = null
 	var/last_chat_color = null
 

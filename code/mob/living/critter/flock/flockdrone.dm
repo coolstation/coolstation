@@ -6,9 +6,6 @@
 	density = 1
 	hand_count = 3
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	death_text = "%src% clatters into a heap of fragments."
 	pet_text = list("taps", "pats", "drums on", "ruffles", "touches", "pokes", "prods")
 	custom_brain_type = /obj/item/organ/brain/flockdrone

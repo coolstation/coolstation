@@ -233,6 +233,8 @@
 	var/last_move_dir = null
 
 	var/datum/aiHolder/ai = null
+	/// if set to an a_intent, ai should prioritize that one
+	var/ai_a_intent = null
 	/// used for load balancing mob_ai ticks
 	var/ai_tick_schedule = null
 

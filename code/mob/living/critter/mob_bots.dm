@@ -379,9 +379,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	hand_count = 1
 	base_move_delay = 3.25
 	base_walk_delay = 4.25
-	can_grab = TRUE
-	can_disarm = TRUE
-	can_help = TRUE
 	metabolizes = FALSE
 	stepsound = null
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron

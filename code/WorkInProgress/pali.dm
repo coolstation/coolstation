@@ -277,8 +277,6 @@
 	density = 0
 	hand_count = 0
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	speechverb_say = "rattles"
 	speechverb_exclaim = "rattles"
 	speechverb_ask = "rattles"

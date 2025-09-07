@@ -313,7 +313,7 @@
 		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
 				src.take_damage(I.force*5, user, TRUE)
-			else
+			else if (I)
 				src.take_damage(I.force, user)
 			user.lastattacked = src
 			attack_particle(user,src)

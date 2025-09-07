@@ -8,8 +8,6 @@
 	density = 1
 	custom_gib_handler = /proc/gibs
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 1
 	blood_id = "bloodc"
 	table_hide = 0
 	takes_brain = FALSE
@@ -121,8 +119,6 @@
 	icon_state = "handspider"
 	icon_state_dead = "handspider-dead"
 	abilityHolder
-	can_grab = 1
-	can_disarm = 1
 	hand_count = 1
 	health_brute = 5
 	health_brute_vuln = 1

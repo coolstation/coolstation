@@ -7,10 +7,7 @@
 	speechverb_ask = "chitters"
 	density = 0
 	pass_unstable = PRESERVE_CACHE
-	can_help = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	lie_on_death = 0
 	butcherable = 1
 	name_the_meat = 1
@@ -28,6 +25,9 @@
 	base_move_delay = 3
 	base_walk_delay = 4.5
 
+	add_abilities = list(/datum/targetable/critter/chew, /datum/targetable/critter/writhe)
+	ai_a_intent = INTENT_GRAB
+
 /mob/living/critter/maulworm/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
@@ -44,4 +44,12 @@
 		return 1
 	if(istype(L, /mob/living/critter/maulworm))
 		return 1
-	return 2 + L.bleeding
+	return 1.05 + L.bleeding * 0.1
+
+/mob/living/critter/maulworm/ability_attack(atom/target, params)
+	var/obj/item/grab/GD = src.equipped()
+	if (GD && istype(GD) && (GD.affecting && GD.affecting == target))
+		var/datum/targetable/chewing_ability = src.abilityHolder.getAbility(/datum/targetable/critter/chew)
+		if(chewing_ability)
+			return !chewing_ability.handleCast(target, params)
+	return ..()
