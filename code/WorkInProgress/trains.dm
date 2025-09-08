@@ -343,9 +343,12 @@ ABSTRACT_TYPE(/datum/train_preset)
 				continue
 			random_brute_damage(L, rand(15,25)) // incredibly lethal
 			playsound(T, 'sound/impact_sounds/Flesh_Break_1.ogg', 40, 1)
+
+			if(L.get_brute_damage() > 500) // thats enough maiming
+				continue
+
 			var/bdna = null
 			var/btype = null
-
 			if (ishuman(L))
 				if (L.bioHolder)
 					bdna = L.bioHolder.Uid
@@ -366,7 +369,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 					H.sever_limb(pick("l_arm","r_arm","l_leg","r_leg"))
 
 			// spray gibs
-			if(!ON_COOLDOWN(L, "trainsquishgibs", rand(15,20)) && L.get_brute_damage() <= 900)
+			if(!ON_COOLDOWN(L, "trainsquishgibs", rand(15,20)))
 				var/list/viral_list = list()
 				for (var/datum/ailment_data/AD in L.ailments)
 					viral_list += AD
