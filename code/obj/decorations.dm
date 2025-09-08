@@ -1573,9 +1573,17 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "trainsignal"
 	anchored = 1
-	density = 0
-	plane = PLANE_NOSHADOW_BELOW
-	//this is just a dummy until it gets logic
+	density = TRUE
+	layer = MOB_LAYER + 0.1
+
+	New()
+		. = ..()
+		START_TRACKING
+
+	disposing()
+		. = ..()
+		STOP_TRACKING
+
 
 /obj/neon_sign
 	name = "neon sign"

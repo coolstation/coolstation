@@ -1,3 +1,47 @@
+/* ----------- THE TRAIN EVENT, MAKES TRAINS COME BY ----------- */
+
+/datum/random_event/minor/train
+	name = "Train"
+	var/min_delay = 10 SECONDS
+	var/max_delay = 30 SECONDS
+#ifndef RAILWAY_Y
+	disabled = TRUE
+#endif
+
+	event_effect(source)
+		..()
+		// yeah the time in this alert is kinda just a fuckin' lie
+		command_alert(text = "In [round(rand(min_delay, max_delay), 5 SECONDS) / (1 SECOND)] seconds, a cargo train will make a scheduled pass on local railway. Complete all in-progress crossings swiftly.", title = "Scheduled Train", override_big_title = "Gehenna Rail Traffic Control")
+
+		var/delay_time = rand(min_delay, max_delay)
+
+		var/datum/train_conductor/conductor = new
+#ifdef RAILWAY_Y
+		conductor.train_front_y = RAILWAY_Y
+#else
+		// listen, im assuming you WANT to destroy things if you activate this on a map with no tracks
+		conductor.train_front_y = rand(80, world.maxy - 80)
+#endif
+
+		conductor.movement_delay = (12 + rand(-5,5)) / 10
+		if(prob(5))
+			conductor.movement_delay *= 3
+		else if(prob(5))
+			conductor.movement_delay /= 3
+
+		conductor.cars += /obj/traincar/NT_engine
+
+		var/car_length = rand(20,40)
+		for(var/i in 1 to car_length)
+			conductor.cars += /obj/traincar/NT_shipping
+
+		SPAWN_DBG(delay_time)
+			if(QDELETED(conductor))
+				return
+			conductor.train_z = Z_LEVEL_STATION
+			conductor.active = TRUE
+			conductor.train_loop()
+
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
 var/datum/train_controller/train_spotter
@@ -6,6 +50,7 @@ var/datum/train_controller/train_spotter
 	var/list/datum/train_conductor/conductors = list()
 	var/next_id = 1
 	var/list/datum/train_preset/presets = list()
+	var/list/cooldowns
 
 /datum/train_controller/New()
 	. = ..()
@@ -88,12 +133,12 @@ ABSTRACT_TYPE(/datum/train_preset)
 	movement_delay = 3
 
 /datum/train_preset/shipping_cars
-	cars = list(/atom/movable/traincar/NT_engine, /atom/movable/traincar/NT_shipping, /atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping,/atom/movable/traincar/NT_shipping)
+	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping)
 
 /* ----------- THE TRAIN CARS, THE GOOD LOOKIN' BITS ----------- */
 
 // THE BASE
-/atom/movable/traincar
+/obj/traincar
 	name = "traincar"
 	desc = "That thing what runs you over."
 	icon = 'icons/obj/large/trains_256x128.dmi'
@@ -115,21 +160,21 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/dull_color_2 = "#FFFFFF"
 	var/bright_color_1 = "#FFFFFF"
 
-/atom/movable/traincar/New(var/turf/newLoc, var/datum/train_conductor/conductor)
+/obj/traincar/New(var/turf/newLoc, var/datum/train_conductor/conductor)
 	..()
 	src.my_conductor = conductor
 	src.build_colors()
 	src.build_overlays()
 
-/atom/movable/traincar/proc/build_colors()
+/obj/traincar/proc/build_colors()
 	src.dull_color_1 = random_greyish_hex_color()
 	src.dull_color_2 = random_greyish_hex_color()
 	src.bright_color_1 = random_saturated_hex_color()
 
-/atom/movable/traincar/proc/build_overlays()
+/obj/traincar/proc/build_overlays()
 	return
 
-/atom/movable/traincar/Bumped(var/atom/movable/AM)
+/obj/traincar/Bumped(var/atom/movable/AM)
 	. = ..()
 	if(src.loaded && src.my_conductor && src.my_conductor.active && src.my_conductor.movement_delay < 1 SECOND)
 		if(isliving(AM))
@@ -155,17 +200,17 @@ ABSTRACT_TYPE(/datum/train_preset)
 			L.force_laydown_standup()
 
 // THE ENGINE
-/atom/movable/traincar/NT_engine
+/obj/traincar/NT_engine
 	name = "engine"
 	icon_state = "engine_flatbody"
 
-/atom/movable/traincar/NT_engine/build_colors()
+/obj/traincar/NT_engine/build_colors()
 	src.dull_color_1 = rand(200, 230)
 	src.dull_color_1 = rgb(src.dull_color_1, src.dull_color_1, src.dull_color_1)
 	src.dull_color_2 = rgb(rand(60,70), rand(115,125), rand(160, 170))
 	src.bright_color_1 = rgb(rand(230,255), rand(200,220), rand(65,80))
 
-/atom/movable/traincar/NT_engine/build_overlays()
+/obj/traincar/NT_engine/build_overlays()
 	var/image/main = image('icons/obj/large/trains_256x128.dmi',"engine_main")
 	main.color = src.dull_color_1
 	src.UpdateOverlays(main, "engine_main")
@@ -189,15 +234,15 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.UpdateOverlays(fullbright, "engine_fullbright")
 
 // ONE OR TWO SHIPPING CONTAINERS
-/atom/movable/traincar/NT_shipping
+/obj/traincar/NT_shipping
 	name = "shipping car"
 
-/atom/movable/traincar/NT_shipping/build_colors()
+/obj/traincar/NT_shipping/build_colors()
 	src.dull_color_1 = random_greyish_hex_color(50,90)
 	src.dull_color_2 = random_greyish_hex_color(50,90)
 	//src.bright_color_1 = random_saturated_hex_color()
 
-/atom/movable/traincar/NT_shipping/build_overlays()
+/obj/traincar/NT_shipping/build_overlays()
 	var/did_one = prob(90)
 	var/offset = rand(3,7)
 
@@ -242,7 +287,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/active = FALSE
 	var/train_direction = WEST // east-bound trains MIGHT POSSIBLY EVENTUALLY happen. dont count on it.
 	var/train_id = 0 // the id of this train
-	var/train_ram_width_bonus = 0 // additional x width of the front hitbox, set dynamically by speed
+	var/train_ram_width_bonus = 0 // additional x width of the front hitbox
 	var/train_ram_height_bonus = 1 // additional y height of the front hitbox, usually static
 #if defined(MAP_OVERRIDE_CRAG)
 	var/train_front_y = 163 // the lowest y coordinate in the trains front hitbox
@@ -267,7 +312,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 	train_spotter.next_id++
 
 /datum/train_conductor/disposing()
-	for(var/atom/movable/traincar/car in src.cars)
+	for(var/obj/traincar/car in src.cars)
 		qdel(car)
 	src.cars = null
 	src.potential_crushes = null
@@ -291,6 +336,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 	// first, time for the crushing
 	for(var/mob/living/L in src.potential_crushes)
 		var/turf/T = get_turf(L)
+		if(!T)
+			src.potential_crushes.Cut(L)
 		if(T.z == src.train_z && (max(src.train_front_x, src.train_unload_x)) <= T.x && T.x <= src.train_end_x && src.train_front_y <= T.y && T.y <= (src.train_front_y + src.train_ram_height_bonus))
 			if(L.nodamage || ON_COOLDOWN(L, "trainsquish", rand(1,3)))
 				continue
@@ -342,18 +389,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 		for(var/x_ram_bonus in 0 to src.train_ram_width_bonus)
 			for(var/y_ram_bonus in 0 to src.train_ram_height_bonus)
 
-				var/turf/T = locate(src.train_front_x + x_ram_bonus, src.train_front_y + y_ram_bonus, src.train_z)
-
-				var/hit_obj = FALSE
-				for(var/obj/O in T.contents)
-					if(O.density)
-						var/turf/target = get_edge_target_turf(O, src.train_direction)
-						O.throw_at(target, 3, 3)
-						if(!hit_obj)
-							playsound(T, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 35, 1)
-						if(!QDELETED(O))
-							O.ex_act(7)
-						hit_obj = TRUE
+				var/turf/T = locate(src.train_front_x + x_ram_bonus - 1, src.train_front_y + y_ram_bonus, src.train_z)
 
 				for(var/mob/living/L in T.contents)
 					if(isintangible(L) || L.nodamage)
@@ -382,6 +418,17 @@ ABSTRACT_TYPE(/datum/train_preset)
 							C.show_message("<span class='alert'><B>\The [src.basic_name] crashes through \the [T]!</B></span>", 1)
 						rammed_wall.dismantle_wall(devastated = TRUE, keep_material = TRUE)
 
+				var/hit_obj = FALSE
+				for(var/obj/O in T.contents)
+					if(O.density)
+						var/turf/target = get_edge_target_turf(O, src.train_direction)
+						O.throw_at(target, 3, 3)
+						if(!hit_obj)
+							playsound(T, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 35, 1)
+						if(!QDELETED(O))
+							O.ex_act(7)
+						hit_obj = TRUE
+
 	// thats enough ramming, time for the movement
 	src.train_front_x--
 	if(src.unloading_tiles > 0)
@@ -392,7 +439,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 	for(var/car_or_typepath in src.cars)
 		if(current_x > src.train_not_yet_loaded_x)
 			break
-		var/atom/movable/traincar/car = car_or_typepath
+		var/obj/traincar/car = car_or_typepath
 		if(istype(car))
 			if(current_x > src.train_unload_x)
 				car.loaded = TRUE

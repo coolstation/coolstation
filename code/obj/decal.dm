@@ -624,7 +624,6 @@ obj/decal/fakeobjects
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
-
 /obj/decal/cragrock
 	name = "\improper Gehennan rock spikes"
 	desc = "Painfully sharp shards of sulfurous rock."
@@ -635,7 +634,7 @@ obj/decal/fakeobjects
 	pass_unstable = FALSE
 	opacity = 0
 	anchored = 1
-	//plane = PLANE_NOSHADOW_ABOVE
+	layer = MOB_LAYER + 0.1
 
 	New()
 		..()
@@ -691,16 +690,6 @@ obj/decal/fakeobjects
 
 	ex_act(severity) // cant have lightning blowing itself up
 		return
-
-// possible usecase for lightning preflash
-/obj/decal/lightning/stepper
-	name = "ionized stepper"
-	desc = "The prequel to a shock of lightning. These only exist for a moment, so it's crazy you saw this!"
-	height = 6
-	shake_intensity = 5
-	strike_time = 2 DECI SECONDS
-	volume = 0
-	alpha = 128
 
 /obj/decal/myliemural
 	name = "floor mural"
