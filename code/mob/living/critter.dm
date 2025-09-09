@@ -689,10 +689,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 				O.set_loc(src)
 		src.mind?.register_death() // it'd be nice if critters get a time of death too tbh
 		set_density(0)
-		if (src.can_implant)
-			for (var/obj/item/implant/H in src.implants)
-				H.on_death()
-			src.can_implant = 0
+		src.can_implant = FALSE
 		if (!gibbed)
 			if (src.death_text)
 				src.tokenized_message(src.death_text, null, "red")

@@ -72,7 +72,7 @@ THROWING DARTS
 	// called when an implant is removed from M
 	proc/on_remove(var/mob/M)
 		deactivate()
-		SEND_SIGNAL(src, COMSIG_ITEM_IMPLANT_REMOVED, M)
+		SEND_SIGNAL(src, COMSIG_IMPLANT_REMOVED, M)
 		if (isliving(M))
 			var/mob/living/living = M
 			living.implant -= src
@@ -567,13 +567,7 @@ THROWING DARTS
 				sleep(1.5 SECONDS)
 				qdel(Ov)
 
-				if (ishuman(owner))
-					var/mob/living/carbon/human/H = owner
-					H.implant -= src
-				else if (ismobcritter(owner))
-					var/mob/living/critter/C = owner
-					C.implants -= src
-
+				on_remove(owner)
 				qdel(src)
 
 			T.hotspot_expose(800,125)
@@ -1018,13 +1012,6 @@ THROWING DARTS
 			M.tri_message("<span class='alert'>[M] has been implanted by [user].</span>",\
 			M, "<span class='alert'>You have been implanted by [user].</span>",\
 			user, "<span class='alert'>You implanted the implant into [M].</span>")
-
-		if (ishuman(M))
-			var/mob/living/carbon/human/H = M
-			H.implant.Add(src.imp)
-		else if (ismobcritter(M))
-			var/mob/living/critter/C = M
-			C.implants.Add(src.imp)
 
 		src.imp.set_loc(M)
 		src.imp.implanted(M, user)
@@ -1666,21 +1653,13 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 		if (!my_implant)
 			return
 		if (ishuman(hit))
-			var/mob/living/carbon/human/H = hit
-			if (my_implant.can_implant(H, implant_master))
-				my_implant.set_loc(H)
-				my_implant.implanted(H, implant_master)
-				H.implant.Add(my_implant)
+			var/mob/living/L = hit
+			if (my_implant.can_implant(L, implant_master))
+				my_implant.set_loc(L)
+				my_implant.implanted(L, implant_master)
+				L.implant.Add(my_implant)
 			else
-				my_implant.set_loc(get_turf(H))
-		else if (ismobcritter(hit))
-			var/mob/living/critter/C = hit
-			if (C.can_implant && my_implant.can_implant(C, implant_master))
-				my_implant.set_loc(C)
-				my_implant.implanted(C, implant_master)
-				C.implants.Add(my_implant)
-			else
-				my_implant.set_loc(get_turf(C))
+				my_implant.set_loc(get_turf(L))
 		else
 			my_implant.set_loc(get_turf(O))
 
