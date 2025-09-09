@@ -605,9 +605,6 @@
 	src.dizziness = 0
 	src.jitteriness = 0
 
-	for (var/obj/item/implant/H in src.implant)
-		H.on_death()
-
 	for (var/uid in src.pathogens)
 		var/datum/pathogen/P = src.pathogens[uid]
 		P.ondeath()
