@@ -943,6 +943,11 @@
 	unlisted = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -1956,6 +1961,9 @@
 	dir = 8
 	},
 /obj/machinery/disposal,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "fP" = (
@@ -2237,6 +2245,9 @@
 	dir = 1;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
@@ -2881,12 +2892,22 @@
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
 "jn" = (
-/obj/machinery/power/apc/autoname/east,
-/obj/cable{
-	icon_state = "0-8"
+/obj/disposalpipe/segment/sewage{
+	dir = 4
 	},
-/turf/floor/grey,
-/area/station/bridge)
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "jp" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -3343,6 +3364,13 @@
 	},
 /turf/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
+"kQ" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/cable,
+/obj/machinery/power/apc/autoname/south,
+/turf/floor/plating,
+/area/station/atmos/hookups/south)
 "kR" = (
 /obj/cable{
 	icon_state = "0-8"
@@ -4287,9 +4315,6 @@
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
 "of" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 8;
@@ -6561,6 +6586,9 @@
 /obj/access_spawn/engineering_engine,
 /obj/firedoor_spawn,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "we" = (
@@ -6627,6 +6655,9 @@
 /area/station/mining/lobby)
 "wo" = (
 /obj/machinery/light/fluorescent,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "wp" = (
@@ -6968,6 +6999,13 @@
 "xy" = (
 /turf/wall,
 /area/station/storage/tech)
+"xz" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "xA" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -7671,6 +7709,9 @@
 	dir = 4
 	},
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -7839,6 +7880,9 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "Ap" = (
@@ -8398,6 +8442,9 @@
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9037,6 +9084,12 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"El" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "Em" = (
 /obj/cryotron,
 /turf/floor,
@@ -9175,6 +9228,9 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/random_item_spawner/furniture_parts/one_or_zero,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9256,6 +9312,11 @@
 "EV" = (
 /obj/disposalpipe/junction/right/south,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "EW" = (
@@ -9837,6 +9898,9 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/cable{
+	icon_state = "1-8"
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9915,6 +9979,19 @@
 "Hd" = (
 /obj/ladder/auto,
 /turf/floor/cautionblack,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
+"He" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
@@ -10382,6 +10459,12 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"ID" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "IE" = (
 /obj/machinery/sleep_console{
 	dir = 4
@@ -11626,6 +11709,14 @@
 	},
 /turf/floor/plating,
 /area/station/crew_quarters/quarters_north)
+"Na" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "Nb" = (
 /obj/disposalpipe/segment/sewage,
 /turf/floor/darkblueblack{
@@ -12595,6 +12686,9 @@
 	dir = 4
 	},
 /obj/machinery/light_switch/south,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "Qf" = (
@@ -13148,6 +13242,9 @@
 	})
 "Sc" = (
 /obj/table/reinforced/auto,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "Sd" = (
@@ -13417,6 +13514,14 @@
 "Tp" = (
 /turf/wall/asteroid/gehenna/z3,
 /area/station/crew_quarters/arcade)
+"Ts" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable,
+/obj/machinery/power/apc/autoname/south,
+/turf/floor/plating,
+/area/station/atmos/hookups/central)
 "Tt" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -57739,7 +57844,7 @@ Jz
 Ws
 lZ
 ue
-jn
+wD
 da
 iT
 VU
@@ -62944,7 +63049,7 @@ Wx
 Fm
 HL
 cV
-FX
+kQ
 qx
 Tv
 YX
@@ -63245,7 +63350,7 @@ eD
 aE
 dx
 HL
-WB
+He
 FX
 Yz
 Mm
@@ -63484,8 +63589,8 @@ HB
 HB
 HB
 pK
-ZH
-Ox
+jn
+Ts
 rq
 Qm
 Pg
@@ -65659,7 +65764,7 @@ el
 Ll
 CW
 aI
-Ll
+El
 kC
 rl
 ui
@@ -66563,9 +66668,9 @@ ef
 eb
 Fi
 Ao
-SH
-Ll
-Ll
+xz
+ID
+Na
 op
 hS
 hS
