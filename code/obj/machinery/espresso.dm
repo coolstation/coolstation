@@ -211,6 +211,7 @@
 	var/obj/item/reagent_containers/food/drinks/carafe/my_carafe
 	var/default_carafe = /obj/item/reagent_containers/food/drinks/carafe
 	var/image/fluid_image
+	var/obj/item/coffee_pod/an_pod
 	throw_speed = 2
 	throw_range = 6
 	throwforce = 10
@@ -221,6 +222,13 @@
 		if (ispath(src.default_carafe))
 			src.my_carafe = new src.default_carafe (src)
 		src.update()
+
+	disposing()
+		qdel(src.an_pod)
+		an_pod = null
+		qdel(src.my_carafe)
+		my_carafe = null
+		..()
 
 	throw_end(list/params, turf/thrown_from)
 		. = ..()
@@ -253,6 +261,13 @@
 				user.show_text ("You place the [src.carafe_name] into the [src].")
 				src.update()
 				return ..()
+		else if (istype(W, /obj/item/coffee_pod))
+			if (!src.an_pod)
+				user.drop_item()
+				an_pod = W
+				W.set_loc(src)
+				user.show_text ("You put [W] into [src].")
+		else ..()
 
 	attack_hand(mob/user as mob)
 		if (can_reach(user,src))
@@ -261,9 +276,15 @@
 				if (!(status & (NOPOWER|BROKEN)))
 					switch (alert("What would you like to do with [src]?",,"Brew coffee","Remove carafe","Nothing"))
 						if ("Brew coffee")
-							for(var/obj/item/reagent_containers/food/drinks/carafe/C in src.contents)
-								C.reagents.add_reagent("coffee_fresh",100)
-								C.reagents.set_reagent_temp(T0C + 60) //kinda want it to be 80 but tolerances + no cooloff, this is good enough
+							if (my_carafe)
+								if (src.an_pod)
+									my_carafe.reagents.add_reagent(an_pod.flavour,100 * an_pod.flavour_to_coffee_ratio)
+									my_carafe.reagents.add_reagent("coffee_fresh",100 * (1 - an_pod.flavour_to_coffee_ratio))
+									qdel(src.an_pod)
+									an_pod = null
+								else
+									my_carafe.reagents.add_reagent("coffee_fresh",100)
+								my_carafe.reagents.set_reagent_temp(T0C + 60) //kinda want it to be 80 but tolerances + no cooloff, this is good enough
 								playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 						if ("Remove carafe")
 							if (!src.my_carafe)
@@ -274,7 +295,7 @@
 								return
 							user.put_in_hand_or_drop(src.my_carafe)
 							src.my_carafe = null
-							user.show_text("You have removed the [src.carafe_name] from the [src].")
+							user.show_text("You have removed the [src.carafe_name] from [src].")
 							src.update()
 						if ("Nothing")
 							return

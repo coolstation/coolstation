@@ -2162,3 +2162,27 @@
 				boutput(user, "\The [src] can't open \the [B]!")
 		else //screwdriver to remove, etc. ?
 			return //no further action
+
+///More azone-friendly reagent skullduggery, but these don't contain reagents directly. You have to brew them.
+/obj/item/coffee_pod
+	name = "coffee pod"
+	desc = "A capsule filled with ground coffee and flavouring, for use with a coffeemaker."
+	icon = 'icons/obj/foodNdrink/espresso.dmi'
+	icon_state = "coffee_pod"
+	w_class = W_CLASS_TINY
+	rc_flags = 0
+	var/flavour = "coffee_fresh"
+	var/flavour_to_coffee_ratio = 0.3 // 30/100u non-coffee by default
+	color = "#6e4e1d"
+
+/obj/item/coffee_pod/random
+	desc = "A capsule filled with ground coffee and flavouring, for use with a coffeemaker. This one seems to be for adventurous folks."
+
+	New()
+		..()
+		if (all_functional_reagent_ids.len > 1)
+			flavour = pick(all_functional_reagent_ids)
+		else
+			flavour = "coffee_fresh"
+
+		color = "#[random_hex(6)]"
