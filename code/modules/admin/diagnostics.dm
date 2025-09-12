@@ -17,7 +17,7 @@ proc/debug_map_apc_count(delim,zlim)
 	var/list/apcs = new()
 	var/list/manual_apcs = new()
 	for(var/obj/machinery/power/apc/C in machine_registry[MACHINES_POWER])
-		if(zlim && C.z != zlim)
+		if(zlim && C.z in zlim)
 			continue
 
 		if(C.areastring)

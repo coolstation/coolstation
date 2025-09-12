@@ -818,7 +818,11 @@ var/f_color_selector_handler/F_Color_Selector
 			var/name = details["name"]
 			text2file("\[[timestamp]\] [file],[line]: [name]", "errors.log")
 #ifndef PREFAB_CHECKING
-	var/apc_error_str = debug_map_apc_count("\n", zlim=Z_LEVEL_STATION)
+	#ifdef Z3_IS_A_STATION_LEVEL
+	var/apc_error_str = debug_map_apc_count("\n", zlim=list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS))
+	#else
+	var/apc_error_str = debug_map_apc_count("\n", zlim=list(Z_LEVEL_STATION))
+	#endif
 	if (!is_blank_string(apc_error_str))
 		text2file(apc_error_str, "errors.log")
 #endif
