@@ -91,7 +91,7 @@
 
 	else
 		if (target.lying)
-			src.visible_message("<span class='notice'>[src] shakes [target], trying to wake them up!</span>")
+			src.visible_message("<span class='notice'>[src] shakes [target], trying to wake [him_or_her(target)] up!</span>")
 		else if(target.hasStatus("shivering"))
 			src.visible_message("<span class='alert'><B>[src] shakes [target], trying to warm up!</B></span>")
 			target.changeStatus("shivering", -2 SECONDS)
@@ -693,7 +693,7 @@
 		msgs.played_sound = "punch"
 
 		if (src != target && iswrestler(src) && prob(66))
-			msgs.base_attack_message = "<span class='alert'><B>[src]</b> winds up and delivers a backfist to [target], sending them flying!</span>"
+			msgs.base_attack_message = "<span class='alert'><B>[src]</b> winds up and delivers a backfist to [target], sending [him_or_her(target)] flying!</span>"
 			damage += 4
 			msgs.after_effects += /proc/wrestler_backfist
 
@@ -806,7 +806,7 @@
 				if (BORG.part_head.ropart_take_damage(rand(20,40),0) == 1)
 					BORG.compborg_lose_limb(BORG.part_head)
 				if (!BORG.anchored && prob(30))
-					user.visible_message("<span class='alert'><B>...and sends them flying!</B></span>")
+					user.visible_message("<span class='alert'><B>...and sends [him_or_her(BORG)] flying!</B></span>")
 					send_flying = 2
 
 	else if (isAI(target))
@@ -819,7 +819,7 @@
 		playsound(user.loc, "sound/impact_sounds/Metal_Clang_3.ogg", 50, 1)
 		damage = 10
 		if (!target.anchored && prob(30))
-			user.visible_message("<span class='alert'><B>...and sends them flying!</B></span>")
+			user.visible_message("<span class='alert'><B>...and sends [him_or_her(target)] flying!</B></span>")
 			send_flying = 2
 
 	if (send_flying == 2)
@@ -1285,7 +1285,7 @@
 
 				var/turf/T = get_edge_target_turf(src, src.dir)
 				if (isturf(T))
-					src.visible_message("<span class='alert'><B>[src] savagely punches [target], sending them flying!</B></span>")
+					src.visible_message("<span class='alert'><B>[src] savagely punches [target], sending [him_or_her(target)] flying!</B></span>")
 					target.throw_at(T, 10, 2)
 
 	if (src.bioHolder.HasEffect("revenant"))
@@ -1348,7 +1348,7 @@
 		if (prob(60))
 			src.visible_message("<span class='alert'><B>[src] dodges the blow by [M]!</B></span>")
 		else
-			src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking them to the ground!</B></span>")
+			src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking [him_or_her(M)] to the ground!</B></span>")
 			if (prob(50))
 				step_away(M, src, 15)
 			else

@@ -110,7 +110,7 @@
 		boutput(user, "<span class='alert'>You need to be closer to the operating table.</span>")
 		return
 	if (get_dist(user,O) > 1)
-		boutput(user, "<span class='alert'>Your target needs to be near you to put them on the operating table.</span>")
+		boutput(user, "<span class='alert'>Your target needs to be near you to put [ismob(O) ? him_or_her(O) : "it"] on the operating table.</span>")
 		return
 
 	var/mob/living/carbon/C = O

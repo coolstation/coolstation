@@ -1213,7 +1213,7 @@
 							if (prob(40))
 								var/turf/T = get_edge_target_turf(user, user.dir)
 								if (isturf(T))
-									src.visible_message("<span class='alert'><B>[user] savagely punches [src], sending them flying!</B></span>")
+									src.visible_message("<span class='alert'><B>[user] savagely punches [src], sending [him_or_her(src)] flying!</B></span>")
 									src.throw_at(T, 10, 2)
 						/*if (user.glove_weaponcheck())
 							user.energyclaws_attack(src)*/

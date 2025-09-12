@@ -142,7 +142,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				src.put_in_hand_or_drop(W)
 				src.visible_message("<span class='alert'><B>[src] grabs the [W.name] out of [M]'s hands, shoving [M] to the ground!</B></span>")
 			else
-				src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking them to the ground!</B></span>")
+				src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking [him_or_her(M)] to the ground!</B></span>")
 			M.changeStatus("weakened", 10 SECONDS)
 			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 65, 1)
 			SPAWN_DBG(2 SECONDS)

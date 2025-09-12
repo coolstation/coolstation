@@ -521,7 +521,7 @@
 						src.contributors += user
 					if(do_after(user, 3 SECONDS)) // Same as the gibber and reclaimer. Was 20 (Convair880).
 						if(src && W && W.loc == user && C)
-							user.visible_message("<span class='alert'>[src.name] grabs [C] and devours them ravenously!</span>")
+							user.visible_message("<span class='alert'>[src.name] grabs [C] and devours [him_or_her(C)] ravenously!</span>")
 							logTheThing("combat", user, (C), "feeds [constructTarget(C,"combat")] to a man-eater at [log_loc(src)].")
 							message_admins("[key_name(user)] feeds [key_name(C, 1)] ([isdead(C) ? "dead" : "alive"]) to a man-eater at [log_loc(src)].")
 							if(C.mind)
