@@ -120,28 +120,66 @@ var/global/list/dirty_power_machines = list()
 		var/datum/powernet_graph_node/node_two = adjacent_nodes[2]
 		var/datum/powernet_graph_link/link_one = adjacent_nodes[node_one]
 		var/datum/powernet_graph_link/link_two = adjacent_nodes[node_two]
-		//merge links into one
-		link_one.cables |= link_two.cables
-		link_one.cables += physical_node
-		physical_node.is_a_node = null
-		physical_node = null
-		for(var/obj/cable/C as anything in link_one.cables)
-			C.is_a_link = link_one
-		link_one.expected_length = length(link_one.cables)
-		link_one.adjacent_nodes = list(node_one, node_two)
-		//kill superfluous link datum
-		link_two.cables = null
-		link_two.adjacent_nodes = null
-		qdel(link_two)
-		//update node graph
-		node_one.adjacent_nodes -= src
-		node_two.adjacent_nodes -= src
-		if (node_two in node_one.adjacent_nodes) //They're already linked, fuck
-			node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one))
-			node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one))
+		//this branching sucks
+		if (link_one)
+			if (link_two) //merge links into one
+				link_one.cables |= link_two.cables
+				link_one.cables += physical_node
+				physical_node.is_a_node = null
+				physical_node = null
+				for(var/obj/cable/C as anything in link_one.cables)
+					C.is_a_link = link_one
+				link_one.expected_length = length(link_one.cables)
+				link_one.adjacent_nodes = list(node_one, node_two)
+				//kill superfluous link datum
+				link_two.cables = null
+				link_two.adjacent_nodes = null
+				qdel(link_two)
+				//update node graph
+				node_one.adjacent_nodes -= src
+				node_two.adjacent_nodes -= src
+				if (node_two in node_one.adjacent_nodes) //They're already linked, fuck
+					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one))
+					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one))
+				else
+					node_one.adjacent_nodes[node_two] = link_one
+					node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
+			else //only link_one is a link datum
+				link_one.cables += physical_node
+				physical_node.is_a_node = null
+				physical_node.is_a_link = link_one
+				physical_node = null
+				link_one.expected_length = length(link_one.cables)
+				link_one.adjacent_nodes = list(node_one, node_two)
+				//update node graph
+				node_one.adjacent_nodes -= src
+				node_two.adjacent_nodes -= src
+				if (node_two in node_one.adjacent_nodes)
+					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one))
+					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one))
+				else
+					node_one.adjacent_nodes[node_two] = link_one
+					node_two.adjacent_nodes[node_one] = link_one
 		else
-			node_one.adjacent_nodes[node_two] = link_one
-			node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
+			if (link_two) //only link_two is a link datum
+				link_two.cables += physical_node
+				physical_node.is_a_node = null
+				physical_node.is_a_link = link_two
+				physical_node = null
+				link_two.expected_length = length(link_two.cables)
+				link_two.adjacent_nodes = list(node_one, node_two)
+				//update node graph
+				node_one.adjacent_nodes -= src
+				node_two.adjacent_nodes -= src
+				if (node_two in node_one.adjacent_nodes)
+					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_two : list(node_one.adjacent_nodes[node_two]) + link_two))
+					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_two : list(node_two.adjacent_nodes[node_one]) + link_two))
+				else
+					node_one.adjacent_nodes[node_two] = link_two
+					node_two.adjacent_nodes[node_one] = link_two
+			else //neither side is a link datum
+				physical_node.is_a_link = new(list(physical_node), list(node_one, node_two))
+				physical_node.is_a_node = null
 
 	previous_adjacent_nodes -= adjacent_nodes
 
