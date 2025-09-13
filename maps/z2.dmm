@@ -15793,6 +15793,14 @@
 /obj/table/auto,
 /obj/item/plate,
 /obj/item/reagent_containers/food/snacks/burger/moldy,
+/obj/item/coffee_pod/random{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/item/coffee_pod/random{
+	pixel_x = -9;
+	pixel_y = 6
+	},
 /turf/floor/specialroom/cafeteria,
 /area/iomoon/base)
 "bwF" = (
@@ -20903,6 +20911,15 @@
 /area/crypt/graveyard)
 "bMb" = (
 /obj/table/auto,
+/obj/decal/fakeobjects/coffeemaker,
+/obj/item/coffee_pod/random{
+	pixel_x = 11;
+	pixel_y = -6
+	},
+/obj/item/coffee_pod/random{
+	pixel_x = 11;
+	pixel_y = 6
+	},
 /turf/floor/carpet/office,
 /area/hospital)
 "bMc" = (
@@ -51786,6 +51803,16 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"lgu" = (
+/obj/table/wood/round/auto,
+/obj/item/coffee_pod/random{
+	pixel_x = 6
+	},
+/obj/item/coffee_pod/random{
+	pixel_x = -4
+	},
+/turf/floor/carpet/arcade,
+/area/sim/racing_entry)
 "lgU" = (
 /obj/machinery/light,
 /turf/floor/shuttle,
@@ -52359,6 +52386,11 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/carpet/red/standard/edge/south,
 /area/upper_arctic/fita/director)
+"mmH" = (
+/obj/table/auto,
+/obj/decal/fakeobjects/coffeemaker,
+/turf/floor/specialroom/cafeteria,
+/area/iomoon/base)
 "moh" = (
 /obj/machinery/door/poddoor/buff/staging,
 /turf/floor/setpieces/gauntlet,
@@ -53196,6 +53228,11 @@
 /obj/item/storage/box/donkpocket_kit,
 /turf/floor/white,
 /area/wizard_station)
+"nLX" = (
+/obj/table/wood/round/auto,
+/obj/machinery/coffeemaker/generic,
+/turf/floor/carpet/arcade,
+/area/sim/racing_entry)
 "nMm" = (
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -54135,6 +54172,13 @@
 	},
 /turf/floor/arctic/snow/ice,
 /area/lower_arctic/mining)
+"pKH" = (
+/obj/item/coffee_pod/random{
+	pixel_x = 9;
+	pixel_y = -7
+	},
+/turf/floor/carpet/office,
+/area/hospital)
 "pKT" = (
 /obj/securearea{
 	desc = "It looks pretty dangerous in there.";
@@ -74856,7 +74900,7 @@ izT
 bup
 buM
 buM
-buM
+mmH
 bwE
 izT
 buK
@@ -96141,7 +96185,7 @@ aiw
 alv
 any
 any
-any
+pKH
 any
 abx
 aAz
@@ -97617,8 +97661,8 @@ ckr
 ckr
 ckZ
 cmq
-cmI
-cmI
+nLX
+lgu
 cmq
 cmf
 "}

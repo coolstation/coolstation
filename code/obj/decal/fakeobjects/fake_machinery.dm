@@ -144,3 +144,13 @@
 	icon_state = "fab"
 	anchored = 1
 	density = 1
+
+//Broken grody coffee maker so I can justify scattering coffee cups around azones
+/obj/decal/fakeobjects/coffeemaker
+	name = "coffeemaker"
+	desc = "Had this still worked, it'd probably make something undrinkable."
+	icon = 'icons/obj/foodNdrink/espresso.dmi'
+	icon_state = "coffeemaker_effed"
+	density = 1
+	anchored = 1
+	object_flags = CAN_BE_LIFTED
