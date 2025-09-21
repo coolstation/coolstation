@@ -374,14 +374,12 @@ var/list/headset_channel_lookup
 		if(isnewplayer(R))
 			continue
 		if (R.say_understands(M, lang_id))
-			if (!isghostdrone(R) && (!ishuman(M) || (ishuman(M) && M.wear_mask && M.wear_mask.vchange))) //istype(M.wear_mask, /obj/item/clothing/mask/gas/voice))
-				heard_masked += R
-			else if (isghostdrone(R))
+			if (isghostdrone(R))
 				heard_voice += R
-/*
-			else if(!isflock(R)) // a special exemption for flockdrones/flockminds who never get to hear normal radio
+			else if (!ishuman(M) || (ishuman(M) && M.wear_mask && M.wear_mask.vchange)) //istype(M.wear_mask, /obj/item/clothing/mask/gas/voice))
+				heard_masked += R
+			else //if (!isflock(R)) <- flock never got to hear normal radio, but RIP flock
 				heard_normal += R
-*/
 		else
 			if (M.voice_message)
 				heard_voice += R
