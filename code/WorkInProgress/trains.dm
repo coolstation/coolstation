@@ -60,19 +60,31 @@ var/datum/train_controller/train_spotter
 
 /datum/train_controller/proc/config()
 	var/dat = "<html><body><title>Train Spotter</title>"
+	dat += "<style> .traintitle { display:block; color:#B3AFA9; text-shadow: 2px 2px #2B2119; padding: 2px 5px; margin: 2px;} </style>"
 	dat += "<b><u>Train Controls</u></b><HR>"
 
-	dat += "<a href='byond://?src=\ref[src];create=1'>Create New Train</a><br><small>"
+	dat += "<a href='byond://?src=\ref[src];create=1'>Create New Train</a> - "
+	dat += "<a href='byond://?src=\ref[src];RandomTrainEvent'>Random Train</a><small>"
 
 	for (var/datum/train_conductor/conductor in src.conductors)
-		dat += "<HR>"
-		dat += "<b><a href='byond://?src=\ref[src];inspect=\ref[conductor]'>Variables for Train #[conductor.train_id]</a></b><br><HR>"
+		dat += "<div style=\"min-height: 1cm; background: #F0AF5B; border: 2px; border-radius: 5px; margin: 5px; padding: 3px;\">"
+		dat += "<b class='traintitle'>Train #[conductor.train_id]</b><br>"
+		dat += "<b><a href='byond://?src=\ref[src];inspect=\ref[conductor]'>Variables for Train #[conductor.train_id]</a></b> -	<b>[length(conductor.cars)]</b> cars -- "
+		dat += "<a href='byond://?src=\ref[src];setspeed=\ref[conductor];newspeed=3'>Super Slow</a> - "
+		dat += "<a href='byond://?src=\ref[src];setspeed=\ref[conductor];newspeed=0.5'>Normal</a> - "
+		dat += "<a href='byond://?src=\ref[src];setspeed=\ref[conductor];newspeed=0.125'>Stupid Fast</a><br>"
+
+		if(!conductor.active)
+			dat += "<a href='byond://?src=\ref[src];loadpreset=\ref[conductor]'>Load Preset</a><br>"
+
 		if(conductor.train_z && conductor.train_front_x && conductor.train_front_y && length(conductor.cars))
 			if(!conductor.active)
-				dat += "<a href='byond://?src=\ref[src];start=\ref[conductor]'>Start at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].</a><br>"
-		if(conductor.active)
-			dat += "<a href='byond://?src=\ref[src];stop=\ref[conductor]'>Stop train</a><br>"
-		dat += "<a href='byond://?src=\ref[src];loadpreset=\ref[conductor]'>Load Preset</a><br>"
+				dat += "<a href='byond://?src=\ref[src];start=\ref[conductor]'><b>Start</b> at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].</a><br>"
+			else
+				dat += "<a href='byond://?src=\ref[src];stop=\ref[conductor]'><b>Stop</b> train</a><br>"
+
+		dat += "<a href='byond://?src=\ref[src];delete=\ref[conductor]'>Delete Train</a>"
+		dat += "</div>"
 
 	dat += "</small></body></html>"
 
@@ -113,6 +125,21 @@ var/datum/train_controller/train_spotter
 					conductor.train_front_y = preset.y
 				if(preset.z)
 					conductor.train_z = preset.z
+	if (href_list["setspeed"])
+		var/datum/train_conductor/conductor = locate(href_list["setspeed"]) in src.conductors
+		if(istype(conductor))
+			var/new_speed = text2num(href_list["newspeed"])
+			if(new_speed == 0)
+				new_speed = 0.5
+
+			conductor.movement_delay = new_speed
+	if (href_list["delete"])
+		// unwind & delete the train
+		var/datum/train_conductor/conductor = locate(href_list["delete"]) in src.conductors
+		if(istype(conductor))
+			conductor.active = FALSE
+			qdel(conductor)
+
 	src.config()
 
 /* ----------- THE TRAIN PRESETS, FOR FUN STUFFS ----------- */
@@ -126,11 +153,21 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/y = 0
 	var/z = 0
 
+/*
+
+## These are kinda confusing to see in the preset list tbh. ##
+
 /datum/train_preset/fast_af
 	movement_delay = 0.125
 
 /datum/train_preset/slow
 	movement_delay = 3
+
+*/
+
+/datum/train_preset/short_cargo
+	movement_delay = 3
+	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
 
 /datum/train_preset/shipping_cars
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping)
