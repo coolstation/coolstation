@@ -101,9 +101,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 			src.zone_sel.change_hud_style('icons/ui/hud_human.dmi')
 			src.attach_hud(zone_sel)
 
-		for (var/datum/equipmentHolder/EE in equipment)
-			EE.after_setup(hud)
-
 		burning_image.icon = 'icons/mob/critter.dmi'
 		burning_image.icon_state = null
 
@@ -118,6 +115,9 @@ ABSTRACT_TYPE(/mob/living/critter)
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
+
+		for (var/datum/equipmentHolder/EE in equipment)
+			EE.after_setup(hud)
 
 		health_update_queue |= src
 
