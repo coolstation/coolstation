@@ -63,8 +63,9 @@ var/datum/train_controller/train_spotter
 	dat += "<style> .traintitle { display: inline-block; color:#FFFFFF; background: #3B3632; padding: 2px; text-align: center; border-radius: 5px; width: 100%; left: -2px;} .buttan { display:inline-block; border-radius: 5px; margin: 3px; padding: 3px; width: 3cm; height: 2.5em; text-align:center; font-weight: bold;} </style>"
 	dat += "<h2 style='display:inline-block; text-align:center; background:#FFB347; color: black; width:98%;'>Train Controls</h2><HR>"
 
-	dat += "<a class='buttan' style='background: #20B142; color:#FFFFFF; position: absolute; left: 5%; font-weight: bold;' href='byond://?src=\ref[src];create=1'>Create New Train</a> "
-	dat += "<a class='buttan' style='background: #7E5AC9; color: #FFFFFF; position: absolute; right: 5%; font-weight:bold;'  href='byond://?src=\ref[src];RandomTrainEvent'>Random Train<br>(TODO)</a><small><div style='position: absolute; top: 4cm; width: 95%; margin:auto;'>"
+	dat += "<a class='buttan' style='background: #20B142; color:#FFFFFF; position: absolute; left: 2%; font-weight: bold;' href='byond://?src=\ref[src];create=1'>Create New Train</a> "
+	dat += "<a class='buttan' style='background: #DB2828; color: #FBD608; position: absolute; left: 34%; font-weight: bold;' href='byond://?src=\ref[src];fucku=1'>Fuck This Y<br>In Particular</a> "
+	dat += "<a class='buttan' style='background: #7E5AC9; color: #FFFFFF; position: absolute; right: 2%; font-weight:bold;'  href='byond://?src=\ref[src];RandomTrainEvent=1'>Random Train<br>(TODO)</a><small><div style='position: absolute; top: 4cm; width: 95%; margin:auto;'>"
 
 	for (var/datum/train_conductor/conductor in src.conductors)
 		dat += "<div style='height: 3cm; background: #676457; border: 2px; border-radius: 5px; padding: 3px; position: relative; width: 90%;'>"
@@ -115,6 +116,8 @@ var/datum/train_controller/train_spotter
 				if(preset.name)
 					conductor.basic_name = preset.name
 				if(length(preset.cars))
+					for(var/obj/traincar/car in conductor.cars)
+						qdel(car)
 					conductor.cars.Cut()
 					conductor.cars.Add(preset.cars)
 				if(preset.movement_delay)
@@ -139,6 +142,20 @@ var/datum/train_controller/train_spotter
 		if(istype(conductor))
 			conductor.active = FALSE
 			qdel(conductor)
+
+	if (href_list["fucku"])
+		// fuck this Y coordinate in particular, with a vengeance
+		// carves the map up from stem to stern
+		logTheThing("admin", usr, null, "Fucked everything on Y: [usr.y] Z: [usr.z] with a train")
+		var/datum/train_conductor/the_fckr = new()
+		the_fckr.train_id = 666 //  \m/
+		the_fckr.cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
+		the_fckr.train_z = usr.z
+		the_fckr.train_front_y = usr.y
+		the_fckr.train_not_yet_loaded_x = world.maxx
+		the_fckr.movement_delay = 0.25 // hard n fast
+		the_fckr.active=TRUE
+		the_fckr.train_loop()
 
 	src.config()
 
