@@ -59,34 +59,34 @@ var/datum/train_controller/train_spotter
 		presets.Add(new preset_type)
 
 /datum/train_controller/proc/config()
-	var/dat = "<html><body><title>Train Spotter</title>"
-	dat += "<style> .traintitle { display:block; color:#B3AFA9; text-shadow: 2px 2px #2B2119; padding: 2px 5px; margin: 2px;} </style>"
-	dat += "<b><u>Train Controls</u></b><HR>"
+	var/dat = "<html><head><title>Train Spotter</title></head><body style='background: #dad8b6;'>"
+	dat += "<style> .traintitle { display: inline-block; color:#FFFFFF; background: #3B3632; padding: 2px; text-align: center; border-radius: 5px; width: 100%; left: -2px;} .buttan { display:inline-block; border-radius: 5px; margin: 3px; padding: 3px; width: 3cm; height: 2.5em; text-align:center; font-weight: bold;} </style>"
+	dat += "<h2 style='display:inline-block; text-align:center; background:#FFB347; color: black; width:98%;'>Train Controls</h2><HR>"
 
-	dat += "<a href='byond://?src=\ref[src];create=1'>Create New Train</a> - "
-	dat += "<a href='byond://?src=\ref[src];RandomTrainEvent'>Random Train</a><small>"
+	dat += "<a class='buttan' style='background: #20B142; color:#FFFFFF; position: absolute; left: 5%; font-weight: bold;' href='byond://?src=\ref[src];create=1'>Create New Train</a> "
+	dat += "<a class='buttan' style='background: #7E5AC9; color: #FFFFFF; position: absolute; right: 5%; font-weight:bold;'  href='byond://?src=\ref[src];RandomTrainEvent'>Random Train<br>(TODO)</a><small><div style='position: absolute; top: 4cm; width: 95%; margin:auto;'>"
 
 	for (var/datum/train_conductor/conductor in src.conductors)
-		dat += "<div style=\"min-height: 1cm; background: #F0AF5B; border: 2px; border-radius: 5px; margin: 5px; padding: 3px;\">"
-		dat += "<b class='traintitle'>Train #[conductor.train_id]</b><br>"
-		dat += "<b><a href='byond://?src=\ref[src];inspect=\ref[conductor]'>Variables for Train #[conductor.train_id]</a></b> -	<b>[length(conductor.cars)]</b> cars -- "
+		dat += "<div style='height: 3cm; background: #676457; border: 2px; border-radius: 5px; padding: 3px; position: relative; width: 90%;'>"
+		dat += "<b class='traintitle'>Train #[conductor.train_id]<span style='display: inline-block; margin: auto; width: 25%;'>-</span>[length(conductor.cars)] cars</b><br>"
+		dat += "<b><a href='byond://?src=\ref[src];inspect=\ref[conductor]'>Variables for Train #[conductor.train_id]</a></b><br><b>Train Speed</b>: "
 		dat += "<a href='byond://?src=\ref[src];setspeed=\ref[conductor];newspeed=3'>Super Slow</a> - "
 		dat += "<a href='byond://?src=\ref[src];setspeed=\ref[conductor];newspeed=0.5'>Normal</a> - "
 		dat += "<a href='byond://?src=\ref[src];setspeed=\ref[conductor];newspeed=0.125'>Stupid Fast</a><br>"
 
 		if(!conductor.active)
-			dat += "<a href='byond://?src=\ref[src];loadpreset=\ref[conductor]'>Load Preset</a><br>"
+			dat += "<a href='byond://?src=\ref[src];loadpreset=\ref[conductor]'>Load Preset</a>"
 
 		if(conductor.train_z && conductor.train_front_x && conductor.train_front_y && length(conductor.cars))
 			if(!conductor.active)
-				dat += "<a href='byond://?src=\ref[src];start=\ref[conductor]'><b>Start</b> at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].</a><br>"
+				dat += "<a class='buttan' style='background: #20B142; color: #FFFFFF; position:absolute; left: 5%; bottom: 5%;' href='byond://?src=\ref[src];start=\ref[conductor]'><b>Start</b><br>(at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].)</a>"
 			else
-				dat += "<a href='byond://?src=\ref[src];stop=\ref[conductor]'><b>Stop</b> train</a><br>"
+				dat += "<a class='buttan' style='background: #DB4B4B; color: #FFFFFF; position:absolute; left: 5%; bottom: 5%;' href='byond://?src=\ref[src];stop=\ref[conductor]'><b>Stop</b> train</a>"
 
-		dat += "<a href='byond://?src=\ref[src];delete=\ref[conductor]'>Delete Train</a>"
-		dat += "</div>"
+		dat += "<a class='buttan' style='background: #DB2828; color:#FFFFFF; position:absolute; right: 5%; bottom: 5%;' href='byond://?src=\ref[src];delete=\ref[conductor]'>Delete Train</a>"
+		dat += "</div><br>"
 
-	dat += "</small></body></html>"
+	dat += "</div></small></body></html>"
 
 	usr.Browse(dat,"window=train_spotter;size=400x600")
 
