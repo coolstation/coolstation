@@ -335,6 +335,32 @@
 /obj/cable/reinforced/ex_act(severity)
 	return //nah
 
+/obj/cable/proc/get_connections(unmarked = 0)
+	. = list()	// this will be a list of all connected power objects
+	. += special_d1(unmarked, TRUE)
+	. += power_list(get_step(src, d2), src, d2, unmarked, TRUE)
+
+	//changed this to only allowed same-tile connections if both sides are knots.
+	if (d1 == 0)
+		for(var/obj/cable/C in src.loc)
+			if(C != src && C.d1 == 0 && !C.open_circuit) // my turf, sharing a central knot
+				. |= C
+
+/obj/cable/proc/get_connections_one_dir(is_it_d2, unmarked = 0)
+	. = list()	// this will be a list of all connected power objects
+	var/d = is_it_d2 ? d2 : d1
+	var/turf/T = get_step(src, d)
+	. += power_list(T, src , d, unmarked, TRUE)
+
+	if (d == 0)
+		for(var/obj/cable/C in src.loc)
+			if(C != src && C.d1 == 0 && !C.open_circuit) // my turf, sharing a central knot
+				. += C
+
+//A little loop-out that vertical cables can override
+/obj/cable/proc/special_d1(unmarked = 0, cables_only = 0)
+	return power_list(get_step(src, d1), src , d1, unmarked, TRUE)
+
 //(should probably deprecate for get_powernet, since most applications of this end up looking up the powernet themselves anyway)
 // returns the netnumber powernet this cable belongs to
 /obj/cable/proc/get_netnumber()
@@ -744,3 +770,29 @@
 		logTheThing("station", user, null, "lays a cable[powered == 1 ? " (powered when connected)" : ""] at [log_loc(src)].")
 
 	return
+
+/obj/cable/vertical
+	name = "cable tray"
+	//we don't use d1 for this one
+	var/target_z = 1
+
+	New()
+		..()
+		//matching the appearance of /obj/machinery/power/data_terminal/cable_tray, which was itself a WIP but shh
+		var/image/tray_img = image('icons/obj/machines/power.dmi', "dterm", layer = FLOOR_EQUIP_LAYER1)
+		tray_img.color = "#5CF"
+		UpdateOverlays(tray_img, "tray")
+
+/obj/cable/get_connections_one_dir(is_it_d2, unmarked = 0)
+	if (is_it_d2)
+		..()
+	else
+		return special_d1()
+
+/obj/cable/vertical/special_d1(unmarked = 0, cables_only = 0)
+	. = list()
+	var/turf/T = locate(src.x, src.y, target_z)
+	if (T)
+		for (var/obj/cable/vertical/C in T)
+			if (C.target_z == src.z)
+				. += C

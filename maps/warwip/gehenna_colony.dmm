@@ -1053,8 +1053,7 @@
 /turf/space/gehenna/desert,
 /area/gehenna/wasteland/stormy)
 "aMR" = (
-/obj/cable,
-/obj/machinery/power/data_terminal/cable_tray{
+/obj/cable/vertical{
 	target_z = 3
 	},
 /turf/floor/plating,
@@ -1429,11 +1428,9 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
-/obj/machinery/power/data_terminal/cable_tray{
+/obj/cable/vertical{
+	icon_state = "0-4";
 	target_z = 3
-	},
-/obj/cable{
-	icon_state = "0-4"
 	},
 /turf/floor/plating{
 	icon_old = "diamondtile"
@@ -8921,11 +8918,8 @@
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "gHw" = (
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/data_terminal/cable_tray{
+/obj/cable/vertical{
+	icon_state = "0-4";
 	target_z = 3
 	},
 /turf/floor/plating,
@@ -12902,15 +12896,13 @@
 /turf/floor/plating,
 /area/station/medical/maintenance)
 "jNp" = (
-/obj/cable/blue{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 3
-	},
 /obj/grille/catwalk/jen,
 /obj/cable/blue{
-	icon_state = "0-8"
+	icon_state = "2-8"
+	},
+/obj/cable/vertical/blue{
+	icon_state = "0-2";
+	target_z = 3
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
@@ -21025,14 +21017,11 @@
 /turf/floor/grey,
 /area/station/medical/robotics)
 "qlE" = (
-/obj/machinery/power/data_terminal/cable_tray{
+/obj/grille/catwalk/jen,
+/obj/cable/vertical{
+	icon_state = "0-4";
 	target_z = 3
 	},
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "qlQ" = (
@@ -23330,18 +23319,15 @@
 /turf/floor/black,
 /area/station/engine/monitoring)
 "rXy" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 3
-	},
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/cable/vertical{
+	icon_state = "0-4";
+	target_z = 3
 	},
 /turf/floor/plating,
 /area/station/medical/maintenance)
@@ -24250,12 +24236,9 @@
 /turf/floor/carpet/grime4,
 /area/station/medical/research)
 "sIK" = (
-/obj/machinery/power/data_terminal/cable_tray{
+/obj/cable/vertical{
+	icon_state = "0-8";
 	target_z = 3
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
@@ -26838,11 +26821,10 @@
 	},
 /area/gehenna)
 "uHL" = (
-/obj/machinery/power/data_terminal/cable_tray{
+/obj/machinery/light/fluorescent/red,
+/obj/cable/vertical{
 	target_z = 3
 	},
-/obj/cable,
-/obj/machinery/light/fluorescent/red,
 /turf/floor/plating,
 /area/station/medical/maintenance)
 "uHM" = (

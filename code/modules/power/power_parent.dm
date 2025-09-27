@@ -224,31 +224,6 @@ var/makingpowernetssince = 0
 
 	. -= source
 
-
-/obj/cable/proc/get_connections(unmarked = 0)
-	. = list()	// this will be a list of all connected power objects
-	var/turf/T = get_step(src, d1)
-	. += power_list(T, src , d1, unmarked, TRUE)
-	T = get_step(src, d2)
-	. += power_list(T, src, d2, unmarked, TRUE)
-
-	//changed this to only allowed same-tile connections if both sides are knots.
-	if (d1 == 0)
-		for(var/obj/cable/C in src.loc)
-			if(C != src && C.d1 == 0 && !C.open_circuit) // my turf, sharing a central knot
-				. |= C
-
-/obj/cable/proc/get_connections_one_dir(is_it_d2, unmarked = 0)
-	. = list()	// this will be a list of all connected power objects
-	var/d = is_it_d2 ? d2 : d1
-	var/turf/T = get_step(src, d)
-	. += power_list(T, src , d, unmarked, TRUE)
-
-	if (d == 0)
-		for(var/obj/cable/C in src.loc)
-			if(C != src && C.d1 == 0 && !C.open_circuit) // my turf, sharing a central knot
-				. += C
-
 /obj/machinery/power/proc/get_connections(unmarked = 0)
 
 	if(!directwired)
