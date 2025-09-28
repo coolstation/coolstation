@@ -394,6 +394,7 @@
 	//but it complicates things a lot and I'm not convinced it'd be any faster.
 	if (length(connections) != 2)
 		src.is_a_node = new() //no pnet yet, we'll be able to get one later
+		src.is_a_node.physical_node = src
 
 	//Assumption: the topology of adjacent connections is correct (no nodes that should be links or vice versa, or unincorporated stuff)
 	//Assumption: every connection we found will also find us, one more connection than they had previously.
@@ -495,7 +496,6 @@
 						src.is_a_link.cables += maybe_link.cables
 						src.is_a_link.cables += dead_node.physical_node
 						dead_node.physical_node.is_a_link = src.is_a_link
-						src.is_a_link.adjacent_nodes += neighbour_node
 					else //let's add both of us to it
 						src.is_a_link = maybe_link
 						dead_node.physical_node.is_a_link = maybe_link
@@ -507,6 +507,8 @@
 					else
 						src.is_a_link = new(list(src, dead_node.physical_node), list(neighbour_node))
 						dead_node.physical_node.is_a_link = src.is_a_link
+				src.is_a_link.adjacent_nodes -= dead_node
+				src.is_a_link.adjacent_nodes |= neighbour_node
 
 				//neighbour_node.adjacent_nodes[src.is_a_node] = maybe_link
 				//src.is_a_node.adjacent_nodes[neighbour_node] = maybe_link
@@ -627,131 +629,6 @@
 
 	src.is_a_link.expected_length = length(src.is_a_link.cables)
 
-
-
-// called when a new cable is created
-// can be 1 of 3 outcomes:
-// 1. Isolated cable (or only connects to isolated machine) -> create new powernet
-// 2. Joins to end or bridges loop of a single network (may also connect isolated machine) -> add to old network
-// 3. Bridges gap between 2 networks -> merge the networks (must rebuild lists also) (currently just calls makepowernets. welp)
-
-/*
-
-/obj/cable/proc/update_network()
-	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
-		return
-	var/turf/T = get_turf(src)
-	var/obj/cable/cable_d1 = null //locate() in (d1 ? get_step(src,d1) : orange(0, src) )
-	var/obj/cable/cable_d2 = null //locate() in (d2 ? get_step(src,d2) : orange(0, src) )
-	var/request_rebuild = 0
-
-	for (var/obj/cable/new_cable_d1 in src.get_connections_one_dir(is_it_d2 = 0))
-		cable_d1 = new_cable_d1
-		break
-
-	for (var/obj/cable/new_cable_d2 in src.get_connections_one_dir(is_it_d2 = 1))
-		cable_d2 = new_cable_d2
-		break
-
-	// due to the first two lines of this proc it can happen that some cables are left at netnum 0, oh no
-	// this is bad and should be fixed, probably by having a queue of stuff to process once current makepowernets finishes
-	// but I'm too lazy to do that, so here's a bandaid
-	if(cable_d1 && !cable_d1.netnum)
-		logTheThing("debug", src, cable_d1, "Cable \ref[src] ([src.x], [src.y], [src.z]) connected to \ref[cable_d1] which had netnum 0, rebuilding powernets.")
-		DEBUG_MESSAGE("Cable \ref[src] ([src.x], [src.y], [src.z]) connected to \ref[cable_d1] which had netnum 0, rebuilding powernets.")
-		return makepowernets()
-	if(cable_d2 && !cable_d2.netnum)
-		logTheThing("debug", src, cable_d1, "Cable \ref[src] ([src.x], [src.y], [src.z]) connected to \ref[cable_d2] which had netnum 0, rebuilding powernets.")
-		DEBUG_MESSAGE("Cable \ref[src] ([src.x], [src.y], [src.z]) connected to \ref[cable_d2] which had netnum 0, rebuilding powernets.")
-		return makepowernets()
-
-	if (cable_d1 && cable_d2)
-		if (cable_d1.netnum == cable_d2.netnum && powernets[cable_d1.netnum])
-			var/datum/powernet/PN = powernets[cable_d1.netnum]
-			PN.cables += src
-			src.netnum = cable_d1.netnum
-		else
-			var/datum/powernet/P1 = cable_d1.get_powernet()
-			var/datum/powernet/P2 = cable_d2.get_powernet()
-			src.netnum = cable_d1.netnum
-			P1.cables += src
-			if(P1.cables.len <= P2.cables.len)
-				P1.join_to(P2)
-			else
-				P2.join_to(P1)
-
-	else if (!cable_d1 && !cable_d2)
-		var/datum/powernet/PN = new()
-		powernets += PN
-		PN.cables += src
-		PN.number = length(powernets)
-		src.netnum = length(powernets)
-
-	else if (cable_d1)
-		var/datum/powernet/PN = powernets[cable_d1.netnum]
-		PN.cables += src
-		src.netnum = cable_d1.netnum
-
-	else
-		var/datum/powernet/PN = powernets[cable_d2.netnum]
-		PN.cables += src
-		src.netnum = cable_d2.netnum
-
-	if (isturf(T) && d1 == 0 && !request_rebuild)
-		for (var/obj/machinery/power/M in T.contents)
-			if(M.directwired)
-				continue
-			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
-				if(M.netnum)
-					M.powernet.nodes -= M
-					M.powernet.data_nodes -= M
-				M.netnum = src.netnum
-				M.powernet = powernets[M.netnum]
-				M.powernet.nodes += M
-				if(M.use_datanet)
-					M.powernet.data_nodes += M
-			else if(M.netnum != src.netnum) // this shouldn't actually ever happen probably
-				request_rebuild = 1
-				break
-	if(d1 != 0 && !request_rebuild)
-		var/turf/T1 = get_step(src, d1)
-		for (var/obj/machinery/power/M in T1.contents)
-			if(!M.directwired)
-				continue
-			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
-				if(M.netnum)
-					M.powernet.nodes -= M
-					M.powernet.data_nodes -= M
-				M.netnum = src.netnum
-				M.powernet = powernets[M.netnum]
-				M.powernet.nodes += M
-				if(M.use_datanet)
-					M.powernet.data_nodes += M
-			else if(M.netnum != src.netnum)
-				request_rebuild = 1
-				break
-	if(!request_rebuild)
-		var/turf/T2 = get_step(src, d2)
-		for (var/obj/machinery/power/M in T2.contents)
-			if(!M.directwired || M.netnum == -1) // APCs have -1 and don't connect directly
-				continue
-			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
-				if(M.netnum)
-					M.powernet.nodes -= M
-					M.powernet.data_nodes -= M
-				M.netnum = src.netnum
-				M.powernet = powernets[M.netnum]
-				M.powernet.nodes += M
-				if(M.use_datanet)
-					M.powernet.data_nodes += M
-			else if(M.netnum != src.netnum)
-				request_rebuild = 1
-				break
-
-	if(request_rebuild)
-		makepowernets()
-*/
-	//powernets are really in need of a renovation.  makepowernets() is called way too much and is really intensive on the server ok.
 
 // Some non-traitors love to hotwire the engine (Convair880).
 /obj/cable/proc/log_wirelaying(var/mob/user, var/cut = 0)
