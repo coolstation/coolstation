@@ -180,19 +180,23 @@
 
 /obj/reagent_dispensers/powerbank
 	name = "powerbank"
-	desc = "A fire hazard filled with lithium that stores large amounts of power."
+	desc = "A fire hazard filled with lithium that stores large amounts of power." //right now it's just filled with lithium that does nothing. Battery chemistry is another project.
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "powerbank"
-	amount_per_transfer_from_this = 25
+	amount_per_transfer_from_this = 2 //don't take the lithium!
 	capacity = 5000
 	can_break = TRUE
-	//var/charge = 0
+	var/charge = 5000 // will eventually be replaced by reagent charge
+	var/max_charge = 5000
 
 	New()
 		..()
 		reagents.add_reagent("lithium",capacity)
 		//var/datum/reagent/lithium = reagents.get_reagent("lithium")
 		//charge = lithium.volume * lithium.powerunit_capacity
+	/proc/connected()
+		//change icon state
+		return
 
 /obj/reagent_dispensers/watertank/big
 	name = "high-capacity watertank"

@@ -21,4 +21,40 @@
 
 	var/power_cut_wall = 3
 	var/time_cut_wall = 3 SECONDS
+	var/active = 0
+
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		for(var/item/I in T)
+			if(istype(I,/obj/reagent_dispensers/powerbank))
+				connect(I)
+	examine()
+		. = ..()
+		. += "The dial says there are [powerbank.value] PU left in the battery."
+
+	process()
+		if(!active)
+			processing_items.Remove(src)
+			return
+		//come back to this later, weldingtool.dm
+
+	attack_self(mob/user)
+		. = ..()
+		if(powerbank && powerbank.charge > 0)//check for plasma tank too
+			icon_state = "active"
+			active = 1
+			//play sound
+
+
+
+
+	/proc/connect(var/obj/reagent_dispensers/powerbank/I)
+		if(powerbank)
+			powerbank = null
+			//disconnect cable
+		powerbank = I
+		//play connection sound whatever
+		I.connected()
+		return
 
