@@ -264,5 +264,6 @@ var/list/obj/hotspot/fireflash/fireflashes = list()
 		REAGENT_COMBUST(location.air, src.thermal_energy)
 
 		if(_energy_released && location.parent)
-			location.parent.suspend_group_processing()
+			if (location.parent.group_processing)
+				location.parent.suspend_group_processing()
 			src.thermal_energy -= _energy_released
