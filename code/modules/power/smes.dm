@@ -99,6 +99,9 @@
 /obj/machinery/power/smes/New()
 	..()
 
+	//Overlay of the top bit of the SMES on a layer where it occludes things behind it
+	UpdateOverlays(image(src.icon, "smes-overlay", layer = FLY_LAYER), "top")
+
 	SPAWN_DBG(0.5 SECONDS)
 		dir_loop:
 			for(var/d in cardinal)
