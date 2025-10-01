@@ -325,24 +325,24 @@
 		if (W?.hitsound)
 			playsound(src,W.hitsound,50,1)
 
-		if (src.alive)
-			on_damaged(user)
-
 		if(W.hasProperty("impact"))
 			var/turf/T = get_edge_target_turf(src, get_dir(user, src))
 			src.throw_at(T, 2, W.getProperty("impact"))
 
-		if (src.defensive)
-			if (src.target == user && src.task == "attacking")
-				if (prob(50 - attack_force))
-					return
-				else
-					src.visible_message("<span class='alert'><b>[src]</b> flinches!</span>")
-			src.target = user
-			src.oldtarget_name = user.name
-			src.visible_message("<span class='alert'><b>[src]</b> [src.angertext] [user.name]!</span>")
-			src.task = "chasing"
-			on_grump()
+		if (src.alive)
+			on_damaged(user)
+
+			if (src.defensive)
+				if (src.target == user && src.task == "attacking")
+					if (prob(50 - attack_force))
+						return
+					else
+						src.visible_message("<span class='alert'><b>[src]</b> flinches!</span>")
+				src.target = user
+				src.oldtarget_name = user.name
+				src.visible_message("<span class='alert'><b>[src]</b> [src.angertext] [user.name]!</span>")
+				src.task = "chasing"
+				on_grump()
 
 
 
