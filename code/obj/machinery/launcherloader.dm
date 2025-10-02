@@ -10,7 +10,7 @@
 	density = 0
 	opacity = 0
 	layer = 2.6
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_HASENTERED
 	plane = PLANE_NOSHADOW_BELOW
 
@@ -110,7 +110,7 @@
 	desc = "Scans the barcode on objects and reroutes them accordingly."
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	plane = PLANE_NOSHADOW_BELOW
 
@@ -490,7 +490,7 @@
 	icon_state = "packing-map"
 #endif
 	desc = "A machine that scoops up items and packages them into cardboard boxes."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/maxitems = 50 // don't go over 100, the max for crates
 	var/destination_tag = null // tag of crates created by this

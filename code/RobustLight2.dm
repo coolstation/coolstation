@@ -657,7 +657,7 @@ proc
 	blend_mode = BLEND_ADD
 	plane = PLANE_LIGHTING
 	layer = LIGHTING_LAYER_BASE
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/overlay/tile_effect/lighting/mul
 	plane = PLANE_LIGHTING

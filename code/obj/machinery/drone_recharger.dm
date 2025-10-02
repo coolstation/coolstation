@@ -5,7 +5,7 @@
 	desc = "A wall-mounted station for drones to recharge at. Automatically activated on approach."
 	icon_state = "drone-charger-idle"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	mats = 10
 	power_usage = 50
 	machine_registry_idx = MACHINES_DRONERECHARGERS

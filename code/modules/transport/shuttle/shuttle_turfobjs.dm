@@ -137,7 +137,7 @@
 	/////////////////////////////////////////////////////////////////OBJECTS
 
 /obj/indestructible/
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	attackby()
 	attack_hand()

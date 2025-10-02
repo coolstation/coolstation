@@ -3,7 +3,7 @@
 	desc = "Sends funds directly to a host ID."
 	icon = 'icons/obj/items/device.dmi'
 	icon_state = "scanner"
-	anchored = 1
+	anchored = ANCHORED
 	mats = 6
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_MULTITOOL
 	var/datum/db_record/mainaccount = null

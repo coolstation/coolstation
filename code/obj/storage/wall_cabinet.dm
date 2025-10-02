@@ -8,7 +8,7 @@
 	plane = PLANE_NOSHADOW_ABOVE
 	force = 8.0
 	w_class = W_CLASS_BULKY
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 0
 	mats = 8
 	deconstruct_flags = DECON_SIMPLE
@@ -215,7 +215,7 @@
 	density = 1
 	pass_unstable = FALSE
 	slots = 7
-	anchored = 1
+	anchored = ANCHORED
 	icon_state = "clothingrack" //They start full so might as well
 	can_hold = list(/obj/item/clothing/under,/obj/item/clothing/suit)
 
@@ -349,7 +349,7 @@ obj/item/storage/wall/clothingrack/hatrack
 	icon = 'icons/obj/large/64x64.dmi'
 	density = 0
 	slots = 7
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_DEFAULT
 	icon_state = "toolshelf"
 	can_hold = list(/obj/item/clothing/under,/obj/item/clothing/suit)
@@ -372,7 +372,7 @@ obj/item/storage/wall/clothingrack/hatrack
 	icon = 'icons/obj/large/64x64.dmi'
 	density = 0
 	slots = 7
-	anchored = 1
+	anchored = ANCHORED
 	icon_state = "mineralshelf"
 	plane = PLANE_DEFAULT
 	can_hold = list(/obj/item/raw_material,/obj/item/material_piece)

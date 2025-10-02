@@ -9,7 +9,7 @@
 	desc = "A small freestanding ladder that lets you peek your head up at the ceiling. Mostly for changing lightbulbs. Maybe for wrestling."
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	var/wrestling = 0
 	parts_type = /obj/item/furniture_parts/stepladder
@@ -103,7 +103,7 @@
 			user.set_loc(src.loc)
 			user.pixel_y = 10
 			if (src.anchored)
-				user.anchored = 1
+				user.anchored = ANCHORED
 			return 1
 
 	proc/step_off()
@@ -132,7 +132,7 @@
 			user.ceilingreach = 0
 			user.set_loc(src.loc)
 			user.pixel_y = 0
-			user.anchored = 0
+			user.anchored = UNANCHORED
 			return 1
 
 	proc/maybe_unstand(source, turf/oldloc)
@@ -146,7 +146,7 @@
 	desc = "A small freestanding ladder that lets you lay the smack down on your enemies. Mostly for wrestling. Not for changing lightbulbs."
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
-	anchored = 0 //no wheels, can be tipped over
+	anchored = UNANCHORED //no wheels, can be tipped over
 	density = 1 //can be pushed around, which may make the user fall
 	wrestling = 1
 	parts_type = /obj/item/furniture_parts/stepladder/wrestling

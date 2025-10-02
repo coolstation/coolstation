@@ -6,7 +6,7 @@
 	name = "bed"
 	desc = "A solid metal frame with some padding on it, useful for sleeping on."
 	icon_state = "bed"
-	anchored = 1
+	anchored = ANCHORED
 	var/security = 0
 	var/obj/item/clothing/suit/bedsheet/Sheet = null
 	parts_type = /obj/item/furniture_parts/bed
@@ -20,7 +20,7 @@
 	moveable
 		name = "roller bed"
 		desc = "A solid metal frame with some padding on it, useful for sleeping on. This one has little wheels on it, neat!"
-		anchored = 0
+		anchored = UNANCHORED
 		securable = 1
 		icon_state = "rollerbed"
 		parts_type = /obj/item/furniture_parts/bed/roller
@@ -109,7 +109,7 @@
 
 		to_buckle.lying = 1
 		if (src.anchored)
-			to_buckle.anchored = 1
+			to_buckle.anchored = ANCHORED
 		to_buckle.buckled = src
 		src.stool_user = to_buckle
 		to_buckle.set_loc(src.loc)

@@ -19,12 +19,12 @@
 	var/list/scoot_sounds_original
 	event_handler_flags = STAIR_ANIM | USE_FLUID_ENTER
 	securable = 1
-	anchored = 1
+	anchored = ANCHORED
 	scoot_sounds = list( 'sound/misc/chair/normal/scoot1.ogg', 'sound/misc/chair/normal/scoot2.ogg', 'sound/misc/chair/normal/scoot3.ogg', 'sound/misc/chair/normal/scoot4.ogg', 'sound/misc/chair/normal/scoot5.ogg' )
 	parts_type = null
 
 	moveable
-		anchored = 0
+		anchored = UNANCHORED
 
 	New()
 		if (src.dir == NORTH)
@@ -247,7 +247,7 @@
 				H.ceilingreach = 1
 				H.lookingup = 1
 				if (src.anchored)
-					to_buckle.anchored = 1
+					to_buckle.anchored = ANCHORED
 				H.on_chair = src
 				to_buckle.buckled = src
 				src.stool_user = to_buckle
@@ -261,7 +261,7 @@
 				user.visible_message("<span class='notice'><b>[to_buckle]</b> is buckled in by [user].</span>", "<span class='notice'>You buckle in [to_buckle].</span>")
 
 			if (src.anchored)
-				to_buckle.anchored = 1
+				to_buckle.anchored = ANCHORED
 			to_buckle.buckled = src
 			src.stool_user = to_buckle
 			to_buckle.set_loc(src.loc)
@@ -431,7 +431,7 @@
 	desc = "It's a chair that has wheels attached to it. Do I really have to explain this to you? Can you not figure this out on your own? Wheelchair. Wheel, chair. Chair that has wheels."
 	icon_state = "wheelchair"
 	arm_icon_state = "arm-wheelchair"
-	anchored = 0
+	anchored = UNANCHORED
 	comfort_value = 3
 	buckle_move_delay = 1
 	p_class = 2
@@ -474,7 +474,7 @@
 	icon_state = "chair_wooden" // this sprite is bad I will fix it at some point
 	comfort_value = 3
 	foldable = 0
-	anchored = 0
+	anchored = UNANCHORED
 	//deconstructable = 0
 	parts_type = /obj/item/furniture_parts/wood_chair
 
@@ -495,7 +495,7 @@
 	icon_state = "office_chair"
 	comfort_value = 4
 	foldable = 0
-	anchored = 0
+	anchored = UNANCHORED
 	buckle_move_delay = 3
 	//deconstructable = 0
 	parts_type = /obj/item/furniture_parts/office_chair
@@ -627,7 +627,7 @@
 	icon_state = "thronegold"
 	arm_icon_state = "thronegold-arm"
 	comfort_value = 7
-	anchored = 0
+	anchored = UNANCHORED
 	deconstructable = 1
 	parts_type = /obj/item/furniture_parts/throne_gold
 

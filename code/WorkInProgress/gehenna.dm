@@ -566,7 +566,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "A warning display with an internal Gehennan clock. It's off, which means it has nothing to warn you about."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "warning-unpowered"
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		..()

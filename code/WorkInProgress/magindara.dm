@@ -114,7 +114,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 /obj/overlay/magindara_skylight
 	name = null
 	desc = "hidden decal to show the light and/or weather of Magindara on any turf"
-	anchored = ANCHORED_ALWAYS
+	anchored = ANCHORED_TECHNICAL
 	var/datum/light/point/light = null
 	var/light_atten_con = -0.08
 	var/light_r = 0.55

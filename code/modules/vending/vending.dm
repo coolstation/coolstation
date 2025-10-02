@@ -61,7 +61,7 @@
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	machinery_flags = MAY_REQUIRE_MAINT
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 20
 	layer = OBJ_LAYER - 0.1 // so items get spawned at 3, don't @ me
@@ -1021,7 +1021,7 @@
 		src.visible_message("<b><font color=red>[src.name] tips over!</font></b>")
 
 	src.power_change()
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	return
 
 //Oh no we're getting roughed up!  Dump out some product and break.
@@ -1284,7 +1284,7 @@
 		if(src.owner && vendor && (src.vendor.status & BROKEN))
 			src.vendor.can_fall = 1
 			src.vendor.layer = initial(src.vendor.layer)
-			src.vendor.anchored = 1
+			src.vendor.anchored = ANCHORED
 			src.vendor.status &= ~BROKEN
 			src.vendor.power_change()
 
@@ -2646,7 +2646,7 @@
 	desc = "A vending machine that serves... pizza?"
 	var/pizcooking = 0
 	var/piztopping = "plain"
-	anchored = 0
+	anchored = UNANCHORED
 	acceptcard = 0
 	pay = 1
 	credit = 100

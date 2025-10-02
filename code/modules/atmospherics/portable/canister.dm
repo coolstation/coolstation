@@ -484,7 +484,7 @@
 			. = TRUE
 		if("anchor")
 			if(!src.anchored)
-				src.anchored = 1
+				src.anchored = ANCHORED
 				src.visible_message("<B><font color=#B7410E>A loud click is heard from the bottom of the canister, securing itself.</font></B>")
 				playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 				. = TRUE
@@ -597,7 +597,7 @@
 						if (anchored)
 							src.visible_message("<B><font color=#B7410E>A faint click is heard from inside the canister, but the effect is not immediately apparent.</font></B>")
 						else
-							anchored = 1
+							anchored = ANCHORED
 							src.visible_message("<B><font color=#B7410E>A loud click is heard from the bottom of the canister, securing itself.</font></B>")
 					if("leak")
 						src.det.failsafe_engage()
@@ -673,10 +673,10 @@
 						src.det.failsafe_engage()
 						playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 						if (anchored)
-							anchored = 0
+							anchored = UNANCHORED
 							src.visible_message("<B><font color=#B7410E>A loud click is heard from the inside the canister, unsecuring itself.</font></B>")
 						else
-							anchored = 1
+							anchored = ANCHORED
 							src.visible_message("<B><font color=#B7410E>A loud click is heard from the bottom of the canister, securing itself.</font></B>")
 					if ("leak")
 						src.det.failsafe_engage()

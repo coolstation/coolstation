@@ -11,7 +11,7 @@
 	alpha = 180
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED
 	var/evolution_flags = 0
 	var/health = 30         // current health of the blob

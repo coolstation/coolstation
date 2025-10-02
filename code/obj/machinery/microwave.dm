@@ -15,7 +15,7 @@
 	desc = "The automatic chef of the future!"
 	icon_state = "mw"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	/// Current number of eggs inside the microwave
@@ -73,7 +73,7 @@
 			L.force_laydown_standup()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr

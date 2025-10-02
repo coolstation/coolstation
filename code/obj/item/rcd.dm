@@ -41,7 +41,7 @@ Broken RCD + Effects
 	item_state = "rcd" //oops
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	var/matter = 0
 	var/max_matter = 50
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
@@ -860,7 +860,7 @@ Broken RCD + Effects
 	item_state = "rcdammo"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	m_amt = 30000
 	g_amt = 15000
 	var/matter = 10
@@ -897,7 +897,7 @@ Broken RCD + Effects
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	force = 10.0
 	throwforce = 10.0
@@ -1001,7 +1001,7 @@ Broken RCD + Effects
 
 /obj/effects/void_break
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	var/lifespan = 4
 	var/rangeout = 0
 

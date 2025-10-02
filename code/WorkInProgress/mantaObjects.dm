@@ -13,7 +13,7 @@
 
 /obj/decal/mantaBubbles
 	density = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	layer =  EFFECTS_LAYER_4
 	event_handler_flags = USE_FLUID_ENTER
 	name = ""
@@ -53,7 +53,7 @@
 	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "junctionbox"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/open = 0
 	var/iconopen = "junctionbox_open"
 	var/iconclosed = "junctionbox"
@@ -149,7 +149,7 @@
 	name = "Communications Tower"
 	icon_state = "commstower"
 	density = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/health = 100
 	var/maxhealth = 100
 	var/broken = 0
@@ -192,7 +192,7 @@
 	icon = 'icons/misc/32x64.dmi'
 	icon_state = "englrt0"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/recharging =0
 	var/id = "shuttle" //The main location of the teleporter
 	var/recharge = 20 //A short recharge time between teleports
@@ -282,7 +282,7 @@
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "impact_marker"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	mouse_opacity = 0
 	desc = "Uh oh.."
 	pixel_x = -16
@@ -331,7 +331,7 @@
 	icon = 'icons/obj/large/96x32.dmi'
 	icon_state = "vaultdoor_closed"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	opacity = 1
 	bound_width = 96
 	appearance_flags = TILE_BOUND

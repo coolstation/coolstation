@@ -8,7 +8,7 @@
 	var/dead_state = null
 	layer = 5.0
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	flags = FPRINT | CONDUCT | USEDELAY | FLUID_SUBMERGE
 	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER | USE_CANPASS
 	var/is_template = 0
@@ -190,7 +190,7 @@
 		if(registered_area)
 			task = "hibernating"
 			registered_area.registered_critters |= src
-			anchored = 1
+			anchored = ANCHORED
 			//DEBUG_MESSAGE("[src] started hibernating at [showCoords(src.x, src.y, src.z)] in [registered_area ? registered_area.name : "nowhere"].")
 			//critters -= src //Stop processing this critter
 
@@ -663,7 +663,7 @@
 							if( !t.loc:sanctuary || !istype(current_target, /mob) )
 								ChaseAttack(current_target)
 							src.task = "attacking"
-							src.anchored = 1
+							src.anchored = ANCHORED
 							src.target_lastloc = current_target.loc
 					else
 						if (mobile)
@@ -905,7 +905,7 @@
 		else
 			src.icon_state = dead_state
 		src.alive = 0
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.set_density(0)
 		walk_to(src,0) //halt walking
 		report_death()
@@ -1073,7 +1073,7 @@
 				make_cleanable( /obj/decal/cleanable/eggsplat,T)
 				src.set_loc(T)
 			else
-				src.anchored = 1
+				src.anchored = ANCHORED
 				src.layer = initial(src.layer)
 				if (user)
 					user.u_equip(src)

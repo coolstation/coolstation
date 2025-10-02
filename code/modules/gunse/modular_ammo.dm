@@ -43,7 +43,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	var/image/ammo_color_image
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1

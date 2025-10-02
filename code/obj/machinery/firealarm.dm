@@ -15,7 +15,7 @@
 	var/detecting = 1.0
 	var/working = 1.0
 	var/lockdownbyai = 0
-	anchored = 1.0
+	anchored = ANCHORED
 	var/alarm_zone
 	var/net_id
 	var/ringlimiter = 0

@@ -4,7 +4,7 @@
 	name = "fart cloud"
 	icon_state = "mustard"
 	opacity = 1
-	anchored = 0
+	anchored = UNANCHORED
 	mouse_opacity = 0
 	event_handler_flags = USE_HASENTERED
 	var/amount = 6

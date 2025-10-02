@@ -15,7 +15,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 180
 	event_handler_flags = USE_CANPASS
 	plane = PLANE_NOSHADOW_ABOVE

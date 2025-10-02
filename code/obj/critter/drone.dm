@@ -78,7 +78,7 @@
 
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 
 		var/area/AR = get_area(src)
 		if (AR == colosseum_controller.colosseum)
@@ -357,7 +357,7 @@
 						if (M)
 							if(!src.attacking) ChaseAttack(M)
 							src.task = "attacking"
-							src.anchored = 1
+							src.anchored = ANCHORED
 							src.target_lastloc = M.loc
 							if(prob(15)) walk_rand(src,4) // juke around and dodge shots
 
@@ -390,7 +390,7 @@
 				if(prob(15)) walk_rand(src,4) // juke around and dodge shots
 				// see if he got away
 				if ((get_dist(src, src.target) > 1) || ((src.target:loc != src.target_lastloc)))
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					src.task = "chasing"
 				else
 					if (get_dist(src, src.target) <= 1)
@@ -399,7 +399,7 @@
 						if (!src.aggressive)
 							src.task = "thinking"
 							src.target = null
-							src.anchored = 0
+							src.anchored = UNANCHORED
 							src.last_found = world.time
 							src.frustration = 0
 							src.attacking = 0
@@ -408,12 +408,12 @@
 								if (M.health < 0)
 									src.task = "thinking"
 									src.target = null
-									src.anchored = 0
+									src.anchored = UNANCHORED
 									src.last_found = world.time
 									src.frustration = 0
 									src.attacking = 0
 					else
-						src.anchored = 0
+						src.anchored = UNANCHORED
 						src.attacking = 0
 						src.task = "chasing"
 			if("wandering")
@@ -594,7 +594,7 @@
 				var/list/affected = DrawLine(src, target_r, /obj/line_obj/railgun ,'icons/obj/projectiles.dmi',"WholeRailG",1,1,"HalfStartRailG","HalfEndRailG",OBJ_LAYER,1)
 
 				for(var/obj/O in affected)
-					O.anchored = 1 //Proc wont spawn the right object type so lets do that here.
+					O.anchored = ANCHORED //Proc wont spawn the right object type so lets do that here.
 					O.name = "Energy"
 					var/turf/src_turf = O.loc
 					for(var/obj/machinery/vehicle/A in src_turf)

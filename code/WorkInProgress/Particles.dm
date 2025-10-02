@@ -14,7 +14,7 @@
 	desc = ""
 	mouse_opacity = 0
 	pass_unstable = PRESERVE_CACHE
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	flags = TECHNICAL_ATOM

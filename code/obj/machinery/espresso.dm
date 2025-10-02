@@ -7,7 +7,7 @@
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "espresso_machine"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | NOSPLASH | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	mats = 30
@@ -31,7 +31,7 @@
 		playsound(src.loc, 'sound/impact_sounds/Metal_Clang_2.ogg', 50, 1)
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr
@@ -156,7 +156,7 @@
 	desc = "It's a rack to hang your fancy coffee cups." //*tip
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "cuprack7" //changes based on cup_ammount in updateicon
-	anchored = 1
+	anchored = ANCHORED
 	var/cup_amount = 7
 	var/contained_cup = /obj/item/reagent_containers/food/drinks/espressocup
 	var/contained_cup_name = "espresso cup"
@@ -200,7 +200,7 @@
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "coffeemaker-eng"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | NOSPLASH | TABLEPASS
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
@@ -243,7 +243,7 @@
 			src.update()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr
@@ -368,7 +368,7 @@
 	desc = "It's a rack to hang your not-so-fancy coffee cups." //*tip
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "mugrack4" //changes based on cup_ammount in updateicon
-	anchored = 1
+	anchored = ANCHORED
 	var/cup_amount = 4
 	var/contained_cup = /obj/item/reagent_containers/food/drinks/mug
 	var/contained_cup_name = "mug"

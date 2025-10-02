@@ -4,7 +4,7 @@
 	icon = 'icons/obj/furniture/table.dmi'
 	icon_state = "0"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	flags = NOSPLASH // | FLUID_SUBMERGE
 	pass_unstable = TRUE
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS

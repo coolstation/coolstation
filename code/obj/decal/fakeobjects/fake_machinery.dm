@@ -5,14 +5,14 @@
 	desc = "A smashed local power unit."
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "apc-b"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/fakeobjects/broken_governor
 	name = "busted AI governor"
 	desc = "A big cabinet of electronics that facilitate the AI to manage certain tasks. This one is damaged well beyond repair. Hope it wasn't critical."
 	icon = 'icons/obj/machines/networked.dmi'
 	icon_state = "governor_body-damaged"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	pass_unstable = FALSE
 	var/stripe_colour = "#AA0000"
@@ -29,14 +29,14 @@
 	desc = "This fire alarm is burnt out, ironically."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "firex"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/fakeobjects/lighttube_broken
 	name = "shattered light tube"
 	desc = "Something has broken this light."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-broken"
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 
@@ -45,7 +45,7 @@
 	desc = "Something has broken this light."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-broken"
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 
@@ -54,14 +54,14 @@
 	desc = "Rust has rendered this firelock useless."
 	icon = 'icons/obj/doors/door_fire2.dmi'
 	icon_state = "door0"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/fakeobjects/falseladder
 	name = "ladder"
 	desc = "The ladder is blocked, you can't get down there."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "ladder"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 //transport
@@ -69,7 +69,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pad0"
 	name = "teleport pad"
-	anchored = 1
+	anchored = ANCHORED
 	layer = FLOOR_EQUIP_LAYER1
 	desc = "A pad used for scientific teleportation."
 
@@ -78,7 +78,7 @@
 	desc = "Used to recieve objects transported by a Cargo Transporter."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cargopad"
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_FLOOR
 
 //atmos
@@ -88,7 +88,7 @@
 	desc = "Something has broken this air monitor."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "alarmx"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/fakeobjects/pipe
 	name = "rusted pipe"
@@ -96,7 +96,7 @@
 	icon = 'icons/obj/atmospherics/pipes/color_pipe.dmi'
 	icon_state = "intact"
 	color = "#AAAAAA"
-	anchored = 1
+	anchored = ANCHORED
 	layer = PIPE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
 
@@ -108,7 +108,7 @@
 	desc = "All the gas in it seems to be long gone."
 	icon = 'icons/misc/evilreaverstation.dmi'
 	icon_state = "old_oxy"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 
 	plasma
@@ -142,7 +142,7 @@
 	desc = "A combination pick and place machine and wave soldering gizmo.  For making boards.  Buddy boards.   Well, it would if the interface wasn't broken."
 	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 //Broken grody coffee maker so I can justify scattering coffee cups around azones
@@ -152,5 +152,5 @@
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "coffeemaker_effed"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	object_flags = CAN_BE_LIFTED

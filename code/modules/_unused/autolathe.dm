@@ -8,7 +8,7 @@
 	var/operating = 0.0
 	var/opened = 0.0
 	var/temp = null
-	anchored = 1.0
+	anchored = ANCHORED
 	var/list/L = list()
 	var/list/LL = list()
 	var/hacked = 0

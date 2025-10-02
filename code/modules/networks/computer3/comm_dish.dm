@@ -2,7 +2,7 @@
 	name = "Communications dish"
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "def_radar"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/list/messagetitle = list()
 	var/list/messagetext = list()

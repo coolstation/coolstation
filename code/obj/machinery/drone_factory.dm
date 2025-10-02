@@ -5,7 +5,7 @@
 /obj/machinery/ghost_catcher
 	name = "ghost catcher"
 	desc = "It catches ghosts! Read the name gosh I shouldn't have to explain everything to you."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	icon = 'icons/mob/ghost_drone.dmi'
 	icon_state = "ghostcatcher0"
@@ -121,7 +121,7 @@ var/global/list/ghostdrone_candidates = list()
 /obj/machinery/ghostdrone_factory
 	name = "drone factory"
 	desc = "A slightly mysterious looking factory that spits out weird looking drones every so often. Why not."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/mob/ghost_drone.dmi'
 	icon_state = "factory10"
@@ -325,7 +325,7 @@ var/global/list/ghostdrone_candidates = list()
 /obj/machinery/ghostdrone_conveyor_sensor
 	name = "conveyor sensor"
 	desc = "A small sensor that pauses the conveyors it's attached to until it receives a signal to start them again."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "stopper1"

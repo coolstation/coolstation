@@ -116,7 +116,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 								C.show_message("<span class='alert'><B>[src] forcefully kicks [D]!</B></span>", 1)
 							if (prob(33))
 								qdel(D)
-					else if(O.anchored != 2)
+					else if(O.anchored != ANCHORED_TECHNICAL)
 						boutput(src, "<span class='alert'><B>You crash into [O]!</B></span>")
 						for (var/mob/C in oviewers(src))
 							shake_camera(C, 8, 24)
@@ -356,7 +356,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			if (H)
 				src.visible_message("<span class='alert'><B>[src] ultra atomic piledrives [H]!!</B></span>")
 				var/obj/overlay/O = new/obj/overlay(get_turf(src))
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.name = "Explosion"
 				O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 				O.pixel_x = -92
@@ -791,7 +791,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					playsound(src.loc, "explosion", 50)
 					src.visible_message("<span class='alert'><B>[src] atomic piledrives [H]!</B></span>")
 					var/obj/overlay/O = new/obj/overlay(get_turf(src))
-					O.anchored = 1
+					O.anchored = ANCHORED
 					O.name = "Explosion"
 					O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 					O.pixel_x = -92
@@ -859,7 +859,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 							sleep(1.5 SECONDS)
 							playsound(src.loc, "explosion", 50)
 							var/obj/overlay/O = new/obj/overlay(get_turf(H))
-							O.anchored = 1
+							O.anchored = ANCHORED
 							O.name = "Explosion"
 							O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 							O.pixel_x = -92
@@ -1425,7 +1425,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			playsound(user.loc, "explosion", 100, 1)
 			SPAWN_DBG(0)
 				var/obj/overlay/O = new/obj/overlay(T)
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.name = "Explosion"
 				O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 				O.pixel_x = -92
@@ -1595,7 +1595,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 			if (H)
 				holder.owner.visible_message("<span class='alert'><B>[holder.owner] ultra atomic piledrives [H]!!</B></span>")
 				var/obj/overlay/O = new/obj/overlay(get_turf(holder.owner))
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.name = "Explosion"
 				O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 				O.pixel_x = -92
@@ -2162,7 +2162,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					playsound(holder.owner.loc, "explosion", 50)
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] atomic piledrives [H]!</B></span>")
 					var/obj/overlay/O = new/obj/overlay(get_turf(holder.owner))
-					O.anchored = 1
+					O.anchored = ANCHORED
 					O.name = "Explosion"
 					O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 					O.pixel_x = -92
@@ -2231,7 +2231,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 							sleep(1.5 SECONDS)
 							playsound(holder.owner.loc, "explosion", 50)
 							var/obj/overlay/O = new/obj/overlay(get_turf(H))
-							O.anchored = 1
+							O.anchored = ANCHORED
 							O.name = "Explosion"
 							O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 							O.pixel_x = -92

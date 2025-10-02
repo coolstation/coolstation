@@ -60,7 +60,7 @@
 	icon_state = "fab"
 	var/icon_base = null
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 20
 	req_access = list(access_heads)
 	event_handler_flags = NO_MOUSEDROP_QOL
@@ -2712,7 +2712,7 @@ ABSTRACT_TYPE(/obj/machinery/manufacturer_attachment)
 /obj/machinery/manufacturer_attachment/canister_port/proc/attach_can()
 	if (attached_can)
 		attached_can.UpdateOverlays(image(attached_can.icon, icon_state = "shitty_connector_placeholder"), "connecty_grip")
-		attached_can.anchored = 1
+		attached_can.anchored = ANCHORED
 		src.RegisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING), PROC_REF(detach_can))
 		var/obj/machinery/manufacturer/gas/G = belongs_to
 		if (istype(G))
@@ -2720,7 +2720,7 @@ ABSTRACT_TYPE(/obj/machinery/manufacturer_attachment)
 
 /obj/machinery/manufacturer_attachment/canister_port/proc/detach_can()
 	if (attached_can)
-		attached_can.anchored = 0
+		attached_can.anchored = UNANCHORED
 		src.UnregisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING))
 		attached_can.UpdateOverlays(null, "connecty_grip")
 		attached_can = null

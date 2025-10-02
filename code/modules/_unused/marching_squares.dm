@@ -75,7 +75,7 @@ var/bad_spill_dirs = list(0, 3, 12)
 /obj/marching_squares
 	name = "marching square test"
 	icon = 'icons/obj/marching_test.dmi'
-	anchored = 1
+	anchored = ANCHORED
 
 	proc/calc_spill_dirs(turf/T)
 		. = 0

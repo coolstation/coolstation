@@ -1006,7 +1006,7 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 	name = "Loudspeaker Transmitter"
 	icon = 'icons/obj/machines/loudspeakers.dmi'
 	icon_state = "transmitter"
-	anchored = 1.0
+	anchored = ANCHORED
 	speaker_range = 0
 	mats = 0
 	chat_class = RADIOCL_INTERCOM
@@ -1051,7 +1051,7 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 	name = "Loudspeaker"
 	icon_state = "loudspeaker"
 	desc = "A Loudspeaker."
-	anchored = 1.0
+	anchored = ANCHORED
 	speaker_range = 7
 	mats = 0
 	broadcasting = 1

@@ -3,7 +3,7 @@
 	desc = "A water-filled unit intended for cookery purposes."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "sink"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 12
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER
@@ -85,7 +85,7 @@
 	desc = "A machine designed to dispense space ice cream."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "ice_creamer0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -243,7 +243,7 @@
 	desc = "A machine designed to dispense Rito's Italian Ice."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "ice_creamer0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -648,7 +648,7 @@ input:checked + div { display: block; }
 	desc = "A multi-cooking unit featuring a hob, grill, oven and more."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "oven_off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -1078,7 +1078,7 @@ table#cooktime a#start {
 	desc = "Refines various food substances into different forms."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "processor-off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -1312,7 +1312,7 @@ var/list/mixer_recipes = list()
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "blender"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 15
 	flags = FPRINT | FLUID_SUBMERGE | TABLEPASS
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -1361,7 +1361,7 @@ var/list/mixer_recipes = list()
 			L.force_laydown_standup()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr

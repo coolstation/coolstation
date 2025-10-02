@@ -3,7 +3,7 @@
 	name = "edge"
 	mouse_opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "tile_edge"
 	layer = TURF_LAYER + 0.1 // it should basically be part of a turf
@@ -124,7 +124,7 @@
 	name = "flowers"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "flowers1"
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		src.icon_state = "flowers[rand(1,4)]"
@@ -137,7 +137,7 @@
 	icon_state = "curtainthing"
 	density = 1
 	pass_unstable = TRUE
-	anchored = 1
+	anchored = ANCHORED
 	dir = NORTH
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 
@@ -165,7 +165,7 @@
 //Special Manta bar decoration that goes on the floor, shoving it here since it has no better place.
 /obj/decal/risingtidebar
 	name = "The Rising Tide"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	desc = "Follow the anchor to reach The Rising Tide bar!"
 	bound_height = 64
 	bound_width = 32

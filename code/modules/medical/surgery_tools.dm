@@ -666,7 +666,7 @@ CONTAINS:
 	icon = 'icons/obj/machines/compact_machines.dmi'
 	desc = "Used to resuscitate critical patients."
 	icon_state = "defib1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = 25
 	var/obj/item/robodefibrillator/mounted/defib = null

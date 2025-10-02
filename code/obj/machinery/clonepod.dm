@@ -9,7 +9,7 @@
 #define MAX_FAILED_CLONE_TICKS 200 // vOv
 
 /obj/machinery/clonepod
-	anchored = 1
+	anchored = ANCHORED
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = 1
@@ -827,7 +827,7 @@
 	desc = "A tank resembling a rather large blender, designed to recover biomatter for use in cloning."
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "grinder0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 10
 	var/list/pods = null // cloning pods we're tied to

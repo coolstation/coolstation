@@ -5,7 +5,7 @@
 	pass_unstable = TRUE
 	desc = "A table that allows qualified professionals to perform delicate surgeries."
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 25
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	var/mob/living/carbon/human/victim = null

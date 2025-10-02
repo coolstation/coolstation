@@ -166,7 +166,7 @@
 	name = "barber chair"
 	desc = "A special chair designed for haircutting. You don't feel like any other chair would be good enough, it HAS to be one like this. You don't know why."
 	icon_state = "barberchair"
-	anchored = 1
+	anchored = ANCHORED
 	arm_icon_state = "arm-barber"
 	parts_type = /obj/item/furniture_parts/barber_chair
 
@@ -175,7 +175,7 @@
 	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "pole"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	desc = "Barber poles historically were signage used to convey that the barber would perform services such as blood letting and other medical procedures, with the red representing blood, and the white representing the bandaging. In America, long after the time when blood-letting was offered, a third colour was added to bring it in line with the colours of their national flag. This one is in space."
 
 
@@ -294,7 +294,7 @@
 	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "dyedispenser"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 15
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_MULTITOOL
 

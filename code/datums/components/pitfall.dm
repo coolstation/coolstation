@@ -133,7 +133,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 	/// a proc that makes a movable atom 'AM' animate a fall with 'brutedamage' brute damage then actually fall
 	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50, iterations = 0)
-		if(istype(AM, /obj/overlay) || AM.anchored == 2)
+		if(istype(AM, /obj/overlay) || AM.anchored == ANCHORED_TECHNICAL)
 			return
 		#ifdef CHECK_PITFALL_INITIALIZATION
 		if(current_state <= GAME_STATE_WORLD_NEW)

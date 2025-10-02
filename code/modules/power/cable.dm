@@ -58,7 +58,7 @@
 // the power cable object
 /obj/cable
 	level = 1
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = FALSE
 	//var/tmp/netnum = 0
 	name = "power cable"

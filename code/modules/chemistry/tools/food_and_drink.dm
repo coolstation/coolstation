@@ -2130,7 +2130,7 @@
 /obj/item/bottleopener/mounted
 	name = "mounted bottle opener"
 	desc = "One of those permanently mounted bottle openers. Handy for opening capped bottles, plus you'll never lose track of it!"
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "opener-mounted"
 	flags = NOSPLASH

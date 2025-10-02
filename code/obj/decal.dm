@@ -61,7 +61,7 @@
 	icon_state = "ceshield"
 	layer = EFFECTS_LAYER_BASE
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	pixel_y = 0
 	pixel_x = 0
 	mouse_opacity = 0
@@ -76,7 +76,7 @@
 	desc = "The remains of a human."
 	opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "skeleton_l"
 
@@ -87,7 +87,7 @@
 		icon_state = "body1"
 
 	unanchored
-		anchored = 0
+		anchored = UNANCHORED
 
 		summon
 			New()
@@ -100,7 +100,7 @@
 		desc = "The remains of the captain of this station ..."
 		opacity = 0
 		density = 0
-		anchored = 1
+		anchored = ANCHORED
 		icon = 'icons/obj/adventurezones/void.dmi'
 		icon_state = "skeleton_l"
 
@@ -109,7 +109,7 @@
 	desc = "These tiles are just floating around in the void."
 	opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "floattiles1"
 	var/recover = FALSE
@@ -149,7 +149,7 @@
 	icon_state = "dimplo"
 	layer = EFFECTS_LAYER_BASE
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	pixel_y = -16
 	pixel_x = -16
 	mouse_opacity = 0
@@ -164,7 +164,7 @@
 	icon_state = "explocom"
 	layer = EFFECTS_LAYER_BASE
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	pixel_y = -16
 	pixel_x = -16
 	mouse_opacity = 0
@@ -180,7 +180,7 @@
 	icon_state = "arrow"
 	layer = EFFECTS_LAYER_1
 	plane = PLANE_HUD
-	anchored = 1
+	anchored = ANCHORED
 
 proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time=2 SECONDS, invisibility=0)
 	// note that `target` can also be a turf, but byond sux and I can't declare the var as atom because areas don't have vis_contents
@@ -203,7 +203,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	icon_state = "jukebox"
 	desc = "This doesn't seem to be working anymore."
 	layer = OBJ_LAYER
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 */
 
@@ -211,7 +211,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	name = "Barber Pole"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "pole"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	desc = "Barber poles historically were signage used to convey that the barber would perform services such as blood letting and other medical procedures, with the red representing blood, and the white representing the bandaging. In America, long after the time when blood-letting was offered, a third colour was added to bring it in line with the colours of their national flag. This one is in space."
 	layer = OBJ_LAYER
@@ -221,7 +221,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "gehennagrass1"
 	random_icon_states = list("gehennagrass1", "gehennagrass2", "gehennagrass3")
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/seed_prob = 50
 	desc = "This scrub has turned purple from the strain of growing in the desert."
@@ -247,7 +247,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	desc = "An old oven."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "oven_off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = OBJ_LAYER
 
@@ -256,7 +256,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "sink"
 	desc = "The sink doesn't appear to be connected to a waterline."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = OBJ_LAYER
 
@@ -276,7 +276,7 @@ obj/decal/fakeobjects
 	desc = "The robot looks to be in good condition."
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "robot"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/sealedsleeper
@@ -284,7 +284,7 @@ obj/decal/fakeobjects
 	desc = "This one appears to still be sealed. Who's in there?"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sealedsleeper"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/hose //gross
@@ -292,7 +292,7 @@ obj/decal/fakeobjects
 	desc = "A garden hose stand, with spigot."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "hose"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 //sealab prefab fakeobjs
@@ -302,7 +302,7 @@ obj/decal/fakeobjects
 	desc = "This is a palm tree. Smells like plastic."
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 /obj/decal/fakeobjects/brokenportal
@@ -310,7 +310,7 @@ obj/decal/fakeobjects
 	desc = "This portal ring looks completely fried."
 	icon = 'icons/obj/machines/teleporter.dmi'
 	icon_state = "tele_fuzz"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 //this was the florps statue in keelin's stuff
@@ -348,7 +348,7 @@ obj/decal/fakeobjects
 	desc = "Do not exit the ring."
 	density = 1
 	pass_unstable = TRUE
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
@@ -376,7 +376,7 @@ obj/decal/fakeobjects
 	name = "Boxing Ropes"
 	desc = "Do not exit the ring."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
@@ -424,7 +424,7 @@ obj/decal/fakeobjects
 	name = "Ring entrance"
 	desc = "Do not exit the ring."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ringrope"
 	layer = OBJ_LAYER
@@ -433,7 +433,7 @@ obj/decal/fakeobjects
 	name = "Doormat"
 	desc = "A cute, muddy doormat"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "doormat"
 	layer = OBJ_LAYER
@@ -442,7 +442,7 @@ obj/decal/fakeobjects
 	name = "anti slip mat"
 	desc = "A ratty rubber mat that protects you from slipping. Probably."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "slipmat"
 	layer = OBJ_LAYER
@@ -488,7 +488,7 @@ obj/decal/fakeobjects
 	icon_state = "icefloor"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_FLOOR
 	event_handler_flags = USE_HASENTERED
 
@@ -513,7 +513,7 @@ obj/decal/fakeobjects
 	name = "Don't spawn me"
 	mouse_opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "blank"
 	layer = TURF_LAYER + 0.1 // Should basically be part of a turf.
@@ -590,14 +590,14 @@ obj/decal/fakeobjects
 	icon_state = "rudder"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/landing_gear_prints_gehenna
 	name = null
 	desc = null
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "landing_gear_gehenna"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 	plane = PLANE_NOSHADOW_BELOW
@@ -613,7 +613,7 @@ obj/decal/fakeobjects
 	desc = null
 	icon = 'icons/turf/gehenna_overlays.dmi'
 	icon_state = "beaten_edge_thin"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 	plane = PLANE_NOSHADOW_BELOW
@@ -633,7 +633,7 @@ obj/decal/fakeobjects
 	density = 1
 	pass_unstable = FALSE
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	layer = MOB_LAYER + 0.1
 
 	New()
@@ -656,7 +656,7 @@ obj/decal/fakeobjects
 	icon_state = "lightning1"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_SELFILLUM
-	anchored = ANCHORED_ALWAYS
+	anchored = ANCHORED_TECHNICAL
 	var/height = 8
 	var/shake_intensity = 10
 	var/strike_time = 1 SECOND

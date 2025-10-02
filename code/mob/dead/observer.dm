@@ -9,7 +9,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1	//  don't get pushed around
+	anchored = ANCHORED	//  don't get pushed around
 	var/mob/corpse = null	//	observer mode
 	var/observe_round = 0
 	var/health_shown = 0

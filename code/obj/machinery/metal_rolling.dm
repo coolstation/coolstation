@@ -3,7 +3,7 @@
 	desc = "Heats and squishes blocks of material."
 	icon_state = "hot_roller_off"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 40
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	processing_tier = PROCESSING_HALF

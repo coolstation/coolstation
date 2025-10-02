@@ -364,7 +364,7 @@
 
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = PRESERVE_CACHE
 
 /atom/movable/overlay/gibs
@@ -385,7 +385,7 @@
 	layer = OBJ_LAYER
 	var/turf/last_turf = 0
 	var/last_move = null
-	var/anchored = 0
+	var/anchored = UNANCHORED
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/throwing = 0
@@ -1109,13 +1109,6 @@
 	message_admins("[key_name(usr)] rotated [target] by [rot] degrees")
 	target.Turn(rot)
 	return
-
-/// For an unanchored movable atom
-#define UNANCHORED 0
-/// For an atom that can't be moved by player actions
-#define ANCHORED 1
-/// For an atom that's always immovable, even by stuff like black holes and gravity artifacts.
-#define ANCHORED_ALWAYS 2
 
 /// The atom is below the floor tiles.
 #define UNDERFLOOR 1

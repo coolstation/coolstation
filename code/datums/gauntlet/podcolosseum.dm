@@ -857,7 +857,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 				for (var/turf/T in orange(2, C))
 					if (get_dist(T, Q) == 2)
 						var/obj/overlay/Wall = new(T)
-						Wall.anchored = 1
+						Wall.anchored = ANCHORED
 						Wall.set_density(1)
 						Wall.opacity = 0
 						Wall.icon = 'icons/effects/effects.dmi'
@@ -979,7 +979,7 @@ proc/get_colosseum_message(var/name, var/message)
 	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "miniputt"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/owner = null
 	var/mob/living/carbon/human/piloting = null
 	var/flying = 0
@@ -1706,7 +1706,7 @@ proc/get_colosseum_message(var/name, var/message)
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "intercom"
 	desc = "A special virtual radio that immediately distributes messages to all virtual hearers."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -1737,7 +1737,7 @@ proc/get_colosseum_message(var/name, var/message)
 /obj/colosseum_mine
 	name = "Mine"
 	desc = "You should probably not ram this."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	icon = 'icons/obj/colosseum.dmi'

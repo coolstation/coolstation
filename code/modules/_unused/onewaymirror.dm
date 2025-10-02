@@ -23,7 +23,7 @@ obj/onewaymirror
 	icon_state = "onewaymirror"
 	density = 1
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	name = "One-way Mirror"
 	desc = "Nifty!"
 	layer = 11

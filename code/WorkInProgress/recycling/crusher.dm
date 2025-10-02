@@ -6,7 +6,7 @@
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "Crusher_1"
 	layer = MOB_LAYER + 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 20
 	is_syndicate = 1
 	event_handler_flags = USE_FLUID_ENTER
@@ -101,7 +101,7 @@
 		user.visible_message("<span class='combat bold'>[user] [pick_string("descriptors.txt", "crusherpoke")] the [src]!</span>")
 		if(prob(osha_prob)) //RIP you.
 			user.canmove = 0
-			user.anchored = 1
+			user.anchored = ANCHORED
 			sleep(5) //Give it a little time
 			if(user) //Gotta make sure they haven't moved since last time
 				poking_jerks -= user
@@ -117,7 +117,7 @@
 			var/anc = user.anchored
 			//To prevent them moving away.
 			user.canmove = 0
-			user.anchored = 1
+			user.anchored = ANCHORED
 			interact_particle(user,src)
 			sleep(5)
 			if(user) //Still here?

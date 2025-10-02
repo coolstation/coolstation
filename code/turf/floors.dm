@@ -2064,7 +2064,7 @@ DEFINE_FLOORS(techfloor/green,
 	name = ""
 	desc = ""
 	icon = null
-	anchored = ANCHORED_ALWAYS
+	anchored = ANCHORED_TECHNICAL
 	invisibility = INVIS_ALWAYS
 	alpha = 0
 

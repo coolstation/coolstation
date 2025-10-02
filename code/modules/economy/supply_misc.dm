@@ -52,7 +52,7 @@
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WIRECUTTERS
@@ -90,6 +90,6 @@
 	icon = 'icons/map-editing/mark.dmi'
 	name = "X"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	flags = TECHNICAL_ATOM

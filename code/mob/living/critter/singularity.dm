@@ -65,7 +65,7 @@
   ..(gibbed)
   if(src)
     src.glow.disable()
-    src.anchored = 1
+    src.anchored = ANCHORED
     src.set_density(0)
     src.name = "weird purple rock thing"
     src.desc = "A weird ultra-dense rock that doesn't want to budge. Huh. Is it plasma?"
@@ -118,7 +118,7 @@
     var/mob/living/M = A
     if(M && !istype(M, /mob/living/critter/singularity))
       M.gib()
-  else if(isobj(A) && A.anchored != 2)
+  else if(isobj(A) && A.anchored != ANCHORED_TECHNICAL)
     A.ex_act(OLD_EX_TOTAL)
     if(A)
       qdel(A)

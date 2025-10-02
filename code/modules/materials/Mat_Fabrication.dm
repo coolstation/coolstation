@@ -66,7 +66,7 @@
 	desc = "'Nano' means it's high-tech stuff."
 	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab2-on"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	flags = NOSPLASH

@@ -3,7 +3,7 @@
 /obj/flock_structure
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "egg"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	name = "uh oh"
 	desc = "CALL A CODER THIS SHOULDN'T BE SEEN"

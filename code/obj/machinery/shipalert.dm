@@ -12,7 +12,7 @@ var/global/soundGeneralQuarters = sound('sound/machines/siren_generalquarters_qu
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "shipalert0"
 	desc = ""
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 5
 	var/usageState = 0 // 0 = glass cover, hammer. 1 = glass cover, no hammer. 2 = cover smashed
 	var/working = 0 //processing loops

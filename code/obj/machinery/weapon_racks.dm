@@ -19,7 +19,7 @@
 	icon = 'icons/obj/machines/weapon_rack.dmi'
 	icon_state = "swordstand1"
 	var/amount = 1
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	object_flags = CAN_REPROGRAM_ACCESS
 	var/stand_type = "katanastand"

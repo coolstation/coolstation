@@ -6,7 +6,7 @@ var/list/fryer_recipes
 	desc = "An industrial deep fryer.  A big hit at state fairs!"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "fryer0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	flags = NOSPLASH | OPENCONTAINER
 	machinery_flags = REQ_PHYSICAL_ACCESS

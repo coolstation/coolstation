@@ -88,7 +88,7 @@
 	walk(src, 0)
 	src.is_npc = 0
 	src.dormant = 0
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	// move mind into flockdrone
 	var/datum/mind/mind = pilot.mind
 	if (mind)
@@ -140,7 +140,7 @@
 /mob/living/critter/flock/drone/proc/dormantize()
 	src.dormant = 1
 	src.canmove = 0
-	src.anchored = 1 // unfun nerds ruin everything yet again
+	src.anchored = ANCHORED // unfun nerds ruin everything yet again
 	src.is_npc = 0 // technically false, but it turns off the AI
 	src.icon_state = "drone-dormant"
 	src.a_intent = INTENT_DISARM // stop swapping places
@@ -148,7 +148,7 @@
 /mob/living/critter/flock/drone/proc/undormantize()
 	src.dormant = 0
 	src.canmove = 1
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	src.damaged = -1
 	src.check_health() // handles updating the icon to something more appropriate
 	src.visible_message("<span class='notice'><b>[src]</b> begins to glow and hover.</span>")

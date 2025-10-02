@@ -84,7 +84,7 @@
 	desc = "A pit most foul, a horrid glimpse into the gnome hive."
 	icon = 'icons/obj/large/64x64.dmi'
 	icon_state = "gnomeholegaping"
-	anchored = ANCHORED_ALWAYS
+	anchored = ANCHORED_TECHNICAL
 	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
 	layer = TURF_LAYER

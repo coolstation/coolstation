@@ -18,7 +18,7 @@
 	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "smes"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	requires_power = FALSE
 	var/output = 30000
 	var/lastout = 0
