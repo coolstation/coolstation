@@ -561,6 +561,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
+
 					// Put together a package of score data that we can hand off to the discord bot
 					var/list/roundend_score = list(
 						"map" = getMapNameFromID(map_setting),
@@ -579,7 +580,8 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
-					ircbot.event("roundend", list("score" = roundend_score))
+					if(dbg) world.log << "Roundend score: [list2params(roundend_score)]"
+					ircbot.event("roundend", list2params(roundend_score))
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 
