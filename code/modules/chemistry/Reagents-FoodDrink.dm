@@ -2096,6 +2096,29 @@ datum
 					M.reagents.add_reagent("cholesterol", rand(1,3) * mult)
 				..()
 
+		fooddrink/cattail_fluff
+			name = "cattail fluff"
+			id= "cattail_fluff"
+			description = "A cottony fluff that holds the seeds of the cattail; it expands rapidly when ingested."
+			reagent_state = SOLID
+			fluid_r = 235
+			fluid_g = 233
+			fluid_b = 223
+			transparency = 255
+			hunger_value = 0.1
+			viscosity = 0.2
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				..()
+				if(prob(80))
+					M.reagents.add_reagent("cattail_fluff", rand(5,15) * mult)
+					M.reagents.trans_to(M.loc, rand(10,20) * mult) //some spillage + barf
+					M.take_oxygen_deprivation(3) // grrk gghfg glugg ghrkjhhrrk
+					if(prob(50))
+						playsound(M, "sound/misc/meat_plop.ogg", 50,1)
+						boutput(M, "<span class='alert'>The cattail fluff explodes in your mouth!</span>")
+
+
 		fooddrink/meat_slurry
 			name = "meat slurry"
 			id = "meat_slurry"

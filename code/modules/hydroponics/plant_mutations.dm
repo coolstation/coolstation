@@ -537,6 +537,22 @@
 	chance = 10
 	assoc_reagents = list("cloak_juice")
 
+// Cattail Mutations
+
+/datum/plantmutation/cattail/corndog
+	name = "dogtail"
+	iconmod = "Corndog"
+	crop = /obj/item/reagent_containers/food/snacks/corndog
+	PTrange = list(35,null) //very high potency
+	chance = 10
+
+/datum/plantmutation/cattail/cat_tail
+	name = "cat tail"
+	iconmod = "Cattailreal"
+	crop = /obj/item/organ/tail/cat/cattail
+	PTrange = list(null,20) //low potency
+	ENrange = list(20,null) //high endurance
+	chance = 4 //might get annoying trying to get corndogs?
 
 // Lasher Mutations
 

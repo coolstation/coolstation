@@ -1332,6 +1332,16 @@
 	heal_amt = 1
 	food_effects = list("food_brute")
 
+/obj/item/reagent_containers/food/snacks/cattail
+	name = "cattail"
+	desc = "Looks suspiciously like a corndog, but it's not. Right?"
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "cattail"
+	amount = 1
+	heal_amt = 0
+	food_effects = list("food_cateyes")
+	initial_reagents = list("cattail_fluff"=10)
+
 /obj/item/reagent_containers/food/snacks/mushroom
 	name = "space mushroom"
 	desc = "A mushroom cap of Space Fungus. Probably tastes pretty bad."

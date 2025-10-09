@@ -21,6 +21,22 @@ ABSTRACT_TYPE(/datum/plant/weed)
 	assoc_reagents = list("space_fungus")
 	mutations = list(/datum/plantmutation/fungus/amanita,/datum/plantmutation/fungus/psilocybin,/datum/plantmutation/fungus/cloak)
 
+/datum/plant/weed/cattail
+	name = "Cattail"
+	seedcolor = "#697849"
+	crop = /obj/item/reagent_containers/food/snacks/cattail
+	nothirst = 1
+	starthealth = 40
+	growtime = 120
+	harvtime = 200
+	harvestable = 1
+	endurance = 50
+	isgrass = 1 //right?
+	vending = 2
+	genome = 6
+	assoc_reagents = list("cattail_fluff")
+	mutations = list(/datum/plantmutation/cattail/corndog)
+
 /datum/plant/weed/lasher
 	name = "Lasher"
 	seedcolor = "#00FFFF"
