@@ -194,9 +194,17 @@
 		reagents.add_reagent("lithium",capacity)
 		//var/datum/reagent/lithium = reagents.get_reagent("lithium")
 		//charge = lithium.volume * lithium.powerunit_capacity
-	/proc/connected()
+	proc/connected()
 		//change icon state
 		return
+	proc/lose_charge(var/amount)
+		src.charge = min(0,src.charge - amount)
+		update_indicator()
+
+	proc/update_indicator(var/override)
+		if(!override)
+			return //change the icon to whatever state is needed
+
 
 /obj/reagent_dispensers/watertank/big
 	name = "high-capacity watertank"

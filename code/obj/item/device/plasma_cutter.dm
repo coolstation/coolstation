@@ -1,6 +1,6 @@
 /obj/item/plasma_cutter
 	name = "plasma cutter"
-	desc = "An extremely bulky and dangerous device, this tool uses electricity from an attatched power store to superheat plasma able cut through nearly any material."
+	desc = "An extremely bulky and dangerous device, this tool uses electricity from an attatched power store to superheat plasma and cut through nearly any material."
 	icon = 'icons/obj/items/plasmacutter.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "base"
@@ -37,16 +37,42 @@
 		if(!active)
 			processing_items.Remove(src)
 			return
-		//come back to this later, weldingtool.dm
+		var/turf/location = src.loc
+		if(ismob(location))
+			var/mob/M = location
+			if (M.l_hand == src || M.r_hand = =src)
+				location = M.loc
+		if(istype(location,/turf))
+			location.hotspot_expose(2000,5) //could go horribly wrong- a bit higher than the melting point of steel. Don't leave it on!
+		if(prob(10))
+			use_power(10)
+			if(!get_power())
+				active = 0
 
 	attack_self(mob/user)
 		. = ..()
-		if(powerbank && powerbank.charge > 0)//check for plasma tank too
+		toggle_active()
+
+	proc/toggle_active()
+		if(!active && get_power())
 			icon_state = "active"
 			active = 1
-			//play sound
+			//boowap
+			return 1
+		else
+			icon_state = "base"
+			active = 0
+			//boowump
+			return 0
 
+	proc/get_power()
+		if(powerbank)
+			return powerbank.charge
 
+	proc/use_power(var/amount)
+		amount = min(get_power(), amount)
+		if(get_power() > 0)
+			powerbank.lose_charge(amount)
 
 
 	/proc/connect(var/obj/reagent_dispensers/powerbank/I)
@@ -55,6 +81,7 @@
 			//disconnect cable
 		powerbank = I
 		//play connection sound whatever
+		//draw cable
 		I.connected()
 		return
 
