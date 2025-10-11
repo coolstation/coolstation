@@ -456,6 +456,9 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_randomize_look,
 		/client/proc/temporary_deadmin_self,
 
+		/client/proc/save_body_persist,
+		/client/proc/load_body_persist,
+
 		//player management
 		// /client/proc/export_banlist,
 		// /client/proc/import_banlist,

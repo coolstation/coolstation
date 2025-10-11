@@ -11,6 +11,7 @@
 	// returnSaveFile returns the file rather than writing it
 	// used for cloud saves
 	body_save(client/user, var/id, returnSavefile = 0) //profilenum not needed yet
+	//TODO: LIMB SAVES
 		if (IsGuestKey(user.key))
 			return 0
 
@@ -25,9 +26,11 @@
 			if(ishuman(user.mob))
 				H = user.mob
 			else
+				boutput(user, "<B><I>you aren't a human!</I></B>")
 				return 0 //humans only for now, borgs are a whole other can of worms
 			BH = user.mob.bioHolder
 		else
+			boutput(user, "<B><I>your client has no mob and or no bioholder!</I></B>")
 			return 0
 
 		F.Lock(-1)
@@ -115,7 +118,7 @@
 		F["[id]_tcursor"] << src.target_cursor
 
 		if(src.traitPreferences.isValid()) //we'll save trates as preferences and use a copy_to to set them on load
-			F["[profileNum]_traits"] << src.traitPreferences.traits_selected
+			F["[id]_traits"] << src.traitPreferences.traits_selected
 
 
 
@@ -144,13 +147,8 @@
 			return F
 		return 1
 
-
-
-	// loads the savefile corresponding to the mob's ckey
-	// if silent=true, report incompatible savefiles
-	// returns 1 if loaded (or file was incompatible)
-	// returns 0 if savefile did not exist
-	body_load(client/user, var/profileNum = 1, var/savefile/loadFrom = null)
+	body_load(client/user,var/id,var/savefile/loadFrom = null) //for now this just loads to prefs, use respawn as self to load the character in
+	//TODO: LOAD ORGAN SAVE STUFF
 		if (ismob(user))
 			CRASH("[user] isnt a client. please give me a client. please. i beg you.")
 
@@ -162,10 +160,9 @@
 		if (loadFrom)
 			F = loadFrom
 		else
-			path = savefile_path(user)
+			path = savefile2_path(user)
 			if (!fexists(path))
 				return "Save path does not exist."
-			profileNum = max(1, min(profileNum, SAVEFILE_PROFILES_MAX))
 			F = new /savefile(path, -1)
 
 		var/version = null
@@ -174,8 +171,9 @@
 		if (isnull(version) || version < SAVEFILE_VERSION_MIN || version > SAVEFILE_VERSION_MAX)
 			if (!loadFrom)
 				fdel(path)
-			return "Save version unvalid. > [version],[profileNum],[path],[loadFrom] <"
+			return "Save version unvalid. > [version],[id],[path],[loadFrom] <"
 
+		/*
 		// Check if any saved profiles are present
 		var/sanity_check = null
 		F["[profileNum]_saved"] >> sanity_check
@@ -187,118 +185,99 @@
 			if (isnull(sanity_check) && !loadFrom)
 				fdel(path)
 			return "Failed sanity check."
-
-		src.profile_number = profileNum
-		src.profile_modified = 0
-
-		// Old version upgrades
-		if (version < 6)
-			F["[profileNum]_clickbuffer"] << 0
-
-		if (version < 7)
-			F["listen_ooc"] << 1
-
-		if (version <= 8)
-			// Global prefs change
-			F["tooltip"] << F["[profileNum]_tooltip"]
-			F["changelog"] << F["[profileNum]_changelog"]
-			F["score"] << F["[profileNum]_score"]
-			F["tickets"] << F["[profileNum]_tickets"]
-			F["sounds"] << F["[profileNum]_sounds"]
-			F["radio_sounds"] << F["[profileNum]_radio_sounds"]
-			F["clickbuffer"] << F["[profileNum]_clickbuffer"]
+		*/
 
 		// Character details
-		F["[profileNum]_real_name"] >> src.real_name
-		F["[profileNum]_name_first"] >> src.name_first
-		F["[profileNum]_name_middle"] >> src.name_middle
-		F["[profileNum]_name_last"] >> src.name_last
-		F["[profileNum]_gender"] >> src.gender
-		F["[profileNum]_age"] >> src.age
-		F["[profileNum]_fartsound"] >> AH.fartsound
-		F["[profileNum]_screamsound"] >> AH.screamsound
-		F["[profileNum]_voicetype"] >> AH.voicetype
-		F["[profileNum]_PDAcolor"] >> src.PDAcolor
-		F["[profileNum]_pda_ringtone_index"] >> src.pda_ringtone_index
-		F["[profileNum]_random_blood"] >> src.random_blood
-		F["[profileNum]_blood_type"] >> src.blType
+		F["[id]_real_name"] >> src.real_name
+		F["[id]_name_first"] >> src.name_first
+		F["[id]_name_middle"] >> src.name_middle
+		F["[id]_name_last"] >> src.name_last
+		F["[id]_gender"] >> src.gender
+		F["[id]_age"] >> src.age
+		F["[id]_fartsound"] >> AH.fartsound
+		F["[id]_screamsound"] >> AH.screamsound
+		F["[id]_voicetype"] >> AH.voicetype
+		F["[id]_PDAcolor"] >> src.PDAcolor
+		F["[id]_pda_ringtone_index"] >> src.pda_ringtone_index
+		F["[id]_random_blood"] >> src.random_blood
+		F["[id]_blood_type"] >> src.blType
 
 		// Records
-		F["[profileNum]_pin"] >> src.pin
-		F["[profileNum]_flavor_text"] >> src.flavor_text
-		F["[profileNum]_medical_note"] >> src.medical_note
-		F["[profileNum]_security_note"] >> src.security_note
+		F["[id]_pin"] >> src.pin
+		F["[id]_flavor_text"] >> src.flavor_text
+		F["[id]_medical_note"] >> src.medical_note
+		F["[id]_security_note"] >> src.security_note
 
 		// Randomization options
-		F["[profileNum]_name_is_always_random"] >> src.be_random_name
-		F["[profileNum]_look_is_always_random"] >> src.be_random_look
+		F["[id]_name_is_always_random"] >> src.be_random_name
+		F["[id]_look_is_always_random"] >> src.be_random_look
 
 		// AppearanceHolder details
 		if (src.AH)
 			var/saved_pronouns
-			F["[profileNum]_pronouns"] >> saved_pronouns
+			F["[id]_pronouns"] >> saved_pronouns
 			// we only store the name and i don't feel like breaking all saves so stupid string searching
 			if(findtext(saved_pronouns, "custom"))
 				AH.pronouns = new
 				AH.pronouns.name = saved_pronouns
-				F["[profileNum]_pronouns_preferred_gender"] >> AH.pronouns.preferredGender
-				F["[profileNum]_pronouns_subjective"] >> AH.pronouns.subjective
-				F["[profileNum]_pronouns_objective"] >> AH.pronouns.objective
-				F["[profileNum]_pronouns_possessive"] >> AH.pronouns.possessive
-				F["[profileNum]_pronouns_posessive_pronoun"] >> AH.pronouns.posessivePronoun
-				F["[profileNum]_pronouns_reflexive"] >> AH.pronouns.reflexive
-				F["[profileNum]_pronouns_plural"] >> AH.pronouns.pluralize
+				F["[id]_pronouns_preferred_gender"] >> AH.pronouns.preferredGender
+				F["[id]_pronouns_subjective"] >> AH.pronouns.subjective
+				F["[id]_pronouns_objective"] >> AH.pronouns.objective
+				F["[id]_pronouns_possessive"] >> AH.pronouns.possessive
+				F["[id]_pronouns_posessive_pronoun"] >> AH.pronouns.posessivePronoun
+				F["[id]_pronouns_reflexive"] >> AH.pronouns.reflexive
+				F["[id]_pronouns_plural"] >> AH.pronouns.pluralize
 			else
 				for (var/P as anything in filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable))
 					var/datum/pronouns/pronouns = get_singleton(P)
 					if (saved_pronouns == pronouns.name)
 						AH.pronouns = pronouns
 						break
-			F["[profileNum]_eye_color"] >> AH.e_color
-			F["[profileNum]_hair_color"] >> AH.customization_first_color
-			F["[profileNum]_hair_color"] >> AH.customization_first_color_original
-			F["[profileNum]_facial_color"] >> AH.customization_second_color
-			F["[profileNum]_facial_color"] >> AH.customization_second_color_original
-			F["[profileNum]_detail_color"] >> AH.customization_third_color
-			F["[profileNum]_detail_color"] >> AH.customization_third_color_original
-			F["[profileNum]_skin_tone"] >> AH.s_tone
-			F["[profileNum]_skin_tone"] >> AH.s_tone_original
-			F["[profileNum]_hair_style_name"] >> AH.customization_first
-			F["[profileNum]_hair_style_name"] >> AH.customization_first_original
-			F["[profileNum]_facial_style_name"] >> AH.customization_second
-			F["[profileNum]_facial_style_name"] >> AH.customization_second_original
-			F["[profileNum]_detail_style_name"] >> AH.customization_third
-			F["[profileNum]_detail_style_name"] >> AH.customization_third_original
-			F["[profileNum]_underwear_style_name"] >> AH.underwear
-			F["[profileNum]_underwear_color"] >> AH.u_color
+			F["[id]_eye_color"] >> AH.e_color
+			F["[id]_hair_color"] >> AH.customization_first_color
+			F["[id]_hair_color"] >> AH.customization_first_color_original
+			F["[id]_facial_color"] >> AH.customization_second_color
+			F["[id]_facial_color"] >> AH.customization_second_color_original
+			F["[id]_detail_color"] >> AH.customization_third_color
+			F["[id]_detail_color"] >> AH.customization_third_color_original
+			F["[id]_skin_tone"] >> AH.s_tone
+			F["[id]_skin_tone"] >> AH.s_tone_original
+			F["[id]_hair_style_name"] >> AH.customization_first
+			F["[id]_hair_style_name"] >> AH.customization_first_original
+			F["[id]_facial_style_name"] >> AH.customization_second
+			F["[id]_facial_style_name"] >> AH.customization_second_original
+			F["[id]_detail_style_name"] >> AH.customization_third
+			F["[id]_detail_style_name"] >> AH.customization_third_original
+			F["[id]_underwear_style_name"] >> AH.underwear
+			F["[id]_underwear_color"] >> AH.u_color
 
 		// Job prefs
-		F["[profileNum]_job_prefs_1"] >> src.job_favorite
-		F["[profileNum]_job_prefs_2"] >> src.jobs_med_priority
-		F["[profileNum]_job_prefs_3"] >> src.jobs_low_priority
-		F["[profileNum]_job_prefs_4"] >> src.jobs_unwanted
-		F["[profileNum]_be_traitor"] >> src.be_traitor
-		F["[profileNum]_be_syndicate"] >> src.be_syndicate
-		F["[profileNum]_be_spy"] >> src.be_spy
-		F["[profileNum]_be_gangleader"] >> src.be_gangleader
-		F["[profileNum]_be_revhead"] >> src.be_revhead
-		F["[profileNum]_be_changeling"] >> src.be_changeling
-		F["[profileNum]_be_wizard"] >> src.be_wizard
-		F["[profileNum]_be_werewolf"] >> src.be_werewolf
-		F["[profileNum]_be_vampire"] >> src.be_vampire
-		F["[profileNum]_be_wraith"] >> src.be_wraith
-		F["[profileNum]_be_blob"] >> src.be_blob
-		F["[profileNum]_be_conspirator"] >> src.be_conspirator
-		F["[profileNum]_be_flock"] >> src.be_flock
-		F["[profileNum]_be_misc"] >> src.be_misc
+		F["[id]_job_prefs_1"] >> src.job_favorite
+		F["[id]_job_prefs_2"] >> src.jobs_med_priority
+		F["[id]_job_prefs_3"] >> src.jobs_low_priority
+		F["[id]_job_prefs_4"] >> src.jobs_unwanted
+		F["[id]_be_traitor"] >> src.be_traitor
+		F["[id]_be_syndicate"] >> src.be_syndicate
+		F["[id]_be_spy"] >> src.be_spy
+		F["[id]_be_gangleader"] >> src.be_gangleader
+		F["[id]_be_revhead"] >> src.be_revhead
+		F["[id]_be_changeling"] >> src.be_changeling
+		F["[id]_be_wizard"] >> src.be_wizard
+		F["[id]_be_werewolf"] >> src.be_werewolf
+		F["[id]_be_vampire"] >> src.be_vampire
+		F["[id]_be_wraith"] >> src.be_wraith
+		F["[id]_be_blob"] >> src.be_blob
+		F["[id]_be_conspirator"] >> src.be_conspirator
+		F["[id]_be_flock"] >> src.be_flock
+		F["[id]_be_misc"] >> src.be_misc
 
 		// UI settings...
-		F["[profileNum]_hud_style"] >> src.hud_style
-		F["[profileNum]_tcursor"] >> src.target_cursor
+		F["[id]_hud_style"] >> src.hud_style
+		F["[id]_tcursor"] >> src.target_cursor
 
-		F["[profileNum]_traits"] >> src.traitPreferences.traits_selected
+		F["[id]_traits"] >> src.traitPreferences.traits_selected
 
-
+		/*
 		// Game setting options, not per-profile
 		F["tooltip"] >> src.tooltip_option
 		F["changelog"] >> src.view_changelog
@@ -319,7 +298,7 @@
 		F["auto_capitalization"] >> src.auto_capitalization
 		F["local_deachat"] >> src.local_deadchat
 		F["hidden_spiders"] >> src.hidden_spiders
-
+		*/
 
 		if (isnull(src.name_first) || !length(src.name_first) || isnull(src.name_last) || !length(src.name_last))
 			// Welp, you get a random name then.
@@ -360,8 +339,8 @@
 
 
 		if(!src.radio_music_volume) // We can take this out some time, when we're decently sure that most people will have this var set to something
-			F["[profileNum]_sounds"] >> src.radio_music_volume
-			F["[profileNum]_radio_sounds"] << src.radio_music_volume
+			F["[id]_sounds"] >> src.radio_music_volume
+			F["[id]_radio_sounds"] << src.radio_music_volume
 
 		// Global pref validation
 		if (user?.is_mentor())
@@ -382,111 +361,6 @@
 		src.keybind_prefs_updated(user)
 
 
-		return 1
-
-
-	//This might be a bad way of doing it IDK
-	savefile_get_profile_name(client/user, var/profileNum = 1)
-		if (IsGuestKey(user.key))
-			return 0
-
-		LAGCHECK(LAG_REALTIME)
-
-		var/path = savefile_path(user)
-
-		if (!fexists(path))
-			return 0
-
-		profileNum = max(1, min(profileNum, SAVEFILE_PROFILES_MAX))
-
-		var/savefile/F = new /savefile(path, -1)
-
-		var/version = null
-		F["version"] >> version
-
-		if (isnull(version) || version < SAVEFILE_VERSION_MIN || version > SAVEFILE_VERSION_MAX)
-			fdel(path)
-			return 0
-
-		var/profile_name = null
-		F["[profileNum]_profile_name"] >> profile_name
-
-		return profile_name
-
-
-	cloudsave_load( client/user, var/name )
-		if(isnull( user.player.cloudsaves ))
-			return "Failed to retrieve cloud data, try rejoining."
-
-		if (IsGuestKey(user.key))
-			return "Guests cannot load saves."
-
-		if(!config.opengoon_api_endpoint)
-			logTheThing( "debug", src, null, "no cloudsave url set" )
-			return "Cloudsave Disabled."
-		// Fetch via HTTP from opengoon
-		var/datum/http_request/request = new()
-		request.prepare(RUSTG_HTTP_METHOD_GET, "[config.opengoon_api_endpoint]/cloudsave/?get&ckey=[user.ckey]&name=[url_encode(name)]&api_key=[md5(config.opengoon_api_token)]", "", "")
-		request.begin_async()
-		UNTIL(request.is_complete())
-		var/datum/http_response/response = request.into_response()
-
-		if (response.errored || !response.body)
-			logTheThing("debug", null, null, "<b>cloudsave_load:</b> Failed to contact opengoon. u: [user.ckey]")
-			return "Failed to contact opengoon."
-
-		var/list/ret = json_decode(response.body)
-		if( ret["status"] == "error" )
-			return ret["error"]["error"]
-
-		var/savefile/save = new
-		save.ImportText( "/", ret["savefile"] )
-	//	logTheThing("debug", null, null, "<b>cloudsave_load:</b> [ret["savefile"]],[response.body]")
-		return src.savefile_load(user, 1, save)
-
-	cloudsave_save( client/user, var/name )
-		if(isnull( user.player.cloudsaves ))
-			return "Failed to retrieve cloud data, try rejoining."
-		if (IsGuestKey( user.key ))
-			return 0
-		if(!config.opengoon_api_endpoint)
-			logTheThing( "debug", src, null, "no cloudsave url set" )
-			return "Cloudsave Disabled."
-
-		var/savefile/save = src.savefile_save( user, 1, 1 )
-		var/exported = save.ExportText()
-
-		// Fetch via HTTP from opengoon
-		var/datum/http_request/request = new()
-		request.prepare(RUSTG_HTTP_METHOD_GET, "[config.opengoon_api_endpoint]/cloudsave/?put&ckey=[user.ckey]&name=[url_encode(name)]&api_key=[md5(config.opengoon_api_token)]&data=[url_encode(exported)]", "", "")
-		request.begin_async()
-		UNTIL(request.is_complete())
-		var/datum/http_response/response = request.into_response()
-
-		if (response.errored || !response.body)
-			logTheThing("debug", null, null, "<b>cloudsave_load:</b> Failed to contact opengoon. u: [user.ckey]")
-			return
-
-		var/list/ret = json_decode(response.body)
-		if( ret["status"] == "error" )
-			return ret["error"]["error"]
-		user.player.cloudsaves[ name ] = length( exported )
-		return 1
-
-	cloudsave_delete( client/user, var/name )
-
-		// Request deletion via HTTP from opengoon
-		var/datum/http_request/request = new()
-		request.prepare(RUSTG_HTTP_METHOD_GET, "[config.opengoon_api_endpoint]/cloudsave/?delete&ckey=[user.ckey]&name=[url_encode(name)]&api_key=[md5(config.opengoon_api_token)]", "", "")
-		request.begin_async()
-		UNTIL(request.is_complete())
-		var/datum/http_response/response = request.into_response()
-
-		if (response.errored || !response.body)
-			logTheThing("debug", null, null, "<b>cloudsave_delete:</b> Failed to contact opengoon. u: [user.ckey]")
-			return
-
-		user.player.cloudsaves.Remove( name )
 		return 1
 
 
