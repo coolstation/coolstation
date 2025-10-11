@@ -35,7 +35,7 @@ ABSTRACT_TYPE(/datum/plant/weed)
 	vending = 2
 	genome = 6
 	assoc_reagents = list("cattail_fluff")
-	mutations = list(/datum/plantmutation/cattail/corndog)
+	mutations = list(/datum/plantmutation/cattail/corndog,/datum/plantmutation/cattail/cat_tail)
 
 /datum/plant/weed/lasher
 	name = "Lasher"

@@ -544,7 +544,7 @@
 	iconmod = "Corndog"
 	crop = /obj/item/reagent_containers/food/snacks/corndog
 	PTrange = list(35,null) //very high potency
-	chance = 10
+	chance = 20
 
 /datum/plantmutation/cattail/cat_tail
 	name = "cat tail"
@@ -552,7 +552,7 @@
 	crop = /obj/item/organ/tail/cat/cattail
 	PTrange = list(null,20) //low potency
 	ENrange = list(20,null) //high endurance
-	chance = 4 //might get annoying trying to get corndogs?
+	chance = 7 //might get annoying trying to get corndogs?
 
 // Lasher Mutations
 
