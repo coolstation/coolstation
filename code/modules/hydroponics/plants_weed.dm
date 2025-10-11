@@ -24,7 +24,7 @@ ABSTRACT_TYPE(/datum/plant/weed)
 /datum/plant/weed/cattail
 	name = "Cattail"
 	seedcolor = "#697849"
-	crop = /obj/item/reagent_containers/food/snacks/cattail
+	crop = /obj/item/reagent_containers/food/snacks/plant/cattail
 	nothirst = 1
 	starthealth = 40
 	growtime = 120

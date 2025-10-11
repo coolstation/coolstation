@@ -2112,8 +2112,8 @@ datum
 				..()
 				if(prob(80))
 					M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
-					M.reagents.trans_to(M.loc, rand(10,20) * mult) //some spillage + barf
-					M.take_oxygen_deprivation(rand(8,60)) // grrk gghfg glugg ghrkjhhrrk
+					M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
+					M.take_oxygen_deprivation(rand(8,20)) // grrk gghfg glugg ghrkjhhrrk
 					playsound(M, "sound/misc/meat_plop.ogg", 50,1)
 					boutput(M, "<span class='alert'>The cattail fluff explodes in your mouth!</span>")
 

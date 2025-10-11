@@ -106,6 +106,7 @@
 	var/create_time = 0
 
 	var/dropped_item = null
+	var/eat_message = null
 
 	New()
 		..()
@@ -252,6 +253,8 @@
 				M.nutrition += src.heal_amt * 10
 				src.heal(M)
 				playsound(M.loc,"sound/items/eatfood.ogg", rand(10,50), 1)
+				if(src.eat_message)
+					boutput(M, "<span class=notice>[src.eat_message]</span>")
 				on_bite(M)
 				if (src.festivity)
 					modify_christmas_cheer(src.festivity)
