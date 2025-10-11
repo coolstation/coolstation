@@ -1707,7 +1707,25 @@ var/f_color_selector_handler/F_Color_Selector
 					ircmsg["msg"] = "Removed the restart delay."
 
 					SPAWN_DBG(1 DECI SECOND)
-						ircbot.event("roundend")
+						// A round-end report is needed!
+						var/list/roundend_score = list(
+							"map" = getMapNameFromID(map_setting),
+							"survival" = score_tracker.score_crew_survival_rate,
+							"sec_scr"  = score_tracker.final_score_sec,
+							"eng_scr"  = score_tracker.final_score_eng,
+							"civ_scr"  = score_tracker.final_score_civ,
+							"res_scr"  = score_tracker.final_score_res,
+							"grade"	 = score_tracker.grade,
+							"m_damaged" = score_tracker.most_damaged_escapee,
+							"r_escaped" = score_tracker.richest_escapee,
+							"r_total"  = score_tracker.richest_total,
+							"beepsky"  = score_tracker.beepsky_alive,
+							"farts"    = fartcount,
+							"wead"     = weadegrowne,
+							"doinks"   = doinkssparked,
+							"clowns"   = clownabuse
+							)
+						ircbot.event("roundend", roundend_score)
 						Reboot_server()
 
 					return ircbot.response(ircmsg)

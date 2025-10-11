@@ -580,7 +580,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
-					ircbot.event("roundend", list2params(roundend_score))
+					ircbot.event("roundend", roundend_score)
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 
