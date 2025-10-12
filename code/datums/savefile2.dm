@@ -75,8 +75,9 @@
 		F["[id]_underwear_style_name"] << BH.mobAppearance.underwear
 		F["[id]_underwear_color"] << BH.mobAppearance.u_color
 
-		//organHolder details *eventually we'll want to have a proc that determines what organs to revert to normal,
-		//which missing organs to replace, etc. For now, all gets saved and replaced if missing.
+		//organHolder details
+		//disabled for now
+		/*
 		F["[id]_brain_type"] << H.organHolder.brain.organ_name
 		F["[id]_left_eye_type"] << H.organHolder.left_eye.organ_name
 		F["[id]_right_eye_type"] << H.organHolder.right_eye.organ_name
@@ -92,6 +93,7 @@
 		F["[id]_intestines_type"] << H.organHolder.intestines.organ_name
 		F["[id]_appendix_type"] << H.organHolder.appendix.organ_name
 		F["[id]_tail_type"] << H.organHolder.tail.organ_name
+		*/
 
 		// Job prefs
 		F["[id]_job_prefs_1"] << src.job_favorite
@@ -142,6 +144,7 @@
 		F["auto_capitalization"] << src.auto_capitalization
 		F["local_deachat"] << src.local_deadchat
 		F["hidden_spiders"] << src.hidden_spiders
+		//boutput(world,"<b>DEBUG: [F["[id]_real_name"]]</b>")
 
 		if (returnSavefile)
 			return F
@@ -161,7 +164,9 @@
 			F = loadFrom
 		else
 			path = savefile2_path(user)
+			boutput(user,"<b>DEBUG: [savefile2_path(user)]</b>")
 			if (!fexists(path))
+				boutput(user,"<b>DEBUG: no save path</b>")
 				return "Save path does not exist."
 			F = new /savefile(path, -1)
 
@@ -171,6 +176,7 @@
 		if (isnull(version) || version < SAVEFILE_VERSION_MIN || version > SAVEFILE_VERSION_MAX)
 			if (!loadFrom)
 				fdel(path)
+			boutput(user,"<b>DEBUG: returned save unvalid version</b>")
 			return "Save version unvalid. > [version],[id],[path],[loadFrom] <"
 
 		/*
@@ -360,7 +366,7 @@
 		src.tooltip_option = (src.tooltip_option ? src.tooltip_option : TOOLTIP_ALWAYS) //For fucks sake.
 		src.keybind_prefs_updated(user)
 
-
+		boutput(world,"<b>DEBUG: Loaded prefs</b>")
 		return 1
 
 
