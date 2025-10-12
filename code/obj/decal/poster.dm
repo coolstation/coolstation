@@ -635,8 +635,8 @@
 			desc = "A poster with common chemical precursors and their recipies."
 			icon_state = "chemcomp"
 			popup_win = 1
-			imgw = 365
-			imgh = 450
+			imgw = 500
+			imgh = 647
 			icon = 'icons/obj/decals/posters.dmi'
 			img = "images/arts/posters/precursor.png"
 
