@@ -634,6 +634,9 @@
 			name = "\improper chemical precursor table"
 			desc = "A poster with common chemical precursors and their recipies."
 			icon_state = "chemcomp"
+			popup_win = 1
+			imgw = 365
+			imgh = 450
 			icon = 'icons/obj/decals/posters.dmi'
 			img = "images/arts/posters/precursor.png"
 
