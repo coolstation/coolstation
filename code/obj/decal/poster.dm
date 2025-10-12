@@ -630,6 +630,13 @@
 			desc = "A chart listing all known chemical elements."
 			icon_state = "ptoe"
 
+		poster_chme
+			name = "\improper chemical precursor table"
+			desc = "A poster with common chemical precursors and their recipies."
+			icon_state = "chemcomp"
+			icon = 'icons/obj/decals/posters.dmi'
+			img = "images/arts/posters/precursor.png"
+
 		poster_y4nt
 			name = "\improper NanoTrasen recruitment poster"
 			desc = "A huge poster that reads 'I want YOU for NT!'"
