@@ -605,7 +605,7 @@
 		if (iscarbon(M) || ismobcritter(M))
 			if (M == user)
 				M.visible_message("<span class='notice'>[M] takes a sip from [src].</span>")
-				if(src.drank_from != M)
+				if(!istype(src.drank_from,user))
 					M.visible_message("<span class='alert>Someone else drank from this already!</span>")
 			else
 				user.visible_message("<span class='alert'>[user] attempts to force [M] to drink from [src].</span>")
