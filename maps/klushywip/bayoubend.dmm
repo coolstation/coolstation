@@ -3893,6 +3893,9 @@
 /area/station/maintenance/solar/north)
 "cUY" = (
 /obj/machinery/vending/cigarette,
+/obj/machinery/light/small/warm{
+	dir = 1
+	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "cVo" = (
@@ -31653,6 +31656,9 @@
 "xIk" = (
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/light/small/warm{
+	dir = 1
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/bar)
