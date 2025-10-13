@@ -711,6 +711,10 @@ WET FLOOR SIGN
 				"<span class='notice'>You wipe down [target] with [src].</span>")
 				if (src.reagents.has_reagent("water"))
 					target.clean_forensic()
+				if (istype(target, /obj/item/reagent_containers/food/drinks/))
+					var/obj/item/reagent_containers/food/drinks/d = target
+					if(d.drank_from)
+						d.drank_from = null
 				src.reagents.reaction(target, TOUCH, 5)
 				src.reagents.remove_any(5)
 				JOB_XP(user, "Janitor", 3)

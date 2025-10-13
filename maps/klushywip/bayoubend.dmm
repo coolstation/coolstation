@@ -2355,9 +2355,8 @@
 	},
 /area/station/bridge)
 "bOC" = (
-/obj/decal/cleanable/rust,
-/obj/shitty_radio/shitty_tv,
-/turf/floor/blackwhite/whitegrime,
+/obj/item/storage/wall/bottlerack,
+/turf/floor/carpet/grime3,
 /area/station/crew_quarters/bar)
 "bPc" = (
 /obj/machinery/vending/monkey,
@@ -3764,6 +3763,10 @@
 	},
 /obj/disposalpipe/segment/sewage{
 	dir = 1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -3;
+	pixel_y = 18
 	},
 /turf/floor/grey/side{
 	dir = 4
@@ -5194,10 +5197,10 @@
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
 "eba" = (
-/obj/machinery/chem_dispenser,
 /obj/machinery/light/small/warm{
 	dir = 4
 	},
+/obj/table/wood/auto,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/bar)
 "ebJ" = (
@@ -9352,6 +9355,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = 7
+	},
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -12685,6 +12691,11 @@
 /area/ghostdrone_factory)
 "jFM" = (
 /obj/machinery/vending/minibar,
+/obj/item_dispenser/icedispenser{
+	dir = 8;
+	pixel_x = 18;
+	pixel_y = 12
+	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/bar)
 "jFY" = (
@@ -21396,6 +21407,7 @@
 /area/station/engine/engineering)
 "qcF" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/vending/minibar/jank,
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "qcY" = (
@@ -22022,13 +22034,13 @@
 /obj/window/reinforced{
 	dir = 1
 	},
+/obj/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/glass_recycler{
 	density = 1;
 	glass_amt = 5;
 	pixel_y = 2
-	},
-/obj/window/reinforced{
-	dir = 8
 	},
 /turf/floor/grey/side,
 /area/station/crew_quarters/bar)
@@ -22703,12 +22715,7 @@
 "qZz" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/cashreg{
-	pixel_x = -6
-	},
-/obj/item_dispenser/icedispenser{
-	dir = 8;
-	pixel_x = 19;
-	pixel_y = 8
+	pixel_x = 1
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -27240,6 +27247,7 @@
 	dir = 4
 	},
 /obj/table/reinforced/bar/auto,
+/obj/shitty_radio/shitty_tv,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -31646,7 +31654,6 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/item/storage/wall/bottlerack,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/bar)
 "xIC" = (
@@ -79002,7 +79009,7 @@ sPk
 ugi
 tpO
 rap
-bOC
+wGl
 ndV
 nNP
 cCc
@@ -79904,7 +79911,7 @@ ndT
 gyd
 wBH
 ocX
-tFt
+bOC
 xAQ
 kVt
 oIe

@@ -30,6 +30,9 @@
 				W.reagents.add_reagent("water", fill)
 				user.show_text("You fill [W] with water.", "blue")
 				playsound(src.loc, "sound/misc/pourdrink.ogg", 100, 1)
+			if (istype(W, /obj/item/reagent_containers/food/drinks/))
+				var/obj/item/reagent_containers/food/drinks/d = W
+				d.drank_from = null
 		else if (istype(W, /obj/item/mop)) // dude whatever
 			var/fill = W.reagents.maximum_volume
 			if (fill == W.reagents.total_volume)
