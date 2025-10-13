@@ -3110,10 +3110,10 @@
 	name = "Surplus Booze Supply"
 	desc = "an alcohol fridge fit for use behind a bar."
 	icon_state = "minibar"
-	icon_panel = "minibar-panel"
-	icon_off = "minibar-off"
-	icon_broken = "minibar-broken"
-	icon_fallen = "minibar-fallen"
+	icon_panel = "minibar_panel"
+	icon_off = "minibar_off"
+	icon_broken = "minibar_broken"
+	icon_fallen = "minibar_fallen"
 	pay = 1
 	slogan_list = list("Wet your whistle!","I may be drunk now, but tomorrow I will also be drunk.","Drinking is good for you.")
 	light_r = 0.2
@@ -3145,10 +3145,10 @@
 	name = "janky surplus booze supply"
 	desc = "an alcohol fridge fit for use behind a bar. This one has seen better days."
 	icon_state = "minibarjank"
-	icon_panel = "minibarjank-panel"
-	icon_off = "minibarjank-off"
-	icon_broken = "minibarjank-broken"
-	icon_fallen = "minibarjank-fallen"
+	icon_panel = "minibarjank_panel"
+	icon_off = "minibarjank_off"
+	icon_broken = "minibarjank_broken"
+	icon_fallen = "minibarjank_fallen"
 	glitchy_slogans = 1
 	slogan_list = list("*violent coughing*","ffugh off, ah'm on brreaghh...","jesus, my fucking head...")
 
