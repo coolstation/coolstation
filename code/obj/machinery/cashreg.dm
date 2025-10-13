@@ -127,3 +127,41 @@
 			src.mainaccount = null
 			src.servicechgaccount = wagesystem.finserv_budget
 			return 1
+
+/* this shit needs to be burned
+/obj/machinery/cashreg/register //basically a machine that generates a receipt for whatever items are selected without charging the user.
+	name = "register"
+	desc = "prints out a bill for items bought."
+	icon_state = "register"
+	var/list/laden = list()
+	var/owner
+	var/temp
+
+	attackby(obj/item/W as obj, mob/user as mob)
+
+		if(istool(W, TOOL_SCREWING | TOOL_WRENCHING))
+			user.visible_message("<b>[user]</b> [anchored ? "unbolts the [src] from" : "secures the [src] to"] the floor.")
+			playsound(src.loc, "sound/items/Screwdriver.ogg", 80, 1)
+			src.anchored = !src.anchored
+
+	attack_hand(var/mob/user as mob)
+		src.add_dialog(user)
+		var/dat
+		if(src.temp)
+			dat = src.temp
+		if(!owner)
+			owner = input(user, "Please enter the shop or owner name.","Bill Register",0)
+
+		dat += {"<B>Bill Issuer: [owner]</B><br><br>"}
+		dat += view_list()
+		user.Browse(dat, "title=[owner] Stock Register;window=computer_\ref[src];size=575x450")
+		onclose(user, "computer_\ref[src]")
+		return
+
+	view_list()
+		. = "<B>Item list:</B><br>"
+		for(var/S in laden)
+			var/datum/laden_item/LI = S
+			. += "<A href='byond://?src=\ref[src];changename=1>[LI.itemname]</A> - <A href='byond://?src=\ref[src];changeprice=1>[LI.itemprice]</A> - <A href='byond://?src=\ref[src];add=1>ADD TO BILL</A> - <A href='byond://?src=\ref[src];remove=1>(X)</A>"
+*/
+

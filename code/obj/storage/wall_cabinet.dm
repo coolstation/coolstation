@@ -209,6 +209,38 @@
 	/obj/item/hand_labeler,
 	/obj/item/cargotele)
 
+/obj/item/storage/wall/bottlerack
+	name = "bottle rack"
+	icon = 'icons/obj/furniture/table_bar.dmi'
+	icon_state = "bottlerack"
+	pixel_y = 32
+	slots = 20
+	spawn_contents = list(/obj/item/reagent_containers/food/drinks/bottle/bojackson,
+	/obj/item/reagent_containers/food/drinks/bottle/beer,
+	/obj/item/reagent_containers/food/drinks/bottle/wine,
+	/obj/item/reagent_containers/food/drinks/bottle/wine,
+	/obj/item/reagent_containers/food/drinks/bottle/wine,
+	/obj/item/reagent_containers/food/drinks/bottle/mead,
+	/obj/item/reagent_containers/food/drinks/bottle/cider,
+	/obj/item/reagent_containers/food/drinks/bottle/cider,
+	/obj/item/reagent_containers/food/drinks/bottle/cider,
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,
+	/obj/item/reagent_containers/food/drinks/bottle/tequila,
+	/obj/item/reagent_containers/food/drinks/curacao,)
+
+	New()
+		..()
+		SPAWN_DBG(1 DECI SECOND) //lol
+			update_icon()
+	update_icon()
+		var/list/my_contents = src.get_contents()
+		if (my_contents.len <= 0)
+			src.icon_state = "bottlerack-empty"
+		else
+			src.icon_state = "bottlerack"
+
 /obj/item/storage/wall/clothingrack
 	name = "clothing rack"
 	icon = 'icons/obj/large_storage.dmi'
