@@ -3115,7 +3115,7 @@
 	icon_broken = "minibar-broken"
 	icon_fallen = "minibar-fallen"
 	pay = 1
-	slogan_list = list("Pay up pal!","I may be drunk now, but tomorrow I will also be drunk.","Drinking is good for you.")
+	slogan_list = list("Wet your whistle!","I may be drunk now, but tomorrow I will also be drunk.","Drinking is good for you.")
 	light_r = 0.2
 	light_g = 0.3
 	light_b = 0.95
