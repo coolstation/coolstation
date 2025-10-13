@@ -214,7 +214,7 @@
 	icon = 'icons/obj/furniture/table_bar.dmi'
 	icon_state = "bottlerack"
 	pixel_y = 32
-	slots = 20
+	slots = 15
 	spawn_contents = list(/obj/item/reagent_containers/food/drinks/bottle/bojackson,
 	/obj/item/reagent_containers/food/drinks/bottle/beer,
 	/obj/item/reagent_containers/food/drinks/bottle/wine,
@@ -227,8 +227,7 @@
 	/obj/item/reagent_containers/food/drinks/bottle/vodka,
 	/obj/item/reagent_containers/food/drinks/bottle/vodka,
 	/obj/item/reagent_containers/food/drinks/bottle/vodka,
-	/obj/item/reagent_containers/food/drinks/bottle/tequila,
-	/obj/item/reagent_containers/food/drinks/curacao,)
+	/obj/item/reagent_containers/food/drinks/bottle/tequila)
 
 	New()
 		..()
