@@ -1958,7 +1958,7 @@ Returns:
 	name = "burning barrel"
 	desc = "cozy."
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "barrel1"
+	icon_state = "barrel"
 	density = 1
 	anchored = ANCHORED
 	opacity = 0
@@ -1966,6 +1966,7 @@ Returns:
 	var/datum/particleSystem/barrelSmoke/smoke_part
 	var/datum/light/light
 	var/lit = TRUE
+	var/image/glow
 
 	New()
 		light = new /datum/light/point
@@ -1975,6 +1976,10 @@ Returns:
 		if (lit)
 			smoke_part = particleMaster.SpawnSystem(new /datum/particleSystem/barrelSmoke(src))
 			light.enable()
+			src.glow = image(src.icon, src, "[icon_state]_g")
+			src.glow.plane = PLANE_SELFILLUM
+			src.glow.layer = LIGHTING_LAYER_BASE
+			src.UpdateOverlays(glow, "glow")
 		..()
 
 	disposing()
