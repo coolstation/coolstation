@@ -903,6 +903,46 @@ datum
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 			drinkrecipe = 1
 
+		cocktail_fancybrandy
+			name = "Fancy Brandy"
+			id = "fancybrandy"
+			result = "fancybrandy"
+			required_reagents = list("brandy" = 1, "curacao"=1, "bitters"=1)
+			result_amount = 3
+			mix_phrase = "The brandy, curaçao, and bitters blend together pleasently."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+
+		cocktail_metropolitan
+			name = "Metropolitan"
+			result = "metropolitan"
+			id = "metropolitan"
+			required_reagents = list("brandy" = 1, "vermouth" = 1)
+			result_amount = 2
+			mix_phrase = "You can hear distant traffic jams and New English accents."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+
+		cocktail_brandydaisy
+			name = "Brandy Daisy"
+			result = "brandydaisy"
+			id = "brandydaisy"
+			required_reagents = list("brandy" = 1,"juice_lemon" = 1,"rum" = 1)
+			result_amount = 3
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+			mix_phrase = "There is a faint scent of flowers hanging in the air."
+
+		cocktail_vieuxcarre
+			name = "Vieux Carré"
+			id = "vieuxcarre"
+			result = "vieuxcarre"
+			required_reagents = list("brandy"=2,"bitters"=1,"vermouth"=1)
+			result_amount = 4
+			mix_phrase = "Mon dieu, ça sent l'écrevisse!"
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+
 		cocktail_bloodyscary
 			name = "Bloody Scary"
 			id = "bloody_scary"
@@ -937,7 +977,7 @@ datum
 			name = "Pisco Sour"
 			id = "piscosour"
 			result = "piscosour"
-			required_reagents = list("egg" = 1, "simplesyrup" = 1, "bitters"= 1, "juice_lime" = 1, "white_wine" = 1)
+			required_reagents = list("egg" = 1, "simplesyrup" = 1, "bitters"= 1, "juice_lime" = 1, "brandy" = 1)
 			result_amount = 5
 			mix_phrase = "The egg white foams and floats atop the lime-colored drink."
 			mix_sound = 'sound/misc/drinkfizz.ogg'

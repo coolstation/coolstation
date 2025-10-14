@@ -725,6 +725,18 @@ datum
 			reagent_state = LIQUID
 			taste = "sweet"
 
+		fooddrink/alcoholic/brandy
+			name = "brandy"
+			id = "brandy"
+			fluid_r = 245
+			fluid_g = 120
+			fluid_b = 30
+			alch_strength = 0.55
+			description = "A strong dessert alcohol made by distilling wine."
+			reagent_state = LIQUID
+			taste = "sweet"
+
+
 		fooddrink/alcoholic/bitters
 			name = "bitters"
 			id = "bitters"
@@ -973,6 +985,50 @@ datum
 			description = "Fun fact: the name of this cocktail was deemed a war crime in 2025."
 			reagent_state = LIQUID
 			taste = "sexy"
+
+		fooddrink/alcoholic/fancybrandy
+			name = "Fancy Brandy"
+			id = "fancybrandy"
+			fluid_r = 245
+			fluid_g = 120
+			fluid_b = 60
+			alch_strength = 0.7
+			reagent_state = LIQUID
+			description = "Also known simply as a Brandy Cocktail."
+			taste = "elegant"
+
+		fooddrink/alcoholic/metropolitan
+			name = "Metropolitan"
+			id = "metropolitan"
+			fluid_r = 245
+			fluid_g = 160
+			fluid_b = 60
+			alch_strength = 0.6
+			description = "The classic brandy cocktail- it's like the Manhattan, but for brandy."
+			reagent_state = LIQUID
+			taste = "modestly satisfying"
+
+		fooddrink/alcoholic/brandydaisy
+			name = "Brandy Daisy"
+			id = "brandydaisy"
+			fluid_r = 245
+			fluid_g = 160
+			fluid_b = 40
+			alch_strength = 0.65
+			reagent_state = LIQUID
+			description = "It even smells like a daisy. Cute."
+			taste = "like a flower"
+
+		fooddrink/alcoholic/vieuxcarre
+			name = "Vieux Carré"
+			id = "vieuxcarre"
+			description = "ET OUA, Vyurr kaa ray!"
+			fluid_r = 224
+			fluid_g = 180
+			fluid_b = 92
+			alch_strength = 0.65
+			reagent_state = LIQUID
+			taste = "cajun"
 
 		fooddrink/alcoholic/gtonic
 			name = "Gin and Tonic"

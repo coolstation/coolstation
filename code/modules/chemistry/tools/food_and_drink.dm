@@ -605,7 +605,7 @@
 		if (iscarbon(M) || ismobcritter(M))
 			if (M == user)
 				M.visible_message("<span class='notice'>[M] takes a sip from [src].</span>")
-				if(!istype(src.drank_from,user))
+				if(user != src.drank_from)
 					M.visible_message("<span class='alert>Someone else drank from this already!</span>")
 			else
 				user.visible_message("<span class='alert'>[user] attempts to force [M] to drink from [src].</span>")
@@ -630,15 +630,32 @@
 					reag_list += ", [current_reagent.name]"
 				reag_list = copytext(reag_list, 3)
 				boutput(M, "<span class='notice'>Tastes like there might be some [reag_list] in this.</span>")
-/*			else
-				var/reag_list = ""
+			else
+				var/list/tastelist = list()
 
 				for (var/current_id in reagents.reagent_list)
 					var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
-					reag_list += "[current_reagent.taste], "
+					if(current_reagent.taste)
+						var/taste = current_reagent.taste
+						tastelist += taste
+					else
+						continue
 
-				boutput(M, "<span class='notice'>You taste [reag_list]in this.</span>")
-*/
+				if(tastelist)
+					var/output_taste
+					var/i
+					for(var/taste in tastelist)
+						i++
+						output_taste = replacetext_char(output_taste,taste,"")
+						if(i != tastelist.len)
+							output_taste += ", [taste]"
+						else
+							output_taste += " and [taste]"
+
+					output_taste = copytext(output_taste, 3)
+					output_taste = replacetext_char(output_taste,", ,",",") //cleaning up because i'm a bad coder
+					boutput(M, "<span class='notice'>This tastes [output_taste].")
+
 			if (src.reagents.total_volume)
 				logTheThing("combat", user, M, "[user == M ? "takes a sip from" : "makes [constructTarget(M,"combat")] drink from"] [src] [log_reagents(src)] at [log_loc(user)].")
 				src.reagents.reaction(M, INGEST, min(reagents.total_volume, gulp_size, (M.reagents?.maximum_volume-M.reagents?.total_volume)))
