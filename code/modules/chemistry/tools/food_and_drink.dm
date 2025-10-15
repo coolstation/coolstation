@@ -519,7 +519,7 @@
 	var/can_chug = 1
 	var/shard_amt = 0 //bottles and glasses and other stuff use this var
 	var/alphatest_closecontainer = 0 //don't screw up cap drawing while i start making bottles openable
-	var/mob/drank_from
+	var/drank_from
 
 /*
 //okay well update_gulp_size was already broken when i got here
@@ -605,8 +605,10 @@
 		if (iscarbon(M) || ismobcritter(M))
 			if (M == user)
 				M.visible_message("<span class='notice'>[M] takes a sip from [src].</span>")
-				if(user != src.drank_from)
-					M.visible_message("<span class='alert>Someone else drank from this already!</span>")
+				if(istype(user,/mob/living/carbon/human))
+					var/mob/living/carbon/human/H = user
+					if(H.blood_id != src.drank_from)
+						H.visible_message("<span class='alert>Someone else drank from this already!</span>")
 			else
 				user.visible_message("<span class='alert'>[user] attempts to force [M] to drink from [src].</span>")
 				logTheThing("combat", user, M, "attempts to force [constructTarget(M,"combat")] to drink from [src] [log_reagents(src)] at [log_loc(user)].")
@@ -619,7 +621,9 @@
 					boutput(user, "<span class='alert'>Nothing left in [src], oh no!</span>")
 					return
 				user.visible_message("<span class='alert'>[user] makes [M] drink from the [src].</span>")
-			src.drank_from = M
+			if (ishuman(M))
+				var/mob/living/carbon/human/H = M
+				src.drank_from = H.blood_id
 			if (M.mind && M.mind.assigned_role == "Bartender")
 				var/reag_list = ""
 				for (var/current_id in reagents.reagent_list)
