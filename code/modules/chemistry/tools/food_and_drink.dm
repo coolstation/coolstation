@@ -607,7 +607,7 @@
 				M.visible_message("<span class='notice'>[M] takes a sip from [src].</span>")
 				if(istype(user,/mob/living/carbon/human))
 					var/mob/living/carbon/human/H = user
-					if(H.blood_id != src.drank_from)
+					if(H.bioHolder.uid_hash != src.drank_from)
 						H.visible_message("<span class='alert>Someone else drank from this already!</span>")
 			else
 				user.visible_message("<span class='alert'>[user] attempts to force [M] to drink from [src].</span>")
@@ -623,7 +623,7 @@
 				user.visible_message("<span class='alert'>[user] makes [M] drink from the [src].</span>")
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
-				src.drank_from = H.blood_id
+				src.drank_from = H.bioHolder.uid_hash
 			if (M.mind && M.mind.assigned_role == "Bartender")
 				var/reag_list = ""
 				for (var/current_id in reagents.reagent_list)

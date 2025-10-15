@@ -913,16 +913,6 @@ datum
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 			drinkrecipe = 1
 
-		cocktail_metropolitan
-			name = "Metropolitan"
-			result = "metropolitan"
-			id = "metropolitan"
-			required_reagents = list("brandy" = 1, "vermouth" = 1)
-			result_amount = 2
-			mix_phrase = "You can hear distant traffic jams and New English accents."
-			mix_sound = 'sound/misc/drinkfizz.ogg'
-			drinkrecipe = 1
-
 		cocktail_brandydaisy
 			name = "Brandy Daisy"
 			result = "brandydaisy"
