@@ -650,7 +650,10 @@
 						if(i != tastelist.len)
 							output_taste += ", [taste]"
 						else
-							output_taste += " and [taste]"
+							if(tastelist.len != 1)
+								output_taste += " and [taste]"
+							else
+								output_taste = ", [taste]"
 
 					output_taste = copytext(output_taste, 3)
 					output_taste = replacetext_char(output_taste,", ,",",") //cleaning up because i'm a bad coder

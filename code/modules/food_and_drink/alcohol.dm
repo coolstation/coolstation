@@ -288,7 +288,7 @@
 	name = "rum"
 	desc = "Yo ho ho and all that."
 	cap_type = "screw"
-	bottle_style = "spicedrum"
+	bottle_style = "bottle-spicedrum"
 	fluid_style = "spicedrum"
 	label = "spicedrum"
 	alt_filled_state = 1
