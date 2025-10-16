@@ -533,11 +533,10 @@
 /obj/cable/proc/link_crawl()
 	var/list/connections = get_connections()
 	switch(length(connections))
-		if (3)
-			return //should get cleaned up elsewhere in pnet code (trying to avoid recursion in integrate or validate)
 		if (1)
 			if (src.is_a_node)
 				return
+			src.is_a_link = null
 			src.is_a_node = new
 			src.is_a_node.physical_node = src
 			var/obj/cable/C = connections[1]
@@ -545,7 +544,7 @@
 				C.is_a_node.adjacent_nodes += src.is_a_node
 				src.is_a_node.adjacent_nodes += C.is_a_node
 				src.is_a_node.pnet = C.is_a_node.pnet
-		else //2
+		if (2)
 			var/datum/powernet_graph_link/new_link = new
 			src.is_a_link = new_link
 			src.is_a_link.cables += src
@@ -601,6 +600,8 @@
 				unlikely.correct_link_references()
 
 			return src.is_a_link
+		else //more than 2
+			return //should get cleaned up elsewhere in pnet code (trying to avoid recursion in integrate or validate)
 
 ///cleanup to make sure our linked nodes know of each other
 /obj/cable/proc/correct_link_references()
