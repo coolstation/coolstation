@@ -286,7 +286,9 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 
 		logTheThing("ooc", null, null, "<b>Current round begins</b>")
 		boutput(world, "<FONT class='notice'><B>Enjoy the game!</B></FONT>")
+		boutput(world, "<span class='notice'><b>Alt+Click anything to examine and see hints!</b></span>")
 		boutput(world, "<span class='notice'><b>[prob(10)?"Pro ":"Cool "]Tip:</b> [pick(dd_file2list("strings/roundstart_hints.txt"))]</span>")
+
 		// keywords -  pro tip: cool tip: protips roundstart tips roundstart hints
 
 		//Setup the hub site logging

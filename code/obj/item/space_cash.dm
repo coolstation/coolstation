@@ -1,6 +1,7 @@
 
 /obj/item/spacecash
 	name = "1 credit"
+	hint = "Split a stack by clicking it with an empty active hand while the stack is in your inactive hand."
 	real_name = "credit"
 	desc = "You gotta have money."
 	icon = 'icons/obj/items/items.dmi'
