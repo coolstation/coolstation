@@ -92,12 +92,14 @@ var/global/list/dirty_power_machines = list()
 			links = relevant_link
 			relevant_link = links[length(links)]
 
+		var/datum/powernet_graph_node/new_node
 		do
 		{
 			if (istype(relevant_link))
 				if (delete_link || (relevant_link.expected_length != length(relevant_link.cables))) //link borked or one of the end points borked
 					unbroken_links--
-					relevant_link.dissolve()
+					new_node = relevant_link.dissolve(src)
+
 				else if (relevant_link.active <= 0)
 					unbroken_links--
 					inactive_links++
@@ -108,7 +110,7 @@ var/global/list/dirty_power_machines = list()
 		while (how_many_links > 0)
 
 		if (delete_link || unbroken_links == 0) //break list linking
-			if (!inactive_links)
+			if (!inactive_links && !new_node)
 				actual_links_left--
 				other_node.adjacent_nodes -= src //probably faster to do it now, but breaks things if there's inactive links
 			adjacent_nodes -= other_node
@@ -139,8 +141,8 @@ var/global/list/dirty_power_machines = list()
 				node_one.adjacent_nodes -= src
 				node_two.adjacent_nodes -= src
 				if (node_two in node_one.adjacent_nodes) //They're already linked, fuck
-					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one))
-					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one))
+					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two]) ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two], link_one))
+					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one]) ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one], link_one))
 				else
 					node_one.adjacent_nodes[node_two] = link_one
 					node_two.adjacent_nodes[node_one] = link_one //ough writing this bit really hit home just how Huge these graphs still are as data structures.
@@ -155,8 +157,8 @@ var/global/list/dirty_power_machines = list()
 				node_one.adjacent_nodes -= src
 				node_two.adjacent_nodes -= src
 				if (node_two in node_one.adjacent_nodes)
-					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one))
-					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one))
+					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two]) ? node_one.adjacent_nodes[node_two] + link_one : list(node_one.adjacent_nodes[node_two]) + link_one)
+					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one]) ? node_two.adjacent_nodes[node_one] + link_one : list(node_two.adjacent_nodes[node_one]) + link_one)
 				else
 					node_one.adjacent_nodes[node_two] = link_one
 					node_two.adjacent_nodes[node_one] = link_one
@@ -172,8 +174,8 @@ var/global/list/dirty_power_machines = list()
 				node_one.adjacent_nodes -= src
 				node_two.adjacent_nodes -= src
 				if (node_two in node_one.adjacent_nodes)
-					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two] ? node_one.adjacent_nodes[node_two] + link_two : list(node_one.adjacent_nodes[node_two]) + link_two))
-					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one] ? node_two.adjacent_nodes[node_one] + link_two : list(node_two.adjacent_nodes[node_one]) + link_two))
+					node_one.adjacent_nodes[node_two] = (islist(node_one.adjacent_nodes[node_two]) ? node_one.adjacent_nodes[node_two] + link_two : list(node_one.adjacent_nodes[node_two]) + link_two)
+					node_two.adjacent_nodes[node_one] = (islist(node_two.adjacent_nodes[node_one]) ? node_two.adjacent_nodes[node_one] + link_two : list(node_two.adjacent_nodes[node_one]) + link_two)
 				else
 					node_one.adjacent_nodes[node_two] = link_two
 					node_two.adjacent_nodes[node_one] = link_two
@@ -280,7 +282,7 @@ var/global/list/dirty_power_machines = list()
 
 
 ///split up
-/datum/powernet_graph_link/proc/dissolve()
+/datum/powernet_graph_link/proc/dissolve(var/datum/powernet_graph_node/caller)
 	//Should note that when a cable inside a link becomes a node because a new connection appeared
 	//That cable is already removed in cable/proc/integrate. The assumption is that all cables we call link_crawl are still links.
 	//That is to avoid recursion.
@@ -288,6 +290,7 @@ var/global/list/dirty_power_machines = list()
 	//break links between nodes
 	var/datum/powernet_graph_node/node_1 = adjacent_nodes[1]
 	var/datum/powernet_graph_node/node_2 = adjacent_nodes[2]
+	var/new_node = null
 	if (islist(node_1.adjacent_nodes[node_2]))
 		node_1.adjacent_nodes[node_2] -= src
 		node_2.adjacent_nodes[node_1] -= src
@@ -300,8 +303,20 @@ var/global/list/dirty_power_machines = list()
 		var/datum/powernet_graph_link/L = C.link_crawl()
 		if (L)
 			cables -= L.cables
-		else cables -= C
+			if (caller)
+				if (caller in L.adjacent_nodes)
+					if (L.adjacent_nodes[1] == caller)
+						new_node = L.adjacent_nodes[2]
+					else
+						new_node = L.adjacent_nodes[1]
+		else
+			cables -= C
+			if (C.is_a_node)
+				if (caller in C.is_a_node.adjacent_nodes)
+					new_node = C.is_a_node
+
 	qdel(src)
+	return new_node
 
 ///Used with cable switches/breaker boxes. Let our nodes know about each other again so they validate sorta properly.
 /datum/powernet_graph_link/proc/reactivate()
