@@ -27,6 +27,7 @@
 	var/list/note_accidentals = list() //(s)harp,b(flat),N(none)
 	var/list/compiled_notes = list() //holds our compiled filenames for the note
 	var/list/linked_pianos = list() //list that stores our linked pianos, including the main one
+	hint = "Use a screwdriver to move or anchor this."
 
 	New()
 		..()

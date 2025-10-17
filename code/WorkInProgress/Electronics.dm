@@ -431,12 +431,12 @@
 	//
 	if (istype(O, /obj/machinery))
 		var/obj/machinery/M = O
-		var/hint = M.malfunction_hint()
-		if (hint)
+		var/malf_hint = M.malfunction_hint()
+		if (malf_hint)
 			animate_scanning(O, "#FF6633")
 			user.visible_message("<b>[user]</b> has scanned the [O].")
 			boutput(user, "<br><span class='alert'>Maintenance analysis: <b>[M] is not functioning properly.</span></b>")
-			src.audible_message("<span class='notice'>NanoTrasen maintenance guide advises: <i>[hint]</i></span>")
+			src.audible_message("<span class='notice'>NanoTrasen maintenance guide advises: <i>[malf_hint]</i></span>")
 			return
 
 	if(istype(O,/obj/machinery/rkit) || istype(O, /obj/item/electronics/frame))

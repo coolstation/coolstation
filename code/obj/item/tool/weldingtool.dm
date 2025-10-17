@@ -28,6 +28,8 @@
 	inventory_counter_enabled = 1
 	var/capacity = 20
 
+	hint = "Use on a fuel tank to refuel. To start crafting a flamethrower, attach a rod."
+
 	New()
 		..()
 		src.create_reagents(capacity)

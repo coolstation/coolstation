@@ -116,6 +116,7 @@
 	note_time = 200
 	affect_fun = 15 // a little higher, why not?
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH
+	hint = "Use a screwdriver to move or anchor this."
 
 	attack_hand(mob/user as mob)
 		src.add_fingerprint(user)

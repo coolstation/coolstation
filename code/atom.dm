@@ -67,6 +67,8 @@
 	var/num_allowed_suffixes = 5
 	var/image/worn_material_texture_image = null
 
+	//Called after get_desc(), so that's the proc to update these dynamically
+	///Added to descriptions on examination, for explaining crafting steps and other things that may not fit kayfabe.
 	var/hint
 
 	proc/name_prefix(var/text_to_add, var/return_prefixes = 0, var/prepend = 0)
@@ -698,12 +700,12 @@
 	else if (src.desc)
 		. += "<br>[src.desc]"
 
-	if(src.hint)
-		. += "<br><span class='notice'>hint: <i>[hint]</i></span><br>"
-
 	var/extra = src.get_desc(dist, user)
 	if (extra)
 		. += " [extra]"
+
+	if(src.hint)
+		. += "<br><span class='notice'>hint: <i>[hint]</i></span><br>"
 
 ///Called when something is click-dragged onto this atom
 /atom/proc/MouseDrop_T()

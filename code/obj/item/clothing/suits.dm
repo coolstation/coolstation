@@ -235,6 +235,7 @@
 	var/armored = 0
 	body_parts_covered = TORSO|LEGS|ARMS
 	permeability_coefficient = 0.005
+	hint = "You can add an armor vest to this."
 
 	setupProperties()
 		..()
