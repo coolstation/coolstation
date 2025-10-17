@@ -1990,7 +1990,6 @@
 	dir = 6;
 	icon_state = "line2"
 	},
-/obj/bookshelf/long/end_right,
 /turf/floor/carpet/grime,
 /area/station/library)
 "bDU" = (
@@ -2232,6 +2231,7 @@
 /area/station/hallway/primary/east)
 "bJX" = (
 /obj/blind_switch/area/south,
+/obj/bookshelf/long/end_left,
 /turf/floor/wood/seven,
 /area/station/library)
 "bKv" = (
@@ -2670,6 +2670,7 @@
 /area/station/crew_quarters/baroffice)
 "bWX" = (
 /obj/decal/cleanable/dirt/random,
+/obj/bookshelf/long/end_right,
 /turf/floor/wood/seven,
 /area/station/library)
 "bXa" = (
@@ -5242,6 +5243,12 @@
 /obj/machinery/vending/juice,
 /turf/floor,
 /area/station/hallway/primary/east)
+"eaj" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/quarters_west)
 "eaI" = (
 /obj/cable{
 	d1 = 1;
@@ -9400,11 +9407,8 @@
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
 "gVv" = (
-/obj/decal/tile_edge/line/black{
-	icon_state = "line1"
-	},
 /obj/bookshelf/long/end_left,
-/turf/floor/carpet/grime,
+/turf/floor/wood/seven,
 /area/station/library)
 "gVG" = (
 /obj/decal/poster/wallsign/space,
@@ -14253,6 +14257,15 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
+"kDQ" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/obj/machinery/door/airlock/external,
+/turf/space,
+/area/station/shipyard)
 "kEe" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -20115,7 +20128,6 @@
 	dir = 10;
 	icon_state = "line2"
 	},
-/obj/bookshelf/long/end_left,
 /turf/floor/carpet/grime,
 /area/station/library)
 "pgk" = (
@@ -24226,12 +24238,6 @@
 /obj/decal/cleanable/ketchup,
 /turf/floor/red/checker,
 /area/station/crew_quarters/kitchen)
-"rUb" = (
-/obj/cable{
-	icon_state = "2-8"
-	},
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/quarters_west)
 "rUz" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -24701,7 +24707,6 @@
 /obj/decal/tile_edge/line/black{
 	icon_state = "line1"
 	},
-/obj/bookshelf/long/end_right,
 /turf/floor/carpet/grime,
 /area/station/library)
 "snd" = (
@@ -25527,6 +25532,7 @@
 "sRX" = (
 /obj/decal/cleanable/mess/chips,
 /obj/machinery/light_switch/south,
+/obj/bookshelf/long/end_right,
 /turf/floor/wood/seven,
 /area/station/library)
 "sSd" = (
@@ -32363,15 +32369,6 @@
 	dir = 4
 	},
 /area/station/engine/engineering/breakroom)
-"ych" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir";
-	tag = "icon-lattice-dir (EAST)"
-	},
-/obj/machinery/door/airlock/external,
-/turf/space,
-/area/station/shipyard)
 "yco" = (
 /obj/stool/bed/brig,
 /obj/machinery/firealarm{
@@ -64106,7 +64103,7 @@ oyl
 lbc
 rHx
 rHx
-rUb
+eaj
 bwQ
 kDn
 rOj
@@ -68368,7 +68365,7 @@ jmW
 dXU
 hwz
 bMk
-ych
+kDQ
 apK
 gdz
 apK
@@ -75882,8 +75879,8 @@ aTm
 ezE
 ldA
 tTN
+smS
 gVv
-cwD
 pyf
 uop
 tzy
