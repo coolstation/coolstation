@@ -21,6 +21,7 @@ var/zapLimiter = 0
 
 /obj/machinery/power/apc
 	name = "area power controller"
+	hint = "These supply the area with power, and contain a power cell inside."
 	icon_state = "apc0-map"
 	anchored = ANCHORED
 	plane = PLANE_NOSHADOW_ABOVE

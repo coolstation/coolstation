@@ -67,6 +67,8 @@
 	var/num_allowed_suffixes = 5
 	var/image/worn_material_texture_image = null
 
+	var/hint
+
 	proc/name_prefix(var/text_to_add, var/return_prefixes = 0, var/prepend = 0)
 		if( !name_prefixes ) name_prefixes = list()
 		var/prefix = ""
@@ -695,6 +697,9 @@
 				. += "<br>[src.desc] <span class='alert'>It seems to be covered in blood!</span>"
 	else if (src.desc)
 		. += "<br>[src.desc]"
+
+	if(src.hint)
+		. += "<br><span class='notice'>hint: <i>[hint]</i></span><br>"
 
 	var/extra = src.get_desc(dist, user)
 	if (extra)

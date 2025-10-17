@@ -58,6 +58,7 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
+	hint = "Hit the machine with cash or your ID to put credit into it."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	machinery_flags = MAY_REQUIRE_MAINT

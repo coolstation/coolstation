@@ -598,6 +598,7 @@
 /obj/item/clothing/suit/bedsheet
 	name = "bedsheet"
 	desc = "A linen sheet used to cover yourself while you sleep. Preferably on a bed."
+	hint = "you can thread a wire through this to make a cape."
 	icon_state = "bedsheet"
 	uses_multiple_icon_states = 1
 	item_state = "bedsheet"
