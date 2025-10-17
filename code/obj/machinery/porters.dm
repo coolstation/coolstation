@@ -291,6 +291,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "port_a_brig_0"
 	desc = "A portable holding cell with teleporting capabilites."
+	hint = "control this with the PDA app or the remote control."
 	density = 1
 	anchored = UNANCHORED
 	p_class = 1.8

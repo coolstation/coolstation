@@ -11,6 +11,7 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER
 	volume = 750
 	desc = "A device which filters out harmful air from an area."
+	hint = "drag and drop onto your person to remove the internal chem tank(changing the filter)"
 	p_class = 1.5
 
 

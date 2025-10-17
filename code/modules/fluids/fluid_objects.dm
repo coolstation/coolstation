@@ -18,7 +18,7 @@
 	icon_state = "drain"
 	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
 	name = "drain"
-	desc = "A drainage pipe embedded in the floor to prevent flooding. Where does the drain go? Nobody knows."
+	desc = "A drainage pipe embedded in the floor to prevent flooding. Where does the drain go? The septic tank!"
 	var/turf/my_turf
 	var/clogged = 0 //temporary block
 	var/welded = 0 //permanent block

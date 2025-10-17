@@ -17,6 +17,7 @@ Handsaw
 /obj/item/crowbar
 	name = "crowbar"
 	desc = "A tool used as a lever to pry objects."
+	hint = "you can throw tiles by preforming a special attack with the disarm intent."
 	icon = 'icons/obj/items/tools/tools.dmi'
 	// TODO: crowbar inhand icon
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
