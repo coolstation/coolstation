@@ -5,6 +5,7 @@
 /obj/stool/chair
 	name = "chair"
 	desc = "A four-legged metal chair, rigid and slightly uncomfortable. Helpful when you don't want to use your legs at the moment."
+	hint = "press Z or click on yourself while on the grab intent to prepare for a chair dive."
 	icon_state = "chair"
 	var/comfort_value = 3
 	var/buckledIn = 0

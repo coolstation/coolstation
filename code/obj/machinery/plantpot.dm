@@ -207,6 +207,7 @@
 	// get kind of resource intensive past a certain point.
 	name = "hydroponics tray"
 	desc = "A tray filled with nutrient solution capable of sustaining plantlife."
+	hint = "click plus drag to yourself to clear the tray."
 	icon = 'icons/obj/hydroponics/machines_hydroponics.dmi'
 	icon_state = "tray"
 	anchored = UNANCHORED

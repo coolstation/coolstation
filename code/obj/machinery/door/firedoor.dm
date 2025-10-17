@@ -30,6 +30,7 @@
 
 /obj/machinery/door/firedoor
 	name = "Firelock"
+	hint = "use a crowbar to pry this open!"
 	desc = "Thick, fire-proof doors that prevent the spread of fire, they can only be pried open unless the fire alarm is cleared."
 	icon = 'icons/obj/doors/Doorfire.dmi'
 	icon_state = "door0"

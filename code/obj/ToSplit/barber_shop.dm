@@ -28,6 +28,7 @@
 /obj/item/scissors
 	name = "scissors"
 	desc = "Used to cut hair. Make sure you aim at the head, where the hair is."
+	hint = "these can remove bandages."
 	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "scissors"
 	flags = FPRINT | TABLEPASS | CONDUCT

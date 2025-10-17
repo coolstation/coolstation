@@ -26,7 +26,7 @@
 	var/static/image/fire0 = null
 	text = ""
 	desc = "A fire sensor and alarm system. When it detects fire or is manually activated, it closes all firelocks in the area to minimize the spread of fire."
-
+	hint = "this is triggered by heat."
 
 
 

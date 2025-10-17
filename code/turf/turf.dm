@@ -825,6 +825,7 @@
 /turf/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
+	hint = "deals burn damage if unprotected."
 	icon_state = "placeholder"
 	fullbright = 1
 #ifndef HALLOWEEN

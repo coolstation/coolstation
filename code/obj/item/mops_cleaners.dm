@@ -544,6 +544,7 @@ WET FLOOR SIGN
 /obj/item/sponge
 	name = "sponge"
 	desc = "After careful analysis, you've come to the conclusion that the strange object is, in fact, a sponge."
+	hint = "this can clean fingerprints off of objects."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "sponge"
 	item_state = "sponge"

@@ -207,6 +207,7 @@
 /obj/reagent_dispensers/watertank/fountain
 	name = "water cooler"
 	desc = "A popular gathering place for NanoTrasen's finest bureaucrats and pencil-pushers."
+	hint = "click and drag onto yourself to steal the water tank."
 	icon_state = "coolerbase"
 	anchored = ANCHORED
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR
