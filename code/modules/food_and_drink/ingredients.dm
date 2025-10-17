@@ -245,6 +245,7 @@
 	amount = 1
 	food_color = "#FFFFFF"
 	value = 20
+	hint = "Add water at a sink to make dough."
 
 /obj/item/reagent_containers/food/snacks/ingredient/flour/semolina
 	name = "semolina"
@@ -270,6 +271,7 @@
 	amount = 1
 	food_color = "#E3E3E3"
 	value = 20
+	hint = "Add water at a sink to make sticky rice."
 
 /obj/item/reagent_containers/food/snacks/ingredient/sugar
 	name = "sugar"

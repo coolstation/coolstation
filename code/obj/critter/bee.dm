@@ -1565,6 +1565,8 @@
 	rand_pos = 8
 	value = 75
 
+	hint = "Use in hand to hatch. Use a pen beforehand to give the bee a custom name."
+
 	var/tmp/blog = "egg blog|"
 
 	New()
