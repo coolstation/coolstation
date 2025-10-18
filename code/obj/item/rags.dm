@@ -52,6 +52,9 @@
 	name = "blue rag"
 	desc = "a blue rag that smells faintly of old blood."
 	icon_state = "rag-baseblue"
+	New()
+		..()
+		src.icon_state = "rag-baseblue"
 
 
 
