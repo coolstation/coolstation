@@ -16,6 +16,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 	var/det_time = 3 SECONDS
 	var/org_det_time = 3 SECONDS
 	var/alt_det_time = 6 SECONDS
+	hint = "Use in hand to arm. You can toggle between two detonation timings with a screwdriver."
 	w_class = W_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
