@@ -58,13 +58,6 @@
 /obj/item/storage/firstaid/regular,
 /turf/floor/plating,
 /area/shuttle/escape/centcom/donut2)
-"gI" = (
-/turf/wall{
-	dir = 1;
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
 "iy" = (
 /obj/machinery/sleeper/compact,
 /obj/decal/skeleton{
@@ -113,7 +106,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 8
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "oU" = (
 /obj/wingrille_spawn/auto,
@@ -271,7 +264,7 @@
 /area/shuttle/escape/centcom/donut2)
 "Gd" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "HA" = (
 /obj/machinery/sleeper/compact,
@@ -282,7 +275,7 @@
 	dir = 4;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "HZ" = (
 /obj/indestructible/shuttle_corner{
@@ -291,14 +284,11 @@
 /turf/floor/plating,
 /area/shuttle/escape/centcom/donut2)
 "If" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "Io" = (
-/turf/wall{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
+/turf/wall/auto,
+/area/centcom/outpost/docks)
 "Is" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -341,7 +331,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 4
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "Ns" = (
 /obj/stool/chair/comfy/shuttle{
@@ -359,7 +349,7 @@
 /area/shuttle/escape/centcom/donut2)
 "NM" = (
 /obj/indestructible/shuttle_corner,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "Oc" = (
 /obj/stool/chair/comfy/shuttle{
@@ -372,8 +362,8 @@
 /turf/floor/plating/damaged3,
 /area/shuttle/escape/centcom/donut2)
 "Od" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "OL" = (
 /obj/stool/chair/comfy/shuttle/green{
 	dir = 8
@@ -451,7 +441,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 1
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/donut2)
 "Wn" = (
 /turf/floor/plating/damaged3,
@@ -491,10 +481,10 @@
 /turf/floor/stairs{
 	dir = 1
 	},
-/area/centcom)
+/area/centcom/outpost/docks)
 "YA" = (
 /turf/floor/stairs,
-/area/centcom)
+/area/centcom/outpost/docks)
 "Zb" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -594,7 +584,7 @@ QK
 QK
 QK
 QK
-gI
+Io
 "}
 (8,1,1) = {"
 YA
@@ -620,7 +610,7 @@ QK
 wf
 TE
 Pz
-gI
+Io
 "}
 (10,1,1) = {"
 Od
@@ -659,7 +649,7 @@ xV
 Uv
 rU
 Pz
-gI
+Io
 "}
 (13,1,1) = {"
 YA
@@ -685,7 +675,7 @@ TE
 Wn
 TE
 Pz
-gI
+Io
 "}
 (15,1,1) = {"
 NM

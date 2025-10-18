@@ -12,7 +12,7 @@ Thus, the two variables affect pump operation are set in New():
 			but overall network volume is also increased as this increases...
 */
 
-obj/machinery/atmospherics/binary/volume_pump
+/obj/machinery/atmospherics/binary/volume_pump
 	icon = 'icons/obj/atmospherics/volume_pump.dmi'
 	icon_state = "intact_off"
 
@@ -25,7 +25,6 @@ obj/machinery/atmospherics/binary/volume_pump
 
 	var/frequency = 0
 	var/id = null
-	var/datum/radio_frequency/radio_connection
 
 	var/datum/pump_ui/volume_pump_ui/ui
 	pixel_y = -1
@@ -61,38 +60,24 @@ obj/machinery/atmospherics/binary/volume_pump
 
 		return 1
 
-	proc
-		set_frequency(new_frequency)
-			radio_controller.remove_object(src, "[frequency]")
-			frequency = new_frequency
-			if(frequency)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
+	proc/broadcast_status()
+		var/datum/signal/signal = get_free_signal()
+		signal.transmission_method = 1 //radio signal
+		signal.source = src
 
-		broadcast_status()
-			if(!radio_connection)
-				return 0
+		signal.data["tag"] = id
+		signal.data["device"] = "APV"
+		signal.data["power"] = on
+		signal.data["transfer_rate"] = transfer_rate
 
-			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
-			signal.source = src
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
-			signal.data["tag"] = id
-			signal.data["device"] = "APV"
-			signal.data["power"] = on
-			signal.data["transfer_rate"] = transfer_rate
-
-			radio_connection.post_signal(src, signal)
-
-			return 1
+		return 1
 
 	initialize()
 		..()
 		ui = new/datum/pump_ui/volume_pump_ui(src)
-		set_frequency(frequency)
-
-	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		..()
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	receive_signal(datum/signal/signal)
 		if(signal.data["tag"] && (signal.data["tag"] != id))

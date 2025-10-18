@@ -580,26 +580,26 @@
 				var/obj/item/disk/data/floppy/read_only/D = new /obj/item/disk/data/floppy/read_only(src)
 				src.equip_if_possible(D, slot_in_backpack)
 				var/datum/computer/file/clone/R = new
-				R.fields["ckey"] = ckey(src.key)
-				R.fields["name"] = src.real_name
-				R.fields["id"] = copytext(md5(src.real_name), 2, 6)
+				R["ckey"] = ckey(src.key)
+				R["name"] = src.real_name
+				R["id"] = copytext(md5(src.real_name), 2, 6)
 
 				var/datum/bioHolder/B = new/datum/bioHolder(null)
 				B.CopyOther(src.bioHolder)
 
-				R.fields["holder"] = B
+				R["holder"] = B
 
-				R.fields["abilities"] = null
+				R["abilities"] = null
 				if (src.abilityHolder)
 					var/datum/abilityHolder/A = src.abilityHolder.deepCopy()
-					R.fields["abilities"] = A
+					R["abilities"] = A
 
 				SPAWN_DBG(0)
 					if(src.traitHolder && length(src.traitHolder.traits))
-						R.fields["traits"] = src.traitHolder.traits.Copy()
+						R["traits"] = src.traitHolder.traits.Copy()
 
-				R.fields["imp"] = null
-				R.fields["mind"] = src.mind
+				R["imp"] = null
+				R["mind"] = src.mind
 				R.name = "CloneRecord-[ckey(src.real_name)]"
 				D.root.add_file(R)
 
@@ -652,6 +652,8 @@
 		trinket = new picked(src)
 	else if (src.traitHolder && src.traitHolder.hasTrait("conspiracytheorist"))
 		trinket = new/obj/item/clothing/head/tinfoil_hat
+	else if (src.traitHolder && src.traitHolder.hasTrait("emaculate"))
+		trinket = new/obj/item/material_piece/cloth/rag
 	else if (src.traitHolder && src.traitHolder.hasTrait("beestfriend"))
 		if (prob(15))
 			trinket = new/obj/item/reagent_containers/food/snacks/ingredient/egg/bee/buddy(src)
@@ -704,7 +706,7 @@
 
 	if(C)
 		var/realName = src.real_name
-		var/datum/data/record/B = FindBankAccountByName(src.real_name)
+		var/datum/db_record/B = FindBankAccountByName(src.real_name)
 
 		if(src.traitHolder && src.traitHolder.hasTrait("clericalerror"))
 			realName = replacetext(realName, "a", "o")
@@ -714,12 +716,12 @@
 			if(prob(50)) realName = replacetext(realName, "t", pick("d", "k"))
 			if(prob(50)) realName = replacetext(realName, "p", pick("b", "t"))
 
-			if (B?.fields["name"])
-				B.fields["name"] = realName
+			if (B?["name"])
+				B["name"] = realName
 
 		C.registered = realName
-		if(B?.fields["id"])
-			C.registered_id = B?.fields["id"]
+		if(B?["id"])
+			C.registered_id = B?["id"]
 		C.assignment = JOB.name
 		C.name = "[C.registered]'s ID Card ([C.assignment])"
 		C.access = JOB.access.Copy()

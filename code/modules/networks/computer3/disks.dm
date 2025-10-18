@@ -253,6 +253,7 @@
 	name = "data disk-'COMMaster'"
 	desc = "A disk for station communication programs."
 	title = "COMMaster"
+	hint = "put this into a computer to access the shuttle call program."
 
 	New()
 		. = ..()

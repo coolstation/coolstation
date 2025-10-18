@@ -344,6 +344,7 @@
 	w_class = W_CLASS_SMALL
 	max_wclass = 1
 	desc = "A small bottle designed to carry pills. Does not come with a child-proof lock, as that was determined to be too difficult for the crew to open."
+	hint = "you can create your own pill bottles with a Chemmaster."
 
 	MouseDrop(atom/over_object, src_location, over_location)
 		if(!(usr == over_object)) return ..()
@@ -383,9 +384,9 @@
 	icon_state = "briefcase_rd"
 	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
 	item_state = "rd-case"
-	max_wclass = 4 // parity with secure briefcase
 	desc = "A large briefcase for experimental toxins research."
-	spawn_contents = list(/obj/item/raw_material/molitz_beta = 2, /obj/item/paper/hellburn)
+	spawn_contents = list(/obj/item/paper/iou)
+//	spawn_contents = list(/obj/item/raw_material/molitz_beta = 2, /obj/item/paper/hellburn)
 
 /obj/item/storage/desk_drawer
 	name = "desk drawer"

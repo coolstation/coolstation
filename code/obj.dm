@@ -127,7 +127,7 @@
 	onMaterialChanged()
 		..()
 		if(istype(src.material))
-			pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
+			//pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
 			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
@@ -290,6 +290,7 @@
 		return
 
 /obj/lattice
+	pass_unstable = FALSE
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
@@ -301,7 +302,7 @@
 
 	density = 0
 	stops_space_move = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = LATTICE_LAYER
 	plane = PLANE_FLOOR
 	//	flags = CONDUCT
@@ -449,7 +450,7 @@
 	icon_state = "girder"
 	density = 1
 	stops_space_move = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	var/strength = 2
 
 	proc/barricade_damage(var/hitstrength)
@@ -516,6 +517,7 @@
 /obj/overlay
 	name = "overlay"
 	anchored = TRUE
+	pass_unstable = PRESERVE_CACHE
 	mat_changename = 0
 	mat_changedesc = 0
 	density = 0
@@ -547,14 +549,14 @@
 
 /obj/projection
 	name = "Projection"
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/deskclutter
 	name = "desk clutter"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "deskclutter"
 	desc = "What a mess..."
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

@@ -44,7 +44,7 @@
 //////////// OPTIONS TO GO FAST
 
 //#define IM_REALLY_IN_A_FUCKING_HURRY_HERE 1  		// Skip setup for atmos, Z5, don't show changelogs, skip pregame lobby
-//#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1		// Only include the map Atlas, no other zlevels. Boots way faster
+//#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1		// Only include the map Chunk, no other zlevels. Boots way faster
 #define Z_LOG_ENABLE 1  							// Enable additional world.log logging
 
 
@@ -110,12 +110,13 @@
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-//#define MAP_OVERRIDE_CRAG					// secret >:)
+//#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-//#define MAP_OVERRIDE_PERDUTA				// Mylie's oceanic oil platform
-#define MAP_OVERRIDE_SUMMIT                     // klushy snow map *tangent about how all the values are accurate*
+//#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
+//#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
+//#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //---------------------- Maps that exist but maybe not up to date --------------------//
-//#define MAP_OVERRIDE_CONSTRUCTION	// Construction mode
+//#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
 //#define MAP_OVERRIDE_DONUT3 			// Donut3 by Ryumi

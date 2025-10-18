@@ -8,7 +8,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	use_stamina = 0
 	mob_flags = SPEECH_BLOB
 
@@ -22,7 +22,7 @@
 
 	New()
 		..()
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 		src.see_invisible = 15
 		src.see_in_dark = SEE_DARK_FULL
@@ -58,10 +58,11 @@
 			return
 
 		//if within grace period, respawn
-		if (src.current_try < src.extra_tries_max && world.timeofday <= src.extra_try_timestamp)
+		if (src.current_try < src.extra_tries_max && world.timeofday <= src.extra_try_timestamp && !istype(src, /mob/living/intangible/blob_overmind/ai))
 			src.extra_try_timestamp = 0
 			src.current_try++
 			src.blob_holder.reset()
+			src.blob_holder.wither(FALSE)
 			boutput(src, "<span class='notice'><b>In a desperate act of self preservation you avoid your untimely death by concentrating what energy you had left! You feel ready for round [src.current_try]!</b></span>")
 
 		//no grace, go die scrub

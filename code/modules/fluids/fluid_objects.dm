@@ -10,14 +10,15 @@
 ///////////////////
 
 /obj/machinery/drainage
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
+	pass_unstable = FALSE
 	icon = 'icons/obj/fluid.dmi'
 	var/base_icon = "drain"
 	icon_state = "drain"
 	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
 	name = "drain"
-	desc = "A drainage pipe embedded in the floor to prevent flooding. Where does the drain go? Nobody knows."
+	desc = "A drainage pipe embedded in the floor to prevent flooding. Where does the drain go? The septic tank!"
 	var/turf/my_turf
 	var/clogged = 0 //temporary block
 	var/welded = 0 //permanent block
@@ -147,7 +148,7 @@
 ///////////////////
 
 /obj/channel
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "channel"
@@ -246,7 +247,7 @@
 
 
 /obj/machinery/fluid_canister
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	icon = 'icons/obj/fluid.dmi'
 	var/base_icon = "blue"
@@ -413,7 +414,7 @@
 
 	var/obj/sea_ladder_deployed/linked_ladder
 	var/obj/item/sea_ladder/og_ladder_item = 0
-	anchored = 1
+	anchored = ANCHORED
 
 	verb/fold_up()
 		set name = "Fold Up"
@@ -507,7 +508,7 @@
 	icon = 'icons/obj/sealab_objects.dmi'
 	icon_state = "mine_0"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 
 	mats = 16
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER | DECON_MULTITOOL

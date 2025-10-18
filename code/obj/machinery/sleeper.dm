@@ -17,12 +17,13 @@
 	desc = "A device that displays the vital signs of the occupant of the sleeper, and can dispense chemicals."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 8
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | ON_BORDER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	deconstruct_flags = DECON_CROWBAR | DECON_MULTITOOL
+	pass_unstable = TRUE
 	var/timing = 0 // Timer running?
 	var/time = null // In 1/10th seconds.
 	var/time_started = 0 // TIME when the timer was started
@@ -224,9 +225,7 @@
 			ui = new(user, src, "Sleeper", src.name)
 			ui.open()
 
-	CanPass(atom/movable/O as mob|obj, turf/target, height=0, air_group=0)
-		if(air_group)
-			return 1
+	CanPass(atom/movable/O as mob|obj, turf/target, height=0)
 		if (dir & get_dir(loc, O))
 			return 0
 		return 1
@@ -251,7 +250,7 @@
 	icon_state = "sleeper"//_0"
 	desc = "An enterable machine that analyzes and stabilizes the vital signs of the occupant."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 25
 	deconstruct_flags = DECON_CROWBAR | DECON_WIRECUTTERS | DECON_MULTITOOL
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
@@ -681,7 +680,7 @@
 	name = "Port-A-Medbay"
 	desc = "An emergency transportation device for critically injured patients."
 	icon = 'icons/obj/machines/porters.dmi'
-	anchored = 0
+	anchored = UNANCHORED
 	mats = 30
 	p_class = 1.2
 	var/homeloc = null
@@ -698,6 +697,7 @@
 		our_console.our_sleeper = src
 		src.homeloc = src.loc
 		animate_bumble(src, Y1 = 1, Y2 = -1, slightly_random = 0)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 	disposing()
 		..()
@@ -755,9 +755,6 @@
 		return
 	if (!occupant)
 		return
-	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
-	if (!transmit_connection)
-		return
 
 	var/PDAalert = "[src.name] has returned to [get_area(src.homeloc)] with a "
 	var/alertgroup = MGA_MEDCRIT
@@ -772,8 +769,7 @@
 	var/datum/signal/PDAsignal = get_free_signal()
 
 	PDAsignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="HEALTH-MAILBOT",  "group"=mailgroups+alertgroup, "sender"="00000000", "message"="[PDAalert]")
-	PDAsignal.transmission_method = TRANSMISSION_RADIO
-	transmit_connection.post_signal(src, PDAsignal)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, PDAsignal)
 
 
 /obj/machinery/sleeper/compact
@@ -781,7 +777,7 @@
 	desc = "Your usual sleeper, but compact this time. Wow!"
 	icon = 'icons/obj/machines/compact_machines.dmi'
 	icon_state = "compact_sleeper"
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		..()

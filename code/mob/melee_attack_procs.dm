@@ -91,7 +91,7 @@
 
 	else
 		if (target.lying)
-			src.visible_message("<span class='notice'>[src] shakes [target], trying to wake them up!</span>")
+			src.visible_message("<span class='notice'>[src] shakes [target], trying to wake [him_or_her(target)] up!</span>")
 		else if(target.hasStatus("shivering"))
 			src.visible_message("<span class='alert'><B>[src] shakes [target], trying to warm up!</B></span>")
 			target.changeStatus("shivering", -2 SECONDS)
@@ -245,7 +245,7 @@
 		src.next_click = world.time + (COMBAT_CLICK_DELAY)
 */
 
-/mob/living/proc/grab_other(var/mob/living/target, var/suppress_final_message = 0, var/obj/item/grab_item = null)
+/mob/living/proc/grab_other(var/mob/living/target, var/suppress_final_message = 0, var/obj/item/grab_item = null, var/grab_the_ungrabbable = FALSE)
 	if(!src || !target)
 		return 0
 
@@ -261,7 +261,7 @@
 		target.visible_message("<span class='alert'><B>[src] tries to grab [target], but can't get a good grip!</B></span>")
 		return
 
-	if (!target.canbegrabbed)
+	if (!target.canbegrabbed && !grab_the_ungrabbable)
 		if (target.grabresistmessage)
 			target.visible_message("<span class='alert'><B>[src] tries to grab [target], [target.grabresistmessage]</B></span>")
 		return
@@ -300,7 +300,7 @@
 		if (!grab_item.special_grab)
 			return
 		var/obj/item/grab/G = new grab_item.special_grab(grab_item, src, target)
-		G.loc = grab_item
+		G.set_loc(grab_item)
 		.= G
 
 	for (var/obj/item/grab/block/G in target.equipped_list(check_for_magtractor = 0)) //being grabbed breaks a block
@@ -388,7 +388,7 @@
 			if (istext(attack_resistance))
 				msgs.show_message_target(attack_resistance)
 		msgs.damage = max(damage, 0)
-	else if ( !(HAS_MOB_PROPERTY(target, PROP_CANTMOVE)) )
+	else if ( !(HAS_ATOM_PROPERTY(target, PROP_CANTMOVE)) )
 		var/armor_mod = 0
 		armor_mod = target.get_melee_protection(def_zone)
 		if(target_stamina >= 0)
@@ -429,7 +429,7 @@
 
 	if (is_shove) return msgs
 	var/disarm_success = prob(40 * lerp(clamp(100 - target.health, 0, 100)/100, 1, 0.5) * mult)
-	if (disarm_success && target.check_block() && !(HAS_MOB_PROPERTY(target, PROP_CANTMOVE)))
+	if (disarm_success && target.check_block() && !(HAS_ATOM_PROPERTY(target, PROP_CANTMOVE)))
 		disarm_success = 0
 		msgs.stamina_target -= STAMINA_DEFAULT_BLOCK_COST * 2
 	var/list/obj/item/limbs = list()
@@ -628,7 +628,7 @@
 			if (H.gloves.stamina_dmg_mult)
 				stamina_damage_mult += H.gloves.stamina_dmg_mult
 		var/healthpart = floor(abs((src.health - target.health)/5))
-		var/stampart = (((H.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS))-STAMINA_REGEN)/STAMINA_REGEN) // making stam regen do something???
+		var/stampart = (((H.stamina_regen + GET_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS))-STAMINA_REGEN)/STAMINA_REGEN) // making stam regen do something???
 		crit_chance += stampart
 		crit_chance += healthpart // rng stuns
 		msgs.crit_chance += crit_chance
@@ -693,7 +693,7 @@
 		msgs.played_sound = "punch"
 
 		if (src != target && iswrestler(src) && prob(66))
-			msgs.base_attack_message = "<span class='alert'><B>[src]</b> winds up and delivers a backfist to [target], sending them flying!</span>"
+			msgs.base_attack_message = "<span class='alert'><B>[src]</b> winds up and delivers a backfist to [target], sending [him_or_her(target)] flying!</span>"
 			damage += 4
 			msgs.after_effects += /proc/wrestler_backfist
 
@@ -764,6 +764,12 @@
 		damage = 0
 		if (istext(attack_resistance))
 			msgs.show_message_target(attack_resistance)
+
+	if(isliving(target))
+		var/mob/living/L = target
+		L.was_harmed(src)
+
+	//clamp damage to non-negative values
 	msgs.damage = max(damage, 0)
 
 	return msgs
@@ -800,7 +806,7 @@
 				if (BORG.part_head.ropart_take_damage(rand(20,40),0) == 1)
 					BORG.compborg_lose_limb(BORG.part_head)
 				if (!BORG.anchored && prob(30))
-					user.visible_message("<span class='alert'><B>...and sends them flying!</B></span>")
+					user.visible_message("<span class='alert'><B>...and sends [him_or_her(BORG)] flying!</B></span>")
 					send_flying = 2
 
 	else if (isAI(target))
@@ -813,7 +819,7 @@
 		playsound(user.loc, "sound/impact_sounds/Metal_Clang_3.ogg", 50, 1)
 		damage = 10
 		if (!target.anchored && prob(30))
-			user.visible_message("<span class='alert'><B>...and sends them flying!</B></span>")
+			user.visible_message("<span class='alert'><B>...and sends [him_or_her(target)] flying!</B></span>")
 			send_flying = 2
 
 	if (send_flying == 2)
@@ -1279,7 +1285,7 @@
 
 				var/turf/T = get_edge_target_turf(src, src.dir)
 				if (isturf(T))
-					src.visible_message("<span class='alert'><B>[src] savagely punches [target], sending them flying!</B></span>")
+					src.visible_message("<span class='alert'><B>[src] savagely punches [target], sending [him_or_her(target)] flying!</B></span>")
 					target.throw_at(T, 10, 2)
 
 	if (src.bioHolder.HasEffect("revenant"))
@@ -1342,7 +1348,7 @@
 		if (prob(60))
 			src.visible_message("<span class='alert'><B>[src] dodges the blow by [M]!</B></span>")
 		else
-			src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking them to the ground!</B></span>")
+			src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking [him_or_her(M)] to the ground!</B></span>")
 			if (prob(50))
 				step_away(M, src, 15)
 			else

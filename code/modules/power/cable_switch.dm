@@ -87,19 +87,71 @@
 		icon_state = "cable_switch-live"
 
 /obj/machinery/power/breaker/proc/merge_nets()
-	underlays = null
 	for (var/obj/cable/C in get_turf(src))
-		C.open_circuit = FALSE
-		C.update_network()
+		if (C.is_a_node)
+			dirty_pnet_nodes |= C.is_a_node
+			for (var/neighbour_node in C.is_a_node.adjacent_nodes)
+				if (istype(C.is_a_node.adjacent_nodes[neighbour_node], /datum/powernet_graph_link))
+					var/datum/powernet_graph_link/a_linke = C.is_a_node.adjacent_nodes[neighbour_node]
+					a_linke.reactivate()
+				else
+					var/bwebbo = C.is_a_node.adjacent_nodes[neighbour_node]
+					for(var/datum/powernet_graph_link/an_linke in bwebbo)
+						an_linke.reactivate()
+
+			//We broke direct node connections so restoring time
+			var/list/connections = C.get_connections()
+			for(var/obj/cable/C2 in connections)
+				if (C2.is_a_node)
+					if (C2.is_a_node in C.is_a_node.adjacent_nodes)
+						var/bweb = C.is_a_node.adjacent_nodes[C2.is_a_node]
+						if (islist(bweb))
+							C.is_a_node.adjacent_nodes[C2.is_a_node] += null
+							C2.is_a_node.adjacent_nodes[C.is_a_node] += null
+						else
+							C.is_a_node.adjacent_nodes[C2.is_a_node] = list(C.is_a_node.adjacent_nodes[C2.is_a_node],null)
+							C2.is_a_node.adjacent_nodes[C.is_a_node] = list(C2.is_a_node.adjacent_nodes[C.is_a_node],null)
+		else if (C.is_a_link)
+			dirty_pnet_nodes |= C.is_a_link.adjacent_nodes
+			C.is_a_link.reactivate()
+
+
+
+	if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes))
+		CLEAR_PNET_BACKLOG_NOW
+		//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+		//	node.validate()
 
 /obj/machinery/power/breaker/proc/break_nets()
-	defer_powernet_rebuild = TRUE
-	netnum = -1 // haha I sure as shit didn't think it was still connecting the pnet halves through the switch itelf
+	//defer_powernet_rebuild = TRUE
+	//netnum = -1 // haha I sure as shit didn't think it was still connecting the pnet halves through the switch itelf
 	for (var/obj/cable/C in get_turf(src))
-		if(C.netnum && powernets && powernets.len >= C.netnum)		// Make sure cable & powernet data is valid
+		if (C.is_a_node)
+			for (var/neighbour_node in C.is_a_node.adjacent_nodes)
+				if (istype(C.is_a_node.adjacent_nodes[neighbour_node], /datum/powernet_graph_link))
+					var/datum/powernet_graph_link/a_linke = C.is_a_node.adjacent_nodes[neighbour_node]
+					a_linke.active--
+				else
+					var/bweb = C.is_a_node.adjacent_nodes[neighbour_node]
+					if (islist(bweb))
+						for(var/datum/powernet_graph_link/an_linke in bweb)
+							an_linke.active--
+				C.is_a_node.adjacent_nodes[neighbour_node] -= null
+
+		else if (C.is_a_link)
+			dirty_pnet_nodes |= C.is_a_link.adjacent_nodes
+			C.is_a_link.active--
+		/*var/cable_netnum = C.get_netnumber()
+		if(cable_netnum && powernets && powernets.len >= cable_netnum)		// Make sure cable & powernet data is valid
 			C.open_circuit = TRUE
-			var/datum/powernet/PN = powernets[C.netnum]
+			var/datum/powernet/PN = powernets[cable_netnum]
 			PN.cut_cable(C)	// Update the powernets
-		netnum = -1 // I don't really understand powernet propagation code but this seems necessary if there's multiple cables on a turf.
-	defer_powernet_rebuild = FALSE
-	makepowernets()
+			*/
+
+		//netnum = -1 // I don't really understand powernet propagation code but this seems necessary if there's multiple cables on a turf.
+	//defer_powernet_rebuild = FALSE
+
+	if (!(explosions.exploding || defer_powernet_rebuild) && length(dirty_pnet_nodes))
+		CLEAR_PNET_BACKLOG_NOW
+		//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
+		//	node.validate()

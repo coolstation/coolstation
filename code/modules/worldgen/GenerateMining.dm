@@ -633,9 +633,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		D = new/datum/mapGenerator/asteroidsDistance()
 
 	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain...")
-#ifndef ABOVEWATER_MAP
 	miningZ = D.generate(miningZ, AST_ZLEVEL)
-#endif
 
 	// remove temporary areas
 	if(!map_currently_very_dusty)

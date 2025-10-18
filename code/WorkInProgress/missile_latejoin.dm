@@ -4,7 +4,7 @@
 /obj/arrival_missile
 	name = "human capsule missile"
 	desc = "A great way to deliver humans to a research station. Trust me."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "arrival_missile"
@@ -19,11 +19,21 @@
 	var/mob/passenger = null
 	var/num_loops = 0 // how many times we missed 😰
 	var/turf/target = null // if set this overrides default landing as is *the only place* where we can stop
+	var/datum/gas_mixture/air_contents = null
+
 	New()
 		..()
 		src.ion_trail = new /datum/effects/system/ion_trail_follow()
 		src.ion_trail.set_up(src)
 		src.ion_trail.yoffset = 13
+		air_contents = new(src)
+		air_contents.oxygen = MOLES_O2STANDARD
+		air_contents.nitrogen = MOLES_N2STANDARD
+		air_contents.temperature = T20C
+
+	return_air()
+		return air_contents
+
 /*
 	unpooled()
 		moved_on_flooring = 0
@@ -138,6 +148,15 @@
 				break
 			if(T.z != 1)
 				src.z = 1
+
+		ion_trail.stop()
+		passenger = null
+		var/turf/T = get_turf(src)
+		for (var/atom/movable/A in src)
+			A.set_loc(T)
+		robogibs(T)
+		moved_on_flooring = 0
+		target = null
 
 		qdel(src)
 

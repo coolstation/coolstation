@@ -308,7 +308,7 @@ proc/Create_Tommyname()
 	desc = "warning"
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 101
 	event_handler_flags = USE_HASENTERED
 

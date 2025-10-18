@@ -21,13 +21,14 @@ proc/is_teleportation_allowed(var/turf/T)
 				continue
 			if(IN_RANGE(TJ, T, TJ.range))
 				return 0
+/*
 		if (istype(atom, /obj/item/device/flockblocker))
 			var/obj/item/device/flockblocker/F = atom
 			if (!F.active)
 				continue
 			if(IN_RANGE(F, T, F.range))
 				return 0
-
+*/
 	for_by_tcl(N, /obj/blob/nucleus)
 		if(IN_RANGE(N, T, 3))
 			return 0
@@ -52,7 +53,7 @@ proc/is_teleportation_allowed(var/turf/T)
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pad0"
 	name = "teleport pad"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = FLOOR_EQUIP_LAYER1
 	mats = 16
@@ -814,7 +815,7 @@ proc/is_teleportation_allowed(var/turf/T)
 	icon_state = "s_teleport"
 	name = "teleport computer"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	device_tag = "SRV_TERMINAL"
 	timeout = 10
 	mats = 14

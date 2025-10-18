@@ -6,7 +6,7 @@
 	desc = "fix me please"
 	density = 1
 	opacity = 0
-	anchored = 0
+	anchored = UNANCHORED
 	mats = 50
 	layer = FLOOR_EQUIP_LAYER1
 	var/obj/item/cell/PCEL = null
@@ -301,7 +301,7 @@
 		S.deployer = src
 		src.deployed_shields += S
 
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.active = 1
 		playsound(src.loc, src.sound_on, 50, 1)
 		build_icon()
@@ -314,7 +314,7 @@
 			qdel(S)
 
 		if(!connected)
-			src.anchored = 0
+			src.anchored = UNANCHORED
 		src.active = 0
 
 		//currently only the e-shield interacts with atmos
@@ -555,6 +555,7 @@
 	layer = 2.5 //sits under doors if we want it to
 	flags = ALWAYS_SOLID_FLUID
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
+	gas_impermeable = TRUE
 
 	proc/setactive(var/a = 0) //this is called in a bunch of diff. door open procs. because the code was messy when i made this and i dont wanna redo door open code
 		if(a)

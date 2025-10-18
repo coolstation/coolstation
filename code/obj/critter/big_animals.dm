@@ -165,7 +165,7 @@ obj/critter/bear/care
 		src.seek_target()
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -215,7 +215,7 @@ obj/critter/bear/care
 		M.transforming = 1
 		M.canmove = 0
 		M.icon = null
-		APPLY_MOB_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 		if(ishuman(M))
 			animation = new(src.loc)
 			animation.icon_state = "blank"
@@ -289,7 +289,7 @@ obj/critter/bear/care
 		src.seek_target()
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -527,7 +527,7 @@ obj/critter/bear/care
 
 	drink_blood(var/atom/target)
 		..()
-		JOB_XP(target, "Medical Doctor", 1)
+		JOB_XP_FORCE(target, "Medical Doctor", 1)
 
 
 // A slightly scarier (but still cute) bat for vampires
@@ -552,7 +552,7 @@ obj/critter/bear/care
 	atk_text = "bites and claws at"
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"

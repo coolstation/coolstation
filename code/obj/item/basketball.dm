@@ -11,6 +11,7 @@
 	throw_range = 10
 	throwforce = 0
 	var/obj/item/plutonium_core/payload = null
+	var/impactsound = 'sound/items/bball_bounce.ogg'
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 5
@@ -33,7 +34,7 @@
 	..(hit_atom)
 	src.icon_state = "bball"
 	if(hit_atom)
-		playsound(src.loc, "sound/items/bball_bounce.ogg", 65, 1)
+		playsound(src.loc, src.impactsound, 65, 1)
 		if(ismob(hit_atom))
 			var/mob/M = hit_atom
 			if(ishuman(M))
@@ -52,7 +53,7 @@
 			M.changeStatus("stunned", 2 SECONDS)
 			return
 
-/obj/item/basketball/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1, allow_anchored = 0, bonus_throwforce = 0)
+/obj/item/basketball/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1, allow_anchored = FALSE, bonus_throwforce = 0)
 	src.icon_state = "bball_spin"
 	..()
 
@@ -91,7 +92,7 @@
 	desc = "Can be mounted on walls."
 	opacity = 0
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "bbasket0"
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
@@ -108,7 +109,7 @@
 			src.visible_message("<span class='notice'><b>[user] removes [src].</b></span>")
 			src.pixel_y = 0
 			src.pixel_x = 0
-			src.anchored = 0
+			src.anchored = UNANCHORED
 			src.mounted = 0
 		else if (src.mounted && !istype(W, /obj/item/bballbasket))
 			if (W.cant_drop) return
@@ -139,7 +140,7 @@
 					user.drop_item()
 					src.set_loc(get_turf(user))
 					src.mounted = 1
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.set_dir(get_dir(src, target))
 					switch (src.dir)
 						if (NORTH)
@@ -289,7 +290,7 @@
 					return
 	return
 
-/obj/item/bloodbowlball/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1, allow_anchored = 0, bonus_throwforce = 0)
+/obj/item/bloodbowlball/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1, allow_anchored = FALSE, bonus_throwforce = 0)
 	src.icon_state = "bloodbowlball_air"
 	..()
 

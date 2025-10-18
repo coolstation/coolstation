@@ -7,8 +7,9 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 180
+	pass_unstable = PRESERVE_CACHE
 	var/obj/machinery/playerzoldorf/homebooth
 	var/mob/originalmob
 

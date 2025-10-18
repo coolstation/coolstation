@@ -61,7 +61,7 @@
 
 	New()
 		..()
-		anchored = 1
+		anchored = ANCHORED
 		firevuln = 0
 		brutevuln = 0
 		miscvuln = 0
@@ -123,7 +123,7 @@
 				qdel(src)
 
 	process()
-		anchored = 1
+		anchored = ANCHORED
 		if (!src.alive) return 0
 
 		if(sleeping > 0)
@@ -312,7 +312,7 @@
 								linear_purge()
 							else
 								gyrating_edge()
-			anchored = 1
+			anchored = ANCHORED
 
 
 //-TRANSFORMATIONS-//

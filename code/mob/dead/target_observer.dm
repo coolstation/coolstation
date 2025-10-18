@@ -1,7 +1,7 @@
 var/list/observers = list()
 
 /mob/dead/target_observer
-	density = 1
+	density = FALSE
 	name = "spooky ghost"
 	icon = null
 	event_handler_flags = 0
@@ -11,16 +11,16 @@ var/list/observers = list()
 
 	New()
 		..()
-		APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		observers += src
 		mobs += src
 		//set_observe_target(target)
 /*
 	unpooled()
 		..()
-		src.mob_properties = list()
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		src.atom_properties = list()
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		observers += src
 		mobs += src
 		src.move_dir = 0

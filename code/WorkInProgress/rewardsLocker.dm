@@ -1294,7 +1294,7 @@
 	name = "smug"
 	icon = 'icons/mob/64.dmi'
 	icon_state = "smug"
-	anchored = 1.0
+	anchored = ANCHORED
 	pixel_x = -16
 	pixel_y = -16
 

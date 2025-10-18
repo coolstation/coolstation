@@ -43,7 +43,7 @@ datum
 		var/thirst_value = 0
 		var/hunger_value = 0
 		var/hygiene_value = 0
-		var/bladder_value = 0
+		var/kidney_multiplier = 0
 		var/energy_value = 0
 		var/blob_damage = 0 // If this is a poison, it may be useful for poisoning the blob.
 		var/viscosity = 0 // determines interactions in fluids. 0 for least viscous, 1 for most viscous. use decimals!
@@ -60,6 +60,10 @@ datum
 		var/can_crack = 0 // used by organic chems
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
+
+		//	Increases the weight of the reagent in the color calculation
+		//	A multiplier of 2 makes the color as if the reagent's volume was twice as much
+		var/color_multiplier = 1
 
 		New()
 			..()
@@ -84,17 +88,17 @@ datum
 */
 
 		proc/on_add()
-			if (stun_resist > 0)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					M.add_stun_resist_mod("reagent_[src.id]", stun_resist)
+			if (stun_resist > 0 && ismob(holder?.my_atom))
+				var/mob/M = holder.my_atom
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]", stun_resist)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]", stun_resist)
 			return
 
 		proc/on_remove()
-			if (stun_resist > 0)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					M.remove_stun_resist_mod("reagent_[src.id]")
+			if (stun_resist > 0 && ismob(holder?.my_atom))
+				var/mob/M = holder.my_atom
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]")
 			return
 
 		proc/on_copy(var/datum/reagent/new_reagent)
@@ -221,6 +225,8 @@ datum
 			if (!holder)
 				holder = M.reagents
 			var/deplRate = depletion_rate
+			deplRate = deplRate * mult
+
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if (H.traitHolder.hasTrait("slowmetabolism"))
@@ -228,19 +234,36 @@ datum
 				if (H.organHolder)
 					if (!H.organHolder.liver || H.organHolder.liver.broken)	//if no liver or liver is dead, deplete slower
 						deplRate /= 2
-					if (H.organHolder.get_working_kidney_amt() == 0)	//same with kidneys
-						deplRate /= 2
+					var/kidneys = !!H.organHolder.left_kidney + !!H.organHolder.right_kidney
+					switch(kidneys)
+						if(0)
+							deplRate /= 2
+						if(1)
+							if(H.organHolder.left_kidney)
+								H.organHolder.left_kidney.to_process += src.kidney_multiplier * deplRate
+								if(H.organHolder.left_kidney.broken || H.organHolder.left_kidney.get_damage() > H.organHolder.left_kidney.FAIL_DAMAGE)
+									deplRate /= 2
+							else
+								H.organHolder.right_kidney.to_process += src.kidney_multiplier * deplRate
+								if(H.organHolder.right_kidney.broken || H.organHolder.right_kidney.get_damage() > H.organHolder.right_kidney.FAIL_DAMAGE)
+									deplRate /= 2
+						else
+							H.organHolder.left_kidney.to_process += src.kidney_multiplier * deplRate * 0.5
+							H.organHolder.right_kidney.to_process += src.kidney_multiplier * deplRate * 0.5
+							if (!H.organHolder.get_working_kidney_amt())	//same with kidneys
+								deplRate /= 2
 
 				if (H.sims)
 					if (src.thirst_value)
 						H.sims.affectMotive("Thirst", thirst_value)
 					if (src.hunger_value)
 						H.sims.affectMotive("Hunger", hunger_value)
-					if (src.bladder_value)
-						H.sims.affectMotive("Bladder", bladder_value)
 					if (src.energy_value)
 						H.sims.affectMotive("Energy", energy_value)
-			deplRate = deplRate * mult
+			else
+				if(src.kidney_multiplier)
+					M.urine += src.kidney_multiplier * deplRate * 0.5
+
 			if (addiction_prob)
 				src.handle_addiction(M, deplRate)
 

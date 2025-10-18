@@ -5,7 +5,7 @@
 #else
 	icon_state = "intercom-map"
 #endif
-	anchored = 1.0
+	anchored = ANCHORED
 	plane = PLANE_NOSHADOW_ABOVE
 	mats = 3
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WIRECUTTERS | DECON_MULTITOOL
@@ -196,6 +196,7 @@
 /obj/item/device/radio/intercom/adventure/owlery
 	name = "Owlery Intercom"
 	frequency = R_FREQ_INTERCOM_OWLERY
+	locked_frequency = TRUE
 	broadcasting = 0
 	device_color = "#3344AA"
 
@@ -205,6 +206,7 @@
 /obj/item/device/radio/intercom/adventure/syndcommand
 	name = "Suspicious Intercom"
 	frequency = R_FREQ_INTERCOM_SYNDCOMMAND
+	locked_frequency = TRUE
 	broadcasting = 1
 	device_color = "#BB3333"
 

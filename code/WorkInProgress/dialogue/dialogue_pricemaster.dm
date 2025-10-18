@@ -3,7 +3,7 @@
 	desc = "Make him an offer."
 	picture = "pm_start.png"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/mob/trader.dmi'
 	icon_state = "pricemaster"
 	hiketolerance = 0

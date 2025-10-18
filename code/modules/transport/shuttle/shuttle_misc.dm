@@ -9,7 +9,7 @@
 /obj/machinery/shuttle/engine
 	name = "engine"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 
 /obj/machinery/shuttle/engine/heater
@@ -141,7 +141,7 @@
 	icon_state = "howitzer-idle"
 	name = "plasma howitzer"
 	desc = "This sure looks dangerous."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = 20
 	dir = 8

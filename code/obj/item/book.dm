@@ -231,6 +231,7 @@ Custom Books
 
 /obj/item/paper/book/from_file/space_law
 	name = "Space Law"
+	hint = "if you don't follow this to the letter, who will really stop you...?"
 	desc = "A book explaining the laws of space. Well, this section of space, at least."
 	icon_state = "spacelaw"
 	file_path = "strings/books/space_law.txt"
@@ -244,7 +245,7 @@ Custom Books
 
 	density = 0
 	opacity = 0
-	anchored = 0
+	anchored = UNANCHORED
 
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "lawbook"
@@ -331,16 +332,13 @@ Custom Books
 	examine(mob/user)
 		if (!issilicon(user))
 			. = list("What...what is this? It's written entirely in barcodes or something, cripes. You can't make out ANY of this.")
-			var/mob/living/carbon/jerk = user
+			var/mob/living/carbon/human/jerk = user
 			if (!istype(jerk))
 				return
 
-			for(var/datum/data/record/R in data_core.general)
-				if(R.fields["name"] == jerk.real_name)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Reading highly-confidential private information."
+			var/datum/db_record/S = data_core.security.find_record("id", jerk.datacore_id)
+			S?["criminal"] = "*Arrest*"
+			S?["mi_crim"] = "Reading highly-confidential private information."
 		else
 			return list("It appears to be heavily encrypted information.")
 

@@ -11,30 +11,20 @@ var/list/genetek_hair_styles = list()
 	var/mob/occupant = null
 	var/datum/character_preview/multiclient/occupant_preview = null
 	var/locked = 0
-	anchored = 1.0
+	anchored = ANCHORED
 	soundproofing = 10
 
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		..()
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
-				genescanner_addresses += src.net_id
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+			genescanner_addresses += src.net_id
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		..()
-
-	disposing()
-		if (radio_controller)
-			radio_controller.remove_object(src, "[frequency]")
-		radio_connection = null
 		if (src.net_id)
 			genescanner_addresses -= src.net_id
 		if(occupant)

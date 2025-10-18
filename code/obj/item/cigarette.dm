@@ -298,6 +298,7 @@
 							H.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
 						src.reagents.trans_to(M, puffrate)
 						src.reagents.reaction(M, INGEST, puffrate)
+						JOB_XP_FORCE(H,"CIGARETTE",1)
 						//lung damage
 						if (prob(40))
 							if (prob(70))
@@ -306,7 +307,7 @@
 							else
 								if (!H.organHolder.right_lung.robotic)
 									H.organHolder.damage_organ(0, 0, 1, "right_lung")
-							JOB_XP_FORCE(H,"CIGARETTE",1)
+							JOB_XP_FORCE(H,"CIGARETTE",2)
 				else
 					src.reagents.trans_to(M, puffrate)
 					src.reagents.reaction(M, INGEST, puffrate)

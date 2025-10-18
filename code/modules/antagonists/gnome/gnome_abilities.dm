@@ -42,6 +42,7 @@
 	targeted = 1
 	target_anything = 1
 	preferred_holder_type = /datum/abilityHolder/gnome
+	turf_check = FALSE
 	var/datum/abilityHolder/gnome/gnome_holder
 
 	onAttach(datum/abilityHolder/H)
@@ -344,7 +345,9 @@
 	pointCost = 0
 	cooldown = 20 SECONDS
 	max_range = 1
+	ai_range = 1
 	attack_mobs = TRUE
+	turf_check = FALSE
 
 	cast(var/mob/living/target)
 		if (..())

@@ -215,6 +215,7 @@
 		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/*
 /obj/item/raw_material/molitz_beta
 	name = "molitz crystal"
 	desc = "An unusual crystal of Molitz."
@@ -226,6 +227,7 @@
 	setup_material()
 		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE)
 		return ..()
+*/
 
 /obj/item/raw_material/pharosium
 	name = "pharosium ore"
@@ -650,7 +652,7 @@
 			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(isabomination(H))
 				return
-			if(H.throwing || HAS_MOB_PROPERTY(H, PROP_ATOM_FLOATING))
+			if(H.throwing || HAS_ATOM_PROPERTY(H, PROP_ATOM_FLOATING))
 				return
 			if(H.lying)
 				boutput(H, "<span class='alert'><B>You crawl on [src]! Ouch!</B></span>")
@@ -829,7 +831,7 @@
 	desc = "A sophisticated piece of machinery that quickly processes minerals into bars."
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "reclaimer"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	event_handler_flags = NO_MOUSEDROP_QOL
 	var/active = 0
@@ -850,7 +852,7 @@
 			return
 		user.visible_message("<b>[user.name]</b> switches on [src].")
 		active = 1
-		anchored = 1
+		anchored = ANCHORED
 		icon_state = "reclaimer-on"
 
 		for (var/obj/item/M in src.contents)
@@ -909,7 +911,7 @@
 			playsound(src.loc, sound_grump, 40, 1)
 
 		active = 0
-		anchored = 0
+		anchored = UNANCHORED
 		icon_state = "reclaimer"
 		src.visible_message("<b>[src]</b> finishes working and shuts down.")
 

@@ -4,7 +4,7 @@
 	desc = "Turns raw materials, and objects containing materials, into processed pieces."
 	icon = 'icons/obj/crafting.dmi'
 	icon_state = "fab3-on"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	mats = 20
@@ -317,7 +317,7 @@
 	name = "Portable material processor"
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "reclaimer"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 
 	custom_suicide = 1
@@ -335,7 +335,7 @@
 	desc = "A huge furnace-like machine used to combine materials."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smelter0"
-	anchored = 1
+	anchored = ANCHORED
 	bound_height = 96
 	bound_width = 96
 	density = 1
@@ -514,7 +514,7 @@
 	desc = "A small furnace-like machine used to melt and combine metals or minerals."
 	icon = 'icons/obj/crafting.dmi'
 	icon_state = "portsmelter0"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	var/list/components = list()
@@ -537,7 +537,7 @@
 	desc = "A huge furnace-like machine used to melt and combine metals or minerals."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smelter0"
-	anchored = 1
+	anchored = ANCHORED
 	bound_height = 96
 	bound_width = 96
 	density = 1

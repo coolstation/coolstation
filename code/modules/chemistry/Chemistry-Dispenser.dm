@@ -1,7 +1,7 @@
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 	var/icon_base = "dispenser"

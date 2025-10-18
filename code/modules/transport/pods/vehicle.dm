@@ -4,7 +4,7 @@
 	icon_state = "podfire"
 	density = 1
 	flags = FPRINT | USEDELAY
-	anchored = 1.0
+	anchored = ANCHORED
 	stops_space_move = 1
 	var/datum/effects/system/ion_trail_follow/ion_trail = null
 	var/mob/pilot = null //The mob which actually flys the ship
@@ -1891,7 +1891,7 @@
 	proc/escape()
 		if(!launched)
 			launched = 1
-			anchored = 0
+			anchored = UNANCHORED
 			var/opened_door = 0
 			var/turf_in_front = get_step(src,src.dir)
 			for(var/obj/machinery/door/poddoor/D in turf_in_front)

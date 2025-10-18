@@ -3,7 +3,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pad0"
 	color = "#0000ff"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	invisibility = 101
 
@@ -12,7 +12,7 @@
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
 	color = "#0000ff"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	invisibility = 101
 

@@ -101,7 +101,7 @@
 					boutput(user, "<span class='alert'>[src] is full.</span>")
 					return
 
-				if (target.is_open_container() != 1 && !istype(target,/obj/reagent_dispensers))
+				if (!target.is_open_container() && !istype(target,/obj/reagent_dispensers))
 					boutput(user, "<span class='alert'>You cannot directly remove reagents from this object.</span>")
 					return
 

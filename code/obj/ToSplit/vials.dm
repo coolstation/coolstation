@@ -10,7 +10,7 @@
 	invisibility = 101
 	var/canmove = 1
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 //
 /obj/item/reagent_containers/glass/vial
 
@@ -66,12 +66,12 @@
 	var/obj/overlay/O2 = new /obj/overlay( sourceloc )
 	O.name = "green liquid"
 	O.set_density(0)
-	O.anchored = 1
+	O.anchored = ANCHORED
 	O.icon = 'icons/effects/effects.dmi'
 	O.icon_state = "greenshatter"
 	O2.name = "broken bits of glass"
 	O2.set_density(0)
-	O2.anchored = 1
+	O2.anchored = ANCHORED
 	O2.icon = 'icons/obj/objects.dmi'
 	O2.icon_state = "shards"
 
@@ -115,12 +115,12 @@
 
 	O.name = "green liquid"
 	O.set_density(0)
-	O.anchored = 1
+	O.anchored = ANCHORED
 	O.icon = 'icons/effects/effects.dmi'
 	O.icon_state = "blueshatter"
 	O2.name = "broken bits of glass"
 	O2.set_density(0)
-	O2.anchored = 1
+	O2.anchored = ANCHORED
 	O2.icon = 'icons/obj/objects.dmi'
 	O2.icon_state = "shards"
 
@@ -143,12 +143,12 @@
 
 	O.name = "green liquid"
 	O.set_density(0)
-	O.anchored = 1
+	O.anchored = ANCHORED
 	O.icon = 'icons/effects/effects.dmi'
 	O.icon_state = "blueshatter"
 	O2.name = "broken bits of glass"
 	O2.set_density(0)
-	O2.anchored = 1
+	O2.anchored = ANCHORED
 	O2.icon = 'icons/obj/objects.dmi'
 	O2.icon_state = "shards"
 
@@ -184,7 +184,7 @@
 		var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
 		animation.name = "water"
 		animation.set_density(0)
-		animation.anchored = 1
+		animation.anchored = ANCHORED
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.icon_state = "liquify"
 		animation.layer = MOB_EFFECT_LAYER

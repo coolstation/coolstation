@@ -332,7 +332,7 @@
 					src.invisibility = 0
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -414,7 +414,7 @@
 		return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -626,7 +626,7 @@
 		return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		var/mob/living/Cc
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (C.ckey == null) continue //do not attack non-threats ie. NPC monkeys and AFK players
@@ -709,7 +709,7 @@
 		sword_damage_max = 0
 		sword_damage_min = 0
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -838,7 +838,7 @@
 	generic = 0
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -1019,7 +1019,7 @@
 			return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in range(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -1079,7 +1079,7 @@
 			qdel(src)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1158,7 +1158,7 @@
 	aggressive = 1
 	defensive = 0 //should avoid any kind of reaction/charging at
 	notwitch = 1
-	anchored = 1
+	anchored = ANCHORED
 	opensdoors = OBJ_CRITTER_OPENS_DOORS_PUBLIC
 	density = 1
 	var/boredom_countdown = 0
@@ -1175,7 +1175,7 @@
 
 	//find friend
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1315,7 +1315,7 @@
 			qdel(src)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1495,7 +1495,7 @@
 			world << colouring
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		var/mob/living/Cc
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (C.ckey == null) continue //do not attack non-threats ie. NPC monkeys and AFK players

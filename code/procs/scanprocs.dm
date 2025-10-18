@@ -293,28 +293,26 @@
 	if (M:wear_id && M:wear_id:registered)
 		patientname = M.wear_id:registered
 
-	for (var/datum/data/record/E in data_core.general)
-		if (E.fields["name"] == patientname)
-			switch (M.stat)
-				if (0)
-					if (M.bioHolder && M.bioHolder.HasEffect("strong"))
-						E.fields["p_stat"] = "Very Active"
-					else
-						E.fields["p_stat"] = "Active"
-				if (1)
-					E.fields["p_stat"] = "*Unconscious*"
-				if (2)
-					E.fields["p_stat"] = "*Deceased*"
-			for (var/datum/data/record/R in data_core.medical)
-				if ((R.fields["id"] == E.fields["id"]))
-					R.fields["bioHolder.bloodType"] = M.bioHolder.bloodType
-					R.fields["cdi"] = english_list(M.ailments, "No diseases have been diagnosed at the moment.")
-					if (M.ailments.len)
-						R.fields["cdi_d"] = "Diseases detected at [time2text(world.realtime,"hh:mm")]."
-					else
-						R.fields["cdi_d"] = "No notes."
-					break
-			break
+	var/datum/db_record/E = data_core.general.find_record("name", patientname)
+	if(E)
+		switch (M.stat)
+			if (0)
+				if (M.bioHolder && M.bioHolder.HasEffect("strong"))
+					E["p_stat"] = "Very Active"
+				else
+					E["p_stat"] = "Active"
+			if (1)
+				E["p_stat"] = "*Unconscious*"
+			if (2)
+				E["p_stat"] = "*Deceased*"
+		var/datum/db_record/R = data_core.medical.find_record("id", E["id"])
+		if(R)
+			R["bioHolder.bloodType"] = M.bioHolder.bloodType
+			R["cdi"] = english_list(M.ailments, "No diseases have been diagnosed at the moment.")
+			if (M.ailments.len)
+				R["cdi_d"] = "Diseases detected at [time2text(world.realtime,"hh:mm")]."
+			else
+				R["cdi_d"] = "No notes."
 	return
 
 // output a health pop-up overhead thing to the client
@@ -350,8 +348,8 @@
 		animate_scanning(M, "#0AEFEF")
 
 	var/mob/living/carbon/human/H = M
-	var/datum/data/record/GR = FindRecordByFieldValue(data_core.general, "name", H.name)
-	var/datum/data/record/MR = FindRecordByFieldValue(data_core.medical, "name", H.name)
+	var/datum/db_record/GR = data_core.general.find_record("name", H.name)
+	var/datum/db_record/MR = data_core.medical.find_record("name", H.name)
 	if (!MR)
 		return "<span class='alert'>ERROR: NO RECORD FOUND</span>"
 
@@ -391,7 +389,7 @@
 		if (reagents.reagent_list.len > 0)
 			if("cloak_juice" in reagents.reagent_list)
 				var/datum/reagent/cloaker = reagents.reagent_list["cloak_juice"]
-				if(cloaker.volume >= 1)
+				if(cloaker.volume >= 0.05 * reagents.total_volume)
 					data = "<span class='alert'>ERR: SPECTROSCOPIC ANALYSIS OF THIS SUBSTANCE IS NOT POSSIBLE.</span>"
 					return data
 
@@ -565,8 +563,9 @@
 
 		if (isitem(A))
 			var/obj/item/I = A
-			if(I.contraband)
-				contraband_data = "<span class='alert'>(CONTRABAND: LEVEL [I.contraband])</span>"
+			var/contra = GET_ATOM_PROPERTY(I,PROP_MOVABLE_VISIBLE_CONTRABAND) + GET_ATOM_PROPERTY(I,PROP_MOVABLE_VISIBLE_GUNS)
+			if (contra)
+				contraband_data = SPAN_ALERT("(CONTRABAND: LEVEL [contra])")
 
 		if (istype(A, /obj/item/clothing/gloves))
 			var/obj/item/clothing/gloves/G = A

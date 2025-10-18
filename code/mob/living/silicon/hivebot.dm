@@ -573,7 +573,7 @@
 					if (prob(40))
 						var/turf/T = get_edge_target_turf(user, user.dir)
 						if (isturf(T))
-							src.visible_message("<span class='alert'><B>[user] savagely punches [src], sending them flying!</B></span>")
+							src.visible_message("<span class='alert'><B>[user] savagely punches [src], sending [him_or_her(src)] flying!</B></span>")
 							src.throw_at(T, 10, 2)
 				/*if (user.glove_weaponcheck())
 					user.energyclaws_attack(src)*/
@@ -807,6 +807,7 @@ Frequency:
 
 	update_clothing()
 	updateicon()
+	APPLY_ATOM_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 	if (src.mainframe)
 		src.real_name = "SHELL/[src.mainframe]"
@@ -822,6 +823,7 @@ Frequency:
 /mob/living/silicon/hivebot/Logout()
 	..()
 	updateicon()
+	REMOVE_ATOM_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 	src.real_name = "AI Shell [copytext("\ref[src]", 6, 11)]"
 	src.name = src.real_name

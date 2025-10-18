@@ -6,7 +6,7 @@
 	capacity = 4
 	health = 140
 	maxhealth = 140
-	anchored = 0
+	anchored = UNANCHORED
 //////////Recon
 /obj/machinery/vehicle/recon
 	name = "Reconaissance Ship 7X-"
@@ -89,6 +89,7 @@
 	desc = "A little solo vehicle for scouting and exploration work."
 	icon_state = "miniputt"
 	capacity = 1
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/armor_score_multiplier = 0.5
 	health = 125
 	maxhealth = 125
@@ -388,7 +389,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	var/cable_amt = null
 	var/vehicle_name = null
 	var/vehicle_type = null
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/item/putt/frame_box
@@ -796,6 +797,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "pod_civ"
 	uses_weapon_overlays = 1
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/armor_score_multiplier = 0.2
 	capacity = 2
 	weapon_class = 1
@@ -1420,7 +1422,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 	proc/escape()
 		if(!launched)
 			launched = 1
-			anchored = 0
+			anchored = UNANCHORED
 			var/opened_door = 0
 			var/turf_in_front = get_step(src,src.dir)
 			for(var/obj/machinery/door/poddoor/D in turf_in_front)

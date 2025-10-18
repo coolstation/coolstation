@@ -22,7 +22,7 @@
 	name = "teleport pad"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pad0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 /client/proc/cmd_rp_rules()

@@ -60,7 +60,7 @@
 	icon_state = "secbot0"
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	luminosity = 2
 	req_access = list(access_security)
 	var/weapon_access = access_carrypermit
@@ -159,9 +159,6 @@
 			our_baton.dispose()
 			our_baton = null
 		target = null
-		radio_controller.remove_object(src, "[FREQ_PDA]")
-		radio_controller.remove_object(src, "[control_freq]")
-		radio_controller.remove_object(src, "[beacon_freq]")
 		..()
 
 /obj/machinery/bot/secbot/autopatrol
@@ -249,12 +246,13 @@
 		src.chatspam_cooldown = (1 SECOND) + (length(by_type[/obj/machinery/bot/secbot]) * 2) // big hordes of bots can really jam up the chat
 
 		SPAWN_DBG(0.5 SECONDS)
-			if(radio_controller)
-				radio_controller.add_object(src, "[control_freq]")
-				radio_controller.add_object(src, "[beacon_freq]")
 			if(src.hat)
 				bothat = image('icons/obj/bots/aibots.dmi', "hat-[src.hat]")
 				UpdateOverlays(bothat, "secbot_hat")
+
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", control_freq)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("beacon", beacon_freq)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 	speak(var/message, var/sing, var/just_float)
 		if (src.emagged >= 2)
@@ -521,13 +519,10 @@
 	explode()
 		if (report_arrests)
 			var/bot_location = get_area(src)
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			var/message2send = "Notification: [src] destroyed in [bot_location]! Officer down!"
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SECURITY-MAILBOT", "group"=list(MGD_SECURITY, MGA_DEATH), "sender"="00000000", "message"="[message2send]")
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			if(transmit_connection != null)
-				transmit_connection.post_signal(src, pdaSignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pdaSignal, null, "pda")
 
 		if(src.exploding) return
 		src.exploding = 1
@@ -607,7 +602,7 @@
 			src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
 		if (src.target.getStatusDuration("weakened"))
 			mode = SECBOT_AGGRO
-			src.anchored = 1
+			src.anchored = ANCHORED
 			src.target_lastloc = M.loc
 			src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
 		return
@@ -822,7 +817,7 @@
 
 	// look for a criminal in range of the bot
 	proc/look_for_perp()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for(var/mob/living/carbon/C in view(7, get_turf(src))) //Let's find us a criminal
 			if ((C.stat) || (C.hasStatus("handcuffed")))
 				continue
@@ -860,20 +855,17 @@
 
 		if(pda_help && !ON_COOLDOWN(src, SECBOT_HELPME_COOLDOWN, src.helpme_cooldown))
 			// HELPMEPLZ
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
-			if(frequency)
-				var/message2send ="ALERT: Unit under attack by [src.target] in [get_area(src)]. Requesting backup."
+			var/message2send ="ALERT: Unit under attack by [src.target] in [get_area(src)]. Requesting backup."
 
-				var/datum/signal/signal = get_free_signal()
-				signal.source = src
-				signal.data["sender"] = src.botnet_id
-				signal.data["command"] = "text_message"
-				signal.data["sender_name"] = src
-				signal.data["group"] = list(MGD_SECURITY, MGA_ARREST)
-				signal.data["address_1"] = "00000000"
-				signal.data["message"] = message2send
-				signal.transmission_method = TRANSMISSION_RADIO
-				frequency.post_signal(src, signal)
+			var/datum/signal/signal = get_free_signal()
+			signal.source = src
+			signal.data["sender"] = src.net_id
+			signal.data["command"] = "text_message"
+			signal.data["sender_name"] = src
+			signal.data["group"] = list(MGD_SECURITY, MGA_ARREST)
+			signal.data["address_1"] = "00000000"
+			signal.data["message"] = message2send
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
 
 		src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
 		src.target = C
@@ -931,66 +923,23 @@
 		if((src.idcheck)) // bot is set to actively search for contraband
 			var/obj/item/card/id/perp_id = perp.equipped()
 			if (!istype(perp_id))
-				perp_id = perp.wear_id
+				perp_id = perp.get_id()
 
-			var/has_carry_permit = 0
-			var/has_contraband_permit = 0
+			//Agent cards lower threat level
+			if(istype(perp_id, /obj/item/card/id/syndicate))
+				threatcount -= 2
 
-			if(perp_id) //Checking for permits
-				if(weapon_access in perp_id.access)
-					has_carry_permit = 1
-				if(contraband_access in perp_id.access)
-					has_contraband_permit = 1
-
-			if (istype(perp.l_hand))
-				if (istype(perp.l_hand, /obj/item/gun/)) // perp is carrying a gun
-					if(!has_carry_permit)
-						threatcount += perp.l_hand.contraband
-				else // not carrying a gun, but potential contraband?
-					if(!has_contraband_permit)
-						threatcount += perp.l_hand.contraband
-
-			if (istype(perp.r_hand))
-				if (istype(perp.r_hand, /obj/item/gun/)) // perp is carrying a gun
-					if(!has_carry_permit)
-						threatcount += perp.r_hand.contraband
-				else // not carrying a gun, but potential contraband?
-					if(!has_contraband_permit)
-						threatcount += perp.r_hand.contraband
-
-			if (istype(perp.belt))
-				if (istype(perp.belt, /obj/item/gun/))
-					if (!has_carry_permit)
-						threatcount += perp.belt.contraband * 0.5
-				else
-					if (!has_contraband_permit)
-						threatcount += perp.belt.contraband * 0.5
-
-			if (istype(perp.wear_suit))
-				if (!has_contraband_permit)
-					threatcount += perp.wear_suit.contraband
-
-			if (istype(perp.back))
-				if (istype(perp.back, /obj/item/gun/)) // some weapons can be put on backs
-					if (!has_carry_permit)
-						threatcount += perp.back.contraband * 0.5
-				else // at moment of doing this we don't have other contraband back items, but maybe that'll change
-					if (!has_contraband_permit)
-						threatcount += perp.back.contraband * 0.5
-
+			if(!perp_id || !(contraband_access in perp_id.access))
+				threatcount += GET_ATOM_PROPERTY(perp, PROP_MOVABLE_VISIBLE_CONTRABAND)
+			if(!perp_id || !(weapon_access in perp_id.access))
+				threatcount += GET_ATOM_PROPERTY(perp, PROP_MOVABLE_VISIBLE_GUNS)
 
 		if(istype(perp.mutantrace, /datum/mutantrace/abomination))
 			threatcount += 5
 
 		if(perp.traitHolder.hasTrait("immigrant") && perp.traitHolder.hasTrait("jailbird"))
-			threatcount += 5
-			for (var/datum/data/record/R as anything in data_core.security)
-				if (R.fields["name"] == perp.name)
-					threatcount -= 5
-
-		//Agent cards lower threat level
-		if((istype(perp.wear_id, /obj/item/card/id/syndicate)))
-			threatcount -= 2
+			if(isnull(data_core.security.find_record("name", perp.name)))
+				threatcount += 5
 
 		// we have grounds to make an arrest, don't bother with further analysis
 		if(threatcount >= 4)
@@ -1006,13 +955,9 @@
 				see_face = 0
 
 			var/perpname = see_face ? perp.real_name : perp.name
-
-			for (var/datum/data/record/E as anything in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R as anything in data_core.security)
-						if ((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
-							threatcount = 7
-							break
+			for (var/datum/db_record/R as anything in data_core.security.find_records("name", perpname))
+				if(R["criminal"] == "*Arrest*")
+					threatcount = 7
 					break
 
 		return threatcount
@@ -1029,7 +974,7 @@
 
 	KillPathAndGiveUp(var/give_up = KPAGU_CLEAR_PATH)
 		. = ..()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
 		if(give_up == KPAGU_RETURN_TO_GUARD || give_up == KPAGU_CLEAR_ALL)
 			src.oldtarget_name = src.target?.name
@@ -1077,7 +1022,7 @@
 	proc/find_nearest_beacon()
 		nearest_beacon = null
 		new_destination = "__nearest__"
-		post_signal(beacon_freq, "findbeacon", "patrol")
+		post_signal_multiple("beacon", list("findbeacon" = "patrol", "address_tag" = "patrol"))
 		awaiting_beacon = 1
 		SPAWN_DBG(1 SECOND)
 			awaiting_beacon = 0
@@ -1099,7 +1044,7 @@
 	// beacons will return a signal giving their locations
 	proc/set_destination(var/new_dest)
 		new_destination = new_dest
-		post_signal(beacon_freq, "findbeacon", "patrol")
+		post_signal_multiple("beacon", list("findbeacon" = new_dest || "patrol", "address_tag" = new_dest || "patrol"))
 		awaiting_beacon = 1
 
 	// receive a radio signal
@@ -1212,18 +1157,12 @@
 
 	// send a radio signal with multiple data key/values
 	proc/post_signal_multiple(var/freq, var/list/keyval)
-
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[freq]")
-
-		if(!frequency) return
-
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.transmission_method = 1
+		signal.data["sender"] = src.net_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]
-			//boutput(world, "sent [key],[keyval[key]] on [freq]")
-		frequency.post_signal(src, signal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, freq)
 
 	// signals bot status etc. to controller
 	proc/send_status()
@@ -1347,8 +1286,6 @@
 					LT_loc = get_turf(master)
 
 					//////PDA NOTIFY/////
-				var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
-				if(!frequency) return FALSE
 
 				var/message2send ="Notification: [last_target] detained by [master] in [bot_location] at coordinates [LT_loc.x], [LT_loc.y]."
 
@@ -1360,8 +1297,7 @@
 				signal.data["group"] = list(MGD_SECURITY, MGA_ARREST)
 				signal.data["address_1"] = "00000000"
 				signal.data["message"] = message2send
-				signal.transmission_method = TRANSMISSION_RADIO
-				frequency.post_signal(src, signal)
+				SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
 
 			switch(master.mode)
 				if(SECBOT_AGGRO)
@@ -1479,6 +1415,7 @@
 				boutput(user, "You give the [src] [W] and connect a cable in the arm to the baton's parallel port, completing the Securitron! Beep boop.")
 				var/obj/machinery/bot/secbot/S = new /obj/machinery/bot/secbot(get_turf(src))
 				S.beacon_freq = src.beacon_freq
+				get_radio_connection_by_id(S, "beacon").update_frequency(S.beacon_freq)
 				S.hat = src.hat
 				S.name = src.created_name		// We get an upgraded securitron
 				S.loot_baton_type = W.type	// So we can drop it all over again.
@@ -1502,6 +1439,7 @@
 				boutput(user, "You give the [src] a stun baton, completing the Securitron! Beep boop.")
 				var/obj/machinery/bot/secbot/S = new /obj/machinery/bot/secbot(get_turf(src))
 				S.beacon_freq = src.beacon_freq
+				get_radio_connection_by_id(S, "beacon").update_frequency(S.beacon_freq)
 				S.hat = src.hat
 				S.name = src.created_name
 				S.is_beepsky = IS_NOT_BEEPSKY_AND_HAS_SOME_GENERIC_BATON // You're still not Beepsky
@@ -1535,6 +1473,7 @@
 			boutput(user, "You add the wires to the rod, completing the Securitron! Beep boop.")
 			var/obj/machinery/bot/secbot/S = new /obj/machinery/bot/secbot(get_turf(src))
 			S.beacon_freq = src.beacon_freq
+			get_radio_connection_by_id(S, "beacon").update_frequency(S.beacon_freq)
 			S.hat = src.hat
 			S.name = src.created_name
 			qdel(src)

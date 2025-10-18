@@ -1,6 +1,7 @@
 /obj/item/extinguisher
 
 	name = "fire extinguisher"
+	hint = "refill by clicking on a rolling firefoam tank."
 	icon = 'icons/obj/items/items.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "fire_extinguisher0"

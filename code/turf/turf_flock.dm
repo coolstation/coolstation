@@ -3,6 +3,8 @@
 // -----
 // FLOOR
 // -----
+
+/*
 /turf/floor/feather
 	name = "weird floor"
 	desc = "I don't like the looks of that whatever-it-is."
@@ -287,3 +289,4 @@
 				F.end_floorrunning() // broken tiles won't let you continue floorrunning
 		else if(!isfeathertile(newloc))
 			F.end_floorrunning() // you left flocktile territory, boyo
+*/

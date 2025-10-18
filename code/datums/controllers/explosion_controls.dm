@@ -27,7 +27,7 @@ var/datum/explosion_controller/explosions
 		if (epicenter.loc:sanctuary)
 			return//no boom boom in sanctuary
 		queued_explosions += new/datum/explosion(source, epicenter, power, brisance, angle, width, usr, turf_safe, no_effects)
-		#ifdef Z3_IS_A_STATION_LEVEL
+		#ifdef Z3_IS_CAVES
 		if (epicenter.z == Z_LEVEL_DEBRIS && power > 30 && !istype(epicenter.loc, /area/station)) //large explosions cause cave-ins
 			random_events.force_event("Cave-In", "Underground Explosion In Caverns", epicenter)
 		#endif
@@ -53,7 +53,6 @@ var/datum/explosion_controller/explosions
 		exploding = 1
 		RL_Suspend()
 
-		var/needrebuild = 0
 		var/p
 		var/last_touched
 		var/center
@@ -64,7 +63,7 @@ var/datum/explosion_controller/explosions
 			last_touched = queued_turfs_blame[T]
 			center = queued_turfs_center[T]
 			for (var/mob/M in T)
-				M.ex_act(p, last_touched, center)
+				M.ex_act(p, last_touched, center, !queued_turfs[T])
 
 		LAGCHECK(LAG_HIGH)
 
@@ -76,8 +75,6 @@ var/datum/explosion_controller/explosions
 				if(istype(O, /obj/overlay))
 					continue
 				O.ex_act(p, last_touched, center, !queued_turfs[T])
-				if (istype(O, /obj/cable)) // this is hacky, newcables should relieve the need for this
-					needrebuild = 1
 
 		LAGCHECK(LAG_HIGH)
 
@@ -113,8 +110,7 @@ var/datum/explosion_controller/explosions
 		defer_camnet_rebuild = 0
 		exploding = 0
 		RL_Resume()
-		if (needrebuild)
-			makepowernets()
+		CLEAR_PNET_BACKLOG_NOW
 
 		rebuild_camera_network()
 		world.updateCameraVisibility()

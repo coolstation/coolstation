@@ -302,7 +302,7 @@
 /obj/effect/smoketemp
 	name = "smoke"
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	opacity = 0
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
@@ -778,7 +778,7 @@
 	icon_state = "test"
 	layer = HUD_LAYER
 	plane = PLANE_HUD
-	anchored = 1
+	anchored = ANCHORED
 	flags = NOSPLASH
 
 	var/cooldown = 0

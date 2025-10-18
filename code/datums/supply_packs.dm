@@ -357,6 +357,15 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 /datum/supply_packs/nanotrasen/emergency
 	category = "Emergency"
 
+	plunger
+		name = "Emergency Plunger"
+		desc = "An emergency plunger for when you can't find the one NT provided."
+		contents = "x1 Plunger"
+		contains = list(/obj/item/clothing/head/plunger)
+		cost = 750
+		containertype = /obj/storage/crate/biohazard
+		containername = "Emergency Plunger"
+
 	meteor
 		name = "Meteor Shield System"
 		desc = "It'll do in a pinch but your ship should really have it's own shields."
@@ -1084,7 +1093,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		name = "Replacement Mulebot"
 		desc = "For bolstering logistics delivery capacity, or if you joyrode the last one into space and lost it."
 		contents = "x1 Mulebot"
-		contains = list("/obj/machinery/bot/mulebot")
+		contains = list(/obj/machinery/bot/mulebot)
 		cost = 750
 		containertype = /obj/storage/crate
 		containername = "Replacement Mulebot Crate"

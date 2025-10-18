@@ -6,7 +6,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "DAn-off"
 	flags = NOSPLASH
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/obj/item/reagent_containers/glass/vial/active_vial = null
 	var/datavial = "No Vial Inserted"

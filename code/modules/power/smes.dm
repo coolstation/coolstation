@@ -15,9 +15,10 @@
 /obj/machinery/power/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "smes"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	requires_power = FALSE
 	var/output = 30000
 	var/lastout = 0
@@ -98,6 +99,9 @@
 /obj/machinery/power/smes/New()
 	..()
 
+	//Overlay of the top bit of the SMES on a layer where it occludes things behind it
+	UpdateOverlays(image(src.icon, "smes-overlay", layer = FLY_LAYER), "top")
+
 	SPAWN_DBG(0.5 SECONDS)
 		dir_loop:
 			for(var/d in cardinal)
@@ -133,25 +137,30 @@
 		icon_state = "smes"
 
 	var/image/I = SafeGetOverlayImage("operating", 'icons/obj/machines/power.dmi', "smes-op[online]")
-	I.plane = PLANE_LIGHTING
-	I.layer = LIGHTING_LAYER_BASE
-	I.blend_mode = BLEND_ADD
+	I.plane = PLANE_SELFILLUM
+	I.blend_mode = BLEND_OVERLAY
 	UpdateOverlays(I, "operating")
 
 	I = SafeGetOverlayImage("chargemode",'icons/obj/machines/power.dmi', "smes-oc1")
 	if (charging)
 		I.icon_state = "smes-oc1"
-
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_OVERLAY
 	else if (chargemode)
 		I.icon_state = "smes-oc0"
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_OVERLAY
 	else
 		I = null
+
 
 	UpdateOverlays(I, "chargemode", 0, 1)
 
 	var/clevel = chargedisplay()
 	if (clevel>0)
 		I = SafeGetOverlayImage("chargedisp",'icons/obj/machines/power.dmi',"smes-og[clevel]")
+		I.plane = PLANE_SELFILLUM
+		I.blend_mode = BLEND_OVERLAY
 		UpdateOverlays(I, "chargedisp")
 
 /obj/machinery/power/smes/proc/chargedisplay()

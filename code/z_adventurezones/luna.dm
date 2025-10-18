@@ -955,7 +955,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 	name = "External Airlock"
 	icon = 'icons/misc/lunar.dmi'
 	icon_state = "breakairlock0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 1
 	autoclose = 0
@@ -1003,7 +1003,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 /obj/decal/lunar_bootprint
 	name = "Neil Armstrong's genuine lunar bootprint"
 	desc = "The famous photographed bootprint is actually from Buzz Aldrin, but this is the genuine actual real replica of the FIRST step on the moon.  A corner of another world that is forever mankind."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = TURF_LAYER
 	icon = 'icons/misc/lunar.dmi'
@@ -1032,8 +1032,9 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 	desc = "A really large mockup of the Earth's moon."
 	icon = 'icons/misc/lunar64.dmi'
 	icon_state = "moon"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
+	pass_unstable = FALSE
 	layer = MOB_LAYER + 1
 
 	New()
@@ -1049,7 +1050,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 /obj/decal/fakeobjects/lunar_lander
 	name = "Lunar module descent stage"
 	desc = "The descent stage of the Apollo 11 lunar module, which landed the first astronauts on the moon."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	icon = 'icons/misc/lunar64.dmi'
 	icon_state = "LEM"
@@ -1062,7 +1063,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 	desc = "A piece of regolith. Or something. It is a heavy rock from the moon.  These used to be worth more."
 	icon = 'icons/misc/lunar.dmi'
 	icon_state = "moonrock"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/critter/mannequin
@@ -1177,7 +1178,7 @@ obj/machinery/embedded_controller/radio/maintpanel
 	name = "maintenance access panel"
 	icon = 'icons/obj/machines/airlock_machines.dmi'
 	icon_state = "museum_control"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	var/id_tag = null
@@ -1238,9 +1239,7 @@ obj/machinery/embedded_controller/radio/maintpanel
 				wired_connection.post_signal(src, signal)
 
 		else
-			signal.transmission_method = TRANSMISSION_RADIO
-			if(radio_connection)
-				return radio_connection.post_signal(src, signal, 100)
+			return SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, 100)
 
 	initialize()
 		..()
@@ -1253,7 +1252,7 @@ obj/machinery/embedded_controller/radio/maintpanel
 			new_prog.do_setup(setup_string)
 
 
-	receive_signal(datum/signal/signal, receive_method, receive_param)
+	receive_signal(datum/signal/signal, receive_method, receive_param, connection_id)
 		if(!signal || signal.encryption)
 			return
 
@@ -1741,7 +1740,7 @@ datum/computer/file/embedded_program/maintpanel
 
 		return
 
-	receive_signal(datum/signal/signal, receive_method, receive_param)
+	receive_signal(datum/signal/signal, receive_method, receive_param, connection_id)
 		if (signal.data["sender"] in src.sessions)
 			var/datum/maintpanel_device_entry/entry = src.sessions[signal.data["sender"]]
 			src.sessions -= signal.data["sender"]
@@ -2124,7 +2123,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 	desc = "This is a model of the \"dwarf\" plasma bomb held by the Space IRA in the 2004 Lunar Port Hostage Crisis.  At least, you hope it's a model."
 	icon = 'icons/misc/lunar.dmi'
 	icon_state = "dwarf_bomb"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 
 	var/well_fuck_its_armed = 0
@@ -2185,7 +2184,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 	icon = 'icons/misc/lunar.dmi'
 	icon_state = "junction_box"
 	pixel_y = 24
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	attackby(obj/item/C as obj, mob/user as mob)

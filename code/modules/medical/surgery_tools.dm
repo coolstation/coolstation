@@ -415,7 +415,7 @@ CONTAINS:
 		if (!isliving(M) || issilicon(M))
 			return ..()
 		if (src.defibrillate(M, user, src.emagged, src.makeshift, src.cell))
-			JOB_XP(user, "Medical Doctor", 5)
+			JOB_XP_DEPT(user, "Medical Doctor", "medical", 5)
 			src.charged = 0
 			if(istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 				var/obj/machinery/atmospherics/unary/cryo_cell/cryo = src.loc
@@ -666,7 +666,7 @@ CONTAINS:
 	icon = 'icons/obj/machines/compact_machines.dmi'
 	desc = "Used to resuscitate critical patients."
 	icon_state = "defib1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = 25
 	var/obj/item/robodefibrillator/mounted/defib = null
@@ -963,7 +963,7 @@ CONTAINS:
 			if (zone && surgery_status)
 				target.visible_message("<span class='success'>[owner] [vrb]es the surgical incisions on [owner == target ? his_or_her(owner) : "[target]'s"] [zone_sel2name[zone]] closed with [tool].</span>",
 				"<span class='success'>[owner == target ? "You [vrb]e" : "[owner] [vrb]es"] the surgical incisions on your [zone_sel2name[zone]] closed with [tool].</span>")
-				JOB_XP(ownerMob, "Medical Doctor", 5)
+				JOB_XP_DEPT(ownerMob, "Medical Doctor","medical", 5)
 				if (target.organHolder)
 					if (zone == "chest")
 						if (target.organHolder.heart)
@@ -986,7 +986,7 @@ CONTAINS:
 				target.visible_message("<span class='success'>[owner] [vrb]es [owner == target ? "[his_or_her(owner)]" : "[target]'s"] wounds closed with [tool].</span>",\
 				"<span class='success'>[owner == target ? "You [vrb]e" : "[owner] [vrb]es"] your wounds closed with [tool].</span>")
 				repair_bleeding_damage(target, 100, repair_amount)
-				JOB_XP(ownerMob, "Medical Doctor", 5)
+				JOB_XP_DEPT(ownerMob, "Medical Doctor","medical", 5)
 				if (brute_heal || burn_heal)
 					target.HealDamage("All", brute_heal, burn_heal)
 

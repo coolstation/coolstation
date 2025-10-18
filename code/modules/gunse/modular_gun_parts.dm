@@ -340,13 +340,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 0 // modifier, added to receiver
 
 	part_type = GUN_PART_ACCSY
+	icon = 'icons/obj/items/modular_guns/accessory.dmi'
 	icon_state = "generic_magazine"
 
 	proc/alt_fire()
 		return alt_fire
 
-	add_part_to_gun()
-		..()
+	add_part_to_gun(var/obj/item/gun/modular/gun)
+		. = ..()
 		if(!my_gun)
 			return
 		my_gun.accessory = src
@@ -1193,6 +1194,51 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		contraband = 5
 		jam_frequency = 12
 		bulkiness = 2
+
+/obj/item/gun_parts/accessory/ammofab
+	name = "ammo fabricator"
+	desc = "A small fabricator that produces low-quality ammunition and outputs it directly into the gun it has been attached to."
+	icon_state = "ammofab"
+	jam_frequency = 3
+	bulkiness = 2
+	contraband = 5
+	add_suffix = "quine"
+	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
+	var/generated_ammo_type = /obj/item/stackable_ammo/pistol/ammofab
+	var/obj/item/stackable_ammo/stored_generated_ammo
+	/// in a perfect world, a process is 2.9 seconds, btw. dunno WHY, but yea
+	var/processes_per_ammo_gen = 4
+	var/processes_since_ammo_gen = 0
+
+	add_part_to_gun(var/obj/item/gun/modular/gun)
+		. = ..()
+		processing_items |= src
+
+	remove_part_from_gun()
+		. = ..()
+		processing_items -= src
+
+	process()
+		. = ..()
+		src.processes_since_ammo_gen++
+		if(src.processes_per_ammo_gen <= src.processes_since_ammo_gen)
+			return
+		src.processes_since_ammo_gen = 0
+		if(src.my_gun && src.my_gun.built && src.my_gun.ammo_reserve() < src.my_gun.max_ammo_capacity)
+			if(!src.stored_generated_ammo)
+				src.stored_generated_ammo = new src.generated_ammo_type(src)
+			if ((src.my_gun.caliber | stored_generated_ammo.caliber) != src.my_gun.caliber)
+				src.my_gun.visible_message("<span class='alert'>A buildup of ammo snaps \the [src] off \the [src.my_gun]!</span>")
+				remove_part_from_gun()
+				return
+			if(!src.my_gun.jammed)
+				src.my_gun.load_ammo(null, stored_generated_ammo)
+				src.my_gun.inventory_counter.update_number(src.my_gun.ammo_reserve())
+
+	disposing()
+		qdel(src.stored_generated_ammo)
+		src.stored_generated_ammo = null
+		. = ..()
 
 // the weird parts for glue'd gunse
 

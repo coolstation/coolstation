@@ -296,6 +296,8 @@ var/f_color_selector_handler/F_Color_Selector
 		world.log << ""
 #endif
 
+		radio_controller = new /datum/controller/radio()
+
 		Z_LOG_DEBUG("Preload", "Loading config...")
 		config = new /datum/configuration()
 		config.load("config/config.txt")
@@ -343,8 +345,6 @@ var/f_color_selector_handler/F_Color_Selector
 		Z_LOG_DEBUG("Preload", "Starting controllers")
 		Z_LOG_DEBUG("Preload", "  radio")
 
-		radio_controller = new /datum/controller/radio()
-
 		Z_LOG_DEBUG("Preload", "  data_core")
 		data_core = new /datum/datacore()
 		// Must go after data_core
@@ -384,6 +384,8 @@ var/f_color_selector_handler/F_Color_Selector
 		ghost_notifier = new /datum/ghost_notification_controller()
 		Z_LOG_DEBUG("Preload", "  respawn_controller")
 		respawn_controller = new /datum/respawn_controls()
+		Z_LOG_DEBUG("Preload", "  train_spotter")
+		train_spotter = new /datum/train_controller()
 
 		Z_LOG_DEBUG("Preload", "hydro_controls set_up")
 		hydro_controls.set_up()
@@ -522,6 +524,7 @@ var/f_color_selector_handler/F_Color_Selector
 	set background = 1
 	Z_LOG_DEBUG("World/Init", "init() - Lagcheck enabled")
 	lagcheck_enabled = 1
+	current_state = GAME_STATE_WORLD_INIT
 
 	game_start_countdown = new()
 	UPDATE_TITLE_STATUS("Initializing world")
@@ -646,10 +649,6 @@ var/f_color_selector_handler/F_Color_Selector
 		bust_lights()
 		master_mode = "disaster" // heh pt. 2
 
-	UPDATE_TITLE_STATUS("Lighting up 🚬")
-	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
-	RL_Start()
-
 	//SpyStructures and caches live here
 	UPDATE_TITLE_STATUS("Updating cache 💰")
 	Z_LOG_DEBUG("World/Init", "Building various caches...")
@@ -704,10 +703,15 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
 	initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
 
+	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
+	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
+	RL_Start()
+
 	UPDATE_TITLE_STATUS("Starting processes")
 	Z_LOG_DEBUG("World/Init", "Setting up process scheduler...")
 	processScheduler.setup()
 
+	UPDATE_TITLE_STATUS("Initializing map")
 	Z_LOG_DEBUG("World/Init", "Running map-specific initialization...")
 	map_settings.init()
 
@@ -814,7 +818,11 @@ var/f_color_selector_handler/F_Color_Selector
 			var/name = details["name"]
 			text2file("\[[timestamp]\] [file],[line]: [name]", "errors.log")
 #ifndef PREFAB_CHECKING
-	var/apc_error_str = debug_map_apc_count("\n", zlim=Z_LEVEL_STATION)
+	#ifdef Z3_IS_A_STATION_LEVEL
+	var/apc_error_str = debug_map_apc_count("\n", zlim=list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS))
+	#else
+	var/apc_error_str = debug_map_apc_count("\n", zlim=list(Z_LEVEL_STATION))
+	#endif
 	if (!is_blank_string(apc_error_str))
 		text2file(apc_error_str, "errors.log")
 #endif
@@ -822,7 +830,7 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	var/newround = 'sound/misc/NewRound.ogg'
 	if (prob(40))
-		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/TimeForANewRound.ogg')
+		newround = pick('sound/misc/NewRound0.ogg','sound/misc/NewRound1.ogg','sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/NewRound1.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
@@ -1699,7 +1707,25 @@ var/f_color_selector_handler/F_Color_Selector
 					ircmsg["msg"] = "Removed the restart delay."
 
 					SPAWN_DBG(1 DECI SECOND)
-						ircbot.event("roundend")
+						// A round-end report is needed!
+						var/list/roundend_score = list(
+							"map" = getMapNameFromID(map_setting),
+							"survival" = score_tracker.score_crew_survival_rate,
+							"sec_scr"  = score_tracker.final_score_sec,
+							"eng_scr"  = score_tracker.final_score_eng,
+							"civ_scr"  = score_tracker.final_score_civ,
+							"res_scr"  = score_tracker.final_score_res,
+							"grade"	 = score_tracker.grade,
+							"m_damaged" = score_tracker.most_damaged_escapee,
+							"r_escaped" = score_tracker.richest_escapee,
+							"r_total"  = score_tracker.richest_total,
+							"beepsky"  = score_tracker.beepsky_alive,
+							"farts"    = fartcount,
+							"wead"     = weadegrowne,
+							"doinks"   = doinkssparked,
+							"clowns"   = clownabuse
+							)
+						ircbot.event("roundend", roundend_score)
 						Reboot_server()
 
 					return ircbot.response(ircmsg)

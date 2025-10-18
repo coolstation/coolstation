@@ -1,10 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////////
 // RELAY
 /////////////////////////////////////////////////////////////////////////////////
+/*
 /obj/flock_structure/relay
 	icon = 'icons/misc/featherzone-160x160.dmi'
 	icon_state = "structure-relay"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	name = "titanic polyhedron"
 	desc = "The sight of the towering geodesic sphere fills you with dread. A thousand voices whisper to you."
@@ -98,3 +99,4 @@
 			flockdronegibs(locate(location.x + x, location.y + y, location.z))
 	explosion_new(src, location, 2000)
 	gib(location)
+*/

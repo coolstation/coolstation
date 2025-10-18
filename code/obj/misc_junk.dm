@@ -168,7 +168,7 @@
 /obj/item/dummy
 	name = "dummy"
 	invisibility = 101.0
-	anchored = 1.0
+	anchored = ANCHORED
 	flags = TABLEPASS
 	burn_possible = FALSE
 
@@ -483,8 +483,9 @@
 /obj/item/wrestlingbell
 	name = "Wrestling bell"
 	desc = "A bell used to signal the start of a wrestling match"
-	anchored = 1
-	density = 1
+	anchored = ANCHORED
+	density = FALSE
+	pass_unstable = FALSE
 	icon = 'icons/obj/wrestlingbell.dmi'
 	icon_state = "wrestlingbell"
 	deconstruct_flags = DECON_WRENCH
@@ -500,7 +501,7 @@
 /obj/item/trophy
 	name = "trophy"
 	desc = "You're winner! You did it! You did the thing! Good job!"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "trophy"
@@ -604,6 +605,7 @@
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "sarc_0"
 	density = 1
+	pass_unstable = FALSE
 	var/gnome = 1
 
 	attackby(obj/item/W as obj, mob/user as mob)

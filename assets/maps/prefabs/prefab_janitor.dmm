@@ -16,7 +16,6 @@
 "ad" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
-	icon_state = "bdoormid1";
 	id = "jani_outpost"
 	},
 /turf/floor/shuttlebay,
@@ -35,14 +34,12 @@
 	pixel_x = -24
 	},
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 1
 	},
 /turf/floor/shuttlebay,
 /area/janitor_setpiece)
 "ag" = (
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 5
 	},
 /turf/floor/shuttlebay,
@@ -52,11 +49,9 @@
 /area/janitor_setpiece)
 "ai" = (
 /obj/machinery/vehicle/miniputt{
-	icon_state = "miniputt";
 	dir = 1
 	},
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 9
 	},
 /turf/floor/shuttlebay,
@@ -66,21 +61,18 @@
 /area/noGenerate)
 "ak" = (
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 4
 	},
 /turf/floor/shuttlebay,
 /area/janitor_setpiece)
 "al" = (
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 8
 	},
 /turf/floor/shuttlebay,
 /area/janitor_setpiece)
 "am" = (
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 4
 	},
 /obj/decal/fakeobjects/lightbulb_broken,
@@ -88,11 +80,9 @@
 /area/janitor_setpiece)
 "ao" = (
 /obj/machinery/vehicle/miniputt{
-	icon_state = "miniputt";
 	dir = 1
 	},
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "bigstripe-edge";
 	dir = 8
 	},
 /obj/machinery/light/small,
@@ -134,7 +124,6 @@
 "aw" = (
 /obj/item/storage/toilet/random,
 /obj/window/cubicle{
-	icon_state = "cubicle";
 	dir = 8
 	},
 /obj/machinery/door/window,
@@ -144,7 +133,6 @@
 "ax" = (
 /obj/item/storage/toilet/random,
 /obj/window/cubicle{
-	icon_state = "cubicle";
 	dir = 8
 	},
 /obj/machinery/door/window,
@@ -154,15 +142,13 @@
 "ay" = (
 /obj/shrub,
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "stripe-edge";
-	dir = 2
+	icon_state = "stripe-edge"
 	},
 /obj/decal/cleanable/cobweb,
 /turf/floor,
 /area/janitor_setpiece)
 "az" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/decal/cleanable/dirt,
@@ -173,7 +159,6 @@
 /area/noGenerate)
 "aB" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/floor,
@@ -188,15 +173,8 @@
 /area/janitor_setpiece)
 "aE" = (
 /obj/decal/tile_edge/stripe/big{
-	icon_state = "stripe-edge";
-	dir = 8
-	},
-/turf/floor,
-/area/janitor_setpiece)
-"aF" = (
-/obj/machinery/power/apc/autoname_south{
-	cell_type = 7500;
-	start_charge = 45
+	dir = 8;
+	icon_state = "stripe-edge"
 	},
 /turf/floor,
 /area/janitor_setpiece)
@@ -210,7 +188,6 @@
 /area/janitor_setpiece)
 "aI" = (
 /obj/submachine/chef_sink/chem_sink{
-	icon_state = "sink";
 	dir = 1
 	},
 /turf/floor,
@@ -225,7 +202,6 @@
 /obj/decal/cleanable/gangtag{
 	icon_state = "gangtag19";
 	layer = 4;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/wall/auto,
@@ -236,26 +212,23 @@
 /area/janitor_setpiece)
 "aM" = (
 /obj/decal/fakeobjects/pipe/heat{
-	name = "power conduit";
 	desc = "An outdated method of power delivery.";
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	name = "power conduit"
 	},
 /obj/decal/fakeobjects/teleport_pad{
 	layer = 3
 	},
 /obj/decal/cleanable/dirt,
 /turf/floor/caution/corner/misc{
-	icon_state = "floor_hazard_corners";
 	dir = 6
 	},
 /area/janitor_setpiece)
 "aN" = (
 /obj/decal/fakeobjects/pipe/heat{
-	name = "power conduit";
 	desc = "An outdated method of power delivery.";
-	icon_state = "intact";
-	dir = 9
+	dir = 9;
+	name = "power conduit"
 	},
 /turf/floor/caution/corner/se,
 /area/janitor_setpiece)
@@ -264,7 +237,6 @@
 	bank_id = "Control";
 	locked = 0;
 	name = "Databank - Control";
-	read_only = 0;
 	setup_drive_type = /obj/item/disk/data/tape/master
 	},
 /turf/floor,
@@ -307,7 +279,6 @@
 /area/janitor_setpiece)
 "aV" = (
 /obj/stool/chair/office{
-	icon_state = "office_chair";
 	dir = 1
 	},
 /turf/floor,
@@ -315,16 +286,13 @@
 "aW" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
 	tag = ""
 	},
 /turf/floor,
 /area/janitor_setpiece)
 "aX" = (
-/obj/item/gun/energy/phaser_gun,
 /obj/storage/closet/wardrobe/specialty_janitor,
 /obj/decal/fakeobjects/lighttube_broken{
-	icon_state = "tube-broken";
 	dir = 4
 	},
 /turf/floor,
@@ -332,8 +300,7 @@
 "aY" = (
 /obj/decal/cleanable/gangtag{
 	icon_state = "gangtag17";
-	layer = 4;
-	pixel_x = 0
+	layer = 4
 	},
 /turf/wall/auto,
 /area/janitor_setpiece)
@@ -426,7 +393,6 @@
 	pixel_x = 32
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/variableTurf/clear,
@@ -541,7 +507,7 @@ al
 ao
 ab
 ba
-aF
+ba
 ab
 aP
 ba

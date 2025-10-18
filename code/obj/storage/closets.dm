@@ -1,6 +1,7 @@
 /obj/storage/closet
 	name = "closet"
 	desc = "It's a closet! This one can be opened AND closed."
+	hint = "you can seal this with a welding tool."
 	soundproofing = 3
 	can_flip_bust = 1
 	p_class = 3
@@ -180,7 +181,7 @@
 /obj/storage/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
-	anchored = 1
+	anchored = ANCHORED
 
 /* let us never forget this - haine
 /obj/closet/thunderdome/New()
@@ -340,7 +341,7 @@
 	icon_welded = "mantacontainerleft-welded"
 	bound_height = 96
 	bound_width = 32
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	open(var/entangleLogic)
 		if (src.open)
@@ -513,7 +514,7 @@
 	icon_welded = "mantacontainerright-welded"
 	bound_height = 96
 	bound_width = 32
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/storage/closet/radiation
 	name = "radiation supplies closet"

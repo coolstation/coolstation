@@ -4,8 +4,9 @@
 	icon = 'icons/obj/furniture/table.dmi'
 	icon_state = "0"
 	density = 1
-	anchored = 1.0
-	flags = NOSPLASH
+	anchored = ANCHORED
+	flags = NOSPLASH // | FLUID_SUBMERGE
+	pass_unstable = TRUE
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	layer = OBJ_LAYER-0.1
 	stops_space_move = TRUE
@@ -393,9 +394,11 @@
 
 	CanPass(atom/movable/mover, turf/target)
 		if (!src.density || (mover.flags & TABLEPASS || istype(mover, /obj/newmeteor)) )
-			return 1
-		else
-			return 0
+			return TRUE
+		var/obj/table = locate(/obj/table) in mover?.loc
+		if (table && table.density)
+			return TRUE
+		return FALSE
 
 	MouseDrop_T(atom/O, mob/user as mob)
 		if (!in_interact_range(user, src) || !in_interact_range(user, O) || user.restrained() || user.getStatusDuration("paralysis") || user.sleeping || user.stat || user.lying)
@@ -517,7 +520,6 @@
 			if (is_athletic_jump) // athletic jumps are more athletic!!
 				the_text = "[ownerMob] swooces right over [the_railing]!"
 			M.show_text("[the_text]", "red")
-		// logTheThing("combat", ownerMob, the_railing, "[is_athletic_jump ? "leaps over [the_railing] with [his_or_her(ownerMob)] athletic trait" : "crawls over [the_railing%]].")
 
 /* ======================================== */
 /* ---------------------------------------- */
@@ -783,6 +785,7 @@
 	mat_appearances_to_ignore = list("glass")
 	parts_type = /obj/item/furniture_parts/table/glass
 	auto_type = /obj/table/glass // has to be the base type here or else regular glass tables won't connect to reinforced ones
+	pass_unstable = TRUE
 	var/glass_broken = GLASS_INTACT
 	var/reinforced = 0
 	var/default_material = "glass"

@@ -5,7 +5,7 @@
 	icon = 'icons/mob/unused/factionreps.dmi'
 	icon_state = "ntcommander"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/datum/dialogueMaster/dialogue = null
 
 	New()

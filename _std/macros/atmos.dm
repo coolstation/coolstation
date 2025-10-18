@@ -46,14 +46,14 @@
 #define ONE_ATMOSPHERE		101.325
 
 #define CELL_VOLUME 2500	//liters in a cell
-#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC
+#define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC, should be 103.983803
 
 #define O2STANDARD 0.21
 #define N2STANDARD 0.79
 
-/// O2 standard value (21%)
+/// O2 standard value (21%), should be 21.8365986
 #define MOLES_O2STANDARD MOLES_CELLSTANDARD*O2STANDARD
-/// N2 standard value (79%)
+/// N2 standard value (79%), should be 82.1472044
 #define MOLES_N2STANDARD MOLES_CELLSTANDARD*N2STANDARD
 
 #ifdef MAGINDARA_MAP
@@ -158,15 +158,10 @@
 #define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	30
 #define PLASMA_OXYGEN_FULLBURN				10
 
-/// Hotspot Maximum Temperature without a catalyst
-#define HOTSPOT_MAX_NOCAT_TEMPERATURE (100000) // increase from 80000
-/// Hotspot Maximum Temperature to maintain maths works to 1e35-sh in practice)
-#define HOTSPOT_MAX_CAT_TEMPERATURE (INFINITY)
-
 //Gas Reaction Flags
 #define REACTION_ACTIVE (1<<0) 	//! Reaction is Active
 #define COMBUSTION_ACTIVE (1<<1) //! Combustion is Active
-#define CATALYST_ACTIVE (1<<2)	//! Hotspot Catalyst is Active
+//#define CATALYST_ACTIVE (1<<2)	//! Hotspot Catalyst is Active
 
 // tank properties
 
@@ -192,6 +187,11 @@
 #define HEATPIPERATE 7					//heat-exch pipe insulation - was 8
 
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
+
+// comment out to remove throwing shit into space when breaches happen
+// this is the pressure delta that said throwing scales on
+#define DEPRESSURIZE_THROW_AT_SPACE_REQUIRED 20
+#define DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE 7
 
 // archiving
 
@@ -335,6 +335,19 @@ proc/gas_text_color(gas_id)
 #define HEAT_CAPACITY_ARCHIVED(MIXTURE) (length((MIXTURE).trace_gases) ? (MIXTURE).heat_capacity_archived_full() : BASE_GASES_ARCH_HEAT_CAPACITY(MIXTURE))
 
 #define THERMAL_ENERGY(MIXTURE) ((MIXTURE).temperature * HEAT_CAPACITY(MIXTURE))
+
+/// reagent fire oxygen -> co2 and heat IF theres enough oxygen. defines _energy_released
+#define REAGENT_COMBUST(MIXTURE, ENERGY) var/_energy_released = 0; \
+	if(MIXTURE.oxygen >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_NEEDED) { \
+		var/_percent_oxy = MIXTURE.oxygen / MIXTURE_PRESSURE(MIXTURE); \
+		if(_percent_oxy >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_PERCENTAGE) { \
+			var/_combustion_rate = min(min(_percent_oxy, 0.30) * 0.0000025 * ENERGY, MIXTURE.oxygen * 0.01); \
+			MIXTURE.oxygen -= _combustion_rate; \
+			MIXTURE.carbon_dioxide += _combustion_rate; \
+			_energy_released = 400000 * _combustion_rate; \
+			MIXTURE.temperature += _energy_released / HEAT_CAPACITY(MIXTURE); \
+		} \
+	}
 
 // air stats
 

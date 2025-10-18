@@ -2,7 +2,7 @@
 	name = "very conspicuous cable"
 	desc = "Some sort of cabling that runs under the floor. Looks pretty important."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/machines/power_cond.dmi'
 	icon_state = "1-10"
 	layer = CABLE_LAYER
@@ -53,7 +53,7 @@
 /obj/maptext_junk/RL_counter
 	icon = null
 	maptext = ""
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/applies = 0
 	var/updates = 0
 	var/gen = 0
@@ -145,7 +145,7 @@
 #define NW_SE 0
 #define SW_NE 1
 
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 	icon = 'icons/obj/unused/glass.dmi'
@@ -183,7 +183,7 @@
 	event_handler_flags = USE_HASENTERED
 	icon = 'icons/effects/letter_overlay.dmi'
 	icon_state = "A"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/id = null
 	var/which_end = 0
@@ -253,7 +253,7 @@
 	density = 1
 	event_handler_flags = NO_MOUSEDROP_QOL
 	flags = FPRINT
-	anchored = 1
+	anchored = ANCHORED
 	desc = "Funds further renovations for the afterlife. You can put the fruits / vegetables / minerals / bombs you grew into this (click this with them or click-drag them onto it)."
 	var/total_score = 0
 	var/round_score = 0
@@ -555,7 +555,7 @@
 	name = "big number"
 	mouse_opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "num0"
 	layer = TURF_LAYER + 0.1 // it should basically be part of a turf
@@ -669,7 +669,7 @@
 	icon = 'icons/mob/inhand/hand_general.dmi'
 	icon_state = "DONGS"
 	plane = PLANE_HUD
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	var/last_count = -1
@@ -718,7 +718,7 @@
 	name = "maptext monitor doodad"
 	desc = "This thing reports the value something else has, automatically! Wow!"
 	icon = null
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 0
 	plane = PLANE_HUD - 1
 
@@ -1007,6 +1007,7 @@
 		safety
 			monitored_var = "workplacesafety"
 			maptext_prefix = "<span class='c pixel sh'>Health and Safety Violations:\n<span class='vga'>"
+			ding_sound = "sound/misc/workplacesafety.ogg"
 
 		adminhelps
 			monitored_var = "adminhelps"
@@ -1132,7 +1133,7 @@
 		src.maptext_height = 64
 		src.maptext_width = 232
 		src.plane = 100
-		src.anchored = 2
+		src.anchored = ANCHORED_TECHNICAL
 		src.mouse_opacity = 1
 
 	proc/update_timer(var/num)
@@ -1152,7 +1153,7 @@
 		src.maptext_height = 64
 		src.maptext_width = 232
 		src.plane = 100
-		src.anchored = 2
+		src.anchored = ANCHORED_TECHNICAL
 		src.mouse_opacity = 1
 		src.maptext = {"<div class='c pixel sh' style="background: #00000080;"><strong>-- Welcome to Coolstation! --</strong>
 New? <a href="https://mini.xkeeper.net/ss13/tutorial/" style="color: #8888ff; font-weight: bold;" clss="ol">Click here for a tutorial!</a>
@@ -1405,7 +1406,7 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	name = "configurable credit store setup object"
 	desc = "An admin can click on this to set stuff up."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/mob/inhand/hand_general.dmi'
 	icon_state = "DONGS"
 	layer = EFFECTS_LAYER_4

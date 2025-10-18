@@ -476,7 +476,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 			..()
 		for(var/turf/T in range(1, user))
 			for(var/obj/cable/C in T.contents) //Needed because cables have invisibility 101. Making them disappear from most LISTS.
-				netnum = C.netnum
+				netnum = C.get_netnumber()
 				break
 
 		if(get_dist(user, target) > 1 && !user:equipped())
@@ -561,9 +561,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+		APPLY_ATOM_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 

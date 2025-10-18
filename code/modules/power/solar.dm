@@ -14,7 +14,7 @@
 	desc = "A solar directional tracker."
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "tracker"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	directwired = 1
 	var/id = 1
@@ -68,7 +68,7 @@
 	desc = "A solar electrical generator."
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "solar_panel"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	directwired = 1
 
@@ -238,7 +238,7 @@
 	desc = "A controller for solar panel arrays."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "solar"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	directwired = 1
 	//var/obj/overlay/solcon

@@ -204,7 +204,7 @@ Contents:
 	desc = "A pretty japanese cherry tree. You don't find a lot of these away from earth."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "sakuratree"
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_3
 	pixel_x = -20
 	density = 1
@@ -226,14 +226,14 @@ Contents:
 	name = "symbol"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "kanji_1"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decal/fakeobjects/kanji_2
 	plane = PLANE_FLOOR
 	name = "symbol"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "kanji_2"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decal/fakeobjects/dojohouse
 	icon = 'icons/effects/224x160.dmi'
@@ -248,7 +248,8 @@ Contents:
 /obj/decal/fakeobjects/birdhouse // i literally cannot find the correct name for this.
 	name = "small shrine"
 	density = 1
-	anchored = 1
+	pass_unstable = FALSE
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	icon = 'icons/obj/dojo.dmi'
@@ -271,7 +272,7 @@ Contents:
 /obj/decal/fakeobjects/plantpot
 	name = "plant pot"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = EFFECTS_LAYER_UNDER_3
 	icon = 'icons/obj/dojo.dmi'
@@ -281,7 +282,7 @@ Contents:
 	name = "toro"
 	desc = "A stone lamp. It doesn't appear to be lit."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = 5
 	icon = 'icons/obj/large/32x64.dmi'
@@ -303,7 +304,7 @@ Contents:
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "furnace"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decal/fakeobjects/anvil
 	name = "anvil"
@@ -311,7 +312,7 @@ Contents:
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "anvil"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decal/fakeobjects/bellows
 	name = "bellows"
@@ -319,7 +320,7 @@ Contents:
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "bellows"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decal/fakeobjects/swordrack
 	name = "katana rack"
@@ -327,7 +328,7 @@ Contents:
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "sword_wall_rack"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decal/fakeobjects/rake
 	name = "zen garden rake"
@@ -341,7 +342,7 @@ Contents:
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "sealed_door"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	opacity = 1
 
 /obj/decal/fakeobjects/katana_fake
@@ -356,7 +357,7 @@ Contents:
 	name = "paper lantern"
 	desc = "A brightly lit paper lantern."
 	density = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	opacity = 0
 
 	var/datum/light/point/light

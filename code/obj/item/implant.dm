@@ -34,22 +34,18 @@ THROWING DARTS
 	var/list/mailgroups = null
 	var/net_id = null
 	var/pda_alert_frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		..()
 		if (uses_radio)
-			SPAWN_DBG(10 SECONDS)
-				if (radio_controller)
-					radio_connection = radio_controller.add_object(src, "[pda_alert_frequency]")
-				if (!src.net_id)
-					src.net_id = generate_net_id(src)
+			if (!src.net_id)
+				src.net_id = generate_net_id(src)
+			MAKE_SENDER_RADIO_PACKET_COMPONENT(null, pda_alert_frequency)
 
 	disposing()
 		owner = null
 		former_implantee = null
 		if (uses_radio)
-			radio_controller.remove_object(src, "[pda_alert_frequency]")
 			mailgroups.Cut()
 		. = ..()
 
@@ -65,6 +61,9 @@ THROWING DARTS
 		implanted = 1
 		SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, M)
 		owner = M
+		if (isliving(M))
+			var/mob/living/living = M
+			LAZYLISTADD(living.implant, src)
 		if (implant_overlay)
 			M.update_clothing()
 		activate()
@@ -74,9 +73,11 @@ THROWING DARTS
 	proc/on_remove(var/mob/M)
 		deactivate()
 		SEND_SIGNAL(src, COMSIG_IMPLANT_REMOVED, M)
-		if (ishuman(src.owner))
-			var/mob/living/carbon/human/H = owner
-			H.implant -= src
+		if (isliving(M))
+			var/mob/living/living = M
+			living.implant -= src
+		if (implant_overlay)
+			M.update_clothing()
 		src.owner = null
 		src.implanted = 0
 		return
@@ -120,26 +121,18 @@ THROWING DARTS
 		deactivate()
 
 	proc/get_coords()
-		if (ishuman(src.owner))
-			var/mob/living/carbon/human/H = src.owner
-			if (locate(src) in H.implant)
-				var/turf/T = get_turf(H)
-				if (istype(T))
-					return " at [T.x],[T.y],[T.z]"
-		else if (ismobcritter(src.owner))
-			var/mob/living/critter/C = src.owner
-			if (locate(src) in C.implants)
-				var/turf/T = get_turf(C)
-				if (istype(T))
-					return " at [T.x],[T.y],[T.z]"
+		if (!isliving(src.owner))
+			return
+		var/mob/living/living_owner = src.owner
+		if (locate(src) in living_owner.implant)
+			var/turf/T = get_turf(src.owner)
+			if (istype(T))
+				return " at [T.x],[T.y],[T.z]"
 
 	proc/send_message(var/message, var/alertgroup, var/sender_name)
 		DEBUG_MESSAGE("sending message: [message]")
-		if(!radio_connection)
-			return
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		newsignal.data["command"] = "text_message"
 		newsignal.data["sender_name"] = sender_name
 		newsignal.data["message"] = "[message]"
@@ -148,7 +141,7 @@ THROWING DARTS
 		newsignal.data["group"] = mailgroups + alertgroup
 		newsignal.data["sender"] = src.net_id
 
-		radio_connection.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if (!istype(src, /obj/item/implant/projectile))
@@ -240,7 +233,7 @@ THROWING DARTS
 	implanted(mob/M, mob/I)
 		..()
 		if (!isdead(M) && M.client)
-			JOB_XP(I, "Medical Doctor", 5)
+			JOB_XP_DEPT(I, "Medical Doctor", "medical", 5)
 
 	proc/sensehealth()
 		if (!src.implanted)
@@ -277,13 +270,9 @@ THROWING DARTS
 		if (!H.mini_health_hud)
 			H.mini_health_hud = 1
 
-		var/datum/data/record/probably_my_record = null
-		for (var/datum/data/record/R in data_core.medical)
-			if (R.fields["name"] == H.real_name)
-				probably_my_record = R
-				break
+		var/datum/db_record/probably_my_record = data_core.medical.find_record("id", H.datacore_id)
 		if (probably_my_record)
-			probably_my_record.fields["h_imp"] = "[src.sensehealth()]"
+			probably_my_record["h_imp"] = "[src.sensehealth()]"
 		..()
 
 	on_crit()
@@ -551,7 +540,7 @@ THROWING DARTS
 			source.transforming = 1
 
 			var/obj/overlay/Ov = new/obj/overlay(T)
-			Ov.anchored = 1 //Create a big bomb explosion overlay.
+			Ov.anchored = ANCHORED //Create a big bomb explosion overlay.
 			Ov.name = "Explosion"
 			Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			Ov.pixel_x = -92
@@ -578,13 +567,7 @@ THROWING DARTS
 				sleep(1.5 SECONDS)
 				qdel(Ov)
 
-				if (ishuman(owner))
-					var/mob/living/carbon/human/H = owner
-					H.implant -= src
-				else if (ismobcritter(owner))
-					var/mob/living/critter/C = owner
-					C.implants -= src
-
+				on_remove(owner)
 				qdel(src)
 
 			T.hotspot_expose(800,125)
@@ -945,6 +928,11 @@ THROWING DARTS
 		if (dist <= 1)
 			. += "This one has [uses] charges remaining."
 
+	disposing()
+		qdel(access)
+		access = null
+		. = ..()
+
 	proc/used()
 		if (uses < 0) //infinite
 			return 1
@@ -975,6 +963,10 @@ THROWING DARTS
 				..()
 				access.access = get_access("Medical Doctor") + get_access("Janitor") + get_access("Botanist") + get_access("Chef") + get_access("Scientist")
 
+		secoff
+			New()
+				..()
+				access.access = get_access("Security Officer")
 
 /* ============================================================= */
 /* ------------------------- Implanter ------------------------- */
@@ -1020,13 +1012,6 @@ THROWING DARTS
 			M.tri_message("<span class='alert'>[M] has been implanted by [user].</span>",\
 			M, "<span class='alert'>You have been implanted by [user].</span>",\
 			user, "<span class='alert'>You implanted the implant into [M].</span>")
-
-		if (ishuman(M))
-			var/mob/living/carbon/human/H = M
-			H.implant.Add(src.imp)
-		else if (ismobcritter(M))
-			var/mob/living/critter/C = M
-			C.implants.Add(src.imp)
 
 		src.imp.set_loc(M)
 		src.imp.implanted(M, user)
@@ -1668,21 +1653,13 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 		if (!my_implant)
 			return
 		if (ishuman(hit))
-			var/mob/living/carbon/human/H = hit
-			if (my_implant.can_implant(H, implant_master))
-				my_implant.set_loc(H)
-				my_implant.implanted(H, implant_master)
-				H.implant.Add(my_implant)
+			var/mob/living/L = hit
+			if (my_implant.can_implant(L, implant_master))
+				my_implant.set_loc(L)
+				my_implant.implanted(L, implant_master)
+				L.implant.Add(my_implant)
 			else
-				my_implant.set_loc(get_turf(H))
-		else if (ismobcritter(hit))
-			var/mob/living/critter/C = hit
-			if (C.can_implant && my_implant.can_implant(C, implant_master))
-				my_implant.set_loc(C)
-				my_implant.implanted(C, implant_master)
-				C.implants.Add(my_implant)
-			else
-				my_implant.set_loc(get_turf(C))
+				my_implant.set_loc(get_turf(L))
 		else
 			my_implant.set_loc(get_turf(O))
 

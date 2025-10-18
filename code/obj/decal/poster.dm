@@ -4,7 +4,7 @@
 	name = "poster"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "poster"
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	density = 0
 	var/imgw = 600 //set this to around +10 your image's actual size or whatever size you want the window to be
@@ -582,6 +582,18 @@
 			icon_state = "wall_poster_cool3"
 			random_icon_states = list("wall_poster_cool", "wall_poster_cool2", "wall_poster_cool3")
 
+		poster_cig_moose
+			name = "cigarette ad"
+			desc = "There's a sexy shirtless moose mascot smoking three cigarettes, with several more lit cigarettes tucked in his antlers. You haven't seen this brand of cigarettes around in a long time..."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "cig_moose"
+
+		poster_grub
+			name = "grub breeder ad"
+			desc = "There's a bunch of sicker-than-usual-looking grubs on this poster. It says 2X PUNPY 3X BRAP in big bold letters at the top."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "grubs"
+
 		poster_human
 			name = "poster"
 			desc = "There's a person pictured on this poster. Some sort of celebrity."
@@ -617,6 +629,16 @@
 			name = "periodic table of elements"
 			desc = "A chart listing all known chemical elements."
 			icon_state = "ptoe"
+
+		poster_chme
+			name = "\improper chemical precursor table"
+			desc = "A poster with common chemical precursors and their recipies."
+			icon_state = "chemcomp"
+			popup_win = 1
+			imgw = 500
+			imgh = 647
+			icon = 'icons/obj/decals/posters.dmi'
+			img = "images/arts/posters/precursor.png"
 
 		poster_y4nt
 			name = "\improper NanoTrasen recruitment poster"

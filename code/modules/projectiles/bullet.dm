@@ -93,6 +93,16 @@ toxic - poisons
 	icon_turf_hit = "bhole-small"
 	casing = /obj/item/casing/small
 
+/// bullets printed hot and fresh by the ammofab
+/datum/projectile/bullet/pistol/ammofab
+	name = "pellet"
+	power = 15
+	dissipation_rate = 3
+	hit_type = DAMAGE_BLUNT
+	implanted = null
+	icon_turf_hit = null
+	casing = null
+
 //NT plastic rounds (.380/9mm equivalent), low powder
 /datum/projectile/bullet/pistol/NT
 	power = 25
@@ -803,6 +813,7 @@ toxic - poisons
 	icon_turf_hit = "bhole-large"
 	casing = /obj/item/casing/cannon
 	pierces = 4
+	time_between_same_mob_hit = 2 SECONDS
 	shot_sound_extrarange = 1
 
 	on_launch(obj/projectile/proj)

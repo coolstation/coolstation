@@ -7,7 +7,7 @@
 	var/power = 1.0
 	var/code = 1.0
 	var/id = 1.0
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = 2.6
 	var/drive_range = 200 //this is mostly irrelevant since current mass drivers throw into space, but you could make a lower-range mass driver for interstation transport or something I guess.
 	plane = PLANE_NOSHADOW_BELOW

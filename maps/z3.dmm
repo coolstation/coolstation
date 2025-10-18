@@ -21886,6 +21886,9 @@
 /area/abandonedship)
 "iZl" = (
 /obj/machinery/chem_dispenser/soda,
+/obj/neon_sign/beer{
+	pixel_y = 32
+	},
 /turf/floor/black,
 /area/juicer/club)
 "jev" = (
@@ -23001,6 +23004,9 @@
 /obj/table/round/auto{
 	color = "#6F00FF"
 	},
+/obj/neon_sign/spades{
+	pixel_y = 32
+	},
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
 "mWR" = (
@@ -23108,6 +23114,14 @@
 /obj/landmark/club_juice_dance,
 /turf/floor/purpleblack/corner,
 /area/juicer/club)
+"noQ" = (
+/obj/grille/steel,
+/obj/window/reinforced/north,
+/obj/window/reinforced/south,
+/obj/window/reinforced/west,
+/obj/neon_sign/open,
+/turf/floor/plating,
+/area/diner/hallway)
 "npm" = (
 /obj/wingrille_spawn/auto,
 /obj/window_blinds/cog2/left{
@@ -23693,6 +23707,15 @@
 /obj/item/clothing/under/gimmick/jetson,
 /turf/floor/airless/plating/scorched,
 /area/abandonedship)
+"pdw" = (
+/obj/table/round/auto{
+	color = "#6F00FF"
+	},
+/obj/neon_sign/clubs{
+	pixel_y = 32
+	},
+/turf/floor/darkpurple,
+/area/juicer/club/outside)
 "pfy" = (
 /obj/lattice{
 	dir = 10;
@@ -24204,6 +24227,12 @@
 	},
 /turf/space,
 /area/abandonedmedicalship)
+"rfq" = (
+/obj/neon_sign/syringe{
+	pixel_x = 32
+	},
+/turf/floor/darkpurple,
+/area/juicer/club/outside)
 "rfA" = (
 /obj/table/reinforced/auto,
 /obj/machinery/microwave,
@@ -25421,6 +25450,13 @@
 /obj/item/gun/modular/soviet/long/advanced,
 /turf/floor/plating/random,
 /area/space)
+"vkl" = (
+/obj/grille/steel,
+/obj/window/reinforced/west,
+/obj/window/reinforced/east,
+/obj/neon_sign/hearts,
+/turf/floor/plating,
+/area/juicer/club)
 "vnz" = (
 /obj/grille/catwalk{
 	dir = 6;
@@ -25456,6 +25492,9 @@
 /area/diner/dining)
 "vuu" = (
 /obj/decal/fakeobjects/barbuddy_dispenser,
+/obj/neon_sign/caviar{
+	pixel_y = 32
+	},
 /turf/floor/black,
 /area/juicer/club)
 "vvI" = (
@@ -25535,6 +25574,9 @@
 "vNX" = (
 /obj/stool/chair{
 	dir = 4
+	},
+/obj/neon_sign/flaming{
+	pixel_y = 32
 	},
 /turf/floor/carpet{
 	dir = 8;
@@ -26048,6 +26090,9 @@
 "xLH" = (
 /obj/machinery/light/small/warm{
 	dir = 8
+	},
+/obj/neon_sign/exit{
+	pixel_x = -32
 	},
 /turf/floor/carpet/purple/standard/edge/west,
 /area/juicer/club/outside)
@@ -82464,7 +82509,7 @@ bkH
 xKo
 tVU
 lRT
-gAm
+rfq
 bkH
 mKF
 hCC
@@ -83966,7 +84011,7 @@ boP
 apT
 arO
 azq
-apT
+noQ
 aaa
 aaa
 aaa
@@ -83986,7 +84031,7 @@ tAl
 fCt
 kJF
 auB
-tBn
+vkl
 auO
 aaa
 aaa
@@ -85481,7 +85526,7 @@ boq
 boP
 boP
 bkH
-mVV
+pdw
 gAm
 thp
 gAm
@@ -86100,7 +86145,7 @@ sVf
 dSY
 kJF
 ftW
-tBn
+vkl
 sHP
 aaa
 aaa

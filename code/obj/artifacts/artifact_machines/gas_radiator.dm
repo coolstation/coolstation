@@ -42,8 +42,7 @@
 				gas_type = pick(
 					200;"oxygen",
 					100;"nitrogen",
-					50;"carbon dioxide",
-					50;"agent b")
+					50;"carbon dioxide")
 			if("precursor") // all the god damn gases
 				gas_type = pick(
 					125;"oxygen",
@@ -51,7 +50,6 @@
 					75;"plasma",
 					50;"carbon dioxide",
 					30;"farts",
-					30;"agent b",
 					30;"sleeping agent")
 
 		// temperature
@@ -98,9 +96,11 @@
 					gas.carbon_dioxide = src.gas_amount_current
 				if("farts")
 					gas.farts = src.gas_amount_current
+/*
 				if("agent b")
 					var/datum/gas/oxygen_agent_b/trace = gas.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
 					trace.moles = src.gas_amount_current
+*/
 				if("sleeping agent")
 					var/datum/gas/sleeping_agent/trace = gas.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
 					trace.moles = src.gas_amount_current

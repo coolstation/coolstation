@@ -383,7 +383,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		src.visible_message("<span class='alert'>[src]'s quick deploy system engages, automatically securing it!</span>")
 		playsound(src.loc, "sound/items/Welder2.ogg", 30, 1)
 		set_projectile()
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.active = 1
 		src.icon_state = "[src.icon_tag]_idle"
 
@@ -540,10 +540,10 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	associated_deployer = /obj/item/turret_deployer/syndicate
 
 	is_friend(var/mob/living/C)
-		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/gunbot/) //dumb lazy
+		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/robotic/gunbot) //dumb lazy
 
 /obj/deployable_turret/syndicate/active
-	anchored = 1
+	anchored = ANCHORED
 
 	New(loc)
 		..(src.loc, src.dir)
@@ -572,7 +572,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		. = (access_security in I.access) || (access_heads in I.access)
 
 /obj/deployable_turret/riot/active
-	anchored = 1
+	anchored = ANCHORED
 
 	New(loc)
 		..(src.loc, src.dir)

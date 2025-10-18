@@ -52,7 +52,7 @@
 		playsound(src.loc, "sound/voice/animal/brullbar_cry.ogg", 60, 1)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return

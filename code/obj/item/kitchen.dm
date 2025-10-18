@@ -444,7 +444,7 @@ TRAYS
 	desc = "LOOKS NORMAL!!!"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "homph"
-	anchored = 1
+	anchored = ANCHORED
 	flags = NOSPLASH
 	var/emagged = FALSE //hoo hoo
 	var/wine = null
@@ -602,7 +602,7 @@ TRAYS
 			src.icon_state= "homph"
 
 	unchained
-		anchored = 0
+		anchored = UNANCHORED
 
 /obj/item/kitchen/food_box // I came in here just to make donut/egg boxes put the things in your hand when you take one out and I end up doing this instead, kill me. -haine
 	name = "food box"

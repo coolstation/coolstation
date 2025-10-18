@@ -681,6 +681,7 @@
 	var/labels_left = 10
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	rand_pos = 8
+	hint = "Set the labeler to blank to remove labels."
 
 	get_desc()
 		if (!src.label || !length(src.label))

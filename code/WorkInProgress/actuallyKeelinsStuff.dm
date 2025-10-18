@@ -1,8 +1,5 @@
 //This file contains stuff that is still *mostly* my code.
 
-#define LINEMODE_SEGMENT 1
-#define LINEMODE_STRETCH 2
-#define LINEMODE_MOVE 3
 /*
 Proc: drawLine
 Arguments:
@@ -34,37 +31,38 @@ Returns:
 	if(render_source_line == null) return
 	var/datum/lineResult/result = new()
 
-	if(!islist(render_source_line))
-		if(!getGlobalRenderSource((copytext(render_source_line,1,2) == "*" ? render_source_line : "*[render_source_line]")))
-			if(copytext(render_source_line,1,2) == "*") render_source_line = copytext(render_source_line,2,0)
-			addGlobalRenderSource(image('icons/effects/lines2.dmi',null, render_source_line), "*[render_source_line]")
-		if(copytext(render_source_line,1,2) != "*") render_source_line = "*[render_source_line]"
-	else
-		for(var/X in render_source_line)
-			var/current = X
-			if(!getGlobalRenderSource((copytext(current,1,2) == "*" ? current : "*[current]")))
-				if(copytext(current,1,2) == "*") current = copytext(current,2,0)
-				addGlobalRenderSource(image('icons/effects/lines2.dmi',null, current), "*[current]")
-			if(copytext(X,1,2) != "*")
-				current = "*[current]"
-			render_source_line -= X
-			render_source_line += current
+	if(mode != LINEMODE_SIMPLE && mode != LINEMODE_SIMPLE_REVERSED)
+		if(!islist(render_source_line))
+			if(!getGlobalRenderSource((copytext(render_source_line,1,2) == "*" ? render_source_line : "*[render_source_line]")))
+				if(copytext(render_source_line,1,2) == "*") render_source_line = copytext(render_source_line,2,0)
+				addGlobalRenderSource(image('icons/effects/lines2.dmi',null, render_source_line), "*[render_source_line]")
+			if(copytext(render_source_line,1,2) != "*") render_source_line = "*[render_source_line]"
+		else
+			for(var/X in render_source_line)
+				var/current = X
+				if(!getGlobalRenderSource((copytext(current,1,2) == "*" ? current : "*[current]")))
+					if(copytext(current,1,2) == "*") current = copytext(current,2,0)
+					addGlobalRenderSource(image('icons/effects/lines2.dmi',null, current), "*[current]")
+				if(copytext(X,1,2) != "*")
+					current = "*[current]"
+				render_source_line -= X
+				render_source_line += current
 
-	if(!islist(render_source_cap))
-		if(render_source_cap != null && !getGlobalRenderSource((copytext(render_source_cap,1,2) == "*" ? render_source_cap : "*[render_source_cap]")))
-			if(copytext(render_source_cap,1,2) == "*") render_source_cap = copytext(render_source_cap,2,0)
-			addGlobalRenderSource(image('icons/effects/lines2.dmi',null, render_source_cap), "*[render_source_cap]")
-		if(copytext(render_source_cap,1,2) != "*") render_source_cap = "*[render_source_cap]"
-	else
-		for(var/X in render_source_cap)
-			var/current = X
-			if(!getGlobalRenderSource((copytext(current,1,2) == "*" ? current : "*[current]")))
-				if(copytext(current,1,2) == "*") current = copytext(current,2,0)
-				addGlobalRenderSource(image('icons/effects/lines2.dmi',null, current), "*[current]")
-			if(copytext(X,1,2) != "*")
-				current = "*[current]"
-			render_source_cap -= X
-			render_source_cap += current
+		if(!islist(render_source_cap))
+			if(render_source_cap != null && !getGlobalRenderSource((copytext(render_source_cap,1,2) == "*" ? render_source_cap : "*[render_source_cap]")))
+				if(copytext(render_source_cap,1,2) == "*") render_source_cap = copytext(render_source_cap,2,0)
+				addGlobalRenderSource(image('icons/effects/lines2.dmi',null, render_source_cap), "*[render_source_cap]")
+			if(copytext(render_source_cap,1,2) != "*") render_source_cap = "*[render_source_cap]"
+		else
+			for(var/X in render_source_cap)
+				var/current = X
+				if(!getGlobalRenderSource((copytext(current,1,2) == "*" ? current : "*[current]")))
+					if(copytext(current,1,2) == "*") current = copytext(current,2,0)
+					addGlobalRenderSource(image('icons/effects/lines2.dmi',null, current), "*[current]")
+				if(copytext(X,1,2) != "*")
+					current = "*[current]"
+				render_source_cap -= X
+				render_source_cap += current
 
 	var/iconWidth = 64
 	var/dx = ((target.x * world.icon_size) + trg_off_x) - ((source.x * world.icon_size) + src_off_x)
@@ -95,6 +93,20 @@ Returns:
 			var/matrix/M2 = UNLINT(matrix().Translate(-(iconWidth / 2),0).Turn(angle).Translate(src_off_x,src_off_y))
 			I.filters += filter(type="layer", render_source = (islist(render_source_cap) ? pick(render_source_cap) : render_source_cap), transform=M2)
 		I.transform = UNLINT(matrix().Turn(-angle).Translate((dist),0).Turn(angle))
+		result.lineImage = I
+	else if(mode == LINEMODE_SIMPLE)
+		var/image/I = image(null,source)
+		I.icon = 'icons/effects/lines2.dmi'
+		I.icon_state = islist(render_source_line) ? pick(render_source_line) : render_source_line
+		var/matrix/M = UNLINT(matrix().Scale(scale,1).Translate(dist/2,0).Turn(angle).Translate(src_off_x - iconWidth / 4,src_off_y))
+		I.transform = M
+		result.lineImage = I
+	else if(mode == LINEMODE_SIMPLE_REVERSED)
+		var/image/I = image(null,source)
+		I.icon = 'icons/effects/lines2.dmi'
+		I.icon_state = islist(render_source_line) ? pick(render_source_line) : render_source_line
+		var/matrix/M = UNLINT(matrix().Scale(scale,1).Translate(-dist/2,0).Turn(180 + angle).Translate(src_off_x - iconWidth / 4,src_off_y))
+		I.transform = M
 		result.lineImage = I
 	else if(mode == LINEMODE_SEGMENT)
 		var/image/composite = image(null,source)
@@ -502,7 +514,7 @@ Returns:
 	desc = ""
 	density = 1
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/targetX = 2
 	var/targetY = 2
 	var/targetZ = 2
@@ -590,7 +602,7 @@ Returns:
 	desc = ""
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/targetZ = 2
 
 	onVarChanged(variable, oldval, newval)
@@ -768,7 +780,7 @@ Returns:
 	desc = "You can see a skeleton down there. It seems to be holding some sort of key."
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "valterak"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	plane = PLANE_NOSHADOW_BELOW
@@ -778,7 +790,7 @@ Returns:
 	desc = "Upon closer inspection these seem to be the burnt remnants of a whip. How they are still there or even recognizable is beyond you."
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "vwhip"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	plane = PLANE_NOSHADOW_BELOW
@@ -868,7 +880,7 @@ Returns:
 	canmove = 0
 	invisibility = 101
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 
 	proc/shake(var/steps = 20, var/length = 1, var/delay = 0, var/strength = 32, var/anim_easing = LINEAR_EASING)
 		SPAWN_DBG(0)
@@ -901,7 +913,7 @@ Returns:
 			if(freeze_source)
 				source.nodamage = 1
 				source.canmove = 0
-				source.anchored = 1
+				source.anchored = ANCHORED
 		return
 
 	proc/stop()
@@ -912,7 +924,7 @@ Returns:
 		if(freeze_source)
 			source.nodamage = 0
 			source.canmove = 1
-			source.anchored = 0
+			source.anchored = UNANCHORED
 
 		del(src)
 		return
@@ -936,7 +948,7 @@ Returns:
 /obj/wormhole
 	name = "nascent wormhole"
 	desc = "a small baby wormhole"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "whole-nascent"
@@ -973,7 +985,7 @@ Returns:
 	desc = ""
 	icon = 'icons/effects/meleeeffects.dmi'
 	icon_state = "sabre"
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_1
 
 	New()
@@ -1018,7 +1030,7 @@ Returns:
 	desc = ""
 	icon = null
 	icon_state = "sabre"
-	anchored = 1
+	anchored = ANCHORED
 	New(var/obj/item/experimental/melee/spear/S,var/atom/location)
 		src.set_loc(location)
 		var/image/I = image(S)
@@ -1674,7 +1686,7 @@ Returns:
 	desc = "this is a single pixel. wow."
 	icon = 'icons/effects/1x1.dmi'
 	icon_state = "pixel"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 /*
@@ -1918,7 +1930,7 @@ Returns:
 /obj/largetest
 	name = "test"
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 	icon = 'icons/misc/512x512.dmi'
@@ -1927,7 +1939,7 @@ Returns:
 /obj/peninscription
 	name = "mysterious inscription"
 	desc = "It's some form of inscription. It reads 'nij ud-bi-ta la-ba-jal-la: ki-sikil tur ur dam-ma-na-ka ce nu-ub-dur-re'. There is a small pictogram below it."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	icon = 'icons/obj/decals/misc.dmi'
@@ -1946,14 +1958,15 @@ Returns:
 	name = "burning barrel"
 	desc = "cozy."
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "barrel1"
+	icon_state = "barrel"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	var/datum/particleSystem/barrelSmoke/smoke_part
 	var/datum/light/light
 	var/lit = TRUE
+	var/image/glow
 
 	New()
 		light = new /datum/light/point
@@ -1963,6 +1976,10 @@ Returns:
 		if (lit)
 			smoke_part = particleMaster.SpawnSystem(new /datum/particleSystem/barrelSmoke(src))
 			light.enable()
+			src.glow = image(src.icon, src, "[icon_state]_g")
+			src.glow.plane = PLANE_SELFILLUM
+			src.glow.layer = LIGHTING_LAYER_BASE
+			src.UpdateOverlays(glow, "glow")
 		..()
 
 	disposing()
@@ -1999,7 +2016,7 @@ Returns:
 	icon_state = "riftexit"
 	name = "???"
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 
@@ -2038,7 +2055,7 @@ Returns:
 	icon_state = "atear"
 	name = "???"
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 
@@ -2086,7 +2103,7 @@ Returns:
 	desc = "a small portion of someones life energies ..."
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "empty"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	invisibility = 100
@@ -2122,7 +2139,7 @@ Returns:
 	desc = "..."
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "eorb"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
@@ -2141,7 +2158,7 @@ Returns:
 	name = "nothing"
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "blank"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	plane = PLANE_LIGHTING - 1
@@ -2150,7 +2167,7 @@ Returns:
 	name = "nothing"
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "blank-plug"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	plane = PLANE_LIGHTING - 1
@@ -2159,7 +2176,7 @@ Returns:
 	name = "fire"
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "hfireplug"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -2167,7 +2184,7 @@ Returns:
 	name = "fire"
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "hfire"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -2175,7 +2192,7 @@ Returns:
 	name = "nothing"
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "tileswish"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -2184,7 +2201,7 @@ Returns:
 	desc = "a swirling blue vortex"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "swirlthing"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -2242,7 +2259,7 @@ Returns:
 	name = "ProcTrigger"
 	desc = "If you see this and you're not an admin then that's sorta bad."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	invisibility = 100
 	icon = 'icons/effects/ULIcons.dmi'
@@ -2372,7 +2389,7 @@ Returns:
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "rup"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	invisibility = 100
 	var/spawn_rate = 100 	   //Time before a new object spaws after the previous is gone.
@@ -2430,7 +2447,7 @@ Returns:
 	icon = 'icons/effects/lines.dmi'
 	icon_state = "lght"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	pixel_y = -16
@@ -2443,7 +2460,7 @@ Returns:
 	name = "Box of Fireworks"
 	desc = "The Label simply reads : \"Firwerks fun is having total family. Made in Spacechina\""
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	opacity = 0
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "fireworksbox"
@@ -2453,7 +2470,7 @@ Returns:
 		if(fireworking) return
 		fireworking = 1
 		boutput(user, "<span class='alert'>The fireworks go off as soon as you touch the box. This is some high quality stuff.</span>")
-		anchored = 1
+		anchored = ANCHORED
 
 		SPAWN_DBG(0)
 			for(var/i=0, i<rand(30,40), i++)
@@ -2472,7 +2489,7 @@ Returns:
 	name = "spooky candle"
 	desc = "It's a big candle. It's also floating."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	var/datum/light/light
 
@@ -2498,7 +2515,7 @@ Returns:
 	name = "candle"
 	desc = "It's a big candle"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	var/datum/light/point/light
@@ -2517,14 +2534,15 @@ Returns:
 /obj/line_obj/elec
 	name = "electricity"
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
+	plane = PLANE_SELFILLUM
 
 /obj/elec_trg_dummy
 	name = ""
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	invisibility = 99
@@ -2580,7 +2598,7 @@ Returns:
 	desc = "Pew Pew"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "shuttlecannonthing"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/ready = 1
 
@@ -2640,7 +2658,7 @@ Returns:
 	desc = "Don't move this thing or you're gonna have a bad time."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/areasize = ""
 	var/moving = 0
@@ -2810,7 +2828,7 @@ Returns:
 	desc = "a rip in time and space"
 	opacity = 0
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
@@ -2836,7 +2854,7 @@ Returns:
 	desc = "a rip in time and space"
 	opacity = 0
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
@@ -3074,7 +3092,7 @@ Returns:
 /obj/perm_portal
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 	var/atom/target = null
@@ -3156,7 +3174,7 @@ Returns:
 	desc = "It's foam."
 	opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "foam"
 	animate_movement = SLIDE_STEPS
@@ -3180,7 +3198,7 @@ Returns:
 	desc = ""
 	opacity = 1
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "r_wall"
@@ -3264,7 +3282,7 @@ Returns:
 /obj/pool
 	name = "pool"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pool"
 	flags = FPRINT | ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
@@ -3277,7 +3295,7 @@ Returns:
 
 /obj/pool/ladder
 	name = "pool ladder"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	dir = 8
 	icon = 'icons/obj/fluid.dmi'
@@ -3286,7 +3304,7 @@ Returns:
 /obj/pool/perspective
 	name = "pool"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/fluid.dmi'
 	plane = PLANE_FLOOR
 	icon_state = "pool"
@@ -3294,7 +3312,7 @@ Returns:
 /obj/pool_springboard
 	name = "springboard"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_2
 	pixel_x = -16
 	icon = 'icons/obj/stationobjs.dmi'
@@ -3429,7 +3447,7 @@ var/list/lag_list = new/list()
 /obj/spook
 	var/active = 0
 	invisibility = 100
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/misc/hstation.dmi'
 	icon_state = "null"
@@ -3800,7 +3818,7 @@ var/list/lag_list = new/list()
 /obj/signpost
 	icon = 'icons/misc/old_or_unused.dmi'
 	icon_state = "signpost"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -3844,7 +3862,7 @@ var/list/lag_list = new/list()
 	name = "beach ball"
 	item_state = "clown"
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	w_class = W_CLASS_TINY
 	force = 0.0
 	throwforce = 0.0
@@ -3864,7 +3882,7 @@ var/list/lag_list = new/list()
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	name = "camera view"
 	var/list/blockers
 	//debug stuff
@@ -3888,7 +3906,7 @@ var/list/lag_list = new/list()
 /obj/ai_static
 	name = "static"
 	alpha = 0
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	icon = 'icons/ui/hud_common.dmi'

@@ -6,16 +6,20 @@ var/list/ai_move_scheduled = list()
 	var/atom/target = null // the simplest blackboard ever
 	var/datum/aiTask/current_task = null  // what the critter is currently doing
 	var/datum/aiTask/default_task = null  // what behavior the critter will fall back on
+	var/list/target_path = list()
 	var/list/task_cache = list()
 	var/move_target = null
+	var/seek_cooldown = 2 SECONDS
 
 	var/move_dist = 0
 	var/move_reverse = 0
 	var/move_side = 0 //merge with reverse later ok messy
 	var/move_frustration = 0
+	var/move_frustration_increase = 1
 	var/frustration_turn = 0
 
 	var/move_shuffle_at_target = 0 // chance to shuffle when at the right distance
+	var/next_move_shuffle = 0
 
 	var/enabled = 1
 	///A client is controlling the mob so the AI should be inactive
@@ -127,13 +131,16 @@ var/list/ai_move_scheduled = list()
 		owner.move_dir = 0 //Fuck you wander task
 
 	proc/move_step()
+		SHOULD_NOT_SLEEP(TRUE)
+		if(GET_COOLDOWN(src.owner, "ACTION_BLOCKING_AI_MOVEMENT"))
+			return
 		var/atom/old_loc = src.owner.loc
 		var/turn = src.frustration_turn
 		// lil janky, but process_move returns a truthy value when movement was successful
 		var/tried_move = null
 		var/current_dist = GET_DIST(src.owner,get_turf(src.move_target))
 		var/shuffling = FALSE
-		if(src.move_shuffle_at_target && current_dist == src.move_dist && prob(src.move_shuffle_at_target))
+		if(src.move_shuffle_at_target && current_dist <= src.move_dist && src.next_move_shuffle <= world.time && prob(src.move_shuffle_at_target))
 			turn += pick(90,45,-45,-90)
 			shuffling = TRUE
 		switch(src.move_frustration)
@@ -167,19 +174,38 @@ var/list/ai_move_scheduled = list()
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				tried_move = src.owner.process_move()
 		if(tried_move)
+			src.current_task.on_move()
+			if(shuffling)
+				src.next_move_shuffle = world.time + rand(6,14) DECI SECONDS
 			if(src.owner?.loc == old_loc)
-				src.move_frustration++
+				src.move_frustration += src.move_frustration_increase
 			else
 				src.move_frustration = 0
-				if (src.frustration_turn && prob(30))
+				if (src.frustration_turn && prob(20))
 					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)
-		.=0
+		if(src.owner.ai_is_valid_target(M))
+			src.target = M
+			return TRUE
+		return FALSE
+
+	proc/disable()
+		src.enabled = FALSE
+		src.stop_move()
+
+	proc/enable()
+		src.enabled = TRUE
+		src.interrupt()
 
 /datum/aiTask
 	var/name = "task"
+	var/max_dist = 12
+	var/distance_from_target = 1
 	var/datum/aiHolder/holder = null
+	var/move_through_space = FALSE
+	var/score_by_distance_only = FALSE
+	var/terminated = 0
 
 	New(parentHolder)
 		..()
@@ -193,13 +219,53 @@ var/list/ai_move_scheduled = list()
 
 	proc/on_tick()
 
+	proc/on_move()
+
 	proc/next_task()
 		return null
 
 	proc/on_reset()
+		src.terminated = FALSE
 
 	proc/evaluate() // evaluate the current environment and assign priority to switching to this task
 		return 0
+
+	/// Returns a list of atoms that are potential targets for this task
+	proc/get_targets()
+		return list()
+
+	/// Takes a list of atoms which are then evaluated, before setting the holder's target. Note this checks a path exists to each target. The list of
+	/// targets is expected (but not required) to be ordered from best to worst - by default view() will do this if score_target() is based on distance
+	proc/get_best_target(list/atom/targets)
+		. = null
+		var/best_score = -INFINITY
+		var/list/best_path = null
+		if(length(targets))
+			var/required_goals = null // find all targets
+			if(score_by_distance_only)
+				required_goals = 1 // we only need to find the first one
+			var/list/atom/paths_found = get_path_to(holder.owner, targets, max_distance=max_dist*2, mintargetdist=distance_from_target, move_through_space=move_through_space, required_goals=required_goals, do_doorcheck=TRUE)
+			if(score_by_distance_only)
+				if(length(paths_found))
+					. = paths_found[1]
+					best_path = paths_found[.]
+			else
+				for(var/atom/A as anything in paths_found)
+					var/score = src.score_target(A)
+					if(score > best_score)
+						var/list/tmp_best_path = paths_found[A]
+						if(length(tmp_best_path))
+							best_score = score
+							best_path = tmp_best_path
+							. = A
+		holder.target = .
+		holder.target_path = best_path
+
+	/// If overriding also override [score_by_distance_only] to FALSE!
+	proc/score_target(atom/target)
+		. = 0
+		if(target)
+			return 100*(max_dist - GET_MANHATTAN_DIST(get_turf(holder.owner), get_turf(target)))/max_dist //normalize distance weighting
 
 	//     do not override procs below this line
 	// --------------------------------------------
@@ -323,7 +389,6 @@ var/list/ai_move_scheduled = list()
 	var/datum/aiTask/succeedable/current_subtask = null
 	var/subtask_index = 1
 	var/datum/aiTask/transition_task = null // the task to go to after our sequence either fails or ends
-	var/terminated = 0
 
 	New(parentHolder, transTask)
 		transition_task = transTask
@@ -348,6 +413,7 @@ var/list/ai_move_scheduled = list()
 		current_subtask.tick()
 		if(current_subtask.succeeded())
 			// advance to the next step in the sequence
+			current_subtask.terminated = TRUE
 			subtask_index++
 			if(subtask_index > subtasks.len)
 				// sequence complete
@@ -359,8 +425,9 @@ var/list/ai_move_scheduled = list()
 				// ready to run this immediately next tick
 				return
 		else if(current_subtask.failed())
-			// the sequence is ruined
-			terminated = 1
+			current_subtask.terminated = TRUE
+			// and the sequence is ruined
+			terminated = TRUE
 			return
 
 	reset()
@@ -369,7 +436,6 @@ var/list/ai_move_scheduled = list()
 			current_subtask = subtasks[1]
 			current_subtask.reset()
 		subtask_index = 1
-		terminated = 0
 
 // an AI task that runs forever until it either succeeds or fails
 // exists pretty much solely for the sequence
@@ -394,3 +460,39 @@ var/list/ai_move_scheduled = list()
 		fails = 0
 
 
+// an AI task that ticks all its subtasks each tick
+/datum/aiTask/concurrent
+	name = "concurrent"
+
+	var/list/subtasks = list()
+	var/datum/aiTask/transition_task = null // the task to go to after our sequence either fails or ends
+
+	New(parentHolder, transTask)
+		transition_task = transTask
+		..()
+
+	proc/add_task(var/datum/aiTask/T)
+		if(T)
+			subtasks += T // add it!
+
+	next_task()
+		if(terminated)
+			return transition_task
+		else
+			return null
+
+	tick()
+		..()
+		var/all_terminated = TRUE
+		for(var/datum/aiTask/task in subtasks)
+			if(!task.terminated)
+				task.tick()
+				all_terminated = FALSE
+		if(!subtasks || subtasks.len < 1 || all_terminated)
+			terminated = TRUE // all of em are done
+			return
+
+	reset()
+		..()
+		for(var/datum/aiTask/task in subtasks)
+			task.reset()

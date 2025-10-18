@@ -1528,41 +1528,41 @@
 					stopped = 3
 
 				//Draws the effects // I did this backwards maybe, but won't fix it -kyle
-				K.start.loc = T1
+				K.start.set_loc(T1)
 				K.start.set_dir(direction)
 				flick(K.start.icon_state, K.start)
 				sleep(0.1 SECONDS)
 				if (T4)
-					K.mid1.loc = T2
+					K.mid1.set_loc(T2)
 					K.mid1.set_dir(direction)
 					flick(K.mid1.icon_state, K.mid1)
 					sleep(0.1 SECONDS)
-					K.mid2.loc = T3
+					K.mid2.set_loc(T3)
 					K.mid2.set_dir(direction)
 					flick(K.mid2.icon_state, K.mid2)
 					sleep(0.1 SECONDS)
-					K.end.loc = T4
+					K.end.set_loc(T4)
 					K.end.set_dir(direction)
 					flick(K.end.icon_state, K.end)
 				else if (T3)
-					K.mid1.loc = T2
+					K.mid1.set_loc(T2)
 					K.mid1.set_dir(direction)
 					flick(K.mid1.icon_state, K.mid1)
 					sleep(0.1 SECONDS)
-					K.end.loc = T3
+					K.end.set_loc(T3)
 					K.end.set_dir(direction)
 					flick(K.end.icon_state, K.end)
 				else if (T2)
-					K.end.loc = T2
+					K.end.set_loc(T2)
 					K.end.set_dir(direction)
 					flick(K.end.icon_state, K.end)
 
 				//Reset the effects after they're drawn and put back into master for re-use later
 				SPAWN_DBG(0.8 SECONDS)
-					K.start.loc = master
-					K.mid1.loc = master
-					K.mid2.loc = master
-					K.end.loc = master
+					K.start.set_loc(master)
+					K.mid1.set_loc(master)
+					K.mid2.set_loc(master)
+					K.end.set_loc(master)
 				// var/hit = 0
 				for(var/atom/movable/A in get_step(user, direction))
 					if(A in attacked) continue
@@ -2157,11 +2157,12 @@
 
 
 /obj/itemspecialeffect
+	pass_unstable = FALSE
 	name = ""
 	desc = ""
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = ""
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_1
 	pixel_x = -64
 	pixel_y = -64
@@ -2215,7 +2216,7 @@
 		layer = EFFECTS_LAYER_1 + 1
 
 		setup(atom/location)
-			loc = location
+			src.set_loc(location)
 			var/matrix/M = matrix()
 			M.Scale(0.01)
 			animate(src, transform=M, time=0)
@@ -2391,7 +2392,7 @@
 		mouse_opacity = 0
 
 		setup(atom/location, forced = 0)
-			loc = location
+			src.set_loc(location)
 			if (del_self)
 				SPAWN_DBG(5 SECONDS)
 					qdel(src)

@@ -123,7 +123,7 @@
 	return 1
 
 
-/mob/living/carbon/human/ex_act(severity, lasttouched, epicenter)
+/mob/living/carbon/human/ex_act(severity, lasttouched, epicenter, turf_safe = FALSE)
 	..() // Logs.
 	if (src.nodamage) return
 	// there used to be mining radiation check here which increases severity by one
@@ -186,10 +186,11 @@
 		if (-INFINITY to 0) //blocked
 			boutput(src, "<span class='alert'><b>You are shielded from the blast!</b></span>")
 			return
-		if (6 to INFINITY) //gib
-			SPAWN_DBG(1 DECI SECOND)
-				src.gib(1)
-			return
+		if (6 to INFINITY) //gib unless turf safe - that one only gibs corpses
+			if(!turf_safe)
+				SPAWN_DBG(1 DECI SECOND)
+					src.gib(1)
+				return
 	src.apply_sonic_stun(0, 0, 0, 0, 0, floor(severity*7), floor(severity*7), severity*40)
 
 	if (prob(b_loss) && !shielded && !reduction)

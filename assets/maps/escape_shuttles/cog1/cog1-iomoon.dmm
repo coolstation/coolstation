@@ -1,12 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/lattice{
+	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "b" = (
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "d" = (
 /obj/overlay{
@@ -24,9 +25,15 @@
 	icon_state = "ancientfloor2"
 	},
 /area/shuttle/escape/centcom/cogmap)
+"g" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "h" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "i" = (
 /turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
@@ -37,7 +44,7 @@
 	dir = 5;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "k" = (
 /obj/machinery/shuttle/engine/heater{
@@ -47,6 +54,13 @@
 /obj/window/reinforced/south,
 /turf/floor/plating,
 /area/shuttle/escape/centcom/cogmap)
+"l" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "n" = (
 /obj/decal/glow{
 	anchored = 1;
@@ -99,7 +113,7 @@
 	dir = 10;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "s" = (
 /obj/decal/glow{
@@ -194,18 +208,18 @@
 	dir = 9;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "H" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap)
 "J" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "K" = (
 /obj/decal/glow{
 	anchored = 1;
@@ -336,8 +350,8 @@ Z
 Z
 J
 a
-a
-a
+g
+g
 "}
 (2,1,1) = {"
 A
@@ -487,7 +501,7 @@ L
 Z
 Z
 J
-a
-a
-a
+l
+g
+g
 "}

@@ -155,6 +155,7 @@
 		icon_state = "fabric"
 		name = "fabric"
 		desc = "A weave of some kind."
+		hint = "this can be used as a bandage."
 		var/in_use = 0
 
 		attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

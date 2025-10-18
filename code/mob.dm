@@ -103,7 +103,7 @@
 	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins (and Murray) will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
-	var/intent = null
+	var/intent = INTENT_HELP
 	var/shakecamera = 0
 	var/a_intent = "help"
 	var/m_intent = "run"
@@ -148,6 +148,7 @@
 	var/deathhunted = null
 
 	var/job = null
+	var/department = null
 
 	var/nodamage = 0
 
@@ -229,11 +230,13 @@
 
 	var/dir_locked = FALSE
 
-	var/list/mob_properties
-
 	var/last_move_dir = null
 
 	var/datum/aiHolder/ai = null
+	/// if set to an a_intent, ai should prioritize that one
+	var/ai_a_intent = null
+	/// used for load balancing mob_ai ticks
+	var/ai_tick_schedule = null
 
 	var/last_pulled_time = 0
 
@@ -260,13 +263,13 @@
 	mobs.Add(src)
 	src.lastattacked = src //idk but it fixes bug
 	render_target = "\ref[src]"
-	mob_properties = list()
 	src.chat_text = new
 
 	src.name_tag = new
 	src.update_name_tag()
 	src.vis_contents += src.name_tag
 	START_TRACKING
+	src.ai_tick_schedule = rand(0,30)
 	. = ..()
 
 /// do you want your mob to have custom hairstyles and stuff? don't use spawns but set all of those properties here
@@ -409,7 +412,6 @@
 	lastattacker = null
 	health_update_queue -= src
 	..()
-	src.mob_properties = null
 
 /mob/Login()
 	// drsingh for cannot read null.address (still popping up though)
@@ -678,11 +680,11 @@
 							break
 						M.throw_at(source, 20, 3)
 						LAGCHECK(LAG_MED)
-					sleep(5 SECONDS)
-					src.now_pushing = 0
+					SPAWN_DBG(5 SECONDS)
+						src.now_pushing = 0
 
-					if (tmob) //Wire: Fix for: Cannot modify null.now_pushing
-						tmob.now_pushing = 0
+						if (tmob) //Wire: Fix for: Cannot modify null.now_pushing
+							tmob.now_pushing = 0
 
 					return
 
@@ -690,6 +692,7 @@
 			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing && !(src.pulling && src.pulling.density)) // mutual brohugs all around!
 				var/turf/oldloc = src.loc
 				var/turf/newloc = tmob.loc
+				src.skip_loc_change_updates = TRUE
 
 				src.set_loc(newloc)
 				tmob.set_loc(oldloc)
@@ -702,6 +705,7 @@
 				tmob.deliver_move_trigger("swap")
 				tmob.update_grab_loc()
 				src.now_pushing = 0
+				src.skip_loc_change_updates = FALSE
 
 				return
 
@@ -730,7 +734,9 @@
 			else if (locate(/obj/hotspot) in victim.loc)
 				logTheThing("combat", src, victim, "pushes [constructTarget(victim,"combat")] into a fire.")
 
+		src.skip_loc_change_updates = TRUE
 		step(src,t)
+		src.skip_loc_change_updates = FALSE
 		AM.OnMove(src)
 		//src.OnMove(src) //dont do this here - this Bump() is called from a process_move which sould be calling onmove for us already
 		AM.glide_size = src.glide_size
@@ -764,7 +770,7 @@
 
 
 // I moved the log entries from human.dm to make them global (Convair880).
-/mob/ex_act(severity, last_touched)
+/mob/ex_act(severity, last_touched, epicenter, turf_safe)
 	logTheThing("combat", src, null, "is hit by an explosion (Severity: [severity]) at [log_loc(src)]. Explosion source last touched by [last_touched]")
 	return
 
@@ -1303,6 +1309,10 @@
 		else
 			return src.r_hand
 
+/mob/living/critter/equipped()
+	var/datum/handHolder/active_hand = src.get_active_hand()
+	return active_hand.item
+
 /mob/proc/equipped_list(check_for_magtractor = 1)
 	. = list()
 
@@ -1698,7 +1708,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if ((src.mind || src.client) && !istype(src, /mob/living/carbon/human/npc))
 		src.ghostize()
@@ -1721,7 +1731,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null // For forensics (Convair880).
 	var/btype = null
@@ -1811,7 +1821,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 
 
@@ -1845,7 +1855,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (ishuman(src))
 		animation = new(src.loc)
@@ -1886,7 +1896,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null // For forensics (Convair880).
 	var/btype = null
@@ -1934,7 +1944,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null // For forensics (Convair880).
 	var/btype = null
@@ -1983,7 +1993,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	logTheThing("combat", src, null, "is vaporized at [log_loc(src)].")
 
 	if (ishuman(src))
@@ -2023,7 +2033,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (ishuman(src))
 		animation = new(src.loc)
@@ -2052,7 +2062,7 @@
 		logTheThing("combat", src, null, "is taken by the floor cluwne at [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/cluwne/floor/floorcluwne = null
@@ -2125,7 +2135,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null
 	var/btype = null
@@ -2737,6 +2747,7 @@
 		var/datum/abilityHolder/composite/C = abilityHolder
 		return C.removeHolder(H)
 	else if (abilityHolder && abilityHolder == H)
+		qdel(abilityHolder)
 		abilityHolder = null
 
 /mob/proc/add_existing_ability_holder(var/datum/abilityHolder/H)
@@ -2797,13 +2808,14 @@
 			else
 				if (force_instead || alert(src, "Use the name [newname]?", newname, "Yes", "No") == "Yes")
 					if(!src.traitHolder.hasTrait("immigrant"))// stowaway entertainers shouldn't be on the manifest
-						for (var/L in list(data_core.bank, data_core.security, data_core.general, data_core.medical))
-							if (L)
-								var/datum/data/record/R = FindRecordByFieldValue(L, "name", src.real_name)
+						if(ishuman(src))
+							var/mob/living/carbon/human/H = src
+							for (var/datum/record_database/DB in list(data_core.bank, data_core.security, data_core.general, data_core.medical))
+								var/datum/db_record/R = DB.find_record("id", H.datacore_id)
 								if (R)
-									R.fields["name"] = newname
-									if (R.fields["full_name"])
-										R.fields["full_name"] = newname
+									R["name"] = newname
+									if (R["full_name"])
+										R["full_name"] = newname
 						for (var/obj/item/card/id/ID in src.contents)
 							ID.registered = newname
 							ID.update_name()
@@ -2877,6 +2889,15 @@
 		. = TRUE
 
 /mob/proc/update_equipped_modifiers()
+	var/datum/movement_modifier/equipment/equipment_proxy = locate() in src.movement_modifiers
+	if (!equipment_proxy)
+		equipment_proxy = new
+		APPLY_MOVEMENT_MODIFIER(src, equipment_proxy, /obj/item)
+
+	// reset the modifiers to defaults
+	equipment_proxy.additive_slowdown = GET_ATOM_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED)
+	equipment_proxy.space_movement = GET_ATOM_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED_SPACE)
+	equipment_proxy.aquatic_movement = GET_ATOM_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED_FLUID)
 
 // alright this is copy pasted a million times across the code, time for SOME unification - cirr
 // no text description though, because it's all different everywhere
@@ -2945,7 +2966,7 @@
 	SPAWN_DBG(0.7 SECONDS) //Length of animation.
 		newbody.set_loc(animation.loc)
 		qdel(animation)
-		newbody.anchored = 1 // Stop running into the lava every half second jeez!
+		newbody.anchored = ANCHORED // Stop running into the lava every half second jeez!
 		sleep(4 SECONDS)
 		reset_anchored(newbody)
 
@@ -2960,7 +2981,7 @@
 		logTheThing("combat", src, null, "is damned to hell from [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/satan/satan = new /mob/living/carbon/human/satan
@@ -3257,7 +3278,7 @@
 	return
 
 /mob/set_density(var/newdensity)
-	if(HAS_MOB_PROPERTY(src, PROP_NEVER_DENSE))
+	if(HAS_ATOM_PROPERTY(src, PROP_NEVER_DENSE))
 		..(0)
 	else
 		..(newdensity)

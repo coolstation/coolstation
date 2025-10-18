@@ -3,7 +3,7 @@ obj/structure
 
 	girder
 		icon_state = "girder"
-		anchored = 1
+		anchored = ANCHORED
 		density = 1
 		var/state = 0
 		desc = "A metal support for an incomplete wall. Metal could be added to finish the wall, reinforced metal could make the girders stronger, or it could be pried to displace it."
@@ -16,7 +16,7 @@ obj/structure
 		displaced
 			name = "displaced girder"
 			icon_state = "displaced"
-			anchored = 0
+			anchored = UNANCHORED
 			desc = "An unsecured support for an incomplete wall. A screwdriver would seperate the metal into sheets, or adding metal or reinforced metal could turn it into fake wall that could opened by hand."
 
 		reinforced
@@ -326,7 +326,7 @@ obj/structure
 	desc = "This was thrown up in a hurry."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodwall"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 1
 	var/health = 30

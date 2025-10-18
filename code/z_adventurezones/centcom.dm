@@ -82,3 +82,6 @@
 	wackalope
 		ckey = "wackalope"
 		name = "ITS A LIGHTNING ROD OK"
+	mylie
+		ckey = "myliedaniels"
+		name = "Mylie's Office"

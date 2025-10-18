@@ -37,7 +37,7 @@
 	var/decrypt_correct_pos = "?"
 	var/datum/genetics_appearancemenu/modify_appearance = null
 
-	var/registered_id = null
+	var/registered = null
 
 /obj/machinery/computer/genetics/New()
 	..()
@@ -73,7 +73,7 @@
 
 		var/obj/item/card/id/ID = W
 		if (istype(ID))
-			registered_id = ID.registered_id
+			registered = ID.registered
 			user.show_text("You swipe the ID on [src]. You will now recieve a cut from gene booth sales.", "blue")
 			return
 
@@ -619,14 +619,14 @@
 						P.uses += 5
 						P.desc = booth_effect_desc
 						P.cost = booth_effect_cost
-						P.registered_sale_id = registered_id
+						P.registered_sale_id = registered
 						scanner_alert(ui.user, "Sent 5 of '[P.name]' to gene booth.")
 						GB.reload_contexts()
 						break
 				if (!already_has)
 					var/datum/bioEffect/NEW = new E.type(GB)
 					copy_datum_vars(E, NEW)
-					GB.offered_genes += new /datum/geneboothproduct(NEW,booth_effect_desc,booth_effect_cost,registered_id)
+					GB.offered_genes += new /datum/geneboothproduct(NEW,booth_effect_desc,booth_effect_cost,registered)
 					if (GB.offered_genes.len == 1)
 						GB.just_pick_anything()
 					scanner_alert(ui.user, "Sent 5 of '[NEW.name]' to gene booth.")
@@ -921,8 +921,8 @@
 		"unlock" = null,
 	)
 
-	for(var/datum/data/record/R as anything in data_core.medical)
-		var/datum/computer/file/genetics_scan/S = R.fields["dnasample"]
+	for(var/datum/db_record/R as anything in data_core.medical.records)
+		var/datum/computer/file/genetics_scan/S = R["dnasample"]
 		if (!istype(S))
 			continue
 		.["samples"] += list(list(

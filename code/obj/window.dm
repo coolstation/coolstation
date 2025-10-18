@@ -6,7 +6,7 @@
 	density = 1
 	stops_space_move = 1
 	dir = 5 //full tile
-	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID
+	flags = FPRINT | USEDELAY | ON_BORDER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	object_flags = HAS_DIRECTIONAL_BLOCKING
 	text = "<font color=#aaf>#"
@@ -29,7 +29,7 @@
 	var/deconstruct_time = 0//20
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	gas_impermeable = TRUE
-	anchored = 1
+	anchored = ANCHORED
 
 	the_tuff_stuff
 		explosion_resistance = 3
@@ -74,7 +74,7 @@
 		return
 
 	disposing()
-		density = 0
+		set_density(0) //dammit
 		update_nearby_tiles(need_rebuild=1, selfnotify = 1)
 		. = ..()
 
@@ -213,11 +213,17 @@
 			else
 				smash()
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		// Current windows have 30 HP
 		// Reinforced windows, about 130
 		// Plasma glass, 330 HP
 		// Basically, explosions will pop windows real good now.
+
+		if(turf_safe)
+			if(severity < 6) return
+			src.damage_blunt(rand(severity * 15, severity * 30), 0)
+			src.damage_heat(rand(severity * 15, severity * 30), 0)
+			return
 
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -301,6 +307,8 @@
 			return 1
 
 	gas_cross(turf/target)
+		if(!src.density)
+			return TRUE
 		. = TRUE
 		if ((src.dir in ordinal) || get_dir(loc, target) == dir)
 			. = ..()
@@ -330,7 +338,7 @@
 				damage_blunt(O.throwforce)
 
 		if (src && src.health <= 2 && !reinforcement)
-			src.anchored = 0
+			src.anchored = UNANCHORED
 			src.stops_space_move = 0
 			step(src, get_dir(AM, src))
 		..()
@@ -835,7 +843,7 @@
 	name = "extremely indestructible window"
 	desc = "An EXTREMELY indestructible window. An absurdly robust one at that."
 	var/initialPos
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	New()
 		..()
 		initialPos = loc
@@ -896,7 +904,7 @@
 	//deconstruct_time = 20
 	object_flags = 0 // so they don't inherit the HAS_DIRECTIONAL_BLOCKING flag from thindows
 	// but let's see what happens if directional blocking IS on? ANSWER: YOU GAS FALL OUT
-	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID
+	flags = FPRINT | USEDELAY | ON_BORDER
 
 	var/list/connects_to = list(/obj/window/thindow/auto, /obj/window/thindow/auto/reinforced)
 	var/mod = null
@@ -956,7 +964,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isscrewingtool(W))
 			src.anchored = !( src.anchored )
-			src.density = src.anchored
+			set_density(src.anchored)
 			src.stops_space_move = !(src.stops_space_move)
 			playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
 			user << (src.anchored ? "You have fastened [src] to the floor." : "You have unfastened [src].")
@@ -974,7 +982,7 @@
 	icon = 'icons/obj/window.dmi'
 	icon_state = "wingrille"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	invisibility = 101
 	//layer = 99
 	pressure_resistance = 4*ONE_ATMOSPHERE
@@ -1162,6 +1170,7 @@
 
 
 // Flockdrone BS goes here - cirr
+/*
 /obj/window/feather
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "window"
@@ -1193,3 +1202,4 @@
 
 /obj/window/feather/south
 	dir = SOUTH
+*/

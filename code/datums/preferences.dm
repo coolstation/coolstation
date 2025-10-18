@@ -1799,6 +1799,9 @@ datum/preferences
 /proc/random_saturated_hex_color()
 	return pick(rgb(255, rand(0, 255), rand(0, 255)), rgb(rand(0, 255), 255, rand(0, 255)), rgb(rand(0, 255), rand(0, 255), 255))
 
+/proc/random_greyish_hex_color(var/low = 110, var/high = 140)
+	return rgb(rand(low,high), rand(low,high), rand(low,high))
+
 /proc/randomize_hair_color(var/hcolor)
 	if (!hcolor)
 		return

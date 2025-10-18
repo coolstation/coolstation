@@ -6,7 +6,7 @@
 	desc = "A huge superconducting conduit segment used for directing power from generation sources to SMES power substations."
 	icon = 'icons/obj/machines/power_cond.dmi'
 	icon_state = "conduit-straight"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	level = 2
 	var/ctype = 0
@@ -112,12 +112,12 @@
 
 		if (iswrenchingtool(I))
 			if(anchored)
-				anchored = 0
+				anchored = UNANCHORED
 				level = 2
 				set_density(1)
 				boutput(user, "You detach the conduit from the underfloor.")
 			else
-				anchored = 1
+				anchored = ANCHORED
 				level = 1
 				set_density(0)
 				boutput(user, "You attach the conduit to the underfloor.")

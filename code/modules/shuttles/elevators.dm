@@ -473,7 +473,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/robo_top
 	name = "Robotics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down/z_five"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/robo_bot
 	name = "Robotics Elevator"
@@ -483,7 +483,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/hydro_top
 	name = "Hydroponics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down/z_five"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/hydro_bot
 	name = "Hydroponics Elevator"
@@ -493,7 +493,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/jani_top
 	name = "Sanitation Center"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down/z_five"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/jani_bot
 	name = "Sanitation Center"

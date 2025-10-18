@@ -12,11 +12,12 @@
 	speechverb_stammer = "grumps"
 	speech_void = 1
 	death_text = "%src% dissipates!"
+	health_brute = 8
+	health_brute_vuln = 0.25
+	health_burn = 8
+	health_burn_vuln = 0.01
 	add_abilities = list(/datum/targetable/critter/envelope)
 
-	setup_healths()
-		add_hh_flesh(8, 0.25)
-		add_hh_flesh_burn(8, 0.01)
 
 	death(var/gibbed)
 		..(0) // go through the normal death stuff but don't gib them
@@ -24,7 +25,7 @@
 		src.transforming = 1
 		src.canmove = 0
 		src.icon = null
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 		if (src.mind || src.client)
 			src.ghostize()

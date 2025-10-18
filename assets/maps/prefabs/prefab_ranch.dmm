@@ -4,7 +4,7 @@
 /area/space)
 "b" = (
 /obj/railing/orange/reinforced,
-/turf/floor/grasstodirt,
+/turf/floor/dirt,
 /area/prefab/ranch)
 "e" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -17,17 +17,11 @@
 	dir = 1
 	},
 /area/prefab/ranch)
-"h" = (
-/turf/floor/grass/leafy,
-/area/prefab/ranch)
 "l" = (
 /obj/shrub{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/floor/grass/leafy,
+/turf/floor/dirt,
 /area/prefab/ranch)
 "m" = (
 /obj/machinery/light{
@@ -56,10 +50,7 @@
 /obj/shrub{
 	dir = 6
 	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/floor/grass/leafy,
+/turf/floor/dirt,
 /area/prefab/ranch)
 "s" = (
 /obj/machinery/light{
@@ -86,12 +77,7 @@
 /turf/floor/shuttlebay,
 /area/prefab/ranch)
 "z" = (
-/obj/submachine/chicken_feed_grinder,
 /turf/floor/green,
-/area/prefab/ranch)
-"C" = (
-/obj/submachine/chicken_incubator,
-/turf/floor/grass/leafy,
 /area/prefab/ranch)
 "D" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -105,11 +91,6 @@
 /area/prefab/ranch)
 "G" = (
 /obj/rack,
-/obj/item/fishing_rod,
-/obj/item/fish_portal{
-	pixel_x = 5;
-	pixel_y = -1
-	},
 /turf/floor/green,
 /area/prefab/ranch)
 "H" = (
@@ -126,8 +107,6 @@
 /area/prefab/ranch)
 "J" = (
 /obj/table/auto,
-/obj/item/paper/ranch_guide,
-/obj/item/kitchen/food_box/egg_box,
 /turf/floor/green,
 /area/prefab/ranch)
 "N" = (
@@ -138,17 +117,14 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/chicken,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/floor/grass/leafy,
+/turf/floor/dirt,
 /area/prefab/ranch)
 "P" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 4;
 	pixel_x = -4
 	},
-/turf/floor/grass/leafy,
+/turf/floor/dirt,
 /area/prefab/ranch)
 "T" = (
 /obj/machinery/light{
@@ -163,10 +139,7 @@
 /obj/shrub{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/floor/grass/leafy,
+/turf/floor/dirt,
 /area/prefab/ranch)
 "W" = (
 /obj/machinery/r_door_control{
@@ -178,9 +151,7 @@
 /obj/railing/orange/reinforced{
 	dir = 1
 	},
-/turf/floor/grasstodirt{
-	dir = 1
-	},
+/turf/floor/dirt,
 /area/prefab/ranch)
 
 (1,1,1) = {"
@@ -283,56 +254,56 @@ F
 "}
 (8,1,1) = {"
 F
-h
-h
-h
+U
+U
+U
 X
 U
 U
 b
-h
-h
-C
+U
+U
+U
 F
 "}
 (9,1,1) = {"
 F
-h
-h
-h
+U
+U
+U
 X
 n
 U
 b
-h
-h
-h
+U
+U
+U
 F
 "}
 (10,1,1) = {"
 F
-C
-h
-h
+U
+U
+U
 X
 U
 U
 b
-h
-h
-h
+U
+U
+U
 F
 "}
 (11,1,1) = {"
 F
 F
 r
-h
+U
 X
 U
 U
 b
-h
+U
 V
 F
 F

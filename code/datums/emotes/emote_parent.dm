@@ -6,6 +6,7 @@
 	var/cooldown = 0 SECONDS
 	var/emote_string = "acts in a manner that suggests something in the code fucked up!"
 	var/possible_while_dead = FALSE //can mobs that are supposed to be alive do this when they're dead?
+	var/group = null // if this exists, the emote will use this group (spam reduction when multiple people emote)
 
 ///Exists for dancin shoes & deathgasp, but variable cooldowns cool maybe?
 /datum/emote/proc/return_cooldown(mob/user, voluntary = 0)

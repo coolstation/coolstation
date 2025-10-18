@@ -23,7 +23,7 @@ datum
 			reagent_state = LIQUID
 			value = 2
 			thirst_value = 0.4
-			bladder_value = -0.2
+			kidney_multiplier = 0.2
 			viscosity = 0.2
 
 			on_mob_life(var/mob/M, var/mult = 1) //temp
@@ -49,7 +49,7 @@ datum
 			fluid_g = 255
 			transparency = 255
 			thirst_value = 0.6
-			bladder_value = -0.2
+			kidney_multiplier = 0.2
 			viscosity = 0.3
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -141,7 +141,7 @@ datum
 			fluid_b = 27
 			transparency = 190
 			var/alch_strength = 0.07
-			bladder_value = -0.15
+			kidney_multiplier = 0.5
 			thirst_value = 0.4
 			viscosity = 0.2
 
@@ -158,20 +158,14 @@ datum
 				var/mob/living/carbon/human/H = holder.my_atom
 				if(H.bioHolder.age < 21) // Yes. Its 21. This is Space America. That is canon now.
 					if(seen_by_camera(H))
-					// determine the name of the perp (goes by ID if wearing one)
+						// determine the name of the perp (goes by ID if wearing one)
 						var/perpname = H.name
 						if(H:wear_id && H:wear_id:registered)
 							perpname = H:wear_id:registered
-						// find the matching security record
-						for(var/datum/data/record/R in data_core.general)
-							if(R.fields["name"] == perpname)
-								for (var/datum/data/record/S in data_core.security)
-									if (S.fields["id"] == R.fields["id"])
-										// now add to rap sheet
-										S.fields["criminal"] = "*Arrest*"
-										S.fields["mi_crim"] = "Underage drinking."
-
-									break
+						var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+						if(sec_record && sec_record["criminal"] != "*Arrest*")
+							sec_record["criminal"] = "*Arrest*"
+							sec_record["mi_crim"] = "Underage drinking."
 
 		fooddrink/alcoholic/hard_punch
 			name = "hard punch"
@@ -357,7 +351,7 @@ datum
 			description = "A dark German beer, typically served with dark bread, cream cheese, and an intense appreciation for the law."
 			reagent_state = LIQUID
 			taste = "lawful"
-			bladder_value = -2
+			kidney_multiplier = 0.6
 			fluid_r = 61
 			fluid_g = 57
 			fluid_b = 56
@@ -595,7 +589,7 @@ datum
 			reagent_state = LIQUID
 			taste = "seaworthy"
 			thirst_value = 0.899
-			bladder_value = -1
+			kidney_multiplier = 5
 			fluid_r = 0
 			fluid_g = 255
 			fluid_b = 0
@@ -730,6 +724,18 @@ datum
 			description = "A fortified wine with botanicals for flavor."
 			reagent_state = LIQUID
 			taste = "sweet"
+
+		fooddrink/alcoholic/brandy
+			name = "brandy"
+			id = "brandy"
+			fluid_r = 245
+			fluid_g = 120
+			fluid_b = 30
+			alch_strength = 0.55
+			description = "A strong dessert alcohol made by distilling wine."
+			reagent_state = LIQUID
+			taste = "sweet"
+
 
 		fooddrink/alcoholic/bitters
 			name = "bitters"
@@ -980,6 +986,50 @@ datum
 			reagent_state = LIQUID
 			taste = "sexy"
 
+		fooddrink/alcoholic/fancybrandy
+			name = "Fancy Brandy"
+			id = "fancybrandy"
+			fluid_r = 245
+			fluid_g = 120
+			fluid_b = 60
+			alch_strength = 0.7
+			reagent_state = LIQUID
+			description = "Also known simply as a Brandy Cocktail."
+			taste = "elegant"
+
+		fooddrink/alcoholic/metropolitan
+			name = "Metropolitan"
+			id = "metropolitan"
+			fluid_r = 245
+			fluid_g = 160
+			fluid_b = 60
+			alch_strength = 0.6
+			description = "The classic brandy cocktail- it's like the Manhattan, but for brandy."
+			reagent_state = LIQUID
+			taste = "modestly satisfying"
+
+		fooddrink/alcoholic/brandydaisy
+			name = "Brandy Daisy"
+			id = "brandydaisy"
+			fluid_r = 245
+			fluid_g = 160
+			fluid_b = 40
+			alch_strength = 0.65
+			reagent_state = LIQUID
+			description = "It even smells like a daisy. Cute."
+			taste = "like a flower"
+
+		fooddrink/alcoholic/vieuxcarre
+			name = "Vieux Carré"
+			id = "vieuxcarre"
+			description = "ET OUA, Vyurr kaa ray!"
+			fluid_r = 224
+			fluid_g = 180
+			fluid_b = 92
+			alch_strength = 0.65
+			reagent_state = LIQUID
+			taste = "cajun"
+
 		fooddrink/alcoholic/gtonic
 			name = "Gin and Tonic"
 			id = "gtonic"
@@ -1013,7 +1063,7 @@ datum
 			reagent_state = LIQUID
 			//decays into sugar/some sort of stimulant, maybe gives unique stimulant effect/messages, like bold red GOTTA GO FASTs? Makes you take damage when you run into a wall?
 			taste = "FAST"
-			bladder_value = -5
+			kidney_multiplier = 3
 			stun_resist = 6
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -1744,6 +1794,7 @@ datum
 			fluid_b = 250
 			description = "Carbonated water."
 			reagent_state = LIQUID
+			kidney_multiplier = 0.4
 
 		fooddrink/simplesyrup
 			name = "Simple Syrup"
@@ -1763,6 +1814,7 @@ datum
 			description = "Said to taste exactly like a proton beam. Considering anyone who's tried to taste a proton beam has lost their jaws, it's hard to say where this idea came from."
 			reagent_state = LIQUID
 			thirst_value = -0.5
+			kidney_multiplier = 1.2
 
 			//decays into 1 VHFCS per unit for a real good time, and also lets you see ghosts
 
@@ -2021,7 +2073,7 @@ datum
 			taste = "sugary"
 			thirst_value = 0.75
 			viscosity = 0.4
-			bladder_value = -0.2
+			kidney_multiplier = 0.8
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				M.drowsyness = max(0,M.drowsyness-5)
@@ -2100,6 +2152,28 @@ datum
 					M.reagents.add_reagent("cholesterol", rand(1,3) * mult)
 				..()
 
+		fooddrink/cattail_fluff
+			name = "cattail fluff"
+			id= "cattail_fluff"
+			description = "A cottony fluff that holds the seeds of the cattail; it expands rapidly when ingested."
+			reagent_state = SOLID
+			fluid_r = 235
+			fluid_g = 233
+			fluid_b = 223
+			transparency = 255
+			hunger_value = 0.1
+			viscosity = 0.2
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				..()
+				if(prob(80))
+					M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
+					M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
+					M.take_oxygen_deprivation(rand(8,20)) // grrk gghfg glugg ghrkjhhrrk
+					playsound(M, "sound/misc/meat_plop.ogg", 50,1)
+					boutput(M, "<span class='alert'>The cattail fluff explodes in your mouth!</span>")
+
+
 		fooddrink/meat_slurry
 			name = "meat slurry"
 			id = "meat_slurry"
@@ -2141,20 +2215,20 @@ datum
 			addiction_min = 10
 			max_addiction_severity = "LOW"
 			thirst_value = 0.3
-			bladder_value = -0.1
+			kidney_multiplier = 0.1
 			energy_value = 0.3
 			stun_resist = 7
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
 				. = ..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
 				. = ..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2193,13 +2267,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
 				. = ..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
 				. = ..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2246,7 +2320,7 @@ datum
 			addiction_prob2 = 10
 			var/tickcounter = 0
 			thirst_value = 0.055
-			bladder_value = 0.04
+			kidney_multiplier = 3
 			energy_value = 1
 			stun_resist = 25
 /*
@@ -2303,7 +2377,7 @@ datum
 			fluid_g = 90
 			fluid_b = 54
 			thirst_value = 1
-			bladder_value = 0.04
+			kidney_multiplier = 0.5
 			energy_value = 0.04
 			addiction_prob = 1
 			addiction_prob2 = 1
@@ -2339,7 +2413,7 @@ datum
 			fluid_b = 52
 			transparency = 232
 			thirst_value = 0.075
-			bladder_value = 0.04
+			kidney_multiplier = 0.6
 			energy_value = 0.04
 			addiction_prob = 1
 			addiction_prob2 = 2
@@ -2367,7 +2441,7 @@ datum
 			fluid_r = 117
 			fluid_g = 120
 			fluid_b = 65
-			bladder_value = 0.04
+			kidney_multiplier = 0.5
 			energy_value = 0.04
 			transparency = 232
 			thirst_value = 1.5
@@ -2389,7 +2463,7 @@ datum
 			fluid_b = 127
 			transparency = 160
 			thirst_value = 0.078
-			bladder_value = 0.05
+			kidney_multiplier = 0.55
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(probmult(4))
@@ -2486,7 +2560,7 @@ datum
 			transparency = 255
 			hunger_value = 1
 			thirst_value = 1
-			bladder_value = -1
+			kidney_multiplier = 0.4
 			viscosity = 0.3
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2574,7 +2648,7 @@ datum
 			depletion_rate = 0.2
 			hunger_value = 2
 			thirst_value = 0.5
-			bladder_value = -1
+			kidney_multiplier = 0.3
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -3195,7 +3269,7 @@ datum
 			description = "A citric beverage extracted from limes."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.4
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -3218,7 +3292,7 @@ datum
 			description = "An extremely tart juice usually mixed into other drinks and juices."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.7
 
 		fooddrink/juice_orange
 			name = "orange juice"
@@ -3229,7 +3303,7 @@ datum
 			description = "A citric beverage extracted from oranges."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.25
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -3255,7 +3329,7 @@ datum
 			description = "A citric beverage extracted from lemons."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.4
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -3279,7 +3353,7 @@ datum
 			description = "Tomatoes pureed down to a liquid state, strained and thin."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.3
 
 		fooddrink/juice_strawberry
 			name = "strawberry juice"
@@ -3290,7 +3364,7 @@ datum
 			description = "Fresh juice produced by strawberries."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_blueberry
 			name = "blueberry juice"
@@ -3311,7 +3385,7 @@ datum
 			description = "The juice from a thousand screaming cherries. Silent screams."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_raspberry
 			name = "raspberry juice"
@@ -3322,7 +3396,7 @@ datum
 			description = "What do you mean? Rapsberries have always been this shade of blue."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_pineapple
 			name = "pineapple juice"
@@ -3333,7 +3407,7 @@ datum
 			description = "Juice from a pineapple. A surprise, considering the name!"
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_watermelon
 			name = "watermelon juice"
@@ -3344,7 +3418,7 @@ datum
 			description = "A delicious summer drink!"
 			reagent_state = LIQUID
 			thirst_value = 2
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_apple
 			name = "apple juice"
@@ -3355,7 +3429,7 @@ datum
 			description = "Fresh juice produced by apples."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_peach
 			name = "peach juice"
@@ -3366,7 +3440,7 @@ datum
 			description = "An artificial peach drink that is legally sold as 100% all natural peach juice."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.4
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -3385,7 +3459,7 @@ datum
 			description = "A glass of carrot juice a day keeps the ophthalmologist away."
 			reagent_state = LIQUID
 			thirst_value = 1
-			bladder_value = -1
+			kidney_multiplier = 0.2
 
 		fooddrink/juice_grapefruit
 			name = "grapefruit juice"
@@ -3396,7 +3470,7 @@ datum
 			description = "A tart beverage extracted from grapefruits."
 			reagent_state = LIQUID
 			thirst_value = 1.5
-			bladder_value = -1.5
+			kidney_multiplier = 0.15
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -3427,7 +3501,7 @@ datum
 			description = "Well, it's not actually milk, considering that coconuts aren't mammals with mammary glands. It's really more like coconut juice. Or coconut water."
 			reagent_state = LIQUID
 			thirst_value = 1
-			bladder_value = -1
+			kidney_multiplier = 0.15
 
 		fooddrink/juice_pickle
 			name = "pickle juice"
@@ -3439,7 +3513,7 @@ datum
 			description = "A salty brine containing garlic and dill, typically used to ferment and pickle cucumbers."
 			reagent_state = LIQUID
 			thirst_value = 1
-			bladder_value = -1
+			kidney_multiplier = 0.9
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -3454,7 +3528,7 @@ datum
 			description = "A refreshing mixed drink of orange, lemon and lime juice."
 			reagent_state = LIQUID
 			thirst_value = 2
-			bladder_value = -2
+			kidney_multiplier = 0.2
 
 			fluid_r = 12
 			fluid_g = 229
@@ -3479,7 +3553,7 @@ datum
 			energy_value = 10
 			hunger_value = -2
 			thirst_value = -2
-			bladder_value = -2
+			kidney_multiplier = 3
 			stun_resist = 100
 			var/static/list/od_halluc = list(
 				new /image('icons/mob/hallucinations.dmi', "orange") = list("orange"),
@@ -3489,7 +3563,7 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
 
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -3514,7 +3588,7 @@ datum
 
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -3592,7 +3666,7 @@ datum
 			description = "A refreshing, sweet and sour drink consisting of sugar and lemon juice."
 			reagent_state = LIQUID
 			thirst_value = 0.7
-			bladder_value = -0.2
+			kidney_multiplier = 0.3
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -3627,7 +3701,7 @@ datum
 			transparency = 200
 			description = "A mixture of half lemonade and half tea, sometimes named after a dead Earth golfer. Not to be confused with the dairy kind."
 			thirst_value = 2
-			bladder_value = -2
+			kidney_multiplier = 0.3
 			viscosity = 0.1
 
 		fooddrink/temp_bioeffect
@@ -3768,7 +3842,7 @@ datum
 			taste = "sour"
 			reagent_state = LIQUID
 			thirst_value = 1
-			bladder_value = -1
+			kidney_multiplier = 0.95
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()

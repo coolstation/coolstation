@@ -5904,6 +5904,17 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/medical/staff)
+"dBA" = (
+/obj/cable/vertical{
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "5-9"
+	},
+/turf/floor/plating{
+	icon_old = "fullblack"
+	},
+/area/station/engine/hotloop)
 "dBU" = (
 /obj/item/instrument/harmonica,
 /turf/floor/plating,
@@ -5970,7 +5981,7 @@
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "dDy" = (
-/obj/item/gun_parts/magazine/juicer,
+/obj/item/gun_parts/accessory/magazine/juicer,
 /obj/lattice,
 /turf/floor/plating/gehenna,
 /area/noGenerate)
@@ -8059,11 +8070,7 @@
 /turf/floor/plating,
 /area/station/science/artifact)
 "eGd" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable{
-	d2 = 8;
+/obj/cable/vertical{
 	icon_state = "0-4"
 	},
 /turf/floor/plating,
@@ -8751,8 +8758,8 @@
 	icon_state = "bot2"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	beacon_id = "Mechlab #2"
+	beacon_id = "Mechlab #2";
+	codes_txt = "delivery;dir=4"
 	},
 /obj/item/storage/box/cablesbox{
 	pixel_x = -3;
@@ -10573,8 +10580,8 @@
 	icon_state = "bot2"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	beacon_id = "Mechlab #1"
+	beacon_id = "Mechlab #1";
+	codes_txt = "delivery;dir=4"
 	},
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
@@ -12111,14 +12118,10 @@
 /turf/floor/white,
 /area/station/medical/basement)
 "gYm" = (
-/obj/cable{
-	d2 = 2;
+/obj/window/south,
+/obj/cable/vertical{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/window/south,
 /turf/floor/plating,
 /area/station/maintenance/south)
 "gYn" = (
@@ -16149,10 +16152,7 @@
 /turf/floor/black,
 /area/station/science/lobby)
 "jrs" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable,
+/obj/cable/vertical,
 /turf/floor/plating,
 /area/station/maintenance/outer/nw{
 	name = "Northwest Lower Maintenance"
@@ -18561,7 +18561,6 @@
 	pixel_x = -7;
 	pixel_y = 6
 	},
-/obj/item/paper/hellburn,
 /obj/item/wrench{
 	pixel_y = 5
 	},
@@ -18632,14 +18631,10 @@
 /turf/floor/black,
 /area/station/mining/barracks)
 "kKG" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable{
-	d2 = 8;
+/obj/decal/cleanable/dirt,
+/obj/cable/vertical{
 	icon_state = "0-4"
 	},
-/obj/decal/cleanable/dirt,
 /turf/floor/plating,
 /area/station/maintenance/south)
 "kKS" = (
@@ -23772,6 +23767,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/power/breaker,
+/obj/cable{
+	icon_state = "4-10"
+	},
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
@@ -26252,7 +26250,7 @@
 "ppc" = (
 /obj/table/wood/auto,
 /obj/displaycase{
-	displayed = new/obj/item/captaingun;
+	displayed = new/obj/item/saxophone;
 	pixel_y = 6
 	},
 /turf/floor/carpet/arcade/half,
@@ -30629,11 +30627,7 @@
 /turf/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
 "saQ" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable{
-	d2 = 4;
+/obj/cable/vertical{
 	icon_state = "0-4"
 	},
 /turf/floor/plating,
@@ -30953,11 +30947,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable{
-	d2 = 8;
+/obj/cable/vertical{
 	icon_state = "0-4"
 	},
 /turf/floor/plating,
@@ -33355,7 +33345,7 @@
 /turf/floor,
 /area/station/security/processing)
 "tFT" = (
-/obj/decal/cleanable/bigchallenges,
+/obj/decal/cleanable/gang_graffiti/bigchallenges,
 /turf/wall/r_wall,
 /area/gehenna/underground/staffies_nest)
 "tGb" = (
@@ -34645,16 +34635,8 @@
 /turf/wall,
 /area/station/science/research_director)
 "uvo" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable{
-	d2 = 8;
+/obj/cable/vertical{
 	icon_state = "0-4"
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /turf/floor/plating{
 	icon_old = "fullblack"
@@ -35780,14 +35762,12 @@
 /area/station/bridge/basement)
 "vby" = (
 /obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/cable{
 	d1 = 2;
 	d2 = 4;
-	icon_state = "4-10"
+	icon_state = "6-8"
+	},
+/obj/cable{
+	icon_state = "6-10"
 	},
 /turf/floor/plating{
 	icon_old = "fullblack"
@@ -36641,9 +36621,9 @@
 /area/station/crew_quarters/catering)
 "vyN" = (
 /obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 2;
+	d2 = 4;
+	icon_state = "6-8"
 	},
 /turf/floor/plating{
 	icon_old = "fullblack"
@@ -37197,10 +37177,7 @@
 /turf/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
 "vSK" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable/blue{
+/obj/cable/vertical/blue{
 	icon_state = "0-2"
 	},
 /turf/floor/plating,
@@ -39049,6 +39026,9 @@
 "wZK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 8
+	},
+/obj/cable{
+	icon_state = "5-9"
 	},
 /turf/floor/plating{
 	icon_old = "fullblack"
@@ -96787,7 +96767,7 @@ sdO
 aLW
 hFz
 uvo
-uvo
+dBA
 wZK
 asl
 nOQ

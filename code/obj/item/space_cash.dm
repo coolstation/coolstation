@@ -1,6 +1,7 @@
 
 /obj/item/spacecash
 	name = "1 credit"
+	hint = "Split a stack by clicking it with an empty active hand while the stack is in your inactive hand."
 	real_name = "credit"
 	desc = "You gotta have money."
 	icon = 'icons/obj/items/items.dmi'
@@ -8,7 +9,7 @@
 	uses_multiple_icon_states = 1
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
@@ -279,7 +280,7 @@
 
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1

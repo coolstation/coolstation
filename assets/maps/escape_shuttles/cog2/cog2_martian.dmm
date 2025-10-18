@@ -17,8 +17,8 @@
 	},
 /area/centcom)
 "ju" = (
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "nn" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -84,12 +84,6 @@
 /obj/item/device/radio,
 /turf/floor/setpieces/martian,
 /area/shuttle/escape/centcom/cogmap2)
-"vQ" = (
-/turf/wall{
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
-/area/centcom)
 "xV" = (
 /turf/floor/stairs{
 	dir = 1;
@@ -112,15 +106,15 @@
 /area/shuttle/escape/centcom/cogmap2)
 "BE" = (
 /obj/indestructible/invisible_block,
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "Ed" = (
 /obj/lattice{
 	dir = 9;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "FV" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -166,14 +160,14 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/outdoors/grass,
-/area/centcom/outside)
+/turf/space,
+/area/space)
 "ON" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "alt_propulsion"
 	},
-/turf/outdoors/grass,
+/turf/space,
 /area/shuttle/escape/centcom/cogmap2)
 "QA" = (
 /turf/wall/setpieces/martian{
@@ -234,27 +228,20 @@
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "Yl" = (
-/turf/wall{
-	dir = 1;
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "leadcap"
-	},
+/turf/wall/auto,
 /area/centcom)
-"ZA" = (
-/turf/outdoors/grass,
-/area/shuttle/escape/centcom/cogmap2)
 
 (1,1,1) = {"
 ju
-ZA
+yn
 ON
 ON
 ON
-ZA
+yn
 ON
 ON
 ON
-ZA
+yn
 ju
 "}
 (2,1,1) = {"
@@ -336,7 +323,7 @@ Ry
 ju
 "}
 (8,1,1) = {"
-vQ
+Yl
 SV
 MN
 tR
@@ -375,7 +362,7 @@ Vk
 GJ
 "}
 (11,1,1) = {"
-vQ
+Yl
 SV
 MN
 MN

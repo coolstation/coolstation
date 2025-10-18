@@ -5,14 +5,11 @@ var/HasturPresent = 0
 	real_name = "????"
 	desc = "He who must not be named..."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/mob/hastur.dmi'
 	icon_state = "hastur"
 	hand_count = 4
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	see_invisible = 21
 	stat = 2
 	stepsound = "sound/misc/hastur/tentacle_walk.ogg"
@@ -23,6 +20,11 @@ var/HasturPresent = 0
 	bound_width = 32
 	speech_void = 1
 	layer = 40
+	health_brute = 6500
+	health_brute_vuln = 0.5
+	health_burn = 6500
+	health_burn_vuln = 0.5
+	takes_brain = FALSE
 	var/icon/northsouth = null
 	var/icon/eastwest = null
 	var/lastdir = null
@@ -75,8 +77,8 @@ var/HasturPresent = 0
 		HH.name = "right tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacler"				// the icon state of the hand UI background
-		HH.limb_name = "right tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "right tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/abomination/hastur(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 
@@ -84,8 +86,8 @@ var/HasturPresent = 0
 		HH.name = "left tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclel"				// the icon state of the hand UI background
-		HH.limb_name = "left tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "left tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/abomination/hastur(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 
@@ -93,8 +95,8 @@ var/HasturPresent = 0
 		HH.name = "long range tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclek"				// the icon state of the hand UI background
-		HH.limb_name = "long range tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/longtentacle	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "long range tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/longtentacle(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
@@ -103,16 +105,11 @@ var/HasturPresent = 0
 		HH.name = "long range stun tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacles"				// the icon state of the hand UI background
-		HH.limb_name = "long range stun tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/longtentaclestun	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "long range stun tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/longtentaclestun(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_flesh(6500, 0.5)
-		add_hh_flesh_burn(6500, 0.5)
-		add_health_holder(/datum/healthHolder/toxin)
 
 	death(var/gibbed)
 		HasturPresent = 0
@@ -225,7 +222,7 @@ var/HasturPresent = 0
 		var/mob/living/critter/hastur/H = src.holder.owner
 		if (stage == 1)
 			H.set_density(1)
-			REMOVE_MOB_PROPERTY(H, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(H, PROP_INVISIBILITY, src)
 			H.alpha = 255
 			H.stepsound = "sound/misc/hastur/tentacle_walk.ogg"
 			H.visible_message(pick("<span class='alert'>A horrible apparition fades into view!</span>", "<span class='alert'>A pool of shadow forms and manifests into shape!</span>"), pick("<span class='alert'>Void manifests around you, giving you your physical form back.</span>", "<span class='alert'>Energies of the void allow you to manifest back in a physical form.</span>"))
@@ -233,7 +230,7 @@ var/HasturPresent = 0
 		else
 			H.visible_message(pick("<span class='alert'>[H] vanishes from sight!</span>", "<span class='alert'>[H] dissolves into the void!</span>"), pick("<span class='notice'>You are enveloped by the void, hiding your physical manifestation.</span>", "<span class='notice'>You fade into the void!</span>"))
 			H.set_density(0)
-			APPLY_MOB_PROPERTY(H, PROP_INVISIBILITY, src, INVIS_GHOST)
+			APPLY_ATOM_PROPERTY(H, PROP_INVISIBILITY, src, INVIS_GHOST)
 			H.alpha = 160
 			H.stepsound = null
 			H.see_invisible = 16
@@ -244,7 +241,7 @@ var/HasturPresent = 0
 /obj/line_obj/tentacle
 	name = "sharp tentacle"
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -264,7 +261,7 @@ var/HasturPresent = 0
 /obj/tentacle_trg_dummy
 	name = ""
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	invisibility = 99
@@ -304,7 +301,7 @@ var/HasturPresent = 0
 			var/list/affected = DrawLine(user, target_r, /obj/line_obj/tentacle ,'icons/obj/projectiles.dmi',"WholeTentacle",1,1,"HalfStartTentacle","HalfEndTentacle",OBJ_LAYER,1)
 
 			for(var/obj/O in affected)
-				O.anchored = 1 //Proc wont spawn the right object type so lets do that here.
+				O.anchored = ANCHORED //Proc wont spawn the right object type so lets do that here.
 				O.name = "sharp tentacle"
 				var/turf/src_turf = O.loc
 				for(var/obj/machinery/vehicle/A in src_turf)
@@ -374,7 +371,7 @@ var/HasturPresent = 0
 			var/list/affected = DrawLine(user, target_r, /obj/line_obj/tentacle ,'icons/obj/projectiles.dmi',"WholeTentacle",1,1,"HalfStartTentacle","HalfEndTentacle",OBJ_LAYER,1)
 
 			for(var/obj/O in affected)
-				O.anchored = 1 //Proc wont spawn the right object type so lets do that here.
+				O.anchored = ANCHORED //Proc wont spawn the right object type so lets do that here.
 				O.name = "coiled tentacle"
 				var/turf/src_turf = O.loc
 				for(var/obj/machinery/vehicle/A in src_turf)

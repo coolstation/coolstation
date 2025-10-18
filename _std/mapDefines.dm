@@ -1,4 +1,7 @@
-#if defined(MAP_OVERRIDE_CONSTRUCTION)
+#if defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+
+
+#elif defined(MAP_OVERRIDE_CONSTRUCTION)
 
 
 #elif defined(MAP_OVERRIDE_DESTINY)
@@ -32,6 +35,10 @@
 
 #define REVERSED_MAP
 
+#elif defined(MAP_OVERRIDE_NOYADE)
+
+#define UNDERWATER_MAP 1
+
 #elif defined(MAP_OVERRIDE_OSHAN)
 
 #define UNDERWATER_MAP 1
@@ -54,10 +61,13 @@
 #elif defined(MAP_OVERRIDE_GEHENNA)
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
+#define Z3_IS_CAVES
 
 #elif defined(MAP_OVERRIDE_CRAG)
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
+#define Z3_IS_CAVES
+#define RAILWAY_Y 163
 
 #elif defined(MAP_OVERRIDE_SUMMIT)
 #define SNOW_MAP
@@ -69,6 +79,12 @@
 #elif defined(MAP_OVERRIDE_PERDUTA)
 #define ABOVEWATER_MAP
 #define MAGINDARA_MAP
+#define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
+
+#elif defined(MAP_OVERRIDE_SAXUM)
+#define DESERT_MAP
+#define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
+#define Z3_IS_CAVES
 
 #elif defined(MAP_OVERRIDE_SPIRIT)
 

@@ -176,8 +176,6 @@
 				boutput(usr, "<span class='notice'>Please press a number to bind this ability to...</span>")
 				return
 
-		if (!isturf(usr.loc))
-			return
 		if (world.time < spell.last_cast)
 			return
 		if (spell.targeted && usr.targeting_ability == owner)
@@ -203,6 +201,7 @@
 
 /datum/targetable/spell
 	preferred_holder_type = /datum/abilityHolder/wizard
+	turf_check = TRUE
 	var
 		requires_robes = 0
 		offensive = 0

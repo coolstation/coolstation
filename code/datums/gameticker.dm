@@ -1,5 +1,5 @@
 var/global/datum/controller/gameticker/ticker
-var/global/current_state = GAME_STATE_WORLD_INIT
+var/global/current_state = GAME_STATE_MAP_LOAD
 /* -- moved to _setup.dm
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
@@ -195,9 +195,6 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	//Tell the participation recorder to queue player data while the round starts up
 	participationRecorder.setHold()
 
-	//initiliase this fucker in case we get spies (hard to say at this stage, since they also show up in mixed modes)
-	ALL_ACCESS_CARD = new /obj/item/card/id/captains_spare()
-
 #ifdef RP_MODE
 	looc_allowed = 1
 	boutput(world, "<B>LOOC has been automatically enabled.</B>")
@@ -289,7 +286,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 		logTheThing("ooc", null, null, "<b>Current round begins</b>")
 		boutput(world, "<FONT class='notice'><B>Enjoy the game!</B></FONT>")
+		boutput(world, "<span class='notice'><b>Alt+Click anything to examine and see hints!</b></span>")
 		boutput(world, "<span class='notice'><b>[prob(10)?"Pro ":"Cool "]Tip:</b> [pick(dd_file2list("strings/roundstart_hints.txt"))]</span>")
+
 		// keywords -  pro tip: cool tip: protips roundstart tips roundstart hints
 
 		//Setup the hub site logging
@@ -412,7 +411,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						B.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", B, null, "<b>Late join</b>: assigned antagonist role: blob.")
 						antagWeighter.record(role = ROLE_BLOB, ckey = B.ckey)
-
+/*
 				else if (player.mind && player.mind.special_role == ROLE_FLOCKMIND)
 					player.close_spawn_windows()
 					var/mob/living/intangible/flock/flockmind/F = player.make_flockmind()
@@ -420,7 +419,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						F.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", F, null, "<b>Late join</b>: assigned antagonist role: flockmind.")
 						antagWeighter.record(role = ROLE_FLOCKMIND, ckey = F.ckey)
-
+*/
 				else if (player.mind)
 					if (player.client.using_antag_token)
 						player.client.use_antag_token()	//Removes a token from the player
@@ -542,7 +541,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 				boutput(world, "<span class='bold notice'>A new round will begin soon.</span>")
 
-				var/datum/hud/roundend/roundend_countdown = new()
+				var/datum/hud/roundend/roundend_countdown = get_singleton(/datum/hud/roundend)
 
 				for (var/client/C in clients)
 					roundend_countdown.add_client(C)
@@ -564,6 +563,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
+
 					// Put together a package of score data that we can hand off to the discord bot
 					var/list/roundend_score = list(
 						"map" = getMapNameFromID(map_setting),
@@ -582,7 +582,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
-					ircbot.event("roundend", list("score" = roundend_score))
+					ircbot.event("roundend", roundend_score)
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 

@@ -15,7 +15,7 @@
 
 	var/canattack = 0
 	blinded = 0
-	anchored = 0
+	anchored = UNANCHORED
 	a_intent = "disarm" // todo: This should probably be selectable. Cyborg style - help/harm.
 	health = 50
 	max_health = 50
@@ -96,10 +96,12 @@
 
 		src.visible_message("<span class='alert'><b>[possessed] comes to life!</b></span>") // was [src] but: "the living space thing comes alive!"
 		animate_levitate(src, -1, 20, 1)
-		src.add_stun_resist_mod("living_object", 1000)
+		APPLY_ATOM_PROPERTY(src, PROP_STUN_RESIST, "living_object", 1000)
+		APPLY_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX, "living_object", 1000)
 
 	disposing()
-		src.remove_stun_resist_mod("living_object")
+		REMOVE_ATOM_PROPERTY(src, PROP_STUN_RESIST, "living_object")
+		REMOVE_ATOM_PROPERTY(src, PROP_STUN_RESIST_MAX, "living_object")
 		..()
 
 	equipped()

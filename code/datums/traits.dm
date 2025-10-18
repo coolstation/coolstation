@@ -598,6 +598,15 @@
 	isPositive = 1
 	category = "trinkets"
 
+/obj/trait/emaculate
+	name = "Emaculate (-1) \[Trinkets\]"
+	cleanName = "Emaculate"
+	desc = "Start off with a rag as your trinket."
+	id = "emaculate"
+	points = -1
+	isPositive = 1
+	category = "trinkets"
+
 //2025-6-17: Moved from 25% of wage bonus starting cash to a flat 300$ and from -1 to 0 pts
 //300 was the highest you'd get out of it (being captain), which is't much anyway
 //Even then it's hardly on par with Unionized for cost.
@@ -782,7 +791,7 @@
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.add_stam_mod_max("trait", STAMINA_MAX * 0.1)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "trait", STAMINA_REGEN * 0.1)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "trait", STAMINA_REGEN * 0.1)
 
 /obj/trait/bigbruiser
 	name = "Big Bruiser (-2) \[Stats\]"

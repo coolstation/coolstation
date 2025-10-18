@@ -52,7 +52,7 @@
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WIRECUTTERS
@@ -63,6 +63,8 @@
 		if (isghostdrone(M)) // except for drones
 			return 1
 		else if (istype(A,/mob/living/critter/changeling/handspider) || istype(A,/mob/living/critter/changeling/eyespider))
+			return 1
+		else if (istype(A,/mob/living/critter/robotic/bot/securitron))
 			return 1
 		else if (!M.can_lie && isdead(M))
 			return 1
@@ -88,6 +90,6 @@
 	icon = 'icons/map-editing/mark.dmi'
 	name = "X"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	flags = TECHNICAL_ATOM
