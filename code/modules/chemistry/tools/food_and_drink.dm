@@ -607,7 +607,7 @@
 				M.visible_message("<span class='notice'>[M] takes a sip from [src].</span>")
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					if(H.bioHolder.uid_hash != src.drank_from)
+					if(H.bioHolder.uid_hash != src.drank_from && src.drank_from)
 						boutput(M,"<span class='alert'>Someone else drank from this already!</span>")
 			else
 				user.visible_message("<span class='alert'>[user] attempts to force [M] to drink from [src].</span>")
