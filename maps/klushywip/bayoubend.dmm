@@ -1273,6 +1273,14 @@
 	},
 /turf/space,
 /area/space)
+"bav" = (
+/obj/storage/secure/closet/security/equipment,
+/obj/access_spawn/sec_lockers,
+/obj/item/material_piece/cloth/rag,
+/turf/floor/red/side{
+	dir = 8
+	},
+/area/station/security/equipment)
 "baF" = (
 /obj/pathlights/shuttle{
 	dir = 1
@@ -5266,6 +5274,7 @@
 	pixel_x = 1;
 	pixel_y = -23
 	},
+/obj/item/material_piece/cloth/rag,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/bar)
 "ebJ" = (
@@ -15700,6 +15709,8 @@
 /area/station/security/main)
 "lJI" = (
 /obj/storage/secure/closet/logistics/janitor,
+/obj/item/material_piece/cloth/rag/blue,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/purple/side{
 	dir = 5
 	},
@@ -15973,13 +15984,7 @@
 	pixel_x = -9;
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/snacks/italian_ice_cup{
-	pixel_x = 13
-	},
-/obj/item/reagent_containers/food/snacks/italian_ice_cup{
-	pixel_x = 10;
-	pixel_y = 10
-	},
+/obj/item/material_piece/cloth/rag,
 /obj/item/kitchen/rollingpin{
 	pixel_x = 4;
 	pixel_y = 2
@@ -19832,13 +19837,13 @@
 	pixel_x = -12;
 	pixel_y = 5
 	},
-/obj/item/decoration/ashtray{
-	pixel_x = 1;
-	pixel_y = 9
-	},
 /obj/item/cigbutt{
 	pixel_x = -1;
 	pixel_y = 3
+	},
+/obj/item/material_piece/cloth/rag{
+	pixel_x = 1;
+	pixel_y = 5
 	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
@@ -20782,6 +20787,7 @@
 /obj/machinery/light/small/cool{
 	dir = 4
 	},
+/obj/item/material_piece/cloth/rag/blue,
 /turf/floor/redwhite{
 	dir = 5
 	},
@@ -22628,6 +22634,7 @@
 /obj/item/reagent_containers/food/drinks/bowl{
 	pixel_x = -4
 	},
+/obj/item/material_piece/cloth/rag,
 /turf/floor/grime,
 /area/station/storage/warehouse)
 "qNP" = (
@@ -25112,6 +25119,8 @@
 /obj/item/reagent_containers/food/drinks/bottle/soda,
 /obj/item/reagent_containers/food/drinks/bottle/soda,
 /obj/item/sponge,
+/obj/item/material_piece/cloth/rag,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "sDb" = (
@@ -29046,6 +29055,7 @@
 /area/station/turret_protected/AIsat)
 "vwZ" = (
 /obj/storage/closet/wardrobe/white,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "vxm" = (
@@ -31685,6 +31695,13 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
+"xzi" = (
+/obj/storage/crate/packing,
+/obj/item/material_piece/cloth/rag,
+/turf/floor/grime,
+/area/station/security/secwing{
+	name = "Evidence"
+	})
 "xzr" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -32149,6 +32166,8 @@
 	pixel_y = 9
 	},
 /obj/random_item_spawner/hat/one,
+/obj/item/material_piece/cloth/rag,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/grime,
 /area/station/storage/warehouse)
 "xSU" = (
@@ -64077,7 +64096,7 @@ ipT
 ipT
 ipT
 yjq
-mfR
+xzi
 kkM
 ezg
 rgD
@@ -66198,7 +66217,7 @@ szA
 cun
 tri
 pDd
-pDd
+bav
 xtj
 fyP
 kpk

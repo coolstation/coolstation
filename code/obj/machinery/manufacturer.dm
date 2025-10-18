@@ -1985,6 +1985,7 @@
 		/datum/manufacture/shoes,
 		/datum/manufacture/breathmask,
 		/datum/manufacture/fluidcanister,
+		/datum/manufacture/rag,
 #ifndef NO_EASY_BEAKERS
 		/datum/manufacture/chemicalcan,
 #endif

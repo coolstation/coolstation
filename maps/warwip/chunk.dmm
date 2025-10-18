@@ -1228,6 +1228,10 @@
 	},
 /obj/rack,
 /obj/item/storage/box/trash_bags,
+/obj/item/material_piece/cloth/rag/blue{
+	pixel_x = 10;
+	pixel_y = -3
+	},
 /turf/floor,
 /area/station/janitor/office)
 "bfu" = (
@@ -7406,6 +7410,10 @@
 	pixel_y = 8
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/item/material_piece/cloth/rag/blue{
+	pixel_x = 5;
+	pixel_y = -8
+	},
 /turf/floor,
 /area/station/janitor/supply)
 "gVJ" = (
@@ -10075,7 +10083,7 @@
 /turf/floor/plating,
 /area/station/medical/robotics)
 "jJJ" = (
-/obj/machinery/chem_dispenser/alcohol,
+/obj/machinery/vending/minibar,
 /turf/floor/grey,
 /area/station/crew_quarters/bar)
 "jJL" = (
@@ -10359,6 +10367,7 @@
 "jYt" = (
 /obj/storage/closet,
 /obj/decal/cleanable/dirt/random,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -18766,6 +18775,10 @@
 "sqa" = (
 /obj/disposalpipe/segment/vertical,
 /obj/table/auto,
+/obj/item/material_piece/cloth/rag{
+	pixel_x = 1;
+	pixel_y = 5
+	},
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
 "ssF" = (
@@ -19392,6 +19405,10 @@
 	icon_state = "4-8"
 	},
 /obj/storage/closet,
+/obj/item/material_piece/cloth/rag/blue,
+/obj/item/material_piece/cloth/rag/blue,
+/obj/item/material_piece/cloth/rag/blue,
+/obj/item/material_piece/cloth/rag/blue,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
 "sVz" = (

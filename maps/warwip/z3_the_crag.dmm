@@ -2004,6 +2004,7 @@
 /area/station/engine/combustion_chamber)
 "fV" = (
 /obj/rack,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "fW" = (
@@ -3185,6 +3186,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/item/material_piece/cloth/rag,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/interrogation)
 "kn" = (
@@ -9082,6 +9084,14 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"Ek" = (
+/obj/table/auto,
+/obj/grille/catwalk/jen,
+/obj/item/material_piece/cloth/rag,
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "El" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -13032,6 +13042,9 @@
 /obj/table/reinforced/chemistry{
 	icon_state = "12"
 	},
+/obj/item/material_piece/cloth/rag/blue{
+	pixel_x = 15
+	},
 /turf/floor/black/grime,
 /area/station/medical/cdc)
 "Rs" = (
@@ -13614,6 +13627,7 @@
 	dir = 4
 	},
 /obj/machinery/cashreg,
+/obj/item/material_piece/cloth/rag,
 /turf/floor/grime,
 /area/station/crew_quarters/barber_shop)
 "TJ" = (
@@ -14678,6 +14692,8 @@
 	dir = 4
 	},
 /obj/storage/secure/closet/logistics/janitor,
+/obj/item/material_piece/cloth/rag/blue,
+/obj/item/material_piece/cloth/rag/blue,
 /turf/floor/plating,
 /area/station/janitor/office)
 "Xo" = (
@@ -66000,7 +66016,7 @@ xD
 XT
 bc
 jV
-am
+Ek
 gS
 Ab
 Ab
