@@ -17,15 +17,18 @@
 /turf/floor/plating,
 /area/space)
 "aM" = (
-/obj/machinery/chem_dispenser/alcohol/ultra,
-/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher{
-	pixel_y = 5
-	},
+/obj/table/wood/auto,
 /turf/floor/industrial,
 /area/space)
 "aP" = (
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/specialroom/bar,
+/area/space)
+"ba" = (
+/obj/neon_sign/caviar{
+	pixel_y = -28
+	},
+/turf/space/nevicata/wastes,
 /area/space)
 "bc" = (
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -93,6 +96,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/specialroom/bar,
 /area/space)
+"dk" = (
+/obj/stool/chair/blue,
+/obj/item_dispenser/wallmounted/latex_gloves,
+/turf/floor/bluewhite,
+/area/space)
 "dn" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -104,6 +112,14 @@
 "dz" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
 /turf/floor/sanitary/blue,
+/area/space)
+"dG" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/stool/chair/blue,
+/turf/floor/blue/checker,
 /area/space)
 "dH" = (
 /turf/floor/black/side{
@@ -180,6 +196,13 @@
 "fp" = (
 /turf/floor/carpet/grime,
 /area/space)
+"fq" = (
+/obj/decal/tile_edge/line/blue{
+	dir = 4;
+	icon_state = "line1"
+	},
+/turf/floor/darkblue,
+/area/space)
 "fr" = (
 /obj/table/wood/auto,
 /obj/item/plate{
@@ -199,6 +222,13 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
 /turf/space/nevicata/wastes/plating,
 /area/space)
+"fI" = (
+/obj/item/storage/wall/medical{
+	pixel_y = 2;
+	pixel_x = 62
+	},
+/turf/floor/blue,
+/area/space)
 "gq" = (
 /obj/reagent_dispensers/beerkeg,
 /turf/floor/black/side{
@@ -212,6 +242,11 @@
 "gA" = (
 /obj/machinery/door/airlock,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"gJ" = (
+/turf/floor/bluewhite/corner{
+	dir = 1
+	},
 /area/space)
 "gR" = (
 /obj/cryotron{
@@ -269,12 +304,28 @@
 	},
 /turf/floor/black,
 /area/space)
+"iQ" = (
+/obj/table/auto,
+/obj/item/reagent_containers/hypospray{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/hypospray{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/floor/blue/checker,
+/area/space)
 "jy" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/paper/book/from_file/moby_dick{
 	pixel_x = 4
 	},
 /turf/floor/black,
+/area/space)
+"jB" = (
+/obj/machinery/space_heater,
+/turf/floor/blue/checker,
 /area/space)
 "jH" = (
 /obj/decal/cleanable/dirt/random,
@@ -297,6 +348,18 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
+"lf" = (
+/obj/table,
+/obj/item/clipboard/with_pen{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/chips{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/turf/floor/carpet/blue/fancy/edge/sw,
+/area/space)
 "lq" = (
 /obj/submachine/chef_oven,
 /turf/floor/specialroom/cafeteria,
@@ -306,6 +369,10 @@
 	dir = 8
 	},
 /turf/space/nevicata/wastes/beaten,
+/area/space)
+"lx" = (
+/obj/machinery/manufacturer/medical,
+/turf/floor/blue,
 /area/space)
 "lE" = (
 /obj/storage/closet/wardrobe/black/formalwear,
@@ -329,6 +396,16 @@
 /obj/item/clothing/suit/bedsheet,
 /turf/floor/carpet/grime,
 /area/space)
+"lV" = (
+/obj/machinery/optable{
+	id = "OR1"
+	},
+/obj/machinery/defib_mount{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/floor/sanitary/white,
+/area/space)
 "lW" = (
 /obj/railing/yellow,
 /turf/space/nevicata/wastes/beaten,
@@ -344,12 +421,22 @@
 	},
 /turf/floor/black,
 /area/space)
+"mJ" = (
+/obj/machinery/atmospherics/pipe/manifold/north,
+/turf/floor/darkblue,
+/area/space)
 "mK" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /turf/space/nevicata/wastes/plating,
 /area/space)
 "nq" = (
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"nK" = (
+/obj/neon_sign/medical{
+	pixel_x = 32
+	},
+/turf/space/nevicata/wastes/beaten,
 /area/space)
 "nM" = (
 /obj/machinery/chem_dispenser/chef{
@@ -365,6 +452,11 @@
 	name = "SUMMIT"
 	},
 /turf/wall/asteroid/nevicata/tough,
+/area/space)
+"nV" = (
+/obj/wingrille_spawn/reinforced,
+/obj/neon_sign/open,
+/turf/floor/plating,
 /area/space)
 "nY" = (
 /obj/shrub{
@@ -394,6 +486,18 @@
 /obj/random_item_spawner/junk/one,
 /turf/space/nevicata/wastes,
 /area/space)
+"on" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/bluewhite,
+/area/space)
+"ou" = (
+/obj/table/auto,
+/obj/machinery/computer/cloning/old{
+	pixel_y = 7;
+	pixel_x = 1
+	},
+/turf/floor/darkblue,
+/area/space)
 "oT" = (
 /obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/sanitary/blue,
@@ -402,17 +506,32 @@
 /obj/decal/snowbits,
 /turf/floor/industrial,
 /area/space)
+"pk" = (
+/obj/table/auto,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/paper/cryo{
+	pixel_x = 17;
+	pixel_y = -3
+	},
+/turf/floor/darkblue,
+/area/space)
+"pm" = (
+/obj/machinery/vending/medical_public,
+/turf/floor/white,
+/area/space)
 "pn" = (
 /turf/space/nevicata/wastes,
 /area/space)
 "pA" = (
-/obj/table/wood/auto,
 /obj/machinery/light_switch/north,
-/obj/machinery/glass_recycler{
-	density = 1;
-	glass_amt = 30;
-	pixel_y = 9
-	},
+/obj/machinery/chem_dispenser/soda,
 /turf/floor/industrial,
 /area/space)
 "pG" = (
@@ -426,6 +545,19 @@
 /obj/machinery/door/airlock,
 /turf/floor/sanitary/blue,
 /area/space)
+"pN" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northwest,
+/turf/space/nevicata/wastes/plating,
+/area/space)
+"pO" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/iv_stand,
+/obj/item/reagent_containers/iv_drip/saline,
+/turf/floor/blue/checker,
+/area/space)
 "pR" = (
 /obj/machinery/espresso_machine,
 /obj/table/wood/auto,
@@ -433,6 +565,20 @@
 	pixel_x = 25
 	},
 /turf/floor/black,
+/area/space)
+"pU" = (
+/obj/machinery/drainage,
+/obj/table/surgery_tray,
+/obj/item/circular_saw,
+/obj/item/scalpel{
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/suture{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/turf/floor/sanitary/white,
 /area/space)
 "qh" = (
 /obj/shrub{
@@ -456,6 +602,17 @@
 /obj/railing/yellow,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
+"qB" = (
+/obj/decal/poster/wallsign/medbay{
+	pixel_x = 30;
+	pixel_y = 4
+	},
+/turf/space/nevicata/wastes/beaten,
+/area/space)
+"qW" = (
+/obj/window/reinforced/east,
+/turf/floor/carpet/blue/fancy/edge/se,
+/area/space)
 "qZ" = (
 /obj/submachine/chef_sink,
 /turf/floor/specialroom/cafeteria,
@@ -475,8 +632,31 @@
 	},
 /turf/floor/industrial,
 /area/space)
+"rk" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/blue/checker,
+/area/space)
+"rF" = (
+/obj/machinery/door/airlock/glass/medical{
+	id = "cloning-exit"
+	},
+/turf/floor/darkblue,
+/area/space)
+"rQ" = (
+/turf/floor/darkblue,
+/area/space)
+"rX" = (
+/turf/floor/bluewhite/corner{
+	dir = 4
+	},
+/area/space)
 "sa" = (
 /turf/wall/r_wall,
+/area/space)
+"sg" = (
+/turf/floor/bluewhite/corner{
+	dir = 8
+	},
 /area/space)
 "su" = (
 /obj/decal/cleanable/dirt/random,
@@ -494,6 +674,12 @@
 /obj/random_item_spawner/snacks/one,
 /turf/floor/specialroom/bar,
 /area/space)
+"sC" = (
+/obj/machinery/light/fluorescent/greenish{
+	dir = 4
+	},
+/turf/floor/blue,
+/area/space)
 "sK" = (
 /obj/stool/chair,
 /obj/decal/cleanable/dirt/random,
@@ -501,6 +687,12 @@
 /area/space)
 "sP" = (
 /turf/floor/circuit/red,
+/area/space)
+"tb" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/blue/checker,
 /area/space)
 "tg" = (
 /obj/railing/reinforced{
@@ -543,6 +735,11 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"tW" = (
+/obj/machinery/door/airlock/medical,
+/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
+/turf/floor/darkblue,
 /area/space)
 "ua" = (
 /obj/window_blinds,
@@ -597,6 +794,13 @@
 	},
 /turf/floor/black,
 /area/space)
+"uB" = (
+/obj/window/reinforced/east,
+/turf/floor/carpet/blue/fancy/edge/ne,
+/area/space)
+"uU" = (
+/turf/floor/bluewhite/corner,
+/area/space)
 "uW" = (
 /obj/kitchenspike,
 /turf/floor/sanitary/blue,
@@ -639,9 +843,19 @@
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/black,
 /area/space)
+"wj" = (
+/obj/machinery/atmospherics/valve/horizontal,
+/turf/floor/darkblue,
+/area/space)
 "wm" = (
 /obj/machinery/disposal,
 /turf/floor/carpet/grime,
+/area/space)
+"wq" = (
+/obj/stool/chair/office/lblue{
+	dir = 4
+	},
+/turf/floor/carpet/blue/fancy/edge/nw,
 /area/space)
 "wu" = (
 /obj/decal/snowbits,
@@ -658,6 +872,33 @@
 /obj/random_item_spawner/junk/one,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
+"wO" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
+/turf/floor/carpet/blue/fancy/edge/ne,
+/area/space)
+"wQ" = (
+/obj/table/reinforced/auto,
+/obj/machinery/door/window/northleft,
+/obj/window/reinforced/east,
+/obj/machinery/cashreg,
+/turf/floor/blue/checker,
+/area/space)
+"wW" = (
+/obj/table/reinforced/medical/auto,
+/obj/item/hemostat{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/surgical_spoon{
+	pixel_y = -3;
+	pixel_x = -1
+	},
+/obj/item/scissors/surgical_scissors{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/floor/blue/checker,
+/area/space)
 "wZ" = (
 /obj/railing/yellow,
 /turf/space/nevicata/wastes/plating,
@@ -666,10 +907,16 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/black,
 /area/space)
+"xz" = (
+/turf/floor/carpet/blue/fancy/edge/east,
+/area/space)
 "xG" = (
 /obj/submachine/italian_ice_dispenser,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"xN" = (
+/turf/floor/bluewhite,
 /area/space)
 "xP" = (
 /obj/machinery/atmospherics/pipe/simple/junction/south,
@@ -722,9 +969,35 @@
 	},
 /turf/floor/specialroom/bar,
 /area/space)
+"yf" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
+/turf/floor/carpet/blue/fancy/edge/nw,
+/area/space)
 "yj" = (
 /obj/burning_barrel,
 /turf/space/nevicata/wastes/beaten,
+/area/space)
+"yv" = (
+/obj/stool/chair/blue,
+/turf/floor/bluewhite,
+/area/space)
+"yx" = (
+/obj/table/auto,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/hypospray{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/turf/floor/darkblue,
+/area/space)
+"yH" = (
+/obj/cabinet/medicalburn{
+	pixel_y = 17
+	},
+/turf/floor/blue,
 /area/space)
 "yL" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
@@ -737,6 +1010,31 @@
 /area/space)
 "zc" = (
 /turf/floor/blue/checker,
+/area/space)
+"zf" = (
+/obj/machinery/door/airlock/medical,
+/turf/floor/blue/checker,
+/area/space)
+"zn" = (
+/obj/table/auto,
+/obj/table/auto,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/obj/item/storage/firstaid/oxygen{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/turf/floor/blue,
 /area/space)
 "zy" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
@@ -803,6 +1101,12 @@
 /obj/decal/snowbits,
 /turf/floor/specialroom/cafeteria,
 /area/space)
+"AT" = (
+/obj/decal/poster/wallsign/hazard_caution{
+	pixel_x = -32
+	},
+/turf/space/nevicata/wastes/plating,
+/area/space)
 "Bd" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/floor/plating,
@@ -867,6 +1171,28 @@
 "Cb" = (
 /turf/space/nevicata/wastes/plating,
 /area/space)
+"Cf" = (
+/obj/machinery/door/airlock/glass/medical{
+	id = "cloning-exit"
+	},
+/turf/floor/white,
+/area/space)
+"Cm" = (
+/obj/cabinet/medical{
+	pixel_y = 17
+	},
+/turf/floor/blue,
+/area/space)
+"CB" = (
+/obj/table/auto,
+/obj/item/storage/firstaid/brain{
+	pixel_x = -6
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 3
+	},
+/turf/floor/darkblue,
+/area/space)
 "CJ" = (
 /turf/floor/black/side{
 	dir = 5
@@ -900,6 +1226,11 @@
 	},
 /turf/floor/specialroom/cafeteria,
 /area/space)
+"Dc" = (
+/obj/table/auto,
+/obj/item/wrench,
+/turf/floor/darkblue,
+/area/space)
 "Dg" = (
 /obj/rack,
 /obj/machinery/light/small/red{
@@ -914,6 +1245,10 @@
 /obj/item/hand_warmer{
 	pixel_y = -3;
 	pixel_x = 9
+	},
+/obj/item/storage/box/glassbox{
+	pixel_y = 5;
+	pixel_x = -3
 	},
 /turf/floor/black/side{
 	dir = 4
@@ -937,10 +1272,20 @@
 	},
 /turf/floor/specialroom/bar,
 /area/space)
+"Dq" = (
+/obj/window/reinforced/west,
+/obj/machinery/computer3/generic/med_data,
+/obj/window/reinforced/north,
+/turf/floor/blue/checker,
+/area/space)
 "Dw" = (
 /obj/decal/slipmat,
 /obj/decal/snowbits,
 /turf/floor/specialroom/bar,
+/area/space)
+"Dx" = (
+/obj/machinery/clonegrinder,
+/turf/floor/darkblue,
 /area/space)
 "DH" = (
 /obj/table/kitchen_island,
@@ -969,6 +1314,10 @@
 /area/space)
 "Ec" = (
 /turf/floor/orangeblack,
+/area/space)
+"Eh" = (
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
+/turf/space/nevicata/wastes/plating,
 /area/space)
 "Ei" = (
 /obj/machinery/door/airlock/glass,
@@ -1049,6 +1398,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/specialroom/cafeteria,
 /area/space)
+"FI" = (
+/obj/storage/cart,
+/obj/item/wrench,
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = -4
+	},
+/turf/space/nevicata/wastes/plating,
+/area/space)
 "FJ" = (
 /obj/decal/slipmat/torn{
 	dir = 1;
@@ -1056,6 +1414,10 @@
 	},
 /obj/decal/snowbits,
 /turf/floor/specialroom/bar,
+/area/space)
+"FO" = (
+/obj/machinery/vending/port_a_nanomed,
+/turf/floor/blue/checker,
 /area/space)
 "FQ" = (
 /obj/storage/crate/wooden,
@@ -1080,6 +1442,19 @@
 "FY" = (
 /obj/machinery/deep_fryer,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"Gs" = (
+/obj/submachine/chef_sink{
+	desc = "A common utility sink.";
+	name = "utility sink";
+	pixel_y = 3;
+	dir = 4
+	},
+/obj/decal/poster/wallsign/chsl{
+	pixel_y = 2;
+	pixel_x = -31
+	},
+/turf/floor/blue/checker,
 /area/space)
 "Gu" = (
 /obj/stool/chair{
@@ -1123,6 +1498,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
+"HH" = (
+/obj/storage/secure/closet,
+/turf/floor/white,
+/area/space)
 "HI" = (
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
@@ -1132,10 +1511,20 @@
 /obj/decal/cleanable/rust/jen,
 /turf/floor/specialroom/bar,
 /area/space)
+"HL" = (
+/obj/machinery/atmospherics/unary/cryo_cell{
+	dir = 2
+	},
+/turf/floor/darkblue,
+/area/space)
 "Iq" = (
 /obj/decal/cleanable/rust,
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/specialroom/bar,
+/area/space)
+"Iv" = (
+/obj/storage/secure/closet/medical/anesthetic,
+/turf/floor/blue/checker,
 /area/space)
 "IG" = (
 /obj/machinery/vending/monkey,
@@ -1161,6 +1550,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
+"Jf" = (
+/obj/storage/secure/closet/medical/medkit,
+/turf/floor/blue/checker,
+/area/space)
 "Jr" = (
 /obj/storage/closet/fire,
 /turf/space/nevicata/wastes/beaten,
@@ -1176,6 +1569,13 @@
 	},
 /turf/space/nevicata/wastes/plating,
 /area/space)
+"JJ" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/space/nevicata/wastes/plating,
+/area/space)
 "Ka" = (
 /obj/storage/crate/wooden,
 /obj/railing/reinforced,
@@ -1187,6 +1587,12 @@
 "Kc" = (
 /obj/decal/cleanable/mess/chips,
 /turf/floor/carpet/grime,
+/area/space)
+"Kj" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/floor/blue/checker,
 /area/space)
 "Ks" = (
 /obj/stool/chair{
@@ -1201,6 +1607,25 @@
 /obj/table/auto,
 /obj/machinery/microwave,
 /turf/floor/black,
+/area/space)
+"KD" = (
+/obj/machinery/clonepod,
+/turf/floor/darkblue,
+/area/space)
+"KF" = (
+/obj/table/auto,
+/obj/item/material_piece/cloth/rag/blue{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/obj/item/clothing/mask/surgical_shield{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/floor/blue/checker,
+/area/space)
+"KG" = (
+/turf/floor/carpet/blue/fancy/edge/se,
 /area/space)
 "KM" = (
 /obj/railing/yellow{
@@ -1313,6 +1738,13 @@
 	},
 /turf/floor/specialroom/cafeteria,
 /area/space)
+"Mk" = (
+/obj/health_scanner/floor{
+	dir = 1;
+	id = "lobby_right"
+	},
+/turf/floor/blue,
+/area/space)
 "MF" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor/black,
@@ -1353,6 +1785,44 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/space/nevicata/wastes/plating,
 /area/space)
+"NF" = (
+/obj/decal/tile_edge/line/blue{
+	dir = 4;
+	icon_state = "line1"
+	},
+/obj/table/auto,
+/obj/item/paper/book/from_file/dealing_with_clonelieness{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/turf/floor/darkblue,
+/area/space)
+"NH" = (
+/obj/table/glass/auto,
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = 1
+	},
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = -4
+	},
+/obj/machinery/light/fluorescent/greenish{
+	dir = 8
+	},
+/turf/floor/blue,
+/area/space)
+"NP" = (
+/turf/floor/blue,
+/area/space)
 "NR" = (
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
@@ -1361,8 +1831,36 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/specialroom/bar,
 /area/space)
+"Oa" = (
+/obj/table/surgery_tray,
+/obj/item/robodefibrillator{
+	pixel_y = 10
+	},
+/turf/floor/blue/checker,
+/area/space)
 "Oe" = (
 /turf/floor/plating,
+/area/space)
+"Ok" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
+/turf/space/nevicata/wastes/plating,
+/area/space)
+"Ox" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/floor/white,
+/area/space)
+"OA" = (
+/obj/machinery/door/airlock/glass/medical{
+	id = "cloning-exit"
+	},
+/turf/floor/blue/checker,
+/area/space)
+"OW" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/item_dispenser/wallmounted/medical_mask{
+	pixel_x = -14
+	},
+/turf/floor/blue/checker,
 /area/space)
 "OZ" = (
 /obj/table/auto,
@@ -1375,6 +1873,14 @@
 	pixel_y = 12
 	},
 /turf/floor/carpet/grime,
+/area/space)
+"Pk" = (
+/turf/floor/white,
+/area/space)
+"Py" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/item_dispenser/wallmounted/latex_gloves,
+/turf/floor/blue/checker,
 /area/space)
 "Pz" = (
 /obj/table/folding,
@@ -1391,6 +1897,18 @@
 	pixel_x = 5
 	},
 /turf/floor/carpet/grime,
+/area/space)
+"PB" = (
+/obj/machinery/vending/medical,
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/blue/checker,
+/area/space)
+"PI" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/blue/checker,
 /area/space)
 "PJ" = (
 /obj/stove,
@@ -1440,8 +1958,60 @@
 /obj/decal/snowbits,
 /turf/floor/black/side,
 /area/space)
+"Qs" = (
+/obj/decal/tile_edge/line/blue{
+	dir = 4;
+	icon_state = "line1"
+	},
+/obj/neon_sign/exit{
+	pixel_y = 32
+	},
+/turf/floor/darkblue,
+/area/space)
+"Qu" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/ceiling/cyan,
+/turf/floor/blue/checker,
+/area/space)
+"Qv" = (
+/obj/table/auto,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -5;
+	pixel_y = 1
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 9;
+	pixel_y = 1
+	},
+/turf/floor/blue,
+/area/space)
+"Qx" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/blue/checker,
+/area/space)
 "QA" = (
 /turf/floor/purple/checker,
+/area/space)
+"QG" = (
+/obj/machinery/manufacturer/uniform,
+/turf/floor/white,
+/area/space)
+"QQ" = (
+/obj/machinery/disposal,
+/turf/floor/blue,
 /area/space)
 "QS" = (
 /obj/table/wood/auto,
@@ -1460,6 +2030,10 @@
 	pixel_y = 2
 	},
 /turf/floor/specialroom/bar,
+/area/space)
+"QU" = (
+/obj/machinery/vending/crash_cart,
+/turf/floor/blue/checker,
 /area/space)
 "Rh" = (
 /obj/decal/cleanable/mess/random_litter,
@@ -1488,6 +2062,14 @@
 	},
 /turf/space/nevicata/wastes/plating,
 /area/space)
+"SC" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
+/turf/space/nevicata/wastes/plating,
+/area/space)
+"SI" = (
+/obj/stool/chair/blue,
+/turf/floor/white,
+/area/space)
 "SR" = (
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
@@ -1503,6 +2085,10 @@
 "SS" = (
 /turf/wall/asteroid/nevicata/tough,
 /area/space)
+"Te" = (
+/obj/storage/secure/closet/fridge/blood,
+/turf/floor/blue/checker,
+/area/space)
 "Tq" = (
 /obj/table/folding,
 /obj/item/reagent_containers/food/snacks/ingredient/peanutbutter{
@@ -1514,6 +2100,12 @@
 	pixel_y = 2
 	},
 /turf/space/nevicata/wastes/beaten,
+/area/space)
+"Tw" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/turf/floor/blue/checker,
 /area/space)
 "TB" = (
 /obj/table/reinforced/auto,
@@ -1539,15 +2131,17 @@
 /area/space)
 "TR" = (
 /obj/table/reinforced/bar/auto,
-/obj/shitty_radio/shitty_tv{
-	pixel_y = 7;
-	pixel_x = 14
-	},
 /obj/window/reinforced/west,
 /obj/item_dispenser/icedispenser{
 	dir = 8;
 	pixel_x = 7;
 	pixel_y = 8
+	},
+/obj/machinery/glass_recycler{
+	density = 1;
+	glass_amt = 30;
+	pixel_y = 9;
+	pixel_x = 14
 	},
 /turf/floor/black,
 /area/space)
@@ -1576,9 +2170,28 @@
 /obj/machinery/door/airlock,
 /turf/floor/plating,
 /area/space)
+"UF" = (
+/turf/floor/bluewhite{
+	dir = 4
+	},
+/area/space)
+"UI" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/machinery/light/fluorescent/ceiling/cyan,
+/turf/floor/blue/checker,
+/area/space)
 "UJ" = (
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"UM" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/white,
+/area/space)
+"UU" = (
+/turf/floor/carpet/blue/fancy/edge/sw,
 /area/space)
 "Vn" = (
 /obj/machinery/chem_master{
@@ -1589,9 +2202,35 @@
 	},
 /turf/floor/industrial,
 /area/space)
+"Vw" = (
+/obj/table/reinforced/medical/auto,
+/obj/item/paper/book/from_file/medical_surgery_guide{
+	pixel_y = 6;
+	pixel_x = -2
+	},
+/obj/item/bandage{
+	pixel_y = 3;
+	pixel_x = 5
+	},
+/turf/floor/blue/checker,
+/area/space)
+"Vz" = (
+/turf/floor/bluewhite{
+	dir = 1
+	},
+/area/space)
 "VA" = (
 /obj/machinery/door/airlock,
 /turf/floor/black,
+/area/space)
+"VB" = (
+/obj/table/auto,
+/obj/machinery/defib_mount,
+/turf/floor/darkblue,
+/area/space)
+"VQ" = (
+/obj/machinery/clone_scanner,
+/turf/floor/white,
 /area/space)
 "VY" = (
 /obj/machinery/door/airlock,
@@ -1614,11 +2253,23 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
+"Ws" = (
+/turf/floor/carpet/blue/fancy/edge/west,
+/area/space)
 "WF" = (
 /obj/stool/chair{
 	dir = 8
 	},
 /turf/floor/carpet/grime,
+/area/space)
+"WM" = (
+/obj/storage/crate/bin{
+	pixel_y = 7
+	},
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/turf/floor/blue/checker,
 /area/space)
 "WR" = (
 /obj/table/auto,
@@ -1683,12 +2334,22 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
-"Ye" = (
-/obj/table/wood/auto,
-/obj/item/storage/box/glassbox{
-	pixel_y = 5;
-	pixel_x = -3
+"XW" = (
+/obj/stool/chair/office/lblue{
+	dir = 8
 	},
+/obj/decal/tile_edge/line/blue{
+	dir = 4;
+	icon_state = "line1"
+	},
+/turf/floor/darkblue,
+/area/space)
+"XZ" = (
+/obj/machinery/atmospherics/pipe/simple/junction/north,
+/turf/space/nevicata/wastes/plating,
+/area/space)
+"Ye" = (
+/obj/machinery/vending/minibar,
 /turf/floor/industrial,
 /area/space)
 "Yk" = (
@@ -1717,6 +2378,11 @@
 	pixel_y = -3
 	},
 /turf/space/nevicata/wastes/plating,
+/area/space)
+"YP" = (
+/turf/floor/bluewhite{
+	dir = 8
+	},
 /area/space)
 "Zb" = (
 /obj/stool/chair{
@@ -36555,16 +37221,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -36621,16 +37287,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -36857,16 +37523,16 @@ pn
 pn
 pn
 pn
-he
+sa
+Oe
+Oe
+Oe
+Oe
+sa
 pG
 pG
 pG
-pG
-he
-pG
-pG
-pG
-he
+sa
 pn
 pn
 pn
@@ -36923,7 +37589,7 @@ pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
@@ -36932,7 +37598,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -37159,46 +37825,35 @@ pn
 pn
 pn
 pn
-he
+sa
+Oe
+Oe
+Oe
+Oe
+sa
 pG
 pG
 pG
-pG
-pG
-pG
-pG
-pG
-he
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
+sa
 EB
 EB
-he
+sa
 pn
 pn
-he
-he
-he
-he
-he
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -37206,26 +37861,37 @@ pn
 pn
 pn
 pn
+sa
+sa
+sa
+sa
 pn
-he
-he
-he
-he
 pn
 pn
-he
+pn
+pn
+pn
+pn
+pn
+sa
+sa
+sa
+sa
+pn
+pn
+sa
 EB
 EB
-he
+sa
 pn
 pn
-he
+sa
 EB
 EB
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
@@ -37234,7 +37900,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -37461,46 +38127,46 @@ pn
 pn
 pn
 pn
-he
-pG
-pG
-pG
-pG
-he
-pG
-pG
-pG
-he
-pn
-pn
-he
-bU
-bU
-he
-pn
-pn
-he
-bU
-bU
-he
-pn
-pn
-he
-bU
-bU
-bU
-he
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-he
+sa
 Oe
 Oe
-he
+Oe
+Oe
+sa
+pG
+pG
+pG
+sa
+pn
+pn
+sa
+bU
+bU
+sa
+pn
+pn
+sa
+bU
+bU
+sa
+pn
+pn
+sa
+bU
+bU
+bU
+sa
+pn
+pn
+pn
+pn
+pn
+pn
+pn
+sa
+Oe
+Oe
+sa
 pn
 pn
 pn
@@ -37509,25 +38175,25 @@ pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
@@ -37536,7 +38202,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -37763,73 +38429,73 @@ pn
 pn
 pn
 pn
-he
-pG
-pG
-pG
-pG
-he
-he
-pG
-he
-he
-he
-he
-he
-bU
-bU
-he
-EB
-EB
-he
-bU
-bU
-he
-EB
-EB
-he
-bU
-bU
-bU
-he
-he
-he
-he
-he
-he
-he
-he
-he
+sa
 Oe
 Oe
-he
-he
-he
-EB
-he
-he
-he
-he
-he
-he
-Ec
-Ec
-he
-he
-he
-he
-Ec
-Ec
-he
+Oe
+Oe
+sa
+sa
+pG
+sa
+sa
+sa
+sa
+sa
+bU
+bU
+sa
 EB
 EB
-he
+sa
+bU
+bU
+sa
+EB
+EB
+sa
+bU
+bU
+bU
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+Oe
+Oe
+sa
+sa
+sa
+EB
+sa
+sa
+sa
+sa
+sa
+sa
 Ec
 Ec
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+Ec
+Ec
+sa
+EB
+EB
+sa
+Ec
+Ec
+sa
+sa
+sa
+sa
 Ec
 Ec
 Ec
@@ -37838,7 +38504,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -38065,19 +38731,19 @@ pn
 pn
 pn
 pn
-he
-pG
-pG
-pG
-pG
-he
+sa
 Oe
 Oe
 Oe
 Oe
 Oe
 Oe
-he
+Oe
+Oe
+Oe
+Oe
+Oe
+sa
 bU
 bU
 bU
@@ -38093,7 +38759,7 @@ bU
 bU
 bU
 bU
-he
+sa
 Oe
 Oe
 Oe
@@ -38110,7 +38776,7 @@ bU
 bU
 bU
 bU
-he
+sa
 Ec
 Ec
 Ec
@@ -38119,7 +38785,7 @@ Ec
 Oe
 Oe
 Oe
-he
+sa
 Ec
 Ec
 Ec
@@ -38140,7 +38806,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -38367,35 +39033,35 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
-he
-he
+sa
 Oe
 Oe
 Oe
 Oe
 Oe
 Oe
-he
+Oe
+Oe
+Oe
+Oe
+Oe
+sa
 bU
 bU
-he
-bU
-bU
-bU
+sa
 bU
 bU
 bU
 bU
 bU
-he
 bU
 bU
 bU
-he
+sa
+bU
+bU
+bU
+sa
 Oe
 Oe
 Oe
@@ -38406,7 +39072,7 @@ Oe
 Oe
 Oe
 Oe
-he
+sa
 bU
 bU
 bU
@@ -38421,7 +39087,7 @@ Ec
 Oe
 Oe
 Oe
-he
+sa
 Ec
 Ec
 Ec
@@ -38442,7 +39108,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -38669,7 +39335,7 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
 Oe
@@ -38678,73 +39344,73 @@ Oe
 Oe
 Oe
 Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 bU
 bU
-he
-bU
-bU
-bU
+sa
 bU
 bU
 bU
 bU
 bU
-he
 bU
-he
-he
-he
-he
-he
-he
-he
-he
-he
-he
-he
+bU
+bU
+sa
+bU
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
 Oe
 Oe
-he
+sa
 bU
 bU
 bU
 bU
 bU
-he
+sa
 Ec
 Ec
 Ec
 Ec
 Ec
-he
-he
-he
-he
-Ec
-Ec
-Ec
-Ec
-Ec
-Ec
-Ec
-Ec
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Ec
 Ec
 Ec
 Ec
 Ec
 Ec
-he
+Ec
+Ec
+sa
+sa
+sa
+sa
+sa
+sa
+Ec
+Ec
+Ec
+Ec
+Ec
+Ec
+sa
 pn
 pn
 pn
@@ -38971,7 +39637,7 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
 Oe
@@ -38980,73 +39646,73 @@ Oe
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
-he
+sa
 bU
 bU
-he
-bU
-bU
-bU
+sa
 bU
 bU
 bU
 bU
 bU
-he
 bU
 bU
-he
-pn
-pn
-pn
+bU
+sa
+bU
+bU
+sa
 pn
 pn
 pn
 pn
 pn
-he
+pn
+pn
+pn
+sa
 Oe
 Oe
-he
+sa
 bU
 bU
 bU
 bU
 bU
-he
+sa
 Ec
 Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
-he
+sa
 Ec
 Ec
-he
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -39273,22 +39939,22 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+Oe
+Oe
+sa
+sa
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 bU
 bU
 bU
@@ -39297,58 +39963,58 @@ bU
 bU
 bU
 bU
-he
+sa
 bU
 bU
-he
-pn
-pn
-pn
+sa
 pn
 pn
 pn
 pn
 pn
-he
-he
-he
-he
-bU
-bU
-bU
-bU
-bU
-he
-he
-he
-he
-he
-he
-he
 pn
 pn
-he
+pn
+sa
+sa
+sa
+sa
+bU
+bU
+bU
+bU
+bU
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+pn
+pn
+sa
 dn
 dn
-he
+sa
 pn
 pn
-he
+sa
 dn
 dn
-he
+sa
 pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -39579,10 +40245,10 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -39590,7 +40256,7 @@ pn
 pn
 pn
 pn
-he
+sa
 bU
 bU
 bU
@@ -39602,7 +40268,7 @@ bU
 bU
 bU
 bU
-he
+sa
 pn
 pn
 pn
@@ -39614,13 +40280,13 @@ pn
 pn
 pn
 pn
-he
+sa
 dn
 dn
-he
+sa
 bU
-he
-he
+sa
+sa
 pn
 pn
 pn
@@ -39643,10 +40309,10 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -39881,10 +40547,10 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -39892,19 +40558,19 @@ pn
 pn
 pn
 pn
-he
+sa
 dn
 dn
 dn
 dn
 dn
-he
+sa
 bU
 bU
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
 xT
@@ -39948,7 +40614,7 @@ pn
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -40181,14 +40847,14 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -40245,14 +40911,14 @@ xT
 xT
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -40483,7 +41149,7 @@ pn
 pn
 pn
 pn
-he
+sa
 hC
 hC
 hC
@@ -40546,12 +41212,12 @@ xT
 xT
 xT
 pn
-he
-he
+sa
+sa
 fp
 fp
 fp
-he
+sa
 fp
 fp
 EB
@@ -40785,14 +41451,14 @@ pn
 pn
 pn
 pn
-he
+sa
 hC
 hC
-he
+sa
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 xT
@@ -40848,7 +41514,7 @@ xT
 xT
 xT
 pn
-he
+sa
 fp
 fp
 fp
@@ -41087,15 +41753,15 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-he
-he
-he
-pn
+sa
+sa
+sa
+sa
 pn
 xT
 xT
@@ -41153,12 +41819,12 @@ pn
 dn
 fp
 fp
-fp
-fp
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -41391,13 +42057,13 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
-pn
-pn
-pn
+sa
+fp
+fp
+dn
 pn
 xT
 xT
@@ -41455,7 +42121,7 @@ pn
 dn
 fp
 fp
-fp
+sa
 fp
 fp
 hT
@@ -41693,13 +42359,13 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
-pn
-pn
-pn
+fp
+fp
+fp
+dn
 pn
 xT
 xT
@@ -41993,16 +42659,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-Oe
-he
-he
-he
-pn
-pn
+sa
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -42023,7 +42689,7 @@ HA
 HA
 HA
 HA
-HA
+he
 pn
 pn
 pn
@@ -42056,15 +42722,15 @@ xT
 xT
 xT
 pn
-he
+sa
 fp
 fp
-fp
-fp
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -42295,16 +42961,16 @@ pn
 pn
 pn
 pn
-he
-Oe
-Oe
-Oe
-Oe
-Oe
-Oe
-he
-pn
-pn
+EB
+fp
+fp
+sa
+fp
+fp
+sa
+fp
+fp
+dn
 xT
 xT
 xT
@@ -42363,7 +43029,7 @@ fp
 fp
 fp
 fp
-he
+sa
 fp
 fp
 EB
@@ -42597,16 +43263,16 @@ pn
 pn
 pn
 pn
-he
-Oe
-Oe
-Oe
-Oe
-Oe
-Oe
-he
-pn
-pn
+EB
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+dn
 xT
 xT
 xT
@@ -42624,7 +43290,7 @@ he
 pn
 he
 he
-he
+HA
 he
 he
 he
@@ -42899,16 +43565,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
-Oe
-Oe
-he
-he
-he
-pn
-pn
+sa
+sa
+sa
+sa
+fp
+fp
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -42962,15 +43628,15 @@ xT
 xT
 xT
 pn
-he
+sa
 fp
 fp
-fp
-fp
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -43203,13 +43869,13 @@ pn
 pn
 pn
 pn
-he
-Oe
-Oe
-he
-pn
-pn
-pn
+EB
+fp
+fp
+fp
+fp
+fp
+fp
 pn
 xT
 xT
@@ -43250,15 +43916,15 @@ PO
 PO
 dn
 pn
-he
-he
-he
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -43267,7 +43933,7 @@ pn
 dn
 fp
 fp
-fp
+sa
 fp
 fp
 hT
@@ -43505,13 +44171,13 @@ pn
 pn
 pn
 pn
-he
-Oe
-Oe
-he
-pn
-pn
-pn
+EB
+fp
+fp
+fp
+fp
+fp
+fp
 pn
 xT
 xT
@@ -43534,9 +44200,9 @@ he
 he
 he
 he
-pn
-pn
-pn
+he
+he
+he
 pn
 xT
 xT
@@ -43552,10 +44218,10 @@ PO
 PO
 he
 pn
-he
+sa
 eU
 eU
-he
+sa
 eU
 eU
 eU
@@ -43805,16 +44471,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
-Oe
-Oe
-he
-he
-he
-pn
-pn
+sa
+sa
+sa
+sa
+fp
+fp
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -43835,10 +44501,10 @@ zc
 zc
 zc
 zc
+zc
+zc
+zc
 he
-pn
-pn
-pn
 pn
 xT
 xT
@@ -43854,10 +44520,10 @@ PO
 he
 he
 pn
-he
+sa
 eU
 eU
-eU
+sa
 eU
 eU
 eU
@@ -43871,12 +44537,12 @@ xT
 dn
 fp
 fp
-fp
-fp
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -44107,16 +44773,16 @@ pn
 pn
 pn
 pn
-he
-Oe
-Oe
-Oe
-Oe
-Oe
-Oe
-Oe
-pn
-pn
+EB
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+dn
 xT
 xT
 xT
@@ -44137,10 +44803,10 @@ he
 zc
 zc
 zc
+zc
+zc
+zc
 he
-pn
-pn
-pn
 pn
 xT
 xT
@@ -44156,26 +44822,26 @@ Bq
 he
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 eU
 eU
 eU
 eU
-he
+sa
 pn
 xT
 xT
 xT
 xT
-he
+sa
 fp
 fp
 fp
 fp
-he
+sa
 fp
 fp
 EB
@@ -44409,16 +45075,16 @@ pn
 pn
 pn
 pn
-he
-Oe
-Oe
-Oe
-Oe
-Oe
-Oe
-he
-pn
-pn
+EB
+fp
+fp
+sa
+fp
+fp
+sa
+fp
+fp
+dn
 xT
 xT
 xT
@@ -44439,11 +45105,11 @@ he
 zc
 zc
 zc
+zc
+zc
+zc
 he
 pn
-pn
-pn
-pn
 xT
 xT
 xT
@@ -44461,19 +45127,19 @@ pn
 pn
 pn
 pn
-he
+sa
 dn
 dn
 eU
-he
-he
+sa
+sa
 pn
 xT
 xT
 xT
 xT
-he
-he
+sa
+sa
 fp
 fp
 fp
@@ -44711,16 +45377,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-Oe
-Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -44739,12 +45405,12 @@ he
 pn
 he
 he
+zc
+zc
+zc
+zc
 he
 he
-he
-xT
-pn
-pn
 xT
 xT
 xT
@@ -44775,14 +45441,14 @@ xT
 xT
 xT
 xT
-he
-he
-he
+sa
+sa
+sa
 Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -45015,14 +45681,14 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 zc
 zc
 zc
-he
+sa
 xT
 xT
 xT
@@ -45317,14 +45983,14 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 zc
 zc
 zc
-he
+sa
 xT
 xT
 xT
@@ -45381,10 +46047,10 @@ xT
 pn
 xT
 xT
-he
+sa
 Oe
 Oe
-he
+sa
 xT
 xT
 xT
@@ -45619,14 +46285,14 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 zc
 zc
 zc
-he
+sa
 xT
 xT
 xT
@@ -45659,7 +46325,7 @@ xT
 xT
 xT
 xT
-xT
+pn
 pn
 pn
 he
@@ -45678,15 +46344,15 @@ pn
 xT
 xT
 xT
-he
-he
+sa
+sa
 dn
 dn
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -45921,25 +46587,25 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 zc
 zc
 zc
-he
+sa
 xT
 xT
 xT
 xT
 xT
 xT
+qB
 xT
+nK
 xT
-xT
-xT
-xT
+qB
 xT
 xT
 xT
@@ -45959,9 +46625,9 @@ xT
 xT
 xT
 xT
-xT
-xT
-xT
+pn
+pn
+pn
 pn
 FQ
 he
@@ -45985,10 +46651,10 @@ ud
 ud
 ud
 ud
-he
+sa
 HA
 HA
-he
+sa
 pn
 pn
 pn
@@ -46227,35 +46893,35 @@ sa
 sa
 sa
 sa
-he
+sa
 zc
-he
-he
+sa
+sa
 xT
 xT
 xT
 xT
-pn
-he
-zc
-dn
-zc
-he
-dn
-dn
-dn
-dn
-he
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
 xT
+he
+he
+OA
+dn
+OA
+he
+dn
+dn
+dn
+dn
+he
+pn
+pn
+pn
+pn
+pn
+pn
+pn
+pn
+pn
 xT
 xT
 xT
@@ -46290,7 +46956,7 @@ ud
 ud
 HA
 HA
-he
+sa
 pn
 pn
 pn
@@ -46536,17 +47202,18 @@ zc
 xT
 xT
 xT
-pn
+xT
 pn
 dn
-zc
-zc
-zc
-dn
-zc
-zc
-zc
-zc
+pm
+uU
+NH
+sg
+Dq
+wq
+lf
+QQ
+Qv
 dn
 pn
 he
@@ -46557,7 +47224,6 @@ dn
 QA
 he
 pn
-xT
 xT
 xT
 xT
@@ -46589,10 +47255,10 @@ ud
 ud
 ud
 ud
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -46834,32 +47500,32 @@ sa
 zc
 zc
 zc
+sa
+xT
+xT
+xT
+xT
+pn
+dn
+Ox
+NP
+NP
+Mk
+wQ
+uB
+qW
+NP
+zn
+dn
+pn
+dn
+QA
+QA
+QA
+QA
+QA
 he
-xT
-xT
-xT
 pn
-pn
-dn
-zc
-zc
-zc
-zc
-zc
-zc
-zc
-zc
-dn
-pn
-dn
-QA
-QA
-QA
-QA
-QA
-he
-pn
-xT
 xT
 xT
 xT
@@ -46891,10 +47557,10 @@ ud
 ud
 ud
 ud
-he
+sa
 ud
 ud
-he
+sa
 pn
 pn
 pn
@@ -47140,28 +47806,28 @@ dn
 xT
 xT
 xT
-pn
-pn
-dn
-zc
-zc
-zc
-zc
-zc
-zc
-zc
-zc
-dn
-pn
-dn
-QA
-QA
-QA
-QA
-QA
-dn
-pn
 xT
+pn
+dn
+SI
+NP
+fI
+NP
+OA
+zc
+zc
+zc
+Jf
+dn
+pn
+dn
+QA
+QA
+QA
+QA
+QA
+dn
+pn
 xT
 xT
 xT
@@ -47196,7 +47862,7 @@ ud
 ud
 ud
 ud
-he
+sa
 pn
 pn
 pn
@@ -47435,24 +48101,25 @@ sP
 sP
 sP
 sa
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+xT
 xT
 xT
 xT
 pn
-pn
 dn
-zc
-zc
-zc
-dn
-zc
-zc
-zc
-zc
+SI
+rX
+sC
+gJ
+OA
+UM
+UF
+Pk
+PB
 dn
 pn
 dn
@@ -47463,7 +48130,6 @@ QA
 QA
 he
 pn
-xT
 xT
 xT
 pn
@@ -47495,12 +48161,12 @@ ud
 ud
 ud
 ud
-he
+sa
 ud
 ud
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -47744,16 +48410,17 @@ pn
 xT
 xT
 xT
+he
+dn
+he
 dn
 dn
 he
+dn
 he
-he
-he
-he
+dk
 zc
-zc
-zc
+Vz
 zc
 he
 pn
@@ -47765,7 +48432,6 @@ QA
 QA
 dn
 pn
-xT
 xT
 xT
 pn
@@ -47792,12 +48458,12 @@ pn
 xT
 xT
 xT
-he
+sa
 dn
 dn
 dn
 dn
-he
+sa
 ud
 ud
 ud
@@ -48046,18 +48712,19 @@ pn
 xT
 xT
 xT
-zc
-zc
-zc
-zc
+he
+KD
+Dx
+ou
+CB
 dn
+lx
+iQ
+yv
 zc
+Vz
 zc
-zc
-zc
-zc
-zc
-zc
+zf
 pn
 dn
 QA
@@ -48067,7 +48734,6 @@ QA
 QA
 he
 pn
-xT
 xT
 xT
 pn
@@ -48341,24 +49007,25 @@ sP
 sP
 sP
 sa
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 xT
 xT
 xT
-zc
-zc
-zc
-zc
+dn
+Qs
+fq
+XW
+NF
 he
+yH
 zc
+xN
 zc
-zc
-zc
-zc
-zc
+Vz
+jB
 he
 pn
 he
@@ -48372,12 +49039,11 @@ pn
 xT
 xT
 xT
-xT
 pn
 he
-aG
-aG
-aG
+dn
+dn
+dn
 he
 he
 UC
@@ -48396,7 +49062,7 @@ xT
 xT
 xT
 pn
-he
+sa
 ud
 ud
 ud
@@ -48404,9 +49070,9 @@ ud
 ud
 ud
 ud
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -48650,17 +49316,18 @@ eU
 xT
 xT
 xT
+Cf
+Pk
+UM
+Pk
+Pk
+Cf
+NP
 zc
+on
 zc
-zc
-zc
-zc
-zc
-zc
-zc
-zc
-zc
-zc
+Vz
+rk
 dn
 pn
 he
@@ -48674,9 +49341,8 @@ pn
 xT
 xT
 xT
-xT
-pn
-aG
+ba
+dn
 NR
 Xn
 HI
@@ -48706,7 +49372,7 @@ ud
 ud
 ud
 ud
-he
+sa
 pn
 pn
 pn
@@ -48948,20 +49614,21 @@ sa
 eU
 eU
 eU
+sa
+xT
+xT
+xT
+dn
+Pk
+Pk
+Pk
+Pk
 he
-xT
-xT
-xT
+Cm
 zc
-zc
-zc
-zc
-he
-zc
-zc
-zc
-zc
-zc
+Pk
+YP
+Pk
 zc
 dn
 pn
@@ -48973,7 +49640,6 @@ QA
 QA
 QA
 pn
-xT
 xT
 xT
 xT
@@ -49254,17 +49920,18 @@ dn
 xT
 xT
 xT
-zc
-zc
-zc
-zc
+he
+HH
+VQ
+QG
+Pk
 dn
+NP
+FO
 zc
 zc
-zc
-zc
-zc
-zc
+Oa
+QU
 dn
 pn
 he
@@ -49275,7 +49942,6 @@ QA
 QA
 he
 pn
-xT
 xT
 xT
 xT
@@ -49302,15 +49968,15 @@ xT
 xT
 xT
 pn
-he
+sa
 TB
 TB
 dn
-he
+sa
 ud
 ud
 ud
-he
+sa
 pn
 pn
 pn
@@ -49557,16 +50223,17 @@ xT
 xT
 xT
 he
-dn
 he
+aG
+aG
+Cf
 he
+rF
 he
-zc
+aG
+zf
+aG
 he
-dn
-zc
-dn
-dn
 he
 pn
 he
@@ -49577,7 +50244,6 @@ QA
 QA
 dn
 pn
-xT
 xT
 xT
 xT
@@ -49608,7 +50274,7 @@ Cb
 Cb
 Cb
 Cb
-he
+sa
 ud
 ud
 ud
@@ -49847,28 +50513,29 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
-he
+sa
+sa
 eU
-he
-he
+sa
+sa
 xT
 xT
 xT
+xT
 he
-zc
-zc
-zc
-zc
-zc
+HL
+rQ
+rQ
+rQ
+rQ
 he
+WM
 zc
-zc
-zc
-zc
+KF
+Gs
 he
 pn
 dn
@@ -49879,7 +50546,6 @@ QA
 QA
 dn
 pn
-xT
 xT
 xT
 xT
@@ -49910,11 +50576,11 @@ Cb
 Cb
 Cb
 Cb
-he
+sa
 ud
 ud
 ud
-he
+sa
 pn
 pn
 pn
@@ -50149,44 +50815,44 @@ pn
 pn
 pn
 pn
+sa
 Oe
 Oe
-Oe
-he
+sa
 eU
 QA
-he
-pn
-xT
-xT
-xT
-dn
-zc
-zc
-zc
-zc
-zc
-dn
-zc
-zc
-zc
-zc
-he
-pn
-he
-QA
-QA
-QA
-QA
-QA
-dn
+sa
 pn
 xT
 xT
 xT
 xT
-pn
 aG
+mJ
+yf
+Ws
+UU
+rQ
+he
+dG
+tb
+Qu
+Qx
+he
+pn
+he
+QA
+QA
+QA
+QA
+QA
+dn
+pn
+xT
+xT
+xT
+pn
+dn
 Dl
 vl
 Fj
@@ -50212,11 +50878,11 @@ pn
 Cb
 Cb
 Cb
-he
-he
+sa
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -50451,29 +51117,30 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 eU
 eU
-he
+sa
 pn
 xT
 xT
 xT
-dn
-zc
-zc
-zc
-zc
-zc
-dn
-zc
-zc
-zc
-zc
+xT
+aG
+HL
+wO
+xz
+KG
+pk
 he
+Py
+HA
+HA
+Kj
+aG
 pn
 he
 he
@@ -50486,9 +51153,8 @@ pn
 xT
 xT
 xT
-xT
 pn
-aG
+nV
 wc
 Fj
 Le
@@ -50515,10 +51181,10 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -50753,29 +51419,30 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 QA
 eU
-he
+sa
 pn
 xT
 xT
 xT
+xT
 he
-zc
-zc
-zc
-zc
-zc
+VB
+wj
+rQ
+yx
+Dc
 he
-zc
-zc
-zc
-zc
-he
+OW
+pU
+lV
+Kj
+aG
 pn
 he
 QA
@@ -50788,9 +51455,8 @@ pn
 xT
 xT
 xT
-xT
 pn
-aG
+dn
 xY
 Fj
 sK
@@ -50820,7 +51486,7 @@ pn
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -51053,30 +51719,31 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 pn
 xT
 xT
 xT
-he
-zc
-he
+xT
 he
 he
+tW
+aG
+aG
 he
 he
-zc
-zc
-zc
-zc
+pO
+Tw
+UI
+PI
 he
 pn
 he
@@ -51090,9 +51757,8 @@ pn
 xT
 xT
 xT
-xT
 pn
-aG
+dn
 Ks
 Iq
 dc
@@ -51117,14 +51783,14 @@ xT
 xT
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -51368,17 +52034,18 @@ pn
 xT
 xT
 xT
-pn
-pn
-pn
-pn
-pn
-pn
+lW
+Cb
+AT
+Eh
+JJ
+FI
+Lw
 he
-he
-dn
-dn
-he
+Iv
+Te
+wW
+Vw
 he
 pn
 he
@@ -51388,7 +52055,6 @@ QA
 he
 pn
 xT
-pn
 pn
 xT
 xT
@@ -51419,7 +52085,7 @@ xT
 xT
 xT
 xT
-he
+sa
 ud
 ud
 ud
@@ -51670,18 +52336,19 @@ pn
 pn
 xT
 xT
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
+lW
+SC
+XZ
+fA
+xP
+Ok
+Cb
+he
+he
+aG
+aG
+he
+he
 pn
 he
 he
@@ -51691,19 +52358,18 @@ he
 pn
 xT
 pn
-pn
 xT
 xT
 xT
 pn
 pn
 he
-aG
-aG
-aG
-aG
-aG
-aG
+dn
+dn
+dn
+dn
+dn
+dn
 he
 he
 he
@@ -51959,24 +52625,25 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 zc
 zc
 zc
 zc
-he
+sa
 pn
 pn
 xT
 xT
 xT
-pn
-pn
-pn
-pn
-pn
+lW
+Np
+Ag
+Ag
+Ag
+pN
 pn
 pn
 pn
@@ -51992,7 +52659,6 @@ pn
 pn
 xT
 xT
-pn
 pn
 xT
 xT
@@ -52023,14 +52689,14 @@ xT
 xT
 xT
 pn
-he
+sa
 ud
 ud
 ud
 ud
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -52276,16 +52942,16 @@ xT
 xT
 xT
 pn
-he
-he
-dn
-he
-he
-he
-he
-he
-he
-he
+pn
+pn
+pn
+pn
+pn
+pn
+pn
+pn
+pn
+pn
 pn
 he
 he
@@ -52578,15 +53244,15 @@ pn
 xT
 xT
 xT
-dn
-QA
-QA
-QA
 he
-QA
-QA
-QA
-QA
+he
+dn
+he
+he
+he
+he
+he
+he
 he
 pn
 he
@@ -52865,14 +53531,14 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 zc
 zc
 zc
 zc
-he
+sa
 pn
 pn
 pn
@@ -52880,16 +53546,16 @@ pn
 pn
 xT
 xT
-QA
-QA
-QA
-QA
-QA
-QA
-QA
-QA
-QA
 dn
+QA
+QA
+QA
+he
+QA
+QA
+QA
+QA
+he
 pn
 he
 Oe
@@ -52929,14 +53595,14 @@ xT
 xT
 xT
 pn
-he
+sa
 ud
 ud
 ud
 ud
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -53182,11 +53848,11 @@ pn
 pn
 xT
 xT
-dn
 QA
 QA
 QA
-he
+QA
+QA
 QA
 QA
 QA
@@ -53484,10 +54150,10 @@ Cb
 Cb
 xT
 xT
-he
 dn
 QA
-dn
+QA
+QA
 he
 QA
 QA
@@ -53533,7 +54199,7 @@ xT
 xT
 xT
 pn
-he
+sa
 ud
 ud
 ud
@@ -53771,14 +54437,14 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 Cb
@@ -53786,16 +54452,16 @@ Cb
 Cb
 xT
 xT
-xT
-pn
-pn
-pn
+he
+dn
+QA
+dn
 he
 QA
 QA
 QA
 QA
-he
+dn
 pn
 he
 Oe
@@ -53835,14 +54501,14 @@ xT
 xT
 xT
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -54075,10 +54741,10 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -54089,14 +54755,14 @@ Cb
 xT
 xT
 xT
-xT
-xT
 pn
-he
+pn
+pn
 he
 QA
-dn
-dn
+QA
+QA
+QA
 he
 pn
 he
@@ -54139,10 +54805,10 @@ xT
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -54377,29 +55043,29 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
+sa
+pn
+pn
+pn
+pn
+Cb
+Cb
+Cb
+Cb
+pn
+xT
+xT
+xT
+pn
 he
-pn
-pn
-pn
-pn
-Cb
-Cb
-Cb
-Cb
-pn
-xT
-xT
-xT
-xT
-xT
-xT
-xT
-xT
-xT
-pn
+he
+QA
+dn
+dn
+he
 pn
 pn
 pn
@@ -54444,7 +55110,7 @@ pn
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -54677,14 +55343,14 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
 Oe
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -54741,14 +55407,14 @@ xT
 xT
 xT
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
 Oe
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -55043,14 +55709,14 @@ xT
 xT
 xT
 pn
-he
+sa
 Oe
 Oe
 Oe
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -55345,14 +56011,14 @@ xT
 xT
 xT
 pn
-he
+sa
 Oe
 Oe
 Oe
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -55583,17 +56249,17 @@ pn
 pn
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Ec
 Ec
 Ec
 Ec
-he
+sa
 IH
 IH
-he
+sa
 pn
 pn
 pn
@@ -55647,14 +56313,14 @@ xT
 xT
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
 Oe
-he
-he
-he
+sa
+sa
+sa
 pn
 pn
 pn
@@ -55907,15 +56573,15 @@ pn
 pn
 pn
 pn
-he
+sa
 dn
 dn
 dn
-he
+sa
 QA
 QA
-he
-he
+sa
+sa
 pn
 pn
 pn
@@ -55926,12 +56592,12 @@ xT
 xT
 xT
 xT
-he
+sa
 dn
 dn
-he
+sa
 ud
-he
+sa
 pn
 pn
 pn
@@ -55951,10 +56617,10 @@ pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -56197,19 +56863,19 @@ Ec
 Ec
 Ec
 Ec
-he
-he
+sa
+sa
 dn
 dn
 dn
 dn
-he
+sa
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 QA
 QA
 QA
@@ -56217,7 +56883,7 @@ QA
 QA
 QA
 QA
-he
+sa
 pn
 pn
 pn
@@ -56233,7 +56899,7 @@ ud
 ud
 ud
 ud
-he
+sa
 pn
 pn
 pn
@@ -56256,7 +56922,7 @@ pn
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -56487,11 +57153,11 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 Ec
 Ec
 Ec
@@ -56499,7 +57165,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 eU
 eU
 eU
@@ -56508,10 +57174,10 @@ eU
 eU
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 QA
 QA
 QA
@@ -56519,7 +57185,7 @@ QA
 QA
 QA
 QA
-he
+sa
 pn
 pn
 pn
@@ -56535,34 +57201,34 @@ ud
 ud
 ud
 ud
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
-he
-he
+sa
+sa
+sa
 Oe
 Oe
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -56801,7 +57467,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 eU
 eU
 eU
@@ -56810,10 +57476,10 @@ eU
 eU
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 QA
 QA
 QA
@@ -56821,8 +57487,8 @@ QA
 QA
 QA
 QA
-he
-he
+sa
+sa
 pn
 pn
 xT
@@ -56831,31 +57497,31 @@ xT
 xT
 pn
 pn
-he
-he
+sa
+sa
 ud
 ud
 ud
 ud
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 Oe
 Oe
 Oe
@@ -56864,7 +57530,7 @@ Oe
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -57103,7 +57769,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 eU
 eU
 eU
@@ -57112,10 +57778,10 @@ eU
 eU
 eU
 eU
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 QA
 QA
 QA
@@ -57123,8 +57789,8 @@ QA
 QA
 QA
 QA
-he
-he
+sa
+sa
 pn
 pn
 xT
@@ -57133,19 +57799,19 @@ xT
 xT
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Oe
-he
-he
+sa
+sa
 Oe
 Oe
-he
+sa
 Oe
-he
-he
+sa
+sa
 Ec
 Ec
 Ec
@@ -57154,19 +57820,19 @@ Ec
 Ec
 Ec
 Ec
-he
-he
+sa
+sa
 Oe
-he
-Oe
-Oe
+sa
 Oe
 Oe
 Oe
 Oe
 Oe
 Oe
-he
+Oe
+Oe
+sa
 pn
 pn
 pn
@@ -57417,16 +58083,16 @@ eU
 Oe
 Oe
 Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 QA
 QA
 QA
 QA
-he
-he
+sa
+sa
 pn
 pn
 xT
@@ -57435,7 +58101,7 @@ xT
 xT
 pn
 pn
-he
+sa
 Oe
 Oe
 Oe
@@ -57447,7 +58113,7 @@ Oe
 Oe
 Oe
 Oe
-he
+sa
 Ec
 Ec
 Ec
@@ -57456,7 +58122,7 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 Oe
 Oe
 Oe
@@ -57468,7 +58134,7 @@ Oe
 Oe
 Oe
 Oe
-he
+sa
 pn
 pn
 pn
@@ -57695,7 +58361,7 @@ pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
@@ -57719,7 +58385,7 @@ eU
 Oe
 Oe
 Oe
-he
+sa
 QA
 QA
 QA
@@ -57727,8 +58393,8 @@ QA
 QA
 QA
 QA
-he
-he
+sa
+sa
 pn
 pn
 xT
@@ -57737,7 +58403,7 @@ xT
 xT
 pn
 pn
-he
+sa
 Oe
 Oe
 Oe
@@ -57749,7 +58415,7 @@ Oe
 Oe
 Oe
 Oe
-he
+sa
 Ec
 Ec
 Ec
@@ -57758,19 +58424,19 @@ Ec
 Ec
 Ec
 Ec
-he
+sa
 Oe
 Oe
-he
-he
-he
+sa
+sa
+sa
 hC
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -57997,40 +58663,40 @@ pn
 pn
 pn
 pn
-he
-he
+sa
+sa
 Ec
-he
-he
+sa
+sa
 eU
-he
+sa
 dn
 dn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 eU
 eU
-he
+sa
 EB
 EB
-he
+sa
 eU
 eU
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 QA
 QA
-he
+sa
 EB
 EB
 EB
 EB
-he
-he
+sa
+sa
 pn
 pn
 xT
@@ -58039,40 +58705,40 @@ xT
 xT
 pn
 pn
-he
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
+sa
 Oe
 Oe
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Ec
 Ec
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 Ec
 Ec
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 hC
 hC
 hC
 hC
-he
+sa
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -58299,40 +58965,40 @@ pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
-he
+sa
 eU
 eU
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 QA
 QA
-he
+sa
 pn
 pn
 pn
 pn
-he
-he
+sa
+sa
 pn
 pn
 xT
@@ -58341,40 +59007,40 @@ xT
 xT
 pn
 pn
-he
-he
+sa
+sa
 pn
 pn
 pn
 pn
-he
+sa
 Oe
 Oe
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 Ec
 Ec
-he
+sa
 pn
 pn
-he
+sa
 hC
 hC
 hC
 hC
-he
+sa
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -58610,25 +59276,25 @@ eU
 eU
 eU
 eU
-he
+sa
 pn
 pn
-he
+sa
 EB
 EB
-he
+sa
 pn
 pn
-he
+sa
 EB
 EB
-he
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
 pn
@@ -58649,34 +59315,34 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
-he
-he
-he
+sa
+sa
+sa
+sa
 pn
 pn
-he
+sa
 hC
 hC
 hC
 hC
-he
+sa
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -58903,16 +59569,16 @@ pn
 pn
 pn
 pn
-he
+sa
 Ec
 Ec
 Ec
-he
+sa
 eU
 eU
 eU
 eU
-he
+sa
 pn
 pn
 pn
@@ -58969,16 +59635,16 @@ pn
 pn
 pn
 pn
-he
+sa
 hC
 hC
 hC
 hC
-he
+sa
 Ec
 Ec
 Ec
-he
+sa
 pn
 pn
 pn
@@ -59205,16 +59871,16 @@ pn
 pn
 pn
 pn
-he
-he
+sa
+sa
 EB
-he
-he
-he
+sa
+sa
+sa
 EB
 EB
-he
-he
+sa
+sa
 pn
 pn
 pn
@@ -59271,16 +59937,16 @@ pn
 pn
 pn
 pn
-he
-he
-he
-he
-he
-he
-he
-he
-he
-he
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
+sa
 pn
 pn
 xT
