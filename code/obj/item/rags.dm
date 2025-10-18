@@ -11,7 +11,7 @@
 	New()
 		..()
 		src.create_reagents(10)
-		if(prob(80))
+		if(src.name == "rag" && prob(80))
 			src.icon_state = "rag-basewhite-redstripe"
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -52,9 +52,7 @@
 	name = "blue rag"
 	desc = "a blue rag that smells faintly of old blood."
 	icon_state = "rag-baseblue"
-	New()
-		..()
-		src.icon_state = "rag-baseblue"
+
 
 
 
