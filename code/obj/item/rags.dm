@@ -34,7 +34,6 @@
 			var/obj/item/reagent_containers/food/drinks/d = target
 			d.drank_from = null
 			d.clean_forensic()
-			JOB_XP(user, "Janitor", 1)
 			user.visible_message("<span class='notice'>[user] wipes down [d] with [src].</span>")
 			return
 
@@ -44,7 +43,6 @@
 
 		if (istype(target, /obj/item/clothing/shoes) || istype(target, /obj/item/clothing/glasses))
 			user.visible_message("<span class='notice'>[user] cleans [his_or_her(user)] [target] with [src].</span>")
-			JOB_XP(user, "Janitor", 1)
 			target.clean_forensic()
 			return
 
