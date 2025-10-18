@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rag-basewhite"
 	hint = "this can clean your glasses, hands, cups, counters, shoes, and probably alot of other things."
-
+	w_class = W_CLASS_SMALL
 	flags = SUPPRESSATTACK
 	event_handler_flags = USE_FLUID_ENTER | USE_GRAB_CHOKE
 
