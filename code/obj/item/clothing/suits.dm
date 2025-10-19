@@ -1854,7 +1854,7 @@
 		setProperty("meleeprot", 3)
 		setProperty("rangedprot", 0.7)
 
-/obj/item/clothing/suit/cryo/sd
+/obj/item/clothing/suit/cryo/sg
 	name = "surveyor general's cryogenic coat"
 	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the surveyor general, and has some kevlar in the lining."
 	icon_state = "cryocoat-sg"

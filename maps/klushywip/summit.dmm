@@ -96,9 +96,9 @@
 /area/space)
 "bj" = (
 /obj/storage/closet/wardrobe/red/security_gimmick,
-/obj/item/clothing/suit/wintercoat/security,
-/obj/item/clothing/suit/wintercoat/security,
-/obj/item/clothing/suit/wintercoat/security,
+/obj/item/clothing/suit/cryo/sec,
+/obj/item/clothing/suit/cryo/sec,
+/obj/item/clothing/suit/cryo/sec,
 /turf/floor,
 /area/space)
 "bo" = (
@@ -229,7 +229,7 @@
 /area/space)
 "cy" = (
 /obj/storage/secure/closet/security/equipment,
-/obj/item/clothing/suit/wintercoat/security,
+/obj/item/clothing/suit/cryo/sec,
 /turf/floor,
 /area/space)
 "cK" = (
@@ -1070,7 +1070,7 @@
 	pixel_x = -1;
 	pixel_y = -4
 	},
-/obj/item/clothing/suit/wintercoat,
+/obj/item/clothing/suit/cryo,
 /turf/floor/carpet/grime,
 /area/space)
 "lH" = (
@@ -2720,7 +2720,7 @@
 	pixel_x = -1;
 	pixel_y = -4
 	},
-/obj/item/clothing/suit/wintercoat,
+/obj/item/clothing/suit/cryo,
 /turf/floor/carpet/grime,
 /area/space)
 "Bm" = (
@@ -2773,6 +2773,12 @@
 /obj/machinery/light/beacon,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
+"BL" = (
+/obj/item/clothing/suit/cryo/sd,
+/turf/floor/green/checker{
+	dir = 4
+	},
+/area/space)
 "Cb" = (
 /turf/space/nevicata/wastes/plating,
 /area/space)
@@ -2806,12 +2812,6 @@
 /area/space)
 "CC" = (
 /obj/storage/closet/wardrobe,
-/obj/item/clothing/suit/wintercoat,
-/obj/item/clothing/suit/wintercoat,
-/obj/item/clothing/suit/wintercoat,
-/obj/item/clothing/suit/wintercoat,
-/obj/item/clothing/suit/wintercoat,
-/obj/item/clothing/suit/wintercoat,
 /obj/item/clothing/head/blue,
 /obj/item/clothing/head/blue,
 /obj/item/clothing/head/black,
@@ -2820,7 +2820,10 @@
 /obj/item/clothing/head/black,
 /obj/item/clothing/gloves/black,
 /obj/item/clothing/gloves/black,
-/obj/item/clothing/gloves/black,
+/obj/item/clothing/suit/cryo,
+/obj/item/clothing/suit/cryo,
+/obj/item/clothing/suit/cryo,
+/obj/item/clothing/suit/cryo,
 /turf/floor/carpet/grime,
 /area/space)
 "CI" = (
@@ -3560,7 +3563,7 @@
 /area/space)
 "JB" = (
 /obj/storage/secure/closet/security/equipment,
-/obj/item/clothing/suit/wintercoat/security,
+/obj/item/clothing/suit/cryo/sec,
 /turf/floor/grime,
 /area/space)
 "JE" = (
@@ -47266,7 +47269,7 @@ sa
 eU
 eU
 sa
-eU
+BL
 eU
 eU
 eU
