@@ -244,9 +244,6 @@
 		for (var/obj/item/grab/G in src.equipped_list(check_for_magtractor = 0))
 			G.process(life_mult)
 
-		for (var/obj/item/hand_warmer/H in src.equipped_list(0))
-			H.heating(src)
-
 		if (!can_act(M=src,include_cuffs=0))
 			actions.interrupt(src, INTERRUPT_STUNNED)
 

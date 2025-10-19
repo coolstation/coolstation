@@ -462,14 +462,6 @@
 	},
 /turf/floor/sanitary/white,
 /area/space)
-"eM" = (
-/obj/landmark/start{
-	name = "Site Director"
-	},
-/turf/floor/green/checker{
-	dir = 4
-	},
-/area/space)
 "eP" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -889,10 +881,6 @@
 /obj/storage/secure/crate,
 /turf/floor/plating,
 /area/space)
-"ju" = (
-/obj/item/clothing/suit/cryo/eng,
-/turf/space/nevicata/wastes/beaten,
-/area/space)
 "jx" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/gun/modular/NT/shotty{
@@ -1139,10 +1127,6 @@
 	pixel_y = 7
 	},
 /turf/floor/black,
-/area/space)
-"mh" = (
-/obj/item/clothing/suit/cryo/recon,
-/turf/space/nevicata/wastes/beaten,
 /area/space)
 "mi" = (
 /turf/floor/bluewhite{
@@ -1413,10 +1397,6 @@
 	dir = 4
 	},
 /area/space)
-"oO" = (
-/obj/item/clothing/suit/cryo/sec,
-/turf/space/nevicata/wastes/beaten,
-/area/space)
 "oP" = (
 /obj/decal/tile_edge/line/yellow{
 	dir = 1;
@@ -1635,10 +1615,6 @@
 	pixel_y = 2
 	},
 /obj/railing/yellow,
-/turf/space/nevicata/wastes/beaten,
-/area/space)
-"qA" = (
-/obj/item/clothing/suit/cryo,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
 "qH" = (
@@ -2289,10 +2265,6 @@
 	pixel_y = 5
 	},
 /turf/floor/carpet/grime3,
-/area/space)
-"xi" = (
-/obj/item/clothing/suit/cryo/jan,
-/turf/space/nevicata/wastes/beaten,
 /area/space)
 "xj" = (
 /obj/decal/cleanable/dirt/random,
@@ -3169,10 +3141,6 @@
 /obj/decal/snowbits,
 /turf/floor/wood/five,
 /area/space)
-"Fo" = (
-/obj/item/clothing/suit/cryo/sg,
-/turf/space/nevicata/wastes/beaten,
-/area/space)
 "Fq" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor,
@@ -3526,10 +3494,6 @@
 "IJ" = (
 /obj/storage/secure/closet/fridge/blood,
 /turf/floor/blue/checker,
-/area/space)
-"IM" = (
-/obj/item/clothing/suit/cryo/sd,
-/turf/space/nevicata/wastes/beaten,
 /area/space)
 "IN" = (
 /obj/machinery/drainage,
@@ -4244,10 +4208,6 @@
 /area/space)
 "PO" = (
 /turf/floor/grass,
-/area/space)
-"PQ" = (
-/obj/item/clothing/suit/cryo/log,
-/turf/space/nevicata/wastes/beaten,
 /area/space)
 "PV" = (
 /turf/floor/carpet/purple/standard,
@@ -5240,10 +5200,6 @@
 /obj/machinery/vending/minibar,
 /turf/floor/industrial,
 /area/space)
-"Yf" = (
-/obj/item/clothing/suit/cryo/med,
-/turf/space/nevicata/wastes/beaten,
-/area/space)
 "Yk" = (
 /obj/machinery/light/fluorescent/ceiling/purpleish,
 /turf/floor/carpet/grime,
@@ -5371,9 +5327,10 @@
 /area/space)
 "ZB" = (
 /obj/storage/closet/medicalclothes,
-/obj/item/clothing/suit/wintercoat/medical,
-/obj/item/clothing/suit/wintercoat/medical,
-/obj/item/clothing/suit/wintercoat/medical,
+/obj/item/clothing/suit/cryo/med,
+/obj/item/clothing/suit/cryo/med,
+/obj/item/clothing/suit/cryo/med,
+/obj/item/clothing/suit/cryo/med,
 /turf/floor/blue/checker,
 /area/space)
 "ZD" = (
@@ -47594,7 +47551,7 @@ eU
 eU
 sa
 eU
-eM
+eU
 eU
 eU
 dn
@@ -50920,7 +50877,7 @@ Cb
 xT
 xT
 xT
-qA
+xT
 xT
 dn
 Wa
@@ -51222,7 +51179,7 @@ Cb
 xT
 xT
 xT
-oO
+xT
 xT
 dn
 bf
@@ -51524,7 +51481,7 @@ Cb
 wZ
 xT
 pn
-ju
+xT
 wj
 sa
 dn
@@ -51826,7 +51783,7 @@ Cb
 wZ
 pn
 pn
-xi
+xT
 xT
 ZU
 ZH
@@ -52128,7 +52085,7 @@ Lb
 qy
 pn
 xT
-PQ
+xT
 xT
 sa
 AI
@@ -52430,7 +52387,7 @@ he
 KM
 pn
 xT
-Yf
+xT
 xT
 dn
 nA
@@ -52732,7 +52689,7 @@ aG
 pn
 pn
 xT
-mh
+xT
 xT
 dn
 gf
@@ -53034,7 +52991,7 @@ he
 pn
 pn
 xT
-IM
+xT
 wj
 sa
 mB
@@ -53336,7 +53293,7 @@ aG
 pn
 pn
 xT
-Fo
+xT
 xT
 xT
 Cb

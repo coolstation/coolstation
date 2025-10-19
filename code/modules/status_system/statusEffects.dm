@@ -1855,6 +1855,27 @@
 			violent_twitch(owner)
 		. = ..(timePassed)
 
+/datum/statusEffect/hand_warmer
+	id = "hand_warmer"
+	name = "warm (hand warmer)"
+	desc = "A hand warmer is heating you up."
+	icon_state = "warm"
+	maxDuration = 6000
+	unique = 1
+
+	var/tickCount = 0
+	var/tickSpacing = 20
+
+	onUpdate(timePassed)
+		tickCount += timePassed
+		var/times = (tickCount / tickSpacing)
+		if(times >= 1 && ismob(owner))
+			tickCount -= (round(times) * tickSpacing)
+			var/mob/M = owner
+			if (M.bodytemperature < M.base_body_temp + 20)
+				for(var/i in 1 to times)
+					M.bodytemperature += 6
+
 ///give lings a timer to look at on this. The ability cooldown already functioned as such, but this is more explicit.
 /datum/statusEffect/regenerative_stasis
 	id = "regenerative_stasis"

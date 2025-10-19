@@ -1784,7 +1784,7 @@
 
 	setupProperties()
 		..()
-		setProperty("coldprot", 70)
+		setProperty("coldprot", 60)
 		setProperty("meleeprot", 1)
 		setProperty("rangedprot", 0.2)
 
@@ -1796,7 +1796,7 @@
 
 	setupProperties()
 		..()
-		setProperty("coldprot", 70)
+		setProperty("coldprot", 60)
 		setProperty("meleeprot", 3)
 		setProperty("rangedprot", 0.7)
 
@@ -1820,7 +1820,7 @@
 
 	setupProperties()
 		..()
-		setProperty("coldprot", 85) //they're out there for a while.
+		setProperty("coldprot", 70) //they're out there for a while.
 		setProperty("meleeprot", 1)
 		setProperty("rangedprot", 0.2)
 
