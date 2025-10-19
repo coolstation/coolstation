@@ -1872,7 +1872,7 @@
 		if(times >= 1 && ismob(owner))
 			tickCount -= (round(times) * tickSpacing)
 			var/mob/M = owner
-			if (M.bodytemperature < M.base_body_temp + 20)
+			if (M.bodytemperature < M.base_body_temp + 10)
 				for(var/i in 1 to times)
 					M.bodytemperature += 6
 
