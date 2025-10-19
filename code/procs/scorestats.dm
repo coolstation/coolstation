@@ -446,7 +446,7 @@ var/datum/score_tracker/score_tracker
 		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
 		. += "<B>Weades Growne:</B> [weadegrowne]<BR>"
 		. += "<B>Doinks Sparked:</B> [doinkssparked]<BR>"
-		. += "<B>Time To Cloner Destruction:</B> [score_tracker.cloner_broken_timestamp ? "[score_tracker.cloner_broken_timestamp] ticks" : "Never even happened."]<BR>"
+		. += "<B>Time To Cloner Destruction:</B> [score_tracker.cloner_broken_timestamp ? "[dstohms(score_tracker.cloner_broken_timestamp)]" : "Never even happened."]<BR>"
 #ifdef DATALOGGER
 		. += "<B>Shots Fired:</B> [game_stats.GetStat("gunfire")]<BR>"
 		. += "<B>Health and Safety violations:</B> [game_stats.GetStat("workplacesafety")]<BR>"
