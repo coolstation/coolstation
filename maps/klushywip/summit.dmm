@@ -463,8 +463,12 @@
 /turf/floor/sanitary/white,
 /area/space)
 "eM" = (
-/obj/wingrille_spawn/hardened,
-/turf/space/nevicata/wastes/beaten,
+/obj/landmark/start{
+	name = "Site Director"
+	},
+/turf/floor/green/checker{
+	dir = 4
+	},
 /area/space)
 "eP" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -885,6 +889,10 @@
 /obj/storage/secure/crate,
 /turf/floor/plating,
 /area/space)
+"ju" = (
+/obj/item/clothing/suit/cryo/eng,
+/turf/space/nevicata/wastes/beaten,
+/area/space)
 "jx" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/gun/modular/NT/shotty{
@@ -1133,7 +1141,7 @@
 /turf/floor/black,
 /area/space)
 "mh" = (
-/obj/wingrille_spawn/reinforced_crystal,
+/obj/item/clothing/suit/cryo/recon,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
 "mi" = (
@@ -1405,6 +1413,10 @@
 	dir = 4
 	},
 /area/space)
+"oO" = (
+/obj/item/clothing/suit/cryo/sec,
+/turf/space/nevicata/wastes/beaten,
+/area/space)
 "oP" = (
 /obj/decal/tile_edge/line/yellow{
 	dir = 1;
@@ -1623,6 +1635,10 @@
 	pixel_y = 2
 	},
 /obj/railing/yellow,
+/turf/space/nevicata/wastes/beaten,
+/area/space)
+"qA" = (
+/obj/item/clothing/suit/cryo,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
 "qH" = (
@@ -2274,6 +2290,10 @@
 	},
 /turf/floor/carpet/grime3,
 /area/space)
+"xi" = (
+/obj/item/clothing/suit/cryo/jan,
+/turf/space/nevicata/wastes/beaten,
+/area/space)
 "xj" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/black,
@@ -2773,12 +2793,6 @@
 /obj/machinery/light/beacon,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
-"BL" = (
-/obj/item/clothing/suit/cryo/sd,
-/turf/floor/green/checker{
-	dir = 4
-	},
-/area/space)
 "Cb" = (
 /turf/space/nevicata/wastes/plating,
 /area/space)
@@ -3156,7 +3170,7 @@
 /turf/floor/wood/five,
 /area/space)
 "Fo" = (
-/obj/wingrille_spawn/reinforced,
+/obj/item/clothing/suit/cryo/sg,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
 "Fq" = (
@@ -3512,6 +3526,10 @@
 "IJ" = (
 /obj/storage/secure/closet/fridge/blood,
 /turf/floor/blue/checker,
+/area/space)
+"IM" = (
+/obj/item/clothing/suit/cryo/sd,
+/turf/space/nevicata/wastes/beaten,
 /area/space)
 "IN" = (
 /obj/machinery/drainage,
@@ -4228,7 +4246,7 @@
 /turf/floor/grass,
 /area/space)
 "PQ" = (
-/obj/wingrille_spawn/bulletproof,
+/obj/item/clothing/suit/cryo/log,
 /turf/space/nevicata/wastes/beaten,
 /area/space)
 "PV" = (
@@ -5221,6 +5239,10 @@
 "Ye" = (
 /obj/machinery/vending/minibar,
 /turf/floor/industrial,
+/area/space)
+"Yf" = (
+/obj/item/clothing/suit/cryo/med,
+/turf/space/nevicata/wastes/beaten,
 /area/space)
 "Yk" = (
 /obj/machinery/light/fluorescent/ceiling/purpleish,
@@ -47269,7 +47291,7 @@ sa
 eU
 eU
 sa
-BL
+eU
 eU
 eU
 eU
@@ -47572,7 +47594,7 @@ eU
 eU
 sa
 eU
-eU
+eM
 eU
 eU
 dn
@@ -50898,7 +50920,7 @@ Cb
 xT
 xT
 xT
-xT
+qA
 xT
 dn
 Wa
@@ -51200,7 +51222,7 @@ Cb
 xT
 xT
 xT
-xT
+oO
 xT
 dn
 bf
@@ -51502,7 +51524,7 @@ Cb
 wZ
 xT
 pn
-xT
+ju
 wj
 sa
 dn
@@ -51804,7 +51826,7 @@ Cb
 wZ
 pn
 pn
-xT
+xi
 xT
 ZU
 ZH
@@ -52408,7 +52430,7 @@ he
 KM
 pn
 xT
-xT
+Yf
 xT
 dn
 nA
@@ -53012,7 +53034,7 @@ he
 pn
 pn
 xT
-xT
+IM
 wj
 sa
 mB
@@ -53918,7 +53940,7 @@ he
 pn
 pn
 xT
-eM
+xT
 xT
 xT
 pn

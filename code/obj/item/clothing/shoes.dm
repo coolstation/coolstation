@@ -537,6 +537,17 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 		..()
 		setProperty("coldprot", 15)
 
+/obj/item/clothing/shoes/winterboots
+	name = "winter boots"
+	desc = "Thick boots to keep your toes thawed."
+	icon_state = "winter"
+	step_sound = "step_military" //these boots are for walking or somethijng idk
+	step_priority = STEP_PRIORITY_LOW
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 20)
+
 /obj/item/clothing/shoes/gogo
 	name = "go-go boots"
 	desc = "These boots complete your Space Age look."
