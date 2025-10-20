@@ -502,6 +502,22 @@ ASC: Aux. Solar Control<BR>
 	The cryogenics chamber will automatically eject patients once their health is back to normal, but post-cryo evaluation is recommended nevertheless.
 	"}
 
+/obj/item/paper/sgletter
+	name = "'Strongly Worded Letter'"
+	info = {"<h4><span style='font-family: Special Elite, cursive;'>DEAR SITE DIRECTOR,</span></h4>
+	<p>
+    The matter of your refusal to co-operate with <i>contract binding</i> orders regarding my departments has once again been brought to my attention. Your unwillingness to come to a single compromise with any items of my various, very important, and pressing affairs is simply unacceptable. I, once again, writing to voice my dissatisfaction with your lacklustre, negligent, and misguided management of the Security, Civilian, and Engineering departments. Your blatant and flippant refusal to work with my departments sets a poor example for your underlings to follow-at the detriment of the entire instillation. Need I remind you that your authority does not extend past the 51/49 station line.
+    Any further incursion upon my authority, refusal to co-operate, bothering of my staff, or impeding of my dutiful survey responsibilities will result in legal action.<br>
+	<br>
+	Consider your future actions with my dissatisfaction and the sake of the outpost in mind, Director.
+	<br>
+	Sincerely,<br>
+    Nevicata Survey Instillation 13 Surveyor General,<br>
+	Director of Medical, Logistics, Reconnaissance and Research departments,<br>
+	PhD. MD. MFA.
+	_________
+	</P>"}
+
 /obj/item/paper/cargo_instructions
 	name = "'Cargo Bay Setup Instructions'"
 	info = "In order to properly set up the cargo computer, both the incoming and outgoing supply pads must be directly or diagonally adjacent to the computer."
