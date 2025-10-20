@@ -2012,9 +2012,7 @@
 				random_brute_damage(schmuck, 10)
 				schmuck.show_text("You fall down the pipe trunk!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
-				#ifdef DATALOGGER
 				game_stats.Increment("workplacesafety")
-				#endif
 
 				var/obj/disposalholder/D = new (src)
 				D.set_loc(src)

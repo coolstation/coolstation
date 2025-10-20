@@ -49,8 +49,6 @@
 #define GAME_STATE_PLAYING		4
 #define GAME_STATE_FINISHED		5
 
-#define DATALOGGER
-
 #define CREW_OBJECTIVES
 
 #define MISCREANTS

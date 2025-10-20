@@ -611,10 +611,8 @@ proc/is_teleportation_allowed(var/turf/T)
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/networked/telepad, processbadeffect), effect)
 
 	proc/processbadeffect(var/effect)
-		#ifdef DATALOGGER
 		if (!(effect in list("", "minorsummon", "getrandom", "buzz"))) //filter out some ones that won't harm anyone
 			game_stats.Increment("workplacesafety")
-		#endif
 		switch(effect)
 			if("")
 				return

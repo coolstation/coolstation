@@ -714,9 +714,7 @@ var/global/list/module_editors = list()
 	logTheThing("combat", src, null, "is struck by [AM] [AM.is_open_container() ? "[log_reagents(AM)]" : ""] at [log_loc(src)].")
 	random_brute_damage(src, AM.throwforce,1)
 
-	#ifdef DATALOGGER
 	game_stats.Increment("violence")
-	#endif
 
 	if(AM.throwforce >= 40)
 		src.throw_at(get_edge_target_turf(src,get_dir(AM, src)), 10, 1)

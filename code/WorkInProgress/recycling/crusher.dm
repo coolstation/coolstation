@@ -50,9 +50,7 @@
 			qdel(O)
 		logTheThing("combat", M, null, "is ground up in a crusher at [log_loc(src)].")
 		M.gib()
-		#ifdef DATALOGGER
 		game_stats.Increment("workplacesafety")
-		#endif
 	else if(isobj(AM))
 		var/obj/B = AM
 		tm_amt += B.m_amt

@@ -373,9 +373,7 @@
 		H.set_loc(src)
 		src.occupant = H
 		src.update_icon()
-#ifdef DATALOGGER
 		game_stats.Increment("sleeper")
-#endif
 		for (var/obj/O in src)
 			if (O == src.our_console) // don't barf out the internal sleeper console tia
 				continue
