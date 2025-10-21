@@ -354,7 +354,7 @@
 /obj/machinery/light/small/harsh/very{
 	dir = 8
 	},
-/turf/floor/white/grime,
+/turf/floor/sanitary,
 /area/space)
 "cL" = (
 /obj/machinery/manufacturer/medical,
@@ -733,7 +733,7 @@
 /turf/floor/white,
 /area/space)
 "eR" = (
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/command,
 /turf/floor/white/grime,
 /area/space)
 "eU" = (
@@ -930,9 +930,7 @@
 /turf/floor/carpet/clowncarpet,
 /area/space)
 "gm" = (
-/obj/storage/secure/closet/medical/uniforms,
-/obj/decal/cleanable/dirt/random,
-/turf/floor/white/grime,
+/turf/wall/auto/rivet/window/porthole,
 /area/space)
 "gp" = (
 /obj/noticeboard/persistent{
@@ -1141,10 +1139,8 @@
 /turf/space/nevicata/wastes/plating,
 /area/space)
 "ii" = (
-/obj/item/storage/toilet{
-	dir = 8
-	},
-/turf/floor/sanitary,
+/obj/table/wood/auto/desk,
+/turf/floor/carpet/red,
 /area/space)
 "ij" = (
 /obj/storage/secure/closet/brig,
@@ -1903,6 +1899,12 @@
 	},
 /turf/floor/cautionblack,
 /area/space)
+"nK" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/floor/wood/six,
+/area/space)
 "nL" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/red/side{
@@ -2332,8 +2334,7 @@
 /turf/floor/grey,
 /area/space)
 "qo" = (
-/obj/storage/secure/closet/medical/anesthetic,
-/turf/floor/white/grime,
+/turf/floor/wood/six,
 /area/space)
 "qt" = (
 /obj/stool/chair/red,
@@ -2877,11 +2878,8 @@
 /area/space)
 "tR" = (
 /obj/machinery/drainage,
-/obj/window/cubicle{
-	dir = 2
-	},
 /obj/machinery/shower{
-	dir = 4
+	dir = 8
 	},
 /turf/floor/sanitary,
 /area/space)
@@ -3553,9 +3551,14 @@
 /turf/floor/specialroom/bar,
 /area/space)
 "xZ" = (
-/obj/table/auto,
-/obj/item_dispenser/bedsheet,
-/turf/floor/white/grime,
+/obj/window/cubicle{
+	dir = 2
+	},
+/obj/machinery/drainage,
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/floor/sanitary,
 /area/space)
 "yc" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -3844,7 +3847,11 @@
 /turf/floor/specialroom/bar,
 /area/space)
 "Ak" = (
-/turf/wall/auto/rivet/window/square,
+/obj/decal/cleanable/dirt/random,
+/obj/item/storage/toilet{
+	dir = 8
+	},
+/turf/floor/sanitary,
 /area/space)
 "Am" = (
 /obj/machinery/recharge_station,
@@ -3949,9 +3956,6 @@
 /obj/item/body_bag,
 /obj/item/storage/box/evidence,
 /turf/floor/wood/five,
-/area/space)
-"Ba" = (
-/turf/wall/auto/rivet/window/porthole,
 /area/space)
 "Bc" = (
 /obj/decal/tile_edge/line/blue{
@@ -4390,6 +4394,11 @@
 	dir = 4
 	},
 /area/space)
+"DG" = (
+/obj/machinery/door/airlock/glass,
+/obj/decal/snowbits,
+/turf/floor/grime,
+/area/space)
 "DH" = (
 /obj/table/kitchen_island,
 /obj/item/plate/tray,
@@ -4430,7 +4439,12 @@
 /turf/floor/grass,
 /area/space)
 "DW" = (
-/turf/floor/white/grime,
+/obj/table/wood/auto/desk,
+/obj/item/device/light/candle{
+	pixel_y = 13;
+	pixel_x = -6
+	},
+/turf/floor/wood/six,
 /area/space)
 "DZ" = (
 /obj/machinery/light/beacon,
@@ -4445,7 +4459,8 @@
 /turf/floor/orangeblack,
 /area/space)
 "Ei" = (
-/turf/wall/s_wall,
+/obj/machinery/door/airlock/glass/command,
+/turf/floor/wood/six,
 /area/space)
 "El" = (
 /obj/table/auto,
@@ -4751,6 +4766,10 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/grey,
 /area/space)
+"Gb" = (
+/obj/decal/slipmat/torn,
+/turf/floor/grime,
+/area/space)
 "Gd" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/yellow/side,
@@ -4900,19 +4919,7 @@
 /turf/floor/industrial,
 /area/space)
 "GZ" = (
-/obj/storage/closet/wardrobe,
-/obj/item/clothing/head/blue,
-/obj/item/clothing/head/blue,
-/obj/item/clothing/head/black,
-/obj/item/clothing/head/black,
-/obj/item/clothing/head/black,
-/obj/item/clothing/head/black,
-/obj/item/clothing/gloves/black,
-/obj/item/clothing/gloves/black,
-/obj/item/clothing/gloves/black,
-/obj/item/clothing/suit/cryo,
-/obj/item/clothing/suit/cryo,
-/turf/floor/white/grime,
+/turf/wall/auto/rivet/window/square,
 /area/space)
 "Ha" = (
 /obj/storage/secure/crate/gear/armory/grenades,
@@ -5129,6 +5136,21 @@
 	pixel_x = -15
 	},
 /turf/floor/carpet/grime,
+/area/space)
+"In" = (
+/obj/table/wood/auto/desk,
+/obj/item/folder{
+	pixel_y = 5;
+	pixel_x = -22
+	},
+/obj/item/cigarbox{
+	pixel_y = 8
+	},
+/obj/item/device/light/zippo/gold{
+	pixel_x = -14;
+	pixel_y = 7
+	},
+/turf/floor/wood/six,
 /area/space)
 "Ip" = (
 /obj/stool/chair/comfy/blue{
@@ -5443,11 +5465,6 @@
 /obj/storage/secure/closet/medical/chemical,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/darkblue,
-/area/space)
-"Kl" = (
-/obj/machinery/door/airlock/glass,
-/obj/decal/snowbits,
-/turf/floor/grime,
 /area/space)
 "Km" = (
 /obj/table/glass/reinforced/auto,
@@ -5799,11 +5816,21 @@
 /area/space)
 "Mi" = (
 /obj/decal/cleanable/dirt/random,
-/turf/floor/white/grime,
+/turf/floor/sanitary,
 /area/space)
 "Ml" = (
 /obj/machinery/portable_reclaimer,
 /turf/floor/grey/side,
+/area/space)
+"Mn" = (
+/obj/submachine/chef_sink/chem_sink{
+	dir = 4;
+	pixel_x = -8
+	},
+/obj/window/cubicle{
+	dir = 2
+	},
+/turf/floor/sanitary,
 /area/space)
 "Mp" = (
 /obj/machinery/computer/card{
@@ -6441,6 +6468,21 @@
 	},
 /turf/floor,
 /area/space)
+"QH" = (
+/obj/filing_cabinet{
+	pixel_y = 15;
+	pixel_x = -9
+	},
+/obj/filing_cabinet{
+	pixel_y = 15;
+	pixel_x = 1
+	},
+/obj/filing_cabinet{
+	pixel_y = 15;
+	pixel_x = 11
+	},
+/turf/floor/wood/six,
+/area/space)
 "QJ" = (
 /obj/morgue{
 	dir = 8
@@ -6949,10 +6991,6 @@
 	},
 /turf/floor/specialroom/bar,
 /area/space)
-"TL" = (
-/obj/decal/slipmat/torn,
-/turf/floor/grime,
-/area/space)
 "TN" = (
 /obj/random_item_spawner/junk/one,
 /turf/space/nevicata/wastes,
@@ -7016,6 +7054,12 @@
 	},
 /turf/floor/wood/five,
 /area/space)
+"Ua" = (
+/obj/machinery/computer/announcement{
+	dir = 4
+	},
+/turf/floor/wood/six,
+/area/space)
 "Uc" = (
 /obj/window/reinforced/east,
 /turf/floor/carpet/blue/fancy/edge/se,
@@ -7043,12 +7087,7 @@
 /turf/floor/plating,
 /area/space)
 "UG" = (
-/obj/submachine/chef_sink/chem_sink{
-	dir = 4;
-	pixel_x = -8
-	},
-/obj/machinery/light/fluorescent/ceiling/cool,
-/turf/floor/sanitary,
+/turf/wall/s_wall,
 /area/space)
 "UH" = (
 /obj/machinery/vending/gunse{
@@ -46235,10 +46274,10 @@ pn
 xT
 pn
 kK
-Ei
+UG
 kK
-Ei
-Ei
+UG
+UG
 kK
 SS
 SS
@@ -46755,7 +46794,7 @@ Op
 Oe
 Oe
 Oe
-Oe
+Bd
 pn
 pn
 xT
@@ -46798,14 +46837,14 @@ xT
 xT
 xT
 xT
-xT
-xT
-xT
-xT
-xT
-xT
-xT
-xT
+he
+he
+dn
+he
+dn
+dn
+he
+he
 xT
 xT
 xT
@@ -47100,14 +47139,14 @@ he
 pn
 xT
 pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
+dn
+cY
+vE
+XM
+JU
+Hw
+cf
+dn
 xT
 xT
 xT
@@ -47402,14 +47441,14 @@ he
 pn
 xT
 pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
-pn
+he
+Vd
+xe
+Au
+Au
+kX
+Gd
+cT
 xT
 xT
 xT
@@ -47441,14 +47480,14 @@ xT
 pn
 xT
 xT
-Ba
+gm
 lF
 VU
 in
 mw
 jH
 Wj
-Ei
+UG
 SS
 SS
 SS
@@ -47703,15 +47742,15 @@ rQ
 he
 pn
 pn
-he
-he
-dn
-he
-dn
-dn
-he
-he
 pn
+dn
+bq
+Oz
+Au
+jc
+Zp
+mx
+CH
 xT
 xT
 xT
@@ -47750,7 +47789,7 @@ gM
 AE
 Wj
 Wj
-Ei
+UG
 SS
 SS
 SS
@@ -48005,15 +48044,15 @@ rO
 he
 pn
 pn
-dn
-cY
-vE
-XM
-JU
-Hw
-cf
-dn
 pn
+he
+Vd
+Au
+Au
+OL
+he
+he
+he
 xT
 xT
 xT
@@ -48051,8 +48090,8 @@ kK
 jj
 Wj
 Wj
-Ei
-Ei
+UG
+UG
 SS
 SS
 SS
@@ -48307,15 +48346,15 @@ he
 he
 pn
 pn
-he
-Vd
-xe
-Au
-Au
-kX
-Gd
-cT
 pn
+dn
+Dv
+kG
+ab
+LT
+az
+uP
+az
 xT
 xT
 xT
@@ -48352,8 +48391,8 @@ Wj
 kK
 Zt
 kK
-Ei
-Ei
+UG
+UG
 Wj
 SS
 SS
@@ -48609,15 +48648,15 @@ dN
 dn
 pn
 pn
-dn
-bq
-Oz
-Au
-jc
-Zp
-mx
-CH
 pn
+he
+he
+sa
+sa
+sa
+sa
+sa
+sa
 xT
 xT
 xT
@@ -48911,15 +48950,15 @@ Pa
 dn
 pn
 pn
-he
-Vd
-Au
-Au
-OL
-he
-he
-he
 pn
+pn
+pn
+sa
+QH
+qo
+Ua
+DW
+aG
 xT
 xT
 xT
@@ -49213,15 +49252,15 @@ hs
 dn
 pn
 pn
-dn
-Dv
-kG
-ab
-LT
-az
-uP
-az
-pn
+sa
+sa
+sa
+sa
+qo
+qo
+nK
+In
+aG
 xT
 xT
 xT
@@ -49514,12 +49553,12 @@ PO
 hs
 dn
 pn
+pn
 sa
+Mn
+tR
 sa
-sa
-sa
-sa
-sa
+Ei
 sa
 sa
 sa
@@ -49816,9 +49855,9 @@ xt
 dd
 he
 pn
+pn
 sa
-kk
-UG
+jE
 kk
 Wv
 ow
@@ -50118,8 +50157,8 @@ SJ
 he
 he
 pn
+pn
 sa
-tR
 fk
 xm
 sa
@@ -50420,7 +50459,7 @@ dn
 he
 pn
 pn
-sa
+pn
 sa
 aG
 sa
@@ -55587,7 +55626,7 @@ pn
 xT
 xT
 yM
-Ak
+GZ
 SN
 fp
 xR
@@ -56113,7 +56152,7 @@ pn
 pn
 pn
 sa
-gm
+Mi
 cK
 sa
 Wv
@@ -56415,13 +56454,13 @@ pn
 pn
 pn
 sa
-qo
-Mi
-sa
-kk
 ZX
+Ak
 sa
-pn
+jT
+jT
+jT
+sa
 xT
 xT
 xT
@@ -56717,13 +56756,13 @@ pn
 pn
 pn
 sa
-GZ
-DW
-Bd
 kk
-jE
+kk
+Wv
+jT
+OC
+ii
 sa
-pn
 xT
 xT
 xT
@@ -57022,10 +57061,10 @@ sa
 xZ
 Mi
 sa
-tR
+jT
+ii
 ii
 sa
-pn
 xT
 xT
 xT
@@ -57327,7 +57366,7 @@ sa
 sa
 sa
 sa
-pn
+sa
 xT
 xT
 xT
@@ -58309,7 +58348,7 @@ kK
 gX
 kK
 og
-Ak
+GZ
 pn
 pn
 pn
@@ -60378,8 +60417,8 @@ xT
 pn
 pn
 ip
-TL
-Kl
+Gb
+DG
 fp
 yL
 fp
@@ -61612,7 +61651,7 @@ sa
 sa
 sa
 sa
-Oe
+sa
 Oe
 Oe
 Oe
@@ -62807,8 +62846,8 @@ sa
 pn
 pn
 sa
-sa
-sa
+Oe
+Oe
 sa
 pn
 pn
@@ -63112,8 +63151,8 @@ sa
 Ec
 Ec
 sa
-sa
-sa
+Ec
+Ec
 sa
 Ec
 Ec
@@ -64014,7 +64053,7 @@ Oe
 Oe
 Oe
 Oe
-sa
+Oe
 Ec
 Ec
 Ec
@@ -64320,8 +64359,8 @@ sa
 Ec
 Ec
 sa
-sa
-sa
+Oe
+Oe
 sa
 Ec
 Ec
@@ -64921,14 +64960,14 @@ sa
 pn
 pn
 sa
-sa
-sa
+Oe
+Oe
 sa
 pn
 pn
 sa
-sa
-sa
+Oe
+Oe
 sa
 pn
 pn
