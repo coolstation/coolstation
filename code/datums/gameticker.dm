@@ -582,6 +582,12 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
+					/* todo:
+						,
+							"food_finished" = game_stats.GetStat("food_finished"),
+							"mining_ores_mined" = game_stats.GetStat("mining_ores_mined"),
+							"mining_turfs_cleared" = game_stats.GetStat("mining_turfs_cleared")
+						*/
 					ircbot.event("roundend", roundend_score)
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()

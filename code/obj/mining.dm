@@ -1391,6 +1391,8 @@
 						MAT.quality = src.quality
 
 				MAT.name = getOreQualityName(MAT.quality) + " [MAT.name]"
+				game_stats.Increment("mining_ores_mined")
+		game_stats.Increment("mining_turfs_cleared") //empty asteroid turfs also count
 		if(!icon_old)
 			icon_old = icon_state
 

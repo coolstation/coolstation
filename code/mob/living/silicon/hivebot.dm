@@ -330,10 +330,8 @@
 					if (M == src || !M.lying)
 						continue
 					message = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
-#ifdef DATALOGGER
 					if (M.mind && M.mind.assigned_role == "Clown")
 						game_stats.Increment("clownabuse")
-#endif
 					fart_on_other = 1
 					break
 				if (!fart_on_other)
@@ -382,9 +380,7 @@
 					playsound(src.loc, 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				else
 					playsound(src.loc, src.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-#ifdef DATALOGGER
 				game_stats.Increment("farts")
-#endif
 				SPAWN_DBG(1 SECOND)
 					src.emote_allowed = 1
 		else

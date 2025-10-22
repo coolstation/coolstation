@@ -152,10 +152,8 @@
 					processing_items -= src
 					if (!(locate(/obj/reagent_dispensers/cleanable/ants) in src.loc))
 						new/obj/reagent_dispensers/cleanable/ants(src.loc)
-						#ifdef DATALOGGER
 						if (istype(A, /area/station))
 							game_stats.Increment("workplacesafety")
-						#endif
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -387,6 +385,8 @@
 		eater.on_eat(src)
 
 	proc/on_finish(mob/eater)
+		SHOULD_CALL_PARENT(TRUE)
+		game_stats.Increment("food_finished")
 		return
 
 	proc/drop_item(var/path)

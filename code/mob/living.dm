@@ -717,11 +717,9 @@
 
 	logTheThing("diary", src, null, ": [message]", "say")
 
-#ifdef DATALOGGER
 	// Jewel's attempted fix for: null.ScanText()
 	if (game_stats)
 		game_stats.ScanText(message)
-#endif
 
 	if (src.client && src.client.ismuted())
 		boutput(src, "You are currently muted and may not speak.")
@@ -2085,9 +2083,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				var/atom/targetTurf = get_edge_target_turf(src, get_dir(src, get_step_away(src, origin)))
 				src.throw_at(targetTurf, 200, 4)
 	shock_cyberheart(shock_damage)
-	#ifdef DATALOGGER
 	game_stats.Increment("workplacesafety") //If your cyberheart fucks it as well it counts as 2 violations, which I think is fine :3
-	#endif
 	TakeDamage(zone, 0, shock_damage, 0, DAMAGE_BURN)
 	boutput(src, "<span class='alert'><B>You feel a [wattage > 7500 ? "powerful" : "slight"] shock course through your body!</B></span>")
 	src.unlock_medal("HIGH VOLTAGE", 1)

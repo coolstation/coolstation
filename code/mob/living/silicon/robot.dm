@@ -3050,10 +3050,8 @@
 			tread_count++
 		else limb_count++
 	if (limb_count >= 3)
-		#ifdef DATALOGGER
 		if (limb_count == 3 && silent) //You're supposed to keep 3 points of contact on a ladder at all times
 			game_stats.Increment("workplacesafety")
-		#endif
 		return ..()
 	if (tread_count == 2 && !silent)
 		boutput(src, "<span class=alert>You can't climb a ladder while equipped with treads!</span>") //until we make taur borgs a thing anyway

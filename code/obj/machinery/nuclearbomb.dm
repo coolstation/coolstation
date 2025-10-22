@@ -348,10 +348,8 @@
 			command_alert("\A [src] has been detonated in [A].", "Attention")
 			explosion_new(src, get_turf(src), src.boom_size)
 			qdel(src)
-#ifdef DATALOGGER
 			if (istype(A, /area/station))
 				game_stats.Increment("workplacesafety")
-#endif
 			return
 		var/datum/game_mode/nuclear/NUKEMODE = ticker?.mode
 		var/turf/nuke_turf = get_turf(src)
@@ -369,9 +367,7 @@
 			explosion(src, src.loc, 20, 30, 40, 50)
 			qdel(src)
 			return
-#ifdef DATALOGGER
 		game_stats.Increment("workplacesafety")
-#endif
 #ifdef MAP_OVERRIDE_GEHENNA
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)

@@ -1028,11 +1028,9 @@
 			else
 				target.deliver_move_trigger("bump")
 		else
-#ifdef DATALOGGER
 			game_stats.Increment("violence")
 			if(target.mind && target.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-#endif
 			owner.lastattacked = target
 			target.lastattacker = owner
 			target.lastattackertime = world.time

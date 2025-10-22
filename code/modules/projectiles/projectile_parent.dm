@@ -897,10 +897,9 @@ datum/projectile/snowball
 				for (var/mob/M in shooter)
 					M << sound(DATA.shot_sound, volume=DATA.shot_volume)
 /* // warc: this is an innapropriate place for this stat because a LOT of things use projectiles as a parent now!!!!
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif*/
+*/
 	if (DATA.brightness)
 		P.add_simple_light("proj", list(DATA.color_red*255, DATA.color_green*255, DATA.color_blue*255, DATA.brightness * 255))
 

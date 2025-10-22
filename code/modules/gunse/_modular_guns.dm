@@ -954,10 +954,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 	handle_recoil(user, start, target, POX, POY)
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif
 
 	if (ismob(user))
 		var/mob/M = user
