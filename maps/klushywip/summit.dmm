@@ -250,6 +250,12 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
+"bZ" = (
+/obj/neon_sign/toolbox{
+	pixel_y = 32
+	},
+/turf/space/nevicata/wastes/beaten,
+/area/space)
 "ca" = (
 /obj/cabinet/medical{
 	pixel_y = 15;
@@ -539,6 +545,21 @@
 "dN" = (
 /obj/reagent_dispensers/watertank/big,
 /turf/floor/grass,
+/area/space)
+"dP" = (
+/obj/table/wood/auto/desk,
+/obj/item/folder{
+	pixel_y = 5;
+	pixel_x = -22
+	},
+/obj/item/cigarbox{
+	pixel_y = 8
+	},
+/obj/item/device/light/zippo/gold{
+	pixel_x = -14;
+	pixel_y = 7
+	},
+/turf/floor/wood/six,
 /area/space)
 "dT" = (
 /obj/rack,
@@ -1267,6 +1288,12 @@
 	},
 /turf/floor/carpet/grime,
 /area/space)
+"iQ" = (
+/obj/machinery/computer/announcement{
+	dir = 4
+	},
+/turf/floor/wood/six,
+/area/space)
 "iW" = (
 /turf/floor/bluewhite/corner,
 /area/space)
@@ -1743,6 +1770,12 @@
 	},
 /turf/floor/red,
 /area/space)
+"mC" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/floor/wood/six,
+/area/space)
 "mD" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10;
@@ -1898,12 +1931,6 @@
 	dir = 4
 	},
 /turf/floor/cautionblack,
-/area/space)
-"nK" = (
-/obj/stool/chair/comfy{
-	dir = 8
-	},
-/turf/floor/wood/six,
 /area/space)
 "nL" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
@@ -4502,6 +4529,9 @@
 	pixel_x = -4
 	},
 /obj/random_item_spawner/desk_stuff/one_or_zero,
+/obj/neon_sign/nt{
+	pixel_y = 31
+	},
 /turf/floor/grime,
 /area/space)
 "Ew" = (
@@ -4629,6 +4659,21 @@
 	pixel_y = -1
 	},
 /turf/floor/plating,
+/area/space)
+"Ff" = (
+/obj/filing_cabinet{
+	pixel_y = 15;
+	pixel_x = -9
+	},
+/obj/filing_cabinet{
+	pixel_y = 15;
+	pixel_x = 1
+	},
+/obj/filing_cabinet{
+	pixel_y = 15;
+	pixel_x = 11
+	},
+/turf/floor/wood/six,
 /area/space)
 "Fi" = (
 /obj/machinery/vending/cigarette,
@@ -5136,21 +5181,6 @@
 	pixel_x = -15
 	},
 /turf/floor/carpet/grime,
-/area/space)
-"In" = (
-/obj/table/wood/auto/desk,
-/obj/item/folder{
-	pixel_y = 5;
-	pixel_x = -22
-	},
-/obj/item/cigarbox{
-	pixel_y = 8
-	},
-/obj/item/device/light/zippo/gold{
-	pixel_x = -14;
-	pixel_y = 7
-	},
-/turf/floor/wood/six,
 /area/space)
 "Ip" = (
 /obj/stool/chair/comfy/blue{
@@ -6079,6 +6109,9 @@
 /area/space)
 "Od" = (
 /obj/machinery/vending/coffee,
+/obj/neon_sign/nt{
+	pixel_y = 31
+	},
 /turf/floor/grime,
 /area/space)
 "Oe" = (
@@ -6467,21 +6500,6 @@
 	id = "cargo"
 	},
 /turf/floor,
-/area/space)
-"QH" = (
-/obj/filing_cabinet{
-	pixel_y = 15;
-	pixel_x = -9
-	},
-/obj/filing_cabinet{
-	pixel_y = 15;
-	pixel_x = 1
-	},
-/obj/filing_cabinet{
-	pixel_y = 15;
-	pixel_x = 11
-	},
-/turf/floor/wood/six,
 /area/space)
 "QJ" = (
 /obj/morgue{
@@ -7053,12 +7071,6 @@
 	dir = 8
 	},
 /turf/floor/wood/five,
-/area/space)
-"Ua" = (
-/obj/machinery/computer/announcement{
-	dir = 4
-	},
-/turf/floor/wood/six,
 /area/space)
 "Uc" = (
 /obj/window/reinforced/east,
@@ -47147,7 +47159,7 @@ JU
 Hw
 cf
 dn
-xT
+bZ
 xT
 xT
 xT
@@ -48954,9 +48966,9 @@ pn
 pn
 pn
 sa
-QH
+Ff
 qo
-Ua
+iQ
 DW
 aG
 xT
@@ -49258,8 +49270,8 @@ sa
 sa
 qo
 qo
-nK
-In
+mC
+dP
 aG
 xT
 xT
