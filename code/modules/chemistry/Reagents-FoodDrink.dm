@@ -736,6 +736,13 @@ datum
 			reagent_state = LIQUID
 			taste = "sweet"
 
+		fooddrink/alcoholic/brandy/silovitz
+			name = "silovitz"
+			id = "silovitz"
+			fluid_r = 250
+			fluid_g = 150
+			fluid_b = 30
+			description = "The plum brandy of the country."
 
 		fooddrink/alcoholic/bitters
 			name = "bitters"

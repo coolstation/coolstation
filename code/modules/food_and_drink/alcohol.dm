@@ -422,6 +422,11 @@
 	initial_volume = 100
 	initial_reagents = "brandy"
 
+/obj/item/reagent_containers/food/drinks/bottle/brandy/silovitz
+	name = "silovitz"
+	desc = "The night is chill, mein Herr"
+	initial_reagents = "silovitz"
+
 /obj/item/reagent_containers/food/drinks/bottle/bitters
 	name = "bitters"
 	desc = "Used for flavoring cocktails, tastes like death."
