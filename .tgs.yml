@@ -7,7 +7,7 @@ byond: "516.1659"
 # Folders to create in "<instance_path>/Configuration/GameStaticFiles/"
 static_files:
   # Config directory should be static
-  - name: +secret/config
+  - name: config
     # This implies the folder should be pre-populated with contents from the repo
     populate: true
   # Data directory must be static
