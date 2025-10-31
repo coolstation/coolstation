@@ -239,8 +239,10 @@ var/global/list/dirty_power_machines = list()
 		a_node.pnet = PN
 		PN.all_graph_nodes |= a_node
 
-		var/list/new_nodes = a_node.adjacent_nodes.Copy() - visited_nodes
-		nodes_to_visit |= new_nodes
+		if(a_node.adjacent_nodes)
+			var/list/new_nodes = a_node.adjacent_nodes.Copy() - visited_nodes
+			nodes_to_visit |= new_nodes
+
 
 	return visited_nodes
 
