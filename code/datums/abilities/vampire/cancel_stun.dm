@@ -4,7 +4,7 @@
 	icon_state = "nostun"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 0
+	ai_range = 5
 	cooldown = 10
 	pointCost = 0
 	when_stunned = 2

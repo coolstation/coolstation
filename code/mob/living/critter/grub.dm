@@ -10,10 +10,7 @@
 	speechverb_ask = "squirms"
 	density = 0
 	custom_gib_handler = /proc/gibs
-	can_help = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	lie_on_death = 0
 	butcherable = 1
 	name_the_meat = 0

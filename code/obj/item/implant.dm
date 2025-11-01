@@ -61,6 +61,9 @@ THROWING DARTS
 		implanted = 1
 		SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, M)
 		owner = M
+		if (isliving(M))
+			var/mob/living/living = M
+			LAZYLISTADD(living.implant, src)
 		if (implant_overlay)
 			M.update_clothing()
 		activate()
@@ -70,9 +73,11 @@ THROWING DARTS
 	proc/on_remove(var/mob/M)
 		deactivate()
 		SEND_SIGNAL(src, COMSIG_IMPLANT_REMOVED, M)
-		if (ishuman(src.owner))
-			var/mob/living/carbon/human/H = owner
-			H.implant -= src
+		if (isliving(M))
+			var/mob/living/living = M
+			living.implant -= src
+		if (implant_overlay)
+			M.update_clothing()
 		src.owner = null
 		src.implanted = 0
 		return
@@ -116,18 +121,13 @@ THROWING DARTS
 		deactivate()
 
 	proc/get_coords()
-		if (ishuman(src.owner))
-			var/mob/living/carbon/human/H = src.owner
-			if (locate(src) in H.implant)
-				var/turf/T = get_turf(H)
-				if (istype(T))
-					return " at [T.x],[T.y],[T.z]"
-		else if (ismobcritter(src.owner))
-			var/mob/living/critter/C = src.owner
-			if (locate(src) in C.implants)
-				var/turf/T = get_turf(C)
-				if (istype(T))
-					return " at [T.x],[T.y],[T.z]"
+		if (!isliving(src.owner))
+			return
+		var/mob/living/living_owner = src.owner
+		if (locate(src) in living_owner.implant)
+			var/turf/T = get_turf(src.owner)
+			if (istype(T))
+				return " at [T.x],[T.y],[T.z]"
 
 	proc/send_message(var/message, var/alertgroup, var/sender_name)
 		DEBUG_MESSAGE("sending message: [message]")
@@ -540,7 +540,7 @@ THROWING DARTS
 			source.transforming = 1
 
 			var/obj/overlay/Ov = new/obj/overlay(T)
-			Ov.anchored = 1 //Create a big bomb explosion overlay.
+			Ov.anchored = ANCHORED //Create a big bomb explosion overlay.
 			Ov.name = "Explosion"
 			Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			Ov.pixel_x = -92
@@ -567,13 +567,7 @@ THROWING DARTS
 				sleep(1.5 SECONDS)
 				qdel(Ov)
 
-				if (ishuman(owner))
-					var/mob/living/carbon/human/H = owner
-					H.implant -= src
-				else if (ismobcritter(owner))
-					var/mob/living/critter/C = owner
-					C.implants -= src
-
+				on_remove(owner)
 				qdel(src)
 
 			T.hotspot_expose(800,125)
@@ -1018,13 +1012,6 @@ THROWING DARTS
 			M.tri_message("<span class='alert'>[M] has been implanted by [user].</span>",\
 			M, "<span class='alert'>You have been implanted by [user].</span>",\
 			user, "<span class='alert'>You implanted the implant into [M].</span>")
-
-		if (ishuman(M))
-			var/mob/living/carbon/human/H = M
-			H.implant.Add(src.imp)
-		else if (ismobcritter(M))
-			var/mob/living/critter/C = M
-			C.implants.Add(src.imp)
 
 		src.imp.set_loc(M)
 		src.imp.implanted(M, user)
@@ -1666,21 +1653,13 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 		if (!my_implant)
 			return
 		if (ishuman(hit))
-			var/mob/living/carbon/human/H = hit
-			if (my_implant.can_implant(H, implant_master))
-				my_implant.set_loc(H)
-				my_implant.implanted(H, implant_master)
-				H.implant.Add(my_implant)
+			var/mob/living/L = hit
+			if (my_implant.can_implant(L, implant_master))
+				my_implant.set_loc(L)
+				my_implant.implanted(L, implant_master)
+				L.implant.Add(my_implant)
 			else
-				my_implant.set_loc(get_turf(H))
-		else if (ismobcritter(hit))
-			var/mob/living/critter/C = hit
-			if (C.can_implant && my_implant.can_implant(C, implant_master))
-				my_implant.set_loc(C)
-				my_implant.implanted(C, implant_master)
-				C.implants.Add(my_implant)
-			else
-				my_implant.set_loc(get_turf(C))
+				my_implant.set_loc(get_turf(L))
 		else
 			my_implant.set_loc(get_turf(O))
 

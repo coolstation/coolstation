@@ -67,6 +67,10 @@
 	var/num_allowed_suffixes = 5
 	var/image/worn_material_texture_image = null
 
+	//Called after get_desc(), so that's the proc to update these dynamically
+	///Added to descriptions on examination, for explaining crafting steps and other things that may not fit kayfabe.
+	var/hint
+
 	proc/name_prefix(var/text_to_add, var/return_prefixes = 0, var/prepend = 0)
 		if( !name_prefixes ) name_prefixes = list()
 		var/prefix = ""
@@ -364,7 +368,7 @@
 
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = PRESERVE_CACHE
 
 /atom/movable/overlay/gibs
@@ -385,7 +389,7 @@
 	layer = OBJ_LAYER
 	var/turf/last_turf = 0
 	var/last_move = null
-	var/anchored = 0
+	var/anchored = UNANCHORED
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/throwing = 0
@@ -699,6 +703,9 @@
 	var/extra = src.get_desc(dist, user)
 	if (extra)
 		. += " [extra]"
+
+	if(src.hint)
+		. += "<br><span class='notice'>hint: <i>[hint]</i></span><br>"
 
 ///Called when something is click-dragged onto this atom
 /atom/proc/MouseDrop_T()
@@ -1109,13 +1116,6 @@
 	message_admins("[key_name(usr)] rotated [target] by [rot] degrees")
 	target.Turn(rot)
 	return
-
-/// For an unanchored movable atom
-#define UNANCHORED 0
-/// For an atom that can't be moved by player actions
-#define ANCHORED 1
-/// For an atom that's always immovable, even by stuff like black holes and gravity artifacts.
-#define ANCHORED_ALWAYS 2
 
 /// The atom is below the floor tiles.
 #define UNDERFLOOR 1

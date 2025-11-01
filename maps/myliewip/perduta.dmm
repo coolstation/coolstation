@@ -236,6 +236,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
 "aG" = (
@@ -354,8 +355,8 @@
 	pixel_x = 10
 	},
 /obj/item/stamp/mime{
-	pixel_y = 5;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 5
 	},
 /turf/floor/black,
 /area/station/crew_quarters/clown)
@@ -583,9 +584,9 @@
 /obj/item/storage/wall/research_supplies,
 /obj/table/reinforced/chemistry/auto,
 /obj/machinery/glass_recycler{
-	pixel_y = 3;
 	mats = 50;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 3
 	},
 /turf/floor/purplewhite,
 /area/station/science/chemistry)
@@ -836,8 +837,8 @@
 /area/station/bridge/customs)
 "ch" = (
 /obj/machinery/phone/wall{
-	pixel_y = 4;
-	pixel_x = -27
+	pixel_x = -27;
+	pixel_y = 4
 	},
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
@@ -891,8 +892,8 @@
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
-	name = "autoname - SS13";
-	dir = 6
+	dir = 6;
+	name = "autoname - SS13"
 	},
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
@@ -1086,10 +1087,10 @@
 	name = "Mime"
 	},
 /obj/machinery/phone/wall{
-	pixel_y = 5;
+	name = "The Sound of Silence";
 	pixel_x = 25;
-	unlisted = 1;
-	name = "The Sound of Silence"
+	pixel_y = 5;
+	unlisted = 1
 	},
 /turf/floor/black,
 /area/station/crew_quarters/clown)
@@ -1269,17 +1270,17 @@
 /area/station/hallway/primary/east)
 "dl" = (
 /obj/item/gun/modular/italian/launcher/basic{
-	pixel_y = 8;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 8
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/item/chem_grenade/fog{
-	pixel_y = -4;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = -4
 	},
 /obj/item/chem_grenade/fog{
-	pixel_y = -4;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -4
 	},
 /obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/black,
@@ -1590,8 +1591,8 @@
 	pixel_y = 6
 	},
 /obj/item/matchbook{
-	pixel_y = 1;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 1
 	},
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
@@ -1833,12 +1834,12 @@
 	icon_state = "0-8"
 	},
 /obj/artifact_paper_dispenser{
-	pixel_y = -3;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = -3
 	},
 /obj/artifact_paper_dispenser{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /obj/random_item_spawner/tools/one_or_zero,
 /turf/floor/purpleblack{
@@ -1860,9 +1861,9 @@
 /obj/machinery/driver_button{
 	id = "cargo_bay";
 	name = "Cargo Launcher Button";
+	pixel_y = -24;
 	req_access_txt = "22";
-	text = "chapel";
-	pixel_y = -24
+	text = "chapel"
 	},
 /obj/landmark/start{
 	name = "Cargo Technician"
@@ -1872,13 +1873,13 @@
 "eI" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/clothing/head/helmet/EOD{
-	pixel_y = 8;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 8
 	},
 /obj/item/clothing/suit/armor/EOD,
 /obj/item/breaching_charge/NT{
-	pixel_y = 1;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 1
 	},
 /turf/floor/industrial,
 /area/station/security/armory)
@@ -1990,8 +1991,8 @@
 /area/station/bridge)
 "eX" = (
 /obj/machinery/computer3/generic/personal{
-	pixel_y = 8;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 8
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/cable{
@@ -2025,8 +2026,8 @@
 	},
 /obj/overlay/magindara_skylight/weather,
 /obj/cable/blue{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/floor/grass/leafy,
 /area/station/hydroponics/bay)
@@ -2043,8 +2044,8 @@
 "fc" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/cable/blue{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /obj/machinery/power/generatorTemp,
 /turf/floor/industrial,
@@ -2073,8 +2074,8 @@
 	pixel_y = 6
 	},
 /obj/item/item_box/medical_patches/mini_silver_sulf{
-	pixel_y = 1;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 1
 	},
 /obj/item/item_box/medical_patches/mini_styptic{
 	pixel_x = 6
@@ -2117,9 +2118,9 @@
 "fn" = (
 /obj/machinery/power/apc{
 	areastring = "Clown Hole";
+	dir = 1;
 	name = "Clown Hole APC";
-	pixel_y = 24;
-	dir = 1
+	pixel_y = 24
 	},
 /obj/cable{
 	d2 = 2;
@@ -2150,8 +2151,8 @@
 /area/magindara)
 "fs" = (
 /obj/storage/crate/clown{
-	pixel_y = -3;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = -3
 	},
 /obj/item/sticker/rainbow,
 /obj/window/crystal/reinforced/south,
@@ -2213,8 +2214,8 @@
 	pixel_x = 9
 	},
 /obj/item/raw_material/rock{
-	pixel_y = -7;
-	pixel_x = -15
+	pixel_x = -15;
+	pixel_y = -7
 	},
 /mob/living/critter/aquatic/fish/clown,
 /obj/neon_lining,
@@ -2326,8 +2327,8 @@
 	},
 /obj/table/folding,
 /obj/item/reagent_containers/food/drinks/bottle/bojackson{
-	pixel_y = 4;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 4
 	},
 /turf/floor/industrial,
 /area/station/security/detectives_office)
@@ -2431,16 +2432,16 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer{
-	pixel_y = -6;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /obj/lattice{
 	dir = 8;
 	icon_state = "lattice-dir"
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer{
-	pixel_y = -4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -4
 	},
 /obj/railing/cool,
 /obj/railing/cool{
@@ -2601,13 +2602,9 @@
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "gr" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 3;
-	id = "janitor"
-	},
-/obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/cable/vertical{
+	icon_state = "0-2";
+	target_z = 3
 	},
 /turf/floor/black,
 /area/station/janitor/office)
@@ -2710,8 +2707,8 @@
 	pixel_y = 12
 	},
 /obj/item/kitchen/utensil/knife/cleaver{
-	pixel_y = 1;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 1
 	},
 /obj/item/clothing/glasses/blindfold,
 /turf/floor/sanitary,
@@ -2763,8 +2760,8 @@
 /obj/item/device/audio_log,
 /obj/table/reinforced/industrial/auto,
 /obj/item/camera{
-	pixel_y = 6;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 6
 	},
 /obj/random_item_spawner/tools/one_or_zero,
 /turf/floor/industrial,
@@ -2772,8 +2769,8 @@
 "gM" = (
 /obj/decal/cleanable/eggsplat,
 /obj/decal/cleanable/eggshell{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /obj/item/device/radio/intercom/catering{
 	dir = 4;
@@ -2822,18 +2819,18 @@
 	name = "autoname - SS13"
 	},
 /obj/item/old_grenade/smoke{
-	pixel_y = -8;
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = -8
 	},
 /obj/decal/cleanable/dirt/dirt4,
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 5
+	dir = 5;
+	icon_state = "rug2"
 	},
 /obj/item/reagent_containers/glass/bucket{
-	pixel_y = 19;
+	initial_reagents = "dirtywater";
 	pixel_x = 2;
-	initial_reagents = "dirtywater"
+	pixel_y = 19
 	},
 /turf/floor/carpet/grime2,
 /area/station/security/detectives_office)
@@ -2872,8 +2869,8 @@
 	icon_state = "0-8"
 	},
 /obj/item/paper/book/from_file/space_law{
-	pixel_y = -3;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -3
 	},
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/random_item_spawner/tools/one_or_zero,
@@ -3080,8 +3077,8 @@
 	pixel_x = 7
 	},
 /obj/item/storage/pill_bottle/mutadone{
-	pixel_y = 2;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 2
 	},
 /obj/table/reinforced/chemistry/auto,
 /turf/floor/black,
@@ -3402,12 +3399,12 @@
 "ip" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
-	pixel_y = 5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /obj/item/reagent_containers/food/drinks/bottle/thegoodstuff{
-	pixel_y = 6;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
@@ -3439,8 +3436,8 @@
 "iv" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/espresso_machine{
-	pixel_y = 6;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 6
 	},
 /obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
@@ -3813,13 +3810,6 @@
 "ju" = (
 /turf/wall/auto/rivet,
 /area/station/hallway/primary/east)
-"jv" = (
-/obj/lattice{
-	icon_state = "lattice-dir-b";
-	dir = 1
-	},
-/turf/space/magindara,
-/area/magindara)
 "jw" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/cog2{
@@ -4020,8 +4010,8 @@
 	},
 /obj/random_item_spawner/tools/one_or_zero,
 /obj/random_item_spawner/tools/one_or_zero{
-	pixel_y = -4;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = -4
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -4357,12 +4347,12 @@
 /obj/table/reinforced/auto,
 /obj/window/reinforced/south,
 /obj/item/paper_bin{
-	pixel_y = 1;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 1
 	},
 /obj/item/clipboard{
-	pixel_y = 3;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 3
 	},
 /obj/window_blinds/cog2/middle,
 /turf/floor/grey/side{
@@ -4566,8 +4556,8 @@
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/item/card_box/red{
-	pixel_y = 3;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 3
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -4584,8 +4574,8 @@
 	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/large{
-	pixel_y = -1;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -1
 	},
 /obj/item/reagent_containers/glass/water_pipe{
 	pixel_x = 4;
@@ -4780,9 +4770,9 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Hydroponics Lobby";
+	dir = 1;
 	name = "Hydroponics Lobby APC";
-	pixel_y = 24;
-	dir = 1
+	pixel_y = 24
 	},
 /obj/random_item_spawner/junk/one_or_zero,
 /obj/random_item_spawner/tools/one_or_zero,
@@ -4875,9 +4865,9 @@
 	},
 /obj/ladder{
 	icon_state = "ladder-square";
-	pixel_y = 3;
+	id = "robotics";
 	pixel_x = -1;
-	id = "robotics"
+	pixel_y = 3
 	},
 /turf/floor/industrial,
 /area/station/medical/robotics)
@@ -4945,8 +4935,8 @@
 "lZ" = (
 /obj/storage/secure/closet/medical/medicine,
 /obj/item/storage/pill_bottle/mutadone{
-	pixel_y = -7;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -7
 	},
 /turf/floor/greenblack/corner{
 	dir = 1
@@ -5041,8 +5031,8 @@
 	pixel_x = 4
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/wine{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /turf/floor/black,
 /area/station/crew_quarters/clown)
@@ -5310,8 +5300,8 @@
 "mT" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/tweezers{
-	pixel_y = 5;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 5
 	},
 /obj/machinery/light/sodium,
 /obj/random_item_spawner/tools/some,
@@ -5480,8 +5470,8 @@
 	},
 /obj/item/clothing/glasses/spectro,
 /obj/decal/poster/wallsign/pride/random{
-	pixel_y = 32;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 32
 	},
 /turf/floor/greenblack{
 	dir = 9
@@ -5540,24 +5530,24 @@
 "nw" = (
 /obj/table/auto,
 /obj/item/reagent_containers/glass/oilcan{
-	pixel_y = 12;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = 12
 	},
 /obj/item/reagent_containers/food/drinks/fueltank{
 	pixel_x = -6;
 	pixel_y = 14
 	},
 /obj/item/storage/belt/utility{
-	pixel_y = -1;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = -1
 	},
 /obj/item/storage/belt/utility{
-	pixel_y = 3;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 3
 	},
 /obj/item/device/light/candle{
-	pixel_y = 8;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 8
 	},
 /obj/random_item_spawner/tools/one_or_zero,
 /turf/floor/plating/random,
@@ -5749,8 +5739,8 @@
 /obj/disposalpipe/segment/food/bent/south,
 /obj/item/reagent_containers/food/snacks/plant/banana,
 /obj/item/reagent_containers/food/snacks/plant/banana{
-	pixel_y = 11;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 11
 	},
 /obj/table/reinforced/industrial/auto,
 /turf/floor/riveted,
@@ -5822,8 +5812,8 @@
 /area/station/medical/research)
 "oe" = (
 /obj/item/hammer{
-	pixel_y = -4;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -4
 	},
 /obj/random_item_spawner/tools/one_or_zero,
 /turf/floor/riveted,
@@ -6020,8 +6010,8 @@
 /area/station/hallway/primary/west)
 "oC" = (
 /obj/item/storage/secure/ssafe{
-	pixel_y = 3;
-	pixel_x = 28
+	pixel_x = 28;
+	pixel_y = 3
 	},
 /obj/decal/cleanable/dirt/dirt2,
 /obj/random_item_spawner/junk/one_or_zero,
@@ -6112,12 +6102,12 @@
 	},
 /obj/table/auto,
 /obj/item/storage/box/syringes{
-	pixel_y = 1;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 1
 	},
 /obj/item/storage/box/health_upgrade_kit{
-	pixel_y = 1;
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = 1
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
@@ -6210,8 +6200,8 @@
 "pb" = (
 /obj/machinery/chem_dispenser/pharmacy,
 /obj/decal/poster/wallsign/chsl{
-	pixel_y = 32;
-	pixel_x = 19
+	pixel_x = 19;
+	pixel_y = 32
 	},
 /turf/floor/greenblack{
 	dir = 1
@@ -6270,8 +6260,8 @@
 	dir = 4
 	},
 /obj/item/fishing_rod{
-	pixel_y = -6;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -6
 	},
 /obj/lattice{
 	dir = 10;
@@ -6356,19 +6346,19 @@
 	},
 /obj/table/auto,
 /obj/item/storage/firstaid/regular{
-	pixel_y = 13;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 13
 	},
 /obj/item/storage/firstaid/regular{
-	pixel_y = 11;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = 11
 	},
 /obj/item/storage/firstaid/brute{
 	pixel_x = 5
 	},
 /obj/item/storage/firstaid/fire{
-	pixel_y = -1;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -1
 	},
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
@@ -6415,8 +6405,8 @@
 	dir = 4
 	},
 /obj/machinery/computer/operating{
-	id = "OR1";
-	dir = 4
+	dir = 4;
+	id = "OR1"
 	},
 /obj/cable{
 	d2 = 2;
@@ -6508,8 +6498,8 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/drinks/mug/HoS{
-	pixel_y = 9;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 9
 	},
 /obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/red/redblackchecker,
@@ -6605,8 +6595,8 @@
 	dir = 8
 	},
 /obj/item/coin{
-	pixel_y = 5;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = 5
 	},
 /turf/floor/carpet/arcade/filthy,
 /area/station/crew_quarters/arcade)
@@ -6630,8 +6620,8 @@
 	name = "grenade crate"
 	},
 /obj/item/chem_grenade/pepper{
-	pixel_y = 4;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 4
 	},
 /obj/item/chem_grenade/pepper{
 	pixel_x = 5;
@@ -6643,8 +6633,8 @@
 	},
 /obj/item/old_grenade/projectile/stinger/frag,
 /obj/item/old_grenade/smoke{
-	pixel_y = -4;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -4
 	},
 /obj/item/chem_grenade/incendiary,
 /obj/item/chem_grenade/flashbang{
@@ -6689,8 +6679,8 @@
 /area/station/hallway/primary/north)
 "qd" = (
 /obj/machinery/computer3/generic/personal{
-	pixel_y = 8;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 8
 	},
 /obj/cable{
 	d2 = 2;
@@ -6998,8 +6988,8 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/table/tool_cart,
 /obj/item/tweezers{
-	pixel_y = 8;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/glass/bottle/morphine{
 	pixel_y = 8
@@ -7345,8 +7335,8 @@
 "rH" = (
 /obj/ladder{
 	icon_state = "ladder-square";
-	pixel_y = 3;
-	id = "arrivals_left"
+	id = "arrivals_left";
+	pixel_y = 3
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
@@ -7734,8 +7724,8 @@
 	},
 /obj/submachine/chef_sink/chem_sink{
 	dir = 4;
-	pixel_y = -1;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -1
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/sanitary/white,
@@ -7782,8 +7772,8 @@
 	pixel_y = 8
 	},
 /obj/machinery/computer/arcade{
-	pixel_y = 8;
-	pixel_x = 13
+	pixel_x = 13;
+	pixel_y = 8
 	},
 /turf/floor/carpet/arcade/filthy,
 /area/station/crew_quarters/arcade)
@@ -8199,8 +8189,8 @@
 /obj/table/auto,
 /obj/item/storage/box/evidence,
 /obj/item/body_bag{
-	pixel_y = -2;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -2
 	},
 /turf/floor/sanitary/blue,
 /area/station/medical/medbay/cloner)
@@ -8246,8 +8236,8 @@
 /area/station/crew_quarters/hop)
 "ub" = (
 /obj/machinery/phone/wall{
-	pixel_y = 2;
-	pixel_x = 28
+	pixel_x = 28;
+	pixel_y = 2
 	},
 /obj/cable{
 	d1 = 1;
@@ -8300,17 +8290,17 @@
 /area/station/science/artifact)
 "uj" = (
 /obj/decal/poster/wallsign/gunsmithing{
-	pixel_y = -5;
-	pixel_x = 32
+	pixel_x = 32;
+	pixel_y = -5
 	},
 /obj/railing/cool{
 	dir = 1
 	},
 /obj/item/caution/target_sheet{
-	pixel_y = -3;
-	pixel_x = -1;
 	anchored = 1;
-	density = 0
+	density = 0;
+	pixel_x = -1;
+	pixel_y = -3
 	},
 /obj/random_item_spawner/junk/maybe_few,
 /turf/floor/industrial,
@@ -8328,16 +8318,16 @@
 	persistent_id = "perduta_det"
 	},
 /obj/item/reagent_containers/food/drinks/mug/random_color{
-	pixel_y = -7;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -7
 	},
 /obj/machinery/phone{
 	pixel_x = 5;
 	pixel_y = 6
 	},
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 9
+	dir = 9;
+	icon_state = "rug2"
 	},
 /turf/floor/carpet/grime2,
 /area/station/security/detectives_office)
@@ -8499,11 +8489,11 @@
 	},
 /obj/item/storage/toolbox/artistic,
 /obj/decal/cleanable/writing{
-	pixel_y = 19;
-	name = "scribbled signature";
 	desc = "Looks like someone's signed their graffiti.";
-	words = "Slippo the Cl";
-	random_icon_states = null
+	name = "scribbled signature";
+	pixel_y = 19;
+	random_icon_states = null;
+	words = "Slippo the Cl"
 	},
 /obj/disposalpipe/segment/horizontal,
 /turf/space/magindara,
@@ -8583,9 +8573,9 @@
 /obj/table/reinforced/industrial/auto,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/item/decoration/ashtray{
-	pixel_y = 5;
+	butts = 3;
 	pixel_x = -3;
-	butts = 3
+	pixel_y = 5
 	},
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/black,
@@ -8632,8 +8622,8 @@
 	pixel_y = 9
 	},
 /obj/item/popsicle/empty_wrapper{
-	pixel_y = -4;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -4
 	},
 /obj/item/decoration/ashtray,
 /obj/item/device/prisoner_scanner{
@@ -8670,8 +8660,8 @@
 "vc" = (
 /obj/table/wood/auto,
 /obj/machinery/coffeemaker/botany{
-	pixel_y = 6;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 6
 	},
 /obj/window/south,
 /obj/window/west,
@@ -9007,8 +8997,8 @@
 /area/station/hallway/primary/west)
 "vW" = (
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 10
+	dir = 10;
+	icon_state = "rug2"
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/carpet/nicebrown,
@@ -9723,8 +9713,8 @@
 	icon_state = "2-8"
 	},
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 4
+	dir = 4;
+	icon_state = "rug2"
 	},
 /obj/disposalpipe/segment/mail/bent/north,
 /turf/floor/carpet/office/hotdog,
@@ -9764,8 +9754,8 @@
 "xM" = (
 /obj/table/reinforced/chemistry/auto,
 /obj/machinery/glass_recycler{
-	pixel_y = 4;
-	mats = 50
+	mats = 50;
+	pixel_y = 4
 	},
 /obj/item/storage/box/beakerbox{
 	pixel_x = -5
@@ -9777,12 +9767,12 @@
 "xN" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/turret_deployer/riot{
-	pixel_y = 5;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 5
 	},
 /obj/item/turret_deployer/riot{
-	pixel_y = -3;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -3
 	},
 /obj/item/breaching_charge/NT{
 	pixel_x = 5
@@ -10218,8 +10208,8 @@
 	},
 /obj/table/reinforced/chemistry/auto,
 /obj/item/storage/box/genetic_syringes{
-	pixel_y = 3;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 3
 	},
 /turf/floor/greenblack,
 /area/station/medical/research)
@@ -10265,9 +10255,9 @@
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/item/decoration/ashtray{
-	pixel_y = 7;
+	butts = 1;
 	pixel_x = -3;
-	butts = 1
+	pixel_y = 7
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/central)
@@ -10332,8 +10322,8 @@
 	name = "weed smoking couch"
 	},
 /obj/item/clothing/suit/bedsheet/random{
-	pixel_y = -2;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -2
 	},
 /obj/neon_lining{
 	dir = 1
@@ -10512,8 +10502,8 @@
 	icon_state = "4-8"
 	},
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 8
+	dir = 8;
+	icon_state = "rug2"
 	},
 /turf/floor/carpet/office/hotdog,
 /area/station/hydroponics/lobby)
@@ -10567,8 +10557,8 @@
 /area/station/catwalk/simulated)
 "zQ" = (
 /obj/item/device/light/lava_lamp/activated{
-	pixel_y = 6;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 6
 	},
 /obj/table/folding,
 /obj/random_item_spawner/snacks/one_or_zero,
@@ -10694,16 +10684,16 @@
 	pixel_y = -1
 	},
 /obj/item/storage/box/trash_bags{
-	pixel_y = 6;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 6
 	},
 /obj/item/reagent_containers/glass/bucket{
-	pixel_y = -1;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -1
 	},
 /obj/item/mop{
-	pixel_y = -4;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -4
 	},
 /turf/floor/darkpurpleblack/corner,
 /area/station/janitor/supply)
@@ -11367,8 +11357,8 @@
 	dir = 5
 	},
 /obj/machinery/phone{
-	pixel_y = -2;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = -2
 	},
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
@@ -11579,8 +11569,8 @@
 /area/magindara)
 "Ck" = (
 /obj/item/shaker/salt{
-	pixel_y = 8;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 8
 	},
 /obj/item/shaker/pepper{
 	pixel_x = 5;
@@ -11590,8 +11580,8 @@
 /obj/decal/cleanable/ketchup,
 /obj/table/reinforced/kitchen/tools,
 /obj/item/storage/box/food_dye_box{
-	pixel_y = 10;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 10
 	},
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
@@ -11615,12 +11605,12 @@
 "Co" = (
 /obj/table/auto,
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_y = -2;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = -2
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_y = 4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -11636,8 +11626,8 @@
 /area/station/hydroponics/bay)
 "Cq" = (
 /obj/item/slag_shovel{
-	pixel_y = 12;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 12
 	},
 /obj/random_item_spawner/tools/one_or_zero,
 /turf/floor/riveted,
@@ -11849,8 +11839,8 @@
 "CQ" = (
 /obj/ladder{
 	icon_state = "ladder-square";
-	pixel_y = 3;
-	id = "north_maints"
+	id = "north_maints";
+	pixel_y = 3
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
@@ -12013,13 +12003,9 @@
 	},
 /area/station/janitor/supply)
 "Dl" = (
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 3;
-	id = "ai"
+/obj/cable/vertical{
+	icon_state = "0-4";
+	target_z = 3
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
@@ -12127,8 +12113,8 @@
 	},
 /obj/table/wood/auto,
 /obj/item/decoration/ashtray{
-	pixel_y = 4;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 4
 	},
 /obj/item/clothing/mask/cigarette,
 /turf/floor/darkblueblack{
@@ -12312,13 +12298,9 @@
 /area/station/hallway/primary/northwest)
 "DZ" = (
 /obj/random_item_spawner/junk/one_or_zero,
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 3;
-	id = "southmaints"
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/cable/vertical{
+	icon_state = "0-8";
+	target_z = 3
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
@@ -12330,8 +12312,8 @@
 	dir = 4
 	},
 /obj/decoration/toiletholder{
-	pixel_y = 24;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 24
 	},
 /turf/floor/industrial,
 /area/station/wc/bridge)
@@ -12424,16 +12406,16 @@
 "Em" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/old_grenade/smoke{
-	pixel_y = 3;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 3
 	},
 /obj/item/old_grenade/smoke{
-	pixel_y = 4;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 4
 	},
 /obj/item/old_grenade/smoke{
-	pixel_y = -3;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = -3
 	},
 /turf/floor/redblack{
 	dir = 8
@@ -12628,8 +12610,8 @@
 /obj/item/stackable_ammo/pistol/italian/flare/three,
 /obj/item/stackable_ammo/pistol/capacitive/ten,
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 6
+	dir = 6;
+	icon_state = "rug2"
 	},
 /obj/item/audio_tape,
 /turf/floor/carpet/grime2,
@@ -12835,12 +12817,12 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/table/reinforced/industrial/auto,
 /obj/item/decoration/ashtray{
-	pixel_y = 10;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /obj/item/paper/book/from_file/teg_guide{
-	pixel_y = 3;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 3
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/south)
@@ -12959,13 +12941,13 @@
 /area/station/hallway/primary/southwest)
 "Fw" = (
 /obj/item/paper_bin{
-	pixel_y = 4;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 4
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/item/paper_bin{
-	pixel_y = 4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /obj/overlay/magindara_skylight/weather,
 /turf/floor/riveted,
@@ -13085,11 +13067,11 @@
 /area/station/quartermaster/cargobay)
 "FP" = (
 /obj/decal/cleanable/writing{
-	icon_state = "cArrow East";
 	color = "#ffffff";
+	icon_state = "cArrow East";
+	name = "incredibly detailed escape plan";
 	pixel_x = 29;
 	pixel_y = -1;
-	name = "incredibly detailed escape plan";
 	random_icon_states = null
 	},
 /obj/disposalpipe/segment/horizontal,
@@ -13297,20 +13279,20 @@
 /area/station/maintenance/north)
 "Gx" = (
 /obj/submachine/claw_machine{
-	pixel_y = 7;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/snacks/pizzaslice/standard/mushroom{
-	pixel_y = -5;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = -5
 	},
 /turf/floor/carpet/arcade/filthy,
 /area/station/crew_quarters/arcade)
 "Gy" = (
 /obj/table/wood/auto,
 /obj/item/device/light/zippo{
-	pixel_y = 1;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 1
 	},
 /obj/window/west,
 /obj/machinery/camera{
@@ -13525,16 +13507,16 @@
 "Ha" = (
 /obj/table/auto,
 /obj/item/scissors/surgical_scissors{
-	pixel_y = 5;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 5
 	},
 /obj/item/hemostat{
-	pixel_y = 6;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 6
 	},
 /obj/item/hemostat{
-	pixel_y = 3;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 3
 	},
 /obj/item/suture{
 	pixel_x = 2
@@ -13618,8 +13600,8 @@
 "Hm" = (
 /obj/storage/secure/closet/fridge,
 /obj/item/baguette{
-	pixel_y = -4;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -4
 	},
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 1
@@ -13943,8 +13925,8 @@
 /area/magindara)
 "Ic" = (
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 5
+	dir = 5;
+	icon_state = "rug2"
 	},
 /turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/captain)
@@ -14070,8 +14052,8 @@
 	pixel_y = 9
 	},
 /obj/item/breaching_hammer{
-	pixel_y = 1;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 1
 	},
 /turf/floor/industrial,
 /area/station/security/armory)
@@ -14148,8 +14130,8 @@
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/item/kitchen/plasticpackage{
-	pixel_y = -3;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -3
 	},
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
@@ -14352,19 +14334,19 @@
 /area/station/medical/robotics)
 "Ji" = (
 /obj/item/reagent_containers/food/drinks/bottle/fancy_beer{
-	pixel_y = 4;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/drinks/bottle/fancy_beer{
-	pixel_y = 10;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 10
 	},
 /obj/table/kitchen_island{
 	anchored = 1
 	},
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 10
+	dir = 10;
+	icon_state = "rug2"
 	},
 /obj/random_item_spawner/snacks/one_or_zero,
 /turf/floor/carpet/grime2,
@@ -14379,7 +14361,6 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/east)
 "Jk" = (
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
 /turf/floor/wood/five,
 /area/station/crew_quarters/baroffice)
 "Jl" = (
@@ -14444,13 +14425,9 @@
 "Js" = (
 /obj/decal/poster/wallsign/hazard_electrical,
 /obj/structure/girder/riser,
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 5;
-	id = "robotics"
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/cable/vertical{
+	icon_state = "0-8";
+	target_z = 3
 	},
 /turf/floor/industrial,
 /area/station/medical/robotics)
@@ -14530,8 +14507,8 @@
 /area/station/catwalk/simulated)
 "JE" = (
 /obj/item/storage/box/genetic_syringes{
-	pixel_y = -4;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -4
 	},
 /obj/table/reinforced/chemistry/auto,
 /obj/item/paper_bin{
@@ -14539,8 +14516,8 @@
 	pixel_y = 1
 	},
 /obj/item/pen{
-	pixel_y = 6;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 6
 	},
 /turf/floor/black,
 /area/station/medical/research)
@@ -14568,12 +14545,12 @@
 "JI" = (
 /obj/table/auto,
 /obj/item/storage/firstaid/oxygen{
-	pixel_y = 7;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 7
 	},
 /obj/item/storage/firstaid/toxin{
-	pixel_y = -2;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -2
 	},
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 4
@@ -14808,8 +14785,8 @@
 	},
 /obj/access_spawn/ai_upload,
 /obj/item/disk/data/floppy/read_only/network_progs{
-	pixel_y = 3;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 3
 	},
 /obj/item/disk/data/floppy/read_only/communications{
 	pixel_x = 6;
@@ -14878,8 +14855,8 @@
 /obj/machinery/light/sodium,
 /obj/random_item_spawner/tools/maybe_few,
 /obj/item/device/transfer_valve{
-	pixel_y = -3;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -3
 	},
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
@@ -14953,8 +14930,8 @@
 /area/station/hallway/primary/north)
 "KE" = (
 /obj/machinery/shipalert{
-	pixel_y = -30;
-	name = "Clown Parkour Alert"
+	name = "Clown Parkour Alert";
+	pixel_y = -30
 	},
 /obj/lattice{
 	icon_state = "lattice-dir-b"
@@ -15332,8 +15309,8 @@
 	pixel_y = 5
 	},
 /obj/item/spacecash/bag{
-	pixel_y = 10;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 10
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/disposalpipe/segment/vertical,
@@ -15599,8 +15576,8 @@
 	dir = 8
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 9;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 9
 	},
 /obj/item/decoration/ashtray{
 	pixel_x = 7;
@@ -15663,8 +15640,8 @@
 	pixel_y = 4
 	},
 /obj/item/scissors/surgical_scissors{
-	pixel_y = 5;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 5
 	},
 /obj/item/suture{
 	pixel_y = 4
@@ -15727,12 +15704,12 @@
 	dir = 8
 	},
 /obj/item/raw_material/shard/glass{
-	pixel_y = 6;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 6
 	},
 /obj/item/raw_material/shard/glass{
-	pixel_y = -3;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = -3
 	},
 /obj/disposalpipe/segment/bent/west,
 /obj/random_item_spawner/junk/one_or_zero,
@@ -15792,8 +15769,8 @@
 "Ms" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/coffeemaker/generic{
-	pixel_y = 3;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 3
 	},
 /obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
@@ -16204,8 +16181,8 @@
 	pixel_y = 5
 	},
 /obj/item/plate{
-	pixel_y = 7;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 7
 	},
 /obj/item/plate{
 	pixel_y = 9
@@ -16567,8 +16544,8 @@
 "OA" = (
 /obj/plasticflaps,
 /obj/machinery/conveyor/west{
-	operating = 1;
-	id = "cargo_out"
+	id = "cargo_out";
+	operating = 1
 	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
@@ -16665,8 +16642,8 @@
 	},
 /obj/disposalpipe/segment/morgue/bent/west,
 /obj/item/handcuffs/guardbot{
-	pixel_y = -7;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = -7
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
@@ -16974,8 +16951,8 @@
 "PK" = (
 /obj/table/reinforced/auto,
 /obj/item/shaker/salt{
-	pixel_y = 8;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 8
 	},
 /obj/item/shaker/pepper{
 	pixel_x = 4;
@@ -17083,8 +17060,8 @@
 "PX" = (
 /obj/npc/trader/exclown,
 /obj/decal/poster/wallsign/poster_tiger{
-	pixel_y = 29;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 29
 	},
 /obj/neon_lining{
 	dir = 8
@@ -17138,8 +17115,8 @@
 "Qd" = (
 /obj/fitness/speedbag/clown,
 /obj/item/bananapeel{
-	pixel_y = -2;
-	pixel_x = 11
+	pixel_x = 11;
+	pixel_y = -2
 	},
 /obj/railing/cool{
 	dir = 8
@@ -17157,8 +17134,8 @@
 /area/station/hallway/primary/northeast)
 "Qg" = (
 /obj/pool_springboard{
-	pixel_y = 4;
-	pixel_x = -20
+	pixel_x = -20;
+	pixel_y = 4
 	},
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -17551,8 +17528,8 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/camera{
 	c_tag = "autotag";
-	name = "autoname - SS13";
-	dir = 6
+	dir = 6;
+	name = "autoname - SS13"
 	},
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 1
@@ -17564,8 +17541,8 @@
 "Rk" = (
 /obj/sea_plant/branching,
 /obj/item/old_grenade/banana{
-	pixel_y = 5;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 5
 	},
 /obj/item/device/light/glowstick/green_on,
 /obj/disposalpipe/segment/bent/north,
@@ -17767,8 +17744,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/computer3/generic/personal{
-	pixel_y = 9;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 9
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
@@ -17788,8 +17765,8 @@
 "RM" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/decoration/ashtray{
-	pixel_y = 3;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 3
 	},
 /obj/cable{
 	d2 = 2;
@@ -18080,9 +18057,9 @@
 "Su" = (
 /obj/table/reinforced/auto,
 /obj/item/decoration/ashtray{
+	butts = 2;
 	pixel_x = -3;
-	pixel_y = 1;
-	butts = 2
+	pixel_y = 1
 	},
 /turf/floor/carpet/blue/fancy/edge/east,
 /area/station/medical/staff)
@@ -18362,8 +18339,8 @@
 /area/station/crew_quarters/bar)
 "Tc" = (
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 9
+	dir = 9;
+	icon_state = "rug2"
 	},
 /obj/disposalpipe/segment/mail/bent/south,
 /turf/floor/carpet/nicebrown,
@@ -18373,20 +18350,20 @@
 	pixel_x = 4
 	},
 /obj/item/clothing/under/misc/mime{
-	pixel_y = -5;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = -5
 	},
 /obj/item/clothing/under/misc/mime/alt{
 	pixel_y = -5
 	},
 /obj/item/clothing/mask/mime,
 /obj/item/clothing/head/mime_beret{
-	pixel_y = 12;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 12
 	},
 /obj/item/clothing/head/mime_bowler{
-	pixel_y = 6;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 6
 	},
 /obj/item/clothing/suit/scarf,
 /obj/railing/cool{
@@ -18805,9 +18782,9 @@
 	dir = 1
 	},
 /obj/item/caution/target_sheet{
-	pixel_y = -1;
 	anchored = 1;
-	density = 0
+	density = 0;
+	pixel_y = -1
 	},
 /turf/floor/industrial,
 /area/station/maintenance/north)
@@ -18976,12 +18953,12 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/table/glass/reinforced/auto,
 /obj/item/reagent_containers/food/drinks/mug/random_color{
-	pixel_y = 2;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 2
 	},
 /obj/item/reagent_containers/food/drinks/mug/random_color{
-	pixel_y = 4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/medical/staff)
@@ -19061,8 +19038,8 @@
 /area/station/catwalk/simulated)
 "UJ" = (
 /obj/shrub/big/big3{
-	pixel_y = -11;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = -11
 	},
 /obj/landmark/start{
 	name = "Staff Assistant"
@@ -19082,8 +19059,8 @@
 	dir = 1
 	},
 /obj/machinery/conveyor/west{
-	operating = 1;
-	id = "cargo_out"
+	id = "cargo_out";
+	operating = 1
 	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
@@ -19114,21 +19091,21 @@
 /area/station/medical/medbay/cloner)
 "UQ" = (
 /obj/item/matchbook{
-	pixel_y = 10;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 10
 	},
 /obj/item/decoration/ashtray{
-	pixel_y = 2;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 2
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/shrub/dead{
-	pixel_y = 18;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 18
 	},
 /obj/item/cigpacket/propuffs{
-	pixel_y = 3;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 3
 	},
 /obj/decal/cleanable/edge_grit{
 	dir = 8
@@ -19145,8 +19122,8 @@
 "US" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/stackable_ammo/shotgun/slug_flare/ten{
-	pixel_y = -5;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = -5
 	},
 /obj/item/gun/modular/NT/flare_gun{
 	pixel_x = 5;
@@ -19187,8 +19164,8 @@
 	pixel_y = -4
 	},
 /obj/item/device/light/glowstick{
-	pixel_y = -6;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -6
 	},
 /obj/item/device/light/glowstick/cyan,
 /obj/landmark/start{
@@ -19725,8 +19702,8 @@
 	dir = 1
 	},
 /obj/machinery/conveyor/west{
-	operating = 1;
-	id = "cargo_out"
+	id = "cargo_out";
+	operating = 1
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
@@ -19789,8 +19766,8 @@
 "WA" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/light/lamp/bright{
-	pixel_y = 6;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 6
 	},
 /obj/disposalpipe/segment/food/vertical,
 /turf/floor/industrial,
@@ -19915,8 +19892,8 @@
 "WU" = (
 /obj/ladder{
 	icon_state = "ladder-square";
-	pixel_y = 3;
-	id = "arrivals_right"
+	id = "arrivals_right";
+	pixel_y = 3
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
@@ -20219,8 +20196,8 @@
 /obj/disposalpipe/segment/sewage/vertical,
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/door/window/eastleft{
-	dir = 1;
-	autoclose = 0
+	autoclose = 0;
+	dir = 1
 	},
 /obj/access_spawn/security,
 /turf/floor/riveted,
@@ -20322,12 +20299,12 @@
 "XX" = (
 /obj/table/wood/auto/desk,
 /obj/machinery/computer/security/wooden_tv{
-	pixel_y = 5;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 5
 	},
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug1";
-	dir = 1
+	dir = 1;
+	icon_state = "rug1"
 	},
 /obj/decal/poster/wallsign/pride/random{
 	pixel_y = 32
@@ -20472,8 +20449,8 @@
 "Yt" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
-	name = "autoname - SS13";
-	dir = 6
+	dir = 6;
+	name = "autoname - SS13"
 	},
 /obj/submachine/ATM{
 	pixel_y = 32
@@ -20608,8 +20585,8 @@
 "YK" = (
 /obj/ladder{
 	icon_state = "ladder-square";
-	pixel_y = 3;
-	id = "cent_maints"
+	id = "cent_maints";
+	pixel_y = 3
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
@@ -21104,13 +21081,13 @@
 /area/station/hallway/primary/east)
 "ZZ" = (
 /obj/decal/tile_edge/carpet{
-	icon_state = "rug2";
-	dir = 6
+	dir = 6;
+	icon_state = "rug2"
 	},
 /obj/table/wood/auto/desk,
 /obj/machinery/phone{
-	pixel_y = -1;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -1
 	},
 /turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/captain)
@@ -55427,7 +55404,7 @@ AJ
 VL
 VL
 AJ
-jv
+Gn
 SO
 SO
 SO
@@ -69618,7 +69595,7 @@ Sw
 Zn
 oX
 Ut
-jv
+Gn
 SO
 SO
 SO
@@ -70222,7 +70199,7 @@ Bg
 Zn
 oX
 Ut
-jv
+Gn
 SO
 SO
 SO

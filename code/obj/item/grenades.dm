@@ -16,6 +16,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 	var/det_time = 3 SECONDS
 	var/org_det_time = 3 SECONDS
 	var/alt_det_time = 6 SECONDS
+	hint = "Use in hand to arm. You can toggle between two detonation timings with a screwdriver."
 	w_class = W_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
@@ -235,7 +236,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 				if (istype(X, /obj))
 					var/area/t = get_area(X)
 					if(t?.sanctuary) continue
-					if (prob(50) && X:anchored != 2)
+					if (prob(50) && X:anchored != ANCHORED_TECHNICAL)
 						step_towards(X,src)
 		qdel(src)
 		return
@@ -304,7 +305,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 			gen.set_active(1)
 			gen.state = 3
 			gen.power = 250
-			gen.anchored = 1
+			gen.anchored = ANCHORED
 			icon_state = "Field_Gen +a"
 		qdel(src)
 
@@ -431,7 +432,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		if (T)
 			explosion(src, T, -1, -1, -0.25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
-			O.anchored = 1
+			O.anchored = ANCHORED
 			O.name = "Explosion"
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
@@ -482,7 +483,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			explosion_new(src, T, 5.0, 2)
 			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
-			O.anchored = 1
+			O.anchored = ANCHORED
 			O.name = "Explosion"
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
@@ -560,7 +561,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			pulse.icon = 'icons/effects/effects.dmi'
 			pulse.icon_state = "emppulse"
 			pulse.name = "emp pulse"
-			pulse.anchored = 1
+			pulse.anchored = ANCHORED
 			SPAWN_DBG(2 SECONDS)
 				if (pulse) qdel(pulse)
 
@@ -922,7 +923,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 	prearmed
 		armed = 1
-		anchored = 1
+		anchored = ANCHORED
 
 		New()
 			SPAWN_DBG(0)
@@ -1012,7 +1013,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			..()
 		prearmed
 			armed = 1
-			anchored = 1
+			anchored = ANCHORED
 
 			New()
 				SPAWN_DBG(0)
@@ -1041,7 +1042,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 /obj/item/gimmickbomb/owlgib/prearmed
 	armed = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		SPAWN_DBG(0)
@@ -1050,7 +1051,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 /obj/item/gimmickbomb/owlclothes/prearmed
 	armed = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		SPAWN_DBG(0)
@@ -1069,7 +1070,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	icon_state = "firework"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
@@ -1279,7 +1280,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 					src.icon_state = "bcharge2"
 					user.u_equip(src)
 					src.set_loc(get_turf(target))
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.state = 1
 
 					// Yes, please (Convair880).
@@ -1380,7 +1381,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 					src.icon_state = "bcharge2"
 					user.u_equip(src)
 					src.set_loc(get_turf(target))
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.state = 1
 
 					// Yes, please (Convair880).
@@ -1417,7 +1418,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 				O.name = "Thermite"
 				O.desc = "A searing wall of flames."
 				O.icon = 'icons/effects/fire.dmi'
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.layer = TURF_EFFECTS_LAYER
 				O.color = "#ff9a3a"
 				var/datum/light/point/light = new

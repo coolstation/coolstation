@@ -677,9 +677,7 @@
 			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
-	#ifdef DATALOGGER
 	game_stats.Increment("workplacesafety")
-	#endif
 	H.changeStatus("weakened", 3 SECONDS)
 	H.force_laydown_standup()
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
@@ -819,7 +817,7 @@
 	desc = "A sophisticated piece of machinery that quickly processes minerals into bars."
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "reclaimer"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	event_handler_flags = NO_MOUSEDROP_QOL
 	var/active = 0
@@ -840,7 +838,7 @@
 			return
 		user.visible_message("<b>[user.name]</b> switches on [src].")
 		active = 1
-		anchored = 1
+		anchored = ANCHORED
 		icon_state = "reclaimer-on"
 
 		for (var/obj/item/M in src.contents)
@@ -899,7 +897,7 @@
 			playsound(src.loc, sound_grump, 40, 1)
 
 		active = 0
-		anchored = 0
+		anchored = UNANCHORED
 		icon_state = "reclaimer"
 		src.visible_message("<b>[src]</b> finishes working and shuts down.")
 

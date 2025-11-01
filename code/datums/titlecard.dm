@@ -399,7 +399,7 @@
 	desc = "The title card for it, at least."
 	plane = PLANE_OVERLAY_EFFECTS
 	pixel_x = -96
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	ex_act(severity)
 		return

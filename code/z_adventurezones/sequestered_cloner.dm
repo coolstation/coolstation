@@ -16,12 +16,17 @@
 	autoname_on_spawn = 1
 	noalerts = 1
 	aidisabled = 1
-
+	/*
 	initialize()
-		. = ..()
+		..()
+		STANDARD_WORLDGEN_HOLD
+
+	initialize_worldgen()
 		for(var/obj/cable/C in src.loc)
-			C.update_network()
+			C.integrate()
 			break
+		..()
+	*/
 
 	// set channels depending on how much charge we have left
 	check_channel_thresholds()

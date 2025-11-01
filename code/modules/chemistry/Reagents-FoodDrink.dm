@@ -725,6 +725,25 @@ datum
 			reagent_state = LIQUID
 			taste = "sweet"
 
+		fooddrink/alcoholic/brandy
+			name = "brandy"
+			id = "brandy"
+			fluid_r = 245
+			fluid_g = 120
+			fluid_b = 30
+			alch_strength = 0.55
+			description = "A strong dessert alcohol made by distilling wine."
+			reagent_state = LIQUID
+			taste = "sweet"
+
+		fooddrink/alcoholic/brandy/silovitz
+			name = "silovitz"
+			id = "silovitz"
+			fluid_r = 250
+			fluid_g = 150
+			fluid_b = 30
+			description = "The plum brandy of the country."
+
 		fooddrink/alcoholic/bitters
 			name = "bitters"
 			id = "bitters"
@@ -973,6 +992,50 @@ datum
 			description = "Fun fact: the name of this cocktail was deemed a war crime in 2025."
 			reagent_state = LIQUID
 			taste = "sexy"
+
+		fooddrink/alcoholic/fancybrandy
+			name = "Fancy Brandy"
+			id = "fancybrandy"
+			fluid_r = 245
+			fluid_g = 120
+			fluid_b = 60
+			alch_strength = 0.7
+			reagent_state = LIQUID
+			description = "Also known simply as a Brandy Cocktail."
+			taste = "elegant"
+
+		fooddrink/alcoholic/metropolitan
+			name = "Metropolitan"
+			id = "metropolitan"
+			fluid_r = 245
+			fluid_g = 160
+			fluid_b = 60
+			alch_strength = 0.6
+			description = "The classic brandy cocktail- it's like the Manhattan, but for brandy."
+			reagent_state = LIQUID
+			taste = "modestly satisfying"
+
+		fooddrink/alcoholic/brandydaisy
+			name = "Brandy Daisy"
+			id = "brandydaisy"
+			fluid_r = 245
+			fluid_g = 160
+			fluid_b = 40
+			alch_strength = 0.65
+			reagent_state = LIQUID
+			description = "It even smells like a daisy. Cute."
+			taste = "like a flower"
+
+		fooddrink/alcoholic/vieuxcarre
+			name = "Vieux Carré"
+			id = "vieuxcarre"
+			description = "ET OUA, Vyurr kaa ray!"
+			fluid_r = 224
+			fluid_g = 180
+			fluid_b = 92
+			alch_strength = 0.65
+			reagent_state = LIQUID
+			taste = "cajun"
 
 		fooddrink/alcoholic/gtonic
 			name = "Gin and Tonic"
@@ -2095,6 +2158,28 @@ datum
 				if(prob(5))
 					M.reagents.add_reagent("cholesterol", rand(1,3) * mult)
 				..()
+
+		fooddrink/cattail_fluff
+			name = "cattail fluff"
+			id= "cattail_fluff"
+			description = "A cottony fluff that holds the seeds of the cattail; it expands rapidly when ingested."
+			reagent_state = SOLID
+			fluid_r = 235
+			fluid_g = 233
+			fluid_b = 223
+			transparency = 255
+			hunger_value = 0.1
+			viscosity = 0.2
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				..()
+				if(prob(80))
+					M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
+					M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
+					M.take_oxygen_deprivation(rand(8,20)) // grrk gghfg glugg ghrkjhhrrk
+					playsound(M, "sound/misc/meat_plop.ogg", 50,1)
+					boutput(M, "<span class='alert'>The cattail fluff explodes in your mouth!</span>")
+
 
 		fooddrink/meat_slurry
 			name = "meat slurry"

@@ -49,10 +49,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	density = 0
 	custom_gib_handler = /proc/gibs
 	hand_count = 1
-	can_help = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	butcherable = 1
 	name_the_meat = 1
 	max_skins = 1

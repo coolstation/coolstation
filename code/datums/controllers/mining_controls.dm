@@ -313,7 +313,7 @@ var/list/asteroid_blocked_turfs = list()
 	opacity = 0
 	density = 0
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | MINERAL_MAGNET_SAFE
 
 /// *** MISC *** ///

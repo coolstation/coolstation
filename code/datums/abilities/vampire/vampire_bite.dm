@@ -320,6 +320,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 999
+	ai_range = 10
 	cooldown = 45 SECONDS
 	pointCost = 0
 	when_stunned = 1
@@ -449,6 +450,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 0
 	pointCost = 0
 	when_stunned = 0

@@ -109,7 +109,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/gun_parts/barrel/barrel = null
 	var/obj/item/gun_parts/grip/grip = null //need either a grip or a stock to sensibly use
 	var/obj/item/gun_parts/stock/stock = null //optional
-	var/obj/item/gun_parts/grip/foregrip = null // optional
 	var/obj/item/gun_parts/accessory/accessory = null
 	var/list/obj/item/gun_parts/parts = list()
 	var/built = 0
@@ -955,10 +954,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 	handle_recoil(user, start, target, POX, POY)
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif
 
 	if (ismob(user))
 		var/mob/M = user

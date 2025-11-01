@@ -11,6 +11,7 @@
 /obj/item/baton
 	name = "stun baton"
 	desc = "A standard issue baton for stunning people with."
+	hint = "this can restart a heart in a pinch."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "stunbaton"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'

@@ -58,7 +58,7 @@ var/list/clothingbooth_items = list()
 	desc = "Please hand your credits to the goblin tailor before entering."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "clothingbooth-open"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	//power_usage = 100
 	var/datum/light/light

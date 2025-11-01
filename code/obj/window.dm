@@ -29,7 +29,7 @@
 	var/deconstruct_time = 0//20
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	gas_impermeable = TRUE
-	anchored = 1
+	anchored = ANCHORED
 
 	the_tuff_stuff
 		explosion_resistance = 3
@@ -338,7 +338,7 @@
 				damage_blunt(O.throwforce)
 
 		if (src && src.health <= 2 && !reinforcement)
-			src.anchored = 0
+			src.anchored = UNANCHORED
 			src.stops_space_move = 0
 			step(src, get_dir(AM, src))
 		..()
@@ -843,7 +843,7 @@
 	name = "extremely indestructible window"
 	desc = "An EXTREMELY indestructible window. An absurdly robust one at that."
 	var/initialPos
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	New()
 		..()
 		initialPos = loc
@@ -982,7 +982,7 @@
 	icon = 'icons/obj/window.dmi'
 	icon_state = "wingrille"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	invisibility = 101
 	//layer = 99
 	pressure_resistance = 4*ONE_ATMOSPHERE

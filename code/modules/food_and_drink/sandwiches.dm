@@ -186,6 +186,7 @@
 		boutput(M, "<b class='alert'>The [src.name] punches you in [pick(list("your tongue", "your cheek", "the roof of your mouth", "your uvula", "the teeth"))]!</b>" )
 
 	on_finish(mob/eater)
+		..()
 		boutput(eater, "<b class='alert'>The last of the [src.name] flips you off as it slides down your gullet.</b>" ) //Don't ask me how you'd ever know this
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)

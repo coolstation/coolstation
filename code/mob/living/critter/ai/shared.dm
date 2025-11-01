@@ -263,13 +263,10 @@
 	default_task = get_instance(/datum/aiTask/concurrent/violence, list(src))
 	src.tick()
 
-/datum/aiHolder/violent/was_harmed(obj/item/W, mob/M)
-	if(src.owner.ai_is_valid_target(M))
-		src.target = M
-
 /datum/aiTask/concurrent/violence
 	name = "violence"
 	max_dist = 9
+	score_by_distance_only = FALSE
 
 /datum/aiTask/concurrent/violence/New(parentHolder, transTask)
 	..(parentHolder, transTask)
@@ -285,12 +282,23 @@
 /datum/aiTask/concurrent/violence/tick()
 	if(!src.holder.target && !ON_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown", src.holder.seek_cooldown))
 		src.holder.target = src.get_best_target(get_targets())
+	// when fighting, move to the heavyweight ai ticks
+	if(src.holder.owner.mob_flags & HEAVYWEIGHT_AI_MOB)
+		if(!src.holder.target)
+			src.holder.owner.mob_flags &= ~HEAVYWEIGHT_AI_MOB
+	else if(src.holder.target)
+		src.holder.owner.mob_flags |= HEAVYWEIGHT_AI_MOB
 	. = ..()
+
+/datum/aiTask/concurrent/violence/score_target(atom/target)
+	. = ..()
+	if(.)
+		. *= src.holder.owner.ai_rate_target(target)
 
 // this task causes violence forever
 /datum/aiTask/endless/violence_subtask
 	name = "violence subtask"
-	var/boredom_ticks = 60
+	var/boredom_ticks = 120
 	var/ability_cooldown = 4 SECONDS
 	var/mob/living/queued_target = null
 	var/ticks_since_combat = 0
@@ -305,14 +313,18 @@
 		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
 			src.queued_target = null
 			src.holder.target = null
+			src.ticks_since_combat = 0
 			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
 				src.holder.target = src.get_best_target(get_targets())
 			if(!src.holder.target)
 				return ..()
 
-		src.holder.owner.a_intent = prob(80) ? INTENT_HARM : pick(INTENT_DISARM, INTENT_GRAB)
+		if(src.holder.owner.ai_a_intent)
+			src.holder.owner.a_intent = src.holder.owner.ai_a_intent
+		else
+			src.holder.owner.a_intent = prob(80) ? INTENT_HARM : pick(INTENT_DISARM, INTENT_GRAB)
 
-		owncritter.hud.update_intent() // god i hate this
+		owncritter.hud.update_intent() // this works even on humans. hate it though.
 
 		if(src.holder.owner.next_click > world.time)
 			return ..()
@@ -320,6 +332,14 @@
 		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(M))
 			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
 			return ..()
+
+		// bit of a shitshow here, but this ensures the ai mobs dont alternate between choking and letting go of people
+		var/obj/item/grab/G = src.holder.owner.equipped()
+		if(G && istype(G) && G.state > GRAB_NECK)
+			var/prev_hand = src.holder.owner.hand
+			src.holder.owner.swap_hand()
+			if(src.holder.owner.hand == prev_hand)
+				return ..()
 
 		if(GET_DIST(src.holder.owner, M) <= 1)
 			src.holder.owner.hand_attack(M)
@@ -341,10 +361,8 @@
 			src.ticks_since_combat++
 		src.holder.owner.set_dir(get_dir(src.holder.owner, M))
 
-		if(prob(40)) // may do a more intelligent check later, but this is decent
-			src.holder.owner.swap_hand()
-	else
-		src.holder.target = locate(src.holder.owner.x + rand(-4, 4), src.holder.owner.y + rand(-4, 4), src.holder.owner.z)
+	if(prob(30)) // may do a more intelligent check later, but this is decent
+		src.holder.owner.swap_hand()
 
 	..()
 

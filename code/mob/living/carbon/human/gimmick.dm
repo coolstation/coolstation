@@ -34,7 +34,7 @@
 
 /mob/living/carbon/human/cluwne/floor
 	nodamage = 1
-	anchored = 1
+	anchored = ANCHORED
 	layer = 0
 	plane = PLANE_UNDERFLOOR
 
@@ -70,7 +70,7 @@
 // Come to collect a poor unfortunate soul
 /mob/living/carbon/human/satan
 	nodamage = 1
-	anchored = 1
+	anchored = ANCHORED
 	layer = 0
 	plane = PLANE_UNDERFLOOR
 	New()
@@ -84,7 +84,7 @@
 			src.bioHolder.AddEffect("aura_fire", 0, 0, 1)
 
 /mob/living/carbon/human/satan/gimmick
-	anchored = 1
+	anchored = ANCHORED
 	layer = 4
 	plane = PLANE_DEFAULT
 

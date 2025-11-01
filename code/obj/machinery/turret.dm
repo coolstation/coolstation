@@ -8,7 +8,7 @@
 	#endif
 	var/raised = 0
 	var/enabled = 1
-	anchored = 1
+	anchored = ANCHORED
 	layer = OBJ_LAYER
 	plane = PLANE_NOSHADOW_BELOW
 	invisibility = 2
@@ -31,7 +31,7 @@
 	name = "pop-up turret cover"
 	icon = 'icons/obj/machines/turrets.dmi'
 	icon_state = "turretCover"
-	anchored = 1
+	anchored = ANCHORED
 	layer = OBJ_LAYER+0.5
 	density = 0
 
@@ -344,7 +344,7 @@
 	name = "Turret deactivation control"
 	icon = 'icons/obj/items/device.dmi'
 	icon_state = "ai3"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	plane = PLANE_NOSHADOW_ABOVE
 	var/enabled = 1

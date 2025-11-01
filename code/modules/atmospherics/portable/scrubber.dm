@@ -11,6 +11,7 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER
 	volume = 750
 	desc = "A device which filters out harmful air from an area."
+	hint = "drag and drop onto your person to remove the internal chem tank(changing the filter)"
 	p_class = 1.5
 
 
@@ -122,10 +123,10 @@
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(!possible_port)//checks for whether there's something that could be connected to on the scrubber's loc, if there is it calls parent.
 				if(src.anchored)
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					boutput(user, "<span class='notice'>You unanchor [name] from the floor.</span>")
 				else
-					src.anchored = 1
+					src.anchored = ANCHORED
 					boutput(user, "<span class='notice'>You anchor [name] to the floor.</span>")
 			else ..()
 		else ..()

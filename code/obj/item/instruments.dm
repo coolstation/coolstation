@@ -108,7 +108,7 @@
 	throwforce = 25
 	density = 1
 	pass_unstable = FALSE
-	anchored = 1
+	anchored = ANCHORED
 	desc_verb = list("plays", "performs", "composes", "arranges")
 	desc_sound = list("nice", "classic", "classical", "great", "impressive", "terrible", "awkward", "striking", "grand", "majestic")
 	desc_music = list("melody", "aria", "ballad", "chorus", "concerto", "fugue", "tune")
@@ -116,6 +116,7 @@
 	note_time = 200
 	affect_fun = 15 // a little higher, why not?
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH
+	hint = "Use a screwdriver to move or anchor this."
 
 	attack_hand(mob/user as mob)
 		src.add_fingerprint(user)
@@ -190,7 +191,7 @@
 /obj/item/instrument/large/jukebox
 	name = "old jukebox"
 	desc = "I wonder who fixed this thing?"
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "jukebox"
 	item_state = "jukebox"

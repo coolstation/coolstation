@@ -6,7 +6,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "power2"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	desc = "Shows the power usage of the station."
 	flags = FPRINT | TGUI_INTERACTIVE
 	var/datum/light/light
@@ -148,7 +148,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "power"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	desc = "Shows the SMES usage and power produced by the engine."
 	window_tag = "smespowcomp"
 

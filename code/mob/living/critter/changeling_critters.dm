@@ -8,8 +8,6 @@
 	density = 1
 	custom_gib_handler = /proc/gibs
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 1
 	blood_id = "bloodc"
 	table_hide = 0
 	takes_brain = FALSE
@@ -121,8 +119,6 @@
 	icon_state = "handspider"
 	icon_state_dead = "handspider-dead"
 	abilityHolder
-	can_grab = 1
-	can_disarm = 1
 	hand_count = 1
 	health_brute = 5
 	health_brute_vuln = 1
@@ -597,8 +593,8 @@
 		src.flags ^= TABLEPASS | DOORPASS
 
 /mob/living/critter/changeling/headspider/ai_is_valid_target(var/mob/M)
-		//we want a human that isnt dead and isnt already sorta taken over
-		return ishuman(M) && !isdead(M) && (!owner || M.mind != owner) && src.loc != M
+	//we want a human that isnt dead and isnt already sorta taken over
+	return ishuman(M) && !isdead(M) && (!owner || M.mind != owner) && src.loc != M
 
 /mob/living/critter/changeling/headspider/proc/infect_target(mob/M)
 	if(ishuman(M) && isalive(M))

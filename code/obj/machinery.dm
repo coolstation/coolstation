@@ -335,7 +335,7 @@ ABSTRACT_TYPE(/obj/submachine)
 	pulse2.icon = 'icons/effects/effects.dmi'
 	pulse2.icon_state = "empdisable"
 	pulse2.name = "emp sparks"
-	pulse2.anchored = 1
+	pulse2.anchored = ANCHORED
 	pulse2.set_dir(pick(cardinal))
 
 	SPAWN_DBG(1 SECOND)
@@ -351,7 +351,7 @@ ABSTRACT_TYPE(/obj/submachine)
 	var/a_type = 0.0
 	var/obj/machinery/door/d1 = null
 	var/obj/machinery/door/d2 = null
-	anchored = 1.0
+	anchored = ANCHORED
 	req_access = list(access_armory)
 
 /obj/machinery/driver_button
@@ -361,7 +361,7 @@ ABSTRACT_TYPE(/obj/submachine)
 	desc = "A remote control switch for a Mass Driver."
 	var/id = null
 	var/active = 0
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/machinery/ignition_switch
 	name = "Ignition Switch"
@@ -370,14 +370,14 @@ ABSTRACT_TYPE(/obj/submachine)
 	desc = "A remote control switch for a mounted igniter."
 	var/id = null
 	var/active = 0
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/machinery/noise_switch
 	name = "Speaker Toggle"
 	desc = "Makes things make noise."
 	icon = 'icons/obj/machines/noise_makers.dmi'
 	icon_state = "switch"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/ID = 0
 	var/noise = 0
@@ -390,7 +390,7 @@ ABSTRACT_TYPE(/obj/submachine)
 	desc = "Makes noise when something really bad is happening."
 	icon = 'icons/obj/machines/noise_makers.dmi'
 	icon_state = "nm n +o"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	machine_registry_idx = MACHINES_MISC
 	var/ID = 0
@@ -409,7 +409,7 @@ ABSTRACT_TYPE(/obj/submachine)
 	desc = "a big radio transmitter"
 	icon = null
 	icon_state = null
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	var/list/signals = list()

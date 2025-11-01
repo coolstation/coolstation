@@ -1,9 +1,10 @@
 /obj/submachine/slot_machine
 	name = "Slot Machine"
 	desc = "Gambling for the antisocial."
+	hint = "you can stop any time you want."
 	icon = 'icons/obj/gambling.dmi'
 	icon_state = "slots-off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 8
 	flags = TGUI_INTERACTIVE

@@ -133,7 +133,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 	/// a proc that makes a movable atom 'AM' animate a fall with 'brutedamage' brute damage then actually fall
 	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50, iterations = 0)
-		if(istype(AM, /obj/overlay) || AM.anchored == 2)
+		if(istype(AM, /obj/overlay) || AM.anchored == ANCHORED_TECHNICAL)
 			return
 		#ifdef CHECK_PITFALL_INITIALIZATION
 		if(current_state <= GAME_STATE_WORLD_NEW)
@@ -153,9 +153,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							break
 				if(M.mind && M.mind.assigned_role == "Clown")
 					playsound(M, "sound/effects/slidewhistlefall.ogg", 50, 0)
-#ifdef DATALOGGER
 					game_stats.Increment("clownabuse")
-#endif
 				M.emote("scream")
 				APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
 			animate_fall(AM,fall_time,src.DepthScale)
@@ -247,9 +245,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 								M.changeStatus("weakened", 2 SECONDS)
 							M.force_laydown_standup()
 							playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
-							#ifdef DATALOGGER
 							game_stats.Increment("workplacesafety")
-							#endif
 						if(!did_hit_mob)
 							M.visible_message("<span class='alert'>[M] [keep_falling ? "tumbles through" : "slams down into"] [T]!</span>", "<span class='alert'>You [keep_falling ? "tumble through" : "slam down into"] [T]!</span>")
 				else

@@ -136,7 +136,7 @@ This works
 
 /obj/projection
 
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	name = "projection"
@@ -194,7 +194,7 @@ This works
 
 /obj/point_to_projection
 
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	name = "pointer"

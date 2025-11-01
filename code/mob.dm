@@ -233,6 +233,8 @@
 	var/last_move_dir = null
 
 	var/datum/aiHolder/ai = null
+	/// if set to an a_intent, ai should prioritize that one
+	var/ai_a_intent = null
 	/// used for load balancing mob_ai ticks
 	var/ai_tick_schedule = null
 
@@ -1718,11 +1720,9 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1808,11 +1808,9 @@
 
 /mob/proc/elecgib()
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is electric-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1842,11 +1840,9 @@
 
 /mob/proc/firegib()
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is fire-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1883,11 +1879,9 @@
 		var/list/virus = src.ailments
 		partygibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is party-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1930,11 +1924,9 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	var/transfer_mind_to_owl = prob(control_chance)
 	logTheThing("combat", src, null, "is owl-gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1981,11 +1973,9 @@
 /mob/proc/vaporize(give_medal, forbid_abberation)
 	if (isobserver(src))
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
@@ -2020,11 +2010,9 @@
 
 /mob/proc/implode(give_medal)
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "imploded at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -2053,14 +2041,12 @@
 	SPAWN_DBG(0) //multicluwne
 		duration = clamp(duration, 10, 100)
 
-	#ifdef DATALOGGER
 		game_stats.Increment("violence")
 		game_stats.Increment("clownabuse") // no check necessary, you're a clown by the time it matters. :)
-	#endif
 		logTheThing("combat", src, null, "is taken by the floor cluwne at [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/cluwne/floor/floorcluwne = null
@@ -2122,11 +2108,9 @@
 
 /mob/proc/buttgib(give_medal)
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is butt-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -2964,7 +2948,7 @@
 	SPAWN_DBG(0.7 SECONDS) //Length of animation.
 		newbody.set_loc(animation.loc)
 		qdel(animation)
-		newbody.anchored = 1 // Stop running into the lava every half second jeez!
+		newbody.anchored = ANCHORED // Stop running into the lava every half second jeez!
 		sleep(4 SECONDS)
 		reset_anchored(newbody)
 
@@ -2979,7 +2963,7 @@
 		logTheThing("combat", src, null, "is damned to hell from [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/satan/satan = new /mob/living/carbon/human/satan

@@ -164,7 +164,7 @@
 			var/list/affected = DrawLine(user, target_r, /obj/line_obj/railgun ,'icons/obj/projectiles.dmi',"WholeRailG",1,1,"HalfStartRailG","HalfEndRailG",OBJ_LAYER,1)
 
 			for(var/obj/O in affected)
-				O.anchored = 1 //Proc wont spawn the right object type so lets do that here.
+				O.anchored = ANCHORED //Proc wont spawn the right object type so lets do that here.
 				O.name = "Energy"
 				var/turf/src_turf = O.loc
 				for(var/obj/machinery/vehicle/A in src_turf)
@@ -1459,6 +1459,27 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 		msgs.damage_type = DAMAGE_CUT
 		msgs.flush(SUPPRESS_LOGS)
 		user.lastattacked = target
+
+/datum/limb/pincers
+	name = "pincers"
+
+	grab(mob/target, var/mob/living/user)
+		if (!istype(user) || !ismob(target))
+			target.Attackhand(user)
+			return
+
+		if(check_target_immunity( target ))
+			return 0
+
+		user.grab_other(target, 1, grab_the_ungrabbable = TRUE)
+
+		var/obj/item/grab/GD = user.equipped()
+		if (GD && istype(GD) && (GD.affecting && GD.affecting == target))
+			GD.state = GRAB_AGGRESSIVE
+			GD.update_icon()
+			user.visible_message("<span class='alert'>[user] snaps [his_or_her(user)] [src] around [target]!</span>")
+
+		return
 
 
 //test for crab attack thing

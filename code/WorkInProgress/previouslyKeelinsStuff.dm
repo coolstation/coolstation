@@ -460,7 +460,7 @@ var/reverse_mode = 0
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x4"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	New()

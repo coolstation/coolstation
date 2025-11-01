@@ -9,7 +9,7 @@
 	icon_state = "mulebot0"
 	layer = MOB_LAYER
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	animate_movement=1
 	soundproofing = 0
 	on = 1
@@ -460,7 +460,7 @@
 		var/obj/storage/crate/crate = C
 		if(istype(crate))
 			crate.close()
-		C.anchored = 1
+		C.anchored = ANCHORED
 		C.set_loc(src.loc)
 		sleep(0.2 SECONDS)
 		C.set_loc(src)
@@ -675,9 +675,7 @@
 		src.visible_message("<span class='alert'>[src] drives over [H]!</span>")
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 
-		#ifdef DATALOGGER
 		game_stats.Increment("workplacesafety")
-		#endif
 
 		logTheThing("vehicle", H, src.emagger, "is run over by a MULE ([src.name]) at [log_loc(src)].[src.emagger && ismob(src.emagger) ? " Safety disabled by [constructTarget(src.emagger,"vehicle")]." : ""]")
 

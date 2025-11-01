@@ -260,7 +260,7 @@
 	icon = 'icons/obj/machines/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	anchored = 1
+	anchored = ANCHORED
 	density = FALSE
 	pass_unstable = FALSE
 	text = ""
@@ -1663,7 +1663,7 @@
 	name = "smart disposal outlet"
 	desc = "A disposal outlet with a little sonar sensor on the front, so it only dumps contents if it is unblocked."
 	icon_state = "unblockoutlet"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/turf/stuff_chucking_target
 
@@ -2012,9 +2012,7 @@
 				random_brute_damage(schmuck, 10)
 				schmuck.show_text("You fall down the pipe trunk!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
-				#ifdef DATALOGGER
 				game_stats.Increment("workplacesafety")
-				#endif
 
 				var/obj/disposalholder/D = new (src)
 				D.set_loc(src)
@@ -2161,7 +2159,7 @@
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "outlet"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = FALSE
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.

@@ -759,7 +759,7 @@ td, th {
 	var/datum/griffening_controller/controller = null
 	var/datum/playing_card/griffening/area/card = null
 	var/area_owner = 0
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	New(var/loc, var/ctrl)
@@ -791,7 +791,7 @@ td, th {
 	var/card_offset = 0
 	var/player = 1
 	var/role = HOLDER_ROLE_UNUSED
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	New(var/loc, var/ctrl)
@@ -850,7 +850,7 @@ td, th {
 	invisibility = 101
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 
 	var/datum/griffening_controller/controller = null
 

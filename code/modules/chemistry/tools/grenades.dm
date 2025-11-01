@@ -5,6 +5,7 @@
 
 /obj/item/chem_grenade
 	name = "metal casing"
+	hint = "press 'c' to arm the grenade."
 	icon_state = "grenade-chem1"
 	icon = 'icons/obj/items/grenade.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'

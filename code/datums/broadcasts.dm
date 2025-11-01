@@ -213,7 +213,9 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 			icon_state = "transmitter-on"
 
 	disposing()
-		UNSUBSCRIBE_BROADCAST(station)
+		//Fix edge case where no radio/tv starts turned on, so the by_cat list was never initialised when trying to unsub
+		if (on)
+			UNSUBSCRIBE_BROADCAST(station)
 		..()
 
 

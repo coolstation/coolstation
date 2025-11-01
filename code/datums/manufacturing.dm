@@ -1013,6 +1013,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Tool"
 
+/datum/manufacture/rag
+	name = "Rag"
+	item_paths = list("FAB-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/material_piece/cloth/rag)
+	time = 5 SECONDS
+	create = 1
+	category = "Tool"
+
 /datum/manufacture/cyberheart
 	name = "Cyberheart"
 	item_paths = list("MET-1","CON-1","ALL")

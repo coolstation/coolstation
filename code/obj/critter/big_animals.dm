@@ -165,7 +165,7 @@ obj/critter/bear/care
 		src.seek_target()
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -289,7 +289,7 @@ obj/critter/bear/care
 		src.seek_target()
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -552,7 +552,7 @@ obj/critter/bear/care
 	atk_text = "bites and claws at"
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"

@@ -16,6 +16,10 @@ macro "base_macro"
 		name = "CTRL+B"
 		command = "say \"*burp\""
 		is-disabled = true
+	elem "clap"
+		name = "CTRL+C"
+		command = "say \"*clap\""
+		is-disabled = true
 	elem "ooc"
 		name = "ALT+C"
 		command = ".winset \"command=.init_ooc;oocwindow.is-visible=true;oocwindow.input.focus=true\""

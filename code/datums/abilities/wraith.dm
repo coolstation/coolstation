@@ -737,7 +737,7 @@
 	icon_state = "acursed"
 	// invisibility = 101
 	invisibility = 10
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	mouse_opacity = 0

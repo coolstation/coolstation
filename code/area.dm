@@ -68,7 +68,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	mat_changedesc = 0
 	text = ""
 	//if this isnt set here, the bottom left turf of each area gets confused about passability caching
-	pass_unstable = FALSE
+	pass_unstable = PRESERVE_CACHE
 	var/lightswitch = 1
 
 	/// If the area is on a restricted z leve, this controls if people can eat within it. (The reason for this might shock you!)
@@ -168,7 +168,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/obj/machinery/light_area_manager/light_manager = 0
 
 	//list of the density of each tile in the area
-	var/list/densityMap = list()
+	//var/list/densityMap = list()
 
 	/// Local list of obj/machines found in the area
 	var/list/machines = list()

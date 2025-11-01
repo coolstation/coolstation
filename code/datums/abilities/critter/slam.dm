@@ -41,7 +41,7 @@
 		dummy.mouse_opacity = 0
 		dummy.name = null
 		dummy.set_density(0)
-		dummy.anchored = 1
+		dummy.anchored = ANCHORED
 		dummy.opacity = 0
 		dummy.icon = null
 		dummy.overlays += charger
@@ -107,6 +107,7 @@
 	cooldown = 100
 	targeted = 1
 	target_anything = 1
+	ai_range = 10
 	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new

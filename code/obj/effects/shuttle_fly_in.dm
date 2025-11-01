@@ -4,7 +4,7 @@
 	desc = "OH FUCK IT'S COMING RIGHT FOR US!!"
 	icon = 'icons/obj/large/mining_shuttle_front.dmi'
 	icon_state = "shuttle"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	invisibility = 101 //start invisible
 	plane = PLANE_SPACE
 	flags = TECHNICAL_ATOM

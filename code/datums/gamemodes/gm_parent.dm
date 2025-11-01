@@ -215,12 +215,10 @@
 			else
 				stuff_to_output += "<B>The [traitor.special_role] has failed!<B>"
 
-	#ifdef DATALOGGER
 			if (traitorwin)
 				game_stats.Increment("traitorwin")
 			else
 				game_stats.Increment("traitorloss")
-	#endif
 		catch(var/exception/e)
 			logTheThing("debug", null, null, "Kyle|antag-runtime: [e.file]:[e.line] - [e.name] - [e.desc]")
 

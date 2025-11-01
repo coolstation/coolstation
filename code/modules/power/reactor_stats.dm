@@ -9,7 +9,7 @@
 	icon_state = "reactor_stats"
 	desc = "A powerful supercomputer used to model the generator and provide corresponding statistical analysis"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 
 	var/list/chamber_turfs[] = new/list()
 	var/list/meters[] = new/list()

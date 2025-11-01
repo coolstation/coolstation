@@ -16,7 +16,7 @@
 	var/p_open = 0
 	var/operating = 0
 	var/operation_time = 10
-	anchored = 1
+	anchored = ANCHORED
 	///Attempt to close 15 seconds after opening, UNLESS interrupt_autoclose is set sometime in that interval
 	var/autoclose = 0
 	var/interrupt_autoclose = 0
@@ -313,7 +313,7 @@
 		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
 				src.take_damage(I.force*5, user, TRUE)
-			else
+			else if (I)
 				src.take_damage(I.force, user)
 			user.lastattacked = src
 			attack_particle(user,src)
@@ -713,7 +713,7 @@
 	density = 1
 	p_open = 0
 	operating = 0
-	anchored = 1
+	anchored = ANCHORED
 	autoclose = 1
 	var/blocked = null
 	var/simple_lock = 0

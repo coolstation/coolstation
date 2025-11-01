@@ -951,7 +951,7 @@
 	icon_state = "atm"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = FALSE
 	plane = PLANE_NOSHADOW_ABOVE
 

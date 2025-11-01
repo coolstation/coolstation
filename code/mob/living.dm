@@ -83,6 +83,9 @@
 
 	var/grounded_for_projectiles = FALSE
 
+	/// Currently used only in critter setup. Mylie plans to make this an actual thing.
+	var/hand_count = 0
+
 	var/last_heard_name = null
 	var/last_chat_color = null
 
@@ -196,6 +199,8 @@
 /mob/living/death(gibbed)
 	#define VALID_MOB(M) (!isVRghost(M) && !isghostcritter(M) && !inafterlife(M))
 	src.remove_ailments()
+	for (var/obj/item/implant/H in src.implant)
+		H.on_death()
 	if (src.key) statlog_death(src, gibbed)
 	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
 		var/num_players = 0
@@ -712,11 +717,9 @@
 
 	logTheThing("diary", src, null, ": [message]", "say")
 
-#ifdef DATALOGGER
 	// Jewel's attempted fix for: null.ScanText()
 	if (game_stats)
 		game_stats.ScanText(message)
-#endif
 
 	if (src.client && src.client.ismuted())
 		boutput(src, "You are currently muted and may not speak.")
@@ -2080,9 +2083,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				var/atom/targetTurf = get_edge_target_turf(src, get_dir(src, get_step_away(src, origin)))
 				src.throw_at(targetTurf, 200, 4)
 	shock_cyberheart(shock_damage)
-	#ifdef DATALOGGER
 	game_stats.Increment("workplacesafety") //If your cyberheart fucks it as well it counts as 2 violations, which I think is fine :3
-	#endif
 	TakeDamage(zone, 0, shock_damage, 0, DAMAGE_BURN)
 	boutput(src, "<span class='alert'><B>You feel a [wattage > 7500 ? "powerful" : "slight"] shock course through your body!</B></span>")
 	src.unlock_medal("HIGH VOLTAGE", 1)
@@ -2379,12 +2380,17 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	var/dist = GET_DIST(src, target)
 	if(src.abilityHolder)
 		for(var/datum/targetable/ability in src.abilityHolder.abilities)
-			if(ability.attack_mobs && dist <= ability.max_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+			if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
 				return 1
 	return 0
 
+/// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well
 /mob/living/proc/ai_is_valid_target(mob/M)
 	return M != src
+
+/// the higher the returned value, the better the target is. assume that the target is valid.
+/mob/living/proc/ai_rate_target(mob/M)
+	return 1
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)

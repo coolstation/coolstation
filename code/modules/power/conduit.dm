@@ -115,7 +115,7 @@
 	if(level == 1)
 		invisibility = i ? 101 : 0
 	updateicon()
-
+/*
 /obj/cable/conduit/disposing()		// called when a cable is deleted
 
 	if(!defer_powernet_rebuild)	// set if network will be rebuilt manually
@@ -135,7 +135,7 @@
 	STOP_TRACKING
 
 	..()													// then go ahead and delete the cable
-
+*/
 // returns the powernet this cable belongs to
 /obj/cable/conduit/get_powernet()
 	return
@@ -145,13 +145,13 @@
 		PN = powernets[netnum]
 	return PN
 	*/
-
+/*
 /obj/cable/conduit/update_network()
 	return
 
 	//don't do this yet
 
-/*
+
 /obj/cable/conduit/update_network()
 	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
 		return

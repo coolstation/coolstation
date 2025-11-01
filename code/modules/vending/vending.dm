@@ -58,10 +58,11 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
+	hint = "Hit the machine with cash or your ID to put credit into it."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	machinery_flags = MAY_REQUIRE_MAINT
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 20
 	layer = OBJ_LAYER - 0.1 // so items get spawned at 3, don't @ me
@@ -1021,7 +1022,7 @@
 		src.visible_message("<b><font color=red>[src.name] tips over!</font></b>")
 
 	src.power_change()
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	return
 
 //Oh no we're getting roughed up!  Dump out some product and break.
@@ -1284,7 +1285,7 @@
 		if(src.owner && vendor && (src.vendor.status & BROKEN))
 			src.vendor.can_fall = 1
 			src.vendor.layer = initial(src.vendor.layer)
-			src.vendor.anchored = 1
+			src.vendor.anchored = ANCHORED
 			src.vendor.status &= ~BROKEN
 			src.vendor.power_change()
 
@@ -2646,7 +2647,7 @@
 	desc = "A vending machine that serves... pizza?"
 	var/pizcooking = 0
 	var/piztopping = "plain"
-	anchored = 0
+	anchored = UNANCHORED
 	acceptcard = 0
 	pay = 1
 	credit = 100
@@ -3084,16 +3085,16 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 6)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 6)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bojackson, 1)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/cocktail_umbrellas, 4)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/cocktail_doodads, 4)
@@ -3105,6 +3106,57 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/hobo_wine, 2, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/five, 3, cost=PAY_TRADESMAN, hidden=1)
+
+/obj/machinery/vending/minibar //meant to go behind bars and replace the fountain.
+	name = "Surplus Booze Supply"
+	desc = "an alcohol fridge fit for use behind a bar."
+	icon_state = "minibar"
+	icon_panel = "minibar_panel"
+	icon_off = "minibar_off"
+	icon_broken = "minibar_broken"
+	icon_fallen = "minibar_fallen"
+	pay = 1
+	slogan_list = list("Wet your whistle!","I may be drunk now, but tomorrow I will also be drunk.","Drinking is good for you.")
+	light_r = 0.2
+	light_g = 0.3
+	light_b = 0.95
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 15, cost=15)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 6, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 10, cost=25)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 10, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 15, cost=20)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vermouth, 3, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 6, cost=20)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 3, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 4, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 6, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 5, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bitters, 5, cost=45)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bourbon, 5, cost=50)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/brandy, 5, cost=60)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bojackson, 1, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/curacao, 2, cost=65)
+
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/grog, 1, cost=60, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, 5, cost=20, hidden=1)
+/*
+	attack_hand(mob/user as mob)
+		//tab print out thing, i'll do this later i just wanted to make the thing exist
+*/
+/obj/machinery/vending/minibar/jank
+	name = "janky surplus booze supply"
+	desc = "an alcohol fridge fit for use behind a bar. This one has seen better days."
+	icon_state = "minibarjank"
+	icon_panel = "minibarjank_panel"
+	icon_off = "minibarjank_off"
+	icon_broken = "minibarjank_broken"
+	icon_fallen = "minibarjank_fallen"
+	glitchy_slogans = 1
+	slogan_list = list("*violent coughing*","ffugh off, ah'm on brreaghh...","jesus, my fucking head...")
+
 
 /obj/machinery/vending/chem
 	name = "ChemDepot"
@@ -3277,6 +3329,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/mousetraps, 4)
 		product_list += new/datum/data/vending_product(/obj/item/caution, 10)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/material_piece/cloth/rag, 2)
 
 		product_list += new/datum/data/vending_product(/obj/item/sponge/cheese, 2, hidden=1)
 

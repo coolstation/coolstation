@@ -6,13 +6,13 @@ TOILET
 /obj/item/storage/toilet
 	name = "toilet"
 	w_class = W_CLASS_BULKY
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 0.0
 	mats = 5
 	flags = OPENCONTAINER | FPRINT | TABLEPASS | NOSPLASH
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER
 	var/obj/disposalpipe/trunk/trunk = null
-	anchored = 1.0
+	anchored = ANCHORED
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "toilet"
 	rand_pos = 0
@@ -139,7 +139,7 @@ TOILET
 		user.visible_message("<span class='notice'>[user] sits on [src].</span>", "<span class='notice'>You sit on [src].</span>")
 	else
 		user.visible_message("<span class='notice'>[M] is seated on [src] by [user]!</span>")
-	M.anchored = 1
+	M.anchored = ANCHORED
 	M.buckled = src
 	M.set_loc(src.loc)
 	src.add_fingerprint(user)

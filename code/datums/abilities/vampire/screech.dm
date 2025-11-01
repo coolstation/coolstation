@@ -4,7 +4,7 @@
 	icon_state = "screech"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 5 // so that ai uses correctly
+	ai_range = 5
 	cooldown = 300
 	pointCost = 60
 	when_stunned = 1

@@ -12,7 +12,7 @@
 /obj/machinery/chem_heater
 	name = "Reagent Heater/Cooler"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "heater"
 	flags = NOSPLASH
@@ -292,7 +292,7 @@
 /obj/machinery/chem_master
 	name = "CheMaster 3000"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	flags = NOSPLASH
@@ -672,7 +672,7 @@ datum/chemicompiler_core/stationaryCore
 	name = "ChemiCompiler CCS1001"
 	desc = "This device looks very difficult to use."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "chemicompiler_st_off"
 	mats = 15
@@ -772,7 +772,7 @@ datum/chemicompiler_core/stationaryCore
 	name = "fractional still"
 	desc = "A towering piece of industrial equipment. It reeks of hydrocarbons."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	power_usage = 500
 	var/active = 0
 	var/overall_temp = T20C

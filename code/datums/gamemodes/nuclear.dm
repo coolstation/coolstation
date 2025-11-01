@@ -269,15 +269,11 @@
 			boutput(world, "<FONT size = 3><B>Total Syndicate Victory</B></FONT>")
 			boutput(world, "The operatives have destroyed [station_name(1)]!")
 			nuclear_countdown.countdown_text = "Employment Terminated.<br>" + initial(nuclear_countdown.countdown_text)
-#ifdef DATALOGGER
 			game_stats.Increment("traitorwin")
-#endif
 		if(-1) // Minor Synd Victory - station abandoned while nuke armed
 			boutput(world, "<FONT size = 3><B>Syndicate Victory</B></FONT>")
 			boutput(world, "The crew of [station_name(1)] abandoned the [station_or_ship()] while the bomb was armed! The [station_or_ship()] will surely be destroyed!")
-#ifdef DATALOGGER
 			game_stats.Increment("traitorwin")
-#endif
 			nuclear_countdown.countdown_text = "Employment Terminated.<br>" + initial(nuclear_countdown.countdown_text)
 		if(0) // Uhhhhhh
 			boutput(world, "<FONT size = 3><B>Stalemate</B></FONT>")
@@ -286,16 +282,12 @@
 		if(1) // Minor Crew Victory - station evacuated, bombing averted, operatives survived
 			boutput(world, "<FONT size = 3><B>Crew Victory</B></FONT>")
 			boutput(world, "The crew of [station_name(1)] averted the bombing! However, some of the operatives survived.")
-#ifdef DATALOGGER
 			game_stats.Increment("traitorloss")
-#endif
 			nuclear_countdown.countdown_text = "Employment Contract Saved.<br>" + initial(nuclear_countdown.countdown_text)
 		if(2) // Major Crew Victory - bombing averted, all ops dead/captured
 			boutput(world, "<FONT size = 3><B>Total Crew Victory</B></FONT>")
 			boutput(world, "The crew of [station_name(1)] averted the bombing and eliminated all Syndicate operatives!")
-#ifdef DATALOGGER
 			game_stats.Increment("traitorloss")
-#endif
 			nuclear_countdown.countdown_text = "Employment Contract Saved.<br>" + initial(nuclear_countdown.countdown_text)
 
 	if(finished > 0)
@@ -484,7 +476,7 @@ var/syndicate_name = null
 	name = "Mission Memorial"
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "memorial_mid"
-	anchored = 1.0
+	anchored = ANCHORED
 	opacity = 0
 	density = 1
 	var/shipname = "Battlecruiser Cairngorm"

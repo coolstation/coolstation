@@ -58,8 +58,8 @@
 	pixel_x = 7
 	},
 /obj/item/tank/emergency_oxygen{
-	pixel_y = -6;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = -6
 	},
 /obj/random_item_spawner/snacks/one_or_zero,
 /turf/floor/riveted,
@@ -104,12 +104,8 @@
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "bT" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 5;
-	id = "janitor"
-	},
-/obj/cable,
 /obj/storage/closet/emergency,
+/obj/cable/vertical,
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
 	},
@@ -237,9 +233,9 @@
 "dZ" = (
 /obj/machinery/power/apc{
 	areastring = "North Sublevel Maintenance";
+	dir = 8;
 	name = "North Submaints APC";
-	pixel_x = -24;
-	dir = 8
+	pixel_x = -24
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/north)
@@ -270,8 +266,8 @@
 /obj/machinery/light/fluorescent/ceiling/warm/very,
 /obj/table/reinforced/industrial/auto,
 /obj/item/tank/air{
-	pixel_y = 9;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 9
 	},
 /obj/item/tank/air{
 	pixel_y = -4
@@ -280,6 +276,9 @@
 /area/shuttle/arrival/station)
 "et" = (
 /mob/living/silicon/hivebot/eyebot,
+/obj/cable{
+	icon_state = "2-4"
+	},
 /turf/floor/plating,
 /area/station/atmos/hookups/ai)
 "ex" = (
@@ -306,9 +305,9 @@
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
+	dir = 6;
 	name = "autoname - SS13";
-	tag = "";
-	dir = 6
+	tag = ""
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
@@ -375,19 +374,11 @@
 	},
 /turf/space/fluid/trench,
 /area/magindara)
-"gc" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/plating,
-/area/station/atmos/hookups/ai)
 "gh" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
-	pixel_y = 17;
-	id = "arrivals_left"
+	id = "arrivals_left";
+	pixel_y = 17
 	},
 /turf/floor/industrial,
 /area/shuttle/arrival/station)
@@ -396,9 +387,9 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
-	pixel_x = 32;
 	id = "crusher";
-	name = "Crusher Door Control"
+	name = "Crusher Door Control";
+	pixel_x = 32
 	},
 /turf/floor/darkpurpleblack{
 	dir = 10
@@ -540,13 +531,12 @@
 /turf/floor/cautionblack,
 /area/station/janitor/office)
 "js" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1;
-	id = "robotics"
-	},
 /obj/structure/girder/riser,
 /obj/machinery/button/elevator/robo{
 	pixel_x = 24
+	},
+/obj/cable/vertical{
+	icon_state = "0-8"
 	},
 /turf/floor/plating,
 /area/station/medical/robotics)
@@ -561,8 +551,8 @@
 /area/station/maintenance/sublevel/south)
 "jy" = (
 /obj/item/scissors{
-	pixel_y = 7;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 7
 	},
 /obj/cable{
 	d1 = 4;
@@ -872,8 +862,8 @@
 	pixel_y = -4
 	},
 /obj/item/tank/air{
-	pixel_y = 9;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 9
 	},
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
@@ -1052,16 +1042,9 @@
 	},
 /area/station/janitor/office)
 "qU" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
 /obj/structure/girder/riser,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/decal/poster/wallsign/hazard_electrical,
-/obj/cable,
+/obj/cable/vertical,
 /turf/floor/plating,
 /area/station/atmos/hookups/ai)
 "qV" = (
@@ -1094,9 +1077,9 @@
 /obj/storage/crate/robotics_supplies,
 /obj/machinery/camera{
 	c_tag = "autotag";
+	dir = 6;
 	name = "autoname - SS13";
-	tag = "";
-	dir = 6
+	tag = ""
 	},
 /turf/floor/engine,
 /area/station/medical/robotics)
@@ -1462,10 +1445,10 @@
 /area/station/janitor/office)
 "wK" = (
 /obj/machinery/power/apc{
-	pixel_y = 24;
-	name = "Crusher Pit APC";
 	areastring = "Waste Disposal";
-	dir = 1
+	dir = 1;
+	name = "Crusher Pit APC";
+	pixel_y = 24
 	},
 /obj/cable{
 	d2 = 2;
@@ -1482,12 +1465,12 @@
 "xm" = (
 /obj/storage/crate/packing,
 /obj/item/cigpacket/propuffs{
-	pixel_y = 7;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 7
 	},
 /obj/item/clothing/mask/cigarette/random{
-	pixel_y = -2;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -2
 	},
 /obj/random_item_spawner/junk/maybe_few,
 /obj/item/reagent_containers/food/drinks/bottle/fancy_beer,
@@ -1621,9 +1604,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
-	pixel_y = -24;
 	areastring = "South Sublevel Maintenance";
-	name = "South Submaints APC"
+	name = "South Submaints APC";
+	pixel_y = -24
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)
@@ -1654,8 +1637,8 @@
 "zR" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
-	pixel_y = 17;
-	id = "north_maints"
+	id = "north_maints";
+	pixel_y = 17
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/north)
@@ -1665,8 +1648,8 @@
 /obj/random_item_spawner/junk/maybe_few,
 /obj/decal/cleanable/rust/jen,
 /obj/item/reagent_containers/food/drinks/cola/random{
-	pixel_y = -4;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -4
 	},
 /turf/floor/riveted,
 /area/station/maintenance/sublevel/south)
@@ -1694,10 +1677,10 @@
 /area/station/turret_protected/ai)
 "Aw" = (
 /obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
 	areastring = "AI Chamber";
-	name = "AI Core APC"
+	dir = 8;
+	name = "AI Core APC";
+	pixel_x = -24
 	},
 /obj/cable{
 	d2 = 4;
@@ -1716,8 +1699,8 @@
 	pixel_y = -5
 	},
 /obj/item/tank/air{
-	pixel_y = 9;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 9
 	},
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
@@ -2137,13 +2120,8 @@
 /obj/machinery/light/small/red{
 	dir = 4
 	},
-/obj/cable{
-	d2 = 2;
+/obj/cable/vertical{
 	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1;
-	id = "southmaints"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)
@@ -2277,10 +2255,10 @@
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
 	areastring = "Janitor's Office";
-	name = "Janicave APC"
+	dir = 8;
+	name = "Janicave APC";
+	pixel_x = -24
 	},
 /obj/cable,
 /turf/space/fluid/trench,
@@ -2311,21 +2289,19 @@
 "JQ" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
-	pixel_y = 17;
-	id = "cent_maints"
+	id = "cent_maints";
+	pixel_y = 17
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)
 "JU" = (
 /obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	icon_state = "1-8"
 	},
 /turf/floor/plating,
 /area/station/atmos/hookups/ai)
@@ -2414,8 +2390,8 @@
 "Lg" = (
 /obj/decal/cleanable/mess/random_splotch,
 /obj/item/reagent_containers/food/drinks/chemicalcan{
-	pixel_y = -3;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = -3
 	},
 /obj/random_item_spawner/circuitboards/one_or_zero,
 /obj/machinery/light/small/red{
@@ -2791,8 +2767,8 @@
 "Rd" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
-	pixel_y = 17;
-	id = "robotics"
+	id = "robotics";
+	pixel_y = 17
 	},
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 10
@@ -3131,16 +3107,16 @@
 "Yn" = (
 /obj/rack,
 /obj/item/storage/box/trash_bags{
-	pixel_y = 4;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/glass/bottle/acetone/janitors{
 	pixel_x = -8;
 	pixel_y = 6
 	},
 /obj/item/reagent_containers/glass/bottle/acid/large{
-	pixel_y = 1;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 1
 	},
 /turf/floor/darkpurple,
 /area/station/janitor/office)
@@ -3216,8 +3192,8 @@
 "Zw" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
-	pixel_y = 17;
-	id = "arrivals_right"
+	id = "arrivals_right";
+	pixel_y = 17
 	},
 /turf/floor/industrial,
 /area/shuttle/arrival/station)
@@ -50504,7 +50480,7 @@ BX
 Je
 TD
 Rm
-gc
+JU
 qU
 fe
 iu

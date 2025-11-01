@@ -17,7 +17,7 @@ proc/debug_map_apc_count(delim,zlim)
 	var/list/apcs = new()
 	var/list/manual_apcs = new()
 	for(var/obj/machinery/power/apc/C in machine_registry[MACHINES_POWER])
-		if(zlim && C.z != zlim)
+		if(zlim && !(C.z in zlim))
 			continue
 
 		if(C.areastring)
@@ -115,7 +115,7 @@ proc/debug_map_apc_count(delim,zlim)
 <B>Special Processing Data</B><BR>
 <B>Hotspot Processing:</B> [hotspots]<BR>
 <B>High Temperature Processing:</B> [air_master.active_super_conductivity.len]<BR>
-<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len] (not yet implemented)<BR>
+<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len]<BR>
 <BR>
 <B>Geometry Processing Data</B><BR>
 <B>Group Rebuild:</B> [air_master.groups_to_rebuild.len]<BR>
@@ -569,22 +569,49 @@ proc/debug_map_apc_count(delim,zlim)
 		help = {"red - contains 0 (no powernet), that's probably bad<br>white - contains multiple powernets<br>other - coloured based on the single powernet<br>numbers - ids of all powernets on the tile"}
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/list/netnums = list()
+			var/link_col
 			for(var/obj/machinery/power/M in theTurf)
 				if(M.netnum >= 0)
 					netnums |= M.netnum
 			for(var/obj/cable/C in theTurf)
-				if(C.netnum >= 0)
-					netnums |= C.netnum
+				if(C.is_a_node)
+					if (C.is_a_node.pnet?.number > 0)
+						netnums |= C.is_a_node.pnet.number
+					if (C.is_a_link) //turbofucked
+						img.app.color = "#ffff00"
+						return
+				else if (C.is_a_link)
+					link_col = debug_color_of(C.is_a_link)
 			img.app.overlays = list(src.makeText(jointext(netnums, " ")))
-			if(!netnums.len)
-				img.app.color = "#00000000"
-				img.app.alpha = 0
+			if(!length(netnums))
+				if (link_col)
+					img.app.color = link_col
+					img.app.alpha = 90
+				else
+					img.app.color = "#00000000"
+					img.app.alpha = 0
 			else if(0 in netnums)
 				img.app.color = "#ff0000"
 			else if(netnums.len >= 2)
 				img.app.color = "#ffffff"
 			else
 				img.app.color = debug_color_of(netnums[1])
+
+	powernet_link_status
+		name = "power active links"
+		help = {"green- active node<br>red - deactivated link<br>white - node<br>"}
+
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.color = "#00000000"
+			for(var/obj/cable/C in theTurf)
+				if(C.is_a_node)
+					img.app.color = "#ffffff80"
+					return
+				else if (C.is_a_link?.active <= 0)
+					img.app.color = "#ff000080"
+					return
+				else
+					img.app.color = "#00ff0080"
 
 	disposals
 		name = "disposal pipes"

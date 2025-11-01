@@ -1,5 +1,5 @@
 var/global/datum/controller/gameticker/ticker
-var/global/current_state = GAME_STATE_WORLD_INIT
+var/global/current_state = GAME_STATE_MAP_LOAD
 /* -- moved to _setup.dm
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
@@ -286,7 +286,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 		logTheThing("ooc", null, null, "<b>Current round begins</b>")
 		boutput(world, "<FONT class='notice'><B>Enjoy the game!</B></FONT>")
+		boutput(world, "<span class='notice'><b>Alt+Click anything to examine and see hints!</b></span>")
 		boutput(world, "<span class='notice'><b>[prob(10)?"Pro ":"Cool "]Tip:</b> [pick(dd_file2list("strings/roundstart_hints.txt"))]</span>")
+
 		// keywords -  pro tip: cool tip: protips roundstart tips roundstart hints
 
 		//Setup the hub site logging
@@ -561,6 +563,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
+
 					// Put together a package of score data that we can hand off to the discord bot
 					var/list/roundend_score = list(
 						"map" = getMapNameFromID(map_setting),
@@ -579,7 +582,13 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
-					ircbot.event("roundend", list("score" = roundend_score))
+					/* todo:
+						,
+							"food_finished" = game_stats.GetStat("food_finished"),
+							"mining_ores_mined" = game_stats.GetStat("mining_ores_mined"),
+							"mining_turfs_cleared" = game_stats.GetStat("mining_turfs_cleared")
+						*/
+					ircbot.event("roundend", roundend_score)
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 

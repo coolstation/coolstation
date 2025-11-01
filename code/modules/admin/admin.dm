@@ -3376,6 +3376,8 @@ var/global/noir = 0
 						src.owner:debug_variables(data_core)
 					if("miningcontrols")
 						src.owner:debug_variables(mining_controls)
+					if("miningstats")
+						mining_controls.show_stats()
 					if("mapsettings")
 						src.owner:debug_variables(map_settings)
 					if("ghostnotifications")
@@ -3395,7 +3397,7 @@ var/global/noir = 0
 					if("sun_solar") //tired of having to dig the global vars for this fucker
 						src.owner:debug_variables(sun)
 					if("trains")
-						train_spotter.config()
+						src.owner:debug_variables(train_spotter)
 			else
 				alert("You need to be at least a Coder to use debugging secrets.")
 
@@ -3603,8 +3605,8 @@ var/global/noir = 0
 						simsController.showControls(usr)
 					if("artifacts")
 						artifact_controls.config()
-					if("miningstats")
-						mining_controls.show_stats()
+					if("trains")
+						train_spotter.config()
 					if("ghostnotifier")
 						ghost_notifier.config()
 					if("unelectrify_all")
@@ -4341,10 +4343,10 @@ var/global/noir = 0
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
-				<A href='byond://?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=trains'>Train Builder</A><BR>
 
 			"}
 #ifdef SECRETS_ENABLED
@@ -4375,11 +4377,12 @@ var/global/noir = 0
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningstats'>Mining Generation Statistics</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=sun_solar'>Sun</A> |
-					<A href='byond://?src=\ref[src];action=secretsdebug;type=trains'>Trains</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=trains'>Train Controller</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=world'>World</A>

@@ -18,7 +18,7 @@
 	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "smes"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	requires_power = FALSE
 	var/output = 30000
 	var/lastout = 0
@@ -98,6 +98,9 @@
 
 /obj/machinery/power/smes/New()
 	..()
+
+	//Overlay of the top bit of the SMES on a layer where it occludes things behind it
+	UpdateOverlays(image(src.icon, "smes-overlay", layer = FLY_LAYER), "top")
 
 	SPAWN_DBG(0.5 SECONDS)
 		dir_loop:

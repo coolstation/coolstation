@@ -129,7 +129,7 @@ TYPEINFO(/datum/component)
 				for(var/J in 1 to components_of_type.len)
 					var/datum/component/C = components_of_type[J]
 					if(C.type != our_type) //but not over other exact matches
-						components_of_type.Insert(J, I)
+						components_of_type.Insert(J, src)
 						inserted = TRUE
 						break
 				if(!inserted)

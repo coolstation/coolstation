@@ -789,7 +789,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/overlay/tile_effect
 	name = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 	alpha = 255
@@ -805,7 +805,7 @@
 
 /obj/overlay/tile_gas_effect
 	name = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 
@@ -825,6 +825,7 @@
 /turf/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
+	hint = "deals burn damage if unprotected."
 	icon_state = "placeholder"
 	fullbright = 1
 #ifndef HALLOWEEN

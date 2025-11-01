@@ -4237,7 +4237,7 @@ datum
 	icon_state = "badman"
 	layer = EFFECTS_LAYER_2
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	var/mob/deathtarget = null
 	var/deathspeed = 3
 

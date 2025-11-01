@@ -11,7 +11,7 @@
 	alpha = 180
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED
 	var/evolution_flags = 0
 	var/health = 30         // current health of the blob
@@ -36,7 +36,7 @@
 	var/poison_spread_coefficient = 0.5
 	var/poison_depletion = 1
 	var/heat_divisor = 15
-	var/temp_tolerance = 40
+	var/temp_tolerance = 70
 	mat_changename = 0
 	mat_changedesc = 0
 	var/runOnLife = 0 //Should this obj run Life?

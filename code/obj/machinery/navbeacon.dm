@@ -10,7 +10,7 @@
 	level = 1		// underfloor
 	layer = CABLE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = FALSE
 
 	var/open = 0		// true if cover is open
@@ -426,7 +426,7 @@ Transponder Codes:<UL>"}
 	icon_state = "wirednav"//-f"
 	level = 1		// underfloor
 	layer = OBJ_LAYER
-	anchored = 1
+	anchored = ANCHORED
 	mats = 8
 	var/nav_tag = null
 	var/net_id = null

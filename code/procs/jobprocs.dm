@@ -652,6 +652,8 @@
 		trinket = new picked(src)
 	else if (src.traitHolder && src.traitHolder.hasTrait("conspiracytheorist"))
 		trinket = new/obj/item/clothing/head/tinfoil_hat
+	else if (src.traitHolder && src.traitHolder.hasTrait("emaculate"))
+		trinket = new/obj/item/material_piece/cloth/rag
 	else if (src.traitHolder && src.traitHolder.hasTrait("beestfriend"))
 		if (prob(15))
 			trinket = new/obj/item/reagent_containers/food/snacks/ingredient/egg/bee/buddy(src)

@@ -322,7 +322,7 @@
 	icon_state = "orb_holder"
 	desc = "It seems to be missing something."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/id = 1
 	var/target_id = 1
 	var/assembled = 0
@@ -418,7 +418,7 @@
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "bluedoor_1"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 1
 	var/active = 0
 	var/opened = 0
@@ -541,7 +541,7 @@
 	icon = 'icons/obj/artifacts/artifacts.dmi'
 	icon_state = "precursor-2"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 1
 	var/active = 0
 	var/list/pitches = list()
@@ -648,7 +648,7 @@
 	icon = 'icons/obj/artifacts/artifacts.dmi'
 	icon_state = "precursor-6"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 1
 	dir = 4 // facing right or left
 	var/active = 0
@@ -740,7 +740,7 @@
 	icon = 'icons/obj/artifacts/puzzles.dmi'
 	icon_state = "controller_on"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 1
 	var/active = 0
 	var/id = 1
@@ -858,7 +858,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield1"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	var/active = 0
 	var/id = 1
@@ -917,7 +917,7 @@
 	icon = 'icons/obj/artifacts/puzzles.dmi'
 	icon_state = "sphere"
 	event_handler_flags = USE_PROXIMITY
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 	var/id = 1
@@ -1011,7 +1011,7 @@
 
 /obj/portrait_sneaky
 	name = "crooked portrait"
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decals/wallsigns.dmi'
 	icon_state = "portrait"
 	desc = "A portrait of a man wearing a ridiculous merchant hat. That must be Discount Dan."
@@ -1103,7 +1103,7 @@
 			qdel(src)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1205,7 +1205,7 @@
 
 /obj/effects/ydrone_summon //WIP
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	var/range = 5
 	var/end_float_effect = 0
 	var/horseneigh = 0 //what am I doing with my life
@@ -1376,7 +1376,7 @@
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/active = 0
 	event_handler_flags = USE_HASENTERED
@@ -1396,7 +1396,7 @@
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/active = 0
 	event_handler_flags = USE_HASENTERED
@@ -1419,7 +1419,7 @@
 	desc = "It seems to be part of the satellite. The interface is locked. You see a small circular port below the keypad."
 	icon = 'icons/obj/airtunnel.dmi'
 	icon_state = "airbr0"
-	anchored = 1
+	anchored = ANCHORED
 	pixel_y = 32
 	var/activated = FALSE
 

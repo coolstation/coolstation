@@ -3,7 +3,7 @@
 	desc = "A mobile scanner and computer in one unit for genetics work."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "PAG_0"
-	anchored = 0
+	anchored = UNANCHORED
 	glow_in_dark_screen = FALSE
 	var/mob/occupant = null
 	var/datum/character_preview/multiclient/occupant_preview = null
@@ -135,7 +135,7 @@
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
-				A.anchored = 1
+				A.anchored = ANCHORED
 				qdel(src)
 
 		else if (istype(W,/obj/item/genetics_injector/dna_activator))

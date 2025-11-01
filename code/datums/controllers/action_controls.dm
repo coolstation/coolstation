@@ -1195,7 +1195,7 @@ var/datum/action_controller/actions
 
 /obj/actions //These objects are mostly used for the attached_objs var on mobs to attach progressbars to mobs.
 	icon = 'icons/ui/actions.dmi'
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	layer = 5

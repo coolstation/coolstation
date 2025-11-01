@@ -170,7 +170,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	icon = 'icons/misc/hospital.dmi'
 	icon_state = "specter"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	event_handler_flags = USE_HASENTERED
 
@@ -192,7 +192,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	icon_state = "specter"
 	desc = "&#9617;????&#9617;&#9617;&#9617;&#9617;"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/sound/aaah = sound('sound/ambience/loop/Static_Horror_Loop.ogg',channel=7)
 	var/targeting = 0
 
@@ -252,7 +252,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x4"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/ready = 1
 	event_handler_flags = USE_HASENTERED
@@ -535,7 +535,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 
 		src.invisibility = 100
 		var/obj/overlay/Ov = new/obj/overlay(T)
-		Ov.anchored = 1
+		Ov.anchored = ANCHORED
 		Ov.name = "Explosion"
 		Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		Ov.pixel_x = -92

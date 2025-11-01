@@ -21,6 +21,7 @@
 	see_face = 0.0
 	item_state = "s_helmet"
 	desc = "Helps protect against vacuum."
+	hint = "you will also need a breath mask and supply of air if you're planning on going out into space."
 	seal_hair = 1
 	path_prot = 0
 	permeability_coefficient = 0.2

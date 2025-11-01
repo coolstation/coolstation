@@ -62,3 +62,11 @@
 #define OLD_EX_TOTAL 6.1 //decimals to avoid the overlap
 #define OLD_EX_HEAVY 3.1
 #define OLD_EX_LIGHT 1
+
+//Might as well make anchoring assignments define based, since it's kinda obscure that it's not strictly boolean
+///freely movable
+#define UNANCHORED 0
+///regular "don't move this"
+#define ANCHORED 1
+///Things that should not be moved even in cases where random shit gets unanchored, like gravity grenades and black holes
+#define ANCHORED_TECHNICAL 2 //Surprisingly not as much overlap with TECHNICAL_ATOM as I'd expected

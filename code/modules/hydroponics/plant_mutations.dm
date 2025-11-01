@@ -537,6 +537,22 @@
 	chance = 10
 	assoc_reagents = list("cloak_juice")
 
+// Cattail Mutations
+
+/datum/plantmutation/cattail/corndog
+	name = "dogtail"
+	iconmod = "Corndog"
+	crop = /obj/item/reagent_containers/food/snacks/corndog
+	PTrange = list(35,null) //very high potency
+	chance = 20
+
+/datum/plantmutation/cattail/cat_tail
+	name = "cat tail"
+	iconmod = "Cattailreal"
+	crop = /obj/item/organ/tail/cat/cattail
+	PTrange = list(null,20) //low potency
+	ENrange = list(20,null) //high endurance
+	chance = 7 //might get annoying trying to get corndogs?
 
 // Lasher Mutations
 
@@ -570,7 +586,7 @@
 			B.icon = 'icons/effects/hydroponics.dmi'
 			B.icon_state = "radpulse"
 			B.name = "radioactive pulse"
-			B.anchored = 1
+			B.anchored = ANCHORED
 			B.set_density(0)
 			B.layer = 5 // TODO what layer should this be on?
 			SPAWN_DBG(2 SECONDS)

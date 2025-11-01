@@ -8,7 +8,7 @@
 	var/dead_state = null
 	layer = 5.0
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	flags = FPRINT | CONDUCT | USEDELAY | FLUID_SUBMERGE
 	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER | USE_CANPASS
 	var/is_template = 0
@@ -190,7 +190,7 @@
 		if(registered_area)
 			task = "hibernating"
 			registered_area.registered_critters |= src
-			anchored = 1
+			anchored = ANCHORED
 			//DEBUG_MESSAGE("[src] started hibernating at [showCoords(src.x, src.y, src.z)] in [registered_area ? registered_area.name : "nowhere"].")
 			//critters -= src //Stop processing this critter
 
@@ -325,24 +325,24 @@
 		if (W?.hitsound)
 			playsound(src,W.hitsound,50,1)
 
-		if (src.alive)
-			on_damaged(user)
-
 		if(W.hasProperty("impact"))
 			var/turf/T = get_edge_target_turf(src, get_dir(user, src))
 			src.throw_at(T, 2, W.getProperty("impact"))
 
-		if (src.defensive)
-			if (src.target == user && src.task == "attacking")
-				if (prob(50 - attack_force))
-					return
-				else
-					src.visible_message("<span class='alert'><b>[src]</b> flinches!</span>")
-			src.target = user
-			src.oldtarget_name = user.name
-			src.visible_message("<span class='alert'><b>[src]</b> [src.angertext] [user.name]!</span>")
-			src.task = "chasing"
-			on_grump()
+		if (src.alive)
+			on_damaged(user)
+
+			if (src.defensive)
+				if (src.target == user && src.task == "attacking")
+					if (prob(50 - attack_force))
+						return
+					else
+						src.visible_message("<span class='alert'><b>[src]</b> flinches!</span>")
+				src.target = user
+				src.oldtarget_name = user.name
+				src.visible_message("<span class='alert'><b>[src]</b> [src.angertext] [user.name]!</span>")
+				src.task = "chasing"
+				on_grump()
 
 
 
@@ -663,7 +663,7 @@
 							if( !t.loc:sanctuary || !istype(current_target, /mob) )
 								ChaseAttack(current_target)
 							src.task = "attacking"
-							src.anchored = 1
+							src.anchored = ANCHORED
 							src.target_lastloc = current_target.loc
 					else
 						if (mobile)
@@ -905,7 +905,7 @@
 		else
 			src.icon_state = dead_state
 		src.alive = 0
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.set_density(0)
 		walk_to(src,0) //halt walking
 		report_death()
@@ -1073,7 +1073,7 @@
 				make_cleanable( /obj/decal/cleanable/eggsplat,T)
 				src.set_loc(T)
 			else
-				src.anchored = 1
+				src.anchored = ANCHORED
 				src.layer = initial(src.layer)
 				if (user)
 					user.u_equip(src)

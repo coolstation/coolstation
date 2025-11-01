@@ -313,9 +313,7 @@
 		boutput(world, "<span class='alert'><font size=3><b>Waldo and friends have survived their stay at [station_name()]!</b></font></span>")
 
 	var/waldo_name
-#ifdef DATALOGGER
 	var/waldowin = 1
-#endif
 	for (var/datum/mind/W in waldos)
 		if(W.current)
 			waldo_name = "[W.current.real_name] (played by [W.key])"
@@ -330,16 +328,12 @@
 				boutput(world, "<B>Objective #[count]</B>: [objective.explanation_text] <span class='success'><B>Success</B></span>")
 			else
 				boutput(world, "<B>Objective #[count]</B>: [objective.explanation_text] <span class='alert'>Failed</span>")
-#ifdef DATALOGGER
 				waldowin = 0
-#endif
 			count++
-#ifdef DATALOGGER
 	if(waldowin)
 		game_stats.Increment("traitorwin")
 	else
 		game_stats.Increment("traitorloss")
-#endif
 
 
 /datum/game_mode/waldo/proc/get_mob_list()

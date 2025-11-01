@@ -7,7 +7,7 @@
 	icon_state = "livingwall"
 	a_intent = "disarm" // just so they don't swap with help intent users
 	health = INFINITY
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	nodamage = 1
 	opacity = 1

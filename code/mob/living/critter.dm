@@ -14,7 +14,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 	var/datum/hud/critter/custom_hud_type = /datum/hud/critter
 	var/datum/organHolder/custom_organHolder_type = null
 
-	var/hand_count = 0		// Used to ease setup. Setting this in-game has no effect.
 	var/list/hands = list()
 	var/list/equipment = list()
 	var/image/equipment_image = new
@@ -36,9 +35,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 	//this is probably crap but I can't be arsed to refactor
 	var/lie_on_death = TRUE
 
-	var/can_help = 0
-	var/can_grab = 0
-	var/can_disarm = 0
 
 	var/reagent_capacity = 50
 	max_health = 0
@@ -50,8 +46,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 	var/list/inhands = list()
 	var/list/healthlist = list()
 
-	var/list/implants = list()
-	var/can_implant = 1
+	var/can_implant = TRUE
 
 	var/death_text = null // can use %src%
 	var/pet_text = "pets" // can be a list
@@ -106,9 +101,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 			src.zone_sel.change_hud_style('icons/ui/hud_human.dmi')
 			src.attach_hud(zone_sel)
 
-		for (var/datum/equipmentHolder/EE in equipment)
-			EE.after_setup(hud)
-
 		burning_image.icon = 'icons/mob/critter.dmi'
 		burning_image.icon_state = null
 
@@ -123,6 +115,9 @@ ABSTRACT_TYPE(/mob/living/critter)
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
+
+		for (var/datum/equipmentHolder/EE in equipment)
+			EE.after_setup(hud)
 
 		health_update_queue |= src
 
@@ -158,10 +153,10 @@ ABSTRACT_TYPE(/mob/living/critter)
 		equipment.len = 0
 		equipment = null
 
-		for(var/obj/item/I in implants)
+		for(var/obj/item/I in implant)
 			I.dispose()
-		implants.len = 0
-		implants = null
+		implant.len = 0
+		implant = null
 
 		for(var/damage_type in healthlist)
 			var/datum/healthHolder/hh = healthlist[damage_type]
@@ -694,10 +689,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 				O.set_loc(src)
 		src.mind?.register_death() // it'd be nice if critters get a time of death too tbh
 		set_density(0)
-		if (src.can_implant)
-			for (var/obj/item/implant/H in src.implants)
-				H.on_death()
-			src.can_implant = 0
+		src.can_implant = FALSE
 		if (!gibbed)
 			if (src.death_text)
 				src.tokenized_message(src.death_text, null, "red")

@@ -344,6 +344,7 @@
 	w_class = W_CLASS_SMALL
 	max_wclass = 1
 	desc = "A small bottle designed to carry pills. Does not come with a child-proof lock, as that was determined to be too difficult for the crew to open."
+	hint = "you can create your own pill bottles with a Chemmaster."
 
 	MouseDrop(atom/over_object, src_location, over_location)
 		if(!(usr == over_object)) return ..()

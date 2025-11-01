@@ -24,7 +24,7 @@
 	icon_state = "facehugger"
 	layer = MOB_LAYER
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 
 	var/state = 0
 

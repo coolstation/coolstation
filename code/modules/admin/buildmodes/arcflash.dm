@@ -10,7 +10,7 @@ Left Mouse Button on turf/mob/obj      = SHOCK!<br>
 
 	New()
 		dummy = new()
-		dummy.anchored = 0
+		dummy.anchored = UNANCHORED
 		dummy.set_density(0)
 		dummy.invisibility = 101
 		..()

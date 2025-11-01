@@ -563,7 +563,7 @@ ASC: Aux. Solar Control<BR>
 	icon_state = "flag_neutral"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/item/paper/sop
 	name = "'Standard Operating Procedure'"

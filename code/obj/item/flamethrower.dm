@@ -69,6 +69,7 @@ A Flamethrower in various states of assembly
 	move_triggered = 1
 	spread_angle = 0
 	shoot_delay = 1 SECOND
+	hint = "Uses a handheld fueltank for ammunition and a gas tank for propellant. Use a screwdriver with the tanks removed to disassemble."
 
 	New()
 		..()
@@ -383,6 +384,7 @@ A Flamethrower in various states of assembly
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_SMALL
+	hint = "Add an igniter to continue assembly, or use a wrench to disassemble."
 
 /obj/item/assembly/weld_rod/New()
 	..()
@@ -404,6 +406,8 @@ A Flamethrower in various states of assembly
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_SMALL
+
+	hint = "Use a screwdriver to continue assembly, or use a wrench to disassemble."
 
 /obj/item/assembly/w_r_ignite/New()
 	..()

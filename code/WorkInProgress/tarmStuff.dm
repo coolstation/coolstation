@@ -325,7 +325,7 @@
 	icon_state = "voting_box"
 	density = 1
 	flags = FPRINT
-	anchored = 1.0
+	anchored = ANCHORED
 	desc = "Some sort of thing to put suggestions into. If you're lucky, they might even be read!"
 	var/taken_suggestion = 0
 	var/list/turf/floors = null

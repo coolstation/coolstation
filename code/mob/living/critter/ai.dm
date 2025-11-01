@@ -131,6 +131,7 @@ var/list/ai_move_scheduled = list()
 		owner.move_dir = 0 //Fuck you wander task
 
 	proc/move_step()
+		SHOULD_NOT_SLEEP(TRUE)
 		if(GET_COOLDOWN(src.owner, "ACTION_BLOCKING_AI_MOVEMENT"))
 			return
 		var/atom/old_loc = src.owner.loc
@@ -184,7 +185,10 @@ var/list/ai_move_scheduled = list()
 					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)
-		.=0
+		if(src.owner.ai_is_valid_target(M))
+			src.target = M
+			return TRUE
+		return FALSE
 
 	proc/disable()
 		src.enabled = FALSE

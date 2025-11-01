@@ -31,7 +31,7 @@
 	name = "Distortion"
 	desc = ""
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_BASE
 	var/image/effect = null
 
@@ -49,7 +49,7 @@
 	name = "Strange Person"
 	desc = "Who is that? They look extremely out-of-place."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/atom/target = null
 	var/image/showimg = null
 	var/created = null

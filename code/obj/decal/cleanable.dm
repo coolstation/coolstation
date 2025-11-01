@@ -15,7 +15,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 
 /obj/decal/cleanable
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = PRESERVE_CACHE
 	var/can_sample = 0
 	var/sampled = 0
@@ -620,7 +620,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/tracked_reagents/blood/gibs
 	name = "gibs"
 	desc = "Grisly..."
-	anchored = 0
+	anchored = UNANCHORED
 	layer = OBJ_LAYER
 	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "gibbl5"
@@ -650,9 +650,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 						H.show_text("You find some... salvageable... meat.. you guess?", "blue")
 						H.unlock_medal("Sheesh!", 1)
 						new /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat(src.loc)
-					#ifdef DATALOGGER
 					game_stats.Increment("workplacesafety") //It's just not sanitary
-					#endif
 					src.sampled = 1
 			else
 				return ..()
@@ -1094,7 +1092,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	name = "green vomit"
 	desc = "That's just wrong."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decals/vomit.dmi'
 	icon_state = "green1"
 	var/dried = 0
@@ -1461,7 +1459,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/martian_viscera
 	name = "chunky martian goop"
 	desc = "Gross alien flesh. Do not ingest. Do not apply to face."
-	anchored = 0
+	anchored = UNANCHORED
 	layer = OBJ_LAYER
 	sample_reagent = "martian_flesh"
 	sample_verb = "scoop"
@@ -1478,7 +1476,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/flockdrone_debris
 	name = "weird stringy crystal fibres"
 	desc = "Aw hell it's probably going to ruin your lungs if you breathe those. It's probably space alien asbestos or something. They're all sticky too, eww."
-	anchored = 0
+	anchored = UNANCHORED
 	layer = OBJ_LAYER
 	sample_reagent = "flockdrone_fluid"
 	sample_verb = "scoop"
@@ -1493,14 +1491,14 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	name = "viscous teal fluid"
 	desc = "Is it like weird alien blood? Weird alien oil? Aw man that looks like it'd never wash out."
 	random_icon_states = list("fluid1", "fluid2", "fluid3")
-	anchored = 1
+	anchored = ANCHORED
 	slippery = 50
 	stain = "teal-stained"
 
 /obj/decal/cleanable/machine_debris
 	name = "twisted shrapnel"
 	desc = "A chunk of broken and melted scrap metal."
-	anchored = 0
+	anchored = UNANCHORED
 	layer = OBJ_LAYER
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "gib1"
@@ -1510,7 +1508,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/robot_debris
 	name = "robot debris"
 	desc = "Useless heap of junk."
-	anchored = 0
+	anchored = UNANCHORED
 	layer = OBJ_LAYER
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "gib1"
@@ -1897,7 +1895,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	name = "gang tag"
 	desc = "A spraypainted gang tag."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	layer = OBJ_LAYER
 	icon = 'icons/obj/decals/gang_tags.dmi'
 	icon_state = "gangtag0"

@@ -763,7 +763,7 @@ var/global/datum/simsControl/simsController = new()
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "plum-desat"
 	mouse_opacity = 0
-	anchored = 1.0
+	anchored = ANCHORED
 	pixel_y = 32
 	var/mob/living/owner
 	var/datum/light/light
