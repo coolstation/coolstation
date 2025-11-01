@@ -1894,6 +1894,11 @@
 	dir = 5
 	},
 /area/listeningpost)
+"eU" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/light/fluorescent/ceiling,
+/turf/floor/white,
+/area/station/medical/medbay/treatment)
 "eV" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 8;
@@ -12299,6 +12304,10 @@
 /obj/machinery/door/airlock/classic,
 /turf/floor/wood/eight,
 /area/station/crew_quarters/sauna)
+"GP" = (
+/obj/machinery/recharge_station,
+/turf/floor/black,
+/area/listeningpost)
 "GQ" = (
 /obj/cable{
 	d2 = 2;
@@ -17981,6 +17990,13 @@
 	},
 /turf/floor/plating,
 /area/station/science/chemistry)
+"VV" = (
+/obj/decal/cleanable/rust/jen,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/floor/black,
+/area/listeningpost)
 "VW" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -32518,7 +32534,7 @@ fg
 Iz
 JO
 Qf
-Qf
+VV
 Iz
 Ji
 zf
@@ -32819,7 +32835,7 @@ zk
 zk
 Iz
 Iz
-Iz
+GP
 Iz
 Iz
 Cn
@@ -33120,8 +33136,8 @@ Kl
 Wm
 zk
 zk
-zk
-zk
+Iz
+Iz
 Iz
 Kp
 Yz
@@ -53451,7 +53467,7 @@ ZJ
 KQ
 fX
 Sg
-fX
+eU
 fX
 PZ
 Pi
