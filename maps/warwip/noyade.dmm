@@ -982,7 +982,9 @@
 /area/station/bridge)
 "bag" = (
 /obj/machinery/light_switch/north,
-/turf/floor/carpet/grime3,
+/turf/floor/stairs{
+	dir = 4
+	},
 /area/station/crew_quarters/quartersC)
 "bai" = (
 /obj/disposalpipe/segment/sewage{
@@ -2569,6 +2571,10 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
+"cKj" = (
+/obj/table/auto,
+/turf/floor/carpet/grime3,
+/area/station/crew_quarters/quartersC)
 "cLq" = (
 /obj/table/wood/auto,
 /obj/item/game_kit{
@@ -2801,6 +2807,10 @@
 	},
 /turf/floor,
 /area/station/science/artifact)
+"cYN" = (
+/obj/table/wood/round/auto,
+/turf/floor/carpet/grime3,
+/area/station/crew_quarters/quartersC)
 "cYT" = (
 /turf/floor/industrial,
 /area/station/quartermaster/cargooffice)
@@ -5438,6 +5448,12 @@
 	},
 /turf/floor/plating,
 /area/station/medical/medbay/surgery/storage)
+"fGV" = (
+/obj/stool/chair/comfy/orange{
+	dir = 4
+	},
+/turf/floor/carpet/grime3,
+/area/station/crew_quarters/quartersC)
 "fHg" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -5760,6 +5776,10 @@
 	},
 /turf/floor/bluegreen,
 /area/station/medical/research)
+"fYh" = (
+/obj/machinery/light/small/warm,
+/turf/floor/carpet/nicebrown,
+/area/station/crew_quarters/quartersC)
 "fYF" = (
 /obj/cable/hotpink,
 /obj/machinery/power/apc{
@@ -9169,7 +9189,7 @@
 /area/station/science/lobby)
 "jyl" = (
 /obj/table/auto,
-/turf/floor/carpet/grime3,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/quartersC)
 "jyt" = (
 /obj/machinery/shower,
@@ -9770,10 +9790,10 @@
 /turf/wall,
 /area/station/hallway/primary/south)
 "kld" = (
-/obj/machinery/light/small{
+/obj/machinery/light/small/warm{
 	dir = 1
 	},
-/turf/floor/carpet/grime3,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/quartersC)
 "kli" = (
 /obj/wingrille_spawn/reinforced,
@@ -14908,7 +14928,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/floor/carpet/grime3,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/quartersC)
 "pdZ" = (
 /obj/machinery/light/fluorescent{
@@ -15508,7 +15528,7 @@
 /area/listeningpost)
 "pFK" = (
 /obj/machinery/computer/security/wooden_tv,
-/turf/floor/carpet/grime3,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/quartersC)
 "pFN" = (
 /obj/disposalpipe/segment/mail{
@@ -16252,7 +16272,7 @@
 /obj/decal/poster/wallsign/pride/random{
 	pixel_y = 32
 	},
-/turf/floor/carpet/grime3,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/quartersC)
 "qup" = (
 /turf/wall,
@@ -17235,7 +17255,9 @@
 /obj/decal/poster/wallsign/WC_blue{
 	pixel_y = 32
 	},
-/turf/floor/carpet/grime3,
+/turf/floor/stairs{
+	dir = 4
+	},
 /area/station/crew_quarters/quartersC)
 "rtK" = (
 /obj/machinery/conveyor/oshan_carousel{
@@ -17596,7 +17618,7 @@
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/turf/floor/carpet/grime3,
+/turf/floor/carpet/nicebrown,
 /area/station/crew_quarters/quartersC)
 "rOV" = (
 /turf/floor/white,
@@ -19776,6 +19798,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/floor/yellow/side{
 	dir = 8
 	},
@@ -20441,6 +20466,9 @@
 /obj/item/mop,
 /turf/floor,
 /area/station/janitor/office)
+"uKu" = (
+/turf/floor/carpet/nicebrown,
+/area/station/crew_quarters/quartersC)
 "uKX" = (
 /obj/grille/catwalk/grey,
 /obj/cable/hotpink{
@@ -23591,7 +23619,9 @@
 /area/station/maintenance/outer/north)
 "xMj" = (
 /obj/machinery/light/small,
-/obj/table/auto,
+/obj/stool/chair/comfy/orange{
+	dir = 8
+	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersC)
 "xMl" = (
@@ -85641,7 +85671,7 @@ fSV
 nbu
 nbu
 stk
-rOH
+jjK
 fFg
 mZF
 mZF
@@ -85943,7 +85973,7 @@ fRM
 hgh
 oct
 cFT
-jyl
+fGV
 fFg
 mZF
 mZF
@@ -86245,7 +86275,7 @@ jTc
 axA
 hbB
 cFT
-rOH
+cYN
 fFg
 mZF
 mZF
@@ -86849,7 +86879,7 @@ tGr
 wiV
 wiV
 fcC
-rOH
+jjK
 vNN
 ktv
 aGj
@@ -87450,9 +87480,9 @@ wwP
 kHj
 jBr
 nPw
-rOH
+jjK
 osT
-rOH
+cKj
 pzZ
 rDl
 vly
@@ -88057,7 +88087,7 @@ pdB
 rOH
 pFK
 rOH
-jjK
+uKu
 vNN
 rfw
 ffA
@@ -88356,10 +88386,10 @@ wwP
 fFg
 wwP
 qtO
-jjK
-jjK
-jjK
-jjK
+uKu
+uKu
+uKu
+uKu
 vNN
 kUh
 ffA
@@ -88658,10 +88688,10 @@ mZF
 mZF
 wwP
 kld
-jjK
-jjK
-jjK
-pzZ
+uKu
+uKu
+uKu
+fYh
 rDl
 sfa
 ffA
