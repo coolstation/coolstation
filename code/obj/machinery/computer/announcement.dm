@@ -42,6 +42,13 @@
 
 
 	<style type="text/css">
+
+		html{
+			titlebar=0;
+			can_resize=0;
+			border=0;
+		}
+
 		body
 		{
 			background: #030602;
@@ -50,7 +57,6 @@
 			letter-spacing: 2px;
 			color: #52ff00;
 
-		}
 		hr{
 			border: 1px solid #52ff00;
 		}
@@ -221,7 +227,7 @@
 		<body scroll=no class = "crt">
 
 
-				<h1>Announcement Computer</h1>
+				<h1>Announcement Computer <button type="button" onclick="window.open('', '_self', ''); window.close();">Discard</button></h1>
 				<hr>
 			<div class = "container>
 				<img src='[resource("images/consoles/transmit.gif")]'/>
