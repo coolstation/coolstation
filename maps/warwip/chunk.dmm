@@ -3965,6 +3965,20 @@
 /obj/table/auto/desk,
 /turf/floor/sanitary/white,
 /area/station/medical/crematorium)
+"dOD" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/hallway/primary/northeast)
 "dOG" = (
 /obj/cable/purple{
 	icon_state = "1-2"
@@ -6145,6 +6159,9 @@
 "fIb" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 1
+	},
+/obj/machinery/plantpot{
+	anchored = 1
 	},
 /turf/floor/green/side,
 /area/station/hydroponics/lobby)
@@ -12532,6 +12549,14 @@
 	dir = 1
 	},
 /area/station/chapel/sanctuary)
+"mmk" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/green/side,
+/area/station/hallway/primary/northeast)
 "mmt" = (
 /obj/storage/closet/wardrobe/pride,
 /obj/blind_switch/area/north,
@@ -14073,6 +14098,15 @@
 	dir = 5
 	},
 /area/station/security/main)
+"nLt" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/hydroponics/bay)
 "nLx" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/space,
@@ -18575,6 +18609,7 @@
 	},
 /obj/blind_switch/area/south,
 /obj/reagent_dispensers/still,
+/obj/decal/cleanable/leaves,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "seL" = (
@@ -19116,6 +19151,16 @@
 /obj/item/wrench,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"sJH" = (
+/obj/table/auto,
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 5;
+	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
+	},
+/turf/floor/grass,
+/area/station/hydroponics/bay)
 "sKg" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8;
@@ -19228,6 +19273,15 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/crew_quarters/showers)
+"sNW" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor,
+/area/station/hallway/primary/northeast)
 "sOh" = (
 /obj/disposalpipe/segment/vertical,
 /obj/pathlights/shuttle{
@@ -76685,11 +76739,11 @@ uZu
 iMG
 szX
 uTb
-nPT
-uVq
-nVs
-cuA
-vOL
+sNW
+dOD
+mmk
+nLt
+sJH
 wce
 ujq
 ujq
@@ -76991,7 +77045,7 @@ adv
 uVq
 nVs
 fKk
-ujq
+wce
 ujq
 ujq
 ujq
