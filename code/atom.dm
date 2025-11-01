@@ -398,6 +398,7 @@
 	var/throwforce = 1
 	/// while this is set, the AM doesnt update flags while moving. pushing and mob swapping made this necessary
 	var/skip_loc_change_updates = FALSE
+	var/object_flags = 0 // youre gonna hate the way you look
 
 	var/soundproofing = 5
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE
