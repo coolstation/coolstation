@@ -95,7 +95,7 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
-	if(ON_COOLDOWN(src, "poo", 20 MINUTES))
+	if(ON_COOLDOWN(src, "poo", 30 MINUTES))
 		boutput(src, "You don't feel ready to go.")
 		return
 	SPAWN_DBG(0.1 SECOND)
