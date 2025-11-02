@@ -19,6 +19,7 @@
 	var/artifact = null
 	var/cannot_be_stored = FALSE
 	var/move_triggered = 0
+	var/w_class = W_CLASS_NORMAL
 //	var/object_flags = 0 // moved to atom/movable
 
 	animate_movement = 2

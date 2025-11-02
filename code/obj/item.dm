@@ -63,7 +63,7 @@
 	/*Inventory*/
 	/*‾‾‾‾‾‾‾‾‾*/
 	var/pickup_sfx = 0 //if null, we auto-pick from a list based on w_class
-	var/w_class = W_CLASS_NORMAL // how big they are, determines if they can fit in backpacks and pockets and the like
+	w_class = W_CLASS_NORMAL // how big they are, determines if they can fit in backpacks and pockets and the like
 	p_class = 1.5 // how hard they are to pull around, determines how much something slows you down while pulling it
 
 	var/cant_self_remove = 0 // Can't remove from non-hand slots
