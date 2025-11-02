@@ -879,7 +879,7 @@ datum
 		cocktail_beach/beach2
 			id = "beach2"
 			required_reagents = list("screwdriver" = 2, "juice_cran" = 1)
-			result_amount = 2
+			result_amount = 3
 
 		cocktail_screwdriver
 			name = "Screwdriver"

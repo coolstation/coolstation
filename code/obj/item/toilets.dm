@@ -24,12 +24,14 @@ TOILET
 	var/tank_refill_time = 8 SECONDS
 	var/plumbed = 0
 	var/cursed = 0
+	var/refills = TRUE
 
 /obj/item/storage/toilet/New()
 	..()
 	START_TRACKING
 	src.create_reagents(300)
-	src.reagents.add_reagent("water", 120)
+	if(src.refills)
+		src.reagents.add_reagent("water", 120)
 	SPAWN_DBG(0.5 SECONDS)
 		if (src)
 			trunk = locate() in src.loc
@@ -43,8 +45,6 @@ TOILET
 	..()
 
 /obj/item/storage/toilet/attackby(obj/item/W as obj, mob/user as mob, obj/item/storage/T)
-	if (src.contents.len >= 7)
-		return
 	if ((istype(W, /obj/item/reagent_containers/glass)) || (istype(W, /obj/item/reagent_containers/food/drinks)))
 		/*if(src.reagents && (src.reagents.total_volume >= src.reagents.maximum_volume))
 			boutput(user, "That would just spill-over. You should flush first.")
@@ -59,6 +59,13 @@ TOILET
 	else if (istype(W, /obj/item/grab))
 		playsound(src, "sound/effects/toilet_flush.ogg", 50, 1)
 		user.visible_message("<span class='notice'>[user] gives [W:affecting] a swirlie!</span>", "<span class='notice'>You give [W:affecting] a swirlie. It's like Middle School all over again!</span>")
+		return
+
+	else if (iswrenchingtool(W))
+		src.last_flush = world.time
+		src.refills = !src.refills
+		user.visible_message("<span class='notice'>[user] cranks the water valve on \the [src]!</span>", "<span class='notice'>You turn the water [src.refills ? "on" : "off"] to \the [src]!</span>")
+		playsound(src, "sound/items/Ratchet.ogg", 50, 1)
 		return
 
 	else if (istype(W, /obj/item/clothing/head/plunger))
@@ -158,6 +165,10 @@ TOILET
 			M.buckled = null
 			src.add_fingerprint(user)
 
+	if(!src.refills)
+		boutput(user, SPAN_NOTICE("Seems the water is off."))
+		return
+
 	if(world.time < src.last_flush + src.tank_refill_time)
 		src.reagents.add_reagent("water", (world.time - src.last_flush) / (src.tank_refill_time) * clamp(ceil(150 - src.reagents.total_volume), 5, 120))
 
@@ -166,9 +177,10 @@ TOILET
 	if(src.needs_plunged && prob(99))
 		src.visible_message("<span class='notice'>The toilet is clogged!</span>")
 		playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
-		SPAWN_DBG(src.tank_refill_time)
-			if(!QDELETED(src))
-				src.reagents.add_reagent("water", clamp(150 - ceil(src.reagents.total_volume), 10, 120))
+		if(src.refills)
+			SPAWN_DBG(src.tank_refill_time)
+				if(!QDELETED(src))
+					src.reagents.add_reagent("water", clamp(150 - ceil(src.reagents.total_volume), 10, 120))
 
 	else
 		if(src.needs_plunged)
@@ -178,9 +190,10 @@ TOILET
 			src.needs_plunged = TRUE
 			boutput(user, SPAN_ALERT("The toilet clogs!"))
 			user.unlock_medal("Where's the poop knife?",1)
-			SPAWN_DBG(src.tank_refill_time)
-				if(!QDELETED(src))
-					src.reagents.add_reagent("water", clamp(150 - ceil(src.reagents.total_volume), 5, 120))
+			if(src.refills)
+				SPAWN_DBG(src.tank_refill_time)
+					if(!QDELETED(src))
+						src.reagents.add_reagent("water", clamp(150 - ceil(src.reagents.total_volume), 5, 120))
 			return
 
 		user.visible_message("<span class='notice'>[user] flushes [src].</span>", "<span class='notice'>You flush [src].</span>")
