@@ -5,7 +5,7 @@ var/johnbill_shuttle_fartnasium_active = 1
 var/fartcount = 0
 var/weadegrowne = 0
 var/doinkssparked = 0
-var/clownabuse = 0
+//var/clownabuse = 0
 
 /obj/death_button/immersive
 	name = "Button that simulates the Coolstation Experience"

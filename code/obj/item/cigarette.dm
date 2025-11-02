@@ -120,7 +120,7 @@
 			if(prob(3))
 				broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/cigarettes, 1, 1)
 
-			hit_type = DAMAGE_BURN
+			//hit_type = DAMAGE_BURN
 
 	proc/put_out(var/mob/user as mob, var/message as text)
 		if (src.on == 1)

@@ -1704,6 +1704,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 					SPAWN_DBG(1 DECI SECOND)
 						// A round-end report is needed!
+						var/clownabuse = game_stats.GetStat("clownabuse")
 						var/list/roundend_score = list(
 							"map" = getMapNameFromID(map_setting),
 							"survival" = score_tracker.score_crew_survival_rate,
