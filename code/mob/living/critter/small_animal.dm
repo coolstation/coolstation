@@ -2708,6 +2708,12 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_brute = 35
 	health_burn = 35
 
+	setup_hands()
+		..()
+		var/datum/handHolder/HH = hands[1]
+		var/datum/limb/small_critter/L = HH.limb
+		L.max_wclass = 2
+
 	New()
 		..()
 		/*src.fur_color = "#c486ec"
@@ -2820,6 +2826,13 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	icon_state = "mouse-admin"
 	icon_state_dead = "mouse-admin-dead"
 	icon_state_exclaim = "mouse-admin-exclaim"
+
+	setup_hands()
+		..()
+		var/datum/handHolder/HH = hands[1]
+		var/datum/limb/small_critter/L = HH.limb
+		L.max_wclass = 4
+
 
 	New()
 		..()
