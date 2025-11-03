@@ -416,7 +416,7 @@
 		/obj/item/reagent_containers/glass/bottle/acetone,
 		/obj/item/reagent_containers/glass/bottle/ammonia,
 		/obj/item/spraybottle/cleaner,
-		obj/item/reagent_containers/glass/bottle/cleaner
+		/obj/item/reagent_containers/glass/bottle/cleaner
 	)
 	spawn_contents = /obj/item/spraybottle/cleaner
 	in_list_or_max = 0
