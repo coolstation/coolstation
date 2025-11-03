@@ -27,6 +27,8 @@
 						if (human_owner.glasses.allow_blind_sight)
 							eyes_blinded = 0
 
+			// TODO: check if player has a white cane equipped, so we can improve vision slightly if they do
+
 			if (human_owner.last_eyes_blinded == eyes_blinded) // we don't need to update!
 				return ..()
 
@@ -37,7 +39,11 @@
 				human_owner.removeOverlayComposition(/datum/overlayComposition/blinded_r_eye)
 
 			else if ((eyes_blinded & EYEBLIND_L) && (eyes_blinded & EYEBLIND_R)) // both eyes are blind
-				human_owner.addOverlayComposition(/datum/overlayComposition/blinded)
+				if (/obj/item/white_cane in human_owner.get_equipped_items())
+					human_owner.addOverlayComposition(/datum/overlayComposition/blinded_with_cane)
+				else
+					human_owner.addOverlayComposition(/datum/overlayComposition/blinded)
+
 				human_owner.removeOverlayComposition(/datum/overlayComposition/blinded_l_eye)
 				human_owner.removeOverlayComposition(/datum/overlayComposition/blinded_r_eye)
 
@@ -63,4 +69,3 @@
 			else
 				owner.removeOverlayComposition(/datum/overlayComposition/blinded) //ov1
 		..()
-

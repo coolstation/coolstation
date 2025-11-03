@@ -355,6 +355,26 @@
 		definitions.Add(meaty)
 		return ..()
 
+// copied from the above. how the hecky does this work
+/datum/overlayComposition/blinded_with_cane
+	New()
+		var/datum/overlayDefinition/dither = new()
+		dither.d_icon = 'icons/effects/overlays/knockoutinverted.dmi' // gives a slightly increased vision radius. i hope.
+		dither.d_icon_state = "knockout2t"
+		dither.d_blend_mode = 1
+		dither.d_mouse_opacity = 0 // fuck not being able to click on things, if we want blindness to have disadvantages then find something else
+		dither.d_screen_loc = "CENTER-7,CENTER-7"
+		definitions.Add(dither)
+
+		var/datum/overlayDefinition/meaty = new()
+		meaty.d_icon = 'icons/effects/overlays/meatyC.dmi'
+		meaty.d_icon_state = "meatyC"
+		meaty.d_blend_mode = 2
+		meaty.d_alpha = 30//140
+		//meaty.d_color = "#610306"
+		definitions.Add(meaty)
+		return ..()
+
 /datum/overlayComposition/blinded_r_eye
 	New()
 		var/datum/overlayDefinition/dither = new()

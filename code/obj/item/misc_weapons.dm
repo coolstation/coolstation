@@ -630,6 +630,22 @@
 		src.setItemSpecial(/datum/item_special/nunchucks)
 		BLOCK_SETUP(BLOCK_ROPE)
 
+// rlly not sure where to put this
+/obj/item/white_cane
+	name = "white cane"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "white_cane" // TODO: add this icon state
+	item_state = "white_cane" // TODO: figure out wth this does
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	force = 8
+	throwforce = 7
+	hit_type = DAMAGE_BLUNT
+	w_class = W_CLASS_NORMAL
+	flags = FPRINT | TABLEPASS
+	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool
+	desc = "Useful for finding your way around, and also for hitting people."
+	// TODO: figure out how optional-two-handedness works
+
 /obj/item/quarterstaff
 	name = "quarterstaff"
 	icon = 'icons/obj/items/weapons.dmi'
