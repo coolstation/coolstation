@@ -411,12 +411,10 @@
 	icon_state = "janibelt"
 	item_state = "janibelt"
 	can_hold = list(/obj/item/mop,
-		/obj/item/chem_grenade/cleaner,
+		/obj/item/chem_grenade,
 		/obj/item/clothing/under/trash_bag,
-		/obj/item/reagent_containers/glass/bottle/acetone,
-		/obj/item/reagent_containers/glass/bottle/ammonia,
+		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/spraybottle/cleaner,
-		/obj/item/reagent_containers/glass/bottle/cleaner
 	)
 	spawn_contents = /obj/item/spraybottle/cleaner
 	in_list_or_max = 0
