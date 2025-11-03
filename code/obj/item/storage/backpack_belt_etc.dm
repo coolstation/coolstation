@@ -405,6 +405,22 @@
 	can_hold = list(/obj/item/deconstructor)
 	in_list_or_max = 1
 
+/obj/item/storage/belt/utility/janitor
+	name = "janitor belt"
+	desc = "Can hold various janitorial objects"
+	icon_state = "janibelt"
+	item_state = "janibelt"
+	can_hold = list(/obj/item/mop,
+		/obj/item/chem_grenade/cleaner,
+		/obj/item/clothing/under/trash_bag,
+		/obj/item/reagent_containers/glass/bottle/acetone,
+		/obj/item/reagent_containers/glass/bottle/ammonia,
+		/obj/item/spraybottle/cleaner,
+		obj/item/reagent_containers/glass/bottle/cleaner
+	)
+	spawn_contents = /obj/item/spraybottle/cleaner
+	in_list_or_max = 0
+
 /obj/item/storage/belt/utility/prepared/ceshielded
 	name = "aurora MKII utility belt"
 	desc = "An utility belt for usage in high-risk salvage operations. Contains a personal shield generator. Can be activated to overcharge the shields temporarily."
