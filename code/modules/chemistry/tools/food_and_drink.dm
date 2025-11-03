@@ -2082,7 +2082,7 @@
 	icon_state = "cocktailshaker"
 	initial_volume = 120
 	can_recycle = 0
-	can_chug = 0
+	//can_chug = 0
 
 	New()
 		..()
