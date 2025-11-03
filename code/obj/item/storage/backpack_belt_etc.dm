@@ -414,7 +414,7 @@
 		/obj/item/chem_grenade,
 		/obj/item/clothing/under/trash_bag,
 		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/spraybottle/cleaner,
+		/obj/item/spraybottle,
 	)
 	spawn_contents = /obj/item/spraybottle/cleaner
 	in_list_or_max = 0
