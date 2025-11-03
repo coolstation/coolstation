@@ -2867,6 +2867,7 @@ datum
 			result = "jenkem"
 			required_reagents = list("urine" = 1, "poo" = 1)
 			result_amount = 2
+			required_temperature = T100C - 2 // just below boilin
 			mix_phrase = "The mixture ferments into a filthy morass."
 			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
 
