@@ -1104,7 +1104,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	wages = PAY_TRADESMAN
 	slot_poc1 = list(/obj/item/device/pda2/janitor)
 	slot_jump = list(/obj/item/clothing/under/rank/janitor)
-	slot_belt = list(/obj/item/storage/belt/utility)
+	slot_belt = list(/obj/item/storage/belt/utility/janitor)
 	slot_foot = list(/obj/item/clothing/shoes/galoshes)
 	slot_ears = list(/obj/item/device/radio/headset/shipping)
 
