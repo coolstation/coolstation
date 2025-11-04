@@ -677,9 +677,13 @@
 			src.fall(user)
 
 /obj/machinery/vending/hitby(atom/movable/M, datum/thrown_thing/thr)
-	if (iscarbon(M) && M.throwing && prob(25))
-		src.fall(M)
-		return
+	if (iscarbon(M) && M.throwing)
+		if(prob(25))
+			src.fall(M)
+			animate_storage_thump(src)
+			return
+		else
+			animate_storage_thump(src)
 
 	..()
 
