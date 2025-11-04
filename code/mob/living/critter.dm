@@ -35,8 +35,8 @@ ABSTRACT_TYPE(/mob/living/critter)
 	//this is probably crap but I can't be arsed to refactor
 	var/lie_on_death = TRUE
 
+	ideal_blood_volume = 50
 
-	var/reagent_capacity = 50
 	max_health = 0
 	health = 0
 
@@ -91,7 +91,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		setup_hands()
 		post_setup_hands()
 		setup_equipment_slots()
-		setup_reagents()
 		setup_healths()
 		if (!healthlist.len)
 			stack_trace("Critter [type] ([name]) \[\ref[src]\] does not have health holders.")
@@ -606,12 +605,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 					HH.limb = new /datum/limb(src)
 
 	proc/setup_equipment_slots()
-
-	proc/setup_reagents()
-		reagent_capacity = max(0, reagent_capacity)
-		var/datum/reagents/R = new(reagent_capacity)
-		R.my_atom = src
-		reagents = R
 
 	equipped()
 		RETURN_TYPE(/obj/item)

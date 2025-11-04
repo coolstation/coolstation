@@ -148,6 +148,7 @@
 	if (uses_blood)
 		if (blood_id)
 			all_blood_reagents |= blood_id
+		src.create_reagents(src.ideal_blood_volume * 4)
 		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume)
 		src.ensure_bp_list()
 

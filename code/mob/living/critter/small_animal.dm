@@ -2049,7 +2049,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	speechverb_ask = "hums"
 	health_brute = 10
 	health_burn = 10
-	reagent_capacity = 100
 	flags = TABLEPASS
 	fits_under_table = 1
 	add_abilities = list(/datum/targetable/critter/wasp_sting)

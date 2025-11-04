@@ -186,7 +186,8 @@
 	image_cust_two = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 	image_cust_three = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 
-	src.create_reagents(2000)
+	if(!src.reagents)
+		src.create_reagents(2000)
 
 	hud = new(src)
 	src.attach_hud(hud)
