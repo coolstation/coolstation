@@ -340,7 +340,7 @@
 	New()
 		var/datum/overlayDefinition/dither = new()
 		dither.d_icon = 'icons/effects/overlays/knockout2t.dmi'
-		dither.d_icon_state = "knockout2t"
+		dither.d_icon_state = "knockout2t_narrow" // make the white cane more useful
 		dither.d_blend_mode = 1
 		dither.d_mouse_opacity = 0 // fuck not being able to click on things, if we want blindness to have disadvantages then find something else
 		dither.d_screen_loc = "CENTER-7,CENTER-7"
@@ -359,9 +359,9 @@
 /datum/overlayComposition/blinded_with_cane
 	New()
 		var/datum/overlayDefinition/dither = new()
-		dither.d_icon = 'icons/effects/overlays/knockout.dmi' // gives a slightly increased vision radius. i hope.
-		dither.d_icon_state = "knockout"
-		dither.d_blend_mode = BLEND_SUBTRACT // HACK. will it work? no clue T-T
+		dither.d_icon = 'icons/effects/overlays/knockout2t.dmi'
+		dither.d_icon_state = "knockout2t_wide" // gives a slightly increased vision radius. i hope.
+		dither.d_blend_mode = 1
 		dither.d_mouse_opacity = 0 // fuck not being able to click on things, if we want blindness to have disadvantages then find something else
 		dither.d_screen_loc = "CENTER-7,CENTER-7"
 		definitions.Add(dither)
