@@ -8,8 +8,12 @@
 
 		if (human_owner)
 			var/eyes_blinded = 0
+			var/has_white_cane = 0
 
 			if (!isdead(human_owner))
+				if (human_owner.find_type_in_hand(/obj/item/white_cane))
+					has_white_cane = 1
+
 				if (!human_owner.sight_check(1))
 					eyes_blinded |= EYEBLIND_L
 					eyes_blinded |= EYEBLIND_R
@@ -27,7 +31,7 @@
 						if (human_owner.glasses.allow_blind_sight)
 							eyes_blinded = 0
 
-			if (human_owner.last_eyes_blinded == eyes_blinded) // we don't need to update!
+			if ((human_owner.last_eyes_blinded == eyes_blinded) && (human_owner.last_had_white_cane == has_white_cane)) // we don't need to update!
 				return ..()
 
 
@@ -37,7 +41,7 @@
 				human_owner.removeOverlayComposition(/datum/overlayComposition/blinded_r_eye)
 
 			else if ((eyes_blinded & EYEBLIND_L) && (eyes_blinded & EYEBLIND_R)) // both eyes are blind
-				if (human_owner.find_type_in_hand(/obj/item/white_cane)) // if they're holding a white cane
+				if (has_white_cane) // if they're holding a white cane
 					human_owner.addOverlayComposition(/datum/overlayComposition/blinded_with_cane)
 					human_owner.removeOverlayComposition(/datum/overlayComposition/blinded)
 				else
@@ -66,6 +70,7 @@
 				human_owner.removeOverlayComposition(/datum/overlayComposition/blinded_r_eye)
 
 			human_owner.last_eyes_blinded = eyes_blinded
+			human_owner.last_had_white_cane = has_white_cane
 		else
 			if (!owner.sight_check(1) && !isdead(owner))
 				owner.addOverlayComposition(/datum/overlayComposition/blinded) //ov1
