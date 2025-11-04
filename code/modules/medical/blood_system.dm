@@ -434,8 +434,8 @@ this is already used where it needs to be used, you can probably ignore it.
 
 		B.transfer_volume(H.reagents, num_amount, some_idiot.bioHolder.Uid, some_idiot.bioHolder.bloodType, violent = TRUE)
 
-		if (H.blood_color)
-			B.color = H.blood_color
+		// if (H.blood_color)
+		// 	B.color = H.blood_color
 	else
 		return
 
