@@ -644,8 +644,9 @@
 	flags = FPRINT | TABLEPASS
 	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool (or knock-off quarterstaff?)
 	desc = "Useful for finding your way around, and also for hitting people."
+	hint = "Increases vision radius when held. Use on things to inspect them."
 	// TODO: make 2-hand-able like quarterstaff?
-	attack(atom/target, mob/user)
+	attack(atom/target, mob/user) // FIXME: does not work
 		if (user.a_intent == INTENT_HELP)
 			// inspect the thingy
 			target.examine(user)
