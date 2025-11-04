@@ -642,10 +642,15 @@
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
 	flags = FPRINT | TABLEPASS
-	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool
+	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool (or knock-off quarterstaff?)
 	desc = "Useful for finding your way around, and also for hitting people."
-	// TODO: figure out how optional-two-handedness works
-	// TODO: allow examining things by using the cane with the help intent
+	// TODO: make 2-hand-able like quarterstaff?
+	attack(atom/target, mob/user)
+		if (user.a_intent == INTENT_HELP)
+			// inspect the thingy
+			target.examine(user)
+		else
+			..()
 
 /obj/item/quarterstaff
 	name = "quarterstaff"
