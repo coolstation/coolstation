@@ -145,10 +145,11 @@
 	src.vis_contents += src.chat_text
 	tracked_reagents = new /datum/reagents/surface(8)
 	tracked_reagents.my_atom = src
-	if (can_bleed)
+	if (uses_blood)
+		if (blood_id)
+			all_blood_reagents |= blood_id
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume)
 		src.ensure_bp_list()
-	if (blood_id)
-		all_blood_reagents |= blood_id
 
 	if(src.ai_type)
 		src.is_npc = TRUE
