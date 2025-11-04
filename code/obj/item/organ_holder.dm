@@ -17,7 +17,7 @@
 	var/obj/item/organ/kidney/left_kidney = null
 	var/obj/item/organ/kidney/right_kidney = null
 	var/obj/item/organ/liver = null
-	var/obj/item/organ/spleen = null
+	var/obj/item/organ/spleen/spleen = null
 	var/obj/item/organ/pancreas = null
 	var/obj/item/organ/stomach = null
 	var/obj/item/organ/intestines = null
@@ -167,8 +167,8 @@
 			if ("spleen")
 				if (ishuman(donor))
 					var/mob/living/carbon/human/H = donor
-					H.blood_volume -= 2 * mult
-			if ("left_kidney")					//I'm lazy... Not making this better right now -kyle
+					H.reagents.remove_reagent(H.blood_id, H.ideal_blood_volume * 2 * BLOOD_SCALAR * mult)
+			if ("left_kidney") //I'm lazy... Not making this better right now -kyle
 				if (!get_working_kidney_amt())
 					donor.take_toxin_damage(2, 1)
 			if ("right_kidney")
@@ -336,6 +336,7 @@
 		if (!src.spleen)
 			src.spleen = new /obj/item/organ/spleen(src.donor, src)
 			organ_list["spleen"] = spleen
+			src.spleen.blood_id = src.donor.blood_id
 		if (!src.pancreas)
 			src.pancreas = new /obj/item/organ/pancreas(src.donor, src)
 			organ_list["pancreas"] = pancreas

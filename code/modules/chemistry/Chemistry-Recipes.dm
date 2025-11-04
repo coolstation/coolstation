@@ -640,7 +640,11 @@ datum
 			name = "Eggnog"
 			id = "eggnog"
 			result = "eggnog"
+#ifdef XMAS
 			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1)
+#else
+			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1, "liquid spacetime" = 0.05)
+#endif
 			result_amount = 3
 			mix_phrase = "The eggs nog together. Pretend that \"nog\" is a verb."
 			drinkrecipe = 1

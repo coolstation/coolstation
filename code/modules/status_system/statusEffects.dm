@@ -1426,8 +1426,8 @@
 			owner.delStatus("bloodcurse")
 
 	onUpdate()
-		if (H.blood_volume > 400 && H.blood_volume > 0)
-			H.blood_volume -= units
+		if (H.reagents.total_volume)
+			H.reagents.remove_any(units)
 		if (prob(5))
 			var/damage = rand(1,5)
 			H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")

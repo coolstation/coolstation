@@ -92,12 +92,12 @@ ABSTRACT_TYPE(/datum/bioEffect/hemochromia)
 
 	OnLife(var/mult)
 		if(..()) return
-		if(ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-			if(H.blood_volume < 500 && H.blood_volume > 0)
-				H.blood_volume += 2*mult
-			if(prob(12))
-				H.blood_color = rgb(blood_color_R, blood_color_G, blood_color_B)
+		var/mob/living/L = owner
+		if(!L.uses_blood) return
+		if(L.reagents.total_volume < L.ideal_blood_volume && L.reagents.total_volume > L.ideal_blood_volume * 0.02)
+			L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 1 * BLOOD_SCALAR * mult)
+		if(prob(12))
+			L.blood_color = rgb(blood_color_R, blood_color_G, blood_color_B)
 
 	OnRemove()
 		..()

@@ -175,7 +175,7 @@
 
 	can_bleed = 1
 	blood_id = "blood"
-	blood_volume = 500
+	ideal_blood_volume = 500
 
 /mob/living/carbon/human/New()
 	default_static_icon = human_static_base_idiocy_bullshit_crap // FUCK
@@ -186,7 +186,7 @@
 	image_cust_two = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 	image_cust_three = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 
-	src.create_reagents(330)
+	src.create_reagents(2000)
 
 	hud = new(src)
 	src.attach_hud(hud)
@@ -2282,7 +2282,6 @@
 /mob/living/carbon/human/full_heal()
 	blinded = 0
 	bleeding = 0
-	blood_volume = 500
 
 	if (!src.limbs)
 		src.limbs = new /datum/human_limbs(src)

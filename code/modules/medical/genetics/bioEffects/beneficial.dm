@@ -608,12 +608,11 @@ var/list/radio_brains = list()
 	icon_state  = "regen"
 
 	OnLife(var/mult)
-
-		if (ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-
-			if (H.blood_volume < 500 && H.blood_volume > 0)
-				H.blood_volume += 6*mult
+		if(..()) return
+		var/mob/living/L = owner
+		if(!L.uses_blood) return
+		if(L.reagents.total_volume < L.ideal_blood_volume && L.reagents.total_volume > L.ideal_blood_volume * 0.02)
+			L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 5 * BLOOD_SCALAR * mult)
 
 
 ///////////////////////////

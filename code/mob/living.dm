@@ -103,14 +103,15 @@
 
 	var/metabolizes = 1
 
+	var/uses_blood = TRUE
 	var/can_bleed = 1
 	var/blood_id = null
-	var/blood_volume = 500
+	var/ideal_blood_volume = 500
 	var/blood_pressure = null
 	var/blood_color = DEFAULT_BLOOD_COLOR
 	var/bleeding = 0
 	var/bleeding_internal = 0
-	var/blood_absorption_rate = 1 // amount of blood to absorb from the reagent holder per Life()
+	// var/blood_absorption_rate = 1 // amount of blood to absorb from the reagent holder per Life()
 	var/list/bandaged = list()
 	var/being_staunched = 0 // is someone currently putting pressure on their wounds?
 
@@ -2403,3 +2404,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	remove_lifeprocess(/datum/lifeprocess/sight)
 	remove_lifeprocess(/datum/lifeprocess/skin)
 	remove_lifeprocess(/datum/lifeprocess/statusupdate)
+
+/mob/living/full_heal()
+	..()
+	if (src.uses_blood)
+		src.reagents.clear_reagents()
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume)
