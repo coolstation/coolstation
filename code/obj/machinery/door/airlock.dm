@@ -93,6 +93,15 @@ var/global/list/cycling_airlocks = list()
 		logTheThing("combat", usr, null, "de-electrified airlock ([src]) at [log_loc(src)].")
 		message_admins("[key_name(user)] de-electrified airlock ([src]) at [log_loc(src)].")
 
+/obj/machinery/door/airlock/hitby(atom/movable/M, datum/thrown_thing/thr)
+	if (iscarbon(M))
+		playsound(src, "sound/impact_sounds/doorbang.ogg", 80, 1)
+	else
+		playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
+
+	..()
+
+
 
 /obj/machinery/door/airlock/proc/idscantoggle(mob/user)
 	if(!src.arePowerSystemsOn() || (status & NOPOWER))
