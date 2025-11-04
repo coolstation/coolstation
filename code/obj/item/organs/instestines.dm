@@ -64,7 +64,7 @@
 
 	emag_act(mob/user, obj/item/card/emag/E)
 		. = ..()
-		organ_abilities = list(/datum/targetable/organAbility/quickdigest)
+		//organ_abilities = list(/datum/targetable/organAbility/quickdigest)
 
 	demag(mob/user)
 		..()

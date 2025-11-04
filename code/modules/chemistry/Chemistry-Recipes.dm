@@ -640,7 +640,11 @@ datum
 			name = "Eggnog"
 			id = "eggnog"
 			result = "eggnog"
+#ifdef XMAS
 			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1)
+#else
+			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1, "liquid spacetime" = 0.05)
+#endif
 			result_amount = 3
 			mix_phrase = "The eggs nog together. Pretend that \"nog\" is a verb."
 			drinkrecipe = 1
@@ -2867,6 +2871,7 @@ datum
 			result = "jenkem"
 			required_reagents = list("urine" = 1, "poo" = 1)
 			result_amount = 2
+			required_temperature = T100C - 2 // just below boilin
 			mix_phrase = "The mixture ferments into a filthy morass."
 			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
 

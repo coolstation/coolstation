@@ -2429,6 +2429,8 @@
 	if (src.hasStatus("handcuffed"))
 		src.handcuffs.destroy_handcuffs(src)
 	src.bodytemperature = src.base_body_temp
+	if (src.reagents)
+		src.reagents.stop_combusting()
 	if (src.stat > 1)
 		setalive(src)
 

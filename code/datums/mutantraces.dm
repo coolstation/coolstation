@@ -986,7 +986,8 @@
 
 					mob.blinded = 0
 					mob.bleeding = 0
-					mob.blood_volume = 500
+					mob.reagents.remove_any(mob.blood_id, INFINITY)
+					mob.reagents.add_reagent(mob.blood_id, mob.ideal_blood_volume, temp_new = mob.base_body_temp)
 
 					if (!mob.organHolder)
 						mob.organHolder = new(mob)
@@ -1913,13 +1914,7 @@
 		var/obj/item/storage/toilet/toilet = locate() in mob.loc
 		var/obj/item/reagent_containers/glass/beaker = locate() in mob.loc
 
-		var/can_output = 0
-		if (ishuman(mob))
-			var/mob/living/carbon/human/H = mob
-			if (H.blood_volume > 0)
-				can_output = 1
-
-		if (!can_output)
+		if (!mob.reagents?.total_volume)
 			.= "<B>[mob]</B> strains, but fails to output milk!"
 		else if (toilet && (mob.buckled != null))
 			for (var/obj/item/storage/toilet/terlet in mob.loc)

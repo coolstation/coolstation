@@ -246,6 +246,11 @@
 		var/react_volume = 50 * mult
 		if (M.reagents)
 			react_volume = min(react_volume, abs(M.reagents.maximum_volume - M.reagents.total_volume)) //don't push out other reagents if we are full
+			if(isliving(M))
+				var/mob/living/L = M
+				if(L.organHolder && L.organHolder.stomach)
+					L.organHolder.stomach.reagents.add_reagent(ocean_reagent_id, react_volume) //todo : maybe add temp var here too
+					return
 			M.reagents.add_reagent(ocean_reagent_id, react_volume) //todo : maybe add temp var here too
 
 	attackby(obj/item/C as obj, mob/user as mob, params) //i'm sorry

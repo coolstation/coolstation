@@ -2040,7 +2040,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 	New(turf/newLoc, var/amount = 9)
 		..()
-		src.create_reagents(30)
+		src.create_reagents(max(amount,20))
 		src.reagents.add_reagent("poo", amount)
 		icon_state = "mud[rand(1,3)]"
 		name = pick("shit","turd","poop","poo","loaf","deuce","brick")

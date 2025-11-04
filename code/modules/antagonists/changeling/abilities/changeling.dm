@@ -5,6 +5,7 @@
 	var/mob/living/L = src
 	if(istype(L))
 		L.blood_id = "bloodc"
+		L.thermoregulation_mult = L.thermoregulation_mult * 4
 
 	if (src.mind && !src.mind.is_changeling && (src.mind.special_role != ROLE_OMNITRAITOR))
 		src.Browse(grabResource("html/traitorTips/changelingTips.html"),"window=antagTips;size=600x400;title=Antagonist Tips")

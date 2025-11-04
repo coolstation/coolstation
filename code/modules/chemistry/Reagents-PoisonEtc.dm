@@ -811,7 +811,7 @@ datum
 
 				if (isliving(M))
 					var/mob/living/H = M
-					H.blood_volume -= 3 * mult
+					H.reagents.remove_reagent(H.blood_id, 3 * mult)
 				if (probmult(6))
 					M.visible_message(pick("<span class='alert'><B>[M]</B>'s [pick("eyes", "arms", "legs")] bleed!",\
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\

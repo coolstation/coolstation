@@ -119,11 +119,8 @@
 /datum/ailment/malady/shock/stage_act(var/mob/living/affected_mob,var/datum/ailment_data/malady/D)
 	if (..())
 		return
-	if (affected_mob.health >= 25 && affected_mob.nutrition >= 0)
-		var/mob/living/carbon/human/H = null
-		if(ishuman(affected_mob))
-			H = affected_mob
-		if(!H || H.blood_volume > 250)
+	if (affected_mob.health >= 50)
+		if(affected_mob.reagents.get_reagent_amount(affected_mob.blood_id) > affected_mob.ideal_blood_volume * 0.5)
 			boutput(affected_mob, "<span class='notice'>You feel better.</span>")
 			affected_mob.cure_disease(D)
 			return

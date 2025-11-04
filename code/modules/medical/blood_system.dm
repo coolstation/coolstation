@@ -3,7 +3,7 @@
 /* '~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~' */
 /*
  - healing spells for lings/etc should stop bleeding
- - iron and sugar have effects on blood: sugar reduces low blood_volume effects, research it & iron
+ - iron and sugar have effects on blood: sugar reduces low blood volume effects, research it & iron
  - Bleeding rework: if you have open surgical wounds your bleeding shouldn't drop to 0
  - Processor still needs to be finished.
  - Blood donation is better now with IVs, but the processor still could be useful
@@ -64,7 +64,7 @@ for things that would cause bloodsplatter and increase bleeding
 - damage determines how much blood is lost
 - damage_types: DAMAGE_STAB, DAMAGE_CUT, DAMAGE_BLUNT, DAMAGE_BURN - these will affect the chance of increasing bleeding and how much bleeding rate increases by
 - bloodsplatter var just in case that needs to be taken care of elsewhere???
-	if it's 0 it'll just remove [damage] from some_idiot's blood_volume without the decal appearing
+	if it's 0 it'll just remove [damage] from some_idiot's blood volume without the decal appearing
 - T will pass a turf to bleed() in case you need the blood to appear in more places than just where some_idiot is
 	if you don't give it T it defaults to some_idiot's turf
 - if the damage_type is DAMAGE_BURN and a bleeding increase doesn't occur, there's a chance that repair_bleeding_damage() will be triggered
@@ -93,7 +93,7 @@ transfer_blood(mob/living/some_idiot, atom/A, amount)
 
 take [amount] total blood and reagents (combined) out of some_idiot and transfer it into A
 currently used by syringes and IVs
-it removes blood from some_idiot's blood_volume and reagents from their reagent holder
+it removes blood from some_idiot's blood volume and reagents from their reagent holder
 
  ----------
 
@@ -152,13 +152,12 @@ this is already used where it needs to be used, you can probably ignore it.
 		//BLOOD_DEBUG("[H] is dead or immortal or otherwise not supposed to bleed, so their bleeding has been set to 0 and bleed damage was canceled")
 		return
 
-	if ((!isvampire(H) && H.blood_volume > 0) || (isvampire(H) && H.get_vampire_blood() > 0)) // make sure we have blood to bleed
+	if ((!isvampire(H) && H.reagents.total_volume) || (isvampire(H) && H.get_vampire_blood() > 0)) // make sure we have blood to bleed
 		if (bloodsplatter) // make sure we want to make bloodsplatter
 			bleed(H, damage, T, violent = TRUE) // actually bleed
 			//animate_blood_damage(some_idiot, some_jerk)
 		if (isvampire(H)) // we can go now, we don't need to do anything else for vamps
 			return
-		//BLOOD_DEBUG("[H]'s blood level is [H.blood_volume]")
 
 	else
 		H.bleeding = 0 // if we don't have any blood to bleed, just stop okay, just stop.
@@ -308,7 +307,7 @@ this is already used where it needs to be used, you can probably ignore it.
 		H.bleeding_internal = 0
 		return
 
-	if (H.blood_volume <= 0)
+	if (H.reagents.total_volume <= 0)
 		//BLOOD_DEBUG("[H] has no blood and their bleeding has been set to 0 and repair was canceled")
 		H.bleeding = 0 // you have no blood so stop trying to bleed
 		H.bleeding_internal = 0
@@ -398,7 +397,7 @@ this is already used where it needs to be used, you can probably ignore it.
 			B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
 			B.set_sample_reagent_custom(H.blood_id, num_amount)
 		else
-			B.reagents.add_reagent(H.blood_id, num_amount)
+			B.reagents.add_reagent(H.blood_id, num_amount, temp_new = H.base_body_temp)
 		return
 
 	BLOOD_DEBUG("[some_idiot] begins bleed")
@@ -417,8 +416,7 @@ this is already used where it needs to be used, you can probably ignore it.
 			H.bleeding = 0 // we don't need this to be anything above 0 for vamps
 			//BLOOD_DEBUG("[some_idiot] is a vampire with a bleeding above 0, so it was reset to 0")
 
-	if ((!isvampire(H) && H.blood_volume > 0) || (isvampire(H) && H.get_vampire_blood() > 0)) // you shouldn't bleed unless you have blood okay
-		//BLOOD_DEBUG("[H] blood level [H.blood_volume]")
+	if ((!isvampire(H) && H.reagents.total_volume > 0) || (isvampire(H) && H.get_vampire_blood() > 0)) // you shouldn't bleed unless you have blood okay
 		var/obj/decal/cleanable/tracked_reagents/dynamic/B = null
 		if (T.messy > 0)
 			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
@@ -433,21 +431,8 @@ this is already used where it needs to be used, you can probably ignore it.
 		if (isvampire(H))
 			H.change_vampire_blood(-5) //num_amount // gunna go with a set number as a test
 			//BLOOD_DEBUG("[H] bleeds -5 from vamp_blood_remaining and their vamp_blood_remaining becomes [H.get_vampire_blood()]")
-		else
-			H.blood_volume -= num_amount // time to bleed
-			//BLOOD_DEBUG("[H] bleeds [num_amount] and their blood level becomes [H.blood_volume]")
 
-			if (H.blood_volume < 0) // you shouldn't have negative blood okay
-				H.blood_volume = 0
-				//BLOOD_DEBUG("[H]'s blood volume dropped below 0 and was reset to 0")
-
-		//B.transfer_volume(H.reagents, num_amount) // for later
-		B.reagents.add_reagent(H.blood_id, num_amount)
-
-		//BLOOD_DEBUG("[H] adds volume to existing blood decal")
-
-		//BLOOD_DEBUG("[H] transfers reagents to blood decal [log_reagents(H)]")
-		B.transfer_volume(H.reagents, min(round(num_amount / 2, 1), 5), violent = TRUE)
+		B.transfer_volume(H.reagents, num_amount, some_idiot.bioHolder.Uid, some_idiot.bioHolder.bloodType, violent = TRUE)
 
 		if (H.blood_color)
 			B.color = H.blood_color
@@ -469,21 +454,16 @@ this is already used where it needs to be used, you can probably ignore it.
 	if (!A.reagents || (!istype(some_idiot) && !some_idiot.reagents))
 		return 0
 
-	if (isvampire(some_idiot) && (some_idiot.get_vampire_blood() <= 0) || (!isvampire(some_idiot) && !some_idiot.reagents && !some_idiot.blood_volume))
+	if (isvampire(some_idiot) && (some_idiot.get_vampire_blood() <= 0) || (!isvampire(some_idiot) && !some_idiot.reagents.total_volume))
 		return 0
 
-	var/reagents_to_transfer = (amount / 5) * 2
-	var/blood_to_transfer = (amount - min(reagents_to_transfer, some_idiot.reagents.total_volume))
+	var/blood_to_transfer = min(amount, some_idiot.reagents.total_volume)
 
 	var/datum/bioHolder/bloodHolder = null
 	var/add_dna = TRUE
 
 	if (isvampire(some_idiot) && (some_idiot.get_vampire_blood() < blood_to_transfer))
 		blood_to_transfer = some_idiot.get_vampire_blood()
-
-	// Ignore that second container of blood entirely if it's a vampire (Convair880).
-	if (!isvampire(some_idiot) && (some_idiot.blood_volume < blood_to_transfer))
-		blood_to_transfer = some_idiot.blood_volume
 
 	for (var/an_blood in all_blood_reagents) //oof ouch owie I'm sorry
 		var/datum/reagent/blood/cheating = A.reagents.reagent_list[an_blood]
@@ -496,14 +476,9 @@ this is already used where it needs to be used, you can probably ignore it.
 		bloodHolder.CopyOther(some_idiot.bioHolder)
 		bloodHolder.ownerName = some_idiot.real_name
 
-	var/datum/reagent/R = null
+	some_idiot.reagents.trans_to(A, blood_to_transfer)
 
-	if (ischangeling(some_idiot))
-		A.reagents.add_reagent("bloodc", blood_to_transfer, bloodHolder)
-		R = A.reagents.get_reagent("bloodc")
-	else
-		A.reagents.add_reagent(some_idiot.blood_id, blood_to_transfer, bloodHolder)
-		R = A.reagents.get_reagent(some_idiot.blood_id)
+	var/datum/reagent/R = A.reagents.get_reagent(some_idiot.blood_id)
 
 	if (R && (R.id == "blood" || R.id == "bloodc") && some_human_idiot)
 		var/datum/reagent/blood/B = R
@@ -518,12 +493,6 @@ this is already used where it needs to be used, you can probably ignore it.
 	if (blood_system && (isvampire(some_idiot) && (some_idiot.get_vampire_blood() >= blood_to_transfer)))
 		some_idiot.change_vampire_blood(-blood_to_transfer)
 
-	// Ignore that second container of blood entirely if it's a vampire (Convair880).
-	if (blood_system && !isvampire(some_idiot) && (some_idiot.blood_volume >= blood_to_transfer))
-		some_idiot.blood_volume -= blood_to_transfer
-
-	if (blood_to_transfer < amount)
-		some_idiot.reagents.trans_to(A, (amount - blood_to_transfer))
 	return 1
 
 /* =================================== */
@@ -716,7 +685,7 @@ this is already used where it needs to be used, you can probably ignore it.
 		if (haine_blood_debug) logTheThing("debug", H, null, "<b>HAINE BLOOD DEBUG: [H] is dead/immortal/a vampire/otherwise not supposed to bleed, so their bleeding has been set to 0 and internal bleed damage was canceled</b>")
 		return
 
-	if (!(H.blood_volume > 0)) // make sure we have blood to bleed
+	if (!(H.reagents.total_volume > 0)) // make sure we have blood to bleed
 		H.bleeding = 0 // if we don't have any blood to bleed, just stop okay, just stop.
 		H.bleeding_internal = 0
 		if (haine_blood_debug) logTheThing("debug", H, null, "<b>HAINE BLOOD DEBUG: [H] has no blood and their bleeding has been set to 0 and internal bleed damage was canceled</b>")
