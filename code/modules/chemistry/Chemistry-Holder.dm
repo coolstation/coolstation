@@ -407,7 +407,7 @@ datum
 			return ret
 
 		//multiplier is used to handle realtime metabolizations over byond time
-		proc/metabolize(var/mob/target, var/multiplier = 1)
+		proc/metabolize(var/mob/living/target, var/multiplier = 1)
 			if (islist(src.addiction_tally) && length(src.addiction_tally)) // if we got some addictions to process
 				//DEBUG_MESSAGE("metabolize([target]) addiction_tally processing")
 				for (var/rid in src.addiction_tally) // look at each addiction tally
@@ -421,6 +421,8 @@ datum
 
 			var/mult_per_reagent = 1
 			for (var/current_id in reagent_list)
+				if(target.blood_id == current_id)
+					continue
 				var/datum/reagent/current_reagent = reagent_list[current_id]
 				if (current_reagent)
 					mult_per_reagent = min(multiplier,current_reagent.how_many_depletions(target)) //limit the multiplier by how many depletions we have left
