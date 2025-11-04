@@ -612,7 +612,7 @@ var/list/radio_brains = list()
 		var/mob/living/L = owner
 		if(!L.uses_blood) return
 		if(L.reagents.total_volume < L.ideal_blood_volume && L.reagents.total_volume > L.ideal_blood_volume * 0.02)
-			L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 5 * BLOOD_SCALAR * mult)
+			L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 5 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
 
 
 ///////////////////////////

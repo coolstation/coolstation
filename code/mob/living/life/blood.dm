@@ -73,7 +73,7 @@
 			var/blood_in_ya = critter_owner.reagents.get_reagent_amount(critter_owner.blood_id)
 			if (blood_in_ya < critter_owner.ideal_blood_volume * 0.99 && blood_in_ya > critter_owner.ideal_blood_volume * BLOOD_SCALAR * 5) // if we're full or mostly empty, don't bother v
 				if (prob(66))
-					critter_owner.reagents.add_reagent(critter_owner.blood_id, critter_owner.ideal_blood_volume * BLOOD_SCALAR * mult) // maybe get a little blood back ^
+					critter_owner.reagents.add_reagent(critter_owner.blood_id, critter_owner.ideal_blood_volume * BLOOD_SCALAR * mult, temp_new = critter_owner.base_body_temp) // maybe get a little blood back ^
 			else if (critter_owner.reagents.total_volume > critter_owner.ideal_blood_volume * 1.01)
 				if (prob(20))
 					critter_owner.reagents.remove_reagent(critter_owner.blood_id, critter_owner.ideal_blood_volume * BLOOD_SCALAR * mult)
@@ -95,7 +95,7 @@
 			owner.blood_pressure["status"] = "Normal"
 			return ..()
 
-		var/current_blood_amt = owner.reagents.total_volume // dropping how much reagents count so that people stop going hypertensive at the drop of a hat
+		var/current_blood_amt = owner.reagents.total_volume
 		var/cho_amt = (owner.reagents ? owner.reagents.get_reagent_amount("cholesterol") : 0)
 		if (anticoag_amt)
 			current_blood_amt -= ((anticoag_amt / 4) + anticoag_amt) * mult// set the total back to what it would be without the heparin, then remove the total of the heparin
@@ -113,7 +113,7 @@
 		owner.blood_pressure["diastolic"] = current_diastolic
 		owner.blood_pressure["rendered"] = "[max(rand(current_systolic-5,current_systolic+5), 0)]/[max(rand(current_diastolic-2,current_diastolic+2), 0)]"
 		owner.blood_pressure["total"] = current_blood_amt
-		owner.blood_pressure["status"] = (current_blood_amt < 415) ? "HYPOTENSIVE" : (current_blood_amt > 584) ? "HYPERTENSIVE" : "NORMAL"
+		owner.blood_pressure["status"] = (current_blood_amt < owner.ideal_blood_volume * 0.85) ? "HYPOTENSIVE" : (current_blood_amt > owner.ideal_blood_volume * 1.15) ? "HYPERTENSIVE" : "NORMAL"
 
 		if (ischangeling(owner))
 			return ..()
@@ -130,8 +130,10 @@
 		if (isdead(owner))
 			return ..()
 
-		switch (current_blood_amt)
-			if (-INFINITY to 0) // welp
+		var/relevant_blood_amount = owner.reagents.get_reagent_amount(owner.blood_id) / owner.ideal_blood_volume * 500
+
+		switch (relevant_blood_amount) // oxygen deprivation from lack of blood cells
+			if (-INFINITY to 1) // welp
 				owner.take_oxygen_deprivation(1 * mult)
 				owner.take_brain_damage(2 * mult)
 				owner.losebreath += (1 * mult)
@@ -183,11 +185,14 @@
 				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -1)
 				owner.add_stam_mod_max("hypotension", -5)
 
-			if (415 to 625) // normal (120/80)
-				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension")
+			if (415 to INFINITY)
 				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension")
-				owner.remove_stam_mod_max("hypertension")
 				owner.remove_stam_mod_max("hypotension")
+
+		switch (current_blood_amt) // hypertension
+			if (0 to 625) // normal (120/80)
+				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension")
+				owner.remove_stam_mod_max("hypertension")
 				return ..()
 
 			if (625 to 680) // high (140/90)

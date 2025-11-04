@@ -10,7 +10,7 @@
 		if (owner.reagents)
 			var/reagent_time_multiplier = get_multiplier()
 
-			owner.reagents.temperature_reagents(owner.bodytemperature, 100*reagent_time_multiplier, 100, 15*reagent_time_multiplier)
+			owner.reagents.temperature_reagents(owner.bodytemperature, 500*reagent_time_multiplier, 100, 150*reagent_time_multiplier)
 
 			if (owner.metabolizes && owner.reagents)//idk it runtimes)
 				owner.reagents.metabolize(owner, multiplier = reagent_time_multiplier * (HAS_ATOM_PROPERTY(owner, PROP_METABOLIC_RATE) ? GET_ATOM_PROPERTY(owner, PROP_METABOLIC_RATE) : 1))

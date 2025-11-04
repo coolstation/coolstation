@@ -239,7 +239,7 @@ datum/pathogeneffects/benevolent/resurrection
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				H.reagents.remove_any(H.blood_id, INFINITY)
-				H.reagents.add_reagent(H.blood_id, H.ideal_blood_volume)
+				H.reagents.add_reagent(H.blood_id, H.ideal_blood_volume, temp_new = H.base_body_temp)
 				H.take_toxin_damage(-INFINITY)
 				H.take_oxygen_deprivation(-INFINITY)
 				H.take_brain_damage(-INFINITY)

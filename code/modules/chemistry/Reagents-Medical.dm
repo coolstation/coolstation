@@ -675,7 +675,7 @@ datum
 					if (L.organHolder)
 						L.organHolder.heal_organs(1*mult, 1*mult, 1*mult, target_organs)
 						if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
-							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult)
+							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
 					else if (L.reagents.total_volume < L.ideal_blood_volume)
 						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult)
 
@@ -1105,7 +1105,7 @@ datum
 					var/mob/living/L = M
 					if (L.organHolder)
 						if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
-							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult)
+							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
 					else if (L.reagents.total_volume < L.ideal_blood_volume)
 						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult)
 				..()

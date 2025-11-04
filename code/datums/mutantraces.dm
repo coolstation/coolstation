@@ -987,7 +987,7 @@
 					mob.blinded = 0
 					mob.bleeding = 0
 					mob.reagents.remove_any(mob.blood_id, INFINITY)
-					mob.reagents.add_reagent(mob.blood_id, mob.ideal_blood_volume)
+					mob.reagents.add_reagent(mob.blood_id, mob.ideal_blood_volume, temp_new = mob.base_body_temp)
 
 					if (!mob.organHolder)
 						mob.organHolder = new(mob)

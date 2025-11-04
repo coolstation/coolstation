@@ -397,7 +397,7 @@ this is already used where it needs to be used, you can probably ignore it.
 			B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
 			B.set_sample_reagent_custom(H.blood_id, num_amount)
 		else
-			B.reagents.add_reagent(H.blood_id, num_amount)
+			B.reagents.add_reagent(H.blood_id, num_amount, temp_new = H.base_body_temp)
 		return
 
 	BLOOD_DEBUG("[some_idiot] begins bleed")

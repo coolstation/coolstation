@@ -3078,6 +3078,8 @@ datum
 			minimum_reaction_temperature = T0C + 50
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				if(ismob(holder.my_atom))
+					return
 				var/list/covered = holder.covered_turf()
 				if(length(covered) < 9 || prob(2)) // no spam pls
 					if (holder.my_atom)

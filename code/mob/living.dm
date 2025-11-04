@@ -149,7 +149,7 @@
 		if (blood_id)
 			all_blood_reagents |= blood_id
 		src.create_reagents(src.ideal_blood_volume * 4)
-		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume)
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume, temp_new = src.base_body_temp)
 		src.ensure_bp_list()
 
 	if(src.ai_type)
@@ -2411,4 +2411,4 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	..()
 	if (src.uses_blood)
 		src.reagents.clear_reagents()
-		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume)
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume, temp_new = src.base_body_temp)
