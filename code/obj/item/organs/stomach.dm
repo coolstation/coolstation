@@ -35,7 +35,7 @@
 				if(count_left-- <= 0)
 					break
 
-		src.reagents.trans_to(donor, 4 * mult, 1, 0)
+		src.reagents.trans_to_direct(donor.reagents, 4 * mult, 1, 0)
 
 		// if (src.get_damage() >= FAIL_DAMAGE && prob(src.get_damage() * 0.2))
 		// 	donor.contract_disease(failure_disease,null,null,1)
