@@ -37,7 +37,7 @@
 				human_owner.removeOverlayComposition(/datum/overlayComposition/blinded_r_eye)
 
 			else if ((eyes_blinded & EYEBLIND_L) && (eyes_blinded & EYEBLIND_R)) // both eyes are blind
-				if (/obj/item/white_cane in human_owner.get_equipped_items())
+				if (human_owner.find_type_in_hand(/obj/item/white_cane)) // if they're holding a white cane
 					human_owner.addOverlayComposition(/datum/overlayComposition/blinded_with_cane)
 					human_owner.removeOverlayComposition(/datum/overlayComposition/blinded)
 				else

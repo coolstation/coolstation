@@ -645,6 +645,7 @@
 	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool
 	desc = "Useful for finding your way around, and also for hitting people."
 	// TODO: figure out how optional-two-handedness works
+	// TODO: allow examining things by using the cane with the help intent
 
 /obj/item/quarterstaff
 	name = "quarterstaff"
