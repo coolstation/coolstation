@@ -50,7 +50,6 @@
 
 	var/datum/organHolder/organHolder = null //Not all living mobs will use organholder. Instantiate on New() if you want one.
 
-	var/list/stomach_process = list() //digesting foods
 	var/list/skin_process = list() //digesting patches
 
 	var/sound_burp = 'sound/voice/burp.ogg'
@@ -181,11 +180,8 @@
 	qdel(tracked_reagents)
 	tracked_reagents = null
 
-	for (var/atom/A as anything in stomach_process)
-		qdel(A)
 	for (var/atom/A as anything in skin_process)
 		qdel(A)
-	stomach_process = null
 	skin_process = null
 
 	for(var/mob/dead/aieye/E in src.contents)

@@ -47,9 +47,14 @@
 			"<span class='notice'>You swallow [src].</span>")
 			logTheThing("combat", user, null, "swallows a pill [log_reagents(src)] at [log_loc(user)].")
 			if (reagents.total_volume)
-				reagents.reaction(user, INGEST)
-				sleep(0.1 SECONDS)
-				reagents.trans_to(user, reagents.total_volume)
+				var/mob/living/L = user
+				if(L.organHolder)
+					if(L.organHolder.stomach)
+						src.set_loc(L.organHolder.stomach)
+				else
+					reagents.reaction(user, INGEST)
+					SPAWN_DBG(0.1 SECONDS)
+						reagents.trans_to(user, reagents.total_volume)
 			user.u_equip(src)
 			qdel(src)
 		return
@@ -84,9 +89,14 @@
 
 			logTheThing("combat", user, M, "[user == M ? "swallows" : "makes [constructTarget(M,"combat")] swallow"] a pill [log_reagents(src)] at [log_loc(user)].")
 			if (reagents.total_volume)
-				reagents.reaction(M, INGEST)
-				sleep(0.1 SECONDS)
-				reagents.trans_to(M, reagents.total_volume)
+				var/mob/living/L = M
+				if(L.organHolder)
+					if(L.organHolder.stomach)
+						src.set_loc(L.organHolder.stomach)
+				else
+					reagents.reaction(M, INGEST)
+					SPAWN_DBG(0.1 SECONDS)
+						reagents.trans_to(M, reagents.total_volume)
 			user.u_equip(src)
 			qdel(src)
 			return 1
