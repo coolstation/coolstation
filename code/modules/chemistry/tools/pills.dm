@@ -55,8 +55,8 @@
 					reagents.reaction(user, INGEST)
 					SPAWN_DBG(0.1 SECONDS)
 						reagents.trans_to(user, reagents.total_volume)
+						qdel(src)
 			user.u_equip(src)
-			qdel(src)
 		return
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
@@ -97,8 +97,8 @@
 					reagents.reaction(M, INGEST)
 					SPAWN_DBG(0.1 SECONDS)
 						reagents.trans_to(M, reagents.total_volume)
+						qdel(src)
 			user.u_equip(src)
-			qdel(src)
 			return 1
 
 		return 0
