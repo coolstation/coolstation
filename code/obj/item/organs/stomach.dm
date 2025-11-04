@@ -28,14 +28,14 @@
 					food.reagents.trans_to(src, (5 / count_to_process) * mult, HAS_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) ? GET_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) : 1)
 
 					if (food.reagents.total_volume <= 0)
-						donor.poops += food.w_class / 4
+						donor.poops += food.w_class / 8
 						qdel(food)
 				else
 					break
 				if(count_left-- <= 0)
 					break
 
-		src.reagents.trans_to_direct(donor.reagents, 4 * mult, 1, 0)
+		src.reagents.trans_to_direct(donor.reagents, 7.5 * mult, 1, 0)
 
 		// if (src.get_damage() >= FAIL_DAMAGE && prob(src.get_damage() * 0.2))
 		// 	donor.contract_disease(failure_disease,null,null,1)
