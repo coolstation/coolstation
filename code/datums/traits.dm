@@ -1327,12 +1327,7 @@ obj/trait/pilot
 		..()
 		if(isliving(owner))
 			var/mob/living/L = owner
-			L.reagents.del_reagent(L.blood_id)
-			L.blood_id = "bloodc"
-			var/blood_replaced = L.reagents.get_reagent_amount(L.blood_id)
-			if(L.organHolder && L.organHolder.spleen)
-				L.organHolder.spleen.blood_id = L.blood_id
-			L.reagents.add_reagent(L.blood_id, blood_replaced, temp_new = L.base_body_temp)
+			L.replace_blood_with("bloodc")
 
 /obj/trait/super_slips
 	name = "Slipping Hazard (+1)"
