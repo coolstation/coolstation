@@ -649,9 +649,10 @@
 	attack(atom/target, mob/user) // FIXME: does not work
 		if (user.a_intent == INTENT_HELP)
 			// inspect the thingy
-			target.examine(user)
+			user.examine_verb(target)
+			return
 		else
-			..()
+			return ..()
 
 /obj/item/quarterstaff
 	name = "quarterstaff"
