@@ -4,11 +4,13 @@
 		return
 	var/mob/living/L = src
 	if(istype(L))
+		L.reagents.del_reagent(L.blood_id)
 		L.blood_id = "bloodc"
 		L.thermoregulation_mult = L.thermoregulation_mult * 4
-		L.blood_id = "bloodc"
+		var/blood_replaced = L.reagents.get_reagent_amount(L.blood_id)
 		if(L.organHolder && L.organHolder.spleen)
 			L.organHolder.spleen.blood_id = L.blood_id
+		L.reagents.add_reagent(L.blood_id, blood_replaced, temp_new = L.base_body_temp)
 
 	if (src.mind && !src.mind.is_changeling && (src.mind.special_role != ROLE_OMNITRAITOR))
 		src.Browse(grabResource("html/traitorTips/changelingTips.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
