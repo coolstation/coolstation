@@ -58,7 +58,7 @@
 	var/d_alpha = 255
 	var/d_color = "#ffffff"
 	var/d_blend_mode = 1
-	var/d_layer = HUD_LAYER_UNDER_2		//18 is just below the ui but above everything else.
+	var/d_layer = HUD_LAYER_UNDER_1		//18 is just below the ui but above everything else.
 	var/d_plane = PLANE_HUD
 	var/d_mouse_opacity = 0 //In case you want it to block clicks. For blindness and such.
 	var/do_wide_fill = 1 //If true, use underlays to 'fill out' the area that extends to the sides in widescreen
