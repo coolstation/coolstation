@@ -1328,6 +1328,8 @@ obj/trait/pilot
 		if(isliving(owner))
 			var/mob/living/L = owner
 			L.blood_id = "bloodc"
+			if(L.organHolder && L.organHolder.spleen)
+				L.organHolder.spleen.blood_id = L.blood_id
 
 /obj/trait/super_slips
 	name = "Slipping Hazard (+1)"
