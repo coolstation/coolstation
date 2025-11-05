@@ -175,16 +175,6 @@
 	},
 /turf/floor/grey,
 /area/station/hallway/secondary/oshan_arrivals)
-"ajS" = (
-/obj/machinery/power/data_terminal,
-/obj/cable/hotpink,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13"
-	},
-/turf/floor,
-/area/station/science/lab)
 "akr" = (
 /obj/disposalpipe/junction/left/west,
 /turf/floor/specialroom/bar,
@@ -784,6 +774,10 @@
 /obj/disposalpipe/segment/ejection,
 /turf/floor,
 /area/station/hallway/primary/west)
+"aPe" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/floor,
+/area/station/science/lab)
 "aPx" = (
 /obj/machinery/atmospherics/valve{
 	desc = "hot radiator inlet valve";
@@ -835,6 +829,10 @@
 /obj/plasticflaps,
 /turf/floor,
 /area/station/chapel/sanctuary)
+"aSr" = (
+/obj/warp_beacon/escape,
+/turf/space/fluid,
+/area/space)
 "aTh" = (
 /turf/floor/neutral/side{
 	dir = 8
@@ -2305,15 +2303,12 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "cue" = (
-/obj/disposalpipe/segment/mail,
-/obj/cable/hotpink{
-	icon_state = "1-2"
+/obj/warp_beacon/security,
+/obj/grille/catwalk/grey{
+	dir = 10
 	},
-/turf/floor/grass,
-/area/station/hydroponics/bay{
-	mail_tag = "Hydroponics";
-	name = "Hydroponics"
-	})
+/turf/space/fluid,
+/area/space)
 "cuf" = (
 /obj/table/wood/auto,
 /obj/machinery/light/small/neutral{
@@ -2607,10 +2602,6 @@
 	},
 /turf/floor/plating/jen,
 /area/station/turret_protected/ai)
-"cJT" = (
-/obj/machinery/atmospherics/valve/vertical,
-/turf/wall,
-/area/station/science/lab)
 "cKh" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -3129,6 +3120,10 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersC)
+"dmH" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/floor/plating/airless,
+/area/station/science/lab)
 "dmR" = (
 /turf/floor,
 /area/station/science/lobby)
@@ -3294,10 +3289,6 @@
 	dir = 1
 	},
 /area/station/crew_quarters/market)
-"duO" = (
-/obj/machinery/portable_atmospherics/canister/empty,
-/turf/floor,
-/area/station/science/lab)
 "duW" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -4124,11 +4115,6 @@
 "ekU" = (
 /turf/floor/carpet/grime3,
 /area/station/mining/lobby)
-"elb" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
-/turf/floor/plating/airless,
-/area/station/science/lab)
 "ell" = (
 /turf/wall,
 /area/station/engine/core)
@@ -4175,6 +4161,15 @@
 /obj/access_spawn/research_director,
 /turf/floor/plating,
 /area/station/science/research_director)
+"eor" = (
+/obj/machinery/atmospherics/valve/horizontal,
+/obj/machinery/ignition_switch{
+	id = "tox";
+	pixel_x = -30;
+	pixel_y = 8
+	},
+/turf/floor,
+/area/station/science/lab)
 "eoB" = (
 /obj/storage/secure/closet/engineering/engineer,
 /turf/floor,
@@ -4286,6 +4281,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
+"eun" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor/plating/airless,
+/area/station/science/lab)
+"euG" = (
+/obj/machinery/atmospherics/valve/vertical,
+/turf/wall,
+/area/station/science/lab)
 "euH" = (
 /obj/cable/hotpink{
 	icon_state = "0-8"
@@ -4916,6 +4922,11 @@
 /obj/machinery/light/fluorescent,
 /turf/floor,
 /area/station/hallway/primary/central)
+"fby" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
+/turf/floor/plating/airless,
+/area/station/science/lab)
 "fbQ" = (
 /obj/shrub{
 	dir = 1;
@@ -6004,6 +6015,11 @@
 	},
 /turf/floor/industrial,
 /area/station/engine/core)
+"ghk" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
+/turf/floor/plating/airless,
+/area/station/science/lab)
 "ghP" = (
 /obj/cable/hotpink{
 	icon_state = "4-8"
@@ -6663,6 +6679,13 @@
 /obj/machinery/light/small,
 /turf/floor/grey,
 /area/station/engine/elect)
+"gTS" = (
+/obj/grille/catwalk/grey{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/vent/north,
+/turf/space/fluid/noexplosion/nospawn,
+/area/space)
 "gUc" = (
 /obj/item/device/radio/intercom/bridge{
 	dir = 8
@@ -7221,15 +7244,6 @@
 	icon_state = "green";
 	name = "Northeast Terminal Room"
 	})
-"hwq" = (
-/obj/machinery/atmospherics/valve/horizontal,
-/obj/machinery/ignition_switch{
-	id = "tox";
-	pixel_x = -30;
-	pixel_y = 8
-	},
-/turf/floor,
-/area/station/science/lab)
 "hws" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -7527,14 +7541,12 @@
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "hOS" = (
-/obj/cable/hotpink{
-	icon_state = "4-8"
+/obj/grille/catwalk/grey{
+	dir = 5
 	},
-/turf/floor/grass,
-/area/station/hydroponics/bay{
-	mail_tag = "Hydroponics";
-	name = "Hydroponics"
-	})
+/obj/warp_beacon/mainpod1,
+/turf/space/fluid,
+/area/space)
 "hQE" = (
 /obj/machinery/computer/arcade,
 /turf/floor/specialroom/arcade,
@@ -8573,6 +8585,12 @@
 "iNv" = (
 /turf/wall,
 /area/station/medical/research)
+"iNH" = (
+/obj/cable/hotpink{
+	icon_state = "2-4"
+	},
+/turf/floor,
+/area/station/science/lab)
 "iPm" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -9874,6 +9892,10 @@
 /obj/machinery/manufacturer/glasswares,
 /turf/floor,
 /area/station/science/lobby)
+"kjw" = (
+/obj/machinery/light/small/ceiling/cool,
+/turf/floor,
+/area/station/science/lab)
 "kjE" = (
 /obj/decal/poster/wallsign/qm,
 /turf/wall,
@@ -9888,10 +9910,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/quartermaster/cargobay)
-"kls" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/floor,
-/area/station/science/lab)
 "klt" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9946,10 +9964,6 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/shuttlebay,
 /area/shuttle/sea_elevator_room)
-"koE" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/turf/floor/plating/airless,
-/area/station/science/lab)
 "kpq" = (
 /obj/stool/chair{
 	dir = 8
@@ -10349,14 +10363,6 @@
 /obj/disposalpipe/switch_junction/right/north,
 /turf/floor/carpet/blue/fancy/junction,
 /area/station/bridge)
-"kLB" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
-/obj/machinery/sparker{
-	id = "tox";
-	pixel_x = -16
-	},
-/turf/floor/shuttlebay,
-/area/station/science/lab)
 "kLL" = (
 /obj/reagent_dispensers/watertank/fountain,
 /obj/machinery/camera{
@@ -10386,11 +10392,6 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor,
 /area/station/science/chemistry)
-"kMI" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
-/turf/floor/plating/airless,
-/area/station/science/lab)
 "kMP" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/crematorium{
@@ -10418,6 +10419,14 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"kNz" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
+/obj/machinery/sparker{
+	id = "tox";
+	pixel_x = -16
+	},
+/turf/floor/shuttlebay,
+/area/station/science/lab)
 "kNF" = (
 /obj/disposalpipe/segment{
 	dir = 1;
@@ -10498,6 +10507,16 @@
 	},
 /turf/floor,
 /area/listeningpost/power)
+"kPI" = (
+/obj/disposalpipe/segment/mail,
+/obj/cable/hotpink{
+	icon_state = "1-8"
+	},
+/turf/floor/grass,
+/area/station/hydroponics/bay{
+	mail_tag = "Hydroponics";
+	name = "Hydroponics"
+	})
 "kPV" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -11613,12 +11632,6 @@
 	},
 /turf/floor/plating,
 /area/station/construction)
-"lWT" = (
-/obj/cable/hotpink{
-	icon_state = "2-4"
-	},
-/turf/floor,
-/area/station/science/lab)
 "lXJ" = (
 /turf/floor,
 /area/station/security/brig)
@@ -12861,6 +12874,16 @@
 	},
 /turf/floor,
 /area/station/science/server_room)
+"mVM" = (
+/obj/machinery/power/data_terminal,
+/obj/cable/hotpink,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13"
+	},
+/turf/floor,
+/area/station/science/lab)
 "mWa" = (
 /obj/disposalpipe/segment/food{
 	dir = 1
@@ -12944,11 +12967,9 @@
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quartersA)
 "mZQ" = (
-/obj/machinery/plantpot{
-	anchored = 1
-	},
+/obj/disposalpipe/segment/mail,
 /obj/cable/hotpink{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
 /turf/floor/grass,
 /area/station/hydroponics/bay{
@@ -13682,13 +13703,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/east)
-"nLi" = (
-/obj/grille/catwalk/grey{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/vent/north,
-/turf/space/fluid/noexplosion/nospawn,
-/area/space)
 "nLy" = (
 /obj/storage/secure/closet/engineering/mechanic,
 /obj/item/device/t_scanner{
@@ -15702,10 +15716,6 @@
 	icon_state = "flophole3"
 	},
 /area/listeningpost)
-"pFJ" = (
-/obj/machinery/light/small/ceiling/cool,
-/turf/floor,
-/area/station/science/lab)
 "pFK" = (
 /obj/machinery/computer/security/wooden_tv,
 /turf/floor/carpet/nicebrown,
@@ -15880,6 +15890,11 @@
 	},
 /turf/floor,
 /area/station/engine/core)
+"pSX" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
+/turf/floor/plating/airless,
+/area/station/science/lab)
 "pTa" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -18740,9 +18755,8 @@
 	},
 /area/station/hallway/primary/east)
 "sKR" = (
-/obj/disposalpipe/segment/mail,
 /obj/cable/hotpink{
-	icon_state = "1-8"
+	icon_state = "4-8"
 	},
 /turf/floor/grass,
 /area/station/hydroponics/bay{
@@ -19485,6 +19499,13 @@
 	},
 /turf/floor/grass/leafy,
 /area/station/crew_quarters/market)
+"tCA" = (
+/obj/grille/catwalk/grey{
+	dir = 6
+	},
+/obj/warp_beacon/qm,
+/turf/space/fluid,
+/area/space)
 "tCQ" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -19658,13 +19679,6 @@
 	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
-"tMU" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/obj/cable/hotpink{
-	icon_state = "4-8"
-	},
-/turf/floor/plating/airless,
-/area/station/science/lab)
 "tNU" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -20331,6 +20345,10 @@
 	},
 /turf/floor,
 /area/station/security/main)
+"uti" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/floor,
+/area/station/science/lab)
 "utp" = (
 /obj/cable/hotpink{
 	icon_state = "2-8"
@@ -22040,6 +22058,11 @@
 	icon_state = "green";
 	name = "Northeast Terminal Room"
 	})
+"vZJ" = (
+/obj/machinery/light/fluorescent,
+/obj/machinery/portable_atmospherics/canister/toxins,
+/turf/floor,
+/area/station/science/lab)
 "waj" = (
 /obj/machinery/light/small/neutral{
 	dir = 8
@@ -22290,6 +22313,12 @@
 	},
 /turf/floor/industrial,
 /area/station/engine/engineering)
+"wkq" = (
+/obj/grille/catwalk/grey{
+	dir = 10
+	},
+/turf/space/fluid/noexplosion/nospawn,
+/area/space)
 "wly" = (
 /obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/syndicate_horizontal/vertical,
 /turf/floor/grey,
@@ -22418,10 +22447,17 @@
 /turf/floor/grey,
 /area/station/hallway/secondary/oshan_arrivals)
 "wrL" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
-/turf/floor/plating/airless,
-/area/station/science/lab)
+/obj/machinery/plantpot{
+	anchored = 1
+	},
+/obj/cable/hotpink{
+	icon_state = "4-8"
+	},
+/turf/floor/grass,
+/area/station/hydroponics/bay{
+	mail_tag = "Hydroponics";
+	name = "Hydroponics"
+	})
 "wrR" = (
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
@@ -23655,11 +23691,6 @@
 /obj/cable/yellow,
 /turf/floor/plating,
 /area/station/turret_protected/ai)
-"xyE" = (
-/obj/machinery/light/fluorescent,
-/obj/machinery/portable_atmospherics/canister/toxins,
-/turf/floor,
-/area/station/science/lab)
 "xyY" = (
 /obj/disposalpipe/segment/ejection{
 	dir = 1;
@@ -56939,12 +56970,12 @@ eIM
 bIl
 wsz
 rtK
-mdg
-mZF
-mZF
-mZF
-mZF
-mZF
+wkq
+xmX
+xmX
+xmX
+xmX
+tCA
 mZF
 mZF
 mZF
@@ -72013,8 +72044,8 @@ hFn
 hFn
 hFn
 brz
-koE
-koE
+dmH
+dmH
 brz
 hFn
 hFn
@@ -72314,10 +72345,10 @@ efQ
 hFn
 hFn
 hFn
-wrL
+ghk
 umC
-kLB
-elb
+kNz
+fby
 hFn
 hFn
 hFn
@@ -72920,7 +72951,7 @@ hFn
 brz
 hDl
 iBh
-kMI
+pSX
 hDl
 brz
 brz
@@ -73223,10 +73254,10 @@ pry
 tUQ
 tUQ
 tUQ
-hwq
-duO
-kls
-xyE
+eor
+aPe
+uti
+vZJ
 brz
 hFn
 hFn
@@ -73827,7 +73858,7 @@ pry
 tph
 tph
 tph
-pFJ
+kjw
 tph
 tph
 tUQ
@@ -74430,13 +74461,13 @@ lAi
 qVV
 tph
 tph
-lWT
-ajS
+iNH
+mVM
 tph
 tph
 moh
-cJT
-nLi
+euG
+gTS
 rtK
 mZF
 mZF
@@ -74732,7 +74763,7 @@ wYb
 qVV
 brz
 fXg
-tMU
+eun
 brz
 hWc
 uvd
@@ -75369,7 +75400,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+aSr
 mZF
 mZF
 mZF
@@ -81028,12 +81059,12 @@ mZF
 mZF
 mZF
 mZF
-mZF
-mZF
-mZF
-mZF
-mZF
-kIz
+cue
+xmX
+xmX
+xmX
+xmX
+qap
 mZF
 mZF
 mZF
@@ -81656,7 +81687,7 @@ xHL
 wbw
 nDJ
 bCA
-hOS
+sKR
 bCA
 tXf
 vex
@@ -81958,7 +81989,7 @@ xHL
 wbw
 uwT
 fJQ
-mZQ
+wrL
 fJQ
 tXf
 vex
@@ -82259,8 +82290,8 @@ ixf
 blR
 mSg
 amf
-cue
-sKR
+mZQ
+kPI
 epH
 epH
 csK
@@ -87988,7 +88019,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mJg
 mZF
 mZF
@@ -88290,7 +88321,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mZF
 mZF
 mZF
@@ -88592,7 +88623,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mZF
 mZF
 mZF
@@ -88894,7 +88925,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mZF
 mZF
 mZF
@@ -89196,7 +89227,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mZF
 mZF
 mZF
@@ -89498,7 +89529,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mZF
 mZF
 mZF
@@ -89800,7 +89831,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+kIz
 mZF
 mZF
 mZF
@@ -90102,7 +90133,7 @@ mZF
 mZF
 mZF
 mZF
-mZF
+hOS
 mZF
 mZF
 mZF
