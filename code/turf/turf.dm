@@ -470,9 +470,15 @@
 		if(AM.throwforce >= 80)
 			src.meteorhit(AM)
 		if (iscarbon(AM))
-			playsound(src, "sound/impact_sounds/wallbang.ogg", 50, 1)
+			if(istype(src, /turf/wall/r_wall))
+				playsound(src, "sound/impact_sounds/wallbang_r.ogg", 50, 1)
+			else
+				playsound(src, "sound/impact_sounds/wallbang.ogg", 50, 1)
 		else
-			playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
+			if(istype(src, /turf/wall/r_wall))
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			else
+				playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
