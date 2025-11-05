@@ -646,13 +646,14 @@
 	desc = "Useful for finding your way around, and also for hitting people."
 	hint = "Increases vision radius when held. Use on things to inspect them."
 	// TODO: make 2-hand-able like quarterstaff?
-	attack(atom/target, mob/user) // FIXME: does not work
-		if (user.a_intent == INTENT_HELP)
-			// inspect the thingy
-			user.examine_verb(target)
-			return
-		else
-			return ..()
+	// TODO: MAKE CODE BELOW ACTUALLY WORK
+	// attack(atom/target, mob/user)
+	// 	if (user.a_intent == INTENT_HELP)
+	// 		// inspect the thingy
+	// 		user.examine_verb(target)
+	// 		return
+	// 	else
+	// 		return ..()
 
 /obj/item/quarterstaff
 	name = "quarterstaff"
