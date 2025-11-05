@@ -145,6 +145,9 @@ var/list/admin_verbs = list(
 		/client/proc/jumptocoord,
 		/client/proc/jtc,
 
+		//teehee
+		/client/proc/set_blood_id,
+
 		//toggles
 		/datum/admins/proc/toggle_farting,
 		/datum/admins/proc/toggle_emote_random_pitch,
@@ -2139,6 +2142,58 @@ var/list/fun_images = list()
 			boutput(usr, "<span class='alert'>Implanted [implanted] people with microbombs. Any further humans that spawn will also have bombs.</span>")
 	else
 		boutput(usr, "<span class='alert'>Turned off spawning with microbombs. No existing microbombs have been deleted or disabled.</span>")
+
+
+/client/proc/set_blood_id(var/mob/M as mob in world)
+	set popup_menu = 0
+	set name = "Set Blood ID"
+	set desc = "Change the blood ID of a mob! Oh my!"
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	admin_only
+
+	if (!M)
+		M = input("Choose a target.", "Selection") as null|anything in mobs
+		if (!M)
+			return
+
+	if (!isliving(M))
+		boutput(usr, "<span class='alert'>Not a valid /mob/living (only those have blood_id's).</span>")
+		return
+
+	var/mob/living/poor_soul = M
+
+	var/list/L = list()
+	var/searchFor = input(usr, "Look for a part of the reagent name (or leave blank for all)", "Add reagent") as null|text
+	if(searchFor)
+		for(var/R in concrete_typesof(/datum/reagent))
+			if(findtext("[R]", searchFor)) L += R
+	else
+		L = concrete_typesof(/datum/reagent)
+
+	var/type
+	if(L.len == 1)
+		type = L[1]
+	else if(L.len > 1)
+		type = input(usr,"Select Reagent:","Reagents",null) as null|anything in L
+	else
+		usr.show_text("No reagents matching that name", "red")
+		return
+
+	if(!type) return
+	var/datum/reagent/reagent = new type()
+
+	poor_soul.replace_blood_with(reagent.id)
+
+	boutput(usr, "<span class='success'>Changed [poor_soul.name]'s blood to [reagent.id]</span>")
+
+	logTheThing("admin", src, poor_soul, "changed [poor_soul]'s blood to [reagent.id].")
+	logTheThing("diary", usr, poor_soul, "changed [poor_soul]'s blood to [reagent.id].", "admin")
+	if (poor_soul.key) // important!
+		message_admins("[key_name(src)] replaced the blood of [key_name(poor_soul.key)] with [reagent.id] at [log_loc(poor_soul)].")
+
+	qdel(reagent)
+
+	return
 /*
 /client/proc/set_nukie_score()
 	set popup_menu = 0
