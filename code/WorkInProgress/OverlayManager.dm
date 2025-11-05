@@ -48,7 +48,7 @@
 /atom/movable/screen/screenoverlay
 	name = ""
 	icon = 'icons/effects/overlays/cloudy.dmi'
-	layer = HUD_LAYER_UNDER_2
+	layer = HUD_LAYER_UNDER_1
 	plane = PLANE_HUD
 	screen_loc = "CENTER-7,CENTER-7"
 
