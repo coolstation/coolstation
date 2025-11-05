@@ -1110,24 +1110,13 @@
 		..()
 		if(ishuman(M))
 			M.mob_flags |= IS_BONER
-			var/blood_replaced = M.reagents.get_reagent_amount(M.blood_id)
-			M.reagents.del_reagent(M.blood_id)
-			M.blood_id = "calcium"
-			all_blood_reagents |= "calcium"
-			if(M.organHolder && M.organHolder.spleen)
-				M.organHolder.spleen.blood_id = M.blood_id
-			M.reagents.add_reagent(M.blood_id, blood_replaced, temp_new = M.base_body_temp)
+			M.replace_blood_with("calcium")
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
 
 	disposing()
 		if (ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			var/blood_replaced = H.reagents.get_reagent_amount(H.blood_id)
-			H.reagents.del_reagent(H.blood_id)
-			H.blood_id = initial(H.blood_id)
-			if(H.organHolder && H.organHolder.spleen)
-				H.organHolder.spleen.blood_id = H.blood_id
-			H.reagents.add_reagent(H.blood_id, blood_replaced, temp_new = H.base_body_temp)
+			H.replace_blood_with(initial(H.blood_id))
 			mob.mob_flags &= ~IS_BONER
 			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
 		. = ..()
@@ -1880,24 +1869,13 @@
 			mob.kickMessage = "stomps"
 			mob.traitHolder?.addTrait("hemophilia")
 
-			var/blood_replaced = H.reagents.get_reagent_amount(H.blood_id)
-			H.reagents.del_reagent(H.blood_id)
-			H.blood_id = "milk"
-			all_blood_reagents |= "milk"
-			if(H.organHolder && H.organHolder.spleen)
-				H.organHolder.spleen.blood_id = H.blood_id
-			H.reagents.add_reagent(H.blood_id, blood_replaced, temp_new = H.base_body_temp)
+			mob.replace_blood_with("milk")
 
 
 	disposing()
 		if (ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			var/blood_replaced = H.reagents.get_reagent_amount(H.blood_id)
-			H.reagents.del_reagent(H.blood_id)
-			H.blood_id = initial(H.blood_id)
-			if(H.organHolder && H.organHolder.spleen)
-				H.organHolder.spleen.blood_id = H.blood_id
-			H.reagents.add_reagent(H.blood_id, blood_replaced, temp_new = H.base_body_temp)
+			H.replace_blood_with(initial(H.blood_id))
 			if (H.mob_flags & SHOULD_HAVE_A_TAIL)
 				H.mob_flags &= ~SHOULD_HAVE_A_TAIL
 			H.kickMessage = initial(H.kickMessage)
