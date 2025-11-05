@@ -2411,9 +2411,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/proc/replace_blood_with(var/new_blood)
 	var/blood_replaced = src.reagents.get_reagent_amount(src.blood_id)
-	src.reagents.del_reagent(victim.blood_id)
+	src.reagents.del_reagent(src.blood_id)
 	src.blood_id = new_blood
 	if(src.organHolder && src.organHolder.spleen)
-		victim.organHolder.spleen.blood_id = new_blood
+		src.organHolder.spleen.blood_id = new_blood
 	all_blood_reagents |= new_blood
 	src.reagents.add_reagent(src.blood_id, blood_replaced, temp_new = src.reagents.total_temperature)
