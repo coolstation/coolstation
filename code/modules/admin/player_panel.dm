@@ -347,6 +347,7 @@
 						<a href='[playeropt_link(M, "makeghostdrone")]'>Ghostdrone</a>
 						<br>
 						<a href='[playeropt_link(M, "polymorph")]'>Edit Appearance</a> &bull;
+						<a href='[playeropt_link(M, "setblood")]'>Set Blood</a> &bull;
 						<a href='[playeropt_link(M, "modifylimbs")]'>Modify Limbs/Organs</a> &bull;
 						<a href='[playeropt_link(M, "respawntarget")]'>Respawn</a> &bull;
 						<a href='[playeropt_link(M, "respawnas")]'>Respawn As</a>
