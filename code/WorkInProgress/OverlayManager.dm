@@ -49,7 +49,7 @@
 	name = ""
 	icon = 'icons/effects/overlays/cloudy.dmi'
 	layer = HUD_LAYER_UNDER_4
-	plane = PLANE_HUD
+	plane = PLANE_HUD - 1
 	screen_loc = "CENTER-7,CENTER-7"
 
 /datum/overlayDefinition
@@ -59,7 +59,7 @@
 	var/d_color = "#ffffff"
 	var/d_blend_mode = 1
 	var/d_layer = HUD_LAYER_UNDER_4		//18 is just below the ui but above everything else.
-	var/d_plane = PLANE_HUD
+	var/d_plane = PLANE_HUD - 1
 	var/d_mouse_opacity = 0 //In case you want it to block clicks. For blindness and such.
 	var/do_wide_fill = 1 //If true, use underlays to 'fill out' the area that extends to the sides in widescreen
 	var/d_screen_loc = "CENTER-7,CENTER-7"
