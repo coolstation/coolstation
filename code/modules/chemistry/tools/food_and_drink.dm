@@ -108,6 +108,9 @@
 	var/dropped_item = null
 	var/eat_message = null
 
+	var/poop_value = 0.5
+	var/did_react = 0
+
 	New()
 		..()
 		start_amount = amount
@@ -358,16 +361,15 @@
 		//	reagents.trans_to(M, reagents.total_volume/(src.amount ? src.amount : 1))
 
 		if (isliving(eater))
-			if (src.reagents && src.reagents.total_volume) //only create food chunks for reagents
+			var/mob/living/L = eater
+			if(L.organHolder && L.organHolder.stomach)
 				var/obj/item/reagent_containers/food/snacks/bite/B = new()
-				B.set_loc(eater)
-				B.reagents.maximum_volume = reagents.total_volume/(src.amount ? src.amount : 1) //MBC : I copied this from the Eat proc. It doesn't really handle the reagent transfer evenly??
-				src.reagents.trans_to(B,B.reagents.maximum_volume,1,0)						//i'll leave it tho because i dont wanna mess anything up
-				var/mob/living/L = eater
-				L.stomach_process += B
+				B.set_loc(L.organHolder.stomach)
+				if (src.reagents && src.reagents.total_volume)
+					B.reagents.maximum_volume = src.reagents.total_volume / initial(src.amount)
+					src.reagents.trans_to(B,B.reagents.maximum_volume,1,0)
 
 			if (src.food_effects.len && isliving(eater) && eater.bioHolder)
-				var/mob/living/L = eater
 				for (var/effect in src.food_effects)
 					L.add_food_bonus(effect, src)
 
@@ -468,36 +470,11 @@
 	icon_state = "scotchegg"
 	amount = 1
 	heal_amt = 0
-	initial_volume = 100
+	initial_volume = 10
 	festivity = 0
 	rc_flags = 0
 	edible = 1
 	rand_pos = 8
-	var/poop_value = 0.5
-	var/did_react = 0
-/*
-	unpooled()
-		..()
-		did_react = 0
-
-	pooled()
-		..()
-		did_react = 0
-*/
-	proc/process_stomach(mob/living/owner, var/process_rate = 5)
-		if (owner && src.reagents)
-			if (!src.did_react)
-				src.reagents.reaction(owner, INGEST, src.reagents.total_volume)
-				src.did_react = 1
-
-			src.reagents.trans_to(owner, process_rate, HAS_ATOM_PROPERTY(owner, PROP_DIGESTION_EFFICIENCY) ? GET_ATOM_PROPERTY(owner, PROP_DIGESTION_EFFICIENCY) : 1)
-
-			if (src.reagents.total_volume <= 0)
-				owner.poops += poop_value
-				owner.stomach_process -= src
-				qdel(src)
-
-
 
 /* ================================================ */
 /* -------------------- Drinks -------------------- */
@@ -667,8 +644,14 @@
 				logTheThing("combat", user, M, "[user == M ? "takes a sip from" : "makes [constructTarget(M,"combat")] drink from"] [src] [log_reagents(src)] at [log_loc(user)].")
 				src.reagents.reaction(M, INGEST, min(reagents.total_volume, gulp_size, (M.reagents?.maximum_volume-M.reagents?.total_volume)))
 				SPAWN_DBG(0.5 SECONDS)
-					if (src?.reagents && M?.reagents)
-						src.reagents.trans_to(M, min(reagents.total_volume, gulp_size))
+					if (src?.reagents)
+						if(M && isliving(M))
+							var/mob/living/L = M
+							if(L.organHolder && L.organHolder.stomach) //drinking with no stomach just pours it into your blood
+								src.reagents.trans_to(L.organHolder.stomach, min(reagents.total_volume, gulp_size))
+							else
+								src.reagents.trans_to(L, min(reagents.total_volume, gulp_size))
+
 
 			playsound(M.loc,"sound/items/drink.ogg", rand(10,50), 1)
 			eat_twitch(M)
@@ -2082,7 +2065,7 @@
 	icon_state = "cocktailshaker"
 	initial_volume = 120
 	can_recycle = 0
-	can_chug = 0
+	//can_chug = 0
 
 	New()
 		..()

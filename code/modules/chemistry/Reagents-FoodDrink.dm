@@ -2591,12 +2591,12 @@ datum
 						var/mob/living/L = M
 						if (L.bleeding)
 							repair_bleeding_damage(L, 10, 1)
-						if (L.blood_volume < 500)
-							L.blood_volume ++
-						if (ishuman(M))
-							var/mob/living/carbon/human/H = M
-							if (H.organHolder)
-								H.organHolder.heal_organs(1, 1, 1, target_organs)
+						if (L.organHolder)
+							L.organHolder.heal_organs(0.8, 0.8, 0.8, target_organs)
+							if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
+								L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR, temp_new = L.base_body_temp)
+						else if (L.reagents.total_volume < L.ideal_blood_volume)
+							L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR, temp_new = L.base_body_temp)
 
 		fooddrink/guacamole
 			name = "guacamole"

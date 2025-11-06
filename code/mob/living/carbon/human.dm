@@ -74,6 +74,7 @@
 
 	var/ignore_organs = 0 // set to 1 to basically skip the handle_organs() proc
 	var/last_eyes_blinded = 0 // used in handle_blindness_overlays() to determine if a change is needed!
+	var/last_had_white_cane = 0 // used in the same proc for the same reason!
 
 	var/obj/on_chair = 0
 	var/simple_examine = 0
@@ -175,7 +176,7 @@
 
 	can_bleed = 1
 	blood_id = "blood"
-	blood_volume = 500
+	ideal_blood_volume = 500
 
 /mob/living/carbon/human/New()
 	default_static_icon = human_static_base_idiocy_bullshit_crap // FUCK
@@ -186,7 +187,8 @@
 	image_cust_two = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 	image_cust_three = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 
-	src.create_reagents(330)
+	if(!src.reagents)
+		src.create_reagents(2000)
 
 	hud = new(src)
 	src.attach_hud(hud)
@@ -2282,7 +2284,6 @@
 /mob/living/carbon/human/full_heal()
 	blinded = 0
 	bleeding = 0
-	blood_volume = 500
 
 	if (!src.limbs)
 		src.limbs = new /datum/human_limbs(src)

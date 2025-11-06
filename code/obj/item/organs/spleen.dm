@@ -6,25 +6,26 @@
 	organ_holder_required_op_stage = 6.0
 	icon_state = "spleen"
 	body_side = L_ORGAN
-
+	var/blood_id = "blood"
 
 	on_life(var/mult = 1)
 		if (!..())
 			return 0
-		if (donor.blood_volume < 500 && donor.blood_volume > 0) // if we're full or empty, don't bother v
+		var/blood_in_ya = donor.reagents.get_reagent_amount(donor.blood_id)
+		if (blood_in_ya < donor.ideal_blood_volume * 0.99 && blood_in_ya > donor.ideal_blood_volume * BLOOD_SCALAR * 5) // if we're full or mostly empty, don't bother v
 			if (prob(66))
-				donor.blood_volume += 1 * mult // maybe get a little blood back ^
+				donor.reagents.add_reagent(src.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * mult, temp_new = donor.base_body_temp) // maybe get a little blood back ^
 			else if (src.robotic)  // garuanteed extra blood with robotic spleen
-				donor.blood_volume += 2 * mult
-		else if (donor.blood_volume > 500)
-			if (prob(20))
-				donor.blood_volume -= 1 * mult
+				donor.reagents.add_reagent(src.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * 2 * mult, temp_new = donor.base_body_temp)
+		else if (donor.reagents.total_volume > donor.ideal_blood_volume * 1.01)
+			if (prob(66))
+				donor.reagents.remove_reagent(donor.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * mult)
 		if(emagged)
-			donor.blood_volume += 2 * mult //Don't worry friend, you'll have /plenty/ of blood!
+			donor.reagents.add_reagent(src.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * 2 * mult, temp_new = donor.base_body_temp) //Don't worry friend, you'll have /plenty/ of blood!
 		return 1
 
 	on_broken(var/mult = 1)
-		donor.blood_volume -= 2 * mult
+		donor.reagents.remove_reagent(donor.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * 2 * mult)
 
 	disposing()
 		if (holder)

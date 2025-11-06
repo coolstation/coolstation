@@ -671,12 +671,13 @@ datum
 					var/mob/living/L = M
 					if (L.bleeding)
 						repair_bleeding_damage(L, 10, 1 * mult)
-					if (L.blood_volume < 500)
-						L.blood_volume ++
-					if (ishuman(M))
-						var/mob/living/carbon/human/H = M
-						if (H.organHolder)
-							H.organHolder.heal_organs(1*mult, 1*mult, 1*mult, target_organs)
+
+					if (L.organHolder)
+						L.organHolder.heal_organs(1*mult, 1*mult, 1*mult, target_organs)
+						if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
+							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
+					else if (L.reagents.total_volume < L.ideal_blood_volume)
+						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult)
 
 				//M.UpdateDamageIcon()
 				..()
@@ -734,10 +735,6 @@ datum
 					M = holder.my_atom
 				if (prob(33))
 					M.HealDamage("All", 2 * mult, 2 * mult)
-				if (blood_system && isliving(M) && prob(33))
-					var/mob/living/H = M
-					H.blood_volume += 1  * mult
-					H.nutrition += 1  * mult
 				//M.UpdateDamageIcon()
 				..()
 				return
@@ -1105,8 +1102,12 @@ datum
 				if (!M)
 					M = holder.my_atom
 				if (isliving(M))
-					var/mob/living/H = M
-					H.blood_volume += 2 * mult
+					var/mob/living/L = M
+					if (L.organHolder)
+						if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
+							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
+					else if (L.reagents.total_volume < L.ideal_blood_volume)
+						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult)
 				..()
 				return
 

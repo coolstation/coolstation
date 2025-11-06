@@ -469,7 +469,16 @@
 	if(src.density)
 		if(AM.throwforce >= 80)
 			src.meteorhit(AM)
-		. = 'sound/impact_sounds/Generic_Stab_1.ogg'
+		if (iscarbon(AM))
+			if(istype(src, /turf/wall/r_wall))
+				playsound(src, "sound/impact_sounds/wallbang_r.ogg", 50, 1)
+			else
+				playsound(src, "sound/impact_sounds/wallbang.ogg", 50, 1)
+		else
+			if(istype(src, /turf/wall/r_wall))
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			else
+				playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
@@ -1150,6 +1159,7 @@ proc/generate_space_color()
 	text = "<font color=#aaa>#"
 	density = 1
 	pathable = 0
+
 #ifndef IN_MAP_EDITOR // display disposal pipes etc. above walls in map editors
 	plane = PLANE_WALL
 #else

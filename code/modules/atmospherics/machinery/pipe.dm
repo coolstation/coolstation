@@ -367,7 +367,9 @@ obj/machinery/atmospherics/pipe
 			icon_state = "exposed"
 			src.desc = "A one meter section of ruptured pipe still looks salvageable through some careful welding."
 
-		ex_act(severity) // cogwerks - adding an override so pda bombs aren't quite so ruinous in the engine
+		ex_act(severity, last_touched, epicenter, turf_safe) // cogwerks - adding an override so pda bombs aren't quite so ruinous in the engine
+			if(turf_safe)
+				return
 			switch(severity)
 				if(OLD_EX_SEVERITY_1)
 					if(prob(5))

@@ -2075,114 +2075,6 @@ datum
 					if(method == TOUCH)
 						boutput(M, "<span class='alert'>Well, that was gross.</span>")
 
-/*
-		flockdrone_fluid
-			name = "coagulated gnesis"
-			id = "flockdrone_fluid"
-			description = "A thick teal fluid of alien origin. It moves in ways that suggest it might be alive in some way."
-			reagent_state = LIQUID
-			fluid_r = 77
-			fluid_g = 115
-			fluid_b = 109
-			transparency = 192
-			viscosity = 0.3
-			depletion_rate = 0.05
-			var/conversion_rate = 2
-			var/list/sounds = list("sound/machines/ArtifactFea1.ogg", "sound/machines/ArtifactFea2.ogg", "sound/machines/ArtifactFea3.ogg",
-							"sound/misc/flockmind/flockmind_cast.ogg", "sound/misc/flockmind/flockmind_caw.ogg",
-							"sound/misc/flockmind/flockdrone_beep1.ogg", "sound/misc/flockmind/flockdrone_beep2.ogg", "sound/misc/flockmind/flockdrone_beep3.ogg", "sound/misc/flockmind/flockdrone_beep4.ogg",
-							"sound/misc/flockmind/flockdrone_grump1.ogg", "sound/misc/flockmind/flockdrone_grump2.ogg", "sound/misc/flockmind/flockdrone_grump3.ogg",
-							"sound/effects/radio_sweep1.ogg", "sound/effects/radio_sweep2.ogg", "sound/effects/radio_sweep3.ogg", "sound/effects/radio_sweep4.ogg", "sound/effects/radio_sweep5.ogg")
-
-			on_add()
-				active_reagent_holders |= src
-
-			on_remove()
-				active_reagent_holders -= src
-
-			proc/process_reactions()
-				// consume fellow reagents
-				if (istype(holder))
-					var/otherReagents = FALSE
-					for(var/reagent_id in holder.reagent_list)
-						if(reagent_id != id)
-							holder.remove_reagent(reagent_id, conversion_rate)
-							holder.add_reagent(id, conversion_rate)
-							otherReagents = TRUE
-					if(!otherReagents)
-						// we ate them all, time to die
-						if(holder?.my_atom?.material?.mat_id == "gnesis") // gnesis material prevents coag. gnesis from evaporating
-							return
-						holder.remove_reagent(id, conversion_rate)
-
-			// let's put more teeth into this.
-			// this is the fluid of the assimilating bird robots. clearly it needs to also assimilate other things
-			on_mob_life(var/mob/M, var/mult = 1)
-				if (!M)
-					M = holder.my_atom
-				if (ishuman(M))
-					// i'm sorry sir but your blood counts as raw materials
-					var/mob/living/carbon/human/H = M
-					var/amt = conversion_rate * mult
-					if(H.blood_volume >= amt)
-						H.blood_volume -= amt
-					H.reagents.add_reagent(id, amt)
-					if(holder.get_reagent_amount(src.id) > 300)
-						// oh no
-						if(probmult(1)) // i hate you all, players
-							H.visible_message("<span class='alert bold'>[H] is torn apart from the inside as some weird floaty thing rips its way out of their body! Holy fuck!!</span>")
-							var/mob/living/critter/flock/bit/B = new()
-							B.set_loc(get_turf(H))
-							H.gib()
-					else
-						// DO SPOOKY THINGS
-						if(holder.get_reagent_amount(src.id) < 100)
-							if(probmult(2))
-								M.playsound_local(get_turf(M), pick(sounds), 20, 1)
-							if(probmult(6))
-								boutput(M, "<span class='flocksay italics'>[pick_string("flockmind.txt", "flockjuice_low")]</span>")
-						else
-							if(probmult(20))
-								M.playsound_local(get_turf(M), pick(sounds), 40, 1)
-							if(probmult(30))
-								boutput(M, "<span class='flocksay italics'>[pick_string("flockmind.txt", "flockjuice_high")]</span>")
-
-				..()
-				return
-
-			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume_passed)
-				. = ..()
-				var/col = rgb(fluid_r, fluid_g, fluid_b)
-				if(!volume_passed)
-					return
-				if(method == INGEST)
-					boutput(M, "<span class='alert'>Tastes oily and unpleasant, with a weird sweet aftertaste. It's like eating children's modelling clay.</span>")
-				if(method == TOUCH)
-					boutput(M, "<span class='notice'>It feels like you got smudged with oil paints.</span>")
-					M.color = col
-					SPAWN_DBG(3 SECONDS)
-						boutput(M, "<span class='alert'>Oh god it's not coming off! You're tinted like this forever!</span>")
-
-			reaction_turf(var/turf/T, var/volume)
-				if (!istype(T, /turf/space))
-					if (volume >= 50 && (istype(T, /turf/floor) || istype(T, /turf/wall)))
-						T.visible_message("<span class='notice'>The substance flows out and sinks into [T], forming new shapes.</span>")
-						flock_convert_turf(T)
-					if (volume >= 10)
-						T.visible_message("<span class='notice'>The substance flows out and takes a solid form.</span>")
-						if(prob(50))
-							var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
-							B.set_loc(T)
-							B.setMaterial(getMaterial("gnesis"))
-						else
-							var/atom/movable/B = new /obj/item/raw_material/shard()
-							B.set_loc(T)
-							B.setMaterial(getMaterial("gnesisglass"))
-						return
-				// otherwise we didn't have enough
-				T.visible_message("<span class='notice'>The substance flows out, spread too thinly.</span>")
-*/
-
 		black_goop
 			name = "gross black goop"
 			id = "black_goop"
@@ -3085,7 +2977,7 @@ datum
 			hygiene_value = -2
 			hunger_value = 0.068
 			viscosity = 0.4
-			depletion_rate = 0
+			depletion_rate = 0.8
 
 			disposing()
 				..()
@@ -3186,6 +3078,8 @@ datum
 			minimum_reaction_temperature = T0C + 50
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				if(ismob(holder.my_atom))
+					return
 				var/list/covered = holder.covered_turf()
 				if(length(covered) < 9 || prob(2)) // no spam pls
 					if (holder.my_atom)

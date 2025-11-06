@@ -370,7 +370,7 @@
 	New()
 		..()
 		awaken_time = rand(5, 10)*100
-		src.tainted_saliva_reservoir = new/datum/reagents(500)
+		src.tainted_saliva_reservoir = new/datum/reagents(100)
 
 	onAbilityStat() // In the 'Werewolf' tab.
 		..()
