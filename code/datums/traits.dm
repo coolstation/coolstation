@@ -458,7 +458,6 @@
 			if(istype(owner, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = owner
 				owner.bioHolder.AddEffect("blind", 0, 0, 0, 1)
-				// H.equip_if_possible(new /obj/item/clothing/glasses/visor(H), H.slot_glasses)
 				H.equip_if_possible(new /obj/item/white_cane(H), H.slot_r_hand)
 
 	onLife(var/mob/owner) //Just to be safe.

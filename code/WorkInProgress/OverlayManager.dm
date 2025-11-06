@@ -49,7 +49,7 @@
 	name = ""
 	icon = 'icons/effects/overlays/cloudy.dmi'
 	layer = HUD_LAYER_UNDER_4
-	plane = PLANE_HUD - 1
+	plane = PLANE_HUD - 1 // needed so maptext renders OVER overlays bc blindness shouldn't impair hearing
 	screen_loc = "CENTER-7,CENTER-7"
 
 /datum/overlayDefinition
@@ -58,8 +58,8 @@
 	var/d_alpha = 255
 	var/d_color = "#ffffff"
 	var/d_blend_mode = 1
-	var/d_layer = HUD_LAYER_UNDER_4		//18 is just below the ui but above everything else.
-	var/d_plane = PLANE_HUD - 1
+	var/d_layer = HUD_LAYER_UNDER_4
+	var/d_plane = PLANE_HUD - 1 // see above
 	var/d_mouse_opacity = 0 //In case you want it to block clicks. For blindness and such.
 	var/do_wide_fill = 1 //If true, use underlays to 'fill out' the area that extends to the sides in widescreen
 	var/d_screen_loc = "CENTER-7,CENTER-7"
@@ -336,6 +336,7 @@
 	special_blend = BLEND_SUBTRACT
 
 // temporary blindness overlay until the other one is fixed
+// TODO: make the overlay sprite better
 /datum/overlayComposition/blinded
 	New()
 		var/datum/overlayDefinition/dither = new()
@@ -355,12 +356,13 @@
 		definitions.Add(meaty)
 		return ..()
 
-// copied from the above. how the hecky does this work
+// copied from the above, provides a wider vision radius when holding the white cane
+// TODO: make the overlay sprite better
 /datum/overlayComposition/blinded_with_cane
 	New()
 		var/datum/overlayDefinition/dither = new()
 		dither.d_icon = 'icons/effects/overlays/knockout2t.dmi'
-		dither.d_icon_state = "knockout2t_wide" // gives a slightly increased vision radius. i hope.
+		dither.d_icon_state = "knockout2t_wide" // gives a slightly increased vision radius.
 		dither.d_blend_mode = 1
 		dither.d_mouse_opacity = 0 // fuck not being able to click on things, if we want blindness to have disadvantages then find something else
 		dither.d_screen_loc = "CENTER-7,CENTER-7"

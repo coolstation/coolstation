@@ -630,30 +630,25 @@
 		src.setItemSpecial(/datum/item_special/nunchucks)
 		BLOCK_SETUP(BLOCK_ROPE)
 
-// rlly not sure where to put this
+// white cane for blind folks
+// this might be the wrong file for it but wtv
+// TODO: implement two-handed wielding like a quarterstaff? (ss14 has this)
+// TODO: clicking on stuff in range with the cane should Examine said stuff
+// TODO: it should probably be possible to manufacture this!
 /obj/item/white_cane
 	name = "white cane"
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "white_cane" // TODO: add this icon state
-	item_state = "white_cane" // TODO: figure out wth this does
+	icon_state = "white_cane"
+	item_state = "white_cane"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	force = 8
 	throwforce = 7
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | TABLEPASS // should we have tablepass? not sure what it does
 	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool (or knock-off quarterstaff?)
 	desc = "Useful for finding your way around, and also for hitting people."
-	hint = "Increases vision radius when held. Use on things to inspect them."
-	// TODO: make 2-hand-able like quarterstaff?
-	// TODO: MAKE CODE BELOW ACTUALLY WORK
-	// attack(atom/target, mob/user)
-	// 	if (user.a_intent == INTENT_HELP)
-	// 		// inspect the thingy
-	// 		user.examine_verb(target)
-	// 		return
-	// 	else
-	// 		return ..()
+	hint = "Increases vision radius when held."
 
 /obj/item/quarterstaff
 	name = "quarterstaff"

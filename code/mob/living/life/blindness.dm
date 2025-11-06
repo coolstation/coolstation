@@ -8,7 +8,7 @@
 
 		if (human_owner)
 			var/eyes_blinded = 0
-			var/has_white_cane = 0
+			var/has_white_cane = 0 // this feels hacky but it works
 
 			if (!isdead(human_owner))
 				if (human_owner.find_type_in_hand(/obj/item/white_cane))
