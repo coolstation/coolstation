@@ -5,6 +5,9 @@
 #ifdef DESERT_MAP
 	disabled = TRUE
 #endif
+#ifdef MAGINDARA_MAP
+	disabled = TRUE
+#endif
 
 	event_effect() //Mirror changes to blowout_gehenna where applicable. I made that separate cause the alternative was making this proc unreadable with #ifndefs
 		..()

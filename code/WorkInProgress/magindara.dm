@@ -157,7 +157,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	force_fullbright = FALSE
 	requires_power = TRUE
 
-proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=128,fog_color="#ffffff",rain_alpha=60,rain_color="#bea2eb")
+proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#ffffff",rain_alpha=0,rain_color="#bea2eb")
 	if(!magindara_global_fog)
 		magindara_global_fog = list()
 	if(!length(magindara_global_fog))

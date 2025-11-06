@@ -109,10 +109,10 @@
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
-#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
 //#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-//#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
+#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //---------------------- Maps that exist but maybe not up to date --------------------//
