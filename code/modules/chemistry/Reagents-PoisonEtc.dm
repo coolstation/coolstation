@@ -9,10 +9,12 @@ datum
 		harmful/
 			name = "dangerous stuff"
 			viscosity = 0.16
+			taste = "like a bug report"
 
 		harmful/simple_damage_toxin
 			name = "toxin precursor"
 			id = "simple_damage_toxin"
+			taste = "bad"
 			var/damage_factor = 1
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -34,10 +36,12 @@ datum
 				transparency = 120
 				penetrates_skin = 1
 				evaporates_cleanly = TRUE
+				taste = "tasteless"
 
 		harmful/simple_damage_burn
 			name = "irritant precursor"
 			id = "simple_damage_burn"
+			taste = "spicy"
 			var/damage_factor = 1
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -60,6 +64,7 @@ datum
 			blob_damage = 1
 			value = 3 // 1c + 1c + 1c
 			evaporates_cleanly = TRUE
+			taste = "sour"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -155,6 +160,7 @@ datum
 			reagent_state = LIQUID
 			blob_damage = 0.2
 			evaporates_cleanly = TRUE
+			taste = "sour"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -194,6 +200,7 @@ datum
 			fluid_b = 255
 			transparency = 50
 			var/damage_counter = 0
+			taste = "tasteless"
 /*
 			pooled()
 				..()
@@ -220,6 +227,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 50
+			taste = "cheesy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -242,6 +250,7 @@ datum
 			fluid_b = 160
 			transparency = 80
 			depletion_rate = 0.05
+			taste = "bitter"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -265,6 +274,7 @@ datum
 			value = 7 // 3 2 1 heat
 			evaporates_cleanly = TRUE
 			var/counter = 1
+			taste = "bitter"
 /*
 			pooled()
 				..()
@@ -314,6 +324,7 @@ datum
 			penetrates_skin = 1
 			touch_modifier = 0.25
 			var/counter = 1
+			taste = "fishy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -360,6 +371,7 @@ datum
 			depletion_rate = 0.1
 			var/counter = 1
 			penetrates_skin = 1
+			taste = "tasteless"
 
 			pooled()
 				..()
@@ -405,6 +417,7 @@ datum
 			penetrates_skin = 1
 			value = 4 // 1 1 1 heat
 			evaporates_cleanly = TRUE
+			taste = "like science"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -429,6 +442,7 @@ datum
 			penetrates_skin = 1
 			value = 4
 			evaporates_cleanly = TRUE
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -448,6 +462,7 @@ datum
 			fluid_b = 240
 			transparency = 215
 			depletion_rate = 0.2
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -483,6 +498,7 @@ datum
 			fluid_g = 16
 			fluid_b = 192
 			transparency = 255
+			taste = "like medicine"
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -526,6 +542,7 @@ datum
 			fluid_b = 5
 			transparency = 255
 			depletion_rate = 0.1 //per 3 sec
+			taste = "old"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -587,6 +604,7 @@ datum
 			fluid_b = 5
 			transparency = 255
 			depletion_rate = 0.2
+			taste = "funny"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -667,6 +685,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 			depletion_rate = 0.2
+			taste = "fancy"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -748,6 +767,7 @@ datum
 			fluid_b = 200
 			transparency = 255
 			var/remove_buff = 0
+			taste = "bland"
 /*
 			pooled()
 				..()
@@ -804,6 +824,7 @@ datum
 			fluid_b = 25
 			transparency = 100
 			depletion_rate = 0.2
+			taste = "bland"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -847,6 +868,7 @@ datum
 			transparency = 100
 			depletion_rate = 0.3
 			penetrates_skin = 1
+			taste = "spicy"
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence the tickling
 				if (!M) M = holder.my_atom
@@ -886,6 +908,7 @@ datum
 			dispersal = 1
 			blob_damage = 4
 			evaporates_cleanly = TRUE
+			taste = "sour"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1007,6 +1030,7 @@ datum
 			depletion_rate = 0.2
 			var/counter = 1
 			var/remove_buff = 0
+			taste = "tingly"
 /*
 			pooled()
 				..()
@@ -1062,6 +1086,7 @@ datum
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			blob_damage = 3
+			taste = "metallic"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1085,6 +1110,7 @@ datum
 			depletion_rate = 0.7
 			var/counter = 1
 			var/remove_buff = 0
+			taste = "bad"
 /*
 			pooled()
 				..()
@@ -1141,6 +1167,7 @@ datum
 			contraband = 3
 			var/counter = 1
 			var/remove_buff = 0
+			taste = "bad"
 /*
 			pooled()
 				..()
@@ -1189,6 +1216,7 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			blob_damage = 2
+			taste = "old"
 /*
 			pooled()
 				..()
@@ -1239,6 +1267,7 @@ datum
 			fluid_g = 25
 			transparency = 20
 			blob_damage = 1
+			taste = "toxic"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1259,6 +1288,7 @@ datum
 			fluid_b = 240
 			transparency = 200
 			depletion_rate = 0.2
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1301,6 +1331,7 @@ datum
 			var/fainted = 0
 			blob_damage = 1
 			value = 4 // 3c + heat
+			taste = "like water"
 /*
 			pooled()
 				..()
@@ -1348,6 +1379,7 @@ datum
 			fluid_b = 135
 			depletion_rate = 0.2
 			var/counter = 1
+			taste = "tingly"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1410,6 +1442,7 @@ datum
 			depletion_rate = 0.3
 			blob_damage = 1
 			value = 3 // 1 1 1
+			taste = "contrived"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1446,6 +1479,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
+			taste = "chunky"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1479,6 +1513,7 @@ datum
 			fluid_g = 172
 			fluid_b = 147
 			transparency = 150
+			taste = "hairy"
 
 		harmful/omega_mutagen/werewolf_serum_fake2
 			name = "Werewolf Serum Precursor Beta"
@@ -1489,6 +1524,7 @@ datum
 			fluid_g = 172
 			fluid_b = 100
 			transparency = 200
+			taste = "hairy"
 
 		harmful/fake_initropidril
 			name = "initropidril"
@@ -1499,6 +1535,7 @@ datum
 			fluid_g = 16
 			fluid_b = 192
 			transparency = 220
+			taste = "like medicine"
 
 		harmful/wolfsbane
 			name = "Aconitum"
@@ -1509,6 +1546,7 @@ datum
 			fluid_b = 116
 			fluid_g = 198
 			transparency = 20
+			taste = "plain"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1535,6 +1573,7 @@ datum
 			fluid_g = 200
 			fluid_b = 30
 			transparency = 255
+			taste = "chunky"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 
@@ -1561,6 +1600,7 @@ datum
 			transparency = 160
 			addiction_prob = 10
 			overdose = 10
+			taste = "like juice"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (prob(5))
@@ -1587,6 +1627,7 @@ datum
 			transparency = 60
 			depletion_rate = 0.2
 			overdose = 40
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1) // allergies suck fyi
 				if (!M) M = holder.my_atom
@@ -1679,6 +1720,7 @@ datum
 			overdose = 25
 			var/counter = 1
 			blob_damage = 5
+			taste = "like water"
 /*
 			pooled()
 				..()
@@ -1750,6 +1792,7 @@ datum
 			transparency = 255
 			depletion_rate = 0.9 //10u should complete the transformation reliably with this, I'm not trusting floats enough to put this at 1 exactly
 			pathogen_nutrition = list("dna_mutagen")
+			taste = "boring"
 
 			var/tmp/progress_timer = 1
 /*
@@ -1807,6 +1850,7 @@ datum
 			fluid_b = 69
 			transparency = 255
 			depletion_rate = 0.1
+			taste = "strange"
 			var/spooksounds = list('sound/effects/ghost.ogg' = 80,'sound/effects/ghost2.ogg' = 20,'sound/effects/ghostbreath.ogg' = 60, \
 					'sound/effects/ghostlaugh.ogg' = 40,'sound/effects/ghostvoice.ogg' = 90)
 
@@ -2100,4 +2144,3 @@ datum
 						playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 						H.TakeDamage(zone="All", brute=damage)
 						bleed(H, damage * 2 * mult)
-
