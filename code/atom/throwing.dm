@@ -92,8 +92,7 @@
 
 	src.last_throw_x = src.x
 	src.last_throw_y = src.y
-	if (src.throw_begin(target))
-		return
+	src.throw_begin(target)
 
 	src.throwforce += bonus_throwforce
 
@@ -145,3 +144,6 @@
 	throwing_controller.start()
 
 	return thr
+
+/obj/item/proc/pre_thrown(atom/target, list/params)
+	return FALSE

@@ -2228,6 +2228,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			qdel(G)
 		if (!I) return
 
+	if (I.pre_thrown(target, params))
+		return
+
 	if (istype(I, /obj/item/lifted_thing))
 		var/obj/item/lifted_thing/LT = I
 		I = LT.our_thing

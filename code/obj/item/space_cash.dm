@@ -11,7 +11,7 @@
 	density = 0
 	anchored = UNANCHORED
 	force = 1.0
-	throwforce = 1.0
+	throwforce = 0
 	throw_speed = 1
 	throw_range = 8
 	w_class = W_CLASS_TINY
@@ -124,15 +124,27 @@
 		else
 			..(user)
 
-	throw_begin(atom/target)
-		if (src.amount > 1 && isliving(src.loc))
-			var/mob/living/L = src.loc
+	pre_thrown(target, params)
+		var/mob/living/L = src.loc
+
+		if (L.next_click > world.time)
+			return TRUE
+
+		if (src.amount > 1)
 			if (L.a_intent == INTENT_HARM)
 				//THROW 1S LIKE YOU'RE AT THE STRIP CLUB
 				var/obj/item/spacecash/young_money = new()
 				young_money.setup(L.loc, 1)
 				change_stack_amount(-1)
-				young_money.throw_at(target)
+				young_money.throw_at(target, young_money.throw_range, young_money.throw_speed, params = params)
+
+				if (get_dist(L, target) > 0)
+					L.set_dir(get_dir(L, target))
+				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, 0.1)
+
+				L.next_click = world.time + (L.combat_click_delay / 4)
+
+				attack_twitch(L)
 				return TRUE
 
 //	attack_self(mob/user as mob)
