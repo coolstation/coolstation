@@ -263,6 +263,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/random_item_spawner/tools_w_igloves/some,
 /turf/floor/plating/random,
 /area/station/engine/elect)
 "aJ" = (
@@ -819,6 +820,10 @@
 /obj/disposalpipe/segment/morgue/bent/west,
 /turf/space/magindara,
 /area/magindara)
+"cd" = (
+/obj/machinery/cell_charger,
+/turf/space/magindara,
+/area/magindara)
 "ce" = (
 /obj/decal/cleanable/fungus,
 /turf/wall/auto/rivet,
@@ -1069,7 +1074,9 @@
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 1
 	},
-/obj/random_item_spawner/tools_w_igloves/some,
+/obj/machinery/cell_charger{
+	pixel_y = 5
+	},
 /turf/floor/black,
 /area/station/engine/elect)
 "cJ" = (
@@ -1573,6 +1580,11 @@
 "dV" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/northeast,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "dW" = (
@@ -1803,6 +1815,13 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"ey" = (
+/obj/machinery/microwave{
+	pixel_y = 3
+	},
+/obj/table/reinforced/industrial/auto,
+/turf/floor/plating/random,
+/area/station/maintenance/south)
 "ez" = (
 /turf/floor/specialroom/elevator_shaft/straight_down{
 	dir = 8
@@ -2053,8 +2072,8 @@
 "fa" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/cable/blue{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /obj/lightning_rod{
 	state = 2;
@@ -2075,8 +2094,8 @@
 "fc" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/cable/blue{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /obj/machinery/power/generatorTemp,
 /turf/floor/industrial,
@@ -3123,6 +3142,9 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/restroom)
+"hv" = (
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "hw" = (
 /obj/cable{
 	d1 = 1;
@@ -3510,8 +3532,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/plating/airless,
-/area/magindara)
+/area/station/com_dish/comdish)
 "iu" = (
 /obj/cable{
 	d1 = 1;
@@ -3984,6 +4007,10 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/riveted,
 /area/station/hallway/primary/southwest)
+"jI" = (
+/obj/table/reinforced/industrial/auto,
+/turf/floor/plating/random,
+/area/station/maintenance/south)
 "jJ" = (
 /obj/decal/tile_edge/stripe/big,
 /obj/railing/cool,
@@ -4120,6 +4147,10 @@
 /obj/overlay/magindara_skylight/weather,
 /obj/machinery/power/terminal,
 /obj/cable/blue,
+/obj/cable/blue{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "jZ" = (
@@ -6249,6 +6280,13 @@
 	},
 /turf/space/magindara,
 /area/station/catwalk/simulated)
+"oQ" = (
+/obj/storage/secure/closet/command/chief_engineer,
+/obj/machinery/light/fluorescent/warm/very{
+	dir = 8
+	},
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "oR" = (
 /obj/cable{
 	d1 = 4;
@@ -6651,6 +6689,18 @@
 /obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/black,
 /area/station/security/equipment)
+"pM" = (
+/obj/stool/chair/office/yellow{
+	dir = 1
+	},
+/obj/landmark/start{
+	name = "Chief Engineer"
+	},
+/obj/machinery/light/fluorescent/warm/very{
+	dir = 4
+	},
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "pN" = (
 /obj/machinery/light/fluorescent/warm/very,
 /obj/machinery/disposal/mail/autoname/security,
@@ -7298,6 +7348,9 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor,
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
+"rl" = (
+/turf/wall/auto/rivet,
+/area/station/com_dish/comdish)
 "rm" = (
 /obj/cable{
 	d1 = 1;
@@ -8437,6 +8490,16 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/industrial,
 /area/station/security/brig/genpop)
+"ug" = (
+/obj/machinery/door/airlock/command,
+/obj/access_spawn/engineering_chief,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "uh" = (
 /obj/cable{
 	d1 = 4;
@@ -9086,6 +9149,12 @@
 	dir = 9
 	},
 /area/station/medical/research)
+"vJ" = (
+/obj/railing/cool,
+/obj/storage/closet/emergency,
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/floor/cautionblack,
+/area/station/crew_quarters/ce)
 "vK" = (
 /obj/machinery/chem_master{
 	dir = 4
@@ -10201,6 +10270,22 @@
 	},
 /turf/floor/black,
 /area/station/engine/elect)
+"yy" = (
+/obj/lattice,
+/obj/grille/catwalk,
+/obj/railing/cool{
+	dir = 8
+	},
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "yz" = (
 /obj/reagent_dispensers/watertank/fountain,
 /obj/disposalpipe/segment/morgue/horizontal,
@@ -10310,6 +10395,17 @@
 	dir = 1
 	},
 /area/transit_vehicle/elevator/jani_top)
+"yM" = (
+/obj/machinery/coffeemaker{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/table/reinforced/industrial/auto,
+/obj/mug_rack{
+	pixel_y = 32
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "yN" = (
 /obj/disposalpipe/switch_junction/left/south,
 /turf/floor/white/checker,
@@ -10965,11 +11061,14 @@
 /area/station/medical/staff)
 "An" = (
 /obj/overlay/magindara_skylight/weather,
-/obj/cable{
+/obj/lightning_rod{
+	state = 2;
+	anchored = 1
+	},
+/obj/cable/blue{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/autoname/east,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Ao" = (
@@ -11068,10 +11167,6 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/space/magindara,
 /area/magindara)
-"AB" = (
-/obj/lightning_rod,
-/turf/floor/riveted,
-/area/station/hallway/primary/south)
 "AC" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/cable{
@@ -11859,6 +11954,24 @@
 /obj/random_item_spawner/junk/maybe_few,
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
+"Cs" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "Ct" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/cable/blue{
@@ -12430,6 +12543,11 @@
 /obj/machinery/light/small/red{
 	dir = 4
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/south)
 "DM" = (
@@ -12767,6 +12885,11 @@
 "EA" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/railing/cool,
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "EB" = (
@@ -13000,6 +13123,11 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/south)
@@ -13350,7 +13478,7 @@
 	icon_state = "2-4"
 	},
 /turf/space/magindara,
-/area/magindara)
+/area/station/com_dish/comdish)
 "FT" = (
 /obj/machinery/space_heater,
 /obj/disposalpipe/segment/vertical,
@@ -13501,6 +13629,10 @@
 	},
 /turf/space/magindara,
 /area/magindara)
+"Go" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/crew_quarters/ce)
 "Gp" = (
 /obj/machinery/networked/test_apparatus/impact_pad,
 /obj/machinery/power/data_terminal,
@@ -14327,6 +14459,19 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/cautionwhite/side,
 /area/station/crew_quarters/kitchen)
+"Is" = (
+/obj/machinery/power/apc{
+	areastring = "Thermoelectric generator";
+	dir = 1;
+	name = "Emergency Generator APC";
+	pixel_y = 24
+	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "It" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/breaching_hammer{
@@ -14527,6 +14672,24 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
+"IT" = (
+/obj/railing/cool{
+	dir = 8
+	},
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/grille/catwalk,
+/obj/railing/cool{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "IU" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/riveted,
@@ -14859,7 +15022,9 @@
 /area/station/crew_quarters/kitchen)
 "JK" = (
 /obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
+/obj/machinery/atmospherics/valve/horizontal{
+	dir = 2
+	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "JL" = (
@@ -14919,6 +15084,14 @@
 "JT" = (
 /turf/floor/black,
 /area/station/medical/research)
+"JU" = (
+/obj/railing/cool,
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/cautionblack,
+/area/station/crew_quarters/ce)
 "JV" = (
 /obj/railing/cool,
 /obj/overlay/magindara_skylight/weather,
@@ -14944,12 +15117,6 @@
 /obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/cautionblack,
 /area/station/maintenance/northeast)
-"JZ" = (
-/obj/railing/cool,
-/obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/valve/horizontal,
-/turf/floor/industrial,
-/area/station/engine/thermo)
 "Ka" = (
 /obj/cable{
 	d1 = 2;
@@ -15796,6 +15963,10 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/plating,
 /area/station/medical/medbay/lobby)
+"LL" = (
+/obj/table/reinforced/industrial/auto,
+/turf/floor/riveted,
+/area/station/hallway/primary/south)
 "LM" = (
 /obj/storage/closet/fire,
 /turf/floor/plating/random,
@@ -16324,6 +16495,17 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor/plating/random,
 /area/station/maintenance/north)
+"Nc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/cautionblack,
+/area/station/crew_quarters/ce)
 "Nd" = (
 /obj/machinery/portable_reclaimer,
 /turf/floor/industrial,
@@ -16550,6 +16732,12 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/space/magindara,
 /area/magindara)
+"NH" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/station/com_dish/comdish)
 "NI" = (
 /obj/grille/catwalk/cross{
 	dir = 6
@@ -16929,6 +17117,9 @@
 	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
+"OP" = (
+/turf/space/magindara,
+/area/station/com_dish/comdish)
 "OQ" = (
 /obj/lattice{
 	dir = 8;
@@ -17062,6 +17253,14 @@
 /obj/machinery/bot/firebot,
 /turf/floor/industrial,
 /area/station/science/chemistry)
+"Pk" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "Pl" = (
 /obj/railing/cool,
 /obj/machinery/door_control{
@@ -17495,6 +17694,15 @@
 	},
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
+"Qo" = (
+/obj/overlay/magindara_skylight/weather,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "Qp" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/binary/passive_gate{
@@ -17657,6 +17865,11 @@
 "QN" = (
 /obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
+/obj/cable/blue{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "QO" = (
@@ -17893,13 +18106,10 @@
 /area/station/maintenance/north)
 "Rn" = (
 /obj/overlay/magindara_skylight/weather,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/landmark/start{
-	name = "Chief Engineer"
+/obj/cable/blue{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
@@ -18283,6 +18493,16 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/security/hos)
+"Si" = (
+/obj/machinery/power/apc{
+	areastring = "Chief Engineer's Quarters";
+	dir = 4;
+	name = "CE Office APC";
+	pixel_x = 24
+	},
+/obj/cable,
+/turf/floor/plating/random,
+/area/station/maintenance/south)
 "Sj" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/riveted,
@@ -18731,10 +18951,6 @@
 	output = 10000
 	},
 /obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
@@ -18742,7 +18958,7 @@
 /area/station/engine/thermo)
 "Tj" = (
 /obj/overlay/magindara_skylight/weather,
-/obj/cable{
+/obj/cable/blue{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
@@ -18984,6 +19200,9 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/space/magindara,
 /area/magindara)
+"TM" = (
+/turf/wall/auto/rivet,
+/area/station/crew_quarters/ce)
 "TN" = (
 /obj/stool/bar,
 /obj/overlay/magindara_skylight/weather,
@@ -19068,7 +19287,7 @@
 	icon_state = "1-8"
 	},
 /turf/space/magindara,
-/area/magindara)
+/area/station/com_dish/comdish)
 "TX" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor/plating/random,
@@ -20017,6 +20236,13 @@
 	},
 /turf/floor/industrial,
 /area/station/hallway/primary/northwest)
+"Wm" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/station/com_dish/comdish)
 "Wn" = (
 /obj/landmark/gps_waypoint,
 /turf/floor/black,
@@ -20146,6 +20372,12 @@
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "Medical Director's Quarters";
+	dir = 1;
+	name = "MD Office APC";
+	pixel_y = 24
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
@@ -20452,6 +20684,11 @@
 	},
 /turf/floor/carpet/grime2,
 /area/station/hydroponics/lobby)
+"Xt" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/yellow,
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "Xu" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -20567,6 +20804,14 @@
 /obj/access_spawn/security,
 /turf/floor/riveted,
 /area/station/hallway/primary/southeast)
+"XK" = (
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 9
+	},
+/obj/table/reinforced/industrial/auto,
+/obj/cable,
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "XL" = (
 /obj/machinery/vending/cigarette,
 /turf/floor/redblack{
@@ -20647,7 +20892,7 @@
 	icon_state = "1-2"
 	},
 /turf/space/magindara,
-/area/magindara)
+/area/station/com_dish/comdish)
 "XU" = (
 /obj/cable{
 	d2 = 4;
@@ -20687,6 +20932,10 @@
 	},
 /turf/floor/carpet/grime2,
 /area/station/security/detectives_office)
+"XY" = (
+/obj/table/reinforced/industrial/auto,
+/turf/floor/riveted,
+/area/station/crew_quarters/ce)
 "XZ" = (
 /obj/disposalpipe/junction/left/north,
 /turf/floor/plating/random,
@@ -54287,7 +54536,7 @@ bK
 og
 Bt
 VL
-FN
+OX
 SO
 SO
 SO
@@ -55796,7 +56045,7 @@ Me
 Me
 AJ
 VL
-VL
+TV
 AJ
 Gn
 SO
@@ -56098,7 +56347,7 @@ fK
 gl
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -56400,7 +56649,7 @@ lu
 FN
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -56702,7 +56951,7 @@ Rf
 Rf
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -57004,7 +57253,7 @@ HB
 Rf
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -57306,7 +57555,7 @@ Yh
 Rf
 Rf
 SO
-SO
+gl
 SO
 SO
 SO
@@ -57605,10 +57854,10 @@ Mj
 HB
 ki
 Yh
-Yh
+ey
 Rf
-SO
-SO
+VL
+OX
 SO
 SO
 SO
@@ -57910,7 +58159,7 @@ Yh
 Yh
 Xu
 SO
-SO
+gl
 SO
 SO
 SO
@@ -58212,7 +58461,7 @@ OL
 Yh
 Xu
 SO
-SO
+gl
 SO
 SO
 SO
@@ -58514,7 +58763,7 @@ EZ
 Yh
 Rf
 Rf
-SO
+gl
 SO
 SO
 SO
@@ -60028,7 +60277,7 @@ Yh
 Xu
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -60328,10 +60577,10 @@ HX
 ki
 Yh
 Rf
-SO
-SO
-SO
-SO
+VL
+VL
+OX
+Gn
 SO
 SO
 SO
@@ -60632,7 +60881,7 @@ Yh
 Xu
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -60934,7 +61183,7 @@ Yh
 Xu
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -61236,7 +61485,7 @@ Yh
 Rf
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -61538,7 +61787,7 @@ Yh
 Xu
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -61840,7 +62089,7 @@ Yh
 Xu
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -62137,13 +62386,13 @@ jS
 LY
 KK
 Ok
-Yh
-Yh
+ki
+AK
 Rf
 Rf
-SO
-SO
-SO
+VL
+OX
+Gn
 SO
 SO
 SO
@@ -62434,17 +62683,17 @@ Ok
 Ok
 zC
 GC
-Zt
+LL
 Zt
 Gb
 iN
 Ok
-Yh
-Yh
+ki
+jI
 KF
 Rf
 SO
-SO
+gl
 SO
 SO
 SO
@@ -62736,18 +62985,18 @@ SO
 Ok
 Ok
 Ok
-Zt
+yM
 Zt
 KK
 Zt
 Ok
-HB
+ga
 DL
-AK
-Rf
-SO
-SO
-SO
+Si
+TM
+TM
+Go
+TM
 SO
 SO
 SO
@@ -63038,19 +63287,19 @@ VL
 wi
 VL
 Ok
-Zt
-Zt
-KK
-AB
+Is
+jS
+Cs
+LY
 Ok
 Rf
 Rf
-Rf
-Rf
-SO
-SO
-SO
-SO
+TM
+TM
+oQ
+Xt
+TM
+TM
 SO
 SO
 SO
@@ -63347,12 +63596,12 @@ dV
 EA
 gl
 SO
-SO
-SO
-SO
-SO
-SO
-SO
+TM
+vJ
+hv
+hv
+hv
+TM
 SO
 SO
 SO
@@ -63646,15 +63895,15 @@ fc
 jY
 Ti
 Bq
-EA
-FN
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Qo
+yy
+IT
+ug
+JU
+hv
+XY
+hv
+Go
 SO
 SO
 SO
@@ -63951,12 +64200,12 @@ Bq
 zf
 gl
 SO
-SO
-SO
-SO
-SO
-SO
-SO
+TM
+Nc
+Pk
+XK
+pM
+Go
 SO
 SO
 SO
@@ -64253,12 +64502,12 @@ Bq
 zf
 gl
 SO
-SO
-SO
-SO
-SO
-SO
-SO
+TM
+TM
+Go
+Go
+TM
+TM
 SO
 SO
 SO
@@ -64553,12 +64802,12 @@ gz
 An
 Bq
 JV
-FN
+wi
+VL
+VL
+LE
 SO
-SO
-SO
-SO
-SO
+gl
 SO
 SO
 SO
@@ -64860,7 +65109,7 @@ SO
 SO
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -65156,13 +65405,13 @@ Bh
 VD
 Dp
 Nw
-JZ
+GA
 gl
 SO
 SO
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -65459,13 +65708,13 @@ Pi
 WX
 JK
 vS
-FN
-SO
-SO
-SO
-SO
-SO
-SO
+wi
+VL
+VL
+VL
+VL
+OX
+Gn
 SO
 SO
 SO
@@ -65680,9 +65929,9 @@ SO
 SO
 SO
 SO
-OX
-VL
-OX
+rl
+NH
+rl
 SO
 SO
 BV
@@ -65766,7 +66015,7 @@ SO
 SO
 SO
 SO
-SO
+ex
 SO
 SO
 SO
@@ -65982,9 +66231,9 @@ SO
 SO
 SO
 SO
-gl
-SO
-gl
+Wm
+OP
+Wm
 SO
 SO
 FR
@@ -66284,8 +66533,8 @@ SO
 SO
 SO
 SO
-gl
-SO
+Wm
+OP
 it
 XT
 XT
@@ -66586,9 +66835,9 @@ SO
 SO
 SO
 SO
-gl
-SO
-gl
+Wm
+OP
+Wm
 SO
 SO
 BV
@@ -66888,9 +67137,9 @@ SO
 SO
 SO
 SO
-OX
-VL
-OX
+rl
+NH
+rl
 SO
 se
 HG
@@ -102543,7 +102792,7 @@ SO
 SO
 SO
 SO
-SO
+cd
 SO
 SO
 SO
