@@ -2088,6 +2088,10 @@
 	detail_1_icon = 'icons/mob/rodentia.dmi'
 	detail_1_state = 'rodentia_detail-1'
 	//detail_1_color = TODO
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/rodentia/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/rodentia/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/rodentia/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/rodentia/left
 	//race_mutation = TODO
 	//clothing_icon_override = TODO
 	//color_channel_names = TODO
