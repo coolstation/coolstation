@@ -978,7 +978,7 @@
 			maptext_color ="#D8BFD8"
 		else
 			maptext_color = src.speech_color
-		maptext = make_chat_maptext(src, message, "color: [maptext_color];" + singing_italics)
+		maptext = make_chat_maptext(src, message, "color: [maptext_color];" + singing_italics, 150)
 		if(maptext && src.chat_text && length(src.chat_text.lines))
 			maptext.measure(src)
 			for(var/image/chat_maptext/I in src.chat_text.lines)
