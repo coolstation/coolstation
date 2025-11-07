@@ -145,5 +145,5 @@
 
 	return thr
 
-/obj/item/proc/pre_thrown(atom/target, list/params)
+/atom/movable/proc/pre_thrown(atom/target, list/params)
 	return FALSE

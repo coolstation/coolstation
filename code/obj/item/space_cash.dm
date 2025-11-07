@@ -131,7 +131,7 @@
 			return TRUE
 
 		if (src.amount > 1)
-			if (L.a_intent == INTENT_HARM)
+			if (L.a_intent == INTENT_DISARM)
 				//THROW 1S LIKE YOU'RE AT THE STRIP CLUB
 				var/obj/item/spacecash/young_money = new()
 				young_money.setup(L.loc, 1)
@@ -146,6 +146,10 @@
 
 				attack_twitch(L)
 				return TRUE
+
+			else if (L.a_intent == INTENT_HARM)
+				//OH, SO YOU'RE FINING ME, HUH BOOTLICKER?
+				return
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
