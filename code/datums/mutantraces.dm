@@ -2083,7 +2083,7 @@
 	special_head = HEAD_RODENTIA
 	special_head_state = "head"
 	//eye_state = TODO
-	//mutant_organs = TODO
+	mutant_organs = list("tail" = /obj/item/organ/tail/rodentia)
 	mutant_folder = 'icons/mob/rodentia.dmi'
 	detail_1_icon = 'icons/mob/rodentia.dmi'
 	detail_1_state = 'rodentia_detail-1'
@@ -2096,6 +2096,7 @@
 	//clothing_icon_override = TODO
 	//color_channel_names = TODO
 	//emote_overrides = TODO
+	dna_mutagen_banned = FALSE
 
 	New(mob/living/carbon/human/H)
 		..()
