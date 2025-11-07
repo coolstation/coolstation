@@ -2212,6 +2212,7 @@ datum
 			name = "coffee"
 			id = "coffee"
 			description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
+			taste = "bitter"
 			reagent_state = LIQUID
 			fluid_r = 39
 			fluid_g = 28
