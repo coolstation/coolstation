@@ -92,7 +92,8 @@
 
 	src.last_throw_x = src.x
 	src.last_throw_y = src.y
-	src.throw_begin(target)
+	if (src.throw_begin(target))
+		return
 
 	src.throwforce += bonus_throwforce
 

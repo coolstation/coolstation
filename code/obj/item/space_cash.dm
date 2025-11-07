@@ -124,6 +124,17 @@
 		else
 			..(user)
 
+	throw_begin(atom/target)
+		if (src.amount > 1 && isliving(src.loc))
+			var/mob/living/L = src.loc
+			if (L.a_intent == INTENT_HARM)
+				//THROW 1S LIKE YOU'RE AT THE STRIP CLUB
+				var/obj/item/spacecash/young_money = new()
+				young_money.setup(L.loc, 1)
+				change_stack_amount(-1)
+				young_money.throw_at(target)
+				return TRUE
+
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
 
