@@ -2093,7 +2093,7 @@
 	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/rodentia/right
 	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/rodentia/left
 	race_mutation = /datum/bioEffect/mutantrace/rodentia
-	//clothing_icon_override = TODO
+	clothing_icon_override = 'icons/mob/rodentia_clothes.dmi'
 	//color_channel_names = TODO
 	//emote_overrides = TODO
 	dna_mutagen_banned = FALSE
