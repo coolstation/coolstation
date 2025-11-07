@@ -652,13 +652,15 @@ obj/decal/fakeobjects
 /obj/decal/lightning
 	name = "lightning"
 	desc = "An incredibly dangerous arc of atmospheric charge."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "lightning1"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_SELFILLUM
 	anchored = ANCHORED_TECHNICAL
+	color = "#ccf5ff"
+	alpha = 175
 	var/height = 8
-	var/shake_intensity = 10
+	var/shake_intensity = 5
 	var/strike_time = 1 SECOND
 	var/volume = 50
 	var/datum/light/point/light = null
@@ -674,8 +676,8 @@ obj/decal/fakeobjects
 		if(src.volume)
 			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
 		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8) + y_offset, flags = ANIMATION_PARALLEL)
-		animate(time = src.strike_time / 8, transform = matrix(1,src.height,MATRIX_SCALE))
-		animate_ripple(src,8,shake_intensity,0.2)
+		animate(time = src.strike_time / 8, transform = matrix(1,src.height / 2,MATRIX_SCALE))
+		animate_ripple(src,3,shake_intensity,0.2)
 		light = new
 		light.attach(src)
 		light.set_atten_con(light_atten_con)
