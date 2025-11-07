@@ -611,29 +611,34 @@
 /obj/item/MouseDrop_T(atom/movable/O as obj, mob/user as mob)
 	..()
 	if (max_stack > 1 && src.loc == user && get_dist(O, user) <= 1 && check_valid_stack(O))
-		if ( src.amount >= max_stack)
-			failed_stack(O, user)
-			return
+		SPAWN_DBG(0)
+			if ( src.amount >= max_stack)
+				failed_stack(O, user)
+				return
 
-		var/added = 0
-		var/staystill = user.loc
-		var/stack_result = 0
+			var/added = 0
+			var/staystill = user.loc
+			var/stack_result = 0
 
-		before_stack(O, user)
+			before_stack(O, user)
 
-		for(var/obj/item/other in view(1,user))
-			stack_result = stack_item(other)
-			if (!stack_result)
-				continue
-			else
-				sleep(0.3 SECONDS)
-				added += stack_result
-				if (user.loc != staystill) break
-				if (src.amount >= max_stack)
-					failed_stack(O, user)
-					return
+			var/i = 0
 
-		after_stack(O, user, added)
+			for(var/obj/item/other in view(1,user))
+				i++
+				stack_result = stack_item(other)
+				if (!stack_result)
+					continue
+				else
+					if(!(i % (ceil(i / 5))))
+						sleep(0.1 SECONDS)
+					added += stack_result
+					if (user.loc != staystill) break
+					if (src.amount >= max_stack)
+						failed_stack(O, user)
+						return
+
+			after_stack(O, user, added)
 
 #define src_exists_inside_user_or_user_storage (src.loc == user || (istype(src.loc, /obj/item/storage) && src.loc.loc == user))
 
