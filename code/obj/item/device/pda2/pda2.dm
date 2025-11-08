@@ -169,6 +169,7 @@
 		icon_state = "pda-md"
 		setup_default_pen = /obj/item/pen/fancy
 		setup_default_cartridge = /obj/item/disk/data/cartridge/medical_director
+		setup_default_module = /obj/item/device/pda_module/cigarette_lighter //;3
 		setup_drive_size = 32
 		mailgroups = list(MGD_MEDRESEARCH,MGD_MEDBAY,MGD_COMMAND,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_DEATH, MGA_MEDCRIT, MGA_CLONER, MGA_CRISIS)
@@ -196,10 +197,11 @@
 		mailgroups = list(MGD_SECURITY,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_CHECKPOINT, MGA_ARREST, MGA_DEATH, MGA_MEDCRIT, MGA_CRISIS, MGA_TRACKING)
 
-	forensic
+	forensic //detective's
 		icon_state = "pda-s"
 		setup_default_pen = /obj/item/clothing/mask/cigarette
 		setup_default_cartridge = /obj/item/disk/data/cartridge/forensic
+		setup_default_module = /obj/item/device/pda_module/cigarette_lighter //naturally
 		mailgroups = list(MGD_SECURITY,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_CHECKPOINT, MGA_ARREST, MGA_DEATH, MGA_MEDCRIT, MGA_CRISIS, MGA_TRACKING)
 
@@ -650,6 +652,14 @@
 		if (!src.pen)
 			src.insert_pen(C, user)
 		else
+			if(istype(C, /obj/item/clothing/mask/cigarette)) //having to insert and then verb out every cig would be a pain, so
+				if (istype(src.module, /obj/item/device/pda_module/cigarette_lighter)) //let's just say you can access the lighter on
+					var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module //the back of the case or something.
+					//if (lighter.lit)
+					var/obj/item/clothing/mask/cigarette/cig = C //Besides, that implies an exposed heating element :3 :3 :3
+					cig.light(user)
+					boutput(user, "[src] helpfully lights [cig] for you.", group = "cig_light")
+					return
 			boutput(user, "<span class='alert'>There is already something in [src]'s pen slot!</span>")
 
 /obj/item/device/pda2/examine()
@@ -863,6 +873,13 @@
 			else
 				var/turf/T = get_turf(src)
 				src.pen.set_loc(T)
+			if(istype(src.pen, /obj/item/clothing/mask/cigarette))
+				if (istype(src.module, /obj/item/device/pda_module/cigarette_lighter))
+					var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module
+					//if (lighter.lit)
+					var/obj/item/clothing/mask/cigarette/cig = src.pen
+					cig.light(user)
+					boutput(user, "[src] helpfully lights [cig] for you.", group = "cig_light")
 			src.pen = null
 			src.UpdateOverlays(null, "pen")
 			return
