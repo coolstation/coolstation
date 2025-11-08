@@ -200,6 +200,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 */
 
+/datum/train_preset/fast_single_car //yeet
+	movement_delay = 0.125
+	cars = list(/obj/traincar/NT_shipping)
+
 /datum/train_preset/short_cargo
 	movement_delay = 3
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
