@@ -654,7 +654,7 @@
 		else
 			if(istype(C, /obj/item/clothing/mask/cigarette)) //having to insert and then verb out every cig would be a pain, so
 				if (istype(src.module, /obj/item/device/pda_module/cigarette_lighter)) //let's just say you can access the lighter on
-					var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module //the back of the case or something.
+					//var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module //the back of the case or something.
 					//if (lighter.lit)
 					var/obj/item/clothing/mask/cigarette/cig = C //Besides, that implies an exposed heating element :3 :3 :3
 					cig.light(user)
@@ -875,7 +875,7 @@
 				src.pen.set_loc(T)
 			if(istype(src.pen, /obj/item/clothing/mask/cigarette))
 				if (istype(src.module, /obj/item/device/pda_module/cigarette_lighter))
-					var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module
+					//var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module
 					//if (lighter.lit)
 					var/obj/item/clothing/mask/cigarette/cig = src.pen
 					cig.light(user)

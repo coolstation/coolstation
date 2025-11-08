@@ -51,7 +51,8 @@
 /datum/manufacture/bedsheet_nb,\
 /datum/manufacture/bedsheet_pan,\
 /datum/manufacture/bedsheet_poly,\
-/datum/manufacture/bedsheet_trans
+/datum/manufacture/bedsheet_trans,\
+/datum/manufacture/white_cane
 
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
@@ -2155,6 +2156,7 @@
 		/datum/manufacture/glasses,
 		/datum/manufacture/visor,
 		/datum/manufacture/deafhs,
+		/datum/manufacture/white_cane,
 		/datum/manufacture/hypospray,
 		/datum/manufacture/patch,
 		/datum/manufacture/mender,

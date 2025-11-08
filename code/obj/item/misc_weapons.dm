@@ -632,9 +632,7 @@
 
 // white cane for blind folks
 // this might be the wrong file for it but wtv
-// TODO: implement two-handed wielding like a quarterstaff? (ss14 has this)
-// TODO: clicking on stuff in range with the cane should Examine said stuff
-// TODO: it should probably be possible to manufacture this!
+// TODO: Someone who's tuned into combat check the damage values
 /obj/item/white_cane
 	name = "white cane"
 	icon = 'icons/obj/items/weapons.dmi'
@@ -645,10 +643,29 @@
 	throwforce = 7
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
-	flags = FPRINT | TABLEPASS // should we have tablepass? not sure what it does
+	flags = FPRINT | TABLEPASS | SUPPRESSATTACK // should we have tablepass? not sure what it does
 	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool (or knock-off quarterstaff?)
 	desc = "Useful for finding your way around, and also for hitting people."
 	hint = "Increases vision radius when held."
+
+	dropped(mob/user)
+		..()
+		src.two_handed = FALSE
+		src.force = initial(src.force)
+
+	attack_self(mob/user)
+		..()
+		setTwoHanded(!src.two_handed)
+		if (src.two_handed)
+			src.force == 13 //IDK I'm not the combat balance bat that's what the quarterstaff has
+		else
+			src.force = initial(src.force)
+
+	//Wish we could set/unset SUPPRESSATTACK based on intent and have the examine only on help, but afterattack is already a hacky system.
+	afterattack(atom/target, mob/user, reach, params)
+		..()
+		if (istype(target, /atom/movable))
+			user.examine_verb(target)
 
 /obj/item/quarterstaff
 	name = "quarterstaff"
