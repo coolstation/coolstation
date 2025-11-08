@@ -343,7 +343,7 @@ MATERIAL
 					a_amount = rodsinput * 2
 					a_cost = rodsinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "rods"
+					a_icon_state = "rods_1"
 					a_name = "rods"
 					duration_alt = 1.7 SECONDS
 
@@ -357,7 +357,7 @@ MATERIAL
 					a_amount = tileinput * 4
 					a_cost = tileinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "tile"
+					a_icon_state = "tile_1"
 					a_name = "floor tiles"
 					duration_alt = 2 SECONDS
 
