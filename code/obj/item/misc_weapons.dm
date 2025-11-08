@@ -639,8 +639,9 @@
 	icon_state = "white_cane"
 	item_state = "white_cane"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	force = 8
-	throwforce = 7
+	force = 4
+	var/two_handed_force = 9
+	throwforce = 6
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK // should we have tablepass? not sure what it does
@@ -650,14 +651,14 @@
 
 	dropped(mob/user)
 		..()
-		src.two_handed = FALSE
+		setTwoHanded(FALSE)
 		src.force = initial(src.force)
 
 	attack_self(mob/user)
 		..()
 		setTwoHanded(!src.two_handed)
 		if (src.two_handed)
-			src.force == 13 //IDK I'm not the combat balance bat that's what the quarterstaff has
+			src.force = src.two_handed_force
 		else
 			src.force = initial(src.force)
 
