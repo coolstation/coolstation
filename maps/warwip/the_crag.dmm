@@ -1092,6 +1092,7 @@
 	icon_state = "4-8"
 	},
 /obj/submachine/cargopad/qm,
+/obj/item/device/radio/beacon,
 /turf/floor/bot,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -1178,6 +1179,7 @@
 	})
 "dh" = (
 /obj/submachine/cargopad/mechanics,
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/engine/elect)
 "di" = (
@@ -1939,6 +1941,7 @@
 /area/station/engine/engineering/ce)
 "fa" = (
 /obj/submachine/cargopad/artlab,
+/obj/item/device/radio/beacon,
 /turf/floor/white,
 /area/station/science/artifact)
 "fb" = (
@@ -2305,6 +2308,7 @@
 	icon_state = "1-2"
 	},
 /obj/shitty_radio/ceiling,
+/obj/item/device/radio/beacon,
 /turf/floor/carpet/arcade/blank,
 /area/station/chapel/sanctuary)
 "gc" = (
@@ -8360,6 +8364,7 @@
 /area/station/hallway/secondary/south)
 "we" = (
 /obj/submachine/cargopad/hydroponic,
+/obj/item/device/radio/beacon,
 /turf/floor/green,
 /area/station/hydroponics/lobby)
 "wf" = (
@@ -8376,6 +8381,10 @@
 	icon_state = "dark"
 	},
 /area/station/crew_quarters/bar)
+"wh" = (
+/obj/item/device/radio/beacon,
+/turf/floor/black,
+/area/station/atmos/department)
 "wi" = (
 /obj/disposalpipe/segment/bent{
 	dir = 4
@@ -10026,6 +10035,7 @@
 /area/station/science/lab)
 "AC" = (
 /obj/submachine/cargopad/engineering,
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/engine/core)
 "AD" = (
@@ -11480,6 +11490,7 @@
 /area/station/science/lab)
 "EE" = (
 /obj/submachine/cargopad/robotics,
+/obj/item/device/radio/beacon,
 /turf/floor/black,
 /area/station/medical/robotics)
 "EF" = (
@@ -67959,7 +67970,7 @@ AY
 kj
 ut
 CP
-CP
+wh
 yG
 Zu
 Dn
