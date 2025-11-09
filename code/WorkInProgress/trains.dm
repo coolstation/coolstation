@@ -64,7 +64,7 @@
 	if(istype(loco))
 		for(var/datum/train_conductor/C in train_spotter.conductors)
 			if(loco in C.cars)
-				C.active = FALSE // Stop da trane
+				C.stopping()
 				return
 
 
@@ -129,7 +129,10 @@ var/datum/train_controller/train_spotter
 	if (href_list["start"])
 		var/datum/train_conductor/conductor = locate(href_list["start"]) in src.conductors
 		if(istype(conductor))
-			conductor.active = TRUE
+			if(conductor.train_front_x < conductor.train_not_yet_loaded_x)
+				conductor.starting()
+			else
+				conductor.active = TRUE
 			conductor.train_loop()
 	if (href_list["stop"])
 		var/datum/train_conductor/conductor = locate(href_list["stop"]) in src.conductors
@@ -427,6 +430,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/train_not_yet_loaded_x = 285 // the x coordinate to start loading at
 	var/unloading_tiles = 0 // how many tiles are currently "missing" between the unload x and the forwardmost loaded car
 
+	var/starting
+	var/stopping
+	var/original_speed
+
 /datum/train_conductor/New()
 	. = ..()
 	train_spotter.conductors.Add(src)
@@ -444,6 +451,18 @@ ABSTRACT_TYPE(/datum/train_preset)
 /datum/train_conductor/proc/setup()
 	src.train_front_x = src.train_not_yet_loaded_x
 
+// Slow the train gradually
+/datum/train_conductor/proc/stopping()
+	src.stopping = TRUE
+	src.starting = FALSE
+	src.original_speed = src.movement_delay
+
+// Start the train gradually
+/datum/train_conductor/proc/starting()
+	src.starting = TRUE
+	src.stopping = FALSE
+	src.active = TRUE
+
 /datum/train_conductor/proc/train_loop()
 	if(QDELETED(src)) // ah hell nah
 		return
@@ -454,6 +473,21 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 	if(!src.train_z || !src.active || src.movement_delay < 0.01) // refuse to process trains that havent been put on a z level
 		return
+
+	// Ramp speed down to a stop
+	if(src.stopping)
+		src.movement_delay += (src.movement_delay * 3) / max(length(src.cars), 8)
+		if(src.movement_delay > 6) // Slow enough that we're effectively stopped?
+			src.active = FALSE
+			return
+		// TODO?: Add brake squeal SFX?
+
+	// Ramp speed up to normal
+	if(src.starting)
+		src.movement_delay -= (src.movement_delay / max(length(src.cars), 15)) // takes longer to get going
+		if(src.movement_delay <= src.original_speed)
+			src.movement_delay = src.original_speed
+			src.starting = FALSE // Done ramping
 
 	// first, time for the crushing
 	for(var/mob/living/L in src.potential_crushes)
