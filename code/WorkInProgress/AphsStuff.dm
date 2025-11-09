@@ -341,7 +341,7 @@
 	force_fullbright = 1
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
-	requires_power = TRUE
+	requires_power = FALSE
 
 /obj/machinery/power/solar_control/derelict_ai_sat
 	id = "derelict_ai_sat"
