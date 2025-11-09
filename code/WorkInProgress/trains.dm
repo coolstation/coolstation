@@ -54,17 +54,24 @@
 		loco.sound_horn()
 
 
-// Landmark to place anywhere you want the train to stop
+// Landmark to place where you want the train to stop
+// Defaults to being 5 X away from the intended stopping point.
+// (That is, you put this 5 tiles *in front* of where you want the train to stop.)
 /obj/landmark/train/stop
+	name = "trainstop"
 	deleted_on_start = FALSE
-	add_to_landmarks = FALSE
+	var/active = FALSE // do we stop da trane?
+	var/distance_to_signal = 5
 
 /obj/landmark/train/stop/Crossed(atom/movable/O)
+	if(!src.active)
+		return
+
 	var/obj/traincar/NT_engine/loco = O
 	if(istype(loco))
 		for(var/datum/train_conductor/C in train_spotter.conductors)
 			if(loco in C.cars)
-				C.stopping()
+				C.stopping(src.x - src.distance_to_signal) // this will only work for WESTbound trains
 				return
 
 
@@ -452,15 +459,18 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.train_front_x = src.train_not_yet_loaded_x
 
 // Slow the train gradually
-/datum/train_conductor/proc/stopping()
-	src.stopping = TRUE
+// Arg: distance you want to stop in. e.g. if this is called by a
+//      landmark, how far away from your target location is that landmark)
+
+/datum/train_conductor/proc/stopping(var/distance)
+	src.stopping = distance
 	src.starting = FALSE
 	src.original_speed = src.movement_delay
 
 // Start the train gradually
 /datum/train_conductor/proc/starting()
 	src.starting = TRUE
-	src.stopping = FALSE
+	src.stopping = null
 	src.active = TRUE
 
 /datum/train_conductor/proc/train_loop()
@@ -474,13 +484,15 @@ ABSTRACT_TYPE(/datum/train_preset)
 	if(!src.train_z || !src.active || src.movement_delay < 0.01) // refuse to process trains that havent been put on a z level
 		return
 
-	// Ramp speed down to a stop
+	// Ramp speed down to a stop at approximately (src.stopping)
 	if(src.stopping)
-		src.movement_delay += (src.movement_delay * 3) / max(length(src.cars), 8)
+		src.movement_delay += src.movement_delay / (clamp((abs(src.stopping - src.train_front_x)), 0, 7) + (min(length(src.cars), 8) / 2))
 		if(src.movement_delay > 6) // Slow enough that we're effectively stopped?
+			src.movement_delay = 6
 			src.active = FALSE
 			return
 		// TODO?: Add brake squeal SFX?
+		// maybe even sparks if stopping 'fast enough'?
 
 	// Ramp speed up to normal
 	if(src.starting)
