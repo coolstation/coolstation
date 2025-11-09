@@ -43,11 +43,7 @@
 
 	<style type="text/css">
 
-		html{
-			titlebar=0;
-			can_resize=0;
-			border=0;
-		}
+
 
 		body
 		{
@@ -56,6 +52,10 @@
 			font-size: 16pt;
 			letter-spacing: 2px;
 			color: #52ff00;
+			titlebar=0;
+			can_resize=0;
+			border=0;
+		}
 
 		hr{
 			border: 1px solid #52ff00;
@@ -66,159 +66,125 @@
 				font-style: normal;
 				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
 			}
-			html { background: #030602;
-					font-family: "Not Jam Mono Clean 16";
-					font-size: 16pt;
-					line-height: 1;
-					animation-duration: 0.01s;
-					animation-name: textflicker;
-					animation-iteration-count: infinite;
-					animation-direction: alternate;
-			}
-			h1 {
-				font-size: 32px;
-				text-align: left;
-				background-color: #0A3609;
-				color: #08FF03;
-                width:auto;
-				font-weight: normal;
-			}
-			.container {
-			display: flex;
-			flex-direction: row;
-			}
-            .box{
-            border: 2px solid #08FF03;
-			background-color: #11F20C;
-			color: #011201;
-            padding: 3px;
+		html { background: #030602;
+			font-family: "Not Jam Mono Clean 16";
 			font-size: 16pt;
-            animation-duration: 0.01s;
-              animation-name: boxflicker;
-              animation-iteration-count: infinite;
-              animation-direction: alternate;
-              width: fit-content;
-              display: inline;
-              line-height: 200%;
-              text-align: center;
-              font-weight: normal;
+			line-height: 1;
+			animation-duration: 0.01s;
+			animation-name: textflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			titlebar=0;
+			can_resize=0;
+			border=0;
+		}
+		h1 {
+			font-size: 32px;
+			text-align: left;
+			background-color: #0A3609;
+			color: #08FF03;
+			width:auto;
+			font-weight: normal;
+		}
+		.container {
+		display: flex;
+		flex-direction: row;
+		}
+		.box{
+		border: 2px solid #08FF03;
+		background-color: #11F20C;
+		color: #011201;
+		padding: 3px;
+		font-size: 16pt;
+		animation-duration: 0.01s;
+			animation-name: boxflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			width: fit-content;
+			display: inline;
+			line-height: 200%;
+			text-align: center;
+			font-weight: normal;
 
-            }
-            .box.button{
-            background-color: #020600;
-			color: #52ff00;
-            border: 2px solid #52ff00;
-            }
-			.holder{
-			color: #171716;
-			}
-            .box.error{
-               border: 5px groove red;
-               padding: 3px;
-               color: red;
-               background-color: black ;
-            }
-			.box.warning{
-				border: 2px groove #c6ff00;
-				background-color: #0c1500;
-				color: #c6ff00;
-			}
-			a{
-				color:#52ff00;
-			}
-			.crt::before {
-				content: " ";
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-				z-index: 2;
-				background-size: 100% 2px, 3px 100%;
-				pointer-events: none;
-			}
-			@keyframes flicker {
-				0% {
-				opacity: 0.27861;
-				}
-				5% {
-				opacity: 0.34769;
-				}
-				10% {
-				opacity: 0.23604;
-				}
-				15% {
-				opacity: 0.90626;
-				}
-				20% {
-				opacity: 0.18128;
-				}
-				25% {
-				opacity: 0.83891;
-				}
-				30% {
-				opacity: 0.65583;
-				}
-				35% {
-				opacity: 0.67807;
-				}
-				40% {
-				opacity: 0.26559;
-				}
-				45% {
-				opacity: 0.84693;
-				}
-				50% {
-				opacity: 0.96019;
-				}
-				55% {
-				opacity: 0.08594;
-				}
-				60% {
-				opacity: 0.20313;
-				}
-				65% {
-				opacity: 0.71988;
-				}
-				70% {
-				opacity: 0.53455;
-				}
-				75% {
-				opacity: 0.37288;
-				}
-				80% {
-				opacity: 0.71428;
-				}
-				85% {
-				opacity: 0.70419;
-				}
-				90% {
-				opacity: 0.7003;
-				}
-				95% {
-				opacity: 0.36108;
-				}
-				100% {
-				opacity: 0.24387;
-				}
-				}
+		}
+		.box.button{
+		background-color: #020600;
+		color: #52ff00;
+		border: 2px solid #52ff00;
+		}
+		.holder{
+		color: #171716;
+		}
+		.box.error{
+			border: 5px groove red;
+			padding: 3px;
+			color: red;
+			background-color: black ;
+		}
+		.box.warning{
+			border: 2px groove #c6ff00;
+			background-color: #0c1500;
+			color: #c6ff00;
+		}
+		a{
+			color:#52ff00;
+		}
+		    .crt::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacuty: 0.1;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 2;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
 
-				.crt::after {
-				content: " ";
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background: rgba(18, 16, 16, 0.1);
-				opacity: 0;
-				z-index: 2;
-				pointer-events: none;
-				animation: flicker 0.15s infinite;
-				}
+      @keyframes flicker {
+        0% {
+        opacity: 0.05;
+        }
+        5% {
+        opacity: 0.01;
+        }
+        10% {
+        opacity:0.05;
+        }
+        15% {
+        opacity: 0.001;
+        }
+        20% {
+        opacity: 0.05;
+        }
+        25% {
+        opacity: 0.005;
+        }
+        30% {
+        opacity: 0.05;
+        }
+        35% {
+        opacity:0.05;
+        }
+      }
+
+      .crt::after {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(18, 16, 16, 0.1);
+        opacity: 0.01;
+        z-index: 2;
+        pointer-events: none;
+        animation: flicker 0.15s infinite;
+      }
 
 
 
@@ -227,7 +193,7 @@
 		<body scroll=no class = "crt">
 
 
-				<h1>Announcement Computer <button type="button" onclick="window.open('', '_self', ''); window.close();">Discard</button></h1>
+				<h1>Announcement Computer </h1>
 				<hr>
 			<div class = "container>
 				<img src='[resource("images/consoles/transmit.gif")]'/>
