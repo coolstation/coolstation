@@ -1575,7 +1575,7 @@
 			var/datum/material/mat = getMaterial(mat_id)
 			dat += {"
 		<tr>
-			<td><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
+			<td style = 'text-transform: capitalize;'><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
 			<td class='r'>[src.resource_amounts[mat_id]]</td>
 		</tr>
 			"}
