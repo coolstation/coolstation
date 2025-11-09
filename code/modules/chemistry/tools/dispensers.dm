@@ -41,7 +41,6 @@
 			T.fluid_react(src.reagents, min(src.reagents.total_volume,10000))
 		if (die || src.reagents.maximum_volume == 0 || can_break == FALSE)
 			qdel(src)
-			return
 		src.icon_state = "[initial(src.icon_state)]-busted"
 		src.reagents.clear_reagents()
 		src.reagents.maximum_volume = 0

@@ -1201,7 +1201,7 @@
 		var/netnum = 0
 		for(var/turf/T in range(1, user))
 			for(var/obj/cable/C in T.contents)
-				netnum = C.get_netnumber()
+				netnum = C.netnum
 				break
 			if (netnum) break
 

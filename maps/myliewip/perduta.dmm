@@ -2669,8 +2669,11 @@
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "gr" = (
-/obj/cable/vertical{
-	icon_state = "0-2";
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
 /turf/floor/black,
@@ -12389,8 +12392,11 @@
 	},
 /area/station/janitor/supply)
 "Dl" = (
-/obj/cable/vertical{
-	icon_state = "0-4";
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
 /turf/floor/plating/random,
@@ -12697,9 +12703,12 @@
 /area/station/hallway/primary/northwest)
 "DZ" = (
 /obj/random_item_spawner/junk/one_or_zero,
-/obj/cable/vertical{
-	icon_state = "0-8";
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
@@ -14930,9 +14939,12 @@
 "Js" = (
 /obj/decal/poster/wallsign/hazard_electrical,
 /obj/structure/girder/riser,
-/obj/cable/vertical{
-	icon_state = "0-8";
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/floor/industrial,
 /area/station/medical/robotics)

@@ -9420,10 +9420,12 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/obj/grille/catwalk/jen,
-/obj/cable/vertical{
-	icon_state = "0-2";
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
+	},
+/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/science/lobby)
@@ -12749,11 +12751,13 @@
 	},
 /area/station/medical/medbay/lobby)
 "HW" = (
-/obj/grille/catwalk/jen,
-/obj/cable/vertical/blue{
-	icon_state = "0-2";
+/obj/cable/blue{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -13877,10 +13881,11 @@
 /turf/floor,
 /area/station/science/bot_storage)
 "La" = (
-/obj/grille/catwalk/jen,
-/obj/cable/vertical{
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
+/obj/cable,
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "Lb" = (

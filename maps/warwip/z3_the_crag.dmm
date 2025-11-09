@@ -9199,7 +9199,10 @@
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "Ev" = (
-/obj/cable/vertical{
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/obj/cable{
 	icon_state = "0-4"
 	},
 /turf/floor/plating,
@@ -11256,8 +11259,11 @@
 /turf/floor/stairs/wide/middle,
 /area/station/security/main)
 "Ln" = (
-/obj/cable/vertical/blue{
+/obj/cable/blue{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
@@ -12274,8 +12280,11 @@
 	name = "North Tunnel"
 	})
 "OA" = (
-/obj/cable/vertical{
+/obj/cable{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
