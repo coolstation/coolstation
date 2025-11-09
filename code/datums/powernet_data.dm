@@ -34,6 +34,8 @@ var/global/list/dirty_power_machines = list()
 			var/datum/powernet/PN = powernets[i]
 			PN.number = i
 		src.number = 0
+		for(var/obj/machinery/power/data_node in src.data_nodes)
+			data_node.powernet = null
 		..()
 
 //Represents either a branch (one cable connecting to 3+ other cables) in the net or a dead end (a cable connected to 0-1 other cables)
