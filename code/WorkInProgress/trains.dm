@@ -44,14 +44,29 @@
 
 
 // Landmark to place everywhere you want the train to automatically sound its horn
-/obj/landmark/whistle_board
+/obj/landmark/train/whistle_board
 	deleted_on_start = FALSE
 	add_to_landmarks = FALSE
 
-/obj/landmark/whistle_board/Crossed(atom/movable/O)
+/obj/landmark/train/whistle_board/Crossed(atom/movable/O)
 	var/obj/traincar/NT_engine/loco = O
 	if(istype(loco))
 		loco.sound_horn()
+
+
+// Landmark to place anywhere you want the train to stop
+/obj/landmark/train/stop
+	deleted_on_start = FALSE
+	add_to_landmarks = FALSE
+
+/obj/landmark/train/stop/Crossed(atom/movable/O)
+	var/obj/traincar/NT_engine/loco = O
+	if(istype(loco))
+		for(var/datum/train_conductor/C in train_spotter.conductors)
+			if(loco in C.cars)
+				C.active = FALSE // Stop da trane
+				return
+
 
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
@@ -211,6 +226,11 @@ ABSTRACT_TYPE(/datum/train_preset)
 /datum/train_preset/shipping_cars
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping)
 
+/datum/train_preset/hopper
+	movement_delay = 3
+	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper,
+	/obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper,/obj/traincar/NT_hopper)
+
 /* ----------- THE TRAIN CARS, THE GOOD LOOKIN' BITS ----------- */
 
 // THE BASE
@@ -367,6 +387,20 @@ ABSTRACT_TYPE(/datum/train_preset)
 		grime_2.pixel_x = container_2.pixel_x
 		grime_2.pixel_y = container_2.pixel_y
 		src.UpdateOverlays(grime_2, "grime_two")
+
+/obj/traincar/NT_hopper
+	name = "hopper car"
+
+/obj/traincar/NT_hopper/build_colors()
+	..()
+
+/obj/traincar/NT_hopper/build_overlays()
+	var/image/da_hopper = image('icons/obj/large/trains_256x128.dmi', "hopper_main")
+	da_hopper.color = random_greyish_hex_color(25,50)
+	src.UpdateOverlays(da_hopper, "hopper")
+
+	var/image/grime = image('icons/obj/large/trains_256x128.dmi', "hopper_grime_overlay")
+	src.UpdateOverlays(grime, "grime")
 
 /* ----------- THE TRAIN CONDUCTOR, WHOM DRIVES THE TRAIN ----------- */
 
