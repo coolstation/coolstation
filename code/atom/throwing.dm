@@ -144,3 +144,6 @@
 	throwing_controller.start()
 
 	return thr
+
+/atom/movable/proc/pre_thrown(atom/target, list/params)
+	return FALSE

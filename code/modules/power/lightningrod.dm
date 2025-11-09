@@ -49,8 +49,7 @@
 /obj/lightning_rod/proc/attach()
 	var/turf/T = get_turf(src)
 	for(var/obj/cable/C in T)
-		if(!C.d1)
-			src.attached = C
+		src.attached = C
 
 /obj/lightning_rod/proc/struck(var/wattage)
 	var/obj/overlay/fullbright_overlay = new(src.loc)

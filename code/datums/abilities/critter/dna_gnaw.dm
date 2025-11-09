@@ -46,8 +46,7 @@
 				MT.dna_to_absorb -= absorbed
 
 				if (ishuman(MT))
-					if (MT:blood_volume > 5)
-						MT:blood_volume -= 5
+					MT.reagents.remove_any(5)
 
 				if (MT.dna_to_absorb <= 0)
 					logTheThing("combat", holder.owner, MT, "drains [constructTarget(MT,"combat")] of all DNA as a handspider [log_loc(holder.owner)].")

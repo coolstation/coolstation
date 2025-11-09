@@ -394,7 +394,7 @@
 	desc = "You see a small, fading warning label on the side of the machine:<br>WARNING: Contents artificially produced using industrial ethanol. Not recommended for human consumption."
 	dispensable_reagents = list("beer", "cider", "gin", "wine", "champagne", \
 								"rum", "vodka", "bourbon", "vermouth", "tequila", \
-								"bitters", "tonic")
+								"bitters")
 	icon_state = "alc_dispenser"
 	icon_base = "alc_dispenser"
 	glass_path = /obj/item/reagent_containers/food/drinks
@@ -448,7 +448,7 @@
 	desc = "A soda fountain that definitely does not have a suspicious similarity to the alcohol and chemical dispensers. No sir."
 	dispensable_reagents = list("cola", "juice_lime", "juice_lemon", "juice_orange", \
 								"juice_cran", "juice_cherry", "juice_pineapple", "juice_tomato", \
-								"coconut_milk", "sugar", "water", "vanilla", "tea", "grenadine")
+								"coconut_milk", "sugar", "water", "vanilla", "tea", "grenadine", "tonic", "milk")
 	icon_state = "alc_dispenser"
 	icon_base = "alc_dispenser"
 	glass_path = /obj/item/reagent_containers/food/drinks

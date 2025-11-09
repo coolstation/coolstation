@@ -421,11 +421,11 @@ obj/critter/bear/care
 	proc/drink_blood(var/atom/target)
 		if (ishuman(target))
 			var/mob/living/carbon/human/H = target
-			if (H.blood_volume < blood_sip_amt)
-				H.blood_volume = 0
-			else
-				H.blood_volume -= blood_sip_amt
-				src.blood_volume += blood_sip_amt*2			//fresh blood is the quenchiest. Bats get more blood points this way
+			var/blood_to_succ = H.reagents.get_reagent_amount("blood")
+			if(!blood_to_succ)
+				return 0
+			H.reagents.remove_reagent("blood",blood_sip_amt)
+			src.blood_volume += min(blood_to_succ,blood_sip_amt)*2			//fresh blood is the quenchiest. Bats get more blood points this way
 			src.health += 2
 
 		else if (istype(target,/obj/item/reagent_containers/))

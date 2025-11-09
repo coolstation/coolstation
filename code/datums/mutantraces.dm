@@ -986,7 +986,8 @@
 
 					mob.blinded = 0
 					mob.bleeding = 0
-					mob.blood_volume = 500
+					mob.reagents.remove_any(mob.blood_id, INFINITY)
+					mob.reagents.add_reagent(mob.blood_id, mob.ideal_blood_volume, temp_new = mob.base_body_temp)
 
 					if (!mob.organHolder)
 						mob.organHolder = new(mob)
@@ -1109,12 +1110,13 @@
 		..()
 		if(ishuman(M))
 			M.mob_flags |= IS_BONER
-			M.blood_id = "calcium"
-			all_blood_reagents |= "calcium"
+			M.replace_blood_with("calcium")
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
 
 	disposing()
 		if (ishuman(mob))
+			var/mob/living/carbon/human/H = mob
+			H.replace_blood_with(initial(H.blood_id))
 			mob.mob_flags &= ~IS_BONER
 			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
 		. = ..()
@@ -1867,16 +1869,13 @@
 			mob.kickMessage = "stomps"
 			mob.traitHolder?.addTrait("hemophilia")
 
-			H.blood_id = "milk"
-			all_blood_reagents |= "milk"
-			H.blood_color = "FFFFFF"
+			mob.replace_blood_with("milk")
 
 
 	disposing()
 		if (ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			H.blood_id = initial(H.blood_id)
-			H.blood_color = initial(H.blood_color)
+			H.replace_blood_with(initial(H.blood_id))
 			if (H.mob_flags & SHOULD_HAVE_A_TAIL)
 				H.mob_flags &= ~SHOULD_HAVE_A_TAIL
 			H.kickMessage = initial(H.kickMessage)
@@ -1913,13 +1912,7 @@
 		var/obj/item/storage/toilet/toilet = locate() in mob.loc
 		var/obj/item/reagent_containers/glass/beaker = locate() in mob.loc
 
-		var/can_output = 0
-		if (ishuman(mob))
-			var/mob/living/carbon/human/H = mob
-			if (H.blood_volume > 0)
-				can_output = 1
-
-		if (!can_output)
+		if (!mob.reagents?.total_volume)
 			.= "<B>[mob]</B> strains, but fails to output milk!"
 		else if (toilet && (mob.buckled != null))
 			for (var/obj/item/storage/toilet/terlet in mob.loc)

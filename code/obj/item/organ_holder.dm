@@ -17,9 +17,9 @@
 	var/obj/item/organ/kidney/left_kidney = null
 	var/obj/item/organ/kidney/right_kidney = null
 	var/obj/item/organ/liver = null
-	var/obj/item/organ/spleen = null
+	var/obj/item/organ/spleen/spleen = null
 	var/obj/item/organ/pancreas = null
-	var/obj/item/organ/stomach = null
+	var/obj/item/organ/stomach/stomach = null
 	var/obj/item/organ/intestines = null
 	var/obj/item/organ/appendix = null
 	var/obj/item/organ/tail = null
@@ -167,8 +167,8 @@
 			if ("spleen")
 				if (ishuman(donor))
 					var/mob/living/carbon/human/H = donor
-					H.blood_volume -= 2 * mult
-			if ("left_kidney")					//I'm lazy... Not making this better right now -kyle
+					H.reagents.remove_reagent(H.blood_id, H.ideal_blood_volume * 2 * BLOOD_SCALAR * mult)
+			if ("left_kidney") //I'm lazy... Not making this better right now -kyle
 				if (!get_working_kidney_amt())
 					donor.take_toxin_damage(2, 1)
 			if ("right_kidney")
@@ -336,6 +336,7 @@
 		if (!src.spleen)
 			src.spleen = new /obj/item/organ/spleen(src.donor, src)
 			organ_list["spleen"] = spleen
+			src.spleen.blood_id = src.donor.blood_id
 		if (!src.pancreas)
 			src.pancreas = new /obj/item/organ/pancreas(src.donor, src)
 			organ_list["pancreas"] = pancreas
@@ -1532,6 +1533,7 @@
 		else
 			src.icon_state = "[initial(src.icon_state)]_cd"
 
+/*
 /datum/targetable/organAbility/quickdigest
 	name = "Rapid Digestion"
 	desc = "Force your cyberintestines to rapidly process the contents of your stomach. This can't be healthy."
@@ -1553,7 +1555,7 @@
 			else
 				boutput(L, "<span class='alert'>Your intestines crunch painfully in your gut. Maybe they would work better with some food to process.</span>")
 				linked_organ.take_damage(30) //owwww
-
+*/
 
 /datum/targetable/organAbility/projectilevomit
 	name = "Projectile Vomiting"
@@ -1569,7 +1571,7 @@
 
 		if(istype(holder.owner, /mob/living))
 			var/mob/living/L = holder.owner
-			if (L.stomach_process && length(L.stomach_process))
+			if (L.organHolder && L.organHolder.stomach && length(L.organHolder.stomach.contents))
 				L.visible_message("<span class='alert'>[L] convulses and vomits right at [target]!</span>", "<span class='alert'>You upchuck some of your cyberstomach contents at [target]!</span>")
 				SPAWN_DBG(0)
 					for (var/i in 1 to 3)
@@ -1577,7 +1579,7 @@
 						O.throw_at(target, 8, 3, bonus_throwforce=5)
 						linked_organ.take_damage(3)
 						sleep(0.1 SECONDS)
-						if(linked_organ.broken || !length(L.stomach_process))
+						if(linked_organ.broken || !length(linked_organ.contents))
 							break
 			else
 				boutput(L, "<span class='alert'>You try to vomit, but your cyberstomach has nothing left inside!</span>")

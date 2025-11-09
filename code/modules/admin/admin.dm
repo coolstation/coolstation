@@ -1044,6 +1044,13 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Secondary Administrator to modify limbs.")
 
+		if ("setblood")
+			if (src.level >= LEVEL_SA)
+				var/mob/MC = locate(href_list["target"])
+				if (MC && usr.client)
+					usr.client.set_blood_id(MC)
+			else
+				alert("You need to be at least a Secondary Administrator to set blood reagent.")
 
 		if ("jumpto")
 			if(src.level >= LEVEL_SA)

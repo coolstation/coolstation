@@ -757,11 +757,10 @@
 	icon_state  = "bad"
 
 	OnLife(var/mult)
-		if (ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-
-			if (H.blood_volume > 400 && H.blood_volume > 0)
-				H.blood_volume -= 2*mult
+		if(..()) return
+		var/mob/living/L = owner
+		if(L.uses_blood && L.reagents.total_volume > L.ideal_blood_volume * 0.8)
+			L.reagents.remove_reagent(L.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult)
 
 /datum/bioEffect/polycythemia
 	name = "Polycythemia"
@@ -777,12 +776,11 @@
 	icon_state  = "bad"
 
 	OnLife(var/mult)
-
-		if (ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-
-			if (H.blood_volume < 600 && H.blood_volume > 0)
-				H.blood_volume += 2*mult
+		if(..()) return
+		var/mob/living/L = owner
+		if(!L.uses_blood) return
+		if(L.reagents.total_volume < L.ideal_blood_volume * 1.2)
+			L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 2.5 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
 
 
 ////////////////////////////

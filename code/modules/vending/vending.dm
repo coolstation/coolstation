@@ -68,6 +68,10 @@
 	layer = OBJ_LAYER - 0.1 // so items get spawned at 3, don't @ me
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_MULTITOOL
 	object_flags = CAN_REPROGRAM_ACCESS
+	var/voice_sound = "sound/misc/talk/bottalk_1.ogg"
+	var/speech_color = null
+	var/maptext_speech = TRUE
+
 	var/freestuff = 0
 	var/obj/item/card/id/scan = null
 
@@ -268,17 +272,18 @@
 		if(istype(thing, /obj/item/popsicle))
 			return thing // dont refreeze these. hopefully thats all the exceptions.
 
-		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
+		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie
 
 		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
 			var/obj/item/reagent_containers/food/snacks/S = thing
 			if("food_cold" in S.food_effects)
 				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
 			else
+				freezie = new(src)
 				freezie.food_effects |= S.food_effects
 				freezie.food_effects -= "food_warm"
-
-
+		else
+			freezie = new(src)
 
 		freezie.name = "frozen [thing.name]"
 
@@ -299,8 +304,6 @@
 
 		thing.set_loc(freezie)
 		return freezie
-
-
 
 	MouseDrop(over_object, src_location, over_location)
 		if(!istype(usr,/mob/living/))
@@ -677,9 +680,13 @@
 			src.fall(user)
 
 /obj/machinery/vending/hitby(atom/movable/M, datum/thrown_thing/thr)
-	if (iscarbon(M) && M.throwing && prob(25))
-		src.fall(M)
-		return
+	if (iscarbon(M) && M.throwing)
+		if(prob(25))
+			src.fall(M)
+			animate_storage_thump(src)
+			return
+		else
+			animate_storage_thump(src)
 
 	..()
 
@@ -949,20 +956,41 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
-	if (status & NOPOWER)
+/obj/machinery/vending/proc/speak(var/message, var/sing, var/just_float, var/just_chat, var/req_power = TRUE)
+	if (req_power && status & NOPOWER)
 		return
 
 	if (!message)
 		return
 
-	for (var/mob/O in hearers(src, null))
-		if (src.glitchy_slogans)
-			O.show_message("<span class='game say'><span class='name'>[src]</span> beeps,</span> \"[voidSpeak(message)]\"", 2)
-		else
-			O.show_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span></span>", 2)
+	var/image/chat_maptext/maptext = null
 
-	return
+	if (src.maptext_speech && !just_chat)
+		if( !src.chat_text )
+			src.chat_text = new
+			src.vis_contents += src.chat_text
+		if(!src.speech_color)
+			var/num = hex2num(copytext(md5("[src.name][TIME]"), 1, 7))
+			src.speech_color = hsv2rgb(num % 360, (num / 360) % 10 + 18, num / 360 / 10 % 15 + 85)
+		var/singing_italics = sing ? " font-style: italic;" : ""
+		var/maptext_color
+		if (sing)
+			maptext_color ="#D8BFD8"
+		else
+			maptext_color = src.speech_color
+		maptext = make_chat_maptext(src, message, "color: [maptext_color];" + singing_italics, 150)
+		if(maptext && src.chat_text && length(src.chat_text.lines))
+			maptext.measure(src)
+			for(var/image/chat_maptext/I in src.chat_text.lines)
+				if(I != maptext)
+					I.bump_up(maptext.measured_height)
+
+	if(src.glitchy_slogans)
+		src.audible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[voidSpeak(message)]\"</span>", just_maptext = just_float, assoc_maptext = maptext)
+	else
+		src.audible_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span></span>", just_maptext = just_float, assoc_maptext = maptext)
+	if(src.voice_sound)
+		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
 	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
@@ -1896,6 +1924,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_chimes, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_beepy, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/flashlight/high_power, 10, cost=PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/cigarette_lighter, 2, cost=PAY_UNTRAINED/2)
 
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/security, 1, cost=PAY_TRADESMAN/3, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/head, 1, cost=PAY_IMPORTANT/3, hidden=1)

@@ -163,7 +163,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					if (26) message = "<B>[user]</B> farts like a goone!"
 					if (27)
 						message = "<B>[user]</B> sharts! That's just nasty."
-						if(user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))
+						if((user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))&& user.poops >=1)
 							user.poop()
 							accident = TRUE
 					if (28) message = "<B>[user]</B> farts delicately."

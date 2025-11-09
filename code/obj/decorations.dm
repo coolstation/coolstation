@@ -1599,6 +1599,7 @@ obj/decoration/ceilingfan
 	var/datum/light/light
 	plane = BLEND_OVERLAY
 	layer = PLANE_SELFILLUM
+	anchored = ANCHORED
 
 	New()
 		..()

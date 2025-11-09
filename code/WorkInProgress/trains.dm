@@ -42,6 +42,17 @@
 			conductor.active = TRUE
 			conductor.train_loop()
 
+
+// Landmark to place everywhere you want the train to automatically sound its horn
+/obj/landmark/whistle_board
+	deleted_on_start = FALSE
+	add_to_landmarks = FALSE
+
+/obj/landmark/whistle_board/Crossed(atom/movable/O)
+	var/obj/traincar/NT_engine/loco = O
+	if(istype(loco))
+		loco.sound_horn()
+
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
 var/datum/train_controller/train_spotter
@@ -60,7 +71,7 @@ var/datum/train_controller/train_spotter
 
 /datum/train_controller/proc/config()
 	var/dat = "<html><head><title>Train Spotter</title></head><body style='background: #dad8b6;'>"
-	dat += "<style> .traintitle { display: inline-block; color:#FFFFFF; background: #3B3632; padding: 2px; text-align: center; border-radius: 5px; width: 100%; left: -2px;} .buttan { display:inline-block; border-radius: 5px; margin: 3px; padding: 3px; width: 3cm; height: 2.5em; text-align:center; font-weight: bold;} </style>"
+	dat += "<style> .traintitle { display: inline-block; color:#FFFFFF; background: #3B3632; padding: 2px; text-align: center; border-radius: 5px; width: 100%; left: -2px;} .buttan { display:inline-block; border-radius: 5px; margin: 3px; padding: 3px; width: 2.5cm; height: 2.5em; text-align:center; font-weight: bold;} </style>"
 	dat += "<h2 style='display:inline-block; text-align:center; background:#FFB347; color: black; width:98%;'>Train Controls</h2><HR>"
 
 	dat += "<a class='buttan' style='background: #20B142; color:#FFFFFF; position: absolute; left: 2%; font-weight: bold;' href='byond://?src=\ref[src];create=1'>Create New Train</a> "
@@ -83,6 +94,7 @@ var/datum/train_controller/train_spotter
 				dat += "<a class='buttan' style='background: #20B142; color: #FFFFFF; position:absolute; left: 5%; bottom: 5%;' href='byond://?src=\ref[src];start=\ref[conductor]'><b>Start</b><br>(at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].)</a>"
 			else
 				dat += "<a class='buttan' style='background: #DB4B4B; color: #FFFFFF; position:absolute; left: 5%; bottom: 5%;' href='byond://?src=\ref[src];stop=\ref[conductor]'><b>Stop</b> train</a>"
+			dat += "<a class='buttan' style='background: #FBB608; color: #000000; position:absolute; right: 34%; bottom: 5%;' href='byond://?src=\ref[src];honk=\ref[conductor]'><b>Horn</b></a>"
 
 		dat += "<a class='buttan' style='background: #DB2828; color:#FFFFFF; position:absolute; right: 5%; bottom: 5%;' href='byond://?src=\ref[src];delete=\ref[conductor]'>Delete Train</a>"
 		dat += "</div><br>"
@@ -136,6 +148,12 @@ var/datum/train_controller/train_spotter
 				new_speed = 0.5
 
 			conductor.movement_delay = new_speed
+	if (href_list["honk"])
+		var/datum/train_conductor/conductor = locate(href_list["honk"]) in src.conductors
+		if(istype(conductor))
+			var/obj/traincar/NT_engine/loco = locate(/obj/traincar/NT_engine) in conductor.cars
+			if(istype(loco))
+				loco.sound_horn()
 	if (href_list["delete"])
 		// unwind & delete the train
 		var/datum/train_conductor/conductor = locate(href_list["delete"]) in src.conductors
@@ -148,7 +166,7 @@ var/datum/train_controller/train_spotter
 		// carves the map up from stem to stern
 		logTheThing("admin", usr, null, "Fucked everything on Y: [usr.y] Z: [usr.z] with a train")
 		var/datum/train_conductor/the_fckr = new()
-		the_fckr.train_id = 666 //  \m/
+		// the_fckr.train_id = 666 //  \m/
 		the_fckr.cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
 		the_fckr.train_z = usr.z
 		the_fckr.train_front_y = usr.y
@@ -182,6 +200,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 */
 
+/datum/train_preset/fast_single_car //yeet
+	movement_delay = 0.125
+	cars = list(/obj/traincar/NT_shipping)
+
 /datum/train_preset/short_cargo
 	movement_delay = 3
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
@@ -209,6 +231,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/traincar_length = 8
 	var/loaded = FALSE // used to allow cars to sit in the trainyard safely
 	var/datum/train_conductor/my_conductor
+	var/list/horn_sound
+	var/last_honk = 0
 
 	var/dull_color_1 = "#FFFFFF"
 	var/dull_color_2 = "#FFFFFF"
@@ -253,10 +277,20 @@ ABSTRACT_TYPE(/datum/train_preset)
 			L.changeStatus("weakened", 3 SECONDS / src.my_conductor.movement_delay)
 			L.force_laydown_standup()
 
+/obj/traincar/proc/sound_horn()
+	if(!src.horn_sound)
+		return
+	if(src.last_honk > (world.timeofday + 5 SECONDS)) // 5 second cooldown should be enough?
+		return
+	src.last_honk = world.timeofday
+	playsound(src.loc, pick(src.horn_sound), 50, 1, 15)
+
+
 // THE ENGINE
 /obj/traincar/NT_engine
 	name = "engine"
 	icon_state = "engine_flatbody"
+	horn_sound = list('sound/effects/train/horn1.ogg','sound/effects/train/horn2.ogg', 'sound/effects/train/horn3.ogg')
 
 /obj/traincar/NT_engine/build_colors()
 	src.dull_color_1 = rand(200, 230)
@@ -447,7 +481,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 			for(var/y_ram_bonus in 0 to src.train_ram_height_bonus)
 
 				var/turf/T = locate(src.train_front_x + x_ram_bonus - 1, src.train_front_y + y_ram_bonus, src.train_z)
-
 				for(var/mob/living/L in T.contents)
 					if(isintangible(L) || L.nodamage)
 						continue

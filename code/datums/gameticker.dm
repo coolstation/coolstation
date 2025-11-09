@@ -565,6 +565,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 				else
 
 					// Put together a package of score data that we can hand off to the discord bot
+					var/clownabuse = game_stats.GetStat("clownabuse")
 					var/list/roundend_score = list(
 						"map" = getMapNameFromID(map_setting),
 						"survival" = score_tracker.score_crew_survival_rate,

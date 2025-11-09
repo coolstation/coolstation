@@ -49,8 +49,11 @@
 
 		M.visible_message("<span class='alert'><B>[M] starts salivating a disgusting amount!</B></span>")
 		W.tainted_saliva_reservoir.clear_reagents()
-		M.reagents.copy_to(W.tainted_saliva_reservoir, 1, 1)
-		M.reagents.clear_reagents()
+		if(M.organHolder && M.organHolder.stomach)
+			M.organHolder.stomach.reagents.trans_to_direct(W.tainted_saliva_reservoir, 100, 1, 1)
+		var/blood_to_replace = 100 - W.tainted_saliva_reservoir.total_volume
+		M.reagents.trans_to_direct(W.tainted_saliva_reservoir, 100, 1, 1)
+		M.reagents.add_reagent(M.blood_id, blood_to_replace, temp_new = M.base_body_temp)
 		return
 
 	onRemove()

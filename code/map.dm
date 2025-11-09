@@ -1129,6 +1129,10 @@ var/global/list/mapNames = list(
 			if(t_shuttle_l)
 				t_shuttle_l.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
 
+			var/area/e_shuttle = locate(/area/shuttle/escape/station)
+			if(e_shuttle)
+				e_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+
 
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"
