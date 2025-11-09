@@ -241,6 +241,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper,
 	/obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper,/obj/traincar/NT_hopper)
 
+/datum/train_preset/tanker
+	movement_delay = 3.5
+	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker)
+
 /* ----------- THE TRAIN CARS, THE GOOD LOOKIN' BITS ----------- */
 
 // THE BASE
@@ -410,6 +414,20 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.UpdateOverlays(da_hopper, "hopper")
 
 	var/image/grime = image('icons/obj/large/trains_256x128.dmi', "hopper_grime_overlay")
+	src.UpdateOverlays(grime, "grime")
+
+/obj/traincar/NT_tanker
+	name = "tanker car"
+
+/obj/traincar/NT_tanker/build_colors()
+	..()
+
+/obj/traincar/NT_tanker/build_overlays()
+	var/image/da_tanker = image('icons/obj/large/trains_256x128.dmi', "tanker_main")
+	da_tanker.color = random_greyish_hex_color(12, 95)
+	src.UpdateOverlays(da_tanker, "tanker")
+
+	var/image/grime = image('icons/obj/large/trains_256x128.dmi', "tanker_grime_overlay")
 	src.UpdateOverlays(grime, "grime")
 
 /* ----------- THE TRAIN CONDUCTOR, WHOM DRIVES THE TRAIN ----------- */
