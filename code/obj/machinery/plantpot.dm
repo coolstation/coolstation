@@ -90,7 +90,7 @@
 	anchored = ANCHORED
 	mats = 0
 	deconstruct_flags = 0
-	icon_state = null
+	icon_state = "blank"
 	power_usage = 0
 	growth_rate = 1
 	/// plant to grow
