@@ -11,7 +11,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	speechverb_stammer = "bleeps"
 	speechverb_exclaim = "boops"
 	speechverb_ask = "bloops"
-	stepsound = "step_plating"
 	robot_talk_understand = TRUE
 	hand_count = 1
 	density = FALSE

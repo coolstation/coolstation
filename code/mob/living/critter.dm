@@ -1076,25 +1076,25 @@ ABSTRACT_TYPE(/mob/living/critter)
 					ret += S.getProperty("exploprot")
 		return ret/100
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		..() // Logs.
 		var/ex_res = get_explosion_resistance()
 		if (ex_res >= 0.35 && prob(ex_res * 100))
-			severity++
+			severity = severity * 0.4
 		if (ex_res >= 0.80 && prob(ex_res * 75))
-			severity++
+			severity = severity * 0.4
 		switch(severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					gib()
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (health < max_health * 0.35 && prob(50))
 					SPAWN_DBG(0)
 						gib()
 				else
 					TakeDamage("All", rand(10, 30), rand(10, 30))
-			if (3)
-				TakeDamage("All", rand(20, 20))
+			if (OLD_EX_SEVERITY_3)
+				TakeDamage("All", rand(10, 15))
 
 	ghostize()
 		var/ghost_icon = src.icon
