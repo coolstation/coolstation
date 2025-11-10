@@ -8,12 +8,14 @@
 
 TYPEINFO(/datum/component/arable)
 	initialization_args = list(
-		ARG_INFO("y_offset", "num", "how many pixels to offset the plant (useful for silly things)", 0),
+		ARG_INFO("x_offset", "num", "pixel_x of the plant pot (useful for silly things)", 0),
+		ARG_INFO("y_offset", "num", "pixel_y of the plant pot (useful for silly things)", 0),
 	)
 
 /datum/component/arable
 	var/auto_water = TRUE
 	var/multi_plant = TRUE
+	var/x_offset = 0
 	var/y_offset = 0
 	var/obj/machinery/plantpot/bareplant/P
 
@@ -25,9 +27,10 @@ TYPEINFO(/datum/component/arable)
 	manual_water
 		auto_water = FALSE
 
-/datum/component/arable/Initialize(yoffset = 0)
+/datum/component/arable/Initialize(xoffset = 0, yoffset = 0)
 	if(!istype(parent, /turf) && !istype(parent, /atom/movable))
 		return COMPONENT_INCOMPATIBLE
+	src.x_offset = xoffset
 	src.y_offset = yoffset
 	RegisterSignal(parent, list(COMSIG_ATTACKBY), PROC_REF(plant_seed))
 
@@ -71,6 +74,7 @@ TYPEINFO(/datum/component/arable)
 		if(istype(A, /atom/movable))
 			var/atom/movable/AM = A
 			AM.vis_contents |= P
+			P.pixel_x = src.x_offset
 			P.pixel_y = src.y_offset
 		P.auto_water = src.auto_water
 
