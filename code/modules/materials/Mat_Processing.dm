@@ -219,8 +219,10 @@
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the processor to output to [over_object]!</span>")
 
-		else
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
+		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
 
