@@ -438,6 +438,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/main)
+"bt" = (
+/obj/landmark/artifact,
+/turf/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "bu" = (
 /obj/disposalpipe/segment/bent{
 	dir = 1
@@ -2482,6 +2486,9 @@
 /obj/table/auto{
 	color = "#666666"
 	},
+/obj/item/device/radio/intercom/bridge{
+	pixel_y = 6
+	},
 /turf/floor/darkblue,
 /area/station/bridge)
 "hO" = (
@@ -3297,10 +3304,6 @@
 /area/station/medical/research)
 "kB" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/item/device/radio/intercom/AI{
-	broadcasting = 0;
-	pixel_y = 6
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5032,6 +5035,10 @@
 	},
 /obj/table/auto{
 	color = "#666666"
+	},
+/obj/item/device/radio/intercom/AI{
+	broadcasting = 0;
+	pixel_y = 6
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
@@ -10188,9 +10195,6 @@
 	name = "North Tunnel"
 	})
 "HF" = (
-/obj/item/device/radio/intercom/bridge{
-	pixel_y = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/stool/chair/office/blue{
 	dir = 1
@@ -10987,9 +10991,6 @@
 /area/station/bridge/customs)
 "Kq" = (
 /obj/disposalpipe/segment,
-/obj/item/device/radio/intercom/security{
-	pixel_y = 6
-	},
 /obj/stool/chair/office/blue{
 	dir = 1
 	},
@@ -11282,6 +11283,9 @@
 /obj/disposalpipe/segment,
 /obj/table/auto{
 	color = "#666666"
+	},
+/obj/item/device/radio/intercom/security{
+	pixel_y = 6
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
@@ -73027,7 +73031,7 @@ dX
 gh
 Zo
 Bj
-Bj
+bt
 gh
 Vn
 UJ

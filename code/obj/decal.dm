@@ -260,7 +260,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	density = 1
 	layer = OBJ_LAYER
 
-obj/decal/fakeobjects
+/obj/decal/fakeobjects
 	layer = OBJ_LAYER
 	var/true_name = "fuck you erik"	//How else will players banish it or place curses on it?? honestly people
 
@@ -270,6 +270,11 @@ obj/decal/fakeobjects
 
 	UpdateName()
 		src.name = "[name_prefix(null, 1)][src.true_name][name_suffix(null, 1)]"
+
+/obj/decal/fakeobjects/waves
+	New()
+		..()
+		animate_wave(src)
 
 /obj/decal/fakeobjects/robot
 	name = "Inactive Robot"
