@@ -141,3 +141,9 @@
 				O.cant_other_remove = TRUE
 				if (item)
 					hud.add_object(item, HUD_LAYER+1, screenObj.screen_loc)
+
+	storage
+		name = "storage"
+		type_filters = list(/obj/item/storage)
+		icon_state = "back"
+		show_on_holder = FALSE
