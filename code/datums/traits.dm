@@ -1201,9 +1201,9 @@ obj/trait/pilot
 /obj/trait/cat
 	name = "Feline (0) \[Species\]"
 	cleanName = "Feline"
-	icon_state = "fertT"
+	icon_state = "catT"
 	desc = "Normal cat."
-	id = "cat" //need cat icon, but for now,
+	id = "cat"
 	points = 0
 	isPositive = 0
 	category = "species"
@@ -1334,6 +1334,15 @@ obj/trait/pilot
 	id = "super_slips"
 	desc = "You never were good at managing yourself slipping."
 	points = 1
+
+/obj/trait/hardcore
+	name = "Hardcore (-1)"
+	cleanName= "Hardcore"
+	id = "hardcore"
+	icon_state = "hardcoreT"
+	desc = "You were born with juice in your blood. You've been smoking since pre-K. To you, CoolStation is just a normal space station."
+	points = 1
+
 
 //Infernal Contract Traits
 /obj/trait/hair

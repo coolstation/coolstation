@@ -204,11 +204,15 @@
 					src.light(user, "<span class='alert'><b>[user]</b> lights [his_or_her(user)] [src.name] with [M]'s flaming body. That's cold, man. That's real cold.</span>")
 				return
 			else if (src.on == 1)
-				src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+				if (user.traitHolder && user.traitHolder.hasTrait("hardcore") && target == user)
+					src.put_out(user, "<span class='alert'>With zero hesitation, <b>[user]</b> puts [src] out on [himself_or_herself(user)] and doesn't even scream. God damn.</span>")
+				else src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+
 				if (ishuman(target))
 					var/mob/living/carbon/human/chump = target
 					if (!chump.stat)
-						chump.emote("scream")
+						if (!chump.traitHolder || (chump.traitHolder && !chump.traitHolder.hasTrait("hardcore")))
+							chump.emote("scream")
 				if (src.exploding)
 					trick_explode()
 				return
