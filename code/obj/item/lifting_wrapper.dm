@@ -97,6 +97,9 @@
 		else if(user && src.loc != user)
 			REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 
+	pickup(mob/user)
+		. = ..()
+		APPLY_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 
 /obj/item/lifted_thing/proc/place_the_thing(atom/target, mob/user, var/params)
 	if (!target)
