@@ -1068,7 +1068,7 @@
 				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc(U)
 				qdel(src)
-				if (prob (25))
+				if (prob (25) && (!user.traitHolder && !user.traitHolder.hasTrait("hardcore")))
 					user.visible_message("<span class='alert'>The broken shards of [src] slice up [user]'s hand!</span>")
 					playsound(U, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 					var/damage = rand(5,15)
@@ -1134,7 +1134,7 @@
 			src.reagents.reaction(U)
 
 		DEBUG_MESSAGE("[src].smash_on_thing([user], [target]): success_prob [success_prob], hurt_prob [hurt_prob]")
-		if (!src.broken && prob(success_prob))
+		if (!src.broken && prob(success_prob) || (user.traitHolder && user.traitHolder.hasTrait("hardcore")))
 			user.visible_message("<span class='alert'><b>[user] smashes [src] on [target], shattering it open![prob(50) ? " [user] looks like they're ready for a fight!" : " [src] has one mean edge on it!"]</span>")
 			src.item_state = "broken_beer" // shattered beer inhand sprite
 			user.update_inhands()
@@ -1512,7 +1512,11 @@
 		glassholder = src.owner
 		loopStart()
 		if(glassholder == target)
-			glassholder.visible_message("[glassholder.name] starts chugging the [glass.name]!")
+			if (glassholder.traitHolder && glassholder.traitHolder.hasTrait("hardcore"))
+				duration = 0.2 SECONDS
+				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name] like its NOTHING!")
+			else
+				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name]!")
 		else
 			glassholder.visible_message("[glassholder.name] starts forcing [target.name] to chug the [glass.name]!")
 		logTheThing("combat", glassholder, target, "[glassholder == target ? "starts chugging from" : "makes [constructTarget(target,"combat")] chug from"] [glass] [log_reagents(glass)] at [log_loc(target)].")
@@ -1542,7 +1546,9 @@
 
 		if(glass.reagents.total_volume <= 0)
 			..()
-			target.visible_message("[target.name] chugged everything in the [glass.name]!")
+			if (glassholder.traitHolder && glassholder.traitHolder.hasTrait("hardcore"))
+				target.visible_message("[target.name] chugged everything in the [glass.name]!")
+
 		else if(!checkContinue())
 			..()
 			target.visible_message("[target.name] stops chugging.")
