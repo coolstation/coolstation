@@ -1954,6 +1954,29 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
 
+	splurt
+		name = "Mr. Splurt machine"
+		icon_state = "splurt"
+		icon_panel = "splurt-panel"
+		slogan_list = list("boire de mon nectar...",
+		"Je serai là longtemps après toi",
+		"Je suis comme l'arbre qui donne",
+		"je suis excellent")
+
+		light_r =0.1
+		light_g = 0.65
+		light_b = 0.39
+
+
+
+		create_products()
+			..()
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+
 /obj/machinery/vending/electronics
 	name = "ElecTek Vendomaticotron"
 	desc = "Dispenses electronics equipment."

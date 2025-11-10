@@ -290,7 +290,7 @@
 
 	New()
 		..()
-		if (prob(50))
+		if (prob(50) && !istype(src, /obj/item/reagent_containers/food/drinks/cola/splurt))
 			src.icon_state = "cola-2"
 
 	attack(mob/M as mob, mob/user as mob)
@@ -325,6 +325,12 @@
 			if (!drop_this_shit) //see?
 				user.put_in_hand_or_drop(C)
 			qdel(src)
+
+/obj/item/reagent_containers/food/drinks/cola/splurt
+	name = "Mr Splurt"
+	icon_state = "cola-27"
+	item_state = "cola-27"
+
 
 /obj/item/crushed_can
 	name = "crushed can"
