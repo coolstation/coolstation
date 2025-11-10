@@ -205,7 +205,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 
 		lightning_strike(T, power, warning_time, warning_sparks, is_turf_safe)
 
-/proc/lightning_strike(var/turf/target, var/power = 10, var/warning_time = 6 SECONDS, var/warning_sparks = 9, var/is_turf_safe = TRUE)
+/proc/lightning_strike(var/turf/target, var/power = 10, var/warning_time = 6 SECONDS, var/warning_sparks = 9, var/is_turf_safe = TRUE, var/color = "#ccf5ff")
 	if(!target || !power)
 		return
 	if(!istype(target))
@@ -238,7 +238,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		if(QDELETED(target))
 			return
 		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
-		new /obj/decal/lightning(target, rodded ? 64 : 0)
+		new /obj/decal/lightning(target, rodded ? 64 : 0, color)
 		if(!rodded)
 			explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
 		for(var/mob/living/L in orange(2, target)) // some more mean effects

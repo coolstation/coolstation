@@ -163,13 +163,14 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (!QDELETED(AM))
 					if(M)
 						M.lastgasp()
-					var/turf/T
-					var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
+					var/turf/T = get_turf(AM)
+					var/turf/T2
+					var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
 					if(pit)
-						T = pit.get_turf_to_fall(AM)
+						T2 = pit.get_turf_to_fall(AM)
 					else
-						T = src.get_turf_to_fall(AM)
-					src.actually_fall(T, AM, brutedamage, old_density, iterations + 1)
+						T2 = src.get_turf_to_fall(AM)
+					src.actually_fall(T2, AM, brutedamage, old_density, iterations + 1)
 		else
 			if(ismob(AM))
 				var/mob/M = AM

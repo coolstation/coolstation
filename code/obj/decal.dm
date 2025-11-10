@@ -670,8 +670,9 @@ obj/decal/fakeobjects
 	var/light_g = 0.8
 	var/light_b = 0.85
 
-	New(atom/newLoc, var/y_offset)
+	New(atom/newLoc, var/y_offset, var/color_in = "#ccf5ff")
 		..()
+		src.color = color_in
 		src.pixel_y = abs(src.height * 32) + y_offset
 		if(src.volume)
 			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
