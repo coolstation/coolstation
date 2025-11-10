@@ -126,23 +126,21 @@
 			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
 			src.scoot_sounds = src.scoot_sounds_original
 			return
-		if (!ishuman(user)) return
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/H = ishuman(user) ? user : null
 		var/mob/living/carbon/human/chump = null
 		for (var/mob/M in src.loc)
-
 			if (ishuman(M))
 				chump = M
 			if (!chump || !chump.on_chair)// == 1)
 				chump = null
-			if (H.on_chair)// == 1)
+			if (H && H.on_chair)// == 1)
 				if (M == user)
 					user.visible_message("<span class='notice'><b>[M]</b> steps off [H.on_chair].</span>", "<span class='notice'>You step off [src].</span>")
 					src.add_fingerprint(user)
 					unbuckle()
 					return
 
-			if ((M.buckled) && (!H.on_chair))
+			else if (M.buckled == src)
 				if (locked)
 					if(user.restrained())
 						return
