@@ -33,7 +33,9 @@
 
 		var/car_length = rand(20,40)
 		for(var/i in 1 to car_length)
-			conductor.cars += /obj/traincar/NT_shipping
+			conductor.cars += pick(/obj/traincar/NT_shipping,
+						/obj/traincar/NT_hopper,
+						/obj/traincar/NT_tanker)
 
 		SPAWN_DBG(delay_time)
 			if(QDELETED(conductor))
