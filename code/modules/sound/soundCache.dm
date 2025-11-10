@@ -1335,6 +1335,7 @@ var/global/list/soundCache = list(
  	"sound/radio_station/lobby/muzak_lobby.ogg" = 'sound/radio_station/lobby/muzak_lobby.ogg',\
  	"sound/radio_station/lobby/onn105.ogg" = 'sound/radio_station/lobby/onn105.ogg',\
  	"sound/radio_station/lobby/opus_number_null.ogg" = 'sound/radio_station/lobby/opus_number_null.ogg',\
+ 	"sound/radio_station/lobby/robocop.ogg" = 'sound/radio_station/lobby/robocop.ogg',\
  	"sound/radio_station/lobby/say_you_will.ogg" = 'sound/radio_station/lobby/say_you_will.ogg',\
  	"sound/radio_station/lobby/tane_lobby.ogg" = 'sound/radio_station/lobby/tane_lobby.ogg',\
  	"sound/radio_station/lobby/tv_girl.ogg" = 'sound/radio_station/lobby/tv_girl.ogg',\
