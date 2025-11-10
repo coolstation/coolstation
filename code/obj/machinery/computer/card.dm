@@ -46,15 +46,248 @@
 
 	src.add_dialog(user)
 	var/dat
+	dat = {"<style type="text/css">
+		body
+		{
+			background: #030602;
+			font-family: "Not Jam Mono Clean 16";
+			font-size: 12pt;
+			letter-spacing: 1px;
+			color: #52ff00;
+			padding = 5px;
+
+		}
+		hr{
+			border: 1px solid #fffe03;
+		}
+
+		@font-face {
+				font-family: "Not Jam Mono Clean 16";
+				font-style: normal;
+				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+			}
+			html { background: #0e0c05;
+					font-family: "Not Jam Mono Clean 16";
+					font-size: 16pt;
+					line-height: 1;
+					background: #030602;
+					animation-duration: 0.01s;
+					animation-name: textflicker;
+					animation-iteration-count: infinite;
+					animation-direction: alternate;
+					topmargin=0;
+					bottommargin=0;
+					leftmargin=0;
+					rightmargin=0
+					marginwidth=0;
+					marginheight=0;
+			}
+			h1 {
+				font-size: 32px;
+				text-transform: uppercase;
+				background-color: #0A3609;
+				color: #08FF03;
+				width: 100%;
+				font-weight: bold;
+				padding: 0px 5px 0px 5px ;
+
+			}
+			.container {
+				display: flex;
+				flex-direction: row;
+			}
+              .box{
+				border: 2px solid #08FF03;
+				background-color: #11F20C;
+				color: #011201;
+				padding: 3px;
+				font-size: 12pt;
+				animation-duration: 0.01s;
+				animation-name: boxflicker;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				width: fit-content;
+				display: inline;
+				line-height: 200%;
+				text-align: center;
+				font-weight: normal;
+            }
+            .box.inverse{
+                border-style: solid;
+				background-color: #011201;
+				color: #08FF03;
+
+
+            }
+            .box.surround{
+                justify-content: space-around;
+                width: auto;
+                display: flex;
+                border-width: 1px 10px;
+                padding: 15px;
+            }
+            .box.button{
+			font-size: 20px;
+            width:17%;
+            min-width: fit-content;
+            }
+            .box.inner{
+                width: 190%;
+            }
+			.box.blank{
+            background-color: #020600;
+			color: #020600;
+			border: 2px solid #52ff00;
+            }
+			.holder{
+			color: #171716;
+			}
+            .box.error{
+               border: 5px groove red;
+               padding: 3px;
+               color: red;
+               background-color: black ;
+            }
+			.box.warning{
+				border: 2px groove #c6ff00;
+				background-color: #0c1500;
+				color: #c6ff00;
+			}
+			a{
+				color:#fffe03;
+			}
+			    .crt::before {
+				content: " ";
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				opacuty: 0.1;
+				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+				z-index: 2;
+				background-size: 100% 2px, 3px 100%;
+				pointer-events: none;
+			}
+			.box.center{
+			max-width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+				}
+
+			@keyframes flicker {
+				0% {
+				opacity: 0.05;
+				}
+				5% {
+				opacity: 0.01;
+				}
+				10% {
+				opacity:0.05;
+				}
+				15% {
+				opacity: 0.001;
+				}
+				20% {
+				opacity: 0.05;
+				}
+				25% {
+				opacity: 0.005;
+				}
+				30% {
+				opacity: 0.05;
+				}
+				35% {
+				opacity:0.05;
+				}
+			}
+
+			.crt::after {
+				content: " ";
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: rgba(18, 16, 16, 0.1);
+				opacity: 0.01;
+				z-index: 2;
+				pointer-events: none;
+				animation: flicker 0.15s infinite;
+			}
+		tbody td {
+			/* 1. Animate the background-color
+				from transparent to white on hover */
+			background-color: rgba(205, 168, 60, 0);
+			transition: all 0.2s linear;
+			transition-delay: 0.3s, 0s;
+			/* 2. Animate the opacity on hover */
+			opacity: 0.98;
+			}
+			tbody tr:hover td {
+			background-color: rgba(205, 168, 60, .2);
+			transition-delay: 0s, 0s;
+			opacity: 1;
+			}
+
+			.disclaimer{
+			text-align: center;
+			height: auto;
+			}
+
+			.header{
+			width: 100%;
+			display: flex;
+			white-space: nowrap ;
+			background-color: #0A3609;
+			overflow: hidden;
+			height:36px;
+			align-items: center;
+
+			}
+
+
+
+
+			/* Codepen styling */
+			* { box-sizing: border-box }
+
+
+			th, td {
+			padding: 0.1em;
+			border-bottom: 1px solid #52ff00;
+			text-align: center;
+			}
+
+			.itemBox {
+			border: 2px solid #08FF03;
+			background-color: #11F20C;
+			color: #011201;
+			padding: 3px;
+			font-size: 12pt;
+			animation-duration: 0.01s;
+			animation-name: boxflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			text-align: center;
+			font-weight: normal;
+			}
+
+		</style>
+
+		<head><div class="crt"></div></head>"}
 	if (!( ticker ))
 		return
 	if (src.mode) // accessing crew manifest
 		var/crew = ""
 		for(var/datum/db_record/t as anything in data_core.general.records)
 			crew += "[t["name"]] - [t["rank"]]<br>"
-		dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br>[crew]<a href='?src=\ref[src];print=1'>Print</a><br><br><a href='?src=\ref[src];mode=0'>Access ID modification console.</a><br></tt>"
+		dat += "<div class = 'box inverse surround'><a class ='box button inverse' href='?src=\ref[src];mode=0'>ID MODIFICATION</a><a class = 'box button'>CREW MANIFEST</a></div>"
+		dat += "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br>[crew]<a class ='box button inverse'><a href='?src=\ref[src];print=1'>Print</a><br><br><br></tt>"
 	else
-		var/header = "<b>Identification Card Modifier</b><br><i>Please insert the cards into the slots</i><br>"
+		var/header = ""
 
 		var/target_name
 		var/target_owner
@@ -75,15 +308,14 @@
 		if (src.eject)
 			target_name = src.eject.name
 
-		header += "Target: <a href='byond://?src=\ref[src];modify=1'>[target_name]</a><br>"
+		header += "<div class = 'holder'><div class = 'box'>TARGET</div><div><a href='byond://?src=\ref[src];modify=1'>[target_name]</a></div></div>"
 
 		var/scan_name
 		if(src.scan)
 			scan_name = src.scan.name
 		else
 			scan_name = "--------"
-		header += "Confirm Identity: <a href='byond://?src=\ref[src];scan=1'>[scan_name]</a><br>"
-		header += "<hr>"
+		header += " <div class = 'holder'> <div class = 'box'>CONFIRM IDENTITY:</div><div><a href='byond://?src=\ref[src];scan=1'>[scan_name]</a></div></div> <br>"
 
 		var/body = list()
 		//When both IDs are inserted
@@ -192,7 +424,8 @@
 		else
 			body += "<a href='byond://?src=\ref[src];auth=1'>{Log in}</a>"
 		body = jointext(body, "")
-		dat = "<tt>[header][body]<hr><a href='byond://?src=\ref[src];mode=1'>Access Crew Manifest</a><br></tt>"
+		dat += "<div class = 'box inverse surround'><a class ='box button '>ID MODIFICATION</a><a class ='box button inverse' href='byond://?src=\ref[src];mode=1'>CREW MANIFEST</a></div> <br></tt>"
+		dat += "<div class = 'box inverse surround'> <div class = 'box inverse surround inner' style='width: 50%; flex-direction:column'>[header]</div><div class = 'box inverse surround inner' style='flex-grow: 1;'>[body]</div>"
 	user.Browse(dat, "window=id_com;size=725x500")
 	onclose(user, "id_com")
 	return
