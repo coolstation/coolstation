@@ -86,12 +86,16 @@
 		. = ..()
 		if (our_thing && isturf(newloc))
 			place_the_thing(newloc, user)
+		else if(user && src.loc != user)
+			REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 
 	Move(target)
 		var/mob/user = ismob(src.loc) ? src.loc : null
 		. = ..()
 		if (our_thing && isturf(src.loc))
 			place_the_thing(src.loc, user)
+		else if(user && src.loc != user)
+			REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 
 
 /obj/item/lifted_thing/proc/place_the_thing(atom/target, mob/user, var/params)

@@ -69,10 +69,13 @@
 		on_unequip()
 		return 1
 
+	proc/after_setup(var/datum/hud/hud)
+		if (item)
+			hud.add_object(item, HUD_LAYER+1, screenObj.screen_loc)
+
 	proc/on_update()
 	proc/on_equip()
 	proc/on_unequip()
-	proc/after_setup(var/datum/hud)
 
 	head
 		name = "head"
@@ -139,8 +142,7 @@
 				// it's a built in radio, they can't take it off.
 				O.cant_self_remove = TRUE
 				O.cant_other_remove = TRUE
-				if (item)
-					hud.add_object(item, HUD_LAYER+1, screenObj.screen_loc)
+				. = ..()
 
 	storage
 		name = "storage"
