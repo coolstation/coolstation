@@ -44,6 +44,7 @@
 #define THROW_KNOCKDOWN (1<<5) //i know what i'm doing
 #define THROW_BASEBALL  (1<<6)
 #define THROW_SPACED (1<<7)
+#define THROW_SAFEISH (1<<8)
 
 //For serialization purposes
 #define DESERIALIZE_ERROR 0
