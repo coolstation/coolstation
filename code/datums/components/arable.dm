@@ -5,12 +5,19 @@
   *
   *   Note: Bareplant pots are less effective than typical plantpots so hydroponics trays are goto.
   */
+
+TYPEINFO(/datum/component/arable)
+	initialization_args = list(
+		ARG_INFO("y_offset", "num", "how many pixels to offset the plant (useful for silly things)", 0),
+	)
+
 /datum/component/arable
 	var/auto_water = TRUE
 	var/multi_plant = TRUE
+	var/y_offset = 0
 	var/obj/machinery/plantpot/bareplant/P
 
-	/** Component will destoy itself after plantpot is destroyed */
+	/** Component will destroy itself after plantpot is destroyed */
 	single_use
 		multi_plant = FALSE
 
@@ -18,9 +25,10 @@
 	manual_water
 		auto_water = FALSE
 
-/datum/component/arable/Initialize()
+/datum/component/arable/Initialize(yoffset = 0)
 	if(!istype(parent, /turf) && !istype(parent, /atom/movable))
 		return COMPONENT_INCOMPATIBLE
+	src.y_offset = yoffset
 	RegisterSignal(parent, list(COMSIG_ATTACKBY), PROC_REF(plant_seed))
 
 /datum/component/arable/proc/plant_seed(atom/A, obj/item/I, mob/user)
@@ -57,12 +65,13 @@
 			SEED.generic_seed_setup(SP.selected)
 
 		src.P = new /obj/machinery/plantpot/bareplant(A, SEED)
-		RegisterSignal(src.P, COMSIG_PARENT_PRE_DISPOSING, .proc/remove_plantpot)
+		RegisterSignal(src.P, COMSIG_PARENT_PRE_DISPOSING, PROC_REF(remove_plantpot))
 
 		// Add to visual contents so it can be interacted with
 		if(istype(A, /atom/movable))
 			var/atom/movable/AM = A
 			AM.vis_contents |= P
+			P.pixel_y = src.y_offset
 		P.auto_water = src.auto_water
 
 		if(SEED.planttype)
