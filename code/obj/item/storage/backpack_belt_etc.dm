@@ -416,7 +416,7 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/spraybottle,
 	)
-	spawn_contents = /obj/item/spraybottle/cleaner
+	spawn_contents = list(/obj/item/spraybottle/cleaner)
 	in_list_or_max = 0
 
 /obj/item/storage/belt/utility/prepared/ceshielded

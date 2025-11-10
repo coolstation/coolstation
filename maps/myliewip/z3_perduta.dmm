@@ -105,7 +105,10 @@
 /area/shuttle/arrival/station)
 "bT" = (
 /obj/storage/closet/emergency,
-/obj/cable/vertical,
+/obj/cable,
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
 	},
@@ -535,7 +538,11 @@
 /obj/machinery/button/elevator/robo{
 	pixel_x = 24
 	},
-/obj/cable/vertical{
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/obj/cable{
+	d2 = 8;
 	icon_state = "0-8"
 	},
 /turf/floor/plating,
@@ -1044,7 +1051,10 @@
 "qU" = (
 /obj/structure/girder/riser,
 /obj/decal/poster/wallsign/hazard_electrical,
-/obj/cable/vertical,
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/obj/cable,
 /turf/floor/plating,
 /area/station/atmos/hookups/ai)
 "qV" = (
@@ -2120,8 +2130,12 @@
 /obj/machinery/light/small/red{
 	dir = 4
 	},
-/obj/cable/vertical{
+/obj/cable{
+	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/sublevel/south)

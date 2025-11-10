@@ -8,7 +8,7 @@
 	var/announcement_delay = 1200
 	var/obj/item/card/id/ID = null
 	var/unlocked = 0
-	var/announce_status = "Insert Card"
+	var/announce_status = "<div class = 'box warning'>Insert Card</div>"
 	var/message = ""
 	var/inhibit_updates = 0
 	var/announces_arrivals = 0
@@ -39,16 +39,173 @@
 		if(..()) return
 		src.add_dialog(user)
 		var/dat = {"
-			<body>
-				<h1>Announcement Computer</h1>
+
+
+	<style type="text/css">
+
+
+
+		body
+		{
+			background: #030602;
+			font-family: "Not Jam Mono Clean 16";
+			font-size: 16pt;
+			letter-spacing: 2px;
+			color: #52ff00;
+			titlebar=0;
+			can_resize=0;
+			border=0;
+		}
+
+		hr{
+			border: 1px solid #52ff00;
+		}
+
+		@font-face {
+				font-family: "Not Jam Mono Clean 16";
+				font-style: normal;
+				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+			}
+		html { background: #030602;
+			font-family: "Not Jam Mono Clean 16";
+			font-size: 16pt;
+			line-height: 1;
+			animation-duration: 0.01s;
+			animation-name: textflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			titlebar=0;
+			can_resize=0;
+			border=0;
+		}
+		h1 {
+			font-size: 32px;
+			text-align: left;
+			background-color: #0A3609;
+			color: #08FF03;
+			width:auto;
+			font-weight: normal;
+		}
+		.container {
+		display: flex;
+		flex-direction: row;
+		}
+		.box{
+		border: 2px solid #08FF03;
+		background-color: #11F20C;
+		color: #011201;
+		padding: 3px;
+		font-size: 16pt;
+		animation-duration: 0.01s;
+			animation-name: boxflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			width: fit-content;
+			display: inline;
+			line-height: 200%;
+			text-align: center;
+			font-weight: normal;
+
+		}
+		.box.button{
+		background-color: #020600;
+		color: #52ff00;
+		border: 2px solid #52ff00;
+		}
+		.holder{
+		color: #171716;
+		}
+		.box.error{
+			border: 5px groove red;
+			padding: 3px;
+			color: red;
+			background-color: black ;
+		}
+		.box.warning{
+			border: 2px groove #c6ff00;
+			background-color: #0c1500;
+			color: #c6ff00;
+		}
+		a{
+			color:#52ff00;
+		}
+		    .crt::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacuty: 0.1;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 2;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+
+      @keyframes flicker {
+        0% {
+        opacity: 0.05;
+        }
+        5% {
+        opacity: 0.01;
+        }
+        10% {
+        opacity:0.05;
+        }
+        15% {
+        opacity: 0.001;
+        }
+        20% {
+        opacity: 0.05;
+        }
+        25% {
+        opacity: 0.005;
+        }
+        30% {
+        opacity: 0.05;
+        }
+        35% {
+        opacity:0.05;
+        }
+      }
+
+      .crt::after {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(18, 16, 16, 0.1);
+        opacity: 0.01;
+        z-index: 2;
+        pointer-events: none;
+        animation: flicker 0.15s infinite;
+      }
+
+
+
+
+		</style>
+		<body scroll=no class = "crt">
+
+
+				<h1>Announcement Computer </h1>
 				<hr>
-				Status: [announce_status]<BR>
-				Card: <a href='byond://?src=\ref[src];card=1'>[src.ID ? src.ID.name : "--------"]</a><br>
-				Broadcast delay: [nice_timer()]<br>
-				<br>
-				Message: "<a href='byond://?src=\ref[src];edit_message=1'>[src.message ? src.message : "___________"]</a>" <a href='byond://?src=\ref[src];clear_message=1'>(Clear)</a><br>
-				<br>
-				<b><a href='byond://?src=\ref[src];send_message=1'>Transmit</a></b>
+			<div class = "container>
+				<img src='[resource("images/consoles/transmit.gif")]'/>
+				<div>
+					<div class = "box">STATUS</div> [announce_status]<BR>
+					<div class = "box">CARD</div> <a href='byond://?src=\ref[src];card=1' class = 'filler'>[src.ID ? src.ID.name : "--------"]</a><br>
+
+					<div class = "box">BROADCAST DELAY</div> [nice_timer()]<br>
+					<div class = "box">MESSAGE</div> "<a href='byond://?src=\ref[src];edit_message=1'>[src.message ? src.message : "___________"]</a>" <a class = "box error" href='byond://?src=\ref[src];clear_message=1'>CLEAR</a><br>
+					<div class = "box button"><b><a href='byond://?src=\ref[src];send_message=1'>TRANSMIT</a></b></div>
+				</div>
+			</div>
 			"}
 		if (src.announces_arrivals)
 			dat += "<hr>[src.arrival_announcements_enabled ? "Arrival Announcement Message: \"[src.arrivalalert]\"<br><br><b><a href='byond://?src=\ref[src];set_arrival_message=1'>Change</a></b><br><b><a href='byond://?src=\ref[src];toggle_arrival_message=1'>Disable</a></b>" : "Arrival Announcements Disabled<br><br><b><a href='byond://?src=\ref[src];toggle_arrival_message=1'>Enable</a></b>"]"
@@ -121,9 +278,9 @@
 
 	proc/update_status()
 		if(!src.ID)
-			announce_status = "Insert Card"
+			announce_status = "<div class = 'box warning'>Insert Card</div>"
 		else if(!src.unlocked)
-			announce_status = "Insufficient Access"
+			announce_status = "<div class = 'box error'>INSUFFICIENT ACCESS</div>"
 		else if(!message)
 			announce_status = "Input message."
 		else if(get_time() > 0)

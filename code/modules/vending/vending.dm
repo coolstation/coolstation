@@ -1,5 +1,6 @@
 /datum/data/vending_product
 	var/product_name = "generic"
+	var/icon_override = null
 	var/atom/product_path = null
 
 	var/product_cost
@@ -490,46 +491,285 @@
 	src.updateUsrDialog()
 
 /obj/machinery/vending/proc/generate_vending_HTML()
+
 	var/list/html_parts = list()
-	html_parts += "<b>Welcome!</b><br>"
+	html_parts += {"<style type="text/css">
+		body
+		{
+			background: #030602;
+			font-family: "Not Jam Mono Clean 16";
+			font-size: 12pt;
+			letter-spacing: 1px;
+			color: #52ff00;
+			padding = 5px;
+
+		}
+		hr{
+			border: 1px solid #fffe03;
+		}
+
+		@font-face {
+				font-family: "Not Jam Mono Clean 16";
+				font-style: normal;
+				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+			}
+			html { background: #0e0c05;
+					font-family: "Not Jam Mono Clean 16";
+					font-size: 16pt;
+					line-height: 1;
+					background: #030602;
+					animation-duration: 0.01s;
+					animation-name: textflicker;
+					animation-iteration-count: infinite;
+					animation-direction: alternate;
+					topmargin=0;
+					bottommargin=0;
+					leftmargin=0;
+					rightmargin=0
+					marginwidth=0;
+					marginheight=0;
+			}
+			h1 {
+				font-size: 32px;
+				text-transform: uppercase;
+				background-color: #0A3609;
+				color: #08FF03;
+				width: 100%;
+				font-weight: bold;
+				animation: run 4s linear infinite;
+				padding: 0px 5px 0px 5px ;
+
+			}
+			.container {
+				display: flex;
+				flex-direction: row;
+			}
+            .box{
+				border: 2px solid #08FF03;
+				background-color: #11F20C;
+				color: #011201;
+				padding: 3px;
+				font-size: 12pt;
+				animation-duration: 0.01s;
+				animation-name: boxflicker;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				width: fit-content;
+				display: inline;
+				line-height: 200%;
+				text-align: center;
+				font-weight: normal;
+            }
+            .box.button{
+            background-color: #020600;
+			color: #52ff00;
+			border: 2px solid #52ff00;
+			font-size: 12pt;
+            }
+			.box.blank{
+            background-color: #020600;
+			color: #020600;
+			border: 2px solid #52ff00;
+            }
+			.holder{
+			color: #171716;
+			}
+            .box.error{
+               border: 5px groove red;
+               padding: 3px;
+               color: red;
+               background-color: black ;
+            }
+			.box.warning{
+				border: 2px groove #c6ff00;
+				background-color: #0c1500;
+				color: #c6ff00;
+			}
+			a{
+				color:#fffe03;
+			}
+			    .crt::before {
+				content: " ";
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				opacuty: 0.1;
+				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+				z-index: 2;
+				background-size: 100% 2px, 3px 100%;
+				pointer-events: none;
+			}
+			.box.center{
+			max-width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+				}
+
+			@keyframes flicker {
+				0% {
+				opacity: 0.05;
+				}
+				5% {
+				opacity: 0.01;
+				}
+				10% {
+				opacity:0.05;
+				}
+				15% {
+				opacity: 0.001;
+				}
+				20% {
+				opacity: 0.05;
+				}
+				25% {
+				opacity: 0.005;
+				}
+				30% {
+				opacity: 0.05;
+				}
+				35% {
+				opacity:0.05;
+				}
+			}
+
+			.crt::after {
+				content: " ";
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: rgba(18, 16, 16, 0.1);
+				opacity: 0.01;
+				z-index: 2;
+				pointer-events: none;
+				animation: flicker 0.15s infinite;
+			}
+		tbody td {
+			/* 1. Animate the background-color
+				from transparent to white on hover */
+			background-color: rgba(205, 168, 60, 0);
+			transition: all 0.2s linear;
+			transition-delay: 0.3s, 0s;
+			/* 2. Animate the opacity on hover */
+			opacity: 0.98;
+			}
+			tbody tr:hover td {
+			background-color: rgba(205, 168, 60, .2);
+			transition-delay: 0s, 0s;
+			opacity: 1;
+			}
+
+			.disclaimer{
+			text-align: center;
+			height: auto;
+			}
+
+			.header{
+			width: 100%;
+			display: flex;
+			white-space: nowrap ;
+			background-color: #0A3609;
+			overflow: hidden;
+			height:36px;
+			align-items: center;
+
+			}
+
+			@keyframes run {
+			from {
+				transform: translateX(0%);
+			}
+			/* Magic is here. This is the width of the elem with text after rendering the page */
+			to {
+				transform: translateX( -100% );
+			}
+			}
+
+
+
+
+			/* Codepen styling */
+			* { box-sizing: border-box }
+
+
+			th, td {
+			padding: 0.1em;
+			border-bottom: 1px solid #52ff00;
+			text-align: center;
+			}
+
+			.itemBox {
+			border: 2px solid #08FF03;
+			background-color: #11F20C;
+			color: #011201;
+			padding: 3px;
+			font-size: 12pt;
+			animation-duration: 0.01s;
+			animation-name: boxflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			text-align: center;
+			font-weight: normal;
+			}
+
+			.blank:hover {
+				color:#52ff00;
+				background-color:#52ff00
+			}
+			.blank:active {
+				color:#ffffff;
+				background-color:#ffffff
+			}
+
+
+		</style>
+
+		<head><div class="crt"></div></head>"}
+
+	html_parts += "<div class = 'header'><h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1></div>"
 
 	if (src.paying_for && (!istype(src.paying_for, /datum/data/vending_product) || !src.pay))
 		src.paying_for = null
 
 	if (src.pay && src.acceptcard)
 		if(src.min_serv_chg)
-			html_parts += "<i>This machine charges a minimum $[src.min_serv_chg] service charge</i><br>"
+			html_parts += "<i><div class = 'disclaimer'>This machine charges a minimum $[src.min_serv_chg] service charge</div></i>"
 		if (src.paying_for && !src.scan)
-			html_parts += "<B>You have selected the following item:</b><br>"
-			html_parts += "&emsp;<b>[src.paying_for.product_name]</b><br>"
-			html_parts += "Please swipe your card to authorize payment.<br>"
-			html_parts += "<B>Current ID:</B> None<BR>"
+			html_parts += "<br><div class = 'disclaimer'>You have selected the following item:</div><br>"
+			html_parts += "<div class = 'itemBox'>[src.paying_for.product_name]</div><br>"
+			html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div>"
+			html_parts += "<div class= 'box'><B>Current ID:</B></div>  None<BR>"
 		else if (src.scan)
 			if (src.paying_for)
-				html_parts += "<B>You have selected the following item for purchase:</b><br>"
-				html_parts += "&emsp;[src.paying_for.product_name]<br>"
-				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
+				html_parts += "<br><div class = 'disclaimer'>You have selected the following item for purchase:</div><br>"
+				html_parts += "<div class = 'itembBox'>[src.paying_for.product_name]</div><br>"
+				html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div><br>"
 			var/datum/db_record/account = null
 			account = FindBankAccountByName(src.scan.registered)
-			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
-			html_parts += "<B>Credits on Account: [account["current_money"]] Credits</B> <BR>"
+			html_parts += "<div class= 'box'><B>Current ID :</B></div>  <a href='byond://?src=\ref[src];logout=1'><div class = 'itemBox'><u>([src.scan])</u></div></A><BR>"
+			html_parts += "<div class= 'box'>Credits on Account:</div> <div class = 'itemBox'>[account["current_money"]] Credits</div> <br>"
 		else
-			html_parts += "<B>Current ID:</B> None<BR>"
+			html_parts += "<div class= 'box'><B>Current ID :</B></div> None<BR>"
 
 	if (!length(src.product_list) && !length(src.player_list))
 		html_parts += "<font color = 'red'>No product loaded!</font>"
 
 	else if (src.paying_for)
-		html_parts += "<a href='byond://?src=\ref[src];vend=\ref[src.paying_for]'><u><b>Continue</b></u></a>"
-		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><u><b>Cancel</b></u></a>"
+		html_parts += "<a href='byond://?src=\ref[src];vend=\ref[src.paying_for]'><div class= 'box'>Continue</div></a>"
+		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><div class= 'box'>Cancel</b></div></a>"
 
 	else
-		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th>Product</th><th>Amt.</th><th>Price</th></tr></thead>"
+		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th style = 'color: #020600;'>XXX</th><th>Product</th><th>Amt.</th><th>Price</th></tr></thead>"
 		for (var/datum/data/vending_product/R in src.product_list)
 			if (R.product_hidden && !src.extended_inventory)
 				continue
 			if (R.product_amount > 0)
-				html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[R.product_name]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'> $[R.product_cost]</td></tr>"
+				html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [R.product_name]</td><td>[R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 			else
 				html_parts += "<tr><td>[R.product_name]</a></td><td colspan='2' style='text-align: center;'><strong>SOLD OUT</strong></td></tr>"
 		if (player_list)
@@ -538,15 +778,15 @@
 				var/obj/item/productholder = R.contents[1]
 				var/nextproduct = html_encode(sanitize(productholder.name))
 				if (!T.unlocked)
-					html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[nextproduct]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'> $[R.product_cost]</td></tr>"
+					html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [nextproduct]</a></td><td>[R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 					//Player vending machines don't have "out of stock" items
 				else if (T.unlocked)
 					//Links for setting prices when player vending machines are unlocked
-					html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[nextproduct]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'><a href='byond://?src=\ref[src];setprice=\ref[R]'>$[R.product_cost]</a> (<a href='byond://?src=\ref[src];icon=\ref[R]'>*</a>)</td></tr>"
+					html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [nextproduct]</a></td><td>[R.product_amount]</td><td><a href='byond://?src=\ref[src];setprice=\ref[R]'>$[R.product_cost]</a> (<a href='byond://?src=\ref[src];icon=\ref[R]'>*</a>)</td></tr>"
 		html_parts += "</table>";
 
 		if (src.pay)
-			html_parts += "<BR><B>Available Credits:</B> $[src.credit] <a href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
+			html_parts += "<BR><div class= 'box'>Available Credits:</div> $[src.credit] <br> <a class = 'box error' href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
 			if (!src.acceptcard)
 				html_parts += "<BR>This machine only takes credit bills."
 
@@ -1924,6 +2164,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_chimes, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_beepy, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/flashlight/high_power, 10, cost=PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/cigarette_lighter, 2, cost=PAY_UNTRAINED/2)
 
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/security, 1, cost=PAY_TRADESMAN/3, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/head, 1, cost=PAY_IMPORTANT/3, hidden=1)

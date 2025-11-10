@@ -8,6 +8,8 @@
 	icon_state = "stomach"
 	FAIL_DAMAGE = 100
 	var/reagent_capacity = 200 // should be 150 i think, but eh
+	var/blood_availability = 1
+	var/digestion_rate = 5
 
 	New()
 		. = ..()
@@ -25,7 +27,7 @@
 						food.reagents.reaction(donor, INGEST, src.reagents.total_volume)
 						food.has_digested = TRUE
 
-					food.reagents.trans_to(src, (5 / count_to_process) * mult, HAS_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) ? GET_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) : 1)
+					food.reagents.trans_to(src, (src.digestion_rate / count_to_process) * mult, 1) // HAS_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) ? GET_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) : 1)
 
 					if (food.reagents.total_volume <= 0)
 						donor.poops += food.w_class / 8
@@ -35,7 +37,7 @@
 				if(count_left-- <= 0)
 					break
 
-		src.reagents.trans_to_direct(donor.reagents, 7.5 * mult, 1, 0)
+		src.reagents.trans_to_direct(donor.reagents, src.digestion_rate * 0.9 * mult, src.blood_availability)
 
 		// if (src.get_damage() >= FAIL_DAMAGE && prob(src.get_damage() * 0.2))
 		// 	donor.contract_disease(failure_disease,null,null,1)

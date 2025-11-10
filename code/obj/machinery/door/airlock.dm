@@ -1133,8 +1133,6 @@ About the new airlock wires panel:
 // returns 1 if shocked, 0 otherwise
 // The preceding comment was borrowed from the grille's shock script
 /obj/machinery/door/airlock/proc/shock(mob/user, prb)
-	if (!user)
-		return 0 //IDK why airlocks that get blown up are cutting their own wires but
 
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you

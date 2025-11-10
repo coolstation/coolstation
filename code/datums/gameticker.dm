@@ -1,5 +1,5 @@
 var/global/datum/controller/gameticker/ticker
-var/global/current_state = GAME_STATE_MAP_LOAD
+var/global/current_state = GAME_STATE_WORLD_INIT
 /* -- moved to _setup.dm
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
@@ -68,8 +68,8 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 	#endif
 
 	var/did_mapvote = 0
-	if (!player_capa)
-		new /obj/overlay/zamujasa/round_start_countdown/encourage()
+	//if (!player_capa)
+	//	new /obj/overlay/zamujasa/round_start_countdown/encourage()
 	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()
 	while (current_state <= GAME_STATE_PREGAME)
 		sleep(1 SECOND)
