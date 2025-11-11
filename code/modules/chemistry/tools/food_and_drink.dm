@@ -1134,7 +1134,7 @@
 			src.reagents.reaction(U)
 
 		DEBUG_MESSAGE("[src].smash_on_thing([user], [target]): success_prob [success_prob], hurt_prob [hurt_prob]")
-		if (!src.broken && prob(success_prob) || (user.traitHolder && user.traitHolder.hasTrait("hardcore")))
+		if (!src.broken && prob(success_prob) || (user.traitHolder && user.traitHolder.hasTrait("hardcore") && !src.broken))
 			user.visible_message("<span class='alert'><b>[user] smashes [src] on [target], shattering it open![prob(50) ? " [user] looks like they're ready for a fight!" : " [src] has one mean edge on it!"]</span>")
 			src.item_state = "broken_beer" // shattered beer inhand sprite
 			user.update_inhands()
