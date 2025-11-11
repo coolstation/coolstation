@@ -1548,11 +1548,11 @@
 			if(target && isliving(target))
 				var/mob/living/L = target
 				if(L.organHolder && L.organHolder.stomach) //drinking with no stomach just pours it into your blood
-					src.reagents.trans_to(L.organHolder.stomach, min(glass.reagents.total_volume, glass.gulp_size))
+					glass.reagents.trans_to(L.organHolder.stomach, min(glass.reagents.total_volume, glass.gulp_size))
 				else
-					src.reagents.trans_to(L, min(glass.reagents.total_volume, glass.gulp_size))
+					glass.reagents.trans_to(L, min(glass.reagents.total_volume, glass.gulp_size))
 			else
-				src.reagents.trans_to(L, min(glass.reagents.total_volume, glass.gulp_size))
+				glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
 			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
 			eat_twitch(target)
