@@ -1341,7 +1341,8 @@ obj/trait/pilot
 	id = "hardcore"
 	icon_state = "hardcoreT"
 	desc = "You were born with juice in your blood. You've been smoking since pre-K. To you, CoolStation is just a normal space station."
-	points = 1
+	points = -1
+	isPositive = 1
 
 
 //Infernal Contract Traits
