@@ -37,10 +37,10 @@
 	proc/equip(var/obj/item/I)
 		if (item || !can_equip(I))
 			return 0
-		if (screenObj)
-			I.screen_loc = screenObj.screen_loc
 		item = I
 		item.set_loc(holder)
+		if (screenObj)
+			I.screen_loc = screenObj.screen_loc
 		holder.update_clothing()
 		on_equip()
 		return 1

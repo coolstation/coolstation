@@ -50659,11 +50659,6 @@
 	name = "strange canister";
 	plane = -101
 	},
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss";
-	pixel_y = -7
-	},
 /turf/space,
 /area/titlescreen)
 "jif" = (
@@ -52014,6 +52009,18 @@
 	},
 /turf/floor/white,
 /area/owlery/office)
+"lZi" = (
+/obj/decal/fakeobjects/waves{
+	icon = 'icons/obj/large/64x64.dmi';
+	icon_state = "bile";
+	layer = 29;
+	plane = -99;
+	level = 1;
+	pixel_y = -4;
+	pixel_x = -15
+	},
+/turf/space,
+/area/titlescreen)
 "maR" = (
 /turf/wall/setpieces/iomoon/crust{
 	dir = 8;
@@ -53003,13 +53010,6 @@
 /obj/item/card/id/soviet/engineering,
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
-"nPe" = (
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss"
-	},
-/turf/space,
-/area/titlescreen)
 "nSQ" = (
 /obj/decal/poster/wallsign/stencil/left/four,
 /turf/shuttle/wall{
@@ -53131,10 +53131,6 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "odu" = (
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss"
-	},
 /obj/naval_mine/rusted{
 	plane = -101
 	},
@@ -53531,20 +53527,6 @@
 	},
 /turf/floor/grass,
 /area/owlery/owllock)
-"oND" = (
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss";
-	pixel_y = -7
-	},
-/obj/naval_mine{
-	icon = 'icons/obj/atmospherics/atmos.dmi';
-	icon_state = "green";
-	name = "strange canister";
-	plane = -101
-	},
-/turf/space,
-/area/titlescreen)
 "oOM" = (
 /obj/table/reinforced{
 	icon_state = "12"
@@ -53796,6 +53778,15 @@
 /obj/item/material_piece/slag,
 /turf/floor/shuttlebay,
 /area/diner/tug)
+"ppZ" = (
+/obj/naval_mine{
+	icon = 'icons/obj/items/items.dmi';
+	icon_state = "rubber_duck";
+	name = "rubber duck";
+	plane = -101
+	},
+/turf/space,
+/area/titlescreen)
 "pql" = (
 /obj/item/crowbar,
 /turf/floor/concrete,
@@ -54202,6 +54193,10 @@
 	icon_state = "green";
 	name = "strange canister";
 	plane = -101
+	},
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
 	},
 /turf/space,
 /area/titlescreen)
@@ -55134,11 +55129,6 @@
 	},
 /area/iomoon)
 "slv" = (
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss";
-	pixel_y = -9
-	},
 /obj/naval_mine{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "ball";
@@ -57096,6 +57086,10 @@
 	},
 /turf/space,
 /area/wizard_station)
+"vVx" = (
+/obj/machinery/magnet_chassis,
+/turf/space,
+/area/space)
 "vVI" = (
 /turf/floor/void/channel,
 /area/adventure/channel/teleport)
@@ -57618,6 +57612,18 @@
 /obj/stool/bench/auto,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"wWI" = (
+/obj/decal/fakeobjects/waves{
+	icon = 'icons/obj/large/64x64.dmi';
+	icon_state = "bile";
+	layer = 29;
+	plane = -99;
+	level = 1;
+	pixel_y = -4;
+	pixel_x = -15
+	},
+/turf/wall/auto/virtual,
+/area/titlescreen)
 "wXq" = (
 /obj/table/virtual{
 	icon_state = "tabledir"
@@ -58367,19 +58373,6 @@
 /area/iomoon)
 "yiP" = (
 /turf/floor/setpieces/bloodfloor,
-/area/titlescreen)
-"yjP" = (
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss"
-	},
-/obj/naval_mine{
-	icon = 'icons/obj/items/items.dmi';
-	icon_state = "rubber_duck";
-	name = "rubber duck";
-	plane = -101
-	},
-/turf/space,
 /area/titlescreen)
 "ykP" = (
 /turf/wall/setpieces/iomoon/crust{
@@ -142646,8 +142639,8 @@ xYJ
 xYJ
 xYJ
 xYJ
-qnd
-xYJ
+jfY
+lZi
 xYJ
 xYJ
 xYJ
@@ -142944,7 +142937,7 @@ xYJ
 xYJ
 xYJ
 jfY
-xYJ
+lZi
 xYJ
 xYJ
 xYJ
@@ -142953,7 +142946,7 @@ xYJ
 xYJ
 xYJ
 jfY
-xYJ
+lZi
 xYJ
 ajg
 "}
@@ -143247,7 +143240,7 @@ xYJ
 xYJ
 xYJ
 xYJ
-yjP
+xYJ
 xYJ
 xYJ
 xYJ
@@ -143554,8 +143547,8 @@ xYJ
 xBx
 cOI
 xYJ
-oND
-xYJ
+jfY
+lZi
 xYJ
 xYJ
 xYJ
@@ -143840,15 +143833,15 @@ vww
 vww
 vww
 vww
-vww
+vVx
 vww
 vww
 vww
 aaa
 ajg
 xYJ
-hXN
-xYJ
+jfY
+lZi
 xYJ
 xYJ
 lpX
@@ -143857,7 +143850,7 @@ xYJ
 xYJ
 lmb
 xYJ
-qnd
+xYJ
 xYJ
 xYJ
 xYJ
@@ -144752,8 +144745,8 @@ vww
 vww
 aaa
 ajg
-xYJ
-xYJ
+ppZ
+lZi
 xYJ
 lmb
 xYJ
@@ -147774,7 +147767,7 @@ aaa
 ajg
 xYJ
 hXN
-xYJ
+lZi
 xYJ
 xBx
 xYJ
@@ -147783,7 +147776,7 @@ xYJ
 xYJ
 xYJ
 xYJ
-nPe
+xYJ
 xYJ
 uOU
 uEj
@@ -148083,7 +148076,7 @@ xYJ
 xYJ
 xYJ
 odu
-xYJ
+lZi
 xYJ
 xYJ
 xYJ
@@ -148381,14 +148374,14 @@ xYJ
 xYJ
 xYJ
 slv
+lZi
 xYJ
 xYJ
 xYJ
 xYJ
 xYJ
-xYJ
-qnd
-xYJ
+jfY
+lZi
 xYJ
 xYJ
 ajg
@@ -148693,7 +148686,7 @@ xYJ
 xYJ
 xYJ
 qnd
-ajg
+wWI
 "}
 (300,1,1) = {"
 aaa
