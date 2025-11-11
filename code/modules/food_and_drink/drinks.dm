@@ -330,6 +330,32 @@
 	name = "Mr Splurt"
 	icon_state = "cola-27"
 	item_state = "cola-27"
+	desc = "its good and its for you"
+
+	senior
+		name = "Splurt Senior"
+		icon_state = "cola-28"
+		item_state = "cola-28"
+		desc = "For those who splurt in volume"
+
+	senor
+		name = "Señor Splurt"
+		icon_state = "cola-29"
+		item_state = "cola-29"
+		desc = "Its a fiesta in your mouth!"
+
+	monsieur
+		name = "Monsieur Splurt"
+		icon_state = "cola-30"
+		item_state = "cola-30"
+		desc = "A finer splurt"
+
+	dr
+		name = "Dr. Splurt"
+		icon_state = "cola-31"
+		item_state = "cola-31"
+		desc = "4/5 doctors say that Dr. Splurt is a drink!"
+
 
 
 /obj/item/crushed_can
