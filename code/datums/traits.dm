@@ -598,9 +598,9 @@
 	isPositive = 1
 	category = "trinkets"
 
-/obj/trait/emaculate
-	name = "Emaculate (-1) \[Trinkets\]"
-	cleanName = "Emaculate"
+/obj/trait/immaculate
+	name = "Immaculate (-1) \[Trinkets\]"
+	cleanName = "Immaculate"
 	desc = "Start off with a rag as your trinket."
 	id = "emaculate"
 	points = -1
