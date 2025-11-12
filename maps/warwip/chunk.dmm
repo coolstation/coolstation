@@ -2806,6 +2806,16 @@
 /obj/machinery/drainage/big,
 /turf/floor/sanitary,
 /area/station/crew_quarters/showers)
+"cEL" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "cFi" = (
 /obj/machinery/door/window/westright,
 /obj/disposalpipe/segment/mail{
@@ -3535,12 +3545,8 @@
 	},
 /area/station/hallway/primary/central)
 "dup" = (
-/obj/grille/catwalk/grey{
-	dir = 6
-	},
-/turf/floor/airless/plating/catwalk/grey{
-	dir = 4
-	},
+/obj/grille/catwalk/grey,
+/turf/floor/airless/plating/catwalk/grey,
 /area/space)
 "duF" = (
 /obj/machinery/vending/medical_public,
@@ -5443,7 +5449,7 @@
 "fei" = (
 /obj/machinery/door/airlock/external/shuttle_connect,
 /obj/access_spawn/cargo,
-/turf/floor/plating,
+/turf/floor,
 /area/station/quartermaster/cargobay)
 "feD" = (
 /obj/cable{
@@ -6803,13 +6809,14 @@
 /area/station/janitor/office)
 "gos" = (
 /obj/lattice{
-	dir = 4;
+	dir = 8;
 	icon_state = "lattice-dir"
 	},
-/obj/grille/catwalk/grey{
-	dir = 1
+/obj/rail/junction{
+	dir = 8
 	},
-/turf/floor/airless/plating/catwalk/grey,
+/obj/railing/orange,
+/turf/space,
 /area/space)
 "gox" = (
 /obj/wingrille_spawn/reinforced,
@@ -7536,6 +7543,19 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/carpet/office/hotdog,
 /area/station/crew_quarters/clown)
+"gZi" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/rail/junction{
+	dir = 4
+	},
+/obj/railing/orange{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "gZs" = (
 /turf/floor,
 /area/station/quartermaster/cargobay)
@@ -8215,6 +8235,13 @@
 /obj/submachine/foodprocessor,
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
+"hQN" = (
+/obj/lattice,
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "hQS" = (
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor/border_only,
@@ -9113,6 +9140,12 @@
 /obj/storage/crate,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"iHe" = (
+/obj/railing/orange{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "iHf" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
 /turf/floor/specialroom/bar,
@@ -10121,6 +10154,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
+"jLc" = (
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "jLo" = (
 /obj/wingrille_spawn/reinforced,
 /obj/decal/wreath/ephemeral,
@@ -10210,6 +10249,10 @@
 "jPn" = (
 /turf/wall/r_wall,
 /area/station/chapel/sanctuary)
+"jPT" = (
+/obj/railing/orange,
+/turf/space,
+/area/space)
 "jQX" = (
 /obj/table/auto,
 /obj/item/clothing/gloves/yellow,
@@ -10631,6 +10674,16 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"koQ" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "kpt" = (
 /obj/disposalpipe/segment/vertical,
 /obj/wingrille_spawn,
@@ -11476,6 +11529,17 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/engine/inner)
+"lhz" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (SOUTHWEST)"
+	},
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "lhN" = (
 /obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/segment/horizontal,
@@ -12966,6 +13030,12 @@
 	},
 /turf/floor/plating/airless/asteroid/dark,
 /area/ghostdrone_factory)
+"mGZ" = (
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "mHe" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor,
@@ -12996,6 +13066,10 @@
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
 "mJc" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
 /obj/grille/catwalk/grey,
 /turf/floor/airless/plating/catwalk/grey,
 /area/space)
@@ -13520,6 +13594,16 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
+"nku" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "nkv" = (
 /obj/decal/cleanable/dirt/random,
 /obj/submachine/chef_sink{
@@ -14618,6 +14702,17 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/science/chemistry)
+"onI" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (SOUTHWEST)"
+	},
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "oon" = (
 /obj/table/auto,
 /obj/item/crowbar,
@@ -15374,6 +15469,13 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"oVn" = (
+/obj/lattice,
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "oWf" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -15427,6 +15529,16 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
+"oYd" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "oYx" = (
 /obj/cable{
 	d1 = 2;
@@ -15600,6 +15712,18 @@
 /obj/storage/crate/furnacefuel,
 /turf/floor/plating,
 /area/listeningpost)
+"pdy" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 1
+	},
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "pef" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -17079,6 +17203,16 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/maintenance/west)
+"qCN" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "qCT" = (
 /obj/cable{
 	d1 = 1;
@@ -17310,6 +17444,16 @@
 "qRP" = (
 /turf/floor/carpet/office/other,
 /area/station/crew_quarters/hor)
+"qRQ" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 8
+	},
+/obj/railing/orange,
+/turf/space,
+/area/space)
 "qRR" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -19941,6 +20085,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
 /area/station/science/lab)
+"tvZ" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "twJ" = (
 /obj/reagent_dispensers/compostbin,
 /turf/floor/grass,
@@ -20360,6 +20513,16 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"tRm" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "tRv" = (
 /obj/disposalpipe/segment/mail,
 /obj/pathlights/shuttle{
@@ -21372,11 +21535,9 @@
 /area/station/hallway/secondary/exit)
 "uGy" = (
 /obj/grille/catwalk/grey{
-	dir = 10
+	dir = 9
 	},
-/turf/floor/airless/plating/catwalk/grey{
-	dir = 4
-	},
+/turf/floor/airless/plating/catwalk/grey,
 /area/space)
 "uHT" = (
 /obj/cable/orange{
@@ -23578,6 +23739,15 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor/grey,
 /area/station/bridge)
+"wJQ" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "wJT" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
@@ -24384,6 +24554,13 @@
 /obj/access_spawn/engineering_mechanic,
 /turf/floor/cautionblack,
 /area/station/engine/elect)
+"xDr" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/railing/orange,
+/turf/space,
+/area/space)
 "xDC" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -55282,19 +55459,19 @@ huZ
 huZ
 huZ
 huZ
-fDn
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-fDn
+icn
+wJD
+wJD
+wJD
+wJD
+wJD
+wJD
+wJD
+wJD
+wJD
+wJD
+wJD
+jod
 huZ
 huZ
 huZ
@@ -55589,13 +55766,13 @@ huZ
 huZ
 huZ
 huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
 fDn
 huZ
 huZ
@@ -55887,20 +56064,20 @@ wJD
 wJD
 wJD
 pwo
-wJD
-wJD
-wJD
-wJD
-wJD
+toM
+huZ
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
 rvw
-rvw
-rvw
 wJD
 wJD
-wJD
-rvw
-wJD
-ubt
 wJD
 rvw
 huZ
@@ -56190,19 +56367,19 @@ huZ
 huZ
 fDn
 huZ
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
 huZ
-huZ
-huZ
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
 rvw
 huZ
-ubt
+huZ
 huZ
 rvw
 huZ
@@ -56491,8 +56668,6 @@ huZ
 huZ
 huZ
 fDn
-huZ
-huZ
 pAB
 pAB
 pAB
@@ -56502,12 +56677,14 @@ pAB
 pAB
 pAB
 pAB
-icn
-wJD
-ubt
-wJD
-uDj
-huZ
+oYd
+tRm
+hQN
+wJQ
+wJQ
+wJQ
+onI
+jLc
 xHx
 nfB
 nfB
@@ -56793,7 +56970,6 @@ huZ
 huZ
 huZ
 fDn
-huZ
 pAB
 pAB
 pAB
@@ -56803,13 +56979,14 @@ pAB
 pAB
 pAB
 pAB
-huZ
-fDn
-huZ
+dup
+dup
+mJc
+dup
 uGy
 ubn
-gos
-wJD
+ubn
+ubn
 eay
 thG
 nfB
@@ -57104,14 +57281,14 @@ pAB
 pAB
 pAB
 pAB
-jyc
-bzW
-pwo
-bzW
+koQ
+cEL
+oVn
+qRQ
 ubt
-wJD
-uDj
-huZ
+pdy
+lhz
+mGZ
 xHx
 nfB
 eJY
@@ -57397,21 +57574,21 @@ huZ
 huZ
 huZ
 fDn
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-mJc
-mJc
-ubn
-ubn
-dup
 huZ
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+huZ
+fDn
+jPT
+ubt
+iHe
 fDn
 huZ
 jpv
@@ -57699,6 +57876,8 @@ jyc
 wJD
 jmU
 fDn
+huZ
+huZ
 pAB
 pAB
 pAB
@@ -57708,12 +57887,10 @@ pAB
 pAB
 pAB
 pAB
-poe
-jlh
 pwo
-jlh
+xDr
 ubt
-wJD
+tvZ
 uDj
 huZ
 roP
@@ -58002,20 +58179,20 @@ doJ
 bLO
 fDn
 huZ
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
 huZ
+huZ
+huZ
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
+pAB
 fDn
-huZ
+jPT
 ubt
-huZ
+iHe
 fDn
 huZ
 huZ
@@ -58305,19 +58482,19 @@ bLO
 fDn
 huZ
 huZ
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
+huZ
+huZ
+gos
+oLK
+fei
+oLK
+gZi
+huZ
+huZ
 icn
-wJD
+xDr
 ubt
-wJD
+tvZ
 pwo
 wJD
 sZs
@@ -58609,13 +58786,13 @@ huZ
 huZ
 huZ
 huZ
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
-pAB
+gos
+szk
+gZs
+szk
+gZi
+huZ
+huZ
 sZs
 sZs
 lvs
@@ -82819,9 +82996,9 @@ uLX
 vJb
 rwu
 rwu
-huZ
-huZ
-fDn
+jLc
+jLc
+nku
 cSr
 oyB
 cSr
@@ -83121,9 +83298,9 @@ tBB
 cFX
 rwa
 vWe
-wJD
-wJD
-pwo
+ubn
+ubn
+ubn
 lka
 rCI
 pkv
@@ -83423,9 +83600,9 @@ tBB
 rwu
 rwu
 rwu
-huZ
-huZ
-fDn
+mGZ
+mGZ
+qCN
 bvA
 ftm
 cSr
