@@ -500,7 +500,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 15, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, -3)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -559,7 +559,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 15, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, -3)
 		return 1
 
 	proc/recalcPClass()
