@@ -1307,12 +1307,9 @@
 	},
 /area/station/hangar/main)
 "blo" = (
-/obj/machinery/vending/kitchen,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/floor/grey,
-/area/station/crew_quarters/kitchen)
+/obj/machinery/portable_reclaimer,
+/turf/floor/black,
+/area/station/hangar/main)
 "blG" = (
 /obj/wingrille_spawn,
 /obj/disposalpipe/segment/mail{
@@ -3597,8 +3594,8 @@
 /turf/floor/specialroom/freezer/blue,
 /area/station/crew_quarters/kitchen)
 "dwt" = (
-/obj/machinery/portable_reclaimer,
-/obj/decal/cleanable/dirt/random,
+/obj/table/auto,
+/obj/machinery/cell_charger,
 /turf/floor/black,
 /area/station/hangar/main)
 "dyl" = (
@@ -8100,9 +8097,12 @@
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "hGF" = (
-/obj/storage/secure/closet/civilian/kitchen,
-/turf/floor/grey,
-/area/station/crew_quarters/kitchen)
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/floor/black,
+/area/station/hangar/main)
 "hGU" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable,
@@ -10862,6 +10862,10 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/plating,
 /area/station/maintenance/north)
+"kwB" = (
+/obj/machinery/vending/meat,
+/turf/floor/grey,
+/area/station/crew_quarters/kitchen)
 "kwU" = (
 /obj/cable{
 	d1 = 1;
@@ -17399,10 +17403,12 @@
 /turf/floor,
 /area/station/hallway/secondary/construction2)
 "qPm" = (
-/obj/table/auto,
-/obj/machinery/cell_charger,
-/turf/floor/black,
-/area/station/hangar/main)
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/vending/kitchen,
+/turf/floor/grey,
+/area/station/crew_quarters/kitchen)
 "qQj" = (
 /obj/grille/steel,
 /turf/floor/plating/airless,
@@ -18651,13 +18657,9 @@
 /turf/floor/grey,
 /area/station/bridge)
 "saH" = (
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_x = -1
-	},
-/obj/machinery/manufacturer/hangar,
-/turf/floor/black,
-/area/station/hangar/main)
+/obj/storage/secure/closet/civilian/kitchen,
+/turf/floor/grey,
+/area/station/crew_quarters/kitchen)
 "saK" = (
 /obj/table/reinforced/auto{
 	icon_state = "12"
@@ -24672,6 +24674,9 @@
 /obj/item/storage/box/cablesbox/brown,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
@@ -83865,8 +83870,8 @@ vFh
 huZ
 huZ
 huA
-mVA
-dwt
+blo
+nus
 xbz
 vMg
 tkk
@@ -84166,10 +84171,10 @@ huZ
 vFh
 huZ
 huZ
-huZ
-mVA
-qPm
-nFX
+huA
+dwt
+nus
+nus
 wbe
 nDu
 wvT
@@ -84182,7 +84187,7 @@ gcH
 eUz
 cTU
 qNe
-hGF
+eUz
 eIM
 mLS
 huZ
@@ -84468,10 +84473,10 @@ huZ
 vFh
 huZ
 huZ
-huZ
-mVA
-mVA
-saH
+huA
+nus
+nus
+nus
 wbe
 nqs
 wvT
@@ -84484,8 +84489,8 @@ qbC
 nfQ
 eUz
 qNe
-blo
-mLS
+eUz
+saH
 mLS
 huZ
 syu
@@ -84770,10 +84775,10 @@ huZ
 vFh
 huZ
 huZ
-huZ
-huZ
-mVA
-mVA
+huA
+hGF
+nFX
+nFX
 xJv
 wvT
 wvT
@@ -84786,9 +84791,9 @@ xBs
 uLE
 hPl
 iaN
+qPm
+kwB
 mLS
-mLS
-huZ
 huZ
 icn
 wJD
@@ -85072,9 +85077,9 @@ huZ
 vFh
 huZ
 huZ
-huZ
-huZ
-huZ
+huA
+mVA
+mVA
 mVA
 mVA
 bfu
@@ -85089,8 +85094,8 @@ mLS
 mLS
 mLS
 mLS
-huZ
-huZ
+mLS
+mLS
 huZ
 fDn
 huZ
@@ -85684,10 +85689,10 @@ fDn
 huZ
 huZ
 huZ
-huZ
+mLS
 ovm
 ifa
-huZ
+mLS
 huZ
 huZ
 huZ
