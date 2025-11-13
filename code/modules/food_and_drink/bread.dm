@@ -225,6 +225,12 @@
 		src.pixel_x += rand(-3,3)
 		src.pixel_y += rand(-3,3)
 
+	attackby(obj/item/W as obj, mob/user as mob)
+		//WE CAN MAKE FUCKING HOTDOGS --redd
+		if (istype(W, /obj/item/reagent_containers/food/snacks/hotdog))
+			W.attackby(src, user)
+			return
+
 /obj/item/reagent_containers/food/snacks/breadslice/toastslice
 	name = "slice of toast"
 	desc = "Crispy cooked bread."
