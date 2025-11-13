@@ -58,7 +58,7 @@ var/global
 	server_start_time = 0
 	round_time_check = 0			// set to world.timeofday when round starts, then used to calculate round time
 	defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
-	machines_may_use_wired_power = 0
+	machines_may_use_wired_power = TRUE // fuck it, we ball? - mylie
 	regex/url_regex = null
 	force_random_names = 0			// for the pre-roundstart thing
 	force_random_looks = 0			// same as above

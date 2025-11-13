@@ -8,9 +8,8 @@ Contains:
 -Singularity bomb
 */
 // I came here with good intentions, I swear, I didn't know what this code was like until I was already waist deep in it
-#define SINGULARITY_TIME 11
-#define SINGULARITY_MAX_DIMENSION 11//defines the maximum dimension possible by a player created singularity.
-#define DEFAULT_AREA 25
+#define SINGULARITY_TIME TRUE
+#define FIELD_GENERATOR_MAX_LENGTH 11//defines the maximum dimension possible by a player created singularity.
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -76,7 +75,7 @@ proc/singularity_containment_check(turf/center)
 		src.visible_message("<span class='notice'>[src] refuses to activate in this place. Odd.</span>")
 		qdel(src)
 
-	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, 3, 0.8, flags=SOUND_IGNORE_SPACE)
+	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, 15, 0.8, flags=SOUND_IGNORE_SPACE)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
@@ -664,7 +663,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(WEST)
 			oNSEW = EAST
 
-	for(var/dist = 0, dist <= SINGULARITY_MAX_DIMENSION, dist += 1) // checks out to max dimension tiles away for another generator to link to
+	for(var/dist = 0, dist <= FIELD_GENERATOR_MAX_LENGTH, dist += 1) // checks out to max dimension tiles away for another generator to link to
 		T = get_step(T, NSEW)
 		//T2 = T
 		G = (locate(/obj/machinery/field_generator) in T)
@@ -798,7 +797,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.UpdateOverlays(null, "field_start_[NSEW]")
 	src.UpdateOverlays(null, "field_end_[turn(NSEW, 180)]")
 
-	for(var/dist = 0, dist <= SINGULARITY_MAX_DIMENSION, dist += 1) // checks out to 8 tiles away for fields
+	for(var/dist = 0, dist <= FIELD_GENERATOR_MAX_LENGTH, dist += 1) // checks out to 8 tiles away for fields
 		T = get_step(T, NSEW)
 		//T2 = T
 		F = (locate(/obj/machinery/containment_field) in T)
