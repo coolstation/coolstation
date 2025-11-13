@@ -27,7 +27,7 @@ proc/singularity_containment_check(turf/center)
 	for(var/dir in alldirs)
 		var/turf/T = center
 		var/found_field = FALSE
-		for(var/i in 1 to 20)
+		for(var/i in 0 to 19)
 			T = get_step(T, dir)
 			if(locate(/obj/machinery/containment_field) in T)
 				min_dist = min(min_dist, i)
@@ -80,7 +80,9 @@ proc/singularity_containment_check(turf/center)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
-		new /obj/machinery/the_singularity(T, 100,,max_radius)
+		var/initial_radius = min(2, max_radius)
+		var/turf/T2 = locate(T.x - initial_radius, T.y - initial_radius, T.z)
+		new /obj/machinery/the_singularity(T2 ? T2 : T, 100,,max_radius)
 	qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
@@ -114,9 +116,6 @@ proc/singularity_containment_check(turf/center)
 	density = 1
 	event_handler_flags = IMMUNE_SINGULARITY
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
-
-	//pixel_x = -64
-	//pixel_y = -64
 
 	var/maxboom = 0
 	var/has_moved
@@ -317,13 +316,21 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	return
 
 /obj/machinery/the_singularity/Bumped(atom/A)
+	eat_atom(A)
+	..()
+
+/obj/machinery/the_singularity/Bump(atom/A)
+	eat_atom(A)
+	..()
+
+/obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
 
 	if (A.event_handler_flags & IMMUNE_SINGULARITY)
-		return
+		return TRUE
 	if (!active)
 		if (A.event_handler_flags & IMMUNE_SINGULARITY_INACTIVE)
-			return
+			return TRUE
 
 	// Don't bump that which no longer exists
 	if(A.disposed)

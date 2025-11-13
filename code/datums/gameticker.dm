@@ -99,7 +99,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			title_countdown.update_time(-1)
 
 
-		if(pregame_timeleft <= 0)
+		if(pregame_timeleft <= 0 || current_state == GAME_STATE_SETTING_UP)
 			current_state = GAME_STATE_SETTING_UP
 			qdel(title_countdown)
 			qdel(game_start_countdown)
