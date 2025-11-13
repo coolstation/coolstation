@@ -228,8 +228,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		//WE CAN MAKE FUCKING HOTDOGS --redd
 		if (istype(W, /obj/item/reagent_containers/food/snacks/hotdog))
-			W.attackby(src, user)
-			return
+			return W.attackby(src, user)
 
 /obj/item/reagent_containers/food/snacks/breadslice/toastslice
 	name = "slice of toast"
