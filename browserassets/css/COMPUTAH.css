@@ -45,6 +45,7 @@ body
 				background-color: #11F20C;
 				color: #011201;
 				padding: 3px;
+				text-transform: uppercase;
 				font-size: 12pt;
 				animation-duration: 0.01s;
 				animation-name: boxflicker;
@@ -55,6 +56,7 @@ body
 				line-height: 200%;
 				text-align: center;
 				font-weight: normal;
+				overflow-y:auto;
             }
             .box.inverse{
                 border-style: solid;
@@ -69,6 +71,7 @@ body
                 display: flex;
                 border-width: 1px 10px;
                 padding: 15px;
+				align-items: center;
             }
             .box.button{
 			font-size: 20px;
@@ -98,7 +101,7 @@ body
 				color: #c6ff00;
 			}
 			a{
-				color:#fffe03;
+				color: #0bf532;
 			}
 			    .crt::before {
 				content: " ";
@@ -161,6 +164,11 @@ body
 				pointer-events: none;
 				animation: flicker 0.15s infinite;
 			}
+			.inHeader{
+				border-bottom: 8px double #52ff00;
+				width: 100%;
+				text-transform: uppercase;
+			}
 		tbody td {
 			/* 1. Animate the background-color
 				from transparent to white on hover */
@@ -218,3 +226,60 @@ body
 			text-align: center;
 			font-weight: normal;
 			}
+
+/*Collapsible Tree Menu*/
+
+*{margin:0;
+	padding:0;
+}
+input{
+	font-size:1em;
+}
+ol.tree{
+	padding-left:30px;
+}
+li{list-style-type:none;
+	color:#fff;
+	position:relative;
+	margin-left:-15px;
+}
+li label{
+	padding-left:37px;
+	cursor:pointer;
+	background:url("https://www.thecssninja.com/demo/css_tree/folder-horizontal.png") no-repeat 15px 2px;
+	display:block;
+}
+li input{
+	width:1em;
+	height:1em;
+	position:absolute;
+	left:-0.5em;
+	top:0;
+	opacity:0;
+	cursor:pointer;}
+li input + ol{height:1em;
+	margin:-16px 0 0 -44px;
+	background:url("https://www.thecssninja.com/demo/css_tree/toggle-small-expand.png") no-repeat 40px 0;
+}
+li input + ol > li{display:none;
+	margin-left:-14px !important;
+	padding-left:1px}
+li.file{margin-left:-1px !important;}
+li.file a{display:inline-block;
+	padding-left:21px;
+	color:#fff;
+	text-decoration:none;
+	background:url("https://www.thecssninja.com/demo/css_tree/document.png") no-repeat 0 0;
+}
+li input:checked + ol{
+	height:auto;
+	margin:-21px 0 0 -44px;
+	padding:25px 0 0 80px;
+	background:url("https://www.thecssninja.com/demo/css_tree/toggle-small.png") no-repeat 40px 5px;
+}
+li input:checked + ol > li{
+	display:block;margin:0 0 0.063em;
+}
+li input:checked + ol > li:first-child{
+	margin:0 0 0.125em;
+}

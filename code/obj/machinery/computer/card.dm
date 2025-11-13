@@ -46,238 +46,7 @@
 
 	src.add_dialog(user)
 	var/dat
-	dat = {"<style type="text/css">
-		body
-		{
-			background: #030602;
-			font-family: "Not Jam Mono Clean 16";
-			font-size: 12pt;
-			letter-spacing: 1px;
-			color: #52ff00;
-			padding = 5px;
-
-		}
-		hr{
-			border: 1px solid #fffe03;
-		}
-
-		@font-face {
-				font-family: "Not Jam Mono Clean 16";
-				font-style: normal;
-				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
-			}
-			html { background: #0e0c05;
-					font-family: "Not Jam Mono Clean 16";
-					font-size: 16pt;
-					line-height: 1;
-					background: #030602;
-					animation-duration: 0.01s;
-					animation-name: textflicker;
-					animation-iteration-count: infinite;
-					animation-direction: alternate;
-					topmargin=0;
-					bottommargin=0;
-					leftmargin=0;
-					rightmargin=0
-					marginwidth=0;
-					marginheight=0;
-			}
-			h1 {
-				font-size: 32px;
-				text-transform: uppercase;
-				background-color: #0A3609;
-				color: #08FF03;
-				width: 100%;
-				font-weight: bold;
-				padding: 0px 5px 0px 5px ;
-
-			}
-			.container {
-				display: flex;
-				flex-direction: row;
-			}
-              .box{
-				border: 2px solid #08FF03;
-				background-color: #11F20C;
-				color: #011201;
-				padding: 3px;
-				font-size: 12pt;
-				animation-duration: 0.01s;
-				animation-name: boxflicker;
-				animation-iteration-count: infinite;
-				animation-direction: alternate;
-				width: fit-content;
-				display: inline;
-				line-height: 200%;
-				text-align: center;
-				font-weight: normal;
-            }
-            .box.inverse{
-                border-style: solid;
-				background-color: #011201;
-				color: #08FF03;
-
-
-            }
-            .box.surround{
-                justify-content: space-around;
-                width: auto;
-                display: flex;
-                border-width: 1px 10px;
-                padding: 15px;
-            }
-            .box.button{
-			font-size: 20px;
-            width:17%;
-            min-width: fit-content;
-            }
-            .box.inner{
-                width: 190%;
-            }
-			.box.blank{
-            background-color: #020600;
-			color: #020600;
-			border: 2px solid #52ff00;
-            }
-			.holder{
-			color: #171716;
-			}
-            .box.error{
-               border: 5px groove red;
-               padding: 3px;
-               color: red;
-               background-color: black ;
-            }
-			.box.warning{
-				border: 2px groove #c6ff00;
-				background-color: #0c1500;
-				color: #c6ff00;
-			}
-			a{
-				color:#fffe03;
-			}
-			    .crt::before {
-				content: " ";
-				display: block;
-				position: fixed;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				opacuty: 0.1;
-				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-				z-index: 2;
-				background-size: 100% 2px, 3px 100%;
-				pointer-events: none;
-			}
-			.box.center{
-			max-width: fit-content;
-			margin-left: auto;
-			margin-right: auto;
-				}
-
-			@keyframes flicker {
-				0% {
-				opacity: 0.05;
-				}
-				5% {
-				opacity: 0.01;
-				}
-				10% {
-				opacity:0.05;
-				}
-				15% {
-				opacity: 0.001;
-				}
-				20% {
-				opacity: 0.05;
-				}
-				25% {
-				opacity: 0.005;
-				}
-				30% {
-				opacity: 0.05;
-				}
-				35% {
-				opacity:0.05;
-				}
-			}
-
-			.crt::after {
-				content: " ";
-				display: block;
-				position: fixed;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background: rgba(18, 16, 16, 0.1);
-				opacity: 0.01;
-				z-index: 2;
-				pointer-events: none;
-				animation: flicker 0.15s infinite;
-			}
-		tbody td {
-			/* 1. Animate the background-color
-				from transparent to white on hover */
-			background-color: rgba(205, 168, 60, 0);
-			transition: all 0.2s linear;
-			transition-delay: 0.3s, 0s;
-			/* 2. Animate the opacity on hover */
-			opacity: 0.98;
-			}
-			tbody tr:hover td {
-			background-color: rgba(205, 168, 60, .2);
-			transition-delay: 0s, 0s;
-			opacity: 1;
-			}
-
-			.disclaimer{
-			text-align: center;
-			height: auto;
-			}
-
-			.header{
-			width: 100%;
-			display: flex;
-			white-space: nowrap ;
-			background-color: #0A3609;
-			overflow: hidden;
-			height:36px;
-			align-items: center;
-
-			}
-
-
-
-
-			/* Codepen styling */
-			* { box-sizing: border-box }
-
-
-			th, td {
-			padding: 0.1em;
-			border-bottom: 1px solid #52ff00;
-			text-align: center;
-			}
-
-			.itemBox {
-			border: 2px solid #08FF03;
-			background-color: #11F20C;
-			color: #011201;
-			padding: 3px;
-			font-size: 12pt;
-			animation-duration: 0.01s;
-			animation-name: boxflicker;
-			animation-iteration-count: infinite;
-			animation-direction: alternate;
-			text-align: center;
-			font-weight: normal;
-			}
-
-		</style>
-
-		<head><div class="crt"></div></head>"}
+	dat = {"<head><link rel="stylesheet" type="text/css" href="[resource("css/COMPUTAH.css")]" /><div class="crt"></div></head>"}
 	if (!( ticker ))
 		return
 	if (src.mode) // accessing crew manifest
@@ -320,9 +89,9 @@
 		var/body = list()
 		//When both IDs are inserted
 		if (src.authenticated && src.modify)
-			body += "Registered: <a href='byond://?src=\ref[src];reg=1'>[target_owner]</a><br>"
-			body += "Assignment: <a href='byond://?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a><br>"
-			body += "PIN: <a href='byond://?src=\ref[src];pin=1'>****</a>"
+			body += "<div class = 'box inverse' style = 'width: 100%; display: flex; justify-content: space-evenly; align-items: center;'><div class = 'box'>Registered:</div> <a href='byond://?src=\ref[src];reg=1'>[target_owner]</a>"
+			body += "<div class = 'box'>Assignment:</div> <a href='byond://?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a>"
+			body += "<div class = 'box'>PIN:</div> <a href='byond://?src=\ref[src];pin=1'>****</a></div>"
 
 			//Jobs organised into sections
 			var/list/civilianjobs = list("Staff Assistant", "Bartender", "Chef", "Botanist", "Rancher", "Chaplain", "Janitor", "Clown")
@@ -331,8 +100,9 @@
 			var/list/securityjobs = list("Security Officer", "Security Assistant", "Detective")
 			var/list/commandjobs = list("Head of Personnel", "Chief Engineer", "Research Director", "Medical Director", "Captain")
 
-			body += "<br><br><u>Jobs</u>"
-			body += "<br>Civilian:"
+			body += "<div class = 'box inverse' style = 'height: 40%; overflow-y: scroll; overflow-x: hidden; flex-direction:row'><div class = 'inHeader'><u>Jobs</u></div>"
+
+			body += "Civilian:"
 			for(var/job in civilianjobs)
 				body += " <a href='byond://?src=\ref[src];assign=[job];colour=blue'>[replacetext(job, " ", "&nbsp")]</a>" //make sure there isn't a line break in the middle of a job
 
@@ -357,35 +127,35 @@
 				body += " [src.custom_names[i]] <a href='byond://?src=\ref[src];save=[i]'>save</a> <a href='byond://?src=\ref[src];apply=[i]'>apply</a>"
 
 			//Change access to individual areas
-			body += "<br><br><u>Access</u>"
+			body += "</div><div class = 'box inverse' style = 'height: 40%; overflow-y: scroll; overflow-x: hidden; flex-direction:row'><div class = 'inHeader'><u>Access</u></div>"
 
 			//Organised into sections
-			var/civilian_access = list("<br>Staff:")
-			var/engineering_access = list("<br>Engineering:")
-			var/supply_access = list("<br>Supply:")
-			var/research_access = list("<br>Science and Medical:")
-			var/security_access = list("<br>Security:")
-			var/command_access = list("<br>Command:")
+			var/civilian_access = list("Staff:")
+			var/engineering_access = list("Engineering:")
+			var/supply_access = list("Supply:")
+			var/research_access = list("Science and Medical:")
+			var/security_access = list("Security:")
+			var/command_access = list("Command:")
 
 			for(var/A in access_name_lookup)
 				if(access_name_lookup[A] in src.modify.access)
 					//Click these to remove access
 					if (access_name_lookup[A] in civilian_access_list)
-						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#2e790c\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in engineering_access_list)
-						engineering_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						engineering_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#2e790c\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in supply_access_list)
-						supply_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						supply_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#2e790c\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in research_access_list)
-						research_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						research_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#2e790c\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in security_access_list)
-						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#2e790c\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in command_access_list)
-						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#2e790c\">[replacetext(A, " ", "&nbsp")]</font></a>"
 						if ("[access_name_lookup[A]]" in command_locker_access_list)
 							var/access_num_locker = command_locker_access_list["[access_name_lookup[A]]"]
 							if (access_num_locker in src.modify.access)
-								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=0'><font color=\"red\"><i>(Locker)</i></font></a>"
+								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=0'><font color=\"#2e790c\"><i>(Locker)</i></font></a>"
 							else
 								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=1'><i>(Locker)</i></a>"
 
@@ -409,24 +179,24 @@
 							else
 								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=1'><i>(Locker)</i></a>"
 
-			body += "[jointext(civilian_access, "")]<br>[jointext(engineering_access, "")]<br>[jointext(supply_access, "")]<br>[jointext(research_access, "")]<br>[jointext(security_access, "")]<br>[jointext(command_access, "")]"
+			body += "[jointext(civilian_access, "")]<br>[jointext(engineering_access, "")]<br>[jointext(supply_access, "")]<br>[jointext(research_access, "")]<br>[jointext(security_access, "")]<br>[jointext(command_access, "")]</div>"
 
-			body += "<br><br><u>Customise ID</u><br>"
+			body += "<div class = 'box inverse' style = 'flex-direction:row'><u>Customise ID</u><br>"
 			body += "<a href='byond://?src=\ref[src];colour=none'>Plain</a> "
 			body += "<a href='byond://?src=\ref[src];colour=blue'>Civilian</a> "
 			body += "<a href='byond://?src=\ref[src];colour=yellow'>Engineering</a> "
 			body += "<a href='byond://?src=\ref[src];colour=purple'>Research</a> "
 			body += "<a href='byond://?src=\ref[src];colour=red'>Security</a> "
-			body += "<a href='byond://?src=\ref[src];colour=green'>Command</a>"
+			body += "<a href='byond://?src=\ref[src];colour=green'>Command</a></div>"
 
 			user.unlock_medal("Identity Theft", 1)
 
 		else
-			body += "<a href='byond://?src=\ref[src];auth=1'>{Log in}</a>"
+			body += "<div class = 'box inverse'><a href='byond://?src=\ref[src];auth=1'>{Log in}</a></div>"
 		body = jointext(body, "")
 		dat += "<div class = 'box inverse surround'><a class ='box button '>ID MODIFICATION</a><a class ='box button inverse' href='byond://?src=\ref[src];mode=1'>CREW MANIFEST</a></div> <br></tt>"
-		dat += "<div class = 'box inverse surround'> <div class = 'box inverse surround inner' style='width: 50%; flex-direction:column'>[header]</div><div class = 'box inverse surround inner' style='flex-grow: 1;'>[body]</div>"
-	user.Browse(dat, "window=id_com;size=725x500")
+		dat += "<div class = 'box inverse surround' style = 'height: 100%;'> <div class = 'box inverse surround inner' style='width: 50%; flex-direction:column'>[header]</div><div class = 'box inverse surround inner' style='flex-grow: 1; flex-direction:column'>[body]</div>"
+	user.Browse(dat, "window=id_com;size=1000x700")
 	onclose(user, "id_com")
 	return
 
