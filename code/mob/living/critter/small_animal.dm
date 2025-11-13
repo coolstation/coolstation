@@ -469,7 +469,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	health_brute = 30
 	health_burn = 30
 	var/dogtype = "pug"
-	var/sound/sound_bark = "sound/voice/animal/dogbark.ogg"
+	var/sound_bark = 'sound/voice/animal/dogbark.ogg'
 	var/gabe = 0 //sniff. bark bork. brork.
 	pull_w_class = W_CLASS_BULKY
 
@@ -501,7 +501,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 					if (src.gabe == 1) //sniff. bark bork. brork.
 						playsound (get_turf(src), "gabe", 80, 1, channel=VOLUME_CHANNEL_EMOTE)
 						return "<span class='emote'><b>[src]</b> barks??</span>"
-					playsound(src, "sound/voice/animal/dogbark.ogg", 80, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, src.sound_bark, 80, 1, channel=VOLUME_CHANNEL_EMOTE)
 					return "<span class='emote'><b>[src]</b> barks!</span>"
 			if ("smile","tail")
 				if (src.emote_check(voluntary, 30))
