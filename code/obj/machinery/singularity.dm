@@ -68,7 +68,7 @@ proc/singularity_containment_check(turf/center)
 	if(isnull(max_radius))
 		return
 
-	logTheThing(LOG_BOMBING, src.fingerprintslast, "A [src.name] was activated, spawning a singularity at [log_loc(src)]. Last touched by: [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"]")
+	logTheThing("bombing", src.fingerprintslast, "A [src.name] was activated, spawning a singularity at [log_loc(src)]. Last touched by: [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"]")
 	message_admins("A [src.name] was activated, spawning a singularity at [log_loc(src)]. Last touched by: [key_name(src.fingerprintslast)]")
 
 	var/turf/T = get_turf(src)
@@ -116,8 +116,8 @@ proc/singularity_containment_check(turf/center)
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 
-	pixel_x = -64
-	pixel_y = -64
+	//pixel_x = -64
+	//pixel_y = -64
 
 	var/maxboom = 0
 	var/has_moved
@@ -188,23 +188,21 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		SPAWN_DBG(1.1 SECONDS) // slowing this baby down a little -drsingh
 			move()
 
-			var/recapture_prob = clamp(25-(radius**2) , 0, 25)
+			var/recapture_prob = clamp(30-(radius**2) , 0, 25)
 			if(prob(recapture_prob))
 				var/check_max_radius = singularity_containment_check(get_turf(src))
 				if(!isnull(check_max_radius) && check_max_radius >= radius)
 					src.active = FALSE
-					animate(get_filter("loose rays"), size=1, time=5 SECONDS, easing=LINEAR_EASING, flags=ANIMATION_PARALLEL, loop=1)
 					maxradius = check_max_radius
-					logTheThing(LOG_STATION, null, "[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
+					logTheThing("station", null, "[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
 					message_admins("[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
 
 	else
 		var/check_max_radius = singularity_containment_check(get_turf(src))
 		if(isnull(check_max_radius) || check_max_radius < radius)
 			src.active = TRUE
-			animate(get_filter("loose rays"), size=100, time=5 SECONDS, easing=LINEAR_EASING, flags=ANIMATION_PARALLEL, loop=1)
 			maxradius = INFINITY
-			logTheThing(LOG_STATION, null, "[src] has become loose at [log_loc(src)]")
+			logTheThing("station", null, "[src] has become loose at [log_loc(src)]")
 			message_admins("[src] has become loose at [log_loc(src)]")
 
 
@@ -395,8 +393,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.energy += gain
 
 /obj/machinery/the_singularity/proc/get_center()
-	return src.loc
-
+	var/turf/T = get_turf(src.loc)
+	return locate(T.x + src.radius, T.y + src.radius, T.z)
 
 /obj/machinery/the_singularity/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
@@ -421,6 +419,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(radius<maxradius)
 			radius++
 			SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+	src.bound_width = 64 * radius + 32
+	src.bound_height = 64 * radius + 32
 	/*else if (src.energy < godver2)//too big
 		if (radius == 1)
 			return
