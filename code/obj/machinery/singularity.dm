@@ -1063,6 +1063,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					boutput(user, "You turn off the emitter.")
 					logTheThing("station", user, null, "deactivated active emitter at [log_loc(src)].")
 					message_admins("[key_name(user)] deactivated active emitter at [log_loc(src)].")
+					src.power_usage = 0
 			else
 				if(alert("Turn on the emitter?",,"Yes","No") == "Yes")
 					src.active = 1
@@ -1072,6 +1073,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					src.shot_number = 0
 					src.fire_delay = 100
 					message_admins("[key_name(user)] activated emitter at [log_loc(src)].")
+					src.power_usage = 250 WATTS
 		else
 			boutput(user, "The controls are locked!")
 	else
