@@ -850,12 +850,12 @@
 				var/image/redlight = image(src.icon, src.icon_redlight)
 				redlight.plane = PLANE_SELFILLUM
 				src.UpdateOverlays(redlight, "light")
-				playsound(src,"sounds/machinery/bweep.ogg",50,0,0,0.7)
+				playsound(src,"sounds/machines/bweep.ogg",50,0,0,0.7)
 			else
 				var/image/greenlight = image(src.icon, src.icon_greenlight)
 				greenlight.plane = PLANE_SELFILLUM
 				src.UpdateOverlays(greenlight, "light")
-				playsound(src,"sounds/machinery/bweep.ogg",50)
+				playsound(src,"sounds/machines/bweep.ogg",50)
 		else
 			src.UpdateOverlays(null, "sparks")
 			src.UpdateOverlays(null, "light")
