@@ -18,11 +18,6 @@ Contains:
 #define WRENCHED 1
 #define WELDED 2
 
-#ifdef UPSCALED_MAP
-#undef SINGULARITY_MAX_DIMENSION
-#define SINGULARITY_MAX_DIMENSION 22
-#endif
-
 /**
  * Checks if there is a containment field in each direction from the center turf. If not returns null.
  * If yes returns the distance to the closest field.
@@ -606,8 +601,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (WELDED)
 			. += "It has been bolted and welded to the floor."
 
-/obj/machinery/field_generator/process()
+///obj/machinery/field_generator/can_deconstruct(mob/user)
+//	. = !active
 
+/obj/machinery/field_generator/process(var/mult)
 	if(src.Varedit_start == 1)
 		if(src.active == 0)
 			src.set_active(1)
@@ -628,7 +625,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.set_active(2)
 	src.power = clamp(src.power, 0, src.max_power)
 	if(src.active >= 1)
-		src.power -= 1
+		src.power -= mult
 		//maptext = num2text(power)
 		if(Varpower == 0)
 			if(src.power <= 0)
@@ -1357,7 +1354,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	anchored = ANCHORED
 	density = 1
 	directwired = 1
-	///Supposed to make power just whenever, but I think it's broken cause S1 never gets assigned (and nothing uses magic collectors so I don't care)
+	///Supposed to make power just whenever, should work now
 	var/magic = 0
 	var/active = 0
 	///For atmos analyser readout
@@ -1372,7 +1369,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	var/obj/machinery/power/collector_array/CAS = null
 	var/obj/machinery/power/collector_array/CAE = null
 	var/obj/machinery/power/collector_array/CAW = null
-	var/obj/machinery/the_singularity/S1 = null
 
 /obj/machinery/power/collector_control/New()
 	..()
@@ -1409,9 +1405,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		CAS = locate(/obj/machinery/power/collector_array) in get_step(src,SOUTH)
 		CAE = locate(/obj/machinery/power/collector_array) in get_step(src,EAST)
 		CAW = locate(/obj/machinery/power/collector_array) in get_step(src,WEST)
-		for_by_tcl(singu, /obj/machinery/the_singularity)//this loop checks for valid singularities
-			if(get_dist(singu,loc)<SINGULARITY_MAX_DIMENSION+2)
-				S1 = singu
 
 		//grab the plasma cans from
 		if(!isnull(CAN))
@@ -1439,9 +1432,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				PE = CAE.P
 		else
 			PE = null
-
-		if(S1?.disposed)
-			S1 = null
 
 	updateicon()
 
@@ -1478,15 +1468,15 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		else
 			UpdateOverlays(null, "array_error_light")
 
-		if(S1)
+		if(src.lastpower)
 			UpdateOverlays(image('icons/obj/singularity.dmi', "cu sing"), "singularity_light")
-			if(!S1.active)
-				UpdateOverlays(image('icons/obj/singularity.dmi', "cu conterr"), "singularity_containment_alarm")
-			else
-				UpdateOverlays(null, "singularity_containment_alarm")
+			//if(!S1.active)
+			//	UpdateOverlays(image('icons/obj/singularity.dmi', "cu conterr"), "singularity_containment_alarm")
+			//else
+			//	UpdateOverlays(null, "singularity_containment_alarm")
 		else
 			UpdateOverlays(null, "singularity_light")
-			UpdateOverlays(null, "singularity_containment_alarm")
+			//UpdateOverlays(null, "singularity_containment_alarm")
 
 	else
 		//magic collectors just have everything good on I guess?
@@ -1511,27 +1501,32 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			var/power_s = 0 //number directly from singularity, not WATTS
 			var/power_p = 0 //number from collector plasma, not WATTS
 
-			if(!isnull(S1)) //First, derive some kinda number from the singularity (I haven't tried to understand this formula)
-				power_s += S1.energy*max((S1.radius**2),1)/4
+			for_by_tcl(singu, /obj/machinery/the_singularity)//each singularity gives power - this was NOT always the case
+				//Big singulos are great (exponential scaling), fed singulos are good (linear scaling), and distance is uh...
+				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
+				var/dist_to_singu = GET_DIST(singu, src)
+				if(dist_to_singu < singu.radius * 8)
+					power_s += singu.energy * max((singu.radius**2),1) / (4 + dist_to_singu) * 4
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
-			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 466 minutes (assuming no lag) at the current
-			//3.2s machine loop for an array to run dry. Even with a 1Hz machine loop it takes over two hours. Realistically we will never run out of plasma.
+			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
+			//3.2s machine loop for an array to run dry. By that point, the SMES is max charge, so its not actually that dangerous.
+			//This used to be ten times slower, but noone ever actually noticed it was happening.
 			if(PN?.air_contents)
 				if(CAN.active != 0)
 					power_p += PN.air_contents.toxins
-					PN.air_contents.toxins -= 0.001 * mult
+					PN.air_contents.toxins = max(0, PN.air_contents.toxins - 0.01 * mult)
 			if(PS?.air_contents)
 				if(CAS.active != 0)
 					power_p += PS.air_contents.toxins
-					PS.air_contents.toxins -= 0.001 * mult
+					PS.air_contents.toxins = max(0, PS.air_contents.toxins - 0.01 * mult)
 			if(PE?.air_contents)
 				if(CAE.active != 0)
 					power_p += PE.air_contents.toxins
-					PE.air_contents.toxins -= 0.001 * mult
+					PE.air_contents.toxins = max(0, PE.air_contents.toxins - 0.01 * mult)
 			if(PW?.air_contents)
 				if(CAW.active != 0)
 					power_p += PW.air_contents.toxins
-					PW.air_contents.toxins -= 0.001 * mult
+					PW.air_contents.toxins = max(0, PW.air_contents.toxins - 0.01 * mult)
 			//multiply it all together I guess
 			power_a = power_p*power_s*50
 			src.lastpower = power_a
@@ -1541,8 +1536,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/power_a = 0
 		var/power_s = 0
 		var/power_p = 0
-		if(!isnull(S1))
-			power_s += S1.energy*((S1.radius*2+1)**2)/DEFAULT_AREA  //should give the area of the singularity and divide it by the area of a standard singularity(a 5x5)
+		for_by_tcl(singu, /obj/machinery/the_singularity)
+			var/dist_to_singu = GET_DIST(singu, src)
+			if(dist_to_singu < singu.radius * 8)
+				power_s += singu.energy * max((singu.radius**2),1) / (4 + dist_to_singu) * 4
 		power_p += 50
 		power_a = power_p*power_s*50
 		src.lastpower = power_a
@@ -1570,8 +1567,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 			logTheThing("station", user, null, "[src.anchored ? "bolts" : "unbolts"] a [src.name] [src.anchored ? "to" : "from"] the floor at [log_loc(src)].") // Ditto (Convair880).
 
-	else if(istype(W, /obj/item/device/analyzer/atmospheric))
-		boutput(user, "<span class='notice'>The analyzer detects that [lastpower]W are being produced.</span>")
+	else if(istype(W, /obj/item/device/analyzer/atmospheric) || istype(W, /obj/item/device/multitool))
+		boutput(user, "<span class='notice'>\The [W] detects that [lastpower]W are being produced.</span>")
 
 	else
 		src.add_fingerprint(user)
