@@ -115,7 +115,6 @@ proc/singularity_containment_check(turf/center)
 	event_handler_flags = IMMUNE_SINGULARITY
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
-
 	//pixel_x = -64
 	//pixel_y = -64
 
@@ -226,7 +225,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				continue
 
 		if (!isarea(X))
-			if (get_dist(src.get_center(), X) <= radius) // why was this a switch before ffs
+			if (GET_DIST(src.get_center(), X) <= (radius + src.active)) // why was this a switch before ffs
 				src.Bumped(A)
 			else if (istype(X, /atom/movable))
 				var/atom/movable/AM = X
