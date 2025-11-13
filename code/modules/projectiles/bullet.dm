@@ -1305,7 +1305,7 @@ toxic - poisons
 	on_hit(atom/hit)
 		var/obj/machinery/the_singularity/S = hit
 		if(istype(S))
-			new /obj/bhole(S.loc,rand(100,300))
+			new /obj/bhole(S.get_center(),rand(100,300))
 			qdel(S)
 		else
 			new /obj/effects/rendersparks(hit.loc)
