@@ -113,7 +113,7 @@ proc/singularity_containment_check(turf/center)
 	icon_state = "Sing2"
 	anchored = ANCHORED
 	density = 1
-	event_handler_flags = IMMUNE_SINGULARITY
+	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 	var/maxboom = 0
@@ -326,8 +326,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/the_singularity/Move(atom/target)
 	. = ..()
-	for(var/turf/T in src.locs)
-		eat_atom(T)
+	if(isturf(target))
+		for(var/turf/T in src.locs)
+			for(var/atom/movable/AM in T.contents)
+				eat_atom(AM)
+			eat_atom(T)
 
 /obj/machinery/the_singularity/Bumped(atom/A)
 	if(eat_atom(A))
@@ -337,7 +340,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if(eat_atom(A))
 		. = ..()
 
-/obj/machinery/the_singularity/Crossed(atom/movable/AM)
+/obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
 	eat_atom(AM)
 
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
@@ -394,8 +397,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			//src.warp = 100
 
 		var/obj/O = A
-		O.set_loc(src.get_center())
 		O.ex_act(OLD_EX_TOTAL)
+		O.set_loc(src.get_center())
 		if (O)
 			qdel(O)
 		gain = 2
@@ -432,22 +435,18 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	//for a 1x1 through 11x11 (uneven diameters only) this comes out to thresholds of 50/450/1250/2450/4050/6050 energy needed
 	//ATM everything that isn't a mob gives 2 energy, so the singulo shouldn't be growing quickly once it's loose
 	var/godver = 50*(diameter+2)*(diameter+2)
-	//var/godver2 = 50*diameter*diameter
+	var/godver2 = 50*diameter*diameter
 
 	if (src.energy >= godver) //too small
-		if(radius<maxradius)
-			radius++
+		if(src.radius < src.maxradius)
+			src.radius++
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
-			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), (radius+0.5)/(radius-0.5), MATRIX_SCALE), 64, 64, MATRIX_TRANSLATE)
-	src.bound_width = 64 * radius + 32
-	src.bound_height = 64 * radius + 32
-	src.grav_range = min(src.radius, 7)
-	/*else if (src.energy < godver2)//too big
-		if (radius == 1)
-			return
-		SafeScale(radius/((radius+0.5)/(radius-0.5)),radius/((radius+0.5)/(radius-0.5)))
-		radius--*/
-
+			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 64 * src.radius, 64 * src.radius, MATRIX_TRANSLATE)
+	else if (src.energy < godver2 && src.radius > 1)//too big
+		src.radius--
+		src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 64 * src.radius, 64 * src.radius, MATRIX_TRANSLATE)
+	src.bound_width = src.bound_height = 64 * src.radius + 32
+	src.grav_range = min(src.radius + 1, 5)
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
