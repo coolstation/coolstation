@@ -452,6 +452,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
 				if(T2)
 					src.set_loc(T2)
+	else if (src.energy < godver2)
 		src.radius--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 32 * src.radius, 32 * src.radius, MATRIX_TRANSLATE)
